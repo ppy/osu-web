@@ -1,0 +1,5 @@
+[quote:1]Basic
+quote
+tag[/quote:1]
+
+[quote=&quot;name&quot;:1]And with name[/quote:1]

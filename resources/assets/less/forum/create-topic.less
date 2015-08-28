@@ -1,0 +1,76 @@
+/**
+*    Copyright 2015 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+.create-topic {
+	flex: 1 0 auto;
+	min-height: 600px;
+	display: flex;
+	flex-direction: column;
+
+	[name=title] {
+		&:extend(.default-text-shadow);
+
+		width: 100%;
+		background: none;
+		border: none;
+		outline: none;
+		color: #fff;
+		text-align: center;
+		font-style: normal;
+
+		&::placeholder {
+			color: #fff;
+		}
+	}
+
+	[name=body] {
+		flex: 1;
+		resize: vertical;
+		background: none;
+		margin-bottom: @grid-gutter-width/4;
+	}
+
+	.create-topic-buttons {
+		display: flex;
+		justify-content: flex-end;
+
+		> * {
+			margin-left: @grid-gutter-width/4;
+		}
+	}
+
+	.forum-header {
+		.at2x("/images/headers/forum-topics-create.png");
+	}
+}
+
+#topic-post-form {
+	flex: 1 0 auto;
+
+	.post-footer {
+		background: @gray-lighter;
+		padding: @grid-gutter-width/4;
+		margin: 0px -@grid-gutter-width/4;
+
+		@media (min-width: @screen-sm) {
+			margin: 0px;
+		}
+	}
+
+}

@@ -1,0 +1,48 @@
+/**
+*    Copyright 2015 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+.footer {
+	.at2x("/images/backgrounds/page-222.png");
+
+	&:extend(.default-text-shadow);
+	box-shadow: inset 0 2px 4px #000;
+
+	color: #ccc;
+	font-size: 10px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	padding: @grid-gutter-width/4 0px @grid-gutter-width/8;
+}
+
+.footer-row {
+	margin-bottom: @grid-gutter-width/8;
+}
+
+.footer-link {
+	font-weight: bold;
+	color: #fff;
+
+	&:hover, &:active, &:focus {
+		color: @pink;
+		text-decoration: none;
+	}
+}

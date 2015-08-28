@@ -1,0 +1,26 @@
+[list:1]
+[*:1]Here
+[*:1]be
+[*:1]basic list
+[/list:o:1]
+
+[list=1:1]
+[*:1]Here
+[*:1]be
+[*:1]numbered list
+[/list:o:1]
+
+[list:1]
+[*:1]And
+[*:1]here
+  [list:1]
+  [*:1]is
+  [*:1]nested
+  [/list:o:1]
+[*:1]list
+[*:1]and
+  [list=1:1]
+  [*:1]with
+  [*:1]number
+  [/list:o:1]
+[/list:o:1]

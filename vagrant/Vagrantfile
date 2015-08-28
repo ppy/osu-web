@@ -1,0 +1,54 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# provision script for the vm
+$provisionScript = <<SCRIPT
+
+echo I am provisioning...
+cd /data/osu\!web/
+
+echo Setting up hhvm, nginx, mysql
+sudo ./bootstrap.sh
+
+echo Bind mounting node_modules
+echo "/data/node_modules $PWD/node_modules none bind,noauto 0 0" >> /etc/fstab
+mkdir -p /data/node_modules "$PWD/node_modules"
+mount "$PWD/node_modules"
+chown vagrant "$PWD/node_modules"
+
+echo setup osu!web stuff
+mysql -u root < vagrant/mysql_user.sql
+cp .env.example .env
+sudo -H -u vagrant ./build.sh
+
+date > /etc/vagrant_provisioned_at
+SCRIPT
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box = "vivid64"
+  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/vivid/current/vivid-server-cloudimg-amd64-vagrant-disk1.box"
+
+  config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :forwarded_port, guest: 8000, host: 8081
+  config.vm.network :forwarded_port, guest: 3306, host: 3366
+
+  config.vm.synced_folder "../", "/data/osu!web", :mount_options => ["dmode=777,fmode=777"]
+
+  config.vm.provider :virtualbox do |vb|
+    vb.name = "osu!web"
+    vb.customize ["modifyvm", :id, "--memory", "2048"]
+    vb.customize ["modifyvm", :id, "--ostype", "Ubuntu_64"]
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
+  end
+
+  config.vm.provision "shell", inline: $provisionScript
+  config.vm.provision "shell", inline: "mount /data/osu!web/node_modules",
+    run: "always"
+  config.vm.provision "shell", inline: "sudo service nginx restart",
+    run: "always"
+end

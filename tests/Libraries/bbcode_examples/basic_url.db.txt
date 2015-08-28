@@ -1,0 +1,7 @@
+[url:1]http&#58;//osu&#46;ppy&#46;sh[/url:1]
+[url:1]https&#58;//osu&#46;ppy&#46;sh[/url:1]
+[url:1]ftp&#58;//ftp&#46;openbsd&#46;org[/url:1]
+
+[url=http&#58;//store&#46;ppy&#46;sh:1]osu!store[/url:1]
+[url=https&#58;//store&#46;ppy&#46;sh:1]osu!store (secure)[/url:1]
+[url=ftp&#58;//ftp&#46;openbsd&#46;org:1]OpenBSD FTP[/url:1]

@@ -1,0 +1,5 @@
+[size=50:1]Tiny size[/size:1]
+
+[size=85:1]Small size[/size:1]
+
+[size=150:1]Large size[/size:1]

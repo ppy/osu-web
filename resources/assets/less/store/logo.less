@@ -1,0 +1,65 @@
+/**
+*    Copyright 2015 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+.store-logo--late {
+	.at2x("/images/headers/store-late.png", 900px, 200px);
+	background-position: 50% 50%;
+	width: 500px;
+	height: 200px;
+}
+
+#store-logo {
+	width: 190px;
+	height: 125px;
+
+	background-image: url("/images/layout/store-logo-bg.svg");
+	background-repeat: no-repeat;
+
+	&:hover {
+		.sh0 { fill: #fff; }
+		.sh1 { fill: #FF66AA; }
+	}
+
+	.sh0 {
+		fill: #FF66AA;
+		transition: fill 0.3s ease-in-out;
+		-webkit-transition: fill 0.3s;
+	}
+
+	.sh1 {
+		fill: #FFFFFF;
+		transition: fill 0.3s ease-in-out;
+		-webkit-transition: fill 0.3s;
+	}
+	.correct {
+		-webkit-transform: translate(128px,128px);
+		-moz-transform: translate(128px,128px);
+		transform: translate(128px,128px);
+	}
+
+	path {
+		-webkit-transform: translate(-128px,-128px);
+		-moz-transform: translate(-128px,-128px);
+		transform: translate(-128px,-128px);
+
+		-webkit-transform-origin: 0 0;
+		-moz-transform-origin: 0 0;
+		transform-origin: 0 0;
+	}
+ }

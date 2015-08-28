@@ -1,0 +1,64 @@
+/**
+*    Copyright 2015 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+@bower_root: "../../../bower_components";
+@node_root: "../../../node_modules";
+
+@import "@{node_root}/font-awesome/less/font-awesome";
+@import "@{node_root}/bootstrap/less/bootstrap";
+@import "@{node_root}/retina.js/src/retina";
+
+@import (inline) "@{bower_root}/ResponsiveSlides.js/responsiveslides.css";
+@import (inline) "@{node_root}/photoswipe/dist/photoswipe.css";
+@import "photoswipe-fix";
+
+@import "functions";
+@import "base";
+@import "radial-progress";
+@import "layout";
+@import "layout/nav-background";
+@import "layout/nav";
+@import "layout/footer";
+@import "bbcode";
+@import "sections";
+@import "beatmaps";
+@import "notifications";
+@import "users";
+@import "wiki";
+@import "tournament";
+@import "store";
+@import "forum/base";
+@import "forum/badge";
+@import "forum/category-headers";
+@import "forum/colours";
+@import "forum/create-topic";
+@import "forum/edit-post";
+@import "forum/post-box";
+@import "home";
+@import "icons";
+@import "tooltip";
+@import "login-modal";
+
+// Variables are imported last.
+// Less has the rule "Last Defined Wins".
+@import "bootstrap-variables";
+@import "colours";
+
+@fa-font-path: "/vendor/fonts/font-awesome";
+@fa-osu-font-path: "/fonts/fa-osu";

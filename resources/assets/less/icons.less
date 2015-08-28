@@ -1,0 +1,110 @@
+/**
+*    Copyright 2015 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+// main: compiled.less
+
+// lists all of the osu! fonts under FontAwesome's namespace, but you still need to add .osu
+
+// gamemode icons in circles
+.@{fa-css-prefix}-osu-o::before { content: '\e000'; }
+.@{fa-css-prefix}-mania-o::before { content: '\e001'; }
+.@{fa-css-prefix}-ctb-o::before { content: '\e002'; }
+.@{fa-css-prefix}-taiko-o::before { content: '\e003'; }
+
+// gamemode icons without circles
+.@{fa-css-prefix}-osu::before { content: '\e004'; }
+.@{fa-css-prefix}-mania::before { content: '\e005'; }
+.@{fa-css-prefix}-ctb::before { content: '\e006'; }
+.@{fa-css-prefix}-taiko::before { content: '\e007'; }
+
+// misc icons
+.@{fa-css-prefix}-bat::before { content: '\e008'; }
+.@{fa-css-prefix}-bubble::before { content: '\e009'; }
+.@{fa-css-prefix}-bubble-pop::before { content: '\e02e'; }
+.@{fa-css-prefix}-dice::before { content: '\e011'; }
+.@{fa-css-prefix}-heart1::before { content: '\e02f'; }
+.@{fa-css-prefix}-heart1-break::before { content: '\e030'; }
+.@{fa-css-prefix}-hot::before { content: '\e031'; }
+.@{fa-css-prefix}-list-search::before { content: '\e032'; }
+
+//osu! playstyles
+.@{fa-css-prefix}-playstyle-tablet::before { content: '\e02a'; }
+.@{fa-css-prefix}-playstyle-mouse::before { content: '\e029'; }
+.@{fa-css-prefix}-playstyle-keyboard::before { content: '\e02b'; }
+.@{fa-css-prefix}-playstyle-touch::before { content: '\e02c'; }
+
+// osu! difficulties
+.@{fa-css-prefix}-easy-osu::before   { content: '\e015'; }
+.@{fa-css-prefix}-normal-osu::before { content: '\e016'; }
+.@{fa-css-prefix}-hard-osu::before   { content: '\e017'; }
+.@{fa-css-prefix}-insane-osu::before { content: '\e018'; }
+.@{fa-css-prefix}-expert-osu::before { content: '\e019'; }
+
+// taiko difficulties
+.@{fa-css-prefix}-easy-taiko::before   { content: '\e01a'; }
+.@{fa-css-prefix}-normal-taiko::before { content: '\e01b'; }
+.@{fa-css-prefix}-hard-taiko::before   { content: '\e01c'; }
+.@{fa-css-prefix}-insane-taiko::before { content: '\e01d'; }
+.@{fa-css-prefix}-expert-taiko::before { content: '\e01e'; }
+
+// taiko aliases
+.@{fa-css-prefix}-kantan::before     { content: '\e01a'; }
+.@{fa-css-prefix}-futsuu::before     { content: '\e01b'; }
+.@{fa-css-prefix}-muzukashii::before { content: '\e01c'; }
+.@{fa-css-prefix}-oni::before        { content: '\e01d'; }
+.@{fa-css-prefix}-inner-oni::before  { content: '\e01e'; }
+
+
+// ctb difficulties
+.@{fa-css-prefix}-easy-ctb::before   { content: '\e01f'; }
+.@{fa-css-prefix}-normal-ctb::before { content: '\e020'; }
+.@{fa-css-prefix}-hard-ctb::before   { content: '\e021'; }
+.@{fa-css-prefix}-insane-ctb::before { content: '\e022'; }
+.@{fa-css-prefix}-expert-ctb::before { content: '\e023'; }
+
+// mania difficulties
+.@{fa-css-prefix}-easy-mania::before   { content: '\e024'; }
+.@{fa-css-prefix}-normal-mania::before { content: '\e025'; }
+.@{fa-css-prefix}-hard-mania::before   { content: '\e026'; }
+.@{fa-css-prefix}-insane-mania::before { content: '\e027'; }
+.@{fa-css-prefix}-expert-mania::before { content: '\e028'; }
+
+// mod icons
+.@{fa-css-prefix}-mod-perfect::before { content: '\e02d'; }
+.@{fa-css-prefix}-mod-autopilot::before { content: '\e03a'; }
+.@{fa-css-prefix}-mod-auto::before { content: '\e03b'; }
+.@{fa-css-prefix}-mod-cinema::before { content: '\e03c'; }
+.@{fa-css-prefix}-mod-doubletime::before { content: '\e03d'; }
+.@{fa-css-prefix}-mod-easy::before { content: '\e03e'; }
+.@{fa-css-prefix}-mod-flashlight::before { content: '\e03f'; }
+.@{fa-css-prefix}-mod-halftime::before { content: '\e040'; }
+.@{fa-css-prefix}-mod-hardrock::before { content: '\e041'; }
+.@{fa-css-prefix}-mod-hidden::before { content: '\e042'; }
+.@{fa-css-prefix}-mod-nightcore::before { content: '\e043'; }
+.@{fa-css-prefix}-mod-nofail::before { content: '\e044'; }
+.@{fa-css-prefix}-mod-relax::before { content: '\e045'; }
+.@{fa-css-prefix}-mod-spunout::before { content: '\e046'; }
+.@{fa-css-prefix}-mod-suddendeath::before { content: '\e047'; }
+.@{fa-css-prefix}-mod-target::before { content: '\e048'; }
+.@{fa-css-prefix}-mod-bg::before { content: '\e049'; }
+
+// osu modifier to change the font used
+.osu {
+	font-family: "osu!" !important;
+}

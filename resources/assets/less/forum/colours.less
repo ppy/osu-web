@@ -1,0 +1,66 @@
+/**
+*    Copyright 2015 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+.forum-colour-set(@stripe-colour, @link-colour, @link-hover-colour) {
+	.topics, .forums {
+		.clickable-row:hover .clickable-row-link {
+			color: @link-hover-colour;
+		}
+	}
+
+	.forums .name, .forums .title, .topics .title, .forum-pagination a {
+		color: @link-colour;
+
+		&:hover, &:active, &:focus {
+			color: @link-hover-colour;
+		}
+	}
+
+	.go-to-last a:hover { color: @link-hover-colour; }
+
+	.forums .hover-bar .colour-stripe {
+		background-color: @stripe-colour;
+	}
+
+	.read-and-type-icon.unread > a { background-color: @link-colour; }
+	.current-count { color: @link-colour; }
+	.radial-progress { .radial-progress-colour(@gray-lighter, @link-colour); }
+
+	#forum-search { background: @link-colour; }
+}
+
+.forum-colour {
+	.forum-colour-set(@gray, @gray-darker, @gray);
+
+	&.category-osu {
+		.forum-colour-set(@pink, @pink-darker, @pink);
+	}
+
+	&.category-language-specific {
+		.forum-colour-set(@yellow, @yellow-darker, @yellow);
+	}
+
+	&.category-other {
+		.forum-colour-set(@green, @green-darker, @green);
+	}
+
+	&.category-beatmaps {
+		.forum-colour-set(@purple, @purple-darker, @purple);
+	}
+}

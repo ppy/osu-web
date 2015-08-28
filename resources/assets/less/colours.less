@@ -1,0 +1,84 @@
+/**
+*    Copyright 2015 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+// main: compiled.less
+
+@purple-lighter: #eeeeff;
+@purple-light: #aa88ff;
+@purple: #8866ee;
+@purple-dark: #6644cc;
+@purple-darker: #441188;
+
+@pink-lighter: #ffddee;
+@pink-light: #ff99cc;
+@pink: #ff66aa;
+@pink-dark: #ee3399;
+@pink-darker: #bb1177;
+
+@blue-lighter: #ddffff;
+@blue-light: #99eeff;
+@blue: #66ccff;
+@blue-dark: #44aadd;
+@blue-darker: #2299bb;
+
+@yellow-lighter: #ffffdd;
+@yellow-light: #ffdd55;
+@yellow: #ffcc22;
+@yellow-dark: #eeaa00;
+@yellow-darker: #cc6600;
+
+@green-lighter: #eeffcc;
+@green-light: #ddff88;
+@green: #aadd00;
+@green-dark: #668800;
+@green-darker: #445500;
+
+@red: #fc4549; // random :D
+
+@home_colour: @purple;
+@news_colour: @yellow;
+@beatmaps_colour: @pink;
+@ranking_colour: @green;
+@community_colour: @blue;
+@store_colour: @pink;
+
+// https://about.twitter.com/press/brand-assets
+@twitter-colour: #55acee;
+
+// https://www.facebookbrand.com
+@facebook-colour: #3b5998;
+
+.colours(@name) {
+	@lighter: "@{name}-lighter";
+	@light: "@{name}-light";
+	@dark: "@{name}-dark";
+	@darker: "@{name}-darker";
+
+	.@{name}-lighter { color: @@lighter !important; }
+	.@{name}-light { color: @@light !important; }
+	.@{name}-normal { color: @@name !important; }
+	.@{name}-dark { color: @@dark !important; }
+	.@{name}-darker { color: @@darker !important; }
+}
+
+.colours(~"pink");
+.colours(~"green");
+.colours(~"blue");
+.colours(~"yellow");
+.colours(~"purple");

@@ -1,0 +1,74 @@
+/**
+*    Copyright 2015 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+.forum__user-flag {
+	&:extend(.default-box-shadow);
+	&:extend(.default-border-radius);
+
+	height: 20px;
+}
+
+.forum__user-flag--large {
+	height: 24px;
+}
+
+.forum__user-flag--small {
+	height: 13px;
+
+	box-shadow: none;
+	border-radius: 0px;
+}
+
+.forum__user-flag--country {
+	width: 30px;
+
+	&.forum__user-flag--large {
+		width: 35px;
+	}
+
+	&.forum__user-flag--small {
+		width: 25px;
+	}
+}
+
+.forum__user-icon--large {
+	.circle(30px);
+	font-size: 14px;
+}
+
+.forum__user-icon--supporter {
+	background-color: @pink;
+}
+
+.forum__issue-icon {
+	.icon-bg;
+	.circle(20px);
+
+	font-size: 10px;
+	color: #fff;
+	text-shadow: 0px 0px 2px #000;
+	.center-content;
+
+	margin: 0px @grid-gutter-width/8;
+}
+
+.forum__issue-icon--confirmed { background-color: @blue-dark; }
+.forum__issue-icon--resolved { background-color: @green-dark; }
+.forum__issue-icon--duplicate { background-color: @yellow-dark; }
+.forum__issue-icon--invalid { background-color: darken(@red, 20%); }

@@ -1,0 +1,7 @@
+[color=white]Colored text! (name)[/color]
+
+[color=#ffffff]Colored text! (code)[/color]
+
+[color=#FFFFFF]Colored text! (uppercased hex)[/color]
+
+[color=#fff]Failing at colored text! (unsupported hex)[/color]
