@@ -7,6 +7,9 @@ $provisionScript = <<SCRIPT
 echo I am provisioning...
 cd /data/osu\!web/
 
+mkdir vagrant/logs
+mkdir bootstrap/cache
+
 echo Setting up hhvm, nginx, mysql
 sudo ./bootstrap.sh
 
