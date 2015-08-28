@@ -6,7 +6,7 @@ the future face of osu!
 Requirements
 ============
 
-[Vagrant 1.5+](http://www.vagrantup.com/downloads.html)
+[Vagrant 1.7+](http://www.vagrantup.com/downloads.html)
 
 Deploying
 =========
