@@ -7,6 +7,9 @@ $provisionScript = <<SCRIPT
 echo I am provisioning...
 cd /data/osu\!web/
 
+mkdir vagrant/logs
+mkdir bootstrap/cache
+
 echo Setting up hhvm, nginx, mysql
 sudo ./bootstrap.sh
 
@@ -15,9 +18,6 @@ echo "/data/node_modules $PWD/node_modules none bind,noauto 0 0" >> /etc/fstab
 mkdir -p /data/node_modules "$PWD/node_modules"
 mount "$PWD/node_modules"
 chown vagrant "$PWD/node_modules"
-
-mkdir vagrant/logs
-mkdir bootstrap/cache
 
 echo setup osu!web stuff
 mysql -u root < vagrant/mysql_user.sql
