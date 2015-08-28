@@ -16,6 +16,9 @@ mkdir -p /data/node_modules "$PWD/node_modules"
 mount "$PWD/node_modules"
 chown vagrant "$PWD/node_modules"
 
+mkdir vagrant/logs
+mkdir bootstrap/cache
+
 echo setup osu!web stuff
 mysql -u root < vagrant/mysql_user.sql
 cp .env.example .env
