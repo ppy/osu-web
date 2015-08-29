@@ -22,21 +22,19 @@
 		<div class="navbar navbar-default navbar-static-top" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#xs-navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<div class="login-nav">
-					    @include("objects.user-dropdown")
-					</div>
-					<a class="logo" href="/"></a>
-					<span class="navbar-brand">
-						<span class="sub1">{{ trans("layout.menu.$current_section._") }}</span>
-						/
-						<span class="darker normal">{{ trans("layout.menu.$current_section.$current_action") }}</span>
-					</span>
+				    <div class="col-xs-4">
+				        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#xs-navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+				    </div>
+                    <a class="logo" href="/"></a>
+                    <div class="login-nav">
+                        @include("objects.user-dropdown")
+                    </div>
+					
 				</div>
 			</div>
 		</div>
