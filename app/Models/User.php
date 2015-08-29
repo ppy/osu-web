@@ -553,10 +553,8 @@ class User extends Model implements AuthenticatableContract
 	public function hasProfile() {
 		return
 			$this->user_id !== null
-			&& $this->user_id !== 0
 			&& !$this->isRestricted()
-			&& $this->group_id !== 6 // bots
-			&& $this->user_id !== 1; // anonymous_old
+			&& $this->group_id !== 6; // bots
 	}
 
 	public function countryName() {
