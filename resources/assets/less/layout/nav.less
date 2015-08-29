@@ -130,13 +130,17 @@
 .navbar { margin-bottom: 0px; }
 .navbar-collapse { background: #fff; }
 
-.navbar-header > .logo {
+.navbar-header .logo {
 	display: inline-block;
-	float: left;
 	background-image: url('/images/layout/osu-logo.png');
 	background-size: 100%;
-	width: @nav-xs-height;
-	height: @nav-xs-height;
+	width: 75px;
+    height: 75px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .nav-user--logout-link {
@@ -144,10 +148,11 @@
 }
 
 .login-nav {
-    float: right;
-    padding: 15px 20px;
+    padding: 15px 0px;
     line-height: 20px;
     height: 50px;
+    position: absolute;
+    right: 20px;
     
     #nav-user-bar {
         position: relative;
@@ -165,4 +170,8 @@
         display: block;
         margin-top: -7px; 
     }
+}
+
+.navbar-toggle {
+    float: none;
 }
