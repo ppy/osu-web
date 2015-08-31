@@ -11,7 +11,7 @@ Requirements
 Deploying
 =========
 
-1. Clone respository
+1. Clone repository
 2. Open shell and point to checkout directory
 3. cd vagrant; vagrant up
 4. wait patiently
@@ -44,8 +44,8 @@ We welcome all contributions, but keep in mind that we already have the full sit
 
 If you want to make *changes* to the design, we recommend you open an issue with your intentions before spending too much time, to ensure no effort is wasted.
 
-Contributions can be made via pull requests to the repository. Please name your branch `<your_github_username>/<your_change_description>` for organisation purposes (ie. `peppy/fix_user_display`). We hope to credit and reward larger contributions, but cannot gaurantee this (we'll do our best).
+Contributions can be made via pull requests to the repository. Please name your branch `<your_github_username>/<your_change_description>` for organization purposes (ie. `peppy/fix_user_display`). We hope to credit and reward larger contributions, but cannot guarantee this (we'll do our best).
 
-Licence
+License
 =======
-osu!web is licensed under AGPL version 3 or later. Please see [the licence file](LICENCE) for more information.
+osu!web is licensed under AGPL version 3 or later. Please see [the license file](LICENSE) for more information.

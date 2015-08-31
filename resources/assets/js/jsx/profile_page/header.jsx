@@ -25,6 +25,15 @@
 			$(document).trigger('profile:cover:select', this.props.name);
 		},
 
+		onMouseEnter: function() {
+			$(document).trigger('profile:previewcover', this.props.name);
+		},
+		
+		onMouseLeave: function() {
+			if(this.props.selectedName != this.props.name){
+			$(document).trigger('profile:previewcover', this.props.selectedName);
+			}
+		},
 		render: function() {
 			var
 				selectedMark;
@@ -39,6 +48,8 @@
 					className='profile-cover-selection'
 					style={{ backgroundImage: `url('/images/headers/profile-covers/c${this.props.name}t.jpg')` }}
 					onClick={this.onClick}
+					onMouseEnter={this.onMouseEnter}
+					onMouseLeave={this.onMouseLeave}
 				>
 					{selectedMark}
 				</div>
