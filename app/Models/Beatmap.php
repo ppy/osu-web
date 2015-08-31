@@ -27,6 +27,30 @@ class Beatmap extends Model
 {
     protected $table = 'osu_beatmaps';
     protected $primaryKey = 'beatmap_id';
+
+    protected $casts = [
+        "beatmap_id" => "integer",
+        "beatmapset_id" => "integer",
+        "user_id" => "integer",
+        "total_length" => "integer",
+        "hit_length" => "integer",
+        "countTotal" => "integer",
+        "countNormal" => "integer",
+        "countSlider" => "integer",
+        "countSpinner" => "integer",
+        "diff_drain" => "float",
+        "diff_size" => "float",
+        "diff_overall" => "float",
+        "diff_approach" => "float",
+        "playmode" => "integer",
+        "approved" => "integer",
+        "difficultyrating" => "float",
+        "playcount" => "integer",
+        "passcount" => "integer",
+        "orphaned" => "boolean",
+    ];
+
+    protected $dates = ["last_update"];
     public $timestamps = false;
 
     protected $hidden = ['checksum', 'filename', 'orphaned'];
