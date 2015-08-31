@@ -81,8 +81,8 @@ class ProfileCover
 			$id = null;
 			$this->store($file->getRealPath());
 		} else {
-			$this->data['file'] = null;
 			$this->delete();
+			$this->data['file'] = null;
 		}
 
 		if ($id !== null && !in_array($id, $this->availableIds, true)) {
