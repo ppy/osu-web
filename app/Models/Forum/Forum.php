@@ -20,7 +20,7 @@
 *
 */
 
- namespace App\Models\Forum;
+namespace App\Models\Forum;
 
 use DB;
 use Illuminate\Database\Eloquent\Model;

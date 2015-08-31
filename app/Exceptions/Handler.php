@@ -20,7 +20,7 @@
 *
 */
 
- namespace App\Exceptions;
+namespace App\Exceptions;
 
 use Auth;
 use Raven_Client;

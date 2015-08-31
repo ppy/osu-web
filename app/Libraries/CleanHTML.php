@@ -20,7 +20,7 @@
 *
 */
 
- namespace App\Libraries;
+namespace App\Libraries;
 
 use HTMLPurifier_Config;
 use HTMLPurifier;

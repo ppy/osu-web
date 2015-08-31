@@ -20,7 +20,7 @@
 *
 */
 
- namespace App\Console\Commands;
+namespace App\Console\Commands;
 
 use App\Models\Store;
 

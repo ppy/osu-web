@@ -20,7 +20,7 @@
 *
 */
 
- namespace App\Models\Forum;
+namespace App\Models\Forum;
 
 use Carbon\Carbon;
 use DB;

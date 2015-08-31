@@ -20,7 +20,7 @@
 *
 */
 
- namespace App\Http\Middleware;
+namespace App\Http\Middleware;
 
 use Session;
 use Closure;

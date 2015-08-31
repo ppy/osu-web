@@ -20,7 +20,7 @@
 *
 */
 
- namespace App\Models;
+namespace App\Models;
 
 class Notification extends Eloquent {
 
