@@ -35,6 +35,15 @@ Using Laravel's [Elixir](http://laravel.com/docs/5.1/elixir).
     $ hhvm artisan lang:js resources/assets/js/messages.js
     $ ./node_modules/.bin/gulp
 
+Contributing
+=======
+
+We welcome all contributions, but keep in mind that we already have the full site designed (mock-ups). If you wish to work on a new section, please open a ticket and we will give you what you need to proceed.
+
+If you want to make *changes* to the design, we recommend you open an issue with your intentions before spending too much time, to ensure no effort is wasted.
+
+Contributions can be made via pull requests to the repository. We hope to credit and reward larger contributions, but cannot gaurantee this (we'll do our best).
+
 Licence
 =======
 osu!web is licensed under AGPL version 3 or later. Please see [the licence file](LICENCE) for more information.
