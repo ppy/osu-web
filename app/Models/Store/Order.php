@@ -20,7 +20,7 @@
 *
 */
 
- namespace App\Models\Store;
+namespace App\Models\Store;
 
 use DB;
 use Illuminate\Database\Eloquent\Model;

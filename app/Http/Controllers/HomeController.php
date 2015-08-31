@@ -20,7 +20,7 @@
 *
 */
 
- namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
 use View;
 

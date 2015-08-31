@@ -20,7 +20,7 @@
 *
 */
 
- namespace App\Models;
+namespace App\Models;
 
 class Mod extends Eloquent {
 

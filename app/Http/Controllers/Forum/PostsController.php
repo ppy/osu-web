@@ -20,7 +20,7 @@
 *
 */
 
- namespace App\Http\Controllers\Forum;
+namespace App\Http\Controllers\Forum;
 
 use App\Libraries\BBCodeFromDB;
 use App\Models\Forum\Post;

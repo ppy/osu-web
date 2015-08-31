@@ -20,7 +20,7 @@
 *
 */
 
- namespace App\Contracts;
+namespace App\Contracts;
 
 use Illuminate\Contracts\Hashing\Hasher as HasherContract;
 

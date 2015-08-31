@@ -20,7 +20,7 @@
 *
 */
 
- namespace App\Providers;
+namespace App\Providers;
 
 use Illuminate\Bus\Dispatcher;
 use Illuminate\Support\ServiceProvider;

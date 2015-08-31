@@ -20,7 +20,7 @@
 *
 */
 
- namespace App\Http\Controllers\Forum;
+namespace App\Http\Controllers\Forum;
 
 use App\Models\Forum\Authorize;
 use App\Models\Forum\Forum;

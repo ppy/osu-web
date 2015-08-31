@@ -20,7 +20,7 @@
 *
 */
 
- namespace App\Models;
+namespace App\Models;
 
 class DeletedUser extends User {
 	public $user_avatar = null;

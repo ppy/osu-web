@@ -20,7 +20,7 @@
 *
 */
 
- namespace App\Traits;
+namespace App\Traits;
 
 trait ModdingAPI {
 
