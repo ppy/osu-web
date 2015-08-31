@@ -6,7 +6,7 @@ the future face of osu!
 Requirements
 ============
 
-[Vagrant 1.7+](http://www.vagrantup.com/downloads.html)
+[Vagrant 1.7+](http://www.vagrantup.com/downloads.html) or equivalent development environment.
 
 Deploying
 =========
@@ -16,6 +16,8 @@ Deploying
 3. cd vagrant; vagrant up
 4. wait patiently
 5. Access the site from http://localhost:8080/.
+
+*Note that you can get things running without vagrant. It should be pretty straightforward, but if you run into problems don't hesitate to open an issue asking for help!*
 
 Creating user
 =============
