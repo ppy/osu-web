@@ -145,6 +145,11 @@ class ProfileCover
 			return false;
 		}
 
+		if ($dim[2] === IMAGETYPE_JPEG) {
+			exec("jhead -autorot -purejpg -q ".escapeshellarg($path));
+			$dim = getimagesize($path);
+		}
+
 		$maxDim = [1800, 500];
 		$maxFileSize = 1000000;
 
