@@ -30,7 +30,7 @@ class Tab extends React.Component
       className += ' profile-extra-tabs__item--active'
 
     el 'li', className: className, onClick: @_modeSwitch,
-      Lang.get("users.show.extra.#{@props.mode}")
+      Lang.get("users.show.extra.#{@props.mode}.title")
 
 
 class @ProfileContentsExtra extends React.Component
@@ -65,4 +65,4 @@ class @ProfileContentsExtra extends React.Component
         ['recent_activities', 'historical', 'beatmaps', 'kudosu', 'achievements'].map (m) =>
           el Tab, key: m, mode: m, currentMode: @state.mode
 
-      el 'div', className: 'row-page', 'Here be extra contents.'
+      el ProfilePage.RecentActivities

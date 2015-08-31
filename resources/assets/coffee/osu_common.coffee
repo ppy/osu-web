@@ -26,6 +26,19 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
   isMobile: -> ! window.matchMedia('(min-width: 920px)').matches
 
+  link: (url, text) ->
+    el = document.createElement('a')
+    el.setAttribute 'href', url
+    el.textContent = text
+    el.outerHTML
+
+  timeago: (time) ->
+    el = document.createElement('time')
+    el.classList.add 'timeago-raw', 'timeago'
+    el.setAttribute 'datetime', time
+    el.textContent = time
+    el.outerHTML
+
   showLoadingOverlay: ->
     $overlay = $('.loading-overlay')
     return if $overlay.hasClass('loading-overlay--visible')

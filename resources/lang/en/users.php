@@ -60,12 +60,24 @@ return [
             ],
         ],
         'extra' => [
-            'achievements' => 'Achievements',
-            'beatmaps' => 'Beatmaps',
-            'historical' => 'Historical',
-            'kudosu' => 'Kudosu!',
-            'recent_activities' => 'Recent Activities',
-            'top_ranks' => 'Top Ranks',
+            'achievements' => [
+                'title' => 'Achievements',
+            ],
+            'beatmaps' => [
+                'title' => 'Beatmaps',
+            ],
+            'historical' => [
+                'title' => 'Historical',
+            ],
+            'kudosu' => [
+                'title' => 'Kudosu!',
+            ],
+            'recent_activities' => [
+                'title' => 'Recent Activities',
+            ],
+            'top_ranks' => [
+                'title' => 'Top Ranks',
+            ],
         ],
         'first_members' => 'here since the beginning',
         'is_supporter' => 'osu!supporter',

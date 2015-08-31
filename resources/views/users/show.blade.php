@@ -43,6 +43,10 @@
         {!! json_encode($recentAchievements) !!}
     </script>
 
+    <script id="json-user-recent-activities" type="application/json">
+        {!! json_encode($recentActivities) !!}
+    </script>
+
     <script id="json-user-info" type="application/json">
         {!! json_encode($userArray) !!}
     </script>

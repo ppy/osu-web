@@ -80,6 +80,9 @@ elixir(function(mix) {
     "react/user-card.coffee",
   ], "public/js/app.js")
   .coffee([
+    "react/profile-page/main.coffee",
+    "react/profile-page/recent-activities.coffee",
+
     "react/profile-page/header.coffee",
     "react/profile-page/contents.coffee",
     "react/profile-page/contents-extra.coffee",
