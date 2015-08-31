@@ -32,11 +32,6 @@
 					    @include("objects.user-dropdown")
 					</div>
 					<a class="logo" href="/"></a>
-					<span class="navbar-brand">
-						<span class="sub1">{{ trans("layout.menu.$current_section._") }}</span>
-						/
-						<span class="darker normal">{{ trans("layout.menu.$current_section.$current_action") }}</span>
-					</span>
 				</div>
 			</div>
 		</div>
