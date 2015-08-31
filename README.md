@@ -44,7 +44,7 @@ We welcome all contributions, but keep in mind that we already have the full sit
 
 If you want to make *changes* to the design, we recommend you open an issue with your intentions before spending too much time, to ensure no effort is wasted.
 
-Contributions can be made via pull requests to the repository. We hope to credit and reward larger contributions, but cannot gaurantee this (we'll do our best).
+Contributions can be made via pull requests to the repository. Please name your branch `<your_github_username>/<your_change_description>` for organisation purposes (ie. `peppy/fix_user_display`). We hope to credit and reward larger contributions, but cannot gaurantee this (we'll do our best).
 
 Licence
 =======
