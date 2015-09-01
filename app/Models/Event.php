@@ -56,4 +56,54 @@ class Event extends Model
 	{
 		return $this->belongsTo(BeatmapSet::class, "beatmapset_id", "beatmapset_id");
 	}
+
+	public function getEventDetailsAttribute()
+	{
+		return static::parseText($this->text);
+	}
+
+	public static function parseFailure($text)
+	{
+		\Log::info(json_encode([
+			"tag" => "EVENT_PARSING_FAILURE",
+			"text" => $text,
+		]));
+	}
+
+	public static function parseText($text)
+	{
+		$event = [];
+		if (preg_match("!<img src='/images/(?<scoreRank>.+?)_small\.png'/> <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> achieved (?:<b>)?rank #(?<rank>\d+?)(?:</b>)? on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!", $text, $matches)) {
+			$scoreRank = strtolower($matches["scoreRank"]);
+			if ($scoreRank === "x") { $scoreRank = "ss"; }
+			elseif ($scoreRank === "xh") { $scoreRank = "ssh"; }
+
+			$beatmapUrl = "https://osu.ppy.sh".$matches["beatmapUrl"];
+
+			switch($matches["mode"]) {
+				case "osu!mania": $mode = "mania"; break;
+				case "Taiko": $mode = "taiko"; break;
+				case "osu!": $mode = "osu"; break;
+				case "Catch the Beat": $mode = "ctb"; break;
+				default: return static::parseFailure($text);
+			}
+
+			$event["type"] = "rank";
+			$event["details"] = [
+				"scoreRank" => $scoreRank,
+				"mode" => $mode,
+				"beatmap" => [
+					"title" => $matches["beatmapTitle"],
+					"url" => $beatmapUrl,
+				],
+				"user" => [
+					"username" => $matches["userName"],
+					"url" => $matches["userUrl"],
+				],
+			];
+		} else {
+			return static::parseFailure($text);
+		}
+		return $event;
+	}
 }
