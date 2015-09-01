@@ -51,6 +51,12 @@
 			@endif
 		</div>
 
+		@if(View::hasSection("content-extra"))
+			<div class="flex-full container content content-extra">
+				@yield("content-extra")
+			</div>
+		@endif
+
 		@include("layout.gallery_window")
 		@include("layout.login-modal")
 
