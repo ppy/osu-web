@@ -19,7 +19,7 @@
 */
 'use strict';
 
-var ProfileExtraTab = React.createClass({
+var Tab = React.createClass({
 	_className: function() {
 		var className = 'profile-extra-tab';
 
@@ -67,7 +67,7 @@ module.exports = React.createClass({
 			<div className='content content-extra flex-full'>
 				<ul className='profile-extra-tabs'>
 				{['recent_activities', 'historical', 'beatmaps', 'kudosu', 'achievements'].map(function(m) {
-					<ProfileExtraTab key={m} mode={m} currentMode={this.state.mode} />
+					return <Tab key={m} mode={m} currentMode={this.state.mode} />;
 				}, this)}
 				</ul>
 
