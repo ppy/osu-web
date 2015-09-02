@@ -59,10 +59,15 @@
 
 		changeMode: function(e) {
 			e.preventDefault();
-
 			this.setState({ mode: e.target.getAttribute('data-mode') });
 		},
-
+		
+		previewCover: function(_e, p) {//handles hover event
+			var obj = this.state.user;
+			obj.cover.url = "/images/headers/profile-covers/c" + p + ".jpg";
+			this.updateData(null, obj);
+		},
+		
 		updateData: function(_e, user) {
 			if (user !== undefined && user !== null) {
 				this.setState({ user: user });
@@ -85,6 +90,7 @@
 		unlistenAll: function() {
 			$(document).off('profile:cover:select');
 			$(document).off('profile:updated');
+			$(document).off('profile:cover:preview');
 			$(document).off('profile:cover:upload:start');
 			$(document).off('profile:cover:upload:complete');
 			$(document).off('profile:page:update');
@@ -94,6 +100,7 @@
 			this.unlistenAll();
 			$(document).on('profile:cover:select', this.changeCoverDefault);
 			$(document).on('profile:updated', this.updateData);
+			$(document).on('profile:cover:preview', this.previewCover);
 			$(document).on('profile:cover:upload:start', this.coverUploadStart);
 			$(document).on('profile:cover:upload:complete', this.coverUploadComplete);
 			$(document).on('profile:page:update', this.pageUpdate);
