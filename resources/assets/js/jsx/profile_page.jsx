@@ -22,6 +22,7 @@
 
 	require('./profile_page/header.jsx');
 	require('./profile_page/contents.jsx');
+	require('./profile_page/contents_extra.jsx');
 
 	var
 		stats = JSON.parse(document.getElementById('json-user-stats').text),
@@ -111,7 +112,8 @@
 			var
 				stats = this.props.allStats[this.state.mode],
 				headerMode,
-				headerStats;
+				headerStats,
+				contentsExtra;
 
 			if (stats === undefined) {
 				headerMode = this.props.initialMode;
@@ -121,8 +123,12 @@
 				stats = headerStats = stats.data;
 			}
 
+			if (this.state.mode !== 'me') {
+				contentsExtra = <ProfileContentsExtra />;
+			}
+
 			return (
-				<div className='flex-column flex-full'>
+				<div className='flex-column flex-full flex-fullwidth'>
 					<ProfileHeader
 						user={this.state.user}
 						stats={headerStats}
@@ -141,6 +147,8 @@
 						achievementsCounts={this.props.achievementsCounts}
 						withEdit={this.props.withEdit}
 					/>
+
+					{contentsExtra}
 				</div>
 			);
 		}
