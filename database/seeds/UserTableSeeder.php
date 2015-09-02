@@ -18,8 +18,8 @@ class UserTableSeeder extends Seeder
 		
         for ($i = 0; $i < 5; $i++) {
 			
-			$username = $faker->userName;
 			$faker->seed($i);
+			$username = $faker->userName;
 			
 			DB::table('phpbb_users')->insert([
 				'user_id' => $faker->numberBetween($min = 1, $max = 9999),

@@ -20,7 +20,9 @@ class BeatmapTableSeeder extends Seeder
 			
 			$faker->seed($i);
 			
+			$username = $faker->userName;
 			$userid = $faker->numberBetween($min = 1, $max = 9999);
+			$beatmapsetid = $faker->numberBetween($min = 1, $max = 1000000);
 			$totallength = $faker->numberBetween($min = 60, $max = 600);
 			$hitlength = $totallength - $faker->numberBetween($min = 10, $max = 60);
 			$countnormal = $faker->numberBetween($min = 30, $max = 1337);
@@ -31,9 +33,9 @@ class BeatmapTableSeeder extends Seeder
 			$passcount = $playcount * $faker->randomFloat($nbMaxDecimals = 2, $min = 0.1, $max = 0.9);
 			
 			DB::table('osu_beatmaps')->insert([
-				'user_id' => $userid,
 				'beatmap_id' => $faker->numberBetween($min = 5000, $max = 9999999),
-				'beatmapset_id' => $faker->numberBetween($min = 1, $max = 1000000),
+				'beatmapset_id' => $beatmapsetid,
+				'user_id' => $userid,
 				'filename' => $faker->numberBetween($min = 1, $max = 50000),
 				'checksum' => $faker->md5,
 				'version' => $faker->domainWord,
