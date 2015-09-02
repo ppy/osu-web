@@ -22,7 +22,7 @@
 
 	require('./profile_page/header.jsx');
 	require('./profile_page/contents.jsx');
-	require('./profile_page/contents_extra.jsx');
+	var ProfileExtra = require('./profile_page/extra.jsx');
 
 	var
 		stats = JSON.parse(document.getElementById('json-user-stats').text),
@@ -124,7 +124,7 @@
 			}
 
 			if (this.state.mode !== 'me') {
-				contentsExtra = <ProfileContentsExtra />;
+				contentsExtra = <ProfileExtra />;
 			}
 
 			return (
