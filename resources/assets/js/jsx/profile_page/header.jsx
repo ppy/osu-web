@@ -26,12 +26,13 @@
 		},
 
 		onMouseEnter: function() {
-			$(document).trigger('profile:previewcover', this.props.name);
+			$(document).trigger('profile:cover:preview', this.props.name);
 		},
 		
 		onMouseLeave: function() {
-			if(this.props.selectedName != this.props.name){
-			$(document).trigger('profile:previewcover', this.props.selectedName);
+			var b = this.props.selectedName === this.props.name;
+			if(b === false){
+			$(document).trigger('profile:cover:preview', this.props.selectedName);
 			}
 		},
 		render: function() {

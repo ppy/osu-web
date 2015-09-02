@@ -53,8 +53,6 @@
 					dataType: 'json'
 			})
 			.done(function(userData) {
-				this.props.user.cover.id = userData.data.cover.id;
-				this.props.user.cover.url = "/images/headers/profile-covers/c" + userData.data.cover.id + ".jpg";
 				this.updateData(null, userData.data);
 			}.bind(this));
 		},
@@ -65,7 +63,7 @@
 		},
 		
 		previewCover: function(_e, p) {//handles hover event
-			var obj = this.props.user;
+			var obj = this.state.user;
 			obj.cover.url = "/images/headers/profile-covers/c" + p + ".jpg";
 			this.updateData(null, obj);
 		},
@@ -92,7 +90,7 @@
 		unlistenAll: function() {
 			$(document).off('profile:cover:select');
 			$(document).off('profile:updated');
-			$(document).off('profile:previewcover');
+			$(document).off('profile:cover:preview');
 			$(document).off('profile:cover:upload:start');
 			$(document).off('profile:cover:upload:complete');
 			$(document).off('profile:page:update');
@@ -102,7 +100,7 @@
 			this.unlistenAll();
 			$(document).on('profile:cover:select', this.changeCoverDefault);
 			$(document).on('profile:updated', this.updateData);
-			$(document).on('profile:previewcover', this.previewCover);
+			$(document).on('profile:cover:preview', this.previewCover);
 			$(document).on('profile:cover:upload:start', this.coverUploadStart);
 			$(document).on('profile:cover:upload:complete', this.coverUploadComplete);
 			$(document).on('profile:page:update', this.pageUpdate);
