@@ -5,7 +5,11 @@ set -e
 
 root="$(dirname "${0}")"
 
-mysqldump --skip-opt -d osu \
+_mysqldump() {
+  mysqldump -d "${@}" | sed -e 's/ AUTO_INCREMENT=[0-9]*//'
+}
+
+_mysqldump osu \
   migrations \
   osu_achievements \
   osu_apikeys \
@@ -36,7 +40,7 @@ mysqldump --skip-opt -d osu \
   user_profile_customizations \
 > "${root}/db-osu-structure.sql"
 
-mysqldump -d --skip-opt osu_store \
+_mysqldump osu_store \
   addresses \
   order_items \
   orders \

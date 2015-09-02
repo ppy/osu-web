@@ -35,4 +35,4 @@ INSERT INTO `migrations` VALUES ('2015_08_10_083016_add_slug_to_achievements',10
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-08-26 18:55:05
+-- Dump completed on 2015-09-02 12:34:22
