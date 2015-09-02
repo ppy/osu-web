@@ -18,13 +18,14 @@ class UserTableSeeder extends Seeder
 		
         for ($i = 0; $i < 5; $i++) {
 			
-			$username = $faker->firstName;
+			$username = $faker->userName;
+			$faker->seed($i);
 			
 			DB::table('phpbb_users')->insert([
 				'user_id' => $faker->numberBetween($min = 1, $max = 9999),
 				'username' => $username,
 				'username_clean' => $username,
-				'user_password' => password_hash(md5($faker->word), PASSWORD_BCRYPT),
+				'user_password' => password_hash(md5("password"), PASSWORD_BCRYPT),
 			]);
 		}
     }
