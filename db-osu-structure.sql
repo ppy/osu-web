@@ -3,6 +3,11 @@
 -- Host: localhost    Database: osu
 -- ------------------------------------------------------
 -- Server version	10.0.21-MariaDB-1~trusty-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -14,23 +19,25 @@
 -- Table structure for table `migrations`
 --
 
+DROP TABLE IF EXISTS `migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`migration`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `osu_achievements`
 --
 
+DROP TABLE IF EXISTS `osu_achievements`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `osu_achievements` (
-  `achievement_id` mediumint(8) unsigned NOT NULL,
+  `achievement_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(40) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `image` varchar(50) NOT NULL,
@@ -41,17 +48,18 @@ CREATE TABLE `osu_achievements` (
   PRIMARY KEY (`achievement_id`),
   KEY `display_order` (`grouping`,`ordering`),
   KEY `quest_ordering` (`quest_ordering`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `osu_apikeys`
 --
 
+DROP TABLE IF EXISTS `osu_apikeys`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `osu_apikeys` (
-  `key` int(11) unsigned NOT NULL,
+  `key` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
   `app_name` varchar(100) NOT NULL DEFAULT '',
   `app_url` varchar(100) NOT NULL DEFAULT '',
@@ -62,17 +70,18 @@ CREATE TABLE `osu_apikeys` (
   `revoked` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`key`),
   UNIQUE KEY `api_key` (`api_key`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `osu_beatmaps`
 --
 
+DROP TABLE IF EXISTS `osu_beatmaps`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `osu_beatmaps` (
-  `beatmap_id` mediumint(11) unsigned NOT NULL,
+  `beatmap_id` mediumint(11) unsigned NOT NULL AUTO_INCREMENT,
   `beatmapset_id` mediumint(9) unsigned DEFAULT NULL,
   `user_id` mediumint(9) unsigned NOT NULL DEFAULT '0',
   `filename` varchar(150) COLLATE utf8_bin DEFAULT NULL,
@@ -101,17 +110,18 @@ CREATE TABLE `osu_beatmaps` (
   KEY `filename` (`filename`),
   KEY `checksum` (`checksum`),
   KEY `user_id` (`user_id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `osu_beatmapsets`
 --
 
+DROP TABLE IF EXISTS `osu_beatmapsets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `osu_beatmapsets` (
-  `beatmapset_id` mediumint(9) unsigned NOT NULL,
+  `beatmapset_id` mediumint(9) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` mediumint(9) unsigned NOT NULL DEFAULT '0',
   `thread_id` mediumint(9) unsigned NOT NULL DEFAULT '0',
   `artist` varchar(80) NOT NULL DEFAULT '',
@@ -160,17 +170,18 @@ CREATE TABLE `osu_beatmapsets` (
   KEY `approved_3` (`approved`,`active`,`last_update`),
   KEY `filename` (`filename`),
   FULLTEXT KEY `fulltext_search` (`artist`,`artist_unicode`,`title`,`title_unicode`,`creator`,`source`,`tags`,`difficulty_names`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `osu_changelog`
 --
 
+DROP TABLE IF EXISTS `osu_changelog`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `osu_changelog` (
-  `changelog_id` mediumint(11) unsigned NOT NULL,
+  `changelog_id` mediumint(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` mediumint(8) unsigned NOT NULL,
   `prefix` char(1) NOT NULL DEFAULT '*',
   `category` varchar(50) NOT NULL DEFAULT '',
@@ -188,13 +199,14 @@ CREATE TABLE `osu_changelog` (
   KEY `time` (`date`),
   KEY `major_release` (`build`,`date`),
   KEY `category` (`category`,`changelog_id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `osu_countries`
 --
 
+DROP TABLE IF EXISTS `osu_countries`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `osu_countries` (
@@ -210,13 +222,14 @@ CREATE TABLE `osu_countries` (
   KEY `rankedscore` (`rankedscore`),
   KEY `playcount` (`playcount`),
   KEY `display` (`display`,`name`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `osu_login_attempts`
 --
 
+DROP TABLE IF EXISTS `osu_login_attempts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `osu_login_attempts` (
@@ -228,13 +241,14 @@ CREATE TABLE `osu_login_attempts` (
   `last_attempt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ip`),
   KEY `last_attempt` (`last_attempt`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `osu_user_achievements`
 --
 
+DROP TABLE IF EXISTS `osu_user_achievements`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `osu_user_achievements` (
@@ -243,17 +257,18 @@ CREATE TABLE `osu_user_achievements` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`,`achievement_id`),
   KEY `user_id` (`user_id`,`date`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `osu_user_banhistory`
 --
 
+DROP TABLE IF EXISTS `osu_user_banhistory`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `osu_user_banhistory` (
-  `ban_id` int(11) unsigned NOT NULL,
+  `ban_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned DEFAULT NULL,
   `reason` varchar(8000) DEFAULT 'Blanket Cheating Action',
   `supporting_url` varchar(255) DEFAULT NULL,
@@ -263,13 +278,14 @@ CREATE TABLE `osu_user_banhistory` (
   `banner_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`ban_id`),
   KEY `user_id_2` (`user_id`,`timestamp`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `osu_user_stats`
 --
 
+DROP TABLE IF EXISTS `osu_user_stats`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `osu_user_stats` (
@@ -297,20 +313,21 @@ CREATE TABLE `osu_user_stats` (
   `rank_score` float unsigned NOT NULL,
   `rank_score_index` int(10) unsigned NOT NULL,
   `accuracy_new` float unsigned NOT NULL,
-  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `last_played` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`),
   KEY `ranked_score` (`ranked_score`),
   KEY `rank_score` (`rank_score`),
   KEY `country_acronym_2` (`country_acronym`,`rank_score`),
   KEY `playcount` (`playcount`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `osu_user_stats_fruits`
 --
 
+DROP TABLE IF EXISTS `osu_user_stats_fruits`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `osu_user_stats_fruits` (
@@ -338,20 +355,21 @@ CREATE TABLE `osu_user_stats_fruits` (
   `rank_score` float unsigned NOT NULL,
   `rank_score_index` int(10) unsigned NOT NULL,
   `accuracy_new` float unsigned NOT NULL,
-  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `last_played` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`),
   KEY `ranked_score` (`ranked_score`),
   KEY `playcount` (`playcount`),
   KEY `rank_score` (`rank_score`),
   KEY `country_acronym` (`country_acronym`,`rank_score`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `osu_user_stats_mania`
 --
 
+DROP TABLE IF EXISTS `osu_user_stats_mania`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `osu_user_stats_mania` (
@@ -379,20 +397,21 @@ CREATE TABLE `osu_user_stats_mania` (
   `rank_score` float unsigned NOT NULL,
   `rank_score_index` int(10) unsigned NOT NULL,
   `accuracy_new` float unsigned NOT NULL,
-  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `last_played` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`),
   KEY `ranked_score` (`ranked_score`),
   KEY `rank_score` (`rank_score`),
   KEY `country_acronym_2` (`country_acronym`,`rank_score`),
   KEY `playcount` (`playcount`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `osu_user_stats_taiko`
 --
 
+DROP TABLE IF EXISTS `osu_user_stats_taiko`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `osu_user_stats_taiko` (
@@ -420,24 +439,25 @@ CREATE TABLE `osu_user_stats_taiko` (
   `rank_score` float unsigned NOT NULL,
   `rank_score_index` int(10) unsigned NOT NULL,
   `accuracy_new` float unsigned NOT NULL,
-  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `last_played` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`),
   KEY `ranked_score` (`ranked_score`),
   KEY `playcount` (`playcount`),
   KEY `rank_score` (`rank_score`),
   KEY `country_acronym` (`country_acronym`,`rank_score`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `osu_username_change_history`
 --
 
+DROP TABLE IF EXISTS `osu_username_change_history`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `osu_username_change_history` (
-  `change_id` int(10) unsigned NOT NULL,
+  `change_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
   `username` varchar(30) NOT NULL,
   `type` enum('support','paid','admin','revert','inactive') NOT NULL,
@@ -445,13 +465,14 @@ CREATE TABLE `osu_username_change_history` (
   `username_last` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`change_id`),
   KEY `user_id` (`user_id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Stores historical changes to user''s usernames over time.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `phpbb_acl_groups`
 --
 
+DROP TABLE IF EXISTS `phpbb_acl_groups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpbb_acl_groups` (
@@ -463,30 +484,32 @@ CREATE TABLE `phpbb_acl_groups` (
   KEY `group_id` (`group_id`),
   KEY `auth_opt_id` (`auth_option_id`),
   KEY `auth_role_id` (`auth_role_id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `phpbb_disallow`
 --
 
+DROP TABLE IF EXISTS `phpbb_disallow`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpbb_disallow` (
-  `disallow_id` mediumint(8) unsigned NOT NULL,
+  `disallow_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `disallow_username` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
   PRIMARY KEY (`disallow_id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `phpbb_forums`
 --
 
+DROP TABLE IF EXISTS `phpbb_forums`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpbb_forums` (
-  `forum_id` mediumint(8) unsigned NOT NULL,
+  `forum_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `parent_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `left_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `right_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
@@ -530,17 +553,18 @@ CREATE TABLE `phpbb_forums` (
   PRIMARY KEY (`forum_id`),
   KEY `left_right_id` (`left_id`,`right_id`),
   KEY `forum_lastpost_id` (`forum_last_post_id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `phpbb_posts`
 --
 
+DROP TABLE IF EXISTS `phpbb_posts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpbb_posts` (
-  `post_id` mediumint(8) unsigned NOT NULL,
+  `post_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `topic_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `forum_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `poster_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
@@ -571,33 +595,35 @@ CREATE TABLE `phpbb_posts` (
   KEY `topic_id` (`topic_id`),
   KEY `poster_id` (`poster_id`),
   KEY `tid_post_time` (`topic_id`,`post_time`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `phpbb_ranks`
 --
 
+DROP TABLE IF EXISTS `phpbb_ranks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpbb_ranks` (
-  `rank_id` mediumint(8) unsigned NOT NULL,
+  `rank_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `rank_title` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
   `rank_min` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `rank_special` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `rank_image` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
   PRIMARY KEY (`rank_id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `phpbb_smilies`
 --
 
+DROP TABLE IF EXISTS `phpbb_smilies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpbb_smilies` (
-  `smiley_id` mediumint(8) unsigned NOT NULL,
+  `smiley_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT '',
   `emotion` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT '',
   `smiley_url` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -607,17 +633,18 @@ CREATE TABLE `phpbb_smilies` (
   `display_on_posting` tinyint(1) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`smiley_id`),
   KEY `display_on_post` (`display_on_posting`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `phpbb_topics`
 --
 
+DROP TABLE IF EXISTS `phpbb_topics`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpbb_topics` (
-  `topic_id` mediumint(8) unsigned NOT NULL,
+  `topic_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `forum_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `icon_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `topic_attachment` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -660,13 +687,14 @@ CREATE TABLE `phpbb_topics` (
   KEY `tid_fid_iconid` (`topic_id`,`forum_id`,`icon_id`),
   KEY `forum_id_type` (`forum_id`,`topic_type`,`topic_last_post_time`),
   KEY `star_sort` (`forum_id`,`topic_type`,`osu_starpriority`,`topic_last_post_time`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `phpbb_topics_track`
 --
 
+DROP TABLE IF EXISTS `phpbb_topics_track`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpbb_topics_track` (
@@ -677,13 +705,14 @@ CREATE TABLE `phpbb_topics_track` (
   PRIMARY KEY (`user_id`,`topic_id`),
   KEY `forum_id` (`forum_id`),
   KEY `topic_id` (`topic_id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `phpbb_user_group`
 --
 
+DROP TABLE IF EXISTS `phpbb_user_group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpbb_user_group` (
@@ -693,17 +722,18 @@ CREATE TABLE `phpbb_user_group` (
   `user_pending` tinyint(1) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`group_id`,`user_id`),
   KEY `user_id` (`user_id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `phpbb_users`
 --
 
+DROP TABLE IF EXISTS `phpbb_users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpbb_users` (
-  `user_id` mediumint(8) unsigned NOT NULL,
+  `user_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `user_type` tinyint(2) NOT NULL DEFAULT '0',
   `group_id` mediumint(8) unsigned NOT NULL DEFAULT '2',
   `user_permissions` mediumtext COLLATE utf8_bin NOT NULL,
@@ -795,33 +825,35 @@ CREATE TABLE `phpbb_users` (
   KEY `osu_mapperrank` (`osu_mapperrank`),
   KEY `osu_kudostotal` (`osu_kudostotal`),
   KEY `country_acronym` (`country_acronym`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `tournament_registrations`
 --
 
+DROP TABLE IF EXISTS `tournament_registrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tournament_registrations` (
-  `registration_id` int(10) unsigned NOT NULL,
+  `registration_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `tournament_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`registration_id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `tournaments`
 --
 
+DROP TABLE IF EXISTS `tournaments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tournaments` (
-  `tournament_id` int(10) unsigned NOT NULL,
+  `tournament_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `play_mode` tinyint(3) unsigned NOT NULL DEFAULT '0',
@@ -834,30 +866,34 @@ CREATE TABLE `tournaments` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`tournament_id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `user_profile_customizations`
 --
 
+DROP TABLE IF EXISTS `user_profile_customizations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_profile_customizations` (
-  `id` int(10) unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `cover_json` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `user_profile_customizations_user_id_index` (`user_id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-08-26 18:55:05
+-- Dump completed on 2015-09-02 12:34:22
