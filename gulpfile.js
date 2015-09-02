@@ -82,6 +82,7 @@ elixir(function(mix) {
   .coffee([
     "react/profile-page/header.coffee",
     "react/profile-page/contents.coffee",
+    "react/profile-page/contents-extra.coffee",
     "react/profile-page.coffee",
   ], "public/js/react/profile-page.js")
   .browserify("jsx/modding_react.jsx", "public/js/jsx/modding_react.js")

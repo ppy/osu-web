@@ -75,13 +75,14 @@ class @ProfilePage extends React.Component
       headerMode = @props.user.playmode
       headerStats = @props.allStats[headerMode].data
 
-    el 'div', className: 'flex-column flex-full',
+    el 'div', className: 'flex-column flex-full flex-fullwidth',
       el ProfileHeader,
         user: @state.user
         stats: headerStats
         mode: headerMode
         withEdit: @props.withEdit
         isCoverUpdating: @state.isCoverUpdating
+
       el ProfileContents,
         user: @state.user
         userPage: @state.userPage
@@ -89,6 +90,9 @@ class @ProfilePage extends React.Component
         mode: @state.mode
         recentAchievements: @props.recentAchievements
         withEdit: @props.withEdit
+
+      if @state.mode != 'me'
+        el ProfileContentsExtra
 
 
 user = osu.parseJson('json-user-info').data
