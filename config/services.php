@@ -35,7 +35,7 @@ return [
 	],
 
 	'ga' => [
-		'tracking_id' => env('GA_TRACKING_ID', null),
+		'tracking_id' => env('GA_TRACKING_ID', ''),
 	],
 
 ];
