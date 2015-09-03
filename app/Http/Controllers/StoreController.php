@@ -1,258 +1,274 @@
 <?php
 
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License as published by
-*    the Free Software Foundation, either version 3 of the License, or
-*    (at your option) any later version.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License as published by
+ *    the Free Software Foundation, either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
+use App\Models\Store;
 use Auth;
 use Request;
 use Validator;
 
-use App\Models\Country;
-use App\Models\Store;
+class StoreController extends Controller
+{
+    // bootstrap setup in BaseController
+    protected $layout = 'master';
 
-class StoreController extends Controller {
+    // Section display for the menu at the top
+    protected $section = 'store';
 
-	// bootstrap setup in BaseController
-	protected $layout = "master";
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => [
+            'getAdmin',
+            'postAdmin',
+            'getInvoice',
+            'postUpdateCart',
+            'postAddToCart',
+            'postCheckout',
+            'postNewAddress',
+            'postUpdateAddress',
+            'postUpdateCart',
+        ]]);
 
-	// Section display for the menu at the top
-	protected $section = "store";
+        return parent::__construct();
+    }
 
-	public function __construct() {
-		$this->middleware("auth", ["only" => [
-			"getAdmin",
-			"postAdmin",
-			"getInvoice",
-			"postUpdateCart",
-			"postAddToCart",
-			"postCheckout",
-			"postNewAddress",
-			"postUpdateAddress",
-			"postUpdateCart",
-		]]);
+    // GET /store
+    public function getIndex()
+    {
+        return ujs_redirect('/store/listing');
+    }
 
-		return parent::__construct();
-	}
+    public function getListing()
+    {
+        return view('store.index')
+            ->with('skip_back_link', true)
+            ->with('cart', $this->userCart())
+            ->with('products', Store\Product::latest()->simplePaginate(30));
+    }
 
-	// GET /store
-	public function getIndex() {
-		return ujs_redirect('/store/listing');
-	}
+    public function getAdmin($id = null)
+    {
+        if (! Auth::user()->isAdmin()) {
+            abort(403);
+        }
 
-	public function getListing() {
-		return view("store.index")
-			->with("skip_back_link", true)
-			->with("cart", $this->userCart())
-			->with("products", Store\Product::latest()->simplePaginate(30));
-	}
+        $orders = Store\Order::with('user', 'address', 'address.country', 'items.product');
 
-	public function getAdmin($id = null) {
-		if (!Auth::user()->isAdmin()) {
-			abort(403);
-		}
+        if ($id) {
+            $orders->where('orders.order_id', $id);
+        } else {
+            $orders->where('orders.status', 'paid');
+        }
 
-		$orders = Store\Order::with('user', 'address', 'address.country', 'items.product');
+        $ordersItemsQuantities = Store\Order::itemsQuantities($orders);
+        $orders = $orders->orderBy('created_at')->get();
 
-		if ($id) {
-			$orders->where("orders.order_id", $id);
-		} else {
-			$orders->where("orders.status", "paid");
-		}
+        return view('store.admin', compact('orders', 'ordersItemsQuantities'));
+    }
 
-		$ordersItemsQuantities = Store\Order::itemsQuantities($orders);
-		$orders = $orders->orderBy("created_at")->get();
+    public function postAdmin()
+    {
+        if (! Auth::user()->isAdmin()) {
+            abort(403);
+        }
 
-		return view("store.admin", compact("orders", "ordersItemsQuantities"));
-	}
+        $order = Store\Order::findOrFail(Request::input('id'));
+        $order->unguard();
+        $order->update(Request::input('order'));
+        $order->save();
 
-	public function postAdmin() {
-		if (!Auth::user()->isAdmin()) {
-			abort(403);
-		}
+        return ['message' => "order {$order->order_id} updated"];
+    }
 
-		$order = Store\Order::findOrFail(Request::input('id'));
-		$order->unguard();
-		$order->update(Request::input("order"));
-		$order->save();
+    public function getInvoice($id)
+    {
+        $order = Store\Order::findOrFail($id);
+        if ($order->shipping === null) {
+            $order->refreshCost(true);
+        }
 
-		return ["message" => "order {$order->order_id} updated"];
-	}
+        if (Auth::user()->user_id !== $order->user_id && ! Auth::user()->isAdmin()) {
+            abort(403);
+        }
 
-	public function getInvoice($id)
-	{
-		$order = Store\Order::findOrFail($id);
-		if ($order->shipping === null) { $order->refreshCost(true); }
+        $sentViaAddress = Store\Address::sender();
 
-		if (Auth::user()->user_id !== $order->user_id && !Auth::user()->isAdmin()) {
-			abort(403);
-		}
+        return view('store.invoice')
+            ->with('order', $order)
+            ->with('copies', Request::input('copies', 1))
+            ->with('sentViaAddress', $sentViaAddress);
+    }
 
-		$sentViaAddress = Store\Address::sender();
+    public function getProduct($id = null)
+    {
+        $cart = $this->userCart();
+        $product = Store\Product::with('masterProduct')->findOrFail($id);
 
-		return view("store.invoice")
-			->with("order", $order)
-			->with("copies", Request::input("copies", 1))
-			->with("sentViaAddress", $sentViaAddress);
-	}
+        return view('store.product', compact('cart', 'product'));
+    }
 
-	public function getProduct($id = null) {
-		$cart = $this->userCart();
-		$product = Store\Product::with("masterProduct")->findOrFail($id);
+    public function getCart($id = null)
+    {
+        return view('store.cart')
+            ->with('order', $this->userCart());
+    }
 
-		return view("store.product", compact("cart", "product"));
-	}
+    public function getCheckout()
+    {
+        $order = $this->userCart();
+        if (! $order->items()->exists()) {
+            return ujs_redirect('/store/cart');
+        }
 
-	public function getCart($id = null) {
-		return view("store.cart")
-			->with("order", $this->userCart());
-	}
+        $addresses = Auth::user()->storeAddresses()->with('country')->get();
 
-	public function getCheckout() {
-		$order = $this->userCart();
-		if (!$order->items()->exists()) { return ujs_redirect('/store/cart'); }
+        return view('store.checkout', compact('order', 'addresses'));
+    }
 
-		$addresses = Auth::user()->storeAddresses()->with("country")->get();
+    public function missingMethod($parameters = [])
+    {
+        abort(404);
+    }
 
-		return view("store.checkout", compact("order", "addresses"));
-	}
+    public function postUpdateCart()
+    {
+        $result = $this->userCart()->updateItem(Request::input('item', []));
 
-	public function missingMethod($parameters = []) {
-		abort(404);
-	}
+        if ($result[0]) {
+            return js_view('layout.ujs-reload');
+        } else {
+            return error_popup($result[1]);
+        }
+    }
 
-	public function postUpdateCart()
-	{
-		$result = $this->userCart()->updateItem(Request::input("item", []));
+    public function postUpdateAddress()
+    {
+        $address_id = (int) Request::input('id');
+        $address = Store\Address::find($address_id);
+        $order = $this->userCart();
 
-		if ($result[0]) {
-			return js_view("layout.ujs-reload");
-		} else {
-			return error_popup($result[1]);
-		}
-	}
+        if (! $address || $address->user_id !== Auth::user()->user_id) {
+            return error_popup('invalid address');
+        }
 
-	public function postUpdateAddress()
-	{
-		$address_id = (int)Request::input("id");
-		$address = Store\Address::find($address_id);
-		$order = $this->userCart();
+        switch (Request::input('action')) {
+            default:
+            case 'use':
+                $order->address()->associate($address);
+                $order->save();
 
-		if (!$address || $address->user_id !== Auth::user()->user_id)
-			return error_popup("invalid address");
+                return js_view('layout.ujs-reload');
+                break;
+            case 'remove':
+                if ($order->address_id == $address_id) {
+                    return error_popup('Address is being used for this order!');
+                }
 
-		switch (Request::input("action"))
-		{
-			default:
-			case "use":
-				$order->address()->associate($address);
-				$order->save();
+                if ($otherOrders = Store\Order::where('address_id', '=', $address_id)->first()) {
+                    return error_popup('Address was used in a previous order!');
+                }
 
-				return js_view("layout.ujs-reload");
-				break;
-			case "remove":
-				if ($order->address_id == $address_id)
-					return error_popup("Address is being used for this order!");
+                Store\Address::destroy($address_id);
 
-				if ($otherOrders = Store\Order::where('address_id', '=', $address_id)->first())
-					return error_popup("Address was used in a previous order!");
+                return js_view('store.address-destroy', ['address_id' => $address_id]);
+                break;
+        }
+    }
 
-				Store\Address::destroy($address_id);
+    public function postNewAddress()
+    {
+        \Log::info(json_encode([
+            'tag' => 'NEW_ADDRESS',
+            'user_id' => Auth::user()->user_id,
+            'address' => Request::input('address'),
+        ]));
 
-				return js_view("store.address-destroy", ["address_id" => $address_id]);
-				break;
-		}
-	}
+        $addressInput = Request::all()['address'];
 
-	public function postNewAddress()
-	{
-		\Log::info(json_encode([
-			"tag" => "NEW_ADDRESS",
-			"user_id" => Auth::user()->user_id,
-			"address" => Request::input("address"),
-		]));
+        $validator = Validator::make($addressInput, [
+            'first_name' => ['required'],
+            'last_name' => ['required'],
+            'street' => ['required'],
+            'city' => ['required'],
+            'state' => ['required'],
+            'zip' => ['required', 'required'],
+            'country_code' => ['required'],
+            'phone' => ['required'],
+        ]);
 
-		$addressInput = Request::all()['address'];
+        $addressInput['user_id'] = Auth::user()->user_id;
 
-		$validator = Validator::make($addressInput, [
-			'first_name' => ['required'],
-			'last_name' => ['required'],
-			'street' => ['required'],
-			'city' => ['required'],
-			'state' => ['required'],
-			'zip' => ['required', 'required'],
-			'country_code' => ['required'],
-			'phone' => ['required'],
-		]);
+        if ($validator->fails()) {
+            return error_popup('Address is not complete.');
+        }
 
-		$addressInput['user_id'] = Auth::user()->user_id;
+        $address = Store\Address::create($addressInput);
+        $address->user()->associate(Auth::user());
+        $address->save();
 
-		if ($validator->fails())
-			return error_popup("Address is not complete.");
+        $order = $this->userCart();
+        $order->address()->associate($address);
+        $order->save();
 
-		$address = Store\Address::create($addressInput);
-		$address->user()->associate(Auth::user());
-		$address->save();
+        return js_view('layout.ujs-reload');
+    }
 
-		$order = $this->userCart();
-		$order->address()->associate($address);
-		$order->save();
+    public function postAddToCart()
+    {
+        $result = $this->userCart()->updateItem(Request::input('item', []), true);
 
-		return js_view("layout.ujs-reload");
-	}
+        if ($result[0]) {
+            return ujs_redirect('/store/cart');
+        } else {
+            return error_popup($result[1]);
+        }
+    }
 
-	public function postAddToCart()
-	{
-		$result = $this->userCart()->updateItem(Request::input("item", []), true);
+    public function postCheckout()
+    {
+        $order = $this->userCart();
 
-		if ($result[0]) {
-			return ujs_redirect('/store/cart');
-		} else {
-			return error_popup($result[1]);
-		}
-	}
+        if (! $order) {
+            return response(['message' => 'cart is empty'], 422);
+        }
 
-	public function postCheckout() {
-		$order = $this->userCart();
+        $order->refreshCost(true);
 
-		if (!$order) {
-			return response(["message" => "cart is empty"], 422);
-		}
+        if ($order->getTotal() == 0 && Request::input('completed')) {
+            file_get_contents("https://osu.ppy.sh/web/ipn.php?mc_gross=0&item_number=store-{$order->user_id}-{$order->order_id}");
 
-		$order->refreshCost(true);
+            return ujs_redirect(action('StoreController@getInvoice', [$order->order_id]).'?thanks=1');
+        }
 
-		if ($order->getTotal() == 0 && Request::input("completed"))
-		{
-			file_get_contents("https://osu.ppy.sh/web/ipn.php?mc_gross=0&item_number=store-{$order->user_id}-{$order->order_id}");
-			return ujs_redirect(action("StoreController@getInvoice", [$order->order_id]) . "?thanks=1");
-		}
+        return js_view('store.order-create');
+    }
 
-		return js_view("store.order-create");
-	}
-
-	private function userCart() {
-		if (Auth::check()) {
-			return Store\Order::cart(Auth::user());
-		} else {
-			return new Store\Order();
-		}
-	}
+    private function userCart()
+    {
+        if (Auth::check()) {
+            return Store\Order::cart(Auth::user());
+        } else {
+            return new Store\Order();
+        }
+    }
 }

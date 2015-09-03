@@ -1,24 +1,23 @@
 <?php
 
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License as published by
-*    the Free Software Foundation, either version 3 of the License, or
-*    (at your option) any later version.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License as published by
+ *    the Free Software Foundation, either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 namespace App\Models;
 
@@ -27,34 +26,35 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserProfileCustomization extends Model
 {
-	protected $casts = [
-		'cover_json' => 'array',
-	];
+    protected $casts = [
+        'cover_json' => 'array',
+    ];
 
-	private $_cover;
+    private $_cover;
 
-	public function getCoverAttribute()
-	{
-		if ($this->_cover === null) {
-			$this->_cover = new ProfileCover($this->user_id, $this->cover_json);
-		}
-		return $this->_cover;
-	}
+    public function getCoverAttribute()
+    {
+        if ($this->_cover === null) {
+            $this->_cover = new ProfileCover($this->user_id, $this->cover_json);
+        }
 
-	public function setCover(&$errors, $id, $file)
-	{
-		$this->cover_json = $this->cover->set($id, $file);
-		$errors = $this->cover->errors;
+        return $this->_cover;
+    }
 
-		if (count($errors) === 0) {
-			$this->save();
-		}
-	}
+    public function setCover(&$errors, $id, $file)
+    {
+        $this->cover_json = $this->cover->set($id, $file);
+        $errors = $this->cover->errors;
 
-	public function __construct($attributes = [])
-	{
-		$this->cover_json = ['id' => null, 'file' => null];
+        if (count($errors) === 0) {
+            $this->save();
+        }
+    }
 
-		return parent::__construct($attributes);
-	}
+    public function __construct($attributes = [])
+    {
+        $this->cover_json = ['id' => null, 'file' => null];
+
+        return parent::__construct($attributes);
+    }
 }
