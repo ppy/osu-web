@@ -26,6 +26,10 @@
 <meta name="csrf-param" content="_token">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
+@if(config("services.ga.tracking_id") !== null)
+	<meta name="ga-tracking-id" content="{{ config("services.ga.tracking_id") }}">
+@endif
+
 <script src="{{ elixir("js/bundle.js") }}" data-turbolinks-track></script>
 <script src="{{ elixir("js/messages.js") }}" data-turbolinks-track></script>
 <script src="{{ elixir("js/vendor.js") }}" data-turbolinks-track></script>
@@ -38,26 +42,4 @@
 
 @if (isset($rss))
 	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{ $rss }}">
-@endif
-
-@if(config("services.ga.tracking_id") !== null)
-	{{--
-		Documentation: https://developers.google.com/analytics/devguides/collection/analyticsjs/
-	--}}
-	<script data-turbolinks-track>
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-	ga('create', '{{ config("services.ga.tracking_id") }}', 'auto');
-	ga('send', 'pageview');
-
-	{{-- turbolinks --}}
-	$(document).on('page:load', function() {
-		ga('set', 'location', document.location.href);
-		ga('send', 'pageview');
-	});
-
-	</script>
 @endif
