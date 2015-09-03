@@ -52,6 +52,7 @@
 
 	ga('create', '{{ config("services.ga.tracking_id") }}', 'auto');
 	$(document).on('ready page:load', function() {
+		ga('set', 'location', document.location.href);
 		ga('send', 'pageview');
 	});
 
