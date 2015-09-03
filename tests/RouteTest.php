@@ -99,7 +99,12 @@ class RouteTest extends TestCase {
 	 */
 	public function testProfileRoutes()
 	{
-		$this->assertGetRoutes(["/u/2", "/u/peppy", "/community/profile/2", "community/profile/peppy"]);
+		$user = \App\Models\User::create([
+			"username" => "testuser",
+			"user_password" => password_hash(md5("testpassword"), PASSWORD_BCRYPT)
+		]);
+		$id = $user->user_id;
+		$this->assertGetRoutes(["/u/{$id}", "/u/testuser", "/community/profile/{$id}", "community/profile/testuser"]);
 	}
 
 	/**
