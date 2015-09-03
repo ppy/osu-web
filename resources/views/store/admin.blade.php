@@ -25,6 +25,7 @@
 .product_2, .product_4 { background-color: #D3FEB8; }
 .product_5, .product_6, .product_7, .product_8 { background-color: #FCDD2C; }
 .product_12, .product_13, .product_14, .product_15, .product_16, .product_17, .product_18, .product_19 { background-color: #BDFF5E; }
+.product_33, .product_34, .product_35, .product_36 { background-color: #54F35B; }
 
 </style>
 
