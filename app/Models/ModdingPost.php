@@ -23,5 +23,5 @@
 namespace App\Models;
 
 class ModdingPost extends Post {
-	protected override $table = "osu_discuss.modding_posts";
+	protected $table = "osu_discuss.modding_posts";
 }
