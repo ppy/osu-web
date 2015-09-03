@@ -88,7 +88,7 @@
       var
         beatmaps = [],
         beatmap_data = JSON.parse(document.getElementById('json-beatmaps').text)['data'];
-        for (var i = beatmap_data.length - 1; i >= 0; i--) {
+        for (var i = 0; i < beatmap_data.length; i++) {
           beatmaps.push(<Panel beatmap={beatmap_data[i]} />);
         }
       return (

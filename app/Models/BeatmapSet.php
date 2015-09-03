@@ -23,6 +23,7 @@
 namespace App\Models;
 
 use Request;
+use Es;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -102,12 +103,13 @@ class BeatmapSet extends Model {
 		$max = config("osu.beatmaps.max", 30);
 		$page = Request::input("page", 1) - 1;
 
-		$listing = static::mode()
-			->filters()
-			->sort()
-			->take($max)
-			->offset($page * $max)
-			->get();
+		$searchParams['index'] = env('ES_INDEX', 'osu');
+		$searchParams['size'] = $max;
+		$searchParams['body']['sort'] = ['last_update' => ['order' => 'desc']];
+		$searchParams['type'] = 'beatmaps';
+
+		$listing = Es::search($searchParams);
+		$listing = array_map(function($e) { $e['_source']['beatmapset_id'] = $e['_id']; return $e['_source']; }, $listing['hits']['hits']);
 
 		return $listing;
 
