@@ -49,5 +49,7 @@
 
 		@include("layout._global_variables")
 		@yield("script")
+
+		@include("layout._analytics")
 	</body>
 </html>

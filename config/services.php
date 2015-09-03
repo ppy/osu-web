@@ -34,4 +34,8 @@ return [
 		'secret' => '',
 	],
 
+	'ga' => [
+		'tracking_id' => env('GA_TRACKING_ID', null),
+	],
+
 ];
