@@ -20,24 +20,23 @@
 *
 */
 
-namespace App\Http\Controllers;
+namespace App\Transformers;
 
 use App\Models\BeatmapSet;
-use League\Fractal\Manager;
-use League\Fractal\Resource\Collection;
-use App\Transformers\BeatmapTransformer;
+use League\Fractal;
 
-class BeatmapController extends Controller {
-
-	protected $section = "beatmaps";
-
-
-	public function index()
-	{
-		$fractal = new Manager();
-		$data = new Collection(BeatmapSet::listing(), new BeatmapTransformer);
-		$beatmaps = $fractal->createData($data)->toArray();
-		return view("beatmaps.index", compact('beatmaps'));
-	}
-
+class BeatmapTransformer extends Fractal\TransformerAbstract
+{
+  public function transform(BeatmapSet $beatmap)
+  {
+    return [
+      "beatmapset_id" => $beatmap->beatmapset_id,
+      "title" => $beatmap->title,
+      "artist" => $beatmap->artist,
+      "play_count" => $beatmap->play_count,
+      "favourite_count" => $beatmap->favourite_count,
+      "creator" => $beatmap->creator,
+      "user_id" => $beatmap->user_id
+    ];
+  }
 }

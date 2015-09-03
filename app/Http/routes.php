@@ -49,7 +49,7 @@ Route::get('/home/changelog', ["as" => "changelog", "uses" => "HomeController@ge
 Route::get("/icons", "HomeController@getIcons");
 
 // beatmaps section
-Route::get('/beatmaps/listing/{ajax?}', ["as" => "beatmap-listing", "uses" => "BeatmapController@getListing"]);
+Route::get('/beatmaps', ["as" => "beatmaps", "uses" => "BeatmapController@index"]);
 
 // maps
 Route::get('/beatmaps/set/{id}', ["as" => "set", "uses" => 'BeatmapController@getMapSet']);
