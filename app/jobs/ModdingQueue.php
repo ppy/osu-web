@@ -1,124 +1,111 @@
 <?php
 
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License as published by
-*    the Free Software Foundation, either version 3 of the License, or
-*    (at your option) any later version.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License as published by
+ *    the Free Software Foundation, either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+class ModdingQueue
+{
+    public function rank($job, $data)
+    {
+        $this->set($job, $data, 'rank', function ($job, $data, $set) {
+            if ($set->rankable()) {
+                $set->processRank();
+                $job->delete();
+            } else {
+                if (! $job->attempts() > 5) {
+                    sentry_log("[rank] Failed to rank $id too many times; moving to pending", 'queue', Raven_Client::FATAL);
+                    $set->processUnrank();
+                    $job->delete();
+                } else {
+                    // retry bi-hourly
+                    $job->release(1800);
+                }
+            }
+        });
+    }
 
-class ModdingQueue {
+    public function kick($job, $data)
+    {
+        // fire an unrank event for a beatmap to process it async
 
-	public function rank($job, $data)
-	{
-		$this->set($job, $data, "rank", function ($job, $data, $set) {
-			if ($set->rankable())
-			{
-				$set->processRank();
-				$job->delete();
-			}
-			else
-			{
-				if (!$job->attempts() > 5) {
-					sentry_log("[rank] Failed to rank $id too many times; moving to pending", "queue", Raven_Client::FATAL);
-					$set->processUnrank();
-					$job->delete();
-				} else {
-					// retry bi-hourly
-					$job->release(1800);
-				}
-			}
-		});
-	}
+        $this->set($job, $data, 'kick', function ($job, $data, $set) {
+            $set->processUnrank();
+            $job->delete();
+        });
+    }
 
-	public function kick($job, $data)
-	{
-		// fire an unrank event for a beatmap to process it async
+    public function unrank($job, $data)
+    {
+        // force-unrank a map. reserved for dire circumstances
 
-		$this->set($job, $data, "kick", function ($job, $data, $set) {
-			$set->processUnrank();
-			$job->delete();
-		});
+        $this->set($job, $data, 'force-unrank', function ($job, $data, $set) {
+            $sender = @$data['user'];
+            $id = @$data['id'];
+            $user = User::find($sender);
 
-	}
+            if (! $user) {
+                $log = "[force-unrank] Missing user when trying to unrank $id (user: $sender)";
+            } else {
+                if ($user->isDev()) {
+                    $log = "[force-unrank] {$user->username} force unranked $id";
+                    $set->forceUnrank();
+                } else {
+                    $log = "[force-unrank] {$user->username} tried to force unranked $id";
+                }
+            }
 
-	public function unrank($job, $data)
-	{
-		// force-unrank a map. reserved for dire circumstances
+            sentry_log($log, 'queue', Raven_Client::FATAL);
+            $job->delete();
+        });
+    }
 
-		$this->set($job, $data, "force-unrank", function ($job, $data, $set) {
-			$sender = @$data["user"];
-			$id = @$data["id"];
-			$user = User::find($sender);
+    public function graveyard($job, $data)
+    {
+        $this->set($job, $data, 'graveyard', function ($job, $data, $set) {
+            $set->processUnrank();
+            $job->delete();
+        });
+    }
 
-			if (!$user)
-			{
-				$log = "[force-unrank] Missing user when trying to unrank $id (user: $sender)";
-			}
-			else
-			{
-				if ($user->isDev())
-				{
-					$log = "[force-unrank] {$user->username} force unranked $id";
-					$set->forceUnrank();
-				}
-				else
-				{
-					$log = "[force-unrank] {$user->username} tried to force unranked $id";
-				}
-			}
+    public function delete($job, $data)
+    {
+        $this->set($job, $data, 'delete', function ($job, $data, $set) {
+            if ($set->ranked() or $set->qualified()) {
+                return;
+            }
 
-			sentry_log($log, "queue", Raven_Client::FATAL);
-			$job->delete();
-		});
+            $set->remove();
+            $job->delete();
+        });
+    }
 
-	}
+    protected function set($job, $data, $ident, $callback)
+    {
+        $id = @$data['id'];
+        $set = BeatmapSet::find($id);
 
-	public function graveyard($job, $data)
-	{
-		$this->set($job, $data, "graveyard", function ($job, $data, $set) {
-			$set->processUnrank();
-			$job->delete();
-		});
-	}
+        if (! $set) {
+            sentry_log("[$ident] Set not found while trying to $ident: $id", 'queue', Raven_Client::FATAL);
+            $job->delete();
 
-	public function delete($job, $data)
-	{
-		$this->set($job, $data, "delete", function ($job, $data, $set) {
-			if ($set->ranked() or $set->qualified())
-				return;
+            return;
+        }
 
-			$set->remove();
-			$job->delete();
-		});
-	}
-
-	protected function set($job, $data, $ident, $callback)
-	{
-		$id = @$data["id"];
-		$set = BeatmapSet::find($id);
-
-		if (!$set)
-		{
-			sentry_log("[$ident] Set not found while trying to $ident: $id", "queue", Raven_Client::FATAL);
-			$job->delete();
-			return;
-		}
-
-		$callback($job, $data, $set);
-
-	}
+        $callback($job, $data, $set);
+    }
 }
