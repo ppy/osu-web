@@ -20,7 +20,6 @@
 <html>
 	<head>
 		@include("layout.metadata")
-
 		<title>
 			@if (isset($title))
 				{{ $title }}
