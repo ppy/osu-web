@@ -3,7 +3,7 @@
 set -u
 set -e
 
-root="$(dirname "${0}")"
+root="$(dirname "${0}")/../database"
 
 _mysqldump() {
   mysqldump -d "${@}" | sed -e 's/ AUTO_INCREMENT=[0-9]*//'

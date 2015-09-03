@@ -1,0 +1,12 @@
+language: php
+php:
+  - hhvm
+addons:
+  mariadb: 10.0
+env:
+  - DB_USERNAME=root
+before_install:
+  - nvm install stable
+  - nvm use stable
+  - ./bin/db_setup
+  - ./build.sh

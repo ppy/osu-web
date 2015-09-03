@@ -1,6 +1,8 @@
 osu!web
 =======
 
+[![Build Status](https://travis-ci.org/ppy/osu-web.svg?branch=master)](https://travis-ci.org/ppy/osu-web)
+
 The future face of osu!.
 
 Requirements
@@ -42,7 +44,7 @@ We welcome all contributions, but keep in mind that we already have the full sit
 
 If you want to make *changes* to the design, we recommend you open an issue with your intentions before spending too much time, to ensure no effort is wasted.
 
-Contributions can be made via pull requests to the repository. Please name your branch `<your_github_username>/<your_change_description>` for organisation purposes (ie. `peppy/fix_user_display`). We hope to credit and reward larger contributions, but cannot guarantee this (we'll do our best).
+Contributions can be made via pull requests to this repository. We hope to credit and reward larger contributions via a [bounty system](https://goo.gl/nFdoyI). If you're unsure of what you can help with, check out the [list](https://github.com/ppy/osu-web/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3Abounty) of available issues with bounty.
 
 Licence
 -------

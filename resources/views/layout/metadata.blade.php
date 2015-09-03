@@ -26,6 +26,10 @@
 <meta name="csrf-param" content="_token">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
+@if(config("services.ga.tracking_id") !== '')
+	<meta name="ga-tracking-id" content="{{ config("services.ga.tracking_id") }}">
+@endif
+
 <script src="{{ elixir("js/bundle.js") }}" data-turbolinks-track></script>
 <script src="{{ elixir("js/messages.js") }}" data-turbolinks-track></script>
 <script src="{{ elixir("js/vendor.js") }}" data-turbolinks-track></script>
