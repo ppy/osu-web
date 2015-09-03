@@ -1,0 +1,19 @@
+#!/bin/sh
+
+set -e
+set -u
+set -x
+
+cd "$(dirname "${0}")/.."
+curl -qL https://downloads.mariadb.org/f/mariadb-10.0.21/bintar-linux-glibc_214-x86_64/mariadb-10.0.21-linux-glibc_214-x86_64.tar.gz > mariadb.tar.gz
+tar -zxf mariadb.tar.gz
+
+cd "mariadb-10.0.21-linux-x86_64"
+
+./scripts/mysql_install_db --datadir="$PWD/data" --user="$(whoami)"
+./bin/mysqld_safe --basedir="$PWD" --datadir="$PWD/data" --pid-file="$PWD/mysqld.pid" --socket="$PWD/mysqld.sock" --port=3307 --log-error="$PWD/data/mysqld-error.log" --general-log-file="$PWD/data/mysqld.log" &
+
+cat <<EOF > ~/.my.cnf
+[client]
+host = 127.0.0.1
+port = 3307

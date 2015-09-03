@@ -50,7 +50,7 @@ return [
 			'driver'    => 'mysql',
 			'host'      => env('DB_HOST', 'localhost'),
 			'database'  => env('DB_DATABASE', 'osu'),
-			'username'  => env('DB_USERNAME', 'next'),
+			'username'  => env('DB_USERNAME', 'osuweb'),
 			'password'  => env('DB_PASSWORD', ''),
 			'charset'   => 'utf8mb4',
 			'collation' => 'utf8mb4_general_ci',
