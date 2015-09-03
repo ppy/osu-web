@@ -53,6 +53,7 @@ elixir(function(mix) {
 		path.join(node_root, "photoswipe/dist/photoswipe-ui-default.js"),
 		path.join(node_root, "lodash/index.js"),
 		path.join(node_root, "layzr.js/dist/layzr.js"),
+		"ga.js",
 	], "public/js/vendor.js")
 	.scripts("messages.js", "public/js/messages.js")
 	.coffee([
