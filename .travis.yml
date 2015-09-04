@@ -2,7 +2,7 @@ language: php
 php:
   - hhvm
 addons:
-  mariadb: 10.0
+  mariadb: 10.1
 env:
   - DB_USERNAME=root
 before_install:
