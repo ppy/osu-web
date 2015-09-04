@@ -25,6 +25,14 @@
 			$(document).trigger('profile:cover:select', this.props.name);
 		},
 
+		onMouseEnter: function() {
+			$(document).trigger('profile-header.cover.set', `/images/headers/profile-covers/c${this.props.name}.jpg`);
+		},
+
+		onMouseLeave: function() {
+			$(document).trigger('profile-header.cover.reset');
+		},
+
 		render: function() {
 			var
 				selectedMark;
@@ -39,6 +47,8 @@
 					className='profile-cover-selection'
 					style={{ backgroundImage: `url('/images/headers/profile-covers/c${this.props.name}t.jpg')` }}
 					onClick={this.onClick}
+					onMouseEnter={this.onMouseEnter}
+					onMouseLeave={this.onMouseLeave}
 				>
 					{selectedMark}
 				</div>
@@ -140,7 +150,23 @@
 
 	window.ProfileHeader = React.createClass({
 		getInitialState: function() {
-			return { editing: false };
+			return {
+				editing: false,
+				coverUrl: this.props.user.cover.url,
+			};
+		},
+
+		componentWillUnmount: function() {
+			$(document).off('profile-header');
+		},
+
+		componentDidMount: function() {
+			$(document).on('profile-header.cover.set', this.coverSet);
+			$(document).on('profile-header.cover.reset', this.coverReset);
+		},
+
+		componentWillReceiveProps: function(newProps) {
+			this.setState({ coverUrl: newProps.user.cover.url });
 		},
 
 		toggleEdit: function() {
@@ -180,6 +206,14 @@
 			return <ProfileCoverSelector canUpload={this.props.user.isSupporter} selectedName={this.props.user.cover.id} />;
 		},
 
+		coverReset: function() {
+			this.setState({ coverUrl: this.props.user.cover.url });
+		},
+
+		coverSet: function(_e, url) {
+			this.setState({ coverUrl: url });
+		},
+
 		coverUploadSpinner: function() {
 			var style;
 			if (!this.props.isCoverUpdating) {
@@ -196,7 +230,7 @@
 		render: function() {
 			return (
 				<div className='row-page profile-header'>
-					<div className='profile-cover' style={{ backgroundImage: `url('${this.props.user.cover.url}')` }} />
+					<div className='profile-cover' style={{ backgroundImage: `url('${this.state.coverUrl}')` }} />
 					<div className='profile-avatar-container'>
 						<div
 							className='avatar avatar--profile'
