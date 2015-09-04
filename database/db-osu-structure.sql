@@ -1,8 +1,8 @@
--- MySQL dump 10.15  Distrib 10.0.21-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.24-72.2, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: osu
 -- ------------------------------------------------------
--- Server version	10.0.21-MariaDB-1~trusty-log
+-- Server version	5.6.24-72.2-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -168,8 +168,7 @@ CREATE TABLE `osu_beatmapsets` (
   KEY `approved` (`approved`,`active`,`approved_date`),
   KEY `favourite_count` (`favourite_count`),
   KEY `approved_3` (`approved`,`active`,`last_update`),
-  KEY `filename` (`filename`),
-  FULLTEXT KEY `fulltext_search` (`artist`,`artist_unicode`,`title`,`title_unicode`,`creator`,`source`,`tags`,`difficulty_names`)
+  KEY `filename` (`filename`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -239,6 +238,7 @@ CREATE TABLE `osu_login_attempts` (
   `unique_ids` smallint(5) unsigned NOT NULL DEFAULT '1',
   `failed_ids` text NOT NULL,
   `last_attempt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ip`),
   KEY `last_attempt` (`last_attempt`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
@@ -459,12 +459,13 @@ DROP TABLE IF EXISTS `osu_username_change_history`;
 CREATE TABLE `osu_username_change_history` (
   `change_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
-  `username` varchar(30) NOT NULL,
+  `username` varchar(30) CHARACTER SET utf8 NOT NULL,
   `type` enum('support','paid','admin','revert','inactive') NOT NULL,
   `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `username_last` varchar(255) DEFAULT NULL,
+  `username_last` varchar(30) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`change_id`),
-  KEY `user_id` (`user_id`)
+  KEY `user_id` (`user_id`),
+  KEY `username_last` (`username_last`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Stores historical changes to user''s usernames over time.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -578,7 +579,7 @@ CREATE TABLE `phpbb_posts` (
   `enable_magic_url` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `enable_sig` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `post_username` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `post_subject` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_subject` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `post_text` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `post_attachment` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `bbcode_bitfield` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -814,7 +815,7 @@ CREATE TABLE `phpbb_users` (
   `country_acronym` char(2) COLLATE utf8_bin NOT NULL DEFAULT '',
   `userpage_post_id` mediumint(8) unsigned DEFAULT NULL,
   `username_previous` varchar(1024) COLLATE utf8_bin DEFAULT NULL,
-  `osu_featurevotes` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `osu_featurevotes` smallint(5) unsigned NOT NULL DEFAULT '0',
   `osu_playstyle` tinyint(4) unsigned NOT NULL DEFAULT '0',
   `osu_playmode` tinyint(4) NOT NULL DEFAULT '0',
   `remember_token` varchar(100) COLLATE utf8_bin DEFAULT NULL,
@@ -896,4 +897,4 @@ CREATE TABLE `user_profile_customizations` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-02 12:34:22
+-- Dump completed on 2015-09-04 16:41:57
