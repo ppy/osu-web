@@ -59,8 +59,10 @@
 
 		changeMode: function(e) {
 			e.preventDefault();
+
 			this.setState({ mode: e.target.getAttribute('data-mode') });
 		},
+<<<<<<< HEAD
 		
 		previewCover: function(_e, p) {//handles hover event
 			var a = document.getElementsByClassName("profile-cover")[0];
@@ -71,6 +73,9 @@
 			this.previewCover(null, this.state.user.cover.url);
 		},
 		
+=======
+
+>>>>>>> parent of fdc8f1c... Profile Preview
 		updateData: function(_e, user) {
 			if (user !== undefined && user !== null) {
 				this.setState({ user: user });
@@ -93,8 +98,11 @@
 		unlistenAll: function() {
 			$(document).off('profile:cover:select');
 			$(document).off('profile:updated');
+<<<<<<< HEAD
 			$(document).off('profile:cover:preview');
 			$(document).off('profile:cover:previewurl');
+=======
+>>>>>>> parent of fdc8f1c... Profile Preview
 			$(document).off('profile:cover:upload:start');
 			$(document).off('profile:cover:upload:complete');
 			$(document).off('profile:page:update');
@@ -104,8 +112,11 @@
 			this.unlistenAll();
 			$(document).on('profile:cover:select', this.changeCoverDefault);
 			$(document).on('profile:updated', this.updateData);
+<<<<<<< HEAD
 			$(document).on('profile:cover:preview', this.previewCover);
 			$(document).on('profile:cover:previewurl', this.previewCoverURL);
+=======
+>>>>>>> parent of fdc8f1c... Profile Preview
 			$(document).on('profile:cover:upload:start', this.coverUploadStart);
 			$(document).on('profile:cover:upload:complete', this.coverUploadComplete);
 			$(document).on('profile:page:update', this.pageUpdate);

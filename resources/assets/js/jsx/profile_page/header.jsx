@@ -25,6 +25,7 @@
 			$(document).trigger('profile:cover:select', this.props.name);
 		},
 
+<<<<<<< HEAD
 		onMouseEnter: function() {
 			$(document).trigger('profile:cover:preview', "/images/headers/profile-covers/c" + this.props.name + ".jpg");
 		},
@@ -39,6 +40,8 @@
 				$(document).trigger('profile:cover:previewurl');
 			}
 		},
+=======
+>>>>>>> parent of fdc8f1c... Profile Preview
 		render: function() {
 			var
 				selectedMark;
@@ -53,8 +56,6 @@
 					className='profile-cover-selection'
 					style={{ backgroundImage: `url('/images/headers/profile-covers/c${this.props.name}t.jpg')` }}
 					onClick={this.onClick}
-					onMouseEnter={this.onMouseEnter}
-					onMouseLeave={this.onMouseLeave}
 				>
 					{selectedMark}
 				</div>
