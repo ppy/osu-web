@@ -25,6 +25,26 @@
 			$(document).trigger('profile:cover:select', this.props.name);
 		},
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+		onMouseEnter: function() {
+			$(document).trigger('profile:cover:preview', "/images/headers/profile-covers/c" + this.props.name + ".jpg");
+		},
+		
+		onMouseLeave: function() {
+			if(this.props.selectedName !== null){
+				var b = this.props.selectedName === this.props.name;
+				if(b === false){
+				$(document).trigger('profile:cover:preview', "/images/headers/profile-covers/c" + this.props.selectedName + ".jpg");
+				}
+			}else{
+				$(document).trigger('profile:cover:previewurl');
+			}
+		},
+=======
+>>>>>>> parent of fdc8f1c... Profile Preview
+=======
+>>>>>>> parent of fdc8f1c... Profile Preview
 		render: function() {
 			var
 				selectedMark;
