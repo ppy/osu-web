@@ -251,7 +251,7 @@ class BBCodeFromDB
         $text = $this->parseYoutube($text);
         $text = $this->parseProfile($text);
 
-        $text = preg_replace('/\n/', "\n<br />", $text);
+        $text = preg_replace('/\n/', "\n<p></p>", $text);
         $text = CleanHTML::purify($text);
 
         return "<div class='bbcode'>{$text}</div>";
