@@ -538,23 +538,6 @@ a[disabled] { &:extend(.btn[disabled]); }
 	}
 }
 
-.fixed-bar-bottom {
-	backface-visibility: hidden;
-	position: fixed !important;
-	bottom: 0px;
-	height: 0px;
-	width: 100%;
-	margin-bottom: 0px;
-
-	// chrome sets stacking context on `position: fixed` elements.
-	// reference: https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context
-	z-index: 10;
-
-	@media (min-width: @screen-sm-min) {
-		width: @container-sm;
-	}
-}
-
 .avatar {
 	@default-avatar-size: 70px;
 	width: @default-avatar-size;

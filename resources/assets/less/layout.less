@@ -91,6 +91,21 @@ body {
 	background-content: #fff;
 }
 
+.row-fixed {
+	width: 100%;
+	@media @desktop {
+		width: @container-sm;
+	}
+	bottom: 0px;
+	position: fixed;
+	backface-visibility: hidden;
+	z-index: 10;
+}
+
+.row-compact {
+	margin: 0px;
+}
+
 #overlay {
 	backface-visibility: hidden;
 	position: fixed;

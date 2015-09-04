@@ -67,7 +67,7 @@
 		<div id="nav-gradient-overlay"></div>
 	</div>
 
-	<div class="hidden-xs row-page row-blank nav-sm">
+	<div class="hidden-xs row-page row-blank row-compact nav-sm">
 		<a class="flex-none nav-logo" href="/"></a>
 
 		<div id="nav-links">

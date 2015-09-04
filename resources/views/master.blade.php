@@ -51,6 +51,14 @@
 			@endif
 		</div>
 
+		@if(View::hasSection("content-fixed"))
+			<div class="row-page row-blank row-compact">
+				<div class="row-fixed">
+					@yield("content-fixed")
+				</div>
+			</div>
+		@endif
+
 		@include("layout.gallery_window")
 		@include("layout.login-modal")
 
