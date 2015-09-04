@@ -139,9 +139,9 @@
 }
 
 .product-listing {
-	@media (min-width: @screen-sm-min) {
-		margin-left: -5px + -@grid-gutter-width/2;
-		margin-right: -5px + -@grid-gutter-width/2;
+	@media @desktop {
+		// the extra width goes to spacing at products.
+		width: @container-sm + @grid-gutter-width/4;
 	}
 
 	* { .fade-element(120ms); }
