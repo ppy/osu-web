@@ -26,6 +26,7 @@
 		},
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		onMouseEnter: function() {
 			$(document).trigger('profile:cover:preview', "/images/headers/profile-covers/c" + this.props.name + ".jpg");
 		},
@@ -40,6 +41,8 @@
 				$(document).trigger('profile:cover:previewurl');
 			}
 		},
+=======
+>>>>>>> parent of fdc8f1c... Profile Preview
 =======
 >>>>>>> parent of fdc8f1c... Profile Preview
 		render: function() {
