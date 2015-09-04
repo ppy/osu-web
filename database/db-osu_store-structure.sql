@@ -1,8 +1,8 @@
--- MySQL dump 10.15  Distrib 10.0.21-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.24-72.2, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: osu_store
 -- ------------------------------------------------------
--- Server version	10.0.21-MariaDB-1~trusty-log
+-- Server version	5.6.24-72.2-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -74,7 +74,7 @@ DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `order_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
-  `status` enum('incart','checkout','paid','shipped','cancelled') NOT NULL DEFAULT 'incart',
+  `status` enum('incart','checkout','paid','shipped','cancelled','delivered') NOT NULL DEFAULT 'incart',
   `address_id` int(10) unsigned DEFAULT NULL,
   `tracking_code` varchar(1024) DEFAULT NULL,
   `paid_at` timestamp NULL DEFAULT NULL,
@@ -89,6 +89,7 @@ CREATE TABLE `orders` (
   KEY `user_id` (`user_id`),
   KEY `address_id` (`address_id`),
   KEY `status` (`status`),
+  KEY `paid_at` (`paid_at`),
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`address_id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='stores orders in all states (including cart contents).';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -110,12 +111,12 @@ CREATE TABLE `products` (
   `base_shipping` decimal(10,2) NOT NULL DEFAULT '5.00',
   `next_shipping` decimal(10,2) NOT NULL DEFAULT '1.00',
   `stock` int(11) DEFAULT '0',
+  `max_quantity` tinyint(3) unsigned NOT NULL DEFAULT '10',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `max_quantity` tinyint(3) NOT NULL DEFAULT '10',
-  `promoted` tinyint(1) NOT NULL,
-  `display_order` int(11) NOT NULL,
+  `promoted` tinyint(1) NOT NULL DEFAULT '0',
+  `display_order` int(11) NOT NULL DEFAULT '0',
   `header_description` varchar(255) DEFAULT NULL,
   `header_image` varchar(255) DEFAULT NULL,
   `images_json` text,
@@ -135,4 +136,4 @@ CREATE TABLE `products` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-02 12:34:22
+-- Dump completed on 2015-09-04 16:41:57
