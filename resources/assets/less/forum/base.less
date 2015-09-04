@@ -70,7 +70,7 @@ body.community {
 		position: absolute;
 		width: 100%;
 		padding: 0px @grid-gutter-width/4;
-		@media (min-width: @screen-sm-min) {
+		@media @desktop {
 			padding: 0px 100px;
 		}
 	}
@@ -141,7 +141,7 @@ body.community {
 		right: 0px;
 		width: auto;
 
-		@media (min-width: @screen-sm-min) {
+		@media @desktop {
 			left: auto;
 			right: auto;
 			width: @container-sm;
@@ -165,7 +165,7 @@ body.community {
 
 		> .topic-header {
 			padding: 0px @grid-gutter-width/4;
-			@media (min-width: @screen-sm-min) {
+			@media @desktop {
 				padding: 0px @grid-gutter-width;
 			}
 			.breadcrumb {
@@ -364,7 +364,7 @@ body.community {
 .topics-container {
 	padding: 0px @grid-gutter-width/4;
 
-	@media (min-width: @screen-sm-min) {
+	@media @desktop {
 		padding: 0px @grid-gutter-width/2;
 	}
 }
@@ -394,7 +394,7 @@ body.community {
 			top: 0px;
 			left: -@grid-gutter-width/4*3;
 			right: -@grid-gutter-width/4*3;
-			@media (min-width: @screen-sm-min) {
+			@media @desktop {
 				left: -@grid-gutter-width;
 				right: -@grid-gutter-width;
 			}
@@ -488,7 +488,7 @@ body.community {
 
 		.right {
 			flex: none;
-			@media (min-width: @screen-sm-min) {
+			@media @desktop {
 				flex: 0 0 200px;
 				text-align: right;
 			}
@@ -563,12 +563,10 @@ body.community {
 
 
 .forum-small-row {
-	margin: 0px -@grid-gutter-width/8*3 @grid-gutter-width/8;
+	margin: 0px @grid-gutter-width/8 @grid-gutter-width/8;
 	padding: @grid-gutter-width/2;
 
-	@media (min-width: @screen-sm-min) {
-		margin-left: auto;
-		margin-right: auto;
+	@media @desktop {
 		margin-bottom: @grid-gutter-width/8;
 		width: @container-sm - 2 * @grid-gutter-width;
 	}
@@ -619,12 +617,10 @@ body.community {
 		margin-top: -@grid-gutter-width/8;
 	}
 
-	@media (min-width: @screen-sm-min) {
+	@media @desktop {
 		padding-bottom: 0px;
 
 		&[data-post-position="1"] {
-			margin-left: -@grid-gutter-width/2;
-			margin-right: -@grid-gutter-width/2;
 			margin-top: 0px;
 			width: @container-sm;
 			padding-right: @grid-gutter-width*1.5;
@@ -653,7 +649,7 @@ body.community {
 
 	.info-panel {
 		flex: none;
-		@media (min-width: @screen-sm-min) {
+		@media @desktop {
 			flex: 0 0 @info-panel-width;
 
 			// ensuring proper render on firefox
@@ -698,7 +694,7 @@ body.community {
 
 	.post-panel {
 		padding: 0px @grid-gutter-width/4;
-		@media (min-width: @screen-sm-min) {
+		@media @desktop {
 			padding: 0px 0px 0px @grid-gutter-width/2;
 		}
 		display: flex;
@@ -707,7 +703,7 @@ body.community {
 		overflow: hidden;
 
 		flex: 1 0 auto;
-		@media (min-width: @screen-sm-min) {
+		@media @desktop {
 			flex: 1;
 		}
 		> * { flex: none; }
@@ -723,7 +719,7 @@ body.community {
 			display: flex;
 			justify-content: space-between;
 
-			@media (min-width: @screen-sm-min) {
+			@media @desktop {
 				order: 1;
 				font-weight: bold;
 				margin-top: -3px; // compensating extra line-height
@@ -732,7 +728,7 @@ body.community {
 
 		.post-body {
 			order: 1;
-			@media (min-width: @screen-sm-min) {
+			@media @desktop {
 				order: 2;
 			}
 
@@ -771,13 +767,13 @@ body.community {
 	bottom: 15px;
 	position: absolute;
 	right: @grid-gutter-width/4;
-	@media (min-width: @screen-sm-min) {
+	@media @desktop {
 		right: @grid-gutter-width - @forum-search-diameter/2;
 	}
 
 	.action-forum-topics-show & {
 		bottom: @grid-gutter-width/4 + @forum-topic-navigator-diameter + @grid-gutter-width/8;
-		@media (min-width: @screen-sm-min) {
+		@media @desktop {
 			bottom: @grid-gutter-width/2 + @forum-topic-navigator-diameter + @grid-gutter-width/4;
 		}
 	}
@@ -886,7 +882,7 @@ body.community {
 
 	bottom: @grid-gutter-width/4;
 	right: @grid-gutter-width/4;
-	@media (min-width: @screen-sm-min) {
+	@media @desktop {
 		right: @grid-gutter-width - @forum-topic-navigator-diameter/2;
 		bottom: @grid-gutter-width/2;
 	}

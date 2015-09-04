@@ -497,7 +497,7 @@ a[disabled] { &:extend(.btn[disabled]); }
 .visible-xs-flex {
 	display: flex !important;
 
-	@media (min-width: @screen-sm-min) {
+	@media @desktop {
 		display: none !important;
 	}
 }
@@ -508,7 +508,7 @@ a[disabled] { &:extend(.btn[disabled]); }
 .flex-row {
 	display: flex;
 	flex-direction: column;
-	@media (min-width: @screen-sm-min) {
+	@media @desktop {
 		flex-direction: row;
 	}
 }
@@ -522,7 +522,7 @@ a[disabled] { &:extend(.btn[disabled]); }
 	padding-left: @grid-gutter-width/2;
 	padding-right: @grid-gutter-width/2;
 
-	@media (min-width: @screen-sm-min) {
+	@media @desktop {
 		flex-basis: 100% * 2 / 3;
 		max-width: 100% * 2 / 3;
 	}
@@ -532,26 +532,9 @@ a[disabled] { &:extend(.btn[disabled]); }
 	padding-left: @grid-gutter-width/2;
 	padding-right: @grid-gutter-width/2;
 
-	@media (min-width: @screen-sm-min) {
+	@media @desktop {
 		flex-basis: 100% / 3;
 		max-width: 100% / 3;
-	}
-}
-
-.fixed-bar-bottom {
-	backface-visibility: hidden;
-	position: fixed !important;
-	bottom: 0px;
-	height: 0px;
-	width: 100%;
-	margin-bottom: 0px;
-
-	// chrome sets stacking context on `position: fixed` elements.
-	// reference: https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context
-	z-index: 10;
-
-	@media (min-width: @screen-sm-min) {
-		width: @container-sm;
 	}
 }
 

@@ -16,11 +16,11 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="row-page row-blank fixed-bar-bottom">
+@section("content-fixed")
 	<a id="forum-search" class="forum-search-logo js-forum-search-button" href="#" data-toggle="modal" data-target="#forum-search-modal">
 		<i class="fa fa-search"></i>
 	</a>
-</div>
+@endsection
 
 @section("script")
 	@parent

@@ -31,16 +31,33 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 
-	<body class="{{ $current_section or "error" }} section action-{{ $current_action }} {{ $body_additional_classes or "" }}">
+	<body class="flex-column {{ $current_section or "error" }} section action-{{ $current_action }} {{ $body_additional_classes or "" }}">
 		<div id="overlay" style="display: none;"></div>
 		<div class="blackout" style="display: none;"></div>
 
 		@include("layout.header")
 
-		<div class="flex-full container content {{ $current_section }}_{{ $current_action }}">
+		<div class="js-content flex-full flex-column {{ $current_section }}_{{ $current_action }}">
 			@include("layout.popup")
-			@yield("content", "<div class='row-page'><center><h1><span class='dark'>$current_section</span> / <span class='dark'>$current_action</span> is <span class='normal'>now printing</span> <span class='light'>♪</span></h1></center></div>")
+			@if(View::hasSection("content"))
+				@yield("content")
+			@else
+				<div class="row-page text-center"><h1>
+					<span class="dark">{{ $current_section }}</span>
+					/
+					<span class="dark">{{ $current_action }}</span>
+					is <span class="normal">now printing</span> <span class="light">♪</span>
+				</h1></div>
+			@endif
 		</div>
+
+		@if(View::hasSection("content-fixed"))
+			<div class="row-page row-blank row-compact">
+				<div class="row-fixed">
+					@yield("content-fixed")
+				</div>
+			</div>
+		@endif
 
 		@include("layout.gallery_window")
 		@include("layout.login-modal")

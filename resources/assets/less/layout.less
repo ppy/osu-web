@@ -35,16 +35,6 @@ html, body {
 
 body {
 	.at2x("/images/backgrounds/page-light.png", 500px, 500px);
-	display: flex;
-	flex-direction: column;
-}
-
-.content {
-	padding-bottom: @grid-gutter-width/2;
-	width: 100%;
-	max-width: @container-sm;
-	display: flex;
-	flex-direction: column;
 }
 
 .header-row {
@@ -53,12 +43,16 @@ body {
 }
 
 .row-page {
-	&:extend(.row);
 	&:extend(.default-box-shadow);
 
 	padding: @grid-gutter-width/2;
 	background-color: #fff;
 	margin-bottom: 10px;
+	background-color: white;
+	@media @desktop {
+		align-self: center;
+		width: @container-sm;
+	}
 }
 
 .row-blank {
@@ -68,11 +62,14 @@ body {
 }
 
 .row-group {
-	margin-left: 0px;
-	margin-right: 0px;
+	@media @desktop {
+		width: @container-sm - @grid-gutter-width;
+	}
+	margin-left: @grid-gutter-width/2;
+	margin-right: @grid-gutter-width/2;
 
 	padding: 0px;
-	box-shadow: none; // added by .row-group
+	box-shadow: none; // added by .row-subgroup
 }
 
 .row-subgroup {
@@ -85,9 +82,28 @@ body {
 }
 
 .row-subgroup--large {
+	@media @desktop {
+		width: @container-sm;
+	}
 	margin-left: -@grid-gutter-width/2;
 	margin-right: -@grid-gutter-width/2;
-	background: #fff;
+
+	background-content: #fff;
+}
+
+.row-fixed {
+	width: 100%;
+	@media @desktop {
+		width: @container-sm;
+	}
+	bottom: 0px;
+	position: fixed;
+	backface-visibility: hidden;
+	z-index: 10;
+}
+
+.row-compact {
+	margin: 0px;
 }
 
 #overlay {

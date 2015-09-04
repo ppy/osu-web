@@ -59,7 +59,7 @@
 	</div>
 
 	@if ($topic->canBeRepliedBy(Auth::user()))
-		{!! Form::open(["url" => route("forum.topics.reply", $topic->topic_id), "class" => "row row-blank post-box", "id" => "forum-topic-reply-box", "data-remote" => true]) !!}
+		{!! Form::open(["url" => route("forum.topics.reply", $topic->topic_id), "class" => "row-page row-blank post-box", "id" => "forum-topic-reply-box", "data-remote" => true]) !!}
 			<div class="forum-small-row reply-box-body">
 				<div class="forum__avatar-container forum__avatar-container--reply">
 					<div
@@ -77,34 +77,36 @@
 			</div>
 		{!! Form::close() !!}
 	@endif
-
-	<div class="row-page row-blank fixed-bar-bottom">
-		<div id="forum-topic-navigator" class="js-forum__topic-total-posts" data-total-count="{{ $topic->postsCount() }}">
-
-			@include("objects._radial_progress", ["extraRadialProgressClasses" => "js-forum__posts-progress"])
-			<a
-				class="jump-link first-post"
-				href="{{ route("forum.topics.show", $topic->topic_id) }}"
-			>
-				<i class="fa fa-angle-double-up"></i>
-			</a>
-
-			<div class="post-counter">
-				<a href="#" class="current-count js-forum__posts-counter">{{ head($postsPosition) }}</a>
-				<div class="total-count">/{{ $topic->postsCount() }}</div>
-			</div>
-
-			<a
-				class="jump-link last-post"
-				href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => $topic->topic_last_post_id]) }}#forum-post-{{ $topic->topic_last_post_id }}"
-			>
-				<i class="fa fa-angle-double-down"></i>
-			</a>
-		</div>
-	</div>
-
-	@include("forum._search", ["topic" => $topic])
 @endsection
+
+@section("content-fixed")
+	@parent
+
+	<div id="forum-topic-navigator" class="js-forum__topic-total-posts" data-total-count="{{ $topic->postsCount() }}">
+
+		@include("objects._radial_progress", ["extraRadialProgressClasses" => "js-forum__posts-progress"])
+		<a
+			class="jump-link first-post"
+			href="{{ route("forum.topics.show", $topic->topic_id) }}"
+		>
+			<i class="fa fa-angle-double-up"></i>
+		</a>
+
+		<div class="post-counter">
+			<a href="#" class="current-count js-forum__posts-counter">{{ head($postsPosition) }}</a>
+			<div class="total-count">/{{ $topic->postsCount() }}</div>
+		</div>
+
+		<a
+			class="jump-link last-post"
+			href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => $topic->topic_last_post_id]) }}#forum-post-{{ $topic->topic_last_post_id }}"
+		>
+			<i class="fa fa-angle-double-down"></i>
+		</a>
+	</div>
+@endsection
+
+@include("forum._search", ["topic" => $topic])
 
 @section ("script")
 	@parent
