@@ -26,6 +26,7 @@
 	<div class="{{{ $p->promoted ? "wide col-sm-12" : "small col-sm-6" }}}">
 		<div class="product-box" style="background-image: url('{{{ $p->promoted ? $p->header_image : $p->image}}}')">
 			<a href="/store/product/{{{$p->product_id}}}">
+				{!! Markdown::convertToHtml('# '.$p->name) !!}
 				{!! Markdown::convertToHtml($p->header_description) !!}
 				@if(!$p->inStock())
 				<i class="product-oos product-bar"></i>
