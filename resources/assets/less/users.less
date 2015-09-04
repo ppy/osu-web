@@ -37,7 +37,7 @@
 
   transition: background-image 0.2s ease-in-out;
 
-  @media (min-width: @screen-sm-min) {
+  @media @desktop {
     opacity: 1;
   }
 }
@@ -52,7 +52,7 @@
   justify-content: space-between;
   padding: @grid-gutter-width/4;
 
-  @media (min-width: @screen-sm-min) {
+  @media @desktop {
     padding-left: @profile-avatar-size + @grid-gutter-width;
   }
 }
@@ -69,7 +69,7 @@
   left: 0px;
   padding-bottom: @profile-user-bar-height;
 
-  @media (min-width: @screen-sm-min) {
+  @media @desktop {
     height: @profile-user-bar-height;
     padding-bottom: 0px;
     bottom: 0px;
@@ -208,7 +208,7 @@
   padding-top: @grid-gutter-width/2;
   padding-bottom: @grid-gutter-width/4;
 
-  @media (min-width: @screen-sm-min) {
+  @media @desktop {
     border-width: 0px 1px 0px 0px;
     border-style: solid;
     border-image: linear-gradient(to top, #ccc, transparent 80%) 1;
@@ -355,7 +355,7 @@
   cursor: pointer;
 
   display: none;
-  @media (min-width: @screen-sm-min) {
+  @media @desktop {
     display: block;
   }
 }
