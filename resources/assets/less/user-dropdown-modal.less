@@ -17,7 +17,7 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
-#login-modal {
+#user-dropdown-modal {
 	// FIXME: Chrome sometimes fail painting the login box without this
 	backface-visibility: hidden;
 
@@ -82,6 +82,19 @@
 			font-size: 12px;
 		}
 	}
+
+	
+	.js-user-dropdown-box {
+		position: absolute;
+	}
+
+	.js-user-dropdown-centre {
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+		right: 0px !important;
+	}
+
 }
 
 #login-form {
@@ -114,15 +127,4 @@
 			margin-top: 0px;
 		}
 	}
-}
-
-.js-login-box {
-	position: absolute;
-}
-
-.js-login-centre {
-	position: relative;
-	margin-left: auto;
-	margin-right: auto;
-	right: 0px !important;
 }

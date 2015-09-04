@@ -68,7 +68,7 @@ elixir(function(mix) {
 		"forum/topic-ajax.coffee",
 		"ujs-common.coffee",
 		"bootstrap-modal.coffee",
-		"login-modal.coffee",
+		"user-dropdown-modal.coffee",
 		"logout.coffee",
 		"shared.coffee",
 	], "public/js/app.js")
