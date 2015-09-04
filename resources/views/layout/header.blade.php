@@ -16,7 +16,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<nav class="flex-none no-print">
+<nav class="flex-none flex-column no-print">
 	<!-- Specific style for smaller displays (smartphone) -->
 	<div class="visible-xs">
 		<div class="navbar navbar-default navbar-static-top" role="navigation">
@@ -67,7 +67,7 @@
 		<div id="nav-gradient-overlay"></div>
 	</div>
 
-	<div class="hidden-xs container"><div class="row" id="nav-sm">
+	<div class="hidden-xs row-page row-blank nav-sm">
 		<a class="flex-none nav-logo" href="/"></a>
 
 		<div id="nav-links">
@@ -107,7 +107,7 @@
 		<div class="flex-none nav-user-bar-container">
 			@include("objects.user-dropdown")
 		</div>
-	</div></div>
+	</div>
 </nav>
 
 <div id="popup-container">

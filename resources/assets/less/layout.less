@@ -35,16 +35,6 @@ html, body {
 
 body {
 	.at2x("/images/backgrounds/page-light.png", 500px, 500px);
-	display: flex;
-	flex-direction: column;
-}
-
-.content {
-	padding-bottom: @grid-gutter-width/2;
-	width: 100%;
-	max-width: @container-sm;
-	display: flex;
-	flex-direction: column;
 }
 
 .header-row {
@@ -53,12 +43,17 @@ body {
 }
 
 .row-page {
-	&:extend(.row);
 	&:extend(.default-box-shadow);
 
 	padding: @grid-gutter-width/2;
 	background-color: #fff;
 	margin-bottom: 10px;
+	background-color: white;
+	width: 100%;
+	@media @desktop {
+		align-self: center;
+		width: @container-sm;
+	}
 }
 
 .row-blank {
