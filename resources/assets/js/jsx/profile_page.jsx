@@ -156,6 +156,6 @@
 			recentAchievements={recentAchievements}
 			achievementsCounts={achievementsCounts}
 		/>,
-		document.getElementsByClassName('content')[0]
+		document.getElementsByClassName('js-content')[0]
 	);
 }).call(this)

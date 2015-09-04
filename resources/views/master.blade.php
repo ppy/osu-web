@@ -37,7 +37,7 @@
 
 		@include("layout.header")
 
-		<div class="flex-full flex-column {{ $current_section }}_{{ $current_action }}">
+		<div class="js-content flex-full flex-column {{ $current_section }}_{{ $current_action }}">
 			@include("layout.popup")
 			@if(View::hasSection("content"))
 				@yield("content")
