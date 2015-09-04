@@ -59,7 +59,7 @@
 	</div>
 
 	@if ($topic->canBeRepliedBy(Auth::user()))
-		{!! Form::open(["url" => route("forum.topics.reply", $topic->topic_id), "class" => "row row-blank post-box", "id" => "forum-topic-reply-box", "data-remote" => true]) !!}
+		{!! Form::open(["url" => route("forum.topics.reply", $topic->topic_id), "class" => "row-page row-blank post-box", "id" => "forum-topic-reply-box", "data-remote" => true]) !!}
 			<div class="forum-small-row reply-box-body">
 				<div class="forum__avatar-container forum__avatar-container--reply">
 					<div

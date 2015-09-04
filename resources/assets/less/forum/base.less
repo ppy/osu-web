@@ -563,12 +563,10 @@ body.community {
 
 
 .forum-small-row {
-	margin: 0px -@grid-gutter-width/8*3 @grid-gutter-width/8;
+	margin: 0px @grid-gutter-width/8 @grid-gutter-width/8;
 	padding: @grid-gutter-width/2;
 
 	@media (min-width: @screen-sm-min) {
-		margin-left: auto;
-		margin-right: auto;
 		margin-bottom: @grid-gutter-width/8;
 		width: @container-sm - 2 * @grid-gutter-width;
 	}
@@ -619,12 +617,10 @@ body.community {
 		margin-top: -@grid-gutter-width/8;
 	}
 
-	@media (min-width: @screen-sm-min) {
+	@media @desktop {
 		padding-bottom: 0px;
 
 		&[data-post-position="1"] {
-			margin-left: -@grid-gutter-width/2;
-			margin-right: -@grid-gutter-width/2;
 			margin-top: 0px;
 			width: @container-sm;
 			padding-right: @grid-gutter-width*1.5;
