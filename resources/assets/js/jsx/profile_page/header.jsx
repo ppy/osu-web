@@ -26,13 +26,17 @@
 		},
 
 		onMouseEnter: function() {
-			$(document).trigger('profile:cover:preview', this.props.name);
+			$(document).trigger('profile:cover:preview', "/images/headers/profile-covers/c" + this.props.name + ".jpg");
 		},
 		
 		onMouseLeave: function() {
-			var b = this.props.selectedName === this.props.name;
-			if(b === false){
-			$(document).trigger('profile:cover:preview', this.props.selectedName);
+			if(this.props.selectedName !== null){
+				var b = this.props.selectedName === this.props.name;
+				if(b === false){
+				$(document).trigger('profile:cover:preview', "/images/headers/profile-covers/c" + this.props.selectedName + ".jpg");
+				}
+			}else{
+				$(document).trigger('profile:cover:previewurl');
 			}
 		},
 		render: function() {
