@@ -17,45 +17,9 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-{{--
-<!-- OLD LOGIC, WE'LL MOVE THIS BIT IN A BIT! (Trust me, I'm a developer..) -->
-<!-- each of these is a notification inbox -->
-@if (Auth::user()->isBAT())
-	<a href="#" class="n" id="notifications-bat">
-		<span class="badge" style="color: #fa3703 !important">bat</span>
-	</a>
-@endif
-
-@if (Auth::user()->isGMT())
-	<a href="#" class="n" id="notifications-gmt">
-		<span class="badge green-dark">gmt</span>
-	</a>
-@endif
-
-@if (Auth::user()->isAdmin())
-	<a href="#" class="n" id="notifications-admin">
-		<span class="badge blue-dark">admin</span>
-	</a>
-@endif
---}}
-
-
-
-
-
 @if (Auth::check())
 	<div id="nav-user-bar">
 		<a href="{{ route("users.show", Auth::user()) }}">{{ Auth::user()->username }}</a>
-		<a
-			class="js-logout-link nav-user--logout-link"
-			title="{{ trans("users.logout._") }}"
-			href="{{ route("users.logout") }}"
-			data-method="delete"
-			data-confirm="{{ trans("users.logout.confirm") }}"
-			data-remote="1"
-		>
-			<i class="fa fa-sign-out"></i>
-		</a>
 	</div>
 
 	<a class="avatar avatar--nav js-nav-avatar" href="#" title="{{ trans("users.anonymous.login") }}" style="background-image: url('{{ Auth::user()->user_avatar }}');" data-toggle="modal" data-target="#user-dropdown-modal"></a>
@@ -71,16 +35,79 @@
 
 @section('user-dropdown-modal')
 	<div id="user-dropdown-modal" class="modal fade" tabindex="-1">
-		<div class="modal-dialog js-user-dropdown-box">
-			@if (Auth::check())
-				<div class="modal-content authenticated">
-					<div class="modal-header">{{ Auth::user()->username }}</div>
-					<div class="modal-body">
-						<h2>Hey! Look! We're logged in! Now get back to work!</h2>
+		@if (Auth::check())
+			<div class="modal-dialog js-user-dropdown-box js-user-dropdown-authenticated">
+				<div class="badges">
+					<div class='user-dropdown-badge user-dropdown-level-badge'>
+						<span class='user-dropdown-badge-number'>5</span>
+					</div>
+					<div class='user-dropdown-badge user-dropdown-achievements-badge'>
+						<span class='user-dropdown-badge-number'>5</span>
 					</div>
 				</div>
-			@else
-				<div class="modal-content guest">
+				<div class="modal-content">
+					<div class="modal-header" style="background-image: url('/temp-issue-35-related/bg-cover.png');">
+						<div class="dimmer"></div>
+						<div class="pull-left userinfo">
+							<h1>{{ Auth::user()->username }}</h1>
+							<a href="#/rankings/country-maybe?" class="country ja">&nbsp;</a>
+							<a href="#/teams/ppy" class="team" style="background-image: url('/temp-issue-35-related/default-team.png');">&nbsp;</a>
+						</div>
+						<div class="pull-right ranking">
+							<h1>#37542</h1>
+							<h2>Malaysia #37542</h2>
+						</div>
+					</div>
+					<div class="modal-body row">
+						<div class="col-xs-8 info">
+							<h1>Level 5</h1>
+							<ul class="roles">
+								<li class="supporter">osu!Supporter</li>
+								<li class="developer">osu!Developer</li>
+							</ul>
+							<ul class="stats">
+								<li><span>Ranked Score</span><span class="pull-right">{{ number_format(29955840356) }}</span></li>
+								<li><span>Hit Accuracy</span><span class="pull-right">{{ number_format(98.75, 2) }}%</span></li>
+								<li><span>Play Count</span><span class="pull-right">{{ number_format(100475) }}</span></li>
+							</ul>
+						</div>
+						<div class="col-xs-4 menu">
+							<ul>
+								<li>
+									<a href="#">
+										Messages <i class="fa fa-envelope"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Settings <i class="fa fa-cog"></i>
+									</a>
+								</li>
+								<li>
+									<a
+										class="js-logout-link"
+										title="{{ trans("users.logout._") }}"
+										href="{{ route("users.logout") }}"
+										data-method="delete"
+										data-confirm="{{ trans("users.logout.confirm") }}"
+										data-remote="1"
+									>
+										Log Out <i class="fa fa-sign-out"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										Help <i class="fa fa-question-circle"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		@else
+			<div class="modal-dialog js-user-dropdown-box js-user-dropdown-guest">
+				<div class="modal-content">
 					<div class="modal-header"><h1>Login</h1></div>
 					<div class="modal-body">
 						<h2>Please login to proceed</h2>
@@ -98,7 +125,7 @@
 						<p><a href="{{ route("users.register") }}" target="_blank">Don't have an osu! account? Make a new one</a></p>
 					</div>
 				</div>
-			@endif
+			</div>
 		</div>
-	</div>
+	@endif
 @stop

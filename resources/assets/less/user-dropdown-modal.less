@@ -18,113 +18,352 @@
 *
 */
 #user-dropdown-modal {
-	// FIXME: Chrome sometimes fail painting the login box without this
+	// FIXME: Chrome sometimes fail painting the modal box without this
 	backface-visibility: hidden;
 
 	.modal-dialog {
 		width: 430px;
-		border-radius: 5px 5px 0px 0px;
-		overflow: hidden;
 		color: @text-color;
-	}
 
-	.modal-content {
-		border: none;
-		border-radius: 0px;
-		background: none;
+		&.js-user-dropdown-authenticated {
+			.badges {
+				height: 20px;
+				position: absolute;
+				z-index: 2;
+				top: -20px;
+				left: 5px;
+				@user-dropdown-badge-size: 38px;
 
-		> * {
-			padding: @grid-gutter-width/4;
-		}
-	}
+				.user-dropdown-badge {
+					float: left;
+					height: @user-dropdown-badge-size;
+					margin-bottom: @grid-gutter-width/8;
+					margin-right: 5px;
+					text-align: center;
+					background-position: 50%;
+					background-repeat: no-repeat;
+					width: @user-dropdown-badge-size;
+					background-size: @user-dropdown-badge-size;
+				}
 
-	.modal-header {
-		.at2x("/images/headers/login-box.jpg", 430px, 60px);
-		height: 60px;
+				.user-dropdown-level-badge {
+					.at2x("/images/badges/levelbadge.png", @user-dropdown-badge-size, @user-dropdown-badge-size);
+				}
 
-		h1 {
-			&:extend(.default-text-shadow);
+				.user-dropdown-achievements-badge {
+					.at2x("/images/badges/achievements.png", @user-dropdown-badge-size, @user-dropdown-badge-size);
+				}
 
-			font-style: normal;
-			font-size: 24px;
-			color: #fff;
-
-			position: absolute;
-			margin: @grid-gutter-width/4;
-			bottom: 0px;
-			left: 0px;
-		}
-	}
-
-	.modal-body {
-		background-color: #fff;
-
-		> * {
-			margin: @grid-gutter-width/4 0px;
-
-			&:first-child {
-				margin-top: 0px;
+				.user-dropdown-badge-number {
+					font-size: 16px;
+					font-weight: bold;
+					color: #fff;
+					top: 2px;
+				}
 			}
 
-			&:last-child {
-				margin-bottom: 0px;
+			.modal-content {
+				overflow: hidden; 
+				border-radius: 5px;
+
+				.modal-header {
+					.at2x("/images/headers/profile-covers/c3.jpg", 430px, 70px);
+					background-size: 430px auto;
+					background-position: center center;
+					height: 70px;
+
+					&,
+					>.dimmer {
+						border-radius: 5px 5px 0 0;
+					}
+
+					>.dimmer {
+						background: -moz-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.75) 100%); /* FF3.6+ */
+						background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.5)), color-stop(100%,rgba(0,0,0,0.75))); /* Chrome,Safari4+ */
+						background: -webkit-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.75) 100%); /* Chrome10+,Safari5.1+ */
+						background: -o-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.75) 100%); /* Opera 11.10+ */
+						background: -ms-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.75) 100%); /* IE10+ */
+						background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.75) 100%); /* W3C */
+						filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80000000', endColorstr='#bf000000',GradientType=0 ); /* IE6-9 */
+						height: 100%;
+						margin: -15px;
+						width: 100%;
+						position: absolute;
+					}
+					
+					.userinfo {
+						position: absolute;
+						left: 10px;
+						bottom: 8px;
+
+						h1 {
+							display: inline-block;
+							float: left;
+							font-style: normal;
+							color: #FFF;
+							font-family: @font-family-sans-serif;
+							font-size: 24px;
+							margin: 0;
+
+							// Prevent username overflow.
+							max-width: 180px;
+							overflow: hidden;
+							white-space: nowrap;
+							text-overflow: ellipsis;
+						}
+
+						.country {
+							background-size: 30px 20px;
+							display: inline-block;
+							float: left;
+							height: 20px;
+							margin: 5px 0 0 8px;
+							overflow: hidden;
+							text-decoration: none;
+							text-indent: 9999px;
+							width: 30px;
+
+							&.ja {
+								.at2x("/temp-issue-35-related/japan.png", 30px, 20px);
+							}
+						}
+
+						.team {
+							background-size: 50px 20px;
+							.at2x("/temp-issue-35-related/default-team.png", 50px, 20px);
+							display: inline-block;
+							float: left;
+							height: 20px;
+							margin: 5px 0 0 5px;
+							overflow: hidden;
+							text-decoration: none;
+							text-indent: 9999px;
+							width: 50px;
+						}
+					}
+
+					.ranking {
+						text-align: right;
+						position: absolute;
+						right: 10px;
+						bottom: 8px;
+
+						h1 {
+							font-style: normal;
+							color: #FFF;
+							display: inline-block;
+							font-family: @font-family-sans-serif;
+							font-size: 24px;
+							font-style: normal;
+							font-weight: 300;
+							text-indent: 8px;
+							margin: 0;
+
+							&:before {
+								width: 18px;
+							    content: " ";
+							    .at2x("/temp-issue-35-related/osucatch-nonvector.png", 18px, 18px);
+							    background-size: 18px 18px;
+							    background-repeat: no-repeat;
+							    position: absolute;
+							    left: -18px;
+							    top: 6px;
+							    height:18px;
+							}
+						}
+
+						h2 {
+							color: rgb(255, 255, 255);
+							font-size: 15px;
+							font-style: normal;
+							font-weight: 300;
+							margin: 0;
+						}
+					}
+				}
+
+				.modal-body {
+					border-radius: 0 0 5px 5px;
+					padding: 0;
+
+					&,
+					.info,
+					.menu {
+						height: 140px;
+					}
+
+					ul {
+						list-style: none;
+						font-family: @font-family-sans-serif;
+						padding: 0;
+					}
+
+					.info {
+						background-color: #FFF;
+						padding: 5px 10px 0 30px;
+
+						h1 {
+							font-style: normal;
+							color: #555;
+							font-family: @font-family-sans-serif;
+							font-size: 20px;
+							font-weight: 300;
+							margin: 0;
+						}
+
+						ul.roles {
+							font-size: 15px;
+							font-weight: 500;
+
+							.supporter { color: #ee3399; }
+							.developer { color: #6644cc; }
+						}
+
+						ul.stats {
+							position: absolute;
+							bottom: 0px;
+							left: 30px;
+							right: 10px;
+							font-size: 12px;
+							font-weight: 300;
+
+							li {
+								line-height: 16px;
+
+								.pull-right {
+									font-weight: 600;
+									text-align: right;
+								}	
+							}
+						}
+					}
+
+					.menu {
+						padding: 5px 30px 0px 10px;
+						background-color: #EEE;
+						height: 100%;
+
+						ul > li {
+							line-height: 22px;
+							text-align: right;
+
+							> a {
+								color: #555;
+								font-size: 16px;
+								font-weight: 300;
+
+								i {
+									margin-left: 10px;
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 
-		h2 {
-			font-size: 18px;
-			font-style: normal;
-			color: @text-color;
+		&.js-user-dropdown-guest {
+			.modal-content {
+				border-radius: 5px 5px 0 0;
+				overflow: hidden;
+				
+				> * {
+					padding: @grid-gutter-width/4;
+				}
+
+				.modal-header {
+					.at2x("/images/headers/login-box.jpg", 430px, 60px);
+					height: 60px;
+
+					h1 {
+						&:extend(.default-text-shadow);
+
+						font-style: normal;
+						font-size: 24px;
+						color: #FFF;
+
+						position: absolute;
+						margin: @grid-gutter-width/4;
+						bottom: 0px;
+						left: 0px;
+					}
+				}
+
+				.modal-body {
+					background-color: #FFF;
+
+					> * {
+						margin: @grid-gutter-width/4 0px;
+
+						&:first-child {
+							margin-top: 0px;
+						}
+
+						&:last-child {
+							margin-bottom: 0px;
+						}
+					}
+
+					h2 {
+						font-size: 18px;
+						font-style: normal;
+						color: @text-color;
+					}
+
+					p {
+						display: block;
+						font-size: 12px;
+					}
+				}
+			}
 		}
 
-		p {
-			display: block;
-			font-size: 12px;
+		.modal-content {
+			border: none;
+			background: none;
+
+			#login-form {
+				display: flex;
+				align-items: stretch;
+
+				flex-wrap: wrap;
+				@media (min-width: @screen-sm-min) {
+					flex-wrap: nowrap;
+				}
+
+				.login-input {
+					flex: 0 1 100%;
+
+					input:last-child {
+						margin-top: @grid-gutter-width/8;
+
+						&:first-child {
+							margin-top: 0px;
+						}
+					}
+				}
+
+				.login-button {
+					flex: 1 0 105px;
+
+					margin-top: @grid-gutter-width/8;
+					@media (min-width: @screen-sm-min) {
+						margin-left: @grid-gutter-width/4;
+						margin-top: 0px;
+					}
+				}
+			}
 		}
 	}
 
-	
 	.js-user-dropdown-box {
 		position: absolute;
 	}
 
-	.js-user-dropdown-centre {
+	.js-user-dropdown-centre { 
 		position: relative;
 		margin-left: auto;
 		margin-right: auto;
 		right: 0px !important;
-	}
-
-}
-
-#login-form {
-	display: flex;
-	align-items: stretch;
-
-	flex-wrap: wrap;
-	@media (min-width: @screen-sm-min) {
-		flex-wrap: nowrap;
-	}
-
-	.login-input {
-		flex: 0 1 100%;
-
-		input:last-child {
-			margin-top: @grid-gutter-width/8;
-
-			&:first-child {
-				margin-top: 0px;
-			}
-		}
-	}
-
-	.login-button {
-		flex: 1 0 105px;
-
-		margin-top: @grid-gutter-width/8;
-		@media (min-width: @screen-sm-min) {
-			margin-left: @grid-gutter-width/4;
-			margin-top: 0px;
-		}
 	}
 }
