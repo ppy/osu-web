@@ -29,6 +29,7 @@ class Notification extends Eloquent
     protected $fillable = ['notification', 'user_id', 'group_id', 'var', 'link', 'global'];
 
     // konbini functions
+
     public static function generate($notification = [])
     {
         if (! $notification or (! $user and ! $group)) {
@@ -57,6 +58,7 @@ class Notification extends Eloquent
     }
 
     // a bunch of scopes we can assign to the model to narrow queries down
+
     public function scopeGlobal($query)
     {
         return $this->where('global', '=', 1);
@@ -75,6 +77,7 @@ class Notification extends Eloquent
     }
 
     // here we have relationships
+
     public function group($query, $id)
     {
         return $this->hasOne('Group', 'group_id', 'group_id');

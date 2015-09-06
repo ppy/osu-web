@@ -22,6 +22,7 @@ class UserControl
 {
     // the reason for putting this in a queue is that
     // we can delay firing this for as long as we like.
+
     public function ban($job, $data)
     {
         $id = @$data['id'];
