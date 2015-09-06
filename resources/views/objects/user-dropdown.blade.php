@@ -49,7 +49,7 @@
 						</div>
 						<div class="modal-header__userinfo userinfo-small">
 							<h1 class="userinfo-small__username">{{ Auth::user()->username }}</h1>
-							<a href="#/rankings/country-maybe?" class="userinfo-small__country" style="background-image: url('/images/flags/{{ Auth::user()->country_acronym }}.png');"></a>
+							<a href="#/rankings/country-maybe?" class="userinfo-small__country" style="background-image: url('/images/flags/{{ "JP" }}.png');"></a>
 							<a href="#/teams/ppy" class="userinfo-small__team" style="background-image: url('/temp-issue-35-related/default-team.png');"></a>
 						</div>
 						<div class="modal-header__ranking rankinginfo-small">
