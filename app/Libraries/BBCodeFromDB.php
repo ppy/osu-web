@@ -166,6 +166,7 @@ class BBCodeFromDB
     }
 
     // stolen from: www/forum/includes/functions.php:2845
+
     public function parseSmilies($text)
     {
         return preg_replace('#<!\-\- s(.*?) \-\-><img src="\{SMILIES_PATH\}\/(.*?) \/><!\-\- s\1 \-\->#', '<img class="smiley" src="'.config('osu.urls.smilies').'/\2 />', $text);

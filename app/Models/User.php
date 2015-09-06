@@ -173,6 +173,7 @@ class User extends Model implements AuthenticatableContract
     }
 
     // verifies that a user is valid (makes code neater)
+
     public static function validate($user)
     {
         try {
@@ -185,6 +186,7 @@ class User extends Model implements AuthenticatableContract
     }
 
     // verify that an api key is correct
+
     public function verify($key)
     {
         return $this->api->api_key === $key;
@@ -280,6 +282,7 @@ class User extends Model implements AuthenticatableContract
     }
 
     // return a user's API details
+
     public function getApiDetails($user = null)
     {
         return $this->api;
@@ -298,6 +301,7 @@ class User extends Model implements AuthenticatableContract
 
     // find a user by their api key
     // usage: User::findByKey($key);
+
     public static function findByKey($key)
     {
         $user_id = Api::where('api_key', $key)->value('user_id');
@@ -318,6 +322,7 @@ class User extends Model implements AuthenticatableContract
     | You should try to be specific and not use the Group:: constants.
     |
     */
+
     public function ownsMod(Mod $mod)
     {
         return $this->user_id === $mod->user_id;
@@ -351,52 +356,64 @@ class User extends Model implements AuthenticatableContract
     {
         return $this->isGroup(Group::BAT);
     }
+
     public function isAdmin()
     {
         return $this->isGroup(Group::ADMIN);
     }
+
     public function isGMT()
     {
         return $this->isGroup(Group::GMT);
     }
+
     public function isMAT()
     {
         return $this->isGroup(Group::MAT);
     }
+
     public function isHax()
     {
         return $this->isGroup(Group::HAX);
     }
+
     public function isDev()
     {
         return $this->isGroup(Group::DEV);
     }
+
     public function isMod()
     {
         return $this->isGroup(Group::MOD);
     }
+
     public function isAlumni()
     {
         return $this->isGroup(Group::ALUMNI);
     }
+
     public function isRegistered()
     {
         return $this->isGroup(Group::REGULAR);
     }
+
     public function hasSupported()
     {
         return $this->osu_subscriptionexpiry !== null;
     }
+
     public function isSupporter()
     {
         return $this->osu_subscriber === true;
     }
+
     public function isPrivileged()
     {
         return $this->isAdmin()
             or $this->isDev();
             //or $this->isSupporter()
     }
+
     public function isBanned()
     {
         return $this->user_type === 1;
@@ -417,6 +434,7 @@ class User extends Model implements AuthenticatableContract
     }
 
     // check if a user is in a specific group, by ID
+
     public function isGroup($group)
     {
         if ($this->group_ids === null) {
@@ -442,30 +460,37 @@ class User extends Model implements AuthenticatableContract
     {
         return $this->hasMany("App\Models\Group");
     }
+
     public function notifications()
     {
         return $this->hasMany("App\Models\Notification", 'user_id', 'user_id');
     }
+
     public function sets()
     {
         return $this->hasMany("App\Models\Set", 'user_id', 'user_id');
     }
+
     public function beatmaps()
     {
         return $this->hasManyThrough("App\Models\Beatmap", 'Set');
     }
+
     public function posts()
     {
         return $this->hasMany("App\Models\Post", 'user_id', 'user_id');
     }
+
     public function mods()
     {
         return $this->hasMany("App\Models\Mod", 'user_id', 'user_id');
     }
+
     public function api()
     {
         return $this->hasOne("App\Models\Api", 'user_id', 'user_id');
     }
+
     //public function country() { return $this->hasOne("Country"); }
 
     public function storeAddresses()

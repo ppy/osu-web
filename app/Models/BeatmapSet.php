@@ -49,26 +49,32 @@ class BeatmapSet extends Model
     const QUALIFIED = 3;
 
     // ranking functions for the set
+
     public function rank(User $user = null)
     {
         $this->setRank(static::RANKED, $user);
     }
+
     public function pending(User $user = null)
     {
         $this->setRank(static::PENDING, $user);
     }
+
     public function wip(User $user = null)
     {
         $this->setRank(static::WIP, $user);
     }
+
     public function approve(User $user = null)
     {
         $this->setRank(static::APPROVED, $user);
     }
+
     public function qualify(User $user = null)
     {
         $this->setRank(static::QUALIFIED, $user);
     }
+
     public function graveyard(User $user = null)
     {
         $this->setRank(static::GRAVEYARD, $user);
@@ -84,6 +90,7 @@ class BeatmapSet extends Model
     }
 
     // BeatmapSet::rankable();
+
     public function scopeRankable($query)
     {
         return $query->qualified()
@@ -100,52 +107,64 @@ class BeatmapSet extends Model
     | use with the query builder. BeatmapSet::all()->unranked()
     |
     */
+
     public function scopeGraveyard($query)
     {
         return $query->where('approved', '=', static::GRAVEYARD);
     }
+
     public function scopeWip($query)
     {
         return $query->where('approved', '=', static::WIP);
     }
+
     public function scopeUnranked($query)
     {
         return $query->where('approved', '=', static::PENDING);
     }
+
     public function scopeRanked($query)
     {
         return $query->where('approved', '=', static::RANKED);
     }
+
     public function scopeApproved($query)
     {
         return $query->where('approved', '=', static::APPROVED);
     }
+
     public function scopeQualified($query)
     {
         return $query->where('approved', '=', static::QUALIFIED);
     }
 
     // one-time checks
+
     public function isGraveyard()
     {
         return $this->approved == static::GRAVEYARD;
     }
+
     public function isWIP()
     {
         return $this->approved == static::WIP;
     }
+
     public function isPending()
     {
         return $this->approved == static::PENDING;
     }
+
     public function isRanked()
     {
         return $this->approved == static::RANKED;
     }
+
     public function isApproved()
     {
         return $this->approved == static::APPROVED;
     }
+
     public function isQualified()
     {
         return $this->approved == static::QUALIFIED;
@@ -321,6 +340,7 @@ class BeatmapSet extends Model
     | One set has a single creator.
     |
     */
+
     public function beatmaps()
     {
         return $this->hasMany("App\Models\Beatmap", 'beatmapset_id', 'beatmapset_id');

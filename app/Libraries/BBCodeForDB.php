@@ -52,6 +52,7 @@ class BBCodeForDB
     * Handles:
     * - Centre (centre)
     */
+
     public function parseBlockSimple($text)
     {
         foreach (['centre'] as $tag) {
@@ -121,6 +122,7 @@ class BBCodeForDB
     * - Underline (u)
     * - Heading (heading)
     */
+
     public function parseInlineSimple($text)
     {
         foreach (['b', 'i', 'img', 'strike', 's', 'u', 'heading'] as $tag) {
@@ -164,6 +166,7 @@ class BBCodeForDB
 
     // the implementation here is completely different and incompatible
     // with phpBB original implementation.
+
     public function parseList($text)
     {
         $patterns = ["/\[(list(?:=.+?)?)\]/", '[/list]'];
@@ -193,6 +196,7 @@ class BBCodeForDB
     }
 
     // this is quite different and much more dumb than the one in phpbb
+
     public function parseQuote($text)
     {
         $patterns = ["/\[(quote(?:=&quot;.+?&quot;)?)\]/", '[/quote]'];
@@ -215,6 +219,7 @@ class BBCodeForDB
     }
 
     // copied from www/forum/includes/message_parser.php#L1196
+
     public function parseSmiley($text)
     {
         $smilies = Smiley::getAll();
