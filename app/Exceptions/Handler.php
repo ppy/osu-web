@@ -100,6 +100,7 @@ class Handler extends ExceptionHandler
 
         view()->share('ref', $ref);
     }
+
     /**
      * Render an exception into an HTTP response.
      *

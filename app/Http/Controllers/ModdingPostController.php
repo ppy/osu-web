@@ -28,6 +28,7 @@ use Request;
 class ModdingPostController extends Controller
 {
     protected $section = 'modding';
+
     /**
      * Display a listing of the resource.
      *

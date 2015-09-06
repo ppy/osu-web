@@ -113,24 +113,28 @@ class Mod extends Eloquent
     }
 
     // one post has one user
+
     public function creator()
     {
         return $this->belongsTo('User', 'user_id', 'user_id');
     }
 
     // one post has one parent
+
     public function parent()
     {
         return $this->belongsTo('Mod', 'item_id', 'parent_item_id');
     }
 
     // one parent has many children
+
     public function children()
     {
         return $this->hasMany('Mod', 'item_id', 'parent_item_id');
     }
 
     // one post has one reply
+
     public function reply()
     {
         return $this->hasOne('Mod', 'reply_to', 'item_id');
@@ -140,22 +144,27 @@ class Mod extends Eloquent
     {
         return $query->where('item_type', '=', self::NOMINATION);
     }
+
     public function scopeProblems($query)
     {
         return $query->where('item_type', '=', self::PROBLEM);
     }
+
     public function scopeSuggestions($query)
     {
         return $query->where('item_type', '=', self::SUGGESTION);
     }
+
     public function scopePraise($query)
     {
         return $query->where('item_type', '=', self::PRAISE);
     }
+
     public function scopeResolved($query)
     {
         return $query->where('is_resolved', '=', 1);
     }
+
     public function scopePending($query)
     {
         return $query->where('is_resolved', '=', 0);

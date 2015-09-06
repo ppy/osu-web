@@ -53,6 +53,7 @@ class StoreController extends Controller
     }
 
     // GET /store
+
     public function getIndex()
     {
         return ujs_redirect('/store/listing');
