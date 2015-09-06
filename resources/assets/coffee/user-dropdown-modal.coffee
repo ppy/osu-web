@@ -18,8 +18,8 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class UserDropdownModal
   _mobileElements: document.getElementsByClassName('visible-xs')
-  box: document.getElementsByClassName('js-user-dropdown-box')
-  activeBox: document.getElementsByClassName('js-user-dropdown-box--active')
+  box: document.getElementsByClassName('js-user-dropdown-modal__dialog')
+  activeBox: document.getElementsByClassName('js-user-dropdown-modal__dialog--active')
   avatar: document.getElementsByClassName('js-nav-avatar')
   clickAfterLogin: null # Used as callback on original action (where login was required)
 
@@ -60,12 +60,12 @@ class UserDropdownModal
 
 
   activate: =>
-    @box[0].classList.add 'js-user-dropdown-box--active'
+    @box[0].classList.add 'js-user-dropdown-modal__dialog--active'
     @reposition()
 
 
   deactivate: =>
-    @box[0].classList.remove 'js-user-dropdown-box--active'
+    @box[0].classList.remove 'js-user-dropdown-modal__dialog--active'
     @clickAfterLogin = null
 
 
@@ -73,7 +73,7 @@ class UserDropdownModal
     return if @activeBox[0] == undefined
 
     if @_isMobile()
-      @box[0].classList.add 'js-user-dropdown-centre'
+      @box[0].classList.add 'js-user-dropdown-modal__dialog--centre'
       @box[0].style.marginTop = '60px'
 
     else if @isAvatarVisible()
@@ -81,12 +81,12 @@ class UserDropdownModal
       normalTop = avatarDimensions.bottom + 20
       normalRight = window.innerWidth - avatarDimensions.right
 
-      @box[0].classList.remove 'js-user-dropdown-centre'
+      @box[0].classList.remove 'js-user-dropdown-modal__dialog--centre'
       @box[0].style.marginTop = "#{normalTop}px"
       @box[0].style.right = "#{normalRight}px"
 
     else
-      @box[0].classList.add 'js-user-dropdown-centre'
+      @box[0].classList.add 'js-user-dropdown-modal__dialog--centre'
       @box[0].style.marginTop = '90px'
 
 

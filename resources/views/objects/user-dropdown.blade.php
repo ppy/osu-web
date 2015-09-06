@@ -25,7 +25,7 @@
 		<a href="{{ route("users.show", Auth::user()) }}">{{ Auth::user()->username }}</a>
 	</div>
 
-	<a class="avatar avatar--nav js-nav-avatar" href="#" title="{{ trans("users.anonymous.login") }}" style="background-image: url('{{ Auth::user()->user_avatar }}');" data-toggle="modal" data-target="#user-dropdown-modal"></a>
+	<a class="avatar avatar--nav js-nav-avatar" href="#" title="{{ trans("users.show.avatar", ["username" => Auth::user()->username]) }}" style="background-image: url('{{ Auth::user()->user_avatar }}');" data-toggle="modal" data-target="#user-dropdown-modal"></a>
 @else
 	<div id="nav-user-bar">
 		<a href="#" title="{{ trans("users.anonymous.login") }}" data-toggle="modal" data-target="#user-dropdown-modal">
@@ -38,97 +38,68 @@
 
 @section('user-dropdown-modal')
 	<div id="user-dropdown-modal" class="modal fade" tabindex="-1">
-		@if (Auth::check())
-			<div class="modal-dialog js-user-dropdown-box js-user-dropdown-authenticated">
-				<div class="badges">
-					<div class='user-dropdown-badge user-dropdown-level-badge'>
-						<span class='user-dropdown-badge-number'>5</span>
-					</div>
-					<div class='user-dropdown-badge user-dropdown-achievements-badge'>
-						<span class='user-dropdown-badge-number'>5</span>
-					</div>
-				</div>
-				<div class="modal-content">
-					<div class="modal-header" style="background-image: url('/temp-issue-35-related/bg-cover.png');">
-						<div class="dimmer"></div>
-						<div class="pull-left userinfo">
-							<h1>{{ Auth::user()->username }}</h1>
-							<a href="#/rankings/country-maybe?" class="country ja">&nbsp;</a>
-							<a href="#/teams/ppy" class="team" style="background-image: url('/temp-issue-35-related/default-team.png');">&nbsp;</a>
+		<div class="modal-dialog modal__dialog js-user-dropdown-modal__dialog">
+			@if (Auth::check()) 
+				<div class="modal-content modal-content--authenticated">
+					<div class="modal-header modal-header--authenticated" style="background-image: url('/temp-issue-35-related/bg-cover.png');">
+						<div class="modal-header__dimmer"></div>
+						<div class="modal-header__badges badges">
+							<i class='badges__badge badges__badge--small badges__badge--level'>5</i>
+							<i class='badges__badge badges__badge--small badges__badge--achievements'>5</i>
 						</div>
-						<div class="pull-right ranking">
-							<h1>#37542</h1>
-							<h2>Malaysia #37542</h2>
+						<div class="modal-header__userinfo userinfo-small">
+							<h1 class="userinfo-small__username">{{ Auth::user()->username }}</h1>
+							<a href="#/rankings/country-maybe?" class="userinfo-small__country" style="background-image: url('/images/flags/{{ Auth::user()->country_acronym }}.png');"></a>
+							<a href="#/teams/ppy" class="userinfo-small__team" style="background-image: url('/temp-issue-35-related/default-team.png');"></a>
+						</div>
+						<div class="modal-header__ranking rankinginfo-small">
+							<span class="rankinginfo-small__gamemode"><i class="fa osu fa-ctb-o"></i> #37542</span>
+							<span class="rankinginfo-small__country">Malaysia #37542</span>
 						</div>
 					</div>
-					<div class="modal-body row">
-						<div class="col-xs-8 info">
-							<h1>Level 5</h1>
-							<ul class="roles">
-								<li class="supporter">osu!Supporter</li>
-								<li class="developer">osu!Developer</li>
+					<div class="modal-body modal-body--compartimentalized">
+						<div class="modal-body__compartment modal-body__compartment--left quick-info">
+							<h1 class="quick-info__level">Level 5</h1>
+							<ul class="quick-info__roles user-roles">
+								<li class="user-roles__role user-roles__role--supporter">{{ trans("users.show.is_supporter") }}</li>
+								<li class="user-roles__role user-roles__role--developer">{{ trans("users.show.is_developer") }}</li>
 							</ul>
-							<ul class="stats">
-								<li><span>Ranked Score</span><span class="pull-right">{{ number_format(29955840356) }}</span></li>
-								<li><span>Hit Accuracy</span><span class="pull-right">{{ number_format(98.75, 2) }}%</span></li>
-								<li><span>Play Count</span><span class="pull-right">{{ number_format(100475) }}</span></li>
+							<ul class="quick-info__statistics">
+								<li class="quick-info-statistics__statistic"><span>{{ trans("users.show.stats.ranked_score") }}</span><span class="text-right">{{ number_format(29955840356) }}</span></li>
+								<li class="quick-info-statistics__statistic"><span>{{ trans("users.show.stats.hit_accuracy") }}</span><span class="text-right">{{ number_format(98.75, 2) }}%</span></li>
+								<li class="quick-info-statistics__statistic"><span>{{ trans("users.show.stats.play_count") }}</span><span class="text-right">{{ number_format(100475) }}</strong></li>
 							</ul>
 						</div>
-						<div class="col-xs-4 menu">
-							<ul>
-								<li>
-									<a href="#">
-										Messages <i class="fa fa-envelope"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										Settings <i class="fa fa-cog"></i>
-									</a>
-								</li>
-								<li>
-									<a
-										class="js-logout-link"
-										title="{{ trans("users.logout._") }}"
-										href="{{ route("users.logout") }}"
-										data-method="delete"
-										data-confirm="{{ trans("users.logout.confirm") }}"
-										data-remote="1"
-									>
-										Log Out <i class="fa fa-sign-out"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										Help <i class="fa fa-question-circle"></i>
-									</a>
-								</li>
+						<div class="modal-body__compartment modal-body__compartment--right">
+							<ul class="user-dropdown-modal-menu">
+								<li class="user-dropdown-modal-menu__item"><a href="#" title="{{ trans("layout.menu.user.messages") }}">{{ trans("layout.menu.user.messages") }} <i class="fa fa-envelope"></i></a></li>
+								<li class="user-dropdown-modal-menu__item"><a href="#" title="{{ trans("layout.menu.user.settings") }}">{{ trans("layout.menu.user.settings") }} <i class="fa fa-cog"></i></a></li>
+								<li class="user-dropdown-modal-menu__item"><a href="{{ route("users.logout") }}" title="{{ trans("layout.menu.user.logout") }}" class="js-logout-link" data-method="delete" data-confirm="{{ trans("users.logout_confirm") }}" data-remote="1">{{ trans("layout.menu.user.logout") }} <i class="fa fa-sign-out"></i></a></li>
+								<li class="user-dropdown-modal-menu__item"><a href="#" title="{{ trans("layout.menu.user.help") }}">{{ trans("layout.menu.user.help") }} <i class="fa fa-question-circle"></i></a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
-			</div>
-		@else
-			<div class="modal-dialog js-user-dropdown-box js-user-dropdown-guest">
-				<div class="modal-content">
-					<div class="modal-header"><h1>Login</h1></div>
-					<div class="modal-body">
-						<h2>Please login to proceed</h2>
+			@else
+				<div class="modal-content modal-content--no-shadow">
+					<div class="modal-header modal-header--login"><h1 class="modal-header__title">{{ trans("users.login._") }}</h1></div>
+					<div class="modal-body modal-body--no-rounding">
+						<h2 class="modal-body__title modal-body__title">{{ trans("users.login.title") }}</h2>
 
-						{!! Form::open(["url" => route("users.login"), "id" => "login-form", "data-remote" => true]) !!}
-							<div class="login-input">
-								<input class="form-control" name="username" type="text" placeholder="{{ trans("users.login.username") }}" required>
-								<input class="form-control" name="password" type="password" placeholder="{{ trans("users.login.password") }}" required>
+						{!! Form::open(["url" => route("users.login"), "id" => "login-form", "class" => "modal-body__form form", "data-remote" => true]) !!}
+							<div class="form__input-group input-group">
+								<input class="input-group__control form-control" name="username" type="text" placeholder="{{ trans("users.login.username") }}" required>
+								<input class="input-group__control form-control" name="password" type="password" placeholder="{{ trans("users.login.password") }}" required>
 							</div>
 
-							<button class="btn-osu btn-osu-default login-button" type="submit"><i class="fa fa-sign-in"></i></button>
+							<button class="btn-osu btn-osu-default form__button" type="submit"><i class="fa fa-sign-in"></i></button>
 						{!! Form::close() !!}
 
-						<p><a href="{{ route("users.forgot-password") }}" target="_blank">Forgotten your password?</a></p>
-						<p><a href="{{ route("users.register") }}" target="_blank">Don't have an osu! account? Make a new one</a></p>
+						<p class="modal-body__paragraph"><a href="{{ route("users.forgot-password") }}" target="_blank">{{ trans("users.login.forgot") }}</a></p>
+						<p class="modal-body__paragraph"><a href="{{ route("users.register") }}" target="_blank">{{ trans("users.login.register") }}</a></p>
 					</div>
 				</div>
-			</div>
+			@endif
 		</div>
-	@endif
+	</div>
 @stop
