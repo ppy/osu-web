@@ -76,19 +76,25 @@ $(document).on 'ajax:success', '.edit-post-link', (e, data, status, xhr) ->
   # removed in this callback.
   $(e.target).trigger('ajax:complete', [xhr, status])
 
-  $postPanel = $(e.target).parents('.forum-post').find('.post-panel')
+  $postBox = $(e.target).parents('.forum-post')
 
-  $postPanel
-    .data('originalPost', $postPanel.html())
-    .html(data)
-    .find('[name=body]').focus()
+  $postBox
+    .data 'originalPost', $postBox.html()
+    .html data
+    .find '[name=body]'
+    .focus()
+
+  $(document).trigger('osu:page:change')
+
 
 $(document).on 'click', '.js-edit-post-cancel', (e) ->
   e.preventDefault()
 
-  $postPanel = $(e.target).parents('.forum-post').find('.post-panel')
+  $postBox = $(e.target).parents '.forum-post'
+  $postBox.html $postBox.data('originalPost')
 
-  $postPanel.html $postPanel.data('originalPost')
+  $(document).trigger('osu:page:change')
+
 
 $(document).on 'ajax:success', '.edit-post', (e, data, status, xhr) ->
   # ajax:complete needs to be triggered early since the form (target) is

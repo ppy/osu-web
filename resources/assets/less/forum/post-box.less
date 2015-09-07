@@ -22,6 +22,10 @@
   display: flex;
   flex-direction: column;
 
+  &--edit {
+    width: 100%;
+  }
+
   .create-post-advanced, .create-post-advanced-hide {
     display: none;
   }
@@ -59,8 +63,12 @@
     display: flex;
     justify-content: space-between;
 
+    margin: 0px -@grid-gutter-width/2 -@grid-gutter-width/8;
+
     padding-top: @grid-gutter-width/4;
+    padding-right: @grid-gutter-width/4;
     padding-bottom: @grid-gutter-width/4;
+    padding-left: @grid-gutter-width/2;
 
     background-color: @gray-lighter;
     background-image: linear-gradient(fade(#000, 30%), transparent 3px);
