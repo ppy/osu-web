@@ -517,8 +517,9 @@
 						ref='body'
 					/>
 
-					<div className='profile-page-editor-footer reply-box-footer'>
-						<div>
+					<div className='post-editor__footer post-editor__footer--profile-page'>
+						<div dangerouslySetInnerHTML={{ __html: osu.parseJson('json-post-editor-toolbar').html }} />
+						<div className='profile-page-editor__actions'>
 							<button className='btn-osu btn-osu-lite profile-page-editor-button' type='button' onClick={this.cancel}>
 								{Lang.get('common.buttons.cancel')}
 							</button>
