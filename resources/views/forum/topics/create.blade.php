@@ -44,8 +44,8 @@
 
         <div class="post-preview"></div>
 
-        <div id="topic-post-form" class="forum-post flex-row row-page post-box" data-post-position="1">
-            <div class="post-box__main">
+        <div id="topic-post-form" class="forum-post flex-row row-page post-editor" data-post-position="1">
+            <div class="post-editor__main">
                 <div class="info-panel">
                     @include("forum.topics._post_info", ["user" => Auth::user(), "options" => ["large" => true]])
                 </div>
@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-            <div class="post-footer post-box__footer post-box__footer--large">
+            <div class="post-footer post-editor__footer post-editor__footer--large">
                 <div class="post-box__toolbar">
                     @include("forum._post_toolbar")
                 </div>
