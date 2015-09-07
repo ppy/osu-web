@@ -19,6 +19,8 @@
 */
 .post-box {
   margin-bottom: @grid-gutter-width/8;
+  display: flex;
+  flex-direction: column;
 
   .create-post-advanced, .create-post-advanced-hide {
     display: none;
@@ -48,6 +50,7 @@
   }
 
   &__main {
+    flex: 1;
     display: flex;
     background-color: #fff;
   }
@@ -61,6 +64,16 @@
 
     background-color: @gray-lighter;
     background-image: linear-gradient(fade(#000, 30%), transparent 3px);
+
+    &--large {
+      @space-left: @grid-gutter-width/2;
+      margin-left: -@space-left;
+      padding-left: @space-left;
+
+      @space-right: @grid-gutter-width*6/4;
+      margin-right: -@space-right;
+      padding-right: @space-right - @grid-gutter-width/4;
+    }
   }
 }
 
