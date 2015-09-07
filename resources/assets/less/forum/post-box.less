@@ -46,6 +46,22 @@
     resize: vertical;
     min-height: 200px;
   }
+
+  &__main {
+    display: flex;
+    background-color: #fff;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+
+    padding-top: @grid-gutter-width/4;
+    padding-bottom: @grid-gutter-width/4;
+
+    background-color: @gray-lighter;
+    background-image: linear-gradient(fade(#000, 30%), transparent 3px);
+  }
 }
 
 .post-box__actions {
@@ -61,14 +77,6 @@
   > * {
     min-height: 40px;
   }
-}
-
-.reply-box-footer {
-  display: flex;
-  background: @gray-lighter;
-  justify-content: space-between;
-  padding-top: @grid-gutter-width/4;
-  padding-bottom: @grid-gutter-width/4;
 }
 
 .post-box-toolbar {
