@@ -456,16 +456,21 @@
 		},
 
 		componentDidMount: function() {
-			$(this._body()).on('change', this.change);
+			var body = this._body();
+			$(body).on('change', this.change);
 
+			body.selectionStart = this.props.userPage.selection[0];
+			body.selectionEnd = this.props.userPage.selection[1];
 			this.focus();
 		},
 
 		componentWillUnmount: function() {
-			$(this._body()).off('change', this.change);
+			var body = this._body();
+			$(body).off('change', this.change);
 
 			$(document).trigger('profile:page:update', {
 				raw: this.state.raw,
+				selection: [body.selectionStart, body.selectionEnd],
 			});
 		},
 
