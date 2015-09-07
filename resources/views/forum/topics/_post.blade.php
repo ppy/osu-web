@@ -26,7 +26,9 @@
     if (isset($options["large"]) === false) { $options["large"] = $options["postPosition"] === 1; }
 ?>
 <div class="row-page forum-post flex-row js-forum-post__shrunk" data-post-id="{{ $post->post_id }}" data-post-position="{{ $options["postPosition"] }}">
-    <div class="forum-post-anchor" id="forum-post-{{ $post->post_id }}"></div>
+    @if(is_number($post->post_id) && $post->post_id > 0)
+        <div class="forum-post-anchor" id="forum-post-{{ $post->post_id }}"></div>
+    @endif
     <div class="info-panel">
         @include("forum.topics._post_info", ["user" => $post->userNormalized(), "options" => ["large" => $options["large"]]])
     </div>
