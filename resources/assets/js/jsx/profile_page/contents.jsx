@@ -445,6 +445,10 @@
 
 
 	window.ProfileUserPageEditor = React.createClass({
+		_body: function() {
+			return React.findDOMNode(this.refs.body);
+		},
+
 		getInitialState: function() {
 			return {
 				raw: this.props.userPage.raw,
@@ -452,17 +456,21 @@
 		},
 
 		componentDidMount: function() {
+			$(this._body()).on('change', this.change);
+
 			this.focus();
 		},
 
 		componentWillUnmount: function() {
+			$(this._body()).off('change', this.change);
+
 			$(document).trigger('profile:page:update', {
 				raw: this.state.raw,
 			});
 		},
 
 		focus: function() {
-			React.findDOMNode(this.refs.body).focus();
+			this._body().focus();
 		},
 
 		reset: function(_e, callback) {
