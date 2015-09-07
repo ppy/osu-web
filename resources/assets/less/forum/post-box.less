@@ -19,12 +19,19 @@
 */
 .post-editor {
   margin-bottom: @grid-gutter-width/8;
+  padding-bottom: 0px;
+
   display: flex;
   flex-direction: column;
 
   &--edit {
     width: 100%;
     margin-bottom: 0px;
+  }
+
+  &--reply {
+    margin-left: -(@grid-gutter-width/2 - @grid-gutter-width/8);
+    margin-right: -(@grid-gutter-width/2 - @grid-gutter-width/8);
   }
 
   .create-post-advanced, .create-post-advanced-hide {
@@ -58,6 +65,11 @@
     flex: 1;
     display: flex;
     background-color: #fff;
+
+    flex-direction: column;
+    @media @desktop {
+      flex-direction: row;
+    }
   }
 
   &__footer {
@@ -79,13 +91,15 @@
     }
 
     &--large {
-      @space-left: @grid-gutter-width/2;
-      margin-left: -@space-left;
-      padding-left: @space-left;
+      @media @desktop {
+        @space-left: @grid-gutter-width/2;
+        margin-left: -@space-left;
+        padding-left: @space-left;
 
-      @space-right: @grid-gutter-width*6/4;
-      margin-right: -@space-right;
-      padding-right: @space-right - @grid-gutter-width/4;
+        @space-right: @grid-gutter-width*6/4;
+        margin-right: -@space-right;
+        padding-right: @space-right - @grid-gutter-width/4;
+      }
     }
   }
 }

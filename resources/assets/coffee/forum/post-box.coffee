@@ -88,7 +88,7 @@ class PostAutoPreview
     $form = $(e.target).closest('form')
     url = $form.attr('data-preview-url')
     body = $form.find('[name=body]').val()
-    $preview = $form.find('.post-preview')
+    $preview = $form.find('.js-post-preview')
 
     return if @lastBody == body
 

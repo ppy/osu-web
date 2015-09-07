@@ -42,7 +42,7 @@
             </div>
         </div>
 
-        <div class="post-preview"></div>
+        <div class="post-editor__preview js-post-preview"></div>
 
         <div id="topic-post-form" class="forum-post flex-row row-page post-editor" data-post-position="1">
             <div class="post-editor__main">

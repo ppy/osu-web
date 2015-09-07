@@ -59,9 +59,9 @@
     </div>
 
     @if ($topic->canBeRepliedBy(Auth::user()))
-        {!! Form::open(["url" => route("forum.topics.reply", $topic->topic_id), "class" => "row row-blank post-editor", "id" => "forum-topic-reply-box", "data-remote" => true]) !!}
+        {!! Form::open(["url" => route("forum.topics.reply", $topic->topic_id), "class" => "row row-blank post-editor post-editor--reply", "id" => "forum-topic-reply-box", "data-remote" => true]) !!}
             <div class="forum-small-row post-editor__main">
-                <div class="forum__avatar-container forum__avatar-container--reply">
+                <div class="forum__avatar-container forum__avatar-container--reply hidden-xs">
                     <div
                         class="avatar avatar--full"
                         title="{{ trans("users.show.avatar", ["username" => Auth::user()->username]) }}"
