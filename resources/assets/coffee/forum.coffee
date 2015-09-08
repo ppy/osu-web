@@ -20,7 +20,8 @@ class ForumPostExpander
   _shrunk: document.getElementsByClassName('js-forum-post__shrunk')
 
   constructor: ->
-    $(document).on 'ready page:load', @initialExpand
+    $(document).on 'ready page:load', =>
+      setTimeout @initialExpand, 1000
 
     $(window).on 'scroll', =>
       requestAnimationFrame @autoExpand
