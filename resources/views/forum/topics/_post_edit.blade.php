@@ -16,12 +16,21 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-{!! Form::open(["url" => route("forum.posts.update", $post), "method" => "patch", "data-remote" => true, "class" => "edit-post post-box"]) !!}
-	<div class="reply-box-body">
-		<textarea required class="js-quick-submit" name="body">{{ $post->bodyRaw }}</textarea>
-	</div>
+<?php
+    $isLarge = $post->postPosition === 1;
+?>
+{!! Form::open(["url" => route("forum.posts.update", $post), "method" => "patch", "data-remote" => true, "class" => "edit-post post-editor post-editor--edit", "data-post-position" => $post->postPosition]) !!}
+    <div class="post-editor__main">
+        <div class="info-panel">
+            @include("forum.topics._post_info", ["user" => Auth::user(), "options" => ["large" => $isLarge ]])
+        </div>
 
-	<div class="reply-box-footer">
-		@include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_edit.post"), "editing" => true])
-	</div>
+        <div class="post-panel">
+            <textarea required class="js-quick-submit" name="body">{{ $post->bodyRaw }}</textarea>
+        </div>
+    </div>
+
+    <div class="post-editor__footer {{ $isLarge ? "post-editor__footer--large" : "" }}">
+        @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_edit.post"), "editing" => true])
+    </div>
 {!! Form::close() !!}

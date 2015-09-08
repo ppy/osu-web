@@ -445,6 +445,10 @@
 
 
 	window.ProfileUserPageEditor = React.createClass({
+		_body: function() {
+			return React.findDOMNode(this.refs.body);
+		},
+
 		getInitialState: function() {
 			return {
 				raw: this.props.userPage.raw,
@@ -452,17 +456,26 @@
 		},
 
 		componentDidMount: function() {
+			var body = this._body();
+			$(body).on('change', this.change);
+
+			body.selectionStart = this.props.userPage.selection[0];
+			body.selectionEnd = this.props.userPage.selection[1];
 			this.focus();
 		},
 
 		componentWillUnmount: function() {
+			var body = this._body();
+			$(body).off('change', this.change);
+
 			$(document).trigger('profile:page:update', {
 				raw: this.state.raw,
+				selection: [body.selectionStart, body.selectionEnd],
 			});
 		},
 
 		focus: function() {
-			React.findDOMNode(this.refs.body).focus();
+			this._body().focus();
 		},
 
 		reset: function(_e, callback) {
@@ -517,8 +530,9 @@
 						ref='body'
 					/>
 
-					<div className='profile-page-editor-footer reply-box-footer'>
-						<div>
+					<div className='post-editor__footer post-editor__footer--profile-page'>
+						<div dangerouslySetInnerHTML={{ __html: osu.parseJson('json-post-editor-toolbar').html }} />
+						<div className='profile-page-editor__actions'>
 							<button className='btn-osu btn-osu-lite profile-page-editor-button' type='button' onClick={this.cancel}>
 								{Lang.get('common.buttons.cancel')}
 							</button>
