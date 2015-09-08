@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="post-box__actions">
-                    <button tabindex="1" class="btn-osu btn-osu-lite" type="submit">
+                    <button tabindex="1" class="btn-osu btn-osu--small btn-osu-default post-editor__action" type="submit">
                         {{ trans("forum.topic.create.submit") }}
                     </button>
                 </div>

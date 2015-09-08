@@ -82,7 +82,7 @@
 
 		render: function() {
 			var
-				labelClass = 'btn-osu btn-osu-lite file-upload-label profile-cover-upload-button';
+				labelClass = 'btn-osu btn-osu--small btn-osu-default file-upload-label profile-cover-upload-button';
 
 			if (!this.props.canUpload) {
 				labelClass += ' disabled';
