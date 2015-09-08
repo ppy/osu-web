@@ -26,7 +26,7 @@ class ForumPostExpander
       requestAnimationFrame @autoExpand
 
     $(document).on 'click', '.js-forum-post__shrunk', (e) =>
-      @expand(e.target)
+      @expand(e.currentTarget)
 
 
   expand: (el) ->
@@ -43,7 +43,7 @@ class ForumPostExpander
   autoExpand: =>
     return if @_shrunk.length == 0
 
-    if osu.isMobile
+    if osu.isMobile()
       expandTop = document
         .getElementsByClassName('js-forum__header--sticky')[0]
         .getBoundingClientRect()
