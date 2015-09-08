@@ -22,7 +22,7 @@
 {!! Form::open(["url" => route("forum.posts.update", $post), "method" => "patch", "data-remote" => true, "class" => "edit-post post-editor post-editor--edit", "data-post-position" => $post->postPosition]) !!}
     <div class="post-editor__main">
         <div class="info-panel">
-            @include("forum.topics._post_info", ["user" => Auth::user(), "options" => ["large" => $isLarge ]])
+            @include("forum.topics._post_info", ["user" => $post->user, "options" => ["large" => $isLarge ]])
         </div>
 
         <div class="post-panel">
