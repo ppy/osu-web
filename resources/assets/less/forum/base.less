@@ -1028,14 +1028,16 @@ body.community {
     justify-content: center;
     font-size: 14px;
     color: #fff;
+    &:extend(.default-box-shadow);
+    border: 2px solid #fff;
+    transition: all 120ms;
 
     &:focus,
     &:active,
     &:hover {
       color: #fff;
       text-decoration: none;
-      &:extend(.default-box-shadow);
-      border: 2px solid #fff;
+      box-shadow: 0px 5px 15px fade(#000, 40%);
     }
   }
 }
