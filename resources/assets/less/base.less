@@ -390,6 +390,29 @@ select.form-control {
   }
 
   border: none;
+
+  &--small {
+    font-size: 12px;
+    padding: @grid-gutter-width/4 @grid-gutter-width/2;
+  }
+
+  &--lite {
+    font-size: 12px;
+    background-color: @gray-light;
+
+    &, &:active, &.active {
+      background-image: none;
+    }
+
+    &[disabled], &.disabled {
+      background-color: @gray-lighter;
+      color: #000;
+    }
+  }
+
+  &--profile-page-edit {
+    width: 140px;
+  }
 }
 
 .btn-osu(@main, @secondary) {
@@ -428,23 +451,6 @@ select.form-control {
 
 .btn-osu-danger {
   .btn-osu(@pink, @pink-dark);
-}
-
-.btn-osu-lite {
-  font-size: 12px;
-  background-color: @blue-darker;
-
-  &[disabled], &.disabled {
-    background-color: @gray-lighter;
-    color: #000;
-  }
-}
-
-.btn-osu-lite--plain {
-  background-color: @gray-light;
-  &, &:hover, &:visited, &:active {
-    background-image: none;
-  }
 }
 
 label {

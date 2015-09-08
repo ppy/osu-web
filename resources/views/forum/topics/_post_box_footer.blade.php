@@ -20,29 +20,13 @@
     if (!isset($editing)) { $editing = false; }
 ?>
 <div class="post-box__toolbar">
-    <div class="create-post-advanced">
-        @include("forum._post_toolbar")
-    </div>
-
-    <div class="create-post-basic">
-        <div class="create-post-advanced-switch">
-            <span class="create-post-advanced-hide">
-                <i class="fa fa-angle-double-up"></i>
-                {{ trans("forum.post.create.advanced.hide") }}
-            </span>
-
-            <span>
-                <i class="fa fa-angle-double-down"></i>
-                {{ trans("forum.post.create.advanced.show") }}
-            </span>
-        </div>
-    </div>
+    @include("forum._post_toolbar")
 </div>
 
-<div class="post-box__actions {{ $editing ? "post-box__actions--edit" : "" }}">
+<div class="post-post-editor__actions">
     @if ($editing)
-        <button class="btn-osu btn-osu-lite js-edit-post-cancel" type="button">{{ trans("forum.topic.post_edit.cancel") }}</button>
+        <button class="btn-osu btn-osu--small btn-osu-default js-edit-post-cancel post-editor__action" type="button">{{ trans("forum.topic.post_edit.cancel") }}</button>
     @endif
 
-    <button class="btn-osu btn-osu-lite" type="submit">{{ $submitText }}</button>
+    <button class="btn-osu btn-osu--small btn-osu-default post-editor__action" type="submit">{{ $submitText }}</button>
 </div>

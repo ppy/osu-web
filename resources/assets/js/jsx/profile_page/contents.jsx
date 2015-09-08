@@ -398,7 +398,7 @@
 				<div
 					className='profile-content flex-col-66 text-center'
 				>
-					<button className='profile-page-new-content btn-osu btn-osu-lite btn-osu-lite--plain btn-osu-lite--profile-page-edit' onClick={this.editStart} disabled={!canCreate}>
+					<button className='profile-page-new-content btn-osu btn-osu--lite btn-osu--profile-page-edit' onClick={this.editStart} disabled={!canCreate}>
 						{Lang.get('users.show.page.edit_big')}
 					</button>
 
@@ -532,14 +532,14 @@
 
 					<div className='post-editor__footer post-editor__footer--profile-page'>
 						<div dangerouslySetInnerHTML={{ __html: osu.parseJson('json-post-editor-toolbar').html }} />
-						<div className='profile-page-editor__actions'>
-							<button className='btn-osu btn-osu-lite profile-page-editor-button' type='button' onClick={this.cancel}>
+						<div className='post-editor__actions'>
+							<button className='btn-osu btn-osu--small btn-osu-default post-editor__action' type='button' onClick={this.cancel}>
 								{Lang.get('common.buttons.cancel')}
 							</button>
-							<button className='btn-osu btn-osu-lite profile-page-editor-button' type='button' onClick={this.reset}>
+							<button className='btn-osu btn-osu--small btn-osu-default post-editor__action' type='button' onClick={this.reset}>
 								{Lang.get('common.buttons.reset')}
 							</button>
-							<button className='btn-osu btn-osu-lite profile-page-editor-button' type='button' onClick={this.save}>
+							<button className='btn-osu btn-osu--small btn-osu-default post-editor__action' type='button' onClick={this.save}>
 								{Lang.get('common.buttons.save')}
 							</button>
 						</div>
