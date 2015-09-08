@@ -72,6 +72,7 @@ class NotificationController extends Controller
     }
 
     // /notifications/group/11/50/1
+
     public function getGroup($group, $limit = 20, $page = 0)
     {
         if (! $this->auth) {

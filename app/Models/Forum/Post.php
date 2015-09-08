@@ -123,6 +123,11 @@ class Post extends Model
         return $this->normalizeUser($this->lastEditor);
     }
 
+    public function getPostPositionAttribute()
+    {
+        return $this->topic->postPosition($this->post_id);
+    }
+
     public function canBeDeletedBy($user, $position = null, $topicPostsCount = null, $positionCheck = true)
     {
         if ($user === null) {
@@ -137,7 +142,7 @@ class Post extends Model
             }
 
             if ($position === null) {
-                $position = $this->topic->postPosition($this->post_id);
+                $position = $this->postPosition;
             }
 
             if ($topicPostsCount === null) {
