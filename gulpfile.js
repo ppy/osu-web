@@ -72,16 +72,16 @@ elixir(function(mix) {
 		"logout.coffee",
 		"shared.coffee",
 	], "public/js/app.js")
-	.browserify("index.js")
-	.browserify("jsx/modding_react.jsx", "public/js/modding_react.js")
-	.browserify("jsx/profile_page.jsx", "public/js/react/profile_page.js")
+	.browserify("main.js", "public/js/main.js")
+	.browserify("jsx/modding_react.jsx", "public/js/jsx/modding_react.js")
+	.browserify("jsx/profile_page.jsx", "public/js/jsx/profile_page.js")
 	.version([
 		"css/app.css",
 		"js/app.js",
-		"js/bundle.js",
+		"js/main.js",
 		"js/messages.js",
-		"js/modding_react.js",
-		"js/react/profile_page.js",
+		"js/jsx/modding_react.js",
+		"js/jsx/profile_page.js",
 		"js/vendor.js",
 	])
 });

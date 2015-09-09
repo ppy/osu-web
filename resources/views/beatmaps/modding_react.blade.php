@@ -44,5 +44,5 @@
 @section ('script')
 	@parent
 
-	<script src="{{ elixir("js/modding_react.js") }}" data-turbolinks-eval="always" data-turbolinks-track></script>
+	<script src="{{ elixir("js/jsx/modding_react.js") }}" data-turbolinks-eval="always" data-turbolinks-track></script>
 @endsection

@@ -17,7 +17,10 @@ You should have received a copy of the GNU Affero General Public License
 along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 window.osu =
-  isMobile: -> window.matchMedia('(min-width: 944px)').matches
+  parseJson: (id) ->
+    JSON.parse document.getElementById(id).text
+
+  isMobile: -> ! window.matchMedia('(min-width: 944px)').matches
 
   showLoadingOverlay: ->
     $body = $('body')

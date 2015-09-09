@@ -20,13 +20,14 @@ class ForumPostExpander
   _shrunk: document.getElementsByClassName('js-forum-post__shrunk')
 
   constructor: ->
-    $(document).on 'ready page:load', @initialExpand
+    $(document).on 'ready page:load', =>
+      setTimeout @initialExpand, 1000
 
     $(window).on 'scroll', =>
       requestAnimationFrame @autoExpand
 
     $(document).on 'click', '.js-forum-post__shrunk', (e) =>
-      @expand(e.target)
+      @expand(e.currentTarget)
 
 
   expand: (el) ->
@@ -43,7 +44,7 @@ class ForumPostExpander
   autoExpand: =>
     return if @_shrunk.length == 0
 
-    if osu.isMobile
+    if osu.isMobile()
       expandTop = document
         .getElementsByClassName('js-forum__header--sticky')[0]
         .getBoundingClientRect()
@@ -110,10 +111,10 @@ class Forum
     # this will skip guest users as well but they don't have the links
     # anyway so it's not a problem.
     if !window.user?.is_admin
-      $('.delete-post-link').parents('li').hide()
+      $('.delete-post-link').hide()
 
     if !showNext
-      $(@endPost()).find('.delete-post-link').parents('li').css(display: 'inline-block')
+      $(@endPost()).find('.delete-post-link').css(display: '')
       $('#forum-topic-reply-box').css(display: 'block')
 
   refreshCounter: =>
