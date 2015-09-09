@@ -64,5 +64,5 @@
 		{!! json_encode(["html" => view()->make('forum._post_toolbar')->render()]) !!}
 	</script>
 
-	<script src="{{ elixir("js/react/profile_page.js") }}" data-turbolinks-eval="always" data-turbolinks-track></script>
+	<script src="{{ elixir("js/jsx/profile_page.js") }}" data-turbolinks-eval="always" data-turbolinks-track></script>
 @endsection
