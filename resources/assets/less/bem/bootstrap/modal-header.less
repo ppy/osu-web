@@ -30,13 +30,7 @@
 	}
 
 	&__dimmer {
-		background: -moz-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.75) 100%); /* FF3.6+ */
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.5)), color-stop(100%,rgba(0,0,0,0.75))); /* Chrome,Safari4+ */
-		background: -webkit-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.75) 100%); /* Chrome10+,Safari5.1+ */
-		background: -o-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.75) 100%); /* Opera 11.10+ */
-		background: -ms-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.75) 100%); /* IE10+ */
-		background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.75) 100%); /* W3C */
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80000000', endColorstr='#bf000000',GradientType=0 ); /* IE6-9 */
+		background: linear-gradient(to bottom, fade(#000, 50%) 0%,fade(#000, 75%) 100%);
 		border-radius: 5px 5px 0 0;
 		height: 100%;
 		left: 0;
@@ -58,7 +52,6 @@
 	}
 
 	&__userinfo {
-		height: 49px;
 		padding-right: 10px;
 	}
 
@@ -72,7 +65,7 @@
 		align-items: flex-end;
 		.at2x("/images/headers/profile-covers/c3.jpg", 430px, 70px);
 		background-size: 430px auto;
-		background-position: center center;
+		background-position: center;
 		display: flex;
 		height: 70px;
 		justify-content: space-between;

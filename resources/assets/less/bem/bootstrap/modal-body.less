@@ -19,15 +19,13 @@
 */
 
 .modal-body {
-	background-color: #FFF;
 	padding: 10px;
 	border-radius: 0 0 5px 5px;
 
 	// Elements
 	&__compartment {
 		display: flex;
-		height: 140px;
-		padding: 10px;
+		padding: @grid-gutter-width/4;
 
 		&--left {
 			border-radius: 0 0 0 5px;
@@ -75,5 +73,9 @@
 	&--compartimentalized {
 		display: flex;  
 		padding: 0;
+	}
+
+	&--user-dropdown {
+		background-color: #FFF;
 	}
 }

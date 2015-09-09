@@ -24,7 +24,6 @@
 	&__level {
 		font-style: normal;
 		color: #555;
-		font-family: @font-family-sans-serif;
 		font-size: 20px;
 		font-weight: 300;
 		margin: 0;
@@ -41,17 +40,16 @@
 		font-size: 12px;
 		font-weight: 300;
 		margin: 0;
-		padding: 0;
+		padding: @grid-gutter-width/4 0 0 0;
 		width: 100%;
 
-		> li {
+		> * {
 			line-height: 16px;
 			display: flex;
 			justify-content: space-between;
 
 			.text-right {
 				font-weight: 600;
-				text-align: right;
 			}
 		}
 	}

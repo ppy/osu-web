@@ -57,9 +57,9 @@
 							<span class="rankinginfo-small__country">Malaysia #37542</span>
 						</div>
 					</div>
-					<div class="modal-body modal-body--compartimentalized">
+					<div class="modal-body modal-body--user-dropdown modal-body--compartimentalized">
 						<div class="modal-body__compartment modal-body__compartment--left quick-info">
-							<h1 class="quick-info__level">Level 5</h1>
+							<span class="quick-info__level">Level 5</span>
 							<ul class="quick-info__roles user-roles">
 								<li class="user-roles__role user-roles__role--supporter">{{ trans("users.show.is_supporter") }}</li>
 								<li class="user-roles__role user-roles__role--developer">{{ trans("users.show.is_developer") }}</li>
@@ -83,7 +83,7 @@
 			@else
 				<div class="modal-content modal-content--no-shadow">
 					<div class="modal-header modal-header--login"><h1 class="modal-header__title">{{ trans("users.login._") }}</h1></div>
-					<div class="modal-body modal-body--no-rounding">
+					<div class="modal-body modal-body--user-dropdown modal-body--no-rounding">
 						<h2 class="modal-body__title modal-body__title">{{ trans("users.login.title") }}</h2>
 
 						{!! Form::open(["url" => route("users.login"), "id" => "login-form", "class" => "modal-body__form form", "data-remote" => true]) !!}
