@@ -111,10 +111,10 @@ class Forum
     # this will skip guest users as well but they don't have the links
     # anyway so it's not a problem.
     if !window.user?.is_admin
-      $('.delete-post-link').parents('li').hide()
+      $('.delete-post-link').hide()
 
     if !showNext
-      $(@endPost()).find('.delete-post-link').parents('li').css(display: 'inline-block')
+      $(@endPost()).find('.delete-post-link').css(display: '')
       $('#forum-topic-reply-box').css(display: 'block')
 
   refreshCounter: =>
