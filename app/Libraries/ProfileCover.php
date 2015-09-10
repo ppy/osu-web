@@ -51,7 +51,7 @@ class ProfileCover
 
     public function hasCustomCover()
     {
-        return $this->data['id'] === null && $this->data['file'] !== null;
+        return array_get($this->data, 'id') === null && array_get($this->data, 'file') !== null;
     }
 
     public function delete()
