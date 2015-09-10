@@ -45,6 +45,8 @@ class Event extends Model
 		"private" => "integer",
 	];
 
+	protected $appends = ["event_details"];
+
 	public function user()
 	{
 		return $this->belongsTo(User::class, "user_id", "user_id");
@@ -133,5 +135,10 @@ class Event extends Model
 		}
 
 		return static::parseFailure($text);
+	}
+
+	public function scopeRecent($query)
+	{
+		return $query->orderBy("date", "desc")->limit(5);
 	}
 }
