@@ -577,6 +577,11 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(UsernameChangeHistory::class, 'user_id', 'user_id');
     }
 
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'user_id', 'user_id');
+    }
+
     public function getPlaymodeAttribute($value)
     {
         return play_mode_string($this->osu_playmode);
