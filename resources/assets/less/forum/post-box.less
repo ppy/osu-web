@@ -17,107 +17,149 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
-.post-box {
-	margin-bottom: @grid-gutter-width/8;
+.post-editor {
+  margin-bottom: @grid-gutter-width/8;
+  padding-bottom: 0px;
 
-	.create-post-advanced, .create-post-advanced-hide {
-		display: none;
-	}
+  display: flex;
+  flex-direction: column;
 
-	.create-post-advanced-switch {
-		cursor: pointer;
-	}
+  &--edit {
+    width: 100%;
+    margin-bottom: 0px;
+  }
 
-	.create-post-basic {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
+  &--reply {
+    margin-left: -(@grid-gutter-width/2 - @grid-gutter-width/8);
+    margin-right: -(@grid-gutter-width/2 - @grid-gutter-width/8);
+  }
 
-	.create-post-advanced-switch {
-		font-size: 12px;
-		font-weight: bold;
-	}
+  .create-post-advanced, .create-post-advanced-hide {
+    display: none;
+  }
 
-	[name=body] {
-		font-size: 14px;
-		outline: none;
-		border: none;
-		resize: vertical;
-		min-height: 200px;
-	}
-}
+  .create-post-advanced-switch {
+    cursor: pointer;
+  }
 
-.post-box__actions {
-	> * {
-		min-height: 60px;
-		width: 140px;
-		margin-right: @grid-gutter-width/4;
-	}
-	display: flex;
-}
+  .create-post-basic {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-.post-box__actions--edit {
-	> * {
-		min-height: 40px;
-	}
-}
+  .create-post-advanced-switch {
+    font-size: 12px;
+    font-weight: bold;
+  }
 
-.reply-box-footer {
-	display: flex;
-	background: @gray-lighter;
-	justify-content: space-between;
-	padding-top: @grid-gutter-width/4;
-	padding-bottom: @grid-gutter-width/4;
+  [name=body] {
+    font-size: 14px;
+    outline: none;
+    border: none;
+    resize: vertical;
+    min-height: 200px;
+  }
+
+  &__main {
+    flex: 1;
+    display: flex;
+    background-color: #fff;
+
+    flex-direction: column;
+    @media @desktop {
+      flex-direction: row;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    margin: 0px -@grid-gutter-width/2;
+
+    padding: @grid-gutter-width/4 @grid-gutter-width/2;
+
+    background-color: @gray-lighter;
+    background-image: linear-gradient(fade(#000, 30%), transparent 3px);
+
+    &--profile-page {
+      padding: @grid-gutter-width/4;
+    }
+
+    &--large {
+      @media @desktop {
+        @space-left: @grid-gutter-width/2;
+        margin-left: -@space-left;
+        padding-left: @space-left;
+
+        @space-right: @grid-gutter-width*6/4;
+        margin-right: -@space-right;
+        padding-right: @space-right;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1 0 auto;
+  }
+
+  &__action {
+    margin-left: @grid-gutter-width/4;
+    min-width: 120px;
+  }
 }
 
 .post-box-toolbar {
-	display: flex;
-	flex-wrap: wrap;
-	margin-bottom: @grid-gutter-width/8;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: @grid-gutter-width/8;
 }
 
 .bbcode-item--extra-space {
-	margin-left: @grid-gutter-width/8;
+  margin-left: @grid-gutter-width/8;
 }
 
 .bbcode-btn {
-	margin: 0px @grid-gutter-width/8 @grid-gutter-width/8 0px;
-	font-size: 13px;
-	.circle(30px);
-	background-color: @blue-darker;
-	color: #fff;
-	&:extend(.default-text-shadow);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
+  margin: 0px @grid-gutter-width/8 @grid-gutter-width/8 0px;
+  font-size: 13px;
+  .circle(30px);
+  background-color: @blue-darker;
+  color: #fff;
+  &:extend(.default-text-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 
-	&:hover {
-		&:extend(.default-box-shadow);
-	}
+  &:hover {
+    &:extend(.default-box-shadow);
+  }
 }
 
 .bbcode-btn--bold { font-weight: bold; }
 .bbcode-btn--italic { font-style: italic; }
 
 .bbcode-size-group {
-	background: #fff;
-	&:extend(.default-box-shadow);
-	&:extend(.default-border-radius);
-	text-transform: none;
-	font-size: 12px;
-	display: flex;
-	align-items: center;
-	padding: @grid-gutter-width/8 @grid-gutter-width/4;
+  background: #fff;
+  &:extend(.default-box-shadow);
+  &:extend(.default-border-radius);
+  text-transform: none;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  padding: @grid-gutter-width/8 @grid-gutter-width/4;
 
-	select {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0px;
-		left:0px;
-		opacity: 0;
-	}
-	i { margin-left: @grid-gutter-width/4; }
+  select {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left:0px;
+    opacity: 0;
+  }
+  i { margin-left: @grid-gutter-width/4; }
 }

@@ -24,6 +24,7 @@ namespace App\Http\Controllers;
 class PostController extends Controller
 {
     protected $section = 'post';
+
     /**
      * Display a listing of the resource.
      *

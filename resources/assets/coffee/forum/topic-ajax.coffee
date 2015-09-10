@@ -24,6 +24,7 @@ $(document).on 'ajax:success', '.delete-post-link', (_event, data) ->
     .css
       minHeight: '0px'
       height: currentHeight
+    .removeClass 'js-forum-post__shrunk'
     .slideUp null, ->
       $el.remove()
 
@@ -66,7 +67,9 @@ $(document).on 'ajax:success', '#forum-topic-reply-box', (_event, data) ->
 
     $(document).trigger('osu:page:change')
 
-    window.forum.endPost().scrollIntoView()
+    newPost = window.forum.endPost()
+    newPost.classList.remove('js-forum-post__shrunk')
+    newPost.scrollIntoView()
   else
     osu.navigate $(data).find('.js-post-url').attr('href')
 
@@ -76,19 +79,25 @@ $(document).on 'ajax:success', '.edit-post-link', (e, data, status, xhr) ->
   # removed in this callback.
   $(e.target).trigger('ajax:complete', [xhr, status])
 
-  $postPanel = $(e.target).parents('.forum-post').find('.post-panel')
+  $postBox = $(e.target).parents('.forum-post')
 
-  $postPanel
-    .data('originalPost', $postPanel.html())
-    .html(data)
-    .find('[name=body]').focus()
+  $postBox
+    .data 'originalPost', $postBox.html()
+    .html data
+    .find '[name=body]'
+    .focus()
+
+  $(document).trigger('osu:page:change')
+
 
 $(document).on 'click', '.js-edit-post-cancel', (e) ->
   e.preventDefault()
 
-  $postPanel = $(e.target).parents('.forum-post').find('.post-panel')
+  $postBox = $(e.target).parents '.forum-post'
+  $postBox.html $postBox.data('originalPost')
 
-  $postPanel.html $postPanel.data('originalPost')
+  $(document).trigger('osu:page:change')
+
 
 $(document).on 'ajax:success', '.edit-post', (e, data, status, xhr) ->
   # ajax:complete needs to be triggered early since the form (target) is

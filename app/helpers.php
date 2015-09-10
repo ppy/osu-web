@@ -285,10 +285,10 @@ function base62_encode($input)
     $output = '';
     $remaining = $input;
 
-    while ($remaining > 0) {
+    do {
         $output = $numbers[($remaining % $base)].$output;
         $remaining = floor($remaining / $base);
-    }
+    } while ($remaining > 0);
 
     return $output;
 }

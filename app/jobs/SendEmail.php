@@ -32,6 +32,7 @@ class SendEmail
             "subject" => trans("emails.forgot-username.subject"),
         ], "email");
     */
+
     public function fire($job, $data)
     {
         $subject = @$data['subject'];
