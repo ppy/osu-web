@@ -62,6 +62,12 @@
 
 		@include("layout.footer")
 
+		<div class="fixed-bar-container">
+			<div class="fixed-bar-rows-bottom">
+				@yield("fixed-bar-rows-bottom")
+			</div>
+		</div>
+
 		@include("layout._global_variables")
 		@yield("script")
 	</body>
