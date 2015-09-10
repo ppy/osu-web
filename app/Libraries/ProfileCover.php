@@ -89,7 +89,7 @@ class ProfileCover
         }
 
 
-        return $this->data;
+        return array_only($this->data, ['id', 'file']);
     }
 
     public function customUrl()
