@@ -37,7 +37,7 @@
 
 		@include("layout.header")
 
-		<div class="flex-full container content {{ $current_section }}_{{ $current_action }}">
+		<div class="flex-full content {{ $current_section }}_{{ $current_action }}">
 			@include("layout.popup")
 			@if(View::hasSection("content"))
 				@yield("content")
@@ -52,7 +52,7 @@
 		</div>
 
 		@if(View::hasSection("content-extra"))
-			<div class="flex-full container content content-extra">
+			<div class="flex-full content content-extra">
 				@yield("content-extra")
 			</div>
 		@endif
