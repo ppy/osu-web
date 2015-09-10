@@ -88,7 +88,6 @@ class ProfileCover
             $this->store($file->getRealPath());
         }
 
-
         return array_only($this->data, ['id', 'file']);
     }
 
