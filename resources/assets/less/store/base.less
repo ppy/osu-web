@@ -140,8 +140,8 @@
 
 .product-listing {
   @media @desktop {
-    margin-left: -5px + -@grid-gutter-width/2;
-    margin-right: -5px + -@grid-gutter-width/2;
+    max-width: @container-sm + @grid-gutter-width/4;
+    width: @container-sm + @grid-gutter-width/4;
   }
 
   * { .fade-element(120ms); }
@@ -150,8 +150,8 @@
     margin-bottom: 10px;
 
     @media @desktop {
-      padding-left: 5px;
-      padding-right: 5px;
+      padding-left: @grid-gutter-width/8;
+      padding-right: @grid-gutter-width/8;
     }
 
     &.small {

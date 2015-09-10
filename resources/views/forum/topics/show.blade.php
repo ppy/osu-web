@@ -78,6 +78,12 @@
         {!! Form::close() !!}
     @endif
 
+    @include("forum._search", ["topic" => $topic])
+@endsection
+
+@section('fixed-bar-rows-bottom')
+    @parent
+
     <div class="row-page row-blank fixed-bar-bottom">
         <div id="forum-topic-navigator" class="js-forum__topic-total-posts" data-total-count="{{ $topic->postsCount() }}">
 
@@ -102,11 +108,9 @@
             </a>
         </div>
     </div>
-
-    @include("forum._search", ["topic" => $topic])
 @endsection
 
-@section ("script")
+@section('script')
     @parent
 
     <script data-turbolinks-eval="always">

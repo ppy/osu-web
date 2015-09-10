@@ -60,6 +60,12 @@
         @include("layout.gallery_window")
         @include("layout.footer")
 
+        <div class="fixed-bar-container">
+            <div class="fixed-bar-rows-bottom">
+                @yield('fixed-bar-rows-bottom')
+            </div>
+        </div>
+
         @yield('user-dropdown-modal')
         @include("layout._global_variables")
         @yield("script")

@@ -20,7 +20,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
   parseJson: (id) ->
     JSON.parse document.getElementById(id).text
 
-  isMobile: -> ! window.matchMedia('(min-width: 944px)').matches
+  isMobile: -> ! window.matchMedia('(min-width: 920px)').matches
 
   showLoadingOverlay: ->
     $overlay = $('.loading-overlay')
