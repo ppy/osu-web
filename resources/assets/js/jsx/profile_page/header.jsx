@@ -20,13 +20,15 @@
 ;(function() {
 	'use strict';
 
-	window.DefaultCover = React.createClass({
+	window.ProfileCoverSelection = React.createClass({
 		onClick: function() {
+			if (this.props.url === null) { return; }
 			$(document).trigger('profile:cover:select', this.props.name);
 		},
 
 		onMouseEnter: function() {
-			$(document).trigger('profile-header.cover.set', `/images/headers/profile-covers/c${this.props.name}.jpg`);
+			if (this.props.url === null) { return; }
+			$(document).trigger('profile-header.cover.set', this.props.url);
 		},
 
 		onMouseLeave: function() {
@@ -36,7 +38,7 @@
 		render: function() {
 			var
 				selectedMark;
-			if (this.props.selectedName === this.props.name) {
+			if (this.props.isSelected) {
 				selectedMark = (
 					<i className='fa fa-check-circle profile-cover-selection__selected-mark' />
 				);
@@ -45,7 +47,7 @@
 			return (
 				<div
 					className='profile-cover-selection'
-					style={{ backgroundImage: `url('/images/headers/profile-covers/c${this.props.name}t.jpg')` }}
+					style={{ backgroundImage: `url('${this.props.thumbUrl}')` }}
 					onClick={this.onClick}
 					onMouseEnter={this.onMouseEnter}
 					onMouseLeave={this.onMouseLeave}
@@ -92,7 +94,7 @@
 
 		render: function() {
 			var
-				labelClass = 'btn-osu btn-osu--small btn-osu-default file-upload-label profile-cover-upload-button';
+				labelClass = 'btn-osu btn-osu--small btn-osu-default file-upload-label profile-cover-upload__button';
 
 			if (!this.props.canUpload) {
 				labelClass += ' disabled';
@@ -100,6 +102,11 @@
 
 			return (
 				<div className='profile-cover-upload'>
+					<ProfileCoverSelection
+						url={this.props.cover.customUrl}
+						isSelected={this.props.cover.id === null}
+						thumbUrl={this.props.cover.customUrl}
+					/>
 					<label className={labelClass}>
 						{Lang.get('users.show.edit.cover.upload.button')}
 						<input
@@ -127,10 +134,12 @@
 		render: function() {
 			var defaultCovers = [];
 			for (var i = 1; i <= 8; i++) {
-				defaultCovers.push(<DefaultCover
+				defaultCovers.push(<ProfileCoverSelection
 					key={i}
-					selectedName={this.props.selectedName}
 					name={i.toString()}
+					isSelected={this.props.cover.id === i.toString()}
+					url={`/images/headers/profile-covers/c${i}.jpg`}
+					thumbUrl={`/images/headers/profile-covers/c${i}t.jpg`}
 				/>);
 			}
 
@@ -142,7 +151,7 @@
 							{Lang.get('users.show.edit.cover.defaults_info')}
 						</p>
 					</div>
-					<ProfileCoverUploader canUpload={this.props.canUpload} />
+					<ProfileCoverUploader cover={this.props.cover} canUpload={this.props.canUpload} />
 				</div>
 			);
 		}
@@ -207,7 +216,7 @@
 		changeCoverPopup: function() {
 			if (!this.state.editing) { return; }
 
-			return <ProfileCoverSelector canUpload={this.props.user.isSupporter} selectedName={this.props.user.cover.id} />;
+			return <ProfileCoverSelector canUpload={this.props.user.isSupporter} cover={this.props.user.cover} />;
 		},
 
 		coverReset: function() {
