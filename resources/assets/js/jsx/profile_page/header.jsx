@@ -156,6 +156,10 @@
 			};
 		},
 
+		componentWillMount: function() {
+			this.coverSet = _.debounce(this.coverSet, 300);
+		},
+
 		componentWillUnmount: function() {
 			$(document).off('profile-header');
 		},
@@ -207,7 +211,7 @@
 		},
 
 		coverReset: function() {
-			this.setState({ coverUrl: this.props.user.cover.url });
+			this.coverSet(null, this.props.user.cover.url);
 		},
 
 		coverSet: function(_e, url) {
