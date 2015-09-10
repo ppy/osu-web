@@ -60,6 +60,10 @@
 		{!! json_encode(["page" => $userPage]) !!}
 	</script>
 
+	<script id="json-user-recent-activities" type="application/json">
+		{!! json_encode($recentActivities) !!}
+	</script>
+
 	<script id="json-post-editor-toolbar" type="application/json">
 		{!! json_encode(["html" => view()->make('forum._post_toolbar')->render()]) !!}
 	</script>

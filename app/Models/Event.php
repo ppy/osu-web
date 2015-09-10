@@ -23,7 +23,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Log;
 
 class Event extends Model
 {
@@ -45,7 +45,7 @@ class Event extends Model
 		"private" => "integer",
 	];
 
-	protected $appends = ["event_details"];
+	protected $appends = ["details"];
 
 	public function user()
 	{
@@ -62,17 +62,19 @@ class Event extends Model
 		return $this->belongsTo(BeatmapSet::class, "beatmapset_id", "beatmapset_id");
 	}
 
-	public function getEventDetailsAttribute()
+	public function getDetailsAttribute()
 	{
 		return static::parseText($this->text);
 	}
 
 	public static function parseFailure($text)
 	{
-		\Log::info(json_encode([
+		Log::info(json_encode([
 			"tag" => "EVENT_PARSING_FAILURE",
 			"text" => $text,
 		]));
+
+		return [];
 	}
 
 	public static function parseMatchesAchievement($matches)
@@ -82,15 +84,13 @@ class Event extends Model
 
 		return [
 			"type" => "achievement",
-			"details" => [
-				"achievement" => [
-					"slug" => $achievement->slug,
-					"name" => $achievement->name,
-				],
-				"user" => [
-					"username" => $matches["userName"],
-					"url" => $matches["userUrl"],
-				],
+			"achievement" => [
+				"slug" => $achievement->slug,
+				"name" => $achievement->name,
+			],
+			"user" => [
+				"username" => $matches["userName"],
+				"url" => $matches["userUrl"],
 			],
 		];
 	}
@@ -111,17 +111,16 @@ class Event extends Model
 
 		return [
 			"type" => "rank",
-			"details" => [
-				"scoreRank" => $scoreRank,
-				"mode" => $mode,
-				"beatmap" => [
-					"title" => $matches["beatmapTitle"],
-					"url" => $beatmapUrl,
-				],
-				"user" => [
-					"username" => $matches["userName"],
-					"url" => $matches["userUrl"],
-				],
+			"scoreRank" => $scoreRank,
+			"rank" => intval($matches["rank"]),
+			"mode" => $mode,
+			"beatmap" => [
+				"title" => $matches["beatmapTitle"],
+				"url" => $beatmapUrl,
+			],
+			"user" => [
+				"username" => $matches["userName"],
+				"url" => $matches["userUrl"],
 			],
 		];
 	}

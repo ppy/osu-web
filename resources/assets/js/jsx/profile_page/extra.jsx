@@ -30,9 +30,61 @@ var Tab = React.createClass({
 		return className;
 	},
 
+	_modeSwitch: function() {
+		$(document).trigger('profile-extra.mode.switch', this.props.mode);
+	},
+
 	render: function() {
 		return (
-			<li className={this._className()}>{Lang.get(`users.show.extra.${this.props.mode}`)}</li>
+			<li onClick={this._modeSwitch} className={this._className()}>
+				{Lang.get(`users.show.extra.${this.props.mode}.title`)}
+			</li>
+		);
+	},
+});
+
+var RecentActivities = React.createClass({
+	_renderEntry: function(event) {
+		if (event.type === 'rank') {
+			return (
+				<li className='event-entry' key={event.id}>
+					<div className='event-entry__detail'>
+						<div className={`flex-none profile-score-rank-badge profile-score-rank-badge--${event.scoreRank} profile-score-rank-badge--small`} />
+						<div className='event-entry__text' dangerouslySetInnerHTML={{ __html: Lang.get('events.rank', {
+							user: osu.link(event.user.url, event.user.username),
+							rank: event.rank,
+							beatmap: osu.link(event.beatmap.url, event.beatmap.title),
+						}) }} />
+					</div>
+					<div className='event-entry__time' dangerouslySetInnerHTML={{ __html: osu.timeago(event.created_at) }} />
+				</li>
+			);
+		} else {
+			return;
+			return (
+				<li key={event.id}>
+					<pre>{JSON.stringify(event)}</pre>
+				</li>
+			);
+		};
+	},
+
+	getInitialState: function() {
+		return {
+			recentActivities: JSON.parse(document.getElementById('json-user-recent-activities').text).data,
+		};
+	},
+
+	render: function() {
+		return (
+			<div className='row-page profile-extra'>
+				<h2 className='profile-extra-title'>{Lang.get('users.show.extra.recent_activities.title')}</h2>
+				<ul className='profile-recent-activities'>
+					{this.state.recentActivities.map(function(activity) {
+						return this._renderEntry(activity);
+					}, this)}
+				</ul>
+			</div>
 		);
 	},
 });
@@ -46,6 +98,13 @@ module.exports = React.createClass({
 
 	componentDidMount: function() {
 		this.componentWillReceiveProps();
+
+		$(document).off('profile-extra');
+		$(document).on('profile-extra.mode.switch', this._modeSwitch);
+	},
+
+	componentWillUnmount: function() {
+		$(document).off('profile-extra');
 	},
 
 	componentWillReceiveProps: function() {
@@ -54,7 +113,8 @@ module.exports = React.createClass({
 		}, 0);
 	},
 
-	_switchMode: function() {
+	_modeSwitch: function(_e, newMode) {
+		this.setState({ mode: newMode });
 	},
 
 	render: function() {
@@ -66,14 +126,12 @@ module.exports = React.createClass({
 		return (
 			<div className='content content-extra flex-full'>
 				<ul className='profile-extra-tabs'>
-				{['recent_activities', 'historical', 'beatmaps', 'kudosu', 'achievements'].map(function(m) {
-					return <Tab key={m} mode={m} currentMode={this.state.mode} />;
-				}, this)}
+					{['recent_activities', 'historical', 'beatmaps', 'kudosu', 'achievements'].map(function(m) {
+						return <Tab key={m} mode={m} currentMode={this.state.mode} />;
+					}, this)}
 				</ul>
 
-				<div className='row-page'>
-					Here be extra contents.
-				</div>
+				<RecentActivities />
 			</div>
 		);
 	}
