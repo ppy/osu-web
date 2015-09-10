@@ -61,20 +61,18 @@ class Beatmap extends Model
     const CTB = 2;
     const MANIA = 3;
 
-    // TODO: scopes
-
     public function mods()
     {
-        return $this->hasMany('Mod', 'beatmap_id', 'beatmap_id');
+        return $this->hasMany(Mod::class, 'beatmap_id', 'beatmap_id');
     }
 
     public function parent()
     {
-        return $this->hasOne('Set', 'beatmapset_id', 'beatmapset_id');
+        return $this->belongs_to(BeatmapSet::class, 'beatmapset_id', 'beatmapset_id');
     }
 
     public function creator()
     {
-        return $this->hasOneThrough('User', 'Set');
+        return $this->parent->user();
     }
 }
