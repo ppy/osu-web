@@ -51,7 +51,7 @@ class ProfileCover
 
     public function hasCustomCover()
     {
-        return $this->data['file'] !== null;
+        return $this->data['id'] === null && $this->data['file'] !== null;
     }
 
     public function delete()
@@ -78,27 +78,31 @@ class ProfileCover
 
     public function set($id, $file)
     {
-        if ($file !== null) {
-            $id = null;
-            $this->store($file->getRealPath());
+        if ($id !== null && in_array($id, $this->availableIds, true)) {
+            $this->data['id'] = $id;
         } else {
-            $this->delete();
-            $this->data['file'] = null;
+            $this->data['id'] = null;
         }
 
-        if ($id !== null && ! in_array($id, $this->availableIds, true)) {
-            $id = null;
+        if ($file !== null) {
+            $this->store($file->getRealPath());
         }
 
-        $this->data['id'] = $id;
 
         return $this->data;
+    }
+
+    public function customUrl()
+    {
+        if ($this->filePath() !== null) {
+            return $this->storage->url($this->filePath());
+        }
     }
 
     public function url()
     {
         if ($this->hasCustomCover()) {
-            return $this->storage->url($this->filePath());
+            return $this->customUrl();
         }
 
         return '/images/headers/profile-covers/c'.$this->id().'.jpg';
@@ -111,7 +115,7 @@ class ProfileCover
 
     public function filePath()
     {
-        if (! $this->hasCustomCover()) {
+        if ($this->data['file'] === null) {
             return;
         }
 
