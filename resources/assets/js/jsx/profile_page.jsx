@@ -17,153 +17,152 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
-;(function() {
-	'use strict';
+'use strict';
 
-	require('./profile_page/header.jsx');
-	require('./profile_page/contents.jsx');
-	var ProfileExtra = require('./profile_page/extra.jsx');
+var
+	stats = JSON.parse(document.getElementById('json-user-stats').text),
+	userInfo = JSON.parse(document.getElementById('json-user-info').text).data,
+	userPage = JSON.parse(document.getElementById('json-user-page').text).page,
+	recentAchievements = JSON.parse(document.getElementById('json-user-recent-achievements').text).data,
+	achievementsCounts = JSON.parse(document.getElementById('json-user-achievements-counts').text),
+	canEdit = function() { return (window.user === null ? null : userInfo.id === window.user.user_id); };
 
-	var
-		stats = JSON.parse(document.getElementById('json-user-stats').text),
-		userInfo = JSON.parse(document.getElementById('json-user-info').text).data,
-		userPage = JSON.parse(document.getElementById('json-user-page').text).page,
-		recentAchievements = JSON.parse(document.getElementById('json-user-recent-achievements').text).data,
-		achievementsCounts = JSON.parse(document.getElementById('json-user-achievements-counts').text),
-		canEdit = function() { return (window.user === null ? null : userInfo.id === window.user.user_id); };
+var
+	ProfileHeader = require('./profile_page/header.jsx'),
+	ProfileContents = require('./profile_page/contents.jsx'),
+	ProfileExtra = require('./profile_page/extra.jsx');
 
-	window.ProfilePage = React.createClass({
-		getInitialState: function() {
-			return {
-				mode: this.props.initialMode,
-				user: this.props.user,
-				userPage: {
-					html: this.props.userPage.html,
-					initialRaw: this.props.userPage.raw,
-					raw: this.props.userPage.raw,
-					editing: false,
-				},
-				isCoverUpdating: false,
-			};
-		},
+var ProfilePage = React.createClass({
+	getInitialState: function() {
+		return {
+			mode: this.props.initialMode,
+			user: this.props.user,
+			userPage: {
+				html: this.props.userPage.html,
+				initialRaw: this.props.userPage.raw,
+				raw: this.props.userPage.raw,
+				editing: false,
+			},
+			isCoverUpdating: false,
+		};
+	},
 
-		changeCoverDefault: function(_e, coverId) {
-			$.ajax(window.changeCoverUrl, {
-					method: 'PUT',
-					data: { 'cover_id': coverId },
-					dataType: 'json'
-			})
-			.done(function(userData) {
-				this.updateData(null, userData.data);
-			}.bind(this));
-		},
+	changeCoverDefault: function(_e, coverId) {
+		$.ajax(window.changeCoverUrl, {
+				method: 'PUT',
+				data: { 'cover_id': coverId },
+				dataType: 'json'
+		})
+		.done(function(userData) {
+			this.updateData(null, userData.data);
+		}.bind(this));
+	},
 
-		changeMode: function(e) {
-			e.preventDefault();
+	changeMode: function(e) {
+		e.preventDefault();
 
-			this.setState({ mode: e.target.getAttribute('data-mode') });
-		},
+		this.setState({ mode: e.target.getAttribute('data-mode') });
+	},
 
-		updateData: function(_e, user) {
-			if (user !== undefined && user !== null) {
-				this.setState({ user: user });
-			}
-		},
-
-		coverUploadComplete: function() {
-			this.setState({ isCoverUpdating: false });
-		},
-
-		coverUploadStart: function() {
-			this.setState({ isCoverUpdating: true });
-		},
-
-		pageUpdate: function(_e, newUserPage) {
-			var userPage = this.state.userPage;
-			this.setState({ userPage: _.extend(userPage, newUserPage) });
-		},
-
-		unlistenAll: function() {
-			$(document).off('profile:cover:select');
-			$(document).off('profile:updated');
-			$(document).off('profile:cover:upload:start');
-			$(document).off('profile:cover:upload:complete');
-			$(document).off('profile:page:update');
-		},
-
-		listenAll: function() {
-			this.unlistenAll();
-			$(document).on('profile:cover:select', this.changeCoverDefault);
-			$(document).on('profile:updated', this.updateData);
-			$(document).on('profile:cover:upload:start', this.coverUploadStart);
-			$(document).on('profile:cover:upload:complete', this.coverUploadComplete);
-			$(document).on('profile:page:update', this.pageUpdate);
-		},
-
-		componentDidMount: function() {
-			this.listenAll();
-		},
-
-		componentWillUnmount: function() {
-			this.unlistenAll();
-		},
-
-		render: function() {
-			var
-				stats = this.props.allStats[this.state.mode],
-				headerMode,
-				headerStats,
-				contentsExtra;
-
-			if (stats === undefined) {
-				headerMode = this.props.initialMode;
-				headerStats = this.props.allStats[headerMode].data;
-			} else {
-				headerMode = this.state.mode;
-				stats = headerStats = stats.data;
-			}
-
-			if (this.state.mode !== 'me') {
-				contentsExtra = <ProfileExtra />;
-			}
-
-			return (
-				<div className='flex-column flex-full flex-fullwidth'>
-					<ProfileHeader
-						user={this.state.user}
-						stats={headerStats}
-						mode={headerMode}
-						withEdit={this.props.withEdit}
-						isCoverUpdating={this.state.isCoverUpdating}
-					/>
-
-					<ProfileContents
-						user={this.state.user}
-						userPage={this.state.userPage}
-						stats={stats}
-						mode={this.state.mode}
-						changeMode={this.changeMode}
-						recentAchievements={this.props.recentAchievements}
-						achievementsCounts={this.props.achievementsCounts}
-						withEdit={this.props.withEdit}
-					/>
-
-					{contentsExtra}
-				</div>
-			);
+	updateData: function(_e, user) {
+		if (user !== undefined && user !== null) {
+			this.setState({ user: user });
 		}
-	});
+	},
 
-	React.render(
-		<ProfilePage
-			user={userInfo}
-			userPage={userPage}
-			allStats={stats}
-			initialMode={window.userPlaymode}
-			withEdit={canEdit()}
-			recentAchievements={recentAchievements}
-			achievementsCounts={achievementsCounts}
-		/>,
-		document.getElementsByClassName('content')[0]
-	);
-}).call(this)
+	coverUploadComplete: function() {
+		this.setState({ isCoverUpdating: false });
+	},
+
+	coverUploadStart: function() {
+		this.setState({ isCoverUpdating: true });
+	},
+
+	pageUpdate: function(_e, newUserPage) {
+		var userPage = this.state.userPage;
+		this.setState({ userPage: _.extend(userPage, newUserPage) });
+	},
+
+	unlistenAll: function() {
+		$(document).off('profile:cover:select');
+		$(document).off('profile:updated');
+		$(document).off('profile:cover:upload:start');
+		$(document).off('profile:cover:upload:complete');
+		$(document).off('profile:page:update');
+	},
+
+	listenAll: function() {
+		this.unlistenAll();
+		$(document).on('profile:cover:select', this.changeCoverDefault);
+		$(document).on('profile:updated', this.updateData);
+		$(document).on('profile:cover:upload:start', this.coverUploadStart);
+		$(document).on('profile:cover:upload:complete', this.coverUploadComplete);
+		$(document).on('profile:page:update', this.pageUpdate);
+	},
+
+	componentDidMount: function() {
+		this.listenAll();
+	},
+
+	componentWillUnmount: function() {
+		this.unlistenAll();
+	},
+
+	render: function() {
+		var
+			stats = this.props.allStats[this.state.mode],
+			headerMode,
+			headerStats,
+			contentsExtra;
+
+		if (stats === undefined) {
+			headerMode = this.props.initialMode;
+			headerStats = this.props.allStats[headerMode].data;
+		} else {
+			headerMode = this.state.mode;
+			stats = headerStats = stats.data;
+		}
+
+		if (this.state.mode !== 'me') {
+			contentsExtra = <ProfileExtra />;
+		}
+
+		return (
+			<div className='flex-column flex-full flex-fullwidth'>
+				<ProfileHeader
+					user={this.state.user}
+					stats={headerStats}
+					mode={headerMode}
+					withEdit={this.props.withEdit}
+					isCoverUpdating={this.state.isCoverUpdating}
+				/>
+
+				<ProfileContents
+					user={this.state.user}
+					userPage={this.state.userPage}
+					stats={stats}
+					mode={this.state.mode}
+					changeMode={this.changeMode}
+					recentAchievements={this.props.recentAchievements}
+					achievementsCounts={this.props.achievementsCounts}
+					withEdit={this.props.withEdit}
+				/>
+
+				{contentsExtra}
+			</div>
+		);
+	}
+});
+
+React.render(
+	<ProfilePage
+		user={userInfo}
+		userPage={userPage}
+		allStats={stats}
+		initialMode={window.userPlaymode}
+		withEdit={canEdit()}
+		recentAchievements={recentAchievements}
+		achievementsCounts={achievementsCounts}
+	/>,
+	document.getElementsByClassName('content')[0]
+);
