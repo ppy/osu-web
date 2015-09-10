@@ -70,7 +70,9 @@ body {
   margin-bottom: 10px;
 
   width: 100%;
-  max-width: @container-sm;
+  @media @desktop {
+    width: @container-sm;
+  }
 }
 
 .row-blank {
