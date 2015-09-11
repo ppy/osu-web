@@ -20,15 +20,25 @@
 ;(function() {
 	'use strict';
 
-	window.DefaultCover = React.createClass({
+	window.ProfileCoverSelection = React.createClass({
 		onClick: function() {
+			if (this.props.url === null) { return; }
 			$(document).trigger('profile:cover:select', this.props.name);
+		},
+
+		onMouseEnter: function() {
+			if (this.props.url === null) { return; }
+			$(document).trigger('profile-header.cover.set', this.props.url);
+		},
+
+		onMouseLeave: function() {
+			$(document).trigger('profile-header.cover.reset');
 		},
 
 		render: function() {
 			var
 				selectedMark;
-			if (this.props.selectedName === this.props.name) {
+			if (this.props.isSelected) {
 				selectedMark = (
 					<i className='fa fa-check-circle profile-cover-selection__selected-mark' />
 				);
@@ -37,8 +47,10 @@
 			return (
 				<div
 					className='profile-cover-selection'
-					style={{ backgroundImage: `url('/images/headers/profile-covers/c${this.props.name}t.jpg')` }}
+					style={{ backgroundImage: `url('${this.props.thumbUrl}')` }}
 					onClick={this.onClick}
+					onMouseEnter={this.onMouseEnter}
+					onMouseLeave={this.onMouseLeave}
 				>
 					{selectedMark}
 				</div>
@@ -82,7 +94,7 @@
 
 		render: function() {
 			var
-				labelClass = 'btn-osu btn-osu--small btn-osu-default file-upload-label profile-cover-upload-button';
+				labelClass = 'btn-osu btn-osu--small btn-osu-default file-upload-label profile-cover-upload__button';
 
 			if (!this.props.canUpload) {
 				labelClass += ' disabled';
@@ -90,6 +102,11 @@
 
 			return (
 				<div className='profile-cover-upload'>
+					<ProfileCoverSelection
+						url={this.props.cover.customUrl}
+						isSelected={this.props.cover.id === null}
+						thumbUrl={this.props.cover.customUrl}
+					/>
 					<label className={labelClass}>
 						{Lang.get('users.show.edit.cover.upload.button')}
 						<input
@@ -117,10 +134,12 @@
 		render: function() {
 			var defaultCovers = [];
 			for (var i = 1; i <= 8; i++) {
-				defaultCovers.push(<DefaultCover
+				defaultCovers.push(<ProfileCoverSelection
 					key={i}
-					selectedName={this.props.selectedName}
 					name={i.toString()}
+					isSelected={this.props.cover.id === i.toString()}
+					url={`/images/headers/profile-covers/c${i}.jpg`}
+					thumbUrl={`/images/headers/profile-covers/c${i}t.jpg`}
 				/>);
 			}
 
@@ -132,7 +151,7 @@
 							{Lang.get('users.show.edit.cover.defaults_info')}
 						</p>
 					</div>
-					<ProfileCoverUploader canUpload={this.props.canUpload} />
+					<ProfileCoverUploader cover={this.props.cover} canUpload={this.props.canUpload} />
 				</div>
 			);
 		}
@@ -140,7 +159,27 @@
 
 	window.ProfileHeader = React.createClass({
 		getInitialState: function() {
-			return { editing: false };
+			return {
+				editing: false,
+				coverUrl: this.props.user.cover.url,
+			};
+		},
+
+		componentWillMount: function() {
+			this.coverSet = _.debounce(this.coverSet, 300);
+		},
+
+		componentWillUnmount: function() {
+			$(document).off('profile-header');
+		},
+
+		componentDidMount: function() {
+			$(document).on('profile-header.cover.set', this.coverSet);
+			$(document).on('profile-header.cover.reset', this.coverReset);
+		},
+
+		componentWillReceiveProps: function(newProps) {
+			this.setState({ coverUrl: newProps.user.cover.url });
 		},
 
 		toggleEdit: function() {
@@ -177,7 +216,15 @@
 		changeCoverPopup: function() {
 			if (!this.state.editing) { return; }
 
-			return <ProfileCoverSelector canUpload={this.props.user.isSupporter} selectedName={this.props.user.cover.id} />;
+			return <ProfileCoverSelector canUpload={this.props.user.isSupporter} cover={this.props.user.cover} />;
+		},
+
+		coverReset: function() {
+			this.coverSet(null, this.props.user.cover.url);
+		},
+
+		coverSet: function(_e, url) {
+			this.setState({ coverUrl: url });
 		},
 
 		coverUploadSpinner: function() {
@@ -196,7 +243,7 @@
 		render: function() {
 			return (
 				<div className='row-page profile-header'>
-					<div className='profile-cover' style={{ backgroundImage: `url('${this.props.user.cover.url}')` }} />
+					<div className='profile-cover' style={{ backgroundImage: `url('${this.state.coverUrl}')` }} />
 					<div className='profile-avatar-container'>
 						<div
 							className='avatar avatar--profile'

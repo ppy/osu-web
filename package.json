@@ -1,17 +1,17 @@
 {
   "private": true,
   "dependencies": {
-    "blueimp-file-upload": "^9.10.5",
-    "bootstrap": "^3.3.5",
+    "blueimp-file-upload": "*",
+    "bootstrap": "*",
     "bower": "*",
     "font-awesome": "*",
-    "gulp": "^3.8.11",
-    "jquery": "^2.1.4",
-    "laravel-elixir": "^2.0.0",
-    "layzr.js": "^1.4.3",
-    "lodash": "^3.10.1",
-    "photoswipe": "^4.1.0",
-    "react": "^0.13.3",
-    "retina.js": "^1.1.0"
+    "gulp": "*",
+    "jquery": "*",
+    "laravel-elixir": "*",
+    "layzr.js": "*",
+    "lodash": "*",
+    "photoswipe": "*",
+    "react": "*",
+    "retina.js": "*"
   }
 }
