@@ -38,7 +38,7 @@ window.osu =
 
 
   initTimeago: ->
-    $('.timeago-raw').timeago().removeClass '.timeago-raw'
+    $('.timeago-raw').timeago().removeClass 'timeago-raw'
 
 
   reloadPage: (fallback, forceReload) ->
