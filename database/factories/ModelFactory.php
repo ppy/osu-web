@@ -18,10 +18,28 @@
 
 
 $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
+
+    $name = $faker->userName;
     return [
+        'username' => $name,
+        'username_clean' => $name,
         'user_password' => password_hash(md5("password"), PASSWORD_BCRYPT),
         'user_email' => $faker->email,
+        'user_ip' => '127.0.0.1',
+        'user_twitter' => $faker->userName,
+        'user_website' => $faker->url,
+        'user_lastfm' => $faker->userName,
+        'user_msnm' => $faker->userName,
+        'user_from' => $faker->city,
+        'country_acronym' => $faker->countryCode,
+        'remember_token' => str_random(10),
+        'user_sig' => $faker->text(300),
     ];
+});
+
+$factory->defineAs(App\Models\User::class, 'supporter', function (Faker\Generator $faker) use ($factory) {
+    $raw = $factory->raw(App\Models\User::class);
+    return array_merge($raw, ["osu_subscriber" => true]);
 });
 
 $factory->define(App\Models\BeatmapSet::class, function (Faker\Generator $faker) {
@@ -31,14 +49,13 @@ $factory->define(App\Models\BeatmapSet::class, function (Faker\Generator $faker)
     $displaytitle = ucfirst($artist) . " - " . str_replace(".", "", $title);
 
     return [
-        'thread_id' => $faker->numberBetween($min = 1, $max = 9999),
         'artist' => $artist,
         'title' => $title,
-        'tags' => $faker->userName.",".$faker->word.",".$faker->cityPrefix.",".$faker->streetName.",".$faker->userName.",".$faker->word.",".$faker->domainWord,
-        'storyboard' => $faker->numberBetween($min = 0, $max = 1),
-        'epilepsy' => $faker->numberBetween($min = 0, $max = 1),
+        'tags' => implode(",", $faker->words(7)),
+        'storyboard' => $faker->boolean(),
+        'epilepsy' => $faker->boolean(),
         'bpm' => $faker->numberBetween($min = 170, $max = 240),
-        'approved' => rand(-2,3),
+        'approved' => $faker->numberBetween($min = -2, $max = 3),
         'filename' => $faker->domainWord,
         'rating' => $faker->numberBetween($min = 1, $max = 9),
         'displaytitle' => $displaytitle,
