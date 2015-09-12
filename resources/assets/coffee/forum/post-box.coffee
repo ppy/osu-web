@@ -62,7 +62,7 @@ insert = (event, tagOpen, tagClose = '') ->
 
 $(document).on 'change', '.bbcode-size', (e) ->
   $select = $(e.target)
-  val = parseInt($select.val())
+  val = parseInt $select.val(), 10
 
   return if val == 100
 
