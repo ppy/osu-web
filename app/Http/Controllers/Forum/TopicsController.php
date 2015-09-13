@@ -51,11 +51,12 @@ class TopicsController extends Controller
         ]]);
     }
 
-    private function isDoublePost($post) {
+    private function isDoublePost($post)
+    {
         $postTime = $post['post_time'];
         $now = Carbon::now();
         $diffSinceLastPost = $now->diffInDays($postTime);
-        if (!is_null(Auth::user()) && $post['poster_id'] == Auth::user()->user_id && $diffSinceLastPost < 3) {
+        if (! is_null(Auth::user()) && $post['poster_id'] == Auth::user()->user_id && $diffSinceLastPost < 3) {
             return true;
         }
 
@@ -182,10 +183,10 @@ class TopicsController extends Controller
     public function reply(HttpRequest $request, $id)
     {
         $topic = Topic::findOrFail($id);
-        $posts = Post::where("post_id", $topic->topic_last_post_id)->get();
+        $posts = Post::where('post_id', $topic->topic_last_post_id)->get();
 
         if ($this->isDoublePost($posts[count($posts) - 1])) {
-            return "not allowed";
+            return 'not allowed';
         }
 
         $this->authorizePost($topic->forum, $topic);
