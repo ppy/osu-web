@@ -42,6 +42,11 @@ $(document).on 'ajax:success', '.delete-post-link', (_event, data) ->
 
 $(document).on 'ajax:success', '.reply-post-link', (e, data) ->
   data += '\n'
+  if window.isDoublePost
+    url = location.href
+    history.replaceState(null, null, url)
+    location.href = "#doublepost-box"
+    return
 
   $replyBox = $('#forum-topic-reply-box')
   $replyInput = $replyBox.find('[name=body]')
@@ -70,16 +75,30 @@ $(document).on 'ajax:success', '#forum-topic-reply-box', (_event, data) ->
     newPost = window.forum.endPost()
     newPost.classList.remove('js-forum-post__shrunk')
     newPost.scrollIntoView()
+    window.isDoublePost = true
+
+    $('#forum-topic-reply-box').hide()
+
+    doublepostBox = $("#doublepost-box")
+    editLastPostLink = doublepostBox.find("a")
+    lastPostId = $(".forum-post").last().attr("data-post-id")
+    previousLastPostId = editLastPostLink.attr("target")
+
+    editLastPostLink.attr("href", editLastPostLink.attr("href").replace(previousLastPostId, lastPostId))
+    editLastPostLink.attr("target", lastPostId)
+    doublepostBox.show()
+
   else
     osu.navigate $(data).find('.js-post-url').attr('href')
 
 
 $(document).on 'ajax:success', '.edit-post-link', (e, data, status, xhr) ->
+  targetId = $(e.target).attr("target");
+  $postBox = $("[data-post-id='"+targetId+"']")
+
   # ajax:complete needs to be triggered early because the link (target) is
   # removed in this callback.
   $(e.target).trigger('ajax:complete', [xhr, status])
-
-  $postBox = $(e.target).parents('.forum-post')
 
   $postBox
     .data 'originalPost', $postBox.html()

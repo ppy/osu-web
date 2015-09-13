@@ -928,6 +928,27 @@ body.community {
   }
 }
 
+.forum-post-box-warning {
+  &:extend(.forum-post);
+  background: @dark-grey;
+  color: white;
+  min-height: 0;
+  padding: 0;
+
+  p {
+    line-height: 22px;
+    margin: 0;
+    padding: @grid-gutter-width/2;
+  }
+  .iconbox {
+    background: @yellow-dark;
+    padding: @grid-gutter-width/2;
+    i {
+      font-size: 30px;
+    }
+  }
+}
+
 .forum-posts-load-link {
   text-align: center;
   height: 40px;

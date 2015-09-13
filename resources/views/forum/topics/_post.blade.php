@@ -71,7 +71,7 @@
 
     <div class="post-viewer__actions">
         @if ($options["editLink"] === true)
-            <a href="{{ route("forum.posts.edit", $post) }}" class="post-viewer__action edit-post-link" data-remote="1">
+            <a href="{{ route("forum.posts.edit", $post) }}" class="post-viewer__action edit-post-link" data-remote="1" target="{{ $post->post_id }}">
                 <i class="fa fa-edit"></i>
             </a>
         @endif
