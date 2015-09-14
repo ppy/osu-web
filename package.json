@@ -7,7 +7,7 @@
     "font-awesome": "*",
     "gulp": "*",
     "jquery": "*",
-    "laravel-elixir": "*",
+    "laravel-elixir": "< 3.0.0",
     "layzr.js": "*",
     "lodash": "*",
     "photoswipe": "*",
