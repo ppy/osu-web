@@ -23,12 +23,6 @@ return [
 
     'pinned_topics' => 'Pinned Topics',
     'post' => [
-        'create' => [
-            'advanced' => [
-                'hide' => 'Hide advanced editor',
-                'show' => 'Show advanced editor',
-            ],
-        ],
         'confirm_delete' => 'Really delete post?',
         'edited' => 'Last edited by :user on :when, edited :count times in total.',
         'posted_at' => 'posted :when',

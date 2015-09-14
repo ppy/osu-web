@@ -69,15 +69,6 @@ $(document).on 'change', '.bbcode-size', (e) ->
   insert e, "[size=#{val}]", '[/size]'
 
 
-$(document).on 'click', '.create-post-advanced-switch', (e) ->
-  $link = $(e.target).closest('span')
-  $advanced = $link.parents('form').find('.create-post-advanced')
-
-  $link.siblings().show()
-  $link.hide()
-  $advanced.slideToggle()
-
-
 class PostAutoPreview
   lastBody: null
 
