@@ -62,7 +62,18 @@
 		mixins: [React.addons.PureRenderMixin],
 
 		componentDidMount: function() {
-			var $uploadButton = $('.js-profile-cover-upload');
+			var
+				$uploadButton = $('<input>', {
+					class: 'js-profile-cover-upload file-upload-input',
+					type: 'file',
+					name: 'cover_file',
+					'data-url': window.changeCoverUrl,
+					disabled: !this.props.canUpload
+				}),
+				$uploadButtonContainer = $(React.findDOMNode(this.refs.uploadButtonContainer));
+
+			$uploadButtonContainer.append($uploadButton);
+
 			$uploadButton.fileupload({
 				method: 'PUT',
 				dataType: 'json',
@@ -89,7 +100,9 @@
 		},
 
 		componentWillUnmount: function() {
-			$('.js-profile-cover-upload').fileupload('destroy');
+			$('.js-profile-cover-upload')
+				.fileupload('destroy')
+				.remove();
 		},
 
 		render: function() {
@@ -107,15 +120,8 @@
 						isSelected={this.props.cover.id === null}
 						thumbUrl={this.props.cover.customUrl}
 					/>
-					<label className={labelClass}>
+					<label className={labelClass} ref='uploadButtonContainer'>
 						{Lang.get('users.show.edit.cover.upload.button')}
-						<input
-							className='js-profile-cover-upload file-upload-input'
-							type='file'
-							name='cover_file'
-							data-url={window.changeCoverUrl}
-							disabled={!this.props.canUpload}
-						/>
 					</label>
 					<div className='profile-cover-upload-info'>
 						<p className='profile-cover-upload-info-entry'>
@@ -224,6 +230,7 @@
 		},
 
 		coverSet: function(_e, url) {
+			if (this.props.isCoverUpdating) { return; }
 			this.setState({ coverUrl: url });
 		},
 
