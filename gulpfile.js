@@ -77,14 +77,18 @@ elixir(function(mix) {
 		"logout.coffee",
 		"shared.coffee",
 	], "public/js/app.js")
+	.coffee([
+		"react/profile-page/header.coffee",
+		"react/profile-page/contents.coffee",
+		"react/profile-page.coffee",
+	], "public/js/react/profile-page.js")
 	.browserify("jsx/modding_react.jsx", "public/js/jsx/modding_react.js")
-	.browserify("jsx/profile_page.jsx", "public/js/jsx/profile_page.js")
 	.version([
 		"css/app.css",
 		"js/app.js",
 		"js/messages.js",
 		"js/jsx/modding_react.js",
-		"js/jsx/profile_page.js",
+		"js/react/profile-page.js",
 		"js/vendor.js",
 	])
 });

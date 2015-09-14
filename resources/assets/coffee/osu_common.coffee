@@ -41,6 +41,14 @@ window.osu =
     $('.timeago-raw').timeago().removeClass 'timeago-raw'
 
 
+  timeago: (time) ->
+    el = document.createElement('time')
+    el.classList.add 'timeago-raw', 'timeago'
+    el.setAttribute 'datetime', time
+    el.textContent = time
+    el.outerHTML
+
+
   reloadPage: (fallback, forceReload) ->
     $(document).off 'ajax:complete', osu.hideLoadingOverlay
 
