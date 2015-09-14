@@ -17,6 +17,7 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
+
 @nav-xs-height: 50px;
 // top padding + menu + page title
 @nav-sm-height: @grid-gutter-width/2 + @nav-menu-height + @nav-page-title-height;
@@ -24,121 +25,127 @@
 @nav-menu-height: 20px;
 @nav-avatar-size: 70px;
 @nav-float-z-index: 8999;
-
 .nav-logo {
-	z-index: @nav-float-z-index;
-	@logo-side: 100px;
-	width: @logo-side;
-	height: @logo-side;
-
-	// general padding is aligned to inner circle instead of outline circle
-	margin-top: -10px;
-
-	.at2x('/images/layout/osu-logo.png', @logo-side, @logo-side);
+    z-index: @nav-float-z-index;
+    @logo-side: 100px;
+    width: @logo-side;
+    height: @logo-side;
+    // general padding is aligned to inner circle instead of outline circle
+    margin-top: -10px;
+    .at2x('/images/layout/osu-logo.png', @logo-side, @logo-side);
 }
-
 #nav-links {
-	padding: 0px @grid-gutter-width/4;
-	flex: 0 1 100%;
+    padding: 0px @grid-gutter-width/4;
+    flex: 0 1 100%;
 }
-
 .nav-user-bar-container {
-	z-index: @nav-float-z-index;
+    z-index: @nav-float-z-index;
 }
-
 #nav-user-bar {
-	margin-right: @nav-avatar-size;
-	margin-top: @nav-menu-height;
-	right: 0px;
-	position: absolute;
-	font-size: 22px;
-	padding: 0px @grid-gutter-width/2;
-	color: #fff;
-	white-space: nowrap;
+    margin-right: @nav-avatar-size;
+    margin-top: @nav-menu-height;
+    right: 0px;
+    position: absolute;
+    font-size: 22px;
+    padding: 0px @grid-gutter-width/2;
+    color: #fff;
+    white-space: nowrap;
 }
-
 .avatar--nav {
-	width: @nav-avatar-size;
-	height: @nav-avatar-size;
-	display: block;
+    width: @nav-avatar-size;
+    height: @nav-avatar-size;
+    display: block;
 }
-
 #nav-page-title {
-	height: @nav-page-title-height;
-	color: #fff;
-	font-size: 22px;
-
-	display: flex;
-
-	> * { margin-right: @grid-gutter-width/4; }
+    height: @nav-page-title-height;
+    color: #fff;
+    font-size: 22px;
+    display: flex;
+    > * {
+        margin-right: @grid-gutter-width/4;
+    }
 }
-
 #nav-menu {
-	&:extend(.compact-list-inline all);
-	height: @nav-menu-height;
-	display: flex;
-	font-size: 14px;
-
-	> li {
-		padding: 0px @grid-gutter-width/4 0px 0px;
-		position: static;
-
-		&.active > a {
-			color: #fff;
-			font-weight: 700;
-		}
-	}
-
-	.submenu {
-		display: none;
-		position: static;
-
-		> ul {
-			&:extend(.compact-list-inline all);
-			left: 0px;
-			position: absolute;
-			top: @nav-menu-height;
-
-			> li {
-				padding: 0px @grid-gutter-width/4 0px 0px;
-			}
-
-			&, .section::after {
-				font-size: 22px;
-			}
-
-			.section::after {
-				content: '›';
-				margin-left: @grid-gutter-width/4;
-			}
-		}
-	}
+    &:extend(.compact-list-inline all);
+    height: @nav-menu-height;
+    display: flex;
+    font-size: 14px;
+    > li {
+        padding: 0px @grid-gutter-width/4 0px 0px;
+        position: static;
+        &.active > a {
+            color: #fff;
+            font-weight: 700;
+        }
+    }
+    .submenu {
+        display: none;
+        position: static;
+        > ul {
+            &:extend(.compact-list-inline all);
+            left: 0px;
+            position: absolute;
+            top: @nav-menu-height;
+            > li {
+                padding: 0px @grid-gutter-width/4 0px 0px;
+            }
+            &,
+            .section::after {
+                font-size: 22px;
+            }
+            .section::after {
+                content: '›';
+                margin-left: @grid-gutter-width/4;
+            }
+        }
+    }
 }
-
 #nav-sm {
-	padding: @grid-gutter-width/2 @grid-gutter-width/2 0px;
-	display: flex;
-
-	height: @nav-sm-height;
-
-	color: #fff;
-	font-weight: 300;
-
-	a { .white-link; }
+    padding: @grid-gutter-width/2 @grid-gutter-width/2 0px;
+    display: flex;
+    height: @nav-sm-height;
+    color: #fff;
+    font-weight: 300;
+    a {
+        .white-link;
+    }
 }
-
-.navbar { margin-bottom: 0px; }
-.navbar-collapse { background: #fff; }
-
+.navbar {
+    margin-bottom: 0px;
+}
+.navbar-collapse {
+    background: #fff;
+}
 .navbar-header > .logo {
-	display: inline-block;
-	float: left;
-	background-image: url('/images/layout/osu-logo.png');
-	background-size: 100%;
-	width: @nav-xs-height;
-	height: @nav-xs-height;
+    display: inline-block;
+    float: left;
+    background-image: url('/images/layout/osu-logo.png');
+    background-size: 100%;
+    width: @nav-xs-height;
+    height: @nav-xs-height;
+    margin-left: 15px;
 }
-
 .nav-user--logout-link {
-	font-size: 12px;
+    font-size: 12px;
+}
+.login-nav {
+    float: right;
+    padding: 15px 20px;
+    line-height: 20px;
+    height: 50px;
+    #nav-user-bar {
+        position: relative;
+        margin: 0;
+        right: auto;
+        padding: 0;
+        float: left;
+        padding-right: 10px;
+    }
+    .avatar--nav {
+        float: left;
+        width: 35px;
+        height: 35px;
+        display: block;
+        margin-top: -7px;
+    }
 }
