@@ -220,15 +220,6 @@ class Tab extends React.Component
 
 
 class UserPage extends React.Component
-  editLink: ->
-    if !@props.withEdit
-      return
-    React.createElement 'div', { className: 'profile-user-page-header text-right' }, React.createElement('a', {
-      href: '#'
-      onClick: @editStart
-    }, React.createElement('i', className: 'fa fa-edit'))
-
-
   editStart: (e) ->
     e.preventDefault()
     $(document).trigger 'profile.user-page.update', editing: true
@@ -262,7 +253,12 @@ class UserPage extends React.Component
 
   pageShow: =>
     el 'div', className: 'profile-content flex-col-66',
-      @editLink(),
+      if @props.withEdit
+        el 'div', className: 'profile-user-page-header text-right',
+          el 'a',
+            href: '#'
+            onClick: @editStart
+            el 'i', className: 'fa fa-edit'
 
       el 'div', dangerouslySetInnerHTML:
         __html: @props.userPage.html
