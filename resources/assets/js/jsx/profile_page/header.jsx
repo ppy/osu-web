@@ -230,6 +230,7 @@
 		},
 
 		coverSet: function(_e, url) {
+			if (this.props.isCoverUpdating) { return; }
 			this.setState({ coverUrl: url });
 		},
 
