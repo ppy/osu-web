@@ -42,17 +42,22 @@ elixir(function(mix) {
 	.copy("node_modules/photoswipe/dist/default-skin", "public/vendor/_photoswipe-default-skin")
 	.less("app.less")
 	.scripts([
+		path.join(node_root, "jquery/dist/jquery.js"),
 		path.join(composer_root, "helthe/turbolinks/Resources/public/js/turbolinks.js"),
 		path.join(bower_root, "jquery-ujs/src/rails.js"),
 		path.join(node_root, "bootstrap/dist/js/bootstrap.js"),
 		path.join(bower_root, "jquery-timeago/jquery.timeago.js"),
 		path.join(bower_root, "jquery-zoom/jquery.zoom.js"),
+		path.join(node_root, "blueimp-file-upload/js/vendor/jquery.ui.widget.js"),
+		path.join(node_root, "blueimp-file-upload/js/jquery.iframe-transport.js"),
+		path.join(node_root, "blueimp-file-upload/js/jquery.fileupload.js"),
 		path.join(bower_root, "history.js/scripts/bundled-uncompressed/html5/jquery.history.js"),
 		path.join(bower_root, "ResponsiveSlides.js/responsiveslides.js"),
 		path.join(node_root, "photoswipe/dist/photoswipe.js"),
 		path.join(node_root, "photoswipe/dist/photoswipe-ui-default.js"),
 		path.join(node_root, "lodash/index.js"),
 		path.join(node_root, "layzr.js/dist/layzr.js"),
+		path.join(node_root, "react/dist/react-with-addons.js"),
 		"ga.js",
 	], "public/js/vendor.js")
 	.scripts("messages.js", "public/js/messages.js")
@@ -72,13 +77,11 @@ elixir(function(mix) {
 		"logout.coffee",
 		"shared.coffee",
 	], "public/js/app.js")
-	.browserify("main.js", "public/js/main.js")
 	.browserify("jsx/modding_react.jsx", "public/js/jsx/modding_react.js")
 	.browserify("jsx/profile_page.jsx", "public/js/jsx/profile_page.js")
 	.version([
 		"css/app.css",
 		"js/app.js",
-		"js/main.js",
 		"js/messages.js",
 		"js/jsx/modding_react.js",
 		"js/jsx/profile_page.js",

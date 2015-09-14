@@ -37,8 +37,8 @@ galleryArray = ->
     $el = $(el)
     {
       src: $el.attr('href')
-      w: parseInt $el.attr('data-size-w')
-      h: parseInt $el.attr('data-size-h')
+      w: parseInt $el.attr('data-size-w'), 10
+      h: parseInt $el.attr('data-size-h'), 10
     }
   .get()
 
@@ -67,7 +67,7 @@ openGallery = (index) ->
 
 $(document).on 'click', '#product-slides a', (e) ->
   e.preventDefault()
-  openGallery parseInt($(e.target).attr('data-index'))
+  openGallery parseInt($(e.target).attr('data-index'), 10)
 
 
 preventUsernameSubmission = ->

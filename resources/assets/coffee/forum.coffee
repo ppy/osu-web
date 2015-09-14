@@ -78,7 +78,7 @@ class Forum
 
   totalPosts: =>
     return null if @_totalPostsDiv.length == 0
-    parseInt @_totalPostsDiv[0].getAttribute('data-total-count')
+    parseInt @_totalPostsDiv[0].getAttribute('data-total-count'), 10
 
   setTotalPosts: (n) =>
     @_totalPostsDiv[0].setAttribute('data-total-count', n)
@@ -95,7 +95,7 @@ class Forum
   endPost: => @posts[@posts.length - 1]
 
   lastPostLoaded: =>
-    parseInt(@endPost().getAttribute('data-post-position')) == @totalPosts()
+    parseInt(@endPost().getAttribute('data-post-position'), 10) == @totalPosts()
 
   refreshLoadMoreLinks: =>
     return if @posts.length == 0
