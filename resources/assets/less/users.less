@@ -22,7 +22,7 @@
 @profile-avatar-size: 110px;
 
 .profile-header {
-  background-color: #000;
+  background-color: transparent;
   height: @profile-header-height;
   padding: 0px;
 }
@@ -369,7 +369,7 @@
   position: absolute;
   top: @profile-header-height - @profile-user-bar-height + @grid-gutter-width/4;
   right: @grid-gutter-width/4;
-  width: @profile-cover-thumb-size * 2 + @grid-gutter-width/8 + @grid-gutter-width/4 * 2;
+  width: @profile-cover-thumb-size*3 + @grid-gutter-width/8*2 + @grid-gutter-width/4*2;
 
   background: #fff;
 
@@ -390,17 +390,18 @@
 
 .profile-cover-upload {
   padding: @grid-gutter-width/4;
+  padding-right: @grid-gutter-width/8;
   border-top: 1px solid #ccc;
-}
 
-.profile-cover-upload-button {
-  text-transform: none;
-  width: 100%;
-  height: 30px;
+  &__button {
+    text-transform: none;
+    height: 30px;
+    margin-right: @grid-gutter-width/8;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .profile-cover-upload-info {
@@ -435,6 +436,7 @@
 .profile-cover-selections-info {
   padding: @grid-gutter-width/4;
   margin-bottom: 0px;
+  width: 100%;
 }
 
 .profile-cover-uploading-spinner {

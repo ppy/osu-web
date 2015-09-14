@@ -46,6 +46,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'skype' => $user->user_msnm,
             'playstyle' => $user->osu_playstyle,
             'cover' => [
+                'customUrl' => $profileCustomization->cover->customUrl(),
                 'url' => $profileCustomization->cover->url(),
                 'id' => $profileCustomization->cover->id(),
             ],

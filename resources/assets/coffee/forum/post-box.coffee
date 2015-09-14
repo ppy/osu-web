@@ -62,20 +62,11 @@ insert = (event, tagOpen, tagClose = '') ->
 
 $(document).on 'change', '.bbcode-size', (e) ->
   $select = $(e.target)
-  val = parseInt($select.val())
+  val = parseInt $select.val(), 10
 
   return if val == 100
 
   insert e, "[size=#{val}]", '[/size]'
-
-
-$(document).on 'click', '.create-post-advanced-switch', (e) ->
-  $link = $(e.target).closest('span')
-  $advanced = $link.parents('form').find('.create-post-advanced')
-
-  $link.siblings().show()
-  $link.hide()
-  $advanced.slideToggle()
 
 
 class PostAutoPreview

@@ -30,7 +30,6 @@
 	<meta name="ga-tracking-id" content="{{ config("services.ga.tracking_id") }}">
 @endif
 
-<script src="{{ elixir("js/main.js") }}" data-turbolinks-track></script>
 <script src="{{ elixir("js/messages.js") }}" data-turbolinks-track></script>
 <script src="{{ elixir("js/vendor.js") }}" data-turbolinks-track></script>
 <script src="{{ elixir("js/app.js") }}" data-turbolinks-track></script>
