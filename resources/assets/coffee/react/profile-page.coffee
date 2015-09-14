@@ -77,12 +77,11 @@ class @ProfilePage extends React.Component
 
 
   render: =>
-    headerStats = stats = @props.allStats[@state.mode]?.data
-
-    if stats?
+    if @state.mode != 'me'
       headerMode = @state.mode
+      headerStats = stats = @props.allStats[@state.mode].data
     else
-      headerMode = @props.initialMode
+      headerMode = @state.initialMode
       headerStats = @props.allStats[headerMode].data
 
     el 'div', className: 'flex-column flex-full',
