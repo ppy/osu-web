@@ -82,7 +82,6 @@ elixir(function(mix) {
 	.version([
 		"css/app.css",
 		"js/app.js",
-		"js/main.js",
 		"js/messages.js",
 		"js/jsx/modding_react.js",
 		"js/jsx/profile_page.js",
