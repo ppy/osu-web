@@ -108,9 +108,7 @@ class Forum
 
     $('.js-forum__posts-show-more--next').closest('div').toggle showNext
 
-    # this will skip guest users as well but they don't have the links
-    # anyway so it's not a problem.
-    if !window.user?.is_admin
+    if !window.currentUser.isAdmin
       $('.delete-post-link').hide()
 
     if !showNext

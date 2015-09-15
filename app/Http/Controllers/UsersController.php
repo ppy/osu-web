@@ -81,7 +81,7 @@ class UsersController extends Controller
             Auth::attempt(['username' => $username, 'password' => $password], $remember);
 
             if (Auth::check()) {
-                return Auth::user();
+                return fractal_item_array(Auth::user(), new UserTransformer());
             } else {
                 LoginAttempt::failedAttempt($ip, $username);
 

@@ -109,6 +109,6 @@ React.render \
     userPage: osu.parseJson('json-user-page').page
     allStats: osu.parseJson('json-user-stats')
     initialMode: window.userPlaymode
-    withEdit: user.id == @user?.user_id
+    withEdit: user.id == window.currentUser.id
     recentAchievements: osu.parseJson('json-user-recent-achievements').data
   ), document.getElementsByClassName('content')[0]

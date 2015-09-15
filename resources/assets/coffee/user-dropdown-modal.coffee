@@ -33,7 +33,7 @@ class UserDropdownModal
     $(document).on 'ajax:success', '#login-form', @loginSuccess
 
     $(document).on 'click', '.js-login-required--click', (event) =>
-      return unless window.user == null
+      return unless window.currentUser.id == undefined
       event.preventDefault()
       @show event.target
 
@@ -91,7 +91,7 @@ class UserDropdownModal
 
 
   loginSuccess: (_event, data) =>
-    window.user = data
+    window.currentUser = data.data
     $(document).off 'ajax:complete', osu.hideLoadingOverlay()
     osu.showLoadingOverlay()
     if @clickAfterLogin != null
