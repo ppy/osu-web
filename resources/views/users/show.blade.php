@@ -40,10 +40,6 @@
         window.changePageUrl = '{{ route("account.page") }}';
     </script>
 
-    <script id="json-user-achievements-counts" type="application/json">
-        {!! json_encode($achievementsCounts) !!}
-    </script>
-
     <script id="json-user-recent-achievements" type="application/json">
         {!! json_encode($recentAchievements) !!}
     </script>

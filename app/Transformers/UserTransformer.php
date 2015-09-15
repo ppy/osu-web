@@ -21,6 +21,7 @@
 
 namespace App\Transformers;
 
+use App\Models\Achievement;
 use App\Models\User;
 use League\Fractal;
 
@@ -49,6 +50,10 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'customUrl' => $profileCustomization->cover->customUrl(),
                 'url' => $profileCustomization->cover->url(),
                 'id' => $profileCustomization->cover->id(),
+            ],
+            'achievements' => [
+                'total' => Achievement::count(),
+                'current' => $user->achievements()->count(),
             ],
         ];
     }

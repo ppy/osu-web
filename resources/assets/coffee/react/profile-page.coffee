@@ -98,7 +98,6 @@ class @ProfilePage extends React.Component
         mode: @state.mode
         modeChange: @modeChange
         recentAchievements: @props.recentAchievements
-        achievementsCounts: @props.achievementsCounts
         withEdit: @props.withEdit
 
 
@@ -112,5 +111,4 @@ React.render \
     initialMode: window.userPlaymode
     withEdit: user.id == @user?.user_id
     recentAchievements: osu.parseJson('json-user-recent-achievements').data
-    achievementsCounts: osu.parseJson('json-user-achievements-counts')
   ), document.getElementsByClassName('content')[0]

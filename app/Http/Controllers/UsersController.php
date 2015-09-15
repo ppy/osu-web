@@ -132,13 +132,8 @@ class UsersController extends Controller
 
         $userArray = fractal_item_array($user, new UserTransformer());
 
-        $achievementsCounts = [
-            'total' => Achievement::count(),
-            'user' => $user->achievements()->count(),
-        ];
-
         return view('users.show', compact(
-            'user', 'mode', 'allStats', 'userPage', 'userArray', 'recentAchievements', 'achievementsCounts'
+            'user', 'mode', 'allStats', 'userPage', 'userArray', 'recentAchievements'
         ));
     }
 }

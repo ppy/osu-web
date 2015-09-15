@@ -175,14 +175,14 @@ class AchievementBadge extends React.Component
 
 class RecentAchievements extends React.Component
   render: =>
-    achievementsProgress = (100 * @props.achievementsCounts.user / @props.achievementsCounts.total).toFixed()
-    moreCount = @props.achievementsCounts.user - @props.recentAchievements.length
+    achievementsProgress = (100 * @props.achievementsCounts.current / @props.achievementsCounts.total).toFixed()
+    moreCount = @props.achievementsCounts.current - @props.recentAchievements.length
 
     el 'div', className: 'profile-content flex-col-33 text-center',
       el 'div', className: 'profile-row profile-row--top',
         el 'div', className: 'profile-achievements-badge profile-top-badge',
           el 'span', className: 'profile-badge-number',
-            @props.achievementsCounts.user
+            @props.achievementsCounts.current
 
         el 'div', className: 'profile-exp-bar',
           el 'div',
@@ -418,6 +418,6 @@ class @ProfileContents extends React.Component
               stats: @props.stats
             el RecentAchievements,
               key: 'recent-achievements'
-              achievementsCounts: @props.achievementsCounts
+              achievementsCounts: @props.user.achievements
               recentAchievements: @props.recentAchievements
           ]
