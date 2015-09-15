@@ -30,7 +30,7 @@ class Info extends React.Component
 
   originKeys: =>
     keys = []
-    if @props.user.country != null
+    if @props.user.country.name != null
       keys.push 'country'
     if @props.user.age != null
       keys.push 'age'
@@ -59,7 +59,7 @@ class Info extends React.Component
         if @originKeys().length
           el 'p', null,
             Lang.get "users.show.origin.#{@originKeys().join('_')}",
-              country: @props.user.country
+              country: @props.user.country.name
               age: @props.user.age
 
         if @props.user.location

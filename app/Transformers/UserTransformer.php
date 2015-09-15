@@ -27,6 +27,10 @@ use League\Fractal;
 
 class UserTransformer extends Fractal\TransformerAbstract
 {
+    protected $availableIncludes = [
+        'defaultStats',
+    ];
+
     public function transform(User $user)
     {
         $profileCustomization = $user->profileCustomization()->firstOrNew([]);
@@ -35,7 +39,10 @@ class UserTransformer extends Fractal\TransformerAbstract
             'id' => $user->user_id,
             'username' => $user->username,
             'joinDate' => display_regdate($user),
-            'country' => $user->countryName(),
+            'country' => [
+                "code" => $user->country_acronym,
+                "name" => $user->countryName(),
+            ],
             'age' => $user->age,
             'avatarUrl' => $user->user_avatar,
             'isAdmin' => $user->is_admin,
@@ -58,5 +65,12 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'current' => $user->achievements()->count(),
             ],
         ];
+    }
+
+    public function includeDefaultStats(User $user)
+    {
+        $stats = $user->statistics();
+
+        return $this->item($stats, new UserStatisticsTransformer());
     }
 }

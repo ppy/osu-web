@@ -81,7 +81,7 @@ class CoverUploader extends React.Component
       submit: ->
         $(document).trigger 'profile.cover.upload.state', true
       done: (_e, data) ->
-        $(document).trigger 'profile.user.update', data.result.data
+        $(document).trigger 'user.update', data.result.data
       fail: (_e, data) ->
         message = data.jqXHR?.responseJSON || Lang.get 'errors.unknown'
         osu.popup message, 'danger'
@@ -136,9 +136,9 @@ class Rank extends React.Component
           el 'span', className: 'user-rank-icon',
             el 'i', className: "fa osu fa-#{@props.mode}-o"
           "##{@props.rank.global.toLocaleString()}"
-        if @props.country != null
+        if @props.countryName != null
           el 'p', className: 'profile-basic',
-            "#{@props.country} ##{@props.rank.country.toLocaleString()}"
+            "#{@props.countryName} ##{@props.rank.country.toLocaleString()}"
 
 
 class @ProfileHeader extends React.Component
@@ -219,5 +219,5 @@ class @ProfileHeader extends React.Component
         el HeaderInfo, user: @props.user
         el Rank,
           rank: @props.stats.rank
-          country: @props.user.country
+          countryName: @props.user.country.name
           mode: @props.mode

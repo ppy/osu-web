@@ -65,16 +65,20 @@ class @ProfilePage extends React.Component
 
 
   componentDidMount: =>
-    $(document).off 'profile'
-    $(document).on 'profile.user.update', @userUpdate
+    @_removeListeners()
+    $(document).on 'user.update', @userUpdate
     $(document).on 'profile.cover.select', @coverChangeDefault
     $(document).on 'profile.cover.upload.state', @coverUploadState
     $(document).on 'profile.user-page.update', @userPageUpdate
 
 
   componentWillUnmount: =>
-    $(document).off 'profile'
+    @_removeListeners()
 
+
+  _removeListeners: =>
+    $(document).off 'profile'
+    $(document).off 'user.update', @userUpdate
 
   render: =>
     if @state.mode != 'me'

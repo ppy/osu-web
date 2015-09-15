@@ -20,7 +20,8 @@
     @if (Auth::check())
         {!! json_encode(fractal_item_array(
                 Auth::user(),
-                new App\Transformers\UserTransformer
+                new App\Transformers\UserTransformer,
+                'defaultStats'
         )) !!}
     @else
         {"data":{}}
