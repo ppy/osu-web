@@ -41,7 +41,7 @@ class @ProfilePage extends React.Component
         cover_id: coverId
       dataType: 'json'
     .done (userData) =>
-      @userUpdate null, userData.data
+      $(document).trigger 'user.update', userData.data
 
 
   coverUploadState: (_e, state) =>

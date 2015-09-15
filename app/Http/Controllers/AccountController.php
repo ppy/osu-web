@@ -45,7 +45,7 @@ class AccountController extends Controller
         $customization = Auth::user()->profileCustomization()->firstOrNew([]);
         $customization->setCover($errors, Request::input('cover_id'), Request::file('cover_file'));
         if (count($errors) === 0) {
-            return fractal_item_array(Auth::user(), new UserTransformer());
+            return fractal_item_array(Auth::user(), new UserTransformer(), 'defaultStats');
         } else {
             return error_popup(implode(',', $errors));
         }
