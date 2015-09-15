@@ -530,7 +530,9 @@ class User extends Model implements AuthenticatableContract
 
     public function statistics($mode = null, $returnQuery = false)
     {
-        if ($mode === null) { $mode = $this->playmode; }
+        if ($mode === null) {
+            $mode = $this->playmode;
+        }
 
         if (! in_array($mode, ['osu', 'ctb', 'mania', 'taiko'], true)) {
             return;
