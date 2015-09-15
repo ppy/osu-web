@@ -28,7 +28,7 @@ $(document).on 'ajax:success', (_event, data) ->
 
 
 $(document).on 'ajax:error', (_event, xhr) ->
-  # authentication logic is handled in login-modal.js
+  # authentication logic is handled in user-dropdown-modal.js
   return if xhr.status == 401
 
   message = xhr.responseJSON?.error || 'failed loading requested page'

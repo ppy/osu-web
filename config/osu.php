@@ -43,8 +43,6 @@ return [
         ],
         'support-the-game' => 'https://osu.ppy.sh/p/support',
         'user' => [
-            'recover_password' => 'https://osu.ppy.sh/p/forgot',
-            'register' => 'https://osu.ppy.sh/p/register',
             'rules' => 'https://osu.ppy.sh/wiki/Osu!:Rules',
         ],
     ],

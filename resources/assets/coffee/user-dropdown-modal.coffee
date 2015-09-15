@@ -16,21 +16,21 @@ See the GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class LoginModal
+class UserDropdownModal
   _mobileElements: document.getElementsByClassName('visible-xs')
-  box: document.getElementsByClassName('js-login-box')
-  activeBox: document.getElementsByClassName('js-login-box--active')
+  box: document.getElementsByClassName('js-user-dropdown-modal__dialog')
+  activeBox: document.getElementsByClassName('js-user-dropdown-modal__dialog--active')
   avatar: document.getElementsByClassName('js-nav-avatar')
-  clickAfterLogin: null
+  clickAfterLogin: null # Used as callback on original action (where login was required)
 
 
   constructor: ->
     $(window).on 'resize scroll', =>
       requestAnimationFrame @reposition
 
-    $(document).on 'show.bs.modal', '#login-modal', @activate
-    $(document).on 'hidden.bs.modal', '#login-modal', @deactivate
-    $(document).on 'ajax:success', '#login-form', @done
+    $(document).on 'show.bs.modal', '#user-dropdown-modal', @activate
+    $(document).on 'hidden.bs.modal', '#user-dropdown-modal', @deactivate
+    $(document).on 'ajax:success', '#login-form', @loginSuccess
 
     $(document).on 'click', '.js-login-required--click', (event) =>
       return unless window.user == null
@@ -40,6 +40,7 @@ class LoginModal
     $(document).on 'ajax:error', (event, xhr) =>
       return unless xhr.status == 401
       @show event.target
+
 
   _isMobile: =>
     dimensions = @_mobileElements[0].getBoundingClientRect()
@@ -51,17 +52,20 @@ class LoginModal
 
 
   show: (target) =>
-    $('#login-modal').modal 'show'
+    $('#user-dropdown-modal').modal 'show'
     @clickAfterLogin = target
+
+  hide: => 
+    $('#user-dropdown-modal').modal 'hide'
 
 
   activate: =>
-    @box[0].classList.add 'js-login-box--active'
+    @box[0].classList.add 'js-user-dropdown-modal__dialog--active'
     @reposition()
 
 
   deactivate: =>
-    @box[0].classList.remove 'js-login-box--active'
+    @box[0].classList.remove 'js-user-dropdown-modal__dialog--active'
     @clickAfterLogin = null
 
 
@@ -69,7 +73,7 @@ class LoginModal
     return if @activeBox[0] == undefined
 
     if @_isMobile()
-      @box[0].classList.add 'js-login-centre'
+      @box[0].classList.add 'js-user-dropdown-modal__dialog--centre'
       @box[0].style.marginTop = '60px'
 
     else if @isAvatarVisible()
@@ -77,16 +81,16 @@ class LoginModal
       normalTop = avatarDimensions.bottom + 20
       normalRight = window.innerWidth - avatarDimensions.right
 
-      @box[0].classList.remove 'js-login-centre'
+      @box[0].classList.remove 'js-user-dropdown-modal__dialog--centre'
       @box[0].style.marginTop = "#{normalTop}px"
       @box[0].style.right = "#{normalRight}px"
 
     else
-      @box[0].classList.add 'js-login-centre'
+      @box[0].classList.add 'js-user-dropdown-modal__dialog--centre'
       @box[0].style.marginTop = '90px'
 
 
-  done: (_event, data) =>
+  loginSuccess: (_event, data) =>
     window.user = data
     $(document).off 'ajax:complete', osu.hideLoadingOverlay()
     osu.showLoadingOverlay()
@@ -101,13 +105,12 @@ class LoginModal
         # reference: https://github.com/jquery/jquery/blob/f5aa89af7029ae6b9203c2d3e551a8554a0b4b89/src/event.js#L586
         @clickAfterLogin.click()
     else
-      osu.reloadPage null, true
+      osu.reloadPage(null, true)
 
-    $('#login-modal').modal 'hide'
+    @hide
 
 
-
-window.loginModal = new LoginModal
+window.userDropdownModal = new UserDropdownModal
 
 
 # for pages which require authentication
@@ -116,4 +119,4 @@ $(document).on 'ready page:load', ->
   return unless window.showLoginModal
 
   window.showLoginModal = null
-  $('#login-modal').modal backdrop: 'static'
+  $('#user-dropdown-modal').modal backdrop: 'static'

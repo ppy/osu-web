@@ -1,0 +1,44 @@
+/**
+*    Copyright 2015 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
+@import "bem/badges";
+@import "bem/form";
+@import "bem/rankinginfo-small";
+@import "bem/user-dropdown-modal-menu";
+@import "bem/user-roles";
+@import "bem/userinfo-small";
+@import "bem/quick-info";
+
+/** 
+ * Below are custom Block-Element-Modifier LESS-includes
+ * that are based on external-plugins such as boostrap.
+ */
+
+@import "bem/bootstrap/modal";
+@import "bem/bootstrap/modal-content";
+@import "bem/bootstrap/modal-body";
+@import "bem/bootstrap/modal-header";
+@import "bem/bootstrap/input-group";
+
+/*
+ * Some things would be ported to BEM, but then couldn't for some reasons.
+ * These are included here, to indicate that in fact they HAVE been processed.
+ */
+@import "bem-utilities";

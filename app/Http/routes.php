@@ -71,6 +71,10 @@ Route::get('/community/profile/{id}', function ($id) { return Redirect::route('u
 
 Route::get('/u/{id}', ['as' => 'users.show', 'uses' => 'UsersController@show']);
 
+// Authentication section (Temporarily set up as replacement/improvement of config("osu.urls.*"))
+Route::get('/users/forgot-password', ['as' => 'users.forgot-password', function () { return Redirect::to('https://osu.ppy.sh/p/forgot'); }]);
+Route::get('/users/register', ['as' => 'users.register', function () { return Redirect::to('https://osu.ppy.sh/p/register'); }]);
+
 // help section
 Route::get('/help/wiki', ['as' => 'wiki', 'uses' => 'HelpController@getWiki']);
 Route::get('/help/support', ['as' => 'support', 'uses' => 'HelpController@getSupport']);

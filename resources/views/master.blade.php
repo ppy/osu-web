@@ -43,10 +43,9 @@
 		</div>
 
 		@include("layout.gallery_window")
-		@include("layout.login-modal")
-
 		@include("layout.footer")
 
+		@yield('user-dropdown-modal')
 		@include("layout._global_variables")
 		@yield("script")
 	</body>
