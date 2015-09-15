@@ -47,6 +47,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'lastfm' => $user->user_lastfm,
             'skype' => $user->user_msnm,
             'playstyle' => $user->osu_playstyle,
+            'playmode' => $user->playmode,
             'cover' => [
                 'customUrl' => $profileCustomization->cover->customUrl(),
                 'url' => $profileCustomization->cover->url(),

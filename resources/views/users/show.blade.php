@@ -35,7 +35,6 @@
     @parent
 
     <script data-turbolinks-eval="always">
-        window.userPlaymode = '{{ $user->playmode }}';
         window.changeCoverUrl = '{{ route("account.update-profile-cover") }}';
         window.changePageUrl = '{{ route("account.page") }}';
     </script>

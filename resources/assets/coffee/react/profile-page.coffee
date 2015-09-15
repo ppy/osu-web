@@ -23,7 +23,7 @@ class @ProfilePage extends React.Component
     super props
 
     @state =
-      mode: props.initialMode
+      mode: props.user.playmode
       user: props.user
       userPage:
         html: props.userPage.html
@@ -81,7 +81,7 @@ class @ProfilePage extends React.Component
       headerMode = @state.mode
       headerStats = stats = @props.allStats[@state.mode].data
     else
-      headerMode = @props.initialMode
+      headerMode = @props.user.playmode
       headerStats = @props.allStats[headerMode].data
 
     el 'div', className: 'flex-column flex-full',
@@ -108,7 +108,6 @@ React.render \
     user: user
     userPage: osu.parseJson('json-user-page').page
     allStats: osu.parseJson('json-user-stats')
-    initialMode: window.userPlaymode
     withEdit: user.id == window.currentUser.id
     recentAchievements: osu.parseJson('json-user-recent-achievements').data
   ), document.getElementsByClassName('content')[0]
