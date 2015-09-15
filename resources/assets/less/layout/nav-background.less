@@ -18,19 +18,19 @@
 *
 */
 .nav-triangles {
-	width: 100%;
-	height: 720px;
-	position: absolute;
+  width: 100%;
+  height: 720px;
+  position: absolute;
 }
 
 .nav-triangles(@x) {
-	.at2x("/images/layout/nav-backgrounds/triangles-@{x}.png", 640px, 360px);
-	animation: nav-triangles-scroll (@x + 1)*5s infinite linear;
+  .at2x("/images/layout/nav-backgrounds/triangles-@{x}.png", 640px, 360px);
+  animation: nav-triangles-scroll (@x + 1)*5s infinite linear;
 }
 
 @keyframes nav-triangles-scroll {
-	0% { transform: translateY(0px); }
-	100% { transform: translateY(-360px); }
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-360px); }
 }
 
 #nav-triangles-1 { .nav-triangles(1); }
@@ -38,33 +38,33 @@
 #nav-triangles-3 { .nav-triangles(3); }
 
 .nav-background-colour(@colour) {
-	background-color: @colour;
+  background-color: @colour;
 
-	#nav-gradient-overlay {
-		background: linear-gradient(fadeout(@colour, 10%) 0%, @colour 75%, @colour 100%);
-	}
+  #nav-gradient-overlay {
+    background: linear-gradient(fadeout(@colour, 10%) 0%, @colour 75%, @colour 100%);
+  }
 }
 
 #nav-background {
-	width: 100%;
-	height: 90px;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+  width: 100%;
+  height: 90px;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 
-	#nav-gradient-overlay {
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		transition: all 1s ease-in-out;
-	}
+  #nav-gradient-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: all 1s ease-in-out;
+  }
 
-	.nav-background-colour(@pink-darker);
-	.store &, .beatmaps & { .nav-background-colour(@pink-darker); }
-	.ranking & { .nav-background-colour(@green-darker); }
-	.community & { .nav-background-colour(@pink-darker); }
-	.help & { .nav-background-colour(@yellow-darker); }
-	.home & { .nav-background-colour(@purple-darker); }
-	.error & { .nav-background-colour(@pink-darker); }
-	.user & { .nav-background-colour(@blue-darker); }
+  .nav-background-colour(@pink-darker);
+  .store &, .beatmaps & { .nav-background-colour(@pink-darker); }
+  .ranking & { .nav-background-colour(@green-darker); }
+  .community & { .nav-background-colour(@pink-darker); }
+  .help & { .nav-background-colour(@yellow-darker); }
+  .home & { .nav-background-colour(@purple-darker); }
+  .error & { .nav-background-colour(@pink-darker); }
+  .user & { .nav-background-colour(@blue-darker); }
 }

@@ -17,52 +17,52 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends("master", [
-	'current_section' => 'community',
-	'current_action' => 'profile',
-	'title' => trans('users.show.title', ['username' => $user->username]),
-	'pageDescription' => trans('users.show.page_description', ['username' => $user->username])
+    'current_section' => 'community',
+    'current_action' => 'profile',
+    'title' => trans('users.show.title', ['username' => $user->username]),
+    'pageDescription' => trans('users.show.page_description', ['username' => $user->username])
 ])
 
 @section("content")
-	{{--
-		this should content a server side react.js render which doesn't exist in hhvm
-		because the only library for it, which is experimental, requires PHP extension
-		which isn't supported by hhvm (v8js).
-	--}}
+    {{--
+        this should content a server side react.js render which doesn't exist in hhvm
+        because the only library for it, which is experimental, requires PHP extension
+        which isn't supported by hhvm (v8js).
+    --}}
 @endsection
 
 @section ("script")
-	@parent
+    @parent
 
-	<script data-turbolinks-eval="always">
-		window.userPlaymode = '{{ $user->playmode }}';
-		window.changeCoverUrl = '{{ route("account.update-profile-cover") }}';
-		window.changePageUrl = '{{ route("account.page") }}';
-	</script>
+    <script data-turbolinks-eval="always">
+        window.userPlaymode = '{{ $user->playmode }}';
+        window.changeCoverUrl = '{{ route("account.update-profile-cover") }}';
+        window.changePageUrl = '{{ route("account.page") }}';
+    </script>
 
-	<script id="json-user-achievements-counts" type="application/json">
-		{!! json_encode($achievementsCounts) !!}
-	</script>
+    <script id="json-user-achievements-counts" type="application/json">
+        {!! json_encode($achievementsCounts) !!}
+    </script>
 
-	<script id="json-user-recent-achievements" type="application/json">
-		{!! json_encode($recentAchievements) !!}
-	</script>
+    <script id="json-user-recent-achievements" type="application/json">
+        {!! json_encode($recentAchievements) !!}
+    </script>
 
-	<script id="json-user-info" type="application/json">
-		{!! json_encode($userArray) !!}
-	</script>
+    <script id="json-user-info" type="application/json">
+        {!! json_encode($userArray) !!}
+    </script>
 
-	<script id="json-user-stats" type="application/json">
-		{!! json_encode($allStats) !!}
-	</script>
+    <script id="json-user-stats" type="application/json">
+        {!! json_encode($allStats) !!}
+    </script>
 
-	<script id="json-user-page" type="application/json">
-		{!! json_encode(["page" => $userPage]) !!}
-	</script>
+    <script id="json-user-page" type="application/json">
+        {!! json_encode(["page" => $userPage]) !!}
+    </script>
 
-	<script id="json-post-editor-toolbar" type="application/json">
-		{!! json_encode(["html" => view()->make('forum._post_toolbar')->render()]) !!}
-	</script>
+    <script id="json-post-editor-toolbar" type="application/json">
+        {!! json_encode(["html" => view()->make('forum._post_toolbar')->render()]) !!}
+    </script>
 
-	<script src="{{ elixir("js/react/profile-page.js") }}" data-turbolinks-eval="always" data-turbolinks-track></script>
+    <script src="{{ elixir("js/react/profile-page.js") }}" data-turbolinks-eval="always" data-turbolinks-track></script>
 @endsection

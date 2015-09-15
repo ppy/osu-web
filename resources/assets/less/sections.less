@@ -20,31 +20,31 @@
 // main: compiled.less
 .section(@colour1, @colour2, @colour3, @colour4, @colour5)
 {
-	.header-background { background-color: @colour5; }
+  .header-background { background-color: @colour5; }
 
-	.light { color: @colour2; }
-	.sub2 { color: @colour1 !important; }
+  .light { color: @colour2; }
+  .sub2 { color: @colour1 !important; }
 
-	.lighter { color: @colour1; }
-	.light { color: @colour2; }
-	.normal { color: @colour3; }
-	.dark { color: @colour4; }
-	.darker { color: @colour5; }
+  .lighter { color: @colour1; }
+  .light { color: @colour2; }
+  .normal { color: @colour3; }
+  .dark { color: @colour4; }
+  .darker { color: @colour5; }
 
-	.background-lighter { background-color: @colour1; }
-	.background-light { background-color: @colour2; }
-	.background-normal { background-color: @colour3; }
-	.background-dark { background-color: @colour4; }
-	.background-darker { background-color: @colour5; }
+  .background-lighter { background-color: @colour1; }
+  .background-light { background-color: @colour2; }
+  .background-normal { background-color: @colour3; }
+  .background-dark { background-color: @colour4; }
+  .background-darker { background-color: @colour5; }
 
-	.selector a:hover { color: @colour3 !important; }
+  .selector a:hover { color: @colour3 !important; }
 
-	.gray_link a {
-		color: @gray;
-		&:hover {
-			color: @colour3;
-		}
-	}
+  .gray_link a {
+    color: @gray;
+    &:hover {
+      color: @colour3;
+    }
+  }
 }
 
 body.beatmaps, body.store  { .section(@pink-lighter, @pink-light, @pink, @pink-dark, @pink-darker); }

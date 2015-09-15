@@ -20,26 +20,26 @@
 
 @section("content")
 <div class="row-page wiki-header">
-	<div class="text">
-		<h1>osu!tournaments</h1>
-		<h2>A listing of all active officially-recognised tournaments</h2>
-	</div>
+    <div class="text">
+        <h1>osu!tournaments</h1>
+        <h2>A listing of all active officially-recognised tournaments</h2>
+    </div>
 </div>
 
 <div class='row-page tournaments'>
 
 @foreach($tournaments as $t)
 <div class='tournament clickable-row'>
-	<div class='mode'>
-		<i class="fa osu fa-{!! play_mode_string($t->play_mode) !!}-o"></i>
-	</div>
-	<div class='info'>
-		<div class='title'>{{ $t->name }}</div>
-		<div class='dates-tournament'>{{ $t->start_date->toDateString() }} ~ {{ $t->end_date->toDateString() }}</div>
-		<div class='dates-reg'>Registrations open {{ $t->signup_open->toDateString() }} through {{ $t->signup_close->toDateString() }}</div>
+    <div class='mode'>
+        <i class="fa osu fa-{!! play_mode_string($t->play_mode) !!}-o"></i>
+    </div>
+    <div class='info'>
+        <div class='title'>{{ $t->name }}</div>
+        <div class='dates-tournament'>{{ $t->start_date->toDateString() }} ~ {{ $t->end_date->toDateString() }}</div>
+        <div class='dates-reg'>Registrations open {{ $t->signup_open->toDateString() }} through {{ $t->signup_close->toDateString() }}</div>
 
-		<div><a href='{{ route("tournaments.show", $t) }}' class='clickable-row-link'>{{ number_format($t->registrations->count()) }} registered player(s).</a></div>
-	</div>
+        <div><a href='{{ route("tournaments.show", $t) }}' class='clickable-row-link'>{{ number_format($t->registrations->count()) }} registered player(s).</a></div>
+    </div>
 </div>
 @endforeach
 

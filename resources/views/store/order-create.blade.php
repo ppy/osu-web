@@ -17,10 +17,10 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 (function() {
-	$(document).off("ajax:complete", osu.hideLoadingOverlay)
+    $(document).off("ajax:complete", osu.hideLoadingOverlay)
 
-	$("#overlay").fadeIn()
-	osu.popup("Redirecting to Paypal...", "success")
+    $("#overlay").fadeIn()
+    osu.popup("Redirecting to Paypal...", "success")
 
-	$("#paypal-form").submit()
+    $("#paypal-form").submit()
 }).call(this);

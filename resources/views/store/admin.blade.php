@@ -30,93 +30,93 @@
 </style>
 
 <div class="row-page">
-	<div class="col-md-12">
-		<h1>Store Admin <small>{!! count($orders) !!} orders waiting to be shipped!</small></h1>
-	</div>
+    <div class="col-md-12">
+        <h1>Store Admin <small>{!! count($orders) !!} orders waiting to be shipped!</small></h1>
+    </div>
 
-	<div class="col-sm-12">
-		<div class="panel panel-info">
-			<div class="panel-heading">
-				<h3 class="panel-title">{{ trans("store.admin.warehouse") }}</h3>
-			</div>
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ trans("store.admin.warehouse") }}</h3>
+            </div>
 
-			<table class="table table-striped">
-				<thead>
-					<th>{{ trans("store.product.name") }}</th>
-					<th>{{ trans("store.order.item.quantity") }}</th>
-				</thead>
-				<tbody>
-					@foreach ($ordersItemsQuantities as $ordersItemsQuantity)
-						<tr>
-							<td>{{ $ordersItemsQuantity->name }}</td>
-							<td>{{ $ordersItemsQuantity->quantity }}</td>
-						</tr>
-					@endforeach
-				</tbody>
-			</table>
-		</div>
-	</div>
+            <table class="table table-striped">
+                <thead>
+                    <th>{{ trans("store.product.name") }}</th>
+                    <th>{{ trans("store.order.item.quantity") }}</th>
+                </thead>
+                <tbody>
+                    @foreach ($ordersItemsQuantities as $ordersItemsQuantity)
+                        <tr>
+                            <td>{{ $ordersItemsQuantity->name }}</td>
+                            <td>{{ $ordersItemsQuantity->quantity }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-	@foreach ($orders as $o)
-	{!! Form::open(["url" => "store/admin", "data-remote" => true]) !!}
-	{!! Form::hidden('id', $o->order_id) !!}
-	<div class="col-md-12">
+    @foreach ($orders as $o)
+    {!! Form::open(["url" => "store/admin", "data-remote" => true]) !!}
+    {!! Form::hidden('id', $o->order_id) !!}
+    <div class="col-md-12">
 
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title">Order #{{ $o->order_id }} for
-				<small>
-					{{ $o->user ? $o->user->username : '-' }} ({{ $o->user->user_email }})
-					<a href='/store/invoice/{{ $o->order_id }}'>invoice</a>
-					<a href='/store/invoice/{{ $o->order_id }}?copies=2' target='_blank'>(print)</a>
-				</small>
-				</h3>
-			</div>
-			<div class="panel-body">
-				<div class='row'>
-					<div class='col-md-8'>
-						<div class="form-group">
-						@if ($o->status === 'paid' || $o->status === 'shipped')
-							{!! Form::label('order[status]', 'Status') !!}
-							{!! Form::select('order[status]', ['paid' => 'Paid', 'shipped' => 'Shipped'], $o->status, ['class' => 'js-auto-submit form-control']) !!}
-						@else
-							<h1 style='text-transform: uppercase;'>{{ $o->status }}</h1>
-						@endif
-						</div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Order #{{ $o->order_id }} for
+                <small>
+                    {{ $o->user ? $o->user->username : '-' }} ({{ $o->user->user_email }})
+                    <a href='/store/invoice/{{ $o->order_id }}'>invoice</a>
+                    <a href='/store/invoice/{{ $o->order_id }}?copies=2' target='_blank'>(print)</a>
+                </small>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class='row'>
+                    <div class='col-md-8'>
+                        <div class="form-group">
+                        @if ($o->status === 'paid' || $o->status === 'shipped')
+                            {!! Form::label('order[status]', 'Status') !!}
+                            {!! Form::select('order[status]', ['paid' => 'Paid', 'shipped' => 'Shipped'], $o->status, ['class' => 'js-auto-submit form-control']) !!}
+                        @else
+                            <h1 style='text-transform: uppercase;'>{{ $o->status }}</h1>
+                        @endif
+                        </div>
 
-						<div class="form-group">
-						{!! Form::label('order[tracking_code]', 'Tracking/Notes') !!}
-						@if ($o->tracking_code)
-						<a target="_blank" href="https://trackings.post.japanpost.jp/services/srv/search/direct?searchKind=S004&locale=en&reqCodeNo1={!! $o->tracking_code !!}">lookup</a>
-						@endif
+                        <div class="form-group">
+                        {!! Form::label('order[tracking_code]', 'Tracking/Notes') !!}
+                        @if ($o->tracking_code)
+                        <a target="_blank" href="https://trackings.post.japanpost.jp/services/srv/search/direct?searchKind=S004&locale=en&reqCodeNo1={!! $o->tracking_code !!}">lookup</a>
+                        @endif
 
-						{!! Form::text('order[tracking_code]', $o->tracking_code, ['class' => 'js-auto-submit form-control']) !!}
+                        {!! Form::text('order[tracking_code]', $o->tracking_code, ['class' => 'js-auto-submit form-control']) !!}
 
-						</div>
-					</div>
+                        </div>
+                    </div>
 
-					@include('store.objects.address', ['data' => $o->address])
-				</div>
-			</div>
+                    @include('store.objects.address', ['data' => $o->address])
+                </div>
+            </div>
 
-			<table class='table order-line-items {{ $table_class or "table-striped" }}'>
-				<tbody>
-					@foreach($o->items as $i)
-					<tr>
-						<td class="product_{{ $i->product_id }}">
-							@if ($i->quantity > 1)
-								<strong>{{ $i->quantity }} x {{ $i->getDisplayName() }}</strong>
-							@else
-								{{ $i->quantity }} x {{ $i->getDisplayName() }}
-							@endif
-						</td>
-					</tr>
-					@endforeach
-				</tbody>
-			</table>
-		</div>
-	</div>
-	{!! Form::close() !!}
-	@endforeach
+            <table class='table order-line-items {{ $table_class or "table-striped" }}'>
+                <tbody>
+                    @foreach($o->items as $i)
+                    <tr>
+                        <td class="product_{{ $i->product_id }}">
+                            @if ($i->quantity > 1)
+                                <strong>{{ $i->quantity }} x {{ $i->getDisplayName() }}</strong>
+                            @else
+                                {{ $i->quantity }} x {{ $i->getDisplayName() }}
+                            @endif
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {!! Form::close() !!}
+    @endforeach
 </div>
 @stop

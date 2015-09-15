@@ -65,16 +65,16 @@
 @facebook-colour: #3b5998;
 
 .colours(@name) {
-	@lighter: "@{name}-lighter";
-	@light: "@{name}-light";
-	@dark: "@{name}-dark";
-	@darker: "@{name}-darker";
+  @lighter: "@{name}-lighter";
+  @light: "@{name}-light";
+  @dark: "@{name}-dark";
+  @darker: "@{name}-darker";
 
-	.@{name}-lighter { color: @@lighter !important; }
-	.@{name}-light { color: @@light !important; }
-	.@{name}-normal { color: @@name !important; }
-	.@{name}-dark { color: @@dark !important; }
-	.@{name}-darker { color: @@darker !important; }
+  .@{name}-lighter { color: @@lighter !important; }
+  .@{name}-light { color: @@light !important; }
+  .@{name}-normal { color: @@name !important; }
+  .@{name}-dark { color: @@dark !important; }
+  .@{name}-darker { color: @@darker !important; }
 }
 
 .colours(~"pink");

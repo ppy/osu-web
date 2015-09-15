@@ -21,28 +21,28 @@
 @section("content")
 
 <div class="row">
-	<div class="col-md-6">
-		<h4><a href="/beatmaps/modding">Modding Portal</a> » Beatmap Discussion</h4>
-		<h3>{{{$beatmapSet->title}}}</h3>
-		<h4 class="text-muted">{{{$beatmapSet->artist}}} <small>mapped by {{{$beatmapSet->creator}}}</small></h4>
-		<style>
+    <div class="col-md-6">
+        <h4><a href="/beatmaps/modding">Modding Portal</a> » Beatmap Discussion</h4>
+        <h3>{{{$beatmapSet->title}}}</h3>
+        <h4 class="text-muted">{{{$beatmapSet->artist}}} <small>mapped by {{{$beatmapSet->creator}}}</small></h4>
+        <style>
 
-		</style>
-		<i data-target="osu" class="score-selector fa fa-2x fa-osu-o osu"></i>
-		<i data-target="taiko" class="score-selector fa fa-2x fa-taiko-o osu"></i>
-		<i data-target="ctb" class="score-selector fa fa-2x fa-ctb-o osu"></i>
-		<i data-target="mania" class="score-selector fa fa-2x fa-mania-o osu"></i>
-	</div>
-	<div class="col-md-6 visible-md visible-lg">
-		@include("objects.beatmap-panel", ["beatmap" => $beatmapSet])
-	</div>
+        </style>
+        <i data-target="osu" class="score-selector fa fa-2x fa-osu-o osu"></i>
+        <i data-target="taiko" class="score-selector fa fa-2x fa-taiko-o osu"></i>
+        <i data-target="ctb" class="score-selector fa fa-2x fa-ctb-o osu"></i>
+        <i data-target="mania" class="score-selector fa fa-2x fa-mania-o osu"></i>
+    </div>
+    <div class="col-md-6 visible-md visible-lg">
+        @include("objects.beatmap-panel", ["beatmap" => $beatmapSet])
+    </div>
 </div>
 
 <div id="topics"></div>
 @stop
 
 @section ('script')
-	@parent
+    @parent
 
-	<script src="{{ elixir("js/jsx/modding_react.js") }}" data-turbolinks-eval="always" data-turbolinks-track></script>
+    <script src="{{ elixir("js/jsx/modding_react.js") }}" data-turbolinks-eval="always" data-turbolinks-track></script>
 @endsection

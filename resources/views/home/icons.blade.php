@@ -20,27 +20,27 @@
 
 @section("content")
 
-	<div class="row-page"><div class="col-sm-12">
-		<h1>Icons</h1>
+    <div class="row-page"><div class="col-sm-12">
+        <h1>Icons</h1>
 
-		@foreach($icons as $icon)
+        @foreach($icons as $icon)
 
-			<div class="row">
-				<div class="col-xs-7">
-					<i class="fa osu fa-5x fa-{{ $icon }}"></i>
-					<i class="fa osu fa-4x fa-{{ $icon }}"></i>
-					<i class="fa osu fa-3x fa-{{ $icon }}"></i>
-					<i class="fa osu fa-2x fa-{{ $icon }}"></i>
-					<i class="fa osu fa-lg fa-{{ $icon }}"></i>
-					<i class="fa osu fa-fw fa-{{ $icon }}"></i>
-				</div>
-				<div class="col-xs-5">
-					<h3>fa-{{ $icon }}</h3>
-				</div>
-			</div>
+            <div class="row">
+                <div class="col-xs-7">
+                    <i class="fa osu fa-5x fa-{{ $icon }}"></i>
+                    <i class="fa osu fa-4x fa-{{ $icon }}"></i>
+                    <i class="fa osu fa-3x fa-{{ $icon }}"></i>
+                    <i class="fa osu fa-2x fa-{{ $icon }}"></i>
+                    <i class="fa osu fa-lg fa-{{ $icon }}"></i>
+                    <i class="fa osu fa-fw fa-{{ $icon }}"></i>
+                </div>
+                <div class="col-xs-5">
+                    <h3>fa-{{ $icon }}</h3>
+                </div>
+            </div>
 
-		@endforeach
+        @endforeach
 
-	</div></div>
+    </div></div>
 
 @stop

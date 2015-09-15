@@ -17,47 +17,47 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <table class='table order-line-items {{{ $table_class or "table-striped" }}}'>
-	<tbody>
-		@foreach($order->items as $i)
-		<tr>
-			<td>{{{$i->getDisplayName()}}}</td>
-			@if(isset($weight))
-				@if($i->product->weight !== null)
-					<td>{{{$i->product->weight}}}g</td>
-				@else
-					<td></td>
-				@endif
-			@endif
-			<td>{{{item_count($i->quantity)}}}</td>
-			<td class="text-right">{{{currency($i->subtotal())}}}</td>
-		</tr>
-		@endforeach
-	</tbody>
+    <tbody>
+        @foreach($order->items as $i)
+        <tr>
+            <td>{{{$i->getDisplayName()}}}</td>
+            @if(isset($weight))
+                @if($i->product->weight !== null)
+                    <td>{{{$i->product->weight}}}g</td>
+                @else
+                    <td></td>
+                @endif
+            @endif
+            <td>{{{item_count($i->quantity)}}}</td>
+            <td class="text-right">{{{currency($i->subtotal())}}}</td>
+        </tr>
+        @endforeach
+    </tbody>
 
-	<tfoot>
-		@if((!isset($shipping) || $shipping === true) && $order->shipping > 0)
-		<tr class="warning">
-			<td>Subtotal</td>
-			<td></td>
-			@if(isset($weight))<td></td>@endif
-			<td class="text-right">{{{currency($order->getSubtotal())}}}</td>
-		</tr>
-		<tr class="warning">
-			<td>Shipping &amp; Handling</td>
-			<td></td>
-			@if(isset($weight))<td></td>@endif
-			<td class="text-right">{{{currency($order->shipping)}}}</td>
-		</tr>
-		@endif
-		<tr class="warning total">
-			<td>Total</td>
-			<td></td>
-			@if(isset($weight))<td></td>@endif
-			@if((!isset($shipping) || $shipping === true) && $order->shipping > 0)
-			<td class="text-right">{{{currency($order->getTotal())}}}</td>
-			@else
-			<td class="text-right">{{{currency($order->getSubtotal())}}}</td>
-			@endif
-		</tr>
-	</tfoot>
+    <tfoot>
+        @if((!isset($shipping) || $shipping === true) && $order->shipping > 0)
+        <tr class="warning">
+            <td>Subtotal</td>
+            <td></td>
+            @if(isset($weight))<td></td>@endif
+            <td class="text-right">{{{currency($order->getSubtotal())}}}</td>
+        </tr>
+        <tr class="warning">
+            <td>Shipping &amp; Handling</td>
+            <td></td>
+            @if(isset($weight))<td></td>@endif
+            <td class="text-right">{{{currency($order->shipping)}}}</td>
+        </tr>
+        @endif
+        <tr class="warning total">
+            <td>Total</td>
+            <td></td>
+            @if(isset($weight))<td></td>@endif
+            @if((!isset($shipping) || $shipping === true) && $order->shipping > 0)
+            <td class="text-right">{{{currency($order->getTotal())}}}</td>
+            @else
+            <td class="text-right">{{{currency($order->getSubtotal())}}}</td>
+            @endif
+        </tr>
+    </tfoot>
 </table>

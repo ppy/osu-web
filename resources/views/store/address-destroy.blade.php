@@ -17,6 +17,6 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 (function() {
-	var $el = $("#address-{{ $address_id }}")
-	$el.slideUp(function() { $el.remove() })
+    var $el = $("#address-{{ $address_id }}")
+    $el.slideUp(function() { $el.remove() })
 }).call(this)
