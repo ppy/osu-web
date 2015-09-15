@@ -87,9 +87,9 @@
                         <h2 class="modal-body__title modal-body__title">{{ trans("users.login.title") }}</h2>
 
                         {!! Form::open(["url" => route("users.login"), "id" => "login-form", "class" => "modal-body__form form", "data-remote" => true]) !!}
-                            <div class="form__input-group input-group">
-                                <input class="input-group__control form-control" name="username" type="text" placeholder="{{ trans("users.login.username") }}" required>
-                                <input class="input-group__control form-control" name="password" type="password" placeholder="{{ trans("users.login.password") }}" required>
+                            <div class="form__input-group form-group form-group--compact">
+                                <input class="form-group__control form-control form-group__control--compact" name="username" type="text" placeholder="{{ trans("users.login.username") }}" required>
+                                <input class="form-group__control form-control form-group__control--compact" name="password" type="password" placeholder="{{ trans("users.login.password") }}" required>
                             </div>
 
                             <button class="btn-osu btn-osu-default form__button" type="submit"><i class="fa fa-sign-in"></i></button>
