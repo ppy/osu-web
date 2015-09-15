@@ -40,8 +40,8 @@ class UserTransformer extends Fractal\TransformerAbstract
             'username' => $user->username,
             'joinDate' => display_regdate($user),
             'country' => [
-                "code" => $user->country_acronym,
-                "name" => $user->countryName(),
+                'code' => $user->country_acronym,
+                'name' => $user->countryName(),
             ],
             'age' => $user->age,
             'avatarUrl' => $user->user_avatar,
