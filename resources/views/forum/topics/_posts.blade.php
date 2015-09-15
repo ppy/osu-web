@@ -17,13 +17,13 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @foreach($posts as $post)
-	@include("forum.topics._post", [
-		"post" => $post,
-		"options" => [
-			"deleteLink" => $post->canBeDeletedBy(Auth::user(), null, null, false),
-			"editLink" => $post->canBeEditedBy(Auth::user()),
-			"postPosition" => $postsPosition[$post->post_id],
-			"replyLink" => $topic->canBeRepliedBy(Auth::user()),
-		],
-	])
+    @include("forum.topics._post", [
+        "post" => $post,
+        "options" => [
+            "deleteLink" => $post->canBeDeletedBy(Auth::user(), null, null, false),
+            "editLink" => $post->canBeEditedBy(Auth::user()),
+            "postPosition" => $postsPosition[$post->post_id],
+            "replyLink" => $topic->canBeRepliedBy(Auth::user()),
+        ],
+    ])
 @endforeach

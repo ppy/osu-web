@@ -18,25 +18,25 @@
 --}}
 <br>
 <div class="row">
-	<div class="col-xs-7 comment-section">
-		@include("beatmaps.mods.comment-frame")
+    <div class="col-xs-7 comment-section">
+        @include("beatmaps.mods.comment-frame")
 
-		<div class="col-xs-12 comments-missing" style="display: none">
-			<h3 class="text-center text-muted">
-				{{{ trans("beatmaps.modding.comments.missing") }}}
-			</h3>
-		</div>
+        <div class="col-xs-12 comments-missing" style="display: none">
+            <h3 class="text-center text-muted">
+                {{{ trans("beatmaps.modding.comments.missing") }}}
+            </h3>
+        </div>
 
-		<div id="comments" class="live-object" data-uri="/api/mod-comments/{{ $set->beatmapset_id }}"></div>
-	</div>
-	<div class="col-xs-5">
-		<table class="table table-condensed table-hover" id="stats-table">
-			<tbody>
-				<tr class="active">
-					<td>All</td>
-					<td class="text-right"><span class="green-dark"><i class="fa fa-check-circle-o"></i> <span id="session-resolved">0</span></span> <span class="pink-darker"><i class="fa fa-times-circle-o"></i> <span id="session-pending">0</span></span></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+        <div id="comments" class="live-object" data-uri="/api/mod-comments/{{ $set->beatmapset_id }}"></div>
+    </div>
+    <div class="col-xs-5">
+        <table class="table table-condensed table-hover" id="stats-table">
+            <tbody>
+                <tr class="active">
+                    <td>All</td>
+                    <td class="text-right"><span class="green-dark"><i class="fa fa-check-circle-o"></i> <span id="session-resolved">0</span></span> <span class="pink-darker"><i class="fa fa-times-circle-o"></i> <span id="session-pending">0</span></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

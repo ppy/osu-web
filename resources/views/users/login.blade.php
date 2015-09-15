@@ -20,12 +20,12 @@
 
 @section("content")
 <div class="row-page">
-	<h1>Please login to continue</h1>
+    <h1>Please login to continue</h1>
 </div>
 @endsection
 
 @section("script")
 <script>
-	window.showLoginModal = true
+    window.showLoginModal = true
 </script>
 @endsection

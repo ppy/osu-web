@@ -19,40 +19,40 @@
 */
 
 .quick-info {
-	
-	// Elements
-	&__level {
-		font-style: normal;
-		color: #555;
-		font-size: 20px;
-		font-weight: 300;
-		margin: 0;
-		width: 100%;
-	}
 
-	&__roles {
-		flex: 1;
-	}
+  // Elements
+  &__level {
+    font-style: normal;
+    color: #555;
+    font-size: 20px;
+    font-weight: 300;
+    margin: 0;
+    width: 100%;
+  }
 
-	&__statistics {
-		display: flex;
-		flex-flow: column nowrap;
-		font-size: 12px;
-		font-weight: 300;
-		margin: 0;
-		padding: @grid-gutter-width/4 0 0 0;
-		width: 100%;
+  &__roles {
+    flex: 1;
+  }
 
-		> * {
-			line-height: 16px;
-			display: flex;
-			justify-content: space-between;
+  &__statistics {
+    display: flex;
+    flex-flow: column nowrap;
+    font-size: 12px;
+    font-weight: 300;
+    margin: 0;
+    padding: @grid-gutter-width/4 0 0 0;
+    width: 100%;
 
-			.text-right {
-				font-weight: 600;
-			}
-		}
-	}
+    > * {
+      line-height: 16px;
+      display: flex;
+      justify-content: space-between;
 
-	// Modifiers
+      .text-right {
+        font-weight: 600;
+      }
+    }
+  }
+
+  // Modifiers
 }

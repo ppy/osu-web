@@ -19,9 +19,9 @@
 @extends("master")
 
 @section("content")
-	<div class="row-page">
-		<div class="col-xs-12">
-			@include(i18n_view("users._disabled_message"))
-		</div>
-	</div>
+    <div class="row-page">
+        <div class="col-xs-12">
+            @include(i18n_view("users._disabled_message"))
+        </div>
+    </div>
 @endsection

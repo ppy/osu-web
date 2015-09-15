@@ -20,246 +20,246 @@
 // main: compiled.less
 
 #beatmaps {
-	border-top: solid 1px @pink-light;
-	/*background: @pink-lighter;*/
-	text-align: center;
-	padding: 5px 0;
+  border-top: solid 1px @pink-light;
+  /*background: @pink-lighter;*/
+  text-align: center;
+  padding: 5px 0;
 
-	margin: 0px -15px;
+  margin: 0px -15px;
 
-	.beatmap {
-		margin: 5px;
-	}
+  .beatmap {
+    margin: 5px;
+  }
 }
 
 .search {
-	padding: 0px 50px 10px 50px;
+  padding: 0px 50px 10px 50px;
 
-	.box
-	{
-		font-size: 100%;
+  .box
+  {
+    font-size: 100%;
 
-		margin: 30px 0 30px 0;
+    margin: 30px 0 30px 0;
 
-		input:focus {
-			outline: 0;
-			border: solid 1px @pink-light;
-			box-shadow: 0 0 10px @pink-lighter;
-		}
+    input:focus {
+      outline: 0;
+      border: solid 1px @pink-light;
+      box-shadow: 0 0 10px @pink-lighter;
+    }
 
-		input {
-			color: @beatmaps_colour;
-			border: solid 1px #cccccc;
-			padding: 10px;
-			margin: -10px;
-			width: 100%;
-			font-size: 125%;
-		}
+    input {
+      color: @beatmaps_colour;
+      border: solid 1px #cccccc;
+      padding: 10px;
+      margin: -10px;
+      width: 100%;
+      font-size: 125%;
+    }
 
-		i {
-			font-size: 120%;
-			position: absolute;
-			right: 0;
-			top: 0;
-			padding: 5px 25px 5px 5px;
-		}
-	}
+    i {
+      font-size: 120%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 5px 25px 5px 5px;
+    }
+  }
 
-	.more {
-		.text-center;
-		margin-top: 20px;
-	}
+  .more {
+    .text-center;
+    margin-top: 20px;
+  }
 }
 
 .beatmap {
-	display: inline-block;
+  display: inline-block;
 
-	text-align: left;
+  text-align: left;
 
-	width: 400px;
-	height: 175px;
+  width: 400px;
+  height: 175px;
 
-	border-radius: 3px;
+  border-radius: 3px;
 
-	.box_shadow;
+  .box_shadow;
 
-	background: #ffffff;
+  background: #ffffff;
 
-	cursor: pointer;
+  cursor: pointer;
 
-	&:hover {
-		z-index: 500;
-		/*.stats { color: @pink; }*/
-	}
+  &:hover {
+    z-index: 500;
+    /*.stats { color: @pink; }*/
+  }
 
-	.thumbnail {
-		position: absolute;
-		left: 0px;
-		top: 0px;
+  .thumbnail {
+    position: absolute;
+    left: 0px;
+    top: 0px;
 
-		border-top-left-radius: 3px;
-		border-top-right-radius: 3px;
-		border-bottom-left-radius: 0px;
-		border-bottom-right-radius: 0px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
 
-		border: none;
+    border: none;
 
-		width: 100%;
-		height: 100px;
+    width: 100%;
+    height: 100px;
 
-		background-position: top center !important;
-		background-repeat:no-repeat !important;
-		background-size: 100% auto !important;
+    background-position: top center !important;
+    background-repeat:no-repeat !important;
+    background-size: 100% auto !important;
 
-		text-shadow: 0px 1px 2px fade(#000, 75%);
+    text-shadow: 0px 1px 2px fade(#000, 75%);
         font-weight: 400;
         color: #ffffff;
         font-style: italic;
 
         .bottom_left {
-        	position: absolute;
-        	bottom: 10px;
-        	left: 10px;
+          position: absolute;
+          bottom: 10px;
+          left: 10px;
 
-        	.title {
-        		font-size: 130%;
-        	}
+          .title {
+            font-size: 130%;
+          }
 
-        	.artist {
-        	}
+          .artist {
+          }
         }
 
         .top_right {
-        	position: absolute;
-        	top: 10px;
-        	right: 10px;
+          position: absolute;
+          top: 10px;
+          right: 10px;
 
-        	.stats {
-        		text-align: right;
+          .stats {
+            text-align: right;
 
-				i { padding-right: 5px; }
-			}
+        i { padding-right: 5px; }
+      }
         }
-	}
+  }
 
-	> .bottom_left {
-		position: absolute;
-		bottom: 40px;
-		font-size: 70%;
-		left: 10px;
-	}
+  > .bottom_left {
+    position: absolute;
+    bottom: 40px;
+    font-size: 70%;
+    left: 10px;
+  }
 
-	> .bottom_right {
-		position: absolute;
-		bottom: 40px;
-		right: 10px;
+  > .bottom_right {
+    position: absolute;
+    bottom: 40px;
+    right: 10px;
 
-		opacity: 0;
-	}
+    opacity: 0;
+  }
 
-	&:hover .show_on_hover {
-		opacity: 1 !important;
-	}
+  &:hover .show_on_hover {
+    opacity: 1 !important;
+  }
 }
 
 //modding interface (why is this in beatmaps.less?)
 
 .scrubbar {
-	margin: 35px 0 20px 0;
-	background: #cacaca;
-	width: 100%;
-	height: 80px;
+  margin: 35px 0 20px 0;
+  background: #cacaca;
+  width: 100%;
+  height: 80px;
 }
 
 .mod-stats {
-	margin: 15px;
+  margin: 15px;
 }
 
 .counter {
-	text-align: center;
-	display: inline-block;
-	width: 100%;
-	height: 65px;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  height: 65px;
 
-	.box_shadow;
+  .box_shadow;
 
-	padding-left: 0;
-	padding-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 
-	.title {
-		font-size: 80%;
-		line-height: 25px;
-	}
+  .title {
+    font-size: 80%;
+    line-height: 25px;
+  }
 
-	.number {
-		font-size: 140%;
-	}
+  .number {
+    font-size: 140%;
+  }
 
-	&.resolved {
-		color: @green;
-	}
+  &.resolved {
+    color: @green;
+  }
 
-	&.pending {
-		color: @pink;
-	}
+  &.pending {
+    color: @pink;
+  }
 }
 
 .filter_bar {
-	margin: 30px;
-	.large;
+  margin: 30px;
+  .large;
 }
 
 .parent {
-	padding-left: 0;
+  padding-left: 0;
 }
 
 .topic-icon {
-	position: absolute;
-	margin-left: -46px;
-	margin-top: -32px;
+  position: absolute;
+  margin-left: -46px;
+  margin-top: -32px;
 }
 
 .post {
-	padding: 5px 5px 5px 0;
-	margin-bottom: 15px;
+  padding: 5px 5px 5px 0;
+  margin-bottom: 15px;
 
-	&.toplevel {
-		.box_shadow;
-	}
+  &.toplevel {
+    .box_shadow;
+  }
 
-	&.form {
-		box-shadow: none;
-	}
+  &.form {
+    box-shadow: none;
+  }
 
-	&.child {
-		margin-left: 50px;
-		font-size: 90%;
-	}
+  &.child {
+    margin-left: 50px;
+    font-size: 90%;
+  }
 
-	.child {
-		font-size: 90%;
-		margin-left: 40px;
-		margin-top: 15px;
-		padding-right: 10px;
-		padding-left: 0;
-	}
+  .child {
+    font-size: 90%;
+    margin-left: 40px;
+    margin-top: 15px;
+    padding-right: 10px;
+    padding-left: 0;
+  }
 
-	.post-text {
-		padding-left: 0;
-		padding-right: 0;
-	}
+  .post-text {
+    padding-left: 0;
+    padding-right: 0;
+  }
 
-	.parent, .post-icon {
-		.praise { color: @blue; }
-		.suggestion { color: @yellow-dark; }
-		.problem { color: @pink; }
-		.resolved { color: @green-dark; }
-	}
+  .parent, .post-icon {
+    .praise { color: @blue; }
+    .suggestion { color: @yellow-dark; }
+    .problem { color: @pink; }
+    .resolved { color: @green-dark; }
+  }
 
-	.child-avatar {
-		padding-left: 0;
-		padding-right: 0;
-	}
+  .child-avatar {
+    padding-left: 0;
+    padding-right: 0;
+  }
 
 }
 
@@ -273,17 +273,17 @@
 }
 
 .score-selector {
-	cursor: pointer;
+  cursor: pointer;
 }
 .score-selector:hover {
-	color: rgb(238, 51, 153) !important;
+  color: rgb(238, 51, 153) !important;
 }
 .unranked {
-	color: rgb(219, 219, 219);
+  color: rgb(219, 219, 219);
 }
 .unranked:hover {
-	color: rgb(128, 128, 128) !important;
+  color: rgb(128, 128, 128) !important;
 }
 .grey {
-	color: rgb(128, 128, 128) !important;
+  color: rgb(128, 128, 128) !important;
 }

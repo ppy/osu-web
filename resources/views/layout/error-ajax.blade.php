@@ -17,5 +17,5 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 (function() {
-	osu.replacePage({!! json_encode(view()->make("layout.error")->render()) !!})
+    osu.replacePage({!! json_encode(view()->make("layout.error")->render()) !!})
 }).call(this)

@@ -17,14 +17,14 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="radial-progress {{ isset($extraRadialProgressClasses) ? $extraRadialProgressClasses : "" }}" data-progress="0">
-	<div class="circle">
-		<div class="mask full">
-			<div class="fill"></div>
-		</div>
-		<div class="mask half">
-			<div class="fill"></div>
-			<div class="fill fix"></div>
-		</div>
-	</div>
-	<div class="inset"></div>
+    <div class="circle">
+        <div class="mask full">
+            <div class="fill"></div>
+        </div>
+        <div class="mask half">
+            <div class="fill"></div>
+            <div class="fill fix"></div>
+        </div>
+    </div>
+    <div class="inset"></div>
 </div>

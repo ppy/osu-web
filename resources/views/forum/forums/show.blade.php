@@ -19,38 +19,38 @@
 @extends("master", ["body_additional_classes" => "forum-colour " . $forum->categorySlug()])
 
 @section("content")
-	<div class="row-page forum-header">
-		<div>
-			<ol class="breadcrumb forums-breadcrumb">
-				@include("forum.forums._nav", ["forum_parents" => $forum->forum_parents])
-			</ol>
+    <div class="row-page forum-header">
+        <div>
+            <ol class="breadcrumb forums-breadcrumb">
+                @include("forum.forums._nav", ["forum_parents" => $forum->forum_parents])
+            </ol>
 
-			<h1>
-				<a href="{{ route("forum.forums.show", $forum->forum_id) }}">
-					{{ $forum->forum_name }}
-				</a>
-			</h1>
-		</div>
-	</div>
+            <h1>
+                <a href="{{ route("forum.forums.show", $forum->forum_id) }}">
+                    {{ $forum->forum_name }}
+                </a>
+            </h1>
+        </div>
+    </div>
 
-	<div class="row-page">
-		@if ($forum->subforums()->exists())
-			<h2>{{ trans("forum.subforums") }}</h2>
-			@include("forum.forums._forums", ["forums" => $forum->subforums])
-		@endif
+    <div class="row-page">
+        @if ($forum->subforums()->exists())
+            <h2>{{ trans("forum.subforums") }}</h2>
+            @include("forum.forums._forums", ["forums" => $forum->subforums])
+        @endif
 
-		@if (count($pinnedTopics) > 0)
-			<div class="topics-container">
-				<h2>{{ trans("forum.pinned_topics") }}</h2>
-				@include("forum.forums._topics", ["topics" => $pinnedTopics, "withNewTopicLink" => false])
-			</div>
-		@endif
+        @if (count($pinnedTopics) > 0)
+            <div class="topics-container">
+                <h2>{{ trans("forum.pinned_topics") }}</h2>
+                @include("forum.forums._topics", ["topics" => $pinnedTopics, "withNewTopicLink" => false])
+            </div>
+        @endif
 
-		<div class="topics-container">
-			<h2>{{ trans("forum.topics") }}</h2>
-			@include("forum.forums._topics", ["topics" => $topics, "withNewTopicLink" => $forum->canHavePost()])
-		</div>
+        <div class="topics-container">
+            <h2>{{ trans("forum.topics") }}</h2>
+            @include("forum.forums._topics", ["topics" => $topics, "withNewTopicLink" => $forum->canHavePost()])
+        </div>
 
-		@include("forum._pagination", ["object" => $topics])
-	</div>
+        @include("forum._pagination", ["object" => $topics])
+    </div>
 @endsection

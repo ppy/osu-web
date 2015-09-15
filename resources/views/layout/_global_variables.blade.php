@@ -17,10 +17,10 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <script data-turbolinks-eval="always">
-	var
-		STATIC_DOMAIN = "{{ Config::get("osu.static", "//s.ppy.sh") }}",
-		csrf = "{{ csrf_token() }}",
-		section = "{{ $current_section }}",
-		page = "{{ $current_action }}",
-		user =  {!! Auth::user() ? Auth::user()->toJson() : 'null' !!};
+    var
+        STATIC_DOMAIN = "{{ Config::get("osu.static", "//s.ppy.sh") }}",
+        csrf = "{{ csrf_token() }}",
+        section = "{{ $current_section }}",
+        page = "{{ $current_action }}",
+        user =  {!! Auth::user() ? Auth::user()->toJson() : 'null' !!};
 </script>
