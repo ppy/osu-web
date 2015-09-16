@@ -34,16 +34,6 @@ class @ProfilePage extends React.Component
       isCoverUpdating: false
 
 
-  coverChangeDefault: (_e, coverId) =>
-    $.ajax window.changeCoverUrl,
-      method: 'PUT'
-      data:
-        cover_id: coverId
-      dataType: 'json'
-    .done (userData) =>
-      $(document).trigger 'user.update', userData.data
-
-
   coverUploadState: (_e, state) =>
     @setState isCoverUpdating: state
 
@@ -67,7 +57,6 @@ class @ProfilePage extends React.Component
   componentDidMount: =>
     @_removeListeners()
     $(document).on 'user.update', @userUpdate
-    $(document).on 'profile.cover.select', @coverChangeDefault
     $(document).on 'profile.cover.upload.state', @coverUploadState
     $(document).on 'profile.user-page.update', @userPageUpdate
 

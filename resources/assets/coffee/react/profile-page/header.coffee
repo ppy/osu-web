@@ -21,7 +21,14 @@ el = React.createElement
 class CoverSelection extends React.Component
   onClick: =>
     return if @props.url == null
-    $(document).trigger 'profile.cover.select', @props.name
+
+    $.ajax window.changeCoverUrl,
+      method: 'put'
+      data:
+        cover_id: @props.name
+      dataType: 'json'
+    .done (userData) ->
+      $(document).trigger 'user.update', userData.data
 
 
   onMouseEnter: =>
