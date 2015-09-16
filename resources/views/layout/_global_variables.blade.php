@@ -21,6 +21,8 @@
     var csrf = "{{ csrf_token() }}";
     var section = "{{ $current_section }}";
     var page = "{{ $current_action }}";
+    var logoutUrl = "{{ route("users.logout") }}";
+    var helpUrl = "{{ route("wiki") }}";
 </script>
 
 @include ('layout._current_user')

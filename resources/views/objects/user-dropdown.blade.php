@@ -20,8 +20,10 @@
 @if (Auth::check())
     <div id="nav-user-bar">
 
+        {{--
         <a href="#search" class="nav-user-search"><i class="fa fa-search"></i></a>
         <a href="#status" class="nav-user-status"><i class="fa fa-circle-o"></i></a>
+        --}}
         <a href="{{ route("users.show", Auth::user()) }}">{{ Auth::user()->username }}</a>
     </div>
 

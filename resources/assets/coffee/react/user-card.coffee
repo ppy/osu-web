@@ -62,7 +62,7 @@ class @UserCard extends React.Component
         if stats.rank.isRanked
           el 'div', className: 'modal-header__ranking rankinginfo-small',
             el 'span', className: 'rankinginfo-small__gamemode',
-              el 'i', className: "fa osu fa-#{user.playmode}-o"
+              el 'i', className: "fa osu fa-#{user.playmode}-o rankinginfo-small__mode-icon"
               " ##{stats.rank.global.toLocaleString()}"
 
             el 'span', className: 'rankinginfo-small__country',
@@ -96,26 +96,27 @@ class @UserCard extends React.Component
 
         el 'div',
           className: 'modal-body__compartment modal-body__compartment--right'
-          el 'ul', className: 'user-dropdown-modal-menu',
-            el 'li', className: 'user-dropdown-modal-menu__item',
-              el 'a', href: '#', title: Lang.get('layout.menu.user.messages'),
+          el 'div', className: 'user-dropdown-modal-menu',
+            if false
+              el 'a', href: '#', title: Lang.get('layout.menu.user.messages'), className: 'user-dropdown-modal-menu__item',
                 Lang.get 'layout.menu.user.messages'
-                el 'i', className: 'fa fa-envelope'
-            el 'li', className: 'user-dropdown-modal-menu__item',
-              el 'a', href: '#', title: Lang.get('layout.menu.user.settings'),
+                el 'i', className: 'fa fa-envelope user-dropdown-modal-menu__icon'
+            if false
+              el 'a', href: '#', title: Lang.get('layout.menu.user.settings'), className: 'user-dropdown-modal-menu__item',
                 Lang.get 'layout.menu.user.settings'
-                el 'i', className: 'fa fa-cog'
-            el 'li', className: 'user-dropdown-modal-menu__item',
-              el 'a',
-                href: '#'
-                title: Lang.get('layout.menu.user.logout')
-                className: 'js-logout-link'
-                'data-method': 'delete'
-                'data-confirm': Lang.get 'users.logout_confirm'
-                'data-remote': 1
-                Lang.get 'layout.menu.user.logout'
-                el 'i', className: 'fa fa-sign-out'
-            el 'li', className: 'user-dropdown-modal-menu__item',
-              el 'a', href: '#', title: Lang.get('layout.menu.user.help'),
-                Lang.get 'layout.menu.user.help'
-                el 'i', className: 'fa fa-question-circle'
+                el 'i', className: 'fa fa-cog user-dropdown-modal-menu__icon'
+            el 'a',
+              href: window.logoutUrl
+              title: Lang.get('layout.menu.user.logout')
+              className: 'user-dropdown-modal-menu__item js-logout-link'
+              'data-method': 'delete'
+              'data-confirm': Lang.get 'users.logout_confirm'
+              'data-remote': 1
+              Lang.get 'layout.menu.user.logout'
+              el 'i', className: 'fa fa-sign-out user-dropdown-modal-menu__icon'
+            el 'a',
+              href: window.helpUrl
+              title: Lang.get('layout.menu.user.help')
+              className: 'user-dropdown-modal-menu__item'
+              Lang.get 'layout.menu.user.help'
+              el 'i', className: 'fa fa-question-circle user-dropdown-modal-menu__icon'
