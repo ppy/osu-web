@@ -9,6 +9,7 @@ class @UserCard extends React.Component
 
 
   componentDidMount: =>
+    $(document).off 'user.update', @_userUpdate
     $(document).on 'user.update', @_userUpdate
 
 

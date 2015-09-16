@@ -159,12 +159,21 @@ class @ProfileHeader extends React.Component
 
 
   componentDidMount: =>
+    @_removeListeners()
     $(document).on 'profile-header.cover.set', @coverSet
     $(document).on 'profile-header.cover.reset', @coverReset
 
 
   componentWillReceiveProps: (newProps) =>
     @setState coerUrl: newProps.user.cover.url
+
+
+  componentWillUnmount: =>
+    @_removeListeners()
+
+
+  _removeListeners: =>
+    $(document).off 'profile-header'
 
 
   toggleEdit: =>
