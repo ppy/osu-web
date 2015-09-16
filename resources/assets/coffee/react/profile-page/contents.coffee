@@ -208,7 +208,7 @@ class RecentAchievements extends React.Component
 
 class Tab extends React.Component
   onClick: =>
-    $(document).trigger 'profile.mode.change', @props.mode
+    $(document).trigger 'profilePageMode:change', @props.mode
 
   render: =>
     className = 'profile-tab'
@@ -224,7 +224,7 @@ class Tab extends React.Component
 class UserPage extends React.Component
   editStart: (e) ->
     e.preventDefault()
-    $(document).trigger 'profile.user-page.update', editing: true
+    $(document).trigger 'user:page:update', editing: true
 
 
   pageNew: =>
@@ -294,7 +294,7 @@ class UserPageEditor extends React.Component
     body = @_body()
     $(body).off 'change', @_change
 
-    $(document).trigger 'profile.user-page.update',
+    $(document).trigger 'user:page:update',
       raw: @state.raw
       selection: [body.selectionStart, body.selectionEnd]
 
@@ -314,7 +314,7 @@ class UserPageEditor extends React.Component
 
   _cancel: =>
     @_reset null, ->
-      $(document).trigger 'profile.user-page.update', editing: false
+      $(document).trigger 'user:page:update', editing: false
 
 
   _save: (e) =>
@@ -326,7 +326,7 @@ class UserPageEditor extends React.Component
       dataType: 'json'
       data: body: body
     .done (data) ->
-      $(document).trigger 'profile.user-page.update',
+      $(document).trigger 'user:page:update',
         html: data.html
         editing: false
         raw: body

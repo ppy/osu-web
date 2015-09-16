@@ -9,12 +9,12 @@ class @UserCard extends React.Component
 
 
   componentDidMount: =>
-    $(document).off 'user.update', @_userUpdate
-    $(document).on 'user.update', @_userUpdate
+    $(document).off '.userCard'
+    $(document).on 'user:update.userCard', @_userUpdate
 
 
   componentWillUnmount: =>
-    $(document).off 'user.update', @_userUpdate
+    $(document).off '.userCard'
 
 
   _userUpdate: (_e, user) =>
