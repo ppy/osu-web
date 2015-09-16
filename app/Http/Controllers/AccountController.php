@@ -21,7 +21,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Transformers\UserTransformer;
 use Auth;
 use Request;
 
