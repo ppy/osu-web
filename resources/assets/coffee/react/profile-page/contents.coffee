@@ -207,14 +207,16 @@ class RecentAchievements extends React.Component
 
 
 class Tab extends React.Component
+  onClick: =>
+    $(document).trigger 'profile.mode.change', @props.mode
+
   render: =>
     className = 'profile-tab'
     className += ' profile-tab--active' if @props.mode == @props.currentMode
 
     el 'a',
       href: '#'
-      'data-mode': @props.mode
-      onClick: @props.modeChange
+      onClick: @onClick
       className: className
       @props.text
 
@@ -401,7 +403,6 @@ class @ProfileContents extends React.Component
           el Tab,
             key: t[0]
             currentMode: @props.mode
-            modeChange: @props.modeChange
             mode: t[0]
             text: t[1]
       el 'div', className: 'profile-contents flex-full flex-row',

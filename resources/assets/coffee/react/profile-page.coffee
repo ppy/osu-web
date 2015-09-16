@@ -38,10 +38,8 @@ class @ProfilePage extends React.Component
     @setState isCoverUpdating: state
 
 
-  modeChange: (e) =>
-    e.preventDefault()
-
-    @setState mode: e.target.getAttribute('data-mode')
+  modeChange: (_e, mode) =>
+    @setState mode: mode
 
 
   userUpdate: (_e, user) =>
@@ -59,6 +57,7 @@ class @ProfilePage extends React.Component
     $(document).on 'user.update', @userUpdate
     $(document).on 'profile.cover.upload.state', @coverUploadState
     $(document).on 'profile.user-page.update', @userPageUpdate
+    $(document).on 'profile.mode.change', @modeChange
 
 
   componentWillUnmount: =>
@@ -89,7 +88,6 @@ class @ProfilePage extends React.Component
         userPage: @state.userPage
         stats: stats
         mode: @state.mode
-        modeChange: @modeChange
         recentAchievements: @props.recentAchievements
         withEdit: @props.withEdit
 
