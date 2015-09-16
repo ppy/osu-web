@@ -1,20 +1,6 @@
 {
   "name": "ppy/osu-web",
   "description": "osu!web",
-  "authors": [
-    {
-      "name": "Dean Herbert",
-      "email": "pe@ppy.sh"
-    },
-    {
-      "name": "Amelia Ikeda",
-      "email": "amelia@dorks.io"
-    },
-    {
-      "name": "Edho Arief",
-      "email": "me@myconan.net"
-    }
-  ],
   "require": {
     "laravel/framework": "5.1.*",
     "laravelcollective/html": "5.0.*",
