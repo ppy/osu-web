@@ -69,7 +69,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 
     public function includeDefaultStats(User $user)
     {
-        $stats = $user->statistics();
+        $stats = $user->statistics($user->playmode);
 
         return $this->item($stats, new UserStatisticsTransformer());
     }

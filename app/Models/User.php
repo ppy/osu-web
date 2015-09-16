@@ -528,12 +528,8 @@ class User extends Model implements AuthenticatableContract
         return $this->hasOne("App\Models\UserStatistics\Taiko", 'user_id', 'user_id');
     }
 
-    public function statistics($mode = null, $returnQuery = false)
+    public function statistics($mode, $returnQuery = false)
     {
-        if ($mode === null) {
-            $mode = $this->playmode;
-        }
-
         if (! in_array($mode, ['osu', 'ctb', 'mania', 'taiko'], true)) {
             return;
         }
