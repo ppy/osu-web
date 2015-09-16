@@ -18,11 +18,7 @@
 --}}
 <script id="json-current-user" type="application/json">
     @if (Auth::check())
-        {!! json_encode(fractal_item_array(
-                Auth::user(),
-                new App\Transformers\UserTransformer,
-                'defaultStats'
-        )) !!}
+        {!! json_encode(Auth::user()->defaultJson()) !!}
     @else
         {"data":{}}
     @endif

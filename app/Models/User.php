@@ -21,6 +21,7 @@
 
 namespace App\Models;
 
+use App\Transformers\UserTransformer;
 use Cache;
 use Carbon\Carbon;
 use DB;
@@ -716,5 +717,14 @@ class User extends Model implements AuthenticatableContract
         }
 
         return $this->fresh();
+    }
+
+    public function defaultJson()
+    {
+        return fractal_item_array(
+            $this,
+            new UserTransformer(),
+            'defaultStatistics'
+        );
     }
 }

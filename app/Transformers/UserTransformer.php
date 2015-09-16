@@ -28,7 +28,7 @@ use League\Fractal;
 class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'defaultStats',
+        'defaultStatistics',
     ];
 
     public function transform(User $user)
@@ -67,7 +67,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         ];
     }
 
-    public function includeDefaultStats(User $user)
+    public function includeDefaultStatistics(User $user)
     {
         $stats = $user->statistics($user->playmode);
 

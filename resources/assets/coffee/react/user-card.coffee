@@ -25,7 +25,7 @@ class @UserCard extends React.Component
 
   render: =>
     user = @state.user
-    stats = user.defaultStats.data
+    stats = user.defaultStatistics.data
 
     el 'div',
       className: 'modal-content modal-content--authenticated'
