@@ -59,7 +59,9 @@ $(document).on 'change', '.js-url-selector', (e) ->
   osu.navigate $target.val(), $target.attr('data-keep-scroll') == '1'
 
 
-rootUrl = History.getRootUrl()
+rootUrl = "#{document.location.protocol}//#{document.location.host}"
+rootUrl += ":#{document.location.port}" if document.location.port
+rootUrl += '/'
 
 # Internal Helper
 $.expr[':'].internal = (obj, index, meta, stack) ->
