@@ -1,6 +1,13 @@
 {
   "name": "ppy/osu-web",
   "description": "osu!web",
+  "type": "project",
+  "homepage": "https://jizz.ppy.sh",
+  "license": "AGPL-3.0+",
+  "support": {
+    "email": "jizz@ppy.sh",
+    "issues": "https://github.com/ppy/osu-web/issues"
+  },
   "require": {
     "laravel/framework": "5.1.*",
     "laravelcollective/html": "5.0.*",
