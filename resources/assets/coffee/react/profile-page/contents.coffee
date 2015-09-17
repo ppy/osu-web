@@ -256,8 +256,9 @@ class UserPage extends React.Component
   pageShow: =>
     el 'div', className: 'profile-content flex-col-66',
       if @props.withEdit
-        el 'div', className: 'profile-user-page-header text-right',
+        el 'div', className: 'profile-user-page-header',
           el 'a',
+            className: 'post-viewer__action'
             href: '#'
             onClick: @editStart
             el 'i', className: 'fa fa-edit'
