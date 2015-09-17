@@ -1,3 +1,8 @@
+cache:
+  directories:
+    - vendor
+    - node_modules
+
 addons:
   mariadb: 10.0
 
