@@ -1,20 +1,13 @@
 {
   "name": "ppy/osu-web",
   "description": "osu!web",
-  "authors": [
-    {
-      "name": "Dean Herbert",
-      "email": "pe@ppy.sh"
-    },
-    {
-      "name": "Amelia Ikeda",
-      "email": "amelia@dorks.io"
-    },
-    {
-      "name": "Edho Arief",
-      "email": "me@myconan.net"
-    }
-  ],
+  "type": "project",
+  "homepage": "https://jizz.ppy.sh",
+  "license": "AGPL-3.0+",
+  "support": {
+    "email": "jizz@ppy.sh",
+    "issues": "https://github.com/ppy/osu-web/issues"
+  },
   "require": {
     "laravel/framework": "5.1.*",
     "laravelcollective/html": "5.0.*",
