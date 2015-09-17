@@ -18,7 +18,7 @@
 ###
 el = React.createElement
 
-class Tab extends React.Component
+class ProfilePage.ExtraTab extends React.Component
   _modeSwitch: =>
     $(document).trigger 'profilePageExtra:tab', @props.mode
 
@@ -31,38 +31,3 @@ class Tab extends React.Component
 
     el 'li', className: className, onClick: @_modeSwitch,
       Lang.get("users.show.extra.#{@props.mode}.title")
-
-
-class @ProfileContentsExtra extends React.Component
-  constructor: (props) ->
-    super props
-
-    @state = mode: 'recent_activities'
-
-
-  componentDidMount: =>
-    osu.pageChange()
-    $(document).on 'profilePageExtra:tab.profileContentsExtra', @_modeSwitch
-
-
-  componentWillUnmount: =>
-    $(document).off '.profileContentsExtra'
-
-
-  componentWillReceiveProps: =>
-    osu.pageChange()
-
-
-  _modeSwitch: (_e, mode) =>
-    @setState mode: mode
-
-
-  render: =>
-    return if @props.mode == 'me'
-
-    el 'div', className: "content content-extra flex-full",
-      el 'ul', className: 'profile-extra-tabs',
-        ['recent_activities', 'historical', 'beatmaps', 'kudosu', 'achievements'].map (m) =>
-          el Tab, key: m, mode: m, currentMode: @state.mode
-
-      el ProfilePage.RecentActivities
