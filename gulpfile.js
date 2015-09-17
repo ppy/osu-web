@@ -76,6 +76,8 @@ elixir(function(mix) {
     "user-dropdown-modal.coffee",
     "logout.coffee",
     "shared.coffee",
+
+    "react/user-card.coffee",
   ], "public/js/app.js")
   .coffee([
     "react/profile-page/header.coffee",

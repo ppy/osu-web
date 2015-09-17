@@ -21,7 +21,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Transformers\UserTransformer;
 use Auth;
 use Request;
 
@@ -45,7 +44,7 @@ class AccountController extends Controller
         $customization = Auth::user()->profileCustomization()->firstOrNew([]);
         $customization->setCover($errors, Request::input('cover_id'), Request::file('cover_file'));
         if (count($errors) === 0) {
-            return fractal_item_array(Auth::user(), new UserTransformer());
+            return Auth::user()->defaultJson();
         } else {
             return error_popup(implode(',', $errors));
         }

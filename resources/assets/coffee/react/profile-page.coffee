@@ -23,7 +23,7 @@ class @ProfilePage extends React.Component
     super props
 
     @state =
-      mode: props.initialMode
+      mode: props.user.playmode
       user: props.user
       userPage:
         html: props.userPage.html
@@ -34,24 +34,12 @@ class @ProfilePage extends React.Component
       isCoverUpdating: false
 
 
-  coverChangeDefault: (_e, coverId) =>
-    $.ajax window.changeCoverUrl,
-      method: 'PUT'
-      data:
-        cover_id: coverId
-      dataType: 'json'
-    .done (userData) =>
-      @userUpdate null, userData.data
-
-
   coverUploadState: (_e, state) =>
     @setState isCoverUpdating: state
 
 
-  modeChange: (e) =>
-    e.preventDefault()
-
-    @setState mode: e.target.getAttribute('data-mode')
+  modeChange: (_e, mode) =>
+    @setState mode: mode
 
 
   userUpdate: (_e, user) =>
@@ -65,23 +53,26 @@ class @ProfilePage extends React.Component
 
 
   componentDidMount: =>
-    $(document).off 'profile'
-    $(document).on 'profile.user.update', @userUpdate
-    $(document).on 'profile.cover.select', @coverChangeDefault
-    $(document).on 'profile.cover.upload.state', @coverUploadState
-    $(document).on 'profile.user-page.update', @userPageUpdate
+    @_removeListeners()
+    $(document).on 'user:update.profilePage', @userUpdate
+    $(document).on 'user:cover:upload:state.profilePage', @coverUploadState
+    $(document).on 'user:page:update.profilePage', @userPageUpdate
+    $(document).on 'profilePageMode:change.profilePage', @modeChange
 
 
   componentWillUnmount: =>
-    $(document).off 'profile'
+    @_removeListeners()
 
+
+  _removeListeners: =>
+    $(document).off '.profilePage'
 
   render: =>
     if @state.mode != 'me'
       headerMode = @state.mode
       headerStats = stats = @props.allStats[@state.mode].data
     else
-      headerMode = @props.initialMode
+      headerMode = @props.user.playmode
       headerStats = @props.allStats[headerMode].data
 
     el 'div', className: 'flex-column flex-full',
@@ -96,9 +87,7 @@ class @ProfilePage extends React.Component
         userPage: @state.userPage
         stats: stats
         mode: @state.mode
-        modeChange: @modeChange
         recentAchievements: @props.recentAchievements
-        achievementsCounts: @props.achievementsCounts
         withEdit: @props.withEdit
 
 
@@ -109,8 +98,6 @@ React.render \
     user: user
     userPage: osu.parseJson('json-user-page').page
     allStats: osu.parseJson('json-user-stats')
-    initialMode: window.userPlaymode
-    withEdit: user.id == @user?.user_id
+    withEdit: user.id == window.currentUser.id
     recentAchievements: osu.parseJson('json-user-recent-achievements').data
-    achievementsCounts: osu.parseJson('json-user-achievements-counts')
   ), document.getElementsByClassName('content')[0]

@@ -19,23 +19,33 @@
 */
 
 .user-dropdown-modal-menu {
-  list-style: none;
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  padding: @grid-gutter-width/4 0px;
 
   // Elements
   &__item {
-    line-height: 22px;
-    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 
-    > a {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 4px @grid-gutter-width/2;
+
+    &, &:visited, &:hover, &:active, &:focus {
       color: #555;
-      font-size: 16px;
-      font-weight: 300;
-
-      i {
-        margin-left: 10px;
-      }
+      text-decoration: none;
     }
+
+    &:hover {
+      background-color: #ddd;
+    }
+  }
+
+  &__icon {
+    margin-left: @grid-gutter-width/4;
+    font-size: 16px;
   }
 
   // Modifiers

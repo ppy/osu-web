@@ -30,7 +30,7 @@ class Info extends React.Component
 
   originKeys: =>
     keys = []
-    if @props.user.country != null
+    if @props.user.country.name != null
       keys.push 'country'
     if @props.user.age != null
       keys.push 'age'
@@ -59,7 +59,7 @@ class Info extends React.Component
         if @originKeys().length
           el 'p', null,
             Lang.get "users.show.origin.#{@originKeys().join('_')}",
-              country: @props.user.country
+              country: @props.user.country.name
               age: @props.user.age
 
         if @props.user.location
@@ -175,14 +175,14 @@ class AchievementBadge extends React.Component
 
 class RecentAchievements extends React.Component
   render: =>
-    achievementsProgress = (100 * @props.achievementsCounts.user / @props.achievementsCounts.total).toFixed()
-    moreCount = @props.achievementsCounts.user - @props.recentAchievements.length
+    achievementsProgress = (100 * @props.achievementsCounts.current / @props.achievementsCounts.total).toFixed()
+    moreCount = @props.achievementsCounts.current - @props.recentAchievements.length
 
     el 'div', className: 'profile-content flex-col-33 text-center',
       el 'div', className: 'profile-row profile-row--top',
         el 'div', className: 'profile-achievements-badge profile-top-badge',
           el 'span', className: 'profile-badge-number',
-            @props.achievementsCounts.user
+            @props.achievementsCounts.current
 
         el 'div', className: 'profile-exp-bar',
           el 'div',
@@ -207,14 +207,16 @@ class RecentAchievements extends React.Component
 
 
 class Tab extends React.Component
+  onClick: =>
+    $(document).trigger 'profilePageMode:change', @props.mode
+
   render: =>
     className = 'profile-tab'
     className += ' profile-tab--active' if @props.mode == @props.currentMode
 
     el 'a',
       href: '#'
-      'data-mode': @props.mode
-      onClick: @props.modeChange
+      onClick: @onClick
       className: className
       @props.text
 
@@ -222,7 +224,7 @@ class Tab extends React.Component
 class UserPage extends React.Component
   editStart: (e) ->
     e.preventDefault()
-    $(document).trigger 'profile.user-page.update', editing: true
+    $(document).trigger 'user:page:update', editing: true
 
 
   pageNew: =>
@@ -293,7 +295,7 @@ class UserPageEditor extends React.Component
     body = @_body()
     $(body).off 'change', @_change
 
-    $(document).trigger 'profile.user-page.update',
+    $(document).trigger 'user:page:update',
       raw: @state.raw
       selection: [body.selectionStart, body.selectionEnd]
 
@@ -313,7 +315,7 @@ class UserPageEditor extends React.Component
 
   _cancel: =>
     @_reset null, ->
-      $(document).trigger 'profile.user-page.update', editing: false
+      $(document).trigger 'user:page:update', editing: false
 
 
   _save: (e) =>
@@ -325,7 +327,7 @@ class UserPageEditor extends React.Component
       dataType: 'json'
       data: body: body
     .done (data) ->
-      $(document).trigger 'profile.user-page.update',
+      $(document).trigger 'user:page:update',
         html: data.html
         editing: false
         raw: body
@@ -402,7 +404,6 @@ class @ProfileContents extends React.Component
           el Tab,
             key: t[0]
             currentMode: @props.mode
-            modeChange: @props.modeChange
             mode: t[0]
             text: t[1]
       el 'div', className: 'profile-contents flex-full flex-row',
@@ -419,6 +420,6 @@ class @ProfileContents extends React.Component
               stats: @props.stats
             el RecentAchievements,
               key: 'recent-achievements'
-              achievementsCounts: @props.achievementsCounts
+              achievementsCounts: @props.user.achievements
               recentAchievements: @props.recentAchievements
           ]

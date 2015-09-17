@@ -21,11 +21,16 @@
 
 namespace App\Transformers;
 
+use App\Models\Achievement;
 use App\Models\User;
 use League\Fractal;
 
 class UserTransformer extends Fractal\TransformerAbstract
 {
+    protected $availableIncludes = [
+        'defaultStatistics',
+    ];
+
     public function transform(User $user)
     {
         $profileCustomization = $user->profileCustomization()->firstOrNew([]);
@@ -34,9 +39,13 @@ class UserTransformer extends Fractal\TransformerAbstract
             'id' => $user->user_id,
             'username' => $user->username,
             'joinDate' => display_regdate($user),
-            'country' => $user->countryName(),
+            'country' => [
+                'code' => $user->country_acronym,
+                'name' => $user->countryName(),
+            ],
             'age' => $user->age,
             'avatarUrl' => $user->user_avatar,
+            'isAdmin' => $user->is_admin,
             'isSupporter' => $user->osu_subscriber,
             'title' => $user->title(),
             'location' => $user->user_from,
@@ -45,11 +54,23 @@ class UserTransformer extends Fractal\TransformerAbstract
             'lastfm' => $user->user_lastfm,
             'skype' => $user->user_msnm,
             'playstyle' => $user->osu_playstyle,
+            'playmode' => $user->playmode,
             'cover' => [
                 'customUrl' => $profileCustomization->cover->customUrl(),
                 'url' => $profileCustomization->cover->url(),
                 'id' => $profileCustomization->cover->id(),
             ],
+            'achievements' => [
+                'total' => Achievement::count(),
+                'current' => $user->achievements()->count(),
+            ],
         ];
+    }
+
+    public function includeDefaultStatistics(User $user)
+    {
+        $stats = $user->statistics($user->playmode);
+
+        return $this->item($stats, new UserStatisticsTransformer());
     }
 }

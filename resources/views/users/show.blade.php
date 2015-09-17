@@ -35,13 +35,8 @@
     @parent
 
     <script data-turbolinks-eval="always">
-        window.userPlaymode = '{{ $user->playmode }}';
         window.changeCoverUrl = '{{ route("account.update-profile-cover") }}';
         window.changePageUrl = '{{ route("account.page") }}';
-    </script>
-
-    <script id="json-user-achievements-counts" type="application/json">
-        {!! json_encode($achievementsCounts) !!}
     </script>
 
     <script id="json-user-recent-achievements" type="application/json">

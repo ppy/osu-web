@@ -16,13 +16,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<script data-turbolinks-eval="always">
-    var STATIC_DOMAIN = "{{ Config::get("osu.static", "//s.ppy.sh") }}";
-    var csrf = "{{ csrf_token() }}";
-    var section = "{{ $current_section }}";
-    var page = "{{ $current_action }}";
-    var logoutUrl = "{{ route("users.logout") }}";
-    var helpUrl = "{{ route("wiki") }}";
+<script id="json-current-user" type="application/json">
+    @if (Auth::check())
+        {!! json_encode(Auth::user()->defaultJson()) !!}
+    @else
+        {"data":{}}
+    @endif
 </script>
 
-@include ('layout._current_user')
+<script data-turbolinks-eval="always">
+    var currentUser = osu.parseJson('json-current-user').data;
+</script>
