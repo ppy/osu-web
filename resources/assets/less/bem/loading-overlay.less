@@ -51,8 +51,8 @@
   }
 
   &__circle {
-    width: 25%;
-    height: 100%;
+    width: @circle-size;
+    height: @circle-size;
     position: absolute;
 
     border: solid 3px #fff;
@@ -66,7 +66,7 @@
       border-color: @colour;
 
       left: 0%;
-      top: 50%;
+      top: 0%;
     }
 
     &--2 {
@@ -97,7 +97,7 @@
       border-color: @colour;
 
       left: 75%;
-      top: 50%;
+      top: 100%;
 
       animation-delay: @animation-delay*3;
     }
@@ -115,39 +115,82 @@
       border-color: #fff;
     }
   }
+
+  &__follow-point {
+    color: #fff;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 0;
+    height: 0;
+    top: 100%;
+    opacity: 0;
+
+    font-weight: bold;
+    font-size: 24px;
+
+    animation: loading-overlay--follow-point @animation-length infinite linear;
+    animation-fill-mode: forwards;
+
+    @animation-delay-start: @animation-delay*1/8;
+
+    &--1 {
+      transform: rotate(45deg);
+      left: 25%;
+
+      animation-delay: @animation-delay-start;
+    }
+
+    &--2 {
+      transform: rotate(-45deg);
+      left: 50%;
+      animation-delay: @animation-delay-start + @animation-delay;
+    }
+
+    &--3 {
+      transform: rotate(45deg);
+      left: 75%;
+      animation-delay: @animation-delay-start + @animation-delay*2;
+    }
+
+    &--4 {
+      display: none;
+    }
+  }
 }
 
 @keyframes loading-overlay--circle-approach {
   0% {
-    transform: scale(1.0);
-    opacity: 0.0;
+    transform: scale(1);
+    opacity: 0;
   }
 
   20% {
     transform: scale(0.5);
-    opacity: 1.0;
+    opacity: 1;
   }
 
   20.1%, 100% {
     transform: scale(0.5);
-    opacity: 0.0;
+    opacity: 0;
   }
 }
 
 @keyframes loading-overlay--circle-burst {
   0% {
     transform: scale(0.5);
-    opacity: 0.0;
+    opacity: 0;
   }
 
   20% {
     transform: scale(0.5);
-    opacity: 1.0;
+    opacity: 1;
   }
 
   40%, 100% {
-    transform: scale(1.0);
-    opacity: 0.0;
+    transform: scale(1);
+    opacity: 0;
   }
 }
 
@@ -162,5 +205,19 @@
 
   100% {
     background-color: fade(#000, 70%);
+  }
+}
+
+@keyframes loading-overlay--follow-point {
+  10% {
+    opacity: 0.8;
+  }
+
+  40% {
+    opacity: 0.8;
+  }
+
+  50% {
+    opacity: 0;
   }
 }
