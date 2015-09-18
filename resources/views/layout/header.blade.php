@@ -116,18 +116,20 @@
         <span class="popup-text"></span>
     </div>
 </div>
-<div id="loading-screen"></div>
-<div id="loading-area">
-    <div class="spinner">
-        <div class="spinner-container">
-            <div class="approach obj1"></div>
-            <div class="approach obj2"></div>
-            <div class="approach obj3"></div>
-            <div class="approach obj4"></div>
-            <div class="hit obj1"></div>
-            <div class="hit obj2"></div>
-            <div class="hit obj3"></div>
-            <div class="hit obj4"></div>
-        </div>
+<div class="loading-overlay loading-overlay--visible">
+    <div class="loading-overlay__container">
+        @foreach (range(1, 4) as $n)
+            <div class="loading-overlay__follow-point
+                    loading-overlay__follow-point--{{ $n }}">
+                ›
+            </div>
+
+            @foreach (['approach', 'hit'] as $type)
+                <div class="loading-overlay__circle
+                        loading-overlay__circle--{{ $n }}
+                        loading-overlay__circle--{{ $type }}"
+                ></div>
+            @endforeach
+        @endforeach
     </div>
 </div>
