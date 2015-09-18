@@ -23,16 +23,16 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
   isMobile: -> ! window.matchMedia('(min-width: 944px)').matches
 
   showLoadingOverlay: ->
-    $body = $('body')
-    return if $body.hasClass('loading')
+    $overlay = $('.loading-overlay')
+    return if $overlay.hasClass('loading-overlay--visible')
 
-    $body.addClass 'loading'
+    $overlay.addClass 'loading-overlay--visible'
     $('button, .btn').prop 'disabled', true
     $('a.btn').addClass 'disabled'
 
 
   hideLoadingOverlay: ->
-    $('body').removeClass 'loading'
+    $('.loading-overlay').removeClass 'loading-overlay--visible'
     $('button, .btn').prop 'disabled', false
     $('a.btn').removeClass 'disabled'
 
