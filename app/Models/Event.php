@@ -27,6 +27,7 @@ use Log;
 class Event extends Model
 {
     const PATTERN_ACHIEVEMENT = "!(?:<b>)+<a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>(?:</b>)+ unlocked the \"<b>(?<achievementName>.+?)</b>\" achievement\!$!";
+    const PATTERN_BEATMAP_UPDATE = "!<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a>\"$!";
     const PATTERN_RANK = "!<img src='/images/(?<scoreRank>.+?)_small\.png'/> <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> achieved (?:<b>)?rank #(?<rank>\d+?)(?:</b>)? on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!";
 
     protected $table = 'osu_events';
@@ -96,6 +97,23 @@ class Event extends Model
         ];
     }
 
+    public static function parseMatchesBeatmapUpdate($matches)
+    {
+        $beatmapUrl = 'https://osu.ppy.sh'.$matches['beatmapUrl'];
+
+        return [
+            'type' => 'beatmapUpdate',
+            'beatmap' => [
+                'title' => $matches['beatmapTitle'],
+                'url' => $beatmapUrl,
+            ],
+            'user' => [
+                'username' => $matches['userName'],
+                'url' => $matches['userUrl'],
+            ],
+        ];
+    }
+
     public static function parseMatchesRank($matches)
     {
         $scoreRank = str_replace('x', 'ss', strtolower($matches['scoreRank']));
@@ -132,6 +150,8 @@ class Event extends Model
             return static::parseMatchesRank($matches);
         } elseif (preg_match(static::PATTERN_ACHIEVEMENT, $text, $matches) === 1) {
             return static::parseMatchesAchievement($matches);
+        } elseif (preg_match(static::PATTERN_BEATMAP_UPDATE, $text, $matches) === 1) {
+            return static::parseMatchesBeatmapUpdate($matches);
         }
 
         return static::parseFailure($text);
