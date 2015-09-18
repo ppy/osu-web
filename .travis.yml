@@ -2,6 +2,7 @@ cache:
   directories:
     - vendor
     - node_modules
+    - bower_components
 
 addons:
   mariadb: 10.0
