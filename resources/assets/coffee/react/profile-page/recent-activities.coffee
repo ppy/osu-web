@@ -11,19 +11,18 @@ class ProfilePage.RecentActivities extends React.Component
   _renderEntry: (event) =>
     if event.type == 'rank'
       el 'li',
-        {
-          className: 'event-entry'
-          key: event.id
-        },
-        el 'div',
-          className: "flex-none profile-score-rank-badge profile-score-rank-badge--#{event.scoreRank} profile-score-rank-badge--small"
-        el 'div',
-          className: 'event-entry__text'
-          dangerouslySetInnerHTML:
-            __html: Lang.get 'events.rank',
-              user: osu.link(event.user.url, event.user.username)
-              rank: event.rank
-              beatmap: osu.link(event.beatmap.url, event.beatmap.title)
+        className: 'event-entry'
+        key: event.id
+        el 'div', className: 'event-entry__detail',
+          el 'div',
+            className: "flex-none profile-score-rank-badge profile-score-rank-badge--#{event.scoreRank} profile-score-rank-badge--small"
+          el 'div',
+            className: 'event-entry__text'
+            dangerouslySetInnerHTML:
+              __html: Lang.get 'events.rank',
+                user: osu.link(event.user.url, event.user.username)
+                rank: event.rank
+                beatmap: osu.link(event.beatmap.url, event.beatmap.title)
         el 'div',
           className: 'event-entry__time'
           dangerouslySetInnerHTML: { __html: osu.timeago(event.created_at) }
