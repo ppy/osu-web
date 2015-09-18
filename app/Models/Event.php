@@ -29,6 +29,7 @@ class Event extends Model
     const PATTERN_ACHIEVEMENT = "!(?:<b>)+<a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>(?:</b>)+ unlocked the \"<b>(?<achievementName>.+?)</b>\" achievement\!$!";
     const PATTERN_BEATMAP_UPDATE = "!<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a>\"$!";
     const PATTERN_RANK = "!<img src='/images/(?<scoreRank>.+?)_small\.png'/> <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> achieved (?:<b>)?rank #(?<rank>\d+?)(?:</b>)? on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!";
+    const PATTERN_RANK_LOST = "!<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has lost first place on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!";
 
     protected $table = 'osu_events';
     protected $primaryKey = 'event_id';
@@ -144,10 +145,38 @@ class Event extends Model
         ];
     }
 
+    public static function parseMatchesRankLost($matches)
+    {
+        $beatmapUrl = 'https://osu.ppy.sh'.$matches['beatmapUrl'];
+
+        switch ($matches['mode']) {
+            case 'osu!mania': $mode = 'mania'; break;
+            case 'Taiko': $mode = 'taiko'; break;
+            case 'osu!': $mode = 'osu'; break;
+            case 'Catch the Beat': $mode = 'ctb'; break;
+            default: return static::parseFailure($matches[0]);
+        }
+
+        return [
+            'type' => 'rankLost',
+            'mode' => $mode,
+            'beatmap' => [
+                'title' => $matches['beatmapTitle'],
+                'url' => $beatmapUrl,
+            ],
+            'user' => [
+                'username' => $matches['userName'],
+                'url' => $matches['userUrl'],
+            ],
+        ];
+    }
+
     public static function parseText($text)
     {
         if (preg_match(static::PATTERN_RANK, $text, $matches) === 1) {
             return static::parseMatchesRank($matches);
+        } elseif (preg_match(static::PATTERN_RANK_LOST, $text, $matches) === 1) {
+            return static::parseMatchesRankLost($matches);
         } elseif (preg_match(static::PATTERN_ACHIEVEMENT, $text, $matches) === 1) {
             return static::parseMatchesAchievement($matches);
         } elseif (preg_match(static::PATTERN_BEATMAP_UPDATE, $text, $matches) === 1) {
