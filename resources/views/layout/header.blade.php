@@ -116,7 +116,7 @@
         <span class="popup-text"></span>
     </div>
 </div>
-<div class="loading-overlay loading-overlay--visible">
+<div class="loading-overlay">
     <div class="loading-overlay__container">
         @foreach (range(1, 4) as $n)
             <div class="loading-overlay__follow-point
