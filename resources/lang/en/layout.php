@@ -47,6 +47,10 @@ return [
             'moddingreact' => 'modding',
             'index' => 'listing',
         ],
+        'skins' => [
+            '_' => 'skins',
+            'index' => 'listing',
+        ],
         'ranking' => [
             '_' => 'ranking',
             'getOverall' => 'overall',

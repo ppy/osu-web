@@ -1,0 +1,80 @@
+.skinsort-tab--special {
+	color: @blue-special;
+}
+.skinmode-tabs {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 1px;
+}
+
+.skinmode-tabs::after {
+  content: " ";
+
+  position: absolute;
+  top: 100%;
+  left: 0px;
+
+  width: 100%;
+  height: 1px;
+
+}
+
+.skinmode-tab {
+  margin: 0px @grid-gutter-width/4;
+  padding: @grid-gutter-width/8 0px;
+
+  font-weight: bold;
+  font-size: 14px;
+  color: @text-color;
+
+  &:hover, &:active, &:focus {
+    color: @pink-darker;
+    text-decoration: none;
+  }
+}
+
+.skinmode-tab--active {
+  color: @pink-darker;
+  font-weight: 900;
+}
+
+.skins-listing {
+	padding: 15px;
+}
+.skins-listing-skin {
+	padding-right: 5px;
+	padding-left: 5px;
+	height:200px;
+}
+.skin-box-background {
+
+}
+.skin-box-content {
+	-webkit-transform: translateZ(0);
+	opacity: 0.0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	transition: opacity 0.5s ease-in-out;
+	background-color: rgba(0, 0, 0, 0.4);
+	&:hover{
+		opacity: 1;
+	}
+	color: white;
+	padding: 10px;
+}
+.skin-box-content--names {
+	margin-top: 30px;
+	span {
+		font-size: 2.5rem;
+		color: white;
+	}
+}
+.skin-box-content--author{
+	color:#ffcc22;
+}
+.skin-box-content--gamemodes{
+	padding-top: 25px;
+	font-size: 2.5rem;
+}

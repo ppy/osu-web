@@ -243,12 +243,13 @@ function nav_links()
         'forum-forums-index' => route('forum.forums.index'),
         'tournaments' => route('tournaments.index'),
     ];
-
+    $links['skins'] = [
+        'index' => action('SkinsController@index'),
+    ];
     if (config('app.debug')) {
         $links['community']['getChat'] = route('chat');
         $links['community']['getLive'] = route('live');
     }
-
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),
         'getCart' => action('StoreController@getCart'),

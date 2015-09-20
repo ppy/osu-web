@@ -116,6 +116,12 @@ Route::group(['prefix' => 'forum'], function () {
 Route::put('/account/update-profile-cover', ['as' => 'account.update-profile-cover', 'uses' => 'AccountController@updateProfileCover']);
 Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
 
+// skins
+Route::group(['prefix' => 'skins'], function() {
+    Route::get('/', ['as' => 'skins.index', 'uses' => 'SkinsController@index']);
+});
+
+
 // API
 Route::controller('/api', 'APIController');
 
