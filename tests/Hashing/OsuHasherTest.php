@@ -1,10 +1,13 @@
 <?php
 
+use App\Hashing\OsuHasher;
+use Illuminate\Contracts\Hashing\Hasher;
+
 class OsuHasherTest extends PHPUnit_Framework_TestCase
 {
     public function testBasicHashing()
     {
-        $hasher = new App\Hashing\OsuHasher;
+        $hasher = new OsuHasher;
         $value = $hasher->make('password');
         $this->assertNotSame('password', $value);
         $this->assertNotSame(md5('password'), $value);
@@ -12,5 +15,11 @@ class OsuHasherTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($hasher->check('password', $value));
         $this->assertFalse($hasher->needsRehash($value));
         $this->assertTrue($hasher->needsRehash($value, ['cost' => 4]));
+    }
+
+    public function testImplementsHasher()
+    {
+        $hasher = new OsuHasher;
+        $this->assertInstanceOf(Hasher::class, $hasher);
     }
 }

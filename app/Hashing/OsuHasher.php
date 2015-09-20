@@ -21,9 +21,9 @@
 
 namespace App\Hashing;
 
-use Illuminate\Contracts\Hashing\Hasher as HasherContract;
+use Illuminate\Contracts\Hashing\Hasher;
 
-class OsuHasher implements HasherContract
+class OsuHasher implements Hasher
 {
     /**
      * The number of rounds to hash, as 2^n.
