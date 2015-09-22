@@ -21,16 +21,23 @@ el = React.createElement
 class CoverSelection extends React.Component
   onClick: =>
     return if @props.url == null
-    $(document).trigger 'profile.cover.select', @props.name
+
+    $.ajax window.changeCoverUrl,
+      method: 'put'
+      data:
+        cover_id: @props.name
+      dataType: 'json'
+    .done (userData) ->
+      $(document).trigger 'user:update', userData.data
 
 
   onMouseEnter: =>
     return if @props.url == null
-    $(document).trigger 'profile-header.cover.set', @props.url
+    $(document).trigger 'user:cover:set', @props.url
 
 
   onMouseLeave: ->
-    $(document).trigger 'profile-header.cover.reset'
+    $(document).trigger 'user:cover:reset'
 
 
   render: =>
@@ -79,14 +86,14 @@ class CoverUploader extends React.Component
       dataType: 'json'
       dropZone: $uploadButton
       submit: ->
-        $(document).trigger 'profile.cover.upload.state', true
+        $(document).trigger 'user:cover:upload:state', true
       done: (_e, data) ->
-        $(document).trigger 'profile.user.update', data.result.data
+        $(document).trigger 'user:update', data.result.data
       fail: (_e, data) ->
         message = data.jqXHR?.responseJSON || Lang.get 'errors.unknown'
         osu.popup message, 'danger'
       complete: ->
-        $(document).trigger 'profile.cover.upload.state', false
+        $(document).trigger 'user:cover:upload:state', false
 
 
   componentWillUnmount: =>
@@ -136,9 +143,9 @@ class Rank extends React.Component
           el 'span', className: 'user-rank-icon',
             el 'i', className: "fa osu fa-#{@props.mode}-o"
           "##{@props.rank.global.toLocaleString()}"
-        if @props.country != null
+        if @props.countryName != null
           el 'p', className: 'profile-basic',
-            "#{@props.country} ##{@props.rank.country.toLocaleString()}"
+            "#{@props.countryName} ##{@props.rank.country.toLocaleString()}"
 
 
 class @ProfileHeader extends React.Component
@@ -152,24 +159,33 @@ class @ProfileHeader extends React.Component
 
 
   componentDidMount: =>
-    $(document).on 'profile-header.cover.set', @coverSet
-    $(document).on 'profile-header.cover.reset', @coverReset
+    @_removeListeners()
+    $(document).on 'user:cover:set.profilePageHeader', @coverSet
+    $(document).on 'user:cover:reset.profilePageHeader', @coverReset
 
 
   componentWillReceiveProps: (newProps) =>
     @setState coerUrl: newProps.user.cover.url
 
 
+  componentWillUnmount: =>
+    @_removeListeners()
+
+
+  _removeListeners: =>
+    $(document).off '.profilePageHeader'
+
+
   toggleEdit: =>
     if @state.editing
       $('.blackout').css display: 'none'
       $('.profile-header').css zIndex: ''
-      $(document).off('click.profile.toggle-header-edit')
+      $(document).off 'click.profilePageHeader:toggleHeaderEdit'
     else
       $('.blackout').css display: 'block'
       $('.profile-header').css zIndex: 8001
 
-      $(document).on 'click.profile.toggle-header-edit', (e) =>
+      $(document).on 'click.profilePageHeader:toggleHeaderEdit', (e) =>
         return if $(e.target).closest('.profile-change-cover-popup').length
         return if $(e.target).closest('.profile-change-cover-button').length
         return if $('#overlay').is(':visible')
@@ -219,5 +235,5 @@ class @ProfileHeader extends React.Component
         el HeaderInfo, user: @props.user
         el Rank,
           rank: @props.stats.rank
-          country: @props.user.country
+          countryName: @props.user.country.name
           mode: @props.mode

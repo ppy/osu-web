@@ -16,50 +16,51 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+
 @if (Auth::check())
-	<div id="nav-user-bar">
-		<a href="{{ route("users.show", Auth::user()) }}">{{ Auth::user()->username }}</a>
-		<a
-			class="js-logout-link nav-user--logout-link"
-			title="{{ trans("users.logout._") }}"
-			href="{{ route("users.logout") }}"
-			data-method="delete"
-			data-confirm="{{ trans("users.logout.confirm") }}"
-			data-remote="1"
-		>
-			<i class="fa fa-sign-out"></i>
-		</a>
-	</div>
+    <div id="nav-user-bar">
 
-	{{--
-	<!-- each of these is a notification inbox -->
-	@if (Auth::user()->isBAT())
-		<a href="#" class="n" id="notifications-bat">
-			<span class="badge" style="color: #fa3703 !important">bat</span>
-		</a>
-	@endif
+        {{--
+        <a href="#search" class="nav-user-search"><i class="fa fa-search"></i></a>
+        <a href="#status" class="nav-user-status"><i class="fa fa-circle-o"></i></a>
+        --}}
+        <a href="{{ route("users.show", Auth::user()) }}">{{ Auth::user()->username }}</a>
+    </div>
 
-	@if (Auth::user()->isGMT())
-		<a href="#" class="n" id="notifications-gmt">
-			<span class="badge green-dark">gmt</span>
-		</a>
-	@endif
-
-	@if (Auth::user()->isAdmin())
-		<a href="#" class="n" id="notifications-admin">
-			<span class="badge blue-dark">admin</span>
-		</a>
-	@endif
-	--}}
-
-	<a href="{{ route("users.show", Auth::user()) }}" class="js-nav-avatar avatar avatar--nav" style="background-image: url('{{ Auth::user()->user_avatar }}');"></a>
+    <a class="avatar avatar--nav js-nav-avatar" href="#" title="{{ trans("users.show.avatar", ["username" => Auth::user()->username]) }}" style="background-image: url('{{ Auth::user()->user_avatar }}');" data-toggle="modal" data-target="#user-dropdown-modal"></a>
 @else
-		<div id="nav-user-bar">
-			<a href="#" title="{{ trans("users.anonymous.login") }}" data-toggle="modal" data-target="#login-modal">
-				{{ trans("users.anonymous.username") }}
-			</a>
-		</div>
+    <div id="nav-user-bar">
+        <a href="#" title="{{ trans("users.anonymous.login") }}" data-toggle="modal" data-target="#user-dropdown-modal">
+            {{ trans("users.anonymous.username") }}
+        </a>
+    </div>
 
-	<a class="avatar avatar--nav avatar--guest js-nav-avatar" href="#" title="{{ trans("users.anonymous.login") }}" data-toggle="modal" data-target="#login-modal">
-	</a>
+    <a class="avatar avatar--nav avatar--guest js-nav-avatar" href="#" title="{{ trans("users.anonymous.login") }}" data-toggle="modal" data-target="#user-dropdown-modal"></a>
 @endif
+
+@section('user-dropdown-modal')
+    <div id="user-dropdown-modal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal__dialog js-user-dropdown-modal__dialog">
+            @if (!Auth::check())
+                <div class="modal-content modal-content--no-shadow">
+                    <div class="modal-header modal-header--login"><h1 class="modal-header__title">{{ trans("users.login._") }}</h1></div>
+                    <div class="modal-body modal-body--user-dropdown modal-body--no-rounding">
+                        <h2 class="modal-body__title modal-body__title">{{ trans("users.login.title") }}</h2>
+
+                        {!! Form::open(["url" => route("users.login"), "id" => "login-form", "class" => "modal-body__form form", "data-remote" => true]) !!}
+                            <div class="form__input-group form-group form-group--compact">
+                                <input class="form-group__control form-control form-group__control--compact" name="username" type="text" placeholder="{{ trans("users.login.username") }}" required>
+                                <input class="form-group__control form-control form-group__control--compact" name="password" type="password" placeholder="{{ trans("users.login.password") }}" required>
+                            </div>
+
+                            <button class="btn-osu btn-osu-default form__button" type="submit"><i class="fa fa-sign-in"></i></button>
+                        {!! Form::close() !!}
+
+                        <p class="modal-body__paragraph"><a href="{{ route("users.forgot-password") }}" target="_blank">{{ trans("users.login.forgot") }}</a></p>
+                        <p class="modal-body__paragraph"><a href="{{ route("users.register") }}" target="_blank">{{ trans("users.login.register") }}</a></p>
+                    </div>
+                </div>
+            @endif
+        </div>
+    </div>
+@stop

@@ -17,5 +17,5 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 (function() {
-	osu.reloadPage()
+    osu.reloadPage()
 }).call(this)

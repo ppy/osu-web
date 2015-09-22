@@ -47,12 +47,12 @@ class LoginAttempt extends Model
 
         DB::insert(
             "INSERT INTO osu_login_attempts (ip, failed_ids)
-				VALUES (?, ?)
-				ON DUPLICATE KEY UPDATE
-					failed_attempts = failed_attempts + 1,
-					total_attempts = total_attempts + 1,
-					failed_ids = CONCAT(failed_ids, ',', ?),
-					last_attempt = CURRENT_TIMESTAMP",
+                VALUES (?, ?)
+                ON DUPLICATE KEY UPDATE
+                    failed_attempts = failed_attempts + 1,
+                    total_attempts = total_attempts + 1,
+                    failed_ids = CONCAT(failed_ids, ',', ?),
+                    last_attempt = CURRENT_TIMESTAMP",
             [$ip, $user_id, $user_id]);
     }
 }

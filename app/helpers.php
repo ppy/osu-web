@@ -326,9 +326,13 @@ function fractal_collection_array($models, $transformer)
     return $manager->createData($collection)->toArray();
 }
 
-function fractal_item_array($model, $transformer)
+function fractal_item_array($model, $transformer, $includes = null)
 {
     $manager = new League\Fractal\Manager();
+    if ($includes !== null) {
+        $manager->parseIncludes($includes);
+    }
+
     $item = new League\Fractal\Resource\Item($model, $transformer);
 
     return $manager->createData($item)->toArray();

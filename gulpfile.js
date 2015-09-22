@@ -18,11 +18,11 @@
 *
 */
 var
-	elixir = require("laravel-elixir"),
-	path = require("path"),
-	bower_root = "../../../bower_components/", // relative from resources/assets/*
-	composer_root = "../../../vendor/",
-	node_root = "../../../node_modules/";
+  elixir = require("laravel-elixir"),
+  path = require("path"),
+  bower_root = "../../../bower_components/", // relative from resources/assets/*
+  composer_root = "../../../vendor/",
+  node_root = "../../../node_modules/";
 
 
 /*
@@ -37,58 +37,60 @@ var
  */
 
 elixir(function(mix) {
-	mix
-	.copy("node_modules/font-awesome/fonts", "public/vendor/fonts/font-awesome")
-	.copy("node_modules/photoswipe/dist/default-skin", "public/vendor/_photoswipe-default-skin")
-	.less("app.less")
-	.scripts([
-		path.join(node_root, "jquery/dist/jquery.js"),
-		path.join(composer_root, "helthe/turbolinks/Resources/public/js/turbolinks.js"),
-		path.join(bower_root, "jquery-ujs/src/rails.js"),
-		path.join(node_root, "bootstrap/dist/js/bootstrap.js"),
-		path.join(bower_root, "jquery-timeago/jquery.timeago.js"),
-		path.join(bower_root, "jquery-zoom/jquery.zoom.js"),
-		path.join(node_root, "blueimp-file-upload/js/vendor/jquery.ui.widget.js"),
-		path.join(node_root, "blueimp-file-upload/js/jquery.iframe-transport.js"),
-		path.join(node_root, "blueimp-file-upload/js/jquery.fileupload.js"),
-		path.join(bower_root, "history.js/scripts/bundled-uncompressed/html5/jquery.history.js"),
-		path.join(bower_root, "ResponsiveSlides.js/responsiveslides.js"),
-		path.join(node_root, "photoswipe/dist/photoswipe.js"),
-		path.join(node_root, "photoswipe/dist/photoswipe-ui-default.js"),
-		path.join(node_root, "lodash/index.js"),
-		path.join(node_root, "layzr.js/dist/layzr.js"),
-		path.join(node_root, "react/dist/react-with-addons.js"),
-		"ga.js",
-	], "public/js/vendor.js")
-	.scripts("messages.js", "public/js/messages.js")
-	.coffee([
-		"osu!live.coffee",
-		"osu_common.coffee",
-		"turbolinks-mod.coffee",
-		"bbcode.coffee",
-		"main.coffee",
-		"store.coffee",
-		"forum.coffee",
-		"forum/post-box.coffee",
-		"forum/topic-ajax.coffee",
-		"ujs-common.coffee",
-		"bootstrap-modal.coffee",
-		"login-modal.coffee",
-		"logout.coffee",
-		"shared.coffee",
-	], "public/js/app.js")
-	.coffee([
-		"react/profile-page/header.coffee",
-		"react/profile-page/contents.coffee",
-		"react/profile-page.coffee",
-	], "public/js/react/profile-page.js")
-	.browserify("jsx/modding_react.jsx", "public/js/jsx/modding_react.js")
-	.version([
-		"css/app.css",
-		"js/app.js",
-		"js/messages.js",
-		"js/jsx/modding_react.js",
-		"js/react/profile-page.js",
-		"js/vendor.js",
-	])
+  mix
+  .copy("node_modules/font-awesome/fonts", "public/vendor/fonts/font-awesome")
+  .copy("node_modules/photoswipe/dist/default-skin", "public/vendor/_photoswipe-default-skin")
+  .less("app.less")
+  .scripts([
+    path.join(node_root, "jquery/dist/jquery.js"),
+    path.join(composer_root, "helthe/turbolinks/Resources/public/js/turbolinks.js"),
+    path.join(bower_root, "jquery-ujs/src/rails.js"),
+    path.join(node_root, "bootstrap/dist/js/bootstrap.js"),
+    path.join(bower_root, "jquery-timeago/jquery.timeago.js"),
+    path.join(bower_root, "jquery-zoom/jquery.zoom.js"),
+    path.join(node_root, "blueimp-file-upload/js/vendor/jquery.ui.widget.js"),
+    path.join(node_root, "blueimp-file-upload/js/jquery.iframe-transport.js"),
+    path.join(node_root, "blueimp-file-upload/js/jquery.fileupload.js"),
+    path.join(bower_root, "history.js/scripts/bundled-uncompressed/html5/jquery.history.js"),
+    path.join(bower_root, "ResponsiveSlides.js/responsiveslides.js"),
+    path.join(node_root, "photoswipe/dist/photoswipe.js"),
+    path.join(node_root, "photoswipe/dist/photoswipe-ui-default.js"),
+    path.join(node_root, "lodash/index.js"),
+    path.join(node_root, "layzr.js/dist/layzr.js"),
+    path.join(node_root, "react/dist/react-with-addons.js"),
+    "ga.js",
+  ], "public/js/vendor.js")
+  .scripts("messages.js", "public/js/messages.js")
+  .coffee([
+    "osu!live.coffee",
+    "osu_common.coffee",
+    "turbolinks-mod.coffee",
+    "bbcode.coffee",
+    "main.coffee",
+    "store.coffee",
+    "forum.coffee",
+    "forum/post-box.coffee",
+    "forum/topic-ajax.coffee",
+    "ujs-common.coffee",
+    "bootstrap-modal.coffee",
+    "user-dropdown-modal.coffee",
+    "logout.coffee",
+    "shared.coffee",
+
+    "react/user-card.coffee",
+  ], "public/js/app.js")
+  .coffee([
+    "react/profile-page/header.coffee",
+    "react/profile-page/contents.coffee",
+    "react/profile-page.coffee",
+  ], "public/js/react/profile-page.js")
+  .browserify("jsx/modding_react.jsx", "public/js/jsx/modding_react.js")
+  .version([
+    "css/app.css",
+    "js/app.js",
+    "js/messages.js",
+    "js/jsx/modding_react.js",
+    "js/react/profile-page.js",
+    "js/vendor.js",
+  ])
 });

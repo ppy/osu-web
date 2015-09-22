@@ -20,34 +20,34 @@
 
 @section("content")
 
-	<div class="padding">
-		<div class="col-xs-12">
-			<h2>
-				<a href='/beatmaps/modding/'>Modding Portal</a> &raquo; Home
-				<small>
-					<a href="/help/faq#modding">(what the heck is this?)</a>
-				</small>
-			</h2>
+    <div class="padding">
+        <div class="col-xs-12">
+            <h2>
+                <a href='/beatmaps/modding/'>Modding Portal</a> &raquo; Home
+                <small>
+                    <a href="/help/faq#modding">(what the heck is this?)</a>
+                </small>
+            </h2>
 
-			<h3>Note: UI is not designed yet.</h3>
-		</div>
+            <h3>Note: UI is not designed yet.</h3>
+        </div>
 
-		<div class="col-md-5">
-			<h2>Queue</h2>
-			<div class="col-xs-12" style="padding: 0 0 15px 0;">
-				@include("objects.beatmap-panel", ["beatmap" => BeatmapSet::find(76127)])
-			</div>
-		</div>
-		<div class="col-xs-1">
+        <div class="col-md-5">
+            <h2>Queue</h2>
+            <div class="col-xs-12" style="padding: 0 0 15px 0;">
+                @include("objects.beatmap-panel", ["beatmap" => BeatmapSet::find(76127)])
+            </div>
+        </div>
+        <div class="col-xs-1">
 
-		</div>
-		<div class="col-md-5">
-			<h2>Qualified</h2>
-			<div class="col-xs-12" style="padding: 0 0 15px 0;">
-				@include("objects.beatmap-panel", ["beatmap" => BeatmapSet::find(76127)])
-			</div>
-		</div>
+        </div>
+        <div class="col-md-5">
+            <h2>Qualified</h2>
+            <div class="col-xs-12" style="padding: 0 0 15px 0;">
+                @include("objects.beatmap-panel", ["beatmap" => BeatmapSet::find(76127)])
+            </div>
+        </div>
 
-	</div>
+    </div>
 
 @stop

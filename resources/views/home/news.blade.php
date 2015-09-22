@@ -19,12 +19,12 @@
 @extends("master")
 
 @section("content")
-	<div class="row-page">
-		<div class="col-xs-12">
-			<h3>We're not quite ready yet!</h3>
+    <div class="row-page">
+        <div class="col-xs-12">
+            <h3>We're not quite ready yet!</h3>
 
-			<div>Welcome to the future home of osu!. This site isn't complete yet, but is being used for some new services we are offering in the meantime. Please look forward to the full release in the coming months!</div>
-		</div>
-	</div>
+            <div>Welcome to the future home of osu!. This site isn't complete yet, but is being used for some new services we are offering in the meantime. Please look forward to the full release in the coming months!</div>
+        </div>
+    </div>
 @stop
 

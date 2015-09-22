@@ -27,7 +27,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 @if(config("services.ga.tracking_id") !== '')
-	<meta name="ga-tracking-id" content="{{ config("services.ga.tracking_id") }}">
+    <meta name="ga-tracking-id" content="{{ config("services.ga.tracking_id") }}">
 @endif
 
 <script src="{{ elixir("js/messages.js") }}" data-turbolinks-track></script>
@@ -40,5 +40,5 @@
 <link rel="stylesheet" media="all" href="/vendor/_photoswipe-default-skin/default-skin.css">
 
 @if (isset($rss))
-	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{ $rss }}">
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{ $rss }}">
 @endif

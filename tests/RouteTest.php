@@ -59,7 +59,7 @@ class RouteTest extends TestCase
      */
     public function testWikiRoutes()
     {
-        $this->assertGetRoutes(['/help/wiki']);
+        $this->assertGetRoutes(['/wiki']);
     }
 
     /**

@@ -81,7 +81,7 @@ class UsersController extends Controller
             Auth::attempt(['username' => $username, 'password' => $password], $remember);
 
             if (Auth::check()) {
-                return Auth::user();
+                return Auth::user()->defaultJson();
             } else {
                 LoginAttempt::failedAttempt($ip, $username);
 
@@ -132,13 +132,8 @@ class UsersController extends Controller
 
         $userArray = fractal_item_array($user, new UserTransformer());
 
-        $achievementsCounts = [
-            'total' => Achievement::count(),
-            'user' => $user->achievements()->count(),
-        ];
-
         return view('users.show', compact(
-            'user', 'mode', 'allStats', 'userPage', 'userArray', 'recentAchievements', 'achievementsCounts'
+            'user', 'mode', 'allStats', 'userPage', 'userArray', 'recentAchievements'
         ));
     }
 }

@@ -16,23 +16,23 @@ See the GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-window.osu =
+@osu =
   parseJson: (id) ->
     JSON.parse document.getElementById(id).text
 
   isMobile: -> ! window.matchMedia('(min-width: 944px)').matches
 
   showLoadingOverlay: ->
-    $body = $('body')
-    return if $body.hasClass('loading')
+    $overlay = $('.loading-overlay')
+    return if $overlay.hasClass('loading-overlay--visible')
 
-    $body.addClass 'loading'
+    $overlay.addClass 'loading-overlay--visible'
     $('button, .btn').prop 'disabled', true
     $('a.btn').addClass 'disabled'
 
 
   hideLoadingOverlay: ->
-    $('body').removeClass 'loading'
+    $('.loading-overlay').removeClass 'loading-overlay--visible'
     $('button, .btn').prop 'disabled', false
     $('a.btn').removeClass 'disabled'
 

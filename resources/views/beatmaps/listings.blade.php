@@ -19,58 +19,58 @@
 @extends("master")
 
 @section("content")
-	<div id='search' class='search'>
-		<div class='box'>
-			<input type='textbox' name='search' placeholder='{{{ trans("beatmaps.listing.search.prompt") }}}'>
-			<i class='fa fa-search'></i></input>
-		</div>
+    <div id='search' class='search'>
+        <div class='box'>
+            <input type='textbox' name='search' placeholder='{{{ trans("beatmaps.listing.search.prompt") }}}'>
+            <i class='fa fa-search'></i></input>
+        </div>
 
-		<div class='selector'>
-			<span class='header'>Mode</span>
-			<a href='#' class='active'>{{{ trans("beatmaps.listing.all") }}}</a>
-			<a href='#'>osu!</a>
-			<a href='#'>Taiko</a>
-			<a href='#'>Catch the Beat</a>
-			<a href='#'>osu!mania</a>
-		</div>
+        <div class='selector'>
+            <span class='header'>Mode</span>
+            <a href='#' class='active'>{{{ trans("beatmaps.listing.all") }}}</a>
+            <a href='#'>osu!</a>
+            <a href='#'>Taiko</a>
+            <a href='#'>Catch the Beat</a>
+            <a href='#'>osu!mania</a>
+        </div>
 
-		<div class='selector'>
-			<span class='header'>Rank Status</span>
-			<a href='#' class='active'>{{{ trans("beatmaps.listing.ranked-approved") }}}</a>
-			<a href='#'>{{{ trans("beatmaps.listing.faves") }}}</a>
-			<a href='#'>{{{ trans("beatmaps.listing.modreqs") }}}</a>
-			<a href='#'>{{{ trans("beatmaps.listing.pending") }}}</a>
-			<a href='#'>{{{ trans("beatmaps.listing.all") }}}</a>
-		</div>
+        <div class='selector'>
+            <span class='header'>Rank Status</span>
+            <a href='#' class='active'>{{{ trans("beatmaps.listing.ranked-approved") }}}</a>
+            <a href='#'>{{{ trans("beatmaps.listing.faves") }}}</a>
+            <a href='#'>{{{ trans("beatmaps.listing.modreqs") }}}</a>
+            <a href='#'>{{{ trans("beatmaps.listing.pending") }}}</a>
+            <a href='#'>{{{ trans("beatmaps.listing.all") }}}</a>
+        </div>
 
-		<div class='more gray_link'>
-			<a href='#'>
-				<div>{{{ trans("beatmaps.listing.search.options") }}}</div>
-				<div><i class='fa fa-angle-down'></i></div>
-			</a>
-		</div>
-	</div>
-	<div id='beatmaps' class='beatmaps padding'>
-		@foreach ($beatmaps as $beatmap)
-			@include("objects.beatmap-panel", ["beatmap", $beatmap])
-		@endforeach
-	</div>
-	<div class='padding centre'>
-		<a href='#' id='load_more'>{{{ trans("beatmaps.listing.load-more") }}}</a>
-	</div>
+        <div class='more gray_link'>
+            <a href='#'>
+                <div>{{{ trans("beatmaps.listing.search.options") }}}</div>
+                <div><i class='fa fa-angle-down'></i></div>
+            </a>
+        </div>
+    </div>
+    <div id='beatmaps' class='beatmaps padding'>
+        @foreach ($beatmaps as $beatmap)
+            @include("objects.beatmap-panel", ["beatmap", $beatmap])
+        @endforeach
+    </div>
+    <div class='padding centre'>
+        <a href='#' id='load_more'>{{{ trans("beatmaps.listing.load-more") }}}</a>
+    </div>
 @stop
 
 @section("script")
-	<script>
-		var pending = function() {
-			var loaded_count = 20;
+    <script>
+        var pending = function() {
+            var loaded_count = 20;
 
-			$(window).scroll(function() {
-				if($(window).scrollTop() == $(document).height() - $(window).height()) {
-					osu.loadMore('beatmap', loaded_count);
-					loaded_count += 20;
-				}
-			});
-		};
-	</script>
+            $(window).scroll(function() {
+                if($(window).scrollTop() == $(document).height() - $(window).height()) {
+                    osu.loadMore('beatmap', loaded_count);
+                    loaded_count += 20;
+                }
+            });
+        };
+    </script>
 @stop

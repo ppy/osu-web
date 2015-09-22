@@ -21,14 +21,15 @@
 
 return [
     'login' => [
+        '_' => 'Login',
         'username' => 'Username',
         'password' => 'Password',
         'button' => 'Login',
         'remember' => 'Remember this computer',
-        'title' => 'please login to continue',
-        'failed' => 'incorrect login',
-        'register' => "Don't have an account? Click :here!",
-        'forgot' => 'Forgot your password? Reset it :here!',
+        'title' => 'Please login to proceed',
+        'failed' => 'Incorrect login',
+        'register' => "Don't have an osu! account? Make a new one",
+        'forgot' => 'Forgotten your password?',
         'beta' => [
             'main' => 'Beta access is currently restricted to privileged users.',
             'small' => '(supporters will get in soon)',
@@ -40,11 +41,7 @@ return [
         'login' => 'login',
         'username' => 'Guest',
     ],
-    'logout' => [
-        '_' => 'logout',
-        'confirm' => 'Are you sure you want to log out? :(',
-    ],
-
+    'logout_confirm' => 'Are you sure you want to log out? :(',
     'show' => [
         '404' => 'User not found! ;_;',
         'avatar' => ":username's avatar",
@@ -64,6 +61,7 @@ return [
         ],
         'first_members' => 'here since the beginning',
         'is_supporter' => 'osu!supporter',
+        'is_developer' => 'osu!developer',
         'lastvisit' => 'Last seen :date.',
         'joined_at' => 'joined :date',
         'more_achievements' => 'and :count more',

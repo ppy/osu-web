@@ -18,50 +18,50 @@
 *
 */
 .create-topic {
-	flex: 1 0 auto;
-	min-height: 600px;
-	display: flex;
-	flex-direction: column;
+  flex: 1 0 auto;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
 
-	[name=title] {
-		&:extend(.default-text-shadow);
+  [name=title] {
+    &:extend(.default-text-shadow);
 
-		width: 100%;
-		background: none;
-		border: none;
-		outline: none;
-		color: #fff;
-		text-align: center;
-		font-style: normal;
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    color: #fff;
+    text-align: center;
+    font-style: normal;
 
-		&::placeholder {
-			color: #fff;
-		}
-	}
+    &::placeholder {
+      color: #fff;
+    }
+  }
 
-	[name=body] {
-		flex: 1;
-		resize: vertical;
-		background: none;
-		margin-bottom: @grid-gutter-width/4;
-	}
+  [name=body] {
+    flex: 1;
+    resize: vertical;
+    background: none;
+    margin-bottom: @grid-gutter-width/4;
+  }
 
-	.create-topic-buttons {
-		display: flex;
-		justify-content: flex-end;
+  .create-topic-buttons {
+    display: flex;
+    justify-content: flex-end;
 
-		> * {
-			margin-left: @grid-gutter-width/4;
-		}
-	}
+    > * {
+      margin-left: @grid-gutter-width/4;
+    }
+  }
 
-	.forum-header {
-		.at2x("/images/headers/forum-topics-create.png");
-	}
+  .forum-header {
+    .at2x("/images/headers/forum-topics-create.png");
+  }
 }
 
 #topic-post-form {
-	flex: 1 0 auto;
+  flex: 1 0 auto;
 }
 
 .post-editor__preview {

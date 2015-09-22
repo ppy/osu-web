@@ -18,15 +18,15 @@
 --}}
 <li><a href="{{ route("forum.forums.index") }}">{{ trans("forum.title") }}</a></li>
 @foreach($forum_parents as $forum_id => $forum_data)
-	<li>
-		@if($forum_data[1] === 0)
-			<a href="{{ route("forum.forums.index") }}#forum-{{ $forum_id }}">
-				{{ $forum_data[0] }}
-			</a>
-		@else
-			<a href="{{ route("forum.forums.show", $forum_id) }}">
-				{{ $forum_data[0] }}
-			</a>
-		@endif
-	</li>
+    <li>
+        @if($forum_data[1] === 0)
+            <a href="{{ route("forum.forums.index") }}#forum-{{ $forum_id }}">
+                {{ $forum_data[0] }}
+            </a>
+        @else
+            <a href="{{ route("forum.forums.show", $forum_id) }}">
+                {{ $forum_data[0] }}
+            </a>
+        @endif
+    </li>
 @endforeach

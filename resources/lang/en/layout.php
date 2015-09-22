@@ -85,7 +85,11 @@ return [
             'register' => 'register',
             'reset' => 'recover',
             'new' => 'new',
-            'logout' => 'logout',
+
+            'messages' => 'Messages',
+            'settings' => 'Settings',
+            'logout' => 'Log Out',
+            'help' => 'Help',
         ],
         'store' => [
             '_' => 'store',
