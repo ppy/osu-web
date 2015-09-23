@@ -70,18 +70,6 @@ class Topic extends Model
         return $topic;
     }
 
-    public static function isDoublePost($post)
-    {
-        $postTime = $post['post_time'];
-        $now = Carbon::now();
-        $diffSinceLastPost = $now->diffInDays($postTime);
-        if (! is_null(Auth::user()) && $post['poster_id'] == Auth::user()->user_id && $diffSinceLastPost < 3) {
-            return true;
-        }
-
-        return false;
-    }
-
     public function addPost($poster, $body, $notifyReplies)
     {
         DB::transaction(function () use ($poster, $body, $notifyReplies) {
@@ -207,6 +195,22 @@ class Topic extends Model
     {
         return $this->posts()->skip(intval($n) - 1)->first();
     }
+
+    public function isDoublePostBy($userId)
+    {
+        $post = $this->posts()->orderBy('post_id', 'desc')->first();
+        $postTime = $post['post_time'];
+        $now = Carbon::now();
+
+        $diffSinceLastPost = $now->diffInDays($postTime);
+
+        if (! is_null($userId) && $post['poster_id'] == $userId && $diffSinceLastPost < 3) {
+            return true;
+        }
+
+        return false;
+    }
+
 
     public function postPosition($postId)
     {

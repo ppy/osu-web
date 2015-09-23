@@ -159,7 +159,7 @@ class TopicsController extends Controller
         }
 
         $postsPosition = $topic->postsPosition($posts);
-        $isDoublePost = Topic::isDoublePost($posts[count($posts) - 1]);
+        $isDoublePost = $topic->isDoublePostBy(Auth::user()->user_id);
 
         Event::fire(new TopicWasViewed($topic, $posts->last(), Auth::user()));
 
@@ -173,7 +173,7 @@ class TopicsController extends Controller
         $topic = Topic::findOrFail($id);
         $posts = Post::where('post_id', $topic->topic_last_post_id)->get();
 
-        if (Topic::isDoublePost($posts[count($posts) - 1])) {
+        if ($topic->isDoublePostBy(Auth::user()->user_id)) {
             return 'not allowed';
         }
 
