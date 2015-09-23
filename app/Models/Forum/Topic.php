@@ -199,9 +199,7 @@ class Topic extends Model
     {
         $post = $this->posts()->orderBy('post_id', 'desc')->first();
         $postTime = $post['post_time'];
-        $now = Carbon::now();
-
-        $diffSinceLastPost = $now->diffInDays($postTime);
+        $diffSinceLastPost = Carbon::now()->diffInDays($postTime);
 
         if (! is_null($userId) && $post['poster_id'] == $userId && $diffSinceLastPost < 3) {
             return true;

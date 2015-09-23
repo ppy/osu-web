@@ -16,13 +16,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<?php
-$display = "";
-
-if ($hide)
-    $display = "none";
-?>
-<div id="{{ $id }}" class="row-page flex-row forum-post-box-warning" style="display:{{ $display }}">
+<div id="{{ $id }}" class="row-page flex-row forum-post-box-warning" style="display:{{$hide ? 'none' : ''}}">
     <div class="iconbox">
         <i class="fa fa-info-circle"></i>
     </div>
