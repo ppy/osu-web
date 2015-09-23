@@ -26,5 +26,5 @@ if ($hide)
     <div class="iconbox">
         <i class="fa fa-info-circle"></i>
     </div>
-    <p>You just posted. Please wait a bit or <a data-remote="1" data-target-post-id="{{ $lastPostId }}" class="edit-post-link" href="{{ route("forum.posts.edit", $lastPostId) }}">edit your previous post</a>.
+    <p>{!! $text !!}</p>
 </div>

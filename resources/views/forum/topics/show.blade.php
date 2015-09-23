@@ -78,11 +78,14 @@
         {!! Form::close() !!}
     @endif
 
-    @include("forum.topics._doublepostbox",
-                ["text" => trans("forum.topic.doublepost_warning"),
-                "lastPostId" => $topic->topic_last_post_id,
-                "id" => "doublepost-box",
-                "hide" => !$isDoublePost])
+    @include("forum.topics._infobox",
+                ["text" => trans("forum.topic.messages.doublepost", [
+                    "lastPostId" => $topic->topic_last_post_id,
+                    "editPostLink" => route("forum.posts.edit", $topic->topic_last_post_id)
+                ]),
+                "hide" => !$isDoublePost,
+                "id" => "doublepost-box"
+                ])
 
     <div class="row-page row-blank fixed-bar-bottom">
         <div id="forum-topic-navigator" class="js-forum__topic-total-posts" data-total-count="{{ $topic->postsCount() }}">
