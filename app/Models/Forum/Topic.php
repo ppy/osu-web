@@ -24,6 +24,7 @@ namespace App\Models\Forum;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Topic extends Model
 {
@@ -67,6 +68,18 @@ class Topic extends Model
         });
 
         return $topic;
+    }
+
+    public static function isDoublePost($post)
+    {
+        $postTime = $post['post_time'];
+        $now = Carbon::now();
+        $diffSinceLastPost = $now->diffInDays($postTime);
+        if (! is_null(Auth::user()) && $post['poster_id'] == Auth::user()->user_id && $diffSinceLastPost < 3) {
+            return true;
+        }
+
+        return false;
     }
 
     public function addPost($poster, $body, $notifyReplies)

@@ -51,18 +51,6 @@ class TopicsController extends Controller
         ]]);
     }
 
-    private function isDoublePost($post)
-    {
-        $postTime = $post['post_time'];
-        $now = Carbon::now();
-        $diffSinceLastPost = $now->diffInDays($postTime);
-        if (! is_null(Auth::user()) && $post['poster_id'] == Auth::user()->user_id && $diffSinceLastPost < 3) {
-            return true;
-        }
-
-        return false;
-    }
-
     public function create($forum_id)
     {
         $forum = Forum::findOrFail($forum_id);
@@ -171,7 +159,7 @@ class TopicsController extends Controller
         }
 
         $postsPosition = $topic->postsPosition($posts);
-        $isDoublePost = $this->isDoublePost($posts[count($posts) - 1]);
+        $isDoublePost = Topic::isDoublePost($posts[count($posts) - 1]);
 
         Event::fire(new TopicWasViewed($topic, $posts->last(), Auth::user()));
 
@@ -185,7 +173,7 @@ class TopicsController extends Controller
         $topic = Topic::findOrFail($id);
         $posts = Post::where('post_id', $topic->topic_last_post_id)->get();
 
-        if ($this->isDoublePost($posts[count($posts) - 1])) {
+        if (Topic::isDoublePost($posts[count($posts) - 1])) {
             return 'not allowed';
         }
 

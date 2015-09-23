@@ -119,6 +119,8 @@
         window.postJumpTo = {{ $jumpTo }};
         @if ($isDoublePost)
             window.isDoublePost = true;
+        @else
+            window.isDoublePost = false;
         @endif
     </script>
 @endsection

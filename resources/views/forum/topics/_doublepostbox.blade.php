@@ -17,7 +17,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <?php
-$display = "inherit";
+$display = "";
 
 if ($hide)
     $display = "none";
@@ -26,5 +26,5 @@ if ($hide)
     <div class="iconbox">
         <i class="fa fa-info-circle"></i>
     </div>
-    <p>You just posted. Please wait a bit or <a data-remote="1" target="{{ $lastPostId }}" class="edit-post-link" href="{{ route("forum.posts.edit", $lastPostId) }}">edit your previous post</a>.
+    <p>You just posted. Please wait a bit or <a data-remote="1" data-target-post-id="{{ $lastPostId }}" class="edit-post-link" href="{{ route("forum.posts.edit", $lastPostId) }}">edit your previous post</a>.
 </div>

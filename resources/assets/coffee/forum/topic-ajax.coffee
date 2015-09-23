@@ -40,13 +40,16 @@ $(document).on 'ajax:success', '.delete-post-link', (_event, data) ->
       $(document).trigger('osu:page:change')
 
 
-$(document).on 'ajax:success', '.reply-post-link', (e, data) ->
-  data += '\n'
+$(document).on 'ajax:before', '.reply-post-link', (e, data) ->
   if window.isDoublePost
     url = location.href
     history.replaceState(null, null, url)
     location.href = "#doublepost-box"
-    return
+    return false
+  return true
+
+$(document).on 'ajax:success', '.reply-post-link', (e, data) ->
+  data += '\n'
 
   $replyBox = $('#forum-topic-reply-box')
   $replyInput = $replyBox.find('[name=body]')
@@ -80,12 +83,12 @@ $(document).on 'ajax:success', '#forum-topic-reply-box', (_event, data) ->
     $('#forum-topic-reply-box').hide()
 
     doublepostBox = $("#doublepost-box")
-    editLastPostLink = doublepostBox.find("a")
+    editLastPostLink = doublepostBox.find("a.edit-post-link")
     lastPostId = $(".forum-post").last().attr("data-post-id")
-    previousLastPostId = editLastPostLink.attr("target")
+    previousLastPostId = editLastPostLink.attr("data-target-post-id")
 
     editLastPostLink.attr("href", editLastPostLink.attr("href").replace(previousLastPostId, lastPostId))
-    editLastPostLink.attr("target", lastPostId)
+    editLastPostLink.attr("data-target-post-id", lastPostId)
     doublepostBox.show()
 
   else
@@ -93,8 +96,8 @@ $(document).on 'ajax:success', '#forum-topic-reply-box', (_event, data) ->
 
 
 $(document).on 'ajax:success', '.edit-post-link', (e, data, status, xhr) ->
-  targetId = $(e.target).attr("target");
-  $postBox = $("[data-post-id='"+targetId+"']")
+  targetId = $(e.target).attr("data-target-post-id")
+  $postBox = $("[data-post-id='#{targetId}']")
 
   # ajax:complete needs to be triggered early because the link (target) is
   # removed in this callback.
