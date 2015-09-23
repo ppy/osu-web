@@ -159,7 +159,7 @@ class TopicsController extends Controller
         }
 
         $postsPosition = $topic->postsPosition($posts);
-        $isDoublePost = $topic->isDoublePostBy(Auth::user()->user_id);
+        $isDoublePost = $topic->isDoublePostBy(Auth::user() ? Auth::user()->user_id : null);
 
         Event::fire(new TopicWasViewed($topic, $posts->last(), Auth::user()));
 
