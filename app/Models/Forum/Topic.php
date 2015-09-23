@@ -24,7 +24,6 @@ namespace App\Models\Forum;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
-use Auth;
 
 class Topic extends Model
 {
@@ -210,7 +209,6 @@ class Topic extends Model
 
         return false;
     }
-
 
     public function postPosition($postId)
     {

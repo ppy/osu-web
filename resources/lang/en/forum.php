@@ -55,8 +55,8 @@ return [
         'reply_box_placeholder' => 'Type here to reply',
         'started_by' => 'by :user',
         'messages' => [
-            'doublepost' => 'You just posted. Please wait a bit or <a data-remote="1" data-target-post-id=":lastPostId" class="edit-post-link" href=":editPostLink">edit your previous post</a>.'
-        ]
+            'doublepost' => 'You just posted. Please wait a bit or <a data-remote="1" data-target-post-id=":lastPostId" class="edit-post-link" href=":editPostLink">edit your previous post</a>.',
+        ],
     ],
     'topics' => 'Topics',
 
