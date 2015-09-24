@@ -24,7 +24,7 @@ class ProfilePage.RecentActivities extends React.Component
                   user: osu.link(event.user.url, event.user.username)
                   rank: event.rank
                   beatmap: osu.link(event.beatmap.url, event.beatmap.title)
-                  mode: event.mode.name
+                  mode: Lang.get "common.play_mode.#{event.mode}"
           el 'div',
             className: 'event-entry__time'
             dangerouslySetInnerHTML: { __html: osu.timeago(event.created_at) }
@@ -43,7 +43,7 @@ class ProfilePage.RecentActivities extends React.Component
                   user: osu.link(event.user.url, event.user.username)
                   rank: event.rank
                   beatmap: osu.link(event.beatmap.url, event.beatmap.title)
-                  mode: event.mode.name
+                  mode: Lang.get "common.play_mode.#{event.mode}"
           el 'div',
             className: 'event-entry__time'
             dangerouslySetInnerHTML: { __html: osu.timeago(event.created_at) }

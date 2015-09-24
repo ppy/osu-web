@@ -30,6 +30,14 @@ return [
             'item' => ':count unit|:count units',
         ],
 
+        'play_mode' => [
+            'ctb' => 'osu!ctb',
+            'mania' => 'osu!mania',
+            'me' => 'me!', // not a real mode
+            'osu' => 'osu!',
+            'taiko' => 'osu!taiko',
+        ],
+
         'pagination' => [
             'previous' => 'prev',
             'next' => 'next',

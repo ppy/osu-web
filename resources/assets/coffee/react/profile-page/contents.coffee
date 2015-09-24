@@ -30,15 +30,10 @@ class ProfilePage.Contents extends React.Component
 
 
   render: =>
-    tabs = [
-      ['osu', 'osu!']
-      ['taiko', 'osu!taiko']
-      ['ctb', 'osu!ctb']
-      ['mania', 'osu!mania']
-    ]
+    tabs = ['osu', 'taiko', 'ctb', 'mania']
 
     if @props.userPage.html != '' || @props.withEdit
-      tabs.unshift ['me', 'me!']
+      tabs.unshift 'me'
 
     mainClass = 'row-page row-page--profile flex-column'
     if @props.mode == 'me'
@@ -48,10 +43,9 @@ class ProfilePage.Contents extends React.Component
       el 'div', className: 'profile-tabs',
         tabs.map (t) =>
           el ProfilePage.ContentsTab,
-            key: t[0]
+            key: t
             currentMode: @props.mode
-            mode: t[0]
-            text: t[1]
+            mode: t
       el 'div', className: 'profile-contents flex-full flex-row',
         el ProfilePage.Info, user: @props.user
         if @props.mode == 'me'

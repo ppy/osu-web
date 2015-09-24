@@ -133,10 +133,7 @@ class Event extends Model
             'type' => 'rank',
             'scoreRank' => $scoreRank,
             'rank' => intval($matches['rank']),
-            'mode' => [
-                'name' => $matches['mode'],
-                'shortName' => $mode,
-            ],
+            'mode' => $mode,
             'beatmap' => [
                 'title' => $matches['beatmapTitle'],
                 'url' => $beatmapUrl,
@@ -162,10 +159,7 @@ class Event extends Model
 
         return [
             'type' => 'rankLost',
-            'mode' => [
-                'name' => $matches['mode'],
-                'shortName' => $mode,
-            ],
+            'mode' => $mode,
             'beatmap' => [
                 'title' => $matches['beatmapTitle'],
                 'url' => $beatmapUrl,
