@@ -9,27 +9,62 @@ class ProfilePage.RecentActivities extends React.Component
 
 
   _renderEntry: (event) =>
-    if event.type == 'rank'
-      el 'li',
-        className: 'event-entry'
-        key: event.id
-        el 'div', className: 'event-entry__detail',
+    switch event.type
+      when 'rank'
+        el 'li',
+          className: 'event-entry'
+          key: event.id
+          el 'div', className: 'event-entry__detail',
+            el 'div',
+              className: "flex-none profile-score-rank-badge profile-score-rank-badge--#{event.scoreRank} event-entry__icon"
+            el 'div',
+              className: 'event-entry__text'
+              dangerouslySetInnerHTML:
+                __html: Lang.get 'events.rank',
+                  user: osu.link(event.user.url, event.user.username)
+                  rank: event.rank
+                  beatmap: osu.link(event.beatmap.url, event.beatmap.title)
           el 'div',
-            className: "flex-none profile-score-rank-badge profile-score-rank-badge--#{event.scoreRank} profile-score-rank-badge--small"
+            className: 'event-entry__time'
+            dangerouslySetInnerHTML: { __html: osu.timeago(event.created_at) }
+
+      when 'beatmapUpdate'
+        el 'li',
+          className: 'event-entry'
+          key: event.id
+          el 'div', className: 'event-entry__detail',
+            el 'div',
+              className: 'event-entry__icon'
+            el 'div',
+              className: 'event-entry__text'
+              dangerouslySetInnerHTML:
+                __html: Lang.get 'events.beatmap_update',
+                  user: osu.link(event.user.url, event.user.username)
+                  beatmap: osu.link(event.beatmap.url, event.beatmap.title)
           el 'div',
-            className: 'event-entry__text'
-            dangerouslySetInnerHTML:
-              __html: Lang.get 'events.rank',
-                user: osu.link(event.user.url, event.user.username)
-                rank: event.rank
-                beatmap: osu.link(event.beatmap.url, event.beatmap.title)
-        el 'div',
-          className: 'event-entry__time'
-          dangerouslySetInnerHTML: { __html: osu.timeago(event.created_at) }
-    else
-      el 'li',
-        key: event.id,
-        el 'pre', null, JSON.stringify(event)
+            className: 'event-entry__time'
+            dangerouslySetInnerHTML: { __html: osu.timeago(event.created_at) }
+
+      when 'achievement'
+        el 'li',
+          className: 'event-entry'
+          key: event.id
+          el 'div', className: 'event-entry__detail',
+            el ProfilePage.AchievementBadge, achievement: event.achievement, additionalClasses: 'event-entry__icon'
+            el 'div',
+              className: 'event-entry__text'
+              dangerouslySetInnerHTML:
+                __html: Lang.get 'events.achievement',
+                  user: osu.link(event.user.url, event.user.username)
+                  achievement: event.achievement.name
+          el 'div',
+            className: 'event-entry__time'
+            dangerouslySetInnerHTML: { __html: osu.timeago(event.created_at) }
+
+      else
+        el 'li',
+          key: event.id,
+          el 'pre', null, JSON.stringify(event)
 
 
   render: =>

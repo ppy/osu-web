@@ -490,11 +490,6 @@
   &--b { ._bg("b"); }
   &--c { ._bg("c"); }
   &--d { ._bg("d"); }
-
-  &--small {
-    width: @size/2;
-    height: @size/2;
-  }
 }
 
 .profile-recent-achievements {
@@ -588,6 +583,16 @@
 
   &__time {
     white-space: nowrap;
+  }
+
+  &__icon {
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+
+    > img {
+      max-width: 100%;
+    }
   }
 }
 
