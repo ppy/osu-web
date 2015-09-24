@@ -84,29 +84,27 @@
 @section('fixed-bar-rows-bottom')
     @parent
 
-    <div class="row-page row-blank fixed-bar-bottom">
-        <div id="forum-topic-navigator" class="js-forum__topic-total-posts" data-total-count="{{ $topic->postsCount() }}">
+    <div id="forum-topic-navigator" class="js-forum__topic-total-posts" data-total-count="{{ $topic->postsCount() }}">
 
-            @include("objects._radial_progress", ["extraRadialProgressClasses" => "js-forum__posts-progress"])
-            <a
-                class="jump-link first-post"
-                href="{{ route("forum.topics.show", $topic->topic_id) }}"
-            >
-                <i class="fa fa-angle-double-up"></i>
-            </a>
+        @include("objects._radial_progress", ["extraRadialProgressClasses" => "js-forum__posts-progress"])
+        <a
+            class="jump-link first-post"
+            href="{{ route("forum.topics.show", $topic->topic_id) }}"
+        >
+            <i class="fa fa-angle-double-up"></i>
+        </a>
 
-            <div class="post-counter">
-                <a href="#" class="current-count js-forum__posts-counter">{{ head($postsPosition) }}</a>
-                <div class="total-count">/{{ $topic->postsCount() }}</div>
-            </div>
-
-            <a
-                class="jump-link last-post"
-                href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => $topic->topic_last_post_id]) }}#forum-post-{{ $topic->topic_last_post_id }}"
-            >
-                <i class="fa fa-angle-double-down"></i>
-            </a>
+        <div class="post-counter">
+            <a href="#" class="current-count js-forum__posts-counter">{{ head($postsPosition) }}</a>
+            <div class="total-count">/{{ $topic->postsCount() }}</div>
         </div>
+
+        <a
+            class="jump-link last-post"
+            href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => $topic->topic_last_post_id]) }}#forum-post-{{ $topic->topic_last_post_id }}"
+        >
+            <i class="fa fa-angle-double-down"></i>
+        </a>
     </div>
 @endsection
 
