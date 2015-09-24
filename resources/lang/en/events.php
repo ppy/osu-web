@@ -22,5 +22,6 @@
 return [
     'achievement' => '<strong><em>:user</em></strong> unlocked the "<strong>:achievement</strong>" achievement!',
     'beatmap_update' => '<strong><em>:user</em></strong> has updated the beatmap "<em>:beatmap</em>"',
-    'rank' => '<strong><em>:user</em></strong> achieved rank #:rank on <em>:beatmap</em>',
+    'rank' => '<strong><em>:user</em></strong> achieved rank #:rank on <em>:beatmap</em> (:mode)',
+    'rankLost' => '<strong><em>:user</em></strong> has lost first place on <em>:beatmap</em> (:mode)',
 ];
