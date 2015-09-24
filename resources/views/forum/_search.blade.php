@@ -16,7 +16,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@section('fixer-bar-rows-bottom')
+@section('fixed-bar-rows-bottom')
     @parent
 
     <a id="forum-search" class="forum-search-logo js-forum-search-button" href="#" data-toggle="modal" data-target="#forum-search-modal">
