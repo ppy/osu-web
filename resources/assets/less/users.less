@@ -496,9 +496,17 @@
   text-align: center;
 }
 
-.profile-recent-achievement-badge {
-  width: 25%;
-  display: inline-block;
+.achievement-badge {
+  overflow: hidden;
+
+  &__image {
+    max-width: 100%;
+  }
+
+  &--recent {
+    width: 25%;
+    display: inline-block;
+  }
 }
 
 .profile-user-page-header {
@@ -588,11 +596,6 @@
   &__icon {
     width: 25px;
     height: 25px;
-    overflow: hidden;
-
-    > img {
-      max-width: 100%;
-    }
   }
 }
 
