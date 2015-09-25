@@ -28,32 +28,52 @@ class ProfilePage.Extra extends React.Component
 
 
   componentDidMount: =>
+    @_removeListeners()
     $(document).on 'profilePageExtra:tab.profileContentsExtra', @_modeSwitch
     $(document).on 'stickyHeader.profileContentsExtra', @_tabsStick
+    $(window).on 'scroll.profileContentsExtra', @_modeScan
     osu.pageChange()
 
 
   componentWillUnmount: =>
-    $(document).off '.profileContentsExtra'
+    @_removeListeners()
 
 
   componentWillReceiveProps: =>
     osu.pageChange()
 
 
+  _modeScan: =>
+    headerHeight = document.getElementsByClassName('js-sticky-header--active')[0]?.getBoundingClientRect().height
+    headerHeight ||= 0
+
+    for page in document.querySelectorAll('[data-profile-extra-page]')
+      continue if page.getBoundingClientRect().bottom < headerHeight
+
+      @setState mode: page.getAttribute('data-profile-extra-page')
+      return
+
+    @setState mode: page.getAttribute('data-profile-extra-page')
+
+
   _modeSwitch: (_e, mode) =>
     @setState mode: mode
 
 
+  _removeListeners: ->
+    $(document).off '.profileContentsExtra'
+
+
   _tabsStick: (_e, target) =>
-    this.setState tabsSticky: (target == 'profile-extra-tabs')
+    @setState tabsSticky: (target == 'profile-extra-tabs')
 
 
   render: =>
     return if @props.mode == 'me'
 
     tabsClasses = 'profile-extra-tabs__items'
-    tabsClasses += ' profile-extra-tabs__items--fixed' if @state.tabsSticky
+    if @state.tabsSticky
+      tabsClasses += ' profile-extra-tabs__items--fixed js-sticky-header--active'
 
     el 'div', className: "content content-extra flex-full",
       el 'div',
