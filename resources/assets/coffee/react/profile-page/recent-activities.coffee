@@ -90,7 +90,7 @@ class ProfilePage.RecentActivities extends React.Component
 
   render: =>
     el 'div', className: 'row-page profile-extra',
-      el 'h2', className: 'profile-extra-title', Lang.get('users.show.extra.recent_activities.title')
+      el 'h2', className: 'profile-extra__title', Lang.get('users.show.extra.recent_activities.title')
       if @state.recentActivities.length
         el 'ul', className: 'profile-recent-activities',
           @state.recentActivities.map (activity) => @_renderEntry(activity)
