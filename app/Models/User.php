@@ -147,7 +147,7 @@ class User extends Model implements AuthenticatableContract
         }
 
         if (($availableDate = self::checkWhenUsernameAvailable($username)) > Carbon::now()) {
-            $remainingDays = Carbon::now()->diffInDays($availableDate, false);
+            $remainingDays = max(1, Carbon::now()->diffInDays($availableDate, false));
 
             if ($remainingDays > 365 * 3) {
                 //no need to mention the inactivity period of the account is actively in use.
