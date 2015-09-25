@@ -35,6 +35,10 @@ $(document).on 'page:receive', osu.hideLoadingOverlay
 $(document).on 'submit', 'form', osu.showLoadingOverlay
 
 
+$(document).on 'ready page:load', =>
+  @stickyHeader ||= new StickyHeader
+
+
 $(document).on 'ready page:load osu:page:change', ->
   osu.initTimeago()
   new Layzr

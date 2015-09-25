@@ -68,6 +68,7 @@ elixir(function(mix) {
     "bbcode.coffee",
     "main.coffee",
     "store.coffee",
+    "sticky-header.coffee",
     "forum.coffee",
     "forum/post-box.coffee",
     "forum/topic-ajax.coffee",

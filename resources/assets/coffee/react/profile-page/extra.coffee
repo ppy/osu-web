@@ -22,12 +22,15 @@ class ProfilePage.Extra extends React.Component
   constructor: (props) ->
     super props
 
-    @state = mode: 'recent_activities'
+    @state =
+      mode: 'recent_activities'
+      tabsSticky: false
 
 
   componentDidMount: =>
-    osu.pageChange()
     $(document).on 'profilePageExtra:tab.profileContentsExtra', @_modeSwitch
+    $(document).on 'stickyHeader.profileContentsExtra', @_tabsStick
+    osu.pageChange()
 
 
   componentWillUnmount: =>
@@ -42,12 +45,24 @@ class ProfilePage.Extra extends React.Component
     @setState mode: mode
 
 
+  _tabsStick: (_e, target) =>
+    this.setState tabsSticky: (target == 'profile-extra-tabs')
+
+
   render: =>
     return if @props.mode == 'me'
 
+    tabsClasses = 'profile-extra-tabs__items'
+    tabsClasses += ' profile-extra-tabs__items--fixed' if @state.tabsSticky
+
     el 'div', className: "content content-extra flex-full",
-      el 'ul', className: 'profile-extra-tabs',
-        ['recent_activities', 'historical', 'beatmaps', 'kudosu', 'achievements'].map (m) =>
-          el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
+      el 'div',
+        className: 'profile-extra-tabs js-sticky-header'
+        'data-sticky-header-target': 'profile-extra-tabs'
+        el 'div',
+          className: tabsClasses
+          'data-sticky-header-id': 'profile-extra-tabs'
+          ['recent_activities', 'historical', 'beatmaps', 'kudosu', 'achievements'].map (m) =>
+            el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
 
       el ProfilePage.RecentActivities

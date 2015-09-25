@@ -29,5 +29,5 @@ class ProfilePage.ExtraTab extends React.Component
     if @props.mode == @props.currentMode
       className += ' profile-extra-tabs__item--active'
 
-    el 'li', className: className, onClick: @_modeSwitch,
+    el 'div', className: className, onClick: @_modeSwitch,
       Lang.get("users.show.extra.#{@props.mode}.title")
