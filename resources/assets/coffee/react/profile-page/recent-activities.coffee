@@ -91,7 +91,7 @@ class ProfilePage.RecentActivities extends React.Component
   render: =>
     el 'div',
       className: 'row-page profile-extra'
-      'data-profile-extra-page': 'recent_activities'
+      el 'div', className: 'profile-extra__anchor js-scrollspy', id: 'recent_activities'
       el 'h2', className: 'profile-extra__title', Lang.get('users.show.extra.recent_activities.title')
       if @state.recentActivities.length
         el 'ul', className: 'profile-recent-activities',

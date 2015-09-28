@@ -20,6 +20,17 @@
 .profile-extra {
   padding: (@grid-gutter-width / 2) (@grid-gutter-width * 3 / 4);
 
+  &__anchor {
+    @height: @profile-extra-tabs--items-height;
+    margin-top: -@height;
+    height: @height;
+    width: 1px;
+    position: absolute;
+
+    left: 0px;
+    top: 0px;
+  }
+
   &__title {
     font-size: 18px;
     font-weight: 500;

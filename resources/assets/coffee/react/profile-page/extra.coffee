@@ -44,20 +44,18 @@ class ProfilePage.Extra extends React.Component
 
 
   _modeScan: =>
-    headerHeight = document.getElementsByClassName('js-sticky-header--active')[0]?.getBoundingClientRect().height
-    headerHeight ||= 0
+    for page in document.getElementsByClassName('js-scrollspy') by -1
+      continue unless page.getBoundingClientRect().top <= 0
 
-    for page in document.querySelectorAll('[data-profile-extra-page]')
-      continue if page.getBoundingClientRect().bottom < headerHeight
-
-      @setState mode: page.getAttribute('data-profile-extra-page')
+      @setState mode: page.getAttribute('id')
       return
 
-    @setState mode: page.getAttribute('data-profile-extra-page')
+    @setState mode: page.getAttribute('id')
 
 
   _modeSwitch: (_e, mode) =>
-    @setState mode: mode
+    $.scrollTo "##{mode}", 1000,
+      onAfter: => @setState mode: mode
 
 
   _removeListeners: ->
