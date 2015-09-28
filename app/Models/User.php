@@ -47,6 +47,8 @@ class User extends Model implements AuthenticatableContract
 
     protected $casts = [
         'group_id' => 'integer',
+        'osu_kudosavailable' => 'integer',
+        'osu_kudostotal' => 'integer',
         'osu_subscriber' => 'boolean',
         'user_id' => 'integer',
         'user_type' => 'integer',
