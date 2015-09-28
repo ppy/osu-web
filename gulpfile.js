@@ -42,12 +42,13 @@ elixir(function(mix) {
   .copy("node_modules/photoswipe/dist/default-skin", "public/vendor/_photoswipe-default-skin")
   .less("app.less")
   .scripts([
-    path.join(node_root, "jquery/dist/jquery.js"),
+    path.join(composer_root, "components/jquery/jquery.js"),
     path.join(composer_root, "helthe/turbolinks/Resources/public/js/turbolinks.js"),
     path.join(bower_root, "jquery-ujs/src/rails.js"),
     path.join(node_root, "bootstrap/dist/js/bootstrap.js"),
     path.join(bower_root, "jquery-timeago/jquery.timeago.js"),
     path.join(bower_root, "jquery-zoom/jquery.zoom.js"),
+    path.join(composer_root, "flesler/jquery.scrollto/jquery.scrollTo.js"),
     path.join(node_root, "blueimp-file-upload/js/vendor/jquery.ui.widget.js"),
     path.join(node_root, "blueimp-file-upload/js/jquery.iframe-transport.js"),
     path.join(node_root, "blueimp-file-upload/js/jquery.fileupload.js"),
