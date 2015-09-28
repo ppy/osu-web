@@ -54,7 +54,7 @@ class ProfilePage.Extra extends React.Component
 
 
   _modeSwitch: (_e, mode) =>
-    $.scrollTo "##{mode}", 1000,
+    $.scrollTo "##{mode}", 500,
       onAfter: => @setState mode: mode
 
 
