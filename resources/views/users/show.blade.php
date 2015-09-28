@@ -47,6 +47,10 @@
         {!! json_encode($recentActivities) !!}
     </script>
 
+    <script id="json-user-recently-received-kudos" type="application/json">
+        {!! json_encode($recentlyReceivedKudos) !!}
+    </script>
+
     <script id="json-user-info" type="application/json">
         {!! json_encode($userArray) !!}
     </script>

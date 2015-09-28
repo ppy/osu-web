@@ -84,3 +84,4 @@ class ProfilePage.Extra extends React.Component
             el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
 
       el ProfilePage.RecentActivities
+      el ProfilePage.Kudos, user: @props.user, recentlyReceivedKudos: @props.recentlyReceivedKudos

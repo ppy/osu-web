@@ -95,6 +95,7 @@ elixir(function(mix) {
     "react/profile-page/header-info.coffee",
     "react/profile-page/header.coffee",
     "react/profile-page/info.coffee",
+    "react/profile-page/kudos.coffee",
     "react/profile-page/rank.coffee",
     "react/profile-page/recent-achievements.coffee",
     "react/profile-page/recent-activities.coffee",

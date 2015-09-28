@@ -18,14 +18,16 @@
 ###
 el = React.createElement
 
-user = osu.parseJson('json-user-info').data
+class ProfilePage.Kudos extends React.Component
+  render: =>
+    el 'div',
+      className: 'row-page profile-extra'
+      el 'div', className: 'profile-extra__anchor js-scrollspy', id: 'kudos'
+      el 'h2', className: 'profile-extra__title', Lang.get('users.show.extra.kudosu.title')
 
-React.render \
-  el(ProfilePage.Main,
-    user: user
-    userPage: osu.parseJson('json-user-page').page
-    allStats: osu.parseJson('json-user-stats')
-    withEdit: user.id == window.currentUser.id
-    recentAchievements: osu.parseJson('json-user-recent-achievements').data
-    recentlyReceivedKudos: osu.parseJson('json-user-recently-received-kudos').data
-  ), document.getElementsByClassName('content')[0]
+      el 'p', null, @props.user.kudos.total
+      el 'p', null, @props.user.kudos.available
+
+      el 'pre', null,
+        el 'code', null,
+          JSON.stringify @props.recentlyReceivedKudos
