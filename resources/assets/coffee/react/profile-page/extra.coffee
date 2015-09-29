@@ -44,7 +44,10 @@ class ProfilePage.Extra extends React.Component
 
 
   _modeScan: =>
-    for page in document.getElementsByClassName('js-scrollspy') by -1
+    elements = document.getElementsByClassName('js-profile-page-extra--scrollspy')
+    return unless elements.length
+
+    for page in elements by -1
       continue unless page.getBoundingClientRect().top <= 0
 
       @setState mode: page.getAttribute('id')

@@ -22,7 +22,7 @@ class ProfilePage.Kudosu extends React.Component
   render: =>
     el 'div',
       className: 'row-page profile-extra'
-      el 'div', className: 'profile-extra__anchor js-scrollspy', id: 'kudosu'
+      el 'div', className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'kudosu'
       el 'h2', className: 'profile-extra__title', Lang.get('users.show.extra.kudosu.title')
 
       el 'div', className: 'kudosu-box',
