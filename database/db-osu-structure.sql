@@ -281,6 +281,28 @@ CREATE TABLE `osu_events` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `osu_kudos_exchange`
+--
+
+DROP TABLE IF EXISTS `osu_kudos_exchange`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_kudos_exchange` (
+  `exchange_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `giver_id` mediumint(8) unsigned NOT NULL,
+  `receiver_id` mediumint(8) unsigned NOT NULL,
+  `post_id` mediumint(8) unsigned NOT NULL,
+  `action` enum('give','revoke','reset') NOT NULL,
+  `amount` tinyint(4) NOT NULL DEFAULT '1',
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`exchange_id`),
+  UNIQUE KEY `history_display` (`receiver_id`,`exchange_id`),
+  KEY `giver_id` (`giver_id`),
+  KEY `receiver_id` (`receiver_id`,`date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `osu_login_attempts`
 --
 

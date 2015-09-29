@@ -18,6 +18,7 @@ _mysqldump osu \
   osu_changelog \
   osu_countries \
   osu_events \
+  osu_kudos_exchange \
   osu_login_attempts \
   osu_user_achievements \
   osu_user_banhistory \
