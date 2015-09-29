@@ -71,7 +71,7 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu Available',
-                'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. THis is the number of kudosu you haven't traded in yet.",
+                'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven't traded in yet.",
                 'entry' => [
                     'give' => 'Received <strong class="kudosu-box__amount">:amount kudosu</strong> from <em class="kudosu-box__link">:giver</em> for a post at <em class="kudosu-box__link">:post</em>',
                     'revoke' => 'Denied kudosu by <em class="kudosu-box__link">:giver</em> for the post <em class="kudosu-box__link">:post</em>',
