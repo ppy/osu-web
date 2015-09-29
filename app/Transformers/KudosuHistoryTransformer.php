@@ -30,12 +30,15 @@ class KudosuHistoryTransformer extends Fractal\TransformerAbstract
     {
         return [
             'id' => $kudosuHistory->exchange_id,
+            'action' => $kudosuHistory->action,
+            'amount' => $kudosuHistory->amount,
+            'created_at' => $kudosuHistory->date->toIso8601String(),
             'giver' => [
-                'id' => $kudosuHistory->giver_id,
+                'url' => route('users.show', $kudosuHistory->giver_id),
                 'name' => $kudosuHistory->giver->username,
             ],
             'post' => [
-                'id' => $kudosuHistory->post_id,
+                'url' => route('forum.posts.show', $kudosuHistory->post_id),
                 'title' => $kudosuHistory->post->topic->topic_title,
             ],
         ];

@@ -12,13 +12,13 @@ class ProfilePage.RecentActivities extends React.Component
     switch event.type
       when 'rank'
         el 'li',
-          className: 'event-entry'
+          className: 'profile-extra-entries__item'
           key: event.id
-          el 'div', className: 'event-entry__detail',
+          el 'div', className: 'profile-extra-entries__detail',
             el 'div',
-              className: "profile-score-rank-badge profile-score-rank-badge--#{event.scoreRank} event-entry__icon"
+              className: "profile-score-rank-badge profile-score-rank-badge--#{event.scoreRank} profile-extra-entries__icon"
             el 'div',
-              className: 'event-entry__text'
+              className: 'profile-extra-entries__text'
               dangerouslySetInnerHTML:
                 __html: Lang.get 'events.rank',
                   user: osu.link(event.user.url, event.user.username)
@@ -26,18 +26,18 @@ class ProfilePage.RecentActivities extends React.Component
                   beatmap: osu.link(event.beatmap.url, event.beatmap.title)
                   mode: Lang.get "common.play_mode.#{event.mode}"
           el 'div',
-            className: 'event-entry__time'
+            className: 'profile-extra-entries__time'
             dangerouslySetInnerHTML: { __html: osu.timeago(event.created_at) }
 
       when 'rankLost'
         el 'li',
-          className: 'event-entry'
+          className: 'profile-extra-entries__item'
           key: event.id
-          el 'div', className: 'event-entry__detail',
+          el 'div', className: 'profile-extra-entries__detail',
             el 'div',
-              className: "event-entry__icon"
+              className: "profile-extra-entries__icon"
             el 'div',
-              className: 'event-entry__text'
+              className: 'profile-extra-entries__text'
               dangerouslySetInnerHTML:
                 __html: Lang.get 'events.rankLost',
                   user: osu.link(event.user.url, event.user.username)
@@ -45,41 +45,41 @@ class ProfilePage.RecentActivities extends React.Component
                   beatmap: osu.link(event.beatmap.url, event.beatmap.title)
                   mode: Lang.get "common.play_mode.#{event.mode}"
           el 'div',
-            className: 'event-entry__time'
+            className: 'profile-extra-entries__time'
             dangerouslySetInnerHTML: { __html: osu.timeago(event.created_at) }
 
 
       when 'beatmapUpdate'
         el 'li',
-          className: 'event-entry'
+          className: 'profile-extra-entries__item'
           key: event.id
-          el 'div', className: 'event-entry__detail',
+          el 'div', className: 'profile-extra-entries__detail',
             el 'div',
-              className: 'event-entry__icon'
+              className: 'profile-extra-entries__icon'
             el 'div',
-              className: 'event-entry__text'
+              className: 'profile-extra-entries__text'
               dangerouslySetInnerHTML:
                 __html: Lang.get 'events.beatmap_update',
                   user: osu.link(event.user.url, event.user.username)
                   beatmap: osu.link(event.beatmap.url, event.beatmap.title)
           el 'div',
-            className: 'event-entry__time'
+            className: 'profile-extra-entries__time'
             dangerouslySetInnerHTML: { __html: osu.timeago(event.created_at) }
 
       when 'achievement'
         el 'li',
-          className: 'event-entry'
+          className: 'profile-extra-entries__item'
           key: event.id
-          el 'div', className: 'event-entry__detail',
-            el ProfilePage.AchievementBadge, achievement: event.achievement, additionalClasses: 'event-entry__icon'
+          el 'div', className: 'profile-extra-entries__detail',
+            el ProfilePage.AchievementBadge, achievement: event.achievement, additionalClasses: 'profile-extra-entries__icon'
             el 'div',
-              className: 'event-entry__text'
+              className: 'profile-extra-entries__text'
               dangerouslySetInnerHTML:
                 __html: Lang.get 'events.achievement',
                   user: osu.link(event.user.url, event.user.username)
                   achievement: event.achievement.name
           el 'div',
-            className: 'event-entry__time'
+            className: 'profile-extra-entries__time'
             dangerouslySetInnerHTML: { __html: osu.timeago(event.created_at) }
 
       else
@@ -94,7 +94,7 @@ class ProfilePage.RecentActivities extends React.Component
       el 'div', className: 'profile-extra__anchor js-scrollspy', id: 'recent_activities'
       el 'h2', className: 'profile-extra__title', Lang.get('users.show.extra.recent_activities.title')
       if @state.recentActivities.length
-        el 'ul', className: 'profile-recent-activities',
+        el 'ul', className: 'profile-extra-entries',
           @state.recentActivities.map (activity) => @_renderEntry(activity)
       else
-        el 'p', className: 'profile-recent-activities', Lang.get('events.empty')
+        el 'p', className: 'profile-extra-entries', Lang.get('events.empty')

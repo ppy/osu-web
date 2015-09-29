@@ -17,33 +17,11 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
-.kudosu-box {
-  display: flex;
-  &:extend(.default-box-shadow);
-  &:extend(.default-border-radius);
-
-  &__content {
-    width: 50%;
-    padding: @grid-gutter-width/4;
-  }
+.kudosu-entries {
+  margin-top: @grid-gutter-width/2;
 
   &__title {
     font-size: 16px;
-    font-style: italic;
-    margin: 0px;
-  }
-
-  &__count {
-    font-size: 32px;
-  }
-
-  &__link {
-    font-weight: 500;
-  }
-
-  &__amount {
-    font-weight: inherit;
-    font-style: italic;
-    color: @pink-darker;
+    margin: 0px 0px @grid-gutter-width/4;
   }
 }

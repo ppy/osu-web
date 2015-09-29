@@ -17,12 +17,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.event-entry {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 0px @grid-gutter-width/8;
-  font-size: 14px;
+.profile-extra-entries {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  @item-height: 25px;
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: @grid-gutter-width/8;
+    height: @item-height;
+  }
 
   &__detail {
     flex: 1;
@@ -35,7 +42,6 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 
-    margin-left: @grid-gutter-width/4;
     margin-right: @grid-gutter-width/2;
   }
 
@@ -44,7 +50,8 @@
   }
 
   &__icon {
-    width: 25px;
-    height: 25px;
+    width: @item-height;
+    height: @item-height;
+    margin-right: @grid-gutter-width/4;
   }
 }

@@ -37,6 +37,21 @@ class ProfilePage.Kudosu extends React.Component
             el 'span', className: 'kudosu-box__count', @props.user.kudosu.available
           el 'p', null, Lang.get('users.show.extra.kudosu.available_info')
 
-      el 'pre', null,
-        el 'code', null,
-          JSON.stringify @props.recentlyReceivedKudosu
+      el 'div', className: 'kudosu-entries',
+        el 'h3', className: 'kudosu-entries__title',
+          Lang.get('users.show.extra.kudosu.recent_entries')
+
+        el 'ul', className: 'profile-extra-entries',
+          @props.recentlyReceivedKudosu.map (kudosu) =>
+            return null unless kudosu.action == 'give' || kudosu.action == 'revoke'
+            el 'li', key: "kudosu-#{kudosu.id}", className: 'profile-extra-entries__item',
+              el 'div',
+                className: 'profile-extra-entry__text'
+                dangerouslySetInnerHTML:
+                  __html: Lang.get "users.show.extra.kudosu.entry.#{kudosu.action}",
+                    amount: kudosu.amount
+                    giver: osu.link(kudosu.giver.url, kudosu.giver.name)
+                    post: osu.link(kudosu.post.url, kudosu.post.title)
+              el 'div',
+                className: 'profile-extra-entry__time'
+                dangerouslySetInnerHTML: { __html: osu.timeago(kudosu.created_at) }
