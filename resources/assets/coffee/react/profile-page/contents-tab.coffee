@@ -19,7 +19,8 @@
 el = React.createElement
 
 class ProfilePage.ContentsTab extends React.Component
-  onClick: =>
+  onClick: (e) =>
+    e.preventDefault()
     $.publish 'profilePageMode:change', @props.mode
 
   render: =>
