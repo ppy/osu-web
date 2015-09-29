@@ -18,15 +18,24 @@
 ###
 el = React.createElement
 
-class ProfilePage.Kudos extends React.Component
+class ProfilePage.Kudosu extends React.Component
   render: =>
     el 'div',
       className: 'row-page profile-extra'
-      el 'div', className: 'profile-extra__anchor js-scrollspy', id: 'kudos'
+      el 'div', className: 'profile-extra__anchor js-scrollspy', id: 'kudosu'
       el 'h2', className: 'profile-extra__title', Lang.get('users.show.extra.kudosu.title')
 
-      el 'p', null, @props.user.kudos.total
-      el 'p', null, @props.user.kudos.available
+      el 'div', className: 'kudosu-box',
+        el 'div', className: 'kudosu-box__content',
+          el 'h3', className: 'kudosu-box__title',
+            "#{Lang.get('users.show.extra.kudosu.total')}: "
+            el 'span', className: 'kudosu-box__count', @props.user.kudos.total
+          el 'p', null, Lang.get('users.show.extra.kudosu.total_info')
+        el 'div', className: 'kudosu-box__content',
+          el 'h3', className: 'kudosu-box__title',
+            "#{Lang.get('users.show.extra.kudosu.available')}: "
+            el 'span', className: 'kudosu-box__count', @props.user.kudos.available
+          el 'p', null, Lang.get('users.show.extra.kudosu.available_info')
 
       el 'pre', null,
         el 'code', null,

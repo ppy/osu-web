@@ -70,7 +70,11 @@ return [
                 'title' => 'Historical',
             ],
             'kudosu' => [
+                'available' => 'Kudosu Available',
+                'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. THis is the number of kudosu you haven't traded in yet.",
                 'title' => 'Kudosu!',
+                'total' => 'Total Kudosu Earned',
+                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See this post for more information.',
             ],
             'recent_activities' => [
                 'title' => 'Recent Activities',
