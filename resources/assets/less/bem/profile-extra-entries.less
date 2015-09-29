@@ -29,27 +29,24 @@
     align-items: center;
     margin-bottom: @grid-gutter-width/8;
     height: @item-height;
+    white-space: nowrap;
   }
 
   &__detail {
     flex: 1;
     display: flex;
     align-items: center;
+    overflow: hidden;
   }
 
   &__text {
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
-
     margin-right: @grid-gutter-width/2;
   }
 
-  &__time {
-    white-space: nowrap;
-  }
-
   &__icon {
+    flex: none;
     width: @item-height;
     height: @item-height;
     margin-right: @grid-gutter-width/4;

@@ -45,13 +45,14 @@ class ProfilePage.Kudosu extends React.Component
           @props.recentlyReceivedKudosu.map (kudosu) =>
             return null unless kudosu.action == 'give' || kudosu.action == 'revoke'
             el 'li', key: "kudosu-#{kudosu.id}", className: 'profile-extra-entries__item',
+              el 'div', className: 'profile-extra-entries__detail',
+                el 'div',
+                  className: 'profile-extra-entries__text'
+                  dangerouslySetInnerHTML:
+                    __html: Lang.get "users.show.extra.kudosu.entry.#{kudosu.action}",
+                      amount: kudosu.amount
+                      giver: osu.link(kudosu.giver.url, kudosu.giver.name)
+                      post: osu.link(kudosu.post.url, kudosu.post.title)
               el 'div',
-                className: 'profile-extra-entry__text'
-                dangerouslySetInnerHTML:
-                  __html: Lang.get "users.show.extra.kudosu.entry.#{kudosu.action}",
-                    amount: kudosu.amount
-                    giver: osu.link(kudosu.giver.url, kudosu.giver.name)
-                    post: osu.link(kudosu.post.url, kudosu.post.title)
-              el 'div',
-                className: 'profile-extra-entry__time'
+                className: 'profile-extra-entries__time'
                 dangerouslySetInnerHTML: { __html: osu.timeago(kudosu.created_at) }
