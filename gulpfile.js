@@ -63,6 +63,7 @@ elixir(function(mix) {
   ], "public/js/vendor.js")
   .scripts("messages.js", "public/js/messages.js")
   .coffee([
+    "jquery-pubsub.coffee",
     "osu!live.coffee",
     "osu_common.coffee",
     "turbolinks-mod.coffee",

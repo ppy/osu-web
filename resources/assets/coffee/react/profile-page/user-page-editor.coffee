@@ -36,7 +36,7 @@ class ProfilePage.UserPageEditor extends React.Component
     body = @_body()
     $(body).off 'change', @_change
 
-    $(document).trigger 'user:page:update',
+    $.publish 'user:page:update',
       raw: @state.raw
       selection: [body.selectionStart, body.selectionEnd]
 
@@ -56,7 +56,7 @@ class ProfilePage.UserPageEditor extends React.Component
 
   _cancel: =>
     @_reset null, ->
-      $(document).trigger 'user:page:update', editing: false
+      $.publish 'user:page:update', editing: false
 
 
   _save: (e) =>
@@ -68,7 +68,7 @@ class ProfilePage.UserPageEditor extends React.Component
       dataType: 'json'
       data: body: body
     .done (data) ->
-      $(document).trigger 'user:page:update',
+      $.publish 'user:page:update',
         html: data.html
         editing: false
         raw: body

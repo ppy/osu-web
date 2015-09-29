@@ -30,8 +30,8 @@ class ProfilePage.Header extends React.Component
 
   componentDidMount: =>
     @_removeListeners()
-    $(document).on 'user:cover:set.profilePageHeader', @coverSet
-    $(document).on 'user:cover:reset.profilePageHeader', @coverReset
+    $.subscribe 'user:cover:set.profilePageHeader', @coverSet
+    $.subscribe 'user:cover:reset.profilePageHeader', @coverReset
 
 
   componentWillReceiveProps: (newProps) =>
@@ -43,7 +43,7 @@ class ProfilePage.Header extends React.Component
 
 
   _removeListeners: =>
-    $(document).off '.profilePageHeader'
+    $.unsubscribe '.profilePageHeader'
 
 
   toggleEdit: =>

@@ -29,8 +29,8 @@ class ProfilePage.Extra extends React.Component
 
   componentDidMount: =>
     @_removeListeners()
-    $(document).on 'profilePageExtra:tab.profileContentsExtra', @_modeSwitch
-    $(document).on 'stickyHeader.profileContentsExtra', @_tabsStick
+    $.subscribe 'profilePageExtra:tab.profileContentsExtra', @_modeSwitch
+    $.subscribe 'stickyHeader.profileContentsExtra', @_tabsStick
     $(window).on 'scroll.profileContentsExtra', @_modeScan
     osu.pageChange()
 
@@ -59,7 +59,7 @@ class ProfilePage.Extra extends React.Component
 
 
   _removeListeners: ->
-    $(document).off '.profileContentsExtra'
+    $.unsubscribe '.profileContentsExtra'
     $(window).off '.profileContentsExtra'
 
 

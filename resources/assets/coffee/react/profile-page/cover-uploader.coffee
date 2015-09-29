@@ -35,14 +35,14 @@ class ProfilePage.CoverUploader extends React.Component
       dataType: 'json'
       dropZone: $uploadButton
       submit: ->
-        $(document).trigger 'user:cover:upload:state', true
+        $.publish 'user:cover:upload:state', true
       done: (_e, data) ->
-        $(document).trigger 'user:update', data.result.data
+        $.publish 'user:update', data.result.data
       fail: (_e, data) ->
         message = data.jqXHR?.responseJSON || Lang.get 'errors.unknown'
         osu.popup message, 'danger'
       complete: ->
-        $(document).trigger 'user:cover:upload:state', false
+        $.publish 'user:cover:upload:state', false
 
 
   componentWillUnmount: =>

@@ -56,10 +56,10 @@ class ProfilePage.Main extends React.Component
 
   componentDidMount: =>
     @_removeListeners()
-    $(document).on 'user:update.profilePage', @userUpdate
-    $(document).on 'user:cover:upload:state.profilePage', @coverUploadState
-    $(document).on 'user:page:update.profilePage', @userPageUpdate
-    $(document).on 'profilePageMode:change.profilePage', @modeChange
+    $.subscribe 'user:update.profilePage', @userUpdate
+    $.subscribe 'user:cover:upload:state.profilePage', @coverUploadState
+    $.subscribe 'user:page:update.profilePage', @userPageUpdate
+    $.subscribe 'profilePageMode:change.profilePage', @modeChange
 
 
   componentWillUnmount: =>
@@ -67,7 +67,7 @@ class ProfilePage.Main extends React.Component
 
 
   _removeListeners: =>
-    $(document).off '.profilePage'
+    $.unsubscribe '.profilePage'
 
   render: =>
     if @state.mode != 'me'

@@ -20,7 +20,7 @@ el = React.createElement
 
 class ProfilePage.ExtraTab extends React.Component
   _modeSwitch: =>
-    $(document).trigger 'profilePageExtra:tab', @props.mode
+    $.publish 'profilePageExtra:tab', @props.mode
 
 
   render: =>

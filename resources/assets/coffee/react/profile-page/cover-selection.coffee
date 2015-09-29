@@ -28,16 +28,16 @@ class ProfilePage.CoverSelection extends React.Component
         cover_id: @props.name
       dataType: 'json'
     .done (userData) ->
-      $(document).trigger 'user:update', userData.data
+      $.publish 'user:update', userData.data
 
 
   onMouseEnter: =>
     return if @props.url == null
-    $(document).trigger 'user:cover:set', @props.url
+    $.publish 'user:cover:set', @props.url
 
 
   onMouseLeave: ->
-    $(document).trigger 'user:cover:reset'
+    $.publish 'user:cover:reset'
 
 
   render: =>

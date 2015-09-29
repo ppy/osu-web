@@ -21,7 +21,7 @@ el = React.createElement
 class ProfilePage.UserPage extends React.Component
   editStart: (e) ->
     e.preventDefault()
-    $(document).trigger 'user:page:update', editing: true
+    $.publish 'user:page:update', editing: true
 
 
   pageNew: =>

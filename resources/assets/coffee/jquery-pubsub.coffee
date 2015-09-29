@@ -16,18 +16,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-el = React.createElement
+o = $({})
 
-class ProfilePage.ContentsTab extends React.Component
-  onClick: =>
-    $.publish 'profilePageMode:change', @props.mode
-
-  render: =>
-    className = 'profile-tab'
-    className += ' profile-tab--active' if @props.mode == @props.currentMode
-
-    el 'a',
-      href: '#'
-      onClick: @onClick
-      className: className
-      Lang.get "common.play_mode.#{@props.mode}"
+$.subscribe = o.on.bind o
+$.unsubscribe = o.off.bind o
+$.publish = o.trigger.bind o
