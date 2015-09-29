@@ -21,27 +21,23 @@
 
 namespace App\Transformers;
 
-use App\Models\KudosHistory;
+use App\Models\KudosuHistory;
 use League\Fractal;
 
-class KudosHistoryTransformer extends Fractal\TransformerAbstract
+class KudosuHistoryTransformer extends Fractal\TransformerAbstract
 {
-    public function transform(KudosHistory $kudosHistory)
+    public function transform(KudosuHistory $kudosuHistory)
     {
         return [
-            'id' => $kudosHistory->exchange_id,
+            'id' => $kudosuHistory->exchange_id,
             'giver' => [
-                'id' => $kudosHistory->giver_id,
-                'name' => $kudosHistory->giver->username,
+                'id' => $kudosuHistory->giver_id,
+                'name' => $kudosuHistory->giver->username,
             ],
             'post' => [
-                'id' => $kudosHistory->post_id,
-                'title' => $kudosHistory->post->topic->topic_title,
+                'id' => $kudosuHistory->post_id,
+                'title' => $kudosuHistory->post->topic->topic_title,
             ],
         ];
-        return array_merge([
-            'id' => $event->event_id,
-            'created_at' => $event->date->toIso8601String(),
-        ], $event->details);
     }
 }

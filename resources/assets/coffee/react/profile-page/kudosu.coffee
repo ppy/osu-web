@@ -29,14 +29,14 @@ class ProfilePage.Kudosu extends React.Component
         el 'div', className: 'kudosu-box__content',
           el 'h3', className: 'kudosu-box__title',
             "#{Lang.get('users.show.extra.kudosu.total')}: "
-            el 'span', className: 'kudosu-box__count', @props.user.kudos.total
+            el 'span', className: 'kudosu-box__count', @props.user.kudosu.total
           el 'p', null, Lang.get('users.show.extra.kudosu.total_info')
         el 'div', className: 'kudosu-box__content',
           el 'h3', className: 'kudosu-box__title',
             "#{Lang.get('users.show.extra.kudosu.available')}: "
-            el 'span', className: 'kudosu-box__count', @props.user.kudos.available
+            el 'span', className: 'kudosu-box__count', @props.user.kudosu.available
           el 'p', null, Lang.get('users.show.extra.kudosu.available_info')
 
       el 'pre', null,
         el 'code', null,
-          JSON.stringify @props.recentlyReceivedKudos
+          JSON.stringify @props.recentlyReceivedKudosu

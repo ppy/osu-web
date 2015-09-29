@@ -585,14 +585,14 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(Event::class, 'user_id', 'user_id');
     }
 
-    public function givenKudos()
+    public function givenKudosu()
     {
-        return $this->hasMany(KudosHistory::class, 'giver_id', 'user_id');
+        return $this->hasMany(KudosuHistory::class, 'giver_id', 'user_id');
     }
 
-    public function receivedKudos()
+    public function receivedKudosu()
     {
-        return $this->hasMany(KudosHistory::class, 'receiver_id', 'user_id');
+        return $this->hasMany(KudosuHistory::class, 'receiver_id', 'user_id');
     }
 
     public function getPlaymodeAttribute($value)

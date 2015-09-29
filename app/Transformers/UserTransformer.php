@@ -64,7 +64,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'total' => Achievement::count(),
                 'current' => $user->achievements()->count(),
             ],
-            'kudos' => [
+            'kudosu' => [
                 'total' => $user->osu_kudostotal,
                 'available' => $user->osu_kudosavailable,
             ],

@@ -25,7 +25,7 @@ use App\Models\Achievement;
 use App\Models\LoginAttempt;
 use App\Models\User;
 use App\Transformers\EventTransformer;
-use App\Transformers\KudosHistoryTransformer;
+use App\Transformers\KudosuHistoryTransformer;
 use App\Transformers\UserAchievementTransformer;
 use App\Transformers\UserStatisticsTransformer;
 use App\Transformers\UserTransformer;
@@ -137,19 +137,19 @@ class UsersController extends Controller
             new EventTransformer()
         );
 
-        $recentlyReceivedKudos = fractal_collection_array(
-            $user->receivedKudos()
+        $recentlyReceivedKudosu = fractal_collection_array(
+            $user->receivedKudosu()
                 ->with('post', 'post.topic', 'giver')
                 ->orderBy('exchange_id', 'desc')
                 ->limit(15)
                 ->get(),
-            new KudosHistoryTransformer()
+            new KudosuHistoryTransformer()
         );
 
         $userArray = fractal_item_array($user, new UserTransformer());
 
         return view('users.show', compact(
-            'user', 'mode', 'allStats', 'userPage', 'userArray', 'recentAchievements', 'recentActivities', 'recentlyReceivedKudos'
+            'user', 'mode', 'allStats', 'userPage', 'userArray', 'recentAchievements', 'recentActivities', 'recentlyReceivedKudosu'
         ));
     }
 }

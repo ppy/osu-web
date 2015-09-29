@@ -23,7 +23,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class KudosHistory extends Model
+class KudosuHistory extends Model
 {
     protected $table = 'osu_kudos_exchange';
     protected $primaryKey = 'exchange_id';
