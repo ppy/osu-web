@@ -81,7 +81,7 @@ class ProfilePage.Extra extends React.Component
         el 'div',
           className: tabsClasses
           'data-sticky-header-id': 'profile-extra-tabs'
-          ['recent_activities', 'historical', 'beatmaps', 'kudosu', 'achievements'].map (m) =>
+          ['recent_activities', 'kudosu'].map (m) =>
             el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
 
       el ProfilePage.RecentActivities
