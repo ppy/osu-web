@@ -73,7 +73,7 @@ return [
                 'available' => 'Kudosu Available',
                 'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven't traded in yet.",
                 'entry' => [
-                    'give' => 'Received <strong class="kudosu-box__amount">:amount kudosu</strong> from :giver for a post at :post',
+                    'give' => 'Received <strong class="kudosu-entries__amount">:amount kudosu</strong> from :giver for a post at :post',
                     'revoke' => 'Denied kudosu by :giver for the post :post',
                 ],
                 'recent_entries' => 'Recent Kudosu History',
