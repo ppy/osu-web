@@ -60,6 +60,7 @@ class ProfilePage.Extra extends React.Component
 
   _removeListeners: ->
     $(document).off '.profileContentsExtra'
+    $(window).off '.profileContentsExtra'
 
 
   _tabsStick: (_e, target) =>
