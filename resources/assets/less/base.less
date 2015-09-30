@@ -321,6 +321,11 @@ a[disabled] { &:extend(.btn[disabled]); }
 .flex-none { flex: none; }
 .flex-full { flex: 1 0 auto; }
 
+.flex-fullwidth {
+  width: 100%;
+  align-items: center;
+}
+
 .flex-row {
   display: flex;
   flex-direction: column;
@@ -419,9 +424,4 @@ a[disabled] { &:extend(.btn[disabled]); }
 .file-upload-label {
   cursor: pointer;
   overflow: hidden;
-}
-
-.flex-fullwidth {
-  width: 100%;
-  align-items: center;
 }
