@@ -37,11 +37,6 @@ body {
   .at2x("/images/backgrounds/page-light.png", 500px, 500px);
   display: flex;
   flex-direction: column;
-  align-items: center;
-
-  > * {
-    width: 100%;
-  }
 }
 
 .content {
@@ -156,6 +151,8 @@ body {
 
 .fixed-bar-container {
   max-width: @container-sm;
+  width: 100%;
+  align-self: center;
 }
 
 .fixed-bar-rows-bottom {
