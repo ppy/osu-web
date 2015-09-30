@@ -2,83 +2,65 @@ el = React.createElement
 
 class ProfilePage.RecentActivities extends React.Component
   _renderEntry: (event) =>
+    # default, empty badge
+    badge = el 'div', className: 'profile-extra-entries__icon'
+
     switch event.type
       when 'rank'
-        el 'li',
-          className: 'profile-extra-entries__item'
-          key: event.id
-          el 'div', className: 'profile-extra-entries__detail',
-            el 'div',
-              className: "profile-score-rank-badge profile-score-rank-badge--#{event.scoreRank} profile-extra-entries__icon"
-            el 'div',
-              className: 'profile-extra-entries__text'
-              dangerouslySetInnerHTML:
-                __html: Lang.get 'events.rank',
-                  user: osu.link(event.user.url, event.user.username)
-                  rank: event.rank
-                  beatmap: osu.link(event.beatmap.url, event.beatmap.title)
-                  mode: Lang.get "common.play_mode.#{event.mode}"
-          el 'div',
-            className: 'profile-extra-entries__time'
-            dangerouslySetInnerHTML: { __html: osu.timeago(event.createdAt) }
+        badge = el 'div',
+          className: "profile-score-rank-badge profile-score-rank-badge--#{event.scoreRank} profile-extra-entries__icon"
+
+        text = el 'div',
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: Lang.get 'events.rank',
+              user: osu.link(event.user.url, event.user.username)
+              rank: event.rank
+              beatmap: osu.link(event.beatmap.url, event.beatmap.title)
+              mode: Lang.get "common.play_mode.#{event.mode}"
 
       when 'rankLost'
-        el 'li',
-          className: 'profile-extra-entries__item'
-          key: event.id
-          el 'div', className: 'profile-extra-entries__detail',
-            el 'div',
-              className: "profile-extra-entries__icon"
-            el 'div',
-              className: 'profile-extra-entries__text'
-              dangerouslySetInnerHTML:
-                __html: Lang.get 'events.rankLost',
-                  user: osu.link(event.user.url, event.user.username)
-                  rank: event.rank
-                  beatmap: osu.link(event.beatmap.url, event.beatmap.title)
-                  mode: Lang.get "common.play_mode.#{event.mode}"
-          el 'div',
-            className: 'profile-extra-entries__time'
-            dangerouslySetInnerHTML: { __html: osu.timeago(event.createdAt) }
-
+        text = el 'div',
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: Lang.get 'events.rankLost',
+              user: osu.link(event.user.url, event.user.username)
+              rank: event.rank
+              beatmap: osu.link(event.beatmap.url, event.beatmap.title)
+              mode: Lang.get "common.play_mode.#{event.mode}"
 
       when 'beatmapUpdate'
-        el 'li',
-          className: 'profile-extra-entries__item'
-          key: event.id
-          el 'div', className: 'profile-extra-entries__detail',
-            el 'div',
-              className: 'profile-extra-entries__icon'
-            el 'div',
-              className: 'profile-extra-entries__text'
-              dangerouslySetInnerHTML:
-                __html: Lang.get 'events.beatmap_update',
-                  user: osu.link(event.user.url, event.user.username)
-                  beatmap: osu.link(event.beatmap.url, event.beatmap.title)
-          el 'div',
-            className: 'profile-extra-entries__time'
-            dangerouslySetInnerHTML: { __html: osu.timeago(event.createdAt) }
+        text = el 'div',
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: Lang.get 'events.beatmap_update',
+              user: osu.link(event.user.url, event.user.username)
+              beatmap: osu.link(event.beatmap.url, event.beatmap.title)
 
       when 'achievement'
-        el 'li',
-          className: 'profile-extra-entries__item'
-          key: event.id
-          el 'div', className: 'profile-extra-entries__detail',
-            el ProfilePage.AchievementBadge, achievement: event.achievement, additionalClasses: 'profile-extra-entries__icon'
-            el 'div',
-              className: 'profile-extra-entries__text'
-              dangerouslySetInnerHTML:
-                __html: Lang.get 'events.achievement',
-                  user: osu.link(event.user.url, event.user.username)
-                  achievement: event.achievement.name
-          el 'div',
-            className: 'profile-extra-entries__time'
-            dangerouslySetInnerHTML: { __html: osu.timeago(event.createdAt) }
+        badge = el ProfilePage.AchievementBadge,
+          achievement: event.achievement
+          additionalClasses: 'profile-extra-entries__icon'
+
+        text = el 'div',
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: Lang.get 'events.achievement',
+              user: osu.link(event.user.url, event.user.username)
+              achievement: event.achievement.name
 
       else
-        el 'li',
-          key: event.id,
-          el 'pre', null, JSON.stringify(event)
+        return null
+
+    el 'li',
+      className: 'profile-extra-entries__item'
+      key: event.id
+      el 'div', className: 'profile-extra-entries__detail',
+        badge
+        text
+      el 'div',
+        className: 'profile-extra-entries__time'
+        dangerouslySetInnerHTML: { __html: osu.timeago(event.createdAt) }
 
 
   render: =>
