@@ -30,7 +30,7 @@ class EventTransformer extends Fractal\TransformerAbstract
     {
         return array_merge([
             'id' => $event->event_id,
-            'created_at' => $event->date->toIso8601String(),
+            'createdAt' => $event->date->toIso8601String(),
         ], $event->details);
     }
 }

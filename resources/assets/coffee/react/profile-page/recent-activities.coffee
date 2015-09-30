@@ -20,7 +20,7 @@ class ProfilePage.RecentActivities extends React.Component
                   mode: Lang.get "common.play_mode.#{event.mode}"
           el 'div',
             className: 'profile-extra-entries__time'
-            dangerouslySetInnerHTML: { __html: osu.timeago(event.created_at) }
+            dangerouslySetInnerHTML: { __html: osu.timeago(event.createdAt) }
 
       when 'rankLost'
         el 'li',
@@ -39,7 +39,7 @@ class ProfilePage.RecentActivities extends React.Component
                   mode: Lang.get "common.play_mode.#{event.mode}"
           el 'div',
             className: 'profile-extra-entries__time'
-            dangerouslySetInnerHTML: { __html: osu.timeago(event.created_at) }
+            dangerouslySetInnerHTML: { __html: osu.timeago(event.createdAt) }
 
 
       when 'beatmapUpdate'
@@ -57,7 +57,7 @@ class ProfilePage.RecentActivities extends React.Component
                   beatmap: osu.link(event.beatmap.url, event.beatmap.title)
           el 'div',
             className: 'profile-extra-entries__time'
-            dangerouslySetInnerHTML: { __html: osu.timeago(event.created_at) }
+            dangerouslySetInnerHTML: { __html: osu.timeago(event.createdAt) }
 
       when 'achievement'
         el 'li',
@@ -73,7 +73,7 @@ class ProfilePage.RecentActivities extends React.Component
                   achievement: event.achievement.name
           el 'div',
             className: 'profile-extra-entries__time'
-            dangerouslySetInnerHTML: { __html: osu.timeago(event.created_at) }
+            dangerouslySetInnerHTML: { __html: osu.timeago(event.createdAt) }
 
       else
         el 'li',

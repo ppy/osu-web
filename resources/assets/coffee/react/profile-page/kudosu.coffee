@@ -57,6 +57,6 @@ class ProfilePage.Kudosu extends React.Component
                         post: osu.link(kudosu.post.url, kudosu.post.title, ['kudosu-entries__link'])
                 el 'div',
                   className: 'profile-extra-entries__time'
-                  dangerouslySetInnerHTML: { __html: osu.timeago(kudosu.created_at) }
+                  dangerouslySetInnerHTML: { __html: osu.timeago(kudosu.createdAt) }
         else
           el 'div', className: 'profile-extra-entries', Lang.get('users.show.extra.kudosu.entry.empty')
