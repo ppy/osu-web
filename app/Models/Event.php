@@ -22,7 +22,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Log;
 
 class Event extends Model
 {
@@ -70,11 +69,6 @@ class Event extends Model
 
     public static function parseFailure($text)
     {
-        Log::info(json_encode([
-            'tag' => 'EVENT_PARSING_FAILURE',
-            'text' => $text,
-        ]));
-
         return [];
     }
 
