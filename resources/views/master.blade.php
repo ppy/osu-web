@@ -54,8 +54,8 @@
         @include("layout.gallery_window")
         @include("layout.footer")
 
-        <div class="fixed-bar-container">
-            <div class="fixed-bar-rows-bottom">
+        <div class="fixed-bar">
+            <div class="fixed-bar__float">
                 @yield('fixed-bar-rows-bottom')
             </div>
         </div>
