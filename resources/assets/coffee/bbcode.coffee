@@ -21,7 +21,9 @@ $(document).on 'click', '.bbcode .spoiler-link', (e) ->
 
   $link = $(e.target).closest('a')
 
-  $link.closest('.spoiler-box').find('.spoiler-body').slideToggle 500, ->
-    $(document).trigger("osu:page:change")
+  $link
+    .closest('.spoiler-box')
+    .find('.spoiler-body')
+    .slideToggle 500, osu.pageChange
 
   $link.toggleClass 'open'

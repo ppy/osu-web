@@ -24,9 +24,7 @@ class ProfilePage.Contents extends React.Component
 
 
   componentWillReceiveProps: ->
-    reinit = ->
-      $(document).trigger 'osu:page:change'
-    setTimeout reinit, 0
+    osu.pageChange()
 
 
   render: =>

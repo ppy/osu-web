@@ -20,11 +20,11 @@ el = React.createElement
 
 class ProfilePage.Info extends React.Component
   componentDidMount: ->
-    $(document).trigger 'osu:page:change'
+    osu.pageChange()
 
 
   componentDidUpdate: ->
-    $(document).trigger 'osu:page:change'
+    osu.pageChange()
 
 
   originKeys: =>
