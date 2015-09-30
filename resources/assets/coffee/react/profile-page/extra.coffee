@@ -87,5 +87,5 @@ class ProfilePage.Extra extends React.Component
           ['recent_activities', 'kudosu'].map (m) =>
             el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
 
-      el ProfilePage.RecentActivities
+      el ProfilePage.RecentActivities, recentActivities: @props.recentActivities
       el ProfilePage.Kudosu, user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu

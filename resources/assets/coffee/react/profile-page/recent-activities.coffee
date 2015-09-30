@@ -1,13 +1,6 @@
 el = React.createElement
 
 class ProfilePage.RecentActivities extends React.Component
-  constructor: (props) ->
-    super props
-
-    @state =
-      recentActivities: osu.parseJson('json-user-recent-activities').data
-
-
   _renderEntry: (event) =>
     switch event.type
       when 'rank'
@@ -93,8 +86,8 @@ class ProfilePage.RecentActivities extends React.Component
       className: 'row-page profile-extra'
       el 'div', className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'recent_activities'
       el 'h2', className: 'profile-extra__title', Lang.get('users.show.extra.recent_activities.title')
-      if @state.recentActivities.length
+      if @props.recentActivities.length
         el 'ul', className: 'profile-extra-entries',
-          @state.recentActivities.map (activity) => @_renderEntry(activity)
+          @props.recentActivities.map (activity) => @_renderEntry(activity)
       else
         el 'p', className: 'profile-extra-entries', Lang.get('events.empty')

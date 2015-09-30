@@ -94,4 +94,7 @@ class ProfilePage.Main extends React.Component
         withEdit: @props.withEdit
 
       if @state.mode != 'me'
-        el ProfilePage.Extra, recentlyReceivedKudosu: @props.recentlyReceivedKudosu, user: @state.user
+        el ProfilePage.Extra,
+          recentActivities: @props.recentActivities
+          recentlyReceivedKudosu: @props.recentlyReceivedKudosu
+          user: @state.user

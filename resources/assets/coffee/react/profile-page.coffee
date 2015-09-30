@@ -27,5 +27,6 @@ React.render \
     allStats: osu.parseJson('json-user-stats')
     withEdit: user.id == window.currentUser.id
     recentAchievements: osu.parseJson('json-user-recent-achievements').data
+    recentActivities: osu.parseJson('json-user-recent-activities').data
     recentlyReceivedKudosu: osu.parseJson('json-user-recently-received-kudosu').data
   ), document.getElementsByClassName('content')[0]
