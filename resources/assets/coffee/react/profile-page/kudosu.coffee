@@ -30,7 +30,8 @@ class ProfilePage.Kudosu extends React.Component
           el 'h3', className: 'kudosu-box__title',
             "#{Lang.get('users.show.extra.kudosu.total')}: "
             el 'span', className: 'kudosu-box__count', @props.user.kudosu.total
-          el 'p', null, Lang.get('users.show.extra.kudosu.total_info')
+          el 'p', dangerouslySetInnerHTML:
+            __html: Lang.get('users.show.extra.kudosu.total_info')
         el 'div', className: 'kudosu-box__content',
           el 'h3', className: 'kudosu-box__title',
             "#{Lang.get('users.show.extra.kudosu.available')}: "

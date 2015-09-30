@@ -79,7 +79,7 @@ return [
                 'recent_entries' => 'Recent Kudosu History',
                 'title' => 'Kudosu!',
                 'total' => 'Total Kudosu Earned',
-                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See this post for more information.',
+                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.config('osu.urls.user.kudosu').'">this page</a> for more information.',
             ],
             'recent_activities' => [
                 'title' => 'Recent Activities',
