@@ -21,6 +21,7 @@
 
 namespace App\Models;
 
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class KudosuHistory extends Model
@@ -52,5 +53,17 @@ class KudosuHistory extends Model
     public function post()
     {
         return $this->belongsTo(Forum\Post::class, 'post_id', 'post_id');
+    }
+
+    public function scopeWithPost($query)
+    {
+        $postTableName = (new Forum\Post)->getTable();
+        $thisTableName = $this->getTable();
+
+        return $query->whereExists(function ($query) use ($postTableName, $thisTableName) {
+            $query->select(DB::raw(1))
+                ->from($postTableName)
+                ->whereRaw("{$postTableName}.post_id = {$thisTableName}.post_id");
+        });
     }
 }
