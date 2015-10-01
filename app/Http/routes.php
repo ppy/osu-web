@@ -57,7 +57,7 @@ Route::get('/beatmaps/packs', ['as' => 'packs', 'uses' => 'BeatmapController@get
 Route::get('/beatmaps/charts/{id?}', ['as' => 'charts', 'uses' => 'BeatmapController@getCharts']);
 
 Route::get('/b/{id}', ['as' => 'beatmaps.show', function ($id) {
-    return Redirect::to('https://osu.ppy.sh/s/'.$id);
+    return Redirect::to('https://osu.ppy.sh/b/'.$id);
 }]);
 
 // ranking section
