@@ -30,4 +30,4 @@ class ProfilePage.AchievementBadge extends React.Component
         srcSet: "#{filename} 1x, #{filename2x} 2x"
         alt: @props.achievement.name
         title: @props.achievement.name
-        className: 'achievement-badge__image'
+        className: 'badge-achievement__image'

@@ -44,7 +44,7 @@ class ProfilePage.RecentAchievements extends React.Component
           el ProfilePage.AchievementBadge,
             key: "profile-achievement-#{achievement.achievement_id}"
             achievement: achievement
-            additionalClasses: 'achievement-badge--recent'
+            additionalClasses: 'badge-achievement--recent'
 
       if moreCount > 0
         el 'small', null,
