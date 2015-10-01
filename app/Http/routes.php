@@ -56,6 +56,10 @@ Route::get('/beatmaps/modding/{id?}', ['as' => 'modding', 'uses' => 'ModdingCont
 Route::get('/beatmaps/packs', ['as' => 'packs', 'uses' => 'BeatmapController@getPacks']);
 Route::get('/beatmaps/charts/{id?}', ['as' => 'charts', 'uses' => 'BeatmapController@getCharts']);
 
+Route::get('/b/{id}', ['as' => 'beatmaps.show', function ($id) {
+    return Redirect::to('https://osu.ppy.sh/s/'.$id);
+}]);
+
 // ranking section
 Route::get('/ranking/overall', ['as' => 'ranking-overall', 'uses' => 'RankingController@getOverall']);
 Route::get('/ranking/charts', ['as' => 'ranking-charts', 'uses' => 'RankingController@getCharts']);

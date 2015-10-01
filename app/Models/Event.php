@@ -94,13 +94,11 @@ class Event extends Model
 
     public function parseMatchesBeatmapUpdate($matches)
     {
-        $beatmapUrl = 'https://osu.ppy.sh'.$matches['beatmapUrl'];
-
         return [
             'type' => 'beatmapUpdate',
             'beatmap' => [
                 'title' => $matches['beatmapTitle'],
-                'url' => $beatmapUrl,
+                'url' => $matches['beatmapUrl'],
             ],
             'user' => [
                 'username' => $matches['userName'],
@@ -112,8 +110,6 @@ class Event extends Model
     public function parseMatchesRank($matches)
     {
         $scoreRank = str_replace('x', 'ss', strtolower($matches['scoreRank']));
-
-        $beatmapUrl = 'https://osu.ppy.sh'.$matches['beatmapUrl'];
 
         switch ($matches['mode']) {
             case 'osu!mania': $mode = 'mania'; break;
@@ -130,7 +126,7 @@ class Event extends Model
             'mode' => $mode,
             'beatmap' => [
                 'title' => $matches['beatmapTitle'],
-                'url' => $beatmapUrl,
+                'url' => $matches['beatmapUrl'],
             ],
             'user' => [
                 'username' => $matches['userName'],
@@ -141,8 +137,6 @@ class Event extends Model
 
     public function parseMatchesRankLost($matches)
     {
-        $beatmapUrl = 'https://osu.ppy.sh'.$matches['beatmapUrl'];
-
         switch ($matches['mode']) {
             case 'osu!mania': $mode = 'mania'; break;
             case 'Taiko': $mode = 'taiko'; break;
@@ -156,7 +150,7 @@ class Event extends Model
             'mode' => $mode,
             'beatmap' => [
                 'title' => $matches['beatmapTitle'],
-                'url' => $beatmapUrl,
+                'url' => $matches['beatmapUrl'],
             ],
             'user' => [
                 'username' => $matches['userName'],
