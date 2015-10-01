@@ -76,7 +76,7 @@ class Event extends Model
     {
         $achievement = Achievement::where(['name' => $matches['achievementName']])->first();
         if ($achievement === null) {
-            return $this->parseFailure($matches[0]);
+            return $this->parseFailure();
         }
 
         return [
@@ -116,7 +116,7 @@ class Event extends Model
             case 'Taiko': $mode = 'taiko'; break;
             case 'osu!': $mode = 'osu'; break;
             case 'Catch the Beat': $mode = 'ctb'; break;
-            default: return $this->parseFailure($matches[0]);
+            default: return $this->parseFailure();
         }
 
         return [
@@ -142,7 +142,7 @@ class Event extends Model
             case 'Taiko': $mode = 'taiko'; break;
             case 'osu!': $mode = 'osu'; break;
             case 'Catch the Beat': $mode = 'ctb'; break;
-            default: return $this->parseFailure($matches[0]);
+            default: return $this->parseFailure();
         }
 
         return [
