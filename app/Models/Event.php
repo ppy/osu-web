@@ -64,19 +64,19 @@ class Event extends Model
 
     public function getDetailsAttribute()
     {
-        return static::parseText($this->text);
+        return $this->parseText();
     }
 
-    public static function parseFailure($text)
+    public function parseFailure()
     {
         return [];
     }
 
-    public static function parseMatchesAchievement($matches)
+    public function parseMatchesAchievement($matches)
     {
         $achievement = Achievement::where(['name' => $matches['achievementName']])->first();
         if ($achievement === null) {
-            return static::parseFailure($matches[0]);
+            return $this->parseFailure($matches[0]);
         }
 
         return [
@@ -92,7 +92,7 @@ class Event extends Model
         ];
     }
 
-    public static function parseMatchesBeatmapUpdate($matches)
+    public function parseMatchesBeatmapUpdate($matches)
     {
         $beatmapUrl = 'https://osu.ppy.sh'.$matches['beatmapUrl'];
 
@@ -109,7 +109,7 @@ class Event extends Model
         ];
     }
 
-    public static function parseMatchesRank($matches)
+    public function parseMatchesRank($matches)
     {
         $scoreRank = str_replace('x', 'ss', strtolower($matches['scoreRank']));
 
@@ -120,7 +120,7 @@ class Event extends Model
             case 'Taiko': $mode = 'taiko'; break;
             case 'osu!': $mode = 'osu'; break;
             case 'Catch the Beat': $mode = 'ctb'; break;
-            default: return static::parseFailure($matches[0]);
+            default: return $this->parseFailure($matches[0]);
         }
 
         return [
@@ -139,7 +139,7 @@ class Event extends Model
         ];
     }
 
-    public static function parseMatchesRankLost($matches)
+    public function parseMatchesRankLost($matches)
     {
         $beatmapUrl = 'https://osu.ppy.sh'.$matches['beatmapUrl'];
 
@@ -148,7 +148,7 @@ class Event extends Model
             case 'Taiko': $mode = 'taiko'; break;
             case 'osu!': $mode = 'osu'; break;
             case 'Catch the Beat': $mode = 'ctb'; break;
-            default: return static::parseFailure($matches[0]);
+            default: return $this->parseFailure($matches[0]);
         }
 
         return [
@@ -165,19 +165,19 @@ class Event extends Model
         ];
     }
 
-    public static function parseText($text)
+    public function parseText()
     {
-        if (preg_match(static::PATTERN_RANK, $text, $matches) === 1) {
-            return static::parseMatchesRank($matches);
-        } elseif (preg_match(static::PATTERN_RANK_LOST, $text, $matches) === 1) {
-            return static::parseMatchesRankLost($matches);
-        } elseif (preg_match(static::PATTERN_ACHIEVEMENT, $text, $matches) === 1) {
-            return static::parseMatchesAchievement($matches);
-        } elseif (preg_match(static::PATTERN_BEATMAP_UPDATE, $text, $matches) === 1) {
-            return static::parseMatchesBeatmapUpdate($matches);
+        if (preg_match(static::PATTERN_RANK, $this->text, $matches) === 1) {
+            return $this->parseMatchesRank($matches);
+        } elseif (preg_match(static::PATTERN_RANK_LOST, $this->text, $matches) === 1) {
+            return $this->parseMatchesRankLost($matches);
+        } elseif (preg_match(static::PATTERN_ACHIEVEMENT, $this->text, $matches) === 1) {
+            return $this->parseMatchesAchievement($matches);
+        } elseif (preg_match(static::PATTERN_BEATMAP_UPDATE, $this->text, $matches) === 1) {
+            return $this->parseMatchesBeatmapUpdate($matches);
         }
 
-        return static::parseFailure($text);
+        return $this->parseFailure();
     }
 
     public function scopeRecent($query)
