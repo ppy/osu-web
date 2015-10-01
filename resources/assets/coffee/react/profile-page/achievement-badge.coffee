@@ -24,7 +24,7 @@ class ProfilePage.AchievementBadge extends React.Component
     filename2x = "/images/badges/user-achievements/#{@props.achievement.slug}@2x.png"
 
     el 'div',
-      className: "achievement-badge #{@props.additionalClasses}",
+      className: "badge-achievement #{@props.additionalClasses}",
       el 'img',
         src: filename
         srcSet: "#{filename} 1x, #{filename2x} 2x"

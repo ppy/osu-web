@@ -8,7 +8,7 @@ class ProfilePage.RecentActivities extends React.Component
     switch event.type
       when 'rank'
         badge = el 'div',
-          className: "profile-score-rank-badge profile-score-rank-badge--#{event.scoreRank} profile-extra-entries__icon"
+          className: "badge-rank badge-rank--#{event.scoreRank} profile-extra-entries__icon"
 
         text = el 'div',
           className: 'profile-extra-entries__text'

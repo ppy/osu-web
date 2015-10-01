@@ -469,44 +469,8 @@
   align-items: center;
 }
 
-.profile-score-rank-badge {
-  @size: 50px;
-  width: @size;
-  height: @size;
-  background-size: cover;
-
-  ._bg(@rank) {
-    background-image: url("/images/badges/score-ranks/@{rank}.png");
-    @media @highdpi {
-      background-image: url("/images/badges/score-ranks/@{rank}@2x.png");
-    }
-  }
-
-  &--ssh { ._bg("ssh"); }
-  &--ss { ._bg("ss"); }
-  &--sh { ._bg("sh"); }
-  &--s { ._bg("s"); }
-  &--a { ._bg("a"); }
-  &--b { ._bg("b"); }
-  &--c { ._bg("c"); }
-  &--d { ._bg("d"); }
-}
-
 .profile-recent-achievements {
   text-align: center;
-}
-
-.achievement-badge {
-  overflow: hidden;
-
-  &__image {
-    max-width: 100%;
-  }
-
-  &--recent {
-    width: 25%;
-    display: inline-block;
-  }
 }
 
 .profile-user-page-header {

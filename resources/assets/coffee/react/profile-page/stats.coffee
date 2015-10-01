@@ -73,5 +73,5 @@ class ProfilePage.Stats extends React.Component
                 key: "rank-#{x}"
                 className: 'profile-score-rank'
                 el 'div',
-                  className: "profile-score-rank-badge profile-score-rank-badge--#{x}"
+                  className: "badge-rank badge-rank--#{x}"
                 el 'div', null, @props.stats.scoreRanks[x].toLocaleString()
