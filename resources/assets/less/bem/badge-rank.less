@@ -24,10 +24,7 @@
   background-size: cover;
 
   ._bg(@rank) {
-    background-image: url("/images/badges/score-ranks/@{rank}.png");
-    @media @highdpi {
-      background-image: url("/images/badges/score-ranks/@{rank}@2x.png");
-    }
+    .at2x-simple("/images/badges/score-ranks/@{rank}.png");
   }
 
   &--ssh { ._bg("ssh"); }

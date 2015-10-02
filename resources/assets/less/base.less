@@ -374,10 +374,7 @@ a[disabled] { &:extend(.btn[disabled]); }
 }
 
 .avatar--guest {
-  background-image: url("/images/layout/avatar-guest.png");
-  @media @highdpi {
-    background-image: url("/images/layout/avatar-guest@2x.png");
-  }
+  .at2x-simple("/images/layout/avatar-guest.png");
 }
 
 .avatar--full {
