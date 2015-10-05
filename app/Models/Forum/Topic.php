@@ -195,6 +195,19 @@ class Topic extends Model
         return $this->posts()->skip(intval($n) - 1)->first();
     }
 
+    public function isDoublePostBy($userId)
+    {
+        $post = $this->posts()->orderBy('post_id', 'desc')->first();
+        $postTime = $post->post_time;
+        $daysSinceLastPost = Carbon::now()->diffInDays($postTime);
+
+        if (! is_null($userId) && $post->poster_id == $userId && $daysSinceLastPost < 3) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function postPosition($postId)
     {
         return $this->posts()->where('post_id', '<=', $postId)->count();

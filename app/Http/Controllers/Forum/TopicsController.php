@@ -159,17 +159,23 @@ class TopicsController extends Controller
         }
 
         $postsPosition = $topic->postsPosition($posts);
+        $isDoublePost = $topic->isDoublePostBy(Auth::user() ? Auth::user()->user_id : null);
 
         Event::fire(new TopicWasViewed($topic, $posts->last(), Auth::user()));
 
         $template = $skipLayout ? '_posts' : 'show';
 
-        return view("forum.topics.{$template}", compact('topic', 'posts', 'postsPosition', 'jumpTo'));
+        return view("forum.topics.{$template}", compact('topic', 'posts', 'postsPosition', 'jumpTo', 'isDoublePost'));
     }
 
     public function reply(HttpRequest $request, $id)
     {
         $topic = Topic::findOrFail($id);
+        $posts = Post::where('post_id', $topic->topic_last_post_id)->get();
+
+        if ($topic->isDoublePostBy(Auth::user()->user_id)) {
+            return 'not allowed';
+        }
 
         $this->authorizePost($topic->forum, $topic);
 

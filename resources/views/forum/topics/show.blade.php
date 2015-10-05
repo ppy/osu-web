@@ -58,7 +58,7 @@
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>
 
-    @if ($topic->canBeRepliedBy(Auth::user()))
+    @if ($topic->canBeRepliedBy(Auth::user()) && !$isDoublePost)
         {!! Form::open(["url" => route("forum.topics.reply", $topic->topic_id), "class" => "row row-blank post-editor post-editor--reply", "id" => "forum-topic-reply-box", "data-remote" => true]) !!}
             <div class="forum-small-row post-editor__main">
                 <div class="forum__avatar-container forum__avatar-container--reply hidden-xs">
@@ -77,6 +77,15 @@
             </div>
         {!! Form::close() !!}
     @endif
+
+    @include("forum.topics._infobox",
+                ["text" => trans("forum.topic.messages.doublepost", [
+                    "lastPostId" => $topic->topic_last_post_id,
+                    "editPostLink" => route("forum.posts.edit", $topic->topic_last_post_id)
+                ]),
+                "hide" => !$isDoublePost,
+                "id" => "doublepost-box"
+                ])
 
     <div class="row-page row-blank fixed-bar-bottom">
         <div id="forum-topic-navigator" class="js-forum__topic-total-posts" data-total-count="{{ $topic->postsCount() }}">
@@ -111,5 +120,10 @@
 
     <script data-turbolinks-eval="always">
         window.postJumpTo = {{ $jumpTo }};
+        @if ($isDoublePost)
+            window.isDoublePost = true;
+        @else
+            window.isDoublePost = false;
+        @endif
     </script>
 @endsection

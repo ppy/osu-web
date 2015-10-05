@@ -113,7 +113,8 @@ class Forum
 
     if !showNext
       $(@endPost()).find('.delete-post-link').css(display: '')
-      $('#forum-topic-reply-box').css(display: 'block')
+      if !window.isDoublePost
+        $('#forum-topic-reply-box').css(display: 'block')
 
   refreshCounter: =>
     return if @_postsCounter.length == 0
