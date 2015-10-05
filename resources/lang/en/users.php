@@ -59,6 +59,36 @@ return [
                 ],
             ],
         ],
+        'extra' => [
+            'achievements' => [
+                'title' => 'Achievements',
+            ],
+            'beatmaps' => [
+                'title' => 'Beatmaps',
+            ],
+            'historical' => [
+                'title' => 'Historical',
+            ],
+            'kudosu' => [
+                'available' => 'Kudosu Available',
+                'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven't traded in yet.",
+                'entry' => [
+                    'empty' => "This use hasn't recieved any kudosu!",
+                    'give' => 'Received <strong class="kudosu-entries__amount">:amount kudosu</strong> from :giver for a post at :post',
+                    'revoke' => 'Denied kudosu by :giver for the post :post',
+                ],
+                'recent_entries' => 'Recent Kudosu History',
+                'title' => 'Kudosu!',
+                'total' => 'Total Kudosu Earned',
+                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.config('osu.urls.user.kudosu').'">this page</a> for more information.',
+            ],
+            'recent_activities' => [
+                'title' => 'Recent Activities',
+            ],
+            'top_ranks' => [
+                'title' => 'Top Ranks',
+            ],
+        ],
         'first_members' => 'here since the beginning',
         'is_supporter' => 'osu!supporter',
         'is_developer' => 'osu!developer',

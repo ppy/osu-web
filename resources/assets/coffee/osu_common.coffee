@@ -17,10 +17,29 @@ You should have received a copy of the GNU Affero General Public License
 along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 @osu =
+  pageChange: ->
+    callback = -> $(document).trigger('osu:page:change')
+    setTimeout callback, 0
+
   parseJson: (id) ->
     JSON.parse document.getElementById(id).text
 
-  isMobile: -> ! window.matchMedia('(min-width: 944px)').matches
+  isMobile: -> ! window.matchMedia('(min-width: 920px)').matches
+
+  link: (url, text, classes = []) ->
+    el = document.createElement('a')
+    el.setAttribute 'href', url
+    el.setAttribute 'title', text
+    el.className = classes.join(' ')
+    el.textContent = text
+    el.outerHTML
+
+  timeago: (time) ->
+    el = document.createElement('time')
+    el.classList.add 'timeago-raw', 'timeago'
+    el.setAttribute 'datetime', time
+    el.textContent = time
+    el.outerHTML
 
   showLoadingOverlay: ->
     $overlay = $('.loading-overlay')

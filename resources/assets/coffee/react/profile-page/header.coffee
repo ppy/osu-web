@@ -18,137 +18,7 @@
 ###
 el = React.createElement
 
-class CoverSelection extends React.Component
-  onClick: =>
-    return if @props.url == null
-
-    $.ajax window.changeCoverUrl,
-      method: 'put'
-      data:
-        cover_id: @props.name
-      dataType: 'json'
-    .done (userData) ->
-      $(document).trigger 'user:update', userData.data
-
-
-  onMouseEnter: =>
-    return if @props.url == null
-    $(document).trigger 'user:cover:set', @props.url
-
-
-  onMouseLeave: ->
-    $(document).trigger 'user:cover:reset'
-
-
-  render: =>
-    el 'div',
-      className: 'profile-cover-selection'
-      style:
-        backgroundImage: "url('#{@props.thumbUrl}')"
-      onClick: @onClick
-      onMouseEnter: @onMouseEnter
-      onMouseLeave: @onMouseLeave
-      if @props.isSelected
-        el 'i',
-          className: 'fa fa-check-circle profile-cover-selection__selected-mark'
-
-
-class CoverSelector extends React.Component
-  render: =>
-    el 'div', className: 'profile-change-cover-popup',
-      el 'div', className: 'profile-change-cover-defaults',
-        for i in [1..8]
-          i = i.toString()
-          el CoverSelection,
-            key: i
-            name: i
-            isSelected: @props.cover.id == i
-            url: "/images/headers/profile-covers/c#{i}.jpg"
-            thumbUrl: "/images/headers/profile-covers/c#{i}t.jpg"
-        el 'p', className: 'profile-cover-selections-info',
-          Lang.get 'users.show.edit.cover.defaults_info'
-      el CoverUploader, cover: @props.cover, canUpload: @props.canUpload
-
-
-class CoverUploader extends React.Component
-  componentDidMount: =>
-    $uploadButton = $ '<input>',
-      class: 'js-profile-cover-upload file-upload-input'
-      type: 'file'
-      name: 'cover_file'
-      'data-url': window.changeCoverUrl
-      disabled: !@props.canUpload
-
-    $(React.findDOMNode @refs.uploadButtonContainer).append($uploadButton)
-
-    $uploadButton.fileupload
-      method: 'PUT'
-      dataType: 'json'
-      dropZone: $uploadButton
-      submit: ->
-        $(document).trigger 'user:cover:upload:state', true
-      done: (_e, data) ->
-        $(document).trigger 'user:update', data.result.data
-      fail: (_e, data) ->
-        message = data.jqXHR?.responseJSON || Lang.get 'errors.unknown'
-        osu.popup message, 'danger'
-      complete: ->
-        $(document).trigger 'user:cover:upload:state', false
-
-
-  componentWillUnmount: =>
-    $('.js-profile-cover-upload')
-      .fileupload 'destroy'
-      .remove()
-
-  render: =>
-    labelClass = 'btn-osu btn-osu--small btn-osu-default file-upload-label profile-cover-upload__button'
-    labelClass += ' disabled' unless @props.canUpload
-
-    el 'div', className: 'profile-cover-upload',
-      el CoverSelection,
-        url: @props.cover.customUrl
-        thumbUrl: @props.cover.customUrl
-        isSelected: @props.cover.id == null
-
-      el 'label', className: labelClass, ref: 'uploadButtonContainer',
-        Lang.get 'users.show.edit.cover.upload.button'
-
-      el 'div', className: 'profile-cover-upload-info',
-        el 'p', className: 'profile-cover-upload-info-entry',
-          el 'strong',
-            dangerouslySetInnerHTML:
-              __html: Lang.get 'users.show.edit.cover.upload.restriction_info'
-
-        el 'p', className: 'profile-cover-upload-info-entry',
-          Lang.get 'users.show.edit.cover.upload.size_info'
-
-
-class HeaderInfo extends React.Component
-  render: =>
-    el 'div', className: 'user-bar',
-      el 'div', null,
-        el 'h1', className: 'profile-basic--large profile-basic',
-          @props.user.username
-        el 'p', className: 'profile-basic', @props.user.joinDate
-
-
-class Rank extends React.Component
-  render: =>
-    return el('div') unless @props.rank.isRanked
-
-    el 'div', className: 'user-bar user-rank',
-      el 'div', null,
-        el 'p', className: 'profile-basic profile-basic--large',
-          el 'span', className: 'user-rank-icon',
-            el 'i', className: "fa osu fa-#{@props.mode}-o"
-          "##{@props.rank.global.toLocaleString()}"
-        if @props.countryName != null
-          el 'p', className: 'profile-basic',
-            "#{@props.countryName} ##{@props.rank.country.toLocaleString()}"
-
-
-class @ProfileHeader extends React.Component
+class ProfilePage.Header extends React.Component
   constructor: (props) ->
     super props
     @state =
@@ -160,8 +30,8 @@ class @ProfileHeader extends React.Component
 
   componentDidMount: =>
     @_removeListeners()
-    $(document).on 'user:cover:set.profilePageHeader', @coverSet
-    $(document).on 'user:cover:reset.profilePageHeader', @coverReset
+    $.subscribe 'user:cover:set.profilePageHeader', @coverSet
+    $.subscribe 'user:cover:reset.profilePageHeader', @coverReset
 
 
   componentWillReceiveProps: (newProps) =>
@@ -173,7 +43,7 @@ class @ProfileHeader extends React.Component
 
 
   _removeListeners: =>
-    $(document).off '.profilePageHeader'
+    $.unsubscribe '.profilePageHeader'
 
 
   toggleEdit: =>
@@ -229,11 +99,11 @@ class @ProfileHeader extends React.Component
           Lang.get 'users.show.edit.cover.button'
 
       if @state.editing
-        el CoverSelector, canUpload: @props.user.isSupporter, cover: @props.user.cover
+        el ProfilePage.CoverSelector, canUpload: @props.user.isSupporter, cover: @props.user.cover
 
       el 'div', className: 'user-bar-container',
-        el HeaderInfo, user: @props.user
-        el Rank,
+        el ProfilePage.HeaderInfo, user: @props.user
+        el ProfilePage.Rank,
           rank: @props.stats.rank
           countryName: @props.user.country.name
           mode: @props.mode

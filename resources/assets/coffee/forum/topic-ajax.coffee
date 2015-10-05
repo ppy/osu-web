@@ -37,7 +37,7 @@ $(document).on 'ajax:success', '.delete-post-link', (_event, data) ->
 
         post.setAttribute 'data-post-position', originalPosition - 1
 
-      $(document).trigger('osu:page:change')
+      osu.pageChange()
 
 
 $(document).on 'ajax:success', '.reply-post-link', (e, data) ->
@@ -65,7 +65,7 @@ $(document).on 'ajax:success', '#forum-topic-reply-box', (_event, data) ->
       .insertAfter($('.forum-post').last())
       .find('textarea').val('')
 
-    $(document).trigger('osu:page:change')
+    osu.pageChange()
 
     newPost = window.forum.endPost()
     newPost.classList.remove('js-forum-post__shrunk')
@@ -87,7 +87,7 @@ $(document).on 'ajax:success', '.edit-post-link', (e, data, status, xhr) ->
     .find '[name=body]'
     .focus()
 
-  $(document).trigger('osu:page:change')
+  osu.pageChange()
 
 
 $(document).on 'click', '.js-edit-post-cancel', (e) ->
@@ -96,7 +96,7 @@ $(document).on 'click', '.js-edit-post-cancel', (e) ->
   $postBox = $(e.target).parents '.forum-post'
   $postBox.html $postBox.data('originalPost')
 
-  $(document).trigger('osu:page:change')
+  osu.pageChange()
 
 
 $(document).on 'ajax:success', '.edit-post', (e, data, status, xhr) ->
@@ -106,4 +106,4 @@ $(document).on 'ajax:success', '.edit-post', (e, data, status, xhr) ->
     .trigger('ajax:complete', [xhr, status])
     .parents('.forum-post').replaceWith(data)
 
-  $(document).trigger('osu:page:change')
+  osu.pageChange()

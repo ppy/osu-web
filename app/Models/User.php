@@ -47,6 +47,8 @@ class User extends Model implements AuthenticatableContract
 
     protected $casts = [
         'group_id' => 'integer',
+        'osu_kudosavailable' => 'integer',
+        'osu_kudostotal' => 'integer',
         'osu_subscriber' => 'boolean',
         'user_id' => 'integer',
         'user_type' => 'integer',
@@ -576,6 +578,21 @@ class User extends Model implements AuthenticatableContract
     public function usernameChangeHistory()
     {
         return $this->hasMany(UsernameChangeHistory::class, 'user_id', 'user_id');
+    }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'user_id', 'user_id');
+    }
+
+    public function givenKudosu()
+    {
+        return $this->hasMany(KudosuHistory::class, 'giver_id', 'user_id');
+    }
+
+    public function receivedKudosu()
+    {
+        return $this->hasMany(KudosuHistory::class, 'receiver_id', 'user_id');
     }
 
     public function getPlaymodeAttribute($value)

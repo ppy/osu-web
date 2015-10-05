@@ -87,6 +87,6 @@ class PostAutoPreview
     .done (data) =>
       @lastBody = body
       $preview.html data
-      $(document).trigger 'osu:page:change'
+      osu.pageChange()
 
 window.postAutoPreview = new PostAutoPreview
