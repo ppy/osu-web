@@ -18,7 +18,8 @@
 --}}
 @extends("master", [
     "title" => "community / {$topic->topic_title}",
-    "body_additional_classes" => "forum-colour " . $topic->forum->categorySlug()
+    "body_additional_classes" => "forum-colour " . $topic->forum->categorySlug(),
+    'canonicalUrl' => route('forum.topics.show', $topic->topic_id),
 ])
 
 @section("content")
