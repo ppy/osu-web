@@ -31,6 +31,7 @@ class Event extends Model
     const PATTERN_BEATMAP_UPDATE = "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a>\"$!";
     const PATTERN_RANK = "!^<img src='/images/(?<scoreRank>.+?)_small\.png'/> <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> achieved (?:<b>)?rank #(?<rank>\d+?)(?:</b>)? on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!";
     const PATTERN_RANK_LOST = "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has lost first place on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!";
+    const PATTERN_USERNAME_CHANGE = "!^<b><a href='(?<userUrl>.+?)'>(?<previousUsername>.+?)</a></b> has changed their username to (?<userName>.+)\!$!";
 
     protected $table = 'osu_events';
     protected $primaryKey = 'event_id';
@@ -194,6 +195,18 @@ class Event extends Model
         ];
     }
 
+    public function parseMatchesUsernameChange($matches)
+    {
+        return [
+            'type' => 'usernameChange',
+            'user' => [
+                'previousUsername' => $matches['previousUsername'],
+                'username' => $matches['userName'],
+                'url' => $matches['userUrl'],
+            ],
+        ];
+    }
+
     public function parseText()
     {
         if (preg_match(static::PATTERN_RANK, $this->text, $matches) === 1) {
@@ -208,6 +221,8 @@ class Event extends Model
             return $this->parseMatchesBeatmapPlaycount($matches);
         } elseif (preg_match(static::PATTERN_BEATMAP_SET_APPROVAL, $this->text, $matches) === 1) {
             return $this->parseMatchesBeatmapSetApproval($matches);
+        } elseif (preg_match(static::PATTERN_USERNAME_CHANGE, $this->text, $matches) === 1) {
+            return $this->parseMatchesUsernameChange($matches);
         }
 
         return $this->parseFailure();
