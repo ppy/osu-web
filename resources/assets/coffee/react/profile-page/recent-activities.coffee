@@ -23,7 +23,7 @@ class ProfilePage.RecentActivities extends React.Component
         text = el 'div',
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'events.rankLost',
+            __html: Lang.get 'events.rank_lost',
               user: osu.link(event.user.url, event.user.username)
               rank: event.rank
               beatmap: osu.link(event.beatmap.url, event.beatmap.title)
