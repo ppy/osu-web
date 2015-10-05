@@ -57,6 +57,13 @@ class ProfilePage.RecentActivities extends React.Component
               user: osu.link(event.user.url, event.user.username)
               previousUsername: event.user.previousUsername
 
+      when 'userSupportAgain'
+        text = el 'div',
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: Lang.get 'events.user_support_again',
+              user: osu.link(event.user.url, event.user.username)
+
       else
         return null
 
