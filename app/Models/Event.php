@@ -35,6 +35,7 @@ class Event extends Model
     const PATTERN_RANK_LOST = "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has lost first place on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!";
     const PATTERN_USERNAME_CHANGE = "!^<b><a href='(?<userUrl>.+?)'>(?<previousUsername>.+?)</a></b> has changed their username to (?<userName>.+)\!$!";
     const PATTERN_USER_SUPPORT_AGAIN = "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has once again chosen to support osu\! - thanks for your generosity\!$!";
+    const PATTERN_USER_SUPPORT_FIRST = "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has become an osu\! supporter - thanks for your generosity\!$!";
 
     protected $table = 'osu_events';
     protected $primaryKey = 'event_id';
@@ -249,6 +250,17 @@ class Event extends Model
         ];
     }
 
+    public function parseMatchesUserSupportFirst($matches)
+    {
+        return [
+            'type' => 'userSupportFirst',
+            'user' => [
+                'username' => $matches['userName'],
+                'url' => $matches['userUrl'],
+            ],
+        ];
+    }
+
     public function parseText()
     {
         if (preg_match(static::PATTERN_RANK, $this->text, $matches) === 1) {
@@ -271,6 +283,8 @@ class Event extends Model
             return $this->parseMatchesUsernameChange($matches);
         } elseif (preg_match(static::PATTERN_USER_SUPPORT_AGAIN, $this->text, $matches) === 1) {
             return $this->parseMatchesUserSupportAgain($matches);
+        } elseif (preg_match(static::PATTERN_USER_SUPPORT_FIRST, $this->text, $matches) === 1) {
+            return $this->parseMatchesUserSupportFirst($matches);
         }
 
         return $this->parseFailure();
