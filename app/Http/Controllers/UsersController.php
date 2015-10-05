@@ -24,6 +24,8 @@ namespace App\Http\Controllers;
 use App\Models\Achievement;
 use App\Models\LoginAttempt;
 use App\Models\User;
+use App\Transformers\EventTransformer;
+use App\Transformers\KudosuHistoryTransformer;
 use App\Transformers\UserAchievementTransformer;
 use App\Transformers\UserStatisticsTransformer;
 use App\Transformers\UserTransformer;
@@ -130,10 +132,25 @@ class UsersController extends Controller
             new UserAchievementTransformer()
         );
 
+        $recentActivities = fractal_collection_array(
+            $user->events()->recent()->get(),
+            new EventTransformer()
+        );
+
+        $recentlyReceivedKudosu = fractal_collection_array(
+            $user->receivedKudosu()
+                ->withPost()
+                ->with('post', 'post.topic', 'giver')
+                ->orderBy('exchange_id', 'desc')
+                ->limit(15)
+                ->get(),
+            new KudosuHistoryTransformer()
+        );
+
         $userArray = fractal_item_array($user, new UserTransformer());
 
         return view('users.show', compact(
-            'user', 'mode', 'allStats', 'userPage', 'userArray', 'recentAchievements'
+            'user', 'mode', 'allStats', 'userPage', 'userArray', 'recentAchievements', 'recentActivities', 'recentlyReceivedKudosu'
         ));
     }
 }

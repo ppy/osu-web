@@ -36,8 +36,9 @@
 
 /* Position tooltip above the element */
 [data-tooltip]::before {
+  @bottom-adjustment: @grid-gutter-width/8;
   position: absolute;
-  bottom: calc(100% + @grid-gutter-width/4);
+  bottom: calc(~"100% + @{bottom-adjustment}");
   left: 0px;
   margin-bottom: 5px;
   margin-left: -5px;
@@ -53,8 +54,9 @@
 
 /* Triangle hack to make tooltip look like a speech bubble */
 [data-tooltip]::after {
+  @bottom-adjustment: @grid-gutter-width/8;
   position: absolute;
-  bottom: calc(100% + @grid-gutter-width/4);
+  bottom: calc(~"100% + @{bottom-adjustment}");
   left: 50%;
   margin-left: -5px;
   width: 0;

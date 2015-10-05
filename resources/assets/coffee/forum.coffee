@@ -275,7 +275,7 @@ $(document).on 'click', '.js-forum-posts-show-more', (e) ->
     else
       $linkDiv.before data
 
-    $(document).trigger 'osu:page:change'
+    osu.pageChange()
     $link.attr 'data-failed', '0'
 
   .always ->

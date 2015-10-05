@@ -1,0 +1,69 @@
+<?php
+
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License as published by
+ *    the Free Software Foundation, either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+namespace App\Models;
+
+use DB;
+use Illuminate\Database\Eloquent\Model;
+
+class KudosuHistory extends Model
+{
+    protected $table = 'osu_kudos_exchange';
+    protected $primaryKey = 'exchange_id';
+
+    protected $dates = ['date'];
+    public $timestamps = false;
+
+    protected $casts = [
+        'exchange_id' => 'integer',
+        'giver_id' => 'integer',
+        'receiver_id' => 'integer',
+        'post_id' => 'integer',
+        'amount' => 'integer',
+    ];
+
+    public function giver()
+    {
+        return $this->belongsTo(User::class, 'giver_id', 'user_id');
+    }
+
+    public function receiver()
+    {
+        return $this->belongsTo(User::class, 'receiver_id', 'user_id');
+    }
+
+    public function post()
+    {
+        return $this->belongsTo(Forum\Post::class, 'post_id', 'post_id');
+    }
+
+    public function scopeWithPost($query)
+    {
+        $postTableName = (new Forum\Post)->getTable();
+        $thisTableName = $this->getTable();
+
+        return $query->whereExists(function ($query) use ($postTableName, $thisTableName) {
+            $query->select(DB::raw(1))
+                ->from($postTableName)
+                ->whereRaw("{$postTableName}.post_id = {$thisTableName}.post_id");
+        });
+    }
+}

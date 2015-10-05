@@ -27,12 +27,16 @@ class @UserCard extends React.Component
 
 
   componentDidMount: =>
-    $(document).off '.userCard'
-    $(document).on 'user:update.userCard', @_userUpdate
+    @_removeListeners()
+    $.subscribe 'user:update.userCard', @_userUpdate
 
 
   componentWillUnmount: =>
-    $(document).off '.userCard'
+    @_removeListeners()
+
+
+  _removeListeners: ->
+    $.unsubscribe '.userCard'
 
 
   _userUpdate: (_e, user) =>

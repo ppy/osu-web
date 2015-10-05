@@ -43,6 +43,7 @@ return [
         ],
         'support-the-game' => 'https://osu.ppy.sh/p/support',
         'user' => [
+            'kudosu' => 'https://osu.ppy.sh/wiki/Kudosu',
             'rules' => 'https://osu.ppy.sh/wiki/Osu!:Rules',
         ],
     ],

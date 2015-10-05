@@ -19,14 +19,28 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Providers;
+namespace App\Transformers;
 
-use Illuminate\Hashing\HashServiceProvider as ServiceProvider;
+use App\Models\KudosuHistory;
+use League\Fractal;
 
-class OsuHashServiceProvider extends ServiceProvider
+class KudosuHistoryTransformer extends Fractal\TransformerAbstract
 {
-    public function register()
+    public function transform(KudosuHistory $kudosuHistory)
     {
-        $this->app->singleton('hash', function () { return new \App\Contracts\OsuHasher(); });
+        return [
+            'id' => $kudosuHistory->exchange_id,
+            'action' => $kudosuHistory->action,
+            'amount' => $kudosuHistory->amount,
+            'createdAt' => $kudosuHistory->date->toIso8601String(),
+            'giver' => [
+                'url' => route('users.show', $kudosuHistory->giver_id),
+                'name' => $kudosuHistory->giver->username,
+            ],
+            'post' => [
+                'url' => route('forum.posts.show', $kudosuHistory->post_id),
+                'title' => $kudosuHistory->post->topic->topic_title,
+            ],
+        ];
     }
 }

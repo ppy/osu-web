@@ -154,7 +154,6 @@ return [
         'App\Providers\ConfigServiceProvider',
         'App\Providers\EventServiceProvider',
         'App\Providers\RouteServiceProvider',
-        'App\Providers\OsuHashServiceProvider',
         'Clockwork\Support\Laravel\ClockworkServiceProvider',
         'GrahamCampbell\Markdown\MarkdownServiceProvider',
         'Maknz\Slack\SlackServiceProvider',

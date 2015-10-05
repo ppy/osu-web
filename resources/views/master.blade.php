@@ -37,13 +37,28 @@
 
         @include("layout.header")
 
-        <div class="flex-full container content {{ $current_section }}_{{ $current_action }}">
+        <div class="flex-full content {{ $current_section }}_{{ $current_action }}">
             @include("layout.popup")
-            @yield("content", "<div class='row-page'><center><h1><span class='dark'>$current_section</span> / <span class='dark'>$current_action</span> is <span class='normal'>now printing</span> <span class='light'>♪</span></h1></center></div>")
+            @if (View::hasSection('content'))
+                @yield('content')
+            @else
+                <div class="row-page text-center"><h1>
+                    <span class="dark">{{ $current_section }}</span>
+                    /
+                    <span class="dark">{{ $current_action }}</span>
+                    is <span class="normal">now printing</span> <span class="light">♪</span>
+                </h1></div>
+            @endif
         </div>
 
         @include("layout.gallery_window")
         @include("layout.footer")
+
+        <div class="fixed-bar">
+            <div class="fixed-bar__float">
+                @yield('fixed-bar-rows-bottom')
+            </div>
+        </div>
 
         @yield('user-dropdown-modal')
         @include("layout._global_variables")

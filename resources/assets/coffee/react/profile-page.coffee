@@ -18,86 +18,15 @@
 ###
 el = React.createElement
 
-class @ProfilePage extends React.Component
-  constructor: (props) ->
-    super props
-
-    @state =
-      mode: props.user.playmode
-      user: props.user
-      userPage:
-        html: props.userPage.html
-        initialRaw: props.userPage.raw
-        raw: props.userPage.raw
-        editing: false
-        selection: [0, 0]
-      isCoverUpdating: false
-
-
-  coverUploadState: (_e, state) =>
-    @setState isCoverUpdating: state
-
-
-  modeChange: (_e, mode) =>
-    @setState mode: mode
-
-
-  userUpdate: (_e, user) =>
-    return unless user != undefined && user != null
-    @setState user: user
-
-
-  userPageUpdate: (_e, newUserPage) =>
-    currentUserPage = @state.userPage
-    @setState userPage: _.extend(currentUserPage, newUserPage)
-
-
-  componentDidMount: =>
-    @_removeListeners()
-    $(document).on 'user:update.profilePage', @userUpdate
-    $(document).on 'user:cover:upload:state.profilePage', @coverUploadState
-    $(document).on 'user:page:update.profilePage', @userPageUpdate
-    $(document).on 'profilePageMode:change.profilePage', @modeChange
-
-
-  componentWillUnmount: =>
-    @_removeListeners()
-
-
-  _removeListeners: =>
-    $(document).off '.profilePage'
-
-  render: =>
-    if @state.mode != 'me'
-      headerMode = @state.mode
-      headerStats = stats = @props.allStats[@state.mode].data
-    else
-      headerMode = @props.user.playmode
-      headerStats = @props.allStats[headerMode].data
-
-    el 'div', className: 'flex-column flex-full',
-      el ProfileHeader,
-        user: @state.user
-        stats: headerStats
-        mode: headerMode
-        withEdit: @props.withEdit
-        isCoverUpdating: @state.isCoverUpdating
-      el ProfileContents,
-        user: @state.user
-        userPage: @state.userPage
-        stats: stats
-        mode: @state.mode
-        recentAchievements: @props.recentAchievements
-        withEdit: @props.withEdit
-
-
 user = osu.parseJson('json-user-info').data
 
 React.render \
-  el(ProfilePage,
+  el(ProfilePage.Main,
     user: user
     userPage: osu.parseJson('json-user-page').page
     allStats: osu.parseJson('json-user-stats')
     withEdit: user.id == window.currentUser.id
     recentAchievements: osu.parseJson('json-user-recent-achievements').data
+    recentActivities: osu.parseJson('json-user-recent-activities').data
+    recentlyReceivedKudosu: osu.parseJson('json-user-recently-received-kudosu').data
   ), document.getElementsByClassName('content')[0]

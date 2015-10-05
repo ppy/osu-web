@@ -21,7 +21,7 @@
 
 namespace App\Models\UserStatistics;
 
-class taiko extends Model
+class Taiko extends Model
 {
     protected $table = 'osu_user_stats_taiko';
 }

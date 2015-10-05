@@ -89,3 +89,12 @@
   justify-content: center;
   align-items: center;
 }
+
+.at2x-simple(@url) {
+  @url2x: replace(@url, "(\.[^.]+)$", "@2x$1");
+  background-image: url(@url);
+
+  @media @highdpi {
+    background-image: url(@url2x);
+  }
+}

@@ -469,27 +469,8 @@
   align-items: center;
 }
 
-@score-rank-badge-size: 50px;
-.profile-score-rank-badge {
-  width: @score-rank-badge-size;
-  height: @score-rank-badge-size;
-}
-
-.profile-score-rank-badge--bg(@rank) {
-  .at2x("/images/badges/score-ranks/@{rank}.png", @score-rank-badge-size, @score-rank-badge-size);
-}
-
-.profile-score-rank-badge--ss { .profile-score-rank-badge--bg("ss"); }
-.profile-score-rank-badge--s { .profile-score-rank-badge--bg("s"); }
-.profile-score-rank-badge--a { .profile-score-rank-badge--bg("a"); }
-
 .profile-recent-achievements {
   text-align: center;
-}
-
-.profile-recent-achievement-badge {
-  width: 25%;
-  display: inline-block;
 }
 
 .profile-user-page-header {
