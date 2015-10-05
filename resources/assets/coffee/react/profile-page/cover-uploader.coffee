@@ -35,6 +35,7 @@ class ProfilePage.CoverUploader extends React.Component
       dataType: 'json'
       dropZone: $uploadButton
       submit: ->
+        osu.showLoadingOverlay()
         $.publish 'user:cover:upload:state', true
       done: (_e, data) ->
         $.publish 'user:update', data.result.data
@@ -42,6 +43,7 @@ class ProfilePage.CoverUploader extends React.Component
         message = data.jqXHR?.responseJSON || Lang.get 'errors.unknown'
         osu.popup message, 'danger'
       complete: ->
+        osu.hideLoadingOverlay()
         $.publish 'user:cover:upload:state', false
 
 

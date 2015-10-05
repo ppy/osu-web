@@ -87,13 +87,6 @@ class ProfilePage.Header extends React.Component
             backgroundImage: "url('#{@props.user.avatarUrl}')"
           title: Lang.get('users.show.avatar', username: @props.user.username)
 
-      el 'div',
-        className: 'profile-cover-uploading-spinner'
-        style:
-          display: 'none' unless @props.isCoverUpdating
-
-        el 'i', className: 'fa fa-circle-o-notch fa-spin'
-
       if @props.withEdit
         el 'div', className: 'profile-change-cover-button', onClick: @toggleEdit,
           Lang.get 'users.show.edit.cover.button'
