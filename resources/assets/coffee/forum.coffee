@@ -89,7 +89,7 @@ class Forum
     postId = currentPost.getAttribute('data-post-id')
 
     @_postsCounter[0].textContent = currentPostPosition
-    @_postsCounter[0].setAttribute 'href', "#{document.location.pathname}?start=#{postId}#forum-post-#{postId}"
+    @_postsCounter[0].setAttribute 'href', "#{window.canonicalUrl}?start=#{postId}#forum-post-#{postId}"
     @_postsProgress[0].setAttribute 'data-progress', Math.round(100 * currentPostPosition / @totalPosts())
 
   endPost: => @posts[@posts.length - 1]
@@ -258,7 +258,7 @@ $(document).on 'click', '.js-forum-posts-show-more', (e) ->
 
   $linkDiv.addClass 'loading'
 
-  $.get(document.location.pathname, options)
+  $.get(window.canonicalUrl, options)
   .done (data) ->
     if mode == 'previous'
       scrollReference = $refPost[0]
