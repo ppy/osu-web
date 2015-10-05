@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
     const PATTERN_ACHIEVEMENT = "!^(?:<b>)+<a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>(?:</b>)+ unlocked the \"<b>(?<achievementName>.+?)</b>\" achievement\!$!";
+    const PATTERN_BEATMAP_SET_APPROVAL = "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified)\!$!";
     const PATTERN_BEATMAP_UPDATE = "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a>\"$!";
     const PATTERN_RANK = "!^<img src='/images/(?<scoreRank>.+?)_small\.png'/> <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> achieved (?:<b>)?rank #(?<rank>\d+?)(?:</b>)? on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!";
     const PATTERN_RANK_LOST = "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has lost first place on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!";
@@ -85,6 +86,25 @@ class Event extends Model
             'achievement' => [
                 'slug' => $achievement->slug,
                 'name' => $achievement->name,
+            ],
+            'user' => [
+                'username' => $matches['userName'],
+                'url' => $matches['userUrl'],
+            ],
+        ];
+    }
+
+    public function parseMatchesBeatmapSetApproval($matches)
+    {
+        $approval = $matches['approval'];
+        if ($approval === 'ranked') { $approval = 'qualified'; }
+
+        return [
+            'type' => 'beatmapSetApproval',
+            'approval' => $approval,
+            'beatmapSet' => [
+                'title' => $matches['beatmapSetTitle'],
+                'url' => $matches['beatmapSetUrl'],
             ],
             'user' => [
                 'username' => $matches['userName'],
@@ -186,6 +206,8 @@ class Event extends Model
             return $this->parseMatchesBeatmapUpdate($matches);
         } elseif (preg_match(static::PATTERN_BEATMAP_PLAYCOUNT, $this->text, $matches) === 1) {
             return $this->parseMatchesBeatmapPlaycount($matches);
+        } elseif (preg_match(static::PATTERN_BEATMAP_SET_APPROVAL, $this->text, $matches) === 1) {
+            return $this->parseMatchesBeatmapSetApproval($matches);
         }
 
         return $this->parseFailure();
