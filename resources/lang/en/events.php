@@ -22,6 +22,7 @@
 return [
     'achievement' => '<strong><em>:user</em></strong> unlocked the "<strong>:achievement</strong>" achievement!',
     'beatmap_set_deletion' => ':beatmapSet has been deleted.',
+    'beatmap_set_upload' => '<strong>:user</strong> has submitted a new beatmap ":beatmapSet"',
     'beatmap_update' => '<strong><em>:user</em></strong> has updated the beatmap "<em>:beatmap</em>"',
     'empty' => "This user hasn't done anything notable recently!",
     'rank' => '<strong><em>:user</em></strong> achieved rank #:rank on <em>:beatmap</em> (:mode)',

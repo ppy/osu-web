@@ -29,6 +29,7 @@ class Event extends Model
     const PATTERN_BEATMAP_PLAYCOUNT = "!^<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> has been played (?<count>[\d,]+) times\!$!";
     const PATTERN_BEATMAP_SET_APPROVAL = "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified)\!$!";
     const PATTERN_BEATMAP_SET_DELETION = "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> has been deleted.$!";
+    const PATTERN_BEATMAP_SET_UPLOAD = "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has submitted a new beatmap \"<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a>\"$!";
     const PATTERN_BEATMAP_UPDATE = "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a>\"$!";
     const PATTERN_RANK = "!^<img src='/images/(?<scoreRank>.+?)_small\.png'/> <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> achieved (?:<b>)?rank #(?<rank>\d+?)(?:</b>)? on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!";
     const PATTERN_RANK_LOST = "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has lost first place on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!";
@@ -143,6 +144,21 @@ class Event extends Model
         ];
     }
 
+    public function parseMatchesBeatmapSetUpload($matches)
+    {
+        return [
+            'type' => 'beatmapSetUpload',
+            'beatmapSet' => [
+                'title' => $matches['beatmapSetTitle'],
+                'url' => $matches['beatmapSetUrl'],
+            ],
+            'user' => [
+                'username' => $matches['userName'],
+                'url' => $matches['userUrl'],
+            ],
+        ];
+    }
+
     public function parseMatchesBeatmapUpdate($matches)
     {
         return [
@@ -249,6 +265,8 @@ class Event extends Model
             return $this->parseMatchesBeatmapSetApproval($matches);
         } elseif (preg_match(static::PATTERN_BEATMAP_SET_DELETION, $this->text, $matches) === 1) {
             return $this->parseMatchesBeatmapSetDeletion($matches);
+        } elseif (preg_match(static::PATTERN_BEATMAP_SET_UPLOAD, $this->text, $matches) === 1) {
+            return $this->parseMatchesBeatmapSetUpload($matches);
         } elseif (preg_match(static::PATTERN_USERNAME_CHANGE, $this->text, $matches) === 1) {
             return $this->parseMatchesUsernameChange($matches);
         } elseif (preg_match(static::PATTERN_USER_SUPPORT_AGAIN, $this->text, $matches) === 1) {
