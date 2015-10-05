@@ -29,11 +29,11 @@ class ProfilePage.RecentActivities extends React.Component
               beatmap: osu.link(event.beatmap.url, event.beatmap.title)
               mode: Lang.get "common.play_mode.#{event.mode}"
 
-      when 'beatmapSetDeletion'
+      when 'beatmapSetDelete'
         text = el 'div',
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'events.beatmap_set_deletion',
+            __html: Lang.get 'events.beatmap_set_delete',
               beatmapSet: osu.link(event.beatmapSet.url, event.beatmapSet.title)
 
       when 'beatmapSetRevive'

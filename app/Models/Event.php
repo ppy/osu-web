@@ -27,8 +27,8 @@ class Event extends Model
 {
     const PATTERN_ACHIEVEMENT = "!^(?:<b>)+<a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>(?:</b>)+ unlocked the \"<b>(?<achievementName>.+?)</b>\" achievement\!$!";
     const PATTERN_BEATMAP_PLAYCOUNT = "!^<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> has been played (?<count>[\d,]+) times\!$!";
-    const PATTERN_BEATMAP_SET_APPROVAL = "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified)\!$!";
-    const PATTERN_BEATMAP_SET_DELETION = "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> has been deleted.$!";
+    const PATTERN_BEATMAP_SET_APPROVE = "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified)\!$!";
+    const PATTERN_BEATMAP_SET_DELETE = "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> has been deleted.$!";
     const PATTERN_BEATMAP_SET_REVIVE = "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> has been revived from eternal slumber(?: by <a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>)?\.$!";
     const PATTERN_BEATMAP_SET_UPLOAD = "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has submitted a new beatmap \"<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a>\"$!";
     const PATTERN_BEATMAP_UPDATE = "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a>\"$!";
@@ -114,7 +114,7 @@ class Event extends Model
         ];
     }
 
-    public function parseMatchesBeatmapSetApproval($matches)
+    public function parseMatchesBeatmapSetApprove($matches)
     {
         $approval = $matches['approval'];
         if ($approval === 'ranked') {
@@ -135,10 +135,10 @@ class Event extends Model
         ];
     }
 
-    public function parseMatchesBeatmapSetDeletion($matches)
+    public function parseMatchesBeatmapSetDelete($matches)
     {
         return [
-            'type' => 'beatmapSetDeletion',
+            'type' => 'beatmapSetDelete',
             'beatmapSet' => [
                 'title' => $matches['beatmapSetTitle'],
                 'url' => $matches['beatmapSetUrl'],
@@ -298,10 +298,10 @@ class Event extends Model
             return $this->parseMatchesBeatmapUpdate($matches);
         } elseif (preg_match(static::PATTERN_BEATMAP_PLAYCOUNT, $this->text, $matches) === 1) {
             return $this->parseMatchesBeatmapPlaycount($matches);
-        } elseif (preg_match(static::PATTERN_BEATMAP_SET_APPROVAL, $this->text, $matches) === 1) {
-            return $this->parseMatchesBeatmapSetApproval($matches);
-        } elseif (preg_match(static::PATTERN_BEATMAP_SET_DELETION, $this->text, $matches) === 1) {
-            return $this->parseMatchesBeatmapSetDeletion($matches);
+        } elseif (preg_match(static::PATTERN_BEATMAP_SET_APPROVE, $this->text, $matches) === 1) {
+            return $this->parseMatchesBeatmapSetApprove($matches);
+        } elseif (preg_match(static::PATTERN_BEATMAP_SET_DELETE, $this->text, $matches) === 1) {
+            return $this->parseMatchesBeatmapSetDelete($matches);
         } elseif (preg_match(static::PATTERN_BEATMAP_SET_REVIVE, $this->text, $matches) === 1) {
             return $this->parseMatchesBeatmapSetRevive($matches);
         } elseif (preg_match(static::PATTERN_BEATMAP_SET_UPLOAD, $this->text, $matches) === 1) {
