@@ -112,7 +112,9 @@ class Event extends Model
     public function parseMatchesBeatmapSetApproval($matches)
     {
         $approval = $matches['approval'];
-        if ($approval === 'ranked') { $approval = 'qualified'; }
+        if ($approval === 'ranked') {
+            $approval = 'qualified';
+        }
 
         return [
             'type' => 'beatmapSetApproval',
