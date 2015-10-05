@@ -26,11 +26,11 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
     const PATTERN_ACHIEVEMENT = "!^(?:<b>)+<a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>(?:</b>)+ unlocked the \"<b>(?<achievementName>.+?)</b>\" achievement\!$!";
+    const PATTERN_BEATMAP_PLAYCOUNT = "!^<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> has been played (?<count>[\d,]+) times\!$!";
     const PATTERN_BEATMAP_SET_APPROVAL = "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified)\!$!";
     const PATTERN_BEATMAP_UPDATE = "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a>\"$!";
     const PATTERN_RANK = "!^<img src='/images/(?<scoreRank>.+?)_small\.png'/> <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> achieved (?:<b>)?rank #(?<rank>\d+?)(?:</b>)? on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!";
     const PATTERN_RANK_LOST = "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has lost first place on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!";
-    const PATTERN_BEATMAP_PLAYCOUNT = "!^<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> has been played (?<count>[\d,]+) times\!$!";
 
     protected $table = 'osu_events';
     protected $primaryKey = 'event_id';
@@ -94,6 +94,20 @@ class Event extends Model
         ];
     }
 
+    public function parseMatchesBeatmapPlaycount($matches)
+    {
+        $count = intval(str_replace(',', '', $matches['count']));
+
+        return [
+            'type' => 'beatmapPlaycount',
+            'beatmap' => [
+                'title' => $matches['beatmapTitle'],
+                'url' => $matches['beatmapUrl'],
+            ],
+            'count' => $count,
+        ];
+    }
+
     public function parseMatchesBeatmapSetApproval($matches)
     {
         $approval = $matches['approval'];
@@ -110,20 +124,6 @@ class Event extends Model
                 'username' => $matches['userName'],
                 'url' => $matches['userUrl'],
             ],
-        ];
-    }
-
-    public function parseMatchesBeatmapPlaycount($matches)
-    {
-        $count = intval(str_replace(',', '', $matches['count']));
-
-        return [
-            'type' => 'beatmapPlaycount',
-            'beatmap' => [
-                'title' => $matches['beatmapTitle'],
-                'url' => $matches['beatmapUrl'],
-            ],
-            'count' => $count,
         ];
     }
 
