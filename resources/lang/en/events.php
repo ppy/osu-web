@@ -25,4 +25,5 @@ return [
     'empty' => "This user hasn't done anything notable recently!",
     'rank' => '<strong><em>:user</em></strong> achieved rank #:rank on <em>:beatmap</em> (:mode)',
     'rankLost' => '<strong><em>:user</em></strong> has lost first place on <em>:beatmap</em> (:mode)',
+    'username_change' => '<strong>:previousUsername</strong> has changed their username to <strong><em>:user</strong></em>!',
 ];

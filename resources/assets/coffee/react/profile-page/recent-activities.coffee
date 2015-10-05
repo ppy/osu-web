@@ -49,6 +49,14 @@ class ProfilePage.RecentActivities extends React.Component
               user: osu.link(event.user.url, event.user.username)
               achievement: event.achievement.name
 
+      when 'usernameChange'
+        text = el 'div',
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: Lang.get 'events.username_change',
+              user: osu.link(event.user.url, event.user.username)
+              previousUsername: event.user.previousUsername
+
       else
         return null
 
