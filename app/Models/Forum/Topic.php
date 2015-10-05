@@ -198,10 +198,10 @@ class Topic extends Model
     public function isDoublePostBy($userId)
     {
         $post = $this->posts()->orderBy('post_id', 'desc')->first();
-        $postTime = $post['post_time'];
-        $diffSinceLastPost = Carbon::now()->diffInDays($postTime);
+        $postTime = $post->post_time;
+        $daysSinceLastPost = Carbon::now()->diffInDays($postTime);
 
-        if (! is_null($userId) && $post['poster_id'] == $userId && $diffSinceLastPost < 3) {
+        if (! is_null($userId) && $post->poster_id == $userId && $daysSinceLastPost < 3) {
             return true;
         }
 
