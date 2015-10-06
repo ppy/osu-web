@@ -25,18 +25,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    const PATTERN_ACHIEVEMENT = "!^(?:<b>)+<a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>(?:</b>)+ unlocked the \"<b>(?<achievementName>.+?)</b>\" achievement\!$!";
-    const PATTERN_BEATMAP_PLAYCOUNT = "!^<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> has been played (?<count>[\d,]+) times\!$!";
-    const PATTERN_BEATMAP_SET_APPROVE = "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified)\!$!";
-    const PATTERN_BEATMAP_SET_DELETE = "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> has been deleted.$!";
-    const PATTERN_BEATMAP_SET_REVIVE = "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> has been revived from eternal slumber(?: by <a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>)?\.$!";
-    const PATTERN_BEATMAP_SET_UPLOAD = "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has submitted a new beatmap \"<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a>\"$!";
-    const PATTERN_BEATMAP_UPDATE = "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a>\"$!";
-    const PATTERN_RANK = "!^<img src='/images/(?<scoreRank>.+?)_small\.png'/> <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> achieved (?:<b>)?rank #(?<rank>\d+?)(?:</b>)? on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!";
-    const PATTERN_RANK_LOST = "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has lost first place on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!";
-    const PATTERN_USERNAME_CHANGE = "!^<b><a href='(?<userUrl>.+?)'>(?<previousUsername>.+?)</a></b> has changed their username to (?<userName>.+)\!$!";
-    const PATTERN_USER_SUPPORT_AGAIN = "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has once again chosen to support osu\! - thanks for your generosity\!$!";
-    const PATTERN_USER_SUPPORT_FIRST = "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has become an osu\! supporter - thanks for your generosity\!$!";
+    public $patterns = [
+        'achievement' => "!^(?:<b>)+<a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>(?:</b>)+ unlocked the \"<b>(?<achievementName>.+?)</b>\" achievement\!$!",
+        'beatmapPlaycount' => "!^<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> has been played (?<count>[\d,]+) times\!$!",
+        'beatmapSetApprove' => "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified)\!$!",
+        'beatmapSetDelete' => "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> has been deleted.$!",
+        'beatmapSetRevive' => "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> has been revived from eternal slumber(?: by <a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>)?\.$!",
+        'beatmapSetUpload' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has submitted a new beatmap \"<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a>\"$!",
+        'beatmapUpdate' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a>\"$!",
+        'rank' => "!^<img src='/images/(?<scoreRank>.+?)_small\.png'/> <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> achieved (?:<b>)?rank #(?<rank>\d+?)(?:</b>)? on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!",
+        'rankLost' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has lost first place on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!",
+        'usernameChange' => "!^<b><a href='(?<userUrl>.+?)'>(?<previousUsername>.+?)</a></b> has changed their username to (?<userName>.+)\!$!",
+        'userSupportAgain' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has once again chosen to support osu\! - thanks for your generosity\!$!",
+        'userSupportFirst' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has become an osu\! supporter - thanks for your generosity\!$!",
+    ];
 
     protected $table = 'osu_events';
     protected $primaryKey = 'event_id';
@@ -288,30 +290,13 @@ class Event extends Model
 
     public function parseText()
     {
-        if (preg_match(static::PATTERN_RANK, $this->text, $matches) === 1) {
-            return $this->parseMatchesRank($matches);
-        } elseif (preg_match(static::PATTERN_RANK_LOST, $this->text, $matches) === 1) {
-            return $this->parseMatchesRankLost($matches);
-        } elseif (preg_match(static::PATTERN_ACHIEVEMENT, $this->text, $matches) === 1) {
-            return $this->parseMatchesAchievement($matches);
-        } elseif (preg_match(static::PATTERN_BEATMAP_UPDATE, $this->text, $matches) === 1) {
-            return $this->parseMatchesBeatmapUpdate($matches);
-        } elseif (preg_match(static::PATTERN_BEATMAP_PLAYCOUNT, $this->text, $matches) === 1) {
-            return $this->parseMatchesBeatmapPlaycount($matches);
-        } elseif (preg_match(static::PATTERN_BEATMAP_SET_APPROVE, $this->text, $matches) === 1) {
-            return $this->parseMatchesBeatmapSetApprove($matches);
-        } elseif (preg_match(static::PATTERN_BEATMAP_SET_DELETE, $this->text, $matches) === 1) {
-            return $this->parseMatchesBeatmapSetDelete($matches);
-        } elseif (preg_match(static::PATTERN_BEATMAP_SET_REVIVE, $this->text, $matches) === 1) {
-            return $this->parseMatchesBeatmapSetRevive($matches);
-        } elseif (preg_match(static::PATTERN_BEATMAP_SET_UPLOAD, $this->text, $matches) === 1) {
-            return $this->parseMatchesBeatmapSetUpload($matches);
-        } elseif (preg_match(static::PATTERN_USERNAME_CHANGE, $this->text, $matches) === 1) {
-            return $this->parseMatchesUsernameChange($matches);
-        } elseif (preg_match(static::PATTERN_USER_SUPPORT_AGAIN, $this->text, $matches) === 1) {
-            return $this->parseMatchesUserSupportAgain($matches);
-        } elseif (preg_match(static::PATTERN_USER_SUPPORT_FIRST, $this->text, $matches) === 1) {
-            return $this->parseMatchesUserSupportFirst($matches);
+        foreach ($this->patterns as $name => $pattern) {
+            if (preg_match($pattern, $this->text, $matches) !== 1) {
+                continue;
+            }
+
+            $fname = 'parseMatches'.ucfirst($name);
+            return $this->$fname($matches);
         }
 
         return $this->parseFailure();
