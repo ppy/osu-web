@@ -296,6 +296,7 @@ class Event extends Model
             }
 
             $fname = 'parseMatches'.ucfirst($name);
+
             return $this->$fname($matches);
         }
 
