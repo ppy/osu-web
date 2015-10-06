@@ -38,6 +38,7 @@ class Event extends Model
         'usernameChange' => "!^<b><a href='(?<userUrl>.+?)'>(?<previousUsername>.+?)</a></b> has changed their username to (?<userName>.+)\!$!",
         'userSupportAgain' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has once again chosen to support osu\! - thanks for your generosity\!$!",
         'userSupportFirst' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has become an osu\! supporter - thanks for your generosity\!$!",
+        'userSupportGift' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has received the gift of osu\! supporter\!$!",
     ];
 
     protected $table = 'osu_events';
@@ -281,6 +282,17 @@ class Event extends Model
     {
         return [
             'type' => 'userSupportFirst',
+            'user' => [
+                'username' => $matches['userName'],
+                'url' => $matches['userUrl'],
+            ],
+        ];
+    }
+
+    public function parseMatchesUserSupportGift($matches)
+    {
+        return [
+            'type' => 'userSupportGift',
             'user' => [
                 'username' => $matches['userName'],
                 'url' => $matches['userUrl'],
