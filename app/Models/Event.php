@@ -30,7 +30,7 @@ class Event extends Model
         'beatmapPlaycount' => "!^<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> has been played (?<count>[\d,]+) times\!$!",
         'beatmapSetApprove' => "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified)\!$!",
         'beatmapSetDelete' => "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> has been deleted.$!",
-        'beatmapSetRevive' => "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> has been revived from eternal slumber(?: by <a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>)?\.$!",
+        'beatmapSetRevive' => "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.*?)</a> has been revived from eternal slumber(?: by <a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>)?\.$!",
         'beatmapSetUpdate' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.*?)</a>\"$!",
         'beatmapSetUpload' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has submitted a new beatmap \"<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.*?)</a>\"$!",
         'rank' => "!^<img src='/images/(?<scoreRank>.+?)_small\.png'/> <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> achieved (?:<b>)?rank #(?<rank>\d+?)(?:</b>)? on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!",
@@ -160,10 +160,12 @@ class Event extends Model
             $userUrl = route('users.show', $user->user_id);
         }
 
+        $beatmapSetTitle = presence($matches['beatmapSetTitle'], '(no title)');
+
         return [
             'type' => 'beatmapSetRevive',
             'beatmapSet' => [
-                'title' => $matches['beatmapSetTitle'],
+                'title' => $beatmapSetTitle,
                 'url' => $matches['beatmapSetUrl'],
             ],
             'user' => [
