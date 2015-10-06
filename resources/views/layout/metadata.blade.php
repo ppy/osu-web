@@ -42,3 +42,7 @@
 @if (isset($rss))
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{ $rss }}">
 @endif
+
+@if (isset($canonicalUrl))
+    <link rel="canonical" href="{{ $canonicalUrl }}">
+@endif
