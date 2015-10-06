@@ -44,6 +44,14 @@ class ProfilePage.RecentActivities extends React.Component
               beatmapSet: osu.link(event.beatmapSet.url, event.beatmapSet.title)
               user: osu.link(event.user.url, event.user.username)
 
+      when 'beatmapSetUpdate'
+        text = el 'div',
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: Lang.get 'events.beatmap_set_update',
+              user: osu.link(event.user.url, event.user.username)
+              beatmapSet: osu.link(event.beatmapSet.url, event.beatmapSet.title)
+
       when 'beatmapSetUpload'
         text = el 'div',
           className: 'profile-extra-entries__text'
@@ -51,14 +59,6 @@ class ProfilePage.RecentActivities extends React.Component
             __html: Lang.get 'events.beatmap_set_upload',
               beatmapSet: osu.link(event.beatmapSet.url, event.beatmapSet.title)
               user: osu.link(event.user.url, event.user.username)
-
-      when 'beatmapUpdate'
-        text = el 'div',
-          className: 'profile-extra-entries__text'
-          dangerouslySetInnerHTML:
-            __html: Lang.get 'events.beatmap_update',
-              user: osu.link(event.user.url, event.user.username)
-              beatmap: osu.link(event.beatmap.url, event.beatmap.title)
 
       when 'achievement'
         badge = el ProfilePage.AchievementBadge,

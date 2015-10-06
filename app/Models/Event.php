@@ -31,8 +31,8 @@ class Event extends Model
         'beatmapSetApprove' => "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified)\!$!",
         'beatmapSetDelete' => "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> has been deleted.$!",
         'beatmapSetRevive' => "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> has been revived from eternal slumber(?: by <a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>)?\.$!",
+        'beatmapSetUpdate' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.*?)</a>\"$!",
         'beatmapSetUpload' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has submitted a new beatmap \"<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.*?)</a>\"$!",
-        'beatmapUpdate' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.*?)</a>\"$!",
         'rank' => "!^<img src='/images/(?<scoreRank>.+?)_small\.png'/> <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> achieved (?:<b>)?rank #(?<rank>\d+?)(?:</b>)? on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!",
         'rankLost' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has lost first place on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!",
         'usernameChange' => "!^<b><a href='(?<userUrl>.+?)'>(?<previousUsername>.+?)</a></b> has changed their username to (?<userName>.+)\!$!",
@@ -173,12 +173,12 @@ class Event extends Model
         ];
     }
 
-    public function parseMatchesBeatmapSetUpload($matches)
+    public function parseMatchesBeatmapSetUpdate($matches)
     {
         $beatmapSetTitle = presence($matches['beatmapSetTitle'], '(no title)');
 
         return [
-            'type' => 'beatmapSetUpload',
+            'type' => 'beatmapSetUpdate',
             'beatmapSet' => [
                 'title' => $beatmapSetTitle,
                 'url' => $matches['beatmapSetUrl'],
@@ -190,15 +190,15 @@ class Event extends Model
         ];
     }
 
-    public function parseMatchesBeatmapUpdate($matches)
+    public function parseMatchesBeatmapSetUpload($matches)
     {
-        $beatmapTitle = presence($matches['beatmapTitle'], '(no title)');
+        $beatmapSetTitle = presence($matches['beatmapSetTitle'], '(no title)');
 
         return [
-            'type' => 'beatmapUpdate',
-            'beatmap' => [
-                'title' => $beatmapTitle,
-                'url' => $matches['beatmapUrl'],
+            'type' => 'beatmapSetUpload',
+            'beatmapSet' => [
+                'title' => $beatmapSetTitle,
+                'url' => $matches['beatmapSetUrl'],
             ],
             'user' => [
                 'username' => $matches['userName'],
