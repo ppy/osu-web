@@ -60,6 +60,10 @@ Route::get('/b/{id}', ['as' => 'beatmaps.show', function ($id) {
     return Redirect::to('https://osu.ppy.sh/b/'.$id);
 }]);
 
+Route::get('/s/{id}', ['as' => 'beatmap-sets.show', function ($id) {
+    return Redirect::to('https://osu.ppy.sh/s/'.$id);
+}]);
+
 // ranking section
 Route::get('/ranking/overall', ['as' => 'ranking-overall', 'uses' => 'RankingController@getOverall']);
 Route::get('/ranking/charts', ['as' => 'ranking-charts', 'uses' => 'RankingController@getCharts']);

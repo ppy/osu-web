@@ -23,6 +23,7 @@
     var page = "{{ $current_action }}";
     var logoutUrl = "{{ route("users.logout") }}";
     var helpUrl = "{{ route("wiki") }}";
+    var canonicalUrl = "{{ $canonicalUrl or '' }}";
 </script>
 
 @include ('layout._current_user')

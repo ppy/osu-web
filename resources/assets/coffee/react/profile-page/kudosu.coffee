@@ -53,8 +53,8 @@ class ProfilePage.Kudosu extends React.Component
                     dangerouslySetInnerHTML:
                       __html: Lang.get "users.show.extra.kudosu.entry.#{kudosu.action}",
                         amount: kudosu.amount
-                        giver: osu.link(kudosu.giver.url, kudosu.giver.name, ['kudosu-entries__link'])
-                        post: osu.link(kudosu.post.url, kudosu.post.title, ['kudosu-entries__link'])
+                        giver: osu.link(kudosu.giver.url, kudosu.giver.name, classNames: ['kudosu-entries__link'])
+                        post: osu.link(kudosu.post.url, kudosu.post.title, classNames: ['kudosu-entries__link'])
                 el 'div',
                   className: 'profile-extra-entries__time'
                   dangerouslySetInnerHTML: { __html: osu.timeago(kudosu.createdAt) }
