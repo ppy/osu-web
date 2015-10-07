@@ -25,10 +25,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    const PATTERN_ACHIEVEMENT = "!(?:<b>)+<a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>(?:</b>)+ unlocked the \"<b>(?<achievementName>.+?)</b>\" achievement\!$!";
-    const PATTERN_BEATMAP_UPDATE = "!<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a>\"$!";
-    const PATTERN_RANK = "!<img src='/images/(?<scoreRank>.+?)_small\.png'/> <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> achieved (?:<b>)?rank #(?<rank>\d+?)(?:</b>)? on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!";
-    const PATTERN_RANK_LOST = "!<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has lost first place on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!";
+    public $parsed = false;
+
+    public $patterns = [
+        'achievement' => "!^(?:<b>)+<a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>(?:</b>)+ unlocked the \"<b>(?<achievementName>.+?)</b>\" achievement\!$!",
+        'beatmapPlaycount' => "!^<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> has been played (?<count>[\d,]+) times\!$!",
+        'beatmapSetApprove' => "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified)\!$!",
+        'beatmapSetDelete' => "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.*?)</a> has been deleted.$!",
+        'beatmapSetRevive' => "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.*?)</a> has been revived from eternal slumber(?: by <a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>)?\.$!",
+        'beatmapSetUpdate' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.*?)</a>\"$!",
+        'beatmapSetUpload' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has submitted a new beatmap \"<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.*?)</a>\"$!",
+        'rank' => "!^<img src='/images/(?<scoreRank>.+?)_small\.png'/> <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> achieved (?:<b>)?rank #(?<rank>\d+?)(?:</b>)? on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!",
+        'rankLost' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has lost first place on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!",
+        'userSupportAgain' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has once again chosen to support osu\! - thanks for your generosity\!$!",
+        'userSupportFirst' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has become an osu\! supporter - thanks for your generosity\!$!",
+        'userSupportGift' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has received the gift of osu\! supporter\!$!",
+        'usernameChange' => "!^<b><a href='(?<userUrl>.+?)'>(?<previousUsername>.+?)</a></b> has changed their username to (?<userName>.+)\!$!",
+    ];
 
     protected $table = 'osu_events';
     protected $primaryKey = 'event_id';
@@ -45,8 +58,6 @@ class Event extends Model
         'private' => 'integer',
     ];
 
-    protected $appends = ['details'];
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'user_id');
@@ -62,11 +73,6 @@ class Event extends Model
         return $this->belongsTo(BeatmapSet::class, 'beatmapset_id', 'beatmapset_id');
     }
 
-    public function getDetailsAttribute()
-    {
-        return $this->parseText();
-    }
-
     public function parseFailure()
     {
         return [];
@@ -80,7 +86,6 @@ class Event extends Model
         }
 
         return [
-            'type' => 'achievement',
             'achievement' => [
                 'slug' => $achievement->slug,
                 'name' => $achievement->name,
@@ -92,13 +97,100 @@ class Event extends Model
         ];
     }
 
-    public function parseMatchesBeatmapUpdate($matches)
+    public function parseMatchesBeatmapPlaycount($matches)
     {
+        $count = intval(str_replace(',', '', $matches['count']));
+
         return [
-            'type' => 'beatmapUpdate',
             'beatmap' => [
                 'title' => $matches['beatmapTitle'],
                 'url' => $matches['beatmapUrl'],
+            ],
+            'count' => $count,
+        ];
+    }
+
+    public function parseMatchesBeatmapSetApprove($matches)
+    {
+        $approval = $matches['approval'];
+        if ($approval === 'ranked') {
+            $approval = 'qualified';
+        }
+
+        return [
+            'approval' => $approval,
+            'beatmapSet' => [
+                'title' => $matches['beatmapSetTitle'],
+                'url' => $matches['beatmapSetUrl'],
+            ],
+            'user' => [
+                'username' => $matches['userName'],
+                'url' => $matches['userUrl'],
+            ],
+        ];
+    }
+
+    public function parseMatchesBeatmapSetDelete($matches)
+    {
+        $beatmapSetTitle = presence($matches['beatmapSetTitle'], '(no title)');
+
+        return [
+            'beatmapSet' => [
+                'title' => $beatmapSetTitle,
+                'url' => $matches['beatmapSetUrl'],
+            ],
+        ];
+    }
+
+    public function parseMatchesBeatmapSetRevive($matches)
+    {
+        if (isset($matches['userName'])) {
+            $username = $matches['userName'];
+            $userUrl = $matches['userUrl'];
+        } else {
+            $user = $this->user;
+            $username = $user->username;
+            $userUrl = route('users.show', $user->user_id);
+        }
+
+        $beatmapSetTitle = presence($matches['beatmapSetTitle'], '(no title)');
+
+        return [
+            'beatmapSet' => [
+                'title' => $beatmapSetTitle,
+                'url' => $matches['beatmapSetUrl'],
+            ],
+            'user' => [
+                'username' => $username,
+                'url' => $userUrl,
+            ],
+        ];
+    }
+
+    public function parseMatchesBeatmapSetUpdate($matches)
+    {
+        $beatmapSetTitle = presence($matches['beatmapSetTitle'], '(no title)');
+
+        return [
+            'beatmapSet' => [
+                'title' => $beatmapSetTitle,
+                'url' => $matches['beatmapSetUrl'],
+            ],
+            'user' => [
+                'username' => $matches['userName'],
+                'url' => $matches['userUrl'],
+            ],
+        ];
+    }
+
+    public function parseMatchesBeatmapSetUpload($matches)
+    {
+        $beatmapSetTitle = presence($matches['beatmapSetTitle'], '(no title)');
+
+        return [
+            'beatmapSet' => [
+                'title' => $beatmapSetTitle,
+                'url' => $matches['beatmapSetUrl'],
             ],
             'user' => [
                 'username' => $matches['userName'],
@@ -120,7 +212,6 @@ class Event extends Model
         }
 
         return [
-            'type' => 'rank',
             'scoreRank' => $scoreRank,
             'rank' => intval($matches['rank']),
             'mode' => $mode,
@@ -146,7 +237,6 @@ class Event extends Model
         }
 
         return [
-            'type' => 'rankLost',
             'mode' => $mode,
             'beatmap' => [
                 'title' => $matches['beatmapTitle'],
@@ -159,19 +249,65 @@ class Event extends Model
         ];
     }
 
-    public function parseText()
+    public function parseMatchesUsernameChange($matches)
     {
-        if (preg_match(static::PATTERN_RANK, $this->text, $matches) === 1) {
-            return $this->parseMatchesRank($matches);
-        } elseif (preg_match(static::PATTERN_RANK_LOST, $this->text, $matches) === 1) {
-            return $this->parseMatchesRankLost($matches);
-        } elseif (preg_match(static::PATTERN_ACHIEVEMENT, $this->text, $matches) === 1) {
-            return $this->parseMatchesAchievement($matches);
-        } elseif (preg_match(static::PATTERN_BEATMAP_UPDATE, $this->text, $matches) === 1) {
-            return $this->parseMatchesBeatmapUpdate($matches);
+        return [
+            'user' => [
+                'previousUsername' => $matches['previousUsername'],
+                'username' => $matches['userName'],
+                'url' => $matches['userUrl'],
+            ],
+        ];
+    }
+
+    public function parseMatchesUserSupportAgain($matches)
+    {
+        return [
+            'user' => [
+                'username' => $matches['userName'],
+                'url' => $matches['userUrl'],
+            ],
+        ];
+    }
+
+    public function parseMatchesUserSupportFirst($matches)
+    {
+        return [
+            'user' => [
+                'username' => $matches['userName'],
+                'url' => $matches['userUrl'],
+            ],
+        ];
+    }
+
+    public function parseMatchesUserSupportGift($matches)
+    {
+        return [
+            'user' => [
+                'username' => $matches['userName'],
+                'url' => $matches['userUrl'],
+            ],
+        ];
+    }
+
+    public function parse()
+    {
+        if (! $this->parsed) {
+            foreach ($this->patterns as $name => $pattern) {
+                if (preg_match($pattern, $this->text, $matches) !== 1) {
+                    continue;
+                }
+
+                $this->type = $name;
+                $fname = 'parseMatches'.ucfirst($name);
+
+                $this->details = $this->$fname($matches);
+            }
+
+            $this->parsed = true;
         }
 
-        return $this->parseFailure();
+        return $this;
     }
 
     public function scopeRecent($query)
