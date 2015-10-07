@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
+    public $parsed = false;
+
     public $patterns = [
         'achievement' => "!^(?:<b>)+<a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>(?:</b>)+ unlocked the \"<b>(?<achievementName>.+?)</b>\" achievement\!$!",
         'beatmapPlaycount' => "!^<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> has been played (?<count>[\d,]+) times\!$!",
@@ -56,8 +58,6 @@ class Event extends Model
         'private' => 'integer',
     ];
 
-    protected $appends = ['details'];
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'user_id');
@@ -73,11 +73,6 @@ class Event extends Model
         return $this->belongsTo(BeatmapSet::class, 'beatmapset_id', 'beatmapset_id');
     }
 
-    public function getDetailsAttribute()
-    {
-        return $this->parseText();
-    }
-
     public function parseFailure()
     {
         return [];
@@ -91,7 +86,6 @@ class Event extends Model
         }
 
         return [
-            'type' => 'achievement',
             'achievement' => [
                 'slug' => $achievement->slug,
                 'name' => $achievement->name,
@@ -108,7 +102,6 @@ class Event extends Model
         $count = intval(str_replace(',', '', $matches['count']));
 
         return [
-            'type' => 'beatmapPlaycount',
             'beatmap' => [
                 'title' => $matches['beatmapTitle'],
                 'url' => $matches['beatmapUrl'],
@@ -125,7 +118,6 @@ class Event extends Model
         }
 
         return [
-            'type' => 'beatmapSetApproval',
             'approval' => $approval,
             'beatmapSet' => [
                 'title' => $matches['beatmapSetTitle'],
@@ -143,7 +135,6 @@ class Event extends Model
         $beatmapSetTitle = presence($matches['beatmapSetTitle'], '(no title)');
 
         return [
-            'type' => 'beatmapSetDelete',
             'beatmapSet' => [
                 'title' => $beatmapSetTitle,
                 'url' => $matches['beatmapSetUrl'],
@@ -165,7 +156,6 @@ class Event extends Model
         $beatmapSetTitle = presence($matches['beatmapSetTitle'], '(no title)');
 
         return [
-            'type' => 'beatmapSetRevive',
             'beatmapSet' => [
                 'title' => $beatmapSetTitle,
                 'url' => $matches['beatmapSetUrl'],
@@ -182,7 +172,6 @@ class Event extends Model
         $beatmapSetTitle = presence($matches['beatmapSetTitle'], '(no title)');
 
         return [
-            'type' => 'beatmapSetUpdate',
             'beatmapSet' => [
                 'title' => $beatmapSetTitle,
                 'url' => $matches['beatmapSetUrl'],
@@ -199,7 +188,6 @@ class Event extends Model
         $beatmapSetTitle = presence($matches['beatmapSetTitle'], '(no title)');
 
         return [
-            'type' => 'beatmapSetUpload',
             'beatmapSet' => [
                 'title' => $beatmapSetTitle,
                 'url' => $matches['beatmapSetUrl'],
@@ -224,7 +212,6 @@ class Event extends Model
         }
 
         return [
-            'type' => 'rank',
             'scoreRank' => $scoreRank,
             'rank' => intval($matches['rank']),
             'mode' => $mode,
@@ -250,7 +237,6 @@ class Event extends Model
         }
 
         return [
-            'type' => 'rankLost',
             'mode' => $mode,
             'beatmap' => [
                 'title' => $matches['beatmapTitle'],
@@ -266,7 +252,6 @@ class Event extends Model
     public function parseMatchesUsernameChange($matches)
     {
         return [
-            'type' => 'usernameChange',
             'user' => [
                 'previousUsername' => $matches['previousUsername'],
                 'username' => $matches['userName'],
@@ -278,7 +263,6 @@ class Event extends Model
     public function parseMatchesUserSupportAgain($matches)
     {
         return [
-            'type' => 'userSupportAgain',
             'user' => [
                 'username' => $matches['userName'],
                 'url' => $matches['userUrl'],
@@ -289,7 +273,6 @@ class Event extends Model
     public function parseMatchesUserSupportFirst($matches)
     {
         return [
-            'type' => 'userSupportFirst',
             'user' => [
                 'username' => $matches['userName'],
                 'url' => $matches['userUrl'],
@@ -300,7 +283,6 @@ class Event extends Model
     public function parseMatchesUserSupportGift($matches)
     {
         return [
-            'type' => 'userSupportGift',
             'user' => [
                 'username' => $matches['userName'],
                 'url' => $matches['userUrl'],
@@ -308,19 +290,24 @@ class Event extends Model
         ];
     }
 
-    public function parseText()
+    public function parse()
     {
-        foreach ($this->patterns as $name => $pattern) {
-            if (preg_match($pattern, $this->text, $matches) !== 1) {
-                continue;
+        if (!$this->parsed) {
+            foreach ($this->patterns as $name => $pattern) {
+                if (preg_match($pattern, $this->text, $matches) !== 1) {
+                    continue;
+                }
+
+                $this->type = $name;
+                $fname = 'parseMatches'.ucfirst($name);
+
+                $this->details = $this->$fname($matches);
             }
 
-            $fname = 'parseMatches'.ucfirst($name);
-
-            return $this->$fname($matches);
+            $this->parsed = true;
         }
 
-        return $this->parseFailure();
+        return $this;
     }
 
     public function scopeRecent($query)

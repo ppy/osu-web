@@ -28,9 +28,12 @@ class EventTransformer extends Fractal\TransformerAbstract
 {
     public function transform(Event $event)
     {
+        $event->parse();
+
         return array_merge([
             'id' => $event->event_id,
             'createdAt' => $event->date->toIso8601String(),
+            'type' => $event->type,
         ], $event->details);
     }
 }
