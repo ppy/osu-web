@@ -257,10 +257,10 @@ function nav_links()
     return $links;
 }
 
-function presence($string)
+function presence($string, $valueIfBlank = null)
 {
-    if ($string === '') {
-        return;
+    if ($string === '' || $string === null) {
+        $string = $valueIfBlank;
     }
 
     return $string;
