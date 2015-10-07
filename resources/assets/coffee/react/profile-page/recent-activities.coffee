@@ -23,19 +23,42 @@ class ProfilePage.RecentActivities extends React.Component
         text = el 'div',
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'events.rankLost',
+            __html: Lang.get 'events.rank_lost',
               user: osu.link(event.user.url, event.user.username)
               rank: event.rank
               beatmap: osu.link(event.beatmap.url, event.beatmap.title)
               mode: Lang.get "common.play_mode.#{event.mode}"
 
-      when 'beatmapUpdate'
+      when 'beatmapSetDelete'
         text = el 'div',
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'events.beatmap_update',
+            __html: Lang.get 'events.beatmap_set_delete',
+              beatmapSet: osu.link(event.beatmapSet.url, event.beatmapSet.title)
+
+      when 'beatmapSetRevive'
+        text = el 'div',
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: Lang.get 'events.beatmap_set_revive',
+              beatmapSet: osu.link(event.beatmapSet.url, event.beatmapSet.title)
               user: osu.link(event.user.url, event.user.username)
-              beatmap: osu.link(event.beatmap.url, event.beatmap.title)
+
+      when 'beatmapSetUpdate'
+        text = el 'div',
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: Lang.get 'events.beatmap_set_update',
+              user: osu.link(event.user.url, event.user.username)
+              beatmapSet: osu.link(event.beatmapSet.url, event.beatmapSet.title)
+
+      when 'beatmapSetUpload'
+        text = el 'div',
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: Lang.get 'events.beatmap_set_upload',
+              beatmapSet: osu.link(event.beatmapSet.url, event.beatmapSet.title)
+              user: osu.link(event.user.url, event.user.username)
 
       when 'achievement'
         badge = el ProfilePage.AchievementBadge,
@@ -48,6 +71,35 @@ class ProfilePage.RecentActivities extends React.Component
             __html: Lang.get 'events.achievement',
               user: osu.link(event.user.url, event.user.username)
               achievement: event.achievement.name
+
+      when 'usernameChange'
+        text = el 'div',
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: Lang.get 'events.username_change',
+              user: osu.link(event.user.url, event.user.username)
+              previousUsername: event.user.previousUsername
+
+      when 'userSupportAgain'
+        text = el 'div',
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: Lang.get 'events.user_support_again',
+              user: osu.link(event.user.url, event.user.username)
+
+      when 'userSupportFirst'
+        text = el 'div',
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: Lang.get 'events.user_support_first',
+              user: osu.link(event.user.url, event.user.username)
+
+      when 'userSupportGift'
+        text = el 'div',
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: Lang.get 'events.user_support_gift',
+              user: osu.link(event.user.url, event.user.username)
 
       else
         return null
