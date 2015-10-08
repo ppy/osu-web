@@ -46,6 +46,14 @@ class ProfilePage.Info extends React.Component
             title: Lang.get 'users.show.is_supporter'
             el 'i', className: 'fa fa-heart'
 
+      el 'div', className: 'profile-icons profile-row',
+        if @props.user.country.code
+          el 'span',
+            className: 'flag-country'
+            title: @props.user.country.name
+            style:
+              backgroundImage: "url('/images/flags/#{@props.user.country.code}.png')"
+
       el 'div', className: 'compact profile-row',
         if @props.user.isSupporter
           el 'p', className: 'profile-title profile-title--supporter',
