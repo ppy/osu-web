@@ -80,6 +80,7 @@ elixir(function(mix) {
     "logout.coffee",
     "shared.coffee",
 
+    "react/flag-country.coffee",
     "react/user-card.coffee",
   ], "public/js/app.js")
   .coffee([
