@@ -92,8 +92,6 @@ class ProfilePage.Header extends React.Component
         style:
           display: 'none' unless @props.isCoverUpdating
 
-        el 'i', className: 'fa fa-circle-o-notch fa-spin'
-
       if @props.withEdit
         el 'div', className: 'profile-change-cover-button', onClick: @toggleEdit,
           Lang.get 'users.show.edit.cover.button'
