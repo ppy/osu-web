@@ -25,7 +25,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderItem extends Model
 {
-    protected $table = 'osu_store.order_items';
+    protected $connection = 'mysql-store';
+    protected $table = 'order_items';
     protected $primaryKey = 'id';
 
     protected $casts = [
