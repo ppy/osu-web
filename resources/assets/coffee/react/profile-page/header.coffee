@@ -35,7 +35,7 @@ class ProfilePage.Header extends React.Component
 
 
   componentWillReceiveProps: (newProps) =>
-    @setState coerUrl: newProps.user.cover.url
+    @setState coverUrl: newProps.user.cover.url
 
 
   componentWillUnmount: =>
