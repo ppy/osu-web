@@ -23,7 +23,6 @@ class ProfilePage.Extra extends React.Component
     super props
 
     @state =
-      mode: 'recent_activities'
       tabsSticky: false
 
 
@@ -33,6 +32,7 @@ class ProfilePage.Extra extends React.Component
     $.subscribe 'stickyHeader.profileContentsExtra', @_tabsStick
     $(window).on 'scroll.profileContentsExtra', @_modeScan
     osu.pageChange()
+    @_modeScan()
 
 
   componentWillUnmount: =>
