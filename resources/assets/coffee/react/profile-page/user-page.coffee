@@ -49,27 +49,27 @@ class ProfilePage.UserPage extends React.Component
 
 
   pageShow: =>
-    el 'div', null,
-      if @props.withEdit
-        el 'div', className: 'profile-user-page-header',
-          el 'a',
-            className: 'post-viewer__action'
-            href: '#'
-            onClick: @editStart
-            el 'i', className: 'fa fa-edit'
-
-      el 'div', dangerouslySetInnerHTML:
-        __html: @props.userPage.html
+    el 'div', dangerouslySetInnerHTML:
+      __html: @props.userPage.html
 
   render: =>
+    withEditButton = @props.withEdit
+
+    if withEditButton && @props.userPage.html == ''
+      withEditButton = false
+      page = @pageNew()
+    else if @props.userPage.editing
+      page = el ProfilePage.UserPageEditor, userPage: @props.userPage
+    else
+      page = @pageShow()
+
     el 'div', className: 'row-page profile-extra',
       el 'div', className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'me'
       el 'h2', className: 'profile-extra__title', Lang.get('users.show.extra.me.title')
-      if !@props.withEdit
-        @pageShow()
-      else if @props.userPage.editing
-        el ProfilePage.UserPageEditor, userPage: @props.userPage
-      else if @props.userPage.html == ''
-        @pageNew()
-      else
-        @pageShow()
+      if withEditButton
+        el 'a',
+          className: 'post-viewer__action post-viewer__action--profile-user-page'
+          href: '#'
+          onClick: @editStart
+          el 'i', className: 'fa fa-edit'
+      page
