@@ -25,7 +25,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $table = 'osu_store.products';
+    protected $connection = 'mysql-store';
+    protected $table = 'products';
     protected $primaryKey = 'product_id';
 
     protected $casts = [

@@ -70,31 +70,25 @@ class ProfilePage.Main extends React.Component
     $.unsubscribe '.profilePage'
 
   render: =>
-    if @state.mode != 'me'
-      headerMode = @state.mode
-      headerStats = stats = @props.allStats[@state.mode].data
-    else
-      headerMode = @props.user.playmode
-      headerStats = @props.allStats[headerMode].data
+    stats = @props.allStats[@state.mode].data
 
     el 'div', className: 'flex-column flex-full flex-fullwidth',
       el ProfilePage.Header,
         user: @state.user
-        stats: headerStats
-        mode: headerMode
+        stats: stats
+        mode: @state.mode
         withEdit: @props.withEdit
         isCoverUpdating: @state.isCoverUpdating
 
       el ProfilePage.Contents,
         user: @state.user
-        userPage: @state.userPage
         stats: stats
         mode: @state.mode
         recentAchievements: @props.recentAchievements
-        withEdit: @props.withEdit
 
-      if @state.mode != 'me'
-        el ProfilePage.Extra,
-          recentActivities: @props.recentActivities
-          recentlyReceivedKudosu: @props.recentlyReceivedKudosu
-          user: @state.user
+      el ProfilePage.Extra,
+        recentActivities: @props.recentActivities
+        recentlyReceivedKudosu: @props.recentlyReceivedKudosu
+        user: @state.user
+        withEdit: @props.withEdit
+        userPage: @state.userPage
