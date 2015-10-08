@@ -30,9 +30,6 @@ class ProfilePage.Contents extends React.Component
   render: =>
     tabs = ['osu', 'taiko', 'ctb', 'mania']
 
-    if @props.userPage.html != '' || @props.withEdit
-      tabs.unshift 'me'
-
     mainClass = 'row-page row-page--profile flex-column'
     if @props.mode == 'me'
       mainClass += ' flex-full'
@@ -46,18 +43,7 @@ class ProfilePage.Contents extends React.Component
             mode: t
       el 'div', className: 'profile-contents flex-full flex-row',
         el ProfilePage.Info, user: @props.user
-        if @props.mode == 'me'
-          el ProfilePage.UserPage,
-            withEdit: @props.withEdit
-            userPage: @props.userPage
-            user: @props.user
-        else
-          [
-            el ProfilePage.Stats,
-              key: 'stats'
-              stats: @props.stats
-            el ProfilePage.RecentAchievements,
-              key: 'recent-achievements'
-              achievementsCounts: @props.user.achievements
-              recentAchievements: @props.recentAchievements
-          ]
+        el ProfilePage.Stats, stats: @props.stats
+        el ProfilePage.RecentAchievements,
+          achievementsCounts: @props.user.achievements
+          recentAchievements: @props.recentAchievements

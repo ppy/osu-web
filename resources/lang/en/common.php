@@ -33,7 +33,6 @@ return [
         'play_mode' => [
             'ctb' => 'osu!ctb',
             'mania' => 'osu!mania',
-            'me' => 'me!', // not a real mode
             'osu' => 'osu!',
             'taiko' => 'osu!taiko',
         ],
