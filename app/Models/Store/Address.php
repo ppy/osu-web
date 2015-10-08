@@ -26,7 +26,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-    protected $table = 'osu_store.addresses';
+    protected $connection = 'mysql-store';
+    protected $table = 'addresses';
     protected $primaryKey = 'address_id';
     protected $guarded = ['id', 'user_id'];
 
