@@ -80,7 +80,7 @@ class ProfilePage.UserPageEditor extends React.Component
 
 
   render: =>
-    el 'form', className: 'profile-content flex-col-66 profile-page-editor flex-column',
+    el 'form', null,
       el 'textarea',
         className: 'flex-full profile-page-editor-body'
         name: 'body'

@@ -27,9 +27,7 @@ class ProfilePage.UserPage extends React.Component
   pageNew: =>
     canCreate = @props.withEdit and @props.user.isSupporter
 
-    el 'div',
-      className: 'profile-content flex-col-66 text-center'
-
+    el 'div', className: 'text-center',
       el 'button',
         className: 'profile-page-new-content btn-osu btn-osu--lite btn-osu--profile-page-edit'
         onClick: @editStart
@@ -51,7 +49,7 @@ class ProfilePage.UserPage extends React.Component
 
 
   pageShow: =>
-    el 'div', className: 'profile-content flex-col-66',
+    el 'div', null,
       if @props.withEdit
         el 'div', className: 'profile-user-page-header',
           el 'a',
@@ -64,11 +62,14 @@ class ProfilePage.UserPage extends React.Component
         __html: @props.userPage.html
 
   render: =>
-    if !@props.withEdit
-      @pageShow()
-    else if @props.userPage.editing
-      el ProfilePage.UserPageEditor, userPage: @props.userPage
-    else if @props.userPage.html == ''
-      @pageNew()
-    else
-      @pageShow()
+    el 'div', className: 'row-page profile-extra',
+      el 'div', className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'me'
+      el 'h2', className: 'profile-extra__title', Lang.get('users.show.extra.me.title')
+      if !@props.withEdit
+        @pageShow()
+      else if @props.userPage.editing
+        el ProfilePage.UserPageEditor, userPage: @props.userPage
+      else if @props.userPage.html == ''
+        @pageNew()
+      else
+        @pageShow()

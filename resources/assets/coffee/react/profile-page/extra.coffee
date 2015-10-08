@@ -73,6 +73,11 @@ class ProfilePage.Extra extends React.Component
   render: =>
     return if @props.mode == 'me'
 
+    withMePage = @props.userPage.html != '' || @props.withEdit
+
+    pages = ['recent_activities', 'kudosu']
+    pages.unshift 'me' if withMePage
+
     tabsClasses = 'profile-extra-tabs__items'
     if @state.tabsSticky
       tabsClasses += ' profile-extra-tabs__items--fixed js-sticky-header--active'
@@ -84,8 +89,10 @@ class ProfilePage.Extra extends React.Component
         el 'div',
           className: tabsClasses
           'data-sticky-header-id': 'profile-extra-tabs'
-          ['recent_activities', 'kudosu'].map (m) =>
+          pages.map (m) =>
             el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
 
+      if withMePage
+        el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
       el ProfilePage.RecentActivities, recentActivities: @props.recentActivities
       el ProfilePage.Kudosu, user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu
