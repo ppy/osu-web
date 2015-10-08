@@ -69,10 +69,7 @@ class @UserCard extends React.Component
         el 'div', className: 'modal-header__userinfo userinfo-small',
           el 'h1', className: 'userinfo-small__username', user.username
 
-          el 'span',
-            className: 'userinfo-small__country'
-            style:
-              backgroundImage: "url('/images/flags/#{user.country.code}.png')"
+          el FlagCountry, country: user.country, classModifiers: ['userinfo-small']
 
           # not implemented yet
           if false
