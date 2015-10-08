@@ -90,7 +90,7 @@ class ProfilePage.Header extends React.Component
       el 'div',
         className: 'profile-cover-uploading-spinner'
         style:
-          display: 'none' unless @props.isCoverUpdating
+          background: 'transparent' unless @props.isCoverUpdating
 
       if @props.withEdit
         el 'div', className: 'profile-change-cover-button', onClick: @toggleEdit,
