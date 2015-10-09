@@ -302,6 +302,11 @@ class Event extends Model
                 $fname = 'parseMatches'.ucfirst($name);
 
                 $this->details = $this->$fname($matches);
+                break;
+            }
+
+            if ($this->details === null) {
+                $this->details = $this->parseFailure($matches);
             }
 
             $this->parsed = true;
