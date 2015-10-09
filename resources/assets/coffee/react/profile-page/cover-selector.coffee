@@ -19,8 +19,62 @@
 el = React.createElement
 
 class ProfilePage.CoverSelector extends React.Component
+  constructor: (props) ->
+    super props
+
+    @state =
+      dropOverlayState: 'inactive'
+
+
+  componentDidMount: =>
+    @_removeListeners()
+    $.subscribe 'dragenterGlobal.profilePageCoverSelector', @_dropOverlayStart
+    $.subscribe 'dragendGlobal.profilePageCoverSelector', @_dropOverlayEnd
+
+  componentWillUnmount: =>
+    @_removeListeners()
+
+  _dropOverlayEnter: =>
+    @setState dropOverlayState: 'hover'
+
+
+  _dropOverlayLeave: =>
+    @setState dropOverlayState: 'active'
+
+
+  _dropOverlayStart: =>
+    if @state.dropOverlayState == 'inactive'
+      # Animating inactive => active doesn't work, must go through hidden first.
+      @setState dropOverlayState: 'hidden'
+
+      # To let state update to propagate properly first.
+      setTimeout @_dropOverlayStart, 0
+
+    else if @state.dropOverlayState == 'hidden'
+      @setState dropOverlayState: 'active'
+
+
+  _dropOverlayEnd: =>
+    # Transition to hidden first because css can't animate `display: none`.
+    # The same as _dropOverlayStart.
+    @setState dropOverlayState: 'hidden'
+
+    deactivate = =>
+      return if @state.dropOverlayState != 'hidden'
+      @setState dropOverlayState: 'inactive'
+
+    # Matches animation duration in css which is 120ms
+    setTimeout deactivate, 120
+
+
+  _removeListeners: ->
+    $.unsubscribe '.profilePageCoverSelector'
+
+
   render: =>
-    el 'div', className: 'profile-change-cover-popup',
+    dropOverlayClass = 'profile-change-cover-popup__drop-overlay'
+
+    el 'div', className: 'profile-change-cover-popup js-profile-cover-upload--dropzone',
       el 'div', className: 'profile-change-cover-defaults',
         for i in [1..8]
           i = i.toString()
@@ -33,3 +87,10 @@ class ProfilePage.CoverSelector extends React.Component
         el 'p', className: 'profile-cover-selections-info',
           Lang.get 'users.show.edit.cover.defaults_info'
       el ProfilePage.CoverUploader, cover: @props.cover, canUpload: @props.canUpload
+      if @props.canUpload
+        el 'div',
+          className: "#{dropOverlayClass} #{dropOverlayClass}--#{@state.dropOverlayState}"
+          onDragEnter: @_dropOverlayEnter
+          onDragLeave: @_dropOverlayLeave
+          ref: 'dropOverlay'
+          Lang.get 'users.show.edit.cover.upload.dropzone'

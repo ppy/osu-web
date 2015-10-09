@@ -21,6 +21,7 @@ el = React.createElement
 
 class ProfilePage.CoverUploader extends React.Component
   componentDidMount: =>
+    $dropzone = $('.js-profile-cover-upload--dropzone')
     $uploadButton = $ '<input>',
       class: 'js-profile-cover-upload file-upload-input'
       type: 'file'
@@ -33,9 +34,10 @@ class ProfilePage.CoverUploader extends React.Component
     $uploadButton.fileupload
       method: 'PUT'
       dataType: 'json'
-      dropZone: $uploadButton
+      dropZone: $dropzone
       submit: ->
         $.publish 'user:cover:upload:state', true
+        $.publish 'dragendGlobal'
       done: (_e, data) ->
         $.publish 'user:update', data.result.data
       fail: (_e, data) ->
@@ -68,6 +70,9 @@ class ProfilePage.CoverUploader extends React.Component
           el 'strong',
             dangerouslySetInnerHTML:
               __html: Lang.get 'users.show.edit.cover.upload.restriction_info'
+
+        el 'p', className: 'profile-cover-upload-info-entry',
+          Lang.get 'users.show.edit.cover.upload.dropzone_info'
 
         el 'p', className: 'profile-cover-upload-info-entry',
           Lang.get 'users.show.edit.cover.upload.size_info'
