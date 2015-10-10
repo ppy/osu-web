@@ -68,6 +68,7 @@ elixir(function(mix) {
     "osu_common.coffee",
     "turbolinks-mod.coffee",
     "bbcode.coffee",
+    "global-drag.coffee",
     "main.coffee",
     "store.coffee",
     "sticky-header.coffee",
