@@ -37,6 +37,7 @@ $(document).on 'submit', 'form', osu.showLoadingOverlay
 
 $(document).on 'ready page:load', =>
   @stickyHeader ||= new StickyHeader
+  @globalDrag ||= new GlobalDrag
 
 
 $(document).on 'ready page:load osu:page:change', ->

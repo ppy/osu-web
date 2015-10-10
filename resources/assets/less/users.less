@@ -377,6 +377,40 @@
 
   font-size: 10px;
   text-align: center;
+
+  &__drop-overlay {
+    &:extend(.default-border-radius);
+    .fade-element(120ms);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: fade(#000, 50%);
+    color: #fff;
+    font-size: 24px;
+    padding: @grid-gutter-width/2;
+
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+
+    &--hover {
+      background-color: fade(#000, 70%);
+    }
+
+    &--hidden {
+      opacity: 0;
+    }
+
+    &--inactive {
+      display: none;
+    }
+
+  }
 }
 
 .profile-change-cover-defaults {
