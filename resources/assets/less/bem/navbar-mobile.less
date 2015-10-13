@@ -1,0 +1,190 @@
+/**
+*    Copyright 2015 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
+.navbar-mobile {
+  @content-height: @navbar-mobile--content-height;
+  &__brand {
+    float: none;
+    padding: 0px @grid-gutter-width/4;
+    height: auto;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: @navbar-height;
+
+    &::after,
+    &::before {
+      display: none;
+    }
+  }
+
+  &__header-section {
+    display: flex;
+    align-items: center;
+  }
+
+  &__left {
+    display: flex;
+  }
+
+  &__logo {
+    display: inline-block;
+    background-image: url('/images/layout/osu-logo.png');
+    background-size: 100%;
+
+    width: @content-height;
+    height: @content-height;
+  }
+
+  &__menu {
+    box-shadow: none;
+    background-color: #444;
+      &:focus,
+      &:hover,
+      &:active,
+      & {
+        color: #fff;
+      }
+
+  }
+
+  &__menu-item {
+    // to win over bootstrap's selector
+    && {
+      color: fade(#fff, 50%);
+      display: flex;
+      align-items: center;
+
+      &:focus,
+      &:hover,
+      &:active,
+      .open > & {
+        color: #fff;
+      }
+
+      &--user {
+        flex: 1 0 auto;
+        color: #fff;
+      }
+
+      &--logout {
+        &:extend(.default-border-radius);
+        width: @content-height;
+        height: @content-height;
+        border: 2px solid fade(#fff, 50%);
+        color: #fff;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin-right: @navbar-padding-horizontal;
+
+        &:focus,
+        &:hover,
+        &:active {
+          background-color: fade(#fff, 50%);
+          color: #333;
+          border-color: transparent;
+        }
+      }
+    }
+  }
+
+  &__menu-item-icon {
+    width: @content-height;
+    margin-right: @grid-gutter-width/4;
+    text-align: center;
+
+    &--closed {
+      display: inline-block;
+
+      .open > a > & {
+        display: none;
+      }
+    }
+
+    &--opened {
+      display: none;
+
+      .open > a > & {
+        display: inline-block;
+      }
+    }
+  }
+
+  &__menu-items {
+    margin-top: 0px;
+  }
+
+  &__menu-subitem {
+    // to win over bootstrap's selector
+    &&&& {
+      color: #fff;
+      display: flex;
+      align-items: center;
+      padding-left: @content-height + @grid-gutter-width/2;
+
+      &:focus,
+      &:hover,
+      &:active {
+        color: #fff;
+        background-color: #333;
+      }
+    }
+  }
+
+  &__menu-subitem-icon {
+    width: @content-height;
+    margin-right: @grid-gutter-width/4;
+  }
+
+  &__toggle {
+    float: none;
+    width: @content-height;
+    height: @content-height;
+    padding: 0px;
+    margin: 0px;
+
+    border-width: 2px;
+    color: #fff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:focus,
+    &:hover {
+      border-color: transparent;
+      color: @navbar-default-bg;
+    }
+  }
+
+  &__user {
+    && {
+      display: flex;
+      align-items: center;
+      background-color: #333;
+    }
+  }
+}

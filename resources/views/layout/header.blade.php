@@ -19,37 +19,88 @@
 <nav class="flex-none no-print">
     <!-- Specific style for smaller displays (smartphone) -->
     <div class="visible-xs">
-        <div class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-mobile navbar navbar-default navbar-static-top" role="navigation">
             <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#xs-navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="logo" href="/"></a>
-                    <span class="navbar-brand">
-                        <span class="sub1">{{ trans("layout.menu.$current_section._") }}</span>
-                        /
-                        <span class="darker normal">{{ trans("layout.menu.$current_section.$current_action") }}</span>
-                    </span>
+                <div class="navbar-header navbar-mobile__header">
+                    <div class="navbar-mobile__header-section">
+                        <a class="navbar-mobile__logo" href="/"></a>
+                        <span class="navbar-mobile__brand navbar-brand">
+                            {{ trans("layout.menu.$current_section.$current_action") }}
+                        </span>
+                    </div>
+
+                    <div class="navbar-mobile__header-section">
+                        @if (Auth::check())
+                            <a
+                                href="{{ route('users.show', Auth::user()->user_id) }}"
+                                class="avatar avatar--navbar-mobile js-navbar-mobile--top-icon"
+                                style="background-image: url('{{ Auth::user()->user_avatar }}');"
+                            >
+                            </a>
+                        @else
+                            <a
+                                href="#" title="{{ trans('users.anonymous.login') }}"
+                                data-toggle="modal"
+                                data-target="#user-dropdown-modal"
+                                title="{{ trans('users.anonymous.login') }}"
+                                class="avatar avatar--navbar-mobile avatar--guest js-navbar-mobile--top-icon"
+                            >
+                            </a>
+                        @endif
+
+                        <button type="button" class="navbar-toggle navbar-mobile__toggle" data-toggle="collapse" data-target="#xs-navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="collapse navbar-collapse" id="xs-navbar">
-            <ul class="nav navbar-nav">
+        <div class="collapse navbar-collapse navbar-mobile__menu js-navbar-mobile--menu" id="xs-navbar">
+            <ul class="nav navbar-nav navbar-mobile__menu-items">
+                <li class="navbar-mobile__user">
+                    @if (Auth::check())
+                        <a class="navbar-mobile__menu-item navbar-mobile__menu-item--user" href="{{ route('users.show', Auth::user()) }}">
+                            <span
+                                class="avatar avatar--navbar-mobile"
+                                style="background-image: url('{{ Auth::user()->user_avatar }}');">
+                            </span>
+
+                            {{ Auth::user()->username }}
+                        </a>
+
+                        <a
+                            class="navbar-mobile__menu-item navbar-mobile__menu-item--logout js-logout-link"
+                            href="{{ route('users.logout') }}"
+                            data-method="delete"
+                            data-confirm="{{ trans('users.logout_confirm') }}"
+                            data-remote="1"
+                        >
+                            <i class="fa fa-sign-out"></i>
+                        </a>
+                    @else
+                        <a class="navbar-mobile__menu-item navbar-mobile__menu-item--user" href="#" title="{{ trans('users.anonymous.login') }}" data-toggle="modal" data-target="#user-dropdown-modal">
+                            <span class="avatar avatar--guest avatar--navbar-mobile"></span>
+
+                            {{ trans('users.anonymous.username') }}
+                        </a>
+                    @endif
+                </li>
                 @foreach (nav_links() as $section => $links)
                 <li class="dropdown">
-                    <a data-toggle="dropdown" role="button" data-target="#" id="expand-{{ $section }}" class="dropdown-toggle" href="{{ array_values($links)[0] }}">
+                    <a data-toggle="dropdown" role="button" data-target="#" id="expand-{{ $section }}" class="navbar-mobile__menu-item dropdown-toggle" href="{{ array_values($links)[0] }}">
+                        <i class="fa fa-chevron-right navbar-mobile__menu-item-icon navbar-mobile__menu-item-icon--closed"></i>
+                        <i class="fa fa-chevron-down navbar-mobile__menu-item-icon navbar-mobile__menu-item-icon--opened"></i>
                         {{ trans("layout.menu.$section._") }}
-                        <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="expand-{{ $section }}">
                         @foreach ($links as $action => $link)
                         <li>
-                            <a href="{{ $link }}" data-toggle="collapse" data-target="#xs-navbar">{{ trans("layout.menu.$section.$action") }}</a>
+                            <a class="navbar-mobile__menu-subitem" href="{{ $link }}" data-toggle="collapse" data-target="#xs-navbar">
+                                <i class="fa fa-chevron-right navbar-mobile__menu-subitem-icon"></i>
+                                {{ trans("layout.menu.$section.$action") }}
+                            </a>
                         </li>
                         @endforeach
                     </ul>
