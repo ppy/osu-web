@@ -23,7 +23,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Group extends Model
+class UserGroup extends Model
 {
     protected $table = 'phpbb_user_group';
     protected $primaryKey = 'group_id';
@@ -48,8 +48,8 @@ class Group extends Model
         return $this->hasMany("App\Models\Notification");
     }
 
-    public function users()
+    public function user()
     {
-        return $this->hasMany("App\Models\User");
+        return $this->belongsTo(User::class);
     }
 }

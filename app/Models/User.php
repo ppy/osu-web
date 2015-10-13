@@ -322,7 +322,7 @@ class User extends Model implements AuthenticatableContract
     |--------------------------------------------------------------------------
     |
     | This checks to see if a user is in a specified group.
-    | You should try to be specific and not use the Group:: constants.
+    | You should try to be specific and not use the UserGroup:: constants.
     |
     */
 
@@ -357,47 +357,47 @@ class User extends Model implements AuthenticatableContract
 
     public function isBAT()
     {
-        return $this->isGroup(Group::BAT);
+        return $this->isGroup(UserGroup::BAT);
     }
 
     public function isAdmin()
     {
-        return $this->isGroup(Group::ADMIN);
+        return $this->isGroup(UserGroup::ADMIN);
     }
 
     public function isGMT()
     {
-        return $this->isGroup(Group::GMT);
+        return $this->isGroup(UserGroup::GMT);
     }
 
     public function isMAT()
     {
-        return $this->isGroup(Group::MAT);
+        return $this->isGroup(UserGroup::MAT);
     }
 
     public function isHax()
     {
-        return $this->isGroup(Group::HAX);
+        return $this->isGroup(UserGroup::HAX);
     }
 
     public function isDev()
     {
-        return $this->isGroup(Group::DEV);
+        return $this->isGroup(UserGroup::DEV);
     }
 
     public function isMod()
     {
-        return $this->isGroup(Group::MOD);
+        return $this->isGroup(UserGroup::MOD);
     }
 
     public function isAlumni()
     {
-        return $this->isGroup(Group::ALUMNI);
+        return $this->isGroup(UserGroup::ALUMNI);
     }
 
     public function isRegistered()
     {
-        return $this->isGroup(Group::REGULAR);
+        return $this->isGroup(UserGroup::REGULAR);
     }
 
     public function hasSupported()
@@ -441,7 +441,7 @@ class User extends Model implements AuthenticatableContract
     public function isGroup($group)
     {
         if ($this->group_ids === null) {
-            $this->group_ids = array_pluck($this->groups()->get(['group_id'])->toArray(), 'group_id');
+            $this->group_ids = array_pluck($this->userGroups()->get(['group_id'])->toArray(), 'group_id');
         }
 
         return in_array($group, $this->group_ids, true);
@@ -459,9 +459,9 @@ class User extends Model implements AuthenticatableContract
     | return Response::json($response);
     */
 
-    public function groups()
+    public function userGroups()
     {
-        return $this->hasMany("App\Models\Group");
+        return $this->hasMany(UserGroup::class);
     }
 
     public function notifications()
