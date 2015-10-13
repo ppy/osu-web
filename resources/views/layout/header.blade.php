@@ -19,7 +19,7 @@
 <nav class="flex-none no-print">
     <!-- Specific style for smaller displays (smartphone) -->
     <div class="visible-xs">
-        <div class="navbar-mobile navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-mobile navbar navbar-default navbar-static-top bg--{{ $current_section }}" role="navigation">
             <div class="container">
                 <div class="navbar-header navbar-mobile__header">
                     <div class="navbar-mobile__header-section">
@@ -48,7 +48,11 @@
                             </a>
                         @endif
 
-                        <button type="button" class="navbar-toggle navbar-mobile__toggle" data-toggle="collapse" data-target="#xs-navbar">
+                        <button
+                            type="button"
+                            class="navbar-toggle navbar-mobile__toggle colour-hover--{{ $current_section }}"
+                            data-toggle="collapse" data-target="#xs-navbar"
+                        >
                             <span class="sr-only">Toggle navigation</span>
                             <i class="fa fa-bars"></i>
                         </button>

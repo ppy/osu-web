@@ -20,6 +20,8 @@
 
 .navbar-mobile {
   @content-height: @navbar-mobile--content-height;
+  border-width: 0px;
+
   &__brand {
     float: none;
     padding: 0px @grid-gutter-width/4;
@@ -58,14 +60,15 @@
 
   &__menu {
     box-shadow: none;
+    border-top-width: 0px;
     background-color: #444;
-      &:focus,
-      &:hover,
-      &:active,
-      & {
-        color: #fff;
-      }
 
+    &:focus,
+    &:hover,
+    &:active,
+    & {
+      color: #fff;
+    }
   }
 
   &__menu-item {
@@ -174,9 +177,9 @@
     align-items: center;
 
     &:focus,
-    &:hover {
+    &:hover,
+    &:active {
       border-color: transparent;
-      color: @navbar-default-bg;
     }
   }
 
