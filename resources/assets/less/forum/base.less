@@ -138,15 +138,8 @@ body.community {
   z-index: 90;
 
   .forum-header, & {
-    left: 0px;
-    right: 0px;
-    width: auto;
-
-    @media @desktop {
-      left: auto;
-      right: auto;
-      width: @container-sm;
-    }
+    width: 100%;
+    max-width: @container-sm;
     height: @topic-header-height;
   }
 
