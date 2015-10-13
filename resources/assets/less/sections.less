@@ -54,3 +54,30 @@ body.help      { .section(@yellow-lighter, @yellow-light, @yellow, @yellow-dark,
 body.home      { .section(@purple-lighter, @purple-light, @purple, @purple-dark, @purple-darker); }
 body.error     { .section(@pink-lighter, @pink-light, @pink, @pink-dark, @pink-darker); }
 body.user      { .section(@blue-lighter, @blue-light, @blue, @blue-dark, @blue-darker); }
+
+._section(~'beatmaps', @pink-darker);
+._section(~'store', @pink-darker);
+._section(~'ranking', @green-darker);
+._section(~'community', @pink-darker);
+._section(~'help', @yellow-darker);
+._section(~'home', @purple-darker);
+._section(~'error', @pink-darker);
+._section(~'user', @blue-darker);
+
+._section(@section-name, @colour) {
+  .bg--@{section-name} {
+    background-color: @colour;
+  }
+
+  .colour--@{section-name} {
+    color: @colour;
+  }
+
+  .colour-hover--@{section-name} {
+    &:focus,
+    &:hover,
+    &:active {
+      color: @colour;
+    }
+  }
+}

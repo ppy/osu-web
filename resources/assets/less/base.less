@@ -371,18 +371,31 @@ a[disabled] { &:extend(.btn[disabled]); }
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 50% 50%;
-}
 
-.avatar--guest {
-  .at2x-simple("/images/layout/avatar-guest.png");
-}
+  &--guest {
+    .at2x-simple("/images/layout/avatar-guest.png");
+  }
 
-.avatar--full {
-  width: 100%;
-  height: 0px;
-  padding-bottom: 100%;
-  box-shadow: none;
-  border-radius: 0px;
+  &--full {
+    width: 100%;
+    height: 0px;
+    padding-bottom: 100%;
+    box-shadow: none;
+    border-radius: 0px;
+  }
+
+  &--nav {
+    width: @nav-avatar-size;
+    height: @nav-avatar-size;
+    display: block;
+  }
+
+  &--navbar-mobile {
+    width: @navbar-mobile--content-height;
+    height: @navbar-mobile--content-height;
+    margin-right: @grid-gutter-width/4;
+    display: block;
+  }
 }
 
 .user-icon {

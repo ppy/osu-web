@@ -70,6 +70,7 @@ elixir(function(mix) {
     "bbcode.coffee",
     "global-drag.coffee",
     "main.coffee",
+    "navbar-mobile.coffee",
     "store.coffee",
     "sticky-header.coffee",
     "forum.coffee",
