@@ -30,14 +30,14 @@
     <meta name="ga-tracking-id" content="{{ config("services.ga.tracking_id") }}">
 @endif
 
-<script src="{{ elixir("js/messages.js") }}" data-turbolinks-track></script>
-<script src="{{ elixir("js/vendor.js") }}" data-turbolinks-track></script>
-<script src="{{ elixir("js/app.js") }}" data-turbolinks-track></script>
-
 <link href='//fonts.googleapis.com/css?family=Exo+2:300,300italic,200,400,400italic,500,500italic,700,700italic,900' rel='stylesheet' type='text/css'>
 
 <link rel="stylesheet" media="all" href="{{ elixir("css/app.css") }}" data-turbolinks-track>
 <link rel="stylesheet" media="all" href="/vendor/_photoswipe-default-skin/default-skin.css">
+
+<script src="{{ elixir("js/messages.js") }}" data-turbolinks-track></script>
+<script src="{{ elixir("js/vendor.js") }}" data-turbolinks-track></script>
+<script src="{{ elixir("js/app.js") }}" data-turbolinks-track></script>
 
 @if (isset($rss))
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{ $rss }}">
