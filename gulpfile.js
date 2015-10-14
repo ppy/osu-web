@@ -96,6 +96,7 @@ elixir(function(mix) {
     "react/profile-page/cover-uploader.coffee",
     "react/profile-page/extra-tab.coffee",
     "react/profile-page/extra.coffee",
+    "react/profile-page/header-flags.coffee",
     "react/profile-page/header-info.coffee",
     "react/profile-page/header.coffee",
     "react/profile-page/info.coffee",
