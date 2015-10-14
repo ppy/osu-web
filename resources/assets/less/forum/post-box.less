@@ -26,12 +26,18 @@
 
   &--edit {
     width: 100%;
-    margin-bottom: 0px;
+    margin-bottom: -@grid-gutter-width/2;
+
+    @media @desktop {
+      margin-bottom: 0px;
+    }
   }
 
   &--reply {
     margin-left: -(@grid-gutter-width/2 - @grid-gutter-width/8);
     margin-right: -(@grid-gutter-width/2 - @grid-gutter-width/8);
+    width: 100%;
+    max-width: @container-sm;
   }
 
   [name=body] {

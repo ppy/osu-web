@@ -20,5 +20,6 @@
  */
 
 return [
+    'supporter_only' => 'You must be a supporter to use this feature.',
     'unknown' => 'Unknown error occurred.',
 ];
