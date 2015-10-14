@@ -35,6 +35,7 @@ Using Laravel's [Elixir](http://laravel.com/docs/5.1/elixir).
     c:\osu-web\vagrant> vagrant ssh
     $ cd /data/osu\!web
     $ hhvm artisan lang:js resources/assets/js/messages.js
+    $ ./node_modules/.bin/bower install
     $ ./node_modules/.bin/gulp
 
 Contributing
