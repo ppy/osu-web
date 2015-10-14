@@ -26,7 +26,11 @@
 
   &--edit {
     width: 100%;
-    margin-bottom: 0px;
+    margin-bottom: -@grid-gutter-width/2;
+
+    @media @desktop {
+      margin-bottom: 0px;
+    }
   }
 
   &--reply {
