@@ -39,7 +39,7 @@
                             </a>
                         @else
                             <a
-                                href="#" title="{{ trans('users.anonymous.login') }}"
+                                href="#"
                                 data-toggle="modal"
                                 data-target="#user-dropdown-modal"
                                 title="{{ trans('users.anonymous.login') }}"
