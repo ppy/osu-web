@@ -22,6 +22,7 @@
   min-height: 600px;
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   [name=title] {
     &:extend(.default-text-shadow);
@@ -62,11 +63,4 @@
 
 #topic-post-form {
   flex: 1 0 auto;
-}
-
-.post-editor__preview {
-  margin-bottom: @grid-gutter-width/8;
-  @media @desktop {
-    margin-bottom: 0px;
-  }
 }
