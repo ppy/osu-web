@@ -38,7 +38,7 @@ class AccountController extends Controller
     public function updateProfileCover()
     {
         if (Request::hasFile('cover_file') && ! Auth::user()->osu_subscriber) {
-            abort(403);
+            return error_popup(trans('errors.supporter_only'));
         }
 
         $customization = Auth::user()->profileCustomization()->firstOrNew([]);
