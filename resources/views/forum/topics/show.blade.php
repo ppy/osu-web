@@ -83,34 +83,65 @@
             </div>
         {!! Form::close() !!}
     @endif
-
-    @include("forum._search", ["topic" => $topic])
 @endsection
 
 @section('fixed-bar-rows-bottom')
     @parent
 
-    <div id="forum-topic-navigator" class="js-forum__topic-total-posts" data-total-count="{{ $topic->postsCount() }}">
+    <div
+        class="js-forum__topic-total-posts forum-topic-nav"
+        data-total-count="{{ $topic->postsCount() }}"
+    >
 
-        @include("objects._radial_progress", ["extraRadialProgressClasses" => "js-forum__posts-progress"])
-        <a
-            class="jump-link first-post"
-            href="{{ route("forum.topics.show", $topic->topic_id) }}"
+        <div class="
+            forum-topic-nav__progress-bar
+            forum-topic-nav__progress-bar--all
+            forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
+        "></div>
+
+        <div class="js-forum__posts-progress
+            forum-topic-nav__progress-bar
+            forum-colour__bg-link--{{ $topic->forum->categorySlug() }}"
         >
-            <i class="fa fa-angle-double-up"></i>
-        </a>
-
-        <div class="post-counter">
-            <a href="#" class="current-count js-forum__posts-counter">{{ head($postsPosition) }}</a>
-            <div class="total-count">/{{ $topic->postsCount() }}</div>
         </div>
 
-        <a
-            class="jump-link last-post"
-            href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => $topic->topic_last_post_id]) }}#forum-post-{{ $topic->topic_last_post_id }}"
-        >
-            <i class="fa fa-angle-double-down"></i>
-        </a>
+        <div class="forum-topic-nav__content">
+            <div class="forum-topic-nav__group">
+            </div>
+
+            <div class="forum-topic-nav__group">
+                <a
+                    href="{{ route("forum.topics.show", $topic->topic_id) }}"
+                    class="js-forum-topic--post-first forum-topic-nav__item forum-topic-nav__item--main"
+                >
+                    <i class="fa fa-angle-double-left"></i>
+                </a>
+
+                <a href="#" class="js-forum-topic--post-previous forum-topic-nav__item forum-topic-nav__item--main">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+
+                <span class="post-counter forum-topic-nav__item forum-topic-nav__item--main">
+                    <a href="#" class="current-count js-forum__posts-counter">{{ head($postsPosition) }}</a>
+                    <span class="total-count"> / {{ $topic->postsCount() }}</span>
+                </span>
+
+                <a href="#" class="js-forum-topic--post-next forum-topic-nav__item forum-topic-nav__item--main">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+
+                <a
+                    href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => $topic->topic_last_post_id]) }}#forum-post-{{ $topic->topic_last_post_id }}"
+                    class="js-forum-topic--post-last forum-topic-nav__item forum-topic-nav__item--main"
+                >
+                    <i class="fa fa-angle-double-right"></i>
+                </a>
+            </div>
+
+            <div class="forum-topic-nav__group">
+                @include('forum._search', ['category' => $topic->forum->categorySlug()])
+            </div>
+        </div>
     </div>
 @endsection
 

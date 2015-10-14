@@ -44,7 +44,7 @@ class Forum
 
     @_postsCounter[0].textContent = currentPostPosition
     @_postsCounter[0].setAttribute 'href', "#{window.canonicalUrl}?start=#{postId}#forum-post-#{postId}"
-    @_postsProgress[0].setAttribute 'data-progress', Math.round(100 * currentPostPosition / @totalPosts())
+    @_postsProgress[0].style.width = "#{100 * currentPostPosition / @totalPosts()}%"
 
   endPost: => @posts[@posts.length - 1]
 
