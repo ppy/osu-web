@@ -372,6 +372,14 @@ a[disabled] { &:extend(.btn[disabled]); }
   background-repeat: no-repeat;
   background-position: 50% 50%;
 
+  &--profile {
+    width: @profile-avatar-size;
+    height: @profile-avatar-size;
+
+    // brings avatar on top of following row
+    z-index: 2;
+  }
+
   &--guest {
     .at2x-simple("/images/layout/avatar-guest.png");
   }

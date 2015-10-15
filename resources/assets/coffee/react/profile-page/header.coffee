@@ -102,8 +102,11 @@ class ProfilePage.Header extends React.Component
         el ProfilePage.CoverSelector, canUpload: @props.user.isSupporter, cover: @props.user.cover
 
       el 'div', className: 'user-bar-container',
-        el ProfilePage.HeaderInfo, user: @props.user
-        el ProfilePage.Rank,
-          rank: @props.stats.rank
-          countryName: @props.user.country.name
-          mode: @props.mode
+        el 'div', className: 'user-profile-header__bar user-profile-header__bar--left',
+          el ProfilePage.HeaderFlags, user: @props.user
+          el ProfilePage.HeaderInfo, user: @props.user
+        el 'div', className: 'user-profile-header__bar user-profile-header__bar--right',
+          el ProfilePage.Rank,
+            rank: @props.stats.rank
+            countryName: @props.user.country.name
+            mode: @props.mode
