@@ -20,7 +20,7 @@
     <div class="forum__poster-box" style="{{ user_colour_style($user->user_colour, "background-color") }}">
         @if ($user->hasProfile() === true)
             <div class="name forum__info-row">
-                <a class="forum__poster-box__link" href="{{ route("users.show", $user) }}">
+                <a class="js-user--hover-card forum__poster-box__link" href="{{ route("users.show", $user) }}">
                     {{ $user->username }}
                 </a>
             </div>

@@ -41,7 +41,7 @@ class ProfilePage.CoverUploader extends React.Component
       done: (_e, data) ->
         $.publish 'user:update', data.result.data
       fail: (_e, data) ->
-        message = data.jqXHR?.responseJSON || Lang.get 'errors.unknown'
+        message = data.jqXHR?.responseJSON?.error || Lang.get 'errors.unknown'
         osu.popup message, 'danger'
       complete: ->
         $.publish 'user:cover:upload:state', false

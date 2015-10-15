@@ -22,6 +22,7 @@
   min-height: 600px;
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   [name=title] {
     &:extend(.default-text-shadow);
@@ -54,19 +55,8 @@
       margin-left: @grid-gutter-width/4;
     }
   }
-
-  .forum-header {
-    .at2x("/images/headers/forum-topics-create.png");
-  }
 }
 
 #topic-post-form {
   flex: 1 0 auto;
-}
-
-.post-editor__preview {
-  margin-bottom: @grid-gutter-width/8;
-  @media @desktop {
-    margin-bottom: 0px;
-  }
 }

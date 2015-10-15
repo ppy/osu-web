@@ -33,9 +33,9 @@
     <div class="row-blank row-page">
         @foreach($forums as $category)
             <div id="forum-{{ $category->forum_id }}" class="forum-category col-sm-12 forum-colour {{ $category->categorySlug() }}">
-                <div class="row forum-category-header">
-                    <div class="name">{{ $category->forum_name }}</div>
-                    <div class="description">{{ $category->forum_desc }}</div>
+                <div class="row forum-category-header forum-category-header--{{ $category->categorySlug() }}">
+                    <div class="forum-category-header__name">{{ $category->forum_name }}</div>
+                    <div class="forum-category-header__description">{{ $category->forum_desc }}</div>
                 </div>
 
                 @include("forum.forums._forums", ["forums" => $category->subforums])

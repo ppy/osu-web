@@ -44,6 +44,16 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 0px 0px @grid-gutter-width/2;
+
+  &--forum-topic-preview {
+    width: 100%;
+    padding: 0px;
+    margin-bottom: @grid-gutter-width/8;
+
+    @media @desktop {
+      margin-bottom: 0px;
+    }
+  }
 }
 
 .content-extra {

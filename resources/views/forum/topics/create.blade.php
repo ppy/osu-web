@@ -21,11 +21,11 @@
 @section("content")
     {!! Form::open([
         "url" => route("forum.topics.store", $forum),
-        "class" => "create-topic post-box",
+        "class" => "create-topic post-box flex-full content",
         "data-preview-url" => route("forum.topics.preview", $forum),
     ]) !!}
         <div class="row-page row-blank" id="topic-header-container">
-            <div class="forum-header">
+            <div class="forum-header forum-category-header forum-category-header--main">
                 <div class="topic-header">
                     <ol class="breadcrumb forums-breadcrumb">
                         @include("forum.forums._nav", ["forum_parents" => $forum->forum_parents])
@@ -42,7 +42,7 @@
             </div>
         </div>
 
-        <div class="post-editor__preview js-post-preview"></div>
+        <div class="content content--forum-topic-preview js-post-preview"></div>
 
         <div id="topic-post-form" class="forum-post flex-row row-page post-editor" data-post-position="1">
             <div class="post-editor__main">
