@@ -18,9 +18,12 @@
 ###
 el = React.createElement
 
-class ProfilePage.HeaderInfo extends React.Component
+class ProfilePage.HeaderFlags extends React.Component
   render: =>
-    el 'div', className: 'user-profile-header__basic',
-        el 'h1', className: 'profile-basic--large profile-basic',
-          @props.user.username
-        el 'p', className: 'profile-basic', @props.user.joinDate
+    if @props.user.profileColour
+      style = backgroundColor: "##{@props.user.profileColour}"
+
+    el 'div',
+      className: 'user-profile-header__basic user-profile-header__basic--flags'
+      style: style
+      el FlagCountry, country: @props.user.country

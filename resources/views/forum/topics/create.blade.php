@@ -25,7 +25,7 @@
         "data-preview-url" => route("forum.topics.preview", $forum),
     ]) !!}
         <div class="row-page row-blank" id="topic-header-container">
-            <div class="forum-header">
+            <div class="forum-header forum-category-header forum-category-header--main">
                 <div class="topic-header">
                     <ol class="breadcrumb forums-breadcrumb">
                         @include("forum.forums._nav", ["forum_parents" => $forum->forum_parents])

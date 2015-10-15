@@ -17,46 +17,37 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
-.create-topic {
-  flex: 1 0 auto;
-  min-height: 600px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
 
-  [name=title] {
-    &:extend(.default-text-shadow);
+// per-category header image
+.forum-category-header {
+  .at2x("/images/headers/forum-category.png", 900px, 250px);
+  background-color: @gray;
+  color: #fff;
+  .default-text-shadow;
 
-    width: 100%;
-    background: none;
-    border: none;
-    outline: none;
-    color: #fff;
+  height: 60px;
+  padding: @grid-gutter-width/8 @grid-gutter-width/2;
+
+  &--category-osu { background-color: @pink-darker; }
+  &--category-language-specific { background-color: @yellow-darker; }
+  &--category-other { background-color: @green-darker; }
+  &--category-beatmaps { background-color: @purple-darker; }
+
+  &--main {
+    height: 200px;
     text-align: center;
-    font-style: normal;
 
-    &::placeholder {
-      color: #fff;
+    &::before {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0px;
+      left: 0px;
+      background-image: linear-gradient(to bottom, transparent, fade(#000, 40%));
+      content: " ";
     }
   }
 
-  [name=body] {
-    flex: 1;
-    resize: vertical;
-    background: none;
-    margin-bottom: @grid-gutter-width/4;
-  }
-
-  .create-topic-buttons {
-    display: flex;
-    justify-content: flex-end;
-
-    > * {
-      margin-left: @grid-gutter-width/4;
-    }
-  }
-}
-
-#topic-post-form {
-  flex: 1 0 auto;
+  &__name { font-size: 24px; }
+  &__description { font-size: 12px; }
 }
