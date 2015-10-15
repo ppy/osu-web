@@ -17,26 +17,37 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
-.forum-category-bg(@suffix) {
-  .at2x("/images/headers/forum-category-@{suffix}.jpg", 900px, 250px);
-}
 
 // per-category header image
-.forum-header {
-  background-position: 50% 50%;
-
-  .forum-category-bg("default");
-  .category-osu & { .forum-category-bg("osu"); }
-  .category-language-specific & { .forum-category-bg("language"); }
-  .category-other & { .forum-category-bg("other"); }
-  .category-beatmaps & { .forum-category-bg("beatmaps"); }
-}
-
 .forum-category-header {
-  .forum-category-bg("default");
+  .at2x("/images/headers/forum-category.png", 900px, 250px);
+  background-color: @gray;
+  color: #fff;
+  .default-text-shadow;
 
-  .category-osu & { .forum-category-bg("osu"); }
-  .category-language-specific & { .forum-category-bg("language"); }
-  .category-other & { .forum-category-bg("other"); }
-  .category-beatmaps & { .forum-category-bg("beatmaps"); }
+  height: 60px;
+  padding: @grid-gutter-width/8 @grid-gutter-width/2;
+
+  &--category-osu { background-color: @pink-darker; }
+  &--category-language-specific { background-color: @yellow-darker; }
+  &--category-other { background-color: @green-darker; }
+  &--category-beatmaps { background-color: @purple-darker; }
+
+  &--main {
+    height: 200px;
+    text-align: center;
+
+    &::before {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0px;
+      left: 0px;
+      background-image: linear-gradient(to bottom, transparent, fade(#000, 40%));
+      content: " ";
+    }
+  }
+
+  &__name { font-size: 24px; }
+  &__description { font-size: 12px; }
 }
