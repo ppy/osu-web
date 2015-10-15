@@ -27,7 +27,12 @@
         <div class="js-forum__sticky-header-marker"></div>
 
         @foreach(["normal", "sticky"] as $type)
-            <div class="forum-header js-forum__header--{{ $type }}">
+            <div class="forum-header
+                forum-category-header
+                forum-category-header--{{ $topic->forum->categorySlug() }}
+                forum-category-header--main
+                js-forum__header--{{ $type }}"
+            >
                 <div class="topic-header">
                     <ol class="breadcrumb forums-breadcrumb">
                         @include("forum.forums._nav", ["forum_parents" => $topic->forum->forum_parents])
