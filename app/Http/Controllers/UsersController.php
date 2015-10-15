@@ -111,45 +111,12 @@ class UsersController extends Controller
             abort(404);
         }
 
-        if ($user->userPage !== null) {
-            $userPage = [
-                'html' => $user->userPage->bodyHTML,
-                'raw' => $user->userPage->bodyRaw,
-            ];
-        } else {
-            $userPage = ['html' => '', 'raw' => ''];
-        }
-
-        $allStats = [];
-        foreach ($user->statisticsAll() as $mode => $stats) {
-            $allStats[$mode] = fractal_item_array($stats, new UserStatisticsTransformer());
-        }
-
-        $recentAchievements = fractal_collection_array(
-            $user->achievements()->with('achievement')->orderBy('date', 'desc')->limit(8)->get(),
-            new UserAchievementTransformer()
+        $userArray = fractal_item_array(
+            $user,
+            new UserTransformer(),
+            'allStatistics,page,recentAchievements,recentActivities,recentlyReceivedKudosu'
         );
 
-        $recentActivities = fractal_collection_array(
-            $user->events()->recent()->get(),
-            new EventTransformer()
-        );
-
-        $recentlyReceivedKudosu = fractal_collection_array(
-            $user->receivedKudosu()
-                ->withPost()
-                ->withGiver()
-                ->with('post', 'post.topic', 'giver')
-                ->orderBy('exchange_id', 'desc')
-                ->limit(15)
-                ->get(),
-            new KudosuHistoryTransformer()
-        );
-
-        $userArray = fractal_item_array($user, new UserTransformer());
-
-        return view('users.show', compact(
-            'user', 'mode', 'allStats', 'userPage', 'userArray', 'recentAchievements', 'recentActivities', 'recentlyReceivedKudosu'
-        ));
+        return view('users.show', compact('user', 'userArray'));
     }
 }

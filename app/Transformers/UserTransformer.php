@@ -26,7 +26,12 @@ use League\Fractal;
 class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
+        'allStatistics',
         'defaultStatistics',
+        'page',
+        'recentAchievements',
+        'recentActivities',
+        'recentlyReceivedKudosu',
     ];
 
     public function transform(User $user)
@@ -75,5 +80,61 @@ class UserTransformer extends Fractal\TransformerAbstract
         $stats = $user->statistics($user->playmode);
 
         return $this->item($stats, new UserStatisticsTransformer());
+    }
+
+    public function includeAllStatistics(User $user)
+    {
+        return $this->item($user, function($user) {
+            $all = [];
+            foreach ($user->statisticsAll() as $mode => $statistics) {
+                $all[$mode] = fractal_item_array($statistics, new UserStatisticsTransformer());
+            }
+
+            return $all;
+        });
+    }
+
+    public function includePage(User $user)
+    {
+        return $this->item($user, function($user) {
+            if ($user->userPage !== null) {
+                return [
+                    'html' => $user->userPage->bodyHTML,
+                    'raw' => $user->userPage->bodyRaw,
+                ];
+            } else {
+                return ['html' => '', 'raw' => ''];
+            }
+        });
+    }
+
+    public function includeRecentAchievements(User $user)
+    {
+        return $this->collection(
+            $user->achievements()->with('achievement')->orderBy('date', 'desc')->limit(8)->get(),
+            new UserAchievementTransformer()
+        );
+    }
+
+    public function includeRecentActivities(User $user)
+    {
+        return $this->collection(
+            $user->events()->recent()->get(),
+            new EventTransformer()
+        );
+    }
+
+    public function includeRecentlyReceivedKudosu(User $user)
+    {
+        return $this->collection(
+            $user->receivedKudosu()
+                ->withPost()
+                ->withGiver()
+                ->with('post', 'post.topic', 'giver')
+                ->orderBy('exchange_id', 'desc')
+                ->limit(15)
+                ->get(),
+            new KudosuHistoryTransformer()
+        );
     }
 }
