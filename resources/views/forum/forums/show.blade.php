@@ -19,7 +19,7 @@
 @extends("master", ["body_additional_classes" => "forum-colour " . $forum->categorySlug()])
 
 @section("content")
-    <div class="row-page forum-header">
+    <div class="row-page forum-header forum-category-header forum-category-header--{{ $forum->categorySlug() }} forum-category-header--main">
         <div>
             <ol class="breadcrumb forums-breadcrumb">
                 @include("forum.forums._nav", ["forum_parents" => $forum->forum_parents])
