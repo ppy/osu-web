@@ -50,15 +50,7 @@
   height: @profile-user-bar-height;
   display: flex;
   justify-content: space-between;
-  padding: @grid-gutter-width/4;
-
-  @media @desktop {
-    padding-left: @profile-avatar-size + @grid-gutter-width;
-  }
-}
-
-.user-bar {
-  display: flex;
+  padding: 0px;
 }
 
 .profile-avatar-container {
@@ -85,14 +77,6 @@
   justify-content: center;
 }
 
-.avatar--profile {
-  width: @profile-avatar-size;
-  height: @profile-avatar-size;
-
-  // brings avatar on top of following row
-  z-index: 2;
-}
-
 .profile-basic {
   margin: 0px;
   padding: 0px;
@@ -101,60 +85,10 @@
   font-size: 12px;
   font-style: normal;
   line-height: 1.1;
-}
 
-.profile-basic--large { font-size: 24px; }
-
-.profile-cs {
-  padding-top: @grid-gutter-width;
-  height: 200px;
-}
-
-.user-panel {
-  margin-top: -80px;
-  box-shadow: 0px 3px 12px -4px fade(#000, 20%);
-  z-index: 1000;
-
-  .profile-avatar {
-    box-shadow: 0 0 8px fade(#000, 60%);
-    margin-bottom: 25px;
-    background: fade(#fff, 60%);
+  &--large {
+    font-size: 24px;
   }
-
-  .user-icon-panel {
-    min-height: 60px;
-    margin-top: 15px;
-
-    .user-icon {
-      display: inline-block;
-      width: 45px;
-      height: 45px;
-
-      border-radius: 5px;
-
-      padding: 7px 2px 4px 2px;
-
-      color: fade(#000, 80%);
-      background: fade(#fff, 80%);
-      box-shadow: 0 0 5px fade(#000, 20%);
-    }
-  }
-}
-
-.fa-osu::before {
-  content: "O";
-}
-
-.fa-taiko::before {
-  content: "T";
-}
-
-.fa-ctb::before {
-  content: "C";
-}
-
-.fa-mania::before {
-  content: "M";
 }
 
 .profile-tabs {
@@ -162,19 +96,19 @@
   width: 100%;
   justify-content: center;
   margin-bottom: 1px;
-}
 
-.profile-tabs::after {
-  content: " ";
+  &::after {
+    content: " ";
 
-  position: absolute;
-  top: 100%;
-  left: 0px;
+    position: absolute;
+    top: 100%;
+    left: 0px;
 
-  width: 100%;
-  height: 1px;
+    width: 100%;
+    height: 1px;
 
-  background-image:linear-gradient(to left, transparent 10%, #ddd 50%, transparent 90%);
+    background-image:linear-gradient(to left, transparent 10%, #ddd 50%, transparent 90%);
+  }
 }
 
 .profile-tab {
@@ -190,12 +124,12 @@
     color: @pink-darker;
     text-decoration: none;
   }
-}
 
-.profile-tab--active {
-  color: @pink-darker;
-  font-weight: 900;
-  border-bottom-color: @pink-darker;
+  &--active {
+    color: @pink-darker;
+    font-weight: 900;
+    border-bottom-color: @pink-darker;
+  }
 }
 
 .profile-contents {
@@ -222,16 +156,10 @@
 .profile-row {
   margin-bottom: @grid-gutter-width/4;
   padding: 0px @grid-gutter-width/4;
-}
 
-.profile-row--top {
-  margin-bottom: @grid-gutter-width/2;
-}
-
-.row-page--profile {
-  padding-bottom: 0px;
-  padding-left: 0px;
-  padding-right: 0px;
+  &--top {
+    margin-bottom: @grid-gutter-width/2;
+  }
 }
 
 .profile-icons {
@@ -263,10 +191,10 @@
 
 .profile-title {
   font-weight: bold;
-}
 
-.profile-title--supporter {
-  color: @pink-dark;
+  &--supporter {
+    color: @pink-dark;
+  }
 }
 
 .profile-stats {
@@ -281,15 +209,15 @@
   > dd {
     font-weight: bold;
   }
-}
 
-.profile-stats--light > dd {
-  margin-bottom: 0px;
-  font-weight: normal;
-}
+  &--light > dd {
+    margin-bottom: 0px;
+    font-weight: normal;
+  }
 
-.profile-stats--full {
-  flex-direction: column;
+  &--full {
+    flex-direction: column;
+  }
 }
 
 @profile-badge-size: 50px;
@@ -455,16 +383,16 @@
 
   cursor: pointer;
   background-size: cover;
-}
 
-.profile-cover-selection__selected-mark {
-  &:extend(.default-text-shadow);
-  color: #fff;
-  font-size: 24px;
+  &__selected-mark {
+    &:extend(.default-text-shadow);
+    color: #fff;
+    font-size: 24px;
 
-  position: absolute;
-  bottom: @grid-gutter-width/4;
-  left: @grid-gutter-width/4;
+    position: absolute;
+    bottom: @grid-gutter-width/4;
+    left: @grid-gutter-width/4;
+  }
 }
 
 .profile-cover-selections-info {

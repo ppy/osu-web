@@ -22,8 +22,7 @@ class ProfilePage.Rank extends React.Component
   render: =>
     return el('div') unless @props.rank.isRanked
 
-    el 'div', className: 'user-bar user-rank',
-      el 'div', null,
+    el 'div', className: 'user-profile-header__basic user-profile-header__basic--right',
         el 'p', className: 'profile-basic profile-basic--large',
           el 'span', className: 'user-rank-icon',
             el 'i', className: "fa osu fa-#{@props.mode}-o"
