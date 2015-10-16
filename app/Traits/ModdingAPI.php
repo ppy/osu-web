@@ -145,7 +145,7 @@ trait ModdingAPI
     {
         $user = $this->user();
 
-        if (! $user) {
+        if (!$user) {
             return $this->error('access-denied', 'beatmaps.modding');
         }
 
@@ -154,7 +154,7 @@ trait ModdingAPI
         if ($type and in_array($type, $this->types)) {
 
             // restrict nominations
-            if ($type == 'nomination' and ! $user->canNominate()) {
+            if ($type == 'nomination' and !$user->canNominate()) {
                 return $this->error('access-denied', 'beatmaps.modding');
             }
 
@@ -181,7 +181,7 @@ trait ModdingAPI
      */
     public function anyModComments($id = null)
     {
-        if (! $id) {
+        if (!$id) {
             return $this->error('missing', 'beatmaps.modding');
         }
         try {
@@ -277,7 +277,7 @@ trait ModdingAPI
         $username = Input::get('username');
         $password = Input::get('password');
 
-        if (! $set) {
+        if (!$set) {
             return $this->error('beatmaps.bss', 'missing');
         }
 

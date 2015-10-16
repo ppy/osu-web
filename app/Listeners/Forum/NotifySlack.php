@@ -39,7 +39,7 @@ class NotifySlack implements ShouldQueue
         $this->user = $event->user;
 
         $this->prefix = $options['prefix'];
-        $this->message = $options['message'];
+        $this->message = html_entity_decode($options['message'], ENT_QUOTES | ENT_XML1, 'UTF-8');
     }
 
     private function replyCommand()
@@ -91,7 +91,7 @@ class NotifySlack implements ShouldQueue
 
     public function notifyNew($event)
     {
-        if (! in_array($event->topic->forum_id, config('osu.forum.slack_watch.forum_ids'), true)) {
+        if (!in_array($event->topic->forum_id, config('osu.forum.slack_watch.forum_ids'), true)) {
             return;
         }
 
@@ -105,8 +105,8 @@ class NotifySlack implements ShouldQueue
 
     public function notifyReply($event)
     {
-        if (! in_array($event->topic->topic_id, config('osu.forum.slack_watch.topic_ids'), true) &&
-            ! in_array($event->topic->forum_id, config('osu.forum.slack_watch.forum_ids'), true)) {
+        if (!in_array($event->topic->topic_id, config('osu.forum.slack_watch.topic_ids'), true) &&
+            !in_array($event->topic->forum_id, config('osu.forum.slack_watch.forum_ids'), true)) {
             return;
         }
 

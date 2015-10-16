@@ -2,3 +2,6 @@ preset: laravel
 
 enabled:
   - unalign_double_arrow
+
+disabled:
+  - logical_not_operators_with_successor_space

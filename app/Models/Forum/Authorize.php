@@ -49,7 +49,7 @@ class Authorize extends Model
 
     public static function canPost($user, $forum, $topic)
     {
-        if (! $forum->canHavePost()) {
+        if (!$forum->canHavePost()) {
             return false;
         }
 
@@ -69,7 +69,7 @@ class Authorize extends Model
             return false;
         }
 
-        if (! $forum->canBeViewedBy($user)) {
+        if (!$forum->canBeViewedBy($user)) {
             return false;
         }
 

@@ -28,14 +28,14 @@ abstract class SilentEnabledCommand extends Command
 {
     public function info($string)
     {
-        if (! $this->option('silent')) {
+        if (!$this->option('silent')) {
             parent::info($string);
         }
     }
 
     public function comment($string)
     {
-        if (! $this->option('silent')) {
+        if (!$this->option('silent')) {
             parent::comment($string);
         }
     }

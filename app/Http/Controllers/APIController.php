@@ -41,7 +41,7 @@ class APIController extends Controller
      */
     public function getTranslation($lang, $string = null)
     {
-        if (! $string) {
+        if (!$string) {
             $string = $lang;
             $lang = 'en';
         }

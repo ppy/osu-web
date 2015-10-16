@@ -32,7 +32,7 @@ class Notification extends Eloquent
 
     public static function generate($notification = [])
     {
-        if (! $notification or (! $user and ! $group)) {
+        if (!$notification or (!$user and !$group)) {
             return;
         }
 

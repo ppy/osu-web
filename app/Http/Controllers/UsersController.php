@@ -109,7 +109,7 @@ class UsersController extends Controller
             $user = User::where('username', $id)->orWhere('username_clean', $id)->first();
         }
 
-        if ($user === null || ! $user->hasProfile()) {
+        if ($user === null || !$user->hasProfile()) {
             abort(404);
         }
 

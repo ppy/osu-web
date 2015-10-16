@@ -51,7 +51,7 @@ class Mod extends Eloquent
             return false;
         }
 
-        if (! $beatmap) {
+        if (!$beatmap) {
             return true;
         }
 
@@ -205,7 +205,7 @@ class Mod extends Eloquent
         unset($array['is_resolved']);
         unset($array['created_at']);
         unset($array['updated_at']);
-        if (! $array['deleted_at']) {
+        if (!$array['deleted_at']) {
             unset($array['deleted_at']);
         }
 

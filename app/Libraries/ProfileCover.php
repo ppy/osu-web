@@ -56,7 +56,7 @@ class ProfileCover
 
     public function delete()
     {
-        if (! $this->hasCustomCover()) {
+        if (!$this->hasCustomCover()) {
             return;
         }
 
@@ -69,7 +69,7 @@ class ProfileCover
             return;
         }
 
-        if (! in_array($this->data['id'], $this->availableIds, true)) {
+        if (!in_array($this->data['id'], $this->availableIds, true)) {
             return $this->availableIds[$this->userId % count($this->availableIds)];
         }
 
@@ -146,7 +146,7 @@ class ProfileCover
             $this->errors = [trans('users.show.edit.cover.upload.too_large')];
 
             return false;
-        } elseif ($dim === false || ! in_array($dim[2], [IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG], true)) {
+        } elseif ($dim === false || !in_array($dim[2], [IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG], true)) {
             $this->errors = [trans('users.show.edit.cover.upload.unsupported_format')];
 
             return false;

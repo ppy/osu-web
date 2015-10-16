@@ -55,7 +55,7 @@ class PostController extends Controller
         $search = Input::get('parent');
         while (true) {
             $parent = Post::find($search);
-            if (! $parent) {
+            if (!$parent) {
                 break;
             }
             $depth++;

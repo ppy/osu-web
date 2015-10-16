@@ -292,7 +292,7 @@ class Event extends Model
 
     public function parse()
     {
-        if (! $this->parsed) {
+        if (!$this->parsed) {
             foreach ($this->patterns as $name => $pattern) {
                 if (preg_match($pattern, $this->text, $matches) !== 1) {
                     continue;

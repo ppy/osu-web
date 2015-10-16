@@ -27,7 +27,7 @@ class ModdingQueue
                 $set->processRank();
                 $job->delete();
             } else {
-                if (! $job->attempts() > 5) {
+                if (!$job->attempts() > 5) {
                     sentry_log("[rank] Failed to rank $id too many times; moving to pending", 'queue', Raven_Client::FATAL);
                     $set->processUnrank();
                     $job->delete();
@@ -58,7 +58,7 @@ class ModdingQueue
             $id = @$data['id'];
             $user = User::find($sender);
 
-            if (! $user) {
+            if (!$user) {
                 $log = "[force-unrank] Missing user when trying to unrank $id (user: $sender)";
             } else {
                 if ($user->isDev()) {
@@ -99,7 +99,7 @@ class ModdingQueue
         $id = @$data['id'];
         $set = BeatmapSet::find($id);
 
-        if (! $set) {
+        if (!$set) {
             sentry_log("[$ident] Set not found while trying to $ident: $id", 'queue', Raven_Client::FATAL);
             $job->delete();
 

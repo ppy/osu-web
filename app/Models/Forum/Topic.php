@@ -236,7 +236,7 @@ class Topic extends Model
     public function canBeRepliedBy($user)
     {
         $key = $user === null ? '-1' : "{$user->user_id}";
-        if (! isset($this->_canBeRepliedBy[$key])) {
+        if (!isset($this->_canBeRepliedBy[$key])) {
             $this->_canBeRepliedBy[$key] = Authorize::canPost($user, $this->forum, $this);
         }
 
