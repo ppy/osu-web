@@ -352,3 +352,15 @@ function fast_imagesize($url)
         return getimagesizefromstring($data);
     });
 }
+
+// parses a string, if it's not an empty string or null,
+// return parsed integer value of it, otherwise return null
+function get_int($string)
+{
+    $val = presence($string);
+    if ($val !== null) {
+        $val = intval($val);
+    }
+
+    return $val;
+}

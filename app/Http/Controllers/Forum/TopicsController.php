@@ -73,6 +73,7 @@ class TopicsController extends Controller
         ]);
 
         $options = [
+            'expand' => true,
             'overlay' => true,
             'signature' => $forum->enable_sigs,
         ];
@@ -107,10 +108,10 @@ class TopicsController extends Controller
     public function show($id)
     {
         $postStartId = Request::input('start');
-        $postEndId = Request::input('end');
-        $nthPost = Request::input('n');
+        $postEndId = get_int(Request::input('end'));
+        $nthPost = get_int(Request::input('n'));
         $skipLayout = Request::input('skip_layout') === '1';
-        $jumpTo = 0;
+        $jumpTo = null;
 
         $topic = Topic::findOrFail($id);
 
@@ -120,28 +121,40 @@ class TopicsController extends Controller
 
         if ($postStartId === 'unread') {
             $postStartId = Post::lastUnreadByUser($topic, Auth::user());
+        } else {
+            $postStartId = get_int($postStartId);
         }
 
-        if (is_numeric($nthPost)) {
+        if ($nthPost !== null) {
             $post = $topic->nthPost($nthPost);
             if ($post) {
                 $postStartId = $post->post_id;
             }
         }
 
-        if (is_numeric($postStartId) && $skipLayout === false) {
+        if (! $skipLayout) {
+            foreach ([$postStartId, $postEndId, 0] as $jumpPoint) {
+                if ($jumpPoint === null) {
+                    continue;
+                }
+
+                $jumpTo = $jumpPoint;
+                break;
+            }
+        }
+
+        if ($postStartId !== null && ! $skipLayout) {
             // move starting post up by ten to avoid hitting
             // page autoloader right after loading the page.
             $postPosition = $topic->postPosition($postStartId);
             $post = $topic->nthPost($postPosition - 10);
-            $jumpTo = $postStartId;
             $postStartId = $post->post_id;
         }
 
-        if (is_numeric($postStartId)) {
+        if ($postStartId !== null) {
             $posts = $posts
                 ->where('post_id', '>=', $postStartId);
-        } elseif (is_numeric($postEndId)) {
+        } elseif ($postEndId !== null) {
             $posts = $posts
                 ->where('post_id', '<=', $postEndId)
                 ->orderBy('post_id', 'desc');
