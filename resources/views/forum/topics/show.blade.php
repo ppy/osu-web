@@ -75,7 +75,7 @@
                     ></div>
                 </div>
 
-                <textarea required name="body" class="js-quick-submit" placeholder="{{ trans("forum.topic.reply_box_placeholder") }}"></textarea>
+                <textarea required name="body" class="js-quick-submit forum-post-content" placeholder="{{ trans("forum.topic.reply_box_placeholder") }}"></textarea>
             </div>
 
             <div class="forum-small-row post-editor__footer">

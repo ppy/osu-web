@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="post-panel">
-                    <textarea autofocus required class="js-quick-submit post-autopreview" tabindex="1" name="body" placeholder="{{ trans("forum.topic.create.placeholder.body") }}">{{ Request::old("body") }}</textarea>
+                    <textarea autofocus required class="js-quick-submit post-autopreview forum-post-content" tabindex="1" name="body" placeholder="{{ trans("forum.topic.create.placeholder.body") }}">{{ Request::old("body") }}</textarea>
                 </div>
             </div>
 
