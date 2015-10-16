@@ -101,7 +101,7 @@ class Product extends Model
         if ($this->masterProduct) {
             return $this->masterProduct->images();
         } else {
-            if (! $this->images && $this->images_json) {
+            if (!$this->images && $this->images_json) {
                 $this->images = json_decode($this->images_json, true);
             }
 
@@ -134,7 +134,7 @@ class Product extends Model
 
         foreach ($mappings as $product_id => $mapping) {
             foreach ($mapping as $type => $value) {
-                if (! isset($this->types[$type])) {
+                if (!isset($this->types[$type])) {
                     $this->types[$type] = [];
                 }
                 $mappingDiff = array_diff_assoc($mapping, $currentMapping);

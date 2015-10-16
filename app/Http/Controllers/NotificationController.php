@@ -37,7 +37,7 @@ class NotificationController extends Controller
 
     public function __construct()
     {
-        if (! Auth::check()) {
+        if (!Auth::check()) {
             $key = Input::server('X_BANCHO_AUTH', false) ? Input::server('X_BANCHO_AUTH') : Input::get('key', false);
             $sender = Input::server('X_BANCHO_SENDER', false) ? Input::server('X_BANCHO_SENDER') : Input::get('sender', false);
 
@@ -75,11 +75,11 @@ class NotificationController extends Controller
 
     public function getGroup($group, $limit = 20, $page = 0)
     {
-        if (! $this->auth) {
+        if (!$this->auth) {
             return $this->error('not authorized', 401);
         }
 
-        if (! $this->user->isDev() or ! $this->user->isHax() or ! $this->user->isGroup($group)) {
+        if (!$this->user->isDev() or !$this->user->isHax() or !$this->user->isGroup($group)) {
             return $this->error('not authorized', 401);
         }
 
@@ -104,7 +104,7 @@ class NotificationController extends Controller
     public function getUser($user, $limit = 20, $page = 0)
     {
         if ($this->user->user_id != $user) {
-            if (! $this->user->isHax() or ! $this->user->isDev()) {
+            if (!$this->user->isHax() or !$this->user->isDev()) {
                 return $this->error('not authorized', 403);
             }
         }

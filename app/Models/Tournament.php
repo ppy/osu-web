@@ -51,7 +51,7 @@ class Tournament extends Model
 
     public function isSignedUp($user)
     {
-        if (! $user) {
+        if (!$user) {
             return false;
         }
 
@@ -60,7 +60,7 @@ class Tournament extends Model
 
     public function isValidRank($user)
     {
-        if (! $user) {
+        if (!$user) {
             return false;
         }
 
