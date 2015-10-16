@@ -34,9 +34,23 @@ html, body {
 }
 
 body {
-  .at2x("/images/backgrounds/page-light.png", 500px, 500px);
   display: flex;
   flex-direction: column;
+
+  // inspired by
+  // https://fourword.fourkitchens.com/article/fix-scrolling-performance-css-will-change-property
+  // using backface-visibility since IE doesn't have will-change property yet.
+  &::before {
+    .at2x("/images/backgrounds/page-light.png", 500px, 500px);
+    position: fixed;
+    backface-visibility: hidden;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    content: " ";
+    z-index: -2;
+  }
 }
 
 .content {
@@ -62,7 +76,7 @@ body {
   margin-bottom: -@grid-gutter-width * 3 / 4;
   width: 100%;
   padding-top: @grid-gutter-width/2;
-  .at2x("/images/backgrounds/page-555.png");
+  background-color: fade(#000, 75%);
 }
 
 .header-row {

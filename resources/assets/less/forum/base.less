@@ -21,17 +21,14 @@
 @forum-search-diameter: 50px;
 @forum-post-min-height: 300px;
 
-.forum-background(@suffix) {
-  .at2x("/images/backgrounds/page-@{suffix}.png");
-}
-
 body.community {
-  &.action-forum-forums-show, &.action-forum-forums-index {
-    .forum-background("555");
-  }
-
-  &.action-forum-topics-show, &.action-forum-topics-create {
-    .forum-background("333");
+  &.action-forum-forums-show,
+  &.action-forum-forums-index,
+  &.action-forum-topics-show,
+  &.action-forum-topics-create {
+    &::before {
+      .at2x("/images/backgrounds/page-ddd.png");
+    }
   }
 }
 
