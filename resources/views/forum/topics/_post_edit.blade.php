@@ -26,7 +26,7 @@
         </div>
 
         <div class="post-panel">
-            <textarea required class="js-quick-submit" name="body">{{ $post->bodyRaw }}</textarea>
+            <textarea required class="js-quick-submit forum-post-content" name="body">{{ $post->bodyRaw }}</textarea>
         </div>
     </div>
 

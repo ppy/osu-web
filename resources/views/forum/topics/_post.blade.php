@@ -45,7 +45,7 @@
             </a></div>
         </div>
 
-        <div class="post-body {{ $options['large'] ? '' : 'post-body--small' }}">
+        <div class="forum-post-content post-body {{ $options['large'] ? '' : 'post-body--small' }}">
             {!! $post->bodyHTML !!}
         </div>
 
