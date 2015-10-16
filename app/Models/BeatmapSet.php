@@ -321,7 +321,7 @@ class BeatmapSet extends Model
         $new = [];
 
         foreach ($replies as $reply) {
-            if (! isset($new[$reply->parent_item_id])) {
+            if (!isset($new[$reply->parent_item_id])) {
                 $new[$reply->parent_item_id] = [];
             }
 

@@ -37,7 +37,7 @@ class AccountController extends Controller
 
     public function updateProfileCover()
     {
-        if (Request::hasFile('cover_file') && ! Auth::user()->osu_subscriber) {
+        if (Request::hasFile('cover_file') && !Auth::user()->osu_subscriber) {
             return error_popup(trans('errors.supporter_only'));
         }
 
@@ -53,7 +53,7 @@ class AccountController extends Controller
     public function updatePage()
     {
         $user = Auth::user();
-        if (! $user->osu_subscriber && $user->userPage === null) {
+        if (!$user->osu_subscriber && $user->userPage === null) {
             abort(403);
         }
 

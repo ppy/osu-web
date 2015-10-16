@@ -91,7 +91,7 @@ class NotifySlack implements ShouldQueue
 
     public function notifyNew($event)
     {
-        if (! in_array($event->topic->forum_id, config('osu.forum.slack_watch.forum_ids'), true)) {
+        if (!in_array($event->topic->forum_id, config('osu.forum.slack_watch.forum_ids'), true)) {
             return;
         }
 
@@ -105,8 +105,8 @@ class NotifySlack implements ShouldQueue
 
     public function notifyReply($event)
     {
-        if (! in_array($event->topic->topic_id, config('osu.forum.slack_watch.topic_ids'), true) &&
-            ! in_array($event->topic->forum_id, config('osu.forum.slack_watch.forum_ids'), true)) {
+        if (!in_array($event->topic->topic_id, config('osu.forum.slack_watch.topic_ids'), true) &&
+            !in_array($event->topic->forum_id, config('osu.forum.slack_watch.forum_ids'), true)) {
             return;
         }
 

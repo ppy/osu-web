@@ -26,7 +26,7 @@ function last_modified($path)
 {
     $mtime = Cache::tags('mtime')->get($path, false);
 
-    if (! $mtime || Config::get('app.debug')) {
+    if (!$mtime || Config::get('app.debug')) {
         $mtime = filemtime(public_path().$path);
         Cache::tags('mtime')->put($path, $mtime, 5);
     }
@@ -57,7 +57,7 @@ function format()
 
 function pending($a)
 {
-    if (! $a['is_resolved'] && ! $a['parent_item_id'] && ! in_array($a['type'], ['nomination', 'praise'])) {
+    if (!$a['is_resolved'] && !$a['parent_item_id'] && !in_array($a['type'], ['nomination', 'praise'])) {
         return true;
     }
 
@@ -66,7 +66,7 @@ function pending($a)
 
 function resolved($a)
 {
-    if ($a['is_resolved'] && ! $a['parent_item_id'] && ! in_array($a['type'], ['nomination', 'praise'])) {
+    if ($a['is_resolved'] && !$a['parent_item_id'] && !in_array($a['type'], ['nomination', 'praise'])) {
         return true;
     }
 
@@ -75,7 +75,7 @@ function resolved($a)
 
 function mod_total($a)
 {
-    if (! $a['parent_item_id'] && ! in_array($a['type'], ['nomination', 'praise'])) {
+    if (!$a['parent_item_id'] && !in_array($a['type'], ['nomination', 'praise'])) {
         return true;
     }
 
@@ -150,7 +150,7 @@ function linkify($text)
 
 function current_route()
 {
-    if (! Route::current()) {
+    if (!Route::current()) {
         return 'home';
     }
 

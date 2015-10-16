@@ -132,7 +132,7 @@ class TopicsController extends Controller
             }
         }
 
-        if (! $skipLayout) {
+        if (!$skipLayout) {
             foreach ([$postStartId, $postEndId, 0] as $jumpPoint) {
                 if ($jumpPoint === null) {
                     continue;
@@ -143,7 +143,7 @@ class TopicsController extends Controller
             }
         }
 
-        if ($postStartId !== null && ! $skipLayout) {
+        if ($postStartId !== null && !$skipLayout) {
             // move starting post up by ten to avoid hitting
             // page autoloader right after loading the page.
             $postPosition = $topic->postPosition($postStartId);

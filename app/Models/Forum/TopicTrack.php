@@ -34,7 +34,7 @@ class TopicTrack extends Model
 
     public static function readStatus($user, ...$topicsArrays)
     {
-        if (! $user) {
+        if (!$user) {
             return [];
         }
 

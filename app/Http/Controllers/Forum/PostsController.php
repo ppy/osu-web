@@ -45,7 +45,7 @@ class PostsController extends Controller
         $post = Post::findOrFail($id);
 
         $this->authorizePost($post->forum, $post->topic);
-        if (! $post->canBeDeletedBy(Auth::user())) {
+        if (!$post->canBeDeletedBy(Auth::user())) {
             abort(403);
         }
 
@@ -72,7 +72,7 @@ class PostsController extends Controller
         $post = Post::findOrFail($id);
 
         $this->authorizePost($post->forum, $post->topic);
-        if (! $post->canBeEditedBy(Auth::user())) {
+        if (!$post->canBeEditedBy(Auth::user())) {
             abort(403);
         }
 
@@ -84,7 +84,7 @@ class PostsController extends Controller
         $post = Post::findOrFail($id);
 
         $this->authorizePost($post->forum, $post->topic);
-        if (! $post->canBeEditedBy(Auth::user())) {
+        if (!$post->canBeEditedBy(Auth::user())) {
             abort(403);
         }
 

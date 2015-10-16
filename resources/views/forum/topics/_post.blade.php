@@ -17,14 +17,14 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <?php
-    if (! isset($options['deleteLink'])) { $options['deleteLink'] = false; }
-    if (! isset($options['editLink'])) { $options['editLink'] = false; }
-    if (! isset($options['overlay'])) { $options['overlay'] = false; }
-    if (! isset($options['signature'])) { $options['signature'] = true; }
-    if (! isset($options['replyLink'])) { $options['replyLink'] = false; }
-    if (! isset($options['postPosition'])) { $options['postPosition'] = 1; }
-    if (! isset($options['large'])) { $options['large'] = $options['postPosition'] === 1; }
-    if (! isset($options['expand'])) { $options['expand'] = false; }
+    if (!isset($options['deleteLink'])) { $options['deleteLink'] = false; }
+    if (!isset($options['editLink'])) { $options['editLink'] = false; }
+    if (!isset($options['overlay'])) { $options['overlay'] = false; }
+    if (!isset($options['signature'])) { $options['signature'] = true; }
+    if (!isset($options['replyLink'])) { $options['replyLink'] = false; }
+    if (!isset($options['postPosition'])) { $options['postPosition'] = 1; }
+    if (!isset($options['large'])) { $options['large'] = $options['postPosition'] === 1; }
+    if (!isset($options['expand'])) { $options['expand'] = false; }
 ?>
 <div
         class="row-page forum-post flex-row post-viewer {{ $options['expand'] ? '' : 'js-forum-post__shrunk' }}"

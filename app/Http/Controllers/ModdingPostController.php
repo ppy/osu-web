@@ -59,7 +59,7 @@ class ModdingPostController extends Controller
         $search = Request::input('parent');
         while (true) {
             $parent = ModdingPost::find($search);
-            if (! $parent) {
+            if (!$parent) {
                 break;
             }
             $depth++;
