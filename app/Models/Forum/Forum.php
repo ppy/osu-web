@@ -111,7 +111,7 @@ class Forum extends Model
     public function getForumParentsAttribute($value)
     {
         $buf = unserialize($value);
-        if (! $buf) {
+        if (!$buf) {
             return [];
         } else {
             return $buf;

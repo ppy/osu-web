@@ -134,7 +134,7 @@ class User extends Model implements AuthenticatableContract
             return ['The requested username is too long.'];
         }
 
-        if (strpos($username, '  ') !== false || ! preg_match('#^[A-Za-z0-9-\[\]_ ]+$#u', $username)) {
+        if (strpos($username, '  ') !== false || !preg_match('#^[A-Za-z0-9-\[\]_ ]+$#u', $username)) {
             return ['The requested username contains invalid characters.'];
         }
 
@@ -164,7 +164,7 @@ class User extends Model implements AuthenticatableContract
 
     public function validateUsernameChangeTo($username)
     {
-        if (! $this->hasSupported()) {
+        if (!$this->hasSupported()) {
             return ["You must have <a href='http://osu.ppy.sh/p/support'>supported osu!</a> to change your name!"];
         }
 
@@ -533,7 +533,7 @@ class User extends Model implements AuthenticatableContract
 
     public function statistics($mode, $returnQuery = false)
     {
-        if (! in_array($mode, ['osu', 'ctb', 'mania', 'taiko'], true)) {
+        if (!in_array($mode, ['osu', 'ctb', 'mania', 'taiko'], true)) {
             return;
         }
 
@@ -702,13 +702,13 @@ class User extends Model implements AuthenticatableContract
     {
         return
             $this->user_id !== null
-            && ! $this->isRestricted()
+            && !$this->isRestricted()
             && $this->group_id !== 6; // bots
     }
 
     public function countryName()
     {
-        if (! isset($this->flags()['country'])) {
+        if (!isset($this->flags()['country'])) {
             return;
         }
 

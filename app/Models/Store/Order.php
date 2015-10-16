@@ -86,7 +86,7 @@ class Order extends Model
 
     public function getShipping()
     {
-        if (! $this->address) {
+        if (!$this->address) {
             return 0;
         }
 
@@ -172,7 +172,7 @@ class Order extends Model
                     }
                 }
 
-                if (! $product->inStock($item->quantity)) {
+                if (!$product->inStock($item->quantity)) {
                     $result = [false, 'not enough stock'];
                 } elseif ($item->quantity > $product->max_quantity) {
                     $result = [false, "you can only order {$product->max_quantity} of this item per order. visit your <a href='/store/cart'>shopping cart</a> to confirm your current order"];
@@ -207,7 +207,7 @@ class Order extends Model
                     continue;
                 }
 
-                if (! $i->product->inStock($i->quantity)) {
+                if (!$i->product->inStock($i->quantity)) {
                     $cart->updateItem(['product_id' => $i->product_id, 'quantity' => $i->product->stock]);
                     $requireFresh = true;
                 }

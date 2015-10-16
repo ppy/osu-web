@@ -61,7 +61,7 @@ class StoreCheckOrderTrackingStatus extends Command
         $orders = Store\Order::where('status', '=', 'shipped')->where('tracking_code', '!=', '')->orderBy('updated_at')->get();
         $count = count($orders);
 
-        if (! $count) {
+        if (!$count) {
             return;
         }
 
@@ -76,11 +76,11 @@ class StoreCheckOrderTrackingStatus extends Command
             $i++;
 
             try {
-                if (! strlen(trim($o->tracking_code)) || strpos($o->tracking_code, 'EJ') !== 0) {
+                if (!strlen(trim($o->tracking_code)) || strpos($o->tracking_code, 'EJ') !== 0) {
                     continue;
                 }
 
-                if (! $o->shipped_at) {
+                if (!$o->shipped_at) {
                     $o->shipped_at = time();
                     $o->save();
                 }
@@ -89,8 +89,8 @@ class StoreCheckOrderTrackingStatus extends Command
 
                 preg_match_all("/\<td rowspan=\"2\" class=\"w_150\"\>([^\<]*)\<\/td\>/", $response, $status);
 
-                if (! count($status[1])) {
-                    if (! $o->last_tracking_state) {
+                if (!count($status[1])) {
+                    if (!$o->last_tracking_state) {
                         $days_until_warning = 4;
                         if (time() - $o->shipped_at->timestamp > 3600 * 24 * $days_until_warning) {
                             Slack::send("WARNING: <https://store.ppy.sh/store/admin/{$o->order_id}|Order #{$o->order_id}> has no tracking after {$days_until_warning} days!");
@@ -105,7 +105,7 @@ class StoreCheckOrderTrackingStatus extends Command
 
                 $this->info("#$i: Order #{$o->order_id} (https://store.ppy.sh/store/invoice/{$o->order_id})\t{$o->address->country_code}\tshipped {$o->shipped_at}\t$lastStatus");
 
-                if (! $o->last_tracking_state) {
+                if (!$o->last_tracking_state) {
                     mail($o->user->user_email, 'Your osu!store order is on its way!',
                     "Hi {$o->user->username},
 

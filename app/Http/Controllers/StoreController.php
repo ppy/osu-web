@@ -69,7 +69,7 @@ class StoreController extends Controller
 
     public function getAdmin($id = null)
     {
-        if (! Auth::user()->isAdmin()) {
+        if (!Auth::user()->isAdmin()) {
             abort(403);
         }
 
@@ -89,7 +89,7 @@ class StoreController extends Controller
 
     public function postAdmin()
     {
-        if (! Auth::user()->isAdmin()) {
+        if (!Auth::user()->isAdmin()) {
             abort(403);
         }
 
@@ -108,7 +108,7 @@ class StoreController extends Controller
             $order->refreshCost(true);
         }
 
-        if (Auth::user()->user_id !== $order->user_id && ! Auth::user()->isAdmin()) {
+        if (Auth::user()->user_id !== $order->user_id && !Auth::user()->isAdmin()) {
             abort(403);
         }
 
@@ -137,7 +137,7 @@ class StoreController extends Controller
     public function getCheckout()
     {
         $order = $this->userCart();
-        if (! $order->items()->exists()) {
+        if (!$order->items()->exists()) {
             return ujs_redirect('/store/cart');
         }
 
@@ -168,7 +168,7 @@ class StoreController extends Controller
         $address = Store\Address::find($address_id);
         $order = $this->userCart();
 
-        if (! $address || $address->user_id !== Auth::user()->user_id) {
+        if (!$address || $address->user_id !== Auth::user()->user_id) {
             return error_popup('invalid address');
         }
 
@@ -249,7 +249,7 @@ class StoreController extends Controller
     {
         $order = $this->userCart();
 
-        if (! $order) {
+        if (!$order) {
             return response(['message' => 'cart is empty'], 422);
         }
 

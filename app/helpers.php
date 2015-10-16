@@ -43,7 +43,7 @@ function countries_array_for_select()
     $out = [];
 
     foreach (App\Models\Country::forStore()->get() as $country) {
-        if (! isset($lastDisplay)) {
+        if (!isset($lastDisplay)) {
             $lastDisplay = $country->display;
         } elseif ($lastDisplay !== $country->display) {
             $out['_disabled'] = '---';

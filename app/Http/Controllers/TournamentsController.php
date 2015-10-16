@@ -55,7 +55,7 @@ class TournamentsController extends Controller
     {
         $tournament = Tournament::findOrFail($id);
 
-        if (! $tournament->isRegistrationOpen()) {
+        if (!$tournament->isRegistrationOpen()) {
             return error_popup('registrations are closed!');
         }
 
@@ -69,11 +69,11 @@ class TournamentsController extends Controller
         $tournament = Tournament::findOrFail($id);
         $user = Auth::user();
 
-        if (! $tournament->isRegistrationOpen()) {
+        if (!$tournament->isRegistrationOpen()) {
             return error_popup('registrations are closed!');
         }
 
-        if (! $tournament->isValidRank($user)) {
+        if (!$tournament->isValidRank($user)) {
             return error_popup('invalid rank!');
         }
 
