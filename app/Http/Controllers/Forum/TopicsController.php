@@ -107,7 +107,7 @@ class TopicsController extends Controller
 
     public function show($id)
     {
-        $postStartId = get_int(Request::input('start'));
+        $postStartId = Request::input('start');
         $postEndId = get_int(Request::input('end'));
         $nthPost = get_int(Request::input('n'));
         $skipLayout = Request::input('skip_layout') === '1';
@@ -121,6 +121,8 @@ class TopicsController extends Controller
 
         if ($postStartId === 'unread') {
             $postStartId = Post::lastUnreadByUser($topic, Auth::user());
+        } else {
+            $postStartId = get_int($postStartId);
         }
 
         if ($nthPost !== null) {
