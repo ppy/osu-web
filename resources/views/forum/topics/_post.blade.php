@@ -24,9 +24,10 @@
     if (! isset($options['replyLink'])) { $options['replyLink'] = false; }
     if (! isset($options['postPosition'])) { $options['postPosition'] = 1; }
     if (! isset($options['large'])) { $options['large'] = $options['postPosition'] === 1; }
+    if (! isset($options['expand'])) { $options['expand'] = false; }
 ?>
 <div
-        class="row-page forum-post flex-row js-forum-post__shrunk post-viewer"
+        class="row-page forum-post flex-row post-viewer {{ $options['expand'] ? '' : 'js-forum-post__shrunk' }}"
         data-post-id="{{ $post->post_id }}"
         data-post-position="{{ $options["postPosition"] }}">
     @if(is_int($post->post_id) && $post->post_id > 0)
