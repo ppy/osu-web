@@ -176,9 +176,9 @@ function play_mode_string($val)
     }
 }
 
-function bbcode($text, $uid)
+function bbcode($text, $uid, $withGallery = false)
 {
-    return (new App\Libraries\BBCodeFromDB($text, $uid))->toHTML();
+    return (new App\Libraries\BBCodeFromDB($text, $uid, $withGallery))->toHTML();
 }
 
 function bbcode_for_editor($text, $uid)
