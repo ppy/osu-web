@@ -345,11 +345,17 @@ function fast_imagesize($url)
         $headers = ['Range: bytes=0-32768'];
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($curl, CURLOPT_MAXREDIRS, 5);
         $data = curl_exec($curl);
         curl_close($curl);
 
-        return getimagesizefromstring($data);
+        try {
+            return getimagesizefromstring($data);
+        } catch (ErrorException $_e) {
+            return [0, 0];
+        }
     });
 }
 
