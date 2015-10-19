@@ -19,7 +19,6 @@
 */
 @forum-topic-navigator-diameter: 80px;
 @forum-search-diameter: 50px;
-@forum-post-min-height: 300px;
 
 body.community {
   &.action-forum-forums-show,
@@ -577,7 +576,6 @@ body.community {
 
 .forum-post {
   flex: none;
-  min-height: @forum-post-min-height;
   &:extend(.forum-small-row);
   @info-panel-width: 120px;
   &[data-post-position="1"] {
@@ -953,20 +951,6 @@ body.community {
 .forum__info-row {
   margin-bottom: @grid-gutter-width/4;
   flex: none;
-}
-
-.js-forum-post__shrunk {
-  height: @forum-post-min-height !important;
-  overflow: hidden;
-
-  &::after {
-    background-image: linear-gradient(to top, #fff, fade(#fff, 0%));
-    width: 200%;
-    height: 15px;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-  }
 }
 
 .post-viewer {

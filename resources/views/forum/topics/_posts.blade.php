@@ -24,7 +24,6 @@
             'editLink' => $post->canBeEditedBy(Auth::user()),
             'postPosition' => $postsPosition[$post->post_id],
             'replyLink' => $topic->canBeRepliedBy(Auth::user()),
-            'expand' => (!isset($jumpTo)) || ($jumpTo !== null && $post->post_id >= $jumpTo),
         ],
     ])
 @endforeach

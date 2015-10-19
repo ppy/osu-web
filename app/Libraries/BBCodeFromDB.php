@@ -121,7 +121,22 @@ class BBCodeFromDB
 
         foreach ($images as $i) {
             $proxiedSrc = proxy_image($i['url']);
-            $text = str_replace($i[0], lazy_load_image($proxiedSrc), $text);
+
+            $imageTag = '';
+
+            $imageSize = fast_imagesize($proxiedSrc);
+            if ($imageSize !== false && $imageSize[0] !== 0) {
+                $heightPercentage = ($imageSize[1] / $imageSize[0]) * 100;
+                $imageTag .= "<span class='proportional-container' style='width: {$imageSize[0]}px;'>";
+                $imageTag .= "<span class='proportional-container__height' style='padding-bottom: {$heightPercentage}%;'>";
+                $imageTag .= lazy_load_image($proxiedSrc, 'proportional-container__content');
+                $imageTag .= '</span>';
+                $imageTag .= '</span>';
+            } else {
+                $imageTag .= lazy_load_image($proxiedSrc);
+            }
+
+            $text = str_replace($i[0], $imageTag, $text);
         }
 
         return $text;
