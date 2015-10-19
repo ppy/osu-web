@@ -189,6 +189,11 @@ function bbcode_for_editor($text, $uid)
 function proxy_image($url)
 {
     $decoded = urldecode(html_entity_decode($url));
+
+    if (config('osu.camo.key') === '') {
+        return $decoded;
+    }
+
     $isProxied = starts_with($decoded, config('osu.camo.prefix'));
     if ($isProxied) {
         return $decoded;
