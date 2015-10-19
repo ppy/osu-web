@@ -128,7 +128,7 @@ class BBCodeFromDB
             if ($imageSize[0] !== 0) {
                 $heightPercentage = ($imageSize[1] / $imageSize[0]) * 100;
                 $imageTag .= "<span class='proportional-container' style='width: {$imageSize[0]}px;'>";
-                $imageTag .= "<span class='proportional-container__height' style='padding-top: {$heightPercentage}%;'>";
+                $imageTag .= "<span class='proportional-container__height' style='padding-bottom: {$heightPercentage}%;'>";
                 $imageTag .= lazy_load_image($proxiedSrc, 'proportional-container__content');
                 $imageTag .= '</span>';
                 $imageTag .= '</span>';

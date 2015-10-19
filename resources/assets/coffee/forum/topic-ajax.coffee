@@ -24,7 +24,6 @@ $(document).on 'ajax:success', '.delete-post-link', (_event, data) ->
     .css
       minHeight: '0px'
       height: currentHeight
-    .removeClass 'js-forum-post__shrunk'
     .slideUp null, ->
       $el.remove()
 
@@ -68,7 +67,6 @@ $(document).on 'ajax:success', '#forum-topic-reply-box', (_event, data) ->
     osu.pageChange()
 
     newPost = window.forum.endPost()
-    newPost.classList.remove('js-forum-post__shrunk')
     newPost.scrollIntoView()
   else
     osu.navigate $(data).find('.js-post-url').attr('href')
