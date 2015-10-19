@@ -51,7 +51,14 @@
                         @foreach($product->images() as $i => $image)
                         <li>
                             <?php $imageSize = fast_imagesize($image[1]); ?>
-                            <a class="js-store-product--thumbnail" data-size-w="{{ $imageSize[0] }}" data-size-h="{{ $imageSize[1] }}" data-index="{{ $i }}" href="{{ $image[1] }}" style="background-image: url('{{ $image[1] }}');">
+                            <a
+                                class="js-gallery"
+                                data-width="{{ $imageSize[0] }}"
+                                data-height="{{ $imageSize[1] }}"
+                                data-gallery-id="product-{{ $product->product_id }}"
+                                data-index="{{ $i }}"
+                                href="{{ $image[1] }}"
+                                style="background-image: url('{{ $image[1] }}');">
                             </a>
                         </li>
                         @endforeach

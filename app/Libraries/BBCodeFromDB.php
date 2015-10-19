@@ -31,11 +31,18 @@ class BBCodeFromDB
 {
     public $text;
     public $uid;
+    public $refId;
+    public $withGallery;
 
-    public function __construct($text, $uid = '')
+    public function __construct($text, $uid = '', $withGallery = false)
     {
         $this->text = $text;
         $this->uid = $uid;
+        $this->withGallery = $withGallery;
+
+        if ($withGallery) {
+            $this->refId = rand();
+        }
     }
 
     public function clearSpacesBetweenTags($text)
@@ -119,6 +126,8 @@ class BBCodeFromDB
     {
         preg_match_all("#\[img:{$this->uid}\](?<url>[^[]+)\[/img:{$this->uid}\]#", $text, $images, PREG_SET_ORDER);
 
+        $index = 0;
+
         foreach ($images as $i) {
             $proxiedSrc = proxy_image($i['url']);
 
@@ -127,11 +136,19 @@ class BBCodeFromDB
             $imageSize = fast_imagesize($proxiedSrc);
             if ($imageSize !== false && $imageSize[0] !== 0) {
                 $heightPercentage = ($imageSize[1] / $imageSize[0]) * 100;
-                $imageTag .= "<span class='proportional-container' style='width: {$imageSize[0]}px;'>";
+
+                $topClass = 'proportional-container';
+                if ($this->withGallery) {
+                    $topClass .= ' js-gallery';
+                }
+
+                $imageTag .= "<span class='{$topClass}' style='width: {$imageSize[0]}px;' data-width='{$imageSize[0]}' data-height='{$imageSize[1]}' data-index='{$index}' data-gallery-id='{$this->refId}' data-src='{$proxiedSrc}'>";
                 $imageTag .= "<span class='proportional-container__height' style='padding-bottom: {$heightPercentage}%;'>";
                 $imageTag .= lazy_load_image($proxiedSrc, 'proportional-container__content');
                 $imageTag .= '</span>';
                 $imageTag .= '</span>';
+
+                $index += 1;
             } else {
                 $imageTag .= lazy_load_image($proxiedSrc);
             }

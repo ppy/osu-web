@@ -32,64 +32,6 @@ $(document).on 'click', '#new-address-switch a', (e) ->
   $form.slideToggle()
 
 
-galleryArray = ->
-  $('.js-store-product--thumbnail').map (_i, el) ->
-    $el = $(el)
-    {
-      msrc: $el.attr('href')
-      src: $el.attr('href')
-      w: parseInt $el.attr('data-size-w'), 10
-      h: parseInt $el.attr('data-size-h'), 10
-    }
-  .get()
-
-
-galleryStartBounds = (i) ->
-  $thumb = $(".js-store-product--thumbnail[data-index='#{i}']")
-  thumbPos = $thumb.offset()
-
-  thumbDim = [
-    $thumb.width()
-    $thumb.height()
-  ]
-
-  center = [
-    thumbPos.left + thumbDim[0] / 2
-    thumbPos.top + thumbDim[1] / 2
-  ]
-
-  imageDim = [
-    parseInt $thumb.attr('data-size-w'), 10
-    parseInt $thumb.attr('data-size-h'), 10
-  ]
-
-  scale = Math.max thumbDim[0] / imageDim[0], thumbDim[1] / imageDim[1]
-  scaledImageDim = imageDim.map (s) -> s * scale
-
-  {
-    x: center[0] - scaledImageDim[0] / 2
-    y: center[1] - scaledImageDim[1] / 2
-    w: scaledImageDim[0]
-  }
-
-
-openGallery = (index) ->
-  pswpElement = $('.pswp')[0]
-  items = galleryArray()
-  options =
-    showHideOpacity: true
-    getThumbBoundsFn: galleryStartBounds
-    index: index
-    history: false
-  gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options)
-  gallery.init()
-
-
-$(document).on 'click', '#product-slides a', (e) ->
-  e.preventDefault()
-  openGallery parseInt($(e.target).attr('data-index'), 10)
-
-
 preventUsernameSubmission = ->
   $('#add-to-cart').slideUp()
   $('#product-form').data('disabled', true)
