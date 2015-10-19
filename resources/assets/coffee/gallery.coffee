@@ -18,13 +18,13 @@
 ###
 class @Gallery
   pswp: document.getElementsByClassName('pswp')
-  data: {}
 
   constructor: ->
     $(document).on 'click', '.js-gallery', (e) =>
       $target = $(e.currentTarget)
-      return if $target.closest('a').length
+      return if $target.parents('a').length
 
+      e.preventDefault()
       @open $target
 
 
@@ -32,22 +32,24 @@ class @Gallery
     galleryId = $target.attr('data-gallery-id')
     index = parseInt $target.attr('data-index'), 10
 
-    @data[galleryId] ||= @loadData galleryId
-
-    gallery = new PhotoSwipe @pswp[0], PhotoSwipeUI_Default, @data[galleryId],
+    gallery = new PhotoSwipe @pswp[0],
+      PhotoSwipeUI_Default
+      @data galleryId
       showHideOpacity: true
       getThumbBoundsFn: @thumbBoundsFn(galleryId)
       index: index
       history: false
 
+
     gallery.init()
 
 
-  loadData: (galleryId) ->
+  data: (galleryId) ->
     $(".js-gallery[data-gallery-id='#{galleryId}']").map (_i, el) ->
+      src = el.getAttribute('data-src') || el.getAttribute('href')
       {
-        msrc: el.getAttribute('data-src')
-        src: el.getAttribute('data-src')
+        msrc: src
+        src: src
         w: parseInt el.getAttribute('data-width'), 10
         h: parseInt el.getAttribute('data-height'), 10
       }
