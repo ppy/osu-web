@@ -16,52 +16,6 @@ See the GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class ForumPostExpander
-  _shrunk: document.getElementsByClassName('js-forum-post__shrunk')
-
-  constructor: ->
-    $(document).on 'ready page:load', =>
-      setTimeout @initialExpand, 1000
-
-    $(window).on 'scroll', =>
-      requestAnimationFrame @autoExpand
-
-    $(document).on 'click', '.js-forum-post__shrunk', (e) =>
-      @expand(e.currentTarget)
-
-
-  expand: (el) ->
-    el.classList.remove 'js-forum-post__shrunk'
-
-
-  initialExpand: =>
-    focusPost = $(".forum-post[data-post-id=#{window.postJumpTo}]")[0]
-    if focusPost != undefined
-      @expand focusPost
-
-    @autoExpand()
-
-  autoExpand: =>
-    return if @_shrunk.length == 0
-
-    if osu.isMobile()
-      expandTop = document
-        .getElementsByClassName('js-forum__header--sticky')[0]
-        .getBoundingClientRect()
-        .bottom
-    else
-      expandTop = window.innerHeight * 0.3
-
-    for el in @_shrunk by -1
-      if el.getBoundingClientRect().top > expandTop
-        @expand(el)
-      else
-        return
-
-
-window.forumPostExpander = new ForumPostExpander
-
-
 class Forum
   _totalPostsDiv: document.getElementsByClassName('js-forum__topic-total-posts')
   _postsCounter: document.getElementsByClassName('js-forum__posts-counter')

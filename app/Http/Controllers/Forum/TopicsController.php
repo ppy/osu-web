@@ -73,7 +73,6 @@ class TopicsController extends Controller
         ]);
 
         $options = [
-            'expand' => true,
             'overlay' => true,
             'signature' => $forum->enable_sigs,
         ];
