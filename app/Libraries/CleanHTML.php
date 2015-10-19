@@ -38,6 +38,12 @@ class CleanHTML
         $def->addAttribute('img', 'data-layzr', 'Text');
         $def->addAttribute('img', 'src', 'Text');
 
+        $def->addAttribute('span', 'data-src', 'Text');
+        $def->addAttribute('span', 'data-height', 'Text');
+        $def->addAttribute('span', 'data-width', 'Text');
+        $def->addAttribute('span', 'data-index', 'Text');
+        $def->addAttribute('span', 'data-gallery-id', 'Text');
+
         return (new HTMLPurifier($config))->purify($text);
     }
 }

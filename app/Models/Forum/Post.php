@@ -182,7 +182,7 @@ class Post extends Model
 
     public function getBodyHTMLAttribute()
     {
-        return bbcode($this->post_text, $this->bbcode_uid);
+        return bbcode($this->post_text, $this->bbcode_uid, true);
     }
 
     public function getBodyRawAttribute()

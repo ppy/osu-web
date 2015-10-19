@@ -176,9 +176,9 @@ function play_mode_string($val)
     }
 }
 
-function bbcode($text, $uid)
+function bbcode($text, $uid, $withGallery = false)
 {
-    return (new App\Libraries\BBCodeFromDB($text, $uid))->toHTML();
+    return (new App\Libraries\BBCodeFromDB($text, $uid, $withGallery))->toHTML();
 }
 
 function bbcode_for_editor($text, $uid)
@@ -345,8 +345,7 @@ function fractal_item_array($model, $transformer, $includes = null)
 
 function fast_imagesize($url)
 {
-    // CarbonInterval doesn't work ;_;
-    return Cache::remember("imageSize:{$url}", 7 * 24 * 60, function () use ($url) {
+    return Cache::remember("imageSize:{$url}", Carbon\Carbon::now()->addMonth(1), function () use ($url) {
         $headers = ['Range: bytes=0-32768'];
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
