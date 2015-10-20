@@ -60,13 +60,23 @@ class BBCodeFromDB
 
     public function parseBox($text)
     {
-        $text = preg_replace("#\[box=(.*?):{$this->uid}\]#", "<div class='spoiler-box'><a class='spoiler-link' href='#'><i class='fa fa-chevron-down'></i>\\1</a><div class='spoiler-body'>", $text);
-        $text = str_replace("[/box:{$this->uid}]", '</div></div>', $text);
+        $text = preg_replace("#\[box=(.*?):{$this->uid}\]#", $this->parseBoxHelperPrefix("\\1"), $text);
+        $text = str_replace("[/box:{$this->uid}]", $this->parseBoxHelperSuffix(), $text);
 
-        $text = str_replace("[spoilerbox:{$this->uid}]", "<div class='spoiler-box'><a class='spoiler-link' href='#'><i class='fa fa-chevron-down'></i>collapsed text</a><div class='spoiler-body'>", $text);
-        $text = str_replace("[/spoilerbox:{$this->uid}]", '</div></div>', $text);
+        $text = str_replace("[spoilerbox:{$this->uid}]", $this->parseBoxHelperPrefix("collapsed text"), $text);
+        $text = str_replace("[/spoilerbox:{$this->uid}]", $this->parseBoxHelperSuffix(), $text);
 
         return $text;
+    }
+
+    public function parseBoxHelperPrefix($linkText)
+    {
+        return "<div class='js-spoilerbox bbcode-spoilerbox'><a class='js-spoilerbox__link bbcode-spoilerbox__link' href='#'><i class='fa fa-chevron-down js-spoilerbox__arrow bbcode-spoilerbox__arrow'></i>{$linkText}</a><div class='js-spoilerbox__body'>";
+    }
+
+    public function parseBoxHelperSuffix()
+    {
+        return '</div></div>';
     }
 
     public function parseCentre($text)

@@ -17,39 +17,20 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
-.bbcode {
-  line-height: 1.5;
-  h4 {
-    font-size: inherit;
-    font-style: normal;
+.bbcode-spoilerbox {
+  &__link {
+    color: @yellow-darker;
+
+    &:focus,
+    &:hover,
+    &:active {
+      color: @yellow-dark;
+    }
   }
 
-  h2 {
-    padding-bottom: @grid-gutter-width/2;
+  &__arrow {
+    display: inline-block;
+    color: @gray;
+    margin-right: 10px;
   }
-
-  blockquote {
-    font-size: inherit;
-  }
-
-  img {
-    max-width: 100%;
-  }
-
-  pre {
-    white-space: pre-wrap;
-  }
-
-  .unordered {
-    list-style-type: disc;
-  }
-
-  .spoiler {
-    background-color: #000 !important;
-    color: #000 !important;
-  }
-
-  .size-50 { font-size: 50%; }
-  .size-85 { font-size: 85%; }
-  .size-150 { font-size: 150%; }
 }
