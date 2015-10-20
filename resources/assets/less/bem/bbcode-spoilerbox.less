@@ -17,13 +17,20 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+.bbcode-spoilerbox {
+  &__link {
+    color: @yellow-darker;
 
-.forum-post-content {
-    font-size: 12px;
-    font-family: sans-serif;
-    color: #444;
-
-    &--editor {
-      font-family: @font-family-monospace;
+    &:focus,
+    &:hover,
+    &:active {
+      color: @yellow-dark;
     }
+  }
+
+  &__arrow {
+    display: inline-block;
+    color: @gray;
+    margin-right: 10px;
+  }
 }

@@ -75,7 +75,7 @@
                     ></div>
                 </div>
 
-                <textarea required name="body" class="js-quick-submit forum-post-content" placeholder="{{ trans("forum.topic.reply_box_placeholder") }}"></textarea>
+                @include('forum.posts._form_body', ['postBody' => ['focus' => false]])
             </div>
 
             <div class="forum-small-row post-editor__footer">
