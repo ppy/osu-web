@@ -39,7 +39,7 @@
 
     <div class="post-panel">
         <div class="post-header {{ $options['large'] ? '' : 'post-body--small' }}">
-            <div class="post-time"><a class="js-post-url" href="{{ post_url($post->topic_id, $post->post_id) }}">
+            <div class="post-time"><a class="js-post-url link link--gray" href="{{ post_url($post->topic_id, $post->post_id) }}">
                 {!! trans("forum.post.posted_at", ["when" => timeago($post->post_time)]) !!}
             </a></div>
         </div>
