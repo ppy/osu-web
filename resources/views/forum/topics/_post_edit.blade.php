@@ -26,7 +26,7 @@
         </div>
 
         <div class="post-panel">
-            <textarea required class="js-quick-submit forum-post-content" name="body">{{ $post->bodyRaw }}</textarea>
+            @include('forum.posts._form_body', ['postBody' => ['content' => $post->bodyRaw, 'focus' => true]])
         </div>
     </div>
 

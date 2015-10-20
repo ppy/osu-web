@@ -51,7 +51,12 @@
                 </div>
 
                 <div class="post-panel">
-                    <textarea autofocus required class="js-quick-submit post-autopreview forum-post-content" tabindex="1" name="body" placeholder="{{ trans("forum.topic.create.placeholder.body") }}">{{ Request::old("body") }}</textarea>
+                    @include('forum.posts._form_body', ['postBody' => [
+                        'content' => Request::old("body"),
+                        'focus' => true,
+                        'extraClasses' => 'post-autopreview',
+                        'extraAttrs' => 'tabindex="1"',
+                    ]])
                 </div>
             </div>
 
