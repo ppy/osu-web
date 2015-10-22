@@ -78,19 +78,23 @@ class ProfilePage.Extra extends React.Component
     pages = ['recent_activities', 'kudosu']
     pages.unshift 'me' if withMePage
 
+    tabsContainerClasses = 'profile-extra-tabs__container js-fixed-element'
     tabsClasses = 'profile-extra-tabs__items'
     if @state.tabsSticky
-      tabsClasses += ' profile-extra-tabs__items--fixed js-sticky-header--active'
+      tabsContainerClasses += ' profile-extra-tabs__container--fixed js-sticky-header--active'
+      tabsClasses += ' profile-extra-tabs__items--fixed'
 
     el 'div', className: "content content-extra flex-full",
       el 'div',
         className: 'profile-extra-tabs js-sticky-header'
         'data-sticky-header-target': 'profile-extra-tabs'
         el 'div',
-          className: tabsClasses
-          'data-sticky-header-id': 'profile-extra-tabs'
-          pages.map (m) =>
-            el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
+          className: tabsContainerClasses
+          el 'div',
+            className: tabsClasses
+            'data-sticky-header-id': 'profile-extra-tabs'
+            pages.map (m) =>
+              el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
 
       if withMePage
         el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
