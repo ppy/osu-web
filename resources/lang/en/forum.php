@@ -54,7 +54,7 @@ return [
         'new_topic' => 'Post new topic',
         'post_edit' => [
             'cancel' => 'Cancel',
-            'post' => 'Edit',
+            'post' => 'Save',
         ],
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Type here to reply',
