@@ -183,10 +183,10 @@ class BBCodeFromDB
 
     public function parseNotice($text)
     {
-        $text = str_replace("[notice:{$this->uid}]", "<div class='well'>", $text);
-        $text = str_replace("[/notice:{$this->uid}]", '</div>', $text);
-
-        return $text;
+        return preg_replace(
+            "#\n*\[notice:{$this->uid}\]\n*(.*?)\n*\[/notice:{$this->uid}\]\n*#s",
+            "<div class='well'>\\1</div>",
+            $text);
     }
 
     public function parseProfile($text)
