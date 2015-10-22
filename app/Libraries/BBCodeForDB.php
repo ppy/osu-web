@@ -182,6 +182,14 @@ class BBCodeForDB
         return $text;
     }
 
+    public function parseNotice($text)
+    {
+        return preg_replace(
+            "#\[(notice)\](.*?)\[/\\1\]#s",
+            "[\\1:{$this->uid}]\\2[/\\1:{$this->uid}]",
+            $text);
+    }
+
     public function parseProfile($text)
     {
         return preg_replace_callback(
@@ -283,6 +291,7 @@ class BBCodeForDB
         $text = e($this->text);
 
         $text = $this->parseCode($text);
+        $text = $this->parseNotice($text);
         $text = $this->parseBox($text);
         $text = $this->parseQuote($text);
         $text = $this->parseList($text);
