@@ -167,7 +167,7 @@ class BeatmapSet extends Model {
 
 		$searchParams['index'] = env('ES_INDEX', 'osu');
 		$searchParams['size'] = $max;
-		$searchParams['body']['sort'] = ['last_update' => ['order' => 'desc']];
+		$searchParams['body']['sort'] = ['approved_date' => ['order' => 'desc']];
 		$searchParams['type'] = 'beatmaps';
 
 		$listing = Es::search($searchParams);
