@@ -23,7 +23,7 @@
   background-color: @gray-dark;
 
   &:hover {
-    .forum-topic-nav__progress-bar {
+    .forum-topic-nav__seek-bar {
       height: (@spacing * 3 / 2);
 
       &--all {
@@ -62,12 +62,13 @@
     }
   }
 
-  &__progress-bar {
+  &__seek-bar {
     position: absolute;
     left: 0;
     bottom: 100%;
     height: (@spacing / 2);
     transition: all 120ms linear;
+    cursor: pointer;
 
     &::before {
       content: ' ';
@@ -97,6 +98,41 @@
       &::before {
         display: none;
       }
+    }
+  }
+
+
+  &__seek-tooltip {
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: (@spacing * 3);
+
+    display: none;
+    opacity: 0;
+    transition: opacity 120ms linear;
+
+    width: 0;
+    justify-content: center;
+  }
+
+
+  &__seek-tooltip-number {
+    &:extend(.default-border-radius);
+    background-color: @gray-dark;
+    padding: (@spacing / 2) (@spacing * 2);
+    color: @grey-f;
+
+    &::before {
+      content: ' ';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -8px;
+
+      border-width: 10px 8px 0 8px;
+      border-style: solid;
+      border-color: transparent;
+      border-top-color: @gray-dark;
     }
   }
 }

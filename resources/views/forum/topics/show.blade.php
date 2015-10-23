@@ -93,16 +93,22 @@
         data-total-count="{{ $topic->postsCount() }}"
     >
 
-        <div class="
-            forum-topic-nav__progress-bar
-            forum-topic-nav__progress-bar--all
-            forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
-        "></div>
+        <div class="forum-topic-nav__seek-tooltip js-forum-posts-seek-tooltip">
+            <div class="forum-topic-nav__seek-tooltip-number js-forum-posts-seek-tooltip-number"></div>
+        </div>
 
-        <div class="js-forum__posts-progress
-            forum-topic-nav__progress-bar
-            forum-colour__bg-link--{{ $topic->forum->categorySlug() }}"
-        >
+        <div class="js-forum__posts-seek">
+            <div class="
+                forum-topic-nav__seek-bar
+                forum-topic-nav__seek-bar--all
+                forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
+            "></div>
+
+            <div class="
+                js-forum__posts-progress
+                forum-topic-nav__seek-bar
+                forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
+            "></div>
         </div>
 
         <div class="forum-topic-nav__content">

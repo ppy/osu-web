@@ -39,6 +39,9 @@ $(document).on 'ready page:load', =>
   @stickyHeader ||= new StickyHeader
   @globalDrag ||= new GlobalDrag
   @gallery ||= new Gallery
+  @fade ||= new Fade
+
+  @forumPostsSeek ||= new ForumPostsSeek(forum)
 
 
 $(document).on 'ready page:load osu:page:change', ->
