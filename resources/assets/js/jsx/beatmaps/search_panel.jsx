@@ -53,6 +53,7 @@
     },
     show_more: function() {
       $('#search').addClass('expanded');
+      return false;
     },
     render: function() {
       var filters = this.state.filters;
@@ -65,7 +66,7 @@
           </div>
 
           <FilterSelector name='mode' title='Mode' options={filters.modes} default={0} />
-          <FilterSelector name='status' title='Rank Status' options={filters.statuses} default={1} />
+          <FilterSelector name='status' title='Rank Status' options={filters.statuses} default={0} />
 
           <div className='more'>
             <a className='toggle' href='#' onClick={this.show_more}>
