@@ -72,6 +72,16 @@
 				loading: false
 			};
 		},
+		getFilterState: function() {
+			return({
+				'm': this.state.filters.mode,
+				's': this.state.filters.status,
+				'g': this.state.filters.genre,
+				'l': this.state.filters.language,
+				'e': this.state.filters.extra,
+				'r': this.state.filters.rank,
+			});
+		},
 		search: function() {
 			var searchText = $('#searchbox').val();
 			// if (searchText == "" || searchText == null)
@@ -81,15 +91,9 @@
 			$.ajax(this.state.paging.url, {
 				method: 'get',
 				dataType: 'json',
-				data: {
-					'q': searchText,
-					'm': this.state.filters.mode,
-					's': this.state.filters.status,
-					'g': this.state.filters.genre,
-					'l': this.state.filters.language,
-					'e': this.state.filters.extra,
-					'r': this.state.filters.rank
-				}
+				data: $.extend({}, this.getFilterState(), {
+					'q': searchText
+				})
 			}).done(function(data) {
 				this.setState({
 					beatmaps: data['data'],
@@ -108,10 +112,15 @@
 			if (this.state.loading || this.state.paging.loading || !this.state.paging.more)
 				return;
 
+			var searchText = $('#searchbox').val();
+
 			$.ajax(this.state.paging.url, {
 				method: 'get',
 				dataType: 'json',
-				data: {'q': $('#searchbox').val(), 'page': this.state.paging.page + 1}
+				data: $.extend({}, this.getFilterState(), {
+					'q': searchText,
+					'page': this.state.paging.page + 1
+				})
 			}).done(function(data) {
 				if (data['data'].length > 0) {
 					this.setState({
