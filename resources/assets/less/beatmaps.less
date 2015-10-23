@@ -160,130 +160,83 @@
 	&:hover .show_on_hover {
 		opacity: 1 !important;
 	}
+
+	.difficulties {
+		left: 10px;
+		top: 145px;
+
+		.difficulty-icon {
+			.icon-bg;
+			&:extend(.default-box-shadow);
+
+			color: #fff;
+			.center-content;
+
+			.circle(20px);
+			padding: 0px;
+			margin-right: 5px;
+		}
+
+		.easy {
+			background-color: #aadd00;
+		}
+
+		.normal {
+			background-color: #ffcc22;
+		}
+
+		.hard {
+			background-color: #ff66aa;
+		}
+
+		.insane {
+			background-color: #8866ee;
+		}
+
+		.expert {
+			background-color: #000;
+		}
+	}
 }
 
-//modding interface (why is this in beatmaps.less?)
-
-.scrubbar {
-	margin: 35px 0 20px 0;
-	background: #cacaca;
-	width: 100%;
-	height: 80px;
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	@font-face {
+		font-family: 'osu';
+		src: url('../font/osu.svg?72605884#osu') format('svg');
+	}
 }
+*/
 
-.mod-stats {
-	margin: 15px;
-}
+ [class^="mode-"]:before, [class*=" mode-"]:before {
+	font-family: "osu";
+	font-style: normal;
+	font-weight: normal;
+		font-size: 22px;
+	speak: none;
 
-.counter {
-	text-align: center;
 	display: inline-block;
-	width: 100%;
-	height: 65px;
+	text-decoration: inherit;
+	width: 1em;
+	margin-right: .2em;
+	text-align: center;
 
-	.box_shadow;
+	/* For safety - reset parent styles, that can break glyph codes*/
+	font-variant: normal;
+	text-transform: none;
 
-	padding-left: 0;
-	padding-right: 0;
+	/* Animation center compensation - margins should be symmetric */
+	/* remove if not needed */
+	margin-left: .2em;
 
-	.title {
-		font-size: 80%;
-		line-height: 25px;
-	}
-
-	.number {
-		font-size: 140%;
-	}
-
-	&.resolved {
-		color: @green;
-	}
-
-	&.pending {
-		color: @pink;
-	}
+	/* Font smoothing. That was taken from TWBS */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
-.filter_bar {
-	margin: 30px;
-	.large;
-}
-
-.parent {
-	padding-left: 0;
-}
-
-.topic-icon {
-	position: absolute;
-	margin-left: -46px;
-	margin-top: -32px;
-}
-
-.post {
-	padding: 5px 5px 5px 0;
-	margin-bottom: 15px;
-
-	&.toplevel {
-		.box_shadow;
-	}
-
-	&.form {
-		box-shadow: none;
-	}
-
-	&.child {
-		margin-left: 50px;
-		font-size: 90%;
-	}
-
-	.child {
-		font-size: 90%;
-		margin-left: 40px;
-		margin-top: 15px;
-		padding-right: 10px;
-		padding-left: 0;
-	}
-
-	.post-text {
-		padding-left: 0;
-		padding-right: 0;
-	}
-
-	.parent, .post-icon {
-		.praise { color: @blue; }
-		.suggestion { color: @yellow-dark; }
-		.problem { color: @pink; }
-		.resolved { color: @green-dark; }
-	}
-
-	.child-avatar {
-		padding-left: 0;
-		padding-right: 0;
-	}
-
-}
-
-.post-enter {
-  opacity: 0.01;
-  transition: opacity 0.5s ease-in;
-}
-
-.post-enter.post-enter-active {
-  opacity: 1;
-}
-
-.score-selector {
-	cursor: pointer;
-}
-.score-selector:hover {
-	color: rgb(238, 51, 153) !important;
-}
-.unranked {
-	color: rgb(219, 219, 219);
-}
-.unranked:hover {
-	color: rgb(128, 128, 128) !important;
-}
-.grey {
-	color: rgb(128, 128, 128) !important;
-}
+.mode-osu:before { content: '\e800'; } /* '' */
+.mode-ctb:before { content: '\e801'; } /* '' */
+.mode-mania:before { content: '\e802'; } /* '' */
+.mode-taiko:before { content: '\e803'; } /* '' */

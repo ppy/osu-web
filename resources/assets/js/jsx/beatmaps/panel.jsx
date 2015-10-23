@@ -20,9 +20,24 @@
 ;(function() {
   'use strict';
 
+  require('./icon.jsx');
+
   window.Panel = React.createClass({
     render: function() {
       var beatmap = this.props.beatmap;
+
+      var difficulties = [];
+      if (beatmap.difficulties.length > 0) {
+        if (beatmap.difficulties.length > 5) {
+          difficulties.push(<BeatmapDifficultyIcon difficulty={beatmap.difficulties[0]} />);
+          difficulties.push(<span>{beatmap.difficulties.length - 1}</span>);
+        } else {
+          for (var i = 0; i < beatmap.difficulties.length; i++) {
+            difficulties.push(<BeatmapDifficultyIcon difficulty={beatmap.difficulties[i]} />);
+          }
+        }
+      }
+
       return (
         <div href={'/beatmaps/modding/'+beatmap.beatmapset_id} className='beatmap object_link' objectid={beatmap.beatmapset_id}>
           <div className='thumbnail' style={{'background-image': 'url("//b.ppy.sh/thumb/'+beatmap.beatmapset_id+'l.jpg")'}}>
@@ -78,6 +93,10 @@
             <a href='#' className="object_link"><i className="fa fa-download"></i></a>
             <a href='#' className="object_link"><i className="fa fa-comments-o"></i></a>
             <a href='#' className="object_link"><i className='fa fa-heart'></i></a>
+          </div>
+
+          <div className='difficulties'>
+            {difficulties}
           </div>
 
           <paper-shadow z="1" animated="true"></paper-shadow>

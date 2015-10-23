@@ -75,7 +75,6 @@ elixir(function(mix) {
 	.browserify("jsx/modding_react.jsx", "public/js/modding_react.js")
 	.browserify("jsx/profile_page.jsx", "public/js/react/profile_page.js")
 	.browserify("jsx/beatmaps/index.jsx", "public/js/react/beatmaps/index.js")
-	.browserify("jsx/beatmaps/panel.jsx", "public/js/react/beatmaps/panel.js")
 	.version([
 		"css/app.css",
 		"js/app.js",
@@ -84,7 +83,6 @@ elixir(function(mix) {
 		"js/modding_react.js",
 		"js/react/profile_page.js",
 		"js/react/beatmaps/index.js",
-		"js/react/beatmaps/panel.js",
 		"js/vendor.js",
 	])
 });
