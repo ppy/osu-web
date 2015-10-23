@@ -99,6 +99,68 @@ class BeatmapSet extends Model {
 	public function isQualified() { return $this->approved == static::QUALIFIED; }
 
 
+	public static function search(array $params = []) {
+
+		// default search params
+		$params += [
+			'query' => null,
+			'mode' => 0,
+			'status' => 0,
+			'genre' => null,
+			'language' => null,
+			'extra' => null,
+			'rank' => null,
+			'page' => 1
+		];
+		extract($params);
+
+		$max = config("osu.beatmaps.max", 30);
+
+		$searchParams['index'] = env('ES_INDEX', 'osu');
+		$searchParams['type'] = 'beatmaps';
+		$searchParams['size'] = $max;
+
+		$searchParams['from'] = (max(0, $page - 1))* $max;
+		$searchParams['body']['sort'] = ['approved_date' => ['order' => 'desc']];
+
+		$matchParams = [];
+
+		if (presence($mode))
+		 $matchParams[] = ['match' => ['playmode' => (int)$mode]];
+
+		if (presence($genre))
+		 $matchParams[] = ['match' => ['genre_id' => (int)$genre]];
+
+		if (presence($language))
+		 $matchParams[] = ['match' => ['language_id' => (int)$language]];
+
+		if (array($extra) && !empty($extra)) {
+			foreach ($extra as $val) {
+				switch($val) {
+					case 0: // video
+						$matchParams[] = ['match' => ['video' => 1]];
+						break;
+					case 1: // storyboard
+						$matchParams[] = ['match' => ['storyboard' => 1]];
+						break;
+				}
+			}
+		}
+
+		if (presence($query)) {
+			$matchParams[] = ['query_string' => ['query' => implode(" AND ", explode(" ", $query))]];
+		}
+
+		if (!empty($matchParams))
+			$searchParams['body']['query']['bool']['must'] = $matchParams;
+
+
+		$listing = Es::search($searchParams);
+		$listing = array_map(function($e) { $e['_source']['beatmapset_id'] = $e['_id']; return $e['_source']; }, $listing['hits']['hits']);
+
+		return $listing;
+	}
+
 	public static function listing() {
 		$max = config("osu.beatmaps.max", 30);
 		$page = Request::input("page", 1) - 1;

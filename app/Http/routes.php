@@ -50,6 +50,7 @@ Route::get("/icons", "HomeController@getIcons");
 
 // beatmaps section
 Route::get('/beatmaps', ["as" => "beatmaps", "uses" => "BeatmapController@index"]);
+Route::get('/beatmaps/search/{filters?}', ["as" => "beatmaps.search", "uses" => "BeatmapController@search"]);
 
 // maps
 Route::get('/beatmaps/set/{id}', ["as" => "set", "uses" => 'BeatmapController@getMapSet']);

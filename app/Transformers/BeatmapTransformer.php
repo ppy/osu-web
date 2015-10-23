@@ -27,16 +27,64 @@ use League\Fractal;
 
 class BeatmapTransformer extends Fractal\TransformerAbstract
 {
+  // beatmap difficulty grouping (for beatmap card display)
+  private function groupDifficulties(array &$beatmap)
+  {
+    $difficulty_data = $beatmap['difficulties'];
+    $difficulties = [];
+
+    if (!is_array($difficulty_data['version'])) {
+      $fields_to_convert = [
+        'beatmap_id',
+        'version',
+        'hit_length',
+        'diff_drain',
+        'diff_size',
+        'diff_overall',
+        'diff_approach',
+        'playmode',
+        'difficultyrating'
+      ];
+      foreach ($fields_to_convert as $field) {
+        $difficulty_data[$field] = array($difficulty_data[$field]);
+      }
+    }
+
+    foreach ($difficulty_data['version'] as $key => $difficulty) {
+      $difficulties[$key]['name'] = $difficulty;
+      $difficulties[$key]['rating'] = $difficulty_data['difficultyrating'][min(count($difficulty_data['difficultyrating'])-1, $key)];
+
+      if (is_array($difficulty_data['playmode'])) {
+        $difficulties[$key]['mode'] = $difficulty_data['playmode'][0];
+      } else {
+        $difficulties[$key]['mode'] = $difficulty_data['playmode'];
+      }
+
+    }
+
+    usort($difficulties, function($a, $b) {
+      if ($a['mode'] == $b['mode']) {
+        return $a['rating'] - $b['rating'];
+      } else {
+        $a['mode'] - $b['mode'];
+      }
+    });
+
+    return $difficulties;
+  }
+
   public function transform(array $beatmap)
   {
     return [
       "beatmapset_id" => $beatmap['beatmapset_id'],
       "title" => $beatmap['title'],
       "artist" => $beatmap['artist'],
-      "play_count" => $beatmap['play_count'],
-      "favourite_count" => $beatmap['favourite_count'],
+      "play_count" => number_format($beatmap['play_count']),
+      "favourite_count" => number_format($beatmap['favourite_count']),
       "creator" => $beatmap['creator'],
-      "user_id" => $beatmap['user_id']
+      "user_id" => $beatmap['user_id'],
+      "source" => $beatmap['source'],
+      "difficulties" => BeatmapTransformer::groupDifficulties($beatmap)
     ];
   }
 }
