@@ -51,6 +51,7 @@
           this.setState({selected: [i]}, this.triggerUpdate);
         }
       }
+      return false;
     },
     triggerUpdate: function() {
       var payload = {name: this.props.name, value: this.props.multiselect ? this.state.selected.join('-') : this.state.selected[0]};
