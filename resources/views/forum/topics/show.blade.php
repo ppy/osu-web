@@ -122,8 +122,9 @@
                 </a>
 
                 <span class="post-counter forum-topic-nav__item forum-topic-nav__item--main">
-                    <a href="#" class="current-count js-forum__posts-counter">{{ head($postsPosition) }}</a>
-                    <span class="total-count"> / {{ $topic->postsCount() }}</span>
+                    <span class="current-count js-forum__posts-counter">{{ head($postsPosition) }}</span>
+                    /
+                    <span class="js-forum__total-count">{{ $topic->postsCount() }}</span>
                 </span>
 
                 <a href="#" class="js-forum-topic--post-next forum-topic-nav__item forum-topic-nav__item--main">

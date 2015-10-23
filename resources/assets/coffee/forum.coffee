@@ -36,14 +36,13 @@ class Forum
 
   setTotalPosts: (n) =>
     @_totalPostsDiv[0].setAttribute('data-total-count', n)
-    document.getElementsByClassName('total-count')[0].textContent = n
+    document.getElementsByClassName('js-forum__total-count')[0].textContent = n
 
   setCounter: (currentPost) =>
     currentPostPosition = currentPost.getAttribute('data-post-position')
     postId = currentPost.getAttribute('data-post-id')
 
     @_postsCounter[0].textContent = currentPostPosition
-    @_postsCounter[0].setAttribute 'href', "#{window.canonicalUrl}?start=#{postId}#forum-post-#{postId}"
     @_postsProgress[0].style.width = "#{100 * currentPostPosition / @totalPosts()}%"
 
   endPost: => @posts[@posts.length - 1]
