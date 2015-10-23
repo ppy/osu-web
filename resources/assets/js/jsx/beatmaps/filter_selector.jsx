@@ -23,7 +23,7 @@
   window.FilterSelector = React.createClass({
     propTypes: {
       title: React.PropTypes.string.isRequired,
-      options: React.PropTypes.objectOf(React.PropTypes.string).isRequired,
+      options: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
       selected: React.PropTypes.arrayOf(React.PropTypes.number),
       multiselect: React.PropTypes.bool
     },
@@ -53,7 +53,7 @@
       }
     },
     triggerUpdate: function() {
-      var payload = {name: this.props.name, value: this.props.multiselect ? this.state.selected : this.state.selected[0]};
+      var payload = {name: this.props.name, value: this.props.multiselect ? this.state.selected.join('-') : this.state.selected[0]};
       $(document).trigger('beatmap:search:filtered', payload);
     },
     selected: function(i) {
