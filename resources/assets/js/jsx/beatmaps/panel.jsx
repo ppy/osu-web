@@ -93,7 +93,6 @@
 
           <div className="bottom_right show_on_hover">
             <a href='#' className="object_link"><i className="fa fa-download"></i></a>
-            <a href='#' className="object_link"><i className="fa fa-comments-o"></i></a>
             <a href='#' className="object_link"><i className='fa fa-heart'></i></a>
           </div>
 
