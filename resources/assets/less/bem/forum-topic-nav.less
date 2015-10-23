@@ -79,9 +79,20 @@
       background-color: @gray-darker;
     }
 
+    // easier targeting
+    &::after {
+      content: ' ';
+      position: absolute;
+      left: 0;
+      bottom: 100%;
+      height: @spacing;
+      width: 100%;
+      background-color: transparent;
+    }
+
     &--all {
       width: 100%;
-      opacity: 0;
+      opacity: 0.01;
 
       &::before {
         display: none;
