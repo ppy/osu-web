@@ -21,92 +21,73 @@
 */
 
 return [
-	"moddingreact" => "modding",
 	"listing" => [
 		"search" => [
 			"prompt" => "type in keywords...",
-			"options" => "More search options",
+			"options" => "More Search Options",
 		],
 		"mode" => "Mode",
 		"status" => "Rank Status",
-		"all" => "All",
-		"ranked-approved" => "Ranked & Approved",
-		"faves" => "Favourites",
-		"modreqs" => "Mod Requests",
-		"pending" => "Pending",
 		"mapped-by" => "mapped by :mapper",
 		"source" => "from :source",
 		"load-more" => "Load more...",
 	],
-	"modding" => [
-		"portal" => "Modding Portal",
-		"discussion" => "Beatmap Discussion",
-		"metadata" => [
-			"title" => "Title",
-			"artist" => "Artist",
-			"tags" => "Tags",
-			"source" => "Source",
-			"unicode" => [
-				"artist" => "Unicode Artist",
-				"title" => "Unicode Title",
-			],
-		],
-		"comments" => [
-			"comment" => "Enter a comment...",
-			"time" => "Enter a time (Optional)",
-			"reply" => "Type here to reply...",
-			"missing" => "There doesnt seem to be anything here. Sorry about that.",
-		],
-		"feedback" => [
-			// the pipe character is for pluralizing
-			"feedback" => "General Feedback",
-			"difficulty" => "Difficulty Specific",
-			"praise" => "Praise|Praise",
-			"suggestion" => "Suggestion|Suggestions",
-			"problem" => "Problem|Problems",
-			"nominate" => "Nominate|Nominations",
-			"resolved" => "Resolved",
-		],
-		"helptext" => [
-			"time" => "Copy-paste a time into here from the editor (CTRL+C, CTRL+V)",
-			"nominate" => "See the :ranking for a list of criteria that beatmaps must meet to pass into qualification.",
-			"ranking" => "ranking criteria", // this is linkified
-			"warning" => "Don't just nominate because you like the mapper; nominate because a map is ready to be ranked.",
-			"comment" => "Leave a comment with your mod or praise, and if possible, attach the mod to your post!",
-			"confirm" => "I acknowledge that nominating maps with objective issues will lead to losing mod score, or having my ability to nominate removed.",
-		],
-		"errors" => [
-			"type" => "You didn't specify a comment type!",
-			"access-denied" => "You aren't allowed to do that.",
-			"invalid" => "Your mod was automatically rejected. Mods should be between 15 and 800 characters long.",
-			"silenced" => "You cannot post mods while silenced. Please try again later.",
-			"missing" => "Beatmap not found. It may have been deleted after you loaded the page!",
-			"beatmap" => "You tried to comment on a beatmap that is not part of this set.",
-			"unknown" => "An unknown error occurred. We've been notified!",
-			"no-comment" => "You need to add a comment.",
-		],
-		"success" => [
-			"comment" => "Comment Posted!",
-			"reply" => "Reply Posted!",
-			"nomination" => "Nomination Posted!",
-			"edit" => "Post Edited!",
-		],
+	"mode" => [
+		"any" => "Any",
+		"osu" => "osu!",
+		"taiko" => "osu!taiko",
+		"catch" => "osu!catch",
+		"mania" => "osu!mania"
 	],
-	"bat-tools" => [
-		"buttons" => [
-			"delete-map" => "Delete Beatmap",
-			"unrank-map" => "Unrank Beatmap",
-			"delete-scores" => "Delete Scores",
-			"graveyard-map" => "Graveyard Map",
-		],
+	"status" => [
+		"all" => "All",
+		"ranked-approved" => "Ranked & Approved",
+		"approved" => "Approved",
+		"faves" => "Favourites",
+		"modreqs" => "Mod Requests",
+		"pending" => "Pending",
+		"graveyard" => "Graveyard",
+		"my-maps" => "My Maps"
 	],
-	"bss" => [
-		"errors" => [
-			"missing" => "Sorry, that beatmap doesn't exist.",
-			"access-denied" => "That beatmap doesn't belong to you.",
-			"ranked" => "That beatmap is already ranked",
-			"graveyarded" => "That beatmap is in the graveyard. Go to your beatmaps on the osu! website and revive it",
-
-		],
+	"genre" => [
+		"any" => "Any",
+		"unspecified" => "Unspecified",
+		"video-game" => "Video Game",
+		"anime" => "Anime",
+		"rock" => "Rock",
+		"pop" => "Pop",
+		"other" => "Other",
+		"novelty" => "Novelty",
+		"hip-hop" => "Hip Hop",
+		"electronic" => "Electronic"
 	],
+	"language" => [
+    "any" => "Any",
+    "english" => "English",
+    "chinese" => "Chinese",
+    "french" => "French",
+    "german" => "German",
+    "italian" => "Italian",
+    "japanese" => "Japanese",
+    "korean" => "Korean",
+    "spanish" => "Spanish",
+    "swedish" => "Swedish",
+    "instrumental" => "Instrumental",
+    "other" => "Other"
+	],
+	"extra" => [
+		"video" => "Has Video",
+		"storyboard" => "Has Storyboard"
+	],
+	"rank" => [
+    "any" => "Any",
+    "silver-ss" => "Silver SS",
+    "ss" => "SS",
+    "silver-s" => "Silver S",
+    "s" => "S",
+    "a" => "A",
+    "b" => "B",
+    "c" => "C",
+    "d" => "D"
+	]
 ];

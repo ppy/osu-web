@@ -18,92 +18,177 @@
 *
 */
 ;(function() {
-  'use strict';
+	'use strict';
 
-  require('./panel.jsx');
+	require('./search_panel.jsx');
+	require('./panel.jsx');
+	require('./pagination.jsx');
 
-  var beatmaps = JSON.parse(document.getElementById('json-beatmaps').text);
+	window.BeatmapsListing = React.createClass({
+		render: function() {
+			var beatmaps = [];
+			for (var i = 0; i < this.props.beatmaps.length; i++) {
+				beatmaps.push(<Panel beatmap={this.props.beatmaps[i]} />);
+			}
+			return (
+				<div className={"beatmap-container " + (this.props.loading ? "dimmed" : "")}>
+					<div className='sorting'>
+						<a href='#'>title</a>
+						<a href='#'>artist</a>
+						<a href='#'>creator</a>
+						<a href='#'>difficulty</a>
+						<a href='#'>ranked</a>
+						<a href='#' className='active'>rating</a>
+						<a href='#'>plays</a>
+					</div>
+					<div className='view_mode'>
+					</div>
+					<div className='listing'>
+						{beatmaps}
+					</div>
+				</div>
+			);
+		}
+	});
 
-  window.SearchPanel = React.createClass({
-    render: function() {
-      return(
-        <div id='search' className='search'>
-          <div className='box'>
-            <input type='textbox' name='search' placeholder={Lang.get("beatmaps.listing.search.prompt")}>
-            <i className='fa fa-search'></i></input>
-          </div>
+	window.Beatmaps = React.createClass({
+		getInitialState: function() {
+			return {
+				beatmaps: JSON.parse(document.getElementById('json-beatmaps').text)['data'],
+				paging: {
+					page: 1,
+					url: "/beatmaps/search",
+					loading: false,
+					more: true
+				},
+				filters: {
+					mode: 0,
+					status: 0,
+					genre: null,
+					language: null,
+					extra: null,
+					rank: null
+				},
+				loading: false
+			};
+		},
+		search: function() {
+			var searchText = $('#searchbox').val();
+			// if (searchText == "" || searchText == null)
+			//   return;
 
-          <div className='selector'>
-            <span className='header'>Mode</span>
-            <a href='#' className='active'>{Lang.get("beatmaps.listing.all")}</a>
-            <a href='#'>osu!</a>
-            <a href='#'>Taiko</a>
-            <a href='#'>Catch the Beat</a>
-            <a href='#'>osu!mania</a>
-          </div>
+			this.showLoader();
+			$.ajax(this.state.paging.url, {
+				method: 'get',
+				dataType: 'json',
+				data: {
+					'q': searchText,
+					'm': this.state.filters.mode,
+					's': this.state.filters.status,
+					'g': this.state.filters.genre,
+					'l': this.state.filters.language,
+					'e': this.state.filters.extra,
+					'r': this.state.filters.rank
+				}
+			}).done(function(data) {
+				this.setState({
+					beatmaps: data['data'],
+					paging: {
+						page: 1,
+						url: this.state.paging.url,
+						loading: false,
+						more: true
+					},
+					loading: false
+				});
+				$(document).trigger('beatmap:search:done');
+			}.bind(this));
+		},
+		loadMore: function() {
+			if (this.state.loading || this.state.paging.loading || !this.state.paging.more)
+				return;
 
-          <div className='selector'>
-            <span className='header'>Rank Status</span>
-            <a href='#' className='active'>{Lang.get("beatmaps.listing.ranked-approved")}</a>
-            <a href='#'>{Lang.get("beatmaps.listing.faves")}</a>
-            <a href='#'>{Lang.get("beatmaps.listing.modreqs")}</a>
-            <a href='#'>{Lang.get("beatmaps.listing.pending")}</a>
-            <a href='#'>{Lang.get("beatmaps.listing.all")}</a>
-          </div>
+			$.ajax(this.state.paging.url, {
+				method: 'get',
+				dataType: 'json',
+				data: {'q': $('#searchbox').val(), 'page': this.state.paging.page + 1}
+			}).done(function(data) {
+				if (data['data'].length > 0) {
+					this.setState({
+						beatmaps: this.state.beatmaps.concat(data['data']),
+						paging: {
+							page: this.state.paging.page + 1,
+							url: this.state.paging.url,
+							more: true
+						},
+						loading: false
+					});
+				} else {
+					this.setState({
+						beatmaps: this.state.beatmaps,
+						paging: {
+							page: this.state.paging.page,
+							url: this.state.paging.url,
+							more: false
+						},
+						loading: false
+					});
+				}
+			}.bind(this));
+		},
+		showLoader: function() {
+			this.setState({loading: true});
+			$('#loading-area').show();
+		},
+		hideLoader: function() {
+			this.setState({loading: false});
+			$('#loading-area').hide();
+		},
+		updateFilters: function(lets_ignore_this, b) {
+			var newFilters = $.extend({}, this.state.filters); // clone object
+			newFilters[b.name] = b.value;
 
-          <div className='more gray_link'>
-            <a href='#'>
-              <div>{Lang.get("beatmaps.listing.search.options")}</div>
-              <div><i className='fa fa-angle-down'></i></div>
-            </a>
-          </div>
-        </div>
-      );
-    }
-  });
+			if (this.state.filters != newFilters) {
+				this.setState({filters: newFilters}, function() {
+					$(document).trigger('beatmap:search:start');
+				});
+			}
+		},
+		componentDidMount: function() {
+			$(document).on('beatmap:load_more', this.loadMore);
+			$(document).on('ready page:load osu:page:change', function() { setTimeout(this.onScroll, 1000); });
+			$(document).on('beatmap:search:start', this.search);
+			$(document).on('beatmap:search:done', this.hideLoader);
+			$(document).on('beatmap:search:filtered', this.updateFilters);
+		},
+		componentWillUnmount: function() {
+			$(document).off('beatmap:load_more');
+			$(document).off('beatmap:search:start');
+			$(document).off('beatmap:search:done');
+			$(document).off('beatmap:search:filtered');
+		},
+		render: function() {
+			var searchBackground;
 
-  window.Beatmaps = React.createClass({
-    getInitialState: function() {
-      return {
-        // beatmaps: this.props.beatmaps
-      };
-    },
+			if (this.state.beatmaps.length > 0)
+				searchBackground = "//b.ppy.sh/thumb/" + this.state.beatmaps[0].beatmapset_id + "l.jpg";
+			else
+				searchBackground = "";
 
-    unlistenAll: function() {
-    },
+			return(
+				<div>
+					<SearchPanel background={searchBackground} />
+					<div id='beatmaps' class='beatmaps padding'>
+						<BeatmapsListing beatmaps={this.state.beatmaps} loading={this.state.loading} />
+						<Paginator paging={this.state.paging} />
+					</div>
+				</div>
+			);
+		}
+	});
 
-    listenAll: function() {
-      this.unlistenAll();
-    },
-
-    componentDidMount: function() {
-      this.listenAll();
-    },
-
-    componentWillUnmount: function() {
-      this.unlistenAll();
-    },
-
-    render: function() {
-      var
-        beatmaps = [],
-        beatmap_data = JSON.parse(document.getElementById('json-beatmaps').text)['data'];
-        for (var i = 0; i < beatmap_data.length; i++) {
-          beatmaps.push(<Panel beatmap={beatmap_data[i]} />);
-        }
-      return (
-        <div id='beatmaps' class='beatmaps padding'>
-          {beatmaps}
-        </div>
-      );
-    }
-  });
-
-  React.render(
-    <div>
-      <SearchPanel />
-      <Beatmaps beatmaps={beatmaps} />
-    </div>,
-    document.getElementsByClassName('content')[0]
-  );
+	React.render(
+		<Beatmaps />,
+		document.getElementsByClassName('content')[0]
+	);
 }).call(this)

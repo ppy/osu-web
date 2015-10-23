@@ -39,8 +39,10 @@
       }
 
       return (
-        <div href={'/beatmaps/modding/'+beatmap.beatmapset_id} className='beatmap object_link' objectid={beatmap.beatmapset_id}>
-          <div className='thumbnail' style={{'background-image': 'url("//b.ppy.sh/thumb/'+beatmap.beatmapset_id+'l.jpg")'}}>
+        <div href={'/beatmaps/modding/'+beatmap.beatmapset_id} className='beatmap object_link shadow-hover' objectid={beatmap.beatmapset_id}>
+          <div className='panel'>
+            <div className='thumb' style={{'background-image': 'url("//b.ppy.sh/thumb/'+beatmap.beatmapset_id+'l.jpg")'}}></div>
+            <div className='thumb_cover' style={{'background-image': 'url("//b.ppy.sh/thumb/'+beatmap.beatmapset_id+'l.jpg")'}}></div>
             <div className="bottom_left">
               <div className='title'>
                 <span title={beatmap.title}>{beatmap.title}</span>
