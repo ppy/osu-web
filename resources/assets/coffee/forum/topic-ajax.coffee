@@ -30,13 +30,13 @@ $(document).on 'ajax:success', '.delete-post-link', (_event, data) ->
       window.forum.setTotalPosts(window.forum.totalPosts() - 1)
 
       for post in window.forum.posts by -1
-        originalPosition = parseInt(post.getAttribute('data-post-position'))
+        originalPosition = parseInt post.getAttribute('data-post-position'), 10
 
         break if originalPosition < data.postPosition
 
         post.setAttribute 'data-post-position', originalPosition - 1
 
-      $(document).trigger('osu:page:change')
+      osu.pageChange()
 
 
 $(document).on 'ajax:success', '.reply-post-link', (e, data) ->
@@ -64,9 +64,10 @@ $(document).on 'ajax:success', '#forum-topic-reply-box', (_event, data) ->
       .insertAfter($('.forum-post').last())
       .find('textarea').val('')
 
-    $(document).trigger('osu:page:change')
+    osu.pageChange()
 
-    window.forum.endPost().scrollIntoView()
+    newPost = window.forum.endPost()
+    newPost.scrollIntoView()
   else
     osu.navigate $(data).find('.js-post-url').attr('href')
 
@@ -76,19 +77,25 @@ $(document).on 'ajax:success', '.edit-post-link', (e, data, status, xhr) ->
   # removed in this callback.
   $(e.target).trigger('ajax:complete', [xhr, status])
 
-  $postPanel = $(e.target).parents('.forum-post').find('.post-panel')
+  $postBox = $(e.target).parents('.forum-post')
 
-  $postPanel
-    .data('originalPost', $postPanel.html())
-    .html(data)
-    .find('[name=body]').focus()
+  $postBox
+    .data 'originalPost', $postBox.html()
+    .html data
+    .find '[name=body]'
+    .focus()
+
+  osu.pageChange()
+
 
 $(document).on 'click', '.js-edit-post-cancel', (e) ->
   e.preventDefault()
 
-  $postPanel = $(e.target).parents('.forum-post').find('.post-panel')
+  $postBox = $(e.target).parents '.forum-post'
+  $postBox.html $postBox.data('originalPost')
 
-  $postPanel.html $postPanel.data('originalPost')
+  osu.pageChange()
+
 
 $(document).on 'ajax:success', '.edit-post', (e, data, status, xhr) ->
   # ajax:complete needs to be triggered early since the form (target) is
@@ -97,4 +104,4 @@ $(document).on 'ajax:success', '.edit-post', (e, data, status, xhr) ->
     .trigger('ajax:complete', [xhr, status])
     .parents('.forum-post').replaceWith(data)
 
-  $(document).trigger('osu:page:change')
+  osu.pageChange()

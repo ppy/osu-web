@@ -25,6 +25,8 @@ scrollOptions =
 itemHovered = false
 lastItemChange = null
 
+el = React.createElement
+
 # loading animation overlay
 # fired from turbolinks
 $(document).on 'page:fetch', osu.showLoadingOverlay
@@ -32,9 +34,22 @@ $(document).on 'page:receive', osu.hideLoadingOverlay
 # form submission is not covered by turbolinks
 $(document).on 'submit', 'form', osu.showLoadingOverlay
 
+
+$(document).on 'ready page:load', =>
+  @stickyHeader ||= new StickyHeader
+  @globalDrag ||= new GlobalDrag
+  @gallery ||= new Gallery
+
+
 $(document).on 'ready page:load osu:page:change', ->
   osu.initTimeago()
   new Layzr
+
+
+$(document).on 'ready page:load', =>
+  return if currentUser.id == undefined
+  React.render el(UserCard), $('.js-user-dropdown-modal__dialog')[0]
+
 
 $(document).on 'change', '.js-url-selector', (e) ->
   $target = $(e.target)

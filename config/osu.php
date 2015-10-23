@@ -2,53 +2,52 @@
 
 // osu config~
 return [
-	"bbcode" => [
-		// this should be random or a config variable.
-		// ...who am I kidding, this shouldn't even exist at all.
-		"uid" => "1337",
-	],
-	"beatmaps" => [
-		"max" => 50
-	],
-	"camo" => [
-		"key" => env("CAMO_KEY"),
-		"prefix" => env("CAMO_PREFIX", "https://i.ppy.sh/"),
-	],
-	"emails" => [
-		"account" => "accounts@ppy.sh",
-	],
-	"forum" => [
-		"admin_forum_id" => intval(env("ADMIN_FORUM_ID", 28)),
-		"help_forum_ids" => array_map("intval", explode(" ", env("HELP_FORUM_IDS", "4 5 29 30 101"))),
+    'bbcode' => [
+        // this should be random or a config variable.
+        // ...who am I kidding, this shouldn't even exist at all.
+        'uid' => '1337',
+    ],
+    'beatmaps' => [
+        'max' => 50,
+    ],
+    'camo' => [
+        'key' => env('CAMO_KEY'),
+        'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
+    ],
+    'emails' => [
+        'account' => 'accounts@ppy.sh',
+    ],
+    'forum' => [
+        'admin_forum_id' => intval(env('ADMIN_FORUM_ID', 28)),
+        'help_forum_ids' => array_map('intval', explode(' ', env('HELP_FORUM_IDS', '4 5 29 30 101'))),
 
-		"slack_watch" => [
-			"forum_ids" => array_map("intval", explode(" ", env("SLACK_WATCH_FORUM_IDS", "5 29 101 4 30 2"))),
-			"topic_ids" => array_map("intval", explode(" ", env("SLACK_WATCH_TOPIC_IDS", "259747"))),
-		],
-	],
-	"urls" => [
-		"assets" => env("ASSETS_URL", "https://assets.ppy.sh/"),
-		"legal" => [
-			"dmca" => "https://osu.ppy.sh/p/copyright",
-			"tos" => "https://osu.ppy.sh/p/terms",
-		],
-		"smilies" => "https://osu.ppy.sh/forum/images/smilies",
-		"social" => [
-			"facebook" => "https://facebook.com/osugame",
-			"twitter" => "https://osu.ppy.sh/p/twitter",
-		],
-		"status" => [
-			"osustatus" => "https://twitter.com/osustatus",
-			"server" => "http://stat.ppy.sh/",
-		],
-		"support-the-game" => "https://osu.ppy.sh/p/support",
-		"user" => [
-			"recover_password" => "https://osu.ppy.sh/p/forgot",
-			"register" => "https://osu.ppy.sh/p/register",
-			"rules" => "https://osu.ppy.sh/wiki/Osu!:Rules",
-		],
-	],
-	"user" => [
-		"user_page_forum_id" => intval(env("USER_PAGE_FORUM_ID", 70)),
-	],
+        'slack_watch' => [
+            'forum_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_FORUM_IDS', '5 29 101 4 30 2'))),
+            'topic_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_TOPIC_IDS', '259747'))),
+        ],
+    ],
+    'urls' => [
+        'assets' => env('ASSETS_URL', 'https://assets.ppy.sh/'),
+        'legal' => [
+            'dmca' => 'https://osu.ppy.sh/p/copyright',
+            'tos' => 'https://osu.ppy.sh/p/terms',
+        ],
+        'smilies' => 'https://osu.ppy.sh/forum/images/smilies',
+        'social' => [
+            'facebook' => 'https://facebook.com/osugame',
+            'twitter' => 'https://osu.ppy.sh/p/twitter',
+        ],
+        'status' => [
+            'osustatus' => 'https://twitter.com/osustatus',
+            'server' => 'http://stat.ppy.sh/',
+        ],
+        'support-the-game' => 'https://osu.ppy.sh/p/support',
+        'user' => [
+            'kudosu' => 'https://osu.ppy.sh/wiki/Kudosu',
+            'rules' => 'https://osu.ppy.sh/wiki/Osu!:Rules',
+        ],
+    ],
+    'user' => [
+        'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
+    ],
 ];

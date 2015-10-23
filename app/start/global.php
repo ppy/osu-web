@@ -1,26 +1,23 @@
 <?php
 
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License as published by
-*    the Free Software Foundation, either version 3 of the License, or
-*    (at your option) any later version.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
-
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License as published by
+ *    the Free Software Foundation, either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /*
 |--------------------------------------------------------------------------
@@ -33,17 +30,16 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 |
 */
 
-ClassLoader::addDirectories(array(
+ClassLoader::addDirectories([
 
-	app_path().'/commands',
-	app_path().'/controllers',
-	app_path().'/models',
-	app_path().'/database/seeds',
-	app_path().'/lib',
-	app_path().'/traits',
+    app_path().'/commands',
+    app_path().'/controllers',
+    app_path().'/models',
+    app_path().'/database/seeds',
+    app_path().'/lib',
+    app_path().'/traits',
 
-));
-
+]);
 
 /*
 |--------------------------------------------------------------------------
@@ -56,27 +52,27 @@ ClassLoader::addDirectories(array(
 | IDs/params to pass to the URL can be passed in.
 |
 */
-Response::macro('route', function ($url, $ids = array(), $params = null)
-{
+Response::macro('route', function ($url, $ids = [], $params = null) {
 
-	try {
-		$url = URL::route($url, $ids, $absolute = false);
-	} catch (Exception $e) {
-		$url = URL::route("home", $absolute = false);
-	}
+    try {
+        $url = URL::route($url, $ids, $absolute = false);
+    } catch (Exception $e) {
+        $url = URL::route('home', $absolute = false);
+    }
 
-	if ($params and is_array($params)) {
-		$query = [];
-		foreach ($params as $key => $value) {
-			$query[] = $key . "=" . $value;
-		}
-		$url = $url . "?" . implode("&", $query);
-	}
+    if ($params and is_array($params)) {
+        $query = [];
+        foreach ($params as $key => $value) {
+            $query[] = $key.'='.$value;
+        }
+        $url = $url.'?'.implode('&', $query);
+    }
 
-	if (Request::ajax() or Input::has("ajax"))
-		return Response::json(["url" => $url]);
-	else
-		return Redirect::to($url);
+    if (Request::ajax() or Input::has('ajax')) {
+        return Response::json(['url' => $url]);
+    } else {
+        return Redirect::to($url);
+    }
 });
 
 /*
@@ -90,9 +86,8 @@ Response::macro('route', function ($url, $ids = array(), $params = null)
 |
 */
 
-App::down(function()
-{
-	return osu_error(503);
+App::down(function () {
+    return osu_error(503);
 });
 
 /*

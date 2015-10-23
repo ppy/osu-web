@@ -62,20 +62,11 @@ insert = (event, tagOpen, tagClose = '') ->
 
 $(document).on 'change', '.bbcode-size', (e) ->
   $select = $(e.target)
-  val = parseInt($select.val())
+  val = parseInt $select.val(), 10
 
   return if val == 100
 
   insert e, "[size=#{val}]", '[/size]'
-
-
-$(document).on 'click', '.create-post-advanced-switch', (e) ->
-  $link = $(e.target).closest('span')
-  $advanced = $link.parents('form').find('.create-post-advanced')
-
-  $link.siblings().show()
-  $link.hide()
-  $advanced.slideToggle()
 
 
 class PostAutoPreview
@@ -88,7 +79,7 @@ class PostAutoPreview
     $form = $(e.target).closest('form')
     url = $form.attr('data-preview-url')
     body = $form.find('[name=body]').val()
-    $preview = $form.find('.post-preview')
+    $preview = $form.find('.js-post-preview')
 
     return if @lastBody == body
 
@@ -96,6 +87,6 @@ class PostAutoPreview
     .done (data) =>
       @lastBody = body
       $preview.html data
-      $(document).trigger 'osu:page:change'
+      osu.pageChange()
 
 window.postAutoPreview = new PostAutoPreview

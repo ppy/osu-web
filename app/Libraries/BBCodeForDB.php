@@ -1,283 +1,318 @@
 <?php
 
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License as published by
-*    the Free Software Foundation, either version 3 of the License, or
-*    (at your option) any later version.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License as published by
+ *    the Free Software Foundation, either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 namespace App\Libraries;
 
 use App\Models\Smiley;
 
-class BBCodeForDB {
-	public $text;
-	public $uid;
+class BBCodeForDB
+{
+    public $text;
+    public $uid;
 
-	// "11111111111111111111111111111"
-	// encoded with: https://www.phpbb.com/support/docs/en/3.0/kb/article/how-to-template-bitfield-and-bbcodes/
-	// number of 1s are arbitrary
-	public $bitfield = "////+A==";
+    // "11111111111111111111111111111"
+    // encoded with: https://www.phpbb.com/support/docs/en/3.0/kb/article/how-to-template-bitfield-and-bbcodes/
+    // number of 1s are arbitrary
+    public $bitfield = '////+A==';
 
-	public function extraEscapes($text) {
-		return str_replace(
-			["[", "]", ".", ":"],
-			["&#91;", "&#93;", "&#46;", "&#58;"],
-			$text
-		);
-	}
+    public function extraEscapes($text)
+    {
+        return str_replace(
+            ['[', ']', '.', ':'],
+            ['&#91;', '&#93;', '&#46;', '&#58;'],
+            $text
+        );
+    }
 
-	public function __construct($text = "") {
-		$this->text = $text;
-		$this->uid = config("osu.bbcode.uid");
-	}
+    public function __construct($text = '')
+    {
+        $this->text = $text;
+        $this->uid = config('osu.bbcode.uid');
+    }
 
-	/*
-	* Handles:
-	* - Centre (centre)
-	*/
-	public function parseBlockSimple($text)
-	{
-		foreach(["centre"] as $tag) {
-			$text = preg_replace(
-				"#\[{$tag}](.*?)\[/{$tag}\]#s",
-				"[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
-				$text
-			);
-		}
+    /*
+    * Handles:
+    * - Centre (centre)
+    */
 
-		return $text;
-	}
+    public function parseBlockSimple($text)
+    {
+        foreach (['centre'] as $tag) {
+            $text = preg_replace(
+                "#\[{$tag}](.*?)\[/{$tag}\]#s",
+                "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
+                $text
+            );
+        }
 
-	public function parseBox($text) {
-		$text = preg_replace("#(\[box=.*?)\](.*?)(\[/box)\]#s", "\\1:{$this->uid}]\\2\\3:{$this->uid}]", $text);
-		$text = preg_replace("#(\[spoilerbox)\](.*?)(\[/spoilerbox)\]#s", "\\1:{$this->uid}]\\2\\3:{$this->uid}]", $text);
-		return $text;
-	}
+        return $text;
+    }
 
-	public function parseCode($text) {
-		return preg_replace_callback(
-			"#\[code\](?<code>.+?)\[/code\]#s",
-			function($m) {
-				$escapedCode = $this->extraEscapes($m["code"]);
-				return "[code:{$this->uid}]{$escapedCode}[/code:{$this->uid}]";
-			},
-			$text
-		);
-	}
+    public function parseBox($text)
+    {
+        $text = preg_replace("#(\[box=.*?)\](.*?)(\[/box)\]#s", "\\1:{$this->uid}]\\2\\3:{$this->uid}]", $text);
+        $text = preg_replace("#(\[spoilerbox)\](.*?)(\[/spoilerbox)\]#s", "\\1:{$this->uid}]\\2\\3:{$this->uid}]", $text);
 
-	public function parseColour($text) {
-		return preg_replace(
-			",\[(color=(?:#[[:xdigit:]]{6}|[[:alpha:]]+))\](.+?)\[(/color)\],",
-			"[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
-			$text
-		);
-	}
+        return $text;
+    }
 
-	public function parseEmail($text) {
-		$emailPattern = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z-]+";
-		$text = preg_replace(
-			"#\[email\]({$emailPattern})\[/email\]#",
-			"[email:{$this->uid}]\\1[/email:{$this->uid}]",
-			$text
-		);
-		$text = preg_replace(
-			"#\[email=({$emailPattern})\](.+?)\[/email\]#",
-			"[email=\\1:{$this->uid}]\\2[/email:{$this->uid}]",
-			$text
-		);
+    public function parseCode($text)
+    {
+        return preg_replace_callback(
+            "#\[code\](?<code>.+?)\[/code\]#s",
+            function ($m) {
+                $escapedCode = $this->extraEscapes($m['code']);
 
-		return $text;
-	}
+                return "[code:{$this->uid}]{$escapedCode}[/code:{$this->uid}]";
+            },
+            $text
+        );
+    }
 
-	/*
-	* Handles:
-	* - Bold (b)
-	* - Italic (i)
-	* - Image (img)
-	* - Strike (strike, s)
-	* - Underline (u)
-	* - Heading (heading)
-	*/
-	public function parseInlineSimple($text) {
-		foreach(["b", "i", "img", "strike", "s", "u", "heading"] as $tag) {
-			$text = preg_replace(
-				"#\[{$tag}](.*?)\[/{$tag}\]#",
-				"[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
-				$text
-			);
-		}
+    public function parseColour($text)
+    {
+        return preg_replace(
+            ",\[(color=(?:#[[:xdigit:]]{6}|[[:alpha:]]+))\](.+?)\[(/color)\],",
+            "[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
+            $text
+        );
+    }
 
-		return $text;
-	}
+    public function parseEmail($text)
+    {
+        $emailPattern = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z-]+";
+        $text = preg_replace(
+            "#\[email\]({$emailPattern})\[/email\]#",
+            "[email:{$this->uid}]\\1[/email:{$this->uid}]",
+            $text
+        );
+        $text = preg_replace(
+            "#\[email=({$emailPattern})\](.+?)\[/email\]#",
+            "[email=\\1:{$this->uid}]\\2[/email:{$this->uid}]",
+            $text
+        );
 
-	public function parseLinks($text) {
-		$spaces = ["(^|\s)", "((?:\.|\))?(?:$|\s|\n|\r))"];
-		// plain http/https/ftp
+        return $text;
+    }
 
-		$text = preg_replace(
-			"#{$spaces[0]}((?:https?|ftp)://[^\s]+?){$spaces[1]}#",
-			"\\1<!-- m --><a href='\\2' rel='nofollow'>\\2</a><!-- m -->\\3",
-			$text
-		);
+    /*
+    * Handles:
+    * - Bold (b)
+    * - Italic (i)
+    * - Image (img)
+    * - Strike (strike, s)
+    * - Underline (u)
+    * - Heading (heading)
+    */
 
-		// www
-		$text = preg_replace(
-			"/{$spaces[0]}(www\.[^\s]+){$spaces[1]}/",
-			"\\1<!-- w --><a href='\\2' rel='nofollow'>\\2</a><!-- w -->\\3",
-			$text
-		);
+    public function parseInlineSimple($text)
+    {
+        foreach (['b', 'i', 'img', 'strike', 's', 'u', 'heading'] as $tag) {
+            $text = preg_replace(
+                "#\[{$tag}](.*?)\[/{$tag}\]#",
+                "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
+                $text
+            );
+        }
 
-		// emails
-		$text = preg_replace(
-			"/{$spaces[0]}([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z-]+){$spaces[1]}/",
-			"\\1<!-- e --><a href='mailto:\\2' rel='nofollow'>\\2</a><!-- m -->\\3",
-			$text
-		);
+        return $text;
+    }
 
-		return $text;
-	}
+    public function parseLinks($text)
+    {
+        $spaces = ["(^|\s)", "((?:\.|\))?(?:$|\s|\n|\r))"];
+        // plain http/https/ftp
 
-	// the implementation here is completely different and incompatible
-	// with phpBB original implementation.
-	public function parseList($text) {
-		$patterns = ["/\[(list(?:=.+?)?)\]/", "[/list]"];
-		$counts = [preg_match_all($patterns[0], $text), substr_count($text, $patterns[1])];
-		$limit = min($counts);
+        $text = preg_replace(
+            "#{$spaces[0]}((?:https?|ftp)://[^\s]+?){$spaces[1]}#",
+            "\\1<!-- m --><a href='\\2' rel='nofollow'>\\2</a><!-- m -->\\3",
+            $text
+        );
 
-		$text = str_replace("[*]", "[*:{$this->uid}]", $text);
-		$text = str_replace("[/*]", "", $text);
+        // www
+        $text = preg_replace(
+            "/{$spaces[0]}(www\.[^\s]+){$spaces[1]}/",
+            "\\1<!-- w --><a href='\\2' rel='nofollow'>\\2</a><!-- w -->\\3",
+            $text
+        );
 
-		$text = preg_replace($patterns[0], "[\\1:{$this->uid}]", $text, $limit);
-		$text = preg_replace("/" . preg_quote($patterns[1], "/") . "/", "[/list:o:{$this->uid}]", $text, $limit);
+        // emails
+        $text = preg_replace(
+            "/{$spaces[0]}([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z-]+){$spaces[1]}/",
+            "\\1<!-- e --><a href='mailto:\\2' rel='nofollow'>\\2</a><!-- m -->\\3",
+            $text
+        );
 
-		return $text;
-	}
+        return $text;
+    }
 
-	public function parseProfile($text) {
-		return preg_replace_callback(
-			"#\[profile\](.+?)\[/profile\]#",
-			function($m) {
-				$name = $this->extraEscapes($m[1]);
-				return "[profile:{$this->uid}]{$name}[/profile:{$this->uid}]";
-			},
-			$text
-		);
-	}
+    // the implementation here is completely different and incompatible
+    // with phpBB original implementation.
 
-	// this is quite different and much more dumb than the one in phpbb
-	public function parseQuote($text) {
-		$patterns = ["/\[(quote(?:=&quot;.+?&quot;)?)\]/", "[/quote]"];
-		$counts = [preg_match_all($patterns[0], $text), substr_count($text, $patterns[1])];
-		$limit = min($counts);
+    public function parseList($text)
+    {
+        $patterns = ["/\[(list(?:=.+?)?)\]/", '[/list]'];
+        $counts = [preg_match_all($patterns[0], $text), substr_count($text, $patterns[1])];
+        $limit = min($counts);
 
-		$text = preg_replace($patterns[0], "[\\1:{$this->uid}]", $text, $limit);
-		$text = preg_replace("/" . preg_quote($patterns[1], "/") . "/", "[/quote:{$this->uid}]", $text, $limit);
+        $text = str_replace('[*]', "[*:{$this->uid}]", $text);
+        $text = str_replace('[/*]', '', $text);
 
-		return $text;
-	}
+        $text = preg_replace($patterns[0], "[\\1:{$this->uid}]", $text, $limit);
+        $text = preg_replace('/'.preg_quote($patterns[1], '/').'/', "[/list:o:{$this->uid}]", $text, $limit);
 
-	public function parseSize($text) {
-		return preg_replace(
-			"#\[(size=(?:\d+))\](.+?)\[(/size)\]#",
-			"[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
-			$text
-		);
-	}
+        return $text;
+    }
 
-	// copied from www/forum/includes/message_parser.php#L1196
-	public function parseSmiley($text) {
-		$smilies = Smiley::getAll();
+    public function parseNotice($text)
+    {
+        return preg_replace(
+            "#\[(notice)\](.*?)\[/\\1\]#s",
+            "[\\1:{$this->uid}]\\2[/\\1:{$this->uid}]",
+            $text);
+    }
 
-		$match = [];
-		$replace = [];
+    public function parseProfile($text)
+    {
+        return preg_replace_callback(
+            "#\[profile\](.+?)\[/profile\]#",
+            function ($m) {
+                $name = $this->extraEscapes($m[1]);
 
-		foreach ($smilies as $smiley) {
-			$match[] = '(?<=^|[\n .])' . preg_quote($smiley['code'], '#') . '(?![^<>]*>)';
-			$replace[] = '<!-- s' . $smiley['code'] . ' --><img src="{SMILIES_PATH}/' . $smiley['smiley_url'] . '" alt="' . $smiley['code'] . '" title="' . $smiley['emotion'] . '" /><!-- s' . $smiley['code'] . ' -->';
-		}
-		if (sizeof($match))
-		{
-			// Make sure the delimiter # is added in front and at the end of every element within $match
-			$text = trim(preg_replace(explode(chr(0), '#' . implode('#' . chr(0) . '#', $match) . '#'), $replace, $text));
-		}
+                return "[profile:{$this->uid}]{$name}[/profile:{$this->uid}]";
+            },
+            $text
+        );
+    }
 
-		return $text;
-	}
+    // this is quite different and much more dumb than the one in phpbb
 
-	public function parseUrl($text) {
-		$urlPattern = "(?:https?|ftp)://.+?";
+    public function parseQuote($text)
+    {
+        $patterns = ["/\[(quote(?:=&quot;.+?&quot;)?)\]/", '[/quote]'];
+        $counts = [preg_match_all($patterns[0], $text), substr_count($text, $patterns[1])];
+        $limit = min($counts);
 
-		$text = preg_replace_callback(
-			"#\[url\]({$urlPattern})\[/url\]#",
-			function($m) {
-				$url = $this->extraEscapes($m[1]);
-				return "[url:{$this->uid}]{$url}[/url:{$this->uid}]";
-			},
-			$text
-		);
-		$text = preg_replace_callback(
-			"#\[url=({$urlPattern})\](.+?)\[/url\]#",
-			function($m) {
-				$url = $this->extraEscapes($m[1]);
-				return "[url={$url}:{$this->uid}]{$m[2]}[/url:{$this->uid}]";
-			},
-			$text
-		);
+        $text = preg_replace($patterns[0], "[\\1:{$this->uid}]", $text, $limit);
+        $text = preg_replace('/'.preg_quote($patterns[1], '/').'/', "[/quote:{$this->uid}]", $text, $limit);
 
-		return $text;
-	}
+        return $text;
+    }
 
-	public function parseYoutube($text) {
-		return preg_replace_callback(
-			"#\[youtube\](.+?)\[/youtube\]#",
-			function($m) {
-				$videoId = $this->extraEscapes($m[1]);
-				return "[youtube:{$this->uid}]{$videoId}[/youtube:{$this->uid}]";
-			},
-			$text
-		);
-	}
+    public function parseSize($text)
+    {
+        return preg_replace(
+            "#\[(size=(?:\d+))\](.+?)\[(/size)\]#",
+            "[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
+            $text
+        );
+    }
 
-	public function generate() {
-		$text = e($this->text);
+    // copied from www/forum/includes/message_parser.php#L1196
 
-		$text = $this->parseCode($text);
-		$text = $this->parseBox($text);
-		$text = $this->parseQuote($text);
-		$text = $this->parseList($text);
+    public function parseSmiley($text)
+    {
+        $smilies = Smiley::getAll();
 
-		$text = $this->parseBlockSimple($text);
-		$text = $this->parseInlineSimple($text);
-		$text = $this->parseEmail($text);
-		$text = $this->parseUrl($text);
-		$text = $this->parseSize($text);
-		$text = $this->parseColour($text);
-		$text = $this->parseYoutube($text);
-		$text = $this->parseProfile($text);
+        $match = [];
+        $replace = [];
 
-		$text = $this->parseSmiley($text);
-		$text = $this->parseLinks($text);
+        foreach ($smilies as $smiley) {
+            $match[] = '(?<=^|[\n .])'.preg_quote($smiley['code'], '#').'(?![^<>]*>)';
+            $replace[] = '<!-- s'.$smiley['code'].' --><img src="{SMILIES_PATH}/'.$smiley['smiley_url'].'" alt="'.$smiley['code'].'" title="'.$smiley['emotion'].'" /><!-- s'.$smiley['code'].' -->';
+        }
+        if (count($match)) {
+            // Make sure the delimiter # is added in front and at the end of every element within $match
+            $text = trim(preg_replace(explode(chr(0), '#'.implode('#'.chr(0).'#', $match).'#'), $replace, $text));
+        }
 
-		// escape stuff ("<", "&", etc?)
-		// escape content of [code]...[/code]
-		// autolink
-		// smileys
-		// $uid suffix
-		return $text;
-	}
+        return $text;
+    }
+
+    public function parseUrl($text)
+    {
+        $urlPattern = '(?:https?|ftp)://.+?';
+
+        $text = preg_replace_callback(
+            "#\[url\]({$urlPattern})\[/url\]#",
+            function ($m) {
+                $url = $this->extraEscapes($m[1]);
+
+                return "[url:{$this->uid}]{$url}[/url:{$this->uid}]";
+            },
+            $text
+        );
+        $text = preg_replace_callback(
+            "#\[url=({$urlPattern})\](.+?)\[/url\]#",
+            function ($m) {
+                $url = $this->extraEscapes($m[1]);
+
+                return "[url={$url}:{$this->uid}]{$m[2]}[/url:{$this->uid}]";
+            },
+            $text
+        );
+
+        return $text;
+    }
+
+    public function parseYoutube($text)
+    {
+        return preg_replace_callback(
+            "#\[youtube\](.+?)\[/youtube\]#",
+            function ($m) {
+                $videoId = $this->extraEscapes($m[1]);
+
+                return "[youtube:{$this->uid}]{$videoId}[/youtube:{$this->uid}]";
+            },
+            $text
+        );
+    }
+
+    public function generate()
+    {
+        $text = e($this->text);
+
+        $text = $this->parseCode($text);
+        $text = $this->parseNotice($text);
+        $text = $this->parseBox($text);
+        $text = $this->parseQuote($text);
+        $text = $this->parseList($text);
+
+        $text = $this->parseBlockSimple($text);
+        $text = $this->parseInlineSimple($text);
+        $text = $this->parseEmail($text);
+        $text = $this->parseUrl($text);
+        $text = $this->parseSize($text);
+        $text = $this->parseColour($text);
+        $text = $this->parseYoutube($text);
+        $text = $this->parseProfile($text);
+
+        $text = $this->parseSmiley($text);
+        $text = $this->parseLinks($text);
+
+        // escape stuff ("<", "&", etc?)
+        // escape content of [code]...[/code]
+        // autolink
+        // smileys
+        // $uid suffix
+        return $text;
+    }
 }

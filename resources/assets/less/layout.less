@@ -20,114 +20,159 @@
 // main: compiled.less
 
 *, ::before, ::after {
-	position: relative;
-	box-sizing: border-box;
+  position: relative;
+  box-sizing: border-box;
 }
 
 ::selection {
-	color: #fff;
-	background-color: @pink;
+  color: #fff;
+  background-color: @pink;
 }
 
 html, body {
-	height: 100%;
+  height: 100%;
 }
 
 body {
-	.at2x("/images/backgrounds/page-light.png", 500px, 500px);
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+
+  // inspired by
+  // https://fourword.fourkitchens.com/article/fix-scrolling-performance-css-will-change-property
+  // using backface-visibility since IE doesn't have will-change property yet.
+  &::before {
+    .at2x("/images/backgrounds/page-light.png", 500px, 500px);
+    position: fixed;
+    backface-visibility: hidden;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    content: " ";
+    z-index: -2;
+  }
 }
 
 .content {
-	padding-bottom: @grid-gutter-width/2;
-	width: 100%;
-	max-width: @container-sm;
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 0px @grid-gutter-width/2;
+
+  &--forum-topic-preview {
+    width: 100%;
+    padding: 0px;
+    margin-bottom: @grid-gutter-width/8;
+
+    @media @desktop {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.content-extra {
+  box-shadow: inset 0 2px 4px #333;
+  margin-top: @grid-gutter-width/4;
+  margin-bottom: -@grid-gutter-width * 3 / 4;
+  width: 100%;
+  padding-top: @grid-gutter-width/2;
+  background-color: fade(#000, 75%);
 }
 
 .header-row {
-	background-size: cover;
-	background-position-x: 50%;
+  background-size: cover;
+  background-position-x: 50%;
 }
 
 .row-page {
-	&:extend(.row);
-	&:extend(.default-box-shadow);
+  &:extend(.row);
+  &:extend(.default-box-shadow);
 
-	padding: @grid-gutter-width/2;
-	background-color: #fff;
-	margin-bottom: 10px;
+  padding: @grid-gutter-width/2;
+  background-color: #fff;
+  margin-bottom: 10px;
+
+  width: 100%;
+  max-width: @container-sm;
+
+  &--profile {
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }
 
 .row-blank {
-	box-shadow: none;
-	background: transparent;
-	padding: 0px;
+  box-shadow: none;
+  background: transparent;
+  padding: 0px;
 }
 
 .row-group {
-	margin-left: 0px;
-	margin-right: 0px;
+  max-width: @container-sm - @grid-gutter-width;
+  width: calc(~"100% - @{grid-gutter-width}");
 
-	padding: 0px;
-	box-shadow: none; // added by .row-group
+  padding: 0px;
+  box-shadow: none; // added by .row-group
 }
 
 .row-subgroup {
-	&:extend(.default-box-shadow);
-	padding: @grid-gutter-width/2;
+  &:extend(.default-box-shadow);
+  padding: @grid-gutter-width/2;
 }
 
 .row-subgroup--extra-padding {
-	padding: @grid-gutter-width/2 @grid-gutter-width;
+  padding: @grid-gutter-width/2 @grid-gutter-width;
 }
 
 .row-subgroup--large {
-	margin-left: -@grid-gutter-width/2;
-	margin-right: -@grid-gutter-width/2;
-	background: #fff;
+  margin-left: -@grid-gutter-width/2;
+  margin-right: -@grid-gutter-width/2;
+  background: #fff;
 }
 
 #overlay {
-	backface-visibility: hidden;
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	z-index: 9990;
-	background-color: black;
-	opacity: 0.4;
+  backface-visibility: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 9990;
+  background-color: black;
+  opacity: 0.4;
+
+  left: 0px;
+  top: 0px;
 }
 
 .blackout {
-	&:extend(#overlay);
-	z-index: 8000;
+  &:extend(#overlay);
+  z-index: 8000;
 }
 
 #popup-container {
-	backface-visibility: hidden;
-	position: fixed;
-	width: 100%;
-	top: 155px;
-	z-index: 9999;
+  backface-visibility: hidden;
+  position: fixed;
+  width: 100%;
+  top: 155px;
+  z-index: 9999;
 
-	.alert {
-		border: none;
-		&:extend(.default-box-shadow);
-	}
+  .alert {
+    border: none;
+    &:extend(.default-box-shadow);
+  }
 
-	.popup-text {
-		vertical-align: middle;
-		font-weight: 700;
-	}
+  .popup-text {
+    vertical-align: middle;
+    font-weight: 700;
+  }
 }
 
 .alert-inline {
-	margin: 20px;
-	border: none;
-	padding: 15px;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	&:extend(.default-box-shadow);
+  margin: 20px;
+  border: none;
+  padding: 15px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  &:extend(.default-box-shadow);
 }

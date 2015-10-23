@@ -18,3 +18,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 $(document).on 'shown.bs.modal', '.modal', (e) ->
   $(e.target).find('.modal-af').focus()
+
+$(document).on 'hidden.bs.modal', '.modal', ->
+  $('.modal-backdrop').remove()
+  $('body').css paddingRight: ''

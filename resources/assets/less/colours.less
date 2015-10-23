@@ -44,8 +44,8 @@
 @yellow-darker: #cc6600;
 
 @green-lighter: #eeffcc;
-@green-light: #ddff88;
-@green: #aadd00;
+@green-light: #b3d944;
+@green: #88b300;
 @green-dark: #668800;
 @green-darker: #445500;
 
@@ -64,17 +64,42 @@
 // https://www.facebookbrand.com
 @facebook-colour: #3b5998;
 
-.colours(@name) {
-	@lighter: "@{name}-lighter";
-	@light: "@{name}-light";
-	@dark: "@{name}-dark";
-	@darker: "@{name}-darker";
+// just for reference, from bootstrap's variables.less
+// @gray-base:              #000;
+// @gray-darker:            lighten(@gray-base, 13.5%); // #222
+// @gray-dark:              lighten(@gray-base, 20%);   // #333
+// @gray:                   lighten(@gray-base, 33.5%); // #555
+// @gray-light:             lighten(@gray-base, 46.7%); // #777
+// @gray-lighter:           lighten(@gray-base, 93.5%); // #eee
 
-	.@{name}-lighter { color: @@lighter !important; }
-	.@{name}-light { color: @@light !important; }
-	.@{name}-normal { color: @@name !important; }
-	.@{name}-dark { color: @@dark !important; }
-	.@{name}-darker { color: @@darker !important; }
+@grey-0: #000;
+@grey-1: #111;
+@grey-2: #222;
+@grey-3: #333;
+@grey-4: #444;
+@grey-5: #555;
+@grey-6: #666;
+@grey-7: #777;
+@grey-8: #888;
+@grey-9: #999;
+@grey-a: #aaa;
+@grey-b: #bbb;
+@grey-c: #ccc;
+@grey-d: #ddd;
+@grey-e: #eee;
+@grey-f: #fff;
+
+.colours(@name) {
+  @lighter: "@{name}-lighter";
+  @light: "@{name}-light";
+  @dark: "@{name}-dark";
+  @darker: "@{name}-darker";
+
+  .@{name}-lighter { color: @@lighter !important; }
+  .@{name}-light { color: @@light !important; }
+  .@{name}-normal { color: @@name !important; }
+  .@{name}-dark { color: @@dark !important; }
+  .@{name}-darker { color: @@darker !important; }
 }
 
 .colours(~"pink");

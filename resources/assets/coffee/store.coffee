@@ -32,44 +32,6 @@ $(document).on 'click', '#new-address-switch a', (e) ->
   $form.slideToggle()
 
 
-galleryArray = ->
-  $('#product-slides a').map (_i, el) ->
-    $el = $(el)
-    {
-      src: $el.attr('href')
-      w: parseInt $el.attr('data-size-w')
-      h: parseInt $el.attr('data-size-h')
-    }
-  .get()
-
-
-galleryStartBounds = ->
-  $dom = $('#product-slides')
-  domPos = $dom.offset()
-  {
-    x: domPos.left
-    y: domPos.top
-    w: $dom.width()
-  }
-
-
-openGallery = (index) ->
-  pswpElement = $('.pswp')[0]
-  items = galleryArray()
-  options =
-    showHideOpacity: true
-    getThumbBoundsFn: galleryStartBounds
-    index: index
-    history: false
-  gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options)
-  gallery.init()
-
-
-$(document).on 'click', '#product-slides a', (e) ->
-  e.preventDefault()
-  openGallery parseInt($(e.target).attr('data-index'))
-
-
 preventUsernameSubmission = ->
   $('#add-to-cart').slideUp()
   $('#product-form').data('disabled', true)

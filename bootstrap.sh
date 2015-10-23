@@ -25,14 +25,7 @@ cd /data/osu\!web/
 mkdir -p "public/uploads"
 chmod 777 "public/uploads"
 
-for db in osu osu_store; do
-  echo "CREATE DATABASE ${db} DEFAULT CHARSET utf8mb4" | mysql -u root
-  for dumptype in structure data; do
-    file="db-${db}-${dumptype}.sql"
-    test -f "${file}" || continue
-    mysql -u root "${db}" < "${file}"
-  done
-done
+./bin/db_setup
 
 # replace mysql config vars to be reachable from vm host
 sed -i 's/bind-address/#bind-address/' /etc/mysql/my.cnf

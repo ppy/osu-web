@@ -16,51 +16,6 @@ See the GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class ForumPostExpander
-  _shrunk: document.getElementsByClassName('js-forum-post__shrunk')
-
-  constructor: ->
-    $(document).on 'ready page:load', @initialExpand
-
-    $(window).on 'scroll', =>
-      requestAnimationFrame @autoExpand
-
-    $(document).on 'click', '.js-forum-post__shrunk', (e) =>
-      @expand(e.target)
-
-
-  expand: (el) ->
-    el.classList.remove 'js-forum-post__shrunk'
-
-
-  initialExpand: =>
-    focusPost = $(".forum-post[data-post-id=#{window.postJumpTo}]")[0]
-    if focusPost != undefined
-      @expand focusPost
-
-    @autoExpand()
-
-  autoExpand: =>
-    return if @_shrunk.length == 0
-
-    if osu.isMobile
-      expandTop = document
-        .getElementsByClassName('js-forum__header--sticky')[0]
-        .getBoundingClientRect()
-        .bottom
-    else
-      expandTop = window.innerHeight * 0.3
-
-    for el in @_shrunk by -1
-      if el.getBoundingClientRect().top > expandTop
-        @expand(el)
-      else
-        return
-
-
-window.forumPostExpander = new ForumPostExpander
-
-
 class Forum
   _totalPostsDiv: document.getElementsByClassName('js-forum__topic-total-posts')
   _postsCounter: document.getElementsByClassName('js-forum__posts-counter')
@@ -77,7 +32,7 @@ class Forum
 
   totalPosts: =>
     return null if @_totalPostsDiv.length == 0
-    parseInt @_totalPostsDiv[0].getAttribute('data-total-count')
+    parseInt @_totalPostsDiv[0].getAttribute('data-total-count'), 10
 
   setTotalPosts: (n) =>
     @_totalPostsDiv[0].setAttribute('data-total-count', n)
@@ -88,13 +43,13 @@ class Forum
     postId = currentPost.getAttribute('data-post-id')
 
     @_postsCounter[0].textContent = currentPostPosition
-    @_postsCounter[0].setAttribute 'href', "#{document.location.pathname}?start=#{postId}#forum-post-#{postId}"
+    @_postsCounter[0].setAttribute 'href', "#{window.canonicalUrl}?start=#{postId}#forum-post-#{postId}"
     @_postsProgress[0].setAttribute 'data-progress', Math.round(100 * currentPostPosition / @totalPosts())
 
   endPost: => @posts[@posts.length - 1]
 
   lastPostLoaded: =>
-    parseInt(@endPost().getAttribute('data-post-position')) == @totalPosts()
+    parseInt(@endPost().getAttribute('data-post-position'), 10) == @totalPosts()
 
   refreshLoadMoreLinks: =>
     return if @posts.length == 0
@@ -107,13 +62,11 @@ class Forum
 
     $('.js-forum__posts-show-more--next').closest('div').toggle showNext
 
-    # this will skip guest users as well but they don't have the links
-    # anyway so it's not a problem.
-    if !window.user?.is_admin
-      $('.delete-post-link').parents('li').hide()
+    if !window.currentUser.isAdmin
+      $('.delete-post-link').hide()
 
     if !showNext
-      $(@endPost()).find('.delete-post-link').parents('li').css(display: 'inline-block')
+      $(@endPost()).find('.delete-post-link').css(display: '')
       $('#forum-topic-reply-box').css(display: 'block')
 
   refreshCounter: =>
@@ -259,7 +212,7 @@ $(document).on 'click', '.js-forum-posts-show-more', (e) ->
 
   $linkDiv.addClass 'loading'
 
-  $.get(document.location.pathname, options)
+  $.get(window.canonicalUrl, options)
   .done (data) ->
     if mode == 'previous'
       scrollReference = $refPost[0]
@@ -276,7 +229,7 @@ $(document).on 'click', '.js-forum-posts-show-more', (e) ->
     else
       $linkDiv.before data
 
-    $(document).trigger 'osu:page:change'
+    osu.pageChange()
     $link.attr 'data-failed', '0'
 
   .always ->

@@ -1,0 +1,74 @@
+/**
+*    Copyright 2015 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+.modal-header {
+  border-radius: 5px 5px 0 0;
+  border-bottom: 0;
+
+  // Elements
+  &__badges {
+    display: flex;
+    position: absolute;
+    top: -20px;
+    left: 10px;
+  }
+
+  &__dimmer {
+    background: linear-gradient(to bottom, fade(#000, 50%) 0%,fade(#000, 75%) 100%);
+    border-radius: 5px 5px 0 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  &__title {
+    &:extend(.default-text-shadow);
+    font-style: normal;
+    font-size: 24px;
+    color: #FFF;
+
+    position: absolute;
+    margin: @grid-gutter-width/4;
+    bottom: 0px;
+    left: 0px;
+  }
+
+  &__userinfo {
+    padding-right: 10px;
+  }
+
+  // Modifiers
+  &--login {
+    .at2x("/images/headers/login-box.jpg", 430px, 60px);
+    height: 60px;
+  }
+
+  &--authenticated {
+    align-items: flex-end;
+    .at2x("/images/headers/profile-covers/c3.jpg", 430px, 70px);
+    background-size: 430px auto;
+    background-position: center;
+    display: flex;
+    height: 70px;
+    justify-content: space-between;
+    padding: @grid-gutter-width/8 @grid-gutter-width/4;
+  }
+}

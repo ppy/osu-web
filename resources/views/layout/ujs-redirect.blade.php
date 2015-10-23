@@ -17,6 +17,6 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 ;(function() {
-	$(document).off("ajax:complete", osu.hideLoadingOverlay)
-	Turbolinks.visit("{{ $url }}")
+    $(document).off("ajax:complete", osu.hideLoadingOverlay)
+    Turbolinks.visit("{{ $url }}")
 }).call(this);

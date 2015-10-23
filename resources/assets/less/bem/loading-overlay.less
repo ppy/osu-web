@@ -1,0 +1,223 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License as published by
+ *    the Free Software Foundation, either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+@circle-size: 64px;
+@animation-length: 1.6s;
+@animation-delay: @animation-length / 4;
+
+.loading-overlay {
+  backface-visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  user-select: none;
+
+  opacity: 0;
+  display: none;
+
+  animation: loading-overlay--background-color 10s 1 linear;
+  animation-fill-mode: forwards;
+
+  align-items: center;
+  justify-content: center;
+
+  &--visible {
+    opacity: 1;
+    display: flex;
+  }
+
+  &__container {
+    width: @circle-size*4;
+    height: @circle-size;
+  }
+
+  &__circle {
+    width: @circle-size;
+    height: @circle-size;
+    position: absolute;
+
+    border: solid 3px #fff;
+
+    animation: loading-overlay--circle-burst @animation-length infinite linear;
+    animation-fill-mode: both;
+
+    &--1 {
+      @colour: #8866ee;
+      background-color: @colour;
+      border-color: @colour;
+
+      left: 0%;
+      top: 0%;
+    }
+
+    &--2 {
+      @colour: #ff55cc;
+      background-color: @colour;
+      border-color: @colour;
+
+      left: 25%;
+      top: 100%;
+
+      animation-delay: @animation-delay;
+    }
+
+    &--3 {
+      @colour: #66ccff;
+      background-color: @colour;
+      border-color: @colour;
+
+      left: 50%;
+      top: 0%;
+
+      animation-delay: @animation-delay*2;
+    }
+
+    &--4 {
+      @colour: #ffcc22;
+      background-color: @colour;
+      border-color: @colour;
+
+      left: 75%;
+      top: 100%;
+
+      animation-delay: @animation-delay*3;
+    }
+
+    &--approach {
+      border-radius: 100%;
+      background-color: transparent;
+
+      animation-name: loading-overlay--circle-approach;
+    }
+
+    &--hit {
+      box-shadow: 0 0 10px fade(#000, 20%);
+      border-radius: 100%;
+      border-color: #fff;
+    }
+  }
+
+  &__follow-point {
+    color: #fff;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 0;
+    height: 0;
+    top: 100%;
+    opacity: 0;
+
+    font-weight: bold;
+    font-size: 24px;
+
+    animation: loading-overlay--follow-point @animation-length infinite linear;
+    animation-fill-mode: forwards;
+
+    @animation-delay-start: @animation-delay*1/8;
+
+    &--1 {
+      transform: rotate(45deg);
+      left: 25%;
+
+      animation-delay: @animation-delay-start;
+    }
+
+    &--2 {
+      transform: rotate(-45deg);
+      left: 50%;
+      animation-delay: @animation-delay-start + @animation-delay;
+    }
+
+    &--3 {
+      transform: rotate(45deg);
+      left: 75%;
+      animation-delay: @animation-delay-start + @animation-delay*2;
+    }
+
+    &--4 {
+      display: none;
+    }
+  }
+}
+
+@keyframes loading-overlay--circle-approach {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+
+  20% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+
+  20.1%, 100% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes loading-overlay--circle-burst {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  20% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+
+  40%, 100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes loading-overlay--background-color {
+  0% {
+    background-color: fade(#000, 0%);
+  }
+
+  10% {
+    background-color: fade(#000, 50%);
+  }
+
+  100% {
+    background-color: fade(#000, 70%);
+  }
+}
+
+@keyframes loading-overlay--follow-point {
+  10% {
+    opacity: 0.8;
+  }
+
+  40% {
+    opacity: 0.8;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}

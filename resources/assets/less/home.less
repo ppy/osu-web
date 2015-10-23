@@ -22,84 +22,84 @@
 .home_getDownload { &:extend(.text-center); }
 
 #download-header {
-	background-image: url(/images/download-header.png);
-	height: 270px;
-	overflow: hidden;
+  background-image: url(/images/download-header.png);
+  height: 270px;
+  overflow: hidden;
 
-	&:extend(.default-text-shadow);
-	color: #fff;
-	font-style: italic;
-	font-weight: 300;
+  &:extend(.default-text-shadow);
+  color: #fff;
+  font-style: italic;
+  font-weight: 300;
 
-	> p {
-		position: absolute;
-		width: 100%;
+  > p {
+    position: absolute;
+    width: 100%;
 
-		&:nth-child(1) {
-			font-size: 40px;
-			margin-top: 40px;
-			margin-left: -150px;
-		}
-		&:nth-child(2) {
-			font-size: 80px;
-			margin-top: 48px;
-			margin-left: 100px;
-		}
-		&:nth-child(3) {
-			font-size: 20px;
-			margin-top: 146px;
-		}
-	}
+    &:nth-child(1) {
+      font-size: 40px;
+      margin-top: 40px;
+      margin-left: -150px;
+    }
+    &:nth-child(2) {
+      font-size: 80px;
+      margin-top: 48px;
+      margin-left: 100px;
+    }
+    &:nth-child(3) {
+      font-size: 20px;
+      margin-top: 146px;
+    }
+  }
 }
 
 #download-button {
-	z-index: 10;
-	position: absolute;
-	display: flex;
-	justify-content: center;
-	width: 100%;
-	margin-top: -@grid-gutter-width/8;
+  z-index: 10;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: -@grid-gutter-width/8;
 
-	a {
-		display: block;
-		margin-top: -@download-button-diameter/2;
-	}
+  a {
+    display: block;
+    margin-top: -@download-button-diameter/2;
+  }
 
-	img {
-		width: @download-button-diameter;
-		height: @download-button-diameter;
-		.circle(@download-button-diameter);
-		&:extend(.default-box-shadow);
-		overflow: hidden;
-	}
+  img {
+    width: @download-button-diameter;
+    height: @download-button-diameter;
+    .circle(@download-button-diameter);
+    &:extend(.default-box-shadow);
+    overflow: hidden;
+  }
 }
 
 #download-steps {
-	padding-top: @grid-gutter-width/2 + @download-button-diameter/2;
+  padding-top: @grid-gutter-width/2 + @download-button-diameter/2;
 
-	h1 {
-		font-size: 28px;
-		margin: 0px;
-	}
+  h1 {
+    font-size: 28px;
+    margin: 0px;
+  }
 
-	p {
-		margin-top: @grid-gutter-width/4;
-	}
+  p {
+    margin-top: @grid-gutter-width/4;
+  }
 
-	> div {
-		margin-bottom: @grid-gutter-width/2;
+  > div {
+    margin-bottom: @grid-gutter-width/2;
 
-		&:last-child { margin-bottom: 0px; }
-	}
+    &:last-child { margin-bottom: 0px; }
+  }
 }
 
 #download-guides {
-	padding: 0px;
+  padding: 0px;
 
-	.explanation {
-		padding: @grid-gutter-width/2;
-		@media (min-width: @screen-sm-min) {
-			padding: @grid-gutter-width/2 200px;
-		}
-	}
+  .explanation {
+    padding: @grid-gutter-width/2;
+    @media @desktop {
+      padding: @grid-gutter-width/2 200px;
+    }
+  }
 }

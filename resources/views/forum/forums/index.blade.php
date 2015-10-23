@@ -19,27 +19,27 @@
 @extends("master")
 
 @section("content")
-	<div id="forum-index-header" class="row-page">
-		<div class="text-area">
-			<div class="text">
-				<h2>not so random subtitles.</h2>
-				<h1>{{ trans("forum.title") }}</h1>
-			</div>
-		</div>
-	</div>
+    <div id="forum-index-header" class="row-page">
+        <div class="text-area">
+            <div class="text">
+                <h2>not so random subtitles.</h2>
+                <h1>{{ trans("forum.title") }}</h1>
+            </div>
+        </div>
+    </div>
 
-	<div class="hidden-xs row-blank pippy"></div>
+    <div class="hidden-xs row-blank pippy"></div>
 
-	<div class="row-blank row-page">
-		@foreach($forums as $category)
-			<div id="forum-{{ $category->forum_id }}" class="forum-category col-sm-12 forum-colour {{ $category->categorySlug() }}">
-				<div class="row forum-category-header">
-					<div class="name">{{ $category->forum_name }}</div>
-					<div class="description">{{ $category->forum_desc }}</div>
-				</div>
+    <div class="row-blank row-page">
+        @foreach($forums as $category)
+            <div id="forum-{{ $category->forum_id }}" class="forum-category col-sm-12 forum-colour {{ $category->categorySlug() }}">
+                <div class="row forum-category-header forum-category-header--{{ $category->categorySlug() }}">
+                    <div class="forum-category-header__name">{{ $category->forum_name }}</div>
+                    <div class="forum-category-header__description">{{ $category->forum_desc }}</div>
+                </div>
 
-				@include("forum.forums._forums", ["forums" => $category->subforums])
-			</div>
-		@endforeach
-	</div>
+                @include("forum.forums._forums", ["forums" => $category->subforums])
+            </div>
+        @endforeach
+    </div>
 @endsection
