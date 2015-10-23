@@ -63,7 +63,7 @@
       var selectors = [];
       $.each(this.props.options, function(i,e){
         selectors.push(
-          <a href='#' className={this.selected(i) ? 'active' : ''} value={i} onClick={this.select.bind(this, i)}>{e}</a>
+          <a href='#' className={this.selected(e['id']) ? 'active' : ''} value={e['id']} onClick={this.select.bind(this, e['id'])}>{e['name']}</a>
         );
       }.bind(this));
       return(

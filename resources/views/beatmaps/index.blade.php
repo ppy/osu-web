@@ -34,6 +34,10 @@
 @section("script")
   @parent
 
+  <script id="json-filters" type="application/json">
+    {!! json_encode($filters) !!}
+  </script>
+
   <script id="json-beatmaps" type="application/json">
     {!! json_encode($beatmaps) !!}
   </script>

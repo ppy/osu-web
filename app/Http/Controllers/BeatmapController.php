@@ -22,23 +22,72 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Beatmap;
 use App\Models\BeatmapSet;
+use App\Models\Genre;
+use App\Models\Language;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use App\Transformers\BeatmapTransformer;
+use App\Transformers\GenreTransformer;
 use Request;
 
 class BeatmapController extends Controller {
 
-	protected $section = "beatmaps";
+  protected $section = "beatmaps";
 
-	public function index()
-	{
-		$fractal = new Manager();
-		$data = new Collection(BeatmapSet::listing(), new BeatmapTransformer);
-		$beatmaps = $fractal->createData($data)->toArray();
-		return view("beatmaps.index", compact('beatmaps'));
-	}
+  public function index()
+  {
+    $fractal = new Manager();
+
+    $languages = Language::listing();
+    $genres = Genre::listing();
+
+    $data = new Collection(BeatmapSet::listing(), new BeatmapTransformer);
+    $beatmaps = $fractal->createData($data)->toArray();
+
+    // these can go here for now ┐(￣ー￣)┌
+
+    $modes = [
+      ["id" => null, "name" => trans('beatmaps.mode.any')],
+      ["id" => Beatmap::OSU, "name" => trans('beatmaps.mode.osu')],
+      ["id" => Beatmap::TAIKO, "name" => trans('beatmaps.mode.taiko')],
+      ["id" => Beatmap::CTB, "name" => trans('beatmaps.mode.catch')],
+      ["id" => Beatmap::MANIA, "name" => trans('beatmaps.mode.mania')]
+    ];
+
+    $statuses = [
+      ["id" => null, "name" => trans('beatmaps.status.all')],
+      ["id" => 0, "name" => trans('beatmaps.status.ranked-approved')],
+      ["id" => 1, "name" => trans('beatmaps.status.approved')],
+      ["id" => 2, "name" => trans('beatmaps.status.faves')],
+      ["id" => 3, "name" => trans('beatmaps.status.modreqs')],
+      ["id" => 4, "name" => trans('beatmaps.status.pending')],
+      ["id" => 5, "name" => trans('beatmaps.status.graveyard')],
+      ["id" => 6, "name" => trans('beatmaps.status.my-maps')]
+    ];
+
+    $extras = [
+      ["id" => 0, "name" => trans('beatmaps.extra.video')],
+      ["id" => 1, "name" => trans('beatmaps.extra.storyboard')]
+    ];
+
+    $ranks = [
+      ["id" => null, "name" => trans('beatmaps.rank.any')],
+      ["id" => 0, "name" => trans('beatmaps.rank.silver-ss')],
+      ["id" => 1, "name" => trans('beatmaps.rank.ss')],
+      ["id" => 2, "name" => trans('beatmaps.rank.silver-s')],
+      ["id" => 3, "name" => trans('beatmaps.rank.s')],
+      ["id" => 4, "name" => trans('beatmaps.rank.a')],
+      ["id" => 5, "name" => trans('beatmaps.rank.b')],
+      ["id" => 6, "name" => trans('beatmaps.rank.c')],
+      ["id" => 7, "name" => trans('beatmaps.rank.d')]
+    ];
+
+    $filters = ["data" => compact('modes', 'statuses', 'genres', 'languages', 'extras', 'ranks')];
+
+    return view("beatmaps.index", compact('filters', 'beatmaps'));
+  }
 
   public function search()
   {

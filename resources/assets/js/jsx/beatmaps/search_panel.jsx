@@ -26,6 +26,9 @@
     keyDelay: null,
     prevText: null,
     search_url: "/beatmaps/search",
+    getInitialState: function() {
+      return({filters: JSON.parse(document.getElementById('json-filters').text)['data']});
+    },
     keypressed: function() {
       var text = $('#searchbox').val();
       if (text == null || text == "" || text == this.prevText)
@@ -52,64 +55,7 @@
       $('#search').addClass('expanded');
     },
     render: function() {
-      var modeFilters = {
-        "-1": Lang.get('beatmaps.mode.any'),
-        "0":  Lang.get('beatmaps.mode.osu'),
-        "1":  Lang.get('beatmaps.mode.taiko'),
-        "2":  Lang.get('beatmaps.mode.catch'),
-        "3":  Lang.get('beatmaps.mode.mania')
-      };
-      var statusFilters = {
-        "-1": Lang.get('beatmaps.status.all'),
-        "0":  Lang.get('beatmaps.status.ranked-approved'),
-        "1":  Lang.get('beatmaps.status.approved'),
-        "2":  Lang.get('beatmaps.status.faves'),
-        "3":  Lang.get('beatmaps.status.modreqs'),
-        "4":  Lang.get('beatmaps.status.pending'),
-        "5":  Lang.get('beatmaps.status.graveyard'),
-        "6":  Lang.get('beatmaps.status.my-maps')
-      };
-      var genreFilters = {
-        "0": Lang.get('beatmaps.genre.any'),
-        "1": Lang.get('beatmaps.genre.unspecified'),
-        "2": Lang.get('beatmaps.genre.video-game'),
-        "3": Lang.get('beatmaps.genre.anime'),
-        "4": Lang.get('beatmaps.genre.rock'),
-        "5": Lang.get('beatmaps.genre.pop'),
-        "6": Lang.get('beatmaps.genre.other'),
-        "7": Lang.get('beatmaps.genre.novelty'),
-        "8": Lang.get('beatmaps.genre.hip-hop'),
-        "9": Lang.get('beatmaps.genre.electronic')
-      };
-      var languageFilters = {
-        "0": Lang.get('beatmaps.language.any'),
-        "1": Lang.get('beatmaps.language.english'),
-        "2": Lang.get('beatmaps.language.chinese'),
-        "3": Lang.get('beatmaps.language.french'),
-        "4": Lang.get('beatmaps.language.german'),
-        "5": Lang.get('beatmaps.language.italian'),
-        "6": Lang.get('beatmaps.language.japanese'),
-        "7": Lang.get('beatmaps.language.korean'),
-        "8": Lang.get('beatmaps.language.spanish'),
-        "9": Lang.get('beatmaps.language.swedish'),
-        "a": Lang.get('beatmaps.language.instrumental'),
-        "b": Lang.get('beatmaps.language.other')
-      };
-      var extraFilters = {
-        "0": Lang.get('beatmaps.extra.video'),
-        "1": Lang.get('beatmaps.extra.storyboard')
-      };
-      var rankFilters = {
-        "0": Lang.get('beatmaps.rank.any'),
-        "1": Lang.get('beatmaps.rank.silver-ss'),
-        "2": Lang.get('beatmaps.rank.ss'),
-        "3": Lang.get('beatmaps.rank.silver-s'),
-        "4": Lang.get('beatmaps.rank.s'),
-        "5": Lang.get('beatmaps.rank.a'),
-        "6": Lang.get('beatmaps.rank.b'),
-        "7": Lang.get('beatmaps.rank.c'),
-        "8": Lang.get('beatmaps.rank.d')
-      };
+      var filters = this.state.filters;
       return(
         <div id='search'>
           <div className='background' style={{'background-image': 'url("' + this.props.background + '")'}}></div>
@@ -118,18 +64,18 @@
             <i className='fa fa-search'></i>
           </div>
 
-          <FilterSelector id='modeSelector' name='mode' title='Mode' options={modeFilters} default={"0"} />
-          <FilterSelector id='statusSelector' name='status' title='Rank Status' options={statusFilters} default={"1"} />
+          <FilterSelector name='mode' title='Mode' options={filters.modes} default={0} />
+          <FilterSelector name='status' title='Rank Status' options={filters.statuses} default={1} />
 
           <div className='more'>
             <a className='toggle' href='#' onClick={this.show_more}>
               <div>{Lang.get('beatmaps.listing.search.options')}</div>
               <div><i className='fa fa-angle-down'></i></div>
             </a>
-            <FilterSelector id='genreSelector' name='genre' title='Genre' options={genreFilters} default={"0"} />
-            <FilterSelector id='languageSelector' name='language' title='Language' options={languageFilters} default={"0"} />
-            <FilterSelector id='extraSelector' name='extra' title='Extra' options={extraFilters} multiselect={true} />
-            <FilterSelector id='rankSelector' name='rank' title='Rank Achieved' options={rankFilters} default={"0"} />
+            <FilterSelector name='genre' title='Genre' options={filters.genres} default={filters.genres[0]['id']} />
+            <FilterSelector name='language' title='Language' options={filters.languages} default={filters.languages[0]['id']} />
+            <FilterSelector name='extra' title='Extra' options={filters.extras} multiselect={true} />
+            <FilterSelector name='rank' title='Rank Achieved' options={filters.ranks} default={null} />
           </div>
         </div>
       );
