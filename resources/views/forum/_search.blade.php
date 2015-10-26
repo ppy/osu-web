@@ -60,14 +60,12 @@
                 @if(isset($topic))
                     <div>
                         <h2>{{ trans("forum.search.go_to_post") }}</h2>
-                        <form method="get" class="js-forum-posts-jump-to">
-                        <div class="text-addon-append">
+                        <form method="get" class="js-forum-posts-jump-to text-addon-append">
                             <span>#</span>
                             <input type="text" class="form-control modal-af" name="n" placeholder="{{ trans("forum.search.post_number_input") }}" />
                             <button type="submit">
                                 <i class="fa fa-angle-right"></i>
                             </button>
-                        </div>
                         </form>
                         {{ trans("forum.search.total_posts", ["posts_count" => $topic->postsCount()]) }}
                     </div>
