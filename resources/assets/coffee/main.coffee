@@ -43,7 +43,7 @@ $(document).on 'ready page:load', =>
 
   @adjustFooter ||= new AdjustFooter
 
-  @forumPostsSeek ||= new ForumPostsSeek(forum)
+  @forumPostsSeek ||= new ForumPostsSeek(@forum)
   @forumSearchModal ||= new ForumSearchModal(@forum)
 
 
