@@ -23,16 +23,24 @@
   width: 100%;
   margin-top: -@grid-gutter-width/2;
 
+  &__container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    &--fixed {
+      top: 0;
+      left: 0;
+      position: fixed;
+      z-index: @z-index--profile-extra-tabs;
+    }
+  }
+
   &__items {
     display: flex;
     height: @height;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    margin: 0px auto;
-    top: 0px;
     width: 100%;
     max-width: @container-sm;
 
@@ -41,8 +49,6 @@
     transition: background-color 120ms;
 
     &--fixed {
-      position: fixed;
-      z-index: 2;
       background-color: @gray-dark;
     }
   }

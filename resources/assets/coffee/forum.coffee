@@ -26,6 +26,9 @@ class Forum
     $(window).on 'scroll', =>
       requestAnimationFrame @refreshCounter
 
+    $(document).on 'ready page:load', =>
+      @anchorHeight = $('.js-forum-post [id^="forum-post-"]').height()
+
     $(document).on 'ready page:load osu:page:change', =>
       @refreshLoadMoreLinks()
       @refreshCounter()
@@ -36,15 +39,14 @@ class Forum
 
   setTotalPosts: (n) =>
     @_totalPostsDiv[0].setAttribute('data-total-count', n)
-    document.getElementsByClassName('total-count')[0].textContent = n
+    document.getElementsByClassName('js-forum__total-count')[0].textContent = n
 
   setCounter: (currentPost) =>
-    currentPostPosition = currentPost.getAttribute('data-post-position')
+    @currentPostPosition = parseInt currentPost.getAttribute('data-post-position'), 10
     postId = currentPost.getAttribute('data-post-id')
 
-    @_postsCounter[0].textContent = currentPostPosition
-    @_postsCounter[0].setAttribute 'href', "#{window.canonicalUrl}?start=#{postId}#forum-post-#{postId}"
-    @_postsProgress[0].setAttribute 'data-progress', Math.round(100 * currentPostPosition / @totalPosts())
+    @_postsCounter[0].textContent = @currentPostPosition
+    @_postsProgress[0].style.width = "#{100 * @currentPostPosition / @totalPosts()}%"
 
   endPost: => @posts[@posts.length - 1]
 
@@ -72,13 +74,11 @@ class Forum
   refreshCounter: =>
     return if @_postsCounter.length == 0
 
-    visibleTop = document.documentElement.clientHeight
     currentPost = null
 
     for post in @posts
       postTop = post.getBoundingClientRect().top
-      postHeight = post.offsetHeight
-      if postTop < 0 || postTop + postHeight < visibleTop
+      if postTop <= @anchorHeight
         currentPost = post
       else
         break
@@ -87,6 +87,17 @@ class Forum
     currentPost ?= @posts[0]
 
     @setCounter(currentPost)
+
+
+  jumpTo: (postN) =>
+    $post = $(".js-forum-post[data-post-position='#{postN}']")
+    if $post.length
+      postId = $post.attr('data-post-id')
+      window.scrollTo 0, $("#forum-post-#{postId}").offset().top
+    else
+      Turbolinks.visit("#{document.location.pathname}?n=#{postN}")
+
+
 
 window.forum = new Forum
 
