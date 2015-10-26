@@ -58,7 +58,7 @@ class @ForumPostsSeek
 
 
   click: =>
-    forum.jumpTo @postPosition
+    @forum.jumpTo @postPosition
 
   jump: (e) =>
     e.preventDefault()
