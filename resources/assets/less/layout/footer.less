@@ -18,12 +18,12 @@
 *
 */
 .footer {
-  .at2x("/images/backgrounds/page-222.png");
+  background-color: fade(@grey-0, 60%);
 
   &:extend(.default-text-shadow);
-  box-shadow: inset 0 2px 4px #000;
+  background-image: linear-gradient(to bottom, fade(@grey-0, 60%) 0, transparent 4px);
 
-  color: #ccc;
+  color: @grey-c;
   font-size: 10px;
 
   display: flex;

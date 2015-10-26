@@ -41,6 +41,8 @@ $(document).on 'ready page:load', =>
   @gallery ||= new Gallery
   @fade ||= new Fade
 
+  @adjustFooter ||= new AdjustFooter
+
   @forumPostsSeek ||= new ForumPostsSeek(forum)
   @forumSearchModal ||= new ForumSearchModal(@forum)
 
