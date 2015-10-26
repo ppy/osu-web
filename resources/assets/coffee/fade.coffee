@@ -18,15 +18,21 @@
 ###
 
 class @Fade
+  queue: []
+  running: false
+
   constructor: ->
     $(document).on 'transitionend', '.js-fade--out', @outComplete
     $(document).on 'transitionend', '.js-fade--in', @inComplete
 
 
   out: (el, callback) ->
-    el.style.opacity = '0'
-    el.classList.add 'js-fade--out'
-    el._js_fade_out_callback = callback
+    @queue.push ->
+      el.style.opacity = '0'
+      el.classList.add 'js-fade--out'
+      el._js_fade_out_callback = callback
+
+    @runQueue()
 
 
   outComplete: (e) ->
@@ -41,12 +47,15 @@ class @Fade
 
 
   in: (el, display = 'block', callback) ->
-    el.style.display = display
-    el.classList.add 'js-fade--in'
-    el._js_fade_in_callback = callback
+    @queue.push ->
+      el.style.display = display
+      el.classList.add 'js-fade--in'
+      el._js_fade_in_callback = callback
 
-    show = -> el.style.opacity = '1'
-    setTimeout show, 0
+    @queue.push ->
+      el.style.opacity = '1'
+
+    @runQueue()
 
 
   inComplete: (e) ->
@@ -57,3 +66,18 @@ class @Fade
       if target._js_fade_in_callback
         target._js_fade_in_callback()
         target._js_fade_in_callback = null
+
+
+  runQueue: (force = false) =>
+    return if @running && !force
+
+    if !@queue.length
+      @running = false
+      return
+
+    @running = true
+    @queue.shift().call()
+
+    nextRun = => @runQueue(true)
+
+    setTimeout nextRun, 0
