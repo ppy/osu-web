@@ -64,12 +64,16 @@ class @ForumPostsSeek
     e.preventDefault()
 
     currentPost = @forum.currentPostPosition
+    totalPosts = @forum.totalPosts()
     target = $(e.currentTarget).attr('data-jump-target')
 
     n = switch target
       when 'first' then 1
-      when 'last' then @forum.totalPosts()
+      when 'last' then totalPosts
       when 'previous' then currentPost - 10
       when 'next' then currentPost + 10
+
+    n = Math.max(1, n)
+    n = Math.min(totalPosts, n)
 
     @forum.jumpTo n

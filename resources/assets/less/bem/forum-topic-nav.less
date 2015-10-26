@@ -43,6 +43,21 @@
     height: @_main-height;
   }
 
+  &__counter {
+    // enough for 5 digits
+    width: 50px;
+
+    &--left {
+      text-align: right;
+    }
+
+    &--middle {
+      width: auto;
+      text-align: center;
+      margin: 0 @spacing;
+    }
+  }
+
   &__group {
     display: flex;
     flex: none;
@@ -59,6 +74,12 @@
       margin-left: @spacing;
     }
 
+    ._button-hover() {
+      background-color: @grey-1;
+      color: @grey-f;
+      text-decoration: none;
+    }
+
     &--button {
       width: @_content-height;
       height: @_content-height;
@@ -66,10 +87,12 @@
       &:focus,
       &:hover,
       &:active {
-        background-color: @grey-1;
-        color: @grey-f;
-        text-decoration: none;
+        ._button-hover;
       }
+    }
+
+    &--counter {
+      ._button-hover;
     }
 
     &--main {
@@ -85,7 +108,7 @@
     left: 0;
     bottom: 100%;
     height: (@spacing / 2);
-    transition: all 500ms ease-out;
+    transition: width 500ms ease-out, height 120ms ease-out;
     cursor: pointer;
 
     &::before {
