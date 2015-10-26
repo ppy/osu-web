@@ -65,9 +65,10 @@ class @ForumPostsSeek
 
     currentPost = @forum.currentPostPosition
     totalPosts = @forum.totalPosts()
-    target = $(e.currentTarget).attr('data-jump-target')
+    $target = $(e.currentTarget)
+    jumpTarget = $target.attr('data-jump-target')
 
-    n = switch target
+    n = switch jumpTarget
       when 'first' then 1
       when 'last' then totalPosts
       when 'previous' then currentPost - 10
@@ -76,4 +77,5 @@ class @ForumPostsSeek
     n = Math.max(1, n)
     n = Math.min(totalPosts, n)
 
+    $target.blur()
     @forum.jumpTo n
