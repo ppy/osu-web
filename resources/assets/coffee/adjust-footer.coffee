@@ -17,7 +17,7 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @AdjustFooter
-  footer: document.getElementsByClassName('js-page-footer')
+  footer: document.getElementsByClassName('js-page-footer-padding')
   fixedBottomBar: document.getElementsByClassName('js-fixed-bottom-bar')
 
   constructor: ->
@@ -27,7 +27,7 @@ class @AdjustFooter
 
 
   adjust: =>
-    @footer[0].style.marginBottom = @barHeight()
+    @footer[0].style.paddingBottom = @barHeight()
 
   barHeight: =>
     if @fixedBottomBar.length
