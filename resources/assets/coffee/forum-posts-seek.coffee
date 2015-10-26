@@ -56,4 +56,4 @@ class @ForumPostsSeek
 
 
   click: =>
-    console.log @postPosition
+    forum.jumpTo @postPosition

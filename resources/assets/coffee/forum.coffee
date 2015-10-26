@@ -87,6 +87,17 @@ class Forum
 
     @setCounter(currentPost)
 
+
+  jumpTo: (postN) =>
+    $post = $(".js-forum-post[data-post-position='#{postN}']")
+    if $post.length
+      postId = $post.attr('data-post-id')
+      window.scrollTo 0, $("#forum-post-#{postId}").offset().top
+    else
+      Turbolinks.visit("#{document.location.pathname}?n=#{postN}")
+
+
+
 window.forum = new Forum
 
 
