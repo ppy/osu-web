@@ -42,11 +42,11 @@ class Forum
     document.getElementsByClassName('js-forum__total-count')[0].textContent = n
 
   setCounter: (currentPost) =>
-    currentPostPosition = currentPost.getAttribute('data-post-position')
+    @currentPostPosition = parseInt currentPost.getAttribute('data-post-position'), 10
     postId = currentPost.getAttribute('data-post-id')
 
-    @_postsCounter[0].textContent = currentPostPosition
-    @_postsProgress[0].style.width = "#{100 * currentPostPosition / @totalPosts()}%"
+    @_postsCounter[0].textContent = @currentPostPosition
+    @_postsProgress[0].style.width = "#{100 * @currentPostPosition / @totalPosts()}%"
 
   endPost: => @posts[@posts.length - 1]
 

@@ -118,12 +118,23 @@
             <div class="forum-topic-nav__group">
                 <a
                     href="{{ route("forum.topics.show", $topic->topic_id) }}"
-                    class="js-forum-topic--post-first forum-topic-nav__item forum-topic-nav__item--main"
+                    class="js-forum-posts-seek--jump
+                        forum-topic-nav__item
+                        forum-topic-nav__item--main
+                        forum-topic-nav__item--button"
+                    data-jump-target="first"
                 >
                     <i class="fa fa-angle-double-left"></i>
                 </a>
 
-                <a href="#" class="js-forum-topic--post-previous forum-topic-nav__item forum-topic-nav__item--main">
+                <a
+                    href="#"
+                    class="js-forum-posts-seek--jump
+                        forum-topic-nav__item
+                        forum-topic-nav__item--main
+                        forum-topic-nav__item--button"
+                    data-jump-target="previous"
+                >
                     <i class="fa fa-angle-left"></i>
                 </a>
 
@@ -133,13 +144,25 @@
                     <span class="js-forum__total-count">{{ $topic->postsCount() }}</span>
                 </span>
 
-                <a href="#" class="js-forum-topic--post-next forum-topic-nav__item forum-topic-nav__item--main">
+                <a
+                    href="#"
+                    class="js-forum-posts-seek--jump
+                        forum-topic-nav__item
+                        forum-topic-nav__item--main
+                        forum-topic-nav__item--button"
+                    data-jump-target="next"
+                >
                     <i class="fa fa-angle-right"></i>
                 </a>
 
+
                 <a
                     href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => $topic->topic_last_post_id]) }}#forum-post-{{ $topic->topic_last_post_id }}"
-                    class="js-forum-topic--post-last forum-topic-nav__item forum-topic-nav__item--main"
+                    class="js-forum-posts-seek--jump
+                        forum-topic-nav__item
+                        forum-topic-nav__item--main
+                        forum-topic-nav__item--button"
+                    data-jump-target="last"
                 >
                     <i class="fa fa-angle-double-right"></i>
                 </a>

@@ -18,7 +18,8 @@
  *
  */
 .forum-topic-nav {
-  @_main-height: 50px;
+  @_content-height: 30px;
+  @_main-height: (@_content-height + (@spacing * 2));
   width: 100%;
   background-color: @gray-dark;
 
@@ -48,10 +49,27 @@
   }
 
   &__item {
-    color: #fff;
+    .default-border-radius;
+    color: @grey-f;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
     & + & {
       margin-left: @spacing;
+    }
+
+    &--button {
+      width: @_content-height;
+      height: @_content-height;
+
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: @grey-1;
+        color: @grey-f;
+        text-decoration: none;
+      }
     }
 
     &--main {

@@ -29,6 +29,8 @@ class @ForumPostsSeek
     $(document).on 'mousemove', '.js-forum__posts-seek', @move
     $(document).on 'click', '.js-forum__posts-seek', @click
 
+    $(document).on 'click', '.js-forum-posts-seek--jump', @jump
+
 
   enter: (e) =>
     @move(e)
@@ -57,3 +59,17 @@ class @ForumPostsSeek
 
   click: =>
     forum.jumpTo @postPosition
+
+  jump: (e) =>
+    e.preventDefault()
+
+    currentPost = @forum.currentPostPosition
+    target = $(e.currentTarget).attr('data-jump-target')
+
+    n = switch target
+      when 'first' then 1
+      when 'last' then @forum.totalPosts()
+      when 'previous' then currentPost - 10
+      when 'next' then currentPost + 10
+
+    @forum.jumpTo n
