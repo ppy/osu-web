@@ -140,11 +140,21 @@
                     <i class="fa fa-angle-left"></i>
                 </a>
 
-                <span class="post-counter forum-topic-nav__item forum-topic-nav__item--main">
-                    <span class="current-count js-forum__posts-counter">{{ head($postsPosition) }}</span>
-                    /
-                    <span class="js-forum__total-count">{{ $topic->postsCount() }}</span>
-                </span>
+                <div class="post-counter forum-topic-nav__item forum-topic-nav__item--main forum-topic-nav__item--counter">
+                    <span class="forum-topic-nav__counter
+                        forum-topic-nav__counter--left
+                        js-forum__posts-counter"
+                    >{{ head($postsPosition) }}</span>
+
+                    <span class="forum-topic-nav__counter
+                        forum-topic-nav__counter--middle"
+                    >/</span>
+
+                    <span class="forum-topic-nav__counter
+                        forum-topic-nav__counter--right
+                        js-forum__total-count"
+                    >{{ $topic->postsCount() }}</span>
+                </div>
 
                 <a
                     href="#"
