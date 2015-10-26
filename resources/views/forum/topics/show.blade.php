@@ -123,6 +123,7 @@
                         forum-topic-nav__item--main
                         forum-topic-nav__item--button"
                     data-jump-target="first"
+                    title="{{ trans('forum.topic.jump.first') }}"
                 >
                     <i class="fa fa-angle-double-left"></i>
                 </a>
@@ -134,6 +135,7 @@
                         forum-topic-nav__item--main
                         forum-topic-nav__item--button"
                     data-jump-target="previous"
+                    title="{{ trans('forum.topic.jump.previous') }}"
                 >
                     <i class="fa fa-angle-left"></i>
                 </a>
@@ -151,6 +153,7 @@
                         forum-topic-nav__item--main
                         forum-topic-nav__item--button"
                     data-jump-target="next"
+                    title="{{ trans('forum.topic.jump.next') }}"
                 >
                     <i class="fa fa-angle-right"></i>
                 </a>
@@ -163,6 +166,7 @@
                         forum-topic-nav__item--main
                         forum-topic-nav__item--button"
                     data-jump-target="last"
+                    title="{{ trans('forum.topic.jump.last') }}"
                 >
                     <i class="fa fa-angle-double-right"></i>
                 </a>
