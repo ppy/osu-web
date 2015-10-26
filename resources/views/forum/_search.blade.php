@@ -60,7 +60,7 @@
                 @if(isset($topic))
                     <div>
                         <h2>{{ trans("forum.search.go_to_post") }}</h2>
-                        <form method="get">
+                        <form method="get" class="js-forum-posts-jump-to">
                         <div class="text-addon-append">
                             <span>#</span>
                             <input type="text" class="form-control modal-af" name="n" placeholder="{{ trans("forum.search.post_number_input") }}" />

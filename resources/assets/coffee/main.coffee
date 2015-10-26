@@ -42,6 +42,7 @@ $(document).on 'ready page:load', =>
   @fade ||= new Fade
 
   @forumPostsSeek ||= new ForumPostsSeek(forum)
+  @forumSearchModal ||= new ForumSearchModal(@forum)
 
 
 $(document).on 'ready page:load osu:page:change', ->
