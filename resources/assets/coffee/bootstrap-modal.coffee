@@ -16,9 +16,42 @@ See the GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+fixedElements = document.getElementsByClassName('js-fixed-element')
+
 $(document).on 'shown.bs.modal', '.modal', (e) ->
   $(e.target).find('.modal-af').focus()
 
+
 $(document).on 'hidden.bs.modal', '.modal', ->
   $('.modal-backdrop').remove()
-  $('body').css paddingRight: ''
+  $('body, .js-fixed-element').css paddingRight: ''
+
+
+$(document).on 'show.bs.modal', '.modal', ->
+  alignments = []
+
+  for el, i in fixedElements
+    alignments[i] = el.getBoundingClientRect()
+    alignments[i].skip = getComputedStyle(el).position != 'fixed'
+
+  for el, i in fixedElements
+    continue if alignments[i].skip
+    el.style.left = "#{alignments[i].left}px"
+    el.style.top = "#{alignments[i].top}px"
+    el.style.width = "#{alignments[i].width}px"
+
+
+$(document).on 'shown.bs.modal', '.modal', ->
+  paddingRight = $('body').css('padding-right')
+
+  skips = []
+
+  for el, i in fixedElements
+    skips[i] = getComputedStyle(el).position != 'fixed'
+
+  for el, i in fixedElements
+    continue if skips[i]
+    el.style.paddingRight = paddingRight
+    el.style.left = ''
+    el.style.top = ''
+    el.style.width = ''

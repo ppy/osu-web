@@ -16,13 +16,15 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@section('fixed-bar-rows-bottom')
-    @parent
-
-    <a id="forum-search" class="forum-search-logo js-forum-search-button" href="#" data-toggle="modal" data-target="#forum-search-modal">
-        <i class="fa fa-search"></i>
-    </a>
-@endsection
+<a
+    id="forum-search"
+    class="forum-search-logo js-forum-search-button forum-colour__bg-link--{{ $category }}"
+    href="#"
+    data-toggle="modal"
+    data-target="#forum-search-modal"
+>
+    <i class="fa fa-search"></i>
+</a>
 
 @section("script")
     @parent
@@ -58,14 +60,12 @@
                 @if(isset($topic))
                     <div>
                         <h2>{{ trans("forum.search.go_to_post") }}</h2>
-                        <form method="get">
-                        <div class="text-addon-append">
+                        <form method="get" class="js-forum-posts-jump-to text-addon-append">
                             <span>#</span>
                             <input type="text" class="form-control modal-af" name="n" placeholder="{{ trans("forum.search.post_number_input") }}" />
                             <button type="submit">
                                 <i class="fa fa-angle-right"></i>
                             </button>
-                        </div>
                         </form>
                         {{ trans("forum.search.total_posts", ["posts_count" => $topic->postsCount()]) }}
                     </div>
