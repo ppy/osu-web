@@ -26,6 +26,9 @@ class Forum
     $(window).on 'scroll', =>
       requestAnimationFrame @refreshCounter
 
+    $(document).on 'ready page:load', =>
+      @anchorHeight = $('.js-forum-post [id^="forum-post-"]').height()
+
     $(document).on 'ready page:load osu:page:change', =>
       @refreshLoadMoreLinks()
       @refreshCounter()
@@ -71,13 +74,11 @@ class Forum
   refreshCounter: =>
     return if @_postsCounter.length == 0
 
-    visibleTop = document.documentElement.clientHeight
     currentPost = null
 
     for post in @posts
       postTop = post.getBoundingClientRect().top
-      postHeight = post.offsetHeight
-      if postTop < 0 || postTop + postHeight < visibleTop
+      if postTop <= @anchorHeight
         currentPost = post
       else
         break
