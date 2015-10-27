@@ -20,6 +20,9 @@
  */
 
 return [
+    'codes' => [
+        'http-403' => 'Access denied.',
+    ],
     'supporter_only' => 'You must be a supporter to use this feature.',
     'unknown' => 'Unknown error occurred.',
 ];

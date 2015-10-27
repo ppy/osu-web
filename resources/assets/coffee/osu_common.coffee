@@ -17,6 +17,17 @@ You should have received a copy of the GNU Affero General Public License
 along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 @osu =
+  ajaxError: (xhr) ->
+    message = xhr.responseJSON?.error
+
+    unless message
+      errorKey = "errors.codes.http-#{xhr.status}"
+      message = Lang.get errorKey
+      message = Lang.get 'errors.unknown' if message == errorKey
+
+    osu.popup message, 'danger'
+
+
   pageChange: ->
     callback = -> $(document).trigger('osu:page:change')
     setTimeout callback, 0

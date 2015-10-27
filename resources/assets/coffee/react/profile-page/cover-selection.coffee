@@ -29,6 +29,7 @@ class ProfilePage.CoverSelection extends React.Component
       dataType: 'json'
     .done (userData) ->
       $.publish 'user:update', userData.data
+    .error osu.ajaxError
 
 
   onMouseEnter: =>
