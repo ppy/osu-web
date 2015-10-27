@@ -21,18 +21,24 @@
     <div class="logo-menu__logo">
     </div>
 
-    <ul class="logo-menu__menu">
+    <ul class="logo-menu__menu logo-menu__menu--main">
         @foreach (nav_links() as $section => $links)
-            <li class="logo-menu__menu-item">
-                <a href="{{ array_values($links)[0] }}" class="logo-menu__menu-link">
-                    {{ trans("layout.menu.{$section}._") }}
+            <li class="logo-menu__menu-item logo-menu__menu-item--main">
+                <a href="{{ array_values($links)[0] }}" class="logo-menu__menu-link bg-hover--{{ $section }}">
+                    <span class="logo-menu__menu-text logo-menu__menu-text--main">
+                        {{ trans("layout.menu.{$section}._") }}
+
+                        <i class="fa fa-angle-right logo-menu__menu-link-icon"></i>
+                    </span>
                 </a>
 
-                <ul class="logo-menu__submenu">
+                <ul class="logo-menu__menu logo-menu__menu--sub">
                     @foreach ($links as $action => $link)
-                        <li class="logo-menu__submenu-item">
-                            <a href="{{ $link }}" class="logo-menu__submenu-link">
-                                {{ trans("layout.menu.{$section}.{$action}") }}
+                        <li class="logo-menu__menu-item">
+                            <a href="{{ $link }}" class="logo-menu__menu-link logo-menu__menu-link bg--{{ $section }}">
+                                <span class="logo-menu__menu-text logo-menu__menu-text--sub">
+                                    {{ trans("layout.menu.{$section}.{$action}") }}
+                                </span>
                             </a>
                         </li>
                     @endforeach

@@ -67,10 +67,12 @@ elixir(function(mix) {
     "osu!live.coffee",
     "osu_common.coffee",
     "turbolinks-mod.coffee",
+
     "adjust-footer.coffee",
     "fade.coffee",
     "gallery.coffee",
     "global-drag.coffee",
+    "logo-menu.coffee",
     "main.coffee",
     "navbar-mobile.coffee",
     "spoilerbox.coffee",

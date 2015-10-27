@@ -22,6 +22,10 @@
     @colour-name: ~'forum-category-colour--@{category}';
     @colour-name--link: ~'@{colour-name}-link';
 
+    &__bg-hover-link--category-@{category} {
+      background-color: @@colour-name--link;
+    }
+
     &__bg-link--category-@{category} {
       background-color: @@colour-name--link;
     }
