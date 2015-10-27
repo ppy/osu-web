@@ -1,0 +1,102 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License as published by
+ *    the Free Software Foundation, either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+.forum-topic-headernav {
+  @_main-height: 60px;
+  width: 100%;
+  position: fixed;
+  z-index: @z-index--forum-topic-headernav;
+  backface-visibility: hidden;
+  display: none;
+  justify-content: center;
+  color: @grey-f;
+  transition: opacity 120ms linear;
+  top: 0;
+  left: 0;
+
+  &__breadcrumb {
+    .default-border-radius;
+    font-size: 12px;
+    list-style: none;
+    display: inline-flex;
+    padding: (@spacing / 2);
+    margin: 0;
+  }
+
+  &__breadcrumb-item {
+    display: flex;
+
+    & + & {
+      margin-left: @spacing;
+    }
+
+    &::after {
+      content: '»';
+      margin-left: @spacing;
+    }
+  }
+
+  &__content {
+    background-color: @grey-3;
+    display: flex;
+    width: 100%;
+    max-width: @container-sm;
+    height: @_main-height;
+  }
+
+  &__logo {
+    width: @_main-height;
+    height: @_main-height;
+    background-color: @grey-2;
+  }
+
+  &__nav-link {
+    &,
+    &:focus,
+    &:hover,
+    &:active {
+      color: @grey-f;
+      text-decoration: none;
+    }
+  }
+
+  &__title {
+    font-size: 15px;
+    font-style: normal;
+    flex: none;
+
+    & + & {
+      margin-top: (@spacing / 2);
+    }
+  }
+
+  &__titles {
+    padding: (@spacing / 2);
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__stripe {
+    height: @spacing;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}

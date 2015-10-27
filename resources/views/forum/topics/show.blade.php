@@ -23,33 +23,83 @@
 ])
 
 @section("content")
-    <div class="row-page row-blank" id="topic-header-container">
-        <div class="js-forum__sticky-header-marker"></div>
+    <div class="forum-topic-headernav js-forum-topic-headernav js-fixed-element">
+        <div class="forum-topic-headernav__stripe
+            forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
+        "></div>
 
-        @foreach(["normal", "sticky"] as $type)
-            <div class="forum-header
-                forum-category-header
-                forum-category-header--{{ $topic->forum->categorySlug() }}
-                forum-category-header--main
-                js-forum__header--{{ $type }}"
-            >
-                <div class="topic-header">
-                    <ol class="breadcrumb forums-breadcrumb">
-                        @include("forum.forums._nav", ["forum_parents" => $topic->forum->forum_parents])
-                        <li>
-                            <a href="{{ route("forum.forums.show", $topic->forum->forum_id) }}">
+        <div class="forum-topic-headernav__content">
+            <div class="forum-topic-headernav__logo">
+                @include('objects.logo-menu')
+            </div>
+
+            <div class="forum-topic-headernav__titles">
+                <div class="forum-topic-headernav__title">
+                    <ol class="
+                        forum-topic-headernav__breadcrumb
+                        forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
+                    ">
+                        @foreach ($topic->forum->forum_parents as $forumId => $forumData)
+                            <li class="forum-topic-headernav__breadcrumb-item">
+                                <a href=
+                                    @if ($forumData[1] === 0)
+                                        "{{ route('forum.forums.index') }}#forum-{{ $forumId }}"
+                                    @else
+                                        "{{ route('forum.forums.show', $forumId) }}"
+                                    @endif
+                                    class="forum-topic-headernav__nav-link"
+                                >
+                                    {{ $forumData[0] }}
+                                </a>
+                            </li>
+                        @endforeach
+
+                        <li class="forum-topic-headernav__breadcrumb-item">
+                            <a href="{{ route("forum.forums.show", $topic->forum->forum_id) }}"
+                                class="forum-topic-headernav__nav-link"
+                            >
                                 {{ $topic->forum->forum_name }}
                             </a>
                         </li>
                     </ol>
-                    <h1>
-                        <a href="{{ route("forum.topics.show", $topic->topic_id) }}">
-                            {{ $topic->topic_title }}
-                        </a>
-                    </h1>
                 </div>
+
+                <h1 class="forum-topic-headernav__title">
+                    <a href="{{ route("forum.topics.show", $topic->topic_id) }}" class="forum-topic-headernav__nav-link">
+                        {{ $topic->topic_title }}
+                    </a>
+                </h1>
             </div>
-        @endforeach
+
+            <div class="forum-topic-headernav__actions">
+            </div>
+        </div>
+    </div>
+
+    <div class="row-page row-blank" id="topic-header-container">
+        <div class="forum-header
+            forum-category-header
+            forum-category-header--{{ $topic->forum->categorySlug() }}
+            forum-category-header--main
+        ">
+            <div class="topic-header">
+                <ol class="breadcrumb forums-breadcrumb">
+                    @include("forum.forums._nav", ["forum_parents" => $topic->forum->forum_parents])
+                    <li>
+                        <a href="{{ route("forum.forums.show", $topic->forum->forum_id) }}">
+                            {{ $topic->forum->forum_name }}
+                        </a>
+                    </li>
+                </ol>
+                <h1>
+                    <a href="{{ route("forum.topics.show", $topic->topic_id) }}">
+                        {{ $topic->topic_title }}
+                    </a>
+                </h1>
+            </div>
+        </div>
+
+        <div class="forum-topic-header__sticky-marker js-sticky-header" data-sticky-header-target="forum-topic-headernav"></div>
     </div>
 
     <div class="row-forum-post row-page forum-posts-load-link">
