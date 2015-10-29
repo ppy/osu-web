@@ -241,7 +241,9 @@
             </div>
 
             <div class="forum-topic-nav__group">
-                @include('forum._search', ['category' => $topic->forum->categorySlug()])
+                <div class="forum-topic-nav__item">
+                    @include('forum._search', ['category' => $topic->forum->categorySlug()])
+                </div>
             </div>
         </div>
     </div>

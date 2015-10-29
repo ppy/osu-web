@@ -17,7 +17,6 @@ You should have received a copy of the GNU Affero General Public License
 along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class UserDropdownModal
-  _mobileElements: document.getElementsByClassName('visible-xs')
   box: document.getElementsByClassName('js-user-dropdown-modal__dialog')
   activeBox: document.getElementsByClassName('js-user-dropdown-modal__dialog--active')
   avatar: document.getElementsByClassName('js-nav-avatar')
@@ -40,11 +39,6 @@ class UserDropdownModal
     $(document).on 'ajax:error', (event, xhr) =>
       return unless xhr.status == 401
       @show event.target
-
-
-  _isMobile: =>
-    dimensions = @_mobileElements[0].getBoundingClientRect()
-    return dimensions.width != 0 && dimensions.height != 0
 
 
   isAvatarVisible: =>
@@ -72,7 +66,7 @@ class UserDropdownModal
   reposition: =>
     return if @activeBox[0] == undefined
 
-    if @_isMobile()
+    if osu.isMobile()
       @box[0].classList.add 'js-user-dropdown-modal__dialog--centre'
       @box[0].style.marginTop = '60px'
 

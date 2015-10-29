@@ -54,7 +54,9 @@
                             data-toggle="collapse" data-target="#xs-navbar"
                         >
                             <span class="sr-only">Toggle navigation</span>
-                            <i class="fa fa-bars"></i>
+                            <div class="navbar-mobile__toggle-icon">
+                                <i class="fa fa-bars"></i>
+                            </div>
                         </button>
                     </div>
                 </div>
