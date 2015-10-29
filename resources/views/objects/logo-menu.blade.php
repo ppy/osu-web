@@ -18,8 +18,7 @@
 --}}
 
 <div class="logo-menu">
-    <div class="logo-menu__logo">
-    </div>
+    <a href="{{ route('home') }}" class="logo-menu__logo"></a>
 
     <ul class="logo-menu__menu logo-menu__menu--main">
         @foreach (nav_links() as $section => $links)
