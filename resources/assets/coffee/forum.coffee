@@ -26,12 +26,11 @@ class Forum
     $(window).on 'scroll', =>
       requestAnimationFrame @refreshCounter
 
-    $(document).on 'ready page:load', =>
-      @anchorHeight = $('.js-forum-post [id^="forum-post-"]').height()
-
     $(document).on 'ready page:load osu:page:change', =>
       @refreshLoadMoreLinks()
       @refreshCounter()
+
+    $(document).on 'click', '.js-post-url', @postUrlClick
 
   totalPosts: =>
     return null if @_totalPostsDiv.length == 0
@@ -75,10 +74,11 @@ class Forum
     return if @_postsCounter.length == 0
 
     currentPost = null
+    anchorHeight = window.innerHeight * 0.5
 
     for post in @posts
       postTop = post.getBoundingClientRect().top
-      if postTop <= @anchorHeight
+      if postTop <= anchorHeight
         currentPost = post
       else
         break
@@ -96,6 +96,29 @@ class Forum
       window.scrollTo 0, $("#forum-post-#{postId}").offset().top
     else
       Turbolinks.visit("#{document.location.pathname}?n=#{postN}")
+
+
+  scrollTo: (postId) =>
+    post = document.querySelector(".js-forum-post[data-post-id='#{postId}']")
+
+    return unless post
+
+    postDim = post.getBoundingClientRect()
+    windowHeight = window.innerHeight
+
+    postTop = window.pageYOffset + postDim.top
+
+    offset = (windowHeight - postDim.height) / 2
+    offset = Math.max(offset, 0)
+
+    window.scrollTo 0, postTop - offset
+
+
+  postUrlClick: (e) =>
+      e.preventDefault()
+
+      id = $(e.target).closest('.js-forum-post').attr('data-post-id')
+      @scrollTo id
 
 
 
@@ -194,13 +217,13 @@ class RepositionForumSearchBox
 window.repositionForumSearchBox = new RepositionForumSearchBox
 
 
-$(document).on 'ready page:load', ->
+$(document).on 'ready page:load', =>
   return if location.hash != '' ||
-    window.postJumpTo == undefined ||
-    window.postJumpTo == 0
+    @postJumpTo == undefined ||
+    @postJumpTo == 0
 
-  window.scrollTo 0, $("#forum-post-#{window.postJumpTo}").offset().top
-  window.postJumpTo = 0
+  @forum.scrollTo @postJumpTo
+  @postJumpTo = 0
 
 
 $(document).on 'click', '.js-forum-posts-show-more', (e) ->

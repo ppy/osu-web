@@ -29,10 +29,6 @@
         class="js-forum-post row-page forum-post flex-row post-viewer"
         data-post-id="{{ $post->post_id }}"
         data-post-position="{{ $options["postPosition"] }}">
-    @if(is_int($post->post_id) && $post->post_id > 0)
-        <div class="forum-post-anchor" id="forum-post-{{ $post->post_id }}"></div>
-    @endif
-
     <div class="info-panel">
         @include("forum.topics._post_info", ["user" => $post->userNormalized(), "options" => ["large" => $options["large"]]])
     </div>
