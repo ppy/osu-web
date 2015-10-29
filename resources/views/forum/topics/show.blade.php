@@ -39,6 +39,14 @@
                         forum-topic-headernav__breadcrumb
                         forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
                     ">
+                        <li class="forum-topic-headernav__breadcrumb-item">
+                            <a href="{{ route('forum.forums.index') }}"
+                                class="forum-topic-headernav__nav-link"
+                            >
+                                {{ trans('forum.title') }}
+                            </a>
+                        </li>
+
                         @foreach ($topic->forum->forum_parents as $forumId => $forumData)
                             <li class="forum-topic-headernav__breadcrumb-item">
                                 <a href=
