@@ -17,7 +17,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <footer class="footer no-print flex-none">
-    <ul class="list-inline footer-row">
+    <ul class="list-inline text-center footer-row">
         <li><a class="footer-link" href="{{ config("osu.urls.legal.tos") }}" target="_blank">Terms of Service</a></li>
         <li><a class="footer-link" href="{{ config("osu.urls.legal.dmca") }}" target="_blank">Copyright (DMCA)</a></li>
         <li><a class="footer-link" href="{{ config("osu.urls.status.server") }}" target="_blank">Server Status</a></li>
