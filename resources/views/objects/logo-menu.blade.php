@@ -25,6 +25,7 @@
         @foreach (nav_links() as $section => $links)
             <li class="logo-menu__menu-item logo-menu__menu-item--main">
                 <a href="{{ array_values($links)[0] }}" class="logo-menu__menu-link bg-hover--{{ $section }}">
+                    <div class="logo-menu__menu-stripe logo-menu__menu-stripe--hover bg--{{ $section }}"></div>
                     <span class="logo-menu__menu-text logo-menu__menu-text--main">
                         {{ trans("layout.menu.{$section}._") }}
 
@@ -35,7 +36,8 @@
                 <ul class="logo-menu__menu logo-menu__menu--sub">
                     @foreach ($links as $action => $link)
                         <li class="logo-menu__menu-item">
-                            <a href="{{ $link }}" class="logo-menu__menu-link logo-menu__menu-link bg--{{ $section }}">
+                            <a href="{{ $link }}" class="logo-menu__menu-link logo-menu__menu-link">
+                                <div class="logo-menu__menu-stripe bg--{{ $section }}"></div>
                                 <span class="logo-menu__menu-text logo-menu__menu-text--sub">
                                     {{ trans("layout.menu.{$section}.{$action}") }}
                                 </span>
