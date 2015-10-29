@@ -32,6 +32,10 @@ class AccountController extends Controller
     {
         $this->middleware('auth');
 
+        if (Auth::user()->isSilenced()) {
+            abort(403);
+        }
+
         return parent::__construct();
     }
 
