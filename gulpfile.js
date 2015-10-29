@@ -73,7 +73,7 @@ elixir(function(mix) {
     "gallery.coffee",
     "global-drag.coffee",
     "logo-menu.coffee",
-    "main.coffee",
+    "menu.coffee",
     "navbar-mobile.coffee",
     "spoilerbox.coffee",
     "store.coffee",
@@ -88,6 +88,8 @@ elixir(function(mix) {
     "user-dropdown-modal.coffee",
     "logout.coffee",
     "shared.coffee",
+
+    "main.coffee",
 
     "react/flag-country.coffee",
     "react/user-card.coffee",

@@ -37,6 +37,7 @@
     display: none;
     flex-direction: column;
     position: absolute;
+    transition: opacity 120ms linear;
 
     &--main {
       padding: (@spacing / 2) 0 0 0;
@@ -56,6 +57,7 @@
     display: flex;
     background-color: @grey-3;
 
+    &.js-menu--active,
     &:focus,
     &:hover,
     &:active {
@@ -88,14 +90,7 @@
     align-items: center;
     flex: 1 0 auto;
     padding: (@spacing / 2) @spacing;
-    background-color: @grey-3;
     font-size: 15px;
-
-    &:focus,
-    &:hover,
-    &:active {
-        background-color: @grey-2;
-    }
 
     &--sub {
       padding-right: (@spacing * 2);
