@@ -34,6 +34,7 @@
     .default-border-radius;
     list-style: none;
     display: inline-flex;
+    flex-wrap: wrap;
     padding: (@spacing / 2);
     margin: 0;
   }
@@ -57,12 +58,11 @@
     display: flex;
     width: 100%;
     max-width: @container-sm;
-    height: @_main-height;
+    min-height: @_main-height;
   }
 
   &__logo {
     width: @_main-height;
-    height: @_main-height;
     background-color: @grey-2;
   }
 
@@ -80,6 +80,7 @@
     font-size: 15px;
     font-style: normal;
     flex: none;
+    margin-bottom: 0;
 
     & + & {
       margin-top: (@spacing / 2);
