@@ -39,13 +39,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 @spacing;
+    padding: 0 (@spacing / 2);
     height: @_main-height;
   }
 
   &__counter {
     // enough for 5 digits
-    width: 50px;
+    width: 40px;
+    @media @desktop {
+      width: 50px;
+    }
 
     &--left {
       text-align: right;
@@ -69,9 +72,11 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    margin: 0 (@spacing / 2);
 
-    & + & {
-      margin-left: @spacing;
+    font-size: 12px;
+    @media @desktop {
+      font-size: 16px;
     }
 
     ._button-hover() {
@@ -96,9 +101,9 @@
     }
 
     &--main {
-
-      & + & {
-        margin-left: (@spacing * 2)
+      margin: 0 (@spacing / 4);
+      @media @desktop {
+        margin: 0 @spacing;
       }
     }
   }
@@ -162,6 +167,7 @@
     background-color: @gray-dark;
     padding: (@spacing / 2) (@spacing * 2);
     color: @grey-f;
+    flex: none;
 
     &::before {
       content: ' ';

@@ -57,14 +57,15 @@
 
   // Modifiers
   &--login {
-    .at2x("/images/headers/login-box.jpg", 430px, 60px);
+    .at2x-simple("/images/headers/login-box.jpg");
     height: 60px;
+    background-size: cover;
+    background-position: 100%;
   }
 
   &--authenticated {
     align-items: flex-end;
-    .at2x("/images/headers/profile-covers/c3.jpg", 430px, 70px);
-    background-size: 430px auto;
+    background-size: cover;
     background-position: center;
     display: flex;
     height: 70px;
