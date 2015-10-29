@@ -99,8 +99,7 @@ class Forum
   jumpTo: (postN) =>
     $post = $(".js-forum-post[data-post-position='#{postN}']")
     if $post.length
-      postId = $post.attr('data-post-id')
-      window.scrollTo 0, $("#forum-post-#{postId}").offset().top
+      @scrollTo $post.attr('data-post-id')
     else
       Turbolinks.visit("#{document.location.pathname}?n=#{postN}")
 
