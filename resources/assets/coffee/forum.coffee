@@ -76,12 +76,19 @@ class Forum
     currentPost = null
     anchorHeight = window.innerHeight * 0.5
 
-    for post in @posts
-      postTop = post.getBoundingClientRect().top
-      if postTop <= anchorHeight
-        currentPost = post
-      else
-        break
+    pageBottom = document.getElementsByClassName('js-page-footer-padding')[0]
+      .getBoundingClientRect()
+      .bottom
+
+    if pageBottom == window.innerHeight
+      currentPost = @posts[@posts.length - 1]
+    else
+      for post in @posts
+        postTop = post.getBoundingClientRect().top
+        if postTop <= anchorHeight
+          currentPost = post
+        else
+          break
 
     # no post visible?
     currentPost ?= @posts[0]
