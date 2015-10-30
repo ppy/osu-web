@@ -35,13 +35,17 @@
     list-style: none;
     display: inline-flex;
     flex-wrap: wrap;
-    padding: (@spacing / 2) (@spacing / 4);
     margin: 0;
+
+    // Less padding top because the font used has too much space
+    // on the upper side
+    padding: (@spacing / 4) (@spacing / 4) (@spacing / 2);
   }
 
   &__breadcrumb-item {
     display: flex;
     font-size: 12px;
+    line-height: 1;
 
     margin: 0 (@spacing / 4);
 
