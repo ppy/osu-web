@@ -77,9 +77,9 @@ class RouteTest extends TestCase
      *
      * @return void
      */
-    public function testBeatmapListingRoutes()
+    public function testBeatmapRoutes()
     {
-        $this->assertGetRoutes(['/beatmaps/listing']);
+        $this->assertGetRoutes(['/beatmaps']);
     }
 
     /**
@@ -87,9 +87,9 @@ class RouteTest extends TestCase
      *
      * @return void
      */
-    public function testBeatmapPageRoutes()
+    public function testBeatmapSearchRoutes()
     {
-        $this->assertGetRoutes(['/beatmaps/modding']);
+        $this->assertGetRoutes(['/beatmaps/search']);
     }
 
     /**
