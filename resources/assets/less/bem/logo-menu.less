@@ -18,6 +18,9 @@
  *
  */
 .logo-menu {
+  @_menu-colour: @grey-3;
+  @_menu-colour-hover: @grey-2;
+  @_menu-text-colour: @grey-f;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -52,16 +55,16 @@
   }
 
   &__menu-link {
-    color: @grey-f;
+    color: @_menu-text-colour;
     display: flex;
-    background-color: @grey-3;
+    background-color: @_menu-colour;
 
     &.js-menu--active,
     &:focus,
     &:hover,
     &:active {
-      background-color: @grey-2;
-      color: @grey-f;
+      background-color: @_menu-colour-hover;
+      color: @_menu-text-colour;
       text-decoration: none;
 
       .logo-menu__menu-stripe {
@@ -93,6 +96,49 @@
 
     &--sub {
       padding-right: (@spacing * 2);
+    }
+  }
+
+  &__user {
+    display: flex;
+    background-color: @_menu-colour;
+
+    &--full {
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: @_menu-colour-hover;
+        text-decoration: none;
+        color: @_menu-text-colour;
+      }
+    }
+  }
+
+  &__user-slice {
+    padding: @spacing;
+    color: @_menu-text-colour;
+
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: @_menu-colour-hover;
+      text-decoration: none;
+      color: @_menu-text-colour;
+    }
+
+    &--avatar {
+      @_avatar-size: 40px;
+      width: (@spacing * 2 + @_avatar-size);
+      height: (@spacing * 2 + @_avatar-size);
+      padding: @spacing;
+    }
+
+    &--session {
+      flex: 1 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
     }
   }
 }

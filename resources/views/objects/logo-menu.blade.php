@@ -21,6 +21,48 @@
     <a href="{{ route('home') }}" class="logo-menu__logo js-menu js-menu--visible" data-menu-target="logo-menu"></a>
 
     <ul class="logo-menu__menu logo-menu__menu--main js-menu" data-menu-id="logo-menu">
+        <li class="logo-menu__menu-item js-menu">
+            @if (Auth::check())
+                <div class="logo-menu__user logo-menu__user--split">
+                    <a
+                        class="logo-menu__user-slice logo-menu__user-slice--avatar"
+                        href="{{ route('users.show', Auth::user()) }}"
+                    >
+                        <div
+                            class="avatar avatar--full"
+                            style="background-image: url('{{ Auth::user()->user_avatar }}');"
+                        ></div>
+                    </a>
+
+                    <a
+                        class="logo-menu__user-slice logo-menu__user-slice--session js-logout-link"
+                        href="{{ route('users.logout') }}"
+                        data-method="delete"
+                        data-confirm="{{ trans('users.logout_confirm') }}"
+                        data-remote="1"
+                    >
+                        <i class="fa fa-sign-out"></i>
+                    </a>
+                </div>
+            @else
+                <a
+                    href="#"
+                    data-toggle="modal"
+                    data-target="#user-dropdown-modal"
+                    title="{{ trans('users.anonymous.login') }}"
+                    class="logo-menu__user logo-menu__user--full"
+                >
+                    <div class="logo-menu__user-slice logo-menu__user-slice--avatar">
+                        <div class="avatar avatar--guest avatar--full"></div>
+                    </div>
+
+                    <span class="logo-menu__user-slice logo-menu__user-slice--session">
+                        <i class="fa fa-sign-in"></i>
+                    </span>
+                </a>
+            @endif
+        </li>
+
         @foreach (nav_links() as $section => $links)
             <li class="logo-menu__menu-item">
                 <a href="{{ array_values($links)[0] }}" class="logo-menu__menu-link bg-hover--{{ $section }} js-menu" data-menu-target="logo-menu--{{ $section }}">
