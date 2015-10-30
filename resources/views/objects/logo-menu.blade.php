@@ -22,7 +22,7 @@
 
     <ul class="logo-menu__menu logo-menu__menu--main js-menu" data-menu-id="logo-menu">
         @foreach (nav_links() as $section => $links)
-            <li class="logo-menu__menu-item logo-menu__menu-item--main">
+            <li class="logo-menu__menu-item">
                 <a href="{{ array_values($links)[0] }}" class="logo-menu__menu-link bg-hover--{{ $section }} js-menu" data-menu-target="logo-menu--{{ $section }}">
                     <div class="logo-menu__menu-stripe logo-menu__menu-stripe--hover bg--{{ $section }}"></div>
                     <span class="logo-menu__menu-text logo-menu__menu-text--main">
