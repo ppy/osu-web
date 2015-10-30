@@ -24,6 +24,7 @@
     var logoutUrl = "{{ route("users.logout") }}";
     var helpUrl = "{{ route("wiki") }}";
     var canonicalUrl = "{{ $canonicalUrl or '' }}";
+    var reloadUrl = "{{ $reloadUrl or '' }}";
 </script>
 
 @include ('layout._current_user')

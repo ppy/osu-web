@@ -48,6 +48,8 @@ class Forum
     @currentPostPosition = parseInt currentPost.getAttribute('data-post-position'), 10
     postId = currentPost.getAttribute('data-post-id')
 
+    window.reloadUrl = @postUrlN @currentPostPosition
+
     @_postsCounter[0].textContent = @currentPostPosition
     @_postsProgress[0].style.width = "#{100 * @currentPostPosition / @totalPosts()}%"
 
@@ -105,7 +107,7 @@ class Forum
     if $post.length
       @scrollTo $post.attr('data-post-id')
     else
-      Turbolinks.visit("#{document.location.pathname}?n=#{postN}")
+      Turbolinks.visit @postUrlN(postN)
 
 
   scrollTo: (postId) =>
@@ -133,6 +135,10 @@ class Forum
 
       id = $(e.target).closest('.js-forum-post').attr('data-post-id')
       @scrollTo id
+
+
+  postUrlN: (postN) ->
+    "#{document.location.pathname}?n=#{postN}"
 
 
   stickHeader: (_, target) =>
