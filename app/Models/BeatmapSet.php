@@ -238,7 +238,8 @@ class BeatmapSet extends Model
                     $e['_source']['beatmapset_id'] = $e['_id'];
 
                     return $e['_source'];
-                }, $listing['hits']['hits']
+                },
+                $listing['hits']['hits']
             );
         } catch (\Exception $e) {
             $listing = [];
@@ -264,7 +265,8 @@ class BeatmapSet extends Model
                     $e['_source']['beatmapset_id'] = $e['_id'];
 
                     return $e['_source'];
-                }, $listing['hits']['hits']
+                },
+                $listing['hits']['hits']
             );
         } catch (\Exception $e) {
             $listing = [];
@@ -305,7 +307,7 @@ class BeatmapSet extends Model
                 break;
 
             case 'mania':
-            case Beatmap::MANIA;
+            case Beatmap::MANIA:
                 $mode = Beatmap::MANIA;
                 break;
 
@@ -350,9 +352,11 @@ class BeatmapSet extends Model
                 if (Auth::check()) {
                     return $query->where('user_id', '=', Auth::user()->user_id);
                 }
+                break;
 
             case 'faves':
                 return $query->faves();
+                break;
 
             case 'ranked-approved':
             default:
