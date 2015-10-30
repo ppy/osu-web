@@ -231,10 +231,18 @@ class BeatmapSet extends Model
             $searchParams['body']['query']['bool']['must'] = $matchParams;
         }
 
-        $listing = Es::search($searchParams);
-        $listing = array_map(function ($e) { $e['_source']['beatmapset_id'] = $e['_id'];
+        try {
+            $listing = Es::search($searchParams);
+            $listing = array_map(
+                function ($e) {
+                    $e['_source']['beatmapset_id'] = $e['_id'];
 
-return $e['_source']; }, $listing['hits']['hits']);
+                    return $e['_source'];
+                }, $listing['hits']['hits']
+            );
+        } catch (\Exception $e) {
+            $listing = [];
+        }
 
         return $listing;
     }
@@ -249,10 +257,18 @@ return $e['_source']; }, $listing['hits']['hits']);
         $searchParams['body']['sort'] = ['approved_date' => ['order' => 'desc']];
         $searchParams['type'] = 'beatmaps';
 
-        $listing = Es::search($searchParams);
-        $listing = array_map(function ($e) { $e['_source']['beatmapset_id'] = $e['_id'];
+        try {
+            $listing = Es::search($searchParams);
+            $listing = array_map(
+                function ($e) {
+                    $e['_source']['beatmapset_id'] = $e['_id'];
 
-return $e['_source']; }, $listing['hits']['hits']);
+                    return $e['_source'];
+                }, $listing['hits']['hits']
+            );
+        } catch (\Exception $e) {
+            $listing = [];
+        }
 
         return $listing;
     }
