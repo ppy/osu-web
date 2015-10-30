@@ -155,10 +155,6 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
 
     $url = route('forum.topics.show', ['topics' => $topicId, $postIdParamKey => $postId]);
 
-    if ($jumpHash === true) {
-        $url .= "#forum-post-{$postId}";
-    }
-
     return $url;
 }
 

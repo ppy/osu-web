@@ -44,6 +44,12 @@ return [
             'submit' => 'Post',
         ],
         'go_to_latest' => 'view latest post',
+        'jump' => [
+            'first' => 'go to first post',
+            'last' => 'go to last post',
+            'next' => 'skip next 10 posts',
+            'previous' => 'go back 10 posts',
+        ],
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'latest reply by :user',
         'new_topic' => 'Post new topic',

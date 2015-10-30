@@ -83,34 +83,111 @@
             </div>
         {!! Form::close() !!}
     @endif
-
-    @include("forum._search", ["topic" => $topic])
 @endsection
 
 @section('fixed-bar-rows-bottom')
     @parent
 
-    <div id="forum-topic-navigator" class="js-forum__topic-total-posts" data-total-count="{{ $topic->postsCount() }}">
+    <div
+        class="js-forum__topic-total-posts forum-topic-nav"
+        data-total-count="{{ $topic->postsCount() }}"
+    >
 
-        @include("objects._radial_progress", ["extraRadialProgressClasses" => "js-forum__posts-progress"])
-        <a
-            class="jump-link first-post"
-            href="{{ route("forum.topics.show", $topic->topic_id) }}"
-        >
-            <i class="fa fa-angle-double-up"></i>
-        </a>
-
-        <div class="post-counter">
-            <a href="#" class="current-count js-forum__posts-counter">{{ head($postsPosition) }}</a>
-            <div class="total-count">/{{ $topic->postsCount() }}</div>
+        <div class="forum-topic-nav__seek-tooltip js-forum-posts-seek-tooltip">
+            <div class="forum-topic-nav__seek-tooltip-number js-forum-posts-seek-tooltip-number"></div>
         </div>
 
-        <a
-            class="jump-link last-post"
-            href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => $topic->topic_last_post_id]) }}#forum-post-{{ $topic->topic_last_post_id }}"
-        >
-            <i class="fa fa-angle-double-down"></i>
-        </a>
+        <div class="js-forum__posts-seek">
+            <div class="
+                forum-topic-nav__seek-bar
+                forum-topic-nav__seek-bar--all
+                forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
+            "></div>
+
+            <div class="
+                js-forum__posts-progress
+                forum-topic-nav__seek-bar
+                forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
+            "></div>
+        </div>
+
+        <div class="forum-topic-nav__content">
+            <div class="forum-topic-nav__group">
+            </div>
+
+            <div class="forum-topic-nav__group">
+                <a
+                    href="{{ route("forum.topics.show", $topic->topic_id) }}"
+                    class="js-forum-posts-seek--jump
+                        forum-topic-nav__item
+                        forum-topic-nav__item--main
+                        forum-topic-nav__item--button"
+                    data-jump-target="first"
+                    title="{{ trans('forum.topic.jump.first') }}"
+                >
+                    <i class="fa fa-angle-double-left"></i>
+                </a>
+
+                <a
+                    href="#"
+                    class="js-forum-posts-seek--jump
+                        forum-topic-nav__item
+                        forum-topic-nav__item--main
+                        forum-topic-nav__item--button"
+                    data-jump-target="previous"
+                    title="{{ trans('forum.topic.jump.previous') }}"
+                >
+                    <i class="fa fa-angle-left"></i>
+                </a>
+
+                <div class="post-counter forum-topic-nav__item forum-topic-nav__item--main forum-topic-nav__item--counter">
+                    <span class="forum-topic-nav__counter
+                        forum-topic-nav__counter--left
+                        js-forum__posts-counter"
+                    >{{ head($postsPosition) }}</span>
+
+                    <span class="forum-topic-nav__counter
+                        forum-topic-nav__counter--middle"
+                    >/</span>
+
+                    <span class="forum-topic-nav__counter
+                        forum-topic-nav__counter--right
+                        js-forum__total-count"
+                    >{{ $topic->postsCount() }}</span>
+                </div>
+
+                <a
+                    href="#"
+                    class="js-forum-posts-seek--jump
+                        forum-topic-nav__item
+                        forum-topic-nav__item--main
+                        forum-topic-nav__item--button"
+                    data-jump-target="next"
+                    title="{{ trans('forum.topic.jump.next') }}"
+                >
+                    <i class="fa fa-angle-right"></i>
+                </a>
+
+
+                <a
+                    href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => $topic->topic_last_post_id]) }}#forum-post-{{ $topic->topic_last_post_id }}"
+                    class="js-forum-posts-seek--jump
+                        forum-topic-nav__item
+                        forum-topic-nav__item--main
+                        forum-topic-nav__item--button"
+                    data-jump-target="last"
+                    title="{{ trans('forum.topic.jump.last') }}"
+                >
+                    <i class="fa fa-angle-double-right"></i>
+                </a>
+            </div>
+
+            <div class="forum-topic-nav__group">
+                <div class="forum-topic-nav__item">
+                    @include('forum._search', ['category' => $topic->forum->categorySlug()])
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 

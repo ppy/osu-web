@@ -31,6 +31,4 @@ $(document).on 'ajax:error', (_event, xhr) ->
   # authentication logic is handled in user-dropdown-modal.js
   return if xhr.status == 401
 
-  message = xhr.responseJSON?.error || 'failed loading requested page'
-
-  osu.popup message, 'danger'
+  osu.ajaxError xhr

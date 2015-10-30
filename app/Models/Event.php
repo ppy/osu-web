@@ -73,6 +73,53 @@ class Event extends Model
         return $this->belongsTo(BeatmapSet::class, 'beatmapset_id', 'beatmapset_id');
     }
 
+    public function arrayBeatmap($matches)
+    {
+        $beatmapTitle = presence($matches['beatmapTitle'], '(no title)');
+
+        return [
+            'title' => html_entity_decode($beatmapTitle),
+            'url' => html_entity_decode($matches['beatmapUrl']),
+        ];
+    }
+
+    public function arrayBeatmapSet($matches)
+    {
+        $beatmapSetTitle = presence($matches['beatmapSetTitle'], '(no title)');
+
+        return [
+            'title' => html_entity_decode($beatmapSetTitle),
+            'url' => html_entity_decode($matches['beatmapSetUrl']),
+        ];
+    }
+
+    public function arrayUser($matches)
+    {
+        if (isset($matches['userName'])) {
+            $username = html_entity_decode($matches['userName']);
+            $userUrl = html_entity_decode($matches['userUrl']);
+        } else {
+            $user = $this->user;
+            $username = $user->username;
+            $userUrl = route('users.show', $user->user_id);
+        }
+
+        return [
+            'username' => $username,
+            'url' => $userUrl,
+        ];
+    }
+
+    public function stringMode($mode)
+    {
+        switch ($mode) {
+            case 'osu!mania': return 'mania';
+            case 'Taiko': return 'taiko';
+            case 'osu!': return 'osu';
+            case 'Catch the Beat': return 'ctb';
+        }
+    }
+
     public function parseFailure()
     {
         return [];
@@ -90,10 +137,7 @@ class Event extends Model
                 'slug' => $achievement->slug,
                 'name' => $achievement->name,
             ],
-            'user' => [
-                'username' => $matches['userName'],
-                'url' => $matches['userUrl'],
-            ],
+            'user' => $this->arrayUser($matches),
         ];
     }
 
@@ -102,10 +146,7 @@ class Event extends Model
         $count = intval(str_replace(',', '', $matches['count']));
 
         return [
-            'beatmap' => [
-                'title' => $matches['beatmapTitle'],
-                'url' => $matches['beatmapUrl'],
-            ],
+            'beatmap' => $this->arrayBeatmap($matches),
             'count' => $count,
         ];
     }
@@ -119,83 +160,39 @@ class Event extends Model
 
         return [
             'approval' => $approval,
-            'beatmapSet' => [
-                'title' => $matches['beatmapSetTitle'],
-                'url' => $matches['beatmapSetUrl'],
-            ],
-            'user' => [
-                'username' => $matches['userName'],
-                'url' => $matches['userUrl'],
-            ],
+            'beatmapSet' => $this->arrayBeatmapSet($matches),
+            'user' => $this->arrayUser($matches),
         ];
     }
 
     public function parseMatchesBeatmapSetDelete($matches)
     {
-        $beatmapSetTitle = presence($matches['beatmapSetTitle'], '(no title)');
-
         return [
-            'beatmapSet' => [
-                'title' => $beatmapSetTitle,
-                'url' => $matches['beatmapSetUrl'],
-            ],
+            'beatmapSet' => $this->arrayBeatmapSet($matches),
         ];
     }
 
     public function parseMatchesBeatmapSetRevive($matches)
     {
-        if (isset($matches['userName'])) {
-            $username = $matches['userName'];
-            $userUrl = $matches['userUrl'];
-        } else {
-            $user = $this->user;
-            $username = $user->username;
-            $userUrl = route('users.show', $user->user_id);
-        }
-
-        $beatmapSetTitle = presence($matches['beatmapSetTitle'], '(no title)');
-
         return [
-            'beatmapSet' => [
-                'title' => $beatmapSetTitle,
-                'url' => $matches['beatmapSetUrl'],
-            ],
-            'user' => [
-                'username' => $username,
-                'url' => $userUrl,
-            ],
+            'beatmapSet' => $this->arrayBeatmapSet($matches),
+            'user' => $this->arrayUser($matches),
         ];
     }
 
     public function parseMatchesBeatmapSetUpdate($matches)
     {
-        $beatmapSetTitle = presence($matches['beatmapSetTitle'], '(no title)');
-
         return [
-            'beatmapSet' => [
-                'title' => $beatmapSetTitle,
-                'url' => $matches['beatmapSetUrl'],
-            ],
-            'user' => [
-                'username' => $matches['userName'],
-                'url' => $matches['userUrl'],
-            ],
+            'beatmapSet' => $this->arrayBeatmapSet($matches),
+            'user' => $this->arrayUser($matches),
         ];
     }
 
     public function parseMatchesBeatmapSetUpload($matches)
     {
-        $beatmapSetTitle = presence($matches['beatmapSetTitle'], '(no title)');
-
         return [
-            'beatmapSet' => [
-                'title' => $beatmapSetTitle,
-                'url' => $matches['beatmapSetUrl'],
-            ],
-            'user' => [
-                'username' => $matches['userName'],
-                'url' => $matches['userUrl'],
-            ],
+            'beatmapSet' => $this->arrayBeatmapSet($matches),
+            'user' => $this->arrayUser($matches),
         ];
     }
 
@@ -203,90 +200,62 @@ class Event extends Model
     {
         $scoreRank = str_replace('x', 'ss', strtolower($matches['scoreRank']));
 
-        switch ($matches['mode']) {
-            case 'osu!mania': $mode = 'mania'; break;
-            case 'Taiko': $mode = 'taiko'; break;
-            case 'osu!': $mode = 'osu'; break;
-            case 'Catch the Beat': $mode = 'ctb'; break;
-            default: return $this->parseFailure();
+        $mode = $this->stringMode($matches['mode']);
+        if ($mode === null) {
+            return $this->parseFailure();
         }
 
         return [
             'scoreRank' => $scoreRank,
             'rank' => intval($matches['rank']),
             'mode' => $mode,
-            'beatmap' => [
-                'title' => $matches['beatmapTitle'],
-                'url' => $matches['beatmapUrl'],
-            ],
-            'user' => [
-                'username' => $matches['userName'],
-                'url' => $matches['userUrl'],
-            ],
+            'beatmap' => $this->arrayBeatmap($matches),
+            'user' => $this->arrayUser($matches),
         ];
     }
 
     public function parseMatchesRankLost($matches)
     {
-        switch ($matches['mode']) {
-            case 'osu!mania': $mode = 'mania'; break;
-            case 'Taiko': $mode = 'taiko'; break;
-            case 'osu!': $mode = 'osu'; break;
-            case 'Catch the Beat': $mode = 'ctb'; break;
-            default: return $this->parseFailure();
+        $mode = $this->stringMode($matches['mode']);
+        if ($mode === null) {
+            return $this->parseFailure();
         }
 
         return [
             'mode' => $mode,
-            'beatmap' => [
-                'title' => $matches['beatmapTitle'],
-                'url' => $matches['beatmapUrl'],
-            ],
-            'user' => [
-                'username' => $matches['userName'],
-                'url' => $matches['userUrl'],
-            ],
+            'beatmap' => $this->arrayBeatmap($matches),
+            'user' => $this->arrayUser($matches),
         ];
     }
 
     public function parseMatchesUsernameChange($matches)
     {
         return [
-            'user' => [
-                'previousUsername' => $matches['previousUsername'],
-                'username' => $matches['userName'],
-                'url' => $matches['userUrl'],
-            ],
+            'user' => array_merge(
+                $this->arrayUser($matches),
+                ['previousUsername' => html_entity_decode($matches['previousUsername'])]
+            ),
         ];
     }
 
     public function parseMatchesUserSupportAgain($matches)
     {
         return [
-            'user' => [
-                'username' => $matches['userName'],
-                'url' => $matches['userUrl'],
-            ],
+            'user' => $this->arrayUser($matches),
         ];
     }
 
     public function parseMatchesUserSupportFirst($matches)
     {
         return [
-            'user' => [
-                'username' => $matches['userName'],
-                'url' => $matches['userUrl'],
-            ],
+            'user' => $this->arrayUser($matches),
         ];
     }
 
     public function parseMatchesUserSupportGift($matches)
     {
         return [
-            'user' => [
-                'username' => $matches['userName'],
-                'url' => $matches['userUrl'],
-            ],
+            'user' => $this->arrayUser($matches),
         ];
     }
 

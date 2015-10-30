@@ -54,10 +54,10 @@
         @include("layout.gallery_window")
         @include("layout.footer")
 
-        <div class="fixed-bar">
-            <div class="fixed-bar__float">
-                @yield('fixed-bar-rows-bottom')
-            </div>
+        <div class="js-page-footer-padding"></div>
+
+        <div class="fixed-bar js-fixed-element js-fixed-bottom-bar">
+            @yield('fixed-bar-rows-bottom')
         </div>
 
         @yield('user-dropdown-modal')
