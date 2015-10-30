@@ -73,26 +73,6 @@ class RouteTest extends TestCase
     }
 
     /**
-     * Test the changelog page doesn't error.
-     *
-     * @return void
-     */
-    public function testBeatmapRoutes()
-    {
-        $this->assertGetRoutes(['/beatmaps']);
-    }
-
-    /**
-     * Test the beatmap modding pages doesn't error.
-     *
-     * @return void
-     */
-    public function testBeatmapSearchRoutes()
-    {
-        $this->assertGetRoutes(['/beatmaps/search']);
-    }
-
-    /**
      * Test the ranking pages don't error.
      *
      * @return void
