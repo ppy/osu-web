@@ -115,15 +115,15 @@ elixir(function(mix) {
 
     "react/profile-page.coffee",
   ], "public/js/react/profile-page.js")
-  .browserify("jsx/modding_react.jsx", "public/js/jsx/modding_react.js")
-  .browserify("jsx/beatmaps/index.jsx", "public/js/react/beatmaps/index.js")
+  .coffee([
+    "react/beatmaps/*.coffee"
+  ], "public/js/react/beatmaps.js")
   .version([
     "css/app.css",
     "js/app.js",
     "js/messages.js",
-    "js/jsx/modding_react.js",
     "js/react/profile-page.js",
-    "js/react/beatmaps/index.js",
+    "js/react/beatmaps.js",
     "js/vendor.js",
   ])
 });
