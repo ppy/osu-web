@@ -158,7 +158,7 @@ return [
         'GrahamCampbell\Markdown\MarkdownServiceProvider',
         'Maknz\Slack\SlackServiceProvider',
         'Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider',
-        'Shift31\LaravelElasticsearch\ElasticsearchServiceProvider'
+        'Shift31\LaravelElasticsearch\ElasticsearchServiceProvider',
 
     ],
 
