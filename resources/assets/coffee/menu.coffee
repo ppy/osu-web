@@ -17,12 +17,14 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @Menu
-  $menuLink: (id) -> $(".js-menu[data-menu-target#{"='#{id}'" if id}]")
+  $menuLink: (id) -> $(".js-menu[data-menu-target#{if id then "='#{id}'" else ''}]")
 
   constructor: ->
     @debouncedRefresh = _.debounce @refresh, 150
-    $(document).on 'mouseenter', '.js-menu', @onEnter
-    $(document).on 'mouseleave', '.js-menu', @onLeave
+    $(document).on 'touchstart', '.js-menu', @onTouchStart
+    $(document).on 'mouseenter', '.js-menu', @onMouseEnter
+    $(document).on 'mouseleave', '.js-menu', @onMouseLeave
+    $(document).on 'click', @onGlobalClick
 
 
   parentMenuId: ($child) ->
@@ -46,7 +48,29 @@ class @Menu
     currentTree
 
 
-  onEnter: (e) =>
+  onGlobalClick: (e) =>
+    return unless @currentMenu
+    return if e.target.classList.contains('js-menu')
+    @hideMenu()
+
+
+  onTouchStart: (e) =>
+    target = e.currentTarget.getAttribute('data-menu-target')
+    return unless target
+
+    e.preventDefault()
+    e.stopPropagation()
+
+    @currentMenu =
+      if @currentMenu == target
+        @parentMenuId $(e.currentTarget)
+      else
+        target
+
+    @debouncedRefresh()
+
+
+  onMouseEnter: (e) =>
     e.stopPropagation()
     $link = $(e.currentTarget)
     @currentMenu = $link.attr('data-menu-target')
@@ -55,7 +79,11 @@ class @Menu
     @debouncedRefresh()
 
 
-  onLeave: (e) =>
+  onMouseLeave: =>
+    @hideMenu()
+
+
+  hideMenu: =>
     @currentMenu = null
     @debouncedRefresh()
 
