@@ -113,15 +113,19 @@ class Forum
 
     return unless post
 
-    postDim = post.getBoundingClientRect()
-    windowHeight = window.innerHeight
+    if post.getAttribute('data-post-position') == '1'
+      postTop = 0
+    else
+      postDim = post.getBoundingClientRect()
+      windowHeight = window.innerHeight
 
-    postTop = window.pageYOffset + postDim.top
+      postTop = window.pageYOffset + postDim.top
 
-    offset = (windowHeight - postDim.height) / 2
-    offset = Math.max(offset, 0)
+      offset = (windowHeight - postDim.height) / 2
+      # FIXME: compute height using new header target
+      offset = Math.max(offset, 60)
 
-    window.scrollTo 0, postTop - offset
+      window.scrollTo 0, postTop - offset
 
 
   postUrlClick: (e) =>
