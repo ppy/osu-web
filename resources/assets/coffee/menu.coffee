@@ -20,7 +20,7 @@ class @Menu
   $menuLink: (id) -> $(".js-menu[data-menu-target#{"='#{id}'" if id}]")
 
   constructor: ->
-    @refresh = _.debounce @refresh, 300
+    @refresh = _.debounce @refresh, 150
     $(document).on 'mouseenter', '.js-menu', @enter
     $(document).on 'mouseleave', '.js-menu', @leave
 
