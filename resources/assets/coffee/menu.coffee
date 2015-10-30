@@ -20,7 +20,7 @@ class @Menu
   $menuLink: (id) -> $(".js-menu[data-menu-target#{"='#{id}'" if id}]")
 
   constructor: ->
-    @refresh = _.debounce @refresh, 150
+    @debouncedRefresh = _.debounce @refresh, 150
     $(document).on 'mouseenter', '.js-menu', @enter
     $(document).on 'mouseleave', '.js-menu', @leave
 
@@ -52,12 +52,12 @@ class @Menu
     @currentMenu = $link.attr('data-menu-target')
     @currentMenu ||= @parentMenuId $link
 
-    @refresh()
+    @debouncedRefresh()
 
 
   leave: (e) =>
     @currentMenu = null
-    @refresh()
+    @debouncedRefresh()
 
 
   refresh: =>
