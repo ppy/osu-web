@@ -21,8 +21,8 @@ class @Menu
 
   constructor: ->
     @debouncedRefresh = _.debounce @refresh, 150
-    $(document).on 'mouseenter', '.js-menu', @enter
-    $(document).on 'mouseleave', '.js-menu', @leave
+    $(document).on 'mouseenter', '.js-menu', @onEnter
+    $(document).on 'mouseleave', '.js-menu', @onLeave
 
 
   parentMenuId: ($child) ->
@@ -46,7 +46,7 @@ class @Menu
     currentTree
 
 
-  enter: (e) =>
+  onEnter: (e) =>
     e.stopPropagation()
     $link = $(e.currentTarget)
     @currentMenu = $link.attr('data-menu-target')
@@ -55,7 +55,7 @@ class @Menu
     @debouncedRefresh()
 
 
-  leave: (e) =>
+  onLeave: (e) =>
     @currentMenu = null
     @debouncedRefresh()
 
