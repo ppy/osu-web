@@ -17,3 +17,6 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @LogoMenu
+  constructor: ->
+    # this class shall subscribe to 'user:update' event and update user
+    # cover in the menu accordingly.
