@@ -20,6 +20,7 @@ class Forum
   _totalPostsDiv: document.getElementsByClassName('js-forum__topic-total-posts')
   _postsCounter: document.getElementsByClassName('js-forum__posts-counter')
   _postsProgress: document.getElementsByClassName('js-forum__posts-progress')
+  _stickyHeaderTopic: document.getElementsByClassName('js-forum-topic-headernav')
   posts: document.getElementsByClassName('forum-post')
 
   constructor: ->
@@ -30,7 +31,10 @@ class Forum
       @refreshLoadMoreLinks()
       @refreshCounter()
 
+    $.subscribe 'stickyHeader', @stickHeader
+
     $(document).on 'click', '.js-post-url', @postUrlClick
+
 
   totalPosts: =>
     return null if @_totalPostsDiv.length == 0
@@ -131,27 +135,21 @@ class Forum
       @scrollTo id
 
 
+  stickHeader: (_, target) =>
+    return unless @_stickyHeaderTopic.length
+
+    if target == 'forum-topic-headernav'
+      return if @_stickyHeaderTopic[0]._visible
+      @_stickyHeaderTopic[0]._visible = true
+      fade.in @_stickyHeaderTopic[0], 'flex'
+    else
+      return unless @_stickyHeaderTopic[0]._visible
+      @_stickyHeaderTopic[0]._visible = false
+      fade.out @_stickyHeaderTopic[0]
+
+
 
 window.forum = new Forum
-
-
-class ForumStickyHeader
-  stickMarker: document.getElementsByClassName('js-forum__sticky-header-marker')
-  topicStickHeader: document.getElementsByClassName('js-forum__header--sticky')
-
-  constructor: ->
-    $(window).on 'scroll', => requestAnimationFrame @stickOrUnstick
-    $(document).on 'ready page:load osu:page:change', @stickOrUnstick
-
-  stickOrUnstick: =>
-    return if @stickMarker.length == 0
-
-    if @stickMarker[0].getBoundingClientRect().top < 0
-      @topicStickHeader[0].classList.add 'shown'
-    else
-      @topicStickHeader[0].classList.remove 'shown'
-
-window.forumStickyHeader = new ForumStickyHeader
 
 
 class ForumAutoClick
