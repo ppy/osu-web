@@ -67,11 +67,13 @@ elixir(function(mix) {
     "osu!live.coffee",
     "osu_common.coffee",
     "turbolinks-mod.coffee",
+
     "adjust-footer.coffee",
     "fade.coffee",
     "gallery.coffee",
     "global-drag.coffee",
-    "main.coffee",
+    "logo-menu.coffee",
+    "menu.coffee",
     "navbar-mobile.coffee",
     "spoilerbox.coffee",
     "store.coffee",
@@ -86,6 +88,8 @@ elixir(function(mix) {
     "user-dropdown-modal.coffee",
     "logout.coffee",
     "shared.coffee",
+
+    "main.coffee",
 
     "react/flag-country.coffee",
     "react/user-card.coffee",

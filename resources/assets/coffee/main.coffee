@@ -45,6 +45,7 @@ $(document).on 'ready page:load', =>
 
   @forumPostsSeek ||= new ForumPostsSeek(@forum)
   @forumSearchModal ||= new ForumSearchModal(@forum)
+  @menu ||= new Menu
 
 
 $(document).on 'ready page:load osu:page:change', ->
