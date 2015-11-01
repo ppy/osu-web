@@ -27,10 +27,15 @@ class @Fade
 
 
   out: (el, callback) ->
-    @queue.push ->
-      el.style.opacity = '0'
-      el.classList.add 'js-fade--out'
-      el._js_fade_out_callback = callback
+    if getComputedStyle(el).opacity == '0'
+      @queue.push ->
+        el.style.display = 'none'
+        callback() if callback
+    else
+      @queue.push ->
+        el.style.opacity = '0'
+        el.classList.add 'js-fade--out'
+        el._js_fade_out_callback = callback
 
     @runQueue()
 
