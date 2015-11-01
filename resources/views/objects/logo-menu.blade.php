@@ -21,7 +21,7 @@
     <a href="{{ route('home') }}" class="logo-menu__logo js-menu js-menu--visible" data-menu-target="logo-menu"></a>
 
     <ul class="logo-menu__menu logo-menu__menu--main js-menu" data-menu-id="logo-menu">
-        <li class="logo-menu__menu-item js-menu">
+        <li class="logo-menu__menu-item">
             @if (Auth::check())
                 <div class="logo-menu__user logo-menu__user--split">
                     <a

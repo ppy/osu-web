@@ -27,8 +27,11 @@ class @Menu
     $(document).on 'click', @onGlobalClick
 
 
-  parentMenuId: ($child) ->
+  closestMenuId: ($child) ->
     $child.closest('[data-menu-id]').attr('data-menu-id')
+
+  parentsMenuId: ($child) ->
+    $child.parents('[data-menu-id]').attr('data-menu-id')
 
 
   currentTree: =>
@@ -38,7 +41,7 @@ class @Menu
     currentTree = [traverseId]
 
     while true
-      traverseId = @parentMenuId @$menuLink(traverseId)
+      traverseId = @closestMenuId @$menuLink(traverseId)
 
       if traverseId
         currentTree.push traverseId
@@ -63,7 +66,7 @@ class @Menu
 
     @currentMenu =
       if @currentMenu == target
-        @parentMenuId $(e.currentTarget)
+        @closestMenuId $(e.currentTarget)
       else
         target
 
@@ -74,13 +77,14 @@ class @Menu
     e.stopPropagation()
     $link = $(e.currentTarget)
     @currentMenu = $link.attr('data-menu-target')
-    @currentMenu ||= @parentMenuId $link
+    @currentMenu ||= @closestMenuId $link
 
     @debouncedRefresh()
 
 
-  onMouseLeave: =>
-    @hideMenu()
+  onMouseLeave: (e) =>
+    @currentMenu = @parentsMenuId $(e.currentTarget)
+    @debouncedRefresh()
 
 
   hideMenu: =>
