@@ -135,9 +135,9 @@ class Order extends Model
 
     public function updateItem($item_form, $add_new = false)
     {
-        $quantity = intval($item_form['quantity']);
-        $product = Product::find($item_form['product_id']);
-        $extraInfo = array_key_exists('extra_info', $item_form) ? $item_form['extra_info'] : null;
+        $quantity = intval(array_get($item_form, 'quantity'));
+        $product = Product::find(array_get($item_form, 'product_id'));
+        $extraInfo = array_get($item_form, 'extra_info');
 
         $result = [true, ''];
 
