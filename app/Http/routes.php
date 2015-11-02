@@ -32,13 +32,13 @@
 if (Config::get('app.debug')) {
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@getNews']);
 } else {
-    Route::get('/', function () {
+    Route::get('/', ['as' => 'home', function () {
         $host = Request::getHttpHost();
         $subdomain = substr($host, 0, strpos($host, '.'));
         $redirect_path = $subdomain === 'store' ? '/store' : '/forum';
 
         return Redirect::to($redirect_path);
-    });
+    }]);
 }
 
 Route::get('/home/news', ['as' => 'news', 'uses' => 'HomeController@getNews']);
