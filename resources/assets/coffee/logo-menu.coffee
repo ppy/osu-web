@@ -18,5 +18,16 @@
 ###
 class @LogoMenu
   constructor: ->
+    $(document).on 'ready page:load', @updateCover
+    @updateCover()
+
     # this class shall subscribe to 'user:update' event and update user
     # cover in the menu accordingly.
+
+
+  updateCover: ->
+    $userEntry = $('.js-logo-menu-user')
+    return unless $userEntry.length
+
+    $userEntry.css
+      backgroundImage: "url('#{currentUser.cover.url}')"

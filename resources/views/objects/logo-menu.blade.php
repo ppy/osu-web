@@ -23,7 +23,7 @@
     <ul class="logo-menu__menu logo-menu__menu--main js-menu" data-menu-id="logo-menu">
         <li class="logo-menu__menu-item">
             @if (Auth::check())
-                <div class="logo-menu__user logo-menu__user--split">
+                <div class="logo-menu__user logo-menu__user--split js-logo-menu-user">
                     <a
                         class="logo-menu__user-slice logo-menu__user-slice--avatar"
                         href="{{ route('users.show', Auth::user()) }}"
