@@ -161,11 +161,15 @@
                 forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
             "></div>
 
-            <div class="
-                js-forum__posts-progress
-                forum-topic-nav__seek-bar
-                forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
-            "></div>
+            <div
+                class="
+                    js-forum__posts-progress
+                    forum-topic-nav__seek-bar
+                    forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
+                "
+                style="width: '{{ 100 * $postsPosition[$jumpTo] / $topic->postsCount() }}%';"
+            >
+            </div>
         </div>
 
         <div class="forum-topic-nav__content">
