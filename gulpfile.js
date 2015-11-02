@@ -78,6 +78,7 @@ elixir(function(mix) {
     "store.coffee",
     "sticky-header.coffee",
     "forum.coffee",
+    "forum-auto-click.coffee",
     "forum-posts-seek.coffee",
     "forum-search-modal.coffee",
     "forum/post-box.coffee",
