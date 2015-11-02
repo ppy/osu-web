@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cd42e4608705ea3f7a0bd41e1067bef1",
-    "content-hash": "42fdac01a90a61aae4ed8dd682e0314f",
+    "hash": "080ad10c8ec4e980dd93e3b41c5b2733",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -723,6 +722,61 @@
                 "parser"
             ],
             "time": "2014-09-09 13:34:57"
+        },
+        {
+            "name": "elasticsearch/elasticsearch",
+            "version": "v1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/elastic/elasticsearch-php.git",
+                "reference": "3a5573cf3223d5646a76a5f8ce938048ca340680"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/3a5573cf3223d5646a76a5f8ce938048ca340680",
+                "reference": "3a5573cf3223d5646a76a5f8ce938048ca340680",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "guzzle/guzzle": "~3.0",
+                "monolog/monolog": "~1.11",
+                "php": ">=5.3.9",
+                "pimple/pimple": "~3.0",
+                "psr/log": "~1.0"
+            },
+            "require-dev": {
+                "athletic/athletic": "~0.1",
+                "cpliakas/git-wrapper": "~1.0",
+                "mikey179/vfsstream": "~1.2",
+                "mockery/mockery": "0.9.4",
+                "phpunit/phpunit": "3.7.*",
+                "satooshi/php-coveralls": "dev-master",
+                "symfony/yaml": "2.4.3 as 2.4.2",
+                "twig/twig": "1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Elasticsearch\\": "src/Elasticsearch/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache 2"
+            ],
+            "authors": [
+                {
+                    "name": "Zachary Tong"
+                }
+            ],
+            "description": "PHP Client for Elasticsearch",
+            "keywords": [
+                "client",
+                "elasticsearch",
+                "search"
+            ],
+            "time": "2015-09-17 22:01:44"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -2154,6 +2208,52 @@
             "time": "2015-07-14 17:31:05"
         },
         {
+            "name": "pimple/pimple",
+            "version": "v3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/silexphp/Pimple.git",
+                "reference": "a30f7d6e57565a2e1a316e1baf2a483f788b258a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/a30f7d6e57565a2e1a316e1baf2a483f788b258a",
+                "reference": "a30f7d6e57565a2e1a316e1baf2a483f788b258a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Pimple": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Pimple, a simple Dependency Injection Container",
+            "homepage": "http://pimple.sensiolabs.org",
+            "keywords": [
+                "container",
+                "dependency injection"
+            ],
+            "time": "2015-09-11 15:10:35"
+        },
+        {
             "name": "predis/predis",
             "version": "v1.0.3",
             "source": {
@@ -2415,6 +2515,44 @@
                 "logging"
             ],
             "time": "2015-08-25 22:38:46"
+        },
+        {
+            "name": "shift31/laravel-elasticsearch",
+            "version": "1.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shift31/laravel-elasticsearch.git",
+                "reference": "5341998fc1d87a21ee44e44482d07de297b1b515"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shift31/laravel-elasticsearch/zipball/5341998fc1d87a21ee44e44482d07de297b1b515",
+                "reference": "5341998fc1d87a21ee44e44482d07de297b1b515",
+                "shasum": ""
+            },
+            "require": {
+                "elasticsearch/elasticsearch": "~1.3",
+                "illuminate/support": "~4|~5",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/migrations"
+                ],
+                "psr-0": {
+                    "Shift31\\LaravelElasticsearch": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Shift 31 Consulting",
+                    "email": "code@shift31.com"
+                }
+            ],
+            "description": "A Laravel Service Provider for the Elasticsearch API client",
+            "time": "2015-08-10 02:30:03"
         },
         {
             "name": "swiftmailer/swiftmailer",
