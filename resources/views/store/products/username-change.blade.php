@@ -31,7 +31,7 @@
     <div class="col-sm-5">
         <div>
             <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
-            <input type="hidden" name="item[quantity]" value="1" />
+            <input type="hidden" name="item[quantity]" class="js-store-item-quantity" value="1" />
             <input type="hidden" id="username-form-price" name="item[cost]" value="0" />
             {!! Form::label('username', 'New Username') !!}
             {!! Form::text('item[extra_info]', '', ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Requested Username', 'autocomplete' => 'off']) !!}

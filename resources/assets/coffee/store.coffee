@@ -73,9 +73,16 @@ $(document).on 'input', '#username.form-control', ->
 
 
 $(document).on 'ready page:load', ->
+  quantity = parseInt $('.js-store-item-quantity').val(), 10
+
+  return if quantity > 0
+
+  $('.js-store-add-to-cart').hide()
+
+
+$(document).on 'ready page:load', ->
   return if $('#username.form-control').length == 0
 
-  $('#add-to-cart').hide()
   preventUsernameSubmission()
 
 $(document).on 'ready page:load', ->
