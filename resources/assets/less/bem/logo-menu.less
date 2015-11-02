@@ -6,8 +6,7 @@
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License as published by
- *    the Free Software Foundation, either version 3 of the License, or
- *    (at your option) any later version.
+ *    the Free Software Foundation, version 3 of the License.
  *
  *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
  *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -18,6 +17,9 @@
  *
  */
 .logo-menu {
+  @_menu-colour: @grey-3;
+  @_menu-colour-hover: @grey-2;
+  @_menu-text-colour: @grey-f;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -29,7 +31,28 @@
     background-size: 40px;
     background-position: center;
     background-repeat: no-repeat;
+  }
+
+  &__logo-container {
+    width: 100%;
+    height: 100%;
     display: block;
+
+    &.js-menu--active,
+    &:focus,
+    &:hover,
+    &:active {
+      .logo-menu__logo-hover-bg {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__logo-hover-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
   }
 
   &__menu {
@@ -51,17 +74,24 @@
     }
   }
 
+  &__menu-item {
+    &--separator {
+      height: @spacing;
+      background-color: @grey-3;
+    }
+  }
+
   &__menu-link {
-    color: @grey-f;
+    color: @_menu-text-colour;
     display: flex;
-    background-color: @grey-3;
+    background-color: @_menu-colour;
 
     &.js-menu--active,
     &:focus,
     &:hover,
     &:active {
-      background-color: @grey-2;
-      color: @grey-f;
+      background-color: @_menu-colour-hover;
+      color: @_menu-text-colour;
       text-decoration: none;
 
       .logo-menu__menu-stripe {
@@ -93,6 +123,54 @@
 
     &--sub {
       padding-right: (@spacing * 2);
+    }
+  }
+
+  &__user {
+    display: flex;
+    background-color: @_menu-colour;
+    background-size: cover;
+
+    &--full {
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: @_menu-colour-hover;
+        text-decoration: none;
+        color: @_menu-text-colour;
+      }
+    }
+  }
+
+  &__user-slice {
+    padding: @spacing;
+    color: @_menu-text-colour;
+
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: @_menu-colour-hover;
+      text-decoration: none;
+      color: @_menu-text-colour;
+    }
+
+    &--avatar {
+      @_avatar-size: 40px;
+      width: (@spacing * 2 + @_avatar-size);
+      height: (@spacing * 2 + @_avatar-size);
+      padding: @spacing;
+    }
+
+    &--bg {
+      background-color: fade(@grey-0, 50%);
+    }
+
+    &--session {
+      flex: 1 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
     }
   }
 }

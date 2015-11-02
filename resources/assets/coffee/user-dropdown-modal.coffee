@@ -6,8 +6,7 @@ attracting more community contributions to the core ecosystem of osu!.
 
 osu!web is free software: you can redistribute it and/or modify
 it under the terms of the Affero GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+the Free Software Foundation, version 3 of the License.
 
 osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -98,6 +97,10 @@ class UserDropdownModal
         # inversely, using jquery here won't actually click the thing
         # reference: https://github.com/jquery/jquery/blob/f5aa89af7029ae6b9203c2d3e551a8554a0b4b89/src/event.js#L586
         @clickAfterLogin.click()
+    else if window.reloadUrl
+      url = window.reloadUrl
+      window.reloadUrl = null
+      Turbolinks.visit url
     else
       osu.reloadPage(null, true)
 

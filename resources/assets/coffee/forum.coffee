@@ -6,8 +6,7 @@ attracting more community contributions to the core ecosystem of osu!.
 
 osu!web is free software: you can redistribute it and/or modify
 it under the terms of the Affero GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+the Free Software Foundation, version 3 of the License.
 
 osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -47,6 +46,8 @@ class Forum
   setCounter: (currentPost) =>
     @currentPostPosition = parseInt currentPost.getAttribute('data-post-position'), 10
     postId = currentPost.getAttribute('data-post-id')
+
+    window.reloadUrl = @postUrlN @currentPostPosition
 
     @_postsCounter[0].textContent = @currentPostPosition
     @_postsProgress[0].style.width = "#{100 * @currentPostPosition / @totalPosts()}%"
@@ -105,7 +106,7 @@ class Forum
     if $post.length
       @scrollTo $post.attr('data-post-id')
     else
-      Turbolinks.visit("#{document.location.pathname}?n=#{postN}")
+      Turbolinks.visit @postUrlN(postN)
 
 
   scrollTo: (postId) =>
@@ -133,6 +134,10 @@ class Forum
 
       id = $(e.target).closest('.js-forum-post').attr('data-post-id')
       @scrollTo id
+
+
+  postUrlN: (postN) ->
+    "#{document.location.pathname}?n=#{postN}"
 
 
   stickHeader: (_, target) =>
