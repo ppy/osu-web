@@ -25,8 +25,6 @@ cd /data/osu\!web/
 mkdir -p "public/uploads"
 chmod 777 "public/uploads"
 
-./bin/db_setup
-
 # replace mysql config vars to be reachable from vm host
 sed -i 's/bind-address/#bind-address/' /etc/mysql/my.cnf
 
@@ -38,5 +36,7 @@ sed -i 's/sendfile on/sendfile off/' /etc/nginx/nginx.conf
 service mysql restart
 service hhvm restart
 service nginx restart
+
+./bin/db_setup
 
 echo "Finished setup of daemons and servers"
