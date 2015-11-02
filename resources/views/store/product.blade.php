@@ -108,7 +108,7 @@
                             <div class='form-group'>
                                 <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
                                 {!! Form::label('item[quantity]', 'Quantity') !!}
-                                {!! Form::select("item[quantity]", product_quantity_options($product), 1, ['class' => 'form-control']) !!}
+                                {!! Form::select("item[quantity]", product_quantity_options($product), 1, ['class' => 'js-store-item-quantity form-control']) !!}
                             </div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
         </div>
 
         @if($product->inStock())
-        <div class="row-subgroup" id="add-to-cart">
+        <div class="row-subgroup js-store-add-to-cart" id="add-to-cart">
             <div class="big-button">
                 <button type="submit" class="btn-osu btn-osu-default">Add to Cart</button>
             </div>
