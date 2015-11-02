@@ -81,6 +81,7 @@ elixir(function(mix) {
     "forum-auto-click.coffee",
     "forum-posts-seek.coffee",
     "forum-search-modal.coffee",
+    "forum-topic-post-jump.coffee",
     "forum/post-box.coffee",
     "forum/topic-ajax.coffee",
     "ujs-common.coffee",
