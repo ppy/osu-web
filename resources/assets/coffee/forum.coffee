@@ -144,7 +144,7 @@ class @Forum
       # FIXME: compute height using new header target
       offset = Math.max(offset, 60)
 
-      window.scrollTo 0, postTop - offset
+    window.scrollTo 0, postTop - offset
 
 
   initialScrollTo: =>
