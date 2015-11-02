@@ -226,7 +226,7 @@ function nav_links()
         ];
 
         $links['beatmaps'] = [
-            'getListing' => route('beatmap-listing'),
+            'getListing' => route('beatmaps'),
             'getPacks' => route('packs'),
             'getCharts' => route('charts'),
             'getModding' => route('modding'),

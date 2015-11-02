@@ -21,80 +21,98 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Beatmap;
 use App\Models\BeatmapSet;
+use App\Models\Genre;
+use App\Models\Language;
+use League\Fractal\Manager;
+use League\Fractal\Resource\Collection;
+use App\Transformers\BeatmapTransformer;
+use Request;
 
 class BeatmapController extends Controller
 {
     protected $section = 'beatmaps';
 
-    public function getListing()
+    public function index()
     {
-        $listing = BeatmapSet::listing();
+        $fractal = new Manager();
+        $languages = Language::listing();
+        $genres = Genre::listing();
+        $data = new Collection(BeatmapSet::listing(), new BeatmapTransformer);
+        $beatmaps = $fractal->createData($data)->toArray();
 
-        return view('beatmaps.listings')
-            ->with('beatmaps', $listing);
+        // temporarily put filters here
+        $modes = [
+            ['id' => null, 'name' => trans('beatmaps.mode.any')],
+            ['id' => Beatmap::OSU, 'name' => trans('beatmaps.mode.osu')],
+            ['id' => Beatmap::TAIKO, 'name' => trans('beatmaps.mode.taiko')],
+            ['id' => Beatmap::CTB, 'name' => trans('beatmaps.mode.catch')],
+            ['id' => Beatmap::MANIA, 'name' => trans('beatmaps.mode.mania')],
+        ];
+
+        $statuses = [
+            ['id' => null, 'name' => trans('beatmaps.status.all')],
+            ['id' => 0, 'name' => trans('beatmaps.status.ranked-approved')],
+            ['id' => 1, 'name' => trans('beatmaps.status.approved')],
+            ['id' => 2, 'name' => trans('beatmaps.status.faves')],
+            ['id' => 3, 'name' => trans('beatmaps.status.modreqs')],
+            ['id' => 4, 'name' => trans('beatmaps.status.pending')],
+            ['id' => 5, 'name' => trans('beatmaps.status.graveyard')],
+            ['id' => 6, 'name' => trans('beatmaps.status.my-maps')],
+        ];
+
+        $extras = [
+            ['id' => 0, 'name' => trans('beatmaps.extra.video')],
+            ['id' => 1, 'name' => trans('beatmaps.extra.storyboard')],
+        ];
+
+        $ranks = [
+            ['id' => null, 'name' => trans('beatmaps.rank.any')],
+            ['id' => 0, 'name' => trans('beatmaps.rank.silver-ss')],
+            ['id' => 1, 'name' => trans('beatmaps.rank.ss')],
+            ['id' => 2, 'name' => trans('beatmaps.rank.silver-s')],
+            ['id' => 3, 'name' => trans('beatmaps.rank.s')],
+            ['id' => 4, 'name' => trans('beatmaps.rank.a')],
+            ['id' => 5, 'name' => trans('beatmaps.rank.b')],
+            ['id' => 6, 'name' => trans('beatmaps.rank.c')],
+            ['id' => 7, 'name' => trans('beatmaps.rank.d')],
+        ];
+
+        $filters = ['data' => compact('modes', 'statuses', 'genres', 'languages', 'extras', 'ranks')];
+
+        return view('beatmaps.index', compact('filters', 'beatmaps'));
     }
 
-    public function getMap($id = null)
+    public function search()
     {
-        $beatmap = Beatmap::findOrFail($id);
+        $params = [
+            'query' => Request::input('q'),
+            'mode' => Request::input('m'),
+            'status' => Request::input('s'),
+            'genre' => Request::input('g'),
+            'language' => Request::input('l'),
+            'extra' => array_filter(explode('-', Request::input('e')), 'strlen'),
+            'rank' => Request::input('r'),
+            'page' => Request::input('page'),
+        ];
 
-        return view('beatmaps.map')
-            ->with('beatmap', $beatmap);
-    }
+        $params = array_filter(
+            $params,
+            function ($v, $k) {
+                if (is_array($v)) {
+                    return (!empty($v));
+                } else {
+                    return (presence($v) !== null);
+                }
+            },
+            ARRAY_FILTER_USE_BOTH
+        );
 
-    public function getMapSet($id = null)
-    {
-        $set = BeatmapSet::findOrFail($id);
+        $fractal = new Manager();
+        $data = new Collection(BeatmapSet::search($params), new BeatmapTransformer);
+        $beatmaps = $fractal->createData($data)->toArray();
 
-        return view('beatmaps.set')
-            ->with('set', $set);
-    }
-
-    public function getPacks($id = null)
-    {
-        if ($id === null) {
-            return view('beatmaps.packs');
-        }
-
-        return view('beatmaps.pack')->with('id', $id);
-    }
-
-    public function getCharts($id = null)
-    {
-        if ($id === null) {
-            return view('beatmaps.charts');
-        }
-
-        // TODO: chart model
-        return view('beatmaps.chart')->with('id', $id);
-    }
-
-    public function getModding($id = null)
-    {
-        if ($id === null) {
-            return redirect('/user/login');
-        } else {
-            $set = BeatmapSet::findOrFail($id);
-
-            return view('beatmaps.modding')
-                ->with('set', $set);
-        }
-    }
-
-    public function getModdingReact($id = null)
-    {
-        if ($id === null) {
-            return redirect('/user/login');
-        } else {
-            $beatmapSet = BeatmapSet::findOrFail($id);
-
-            return view('beatmaps.modding_react')->with('beatmapset', $beatmapSet);
-        }
-    }
-
-    public function getDownload($id)
-    {
-        $set = BeatmapSet::findOrFail($id);
+        return $beatmaps;
     }
 }

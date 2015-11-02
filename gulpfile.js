@@ -67,11 +67,13 @@ elixir(function(mix) {
     "osu!live.coffee",
     "osu_common.coffee",
     "turbolinks-mod.coffee",
+
     "adjust-footer.coffee",
     "fade.coffee",
     "gallery.coffee",
     "global-drag.coffee",
-    "main.coffee",
+    "logo-menu.coffee",
+    "menu.coffee",
     "navbar-mobile.coffee",
     "spoilerbox.coffee",
     "store.coffee",
@@ -86,6 +88,8 @@ elixir(function(mix) {
     "user-dropdown-modal.coffee",
     "logout.coffee",
     "shared.coffee",
+
+    "main.coffee",
 
     "react/flag-country.coffee",
     "react/user-card.coffee",
@@ -115,13 +119,15 @@ elixir(function(mix) {
 
     "react/profile-page.coffee",
   ], "public/js/react/profile-page.js")
-  .browserify("jsx/modding_react.jsx", "public/js/jsx/modding_react.js")
+  .coffee([
+    "react/beatmaps/*.coffee"
+  ], "public/js/react/beatmaps.js")
   .version([
     "css/app.css",
     "js/app.js",
     "js/messages.js",
-    "js/jsx/modding_react.js",
     "js/react/profile-page.js",
+    "js/react/beatmaps.js",
     "js/vendor.js",
   ])
 });

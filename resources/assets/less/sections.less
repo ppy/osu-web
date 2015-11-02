@@ -69,6 +69,14 @@ body.user      { .section(@blue-lighter, @blue-light, @blue, @blue-dark, @blue-d
     background-color: @colour;
   }
 
+  .bg-hover--@{section-name} {
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: @colour;
+    }
+  }
+
   .colour--@{section-name} {
     color: @colour;
   }

@@ -16,4 +16,31 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@extends("master", [
+  'current_section' => 'beatmaps',
+  'current_action' => 'index',
+  'title' => 'Beatmaps Listing',
+  'pageDescription' => 'Beatmaps Listing'
+])
+
+@section("content")
+  {{--
+    this should content a server side react.js render which doesn't exist in hhvm
+    because the only library for it, which is experimental, requires PHP extension
+    which isn't supported by hhvm (v8js).
+  --}}
+@endsection
+
+@section("script")
+  @parent
+
+  <script id="json-filters" type="application/json">
+    {!! json_encode($filters) !!}
+  </script>
+
+  <script id="json-beatmaps" type="application/json">
+    {!! json_encode($beatmaps) !!}
+  </script>
+
+  <script src="{{ elixir("js/react/beatmaps.js") }}" data-turbolinks-eval="always" data-turbolinks-track></script>
+@stop
