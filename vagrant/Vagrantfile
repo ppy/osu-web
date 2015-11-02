@@ -46,6 +46,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
   end
 
+  config.vm.provider :docker do |d, override|
+    override.vm.box = nil
+    d.name = "osu-web"
+    d.has_ssh = true
+    d.build_dir = "."
+    d.build_args = ["-t", "osu-web"]
+    d.create_args = ["--privileged"]
+  end
+
   config.vm.provision "shell", inline: $provisionScript
   config.vm.provision "shell", inline: "mount /data/osu!web/node_modules",
     run: "always"
