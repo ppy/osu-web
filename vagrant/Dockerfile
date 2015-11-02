@@ -14,4 +14,7 @@ RUN echo 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA6NF8iallvQVp22WDkTkyrtvp9eWW6A8YVr
 RUN chown -R vagrant: /home/vagrant
 RUN adduser vagrant sudo && echo '%sudo ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/sudo-nopasswd
 
+RUN locale-gen en_US.utf8
+RUN echo 'export LC_ALL=en_US.utf8' >> /home/vagrant/.profile
+
 CMD /usr/sbin/sshd -D
