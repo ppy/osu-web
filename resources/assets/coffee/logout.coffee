@@ -17,4 +17,9 @@ You should have received a copy of the GNU Affero General Public License
 along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 $(document).on 'ajax:success', '.js-logout-link', ->
-  osu.reloadPage("/")
+  if window.reloadUrl
+    url = window.reloadUrl
+    window.reloadUrl = null
+    Turbolinks.visit url
+  else
+    osu.reloadPage("/")
