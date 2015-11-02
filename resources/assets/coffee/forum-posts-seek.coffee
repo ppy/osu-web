@@ -40,7 +40,6 @@ class @ForumPostsSeek
     fade.out @tooltip[0]
 
 
-
   move: (e) =>
     seekbarPos = @seekbar[0].getBoundingClientRect()
 
@@ -72,9 +71,6 @@ class @ForumPostsSeek
       when 'last' then totalPosts
       when 'previous' then currentPost - 10
       when 'next' then currentPost + 10
-
-    n = Math.max(1, n)
-    n = Math.min(totalPosts, n)
 
     $target.blur()
     @forum.jumpTo n

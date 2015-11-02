@@ -16,22 +16,46 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @ForumSearchModal
-  boxId: 'forum-search-modal'
+  box: document.getElementsByClassName('js-forum-search-box')
+  activeBox: document.getElementsByClassName('js-forum-search-box--active')
+  button: document.getElementsByClassName('js-forum-search-button')
 
   constructor: (forum) ->
     @forum = forum
-    $(document).on 'submit', '.js-forum-posts-jump-to', @jumpTosubmit
+
+    $(window).on 'resize scroll', => requestAnimationFrame @reposition
+    $(document).on 'show.bs.modal', '#forum-search-modal', @activate
+    $(document).on 'hidden.bs.modal', '#forum-search-modal', @deactivate
+
+    $.subscribe 'forum:topic:jumpTo', @hideModal
+
 
   hideModal: =>
-    $("##{@boxId}").modal('hide')
+    $('#forum-search-modal').modal('hide')
 
 
-  jumpTosubmit: (e) =>
-    e.preventDefault()
+  activate: (e) =>
+    @button[0].style.opacity = 0
+    @box[0].classList.add 'js-forum-search-box--active'
+    @reposition()
 
-    $inputBox = $(e.target).find('[name="n"]')
-    @forum.jumpTo $inputBox.val()
-    $inputBox.val('')
+    $input = $(e.target).find('.js-forum-posts-jump-to [name="n"]')
+      .val(@forum.currentPostPosition)
 
-    osu.hideLoadingOverlay()
-    @hideModal()
+    $input[0].selectionStart = 0
+    $input[0].selectionEnd = $input.val().length
+
+
+  deactivate: =>
+    @button[0].style.opacity = 1
+    @box[0].classList.remove 'js-forum-search-box--active'
+
+
+  reposition: =>
+    return if @activeBox.length == 0
+
+    normalBottom = window.innerHeight - (@button[0].getBoundingClientRect().bottom)
+    normalRight = window.innerWidth - (@button[0].getBoundingClientRect().right)
+
+    @box[0].style.bottom = "#{normalBottom}px"
+    @box[0].style.right = "#{normalRight}px"

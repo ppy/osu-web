@@ -42,8 +42,12 @@ $(document).on 'ready page:load', =>
 
   @adjustFooter ||= new AdjustFooter
 
+  @forum ||= new Forum
+  @forumAutoClick ||= new ForumAutoClick
   @forumPostsSeek ||= new ForumPostsSeek(@forum)
   @forumSearchModal ||= new ForumSearchModal(@forum)
+  @forumTopicPostJump ||= new ForumTopicPostJump(@forum)
+
   @menu ||= new Menu
   @logoMenu ||= new LogoMenu
 

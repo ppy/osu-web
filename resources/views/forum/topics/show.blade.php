@@ -161,11 +161,15 @@
                 forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
             "></div>
 
-            <div class="
-                js-forum__posts-progress
-                forum-topic-nav__seek-bar
-                forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
-            "></div>
+            <div
+                class="
+                    js-forum__posts-progress
+                    forum-topic-nav__seek-bar
+                    forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
+                "
+                style="width: '{{ 100 * $postsPosition[$jumpTo] / $topic->postsCount() }}%';"
+            >
+            </div>
         </div>
 
         <div class="forum-topic-nav__content">
@@ -197,11 +201,30 @@
                     <i class="fa fa-angle-left"></i>
                 </a>
 
-                <div class="post-counter forum-topic-nav__item forum-topic-nav__item--main forum-topic-nav__item--counter">
-                    <span class="forum-topic-nav__counter
+                <div class="
+                    post-counter
+                    forum-topic-nav__item
+                    forum-topic-nav__item--main
+                    forum-topic-nav__item--counter
+                    js-forum-topic-post-jump--container
+                ">
+                    <form method="get" class="js-forum-posts-jump-to js-forum-topic-post-jump--form">
+                        <input
+                            type="text"
+                            class="forum-topic-nav__counter
+                                forum-topic-nav__counter--left
+                                forum-topic-nav__counter--input
+                                js-forum-topic-post-jump--input"
+                            name="n"
+                            autocomplete="off" />
+                    </form>
+
+                    <span class="
+                        forum-topic-nav__counter
                         forum-topic-nav__counter--left
-                        js-forum__posts-counter"
-                    >{{ head($postsPosition) }}</span>
+                        js-forum__posts-counter
+                        js-forum-topic-post-jump--counter
+                    ">{{ head($postsPosition) }}</span>
 
                     <span class="forum-topic-nav__counter
                         forum-topic-nav__counter--middle"
@@ -211,6 +234,8 @@
                         forum-topic-nav__counter--right
                         js-forum__total-count"
                     >{{ $topic->postsCount() }}</span>
+
+                    <div class="js-forum-topic-post-jump--cover forum-topic-nav__counter-cover"></div>
                 </div>
 
                 <a
@@ -241,7 +266,6 @@
 
             <div class="forum-topic-nav__group">
                 <div class="forum-topic-nav__item">
-                    @include('forum._search', ['category' => $topic->forum->categorySlug()])
                 </div>
             </div>
         </div>
