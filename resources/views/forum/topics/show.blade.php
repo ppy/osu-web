@@ -30,7 +30,7 @@
 
         <div class="forum-topic-headernav__content">
             <div class="forum-topic-headernav__logo">
-                @include('objects.logo-menu')
+                @include('objects.logo-menu', ['logoMenuHoverBgClass' => 'forum-colour__bg-link--'.$topic->forum->categorySlug()])
             </div>
 
             <div class="forum-topic-headernav__titles">

@@ -18,7 +18,10 @@
 --}}
 
 <div class="logo-menu">
-    <a href="{{ route('home') }}" class="logo-menu__logo js-menu js-menu--visible" data-menu-target="logo-menu"></a>
+    <a href="{{ route('home') }}" class="logo-menu__logo-container js-menu js-menu--visible" data-menu-target="logo-menu">
+        <div class="logo-menu__logo-hover-bg {{ $logoMenuHoverBgClass or '' }}"></div>
+        <div class="logo-menu__logo"></div>
+    </a>
 
     <ul class="logo-menu__menu logo-menu__menu--main js-menu" data-menu-id="logo-menu">
         <li class="logo-menu__menu-item">
