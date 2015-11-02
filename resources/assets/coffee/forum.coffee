@@ -102,7 +102,12 @@ class Forum
 
 
   jumpTo: (postN) =>
+    postN = parseInt postN, 10
+    postN = Math.max(postN, 1)
+    postN = Math.min(postN, @totalPosts())
+
     $post = $(".js-forum-post[data-post-position='#{postN}']")
+
     if $post.length
       @scrollTo $post.attr('data-post-id')
     else
