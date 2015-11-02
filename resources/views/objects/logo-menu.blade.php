@@ -25,17 +25,17 @@
             @if (Auth::check())
                 <div class="logo-menu__user logo-menu__user--split js-logo-menu-user">
                     <a
-                        class="logo-menu__user-slice logo-menu__user-slice--avatar"
+                        class="logo-menu__user-slice logo-menu__user-slice--avatar logo-menu__user-slice--bg"
                         href="{{ route('users.show', Auth::user()) }}"
                     >
                         <div
-                            class="avatar avatar--full"
+                            class="avatar avatar--full-rounded"
                             style="background-image: url('{{ Auth::user()->user_avatar }}');"
                         ></div>
                     </a>
 
                     <a
-                        class="logo-menu__user-slice logo-menu__user-slice--session js-logout-link"
+                        class="logo-menu__user-slice logo-menu__user-slice--session logo-menu__user-slice--bg js-logout-link"
                         href="{{ route('users.logout') }}"
                         data-method="delete"
                         data-confirm="{{ trans('users.logout_confirm') }}"
@@ -53,7 +53,7 @@
                     class="logo-menu__user logo-menu__user--full"
                 >
                     <div class="logo-menu__user-slice logo-menu__user-slice--avatar">
-                        <div class="avatar avatar--guest avatar--full"></div>
+                        <div class="avatar avatar--guest avatar--full-rounded"></div>
                     </div>
 
                     <span class="logo-menu__user-slice logo-menu__user-slice--session">
@@ -62,6 +62,8 @@
                 </a>
             @endif
         </li>
+
+        <li class="logo-menu__menu-item logo-menu__menu-item--separator"></li>
 
         @foreach (nav_links() as $section => $links)
             <li class="logo-menu__menu-item">
@@ -88,5 +90,7 @@
                 </ul>
             </li>
         @endforeach
+
+        <li class="logo-menu__menu-item logo-menu__menu-item--separator"></li>
     </ul>
 </div>

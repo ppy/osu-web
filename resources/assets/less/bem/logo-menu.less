@@ -54,6 +54,13 @@
     }
   }
 
+  &__menu-item {
+    &--separator {
+      height: @spacing;
+      background-color: @grey-3;
+    }
+  }
+
   &__menu-link {
     color: @_menu-text-colour;
     display: flex;
@@ -132,6 +139,10 @@
       width: (@spacing * 2 + @_avatar-size);
       height: (@spacing * 2 + @_avatar-size);
       padding: @spacing;
+    }
+
+    &--bg {
+      background-color: fade(@grey-0, 50%);
     }
 
     &--session {
