@@ -5,8 +5,8 @@ This file is part of osu!web. osu!web is distributed with the hope of
 attracting more community contributions to the core ecosystem of osu!.
 
 osu!web is free software: you can redistribute it and/or modify
-it under the terms of the Affero GNU General Public License as published by
-the Free Software Foundation, version 3 of the License.
+it under the terms of the Affero GNU General Public License version 3
+as published by the Free Software Foundation.
 
 osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -42,8 +42,12 @@ $(document).on 'ready page:load', =>
 
   @adjustFooter ||= new AdjustFooter
 
+  @forum ||= new Forum
+  @forumAutoClick ||= new ForumAutoClick
   @forumPostsSeek ||= new ForumPostsSeek(@forum)
   @forumSearchModal ||= new ForumSearchModal(@forum)
+  @forumTopicPostJump ||= new ForumTopicPostJump(@forum)
+
   @menu ||= new Menu
   @logoMenu ||= new LogoMenu
 

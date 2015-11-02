@@ -5,8 +5,8 @@ This file is part of osu!web. osu!web is distributed with the hope of
 attracting more community contributions to the core ecosystem of osu!.
 
 osu!web is free software: you can redistribute it and/or modify
-it under the terms of the Affero GNU General Public License as published by
-the Free Software Foundation, version 3 of the License.
+it under the terms of the Affero GNU General Public License version 3
+as published by the Free Software Foundation.
 
 osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -73,9 +73,16 @@ $(document).on 'input', '#username.form-control', ->
 
 
 $(document).on 'ready page:load', ->
+  quantity = parseInt $('.js-store-item-quantity').val(), 10
+
+  return if quantity > 0
+
+  $('.js-store-add-to-cart').hide()
+
+
+$(document).on 'ready page:load', ->
   return if $('#username.form-control').length == 0
 
-  $('#add-to-cart').hide()
   preventUsernameSubmission()
 
 $(document).on 'ready page:load', ->

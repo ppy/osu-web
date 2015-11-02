@@ -5,8 +5,8 @@
 *    attracting more community contributions to the core ecosystem of osu!.
 *
 *    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License as published by
-*    the Free Software Foundation, version 3 of the License.
+*    it under the terms of the Affero GNU General Public License version 3
+*    as published by the Free Software Foundation.
 *
 *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
 *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -78,8 +78,10 @@ elixir(function(mix) {
     "store.coffee",
     "sticky-header.coffee",
     "forum.coffee",
+    "forum-auto-click.coffee",
     "forum-posts-seek.coffee",
     "forum-search-modal.coffee",
+    "forum-topic-post-jump.coffee",
     "forum/post-box.coffee",
     "forum/topic-ajax.coffee",
     "ujs-common.coffee",

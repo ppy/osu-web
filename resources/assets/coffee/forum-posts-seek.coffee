@@ -5,8 +5,8 @@
 # attracting more community contributions to the core ecosystem of osu!.
 #
 # osu!web is free software: you can redistribute it and/or modify
-# it under the terms of the Affero GNU General Public License as published by
-# the Free Software Foundation, version 3 of the License.
+# it under the terms of the Affero GNU General Public License version 3
+# as published by the Free Software Foundation.
 #
 # osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
 # warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -40,7 +40,6 @@ class @ForumPostsSeek
     fade.out @tooltip[0]
 
 
-
   move: (e) =>
     seekbarPos = @seekbar[0].getBoundingClientRect()
 
@@ -72,9 +71,6 @@ class @ForumPostsSeek
       when 'last' then totalPosts
       when 'previous' then currentPost - 10
       when 'next' then currentPost + 10
-
-    n = Math.max(1, n)
-    n = Math.min(totalPosts, n)
 
     $target.blur()
     @forum.jumpTo n

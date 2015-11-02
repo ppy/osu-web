@@ -5,8 +5,8 @@
     attracting more community contributions to the core ecosystem of osu!.
 
     osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License as published by
-    the Free Software Foundation, version 3 of the License.
+    it under the terms of the Affero GNU General Public License version 3
+    as published by the Free Software Foundation.
 
     osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
     warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -31,7 +31,7 @@
     <div class="col-sm-5">
         <div>
             <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
-            <input type="hidden" name="item[quantity]" value="1" />
+            <input type="hidden" name="item[quantity]" class="js-store-item-quantity" value="1" />
             <input type="hidden" id="username-form-price" name="item[cost]" value="0" />
             {!! Form::label('username', 'New Username') !!}
             {!! Form::text('item[extra_info]', '', ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Requested Username', 'autocomplete' => 'off']) !!}

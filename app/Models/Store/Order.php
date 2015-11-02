@@ -7,8 +7,8 @@
  *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License as published by
- *    the Free Software Foundation, version 3 of the License.
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
  *
  *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
  *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -135,9 +135,9 @@ class Order extends Model
 
     public function updateItem($item_form, $add_new = false)
     {
-        $quantity = intval($item_form['quantity']);
-        $product = Product::find($item_form['product_id']);
-        $extraInfo = array_key_exists('extra_info', $item_form) ? $item_form['extra_info'] : null;
+        $quantity = intval(array_get($item_form, 'quantity'));
+        $product = Product::find(array_get($item_form, 'product_id'));
+        $extraInfo = array_get($item_form, 'extra_info');
 
         $result = [true, ''];
 

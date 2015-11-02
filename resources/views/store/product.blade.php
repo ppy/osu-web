@@ -5,8 +5,8 @@
     attracting more community contributions to the core ecosystem of osu!.
 
     osu!web is free software: you can redistribute it and/or modify
-    it under the terms of the Affero GNU General Public License as published by
-    the Free Software Foundation, version 3 of the License.
+    it under the terms of the Affero GNU General Public License version 3
+    as published by the Free Software Foundation.
 
     osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
     warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -108,7 +108,7 @@
                             <div class='form-group'>
                                 <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
                                 {!! Form::label('item[quantity]', 'Quantity') !!}
-                                {!! Form::select("item[quantity]", product_quantity_options($product), 1, ['class' => 'form-control']) !!}
+                                {!! Form::select("item[quantity]", product_quantity_options($product), 1, ['class' => 'js-store-item-quantity form-control']) !!}
                             </div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
         </div>
 
         @if($product->inStock())
-        <div class="row-subgroup" id="add-to-cart">
+        <div class="row-subgroup js-store-add-to-cart" id="add-to-cart">
             <div class="big-button">
                 <button type="submit" class="btn-osu btn-osu-default">Add to Cart</button>
             </div>
