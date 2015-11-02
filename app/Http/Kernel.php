@@ -18,7 +18,6 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
