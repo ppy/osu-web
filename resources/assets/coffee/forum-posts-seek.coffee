@@ -40,7 +40,6 @@ class @ForumPostsSeek
     fade.out @tooltip[0]
 
 
-
   move: (e) =>
     seekbarPos = @seekbar[0].getBoundingClientRect()
 
