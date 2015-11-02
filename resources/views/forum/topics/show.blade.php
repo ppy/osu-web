@@ -266,7 +266,6 @@
 
             <div class="forum-topic-nav__group">
                 <div class="forum-topic-nav__item">
-                    @include('forum._search', ['category' => $topic->forum->categorySlug()])
                 </div>
             </div>
         </div>
