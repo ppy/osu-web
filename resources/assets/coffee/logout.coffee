@@ -6,8 +6,7 @@ attracting more community contributions to the core ecosystem of osu!.
 
 osu!web is free software: you can redistribute it and/or modify
 it under the terms of the Affero GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+the Free Software Foundation, version 3 of the License.
 
 osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -17,4 +16,9 @@ You should have received a copy of the GNU Affero General Public License
 along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 $(document).on 'ajax:success', '.js-logout-link', ->
-  osu.reloadPage("/")
+  if window.reloadUrl
+    url = window.reloadUrl
+    window.reloadUrl = null
+    Turbolinks.visit url
+  else
+    osu.reloadPage("/")

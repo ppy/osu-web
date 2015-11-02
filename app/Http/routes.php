@@ -8,8 +8,7 @@
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License as published by
- *    the Free Software Foundation, either version 3 of the License, or
- *    (at your option) any later version.
+ *    the Free Software Foundation, version 3 of the License.
  *
  *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
  *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -32,13 +31,13 @@
 if (Config::get('app.debug')) {
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@getNews']);
 } else {
-    Route::get('/', function () {
+    Route::get('/', ['as' => 'home', function () {
         $host = Request::getHttpHost();
         $subdomain = substr($host, 0, strpos($host, '.'));
         $redirect_path = $subdomain === 'store' ? '/store' : '/forum';
 
         return Redirect::to($redirect_path);
-    });
+    }]);
 }
 
 Route::get('/home/news', ['as' => 'news', 'uses' => 'HomeController@getNews']);

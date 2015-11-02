@@ -6,8 +6,7 @@
 #
 # osu!web is free software: you can redistribute it and/or modify
 # it under the terms of the Affero GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, version 3 of the License.
 #
 # osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
 # warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -27,8 +26,11 @@ class @Menu
     $(document).on 'click', @onGlobalClick
 
 
-  parentMenuId: ($child) ->
+  closestMenuId: ($child) ->
     $child.closest('[data-menu-id]').attr('data-menu-id')
+
+  parentsMenuId: ($child) ->
+    $child.parents('[data-menu-id]').attr('data-menu-id')
 
 
   currentTree: =>
@@ -38,7 +40,7 @@ class @Menu
     currentTree = [traverseId]
 
     while true
-      traverseId = @parentMenuId @$menuLink(traverseId)
+      traverseId = @closestMenuId @$menuLink(traverseId)
 
       if traverseId
         currentTree.push traverseId
@@ -63,7 +65,7 @@ class @Menu
 
     @currentMenu =
       if @currentMenu == target
-        @parentMenuId $(e.currentTarget)
+        @closestMenuId $(e.currentTarget)
       else
         target
 
@@ -74,13 +76,14 @@ class @Menu
     e.stopPropagation()
     $link = $(e.currentTarget)
     @currentMenu = $link.attr('data-menu-target')
-    @currentMenu ||= @parentMenuId $link
+    @currentMenu ||= @closestMenuId $link
 
     @debouncedRefresh()
 
 
-  onMouseLeave: =>
-    @hideMenu()
+  onMouseLeave: (e) =>
+    @currentMenu = @parentsMenuId $(e.currentTarget)
+    @debouncedRefresh()
 
 
   hideMenu: =>
