@@ -123,51 +123,6 @@ body.community {
   top: @topic-header-height - @topic-header-sticky-height;
 }
 
-#topic-header-container {
-  padding: 0px;
-  z-index: 90;
-
-  .forum-header, & {
-    width: 100%;
-    max-width: @container-sm;
-    height: @topic-header-height;
-  }
-
-  .forum-header {
-    position: absolute;
-    &:extend(.default-box-shadow);
-  }
-
-  .js-forum__header--sticky {
-    &.shown {
-      display: block;
-    }
-    display: none;
-    backface-visibility: hidden;
-    position: fixed;
-    top: -@topic-header-height + @topic-header-sticky-height;
-
-    > .topic-header {
-      padding: 0px @grid-gutter-width/4;
-      @media @desktop {
-        padding: 0px @grid-gutter-width;
-      }
-      .breadcrumb {
-        font-size: 12px;
-      }
-      h1 {
-        font-size: 16px;
-        height: 20px;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        color: #fff;
-        margin-bottom: @grid-gutter-width/4;
-      }
-    }
-  }
-}
-
 .forum-category {
   &:extend(.default-box-shadow);
 

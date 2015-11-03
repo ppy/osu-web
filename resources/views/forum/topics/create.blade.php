@@ -23,7 +23,7 @@
         "class" => "create-topic post-box flex-full content",
         "data-preview-url" => route("forum.topics.preview", $forum),
     ]) !!}
-        <div class="row-page row-blank" id="topic-header-container">
+        <div class="row-page row-blank">
             <div class="forum-header forum-category-header forum-category-header--main">
                 <div class="topic-header">
                     <ol class="breadcrumb forums-breadcrumb">
