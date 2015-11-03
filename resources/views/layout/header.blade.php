@@ -127,30 +127,32 @@
         <a class="flex-none nav-logo" href="/"></a>
 
         <div id="nav-links">
-            <ul id="nav-menu">
+            <ul id="nav-menu" class="js-menu osu-nav__menu">
                 @foreach (nav_links() as $section => $links)
                     <li class="{{ $section }} {{ $current_section === $section ? " active" : "" }}">
-                        <a href="{{ array_values($links)[0] }}">{{ trans("layout.menu.$section._") }}</a>
+                        <a class="js-menu osu-nav__link" data-menu-target="header--{{ $section }}" href="{{ array_values($links)[0] }}">{{ trans("layout.menu.$section._") }}</a>
 
-                        <div class="submenu"><ul>
-                            <li class="section">{{ trans("layout.menu.$section._") }}</li>
+                        <div class="submenu js-menu" data-menu-id="header--{{ $section }}"><ul class="osu-nav__menu">
+                            <li class="section"><span class="osu-nav__link osu-nav__link--large osu-nav__link--title">{{ trans("layout.menu.$section._") }}</span></li>
                             @foreach ($links as $action => $link)
                                 <li class="subsection {{ $action }} {{ ($current_section === $section && $current_action === $action) ? "active" : "" }}">
-                                    <a href="{{ $link }}">{{ trans("layout.menu.$section.$action") }}</a>
+                                    <a class="osu-nav__link osu-nav__link--large" href="{{ $link }}">{{ trans("layout.menu.$section.$action") }}</a>
                                 </li>
                             @endforeach
                         </ul></div>
                     </li>
                 @endforeach
 
-                <li data-submenu="0">
-                    <a class="yellow-normal" href="{{ config("osu.urls.support-the-game") }}" target="_blank">support the game</a>
+                <li>
+                    <a class="osu-nav__link yellow-normal" href="{{ config("osu.urls.support-the-game") }}" target="_blank">support the game</a>
                 </li>
-                <li data-submenu="0" class="social">
-                    <a href="{{ config("osu.urls.social.facebook") }}" target="_blank"><i class="fa fa-facebook-f"></i></a>
+
+                <li>
+                    <a class="osu-nav__link" href="{{ config("osu.urls.social.facebook") }}" target="_blank"><i class="fa fa-facebook-f"></i></a>
                 </li>
-                <li data-submenu="0" class="social">
-                    <a href="{{ config("osu.urls.social.twitter") }}" target="_blank"><i class="fa fa-twitter"></i></a>
+
+                <li>
+                    <a class="osu-nav__link" href="{{ config("osu.urls.social.twitter") }}" target="_blank"><i class="fa fa-twitter"></i></a>
                 </li>
             </ul>
 
