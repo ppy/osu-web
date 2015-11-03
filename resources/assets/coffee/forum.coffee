@@ -115,6 +115,8 @@ class @Forum
 
   jumpTo: (postN) =>
     postN = parseInt postN, 10
+    return false unless isFinite(postN)
+
     postN = Math.max(postN, 1)
     postN = Math.min(postN, @totalPosts())
 
@@ -125,6 +127,8 @@ class @Forum
       @scrollTo $post.attr('data-post-id')
     else
       Turbolinks.visit @postUrlN(postN)
+
+    true
 
 
   scrollTo: (postId) =>
@@ -230,6 +234,5 @@ class @Forum
     e.preventDefault()
     osu.hideLoadingOverlay()
 
-    @jumpTo $(e.target).find('[name="n"]').val()
-
-    $.publish 'forum:topic:jumpTo'
+    if @jumpTo $(e.target).find('[name="n"]').val()
+      $.publish 'forum:topic:jumpTo'
