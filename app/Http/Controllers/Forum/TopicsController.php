@@ -130,7 +130,7 @@ class TopicsController extends Controller
         }
 
         if (!$skipLayout) {
-            foreach ([$postStartId, $postEndId, 0] as $jumpPoint) {
+            foreach ([$postStartId, $postEndId, $posts->first()->post_id] as $jumpPoint) {
                 if ($jumpPoint === null) {
                     continue;
                 }
