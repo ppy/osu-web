@@ -167,7 +167,7 @@
                     forum-topic-nav__seek-bar
                     forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
                 "
-                style="width: '{{ 100 * $postsPosition[$jumpTo] / $topic->postsCount() }}%';"
+                style="width: '{{ 100 * array_get($postsPosition, $jumpTo, 0) / $topic->postsCount() }}%';"
             >
             </div>
         </div>
