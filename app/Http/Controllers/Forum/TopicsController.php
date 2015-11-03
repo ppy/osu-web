@@ -170,15 +170,6 @@ class TopicsController extends Controller
 
         $postsPosition = $topic->postsPosition($posts);
 
-        foreach ($postsPosition as $id => $_post) {
-            if ($id < $jumpTo) {
-                continue;
-            } else {
-                $jumpTo = $id;
-                break;
-            }
-        }
-
         Event::fire(new TopicWasViewed($topic, $posts->last(), Auth::user()));
 
         $template = $skipLayout ? '_posts' : 'show';
