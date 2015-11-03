@@ -71,6 +71,7 @@ elixir(function(mix) {
     "fade.coffee",
     "gallery.coffee",
     "global-drag.coffee",
+    "header-menu.coffee",
     "logo-menu.coffee",
     "menu.coffee",
     "navbar-mobile.coffee",

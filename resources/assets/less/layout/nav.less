@@ -72,13 +72,9 @@
 }
 
 #nav-menu {
-  &:extend(.compact-list-inline all);
   height: @nav-menu-height;
-  display: flex;
-  font-size: 14px;
 
   > li {
-    padding: 0px @grid-gutter-width/4 0px 0px;
     position: static;
 
     &.active > a {
@@ -96,19 +92,7 @@
       left: 0px;
       position: absolute;
       top: @nav-menu-height;
-
-      > li {
-        padding: 0px @grid-gutter-width/4 0px 0px;
-      }
-
-      &, .section::after {
-        font-size: 22px;
-      }
-
-      .section::after {
-        content: '›';
-        margin-left: @grid-gutter-width/4;
-      }
+      width: 100%;
     }
   }
 }
