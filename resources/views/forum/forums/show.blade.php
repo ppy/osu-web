@@ -18,17 +18,19 @@
 @extends("master", ["body_additional_classes" => "forum-colour " . $forum->categorySlug()])
 
 @section("content")
-    <div class="row-page forum-header forum-category-header forum-category-header--{{ $forum->categorySlug() }} forum-category-header--main">
-        <div>
-            <ol class="breadcrumb forums-breadcrumb">
-                @include("forum.forums._nav", ["forum_parents" => $forum->forum_parents])
-            </ol>
+    <div class="row-page row-blank">
+        <div class="forum-header forum-category-header forum-category-header--{{ $forum->categorySlug() }} forum-category-header--main">
+            <div>
+                <ol class="breadcrumb forums-breadcrumb">
+                    @include("forum.forums._nav", ["forum_parents" => $forum->forum_parents])
+                </ol>
 
-            <h1>
-                <a href="{{ route("forum.forums.show", $forum->forum_id) }}">
-                    {{ $forum->forum_name }}
-                </a>
-            </h1>
+                <h1>
+                    <a href="{{ route("forum.forums.show", $forum->forum_id) }}">
+                        {{ $forum->forum_name }}
+                    </a>
+                </h1>
+            </div>
         </div>
     </div>
 
