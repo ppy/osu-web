@@ -83,7 +83,7 @@
         </div>
     </div>
 
-    <div class="row-page row-blank" id="topic-header-container">
+    <div class="row-page row-blank">
         <div class="forum-header
             forum-category-header
             forum-category-header--{{ $topic->forum->categorySlug() }}
@@ -167,7 +167,7 @@
                     forum-topic-nav__seek-bar
                     forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
                 "
-                style="width: '{{ 100 * $postsPosition[$jumpTo] / $topic->postsCount() }}%';"
+                style="width: '{{ 100 * array_get($postsPosition, $jumpTo, 0) / $topic->postsCount() }}%';"
             >
             </div>
         </div>

@@ -95,6 +95,7 @@ class @Menu
     menus = document.querySelectorAll('.js-menu[data-menu-id]')
 
     currentTree = @currentTree()
+    $.publish 'menu:current', @currentMenu
 
     for menu in menus
       menuId = menu.getAttribute('data-menu-id')
