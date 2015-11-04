@@ -3,7 +3,9 @@
 set -u
 set -e
 
-chmod -R 777 storage bootstrap/cache
+# the user when provisioning is `vagrant`, but files are created by `www-data`
+# don't fail if permissions don't get set on all files (useful when reloading the container)
+chmod -R 777 storage bootstrap/cache || true
 
 if [ ! -d node_modules ]; then
   mkdir -p ~/node_modules
