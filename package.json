@@ -6,7 +6,7 @@
     "bower": "*",
     "font-awesome": "*",
     "gulp": "*",
-    "laravel-elixir": "< 3.0.0",
+    "laravel-elixir": "*",
     "layzr.js": "*",
     "lodash": "*",
     "photoswipe": "*",
