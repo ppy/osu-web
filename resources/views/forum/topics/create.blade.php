@@ -18,58 +18,60 @@
 @extends("master")
 
 @section("content")
-    {!! Form::open([
-        "url" => route("forum.topics.store", $forum),
-        "class" => "create-topic post-box flex-full content",
-        "data-preview-url" => route("forum.topics.preview", $forum),
-    ]) !!}
-        <div class="row-page row-blank">
-            <div class="forum-header forum-category-header forum-category-header--main">
-                <div class="topic-header">
-                    <ol class="breadcrumb forums-breadcrumb">
-                        @include("forum.forums._nav", ["forum_parents" => $forum->forum_parents])
-                        <li>
-                            <a href="{{ route("forum.forums.show", $forum) }}">
-                                {{ $forum->forum_name }}
-                            </a>
-                        </li>
-                    </ol>
-                    <h1>
-                        <input required tabindex="1" name="title" type="text" value="{{ Request::old("title") }}" placeholder="{{ trans("forum.topic.create.placeholder.title") }}" />
-                    </h1>
-                </div>
-            </div>
-        </div>
-
-        <div class="content content--forum-topic-preview js-post-preview"></div>
-
-        <div id="topic-post-form" class="forum-post flex-row row-page post-editor" data-post-position="1">
-            <div class="post-editor__main">
-                <div class="info-panel">
-                    @include("forum.topics._post_info", ["user" => Auth::user(), "options" => ["large" => true]])
-                </div>
-
-                <div class="post-panel">
-                    @include('forum.posts._form_body', ['postBody' => [
-                        'content' => Request::old("body"),
-                        'focus' => true,
-                        'extraClasses' => 'post-autopreview',
-                        'extraAttrs' => 'tabindex="1"',
-                    ]])
+    <div class="osu-layout__row-container osu-layout__row-container--full">
+        {!! Form::open([
+            "url" => route("forum.topics.store", $forum),
+            "class" => "create-topic post-box",
+            "data-preview-url" => route("forum.topics.preview", $forum),
+        ]) !!}
+            <div class="osu-layout__row osu-layout__row--page-compact">
+                <div class="forum-header forum-category-header forum-category-header--main">
+                    <div class="topic-header">
+                        <ol class="breadcrumb forums-breadcrumb">
+                            @include("forum.forums._nav", ["forum_parents" => $forum->forum_parents])
+                            <li>
+                                <a href="{{ route("forum.forums.show", $forum) }}">
+                                    {{ $forum->forum_name }}
+                                </a>
+                            </li>
+                        </ol>
+                        <h1>
+                            <input required tabindex="1" name="title" type="text" value="{{ Request::old("title") }}" placeholder="{{ trans("forum.topic.create.placeholder.title") }}" />
+                        </h1>
+                    </div>
                 </div>
             </div>
 
-            <div class="post-footer post-editor__footer post-editor__footer--large">
-                <div class="post-box__toolbar">
-                    @include("forum._post_toolbar")
+            <div class="content content--forum-topic-preview js-post-preview"></div>
+
+            <div id="topic-post-form" class="forum-post osu-layout__row osu-layout__row--forum-post-create post-editor" data-post-position="1">
+                <div class="post-editor__main">
+                    <div class="info-panel">
+                        @include("forum.topics._post_info", ["user" => Auth::user(), "options" => ["large" => true]])
+                    </div>
+
+                    <div class="post-panel">
+                        @include('forum.posts._form_body', ['postBody' => [
+                            'content' => Request::old("body"),
+                            'focus' => true,
+                            'extraClasses' => 'post-autopreview',
+                            'extraAttrs' => 'tabindex="1"',
+                        ]])
+                    </div>
                 </div>
 
-                <div class="post-box__actions">
-                    <button tabindex="1" class="btn-osu btn-osu--small btn-osu-default post-editor__action" type="submit">
-                        {{ trans("forum.topic.create.submit") }}
-                    </button>
+                <div class="post-footer post-editor__footer post-editor__footer--large">
+                    <div class="post-box__toolbar">
+                        @include("forum._post_toolbar")
+                    </div>
+
+                    <div class="post-box__actions">
+                        <button tabindex="1" class="btn-osu btn-osu--small btn-osu-default post-editor__action" type="submit">
+                            {{ trans("forum.topic.create.submit") }}
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    {!! Form::close() !!}
+        {!! Form::close() !!}
+    </div>
 @endsection
