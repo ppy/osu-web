@@ -369,3 +369,21 @@ function get_int($string)
 
     return $val;
 }
+
+// should it be used?
+function bem($block, $element = null, $modifiers = [])
+{
+    $baseClass = $block;
+
+    if ($element !== null) {
+        $baseClass .= "__{$element}";
+    }
+
+    $ret = $baseClass;
+
+    foreach ($modifiers as $modifier) {
+        $ret .= " {$baseClass}--{$modifier}";
+    }
+
+    return " {$ret} ";
+}

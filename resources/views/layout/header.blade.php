@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<nav class="flex-none no-print">
+<nav class="osu-layout__section osu-layout__section--minimum no-print">
     <!-- Specific style for smaller displays (smartphone) -->
     <div class="visible-xs">
         <div class="navbar-mobile navbar navbar-default navbar-static-top bg--{{ $current_section }}" role="navigation">
@@ -123,7 +123,7 @@
         <div id="nav-gradient-overlay"></div>
     </div>
 
-    <div class="hidden-xs container"><div class="row" id="nav-sm">
+    <div class="hidden-xs osu-layout__row-container"><div class="osu-layout__row" id="nav-sm">
         <a class="flex-none nav-logo" href="/"></a>
 
         <div id="nav-links">

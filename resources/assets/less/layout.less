@@ -33,33 +33,7 @@ html, body {
   height: 100%;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  background-color: transparent;
-
-  // inspired by
-  // https://fourword.fourkitchens.com/article/fix-scrolling-performance-css-will-change-property
-  // using backface-visibility since IE doesn't have will-change property yet.
-  &::before {
-    .at2x("/images/backgrounds/page-light.png", 500px, 500px);
-    position: fixed;
-    backface-visibility: hidden;
-    width: 100%;
-    height: 100%;
-    top: 0px;
-    left: 0px;
-    content: " ";
-    z-index: -2;
-  }
-}
-
 .content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0px 0px @grid-gutter-width/2;
-
   &--forum-topic-preview {
     width: 100%;
     padding: 0px;

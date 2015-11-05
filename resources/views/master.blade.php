@@ -30,23 +30,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
 
-    <body class="{{ $current_section or "error" }} section action-{{ $current_action }} {{ $body_additional_classes or "" }}">
+    <body class="osu-layout osu-layout--body {{ $current_section or "error" }} section action-{{ $current_action }} {{ $body_additional_classes or "" }}">
         <div id="overlay" style="display: none;"></div>
         <div class="blackout" style="display: none;"></div>
 
         @include("layout.header")
 
-        <div class="flex-full content {{ $current_section }}_{{ $current_action }}">
+        <div class="osu-layout__section osu-layout__section--main osu-layout__section--full js-content {{ $current_section }}_{{ $current_action }}">
             @include("layout.popup")
             @if (View::hasSection('content'))
                 @yield('content')
             @else
-                <div class="row-page text-center"><h1>
-                    <span class="dark">{{ $current_section }}</span>
-                    /
-                    <span class="dark">{{ $current_action }}</span>
-                    is <span class="normal">now printing</span> <span class="light">♪</span>
-                </h1></div>
+                <div class="osu-layout__row-container">
+                    <div class="osu-layout__row osu-layout__row--page">
+                        <h1 class="text-center">
+                            <span class="dark">{{ $current_section }}</span>
+                            /
+                            <span class="dark">{{ $current_action }}</span>
+                            is <span class="normal">now printing</span> <span class="light">♪</span>
+                        </h1>
+                    </div>
+                </div>
             @endif
         </div>
 

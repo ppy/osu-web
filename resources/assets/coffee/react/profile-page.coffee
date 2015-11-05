@@ -28,4 +28,4 @@ React.render \
     recentAchievements: osu.parseJson('json-user-recent-achievements').data
     recentActivities: osu.parseJson('json-user-recent-activities').data
     recentlyReceivedKudosu: osu.parseJson('json-user-recently-received-kudosu').data
-  ), document.getElementsByClassName('content')[0]
+  ), document.getElementsByClassName('js-content')[0]
