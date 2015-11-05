@@ -208,7 +208,7 @@ class BeatmapSet extends Model
             $matchParams[] = ['match' => ['language_id' => (int) $language]];
         }
 
-        if ([$extra] && !empty($extra)) {
+        if (is_array($extra) && !empty($extra)) {
             foreach ($extra as $val) {
                 switch ($val) {
                     case 0: // video
