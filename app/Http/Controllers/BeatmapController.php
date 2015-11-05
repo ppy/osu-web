@@ -101,6 +101,10 @@ class BeatmapController extends Controller
             'page' => Request::input('page'),
         ];
 
+        if (!$current_user->isSupporter()) {
+            unset($params['rank']);
+        }
+
         $params = array_filter(
             $params,
             function ($v, $k) {

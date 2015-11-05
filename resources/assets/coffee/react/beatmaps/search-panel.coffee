@@ -79,4 +79,5 @@ window.SearchPanel = React.createClass
             el(FilterSelector, name: 'genre', title: 'Genre', options: filters.genres, default: filters.genres[0]['id'])
             el(FilterSelector, name: 'language', title: 'Language', options: filters.languages, default: filters.languages[0]['id'])
             el(FilterSelector, name: 'extra', title: 'Extra', options: filters.extras, multiselect: true)
-            el(FilterSelector, name: 'rank', title: 'Rank Achieved', options: filters.ranks, default: null)
+            if currentUser.isSupporter
+              el(FilterSelector, name: 'rank', title: 'Rank Achieved', options: filters.ranks, default: null)
