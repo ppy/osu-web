@@ -28,14 +28,17 @@ window.BeatmapsListing = React.createClass
       beatmaps.push el(Panel, beatmap: beatmap)
 
     div className: ['beatmap-container', ('dimmed' if @props.loading)].join(' '),
-      div className: 'sorting',
-        a href: '#', 'title'
-        a href: '#', 'artist'
-        a href: '#', 'creator'
-        a href: '#', 'difficulty'
-        a href: '#', 'ranked'
-        a href: '#', className: 'active', 'rating'
-        a href: '#', 'plays'
+      if (currentUser.id == undefined)
+        div
+      else
+        div className: 'sorting',
+          a href: '#', 'title'
+          a href: '#', 'artist'
+          a href: '#', 'creator'
+          a href: '#', 'difficulty'
+          a href: '#', 'ranked'
+          a href: '#', className: 'active', 'rating'
+          a href: '#', 'plays'
       div className: 'view_mode'
       div className: 'listing',
         beatmaps

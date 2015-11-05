@@ -17,7 +17,7 @@
 *
 ###
 
-{div,a,i,input} = React.DOM
+{div,a,i,input,h1,h2} = React.DOM
 el = React.createElement
 
 window.SearchPanel = React.createClass
@@ -55,22 +55,28 @@ window.SearchPanel = React.createClass
 
     render: ->
       filters = @state.filters
-      div id: 'search',
-        div className: 'background', style:
-          'background-image': "url(#{@props.background})"
-        div className: 'box',
-          input id: 'searchbox', type: 'textbox', name: 'search', placeholder: Lang.get("beatmaps.listing.search.prompt")
-          i className:'fa fa-search'
+      if (currentUser.id == undefined)
+        div className: 'beatmaps-header',
+          div className: 'background', style: {backgroundImage: "url(#{@props.background})"}
+          div className: 'text',
+            h1 {}, 'beatmaps'
+            h2 {}, 'witty tag line'
+      else
+        div id: 'search',
+          div className: 'background', style: {backgroundImage: "url(#{@props.background})"}
+          div className: 'box',
+            input id: 'searchbox', type: 'textbox', name: 'search', placeholder: Lang.get("beatmaps.listing.search.prompt")
+            i className:'fa fa-search'
 
-        el(FilterSelector, name: 'mode', title: 'Mode', options: filters.modes, default: 0)
-        el(FilterSelector, name:'status', title: 'Rank Status', options: filters.statuses, default: 0)
+          el(FilterSelector, name: 'mode', title: 'Mode', options: filters.modes, default: 0)
+          el(FilterSelector, name:'status', title: 'Rank Status', options: filters.statuses, default: 0)
 
-        div className: 'more',
-          a className: 'toggle', href:'#', onClick: @show_more,
-            div {}, Lang.get('beatmaps.listing.search.options')
-            div {}, i className:'fa fa-angle-down'
+          div className: 'more',
+            a className: 'toggle', href:'#', onClick: @show_more,
+              div {}, Lang.get('beatmaps.listing.search.options')
+              div {}, i className:'fa fa-angle-down'
 
-          el(FilterSelector, name: 'genre', title: 'Genre', options: filters.genres, default: filters.genres[0]['id'])
-          el(FilterSelector, name: 'language', title: 'Language', options: filters.languages, default: filters.languages[0]['id'])
-          el(FilterSelector, name: 'extra', title: 'Extra', options: filters.extras, multiselect: true)
-          el(FilterSelector, name: 'rank', title: 'Rank Achieved', options: filters.ranks, default: null)
+            el(FilterSelector, name: 'genre', title: 'Genre', options: filters.genres, default: filters.genres[0]['id'])
+            el(FilterSelector, name: 'language', title: 'Language', options: filters.languages, default: filters.languages[0]['id'])
+            el(FilterSelector, name: 'extra', title: 'Extra', options: filters.extras, multiselect: true)
+            el(FilterSelector, name: 'rank', title: 'Rank Achieved', options: filters.ranks, default: null)
