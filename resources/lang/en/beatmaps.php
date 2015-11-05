@@ -38,7 +38,7 @@ return [
         'mania' => 'osu!mania',
     ],
     'status' => [
-        'all' => 'All',
+        'any' => 'Any',
         'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
         'faves' => 'Favourites',
