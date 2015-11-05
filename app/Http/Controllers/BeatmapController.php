@@ -27,6 +27,7 @@ use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use App\Transformers\BeatmapTransformer;
 use Request;
+use Auth;
 
 class BeatmapController extends Controller
 {
@@ -84,6 +85,11 @@ class BeatmapController extends Controller
 
     public function search()
     {
+        $current_user = Auth::user();
+        if (is_null($current_user)) {
+            return;
+        }
+
         $params = [
             'query' => Request::input('q'),
             'mode' => Request::input('m'),
