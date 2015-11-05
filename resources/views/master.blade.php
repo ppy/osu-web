@@ -36,7 +36,7 @@
 
         @include("layout.header")
 
-        <div class="osu-layout__section osu-layout__section--main osu-layout__section--full js-content {{ $current_section }}_{{ $current_action }}">
+        <div class="osu-layout__section osu-layout__section--full js-content {{ $current_section }}_{{ $current_action }}">
             @include("layout.popup")
             @if (View::hasSection('content'))
                 @yield('content')
