@@ -34,8 +34,8 @@ window.Panel = React.createClass
 
     div href: '/beatmaps/modding/'+beatmap.beatmapset_id, className: 'beatmap object_link shadow-hover', objectid: beatmap.beatmapset_id,
       div className: 'panel',
-        div className: 'thumb', style: {'background-image': 'url(//b.ppy.sh/thumb/'+beatmap.beatmapset_id+'l.jpg)'}
-        div className: 'thumb_cover', style: {'background-image': 'url(//b.ppy.sh/thumb/'+beatmap.beatmapset_id+'l.jpg)'}
+        div className: 'thumb', style: {backgroundImage: "url(//b.ppy.sh/thumb/#{beatmap.beatmapset_id}l.jpg)"}
+        div className: 'thumb_cover', style: {backgroundImage: "url(//b.ppy.sh/thumb/#{beatmap.beatmapset_id}l.jpg)"}
         div className: 'bottom_left',
           div className: 'title',
             span title: beatmap.title, beatmap.title
