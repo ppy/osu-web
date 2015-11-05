@@ -11,6 +11,7 @@
     "lodash": "*",
     "photoswipe": "*",
     "react": "*",
+    "react-dom": "*",
     "retina.js": "*"
   }
 }

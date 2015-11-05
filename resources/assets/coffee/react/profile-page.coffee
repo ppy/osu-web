@@ -19,7 +19,7 @@ el = React.createElement
 
 user = osu.parseJson('json-user-info').data
 
-React.render \
+ReactDOM.render \
   el(ProfilePage.Main,
     user: user
     userPage: osu.parseJson('json-user-page').page
