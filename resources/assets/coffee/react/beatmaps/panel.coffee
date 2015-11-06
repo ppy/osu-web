@@ -26,11 +26,11 @@ class @Panel extends React.Component
     difficulties = []
     if beatmap.difficulties.length > 0
       if beatmap.difficulties.length > 5
-        difficulties.push el(BeatmapDifficultyIcon, difficulty: beatmap.difficulties[0])
-        difficulties.push span beatmap.difficulties.length - 1
+        difficulties.push el(BeatmapDifficultyIcon, difficulty: beatmap.difficulties[0], key: 0)
+        difficulties.push span key: 'over', beatmap.difficulties.length - 1
       else
-        for difficulty in beatmap.difficulties
-          difficulties.push el(BeatmapDifficultyIcon, difficulty: difficulty)
+        for difficulty, index in beatmap.difficulties
+          difficulties.push el(BeatmapDifficultyIcon, difficulty: difficulty, key: index)
 
     div href: '/beatmaps/modding/'+beatmap.beatmapset_id, className: 'beatmap object_link shadow-hover', objectid: beatmap.beatmapset_id,
       div className: 'panel',

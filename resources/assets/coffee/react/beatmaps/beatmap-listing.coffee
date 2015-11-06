@@ -25,7 +25,7 @@ class @BeatmapsListing extends React.Component
     beatmaps = []
     return if @props.beatmaps == undefined
     for beatmap in @props.beatmaps
-      beatmaps.push el(Panel, beatmap: beatmap)
+      beatmaps.push el(Panel, beatmap: beatmap, key: beatmap.beatmapset_id)
 
     div className: ['beatmap-container', ('dimmed' if @props.loading)].join(' '),
       if (currentUser.id == undefined)
