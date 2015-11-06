@@ -45,7 +45,6 @@ window.Paginator = React.createClass
     @autoPagerTarget = $('#js-beatmaps-load-more')
 
   render: ->
-    div className: "beatmaps-load-more " + (@props.paging.loading ? 'loading ' : '') + (@props.paging.more ? '' : 'no_more'),
+    div className: ['beatmaps-load-more', ('loading ' if @props.paging.loading), ('no_more' if not @props.paging.more)].join(' '),
       a href: @props.paging.url, id: "js-beatmaps-load-more", 'data-mode': "next", onClick: @clicked, "Load more"
-      span "loading..."
-      i class: "fa fa-refresh fa-spin"
+      i className: "fa fa-refresh fa-spin"

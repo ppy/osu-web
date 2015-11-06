@@ -73,6 +73,11 @@ class @Beatmaps extends React.Component
     if @state.loading or @state.paging.loading or !@state.paging.more
       return
 
+    paging_state = @state.paging
+    paging_state.loading = true
+
+    @setState paging: paging_state
+
     searchText = $('#searchbox').val()
 
     $.ajax(@state.paging.url,
