@@ -55,7 +55,12 @@ class AccountController extends Controller
     public function updatePage()
     {
         $user = Auth::user();
+
         if (!$user->osu_subscriber && $user->userPage === null) {
+            abort(403);
+        }
+
+        if (!$user->userPage->canBeEditedBy($user)) {
             abort(403);
         }
 
