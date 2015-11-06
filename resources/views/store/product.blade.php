@@ -30,7 +30,7 @@
             <div>{!! Markdown::convertToHtml($product->header_description) !!}</div>
         </div>
 
-        <div class="row-subgroup">
+        <div class="osu-layout__sub-row">
             <div class="row">
                 <div class="col-md-12">
                     <h1>{{ $product->name }}</h1>
@@ -130,7 +130,9 @@
         </div>
 
         @if($product->inStock())
-        <div class="row-subgroup js-store-add-to-cart" id="add-to-cart">
+        <hr class="osu-layout__sub-row-separator" />
+
+        <div class="osu-layout__sub-row js-store-add-to-cart" id="add-to-cart">
             <div class="big-button">
                 <button type="submit" class="btn-osu btn-osu-default">Add to Cart</button>
             </div>

@@ -30,7 +30,7 @@
 </style>
 
 @if(!$order)
-<div class="row-page">
+<div class="osu-layout__row osu-layout__row--page">
     <div class="col-md-12">
         <h1>Not Found</h1>
         <p>The requested order could not be found.</p>

@@ -56,54 +56,7 @@ html, body {
 
 .header-row {
   background-size: cover;
-  background-position-x: 50%;
-}
-
-.row-page {
-  &:extend(.row);
-  &:extend(.default-box-shadow);
-
-  padding: @grid-gutter-width/2;
-  background-color: #fff;
-  margin-bottom: 10px;
-
-  width: 100%;
-  max-width: @container-sm;
-
-  &--profile {
-    padding-bottom: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-}
-
-.row-blank {
-  box-shadow: none;
-  background: transparent;
-  padding: 0px;
-}
-
-.row-group {
-  max-width: @container-sm - @grid-gutter-width;
-  width: calc(~"100% - @{grid-gutter-width}");
-
-  padding: 0px;
-  box-shadow: none; // added by .row-group
-}
-
-.row-subgroup {
-  &:extend(.default-box-shadow);
-  padding: @grid-gutter-width/2;
-}
-
-.row-subgroup--extra-padding {
-  padding: @grid-gutter-width/2 @grid-gutter-width;
-}
-
-.row-subgroup--large {
-  margin-left: -@grid-gutter-width/2;
-  margin-right: -@grid-gutter-width/2;
-  background: #fff;
+  background-position: center;
 }
 
 #overlay {
