@@ -138,6 +138,7 @@ class UsersController extends Controller
         $recentlyReceivedKudosu = fractal_collection_array(
             $user->receivedKudosu()
                 ->withPost()
+                ->withGiver()
                 ->with('post', 'post.topic', 'giver')
                 ->orderBy('exchange_id', 'desc')
                 ->limit(15)

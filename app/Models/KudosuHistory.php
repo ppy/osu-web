@@ -64,4 +64,16 @@ class KudosuHistory extends Model
                 ->whereRaw("{$postTableName}.post_id = {$thisTableName}.post_id");
         });
     }
+
+    public function scopeWithGiver($query)
+    {
+        $userTableName = (new User)->getTable();
+        $thisTableName = $this->getTable();
+
+        return $query->whereExists(function ($query) use ($userTableName, $thisTableName) {
+            $query->select(DB::raw(1))
+                ->from($userTableName)
+                ->whereRaw("{$userTableName}.user_id = {$thisTableName}.giver_id");
+        });
+    }
 }
