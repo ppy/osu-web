@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
 use Raven_Client;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
@@ -35,8 +36,8 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        "Symfony\Component\HttpKernel\Exception\HttpException",
-        "Illuminate\Database\Eloquent\ModelNotFoundException",
+        HttpException::class,
+        ModelNotFoundException::class,
     ];
 
     /**
