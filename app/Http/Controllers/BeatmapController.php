@@ -99,7 +99,7 @@ class BeatmapController extends Controller
             'extra' => array_filter(explode('-', Request::input('e')), 'strlen'),
             'rank' => Request::input('r'),
             'page' => Request::input('page'),
-            'sort' => explode('_', Request::input('sort'))
+            'sort' => explode('_', Request::input('sort')),
         ];
 
         if (!$current_user->isSupporter()) {
