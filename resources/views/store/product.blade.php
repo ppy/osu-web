@@ -130,9 +130,7 @@
         </div>
 
         @if($product->inStock())
-        <hr class="osu-layout__sub-row-separator" />
-
-        <div class="osu-layout__sub-row js-store-add-to-cart" id="add-to-cart">
+        <div class="osu-layout__sub-row osu-layout__sub-row--with-separator js-store-add-to-cart" id="add-to-cart">
             <div class="big-button">
                 <button type="submit" class="btn-osu btn-osu-default">Add to Cart</button>
             </div>
