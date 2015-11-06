@@ -33,8 +33,8 @@ window.AutoPager =
   componentWillUnmount: ->
     $(window).off @autoPagerScrollHandle
 
-
 window.Paginator = React.createClass
+  displayName: 'Paginator'
   mixins: [ AutoPager ]
   autoPagerTriggerDistance: 3000
   clicked: (e) ->

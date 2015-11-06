@@ -20,7 +20,7 @@
 {div,a} = React.DOM
 el = React.createElement
 
-window.BeatmapsListing = React.createClass
+class @BeatmapsListing extends React.Component
   render: ->
     beatmaps = []
     return if @props.beatmaps == undefined

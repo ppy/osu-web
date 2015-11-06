@@ -20,22 +20,16 @@
 {div,a,span} = React.DOM
 el = React.createElement
 
-window.FilterSelector = React.createClass
-  propTypes:
-    title: React.PropTypes.string.isRequired
-    options: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
-    selected: React.PropTypes.arrayOf(React.PropTypes.number)
-    multiselect: React.PropTypes.bool
+class @SearchFilter extends React.Component
+  constructor: (props) ->
+    super props
+    @state =
+      selected: [].concat(@props.default)
 
-  getDefaultProps: ->
-    {
-      multiselect: false
-      selected: []
-      default: []
-    }
-
-  getInitialState: ->
-    { selected: [].concat(@props.default) }
+  @defaultProps: ->
+    multiselect: false
+    selected: []
+    default: []
 
   select: (i) ->
     if @selected(i)
@@ -68,3 +62,10 @@ window.FilterSelector = React.createClass
     div id: @props.id, className: 'selector', 'data-name': @props.name,
       span className:'header', @props.title
       selectors
+
+SearchFilter.propTypes =
+  title: React.PropTypes.string.isRequired
+  options: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+  selected: React.PropTypes.arrayOf(React.PropTypes.number)
+  multiselect: React.PropTypes.bool
+

@@ -20,9 +20,10 @@
 {div} = React.DOM
 el = React.createElement
 
-window.Beatmaps = React.createClass(
-  getInitialState: ->
-    {
+class @Beatmaps extends React.Component
+  constructor: (props) ->
+    super props
+    @state =
       beatmaps: JSON.parse(document.getElementById('json-beatmaps').text)['data']
       paging:
         page: 1
@@ -37,24 +38,21 @@ window.Beatmaps = React.createClass(
         extra: null
         rank: null
       loading: false
-    }
 
   getFilterState: ->
-    {
-      'm': @state.filters.mode
-      's': @state.filters.status
-      'g': @state.filters.genre
-      'l': @state.filters.language
-      'e': @state.filters.extra
-      'r': @state.filters.rank
-    }
+    'm': @state.filters.mode
+    's': @state.filters.status
+    'g': @state.filters.genre
+    'l': @state.filters.language
+    'e': @state.filters.extra
+    'r': @state.filters.rank
 
   search: ->
     searchText = $('#searchbox').val()
     # if (searchText == '' || searchText == null)
     #   return;
 
-    @showLoader()
+    @showLoader
 
     $.ajax(@state.paging.url,
       method: 'get'
@@ -109,19 +107,20 @@ window.Beatmaps = React.createClass(
     @setState loading: false
     $('#loading-area').hide()
 
-  updateFilters: (lets_ignore_this, b) ->
-    newFilters = $.extend({}, @state.filters)
-    # clone object
+  updateFilters: (_e, b) ->
+    newFilters = $.extend({}, @state.filters) # clone object
+
     newFilters[b.name] = b.value
+
     if @state.filters != newFilters
       @setState { filters: newFilters }, ->
         $(document).trigger 'beatmap:search:start'
 
   componentDidMount: ->
-    $(document).on 'beatmap:load_more', @loadMore
-    $(document).on 'beatmap:search:start', @search
-    $(document).on 'beatmap:search:done', @hideLoader
-    $(document).on 'beatmap:search:filtered', @updateFilters
+    $(document).on 'beatmap:load_more', @loadMore.bind(this)
+    $(document).on 'beatmap:search:start', @search.bind(this)
+    $(document).on 'beatmap:search:done', @hideLoader.bind(this)
+    $(document).on 'beatmap:search:filtered', @updateFilters.bind(this)
     $(document).on 'ready page:load osu:page:change', ->
       setTimeout @onScroll, 1000
 
@@ -138,12 +137,11 @@ window.Beatmaps = React.createClass(
     else
       searchBackground = ''
 
-    div null,
+    div {},
       el(SearchPanel, background: searchBackground)
-      div id: 'beatmaps', class: 'beatmaps padding',
+      div id: 'beatmaps', className: 'beatmaps padding',
         el(BeatmapsListing, beatmaps: @state.beatmaps, loading: @state.loading)
         el(Paginator, paging: @state.paging)
-)
 
 $(document).ready ->
   React.render el(Beatmaps), document.getElementsByClassName('content')[0]

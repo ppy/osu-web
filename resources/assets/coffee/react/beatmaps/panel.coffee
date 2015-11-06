@@ -20,7 +20,7 @@
 {div,a,i,span} = React.DOM
 el = React.createElement
 
-window.Panel = React.createClass
+class @Panel extends React.Component
   render: ->
     beatmap = @props.beatmap
     difficulties = []
