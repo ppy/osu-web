@@ -45,17 +45,23 @@
   }
 
   &__row {
-    ._margin(@extra-margin: 0) {
-      margin-left: @extra-margin;
-      margin-right: @extra-margin;
-
-      @media @desktop {
-        margin-left: (@grid-gutter-width + @extra-margin);
-        margin-right: (@grid-gutter-width + @extra-margin);
-      }
+    ._width(@extra-margin: 0px) {
+      width: calc(100% ~'-' (@extra-margin * 2));
+      max-width: (@container-sm - @extra-margin * 2);
     }
 
-    ._margin;
+    ._width-desktop(@extra-margin: 0px) {
+      width: calc(100% ~'-' ((@extra-margin + @grid-gutter-width) * 2));
+      max-width: (@container-sm - @extra-margin * 2);
+    }
+
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    ._width;
+    @media @desktop {
+      ._width-desktop;
+    }
 
     &--bootstrap {
       .clearfix;
@@ -88,6 +94,13 @@
       flex: 1 0 auto;
     }
 
+    &--lg2 {
+      ._width(-@spacing * 4);
+      @media @desktop {
+        ._width-desktop(-@spacing * 4);
+      }
+    }
+
     &--page {
       ._page;
       padding: (@spacing * 2);
@@ -107,29 +120,23 @@
     }
 
     &--sm1 {
-      ._margin(@spacing * 2);
+      ._width(@spacing * 2);
+      @media @desktop {
+        ._width-desktop(@spacing * 2);
+      }
     }
 
     &--sm2-desktop {
       @media @desktop {
-        ._margin(@spacing * 4);
+        ._width-desktop(@spacing * 4);
       }
     }
 
     &--with-gutter {
-      ._margin(-@spacing / 2);
-    }
-  }
-
-  &__row-container {
-    width: 100%;
-    max-width: (@container-sm + 2 * @grid-gutter-width);
-    align-self: center;
-
-    &--full {
-      display: flex;
-      flex-direction: column;
-      flex: 1 0 auto;
+      ._width(-@spacing / 2);
+      @media @desktop {
+        ._width-desktop(-@spacing / 2);
+      }
     }
   }
 

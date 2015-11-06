@@ -18,46 +18,44 @@
 @extends("master")
 
 @section("content")
-    <div class="osu-layout__row-container">
-        <div id="download-header" class="osu-layout__row osu-layout__row--page">
-            <p>let's get</p>
-            <p>you started</p>
-            <p>download osu! game client for Windows</p>
+    <div id="download-header" class="osu-layout__row osu-layout__row--page">
+        <p>let's get</p>
+        <p>you started</p>
+        <p>download osu! game client for Windows</p>
+    </div>
+
+    <div class="osu-layout__row" id="download-button">
+        <a href="http://m1.ppy.sh/r/osu!install.exe">
+            <img class="round" src="/images/download-button.png" alt="osu! online installer" />
+        </a>
+    </div>
+
+    <div class="osu-layout__row osu-layout__row--page" id="download-steps">
+        <div>
+            <h1>Step 1</h1>
+            <p>Download the osu! game client</p>
+        </div>
+        <div>
+            <h1>Step 2</h1>
+            <p>Create an osu! player account</p>
+        </div>
+        <div>
+            <h1>Step 3</h1>
+            <p>???</p>
+        </div>
+    </div>
+
+    <div class="osu-layout__row osu-layout__row--page" id="download-guides">
+        <div class="explanation">
+            <h4>Learn more?</h4>
+
+            <p>
+                Check out the <a href="https://www.youtube.com/user/osuacademy/">osu!academy YouTube Channel</a> for up-to-date tutorials and tips on how to get the most out of osu!
+            </p>
         </div>
 
-        <div class="osu-layout__row" id="download-button">
-            <a href="http://m1.ppy.sh/r/osu!install.exe">
-                <img class="round" src="/images/download-button.png" alt="osu! online installer" />
-            </a>
-        </div>
-
-        <div class="osu-layout__row osu-layout__row--page" id="download-steps">
-            <div>
-                <h1>Step 1</h1>
-                <p>Download the osu! game client</p>
-            </div>
-            <div>
-                <h1>Step 2</h1>
-                <p>Create an osu! player account</p>
-            </div>
-            <div>
-                <h1>Step 3</h1>
-                <p>???</p>
-            </div>
-        </div>
-
-        <div class="osu-layout__row osu-layout__row--page" id="download-guides">
-            <div class="explanation">
-                <h4>Learn more?</h4>
-
-                <p>
-                    Check out the <a href="https://www.youtube.com/user/osuacademy/">osu!academy YouTube Channel</a> for up-to-date tutorials and tips on how to get the most out of osu!
-                </p>
-            </div>
-
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe src="https://www.youtube.com/embed/videoseries?list=PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl" frameborder="0" allowfullscreen></iframe>
-            </div>
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe src="https://www.youtube.com/embed/videoseries?list=PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 @stop

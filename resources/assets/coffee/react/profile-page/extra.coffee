@@ -90,16 +90,14 @@ class ProfilePage.Extra extends React.Component
         'data-sticky-header-target': 'profile-extra-tabs'
         div
           className: tabsContainerClasses
-          div className: 'osu-layout__row-container',
-            div className: 'osu-layout__row',
-              div
-                className: tabsClasses
-                'data-sticky-header-id': 'profile-extra-tabs'
-                pages.map (m) =>
-                  el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
+          div className: 'osu-layout__row',
+            div
+              className: tabsClasses
+              'data-sticky-header-id': 'profile-extra-tabs'
+              pages.map (m) =>
+                el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
 
-      div className: 'osu-layout__row-container',
-        if withMePage
-          el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
-        el ProfilePage.RecentActivities, recentActivities: @props.recentActivities
-        el ProfilePage.Kudosu, user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu
+      if withMePage
+        el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
+      el ProfilePage.RecentActivities, recentActivities: @props.recentActivities
+      el ProfilePage.Kudosu, user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu

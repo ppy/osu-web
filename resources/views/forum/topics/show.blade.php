@@ -27,7 +27,7 @@
             forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
         "></div>
 
-        <div class="osu-layout__row-container"><div class="osu-layout__row"><div class="forum-topic-headernav__content">
+        <div class="osu-layout__row"><div class="forum-topic-headernav__content">
             <div class="forum-topic-headernav__logo">
                 @include('objects.logo-menu', ['logoMenuHoverBgClass' => 'forum-colour__bg-link--'.$topic->forum->categorySlug()])
             </div>
@@ -80,68 +80,66 @@
 
             <div class="forum-topic-headernav__actions">
             </div>
-        </div></div></div>
+        </div></div>
     </div>
 
-    <div class="osu-layout__row-container">
-        <div class="osu-layout__row osu-layout__row--page-compact">
-            <div class="forum-header
-                forum-category-header
-                forum-category-header--{{ $topic->forum->categorySlug() }}
-                forum-category-header--main
-            ">
-                <div class="topic-header">
-                    <ol class="breadcrumb forums-breadcrumb">
-                        @include("forum.forums._nav", ["forum_parents" => $topic->forum->forum_parents])
-                        <li>
-                            <a href="{{ route("forum.forums.show", $topic->forum->forum_id) }}">
-                                {{ $topic->forum->forum_name }}
-                            </a>
-                        </li>
-                    </ol>
-                    <h1>
-                        <a href="{{ route("forum.topics.show", $topic->topic_id) }}">
-                            {{ $topic->topic_title }}
+    <div class="osu-layout__row osu-layout__row--page-compact">
+        <div class="forum-header
+            forum-category-header
+            forum-category-header--{{ $topic->forum->categorySlug() }}
+            forum-category-header--main
+        ">
+            <div class="topic-header">
+                <ol class="breadcrumb forums-breadcrumb">
+                    @include("forum.forums._nav", ["forum_parents" => $topic->forum->forum_parents])
+                    <li>
+                        <a href="{{ route("forum.forums.show", $topic->forum->forum_id) }}">
+                            {{ $topic->forum->forum_name }}
                         </a>
-                    </h1>
+                    </li>
+                </ol>
+                <h1>
+                    <a href="{{ route("forum.topics.show", $topic->topic_id) }}">
+                        {{ $topic->topic_title }}
+                    </a>
+                </h1>
+            </div>
+        </div>
+
+        <div class="forum-topic-header__sticky-marker js-sticky-header" data-sticky-header-target="forum-topic-headernav"></div>
+    </div>
+
+    <div class="forum-posts-load-link">
+        <a href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => ($posts->first()->post_id - 1)]) }}" class="js-forum-posts-show-more js-forum__posts-show-more--previous" data-mode="previous">Load more</a>
+        <span><i class="fa fa-refresh fa-spin"></i></span>
+    </div>
+
+    @include("forum.topics._posts")
+
+    <div class="forum-posts-load-link">
+        <a href="{{ post_url($topic->topic_id, $posts->last()->post_id + 1, false) }}" class="js-forum-posts-show-more js-forum__posts-show-more--next" data-mode="next">Load more</a>
+        <span><i class="fa fa-refresh fa-spin"></i></span>
+    </div>
+
+    @if ($topic->canBeRepliedBy(Auth::user()))
+        {!! Form::open(["url" => route("forum.topics.reply", $topic->topic_id), "class" => "osu-layout__row osu-layout__row--sm2-desktop post-editor", "id" => "forum-topic-reply-box", "data-remote" => true]) !!}
+            <div class="forum-small-row post-editor__main post-editor__main--reply">
+                <div class="forum__avatar-container forum__avatar-container--reply hidden-xs">
+                    <div
+                        class="avatar avatar--full"
+                        title="{{ trans("users.show.avatar", ["username" => Auth::user()->username]) }}"
+                        style="background-image: url('{{ Auth::user()->user_avatar }}');"
+                    ></div>
                 </div>
+
+                @include('forum.posts._form_body', ['postBody' => ['focus' => false]])
             </div>
 
-            <div class="forum-topic-header__sticky-marker js-sticky-header" data-sticky-header-target="forum-topic-headernav"></div>
-        </div>
-
-        <div class="forum-posts-load-link">
-            <a href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => ($posts->first()->post_id - 1)]) }}" class="js-forum-posts-show-more js-forum__posts-show-more--previous" data-mode="previous">Load more</a>
-            <span><i class="fa fa-refresh fa-spin"></i></span>
-        </div>
-
-        @include("forum.topics._posts")
-
-        <div class="forum-posts-load-link">
-            <a href="{{ post_url($topic->topic_id, $posts->last()->post_id + 1, false) }}" class="js-forum-posts-show-more js-forum__posts-show-more--next" data-mode="next">Load more</a>
-            <span><i class="fa fa-refresh fa-spin"></i></span>
-        </div>
-
-        @if ($topic->canBeRepliedBy(Auth::user()))
-            {!! Form::open(["url" => route("forum.topics.reply", $topic->topic_id), "class" => "osu-layout__row osu-layout__row--sm2-desktop post-editor", "id" => "forum-topic-reply-box", "data-remote" => true]) !!}
-                <div class="forum-small-row post-editor__main post-editor__main--reply">
-                    <div class="forum__avatar-container forum__avatar-container--reply hidden-xs">
-                        <div
-                            class="avatar avatar--full"
-                            title="{{ trans("users.show.avatar", ["username" => Auth::user()->username]) }}"
-                            style="background-image: url('{{ Auth::user()->user_avatar }}');"
-                        ></div>
-                    </div>
-
-                    @include('forum.posts._form_body', ['postBody' => ['focus' => false]])
-                </div>
-
-                <div class="forum-small-row post-editor__footer">
-                    @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
-                </div>
-            {!! Form::close() !!}
-        @endif
-    </div>
+            <div class="forum-small-row post-editor__footer">
+                @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
+            </div>
+        {!! Form::close() !!}
+    @endif
 @endsection
 
 @section('fixed-bar-rows-bottom')

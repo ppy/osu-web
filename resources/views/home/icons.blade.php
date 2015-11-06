@@ -19,7 +19,7 @@
 
 @section("content")
 
-    <div class="osu-layout__row-container"><div class="osu-layout__row osu-layout__row--page">
+    <div class="osu-layout__row osu-layout__row--page">
         <h1>Icons</h1>
 
         @foreach($icons as $icon)
@@ -40,6 +40,5 @@
 
         @endforeach
 
-    </div></div>
-
+    </div>
 @stop

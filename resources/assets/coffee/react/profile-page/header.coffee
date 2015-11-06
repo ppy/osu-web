@@ -73,40 +73,39 @@ class ProfilePage.Header extends React.Component
 
 
   render: =>
-    el 'div', className: 'osu-layout__row-container',
-      el 'div', className: 'osu-layout__row osu-layout__row--page-compact profile-header',
+    el 'div', className: 'osu-layout__row osu-layout__row--page-compact profile-header',
+      el 'div',
+        className: 'profile-cover',
+        style:
+          backgroundImage: "url('#{@state.coverUrl}')"
+
+      el 'div', className: 'profile-avatar-container',
         el 'div',
-          className: 'profile-cover',
+          className: 'avatar avatar--profile'
           style:
-            backgroundImage: "url('#{@state.coverUrl}')"
+            backgroundImage: "url('#{@props.user.avatarUrl}')"
+          title: Lang.get('users.show.avatar', username: @props.user.username)
 
-        el 'div', className: 'profile-avatar-container',
-          el 'div',
-            className: 'avatar avatar--profile'
-            style:
-              backgroundImage: "url('#{@props.user.avatarUrl}')"
-            title: Lang.get('users.show.avatar', username: @props.user.username)
+      el 'div',
+        className: 'profile-cover-uploading-spinner'
+        style:
+          display: 'none' unless @props.isCoverUpdating
 
-        el 'div',
-          className: 'profile-cover-uploading-spinner'
-          style:
-            display: 'none' unless @props.isCoverUpdating
+        el 'i', className: 'fa fa-circle-o-notch fa-spin'
 
-          el 'i', className: 'fa fa-circle-o-notch fa-spin'
+      if @props.withEdit
+        el 'div', className: 'profile-change-cover-button', onClick: @toggleEdit,
+          Lang.get 'users.show.edit.cover.button'
 
-        if @props.withEdit
-          el 'div', className: 'profile-change-cover-button', onClick: @toggleEdit,
-            Lang.get 'users.show.edit.cover.button'
+      if @state.editing
+        el ProfilePage.CoverSelector, canUpload: @props.user.isSupporter, cover: @props.user.cover
 
-        if @state.editing
-          el ProfilePage.CoverSelector, canUpload: @props.user.isSupporter, cover: @props.user.cover
-
-        el 'div', className: 'user-bar-container',
-          el 'div', className: 'user-profile-header__bar user-profile-header__bar--left',
-            el ProfilePage.HeaderFlags, user: @props.user
-            el ProfilePage.HeaderInfo, user: @props.user
-          el 'div', className: 'user-profile-header__bar user-profile-header__bar--right',
-            el ProfilePage.Rank,
-              rank: @props.stats.rank
-              countryName: @props.user.country.name
-              mode: @props.mode
+      el 'div', className: 'user-bar-container',
+        el 'div', className: 'user-profile-header__bar user-profile-header__bar--left',
+          el ProfilePage.HeaderFlags, user: @props.user
+          el ProfilePage.HeaderInfo, user: @props.user
+        el 'div', className: 'user-profile-header__bar user-profile-header__bar--right',
+          el ProfilePage.Rank,
+            rank: @props.stats.rank
+            countryName: @props.user.country.name
+            mode: @props.mode

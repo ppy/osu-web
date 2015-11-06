@@ -123,7 +123,7 @@
         <div id="nav-gradient-overlay"></div>
     </div>
 
-    <div class="hidden-xs osu-layout__row-container"><div class="osu-layout__row" id="nav-sm">
+    <div class="hidden-xs osu-layout__row" id="nav-sm">
         <a class="flex-none nav-logo" href="/"></a>
 
         <div id="nav-links">
@@ -165,7 +165,7 @@
         <div class="flex-none nav-user-bar-container">
             @include("objects.user-dropdown")
         </div>
-    </div></div>
+    </div>
 </nav>
 
 <div id="popup-container">

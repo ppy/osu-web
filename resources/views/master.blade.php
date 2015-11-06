@@ -41,15 +41,13 @@
             @if (View::hasSection('content'))
                 @yield('content')
             @else
-                <div class="osu-layout__row-container">
-                    <div class="osu-layout__row osu-layout__row--page">
-                        <h1 class="text-center">
-                            <span class="dark">{{ $current_section }}</span>
-                            /
-                            <span class="dark">{{ $current_action }}</span>
-                            is <span class="normal">now printing</span> <span class="light">♪</span>
-                        </h1>
-                    </div>
+                <div class="osu-layout__row osu-layout__row--page">
+                    <h1 class="text-center">
+                        <span class="dark">{{ $current_section }}</span>
+                        /
+                        <span class="dark">{{ $current_action }}</span>
+                        is <span class="normal">now printing</span> <span class="light">♪</span>
+                    </h1>
                 </div>
             @endif
         </div>

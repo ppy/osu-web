@@ -29,17 +29,16 @@ class ProfilePage.Contents extends React.Component
   render: =>
     tabs = ['osu', 'taiko', 'ctb', 'mania']
 
-    el 'div', className: 'osu-layout__row-container',
-      el 'div', className: 'osu-layout__row osu-layout__row--page-profile',
-        el 'div', className: 'profile-tabs',
-          tabs.map (t) =>
-            el ProfilePage.ContentsTab,
-              key: t
-              currentMode: @props.mode
-              mode: t
-        el 'div', className: 'profile-contents flex-full flex-row',
-          el ProfilePage.Info, user: @props.user
-          el ProfilePage.Stats, stats: @props.stats
-          el ProfilePage.RecentAchievements,
-            achievementsCounts: @props.user.achievements
-            recentAchievements: @props.recentAchievements
+    el 'div', className: 'osu-layout__row osu-layout__row--page-profile',
+      el 'div', className: 'profile-tabs',
+        tabs.map (t) =>
+          el ProfilePage.ContentsTab,
+            key: t
+            currentMode: @props.mode
+            mode: t
+      el 'div', className: 'profile-contents flex-full flex-row',
+        el ProfilePage.Info, user: @props.user
+        el ProfilePage.Stats, stats: @props.stats
+        el ProfilePage.RecentAchievements,
+          achievementsCounts: @props.user.achievements
+          recentAchievements: @props.recentAchievements

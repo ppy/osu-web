@@ -18,9 +18,8 @@
 @extends("master")
 
 @section("content")
-@include("store.header")
+    @include("store.header")
 
-<div class="osu-layout__row-container">
     <div class="osu-layout__row osu-layout__row--with-gutter product-listing">
         @foreach($products as $p)
         <div class="{{{ $p->promoted ? "wide col-sm-12" : "small col-sm-6" }}}">
@@ -44,5 +43,4 @@
             </div>
         </div>
     </div>
-</div>
 @stop
