@@ -182,8 +182,29 @@ class BeatmapSet extends Model
             'extra' => null,
             'rank' => null,
             'page' => 1,
+            'sort' => ['ranked', 'desc'],
         ];
         extract($params);
+
+        if (count($sort) != 2) {
+            $sort = ['ranked', 'desc'];
+        }
+
+        list($sort_field, $sort_order) = $sort;
+
+        $valid_sort_fields = ['title', 'artist', 'creator', 'difficulty', 'ranked', 'rating', 'plays'];
+
+        if (!in_array($sort_field, $valid_sort_fields) || !in_array($sort_order, ['asc', 'desc'])) {
+            $sort_field = 'ranked';
+            $sort_order = 'desc';
+        }
+
+        // remap fields to their db/elastic-search equivalents
+        $sort_field = str_replace(
+            ['difficulty', 'ranked', 'plays'],
+            ['difficultyrating', 'approved_date', 'playcount'],
+            $sort_field
+        );
 
         $max = config('osu.beatmaps.max', 30);
 
@@ -192,7 +213,7 @@ class BeatmapSet extends Model
         $searchParams['size'] = $max;
 
         $searchParams['from'] = (max(0, $page - 1)) * $max;
-        $searchParams['body']['sort'] = ['approved_date' => ['order' => 'desc']];
+        $searchParams['body']['sort'] = [$sort_field => ['order' => $sort_order]];
 
         $matchParams = [];
 

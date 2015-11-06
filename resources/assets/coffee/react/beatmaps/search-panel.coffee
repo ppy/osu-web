@@ -39,33 +39,35 @@ class @SearchPanel extends React.Component
     @prevText = text
     if @keyDelay != null
       clearTimeout @keyDelay
-    @keyDelay = setTimeout(@submit, 500)
+    @keyDelay = setTimeout(@submit.bind(this), 500)
 
   submit: ->
     searchText = @prevText
     $(document).trigger 'beatmap:search:start'
 
   componentDidMount: ->
-    $('#searchbox').on 'keyup', @keypressed
+    $('#searchbox').on 'keyup', @keypressed.bind(this)
 
   componentWillUnmount: ->
     $('#searchbox').off 'keyup'
 
-  show_more: ->
+  show_more: (i, e) ->
+    e.preventDefault
     $('#search').addClass 'expanded'
-    false
 
   render: ->
+    background = {backgroundImage: "url(#{@props.background})"}
     filters = @state.filters
+
     if (currentUser.id == undefined)
       div className: 'beatmaps-header',
-        div className: 'background', style: {backgroundImage: "url(#{@props.background})"}
+        div className: 'background', style: background
         div className: 'text',
           h1 {}, 'beatmaps'
           h2 {}, 'witty tag line'
     else
       div id: 'search',
-        div className: 'background', style: {backgroundImage: "url(#{@props.background})"}
+        div className: 'background', style: background
         div className: 'box',
           input id: 'searchbox', type: 'textbox', name: 'search', placeholder: Lang.get("beatmaps.listing.search.prompt")
           i className:'fa fa-search'

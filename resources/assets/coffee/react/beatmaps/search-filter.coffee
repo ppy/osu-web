@@ -31,7 +31,8 @@ class @SearchFilter extends React.Component
     selected: []
     default: []
 
-  select: (i) ->
+  select: (i, e) ->
+    e.preventDefault
     if @selected(i)
       if @props.multiselect
         @setState { selected: _.without(@state.selected, i) }, @triggerUpdate
@@ -42,7 +43,6 @@ class @SearchFilter extends React.Component
         @setState { selected: @state.selected.concat(i) }, @triggerUpdate
       else
         @setState { selected: [ i ] }, @triggerUpdate
-    false
 
   triggerUpdate: ->
     payload =
