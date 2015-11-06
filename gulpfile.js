@@ -51,7 +51,6 @@ elixir(function(mix) {
     path.join(node_root, "blueimp-file-upload/js/vendor/jquery.ui.widget.js"),
     path.join(node_root, "blueimp-file-upload/js/jquery.iframe-transport.js"),
     path.join(node_root, "blueimp-file-upload/js/jquery.fileupload.js"),
-    path.join(bower_root, "history.js/scripts/bundled-uncompressed/html5/jquery.history.js"),
     path.join(bower_root, "ResponsiveSlides.js/responsiveslides.js"),
     path.join(node_root, "photoswipe/dist/photoswipe.js"),
     path.join(node_root, "photoswipe/dist/photoswipe-ui-default.js"),
