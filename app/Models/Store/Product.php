@@ -96,7 +96,7 @@ class Product extends Model
 
     public function images()
     {
-        if ($this->masterProduct) {
+        if (!$this->images_json && $this->masterProduct) {
             return $this->masterProduct->images();
         } else {
             if (!$this->images && $this->images_json) {
