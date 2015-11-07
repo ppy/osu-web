@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            @if($product->custom_class)
+            @if($product->custom_class && View::exists("store.products.{$product->custom_class}"))
 
                 <div class="row">
                     <div class="col-md-12">
