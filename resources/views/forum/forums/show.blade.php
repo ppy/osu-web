@@ -18,7 +18,7 @@
 @extends("master", ["body_additional_classes" => "forum-colour " . $forum->categorySlug()])
 
 @section("content")
-    <div class="row-page row-blank">
+    <div class="osu-layout__row osu-layout__row--page-compact">
         <div class="forum-header forum-category-header forum-category-header--{{ $forum->categorySlug() }} forum-category-header--main">
             <div>
                 <ol class="breadcrumb forums-breadcrumb">
@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <div class="row-page">
+    <div class="osu-layout__row osu-layout__row--page">
         @if ($forum->subforums()->exists())
             <h2>{{ trans("forum.subforums") }}</h2>
             @include("forum.forums._forums", ["forums" => $forum->subforums])

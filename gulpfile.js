@@ -57,6 +57,7 @@ elixir(function(mix) {
     path.join(node_root, "lodash/index.js"),
     path.join(node_root, "layzr.js/dist/layzr.js"),
     path.join(node_root, "react/dist/react-with-addons.js"),
+    path.join(node_root, "react-dom/dist/react-dom.js"),
     "ga.js",
   ], "public/js/vendor.js")
   .scripts("messages.js", "public/js/messages.js")

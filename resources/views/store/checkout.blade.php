@@ -20,62 +20,49 @@
 @section("content")
     @include("store.header")
 
-    @if(!$order)
-        <div class="row-page clearfix">
-            <div class="col-md-12">
-                <h1>Checkout</h1>
-            </div>
+    <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1">
+        <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
+            <h1>Checkout</h1>
 
-            <div class="col-md-12">
-                <h1>Your cart is empty.</h1>
-                <div>Return to the <a href="/store/">store listing</a> to find some goodies!</div>
-            </div>
-        </div>
-    @else
-        <div class="row-page row-group">
-            <div class="row-subgroup row-subgroup--large clearfix">
-                <div class="col-md-12">
-                    <h1>Checkout</h1>
-                </div>
+            @include("store.objects.order", ['order' => $order, "table_class" => "table-fancy"])
 
-                <div class="col-md-12">
-                    @include("store.objects.order", ['order' => $order, "table_class" => "table-fancy"])
-                </div>
+            <div class="store-cart-footer">
+                <div class="store-cart-footer__total-box store-cart-footer__total-box--full">
+                    <p class="store-cart-footer__text">total</p>
+                    <p class="store-cart-footer__text store-cart-footer__text--amount">{{{ currency($order->getTotal()) }}}</p>
 
-                <div class="col-sm-offset-8 col-sm-4 total-box">
-                    <p>total</p>
-                    <p>{{{ currency($order->getTotal()) }}}</p>
                     @if($order->requiresShipping() && !$order->getShipping())
-                    <p>+ shipping fees</p>
+                        <p class="store-cart-footer__text store-cart-footer__text--shipping">+ shipping fees</p>
                     @endif
                 </div>
             </div>
-
-
-            @if ($order->requiresShipping())
-                <div class="row-subgroup row-subgroup--extra-padding">
-                    <div class="row">
-                        <div class="col-md-12"><h2>Shipping Address</h2></div>
-                    </div>
-
-                    @if(count($addresses))
-                        <div class="row address-list">
-                            @foreach($addresses as $a)
-                            @include('store.objects.address', ['data' => $a, 'selected' => ($order->address && $order->address->address_id == $a->address_id), 'modifiable' => true])
-                            @endforeach
-                        </div>
-                    @endif
-
-                    @include('store.objects.new_address')
-                </div>
-            @endif
         </div>
 
-        @if(!$order->requiresShipping() || $order->getShipping())
-            <div class="row-page">
-                <div class="col-md-12"><h1>Payment</h1></div>
+        @if ($order->requiresShipping())
+            <div class="osu-layout__sub-row">
+                <div class="row">
+                    <div class="col-md-12"><h2>Shipping Address</h2></div>
+                </div>
 
-                <div class="col-md-12 big-button">
+                @if(count($addresses))
+                    <div class="row address-list">
+                        @foreach($addresses as $a)
+                        @include('store.objects.address', ['data' => $a, 'selected' => ($order->address && $order->address->address_id == $a->address_id), 'modifiable' => true])
+                        @endforeach
+                    </div>
+                @endif
+
+                @include('store.objects.new_address')
+            </div>
+        @endif
+    </div>
+
+    @if(!$order->requiresShipping() || $order->getShipping())
+        <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row osu-layout__row--sm1">
+            <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
+                <h1>Payment</h1>
+
+                <div class="big-button">
                     @if($order->getTotal() > 0)
                         <form class="text-center noajax" id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                             <input type="hidden" name="cmd" value="_xclick">
@@ -107,6 +94,6 @@
                     @endif
                 </div>
             </div>
-        @endif
+        </div>
     @endif
 @endsection

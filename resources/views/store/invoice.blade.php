@@ -30,7 +30,7 @@
 </style>
 
 @if(!$order)
-<div class="row-page">
+<div class="osu-layout__row osu-layout__row--page">
     <div class="col-md-12">
         <h1>Not Found</h1>
         <p>The requested order could not be found.</p>
@@ -38,7 +38,7 @@
 </div>
 @else
 @if(Input::has("thanks"))
-<div class="row-page noprint">
+<div class="osu-layout__row osu-layout__row--page osu-layout__row--bootstrap no-print">
     <div class="col-xs-12">
         <h1>Thanks for your order!</h1>
         <p>
@@ -52,7 +52,7 @@
     @if($i > 0)
     <div class='print-page-break'></div>
     @endif
-    <div class="row-page invoice-page"><div class="col-md-12">
+    <div class="osu-layout__row osu-layout__row--page osu-layout__row--bootstrap invoice-page"><div class="col-md-12">
         <div class="row">
             <div class="col-xs-5">
                 <div>
@@ -144,7 +144,7 @@ window.onload = function() {
 </script>
 @endif
 
-<div class="row-page no-print">
+<div class="osu-layout__row osu-layout__row--page osu-layout__row--bootstrap no-print">
     <div class="col-xs-12">
         <h3>Order Status</h3>
     </div>

@@ -18,7 +18,7 @@
 @extends("master")
 
 @section("content")
-    <div id="forum-index-header" class="row-page">
+    <div id="forum-index-header" class="osu-layout__row osu-layout__row--page">
         <div class="text-area">
             <div class="text">
                 <h2>not so random subtitles.</h2>
@@ -27,9 +27,11 @@
         </div>
     </div>
 
-    <div class="hidden-xs row-blank pippy"></div>
+    <div class="hidden-xs osu-layout__row osu-layout__row--lg2">
+        <div class="pippy"></div>
+    </div>
 
-    <div class="row-blank row-page">
+    <div class="osu-layout__row">
         @foreach($forums as $category)
             <div id="forum-{{ $category->forum_id }}" class="forum-category col-sm-12 forum-colour {{ $category->categorySlug() }}">
                 <div class="row forum-category-header forum-category-header--{{ $category->categorySlug() }}">

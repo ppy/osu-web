@@ -42,12 +42,13 @@ body.community {
   position: absolute;
 
   .at2x("/images/layout/forum-top-pippy.png", 924px, 210px);
-  top: 0px;
-  left: 0px;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: 210px;
 
-  background-position: center;
+  // 24px is the protruding part
+  background-position: calc(100% ~'-' (@grid-gutter-width - 24px)) 0;
   background-repeat: no-repeat;
   z-index: 2;
 }
@@ -85,7 +86,8 @@ body.community {
 }
 
 #forum-index-header {
-  .at2x("/images/headers/forum-top.jpg", 900px, 200px);
+  .at2x-simple("/images/headers/forum-top.jpg");
+  background-size: cover;
   height: 200px;
 
   .text-area {
@@ -490,18 +492,6 @@ body.community {
 }
 
 
-.forum-small-row {
-  margin: 0px -@grid-gutter-width/8*3 @grid-gutter-width/8;
-  padding: @grid-gutter-width/2;
-
-  @media @desktop {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: @grid-gutter-width/8;
-    width: @container-sm - 2 * @grid-gutter-width;
-  }
-}
-
 #forum-topic-reply-box {
   display: none;
   background: none;
@@ -519,21 +509,10 @@ body.community {
 
 
 .forum-post {
-  flex: none;
-  &:extend(.forum-small-row);
   @info-panel-width: 120px;
-  &[data-post-position="1"] {
-    margin-top: -@grid-gutter-width/8;
-  }
 
   @media @desktop {
-    padding-bottom: 0px;
-
     &[data-post-position="1"] {
-      margin-left: -@grid-gutter-width/2;
-      margin-right: -@grid-gutter-width/2;
-      margin-top: 0px;
-      width: @container-sm;
       padding-right: @grid-gutter-width*1.5;
 
       .info-panel {
@@ -814,12 +793,12 @@ body.community {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: none;
-  box-shadow: none;
+  margin-bottom: @spacing;
 
   a, i {
     color: #000;
   }
+
   i { font-size: 24px; }
 
   span { display: none; }

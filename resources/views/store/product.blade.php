@@ -20,12 +20,17 @@
 @section("content")
     @include("store.header")
 
-    {!! Form::open(["url" => "store/add-to-cart", "data-remote" => true, "id" => "product-form", "class" => "row-page row-group"]) !!}
-        <div class="row-subgroup row-subgroup--large" id="product-header" style="background-image: url({{ $product->header_image }})">
+    {!! Form::open([
+        "url" => "store/add-to-cart",
+        "data-remote" => true,
+        "id" => "product-form",
+        "class" => "osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1"
+    ]) !!}
+        <div class="osu-layout__sub-row osu-layout__sub-row--lg1" id="product-header" style="background-image: url({{ $product->header_image }})">
             <div>{!! Markdown::convertToHtml($product->header_description) !!}</div>
         </div>
 
-        <div class="row-subgroup">
+        <div class="osu-layout__sub-row">
             <div class="row">
                 <div class="col-md-12">
                     <h1>{{ $product->name }}</h1>
@@ -125,7 +130,7 @@
         </div>
 
         @if($product->inStock())
-        <div class="row-subgroup js-store-add-to-cart" id="add-to-cart">
+        <div class="osu-layout__sub-row osu-layout__sub-row--with-separator js-store-add-to-cart" id="add-to-cart">
             <div class="big-button">
                 <button type="submit" class="btn-osu btn-osu-default">Add to Cart</button>
             </div>

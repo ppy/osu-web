@@ -18,14 +18,14 @@
 @extends("master")
 
 @section("content")
-<div class="row-page wiki-header">
+<div class="osu-layout__row osu-layout__row--page wiki-header">
     <div class="text">
         <h1>osu!tournaments</h1>
         <h2>A listing of all active officially-recognised tournaments</h2>
     </div>
 </div>
 
-<div class='row-page tournaments'>
+<div class='osu-layout__row osu-layout__row--page tournaments'>
 
 @foreach($tournaments as $t)
 <div class='tournament clickable-row'>

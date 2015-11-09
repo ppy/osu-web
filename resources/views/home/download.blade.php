@@ -18,17 +18,19 @@
 @extends("master")
 
 @section("content")
-    <div id="download-header" class="row-page">
-            <p>let's get</p>
-            <p>you started</p>
-            <p>download osu! game client for Windows</p>
+    <div id="download-header" class="osu-layout__row osu-layout__row--page">
+        <p>let's get</p>
+        <p>you started</p>
+        <p>download osu! game client for Windows</p>
     </div>
 
-    <div class="row-page row-blank" id="download-button">
-        <a href="http://m1.ppy.sh/r/osu!install.exe"><img class="round" src="/images/download-button.png" alt="osu! online installer" /></a>
+    <div class="osu-layout__row" id="download-button">
+        <a href="http://m1.ppy.sh/r/osu!install.exe">
+            <img class="round" src="/images/download-button.png" alt="osu! online installer" />
+        </a>
     </div>
 
-    <div class="row-page" id="download-steps">
+    <div class="osu-layout__row osu-layout__row--page" id="download-steps">
         <div>
             <h1>Step 1</h1>
             <p>Download the osu! game client</p>
@@ -43,7 +45,7 @@
         </div>
     </div>
 
-    <div class="row-page" id="download-guides">
+    <div class="osu-layout__row osu-layout__row--page" id="download-guides">
         <div class="explanation">
             <h4>Learn more?</h4>
 

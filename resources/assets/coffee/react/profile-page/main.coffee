@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+{div} = React.DOM
 el = React.createElement
 
 @ProfilePage ||= {}
@@ -71,7 +72,7 @@ class ProfilePage.Main extends React.Component
   render: =>
     stats = @props.allStats[@state.mode].data
 
-    el 'div', className: 'flex-column flex-full flex-fullwidth',
+    div className: 'osu-layout__section',
       el ProfilePage.Header,
         user: @state.user
         stats: stats

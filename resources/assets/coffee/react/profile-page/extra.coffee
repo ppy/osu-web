@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+{div} = React.DOM
 el = React.createElement
 
 class ProfilePage.Extra extends React.Component
@@ -83,17 +84,18 @@ class ProfilePage.Extra extends React.Component
       tabsContainerClasses += ' profile-extra-tabs__container--fixed js-sticky-header--active'
       tabsClasses += ' profile-extra-tabs__items--fixed'
 
-    el 'div', className: "content content-extra flex-full",
-      el 'div',
+    div className: 'osu-layout__section osu-layout__section--extra',
+      div
         className: 'profile-extra-tabs js-sticky-header'
         'data-sticky-header-target': 'profile-extra-tabs'
-        el 'div',
+        div
           className: tabsContainerClasses
-          el 'div',
-            className: tabsClasses
-            'data-sticky-header-id': 'profile-extra-tabs'
-            pages.map (m) =>
-              el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
+          div className: 'osu-layout__row',
+            div
+              className: tabsClasses
+              'data-sticky-header-id': 'profile-extra-tabs'
+              pages.map (m) =>
+                el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
 
       if withMePage
         el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
