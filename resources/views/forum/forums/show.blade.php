@@ -47,11 +47,11 @@
             </div>
         @endif
 
-        <div class="topics-container">
+        <div class="topics-container" id="topics">
             <h2>{{ trans("forum.topics") }}</h2>
             @include("forum.forums._topics", ["topics" => $topics, "withNewTopicLink" => $forum->canHavePost()])
         </div>
 
-        @include("forum._pagination", ["object" => $topics])
+        @include("forum._pagination", ["object" => $topics->fragment('topics')])
     </div>
 @endsection
