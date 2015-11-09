@@ -38,6 +38,8 @@ class Post extends Model
     protected $casts = [
         'post_id' => 'integer',
         'poster_id' => 'integer',
+
+        'post_edit_locked' => 'boolean',
     ];
 
     public function forum()
@@ -156,7 +158,7 @@ class Post extends Model
         if ($user === null) {
             return false;
         } elseif ($this->poster_id === $user->user_id) {
-            return true;
+            return !$this->post_edit_locked;
         } elseif ($user->isAdmin()) {
             return true;
         } else {
