@@ -33,14 +33,5 @@
             </div>
         </div>
         @endforeach
-
-        <div class="small col-sm-6 col-lg-4">
-            <div style="background-image: url(//puu.sh/8Bj8T/d6009fc9ee.png)">
-                <div>
-                    <h1>More to come!</h1>
-                    <p class="always-visible">We're just getting started... <strong>check back soon!</strong></p>
-                </div>
-            </div>
-        </div>
     </div>
 @stop
