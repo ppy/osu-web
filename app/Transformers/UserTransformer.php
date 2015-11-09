@@ -84,7 +84,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 
     public function includeAllStatistics(User $user)
     {
-        return $this->item($user, function($user) {
+        return $this->item($user, function ($user) {
             $all = [];
             foreach ($user->statisticsAll() as $mode => $statistics) {
                 $all[$mode] = fractal_item_array($statistics, new UserStatisticsTransformer());
@@ -96,7 +96,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 
     public function includePage(User $user)
     {
-        return $this->item($user, function($user) {
+        return $this->item($user, function ($user) {
             if ($user->userPage !== null) {
                 return [
                     'html' => $user->userPage->bodyHTML,

@@ -19,13 +19,8 @@
  */
 namespace App\Http\Controllers;
 
-use App\Models\Achievement;
 use App\Models\LoginAttempt;
 use App\Models\User;
-use App\Transformers\EventTransformer;
-use App\Transformers\KudosuHistoryTransformer;
-use App\Transformers\UserAchievementTransformer;
-use App\Transformers\UserStatisticsTransformer;
 use App\Transformers\UserTransformer;
 use Auth;
 use Request;
