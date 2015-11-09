@@ -35,7 +35,7 @@
                         </li>
                     </ol>
                     <h1>
-                        <input required tabindex="1" name="title" type="text" value="{{ Request::old("title") }}" placeholder="{{ trans("forum.topic.create.placeholder.title") }}" />
+                        <input class="js-forum-placeholder-hide" required tabindex="1" name="title" type="text" value="{{ Request::old("title") }}" placeholder="{{ trans("forum.topic.create.placeholder.title") }}" />
                     </h1>
                 </div>
             </div>

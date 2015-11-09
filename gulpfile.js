@@ -69,6 +69,7 @@ elixir(function(mix) {
 
     "adjust-footer.coffee",
     "fade.coffee",
+    "form-placeholder-hide.coffee",
     "gallery.coffee",
     "global-drag.coffee",
     "header-menu.coffee",
