@@ -62,7 +62,7 @@ class ProfilePage.UserPage extends React.Component
     else
       page = @pageShow()
 
-    el 'div', className: 'row-page profile-extra',
+    el 'div', className: 'osu-layout__row osu-layout__row--page profile-extra',
       el 'div', className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'me'
       el 'h2', className: 'profile-extra__title', Lang.get('users.show.extra.me.title')
       if withEditButton

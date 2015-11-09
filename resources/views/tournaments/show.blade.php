@@ -18,19 +18,19 @@
 @extends("master")
 
 @section("content")
-<div class="row-page wiki-header">
+<div class="osu-layout__row osu-layout__row--page wiki-header">
     <div class="text">
         <h1>{{ $tournament->name }}</h1>
         <h2>{{ $tournament->start_date->toFormattedDateString() }} ~ {{ $tournament->end_date->toFormattedDateString() }}</h2>
     </div>
 </div>
 
-<div class='row-page tournaments'>
+<div class='osu-layout__row osu-layout__row--page tournaments'>
     {!! Markdown::convertToHtml($tournament->description) !!}
 </div>
 
 @if($tournament->isRegistrationOpen())
-<div class="row-page">
+<div class="osu-layout__row osu-layout__row--page">
     <h1>Registration</h1>
 
     @if (!Auth::user())

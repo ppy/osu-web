@@ -18,7 +18,7 @@
 @extends("master")
 
 @section("content")
-<div class="row-page">
+<div class="osu-layout__row osu-layout__row--page">
     <h1>Please login to continue</h1>
 </div>
 @endsection

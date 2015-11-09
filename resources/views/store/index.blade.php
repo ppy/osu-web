@@ -18,29 +18,29 @@
 @extends("master")
 
 @section("content")
-@include("store.header")
+    @include("store.header")
 
-<div class="row-page row-blank product-listing">
-    @foreach($products as $p)
-    <div class="{{{ $p->promoted ? "wide col-sm-12" : "small col-sm-6" }}}">
-        <div class="product-box" style="background-image: url('{{{ $p->promoted ? $p->header_image : $p->image}}}')">
-            <a href="/store/product/{{{$p->product_id}}}">
-                {!! Markdown::convertToHtml($p->header_description) !!}
-                @if(!$p->inStock())
-                <i class="product-oos product-bar"></i>
-                @endif
-            </a>
+    <div class="osu-layout__row osu-layout__row--with-gutter product-listing">
+        @foreach($products as $p)
+        <div class="{{{ $p->promoted ? "wide col-sm-12" : "small col-sm-6" }}}">
+            <div class="product-box" style="background-image: url('{{{ $p->promoted ? $p->header_image : $p->image}}}')">
+                <a href="/store/product/{{{$p->product_id}}}">
+                    {!! Markdown::convertToHtml($p->header_description) !!}
+                    @if(!$p->inStock())
+                    <i class="product-oos product-bar"></i>
+                    @endif
+                </a>
+            </div>
         </div>
-    </div>
-    @endforeach
+        @endforeach
 
-    <div class="small col-sm-6">
-        <div style="background-image: url(//puu.sh/8Bj8T/d6009fc9ee.png)">
-            <div>
-                <h1>More to come!</h1>
-                <p class="always-visible">We're just getting started... <strong>check back soon!</strong></p>
+        <div class="small col-sm-6">
+            <div style="background-image: url(//puu.sh/8Bj8T/d6009fc9ee.png)">
+                <div>
+                    <h1>More to come!</h1>
+                    <p class="always-visible">We're just getting started... <strong>check back soon!</strong></p>
+                </div>
             </div>
         </div>
     </div>
-</div>
 @stop

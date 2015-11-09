@@ -21,60 +21,57 @@
     @include("store.header")
 
     @if(!$order || !count($order->items))
-        <div class="row-page">
-            <div class="col-md-12">
-                <h1>Shopping Cart</h1>
-            </div>
+        <div class="osu-layout__row osu-layout__row--page">
+            <h1>Shopping Cart</h1>
 
             <p>Your cart is empty.</p>
             <p>Return to the <a href="/store/">store listing</a> to find some goodies!</p>
         </div>
     @else
-        <div class="row-page row-group">
-            <div class="row-subgroup row-subgroup--large clearfix">
-                <div class="col-md-12">
-                    <h1>Shopping Cart</h1>
-                </div>
+        <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1">
+            <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
+                <h1>Shopping Cart</h1>
 
-                <div class="col-md-12">
-                    <ul class='table cart-items'>
-                        @foreach($order->items as $i)
-                        <li>
-                            <span class="product-name">
-                                {{{$i->getDisplayName()}}}
-                            </span>
+                <ul class='table cart-items'>
+                    @foreach($order->items as $i)
+                    <li>
+                        <span class="product-name">
+                            {{{$i->getDisplayName()}}}
+                        </span>
 
-                            {!! Form::open(["url" => "store/update-cart", "data-remote" => true]) !!}
-                                <input type="hidden" name="item[product_id]" value="{{ $i->product_id }}">
+                        {!! Form::open(["url" => "store/update-cart", "data-remote" => true]) !!}
+                            <input type="hidden" name="item[product_id]" value="{{ $i->product_id }}">
 
-                                {!! Form::select("item[quantity]", product_quantity_options($i->product), $i->quantity, ['class' => 'item-quantity form-control js-auto-submit']) !!}
-                                <span class="subtotal">{{{currency($i->subtotal())}}}</span>
-                                <button type="submit" class="btn btn-flat" name="item[quantity]" value="0"><i class="fa fa-remove"></i></button>
-                            {!! Form::close() !!}
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
+                            {!! Form::select("item[quantity]", product_quantity_options($i->product), $i->quantity, ['class' => 'item-quantity form-control js-auto-submit']) !!}
+                            <span class="subtotal">{{{currency($i->subtotal())}}}</span>
+                            <button type="submit" class="btn btn-flat" name="item[quantity]" value="0"><i class="fa fa-remove"></i></button>
+                        {!! Form::close() !!}
+                    </li>
+                    @endforeach
+                </ul>
 
-                <div class="col-md-12 cart-footer">
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <p>
-                                <a href='/store/listing'>I want to check out more goodies before completing the order</a>
+                <div class="store-cart-footer">
+                    <p>
+                        <a href='/store/listing'>I want to check out more goodies before completing the order</a>
+                    </p>
+
+                    <div class="store-cart-footer__total-box store-cart-footer__total-box--padded">
+                        <p class="store-cart-footer__text">total</p>
+
+                        <p class="store-cart-footer__text store-cart-footer__text--amount">
+                            {{{ currency($order->getSubtotal()) }}}
+                        </p>
+
+                        @if($order->requiresShipping())
+                            <p class="store-cart-footer__text store-cart-footer__text--shipping">
+                                + shipping fees
                             </p>
-                        </div>
-                        <div class="col-sm-4 total-box">
-                            <p>total</p>
-                            <p>{{{ currency($order->getSubtotal()) }}}</p>
-                            @if($order->requiresShipping())
-                                <p>+ shipping fees</p>
-                            @endif
-                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
 
-            <div class="row-subgroup">
+            <div class="osu-layout__sub-row">
                 <div class="big-button">
                     <a href="/store/checkout" class="btn-osu btn-osu-default" name="checkout">Checkout</a>
                 </div>

@@ -18,7 +18,7 @@ env:
   - DB_USERNAME=root
 
 before_install:
-  - nvm install stable
-  - nvm use stable
+  - nvm install 4.2
+  - nvm use 4.2
   - ./bin/db_setup
   - ./build.sh

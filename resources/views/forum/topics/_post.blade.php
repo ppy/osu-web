@@ -25,7 +25,7 @@
     if (!isset($options['large'])) { $options['large'] = $options['postPosition'] === 1; }
 ?>
 <div
-        class="js-forum-post row-page forum-post flex-row post-viewer"
+        class="js-forum-post forum-post osu-layout__row osu-layout__row--forum-post {{ $options['large'] ? '' : 'osu-layout__row--sm2-desktop' }} post-viewer"
         data-post-id="{{ $post->post_id }}"
         data-post-position="{{ $options["postPosition"] }}">
     <div class="info-panel">
