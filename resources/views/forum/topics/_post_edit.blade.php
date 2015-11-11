@@ -15,21 +15,35 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<?php
-    $isLarge = $post->postPosition === 1;
-?>
-{!! Form::open(["url" => route("forum.posts.update", $post), "method" => "patch", "data-remote" => true, "class" => "edit-post post-editor post-editor--edit", "data-post-position" => $post->postPosition]) !!}
-    <div class="post-editor__main">
-        <div class="info-panel">
-            @include("forum.topics._post_info", ["user" => $post->user, "options" => ["large" => $isLarge ]])
+{!! Form::open([
+    'url' => route('forum.posts.update', $post),
+    'method' => 'patch',
+    'data-remote' => true,
+    'class' => 'js-forum-post-edit forum-post '.(presence($post->user->user_colour) !== null ? 'forum-post--special' : ''),
+    'data-post-position' => $post->postPosition,
+]) !!}
+    @if (presence($post->user->user_colour) !== null)
+        <div
+            class="forum-post__stripe"
+            style="{{ user_colour_style($post->user->user_colour, "background-color") }}"
+        ></div>
+    @endif
+
+    @include("forum.topics._post_info", ["user" => $post->user])
+
+    <div class="forum-post__body">
+        <div class="forum-post__content">
+            @include('forum.posts._form_body', ['postBody' => [
+                'content' => $post->bodyRaw, 'focus' => true,
+                'extraClasses' => 'forum-post-content--edit',
+            ]])
         </div>
 
-        <div class="post-panel">
-            @include('forum.posts._form_body', ['postBody' => ['content' => $post->bodyRaw, 'focus' => true]])
+        <div class="forum-post__content forum-post__content--edit-bar">
+            @include("forum.topics._post_box_footer", [
+                "submitText" => trans("forum.topic.post_edit.post"),
+                "editing" => true
+            ])
         </div>
-    </div>
-
-    <div class="post-editor__footer {{ $isLarge ? "post-editor__footer--large" : "" }}">
-        @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_edit.post"), "editing" => true])
     </div>
 {!! Form::close() !!}

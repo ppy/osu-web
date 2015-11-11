@@ -16,7 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 $(document).on 'ajax:success', '.delete-post-link', (_event, data) ->
-  $el = $(".forum-post[data-post-id=#{data.postId}]")
+  $el = $(".js-forum-post[data-post-id=#{data.postId}]")
   currentHeight = $el.css 'height'
 
   $el
@@ -38,45 +38,12 @@ $(document).on 'ajax:success', '.delete-post-link', (_event, data) ->
       osu.pageChange()
 
 
-$(document).on 'ajax:success', '.reply-post-link', (e, data) ->
-  data += '\n'
-
-  $replyBox = $('#forum-topic-reply-box')
-  $replyInput = $replyBox.find('[name=body]')
-  $postRow = $(e.target).parents('.forum-post')
-
-  currentInput = $replyInput.val()
-  data = "#{currentInput}\n\n#{data}" if currentInput != ''
-
-  $replyBox.insertAfter($postRow).css(zIndex: 1).show()
-
-  $replyInput.val(data).focus()
-  $replyInput[0].selectionStart = $replyInput.val().length
-
-
-$(document).on 'ajax:success', '#forum-topic-reply-box', (_event, data) ->
-  if window.forum.lastPostLoaded()
-    window.forum.setTotalPosts(window.forum.totalPosts() + 1)
-    window.forum.endPost().insertAdjacentHTML('afterend', data)
-
-    $('#forum-topic-reply-box')
-      .insertAfter($('.forum-post').last())
-      .find('textarea').val('')
-
-    osu.pageChange()
-
-    newPost = window.forum.endPost()
-    newPost.scrollIntoView()
-  else
-    osu.navigate $(data).find('.js-post-url').attr('href')
-
-
 $(document).on 'ajax:success', '.edit-post-link', (e, data, status, xhr) ->
   # ajax:complete needs to be triggered early because the link (target) is
   # removed in this callback.
   $(e.target).trigger('ajax:complete', [xhr, status])
 
-  $postBox = $(e.target).parents('.forum-post')
+  $postBox = $(e.target).parents('.js-forum-post')
 
   $postBox
     .data 'originalPost', $postBox.html()
@@ -90,17 +57,17 @@ $(document).on 'ajax:success', '.edit-post-link', (e, data, status, xhr) ->
 $(document).on 'click', '.js-edit-post-cancel', (e) ->
   e.preventDefault()
 
-  $postBox = $(e.target).parents '.forum-post'
+  $postBox = $(e.target).parents '.js-forum-post'
   $postBox.html $postBox.data('originalPost')
 
   osu.pageChange()
 
 
-$(document).on 'ajax:success', '.edit-post', (e, data, status, xhr) ->
+$(document).on 'ajax:success', '.js-forum-post-edit', (e, data, status, xhr) ->
   # ajax:complete needs to be triggered early since the form (target) is
   # removed in this callback.
   $(e.target)
     .trigger('ajax:complete', [xhr, status])
-    .parents('.forum-post').replaceWith(data)
+    .parents('.js-forum-post').replaceWith(data)
 
   osu.pageChange()

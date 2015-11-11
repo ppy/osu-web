@@ -25,27 +25,38 @@
     if (!isset($options['large'])) { $options['large'] = $options['postPosition'] === 1; }
 ?>
 <div
-        class="js-forum-post forum-post osu-layout__row osu-layout__row--forum-post {{ $options['large'] ? '' : 'osu-layout__row--sm2-desktop' }} post-viewer"
+        class="js-forum-post osu-layout__row {{ $options['large'] ? '' : 'osu-layout__row--sm2-desktop' }}"
         data-post-id="{{ $post->post_id }}"
         data-post-position="{{ $options["postPosition"] }}">
-    <div class="info-panel">
-        @include("forum.topics._post_info", ["user" => $post->userNormalized(), "options" => ["large" => $options["large"]]])
-    </div>
+    <div class="
+        forum-post
+        {{ presence($post->user->user_colour) !== null ? 'forum-post--special' : '' }}
+    ">
 
-    <div class="post-panel">
-        <div class="post-header {{ $options['large'] ? '' : 'post-body--small' }}">
-            <div class="post-time"><a class="js-post-url link link--grey" href="{{ post_url($post->topic_id, $post->post_id) }}">
-                {!! trans("forum.post.posted_at", ["when" => timeago($post->post_time)]) !!}
-            </a></div>
-        </div>
+        @if (presence($post->user->user_colour) !== null)
+            <div
+                class="forum-post__stripe"
+                style="{{ user_colour_style($post->user->user_colour, "background-color") }}"
+            ></div>
+        @endif
 
-        <div class="forum-post-content post-body {{ $options['large'] ? '' : 'post-body--small' }}">
-            {!! $post->bodyHTML !!}
-        </div>
+        @include("forum.topics._post_info", ["user" => $post->userNormalized()])
 
-        <div class="post-footer">
+        <div class="forum-post__body">
+            <div class="forum-post__content forum-post__content--header">
+                <a class="js-post-url link link--grey" href="{{ post_url($post->topic_id, $post->post_id) }}">
+                    {!! trans("forum.post.posted_at", ["when" => timeago($post->post_time)]) !!}
+                </a>
+            </div>
+
+            <div class="forum-post__content forum-post__content--main">
+                <div class="forum-post-content">
+                    {!! $post->bodyHTML !!}
+                </div>
+            </div>
+
             @if($post->post_edit_count > 0)
-                <div class="post-edit-info">
+                <div class="forum-post__content forum-post__content--footer">
                     {!!
                         trans("forum.post.edited", [
                             "count" => $post->post_edit_count,
@@ -57,29 +68,31 @@
             @endif
 
             @if($options["signature"] !== false && $post->userNormalized()->user_sig)
-                <div class="user-signature hidden-xs">
+                <div class="forum-post__content forum-post__content--signature hidden-xs">
                     {!! bbcode($post->userNormalized()->user_sig, $post->userNormalized()->user_sig_bbcode_uid) !!}
                 </div>
             @endif
         </div>
-    </div>
 
-    <div class="post-viewer__actions">
-        @if ($options["editLink"] === true)
-            <a href="{{ route("forum.posts.edit", $post) }}" class="post-viewer__action edit-post-link" data-remote="1">
-                <i class="fa fa-edit"></i>
-            </a>
-        @endif
-        @if ($options["deleteLink"] === true)
-            <a href="{{ route("forum.posts.destroy", $post) }}" class="post-viewer__action delete-post-link" data-method="delete" data-confirm="{{ trans("forum.post.confirm_delete") }}" data-remote="1">
-                <i class="fa fa-trash"></i>
-            </a>
-        @endif
-        @if ($options["replyLink"] === true)
-            <a href="{{ route("forum.posts.raw", ["id" => $post, "quote" => 1]) }}" class="post-viewer__action reply-post-link" data-remote="1">
-                <i class="fa fa-reply"></i>
-            </a>
-        @endif
+        <div class="forum-post__actions">
+            <div class="forum-post-actions">
+                @if ($options["editLink"] === true)
+                    <a href="{{ route("forum.posts.edit", $post) }}" class="forum-post-actions__action edit-post-link" data-remote="1">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                @endif
+                @if ($options["deleteLink"] === true)
+                    <a href="{{ route("forum.posts.destroy", $post) }}" class="forum-post-actions__action delete-post-link" data-method="delete" data-confirm="{{ trans("forum.post.confirm_delete") }}" data-remote="1">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                @endif
+                @if ($options["replyLink"] === true)
+                    <a href="{{ route("forum.posts.raw", ["id" => $post, "quote" => 1]) }}" class="forum-post-actions__action js-forum-topic-reply--quote" data-remote="1">
+                        <i class="fa fa-reply"></i>
+                    </a>
+                @endif
+            </div>
+        </div>
     </div>
 
     @if($options["overlay"] === true)

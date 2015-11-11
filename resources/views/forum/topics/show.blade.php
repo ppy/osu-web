@@ -120,30 +120,52 @@
         <a href="{{ post_url($topic->topic_id, $posts->last()->post_id + 1, false) }}" class="js-forum-posts-show-more js-forum__posts-show-more--next" data-mode="next">Load more</a>
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>
-
-    @if ($topic->canBeRepliedBy(Auth::user()))
-        {!! Form::open(["url" => route("forum.topics.reply", $topic->topic_id), "class" => "osu-layout__row osu-layout__row--sm2-desktop post-editor", "id" => "forum-topic-reply-box", "data-remote" => true]) !!}
-            <div class="forum-small-row post-editor__main post-editor__main--reply">
-                <div class="forum__avatar-container forum__avatar-container--reply hidden-xs">
-                    <div
-                        class="avatar avatar--full"
-                        title="{{ trans("users.show.avatar", ["username" => Auth::user()->username]) }}"
-                        style="background-image: url('{{ Auth::user()->user_avatar }}');"
-                    ></div>
-                </div>
-
-                @include('forum.posts._form_body', ['postBody' => ['focus' => false]])
-            </div>
-
-            <div class="forum-small-row post-editor__footer">
-                @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
-            </div>
-        {!! Form::close() !!}
-    @endif
 @endsection
 
 @section('fixed-bar-rows-bottom')
     @parent
+
+    {!! Form::open([
+        "url" => route("forum.topics.reply", $topic->topic_id),
+        "class" => "forum-post forum-post--reply js-forum-topic-reply",
+        "id" => "forum-topic-reply-box",
+        "data-remote" => true
+    ]) !!}
+        <div class="osu-layout__row osu-layout__row--sm2-desktop">
+            <div class="forum-post__reply-content">
+                <div class="forum-post__info-panel forum-post__info-panel--reply hidden-xs">
+                    <div class="forum-post__avatar-container forum-post__avatar-container--reply">
+                        <div
+                            class="avatar avatar--full"
+                            title="{{ trans("users.show.avatar", ["username" => Auth::user()->username]) }}"
+                            style="background-image: url('{{ Auth::user()->user_avatar }}');"
+                        ></div>
+                    </div>
+                </div>
+
+                <div class="forum-post__body forum-post__body--reply">
+                    <div class="forum-post__content">
+                        @include('forum.posts._form_body', ['postBody' => [
+                            'focus' => false,
+                            'extraClasses' => 'forum-post-content--reply js-forum-topic-reply--input',
+                        ]])
+                    </div>
+
+                    <div class="forum-post__content forum-post__content forum-post__content--edit-bar">
+                        @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
+                    </div>
+                </div>
+
+                <div class="forum-post__actions forum-post__actions--reply">
+                    <div class="forum-post-actions">
+                        <a href="#" class="js-forum-topic-reply--close forum-post-actions__action">
+                            <i class="fa fa-close"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {!! Form::close() !!}
 
     <div
         class="js-forum__topic-total-posts forum-topic-nav"
@@ -265,8 +287,9 @@
             </div>
 
             <div class="forum-topic-nav__group">
-                <div class="forum-topic-nav__item">
-                </div>
+                <a href="#" class="forum-topic-nav__button-circle forum-topic-nav__button-circle--reply js-forum-topic-reply--new">
+                    <i class="fa fa-plus"></i>
+                </a>
             </div>
         </div>
     </div>

@@ -84,6 +84,7 @@ elixir(function(mix) {
     "forum-posts-seek.coffee",
     "forum-search-modal.coffee",
     "forum-topic-post-jump.coffee",
+    "forum-topic-reply.coffee",
     "forum/post-box.coffee",
     "forum/topic-ajax.coffee",
     "ujs-common.coffee",

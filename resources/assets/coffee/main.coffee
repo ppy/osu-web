@@ -39,6 +39,7 @@ $(document).on 'ready page:load', =>
   @forumPostsSeek ||= new ForumPostsSeek(@forum)
   @forumSearchModal ||= new ForumSearchModal(@forum)
   @forumTopicPostJump ||= new ForumTopicPostJump(@forum)
+  @forumTopicReply ||= new ForumTopicReply(@forum)
 
   @menu ||= new Menu
   @logoMenu ||= new LogoMenu

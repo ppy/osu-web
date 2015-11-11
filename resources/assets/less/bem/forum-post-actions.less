@@ -16,45 +16,42 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.profile-extra {
-  padding: (@grid-gutter-width / 2) (@grid-gutter-width * 3 / 4);
-  font-size: 14px;
+.forum-post-actions {
+  display: flex;
+  margin-left: (-@spacing / 2);
+  margin-right: (-@spacing / 2);
 
-  &:hover &__actions {
-    opacity: 1;
+  @media @desktop {
+    flex-direction: column;
+    margin-left: 0;
+    margin-right: 0;
   }
 
-  &__actions {
-    display: flex;
-    flex-direction: column;
+  &__action {
+    display: inline-flex;
+    justify-content: center;
     align-items: center;
 
-    position: absolute;
+    .circle(30px);
+    .default-box-shadow;
 
-    right: (@spacing * 3);
-    top: (@spacing * 2);
-    @media @desktop {
-      right: 0;
-      top: (@spacing * 2);
-      width: 0;
-      opacity: 0;
+    background-color: @blue-darker;
+    color: @grey-f;
+    transition: all 120ms ease-in-out;
+    font-size: 14px;
+
+    &:focus,
+    &:hover,
+    &:active {
+      color: @grey-f;
+      text-decoration: none;
+      box-shadow: 0 5px 15px fade(@grey-0, 40%);
     }
-  }
 
-  &__anchor {
-    @height: @profile-extra-tabs--items-height;
-    margin-top: -@height;
-    height: @height;
-    width: 1px;
-    position: absolute;
+    margin: 0 (@spacing / 2);
 
-    left: 0px;
-    top: 0px;
-  }
-
-  &__title {
-    font-size: 18px;
-    font-weight: 500;
-    margin: (@grid-gutter-width / 8) 0px (@grid-gutter-width * 3 / 8);
+    @media @desktop {
+      margin: (@spacing / 2) 0;
+    }
   }
 }
