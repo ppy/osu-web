@@ -48,12 +48,11 @@
 
                         @foreach ($topic->forum->forum_parents as $forumId => $forumData)
                             <li class="forum-topic-headernav__breadcrumb-item">
-                                <a href=
-                                    @if ($forumData[1] === 0)
-                                        "{{ route('forum.forums.index') }}#forum-{{ $forumId }}"
-                                    @else
-                                        "{{ route('forum.forums.show', $forumId) }}"
-                                    @endif
+                                <a
+                                    href="{{ $forumData[1] === 0 ?
+                                        route('forum.forums.index')."#forum-{$forumId}"
+                                        : route('forum.forums.show', $forumId)
+                                    }}"
                                     class="forum-topic-headernav__nav-link"
                                 >
                                     {{ $forumData[0] }}
