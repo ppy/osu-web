@@ -49,21 +49,21 @@
         </div></div>
     </div>
 
-    <div class="osu-layout__row osu-layout__row--page-compact">
-        <div class="forum-header
+    <div class="osu-layout__row">
+        <div class="
             forum-category-header
             forum-category-header--{{ $topic->forum->categorySlug() }}
             forum-category-header--main
-        ">
-            <div class="topic-header">
-                @include('forum.topics._header_breadcrumb', ['headerBreadcrumbExtraClasses' => 'forum-header-breadcrumb--large'])
+        "></div>
 
-                <h1>
-                    <a href="{{ route("forum.topics.show", $topic->topic_id) }}" class="link--white">
-                        {{ $topic->topic_title }}
-                    </a>
-                </h1>
-            </div>
+        <div class="forum-category-header__titles">
+            @include('forum.topics._header_breadcrumb', ['headerBreadcrumbExtraClasses' => 'forum-header-breadcrumb--large'])
+
+            <h1 class="forum-category-header__title">
+                <a href="{{ route("forum.topics.show", $topic->topic_id) }}" class="link--white">
+                    {{ $topic->topic_title }}
+                </a>
+            </h1>
         </div>
 
         <div class="forum-topic-header__sticky-marker js-sticky-header" data-sticky-header-target="forum-topic-headernav"></div>

@@ -35,8 +35,8 @@
   &--category-beatmaps { background-color: @purple; }
 
   &--main {
-    height: 200px;
-    text-align: center;
+    height: 350px;
+    .default-box-shadow;
 
     &::before {
       position: absolute;
@@ -51,4 +51,17 @@
 
   &__name { font-size: 24px; }
   &__description { font-size: 12px; }
+
+  &__title {
+    margin: @spacing 0 @spacing (@spacing * 3);
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  &__titles {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: (@spacing * 2);
+  }
 }
