@@ -84,4 +84,4 @@ class @Fade
 
     nextRun = => @runQueue(true)
 
-    setTimeout nextRun, 0
+    setTimeout nextRun, 10
