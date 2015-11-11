@@ -23,4 +23,6 @@
         <li><a class="footer-link" href="{{ config("osu.urls.status.osustatus") }}" target="_blank">@osustatus</a></li>
     </ul>
     <p class="footer-row">ppy powered 2007-{{ date("Y") }}</p>
+
+    <div class="js-page-footer-padding"></div>
 </footer>
