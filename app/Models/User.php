@@ -219,6 +219,11 @@ class User extends Model implements AuthenticatableContract
         return $this->isAdmin();
     }
 
+    public function getIsSpecialAttribute()
+    {
+        return $this->user_id !== null && presence($this->user_colour) !== null;
+    }
+
     public function getUserBirthdayAttribute($value)
     {
         if (presence($value) === null) {

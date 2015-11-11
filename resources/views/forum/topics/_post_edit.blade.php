@@ -19,13 +19,13 @@
     'url' => route('forum.posts.update', $post),
     'method' => 'patch',
     'data-remote' => true,
-    'class' => 'js-forum-post-edit forum-post '.(presence($post->user->user_colour) !== null ? 'forum-post--special' : ''),
+    'class' => 'js-forum-post-edit forum-post '.($post->userNormalized()->is_special ? 'forum-post--special' : ''),
     'data-post-position' => $post->postPosition,
 ]) !!}
-    @if (presence($post->user->user_colour) !== null)
+    @if ($post->userNormalized()->is_special)
         <div
             class="forum-post__stripe"
-            style="{{ user_colour_style($post->user->user_colour, "background-color") }}"
+            style="{{ user_colour_style($post->userNormalized()->user_colour, "background-color") }}"
         ></div>
     @endif
 
