@@ -32,7 +32,7 @@ $(document).on 'click', '#new-address-switch a', (e) ->
 
 
 preventUsernameSubmission = ->
-  $('#add-to-cart').slideUp()
+  $('.js-store-add-to-cart').attr 'disabled', true
   $('#product-form').data('disabled', true)
   $('#username-check-price').html ''
 
@@ -45,7 +45,7 @@ checkUsernameValidity = ->
     return unless data.username == requestedUsername
 
     if data.available
-      $('#add-to-cart').slideDown()
+      $('.js-store-add-to-cart').attr 'disabled', false
       $('#username-check-price').html data.costString
       $('#username-form-price').val data.cost
       $('#product-form').data('disabled', false)
@@ -55,6 +55,9 @@ checkUsernameValidity = ->
     $status.html data.message
     $status.toggleClass 'green-dark', data.available
     $status.toggleClass 'pink-dark', !data.available
+
+
+debouncedCheckUsernameValidity = _.debounce checkUsernameValidity, 300
 
 
 $(document).on 'input', '#username.form-control', ->
@@ -69,7 +72,7 @@ $(document).on 'input', '#username.form-control', ->
     $status.html 'Enter a username to check availability!'
   else
     $status.html "Checking availability of #{requestedUsername}..."
-    _.debounce(checkUsernameValidity, 300).call()
+    debouncedCheckUsernameValidity()
 
 
 $(document).on 'ready page:load', ->

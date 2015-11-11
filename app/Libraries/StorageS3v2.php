@@ -27,15 +27,21 @@ class StorageS3v2
 {
     public $filesystem;
 
-    public function __construct()
+    public function __construct($driver = null)
     {
+        if ($driver === null) {
+            $driver = config('filesystems.default');
+        }
+
+        $config = config("filesystems.disks.{$driver}");
+
         $client = S3Client::factory([
-            'key' => env('S3_KEY'),
-            'secret' => env('S3_SECRET'),
-            'region' => env('S3_REGION'),
+            'key' => $config['key'],
+            'secret' => $config['secret'],
+            'region' => $config['region'],
         ]);
 
-        $adapter = new AwsS3Adapter($client, env('S3_BUCKET'));
+        $adapter = new AwsS3Adapter($client, $config['bucket']);
 
         $this->filesystem = new Filesystem($adapter);
     }

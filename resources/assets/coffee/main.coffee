@@ -29,6 +29,7 @@ $(document).on 'ready page:load', =>
   @globalDrag ||= new GlobalDrag
   @gallery ||= new Gallery
   @fade ||= new Fade
+  @formPlaceholderHide ||= new FormPlaceholderHide
   @headerMenu ||= new HeaderMenu
 
   @adjustFooter ||= new AdjustFooter
