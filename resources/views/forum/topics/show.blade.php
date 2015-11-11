@@ -34,39 +34,7 @@
 
             <div class="forum-topic-headernav__titles">
                 <div class="forum-topic-headernav__title">
-                    <ol class="
-                        forum-topic-headernav__breadcrumb
-                        forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
-                    ">
-                        <li class="forum-topic-headernav__breadcrumb-item">
-                            <a href="{{ route('forum.forums.index') }}" class="link--white">
-                                {{ trans('forum.title') }}
-                            </a>
-                        </li>
-
-                        @foreach ($topic->forum->forum_parents as $forumId => $forumData)
-                            <li class="forum-topic-headernav__breadcrumb-item">
-                                <a
-                                    href="{{ $forumData[1] === 0 ?
-                                        route('forum.forums.index')."#forum-{$forumId}"
-                                        : route('forum.forums.show', $forumId)
-                                    }}"
-                                    class="link--white"
-                                >
-                                    {{ $forumData[0] }}
-                                </a>
-                            </li>
-                        @endforeach
-
-                        <li class="forum-topic-headernav__breadcrumb-item">
-                            <a
-                                href="{{ route("forum.forums.show", $topic->forum->forum_id) }}"
-                                class="link--white"
-                            >
-                                {{ $topic->forum->forum_name }}
-                            </a>
-                        </li>
-                    </ol>
+                    @include('forum.topics._header_breadcrumb')
                 </div>
 
                 <h1 class="forum-topic-headernav__title">
@@ -88,16 +56,10 @@
             forum-category-header--main
         ">
             <div class="topic-header">
-                <ol class="breadcrumb forums-breadcrumb">
-                    @include("forum.forums._nav", ["forum_parents" => $topic->forum->forum_parents])
-                    <li>
-                        <a href="{{ route("forum.forums.show", $topic->forum->forum_id) }}">
-                            {{ $topic->forum->forum_name }}
-                        </a>
-                    </li>
-                </ol>
+                @include('forum.topics._header_breadcrumb', ['headerBreadcrumbExtraClasses' => 'forum-header-breadcrumb--large'])
+
                 <h1>
-                    <a href="{{ route("forum.topics.show", $topic->topic_id) }}">
+                    <a href="{{ route("forum.topics.show", $topic->topic_id) }}" class="link--white">
                         {{ $topic->topic_title }}
                     </a>
                 </h1>
