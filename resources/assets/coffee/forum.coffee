@@ -93,7 +93,7 @@ class @Forum
     currentPost = null
     anchorHeight = window.innerHeight * 0.5
 
-    pageBottom = document.getElementsByClassName('js-page-footer-padding')[0]
+    pageBottom = document.getElementsByClassName('js-page-footer')[0]
       .getBoundingClientRect()
       .bottom
 
