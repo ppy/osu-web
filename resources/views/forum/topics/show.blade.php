@@ -39,9 +39,7 @@
                         forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
                     ">
                         <li class="forum-topic-headernav__breadcrumb-item">
-                            <a href="{{ route('forum.forums.index') }}"
-                                class="forum-topic-headernav__nav-link"
-                            >
+                            <a href="{{ route('forum.forums.index') }}" class="link--white">
                                 {{ trans('forum.title') }}
                             </a>
                         </li>
@@ -53,7 +51,7 @@
                                         route('forum.forums.index')."#forum-{$forumId}"
                                         : route('forum.forums.show', $forumId)
                                     }}"
-                                    class="forum-topic-headernav__nav-link"
+                                    class="link--white"
                                 >
                                     {{ $forumData[0] }}
                                 </a>
@@ -61,8 +59,9 @@
                         @endforeach
 
                         <li class="forum-topic-headernav__breadcrumb-item">
-                            <a href="{{ route("forum.forums.show", $topic->forum->forum_id) }}"
-                                class="forum-topic-headernav__nav-link"
+                            <a
+                                href="{{ route("forum.forums.show", $topic->forum->forum_id) }}"
+                                class="link--white"
                             >
                                 {{ $topic->forum->forum_name }}
                             </a>
@@ -71,7 +70,7 @@
                 </div>
 
                 <h1 class="forum-topic-headernav__title">
-                    <a href="{{ route("forum.topics.show", $topic->topic_id) }}" class="forum-topic-headernav__nav-link">
+                    <a href="{{ route("forum.topics.show", $topic->topic_id) }}" class="link--white">
                         {{ $topic->topic_title }}
                     </a>
                 </h1>
