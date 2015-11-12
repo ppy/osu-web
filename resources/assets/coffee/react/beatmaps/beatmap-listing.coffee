@@ -17,7 +17,7 @@
 *
 ###
 
-{div,a} = React.DOM
+{div,a,img,span} = React.DOM
 el = React.createElement
 
 class @BeatmapsListing extends React.Component
@@ -30,4 +30,17 @@ class @BeatmapsListing extends React.Component
     div className: ['beatmap-container', ('dimmed' if @props.loading)].join(' '),
       div className: 'view_mode'
       div className: 'listing',
-        beatmaps
+        if beatmaps.length > 0
+          beatmaps
+        else
+          div {},
+            img
+              src: '/images/layout/unamused.png'
+              srcSet: "/images/layout/unamused.png 1x, /images/layout/unamused@2x.png 2x"
+              alt: 'no results'
+              title: 'no results'
+              style:
+                paddingTop: '25px'
+                paddingRight: '25px'
+                marginBottom: '-25px'
+            span {}, '... nope, nothing found.'
