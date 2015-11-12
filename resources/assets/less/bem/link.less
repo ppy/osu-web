@@ -34,4 +34,13 @@
   &--white {
     ._colour(@grey-f, @grey-f);
   }
+
+  &--no-underline {
+    &,
+    &:focus,
+    &:hover,
+    &:active {
+      text-decoration: none;
+    }
+  }
 }

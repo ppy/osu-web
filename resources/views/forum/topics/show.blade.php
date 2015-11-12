@@ -60,7 +60,7 @@
             @include('forum.topics._header_breadcrumb', ['headerBreadcrumbExtraClasses' => 'forum-header-breadcrumb--large'])
 
             <h1 class="forum-category-header__title">
-                <a href="{{ route("forum.topics.show", $topic->topic_id) }}" class="link--white">
+                <a href="{{ route("forum.topics.show", $topic->topic_id) }}" class="link--white link--no-underline">
                     {{ $topic->topic_title }}
                 </a>
             </h1>
