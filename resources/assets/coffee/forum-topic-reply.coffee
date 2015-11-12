@@ -54,15 +54,15 @@ class @ForumTopicReply
 
 
   deleteState: (key, value) =>
-    localStorage.removeItem "#{document.location.pathname}--#{key}"
+    localStorage.removeItem "forum-topic-reply--#{document.location.pathname}--#{key}"
 
 
   getState: (key, value) =>
-    localStorage.getItem("#{document.location.pathname}--#{key}", value)
+    localStorage.getItem("forum-topic-reply--#{document.location.pathname}--#{key}", value)
 
 
   setState: (key, value) =>
-    localStorage.setItem("#{document.location.pathname}--#{key}", value)
+    localStorage.setItem("forum-topic-reply--#{document.location.pathname}--#{key}", value)
 
 
   activate: (e) =>
