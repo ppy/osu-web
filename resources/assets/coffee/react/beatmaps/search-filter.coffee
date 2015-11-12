@@ -61,9 +61,8 @@ class @SearchFilter extends React.Component
 
   render: ->
     selectors = []
-    $.each @props.options, ((i, e) ->
+    $.each @props.options, (i, e) =>
       selectors.push a href:'#', className: ('active' if @selected(e['id'])), value: e['id'], key: i, onClick: @select.bind(@, e['id']), e['name']
-    ).bind(this)
 
     div id: @props.id, className: 'selector', 'data-name': @props.name,
       span className:'header', @props.title

@@ -48,12 +48,11 @@ class @SearchSort extends React.Component
       {id: 'plays', name: 'plays'}
     ]
     selectors = []
-    $.each options, ((i, e) ->
+    $.each options, (i, e) =>
       classes = []
       if @selected(e['id'])
         classes = ['active', @props.sorting.order]
       selectors.push a href:'#', className: classes.join(' '), value: e['id'], key: i, onClick: @select.bind(@, e['id']), e['name']
-    ).bind(this)
 
     div className: 'sorting',
       selectors

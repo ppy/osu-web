@@ -42,7 +42,7 @@ class @Beatmaps extends React.Component
         order: 'desc'
       loading: false
 
-  getFilterState: ->
+  getFilterState: =>
     'm': @state.filters.mode
     's': @state.filters.status
     'g': @state.filters.genre
@@ -50,10 +50,10 @@ class @Beatmaps extends React.Component
     'e': @state.filters.extra
     'r': @state.filters.rank
 
-  getSortState: ->
+  getSortState: =>
     'sort': [@state.sorting.field, @state.sorting.order].join('_')
 
-  search: ->
+  search: =>
     searchText = $('#searchbox').val()
     # if (searchText == '' || searchText == null)
     #   return;
@@ -75,7 +75,7 @@ class @Beatmaps extends React.Component
       $(document).trigger 'beatmap:search:done'
     ).bind(this)
 
-  loadMore: ->
+  loadMore: =>
     if @state.loading or @state.paging.loading or !@state.paging.more
       return
 
@@ -109,15 +109,15 @@ class @Beatmaps extends React.Component
           loading: false
     ).bind(this)
 
-  showLoader: ->
+  showLoader: =>
     @setState loading: true
     $('#loading-area').show()
 
-  hideLoader: ->
+  hideLoader: =>
     @setState loading: false
     $('#loading-area').hide()
 
-  updateFilters: (_e, payload) ->
+  updateFilters: (_e, payload) =>
     newFilters = $.extend({}, @state.filters) # clone object
     newFilters[payload.name] = payload.value
 
@@ -125,17 +125,17 @@ class @Beatmaps extends React.Component
       @setState { filters: newFilters }, ->
         $(document).trigger 'beatmap:search:start'
 
-  updateSort: (_b, payload) ->
+  updateSort: (_b, payload) =>
     if @state.sorting != payload
       @setState sorting: payload, ->
         $(document).trigger 'beatmap:search:start'
 
   componentDidMount: ->
-    $(document).on 'beatmap:load_more', @loadMore.bind(this)
-    $(document).on 'beatmap:search:start', @search.bind(this)
-    $(document).on 'beatmap:search:done', @hideLoader.bind(this)
-    $(document).on 'beatmap:search:filtered', @updateFilters.bind(this)
-    $(document).on 'beatmap:search:sorted', @updateSort.bind(this)
+    $(document).on 'beatmap:load_more', @loadMore
+    $(document).on 'beatmap:search:start', @search
+    $(document).on 'beatmap:search:done', @hideLoader
+    $(document).on 'beatmap:search:filtered', @updateFilters
+    $(document).on 'beatmap:search:sorted', @updateSort
     $(document).on 'ready page:load osu:page:change', ->
       setTimeout @onScroll, 1000
 
