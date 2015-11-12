@@ -31,6 +31,12 @@ class @SearchFilter extends React.Component
     selected: []
     default: []
 
+  @propTypes:
+    title: React.PropTypes.string.isRequired
+    options: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+    selected: React.PropTypes.arrayOf(React.PropTypes.number)
+    multiselect: React.PropTypes.bool
+
   select: (i, e) ->
     e.preventDefault
     if @selected(i)
@@ -62,10 +68,3 @@ class @SearchFilter extends React.Component
     div id: @props.id, className: 'selector', 'data-name': @props.name,
       span className:'header', @props.title
       selectors
-
-SearchFilter.propTypes =
-  title: React.PropTypes.string.isRequired
-  options: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
-  selected: React.PropTypes.arrayOf(React.PropTypes.number)
-  multiselect: React.PropTypes.bool
-
