@@ -35,8 +35,7 @@
   }
 
   &--reply {
-    display: none;
-    opacity: 0;
+    backface-visibility: hidden;
     transition: opacity 120ms;
     background-color: fade(@grey-3, 90%);
     box-shadow: none;
@@ -260,7 +259,7 @@
     margin-top: @_reply-xs-top-margin;
 
     @media @desktop {
-      margin-top: (@spacing * 1.5);
+      margin-top: @spacing;
     }
   }
 

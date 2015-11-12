@@ -25,6 +25,7 @@ $(document).on 'submit', 'form', osu.showLoadingOverlay
 
 
 $(document).on 'ready page:load', =>
+  @stickyFooter ||= new StickyFooter
   @stickyHeader ||= new StickyHeader
   @globalDrag ||= new GlobalDrag
   @gallery ||= new Gallery

@@ -78,6 +78,7 @@ elixir(function(mix) {
     "navbar-mobile.coffee",
     "spoilerbox.coffee",
     "store.coffee",
+    "sticky-footer.coffee",
     "sticky-header.coffee",
     "forum.coffee",
     "forum-auto-click.coffee",
