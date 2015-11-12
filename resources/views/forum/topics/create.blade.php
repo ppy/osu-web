@@ -43,31 +43,36 @@
 
         <div class="js-post-preview"></div>
 
-        <div id="topic-post-form" class="forum-post osu-layout__row osu-layout__row--forum-post-create post-editor" data-post-position="1">
-            <div class="post-editor__main">
-                <div class="info-panel">
-                    @include("forum.topics._post_info", ["user" => Auth::user(), "options" => ["large" => true]])
-                </div>
+        <div id="topic-post-form" class="osu-layout__row">
+            <div class="forum-post {{ Auth::user()->is_special ? 'forum-post--special' : '' }}">
+                @if (Auth::user()->is_special)
+                    <div
+                        class="forum-post__stripe"
+                        style="{{ user_colour_style(Auth::user()->user_colour, "background-color") }}"
+                    ></div>
+                @endif
 
-                <div class="post-panel">
-                    @include('forum.posts._form_body', ['postBody' => [
-                        'content' => Request::old("body"),
-                        'focus' => true,
-                        'extraClasses' => 'post-autopreview',
-                        'extraAttrs' => 'tabindex="1"',
-                    ]])
-                </div>
-            </div>
+                @include("forum.topics._post_info", ["user" => Auth::user(), "options" => ["large" => true]])
 
-            <div class="post-footer post-editor__footer post-editor__footer--large">
-                <div class="post-box__toolbar">
-                    @include("forum._post_toolbar")
-                </div>
+                <div class="forum-post__body">
+                    <div class="forum-post__content">
+                        @include('forum.posts._form_body', ['postBody' => [
+                            'content' => Request::old("body"),
+                            'focus' => true,
+                            'extraClasses' => 'post-autopreview forum-post-content--edit',
+                            'extraAttrs' => 'tabindex="1"',
+                        ]])
+                    </div>
 
-                <div class="post-box__actions">
-                    <button tabindex="1" class="btn-osu btn-osu--small btn-osu-default post-editor__action" type="submit">
-                        {{ trans("forum.topic.create.submit") }}
-                    </button>
+                    <div class="forum-post__content forum-post__content--edit-bar">
+                        @include("forum._post_toolbar")
+
+                        <div class="post-box__actions">
+                            <button tabindex="1" class="btn-osu btn-osu--small btn-osu-default post-editor__action" type="submit">
+                                {{ trans("forum.topic.create.submit") }}
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
