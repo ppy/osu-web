@@ -73,6 +73,7 @@ return [
             '404' => 'missing',
             '403' => 'forbidden',
             '401' => 'unauthorized',
+            '405' => 'missing',
             '500' => 'something broke',
             '503' => 'maintenance',
         ],
@@ -120,6 +121,11 @@ return [
         '401' => [
             'error' => "You shouldn't be here.",
             'description' => 'You could try going back, though. Or maybe logging in.',
+            'link' => false,
+        ],
+        '405' => [
+            'error' => 'Page Missing',
+            'description' => "Sorry, but the page you requested isn't here!",
             'link' => false,
         ],
         '500' => [

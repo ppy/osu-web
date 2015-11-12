@@ -28,7 +28,7 @@
 
 </style>
 
-<div class="row-page">
+<div class="osu-layout__row osu-layout__row--page osu-layout__row--bootstrap">
     <div class="col-md-12">
         <h1>Store Admin <small>{!! count($orders) !!} orders waiting to be shipped!</small></h1>
     </div>
@@ -65,7 +65,11 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Order #{{ $o->order_id }} for
                 <small>
-                    {{ $o->user ? $o->user->username : '-' }} ({{ $o->user->user_email }})
+                    @if ($o->user !== null)
+                        {{ $o->user->username }} ({{ $o->user->user_email }})
+                    @else
+                        -
+                    @endif
                     <a href='/store/invoice/{{ $o->order_id }}'>invoice</a>
                     <a href='/store/invoice/{{ $o->order_id }}?copies=2' target='_blank'>(print)</a>
                 </small>

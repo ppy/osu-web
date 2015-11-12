@@ -73,7 +73,7 @@ class ProfilePage.Header extends React.Component
 
 
   render: =>
-    el 'div', className: 'row-page profile-header',
+    el 'div', className: 'osu-layout__row osu-layout__row--page-compact profile-header',
       el 'div',
         className: 'profile-cover',
         style:

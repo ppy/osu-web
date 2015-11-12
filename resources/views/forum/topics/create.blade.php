@@ -20,10 +20,10 @@
 @section("content")
     {!! Form::open([
         "url" => route("forum.topics.store", $forum),
-        "class" => "create-topic post-box flex-full content",
+        "class" => "create-topic post-box",
         "data-preview-url" => route("forum.topics.preview", $forum),
     ]) !!}
-        <div class="row-page row-blank">
+        <div class="osu-layout__row osu-layout__row--page-compact">
             <div class="forum-header forum-category-header forum-category-header--main">
                 <div class="topic-header">
                     <ol class="breadcrumb forums-breadcrumb">
@@ -35,15 +35,15 @@
                         </li>
                     </ol>
                     <h1>
-                        <input required tabindex="1" name="title" type="text" value="{{ Request::old("title") }}" placeholder="{{ trans("forum.topic.create.placeholder.title") }}" />
+                        <input class="js-forum-placeholder-hide" required tabindex="1" name="title" type="text" value="{{ Request::old("title") }}" placeholder="{{ trans("forum.topic.create.placeholder.title") }}" />
                     </h1>
                 </div>
             </div>
         </div>
 
-        <div class="content content--forum-topic-preview js-post-preview"></div>
+        <div class="js-post-preview"></div>
 
-        <div id="topic-post-form" class="forum-post flex-row row-page post-editor" data-post-position="1">
+        <div id="topic-post-form" class="forum-post osu-layout__row osu-layout__row--forum-post-create post-editor" data-post-position="1">
             <div class="post-editor__main">
                 <div class="info-panel">
                     @include("forum.topics._post_info", ["user" => Auth::user(), "options" => ["large" => true]])

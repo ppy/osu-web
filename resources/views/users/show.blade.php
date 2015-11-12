@@ -38,28 +38,8 @@
         window.changePageUrl = '{{ route("account.page") }}';
     </script>
 
-    <script id="json-user-recent-achievements" type="application/json">
-        {!! json_encode($recentAchievements) !!}
-    </script>
-
-    <script id="json-user-recent-activities" type="application/json">
-        {!! json_encode($recentActivities) !!}
-    </script>
-
-    <script id="json-user-recently-received-kudosu" type="application/json">
-        {!! json_encode($recentlyReceivedKudosu) !!}
-    </script>
-
     <script id="json-user-info" type="application/json">
         {!! json_encode($userArray) !!}
-    </script>
-
-    <script id="json-user-stats" type="application/json">
-        {!! json_encode($allStats) !!}
-    </script>
-
-    <script id="json-user-page" type="application/json">
-        {!! json_encode(["page" => $userPage]) !!}
     </script>
 
     <script id="json-post-editor-toolbar" type="application/json">

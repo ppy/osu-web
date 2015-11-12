@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="row-page header-row no-print" id="store-header">
+<div class="osu-layout__row osu-layout__row--page header-row no-print" id="store-header">
     {{--
     * setting `display: flex` on main row div breaks width on
     * several browsers (IE11, Firefox 36)

@@ -16,48 +16,55 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.profile-extra-tabs {
-  @height: @profile-extra-tabs--items-height;
-  height: @height;
+.store-cart-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   width: 100%;
 
-  &__container {
-    display: flex;
-    justify-content: center;
+  &__info-box {
+    flex: 1;
     width: 100%;
 
-    &--fixed {
-      top: 0;
-      left: 0;
-      position: fixed;
-      z-index: @z-index--profile-extra-tabs;
+    @media @desktop {
+      width: auto;
     }
   }
 
-  &__items {
-    display: flex;
-    height: @height;
-    align-items: center;
-    justify-content: center;
+  &__total-box {
+    flex: none;
     width: 100%;
 
-    color: #fff;
-    font-weight: 500;
-    transition: background-color 120ms;
+    @media @desktop {
+      width: auto;
+    }
 
-    &--fixed {
-      background-color: @gray-dark;
+    &--full {
+      @media @desktop {
+        width: 100%;
+      }
+    }
+
+    &--padded {
+      @media @desktop {
+        padding-right: 87px;
+      }
     }
   }
 
-  &__item {
-    &:extend(.default-border-radius);
-    padding: @grid-gutter-width/8 @grid-gutter-width/4;
-    margin: 0px @grid-gutter-width/8;
-    cursor: pointer;
+  &__text {
+    text-align: right;
+    font-style: italic;
+    margin: 0;
 
-    &:hover, &--active {
-      background-color: @pink-darker;
+    &--amount {
+      color: @pink-darker;
+      font-size: 140%;
+    }
+
+    &--shipping {
+      color: @gray-light;
+      font-size: 90%;
     }
   }
 }

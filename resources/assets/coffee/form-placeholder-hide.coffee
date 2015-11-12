@@ -15,17 +15,18 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-user = osu.parseJson('json-user-info').data
 
-element = React.createElement ProfilePage.Main,
-  user: user
-  userPage: user.page.data
-  allStats: user.allStatistics.data
-  withEdit: user.id == window.currentUser.id
-  recentAchievements: user.recentAchievements.data
-  recentActivities: user.recentActivities.data
-  recentlyReceivedKudosu: user.recentlyReceivedKudosu.data
+class @FormPlaceholderHide
+  constructor: ->
+    $(document).on 'focus', '.js-forum-placeholder-hide', @onFocus
+    $(document).on 'blur', '.js-forum-placeholder-hide', @onBlur
 
-target = document.getElementsByClassName('js-content')[0]
 
-ReactDOM.render element, target
+  onFocus: (e) ->
+    e.target._origPlaceholder = e.target.getAttribute 'placeholder'
+    e.target.setAttribute 'placeholder', ''
+
+  onBlur: (e) ->
+    return unless e.target._origPlaceholder
+    e.target.setAttribute 'placeholder', e.target._origPlaceholder
+    e.target._origPlaceholder = null

@@ -15,7 +15,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-el = React.createElement
 
 # loading animation overlay
 # fired from turbolinks
@@ -30,6 +29,7 @@ $(document).on 'ready page:load', =>
   @globalDrag ||= new GlobalDrag
   @gallery ||= new Gallery
   @fade ||= new Fade
+  @formPlaceholderHide ||= new FormPlaceholderHide
   @headerMenu ||= new HeaderMenu
 
   @adjustFooter ||= new AdjustFooter
@@ -51,7 +51,7 @@ $(document).on 'ready page:load osu:page:change', ->
 
 $(document).on 'ready page:load', =>
   return if currentUser.id == undefined
-  React.render el(UserCard), $('.js-user-dropdown-modal__dialog')[0]
+  ReactDOM.render React.createElement(UserCard), $('.js-user-dropdown-modal__dialog')[0]
 
 
 $(document).on 'change', '.js-url-selector', (e) ->
