@@ -206,7 +206,7 @@ class BeatmapSet extends Model
             $sort_field
         );
 
-        $max = config('osu.beatmaps.max', 30);
+        $max = config('osu.beatmaps.max', 50);
 
         $searchParams['index'] = env('ES_INDEX', 'osu');
         $searchParams['type'] = 'beatmaps';
@@ -269,7 +269,7 @@ class BeatmapSet extends Model
 
     public static function listing()
     {
-        $max = config('osu.beatmaps.max', 30);
+        $max = config('osu.beatmaps.max', 50);
         $page = Request::input('page', 1) - 1;
 
         $searchParams['index'] = env('ES_INDEX', 'osu');

@@ -62,15 +62,16 @@ class @Beatmaps extends React.Component
       method: 'get'
       dataType: 'json'
       data: $.extend({'q': searchText}, @getFilterState(), @getSortState())).done ((data) ->
-      @setState
-        beatmaps: data['data']
-        paging:
-          page: 1
-          url: @state.paging.url
-          loading: false
-          more: true
-        loading: false
-      $(document).trigger 'beatmap:search:done'
+        more = data['data'].length > 10
+        @setState
+          beatmaps: data['data']
+          paging:
+            page: 1
+            url: @state.paging.url
+            loading: false
+            more: more
+          loading: false, ->
+            $(document).trigger 'beatmap:search:done'
     ).bind(this)
 
   loadMore: =>
@@ -88,23 +89,15 @@ class @Beatmaps extends React.Component
       method: 'get'
       dataType: 'json'
       data: $.extend({'q': searchText}, @getFilterState(), @getSortState(),
-        'page': @state.paging.page + 1)).done ((data) ->
-      if data['data'].length > 0
-        @setState
-          beatmaps: @state.beatmaps.concat(data['data'])
-          paging:
-            page: @state.paging.page + 1
-            url: @state.paging.url
-            more: true
-          loading: false
-      else
-        @setState
-          beatmaps: @state.beatmaps
-          paging:
-            page: @state.paging.page
-            url: @state.paging.url
-            more: false
-          loading: false
+        'page': @state.paging.page + 1)).done ((data) =>
+          more = data['data'].length > 10
+          @setState
+            beatmaps: @state.beatmaps.concat(data['data'])
+            paging:
+              page: @state.paging.page + (if more then 1 else 0)
+              url: @state.paging.url
+              more: more
+            loading: false
     ).bind(this)
 
   showLoader: =>
