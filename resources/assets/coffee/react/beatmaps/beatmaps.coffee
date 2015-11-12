@@ -152,9 +152,9 @@ class @Beatmaps extends React.Component
     else
       searchBackground = ''
 
-    div {},
+    div className: 'osu-layout__section',
       el(SearchPanel, background: searchBackground, filters: @state.filters)
-      div id: 'beatmaps', className: 'beatmaps padding',
+      div id: 'beatmaps', className: 'osu-layout__row',
         if (currentUser.id == undefined)
           div
         else
@@ -163,4 +163,4 @@ class @Beatmaps extends React.Component
         el(Paginator, paging: @state.paging)
 
 $(document).ready ->
-  React.render el(Beatmaps), document.getElementsByClassName('content')[0]
+  ReactDOM.render el(Beatmaps), document.getElementsByClassName('js-content')[0]

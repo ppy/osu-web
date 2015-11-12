@@ -19,25 +19,6 @@
 // main: compiled.less
 @import "app";
 
-.beatmaps-header {
-	.row-page;
-	width: inherit;
-	background-color: hotpink;
-  .text {
-    padding-left: 130px;
-
-    h1, h2 {
-      .default-text-shadow;
-      color: #fff;
-
-      font-style: normal;
-    }
-
-    h1 { font-size: 32px; margin-bottom: 10px; }
-    h2 { font-size: 16px; }
-  }
-}
-
 #beatmaps {
 	text-align: center;
 	padding: 5px 0;
@@ -53,6 +34,7 @@
 	.beatmap-container {
 		opacity: 1;
 		transition: all 120ms ease-in-out;
+
 		&.dimmed {
 			opacity: 0.2;
 		}
@@ -69,7 +51,6 @@
 
 	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
 	background: white;
-	width: 900px;
 
 	.sorting {
 		padding: 10px;

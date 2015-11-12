@@ -60,13 +60,14 @@ class @SearchPanel extends React.Component
     filters = @state.filters
 
     if (currentUser.id == undefined)
-      div className: 'beatmaps-header',
+      div id: 'forum-index-header', className: 'beatmaps-header osu-layout__row osu-layout__row--page',
         div className: 'background', style: background
-        div className: 'text',
-          h1 {}, 'beatmaps'
-          h2 {}, 'witty tag line'
+        div className: 'text-area',
+          div className: 'text',
+            h2 {}, 'witty tag line'
+            h1 {}, 'beatmaps'
     else
-      div id: 'search',
+      div id: 'search', className: 'osu-layout__row osu-layout__row--page',
         div className: 'background', style: background
         div className: 'box',
           input id: 'searchbox', type: 'textbox', name: 'search', placeholder: Lang.get("beatmaps.listing.search.prompt")
