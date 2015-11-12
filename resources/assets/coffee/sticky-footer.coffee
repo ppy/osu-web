@@ -29,6 +29,7 @@ class @StickyFooter
 
   constructor: ->
     $(window).on 'scroll resize', @stickOrUnstick
+    $.subscribe 'stickyFooter:check', @stickOrUnstick
     $(document).on 'ready page:load osu:page:change', @stickOrUnstick
 
   stickOrUnstick: =>

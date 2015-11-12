@@ -47,7 +47,7 @@ class @ForumTopicReply
 
     @deleteState 'sticking'
     @input[0].value = @getState 'text'
-    @stickOrUnstick(null, 'forum-topic-reply')
+    $.publish 'stickyFooter:check'
 
 
   available: => @box.length
@@ -69,7 +69,7 @@ class @ForumTopicReply
     e.preventDefault()
 
     @setState 'active', '1'
-    @stickOrUnstick(null, 'forum-topic-reply')
+    $.publish 'stickyFooter:check'
 
 
   activateWithReply: (e, data) =>
