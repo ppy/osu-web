@@ -15,6 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+<?php $replyingUser = Auth::check() ? Auth::user() : new App\Models\User() ?>
 @extends("master", [
     "title" => "community / {$topic->topic_title}",
     "body_additional_classes" => "forum-colour " . $topic->forum->categorySlug(),
@@ -94,8 +95,8 @@
                         <div class="forum-post__avatar-container forum-post__avatar-container--reply">
                             <div
                                 class="avatar avatar--full"
-                                title="{{ trans("users.show.avatar", ["username" => Auth::user()->username]) }}"
-                                style="background-image: url('{{ Auth::user()->user_avatar }}');"
+                                title="{{ trans("users.show.avatar", ["username" => $replyingUser->username]) }}"
+                                style="background-image: url('{{ $replyingUser->user_avatar }}');"
                             ></div>
                         </div>
                     </div>
