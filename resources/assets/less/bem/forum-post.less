@@ -193,9 +193,10 @@
     background-color: fade(@grey-f, 90%);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
     flex: 1 0 auto;
     padding: @spacing;
+    text-align: center;
   }
 
   &__info-panel-main {
@@ -249,8 +250,12 @@
     font-size: 11px;
     font-weight: 600;
     font-style: italic;
-    color: @grey-0;
+    color: @grey-5;
     margin-bottom: (@spacing / 2);
+
+    &--user-title {
+      color: @grey-3;
+    }
   }
 
   &__reply-content {

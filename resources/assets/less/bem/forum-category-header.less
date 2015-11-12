@@ -65,12 +65,20 @@
   &__name { font-size: 24px; }
   &__description { font-size: 12px; }
 
+  // also used by input form
   &__title {
+    padding: 0;
     margin: @spacing 0 @spacing (@spacing * 3);
     font-weight: 200;
     font-size: 36px;
     font-style: normal;
     .default-text-shadow;
+    color: @grey-f;
+    background: transparent;
+    display: block;
+
+    outline: none;
+    border: none;
   }
 
   &__titles {

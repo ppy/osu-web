@@ -20,23 +20,14 @@
 @section("content")
     {!! Form::open([
         "url" => route("forum.topics.store", $forum),
-        "class" => "create-topic post-box",
         "data-preview-url" => route("forum.topics.preview", $forum),
     ]) !!}
-        <div class="osu-layout__row osu-layout__row--page-compact">
-            <div class="forum-header forum-category-header forum-category-header--main">
-                <div class="topic-header">
-                    <ol class="breadcrumb forums-breadcrumb">
-                        @include("forum.forums._nav", ["forum_parents" => $forum->forum_parents])
-                        <li>
-                            <a href="{{ route("forum.forums.show", $forum) }}">
-                                {{ $forum->forum_name }}
-                            </a>
-                        </li>
-                    </ol>
-                    <h1>
-                        <input class="js-forum-placeholder-hide" required tabindex="1" name="title" type="text" value="{{ Request::old("title") }}" placeholder="{{ trans("forum.topic.create.placeholder.title") }}" />
-                    </h1>
+        <div class="osu-layout__row">
+            <div class="forum-category-header forum-category-header--topic">
+                <div class="forum-category-header__titles">
+                    @include('forum.topics._header_breadcrumb', ['headerBreadcrumbExtraClasses' => 'forum-header-breadcrumb--large'])
+
+                    <input class="forum-category-header__title js-forum-placeholder-hide" required tabindex="1" name="title" type="text" value="{{ Request::old("title") }}" placeholder="{{ trans("forum.topic.create.placeholder.title") }}" />
                 </div>
             </div>
         </div>

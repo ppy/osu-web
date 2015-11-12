@@ -15,10 +15,11 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+<?php if (!isset($forum) && isset($topic)) { $forum = $topic->forum; } ?>
 <ol class="
     forum-header-breadcrumb
     {{ $headerBreadcrumbExtraClasses or '' }}
-    forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
+    forum-colour__bg-link--{{ $forum->categorySlug() }}
 ">
     <li class="forum-header-breadcrumb__item">
         <a href="{{ route('forum.forums.index') }}" class="link--white">
@@ -26,7 +27,7 @@
         </a>
     </li>
 
-    @foreach ($topic->forum->forum_parents as $forumId => $forumData)
+    @foreach ($forum->forum_parents as $forumId => $forumData)
         <li class="forum-header-breadcrumb__item">
             <a
                 href="{{ $forumData[1] === 0 ?
@@ -42,10 +43,10 @@
 
     <li class="forum-header-breadcrumb__item">
         <a
-            href="{{ route("forum.forums.show", $topic->forum->forum_id) }}"
+            href="{{ route("forum.forums.show", $forum->forum_id) }}"
             class="link--white"
         >
-            {{ $topic->forum->forum_name }}
+            {{ $forum->forum_name }}
         </a>
     </li>
 </ol>

@@ -39,26 +39,34 @@
     </div>
 
     <div class="forum-post__info-panel-extra">
-        @if($user->title() !== null)
-            <div class="forum-post__info-row">
-                {{ $user->title() }}
-            </div>
-        @endif
+        <div class="forum-post__info-panel-extra-top">
+            @if($user->title() !== null)
+                <div class="forum-post__info-row forum-post__info-row--user-title">
+                    {{ $user->title() }}
+                </div>
+            @endif
 
-        @if(count($user->flags()) > 0)
-            <div class="forum__user-flags forum__info-row">
-                @foreach ($user->flags() as $flagType => $flagValue)
-                    @if ($flagType === "country")
-                        <img
-                            class="forum__user-flag forum__user-flag--country"
-                            src="/images/flags/{{ $flagValue[0] }}.png"
-                            alt="{{ $flagValue[0] }}"
-                            title="{{ $flagValue[1] }}"
-                        />
-                    @endif
-                @endforeach
+            @if(count($user->flags()) > 0)
+                <div class="forum__user-flags forum__info-row">
+                    @foreach ($user->flags() as $flagType => $flagValue)
+                        @if ($flagType === "country")
+                            <img
+                                class="forum__user-flag forum__user-flag--country"
+                                src="/images/flags/{{ $flagValue[0] }}.png"
+                                alt="{{ $flagValue[0] }}"
+                                title="{{ $flagValue[1] }}"
+                            />
+                        @endif
+                    @endforeach
+                </div>
+            @endif
+        </div>
+
+        <div class="forum-post__info-panel-extra-bottom">
+            <div class="forum-post__info-row">
+                {{ display_regdate($user) }}
             </div>
-        @endif
+        </div>
     </div>
 </div>
 
