@@ -54,9 +54,7 @@ class @Beatmaps extends React.Component
     'sort': [@state.sorting.field, @state.sorting.order].join('_')
 
   search: =>
-    searchText = $('#searchbox').val()
-    # if (searchText == '' || searchText == null)
-    #   return;
+    searchText = $('#searchbox').val().trim()
 
     @showLoader()
 
@@ -84,7 +82,7 @@ class @Beatmaps extends React.Component
 
     @setState paging: paging_state
 
-    searchText = $('#searchbox').val()
+    searchText = $('#searchbox').val().trim()
 
     $.ajax(@state.paging.url,
       method: 'get'

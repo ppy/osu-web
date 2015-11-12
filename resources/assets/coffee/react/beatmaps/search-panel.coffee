@@ -31,9 +31,9 @@ class @SearchPanel extends React.Component
       filters: JSON.parse(document.getElementById('json-filters').text)['data']
 
   keypressed: ->
-    text = $('#searchbox').val()
+    text = $('#searchbox').val().trim()
 
-    if text == null or text == '' or text == @prevText
+    if (@prevText == null and (text == null or text == '')) or text == @prevText
       return
 
     @prevText = text
