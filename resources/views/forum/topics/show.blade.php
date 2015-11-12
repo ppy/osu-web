@@ -52,8 +52,8 @@
     <div class="osu-layout__row">
         <div class="
             forum-category-header
-            forum-category-header--{{ $topic->forum->categorySlug() }}
-            forum-category-header--main
+            forum-category-header--topic
+            forum-colour__bg--{{ $topic->forum->categorySlug() }}
         "></div>
 
         <div class="forum-category-header__titles">

@@ -21,7 +21,6 @@
 .forum-category-header {
   .at2x-simple("/images/headers/forum-category.png");
   background-size: cover;
-  background-color: @gray;
   color: #fff;
   .default-text-shadow;
   .default-box-shadow;
@@ -29,12 +28,22 @@
   height: 60px;
   padding: @grid-gutter-width/8 @grid-gutter-width/2;
 
-  &--category-osu { background-color: @pink; }
-  &--category-language-specific { background-color: @yellow; }
-  &--category-other { background-color: @green; }
-  &--category-beatmaps { background-color: @purple; }
+  &--forum {
+    height: 200px;
+    .default-box-shadow;
 
-  &--main {
+    &::before {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0px;
+      left: 0px;
+      background-image: linear-gradient(to bottom, transparent, fade(#000, 40%));
+      content: " ";
+    }
+  }
+
+  &--topic {
     height: 350px;
     .default-box-shadow;
 
@@ -47,6 +56,10 @@
       background-image: linear-gradient(to bottom, transparent, fade(#000, 75%));
       content: " ";
     }
+  }
+
+  &__forum-title {
+    margin: 0;
   }
 
   &__name { font-size: 24px; }
@@ -65,5 +78,10 @@
     left: 0;
     bottom: 0;
     padding: (@spacing * 2);
+
+    &--forum {
+      width: 100%;
+      text-align: center;
+    }
   }
 }

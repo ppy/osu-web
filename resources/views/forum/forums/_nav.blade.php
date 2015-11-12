@@ -15,17 +15,15 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<li><a href="{{ route("forum.forums.index") }}">{{ trans("forum.title") }}</a></li>
+<li><a class="link--white" href="{{ route("forum.forums.index") }}">{{ trans("forum.title") }}</a></li>
 @foreach($forum_parents as $forum_id => $forum_data)
     <li>
-        @if($forum_data[1] === 0)
-            <a href="{{ route("forum.forums.index") }}#forum-{{ $forum_id }}">
-                {{ $forum_data[0] }}
-            </a>
-        @else
-            <a href="{{ route("forum.forums.show", $forum_id) }}">
-                {{ $forum_data[0] }}
-            </a>
-        @endif
+        <a
+            class="link--white"
+            href="{{ $forum_data[1] === 0 ?
+                route('forum.forums.index')."#forum-{$forum_id}"
+                : route('forum.forums.show', $forum_id)
+            }}"
+        >{{ $forum_data[0] }}</a>
     </li>
 @endforeach

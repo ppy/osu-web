@@ -20,6 +20,11 @@
   ._set(@category) {
     @colour-name: ~'forum-category-colour--@{category}';
     @colour-name--link: ~'@{colour-name}-link';
+    @colour-name--bg: ~'@{colour-name}-bg';
+
+    &__bg--category-@{category} {
+      background-color: @@colour-name--bg;
+    }
 
     &__bg-link--category-@{category} {
       background-color: @@colour-name--link;
