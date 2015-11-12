@@ -86,40 +86,42 @@ class BeatmapController extends Controller
     public function search()
     {
         $current_user = Auth::user();
+
         if (is_null($current_user)) {
-            return;
+            $data = new Collection([]);
+        } else {
+            $params = [
+                'query' => Request::input('q'),
+                'mode' => Request::input('m'),
+                'status' => Request::input('s'),
+                'genre' => Request::input('g'),
+                'language' => Request::input('l'),
+                'extra' => array_filter(explode('-', Request::input('e')), 'strlen'),
+                'rank' => Request::input('r'),
+                'page' => Request::input('page'),
+                'sort' => explode('_', Request::input('sort')),
+            ];
+
+            if (!$current_user->isSupporter()) {
+                unset($params['rank']);
+            }
+
+            $params = array_filter(
+                $params,
+                function ($v, $k) {
+                    if (is_array($v)) {
+                        return (!empty($v));
+                    } else {
+                        return (presence($v) !== null);
+                    }
+                },
+                ARRAY_FILTER_USE_BOTH
+            );
+
+            $data = new Collection(BeatmapSet::search($params), new BeatmapTransformer);
         }
-
-        $params = [
-            'query' => Request::input('q'),
-            'mode' => Request::input('m'),
-            'status' => Request::input('s'),
-            'genre' => Request::input('g'),
-            'language' => Request::input('l'),
-            'extra' => array_filter(explode('-', Request::input('e')), 'strlen'),
-            'rank' => Request::input('r'),
-            'page' => Request::input('page'),
-            'sort' => explode('_', Request::input('sort')),
-        ];
-
-        if (!$current_user->isSupporter()) {
-            unset($params['rank']);
-        }
-
-        $params = array_filter(
-            $params,
-            function ($v, $k) {
-                if (is_array($v)) {
-                    return (!empty($v));
-                } else {
-                    return (presence($v) !== null);
-                }
-            },
-            ARRAY_FILTER_USE_BOTH
-        );
 
         $fractal = new Manager();
-        $data = new Collection(BeatmapSet::search($params), new BeatmapTransformer);
         $beatmaps = $fractal->createData($data)->toArray();
 
         return $beatmaps;
