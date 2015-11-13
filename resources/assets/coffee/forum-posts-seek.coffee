@@ -24,8 +24,7 @@ class @ForumPostsSeek
   constructor: (forum) ->
     @forum = forum
     $(document).on 'mouseenter', '.js-forum__posts-seek', @enter
-    $(document).on 'mouseleave', '.js-forum__posts-seek', @leave
-    $(document).on 'touchstart', @onGlobalTouchstart
+    $(document).on 'mouseleave touchend', '.js-forum__posts-seek', @leave
     $(document).on 'mousemove', '.js-forum__posts-seek', @move
     $(document).on 'click', '.js-forum__posts-seek', @click
 
@@ -33,12 +32,16 @@ class @ForumPostsSeek
 
 
   enter: (e) =>
+    return if @tooltip[0]._visible
+
     @move(e)
     @tooltip[0]._visible = true
     fade.in @tooltip[0], 'flex'
 
 
   leave: (e) =>
+    return unless @tooltip[0]._visible
+
     @tooltip[0]._visible = false
     fade.out @tooltip[0]
 
@@ -79,14 +82,3 @@ class @ForumPostsSeek
 
     $target.blur()
     @forum.jumpTo n
-
-
-  onGlobalTouchstart: (e) =>
-    return unless @tooltip.length && @tooltip[0]._visible
-
-    closest = e.target
-    while closest
-      return if closest.classList.contains 'js-forum__posts-seek'
-      closest = closest.parentElement
-
-    @leave()
