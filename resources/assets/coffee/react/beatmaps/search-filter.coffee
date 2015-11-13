@@ -51,9 +51,16 @@ class @SearchFilter extends React.Component
         @setState { selected: [ i ] }, @triggerUpdate
 
   triggerUpdate: ->
+    if @props.multiselect
+      value = @state.selected.filter (n) ->
+        n != undefined
+      .join('-')
+    else
+      value = @state.selected[0]
+
     payload =
       name: @props.name
-      value: if @props.multiselect then @state.selected.join('-') else @state.selected[0]
+      value: value
     $(document).trigger 'beatmap:search:filtered', payload
 
   selected: (i) ->
