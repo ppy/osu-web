@@ -18,7 +18,10 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 fixedElements = document.getElementsByClassName('js-fixed-element')
 
 $(document).on 'shown.bs.modal', '.modal', (e) ->
-  $(e.target).find('.modal-af').focus()
+  # safari breaks when calling focus() on most conditions.
+  return if osu.isIos
+
+  e.target.getElementsByClassName('modal-af')[0].focus()
 
 
 $(document).on 'hidden.bs.modal', '.modal', ->
