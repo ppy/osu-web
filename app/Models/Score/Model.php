@@ -29,7 +29,7 @@ abstract class Model extends BaseModel
 
     public static function forUser(\App\Models\User $user)
     {
-        return static::where('user_id', (int)$user->user_id);
+        return static::where('user_id', (int) $user->user_id);
     }
 
     public static function getClass($game_mode)

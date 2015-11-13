@@ -194,7 +194,6 @@ class BeatmapSet extends Model
         list($params['sort_field'], $params['sort_order']) = $params['sort'];
         unset($params['sort']);
 
-
         $valid_ranks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
         foreach ($params['rank'] as $rank) {
             if (!in_array($rank, $valid_ranks)) {
@@ -299,14 +298,14 @@ class BeatmapSet extends Model
             'sort' => ['ranked', 'desc'],
         ];
 
-        BeatmapSet::sanitizeSearchParams($params);
+        self::sanitizeSearchParams($params);
 
-        $beatmap_ids = BeatmapSet::searchES($params);
+        $beatmap_ids = self::searchES($params);
         $beatmaps = [];
 
         if (count($beatmap_ids) > 0) {
             $ids = implode(',', $beatmap_ids);
-            $beatmaps = BeatmapSet::whereIn('beatmapset_id', $beatmap_ids)->orderByRaw(DB::raw("FIELD(beatmapset_id, {$ids})"))->get();
+            $beatmaps = self::whereIn('beatmapset_id', $beatmap_ids)->orderByRaw(DB::raw("FIELD(beatmapset_id, {$ids})"))->get();
         }
 
         return $beatmaps;
@@ -314,7 +313,7 @@ class BeatmapSet extends Model
 
     public static function listing()
     {
-        return BeatmapSet::search();
+        return self::search();
     }
 
     public function scopeSort($query)
