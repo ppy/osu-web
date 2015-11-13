@@ -33,45 +33,50 @@
         {{ $post->userNormalized()->is_special ? 'forum-post--special' : '' }}
     ">
 
-        @if ($post->userNormalized()->is_special)
-            <div
-                class="forum-post__stripe"
-                style="{{ user_colour_style($post->userNormalized()->user_colour, "background-color") }}"
-            ></div>
-        @endif
-
-        @include("forum.topics._post_info", ["user" => $post->userNormalized()])
-
-        <div class="forum-post__body">
-            <div class="forum-post__content forum-post__content--header">
-                <a class="js-post-url link link--grey" href="{{ post_url($post->topic_id, $post->post_id) }}">
-                    {!! trans("forum.post.posted_at", ["when" => timeago($post->post_time)]) !!}
-                </a>
-            </div>
-
-            <div class="forum-post__content forum-post__content--main">
-                <div class="forum-post-content">
-                    {!! $post->bodyHTML !!}
-                </div>
-            </div>
-
-            @if($post->post_edit_count > 0)
-                <div class="forum-post__content forum-post__content--footer">
-                    {!!
-                        trans("forum.post.edited", [
-                            "count" => $post->post_edit_count,
-                            "user" => $post->lastEditorNormalized()->username,
-                            "when" => timeago($post->post_edit_time),
-                        ])
-                    !!}
-                </div>
+        <div class="
+            forum-post__card
+            {{ $options['large'] ? ($post->userNormalized()->is_special ? 'forum-post__card--large-special' : 'forum-post__card--large') : '' }}
+        ">
+            @if ($post->userNormalized()->is_special)
+                <div
+                    class="forum-post__stripe"
+                    style="{{ user_colour_style($post->userNormalized()->user_colour, "background-color") }}"
+                ></div>
             @endif
 
-            @if($options["signature"] !== false && $post->userNormalized()->user_sig)
-                <div class="forum-post__content forum-post__content--signature hidden-xs">
-                    {!! bbcode($post->userNormalized()->user_sig, $post->userNormalized()->user_sig_bbcode_uid) !!}
+            @include("forum.topics._post_info", ["user" => $post->userNormalized()])
+
+            <div class="forum-post__body">
+                <div class="forum-post__content forum-post__content--header">
+                    <a class="js-post-url link link--grey" href="{{ post_url($post->topic_id, $post->post_id) }}">
+                        {!! trans("forum.post.posted_at", ["when" => timeago($post->post_time)]) !!}
+                    </a>
                 </div>
-            @endif
+
+                <div class="forum-post__content forum-post__content--main">
+                    <div class="forum-post-content">
+                        {!! $post->bodyHTML !!}
+                    </div>
+                </div>
+
+                @if($post->post_edit_count > 0)
+                    <div class="forum-post__content forum-post__content--footer">
+                        {!!
+                            trans("forum.post.edited", [
+                                "count" => $post->post_edit_count,
+                                "user" => $post->lastEditorNormalized()->username,
+                                "when" => timeago($post->post_edit_time),
+                            ])
+                        !!}
+                    </div>
+                @endif
+
+                @if($options["signature"] !== false && $post->userNormalized()->user_sig)
+                    <div class="forum-post__content forum-post__content--signature hidden-xs">
+                        {!! bbcode($post->userNormalized()->user_sig, $post->userNormalized()->user_sig_bbcode_uid) !!}
+                    </div>
+                @endif
+            </div>
         </div>
 
         <div class="forum-post__actions">

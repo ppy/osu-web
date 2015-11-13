@@ -19,19 +19,11 @@
 .forum-post {
   @_reply-xs-top-margin: 4px;
 
-  background-color: @grey-f;
-  .default-box-shadow;
-  display: flex;
-  flex-direction: column;
   margin-bottom: (@spacing / 2);
   padding: 0;
 
   &:hover &__actions {
     opacity: 1;
-  }
-
-  @media @desktop {
-    flex-direction: row;
   }
 
   &--reply {
@@ -41,10 +33,18 @@
     box-shadow: none;
     width: 100%;
     margin-bottom: 0;
+    padding-bottom: @spacing;
+    padding-top: @_reply-xs-top-margin;
+
+    @media @desktop {
+      padding-top: @spacing;
+    }
   }
 
   &--special {
-    margin-left: (-@spacing / 2);
+    @media @desktop {
+      margin-left: (-@spacing / 2);
+    }
   }
 
   &__avatar-container {
@@ -105,7 +105,38 @@
 
     &--reply {
       .default-box-shadow;
+      overflow: hidden;
       background-color: @grey-f;
+
+      @media @desktop {
+        .default-border-radius;
+      }
+    }
+  }
+
+  &__card {
+    background-color: @grey-f;
+    .default-box-shadow;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    @media @desktop {
+      flex-direction: row;
+      .default-border-radius;
+    }
+
+    &--large {
+      @media @desktop {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+
+    &--large-special {
+      @media @desktop {
+        border-top-right-radius: 0;
+      }
     }
   }
 
@@ -260,12 +291,6 @@
 
   &__reply-content {
     display: flex;
-    margin-bottom: @spacing;
-    margin-top: @_reply-xs-top-margin;
-
-    @media @desktop {
-      margin-top: @spacing;
-    }
   }
 
   &__stripe {
