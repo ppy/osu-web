@@ -25,6 +25,7 @@ class @ForumPostsSeek
     @forum = forum
     $(document).on 'mouseenter', '.js-forum__posts-seek', @enter
     $(document).on 'mouseleave', '.js-forum__posts-seek', @leave
+    $(document).on 'touchstart', @onGlobalTouchstart
     $(document).on 'mousemove', '.js-forum__posts-seek', @move
     $(document).on 'click', '.js-forum__posts-seek', @click
 
@@ -37,10 +38,13 @@ class @ForumPostsSeek
 
 
   leave: (e) =>
+    @tooltip[0]._visible = false
     fade.out @tooltip[0]
 
 
   move: (e) =>
+    e.preventDefault()
+    e.stopPropagation()
     seekbarPos = @seekbar[0].getBoundingClientRect()
 
     full = seekbarPos.width
@@ -74,3 +78,14 @@ class @ForumPostsSeek
 
     $target.blur()
     @forum.jumpTo n
+
+
+  onGlobalTouchstart: (e) =>
+    return unless @tooltip.length && @tooltip[0]._visible
+
+    closest = e.target
+    while closest
+      return if closest.classList.contains 'js-forum__posts-seek'
+      closest = closest.parentElement
+
+    @leave()
