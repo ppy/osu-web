@@ -119,6 +119,12 @@ body .initially-hidden {
   border: none;
   font-size: 14px;
 
+  // otherwise missing shadow in iphone
+  &[type="text"],
+  &[type="password"] {
+    -webkit-appearance: none;
+  }
+
   &:focus {
     .inset-box-shadow;
   }
