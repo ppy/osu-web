@@ -23,8 +23,9 @@ class @ForumPostsSeek
 
   constructor: (forum) ->
     @forum = forum
+    $(document).on 'touchstart', '.js-forum__posts-seek', @onTouchstart
     $(document).on 'mouseenter', '.js-forum__posts-seek', @enter
-    $(document).on 'mouseleave touchend', '.js-forum__posts-seek', @leave
+    $(document).on 'mouseleave', '.js-forum__posts-seek', @leave
     $(document).on 'mousemove', '.js-forum__posts-seek', @move
     $(document).on 'click', '.js-forum__posts-seek', @click
 
@@ -49,18 +50,8 @@ class @ForumPostsSeek
   move: (e) =>
     e.preventDefault()
     e.stopPropagation()
-    seekbarPos = @seekbar[0].getBoundingClientRect()
 
-    full = seekbarPos.width
-    position = e.offsetX / full
-    totalPosts = @forum.totalPosts()
-    postPosition = Math.ceil(position * @forum.totalPosts())
-    postPosition = Math.min(postPosition, totalPosts)
-    @postPosition = Math.max(postPosition, 1)
-
-    @tooltip[0].style.left = "#{e.pageX}px"
-    @tooltip[0].style.bottom = seekbarPos.top
-    @tooltipNumber[0].textContent = @postPosition
+    @setPostPosition(e.offsetX)
 
 
   click: =>
@@ -82,3 +73,28 @@ class @ForumPostsSeek
 
     $target.blur()
     @forum.jumpTo n
+
+
+  onTouchstart: (e) =>
+    e.preventDefault()
+    e.stopPropagation()
+
+    @setPostPosition e.originalEvent.layerX
+    setTimeout @click, 10
+
+
+  setPostPosition: (x) =>
+    seekbarPos = @seekbar[0].getBoundingClientRect()
+
+    full = seekbarPos.width
+    position = x / full
+
+    totalPosts = @forum.totalPosts()
+
+    postPosition = Math.ceil(position * @forum.totalPosts())
+    postPosition = Math.min(postPosition, totalPosts)
+    @postPosition = Math.max(postPosition, 1)
+
+    @tooltip[0].style.left = "#{x}px"
+    @tooltip[0].style.bottom = seekbarPos.top
+    @tooltipNumber[0].textContent = @postPosition
