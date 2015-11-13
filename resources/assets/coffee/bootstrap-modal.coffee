@@ -21,7 +21,7 @@ $(document).on 'shown.bs.modal', '.modal', (e) ->
   # safari breaks when calling focus() on most conditions.
   return if osu.isIos
 
-  e.target.getElementsByClassName('modal-af')[0].focus()
+  $(e.target).find('.modal-af').focus()
 
 
 $(document).on 'hidden.bs.modal', '.modal', ->
