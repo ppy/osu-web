@@ -17,25 +17,30 @@
 *
 ###
 
-{div,a} = React.DOM
+{div,a,img,span} = React.DOM
 el = React.createElement
 
-window.BeatmapsListing = React.createClass
+class @BeatmapsListing extends React.Component
   render: ->
     beatmaps = []
     return if @props.beatmaps == undefined
     for beatmap in @props.beatmaps
-      beatmaps.push el(Panel, beatmap: beatmap)
+      beatmaps.push el(Panel, beatmap: beatmap, key: beatmap.beatmapset_id)
 
     div className: ['beatmap-container', ('dimmed' if @props.loading)].join(' '),
-      div className: 'sorting',
-        a href: '#', 'title'
-        a href: '#', 'artist'
-        a href: '#', 'creator'
-        a href: '#', 'difficulty'
-        a href: '#', 'ranked'
-        a href: '#', className: 'active', 'rating'
-        a href: '#', 'plays'
       div className: 'view_mode'
       div className: 'listing',
-        beatmaps
+        if beatmaps.length > 0
+          beatmaps
+        else
+          div {},
+            img
+              src: '/images/layout/unamused.png'
+              srcSet: "/images/layout/unamused.png 1x, /images/layout/unamused@2x.png 2x"
+              alt: 'no results'
+              title: 'no results'
+              style:
+                paddingTop: '25px'
+                paddingRight: '25px'
+                marginBottom: '-25px'
+            span {}, '... nope, nothing found.'

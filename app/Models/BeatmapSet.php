@@ -182,17 +182,38 @@ class BeatmapSet extends Model
             'extra' => null,
             'rank' => null,
             'page' => 1,
+            'sort' => ['ranked', 'desc'],
         ];
         extract($params);
 
-        $max = config('osu.beatmaps.max', 30);
+        if (count($sort) != 2) {
+            $sort = ['ranked', 'desc'];
+        }
+
+        list($sort_field, $sort_order) = $sort;
+
+        $valid_sort_fields = ['title', 'artist', 'creator', 'difficulty', 'ranked', 'rating', 'plays'];
+
+        if (!in_array($sort_field, $valid_sort_fields) || !in_array($sort_order, ['asc', 'desc'])) {
+            $sort_field = 'ranked';
+            $sort_order = 'desc';
+        }
+
+        // remap fields to their db/elastic-search equivalents
+        $sort_field = str_replace(
+            ['difficulty', 'ranked', 'plays'],
+            ['difficultyrating', 'approved_date', 'playcount'],
+            $sort_field
+        );
+
+        $max = config('osu.beatmaps.max', 50);
 
         $searchParams['index'] = env('ES_INDEX', 'osu');
         $searchParams['type'] = 'beatmaps';
         $searchParams['size'] = $max;
 
         $searchParams['from'] = (max(0, $page - 1)) * $max;
-        $searchParams['body']['sort'] = ['approved_date' => ['order' => 'desc']];
+        $searchParams['body']['sort'] = [$sort_field => ['order' => $sort_order]];
 
         $matchParams = [];
 
@@ -208,7 +229,7 @@ class BeatmapSet extends Model
             $matchParams[] = ['match' => ['language_id' => (int) $language]];
         }
 
-        if ([$extra] && !empty($extra)) {
+        if (is_array($extra) && !empty($extra)) {
             foreach ($extra as $val) {
                 switch ($val) {
                     case 0: // video
@@ -248,7 +269,7 @@ class BeatmapSet extends Model
 
     public static function listing()
     {
-        $max = config('osu.beatmaps.max', 30);
+        $max = config('osu.beatmaps.max', 50);
         $page = Request::input('page', 1) - 1;
 
         $searchParams['index'] = env('ES_INDEX', 'osu');
