@@ -19,9 +19,10 @@
  */
 namespace App\Transformers;
 
+use App\Models\BeatmapSet;
 use League\Fractal;
 
-class BeatmapTransformer extends Fractal\TransformerAbstract
+class BeatmapSetTransformer extends Fractal\TransformerAbstract
 {
     // beatmap difficulty grouping (for beatmap card display)
 
@@ -70,7 +71,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
         return $difficulties;
     }
 
-    public function transform(array $beatmap)
+    public function transform(BeatmapSet $beatmap)
     {
         return [
             'beatmapset_id' => $beatmap['beatmapset_id'],
@@ -81,7 +82,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             'creator' => $beatmap['creator'],
             'user_id' => $beatmap['user_id'],
             'source' => $beatmap['source'],
-            'difficulties' => self::groupDifficulties($beatmap),
+            'difficulties' => [], //self::groupDifficulties($beatmap),
         ];
     }
 }

@@ -25,7 +25,7 @@ use App\Models\Genre;
 use App\Models\Language;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
-use App\Transformers\BeatmapTransformer;
+use App\Transformers\BeatmapSetTransformer;
 use Request;
 use Auth;
 
@@ -38,7 +38,7 @@ class BeatmapController extends Controller
         $fractal = new Manager();
         $languages = Language::listing();
         $genres = Genre::listing();
-        $data = new Collection(BeatmapSet::listing(), new BeatmapTransformer);
+        $data = new Collection(BeatmapSet::listing(), new BeatmapSetTransformer);
         $beatmaps = $fractal->createData($data)->toArray();
 
         // temporarily put filters here
@@ -118,7 +118,7 @@ class BeatmapController extends Controller
                 ARRAY_FILTER_USE_BOTH
             );
 
-            $data = new Collection(BeatmapSet::search($params), new BeatmapTransformer);
+            $data = new Collection(BeatmapSet::search($params), new BeatmapSetTransformer);
         }
 
         $fractal = new Manager();
