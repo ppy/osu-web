@@ -16,6 +16,8 @@ You should have received a copy of the GNU Affero General Public License
 along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 @osu =
+  isIos: /iPad|iPhone|iPod/.test(navigator.platform)
+
   ajaxError: (xhr) ->
     message = xhr.responseJSON?.error
 

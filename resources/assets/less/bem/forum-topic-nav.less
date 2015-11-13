@@ -20,11 +20,17 @@
   @_content-height: 30px;
   @_main-height: (@_content-height + (@spacing * 2));
   width: 100%;
-  background-color: @gray-dark;
+  background-image: linear-gradient(to top, @gray-dark @_main-height, transparent @_main-height);
+
+  // due to unfortunate reason (wrong background on footer padding),
+  // I can't set it to (... + @spacing * 2)
+  height: (@_main-height);
 
   &:hover {
     .forum-topic-nav__seek-bar {
-      height: (@spacing * 3 / 2);
+      @media @desktop {
+        height: (@spacing * 3 / 2);
+      }
 
       &--all {
         opacity: 0.5;
@@ -40,6 +46,9 @@
     align-items: center;
     padding: 0 (@spacing / 2);
     height: @_main-height;
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 
   &__counter {
@@ -135,9 +144,14 @@
     position: absolute;
     left: 0;
     bottom: 100%;
-    height: (@spacing / 2);
     transition: width 500ms ease-out, height 120ms ease-out;
     cursor: pointer;
+    backface-visibility: hidden;
+
+    height: @spacing;
+    @media @desktop {
+      height: (@spacing / 2);
+    }
 
     &::before {
       content: ' ';
@@ -162,19 +176,33 @@
 
     &--all {
       width: 100%;
-      opacity: 0.01;
+      opacity: 0.5;
+
+      @media @desktop {
+        opacity: 0.01;
+      }
 
       &::before {
-        display: none;
+        @media @desktop {
+          display: none;
+        }
       }
     }
   }
 
 
+  &__seek-bar-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: @_main-height;
+  }
+
+
   &__seek-tooltip {
     position: absolute;
-    bottom: 100%;
-    margin-bottom: (@spacing * 3);
+    bottom: (@_main-height + @spacing * 3);
 
     display: none;
     opacity: 0;
