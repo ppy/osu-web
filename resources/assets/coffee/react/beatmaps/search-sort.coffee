@@ -41,7 +41,6 @@ class @SearchSort extends React.Component
     options = [
       {id: 'title', name: 'title'},
       {id: 'artist', name: 'artist'},
-      {id: 'creator', name: 'creator'},
       {id: 'difficulty', name: 'difficulty'},
       {id: 'ranked', name: 'ranked'},
       {id: 'rating', name: 'rating'},
