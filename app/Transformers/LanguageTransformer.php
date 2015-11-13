@@ -27,7 +27,7 @@ class LanguageTransformer extends Fractal\TransformerAbstract
     public function transform(Language $language)
     {
         return [
-            'id' => $language->language_id,
+            'id' => $language->language_id == 0 ? null : $language->language_id,
             'name' => trans('beatmaps.language.'.str_replace(' ', '-', strtolower($language->name))),
         ];
     }
