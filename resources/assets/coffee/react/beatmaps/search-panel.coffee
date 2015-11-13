@@ -77,7 +77,7 @@ class @SearchPanel extends React.Component
         el(SearchFilter, name:'status', title: 'Rank Status', options: filters.statuses, default: 0)
 
         div className: 'more',
-          a className: 'toggle', href:'#', onClick: @show_more,
+          a className: 'toggle', href:'#', onMouseDown: @show_more,
             div {}, Lang.get('beatmaps.listing.search.options')
             div {}, i className:'fa fa-angle-down'
 

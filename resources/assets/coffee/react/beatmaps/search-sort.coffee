@@ -51,7 +51,7 @@ class @SearchSort extends React.Component
       classes = []
       if @selected(e['id'])
         classes = ['active', @props.sorting.order]
-      selectors.push a href:'#', className: classes.join(' '), value: e['id'], key: i, onClick: @select.bind(@, e['id']), e['name']
+      selectors.push a href:'#', className: classes.join(' '), value: e['id'], key: i, onMouseDown: @select.bind(@, e['id']), e['name']
 
     div className: 'sorting',
       selectors
