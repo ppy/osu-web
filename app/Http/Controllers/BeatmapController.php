@@ -67,15 +67,14 @@ class BeatmapController extends Controller
         ];
 
         $ranks = [
-            ['id' => null, 'name' => trans('beatmaps.rank.any')],
-            ['id' => 0, 'name' => trans('beatmaps.rank.silver-ss')],
-            ['id' => 1, 'name' => trans('beatmaps.rank.ss')],
-            ['id' => 2, 'name' => trans('beatmaps.rank.silver-s')],
-            ['id' => 3, 'name' => trans('beatmaps.rank.s')],
-            ['id' => 4, 'name' => trans('beatmaps.rank.a')],
-            ['id' => 5, 'name' => trans('beatmaps.rank.b')],
-            ['id' => 6, 'name' => trans('beatmaps.rank.c')],
-            ['id' => 7, 'name' => trans('beatmaps.rank.d')],
+            ['id' => 'XH', 'name' => trans('beatmaps.rank.silver-ss')],
+            ['id' => 'X', 'name' => trans('beatmaps.rank.ss')],
+            ['id' => 'SH', 'name' => trans('beatmaps.rank.silver-s')],
+            ['id' => 'S', 'name' => trans('beatmaps.rank.s')],
+            ['id' => 'A', 'name' => trans('beatmaps.rank.a')],
+            ['id' => 'B', 'name' => trans('beatmaps.rank.b')],
+            ['id' => 'C', 'name' => trans('beatmaps.rank.c')],
+            ['id' => 'D', 'name' => trans('beatmaps.rank.d')],
         ];
 
         $filters = ['data' => compact('modes', 'statuses', 'genres', 'languages', 'extras', 'ranks')];
@@ -97,7 +96,7 @@ class BeatmapController extends Controller
                 'genre' => Request::input('g'),
                 'language' => Request::input('l'),
                 'extra' => array_filter(explode('-', Request::input('e')), 'strlen'),
-                'rank' => Request::input('r'),
+                'rank' => array_filter(explode('-', Request::input('r')), 'strlen'),
                 'page' => Request::input('page'),
                 'sort' => explode('_', Request::input('sort')),
             ];
