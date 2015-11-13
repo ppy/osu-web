@@ -135,7 +135,7 @@
             <div class="forum-topic-nav__seek-tooltip-number js-forum-posts-seek-tooltip-number">0</div>
         </div>
 
-        <div class="js-forum__posts-seek">
+        <div class="js-forum__posts-seek forum-topic-nav__seek-bar-container">
             <div class="
                 forum-topic-nav__seek-bar
                 forum-topic-nav__seek-bar--all
