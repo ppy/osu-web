@@ -22,6 +22,8 @@ namespace App\Models;
 use Request;
 use Es;
 use Illuminate\Database\Eloquent\Model;
+use Auth;
+use DB;
 
 class BeatmapSet extends Model
 {
@@ -169,63 +171,70 @@ class BeatmapSet extends Model
         return $this->approved == static::QUALIFIED;
     }
 
-    public static function search(array $params = [])
+    private static function sanitizeSearchParams(array &$params = [])
     {
-
-        // default search params
-        $params += [
-            'query' => null,
-            'mode' => 0,
-            'status' => 0,
-            'genre' => null,
-            'language' => null,
-            'extra' => null,
-            'rank' => null,
-            'page' => 1,
-            'sort' => ['ranked', 'desc'],
-        ];
-        extract($params);
-
-        if (count($sort) != 2) {
-            $sort = ['ranked', 'desc'];
+        // sort param
+        if (count($params['sort']) != 2) {
+            $params['sort'] = ['ranked', 'desc'];
         }
-
-        list($sort_field, $sort_order) = $sort;
 
         $valid_sort_fields = ['title', 'artist', 'creator', 'difficulty', 'ranked', 'rating', 'plays'];
-
-        if (!in_array($sort_field, $valid_sort_fields) || !in_array($sort_order, ['asc', 'desc'])) {
-            $sort_field = 'ranked';
-            $sort_order = 'desc';
+        $valid_sort_orders = ['asc', 'desc'];
+        if (!in_array($params['sort'][0], $valid_sort_fields) || !in_array($params['sort'][1], $valid_sort_orders)) {
+            $params['sort'] = ['ranked', 'desc'];
         }
 
-        // remap fields to their db/elastic-search equivalents
-        $sort_field = str_replace(
+        // remap sort field to their db/elastic-search equivalents
+        $params['sort'][0] = str_replace(
             ['difficulty', 'ranked', 'plays'],
             ['difficultyrating', 'approved_date', 'playcount'],
-            $sort_field
+            $params['sort'][0]
         );
 
-        $max = config('osu.beatmaps.max', 50);
+        list($params['sort_field'], $params['sort_order']) = $params['sort'];
+        unset($params['sort']);
+
+
+        $valid_ranks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
+        foreach ($params['rank'] as $rank) {
+            if (!in_array($rank, $valid_ranks)) {
+                unset($params['rank'][$rank]);
+            }
+        }
+
+        if (presence($params['query']) != null) {
+            $params['query'] = preg_replace('/\s\s+/', ' ', $params['query']);
+            $params['query'] = trim($params['query']);
+        }
+
+        if (presence($params['query']) != null) {
+            $query_parts = explode(' ', $params['query']);
+            foreach ($query_parts as $key => $value) {
+                $query_parts[$key] = urlencode($value);
+            }
+            $params['query'] = implode(' AND ', $query_parts);
+        }
+    }
+
+    public static function searchES(array $params = [])
+    {
+        extract($params);
+        $count = config('osu.beatmaps.max', 50);
+        $offset = (max(0, $page - 1)) * $count;
 
         $searchParams['index'] = env('ES_INDEX', 'osu');
         $searchParams['type'] = 'beatmaps';
-        $searchParams['size'] = $max;
-
-        $searchParams['from'] = (max(0, $page - 1)) * $max;
+        $searchParams['size'] = $count;
+        $searchParams['from'] = $offset;
         $searchParams['body']['sort'] = [$sort_field => ['order' => $sort_order]];
-
+        $searchParams['fields'] = ['id'];
         $matchParams = [];
 
-        if (presence($mode)) {
-            $matchParams[] = ['match' => ['playmode' => (int) $mode]];
-        }
-
-        if (presence($genre)) {
+        if (presence($genre) != null) {
             $matchParams[] = ['match' => ['genre_id' => (int) $genre]];
         }
 
-        if (presence($language)) {
+        if (presence($language) != null) {
             $matchParams[] = ['match' => ['language_id' => (int) $language]];
         }
 
@@ -242,8 +251,18 @@ class BeatmapSet extends Model
             }
         }
 
-        if (presence($query)) {
-            $matchParams[] = ['query_string' => ['query' => implode(' AND ', explode(' ', $query))]];
+        if (presence($query) != null) {
+            $matchParams[] = ['query_string' => ['query' => $query]];
+        }
+
+        if (!empty($rank)) {
+            $klass = presence($mode != null) ? Score\Model::getClass($mode) : Score\Combined::class;
+            $scores = $klass::forUser(Auth::user())->whereIn('rank', $rank)->lists('beatmapset_id');
+            $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $scores]];
+        }
+
+        if (presence($mode) != null && @presence($rank) == null) {
+            $matchParams[] = ['match' => ['playmode' => (int) $mode]];
         }
 
         if (!empty($matchParams)) {
@@ -251,47 +270,51 @@ class BeatmapSet extends Model
         }
 
         try {
-            $listing = Es::search($searchParams);
-            $listing = array_map(
+            $results = Es::search($searchParams);
+            $beatmap_ids = array_map(
                 function ($e) {
-                    $e['_source']['beatmapset_id'] = $e['_id'];
-
-                    return $e['_source'];
+                    return $e['_id'];
                 },
-                $listing['hits']['hits']
+                $results['hits']['hits']
             );
         } catch (\Exception $e) {
-            $listing = [];
+            $beatmap_ids = [];
         }
 
-        return $listing;
+        return $beatmap_ids;
+    }
+
+    public static function search(array $params = [])
+    {
+        // default search params
+        $params += [
+            'query' => null,
+            'mode' => 0,
+            'status' => 0,
+            'genre' => null,
+            'language' => null,
+            'extra' => null,
+            'rank' => [],
+            'page' => 1,
+            'sort' => ['ranked', 'desc'],
+        ];
+
+        BeatmapSet::sanitizeSearchParams($params);
+
+        $beatmap_ids = BeatmapSet::searchES($params);
+        $beatmaps = [];
+
+        if (count($beatmap_ids) > 0) {
+            $ids = implode(',', $beatmap_ids);
+            $beatmaps = BeatmapSet::whereIn('beatmapset_id', $beatmap_ids)->orderByRaw(DB::raw("FIELD(beatmapset_id, {$ids})"))->get();
+        }
+
+        return $beatmaps;
     }
 
     public static function listing()
     {
-        $max = config('osu.beatmaps.max', 50);
-        $page = Request::input('page', 1) - 1;
-
-        $searchParams['index'] = env('ES_INDEX', 'osu');
-        $searchParams['size'] = $max;
-        $searchParams['body']['sort'] = ['approved_date' => ['order' => 'desc']];
-        $searchParams['type'] = 'beatmaps';
-
-        try {
-            $listing = Es::search($searchParams);
-            $listing = array_map(
-                function ($e) {
-                    $e['_source']['beatmapset_id'] = $e['_id'];
-
-                    return $e['_source'];
-                },
-                $listing['hits']['hits']
-            );
-        } catch (\Exception $e) {
-            $listing = [];
-        }
-
-        return $listing;
+        return BeatmapSet::search();
     }
 
     public function scopeSort($query)
