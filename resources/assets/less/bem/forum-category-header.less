@@ -21,7 +21,8 @@
 .forum-category-header {
   .at2x-simple("/images/headers/forum-category.png");
   background-size: cover;
-  color: #fff;
+  background-position: center;
+  color: @grey-f;
   .default-text-shadow;
   .default-box-shadow;
 
@@ -57,6 +58,16 @@
       content: " ";
     }
   }
+
+  ._topic-category(@category) {
+    .at2x-simple('/images/headers/forum-topic-covers/forum-cover-@{category}.jpg');
+  }
+
+  &--topic-category-beatmaps { ._topic-category('beatmaps'); }
+  &--topic-category-language-specific { ._topic-category('language-specific'); }
+  &--topic-category-management { ._topic-category('management'); }
+  &--topic-category-osu { ._topic-category('osu'); }
+  &--topic-category-other { ._topic-category('other'); }
 
   &__forum-title {
     margin: 0;
