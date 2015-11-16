@@ -35,33 +35,35 @@
         <div class="js-post-preview"></div>
 
         <div id="topic-post-form" class="osu-layout__row">
-            <div class="forum-post {{ Auth::user()->is_special ? 'forum-post--special' : '' }}">
-                @if (Auth::user()->is_special)
-                    <div
-                        class="forum-post__stripe"
-                        style="{{ user_colour_style(Auth::user()->user_colour, "background-color") }}"
-                    ></div>
-                @endif
+            <div class="forum-post forum-post--create {{ Auth::user()->is_special ? 'forum-post--special' : '' }}">
+                <div class="forum-post__card">
+                    @if (Auth::user()->is_special)
+                        <div
+                            class="forum-post__stripe"
+                            style="{{ user_colour_style(Auth::user()->user_colour, "background-color") }}"
+                        ></div>
+                    @endif
 
-                @include("forum.topics._post_info", ["user" => Auth::user(), "options" => ["large" => true]])
+                    @include("forum.topics._post_info", ["user" => Auth::user(), "options" => ["large" => true]])
 
-                <div class="forum-post__body">
-                    <div class="forum-post__content">
-                        @include('forum.posts._form_body', ['postBody' => [
-                            'content' => Request::old("body"),
-                            'focus' => true,
-                            'extraClasses' => 'post-autopreview forum-post-content--edit',
-                            'extraAttrs' => 'tabindex="1"',
-                        ]])
-                    </div>
+                    <div class="forum-post__body">
+                        <div class="forum-post__content">
+                            @include('forum.posts._form_body', ['postBody' => [
+                                'content' => Request::old("body"),
+                                'focus' => true,
+                                'extraClasses' => 'post-autopreview forum-post-content--edit',
+                                'extraAttrs' => 'tabindex="1"',
+                            ]])
+                        </div>
 
-                    <div class="forum-post__content forum-post__content--edit-bar">
-                        @include("forum._post_toolbar")
+                        <div class="forum-post__content forum-post__content--edit-bar">
+                            @include("forum._post_toolbar")
 
-                        <div class="post-box__actions">
-                            <button tabindex="1" class="btn-osu btn-osu--small btn-osu-default post-editor__action" type="submit">
-                                {{ trans("forum.topic.create.submit") }}
-                            </button>
+                            <div class="post-box__actions">
+                                <button tabindex="1" class="btn-osu btn-osu--small btn-osu-default post-editor__action" type="submit">
+                                    {{ trans("forum.topic.create.submit") }}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
