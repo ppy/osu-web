@@ -69,6 +69,21 @@ class TopicCover extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function owner()
+    {
+        if (isset($this->_owner) === false) {
+            if ($this->topic !== null) {
+                $this->_owner = User::find($this->topic->topic_poster);
+            }
+
+            if ($this->_owner === null) {
+                $this->_owner = $this->user;
+            }
+        }
+
+        return $this->_owner;
+    }
+
     public function fileDir()
     {
         return "topic-covers/{$this->id}";
@@ -115,5 +130,31 @@ class TopicCover extends Model
         $this->ext = $image->ext();
 
         $this->storage->put($this->filePath(), file_get_contents($image->inputPath));
+    }
+
+    public function updateFile($filePath, $user)
+    {
+        $cover->user()->associate($user);
+        $cover->storeFile($filePath);
+        $cover->save();
+
+        return $this->fresh();
+    }
+
+    public function canBeUpdatedBy($user)
+    {
+        if ($user === null) {
+            return false;
+        }
+
+        if ($user->isAdmin()) {
+            return true;
+        }
+
+        if ($this->owner() === null) {
+            return false;
+        }
+
+        return $this->owner()->user_id === $user->user_id;
     }
 }
