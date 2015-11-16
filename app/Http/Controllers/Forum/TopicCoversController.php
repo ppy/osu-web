@@ -19,6 +19,8 @@
  */
 namespace App\Http\Controllers\Forum;
 
+use App\Models\Forum\TopicCover;
+
 class TopicCoversController extends Controller
 {
     protected $section = 'community';
@@ -32,6 +34,7 @@ class TopicCoversController extends Controller
         $this->middleware('auth', ['only' => [
             'destroy',
             'store',
+            'update',
         ]]);
     }
 
@@ -42,6 +45,36 @@ class TopicCoversController extends Controller
 
     public function destroy($id)
     {
-        return;
+        $cover = TopicCover::find($id);
+
+        if ($cover === null) {
+            return [];
+        }
+
+        if ($cover->canBeUpdatedBy(Auth::user()) === false) {
+            abort(403);
+        }
+
+        $cover->deleteWithFile();
+
+        return [];
+    }
+
+    public function update($id)
+    {
+        $cover = TopicCover::findOrFail($id);
+
+        if ($cover->canBeUpdatedBy(Auth::user()) === false) {
+            abort(403);
+        }
+
+        if (Request::hasFile('topic_cover_file') === true) {
+            $cover = $cover->updateFile(
+                Request::file('topic_cover_file')->getRealPath(),
+                Auth::user()
+            );
+        }
+
+        return $cover;
     }
 }
