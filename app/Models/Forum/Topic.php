@@ -236,6 +236,11 @@ class Topic extends Model
         return $this->topic_status === 1;
     }
 
+    public function canBeEditedBy($user)
+    {
+        return $this->posts()->first()->canBeEditedBy($user);
+    }
+
     public function canBeRepliedBy($user)
     {
         $key = $user === null ? '-1' : "{$user->user_id}";
