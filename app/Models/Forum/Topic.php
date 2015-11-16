@@ -48,8 +48,17 @@ class Topic extends Model
         'topic_type' => 'integer',
     ];
 
-    public static function createNew($forum, $title, $poster, $body, $notifyReplies)
+    public static function createNew($params)
     {
+        $params += [
+            'forum' => null,
+            'title' => null,
+            'poster' => null,
+            'body' => null,
+            'notifyReplies' => null,
+        ];
+        extract($params);
+
         $topic = new static([
             'forum_id' => $forum->forum_id,
             'topic_time' => time(),
@@ -64,7 +73,7 @@ class Topic extends Model
             $topic->addPost($poster, $body, $notifyReplies);
         });
 
-        return $topic;
+        return $topic->fresh();
     }
 
     public function addPost($poster, $body, $notifyReplies)

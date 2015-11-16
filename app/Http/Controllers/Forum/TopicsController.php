@@ -90,13 +90,13 @@ class TopicsController extends Controller
 
         $this->authorizePost($forum, null);
 
-        $topic = Topic::createNew(
-            $forum,
-            $request->input('title'),
-            Auth::user(),
-            $request->input('body'),
-            false
-        )->fresh();
+        $topic = Topic::createNew([
+            'forum' => $forum,
+            'title' => $request->input('title'),
+            'poster' => Auth::user(),
+            'body' => $request->input('body'),
+            'notifyReplies' => false,
+        ]);
 
         Event::fire(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
 
