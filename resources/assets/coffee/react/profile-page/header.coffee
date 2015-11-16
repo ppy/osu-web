@@ -48,11 +48,11 @@ class ProfilePage.Header extends React.Component
   toggleEdit: =>
     if @state.editing
       $('.blackout').css display: 'none'
-      $('.profile-header').css zIndex: ''
+      $('.profile-header').removeClass 'u-blackout-visible'
       $(document).off 'click.profilePageHeader:toggleHeaderEdit'
     else
       $('.blackout').css display: 'block'
-      $('.profile-header').css zIndex: 8001
+      $('.profile-header').addClass 'u-blackout-visible'
 
       $(document).on 'click.profilePageHeader:toggleHeaderEdit', (e) =>
         return if $(e.target).closest('.profile-change-cover-popup').length
