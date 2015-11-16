@@ -29,11 +29,18 @@ class TopicCover extends Model
 {
     protected $table = 'forum_topic_covers';
 
+    protected $casts = [
+        'id' => 'integer',
+        'topic_id' => 'integer',
+        'user_id' => 'integer',
+    ];
+
     private $storage = null;
 
-    public static function upload($filePath)
+    public static function upload($user, $filePath)
     {
         $cover = new static;
+        $cover->user()->associate($user);
 
         DB::transaction(function () use ($cover, $filePath) {
             $cover->save(); // get id
