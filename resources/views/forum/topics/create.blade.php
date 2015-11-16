@@ -23,7 +23,7 @@
         "data-preview-url" => route("forum.topics.preview", $forum),
     ]) !!}
         <div class="osu-layout__row">
-            <div class="forum-category-header forum-category-header--topic">
+            <div class="forum-category-header forum-category-header--topic forum-category-header--topic-create">
                 <div class="forum-category-header__titles">
                     @include('forum.topics._header_breadcrumb', ['headerBreadcrumbExtraClasses' => 'forum-header-breadcrumb--large'])
 
