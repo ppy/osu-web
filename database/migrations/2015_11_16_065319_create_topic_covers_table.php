@@ -15,6 +15,7 @@ class CreateTopicCoversTable extends Migration
         Schema::create('forum_topic_covers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('topic_id');
+            $table->integer('user_id');
             $table->string('hash');
             $table->string('ext');
             $table->timestamps();

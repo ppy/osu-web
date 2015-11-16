@@ -21,6 +21,7 @@ namespace App\Models\Forum;
 
 use App\Libraries\ImageProcessor;
 use App\Libraries\StorageAuto;
+use App\Models\User;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
@@ -53,6 +54,11 @@ class TopicCover extends Model
     public function topic()
     {
         return $this->belongsTo(Topic::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function fileDir()
