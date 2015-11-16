@@ -50,7 +50,7 @@ class Topic extends Model
 
     public static function createNew($forum, $title, $poster, $body, $notifyReplies)
     {
-        $topic = new self([
+        $topic = new static([
             'forum_id' => $forum->forum_id,
             'topic_time' => time(),
             'topic_title' => $title,
