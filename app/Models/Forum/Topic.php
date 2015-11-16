@@ -153,6 +153,11 @@ class Topic extends Model
         return $this->belongsTo("App\Models\Forum\Forum", 'forum_id', 'forum_id');
     }
 
+    public function cover()
+    {
+        return $this->hasOne(TopicCover::class);
+    }
+
     public function titleNormalized()
     {
         if ($this->isIssue() === false) {
@@ -302,5 +307,18 @@ class Topic extends Model
                 ]);
             }
         });
+    }
+
+    public function setCover($path, $user)
+    {
+        if ($this->cover === null) {
+            TopicCover::upload($path, $user, $this);
+        } else {
+            $this->cover->storeFile($path);
+            $this->cover->user()->associate($user);
+            $this->cover->save();
+        }
+
+        return $this->fresh();
     }
 }

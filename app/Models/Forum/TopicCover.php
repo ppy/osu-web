@@ -37,13 +37,14 @@ class TopicCover extends Model
 
     private $storage = null;
 
-    public static function upload($user, $filePath)
+    public static function upload($filePath, $user, $topic = null)
     {
         $cover = new static;
-        $cover->user()->associate($user);
 
-        DB::transaction(function () use ($cover, $filePath) {
+        DB::transaction(function () use ($cover, $filePath, $user, $topic) {
             $cover->save(); // get id
+            $cover->user()->associate($user);
+            $cover->topic()->associate($topic);
             $cover->storeFile($filePath);
             $cover->save();
         });
@@ -81,6 +82,11 @@ class TopicCover extends Model
     public function filePath()
     {
         return $this->fileDir().'/'.$this->fileName();
+    }
+
+    public function fileUrl()
+    {
+        return $this->storage->url($this->filePath());
     }
 
     public function deleteWithFile()
