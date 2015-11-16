@@ -48,11 +48,9 @@ class ProfilePage.Header extends React.Component
   toggleEdit: =>
     if @state.editing
       $('.blackout').css display: 'none'
-      $('.profile-header').removeClass 'u-blackout-visible'
       $(document).off 'click.profilePageHeader:toggleHeaderEdit'
     else
       $('.blackout').css display: 'block'
-      $('.profile-header').addClass 'u-blackout-visible'
 
       $(document).on 'click.profilePageHeader:toggleHeaderEdit', (e) =>
         return if $(e.target).closest('.profile-change-cover-popup').length
@@ -73,7 +71,10 @@ class ProfilePage.Header extends React.Component
 
 
   render: =>
-    el 'div', className: 'osu-layout__row osu-layout__row--page-compact profile-header',
+    mainClasses = 'osu-layout__row osu-layout__row--page-compact profile-header'
+    mainClasses += ' u-blackout-visible' if @state.editing
+
+    el 'div', className: mainClasses,
       el 'div',
         className: 'profile-cover',
         style:
