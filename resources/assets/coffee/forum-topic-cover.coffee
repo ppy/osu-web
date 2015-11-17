@@ -41,7 +41,6 @@ class @ForumTopicCover
     @header[0].classList.remove 'forum-category-header--cover-modal'
 
     @header[0]._open = false
-    @$uploadButton().fileupload 'destroy'
 
 
   hasCover: =>
@@ -59,6 +58,8 @@ class @ForumTopicCover
 
     $button = @$uploadButton()
 
+    return if $button._intialised
+
     $button.fileupload
       url: $button.attr('data-url')
       dataType: 'json'
@@ -74,6 +75,7 @@ class @ForumTopicCover
         osu.ajaxError data.jqXHR
       complete: (_e, data) ->
         console.log 'upload done'
+    $button._intialised = true
 
 
   update: (cover) =>
@@ -81,7 +83,7 @@ class @ForumTopicCover
 
     $button = @$uploadButton()
 
-    if @header[0]._open
+    if $button._intialised
       $button.fileupload 'option',
         url: cover.url
         method: cover.method
