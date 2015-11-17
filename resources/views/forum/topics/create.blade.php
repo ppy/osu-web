@@ -22,12 +22,41 @@
         "url" => route("forum.topics.store", $forum),
         "data-preview-url" => route("forum.topics.preview", $forum),
     ]) !!}
+        <input type="hidden" name="cover_id" value="{{ Request::old("cover_id") }}">
+
         <div class="osu-layout__row">
             <div class="forum-category-header forum-category-header--topic forum-category-header--topic-create">
                 <div class="forum-category-header__titles">
                     @include('forum.topics._header_breadcrumb', ['headerBreadcrumbExtraClasses' => 'forum-header-breadcrumb--large'])
 
-                    <input class="forum-category-header__title js-forum-placeholder-hide" required tabindex="1" name="title" type="text" value="{{ Request::old("title") }}" placeholder="{{ trans("forum.topic.create.placeholder.title") }}" />
+                    <input
+                        class="forum-category-header__title js-forum-placeholder-hide"
+                        required
+                        tabindex="1"
+                        name="title"
+                        type="text"
+                        value="{{ Request::old("title") }}"
+                        placeholder="{{ trans("forum.topic.create.placeholder.title") }}"
+                    />
+                </div>
+
+                <div class="forum-category-header__actions">
+                    <div class="forum-post-actions">
+                        <div>
+                            <a href="#" class="js-forum-topic-cover-header forum-post-actions__action forum-category-header__action">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+
+                            <div class="forum-category-header__cover-uploader">
+                                <button class="btn-osu btn-osu--small btn-osu-default" type="button">
+                                    {{ trans('forum.topic-covers.create.button') }}
+                                </button>
+                                <p>
+                                    {{ trans('forum.topic-covers.create.info') }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

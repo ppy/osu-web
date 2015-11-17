@@ -29,6 +29,10 @@
   height: 60px;
   padding: @grid-gutter-width/8 @grid-gutter-width/2;
 
+  &:hover &__action {
+    opacity: 1;
+  }
+
   &--forum {
     height: 200px;
     .default-box-shadow;
@@ -72,6 +76,31 @@
   &--topic-category-management { ._topic-category('management'); }
   &--topic-category-osu { ._topic-category('osu'); }
   &--topic-category-other { ._topic-category('other'); }
+
+  &__action {
+    opacity: 0;
+  }
+
+  &__actions {
+    position: absolute;
+    right: 0;
+    width: 0;
+    bottom: 0;
+
+    display: flex;
+    justify-content: center;
+  }
+
+  &__cover-uploader {
+    .default-box-shadow;
+    .default-border-radius;
+
+    position: absolute;
+    top: 0;
+    right: (@spacing * 4);
+    background-color: @grey-f;
+    padding: @spacing;
+  }
 
   &__forum-title {
     margin: 0;

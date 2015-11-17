@@ -57,7 +57,7 @@
                 forum-category-header--topic
                 forum-category-header--topic-{{ $topic->forum->categorySlug() }}
             "
-            style="background-image: url('{{ $topic->cover !== null ? $topic->cover->fileUrl() : '' }}');"
+            style="{{ $topic->cover !== null ? "background-image: url('".$topic->cover->fileUrl()."');" : '' }}"
         ></div>
 
         <div class="forum-category-header__titles">
