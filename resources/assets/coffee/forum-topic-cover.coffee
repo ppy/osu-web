@@ -46,11 +46,15 @@ class @ForumTopicCover
     @header[0].classList.add 'forum-category-header--cover-modal'
 
     $button = @$uploadButton()
+    $dropZone = $('.js-forum-topic-cover--modal')
 
     $button.fileupload
       url: $button.attr('data-url')
       dataType: 'json'
       paramName: 'topic_cover_file'
+      formData:
+        topic_id: $button.attr('data-topic-id')
+      dropZone: $dropZone
       submit: ->
         console.log 'uploading'
       done: (_e, data) =>

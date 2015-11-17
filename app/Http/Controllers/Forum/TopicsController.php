@@ -183,7 +183,12 @@ class TopicsController extends Controller
 
         $template = $skipLayout ? '_posts' : 'show';
 
-        return view("forum.topics.{$template}", compact('topic', 'posts', 'postsPosition', 'jumpTo'));
+        $cover = fractal_item_array(
+            $topic->cover,
+            new TopicCoverTransformer()
+        );
+
+        return view("forum.topics.{$template}", compact('topic', 'posts', 'postsPosition', 'jumpTo', 'cover'));
     }
 
     public function reply(HttpRequest $request, $id)

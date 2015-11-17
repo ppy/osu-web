@@ -50,28 +50,7 @@
         </div></div>
     </div>
 
-    <div class="osu-layout__row">
-        <div
-            class="
-                forum-category-header
-                forum-category-header--topic
-                forum-category-header--topic-{{ $topic->forum->categorySlug() }}
-            "
-            style="{{ $topic->cover !== null ? "background-image: url('".$topic->cover->fileUrl()."');" : '' }}"
-        ></div>
-
-        <div class="forum-category-header__titles">
-            @include('forum.topics._header_breadcrumb', ['headerBreadcrumbExtraClasses' => 'forum-header-breadcrumb--large'])
-
-            <h1 class="forum-category-header__title">
-                <a href="{{ route("forum.topics.show", $topic->topic_id) }}" class="link--white link--no-underline">
-                    {{ $topic->topic_title }}
-                </a>
-            </h1>
-        </div>
-
-        <div class="forum-topic-header__sticky-marker js-sticky-header" data-sticky-header-target="forum-topic-headernav"></div>
-    </div>
+    @include('forum.topics._header')
 
     <div class="forum-posts-load-link">
         <a href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => ($posts->first()->post_id - 1)]) }}" class="js-forum-posts-show-more js-forum__posts-show-more--previous" data-mode="previous">Load more</a>
