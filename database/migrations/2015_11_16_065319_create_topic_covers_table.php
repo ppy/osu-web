@@ -13,7 +13,7 @@ class CreateTopicCoversTable extends Migration
     public function up()
     {
         Schema::create('forum_topic_covers', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->mediumInteger('topic_id')->unsigned()->nullable();
             $table->mediumInteger('user_id')->unsigned()->nullable();
             $table->string('hash');
