@@ -46,6 +46,7 @@ class TopicsController extends Controller
             'preview',
             'reply',
             'store',
+            'update',
         ]]);
     }
 
@@ -195,5 +196,24 @@ class TopicsController extends Controller
 
             return view('forum.topics._posts', compact('posts', 'postsPosition', 'topic'));
         }
+    }
+
+    public function update($id)
+    {
+        $topic = Topic::findOrFail($id);
+
+        $this->authorizePost($topic->forum, $topic);
+        if ($topic->canBeEditedBy(Auth::user()) !== true) {
+            abort(403);
+        }
+
+        if (Request::hasFile('topic_cover_file') === true) {
+            $topic->setCover(
+                Request::file('topic_cover_file')->getRealPath(),
+                Auth::user()
+            );
+        }
+
+        return $topic->fresh();
     }
 }
