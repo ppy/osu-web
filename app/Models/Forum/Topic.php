@@ -56,7 +56,7 @@ class Topic extends Model
             'poster' => null,
             'body' => null,
             'notifyReplies' => null,
-            'coverId' => null,
+            'cover' => null,
         ];
         extract($params);
 
@@ -73,13 +73,9 @@ class Topic extends Model
             $topic->save();
             $topic->addPost($poster, $body, $notifyReplies);
 
-            if ($coverId !== null) {
-                $cover = TopicCover::findForUse($coverId, $poster);
-
-                if ($cover !== null) {
-                    $cover->topic()->associate($topic);
-                    $cover->save();
-                }
+            if ($cover !== null) {
+                $cover->topic()->associate($topic);
+                $cover->save();
             }
         });
 
@@ -133,7 +129,7 @@ class Topic extends Model
 
             $postsCount = $this->posts()->count();
             if ($postsCount === 0) {
-                $this->delete();
+                $this->deleteWithCover();
             } else {
                 $firstPost = $this->posts()->first();
                 if ($this->topic_first_post_id !== $firstPost->post_id) {
@@ -344,5 +340,14 @@ class Topic extends Model
         }
 
         return $this->fresh();
+    }
+
+    public function deleteWithCover()
+    {
+        if ($this->cover !== null) {
+            $this->cover->deleteWithFile();
+        }
+
+        $this->delete();
     }
 }

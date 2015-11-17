@@ -103,7 +103,7 @@ class TopicsController extends Controller
             'poster' => Auth::user(),
             'body' => $request->input('body'),
             'notifyReplies' => false,
-            'coverId' => presence($request->input('cover_id')),
+            'cover' => TopicCover::findForUse(presence($request->input('cover_id')), Auth::user()),
         ]);
 
         Event::fire(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
@@ -204,24 +204,5 @@ class TopicsController extends Controller
 
             return view('forum.topics._posts', compact('posts', 'postsPosition', 'topic'));
         }
-    }
-
-    public function update($id)
-    {
-        $topic = Topic::findOrFail($id);
-
-        $this->authorizePost($topic->forum, $topic);
-        if ($topic->canBeEditedBy(Auth::user()) !== true) {
-            abort(403);
-        }
-
-        if (Request::hasFile('topic_cover_file') === true) {
-            $topic = $topic->setCover(
-                Request::file('topic_cover_file')->getRealPath(),
-                Auth::user()
-            );
-        }
-
-        return ['coverUrl' => $topic->cover->coverUrl()];
     }
 }

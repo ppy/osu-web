@@ -47,9 +47,24 @@ class TopicCoversController extends Controller
             abort(422);
         }
 
+        $topic = null;
+
+        if (presence(Request::input('topic_id')) !== null) {
+            $topic = Topic::findOrFail(Request::input('topic_id'));
+
+            $this->authorizePost($topic->forum, $topic);
+            if ($topic->canBeEditedBy(Auth::user()) !== true) {
+                abort(403);
+            }
+            if ($topic->cover !== null) {
+                abort(422);
+            }
+        }
+
         $cover = TopicCover::upload(
             Request::file('topic_cover_file')->getRealPath(),
-            Auth::user()
+            Auth::user(),
+            $topic
         );
 
         return fractal_item_array($cover, new TopicCoverTransformer());

@@ -161,6 +161,10 @@ class TopicCover extends Model
 
     public function canBeUpdatedBy($user)
     {
+        if ($this->topic !== null) {
+            return $this->topic->canBeEditedBy($user);
+        }
+
         if ($user === null) {
             return false;
         }
