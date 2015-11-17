@@ -62,7 +62,7 @@
 
                         <div class="forum-category-header__cover-uploader js-forum-topic-cover--modal">
                             <label
-                                class="btn-osu btn-osu--small btn-osu-default js-forum-topic-cover--upload-button"
+                                class="btn-osu btn-osu--small btn-osu-default js-forum-topic-cover--upload-button fileupload"
                                 type="button"
                                 data-file-url="{{ array_get($cover, 'data.fileUrl') }}"
                                 data-url="{{ $cover['data']['url'] }}"
@@ -70,7 +70,7 @@
                                 data-topic-id="{{ isset($topic) === true ? $topic->topic_id : '' }}"
                             >
                                 {{ trans('forum.topic_covers.create.button') }}
-                                <input type="file">
+                                <input class="fileupload__input" type="file">
                             </label>
                             <p class="forum-category-header__cover-uploader-info">
                                 {{ trans('forum.topic_covers.create.info', ['dimensions' => '2700x700']) }}

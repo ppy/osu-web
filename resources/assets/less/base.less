@@ -392,27 +392,6 @@ a[disabled] { &:extend(.btn[disabled]); }
   margin: 0px;
 }
 
-.file-upload-input {
-  opacity: 0;
-  position: absolute;
-
-  // ensure it doesn't mess up the pointer.
-  top: 0px;
-  right: 0px;
-  width: 300%;
-  height: 300%;
-
-  cursor: pointer;
-  &[disabled] {
-    cursor: not-allowed;
-  }
-}
-
-.file-upload-label {
-  cursor: pointer;
-  overflow: hidden;
-}
-
 .u-blackout-visible {
   z-index: @z-index--blackout-visible !important;
 }
