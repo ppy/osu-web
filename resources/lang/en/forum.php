@@ -67,6 +67,10 @@ return [
             'button' => 'Upload image',
             'info' => 'Cover size shoule be at :dimensions. You can also drop your image here to upload.',
         ],
+
+        'destroy' => [
+            'confirm' => 'Are you sure you want to remove the cover image?',
+        ],
     ],
 
 ];
