@@ -64,6 +64,7 @@
                             <label
                                 class="btn-osu btn-osu--small btn-osu-default js-forum-topic-cover--upload-button"
                                 type="button"
+                                data-file-url="{{ array_get($cover, 'data.fileUrl') }}"
                                 data-url="{{ $cover['data']['url'] }}"
                                 data-method="{{ $cover['data']['method'] }}"
                                 data-topic-id="{{ isset($topic) === true ? $topic->topic_id : '' }}"
@@ -76,6 +77,16 @@
                             </p>
                         </div>
                     </div>
+
+                    <a
+                        href="#"
+                        class="js-forum-topic-cover--remove
+                            forum-post-actions__action
+                            forum-category-header__action"
+                        data-destroy-confirm="{{ trans('forum.topic_covers.destroy.confirm') }}"
+                    >
+                        <i class="fa fa-trash"></i>
+                    </a>
                 </div>
             @endif
         </div>

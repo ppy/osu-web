@@ -17,14 +17,17 @@
 ###
 class @ForumTopicCover
   header: document.getElementsByClassName('js-forum-topic-cover--header')
-  #modal: document.getElementsByClassName('js-forum-topic-cover--modal')
-  #openModalButton: document.getElementsByClassName('js-forum-topic-cover--open-modal')
   $uploadButton: -> $('.js-forum-topic-cover--upload-button')
+  uploadButton: document.getElementsByClassName('js-forum-topic-cover--upload-button')
 
 
   constructor: ->
     $(document).on 'click', '.js-forum-topic-cover--open-modal', @openModal
+    $(document).on 'click', '.js-forum-topic-cover--remove', @remove
     $(document).on 'click', @closeModal
+
+    $(document).on 'ready page:load', @refresh
+    @refresh()
 
 
   closeModal: (e) =>
@@ -37,16 +40,24 @@ class @ForumTopicCover
     $('.blackout').css display: 'none'
     @header[0].classList.remove 'forum-category-header--cover-modal'
 
+    @header[0]._open = false
     @$uploadButton().fileupload 'destroy'
 
 
-  openModal: =>
+  hasCover: =>
+    return @uploadButton[0].getAttribute('data-method') != 'post'
+
+
+  openModal: (e) =>
+    e.preventDefault()
+
     $('.blackout').css display: 'block'
     @header[0]._open = true
     @header[0].classList.add 'forum-category-header--cover-modal'
 
-    $button = @$uploadButton()
     $dropZone = $('.js-forum-topic-cover--modal')
+
+    $button = @$uploadButton()
 
     $button.fileupload
       url: $button.attr('data-url')
@@ -58,13 +69,50 @@ class @ForumTopicCover
       submit: ->
         console.log 'uploading'
       done: (_e, data) =>
-        cover = data.result.data
-        $('.js-forum-topic-cover--input').val(cover.id)
-        @header[0].style.backgroundImage = "url('#{cover.fileUrl}')"
-        $button.fileupload 'option',
-          url: cover.url
-          method: cover.method
+        @update(data.result.data)
       fail: (_e, data) ->
         osu.ajaxError data.jqXHR
       complete: (_e, data) ->
         console.log 'upload done'
+
+
+  update: (cover) =>
+    $('.js-forum-topic-cover--input').val(cover.id)
+
+    $button = @$uploadButton()
+
+    if @header[0]._open
+      $button.fileupload 'option',
+        url: cover.url
+        method: cover.method
+
+    $button.attr('data-url', cover.url)
+    $button.attr('data-method', cover.method)
+    $button.attr('data-file-url', cover.fileUrl)
+
+    @refresh()
+
+
+  remove: (e) =>
+    e.preventDefault()
+
+    $button = @$uploadButton()
+
+    return unless @hasCover()
+
+    return unless confirm e.currentTarget.getAttribute('data-destroy-confirm')
+
+    $.ajax
+      url: $button.attr('data-url')
+      method: 'delete'
+    .success (data) =>
+      @update data.data
+
+
+  refresh: =>
+    return unless @header.length
+
+    backgroundImage = if @hasCover() then "url('#{@uploadButton[0].getAttribute('data-file-url')}')" else ''
+    @header[0].style.backgroundImage = backgroundImage
+
+    $('.js-forum-topic-cover--remove').toggleClass("forum-post-actions__action--disabled", !@hasCover())
