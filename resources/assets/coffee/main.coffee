@@ -41,6 +41,7 @@ $(document).on 'ready page:load', =>
   @forumSearchModal ||= new ForumSearchModal(@forum)
   @forumTopicPostJump ||= new ForumTopicPostJump(@forum)
   @forumTopicReply ||= new ForumTopicReply(@forum)
+  @forumTopicCover ||= new ForumTopicCover(@forum)
 
   @menu ||= new Menu
   @logoMenu ||= new LogoMenu

@@ -22,8 +22,6 @@
   .at2x-simple("/images/headers/forum-category.png");
   background-size: cover;
   background-position: center;
-  color: @grey-f;
-  .default-text-shadow;
   .default-box-shadow;
 
   height: 60px;
@@ -31,6 +29,18 @@
 
   &:hover &__action {
     opacity: 1;
+  }
+
+  &--cover-modal {
+    z-index: @z-index--blackout-visible;
+
+    .forum-category-header__action {
+      opacity: 1;
+    }
+
+    .forum-category-header__cover-uploader {
+      display: flex;
+    }
   }
 
   &--forum {
@@ -85,7 +95,7 @@
     position: absolute;
     right: 0;
     width: 0;
-    bottom: 0;
+    bottom: (@spacing * 2);
 
     display: flex;
     justify-content: center;
@@ -100,14 +110,34 @@
     right: (@spacing * 4);
     background-color: @grey-f;
     padding: @spacing;
+    display: none;
+    min-width: 250px;
+
+    flex-direction: column;
+  }
+
+  &__cover-uploader-info {
+    margin-top: @spacing;
+    margin-bottom: 0;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  &__description {
+    color: @grey-f;
+    .default-text-shadow;
+    font-size: 12px;
   }
 
   &__forum-title {
     margin: 0;
   }
 
-  &__name { font-size: 24px; }
-  &__description { font-size: 12px; }
+  &__name {
+    color: @grey-f;
+    .default-text-shadow;
+    font-size: 24px;
+  }
 
   // also used by input form
   &__title {

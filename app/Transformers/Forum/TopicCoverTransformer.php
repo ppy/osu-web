@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -14,36 +16,29 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
-.forum-header-breadcrumb {
-  .default-border-radius;
-  list-style: none;
-  display: inline-flex;
-  flex-wrap: wrap;
-  margin: 0;
-  font-size: 12px;
-  color: @grey-f;
-  .default-text-shadow;
+namespace App\Transformers\Forum;
 
-  // Less padding top because the font used has too much space
-  // on the upper side
-  padding: (@spacing / 4) (@spacing / 4) (@spacing / 2);
+use App\Models\Forum\TopicCover;
+use League\Fractal;
 
-  &--large {
-    font-size: 15px;
-    padding: (@spacing * 0.6);
-  }
+class TopicCoverTransformer extends Fractal\TransformerAbstract
+{
+    public function transform(TopicCover $cover = null)
+    {
+        if ($cover === null) {
+            return [
+                'method' => 'post',
+                'url' => route('forum.topic-covers.store'),
+            ];
+        }
 
-  &__item {
-    display: flex;
-    line-height: 1;
+        return [
+            'method' => 'put',
+            'url' => route('forum.topic-covers.update', $cover),
 
-    margin: 0 (@spacing / 4);
-
-    &::after {
-      content: '»';
-      margin-left: (@spacing / 2);
+            'id' => $cover->id,
+            'fileUrl' => $cover->fileUrl(),
+        ];
     }
-  }
 }

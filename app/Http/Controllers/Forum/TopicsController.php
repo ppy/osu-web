@@ -25,6 +25,8 @@ use App\Events\Forum\TopicWasViewed;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
+use App\Models\Forum\TopicCover;
+use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use Carbon\Carbon;
 use Event;
@@ -56,7 +58,12 @@ class TopicsController extends Controller
 
         $this->authorizePost($forum, null);
 
-        return view('forum.topics.create', compact('forum'));
+        $cover = fractal_item_array(
+            TopicCover::findForUse(Request::old('cover_id'), Auth::user()),
+            new TopicCoverTransformer()
+        );
+
+        return view('forum.topics.create', compact('forum', 'cover'));
     }
 
     public function preview($forumId)
@@ -96,6 +103,7 @@ class TopicsController extends Controller
             'poster' => Auth::user(),
             'body' => $request->input('body'),
             'notifyReplies' => false,
+            'coverId' => presence($request->input('cover_id')),
         ]);
 
         Event::fire(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
@@ -208,12 +216,12 @@ class TopicsController extends Controller
         }
 
         if (Request::hasFile('topic_cover_file') === true) {
-            $topic->setCover(
+            $topic = $topic->setCover(
                 Request::file('topic_cover_file')->getRealPath(),
                 Auth::user()
             );
         }
 
-        return $topic->fresh();
+        return ['coverUrl' => $topic->cover->coverUrl()];
     }
 }

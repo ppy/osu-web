@@ -56,6 +56,7 @@ class Topic extends Model
             'poster' => null,
             'body' => null,
             'notifyReplies' => null,
+            'coverId' => null,
         ];
         extract($params);
 
@@ -68,9 +69,18 @@ class Topic extends Model
             'topic_first_poster_colour' => $poster->user_colour,
         ]);
 
-        DB::transaction(function () use ($topic, $forum, $title, $poster, $body, $notifyReplies) {
+        DB::transaction(function () use ($topic, $forum, $title, $poster, $body, $notifyReplies, $coverId) {
             $topic->save();
             $topic->addPost($poster, $body, $notifyReplies);
+
+            if ($coverId !== null) {
+                $cover = TopicCover::findForUse($coverId, $poster);
+
+                if ($cover !== null) {
+                    $cover->topic()->associate($topic);
+                    $cover->save();
+                }
+            }
         });
 
         return $topic->fresh();

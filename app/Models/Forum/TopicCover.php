@@ -36,6 +36,22 @@ class TopicCover extends Model
     ];
 
     private $storage = null;
+    private $_owner = [false, null];
+
+    public static function findForUse($id, $user)
+    {
+        if ($user === null) {
+            return [];
+        }
+
+        $covers = static::select();
+
+        if ($user->isAdmin() === false) {
+            $covers->where('user_id', $user->user_id);
+        }
+
+        return $covers->find($id);
+    }
 
     public static function upload($filePath, $user, $topic = null)
     {
@@ -71,17 +87,19 @@ class TopicCover extends Model
 
     public function owner()
     {
-        if (isset($this->_owner) === false) {
+        if ($this->_owner[0] === false) {
+            $this->_owner[0] = true;
+
             if ($this->topic !== null) {
-                $this->_owner = User::find($this->topic->topic_poster);
+                $this->_owner[1] = User::find($this->topic->topic_poster);
             }
 
-            if ($this->_owner === null) {
-                $this->_owner = $this->user;
+            if ($this->_owner[1] === null) {
+                $this->_owner[1] = $this->user;
             }
         }
 
-        return $this->_owner;
+        return $this->_owner[1];
     }
 
     public function fileDir()
@@ -134,9 +152,9 @@ class TopicCover extends Model
 
     public function updateFile($filePath, $user)
     {
-        $cover->user()->associate($user);
-        $cover->storeFile($filePath);
-        $cover->save();
+        $this->user()->associate($user);
+        $this->storeFile($filePath);
+        $this->save();
 
         return $this->fresh();
     }

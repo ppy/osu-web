@@ -20,6 +20,9 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Models\Forum\TopicCover;
+use App\Transformers\Forum\TopicCoverTransformer;
+use Auth;
+use Request;
 
 class TopicCoversController extends Controller
 {
@@ -38,17 +41,27 @@ class TopicCoversController extends Controller
         ]]);
     }
 
-    public function create()
+    public function store()
     {
-        return;
+        if (Request::hasFile('topic_cover_file') !== true) {
+            abort(422);
+        }
+
+        $cover = TopicCover::upload(
+            Request::file('topic_cover_file')->getRealPath(),
+            Auth::user()
+        );
+
+        return fractal_item_array($cover, new TopicCoverTransformer());
     }
 
     public function destroy($id)
     {
+        $return = fractal_item_array(null, new TopicCoverTransformer());
         $cover = TopicCover::find($id);
 
         if ($cover === null) {
-            return [];
+            return $return;
         }
 
         if ($cover->canBeUpdatedBy(Auth::user()) === false) {
@@ -57,7 +70,7 @@ class TopicCoversController extends Controller
 
         $cover->deleteWithFile();
 
-        return [];
+        return $return;
     }
 
     public function update($id)
@@ -75,6 +88,6 @@ class TopicCoversController extends Controller
             );
         }
 
-        return $cover;
+        return fractal_item_array($cover, new TopicCoverTransformer());
     }
 }
