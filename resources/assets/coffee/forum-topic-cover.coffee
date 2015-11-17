@@ -58,7 +58,7 @@ class @ForumTopicCover
 
     $button = @$uploadButton()
 
-    return if $button._intialised
+    return if $button[0]._intialised
 
     $button.fileupload
       url: $button.attr('data-url')
@@ -75,7 +75,7 @@ class @ForumTopicCover
         osu.ajaxError data.jqXHR
       complete: (_e, data) ->
         console.log 'upload done'
-    $button._intialised = true
+    $button[0]._intialised = true
 
 
   update: (cover) =>
@@ -83,7 +83,7 @@ class @ForumTopicCover
 
     $button = @$uploadButton()
 
-    if $button._intialised
+    if $button[0]._intialised
       $button.fileupload 'option',
         url: cover.url
         method: cover.method
