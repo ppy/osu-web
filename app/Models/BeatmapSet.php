@@ -201,12 +201,10 @@ class BeatmapSet extends Model
             }
         }
 
-        if (presence($params['query']) != null) {
-            $params['query'] = preg_replace('/\s\s+/', ' ', $params['query']);
+        if ($params['query'] !== null) {
+            $params['query'] = preg_replace('/\s{2,}/', ' ', $params['query']);
             $params['query'] = trim($params['query']);
-        }
 
-        if (presence($params['query']) != null) {
             $query_parts = explode(' ', $params['query']);
             foreach ($query_parts as $key => $value) {
                 $query_parts[$key] = urlencode($value);
@@ -260,7 +258,7 @@ class BeatmapSet extends Model
             $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $scores]];
         }
 
-        if (presence($mode) != null && @presence($rank) == null) {
+        if (presence($mode) != null && presence($rank) == null) {
             $matchParams[] = ['match' => ['playmode' => (int) $mode]];
         }
 
