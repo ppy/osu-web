@@ -19,6 +19,7 @@
  */
 namespace App\Http\Controllers\Forum;
 
+use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
