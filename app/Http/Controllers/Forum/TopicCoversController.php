@@ -79,7 +79,7 @@ class TopicCoversController extends Controller
             return $return;
         }
 
-        if ($cover->canBeUpdatedBy(Auth::user()) === false) {
+        if ($cover->canBeEditedBy(Auth::user()) === false) {
             abort(403);
         }
 
@@ -92,7 +92,7 @@ class TopicCoversController extends Controller
     {
         $cover = TopicCover::findOrFail($id);
 
-        if ($cover->canBeUpdatedBy(Auth::user()) === false) {
+        if ($cover->canBeEditedBy(Auth::user()) === false) {
             abort(403);
         }
 
