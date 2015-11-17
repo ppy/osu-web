@@ -38,7 +38,7 @@ class @SearchFilter extends React.Component
     multiselect: React.PropTypes.bool
 
   select: (i, e) ->
-    e.preventDefault
+    e.preventDefault()
     if @selected(i)
       if @props.multiselect
         @setState { selected: _.without(@state.selected, i) }, @triggerUpdate
