@@ -19,6 +19,7 @@
  */
 namespace App\Http\Controllers\Forum;
 
+use App\Exceptions\ImageProcessorException;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Transformers\Forum\TopicCoverTransformer;
@@ -62,11 +63,15 @@ class TopicCoversController extends Controller
             }
         }
 
-        $cover = TopicCover::upload(
-            Request::file('topic_cover_file')->getRealPath(),
-            Auth::user(),
-            $topic
-        );
+        try {
+            $cover = TopicCover::upload(
+                Request::file('topic_cover_file')->getRealPath(),
+                Auth::user(),
+                $topic
+            );
+        } catch (ImageProcessorException $e) {
+            return error_popup($e->getMessage());
+        }
 
         return fractal_item_array($cover, new TopicCoverTransformer());
     }
@@ -98,10 +103,14 @@ class TopicCoversController extends Controller
         }
 
         if (Request::hasFile('topic_cover_file') === true) {
-            $cover = $cover->updateFile(
-                Request::file('topic_cover_file')->getRealPath(),
-                Auth::user()
-            );
+            try {
+                $cover = $cover->updateFile(
+                    Request::file('topic_cover_file')->getRealPath(),
+                    Auth::user()
+                );
+            } catch (ImageProcessorException $e) {
+                return error_popup($e->getMessage());
+            }
         }
 
         return fractal_item_array($cover, new TopicCoverTransformer());
