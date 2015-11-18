@@ -48,7 +48,6 @@ class TopicsController extends Controller
             'preview',
             'reply',
             'store',
-            'update',
         ]]);
     }
 
