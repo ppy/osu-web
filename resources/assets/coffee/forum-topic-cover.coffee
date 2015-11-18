@@ -19,12 +19,18 @@ class @ForumTopicCover
   header: document.getElementsByClassName('js-forum-topic-cover--header')
   $uploadButton: -> $('.js-forum-topic-cover--upload-button')
   uploadButton: document.getElementsByClassName('js-forum-topic-cover--upload-button')
+  overlay: document.getElementsByClassName('js-forum-topic-cover--overlay')
 
 
   constructor: ->
     $(document).on 'click', '.js-forum-topic-cover--open-modal', @toggleModal
     $(document).on 'click', '.js-forum-topic-cover--remove', @remove
     $(document).on 'click', @closeModal
+
+    $.subscribe 'dragenterGlobal', => @setOverlay('start')
+    $.subscribe 'dragendGlobal', => @setOverlay('end')
+    $(document).on 'dragenter', '.js-forum-topic-cover--modal', => @setOverlay('enter')
+    $(document).on 'dragleave', '.js-forum-topic-cover--modal', => @setOverlay('start')
 
     $.subscribe 'key:esc', @closeModal
 
@@ -87,6 +93,14 @@ class @ForumTopicCover
       complete: (_e, data) ->
         console.log 'upload done'
     $button[0]._intialised = true
+
+
+  setOverlay: (targetState) =>
+    return unless @header.length
+
+    return if targetState == @overlay[0].getAttribute('data-state')
+
+    @overlay[0].setAttribute('data-state', targetState)
 
 
   update: (cover) =>

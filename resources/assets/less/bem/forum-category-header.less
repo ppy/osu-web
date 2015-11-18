@@ -125,6 +125,37 @@
     text-align: center;
   }
 
+  &__cover-uploader-label {
+    text-transform: none;
+  }
+
+  &__cover-uploader-overlay {
+    position: absolute;
+    .default-border-radius;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: @grey-f;
+    transition: height 120ms, background-color 120ms;
+    overflow: hidden;
+
+    &[data-state="end"] {
+      height: 0;
+    }
+
+    &[data-state="start"] {
+      background-color: fade(@grey-0, 50%);
+    }
+
+    &[data-state="enter"] {
+      background-color: fade(@grey-0, 80%);
+    }
+  }
+
   &__description {
     color: @grey-f;
     .default-text-shadow;

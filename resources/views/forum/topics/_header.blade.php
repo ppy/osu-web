@@ -62,7 +62,12 @@
 
                         <div class="forum-category-header__cover-uploader js-forum-topic-cover--modal">
                             <label
-                                class="btn-osu btn-osu--small btn-osu-default js-forum-topic-cover--upload-button fileupload"
+                                class="btn-osu
+                                    btn-osu--small
+                                    btn-osu-default
+                                    js-forum-topic-cover--upload-button
+                                    fileupload
+                                    forum-category-header__cover-uploader-label"
                                 type="button"
                                 data-file-url="{{ array_get($cover, 'data.fileUrl') }}"
                                 data-url="{{ $cover['data']['url'] }}"
@@ -75,6 +80,10 @@
                             <p class="forum-category-header__cover-uploader-info">
                                 {{ trans('forum.topic_covers.create.info', ['dimensions' => '2700x700']) }}
                             </p>
+
+                            <div class="forum-category-header__cover-uploader-overlay js-forum-topic-cover--overlay" data-state="end">
+                                {{ trans('common.dropzone.target') }}
+                            </div>
                         </div>
                     </div>
 
