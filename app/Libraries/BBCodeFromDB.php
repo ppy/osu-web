@@ -87,7 +87,7 @@ class BBCodeFromDB
 
     public function parseCode($text)
     {
-        $text = str_replace("[code:{$this->uid}]", '<pre>', $text);
+        $text = str_replace("[code:{$this->uid}]", '<pre class="bbcode__code">', $text);
         $text = str_replace("[/code:{$this->uid}]", '</pre>', $text);
 
         return $text;
