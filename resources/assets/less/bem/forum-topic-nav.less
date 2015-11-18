@@ -33,6 +33,25 @@
   }
 
 
+  &__button-circle {
+    .default-box-shadow;
+    .circle(@_content-height);
+    color: @grey-f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: @blue-darker;
+    margin: 0 (@spacing / 2);
+
+    &:focus,
+    &:hover,
+    &:active {
+      color: @grey-f;
+      text-decoration: none;
+      .thicker-box-shadow;
+    }
+  }
+
   &__content {
     width: 100%;
     display: flex;

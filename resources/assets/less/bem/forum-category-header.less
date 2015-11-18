@@ -21,22 +21,33 @@
 .forum-category-header {
   .at2x-simple("/images/headers/forum-category.png");
   background-size: cover;
-  background-color: @gray;
-  color: #fff;
-  .default-text-shadow;
+  background-position: center;
   .default-box-shadow;
 
   height: 60px;
   padding: @grid-gutter-width/8 @grid-gutter-width/2;
 
-  &--category-osu { background-color: @pink; }
-  &--category-language-specific { background-color: @yellow; }
-  &--category-other { background-color: @green; }
-  &--category-beatmaps { background-color: @purple; }
+  transition: background-image 120ms;
 
-  &--main {
+  &:hover &__action {
+    opacity: 1;
+  }
+
+  &--cover-modal {
+    z-index: @z-index--blackout-visible;
+
+    .forum-category-header__action {
+      opacity: 1;
+    }
+
+    .forum-category-header__cover-uploader {
+      display: flex;
+    }
+  }
+
+  &--forum {
     height: 200px;
-    text-align: center;
+    .default-box-shadow;
 
     &::before {
       position: absolute;
@@ -49,6 +60,162 @@
     }
   }
 
-  &__name { font-size: 24px; }
-  &__description { font-size: 12px; }
+  &--topic {
+    height: 350px;
+    .default-box-shadow;
+
+    &::before {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0px;
+      left: 0px;
+      background-image: linear-gradient(to bottom, transparent, fade(#000, 75%));
+      content: " ";
+    }
+  }
+
+  &--topic-create {
+    background-color: @grey-5;
+  }
+
+  ._topic-category(@category) {
+    .at2x-simple('/images/headers/forum-topic-covers/forum-cover-@{category}.jpg');
+  }
+
+  &--topic-category-beatmaps { ._topic-category('beatmaps'); }
+  &--topic-category-language-specific { ._topic-category('language-specific'); }
+  &--topic-category-management { ._topic-category('management'); }
+  &--topic-category-osu { ._topic-category('osu'); }
+  &--topic-category-other { ._topic-category('other'); }
+
+  &__action {
+    @media @desktop {
+      opacity: 0;
+    }
+  }
+
+  &__actions {
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+
+    right: @spacing;
+    bottom: @spacing;
+
+    @media @desktop {
+      right: 0;
+      bottom: (@spacing * 2);
+      width: 0;
+    }
+  }
+
+  &__cover-uploader {
+    .default-box-shadow;
+    .default-border-radius;
+
+    position: absolute;
+    top: 0;
+    right: (@spacing * 4);
+    background-color: @grey-f;
+    padding: @spacing;
+    display: none;
+    min-width: 250px;
+
+    flex-direction: column;
+  }
+
+  &__cover-uploader-info {
+    margin-top: @spacing;
+    margin-bottom: 0;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  &__cover-uploader-label {
+    text-transform: none;
+  }
+
+  &__cover-uploader-overlay {
+    position: absolute;
+    .default-border-radius;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: @grey-f;
+    transition: opacity 120ms, background-color 120ms;
+    background-color: fade(@grey-0, 50%);
+
+    &[data-state="hidden"] {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    &[data-state="active"] {
+    }
+
+    &[data-state="hover"] {
+      background-color: fade(@grey-0, 80%);
+    }
+  }
+
+  &__description {
+    color: @grey-f;
+    .default-text-shadow;
+    font-size: 12px;
+  }
+
+  &__forum-title {
+    margin: 0;
+  }
+
+  &__loading {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: fade(@grey-0, 50%);
+    display: none;
+    transition: opacity 120ms;
+  }
+
+  &__name {
+    color: @grey-f;
+    .default-text-shadow;
+    font-size: 24px;
+  }
+
+  // also used by input form
+  &__title {
+    padding: 0;
+    margin: @spacing 0 @spacing (@spacing * 3);
+    font-weight: 200;
+    font-size: 36px;
+    font-style: normal;
+    .default-text-shadow;
+    color: @grey-f;
+    background: transparent;
+    display: block;
+
+    outline: none;
+    border: none;
+  }
+
+  &__titles {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: (@spacing * 2);
+
+    &--forum {
+      width: 100%;
+      text-align: center;
+    }
+  }
 }

@@ -48,9 +48,19 @@ class Topic extends Model
         'topic_type' => 'integer',
     ];
 
-    public static function createNew($forum, $title, $poster, $body, $notifyReplies)
+    public static function createNew($params)
     {
-        $topic = new self([
+        $params += [
+            'forum' => null,
+            'title' => null,
+            'poster' => null,
+            'body' => null,
+            'notifyReplies' => null,
+            'cover' => null,
+        ];
+        extract($params);
+
+        $topic = new static([
             'forum_id' => $forum->forum_id,
             'topic_time' => time(),
             'topic_title' => $title,
@@ -59,12 +69,17 @@ class Topic extends Model
             'topic_first_poster_colour' => $poster->user_colour,
         ]);
 
-        DB::transaction(function () use ($topic, $forum, $title, $poster, $body, $notifyReplies) {
+        DB::transaction(function () use ($topic, $forum, $title, $poster, $body, $notifyReplies, $coverId) {
             $topic->save();
             $topic->addPost($poster, $body, $notifyReplies);
+
+            if ($cover !== null) {
+                $cover->topic()->associate($topic);
+                $cover->save();
+            }
         });
 
-        return $topic;
+        return $topic->fresh();
     }
 
     public function addPost($poster, $body, $notifyReplies)
@@ -114,7 +129,7 @@ class Topic extends Model
 
             $postsCount = $this->posts()->count();
             if ($postsCount === 0) {
-                $this->delete();
+                $this->deleteWithCover();
             } else {
                 $firstPost = $this->posts()->first();
                 if ($this->topic_first_post_id !== $firstPost->post_id) {
@@ -151,6 +166,11 @@ class Topic extends Model
     public function forum()
     {
         return $this->belongsTo("App\Models\Forum\Forum", 'forum_id', 'forum_id');
+    }
+
+    public function cover()
+    {
+        return $this->hasOne(TopicCover::class);
     }
 
     public function titleNormalized()
@@ -231,6 +251,11 @@ class Topic extends Model
         return $this->topic_status === 1;
     }
 
+    public function canBeEditedBy($user)
+    {
+        return $this->posts()->first()->canBeEditedBy($user);
+    }
+
     public function canBeRepliedBy($user)
     {
         $key = $user === null ? '-1' : "{$user->user_id}";
@@ -302,5 +327,27 @@ class Topic extends Model
                 ]);
             }
         });
+    }
+
+    public function setCover($path, $user)
+    {
+        if ($this->cover === null) {
+            TopicCover::upload($path, $user, $this);
+        } else {
+            $this->cover->storeFile($path);
+            $this->cover->user()->associate($user);
+            $this->cover->save();
+        }
+
+        return $this->fresh();
+    }
+
+    public function deleteWithCover()
+    {
+        if ($this->cover !== null) {
+            $this->cover->deleteWithFile();
+        }
+
+        $this->delete();
     }
 }

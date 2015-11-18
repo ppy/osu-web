@@ -31,6 +31,7 @@ class ProfilePage.Header extends React.Component
     @_removeListeners()
     $.subscribe 'user:cover:set.profilePageHeader', @coverSet
     $.subscribe 'user:cover:reset.profilePageHeader', @coverReset
+    $.subscribe 'key:esc.profilePageHeader', @closeEdit
 
 
   componentWillReceiveProps: (newProps) =>
@@ -45,14 +46,19 @@ class ProfilePage.Header extends React.Component
     $.unsubscribe '.profilePageHeader'
 
 
+  closeEdit: =>
+    return unless @state.editing
+
+    @toggleEdit()
+
+
   toggleEdit: =>
     if @state.editing
+      @coverReset()
       $('.blackout').css display: 'none'
-      $('.profile-header').css zIndex: ''
       $(document).off 'click.profilePageHeader:toggleHeaderEdit'
     else
       $('.blackout').css display: 'block'
-      $('.profile-header').css zIndex: 8001
 
       $(document).on 'click.profilePageHeader:toggleHeaderEdit', (e) =>
         return if $(e.target).closest('.profile-change-cover-popup').length
@@ -73,7 +79,10 @@ class ProfilePage.Header extends React.Component
 
 
   render: =>
-    el 'div', className: 'osu-layout__row osu-layout__row--page-compact profile-header',
+    mainClasses = 'osu-layout__row osu-layout__row--page-compact profile-header'
+    mainClasses += ' u-blackout-visible' if @state.editing
+
+    el 'div', className: mainClasses,
       el 'div',
         className: 'profile-cover',
         style:

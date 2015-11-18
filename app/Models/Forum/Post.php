@@ -42,6 +42,8 @@ class Post extends Model
         'post_edit_locked' => 'boolean',
     ];
 
+    private $normalizedUsers = [];
+
     public function forum()
     {
         return $this->belongsTo("App\Models\Forum\Forum", 'forum_id', 'forum_id');
@@ -98,19 +100,23 @@ class Post extends Model
 
     public function normalizeUser($user)
     {
-        if ($user === null) {
-            return new DeletedUser();
+        $key = $user === null ? 'user-null' : "user-{$user->user_id}";
+
+        if (!isset($this->normalizedUsers[$key])) {
+            if ($user === null) {
+                $normalizedUser = new DeletedUser();
+            } elseif ($user->isRestricted()) {
+                $normalizedUser = new DeletedUser();
+                $normalizedUser->username = $user->username;
+                $normalizedUser->user_colour = 'ccc';
+            } else {
+                $normalizedUser = $user;
+            }
+
+            $this->normalizedUsers[$key] = $normalizedUser;
         }
 
-        if ($user->isRestricted()) {
-            $restrictedUser = new DeletedUser();
-            $restrictedUser->username = $user->username;
-            $restrictedUser->user_colour = 'ccc';
-
-            return $restrictedUser;
-        } else {
-            return $user;
-        }
+        return $this->normalizedUsers[$key];
     }
 
     public function userNormalized()

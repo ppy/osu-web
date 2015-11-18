@@ -20,7 +20,7 @@ class @Forum
   _postsCounter: document.getElementsByClassName('js-forum__posts-counter')
   _postsProgress: document.getElementsByClassName('js-forum__posts-progress')
   _stickyHeaderTopic: document.getElementsByClassName('js-forum-topic-headernav')
-  posts: document.getElementsByClassName('forum-post')
+  posts: document.getElementsByClassName('js-forum-post')
 
   boot: =>
     @initialScrollTo()
@@ -84,7 +84,6 @@ class @Forum
 
     if !showNext
       $(@endPost()).find('.delete-post-link').css(display: '')
-      $('#forum-topic-reply-box').css(display: 'block')
 
 
   refreshCounter: =>
@@ -93,7 +92,7 @@ class @Forum
     currentPost = null
     anchorHeight = window.innerHeight * 0.5
 
-    pageBottom = document.getElementsByClassName('js-page-footer-padding')[0]
+    pageBottom = document.getElementsByClassName('js-page-footer')[0]
       .getBoundingClientRect()
       .bottom
 
@@ -196,10 +195,10 @@ class @Forum
       skip_layout: 1
 
     if mode == 'previous'
-      $refPost = $('.forum-post').first()
+      $refPost = $('.js-forum-post').first()
       options['end'] = $refPost.data('post-id') - 1
     else
-      $refPost = $('.forum-post').last()
+      $refPost = $('.js-forum-post').last()
       options['start'] = $refPost.data('post-id') + 1
 
     $linkDiv.addClass 'loading'

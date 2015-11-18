@@ -40,7 +40,7 @@ class @Fade
 
 
   outComplete: (e) ->
-      target = e.target
+      target = e.currentTarget
       return unless getComputedStyle(target).opacity == '0'
 
       target.classList.remove 'js-fade--out'
@@ -63,7 +63,7 @@ class @Fade
 
 
   inComplete: (e) ->
-      target = e.target
+      target = e.currentTarget
       return unless getComputedStyle(target).opacity == '1'
 
       target.classList.remove 'js-fade--in'
@@ -84,4 +84,4 @@ class @Fade
 
     nextRun = => @runQueue(true)
 
-    setTimeout nextRun, 0
+    setTimeout nextRun, 10

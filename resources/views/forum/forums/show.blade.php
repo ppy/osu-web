@@ -19,14 +19,14 @@
 
 @section("content")
     <div class="osu-layout__row osu-layout__row--page-compact">
-        <div class="forum-header forum-category-header forum-category-header--{{ $forum->categorySlug() }} forum-category-header--main">
-            <div>
+        <div class="forum-category-header forum-colour__bg--{{ $forum->categorySlug() }} forum-category-header--forum">
+            <div class="forum-category-header__titles forum-category-header__titles--forum">
                 <ol class="breadcrumb forums-breadcrumb">
                     @include("forum.forums._nav", ["forum_parents" => $forum->forum_parents])
                 </ol>
 
-                <h1>
-                    <a href="{{ route("forum.forums.show", $forum->forum_id) }}">
+                <h1 class="forum-category-header__forum-title">
+                    <a class="link--white link--no-underline" href="{{ route("forum.forums.show", $forum->forum_id) }}">
                         {{ $forum->forum_name }}
                     </a>
                 </h1>

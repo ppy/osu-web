@@ -25,6 +25,7 @@ $(document).on 'submit', 'form', osu.showLoadingOverlay
 
 
 $(document).on 'ready page:load', =>
+  @stickyFooter ||= new StickyFooter
   @stickyHeader ||= new StickyHeader
   @globalDrag ||= new GlobalDrag
   @gallery ||= new Gallery
@@ -39,6 +40,8 @@ $(document).on 'ready page:load', =>
   @forumPostsSeek ||= new ForumPostsSeek(@forum)
   @forumSearchModal ||= new ForumSearchModal(@forum)
   @forumTopicPostJump ||= new ForumTopicPostJump(@forum)
+  @forumTopicReply ||= new ForumTopicReply(@forum)
+  @forumTopicCover ||= new ForumTopicCover(@forum)
 
   @menu ||= new Menu
   @logoMenu ||= new LogoMenu
@@ -57,6 +60,10 @@ $(document).on 'ready page:load', =>
 $(document).on 'change', '.js-url-selector', (e) ->
   $target = $(e.target)
   osu.navigate $target.val(), $target.attr('data-keep-scroll') == '1'
+
+
+$(document).on 'keydown', (e) ->
+  $.publish 'key:esc' if e.keyCode == 27
 
 
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
