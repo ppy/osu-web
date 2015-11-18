@@ -417,6 +417,15 @@
   font-size: 80px;
   color: #fff;
   background: fade(#000, 70%);
+  transition: opacity 120ms;
+
+  opacity: 0;
+  pointer-events: none;
+
+  &[data-state="enabled"] {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 
 .profile-score-ranks {

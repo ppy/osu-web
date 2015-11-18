@@ -97,10 +97,11 @@ class ProfilePage.Header extends React.Component
 
       el 'div',
         className: 'profile-cover-uploading-spinner'
-        style:
-          display: 'none' unless @props.isCoverUpdating
+        'data-state': 'enabled' if @props.isCoverUpdating
 
-        el 'i', className: 'fa fa-circle-o-notch fa-spin'
+        el 'div', className: 'spinner',
+          el 'div', className: 'spinner__cube'
+          el 'div', className: 'spinner__cube spinner__cube--2'
 
       if @props.withEdit
         el 'div', className: 'profile-change-cover-button', onClick: @toggleEdit,
