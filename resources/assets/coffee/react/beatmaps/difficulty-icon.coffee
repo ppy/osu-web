@@ -20,7 +20,7 @@
 {div,i} = React.DOM
 el = React.createElement
 
-window.BeatmapDifficultyIcon = React.createClass
+class @BeatmapDifficultyIcon extends React.Component
   render: ->
     difficulty = @props.difficulty
     rating = undefined
