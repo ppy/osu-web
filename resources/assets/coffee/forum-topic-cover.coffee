@@ -22,7 +22,7 @@ class @ForumTopicCover
 
 
   constructor: ->
-    $(document).on 'click', '.js-forum-topic-cover--open-modal', @openModal
+    $(document).on 'click', '.js-forum-topic-cover--open-modal', @toggleModal
     $(document).on 'click', '.js-forum-topic-cover--remove', @remove
     $(document).on 'click', @closeModal
 
@@ -35,8 +35,10 @@ class @ForumTopicCover
   closeModal: (e) =>
     return unless @header.length && @header[0]._open
 
-    return if $(e.target).closest('.js-forum-topic-cover--modal').length
-    return if $(e.target).closest('.js-forum-topic-cover--open-modal').length
+    if e
+      return if $(e.target).closest('.js-forum-topic-cover--open-modal').length
+      return if $(e.target).closest('.js-forum-topic-cover--modal').length
+
     return if $('#overlay').is(':visible')
 
     $('.blackout').css display: 'none'
@@ -49,9 +51,16 @@ class @ForumTopicCover
     return @uploadButton[0].getAttribute('data-method') != 'post'
 
 
-  openModal: (e) =>
+  toggleModal: (e) =>
     e.preventDefault()
 
+    if @header[0]._open
+      @closeModal()
+    else
+      @openModal()
+
+
+  openModal: =>
     $('.blackout').css display: 'block'
     @header[0]._open = true
     @header[0].classList.add 'forum-category-header--cover-modal'
