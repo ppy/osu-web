@@ -31,6 +31,7 @@ class ProfilePage.Header extends React.Component
     @_removeListeners()
     $.subscribe 'user:cover:set.profilePageHeader', @coverSet
     $.subscribe 'user:cover:reset.profilePageHeader', @coverReset
+    $.subscribe 'key:esc.profilePageHeader', @closeEdit
 
 
   componentWillReceiveProps: (newProps) =>
@@ -43,6 +44,12 @@ class ProfilePage.Header extends React.Component
 
   _removeListeners: =>
     $.unsubscribe '.profilePageHeader'
+
+
+  closeEdit: =>
+    return unless @state.editing
+
+    @toggleEdit()
 
 
   toggleEdit: =>

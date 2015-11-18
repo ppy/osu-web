@@ -26,6 +26,8 @@ class @ForumTopicCover
     $(document).on 'click', '.js-forum-topic-cover--remove', @remove
     $(document).on 'click', @closeModal
 
+    $.subscribe 'key:esc', @closeModal
+
     $(document).on 'ready page:load', @refresh
     @refresh()
 

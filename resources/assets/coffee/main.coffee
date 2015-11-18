@@ -62,6 +62,10 @@ $(document).on 'change', '.js-url-selector', (e) ->
   osu.navigate $target.val(), $target.attr('data-keep-scroll') == '1'
 
 
+$(document).on 'keydown', (e) ->
+  $.publish 'key:esc' if e.keyCode == 27
+
+
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port
 rootUrl += '/'
