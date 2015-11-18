@@ -133,7 +133,7 @@ class @ForumTopicReply
   resizeContainer: =>
     return unless @available()
 
-    @container[0].style.height = "#{@box[0].getBoundingClientRect().height}px"
+    @container[0].style.minHeight = "#{@box[0].getBoundingClientRect().height}px"
 
 
   stick: =>
