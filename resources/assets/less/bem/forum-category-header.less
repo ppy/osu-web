@@ -166,6 +166,17 @@
     margin: 0;
   }
 
+  &__loading {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: fade(@grey-0, 50%);
+    display: none;
+    transition: opacity 120ms;
+  }
+
   &__name {
     color: @grey-f;
     .default-text-shadow;
