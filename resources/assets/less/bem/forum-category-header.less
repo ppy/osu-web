@@ -90,17 +90,25 @@
   &--topic-category-other { ._topic-category('other'); }
 
   &__action {
-    opacity: 0;
+    @media @desktop {
+      opacity: 0;
+    }
   }
 
   &__actions {
     position: absolute;
-    right: 0;
-    width: 0;
-    bottom: (@spacing * 2);
 
     display: flex;
     justify-content: center;
+
+    right: @spacing;
+    bottom: @spacing;
+
+    @media @desktop {
+      right: 0;
+      bottom: (@spacing * 2);
+      width: 0;
+    }
   }
 
   &__cover-uploader {
