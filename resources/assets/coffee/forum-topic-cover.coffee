@@ -90,13 +90,13 @@ class @ForumTopicCover
         topic_id: $button.attr('data-topic-id')
       dropZone: $dropZone
       submit: =>
-        fade.in @loading[0]
+        @loading[0].setAttribute('data-state', 'enabled')
       done: (_e, data) =>
         @update(data.result.data)
       fail: (_e, data) ->
         osu.ajaxError data.jqXHR
       complete: (_e, data) =>
-        fade.out @loading[0]
+        @loading[0].setAttribute('data-state', '')
 
     $button[0]._intialised = true
 
@@ -135,14 +135,14 @@ class @ForumTopicCover
 
     return unless confirm e.currentTarget.getAttribute('data-destroy-confirm')
 
-    fade.in @loading[0]
+    @loading[0].setAttribute('data-state', 'enabled')
     $.ajax
       url: $button.attr('data-url')
       method: 'delete'
     .success (data) =>
       @update data.data
     .complete =>
-      fade.out @loading[0]
+      @loading[0].setAttribute('data-state', '')
 
 
   refresh: =>

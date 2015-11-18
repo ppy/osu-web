@@ -26,7 +26,9 @@
             js-forum-topic-cover--header"
         style="{{ isset($cover['data']['fileUrl']) === true ? "background-image: url('{$cover['data']['fileUrl']}');" : '' }}"
     >
-        <div class="forum-category-header__loading js-forum-topic-cover--loading"></div>
+        <div class="forum-category-header__loading js-forum-topic-cover--loading">
+            @include('objects._spinner')
+        </div>
 
         <div class="forum-category-header__titles">
             @include('forum.topics._header_breadcrumb', ['headerBreadcrumbExtraClasses' => 'forum-header-breadcrumb--large'])
