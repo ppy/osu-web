@@ -130,9 +130,9 @@
         </div>
 
         @if($product->inStock())
-        <div class="osu-layout__sub-row osu-layout__sub-row--with-separator js-store-add-to-cart" id="add-to-cart">
+        <div class="osu-layout__sub-row osu-layout__sub-row--with-separator" id="add-to-cart">
             <div class="big-button">
-                <button type="submit" class="btn-osu btn-osu-default">Add to Cart</button>
+                <button type="submit" class="js-store-add-to-cart btn-osu btn-osu-default">Add to Cart</button>
             </div>
         </div>
         @endif

@@ -1,0 +1,319 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+.forum-post {
+  @_reply-xs-top-margin: 4px;
+
+  margin-bottom: (@spacing / 2);
+  padding: 0;
+
+  &:hover &__actions {
+    opacity: 1;
+  }
+
+  &--create {
+    margin-top: (@spacing / 2);
+  }
+
+  &--reply {
+    backface-visibility: hidden;
+    transition: opacity 120ms;
+    background-color: fade(@grey-3, 90%);
+    box-shadow: none;
+    width: 100%;
+    margin-bottom: 0;
+    padding-bottom: @spacing;
+    padding-top: @_reply-xs-top-margin;
+
+    @media @desktop {
+      padding-top: @spacing;
+    }
+  }
+
+  &--special {
+    @media @desktop {
+      margin-left: (-@spacing / 2);
+    }
+  }
+
+  &__avatar-container {
+    .default-border-radius;
+    .default-box-shadow;
+    width: 100%;
+    padding: (@spacing / 2);
+    background-color: @grey-f;
+    margin-top: @spacing;
+    margin-bottom: @spacing;
+
+    &--reply {
+      width: 60px;
+      padding: ceil(@spacing / 4);
+      align-self: flex-end;
+      margin-right: @spacing;
+      margin-top: 0;
+    }
+  }
+
+  &__actions {
+    ._dektop-position {
+      @media @desktop {
+        justify-content: flex-start;
+        width: 0;
+        opacity: 0;
+        right: 0;
+        top: (@spacing * 2);
+      }
+    }
+
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 120ms ease-in-out;
+
+    right: (@spacing * 3);
+    bottom: (@spacing * 2);
+    ._dektop-position;
+
+    &--reply {
+      top: (-@_reply-xs-top-margin);
+      height: 0;
+      ._dektop-position;
+    }
+  }
+
+  &__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    // to prevent child from overflowing
+    // reference: https://bugzilla.mozilla.org/show_bug.cgi?id=1108514#c2
+    min-width: 0;
+
+    &--reply {
+      .default-box-shadow;
+      overflow: hidden;
+      background-color: @grey-f;
+
+      @media @desktop {
+        .default-border-radius;
+      }
+    }
+  }
+
+  &__card {
+    background-color: @grey-f;
+    .default-box-shadow;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    @media @desktop {
+      flex-direction: row;
+      .default-border-radius;
+    }
+
+    &--large {
+      @media @desktop {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+
+    &--large-special {
+      @media @desktop {
+        border-top-right-radius: 0;
+      }
+    }
+  }
+
+  &__content {
+    font-size: 12px;
+    flex: none;
+
+    padding-top: (@spacing * 2);
+    padding-bottom: (@spacing * 2);
+    padding-left: (@spacing * 3);
+    padding-right: (@spacing * 3);
+
+    &--edit-bar {
+      background-color: @gray-lighter;
+      display: flex;
+      justify-content: space-between;
+      padding-top: @spacing;
+      padding-bottom: @spacing;
+    }
+
+    &--footer {
+      order: 2;
+      font-weight: bold;
+      color: @grey-7;
+
+      padding-top: 0;
+      padding-bottom: (@spacing * 2);
+      @media @desktop {
+        order: 0;
+        padding-top: (@spacing * 2);
+      }
+    }
+
+    &--header {
+      font-weight: bold;
+      order: 1;
+
+      padding-top: 0;
+      padding-bottom: 0;
+
+      @media @desktop {
+        order: 0;
+        padding-top: (@spacing * 2);
+      }
+    }
+
+    &--main {
+      flex: 1 0 auto;
+      order: 0;
+
+      padding-top: (@spacing * 2);
+      padding-bottom: (@spacing * 2);
+      @media @desktop {
+        padding-top: (@spacing * 4);
+        padding-bottom: (@spacing * 4);
+      }
+    }
+
+    &--signature {
+      background-color: @grey-e;
+
+      padding-top: (@spacing * 2);
+      padding-bottom: (@spacing * 2);
+
+      .bbcode {
+        max-height: 150px;
+        overflow: hidden;
+      }
+    }
+  }
+
+  &__info-panel {
+    flex: none;
+    width: 180px;
+    background-color: @blue-darker;
+    display: flex;
+    flex-direction: column;
+
+    &--reply {
+      background-color: transparent;
+    }
+  }
+
+  &__info-panel-extra {
+    background-color: fade(@grey-f, 90%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1 0 auto;
+    padding: @spacing;
+    text-align: center;
+  }
+
+  &__info-panel-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: @spacing (@spacing * 3) 0;
+    background-image: linear-gradient(to bottom, transparent, fade(@grey-0, 20%));
+
+    &::before {
+      position: absolute;
+      content: ' ';
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-image: url("/images/backgrounds/button.svg");
+      background-size: 300px;
+      opacity: 0.5;
+    }
+  }
+
+  &__info-panel-xs {
+    .default-border-radius;
+    background-color: @blue-darker;
+    display: flex;
+    align-items: center;
+    padding: @spacing;
+    margin: (@spacing * 2);
+  }
+
+  &__info-panel-xs-flag {
+    margin-left: (@spacing / 2);
+  }
+
+  &__info-panel-xs-main {
+    flex: 1 0 auto;
+  }
+
+  &__info-panel-xs-title {
+    font-size: 10px;
+    color: @grey-f;
+  }
+
+  &__info-panel-xs-name {
+    font-size: 14px;
+    display: flex;
+  }
+
+  &__info-row {
+    font-size: 11px;
+    font-weight: 600;
+    font-style: italic;
+    color: @grey-5;
+    margin-bottom: (@spacing / 2);
+
+    &--user-title {
+      color: @grey-3;
+    }
+  }
+
+  &__reply-content {
+    display: flex;
+  }
+
+  &__stripe {
+    width: (@spacing / 2);
+  }
+
+  &__username {
+    .default-text-shadow;
+    display: block;
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: @spacing;
+
+    &,
+    &:focus,
+    &:hover,
+    &:active {
+      color: @grey-f;
+      text-decoration: none;
+    }
+  }
+}

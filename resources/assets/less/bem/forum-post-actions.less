@@ -1,0 +1,62 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+.forum-post-actions {
+  display: flex;
+  margin-left: (-@spacing / 2);
+  margin-right: (-@spacing / 2);
+
+  @media @desktop {
+    flex-direction: column;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  &__action {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    .circle(30px);
+    .default-box-shadow;
+
+    background-color: @blue-darker;
+    color: @grey-f;
+    transition: all 120ms ease-in-out;
+    font-size: 14px;
+
+    &:focus,
+    &:hover,
+    &:active {
+      color: @grey-f;
+      text-decoration: none;
+      box-shadow: 0 5px 15px fade(@grey-0, 40%);
+    }
+
+    margin: 0 (@spacing / 2);
+
+    @media @desktop {
+      margin: (@spacing / 2) 0;
+    }
+
+    &--disabled {
+      background-color: @grey-3;
+      cursor: not-allowed;
+    }
+  }
+}

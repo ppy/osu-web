@@ -18,11 +18,11 @@
 <?php
     if (!isset($editing)) { $editing = false; }
 ?>
-<div class="post-box__toolbar">
+<div class="post-box__toolbar hidden-xs">
     @include("forum._post_toolbar")
 </div>
 
-<div class="post-post-editor__actions">
+<div class="post-editor__actions">
     @if ($editing)
         <button class="btn-osu btn-osu--small btn-osu-default js-edit-post-cancel post-editor__action" type="button">{{ trans("forum.topic.post_edit.cancel") }}</button>
     @endif

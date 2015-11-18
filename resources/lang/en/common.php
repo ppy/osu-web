@@ -29,6 +29,10 @@ return [
             'item' => ':count unit|:count units',
         ],
 
+        'dropzone' => [
+            'target' => 'drop here to upload',
+        ],
+
         'play_mode' => [
             'ctb' => 'osu!ctb',
             'mania' => 'osu!mania',

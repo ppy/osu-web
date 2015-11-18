@@ -21,6 +21,8 @@ class @AdjustFooter
 
   constructor: ->
     $(document).on 'ready page:load', @adjust
+    $(window).on 'resize', _.throttle(@adjust, 500)
+    $.subscribe 'fixedBottomBar:update', @adjust
 
     @adjust()
 

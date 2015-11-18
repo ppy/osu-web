@@ -25,8 +25,9 @@ use App\Models\Genre;
 use App\Models\Language;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
-use App\Transformers\BeatmapTransformer;
+use App\Transformers\BeatmapSetTransformer;
 use Request;
+use Auth;
 
 class BeatmapController extends Controller
 {
@@ -37,7 +38,7 @@ class BeatmapController extends Controller
         $fractal = new Manager();
         $languages = Language::listing();
         $genres = Genre::listing();
-        $data = new Collection(BeatmapSet::listing(), new BeatmapTransformer);
+        $data = new Collection(BeatmapSet::listing(), new BeatmapSetTransformer);
         $beatmaps = $fractal->createData($data)->toArray();
 
         // temporarily put filters here
@@ -50,7 +51,7 @@ class BeatmapController extends Controller
         ];
 
         $statuses = [
-            ['id' => null, 'name' => trans('beatmaps.status.all')],
+            ['id' => null, 'name' => trans('beatmaps.status.any')],
             ['id' => 0, 'name' => trans('beatmaps.status.ranked-approved')],
             ['id' => 1, 'name' => trans('beatmaps.status.approved')],
             ['id' => 2, 'name' => trans('beatmaps.status.faves')],
@@ -66,15 +67,14 @@ class BeatmapController extends Controller
         ];
 
         $ranks = [
-            ['id' => null, 'name' => trans('beatmaps.rank.any')],
-            ['id' => 0, 'name' => trans('beatmaps.rank.silver-ss')],
-            ['id' => 1, 'name' => trans('beatmaps.rank.ss')],
-            ['id' => 2, 'name' => trans('beatmaps.rank.silver-s')],
-            ['id' => 3, 'name' => trans('beatmaps.rank.s')],
-            ['id' => 4, 'name' => trans('beatmaps.rank.a')],
-            ['id' => 5, 'name' => trans('beatmaps.rank.b')],
-            ['id' => 6, 'name' => trans('beatmaps.rank.c')],
-            ['id' => 7, 'name' => trans('beatmaps.rank.d')],
+            ['id' => 'XH', 'name' => trans('beatmaps.rank.silver-ss')],
+            ['id' => 'X', 'name' => trans('beatmaps.rank.ss')],
+            ['id' => 'SH', 'name' => trans('beatmaps.rank.silver-s')],
+            ['id' => 'S', 'name' => trans('beatmaps.rank.s')],
+            ['id' => 'A', 'name' => trans('beatmaps.rank.a')],
+            ['id' => 'B', 'name' => trans('beatmaps.rank.b')],
+            ['id' => 'C', 'name' => trans('beatmaps.rank.c')],
+            ['id' => 'D', 'name' => trans('beatmaps.rank.d')],
         ];
 
         $filters = ['data' => compact('modes', 'statuses', 'genres', 'languages', 'extras', 'ranks')];
@@ -84,31 +84,43 @@ class BeatmapController extends Controller
 
     public function search()
     {
-        $params = [
-            'query' => Request::input('q'),
-            'mode' => Request::input('m'),
-            'status' => Request::input('s'),
-            'genre' => Request::input('g'),
-            'language' => Request::input('l'),
-            'extra' => array_filter(explode('-', Request::input('e')), 'strlen'),
-            'rank' => Request::input('r'),
-            'page' => Request::input('page'),
-        ];
+        $current_user = Auth::user();
 
-        $params = array_filter(
-            $params,
-            function ($v, $k) {
-                if (is_array($v)) {
-                    return (!empty($v));
-                } else {
-                    return (presence($v) !== null);
-                }
-            },
-            ARRAY_FILTER_USE_BOTH
-        );
+        if (is_null($current_user)) {
+            $data = new Collection([]);
+        } else {
+            $params = [
+                'query' => Request::input('q'),
+                'mode' => Request::input('m'),
+                'status' => Request::input('s'),
+                'genre' => Request::input('g'),
+                'language' => Request::input('l'),
+                'extra' => array_filter(explode('-', Request::input('e')), 'strlen'),
+                'rank' => array_filter(explode('-', Request::input('r')), 'strlen'),
+                'page' => Request::input('page'),
+                'sort' => explode('_', Request::input('sort')),
+            ];
+
+            if (!$current_user->isSupporter()) {
+                unset($params['rank']);
+            }
+
+            $params = array_filter(
+                $params,
+                function ($v, $k) {
+                    if (is_array($v)) {
+                        return (!empty($v));
+                    } else {
+                        return (presence($v) !== null);
+                    }
+                },
+                ARRAY_FILTER_USE_BOTH
+            );
+
+            $data = new Collection(BeatmapSet::search($params), new BeatmapSetTransformer);
+        }
 
         $fractal = new Manager();
-        $data = new Collection(BeatmapSet::search($params), new BeatmapTransformer);
         $beatmaps = $fractal->createData($data)->toArray();
 
         return $beatmaps;

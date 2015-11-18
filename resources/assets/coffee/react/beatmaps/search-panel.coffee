@@ -17,60 +17,72 @@
 *
 ###
 
-{div,a,i,input} = React.DOM
+{div,a,i,input,h1,h2} = React.DOM
 el = React.createElement
 
-window.SearchPanel = React.createClass
-    keyDelay: null
-    prevText: null
-    search_url: '/beatmaps/search'
+class @SearchPanel extends React.Component
+  keyDelay: null
+  prevText: null
+  search_url: '/beatmaps/search'
 
-    getInitialState: ->
-      { filters: JSON.parse(document.getElementById('json-filters').text)['data'] }
+  constructor: (props) ->
+    super props
+    @state =
+      filters: JSON.parse(document.getElementById('json-filters').text)['data']
 
-    keypressed: ->
-      text = $('#searchbox').val()
+  keypressed: ->
+    text = $('#searchbox').val().trim()
 
-      if text == null or text == '' or text == @prevText
-        return
+    if (@prevText == null and (text == null or text == '')) or text == @prevText
+      return
 
-      @prevText = text
-      if @keyDelay != null
-        clearTimeout @keyDelay
-      @keyDelay = setTimeout(@submit, 500)
+    @prevText = text
+    if @keyDelay != null
+      clearTimeout @keyDelay
+    @keyDelay = setTimeout(@submit.bind(this), 500)
 
-    submit: ->
-      searchText = @prevText
-      $(document).trigger 'beatmap:search:start'
+  submit: ->
+    searchText = @prevText
+    $(document).trigger 'beatmap:search:start'
 
-    componentDidMount: ->
-      $('#searchbox').on 'keyup', @keypressed
+  componentDidMount: ->
+    $('#searchbox').on 'keyup', @keypressed.bind(this)
 
-    componentWillUnmount: ->
-      $('#searchbox').off 'keyup'
+  componentWillUnmount: ->
+    $('#searchbox').off 'keyup'
 
-    show_more: ->
-      $('#search').addClass 'expanded'
-      false
+  show_more: (i, e) ->
+    e.preventDefault
+    $('#search').addClass 'expanded'
 
-    render: ->
-      filters = @state.filters
-      div id: 'search',
-        div className: 'background', style:
-          'background-image': "url(#{@props.background})"
+  render: ->
+    background = {backgroundImage: "url(#{@props.background})"}
+    filters = @state.filters
+
+    if (currentUser.id == undefined)
+      div id: 'forum-index-header', className: 'beatmaps-header osu-layout__row osu-layout__row--page',
+        div className: 'background', style: background
+        div className: 'text-area',
+          div className: 'text',
+            h2 {}, 'witty tag line'
+            h1 {}, 'beatmaps'
+    else
+      div id: 'search', className: 'osu-layout__row osu-layout__row--page',
+        div className: 'background', style: background
         div className: 'box',
           input id: 'searchbox', type: 'textbox', name: 'search', placeholder: Lang.get("beatmaps.listing.search.prompt")
           i className:'fa fa-search'
 
-        el(FilterSelector, name: 'mode', title: 'Mode', options: filters.modes, default: 0)
-        el(FilterSelector, name:'status', title: 'Rank Status', options: filters.statuses, default: 0)
+        el(SearchFilter, name: 'mode', title: 'Mode', options: filters.modes, default: 0)
+        el(SearchFilter, name:'status', title: 'Rank Status', options: filters.statuses, default: 0)
 
         div className: 'more',
-          a className: 'toggle', href:'#', onClick: @show_more,
+          a className: 'toggle', href:'#', onMouseDown: @show_more,
             div {}, Lang.get('beatmaps.listing.search.options')
             div {}, i className:'fa fa-angle-down'
 
-          el(FilterSelector, name: 'genre', title: 'Genre', options: filters.genres, default: filters.genres[0]['id'])
-          el(FilterSelector, name: 'language', title: 'Language', options: filters.languages, default: filters.languages[0]['id'])
-          el(FilterSelector, name: 'extra', title: 'Extra', options: filters.extras, multiselect: true)
-          el(FilterSelector, name: 'rank', title: 'Rank Achieved', options: filters.ranks, default: null)
+          el(SearchFilter, name: 'genre', title: 'Genre', options: filters.genres, default: filters.genres[0]['id'])
+          el(SearchFilter, name: 'language', title: 'Language', options: filters.languages, default: filters.languages[0]['id'])
+          el(SearchFilter, name: 'extra', title: 'Extra', options: filters.extras, multiselect: true)
+          if currentUser.isSupporter
+            el(SearchFilter, name: 'rank', title: 'Rank Achieved', options: filters.ranks, multiselect: true)

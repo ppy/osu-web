@@ -22,7 +22,7 @@ class ProfilePage.CoverUploader extends React.Component
   componentDidMount: =>
     $dropzone = $('.js-profile-cover-upload--dropzone')
     $uploadButton = $ '<input>',
-      class: 'js-profile-cover-upload file-upload-input'
+      class: 'js-profile-cover-upload fileupload__input'
       type: 'file'
       name: 'cover_file'
       'data-url': window.changeCoverUrl
@@ -51,7 +51,7 @@ class ProfilePage.CoverUploader extends React.Component
       .remove()
 
   render: =>
-    labelClass = 'btn-osu btn-osu--small btn-osu-default file-upload-label profile-cover-upload__button'
+    labelClass = 'btn-osu btn-osu--small btn-osu-default fileupload profile-cover-upload__button'
     labelClass += ' disabled' unless @props.canUpload
 
     el 'div', className: 'profile-cover-upload',

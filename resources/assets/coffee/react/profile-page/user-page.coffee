@@ -65,10 +65,12 @@ class ProfilePage.UserPage extends React.Component
     el 'div', className: 'osu-layout__row osu-layout__row--page profile-extra',
       el 'div', className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'me'
       el 'h2', className: 'profile-extra__title', Lang.get('users.show.extra.me.title')
-      if withEditButton
-        el 'a',
-          className: 'post-viewer__action post-viewer__action--profile-user-page'
-          href: '#'
-          onClick: @editStart
-          el 'i', className: 'fa fa-edit'
+      if withEditButton && !@props.userPage.editing
+        el 'div', className: 'profile-extra__actions',
+          el 'div', className: 'forum-post-actions',
+            el 'a',
+              className: 'forum-post-actions__action'
+              href: '#'
+              onClick: @editStart
+              el 'i', className: 'fa fa-edit'
       page

@@ -69,6 +69,7 @@ elixir(function(mix) {
 
     "adjust-footer.coffee",
     "fade.coffee",
+    "form-placeholder-hide.coffee",
     "gallery.coffee",
     "global-drag.coffee",
     "header-menu.coffee",
@@ -77,12 +78,15 @@ elixir(function(mix) {
     "navbar-mobile.coffee",
     "spoilerbox.coffee",
     "store.coffee",
+    "sticky-footer.coffee",
     "sticky-header.coffee",
     "forum.coffee",
     "forum-auto-click.coffee",
     "forum-posts-seek.coffee",
     "forum-search-modal.coffee",
     "forum-topic-post-jump.coffee",
+    "forum-topic-cover.coffee",
+    "forum-topic-reply.coffee",
     "forum/post-box.coffee",
     "forum/topic-ajax.coffee",
     "ujs-common.coffee",
@@ -97,28 +101,7 @@ elixir(function(mix) {
     "react/user-card.coffee",
   ], "public/js/app.js")
   .coffee([
-    "react/profile-page/main.coffee",
-
-    "react/profile-page/achievement-badge.coffee",
-    "react/profile-page/contents-tab.coffee",
-    "react/profile-page/contents.coffee",
-    "react/profile-page/cover-selection.coffee",
-    "react/profile-page/cover-selector.coffee",
-    "react/profile-page/cover-uploader.coffee",
-    "react/profile-page/extra-tab.coffee",
-    "react/profile-page/extra.coffee",
-    "react/profile-page/header-flags.coffee",
-    "react/profile-page/header-info.coffee",
-    "react/profile-page/header.coffee",
-    "react/profile-page/info.coffee",
-    "react/profile-page/kudosu.coffee",
-    "react/profile-page/rank.coffee",
-    "react/profile-page/recent-achievements.coffee",
-    "react/profile-page/recent-activities.coffee",
-    "react/profile-page/stats.coffee",
-    "react/profile-page/user-page-editor.coffee",
-    "react/profile-page/user-page.coffee",
-
+    "react/profile-page/*.coffee",
     "react/profile-page.coffee",
   ], "public/js/react/profile-page.js")
   .coffee([
