@@ -17,18 +17,9 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Transformers;
+namespace App\Models\Score;
 
-use App\Models\Language;
-use League\Fractal;
-
-class LanguageTransformer extends Fractal\TransformerAbstract
+class Mania extends Model
 {
-    public function transform(Language $language)
-    {
-        return [
-            'id' => $language->language_id == 0 ? null : $language->language_id,
-            'name' => trans('beatmaps.language.'.str_replace(' ', '-', strtolower($language->name))),
-        ];
-    }
+    protected $table = 'osu_scores_mania_high';
 }

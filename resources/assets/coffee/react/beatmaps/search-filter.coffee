@@ -38,7 +38,7 @@ class @SearchFilter extends React.Component
     multiselect: React.PropTypes.bool
 
   select: (i, e) ->
-    e.preventDefault
+    e.preventDefault()
     if @selected(i)
       if @props.multiselect
         @setState { selected: _.without(@state.selected, i) }, @triggerUpdate
@@ -51,9 +51,16 @@ class @SearchFilter extends React.Component
         @setState { selected: [ i ] }, @triggerUpdate
 
   triggerUpdate: ->
+    if @props.multiselect
+      value = @state.selected.filter (n) ->
+        n != undefined
+      .join('-')
+    else
+      value = @state.selected[0]
+
     payload =
       name: @props.name
-      value: if @props.multiselect then @state.selected.join('-') else @state.selected[0]
+      value: value
     $(document).trigger 'beatmap:search:filtered', payload
 
   selected: (i) ->
@@ -62,7 +69,7 @@ class @SearchFilter extends React.Component
   render: ->
     selectors = []
     $.each @props.options, (i, e) =>
-      selectors.push a href:'#', className: ('active' if @selected(e['id'])), value: e['id'], key: i, onClick: @select.bind(@, e['id']), e['name']
+      selectors.push a href:'#', className: ('active' if @selected(e['id'])), value: e['id'], key: i, onMouseDown: @select.bind(@, e['id']), e['name']
 
     div id: @props.id, className: 'selector', 'data-name': @props.name,
       span className:'header', @props.title

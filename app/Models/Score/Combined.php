@@ -17,18 +17,17 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Transformers;
+namespace App\Models\Score;
 
-use App\Models\Language;
-use League\Fractal;
-
-class LanguageTransformer extends Fractal\TransformerAbstract
+class Combined extends Model
 {
-    public function transform(Language $language)
+    public static function forUser(\App\Models\User $user)
     {
-        return [
-            'id' => $language->language_id == 0 ? null : $language->language_id,
-            'name' => trans('beatmaps.language.'.str_replace(' ', '-', strtolower($language->name))),
-        ];
+        $osu = Osu::forUser($user);
+        $taiko = Taiko::forUser($user);
+        $mania = Mania::forUser($user);
+        $fruits = Fruit::forUser($user);
+
+        return $osu->union($taiko)->union($mania)->union($fruits);
     }
 }

@@ -41,7 +41,6 @@ class @SearchSort extends React.Component
     options = [
       {id: 'title', name: 'title'},
       {id: 'artist', name: 'artist'},
-      {id: 'creator', name: 'creator'},
       {id: 'difficulty', name: 'difficulty'},
       {id: 'ranked', name: 'ranked'},
       {id: 'rating', name: 'rating'},
@@ -52,7 +51,7 @@ class @SearchSort extends React.Component
       classes = []
       if @selected(e['id'])
         classes = ['active', @props.sorting.order]
-      selectors.push a href:'#', className: classes.join(' '), value: e['id'], key: i, onClick: @select.bind(@, e['id']), e['name']
+      selectors.push a href:'#', className: classes.join(' '), value: e['id'], key: i, onMouseDown: @select.bind(@, e['id']), e['name']
 
     div className: 'sorting',
       selectors

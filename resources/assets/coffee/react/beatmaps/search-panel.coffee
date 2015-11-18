@@ -77,7 +77,7 @@ class @SearchPanel extends React.Component
         el(SearchFilter, name:'status', title: 'Rank Status', options: filters.statuses, default: 0)
 
         div className: 'more',
-          a className: 'toggle', href:'#', onClick: @show_more,
+          a className: 'toggle', href:'#', onMouseDown: @show_more,
             div {}, Lang.get('beatmaps.listing.search.options')
             div {}, i className:'fa fa-angle-down'
 
@@ -85,4 +85,4 @@ class @SearchPanel extends React.Component
           el(SearchFilter, name: 'language', title: 'Language', options: filters.languages, default: filters.languages[0]['id'])
           el(SearchFilter, name: 'extra', title: 'Extra', options: filters.extras, multiselect: true)
           if currentUser.isSupporter
-            el(SearchFilter, name: 'rank', title: 'Rank Achieved', options: filters.ranks, default: null)
+            el(SearchFilter, name: 'rank', title: 'Rank Achieved', options: filters.ranks, multiselect: true)
