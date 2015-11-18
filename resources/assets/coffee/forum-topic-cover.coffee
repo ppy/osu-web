@@ -40,7 +40,7 @@ class @ForumTopicCover
 
 
   closeModal: (e) =>
-    return unless @header.length && @header[0]._open
+    return unless @hasCoverEditor() && @header[0]._open
 
     if e
       return if $(e.target).closest('.js-forum-topic-cover--open-modal').length
@@ -56,6 +56,10 @@ class @ForumTopicCover
 
   hasCover: =>
     return @uploadButton[0].getAttribute('data-method') != 'post'
+
+
+  hasCoverEditor: =>
+    return @uploadButton.length > 0
 
 
   toggleModal: (e) =>
@@ -142,7 +146,7 @@ class @ForumTopicCover
 
 
   refresh: =>
-    return unless @header.length
+    return unless @hasCoverEditor()
 
     backgroundImage = if @hasCover() then "url('#{@uploadButton[0].getAttribute('data-file-url')}')" else ''
     @header[0].style.backgroundImage = backgroundImage
