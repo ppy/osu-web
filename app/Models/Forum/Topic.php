@@ -69,7 +69,7 @@ class Topic extends Model
             'topic_first_poster_colour' => $poster->user_colour,
         ]);
 
-        DB::transaction(function () use ($topic, $forum, $title, $poster, $body, $notifyReplies, $coverId) {
+        DB::transaction(function () use ($topic, $forum, $title, $poster, $body, $notifyReplies, $cover) {
             $topic->save();
             $topic->addPost($poster, $body, $notifyReplies);
 
