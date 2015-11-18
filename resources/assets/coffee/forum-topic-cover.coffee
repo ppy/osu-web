@@ -28,10 +28,10 @@ class @ForumTopicCover
     $(document).on 'click', '.js-forum-topic-cover--remove', @remove
     $(document).on 'click', @closeModal
 
-    $.subscribe 'dragenterGlobal', => @setOverlay('start')
-    $.subscribe 'dragendGlobal', => @setOverlay('end')
-    $(document).on 'dragenter', '.js-forum-topic-cover--modal', => @setOverlay('enter')
-    $(document).on 'dragleave', '.js-forum-topic-cover--modal', => @setOverlay('start')
+    $.subscribe 'dragenterGlobal', => @setOverlay('active')
+    $.subscribe 'dragendGlobal', => @setOverlay('hidden')
+    $(document).on 'dragenter', '.js-forum-topic-cover--overlay', => @setOverlay('hover')
+    $(document).on 'dragleave', '.js-forum-topic-cover--overlay', => @setOverlay('active')
 
     $.subscribe 'key:esc', @closeModal
 

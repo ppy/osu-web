@@ -83,8 +83,10 @@
                                 {{ trans('forum.topic_covers.create.info', ['dimensions' => '2700x700']) }}
                             </p>
 
-                            <div class="forum-category-header__cover-uploader-overlay js-forum-topic-cover--overlay" data-state="end">
-                                {{ trans('common.dropzone.target') }}
+                            <div
+                                class="forum-category-header__cover-uploader-overlay js-forum-topic-cover--overlay"
+                                data-state="hidden">
+                                    {{ trans('common.dropzone.target') }}
                             </div>
                         </div>
                     </div>

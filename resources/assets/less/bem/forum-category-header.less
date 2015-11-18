@@ -148,18 +148,18 @@
     align-items: center;
     justify-content: center;
     color: @grey-f;
-    transition: height 120ms, background-color 120ms;
-    overflow: hidden;
+    transition: opacity 120ms, background-color 120ms;
+    background-color: fade(@grey-0, 50%);
 
-    &[data-state="end"] {
-      height: 0;
+    &[data-state="hidden"] {
+      opacity: 0;
+      pointer-events: none;
     }
 
-    &[data-state="start"] {
-      background-color: fade(@grey-0, 50%);
+    &[data-state="active"] {
     }
 
-    &[data-state="enter"] {
+    &[data-state="hover"] {
       background-color: fade(@grey-0, 80%);
     }
   }
