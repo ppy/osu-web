@@ -16,8 +16,10 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+topIcon = document.getElementsByClassName('js-navbar-mobile--top-icon')
+
 $(document).on 'show.bs.collapse', '.js-navbar-mobile--menu', ->
-  $('.js-navbar-mobile--top-icon').fadeOut()
+  fade.out topIcon[0]
 
 $(document).on 'hide.bs.collapse', '.js-navbar-mobile--menu', ->
-  $('.js-navbar-mobile--top-icon').fadeIn()
+  fade.in topIcon[0]
