@@ -19,6 +19,8 @@
 
 // per-category header image
 .forum-category-header {
+  @_top: ~"forum-category-header";
+
   .at2x-simple("/images/headers/forum-category.png");
   background-size: cover;
   background-position: center;
@@ -31,14 +33,6 @@
 
   &--cover-modal {
     z-index: @z-index--blackout-visible;
-
-    .forum-category-header__action {
-      opacity: 1;
-    }
-
-    .forum-category-header__cover-uploader {
-      display: flex;
-    }
   }
 
   &--forum {
@@ -90,9 +84,13 @@
       opacity: 0;
       will-change: opacity;
 
-      .forum-category-header:hover & {
+      .@{_top}:hover & {
         opacity: 1;
       }
+    }
+
+    .@{_top}--cover-modal & {
+      opacity: 1;
     }
   }
 
@@ -121,10 +119,20 @@
     right: (@spacing * 4);
     background-color: @grey-f;
     padding: @spacing;
-    display: none;
+    display: flex;
     min-width: 250px;
 
     flex-direction: column;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 120ms;
+    will-change: opacity;
+
+    .@{_top}--cover-modal & {
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 
   &__cover-uploader-info {
