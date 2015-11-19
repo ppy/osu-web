@@ -87,10 +87,10 @@ class BBCodeFromDB
 
     public function parseCode($text)
     {
-        $text = str_replace("[code:{$this->uid}]", '<pre class="bbcode__code">', $text);
-        $text = str_replace("[/code:{$this->uid}]", '</pre>', $text);
-
-        return $text;
+        return preg_replace(
+            "#\n*\[code:{$this->uid}\]\n*(.*?)\n*\[/code:{$this->uid}\]\n*#s",
+            '<pre>\\1</pre>',
+            $text);
     }
 
     public function parseColour($text)
@@ -292,7 +292,7 @@ class BBCodeFromDB
         $text = $this->parseYoutube($text);
         $text = $this->parseProfile($text);
 
-        $text = preg_replace('/\n/', "\n<br />", $text);
+        $text = str_replace("\n", '<br />', $text);
         $text = CleanHTML::purify($text);
 
         return "<div class='bbcode'>{$text}</div>";
