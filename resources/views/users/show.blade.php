@@ -34,16 +34,11 @@
     @parent
 
     <script data-turbolinks-eval="always">
-        window.changeCoverUrl = '{{ route("account.update-profile-cover") }}';
-        window.changePageUrl = '{{ route("account.page") }}';
-    </script>
+        var changeCoverUrl = '{{ route("account.update-profile-cover") }}';
+        var changePageUrl = '{{ route("account.page") }}';
 
-    <script id="json-user-info" type="application/json">
-        {!! json_encode($userArray) !!}
-    </script>
-
-    <script id="json-post-editor-toolbar" type="application/json">
-        {!! json_encode(["html" => view()->make('forum._post_toolbar')->render()]) !!}
+        var user = {!! json_encode($userArray['data']) !!};
+        var postEditorToolbar = {!! json_encode(["html" => view()->make('forum._post_toolbar')->render()]) !!};
     </script>
 
     <script src="{{ elixir("js/react/profile-page.js") }}" data-turbolinks-eval="always" data-turbolinks-track></script>

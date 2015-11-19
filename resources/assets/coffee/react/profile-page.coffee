@@ -15,8 +15,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-user = osu.parseJson('json-user-info').data
-
 element = React.createElement ProfilePage.Main,
   user: user
   userPage: user.page.data
