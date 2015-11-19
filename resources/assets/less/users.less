@@ -309,13 +309,11 @@
 
   &__drop-overlay {
     &:extend(.default-border-radius);
-    .fade-element(120ms);
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background-color: fade(#000, 50%);
     color: #fff;
     font-size: 24px;
     padding: @grid-gutter-width/2;
@@ -327,18 +325,11 @@
     height: 100%;
     user-select: none;
 
+    background-color: fade(#000, 50%);
+
     &--hover {
       background-color: fade(#000, 70%);
     }
-
-    &--hidden {
-      opacity: 0;
-    }
-
-    &--inactive {
-      display: none;
-    }
-
   }
 }
 
