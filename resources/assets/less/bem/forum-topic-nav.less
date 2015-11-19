@@ -17,13 +17,15 @@
  *
  */
 .forum-topic-nav {
+  @_top: ~"forum-topic-nav";
+
   @_content-height: 30px;
   @_main-height: (@_content-height + (@spacing * 2));
   width: 100%;
   background-color: @gray-dark;
 
   &:hover {
-    .forum-topic-nav__seek-bar {
+    .@{_top}__seek-bar {
       height: (@spacing * 3 / 2);
 
       &--all {
