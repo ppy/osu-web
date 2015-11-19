@@ -139,9 +139,9 @@ class @ForumTopicCover
     $.ajax
       url: $button.attr('data-url')
       method: 'delete'
-    .success (data) =>
+    .done (data) =>
       @update data.data
-    .complete =>
+    .always =>
       @loading[0].setAttribute('data-state', '')
 
 
