@@ -29,10 +29,6 @@
 
   transition: background-image 120ms;
 
-  &:hover &__action {
-    opacity: 1;
-  }
-
   &--cover-modal {
     z-index: @z-index--blackout-visible;
 
@@ -92,6 +88,11 @@
   &__action {
     @media @desktop {
       opacity: 0;
+      will-change: opacity;
+
+      .forum-category-header:hover & {
+        opacity: 1;
+      }
     }
   }
 
