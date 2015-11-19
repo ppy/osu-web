@@ -103,8 +103,8 @@
                         <i class="fa fa-trash"></i>
                     </a>
                 </div>
-            @endif
-        </div>
+            </div>
+        @endif
     </div>
 
     @if (isset($topic) === true)
