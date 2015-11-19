@@ -17,14 +17,9 @@
 ###
 
 class @Fade
-  out: (el, callback) ->
-    el.style.opacity = '0'
-    el.style.pointerEvents = 'none'
-    callback() if callback
+  out: (el) ->
+    el.setAttribute('data-visibility', 'hidden')
 
 
-  in: (el, display = 'block', callback) ->
-    el.style.display = display
-    el.style.opacity = '1'
-    el.style.pointerEvents = 'auto'
-    callback() if callback
+  in: (el) ->
+    el.setAttribute('data-visibility', '')

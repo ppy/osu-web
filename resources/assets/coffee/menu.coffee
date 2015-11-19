@@ -105,5 +105,5 @@ class @Menu
         @$menuLink(menuId).removeClass('js-menu--active')
 
       else
-        fade.in menu, 'flex'
+        fade.in menu
         @$menuLink(menuId).addClass('js-menu--active')

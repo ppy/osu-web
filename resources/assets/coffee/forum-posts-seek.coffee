@@ -16,7 +16,7 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @ForumPostsSeek
-  tooltip: document.getElementsByClassName('js-forum-posts-seek-tooltip')
+  tooltip: document.getElementsByClassName('js-forum-posts-seek--tooltip')
   tooltipNumber: document.getElementsByClassName('js-forum-posts-seek-tooltip-number')
   seekbar: document.getElementsByClassName('js-forum__posts-seek')
 
@@ -33,7 +33,7 @@ class @ForumPostsSeek
 
   enter: (e) =>
     @move(e)
-    fade.in @tooltip[0], 'flex'
+    fade.in @tooltip[0]
 
 
   leave: (e) =>
