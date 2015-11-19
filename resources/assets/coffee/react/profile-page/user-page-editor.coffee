@@ -90,7 +90,7 @@ class ProfilePage.UserPageEditor extends React.Component
 
       el 'div', className: 'post-editor__footer post-editor__footer--profile-page',
         el 'div', dangerouslySetInnerHTML:
-          __html: osu.parseJson('json-post-editor-toolbar').html
+          __html: postEditorToolbar.html
 
         el 'div', className: 'post-editor__actions',
           el 'button',

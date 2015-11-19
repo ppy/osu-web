@@ -31,7 +31,7 @@ class BBCodeFromDBTest extends TestCase
         foreach (glob("{$path}/*.db.txt") as $dbFilePath) {
             $htmlFilePath = preg_replace("/\.db\.txt$/", '.html', $dbFilePath);
             $text->text = trim(file_get_contents($dbFilePath));
-            $referenceHtmlOutput = $this->wrapDiv(trim(file_get_contents($htmlFilePath)));
+            $referenceHtmlOutput = $this->wrapDiv(str_replace("\n", '', trim(file_get_contents($htmlFilePath))));
 
             $this->assertEquals($referenceHtmlOutput, $text->toHTML());
         }
