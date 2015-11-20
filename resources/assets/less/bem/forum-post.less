@@ -22,6 +22,11 @@
   margin-bottom: (@spacing / 2);
   padding: 0;
 
+  // To make default-border-radius and overflow:hidden work in webkit.
+  // Kind of weird because the animation happens on another relatively unrelated div
+  // reference: https://code.google.com/p/chromium/issues/detail?id=157218
+  .own-layer();
+
   &--create {
     margin-top: (@spacing / 2);
   }
