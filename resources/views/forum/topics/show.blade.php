@@ -15,7 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<?php $replyingUser = Auth::check() ? Auth::user() : new App\Models\User() ?>
+<?php
+    $replyingUser = Auth::check() ? Auth::user() : new App\Models\User();
+    $hiddenHeader = head($postsPosition) !== 1;
+?>
 @extends("master", [
     "title" => "community / {$topic->topic_title}",
     "body_additional_classes" => "forum-colour " . $topic->forum->categorySlug(),
@@ -52,14 +55,14 @@
 
     @include('forum.topics._header')
 
-    <div class="forum-posts-load-link">
+    <div class="forum-posts-load-link {{ head($postsPosition) === 1 ? 'hidden' : '' }}">
         <a href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => ($posts->first()->post_id - 1)]) }}" class="js-forum-posts-show-more js-forum__posts-show-more--previous" data-mode="previous">Load more</a>
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>
 
     @include("forum.topics._posts")
 
-    <div class="forum-posts-load-link">
+    <div class="forum-posts-load-link {{ last($postsPosition) === $topic->postsCount() ? 'hidden' : '' }}">
         <a href="{{ post_url($topic->topic_id, $posts->last()->post_id + 1, false) }}" class="js-forum-posts-show-more js-forum__posts-show-more--next" data-mode="next">Load more</a>
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>

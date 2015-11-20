@@ -21,10 +21,10 @@ class @Forum
   _postsProgress: document.getElementsByClassName('js-forum__posts-progress')
   _stickyHeaderTopic: document.getElementsByClassName('js-forum-topic-headernav')
   posts: document.getElementsByClassName('js-forum-post')
+  headers: document.getElementsByClassName('js-header')
 
   boot: =>
     @initialScrollTo()
-    @refreshLoadMoreLinks()
     @refreshCounter()
 
   constructor: ->
@@ -64,25 +64,38 @@ class @Forum
   endPost: => @posts[@posts.length - 1]
 
 
+  firstPostLoaded: =>
+    @posts[0].getAttribute('data-post-position') == '1'
+
+
+
   lastPostLoaded: =>
     parseInt(@endPost().getAttribute('data-post-position'), 10) == @totalPosts()
 
 
   refreshLoadMoreLinks: =>
-    return if @posts.length == 0
+    firstPostLoaded = @firstPostLoaded()
+
+    for header in @headers
+      if firstPostLoaded
+        header.classList.remove 'hidden'
+      else
+        header.classList.add 'hidden'
 
     $('.js-forum__posts-show-more--previous')
       .closest('div')
-      .toggle @posts[0].getAttribute('data-post-position') != '1'
+      .toggleClass 'hidden', firstPostLoaded
 
-    showNext = !@lastPostLoaded()
+    lastPostLoaded = @lastPostLoaded()
 
-    $('.js-forum__posts-show-more--next').closest('div').toggle showNext
+    $('.js-forum__posts-show-more--next')
+      .closest('div')
+      .toggleClass 'hidden', lastPostLoaded
 
     if !window.currentUser.isAdmin
       $('.delete-post-link').hide()
 
-    if !showNext
+    if lastPostLoaded
       $(@endPost()).find('.delete-post-link').css(display: '')
 
 
@@ -200,7 +213,7 @@ class @Forum
     $linkDiv.addClass 'loading'
 
     $.get(window.canonicalUrl, options)
-    .done (data) ->
+    .done (data) =>
       if mode == 'previous'
         scrollReference = $refPost[0]
         scrollReferenceTop = scrollReference.getBoundingClientRect().top
@@ -215,6 +228,8 @@ class @Forum
         window.scrollTo x, targetDocumentScrollTop
       else
         $linkDiv.before data
+
+      @refreshLoadMoreLinks()
 
       osu.pageChange()
       $link.attr 'data-failed', '0'
