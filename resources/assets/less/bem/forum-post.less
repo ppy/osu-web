@@ -22,9 +22,10 @@
   margin-bottom: (@spacing / 2);
   padding: 0;
 
-  &:hover &__actions {
-    opacity: 1;
-  }
+  // To make default-border-radius and overflow:hidden work in webkit.
+  // Kind of weird because the animation happens on another relatively unrelated div
+  // reference: https://code.google.com/p/chromium/issues/detail?id=157218
+  .own-layer();
 
   &--create {
     margin-top: (@spacing / 2);
@@ -74,9 +75,15 @@
       @media @desktop {
         justify-content: flex-start;
         width: 0;
-        opacity: 0;
         right: 0;
         top: (@spacing * 2);
+
+        opacity: 0;
+        will-change: opacity;
+
+        .forum-post:hover & {
+          opacity: 1;
+        }
       }
     }
 

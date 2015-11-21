@@ -55,10 +55,10 @@ class ProfilePage.Header extends React.Component
   toggleEdit: =>
     if @state.editing
       @coverReset()
-      $('.blackout').css display: 'none'
+      fade.out $('.blackout')[0]
       $(document).off 'click.profilePageHeader:toggleHeaderEdit'
     else
-      $('.blackout').css display: 'block'
+      fade.in $('.blackout')[0]
 
       $(document).on 'click.profilePageHeader:toggleHeaderEdit', (e) =>
         return if $(e.target).closest('.profile-change-cover-popup').length
@@ -103,13 +103,6 @@ class ProfilePage.Header extends React.Component
           el 'div', className: 'spinner__cube'
           el 'div', className: 'spinner__cube spinner__cube--2'
 
-      if @props.withEdit
-        el 'div', className: 'profile-change-cover-button', onClick: @toggleEdit,
-          Lang.get 'users.show.edit.cover.button'
-
-      if @state.editing
-        el ProfilePage.CoverSelector, canUpload: @props.user.isSupporter, cover: @props.user.cover
-
       el 'div', className: 'user-bar-container',
         el 'div', className: 'user-profile-header__bar user-profile-header__bar--left',
           el ProfilePage.HeaderFlags, user: @props.user
@@ -119,3 +112,10 @@ class ProfilePage.Header extends React.Component
             rank: @props.stats.rank
             countryName: @props.user.country.name
             mode: @props.mode
+
+      if @props.withEdit
+        el 'div', className: 'profile-change-cover-button', onClick: @toggleEdit,
+          Lang.get 'users.show.edit.cover.button'
+
+      if @state.editing
+        el ProfilePage.CoverSelector, canUpload: @props.user.isSupporter, cover: @props.user.cover

@@ -174,12 +174,8 @@ class @Forum
     return unless @_stickyHeaderTopic.length
 
     if target == 'forum-topic-headernav'
-      return if @_stickyHeaderTopic[0]._visible
-      @_stickyHeaderTopic[0]._visible = true
-      fade.in @_stickyHeaderTopic[0], 'flex'
+      fade.in @_stickyHeaderTopic[0]
     else
-      return unless @_stickyHeaderTopic[0]._visible
-      @_stickyHeaderTopic[0]._visible = false
       fade.out @_stickyHeaderTopic[0]
 
 

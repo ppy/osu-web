@@ -23,7 +23,7 @@
 ])
 
 @section("content")
-    <div class="forum-topic-headernav js-forum-topic-headernav js-fixed-element">
+    <div class="forum-topic-headernav js-forum-topic-headernav js-fixed-element" data-visibility="hidden">
         <div class="forum-topic-headernav__stripe
             forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
         "></div>
@@ -119,8 +119,8 @@
         data-total-count="{{ $topic->postsCount() }}"
     >
 
-        <div class="forum-topic-nav__seek-tooltip js-forum-posts-seek-tooltip">
-            <div class="forum-topic-nav__seek-tooltip-number js-forum-posts-seek-tooltip-number"></div>
+        <div class="forum-topic-nav__seek-tooltip js-forum-posts-seek--tooltip" data-visibility="hidden">
+            <div class="forum-topic-nav__seek-tooltip-number js-forum-posts-seek-tooltip-number">0</div>
         </div>
 
         <div class="js-forum__posts-seek">

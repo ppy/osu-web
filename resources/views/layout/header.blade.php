@@ -132,7 +132,7 @@
                     <li class="{{ $section }} {{ $current_section === $section ? " active" : "" }}">
                         <a class="js-menu osu-nav__link" data-menu-target="header--{{ $section }}" href="{{ array_values($links)[0] }}">{{ trans("layout.menu.$section._") }}</a>
 
-                        <div class="submenu js-menu" data-menu-id="header--{{ $section }}"><ul class="osu-nav__menu">
+                        <div class="submenu js-menu" data-menu-id="header--{{ $section }}" data-visibility="hidden"><ul class="osu-nav__menu">
                             <li class="section"><span class="osu-nav__link osu-nav__link--large osu-nav__link--title">{{ trans("layout.menu.$section._") }}</span></li>
                             @foreach ($links as $action => $link)
                                 <li class="subsection {{ $action }} {{ ($current_section === $section && $current_action === $action) ? "active" : "" }}">
