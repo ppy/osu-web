@@ -99,3 +99,10 @@
     background-image: url(@url2x);
   }
 }
+
+// Will force the element to be rendered in its own layer
+// in hardware accelerated mode.
+// Be careful that elements using this will have z-index context applied.
+.own-layer() {
+  transform: rotate(0);
+}

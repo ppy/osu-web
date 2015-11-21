@@ -1,0 +1,9 @@
+
+
+[code:1]
+
+No surrounding newlines or br
+
+[/code:1]
+
+

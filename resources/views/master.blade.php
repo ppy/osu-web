@@ -32,7 +32,7 @@
 
     <body class="osu-layout osu-layout--body {{ $current_section or "error" }} section action-{{ $current_action }} {{ $body_additional_classes or "" }}">
         <div id="overlay" style="display: none;"></div>
-        <div class="blackout" style="display: none;"></div>
+        <div class="blackout" data-visibility="hidden"></div>
 
         @include("layout.header")
 

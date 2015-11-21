@@ -15,14 +15,6 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<script id="json-current-user" type="application/json">
-    @if (Auth::check())
-        {!! json_encode(Auth::user()->defaultJson()) !!}
-    @else
-        {"data":{}}
-    @endif
-</script>
-
 <script data-turbolinks-eval="always">
-    var currentUser = osu.parseJson('json-current-user').data;
+    var currentUser = {!! Auth::check() ? json_encode(Auth::user()->defaultJson()['data']) : '{}' !!};
 </script>

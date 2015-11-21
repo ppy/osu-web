@@ -22,7 +22,7 @@
         <div class="logo-menu__logo"></div>
     </a>
 
-    <ul class="logo-menu__menu logo-menu__menu--main js-menu" data-menu-id="logo-menu">
+    <ul class="logo-menu__menu logo-menu__menu--main js-menu" data-menu-id="logo-menu" data-visibility="hidden">
         <li class="logo-menu__menu-item">
             @if (Auth::check())
                 <div class="logo-menu__user logo-menu__user--split js-logo-menu-user">
@@ -78,7 +78,7 @@
                     </span>
                 </a>
 
-                <ul class="logo-menu__menu logo-menu__menu--sub js-menu" data-menu-id="logo-menu--{{ $section }}">
+                <ul class="logo-menu__menu logo-menu__menu--sub js-menu" data-menu-id="logo-menu--{{ $section }}" data-visibility="hidden">
                     @foreach ($links as $action => $link)
                         <li class="logo-menu__menu-item">
                             <a href="{{ $link }}" class="logo-menu__menu-link logo-menu__menu-link">
