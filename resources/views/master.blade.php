@@ -55,7 +55,14 @@
         @include("layout.gallery_window")
         @include("layout.footer")
 
-        <div class="fixed-bar js-fixed-element js-fixed-bottom-bar js-sticky-footer--fixed-bar">
+        <div
+            class="fixed-bar
+                js-fixed-element
+                js-fixed-bottom-bar
+                js-sticky-footer--fixed-bar
+                js-adjust-paddings--reference"
+            data-padding-target="footer-fixed-bar"
+        >
             @yield('fixed-bar-rows-bottom')
         </div>
 

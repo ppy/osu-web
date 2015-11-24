@@ -67,7 +67,7 @@ elixir(function(mix) {
     "osu_common.coffee",
     "turbolinks-mod.coffee",
 
-    "adjust-footer.coffee",
+    "adjust-paddings.coffee",
     "fade.coffee",
     "form-placeholder-hide.coffee",
     "gallery.coffee",

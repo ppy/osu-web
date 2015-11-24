@@ -15,23 +15,26 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class @AdjustFooter
-  footer: document.getElementsByClassName('js-page-footer-padding')
-  fixedBottomBar: document.getElementsByClassName('js-fixed-bottom-bar')
+class @AdjustPaddings
+  paddings: document.getElementsByClassName('js-adjust-paddings--padding')
+  references: document.getElementsByClassName('js-adjust-paddings--reference')
 
   constructor: ->
     $(document).on 'ready page:load', @adjust
     $(window).on 'resize', _.throttle(@adjust, 500)
-    $.subscribe 'fixedBottomBar:update', @adjust
 
     @adjust()
 
 
   adjust: =>
-    @footer[0].style.paddingBottom = @barHeight()
+    heights = {}
 
-  barHeight: =>
-    if @fixedBottomBar.length
-      getComputedStyle(@fixedBottomBar[0]).height
-    else
-      "0px"
+    for reference in @references
+      id = reference.getAttribute('data-padding-target')
+      heights[id] = reference.getBoundingClientRect().height
+
+    for padding in @paddings
+      height = heights[padding.getAttribute('data-padding-id')]
+
+      if height != undefined
+        padding.style.paddingBottom = "#{height}px"
