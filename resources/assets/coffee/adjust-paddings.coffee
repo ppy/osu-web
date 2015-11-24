@@ -37,4 +37,4 @@ class @AdjustPaddings
       height = heights[padding.getAttribute('data-padding-id')]
 
       if height != undefined
-        padding.style.paddingBottom = "#{height}px"
+        padding.style.minHeight = "#{height}px"
