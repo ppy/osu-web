@@ -24,8 +24,7 @@
                 : 'forum-category-header--topic-create'
             }}
             js-forum-topic-cover--header
-            js-header
-            {{ isset($hiddenHeader) === true && $hiddenHeader === true ? 'hidden' : '' }}"
+            js-header--main"
         style="{{ isset($cover['data']['fileUrl']) === true ? "background-image: url('{$cover['data']['fileUrl']}');" : '' }}"
     >
         <div class="forum-category-header__loading js-forum-topic-cover--loading">

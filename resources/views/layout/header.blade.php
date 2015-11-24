@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<nav class="osu-layout__section osu-layout__section--minimum no-print js-header {{ isset($hiddenHeader) === true && $hiddenHeader === true ? 'hidden' : '' }}">
+<nav class="osu-layout__section osu-layout__section--minimum no-print js-header--main">
     <!-- Specific style for smaller displays (smartphone) -->
     <div class="visible-xs">
         <div class="navbar-mobile navbar navbar-default navbar-static-top bg--{{ $current_section }}" role="navigation">

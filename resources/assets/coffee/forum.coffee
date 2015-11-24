@@ -21,11 +21,11 @@ class @Forum
   _postsProgress: document.getElementsByClassName('js-forum__posts-progress')
   _stickyHeaderTopic: document.getElementsByClassName('js-forum-topic-headernav')
   posts: document.getElementsByClassName('js-forum-post')
-  headers: document.getElementsByClassName('js-header')
 
   boot: =>
     @initialScrollTo()
     @refreshCounter()
+    @refreshLoadMoreLinks()
 
   constructor: ->
     $(window).on 'scroll', =>
@@ -76,15 +76,8 @@ class @Forum
   refreshLoadMoreLinks: =>
     firstPostLoaded = @firstPostLoaded()
 
-    for header in @headers
-      if firstPostLoaded
-        header.classList.remove 'hidden'
-      else
-        header.classList.add 'hidden'
-
-    $('.js-forum__posts-show-more--previous')
-      .closest('div')
-      .toggleClass 'hidden', firstPostLoaded
+    $('.js-header--main').toggleClass 'hidden', !firstPostLoaded
+    $('.js-header--alt').toggleClass 'hidden', firstPostLoaded
 
     lastPostLoaded = @lastPostLoaded()
 

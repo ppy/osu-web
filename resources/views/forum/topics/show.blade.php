@@ -26,7 +26,7 @@
 ])
 
 @section("content")
-    <div class="forum-topic-headernav js-forum-topic-headernav js-fixed-element" data-visibility="hidden">
+    <div class="forum-topic-headernav js-forum-topic-headernav js-fixed-element js-sync-height--reference" data-sync-height-target="forum-topic-headernav" data-visibility="hidden">
         <div class="forum-topic-headernav__stripe
             forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
         "></div>
@@ -55,7 +55,9 @@
 
     @include('forum.topics._header')
 
-    <div class="forum-posts-load-link {{ head($postsPosition) === 1 ? 'hidden' : '' }}">
+    <div class="js-header--alt js-sync-height--target" data-sync-height-id="forum-topic-headernav"></div>
+
+    <div class="forum-posts-load-link js-header--alt">
         <a href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => ($posts->first()->post_id - 1)]) }}" class="js-forum-posts-show-more js-forum__posts-show-more--previous" data-mode="previous">Load more</a>
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>
