@@ -15,10 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<?php
-    $replyingUser = Auth::check() ? Auth::user() : new App\Models\User();
-    $hiddenHeader = head($postsPosition) !== 1;
-?>
+<?php $replyingUser = Auth::check() ? Auth::user() : new App\Models\User(); ?>
 @extends("master", [
     "title" => "community / {$topic->topic_title}",
     "body_additional_classes" => "forum-colour " . $topic->forum->categorySlug(),
