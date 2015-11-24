@@ -68,7 +68,6 @@ class @Forum
     @posts[0].getAttribute('data-post-position') == '1'
 
 
-
   lastPostLoaded: =>
     parseInt(@endPost().getAttribute('data-post-position'), 10) == @totalPosts()
 
