@@ -67,12 +67,13 @@
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>
 
-    <div class="js-forum-topic-reply--container">
+    <div class="js-forum-topic-reply--container js-sync-height--target" data-sync-height-id="forum-topic-reply">
         {!! Form::open([
             "url" => route("forum.topics.reply", $topic->topic_id),
-            "class" => "forum-post forum-post--reply js-forum-topic-reply",
+            "class" => "forum-post forum-post--reply js-forum-topic-reply js-sync-height--reference",
             "id" => "forum-topic-reply-box",
-            "data-remote" => true
+            "data-remote" => true,
+            "data-sync-height-target" => "forum-topic-reply",
         ]) !!}
             <div class="osu-layout__row osu-layout__row--sm2-desktop">
                 <div class="forum-post__reply-content">
