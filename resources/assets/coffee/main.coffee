@@ -33,7 +33,7 @@ $(document).on 'ready page:load', =>
   @formPlaceholderHide ||= new FormPlaceholderHide
   @headerMenu ||= new HeaderMenu
 
-  @adjustPaddings ||= new AdjustPaddings
+  @syncHeight ||= new SyncHeight
 
   @forum ||= new Forum
   @forumAutoClick ||= new ForumAutoClick

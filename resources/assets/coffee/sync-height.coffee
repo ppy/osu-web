@@ -15,26 +15,26 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class @AdjustPaddings
-  paddings: document.getElementsByClassName('js-adjust-paddings--padding')
-  references: document.getElementsByClassName('js-adjust-paddings--reference')
+class @SyncHeight
+  targets: document.getElementsByClassName('js-sync-height--target')
+  references: document.getElementsByClassName('js-sync-height--reference')
 
   constructor: ->
-    $(document).on 'ready page:load', @adjust
-    $(window).on 'resize', _.throttle(@adjust, 500)
+    $(document).on 'ready page:load', @sync
+    $(window).on 'resize', _.throttle(@sync, 500)
 
-    @adjust()
+    @sync()
 
 
-  adjust: =>
+  sync: =>
     heights = {}
 
     for reference in @references
-      id = reference.getAttribute('data-padding-target')
+      id = reference.getAttribute('data-sync-height-target')
       heights[id] = reference.getBoundingClientRect().height
 
-    for padding in @paddings
-      height = heights[padding.getAttribute('data-padding-id')]
+    for target in @targets
+      height = heights[target.getAttribute('data-sync-height-id')]
 
       if height != undefined
-        padding.style.minHeight = "#{height}px"
+        target.style.minHeight = "#{height}px"

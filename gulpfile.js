@@ -67,7 +67,6 @@ elixir(function(mix) {
     "osu_common.coffee",
     "turbolinks-mod.coffee",
 
-    "adjust-paddings.coffee",
     "fade.coffee",
     "form-placeholder-hide.coffee",
     "gallery.coffee",
@@ -80,6 +79,7 @@ elixir(function(mix) {
     "store.coffee",
     "sticky-footer.coffee",
     "sticky-header.coffee",
+    "sync-height.coffee",
     "forum.coffee",
     "forum-auto-click.coffee",
     "forum-posts-seek.coffee",

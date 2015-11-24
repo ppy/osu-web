@@ -60,8 +60,8 @@
                 js-fixed-element
                 js-fixed-bottom-bar
                 js-sticky-footer--fixed-bar
-                js-adjust-paddings--reference"
-            data-padding-target="footer-fixed-bar"
+                js-sync-height--reference"
+            data-sync-height-target="footer-fixed-bar"
         >
             @yield('fixed-bar-rows-bottom')
         </div>
