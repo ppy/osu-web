@@ -21,6 +21,7 @@ class @Forum
   _postsProgress: document.getElementsByClassName('js-forum__posts-progress')
   _stickyHeaderTopic: document.getElementsByClassName('js-forum-topic-headernav')
   posts: document.getElementsByClassName('js-forum-post')
+  loadMoreLinks: document.getElementsByClassName('js-forum-posts-show-more')
 
   boot: =>
     @initialScrollTo()
@@ -73,6 +74,8 @@ class @Forum
 
 
   refreshLoadMoreLinks: =>
+    return unless @loadMoreLinks.length
+
     firstPostLoaded = @firstPostLoaded()
 
     $('.js-header--main').toggleClass 'hidden', !firstPostLoaded
