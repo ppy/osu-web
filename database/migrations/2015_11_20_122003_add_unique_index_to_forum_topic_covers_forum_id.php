@@ -17,10 +17,9 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTopicCoversTable extends Migration
+class AddUniqueIndexToForumTopicCoversForumId extends Migration
 {
     /**
      * Run the migrations.
@@ -29,26 +28,9 @@ class CreateTopicCoversTable extends Migration
      */
     public function up()
     {
-        Schema::create('forum_topic_covers', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->mediumInteger('topic_id')->unsigned()->nullable();
-            $table->mediumInteger('user_id')->unsigned()->nullable();
-            $table->string('hash');
-            $table->string('ext');
-            $table->timestamps();
-
-            $table->index('topic_id');
-            $table->index('user_id');
-
-            $table->foreign('topic_id')
-                ->references('topic_id')
-                ->on('phpbb_topics')
-                ->onDelete('set null');
-
-            $table->foreign('user_id')
-                ->references('user_id')
-                ->on('phpbb_users')
-                ->onDelete('set null');
+        Schema::table('forum_topic_covers', function ($table) {
+            $table->unique('topic_id');
+            $table->dropIndex('forum_topic_covers_topic_id_index');
         });
     }
 
@@ -59,7 +41,9 @@ class CreateTopicCoversTable extends Migration
      */
     public function down()
     {
-        //
-        Schema::drop('forum_topic_covers');
+        Schema::table('forum_topic_covers', function ($table) {
+            $table->dropUnique('forum_topic_covers_topic_id_unique');
+            $table->index('topic_id');
+        });
     }
 }
