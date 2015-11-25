@@ -19,7 +19,7 @@
     <div class="forum-post__info-panel-main">
         @if ($user->hasProfile() === true)
             @if ($user->user_avatar)
-                <div class="forum-post__avatar-ribbon forum-post__avatar-ribbon--level-{{ $user->supporterLevel() }}">
+                <div class="forum-post__avatar-ribbon forum-post__avatar-ribbon--level-{{ $user->supportLevel() }}">
                     <a href="{{ route("users.show", $user) }}" class="forum-post__avatar-container">
                         <div
                             class="avatar avatar--full"

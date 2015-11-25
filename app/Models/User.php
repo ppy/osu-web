@@ -55,7 +55,7 @@ class User extends Model implements AuthenticatableContract
 
     public $flags;
     private $group_ids;
-    private $_supporterLength = null;
+    private $_supportLength = null;
 
     const ANONYMOUS = 1; // Anonymous (guest)
     const PEPPY = 2; // blue-name
@@ -759,26 +759,26 @@ class User extends Model implements AuthenticatableContract
         );
     }
 
-    public function supporterLength()
+    public function supportLength()
     {
-        if ($this->_supporterLength === null) {
-            $this->_supporterLength = 0;
+        if ($this->_supportLength === null) {
+            $this->_supportLength = 0;
 
             foreach ($this->supports as $support) {
                 if ($support->cancel === true) {
-                    $this->_supporterLength -= $support->length;
+                    $this->_supportLength -= $support->length;
                 } else {
-                    $this->_supporterLength += $support->length;
+                    $this->_supportLength += $support->length;
                 }
             }
         }
 
-        return $this->_supporterLength;
+        return $this->_supportLength;
     }
 
-    public function supporterLevel()
+    public function supportLevel()
     {
-        $length = $this->supporterLength();
+        $length = $this->supportLength();
 
         if ($this->osu_subscriber === false) {
             return 0;
