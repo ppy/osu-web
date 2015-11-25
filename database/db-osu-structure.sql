@@ -360,6 +360,27 @@ CREATE TABLE `osu_user_banhistory` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `osu_user_donations`
+--
+
+DROP TABLE IF EXISTS `osu_user_donations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_user_donations` (
+  `user_id` mediumint(11) unsigned NOT NULL,
+  `transaction_id` varchar(250) NOT NULL,
+  `target_user_id` mediumint(128) unsigned NOT NULL DEFAULT '0',
+  `length` tinyint(4) NOT NULL,
+  `amount` smallint(11) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `cancel` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`user_id`,`transaction_id`),
+  KEY `timestamp` (`timestamp`),
+  KEY `transaction_id` (`transaction_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `osu_user_stats`
 --
 
