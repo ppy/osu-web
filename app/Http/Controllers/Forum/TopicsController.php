@@ -169,6 +169,7 @@ class TopicsController extends Controller
             ->take(20)
             ->with('user.rank')
             ->with('user.country')
+            ->with('user.supports')
             ->get()
             ->sortBy(function ($p) { return $p->post_id; });
 

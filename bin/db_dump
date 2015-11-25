@@ -22,6 +22,7 @@ _mysqldump osu \
   osu_login_attempts \
   osu_user_achievements \
   osu_user_banhistory \
+  osu_user_donations \
   osu_user_stats \
   osu_user_stats_fruits \
   osu_user_stats_mania \
