@@ -31,7 +31,7 @@ class @SyncHeight
 
     for reference in @references
       id = reference.getAttribute('data-sync-height-target')
-      heights[id] = reference.getBoundingClientRect().height
+      heights[id] = reference.offsetHeight
 
     for target in @targets
       height = heights[target.getAttribute('data-sync-height-id')]
