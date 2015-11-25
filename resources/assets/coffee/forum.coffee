@@ -21,11 +21,12 @@ class @Forum
   _postsProgress: document.getElementsByClassName('js-forum__posts-progress')
   _stickyHeaderTopic: document.getElementsByClassName('js-forum-topic-headernav')
   posts: document.getElementsByClassName('js-forum-post')
+  loadMoreLinks: document.getElementsByClassName('js-forum-posts-show-more')
 
   boot: =>
     @initialScrollTo()
-    @refreshLoadMoreLinks()
     @refreshCounter()
+    @refreshLoadMoreLinks()
 
   constructor: ->
     $(window).on 'scroll', =>
@@ -64,25 +65,32 @@ class @Forum
   endPost: => @posts[@posts.length - 1]
 
 
+  firstPostLoaded: =>
+    @posts[0].getAttribute('data-post-position') == '1'
+
+
   lastPostLoaded: =>
     parseInt(@endPost().getAttribute('data-post-position'), 10) == @totalPosts()
 
 
   refreshLoadMoreLinks: =>
-    return if @posts.length == 0
+    return unless @loadMoreLinks.length
 
-    $('.js-forum__posts-show-more--previous')
+    firstPostLoaded = @firstPostLoaded()
+
+    $('.js-header--main').toggleClass 'hidden', !firstPostLoaded
+    $('.js-header--alt').toggleClass 'hidden', firstPostLoaded
+
+    lastPostLoaded = @lastPostLoaded()
+
+    $('.js-forum__posts-show-more--next')
       .closest('div')
-      .toggle @posts[0].getAttribute('data-post-position') != '1'
-
-    showNext = !@lastPostLoaded()
-
-    $('.js-forum__posts-show-more--next').closest('div').toggle showNext
+      .toggleClass 'hidden', lastPostLoaded
 
     if !window.currentUser.isAdmin
       $('.delete-post-link').hide()
 
-    if !showNext
+    if lastPostLoaded
       $(@endPost()).find('.delete-post-link').css(display: '')
 
 
@@ -200,7 +208,7 @@ class @Forum
     $linkDiv.addClass 'loading'
 
     $.get(window.canonicalUrl, options)
-    .done (data) ->
+    .done (data) =>
       if mode == 'previous'
         scrollReference = $refPost[0]
         scrollReferenceTop = scrollReference.getBoundingClientRect().top
@@ -215,6 +223,8 @@ class @Forum
         window.scrollTo x, targetDocumentScrollTop
       else
         $linkDiv.before data
+
+      @refreshLoadMoreLinks()
 
       osu.pageChange()
       $link.attr 'data-failed', '0'

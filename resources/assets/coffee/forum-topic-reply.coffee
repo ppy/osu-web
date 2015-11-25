@@ -34,8 +34,6 @@ class @ForumTopicReply
     $(document).on 'blur', '.js-forum-topic-reply--input', @inputBlur
     $(document).on 'input change', '.js-forum-topic-reply--input', _.debounce(@inputChange, 500)
 
-    $(window).on 'resize', @resizeContainer
-
     $.subscribe 'stickyFooter', @stickOrUnstick
 
     $(document).on 'ready page:load', @initialise
@@ -130,19 +128,12 @@ class @ForumTopicReply
       osu.navigate $(data).find('.js-post-url').attr('href')
 
 
-  resizeContainer: =>
-    return unless @available()
-
-    @container[0].style.minHeight = "#{@box[0].getBoundingClientRect().height}px"
-
-
   stick: =>
     return unless @available()
 
     return unless @getState('sticking') != '1' && @getState('active') == '1'
 
     bottom = document.getElementsByClassName('js-sticky-footer--fixed-bar')[0].getBoundingClientRect().height
-    @resizeContainer()
 
     @box[0].style.position = 'fixed'
     @box[0].style.bottom = "#{bottom}px"

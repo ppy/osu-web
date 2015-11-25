@@ -42,8 +42,8 @@ class AddUniqueIndexToForumTopicCoversForumId extends Migration
     public function down()
     {
         Schema::table('forum_topic_covers', function ($table) {
-            $table->dropUnique('forum_topic_covers_topic_id_unique');
             $table->index('topic_id');
+            $table->dropUnique('forum_topic_covers_topic_id_unique');
         });
     }
 }
