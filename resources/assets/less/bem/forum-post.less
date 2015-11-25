@@ -60,6 +60,7 @@
     background-color: @grey-f;
     margin-top: @spacing;
     margin-bottom: @spacing;
+    display: block;
 
     &--reply {
       width: 60px;
@@ -67,6 +68,29 @@
       align-self: flex-end;
       margin-right: @spacing;
       margin-top: 0;
+    }
+  }
+
+  &__avatar-ribbon {
+    ._bg(@filename) {
+      .at2x("/images/user-supporter-ribbons/@{filename}", 153px, 83px);
+    }
+
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    padding: 0 (@spacing * 3);
+
+    &--level-1 {
+      ._bg("support-ribbon.png");
+    }
+
+    &--level-2 {
+      ._bg("support-ribbon-silver.png");
+    }
+
+    &--level-3 {
+      ._bg("support-ribbon-gold.png");
     }
   }
 
@@ -245,7 +269,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: @spacing (@spacing * 3) 0;
+    padding: @spacing 0 0;
     background-image: linear-gradient(to bottom, transparent, fade(@grey-0, 20%));
 
     &::before {

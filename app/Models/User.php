@@ -55,6 +55,7 @@ class User extends Model implements AuthenticatableContract
 
     public $flags;
     private $group_ids;
+    private $_supporterLength = null;
 
     const ANONYMOUS = 1; // Anonymous (guest)
     const PEPPY = 2; // blue-name
@@ -598,6 +599,16 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(KudosuHistory::class, 'receiver_id', 'user_id');
     }
 
+    public function supports()
+    {
+        return $this->hasMany(UserDonation::class, 'target_user_id', 'user_id');
+    }
+
+    public function givenSupports()
+    {
+        return $this->hasMany(UserDonation::class, 'user_id', 'user_id');
+    }
+
     public function getPlaymodeAttribute($value)
     {
         return play_mode_string($this->osu_playmode);
@@ -746,5 +757,41 @@ class User extends Model implements AuthenticatableContract
             new UserTransformer(),
             'defaultStatistics'
         );
+    }
+
+    public function supporterLength()
+    {
+        if ($this->_supporterLength === null) {
+            $this->_supporterLength = 0;
+
+            foreach ($this->supports as $support) {
+                if ($support->cancel === true) {
+                    $this->_supporterLength -= $support->length;
+                } else {
+                    $this->_supporterLength += $support->length;
+                }
+            }
+        }
+
+        return $this->_supporterLength;
+    }
+
+    public function supporterLevel()
+    {
+        $length = $this->supporterLength();
+
+        if ($this->osu_subscriber === false) {
+            return 0;
+        }
+
+        if ($length < 365) {
+            return 1;
+        }
+
+        if ($length < 5 * 365) {
+            return 2;
+        }
+
+        return 3;
     }
 }

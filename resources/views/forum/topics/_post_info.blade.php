@@ -19,13 +19,15 @@
     <div class="forum-post__info-panel-main">
         @if ($user->hasProfile() === true)
             @if ($user->user_avatar)
-                <a href="{{ route("users.show", $user) }}" class="forum-post__avatar-container">
-                    <div
-                        class="avatar avatar--full"
-                        style="background-image: url('{{ $user->user_avatar }}');"
-                        title="{{ trans("users.show.avatar", ["username" => $user->username]) }}"
-                    ></div>
-                </a>
+                <div class="forum-post__avatar-ribbon forum-post__avatar-ribbon--level-{{ $user->supporterLevel() }}">
+                    <a href="{{ route("users.show", $user) }}" class="forum-post__avatar-container">
+                        <div
+                            class="avatar avatar--full"
+                            style="background-image: url('{{ $user->user_avatar }}');"
+                            title="{{ trans("users.show.avatar", ["username" => $user->username]) }}"
+                        ></div>
+                    </a>
+                </div>
             @endif
 
             <a class="forum-post__username" href="{{ route("users.show", $user) }}">
