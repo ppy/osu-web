@@ -131,15 +131,6 @@
                 @foreach (nav_links() as $section => $links)
                     <li class="{{ $section }} {{ $current_section === $section ? " active" : "" }}">
                         <a class="js-menu osu-nav__link" data-menu-target="header--{{ $section }}" href="{{ array_values($links)[0] }}">{{ trans("layout.menu.$section._") }}</a>
-
-                        <div class="submenu js-menu" data-menu-id="header--{{ $section }}" data-visibility="hidden"><ul class="osu-nav__menu">
-                            <li class="section"><span class="osu-nav__link osu-nav__link--large osu-nav__link--title">{{ trans("layout.menu.$section._") }}</span></li>
-                            @foreach ($links as $action => $link)
-                                <li class="subsection {{ $action }} {{ ($current_section === $section && $current_action === $action) ? "active" : "" }}">
-                                    <a class="osu-nav__link osu-nav__link--large" href="{{ $link }}">{{ trans("layout.menu.$section.$action") }}</a>
-                                </li>
-                            @endforeach
-                        </ul></div>
                     </li>
                 @endforeach
 
@@ -160,6 +151,17 @@
                 <span class="sub1">{{ trans("layout.menu.$current_section._") }}</span>
                 <span class="sub2">{{ trans("layout.menu.$current_section.$current_action") }}</span>
             </div>
+
+            @foreach (nav_links() as $section => $links)
+                <ul class="osu-nav__menu osu-nav__menu--sub js-menu" data-menu-id="header--{{ $section }}" data-visibility="hidden">
+                    <li class="section"><span class="osu-nav__link osu-nav__link--large osu-nav__link--title">{{ trans("layout.menu.$section._") }}</span></li>
+                    @foreach ($links as $action => $link)
+                        <li class="subsection {{ $action }} {{ ($current_section === $section && $current_action === $action) ? "active" : "" }}">
+                            <a class="osu-nav__link osu-nav__link--large" href="{{ $link }}">{{ trans("layout.menu.$section.$action") }}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            @endforeach
         </div>
 
         <div class="flex-none nav-user-bar-container">
