@@ -62,6 +62,16 @@
             <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
                 <h1>Payment</h1>
 
+                @if($order->address !== null && $order->address->country_code === 'DE')
+                    <div class="alert alert-warning">
+                        <p><strong>NOTE TO GERMAN CUSTOMERS</strong></p>
+
+                        <p>
+                            We have recently been notified of issues regarding deliveries within Germany, possibly due to a change in German customs regulations. Multiple cases reported in the past week in which packages are not delivered to the addressee, but instead to a customs house. The addressee is then sent a notice to pick up the item in person and pay an import sales tax. Unfortunately international customs procedures are out of our control, but <strong>please take this into account when placing your order</strong>.
+                        </p>
+                    </div>
+                @endif
+
                 <div class="big-button">
                     @if($order->getTotal() > 0)
                         <form class="text-center noajax" id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
