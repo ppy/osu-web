@@ -54,6 +54,14 @@
 
                 @include('store.objects.new_address')
             </div>
+
+            @if($order->address && $order->address->country->acronym == 'DE')
+                <div class="osu-layout__sub-row osu-layout__sub-row--lg1" style="margin: 20px;">
+                    <h1 class="centre">NOTE TO GERMAN CUSTOMERS</h1>
+
+                    We have recently been notified of issues regarding deliveries within Germany, possibly due to a change in German customs regulations. Multiple cases reported in the past week in which packages are not delivered to the addressee, but instead to a customs house. The addressee is then sent a notice to pick up the item in person and pay an import sales tax. Unfortunately international customs procedures are out of our control, but <b>please take this into account when placing your order</b>.
+                </div>
+            @endif
         @endif
     </div>
 
