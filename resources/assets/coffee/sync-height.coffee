@@ -15,23 +15,26 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class @AdjustFooter
-  footer: document.getElementsByClassName('js-page-footer-padding')
-  fixedBottomBar: document.getElementsByClassName('js-fixed-bottom-bar')
+class @SyncHeight
+  targets: document.getElementsByClassName('js-sync-height--target')
+  references: document.getElementsByClassName('js-sync-height--reference')
 
   constructor: ->
-    $(document).on 'ready page:load', @adjust
-    $(window).on 'resize', _.throttle(@adjust, 500)
-    $.subscribe 'fixedBottomBar:update', @adjust
+    $(document).on 'ready page:load', @sync
+    $(window).on 'resize', _.throttle(@sync, 500)
 
-    @adjust()
+    @sync()
 
 
-  adjust: =>
-    @footer[0].style.paddingBottom = @barHeight()
+  sync: =>
+    heights = {}
 
-  barHeight: =>
-    if @fixedBottomBar.length
-      getComputedStyle(@fixedBottomBar[0]).height
-    else
-      "0px"
+    for reference in @references
+      id = reference.getAttribute('data-sync-height-target')
+      heights[id] = reference.offsetHeight
+
+    for target in @targets
+      height = heights[target.getAttribute('data-sync-height-id')]
+
+      if height != undefined
+        target.style.minHeight = "#{height}px"

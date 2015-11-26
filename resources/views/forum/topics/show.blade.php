@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<?php $replyingUser = Auth::check() ? Auth::user() : new App\Models\User() ?>
+<?php $replyingUser = Auth::check() ? Auth::user() : new App\Models\User(); ?>
 @extends("master", [
     "title" => "community / {$topic->topic_title}",
     "body_additional_classes" => "forum-colour " . $topic->forum->categorySlug(),
@@ -23,7 +23,7 @@
 ])
 
 @section("content")
-    <div class="forum-topic-headernav js-forum-topic-headernav js-fixed-element" data-visibility="hidden">
+    <div class="forum-topic-headernav js-forum-topic-headernav js-fixed-element js-sync-height--reference" data-sync-height-target="forum-topic-headernav" data-visibility="hidden">
         <div class="forum-topic-headernav__stripe
             forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
         "></div>
@@ -52,24 +52,27 @@
 
     @include('forum.topics._header')
 
-    <div class="forum-posts-load-link">
+    <div class="js-header--alt js-sync-height--target" data-sync-height-id="forum-topic-headernav"></div>
+
+    <div class="forum-posts-load-link js-header--alt">
         <a href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => ($posts->first()->post_id - 1)]) }}" class="js-forum-posts-show-more js-forum__posts-show-more--previous" data-mode="previous">Load more</a>
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>
 
     @include("forum.topics._posts")
 
-    <div class="forum-posts-load-link">
+    <div class="forum-posts-load-link {{ last($postsPosition) === $topic->postsCount() ? 'hidden' : '' }}">
         <a href="{{ post_url($topic->topic_id, $posts->last()->post_id + 1, false) }}" class="js-forum-posts-show-more js-forum__posts-show-more--next" data-mode="next">Load more</a>
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>
 
-    <div class="js-forum-topic-reply--container">
+    <div class="js-forum-topic-reply--container js-sync-height--target" data-sync-height-id="forum-topic-reply">
         {!! Form::open([
             "url" => route("forum.topics.reply", $topic->topic_id),
-            "class" => "forum-post forum-post--reply js-forum-topic-reply",
+            "class" => "forum-post forum-post--reply js-forum-topic-reply js-sync-height--reference",
             "id" => "forum-topic-reply-box",
-            "data-remote" => true
+            "data-remote" => true,
+            "data-sync-height-target" => "forum-topic-reply",
         ]) !!}
             <div class="osu-layout__row osu-layout__row--sm2-desktop">
                 <div class="forum-post__reply-content">

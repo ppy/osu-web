@@ -98,7 +98,9 @@
                         </div>
                     </div>
 
-                    @include('store.objects.address', ['data' => $o->address])
+                    @if ($o->address)
+                        @include('store.objects.address', ['data' => $o->address])
+                    @endif
                 </div>
             </div>
 

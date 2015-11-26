@@ -24,5 +24,5 @@
     </ul>
     <p class="footer-row">ppy powered 2007-{{ date("Y") }}</p>
 
-    <div class="js-page-footer-padding"></div>
+    <div class="js-sync-height--target" data-sync-height-id="footer-fixed-bar"></div>
 </footer>
