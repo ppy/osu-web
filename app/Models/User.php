@@ -784,11 +784,11 @@ class User extends Model implements AuthenticatableContract
             return 0;
         }
 
-        if ($length < 365) {
+        if ($length < 12) {
             return 1;
         }
 
-        if ($length < 5 * 365) {
+        if ($length < 5 * 12) {
             return 2;
         }
 
