@@ -75,11 +75,16 @@
 <div class="visible-xs">
     <div class="forum-post__info-panel-xs" style="{{ user_colour_style($user->user_colour, "background-color") }}">
         @if ($user->user_avatar)
-            <div
-                class="avatar avatar--forum-small"
-                style="background-image: url('{{ $user->user_avatar }}');"
-                title="{{ trans("users.show.avatar", ["username" => $user->username]) }}"
-            ></div>
+            <div class="forum-post__avatar-ribbon
+                forum-post__avatar-ribbon--xs
+                forum-post__avatar-ribbon--level-{{ $user->supportLevel() }}"
+            >
+                <div
+                    class="avatar avatar--forum-small"
+                    style="background-image: url('{{ $user->user_avatar }}');"
+                    title="{{ trans("users.show.avatar", ["username" => $user->username]) }}"
+                ></div>
+            </div>
         @endif
 
         <div class="forum-post__info-panel-xs-main">
@@ -106,11 +111,5 @@
                 </div>
             @endif
         </div>
-
-        @if($user->osu_subscriber)
-            <div class="user-icon forum__user-icon--supporter">
-                <i class="fa fa-heart"></i>
-            </div>
-        @endif
     </div>
 </div>
