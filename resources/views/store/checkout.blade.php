@@ -54,14 +54,6 @@
 
                 @include('store.objects.new_address')
             </div>
-
-            @if($order->address && $order->address->country->acronym == 'DE')
-                <div class="osu-layout__sub-row osu-layout__sub-row--lg1" style="margin: 20px;">
-                    <h1 class="centre">NOTE TO GERMAN CUSTOMERS</h1>
-
-                    We have recently been notified of issues regarding deliveries within Germany, possibly due to a change in German customs regulations. Multiple cases reported in the past week in which packages are not delivered to the addressee, but instead to a customs house. The addressee is then sent a notice to pick up the item in person and pay an import sales tax. Unfortunately international customs procedures are out of our control, but <b>please take this into account when placing your order</b>.
-                </div>
-            @endif
         @endif
     </div>
 
@@ -69,6 +61,16 @@
         <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row osu-layout__row--sm1">
             <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
                 <h1>Payment</h1>
+
+                @if($order->address !== null && $order->address->country_code === 'DE')
+                    <div class="alert alert-warning">
+                        <p><strong>NOTE TO GERMAN CUSTOMERS</strong></p>
+
+                        <p>
+                            We have recently been notified of issues regarding deliveries within Germany, possibly due to a change in German customs regulations. Multiple cases reported in the past week in which packages are not delivered to the addressee, but instead to a customs house. The addressee is then sent a notice to pick up the item in person and pay an import sales tax. Unfortunately international customs procedures are out of our control, but <strong>please take this into account when placing your order</strong>.
+                        </p>
+                    </div>
+                @endif
 
                 <div class="big-button">
                     @if($order->getTotal() > 0)
