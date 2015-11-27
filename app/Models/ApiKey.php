@@ -21,10 +21,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Api extends Model
+class ApiKey extends Model
 {
     protected $table = 'osu_apikeys';
-    protected $primaryKey = 'user_id';
+    protected $primaryKey = 'key';
     public $timestamps = false;
 
     protected $casts = [
