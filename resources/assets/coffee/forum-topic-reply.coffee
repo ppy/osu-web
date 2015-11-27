@@ -20,18 +20,20 @@ class @ForumTopicReply
   box: document.getElementsByClassName('js-forum-topic-reply')
   input: document.getElementsByClassName('js-forum-topic-reply--input')
   closeButton: document.getElementsByClassName('js-forum-topic-reply--close')
+  marker: -> document.querySelector('.js-sticky-footer[data-sticky-footer-target="forum-topic-reply"]')
   $input: -> $('.js-forum-topic-reply--input')
 
-  constructor: (forum) ->
+  constructor: (forum, stickyFooter) ->
     @forum = forum
+    @stickyFooter = stickyFooter
+
     $(document).on 'ajax:success', '.js-forum-topic-reply', @posted
 
     $(document).on 'click', '.js-forum-topic-reply--close', @deactivate
     $(document).on 'click', '.js-forum-topic-reply--new', @activate
     $(document).on 'ajax:success', '.js-forum-topic-reply--quote', @activateWithReply
 
-    $(document).on 'focus', '.js-forum-topic-reply--input', @inputFocus
-    $(document).on 'blur', '.js-forum-topic-reply--input', @inputBlur
+    $(document).on 'focus', '.js-forum-topic-reply--input', @activate
     $(document).on 'input change', '.js-forum-topic-reply--input', _.debounce(@inputChange, 500)
 
     $.subscribe 'stickyFooter', @stickOrUnstick
@@ -45,7 +47,7 @@ class @ForumTopicReply
 
     @deleteState 'sticking'
     @input[0].value = @getState 'text'
-    $.publish 'stickyFooter:check'
+    @activate() if @getState('active') == '1'
 
 
   available: => @box.length
@@ -64,9 +66,11 @@ class @ForumTopicReply
 
 
   activate: (e) =>
-    e.preventDefault()
+    e.preventDefault() if e
 
     @setState 'active', '1'
+
+    @stickyFooter.markerEnable @marker()
     $.publish 'stickyFooter:check'
 
 
@@ -88,18 +92,9 @@ class @ForumTopicReply
   deactivate: (e) =>
     e.preventDefault() if e
 
-    @deleteState 'active'
-    @deleteState 'manuallyActivated'
-    @unstick()
-
-
-  inputBlur: =>
-    return unless @getState('manuallyActivated') == '1'
-
-    if @input[0].value
-      @deleteState 'manuallyActivated'
-    else
-      @deactivate()
+    @stickyFooter.markerDisable @marker()
+    @setState 'active', '0'
+    $.publish 'stickyFooter:check'
 
 
   inputChange: =>
@@ -107,10 +102,7 @@ class @ForumTopicReply
 
 
   inputFocus: =>
-    return if @getState('active') == '1'
-
-    @setState 'active', '1'
-    @setState 'manuallyActivated', '1'
+    @activate()
 
 
   posted: (_e, data) =>
@@ -129,15 +121,14 @@ class @ForumTopicReply
 
 
   stick: =>
-    return unless @available()
+    return if @getState('sticking') == '1'
 
-    return unless @getState('sticking') != '1' && @getState('active') == '1'
+    @setState 'sticking', '1'
 
-    bottom = document.getElementsByClassName('js-sticky-footer--fixed-bar')[0].getBoundingClientRect().height
+    bottom = document.getElementsByClassName('js-sticky-footer--fixed-bar')[0].offsetHeight
 
     @box[0].style.position = 'fixed'
     @box[0].style.bottom = "#{bottom}px"
-    @setState 'sticking', '1'
     @closeButton[0].classList.remove 'hidden'
     @$input().focus()
 
@@ -145,14 +136,15 @@ class @ForumTopicReply
   unstick: (e) =>
     return unless @getState('sticking') == '1'
 
+    @deleteState 'sticking'
+
     @box[0].style.position = ''
     @box[0].style.bottom = ''
-    @deleteState 'sticking'
     @closeButton[0].classList.add 'hidden'
 
 
   stickOrUnstick: (_e, target) =>
     if target == 'forum-topic-reply'
       @stick()
-    else if @getState('sticking') == '1'
+    else
       @unstick()
