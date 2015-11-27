@@ -73,13 +73,32 @@
 
   &__avatar-ribbon {
     ._bg(@filename) {
-      .at2x("/images/user-supporter-ribbons/@{filename}", 153px, 83px);
+      .at2x-simple("/images/user-supporter-ribbons/@{filename}");
     }
 
     background-repeat: no-repeat;
     background-position: center;
+    background-size: 153px 83px;
+
     width: 100%;
     padding: 0 (@spacing * 3);
+
+    &--xs {
+      display: inline-flex;
+      background-size: contain;
+      width: (153 / 83 * 40px);
+      justify-content: center;
+      padding: 0;
+      margin-right: @spacing;
+    }
+
+    &--level-0 {
+      width: auto;
+
+      @media @desktop {
+        width: 100%;
+      }
+    }
 
     &--level-1 {
       ._bg("support-ribbon.png");
@@ -210,11 +229,11 @@
       order: 1;
 
       padding-top: 0;
-      padding-bottom: 0;
 
       @media @desktop {
         order: 0;
         padding-top: (@spacing * 2);
+        padding-bottom: 0;
       }
     }
 
