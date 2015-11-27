@@ -101,10 +101,6 @@ class @ForumTopicReply
     @setState 'text', @input[0].value
 
 
-  inputFocus: =>
-    @activate()
-
-
   posted: (_e, data) =>
     @deactivate()
     @$input().val ''
