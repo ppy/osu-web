@@ -127,7 +127,7 @@ Route::put('/account/update-profile-cover', ['as' => 'account.update-profile-cov
 Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
 
 // API
-Route::controller('/api', 'APIController');
+Route::get('/api/get_match', ['uses' => 'APIController@getMatch']);
 
 Route::resource('post', 'PostController');
 Route::resource('modding', 'ModdingPostController');

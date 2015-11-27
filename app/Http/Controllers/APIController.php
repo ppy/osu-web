@@ -19,6 +19,13 @@
  */
 namespace App\Http\Controllers;
 
+use Request;
+use Response;
+use Redirect;
+use App\Models\ApiKey;
+use App\Models\Multiplayer\Match;
+use App\Transformers\Multiplayer\MatchTransformer;
+
 class APIController extends Controller
 {
     use \App\Traits\ModdingAPI;
@@ -26,153 +33,54 @@ class APIController extends Controller
 
     public function __construct()
     {
-        //$this->beforeFilter("auth");
-        $this->beforeFilter('csrf.api', ['on' => ['get', 'post', 'put', 'delete']]);
+        $this->beforeFilter("@validateKey");
     }
 
-    /**
-     * GET /api/$version/translation/$lang?/$string.
-     *
-     * @api
-     *
-     * @return json
-     */
-    public function getTranslation($lang, $string = null)
+    public function validateKey($route, $request)
     {
-        if (!$string) {
-            $string = $lang;
-            $lang = 'en';
+        $matches = ApiKey::where('api_key', Request::input('k'))->where('enabled', true)->where('revoked', false)->count();
+        if ($matches < 1) {
+            return $this->redirectToWiki();
         }
-
-        try {
-            App::setLocale($lang);
-        } catch (Exception $e) {
-            return Response::json(['error' => 'unsupported language']);
-        }
-
-        if (strpos($string, ' ')) {
-            // dealing with an array
-            $strings = explode(' ', $string);
-            $translation = [];
-
-            foreach ($strings as $str) {
-                $translation[$str] = Lang::get($str);
-            }
-        } else {
-            // single strings allow for fallback to english.
-            // multiples would involve too much
-            $translation = Lang::get($string);
-
-            if ($translation == $string and $lang != 'en') {
-                App::setLocale(Config::get('app.locale', 'en'));
-                $translation = Lang::get($string);
-            }
-        }
-
-        return Response::json(['translation' => $translation]);
     }
 
-    /**
-     * Get the user who initiated an action.
-     *
-     * @return User
-     */
-    protected function user()
+    public function redirectToWiki()
     {
-        return User::findByKey(Input::get('key')) ?: Auth::user();
+        return Redirect::to('https://github.com/ppy/osu-api/wiki');
     }
 
-    /**
-     * Get the error view for the code given.
-     *
-     * @return View
-     */
-    public function getError($code = 404)
-    {
-        return osu_error($code);
-    }
-
-    /**
-     * DRYing up code a bit.
-     *
-     * @return json
-     */
-    public function error($key, $namespace)
-    {
-        return Response::json(['error' => Lang::get("$namespace.errors.$key")]);
-    }
-
-    /**
-     * GET /api/$version/.
-     *
-     * @api
-     *
-     * @return json
-     */
-    public function getIndex()
-    {
-        return Response::json(['error' => 'throw new NotImplementedError();']);
-    }
-
-    /**
-     * 404 method.
-     *
-     * @api
-     *
-     * @return json
-     */
     public function missingMethod($parameters = [])
     {
-        return Response::json(['error' => 404]);
+        $this->redirectToWiki();
     }
 
-    public function getFetchUserKey($username, $password, $hmac)
+    public function getIndex()
     {
-        // all bancho input should be HMAC'd to be sure it's coming from bancho
-        $check = hash_hmac('sha512', $username.$password, Config::get('osu.bancho.hmac'));
+        $this->redirectToWiki();
+    }
 
-        if ($check !== $hmac) {
-            // log HMAC failures
-            sentry_log('HMAC failure for fetch-user-key', 403, Raven_Client::FATAL);
-
-            return Response::json(['error' => 400]);
-        }
-
-        if (Auth::check() and Auth::user()->user_id === User::SYSTEM) {
-            $user = User::where('username', '=', $username)->get();
-
-            if ($user) {
-                if ($key = $user->getBanchoKey()) {
-                    if (Auth::validate(['username' => $username, 'password' => $password])) {
-                        return Response::json(['success' => $key]);
-                    } else {
-                        return Response::json(['error' => 403]);
-                    }
-                } else {
-                    // If a user doesn;t have a key, they're banned
-                    return Response::json(['error' => 401]);
-                }
+    public function getMatch()
+    {
+        $match_id = Request::input('mp');
+        if (presence($match_id) !== null) {
+            $match = Match::where('match_id', $match_id)->get();
+            if (!$match->isEmpty()) {
+                return Response::json(
+                    fractal_api_serializer(
+                        $match,
+                        new MatchTransformer(),
+                        'games.scores'
+                    )
+                );
             } else {
-                // use status codes. they're easier for bancho
-                // to understand and easier to deserialize
-                return Response::json(['error' => 404]);
+                // match existing api
+                return Response::json([
+                    'match' => 0,
+                    'games' => []
+                ]);
             }
         } else {
-            // log bancho auth failures
-            sentry_log('auth failure for fetch-user-key', 403, Raven_Client::FATAL);
-        }
-    }
-
-    public function anyGitCallback()
-    {
-        if (Auth::check() and Auth::user()->user_id === User::GITHUB) {
-            if (Input::get('ref') == 'refs/heads/master') {
-                Artisan::call('git:pull', ['--silent']);
-            }
-        } else {
-            sentry_log('user attempting to access git callback', 'fatal', Raven_Client::FATAL);
-
-            return Response::json(['error' => 'no']);
+            return $this->redirectToWiki();
         }
     }
 }
