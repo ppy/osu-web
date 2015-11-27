@@ -338,6 +338,19 @@ function fractal_item_array($model, $transformer, $includes = null)
     return $manager->createData($item)->toArray();
 }
 
+function fractal_api_serializer($model, $transformer, $includes = null)
+{
+    $manager = new League\Fractal\Manager();
+    if ($includes !== null) {
+        $manager->parseIncludes($includes);
+    }
+    $manager->setSerializer(new App\Serializers\ApiSerializer());
+
+    // we're using collection instead of item here, so we can peak at the items beforehand
+    $collection = new League\Fractal\Resource\Collection($model, $transformer);
+    return $manager->createData($collection)->toArray()[0];
+}
+
 function fast_imagesize($url)
 {
     return Cache::remember("imageSize:{$url}", Carbon\Carbon::now()->addMonth(1), function () use ($url) {
