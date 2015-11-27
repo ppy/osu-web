@@ -306,20 +306,6 @@ class User extends Model implements AuthenticatableContract
         $this->api->save();
     }
 
-    // find a user by their api key
-    // usage: User::findByKey($key);
-
-    public static function findByKey($key)
-    {
-        $user_id = Api::where('api_key', $key)->value('user_id');
-
-        if ($user_id === null) {
-            return;
-        }
-
-        return static::find($user_id);
-    }
-
     /*
     |--------------------------------------------------------------------------
     | Modding System-specific functions.
