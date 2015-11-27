@@ -26,13 +26,19 @@
     &--sub {
       position: absolute;
       left: @spacing;
+      bottom: 0;
       height: @nav-page-title-height;
+      width: calc(100% ~'-' @spacing);
     }
   }
 
   &__link {
     padding: 0 (@spacing / 2);
     font-size: 14px;
+
+    &--active {
+      font-weight: 700;
+    }
 
     &--large {
       font-size: 22px;

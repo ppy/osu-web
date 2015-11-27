@@ -127,25 +127,23 @@
         <a class="flex-none nav-logo" href="/"></a>
 
         <div id="nav-links">
-            <ul id="nav-menu" class="js-menu osu-nav__menu">
+            <div id="nav-menu" class="js-menu osu-nav__menu">
                 @foreach (nav_links() as $section => $links)
-                    <li class="{{ $section }} {{ $current_section === $section ? " active" : "" }}">
-                        <a class="js-menu osu-nav__link" data-menu-target="header--{{ $section }}" href="{{ array_values($links)[0] }}">{{ trans("layout.menu.$section._") }}</a>
-                    </li>
+                    <a
+                        class="js-menu osu-nav__link {{ $current_section === $section ? "osu-nav__link--active" : ""}}"
+                        data-menu-target="header--{{ $section }}"
+                        href="{{ array_values($links)[0] }}"
+                    >
+                            {{ trans("layout.menu.$section._") }}
+                    </a>
                 @endforeach
 
-                <li>
-                    <a class="osu-nav__link yellow-normal" href="{{ config("osu.urls.support-the-game") }}" target="_blank">support the game</a>
-                </li>
+                <a class="osu-nav__link yellow-normal" href="{{ config("osu.urls.support-the-game") }}" target="_blank">support the game</a>
 
-                <li>
-                    <a class="osu-nav__link" href="{{ config("osu.urls.social.facebook") }}" target="_blank"><i class="fa fa-facebook-f"></i></a>
-                </li>
+                <a class="osu-nav__link" href="{{ config("osu.urls.social.facebook") }}" target="_blank"><i class="fa fa-facebook-f"></i></a>
 
-                <li>
-                    <a class="osu-nav__link" href="{{ config("osu.urls.social.twitter") }}" target="_blank"><i class="fa fa-twitter"></i></a>
-                </li>
-            </ul>
+                <a class="osu-nav__link" href="{{ config("osu.urls.social.twitter") }}" target="_blank"><i class="fa fa-twitter"></i></a>
+            </div>
 
             <div id="nav-page-title">
                 <span class="sub1">{{ trans("layout.menu.$current_section._") }}</span>
@@ -153,14 +151,13 @@
             </div>
 
             @foreach (nav_links() as $section => $links)
-                <ul class="osu-nav__menu osu-nav__menu--sub js-menu" data-menu-id="header--{{ $section }}" data-visibility="hidden">
-                    <li class="section"><span class="osu-nav__link osu-nav__link--large osu-nav__link--title">{{ trans("layout.menu.$section._") }}</span></li>
+                <div class="osu-nav__menu osu-nav__menu--sub js-menu" data-menu-id="header--{{ $section }}" data-visibility="hidden">
+                    <span class="osu-nav__link osu-nav__link--large osu-nav__link--title">{{ trans("layout.menu.$section._") }}</span>
+
                     @foreach ($links as $action => $link)
-                        <li class="subsection {{ $action }} {{ ($current_section === $section && $current_action === $action) ? "active" : "" }}">
-                            <a class="osu-nav__link osu-nav__link--large" href="{{ $link }}">{{ trans("layout.menu.$section.$action") }}</a>
-                        </li>
+                        <a class="osu-nav__link osu-nav__link--large" href="{{ $link }}">{{ trans("layout.menu.$section.$action") }}</a>
                     @endforeach
-                </ul>
+                </div>
             @endforeach
         </div>
 
