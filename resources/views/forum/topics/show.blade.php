@@ -15,7 +15,6 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<?php $replyingUser = Auth::check() ? Auth::user() : new App\Models\User(); ?>
 @extends("master", [
     "title" => "community / {$topic->topic_title}",
     "body_additional_classes" => "forum-colour " . $topic->forum->categorySlug(),
@@ -73,17 +72,22 @@
             "id" => "forum-topic-reply-box",
             "data-remote" => true,
             "data-sync-height-target" => "forum-topic-reply",
+            'data-force-reload' => Auth::check() === false ? '1' : '0',
         ]) !!}
             <div class="forum-post__reply-container">
                 <div class="osu-layout__row osu-layout__row--sm2-desktop">
                     <div class="forum-post__reply-content">
                         <div class="forum-post__info-panel forum-post__info-panel--reply hidden-xs">
                             <div class="forum-post__avatar-container forum-post__avatar-container--reply">
-                                <div
-                                    class="avatar avatar--full"
-                                    title="{{ trans("users.show.avatar", ["username" => $replyingUser->username]) }}"
-                                    style="background-image: url('{{ $replyingUser->user_avatar }}');"
-                                ></div>
+                                @if (Auth::check() === true)
+                                    <div
+                                        class="avatar avatar--full"
+                                        title="{{ trans("users.show.avatar", ["username" => Auth::user()->username]) }}"
+                                        style="background-image: url('{{ Auth::user()->user_avatar }}');"
+                                    ></div>
+                                @else
+                                    <div class="avatar avatar--full avatar--guest"></div>
+                                @endif
                             </div>
                         </div>
 

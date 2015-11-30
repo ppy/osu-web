@@ -101,19 +101,19 @@ class @ForumTopicReply
     @setState 'text', @input[0].value
 
 
-  posted: (_e, data) =>
+  posted: (e, data) =>
     @deactivate()
     @$input().val ''
     @setState 'text', ''
 
-    if @forum.lastPostLoaded()
+    if !@forum.lastPostLoaded() || e.target.getAttribute('data-force-reload') == '1'
+      osu.navigate $(data).find('.js-post-url').attr('href')
+    else
       @forum.setTotalPosts(@forum.totalPosts() + 1)
       @forum.endPost().insertAdjacentHTML 'afterend', data
       osu.pageChange()
 
       @forum.endPost().scrollIntoView()
-    else
-      osu.navigate $(data).find('.js-post-url').attr('href')
 
 
   stick: =>
