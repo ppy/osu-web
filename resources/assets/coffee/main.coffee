@@ -40,7 +40,7 @@ $(document).on 'ready page:load', =>
   @forumPostsSeek ||= new ForumPostsSeek(@forum)
   @forumSearchModal ||= new ForumSearchModal(@forum)
   @forumTopicPostJump ||= new ForumTopicPostJump(@forum)
-  @forumTopicReply ||= new ForumTopicReply(@forum)
+  @forumTopicReply ||= new ForumTopicReply(@forum, @stickyFooter)
   @forumTopicCover ||= new ForumTopicCover(@forum)
 
   @menu ||= new Menu

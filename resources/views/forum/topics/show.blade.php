@@ -15,7 +15,6 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<?php $replyingUser = Auth::check() ? Auth::user() : new App\Models\User(); ?>
 @extends("master", [
     "title" => "community / {$topic->topic_title}",
     "body_additional_classes" => "forum-colour " . $topic->forum->categorySlug(),
@@ -69,41 +68,48 @@
     <div class="js-forum-topic-reply--container js-sync-height--target" data-sync-height-id="forum-topic-reply">
         {!! Form::open([
             "url" => route("forum.topics.reply", $topic->topic_id),
-            "class" => "forum-post forum-post--reply js-forum-topic-reply js-sync-height--reference",
+            "class" => "forum-post forum-post--reply js-forum-topic-reply js-sync-height--reference js-fixed-element",
             "id" => "forum-topic-reply-box",
             "data-remote" => true,
             "data-sync-height-target" => "forum-topic-reply",
+            'data-force-reload' => Auth::check() === false ? '1' : '0',
         ]) !!}
-            <div class="osu-layout__row osu-layout__row--sm2-desktop">
-                <div class="forum-post__reply-content">
-                    <div class="forum-post__info-panel forum-post__info-panel--reply hidden-xs">
-                        <div class="forum-post__avatar-container forum-post__avatar-container--reply">
-                            <div
-                                class="avatar avatar--full"
-                                title="{{ trans("users.show.avatar", ["username" => $replyingUser->username]) }}"
-                                style="background-image: url('{{ $replyingUser->user_avatar }}');"
-                            ></div>
-                        </div>
-                    </div>
-
-                    <div class="forum-post__body forum-post__body--reply">
-                        <div class="forum-post__content">
-                            @include('forum.posts._form_body', ['postBody' => [
-                                'focus' => false,
-                                'extraClasses' => 'forum-post-content--reply js-forum-topic-reply--input',
-                            ]])
+            <div class="forum-post__reply-container">
+                <div class="osu-layout__row osu-layout__row--sm2-desktop">
+                    <div class="forum-post__reply-content">
+                        <div class="forum-post__info-panel forum-post__info-panel--reply hidden-xs">
+                            <div class="forum-post__avatar-container forum-post__avatar-container--reply">
+                                @if (Auth::check() === true)
+                                    <div
+                                        class="avatar avatar--full"
+                                        title="{{ trans("users.show.avatar", ["username" => Auth::user()->username]) }}"
+                                        style="background-image: url('{{ Auth::user()->user_avatar }}');"
+                                    ></div>
+                                @else
+                                    <div class="avatar avatar--full avatar--guest"></div>
+                                @endif
+                            </div>
                         </div>
 
-                        <div class="forum-post__content forum-post__content forum-post__content--edit-bar">
-                            @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
-                        </div>
-                    </div>
+                        <div class="forum-post__body forum-post__body--reply">
+                            <div class="forum-post__content">
+                                @include('forum.posts._form_body', ['postBody' => [
+                                    'focus' => false,
+                                    'extraClasses' => 'forum-post-content--reply js-forum-topic-reply--input',
+                                ]])
+                            </div>
 
-                    <div class="forum-post__actions forum-post__actions--reply">
-                        <div class="forum-post-actions">
-                            <a href="#" class="js-forum-topic-reply--close forum-post-actions__action hidden">
-                                <i class="fa fa-close"></i>
-                            </a>
+                            <div class="forum-post__content forum-post__content forum-post__content--edit-bar">
+                                @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
+                            </div>
+                        </div>
+
+                        <div class="forum-post__actions forum-post__actions--reply">
+                            <div class="forum-post-actions">
+                                <a href="#" class="js-forum-topic-reply--close forum-post-actions__action hidden">
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -111,7 +117,7 @@
         {!! Form::close() !!}
 
     </div>
-    <div class="js-sticky-footer" data-sticky-footer-target="forum-topic-reply"></div>
+    <div class="js-sticky-footer" data-sticky-footer-disabled="1" data-sticky-footer-target="forum-topic-reply"></div>
 @endsection
 
 @section('fixed-bar-rows-bottom')

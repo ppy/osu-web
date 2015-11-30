@@ -71,31 +71,6 @@
   > * { margin-right: @grid-gutter-width/4; }
 }
 
-#nav-menu {
-  height: @nav-menu-height;
-
-  > li {
-    position: static;
-
-    &.active > a {
-      color: #fff;
-      font-weight: 700;
-    }
-  }
-
-  .submenu {
-    position: static;
-
-    > ul {
-      &:extend(.compact-list-inline all);
-      left: 0px;
-      position: absolute;
-      top: @nav-menu-height;
-      width: 100%;
-    }
-  }
-}
-
 #nav-sm {
   padding: @grid-gutter-width/2 @grid-gutter-width/2 0px;
   display: flex;

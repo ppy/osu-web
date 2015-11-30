@@ -38,8 +38,22 @@ class @StickyFooter
     bottom = window.innerHeight - @fixedBar[0].getBoundingClientRect().height
 
     for marker in @stickMarker
+      continue if marker.getAttribute('data-sticky-footer-disabled') == '1'
+
       if marker.getBoundingClientRect().top >= bottom
         $.publish 'stickyFooter', marker.getAttribute('data-sticky-footer-target')
         return
 
     $.publish 'stickyFooter'
+
+
+  markerCheckEnabled: (el) ->
+    el.getAttribute('data-sticky-footer-disabled') == '1'
+
+
+  markerDisable: (el) ->
+    el.setAttribute('data-sticky-footer-disabled', '1')
+
+
+  markerEnable: (el) ->
+    el.setAttribute('data-sticky-footer-disabled', '')
