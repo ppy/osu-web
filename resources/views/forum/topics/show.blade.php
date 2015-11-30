@@ -72,7 +72,7 @@
             "id" => "forum-topic-reply-box",
             "data-remote" => true,
             "data-sync-height-target" => "forum-topic-reply",
-            'data-force-reload' => Auth::check() === false,
+            'data-force-reload' => Auth::check() === false ? '1' : '0',
         ]) !!}
             <div class="forum-post__reply-container">
                 <div class="osu-layout__row osu-layout__row--sm2-desktop">
