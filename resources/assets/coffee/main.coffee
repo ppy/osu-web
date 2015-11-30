@@ -27,6 +27,7 @@ $(document).on 'submit', 'form', osu.showLoadingOverlay
 $(document).on 'ready page:load', =>
   LocalStoragePolyfill.fillIn()
 
+  @editorZoom ||= new EditorZoom
   @stickyFooter ||= new StickyFooter
   @stickyHeader ||= new StickyHeader
   @globalDrag ||= new GlobalDrag

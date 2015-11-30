@@ -68,6 +68,7 @@ elixir(function(mix) {
     "turbolinks-mod.coffee",
     "local-storage-polyfill.coffee",
 
+    "editor-zoom.coffee",
     "fade.coffee",
     "form-placeholder-hide.coffee",
     "gallery.coffee",
