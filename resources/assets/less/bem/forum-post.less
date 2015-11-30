@@ -34,16 +34,9 @@
   &--reply {
     backface-visibility: hidden;
     transition: opacity 120ms;
-    background-color: fade(@grey-3, 90%);
     box-shadow: none;
     width: 100%;
     margin-bottom: 0;
-    padding-bottom: @spacing;
-    padding-top: @_reply-xs-top-margin;
-
-    @media @desktop {
-      padding-top: @spacing;
-    }
   }
 
   &--special {
@@ -340,6 +333,17 @@
 
     &--user-title {
       color: @grey-3;
+    }
+  }
+
+  &__reply-container {
+    background-color: fade(@grey-3, 90%);
+    width: 100%;
+    padding-bottom: @spacing;
+    padding-top: @_reply-xs-top-margin;
+
+    @media @desktop {
+      padding-top: @spacing;
     }
   }
 
