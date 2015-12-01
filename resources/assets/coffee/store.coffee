@@ -55,6 +55,8 @@ checkUsernameValidity = ->
     $status.html data.message
     $status.toggleClass 'green-dark', data.available
     $status.toggleClass 'pink-dark', !data.available
+  .fail (xhr) ->
+    osu.reloadPage()
 
 
 debouncedCheckUsernameValidity = _.debounce checkUsernameValidity, 300
