@@ -105,7 +105,7 @@ class @ForumTopicReply
 
     $target = $(e.target)
 
-    return unless $target.closest('.js-forum-topic-reply--container').length == 0 &&
+    return unless $target.closest('.js-forum-topic-reply').length == 0 &&
         $target.closest('.js-forum-topic-reply--new').length == 0
 
     @deactivate()
