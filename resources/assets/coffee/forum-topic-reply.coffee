@@ -136,9 +136,13 @@ class @ForumTopicReply
 
     @setState 'sticking', '1'
 
+    $input = @$input()
+    inputFocused = $input.is(':focus')
 
     @fixedBar[0].insertBefore(@box[0], @fixedBar[0].firstChild)
     @closeButton[0].classList.remove 'hidden'
+
+    $input.focus() if inputFocused
 
 
   unstick: (e) =>
