@@ -35,7 +35,7 @@ class @ForumTopicReply
 
     $(document).on 'focus', '.js-forum-topic-reply--input', @activate
     $(document).on 'input change', '.js-forum-topic-reply--input', _.debounce(@inputChange, 500)
-    $(document).on 'blur', '.js-forum-topic-reply--input', @deactivateIfBlank
+    $(document).on 'click', @deactivateIfBlank
 
     $.subscribe 'stickyFooter', @stickOrUnstick
 
@@ -98,8 +98,15 @@ class @ForumTopicReply
     $.publish 'stickyFooter:check'
 
 
-  deactivateIfBlank: =>
-    return unless @$input().val() == ''
+  deactivateIfBlank: (e) =>
+    return unless @available() &&
+      @getState('active') == '1' &&
+      @input[0].value == ''
+
+    $target = $(e.target)
+
+    return unless $target.closest('.js-forum-topic-reply--container').length == 0 &&
+        $target.closest('.js-forum-topic-reply--new').length == 0
 
     @deactivate()
 
