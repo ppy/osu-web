@@ -46,7 +46,7 @@ class @ForumTopicReply
     return unless @available()
 
     @deleteState 'sticking'
-    @input[0].value = @getState 'text'
+    @input[0].value = @getState('text') || ''
     @activate() if @getState('active') == '1'
 
 
