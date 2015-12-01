@@ -30,8 +30,6 @@ class @EditorZoom
     $visibleElements = $container.find('.js-editor-zoom--visible')
     $('body').css overflow: (if enable then 'hidden' else '')
 
-    fade.toggle $('.blackout')[0], enable
-
     $hiddenElements.toggleClass 'hidden', enable
     $visibleElements.toggleClass 'hidden', !enable
 
