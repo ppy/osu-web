@@ -53,16 +53,16 @@ class @ForumTopicReply
   available: => @box.length
 
 
-  deleteState: (key, value) =>
+  deleteState: (key) =>
     localStorage.removeItem "forum-topic-reply--#{document.location.pathname}--#{key}"
 
 
-  getState: (key, value) =>
-    localStorage.getItem("forum-topic-reply--#{document.location.pathname}--#{key}", value)
+  getState: (key) =>
+    localStorage.getItem "forum-topic-reply--#{document.location.pathname}--#{key}"
 
 
   setState: (key, value) =>
-    localStorage.setItem("forum-topic-reply--#{document.location.pathname}--#{key}", value)
+    localStorage.setItem "forum-topic-reply--#{document.location.pathname}--#{key}", value
 
 
   activate: (e) =>
