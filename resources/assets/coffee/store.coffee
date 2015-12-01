@@ -56,7 +56,8 @@ checkUsernameValidity = ->
     $status.toggleClass 'green-dark', data.available
     $status.toggleClass 'pink-dark', !data.available
   .fail (xhr) ->
-    osu.reloadPage()
+    if xhr.status == 401
+      osu.popup Lang.get('errors.logged_out'), 'danger'
 
 
 debouncedCheckUsernameValidity = _.debounce checkUsernameValidity, 300
