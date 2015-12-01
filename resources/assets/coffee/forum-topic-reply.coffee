@@ -35,6 +35,7 @@ class @ForumTopicReply
 
     $(document).on 'focus', '.js-forum-topic-reply--input', @activate
     $(document).on 'input change', '.js-forum-topic-reply--input', _.debounce(@inputChange, 500)
+    $(document).on 'click', @deactivateIfBlank
 
     $.subscribe 'stickyFooter', @stickOrUnstick
 
@@ -46,23 +47,23 @@ class @ForumTopicReply
     return unless @available()
 
     @deleteState 'sticking'
-    @input[0].value = @getState 'text'
+    @input[0].value = @getState('text') || ''
     @activate() if @getState('active') == '1'
 
 
   available: => @box.length
 
 
-  deleteState: (key, value) =>
+  deleteState: (key) =>
     localStorage.removeItem "forum-topic-reply--#{document.location.pathname}--#{key}"
 
 
-  getState: (key, value) =>
-    localStorage.getItem("forum-topic-reply--#{document.location.pathname}--#{key}", value)
+  getState: (key) =>
+    localStorage.getItem "forum-topic-reply--#{document.location.pathname}--#{key}"
 
 
   setState: (key, value) =>
-    localStorage.setItem("forum-topic-reply--#{document.location.pathname}--#{key}", value)
+    localStorage.setItem "forum-topic-reply--#{document.location.pathname}--#{key}", value
 
 
   activate: (e) =>
@@ -95,6 +96,19 @@ class @ForumTopicReply
     @stickyFooter.markerDisable @marker()
     @setState 'active', '0'
     $.publish 'stickyFooter:check'
+
+
+  deactivateIfBlank: (e) =>
+    return unless @available() &&
+      @getState('active') == '1' &&
+      @input[0].value == ''
+
+    $target = $(e.target)
+
+    return unless $target.closest('.js-forum-topic-reply--container').length == 0 &&
+        $target.closest('.js-forum-topic-reply--new').length == 0
+
+    @deactivate()
 
 
   inputChange: =>
