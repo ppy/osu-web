@@ -35,6 +35,7 @@ class @ForumTopicReply
 
     $(document).on 'focus', '.js-forum-topic-reply--input', @activate
     $(document).on 'input change', '.js-forum-topic-reply--input', _.debounce(@inputChange, 500)
+    $(document).on 'blur', '.js-forum-topic-reply--input', @deactivateIfBlank
 
     $.subscribe 'stickyFooter', @stickOrUnstick
 
@@ -95,6 +96,12 @@ class @ForumTopicReply
     @stickyFooter.markerDisable @marker()
     @setState 'active', '0'
     $.publish 'stickyFooter:check'
+
+
+  deactivateIfBlank: =>
+    return unless @$input().val() == ''
+
+    @deactivate()
 
 
   inputChange: =>
