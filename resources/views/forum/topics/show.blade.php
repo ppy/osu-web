@@ -22,7 +22,7 @@
 ])
 
 @section("content")
-    <div class="forum-topic-headernav js-forum-topic-headernav js-fixed-element js-sync-height--reference" data-sync-height-target="forum-topic-headernav" data-visibility="hidden">
+    <div class="forum-topic-headernav js-forum-topic-headernav js-sync-height--reference" data-sync-height-target="forum-topic-headernav" data-visibility="hidden">
         <div class="forum-topic-headernav__stripe
             forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
         "></div>
@@ -123,7 +123,7 @@
     <div class="js-sticky-footer" data-sticky-footer-disabled="1" data-sticky-footer-target="forum-topic-reply"></div>
 @endsection
 
-@section('fixed-bar-rows-bottom')
+@section('permanent-fixed-footer')
     @parent
 
     <div

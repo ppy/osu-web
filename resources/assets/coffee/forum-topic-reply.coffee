@@ -22,6 +22,7 @@ class @ForumTopicReply
   closeButton: document.getElementsByClassName('js-forum-topic-reply--close')
   marker: -> document.querySelector('.js-sticky-footer[data-sticky-footer-target="forum-topic-reply"]')
   $input: -> $('.js-forum-topic-reply--input')
+  fixedBar: document.getElementsByClassName('js-sticky-footer--fixed-bar')
 
   constructor: (forum, stickyFooter) ->
     @forum = forum
@@ -135,10 +136,8 @@ class @ForumTopicReply
 
     @setState 'sticking', '1'
 
-    bottom = document.getElementsByClassName('js-sticky-footer--fixed-bar')[0].offsetHeight
 
-    @box[0].style.position = 'fixed'
-    @box[0].style.bottom = "#{bottom}px"
+    @fixedBar[0].insertBefore(@box[0], @fixedBar[0].firstChild)
     @closeButton[0].classList.remove 'hidden'
     @$input().focus()
 
@@ -148,8 +147,7 @@ class @ForumTopicReply
 
     @deleteState 'sticking'
 
-    @box[0].style.position = ''
-    @box[0].style.bottom = ''
+    @container[0].insertBefore(@box[0], @container[0].firstChild)
     @closeButton[0].classList.add 'hidden'
 
 
