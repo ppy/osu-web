@@ -30,19 +30,36 @@
   z-index: 9998;
   user-select: none;
 
-  opacity: 0;
-  display: none;
-
-  animation: loading-overlay--background-color 10s 1 linear;
-  animation-fill-mode: forwards;
+  display: flex;
 
   align-items: center;
   justify-content: center;
 
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+
+  &::before {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: @grey-0;
+    content: ' ';
+    will-change: opacity;
+  }
+
   &--visible {
     opacity: 1;
-    display: flex;
+    pointer-events: auto;
+
+    &::before {
+      animation: loading-overlay--background-color 10s 1 linear;
+      animation-fill-mode: forwards;
+    }
   }
+
 
   &__container {
     width: @circle-size*4;
@@ -58,6 +75,8 @@
 
     animation: loading-overlay--circle-burst @animation-length infinite linear;
     animation-fill-mode: both;
+
+    will-change: transform, opacity;
 
     &--1 {
       @colour: #8866ee;
@@ -131,6 +150,7 @@
 
     animation: loading-overlay--follow-point @animation-length infinite linear;
     animation-fill-mode: forwards;
+    will-change: opacity;
 
     @animation-delay-start: @animation-delay*1/8;
 
@@ -195,15 +215,15 @@
 
 @keyframes loading-overlay--background-color {
   0% {
-    background-color: fade(#000, 0%);
+    opacity: 0;
   }
 
   10% {
-    background-color: fade(#000, 50%);
+    opacity: 0.5;
   }
 
   100% {
-    background-color: fade(#000, 70%);
+    opacity: 0.7;
   }
 }
 
