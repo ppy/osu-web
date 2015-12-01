@@ -66,6 +66,7 @@ elixir(function(mix) {
     "osu!live.coffee",
     "osu_common.coffee",
     "turbolinks-mod.coffee",
+    "local-storage-polyfill.coffee",
 
     "fade.coffee",
     "form-placeholder-hide.coffee",

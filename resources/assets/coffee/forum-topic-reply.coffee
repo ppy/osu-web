@@ -46,23 +46,23 @@ class @ForumTopicReply
     return unless @available()
 
     @deleteState 'sticking'
-    @input[0].value = @getState 'text'
+    @input[0].value = @getState('text') || ''
     @activate() if @getState('active') == '1'
 
 
   available: => @box.length
 
 
-  deleteState: (key, value) =>
+  deleteState: (key) =>
     localStorage.removeItem "forum-topic-reply--#{document.location.pathname}--#{key}"
 
 
-  getState: (key, value) =>
-    localStorage.getItem("forum-topic-reply--#{document.location.pathname}--#{key}", value)
+  getState: (key) =>
+    localStorage.getItem "forum-topic-reply--#{document.location.pathname}--#{key}"
 
 
   setState: (key, value) =>
-    localStorage.setItem("forum-topic-reply--#{document.location.pathname}--#{key}", value)
+    localStorage.setItem "forum-topic-reply--#{document.location.pathname}--#{key}", value
 
 
   activate: (e) =>
