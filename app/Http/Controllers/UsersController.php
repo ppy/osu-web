@@ -35,6 +35,10 @@ class UsersController extends Controller
             'login',
         ]]);
 
+        $this->middleware('auth', ['only' => [
+            'checkUsernameAvailability',
+        ]]);
+
         return parent::__construct();
     }
 
