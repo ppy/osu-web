@@ -147,7 +147,7 @@ class APIController extends Controller
 
         return Response::json(
             fractal_api_serializer(
-                $scores->get(),
+                $scores->whereNotNull('pp')->get(),
                 new ScoreTransformer()
             )
         );
