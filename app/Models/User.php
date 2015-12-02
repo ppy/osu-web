@@ -479,9 +479,9 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany("App\Models\Mod", 'user_id', 'user_id');
     }
 
-    public function api()
+    public function apiKey()
     {
-        return $this->hasOne("App\Models\Api", 'user_id', 'user_id');
+        return $this->hasOne("App\Models\ApiKey", 'user_id');
     }
 
     //public function country() { return $this->hasOne("Country"); }
