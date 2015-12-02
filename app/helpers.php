@@ -266,6 +266,11 @@ function presence($string, $valueIfBlank = null)
     return $string;
 }
 
+function present($string)
+{
+    return presence($string) !== null;
+}
+
 function user_colour_style($colour, $style)
 {
     if (presence($colour) === null) {

@@ -24,6 +24,7 @@ use Response;
 use Redirect;
 use App\Models\ApiKey;
 use App\Models\Multiplayer\Match;
+use App\Models\BeatmapPack;
 use App\Transformers\Multiplayer\MatchTransformer;
 
 class APIController extends Controller
@@ -79,5 +80,23 @@ class APIController extends Controller
         } else {
             return $this->redirectToWiki();
         }
+    }
+
+    public function getPacks()
+    {
+        $tag   = Request::input('tag');
+        $limit = Request::input('n');
+
+        $packs = BeatmapPack::orderBy('pack_id', 'DESC');
+
+        if (present($tag)) {
+            $packs = $packs->where('tag', $tag);
+        }
+
+        if (present($limit)) {
+            $packs = $packs->limit((int)$limit);
+        }
+
+        return Response::json($packs->get());
     }
 }

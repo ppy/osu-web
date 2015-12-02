@@ -128,6 +128,7 @@ Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountControlle
 
 // API
 Route::get('/api/get_match', ['uses' => 'APIController@getMatch']);
+Route::get('/api/get_packs', ['uses' => 'APIController@getPacks']);
 
 Route::resource('post', 'PostController');
 Route::resource('modding', 'ModdingPostController');
