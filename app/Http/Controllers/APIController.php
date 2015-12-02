@@ -63,7 +63,7 @@ class APIController extends Controller
     public function getMatch()
     {
         $match_id = Request::input('mp');
-        if (presence($match_id) !== null) {
+        if (present($match_id)) {
             $match = Match::where('match_id', $match_id)->get();
             if (!$match->isEmpty()) {
                 return Response::json(
@@ -73,16 +73,14 @@ class APIController extends Controller
                         'games.scores'
                     )[0]
                 );
-            } else {
-                // match existing api
-                return Response::json([
-                    'match' => 0,
-                    'games' => []
-                ]);
             }
-        } else {
-            return $this->redirectToWiki();
         }
+
+        // match existing api
+        return Response::json([
+            'match' => 0,
+            'games' => []
+        ]);
     }
 
     public function getPacks()
