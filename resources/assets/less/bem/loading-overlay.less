@@ -21,6 +21,7 @@
 @animation-delay: @animation-length / 4;
 
 .loading-overlay {
+  @_top: ~"loading-overlay";
   backface-visibility: hidden;
   position: fixed;
   top: 0;
@@ -68,10 +69,16 @@
 
     border: solid 3px #fff;
 
-    animation: loading-overlay--circle-burst @animation-length infinite linear;
+    animation-duration: @animation-length;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
     animation-fill-mode: both;
 
     will-change: transform, opacity;
+
+    .@{_top}--visible & {
+      animation-name: loading-overlay--circle-burst;
+    }
 
     &--1 {
       @colour: #8866ee;
@@ -143,11 +150,17 @@
     font-weight: bold;
     font-size: 24px;
 
-    animation: loading-overlay--follow-point @animation-length infinite linear;
+    animation-duration: @animation-length;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
     animation-fill-mode: forwards;
     will-change: opacity;
 
     @animation-delay-start: @animation-delay*1/8;
+
+    .@{_top}--visible & {
+      animation-name: loading-overlay--follow-point;
+    }
 
     &--1 {
       transform: rotate(45deg);
