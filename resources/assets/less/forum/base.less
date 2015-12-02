@@ -178,6 +178,8 @@ body.community {
 }
 
 .forums {
+  @_top: ~"forums";
+
   background: #fff;
   list-style: none;
   padding: @grid-gutter-width/8;
@@ -190,49 +192,75 @@ body.community {
     font-weight: bold;
   }
 
-  > li {
-    &:extend(.default-box-shadow);
-    transition: all 25ms ease-out;
+  &__colour-stripe {
+    .full-size();
+    width: 10px;
+    .fade-element(120ms);
+    will-change: transform;
+    transform-origin: 0;
+
+    .@{_top}__forum:hover & {
+      transform: scaleX(2.5);
+    }
+  }
+
+  &__hover-bar {
+    flex: none;
+    width: 25px;
+  }
+
+  &__hover-bar-icon {
+    .full-size();
+    opacity: 0;
+    color: @grey-f;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    will-change: opacity;
+
+    .@{_top}__forum:hover & {
+      opacity: 1;
+    }
+  }
+
+  &__forum {
     margin: @grid-gutter-width/8 @grid-gutter-width/8;
 
     display: flex;
     align-items: stretch;
     justify-content: flex-end;
 
-    &:hover {
-      z-index: 100; // to push shadow up
-      .thicker-box-shadow;
-      transition: all 50ms ease-out;
+    &::before, &::after {
+      .full-size();
+      pointer-events: none;
+      will-change: opacity;
+      transition: all 25ms ease-out;
+    }
 
-      .hover-bar {
-        .colour-stripe {
-          width: 25px;
-        }
-        i {
-          opacity: 1;
-        }
+    &:hover {
+      &::before, &::after {
+        transition: all 50ms ease-out;
       }
     }
 
-    .hover-bar {
-      flex: 0 0 25px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    &::before {
+      .default-box-shadow();
+    }
 
-      .colour-stripe {
-        position: absolute;
-        width: 10px;
-        left: 0px;
-        top: 0px;
-        height: 100%;
-        .fade-element(120ms);
-      }
+    &:hover::before {
+      opacity: 0;
+    }
 
-      i {
-        opacity: 0;
-        color: #fff;
-      }
+    &::after {
+      z-index: 100; // to push shadow up
+      .thicker-box-shadow();
+      opacity: 0;
+    }
+
+    &:hover::after {
+      opacity: 1;
     }
 
     .left, .right {
@@ -274,8 +302,8 @@ body.community {
         width: 100%;
       }
 
-      flex: 0 0 300px;
-      max-width: 300px; // ensure it's 300px in firefox.
+      flex: none;
+      width: 300px;
       background-color: @gray-lighter;
       display: flex;
       align-items: center;
