@@ -149,58 +149,6 @@
       padding-left: @grid-gutter-width/8;
       padding-right: @grid-gutter-width/8;
     }
-
-    &.small {
-      h1 { font-size: 30px; }
-      p {
-        display: none;
-        &.always-visible { display: block; }
-      }
-    }
-
-    &.wide > div {
-      height: 300px;
-    }
-
-    &.small > div {
-      height: 200px;
-    }
-
-    > div {
-      .default-box-shadow;
-      .product-header-base;
-
-      &.product-box:hover {
-        .thicker-box-shadow;
-      }
-
-      > * { // either product link or informational box
-        display: block;
-        background-color: fade(#000, 50%);
-        padding-left: @grid-gutter-width/2;
-        padding-top: @grid-gutter-width/2;
-        height: 100%;
-        width: 100%;
-      }
-
-      > a {
-        &:hover, &:focus {
-          text-decoration: none;
-          background-color: transparent;
-          :not(.product-bar) { opacity: 0; }
-        }
-
-        .product-oos {
-          width: 233px;
-          height: 136px;
-          .at2x('/images/layout/store-out-of-stock-bar.png', 233px, 136px);
-          position: absolute;
-          bottom: 0px;
-          right: 0px;
-          margin: 0px;
-        }
-      }
-    }
   }
 }
 

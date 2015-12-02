@@ -17,11 +17,13 @@
 --}}
 <ul class="forums">
     @foreach($forums as $forum)
-        <li class="clickable-row">
+        <li class="forums__forum clickable-row">
             @if ($forum->forum_type === 1)
-                <div class="hover-bar hidden-xs">
-                    <div class="colour-stripe"></div>
-                    <i class="fa fa-angle-right"></i>
+                <div class="forums__hover-bar hidden-xs">
+                    <div class="forums__colour-stripe u-current-forum-bg"></div>
+                    <div class="forums__hover-bar-icon">
+                        <i class="fa fa-angle-right"></i>
+                    </div>
                 </div>
                 <div class="left">
                     {!! link_to(route("forum.forums.show", $forum->forum_id), $forum->forum_name, ["class" => "name clickable-row-link"]) !!}
@@ -56,9 +58,11 @@
                     @endif
                 </div>
             @elseif ($forum->forum_type === 2)
-                <div class="hover-bar hidden-xs">
-                    <div class="colour-stripe"></div>
-                    <i class="fa fa-link"></i>
+                <div class="forums__hover-bar hidden-xs">
+                    <div class="forums__colour-stripe u-current-forum-bg"></div>
+                    <div class="forums__hover-bar-icon">
+                        <i class="fa fa-link"></i>
+                    </div>
                 </div>
                 <div class="left">
                     {!! link_to($forum->forum_link, $forum->forum_name, ["class" => "name clickable-row-link"]) !!}
