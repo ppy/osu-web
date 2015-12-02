@@ -25,7 +25,10 @@ use Redirect;
 use App\Models\ApiKey;
 use App\Models\Multiplayer\Match;
 use App\Models\BeatmapPack;
+use App\Models\User;
+use App\Models\Score;
 use App\Transformers\Multiplayer\MatchTransformer;
+use App\Transformers\Score\ScoreTransformer;
 
 class APIController extends Controller
 {
@@ -68,7 +71,7 @@ class APIController extends Controller
                         $match,
                         new MatchTransformer(),
                         'games.scores'
-                    )
+                    )[0]
                 );
             } else {
                 // match existing api
@@ -98,5 +101,57 @@ class APIController extends Controller
         }
 
         return Response::json($packs->get());
+    }
+
+    public function getUserBest()
+    {
+        $id     = Request::input('u');
+        $mode   = Request::input('m', 0);
+        $limit  = Request::input('limit', 10);
+        $type   = Request::input('type');
+
+        if (!present($id)) {
+            return Response::json([]);
+        }
+
+        if (present($mode) && !in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
+            return Response::json([]);
+        }
+
+        switch ($type) {
+            case 'string':
+                $user = User::where('username', $id)->orWhere('username_clean', $id)->first();
+                break;
+
+            case 'id':
+                $user = User::find((int)$id);
+                break;
+
+            default:
+                if (is_numeric($id)) {
+                    $user = User::find((int)$id);
+                } else {
+                    $user = User::where('username', $id)->orWhere('username_clean', $id)->first();
+                }
+                break;
+        }
+
+        if (!$user) {
+            return Response::json([]);
+        }
+
+        $klass = Score\Model::getClass($mode);
+        $scores = $klass::forUser($user);
+
+        if (present($limit)) {
+            $scores = $scores->limit(min((int)$limit, 100));
+        }
+
+        return Response::json(
+            fractal_api_serializer(
+                $scores->get(),
+                new ScoreTransformer()
+            )
+        );
     }
 }

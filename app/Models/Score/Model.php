@@ -25,6 +25,25 @@ use App\Models\Beatmap;
 abstract class Model extends BaseModel
 {
     protected $primaryKey = 'score_id';
+
+    protected $casts = [
+        'beatmap_id' => 'integer',
+        'score' => 'integer',
+        'maxcombo' => 'integer',
+        'count50' => 'integer',
+        'count100' => 'integer',
+        'count300' => 'integer',
+        'countmiss' => 'integer',
+        'countkatu' => 'integer',
+        'countgeki' => 'integer',
+        'perfect' => 'integer',
+        'enabled_mods' => 'integer',
+        'user_id' => 'integer',
+        'enabled_mods' => 'integer',
+        'rank' => 'string',
+        'pp' => 'float',
+    ];
+
     public $timestamps = false;
 
     public static function forUser(\App\Models\User $user)

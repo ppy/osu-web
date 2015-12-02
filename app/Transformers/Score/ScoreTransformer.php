@@ -17,35 +17,31 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Transformers\Multiplayer;
+namespace App\Transformers\Score;
 
-use App\Models\Multiplayer\Game;
+use App\Models\Score;
 use League\Fractal;
 
-class GameTransformer extends Fractal\TransformerAbstract
+class ScoreTransformer extends Fractal\TransformerAbstract
 {
-    protected $availableIncludes = ['scores'];
-
-    public function transform(Game $game)
+    public function transform(Score\Model $score)
     {
         return [
-            'game_id' => $game->game_id,
-            'start_time' => $game->start_time,
-            'end_time' => $game->end_time,
-            'beatmap_id' => $game->beatmap_id,
-            'play_mode' => $game->play_mode,
-            'match_type' => $game->match_type,
-            'scoring_type' => $game->scoring_type,
-            'team_type' => $game->team_type,
-            'mods' => $game->mods
+            'beatmap_id' => $score->beatmap_id,
+            'score' => $score->score,
+            'maxcombo' => $score->maxcombo,
+            'count50' => $score->count50,
+            'count100' => $score->count100,
+            'count300' => $score->count300,
+            'countmiss' => $score->countmiss,
+            'countkatu' => $score->countkatu,
+            'countgeki' => $score->countgeki,
+            'perfect' => $score->perfect,
+            'enabled_mods' => $score->enabled_mods,
+            'user_id' => $score->user_id,
+            'date' => $score->date,
+            'rank' => $score->rank,
+            'pp' => round($score->pp, 4),
         ];
-    }
-
-    public function includeScores(Game $game)
-    {
-        return $this->collection(
-            $game->scores()->get(),
-            new ScoreTransformer()
-        );
     }
 }
