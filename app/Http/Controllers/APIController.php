@@ -28,9 +28,6 @@ use App\Transformers\Multiplayer\MatchTransformer;
 
 class APIController extends Controller
 {
-    use \App\Traits\ModdingAPI;
-    use \App\Traits\BeatmapAPI;
-
     public function __construct()
     {
         $this->beforeFilter("@validateKey");
