@@ -22,7 +22,7 @@
 ])
 
 @section("content")
-    <div class="forum-topic-headernav js-forum-topic-headernav js-fixed-element js-sync-height--reference" data-sync-height-target="forum-topic-headernav" data-visibility="hidden">
+    <div class="forum-topic-headernav js-forum-topic-headernav js-sync-height--reference" data-sync-height-target="forum-topic-headernav" data-visibility="hidden">
         <div class="forum-topic-headernav__stripe
             forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
         "></div>
@@ -68,14 +68,14 @@
     <div class="js-forum-topic-reply--container js-sync-height--target" data-sync-height-id="forum-topic-reply">
         {!! Form::open([
             "url" => route("forum.topics.reply", $topic->topic_id),
-            "class" => "forum-post forum-post--reply js-forum-topic-reply js-sync-height--reference js-fixed-element",
+            "class" => "forum-post forum-post--reply js-forum-topic-reply js-sync-height--reference js-fixed-element js-editor-zoom",
             "id" => "forum-topic-reply-box",
             "data-remote" => true,
             "data-sync-height-target" => "forum-topic-reply",
             'data-force-reload' => Auth::check() === false ? '1' : '0',
         ]) !!}
             <div class="forum-post__reply-container">
-                <div class="osu-layout__row osu-layout__row--sm2-desktop">
+                <div class="osu-layout__row osu-layout__row--sm2-desktop osu-layout__row--full-height">
                     <div class="forum-post__reply-content">
                         <div class="forum-post__info-panel forum-post__info-panel--reply hidden-xs">
                             <div class="forum-post__avatar-container forum-post__avatar-container--reply">
@@ -92,11 +92,14 @@
                         </div>
 
                         <div class="forum-post__body forum-post__body--reply">
-                            <div class="forum-post__content">
+                            <div class="forum-post__content forum-post__content--edit-body">
                                 @include('forum.posts._form_body', ['postBody' => [
                                     'focus' => false,
                                     'extraClasses' => 'forum-post-content--reply js-forum-topic-reply--input',
                                 ]])
+                            </div>
+
+                            <div class="forum-post__content forum-post__content forum-post__content--edit-bar hidden">
                             </div>
 
                             <div class="forum-post__content forum-post__content forum-post__content--edit-bar">
@@ -104,7 +107,7 @@
                             </div>
                         </div>
 
-                        <div class="forum-post__actions forum-post__actions--reply">
+                        <div class="forum-post__actions forum-post__actions--reply js-editor-zoom--hidden">
                             <div class="forum-post-actions">
                                 <a href="#" class="js-forum-topic-reply--close forum-post-actions__action hidden">
                                     <i class="fa fa-close"></i>
@@ -120,7 +123,7 @@
     <div class="js-sticky-footer" data-sticky-footer-disabled="1" data-sticky-footer-target="forum-topic-reply"></div>
 @endsection
 
-@section('fixed-bar-rows-bottom')
+@section('permanent-fixed-footer')
     @parent
 
     <div

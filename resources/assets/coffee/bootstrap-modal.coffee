@@ -36,7 +36,6 @@ $(document).on 'show.bs.modal', '.modal', ->
   for el, i in fixedElements
     continue if alignments[i].skip
     el.style.left = "#{alignments[i].left}px"
-    el.style.top = "#{alignments[i].top}px"
     el.style.width = "#{alignments[i].width}px"
 
 
@@ -52,5 +51,4 @@ $(document).on 'shown.bs.modal', '.modal', ->
     continue if skips[i]
     el.style.paddingRight = paddingRight
     el.style.left = ''
-    el.style.top = ''
     el.style.width = ''

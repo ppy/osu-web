@@ -59,11 +59,15 @@
             class="fixed-bar
                 js-fixed-element
                 js-fixed-bottom-bar
-                js-sticky-footer--fixed-bar
-                js-sync-height--reference"
-            data-sync-height-target="footer-fixed-bar"
+                js-sticky-footer--fixed-bar"
         >
-            @yield('fixed-bar-rows-bottom')
+            <div
+                class="js-permanent-fixed-footer
+                    js-sync-height--reference"
+                data-sync-height-target="permanent-fixed-footer"
+            >
+                @yield('permanent-fixed-footer')
+            </div>
         </div>
 
         @yield('user-dropdown-modal')

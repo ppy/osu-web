@@ -16,12 +16,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.fixed-bar {
-  backface-visibility: hidden;
-  position: fixed;
-  width: 100%;
-  z-index: @z-index--fixed-bar;
-  display: flex;
-  flex-direction: column;
-  bottom: 0;
+.js-editor-zoom {
+  &--full {
+    z-index: @z-index--editor-zoom;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
 }

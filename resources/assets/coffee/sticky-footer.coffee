@@ -25,7 +25,7 @@
 # 4. stick if matches, unstick otherwise
 class @StickyFooter
   stickMarker: document.getElementsByClassName('js-sticky-footer')
-  fixedBar: document.getElementsByClassName('js-sticky-footer--fixed-bar')
+  permanentFixedFooter: document.getElementsByClassName('js-permanent-fixed-footer')
 
   constructor: ->
     $(window).on 'scroll resize', @stickOrUnstick
@@ -35,7 +35,7 @@ class @StickyFooter
   stickOrUnstick: =>
     return if @stickMarker.length == 0
 
-    bottom = window.innerHeight - @fixedBar[0].getBoundingClientRect().height
+    bottom = window.innerHeight - @permanentFixedFooter[0].offsetHeight
 
     for marker in @stickMarker
       continue if marker.getAttribute('data-sticky-footer-disabled') == '1'
