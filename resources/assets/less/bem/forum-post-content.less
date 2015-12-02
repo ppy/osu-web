@@ -26,9 +26,12 @@
       outline: none;
       border: none;
       resize: vertical;
-      min-height: 300px;
       width: 100%;
       padding: 0;
+
+      @media @desktop {
+        min-height: 300px;
+      }
     }
 
     &--editor {
@@ -39,8 +42,11 @@
       outline: none;
       border: none;
       resize: none;
-      min-height: 150px;
       width: 100%;
       padding: 0;
+
+      @media @desktop {
+        min-height: 150px;
+      }
     }
 }

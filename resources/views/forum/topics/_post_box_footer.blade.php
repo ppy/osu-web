@@ -23,9 +23,19 @@
 </div>
 
 <div class="post-editor__actions">
+    <button class="js-editor-zoom--visible js-editor-zoom--end hidden btn-osu btn-osu--small btn-osu-default post-editor__action post-editor__action--compact" type="button" title="{{ trans("forum.topic.post_edit.zoom.end") }}">
+        <i class="fa fa-compress"></i>
+    </button>
+
+    <div class="visible-xs">
+        <button class="js-editor-zoom--hidden js-editor-zoom--start btn-osu btn-osu--small btn-osu-default post-editor__action post-editor__action--compact" type="button" title="{{ trans("forum.topic.post_edit.zoom.start") }}">
+            <i class="fa fa-expand"></i>
+        </button>
+    </div>
+
     @if ($editing)
-        <button class="btn-osu btn-osu--small btn-osu-default js-edit-post-cancel post-editor__action" type="button">{{ trans("forum.topic.post_edit.cancel") }}</button>
+        <button class="js-editor-zoom--hidden btn-osu btn-osu--small btn-osu-default js-edit-post-cancel post-editor__action" type="button">{{ trans("forum.topic.post_edit.cancel") }}</button>
     @endif
 
-    <button class="btn-osu btn-osu--small btn-osu-default post-editor__action" type="submit">{{ $submitText }}</button>
+    <button class="js-editor-zoom--hidden btn-osu btn-osu--small btn-osu-default post-editor__action" type="submit">{{ $submitText }}</button>
 </div>

@@ -23,6 +23,7 @@ return [
         'http-403' => 'Access denied.',
         'http-401' => 'Please login to proceed.',
     ],
+    'logged_out' => 'You have been logged out. Please login and retry.',
     'supporter_only' => 'You must be a supporter to use this feature.',
     'unknown' => 'Unknown error occurred.',
 ];

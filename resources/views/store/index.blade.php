@@ -22,15 +22,20 @@
 
     <div class="osu-layout__row osu-layout__row--with-gutter product-listing">
         @foreach($products as $p)
-        <div class="{{{ $p->promoted ? "wide col-sm-12" : "small col-sm-6 col-lg-4" }}}">
-            <div class="product-box" style="background-image: url('{{{ $p->promoted ? $p->header_image : $p->image}}}')">
-                <a href="/store/product/{{{$p->product_id}}}">
+        <div class="{{ $p->promoted ? "wide col-sm-12" : "small col-sm-6 col-lg-4" }}">
+            <a
+                href="/store/product/{{ $p->product_id }}"
+                class="product-box product-box--{{ $p->promoted ? 'large' : 'small' }}"
+                style="background-image: url('{{ $p->promoted ? $p->header_image : $p->image }}')"
+            >
+                <div class="product-box__text product-box__text--{{ $p->promoted === true ? 'large' : 'small' }}">
                     {!! Markdown::convertToHtml($p->header_description) !!}
-                    @if(!$p->inStock())
-                    <i class="product-oos product-bar"></i>
-                    @endif
-                </a>
-            </div>
+                </div>
+
+                @if(!$p->inStock())
+                    <i class="product-box__bar product-box__bar--oos"></i>
+                @endif
+            </a>
         </div>
         @endforeach
     </div>

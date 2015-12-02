@@ -142,7 +142,11 @@
   }
 
   &__body {
-    flex: 1;
+    flex: none;
+    @media @desktop {
+      flex: 1;
+    }
+
     display: flex;
     flex-direction: column;
 
@@ -154,6 +158,7 @@
       .default-box-shadow;
       overflow: hidden;
       background-color: @grey-f;
+      flex: 1;
 
       @media @desktop {
         .default-border-radius;
@@ -202,6 +207,11 @@
       justify-content: space-between;
       padding-top: @spacing;
       padding-bottom: @spacing;
+    }
+
+    &--edit-body {
+      flex: 1 0 auto;
+      display: flex;
     }
 
     &--footer {
@@ -339,6 +349,7 @@
   &__reply-container {
     background-color: fade(@grey-3, 90%);
     width: 100%;
+    height: 100%;
     padding-bottom: @spacing;
     padding-top: @_reply-xs-top-margin;
 
@@ -349,6 +360,7 @@
 
   &__reply-content {
     display: flex;
+    height: 100%;
   }
 
   &__stripe {
