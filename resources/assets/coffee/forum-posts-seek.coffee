@@ -68,9 +68,8 @@ class @ForumPostsSeek
 
 
   setPostPosition: (x) =>
-    seekbarPos = @seekbar[0].getBoundingClientRect()
 
-    full = seekbarPos.width
+    full = @seekbar[0].offsetWidth
     position = x / full
 
     totalPosts = @forum.totalPosts()
