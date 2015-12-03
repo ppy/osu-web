@@ -24,9 +24,7 @@
   width: 100%;
   background-image: linear-gradient(to top, @gray-dark @_main-height, transparent @_main-height);
 
-  // due to unfortunate reason (wrong background on footer padding),
-  // I can't set it to (... + @spacing * 2)
-  height: (@_main-height);
+  height: (@_main-height + @spacing);
 
   &:hover {
     .@{_top}__seek-bar {
