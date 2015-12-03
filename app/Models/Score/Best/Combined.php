@@ -23,6 +23,11 @@ class Combined extends Score\Combined
 {
     public static function forUser(\App\Models\User $user)
     {
-        return parent::forUser($user, true);
+        $osu = Osu::forUser($user);
+        $taiko = Taiko::forUser($user);
+        $mania = Mania::forUser($user);
+        $fruits = Fruit::forUser($user);
+
+        return $osu->union($taiko)->union($mania)->union($fruits);
     }
 }
