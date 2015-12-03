@@ -17,9 +17,9 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models\Score;
+namespace App\Models\Score\Best;
 
-class Mania extends Model
+class Osu extends Model
 {
-    protected $table = 'osu_scores_mania_high';
+    protected $table = 'osu_scores_high';
 }

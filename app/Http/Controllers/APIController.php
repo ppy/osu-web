@@ -29,7 +29,7 @@ use App\Models\BeatmapPack;
 use App\Models\User;
 use App\Models\Score;
 use App\Transformers\Multiplayer\MatchTransformer;
-use App\Transformers\Score\ScoreTransformer;
+use App\Transformers\API\ScoreTransformer;
 use App\Transformers\API\UserTransformer;
 use App\Transformers\API\StatisticsTransformer;
 use App\Transformers\API\EventTransformer;
@@ -161,7 +161,7 @@ class APIController extends Controller
             return Response::json([]);
         }
 
-        $klass = Score\Model::getClass($mode);
+        $klass = Score\Best\Model::getClass($mode);
         $scores = $klass::forUser($user);
 
         if (present($limit)) {

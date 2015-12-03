@@ -26,7 +26,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
 {
     public function transform(Score $score)
     {
-        return array_merge([
+        return [
             'slot' => $score->slot,
             'team' => $score->team,
             'user_id' => $score->user_id,
@@ -41,6 +41,6 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'countkatu' => $score->countkatu,
             'perfect' => $score->perfect,
             'pass' => $score->pass
-        ]);
+        ];
     }
 }
