@@ -22,8 +22,8 @@
         <div class="logo-menu__logo"></div>
     </a>
 
-    <ul class="logo-menu__menu logo-menu__menu--main js-menu" data-menu-id="logo-menu" data-visibility="hidden">
-        <li class="logo-menu__menu-item">
+    <div class="logo-menu__menu logo-menu__menu--main js-menu" data-menu-id="logo-menu" data-visibility="hidden">
+        <div class="logo-menu__menu-item">
             @if (Auth::check())
                 <div class="logo-menu__user logo-menu__user--split js-logo-menu-user">
                     <a
@@ -63,12 +63,12 @@
                     </span>
                 </a>
             @endif
-        </li>
+        </div>
 
-        <li class="logo-menu__menu-item logo-menu__menu-item--separator"></li>
+        <div class="logo-menu__menu-item logo-menu__menu-item--separator"></div>
 
         @foreach (nav_links() as $section => $links)
-            <li class="logo-menu__menu-item">
+            <div class="logo-menu__menu-item">
                 <a href="{{ array_values($links)[0] }}" class="logo-menu__menu-link js-menu" data-menu-target="logo-menu--{{ $section }}">
                     <div class="logo-menu__menu-stripe logo-menu__menu-stripe--hover bg--{{ $section }}"></div>
                     <span class="logo-menu__menu-text logo-menu__menu-text--main">
@@ -78,21 +78,22 @@
                     </span>
                 </a>
 
-                <ul class="logo-menu__menu logo-menu__menu--sub js-menu" data-menu-id="logo-menu--{{ $section }}" data-visibility="hidden">
+                <div class="logo-menu__menu logo-menu__menu--sub js-menu" data-menu-id="logo-menu--{{ $section }}" data-visibility="hidden">
+                    <div class="logo-menu__menu-stripe bg--{{ $section }}"></div>
+
                     @foreach ($links as $action => $link)
-                        <li class="logo-menu__menu-item">
+                        <div class="logo-menu__menu-item">
                             <a href="{{ $link }}" class="logo-menu__menu-link logo-menu__menu-link">
-                                <div class="logo-menu__menu-stripe bg--{{ $section }}"></div>
                                 <span class="logo-menu__menu-text logo-menu__menu-text--sub">
                                     {{ trans("layout.menu.{$section}.{$action}") }}
                                 </span>
                             </a>
-                        </li>
+                        </div>
                     @endforeach
-                </ul>
-            </li>
+                </div>
+            </div>
         @endforeach
 
-        <li class="logo-menu__menu-item logo-menu__menu-item--separator"></li>
-    </ul>
+        <div class="logo-menu__menu-item logo-menu__menu-item--separator"></div>
+    </div>
 </div>
