@@ -109,9 +109,9 @@ class BeatmapController extends Controller
                 $params,
                 function ($v, $k) {
                     if (is_array($v)) {
-                        return (!empty($v));
+                        return !empty($v);
                     } else {
-                        return (presence($v) !== null);
+                        return presence($v) !== null;
                     }
                 },
                 ARRAY_FILTER_USE_BOTH
