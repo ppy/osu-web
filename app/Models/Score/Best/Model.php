@@ -19,56 +19,12 @@
  */
 namespace App\Models\Score\Best;
 
-use Illuminate\Database\Eloquent\Model as BaseModel;
-use App\Models\Beatmap;
+use App\Models\Score\Model as BaseModel;
 
-abstract class Model extends BaseModel
+class Model extends BaseModel
 {
-    protected $primaryKey = 'score_id';
-
-    protected $casts = [
-        'beatmap_id' => 'integer',
-        'score' => 'integer',
-        'maxcombo' => 'integer',
-        'count50' => 'integer',
-        'count100' => 'integer',
-        'count300' => 'integer',
-        'countmiss' => 'integer',
-        'countkatu' => 'integer',
-        'countgeki' => 'integer',
-        'perfect' => 'integer',
-        'enabled_mods' => 'integer',
-        'user_id' => 'integer',
-        'enabled_mods' => 'integer',
-        'rank' => 'string',
-        'pp' => 'float',
-    ];
-
-    public $timestamps = false;
-
-    public static function forUser(\App\Models\User $user)
-    {
-        return static::where('user_id', (int) $user->user_id);
-    }
-
     public static function getClass($game_mode)
     {
-        switch ($game_mode) {
-            case Beatmap::OSU:
-                return Osu::class;
-                break;
-
-            case Beatmap::TAIKO:
-                return Taiko::class;
-                break;
-
-            case Beatmap::CTB:
-                return Fruit::class;
-                break;
-
-            case Beatmap::MANIA:
-                return Mania::class;
-                break;
-        }
+        return parent::getClass($game_mode, true);
     }
 }

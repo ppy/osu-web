@@ -17,12 +17,17 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models\Score\Best;
+namespace App\Models\Score;
 
-class Combined extends Score\Combined
+class Combined extends Model
 {
-    public static function forUser(\App\Models\User $user)
+    public static function forUser(\App\Models\User $user, $best = false)
     {
-        return parent::forUser($user, true);
+        $osu = $best ? Best\Osu::forUser($user) : Osu::forUser($user);
+        $taiko = $best ? Best\Taiko::forUser($user) : Taiko::forUser($user);
+        $mania = $best ? Best\Mania::forUser($user) : Mania::forUser($user);
+        $fruits = $best ? Best\Fruit::forUser($user) : Fruit::forUser($user);
+
+        return $osu->union($taiko)->union($mania)->union($fruits);
     }
 }

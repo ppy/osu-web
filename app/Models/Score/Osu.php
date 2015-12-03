@@ -17,12 +17,9 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models\Score\Best;
+namespace App\Models\Score;
 
-class Combined extends Score\Combined
+class Osu extends Model
 {
-    public static function forUser(\App\Models\User $user)
-    {
-        return parent::forUser($user, true);
-    }
+    protected $table = 'osu_scores';
 }
