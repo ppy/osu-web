@@ -194,6 +194,33 @@ class User extends Model implements AuthenticatableContract
         return $this->api->api_key === $key;
     }
 
+    public function lookup($username_or_id, $lookup_type = null)
+    {
+        if (!present($username_or_id)) {
+            return null;
+        }
+
+        switch ($lookup_type) {
+            case 'string':
+                $user = User::where('username', $username_or_id)->orWhere('username_clean', $username_or_id)->first();
+                break;
+
+            case 'id':
+                $user = User::find((int)$username_or_id);
+                break;
+
+            default:
+                if (is_numeric($username_or_id)) {
+                    $user = User::find((int)$username_or_id);
+                } else {
+                    $user = User::where('username', $username_or_id)->orWhere('username_clean', $username_or_id)->first();
+                }
+                break;
+        }
+
+        return $user;
+    }
+
     public function getUserAvatarAttribute($value)
     {
         if ($value === null || $value === '') {

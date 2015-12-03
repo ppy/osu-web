@@ -96,11 +96,7 @@ class UsersController extends Controller
 
     public function show($id)
     {
-        if (is_numeric($id)) {
-            $user = User::find($id);
-        } else {
-            $user = User::where('username', $id)->orWhere('username_clean', $id)->first();
-        }
+        $user = User::lookup($id);
 
         if ($user === null || !$user->hasProfile()) {
             abort(404);
