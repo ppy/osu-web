@@ -105,7 +105,7 @@ class APIController extends Controller
     {
         $id     = Request::input('u');
         $mode   = Request::input('m', 0);
-        $limit  = Request::input('limit', 10);
+        $limit  = min((int)Request::input('limit', 10), 100);
         $type   = Request::input('type');
 
         if (present($mode) && !in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
@@ -122,7 +122,7 @@ class APIController extends Controller
         $scores = $klass::forUser($user);
 
         if (present($limit)) {
-            $scores = $scores->limit(min((int)$limit, 100));
+            $scores = $scores->limit($limit);
         }
 
         return Response::json(
