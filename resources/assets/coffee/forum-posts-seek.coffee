@@ -23,28 +23,15 @@ class @ForumPostsSeek
 
   constructor: (forum) ->
     @forum = forum
-    $(document).on 'touchstart', '.js-forum__posts-seek', @onTouchstart
-    $(document).on 'mouseenter', '.js-forum__posts-seek', @enter
-    $(document).on 'mouseleave', '.js-forum__posts-seek', @leave
     $(document).on 'mousemove', '.js-forum__posts-seek', @move
+    $(document).on 'mouseleave', '.js-forum__posts-seek', @hideTooltip
     $(document).on 'click', '.js-forum__posts-seek', @click
 
     $(document).on 'click', '.js-forum-posts-seek--jump', @jump
 
 
-  enter: (e) =>
-    return if @tooltip[0]._visible
-
-    @move(e)
-    fade.in @tooltip[0]
-
-
-  leave: (e) =>
-    return unless @tooltip[0]._visible
-
-    @tooltip[0]._visible = false
+  hideTooltip: =>
     fade.out @tooltip[0]
-
 
   move: (e) =>
     e.preventDefault()
@@ -52,9 +39,15 @@ class @ForumPostsSeek
 
     @setPostPosition(e.offsetX)
 
+    fade.in @tooltip[0]
+
+    clearTimeout @_autohide
+    @_autohide = setTimeout @hideTooltip, 1000
+
 
   click: =>
     @forum.jumpTo @postPosition
+
 
   jump: (e) =>
     e.preventDefault()
@@ -72,14 +65,6 @@ class @ForumPostsSeek
 
     $target.blur()
     @forum.jumpTo n
-
-
-  onTouchstart: (e) =>
-    e.preventDefault()
-    e.stopPropagation()
-
-    @setPostPosition e.originalEvent.layerX
-    setTimeout @click, 10
 
 
   setPostPosition: (x) =>
