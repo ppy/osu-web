@@ -19,14 +19,19 @@
  */
 namespace App\Transformers\API;
 
-use App\Models\Score\Best;
+use App\Models\Score;
 use League\Fractal;
 
 class ScoreTransformer extends Fractal\TransformerAbstract
 {
-    public function transform(Best\Model $score)
+    public function transform(Score\Model $score)
     {
-        return [
+        $pp = [];
+        if (is_subclass_of($score, 'App\Models\Score\Best\Model')) {
+            $pp = ['pp' => round($score->pp, 4)];
+        }
+
+        return array_merge([
             'beatmap_id' => $score->beatmap_id,
             'score' => $score->score,
             'maxcombo' => $score->maxcombo,
@@ -41,7 +46,6 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'user_id' => $score->user_id,
             'date' => $score->date,
             'rank' => $score->rank,
-            'pp' => round($score->pp, 4),
-        ];
+        ], $pp);
     }
 }

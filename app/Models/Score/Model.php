@@ -51,23 +51,23 @@ abstract class Model extends BaseModel
         return static::where('user_id', (int) $user->user_id);
     }
 
-    public static function getClass($game_mode, $best = false)
+    public static function getClass($game_mode)
     {
         switch ($game_mode) {
             case Beatmap::OSU:
-                return $best ? Best\Osu::class : Osu::class;
+                return Osu::class;
                 break;
 
             case Beatmap::TAIKO:
-                return $best ? Best\Taiko::class : Taiko::class;
+                return Taiko::class;
                 break;
 
             case Beatmap::CTB:
-                return $best ? Best\Fruit::class : Fruit::class;
+                return Fruit::class;
                 break;
 
             case Beatmap::MANIA:
-                return $best ? Best\Mania::class : Mania::class;
+                return Mania::class;
                 break;
         }
     }

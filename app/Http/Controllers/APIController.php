@@ -146,9 +146,20 @@ class APIController extends Controller
 
     public function getUserBest()
     {
+        $limit  = min((int)Request::input('limit', 10), 100);
+        return $this->getScores(true, $limit);
+    }
+
+    public function getUserRecent()
+    {
+        $limit  = min((int)Request::input('limit', 10), 50);
+        return $this->getScores(false, $limit);
+    }
+
+    private function getScores($best, $limit)
+    {
         $id     = Request::input('u');
         $mode   = Request::input('m', 0);
-        $limit  = min((int)Request::input('limit', 10), 100);
         $type   = Request::input('type');
 
         if (present($mode) && !in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
@@ -156,12 +167,11 @@ class APIController extends Controller
         }
 
         $user = User::lookup($id, $type);
-
         if (!$user) {
             return Response::json([]);
         }
 
-        $klass = Score\Best\Model::getClass($mode);
+        $klass = $best ? Score\Best\Model::getClass($mode) : Score\Model::getClass($mode);
         $scores = $klass::forUser($user);
 
         if (present($limit)) {
@@ -170,7 +180,7 @@ class APIController extends Controller
 
         return Response::json(
             fractal_api_serialize_collection(
-                $scores->whereNotNull('pp')->get(),
+                $scores->orderBy('date', 'desc')->get(),
                 new ScoreTransformer()
             )
         );

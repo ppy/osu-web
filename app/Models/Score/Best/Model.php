@@ -19,12 +19,29 @@
  */
 namespace App\Models\Score\Best;
 
+use App\Models\Beatmap;
 use App\Models\Score\Model as BaseModel;
 
 class Model extends BaseModel
 {
     public static function getClass($game_mode)
     {
-        return parent::getClass($game_mode, true);
+        switch ($game_mode) {
+            case Beatmap::OSU:
+                return Osu::class;
+                break;
+
+            case Beatmap::TAIKO:
+                return Taiko::class;
+                break;
+
+            case Beatmap::CTB:
+                return Fruit::class;
+                break;
+
+            case Beatmap::MANIA:
+                return Mania::class;
+                break;
+        }
     }
 }
