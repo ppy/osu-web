@@ -116,7 +116,7 @@ class APIController extends Controller
             return Response::json([]);
         }
 
-        $user = User::lookup($id);
+        $user = User::lookup($id, $type);
         if (!$user) {
             return Response::json([]);
         }
@@ -155,7 +155,7 @@ class APIController extends Controller
             return Response::json([]);
         }
 
-        $user = User::lookup($id);
+        $user = User::lookup($id, $type);
 
         if (!$user) {
             return Response::json([]);
