@@ -80,5 +80,4 @@ class @ForumPostsSeek
     @postPosition = Math.max(postPosition, 1)
 
     @tooltip[0].style.left = "#{x}px"
-    @tooltip[0].style.bottom = seekbarPos.top
     @tooltipNumber[0].textContent = @postPosition
