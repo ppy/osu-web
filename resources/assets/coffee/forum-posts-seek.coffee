@@ -23,40 +23,31 @@ class @ForumPostsSeek
 
   constructor: (forum) ->
     @forum = forum
-    $(document).on 'mouseenter', '.js-forum__posts-seek', @enter
-    $(document).on 'mouseleave', '.js-forum__posts-seek', @leave
     $(document).on 'mousemove', '.js-forum__posts-seek', @move
+    $(document).on 'mouseleave', '.js-forum__posts-seek', @hideTooltip
     $(document).on 'click', '.js-forum__posts-seek', @click
 
     $(document).on 'click', '.js-forum-posts-seek--jump', @jump
 
 
-  enter: (e) =>
-    @move(e)
-    fade.in @tooltip[0]
-
-
-  leave: (e) =>
+  hideTooltip: =>
     fade.out @tooltip[0]
 
-
   move: (e) =>
-    seekbarPos = @seekbar[0].getBoundingClientRect()
+    e.preventDefault()
+    e.stopPropagation()
 
-    full = seekbarPos.width
-    position = e.offsetX / full
-    totalPosts = @forum.totalPosts()
-    postPosition = Math.ceil(position * @forum.totalPosts())
-    postPosition = Math.min(postPosition, totalPosts)
-    @postPosition = Math.max(postPosition, 1)
+    @setPostPosition(e.clientX)
 
-    @tooltip[0].style.left = "#{e.pageX}px"
-    @tooltip[0].style.bottom = seekbarPos.top
-    @tooltipNumber[0].textContent = @postPosition
+    fade.in @tooltip[0]
+
+    clearTimeout @_autohide
+    @_autohide = setTimeout @hideTooltip, 1000
 
 
   click: =>
     @forum.jumpTo @postPosition
+
 
   jump: (e) =>
     e.preventDefault()
@@ -74,3 +65,18 @@ class @ForumPostsSeek
 
     $target.blur()
     @forum.jumpTo n
+
+
+  setPostPosition: (x) =>
+
+    full = @seekbar[0].offsetWidth
+    position = x / full
+
+    totalPosts = @forum.totalPosts()
+
+    postPosition = Math.ceil(position * @forum.totalPosts())
+    postPosition = Math.min(postPosition, totalPosts)
+    @postPosition = Math.max(postPosition, 1)
+
+    @tooltip[0].style.left = "#{x}px"
+    @tooltipNumber[0].textContent = @postPosition
