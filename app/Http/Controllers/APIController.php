@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 use Request;
 use Response;
 use Redirect;
+use Carbon\Carbon;
 use App\Models\ApiKey;
 use App\Models\Multiplayer\Match;
 use App\Models\BeatmapPack;
@@ -29,6 +30,9 @@ use App\Models\User;
 use App\Models\Score;
 use App\Transformers\Multiplayer\MatchTransformer;
 use App\Transformers\Score\ScoreTransformer;
+use App\Transformers\API\UserTransformer;
+use App\Transformers\API\StatisticsTransformer;
+use App\Transformers\API\EventTransformer;
 
 class APIController extends Controller
 {
@@ -99,6 +103,45 @@ class APIController extends Controller
         }
 
         return Response::json($packs->get());
+    }
+
+    public function getUser()
+    {
+        $id         = Request::input('u');
+        $mode       = Request::input('m', 0);
+        $type       = Request::input('type');
+        $event_days = min(31, (int)Request::input('event_days', 1));
+
+        if (present($mode) && !in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
+            return Response::json([]);
+        }
+
+        $user = User::lookup($id);
+        if (!$user) {
+            return Response::json([]);
+        }
+
+        $stats = fractal_api_serialize_item(
+            $user->statistics(play_mode_string($mode), true)->first(),
+            new StatisticsTransformer()
+        );
+
+        $events = fractal_api_serialize_collection(
+            $user->events()
+                ->whereDate('date', '>', Carbon::now()->addDays(-$event_days))
+                ->orderBy('event_id', 'desc')
+                ->get(),
+            new EventTransformer()
+        );
+
+        $user = fractal_api_serialize_item(
+            $user,
+            new UserTransformer()
+        );
+
+        $combined = array_merge($user, $stats, ['events' => $events]);
+
+        return Response::json($combined);
     }
 
     public function getUserBest()
