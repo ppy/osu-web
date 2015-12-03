@@ -37,7 +37,7 @@ class @ForumPostsSeek
     e.preventDefault()
     e.stopPropagation()
 
-    @setPostPosition(e.offsetX)
+    @setPostPosition(e.clientX)
 
     fade.in @tooltip[0]
 
