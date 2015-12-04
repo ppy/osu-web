@@ -41,7 +41,7 @@ class TopicCover extends Model
     public static function findForUse($id, $user)
     {
         if ($user === null) {
-            return [];
+            return;
         }
 
         $covers = static::select();
