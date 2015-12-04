@@ -64,15 +64,6 @@ return [
             'bucket' => env('S3_BUCKET_AVATARS'),
         ],
 
-        'rackspace' => [
-            'driver' => 'rackspace',
-            'username' => 'your-username',
-            'key' => 'your-key',
-            'container' => 'your-container',
-            'endpoint' => 'https://identity.api.rackspacecloud.com/v2.0/',
-            'region' => 'IAD',
-        ],
-
     ],
 
 ];
