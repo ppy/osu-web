@@ -25,6 +25,7 @@ use Redirect;
 use Carbon\Carbon;
 use App\Models\ApiKey;
 use App\Models\Multiplayer\Match;
+use App\Models\Beatmap;
 use App\Models\BeatmapPack;
 use App\Models\User;
 use App\Models\Score;
