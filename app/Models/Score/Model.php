@@ -46,29 +46,30 @@ abstract class Model extends BaseModel
 
     public $timestamps = false;
 
-    public static function forUser(\App\Models\User $user)
+    public function scopeForUser($query, $user_id)
     {
-        return static::where('user_id', (int) $user->user_id);
+        return $query->where('user_id', $user_id);
     }
 
     public static function getClass($game_mode)
     {
         switch ($game_mode) {
             case Beatmap::OSU:
-                return Osu::class;
+                $instance = new Osu;
                 break;
 
             case Beatmap::TAIKO:
-                return Taiko::class;
+                $instance = new Taiko;
                 break;
 
             case Beatmap::CTB:
-                return Fruit::class;
+                $instance = new Fruit;
                 break;
 
             case Beatmap::MANIA:
-                return Mania::class;
+                $instance = new Mania;
                 break;
         }
+        return $instance;
     }
 }

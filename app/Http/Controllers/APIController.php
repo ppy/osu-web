@@ -138,43 +138,83 @@ class APIController extends Controller
     public function getUserBest()
     {
         $limit = min((int)Request::input('limit', 10), 100);
-        return $this->getScores(true, $limit);
+        if (present(Request::input('u'))) {
+            $scores = $this->_getScores(true, $limit);
+        } else {
+            $scores = null;
+        }
+        return $this->_transformScores($scores);
     }
 
     public function getUserRecent()
     {
         $limit = min((int)Request::input('limit', 10), 50);
-        return $this->getScores(false, $limit);
+        if (present(Request::input('u'))) {
+            $scores = $this->_getScores(false, $limit);
+        } else {
+            $scores = null;
+        }
+        return $this->_transformScores($scores);
+
     }
 
-    private function getScores($best, $limit)
+    public function getScores()
     {
-        $id     = Request::input('u');
-        $mode   = Request::input('m', 0);
-        $type   = Request::input('type');
+        $limit = min((int)Request::input('limit', 50), 100);
+        $beatmap_id = Request::input('b');
+        $mods  = Request::input('mods');
 
-        if (!in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
-            return Response::json([]);
+        if (present($beatmap_id)) {
+            $scores = $this->_getScores(false, $limit);
+            if (present($mods)) {
+                $scores = $scores->where('enabled_mods', $mods);
+            }
+        } else {
+            $scores = null;
         }
 
-        $user = User::lookup($id, $type);
-        if (!$user) {
-            return Response::json([]);
+        return $this->_transformScores($scores);
+    }
+
+    private function _transformScores($scores)
+    {
+        if ($scores) {
+            $return = fractal_api_serialize_collection(
+                $scores->get(),
+                new ScoreTransformer()
+            );
+        } else {
+            $return = [];
+        }
+        return Response::json($return);
+    }
+
+    private function _getScores($best, $limit)
+    {
+        $user_id = Request::input('u');
+        $mode    = Request::input('m', 0);
+        $type    = Request::input('type', 'id');
+
+        if (!in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
+            return null;
         }
 
         $klass = $best ? Score\Best\Model::getClass($mode) : Score\Model::getClass($mode);
-        $scores = $klass::forUser($user);
+        $scores = new $klass;
+
+        if (present($user_id)) {
+            $user = User::lookup($user_id, $type);
+            if (!$user) {
+                return null;
+            }
+            $scores = $scores->forUser($user->user_id);
+        }
 
         if (present($limit)) {
             $scores = $scores->limit($limit);
         }
 
-        return Response::json(
-            fractal_api_serialize_collection(
-                $scores->orderBy('date', 'desc')->get(),
-                new ScoreTransformer()
-            )
-        );
+        return $scores->orderBy('date', 'desc');
     }
 
     public function getReplay()

@@ -33,21 +33,22 @@ abstract class Model extends BaseModel
     {
         switch ($game_mode) {
             case Beatmap::OSU:
-                return Osu::class;
+                $instance = new Osu;
                 break;
 
             case Beatmap::TAIKO:
-                return Taiko::class;
+                $instance = new Taiko;
                 break;
 
             case Beatmap::CTB:
-                return Fruit::class;
+                $instance = new Fruit;
                 break;
 
             case Beatmap::MANIA:
-                return Mania::class;
+                $instance = new Mania;
                 break;
         }
+        return $instance;
     }
 
     public function getReplay()
