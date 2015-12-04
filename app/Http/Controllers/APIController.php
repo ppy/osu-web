@@ -112,7 +112,7 @@ class APIController extends Controller
         $type       = Request::input('type');
         $event_days = min(31, (int)Request::input('event_days', 1));
 
-        if (present($mode) && !in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
+        if (!in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
             return Response::json([]);
         }
 
@@ -146,13 +146,13 @@ class APIController extends Controller
 
     public function getUserBest()
     {
-        $limit  = min((int)Request::input('limit', 10), 100);
+        $limit = min((int)Request::input('limit', 10), 100);
         return $this->getScores(true, $limit);
     }
 
     public function getUserRecent()
     {
-        $limit  = min((int)Request::input('limit', 10), 50);
+        $limit = min((int)Request::input('limit', 10), 50);
         return $this->getScores(false, $limit);
     }
 
@@ -162,7 +162,7 @@ class APIController extends Controller
         $mode   = Request::input('m', 0);
         $type   = Request::input('type');
 
-        if (present($mode) && !in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
+        if (!in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
             return Response::json([]);
         }
 
