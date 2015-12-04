@@ -34,6 +34,7 @@ use App\Transformers\API\ScoreTransformer;
 use App\Transformers\API\UserTransformer;
 use App\Transformers\API\StatisticsTransformer;
 use App\Transformers\API\EventTransformer;
+use App\Transformers\API\BeatmapTransformer;
 
 class APIController extends Controller
 {
@@ -252,5 +253,70 @@ class APIController extends Controller
             "encoding" => "base64",
             "content" => base64_encode($replay)
         ]);
+    }
+
+    public function getBeatmaps()
+    {
+        $since   = Request::input('since'); // - return all beatmaps ranked since this date. Must be a MySQL date.
+        $set_id     = Request::input('s'); // - specify a beatmapset_id to return metadata from.
+        $beatmap_id = Request::input('b'); // - specify a beatmap_id to return metadata from.
+        $user_id = Request::input('u'); // - specify a user_id or a username to return metadata from.
+        $type    = Request::input('type'); // - specify if `u` is a user_id or a username. Use `string` for usernames or `id` for user_ids. Optional, default behaviour is automatic recognition (may be problematic for usernames made up of digits only).
+        $mode    = Request::input('m'); // - mode (0 = osu!, 1 = Taiko, 2 = CtB, 3 = osu!mania). Optional, maps of all modes are returned by default.
+        $include_converted = Request::input('a', 0); // - specify whether converted beatmaps are included (0 = not included, 1 = included). Only has an effect if `m` is chosen and not 0. Converted maps show their converted difficulty rating. Optional, default is 0.
+        $hash  = Request::input('h'); // - the beatmap hash. It can be used, for instance, if you're trying to get what beatmap has a replay played in, as .osr replays only provide beatmap hashes (example of hash: a5b99395a42bd55bc5eb1d2411cbdf8b). Optional, by default all beatmaps are returned independently from the hash.
+        $limit = Request::input('limit', 500); // - amount of results. Optional, default and maximum are 500.
+
+        $beatmaps = new Beatmap;
+
+        if (present($beatmap_id)) {
+            $beatmaps = $beatmaps->where('beatmap_id', $beatmap_id);
+        }
+
+        if (present($set_id)) {
+            $beatmaps = $beatmaps->where('beatmapset_id', $set_id);
+        }
+
+        if (present($user_id)) {
+            $user = User::lookup($user_id, $type);
+            if (!$user) {
+                return Response::json([]);
+            }
+            $beatmaps = $beatmaps->where('user_id', $user->user_id);
+        }
+
+        if (!in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
+            return Response::json([]);
+        }
+
+        $playmodes = [];
+        if (present($mode)) {
+            $playmodes[] = $mode;
+        }
+
+        if (present($include_converted) && $include_converted == 1) {
+            $playmodes[] = 0;
+        }
+
+        if (!empty($playmodes)) {
+            $beatmaps = $beatmaps->whereIn('playmode', $playmodes);
+        }
+
+        if (present($hash)) {
+            $beatmaps = $beatmaps->where('checksum', $hash);
+        }
+
+        if (present($since)) {
+            $beatmaps = $beatmaps
+                ->whereIn('approved', [1,2,3])
+                ->where('approved_date', '>', $since);
+        }
+
+        $beatmaps = $beatmaps->limit($limit);
+
+        return fractal_api_serialize_collection(
+            $beatmaps->with('parent')->get(),
+            new BeatmapTransformer()
+        );
     }
 }

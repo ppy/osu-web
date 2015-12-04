@@ -134,6 +134,7 @@ Route::get('/api/get_user_best', ['uses' => 'APIController@getUserBest']);
 Route::get('/api/get_user_recent', ['uses' => 'APIController@getUserRecent']);
 Route::get('/api/get_replay', ['uses' => 'APIController@getReplay']);
 Route::get('/api/get_scores', ['uses' => 'APIController@getScores']);
+Route::get('/api/get_beatmaps', ['uses' => 'APIController@getBeatmaps']);
 
 Route::resource('post', 'PostController');
 Route::resource('modding', 'ModdingPostController');
