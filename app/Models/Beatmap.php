@@ -66,7 +66,7 @@ class Beatmap extends Model
 
     public function parent()
     {
-        return $this->belongs_to(BeatmapSet::class, 'beatmapset_id', 'beatmapset_id');
+        return $this->belongsTo(BeatmapSet::class, 'beatmapset_id');
     }
 
     public function creator()
