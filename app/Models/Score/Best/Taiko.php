@@ -22,4 +22,9 @@ namespace App\Models\Score\Best;
 class Taiko extends Model
 {
     protected $table = 'osu_scores_taiko_high';
+
+    public function gameModeString()
+    {
+        return 'taiko';
+    }
 }

@@ -185,4 +185,41 @@ class APIController extends Controller
             )
         );
     }
+
+    public function getReplay()
+    {
+        $mode    = Request::input('m');
+        $beatmap = Request::input('b');
+        $id      = Request::input('u');
+        $type    = Request::input('type', 'id');
+
+        if (!in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
+            return Response::json([]);
+        }
+
+        $user = User::lookup($id, $type);
+        if (!$user) {
+            return Response::json([]);
+        }
+
+        $klass = Score\Best\Model::getClass($mode);
+        $score = $klass::forUser($user)
+            ->where('beatmap_id', $beatmap)
+            ->where('replay', 1)
+            ->first();
+
+        if (!$score) {
+            return Response::json([]);
+        }
+
+        $replay = $score->getReplay();
+        if ($replay == null) {
+            return Response::json([]);
+        }
+
+        return Response::json([
+            "encoding" => "base64",
+            "content" => base64_encode($replay)
+        ]);
+    }
 }

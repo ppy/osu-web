@@ -132,6 +132,7 @@ Route::get('/api/get_packs', ['uses' => 'APIController@getPacks']);
 Route::get('/api/get_user', ['uses' => 'APIController@getUser']);
 Route::get('/api/get_user_best', ['uses' => 'APIController@getUserBest']);
 Route::get('/api/get_user_recent', ['uses' => 'APIController@getUserRecent']);
+Route::get('/api/get_replay', ['uses' => 'APIController@getReplay']);
 
 Route::resource('post', 'PostController');
 Route::resource('modding', 'ModdingPostController');

@@ -22,4 +22,9 @@ namespace App\Models\Score\Best;
 class Mania extends Model
 {
     protected $table = 'osu_scores_mania_high';
+
+    public function gameModeString()
+    {
+        return 'mania';
+    }
 }

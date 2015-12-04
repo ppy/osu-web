@@ -21,9 +21,14 @@ namespace App\Models\Score\Best;
 
 use App\Models\Beatmap;
 use App\Models\Score\Model as BaseModel;
+use Aws\S3\S3Client;
+use League\Flysystem\AwsS3v2\AwsS3Adapter;
+use League\Flysystem\Filesystem;
 
-class Model extends BaseModel
+abstract class Model extends BaseModel
 {
+    abstract public function gameModeString();
+
     public static function getClass($game_mode)
     {
         switch ($game_mode) {
@@ -43,5 +48,29 @@ class Model extends BaseModel
                 return Mania::class;
                 break;
         }
+    }
+
+    public function getReplay()
+    {
+        // this s3 retrieval should probably be moved out of the model going forward
+        if (!$this->replay) {
+            return null;
+        }
+        $config = config("filesystems.disks.s3");
+        $client = S3Client::factory([
+            'key'    => $config['key'],
+            'secret' => $config['secret'],
+            'region' => $config['region'],
+        ]);
+        $adapter = new AwsS3Adapter($client, "replay-{$this->gameModeString()}");
+        $s3 = new Filesystem($adapter);
+
+        try {
+            $replay = $s3->read($this->score_id);
+        } catch (Exception $e) {
+            $replay = null;
+        }
+
+        return $replay;
     }
 }
