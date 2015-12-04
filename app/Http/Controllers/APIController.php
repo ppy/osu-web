@@ -55,16 +55,6 @@ class APIController extends Controller
         return Redirect::to('https://github.com/ppy/osu-api/wiki');
     }
 
-    public function missingMethod($parameters = [])
-    {
-        $this->redirectToWiki();
-    }
-
-    public function getIndex()
-    {
-        $this->redirectToWiki();
-    }
-
     public function getMatch()
     {
         $match_id = Request::input('mp');
