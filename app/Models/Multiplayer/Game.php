@@ -32,6 +32,6 @@ class Game extends Model
 
     public function match()
     {
-        return $this->belongsTo('Match');
+        return $this->belongsTo(Match::class);
     }
 }

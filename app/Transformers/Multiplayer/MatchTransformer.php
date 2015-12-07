@@ -41,7 +41,7 @@ class MatchTransformer extends Fractal\TransformerAbstract
     public function includeGames(Match $match)
     {
         return $this->collection(
-            $match->games()->get(),
+            $match->games,
             new GameTransformer()
         );
     }

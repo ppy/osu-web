@@ -599,7 +599,7 @@ class User extends Model implements AuthenticatableContract
 
     public function events()
     {
-        return $this->hasMany(Event::class, 'user_id', 'user_id');
+        return $this->hasMany(Event::class);
     }
 
     public function givenKudosu()

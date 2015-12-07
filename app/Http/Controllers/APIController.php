@@ -60,7 +60,7 @@ class APIController extends Controller
     {
         $match_id = Request::input('mp');
         if (present($match_id)) {
-            $match = Match::where('match_id', $match_id)->get();
+            $match = Match::with('games.scores')->where('match_id', $match_id)->get();
             if (!$match->isEmpty()) {
                 return Response::json(
                     fractal_api_serialize_collection(

@@ -44,7 +44,7 @@ class GameTransformer extends Fractal\TransformerAbstract
     public function includeScores(Game $game)
     {
         return $this->collection(
-            $game->scores()->get(),
+            $game->scores,
             new ScoreTransformer()
         );
     }
