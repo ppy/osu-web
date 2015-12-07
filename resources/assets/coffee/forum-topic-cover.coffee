@@ -86,8 +86,6 @@ class @ForumTopicCover
       url: $button.attr('data-url')
       dataType: 'json'
       paramName: 'topic_cover_file'
-      formData:
-        topic_id: $button.attr('data-topic-id')
       dropZone: $dropZone
       submit: =>
         @loading[0].setAttribute('data-state', 'enabled')

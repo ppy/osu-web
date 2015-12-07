@@ -35,7 +35,7 @@ class TopicCoverTransformer extends Fractal\TransformerAbstract
 
         return [
             'method' => 'put',
-            'url' => route('forum.topic-covers.update', $cover),
+            'url' => route('forum.topic-covers.update', [$cover, 'topic_id' => $cover->topic_id]),
 
             'id' => $cover->id,
             'fileUrl' => $cover->fileUrl(),

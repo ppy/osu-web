@@ -77,7 +77,6 @@
                                 data-file-url="{{ array_get($cover, 'data.fileUrl') }}"
                                 data-url="{{ $cover['data']['url'] }}"
                                 data-method="{{ $cover['data']['method'] }}"
-                                data-topic-id="{{ isset($topic) === true ? $topic->topic_id : '' }}"
                             >
                                 {{ trans('forum.topic_covers.create.button') }}
                                 <input class="fileupload__input" type="file">
