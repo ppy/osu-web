@@ -26,21 +26,25 @@ class ForumCoverTransformer extends Fractal\TransformerAbstract
 {
     public function transform(ForumCover $cover = null)
     {
-        if ($cover === null || $cover->id === null) {
-            $forumId = $cover !== null ? $cover->forum_id : null;
+        $forumId = $cover !== null ? $cover->forum_id : null;
 
-            return [
+        if ($cover === null || $cover->id === null) {
+            $data = [
                 'method' => 'post',
                 'url' => route('forum.forum-covers.store', ['forum_id' => $forumId]),
             ];
+        } else {
+            $data = [
+                'method' => 'put',
+                'url' => route('forum.forum-covers.update', [$cover, 'forum_id' => $forumId]),
+
+                'id' => $cover->id,
+                'fileUrl' => $cover->fileUrl(),
+            ];
         }
 
-        return [
-            'method' => 'put',
-            'url' => route('forum.forum-covers.update', [$cover, 'forum_id' => $cover->forum_id]),
+        $data['dimensions'] = $cover->maxDimensions;
 
-            'id' => $cover->id,
-            'fileUrl' => $cover->fileUrl(),
-        ];
+        return $data;
     }
 }

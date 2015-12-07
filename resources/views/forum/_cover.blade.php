@@ -43,7 +43,7 @@
                     <input class="fileupload__input" type="file">
                 </label>
                 <p class="forum-category-header__cover-uploader-info">
-                    {{ trans('forum.topic_covers.create.info', ['dimensions' => '2700x700']) }}
+                    {{ trans('forum.topic_covers.create.info', ['dimensions' => implode('x', $cover['data']['dimensions'])]) }}
                 </p>
 
                 <div
