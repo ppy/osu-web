@@ -19,7 +19,17 @@
 
 @section("content")
     <div class="osu-layout__row osu-layout__row--page-compact">
-        <div class="forum-category-header forum-colour__bg--{{ $forum->categorySlug() }} forum-category-header--forum">
+        <div
+            class="forum-category-header
+                forum-colour__bg--{{ $forum->categorySlug() }}
+                forum-category-header--forum
+                js-forum-cover--header"
+            style="{{ isset($cover['data']['fileUrl']) === true ? "background-image: url('{$cover['data']['fileUrl']}');" : '' }}"
+        >
+            <div class="forum-category-header__loading js-forum-cover--loading">
+                @include('objects._spinner')
+            </div>
+
             <div class="forum-category-header__titles forum-category-header__titles--forum">
                 <ol class="breadcrumb forums-breadcrumb">
                     @include("forum.forums._nav", ["forum_parents" => $forum->forum_parents])
@@ -31,6 +41,10 @@
                     </a>
                 </h1>
             </div>
+
+            @if (Auth::check() === true && Auth::user()->isAdmin() === true)
+                @include('forum._cover')
+            @endif
         </div>
     </div>
 

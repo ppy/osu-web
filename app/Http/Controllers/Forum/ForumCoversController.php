@@ -20,13 +20,13 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Exceptions\ImageProcessorException;
-use App\Models\Forum\Topic;
-use App\Models\Forum\TopicCover;
-use App\Transformers\Forum\TopicCoverTransformer;
+use App\Models\Forum\Forum;
+use App\Models\Forum\ForumCover;
+use App\Transformers\Forum\ForumCoverTransformer;
 use Auth;
 use Request;
 
-class TopicCoversController extends Controller
+class ForumCoversController extends Controller
 {
     protected $section = 'community';
 
@@ -34,13 +34,17 @@ class TopicCoversController extends Controller
     {
         parent::__construct();
 
-        view()->share('current_action', 'forum-topic-covers-'.current_action());
+        view()->share('current_action', 'forum-forum-covers-'.current_action());
 
         $this->middleware('auth', ['only' => [
             'destroy',
             'store',
             'update',
         ]]);
+
+        if (Auth::check() === true && Auth::user()->isAdmin() !== true) {
+            abort(403);
+        }
     }
 
     public function store()
@@ -49,58 +53,39 @@ class TopicCoversController extends Controller
             abort(422);
         }
 
-        $topic = null;
+        $forum = Forum::findOrFail(Request::input('forum_id'));
 
-        if (presence(Request::input('topic_id')) !== null) {
-            $topic = Topic::findOrFail(Request::input('topic_id'));
-
-            $this->authorizePost($topic->forum, $topic);
-            if ($topic->canBeEditedBy(Auth::user()) !== true) {
-                abort(403);
-            }
-            if ($topic->cover !== null) {
-                abort(422);
-            }
+        if ($forum->cover !== null) {
+            abort(422);
         }
 
         try {
-            $cover = TopicCover::upload(
+            $cover = ForumCover::upload(
                 Request::file('cover_file')->getRealPath(),
                 Auth::user(),
-                $topic
+                $forum
             );
         } catch (ImageProcessorException $e) {
             return error_popup($e->getMessage());
         }
 
-        return fractal_item_array($cover, new TopicCoverTransformer());
+        return fractal_item_array($cover, new ForumCoverTransformer());
     }
 
     public function destroy($id)
     {
-        $return = fractal_item_array(null, new TopicCoverTransformer());
-        $cover = TopicCover::find($id);
+        $cover = ForumCover::find($id);
 
-        if ($cover === null) {
-            return $return;
+        if ($cover !== null) {
+            $cover->deleteWithFile();
         }
 
-        if ($cover->canBeEditedBy(Auth::user()) === false) {
-            abort(403);
-        }
-
-        $cover->deleteWithFile();
-
-        return $return;
+        return fractal_item_array(null, new ForumCoverTransformer());
     }
 
     public function update($id)
     {
-        $cover = TopicCover::findOrFail($id);
-
-        if ($cover->canBeEditedBy(Auth::user()) === false) {
-            abort(403);
-        }
+        $cover = ForumCover::findOrFail($id);
 
         if (Request::hasFile('cover_file') === true) {
             try {
@@ -113,6 +98,6 @@ class TopicCoversController extends Controller
             }
         }
 
-        return fractal_item_array($cover, new TopicCoverTransformer());
+        return fractal_item_array($cover, new ForumCoverTransformer());
     }
 }

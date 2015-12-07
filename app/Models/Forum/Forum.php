@@ -106,6 +106,11 @@ class Forum extends Model
         return $this->hasMany("App\Models\Forum\Forum", 'parent_id', 'forum_id')->orderBy('left_id');
     }
 
+    public function cover()
+    {
+        return $this->hasOne(ForumCover::class);
+    }
+
     public function getForumParentsAttribute($value)
     {
         $buf = unserialize($value);

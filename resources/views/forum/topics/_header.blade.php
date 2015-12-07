@@ -23,11 +23,11 @@
                 'forum-category-header--topic-'.$topic->forum->categorySlug()
                 : 'forum-category-header--topic-create'
             }}
-            js-forum-topic-cover--header
+            js-forum-cover--header
             js-header--main"
         style="{{ isset($cover['data']['fileUrl']) === true ? "background-image: url('{$cover['data']['fileUrl']}');" : '' }}"
     >
-        <div class="forum-category-header__loading js-forum-topic-cover--loading">
+        <div class="forum-category-header__loading js-forum-cover--loading">
             @include('objects._spinner')
         </div>
 
@@ -54,57 +54,7 @@
         </div>
 
         @if (isset($topic) === false || $topic->canBeEditedBy(Auth::user()))
-            <div class="forum-category-header__actions">
-                <div class="forum-post-actions">
-                    <div>
-                        <a href="#" class="
-                            js-forum-topic-cover--open-modal
-                            forum-post-actions__action
-                            forum-category-header__action
-                        ">
-                            <i class="fa fa-pencil"></i>
-                        </a>
-
-                        <div class="forum-category-header__cover-uploader js-forum-topic-cover--modal">
-                            <label
-                                class="btn-osu
-                                    btn-osu--small
-                                    btn-osu-default
-                                    js-forum-topic-cover--upload-button
-                                    fileupload
-                                    forum-category-header__cover-uploader-label"
-                                type="button"
-                                data-file-url="{{ array_get($cover, 'data.fileUrl') }}"
-                                data-url="{{ $cover['data']['url'] }}"
-                                data-method="{{ $cover['data']['method'] }}"
-                                data-topic-id="{{ isset($topic) === true ? $topic->topic_id : '' }}"
-                            >
-                                {{ trans('forum.topic_covers.create.button') }}
-                                <input class="fileupload__input" type="file">
-                            </label>
-                            <p class="forum-category-header__cover-uploader-info">
-                                {{ trans('forum.topic_covers.create.info', ['dimensions' => '2700x700']) }}
-                            </p>
-
-                            <div
-                                class="forum-category-header__cover-uploader-overlay js-forum-topic-cover--overlay"
-                                data-state="hidden">
-                                    {{ trans('common.dropzone.target') }}
-                            </div>
-                        </div>
-                    </div>
-
-                    <a
-                        href="#"
-                        class="js-forum-topic-cover--remove
-                            forum-post-actions__action
-                            forum-category-header__action"
-                        data-destroy-confirm="{{ trans('forum.topic_covers.destroy.confirm') }}"
-                    >
-                        <i class="fa fa-trash"></i>
-                    </a>
-                </div>
-            </div>
+            @include('forum._cover')
         @endif
     </div>
 

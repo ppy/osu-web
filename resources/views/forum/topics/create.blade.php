@@ -22,7 +22,7 @@
         "url" => route("forum.topics.store", $forum),
         "data-preview-url" => route("forum.topics.preview", $forum),
     ]) !!}
-        <input type="hidden" name="cover_id" value="{{ Request::old("cover_id") }}" class="js-forum-topic-cover--input">
+        <input type="hidden" name="cover_id" value="{{ Request::old("cover_id") }}" class="js-forum-cover--input">
 
         @include('forum.topics._header')
 
