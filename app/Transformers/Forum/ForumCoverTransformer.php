@@ -28,6 +28,7 @@ class ForumCoverTransformer extends Fractal\TransformerAbstract
     {
         if ($cover === null || $cover->id === null) {
             $forumId = $cover !== null ? $cover->forum_id : null;
+
             return [
                 'method' => 'post',
                 'url' => route('forum.forum-covers.store', ['forum_id' => $forumId]),
