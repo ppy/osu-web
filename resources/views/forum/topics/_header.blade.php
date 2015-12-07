@@ -23,11 +23,11 @@
                 'forum-category-header--topic-'.$topic->forum->categorySlug()
                 : 'forum-category-header--topic-create'
             }}
-            js-forum-topic-cover--header
+            js-forum-cover--header
             js-header--main"
         style="{{ isset($cover['data']['fileUrl']) === true ? "background-image: url('{$cover['data']['fileUrl']}');" : '' }}"
     >
-        <div class="forum-category-header__loading js-forum-topic-cover--loading">
+        <div class="forum-category-header__loading js-forum-cover--loading">
             @include('objects._spinner')
         </div>
 
@@ -58,19 +58,19 @@
                 <div class="forum-post-actions">
                     <div>
                         <a href="#" class="
-                            js-forum-topic-cover--open-modal
+                            js-forum-cover--open-modal
                             forum-post-actions__action
                             forum-category-header__action
                         ">
                             <i class="fa fa-pencil"></i>
                         </a>
 
-                        <div class="forum-category-header__cover-uploader js-forum-topic-cover--modal">
+                        <div class="forum-category-header__cover-uploader js-forum-cover--modal">
                             <label
                                 class="btn-osu
                                     btn-osu--small
                                     btn-osu-default
-                                    js-forum-topic-cover--upload-button
+                                    js-forum-cover--upload-button
                                     fileupload
                                     forum-category-header__cover-uploader-label"
                                 type="button"
@@ -86,7 +86,7 @@
                             </p>
 
                             <div
-                                class="forum-category-header__cover-uploader-overlay js-forum-topic-cover--overlay"
+                                class="forum-category-header__cover-uploader-overlay js-forum-cover--overlay"
                                 data-state="hidden">
                                     {{ trans('common.dropzone.target') }}
                             </div>
@@ -95,7 +95,7 @@
 
                     <a
                         href="#"
-                        class="js-forum-topic-cover--remove
+                        class="js-forum-cover--remove
                             forum-post-actions__action
                             forum-category-header__action"
                         data-destroy-confirm="{{ trans('forum.topic_covers.destroy.confirm') }}"

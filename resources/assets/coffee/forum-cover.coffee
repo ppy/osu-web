@@ -15,23 +15,23 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class @ForumTopicCover
-  header: document.getElementsByClassName('js-forum-topic-cover--header')
-  $uploadButton: -> $('.js-forum-topic-cover--upload-button')
-  uploadButton: document.getElementsByClassName('js-forum-topic-cover--upload-button')
-  overlay: document.getElementsByClassName('js-forum-topic-cover--overlay')
-  loading: document.getElementsByClassName('js-forum-topic-cover--loading')
+class @ForumCover
+  header: document.getElementsByClassName('js-forum-cover--header')
+  $uploadButton: -> $('.js-forum-cover--upload-button')
+  uploadButton: document.getElementsByClassName('js-forum-cover--upload-button')
+  overlay: document.getElementsByClassName('js-forum-cover--overlay')
+  loading: document.getElementsByClassName('js-forum-cover--loading')
 
 
   constructor: ->
-    $(document).on 'click', '.js-forum-topic-cover--open-modal', @toggleModal
-    $(document).on 'click', '.js-forum-topic-cover--remove', @remove
+    $(document).on 'click', '.js-forum-cover--open-modal', @toggleModal
+    $(document).on 'click', '.js-forum-cover--remove', @remove
     $(document).on 'click', @closeModal
 
     $.subscribe 'dragenterGlobal', => @setOverlay('active')
     $.subscribe 'dragendGlobal', => @setOverlay('hidden')
-    $(document).on 'dragenter', '.js-forum-topic-cover--overlay', => @setOverlay('hover')
-    $(document).on 'dragleave', '.js-forum-topic-cover--overlay', => @setOverlay('active')
+    $(document).on 'dragenter', '.js-forum-cover--overlay', => @setOverlay('hover')
+    $(document).on 'dragleave', '.js-forum-cover--overlay', => @setOverlay('active')
 
     $.subscribe 'key:esc', @closeModal
 
@@ -43,8 +43,8 @@ class @ForumTopicCover
     return unless @hasCoverEditor() && @header[0]._open
 
     if e
-      return if $(e.target).closest('.js-forum-topic-cover--open-modal').length
-      return if $(e.target).closest('.js-forum-topic-cover--modal').length
+      return if $(e.target).closest('.js-forum-cover--open-modal').length
+      return if $(e.target).closest('.js-forum-cover--modal').length
 
     return if $('#overlay').is(':visible')
 
@@ -76,7 +76,7 @@ class @ForumTopicCover
     @header[0]._open = true
     @header[0].classList.add 'forum-category-header--cover-modal'
 
-    $dropZone = $('.js-forum-topic-cover--modal')
+    $dropZone = $('.js-forum-cover--modal')
 
     $button = @$uploadButton()
 
@@ -108,7 +108,7 @@ class @ForumTopicCover
 
 
   update: (cover) =>
-    $('.js-forum-topic-cover--input').val(cover.id)
+    $('.js-forum-cover--input').val(cover.id)
 
     $button = @$uploadButton()
 
@@ -149,4 +149,4 @@ class @ForumTopicCover
     backgroundImage = if @hasCover() then "url('#{@uploadButton[0].getAttribute('data-file-url')}')" else ''
     @header[0].style.backgroundImage = backgroundImage
 
-    $('.js-forum-topic-cover--remove').toggleClass("forum-post-actions__action--disabled", !@hasCover())
+    $('.js-forum-cover--remove').toggleClass("forum-post-actions__action--disabled", !@hasCover())
