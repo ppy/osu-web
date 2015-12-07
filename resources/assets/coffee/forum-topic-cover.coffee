@@ -80,7 +80,7 @@ class @ForumTopicCover
 
     $button = @$uploadButton()
 
-    return if $button[0]._intialised
+    return if $button[0]._initialised
 
     $button.fileupload
       url: $button.attr('data-url')
@@ -98,7 +98,7 @@ class @ForumTopicCover
       complete: (_e, data) =>
         @loading[0].setAttribute('data-state', '')
 
-    $button[0]._intialised = true
+    $button[0]._initialised = true
 
 
   setOverlay: (targetState) =>
@@ -114,7 +114,7 @@ class @ForumTopicCover
 
     $button = @$uploadButton()
 
-    if $button[0]._intialised
+    if $button[0]._initialised
       $button.fileupload 'option',
         url: cover.url
         method: cover.method
