@@ -21,6 +21,7 @@ namespace App\Http\Controllers\Forum;
 
 use App\Models\Forum\Forum;
 use App\Models\Forum\TopicTrack;
+use App\Transformers\Forum\ForumCoverTransformer;
 use Auth;
 
 class ForumsController extends Controller
@@ -51,10 +52,15 @@ class ForumsController extends Controller
 
         $this->authorizeView($forum);
 
+        $cover = fractal_item_array(
+            $forum->cover()->firstOrNew([]),
+            new ForumCoverTransformer()
+        );
+
         $pinnedTopics = $forum->topics()->pinned()->orderBy('topic_type', 'desc')->recent()->get();
         $topics = $forum->topics()->normal()->recent()->paginate(15);
         $topicReadStatus = TopicTrack::readStatus(Auth::user(), $pinnedTopics, $topics);
 
-        return view('forum.forums.show', compact('forum', 'topics', 'pinnedTopics', 'topicReadStatus'));
+        return view('forum.forums.show', compact('forum', 'topics', 'pinnedTopics', 'topicReadStatus', 'cover'));
     }
 }

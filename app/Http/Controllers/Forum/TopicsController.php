@@ -184,7 +184,7 @@ class TopicsController extends Controller
         $template = $skipLayout ? '_posts' : 'show';
 
         $cover = fractal_item_array(
-            $topic->cover,
+            $topic->cover()->firstOrNew([]),
             new TopicCoverTransformer()
         );
 

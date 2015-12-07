@@ -19,14 +19,15 @@
  */
 namespace App\Models\Forum;
 
-use App\Libraries\ImageProcessor;
-use App\Libraries\StorageAuto;
 use App\Models\User;
+use App\Traits\Imageable;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class TopicCover extends Model
 {
+    use Imageable;
+
     protected $table = 'forum_topic_covers';
 
     protected $casts = [
@@ -35,13 +36,16 @@ class TopicCover extends Model
         'user_id' => 'integer',
     ];
 
-    private $storage = null;
     private $_owner = [false, null];
+
+    public $maxDimensions = [2700, 700];
+    public $maxFileSize = 1000000;
+    public $fileRoot = 'topic-covers';
 
     public static function findForUse($id, $user)
     {
         if ($user === null) {
-            return [];
+            return;
         }
 
         $covers = static::select();
@@ -66,13 +70,6 @@ class TopicCover extends Model
         });
 
         return $cover;
-    }
-
-    public function __construct($attributes = [])
-    {
-        $this->storage = StorageAuto::get();
-
-        return parent::__construct($attributes);
     }
 
     public function topic()
@@ -100,54 +97,6 @@ class TopicCover extends Model
         }
 
         return $this->_owner[1];
-    }
-
-    public function fileDir()
-    {
-        return "topic-covers/{$this->id}";
-    }
-
-    public function fileName()
-    {
-        return "{$this->hash}.{$this->ext}";
-    }
-
-    public function filePath()
-    {
-        return $this->fileDir().'/'.$this->fileName();
-    }
-
-    public function fileUrl()
-    {
-        return $this->storage->url($this->filePath());
-    }
-
-    public function deleteWithFile()
-    {
-        $this->deleteFile();
-
-        return $this->delete();
-    }
-
-    public function deleteFile()
-    {
-        if (presence($this->hash) === null) {
-            return;
-        }
-
-        return $this->storage->deleteDirectory($this->fileDir());
-    }
-
-    public function storeFile($filePath)
-    {
-        $image = new ImageProcessor($filePath, [2700, 700], 1000000);
-        $image->process();
-
-        $this->deleteFile();
-        $this->hash = hash_file('sha256', $image->inputPath);
-        $this->ext = $image->ext();
-
-        $this->storage->put($this->filePath(), file_get_contents($image->inputPath));
     }
 
     public function updateFile($filePath, $user)

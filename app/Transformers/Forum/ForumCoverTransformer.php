@@ -19,24 +19,24 @@
  */
 namespace App\Transformers\Forum;
 
-use App\Models\Forum\TopicCover;
+use App\Models\Forum\ForumCover;
 use League\Fractal;
 
-class TopicCoverTransformer extends Fractal\TransformerAbstract
+class ForumCoverTransformer extends Fractal\TransformerAbstract
 {
-    public function transform(TopicCover $cover = null)
+    public function transform(ForumCover $cover = null)
     {
-        $topicId = $cover !== null ? $cover->topic_id : null;
+        $forumId = $cover !== null ? $cover->forum_id : null;
 
         if ($cover === null || $cover->id === null) {
             $data = [
                 'method' => 'post',
-                'url' => route('forum.topic-covers.store', ['topic_id' => $topicId]),
+                'url' => route('forum.forum-covers.store', ['forum_id' => $forumId]),
             ];
         } else {
             $data = [
                 'method' => 'put',
-                'url' => route('forum.topic-covers.update', [$cover, 'topic_id' => $topicId]),
+                'url' => route('forum.forum-covers.update', [$cover, 'forum_id' => $forumId]),
 
                 'id' => $cover->id,
                 'fileUrl' => $cover->fileUrl(),
