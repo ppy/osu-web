@@ -56,6 +56,10 @@ trait Imageable
 
     public function fileUrl()
     {
+        if (presence($this->hash) === null) {
+            return;
+        }
+
         return $this->storage()->url($this->filePath());
     }
 
