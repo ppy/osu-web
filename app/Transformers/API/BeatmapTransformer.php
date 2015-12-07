@@ -26,7 +26,9 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
 {
     public function transform(Beatmap $beatmap)
     {
-        // die("<pre>:".print_r($beatmap->parent(), true)."</pre>");
+        $difficulty = $beatmap->difficultyAttribs->where('mode', $beatmap->playmode)->where('mods', 0)->where('attrib_id', 9)->first();
+        $diff_attrib = $beatmap->difficulty->where('mode', $beatmap->playmode)->where('mods', 0)->first();
+
         return [
           //beatmap
           'beatmapset_id' => $beatmap->beatmapset_id,
@@ -43,7 +45,8 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
           'mode' => $beatmap->playmode,
           'playcount' => $beatmap->playcount,
           'passcount' => $beatmap->passcount,
-          //set
+
+          //beatmapset set
           'approved_date' => $beatmap->parent->approved_date,
           'last_update' => $beatmap->parent->last_update,
           'artist' => $beatmap->parent->artist,
@@ -55,10 +58,10 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
           'genre_id' => $beatmap->parent->genre_id,
           'language_id' => $beatmap->parent->language_id,
           'favourite_count' => $beatmap->parent->favourite_count,
-          //osu_beatmap_difficulty_attribs.value
-          'max_combo' => $beatmap->parent->max_combo,
-          //IFNULL(osu_beatmap_difficulty_attribs.diff_unified, 0) AS difficultyrating
-          'difficultyrating' => $beatmap->parent->difficultyrating,
+
+          // beatmap difficulty/difficultyattribs
+          'max_combo' => $difficulty ? $difficulty->value : null,
+          'difficultyrating' => $diff_attrib ? $diff_attrib->diff_unified : 0,
         ];
     }
 }

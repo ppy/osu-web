@@ -73,4 +73,14 @@ class Beatmap extends Model
     {
         return $this->parent->user();
     }
+
+    public function difficulty()
+    {
+        return $this->hasMany(BeatmapDifficulty::class);
+    }
+
+    public function difficultyAttribs()
+    {
+        return $this->hasMany(BeatmapDifficultyAttrib::class);
+    }
 }

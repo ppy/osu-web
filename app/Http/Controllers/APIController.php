@@ -315,7 +315,7 @@ class APIController extends Controller
         $beatmaps = $beatmaps->limit($limit);
 
         return fractal_api_serialize_collection(
-            $beatmaps->with('parent')->get(),
+            $beatmaps->with('parent', 'difficulty', 'difficultyAttribs')->get(),
             new BeatmapTransformer()
         );
     }

@@ -29,6 +29,14 @@ class BeatmapSet extends Model
 {
     protected $table = 'osu_beatmapsets';
     protected $primaryKey = 'beatmapset_id';
+
+    protected $casts = [
+        'bpm' => 'integer',
+        'genre_id' => 'integer',
+        'language_id' => 'integer',
+        'favourite_count' => 'integer',
+    ];
+
     public $timestamps = false;
     protected $hidden = [
         'header_hash',
