@@ -45,7 +45,7 @@ class TopicCover extends Model
     public static function findForUse($id, $user)
     {
         if ($user === null) {
-            return new static;
+            return;
         }
 
         $covers = static::select();
@@ -54,13 +54,7 @@ class TopicCover extends Model
             $covers->where('user_id', $user->user_id);
         }
 
-        $cover = $covers->find($id);
-
-        if ($cover === null) {
-            $cover = new static;
-        }
-
-        return $cover;
+        return $covers->find($id);
     }
 
     public static function upload($filePath, $user, $topic = null)
