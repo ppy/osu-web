@@ -45,7 +45,7 @@ class TopicCoversController extends Controller
 
     public function store()
     {
-        if (Request::hasFile('topic_cover_file') !== true) {
+        if (Request::hasFile('cover_file') !== true) {
             abort(422);
         }
 
@@ -65,7 +65,7 @@ class TopicCoversController extends Controller
 
         try {
             $cover = TopicCover::upload(
-                Request::file('topic_cover_file')->getRealPath(),
+                Request::file('cover_file')->getRealPath(),
                 Auth::user(),
                 $topic
             );
@@ -102,10 +102,10 @@ class TopicCoversController extends Controller
             abort(403);
         }
 
-        if (Request::hasFile('topic_cover_file') === true) {
+        if (Request::hasFile('cover_file') === true) {
             try {
                 $cover = $cover->updateFile(
-                    Request::file('topic_cover_file')->getRealPath(),
+                    Request::file('cover_file')->getRealPath(),
                     Auth::user()
                 );
             } catch (ImageProcessorException $e) {
