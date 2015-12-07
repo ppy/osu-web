@@ -40,7 +40,7 @@ class APIController extends Controller
 {
     public function __construct()
     {
-        $this->beforeFilter("@validateKey");
+        $this->beforeFilter('@validateKey');
     }
 
     public function validateKey($route, $request)
@@ -75,13 +75,13 @@ class APIController extends Controller
         // match existing api
         return Response::json([
             'match' => 0,
-            'games' => []
+            'games' => [],
         ]);
     }
 
     public function getPacks()
     {
-        $tag   = Request::input('tag');
+        $tag = Request::input('tag');
         $limit = Request::input('n');
 
         $packs = BeatmapPack::orderBy('pack_id', 'DESC');
@@ -91,7 +91,7 @@ class APIController extends Controller
         }
 
         if (present($limit)) {
-            $packs = $packs->limit((int)$limit);
+            $packs = $packs->limit((int) $limit);
         }
 
         return Response::json($packs->get());
@@ -99,10 +99,10 @@ class APIController extends Controller
 
     public function getUser()
     {
-        $id         = Request::input('u');
-        $mode       = Request::input('m', 0);
-        $type       = Request::input('type');
-        $event_days = min(31, (int)Request::input('event_days', 1));
+        $id = Request::input('u');
+        $mode = Request::input('m', 0);
+        $type = Request::input('type');
+        $event_days = min(31, (int) Request::input('event_days', 1));
 
         if (!in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
             return Response::json([]);
@@ -138,32 +138,33 @@ class APIController extends Controller
 
     public function getUserBest()
     {
-        $limit = min((int)Request::input('limit', 10), 100);
+        $limit = min((int) Request::input('limit', 10), 100);
         if (present(Request::input('u'))) {
             $scores = $this->_getScores(true, $limit);
         } else {
             $scores = null;
         }
+
         return $this->_transformScores($scores);
     }
 
     public function getUserRecent()
     {
-        $limit = min((int)Request::input('limit', 10), 50);
+        $limit = min((int) Request::input('limit', 10), 50);
         if (present(Request::input('u'))) {
             $scores = $this->_getScores(false, $limit);
         } else {
             $scores = null;
         }
-        return $this->_transformScores($scores);
 
+        return $this->_transformScores($scores);
     }
 
     public function getScores()
     {
-        $limit = min((int)Request::input('limit', 50), 100);
+        $limit = min((int) Request::input('limit', 50), 100);
         $beatmap_id = Request::input('b');
-        $mods  = Request::input('mods');
+        $mods = Request::input('mods');
 
         if (present($beatmap_id)) {
             $scores = $this->_getScores(false, $limit);
@@ -187,17 +188,18 @@ class APIController extends Controller
         } else {
             $return = [];
         }
+
         return Response::json($return);
     }
 
     private function _getScores($best, $limit)
     {
         $user_id = Request::input('u');
-        $mode    = Request::input('m', 0);
-        $type    = Request::input('type', 'id');
+        $mode = Request::input('m', 0);
+        $type = Request::input('type', 'id');
 
         if (!in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
-            return null;
+            return;
         }
 
         $klass = $best ? Score\Best\Model::getClass($mode) : Score\Model::getClass($mode);
@@ -206,7 +208,7 @@ class APIController extends Controller
         if (present($user_id)) {
             $user = User::lookup($user_id, $type);
             if (!$user) {
-                return null;
+                return;
             }
             $scores = $scores->forUser($user->user_id);
         }
@@ -220,10 +222,10 @@ class APIController extends Controller
 
     public function getReplay()
     {
-        $mode    = Request::input('m');
+        $mode = Request::input('m');
         $beatmap = Request::input('b');
-        $id      = Request::input('u');
-        $type    = Request::input('type', 'id');
+        $id = Request::input('u');
+        $type = Request::input('type', 'id');
 
         if (!in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
             return Response::json([]);
@@ -250,21 +252,21 @@ class APIController extends Controller
         }
 
         return Response::json([
-            "encoding" => "base64",
-            "content" => base64_encode($replay)
+            'encoding' => 'base64',
+            'content' => base64_encode($replay),
         ]);
     }
 
     public function getBeatmaps()
     {
-        $since   = Request::input('since'); // - return all beatmaps ranked since this date. Must be a MySQL date.
-        $set_id     = Request::input('s'); // - specify a beatmapset_id to return metadata from.
+        $since = Request::input('since'); // - return all beatmaps ranked since this date. Must be a MySQL date.
+        $set_id = Request::input('s'); // - specify a beatmapset_id to return metadata from.
         $beatmap_id = Request::input('b'); // - specify a beatmap_id to return metadata from.
         $user_id = Request::input('u'); // - specify a user_id or a username to return metadata from.
-        $type    = Request::input('type'); // - specify if `u` is a user_id or a username. Use `string` for usernames or `id` for user_ids. Optional, default behaviour is automatic recognition (may be problematic for usernames made up of digits only).
-        $mode    = Request::input('m'); // - mode (0 = osu!, 1 = Taiko, 2 = CtB, 3 = osu!mania). Optional, maps of all modes are returned by default.
+        $type = Request::input('type'); // - specify if `u` is a user_id or a username. Use `string` for usernames or `id` for user_ids. Optional, default behaviour is automatic recognition (may be problematic for usernames made up of digits only).
+        $mode = Request::input('m'); // - mode (0 = osu!, 1 = Taiko, 2 = CtB, 3 = osu!mania). Optional, maps of all modes are returned by default.
         $include_converted = Request::input('a', 0); // - specify whether converted beatmaps are included (0 = not included, 1 = included). Only has an effect if `m` is chosen and not 0. Converted maps show their converted difficulty rating. Optional, default is 0.
-        $hash  = Request::input('h'); // - the beatmap hash. It can be used, for instance, if you're trying to get what beatmap has a replay played in, as .osr replays only provide beatmap hashes (example of hash: a5b99395a42bd55bc5eb1d2411cbdf8b). Optional, by default all beatmaps are returned independently from the hash.
+        $hash = Request::input('h'); // - the beatmap hash. It can be used, for instance, if you're trying to get what beatmap has a replay played in, as .osr replays only provide beatmap hashes (example of hash: a5b99395a42bd55bc5eb1d2411cbdf8b). Optional, by default all beatmaps are returned independently from the hash.
         $limit = Request::input('limit', 500); // - amount of results. Optional, default and maximum are 500.
 
         $beatmaps = new Beatmap;
@@ -308,7 +310,7 @@ class APIController extends Controller
 
         if (present($since)) {
             $beatmaps = $beatmaps
-                ->whereIn('approved', [1,2,3])
+                ->whereIn('approved', [1, 2, 3])
                 ->where('approved_date', '>', $since);
         }
 

@@ -353,6 +353,7 @@ function fractal_api_serialize_collection($model, $transformer, $includes = null
 
     // we're using collection instead of item here, so we can peak at the items beforehand
     $collection = new League\Fractal\Resource\Collection($model, $transformer);
+
     return $manager->createData($collection)->toArray();
 }
 

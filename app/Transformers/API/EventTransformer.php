@@ -31,7 +31,7 @@ class EventTransformer extends Fractal\TransformerAbstract
             'beatmap_id' => $event->beatmap_id,
             'beatmapset_id' => $event->beatmapset_id,
             'date' => $event->date->tz('Australia/Perth')->toDateTimeString(),
-            'epicfactor' => $event->epicfactor
+            'epicfactor' => $event->epicfactor,
         ];
     }
 }

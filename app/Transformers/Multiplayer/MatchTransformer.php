@@ -33,8 +33,8 @@ class MatchTransformer extends Fractal\TransformerAbstract
                 'match_id' => $match->match_id,
                 'name' => $match->name,
                 'start_time' => $match->start_time,
-                'end_time' => $match->end_time
-            ]
+                'end_time' => $match->end_time,
+            ],
         ];
     }
 

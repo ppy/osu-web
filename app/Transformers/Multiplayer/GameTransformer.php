@@ -37,7 +37,7 @@ class GameTransformer extends Fractal\TransformerAbstract
             'match_type' => $game->match_type,
             'scoring_type' => $game->scoring_type,
             'team_type' => $game->team_type,
-            'mods' => $game->mods
+            'mods' => $game->mods,
         ];
     }
 

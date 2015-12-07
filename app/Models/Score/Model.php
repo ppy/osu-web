@@ -70,6 +70,7 @@ abstract class Model extends BaseModel
                 $instance = new Mania;
                 break;
         }
+
         return $instance;
     }
 }
