@@ -76,10 +76,6 @@
 
     will-change: transform, opacity;
 
-    .@{_top}--visible & {
-      animation-name: loading-overlay--circle-burst;
-    }
-
     &--1 {
       @colour: #8866ee;
       background-color: @colour;
@@ -126,13 +122,20 @@
       border-radius: 100%;
       background-color: transparent;
 
-      animation-name: loading-overlay--circle-approach;
+
+      .@{_top}--visible & {
+        animation-name: loading-overlay--circle-approach;
+      }
     }
 
     &--hit {
       box-shadow: 0 0 10px fade(#000, 20%);
       border-radius: 100%;
       border-color: #fff;
+
+      .@{_top}--visible & {
+        animation-name: loading-overlay--circle-burst;
+      }
     }
   }
 
