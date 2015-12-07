@@ -48,6 +48,7 @@ abstract class Model extends BaseModel
                 $instance = new Mania;
                 break;
         }
+
         return $instance;
     }
 
@@ -55,11 +56,11 @@ abstract class Model extends BaseModel
     {
         // this s3 retrieval should probably be moved out of the model going forward
         if (!$this->replay) {
-            return null;
+            return;
         }
-        $config = config("filesystems.disks.s3");
+        $config = config('filesystems.disks.s3');
         $client = S3Client::factory([
-            'key'    => $config['key'],
+            'key' => $config['key'],
             'secret' => $config['secret'],
             'region' => $config['region'],
         ]);

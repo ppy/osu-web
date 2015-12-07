@@ -40,7 +40,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'countgeki' => $score->countgeki,
             'countkatu' => $score->countkatu,
             'perfect' => $score->perfect,
-            'pass' => $score->pass
+            'pass' => $score->pass,
         ];
     }
 }

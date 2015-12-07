@@ -40,7 +40,7 @@ class StatisticsTransformer extends Fractal\TransformerAbstract
             'count_rank_ss' => $stats->x_rank_count,
             'count_rank_s' => $stats->s_rank_count,
             'count_rank_a' => $stats->a_rank_count,
-            'pp_country_rank' => $stats->countryRank()
+            'pp_country_rank' => $stats->countryRank(),
         ];
     }
 }

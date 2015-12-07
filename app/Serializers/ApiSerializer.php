@@ -17,13 +17,12 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 namespace App\Serializers;
 
 class ApiSerializer extends \League\Fractal\Serializer\ArraySerializer
 {
     /**
-     * no 'data' root node thx
+     * no 'data' root node thx.
      */
     public function collection($resourceKey, array $data)
     {
