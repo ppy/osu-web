@@ -20,12 +20,17 @@
 namespace App\Transformers\API;
 
 use App\Models;
+use App\Models\UserStatistics;
 use League\Fractal;
 
 class StatisticsTransformer extends Fractal\TransformerAbstract
 {
-    public function transform(Models\UserStatistics\Model $stats)
+    public function transform(Models\UserStatistics\Model $stats = null)
     {
+        if ($stats === null) {
+            $stats = new UserStatistics\Osu([], null);
+        }
+
         return [
             'count300' => $stats->count300,
             'count100' => $stats->count100,
