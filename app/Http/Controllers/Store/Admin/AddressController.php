@@ -29,6 +29,6 @@ class AddressController extends Controller
         $address->update(Request::input('address'));
         $address->save();
 
-        return ['message' => "address updated"];
+        return ['message' => 'address updated'];
     }
 }
