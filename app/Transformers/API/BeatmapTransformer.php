@@ -47,7 +47,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
           'passcount' => $beatmap->passcount,
 
           //beatmapset set
-          'approved_date' => $beatmap->set->approved_date->tz('Australia/Perth')->toDateTimeString(),
+          'approved_date' => $beatmap->set->approved_date ? $beatmap->set->approved_date->toDateTimeString() : null,
           'last_update' => $beatmap->set->last_update->tz('Australia/Perth')->toDateTimeString(),
           'artist' => $beatmap->set->artist,
           'title' => $beatmap->set->title,
