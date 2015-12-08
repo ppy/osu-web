@@ -150,7 +150,7 @@ class APIController extends Controller
             $scores = null;
         }
 
-        return $this->_transformScores($scores);
+        return $this->_transformScores($scores->orderBy('pp', 'desc'), true);
     }
 
     public function getUserRecent()
@@ -162,7 +162,7 @@ class APIController extends Controller
             $scores = null;
         }
 
-        return $this->_transformScores($scores);
+        return $this->_transformScores($scores->orderBy('date', 'desc'), true);
     }
 
     public function getScores()
@@ -172,7 +172,7 @@ class APIController extends Controller
         $mods = Request::input('mods');
 
         if (present($beatmap_id)) {
-            $scores = $this->_getScores(false, $limit);
+            $scores = $this->_getScores(true, $limit)->with('user')->where('beatmap_id', $beatmap_id);
             if (present($mods)) {
                 $scores = $scores->where('enabled_mods', $mods);
             }
@@ -180,15 +180,15 @@ class APIController extends Controller
             $scores = null;
         }
 
-        return $this->_transformScores($scores);
+        return $this->_transformScores($scores->orderBy('score', 'desc'), false);
     }
 
-    private function _transformScores($scores)
+    private function _transformScores($scores, $for_user)
     {
         if ($scores) {
             $return = fractal_api_serialize_collection(
                 $scores->get(),
-                new ScoreTransformer()
+                $for_user ? new UserScoreTransformer() : new ScoreTransformer()
             );
         } else {
             $return = [];
@@ -222,7 +222,7 @@ class APIController extends Controller
             $scores = $scores->limit($limit);
         }
 
-        return $scores->orderBy('date', 'desc');
+        return $scores;
     }
 
     public function getReplay()

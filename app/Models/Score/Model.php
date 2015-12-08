@@ -28,6 +28,7 @@ abstract class Model extends BaseModel
     protected $primaryKey = 'score_id';
 
     protected $casts = [
+        'score_id' => 'integer',
         'beatmap_id' => 'integer',
         'score' => 'integer',
         'maxcombo' => 'integer',
@@ -50,6 +51,11 @@ abstract class Model extends BaseModel
     public function scopeForUser($query, User $user)
     {
         return $query->where('user_id', $user->user_id);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public static function getClass($game_mode)
