@@ -124,6 +124,10 @@ Route::group(['prefix' => 'forum'], function () {
     Route::get('p/{posts}/raw', ['as' => 'forum.posts.raw', 'uses' => "Forum\PostsController@raw"]);
 });
 
+Route::group(['prefix' => 'forum/admin', 'namespace' => 'Forum\Admin'], function() {
+    Route::resource('logs', 'LogsController', ['only' => ['index']]);
+});
+
 Route::put('/account/update-profile-cover', ['as' => 'account.update-profile-cover', 'uses' => 'AccountController@updateProfileCover']);
 Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
 
