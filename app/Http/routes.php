@@ -94,6 +94,8 @@ Route::group(['prefix' => 'store/admin', 'namespace' => 'Store\Admin'], function
     Route::post('orders/ship', ['as' => 'store.admin.orders.ship', 'uses' => 'OrderController@ship']);
     Route::resource('orders', 'OrderController', ['only' => ['index', 'show', 'update']]);
 
+    Route::resource('addresses', 'AddressController', ['only' => ['update']]);
+
     Route::get('/', function () { return Redirect::route('store.admin.orders.index'); });
 });
 

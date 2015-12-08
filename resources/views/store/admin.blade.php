@@ -99,7 +99,7 @@
                     {!! Form::close() !!}
 
                     @if ($o->address)
-                        @include('store.objects.address', ['data' => $o->address])
+                        @include('store.objects.address_editable', ['data' => $o->address, 'modifiable' => true])
                     @endif
                 </div>
             </div>
