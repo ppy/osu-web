@@ -64,7 +64,7 @@ class Beatmap extends Model
         return $this->hasMany(Mod::class, 'beatmap_id', 'beatmap_id');
     }
 
-    public function parent()
+    public function set()
     {
         return $this->belongsTo(BeatmapSet::class, 'beatmapset_id');
     }

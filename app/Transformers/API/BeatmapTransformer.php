@@ -47,17 +47,17 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
           'passcount' => $beatmap->passcount,
 
           //beatmapset set
-          'approved_date' => $beatmap->parent->approved_date,
-          'last_update' => $beatmap->parent->last_update,
-          'artist' => $beatmap->parent->artist,
-          'title' => $beatmap->parent->title,
-          'creator' => $beatmap->parent->creator,
-          'bpm' => $beatmap->parent->bpm,
-          'source' => $beatmap->parent->source,
-          'tags' => $beatmap->parent->tags,
-          'genre_id' => $beatmap->parent->genre_id,
-          'language_id' => $beatmap->parent->language_id,
-          'favourite_count' => $beatmap->parent->favourite_count,
+          'approved_date' => $beatmap->set->approved_date,
+          'last_update' => $beatmap->set->last_update,
+          'artist' => $beatmap->set->artist,
+          'title' => $beatmap->set->title,
+          'creator' => $beatmap->set->creator,
+          'bpm' => $beatmap->set->bpm,
+          'source' => $beatmap->set->source,
+          'tags' => $beatmap->set->tags,
+          'genre_id' => $beatmap->set->genre_id,
+          'language_id' => $beatmap->set->language_id,
+          'favourite_count' => $beatmap->set->favourite_count,
 
           // beatmap difficulty/difficultyattribs
           'max_combo' => $difficulty ? $difficulty->value : null,
