@@ -210,7 +210,7 @@ class APIController extends Controller
             if (!$user) {
                 return;
             }
-            $scores = $scores->forUser($user->user_id);
+            $scores = $scores->forUser($user);
         }
 
         if (present($limit)) {

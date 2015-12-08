@@ -21,6 +21,7 @@ namespace App\Models\Score;
 
 use Illuminate\Database\Eloquent\Model as BaseModel;
 use App\Models\Beatmap;
+use App\Models\User;
 
 abstract class Model extends BaseModel
 {
@@ -46,9 +47,9 @@ abstract class Model extends BaseModel
 
     public $timestamps = false;
 
-    public function scopeForUser($query, $user_id)
+    public function scopeForUser($query, User $user)
     {
-        return $query->where('user_id', $user_id);
+        return $query->where('user_id', $user->user_id);
     }
 
     public static function getClass($game_mode)
