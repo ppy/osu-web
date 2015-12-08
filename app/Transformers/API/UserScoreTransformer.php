@@ -22,14 +22,18 @@ namespace App\Transformers\API;
 use App\Models\Score;
 use League\Fractal;
 
-class ScoreTransformer extends Fractal\TransformerAbstract
+class UserScoreTransformer extends Fractal\TransformerAbstract
 {
     public function transform(Score\Model $score)
     {
-        return [
-            'score_id' => $score->score_id,
+        $pp = [];
+        if (is_subclass_of($score, 'App\Models\Score\Best\Model')) {
+            $pp = ['pp' => round($score->pp, 4)];
+        }
+
+        return array_merge([
+            'beatmap_id' => $score->beatmap_id,
             'score' => $score->score,
-            'username' => $score->user->username,
             'maxcombo' => $score->maxcombo,
             'count50' => $score->count50,
             'count100' => $score->count100,
@@ -39,9 +43,9 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'countgeki' => $score->countgeki,
             'perfect' => $score->perfect,
             'enabled_mods' => $score->enabled_mods,
+            'user_id' => $score->user_id,
             'date' => $score->date->tz('Australia/Perth')->toDateTimeString(),
             'rank' => $score->rank,
-            'pp' => round($score->pp, 4),
-        ];
+        ], $pp);
     }
 }

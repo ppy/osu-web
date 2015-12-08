@@ -31,6 +31,7 @@ use App\Models\User;
 use App\Models\Score;
 use App\Transformers\API\MatchTransformer;
 use App\Transformers\API\ScoreTransformer;
+use App\Transformers\API\UserScoreTransformer;
 use App\Transformers\API\UserTransformer;
 use App\Transformers\API\StatisticsTransformer;
 use App\Transformers\API\EventTransformer;
