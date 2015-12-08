@@ -171,7 +171,7 @@ class StoreController extends Controller
         $validator = Validator::make($addressInput, [
             'first_name' => ['required'],
             'last_name' => ['required'],
-            'street' => ['required'],
+            'street' => ['required', 'mixture'],
             'city' => ['required'],
             'state' => ['required'],
             'zip' => ['required', 'required'],
@@ -182,7 +182,7 @@ class StoreController extends Controller
         $addressInput['user_id'] = Auth::user()->user_id;
 
         if ($validator->fails()) {
-            return error_popup('Address is not complete.');
+            return error_popup($validator->errors()->first());
         }
 
         $address = Store\Address::create($addressInput);

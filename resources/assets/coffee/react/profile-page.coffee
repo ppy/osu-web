@@ -15,16 +15,14 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-user = osu.parseJson('json-user-info').data
-
 element = React.createElement ProfilePage.Main,
   user: user
-  userPage: osu.parseJson('json-user-page').page
-  allStats: osu.parseJson('json-user-stats')
+  userPage: user.page.data
+  allStats: user.allStatistics.data
   withEdit: user.id == window.currentUser.id
-  recentAchievements: osu.parseJson('json-user-recent-achievements').data
-  recentActivities: osu.parseJson('json-user-recent-activities').data
-  recentlyReceivedKudosu: osu.parseJson('json-user-recently-received-kudosu').data
+  recentAchievements: user.recentAchievements.data
+  recentActivities: user.recentActivities.data
+  recentlyReceivedKudosu: user.recentlyReceivedKudosu.data
 
 target = document.getElementsByClassName('js-content')[0]
 

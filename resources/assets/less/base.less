@@ -119,6 +119,12 @@ body .initially-hidden {
   border: none;
   font-size: 14px;
 
+  // otherwise missing shadow in iphone
+  &[type="text"],
+  &[type="password"] {
+    -webkit-appearance: none;
+  }
+
   &:focus {
     .inset-box-shadow;
   }
@@ -392,23 +398,17 @@ a[disabled] { &:extend(.btn[disabled]); }
   margin: 0px;
 }
 
-.file-upload-input {
-  opacity: 0;
-  position: absolute;
-
-  // ensure it doesn't mess up the pointer.
-  top: 0px;
-  right: 0px;
-  width: 300%;
-  height: 300%;
-
-  cursor: pointer;
-  &[disabled] {
-    cursor: not-allowed;
-  }
+.u-blackout-visible {
+  z-index: @z-index--blackout-visible !important;
 }
 
-.file-upload-label {
-  cursor: pointer;
-  overflow: hidden;
+[data-visibility] {
+  will-change: opacity;
+  transition: opacity 120ms;
+
+  &[data-visibility="hidden"] {
+    opacity: 0;
+    pointer-events: none;
+    z-index: @z-index--visibility-hidden;
+  }
 }

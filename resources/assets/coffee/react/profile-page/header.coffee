@@ -31,6 +31,7 @@ class ProfilePage.Header extends React.Component
     @_removeListeners()
     $.subscribe 'user:cover:set.profilePageHeader', @coverSet
     $.subscribe 'user:cover:reset.profilePageHeader', @coverReset
+    $.subscribe 'key:esc.profilePageHeader', @closeEdit
 
 
   componentWillReceiveProps: (newProps) =>
@@ -45,14 +46,19 @@ class ProfilePage.Header extends React.Component
     $.unsubscribe '.profilePageHeader'
 
 
+  closeEdit: =>
+    return unless @state.editing
+
+    @toggleEdit()
+
+
   toggleEdit: =>
     if @state.editing
-      $('.blackout').css display: 'none'
-      $('.profile-header').css zIndex: ''
+      @coverReset()
+      fade.out $('.blackout')[0]
       $(document).off 'click.profilePageHeader:toggleHeaderEdit'
     else
-      $('.blackout').css display: 'block'
-      $('.profile-header').css zIndex: 8001
+      fade.in $('.blackout')[0]
 
       $(document).on 'click.profilePageHeader:toggleHeaderEdit', (e) =>
         return if $(e.target).closest('.profile-change-cover-popup').length
@@ -73,7 +79,10 @@ class ProfilePage.Header extends React.Component
 
 
   render: =>
-    el 'div', className: 'osu-layout__row osu-layout__row--page-compact profile-header',
+    mainClasses = 'osu-layout__row osu-layout__row--page-compact profile-header'
+    mainClasses += ' u-blackout-visible' if @state.editing
+
+    el 'div', className: mainClasses,
       el 'div',
         className: 'profile-cover',
         style:
@@ -88,17 +97,11 @@ class ProfilePage.Header extends React.Component
 
       el 'div',
         className: 'profile-cover-uploading-spinner'
-        style:
-          display: 'none' unless @props.isCoverUpdating
+        'data-state': 'enabled' if @props.isCoverUpdating
 
-        el 'i', className: 'fa fa-circle-o-notch fa-spin'
-
-      if @props.withEdit
-        el 'div', className: 'profile-change-cover-button', onClick: @toggleEdit,
-          Lang.get 'users.show.edit.cover.button'
-
-      if @state.editing
-        el ProfilePage.CoverSelector, canUpload: @props.user.isSupporter, cover: @props.user.cover
+        el 'div', className: 'spinner',
+          el 'div', className: 'spinner__cube'
+          el 'div', className: 'spinner__cube spinner__cube--2'
 
       el 'div', className: 'user-bar-container',
         el 'div', className: 'user-profile-header__bar user-profile-header__bar--left',
@@ -109,3 +112,10 @@ class ProfilePage.Header extends React.Component
             rank: @props.stats.rank
             countryName: @props.user.country.name
             mode: @props.mode
+
+      if @props.withEdit
+        el 'div', className: 'profile-change-cover-button', onClick: @toggleEdit,
+          Lang.get 'users.show.edit.cover.button'
+
+      if @state.editing
+        el ProfilePage.CoverSelector, canUpload: @props.user.isSupporter, cover: @props.user.cover

@@ -302,20 +302,16 @@
 
   background: #fff;
 
-  z-index: 8001;
-
   font-size: 10px;
   text-align: center;
 
   &__drop-overlay {
     &:extend(.default-border-radius);
-    .fade-element(120ms);
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background-color: fade(#000, 50%);
     color: #fff;
     font-size: 24px;
     padding: @grid-gutter-width/2;
@@ -327,18 +323,11 @@
     height: 100%;
     user-select: none;
 
+    background-color: fade(#000, 50%);
+
     &--hover {
       background-color: fade(#000, 70%);
     }
-
-    &--hidden {
-      opacity: 0;
-    }
-
-    &--inactive {
-      display: none;
-    }
-
   }
 }
 
@@ -384,6 +373,7 @@
 
   cursor: pointer;
   background-size: cover;
+  background-position: center;
 
   &__selected-mark {
     &:extend(.default-text-shadow);
@@ -417,6 +407,15 @@
   font-size: 80px;
   color: #fff;
   background: fade(#000, 70%);
+  transition: opacity 120ms;
+
+  opacity: 0;
+  pointer-events: none;
+
+  &[data-state="enabled"] {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 
 .profile-score-ranks {

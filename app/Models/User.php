@@ -55,6 +55,7 @@ class User extends Model implements AuthenticatableContract
 
     public $flags;
     private $group_ids;
+    private $_supportLength = null;
 
     const ANONYMOUS = 1; // Anonymous (guest)
     const PEPPY = 2; // blue-name
@@ -217,6 +218,11 @@ class User extends Model implements AuthenticatableContract
     public function getIsAdminAttribute()
     {
         return $this->isAdmin();
+    }
+
+    public function getIsSpecialAttribute()
+    {
+        return $this->user_id !== null && presence($this->user_colour) !== null;
     }
 
     public function getUserBirthdayAttribute($value)
@@ -593,6 +599,16 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(KudosuHistory::class, 'receiver_id', 'user_id');
     }
 
+    public function supports()
+    {
+        return $this->hasMany(UserDonation::class, 'target_user_id', 'user_id');
+    }
+
+    public function givenSupports()
+    {
+        return $this->hasMany(UserDonation::class, 'user_id', 'user_id');
+    }
+
     public function getPlaymodeAttribute($value)
     {
         return play_mode_string($this->osu_playmode);
@@ -741,5 +757,41 @@ class User extends Model implements AuthenticatableContract
             new UserTransformer(),
             'defaultStatistics'
         );
+    }
+
+    public function supportLength()
+    {
+        if ($this->_supportLength === null) {
+            $this->_supportLength = 0;
+
+            foreach ($this->supports as $support) {
+                if ($support->cancel === true) {
+                    $this->_supportLength -= $support->length;
+                } else {
+                    $this->_supportLength += $support->length;
+                }
+            }
+        }
+
+        return $this->_supportLength;
+    }
+
+    public function supportLevel()
+    {
+        $length = $this->supportLength();
+
+        if ($this->osu_subscriber === false) {
+            return 0;
+        }
+
+        if ($length < 12) {
+            return 1;
+        }
+
+        if ($length < 5 * 12) {
+            return 2;
+        }
+
+        return 3;
     }
 }

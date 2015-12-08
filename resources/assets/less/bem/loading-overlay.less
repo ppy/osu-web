@@ -21,6 +21,7 @@
 @animation-delay: @animation-length / 4;
 
 .loading-overlay {
+  @_top: ~"loading-overlay";
   backface-visibility: hidden;
   position: fixed;
   top: 0;
@@ -30,19 +31,31 @@
   z-index: 9998;
   user-select: none;
 
-  opacity: 0;
-  display: none;
-
-  animation: loading-overlay--background-color 10s 1 linear;
-  animation-fill-mode: forwards;
+  display: flex;
 
   align-items: center;
   justify-content: center;
 
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+
+  &::before {
+    .full-size();
+    background-color: @grey-0;
+    will-change: opacity;
+  }
+
   &--visible {
     opacity: 1;
-    display: flex;
+    pointer-events: auto;
+
+    &::before {
+      animation: loading-overlay--background-color 10s 1 linear;
+      animation-fill-mode: forwards;
+    }
   }
+
 
   &__container {
     width: @circle-size*4;
@@ -56,8 +69,12 @@
 
     border: solid 3px #fff;
 
-    animation: loading-overlay--circle-burst @animation-length infinite linear;
+    animation-duration: @animation-length;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
     animation-fill-mode: both;
+
+    will-change: transform, opacity;
 
     &--1 {
       @colour: #8866ee;
@@ -105,13 +122,20 @@
       border-radius: 100%;
       background-color: transparent;
 
-      animation-name: loading-overlay--circle-approach;
+
+      .@{_top}--visible & {
+        animation-name: loading-overlay--circle-approach;
+      }
     }
 
     &--hit {
       box-shadow: 0 0 10px fade(#000, 20%);
       border-radius: 100%;
       border-color: #fff;
+
+      .@{_top}--visible & {
+        animation-name: loading-overlay--circle-burst;
+      }
     }
   }
 
@@ -129,10 +153,17 @@
     font-weight: bold;
     font-size: 24px;
 
-    animation: loading-overlay--follow-point @animation-length infinite linear;
+    animation-duration: @animation-length;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
     animation-fill-mode: forwards;
+    will-change: opacity;
 
     @animation-delay-start: @animation-delay*1/8;
+
+    .@{_top}--visible & {
+      animation-name: loading-overlay--follow-point;
+    }
 
     &--1 {
       transform: rotate(45deg);
@@ -195,15 +226,15 @@
 
 @keyframes loading-overlay--background-color {
   0% {
-    background-color: fade(#000, 0%);
+    opacity: 0;
   }
 
   10% {
-    background-color: fade(#000, 50%);
+    opacity: 0.5;
   }
 
   100% {
-    background-color: fade(#000, 70%);
+    opacity: 0.7;
   }
 }
 

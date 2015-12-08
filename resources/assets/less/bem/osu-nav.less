@@ -28,6 +28,10 @@
     padding: 0 (@spacing / 2);
     font-size: 14px;
 
+    &--active {
+      font-weight: 700;
+    }
+
     &--large {
       font-size: 22px;
     }
@@ -38,5 +42,13 @@
         margin-left: @spacing;
       }
     }
+  }
+
+  &__title-menu {
+    position: absolute;
+    left: (-@spacing / 2);
+    top: (@spacing / 2);
+    width: 100%;
+    display: flex;
   }
 }

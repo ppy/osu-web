@@ -25,6 +25,8 @@ use App\Events\Forum\TopicWasViewed;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
+use App\Models\Forum\TopicCover;
+use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use Carbon\Carbon;
 use Event;
@@ -55,7 +57,12 @@ class TopicsController extends Controller
 
         $this->authorizePost($forum, null);
 
-        return view('forum.topics.create', compact('forum'));
+        $cover = fractal_item_array(
+            TopicCover::findForUse(Request::old('cover_id'), Auth::user()),
+            new TopicCoverTransformer()
+        );
+
+        return view('forum.topics.create', compact('forum', 'cover'));
     }
 
     public function preview($forumId)
@@ -89,13 +96,14 @@ class TopicsController extends Controller
 
         $this->authorizePost($forum, null);
 
-        $topic = Topic::createNew(
-            $forum,
-            $request->input('title'),
-            Auth::user(),
-            $request->input('body'),
-            false
-        )->fresh();
+        $topic = Topic::createNew([
+            'forum' => $forum,
+            'title' => $request->input('title'),
+            'poster' => Auth::user(),
+            'body' => $request->input('body'),
+            'notifyReplies' => false,
+            'cover' => TopicCover::findForUse(presence($request->input('cover_id')), Auth::user()),
+        ]);
 
         Event::fire(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
 
@@ -161,6 +169,7 @@ class TopicsController extends Controller
             ->take(20)
             ->with('user.rank')
             ->with('user.country')
+            ->with('user.supports')
             ->get()
             ->sortBy(function ($p) { return $p->post_id; });
 
@@ -174,7 +183,12 @@ class TopicsController extends Controller
 
         $template = $skipLayout ? '_posts' : 'show';
 
-        return view("forum.topics.{$template}", compact('topic', 'posts', 'postsPosition', 'jumpTo'));
+        $cover = fractal_item_array(
+            $topic->cover()->firstOrNew([]),
+            new TopicCoverTransformer()
+        );
+
+        return view("forum.topics.{$template}", compact('topic', 'posts', 'postsPosition', 'jumpTo', 'cover'));
     }
 
     public function reply(HttpRequest $request, $id)

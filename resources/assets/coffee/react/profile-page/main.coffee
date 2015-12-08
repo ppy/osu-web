@@ -18,8 +18,6 @@
 {div} = React.DOM
 el = React.createElement
 
-@ProfilePage ||= {}
-
 class ProfilePage.Main extends React.Component
   constructor: (props) ->
     super props

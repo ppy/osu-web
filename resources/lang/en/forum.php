@@ -55,11 +55,26 @@ return [
         'post_edit' => [
             'cancel' => 'Cancel',
             'post' => 'Save',
+            'zoom' => [
+                'start' => 'Full Screen',
+                'end' => 'Exit Full Screen',
+            ],
         ],
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Type here to reply',
         'started_by' => 'by :user',
     ],
     'topics' => 'Topics',
+
+    'topic_covers' => [
+        'create' => [
+            'button' => 'Upload image',
+            'info' => 'Cover size shoule be at :dimensions. You can also drop your image here to upload.',
+        ],
+
+        'destroy' => [
+            'confirm' => 'Are you sure you want to remove the cover image?',
+        ],
+    ],
 
 ];

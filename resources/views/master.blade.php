@@ -32,7 +32,7 @@
 
     <body class="osu-layout osu-layout--body {{ $current_section or "error" }} section action-{{ $current_action }} {{ $body_additional_classes or "" }}">
         <div id="overlay" style="display: none;"></div>
-        <div class="blackout" style="display: none;"></div>
+        <div class="blackout" data-visibility="hidden"></div>
 
         @include("layout.header")
 
@@ -55,10 +55,19 @@
         @include("layout.gallery_window")
         @include("layout.footer")
 
-        <div class="js-page-footer-padding"></div>
-
-        <div class="fixed-bar js-fixed-element js-fixed-bottom-bar">
-            @yield('fixed-bar-rows-bottom')
+        <div
+            class="fixed-bar
+                js-fixed-element
+                js-fixed-bottom-bar
+                js-sticky-footer--fixed-bar"
+        >
+            <div
+                class="js-permanent-fixed-footer
+                    js-sync-height--reference"
+                data-sync-height-target="permanent-fixed-footer"
+            >
+                @yield('permanent-fixed-footer')
+            </div>
         </div>
 
         @yield('user-dropdown-modal')

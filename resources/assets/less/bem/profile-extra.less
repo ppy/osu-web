@@ -20,6 +20,27 @@
   padding: (@grid-gutter-width / 2) (@grid-gutter-width * 3 / 4);
   font-size: 14px;
 
+  &:hover &__actions {
+    opacity: 1;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: absolute;
+
+    right: (@spacing * 3);
+    top: (@spacing * 2);
+    @media @desktop {
+      right: 0;
+      top: (@spacing * 2);
+      width: 0;
+      opacity: 0;
+    }
+  }
+
   &__anchor {
     @height: @profile-extra-tabs--items-height;
     margin-top: -@height;

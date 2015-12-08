@@ -20,9 +20,10 @@
 {div} = React.DOM
 el = React.createElement
 
-window.Beatmaps = React.createClass(
-  getInitialState: ->
-    {
+class @Beatmaps extends React.Component
+  constructor: (props) ->
+    super props
+    @state =
       beatmaps: JSON.parse(document.getElementById('json-beatmaps').text)['data']
       paging:
         page: 1
@@ -36,85 +37,88 @@ window.Beatmaps = React.createClass(
         language: null
         extra: null
         rank: null
+      sorting:
+        field: 'ranked'
+        order: 'desc'
       loading: false
-    }
 
-  getFilterState: ->
-    {
-      'm': @state.filters.mode
-      's': @state.filters.status
-      'g': @state.filters.genre
-      'l': @state.filters.language
-      'e': @state.filters.extra
-      'r': @state.filters.rank
-    }
+  getFilterState: =>
+    'm': @state.filters.mode
+    's': @state.filters.status
+    'g': @state.filters.genre
+    'l': @state.filters.language
+    'e': @state.filters.extra
+    'r': @state.filters.rank
 
-  search: ->
-    searchText = $('#searchbox').val()
-    # if (searchText == '' || searchText == null)
-    #   return;
+  getSortState: =>
+    'sort': [@state.sorting.field, @state.sorting.order].join('_')
+
+  search: =>
+    searchText = $('#searchbox').val().trim()
 
     @showLoader()
 
     $.ajax(@state.paging.url,
       method: 'get'
       dataType: 'json'
-      data: $.extend({}, @getFilterState(), 'q': searchText)).done ((data) ->
-      @setState
-        beatmaps: data['data']
-        paging:
-          page: 1
-          url: @state.paging.url
-          loading: false
-          more: true
-        loading: false
-      $(document).trigger 'beatmap:search:done'
+      data: $.extend({'q': searchText}, @getFilterState(), @getSortState())).done ((data) ->
+        more = data['data'].length > 10
+        @setState
+          beatmaps: data['data']
+          paging:
+            page: 1
+            url: @state.paging.url
+            loading: false
+            more: more
+          loading: false, ->
+            $(document).trigger 'beatmap:search:done'
     ).bind(this)
 
-  loadMore: ->
+  loadMore: =>
     if @state.loading or @state.paging.loading or !@state.paging.more
       return
 
-    searchText = $('#searchbox').val()
+    paging_state = @state.paging
+    paging_state.loading = true
+
+    @setState paging: paging_state
+
+    searchText = $('#searchbox').val().trim()
 
     $.ajax(@state.paging.url,
       method: 'get'
       dataType: 'json'
-      data: $.extend({}, @getFilterState(),
-        'q': searchText
-        'page': @state.paging.page + 1)).done ((data) ->
-      if data['data'].length > 0
-        @setState
-          beatmaps: @state.beatmaps.concat(data['data'])
-          paging:
-            page: @state.paging.page + 1
-            url: @state.paging.url
-            more: true
-          loading: false
-      else
-        @setState
-          beatmaps: @state.beatmaps
-          paging:
-            page: @state.paging.page
-            url: @state.paging.url
-            more: false
-          loading: false
+      data: $.extend({'q': searchText}, @getFilterState(), @getSortState(),
+        'page': @state.paging.page + 1)).done ((data) =>
+          more = data['data'].length > 10
+          @setState
+            beatmaps: @state.beatmaps.concat(data['data'])
+            paging:
+              page: @state.paging.page + (if more then 1 else 0)
+              url: @state.paging.url
+              more: more
+            loading: false
     ).bind(this)
 
-  showLoader: ->
+  showLoader: =>
     @setState loading: true
     $('#loading-area').show()
 
-  hideLoader: ->
+  hideLoader: =>
     @setState loading: false
     $('#loading-area').hide()
 
-  updateFilters: (lets_ignore_this, b) ->
-    newFilters = $.extend({}, @state.filters)
-    # clone object
-    newFilters[b.name] = b.value
+  updateFilters: (_e, payload) =>
+    newFilters = $.extend({}, @state.filters) # clone object
+    newFilters[payload.name] = payload.value
+
     if @state.filters != newFilters
       @setState { filters: newFilters }, ->
+        $(document).trigger 'beatmap:search:start'
+
+  updateSort: (_b, payload) =>
+    if @state.sorting != payload
+      @setState sorting: payload, ->
         $(document).trigger 'beatmap:search:start'
 
   componentDidMount: ->
@@ -122,6 +126,7 @@ window.Beatmaps = React.createClass(
     $(document).on 'beatmap:search:start', @search
     $(document).on 'beatmap:search:done', @hideLoader
     $(document).on 'beatmap:search:filtered', @updateFilters
+    $(document).on 'beatmap:search:sorted', @updateSort
     $(document).on 'ready page:load osu:page:change', ->
       setTimeout @onScroll, 1000
 
@@ -138,12 +143,15 @@ window.Beatmaps = React.createClass(
     else
       searchBackground = ''
 
-    div null,
-      el(SearchPanel, background: searchBackground)
-      div id: 'beatmaps', class: 'beatmaps padding',
+    div className: 'osu-layout__section',
+      el(SearchPanel, background: searchBackground, filters: @state.filters)
+      div id: 'beatmaps', className: 'osu-layout__row',
+        if (currentUser.id == undefined)
+          div
+        else
+          el(SearchSort, sorting: @state.sorting)
         el(BeatmapsListing, beatmaps: @state.beatmaps, loading: @state.loading)
         el(Paginator, paging: @state.paging)
-)
 
 $(document).ready ->
-  React.render el(Beatmaps), document.getElementsByClassName('content')[0]
+  ReactDOM.render el(Beatmaps), document.getElementsByClassName('js-content')[0]

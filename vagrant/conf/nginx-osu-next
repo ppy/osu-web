@@ -37,6 +37,10 @@ server {
                 try_files $uri $uri/ /index.php?$query_string;
         }
 
+        location /images/flags/ {
+                error_page 404 /images/flags/__.png;
+        }
+
 location ~ \.(hh|php)$ {
     fastcgi_keep_conn on;
     fastcgi_pass   127.0.0.1:9000;

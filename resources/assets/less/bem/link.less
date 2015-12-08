@@ -17,13 +17,30 @@
  *
  */
 .link {
-  &--grey {
-    color: @grey-9;
+  ._colour(@link-colour, @hover-colour) {
+    color: @link-colour;
 
     &:focus,
     &:hover,
     &:active {
-      color: @grey-3;
+      color: @hover-colour;
+    }
+  }
+
+  &--grey {
+    ._colour(@grey-9, @grey-3);
+  }
+
+  &--white {
+    ._colour(@grey-f, @grey-f);
+  }
+
+  &--no-underline {
+    &,
+    &:focus,
+    &:hover,
+    &:active {
+      text-decoration: none;
     }
   }
 }

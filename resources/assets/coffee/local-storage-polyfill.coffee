@@ -15,21 +15,30 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class @AdjustFooter
-  footer: document.getElementsByClassName('js-page-footer-padding')
-  fixedBottomBar: document.getElementsByClassName('js-fixed-bottom-bar')
 
-  constructor: ->
-    $(document).on 'ready page:load', @adjust
+# Mainly for Safari Private Mode.
+class @LocalStoragePolyfill
+  @fillIn: ->
+    try
+      window.localStorage.setItem '_test', '1'
+      window.localStorage.removeItem '_test'
+    catch
+      localStorage = new @
+      window.localStorage = localStorage
+      window.localStorage.__proto__ = localStorage
 
-    @adjust()
+  _data: {}
 
-
-  adjust: =>
-    @footer[0].style.paddingBottom = @barHeight()
-
-  barHeight: =>
-    if @fixedBottomBar.length
-      getComputedStyle(@fixedBottomBar[0]).height
+  getItem: (key) =>
+    if @_data.hasOwnProperty(key)
+      @_data[key]
     else
-      "0px"
+      null
+
+  removeItem: (key) =>
+    delete @_data[key]
+
+  setItem: (key, value) =>
+    @_data[key] = String(value)
+
+  clear: => @_data = {}

@@ -22,7 +22,7 @@
 ])
 
 @section("content")
-    <div class="forum-topic-headernav js-forum-topic-headernav js-fixed-element">
+    <div class="forum-topic-headernav js-forum-topic-headernav js-sync-height--reference" data-sync-height-target="forum-topic-headernav" data-visibility="hidden">
         <div class="forum-topic-headernav__stripe
             forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
         "></div>
@@ -34,45 +34,11 @@
 
             <div class="forum-topic-headernav__titles">
                 <div class="forum-topic-headernav__title">
-                    <ol class="
-                        forum-topic-headernav__breadcrumb
-                        forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
-                    ">
-                        <li class="forum-topic-headernav__breadcrumb-item">
-                            <a href="{{ route('forum.forums.index') }}"
-                                class="forum-topic-headernav__nav-link"
-                            >
-                                {{ trans('forum.title') }}
-                            </a>
-                        </li>
-
-                        @foreach ($topic->forum->forum_parents as $forumId => $forumData)
-                            <li class="forum-topic-headernav__breadcrumb-item">
-                                <a href=
-                                    @if ($forumData[1] === 0)
-                                        "{{ route('forum.forums.index') }}#forum-{{ $forumId }}"
-                                    @else
-                                        "{{ route('forum.forums.show', $forumId) }}"
-                                    @endif
-                                    class="forum-topic-headernav__nav-link"
-                                >
-                                    {{ $forumData[0] }}
-                                </a>
-                            </li>
-                        @endforeach
-
-                        <li class="forum-topic-headernav__breadcrumb-item">
-                            <a href="{{ route("forum.forums.show", $topic->forum->forum_id) }}"
-                                class="forum-topic-headernav__nav-link"
-                            >
-                                {{ $topic->forum->forum_name }}
-                            </a>
-                        </li>
-                    </ol>
+                    @include('forum.topics._header_breadcrumb')
                 </div>
 
                 <h1 class="forum-topic-headernav__title">
-                    <a href="{{ route("forum.topics.show", $topic->topic_id) }}" class="forum-topic-headernav__nav-link">
+                    <a href="{{ route("forum.topics.show", $topic->topic_id) }}" class="link--white">
                         {{ $topic->topic_title }}
                     </a>
                 </h1>
@@ -83,66 +49,81 @@
         </div></div>
     </div>
 
-    <div class="osu-layout__row osu-layout__row--page-compact">
-        <div class="forum-header
-            forum-category-header
-            forum-category-header--{{ $topic->forum->categorySlug() }}
-            forum-category-header--main
-        ">
-            <div class="topic-header">
-                <ol class="breadcrumb forums-breadcrumb">
-                    @include("forum.forums._nav", ["forum_parents" => $topic->forum->forum_parents])
-                    <li>
-                        <a href="{{ route("forum.forums.show", $topic->forum->forum_id) }}">
-                            {{ $topic->forum->forum_name }}
-                        </a>
-                    </li>
-                </ol>
-                <h1>
-                    <a href="{{ route("forum.topics.show", $topic->topic_id) }}">
-                        {{ $topic->topic_title }}
-                    </a>
-                </h1>
-            </div>
-        </div>
+    @include('forum.topics._header')
 
-        <div class="forum-topic-header__sticky-marker js-sticky-header" data-sticky-header-target="forum-topic-headernav"></div>
-    </div>
+    <div class="js-header--alt js-sync-height--target" data-sync-height-id="forum-topic-headernav"></div>
 
-    <div class="forum-posts-load-link">
+    <div class="forum-posts-load-link js-header--alt">
         <a href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => ($posts->first()->post_id - 1)]) }}" class="js-forum-posts-show-more js-forum__posts-show-more--previous" data-mode="previous">Load more</a>
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>
 
     @include("forum.topics._posts")
 
-    <div class="forum-posts-load-link">
+    <div class="forum-posts-load-link {{ last($postsPosition) === $topic->postsCount() ? 'hidden' : '' }}">
         <a href="{{ post_url($topic->topic_id, $posts->last()->post_id + 1, false) }}" class="js-forum-posts-show-more js-forum__posts-show-more--next" data-mode="next">Load more</a>
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>
 
-    @if ($topic->canBeRepliedBy(Auth::user()))
-        {!! Form::open(["url" => route("forum.topics.reply", $topic->topic_id), "class" => "osu-layout__row osu-layout__row--sm2-desktop post-editor", "id" => "forum-topic-reply-box", "data-remote" => true]) !!}
-            <div class="forum-small-row post-editor__main post-editor__main--reply">
-                <div class="forum__avatar-container forum__avatar-container--reply hidden-xs">
-                    <div
-                        class="avatar avatar--full"
-                        title="{{ trans("users.show.avatar", ["username" => Auth::user()->username]) }}"
-                        style="background-image: url('{{ Auth::user()->user_avatar }}');"
-                    ></div>
+    <div class="js-forum-topic-reply--container js-sync-height--target" data-sync-height-id="forum-topic-reply">
+        {!! Form::open([
+            "url" => route("forum.topics.reply", $topic->topic_id),
+            "class" => "forum-post forum-post--reply js-forum-topic-reply js-sync-height--reference js-fixed-element js-editor-zoom",
+            "id" => "forum-topic-reply-box",
+            "data-remote" => true,
+            "data-sync-height-target" => "forum-topic-reply",
+            'data-force-reload' => Auth::check() === false ? '1' : '0',
+        ]) !!}
+            <div class="forum-post__reply-container">
+                <div class="osu-layout__row osu-layout__row--sm2-desktop osu-layout__row--full-height">
+                    <div class="forum-post__reply-content">
+                        <div class="forum-post__info-panel forum-post__info-panel--reply hidden-xs">
+                            <div class="forum-post__avatar-container forum-post__avatar-container--reply">
+                                @if (Auth::check() === true)
+                                    <div
+                                        class="avatar avatar--full"
+                                        title="{{ trans("users.show.avatar", ["username" => Auth::user()->username]) }}"
+                                        style="background-image: url('{{ Auth::user()->user_avatar }}');"
+                                    ></div>
+                                @else
+                                    <div class="avatar avatar--full avatar--guest"></div>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="forum-post__body forum-post__body--reply">
+                            <div class="forum-post__content forum-post__content--edit-body">
+                                @include('forum.posts._form_body', ['postBody' => [
+                                    'focus' => false,
+                                    'extraClasses' => 'forum-post-content--reply js-forum-topic-reply--input',
+                                ]])
+                            </div>
+
+                            <div class="forum-post__content forum-post__content forum-post__content--edit-bar hidden">
+                            </div>
+
+                            <div class="forum-post__content forum-post__content forum-post__content--edit-bar">
+                                @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
+                            </div>
+                        </div>
+
+                        <div class="forum-post__actions forum-post__actions--reply js-editor-zoom--hidden">
+                            <div class="forum-post-actions">
+                                <a href="#" class="js-forum-topic-reply--close forum-post-actions__action hidden">
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                @include('forum.posts._form_body', ['postBody' => ['focus' => false]])
-            </div>
-
-            <div class="forum-small-row post-editor__footer">
-                @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
             </div>
         {!! Form::close() !!}
-    @endif
+
+    </div>
+    <div class="js-sticky-footer" data-sticky-footer-disabled="1" data-sticky-footer-target="forum-topic-reply"></div>
 @endsection
 
-@section('fixed-bar-rows-bottom')
+@section('permanent-fixed-footer')
     @parent
 
     <div
@@ -150,11 +131,11 @@
         data-total-count="{{ $topic->postsCount() }}"
     >
 
-        <div class="forum-topic-nav__seek-tooltip js-forum-posts-seek-tooltip">
-            <div class="forum-topic-nav__seek-tooltip-number js-forum-posts-seek-tooltip-number"></div>
+        <div class="forum-topic-nav__seek-tooltip js-forum-posts-seek--tooltip" data-visibility="hidden">
+            <div class="forum-topic-nav__seek-tooltip-number js-forum-posts-seek-tooltip-number">0</div>
         </div>
 
-        <div class="js-forum__posts-seek">
+        <div class="js-forum__posts-seek forum-topic-nav__seek-bar-container">
             <div class="
                 forum-topic-nav__seek-bar
                 forum-topic-nav__seek-bar--all
@@ -265,8 +246,9 @@
             </div>
 
             <div class="forum-topic-nav__group">
-                <div class="forum-topic-nav__item">
-                </div>
+                <a href="#" class="forum-topic-nav__button-circle forum-topic-nav__button-circle--reply js-forum-topic-reply--new">
+                    <i class="fa fa-plus"></i>
+                </a>
             </div>
         </div>
     </div>

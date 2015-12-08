@@ -23,7 +23,7 @@ class @Menu
     $(document).on 'touchstart', '.js-menu', @onTouchStart
     $(document).on 'mouseenter', '.js-menu', @onMouseEnter
     $(document).on 'mouseleave', '.js-menu', @onMouseLeave
-    $(document).on 'click', @onGlobalClick
+    $(document).on 'touchstart', @onGlobalTouchstart
 
 
   closestMenuId: ($child) ->
@@ -50,9 +50,14 @@ class @Menu
     currentTree
 
 
-  onGlobalClick: (e) =>
+  onGlobalTouchstart: (e) =>
     return unless @currentMenu
-    return if e.target.classList.contains('js-menu')
+
+    closest = e.target
+    while closest
+      return if closest.classList.contains('js-menu')
+      closest = closest.parentElement
+
     @hideMenu()
 
 
@@ -105,5 +110,5 @@ class @Menu
         @$menuLink(menuId).removeClass('js-menu--active')
 
       else
-        fade.in menu, 'flex'
+        fade.in menu
         @$menuLink(menuId).addClass('js-menu--active')

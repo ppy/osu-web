@@ -21,4 +21,4 @@ class @HeaderMenu
 
 
   toggleTitle: (_e, currentMenu) =>
-    $('#nav-page-title').toggle !_.startsWith(currentMenu, 'header--')
+    fade.toggle document.getElementsByClassName('js-header-menu--page-title')[0], !_.startsWith(currentMenu, 'header--')

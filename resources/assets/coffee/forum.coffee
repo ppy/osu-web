@@ -20,12 +20,13 @@ class @Forum
   _postsCounter: document.getElementsByClassName('js-forum__posts-counter')
   _postsProgress: document.getElementsByClassName('js-forum__posts-progress')
   _stickyHeaderTopic: document.getElementsByClassName('js-forum-topic-headernav')
-  posts: document.getElementsByClassName('forum-post')
+  posts: document.getElementsByClassName('js-forum-post')
+  loadMoreLinks: document.getElementsByClassName('js-forum-posts-show-more')
 
   boot: =>
     @initialScrollTo()
-    @refreshLoadMoreLinks()
     @refreshCounter()
+    @refreshLoadMoreLinks()
 
   constructor: ->
     $(window).on 'scroll', =>
@@ -64,27 +65,33 @@ class @Forum
   endPost: => @posts[@posts.length - 1]
 
 
+  firstPostLoaded: =>
+    @posts[0].getAttribute('data-post-position') == '1'
+
+
   lastPostLoaded: =>
     parseInt(@endPost().getAttribute('data-post-position'), 10) == @totalPosts()
 
 
   refreshLoadMoreLinks: =>
-    return if @posts.length == 0
+    return unless @loadMoreLinks.length
 
-    $('.js-forum__posts-show-more--previous')
+    firstPostLoaded = @firstPostLoaded()
+
+    $('.js-header--main').toggleClass 'hidden', !firstPostLoaded
+    $('.js-header--alt').toggleClass 'hidden', firstPostLoaded
+
+    lastPostLoaded = @lastPostLoaded()
+
+    $('.js-forum__posts-show-more--next')
       .closest('div')
-      .toggle @posts[0].getAttribute('data-post-position') != '1'
-
-    showNext = !@lastPostLoaded()
-
-    $('.js-forum__posts-show-more--next').closest('div').toggle showNext
+      .toggleClass 'hidden', lastPostLoaded
 
     if !window.currentUser.isAdmin
       $('.delete-post-link').hide()
 
-    if !showNext
+    if lastPostLoaded
       $(@endPost()).find('.delete-post-link').css(display: '')
-      $('#forum-topic-reply-box').css(display: 'block')
 
 
   refreshCounter: =>
@@ -93,7 +100,7 @@ class @Forum
     currentPost = null
     anchorHeight = window.innerHeight * 0.5
 
-    pageBottom = document.getElementsByClassName('js-page-footer-padding')[0]
+    pageBottom = document.getElementsByClassName('js-page-footer')[0]
       .getBoundingClientRect()
       .bottom
 
@@ -175,12 +182,8 @@ class @Forum
     return unless @_stickyHeaderTopic.length
 
     if target == 'forum-topic-headernav'
-      return if @_stickyHeaderTopic[0]._visible
-      @_stickyHeaderTopic[0]._visible = true
-      fade.in @_stickyHeaderTopic[0], 'flex'
+      fade.in @_stickyHeaderTopic[0]
     else
-      return unless @_stickyHeaderTopic[0]._visible
-      @_stickyHeaderTopic[0]._visible = false
       fade.out @_stickyHeaderTopic[0]
 
 
@@ -196,16 +199,16 @@ class @Forum
       skip_layout: 1
 
     if mode == 'previous'
-      $refPost = $('.forum-post').first()
+      $refPost = $('.js-forum-post').first()
       options['end'] = $refPost.data('post-id') - 1
     else
-      $refPost = $('.forum-post').last()
+      $refPost = $('.js-forum-post').last()
       options['start'] = $refPost.data('post-id') + 1
 
     $linkDiv.addClass 'loading'
 
     $.get(window.canonicalUrl, options)
-    .done (data) ->
+    .done (data) =>
       if mode == 'previous'
         scrollReference = $refPost[0]
         scrollReferenceTop = scrollReference.getBoundingClientRect().top
@@ -220,6 +223,8 @@ class @Forum
         window.scrollTo x, targetDocumentScrollTop
       else
         $linkDiv.before data
+
+      @refreshLoadMoreLinks()
 
       osu.pageChange()
       $link.attr 'data-failed', '0'

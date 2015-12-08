@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<footer class="footer no-print flex-none">
+<footer class="footer no-print flex-none js-page-footer">
     <ul class="list-inline text-center footer-row">
         <li><a class="footer-link" href="{{ config("osu.urls.legal.tos") }}" target="_blank">Terms of Service</a></li>
         <li><a class="footer-link" href="{{ config("osu.urls.legal.dmca") }}" target="_blank">Copyright (DMCA)</a></li>
@@ -23,4 +23,6 @@
         <li><a class="footer-link" href="{{ config("osu.urls.status.osustatus") }}" target="_blank">@osustatus</a></li>
     </ul>
     <p class="footer-row">ppy powered 2007-{{ date("Y") }}</p>
+
+    <div class="js-sync-height--target" data-sync-height-id="permanent-fixed-footer"></div>
 </footer>

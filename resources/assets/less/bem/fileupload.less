@@ -16,6 +16,22 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.js-menu[data-menu-id] {
-  transition: opacity 120ms linear;
+.fileupload {
+  overflow: hidden;
+
+  &__input {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300%;
+    height: 300%;
+
+    cursor: pointer;
+
+    &[disabled] {
+      cursor: not-allowed;
+    }
+
+  }
 }

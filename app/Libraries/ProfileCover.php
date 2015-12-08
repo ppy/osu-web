@@ -159,7 +159,7 @@ class ProfileCover
             $dim = getimagesize($path);
         }
 
-        $maxDim = [1800, 500];
+        $maxDim = [2700, 500];
         $maxFileSize = 1000000;
 
         if ($dim[0] === $maxDim[0] && $dim[1] === $maxDim[1]) {

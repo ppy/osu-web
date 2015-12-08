@@ -16,11 +16,13 @@ You should have received a copy of the GNU Affero General Public License
 along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 @osu =
+  isIos: /iPad|iPhone|iPod/.test(navigator.platform)
+
   ajaxError: (xhr) ->
-    message = xhr.responseJSON?.error
+    message = xhr?.responseJSON?.error
 
     unless message
-      errorKey = "errors.codes.http-#{xhr.status}"
+      errorKey = "errors.codes.http-#{xhr?.status}"
       message = Lang.get errorKey
       message = Lang.get 'errors.unknown' if message == errorKey
 

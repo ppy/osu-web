@@ -23,6 +23,7 @@ class ProfilePage.CoverSelector extends React.Component
 
     @state =
       dropOverlayState: 'inactive'
+      dropOverlayVisibility: 'hidden'
 
 
   componentDidMount: =>
@@ -38,32 +39,15 @@ class ProfilePage.CoverSelector extends React.Component
 
 
   _dropOverlayLeave: =>
-    @setState dropOverlayState: 'active'
+    @setState dropOverlayState: ''
 
 
   _dropOverlayStart: =>
-    if @state.dropOverlayState == 'inactive'
-      # Animating inactive => active doesn't work, must go through hidden first.
-      @setState dropOverlayState: 'hidden'
-
-      # To let state update to propagate properly first.
-      setTimeout @_dropOverlayStart, 0
-
-    else if @state.dropOverlayState == 'hidden'
-      @setState dropOverlayState: 'active'
+    @setState dropOverlayVisibility: ''
 
 
   _dropOverlayEnd: =>
-    # Transition to hidden first because css can't animate `display: none`.
-    # The same as _dropOverlayStart.
-    @setState dropOverlayState: 'hidden'
-
-    deactivate = =>
-      return if @state.dropOverlayState != 'hidden'
-      @setState dropOverlayState: 'inactive'
-
-    # Matches animation duration in css which is 120ms
-    setTimeout deactivate, 120
+    @setState dropOverlayVisibility: 'hidden'
 
 
   _removeListeners: ->
@@ -89,6 +73,7 @@ class ProfilePage.CoverSelector extends React.Component
       if @props.canUpload
         el 'div',
           className: "#{dropOverlayClass} #{dropOverlayClass}--#{@state.dropOverlayState}"
+          'data-visibility': @state.dropOverlayVisibility
           onDragEnter: @_dropOverlayEnter
           onDragLeave: @_dropOverlayLeave
           ref: 'dropOverlay'

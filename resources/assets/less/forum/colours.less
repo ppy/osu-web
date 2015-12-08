@@ -17,6 +17,10 @@
 *
 */
 .forum-colour-set(@stripe-colour, @link-colour, @link-hover-colour) {
+  .u-current-forum-bg {
+    background-color: @stripe-colour !important;
+  }
+
   .topics, .forums {
     .clickable-row:hover .clickable-row-link {
       color: @link-hover-colour;

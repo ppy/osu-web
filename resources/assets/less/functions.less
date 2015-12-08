@@ -99,3 +99,19 @@
     background-image: url(@url2x);
   }
 }
+
+// Will force the element to be rendered in its own layer
+// in hardware accelerated mode.
+// Be careful that elements using this will have z-index context applied.
+.own-layer() {
+  transform: rotate(0);
+}
+
+.full-size() {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  content: ' ';
+}
