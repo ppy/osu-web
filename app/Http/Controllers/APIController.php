@@ -222,6 +222,10 @@ class APIController extends Controller
             $scores = $scores->limit($limit);
         }
 
+        $scores = $scores->whereHas('user', function ($q) {
+            $q->where('user_warnings', '=', 0);
+        });
+
         return $scores;
     }
 
