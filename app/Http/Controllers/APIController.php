@@ -138,7 +138,7 @@ class APIController extends Controller
 
         $combined = array_merge($user, $stats, ['events' => $events]);
 
-        return Response::json($combined);
+        return Response::json([$combined]);
     }
 
     public function getUserBest()
