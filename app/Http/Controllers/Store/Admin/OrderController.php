@@ -53,8 +53,7 @@ class OrderController extends Controller
             ->where('tracking_code', 'like', 'EJ%')
             ->get();
 
-        foreach ($order as $o)
-        {
+        foreach ($order as $o) {
             $o->status = 'shipped';
             $o->save();
         }
