@@ -227,7 +227,7 @@ class APIController extends Controller
         $id = Request::input('u');
         $type = Request::input('type', 'id');
 
-        if (!in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
+        if (!present($mode) || !in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
             return Response::json([]);
         }
 
