@@ -44,7 +44,7 @@ abstract class Model extends BaseModel
         'rank' => 'string',
         'pp' => 'float',
     ];
-
+    protected $dates = ['date'];
     public $timestamps = false;
 
     public function scopeForUser($query, User $user)

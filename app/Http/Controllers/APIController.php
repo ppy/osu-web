@@ -35,6 +35,7 @@ use App\Transformers\API\UserTransformer;
 use App\Transformers\API\StatisticsTransformer;
 use App\Transformers\API\EventTransformer;
 use App\Transformers\API\BeatmapTransformer;
+use App\Transformers\API\BeatmapPackTransformer;
 
 class APIController extends Controller
 {
@@ -94,7 +95,10 @@ class APIController extends Controller
             $packs = $packs->limit((int) $limit);
         }
 
-        return Response::json($packs->get());
+        return fractal_api_serialize_collection(
+            $packs->get(),
+            new BeatmapPackTransformer()
+        );
     }
 
     public function getUser()
