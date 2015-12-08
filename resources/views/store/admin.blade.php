@@ -123,4 +123,12 @@
     </div>
     @endforeach
 </div>
+
+<div class="osu-layout__row osu-layout__row--page osu-layout__row--bootstrap">
+    {!! Form::open(['route' => 'store.admin.orders.ship', 'method' => 'post', 'data-remote' => true]) !!}
+    <div class="big-button">
+        <button type="submit" class="btn-osu btn-osu-danger">Ship all tracked orders</button>
+    </div>
+    {!! Form::close() !!}
+</div>
 @stop

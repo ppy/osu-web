@@ -91,6 +91,7 @@ Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);
 
 // store admin
 Route::group(['prefix' => 'store/admin', 'namespace' => 'Store\Admin'], function () {
+    Route::post('orders/ship', ['as' => 'store.admin.orders.ship', 'uses' => 'OrdersController@ship']);
     Route::resource('orders', 'OrdersController', ['only' => ['index', 'show', 'update']]);
 
     Route::get('/', function () { return Redirect::route('store.admin.orders.index'); });

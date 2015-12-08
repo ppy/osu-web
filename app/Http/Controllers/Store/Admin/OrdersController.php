@@ -43,6 +43,25 @@ class OrdersController extends Controller
         return view('store.admin', compact('orders', 'ordersItemsQuantities'));
     }
 
+    public function ship()
+    {
+        if (!Auth::user()->isAdmin()) {
+            abort(403);
+        }
+
+        $order = Store\Order::where('status', 'paid')
+            ->where('tracking_code', 'like', 'EJ%')
+            ->get();
+
+        foreach ($order as $o)
+        {
+            $o->status = 'shipped';
+            $o->save();
+        }
+
+        return ujs_redirect(route('store.admin.orders.index'));
+    }
+
     public function update($id)
     {
         if (!Auth::user()->isAdmin()) {
