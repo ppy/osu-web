@@ -24,6 +24,11 @@ class Match extends Model
     protected $table = 'matches';
     protected $primaryKey = 'match_id';
     protected $hidden = ['private', 'keep_forever'];
+    protected $dates = [
+        'start_time',
+        'end_time',
+    ];
+    public $timestamps = false;
 
     public function games()
     {

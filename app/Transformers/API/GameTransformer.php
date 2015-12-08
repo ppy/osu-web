@@ -30,8 +30,8 @@ class GameTransformer extends Fractal\TransformerAbstract
     {
         return [
             'game_id' => $game->game_id,
-            'start_time' => $game->start_time,
-            'end_time' => $game->end_time,
+            'start_time' => $game->start_time ? $game->start_time->tz('Australia/Perth')->toDateTimeString() : null,
+            'end_time' => $game->end_time ? $game->end_time->tz('Australia/Perth')->toDateTimeString() : null,
             'beatmap_id' => $game->beatmap_id,
             'play_mode' => $game->play_mode,
             'match_type' => $game->match_type,

@@ -37,6 +37,11 @@ class BeatmapSet extends Model
         'favourite_count' => 'integer',
     ];
 
+    protected $dates = [
+        'approved_date',
+        'last_update',
+    ];
+
     public $timestamps = false;
     protected $hidden = [
         'header_hash',

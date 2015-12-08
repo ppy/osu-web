@@ -44,7 +44,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'perfect' => $score->perfect,
             'enabled_mods' => $score->enabled_mods,
             'user_id' => $score->user_id,
-            'date' => $score->date,
+            'date' => $score->date->tz('Australia/Perth')->toDateTimeString(),
             'rank' => $score->rank,
         ], $pp);
     }

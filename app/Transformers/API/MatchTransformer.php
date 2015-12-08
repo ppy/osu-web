@@ -32,8 +32,8 @@ class MatchTransformer extends Fractal\TransformerAbstract
             'match' => [
                 'match_id' => $match->match_id,
                 'name' => $match->name,
-                'start_time' => $match->start_time,
-                'end_time' => $match->end_time,
+                'start_time' => $match->start_time ? $match->start_time->tz('Australia/Perth')->toDateTimeString() : null,
+                'end_time' => $match->end_time ? $match->end_time->tz('Australia/Perth')->toDateTimeString() : null,
             ],
         ];
     }

@@ -24,6 +24,11 @@ class Game extends Model
     protected $table = 'games';
     protected $primaryKey = 'game_id';
     protected $hidden = ['match_id'];
+    protected $dates = [
+        'start_time',
+        'end_time',
+    ];
+    public $timestamps = false;
 
     public function scores()
     {
