@@ -280,12 +280,19 @@ class APIController extends Controller
 
         $beatmaps = new Beatmap;
 
+        $beatmaps = $beatmaps
+            ->join('osu_beatmapsets', 'osu_beatmaps.beatmapset_id', '=', 'osu_beatmapsets.beatmapset_id')
+            ->where('osu_beatmapsets.approved', '>=', -2)
+            ->where('osu_beatmapsets.active', 1)
+            ->orderBy('osu_beatmapsets.approved_date', 'desc')
+            ->limit($limit);
+
         if (present($beatmap_id)) {
             $beatmaps = $beatmaps->where('beatmap_id', $beatmap_id);
         }
 
         if (present($set_id)) {
-            $beatmaps = $beatmaps->where('beatmapset_id', $set_id);
+            $beatmaps = $beatmaps->where('osu_beatmapsets.beatmapset_id', $set_id);
         }
 
         if (present($user_id)) {
@@ -293,7 +300,7 @@ class APIController extends Controller
             if (!$user) {
                 return Response::json([]);
             }
-            $beatmaps = $beatmaps->where('user_id', $user->user_id);
+            $beatmaps = $beatmaps->where('osu_beatmaps.user_id', $user->user_id);
         }
 
         if (!in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
@@ -318,12 +325,8 @@ class APIController extends Controller
         }
 
         if (present($since)) {
-            $beatmaps = $beatmaps
-                ->whereIn('approved', [1, 2, 3])
-                ->where('approved_date', '>', $since);
+            $beatmaps = $beatmaps->where('approved_date', '>', $since);
         }
-
-        $beatmaps = $beatmaps->limit($limit);
 
         return fractal_api_serialize_collection(
             $beatmaps->with('set', 'difficulty', 'difficultyAttribs')->get(),
