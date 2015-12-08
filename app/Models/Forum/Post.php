@@ -178,12 +178,19 @@ class Post extends Model
             return true;
         }
 
-        return $this->update([
+        $updates = [
             'post_text' => $body,
-            'post_edit_time' => Carbon::now(),
-            'post_edit_count' => DB::raw('post_edit_count + 1'),
-            'post_edit_user' => $user->user_id,
-        ]);
+        ];
+
+        if ($user->user_id === $this->poster_id) {
+            $updates = array_merge($updates, [
+                'post_edit_time' => Carbon::now(),
+                'post_edit_count' => DB::raw('post_edit_count + 1'),
+                'post_edit_user' => $user->user_id,
+            ]);
+        }
+
+        return $this->update($updates);
     }
 
     public function getBodyHTMLAttribute()
