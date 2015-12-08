@@ -19,6 +19,7 @@
  */
 namespace App\Models\Forum;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Log extends Model
@@ -54,5 +55,25 @@ class Log extends Model
     public function setLogDataAttribute($value)
     {
         $this->attributes['log_data'] = serialize($value);
+    }
+
+    public function forum()
+    {
+        return $this->belongsTo(Forum::class);
+    }
+
+    public function topic()
+    {
+        return $this->belongsTo(Topic::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function reportee()
+    {
+        return $this->belongsTo(User::class, 'reportee_id', 'user_id');
     }
 }
