@@ -194,7 +194,7 @@ class User extends Model implements AuthenticatableContract
         return $this->api->api_key === $key;
     }
 
-    public function lookup($username_or_id, $lookup_type = null)
+    public function lookup($username_or_id, $lookup_type = null, $find_all = false)
     {
         if (!present($username_or_id)) {
             return;
@@ -202,23 +202,27 @@ class User extends Model implements AuthenticatableContract
 
         switch ($lookup_type) {
             case 'string':
-                $user = self::where('username', $username_or_id)->orWhere('username_clean', $username_or_id)->first();
+                $user = self::where('username', $username_or_id)->orWhere('username_clean', $username_or_id);
                 break;
 
             case 'id':
-                $user = self::find((int) $username_or_id);
+                $user = self::where('user_id', $username_or_id);
                 break;
 
             default:
                 if (is_numeric($username_or_id)) {
-                    $user = self::find((int) $username_or_id);
+                    $user = self::where('user_id', $username_or_id);
                 } else {
-                    $user = self::where('username', $username_or_id)->orWhere('username_clean', $username_or_id)->first();
+                    $user = self::where('username', $username_or_id)->orWhere('username_clean', $username_or_id);
                 }
                 break;
         }
 
-        return $user;
+        if (!$find_all) {
+            $user = $user->where('user_type', 0)->where('user_warnings', 0);
+        }
+
+        return $user->first();
     }
 
     public function getUserAvatarAttribute($value)
