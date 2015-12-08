@@ -125,7 +125,7 @@ class APIController extends Controller
 
         $events = fractal_api_serialize_collection(
             $user->events()
-                ->whereDate('date', '>', Carbon::now()->addDays(-$event_days))
+                ->where('date', '>', Carbon::now()->addDays(-$event_days))
                 ->orderBy('event_id', 'desc')
                 ->get(),
             new EventTransformer()
