@@ -57,8 +57,6 @@
     </div>
 
     @foreach ($orders as $o)
-    {!! Form::open(["url" => "store/admin", "data-remote" => true]) !!}
-    {!! Form::hidden('id', $o->order_id) !!}
     <div class="col-md-12">
 
         <div class="panel panel-default">
@@ -77,6 +75,7 @@
             </div>
             <div class="panel-body">
                 <div class='row'>
+                    {!! Form::open(['route' => ['store.admin.orders.update', $o->order_id], 'method' => 'put', 'data-remote' => true]) !!}
                     <div class='col-md-8'>
                         <div class="form-group">
                         @if ($o->status === 'paid' || $o->status === 'shipped')
@@ -97,6 +96,7 @@
 
                         </div>
                     </div>
+                    {!! Form::close() !!}
 
                     @if ($o->address)
                         @include('store.objects.address', ['data' => $o->address])
@@ -121,7 +121,6 @@
             </table>
         </div>
     </div>
-    {!! Form::close() !!}
     @endforeach
 </div>
 @stop
