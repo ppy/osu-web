@@ -29,7 +29,7 @@ use App\Models\Beatmap;
 use App\Models\BeatmapPack;
 use App\Models\User;
 use App\Models\Score;
-use App\Transformers\Multiplayer\MatchTransformer;
+use App\Transformers\API\MatchTransformer;
 use App\Transformers\API\ScoreTransformer;
 use App\Transformers\API\UserTransformer;
 use App\Transformers\API\StatisticsTransformer;
