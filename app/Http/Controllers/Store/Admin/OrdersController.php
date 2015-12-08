@@ -13,11 +13,7 @@ class OrdersController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['only' => [
-            'index',
-            'show',
-            'update',
-        ]]);
+        $this->middleware('auth');
 
         return parent::__construct();
     }
