@@ -26,7 +26,7 @@ use Request;
 
 class Log extends Model
 {
-    const LOG_FORUM_MOD = 3;
+    const LOG_FORUM_MOD = 1;
 
     protected $table = 'phpbb_log';
     protected $primaryKey = 'log_id';
