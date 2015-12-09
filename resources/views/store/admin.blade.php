@@ -26,6 +26,17 @@
 .product_12, .product_13, .product_14, .product_15, .product_16, .product_17, .product_18, .product_19 { background-color: #BDFF5E; }
 .product_33, .product_34, .product_35, .product_36 { background-color: #54F35B; }
 
+.product_name_expanded {
+    width: 80%;
+    display: inline-block;
+}
+
+.product_name_expanded select {
+    background: transparent;
+}
+
+.bold { font-weight: bold; }
+
 </style>
 
 <div class="osu-layout__row osu-layout__row--page osu-layout__row--bootstrap">
@@ -108,12 +119,24 @@
                 <tbody>
                     @foreach($o->items as $i)
                     <tr>
-                        <td class="product_{{ $i->product_id }}">
-                            @if ($i->quantity > 1)
-                                <strong>{{ $i->quantity }} x {{ $i->getDisplayName() }}</strong>
+                        <td class="product_{{ $i->product_id }} {{ $i->quantity > 1 ? "bold" : "" }}">
+                            {!! Form::open(['route' => ['store.admin.orders.items.update', $o->order_id, $i->id], 'method' => 'put', 'data-remote' => true]) !!}
+                            <span class="content-editable-submit" contenteditable="true" data-name="item[quantity]">{{{ $i->quantity }}}</span>
+                            x
+                            <span class="product_name_expanded">
+                            @if ($i->product->typeMappings())
+                                <select id="select-item" name="item[product_id]" class="form-control js-auto-submit">
+                                    @foreach($i->product->productsInRange() as $r)
+                                    <option {{ $i->product_id == $r->product_id ? "selected" : "" }} value="{{ $r->product_id }}">
+                                        {{ $r->name }}
+                                    </option>
+                                    @endforeach
+                                </select>
                             @else
-                                {{ $i->quantity }} x {{ $i->getDisplayName() }}
+                                {{ $i->getDisplayName() }}
                             @endif
+                            </span>
+                            {!! Form::close() !!}
                         </td>
                     </tr>
                     @endforeach
