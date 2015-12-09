@@ -118,9 +118,11 @@ class Product extends Model
 
     public function productsInRange()
     {
-        if (!($mappings = $this->typeMappings())) return [];
+        if (!($mappings = $this->typeMappings())) {
+            return [];
+        }
 
-        return Product::whereIn('product_id', array_keys($mappings))->get();
+        return self::whereIn('product_id', array_keys($mappings))->get();
     }
 
     public function types()

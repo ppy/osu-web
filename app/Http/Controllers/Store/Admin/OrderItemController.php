@@ -26,9 +26,8 @@ class OrderItemController extends Controller
 
         $item = Store\OrderItem::findOrFail($orderItemId);
 
-        if ($item->order_id != $orderId)
-        {
-            return ['error' => "invalid order id for this item"];
+        if ($item->order_id != $orderId) {
+            return ['error' => 'invalid order id for this item'];
         }
 
         $item->unguard();
