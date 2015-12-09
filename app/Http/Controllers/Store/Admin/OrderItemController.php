@@ -15,15 +15,15 @@ class OrderItemController extends Controller
     {
         $this->middleware('auth');
 
+        if (Auth::user() && !Auth::user()->isAdmin()) {
+            abort(403);
+        }
+
         return parent::__construct();
     }
 
     public function update($orderId, $orderItemId)
     {
-        if (!Auth::user()->isAdmin()) {
-            abort(403);
-        }
-
         $item = Store\OrderItem::findOrFail($orderItemId);
 
         if ($item->order_id != $orderId) {

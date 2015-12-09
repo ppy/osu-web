@@ -15,6 +15,10 @@ class OrderController extends Controller
     {
         $this->middleware('auth');
 
+        if (Auth::user() && !Auth::user()->isAdmin()) {
+            abort(403);
+        }
+
         return parent::__construct();
     }
 
@@ -25,10 +29,6 @@ class OrderController extends Controller
 
     public function show($id = null)
     {
-        if (!Auth::user()->isAdmin()) {
-            abort(403);
-        }
-
         $orders = Store\Order::with('user', 'address', 'address.country', 'items.product');
 
         if ($id) {
@@ -45,10 +45,6 @@ class OrderController extends Controller
 
     public function ship()
     {
-        if (!Auth::user()->isAdmin()) {
-            abort(403);
-        }
-
         $order = Store\Order::where('status', 'paid')
             ->where('tracking_code', 'like', 'EJ%')
             ->get();
@@ -63,10 +59,6 @@ class OrderController extends Controller
 
     public function update($id)
     {
-        if (!Auth::user()->isAdmin()) {
-            abort(403);
-        }
-
         $order = Store\Order::findOrFail($id);
         $order->unguard();
         $order->update(Request::input('order'));
