@@ -81,11 +81,11 @@ class Log extends Model
         return $this->belongsTo(User::class, 'reportee_id', 'user_id');
     }
 
-    public function logForumPostEdit($post, $user = null)
+    public function logModerateForumPost($operation, $post, $user = null)
     {
         return static::log([
             'log_type' => static::LOG_FORUM_MOD,
-            'log_operation' => 'LOG_POST_EDITED',
+            'log_operation' => $operation,
             'log_data' => [$post->topic->topic_title],
 
             'user_id' => ($user === null ? null : $user->user_id),

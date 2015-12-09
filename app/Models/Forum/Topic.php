@@ -19,6 +19,7 @@
  */
 namespace App\Models\Forum;
 
+use App\Models\Log;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
@@ -122,9 +123,9 @@ class Topic extends Model
         return true;
     }
 
-    public function removePost($post)
+    public function removePost($post, $user = null)
     {
-        DB::transaction(function () use ($post) {
+        DB::transaction(function () use ($post, $user) {
             $post->delete();
 
             $postsCount = $this->posts()->count();
@@ -152,6 +153,10 @@ class Topic extends Model
                 $this->forum->refreshLastPostCache();
 
                 $post->user->decrement('user_posts');
+            }
+
+            if ($user !== null && $user->user_id !== $post->poster_id && $user->isAdmin() === true) {
+                Log::logModerateForumPost('LOG_DELETE_POST', $post);
             }
         });
 

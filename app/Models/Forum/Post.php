@@ -190,7 +190,7 @@ class Post extends Model
                 'post_edit_user' => $user->user_id,
             ]);
         } elseif ($user->isAdmin() === true) {
-            Log::logForumPostEdit($this);
+            Log::logModerateForumPost('LOG_POST_EDITED', $this);
         }
 
         return $this->update($updates);
