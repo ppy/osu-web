@@ -81,17 +81,26 @@ class Log extends Model
         return $this->belongsTo(User::class, 'reportee_id', 'user_id');
     }
 
-    public function logModerateForumPost($operation, $post, $user = null)
+    public function logModerateForumTopic($operation, $topic, $user = null)
     {
         return static::log([
             'log_type' => static::LOG_FORUM_MOD,
             'log_operation' => $operation,
-            'log_data' => [$post->topic->topic_title],
+            'log_data' => [$topic->topic_title],
 
             'user_id' => ($user === null ? null : $user->user_id),
-            'forum_id' => $post->topic->forum_id,
-            'topic_id' => $post->topic_id,
+            'forum_id' => $topic->forum_id,
+            'topic_id' => $topic->topic_id,
         ]);
+    }
+
+    public function logModerateForumPost($operation, $post, $user = null)
+    {
+        // ideally should log post_id as well but current phpbb logging doesn't
+        // log it and I'm just matching with whatever it's doing. Except post
+        // title - phpbb uses actual post title which are all empty for recent
+        // posts but this one use topic's.
+        return static::logModerateForumTopic($operation, $post->topic, $user);
     }
 
     public static function log($params)

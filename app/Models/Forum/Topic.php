@@ -26,6 +26,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
 {
+    const STATUS_LOCKED = 1;
+    const STATUS_UNLOCKED = 0;
+
     protected $table = 'phpbb_topics';
     protected $primaryKey = 'topic_id';
     protected $guarded = [];
@@ -253,7 +256,9 @@ class Topic extends Model
 
     public function isLocked()
     {
-        return $this->topic_status === 1;
+        // not checking STATUS_LOCK because there's another
+        // state (STATUS_MOVED) which isn't handled yet.
+        return $this->topic_status !== static::STATUS_UNLOCKED;
     }
 
     public function canBeEditedBy($user)
@@ -345,6 +350,23 @@ class Topic extends Model
         }
 
         return $this->fresh();
+    }
+
+    public function lock($lock = true)
+    {
+        DB::transaction(function () use ($lock) {
+            if($lock === true) {
+                $newStatus = static::STATUS_LOCKED;
+                $logOperation = 'LOG_LOCK';
+            } else {
+                $newStatus = static::STATUS_UNLOCKED;
+                $logOperation = 'LOG_UNLOCK';
+            }
+
+            $this->update(['topic_status' => $newStatus]);
+
+            Log::logModerateForumTopic($logOperation, $this);
+        });
     }
 
     public function deleteWithCover()
