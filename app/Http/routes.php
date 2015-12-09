@@ -113,6 +113,7 @@ Route::group(['prefix' => 'forum'], function () {
 
     Route::get('t/{topics}', ['as' => 'forum.topics.show', 'uses' => "Forum\TopicsController@show"]);
     Route::post('t/{topics}/reply', ['as' => 'forum.topics.reply', 'uses' => "Forum\TopicsController@reply"]);
+    Route::post('t/{topics}/lock', ['as' => 'forum.topics.lock', 'uses' => "Forum\TopicsController@lock"]);
 
     Route::resource('forum-covers', 'Forum\ForumCoversController', ['only' => ['store', 'update', 'destroy']]);
     Route::resource('topic-covers', 'Forum\TopicCoversController', ['only' => ['store', 'update', 'destroy']]);
