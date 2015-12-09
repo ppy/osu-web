@@ -17,9 +17,8 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models\Forum;
+namespace App\Models;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Log extends Model
@@ -59,12 +58,12 @@ class Log extends Model
 
     public function forum()
     {
-        return $this->belongsTo(Forum::class);
+        return $this->belongsTo(Forum\Forum::class);
     }
 
     public function topic()
     {
-        return $this->belongsTo(Topic::class);
+        return $this->belongsTo(Forum\Topic::class);
     }
 
     public function user()

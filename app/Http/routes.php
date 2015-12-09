@@ -124,7 +124,7 @@ Route::group(['prefix' => 'forum'], function () {
     Route::get('p/{posts}/raw', ['as' => 'forum.posts.raw', 'uses' => "Forum\PostsController@raw"]);
 });
 
-Route::group(['prefix' => 'forum/admin', 'namespace' => 'Forum\Admin'], function() {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
     Route::resource('logs', 'LogsController', ['only' => ['index']]);
 });
 

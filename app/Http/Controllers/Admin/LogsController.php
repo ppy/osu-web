@@ -17,21 +17,16 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Http\Controllers\Forum\Admin;
+namespace App\Http\Controllers\Admin;
 
-use Auth;
-use App\Http\Controllers\Forum\Controller as BaseController;
+use App\Models\Log;
 
-abstract class Controller extends BaseController
+class LogsController extends Controller
 {
-    public function __construct()
+    public function index()
     {
-        $this->middleware('auth');
+        $logs = Log::orderBy('log_id', 'desc')->limit(10);
 
-        if (Auth::check() === true && Auth::user()->isAdmin() === false) {
-            abort(403);
-        }
-
-        return parent::__construct();
+        return view('admin.logs.index', compact('logs'));
     }
 }

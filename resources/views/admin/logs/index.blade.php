@@ -19,11 +19,11 @@
 
 @section('content')
     <div class="osu-layout__row osu-layout__row--page">
-        <h1>{{ trans('forum.admin.logs.index.title') }}</h1>
+        <h1>{{ trans('admin.logs.index.title') }}</h1>
 
-        @foreach ($forumLogs->get() as $forumLog)
+        @foreach ($logs->get() as $log)
             <p>
-                <pre>{{ json_encode($forumLog->toArray(), JSON_PRETTY_PRINT) }}</pre>
+                <pre>{{ json_encode($log->toArray(), JSON_PRETTY_PRINT) }}</pre>
             </p>
         @endforeach
     </div>
