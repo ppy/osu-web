@@ -19,10 +19,15 @@
  */
 namespace App\Models;
 
+use Auth;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Request;
 
 class Log extends Model
 {
+    const LOG_FORUM_MOD = 3;
+
     protected $table = 'phpbb_log';
     protected $primaryKey = 'log_id';
     protected $guarded = [];
@@ -74,5 +79,53 @@ class Log extends Model
     public function reportee()
     {
         return $this->belongsTo(User::class, 'reportee_id', 'user_id');
+    }
+
+    public function logForumPostEdit($post, $user = null)
+    {
+        return static::log([
+            'log_type' => static::LOG_FORUM_MOD,
+            'log_operation' => 'LOG_POST_EDITED',
+            'log_data' => [$post->topic->topic_title],
+
+            'user_id' => ($user === null ? null : $user->user_id),
+            'forum_id' => $post->topic->forum_id,
+            'topic_id' => $post->topic_id,
+        ]);
+    }
+
+    public static function log($params)
+    {
+        $permittedParams = [
+            'user_id',
+            'reportee_id',
+            'log_type',
+            'forum_id',
+            'topic_id',
+            'log_ip',
+            'log_operation',
+            'log_data',
+            'log_time',
+        ];
+
+        $params = array_only($params, $permittedParams);
+
+        if (array_get($params, 'user_id') === null) {
+            $params['user_id'] = (Auth::check() === true ? Auth::user()->user_id : '0');
+        }
+
+        if (array_get($params, 'reportee_id') === null) {
+            $params['reportee_id'] = '0';
+        }
+
+        if (array_get($params, 'log_ip') === null) {
+            $params['log_ip'] = Request::ip();
+        }
+
+        if (array_get($params, 'log_time') === null) {
+            $params['log_time'] = Carbon::now();
+        }
+
+        return static::create($params);
     }
 }

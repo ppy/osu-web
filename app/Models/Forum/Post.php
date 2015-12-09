@@ -21,6 +21,7 @@ namespace App\Models\Forum;
 
 use App\Libraries\BBCodeForDB;
 use App\Models\DeletedUser;
+use App\Models\Log;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
@@ -188,6 +189,8 @@ class Post extends Model
                 'post_edit_count' => DB::raw('post_edit_count + 1'),
                 'post_edit_user' => $user->user_id,
             ]);
+        } elseif ($user->isAdmin() === true) {
+            Log::logForumPostEdit($this);
         }
 
         return $this->update($updates);
