@@ -127,8 +127,14 @@
                             @if ($i->product->typeMappings())
                                 <select id="select-item" name="item[product_id]" class="form-control js-auto-submit">
                                     @foreach($i->product->productsInRange() as $r)
-                                    <option {{ $i->product_id == $r->product_id ? "selected" : "" }} value="{{ $r->product_id }}">
+                                    <option
+                                        {{ $i->product_id == $r->product_id ? "selected" : "" }}
+                                        {{ !$r->inStock($i->quantity) ? "disabled" : "" }}
+                                        value="{{ $r->product_id }}">
                                         {{ $r->name }}
+                                        @if (!$r->inStock($i->quantity))
+                                            --OUT OF STOCK--
+                                        @endif
                                     </option>
                                     @endforeach
                                 </select>
