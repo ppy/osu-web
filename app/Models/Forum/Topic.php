@@ -355,7 +355,7 @@ class Topic extends Model
     public function lock($lock = true)
     {
         DB::transaction(function () use ($lock) {
-            if($lock === true) {
+            if ($lock === true) {
                 $newStatus = static::STATUS_LOCKED;
                 $logOperation = 'LOG_LOCK';
             } else {
