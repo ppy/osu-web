@@ -140,6 +140,27 @@ class Topic extends Model
         return true;
     }
 
+    public function move($targetForum)
+    {
+        DB::transaction(function () use ($targetForum) {
+            $originForum = $this->forum;
+            $this->forum()->associate($targetForum);
+            $this->save();
+
+            $this->posts()->update(['forum_id' => $targetForum->forum_id]);
+            $this->logs()->update(['forum_id' => $targetForum->forum_id]);
+            $this->userTracks()->update(['forum_id' => $targetForum->forum_id]);
+
+            if ($originForum !== null) {
+                $originForum->refreshCache();
+            }
+
+            if ($this->forum !== null) {
+                $this->forum->refreshCache();
+            }
+        });
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class);
@@ -153,6 +174,16 @@ class Topic extends Model
     public function cover()
     {
         return $this->hasOne(TopicCover::class);
+    }
+
+    public function userTracks()
+    {
+        return $this->hasMany(TopicTrack::class);
+    }
+
+    public function logs()
+    {
+        return $this->hasMany(Log::class);
     }
 
     public function titleNormalized()
