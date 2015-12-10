@@ -93,17 +93,17 @@ class Forum extends Model
 
     public function topics()
     {
-        return $this->hasMany("App\Models\Forum\Topic", 'forum_id', 'forum_id');
+        return $this->hasMany(Topic::class);
     }
 
     public function parentForum()
     {
-        return $this->belongsTo("App\Models\Forum\Forum", 'parent_id', 'forum_id');
+        return $this->belongsTo(Forum::class, 'parent_id');
     }
 
     public function subforums()
     {
-        return $this->hasMany("App\Models\Forum\Forum", 'parent_id', 'forum_id')->orderBy('left_id');
+        return $this->hasMany(Forum::class, 'parent_id')->orderBy('left_id');
     }
 
     public function cover()
