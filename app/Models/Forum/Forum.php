@@ -167,13 +167,13 @@ class Forum extends Model
         $this->forum_posts = $postsCount;
     }
 
-    public function setLastPostCache($post = null)
+    public function setLastPostCache()
     {
-        if ($post === null && $this->lastTopic() !== null) {
-            $post = $this->lastTopic()->posts()->last()->first();
-        }
+        $lastPost = $this->lastTopic() !== null
+            ? $this->lastTopic()->posts()->last()->first()
+            : null;
 
-        if ($post === null) {
+        if ($lastPost === null) {
             $this->forum_last_post_id = null;
             $this->forum_last_poster_id = null;
             $this->forum_last_post_subject = null;
@@ -181,12 +181,12 @@ class Forum extends Model
             $this->forum_last_poster_name = null;
             $this->forum_last_poster_colour = null;
         } else {
-            $this->forum_last_post_id = $post->post_id;
-            $this->forum_last_poster_id = $post->user->user_id;
-            $this->forum_last_post_subject = $post->topic->topic_title;
-            $this->forum_last_post_time = $post->post_time;
-            $this->forum_last_poster_name = $post->user->username;
-            $this->forum_last_poster_colour = $post->user->user_colour;
+            $this->forum_last_post_id = $lastPost->post_id;
+            $this->forum_last_poster_id = $lastPost->user->user_id;
+            $this->forum_last_post_subject = $lastPost->topic->topic_title;
+            $this->forum_last_post_time = $lastPost->post_time;
+            $this->forum_last_poster_name = $lastPost->user->username;
+            $this->forum_last_poster_colour = $lastPost->user->user_colour;
         }
     }
 }
