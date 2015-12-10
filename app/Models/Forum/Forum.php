@@ -98,12 +98,12 @@ class Forum extends Model
 
     public function parentForum()
     {
-        return $this->belongsTo(Forum::class, 'parent_id');
+        return $this->belongsTo(static::class, 'parent_id');
     }
 
     public function subforums()
     {
-        return $this->hasMany(Forum::class, 'parent_id')->orderBy('left_id');
+        return $this->hasMany(static::class, 'parent_id')->orderBy('left_id');
     }
 
     public function cover()
