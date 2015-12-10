@@ -142,12 +142,12 @@ class Topic extends Model
 
     public function posts()
     {
-        return $this->hasMany("App\Models\Forum\Post", 'topic_id', 'topic_id');
+        return $this->hasMany(Post::class);
     }
 
     public function forum()
     {
-        return $this->belongsTo("App\Models\Forum\Forum", 'forum_id', 'forum_id');
+        return $this->belongsTo(Forum::class);
     }
 
     public function cover()
