@@ -169,7 +169,7 @@ class Forum extends Model
     public function refreshLastPostCache($post = null)
     {
         DB::transaction(function () use ($post) {
-            if ($post === null) {
+            if ($post === null && $this->lastTopic() !== null) {
                 $post = $this->lastTopic()->posts()->orderBy('post_id', 'desc')->first();
             }
 
@@ -191,6 +191,10 @@ class Forum extends Model
                     'forum_last_poster_name' => $post->user->username,
                     'forum_last_poster_colour' => $post->user->user_colour,
                 ]);
+            }
+
+            if ($this->parent !== null) {
+                $this->parent->refreshLastPostCache($post);
             }
         });
     }
