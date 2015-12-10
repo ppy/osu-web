@@ -138,71 +138,55 @@ class Forum extends Model
     public function refreshCache()
     {
         DB::transaction(function () {
-            $this->refreshTopicsCountCache();
-            $this->refreshPostsCountCache();
-            $this->refreshLastPostCache();
-        });
-    }
+            $this->setTopicsCountCache();
+            $this->setPostsCountCache();
+            $this->setLastPostCache();
 
-    public function refreshTopicsCountCache()
-    {
-        DB::transaction(function () {
-            $topicsCount = $this->topics()->count();
-            $topicsCount += $this->subforums()->sum('forum_topics');
-
-            $this->update(['forum_topics' => $topicsCount]);
-
-            if ($this->parentForum !== null) {
-                return $this->parentForum->refreshTopicsCountCache();
-            }
-        });
-    }
-
-    public function refreshPostsCountCache()
-    {
-        DB::transaction(function () {
-            $postsCount = $this->forum_topics;
-            $postsCount += $this->topics()->sum('topic_replies_real');
-            $postsCount += $this->subforums()->sum('forum_posts');
-
-            $this->update(['forum_posts' => $postsCount]);
-
-            if ($this->parentForum !== null) {
-                return $this->parentForum->refreshPostsCountCache();
-            }
-        });
-    }
-
-    public function refreshLastPostCache($post = null)
-    {
-        DB::transaction(function () use ($post) {
-            if ($post === null && $this->lastTopic() !== null) {
-                $post = $this->lastTopic()->posts()->orderBy('post_id', 'desc')->first();
-            }
-
-            if ($post === null) {
-                $this->update([
-                    'forum_last_post_id' => null,
-                    'forum_last_poster_id' => null,
-                    'forum_last_post_subject' => null,
-                    'forum_last_post_time' => null,
-                    'forum_last_poster_name' => null,
-                    'forum_last_poster_colour' => null,
-                ]);
-            } elseif ($this->forum_last_post_id !== $post->post_id) {
-                $this->update([
-                    'forum_last_post_id' => $post->post_id,
-                    'forum_last_poster_id' => $post->user->user_id,
-                    'forum_last_post_subject' => $post->topic->topic_title,
-                    'forum_last_post_time' => $post->post_time,
-                    'forum_last_poster_name' => $post->user->username,
-                    'forum_last_poster_colour' => $post->user->user_colour,
-                ]);
-            }
+            $this->save();
 
             if ($this->parent !== null) {
-                $this->parent->refreshLastPostCache($post);
+                $this->parent->refreshCache();
             }
         });
+    }
+
+    public function setTopicsCountCache()
+    {
+        $topicsCount = $this->topics()->count();
+        $topicsCount += $this->subforums()->sum('forum_topics');
+
+        $this->forum_topics = $topicsCount;
+    }
+
+    public function setPostsCountCache()
+    {
+        $postsCount = $this->forum_topics;
+        $postsCount += $this->topics()->sum('topic_replies_real');
+        $postsCount += $this->subforums()->sum('forum_posts');
+
+        $this->forum_posts = $postsCount;
+    }
+
+    public function setLastPostCache($post = null)
+    {
+        if ($post === null && $this->lastTopic() !== null) {
+            $post = $this->lastTopic()->posts()->last()->first();
+        }
+
+        if ($post === null) {
+            $this->forum_last_post_id = null;
+            $this->forum_last_poster_id = null;
+            $this->forum_last_post_subject = null;
+            $this->forum_last_post_time = null;
+            $this->forum_last_poster_name = null;
+            $this->forum_last_poster_colour = null;
+        } else {
+            $this->forum_last_post_id = $post->post_id;
+            $this->forum_last_poster_id = $post->user->user_id;
+            $this->forum_last_post_subject = $post->topic->topic_title;
+            $this->forum_last_post_time = $post->post_time;
+            $this->forum_last_poster_name = $post->user->username;
+            $this->forum_last_poster_colour = $post->user->user_colour;
+        }
     }
 }

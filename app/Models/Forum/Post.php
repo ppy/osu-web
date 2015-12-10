@@ -205,4 +205,9 @@ class Post extends Model
     {
         return bbcode_for_editor($this->post_text, $this->bbcode_uid);
     }
+
+    public function scopeLast($query)
+    {
+        return $query->orderBy('post_time', 'desc')->limit(1);
+    }
 }
