@@ -32,7 +32,7 @@ class Forum extends Model
     protected $dateFormat = 'U';
     public $timestamps = false;
 
-    public $lastTopic;
+    private $_lastTopic = null;
 
     protected $casts = [
         'enable_sigs' => 'boolean',
@@ -49,11 +49,11 @@ class Forum extends Model
 
     public function lastTopic($withSubforums = true)
     {
-        if ($this->lastTopic === null) {
-            $this->lastTopic = [Topic::whereIn('forum_id', $this->allSubforums())->orderBy('topic_last_post_time', 'desc')->first()];
+        if ($this->_lastTopic === null) {
+            $this->_lastTopic = [Topic::whereIn('forum_id', $this->allSubforums())->orderBy('topic_last_post_time', 'desc')->first()];
         }
 
-        return $this->lastTopic[0];
+        return $this->_lastTopic[0];
     }
 
     public function allSubforums($forum_ids = null, $new_forum_ids = null)
