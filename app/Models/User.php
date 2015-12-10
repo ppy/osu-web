@@ -609,6 +609,11 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(UserDonation::class, 'user_id', 'user_id');
     }
 
+    public function forumPosts()
+    {
+        return $this->hasMany(Forum\Post::class, 'poster_id');
+    }
+
     public function getPlaymodeAttribute($value)
     {
         return play_mode_string($this->osu_playmode);
@@ -793,5 +798,13 @@ class User extends Model implements AuthenticatableContract
         }
 
         return 3;
+    }
+
+    public function refreshForumCache()
+    {
+        return $this->update([
+            'user_posts' => $this->forumPosts()->count(),
+            'user_lastpost_time' => $this->forumPosts()->last()->select('post_time')->first()->post_time,
+        ]);
     }
 }
