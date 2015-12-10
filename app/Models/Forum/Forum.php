@@ -169,24 +169,22 @@ class Forum extends Model
 
     public function setLastPostCache()
     {
-        $lastPost = $this->lastTopic() !== null
-            ? $this->lastTopic()->posts()->last()->first()
-            : null;
+        $lastTopic = $this->lastTopic();
 
-        if ($lastPost === null) {
+        if ($lastTopic === null) {
             $this->forum_last_post_id = null;
-            $this->forum_last_poster_id = null;
-            $this->forum_last_post_subject = null;
             $this->forum_last_post_time = null;
+            $this->forum_last_post_subject = null;
+            $this->forum_last_poster_id = null;
             $this->forum_last_poster_name = null;
             $this->forum_last_poster_colour = null;
         } else {
-            $this->forum_last_post_id = $lastPost->post_id;
-            $this->forum_last_poster_id = $lastPost->user->user_id;
-            $this->forum_last_post_subject = $lastPost->topic->topic_title;
-            $this->forum_last_post_time = $lastPost->post_time;
-            $this->forum_last_poster_name = $lastPost->user->username;
-            $this->forum_last_poster_colour = $lastPost->user->user_colour;
+            $this->forum_last_post_id = $lastTopic->topic_last_post_id;
+            $this->forum_last_post_time = $lastTopic->topic_last_post_time;
+            $this->forum_last_post_subject = $lastTopic->topic_title;
+            $this->forum_last_poster_id = $lastTopic->topic_last_poster_id;
+            $this->forum_last_poster_name = $lastTopic->topic_last_poster_name;
+            $this->forum_last_poster_colour = $lastTopic->topic_last_poster_colour;
         }
     }
 }
