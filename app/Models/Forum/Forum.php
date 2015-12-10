@@ -138,8 +138,8 @@ class Forum extends Model
     public function refreshCache()
     {
         DB::transaction(function () {
-            $this->refreshPostsCountCache();
             $this->refreshTopicsCountCache();
+            $this->refreshPostsCountCache();
             $this->refreshLastPostCache();
         });
     }
@@ -161,7 +161,8 @@ class Forum extends Model
     public function refreshPostsCountCache()
     {
         DB::transaction(function () {
-            $postsCount = Post::where('forum_id', $this->forum_id)->count();
+            $postsCount = $this->forum_topics;
+            $postsCount += $this->topics()->sum('topic_replies_real');
             $postsCount += $this->subforums()->sum('forum_posts');
 
             $this->update(['forum_posts' => $postsCount]);
