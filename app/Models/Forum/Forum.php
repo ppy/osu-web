@@ -135,6 +135,37 @@ class Forum extends Model
         return $this->forum_type === 1;
     }
 
+    public function refreshCache()
+    {
+        $this->refreshPostsCountCache();
+        $this->refreshTopicsCountCache();
+        $this->refreshLastPostCache();
+    }
+
+    public function refreshTopicsCountCache()
+    {
+        $topicsCount = Topic::where('forum_id', $this->forum_id)->count();
+        $topicsCount += $this->subforums()->sum('forum_topics');
+
+        $this->update(['forum_topics' => $topicsCount]);
+
+        if ($this->parentForum !== null) {
+            return $this->parentForum->refreshTopicsCountCache();
+        }
+    }
+
+    public function refreshPostsCountCache()
+    {
+        $postsCount = Post::where('forum_id', $this->forum_id)->count();
+        $postsCount += $this->subforums()->sum('forum_posts');
+
+        $this->update(['forum_posts' => $postsCount]);
+
+        if ($this->parentForum !== null) {
+            return $this->parentForum->refreshPostsCountCache();
+        }
+    }
+
     public function refreshLastPostCache($post = null)
     {
         DB::transaction(function () use ($post) {
