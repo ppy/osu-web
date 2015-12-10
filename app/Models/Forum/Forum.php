@@ -47,7 +47,7 @@ class Forum extends Model
         return 'category-'.str_slug($this->category());
     }
 
-    public function lastTopic($withSubforums = true)
+    public function lastTopic()
     {
         if ($this->_lastTopic === null) {
             $this->_lastTopic = [Topic::whereIn('forum_id', $this->allSubforums())->orderBy('topic_last_post_time', 'desc')->first()];
