@@ -147,7 +147,7 @@ class Forum extends Model
     public function refreshTopicsCountCache()
     {
         DB::transaction(function () {
-            $topicsCount = Topic::where('forum_id', $this->forum_id)->count();
+            $topicsCount = $this->topics()->count();
             $topicsCount += $this->subforums()->sum('forum_topics');
 
             $this->update(['forum_topics' => $topicsCount]);
