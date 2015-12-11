@@ -155,7 +155,11 @@ class Forum extends Model
         $topicsCount = $this->topics()->count();
         $topicsCount += $this->subforums()->sum('forum_topics');
 
+        $approvedTopicsCount = $this->topics()->where('topic_approved', true)->count();
+        $approvedTopicsCount += $this->subforums()->sum('forum_topics_real');
+
         $this->forum_topics = $topicsCount;
+        $this->forum_topics_real = $approvedTopicsCount;
     }
 
     public function setPostsCountCache()
