@@ -32,7 +32,7 @@ class Forum extends Model
     protected $dateFormat = 'U';
     public $timestamps = false;
 
-    private $_lastTopic = null;
+    private $_lastTopic = [];
 
     protected $casts = [
         'enable_sigs' => 'boolean',
@@ -47,13 +47,17 @@ class Forum extends Model
         return 'category-'.str_slug($this->category());
     }
 
-    public function lastTopic()
+    public function lastTopic($recursive = true)
     {
-        if ($this->_lastTopic === null) {
-            $this->_lastTopic = [Topic::whereIn('forum_id', $this->allSubforums())->orderBy('topic_last_post_time', 'desc')->first()];
+        $key = $recursive === true ? 'recursive' : 'current';
+        if (isset($this->_lastTopic[$key]) === false) {
+            $this->_lastTopic[$key] =
+                Topic::whereIn('forum_id', ($recursive ? $this->allSubforums() : [$this->forum_id]))
+                ->orderBy('topic_last_post_time', 'desc')
+                ->first();
         }
 
-        return $this->_lastTopic[0];
+        return $this->_lastTopic[$key];
     }
 
     public function allSubforums($forum_ids = null, $new_forum_ids = null)
@@ -143,37 +147,26 @@ class Forum extends Model
             $this->setLastPostCache();
 
             $this->save();
-
-            if ($this->parent !== null) {
-                $this->parent->refreshCache();
-            }
         });
     }
 
     public function setTopicsCountCache()
     {
-        $topicsCount = $this->topics()->count();
-        $topicsCount += $this->subforums()->sum('forum_topics');
-
-        $approvedTopicsCount = $this->topics()->where('topic_approved', true)->count();
-        $approvedTopicsCount += $this->subforums()->sum('forum_topics_real');
-
-        $this->forum_topics = $topicsCount;
-        $this->forum_topics_real = $approvedTopicsCount;
+        $this->forum_topics_real = $this->topics()->count();
+        $this->forum_topics = $this->topics()->where('topic_approved', true)->count();
     }
 
     public function setPostsCountCache()
     {
         $postsCount = $this->forum_topics;
         $postsCount += $this->topics()->sum('topic_replies');
-        $postsCount += $this->subforums()->sum('forum_posts');
 
         $this->forum_posts = $postsCount;
     }
 
     public function setLastPostCache()
     {
-        $lastTopic = $this->lastTopic();
+        $lastTopic = $this->lastTopic(false);
 
         if ($lastTopic === null) {
             $this->forum_last_post_id = null;
