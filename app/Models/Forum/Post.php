@@ -41,6 +41,7 @@ class Post extends Model
         'poster_id' => 'integer',
 
         'post_edit_locked' => 'boolean',
+        'post_approved' => 'boolean',
     ];
 
     private $normalizedUsers = [];

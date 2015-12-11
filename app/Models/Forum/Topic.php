@@ -50,6 +50,8 @@ class Topic extends Model
         'topic_poster' => 'integer',
         'topic_status' => 'integer',
         'topic_type' => 'integer',
+
+        'topic_approved' => 'boolean',
     ];
 
     public static function createNew($params)
