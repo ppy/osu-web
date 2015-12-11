@@ -161,7 +161,7 @@ class Forum extends Model
     public function setPostsCountCache()
     {
         $postsCount = $this->forum_topics;
-        $postsCount += $this->topics()->sum('topic_replies_real');
+        $postsCount += $this->topics()->sum('topic_replies');
         $postsCount += $this->subforums()->sum('forum_posts');
 
         $this->forum_posts = $postsCount;
