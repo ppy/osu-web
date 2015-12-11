@@ -78,7 +78,7 @@ class Log extends Model
 
     public function reportee()
     {
-        return $this->belongsTo(User::class, 'reportee_id', 'user_id');
+        return $this->belongsTo(User::class, 'reportee_id');
     }
 
     public function logModerateForumTopic($operation, $topic, $user = null)
