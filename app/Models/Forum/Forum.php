@@ -120,8 +120,19 @@ class Forum extends Model
         $this->attributes['forum_parents'] = presence($value) === null ? '' : serialize($value);
     }
 
-    // don't access this attribute (forum_parents) without selecting
-    // parent_id otherwise returned value may be wrong.
+    /**
+     * Returns array which keys are id of this forum's parents and values are
+     * their names and types. Sorted from topmost parent to immediate parent.
+     *
+     * This method isn't intended to be directly called but through Laravel's
+     * attribute accessor method (in this case, `$forum->forum_parents`)
+     *
+     * warning: don't access this attribute (forum_parents) without selecting
+     * parent_id otherwise returned value may be wrong.
+     *
+     * @param string $value
+     * @return array
+     */
     public function getForumParentsAttribute($value)
     {
         if ($this->parent_id === 0) {
