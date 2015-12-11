@@ -115,13 +115,31 @@ class Forum extends Model
         return $this->hasOne(ForumCover::class);
     }
 
+    public function setForumParentsAttribute($value)
+    {
+        $this->attributes['forum_parents'] = presence($value) === null ? '' : serialize($value);
+    }
+
+    // don't access this attribute (forum_parents) without selecting
+    // parent_id otherwise returned value may be wrong.
     public function getForumParentsAttribute($value)
     {
-        $buf = unserialize($value);
-        if (!$buf) {
+        if ($this->parent_id === 0) {
             return [];
+        }
+
+        if (presence($value) === null && $this->parentForum !== null) {
+            $parentsArray = $this->parentForum->forum_parents;
+            $parentsArray[$this->parentForum->forum_id] = [
+                $this->parentForum->forum_name,
+                $this->parentForum->forum_type,
+            ];
+
+            $this->update(['forum_parents' => $parentsArray]);
+
+            return $parentsArray;
         } else {
-            return $buf;
+            return unserialize($value);
         }
     }
 
