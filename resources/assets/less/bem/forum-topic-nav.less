@@ -41,6 +41,7 @@
 
 
   &__button-circle {
+    flex: none;
     .default-box-shadow;
     .circle(@_content-height);
     color: @grey-f;
@@ -123,7 +124,15 @@
 
   &__group {
     display: flex;
-    flex: none;
+    flex: 1;
+
+    &--main {
+      flex: none;
+    }
+
+    &--right {
+      justify-content: flex-end;
+    }
   }
 
   &__item {

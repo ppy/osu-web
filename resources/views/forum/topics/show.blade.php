@@ -184,7 +184,7 @@
                 @endif
             </div>
 
-            <div class="forum-topic-nav__group">
+            <div class="forum-topic-nav__group forum-topic-nav__group--main">
                 <a
                     href="{{ route("forum.topics.show", $topic->topic_id) }}"
                     class="js-forum-posts-seek--jump
@@ -272,7 +272,7 @@
                 </a>
             </div>
 
-            <div class="forum-topic-nav__group">
+            <div class="forum-topic-nav__group forum-topic-nav__group--right">
                 <a href="#" class="forum-topic-nav__button-circle forum-topic-nav__button-circle--reply js-forum-topic-reply--new">
                     <i class="fa fa-plus"></i>
                 </a>
