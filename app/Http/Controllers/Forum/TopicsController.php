@@ -48,6 +48,7 @@ class TopicsController extends Controller
             'preview',
             'reply',
             'store',
+            'lock',
         ]]);
     }
 
@@ -209,5 +210,20 @@ class TopicsController extends Controller
 
             return view('forum.topics._posts', compact('posts', 'postsPosition', 'topic'));
         }
+    }
+
+    public function lock($id)
+    {
+        // FIXME: should be moderator check?
+        // And maybe even its own controller or something.
+        if (Auth::user()->isAdmin() !== true) {
+            abort(403);
+        }
+
+        $topic = Topic::findOrFail($id);
+        $lock = Request::input('lock') !== '0';
+        $topic->lock($lock);
+
+        return ['message' => trans('forum.topics.lock.locked-'.($lock === true ? '1' : '0'))];
     }
 }

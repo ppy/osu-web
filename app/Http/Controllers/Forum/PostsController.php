@@ -49,7 +49,7 @@ class PostsController extends Controller
 
         $deletedPostPosition = $post->topic->postPosition($post->post_id);
 
-        $post->topic->removePost($post);
+        $post->topic->removePost($post, Auth::user());
 
         $topic = Topic::find($post->topic_id);
 

@@ -62,7 +62,7 @@
         @endif
 
         <div class="topics-container" id="topics">
-            <h2>{{ trans("forum.topics") }}</h2>
+            <h2>{{ trans("forum.topics._") }}</h2>
             @include("forum.forums._topics", ["topics" => $topics, "withNewTopicLink" => $forum->canHavePost()])
         </div>
 
