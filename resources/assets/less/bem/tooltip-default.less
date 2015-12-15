@@ -16,9 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.tooltip {
-  &__content {
-    display: flex;
-    padding: @spacing;
-  }
+.tooltip-default {
+  .default-border-radius();
+
+  @_bg-color: lighten(@grey-0, 30%);
+  background-color: @_bg-color;
+  border-color: @_bg-color;
+
+  color: @grey-f;
 }
