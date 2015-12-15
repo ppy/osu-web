@@ -62,6 +62,12 @@ $(document).on 'blur', '.content-editable-submit', (e) ->
   # remove now that we're done submitting.
   el.remove()
 
+#populate last-submitted values
+$(document).on 'ready page:load', ->
+  $('.content-editable-submit').each (_i, el) ->
+    $el = $(el)
+    $el.data('last-submitted-value', $el.html())
+
 # zooooom ...product image
 $(document).on 'ready page:load', ->
   $('.preview').each (_i, el) ->
