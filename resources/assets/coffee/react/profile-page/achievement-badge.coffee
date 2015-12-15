@@ -28,6 +28,7 @@ class ProfilePage.AchievementBadge extends React.Component
       position:
         my: 'bottom center'
         at: 'top center'
+        viewport: $(window)
       show:
         event: event.type
         ready: true
