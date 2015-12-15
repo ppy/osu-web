@@ -41,6 +41,7 @@ class ProfilePage.AchievementBadge extends React.Component
     filename = "/images/badges/user-achievements/#{@props.achievement.slug}.png"
     filename2x = "/images/badges/user-achievements/#{@props.achievement.slug}@2x.png"
     srcSet = "#{filename} 1x, #{filename2x} 2x"
+    tooltipId = "#{@props.achievement.slug}-#{Math.floor(Math.random() * 1000000)}"
 
     div
       className: "badge-achievement #{@props.additionalClasses}",
@@ -50,14 +51,14 @@ class ProfilePage.AchievementBadge extends React.Component
         alt: @props.achievement.name
         title: @props.achievement.name
         className: 'js-tooltip-achievement badge-achievement__image'
-        'data-tooltip-target': @props.achievement.slug
+        'data-tooltip-target': tooltipId
         onMouseOver: @onMouseOver
 
       div
         className: 'hidden'
         div
           className: 'js-tooltip-achievement--content tooltip-achievement'
-          'data-tooltip-id': @props.achievement.slug
+          'data-tooltip-id': tooltipId
           div
             className: 'tooltip-achievement__title'
             @props.achievement.name
