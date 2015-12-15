@@ -60,6 +60,11 @@ class OrderController extends Controller
     public function update($id)
     {
         $order = Store\Order::findOrFail($id);
+
+        if ($order->status != 'paid') {
+            return error_popup("order status {$order->status} is invalid.");
+        }
+
         $order->unguard();
         $order->update(Request::input('order'));
         $order->save();
