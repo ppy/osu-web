@@ -15,18 +15,58 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+{div, img} = React.DOM
 el = React.createElement
 
 class ProfilePage.AchievementBadge extends React.Component
+  onMouseOver: (event) =>
+    name = event.target.getAttribute 'data-tooltip-target'
+
+    options =
+      overwrite: false
+      content: $(".js-tooltip-achievement--content[data-tooltip-id='#{name}']").clone()
+      position:
+        my: 'bottom center'
+        at: 'top center'
+      show:
+        event: event.type
+        ready: true
+      style:
+        classes: 'qtip tooltip-achievement__main'
+
+    $(event.target).qtip options, event
+
+
   render: =>
     filename = "/images/badges/user-achievements/#{@props.achievement.slug}.png"
     filename2x = "/images/badges/user-achievements/#{@props.achievement.slug}@2x.png"
+    srcSet = "#{filename} 1x, #{filename2x} 2x"
 
-    el 'div',
+    div
       className: "badge-achievement #{@props.additionalClasses}",
-      el 'img',
+      img
         src: filename
-        srcSet: "#{filename} 1x, #{filename2x} 2x"
+        srcSet: srcSet
         alt: @props.achievement.name
         title: @props.achievement.name
-        className: 'badge-achievement__image'
+        className: 'js-tooltip-achievement badge-achievement__image'
+        'data-tooltip-target': @props.achievement.slug
+        onMouseOver: @onMouseOver
+
+      div
+        className: 'hidden'
+        div
+          className: 'js-tooltip-achievement--content tooltip-achievement'
+          'data-tooltip-id': @props.achievement.slug
+          div
+            className: 'tooltip-achievement__title'
+            @props.achievement.name
+          div
+            className: 'tooltip-achievement__badge'
+            img
+              src: filename
+              srcSet: srcSet
+              alt: @props.achievement.name
+          div
+            className: 'tooltip-achievement__content'
+            @props.achievement.name

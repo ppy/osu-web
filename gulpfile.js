@@ -56,6 +56,7 @@ elixir(function(mix) {
     path.join(node_root, "photoswipe/dist/photoswipe-ui-default.js"),
     path.join(node_root, "lodash/index.js"),
     path.join(node_root, "layzr.js/dist/layzr.js"),
+    path.join(bower_root, "qtip2/jquery.qtip.js"),
     path.join(node_root, "react/dist/react-with-addons.js"),
     path.join(node_root, "react-dom/dist/react-dom.js"),
     "ga.js",
