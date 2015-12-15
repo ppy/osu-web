@@ -35,6 +35,16 @@
     background: transparent;
 }
 
+.content-editable-submit {
+    border-bottom: dashed 1px #d7dce6;
+    display: inline-block;
+    min-width: 10px;
+}
+
+.content-editable-submit:focus {
+    background: #dddddd;
+}
+
 .bold { font-weight: bold; }
 
 </style>
