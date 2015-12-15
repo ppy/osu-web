@@ -36,6 +36,8 @@ class @Tooltip
       show:
         event: event.type
         ready: true
+      hide:
+        inactive: 3000
       style:
         classes: 'qtip tooltip-default'
 
