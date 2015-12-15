@@ -20,6 +20,9 @@ el = React.createElement
 
 class ProfilePage.AchievementBadge extends React.Component
   onMouseOver: (event) =>
+    # remove to reenable
+    return
+
     name = event.target.getAttribute 'data-tooltip-target'
 
     options =
