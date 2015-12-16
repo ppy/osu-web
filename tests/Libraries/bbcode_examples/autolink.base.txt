@@ -1,0 +1,5 @@
+ftp://ftp.example.com
+
+www.example.com
+
+user@example.com
