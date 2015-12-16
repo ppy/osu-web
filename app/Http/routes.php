@@ -87,7 +87,7 @@ Route::get('/users/register', ['as' => 'users.register', function () { return Re
 Route::get('/wiki', ['as' => 'wiki', function () { return Redirect::to('https://osu.ppy.sh/wiki'); }]);
 
 Route::get('/help/support', ['as' => 'support', 'uses' => 'HelpController@getSupport']);
-Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);
+Route::get('/help/faq', ['as' => 'faq', 'uses' => 'Faq\FaqController@getIndex']);
 
 // store admin
 Route::group(['prefix' => 'store/admin', 'namespace' => 'Store\Admin'], function () {
