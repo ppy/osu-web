@@ -21,5 +21,5 @@ namespace App\Models\Score;
 
 class Fruit extends Model
 {
-    protected $table = 'osu_scores_fruits_high';
+    protected $table = 'osu_scores_fruits';
 }

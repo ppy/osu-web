@@ -29,6 +29,19 @@ class BeatmapSet extends Model
 {
     protected $table = 'osu_beatmapsets';
     protected $primaryKey = 'beatmapset_id';
+
+    protected $casts = [
+        'bpm' => 'integer',
+        'genre_id' => 'integer',
+        'language_id' => 'integer',
+        'favourite_count' => 'integer',
+    ];
+
+    protected $dates = [
+        'approved_date',
+        'last_update',
+    ];
+
     public $timestamps = false;
     protected $hidden = [
         'header_hash',
@@ -253,7 +266,7 @@ class BeatmapSet extends Model
         }
 
         if (!empty($rank)) {
-            $klass = presence($mode != null) ? Score\Model::getClass($mode) : Score\Combined::class;
+            $klass = presence($mode != null) ? Score\Best\Model::getClass($mode) : Score\Best\Combined::class;
             $scores = $klass::forUser(Auth::user())->whereIn('rank', $rank)->lists('beatmapset_id');
             $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $scores]];
         }
@@ -474,7 +487,7 @@ class BeatmapSet extends Model
 
     public function beatmaps()
     {
-        return $this->hasMany("App\Models\Beatmap", 'beatmapset_id', 'beatmapset_id');
+        return $this->hasMany(Beatmap::class);
     }
 
     public function mods()

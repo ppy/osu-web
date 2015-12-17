@@ -266,6 +266,11 @@ function presence($string, $valueIfBlank = null)
     return $string;
 }
 
+function present($string)
+{
+    return presence($string) !== null;
+}
+
 function user_colour_style($colour, $style)
 {
     if (presence($colour) === null) {
@@ -336,6 +341,25 @@ function fractal_item_array($model, $transformer, $includes = null)
     $item = new League\Fractal\Resource\Item($model, $transformer);
 
     return $manager->createData($item)->toArray();
+}
+
+function fractal_api_serialize_collection($model, $transformer, $includes = null)
+{
+    $manager = new League\Fractal\Manager();
+    if ($includes !== null) {
+        $manager->parseIncludes($includes);
+    }
+    $manager->setSerializer(new App\Serializers\ApiSerializer());
+
+    // we're using collection instead of item here, so we can peak at the items beforehand
+    $collection = new League\Fractal\Resource\Collection($model, $transformer);
+
+    return $manager->createData($collection)->toArray();
+}
+
+function fractal_api_serialize_item($model, $transformer, $includes = null)
+{
+    return fractal_api_serialize_collection([$model], $transformer, $includes)[0];
 }
 
 function fast_imagesize($url)

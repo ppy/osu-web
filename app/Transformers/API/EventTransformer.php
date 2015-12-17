@@ -17,9 +17,21 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models\Score;
+namespace App\Transformers\API;
 
-class Taiko extends Model
+use App\Models\Event;
+use League\Fractal;
+
+class EventTransformer extends Fractal\TransformerAbstract
 {
-    protected $table = 'osu_scores_taiko';
+    public function transform(Event $event)
+    {
+        return [
+            'display_html' => $event->text,
+            'beatmap_id' => $event->beatmap_id,
+            'beatmapset_id' => $event->beatmapset_id,
+            'date' => $event->date->tz('Australia/Perth')->toDateTimeString(),
+            'epicfactor' => $event->epicfactor,
+        ];
+    }
 }

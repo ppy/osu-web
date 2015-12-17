@@ -17,46 +17,17 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models\Score;
+namespace App\Models\Score\Best;
 
-use Illuminate\Database\Eloquent\Model as BaseModel;
 use App\Models\Beatmap;
-use App\Models\User;
+use App\Models\Score\Model as BaseModel;
+use Aws\S3\S3Client;
+use League\Flysystem\AwsS3v2\AwsS3Adapter;
+use League\Flysystem\Filesystem;
 
 abstract class Model extends BaseModel
 {
-    protected $primaryKey = 'score_id';
-
-    protected $casts = [
-        'score_id' => 'integer',
-        'beatmap_id' => 'integer',
-        'score' => 'integer',
-        'maxcombo' => 'integer',
-        'count50' => 'integer',
-        'count100' => 'integer',
-        'count300' => 'integer',
-        'countmiss' => 'integer',
-        'countkatu' => 'integer',
-        'countgeki' => 'integer',
-        'perfect' => 'integer',
-        'enabled_mods' => 'integer',
-        'user_id' => 'integer',
-        'enabled_mods' => 'integer',
-        'rank' => 'string',
-        'pp' => 'float',
-    ];
-    protected $dates = ['date'];
-    public $timestamps = false;
-
-    public function scopeForUser($query, User $user)
-    {
-        return $query->where('user_id', $user->user_id);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    abstract public function gameModeString();
 
     public static function getClass($game_mode)
     {
@@ -79,5 +50,29 @@ abstract class Model extends BaseModel
         }
 
         return $instance;
+    }
+
+    public function getReplay()
+    {
+        // this s3 retrieval should probably be moved out of the model going forward
+        if (!$this->replay) {
+            return;
+        }
+        $config = config('filesystems.disks.s3');
+        $client = S3Client::factory([
+            'key' => $config['key'],
+            'secret' => $config['secret'],
+            'region' => $config['region'],
+        ]);
+        $adapter = new AwsS3Adapter($client, "replay-{$this->gameModeString()}");
+        $s3 = new Filesystem($adapter);
+
+        try {
+            $replay = $s3->read($this->score_id);
+        } catch (Exception $e) {
+            $replay = null;
+        }
+
+        return $replay;
     }
 }

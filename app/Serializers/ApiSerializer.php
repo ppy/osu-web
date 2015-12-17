@@ -17,17 +17,15 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models\Score;
+namespace App\Serializers;
 
-class Combined extends Model
+class ApiSerializer extends \League\Fractal\Serializer\ArraySerializer
 {
-    public static function forUser(\App\Models\User $user)
+    /**
+     * no 'data' root node thx.
+     */
+    public function collection($resourceKey, array $data)
     {
-        $osu = Osu::forUser($user);
-        $taiko = Taiko::forUser($user);
-        $mania = Mania::forUser($user);
-        $fruits = Fruit::forUser($user);
-
-        return $osu->union($taiko)->union($mania)->union($fruits);
+        return $data;
     }
 }

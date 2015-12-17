@@ -17,17 +17,14 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models;
+namespace App\Models\Score\Best;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Api extends Model
+class Fruit extends Model
 {
-    protected $table = 'osu_apikeys';
-    protected $primaryKey = 'user_id';
-    public $timestamps = false;
+    protected $table = 'osu_scores_fruits_high';
 
-    protected $casts = [
-        'user_id' => 'integer',
-    ];
+    public function gameModeString()
+    {
+        return 'fruits';
+    }
 }
