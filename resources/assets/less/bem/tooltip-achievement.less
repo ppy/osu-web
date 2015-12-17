@@ -1,0 +1,62 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+.tooltip-achievement {
+  @_badge-height: 60px;
+
+  .default-border-radius();
+  overflow: hidden;
+  .default-box-shadow();
+  background-color: @grey-f;
+  display: flex;
+
+  width: 100%;
+
+  &__badge {
+    height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__content {
+    padding: @spacing;
+    padding-top: (@_badge-height / 2);
+    text-align: center;
+  }
+
+  &__main {
+    .default-border-radius();
+    background-color: @blue-dark;
+    border-color: @blue-dark;
+    width: 280px;
+
+    .qtip-content {
+      padding: (@spacing / 2);
+    }
+  }
+
+  &__title {
+    background-color: @grey-2;
+    color: @grey-f;
+    text-align: center;
+
+    padding: @spacing;
+    padding-bottom: (@_badge-height / 2);
+  }
+}

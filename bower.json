@@ -5,6 +5,7 @@
     "jquery-timeago": ">=1.4.3",
     "jquery-zoom": ">=1.7.14",
     "ResponsiveSlides.js": "latest",
-    "jquery-ujs": "~1.0.4"
+    "jquery-ujs": "~1.0.4",
+    "qtip2": "~2.2.1"
   }
 }

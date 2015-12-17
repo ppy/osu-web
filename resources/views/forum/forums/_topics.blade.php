@@ -75,7 +75,7 @@
 
                 <div class="forum__issue-icons">
                     @foreach ($topic->issues() as $issue)
-                        <div data-tooltip="{{ $issue }}" class="forum__issue-icon forum__issue-icon--{{ $issue }}">
+                        <div title="{{ $issue }}" class="forum__issue-icon forum__issue-icon--{{ $issue }}">
                             <i class="fa {{ issue_icon($issue) }}"></i>
                         </div>
                     @endforeach
