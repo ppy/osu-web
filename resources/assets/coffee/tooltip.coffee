@@ -40,6 +40,9 @@ class @Tooltip
         inactive: 3000
       style:
         classes: 'qtip tooltip-default'
+        tip:
+          width: 8
+          height: 8
 
     event.target.setAttribute 'data-orig-title', title
     event.target.removeAttribute 'title'
