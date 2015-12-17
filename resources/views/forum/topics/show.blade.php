@@ -243,7 +243,7 @@
                         js-forum__total-count"
                     >{{ $topic->postsCount() }}</span>
 
-                    <div class="js-forum-topic-post-jump--cover forum-topic-nav__counter-cover"></div>
+                    <div title="{{ trans('forum.topic.jump.enter') }}" class="js-forum-topic-post-jump--cover forum-topic-nav__counter-cover"></div>
                 </div>
 
                 <a

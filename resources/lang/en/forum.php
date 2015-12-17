@@ -60,6 +60,7 @@ return [
         ],
         'go_to_latest' => 'view latest post',
         'jump' => [
+            'enter' => 'click to enter specific post number',
             'first' => 'go to first post',
             'last' => 'go to last post',
             'next' => 'skip next 10 posts',
