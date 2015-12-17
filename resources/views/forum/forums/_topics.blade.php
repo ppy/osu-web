@@ -82,11 +82,11 @@
                 </div>
 
                 <div class="middle hidden-xs">
-                    <div class="views">
+                    <div class="views" title="{{ trans('forum.topics.index.views') }}" data-tooltip-position="right center">
                         {{ number_format($topic->topic_views) }}
                         <i class="fa fa-eye"></i>
                     </div>
-                    <div class="replies">
+                    <div class="replies" title="{{ trans('forum.topics.index.replies') }}" data-tooltip-position="right center">
                         {{ number_format($topic->topic_replies) }}
                         <i class="fa fa-comment-o"></i>
                     </div>

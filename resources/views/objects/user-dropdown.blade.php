@@ -26,15 +26,15 @@
         <a href="{{ route("users.show", Auth::user()) }}">{{ Auth::user()->username }}</a>
     </div>
 
-    <a class="avatar avatar--nav js-nav-avatar" href="#" title="{{ trans("users.show.avatar", ["username" => Auth::user()->username]) }}" style="background-image: url('{{ Auth::user()->user_avatar }}');" data-toggle="modal" data-target="#user-dropdown-modal"></a>
+    <a class="avatar avatar--nav js-nav-avatar" href="#" style="background-image: url('{{ Auth::user()->user_avatar }}');" data-toggle="modal" data-target="#user-dropdown-modal"></a>
 @else
     <div id="nav-user-bar">
-        <a href="#" title="{{ trans("users.anonymous.login") }}" data-toggle="modal" data-target="#user-dropdown-modal">
+        <a href="#" title="{{ trans("users.anonymous.login_link") }}" data-toggle="modal" data-target="#user-dropdown-modal">
             {{ trans("users.anonymous.username") }}
         </a>
     </div>
 
-    <a class="avatar avatar--nav avatar--guest js-nav-avatar" href="#" title="{{ trans("users.anonymous.login") }}" data-toggle="modal" data-target="#user-dropdown-modal"></a>
+    <a class="avatar avatar--nav avatar--guest js-nav-avatar" href="#" title="{{ trans("users.anonymous.login_link") }}" data-toggle="modal" data-target="#user-dropdown-modal"></a>
 @endif
 
 @section('user-dropdown-modal')

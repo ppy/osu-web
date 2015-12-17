@@ -26,12 +26,19 @@ class @TooltipDefault
 
     title = event.target.getAttribute 'title'
 
+    at = event.target.getAttribute('data-tooltip-position') || 'top center'
+
+    my = switch at
+      when 'top center' then 'bottom center'
+      when 'left center' then 'right center'
+      when 'right center' then 'left center'
+
     options =
       overwrite: false
       content: title
       position:
-        my: 'bottom center'
-        at: 'top center'
+        my: my
+        at: at
         viewport: $(window)
       show:
         event: event.type
