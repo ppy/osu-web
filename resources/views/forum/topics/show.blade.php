@@ -155,9 +155,36 @@
 
         <div class="forum-topic-nav__content">
             <div class="forum-topic-nav__group">
+                @if ($topic->isLocked())
+                    <span
+                        class="forum-topic-nav__button-circle forum-topic-nav__button-circle--blank"
+                        title="{{ trans('forum.topics.lock.is_locked') }}"
+                    >
+                        <i class="fa fa-lock"></i>
+                    </span>
+                @endif
+
+                @if (Auth::check() === true && Auth::user()->isAdmin())
+                    <a
+                        class="forum-topic-nav__button-circle"
+                        href="{{ route('forum.topics.lock', [
+                            $topic,
+                            'lock' => ($topic->isLocked() === true ? '0' : null),
+                        ]) }}"
+                        data-remote="1"
+                        data-method="post"
+                        data-reload-on-success="1"
+                    >
+                        @if ($topic->isLocked())
+                            <i class="fa fa-unlock"></i>
+                        @else
+                            <i class="fa fa-lock"></i>
+                        @endif
+                    </a>
+                @endif
             </div>
 
-            <div class="forum-topic-nav__group">
+            <div class="forum-topic-nav__group forum-topic-nav__group--main">
                 <a
                     href="{{ route("forum.topics.show", $topic->topic_id) }}"
                     class="js-forum-posts-seek--jump
@@ -245,7 +272,7 @@
                 </a>
             </div>
 
-            <div class="forum-topic-nav__group">
+            <div class="forum-topic-nav__group forum-topic-nav__group--right">
                 <a href="#" class="forum-topic-nav__button-circle forum-topic-nav__button-circle--reply js-forum-topic-reply--new">
                     <i class="fa fa-plus"></i>
                 </a>

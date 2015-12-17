@@ -32,7 +32,7 @@ class Forum extends Model
     protected $dateFormat = 'U';
     public $timestamps = false;
 
-    public $lastTopic;
+    private $_lastTopic = [];
 
     protected $casts = [
         'enable_sigs' => 'boolean',
@@ -47,13 +47,17 @@ class Forum extends Model
         return 'category-'.str_slug($this->category());
     }
 
-    public function lastTopic($withSubforums = true)
+    public function lastTopic($recursive = true)
     {
-        if ($this->lastTopic === null) {
-            $this->lastTopic = [Topic::whereIn('forum_id', $this->allSubforums())->orderBy('topic_last_post_time', 'desc')->first()];
+        $key = $recursive === true ? 'recursive' : 'current';
+        if (isset($this->_lastTopic[$key]) === false) {
+            $this->_lastTopic[$key] =
+                Topic::whereIn('forum_id', ($recursive ? $this->allSubforums() : [$this->forum_id]))
+                ->orderBy('topic_last_post_time', 'desc')
+                ->first();
         }
 
-        return $this->lastTopic[0];
+        return $this->_lastTopic[$key];
     }
 
     public function allSubforums($forum_ids = null, $new_forum_ids = null)
@@ -61,7 +65,7 @@ class Forum extends Model
         if ($forum_ids === null) {
             $forum_ids = $new_forum_ids = [$this->forum_id];
         }
-        $new_forum_ids = self::whereIn('parent_id', $new_forum_ids)->lists('forum_id')->all();
+        $new_forum_ids = static::whereIn('parent_id', $new_forum_ids)->lists('forum_id')->all();
 
         $new_forum_ids = array_map(function ($value) { return intval($value); }, $new_forum_ids);
         $forum_ids = array_merge($forum_ids, $new_forum_ids);
@@ -93,17 +97,17 @@ class Forum extends Model
 
     public function topics()
     {
-        return $this->hasMany("App\Models\Forum\Topic", 'forum_id', 'forum_id');
+        return $this->hasMany(Topic::class);
     }
 
     public function parentForum()
     {
-        return $this->belongsTo("App\Models\Forum\Forum", 'parent_id', 'forum_id');
+        return $this->belongsTo(static::class, 'parent_id');
     }
 
     public function subforums()
     {
-        return $this->hasMany("App\Models\Forum\Forum", 'parent_id', 'forum_id')->orderBy('left_id');
+        return $this->hasMany(static::class, 'parent_id')->orderBy('left_id');
     }
 
     public function cover()
@@ -111,13 +115,42 @@ class Forum extends Model
         return $this->hasOne(ForumCover::class);
     }
 
+    public function setForumParentsAttribute($value)
+    {
+        $this->attributes['forum_parents'] = presence($value) === null ? '' : serialize($value);
+    }
+
+    /**
+     * Returns array which keys are id of this forum's parents and values are
+     * their names and types. Sorted from topmost parent to immediate parent.
+     *
+     * This method isn't intended to be directly called but through Laravel's
+     * attribute accessor method (in this case, `$forum->forum_parents`)
+     *
+     * warning: don't access this attribute (forum_parents) without selecting
+     * parent_id otherwise returned value may be wrong.
+     *
+     * @param string $value
+     * @return array
+     */
     public function getForumParentsAttribute($value)
     {
-        $buf = unserialize($value);
-        if (!$buf) {
+        if ($this->parent_id === 0) {
             return [];
+        }
+
+        if (presence($value) === null && $this->parentForum !== null) {
+            $parentsArray = $this->parentForum->forum_parents;
+            $parentsArray[$this->parentForum->forum_id] = [
+                $this->parentForum->forum_name,
+                $this->parentForum->forum_type,
+            ];
+
+            $this->update(['forum_parents' => $parentsArray]);
+
+            return $parentsArray;
         } else {
-            return $buf;
+            return unserialize($value);
         }
     }
 
@@ -135,32 +168,49 @@ class Forum extends Model
         return $this->forum_type === 1;
     }
 
-    public function refreshLastPostCache($post = null)
+    public function refreshCache()
     {
-        DB::transaction(function () use ($post) {
-            if ($post === null) {
-                $post = $this->lastTopic()->posts()->orderBy('post_id', 'desc')->first();
-            }
+        DB::transaction(function () {
+            $this->setTopicsCountCache();
+            $this->setPostsCountCache();
+            $this->setLastPostCache();
 
-            if ($post === null) {
-                $this->update([
-                    'forum_last_post_id' => null,
-                    'forum_last_poster_id' => null,
-                    'forum_last_post_subject' => null,
-                    'forum_last_post_time' => null,
-                    'forum_last_poster_name' => null,
-                    'forum_last_poster_colour' => null,
-                ]);
-            } elseif ($this->forum_last_post_id !== $post->post_id) {
-                $this->update([
-                    'forum_last_post_id' => $post->post_id,
-                    'forum_last_poster_id' => $post->user->user_id,
-                    'forum_last_post_subject' => $post->topic->topic_title,
-                    'forum_last_post_time' => $post->post_time,
-                    'forum_last_poster_name' => $post->user->username,
-                    'forum_last_poster_colour' => $post->user->user_colour,
-                ]);
-            }
+            $this->save();
         });
+    }
+
+    public function setTopicsCountCache()
+    {
+        $this->forum_topics_real = $this->topics()->count();
+        $this->forum_topics = $this->topics()->where('topic_approved', true)->count();
+    }
+
+    public function setPostsCountCache()
+    {
+        $postsCount = $this->forum_topics;
+        $postsCount += $this->topics()->sum('topic_replies');
+
+        $this->forum_posts = $postsCount;
+    }
+
+    public function setLastPostCache()
+    {
+        $lastTopic = $this->lastTopic(false);
+
+        if ($lastTopic === null) {
+            $this->forum_last_post_id = null;
+            $this->forum_last_post_time = null;
+            $this->forum_last_post_subject = null;
+            $this->forum_last_poster_id = null;
+            $this->forum_last_poster_name = null;
+            $this->forum_last_poster_colour = null;
+        } else {
+            $this->forum_last_post_id = $lastTopic->topic_last_post_id;
+            $this->forum_last_post_time = $lastTopic->topic_last_post_time;
+            $this->forum_last_post_subject = $lastTopic->topic_title;
+            $this->forum_last_poster_id = $lastTopic->topic_last_poster_id;
+            $this->forum_last_poster_name = $lastTopic->topic_last_poster_name;
+            $this->forum_last_poster_colour = $lastTopic->topic_last_poster_colour;
+        }
     }
 }

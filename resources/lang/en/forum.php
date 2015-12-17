@@ -64,7 +64,15 @@ return [
         'reply_box_placeholder' => 'Type here to reply',
         'started_by' => 'by :user',
     ],
-    'topics' => 'Topics',
+    'topics' => [
+        '_' => 'Topics',
+
+        'lock' => [
+            'locked-0' => 'Topic has been unlocked',
+            'locked-1' => 'Topic has been locked',
+            'is_locked' => 'This topic is locked and can not be replied to',
+        ],
+    ],
 
     'topic_covers' => [
         'create' => [

@@ -21,6 +21,7 @@ namespace App\Models\Forum;
 
 use App\Libraries\BBCodeForDB;
 use App\Models\DeletedUser;
+use App\Models\Log;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
@@ -40,6 +41,7 @@ class Post extends Model
         'poster_id' => 'integer',
 
         'post_edit_locked' => 'boolean',
+        'post_approved' => 'boolean',
     ];
 
     private $normalizedUsers = [];
@@ -178,12 +180,21 @@ class Post extends Model
             return true;
         }
 
-        return $this->update([
+        $updates = [
             'post_text' => $body,
-            'post_edit_time' => Carbon::now(),
-            'post_edit_count' => DB::raw('post_edit_count + 1'),
-            'post_edit_user' => $user->user_id,
-        ]);
+        ];
+
+        if ($user->user_id === $this->poster_id) {
+            $updates = array_merge($updates, [
+                'post_edit_time' => Carbon::now(),
+                'post_edit_count' => DB::raw('post_edit_count + 1'),
+                'post_edit_user' => $user->user_id,
+            ]);
+        } elseif ($user->isAdmin() === true) {
+            Log::logModerateForumPost('LOG_POST_EDITED', $this);
+        }
+
+        return $this->update($updates);
     }
 
     public function getBodyHTMLAttribute()
@@ -194,5 +205,10 @@ class Post extends Model
     public function getBodyRawAttribute()
     {
         return bbcode_for_editor($this->post_text, $this->bbcode_uid);
+    }
+
+    public function scopeLast($query)
+    {
+        return $query->orderBy('post_time', 'desc')->limit(1);
     }
 }

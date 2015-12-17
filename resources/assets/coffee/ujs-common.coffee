@@ -20,10 +20,16 @@ $(document).on 'ajax:before', ->
   $(document).one 'ajax:complete', osu.hideLoadingOverlay
 
 
-$(document).on 'ajax:success', (_event, data) ->
+$(document).on 'ajax:success', (event, data) ->
   return unless data.message
 
-  osu.popup data.message, 'success'
+  showPopup = -> osu.popup data.message, 'success'
+
+  if event.target.getAttribute('data-reload-on-success') == '1'
+    $(document).one 'page:load', showPopup
+    osu.reloadPage()
+  else
+    showPopup()
 
 
 $(document).on 'ajax:error', (_event, xhr) ->

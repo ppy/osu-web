@@ -19,12 +19,16 @@
  */
 namespace App\Models\Forum;
 
+use App\Models\Log;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
 {
+    const STATUS_LOCKED = 1;
+    const STATUS_UNLOCKED = 0;
+
     protected $table = 'phpbb_topics';
     protected $primaryKey = 'topic_id';
     protected $guarded = [];
@@ -46,6 +50,8 @@ class Topic extends Model
         'topic_poster' => 'integer',
         'topic_status' => 'integer',
         'topic_type' => 'integer',
+
+        'topic_approved' => 'boolean',
     ];
 
     public static function createNew($params)
@@ -85,92 +91,101 @@ class Topic extends Model
     public function addPost($poster, $body, $notifyReplies)
     {
         DB::transaction(function () use ($poster, $body, $notifyReplies) {
-            $updateTime = Carbon::now();
-
             $post = new Post([
                 'post_text' => $body,
                 'post_username' => $poster->username,
                 'poster_id' => $poster->user_id,
                 'forum_id' => $this->forum_id,
-                'post_time' => $updateTime,
+                'post_time' => Carbon::now(),
             ]);
 
             $this->posts()->save($post);
 
-            // of course the $topic hasn't been reloaded after saving and thus still has
-            // value of null (instead of default zero). But add the check if zero anyway.
-            if ($this->topic_first_post_id === null || $this->topic_first_post_id === 0) {
-                $this->update(['topic_first_post_id' => $post->post_id]);
-            } else {
-                $this->update([
-                    'topic_replies' => DB::raw('topic_replies + 1'),
-                    'topic_replies_real' => DB::raw('topic_replies_real + 1'),
-                ]);
+            $this->refreshCache();
+
+            if ($this->forum !== null) {
+                $this->forum->refreshCache();
             }
 
-            $this->refreshLastPostCache($post);
-
-            $this->forum->increment('forum_posts');
-            $this->forum->refreshLastPostCache($post);
-
-            $poster->update([
-                'user_posts' => DB::raw('user_posts + 1'),
-                'user_lastpost_time' => $updateTime,
-            ]);
+            if ($post->user !== null) {
+                $post->user->refreshForumCache();
+            }
         });
 
         return true;
     }
 
-    public function removePost($post)
+    public function removePost($post, $user = null)
     {
-        DB::transaction(function () use ($post) {
+        DB::transaction(function () use ($post, $user) {
             $post->delete();
 
-            $postsCount = $this->posts()->count();
-            if ($postsCount === 0) {
-                $this->deleteWithCover();
+            if ($this->posts()->exists() === true) {
+                $this->refreshCache();
             } else {
-                $firstPost = $this->posts()->first();
-                if ($this->topic_first_post_id !== $firstPost->post_id) {
-                    $this->update([
-                        'topic_first_post_id' => $firstPost->post_id,
-                        'topic_poster' => $firstPost->user->user_id,
-                        'topic_first_poster_name' => $firstPost->user->username,
-                        'topic_first_poster_colour' => $firstPost->user->user_colour,
-                    ]);
-                }
+                $this->deleteWithCover();
+            }
 
-                $this->update([
-                    'topic_replies' => DB::raw('topic_replies - 1'),
-                    'topic_replies_real' => DB::raw('topic_replies_real - 1'),
-                ]);
+            if ($this->forum !== null) {
+                $this->forum->refreshCache();
+            }
 
-                $this->refreshLastPostCache();
+            if ($post->user !== null) {
+                $post->user->refreshForumCache();
+            }
 
-                $this->forum->decrement('forum_posts');
-                $this->forum->refreshLastPostCache();
-
-                $post->user->decrement('user_posts');
+            if ($user !== null && $user->user_id !== $post->poster_id && $user->isAdmin() === true) {
+                Log::logModerateForumPost('LOG_DELETE_POST', $post);
             }
         });
 
         return true;
+    }
+
+    public function move($targetForum)
+    {
+        DB::transaction(function () use ($targetForum) {
+            $originForum = $this->forum;
+            $this->forum()->associate($targetForum);
+            $this->save();
+
+            $this->posts()->update(['forum_id' => $targetForum->forum_id]);
+            $this->logs()->update(['forum_id' => $targetForum->forum_id]);
+            $this->userTracks()->update(['forum_id' => $targetForum->forum_id]);
+
+            if ($originForum !== null) {
+                $originForum->refreshCache();
+            }
+
+            if ($this->forum !== null) {
+                $this->forum->refreshCache();
+            }
+        });
     }
 
     public function posts()
     {
-        return $this->hasMany("App\Models\Forum\Post", 'topic_id', 'topic_id');
+        return $this->hasMany(Post::class);
     }
 
     public function forum()
     {
-        return $this->belongsTo("App\Models\Forum\Forum", 'forum_id', 'forum_id');
+        return $this->belongsTo(Forum::class);
     }
 
     public function cover()
     {
         return $this->hasOne(TopicCover::class);
+    }
+
+    public function userTracks()
+    {
+        return $this->hasMany(TopicTrack::class);
+    }
+
+    public function logs()
+    {
+        return $this->hasMany(Log::class);
     }
 
     public function titleNormalized()
@@ -248,7 +263,9 @@ class Topic extends Model
 
     public function isLocked()
     {
-        return $this->topic_status === 1;
+        // not checking STATUS_LOCK because there's another
+        // state (STATUS_MOVED) which isn't handled yet.
+        return $this->topic_status !== static::STATUS_UNLOCKED;
     }
 
     public function canBeEditedBy($user)
@@ -302,31 +319,72 @@ class Topic extends Model
         return in_array($this->forum_id, config('osu.forum.help_forum_ids'), true);
     }
 
-    public function refreshLastPostCache($post = null)
+    public function refreshCache()
     {
-        DB::transaction(function () use ($post) {
-            if ($post === null) {
-                $post = $this->posts()->orderBy('post_id', 'desc')->first();
-            }
+        DB::transaction(function () {
+            $this->setPostsCountCache();
+            $this->setFirstPostCache();
+            $this->setLastPostCache();
 
-            if ($post === null) {
-                $this->update([
-                    'topic_last_post_id' => null,
-                    'topic_last_poster_id' => null,
-                    'topic_last_poster_name' => null,
-                    'topic_last_poster_colour' => null,
-                    'topic_last_post_time' => null,
-                ]);
-            } elseif ($this->topic_last_post_id !== $post->post_id) {
-                $this->update([
-                    'topic_last_post_id' => $post->post_id,
-                    'topic_last_poster_id' => $post->user->user_id,
-                    'topic_last_poster_name' => $post->user->username,
-                    'topic_last_poster_colour' => $post->user->user_colour,
-                    'topic_last_post_time' => $post->post_time,
-                ]);
-            }
+            $this->save();
         });
+    }
+
+    public function setPostsCountCache()
+    {
+        $this->topic_replies = -1 + $this->posts()->where('post_approved', true)->count();
+        $this->topic_replies_real = -1 + $this->posts()->count();
+    }
+
+    public function setFirstPostCache()
+    {
+        $firstPost = $this->posts()->first();
+
+        if ($firstPost === null) {
+            $this->topic_first_post_id = null;
+            $this->topic_poster = null;
+            $this->topic_first_poster_name = null;
+            $this->topic_first_poster_colour = null;
+        } else {
+            $this->topic_first_post_id = $firstPost->post_id;
+
+            if ($firstPost->user === null) {
+                $this->topic_poster = null;
+                $this->topic_first_poster_name = null;
+                $this->topic_first_poster_colour = null;
+            } else {
+                $this->topic_poster = $firstPost->user->user_id;
+                $this->topic_first_poster_name = $firstPost->user->username;
+                $this->topic_first_poster_colour = $firstPost->user->user_colour;
+            }
+        }
+    }
+
+    public function setLastPostCache()
+    {
+        $lastPost = $this->posts()->last()->first();
+
+        if ($lastPost === null) {
+            $this->topic_last_post_id = null;
+            $this->topic_last_post_time = null;
+
+            $this->topic_last_poster_id = null;
+            $this->topic_last_poster_name = null;
+            $this->topic_last_poster_colour = null;
+        } else {
+            $this->topic_last_post_id = $lastPost->post_id;
+            $this->topic_last_post_time = $lastPost->post_time;
+
+            if ($lastPost->user === null) {
+                $this->topic_last_poster_id = null;
+                $this->topic_last_poster_name = null;
+                $this->topic_last_poster_colour = null;
+            } else {
+                $this->topic_last_poster_id = $lastPost->user->user_id;
+                $this->topic_last_poster_name = $lastPost->user->username;
+                $this->topic_last_poster_colour = $lastPost->user->user_colour;
+            }
+        }
     }
 
     public function setCover($path, $user)
@@ -340,6 +398,23 @@ class Topic extends Model
         }
 
         return $this->fresh();
+    }
+
+    public function lock($lock = true)
+    {
+        DB::transaction(function () use ($lock) {
+            if ($lock === true) {
+                $newStatus = static::STATUS_LOCKED;
+                $logOperation = 'LOG_LOCK';
+            } else {
+                $newStatus = static::STATUS_UNLOCKED;
+                $logOperation = 'LOG_UNLOCK';
+            }
+
+            $this->update(['topic_status' => $newStatus]);
+
+            Log::logModerateForumTopic($logOperation, $this);
+        });
     }
 
     public function deleteWithCover()

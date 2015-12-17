@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -14,11 +16,24 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
-.tooltip {
-  &__content {
-    display: flex;
-    padding: @spacing;
-  }
+namespace App\Http\Controllers\Admin;
+
+use Auth;
+use App\Http\Controllers\Controller as BaseController;
+
+abstract class Controller extends BaseController
+{
+    protected $section = 'admin';
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+        if (Auth::check() === true && Auth::user()->isAdmin() === false) {
+            abort(403);
+        }
+
+        return parent::__construct();
+    }
 }
