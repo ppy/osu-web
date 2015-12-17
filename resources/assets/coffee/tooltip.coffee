@@ -41,7 +41,7 @@ class @Tooltip
       style:
         classes: 'qtip tooltip-default'
         tip:
-          width: 8
+          width: 10
           height: 8
 
     event.target.setAttribute 'data-orig-title', title
