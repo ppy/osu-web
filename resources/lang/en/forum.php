@@ -20,11 +20,28 @@
 
 return [
 
+    'covers' => [
+        'create' => [
+            '_' => 'Set cover image',
+            'button' => 'Upload image',
+            'info' => 'Cover size shoule be at :dimensions. You can also drop your image here to upload.',
+        ],
+
+        'destroy' => [
+            '_' => 'Remove cover image',
+            'confirm' => 'Are you sure you want to remove the cover image?',
+        ],
+    ],
     'pinned_topics' => 'Pinned Topics',
     'post' => [
         'confirm_delete' => 'Really delete post?',
         'edited' => 'Last edited by :user on :when, edited :count times in total.',
         'posted_at' => 'posted :when',
+        'actions' => [
+            'delete' => 'Delete post',
+            'edit' => 'Edit post',
+            'reply_with_quote' => 'Quote post for reply',
+        ],
     ],
     'search' => [
         'go_to_post' => 'Go to post',
@@ -71,17 +88,6 @@ return [
             'locked-0' => 'Topic has been unlocked',
             'locked-1' => 'Topic has been locked',
             'is_locked' => 'This topic is locked and can not be replied to',
-        ],
-    ],
-
-    'topic_covers' => [
-        'create' => [
-            'button' => 'Upload image',
-            'info' => 'Cover size shoule be at :dimensions. You can also drop your image here to upload.',
-        ],
-
-        'destroy' => [
-            'confirm' => 'Are you sure you want to remove the cover image?',
         ],
     ],
 
