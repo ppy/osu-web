@@ -31,6 +31,7 @@ class @TooltipDefault
     my = switch at
       when 'top center' then 'bottom center'
       when 'left center' then 'right center'
+      when 'right center' then 'left center'
 
     options =
       overwrite: false

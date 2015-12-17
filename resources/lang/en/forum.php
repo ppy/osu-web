@@ -84,6 +84,11 @@ return [
     'topics' => [
         '_' => 'Topics',
 
+        'index' => [
+            'views' => 'views',
+            'replies' => 'replies',
+        ],
+
         'lock' => [
             'locked-0' => 'Topic has been unlocked',
             'locked-1' => 'Topic has been locked',
