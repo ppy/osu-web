@@ -17,12 +17,32 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Traits;
+namespace App\Models;
 
-trait BeatmapAPI
+use Illuminate\Database\Eloquent\Model;
+
+class BeatmapDifficultyAttrib extends Model
 {
-    public function getBeatmapListing()
+    protected $table = 'osu_beatmap_difficulty_attribs';
+    protected $primaryKey = null;
+
+    protected $casts = [
+        'beatmap_id' => 'integer',
+        'mode' => 'integer',
+        'mods' => 'integer',
+        'attrib_id' => 'integer',
+        'value' => 'float',
+    ];
+
+    public $timestamps = false;
+
+    public function scopeMode($query, $mode)
     {
-        return Response::json(Set::listing()->toArray());
+        return $query->where('mode', $mode);
+    }
+
+    public function scopeMaxCombo($query)
+    {
+        return $query->where('attrib_id', 9)->first();
     }
 }

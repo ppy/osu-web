@@ -17,9 +17,22 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models\Score;
+namespace App\Transformers\API;
 
-class Taiko extends Model
+use App\Models\BeatmapPack;
+use League\Fractal;
+
+class BeatmapPackTransformer extends Fractal\TransformerAbstract
 {
-    protected $table = 'osu_scores_taiko';
+    public function transform(BeatmapPack $pack)
+    {
+        return [
+            'pack_id' => $pack->pack_id,
+            'url' => $pack->url,
+            'name' => $pack->name,
+            'author' => $pack->author,
+            'tag' => $pack->tag,
+            'date' => $pack->date->tz('Australia/Perth')->toDateTimeString(),
+        ];
+    }
 }

@@ -64,13 +64,23 @@ class Beatmap extends Model
         return $this->hasMany(Mod::class, 'beatmap_id', 'beatmap_id');
     }
 
-    public function parent()
+    public function set()
     {
-        return $this->belongs_to(BeatmapSet::class, 'beatmapset_id', 'beatmapset_id');
+        return $this->belongsTo(BeatmapSet::class, 'beatmapset_id');
     }
 
     public function creator()
     {
         return $this->parent->user();
+    }
+
+    public function difficulty()
+    {
+        return $this->hasMany(BeatmapDifficulty::class);
+    }
+
+    public function difficultyAttribs()
+    {
+        return $this->hasMany(BeatmapDifficultyAttrib::class);
     }
 }

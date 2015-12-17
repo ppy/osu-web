@@ -34,6 +34,39 @@ $(document).on 'change', '.js-auto-submit', (e) ->
   $target.data('last-submitted-value', $target.val())
   $target.parents('form').submit()
 
+# A class to make contenteditable fields useful inside of forms.
+$(document).on 'keypress', '.content-editable-submit', (e) ->
+  # 13 == enter key
+  return unless e.which == 13
+  e.preventDefault()
+  $(e.target).trigger 'blur'
+
+$(document).on 'blur', '.content-editable-submit', (e) ->
+  $target = $(e.target)
+  return if $target.html() == $target.data('last-submitted-value')
+
+  $target.data('last-submitted-value', $target.html())
+
+  $form = $target.parents('form')
+
+  el = $(document.createElement('input'))
+  el.attr('type', 'hidden')
+  el.attr('name', $target.attr('data-name'))
+  el.attr('value', $target.html())
+
+  # temporarily add a hidden form element for this contenteditable field.
+  $form.append(el);
+
+  $form.submit()
+
+  # remove now that we're done submitting.
+  el.remove()
+
+#populate last-submitted values
+$(document).on 'ready page:load', ->
+  $('.content-editable-submit').each (_i, el) ->
+    $el = $(el)
+    $el.data('last-submitted-value', $el.html())
 
 # zooooom ...product image
 $(document).on 'ready page:load', ->

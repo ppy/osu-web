@@ -17,9 +17,17 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models\Score;
+namespace App\Models;
 
-class Taiko extends Model
+use Illuminate\Database\Eloquent\Model;
+
+class ApiKey extends Model
 {
-    protected $table = 'osu_scores_taiko';
+    protected $table = 'osu_apikeys';
+    protected $primaryKey = 'key';
+    public $timestamps = false;
+
+    protected $casts = [
+        'user_id' => 'integer',
+    ];
 }

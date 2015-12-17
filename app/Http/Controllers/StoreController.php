@@ -36,8 +36,6 @@ class StoreController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['only' => [
-            'getAdmin',
-            'postAdmin',
             'getInvoice',
             'postUpdateCart',
             'postAddToCart',
@@ -63,40 +61,6 @@ class StoreController extends Controller
             ->with('skip_back_link', true)
             ->with('cart', $this->userCart())
             ->with('products', Store\Product::latest()->simplePaginate(30));
-    }
-
-    public function getAdmin($id = null)
-    {
-        if (!Auth::user()->isAdmin()) {
-            abort(403);
-        }
-
-        $orders = Store\Order::with('user', 'address', 'address.country', 'items.product');
-
-        if ($id) {
-            $orders->where('orders.order_id', $id);
-        } else {
-            $orders->where('orders.status', 'paid');
-        }
-
-        $ordersItemsQuantities = Store\Order::itemsQuantities($orders);
-        $orders = $orders->orderBy('created_at')->get();
-
-        return view('store.admin', compact('orders', 'ordersItemsQuantities'));
-    }
-
-    public function postAdmin()
-    {
-        if (!Auth::user()->isAdmin()) {
-            abort(403);
-        }
-
-        $order = Store\Order::findOrFail(Request::input('id'));
-        $order->unguard();
-        $order->update(Request::input('order'));
-        $order->save();
-
-        return ['message' => "order {$order->order_id} updated"];
     }
 
     public function getInvoice($id)

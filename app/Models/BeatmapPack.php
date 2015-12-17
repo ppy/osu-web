@@ -17,9 +17,23 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models\Score;
+namespace App\Models;
 
-class Taiko extends Model
+use Illuminate\Database\Eloquent\Model;
+
+class BeatmapPack extends Model
 {
-    protected $table = 'osu_scores_taiko';
+    protected $table = 'osu_beatmappacks';
+    protected $primaryKey = 'pack_id';
+
+    protected $casts = [
+        'pack_id' => 'integer',
+        'url' => 'string',
+        'name' => 'string',
+        'author' => 'string',
+        'tag' => 'string',
+    ];
+
+    protected $dates = ['date'];
+    public $timestamps = false;
 }

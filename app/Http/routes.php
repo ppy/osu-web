@@ -89,6 +89,17 @@ Route::get('/wiki', ['as' => 'wiki', function () { return Redirect::to('https://
 Route::get('/help/support', ['as' => 'support', 'uses' => 'HelpController@getSupport']);
 Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);
 
+// store admin
+Route::group(['prefix' => 'store/admin', 'namespace' => 'Store\Admin'], function () {
+    Route::post('orders/ship', ['as' => 'store.admin.orders.ship', 'uses' => 'OrderController@ship']);
+    Route::resource('orders', 'OrderController', ['only' => ['index', 'show', 'update']]);
+    Route::resource('orders.items', 'OrderItemController', ['only' => ['update']]);
+
+    Route::resource('addresses', 'AddressController', ['only' => ['update']]);
+
+    Route::get('/', function () { return Redirect::route('store.admin.orders.index'); });
+});
+
 // catchall controllers
 Route::controller('/notifications', 'NotificationController');
 Route::controller('/store', 'StoreController');
@@ -133,7 +144,14 @@ Route::put('/account/update-profile-cover', ['as' => 'account.update-profile-cov
 Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
 
 // API
-Route::controller('/api', 'APIController');
+Route::get('/api/get_match', ['uses' => 'APIController@getMatch']);
+Route::get('/api/get_packs', ['uses' => 'APIController@getPacks']);
+Route::get('/api/get_user', ['uses' => 'APIController@getUser']);
+Route::get('/api/get_user_best', ['uses' => 'APIController@getUserBest']);
+Route::get('/api/get_user_recent', ['uses' => 'APIController@getUserRecent']);
+Route::get('/api/get_replay', ['uses' => 'APIController@getReplay']);
+Route::get('/api/get_scores', ['uses' => 'APIController@getScores']);
+Route::get('/api/get_beatmaps', ['uses' => 'APIController@getBeatmaps']);
 
 Route::resource('post', 'PostController');
 Route::resource('modding', 'ModdingPostController');

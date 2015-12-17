@@ -17,9 +17,19 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models\Score;
+namespace App\Transformers\API;
 
-class Taiko extends Model
+use App\Models\User;
+use League\Fractal;
+
+class UserTransformer extends Fractal\TransformerAbstract
 {
-    protected $table = 'osu_scores_taiko';
+    public function transform(User $user)
+    {
+        return [
+            'user_id' => $user->user_id,
+            'username' => $user->username,
+            'country' => $user->country_acronym,
+        ];
+    }
 }

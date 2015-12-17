@@ -17,9 +17,26 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models\Score;
+namespace App\Models\Multiplayer;
 
-class Taiko extends Model
+class Game extends Model
 {
-    protected $table = 'osu_scores_taiko';
+    protected $table = 'games';
+    protected $primaryKey = 'game_id';
+    protected $hidden = ['match_id'];
+    protected $dates = [
+        'start_time',
+        'end_time',
+    ];
+    public $timestamps = false;
+
+    public function scores()
+    {
+        return $this->hasMany(Score::class);
+    }
+
+    public function match()
+    {
+        return $this->belongsTo(Match::class);
+    }
 }
