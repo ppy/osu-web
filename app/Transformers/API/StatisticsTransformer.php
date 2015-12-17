@@ -28,7 +28,7 @@ class StatisticsTransformer extends Fractal\TransformerAbstract
     public function transform(Models\UserStatistics\Model $stats = null)
     {
         if ($stats === null) {
-            $stats = new UserStatistics\Osu([], null);
+            $stats = new UserStatistics\Osu([], false);
         }
 
         return [

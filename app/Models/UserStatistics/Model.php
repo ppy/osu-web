@@ -91,27 +91,29 @@ abstract class Model extends BaseModel
             ->count() + 1;
     }
 
-    public function __construct($attributes = [], $null = false)
+    public function __construct($attributes = [], $zeroInsteadOfNull = true)
     {
-        $this->level = $null ? null : 1;
+        if ($zeroInsteadOfNull) {
+            $this->level = 1;
 
-        $this->rank_score_index = $null ? null : 0;
-        $this->ranked_score = $null ? null : 0;
+            $this->rank_score_index = 0;
+            $this->ranked_score = 0;
 
-        $this->accuracy_new = $null ? null : 0;
-        $this->playcount = $null ? null : 0;
-        $this->total_score = $null ? null : 0;
-        $this->max_combo = $null ? null : 0;
+            $this->accuracy_new = 0;
+            $this->playcount = 0;
+            $this->total_score = 0;
+            $this->max_combo = 0;
 
-        $this->count300 = $null ? null : 0;
-        $this->count100 = $null ? null : 0;
-        $this->count50 = $null ? null : 0;
+            $this->count300 = 0;
+            $this->count100 = 0;
+            $this->count50 = 0;
 
-        $this->replay_popularity = $null ? null : 0;
+            $this->replay_popularity = 0;
 
-        $this->x_rank_count = $null ? null : 0;
-        $this->s_rank_count = $null ? null : 0;
-        $this->a_rank_count = $null ? null : 0;
+            $this->x_rank_count = 0;
+            $this->s_rank_count = 0;
+            $this->a_rank_count = 0;
+        }
 
         return parent::__construct($attributes);
     }
