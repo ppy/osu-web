@@ -273,7 +273,11 @@
             </div>
 
             <div class="forum-topic-nav__group forum-topic-nav__group--right">
-                <a href="#" class="forum-topic-nav__button-circle forum-topic-nav__button-circle--reply js-forum-topic-reply--new">
+                <a
+                    href="#"
+                    class="forum-topic-nav__button-circle forum-topic-nav__button-circle--reply js-forum-topic-reply--new"
+                    title="{{ trans('forum.topics.actions.reply') }}"
+                >
                     <i class="fa fa-plus"></i>
                 </a>
             </div>

@@ -40,7 +40,6 @@ return [
         'actions' => [
             'delete' => 'Delete post',
             'edit' => 'Edit post',
-            'reply_with_quote' => 'Quote post for reply',
         ],
     ],
     'search' => [
@@ -83,6 +82,11 @@ return [
     ],
     'topics' => [
         '_' => 'Topics',
+
+        'actions' => [
+            'reply' => 'Show reply box',
+            'reply_with_quote' => 'Quote post for reply',
+        ],
 
         'index' => [
             'views' => 'views',

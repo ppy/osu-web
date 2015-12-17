@@ -107,7 +107,7 @@
                 @endif
                 @if ($options["replyLink"] === true)
                     <a
-                        title="{{ trans('forum.post.actions.reply_with_quote') }}"
+                        title="{{ trans('forum.topics.actions.reply_with_quote') }}"
                         data-tooltip-position="left center"
                         href="{{ route("forum.posts.raw", ["id" => $post, "quote" => 1]) }}"
                         class="forum-post-actions__action js-forum-topic-reply--quote"
