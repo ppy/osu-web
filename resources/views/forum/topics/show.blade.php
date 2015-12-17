@@ -82,7 +82,6 @@
                                 @if (Auth::check() === true)
                                     <div
                                         class="avatar avatar--full"
-                                        title="{{ trans("users.show.avatar", ["username" => Auth::user()->username]) }}"
                                         style="background-image: url('{{ Auth::user()->user_avatar }}');"
                                     ></div>
                                 @else

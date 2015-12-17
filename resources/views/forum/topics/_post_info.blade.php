@@ -24,7 +24,6 @@
                         <div
                             class="avatar avatar--full"
                             style="background-image: url('{{ $user->user_avatar }}');"
-                            title="{{ trans("users.show.avatar", ["username" => $user->username]) }}"
                         ></div>
                     </a>
                 </div>
@@ -82,7 +81,6 @@
                 <div
                     class="avatar avatar--forum-small"
                     style="background-image: url('{{ $user->user_avatar }}');"
-                    title="{{ trans("users.show.avatar", ["username" => $user->username]) }}"
                 ></div>
             </div>
         @endif
