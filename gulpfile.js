@@ -83,7 +83,7 @@ elixir(function(mix) {
     "sticky-footer.coffee",
     "sticky-header.coffee",
     "sync-height.coffee",
-    "tooltip.coffee",
+    "tooltip-default.coffee",
     "forum.coffee",
     "forum-auto-click.coffee",
     "forum-cover.coffee",

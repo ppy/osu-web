@@ -35,7 +35,7 @@ $(document).on 'ready page:load', =>
   @fade ||= new Fade
   @formPlaceholderHide ||= new FormPlaceholderHide
   @headerMenu ||= new HeaderMenu
-  @tooltip ||= new Tooltip
+  @tooltipDefault ||= new TooltipDefault
 
   @syncHeight ||= new SyncHeight
 
