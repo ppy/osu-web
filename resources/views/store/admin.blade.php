@@ -26,6 +26,27 @@
 .product_12, .product_13, .product_14, .product_15, .product_16, .product_17, .product_18, .product_19 { background-color: #BDFF5E; }
 .product_33, .product_34, .product_35, .product_36 { background-color: #54F35B; }
 
+.product_name_expanded {
+    width: 80%;
+    display: inline-block;
+}
+
+.product_name_expanded select {
+    background: transparent;
+}
+
+.content-editable-submit {
+    border-bottom: dashed 1px #d7dce6;
+    display: inline-block;
+    min-width: 10px;
+}
+
+.content-editable-submit:focus {
+    background: #dddddd;
+}
+
+.bold { font-weight: bold; }
+
 </style>
 
 <div class="osu-layout__row osu-layout__row--page osu-layout__row--bootstrap">
@@ -57,8 +78,6 @@
     </div>
 
     @foreach ($orders as $o)
-    {!! Form::open(["url" => "store/admin", "data-remote" => true]) !!}
-    {!! Form::hidden('id', $o->order_id) !!}
     <div class="col-md-12">
 
         <div class="panel panel-default">
@@ -77,6 +96,7 @@
             </div>
             <div class="panel-body">
                 <div class='row'>
+                    {!! Form::open(['route' => ['store.admin.orders.update', $o->order_id], 'method' => 'put', 'data-remote' => true]) !!}
                     <div class='col-md-8'>
                         <div class="form-group">
                         @if ($o->status === 'paid' || $o->status === 'shipped')
@@ -97,9 +117,10 @@
 
                         </div>
                     </div>
+                    {!! Form::close() !!}
 
                     @if ($o->address)
-                        @include('store.objects.address', ['data' => $o->address])
+                        @include('store.objects.address_editable', ['data' => $o->address, 'modifiable' => true])
                     @endif
                 </div>
             </div>
@@ -108,12 +129,30 @@
                 <tbody>
                     @foreach($o->items as $i)
                     <tr>
-                        <td class="product_{{ $i->product_id }}">
-                            @if ($i->quantity > 1)
-                                <strong>{{ $i->quantity }} x {{ $i->getDisplayName() }}</strong>
+                        <td class="product_{{ $i->product_id }} {{ $i->quantity > 1 ? "bold" : "" }}">
+                            {!! Form::open(['route' => ['store.admin.orders.items.update', $o->order_id, $i->id], 'method' => 'put', 'data-remote' => true]) !!}
+                            <span class="content-editable-submit" contenteditable="true" data-name="item[quantity]">{{{ $i->quantity }}}</span>
+                            x
+                            <span class="product_name_expanded">
+                            @if ($i->product->typeMappings())
+                                <select id="select-item" name="item[product_id]" class="form-control js-auto-submit">
+                                    @foreach($i->product->productsInRange() as $r)
+                                    <option
+                                        {{ $i->product_id == $r->product_id ? "selected" : "" }}
+                                        {{ !$r->inStock($i->quantity) ? "disabled" : "" }}
+                                        value="{{ $r->product_id }}">
+                                        {{ $r->name }}
+                                        @if (!$r->inStock($i->quantity))
+                                            --OUT OF STOCK--
+                                        @endif
+                                    </option>
+                                    @endforeach
+                                </select>
                             @else
-                                {{ $i->quantity }} x {{ $i->getDisplayName() }}
+                                {{ $i->getDisplayName() }}
                             @endif
+                            </span>
+                            {!! Form::close() !!}
                         </td>
                     </tr>
                     @endforeach
@@ -121,7 +160,14 @@
             </table>
         </div>
     </div>
-    {!! Form::close() !!}
     @endforeach
+</div>
+
+<div class="osu-layout__row osu-layout__row--page osu-layout__row--bootstrap">
+    {!! Form::open(['route' => 'store.admin.orders.ship', 'method' => 'post', 'data-remote' => true]) !!}
+    <div class="big-button">
+        <button type="submit" class="btn-osu btn-osu-danger">Ship all tracked orders</button>
+    </div>
+    {!! Form::close() !!}
 </div>
 @stop

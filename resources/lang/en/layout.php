@@ -96,7 +96,6 @@ return [
             'getListing' => 'listing',
             'getCart' => 'cart',
 
-            'getAdmin' => 'admin',
             'getCheckout' => 'checkout',
             'getInvoice' => 'invoice',
             'getProduct' => 'product',
@@ -105,6 +104,10 @@ return [
             'home' => 'home',
             'index' => 'home',
             'thanks' => 'thanks',
+        ],
+        'storeAdmin' => [
+            '_' => 'store',
+            'index' => 'admin',
         ],
     ],
     'errors' => [

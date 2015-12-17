@@ -89,6 +89,17 @@ Route::get('/wiki', ['as' => 'wiki', function () { return Redirect::to('https://
 Route::get('/help/support', ['as' => 'support', 'uses' => 'HelpController@getSupport']);
 Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);
 
+// store admin
+Route::group(['prefix' => 'store/admin', 'namespace' => 'Store\Admin'], function () {
+    Route::post('orders/ship', ['as' => 'store.admin.orders.ship', 'uses' => 'OrderController@ship']);
+    Route::resource('orders', 'OrderController', ['only' => ['index', 'show', 'update']]);
+    Route::resource('orders.items', 'OrderItemController', ['only' => ['update']]);
+
+    Route::resource('addresses', 'AddressController', ['only' => ['update']]);
+
+    Route::get('/', function () { return Redirect::route('store.admin.orders.index'); });
+});
+
 // catchall controllers
 Route::controller('/notifications', 'NotificationController');
 Route::controller('/store', 'StoreController');

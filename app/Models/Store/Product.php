@@ -116,6 +116,15 @@ class Product extends Model
             ->orderBy('display_order', 'desc');
     }
 
+    public function productsInRange()
+    {
+        if (!($mappings = $this->typeMappings())) {
+            return [];
+        }
+
+        return self::whereIn('product_id', array_keys($mappings))->get();
+    }
+
     public function types()
     {
         $mappings = $this->typeMappings();
