@@ -18,11 +18,14 @@
 <div class="forum-category-header__actions">
     <div class="forum-post-actions">
         <div>
-            <a href="#" class="
-                js-forum-cover--open-modal
-                forum-post-actions__action
-                forum-category-header__action
-            ">
+            <a
+                href="#"
+                class="js-forum-cover--open-modal
+                    forum-post-actions__action
+                    forum-category-header__action"
+                title="{{ trans('forum.covers.create._') }}"
+                data-tooltip-position="left center"
+            >
                 <i class="fa fa-pencil"></i>
             </a>
 
@@ -39,11 +42,11 @@
                     data-url="{{ $cover['data']['url'] }}"
                     data-method="{{ $cover['data']['method'] }}"
                 >
-                    {{ trans('forum.topic_covers.create.button') }}
+                    {{ trans('forum.covers.create.button') }}
                     <input class="fileupload__input" type="file">
                 </label>
                 <p class="forum-category-header__cover-uploader-info">
-                    {{ trans('forum.topic_covers.create.info', ['dimensions' => implode('x', $cover['data']['dimensions'])]) }}
+                    {{ trans('forum.covers.create.info', ['dimensions' => implode('x', $cover['data']['dimensions'])]) }}
                 </p>
 
                 <div
@@ -59,7 +62,9 @@
             class="js-forum-cover--remove
                 forum-post-actions__action
                 forum-category-header__action"
-            data-destroy-confirm="{{ trans('forum.topic_covers.destroy.confirm') }}"
+            data-destroy-confirm="{{ trans('forum.covers.destroy.confirm') }}"
+            title="{{ trans('forum.covers.destroy._') }}"
+            data-tooltip-position="left center"
         >
             <i class="fa fa-trash"></i>
         </a>

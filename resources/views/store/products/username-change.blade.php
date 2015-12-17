@@ -18,7 +18,7 @@
 @if(!Auth::user())
 <div class="row">
     <div class="col-md-6">
-        You need to be <a href="#" title="{{ trans("users.anonymous.login") }}" data-toggle="modal" data-target="#user-dropdown-modal">logged in</a> to change your name!
+        You need to be <a href="#" title="{{ trans("users.anonymous.login_link") }}" data-toggle="modal" data-target="#user-dropdown-modal">logged in</a> to change your name!
     </div>
 </div>
 @else

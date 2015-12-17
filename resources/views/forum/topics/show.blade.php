@@ -82,7 +82,6 @@
                                 @if (Auth::check() === true)
                                     <div
                                         class="avatar avatar--full"
-                                        title="{{ trans("users.show.avatar", ["username" => Auth::user()->username]) }}"
                                         style="background-image: url('{{ Auth::user()->user_avatar }}');"
                                     ></div>
                                 @else
@@ -243,7 +242,7 @@
                         js-forum__total-count"
                     >{{ $topic->postsCount() }}</span>
 
-                    <div class="js-forum-topic-post-jump--cover forum-topic-nav__counter-cover"></div>
+                    <div title="{{ trans('forum.topic.jump.enter') }}" class="js-forum-topic-post-jump--cover forum-topic-nav__counter-cover"></div>
                 </div>
 
                 <a
@@ -273,7 +272,11 @@
             </div>
 
             <div class="forum-topic-nav__group forum-topic-nav__group--right">
-                <a href="#" class="forum-topic-nav__button-circle forum-topic-nav__button-circle--reply js-forum-topic-reply--new">
+                <a
+                    href="#"
+                    class="forum-topic-nav__button-circle forum-topic-nav__button-circle--reply js-forum-topic-reply--new"
+                    title="{{ trans('forum.topics.actions.reply') }}"
+                >
                     <i class="fa fa-plus"></i>
                 </a>
             </div>

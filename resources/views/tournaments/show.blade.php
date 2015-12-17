@@ -35,7 +35,7 @@
 
     @if (!Auth::user())
         <div>
-        Please <a href="#" title="{{ trans("users.anonymous.login") }}" data-toggle="modal" data-target="#user-dropdown-modal">login</a> to view registration details!
+        Please <a href="#" title="{{ trans("users.anonymous.login_link") }}" data-toggle="modal" data-target="#user-dropdown-modal">login</a> to view registration details!
         </div>
     @else
         <div>
