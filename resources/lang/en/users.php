@@ -37,7 +37,7 @@ return [
         'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
     ],
     'anonymous' => [
-        'login' => 'login',
+        'login_link' => 'click to login',
         'username' => 'Guest',
     ],
     'logout_confirm' => 'Are you sure you want to log out? :(',

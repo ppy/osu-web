@@ -51,7 +51,7 @@
                     href="#"
                     data-toggle="modal"
                     data-target="#user-dropdown-modal"
-                    title="{{ trans('users.anonymous.login') }}"
+                    title="{{ trans('users.anonymous.login_link') }}"
                     class="logo-menu__user logo-menu__user--full"
                 >
                     <div class="logo-menu__user-slice logo-menu__user-slice--avatar">
