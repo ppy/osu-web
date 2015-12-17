@@ -194,7 +194,7 @@ class User extends Model implements AuthenticatableContract
         return $this->api->api_key === $key;
     }
 
-    public function lookup($username_or_id, $lookup_type = null, $find_all = false)
+    public static function lookup($username_or_id, $lookup_type = null, $find_all = false)
     {
         if (!present($username_or_id)) {
             return;
