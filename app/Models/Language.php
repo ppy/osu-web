@@ -35,7 +35,7 @@ class Language extends Model
         return parent::newQuery()->orderBy('display_order', 'asc');
     }
 
-    public function listing()
+    public static function listing()
     {
         $fractal = new Manager();
         $data = new Collection(parent::all(), new LanguageTransformer);
