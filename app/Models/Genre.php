@@ -30,7 +30,7 @@ class Genre extends Model
     protected $primaryKey = 'genre_id';
     public $timestamps = false;
 
-    public function listing()
+    public static function listing()
     {
         $fractal = new Manager();
         $data = new Collection(parent::all(), new GenreTransformer);
