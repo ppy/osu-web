@@ -93,7 +93,6 @@ class ProfilePage.Header extends React.Component
           className: 'avatar avatar--profile'
           style:
             backgroundImage: "url('#{@props.user.avatarUrl}')"
-          title: Lang.get('users.show.avatar', username: @props.user.username)
 
       el 'div',
         className: 'profile-cover-uploading-spinner'

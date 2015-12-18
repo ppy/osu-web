@@ -43,7 +43,6 @@ return [
     'logout_confirm' => 'Are you sure you want to log out? :(',
     'show' => [
         '404' => 'User not found! ;_;',
-        'avatar' => ":username's avatar",
         'current_location' => 'Currently in :location.',
         'edit' => [
             'cover' => [
