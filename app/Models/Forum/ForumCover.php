@@ -36,9 +36,13 @@ class ForumCover extends Model
         'user_id' => 'integer',
     ];
 
-    public $maxDimensions = [2700, 500];
-    public $maxFileSize = 1000000;
-    public $fileRoot = 'forum-covers';
+    public function getMaxDimensions() {
+        return [2700, 500];
+    }
+
+    public function getFileRoot() {
+        return 'forum-covers';
+    }
 
     public static function upload($filePath, $user, $forum = null)
     {

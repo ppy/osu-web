@@ -45,7 +45,7 @@ class TopicCoverTransformer extends Fractal\TransformerAbstract
             ];
         }
 
-        $data['dimensions'] = $cover->maxDimensions;
+        $data['dimensions'] = $cover->getMaxDimensions();
 
         return $data;
     }

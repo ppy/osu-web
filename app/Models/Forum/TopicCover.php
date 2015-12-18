@@ -38,9 +38,13 @@ class TopicCover extends Model
 
     private $_owner = [false, null];
 
-    public $maxDimensions = [2700, 700];
-    public $maxFileSize = 1000000;
-    public $fileRoot = 'topic-covers';
+    public function getMaxDimensions() {
+        return [2700, 700];
+    }
+
+    public function getFileRoot() {
+        return 'topic-covers';
+    }
 
     public static function findForUse($id, $user)
     {
