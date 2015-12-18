@@ -19,16 +19,15 @@
  */
 namespace App\Libraries;
 
+use App\Traits\Imageable;
+
 class ProfileCover
 {
+    use Imageable;
+
     public $data;
     public $userId;
     public $errors = [];
-
-    public $hardMaxDim = [5000, 5000];
-    public $hardMaxFileSize = 10000000;
-
-    public $storage;
 
     private $availableIds = ['1', '2', '3', '4', '5', '6', '7', '8'];
 
@@ -36,29 +35,40 @@ class ProfileCover
     {
         $this->data = $data;
         $this->userId = $userId;
+    }
 
-        switch (config('filesystems.default')) {
-            case 'local':
-                $this->storage = new StorageLocal();
-                break;
-            case 's3':
-                $this->storage = new StorageS3v2();
-                break;
+    public function getMaxDimensions()
+    {
+        return [2700, 500];
+    }
+
+    public function getFileRoot()
+    {
+        return "user-profile-covers";
+    }
+
+    public function getFileId()
+    {
+        return $this->userId;
+    }
+
+    public function getFileProperties()
+    {
+        return array_get($this->data, 'file');
+    }
+
+    public function setFileProperties($props)
+    {
+        if ($this->data === null) {
+            $this->data = [];
         }
+
+        $this->data['file'] = $props;
     }
 
     public function hasCustomCover()
     {
         return array_get($this->data, 'id') === null && array_get($this->data, 'file') !== null;
-    }
-
-    public function delete()
-    {
-        if (!$this->hasCustomCover()) {
-            return;
-        }
-
-        return $this->storage->deleteDirectory($this->dirPath());
     }
 
     public function id()
@@ -83,116 +93,18 @@ class ProfileCover
         }
 
         if ($file !== null) {
-            $this->store($file->getRealPath());
+            $this->storeFile($file->getRealPath());
         }
 
         return array_only($this->data, ['id', 'file']);
     }
 
-    public function customUrl()
-    {
-        if ($this->filePath() !== null) {
-            return $this->storage->url($this->filePath());
-        }
-    }
-
     public function url()
     {
         if ($this->hasCustomCover()) {
-            return $this->customUrl();
+            return $this->fileUrl();
         }
 
         return '/images/headers/profile-covers/c'.$this->id().'.jpg';
-    }
-
-    public function dirPath()
-    {
-        return "user-profile-covers/{$this->userId}";
-    }
-
-    public function filePath()
-    {
-        if ($this->data['file'] === null) {
-            return;
-        }
-
-        return $this->dirPath()."/{$this->data['file']['hash']}.{$this->data['file']['ext']}";
-    }
-
-    public function store($inputFilePath)
-    {
-        if ($this->fix($inputFilePath) === false) {
-            return false;
-        };
-
-        $this->delete();
-
-        $this->data['file'] = [
-            'hash' => hash_file('sha256', $inputFilePath),
-            'ext' => image_type_to_extension(getimagesize($inputFilePath)[2], false),
-        ];
-
-        $this->storage->put($this->filePath(), file_get_contents($inputFilePath));
-    }
-
-    public function fix($path)
-    {
-        $dim = getimagesize($path);
-        $fileSize = filesize($path);
-
-        if ($fileSize > $this->hardMaxFileSize) {
-            $this->errors = [trans('users.show.edit.cover.upload.too_large')];
-
-            return false;
-        } elseif ($dim === false || !in_array($dim[2], [IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG], true)) {
-            $this->errors = [trans('users.show.edit.cover.upload.unsupported_format')];
-
-            return false;
-        } elseif ($dim[0] > $this->hardMaxDim[0] || $dim[1] > $this->hardMaxDim[1]) {
-            $this->errors = [trans('users.show.edit.cover.upload.too_large')];
-
-            return false;
-        }
-
-        if ($dim[2] === IMAGETYPE_JPEG) {
-            exec('jhead -autorot -purejpg -q '.escapeshellarg($path));
-            $dim = getimagesize($path);
-        }
-
-        $maxDim = [2700, 500];
-        $maxFileSize = 1000000;
-
-        if ($dim[0] === $maxDim[0] && $dim[1] === $maxDim[1]) {
-            if (filesize($path) < $maxFileSize) {
-                return;
-            }
-
-            $image = open_image($path, $dim);
-        } else {
-            $inputImage = open_image($path, $dim);
-
-            $start = [0, 0];
-            $inDim = [$dim[0], $dim[1]];
-            $outDim = [$maxDim[0], $maxDim[1]];
-
-            // figure out how to crop.
-            if ($dim[0] / $dim[1] >= $maxDim[0] / $maxDim[1]) {
-                $inDim[0] = $maxDim[0] / $maxDim[1] * $dim[1];
-                $start[0] = ($dim[0] - $inDim[0]) / 2;
-            } else {
-                $inDim[1] = $maxDim[1] / $maxDim[0] * $dim[0];
-                $start[1] = ($dim[1] - $inDim[1]) / 2;
-            }
-
-            // don't scale if input image is smaller.
-            if ($inDim[0] < $outDim[0] || $inDim[1] < $outDim[1]) {
-                $outDim = $inDim;
-            }
-
-            $image = imagecreatetruecolor($outDim[0], $outDim[1]);
-            imagecopyresampled($image, $inputImage, 0, 0, $start[0], $start[1], $outDim[0], $outDim[1], $inDim[0], $inDim[1]);
-        }
-
-        imagejpeg($image, $path);
     }
 }

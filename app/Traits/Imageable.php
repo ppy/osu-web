@@ -44,6 +44,11 @@ trait Imageable
      */
     abstract public function getFileRoot();
 
+    public function getFileId()
+    {
+        return $this->id;
+    }
+
     /**
      * Returns a hash with contents of at least 'hash' and 'ext' if there's
      * image or otherwise null.
@@ -83,7 +88,7 @@ trait Imageable
 
     public function fileDir()
     {
-        return "{$this->getFileRoot()}/{$this->id}";
+        return $this->getFileRoot().'/'.$this->getFileId();
     }
 
     public function fileName()
