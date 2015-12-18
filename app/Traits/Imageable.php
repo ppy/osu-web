@@ -55,7 +55,8 @@ trait Imageable
      *
      * Assumes attributes 'hash' and 'ext' of the object by default.
      */
-    public function getFileProperties() {
+    public function getFileProperties()
+    {
         if ($this->hash === null || $this->ext === null) {
             return;
         }
@@ -64,7 +65,6 @@ trait Imageable
             'hash' => $this->hash,
             'ext' => $this->ext,
         ];
-
     }
 
     /**
@@ -72,7 +72,8 @@ trait Imageable
      *
      * Assumes attributes 'hash' and 'ext' of the object by default.
      */
-    public function setFileProperties($props) {
+    public function setFileProperties($props)
+    {
         $this->hash = array_get($props, 'hash');
         $this->ext = array_get($props, 'ext');
     }

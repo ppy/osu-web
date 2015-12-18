@@ -36,11 +36,13 @@ class ForumCover extends Model
         'user_id' => 'integer',
     ];
 
-    public function getMaxDimensions() {
+    public function getMaxDimensions()
+    {
         return [2700, 500];
     }
 
-    public function getFileRoot() {
+    public function getFileRoot()
+    {
         return 'forum-covers';
     }
 

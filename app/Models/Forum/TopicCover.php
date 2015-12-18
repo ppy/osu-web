@@ -38,11 +38,13 @@ class TopicCover extends Model
 
     private $_owner = [false, null];
 
-    public function getMaxDimensions() {
+    public function getMaxDimensions()
+    {
         return [2700, 700];
     }
 
-    public function getFileRoot() {
+    public function getFileRoot()
+    {
         return 'topic-covers';
     }
 

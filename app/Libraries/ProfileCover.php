@@ -44,7 +44,7 @@ class ProfileCover
 
     public function getFileRoot()
     {
-        return "user-profile-covers";
+        return 'user-profile-covers';
     }
 
     public function getFileId()
