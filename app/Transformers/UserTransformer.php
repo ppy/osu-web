@@ -27,6 +27,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'allStatistics',
+        'allScoresBest',
         'defaultStatistics',
         'page',
         'recentAchievements',
@@ -88,6 +89,18 @@ class UserTransformer extends Fractal\TransformerAbstract
             $all = [];
             foreach ($user->statisticsAll() as $mode => $statistics) {
                 $all[$mode] = fractal_item_array($statistics, new UserStatisticsTransformer());
+            }
+
+            return $all;
+        });
+    }
+
+    public function includeAllScoresBest(User $user)
+    {
+        return $this->item($user, function ($user) {
+            $all = [];
+            foreach ($user->scoresBestAll() as $mode => $scores) {
+                $all[$mode] = fractal_collection_array($scores, new ScoreBestTransformer());
             }
 
             return $all;
