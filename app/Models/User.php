@@ -577,6 +577,50 @@ class User extends Model implements AuthenticatableContract
         return $all;
     }
 
+    public function scoresBestOsu()
+    {
+        return $this->hasMany(Score\Best\Osu::class);
+    }
+
+    public function scoresBestCtb()
+    {
+        return $this->hasMany(Score\Best\Fruit::class);
+    }
+
+    public function scoresBestMania()
+    {
+        return $this->hasMany(Score\Best\Mania::class);
+    }
+
+    public function scoresBestTaiko()
+    {
+        return $this->hasMany(Score\Best\Taiko::class);
+    }
+
+    public function scoresBest($mode, $returnQuery = false)
+    {
+        if (!in_array($mode, ['osu', 'ctb', 'mania', 'taiko'], true)) {
+            return;
+        }
+
+        $relation = camel_case("scores_best_{$mode}");
+        if ($returnQuery) {
+            return $this->{$relation}();
+        } else {
+            return $this->$relation;
+        }
+    }
+
+    public function scoresBestAll($returnQuery = false)
+    {
+        $all = [];
+        foreach (['osu', 'ctb', 'mania', 'taiko'] as $mode) {
+            $all[$mode] = $this->scoresBest($mode, $returnQuery);
+        }
+
+        return $all;
+    }
+
     public function profileCustomization()
     {
         return $this->hasOne("App\Models\UserProfileCustomization");

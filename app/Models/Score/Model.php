@@ -115,4 +115,44 @@ abstract class Model extends BaseModel
 
         return $this->_enabledMods;
     }
+
+    public function totalHits()
+    {
+        if ($this->gamemodeString() === 'osu') {
+            return ($this->count50 + $this->count100 + $this->count300
+                + $this->countmiss)
+                * 300;
+
+        } elseif ($this->gamemodeString() === 'fruits') {
+            return $this->count50 + $this->count100 + $this->count300 +
+                $this->countmiss + $this->countkatu;
+
+        } elseif ($this->gamemodeString() === 'mania') {
+            return ($this->count50 + $this->count100 + $this->count300 + $this->countmiss + $this->countkatu + $this->countgeki) * 300;
+
+        } elseif ($this->gamemodeString() === 'taiko') {
+            return ($this->count100 + $this->count300 + $this->countmiss) * 300;
+        }
+    }
+
+    public function hits()
+    {
+        if ($this->gamemodeString() === 'osu') {
+            return $this->count50 * 50 + $this->count100 * 100 + $this->count300 * 300;
+
+        } elseif ($this->gamemodeString() === 'fruits') {
+            return $this->count50 + $this->count100 + $this->count300;
+
+        } elseif ($this->gamemodeString() === 'mania') {
+            return $this->count50 * 50 + $this->count100 * 100 + $this->countkatu * 200 + ($this->count300 + $this->countgeki) * 300;
+
+        } elseif ($this->gamemodeString() === 'taiko') {
+            return $this->count100 * 150 + $this->count300 * 300;
+        }
+    }
+
+    public function accuracy()
+    {
+        return $this->hits() / $this->totalHits();
+    }
 }
