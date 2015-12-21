@@ -50,6 +50,8 @@ abstract class Model extends BaseModel
     protected $dates = ['date'];
     public $timestamps = false;
 
+    protected $_enabledMods = null;
+
     public function scopeForUser($query, User $user)
     {
         return $query->where('user_id', $user->user_id);
@@ -69,5 +71,48 @@ abstract class Model extends BaseModel
 
             return new $klass;
         }
+    }
+
+    public function getEnabledModsAttribute($value)
+    {
+        if ($this->_enabledMods === null) {
+            $value = intval($value);
+
+            $this->_enabledMods = [];
+
+            // move to its own class when needed.
+            $availableMods = [
+                [0, 'NoFail', 'NF'],
+                [1, 'EasyMode', 'EZ'],
+                [3, 'Hidden', 'HD'],
+                [4, 'HardRock', 'HR'],
+                [5, 'SuddenDeath', 'SD'],
+                [6, 'DoubleTime', 'DT'],
+                [7, 'Relax', 'Relax'],
+                [8, 'HalfTime', 'HT'],
+                [9, 'Nightcore', 'NC'],
+                [10, 'Flashlight', 'FL'],
+                [12, 'SpunOut', 'SO'],
+                [13, 'AutoPilot', 'AP'],
+                [14, 'Perfect', 'PF'],
+                [15, '4K', '4K'],
+                [16, '5K', '5K'],
+                [17, '6K', '6K'],
+                [18, '7K', '7K'],
+                [19, '8K', '8K'],
+                [20, 'FadeIn', 'FI'],
+                [24, '9K', '9K'],
+            ];
+
+            foreach ($availableMods as $availableMod) {
+                if (($value & (1 << $availableMod[0])) === 0) {
+                    continue;
+                }
+
+                $this->_enabledMods[] = ['name' => $availableMod[1], 'shortName' => $availableMod[2]];
+            }
+        }
+
+        return $this->_enabledMods;
     }
 }
