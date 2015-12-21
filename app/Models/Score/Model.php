@@ -30,6 +30,7 @@ abstract class Model extends BaseModel
     protected $casts = [
         'score_id' => 'integer',
         'beatmap_id' => 'integer',
+        'beatmapset_id' => 'integer',
         'score' => 'integer',
         'maxcombo' => 'integer',
         'count50' => 'integer',
@@ -38,12 +39,13 @@ abstract class Model extends BaseModel
         'countmiss' => 'integer',
         'countkatu' => 'integer',
         'countgeki' => 'integer',
-        'perfect' => 'integer',
         'enabled_mods' => 'integer',
         'user_id' => 'integer',
         'enabled_mods' => 'integer',
         'rank' => 'string',
         'pp' => 'float',
+        'perfect' => 'boolean',
+        'replay' => 'boolean',
     ];
     protected $dates = ['date'];
     public $timestamps = false;
