@@ -18,6 +18,7 @@
 @extends("master")
 
 @section('content')
+    {{--
 <div class="osu-layout__section osu-layout__section--full">
     <div class="osu-layout__row osu-layout__row--with-gutter faq-header">
         <div class="osu-layout__row--page header-row faq-header--background">
@@ -42,6 +43,7 @@
                 </ul>
             </div>
         </div>
+
         <div class="wide col-sm-6">
             <div class="faq__row--page osu-layout__row--page">
             <ul class="faq__list">
@@ -70,6 +72,17 @@
         </div>
     </div>    
 </div>
+--}}
 
 
-@stop
+@endsection
+
+@section ("script")
+    @parent
+
+    <script data-turbolinks-eval="always">
+    var categories = {!! json_encode($categories) !!}
+    </script>
+
+    <script src="{{ elixir("js/react/faq.js") }}" data-turbolinks-eval="always" data-turbolinks-track></script>
+@endsection

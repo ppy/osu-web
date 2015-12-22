@@ -109,6 +109,11 @@ elixir(function(mix) {
     "react/profile-page.coffee",
   ], "public/js/react/profile-page.js")
   .coffee([
+    "react/faq/*.coffee",
+    "react/faq.coffee",
+
+  ], "public/js/react/faq.js")
+  .coffee([
     "react/beatmaps/*.coffee"
   ], "public/js/react/beatmaps.js")
   .version([
@@ -116,6 +121,7 @@ elixir(function(mix) {
     "js/app.js",
     "js/messages.js",
     "js/react/profile-page.js",
+    "js/react/faq.js",
     "js/react/beatmaps.js",
     "js/vendor.js",
   ])

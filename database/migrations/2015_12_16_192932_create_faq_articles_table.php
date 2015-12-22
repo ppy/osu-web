@@ -17,6 +17,7 @@ class CreateFaqArticlesTable extends Migration
             $table->mediumInteger('creator_id')->unsigned()->nullable();
             $table->mediumInteger('category_id')->unsigned()->nullable();
             $table->mediumText("content");
+            $table->string("title");
             $table->timestamps();
         });
     }
