@@ -63,7 +63,8 @@ abstract class Model extends BaseModel
         $modeStr = Beatmap::modeStr($modeInt);
 
         if ($modeStr !== null) {
-            $klass = get_namespace(static::class)."\\".studly_case($modeStr);
+            $klass = get_namespace(static::class).'\\'.studly_case($modeStr);
+
             return new $klass;
         }
     }

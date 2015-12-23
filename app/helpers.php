@@ -400,5 +400,5 @@ function bem($block, $element = null, $modifiers = [])
 
 function get_namespace($className)
 {
-    return substr($className, 0, strrpos($className, "\\"));
+    return substr($className, 0, strrpos($className, '\\'));
 }

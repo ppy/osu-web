@@ -19,7 +19,6 @@
  */
 namespace App\Models\Score\Best;
 
-use App\Models\Beatmap;
 use App\Models\Score\Model as BaseModel;
 use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v2\AwsS3Adapter;

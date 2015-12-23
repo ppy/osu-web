@@ -43,7 +43,7 @@ class BeatmapController extends Controller
 
         // temporarily put filters here
         $modes = [['id' => null, 'name' => trans('beatmaps.mode.any')]];
-        foreach(Beatmap::modes() as $name => $id) {
+        foreach (Beatmap::modes() as $name => $id) {
             $modes[] = ['id' => $id, 'name' => trans("beatmaps.mode.{$name}")];
         }
 
