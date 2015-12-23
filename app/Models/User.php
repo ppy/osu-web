@@ -579,34 +579,37 @@ class User extends Model implements AuthenticatableContract
 
     public function scoresBestOsu()
     {
-        return $this->hasMany(Score\Best\Osu::class);
+        return $this->scoresBest('osu', true);
     }
 
-    public function scoresBestCtb()
+    public function scoresBestFruits()
     {
-        return $this->hasMany(Score\Best\Fruit::class);
+        return $this->scoresBest('fruits', true);
     }
 
     public function scoresBestMania()
     {
-        return $this->hasMany(Score\Best\Mania::class);
+        return $this->scoresBest('mania', true);
     }
 
     public function scoresBestTaiko()
     {
-        return $this->hasMany(Score\Best\Taiko::class);
+        return $this->scoresBest('taiko', true);
     }
 
     public function scoresBest($mode, $returnQuery = false)
     {
-        if (!in_array($mode, ['osu', 'ctb', 'mania', 'taiko'], true)) {
+        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
             return;
         }
 
-        $relation = camel_case("scores_best_{$mode}");
         if ($returnQuery) {
-            return $this->{$relation}();
+            $mode = studly_case($mode);
+
+            return $this->hasMany("App\Models\Score\Best\\{$mode}")->default();
         } else {
+            $relation = camel_case("scores_best_{$mode}");
+
             return $this->$relation;
         }
     }
@@ -614,7 +617,7 @@ class User extends Model implements AuthenticatableContract
     public function scoresBestAll($returnQuery = false)
     {
         $all = [];
-        foreach (['osu', 'ctb', 'mania', 'taiko'] as $mode) {
+        foreach (['osu', 'fruits', 'mania', 'taiko'] as $mode) {
             $all[$mode] = $this->scoresBest($mode, $returnQuery);
         }
 

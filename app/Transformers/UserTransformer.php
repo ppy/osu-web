@@ -21,6 +21,7 @@ namespace App\Transformers;
 
 use App\Models\Achievement;
 use App\Models\User;
+use App\Models\Score\Best\Model as ScoreBestModel;
 use League\Fractal;
 
 class UserTransformer extends Fractal\TransformerAbstract
@@ -100,6 +101,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->item($user, function ($user) {
             $all = [];
             foreach ($user->scoresBestAll() as $mode => $scores) {
+                ScoreBestModel::fillInPosition($scores);
                 $all[$mode] = fractal_collection_array($scores, new ScoreBestTransformer());
             }
 

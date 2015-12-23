@@ -29,6 +29,8 @@ class ScoreBestTransformer extends Fractal\TransformerAbstract
         return [
             'created_at' => $scoreBest->date->toIso8601String(),
             'pp' => $scoreBest->pp,
+            'weight' => $scoreBest->weight(),
+            'weightedPp' => $scoreBest->weightedPp(),
             'accuracy' => $scoreBest->accuracy(),
         ];
     }
