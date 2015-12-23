@@ -58,26 +58,13 @@ abstract class Model extends BaseModel
         return $this->belongsTo(User::class);
     }
 
-    public static function getClass($game_mode)
+    public static function getClass($modeInt)
     {
-        switch ($game_mode) {
-            case Beatmap::OSU:
-                $instance = new Osu;
-                break;
+        $modeStr = Beatmap::modeStr($modeInt);
 
-            case Beatmap::TAIKO:
-                $instance = new Taiko;
-                break;
-
-            case Beatmap::FRUITS:
-                $instance = new Fruits;
-                break;
-
-            case Beatmap::MANIA:
-                $instance = new Mania;
-                break;
+        if ($modeStr !== null) {
+            $klass = get_namespace(static::class)."\\".studly_case($modeStr);
+            return new $klass;
         }
-
-        return $instance;
     }
 }

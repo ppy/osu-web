@@ -397,3 +397,8 @@ function bem($block, $element = null, $modifiers = [])
 
     return " {$ret} ";
 }
+
+function get_namespace($className)
+{
+    return substr($className, 0, strrpos($className, "\\"));
+}

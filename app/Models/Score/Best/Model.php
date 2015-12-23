@@ -29,29 +29,6 @@ abstract class Model extends BaseModel
 {
     abstract public function gameModeString();
 
-    public static function getClass($game_mode)
-    {
-        switch ($game_mode) {
-            case Beatmap::OSU:
-                $instance = new Osu;
-                break;
-
-            case Beatmap::TAIKO:
-                $instance = new Taiko;
-                break;
-
-            case Beatmap::FRUITS:
-                $instance = new Fruits;
-                break;
-
-            case Beatmap::MANIA:
-                $instance = new Mania;
-                break;
-        }
-
-        return $instance;
-    }
-
     public function getReplay()
     {
         // this s3 retrieval should probably be moved out of the model going forward
