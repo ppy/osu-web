@@ -33,13 +33,6 @@ return [
             'target' => 'drop here to upload',
         ],
 
-        'play_mode' => [
-            'ctb' => 'osu!ctb',
-            'mania' => 'osu!mania',
-            'osu' => 'osu!',
-            'taiko' => 'osu!taiko',
-        ],
-
         'pagination' => [
             'previous' => 'prev',
             'next' => 'next',

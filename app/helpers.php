@@ -165,7 +165,7 @@ function play_mode_string($val)
         case 1:
             return 'taiko';
         case 2:
-            return 'ctb';
+            return 'fruits';
         case 3:
             return 'mania';
     }

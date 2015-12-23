@@ -353,9 +353,9 @@ class BeatmapSet extends Model
                 $mode = Beatmap::TAIKO;
                 break;
 
-            case 'ctb':
-            case Beatmap::CTB:
-                $mode = Beatmap::CTB;
+            case 'fruits':
+            case Beatmap::FRUITS:
+                $mode = Beatmap::FRUITS;
                 break;
 
             case 'mania':

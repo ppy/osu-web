@@ -19,7 +19,7 @@
  */
 namespace App\Models\UserStatistics;
 
-class Ctb extends Model
+class Fruits extends Model
 {
     protected $table = 'osu_user_stats_fruits';
 }

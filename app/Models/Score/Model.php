@@ -69,7 +69,7 @@ abstract class Model extends BaseModel
                 $instance = new Taiko;
                 break;
 
-            case Beatmap::CTB:
+            case Beatmap::FRUITS:
                 $instance = new Fruits;
                 break;
 

@@ -537,9 +537,9 @@ class User extends Model implements AuthenticatableContract
         return $this->hasOne("App\Models\UserStatistics\Osu", 'user_id', 'user_id');
     }
 
-    public function statisticsCtb()
+    public function statisticsFruits()
     {
-        return $this->hasOne("App\Models\UserStatistics\Ctb", 'user_id', 'user_id');
+        return $this->hasOne("App\Models\UserStatistics\Fruits", 'user_id', 'user_id');
     }
 
     public function statisticsMania()
@@ -554,7 +554,7 @@ class User extends Model implements AuthenticatableContract
 
     public function statistics($mode, $returnQuery = false)
     {
-        if (!in_array($mode, ['osu', 'ctb', 'mania', 'taiko'], true)) {
+        if (!in_array($mode, ['osu', 'fruits', 'mania', 'taiko'], true)) {
             return;
         }
 
@@ -569,7 +569,7 @@ class User extends Model implements AuthenticatableContract
     public function statisticsAll($returnQuery = false)
     {
         $all = [];
-        foreach (['osu', 'ctb', 'mania', 'taiko'] as $mode) {
+        foreach (['osu', 'fruits', 'mania', 'taiko'] as $mode) {
             $all[$mode] = $this->statistics($mode, $returnQuery);
         }
 
@@ -645,7 +645,7 @@ class User extends Model implements AuthenticatableContract
             case 'taiko':
                 $attribute = 1;
                 break;
-            case 'ctb':
+            case 'fruits':
                 $attribute = 2;
                 break;
             case 'mania':
@@ -663,7 +663,7 @@ class User extends Model implements AuthenticatableContract
         return $this->getScore('osu_user_stats');
     }
 
-    public function getCtbScoreAttribute($value)
+    public function getFruitsScoreAttribute($value)
     {
         return $this->getScore('osu_user_stats_fruits');
     }
