@@ -340,39 +340,6 @@ class BeatmapSet extends Model
         return $query->orderBy($order, $by);
     }
 
-    public static function mode()
-    {
-        switch (Request::input('mode', 'all')) {
-            case 'osu':
-            case Beatmap::OSU:
-                $mode = Beatmap::OSU;
-                break;
-
-            case 'taiko':
-            case Beatmap::TAIKO:
-                $mode = Beatmap::TAIKO;
-                break;
-
-            case 'fruits':
-            case Beatmap::FRUITS:
-                $mode = Beatmap::FRUITS;
-                break;
-
-            case 'mania':
-            case Beatmap::MANIA:
-                $mode = Beatmap::MANIA;
-                break;
-
-            case 'all':
-            default:
-                return static::with('beatmaps', 'user');
-        }
-
-        return static::with(['beatmaps' => function ($query) use ($mode) {
-            $query->where('playmode', '=', $mode);
-        }], 'user');
-    }
-
     public function scopeFilters($query)
     {
         switch (Request::input('filter')) {
