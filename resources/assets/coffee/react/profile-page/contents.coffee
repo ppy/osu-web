@@ -27,7 +27,7 @@ class ProfilePage.Contents extends React.Component
 
 
   render: =>
-    tabs = ['osu', 'taiko', 'ctb', 'mania']
+    tabs = ['osu', 'taiko', 'fruits', 'mania']
 
     el 'div', className: 'osu-layout__row osu-layout__row--page-profile',
       el 'div', className: 'profile-tabs',

@@ -109,7 +109,7 @@ class APIController extends Controller
         $type = Request::input('type');
         $event_days = min(31, (int) Request::input('event_days', 1));
 
-        if (!in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
+        if (!in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::FRUITS, Beatmap::MANIA])) {
             return Response::json([]);
         }
 
@@ -203,7 +203,7 @@ class APIController extends Controller
         $mode = Request::input('m', 0);
         $type = Request::input('type', 'id');
 
-        if (!in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
+        if (!in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::FRUITS, Beatmap::MANIA])) {
             return;
         }
 
@@ -236,7 +236,7 @@ class APIController extends Controller
         $id = Request::input('u');
         $type = Request::input('type', 'id');
 
-        if (!present($mode) || !in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
+        if (!present($mode) || !in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::FRUITS, Beatmap::MANIA])) {
             return Response::json([]);
         }
 
@@ -273,7 +273,7 @@ class APIController extends Controller
         $beatmap_id = Request::input('b'); // - specify a beatmap_id to return metadata from.
         $user_id = Request::input('u'); // - specify a user_id or a username to return metadata from.
         $type = Request::input('type'); // - specify if `u` is a user_id or a username. Use `string` for usernames or `id` for user_ids. Optional, default behaviour is automatic recognition (may be problematic for usernames made up of digits only).
-        $mode = Request::input('m'); // - mode (0 = osu!, 1 = Taiko, 2 = CtB, 3 = osu!mania). Optional, maps of all modes are returned by default.
+        $mode = Request::input('m'); // - mode (0 = osu!, 1 = Taiko, 2 = osu!catch, 3 = osu!mania). Optional, maps of all modes are returned by default.
         $include_converted = Request::input('a', 0); // - specify whether converted beatmaps are included (0 = not included, 1 = included). Only has an effect if `m` is chosen and not 0. Converted maps show their converted difficulty rating. Optional, default is 0.
         $hash = Request::input('h'); // - the beatmap hash. It can be used, for instance, if you're trying to get what beatmap has a replay played in, as .osr replays only provide beatmap hashes (example of hash: a5b99395a42bd55bc5eb1d2411cbdf8b). Optional, by default all beatmaps are returned independently from the hash.
         $limit = Request::input('limit', 500); // - amount of results. Optional, default and maximum are 500.
@@ -303,7 +303,7 @@ class APIController extends Controller
             $beatmaps = $beatmaps->where('osu_beatmaps.user_id', $user->user_id);
         }
 
-        if (!in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::CTB, Beatmap::MANIA])) {
+        if (!in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::FRUITS, Beatmap::MANIA])) {
             return Response::json([]);
         }
 

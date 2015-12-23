@@ -30,4 +30,4 @@ class ProfilePage.ContentsTab extends React.Component
       href: '#'
       onClick: @onClick
       className: className
-      Lang.get "common.play_mode.#{@props.mode}"
+      Lang.get "beatmaps.mode.#{@props.mode}"

@@ -17,7 +17,7 @@ class ProfilePage.RecentActivities extends React.Component
               user: osu.link(event.user.url, event.user.username)
               rank: event.rank
               beatmap: osu.link(event.beatmap.url, event.beatmap.title)
-              mode: Lang.get "common.play_mode.#{event.mode}"
+              mode: Lang.get "beatmaps.mode.#{event.mode}"
 
       when 'rankLost'
         text = el 'div',
@@ -27,7 +27,7 @@ class ProfilePage.RecentActivities extends React.Component
               user: osu.link(event.user.url, event.user.username)
               rank: event.rank
               beatmap: osu.link(event.beatmap.url, event.beatmap.title)
-              mode: Lang.get "common.play_mode.#{event.mode}"
+              mode: Lang.get "beatmaps.mode.#{event.mode}"
 
       when 'beatmapSetDelete'
         text = el 'div',

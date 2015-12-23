@@ -56,7 +56,7 @@ class Beatmap extends Model
     // playmodes
     const OSU = 0;
     const TAIKO = 1;
-    const CTB = 2;
+    const FRUITS = 2;
     const MANIA = 3;
 
     public function mods()

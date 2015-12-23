@@ -26,7 +26,7 @@ class Combined extends Score\Combined
         $osu = Osu::forUser($user);
         $taiko = Taiko::forUser($user);
         $mania = Mania::forUser($user);
-        $fruits = Fruit::forUser($user);
+        $fruits = Fruits::forUser($user);
 
         return $osu->union($taiko)->union($mania)->union($fruits);
     }

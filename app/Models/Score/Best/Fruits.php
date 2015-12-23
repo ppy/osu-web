@@ -19,7 +19,7 @@
  */
 namespace App\Models\Score\Best;
 
-class Fruit extends Model
+class Fruits extends Model
 {
     protected $table = 'osu_scores_fruits_high';
 

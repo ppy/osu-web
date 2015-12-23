@@ -46,7 +46,7 @@ class BeatmapController extends Controller
             ['id' => null, 'name' => trans('beatmaps.mode.any')],
             ['id' => Beatmap::OSU, 'name' => trans('beatmaps.mode.osu')],
             ['id' => Beatmap::TAIKO, 'name' => trans('beatmaps.mode.taiko')],
-            ['id' => Beatmap::CTB, 'name' => trans('beatmaps.mode.catch')],
+            ['id' => Beatmap::FRUITS, 'name' => trans('beatmaps.mode.fruits')],
             ['id' => Beatmap::MANIA, 'name' => trans('beatmaps.mode.mania')],
         ];
 
