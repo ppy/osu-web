@@ -41,7 +41,7 @@ abstract class Model extends BaseModel
                 break;
 
             case Beatmap::CTB:
-                $instance = new Fruit;
+                $instance = new Fruits;
                 break;
 
             case Beatmap::MANIA:
