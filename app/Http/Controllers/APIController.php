@@ -105,11 +105,11 @@ class APIController extends Controller
     public function getUser()
     {
         $id = Request::input('u');
-        $mode = Request::input('m', 0);
+        $mode = Beatmap::modeStr(intval(Request::input('m', 0)));
         $type = Request::input('type');
         $event_days = min(31, (int) Request::input('event_days', 1));
 
-        if (!in_array($mode, [Beatmap::OSU, Beatmap::TAIKO, Beatmap::FRUITS, Beatmap::MANIA])) {
+        if ($mode === null) {
             return Response::json([]);
         }
 
@@ -119,7 +119,7 @@ class APIController extends Controller
         }
 
         $stats = fractal_api_serialize_item(
-            $user->statistics(play_mode_string($mode), true)->first(),
+            $user->statistics($mode, true)->first(),
             new StatisticsTransformer()
         );
 

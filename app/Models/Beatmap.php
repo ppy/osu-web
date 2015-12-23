@@ -64,6 +64,33 @@ class Beatmap extends Model
         return $this->hasMany(Mod::class, 'beatmap_id', 'beatmap_id');
     }
 
+    public static function modes()
+    {
+        return [
+            'osu' => 0,
+            'taiko' => 1,
+            'fruits' => 2,
+            'mania' => 3,
+        ];
+    }
+
+    public static function modeInt($str)
+    {
+        if (isset(static::modes()[$str]) === true) {
+            return static::modes()[$str];
+        }
+    }
+
+    public static function modeStr($int)
+    {
+        $str = array_search($int, static::modes(), true);
+
+        if ($str !== false) {
+            return $str;
+        }
+    }
+
+
     public function set()
     {
         return $this->belongsTo(BeatmapSet::class, 'beatmapset_id');
