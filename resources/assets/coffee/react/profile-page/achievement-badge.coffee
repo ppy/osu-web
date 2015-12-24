@@ -20,9 +20,6 @@ el = React.createElement
 
 class ProfilePage.AchievementBadge extends React.Component
   onMouseOver: (event) =>
-    # remove to reenable
-    return
-
     name = event.target.getAttribute 'data-tooltip-target'
 
     options =
@@ -35,22 +32,32 @@ class ProfilePage.AchievementBadge extends React.Component
       show:
         event: event.type
         ready: true
+      hide:
+        fixed: true
+        delay: 300
       style:
         classes: 'qtip tooltip-achievement__main'
 
     $(event.target).qtip options, event
 
 
+  filename: (retina = false, suffix) =>
+    filename = "/images/badges/user-achievements/#{@props.achievement.slug}"
+
+    filename += "-#{suffix}" if suffix
+    filename += '@2x' if retina
+
+    "#{filename}.png"
+
+
   render: =>
-    filename = "/images/badges/user-achievements/#{@props.achievement.slug}.png"
-    filename2x = "/images/badges/user-achievements/#{@props.achievement.slug}@2x.png"
-    srcSet = "#{filename} 1x, #{filename2x} 2x"
+    srcSet = "#{@filename()} 1x, #{@filename(true)} 2x"
     tooltipId = "#{@props.achievement.slug}-#{Math.floor(Math.random() * 1000000)}"
 
     div
       className: "badge-achievement #{@props.additionalClasses}",
       img
-        src: filename
+        src: @filename()
         srcSet: srcSet
         alt: @props.achievement.name
         title: @props.achievement.name
@@ -69,9 +76,15 @@ class ProfilePage.AchievementBadge extends React.Component
           div
             className: 'tooltip-achievement__badge'
             img
-              src: filename
-              srcSet: srcSet
+              src: @filename false, 'big'
+              srcSet: "#{@filename false, 'big'} 1x, #{@filename true, 'big'} 2x"
               alt: @props.achievement.name
           div
             className: 'tooltip-achievement__content'
-            @props.achievement.name
+            div
+              className: 'tooltip-achievement__nickname'
+              @props.achievement.name
+            div
+              className: 'tooltip-achievement__description'
+              dangerouslySetInnerHTML:
+                __html: @props.achievement.description

@@ -34,6 +34,7 @@ class UserAchievementTransformer extends Fractal\TransformerAbstract
             'grouping' => $achievement->grouping,
             'slug' => $achievement->slug,
             'achieved_at' => $userAchievement->date->toIso8601String(),
+            'description' => $achievement->quest_instructions,
         ];
     }
 }
