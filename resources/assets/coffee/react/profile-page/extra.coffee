@@ -101,3 +101,4 @@ class ProfilePage.Extra extends React.Component
         el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
       el ProfilePage.RecentActivities, recentActivities: @props.recentActivities
       el ProfilePage.Kudosu, user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu
+      el ProfilePage.TopRanks, user: @props.user, scoresBest: @props.scoresBest

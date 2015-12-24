@@ -69,6 +69,7 @@ class ProfilePage.Main extends React.Component
 
   render: =>
     stats = @props.allStats[@state.mode].data
+    scoresBest = @props.allScoresBest[@state.mode].data
 
     div className: 'osu-layout__section',
       el ProfilePage.Header,
@@ -88,5 +89,6 @@ class ProfilePage.Main extends React.Component
         recentActivities: @props.recentActivities
         recentlyReceivedKudosu: @props.recentlyReceivedKudosu
         user: @state.user
+        scoresBest: scoresBest
         withEdit: @props.withEdit
         userPage: @state.userPage
