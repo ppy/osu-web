@@ -34,7 +34,7 @@ class ProfilePage.AchievementBadge extends React.Component
         ready: true
       hide:
         fixed: true
-        delay: 300
+        delay: 100
       style:
         classes: 'qtip tooltip-achievement__main'
 
