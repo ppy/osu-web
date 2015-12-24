@@ -36,6 +36,7 @@ class ScoreBestTransformer extends Fractal\TransformerAbstract
             'weight' => $scoreBest->weight(),
             'weightedPp' => $scoreBest->weightedPp(),
             'accuracy' => $scoreBest->accuracy(),
+            'rank' => $scoreBest->rank,
         ];
     }
 
