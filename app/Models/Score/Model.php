@@ -63,6 +63,11 @@ abstract class Model extends BaseModel
         return $this->belongsTo(User::class);
     }
 
+    public function beatmap()
+    {
+        return $this->belongsTo(Beatmap::class);
+    }
+
     public function beatmapSet()
     {
         return $this->belongsTo(BeatmapSet::class, 'beatmapset_id');
