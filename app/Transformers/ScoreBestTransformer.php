@@ -24,6 +24,10 @@ use League\Fractal;
 
 class ScoreBestTransformer extends Fractal\TransformerAbstract
 {
+    protected $availableIncludes = [
+        'beatmapSet',
+    ];
+
     public function transform(ScoreBest $scoreBest)
     {
         return [
@@ -33,5 +37,10 @@ class ScoreBestTransformer extends Fractal\TransformerAbstract
             'weightedPp' => $scoreBest->weightedPp(),
             'accuracy' => $scoreBest->accuracy(),
         ];
+    }
+
+    public function includeBeatmapSet(ScoreBest $scoreBest)
+    {
+        return $this->item($scoreBest->beatmapSet, new BeatmapSetTransformer);
     }
 }

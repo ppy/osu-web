@@ -20,6 +20,7 @@
 namespace App\Transformers;
 
 use App\Models\Achievement;
+use App\Models\Beatmap;
 use App\Models\User;
 use App\Models\Score\Best\Model as ScoreBestModel;
 use League\Fractal;
@@ -100,9 +101,11 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($user, function ($user) {
             $all = [];
-            foreach ($user->scoresBestAll(100) as $mode => $scores) {
+            foreach (array_keys(Beatmap::modes()) as $mode) {
+                $scores = $user->scoresBest($mode, true)->with('beatmapSet')->limit(100)->get();
                 ScoreBestModel::fillInPosition($scores);
-                $all[$mode] = fractal_collection_array($scores, new ScoreBestTransformer());
+
+                $all[$mode] = fractal_collection_array($scores, new ScoreBestTransformer(), 'beatmapSet');
             }
 
             return $all;

@@ -21,6 +21,7 @@ namespace App\Models\Score;
 
 use Illuminate\Database\Eloquent\Model as BaseModel;
 use App\Models\Beatmap;
+use App\Models\BeatmapSet;
 use App\Models\User;
 
 abstract class Model extends BaseModel
@@ -60,6 +61,11 @@ abstract class Model extends BaseModel
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function beatmapSet()
+    {
+        return $this->belongsTo(BeatmapSet::class, 'beatmapset_id');
     }
 
     public static function getClass($modeInt)
