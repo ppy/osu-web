@@ -63,16 +63,10 @@ class BeatmapController extends Controller
             ['id' => 1, 'name' => trans('beatmaps.extra.storyboard')],
         ];
 
-        $ranks = [
-            ['id' => 'XH', 'name' => trans('beatmaps.rank.silver-ss')],
-            ['id' => 'X', 'name' => trans('beatmaps.rank.ss')],
-            ['id' => 'SH', 'name' => trans('beatmaps.rank.silver-s')],
-            ['id' => 'S', 'name' => trans('beatmaps.rank.s')],
-            ['id' => 'A', 'name' => trans('beatmaps.rank.a')],
-            ['id' => 'B', 'name' => trans('beatmaps.rank.b')],
-            ['id' => 'C', 'name' => trans('beatmaps.rank.c')],
-            ['id' => 'D', 'name' => trans('beatmaps.rank.d')],
-        ];
+        $ranks = [];
+        foreach (['XH', 'X', 'SH', 'S', 'A', 'B', 'C', 'D'] as $rank) {
+            $ranks[] = ['id' => $rank, 'name' => trans("beatmaps.rank.{$rank}")];
+        }
 
         $filters = ['data' => compact('modes', 'statuses', 'genres', 'languages', 'extras', 'ranks')];
 
