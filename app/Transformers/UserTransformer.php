@@ -100,7 +100,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($user, function ($user) {
             $all = [];
-            foreach ($user->scoresBestAll() as $mode => $scores) {
+            foreach ($user->scoresBestAll(100) as $mode => $scores) {
                 ScoreBestModel::fillInPosition($scores);
                 $all[$mode] = fractal_collection_array($scores, new ScoreBestTransformer());
             }

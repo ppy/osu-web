@@ -614,11 +614,19 @@ class User extends Model implements AuthenticatableContract
         }
     }
 
-    public function scoresBestAll($returnQuery = false)
+    public function scoresBestAll($limit = null, $returnQuery = false)
     {
         $all = [];
-        foreach (['osu', 'fruits', 'mania', 'taiko'] as $mode) {
-            $all[$mode] = $this->scoresBest($mode, $returnQuery);
+        foreach (array_keys(Beatmap::modes()) as $mode) {
+            if ($limit === null) {
+                $all[$mode] = $this->scoresBest($mode, $returnQuery);
+            } else {
+                $all[$mode] = $this->scoresBest($mode, true)->limit($limit);
+
+                if ($returnQuery === false) {
+                    $all[$mode] = $all[$mode]->get();
+                }
+            }
         }
 
         return $all;
