@@ -3,19 +3,30 @@
 		padding: 5px;
 	}
 	&-header--background {
-		height: 300px;
-		background-size: 100%;
+		@media @desktop {
+			height: 300px;
+		}
+		background-size: cover;
 		background-repeat: no-repeat;
 		background-image: url('/images/headers/faq.png');
 	}
 	&-input-container {
-		width: 90%;
+		width: 100%;
+		@media @desktop {
+			width: 90%;
+		}
 	}
 	&-input-wrapper {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		height: 100%;
+		padding-left: 0px;
+		padding-right: 0px;
+		@media @desktop {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
 	}
 	&-listing > div {
 		padding-left: 5px;
