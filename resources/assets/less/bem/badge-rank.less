@@ -17,9 +17,9 @@
  *
  */
 .badge-rank {
-  @size: 50px;
-  width: @size;
-  height: @size;
+  @_size: 100%;
+  width: @_size;
+  height: @_size;
   background-size: cover;
 
   ._bg(@rank) {
@@ -34,4 +34,10 @@
   &--B { ._bg("B"); }
   &--C { ._bg("C"); }
   &--D { ._bg("D"); }
+
+  &--medium {
+    @_size: 50px;
+    width: @_size;
+    height: @_size;
+  }
 }
