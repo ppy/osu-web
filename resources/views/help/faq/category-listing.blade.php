@@ -11,6 +11,13 @@
                    		<li class="faq__list-heading--item faq__list-heading--link"><a href="/help/faq/view/{{$article->id}}">{{$article->title}}</a></li>
                     @endforeach
                 </ul>
+	            <div class="forum-post__actions">
+		            <div class="forum-post-actions">
+			            <a class="forum-post-actions__action" href="/help/faq/create/{{$category->id}}">
+			            	<i class="fa fa-plus"></i>
+			            </a>
+		            </div>
+	            </div>
             </div>
         </div>
 </div>

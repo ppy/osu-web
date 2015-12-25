@@ -68,6 +68,12 @@
 	&--page-main {
 		&:extend(.faq__row--page);
 		height: 100%;
+		&:hover .forum-post__actions {
+			opacity: 1;
+		}
+		& .forum-post__actions {
+			z-index: 9000;
+		}
 	}
 }
 .faq__list {
