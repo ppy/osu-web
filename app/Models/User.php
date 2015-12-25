@@ -111,8 +111,8 @@ class User extends Model implements AuthenticatableContract
             return Carbon::now()->addYears(10);
         }
 
-        $playCount = array_reduce($user->statisticsAll(true), function ($result, $stats) {
-                return $result + $stats->value('playcount');
+        $playCount = array_reduce(array_keys(Beatmap::modes()), function ($result, $mode) use ($user) {
+                return $result + $user->statistics($mode, true)->value('playcount');
             }, 0);
 
         return $user->user_lastvisit
@@ -565,16 +565,6 @@ class User extends Model implements AuthenticatableContract
         } else {
             return $this->$relation;
         }
-    }
-
-    public function statisticsAll($returnQuery = false)
-    {
-        $all = [];
-        foreach (['osu', 'fruits', 'mania', 'taiko'] as $mode) {
-            $all[$mode] = $this->statistics($mode, $returnQuery);
-        }
-
-        return $all;
     }
 
     public function scoresBestOsu()

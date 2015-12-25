@@ -89,8 +89,8 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($user, function ($user) {
             $all = [];
-            foreach ($user->statisticsAll() as $mode => $statistics) {
-                $all[$mode] = fractal_item_array($statistics, new UserStatisticsTransformer());
+            foreach (array_keys(Beatmap::modes()) as $mode) {
+                $all[$mode] = fractal_item_array($user->statistics($mode), new UserStatisticsTransformer());
             }
 
             return $all;
