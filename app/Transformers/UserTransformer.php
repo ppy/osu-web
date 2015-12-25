@@ -105,7 +105,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                 $scores = $user->scoresBest($mode, true)->with('beatmapSet')->limit(100)->get();
                 ScoreBestModel::fillInPosition($scores);
 
-                $all[$mode] = fractal_collection_array($scores, new ScoreBestTransformer(), 'beatmapSet');
+                $all[$mode] = fractal_collection_array($scores, new ScoreBestTransformer(), 'beatmap,beatmapSet');
             }
 
             return $all;

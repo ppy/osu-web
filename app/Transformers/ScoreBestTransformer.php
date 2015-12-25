@@ -25,19 +25,27 @@ use League\Fractal;
 class ScoreBestTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
+        'beatmap',
         'beatmapSet',
     ];
 
     public function transform(ScoreBest $scoreBest)
     {
         return [
+            'id' => $scoreBest->score_id,
             'created_at' => $scoreBest->date->toIso8601String(),
             'pp' => $scoreBest->pp,
             'weight' => $scoreBest->weight(),
             'weightedPp' => $scoreBest->weightedPp(),
             'accuracy' => $scoreBest->accuracy(),
             'rank' => $scoreBest->rank,
+            'mods' => $scoreBest->enabled_mods,
         ];
+    }
+
+    public function includeBeatmap(ScoreBest $scoreBest)
+    {
+        return $this->item($scoreBest->beatmap, new BeatmapTransformer);
     }
 
     public function includeBeatmapSet(ScoreBest $scoreBest)

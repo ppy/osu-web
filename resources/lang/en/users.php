@@ -89,7 +89,12 @@ return [
                 'title' => 'Recent Activities',
             ],
             'top_ranks' => [
+                'best' => [
+                    'title' => 'Best Performance',
+                ],
+                'pp' => ':amountpp',
                 'title' => 'Top Ranks',
+                'weighted_pp' => 'weighted :percentage (:pp)',
             ],
         ],
         'first_members' => 'here since the beginning',
