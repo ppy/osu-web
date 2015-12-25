@@ -82,4 +82,9 @@ class FaqController extends Controller
         }
         return response()->json([]);
     }
+    public function getCategory($categoryId)
+    {
+        $category = Category::findOrFail($categoryId);
+        return view('help.faq.category-listing', compact('category'));
+    }
 }

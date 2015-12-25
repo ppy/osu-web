@@ -75,7 +75,7 @@ class Faq.Category extends React.Component
             @state.searchResults.map (article) -> el Faq.CategoryArticleLink,
               article: article,
               key: article.id
-        if !@props.isMain then el 'a', href: '#', className: "faq__list--more", "more"
+        if !@props.isMain then el 'a', href: '/help/faq/category/' + @state.id, className: "faq__list--more", "more"
         if !@props.isMain
           el 'div', className: 'forum-post__actions',
             el 'div', className: 'forum-post-actions',

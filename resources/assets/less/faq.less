@@ -45,6 +45,7 @@
 		font-size: 30px;
 	}
 	&--item {
+		padding-top: 15px;
 		list-style: none;
 		text-decoration: none;
 	}
@@ -63,6 +64,10 @@
 		& .forum-post__actions {
 			z-index: 9000;
 		}
+	}
+	&--page-main {
+		&:extend(.faq__row--page);
+		height: 100%;
 	}
 }
 .faq__list {
@@ -85,14 +90,20 @@
 		font-size: 18px;
 	}
 	&--more {
+		position: absolute;
 		&::after{
 			content: " »";
 		}
 		&:hover {
 			color: @grey-9;
 		}
+		@media @desktop {
+			left: auto;
+			right: 15px;
+		}
 		color: @grey-9;
-		float: right;
+		left: 15px;
+		bottom: 25px;
 	}
 }
 .faq__article {
