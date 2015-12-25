@@ -106,4 +106,4 @@ class ProfilePage.TopRanks extends React.Component
               li className: 'text-center',
                 a href: '#', onClick: @_increaseLimit('best'), 'show more'
         else
-          p className: 'profile-extra-entries', Lang.get('scores.empty')
+          p className: 'profile-extra-entries', Lang.get('users.show.extra.top_ranks.empty')

@@ -92,6 +92,7 @@ return [
                 'best' => [
                     'title' => 'Best Performance',
                 ],
+                'empty' => 'No awesome performance records yet. :(',
                 'pp' => ':amountpp',
                 'title' => 'Top Ranks',
                 'weighted_pp' => 'weighted :percentage (:pp)',
