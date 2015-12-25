@@ -73,4 +73,13 @@ class FaqController extends Controller
         $article = Article::findOrFail($articleId);
         return view('help.faq.view', compact('article'));
     }
+    public function getSearch(Request $request)
+    {
+        $searchQuery = $request->input("query", false);
+        if ($searchQuery != false) {
+            $articles = Article::whereRaw("MATCH(title,content) AGAINST(? IN BOOLEAN MODE)", [$searchQuery])->get();
+            return response()->json($articles->toArray());
+        }
+        return response()->json([]);
+    }
 }

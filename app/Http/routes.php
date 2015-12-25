@@ -95,6 +95,7 @@ Route::group(['prefix' => '/help/faq'], function() {
     Route::get('/view/{id}', ['as' => 'faq.view', 'uses' => 'Faq\FaqController@getView']);
     Route::get('/update/{id}', ['as' => 'faq.update', 'uses' => 'Faq\FaqController@getUpdate']);
     Route::post('/update/{id}', ['as' => 'faq.update', 'uses' => 'Faq\FaqController@postUpdate']);
+    Route::get('/search', ['as' => 'faq.search', 'uses' => 'Faq\FaqController@getSearch']);
 });
 
 // store admin

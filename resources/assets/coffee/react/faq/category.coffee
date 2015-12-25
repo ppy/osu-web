@@ -23,9 +23,8 @@ class Faq.Category extends React.Component
       $.subscribe "faq:search:typed", @changeToSearch
       $.subscribe "faq:search:emptied", @changeToCommon
   fillSearch: (e, data) =>
-    console.log data.results
-    @setState title: "Here are the issues releated"
-    @setState searchResults: data.results
+    @setState title: data.title
+    @setState searchResults: data.searchResults
   changeEditing: (e) =>
     return if @props.isMain
     @setState editing: true
@@ -42,12 +41,13 @@ class Faq.Category extends React.Component
         }
       .done (data) ->
 
-  changeToSearch: =>
+  changeToSearch: (e, content) =>
     @setState title: "Searching..."
     @setState isSearching: true
   changeToCommon: =>
     @setState title: "Most Popular Topics"
     @setState isSearching: false
+    @setState searchResults: []
   render: =>
     headingClass = if @props.isMain then "-heading" else ""
     el 'div', className: 'wide col-sm-' + (if @props.isMain then '12' else '6'),

@@ -5,7 +5,7 @@ el = React.createElement
 class Faq.SearchHeader extends React.Component
   constructor: (props) ->
     super props
-
+    @searchDelay = null
     @state = {
       searchQuery: ""
     }
@@ -16,7 +16,23 @@ class Faq.SearchHeader extends React.Component
     if val is ""
       $.publish "faq:search:emptied"
     else
-      $.publish "faq:search:typed"
+      $.publish "faq:search:typed",  val
+      if @searchDelay != null
+        clearTimeout(@searchDelay)
+      searchCallback = ->
+        $.get "/help/faq/search",
+          {
+            query: val
+          }
+        .done (data) ->
+          $.publish "faq:search:done",
+            {
+              title: "Results for " + val + ": ", searchResults: data
+            }
+      @searchDelay = setTimeout searchCallback, 300
+
+
+
   render: ->
     el 'div', className: "osu-layout__row osu-layout__row--with-gutter faq-header",
       el 'div', className: 'osu-layout__row--page header-row faq-header--background',
