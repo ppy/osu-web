@@ -13,12 +13,14 @@ class Faq.SearchHeader extends React.Component
   changeSearch: (e) =>
     val = $(e.target).val()
     @setState searchQuery: val
+    console.log val
     if val is ""
       $.publish "faq:search:emptied"
+      clearTimeout @searchDelay
     else
       $.publish "faq:search:typed",  val
       if @searchDelay != null
-        clearTimeout(@searchDelay)
+        clearTimeout @searchDelay
       searchCallback = ->
         $.get "/help/faq/search",
           {

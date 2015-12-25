@@ -44,6 +44,7 @@ class Faq.Category extends React.Component
   changeToSearch: (e, content) =>
     @setState title: "Searching..."
     @setState isSearching: true
+    @setState searchResults: []
   changeToCommon: =>
     @setState title: "Most Popular Topics"
     @setState isSearching: false
