@@ -158,4 +158,9 @@ abstract class Model extends BaseModel
     {
         return $this->hits() / $this->totalHits();
     }
+
+    public function scopeDefault($query)
+    {
+        return $query->orderBy('score_id', 'desc');
+    }
 }

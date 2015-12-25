@@ -535,34 +535,74 @@ class User extends Model implements AuthenticatableContract
 
     public function statisticsOsu()
     {
-        return $this->hasOne("App\Models\UserStatistics\Osu", 'user_id', 'user_id');
+        return $this->statistics('osu', true);
     }
 
     public function statisticsFruits()
     {
-        return $this->hasOne("App\Models\UserStatistics\Fruits", 'user_id', 'user_id');
+        return $this->statistics('fruits', true);
     }
 
     public function statisticsMania()
     {
-        return $this->hasOne("App\Models\UserStatistics\Mania", 'user_id', 'user_id');
+        return $this->statistics('mania', true);
     }
 
     public function statisticsTaiko()
     {
-        return $this->hasOne("App\Models\UserStatistics\Taiko", 'user_id', 'user_id');
+        return $this->statistics('taiko', true);
     }
 
     public function statistics($mode, $returnQuery = false)
     {
-        if (!in_array($mode, ['osu', 'fruits', 'mania', 'taiko'], true)) {
+        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
             return;
         }
 
-        $relation = camel_case("statistics_{$mode}");
-        if ($returnQuery) {
-            return $this->{$relation}();
+        $mode = studly_case($mode);
+
+        if ($returnQuery === true) {
+            return $this->hasOne("App\Models\UserStatistics\\{$mode}", 'user_id', 'user_id');
         } else {
+            $relation = "statistics{$mode}";
+
+            return $this->$relation;
+        }
+    }
+
+    public function leadingBeatmapsOsu()
+    {
+        return $this->leadingBeatmaps('osu', true);
+    }
+
+    public function leadingBeatmapsFruits()
+    {
+        return $this->leadingBeatmaps('fruits', true);
+    }
+
+    public function leadingBeatmapsMania()
+    {
+        return $this->leadingBeatmaps('mania', true);
+    }
+
+    public function leadingBeatmapsTaiko()
+    {
+        return $this->leadingBeatmaps('taiko', true);
+    }
+
+    public function leadingBeatmaps($mode, $returnQuery = false)
+    {
+        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+            return;
+        }
+
+        $mode = studly_case($mode);
+
+        if ($returnQuery === true) {
+            return $this->hasMany("App\Models\BeatmapLeader\\{$mode}");
+        } else {
+            $relation = "leadingBeatmaps{$mode}";
+
             return $this->$relation;
         }
     }
