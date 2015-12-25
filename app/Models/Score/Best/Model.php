@@ -58,13 +58,13 @@ abstract class Model extends BaseModel
     public function position()
     {
         if ($this->position === null) {
-            /**
+            /*
              * pp is float and comparing floats is inaccurate thanks to
              * all the castings involved and thus it's better to obtain the
              * number directly from database. The result is this fancy query.
              */
             $this->position = static::where('user_id', $this->user_id)
-                ->where('pp', '>', function($q) {
+                ->where('pp', '>', function ($q) {
                     $q->from($this->table)->where('score_id', $this->score_id)->select('pp');
                 })
                 ->orderBy('pp', 'desc')
