@@ -19,6 +19,8 @@
  */
 namespace App\Http\Controllers;
 
+use Cache;
+
 class CommunityController extends Controller
 {
     /*
@@ -42,6 +44,17 @@ class CommunityController extends Controller
 
     public function getLive()
     {
-        return view('community.live');
+        $streams = null;
+        if (!Cache::has("livestreams"))
+        {
+            $justin_api_url = "https://api.twitch.tv/kraken/streams?on_site=1&limit=40&offset=0&game=Osu!";
+            $data = json_decode(file_get_contents($justin_api_url));
+            $streams = $data->streams;
+            Cache::put('livestreams', $streams, 300);
+        } else {
+            $streams = Cache::get("livestreams");
+        }
+
+        return view('community.live', compact("streams"));
     }
 }

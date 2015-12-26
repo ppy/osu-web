@@ -1,0 +1,123 @@
+.livestreams {
+	a {
+		color: inherit;
+	}
+	&__header {
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-image: url("/images/headers/live-top.png");
+		height: 180px;
+		&--container {
+			& h1, p {
+				color: white;
+			}
+			& h1 {
+				margin: 0;
+				margin-bottom: 10px;
+			}
+			display: flex;
+			justify-content: flex-start;
+			flex-wrap: wrap;
+			align-items: center;
+			height: 100%;
+			@media @desktop {
+				padding-left: 115px;
+				padding-right: 115px;
+			}
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+	}
+	&__row {
+		@media @desktop {
+			padding-left: 10% !important;
+			padding-right: 10% !important;
+		}
+		& > h2 {
+			color: @grey-5;
+			padding-bottom: 15px;
+		}
+	}
+}
+.livestream {
+	&__main {
+		padding-left: 10px;
+		padding-right: 10px;
+		border-radius: 10px;
+		width: 100%;
+		padding-bottom: 75%;
+		transition: all 120ms ease-in-out;
+		float: none !important;
+		.default-box-shadow;
+		&:hover {
+			.thicker-box-shadow;
+		}
+		&--info {
+			& * {
+				.default-text-shadow;
+				color: white;
+			}
+			position: absolute;
+			bottom: 10px;
+			left: 10px;
+		}
+		&--col {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-image: url("/images/testing-twitch.png");
+	}
+	&__regular {
+		transition: all 120ms ease-in-out;
+		border-radius: 10px;
+		word-break: break-all;
+		.default-box-shadow;
+		&:hover {
+			.thicker-box-shadow;
+		}
+		&--col {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+		&--background {
+			border-radius: 10px 10px 0 0 ;
+			width: 100%;
+			padding-bottom: 75%;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-image: url("/images/testing-twitch.png");
+			&-streamer {
+				& * {
+					.default-text-shadow;
+					color: white;
+					line-height: 1.3em;
+				}
+				right: 0;
+				overflow: hidden;
+				position: absolute;
+				bottom: 10px;
+				left: 10px;
+				color: white;
+			}
+			&-watchers {
+				& p {
+					.default-text-shadow;
+					font-size: 1.5em;
+					color: white;
+				}
+				position: absolute;
+				right: 10px;
+				top: 10px;
+			}
+		}
+		&--info {
+			margin: 10px;
+			height: 80px;
+		}
+
+	}
+}
