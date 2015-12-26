@@ -24,15 +24,15 @@
         <div class="osu-layout__row--page header-row livestreams__header">
             <div class="wide col-sm-12 livestreams__header--container">
                 <div>
-                    <h1>Live Streams</h1>
-                    <p>Data is fetched from twitch.tv every five minutes based on the directory listing. Feel free to start streaming and get yourself listed! For more information on how to get setup, please check out the wiki page on live streaming.</p>
+                    <h1>{{ trans('livestreams.top-headers.headline') }}</h1>
+                    <p>{{ trans('livestreams.top-headers.description') }}</p>
                 </div>
             </div>
         </div>
     </div>
     <div class="osu-layout__row osu-layout__row--with-gutter osu-layout__row--page livestreams__row">
     @if ($featuredStream != null)
-        <h2>Featured live stream</h2>
+        <h2>{{ trans('livestreams.headers.featured') }}</h2>
         <div class="livestream__main--col">
             <a href="{{$featuredStream->channel->url}}">
             <div class="wide col-sm-12 livestream__main" style="background-image: url('{{$featuredStream->preview->large}}');">
@@ -57,7 +57,7 @@
             @endif
         </div>
     @endif
-        <h2>Live streams</h2>
+        <h2>{{ trans('livestreams.headers.regular') }}</h2>
         @foreach ($streams as $stream)
             <div class="wide col-sm-4 livestream__regular--col">
                 <div class="livestream__regular">
