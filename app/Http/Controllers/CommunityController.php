@@ -51,30 +51,30 @@ class CommunityController extends Controller
         $streams = null;
         $featuredStream = null;
         $streams = Cache::remember('livestreams', 300, function() {
-            $justin_api_url = "https://api.twitch.tv/kraken/streams?on_site=1&limit=40&offset=0&game=Osu!";
+            $justin_api_url = 'https://api.twitch.tv/kraken/streams?on_site=1&limit=40&offset=0&game=Osu!';
             $data = json_decode(file_get_contents($justin_api_url));
             $streams = $data->streams;
             return $streams;
         });
 
-        if (Cache::has("featuredStream")) {
-            $featuredStreamId = Cache::get("featuredStream");
+        if (Cache::has('featuredStream')) {
+            $featuredStreamId = Cache::get('featuredStream');
             foreach ($streams as $stream) {
                 if ($stream->_id == $featuredStreamId) {
                     $featuredStream = $stream;
                 }
             }
         }
-        return view('community.live', compact("streams", 'featuredStream'));
+        return view('community.live', compact('streams', 'featuredStream'));
     }
     public function postLive(Request $request)
     {
         if (Auth::user() != null && Auth::user()->isGmt()) { 
-            if ($request->has("promote")) 
-                Cache::forever("featuredStream", $request->promote);
+            if ($request->has('promote')) 
+                Cache::forever('featuredStream', $request->promote);
 
-            if ($request->has("unpromote")) 
-                Cache::forget("featuredStream");
+            if ($request->has('unpromote')) 
+                Cache::forget('featuredStream');
         }
         return Redirect::back();
     }
