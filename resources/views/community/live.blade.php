@@ -49,9 +49,13 @@
             @if (Auth::user() != null && Auth::user()->isGmt())
             <div class="forum-post__actions">
                 <div class="forum-post-actions">
-                    <a class="forum-post-actions__action" href="live?unpromote=true">
+                <form action="live" method="POST">
+                    {{csrf_field()}}
+                    <input type="hidden" name="unpromote" value="true">
+                    <a href="#" onclick="$(this).closest('form').submit()" class="forum-post-actions__action">
                         <i class="fa fa-thumbs-down"></i>
                     </a>
+                </form>
                 </div>
             </div>
             @endif
@@ -77,9 +81,13 @@
                     @if (Auth::user() != null && Auth::user()->isGmt())
                     <div class="forum-post__actions">
                         <div class="forum-post-actions">
-                            <a class="forum-post-actions__action" href="live?promote={{$stream->_id}}">
+                        <form action="live" method="POST">
+                            {{csrf_field()}}
+                            <input type="hidden" name="promote" value="{{$stream->_id}}">
+                            <a onclick="$(this).closest('form').submit()" class="forum-post-actions__action" href="#">
                                 <i class="fa fa-thumbs-up"></i>
                             </a>
+                        </form>
                         </div>
                     </div>
                     @endif

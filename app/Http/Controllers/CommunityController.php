@@ -21,6 +21,7 @@ namespace App\Http\Controllers;
 
 use Cache;
 use Auth;
+use Redirect;
 
 use Illuminate\Http\Request;
 
@@ -55,13 +56,6 @@ class CommunityController extends Controller
             $streams = $data->streams;
             return $streams;
         });
-        if (Auth::user() != null && Auth::user()->isGmt()) { 
-            if ($request->has("promote")) 
-                Cache::forever("featuredStream", $request->promote);
-
-            if ($request->has("unpromote")) 
-                Cache::forget("featuredStream");
-        }
 
         if (Cache::has("featuredStream")) {
             $featuredStreamId = Cache::get("featuredStream");
@@ -72,5 +66,16 @@ class CommunityController extends Controller
             }
         }
         return view('community.live', compact("streams", 'featuredStream'));
+    }
+    public function postLive(Request $request)
+    {
+        if (Auth::user() != null && Auth::user()->isGmt()) { 
+            if ($request->has("promote")) 
+                Cache::forever("featuredStream", $request->promote);
+
+            if ($request->has("unpromote")) 
+                Cache::forget("featuredStream");
+        }
+        return Redirect::back();
     }
 }
