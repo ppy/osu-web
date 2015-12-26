@@ -22,7 +22,6 @@ namespace App\Http\Controllers;
 use Cache;
 use Auth;
 use Redirect;
-
 use Illuminate\Http\Request;
 
 class CommunityController extends Controller
@@ -50,10 +49,11 @@ class CommunityController extends Controller
     {
         $streams = null;
         $featuredStream = null;
-        $streams = Cache::remember('livestreams', 300, function() {
+        $streams = Cache::remember('livestreams', 300, function () {
             $justin_api_url = 'https://api.twitch.tv/kraken/streams?on_site=1&limit=40&offset=0&game=Osu!';
             $data = json_decode(file_get_contents($justin_api_url));
             $streams = $data->streams;
+
             return $streams;
         });
 
@@ -65,17 +65,22 @@ class CommunityController extends Controller
                 }
             }
         }
+
         return view('community.live', compact('streams', 'featuredStream'));
     }
+
     public function postLive(Request $request)
     {
-        if (Auth::user() != null && Auth::user()->isGmt()) { 
-            if ($request->has('promote')) 
+        if (Auth::user() != null && Auth::user()->isGmt()) {
+            if ($request->has('promote')) {
                 Cache::forever('featuredStream', $request->promote);
+            }
 
-            if ($request->has('unpromote')) 
+            if ($request->has('unpromote')) {
                 Cache::forget('featuredStream');
+            }
         }
+
         return Redirect::back();
     }
 }
