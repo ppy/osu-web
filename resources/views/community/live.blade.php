@@ -31,29 +31,35 @@
         </div>
     </div>
     <div class="osu-layout__row osu-layout__row--with-gutter osu-layout__row--page livestreams__row">
-    {{--
+    @if ($featuredStream != null)
         <h2>Featured live stream</h2>
         <div class="livestream__main--col">
-            <div class="wide col-sm-12 livestream__main">
+            <a href="{{$featuredStream->channel->url}}">
+            <div class="wide col-sm-12 livestream__main" style="background-image: url('{{$featuredStream->preview->large}}');">
                 <div class="livestream__main--info">
-                    <h3>Kano</h3>
-                    <p>
-                        Kano | 2.8k mouse-hybrid - 2k
-                        <br/>
-                        follower hype
+                    <h3>{{$featuredStream->channel->name}}</h3>
+                    <p>{{$featuredStream->channel->status}}
                     </p>
                     <p>
-                        5,264 <i class="fa fa-eye"></i>
+                        {{$featuredStream->viewers}} <i class="fa fa-eye"></i>
                     </p>
                 </div>
             </div>
+            </a>
+            <div class="forum-post__actions">
+                <div class="forum-post-actions">
+                    <a class="forum-post-actions__action" href="live?unpromote=true">
+                        <i class="fa fa-thumbs-down"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-        --}}
+    @endif
         <h2>Live streams</h2>
         @foreach ($streams as $stream)
-        <a href="{{$stream->channel->url}}">
             <div class="wide col-sm-4 livestream__regular--col">
                 <div class="livestream__regular">
+                    <a href="{{$stream->channel->url}}">
                     <div class="livestream__regular--background" style="background-image: url('{{$stream->preview->medium}}');">
                         <div class="livestream__regular--background-streamer">
                             <h2>{{$stream->channel->name}}</h2>
@@ -65,9 +71,17 @@
                     <div class="livestream__regular--info">
                         <p>{{$stream->channel->status}}</p>
                     </div>
+                    </a>
+                    <div class="forum-post__actions">
+                        <div class="forum-post-actions">
+                            <a class="forum-post-actions__action" href="live?promote={{$stream->_id}}">
+                                <i class="fa fa-thumbs-up"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </a>
+        
         @endforeach
     </div>
 </div>

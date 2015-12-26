@@ -64,13 +64,26 @@
 		&--col {
 			padding-left: 10px;
 			padding-right: 10px;
+			&:hover .forum-post__actions {
+				opacity: 1;
+			}
+			& .forum-post__actions {
+				color: white;
+				z-index: 9000;
+			}
 		}
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: center center;
-		background-image: url("/images/testing-twitch.png");
 	}
 	&__regular {
+		&:hover .forum-post__actions {
+			opacity: 1;
+		}
+		& .forum-post__actions {
+			color: white;
+			z-index: 9000;
+		}
 		transition: all 120ms ease-in-out;
 		border-radius: 10px;
 		word-break: break-all;
@@ -89,7 +102,6 @@
 			background-size: cover;
 			background-repeat: no-repeat;
 			background-position: center center;
-			background-image: url("/images/testing-twitch.png");
 			&-streamer {
 				& * {
 					.default-text-shadow;

@@ -21,6 +21,8 @@ namespace App\Http\Controllers;
 
 use Cache;
 
+use Illuminate\Http\Request;
+
 class CommunityController extends Controller
 {
     /*
@@ -42,9 +44,10 @@ class CommunityController extends Controller
         return view('community.chat');
     }
 
-    public function getLive()
+    public function getLive(Request $request)
     {
         $streams = null;
+        $featuredStream = null;
         if (!Cache::has("livestreams"))
         {
             $justin_api_url = "https://api.twitch.tv/kraken/streams?on_site=1&limit=40&offset=0&game=Osu!";
@@ -55,6 +58,20 @@ class CommunityController extends Controller
             $streams = Cache::get("livestreams");
         }
 
-        return view('community.live', compact("streams"));
+        if ($request->has("promote")) 
+            Cache::forever("featuredStream", $request->promote);
+
+        if ($request->has("unpromote")) 
+            Cache::forget("featuredStream");
+
+        if (Cache::has("featuredStream")) {
+            $featuredStreamId = Cache::get("featuredStream");
+            foreach ($streams as $stream) {
+                if ($stream->_id == $featuredStreamId) {
+                    $featuredStream = $stream;
+                }
+            }
+        }
+        return view('community.live', compact("streams", 'featuredStream'));
     }
 }
