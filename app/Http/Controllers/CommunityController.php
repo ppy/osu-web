@@ -49,16 +49,12 @@ class CommunityController extends Controller
     {
         $streams = null;
         $featuredStream = null;
-        if (!Cache::has("livestreams"))
-        {
+        $streams = Cache::remember('livestreams', 300, function() {
             $justin_api_url = "https://api.twitch.tv/kraken/streams?on_site=1&limit=40&offset=0&game=Osu!";
             $data = json_decode(file_get_contents($justin_api_url));
             $streams = $data->streams;
-            Cache::put('livestreams', $streams, 300);
-        } else {
-            $streams = Cache::get("livestreams");
-        }
-        
+            return $streams;
+        });
         if (Auth::user() != null && Auth::user()->isGmt()) { 
             if ($request->has("promote")) 
                 Cache::forever("featuredStream", $request->promote);
