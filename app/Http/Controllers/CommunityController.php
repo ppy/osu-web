@@ -20,6 +20,7 @@
 namespace App\Http\Controllers;
 
 use Cache;
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -57,12 +58,14 @@ class CommunityController extends Controller
         } else {
             $streams = Cache::get("livestreams");
         }
+        
+        if (Auth::user() != null && Auth::user()->isGmt()) { 
+            if ($request->has("promote")) 
+                Cache::forever("featuredStream", $request->promote);
 
-        if ($request->has("promote")) 
-            Cache::forever("featuredStream", $request->promote);
-
-        if ($request->has("unpromote")) 
-            Cache::forget("featuredStream");
+            if ($request->has("unpromote")) 
+                Cache::forget("featuredStream");
+        }
 
         if (Cache::has("featuredStream")) {
             $featuredStreamId = Cache::get("featuredStream");

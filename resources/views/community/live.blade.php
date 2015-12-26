@@ -46,6 +46,7 @@
                 </div>
             </div>
             </a>
+            @if (Auth::user() != null && Auth::user()->isGmt())
             <div class="forum-post__actions">
                 <div class="forum-post-actions">
                     <a class="forum-post-actions__action" href="live?unpromote=true">
@@ -53,6 +54,7 @@
                     </a>
                 </div>
             </div>
+            @endif
         </div>
     @endif
         <h2>Live streams</h2>
@@ -72,6 +74,7 @@
                         <p>{{$stream->channel->status}}</p>
                     </div>
                     </a>
+                    @if (Auth::user() != null && Auth::user()->isGmt())
                     <div class="forum-post__actions">
                         <div class="forum-post-actions">
                             <a class="forum-post-actions__action" href="live?promote={{$stream->_id}}">
@@ -79,6 +82,7 @@
                             </a>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         
