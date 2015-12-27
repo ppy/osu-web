@@ -30,7 +30,7 @@
 @foreach($tournaments as $t)
 <div class='tournament clickable-row'>
     <div class='mode'>
-        <i class="fa osu fa-{!! play_mode_string($t->play_mode) !!}-o"></i>
+        <i class="fa osu fa-{!! $t->playModeStr() !!}-o"></i>
     </div>
     <div class='info'>
         <div class='title'>{{ $t->name }}</div>

@@ -19,7 +19,6 @@
  */
 namespace App\Models\Score\Best;
 
-use App\Models\Beatmap;
 use App\Models\Score\Model as BaseModel;
 use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v2\AwsS3Adapter;
@@ -28,29 +27,6 @@ use League\Flysystem\Filesystem;
 abstract class Model extends BaseModel
 {
     abstract public function gameModeString();
-
-    public static function getClass($game_mode)
-    {
-        switch ($game_mode) {
-            case Beatmap::OSU:
-                $instance = new Osu;
-                break;
-
-            case Beatmap::TAIKO:
-                $instance = new Taiko;
-                break;
-
-            case Beatmap::FRUITS:
-                $instance = new Fruits;
-                break;
-
-            case Beatmap::MANIA:
-                $instance = new Mania;
-                break;
-        }
-
-        return $instance;
-    }
 
     public function getReplay()
     {

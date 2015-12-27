@@ -28,6 +28,10 @@ class Tournament extends Model
 
     protected $dates = ['signup_open', 'signup_close', 'start_date', 'end_date'];
 
+    protected $casts = [
+        'play_mode' => 'integer',
+    ];
+
     public function isRegistrationOpen()
     {
         $now = Carbon::now();
@@ -62,7 +66,7 @@ class Tournament extends Model
             return false;
         }
 
-        $stats = $user->statistics(play_mode_string($this->play_mode), true)->firstOrNew([]);
+        $stats = $user->statistics($this->playModeStr(), true)->firstOrNew([]);
 
         if ($this->rank_min !== null && $this->rank_min > $stats->rank_score_index) {
             return false;
@@ -110,5 +114,10 @@ class Tournament extends Model
             ->orderBy('play_mode', 'desc')
             ->orderBy('tournament_id', 'desc')
             ->get();
+    }
+
+    public function playModeStr()
+    {
+        return Beatmap::modeStr($this->play_mode);
     }
 }
