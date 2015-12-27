@@ -49,7 +49,7 @@ class CommunityController extends Controller
     {
         $streams = null;
         $featuredStream = null;
-        $streams = Cache::remember('livestreams', 300, function () {
+        $streams = Cache::remember('livestreams', 5, function () {
             $justin_api_url = 'https://api.twitch.tv/kraken/streams?on_site=1&limit=40&offset=0&game=Osu!';
             $data = json_decode(file_get_contents($justin_api_url));
             $streams = $data->streams;

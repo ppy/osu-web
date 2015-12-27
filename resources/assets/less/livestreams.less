@@ -1,135 +1,134 @@
-.livestreams {
-	a {
-		color: inherit;
-	}
-	&__header {
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-image: url("/images/headers/live-top.png");
-		height: 180px;
-		&--container {
-			& h1, p {
-				color: white;
-			}
-			& h1 {
-				margin: 0;
-				margin-bottom: 10px;
-			}
-			display: flex;
-			justify-content: flex-start;
-			flex-wrap: wrap;
-			align-items: center;
-			height: 100%;
-			@media @desktop {
-				padding-left: 115px;
-				padding-right: 115px;
-			}
-			padding-left: 10px;
-			padding-right: 10px;
-		}
-	}
-	&__row {
+.livestream-header {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-image: url("/images/headers/live-top.png");
+	height: 180px;
+	&__container {
+		display: flex;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+		align-items: center;
+		height: 100%;
 		@media @desktop {
-			padding-left: 10% !important;
-			padding-right: 10% !important;
+			padding-left: 115px;
+			padding-right: 115px;
 		}
-		& > h2 {
-			color: @grey-5;
-			padding-bottom: 15px;
-		}
-	}
-}
-.livestream {
-	&__main {
 		padding-left: 10px;
 		padding-right: 10px;
-		border-radius: 10px;
-		width: 100%;
-		padding-bottom: 75%;
+	}
+	&__headline {
+		color: white;
+		margin: 0;
+		margin-bottom: 10px;
+	}
+	&__description {
+		color: white;
+	}
+}
+.livestream-page {
+	@media @desktop {
+		padding-left: 10% !important;
+		padding-right: 10% !important;
+	}
+	&__header {
+		color: @grey-5;
+		padding-bottom: 15px;
+	}
+	&__anchor-twitch,
+	&__anchor-twitch:link, 
+	&__anchor-twitch:visited, 
+	&__anchor-twitch:hover, 
+	&__anchor-twitch:active {
+		color: inherit;
+	    text-decoration: inherit;
+	    font-weight: inherit;
+	}
+}
+.livestream-featured {
+	padding-left: 10px;
+	padding-right: 10px;
+	&__info {
+		& * {
+			.default-text-shadow;
+			color: white;
+		}
+		position: absolute;
+		bottom: 10px;
+		left: 10px;
+	}
+	&__container {
 		transition: all 120ms ease-in-out;
 		float: none !important;
 		.default-box-shadow;
 		&:hover {
 			.thicker-box-shadow;
 		}
-		&--info {
-			& * {
-				.default-text-shadow;
-				color: white;
-			}
-			position: absolute;
-			bottom: 10px;
-			left: 10px;
-		}
-		&--col {
-			padding-left: 10px;
-			padding-right: 10px;
-			&:hover .forum-post__actions {
-				opacity: 1;
-			}
-			& .forum-post__actions {
-				color: white;
-				z-index: 9000;
-			}
-		}
+		border-radius: 10px;
+		width: 100%;
+		padding-bottom: 75%;
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: center center;
 	}
-	&__regular {
-		&:hover .forum-post__actions {
-			opacity: 1;
-		}
-		& .forum-post__actions {
-			color: white;
-			z-index: 9000;
-		}
+	&:hover .forum-post__actions {
+		opacity: 1;
+	}
+	& .forum-post__actions {
+		color: white;
+		z-index: 9000;
+	}
+}
+.livestream-regular {
+	padding-left: 10px;
+	padding-right: 10px;
+	&:hover .forum-post__actions {
+		opacity: 1;
+	}
+	& .forum-post__actions {
+		color: white;
+		z-index: 9000;
+	}
+	word-break: break-all;
+	&__container {
 		transition: all 120ms ease-in-out;
 		border-radius: 10px;
-		word-break: break-all;
 		.default-box-shadow;
 		&:hover {
+			cursor: pointer;
 			.thicker-box-shadow;
 		}
-		&--col {
-			padding-left: 10px;
-			padding-right: 10px;
-		}
-		&--background {
-			border-radius: 10px 10px 0 0 ;
-			width: 100%;
-			padding-bottom: 75%;
-			background-size: cover;
-			background-repeat: no-repeat;
-			background-position: center center;
-			&-streamer {
-				& * {
-					.default-text-shadow;
-					color: white;
-					line-height: 1.3em;
-				}
-				right: 0;
-				overflow: hidden;
-				position: absolute;
-				bottom: 10px;
-				left: 10px;
-				color: white;
-			}
-			&-watchers {
-				& p {
-					.default-text-shadow;
-					font-size: 1.5em;
-					color: white;
-				}
-				position: absolute;
-				right: 10px;
-				top: 10px;
-			}
-		}
-		&--info {
-			margin: 10px;
-			height: 80px;
-		}
-
+	}
+	&__top-background {
+		border-radius: 10px 10px 0 0 ;
+		width: 100%;
+		padding-bottom: 75%;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
+	&__streamer-info {
+		.default-text-shadow;
+		color: white;
+		line-height: 1.3em;
+		font-size: 34px;
+		right: 0;
+		overflow: hidden;
+		position: absolute;
+		bottom: 10px;
+		left: 10px;
+		color: white;
+	}
+	&__watchers-info {
+		.default-text-shadow;
+		font-size: 1.5em;
+		color: white;
+		position: absolute;
+		right: 10px;
+		top: 10px;
+	}
+	&__bottom-info {
+		color: @grey-5;
+		margin: 10px;
+		height: 80px;
 	}
 }
