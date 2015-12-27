@@ -157,20 +157,6 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     return $url;
 }
 
-function play_mode_string($val)
-{
-    switch ($val) {
-        case 0:
-            return 'osu';
-        case 1:
-            return 'taiko';
-        case 2:
-            return 'fruits';
-        case 3:
-            return 'mania';
-    }
-}
-
 function bbcode($text, $uid, $withGallery = false)
 {
     return (new App\Libraries\BBCodeFromDB($text, $uid, $withGallery))->toHTML();
@@ -410,4 +396,9 @@ function bem($block, $element = null, $modifiers = [])
     }
 
     return " {$ret} ";
+}
+
+function get_namespace($className)
+{
+    return substr($className, 0, strrpos($className, '\\'));
 }

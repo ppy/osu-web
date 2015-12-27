@@ -51,6 +51,7 @@ class User extends Model implements AuthenticatableContract
         'user_id' => 'integer',
         'user_type' => 'integer',
         'user_warnings' => 'integer',
+        'osu_playmode' => 'integer',
     ];
 
     public $flags;
@@ -633,7 +634,7 @@ class User extends Model implements AuthenticatableContract
 
     public function getPlaymodeAttribute($value)
     {
-        return play_mode_string($this->osu_playmode);
+        return Beatmap::modeStr($this->osu_playmode);
     }
 
     public function setPlaymodeAttribute($value)

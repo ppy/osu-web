@@ -53,15 +53,35 @@ class Beatmap extends Model
 
     protected $hidden = ['checksum', 'filename', 'orphaned'];
 
-    // playmodes
-    const OSU = 0;
-    const TAIKO = 1;
-    const FRUITS = 2;
-    const MANIA = 3;
-
     public function mods()
     {
         return $this->hasMany(Mod::class, 'beatmap_id', 'beatmap_id');
+    }
+
+    public static function modes()
+    {
+        return [
+            'osu' => 0,
+            'taiko' => 1,
+            'fruits' => 2,
+            'mania' => 3,
+        ];
+    }
+
+    public static function modeInt($str)
+    {
+        if (isset(static::modes()[$str]) === true) {
+            return static::modes()[$str];
+        }
+    }
+
+    public static function modeStr($int)
+    {
+        $str = array_search($int, static::modes(), true);
+
+        if ($str !== false) {
+            return $str;
+        }
     }
 
     public function set()
