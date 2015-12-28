@@ -32,7 +32,6 @@
 
     &--top-ranks {
       height: auto;
-      white-space: auto;
       border-bottom: 1px solid @grey-e;
       margin: 0;
       padding: @spacing 0;
@@ -71,6 +70,8 @@
 
   &__detail-column {
     flex: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &--full {
       min-width: 0;
