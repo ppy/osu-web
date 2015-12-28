@@ -30,6 +30,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     protected $availableIncludes = [
         'allStatistics',
         'allScoresBest',
+        'allScoresFirst',
         'defaultStatistics',
         'page',
         'recentAchievements',
@@ -97,15 +98,29 @@ class UserTransformer extends Fractal\TransformerAbstract
         });
     }
 
+    public function includeAllScoresFirst(User $user)
+    {
+        return $this->item($user, function ($user) {
+            $all = [];
+            foreach (array_keys(Beatmap::modes()) as $mode) {
+                $scores = $user->scoresFirst($mode, true)->with('beatmapSet', 'beatmap')->limit(100)->get();
+
+                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapSet');
+            }
+
+            return $all;
+        });
+    }
+
     public function includeAllScoresBest(User $user)
     {
         return $this->item($user, function ($user) {
             $all = [];
             foreach (array_keys(Beatmap::modes()) as $mode) {
-                $scores = $user->scoresBest($mode, true)->with('beatmapSet')->limit(100)->get();
+                $scores = $user->scoresBest($mode, true)->with('beatmapSet', 'beatmap')->limit(100)->get();
                 ScoreBestModel::fillInPosition($scores);
 
-                $all[$mode] = fractal_collection_array($scores, new ScoreBestTransformer(), 'beatmap,beatmapSet');
+                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapSet,weight');
             }
 
             return $all;

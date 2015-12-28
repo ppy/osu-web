@@ -19,37 +19,51 @@
  */
 namespace App\Transformers;
 
+use App\Models\Score\Model as Score;
 use App\Models\Score\Best\Model as ScoreBest;
 use League\Fractal;
 
-class ScoreBestTransformer extends Fractal\TransformerAbstract
+class ScoreTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmap',
         'beatmapSet',
+        'weight',
     ];
 
-    public function transform(ScoreBest $scoreBest)
+    public function transform(Score $score)
     {
         return [
-            'id' => $scoreBest->score_id,
-            'created_at' => $scoreBest->date->toIso8601String(),
-            'pp' => $scoreBest->pp,
-            'weight' => $scoreBest->weight(),
-            'weightedPp' => $scoreBest->weightedPp(),
-            'accuracy' => $scoreBest->accuracy(),
-            'rank' => $scoreBest->rank,
-            'mods' => $scoreBest->enabled_mods,
+            'id' => $score->score_id,
+            'created_at' => $score->date->toIso8601String(),
+            'pp' => $score->pp,
+            'accuracy' => $score->accuracy(),
+            'rank' => $score->rank,
+            'mods' => $score->enabled_mods,
         ];
     }
 
-    public function includeBeatmap(ScoreBest $scoreBest)
+    public function includeBeatmap(Score $score)
     {
-        return $this->item($scoreBest->beatmap, new BeatmapTransformer);
+        return $this->item($score->beatmap, new BeatmapTransformer);
     }
 
-    public function includeBeatmapSet(ScoreBest $scoreBest)
+    public function includeBeatmapSet(Score $score)
     {
-        return $this->item($scoreBest->beatmapSet, new BeatmapSetTransformer);
+        return $this->item($score->beatmapSet, new BeatmapSetTransformer);
+    }
+
+    public function includeWeight(Score $score)
+    {
+        if (($score instanceof ScoreBest) === false) {
+            return;
+        }
+
+        return $this->item($score, function ($score) {
+            return [
+                'percentage' => $score->weight() * 100,
+                'pp' => $score->weightedPp(),
+            ];
+        });
     }
 }

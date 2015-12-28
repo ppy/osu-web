@@ -570,38 +570,41 @@ class User extends Model implements AuthenticatableContract
         }
     }
 
-    public function leadingBeatmapsOsu()
+    public function scoresFirstOsu()
     {
-        return $this->leadingBeatmaps('osu', true);
+        return $this->scoresFirst('osu', true);
     }
 
-    public function leadingBeatmapsFruits()
+    public function scoresFirstFruits()
     {
-        return $this->leadingBeatmaps('fruits', true);
+        return $this->scoresFirst('fruits', true);
     }
 
-    public function leadingBeatmapsMania()
+    public function scoresFirstMania()
     {
-        return $this->leadingBeatmaps('mania', true);
+        return $this->scoresFirst('mania', true);
     }
 
-    public function leadingBeatmapsTaiko()
+    public function scoresFirstTaiko()
     {
-        return $this->leadingBeatmaps('taiko', true);
+        return $this->scoresFirst('taiko', true);
     }
 
-    public function leadingBeatmaps($mode, $returnQuery = false)
+    public function scoresFirst($mode, $returnQuery = false)
     {
         if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
             return;
         }
 
-        $mode = studly_case($mode);
+
+        $casedMode = studly_case($mode);
 
         if ($returnQuery === true) {
-            return $this->hasMany("App\Models\BeatmapLeader\\{$mode}");
+            $suffix = $mode === 'osu' ? '' : "_{$mode}";
+
+            return $this->belongsToMany("App\Models\Score\Best\\{$casedMode}", "osu_leaders{$suffix}", 'user_id', 'score_id');
         } else {
-            $relation = "leadingBeatmaps{$mode}";
+            $relation = "scoresFirst{$casedMode}";
 
             return $this->$relation;
         }

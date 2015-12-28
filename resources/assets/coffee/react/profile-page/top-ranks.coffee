@@ -24,6 +24,7 @@ class ProfilePage.TopRanks extends React.Component
   constructor: (props) ->
     @state =
       limitBest: 5
+      limitFirst: 5
 
     super props
 
@@ -34,60 +35,63 @@ class ProfilePage.TopRanks extends React.Component
       stateKey =
         switch mode
           when 'best' then 'limitBest'
+          when 'first' then 'limitFirst'
 
       @setState "#{stateKey}": (@state[stateKey] + 5)
 
 
-  _renderScoreBest: (score, i) =>
-    modsText =
-      if score.mods.length
-        " +#{(mod.shortName for mod in score.mods).join(',')} "
-      else
-        ' '
+  _renderScore: (limit) =>
+    (score, i) =>
+      modsText =
+        if score.mods.length
+          " +#{(mod.shortName for mod in score.mods).join(',')} "
+        else
+          ' '
 
-    topClasses = 'profile-extra-entries__item profile-extra-entries__item--top-ranks'
-    if (i + 1) > @state.limitBest
-      topClasses += ' hidden'
+      topClasses = 'profile-extra-entries__item profile-extra-entries__item--top-ranks'
+      if (i + 1) > limit
+        topClasses += ' hidden'
 
-    title = "#{score.beatmapSet.data.title} [#{score.beatmap.data.version}]#{modsText}(#{Math.round(score.accuracy * 100, 2)}%)"
+      title = "#{score.beatmapSet.data.title} [#{score.beatmap.data.version}]#{modsText}(#{Math.round(score.accuracy * 100, 2)}%)"
 
-    li
-      key: score.id
-      className: topClasses
-      div
-        className: 'profile-extra-entries__icon'
-        div className: "badge-rank badge-rank--#{score.rank}"
-
-      div className: 'profile-extra-entries__detail profile-extra-entries__detail--vertical',
+      li
+        key: score.id
+        className: topClasses
         div
-          className: 'profile-extra-entries__detail-row'
+          className: 'profile-extra-entries__icon'
+          div className: "badge-rank badge-rank--#{score.rank}"
+
+        div className: 'profile-extra-entries__detail profile-extra-entries__detail--vertical',
           div
-            className: 'profile-extra-entries__detail-column profile-extra-entries__detail-column--full'
-            a
-              href: score.beatmap.data.url
-              className: 'profile-extra-entries__text-score profile-extra-entries__text-score--title'
-              title: title
-              title
+            className: 'profile-extra-entries__detail-row'
+            div
+              className: 'profile-extra-entries__detail-column profile-extra-entries__detail-column--full'
+              a
+                href: score.beatmap.data.url
+                className: 'profile-extra-entries__text-score profile-extra-entries__text-score--title'
+                title: title
+                title
+            div
+              className: 'profile-extra-entries__detail-column'
+              span
+                className: 'profile-extra-entries__text-score profile-extra-entries__text-score--pp'
+                Lang.get('users.show.extra.top_ranks.pp', amount: Math.round(score.pp))
           div
-            className: 'profile-extra-entries__detail-column'
-            span
-              className: 'profile-extra-entries__text-score profile-extra-entries__text-score--pp'
-              Lang.get('users.show.extra.top_ranks.pp', amount: Math.round(score.pp))
-        div
-          className: 'profile-extra-entries__detail-row'
-          div
-            className: 'profile-extra-entries__detail-column profile-extra-entries__detail-column--full'
-            span
-              className: 'profile-extra-entries__text-score profile-extra-entries__text-score--time'
-              dangerouslySetInnerHTML:
-                __html: osu.timeago score.created_at
-          div
-            className: 'profile-extra-entries__detail-column'
-            span
-              className: 'profile-extra-entries__text-score'
-              Lang.get 'users.show.extra.top_ranks.weighted_pp',
-                percentage: "#{Math.round(score.weight * 100)}%"
-                pp: Lang.get('users.show.extra.top_ranks.pp', amount: Math.round(score.weightedPp))
+            className: 'profile-extra-entries__detail-row'
+            div
+              className: 'profile-extra-entries__detail-column profile-extra-entries__detail-column--full'
+              span
+                className: 'profile-extra-entries__text-score profile-extra-entries__text-score--time'
+                dangerouslySetInnerHTML:
+                  __html: osu.timeago score.created_at
+            if score.weight != undefined
+              div
+                className: 'profile-extra-entries__detail-column'
+                span
+                  className: 'profile-extra-entries__text-score'
+                  Lang.get 'users.show.extra.top_ranks.weighted_pp',
+                    percentage: "#{Math.round(score.weight.data.percentage)}%"
+                    pp: Lang.get('users.show.extra.top_ranks.pp', amount: Math.round(score.weight.data.pp))
 
 
   render: =>
@@ -101,9 +105,20 @@ class ProfilePage.TopRanks extends React.Component
         h3 className: 'profile-extra__title--small', Lang.get('users.show.extra.top_ranks.best.title')
         if @props.scoresBest && @props.scoresBest.length
           ul className: 'profile-extra-entries',
-            @props.scoresBest.map @_renderScoreBest
+            @props.scoresBest.map @_renderScore(@state.limitBest)
             if @state.limitBest < @props.scoresBest.length
-              li className: 'text-center',
+              li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
                 a href: '#', onClick: @_increaseLimit('best'), 'show more'
+        else
+          p className: 'profile-extra-entries', Lang.get('users.show.extra.top_ranks.empty')
+
+      div null,
+        h3 className: 'profile-extra__title--small', Lang.get('users.show.extra.top_ranks.first.title')
+        if @props.scoresFirst && @props.scoresFirst.length
+          ul className: 'profile-extra-entries',
+            @props.scoresFirst.map @_renderScore(@state.limitFirst)
+            if @state.limitFirst < @props.scoresFirst.length
+              li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
+                a href: '#', onClick: @_increaseLimit('first'), 'show more'
         else
           p className: 'profile-extra-entries', Lang.get('users.show.extra.top_ranks.empty')
