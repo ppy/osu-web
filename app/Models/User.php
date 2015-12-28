@@ -596,7 +596,6 @@ class User extends Model implements AuthenticatableContract
             return;
         }
 
-
         $casedMode = studly_case($mode);
 
         if ($returnQuery === true) {
