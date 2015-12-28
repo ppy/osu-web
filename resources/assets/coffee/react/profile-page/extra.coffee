@@ -50,10 +50,11 @@ class ProfilePage.Extra extends React.Component
     for page in elements by -1
       continue unless page.getBoundingClientRect().top <= 0
 
-      @setState mode: page.getAttribute('id')
+      @setSingleState 'mode', page.getAttribute('id')
+
       return
 
-    @setState mode: page.getAttribute('id')
+    @setSingleState 'mode', page.getAttribute('id')
 
 
   _modeSwitch: (_e, mode) =>
@@ -67,7 +68,11 @@ class ProfilePage.Extra extends React.Component
 
 
   _tabsStick: (_e, target) =>
-    @setState tabsSticky: (target == 'profile-extra-tabs')
+    @setSingleState 'tabsSticky', (target == 'profile-extra-tabs')
+
+
+  setSingleState: (key, value) =>
+    @setState "#{key}": value if @state[key] != value
 
 
   render: =>
