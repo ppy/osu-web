@@ -75,7 +75,7 @@ class ProfilePage.Extra extends React.Component
 
     withMePage = @props.userPage.html != '' || @props.withEdit
 
-    pages = ['recent_activities', 'kudosu']
+    pages = ['recent_activities', 'kudosu', 'top_ranks']
     pages.unshift 'me' if withMePage
 
     tabsContainerClasses = 'profile-extra-tabs__container js-fixed-element'
