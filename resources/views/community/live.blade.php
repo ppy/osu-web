@@ -44,7 +44,7 @@
                     </div>
                 </a>
                 @if (Auth::user() != null && Auth::user()->isGmt())
-                <div class="forum-post__actions">
+                <div class="livestream-featured__actions">
                     <div class="forum-post-actions">
                         <a data-method="POST" class="forum-post-actions__action" href="live?unpromote=true">
                             <i class="fa fa-thumbs-down"></i>
@@ -57,30 +57,30 @@
         <h2 class="livestream-page__header">{{ trans('livestreams.headers.regular') }}</h2>
         @foreach ($streams as $stream)
             <div class="wide col-sm-4 livestream-regular">
-                <a class="livestream-page__anchor-twitch" href="{{$stream->channel->url}}" target="_blank"> 
-                    <div class="livestream-regular__container">
-                        <div class="livestream-regular__top-background" style="background-image: url('{{$stream->preview->medium}}');">
-                            <div class="livestream-regular__streamer-info">
-                                {{$stream->channel->name}}
-                            </div>
-                            <div class="livestream-regular__watchers-info">
-                                <p>{{$stream->viewers}} <i class="fa fa-eye"></i></p>
-                            </div>
+                <div class="livestream-regular__container">
+                    <a class="livestream-page__anchor-twitch" href="{{$stream->channel->url}}" target="_blank"> 
+                    <div class="livestream-regular__top-background" style="background-image: url('{{$stream->preview->medium}}');">
+                        <div class="livestream-regular__streamer-info">
+                            {{$stream->channel->name}}
                         </div>
-                        <div class="livestream-regular__bottom-info">
-                            {{$stream->channel->status}}
+                        <div class="livestream-regular__watchers-info">
+                            <p>{{$stream->viewers}} <i class="fa fa-eye"></i></p>
                         </div>
                     </div>
-                </a>
-                @if (Auth::user() != null && Auth::user()->isGmt())
-                <div class="forum-post__actions">
-                    <div class="forum-post-actions">
-                    <a data-method="POST" class="forum-post-actions__action" href="live?promote={{$stream->_id}}">
-                        <i class="fa fa-thumbs-up"></i>
+                    <div class="livestream-regular__bottom-info">
+                        {{$stream->channel->status}}
+                    </div>
                     </a>
+                    @if (Auth::user() != null && Auth::user()->isGmt())
+                    <div class="livestream-regular__actions">
+                        <div class="forum-post-actions">
+                            <a data-method="POST" class="forum-post-actions__action" href="live?promote={{$stream->_id}}">
+                                <i class="fa fa-thumbs-up"></i>
+                            </a>
+                        </div>
                     </div>
+                    @endif
                 </div>
-                @endif
             </div>
         @endforeach
     </div>
