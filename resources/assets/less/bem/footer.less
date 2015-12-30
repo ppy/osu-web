@@ -27,21 +27,23 @@
 
   display: flex;
   flex-direction: column;
-  align-items: center;
 
-  padding: @grid-gutter-width/4 0px @grid-gutter-width/8;
-}
+  padding: @spacing 0 (@spacing / 2);
 
-.footer-row {
-  margin-bottom: @grid-gutter-width/8;
-}
+  &__row {
+    margin-bottom: (@spacing / 2);
+    display: flex;
+    justify-content: center;
+  }
 
-.footer-link {
-  font-weight: bold;
-  color: #fff;
+  &__link {
+    font-weight: bold;
+    color: @grey-f;
+    margin: 0 @spacing;
 
-  &:hover, &:active, &:focus {
-    color: @pink;
-    text-decoration: none;
+    &:hover, &:active, &:focus {
+      color: @pink;
+      text-decoration: none;
+    }
   }
 }
