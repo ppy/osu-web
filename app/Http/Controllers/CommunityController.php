@@ -50,35 +50,34 @@ class CommunityController extends Controller
         $streams = null;
         $featuredStream = null;
         $streams = Cache::remember('livestreams', 5, function () {
-            $justin_api_url = 'https://api.twitch.tv/kraken/streams?on_site=1&limit=40&offset=0&game=Osu!';
-            $data = json_decode(file_get_contents($justin_api_url));
-            $streams = $data->streams;
-
-            return $streams;
+            $twitchApiUrl = config('osu.urls.twitch_livestreams_api');
+            $data = json_decode(file_get_contents($twitchApiUrl));
+            return $data->streams;
         });
-
-        if (Cache::has('featuredStream')) {
-            $featuredStreamId = Cache::get('featuredStream');
+        $featuredStreamId = Cache::get('featuredStream');
+        if ($featuredStreamId !== null) {
             foreach ($streams as $stream) {
-                if ($stream->_id == $featuredStreamId) {
-                    $featuredStream = $stream;
-                }
+                if ($stream->_id != $featuredStreamId)
+                    continue;
+                $featuredStream = $stream;
+                break;
             }
         }
-
         return view('community.live', compact('streams', 'featuredStream'));
     }
 
     public function postLive(Request $request)
     {
-        if (Auth::user() != null && Auth::user()->isGmt()) {
-            if ($request->has('promote')) {
-                Cache::forever('featuredStream', $request->promote);
-            }
+        if (Auth::check() !== true || Auth::user()->isGmt() !== true) {
+            abort(403);
+        }
 
-            if ($request->has('unpromote')) {
-                Cache::forget('featuredStream');
-            }
+        if ($request->has('promote')) {
+            Cache::forever('featuredStream', $request->promote);
+        }
+
+        if ($request->has('demote')) {
+            Cache::forget('featuredStream');
         }
 
         return Redirect::back();
