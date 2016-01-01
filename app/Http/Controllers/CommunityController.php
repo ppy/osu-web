@@ -52,17 +52,20 @@ class CommunityController extends Controller
         $streams = Cache::remember('livestreams', 5, function () {
             $twitchApiUrl = config('osu.urls.twitch_livestreams_api');
             $data = json_decode(file_get_contents($twitchApiUrl));
+
             return $data->streams;
         });
         $featuredStreamId = Cache::get('featuredStream');
         if ($featuredStreamId !== null) {
             foreach ($streams as $stream) {
-                if ($stream->_id != $featuredStreamId)
+                if ($stream->_id != $featuredStreamId) {
                     continue;
+                }
                 $featuredStream = $stream;
                 break;
             }
         }
+
         return view('community.live', compact('streams', 'featuredStream'));
     }
 
