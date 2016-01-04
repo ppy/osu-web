@@ -21,7 +21,7 @@ class @ForumAutoClick
   previousLink: document.getElementsByClassName('js-forum__posts-show-more--previous')
 
   constructor: ->
-    $(window).on 'scroll', _.throttle(@onScroll, 1000)
+    $(window).on 'throttled-scroll', @onScroll
 
     $(document).on 'ready page:load osu:page:change', =>
       setTimeout @onScroll, 1000

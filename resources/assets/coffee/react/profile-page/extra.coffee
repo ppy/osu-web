@@ -30,7 +30,7 @@ class ProfilePage.Extra extends React.Component
     @_removeListeners()
     $.subscribe 'profilePageExtra:tab.profileContentsExtra', @_modeSwitch
     $.subscribe 'stickyHeader.profileContentsExtra', @_tabsStick
-    $(window).on 'scroll.profileContentsExtra', @_modeScan
+    $(window).on 'throttled-scroll.profileContentsExtra', @_modeScan
     osu.pageChange()
     @_modeScan()
 

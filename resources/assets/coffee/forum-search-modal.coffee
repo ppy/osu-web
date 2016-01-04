@@ -23,7 +23,7 @@ class @ForumSearchModal
   constructor: (forum) ->
     @forum = forum
 
-    $(window).on 'resize scroll', => requestAnimationFrame @reposition
+    $(window).on 'throttled-resize throttled-scroll', @reposition
     $(document).on 'show.bs.modal', '#forum-search-modal', @activate
     $(document).on 'hidden.bs.modal', '#forum-search-modal', @deactivate
 

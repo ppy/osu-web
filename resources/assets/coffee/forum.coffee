@@ -29,8 +29,7 @@ class @Forum
     @refreshLoadMoreLinks()
 
   constructor: ->
-    $(window).on 'scroll', =>
-      requestAnimationFrame @refreshCounter
+    $(window).on 'throttled-scroll', @refreshCounter
 
     $(document).on 'ready page:load osu:page:change', @boot
 
