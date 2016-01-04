@@ -19,6 +19,10 @@ _mysqldump osu \
   osu_countries \
   osu_events \
   osu_kudos_exchange \
+  osu_leaders \
+  osu_leaders_fruits \
+  osu_leaders_mania \
+  osu_leaders_taiko \
   osu_login_attempts \
   osu_scores \
   osu_scores_fruits \

@@ -38,4 +38,4 @@ INSERT INTO `migrations` VALUES ('2015_12_07_061307_create_forum_covers_table',1
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-01-04 19:10:24
+-- Dump completed on 2016-01-04 19:33:22

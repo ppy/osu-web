@@ -305,6 +305,70 @@ CREATE TABLE `osu_kudos_exchange` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `osu_leaders`
+--
+
+DROP TABLE IF EXISTS `osu_leaders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_leaders` (
+  `beatmap_id` mediumint(11) unsigned NOT NULL,
+  `user_id` mediumint(11) unsigned NOT NULL,
+  `score_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`beatmap_id`),
+  KEY `user_id` (`user_id`,`score_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `osu_leaders_fruits`
+--
+
+DROP TABLE IF EXISTS `osu_leaders_fruits`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_leaders_fruits` (
+  `beatmap_id` mediumint(11) unsigned NOT NULL,
+  `user_id` mediumint(11) unsigned NOT NULL,
+  `score_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`beatmap_id`),
+  KEY `user_id` (`user_id`,`score_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `osu_leaders_mania`
+--
+
+DROP TABLE IF EXISTS `osu_leaders_mania`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_leaders_mania` (
+  `beatmap_id` mediumint(11) unsigned NOT NULL,
+  `user_id` mediumint(11) unsigned NOT NULL,
+  `score_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`beatmap_id`),
+  KEY `user_id` (`user_id`,`score_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `osu_leaders_taiko`
+--
+
+DROP TABLE IF EXISTS `osu_leaders_taiko`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_leaders_taiko` (
+  `beatmap_id` mediumint(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` mediumint(11) unsigned NOT NULL,
+  `score_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`beatmap_id`),
+  KEY `user_id` (`user_id`,`score_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `osu_login_attempts`
 --
 
@@ -1365,4 +1429,4 @@ CREATE TABLE `user_profile_customizations` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-01-04 19:10:16
+-- Dump completed on 2016-01-04 19:33:15
