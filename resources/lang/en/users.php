@@ -127,6 +127,10 @@ return [
         ],
         'missingtext' => 'You might have made a typo! (or the user may have been banned)',
         'page_description' => 'osu! - Everything you ever wanted to know about :username!',
+        'rank' => [
+            'country' => 'Country rank for :mode',
+            'global' => 'Global rank for :mode',
+        ],
         'stats' => [
             'hit_accuracy' => 'Hit Accuracy',
             'level' => 'Level :level',
