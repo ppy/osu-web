@@ -20,13 +20,17 @@
 namespace App\Transformers;
 
 use App\Models\Achievement;
+use App\Models\Beatmap;
 use App\Models\User;
+use App\Models\Score\Best\Model as ScoreBestModel;
 use League\Fractal;
 
 class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'allStatistics',
+        'allScoresBest',
+        'allScoresFirst',
         'defaultStatistics',
         'page',
         'recentAchievements',
@@ -60,7 +64,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'playmode' => $user->playmode,
             'profileColour' => $user->user_colour,
             'cover' => [
-                'customUrl' => $profileCustomization->cover->customUrl(),
+                'customUrl' => $profileCustomization->cover->fileUrl(),
                 'url' => $profileCustomization->cover->url(),
                 'id' => $profileCustomization->cover->id(),
             ],
@@ -86,8 +90,37 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($user, function ($user) {
             $all = [];
-            foreach ($user->statisticsAll() as $mode => $statistics) {
-                $all[$mode] = fractal_item_array($statistics, new UserStatisticsTransformer());
+            foreach (array_keys(Beatmap::modes()) as $mode) {
+                $all[$mode] = fractal_item_array($user->statistics($mode), new UserStatisticsTransformer());
+            }
+
+            return $all;
+        });
+    }
+
+    public function includeAllScoresFirst(User $user)
+    {
+        return $this->item($user, function ($user) {
+            $all = [];
+            foreach (array_keys(Beatmap::modes()) as $mode) {
+                $scores = $user->scoresFirst($mode, true)->with('beatmapSet', 'beatmap')->limit(100)->get();
+
+                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapSet');
+            }
+
+            return $all;
+        });
+    }
+
+    public function includeAllScoresBest(User $user)
+    {
+        return $this->item($user, function ($user) {
+            $all = [];
+            foreach (array_keys(Beatmap::modes()) as $mode) {
+                $scores = $user->scoresBest($mode, true)->with('beatmapSet', 'beatmap')->limit(100)->get();
+                ScoreBestModel::fillInPosition($scores);
+
+                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapSet,weight');
             }
 
             return $all;

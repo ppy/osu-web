@@ -15,26 +15,20 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class @SyncHeight
-  targets: document.getElementsByClassName('js-sync-height--target')
-  references: document.getElementsByClassName('js-sync-height--reference')
+class @ThrottledEvents
+  throttle: (eventName) ->
+    running = false
+    func = ->
+      return if running
+
+      running = true
+
+      requestAnimationFrame ->
+        window.dispatchEvent(new CustomEvent("throttled-#{eventName}"))
+        running = false
+
+    window.addEventListener eventName, func
 
   constructor: ->
-    $(document).on 'ready page:load', @sync
-    $(window).on 'throttled-resize', @sync
-
-    @sync()
-
-
-  sync: =>
-    heights = {}
-
-    for reference in @references
-      id = reference.getAttribute('data-sync-height-target')
-      heights[id] = reference.offsetHeight
-
-    for target in @targets
-      height = heights[target.getAttribute('data-sync-height-id')]
-
-      if height != undefined
-        target.style.minHeight = "#{height}px"
+    @throttle('resize')
+    @throttle('scroll')

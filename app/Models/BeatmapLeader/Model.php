@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -14,30 +16,34 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
-.badge-rank {
-  @_size: 100%;
-  width: @_size;
-  height: @_size;
-  background-size: cover;
+namespace App\Models\BeatmapLeader;
 
-  ._bg(@rank) {
-    .at2x-simple("/images/badges/score-ranks/@{rank}.png");
-  }
+use App\Models\Beatmap;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Model as BaseModel;
 
-  &--XH { ._bg("XH"); }
-  &--X { ._bg("X"); }
-  &--SH { ._bg("SH"); }
-  &--S { ._bg("S"); }
-  &--A { ._bg("A"); }
-  &--B { ._bg("B"); }
-  &--C { ._bg("C"); }
-  &--D { ._bg("D"); }
+abstract class Model extends BaseModel
+{
+    protected $primaryKey = 'beatmap_id';
 
-  &--medium {
-    @_size: 50px;
-    width: @_size;
-    height: @_size;
-  }
+    protected $casts = [
+        'beatmap_id' => 'integer',
+        'user_id' => 'integer',
+        'score_id' => 'integer',
+    ];
+
+    public $timestamps = false;
+
+    public function beatmap()
+    {
+        return $this->belongsTo(Beatmap::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    abstract public function score();
 }

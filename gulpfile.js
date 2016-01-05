@@ -98,6 +98,7 @@ elixir(function(mix) {
     "user-dropdown-modal.coffee",
     "logout.coffee",
     "shared.coffee",
+    "throttled-events.coffee",
 
     "main.coffee",
 

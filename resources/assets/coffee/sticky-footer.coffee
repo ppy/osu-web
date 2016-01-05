@@ -28,7 +28,7 @@ class @StickyFooter
   permanentFixedFooter: document.getElementsByClassName('js-permanent-fixed-footer')
 
   constructor: ->
-    $(window).on 'scroll resize', @stickOrUnstick
+    $(window).on 'throttled-scroll throttled-resize', @stickOrUnstick
     $.subscribe 'stickyFooter:check', @stickOrUnstick
     $(document).on 'ready page:load osu:page:change', @stickOrUnstick
 

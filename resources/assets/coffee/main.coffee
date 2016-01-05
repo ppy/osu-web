@@ -36,6 +36,7 @@ $(document).on 'ready page:load', =>
   @formPlaceholderHide ||= new FormPlaceholderHide
   @headerMenu ||= new HeaderMenu
   @tooltipDefault ||= new TooltipDefault
+  @throttledEvents ||= new ThrottledEvents
 
   @syncHeight ||= new SyncHeight
 
