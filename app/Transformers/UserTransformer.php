@@ -28,12 +28,12 @@ use League\Fractal;
 class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'allStatistics',
+        'allAchievements',
         'allScoresBest',
         'allScoresFirst',
+        'allStatistics',
         'defaultStatistics',
         'page',
-        'recentAchievements',
         'recentActivities',
         'recentlyReceivedKudosu',
     ];
@@ -141,10 +141,10 @@ class UserTransformer extends Fractal\TransformerAbstract
         });
     }
 
-    public function includeRecentAchievements(User $user)
+    public function includeAllAchievements(User $user)
     {
         return $this->collection(
-            $user->achievements()->with('achievement')->orderBy('date', 'desc')->limit(8)->get(),
+            $user->achievements()->with('achievement')->orderBy('date', 'desc')->get(),
             new UserAchievementTransformer()
         );
     }

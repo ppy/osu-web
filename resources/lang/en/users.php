@@ -85,6 +85,9 @@ return [
             'me' => [
                 'title' => 'me!',
             ],
+            'medals' => [
+                'title' => 'Medals',
+            ],
             'recent_activities' => [
                 'title' => 'Recent Activities',
             ],

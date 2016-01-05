@@ -19,8 +19,10 @@
  */
 namespace App\Http\Controllers;
 
+use App\Models\Achievement;
 use App\Models\LoginAttempt;
 use App\Models\User;
+use App\Transformers\AchievementTransformer;
 use App\Transformers\UserTransformer;
 use Auth;
 use Request;
@@ -106,12 +108,17 @@ class UsersController extends Controller
             abort(404);
         }
 
+        $achievements = fractal_collection_array(
+            Achievement::all(),
+            new AchievementTransformer()
+        );
+
         $userArray = fractal_item_array(
             $user,
             new UserTransformer(),
-            'allStatistics,allScoresBest,allScoresFirst,page,recentAchievements,recentActivities,recentlyReceivedKudosu'
+            'allAchievements,allStatistics,allScoresBest,allScoresFirst,page,recentActivities,recentlyReceivedKudosu'
         );
 
-        return view('users.show', compact('user', 'userArray'));
+        return view('users.show', compact('user', 'userArray', 'achievements'));
     }
 }

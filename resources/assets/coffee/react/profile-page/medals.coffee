@@ -15,17 +15,13 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-element = React.createElement ProfilePage.Main,
-  user: user
-  userPage: user.page.data
-  allAchievements: user.allAchievements.data
-  allStats: user.allStatistics.data
-  allScoresBest: user.allScoresBest.data
-  allScoresFirst: user.allScoresFirst.data
-  withEdit: user.id == window.currentUser.id
-  recentActivities: user.recentActivities.data
-  recentlyReceivedKudosu: user.recentlyReceivedKudosu.data
+{div, h2} = React.DOM
+el = React.createElement
 
-target = document.getElementsByClassName('js-content')[0]
+class ProfilePage.Medals extends React.Component
+  render: =>
+    div
+      className: 'profile-extra'
+      div className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'medals'
 
-ReactDOM.render element, target
+      h2 className: 'profile-extra__title', Lang.get('users.show.extra.medals.title')

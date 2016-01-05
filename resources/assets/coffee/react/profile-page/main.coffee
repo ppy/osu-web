@@ -84,7 +84,7 @@ class ProfilePage.Main extends React.Component
         user: @state.user
         stats: stats
         mode: @state.mode
-        recentAchievements: @props.recentAchievements
+        allAchievements: @props.allAchievements
 
       el ProfilePage.Extra,
         recentActivities: @props.recentActivities
