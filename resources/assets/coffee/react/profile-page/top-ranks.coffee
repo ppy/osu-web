@@ -50,7 +50,7 @@ ProfilePage.TopRanks = React.createClass
     if (i + 1) > limit
       topClasses += ' hidden'
 
-    title = "#{score.beatmapSet.data.title} [#{score.beatmap.data.version}]#{modsText}(#{Math.round(score.accuracy * 100, 2)}%)"
+    title = "#{score.beatmapSet.data.title} [#{score.beatmap.data.version}]#{modsText}(#{_.round(score.accuracy * 100, 2)}%)"
 
     li
       key: score.id
