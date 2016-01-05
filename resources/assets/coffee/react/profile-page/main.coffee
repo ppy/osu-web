@@ -87,6 +87,8 @@ class ProfilePage.Main extends React.Component
         allAchievements: @props.allAchievements
 
       el ProfilePage.Extra,
+        achievements: @props.achievements
+        allAchievements: @props.allAchievements
         recentActivities: @props.recentActivities
         recentlyReceivedKudosu: @props.recentlyReceivedKudosu
         user: @state.user

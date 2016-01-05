@@ -112,4 +112,4 @@ class ProfilePage.Extra extends React.Component
         el ProfilePage.TopRanks, user: @props.user, scoresBest: @props.scoresBest, scoresFirst: @props.scoresFirst
 
       div className: 'osu-layout__row',
-        el ProfilePage.Medals
+        el ProfilePage.Medals, achievements: @props.achievements, allAchievements: @props.allAchievements
