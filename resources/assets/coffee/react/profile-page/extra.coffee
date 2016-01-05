@@ -99,14 +99,14 @@ class ProfilePage.Extra extends React.Component
                 el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
 
       if withMePage
-        div className: 'osu-layout__row osu-layout__row--page',
+        div className: 'osu-layout__row',
           el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
 
-      div className: 'osu-layout__row osu-layout__row--page',
+      div className: 'osu-layout__row',
         el ProfilePage.RecentActivities, recentActivities: @props.recentActivities
 
-      div className: 'osu-layout__row osu-layout__row--page',
+      div className: 'osu-layout__row',
         el ProfilePage.Kudosu, user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu
 
-      div className: 'osu-layout__row osu-layout__row--page',
+      div className: 'osu-layout__row',
         el ProfilePage.TopRanks, user: @props.user, scoresBest: @props.scoresBest, scoresFirst: @props.scoresFirst
