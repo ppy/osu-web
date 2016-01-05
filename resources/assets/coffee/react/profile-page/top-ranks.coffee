@@ -94,7 +94,7 @@ ProfilePage.TopRanks = React.createClass
 
   render: ->
     div
-      className: 'osu-layout__row osu-layout__row--page profile-extra'
+      className: 'profile-extra'
       div className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'top_ranks'
 
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.top_ranks.title')
