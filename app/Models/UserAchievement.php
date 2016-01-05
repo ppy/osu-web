@@ -34,11 +34,11 @@ class UserAchievement extends Model
 
     public function user()
     {
-        return $this->belongsTo("App\Models\User", 'user_id', 'user_id');
+        return $this->belongsTo(User::class);
     }
 
     public function achievement()
     {
-        return $this->belongsTo("App\Models\Achievement", 'achievement_id', 'achievement_id');
+        return $this->belongsTo(Achievement::class);
     }
 }
