@@ -1,0 +1,24 @@
+.faq-header-search {
+	padding: 5px;
+
+	&__background {
+    @media @desktop {
+      height: 300px;
+    }
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('/images/headers/faq.png');
+  }
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    @media @desktop {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+}

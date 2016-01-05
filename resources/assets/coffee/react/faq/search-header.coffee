@@ -36,9 +36,9 @@ class Faq.SearchHeader extends React.Component
 
 
   render: ->
-    el 'div', className: "osu-layout__row osu-layout__row--with-gutter faq-header",
-      el 'div', className: 'osu-layout__row--page header-row faq-header--background',
-        el 'div', className: 'wide col-sm-12 faq-input-wrapper',
-          el 'div', className: 'input-search-container faq-input-container',
-            el 'input', placeholder: 'what is your issue?', onChange:@changeSearch
-            el 'div', className: 'fa fa-search'
+    el 'div', className: "osu-layout__row osu-layout__row--with-gutter faq-header-search",
+      el 'div', className: 'osu-layout__row--page header-row faq-header-search__background',
+        el 'div', className: 'col-sm-12 faq-header-search__container',
+          el 'div', className: 'faq-search',
+            el 'input', className: 'faq-search__input', placeholder: 'what is your issue?', onChange:@changeSearch
+            el 'div', className: 'fa fa-search faq-search__search-icon'
