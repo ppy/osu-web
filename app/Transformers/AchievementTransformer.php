@@ -19,27 +19,18 @@
  */
 namespace App\Transformers;
 
-use App\Models\UserAchievement;
+use App\Models\Achievement;
 use League\Fractal;
 
-class UserAchievementTransformer extends Fractal\TransformerAbstract
+class AchievementTransformer extends Fractal\TransformerAbstract
 {
-    protected $defaultIncludes = [
-        'achievement',
-    ];
-
-    public function transform(UserAchievement $userAchievement)
+    public function transform(Achievement $achievement)
     {
         return [
-            'achieved_at' => $userAchievement->date->toIso8601String(),
+            'id' => $achievement->achievement_id,
+            'name' => $achievement->name,
+            'grouping' => $achievement->grouping,
+            'slug' => $achievement->slug,
         ];
-    }
-
-    public function includeAchievement(UserAchievement $userAchievement)
-    {
-        return $this->item(
-            $userAchievement->achievement,
-            new AchievementTransformer
-        );
     }
 }

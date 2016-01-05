@@ -39,10 +39,10 @@ class ProfilePage.RecentAchievements extends React.Component
           el 'dd', null, "#{achievementsProgress}%"
 
       el 'div', className: 'profile-row profile-recent-achievements',
-        @props.recentAchievements.map (achievement) =>
+        @props.recentAchievements.map (userAchievement, i) =>
           el ProfilePage.AchievementBadge,
-            key: "profile-achievement-#{achievement.achievement_id}"
-            achievement: achievement
+            key: "profile-achievement-#{i}"
+            achievement: userAchievement.achievement.data
             additionalClasses: 'badge-achievement--recent'
 
       if moreCount > 0
