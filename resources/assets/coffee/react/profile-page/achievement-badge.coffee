@@ -46,6 +46,9 @@ class ProfilePage.AchievementBadge extends React.Component
     filename2x = "/images/badges/user-achievements/#{@props.achievement.slug}@2x.png"
     srcSet = "#{filename} 1x, #{filename2x} 2x"
     tooltipId = "#{@props.achievement.slug}-#{Math.floor(Math.random() * 1000000)}"
+    imageClasses = 'js-tooltip-achievement badge-achievement__image'
+
+    imageClasses += ' badge-achievement__image--locked' if @props.isLocked
 
     div
       className: "badge-achievement #{@props.additionalClasses}",
@@ -54,7 +57,7 @@ class ProfilePage.AchievementBadge extends React.Component
         srcSet: srcSet
         alt: @props.achievement.name
         title: @props.achievement.name
-        className: 'js-tooltip-achievement badge-achievement__image'
+        className: imageClasses
         'data-tooltip-target': tooltipId
         onMouseOver: @onMouseOver
 

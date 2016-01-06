@@ -34,16 +34,25 @@ ProfilePage.Medals = React.createClass
 
 
   render: ->
+    groupedAchievements = _.groupBy @props.achievements, (achievement) ->
+      achievement.grouping
+
+    achievementsHtml = []
+
+    for own group, achievements of groupedAchievements
+      achievementsHtml.push div key: group,
+          "Group: #{group}"
+          achievements.map (achievement, i) =>
+            div
+              key: i
+              el ProfilePage.AchievementBadge,
+                achievement: achievement
+                isLocked: !@_isAchieved(achievement.id)
+
     div
       className: 'profile-extra'
       div className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'medals'
 
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.medals.title')
 
-      @props.achievements.map (achievement, i) =>
-        div null,
-          el 'br'
-          el ProfilePage.AchievementBadge,
-            key: i
-            achievement: achievement
-          "achieved: #{@_isAchieved achievement.id}"
+      achievementsHtml
