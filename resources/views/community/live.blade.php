@@ -30,7 +30,7 @@
             </div>
         </div>
     </div>
-    <div class="osu-layout__row osu-layout__row--with-gutter osu-layout__row--page livestream-page">
+    <div class="osu-layout__row osu-layout__row--with-gutter osu-layout__row--page-compact livestream-page">
     @if ($featuredStream !== null)
         <h2 class="livestream-page__header">{{ trans('livestreams.headers.featured') }}</h2>
         <div class="livestream-featured">
@@ -46,7 +46,7 @@
                 @if (Auth::user() != null && Auth::user()->isGmt())
                 <div class="livestream-featured__actions">
                     <div class="forum-post-actions">
-                        <a data-method="POST" class="forum-post-actions__action" href="live?demote=true">
+                        <a data-method="POST" class="forum-post-actions__action" href="{{route('live', ['demote' => true])}}">
                             <i class="fa fa-thumbs-down"></i>
                         </a>
                     </div>
@@ -74,7 +74,7 @@
                     @if (Auth::user() != null && Auth::user()->isGmt())
                     <div class="livestream-regular__actions">
                         <div class="forum-post-actions">
-                            <a data-method="POST" class="forum-post-actions__action" href="live?promote={{$stream->_id}}">
+                            <a data-method="POST" class="forum-post-actions__action" href="{{route('live', ['promote' => $stream->_id])}}">
                                 <i class="fa fa-thumbs-up"></i>
                             </a>
                         </div>
