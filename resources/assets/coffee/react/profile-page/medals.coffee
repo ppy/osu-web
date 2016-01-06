@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, h2} = React.DOM
+{div, h2, h3} = React.DOM
 el = React.createElement
 
 ProfilePage.Medals = React.createClass
@@ -40,14 +40,22 @@ ProfilePage.Medals = React.createClass
     achievementsHtml = []
 
     for own group, achievements of groupedAchievements
-      achievementsHtml.push div key: group,
-          "Group: #{group}"
+      groupHtml = div
+        key: group
+        className: 'medals-group__group'
+        h3 className: 'medals-group__title', group
+        div
+          className: 'medals-group__medals'
           achievements.map (achievement, i) =>
             div
               key: i
+              className: 'medals-group__medal'
               el ProfilePage.AchievementBadge,
                 achievement: achievement
                 isLocked: !@_isAchieved(achievement.id)
+                bigIcon: true
+
+      achievementsHtml.push groupHtml
 
     div
       className: 'profile-extra'
@@ -55,4 +63,5 @@ ProfilePage.Medals = React.createClass
 
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.medals.title')
 
-      achievementsHtml
+      div className: 'medals-group',
+        achievementsHtml

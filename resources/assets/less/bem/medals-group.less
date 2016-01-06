@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -16,22 +14,40 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-namespace App\Transformers;
+.medals-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 (-@spacing);
 
-use App\Models\Achievement;
-use League\Fractal;
+  &__group {
+    .default-box-shadow();
+    .default-border-radius();
+    width: calc(50% ~'-' (@spacing * 2));
+    margin: @spacing;
+    padding: @spacing;
+    display: inline-flex;
+    flex-direction: column;
+  }
 
-class AchievementTransformer extends Fractal\TransformerAbstract
-{
-    public function transform(Achievement $achievement)
-    {
-        return [
-            'id' => $achievement->achievement_id,
-            'name' => $achievement->name,
-            'grouping' => $achievement->grouping,
-            'slug' => $achievement->slug,
-            'description' => $achievement->quest_instructions,
-        ];
-    }
+  &__medal {
+    width: 70px;
+    margin: @spacing;
+  }
+
+  &__medals {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 (-@spacing);
+  }
+
+  &__title {
+    color: @grey-5;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0 0 (@spacing * 2);
+  }
 }

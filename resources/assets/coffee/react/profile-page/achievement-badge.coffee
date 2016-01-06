@@ -51,7 +51,14 @@ class ProfilePage.AchievementBadge extends React.Component
 
 
   render: =>
-    srcSet = "#{@filename()} 1x, #{@filename(true)} 2x"
+    if @props.bigIcon
+      src = @filename false, 'big'
+      src2x = @filename true, 'big'
+    else
+      src = @filename()
+      src2x = @filename true
+
+    srcSet = "#{src} 1x, #{src2x} 2x"
     tooltipId = "#{@props.achievement.slug}-#{Math.floor(Math.random() * 1000000)}"
     imageClasses = 'js-tooltip-achievement badge-achievement__image'
 
@@ -60,7 +67,7 @@ class ProfilePage.AchievementBadge extends React.Component
     div
       className: "badge-achievement #{@props.additionalClasses}",
       img
-        src: @filename()
+        src: src
         srcSet: srcSet
         alt: @props.achievement.name
         title: @props.achievement.name
