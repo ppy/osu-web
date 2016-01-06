@@ -69,7 +69,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'id' => $profileCustomization->cover->id(),
             ],
             'achievements' => [
-                'total' => Achievement::count(),
+                'total' => Achievement::achievable()->count(),
                 'current' => $user->achievements()->count(),
             ],
             'kudosu' => [
