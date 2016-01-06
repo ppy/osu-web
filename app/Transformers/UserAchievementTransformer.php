@@ -32,6 +32,7 @@ class UserAchievementTransformer extends Fractal\TransformerAbstract
     {
         return [
             'achieved_at' => $userAchievement->date->toIso8601String(),
+            'description' => $achievement->quest_instructions,
         ];
     }
 
