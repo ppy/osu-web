@@ -20,13 +20,13 @@ class @TooltipDefault
     $(document).on 'mouseover', '[title]', @onMouseOver
 
   onMouseOver: (event) =>
-    return if event.target._tooltip
+    return if event.currentTarget._tooltip
 
-    event.target._tooltip = true
+    event.currentTarget._tooltip = true
 
-    title = event.target.getAttribute 'title'
+    title = event.currentTarget.getAttribute 'title'
 
-    at = event.target.getAttribute('data-tooltip-position') || 'top center'
+    at = event.currentTarget.getAttribute('data-tooltip-position') || 'top center'
 
     my = switch at
       when 'top center' then 'bottom center'
@@ -51,7 +51,7 @@ class @TooltipDefault
           width: 10
           height: 8
 
-    event.target.setAttribute 'data-orig-title', title
-    event.target.removeAttribute 'title'
+    event.currentTarget.setAttribute 'data-orig-title', title
+    event.currentTarget.removeAttribute 'title'
 
-    $(event.target).qtip options, event
+    $(event.currentTarget).qtip options, event

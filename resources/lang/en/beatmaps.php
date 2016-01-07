@@ -34,7 +34,7 @@ return [
         'any' => 'Any',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
-        'catch' => 'osu!catch',
+        'fruits' => 'osu!catch',
         'mania' => 'osu!mania',
     ],
     'status' => [

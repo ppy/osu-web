@@ -22,10 +22,14 @@ class ProfilePage.Rank extends React.Component
     return el('div') unless @props.rank.isRanked
 
     el 'div', className: 'user-profile-header__basic user-profile-header__basic--right',
-        el 'p', className: 'profile-basic profile-basic--large',
+        el 'p',
+          className: 'profile-basic profile-basic--large'
+          title: Lang.get('users.show.rank.global', mode: Lang.get("beatmaps.mode.#{@props.mode}"))
           el 'span', className: 'user-rank-icon',
             el 'i', className: "fa osu fa-#{@props.mode}-o"
           "##{@props.rank.global.toLocaleString()}"
         if @props.countryName != null
-          el 'p', className: 'profile-basic',
+          el 'p',
+            className: 'profile-basic'
+            title: Lang.get('users.show.rank.country', mode: Lang.get("beatmaps.mode.#{@props.mode}"))
             "#{@props.countryName} ##{@props.rank.country.toLocaleString()}"

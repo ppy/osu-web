@@ -114,7 +114,7 @@ class Event extends Model
             case 'osu!mania': return 'mania';
             case 'Taiko': return 'taiko';
             case 'osu!': return 'osu';
-            case 'Catch the Beat': return 'ctb';
+            case 'Catch the Beat': return 'fruits';
         }
     }
 

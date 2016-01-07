@@ -24,7 +24,7 @@ return [
         'create' => [
             '_' => 'Set cover image',
             'button' => 'Upload image',
-            'info' => 'Cover size shoule be at :dimensions. You can also drop your image here to upload.',
+            'info' => 'Cover size should be at :dimensions. You can also drop your image here to upload.',
         ],
 
         'destroy' => [

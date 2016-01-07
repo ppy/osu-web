@@ -42,7 +42,7 @@ class @BeatmapDifficultyIcon extends React.Component
       when 1
         mode = 'mania'
       when 2
-        mode = 'ctb'
+        mode = 'fruits'
       when 3
         mode = 'taiko'
       else

@@ -42,13 +42,10 @@ class BeatmapController extends Controller
         $beatmaps = $fractal->createData($data)->toArray();
 
         // temporarily put filters here
-        $modes = [
-            ['id' => null, 'name' => trans('beatmaps.mode.any')],
-            ['id' => Beatmap::OSU, 'name' => trans('beatmaps.mode.osu')],
-            ['id' => Beatmap::TAIKO, 'name' => trans('beatmaps.mode.taiko')],
-            ['id' => Beatmap::CTB, 'name' => trans('beatmaps.mode.catch')],
-            ['id' => Beatmap::MANIA, 'name' => trans('beatmaps.mode.mania')],
-        ];
+        $modes = [['id' => null, 'name' => trans('beatmaps.mode.any')]];
+        foreach (Beatmap::modes() as $name => $id) {
+            $modes[] = ['id' => $id, 'name' => trans("beatmaps.mode.{$name}")];
+        }
 
         $statuses = [
             ['id' => null, 'name' => trans('beatmaps.status.any')],

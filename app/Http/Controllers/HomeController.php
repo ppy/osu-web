@@ -44,12 +44,12 @@ class HomeController extends Controller
     {
         return view('home.icons')
         ->with('icons', [
-            'osu-o', 'mania-o', 'ctb-o', 'taiko-o',
-            'osu', 'mania', 'ctb', 'taiko',
+            'osu-o', 'mania-o', 'fruits-o', 'taiko-o',
+            'osu', 'mania', 'fruits', 'taiko',
             'bat', 'bubble', 'hourglass', 'dice', 'bomb', 'osu-spinner', 'net', 'mod-headphones',
             'easy-osu', 'normal-osu', 'hard-osu', 'insane-osu', 'expert-osu',
             'easy-taiko', 'normal-taiko', 'hard-taiko', 'insane-taiko', 'expert-taiko',
-            'easy-ctb', 'normal-ctb', 'hard-ctb', 'insane-ctb', 'expert-ctb',
+            'easy-fruits', 'normal-fruits', 'hard-fruits', 'insane-fruits', 'expert-fruits',
             'easy-mania', 'normal-mania', 'hard-mania', 'insane-mania', 'expert-mania',
         ]);
     }

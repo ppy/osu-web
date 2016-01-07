@@ -43,7 +43,6 @@ return [
     'logout_confirm' => 'Are you sure you want to log out? :(',
     'show' => [
         '404' => 'User not found! ;_;',
-        'avatar' => ":username's avatar",
         'current_location' => 'Currently in :location.',
         'edit' => [
             'cover' => [
@@ -119,6 +118,10 @@ return [
         ],
         'missingtext' => 'You might have made a typo! (or the user may have been banned)',
         'page_description' => 'osu! - Everything you ever wanted to know about :username!',
+        'rank' => [
+            'country' => 'Country rank for :mode',
+            'global' => 'Global rank for :mode',
+        ],
         'stats' => [
             'hit_accuracy' => 'Hit Accuracy',
             'level' => 'Level :level',
