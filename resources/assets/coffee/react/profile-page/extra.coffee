@@ -76,7 +76,7 @@ class ProfilePage.Extra extends React.Component
 
     withMePage = @props.userPage.html != '' || @props.withEdit
 
-    pages = ['recent_activities', 'kudosu', 'top_ranks', 'medals']
+    pages = ['recent_activities', 'kudosu', 'top_ranks', 'medals', 'historical']
     pages.unshift 'me' if withMePage
 
     tabsContainerClasses = 'profile-extra-tabs__container js-fixed-element'
@@ -113,3 +113,6 @@ class ProfilePage.Extra extends React.Component
 
       div className: 'osu-layout__row',
         el ProfilePage.Medals, achievements: @props.achievements, allAchievements: @props.allAchievements
+
+      div className: 'osu-layout__row',
+        el ProfilePage.Historical
