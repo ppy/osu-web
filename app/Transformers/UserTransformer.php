@@ -32,6 +32,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'allScoresBest',
         'allScoresFirst',
         'allStatistics',
+        'beatmapPlaycounts',
         'defaultStatistics',
         'page',
         'recentActivities',
@@ -154,6 +155,14 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->collection(
             $user->events()->recent()->get(),
             new EventTransformer()
+        );
+    }
+
+    public function includeBeatmapPlaycounts(User $user)
+    {
+        return $this->collection(
+            $user->beatmapPlaycounts()->with('beatmap', 'beatmap.set')->orderBy('playcount', 'desc')->get(),
+            new BeatmapPlaycountTransformer()
         );
     }
 

@@ -23,6 +23,7 @@ element = React.createElement ProfilePage.Main,
   allStats: user.allStatistics.data
   allScoresBest: user.allScoresBest.data
   allScoresFirst: user.allScoresFirst.data
+  beatmapPlaycounts: user.beatmapPlaycounts.data
   withEdit: user.id == window.currentUser.id
   recentActivities: user.recentActivities.data
   recentlyReceivedKudosu: user.recentlyReceivedKudosu.data

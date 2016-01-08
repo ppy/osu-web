@@ -493,12 +493,17 @@ class User extends Model implements AuthenticatableContract
 
     public function sets()
     {
-        return $this->hasMany("App\Models\Set", 'user_id', 'user_id');
+        return $this->hasMany(BeatmapSet::class);
     }
 
     public function beatmaps()
     {
-        return $this->hasManyThrough("App\Models\Beatmap", 'Set');
+        return $this->hasManyThrough(Beatmap::class, BeatmapSet::class, 'user_id', 'beatmapset_id');
+    }
+
+    public function beatmapPlaycounts()
+    {
+        return $this->hasMany(BeatmapPlaycount::class);
     }
 
     public function posts()

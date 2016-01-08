@@ -115,4 +115,4 @@ class ProfilePage.Extra extends React.Component
         el ProfilePage.Medals, achievements: @props.achievements, allAchievements: @props.allAchievements
 
       div className: 'osu-layout__row',
-        el ProfilePage.Historical
+        el ProfilePage.Historical, beatmapPlaycounts: @props.beatmapPlaycounts

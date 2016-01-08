@@ -116,7 +116,7 @@ class UsersController extends Controller
         $userArray = fractal_item_array(
             $user,
             new UserTransformer(),
-            'allAchievements,allStatistics,allScoresBest,allScoresFirst,page,recentActivities,recentlyReceivedKudosu'
+            'allAchievements,allStatistics,allScoresBest,allScoresFirst,beatmapPlaycounts,page,recentActivities,recentlyReceivedKudosu'
         );
 
         return view('users.show', compact('user', 'userArray', 'achievements'));
