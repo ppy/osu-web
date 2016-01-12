@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, h2, h3} = React.DOM
+{div, h2, h3, img} = React.DOM
 el = React.createElement
 
 ProfilePage.Historical = React.createClass
@@ -28,4 +28,10 @@ ProfilePage.Historical = React.createClass
 
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.historical.title')
 
-      'hi people'
+      @props.beatmapPlaycounts.map (pc, i) ->
+        return unless pc.beatmapSet
+        div
+          key: i
+          img
+            src: pc.beatmapSet.data.coverUrl
+          el 'pre', null, JSON.stringify(pc)

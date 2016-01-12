@@ -87,6 +87,7 @@ class BeatmapSetTransformer extends Fractal\TransformerAbstract
             'user_id' => $beatmap->user_id,
             'source' => $beatmap->source,
             'difficulties' => [], //self::groupDifficulties($beatmap),
+            'coverUrl' => $beatmap->coverUrl(),
         ];
     }
 }
