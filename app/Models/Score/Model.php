@@ -21,6 +21,7 @@ namespace App\Models\Score;
 
 use Illuminate\Database\Eloquent\Model as BaseModel;
 use App\Models\Beatmap;
+use App\Models\BeatmapSet;
 use App\Models\User;
 
 abstract class Model extends BaseModel
@@ -30,6 +31,7 @@ abstract class Model extends BaseModel
     protected $casts = [
         'score_id' => 'integer',
         'beatmap_id' => 'integer',
+        'beatmapset_id' => 'integer',
         'score' => 'integer',
         'maxcombo' => 'integer',
         'count50' => 'integer',
@@ -38,15 +40,18 @@ abstract class Model extends BaseModel
         'countmiss' => 'integer',
         'countkatu' => 'integer',
         'countgeki' => 'integer',
-        'perfect' => 'integer',
         'enabled_mods' => 'integer',
         'user_id' => 'integer',
         'enabled_mods' => 'integer',
         'rank' => 'string',
         'pp' => 'float',
+        'perfect' => 'boolean',
+        'replay' => 'boolean',
     ];
     protected $dates = ['date'];
     public $timestamps = false;
+
+    protected $_enabledMods = null;
 
     public function scopeForUser($query, User $user)
     {
@@ -58,6 +63,16 @@ abstract class Model extends BaseModel
         return $this->belongsTo(User::class);
     }
 
+    public function beatmap()
+    {
+        return $this->belongsTo(Beatmap::class);
+    }
+
+    public function beatmapSet()
+    {
+        return $this->belongsTo(BeatmapSet::class, 'beatmapset_id');
+    }
+
     public static function getClass($modeInt)
     {
         $modeStr = Beatmap::modeStr($modeInt);
@@ -67,5 +82,85 @@ abstract class Model extends BaseModel
 
             return new $klass;
         }
+    }
+
+    public function getEnabledModsAttribute($value)
+    {
+        if ($this->_enabledMods === null) {
+            $value = intval($value);
+
+            $this->_enabledMods = [];
+
+            // move to its own class when needed.
+            $availableMods = [
+                [0, 'NoFail', 'NF'],
+                [1, 'EasyMode', 'EZ'],
+                [3, 'Hidden', 'HD'],
+                [4, 'HardRock', 'HR'],
+                [5, 'SuddenDeath', 'SD'],
+                [6, 'DoubleTime', 'DT'],
+                [7, 'Relax', 'Relax'],
+                [8, 'HalfTime', 'HT'],
+                [9, 'Nightcore', 'NC'],
+                [10, 'Flashlight', 'FL'],
+                [12, 'SpunOut', 'SO'],
+                [13, 'AutoPilot', 'AP'],
+                [14, 'Perfect', 'PF'],
+                [15, '4K', '4K'],
+                [16, '5K', '5K'],
+                [17, '6K', '6K'],
+                [18, '7K', '7K'],
+                [19, '8K', '8K'],
+                [20, 'FadeIn', 'FI'],
+                [24, '9K', '9K'],
+            ];
+
+            foreach ($availableMods as $availableMod) {
+                if (($value & (1 << $availableMod[0])) === 0) {
+                    continue;
+                }
+
+                $this->_enabledMods[] = ['name' => $availableMod[1], 'shortName' => $availableMod[2]];
+            }
+        }
+
+        return $this->_enabledMods;
+    }
+
+    public function totalHits()
+    {
+        if ($this->gamemodeString() === 'osu') {
+            return ($this->count50 + $this->count100 + $this->count300 + $this->countmiss) * 300;
+        } elseif ($this->gamemodeString() === 'fruits') {
+            return $this->count50 + $this->count100 + $this->count300 +
+                $this->countmiss + $this->countkatu;
+        } elseif ($this->gamemodeString() === 'mania') {
+            return ($this->count50 + $this->count100 + $this->count300 + $this->countmiss + $this->countkatu + $this->countgeki) * 300;
+        } elseif ($this->gamemodeString() === 'taiko') {
+            return ($this->count100 + $this->count300 + $this->countmiss) * 300;
+        }
+    }
+
+    public function hits()
+    {
+        if ($this->gamemodeString() === 'osu') {
+            return $this->count50 * 50 + $this->count100 * 100 + $this->count300 * 300;
+        } elseif ($this->gamemodeString() === 'fruits') {
+            return $this->count50 + $this->count100 + $this->count300;
+        } elseif ($this->gamemodeString() === 'mania') {
+            return $this->count50 * 50 + $this->count100 * 100 + $this->countkatu * 200 + ($this->count300 + $this->countgeki) * 300;
+        } elseif ($this->gamemodeString() === 'taiko') {
+            return $this->count100 * 150 + $this->count300 * 300;
+        }
+    }
+
+    public function accuracy()
+    {
+        return $this->hits() / $this->totalHits();
+    }
+
+    public function scopeDefault($query)
+    {
+        return $query->orderBy('score_id', 'desc');
     }
 }

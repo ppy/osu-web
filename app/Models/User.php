@@ -111,8 +111,8 @@ class User extends Model implements AuthenticatableContract
             return Carbon::now()->addYears(10);
         }
 
-        $playCount = array_reduce($user->statisticsAll(true), function ($result, $stats) {
-                return $result + $stats->value('playcount');
+        $playCount = array_reduce(array_keys(Beatmap::modes()), function ($result, $mode) use ($user) {
+                return $result + $user->statistics($mode, true)->value('playcount');
             }, 0);
 
         return $user->user_lastvisit
@@ -535,46 +535,115 @@ class User extends Model implements AuthenticatableContract
 
     public function statisticsOsu()
     {
-        return $this->hasOne("App\Models\UserStatistics\Osu", 'user_id', 'user_id');
+        return $this->statistics('osu', true);
     }
 
     public function statisticsFruits()
     {
-        return $this->hasOne("App\Models\UserStatistics\Fruits", 'user_id', 'user_id');
+        return $this->statistics('fruits', true);
     }
 
     public function statisticsMania()
     {
-        return $this->hasOne("App\Models\UserStatistics\Mania", 'user_id', 'user_id');
+        return $this->statistics('mania', true);
     }
 
     public function statisticsTaiko()
     {
-        return $this->hasOne("App\Models\UserStatistics\Taiko", 'user_id', 'user_id');
+        return $this->statistics('taiko', true);
     }
 
     public function statistics($mode, $returnQuery = false)
     {
-        if (!in_array($mode, ['osu', 'fruits', 'mania', 'taiko'], true)) {
+        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
             return;
         }
 
-        $relation = camel_case("statistics_{$mode}");
-        if ($returnQuery) {
-            return $this->{$relation}();
+        $mode = studly_case($mode);
+
+        if ($returnQuery === true) {
+            return $this->hasOne("App\Models\UserStatistics\\{$mode}", 'user_id', 'user_id');
         } else {
+            $relation = "statistics{$mode}";
+
             return $this->$relation;
         }
     }
 
-    public function statisticsAll($returnQuery = false)
+    public function scoresFirstOsu()
     {
-        $all = [];
-        foreach (['osu', 'fruits', 'mania', 'taiko'] as $mode) {
-            $all[$mode] = $this->statistics($mode, $returnQuery);
+        return $this->scoresFirst('osu', true);
+    }
+
+    public function scoresFirstFruits()
+    {
+        return $this->scoresFirst('fruits', true);
+    }
+
+    public function scoresFirstMania()
+    {
+        return $this->scoresFirst('mania', true);
+    }
+
+    public function scoresFirstTaiko()
+    {
+        return $this->scoresFirst('taiko', true);
+    }
+
+    public function scoresFirst($mode, $returnQuery = false)
+    {
+        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+            return;
         }
 
-        return $all;
+        $casedMode = studly_case($mode);
+
+        if ($returnQuery === true) {
+            $suffix = $mode === 'osu' ? '' : "_{$mode}";
+
+            return $this->belongsToMany("App\Models\Score\Best\\{$casedMode}", "osu_leaders{$suffix}", 'user_id', 'score_id');
+        } else {
+            $relation = "scoresFirst{$casedMode}";
+
+            return $this->$relation;
+        }
+    }
+
+    public function scoresBestOsu()
+    {
+        return $this->scoresBest('osu', true);
+    }
+
+    public function scoresBestFruits()
+    {
+        return $this->scoresBest('fruits', true);
+    }
+
+    public function scoresBestMania()
+    {
+        return $this->scoresBest('mania', true);
+    }
+
+    public function scoresBestTaiko()
+    {
+        return $this->scoresBest('taiko', true);
+    }
+
+    public function scoresBest($mode, $returnQuery = false)
+    {
+        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+            return;
+        }
+
+        if ($returnQuery) {
+            $mode = studly_case($mode);
+
+            return $this->hasMany("App\Models\Score\Best\\{$mode}")->default();
+        } else {
+            $relation = camel_case("scores_best_{$mode}");
+
+            return $this->$relation;
+        }
     }
 
     public function profileCustomization()

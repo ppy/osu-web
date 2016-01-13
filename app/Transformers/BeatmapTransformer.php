@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -14,30 +16,24 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
-.badge-rank {
-  @_size: 100%;
-  width: @_size;
-  height: @_size;
-  background-size: cover;
+namespace App\Transformers;
 
-  ._bg(@rank) {
-    .at2x-simple("/images/badges/score-ranks/@{rank}.png");
-  }
+use App\Models\Beatmap;
+use League\Fractal;
 
-  &--XH { ._bg("XH"); }
-  &--X { ._bg("X"); }
-  &--SH { ._bg("SH"); }
-  &--S { ._bg("S"); }
-  &--A { ._bg("A"); }
-  &--B { ._bg("B"); }
-  &--C { ._bg("C"); }
-  &--D { ._bg("D"); }
+class BeatmapTransformer extends Fractal\TransformerAbstract
+{
+    public function transform(Beatmap $beatmap = null)
+    {
+        if ($beatmap === null) {
+            return [];
+        }
 
-  &--medium {
-    @_size: 50px;
-    width: @_size;
-    height: @_size;
-  }
+        return [
+            'id' => $beatmap->beatmap_id,
+            'version' => $beatmap->version,
+            'url' => route('beatmaps.show', ['id' => $beatmap->beatmap_id, 'm' => $beatmap->playmode]),
+        ];
+    }
 }

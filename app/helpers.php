@@ -313,9 +313,13 @@ function open_image($path, $dimensions = null)
     }
 }
 
-function fractal_collection_array($models, $transformer)
+function fractal_collection_array($models, $transformer, $includes = null)
 {
     $manager = new League\Fractal\Manager();
+    if ($includes !== null) {
+        $manager->parseIncludes($includes);
+    }
+
     $collection = new League\Fractal\Resource\Collection($models, $transformer);
 
     return $manager->createData($collection)->toArray();

@@ -196,15 +196,13 @@ class Event extends Model
 
     public function parseMatchesRank($matches)
     {
-        $scoreRank = str_replace('x', 'ss', strtolower($matches['scoreRank']));
-
         $mode = $this->stringMode($matches['mode']);
         if ($mode === null) {
             return $this->parseFailure();
         }
 
         return [
-            'scoreRank' => $scoreRank,
+            'scoreRank' => $matches['scoreRank'],
             'rank' => intval($matches['rank']),
             'mode' => $mode,
             'beatmap' => $this->arrayBeatmap($matches),
