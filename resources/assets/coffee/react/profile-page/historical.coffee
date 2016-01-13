@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, h2, h3, img} = React.DOM
+{a, div, h2, h3, img, small, span} = React.DOM
 el = React.createElement
 
 ProfilePage.Historical = React.createClass
@@ -30,8 +30,39 @@ ProfilePage.Historical = React.createClass
 
       @props.beatmapPlaycounts.map (pc, i) ->
         return unless pc.beatmapSet
+
+        bm = pc.beatmap.data
+        bmset = pc.beatmapSet.data
+
         div
           key: i
-          img
-            src: pc.beatmapSet.data.coverUrl
-          el 'pre', null, JSON.stringify(pc)
+          className: 'beatmapset-row'
+          div
+            className: 'beatmapset-row__cover'
+            style:
+              backgroundImage: "url('#{bmset.coverUrl}')"
+          div
+            className: 'beatmapset-row__detail'
+            div
+              className: 'beatmapset-row__detail-row'
+              div
+                className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
+                a
+                  className: 'beatmapset-row__title'
+                  href: "/b/#{bmset.id}"
+                  "#{bmset.title} [#{bm.version}] "
+                  span
+                    className: 'beatmapset-row__title-small'
+                    bmset.artist
+              div
+                className: 'beatmapset-row__detail-column'
+                span
+                  className: 'beatmapset-row__info'
+                  'times played'
+                span
+                  className: 'beatmapset-row__info beatmapset-row__info--large'
+                  " #{pc.count.toLocaleString()}"
+            div
+              className: 'beatmapset-row__detail-row'
+              span dangerouslySetInnerHTML:
+                  __html: "mapped by #{osu.link "/u/#{bmset.user_id}", bmset.creator, classNames: ['beatmapset-row__title-small']}"
