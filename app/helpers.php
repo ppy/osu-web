@@ -286,6 +286,10 @@ function base62_encode($input)
 
 function display_regdate($user)
 {
+    if ($user->user_regdate === null) {
+        return;
+    }
+
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
         return trans('users.show.first_members');
     }
