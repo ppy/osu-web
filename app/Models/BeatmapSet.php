@@ -31,15 +31,34 @@ class BeatmapSet extends Model
     protected $primaryKey = 'beatmapset_id';
 
     protected $casts = [
-        'bpm' => 'integer',
+        'active' => 'boolean',
+        'approved' => 'integer',
+        'approvedby_id' => 'integer',
+        'beatmapset_id' => 'integer',
+        'bpm' => 'float',
+        'download_disabled' => 'boolean',
+        'epilepsy' => 'boolean',
+        'favourite_count' => 'integer',
+        'filesize' => 'integer',
+        'filesize_novideo' => 'integer',
         'genre_id' => 'integer',
         'language_id' => 'integer',
-        'favourite_count' => 'integer',
+        'offset' => 'integer',
+        'play_count' => 'integer',
+        'rating' => 'float',
+        'star_priority' => 'integer',
+        'storyboard' => 'boolean',
+        'thread_id' => 'integer',
+        'user_id' => 'integer',
+        'versions_available' => 'integer',
+        'video' => 'boolean',
     ];
 
     protected $dates = [
         'approved_date',
         'last_update',
+        'submit_date',
+        'thread_icon_date',
     ];
 
     public $timestamps = false;
