@@ -27,7 +27,6 @@ class ProfileCover
 
     public $data;
     public $userId;
-    public $errors = [];
 
     private $availableIds = ['1', '2', '3', '4', '5', '6', '7', '8'];
 
