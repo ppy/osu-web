@@ -29,8 +29,6 @@ ProfilePage.Historical = React.createClass
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.historical.title')
 
       @props.beatmapPlaycounts.map (pc, i) ->
-        return unless pc.beatmapSet
-
         bm = pc.beatmap.data
         bmset = pc.beatmapSet.data
 
