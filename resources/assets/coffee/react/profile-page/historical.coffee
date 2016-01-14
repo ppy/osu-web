@@ -21,6 +21,15 @@ el = React.createElement
 ProfilePage.Historical = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
+  getInitialState: ->
+    showing: 5
+
+  _showMore: (e) ->
+    e.preventDefault() if e
+
+    @setState showing: (@state.showing + 5)
+
+
   render: ->
     div
       className: 'profile-extra'
@@ -28,13 +37,16 @@ ProfilePage.Historical = React.createClass
 
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.historical.title')
 
-      @props.beatmapPlaycounts.map (pc, i) ->
+      @props.beatmapPlaycounts.map (pc, i) =>
         bm = pc.beatmap.data
         bmset = pc.beatmapSet.data
 
+        topClasses = 'beatmapset-row'
+        topClasses += ' hidden' unless i < @state.showing
+
         div
           key: i
-          className: 'beatmapset-row'
+          className: topClasses
           div
             className: 'beatmapset-row__cover'
             style:
@@ -65,3 +77,9 @@ ProfilePage.Historical = React.createClass
               span dangerouslySetInnerHTML:
                   __html: Lang.get 'beatmaps.listing.mapped-by',
                     mapper: osu.link("/u/#{bmset.user_id}", bmset.creator, classNames: ['beatmapset-row__title-small'])
+
+      if @props.beatmapPlaycounts.length > @state.showing
+        a
+          href: '#'
+          onClick: @_showMore
+          Lang.get('common.buttons.show_more')

@@ -106,7 +106,7 @@ ProfilePage.TopRanks = React.createClass
             @props.scoresBest.map (score, i) => @_renderScore(score, i, @state.limitBest)
             if @state.limitBest < @props.scoresBest.length
               li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
-                a href: '#', onClick: @_increaseLimit('best'), 'show more'
+                a href: '#', onClick: @_increaseLimit('best'), Lang.get('common.buttons.show_more')
         else
           p className: 'profile-extra-entries', Lang.get('users.show.extra.top_ranks.empty')
 
@@ -117,6 +117,6 @@ ProfilePage.TopRanks = React.createClass
             @props.scoresFirst.map (score, i) => @_renderScore(score, i, @state.limitFirst)
             if @state.limitFirst < @props.scoresFirst.length
               li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
-                a href: '#', onClick: @_increaseLimit('first'), 'show more'
+                a href: '#', onClick: @_increaseLimit('first'), Lang.get('common.buttons.show_more')
         else
           p className: 'profile-extra-entries', Lang.get('users.show.extra.top_ranks.empty')

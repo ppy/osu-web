@@ -23,6 +23,7 @@ return [
             'cancel' => 'Cancel',
             'reset' => 'Reset',
             'save' => 'Save',
+            'show_more' => 'show more',
         ],
 
         'count' => [
