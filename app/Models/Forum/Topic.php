@@ -108,7 +108,7 @@ class Topic extends Model
             }
 
             if ($post->user !== null) {
-                $post->user->refreshForumCache();
+                $post->user->refreshForumCache($this->forum, 1);
             }
         });
 
@@ -131,7 +131,7 @@ class Topic extends Model
             }
 
             if ($post->user !== null) {
-                $post->user->refreshForumCache();
+                $post->user->refreshForumCache($this->forum, -1);
             }
 
             if ($user !== null && $user->user_id !== $post->poster_id && $user->isAdmin() === true) {
