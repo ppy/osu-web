@@ -56,11 +56,12 @@ ProfilePage.Historical = React.createClass
                 className: 'beatmapset-row__detail-column'
                 span
                   className: 'beatmapset-row__info'
-                  'times played'
+                  Lang.get('users.show.extra.historical.times_played')
                 span
                   className: 'beatmapset-row__info beatmapset-row__info--large'
                   " #{pc.count.toLocaleString()}"
             div
               className: 'beatmapset-row__detail-row'
               span dangerouslySetInnerHTML:
-                  __html: "mapped by #{osu.link "/u/#{bmset.user_id}", bmset.creator, classNames: ['beatmapset-row__title-small']}"
+                  __html: Lang.get 'beatmaps.listing.mapped-by',
+                    mapper: osu.link("/u/#{bmset.user_id}", bmset.creator, classNames: ['beatmapset-row__title-small'])
