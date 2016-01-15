@@ -48,10 +48,12 @@
     background-size: cover;
     width: 80px;
     min-height: 50px;
+    flex: none;
   }
 
   &__detail {
     flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     padding: @spacing;
@@ -62,6 +64,9 @@
 
     &--full {
       flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
