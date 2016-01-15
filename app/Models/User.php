@@ -575,6 +575,43 @@ class User extends Model implements AuthenticatableContract
         }
     }
 
+    public function scoresOsu()
+    {
+        return $this->scores('osu', true);
+    }
+
+    public function scoresFruits()
+    {
+        return $this->scores('fruits', true);
+    }
+
+    public function scoresMania()
+    {
+        return $this->scores('mania', true);
+    }
+
+    public function scoresTaiko()
+    {
+        return $this->scores('taiko', true);
+    }
+
+    public function scores($mode, $returnQuery = false)
+    {
+        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+            return;
+        }
+
+        $mode = studly_case($mode);
+
+        if ($returnQuery === true) {
+            return $this->hasMany("App\Models\Score\\{$mode}");
+        } else {
+            $relation = "scores{$mode}";
+
+            return $this->$relation;
+        }
+    }
+
     public function scoresFirstOsu()
     {
         return $this->scoresFirst('osu', true);

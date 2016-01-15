@@ -402,7 +402,12 @@ function bem($block, $element = null, $modifiers = [])
     return " {$ret} ";
 }
 
-function get_namespace($className)
+function get_class_basename($className)
+{
+    return substr($className, strrpos($className, '\\') + 1);
+}
+
+function get_class_namespace($className)
 {
     return substr($className, 0, strrpos($className, '\\'));
 }

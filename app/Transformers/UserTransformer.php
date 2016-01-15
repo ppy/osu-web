@@ -29,6 +29,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'allAchievements',
+        'allScores',
         'allScoresBest',
         'allScoresFirst',
         'allStatistics',
@@ -122,6 +123,21 @@ class UserTransformer extends Fractal\TransformerAbstract
                 ScoreBestModel::fillInPosition($scores);
 
                 $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapSet,weight');
+            }
+
+            return $all;
+        });
+    }
+
+    public function includeAllScores(User $user)
+    {
+        return $this->item($user, function ($user) {
+            $all = [];
+
+            foreach (array_keys(Beatmap::modes()) as $mode) {
+                $scores = $user->scores($mode, true)->with('beatmapSet', 'beatmap')->orderBy('date', 'desc')->get();
+
+                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapSet');
             }
 
             return $all;

@@ -21,6 +21,7 @@ element = React.createElement ProfilePage.Main,
   achievements: achievements
   allAchievements: user.allAchievements.data
   allStats: user.allStatistics.data
+  allScores: user.allScores.data
   allScoresBest: user.allScoresBest.data
   allScoresFirst: user.allScoresFirst.data
   beatmapPlaycounts: user.beatmapPlaycounts.data

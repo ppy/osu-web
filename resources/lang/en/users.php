@@ -71,6 +71,9 @@ return [
                     'count' => 'times played',
                     'title' => 'Most Played Beatmaps',
                 ],
+                'recent_plays' => [
+                    'title' => 'Recent Plays',
+                ],
                 'title' => 'Historical',
             ],
             'kudosu' => [

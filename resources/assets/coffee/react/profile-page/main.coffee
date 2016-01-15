@@ -69,6 +69,7 @@ class ProfilePage.Main extends React.Component
 
   render: =>
     stats = @props.allStats[@state.mode].data
+    scores = @props.allScores[@state.mode].data
     scoresBest = @props.allScoresBest[@state.mode].data
     scoresFirst = @props.allScoresFirst[@state.mode].data
 
@@ -93,6 +94,7 @@ class ProfilePage.Main extends React.Component
         recentActivities: @props.recentActivities
         recentlyReceivedKudosu: @props.recentlyReceivedKudosu
         user: @state.user
+        scores: scores
         scoresBest: scoresBest
         scoresFirst: scoresFirst
         withEdit: @props.withEdit

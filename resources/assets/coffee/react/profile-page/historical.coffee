@@ -22,13 +22,56 @@ ProfilePage.Historical = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
   getInitialState: ->
-    showing: 5
+    showingPlaycounts: 5
+    showingRecent: 5
 
-  _showMore: (e) ->
+  _showMore: (e, key) ->
     e.preventDefault() if e
 
-    @setState showing: (@state.showing + 5)
+    newState = {}
+    newState[key] = @state[key] + 5
 
+    @setState newState
+
+
+  _beatmapRow: (bm, bmset, key, shown, details = []) ->
+    topClasses = 'beatmapset-row'
+    topClasses += ' hidden' unless shown
+
+    div
+      key: key
+      className: topClasses
+      div
+        className: 'beatmapset-row__cover'
+        style:
+          backgroundImage: "url('#{bmset.coverUrl}')"
+      div
+        className: 'beatmapset-row__detail'
+        div
+          className: 'beatmapset-row__detail-row'
+          div
+            className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
+            a
+              className: 'beatmapset-row__title'
+              href: "/s/#{bmset.beatmapset_id}"
+              title: "#{bmset.title} [#{bm.version}] "
+              "#{bmset.artist} - #{bmset.title} [#{bm.version}] "
+              span
+                className: 'beatmapset-row__title-small'
+                bmset.artist
+          div
+            className: 'beatmapset-row__detail-column'
+            details[0]
+        div
+          className: 'beatmapset-row__detail-row'
+          div
+            className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
+            span dangerouslySetInnerHTML:
+                __html: Lang.get 'beatmaps.listing.mapped-by',
+                  mapper: osu.link("/u/#{bmset.user_id}", bmset.creator, classNames: ['beatmapset-row__title-small'])
+          div
+            className: 'beatmapset-row__detail-column'
+            details[1]
 
   render: ->
     div
@@ -37,52 +80,42 @@ ProfilePage.Historical = React.createClass
 
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.historical.title')
 
-      h3 className: 'profile-extra__title profile-extra__title--small', Lang.get('users.show.extra.historical.most_played.title')
+      h3
+        className: 'profile-extra__title profile-extra__title--small'
+        Lang.get('users.show.extra.historical.most_played.title')
+
       @props.beatmapPlaycounts.map (pc, i) =>
-        bm = pc.beatmap.data
-        bmset = pc.beatmapSet.data
+        @_beatmapRow pc.beatmap.data, pc.beatmapSet.data, i, i < @state.showingPlaycounts, [
+          span
+            className: 'beatmapset-row__info'
+            Lang.get('users.show.extra.historical.most_played.count')
+          span
+            className: 'beatmapset-row__info beatmapset-row__info--large'
+            " #{pc.count.toLocaleString()}"
+        ]
 
-        topClasses = 'beatmapset-row'
-        topClasses += ' hidden' unless i < @state.showing
-
-        div
-          key: i
-          className: topClasses
-          div
-            className: 'beatmapset-row__cover'
-            style:
-              backgroundImage: "url('#{bmset.coverUrl}')"
-          div
-            className: 'beatmapset-row__detail'
-            div
-              className: 'beatmapset-row__detail-row'
-              div
-                className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
-                a
-                  className: 'beatmapset-row__title'
-                  href: "/s/#{bmset.beatmapset_id}"
-                  title: "#{bmset.title} [#{bm.version}] "
-                  "#{bmset.title} [#{bm.version}] "
-                  span
-                    className: 'beatmapset-row__title-small'
-                    bmset.artist
-              div
-                className: 'beatmapset-row__detail-column'
-                span
-                  className: 'beatmapset-row__info'
-                  Lang.get('users.show.extra.historical.most_played.count')
-                span
-                  className: 'beatmapset-row__info beatmapset-row__info--large'
-                  " #{pc.count.toLocaleString()}"
-            div
-              className: 'beatmapset-row__detail-row'
-              span dangerouslySetInnerHTML:
-                  __html: Lang.get 'beatmaps.listing.mapped-by',
-                    mapper: osu.link("/u/#{bmset.user_id}", bmset.creator, classNames: ['beatmapset-row__title-small'])
-
-      if @props.beatmapPlaycounts.length > @state.showing
+      if @props.beatmapPlaycounts.length > @state.showingPlaycounts
         a
           href: '#'
           className: 'beatmapset-row beatmapset-row--more'
-          onClick: @_showMore
+          onClick: (e) => @_showMore(e, 'showingPlaycounts')
+          Lang.get('common.buttons.show_more')
+
+      h3
+        className: 'profile-extra__title profile-extra__title--small'
+        Lang.get('users.show.extra.historical.recent_plays.title')
+
+      @props.scores.map (score, i) =>
+        @_beatmapRow score.beatmap.data, score.beatmapSet.data, i, i < @state.showingRecent, [
+          span
+            className: 'beatmapset-row__info'
+            dangerouslySetInnerHTML:
+              __html: osu.timeago(score.created_at)
+        ]
+
+      if @props.scores.length > @state.showingRecent
+        a
+          href: '#'
+          className: 'beatmapset-row beatmapset-row--more'
+          onClick: (e) => @_showMore(e, 'showingRecent')
           Lang.get('common.buttons.show_more')
