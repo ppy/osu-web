@@ -54,8 +54,8 @@ ProfilePage.Historical = React.createClass
             a
               className: 'beatmapset-row__title'
               href: "/s/#{bmset.beatmapset_id}"
-              title: "#{bmset.title} [#{bm.version}] "
-              "#{bmset.artist} - #{bmset.title} [#{bm.version}] "
+              title: "#{bmset.artist} #{bmset.title} [#{bm.version}] "
+              "#{bmset.title} [#{bm.version}] "
               span
                 className: 'beatmapset-row__title-small'
                 bmset.artist
