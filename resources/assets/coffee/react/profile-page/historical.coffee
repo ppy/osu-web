@@ -83,5 +83,6 @@ ProfilePage.Historical = React.createClass
       if @props.beatmapPlaycounts.length > @state.showing
         a
           href: '#'
+          className: 'beatmapset-row beatmapset-row--more'
           onClick: @_showMore
           Lang.get('common.buttons.show_more')
