@@ -100,7 +100,7 @@ ProfilePage.TopRanks = React.createClass
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.top_ranks.title')
 
       div null,
-        h3 className: 'profile-extra__title--small', Lang.get('users.show.extra.top_ranks.best.title')
+        h3 className: 'profile-extra__title profile-extra__title--small', Lang.get('users.show.extra.top_ranks.best.title')
         if @props.scoresBest && @props.scoresBest.length
           ul className: 'profile-extra-entries',
             @props.scoresBest.map (score, i) => @_renderScore(score, i, @state.limitBest)
@@ -111,7 +111,7 @@ ProfilePage.TopRanks = React.createClass
           p className: 'profile-extra-entries', Lang.get('users.show.extra.top_ranks.empty')
 
       div null,
-        h3 className: 'profile-extra__title--small', Lang.get('users.show.extra.top_ranks.first.title')
+        h3 className: 'profile-extra__title profile-extra__title--small', Lang.get('users.show.extra.top_ranks.first.title')
         if @props.scoresFirst && @props.scoresFirst.length
           ul className: 'profile-extra-entries',
             @props.scoresFirst.map (score, i) => @_renderScore(score, i, @state.limitFirst)

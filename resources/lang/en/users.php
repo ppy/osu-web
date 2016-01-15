@@ -67,7 +67,10 @@ return [
                 'title' => 'Beatmaps',
             ],
             'historical' => [
-                'times_played' => 'times played',
+                'most_played' => [
+                    'count' => 'times played',
+                    'title' => 'Most Played Beatmaps',
+                ],
                 'title' => 'Historical',
             ],
             'kudosu' => [

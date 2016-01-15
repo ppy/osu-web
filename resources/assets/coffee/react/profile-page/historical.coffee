@@ -37,6 +37,7 @@ ProfilePage.Historical = React.createClass
 
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.historical.title')
 
+      h3 className: 'profile-extra__title profile-extra__title--small', Lang.get('users.show.extra.historical.most_played.title')
       @props.beatmapPlaycounts.map (pc, i) =>
         bm = pc.beatmap.data
         bmset = pc.beatmapSet.data
@@ -69,7 +70,7 @@ ProfilePage.Historical = React.createClass
                 className: 'beatmapset-row__detail-column'
                 span
                   className: 'beatmapset-row__info'
-                  Lang.get('users.show.extra.historical.times_played')
+                  Lang.get('users.show.extra.historical.most_played.count')
                 span
                   className: 'beatmapset-row__info beatmapset-row__info--large'
                   " #{pc.count.toLocaleString()}"
