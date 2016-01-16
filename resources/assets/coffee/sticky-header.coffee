@@ -27,7 +27,7 @@ class @StickyHeader
   stickMarker: document.getElementsByClassName('js-sticky-header')
 
   constructor: ->
-    $(window).on 'scroll', @stickOrUnstick
+    $(window).on 'throttled-scroll throttled-resize', @stickOrUnstick
     $(document).on 'ready page:load osu:page:change', @stickOrUnstick
 
   stickOrUnstick: =>

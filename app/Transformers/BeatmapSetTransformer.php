@@ -71,17 +71,21 @@ class BeatmapSetTransformer extends Fractal\TransformerAbstract
         return $difficulties;
     }
 
-    public function transform(BeatmapSet $beatmap)
+    public function transform(BeatmapSet $beatmap = null)
     {
+        if ($beatmap === null) {
+            return [];
+        }
+
         return [
-            'beatmapset_id' => $beatmap['beatmapset_id'],
-            'title' => $beatmap['title'],
-            'artist' => $beatmap['artist'],
-            'play_count' => number_format($beatmap['play_count']),
-            'favourite_count' => number_format($beatmap['favourite_count']),
-            'creator' => $beatmap['creator'],
-            'user_id' => $beatmap['user_id'],
-            'source' => $beatmap['source'],
+            'beatmapset_id' => $beatmap->beatmapset_id,
+            'title' => $beatmap->title,
+            'artist' => $beatmap->artist,
+            'play_count' => $beatmap->play_count,
+            'favourite_count' => $beatmap->favourite_count,
+            'creator' => $beatmap->creator,
+            'user_id' => $beatmap->user_id,
+            'source' => $beatmap->source,
             'difficulties' => [], //self::groupDifficulties($beatmap),
         ];
     }

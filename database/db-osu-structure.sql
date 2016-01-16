@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.24-72.2, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.15  Distrib 10.0.23-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: osu
 -- ------------------------------------------------------
--- Server version	5.6.24-72.2-log
+-- Server version	5.7.9-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -193,11 +193,13 @@ CREATE TABLE `osu_changelog` (
   `build` varchar(50) DEFAULT NULL,
   `thread_id` int(10) unsigned DEFAULT NULL,
   `url` varchar(1024) DEFAULT NULL,
+  `stream_id` tinyint(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`changelog_id`),
   UNIQUE KEY `unique_checksum` (`checksum`),
   KEY `time` (`date`),
   KEY `major_release` (`build`,`date`),
-  KEY `category` (`category`,`changelog_id`)
+  KEY `category` (`category`,`changelog_id`),
+  KEY `stream_id` (`stream_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -245,38 +247,38 @@ CREATE TABLE `osu_events` (
   KEY `user_id` (`user_id`,`event_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED COMMENT='holds events up to one month in the past'
 /*!50100 PARTITION BY RANGE (unix_timestamp(date))
-(PARTITION p20150323 VALUES LESS THAN (1427040000) ENGINE = InnoDB,
- PARTITION p20150324 VALUES LESS THAN (1427126400) ENGINE = InnoDB,
- PARTITION p20150325 VALUES LESS THAN (1427212800) ENGINE = InnoDB,
- PARTITION p20150326 VALUES LESS THAN (1427299200) ENGINE = InnoDB,
- PARTITION p20150327 VALUES LESS THAN (1427385600) ENGINE = InnoDB,
- PARTITION p20150328 VALUES LESS THAN (1427472000) ENGINE = InnoDB,
- PARTITION p20150329 VALUES LESS THAN (1427558400) ENGINE = InnoDB,
- PARTITION p20150330 VALUES LESS THAN (1427644800) ENGINE = InnoDB,
- PARTITION p20150331 VALUES LESS THAN (1427731200) ENGINE = InnoDB,
- PARTITION p20150401 VALUES LESS THAN (1427817600) ENGINE = InnoDB,
- PARTITION p20150402 VALUES LESS THAN (1427904000) ENGINE = InnoDB,
- PARTITION p20150403 VALUES LESS THAN (1427990400) ENGINE = InnoDB,
- PARTITION p20150404 VALUES LESS THAN (1428076800) ENGINE = InnoDB,
- PARTITION p20150405 VALUES LESS THAN (1428163200) ENGINE = InnoDB,
- PARTITION p20150406 VALUES LESS THAN (1428249600) ENGINE = InnoDB,
- PARTITION p20150407 VALUES LESS THAN (1428336000) ENGINE = InnoDB,
- PARTITION p20150408 VALUES LESS THAN (1428422400) ENGINE = InnoDB,
- PARTITION p20150409 VALUES LESS THAN (1428508800) ENGINE = InnoDB,
- PARTITION p20150410 VALUES LESS THAN (1428595200) ENGINE = InnoDB,
- PARTITION p20150411 VALUES LESS THAN (1428681600) ENGINE = InnoDB,
- PARTITION p20150412 VALUES LESS THAN (1428768000) ENGINE = InnoDB,
- PARTITION p20150413 VALUES LESS THAN (1428854400) ENGINE = InnoDB,
- PARTITION p20150414 VALUES LESS THAN (1428940800) ENGINE = InnoDB,
- PARTITION p20150415 VALUES LESS THAN (1429027200) ENGINE = InnoDB,
- PARTITION p20150416 VALUES LESS THAN (1429113600) ENGINE = InnoDB,
- PARTITION p20150417 VALUES LESS THAN (1429200000) ENGINE = InnoDB,
- PARTITION p20150418 VALUES LESS THAN (1429286400) ENGINE = InnoDB,
- PARTITION p20150419 VALUES LESS THAN (1429372800) ENGINE = InnoDB,
- PARTITION p20150420 VALUES LESS THAN (1429459200) ENGINE = InnoDB,
- PARTITION p20150421 VALUES LESS THAN (1429545600) ENGINE = InnoDB,
- PARTITION p20150422 VALUES LESS THAN (1429632000) ENGINE = InnoDB,
- PARTITION p20150423 VALUES LESS THAN (1429718400) ENGINE = InnoDB,
+(PARTITION p20151206 VALUES LESS THAN (1449331200) ENGINE = InnoDB,
+ PARTITION p20151207 VALUES LESS THAN (1449417600) ENGINE = InnoDB,
+ PARTITION p20151208 VALUES LESS THAN (1449504000) ENGINE = InnoDB,
+ PARTITION p20151209 VALUES LESS THAN (1449590400) ENGINE = InnoDB,
+ PARTITION p20151210 VALUES LESS THAN (1449676800) ENGINE = InnoDB,
+ PARTITION p20151211 VALUES LESS THAN (1449763200) ENGINE = InnoDB,
+ PARTITION p20151212 VALUES LESS THAN (1449849600) ENGINE = InnoDB,
+ PARTITION p20151213 VALUES LESS THAN (1449936000) ENGINE = InnoDB,
+ PARTITION p20151214 VALUES LESS THAN (1450022400) ENGINE = InnoDB,
+ PARTITION p20151215 VALUES LESS THAN (1450108800) ENGINE = InnoDB,
+ PARTITION p20151216 VALUES LESS THAN (1450195200) ENGINE = InnoDB,
+ PARTITION p20151217 VALUES LESS THAN (1450281600) ENGINE = InnoDB,
+ PARTITION p20151218 VALUES LESS THAN (1450368000) ENGINE = InnoDB,
+ PARTITION p20151219 VALUES LESS THAN (1450454400) ENGINE = InnoDB,
+ PARTITION p20151220 VALUES LESS THAN (1450540800) ENGINE = InnoDB,
+ PARTITION p20151221 VALUES LESS THAN (1450627200) ENGINE = InnoDB,
+ PARTITION p20151222 VALUES LESS THAN (1450713600) ENGINE = InnoDB,
+ PARTITION p20151223 VALUES LESS THAN (1450800000) ENGINE = InnoDB,
+ PARTITION p20151224 VALUES LESS THAN (1450886400) ENGINE = InnoDB,
+ PARTITION p20151225 VALUES LESS THAN (1450972800) ENGINE = InnoDB,
+ PARTITION p20151226 VALUES LESS THAN (1451059200) ENGINE = InnoDB,
+ PARTITION p20151227 VALUES LESS THAN (1451145600) ENGINE = InnoDB,
+ PARTITION p20151228 VALUES LESS THAN (1451232000) ENGINE = InnoDB,
+ PARTITION p20151229 VALUES LESS THAN (1451318400) ENGINE = InnoDB,
+ PARTITION p20151230 VALUES LESS THAN (1451404800) ENGINE = InnoDB,
+ PARTITION p20151231 VALUES LESS THAN (1451491200) ENGINE = InnoDB,
+ PARTITION p20160101 VALUES LESS THAN (1451577600) ENGINE = InnoDB,
+ PARTITION p20160102 VALUES LESS THAN (1451664000) ENGINE = InnoDB,
+ PARTITION p20160103 VALUES LESS THAN (1451750400) ENGINE = InnoDB,
+ PARTITION p20160104 VALUES LESS THAN (1451836800) ENGINE = InnoDB,
+ PARTITION p20160105 VALUES LESS THAN (1451923200) ENGINE = InnoDB,
+ PARTITION p20160106 VALUES LESS THAN (1452009600) ENGINE = InnoDB,
  PARTITION pCatch VALUES LESS THAN MAXVALUE ENGINE = InnoDB) */;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -303,6 +305,70 @@ CREATE TABLE `osu_kudos_exchange` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `osu_leaders`
+--
+
+DROP TABLE IF EXISTS `osu_leaders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_leaders` (
+  `beatmap_id` mediumint(11) unsigned NOT NULL,
+  `user_id` mediumint(11) unsigned NOT NULL,
+  `score_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`beatmap_id`),
+  KEY `user_id` (`user_id`,`score_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `osu_leaders_fruits`
+--
+
+DROP TABLE IF EXISTS `osu_leaders_fruits`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_leaders_fruits` (
+  `beatmap_id` mediumint(11) unsigned NOT NULL,
+  `user_id` mediumint(11) unsigned NOT NULL,
+  `score_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`beatmap_id`),
+  KEY `user_id` (`user_id`,`score_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `osu_leaders_mania`
+--
+
+DROP TABLE IF EXISTS `osu_leaders_mania`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_leaders_mania` (
+  `beatmap_id` mediumint(11) unsigned NOT NULL,
+  `user_id` mediumint(11) unsigned NOT NULL,
+  `score_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`beatmap_id`),
+  KEY `user_id` (`user_id`,`score_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `osu_leaders_taiko`
+--
+
+DROP TABLE IF EXISTS `osu_leaders_taiko`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_leaders_taiko` (
+  `beatmap_id` mediumint(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` mediumint(11) unsigned NOT NULL,
+  `score_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`beatmap_id`),
+  KEY `user_id` (`user_id`,`score_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `osu_login_attempts`
 --
 
@@ -319,6 +385,374 @@ CREATE TABLE `osu_login_attempts` (
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ip`),
   KEY `last_attempt` (`last_attempt`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `osu_scores`
+--
+
+DROP TABLE IF EXISTS `osu_scores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_scores` (
+  `score_id` int(9) unsigned NOT NULL AUTO_INCREMENT,
+  `scorechecksum` binary(16) NOT NULL,
+  `beatmap_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `beatmapset_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `user_id` mediumint(9) NOT NULL DEFAULT '0',
+  `score` int(11) NOT NULL DEFAULT '0',
+  `maxcombo` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `rank` enum('0','A','B','C','D','S','SH','X','XH','F') NOT NULL DEFAULT 'F',
+  `count50` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `count100` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `count300` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countmiss` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countgeki` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countkatu` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `perfect` tinyint(1) NOT NULL DEFAULT '0',
+  `enabled_mods` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `pass` tinyint(1) NOT NULL DEFAULT '0',
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`score_id`,`date`),
+  KEY `scorechecksum` (`scorechecksum`),
+  KEY `user_id` (`user_id`,`date`),
+  KEY `beatmapset_id` (`beatmapset_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC
+/*!50100 PARTITION BY RANGE (UNIX_TIMESTAMP(date))
+(PARTITION p201601031300 VALUES LESS THAN (1451822400) ENGINE = InnoDB,
+ PARTITION p201601031400 VALUES LESS THAN (1451826000) ENGINE = InnoDB,
+ PARTITION p201601031500 VALUES LESS THAN (1451829600) ENGINE = InnoDB,
+ PARTITION p201601031600 VALUES LESS THAN (1451833200) ENGINE = InnoDB,
+ PARTITION p201601031700 VALUES LESS THAN (1451836800) ENGINE = InnoDB,
+ PARTITION p201601031800 VALUES LESS THAN (1451840400) ENGINE = InnoDB,
+ PARTITION p201601031900 VALUES LESS THAN (1451844000) ENGINE = InnoDB,
+ PARTITION p201601032000 VALUES LESS THAN (1451847600) ENGINE = InnoDB,
+ PARTITION p201601032100 VALUES LESS THAN (1451851200) ENGINE = InnoDB,
+ PARTITION p201601032200 VALUES LESS THAN (1451854800) ENGINE = InnoDB,
+ PARTITION p201601032300 VALUES LESS THAN (1451858400) ENGINE = InnoDB,
+ PARTITION p201601040000 VALUES LESS THAN (1451862000) ENGINE = InnoDB,
+ PARTITION p201601040100 VALUES LESS THAN (1451865600) ENGINE = InnoDB,
+ PARTITION p201601040200 VALUES LESS THAN (1451869200) ENGINE = InnoDB,
+ PARTITION p201601040300 VALUES LESS THAN (1451872800) ENGINE = InnoDB,
+ PARTITION p201601040400 VALUES LESS THAN (1451876400) ENGINE = InnoDB,
+ PARTITION p201601040500 VALUES LESS THAN (1451880000) ENGINE = InnoDB,
+ PARTITION p201601040600 VALUES LESS THAN (1451883600) ENGINE = InnoDB,
+ PARTITION p201601040700 VALUES LESS THAN (1451887200) ENGINE = InnoDB,
+ PARTITION p201601040800 VALUES LESS THAN (1451890800) ENGINE = InnoDB,
+ PARTITION p201601040900 VALUES LESS THAN (1451894400) ENGINE = InnoDB,
+ PARTITION p201601041000 VALUES LESS THAN (1451898000) ENGINE = InnoDB,
+ PARTITION p201601041100 VALUES LESS THAN (1451901600) ENGINE = InnoDB,
+ PARTITION p201601041200 VALUES LESS THAN (1451905200) ENGINE = InnoDB,
+ PARTITION p201601041300 VALUES LESS THAN (1451908800) ENGINE = InnoDB,
+ PARTITION pCatch VALUES LESS THAN MAXVALUE ENGINE = InnoDB) */;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `osu_scores_fruits`
+--
+
+DROP TABLE IF EXISTS `osu_scores_fruits`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_scores_fruits` (
+  `score_id` int(9) unsigned NOT NULL AUTO_INCREMENT,
+  `scorechecksum` binary(16) NOT NULL,
+  `beatmap_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `beatmapset_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `user_id` mediumint(9) NOT NULL DEFAULT '0',
+  `score` int(11) NOT NULL DEFAULT '0',
+  `maxcombo` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `rank` enum('0','A','B','C','D','S','SH','X','XH','F') NOT NULL DEFAULT 'F',
+  `count50` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `count100` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `count300` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countmiss` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countgeki` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countkatu` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `perfect` tinyint(1) NOT NULL DEFAULT '0',
+  `enabled_mods` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `pass` tinyint(1) NOT NULL DEFAULT '0',
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`score_id`,`date`),
+  KEY `beatmapset_id` (`beatmapset_id`),
+  KEY `scorechecksum` (`scorechecksum`),
+  KEY `user_id` (`user_id`,`date`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC
+/*!50100 PARTITION BY RANGE (UNIX_TIMESTAMP(date))
+(PARTITION p201601031300 VALUES LESS THAN (1451822400) ENGINE = InnoDB,
+ PARTITION p201601031400 VALUES LESS THAN (1451826000) ENGINE = InnoDB,
+ PARTITION p201601031500 VALUES LESS THAN (1451829600) ENGINE = InnoDB,
+ PARTITION p201601031600 VALUES LESS THAN (1451833200) ENGINE = InnoDB,
+ PARTITION p201601031700 VALUES LESS THAN (1451836800) ENGINE = InnoDB,
+ PARTITION p201601031800 VALUES LESS THAN (1451840400) ENGINE = InnoDB,
+ PARTITION p201601031900 VALUES LESS THAN (1451844000) ENGINE = InnoDB,
+ PARTITION p201601032000 VALUES LESS THAN (1451847600) ENGINE = InnoDB,
+ PARTITION p201601032100 VALUES LESS THAN (1451851200) ENGINE = InnoDB,
+ PARTITION p201601032200 VALUES LESS THAN (1451854800) ENGINE = InnoDB,
+ PARTITION p201601032300 VALUES LESS THAN (1451858400) ENGINE = InnoDB,
+ PARTITION p201601040000 VALUES LESS THAN (1451862000) ENGINE = InnoDB,
+ PARTITION p201601040100 VALUES LESS THAN (1451865600) ENGINE = InnoDB,
+ PARTITION p201601040200 VALUES LESS THAN (1451869200) ENGINE = InnoDB,
+ PARTITION p201601040300 VALUES LESS THAN (1451872800) ENGINE = InnoDB,
+ PARTITION p201601040400 VALUES LESS THAN (1451876400) ENGINE = InnoDB,
+ PARTITION p201601040500 VALUES LESS THAN (1451880000) ENGINE = InnoDB,
+ PARTITION p201601040600 VALUES LESS THAN (1451883600) ENGINE = InnoDB,
+ PARTITION p201601040700 VALUES LESS THAN (1451887200) ENGINE = InnoDB,
+ PARTITION p201601040800 VALUES LESS THAN (1451890800) ENGINE = InnoDB,
+ PARTITION p201601040900 VALUES LESS THAN (1451894400) ENGINE = InnoDB,
+ PARTITION p201601041000 VALUES LESS THAN (1451898000) ENGINE = InnoDB,
+ PARTITION p201601041100 VALUES LESS THAN (1451901600) ENGINE = InnoDB,
+ PARTITION p201601041200 VALUES LESS THAN (1451905200) ENGINE = InnoDB,
+ PARTITION p201601041300 VALUES LESS THAN (1451908800) ENGINE = InnoDB,
+ PARTITION pCatch VALUES LESS THAN MAXVALUE ENGINE = InnoDB) */;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `osu_scores_fruits_high`
+--
+
+DROP TABLE IF EXISTS `osu_scores_fruits_high`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_scores_fruits_high` (
+  `score_id` int(9) unsigned NOT NULL AUTO_INCREMENT,
+  `beatmap_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `beatmapset_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `user_id` mediumint(9) NOT NULL DEFAULT '0',
+  `score` int(11) NOT NULL DEFAULT '0',
+  `maxcombo` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `rank` enum('A','B','C','D','S','SH','X','XH') NOT NULL,
+  `count50` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `count100` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `count300` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countmiss` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countgeki` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countkatu` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `perfect` tinyint(1) NOT NULL DEFAULT '0',
+  `enabled_mods` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `pp` float DEFAULT NULL,
+  `replay` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`score_id`),
+  KEY `beatmap_score_lookup` (`beatmap_id`,`score`,`user_id`),
+  KEY `user_beatmap_rank` (`user_id`,`beatmap_id`,`rank`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `osu_scores_high`
+--
+
+DROP TABLE IF EXISTS `osu_scores_high`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_scores_high` (
+  `score_id` int(9) unsigned NOT NULL AUTO_INCREMENT,
+  `beatmap_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `beatmapset_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `user_id` mediumint(9) NOT NULL DEFAULT '0',
+  `score` int(11) NOT NULL DEFAULT '0',
+  `maxcombo` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `rank` enum('A','B','C','D','S','SH','X','XH') NOT NULL,
+  `count50` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `count100` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `count300` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countmiss` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countgeki` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countkatu` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `perfect` tinyint(1) NOT NULL DEFAULT '0',
+  `enabled_mods` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `pp` float DEFAULT NULL,
+  `replay` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`score_id`),
+  KEY `beatmap_score_lookup` (`beatmap_id`,`score`,`user_id`),
+  KEY `user_beatmap_rank` (`user_id`,`beatmap_id`,`rank`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `osu_scores_mania`
+--
+
+DROP TABLE IF EXISTS `osu_scores_mania`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_scores_mania` (
+  `score_id` int(9) unsigned NOT NULL AUTO_INCREMENT,
+  `scorechecksum` binary(16) NOT NULL,
+  `beatmap_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `beatmapset_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `user_id` mediumint(9) NOT NULL DEFAULT '0',
+  `score` int(11) NOT NULL DEFAULT '0',
+  `maxcombo` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `rank` enum('0','A','B','C','D','S','SH','X','XH','F') NOT NULL DEFAULT 'F',
+  `count50` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `count100` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `count300` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countmiss` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countgeki` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countkatu` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `perfect` tinyint(1) NOT NULL DEFAULT '0',
+  `enabled_mods` int(10) unsigned NOT NULL DEFAULT '0',
+  `pass` tinyint(1) NOT NULL DEFAULT '0',
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`score_id`,`date`),
+  KEY `beatmapset_id` (`beatmapset_id`),
+  KEY `scorechecksum` (`scorechecksum`),
+  KEY `user_id` (`user_id`,`date`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC
+/*!50100 PARTITION BY RANGE (UNIX_TIMESTAMP(date))
+(PARTITION p201601031300 VALUES LESS THAN (1451822400) ENGINE = InnoDB,
+ PARTITION p201601031400 VALUES LESS THAN (1451826000) ENGINE = InnoDB,
+ PARTITION p201601031500 VALUES LESS THAN (1451829600) ENGINE = InnoDB,
+ PARTITION p201601031600 VALUES LESS THAN (1451833200) ENGINE = InnoDB,
+ PARTITION p201601031700 VALUES LESS THAN (1451836800) ENGINE = InnoDB,
+ PARTITION p201601031800 VALUES LESS THAN (1451840400) ENGINE = InnoDB,
+ PARTITION p201601031900 VALUES LESS THAN (1451844000) ENGINE = InnoDB,
+ PARTITION p201601032000 VALUES LESS THAN (1451847600) ENGINE = InnoDB,
+ PARTITION p201601032100 VALUES LESS THAN (1451851200) ENGINE = InnoDB,
+ PARTITION p201601032200 VALUES LESS THAN (1451854800) ENGINE = InnoDB,
+ PARTITION p201601032300 VALUES LESS THAN (1451858400) ENGINE = InnoDB,
+ PARTITION p201601040000 VALUES LESS THAN (1451862000) ENGINE = InnoDB,
+ PARTITION p201601040100 VALUES LESS THAN (1451865600) ENGINE = InnoDB,
+ PARTITION p201601040200 VALUES LESS THAN (1451869200) ENGINE = InnoDB,
+ PARTITION p201601040300 VALUES LESS THAN (1451872800) ENGINE = InnoDB,
+ PARTITION p201601040400 VALUES LESS THAN (1451876400) ENGINE = InnoDB,
+ PARTITION p201601040500 VALUES LESS THAN (1451880000) ENGINE = InnoDB,
+ PARTITION p201601040600 VALUES LESS THAN (1451883600) ENGINE = InnoDB,
+ PARTITION p201601040700 VALUES LESS THAN (1451887200) ENGINE = InnoDB,
+ PARTITION p201601040800 VALUES LESS THAN (1451890800) ENGINE = InnoDB,
+ PARTITION p201601040900 VALUES LESS THAN (1451894400) ENGINE = InnoDB,
+ PARTITION p201601041000 VALUES LESS THAN (1451898000) ENGINE = InnoDB,
+ PARTITION p201601041100 VALUES LESS THAN (1451901600) ENGINE = InnoDB,
+ PARTITION p201601041200 VALUES LESS THAN (1451905200) ENGINE = InnoDB,
+ PARTITION p201601041300 VALUES LESS THAN (1451908800) ENGINE = InnoDB,
+ PARTITION pCatch VALUES LESS THAN MAXVALUE ENGINE = InnoDB) */;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `osu_scores_mania_high`
+--
+
+DROP TABLE IF EXISTS `osu_scores_mania_high`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_scores_mania_high` (
+  `score_id` int(9) unsigned NOT NULL AUTO_INCREMENT,
+  `beatmap_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `beatmapset_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `user_id` mediumint(9) NOT NULL DEFAULT '0',
+  `score` int(11) NOT NULL DEFAULT '0',
+  `maxcombo` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `rank` enum('A','B','C','D','S','SH','X','XH') NOT NULL,
+  `count50` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `count100` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `count300` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countmiss` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countgeki` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countkatu` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `perfect` tinyint(1) NOT NULL DEFAULT '0',
+  `enabled_mods` int(10) unsigned NOT NULL DEFAULT '0',
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `pp` float DEFAULT NULL,
+  `replay` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`score_id`),
+  KEY `beatmap_score_lookup` (`beatmap_id`,`score`,`user_id`),
+  KEY `user_beatmap_rank` (`user_id`,`beatmap_id`,`rank`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `osu_scores_taiko`
+--
+
+DROP TABLE IF EXISTS `osu_scores_taiko`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_scores_taiko` (
+  `score_id` int(9) unsigned NOT NULL AUTO_INCREMENT,
+  `scorechecksum` binary(16) NOT NULL,
+  `beatmap_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `beatmapset_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `user_id` mediumint(9) NOT NULL DEFAULT '0',
+  `score` int(11) NOT NULL DEFAULT '0',
+  `maxcombo` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `rank` enum('0','A','B','C','D','S','SH','X','XH','F') NOT NULL DEFAULT 'F',
+  `count50` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `count100` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `count300` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countmiss` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countgeki` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countkatu` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `perfect` tinyint(1) NOT NULL DEFAULT '0',
+  `enabled_mods` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `pass` tinyint(1) NOT NULL DEFAULT '0',
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`score_id`,`date`),
+  KEY `beatmapset_id` (`beatmapset_id`),
+  KEY `scorechecksum` (`scorechecksum`),
+  KEY `user_id` (`user_id`,`date`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC
+/*!50100 PARTITION BY RANGE (UNIX_TIMESTAMP(date))
+(PARTITION p201601031300 VALUES LESS THAN (1451822400) ENGINE = InnoDB,
+ PARTITION p201601031400 VALUES LESS THAN (1451826000) ENGINE = InnoDB,
+ PARTITION p201601031500 VALUES LESS THAN (1451829600) ENGINE = InnoDB,
+ PARTITION p201601031600 VALUES LESS THAN (1451833200) ENGINE = InnoDB,
+ PARTITION p201601031700 VALUES LESS THAN (1451836800) ENGINE = InnoDB,
+ PARTITION p201601031800 VALUES LESS THAN (1451840400) ENGINE = InnoDB,
+ PARTITION p201601031900 VALUES LESS THAN (1451844000) ENGINE = InnoDB,
+ PARTITION p201601032000 VALUES LESS THAN (1451847600) ENGINE = InnoDB,
+ PARTITION p201601032100 VALUES LESS THAN (1451851200) ENGINE = InnoDB,
+ PARTITION p201601032200 VALUES LESS THAN (1451854800) ENGINE = InnoDB,
+ PARTITION p201601032300 VALUES LESS THAN (1451858400) ENGINE = InnoDB,
+ PARTITION p201601040000 VALUES LESS THAN (1451862000) ENGINE = InnoDB,
+ PARTITION p201601040100 VALUES LESS THAN (1451865600) ENGINE = InnoDB,
+ PARTITION p201601040200 VALUES LESS THAN (1451869200) ENGINE = InnoDB,
+ PARTITION p201601040300 VALUES LESS THAN (1451872800) ENGINE = InnoDB,
+ PARTITION p201601040400 VALUES LESS THAN (1451876400) ENGINE = InnoDB,
+ PARTITION p201601040500 VALUES LESS THAN (1451880000) ENGINE = InnoDB,
+ PARTITION p201601040600 VALUES LESS THAN (1451883600) ENGINE = InnoDB,
+ PARTITION p201601040700 VALUES LESS THAN (1451887200) ENGINE = InnoDB,
+ PARTITION p201601040800 VALUES LESS THAN (1451890800) ENGINE = InnoDB,
+ PARTITION p201601040900 VALUES LESS THAN (1451894400) ENGINE = InnoDB,
+ PARTITION p201601041000 VALUES LESS THAN (1451898000) ENGINE = InnoDB,
+ PARTITION p201601041100 VALUES LESS THAN (1451901600) ENGINE = InnoDB,
+ PARTITION p201601041200 VALUES LESS THAN (1451905200) ENGINE = InnoDB,
+ PARTITION p201601041300 VALUES LESS THAN (1451908800) ENGINE = InnoDB,
+ PARTITION pCatch VALUES LESS THAN MAXVALUE ENGINE = InnoDB) */;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `osu_scores_taiko_high`
+--
+
+DROP TABLE IF EXISTS `osu_scores_taiko_high`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_scores_taiko_high` (
+  `score_id` int(9) unsigned NOT NULL AUTO_INCREMENT,
+  `beatmap_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `beatmapset_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `user_id` mediumint(9) NOT NULL DEFAULT '0',
+  `score` int(11) NOT NULL DEFAULT '0',
+  `maxcombo` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `rank` enum('A','B','C','D','S','SH','X','XH') NOT NULL,
+  `count50` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `count100` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `count300` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countmiss` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countgeki` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `countkatu` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `perfect` tinyint(1) NOT NULL DEFAULT '0',
+  `enabled_mods` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `pp` float DEFAULT NULL,
+  `replay` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`score_id`),
+  KEY `beatmap_score_lookup` (`beatmap_id`,`score`,`user_id`),
+  KEY `user_beatmap_rank` (`user_id`,`beatmap_id`,`rank`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -844,8 +1278,7 @@ CREATE TABLE `phpbb_users` (
   `username_clean` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
   `user_password` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
   `user_passchg` int(11) unsigned NOT NULL DEFAULT '0',
-  `user_email` varchar(100) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `user_email_hash` bigint(20) NOT NULL DEFAULT '0',
+  `user_email` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `user_birthday` varchar(10) COLLATE utf8_bin NOT NULL DEFAULT '',
   `user_lastvisit` int(11) unsigned NOT NULL DEFAULT '0',
   `user_lastmark` int(11) unsigned NOT NULL DEFAULT '0',
@@ -921,7 +1354,7 @@ CREATE TABLE `phpbb_users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username_clean` (`username_clean`),
   UNIQUE KEY `username_id` (`username`,`user_id`),
-  KEY `user_email_hash` (`user_email_hash`),
+  UNIQUE KEY `user_email_unique` (`user_email`),
   KEY `osu_mapperrank` (`osu_mapperrank`),
   KEY `osu_kudostotal` (`osu_kudostotal`),
   KEY `country_acronym` (`country_acronym`)
@@ -996,4 +1429,4 @@ CREATE TABLE `user_profile_customizations` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-04 16:41:57
+-- Dump completed on 2016-01-04 19:33:15

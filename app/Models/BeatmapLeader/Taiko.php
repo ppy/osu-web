@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -14,30 +16,17 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
-.badge-rank {
-  @_size: 100%;
-  width: @_size;
-  height: @_size;
-  background-size: cover;
+namespace App\Models\BeatmapLeader;
 
-  ._bg(@rank) {
-    .at2x-simple("/images/badges/score-ranks/@{rank}.png");
-  }
+use App\Models\Score;
 
-  &--XH { ._bg("XH"); }
-  &--X { ._bg("X"); }
-  &--SH { ._bg("SH"); }
-  &--S { ._bg("S"); }
-  &--A { ._bg("A"); }
-  &--B { ._bg("B"); }
-  &--C { ._bg("C"); }
-  &--D { ._bg("D"); }
+class Taiko extends Model
+{
+    protected $table = 'osu_leaders_taiko';
 
-  &--medium {
-    @_size: 50px;
-    width: @_size;
-    height: @_size;
-  }
+    public function score()
+    {
+        return $this->belongsTo(Score\Taiko::class);
+    }
 }

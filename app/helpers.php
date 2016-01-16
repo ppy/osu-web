@@ -286,6 +286,10 @@ function base62_encode($input)
 
 function display_regdate($user)
 {
+    if ($user->user_regdate === null) {
+        return;
+    }
+
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
         return trans('users.show.first_members');
     }
@@ -309,9 +313,13 @@ function open_image($path, $dimensions = null)
     }
 }
 
-function fractal_collection_array($models, $transformer)
+function fractal_collection_array($models, $transformer, $includes = null)
 {
     $manager = new League\Fractal\Manager();
+    if ($includes !== null) {
+        $manager->parseIncludes($includes);
+    }
+
     $collection = new League\Fractal\Resource\Collection($models, $transformer);
 
     return $manager->createData($collection)->toArray();

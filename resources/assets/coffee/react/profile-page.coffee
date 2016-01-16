@@ -19,6 +19,8 @@ element = React.createElement ProfilePage.Main,
   user: user
   userPage: user.page.data
   allStats: user.allStatistics.data
+  allScoresBest: user.allScoresBest.data
+  allScoresFirst: user.allScoresFirst.data
   withEdit: user.id == window.currentUser.id
   recentAchievements: user.recentAchievements.data
   recentActivities: user.recentActivities.data
