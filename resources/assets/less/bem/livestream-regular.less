@@ -52,19 +52,17 @@
     height: 80px;
   }
   &__actions {
-    ._dektop-position {
-      @media @desktop {
-        justify-content: flex-start;
-        width: 0;
-        right: 0;
-        bottom: 25px;
+    @media @desktop {
+      justify-content: flex-start;
+      width: 0;
+      right: 0;
+      bottom: 25px;
 
-        opacity: 0;
-        will-change: opacity;
+      opacity: 0;
+      will-change: opacity;
 
-        .forum-post:hover & {
-          opacity: 1;
-        }
+      .forum-post:hover & {
+        opacity: 1;
       }
     }
 
@@ -77,6 +75,5 @@
 
     right: 15px;
     bottom: 15px;
-    ._dektop-position;
   }
 }

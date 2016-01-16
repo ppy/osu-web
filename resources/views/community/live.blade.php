@@ -34,16 +34,16 @@
     @if ($featuredStream !== null)
         <h2 class="livestream-page__header">{{ trans('livestreams.headers.featured') }}</h2>
         <div class="livestream-featured">
-                <a class="livestream-page__anchor-twitch" href="{{$featuredStream->channel->url}}" target="_blank"> 
-                    <div class="col-sm-12 livestream-featured__container" style="background-image: url('{{$featuredStream->preview->large}}');">
-                        <div class="livestream-featured__info">
-                            <h3>{{$featuredStream->channel->name}}</h3>
-                            <p>{{$featuredStream->channel->status}}</p>
-                            <p>{{$featuredStream->viewers}} <i class="fa fa-eye"></i></p>
-                        </div>
+            <a class="livestream-page__anchor-twitch" href="{{$featuredStream->channel->url}}" target="_blank"> 
+                <div class="col-sm-12 livestream-featured__container" style="background-image: url('{{$featuredStream->preview->large}}');">
+                    <div class="livestream-featured__info">
+                        <h3>{{$featuredStream->channel->name}}</h3>
+                        <p>{{$featuredStream->channel->status}}</p>
+                        <p>{{$featuredStream->viewers}} <i class="fa fa-eye"></i></p>
                     </div>
-                </a>
-                @if (Auth::user() != null && Auth::user()->isGmt())
+                </div>
+            </a>
+            @if (Auth::user() != null && Auth::user()->isGmt())
                 <div class="livestream-featured__actions">
                     <div class="forum-post-actions">
                         <a data-method="POST" class="forum-post-actions__action" href="{{route('live', ['demote' => true])}}">
@@ -51,7 +51,7 @@
                         </a>
                     </div>
                 </div>
-                @endif
+            @endif
         </div>
     @endif
         <h2 class="livestream-page__header">{{ trans('livestreams.headers.regular') }}</h2>
@@ -59,26 +59,26 @@
             <div class="col-sm-4 livestream-regular">
                 <div class="livestream-regular__container">
                     <a class="livestream-page__anchor-twitch" href="{{$stream->channel->url}}" target="_blank"> 
-                    <div class="livestream-regular__top-background" style="background-image: url('{{$stream->preview->medium}}');">
-                        <div class="livestream-regular__streamer-info">
-                            {{$stream->channel->name}}
+                        <div class="livestream-regular__top-background" style="background-image: url('{{$stream->preview->medium}}');">
+                            <div class="livestream-regular__streamer-info">
+                                {{$stream->channel->name}}
+                            </div>
+                            <div class="livestream-regular__watchers-info">
+                                <p>{{$stream->viewers}} <i class="fa fa-eye"></i></p>
+                            </div>
                         </div>
-                        <div class="livestream-regular__watchers-info">
-                            <p>{{$stream->viewers}} <i class="fa fa-eye"></i></p>
+                        <div class="livestream-regular__bottom-info">
+                            {{$stream->channel->status}}
                         </div>
-                    </div>
-                    <div class="livestream-regular__bottom-info">
-                        {{$stream->channel->status}}
-                    </div>
                     </a>
                     @if (Auth::user() != null && Auth::user()->isGmt())
-                    <div class="livestream-regular__actions">
-                        <div class="forum-post-actions">
-                            <a data-method="POST" class="forum-post-actions__action" href="{{route('live', ['promote' => $stream->_id])}}">
-                                <i class="fa fa-thumbs-up"></i>
-                            </a>
+                        <div class="livestream-regular__actions">
+                            <div class="forum-post-actions">
+                                <a data-method="POST" class="forum-post-actions__action" href="{{route('live', ['promote' => $stream->_id])}}">
+                                    <i class="fa fa-thumbs-up"></i>
+                                </a>
+                            </div>
                         </div>
-                    </div>
                     @endif
                 </div>
             </div>

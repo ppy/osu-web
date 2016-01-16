@@ -47,7 +47,6 @@ class CommunityController extends Controller
 
     public function getLive(Request $request)
     {
-        $streams = null;
         $featuredStream = null;
         $streams = Cache::remember('livestreams', 5, function () {
             $twitchApiUrl = config('osu.urls.twitch_livestreams_api');
@@ -55,16 +54,26 @@ class CommunityController extends Controller
 
             return $data->streams;
         });
+
+        //dirty hack to add https urls to images
+        //with allowance from nanaya
+        foreach ($streams as &$stream) {
+            foreach ($stream->preview as &$preview) {
+                $preview = str_replace("http:", "https:", $preview);
+            }
+        }
+
         $featuredStreamId = Cache::get('featuredStream');
         if ($featuredStreamId !== null) {
             foreach ($streams as $stream) {
-                if ($stream->_id != $featuredStreamId) {
+                if ($stream->_id !== $featuredStreamId) {
                     continue;
                 }
                 $featuredStream = $stream;
                 break;
             }
         }
+
 
         return view('community.live', compact('streams', 'featuredStream'));
     }
@@ -76,7 +85,7 @@ class CommunityController extends Controller
         }
 
         if ($request->has('promote')) {
-            Cache::forever('featuredStream', $request->promote);
+            Cache::forever('featuredStream', intval($request->promote));
         }
 
         if ($request->has('demote')) {

@@ -27,11 +27,9 @@
   &:hover &__actions {
     opacity: 1;
   }
-  & &__actions {
+  &__actions {
     color: white;
     z-index: 9000;
-  }
-  &__actions {
     @padding-offset: 9px;
 
     position: absolute;
@@ -51,10 +49,6 @@
 
       opacity: 0;
       will-change: opacity;
-
-      .forum-post:hover & {
-        opacity: 1;
-      }
     }
   }
 }
