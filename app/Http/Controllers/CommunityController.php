@@ -59,7 +59,7 @@ class CommunityController extends Controller
         //with allowance from nanaya
         foreach ($streams as &$stream) {
             foreach ($stream->preview as &$preview) {
-                $preview = str_replace("http:", "https:", $preview);
+                $preview = str_replace('http:', 'https:', $preview);
             }
         }
 
@@ -73,7 +73,6 @@ class CommunityController extends Controller
                 break;
             }
         }
-
 
         return view('community.live', compact('streams', 'featuredStream'));
     }
