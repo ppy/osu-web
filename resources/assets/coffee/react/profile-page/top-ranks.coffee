@@ -24,22 +24,17 @@ ProfilePage.TopRanks = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
   getInitialState: ->
-    limitBest: 5
-    limitFirst: 5
+    showingBest: 5
+    showingFirst: 5
 
 
-  _increaseLimit: (mode) ->
-    (e) =>
+  _showMore: (key, e) ->
       e.preventDefault()
-      stateKey =
-        switch mode
-          when 'best' then 'limitBest'
-          when 'first' then 'limitFirst'
 
-      @setState "#{stateKey}": (@state[stateKey] + 5)
+      @setState "#{key}": (@state[key] + 5)
 
 
-  _renderScore: (score, i, limit) ->
+  _renderScore: (limit, score, i) ->
     modsText =
       if score.mods.length
         " +#{(mod.shortName for mod in score.mods).join(',')} "
@@ -103,10 +98,10 @@ ProfilePage.TopRanks = React.createClass
         h3 className: 'profile-extra__title profile-extra__title--small', Lang.get('users.show.extra.top_ranks.best.title')
         if @props.scoresBest && @props.scoresBest.length
           ul className: 'profile-extra-entries',
-            @props.scoresBest.map (score, i) => @_renderScore(score, i, @state.limitBest)
-            if @state.limitBest < @props.scoresBest.length
+            @props.scoresBest.map @_renderScore.bind(@, @state.showingBest)
+            if @state.showingBest < @props.scoresBest.length
               li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
-                a href: '#', onClick: @_increaseLimit('best'), Lang.get('common.buttons.show_more')
+                a href: '#', onClick: @_showMore.bind(@, 'showingBest'), Lang.get('common.buttons.show_more')
         else
           p className: 'profile-extra-entries', Lang.get('users.show.extra.top_ranks.empty')
 
@@ -114,9 +109,9 @@ ProfilePage.TopRanks = React.createClass
         h3 className: 'profile-extra__title profile-extra__title--small', Lang.get('users.show.extra.top_ranks.first.title')
         if @props.scoresFirst && @props.scoresFirst.length
           ul className: 'profile-extra-entries',
-            @props.scoresFirst.map (score, i) => @_renderScore(score, i, @state.limitFirst)
-            if @state.limitFirst < @props.scoresFirst.length
+            @props.scoresFirst.map @_renderScore.bind(@state.showingFirst)
+            if @state.showingFirst < @props.scoresFirst.length
               li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
-                a href: '#', onClick: @_increaseLimit('first'), Lang.get('common.buttons.show_more')
+                a href: '#', onClick: @_showMore.bind(@, 'showingFirst'), Lang.get('common.buttons.show_more')
         else
           p className: 'profile-extra-entries', Lang.get('users.show.extra.top_ranks.empty')

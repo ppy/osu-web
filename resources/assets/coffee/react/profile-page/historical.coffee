@@ -25,11 +25,10 @@ ProfilePage.Historical = React.createClass
     showingPlaycounts: 5
     showingRecent: 5
 
-  _showMore: (key) ->
-    (e) =>
-      e.preventDefault() if e
+  _showMore: (key, e) ->
+    e.preventDefault() if e
 
-      @setState "#{key}": (@state[key] + 5)
+    @setState "#{key}": (@state[key] + 5)
 
 
   _beatmapRow: (bm, bmset, key, shown, details = []) ->
@@ -96,7 +95,7 @@ ProfilePage.Historical = React.createClass
         a
           href: '#'
           className: 'beatmapset-row beatmapset-row--more'
-          onClick: @_showMore('showingPlaycounts')
+          onClick: @_showMore.bind(@, 'showingPlaycounts')
           Lang.get('common.buttons.show_more')
 
       h3
@@ -115,5 +114,5 @@ ProfilePage.Historical = React.createClass
         a
           href: '#'
           className: 'beatmapset-row beatmapset-row--more'
-          onClick: @_showMore('showingRecent')
+          onClick: @_showMore.bind(@, 'showingRecent')
           Lang.get('common.buttons.show_more')
