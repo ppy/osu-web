@@ -28,10 +28,7 @@ ProfilePage.Historical = React.createClass
   _showMore: (e, key) ->
     e.preventDefault() if e
 
-    newState = {}
-    newState[key] = @state[key] + 5
-
-    @setState newState
+    @setState "#{key}": (@state[key] + 5)
 
 
   _beatmapRow: (bm, bmset, key, shown, details = []) ->
