@@ -1,0 +1,54 @@
+.livestream-featured {
+  padding-left: 10px;
+  padding-right: 10px;
+  &__info {
+    & * {
+      .default-text-shadow;
+      color: white;
+    }
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  }
+  &__container {
+    transition: all 120ms ease-in-out;
+    float: none !important;
+    .default-box-shadow;
+    &:hover {
+      .thicker-box-shadow;
+    }
+    border-radius: 10px;
+    width: 100%;
+    padding-bottom: 75%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  &:hover &__actions {
+    opacity: 1;
+  }
+  &__actions {
+    color: white;
+    z-index: 9000;
+    @padding-offset: 9px;
+
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 120ms ease-in-out;
+
+    right: 15px + @padding-offset;
+    bottom: 15px;
+    @media @desktop {
+      justify-content: flex-start;
+      width: 0;
+      right: @padding-offset;
+      bottom: 40px;
+
+      opacity: 0;
+      will-change: opacity;
+    }
+  }
+}

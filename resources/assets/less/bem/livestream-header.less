@@ -1,0 +1,27 @@
+.livestream-header {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("/images/headers/live-top.png");
+  height: 180px;
+  &__container {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 100%;
+    @media @desktop {
+      padding-left: 115px;
+      padding-right: 115px;
+    }
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  &__headline {
+    color: white;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  &__description {
+    color: white;
+  }
+}
