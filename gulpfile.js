@@ -102,8 +102,7 @@ elixir(function(mix) {
 
     "main.coffee",
 
-    "react/flag-country.coffee",
-    "react/user-card.coffee",
+    "react/_components/*.coffee",
   ], "public/js/app.js")
   .coffee([
     "react/profile-page/*.coffee",
