@@ -83,12 +83,16 @@ ProfilePage.Historical = React.createClass
 
       @props.beatmapPlaycounts.map (pc, i) =>
         @_beatmapRow pc.beatmap.data, pc.beatmapSet.data, i, i < @state.showingPlaycounts, [
-          span
-            className: 'beatmapset-row__info'
-            Lang.get('users.show.extra.historical.most_played.count')
-          span
-            className: 'beatmapset-row__info beatmapset-row__info--large'
-            " #{pc.count.toLocaleString()}"
+          [
+            span
+              key: 'name'
+              className: 'beatmapset-row__info'
+              Lang.get('users.show.extra.historical.most_played.count')
+            span
+              key: 'value'
+              className: 'beatmapset-row__info beatmapset-row__info--large'
+              " #{pc.count.toLocaleString()}"
+          ]
         ]
 
       if @props.beatmapPlaycounts.length > @state.showingPlaycounts
@@ -103,12 +107,7 @@ ProfilePage.Historical = React.createClass
         Lang.get('users.show.extra.historical.recent_plays.title')
 
       @props.scores.map (score, i) =>
-        @_beatmapRow score.beatmap.data, score.beatmapSet.data, i, i < @state.showingRecent, [
-          span
-            className: 'beatmapset-row__info'
-            dangerouslySetInnerHTML:
-              __html: osu.timeago(score.created_at)
-        ]
+        el PlayDetail, key: i, score: score, shown: i < @state.showingRecent
 
       if @props.scores.length > @state.showingRecent
         a

@@ -17,7 +17,7 @@
 #
 ###
 
-{div, a, span} = React.DOM
+{a, div, img, small, span} = React.DOM
 el = React.createElement
 
 @PlayDetail = React.createClass
@@ -30,46 +30,66 @@ el = React.createElement
         " +#{(mod.shortName for mod in score.mods).join(',')} "
       else
         ' '
-
-    topClasses = 'profile-extra-entries__item profile-extra-entries__item--top-ranks'
+    topClasses = 'detail-row'
     topClasses += ' hidden' unless @props.shown
-
-    title = "#{score.beatmapSet.data.title} [#{score.beatmap.data.version}]#{modsText}(#{(score.accuracy * 100).toFixed(2)}%)"
 
     div
       className: topClasses
       div
-        className: 'profile-extra-entries__icon'
-        div className: "badge-rank badge-rank--#{score.rank}"
+        className: 'detail-row__icon'
+        div className: "badge-rank badge-rank--full badge-rank--#{score.rank}"
 
-      div className: 'profile-extra-entries__detail profile-extra-entries__detail--vertical',
+      div className: 'detail-row__detail',
         div
-          className: 'profile-extra-entries__detail-row'
+          className: 'detail-row__detail-column detail-row__detail-column--full'
           div
-            className: 'profile-extra-entries__detail-column profile-extra-entries__detail-column--full'
+            className: 'detail-row__detail-row detail-row__detail-row--main'
             a
               href: score.beatmap.data.url
-              className: 'profile-extra-entries__text-score profile-extra-entries__text-score--title'
-              title: title
-              title
+              className: 'detail-row__text-score detail-row__text-score--title'
+              title: "#{score.beatmapSet.data.artist} - #{score.beatmapSet.data.title} "
+              "#{score.beatmapSet.data.title} [#{score.beatmap.data.version}]"
+              ' '
+              small
+                className: 'detail-row__text-score detail-row__text-score--artist'
+                score.beatmapSet.data.artist
           div
-            className: 'profile-extra-entries__detail-column'
+            className: 'detail-row__detail-row detail-row__detail-row--bottom'
             span
-              className: 'profile-extra-entries__text-score profile-extra-entries__text-score--pp'
-              Lang.get('users.show.extra.top_ranks.pp', amount: Math.round(score.pp))
-        div
-          className: 'profile-extra-entries__detail-row'
-          div
-            className: 'profile-extra-entries__detail-column profile-extra-entries__detail-column--full'
-            span
-              className: 'profile-extra-entries__text-score profile-extra-entries__text-score--time'
+              className: 'detail-row__text-score detail-row__text-score--time'
               dangerouslySetInnerHTML:
                 __html: osu.timeago score.created_at
-          if score.weight != undefined
+        div
+          className: 'detail-row__detail-column detail-row__detail-column--score-data'
+          div
+            className: 'detail-row__score-data detail-row__score-data--mods'
             div
-              className: 'profile-extra-entries__detail-column'
+              className: 'mods'
+              for mod in score.mods
+                div
+                  key: mod.shortName
+                  className: 'mods__mod'
+                  img
+                    className: 'mods__mod-image'
+                    src: "/images/badges/mods/#{_.kebabCase(mod.name)}.png"
+          div
+            className: 'detail-row__score-data detail-row__score-data--main'
+            div
+              className: 'detail-row__detail-row detail-row__detail-row--main'
               span
-                className: 'profile-extra-entries__text-score'
-                Lang.get 'users.show.extra.top_ranks.weighted_pp',
-                  percentage: "#{Math.round(score.weight.data.percentage)}%"
-                  pp: Lang.get('users.show.extra.top_ranks.pp', amount: Math.round(score.weight.data.pp))
+                className: 'detail-row__text-score detail-row__text-score--pp'
+                if score.pp
+                  Lang.get('users.show.extra.top_ranks.pp', amount: Math.round(score.pp))
+                else
+                  score.score.toLocaleString()
+            div
+              className: 'detail-row__detail-row detail-row__detail-row--bottom'
+              span
+                className: 'detail-row__text-score'
+                if score.weight
+                  Lang.get 'users.show.extra.top_ranks.weighted_pp',
+                    percentage: "#{Math.round(score.weight.data.percentage)}%"
+                    pp: Lang.get('users.show.extra.top_ranks.pp', amount: Math.round(score.weight.data.pp))
+                else if !score.pp
+                  Lang.get 'users.show.extra.historical.recent_plays.accuracy',
+                    percentage: "#{(score.accuracy * 100).toFixed(2)}%"

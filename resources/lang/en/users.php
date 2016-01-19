@@ -72,6 +72,7 @@ return [
                     'title' => 'Most Played Beatmaps',
                 ],
                 'recent_plays' => [
+                    'accuracy' => 'accuracy: :percentage',
                     'title' => 'Recent Plays',
                 ],
                 'title' => 'Historical',
@@ -108,7 +109,7 @@ return [
                 ],
                 'pp' => ':amountpp',
                 'title' => 'Top Ranks',
-                'weighted_pp' => 'weighted :percentage (:pp)',
+                'weighted_pp' => 'weighted: :pp (:percentage)',
             ],
         ],
         'first_members' => 'here since the beginning',

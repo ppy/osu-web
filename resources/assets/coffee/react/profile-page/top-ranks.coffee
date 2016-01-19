@@ -44,7 +44,7 @@ ProfilePage.TopRanks = React.createClass
       div null,
         h3 className: 'profile-extra__title profile-extra__title--small', Lang.get('users.show.extra.top_ranks.best.title')
         if @props.scoresBest && @props.scoresBest.length
-          ul className: 'profile-extra-entries',
+          div className: 'profile-extra-entries',
             @props.scoresBest.map (score, i) =>
               el PlayDetail, key: i, score: score, shown: i <  @state.showingBest
             if @state.showingBest < @props.scoresBest.length
@@ -56,7 +56,7 @@ ProfilePage.TopRanks = React.createClass
       div null,
         h3 className: 'profile-extra__title profile-extra__title--small', Lang.get('users.show.extra.top_ranks.first.title')
         if @props.scoresFirst && @props.scoresFirst.length
-          ul className: 'profile-extra-entries',
+          div className: 'profile-extra-entries',
             @props.scoresFirst.map (score, i) =>
               el PlayDetail, key: i, score: score, shown: i < @state.showingFirst
             if @state.showingFirst < @props.scoresFirst.length
