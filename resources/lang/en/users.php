@@ -67,6 +67,7 @@ return [
                 'title' => 'Beatmaps',
             ],
             'historical' => [
+                'empty' => 'No performance records. :(',
                 'most_played' => [
                     'count' => 'times played',
                     'title' => 'Most Played Beatmaps',

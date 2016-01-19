@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{a, div, h2, h3, img, small, span} = React.DOM
+{a, div, h2, h3, img, p, small, span} = React.DOM
 el = React.createElement
 
 ProfilePage.Historical = React.createClass
@@ -81,37 +81,51 @@ ProfilePage.Historical = React.createClass
         className: 'profile-extra__title profile-extra__title--small'
         Lang.get('users.show.extra.historical.most_played.title')
 
-      @props.beatmapPlaycounts.map (pc, i) =>
-        @_beatmapRow pc.beatmap.data, pc.beatmapSet.data, i, i < @state.showingPlaycounts, [
-          [
-            span
-              key: 'name'
-              className: 'beatmapset-row__info'
-              Lang.get('users.show.extra.historical.most_played.count')
-            span
-              key: 'value'
-              className: 'beatmapset-row__info beatmapset-row__info--large'
-              " #{pc.count.toLocaleString()}"
-          ]
+      if @props.beatmapPlaycounts.length
+        [
+          @props.beatmapPlaycounts.map (pc, i) =>
+            @_beatmapRow pc.beatmap.data, pc.beatmapSet.data, i, i < @state.showingPlaycounts, [
+              [
+                span
+                  key: 'name'
+                  className: 'beatmapset-row__info'
+                  Lang.get('users.show.extra.historical.most_played.count')
+                span
+                  key: 'value'
+                  className: 'beatmapset-row__info beatmapset-row__info--large'
+                  " #{pc.count.toLocaleString()}"
+              ]
+            ]
+
+          if @props.beatmapPlaycounts.length > @state.showingPlaycounts
+            a
+              key: 'more'
+              href: '#'
+              className: 'beatmapset-row beatmapset-row--more'
+              onClick: @_showMore.bind(@, 'showingPlaycounts')
+              Lang.get('common.buttons.show_more')
         ]
 
-      if @props.beatmapPlaycounts.length > @state.showingPlaycounts
-        a
-          href: '#'
-          className: 'beatmapset-row beatmapset-row--more'
-          onClick: @_showMore.bind(@, 'showingPlaycounts')
-          Lang.get('common.buttons.show_more')
+      else
+        p null, Lang.get('users.show.extra.historical.empty')
 
       h3
         className: 'profile-extra__title profile-extra__title--small'
         Lang.get('users.show.extra.historical.recent_plays.title')
 
-      @props.scores.map (score, i) =>
-        el PlayDetail, key: i, score: score, shown: i < @state.showingRecent
+      if @props.scores.length
+        [
+          @props.scores.map (score, i) =>
+            el PlayDetail, key: i, score: score, shown: i < @state.showingRecent
 
-      if @props.scores.length > @state.showingRecent
-        a
-          href: '#'
-          className: 'beatmapset-row beatmapset-row--more'
-          onClick: @_showMore.bind(@, 'showingRecent')
-          Lang.get('common.buttons.show_more')
+          if @props.scores.length > @state.showingRecent
+            a
+              key: 'more'
+              href: '#'
+              className: 'beatmapset-row beatmapset-row--more'
+              onClick: @_showMore.bind(@, 'showingRecent')
+              Lang.get('common.buttons.show_more')
+        ]
+
+      else
+        p null, Lang.get('users.show.extra.historical.empty')
