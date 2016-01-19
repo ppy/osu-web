@@ -92,36 +92,48 @@ abstract class Model extends BaseModel
             $this->_enabledMods = [];
 
             // move to its own class when needed.
+            // id, name, short name, actual id
             $availableMods = [
                 [0, 'NoFail', 'NF'],
                 [1, 'EasyMode', 'EZ'],
                 [3, 'Hidden', 'HD'],
                 [4, 'HardRock', 'HR'],
-                [5, 'SuddenDeath', 'SD'],
+
+                [14, 'Perfect', 'PF'],
+                [5, 'SuddenDeath', 'SD', 14],
+
                 [6, 'DoubleTime', 'DT'],
+                [9, 'Nightcore', 'NC', 6],
+
                 [7, 'Relax', 'Relax'],
                 [8, 'HalfTime', 'HT'],
-                [9, 'Nightcore', 'NC'],
                 [10, 'Flashlight', 'FL'],
                 [12, 'SpunOut', 'SO'],
                 [13, 'AutoPilot', 'AP'],
-                [14, 'Perfect', 'PF'],
+
                 [15, '4K', '4K'],
                 [16, '5K', '5K'],
                 [17, '6K', '6K'],
                 [18, '7K', '7K'],
                 [19, '8K', '8K'],
-                [20, 'FadeIn', 'FI'],
                 [24, '9K', '9K'],
+
+                [20, 'FadeIn', 'FI'],
             ];
+
+            $enabledMods = [];
 
             foreach ($availableMods as $availableMod) {
                 if (($value & (1 << $availableMod[0])) === 0) {
                     continue;
                 }
 
-                $this->_enabledMods[] = ['name' => $availableMod[1], 'shortName' => $availableMod[2]];
+                $actualId = array_get($availableMod, 3, $availableMod[0]);
+
+                $enabledMods[$actualId] = ['name' => $availableMod[1], 'shortName' => $availableMod[2]];
             }
+
+            $this->_enabledMods = array_values($enabledMods);
         }
 
         return $this->_enabledMods;
