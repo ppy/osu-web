@@ -166,6 +166,6 @@ abstract class Model extends BaseModel
 
     public function scopeDefault($query)
     {
-        return $query->orderBy('score_id', 'desc');
+        return $query->where('rank', '<>', 'F')->orderBy('score_id', 'desc');
     }
 }
