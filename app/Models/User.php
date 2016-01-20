@@ -533,7 +533,7 @@ class User extends Model implements AuthenticatableContract
         return $this->belongsTo("App\Models\Rank", 'user_rank', 'rank_id');
     }
 
-    public function rankHistory()
+    public function rankHistories()
     {
         return $this->hasMany(RankHistory::class);
     }

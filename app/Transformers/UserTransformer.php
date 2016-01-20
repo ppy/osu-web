@@ -29,6 +29,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'allAchievements',
+        'allRankHistories',
         'allScores',
         'allScoresBest',
         'allScoresFirst',
@@ -94,6 +95,21 @@ class UserTransformer extends Fractal\TransformerAbstract
             $all = [];
             foreach (array_keys(Beatmap::modes()) as $mode) {
                 $all[$mode] = fractal_item_array($user->statistics($mode), new UserStatisticsTransformer());
+            }
+
+            return $all;
+        });
+    }
+
+    public function includeAllRankHistories(User $user)
+    {
+        return $this->item($user, function ($user) {
+            $all = [];
+
+            foreach ($user->rankHistories as $history) {
+                $modeStr = Beatmap::modeStr($history->mode);
+
+                $all[$modeStr] = fractal_item_array($history, new RankHistoryTransformer());
             }
 
             return $all;
