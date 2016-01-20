@@ -71,6 +71,7 @@ el = React.createElement
                   className: 'mods__mod'
                   img _.merge
                     className: 'mods__mod-image'
+                    title: mod.name
                     osu.src2x("/images/badges/mods/#{_.kebabCase(mod.name)}.png")
           div
             className: 'detail-row__score-data detail-row__score-data--main'
