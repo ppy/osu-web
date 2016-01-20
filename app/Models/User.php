@@ -533,6 +533,11 @@ class User extends Model implements AuthenticatableContract
         return $this->belongsTo("App\Models\Rank", 'user_rank', 'rank_id');
     }
 
+    public function rankHistory()
+    {
+        return $this->hasMany(RankHistory::class);
+    }
+
     public function country()
     {
         return $this->belongsTo("App\Models\Country", 'country_acronym', 'acronym');
