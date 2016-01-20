@@ -69,9 +69,9 @@ el = React.createElement
                 div
                   key: mod.shortName
                   className: 'mods__mod'
-                  img
+                  img _.merge
                     className: 'mods__mod-image'
-                    src: "/images/badges/mods/#{_.kebabCase(mod.name)}.png"
+                    osu.src2x("/images/badges/mods/#{_.kebabCase(mod.name)}.png")
           div
             className: 'detail-row__score-data detail-row__score-data--main'
             div
