@@ -41,24 +41,14 @@ class ProfilePage.AchievementBadge extends React.Component
     $(event.target).qtip options, event
 
 
-  filename: (retina = false, suffix) =>
+  iconUrl: (big = false) =>
     filename = "/images/badges/user-achievements/#{@props.achievement.slug}"
-
-    filename += "-#{suffix}" if suffix
-    filename += '@2x' if retina
+    filename += '-big' if big
 
     "#{filename}.png"
 
 
   render: =>
-    if @props.bigIcon
-      src = @filename false, 'big'
-      src2x = @filename true, 'big'
-    else
-      src = @filename()
-      src2x = @filename true
-
-    srcSet = "#{src} 1x, #{src2x} 2x"
     tooltipId = "#{@props.achievement.slug}-#{Math.floor(Math.random() * 1000000)}"
     imageClasses = 'js-tooltip-achievement badge-achievement__image'
 
@@ -66,14 +56,13 @@ class ProfilePage.AchievementBadge extends React.Component
 
     div
       className: "badge-achievement #{@props.additionalClasses}",
-      img
-        src: src
-        srcSet: srcSet
+      img _.merge
         alt: @props.achievement.name
         title: @props.achievement.name
         className: imageClasses
         'data-tooltip-target': tooltipId
         onMouseOver: @onMouseOver
+        osu.src2x @iconUrl(@props.bigIcon)
 
       div
         className: 'hidden'
@@ -85,10 +74,9 @@ class ProfilePage.AchievementBadge extends React.Component
             @props.achievement.name
           div
             className: 'tooltip-achievement__badge'
-            img
-              src: @filename false, 'big'
-              srcSet: "#{@filename false, 'big'} 1x, #{@filename true, 'big'} 2x"
+            img _.merge
               alt: @props.achievement.name
+              osu.src2x @iconUrl(true)
           div
             className: 'tooltip-achievement__content'
             div
