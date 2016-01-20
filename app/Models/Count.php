@@ -21,37 +21,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RankHistory extends Model
+class Count extends Model
 {
-    protected $table = 'osu_user_performance_rank';
+    protected $table = 'osu_counts';
+    protected $primaryKey = 'name';
 
     public $timestamps = false;
 
     protected $casts = [
-        'user_id' => 'integer',
-        'mode' => 'integer',
-        // supposedly r0..r99 are also integer
-        // but I'm not going to write them here <_<
+        'count' => 'integer',
     ];
 
-    public function getDataAttribute()
+    public static function currentRankStart()
     {
-        $data = [];
-
-        $startOffset = Count::currentRankStart();
-        $end = $startOffset + 90;
-
-        for ($i = $startOffset; $i < $end; $i++) {
-            $column = 'r'.strval($i % 90);
-
-            $data[] = intval($this->$column)];
-        }
-
-        return $data;
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+        return static::find('pp_rank_column')->count;
     }
 }
