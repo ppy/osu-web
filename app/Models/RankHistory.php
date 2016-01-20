@@ -44,7 +44,7 @@ class RankHistory extends Model
         for ($i = $startOffset; $i < $end; $i++) {
             $column = 'r'.strval($i % 90);
 
-            $data[] = intval($this->$column)];
+            $data[] = intval($this->$column);
         }
 
         return $data;
