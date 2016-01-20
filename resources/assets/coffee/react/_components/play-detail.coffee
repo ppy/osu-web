@@ -69,7 +69,7 @@ el = React.createElement
                 div
                   key: mod.shortName
                   className: 'mods__mod'
-                  img _.merge
+                  img _.extend
                     className: 'mods__mod-image'
                     title: mod.name
                     osu.src2x("/images/badges/mods/#{_.kebabCase(mod.name)}.png")

@@ -56,7 +56,7 @@ class ProfilePage.AchievementBadge extends React.Component
 
     div
       className: "badge-achievement #{@props.additionalClasses}",
-      img _.merge
+      img _.extend
         alt: @props.achievement.name
         title: @props.achievement.name
         className: imageClasses
@@ -74,7 +74,7 @@ class ProfilePage.AchievementBadge extends React.Component
             @props.achievement.name
           div
             className: 'tooltip-achievement__badge'
-            img _.merge
+            img _.extend
               alt: @props.achievement.name
               osu.src2x @iconUrl(true)
           div
