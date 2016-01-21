@@ -45,6 +45,16 @@ class StoreController extends Controller
             'postUpdateCart',
         ]]);
 
+        $this->middleware('App\Http\Middleware\CheckUserRestricted', ['only' => [
+            'getInvoice',
+            'postUpdateCart',
+            'postAddToCart',
+            'postCheckout',
+            'postNewAddress',
+            'postUpdateAddress',
+            'postUpdateCart',
+        ]]);
+
         return parent::__construct();
     }
 
