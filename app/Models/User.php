@@ -934,10 +934,20 @@ class User extends Model implements AuthenticatableContract
         return 3;
     }
 
-    public function refreshForumCache()
+    public function refreshForumCache($forum = null, $postsChangeCount = 0)
     {
+        if ($forum !== null) {
+            if (Forum\Authorize::increasesPostsCount($forum) !== true) {
+                $postsChangeCount = 0;
+            }
+
+            $newPostsCount = DB::raw("user_posts + {$postsChangeCount}");
+        } else {
+            $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums())->count();
+        }
+
         return $this->update([
-            'user_posts' => $this->forumPosts()->count(),
+            'user_posts' => $newPostsCount,
             'user_lastpost_time' => $this->forumPosts()->last()->select('post_time')->first()->post_time,
         ]);
     }

@@ -31,6 +31,8 @@ class Authorize extends Model
     private static $options = [
         // acl_options where auth_option = 'f_post'
         'post' => 17,
+        // acl_options where auth_option = 'f_postcount'
+        'postsCount' => 18,
     ];
 
     private static $roles = [
@@ -43,6 +45,8 @@ class Authorize extends Model
         'auth_option_id' => 'integer',
         'auth_role_id' => 'integer',
         'auth_setting' => 'integer',
+        'forum_id' => 'integer',
+        'group_id' => 'integer',
     ];
 
     public static function canPost($user, $forum, $topic)
@@ -88,5 +92,23 @@ class Authorize extends Model
         }
 
         return false;
+    }
+
+    public static function increasesPostsCount($forum)
+    {
+        return static::where('group_id', static::$groups['default'])
+            ->where('forum_id', $forum->forum_id)
+            ->where('auth_option_id', static::$options['postsCount'])
+            ->exists();
+    }
+
+    public static function postsCountedForums()
+    {
+        return static::where('group_id', static::$groups['default'])
+            ->where('auth_option_id', static::$options['postsCount'])
+            ->select('forum_id')
+            ->get()
+            ->pluck('forum_id')
+            ->all();
     }
 }
