@@ -54,7 +54,7 @@ class CheckUserRestricted
     public function handle($request, Closure $next)
     {
         if ($this->auth->check() && $this->auth->user()->isRestricted()) {
-            return error_popup('You are not able to perform this action while your account is in a restricted state, sorry!');
+            return error_popup(trans('errors.no_restricted_access'));
         }
 
         return $next($request);
