@@ -25,5 +25,6 @@ return [
     ],
     'logged_out' => 'You have been logged out. Please login and retry.',
     'supporter_only' => 'You must be a supporter to use this feature.',
+    'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',
     'unknown' => 'Unknown error occurred.',
 ];
