@@ -23,8 +23,6 @@ el = React.createElement
 ProfilePage.Beatmaps = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
-  getInitialState: ->
-
   render: ->
     favouriteBeatmaps = []
     if @props.favouriteBeatmaps.data
