@@ -498,7 +498,12 @@ class User extends Model implements AuthenticatableContract
 
     public function beatmaps()
     {
-        return $this->hasManyThrough("App\Models\Beatmap", 'Set');
+        return $this->hasMany("App\Models\BeatmapSet");
+    }
+
+    public function favouriteBeatmaps()
+    {
+        return BeatmapSet::whereIn('beatmapset_id', FavouriteBeatmap::where("user_id", "=", $this->user_id)->select('beatmapset_id')->get());
     }
 
     public function posts()

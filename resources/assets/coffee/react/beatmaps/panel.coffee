@@ -32,7 +32,7 @@ class @Panel extends React.Component
         for difficulty, index in beatmap.difficulties
           difficulties.push el(BeatmapDifficultyIcon, difficulty: difficulty, key: index)
 
-    div href: '/beatmaps/modding/'+beatmap.beatmapset_id, className: 'beatmap object_link shadow-hover', objectid: beatmap.beatmapset_id,
+    div href: '#', className: 'beatmap object_link shadow-hover', objectid: beatmap.beatmapset_id,
       div className: 'panel',
         div className: 'thumb', style: {backgroundImage: "url(//b.ppy.sh/thumb/#{beatmap.beatmapset_id}l.jpg)"}
         div className: 'thumb_cover', style: {backgroundImage: "url(//b.ppy.sh/thumb/#{beatmap.beatmapset_id}l.jpg)"}
