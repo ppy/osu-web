@@ -103,13 +103,13 @@ return [
             'beatmaps' => [
                 'title' => 'Beatmaps',
                 'favourite' => [
-                    'title' => 'Favourite Beatmaps (:count)'
+                    'title' => 'Favourite Beatmaps (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)'
+                    'title' => 'Ranked & Approved Beatmaps (:count)',
                 ],
-                'none' => 'None... yet.'
-            ]
+                'none' => 'None... yet.',
+            ],
         ],
         'first_members' => 'here since the beginning',
         'is_supporter' => 'osu!supporter',

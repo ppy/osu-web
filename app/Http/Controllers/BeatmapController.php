@@ -24,7 +24,6 @@ use App\Models\BeatmapSet;
 use App\Models\Genre;
 use App\Models\Language;
 use League\Fractal\Manager;
-use League\Fractal\Resource\Collection;
 use App\Transformers\BeatmapSetTransformer;
 use Request;
 use Auth;
