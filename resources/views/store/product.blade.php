@@ -50,7 +50,6 @@
             @else
             <div class="row">
                 <div class="col-md-6">
-                    @if($product->images())
                     <ul id="product-slides" class="rslides">
                         @foreach($product->images() as $i => $image)
                         <li>
@@ -74,9 +73,6 @@
                         </li>
                         @endforeach
                     </ul>
-                    @else
-                    <div class="preview" data-image="{{ $product->image }}" style="background-image: url('{{ $product->image }}');"></div>
-                    @endif
                 </div>
                 <div class="col-md-6">
                     <div class="row">

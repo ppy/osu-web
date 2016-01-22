@@ -76,5 +76,6 @@ sftp-settings.json
 /bootstrap/cache/
 
 /resources/assets/js/messages.js
+/resources/assets/js/vendor-npm.js
 
 composer-installer
