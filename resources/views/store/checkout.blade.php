@@ -62,12 +62,30 @@
             <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
                 <h1>Payment</h1>
 
+                @if($delayedShipping)
+                <div class="alert alert-warning">
+                    <p><strong>IMPORTANT: SHIPPING DELAYS</strong></p>
+
+                    <p>
+                        {!! Markdown::convertToHtml(config('store.delayed_shipping_order_message') ?: trans('store.checkout.delayed_shipping')) !!}
+                    </p>
+
+                    <p>
+                        <input type='checkbox' class='js-checkout-confirmation-step' id='delay-warning'/> <label for='delay-warning'>I have read and understand this message</label>
+                    </p>
+                </div>
+                @endif
+
                 @if($order->address !== null && $order->address->country_code === 'DE')
                     <div class="alert alert-warning">
                         <p><strong>NOTE TO GERMAN CUSTOMERS</strong></p>
 
                         <p>
-                            We have recently been notified of issues regarding deliveries within Germany, possibly due to a change in German customs regulations. Multiple cases reported in the past week in which packages are not delivered to the addressee, but instead to a customs house. The addressee is then sent a notice to pick up the item in person and pay an import sales tax. Unfortunately international customs procedures are out of our control, but <strong>please take this into account when placing your order</strong>.
+                            We have recently been notified of issues regarding deliveries within Germany, possibly due to a change in German customs regulations. Multiple cases have been reported where packages are not delivered to the addressee, but instead to a customs house. The addressee is then sent a notice to pick up the item in person and pay an import sales tax. Unfortunately international customs procedures are out of our control, but <strong>please take this into account when placing your order</strong>.
+                        </p>
+
+                        <p>
+                            <input type='checkbox' class='js-checkout-confirmation-step' id='german-warning'/> <label for='german-warning'>I have read and understand this message</label>
                         </p>
                     </div>
                 @endif
