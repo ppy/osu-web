@@ -48,34 +48,17 @@ elixir(function(mix) {
     'messages.js',
   ], 'public/js/vendor.js')
   .coffee([
+    '_classes/*.coffee',
+    'react/_components/*.coffee',
+
     'jquery-pubsub.coffee',
     'osu!live.coffee',
     'osu_common.coffee',
     'turbolinks-mod.coffee',
-    'local-storage-polyfill.coffee',
 
-    'editor-zoom.coffee',
-    'fade.coffee',
-    'form-placeholder-hide.coffee',
-    'gallery.coffee',
-    'global-drag.coffee',
-    'header-menu.coffee',
-    'logo-menu.coffee',
-    'menu.coffee',
     'navbar-mobile.coffee',
     'spoilerbox.coffee',
     'store.coffee',
-    'sticky-footer.coffee',
-    'sticky-header.coffee',
-    'sync-height.coffee',
-    'tooltip-default.coffee',
-    'forum.coffee',
-    'forum-auto-click.coffee',
-    'forum-cover.coffee',
-    'forum-posts-seek.coffee',
-    'forum-search-modal.coffee',
-    'forum-topic-post-jump.coffee',
-    'forum-topic-reply.coffee',
     'forum/post-box.coffee',
     'forum/topic-ajax.coffee',
     'ujs-common.coffee',
@@ -83,11 +66,8 @@ elixir(function(mix) {
     'user-dropdown-modal.coffee',
     'logout.coffee',
     'shared.coffee',
-    'throttled-events.coffee',
 
     'main.coffee',
-
-    'react/_components/*.coffee',
   ], 'public/js/app.js')
   .coffee([
     'react/profile-page/*.coffee',
