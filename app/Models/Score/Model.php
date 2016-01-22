@@ -103,9 +103,12 @@ abstract class Model extends BaseModel
                 [1, 'Easy Mode', 'EZ'],
                 [3, 'Hidden', 'HD'],
                 [4, 'Hard Rock', 'HR'],
+
+                [6, 'Double Time', 'DT'],
+                [9, 'Nightcore', 'NC', 6],
+
                 [7, 'Relax', 'Relax'],
                 [8, 'Half Time', 'HT'],
-                [9, 'Nightcore', 'NC'],
                 [10, 'Flashlight', 'FL'],
                 [12, 'Spun Out', 'SO'],
                 [13, 'Auto Pilot', 'AP'],
@@ -113,23 +116,13 @@ abstract class Model extends BaseModel
                 [14, 'Perfect', 'PF'],
                 [5, 'Sudden Death', 'SD', 14],
 
-                [6, 'Double Time', 'DT'],
-                [9, 'Nightcore', 'NC', 6],
-
-                [7, 'Relax', 'Relax'],
-                [8, 'HalfTime', 'HT'],
-                [10, 'Flashlight', 'FL'],
-                [12, 'SpunOut', 'SO'],
-                [13, 'AutoPilot', 'AP'],
-
                 [15, '4K', '4K'],
                 [16, '5K', '5K'],
                 [17, '6K', '6K'],
                 [18, '7K', '7K'],
                 [19, '8K', '8K'],
-                [24, '9K', '9K'],
-
                 [20, 'Fade In', 'FI'],
+                [24, '9K', '9K'],
             ];
 
             $enabledMods = [];
