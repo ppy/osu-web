@@ -1,12 +1,13 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
+*    Copyright 2016 ppy Pty. Ltd.
 *
 *    This file is part of osu!web. osu!web is distributed with the hope of
 *    attracting more community contributions to the core ecosystem of osu!.
 *
 *    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
+*    it under the terms of the Affero GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
 *
 *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
 *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -16,23 +17,166 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
-@import "app";
 
-.wiki-header {
-  .at2x-simple("/images/headers/tournament.jpg");
-  background-size: cover;
-
-  .text {
-    padding-left: 130px;
-
-    h1, h2 {
-      .default-text-shadow;
-      color: #fff;
-
-      font-style: normal;
+.language-labels {
+    a {
+        padding-left: 5%;
     }
-
-    h1 { font-size: 32px; margin-bottom: 10px; }
-    h2 { font-size: 16px; }
-  }
+}
+.wiki-contents {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.wiki-nav-container {
+    right: 30px;
+    .wiki-button {
+        span {
+            font-size: 170%;
+        }
+    }
+    .top {
+        margin-top: -14%;
+        .wiki-inner {
+            font-size: 60%;
+            color: #FFF;
+        }
+        .wiki-outer {
+            color: #0088AB;
+        }
+    }
+}
+.wiki-nav-bottom {
+    //container
+    &:extend(.row);
+    z-index: 1000;
+    position: fixed;
+    width: 15%;
+    max-width: 160px;
+    text-align: center;
+    bottom: 25%;
+    .bottom {
+        .wiki-inner {
+            font-size: 60%;
+            color: #0088AB;
+        }
+        .wiki-outer {
+            color: #FFF;
+            text-shadow: 4px 4px 4px #A8A8A8;
+        }
+    }
+    a {
+        display: block;
+        margin-bottom: 3px;
+        text-align: center;
+    }
+}
+.wiki-nav {
+    &:extend(.row);
+    z-index: 1000;
+    position: fixed;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.4);
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    width: 15%;
+    max-width: 160px;
+    height: 35%;
+    min-height: 380px;
+    text-align: center;
+    background-color: #FFFFFF;
+    a {
+        display: block;
+        margin-bottom: 3px;
+        text-align: center;
+    }
+}
+#hideWikiNav:hover {
+    opacity: 0.75;
+}
+#showWikiNav:hover {
+    opacity: 0.75;
+}
+.wiki-page {
+    &:extend(.row);
+    &:extend(.default-box-shadow);
+    background-color: #fff;
+    margin-bottom: 10px;
+    .primary {
+        padding-left: @grid-gutter-width/2;
+        background-color: #FFFFFF;
+    }
+    .sub {
+        padding-left: @grid-gutter-width/2;
+        background-color: #EEEEEE;
+    }
+    .vertical-borders {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .wiki-title {
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+    }
+}
+.margined {
+    padding-top: 14px;
+    padding-left: 12%;
+    padding-right: 12%;
+    padding-bottom: 14px;
+}
+.wiki-box {
+    font-weight: 700;
+    .title {
+        color: @pink-darker;
+        font-weight: bold;
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+}
+.content-container {
+    display: table;
+    width: 100%;
+    .row {
+        display: table-row;
+    }
+    .column-left {
+        display: table-cell;
+        width: 28%;
+        text-align: right;
+        font-weight: bold;
+        font-style: italic;
+        font-size: 18px;
+        padding-left: 4px;
+        padding-right: 4px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+    .column-right {
+        display: table-cell;
+        width: 72%;
+        font-weight: bold;
+        font-style: italic;
+        padding-left: 4px;
+        padding-right: 4px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+}
+.wiki-header {
+    .at2x("/images/headers/wiki.jpg", 900px, 125px);
+    .text {
+        padding-left: 130px;
+        h1, h2 {
+            .default-text-shadow;
+            color: #fff;
+            font-style: normal;
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 16px;
+        }
+    }
 }
