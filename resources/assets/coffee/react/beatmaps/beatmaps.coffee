@@ -145,7 +145,7 @@ class @Beatmaps extends React.Component
 
     div className: 'osu-layout__section',
       el(SearchPanel, background: searchBackground, filters: @state.filters)
-      div id: 'beatmaps', className: 'osu-layout__row',
+      div id: 'beatmaps-listing', className: 'osu-layout__row',
         if (currentUser.id == undefined)
           div
         else
