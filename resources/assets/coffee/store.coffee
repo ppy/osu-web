@@ -79,15 +79,12 @@ $(document).on 'input', '#username.form-control', ->
 
 #checkout checks
 checkCheckoutConfirmations = ->
-  $checkboxes = $('.checkout-confirmation-step')
-  $checkboxesChecked = $('.checkout-confirmation-step:checked')
+  $checkboxes = $('.js-checkout-confirmation-step')
+  $checkboxesChecked = $('.js-checkout-confirmation-step:checked')
   $('#checkout-with-paypal').toggleClass('disabled', $checkboxesChecked.length < $checkboxes.length)
 
-$(document).on 'ready page:load', ->
-  checkCheckoutConfirmations()
-
-$(document).on 'change', '.checkout-confirmation-step', ->
-  checkCheckoutConfirmations()
+$(document).on 'ready page:load', checkCheckoutConfirmations
+$(document).on 'change', '.js-checkout-confirmation-step', checkCheckoutConfirmations
 
 $(document).on 'ready page:load', ->
   quantity = parseInt $('.js-store-item-quantity').val(), 10

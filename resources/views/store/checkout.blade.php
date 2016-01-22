@@ -71,7 +71,7 @@
                     </p>
 
                     <p>
-                        <input type='checkbox' class='checkout-confirmation-step' id='delay-warning'/> <label for='delay-warning'>I have read and understand this message</label>
+                        <input type='checkbox' class='js-checkout-confirmation-step' id='delay-warning'/> <label for='delay-warning'>I have read and understand this message</label>
                     </p>
                 </div>
                 @endif
@@ -85,7 +85,7 @@
                         </p>
 
                         <p>
-                            <input type='checkbox' class='checkout-confirmation-step' id='german-warning'/> <label for='german-warning'>I have read and understand this message</label>
+                            <input type='checkbox' class='js-checkout-confirmation-step' id='german-warning'/> <label for='german-warning'>I have read and understand this message</label>
                         </p>
                     </div>
                 @endif
