@@ -39,7 +39,7 @@ ProfilePage.Beatmaps = React.createClass
       div className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'beatmaps'
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.beatmaps.title')
       div null,
-        h3 className: 'profile-extra__title--small', Lang.get('users.show.extra.beatmaps.favourite.title')
+        h3 className: 'profile-extra__title--small', Lang.get('users.show.extra.beatmaps.favourite.title', count: favouriteBeatmaps.length)
         if favouriteBeatmaps.length
           div className: 'beatmap-container',
             div className: 'listing',
@@ -48,7 +48,7 @@ ProfilePage.Beatmaps = React.createClass
           p className: 'profile-extra-entries', Lang.get('users.show.extra.beatmaps.none')
 
       div null,
-        h3 className: 'profile-extra__title--small', Lang.get('users.show.extra.beatmaps.ranked_and_approved.title')
+        h3 className: 'profile-extra__title--small', Lang.get('users.show.extra.beatmaps.ranked_and_approved.title', count: approvedBeatmaps.length)
         if approvedBeatmaps.length
           div className: 'beatmap-container',
             div className: 'listing',

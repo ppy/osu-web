@@ -103,12 +103,12 @@ return [
             'beatmaps' => [
                 'title' => 'Beatmaps',
                 'favourite' => [
-                    'title' => 'Favourite Beatmaps'
+                    'title' => 'Favourite Beatmaps (:count)'
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps'
+                    'title' => 'Ranked & Approved Beatmaps (:count)'
                 ],
-                'none' => 'none... yet.'
+                'none' => 'None... yet.'
             ]
         ],
         'first_members' => 'here since the beginning',
