@@ -24,10 +24,9 @@ ProfilePage.Beatmaps = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
   render: ->
-    beatmaps = {
+    beatmaps =
       'favourite': @props.favouriteBeatmaps?.data || [],
       'ranked_and_approved': @props.rankedAndApprovedBeatmaps?.data || []
-    }
 
     div
       className: 'osu-layout__row osu-layout__row--page profile-extra'
