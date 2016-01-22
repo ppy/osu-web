@@ -38,19 +38,19 @@ class @Panel extends React.Component
         div className: 'thumb_cover', style: {backgroundImage: "url(//b.ppy.sh/thumb/#{beatmap.beatmapset_id}l.jpg)"}
         div className: 'bottom_left',
           div className: 'title',
-            span title: beatmap.title, beatmap.title
+            span {}, beatmap.title
           div className: 'artist',
-            span title: beatmap.artist, beatmap.artist
+            span {}, beatmap.artist
 
         div className: 'top_right',
           div className: 'stats',
             div className: 'plays',
-              span title: beatmap.play_count,
+              span {},
                 beatmap.play_count
               i className: 'fa fa-play-circle'
 
             div className: 'favourites',
-              span title: beatmap.favourite_count,
+              span {},
                 beatmap.favourite_count
               i className: 'fa fa-heart'
 
