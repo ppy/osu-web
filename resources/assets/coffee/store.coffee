@@ -77,6 +77,14 @@ $(document).on 'input', '#username.form-control', ->
     $status.html "Checking availability of #{requestedUsername}..."
     debouncedCheckUsernameValidity()
 
+#checkout checks
+checkCheckoutConfirmations = ->
+  $checkboxes = $('.js-checkout-confirmation-step')
+  $checkboxesChecked = $checkboxes.filter(':checked')
+  $('#checkout-with-paypal').toggleClass('disabled', $checkboxesChecked.length < $checkboxes.length)
+
+$(document).on 'ready page:load', checkCheckoutConfirmations
+$(document).on 'change', '.js-checkout-confirmation-step', checkCheckoutConfirmations
 
 $(document).on 'ready page:load', ->
   quantity = parseInt $('.js-store-item-quantity').val(), 10
@@ -84,7 +92,6 @@ $(document).on 'ready page:load', ->
   return if quantity > 0
 
   $('.js-store-add-to-cart').hide()
-
 
 $(document).on 'ready page:load', ->
   return if $('#username.form-control').length == 0
