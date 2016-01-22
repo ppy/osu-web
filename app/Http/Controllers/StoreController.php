@@ -115,7 +115,9 @@ class StoreController extends Controller
 
         $addresses = Auth::user()->storeAddresses()->with('country')->get();
 
-        return view('store.checkout', compact('order', 'addresses'));
+        $delayedShipping = Store\Order::where('orders.status', 'paid')->count() > config('osu.store.delayed_shipping_order_threshold');
+
+        return view('store.checkout', compact('order', 'addresses', 'delayedShipping'));
     }
 
     public function missingMethod($parameters = [])
