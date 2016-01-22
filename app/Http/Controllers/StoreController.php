@@ -115,7 +115,7 @@ class StoreController extends Controller
 
         $addresses = Auth::user()->storeAddresses()->with('country')->get();
 
-        $delayedShipping = Store\Order::where('orders.status', 'paid')->count() > config('osu.store.delayed_shipping_order_threshold');
+        $delayedShipping = Store\Order::where('orders.status', 'paid')->count() > env('DELAYED_SHIPPING_ORDER_THRESHOLD', 100);
 
         return view('store.checkout', compact('order', 'addresses', 'delayedShipping'));
     }

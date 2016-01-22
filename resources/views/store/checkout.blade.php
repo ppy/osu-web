@@ -67,7 +67,7 @@
                     <p><strong>IMPORTANT: SHIPPING DELAYS</strong></p>
 
                     <p>
-                        {{{ Config::get('osu.store.delayed_shipping_order_message') ?: trans('store.checkout.delayed_shipping') }}}
+                        {{{ env('DELAYED_SHIPPING_ORDER_MESSAGE', trans('store.checkout.delayed_shipping')) }}}
                     </p>
 
                     <p>
