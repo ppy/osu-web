@@ -38,8 +38,11 @@ class BeatmapController extends Controller
         $fractal = new Manager();
         $languages = Language::listing();
         $genres = Genre::listing();
-        $data = new Collection(BeatmapSet::listing(), new BeatmapSetTransformer);
-        $beatmaps = $fractal->createData($data)->toArray();
+        $beatmaps = fractal_collection_array(
+            BeatmapSet::listing(),
+            new BeatmapSetTransformer,
+            'difficulties'
+        );
 
         // temporarily put filters here
         $modes = [['id' => null, 'name' => trans('beatmaps.mode.any')]];
@@ -78,7 +81,7 @@ class BeatmapController extends Controller
         $current_user = Auth::user();
 
         if (is_null($current_user)) {
-            $data = new Collection([]);
+            $beatmaps = [];
         } else {
             $params = [
                 'query' => Request::input('q'),
@@ -108,12 +111,13 @@ class BeatmapController extends Controller
                 ARRAY_FILTER_USE_BOTH
             );
 
-            $data = new Collection(BeatmapSet::search($params), new BeatmapSetTransformer);
+            $beatmaps = BeatmapSet::search($params);
         }
 
-        $fractal = new Manager();
-        $beatmaps = $fractal->createData($data)->toArray();
-
-        return $beatmaps;
+        return fractal_collection_array(
+            $beatmaps,
+            new BeatmapSetTransformer,
+            'difficulties'
+        );
     }
 }

@@ -24,12 +24,12 @@ class @Panel extends React.Component
   render: ->
     beatmap = @props.beatmap
     difficulties = []
-    if beatmap.difficulties.length > 0
-      if beatmap.difficulties.length > 5
-        difficulties.push el(BeatmapDifficultyIcon, difficulty: beatmap.difficulties[0], key: 0)
-        difficulties.push span key: 'over', beatmap.difficulties.length - 1
+    if beatmap.difficulties.data.length > 0
+      if beatmap.difficulties.data.length > 5
+        difficulties.push el(BeatmapDifficultyIcon, difficulty: beatmap.difficulties.data[0], key: 0)
+        difficulties.push span key: 'over', '+' + (beatmap.difficulties.data.length - 2)
       else
-        for difficulty, index in beatmap.difficulties
+        for difficulty, index in beatmap.difficulties.data
           difficulties.push el(BeatmapDifficultyIcon, difficulty: difficulty, key: index)
 
     div href: '#', className: 'beatmap object_link shadow-hover', objectid: beatmap.beatmapset_id,

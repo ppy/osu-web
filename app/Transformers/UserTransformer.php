@@ -176,7 +176,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     public function includeApprovedBeatmaps(User $user)
     {
         return $this->collection(
-            $user->beatmaps()->where('approved', 1)->where('active', 1)->get(),
+            $user->beatmaps()->rankedOrApproved()->active()->get(),
             new BeatmapSetTransformer()
         );
     }
