@@ -97,25 +97,21 @@ abstract class Model extends BaseModel
             $this->_enabledMods = [];
 
             // move to its own class when needed.
-            // id, name, short name, actual id
+            // id, name, short name, implied ids
             $availableMods = [
                 [0, 'No Fail', 'NF'],
                 [1, 'Easy Mode', 'EZ'],
                 [3, 'Hidden', 'HD'],
                 [4, 'Hard Rock', 'HR'],
-
+                [5, 'Sudden Death', 'SD', [14]],
                 [6, 'Double Time', 'DT'],
-                [9, 'Nightcore', 'NC', 6],
-
                 [7, 'Relax', 'Relax'],
                 [8, 'Half Time', 'HT'],
+                [9, 'Nightcore', 'NC', [6]],
                 [10, 'Flashlight', 'FL'],
                 [12, 'Spun Out', 'SO'],
                 [13, 'Auto Pilot', 'AP'],
-
                 [14, 'Perfect', 'PF'],
-                [5, 'Sudden Death', 'SD', 14],
-
                 [15, '4K', '4K'],
                 [16, '5K', '5K'],
                 [17, '6K', '6K'],
@@ -126,16 +122,24 @@ abstract class Model extends BaseModel
             ];
 
             $enabledMods = [];
+            $impliedIds = [];
 
             foreach ($availableMods as $availableMod) {
                 if (($value & (1 << $availableMod[0])) === 0) {
                     continue;
                 }
 
-                $actualId = array_get($availableMod, 3, $availableMod[0]);
+                $currentImpliedIds = array_get($availableMod, 3);
+                if ($currentImpliedIds !== null) {
+                    $impliedIds = array_merge($impliedIds, $currentImpliedIds);
+                }
 
-                $enabledMods[$actualId] = ['name' => $availableMod[1], 'shortName' => $availableMod[2]];
+                $enabledMods[$availableMod[0]] = ['name' => $availableMod[1], 'shortName' => $availableMod[2]];
             }
+
+            $enabledMods = array_filter($enabledMods, function ($modId) use ($impliedIds) {
+                return in_array($modId, $impliedIds, true);
+            }, ARRAY_FILTER_USE_KEY);
 
             $this->_enabledMods = array_values($enabledMods);
         }
