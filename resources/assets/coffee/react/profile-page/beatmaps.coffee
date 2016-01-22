@@ -24,34 +24,22 @@ ProfilePage.Beatmaps = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
   render: ->
-    favouriteBeatmaps = []
-    if @props.favouriteBeatmaps.data
-      for beatmap in @props.favouriteBeatmaps.data
-        favouriteBeatmaps.push el(Panel, beatmap: beatmap, key: beatmap.beatmapset_id)
-
-    approvedBeatmaps = []
-    if @props.approvedBeatmaps.data
-      for beatmap in @props.approvedBeatmaps.data
-        approvedBeatmaps.push el(Panel, beatmap: beatmap, key: beatmap.beatmapset_id)
+    beatmaps = {
+      'favourite': @props.favouriteBeatmaps?.data || [],
+      'ranked_and_approved': @props.rankedAndApprovedBeatmaps?.data || []
+    }
 
     div
       className: 'osu-layout__row osu-layout__row--page profile-extra'
       div className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'beatmaps'
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.beatmaps.title')
-      div null,
-        h3 className: 'profile-extra__title--small', Lang.get('users.show.extra.beatmaps.favourite.title', count: favouriteBeatmaps.length)
-        if favouriteBeatmaps.length
-          div className: 'beatmap-container',
-            div className: 'listing',
-                favouriteBeatmaps
-        else
-          p className: 'profile-extra-entries', Lang.get('users.show.extra.beatmaps.none')
-
-      div null,
-        h3 className: 'profile-extra__title--small', Lang.get('users.show.extra.beatmaps.ranked_and_approved.title', count: approvedBeatmaps.length)
-        if approvedBeatmaps.length
-          div className: 'beatmap-container',
-            div className: 'listing',
-                approvedBeatmaps
-        else
-          p className: 'profile-extra-entries', Lang.get('users.show.extra.beatmaps.none')
+      ['favourite', 'ranked_and_approved'].map (section) ->
+        div null,
+          h3 className: 'profile-extra__title--small', Lang.get('users.show.extra.beatmaps.' + section + '.title', count: beatmaps[section].length)
+          if beatmaps[section].length
+            div className: 'beatmap-container',
+              div className: 'listing',
+                beatmaps[section].map (beatmap) ->
+                  el(Panel, beatmap: beatmap, key: beatmap.beatmapset_id)
+          else
+            p className: 'profile-extra-entries', Lang.get('users.show.extra.beatmaps.none')

@@ -36,7 +36,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'recentAchievements',
         'recentActivities',
         'recentlyReceivedKudosu',
-        'approvedBeatmaps',
+        'rankedAndApprovedBeatmaps',
         'favouriteBeatmaps',
     ];
 
@@ -173,7 +173,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         );
     }
 
-    public function includeApprovedBeatmaps(User $user)
+    public function includeRankedAndApprovedBeatmaps(User $user)
     {
         return $this->collection(
             $user->beatmaps()->rankedOrApproved()->active()->get(),
