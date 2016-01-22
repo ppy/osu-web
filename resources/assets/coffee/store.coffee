@@ -80,7 +80,7 @@ $(document).on 'input', '#username.form-control', ->
 #checkout checks
 checkCheckoutConfirmations = ->
   $checkboxes = $('.js-checkout-confirmation-step')
-  $checkboxesChecked = $('.js-checkout-confirmation-step:checked')
+  $checkboxesChecked = $checkboxes.filter(':checked')
   $('#checkout-with-paypal').toggleClass('disabled', $checkboxesChecked.length < $checkboxes.length)
 
 $(document).on 'ready page:load', checkCheckoutConfirmations
