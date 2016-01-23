@@ -117,9 +117,11 @@
             <tr>
                 <td>{{{ $sentViaAddress->first_name }}} {{{ $sentViaAddress->last_name }}}</td>
                 <td>#{{{ $order->order_id }}}</td>
-                <td>EMS
-                @if($order->tracking_code)
-                    ({{ $order->tracking_code }})
+                <td>
+                @if(($order->status == 'shipped' || $order->status == 'delivered') && $order->tracking_code)
+                    EMS ({{ $order->tracking_code }})
+                @else
+                    N/A
                 @endif
                 </td>
                 <td>FOB Japan</td>
