@@ -27,7 +27,7 @@ class @Panel extends React.Component
     if beatmap.difficulties.data.length > 0
       if beatmap.difficulties.data.length > 5
         difficulties.push el(BeatmapDifficultyIcon, difficulty: beatmap.difficulties.data[0], key: 0)
-        difficulties.push span key: 'over', '+' + (beatmap.difficulties.data.length - 2)
+        difficulties.push span key: 'over', "+#{(beatmap.difficulties.data.length - 2)}"
       else
         for difficulty, index in beatmap.difficulties.data
           difficulties.push el(BeatmapDifficultyIcon, difficulty: difficulty, key: index)
