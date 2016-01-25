@@ -18,10 +18,10 @@
 @extends("master")
 
 @section("content")
-<div class="osu-layout__row osu-layout__row--page wiki-header">
-    <div class="text">
-        <h1>osu!tournaments</h1>
-        <h2>A listing of all active officially-recognised tournaments</h2>
+<div class="osu-layout__row osu-layout__row--page-compact">
+    <div class="osu-page-header osu-page-header--tournaments">
+        <h1 class="osu-page-header__title">osu!tournaments</h1>
+        <h2 class="osu-page-header__title osu-page-header__title--small">A listing of all active officially-recognised tournaments</h2>
     </div>
 </div>
 
