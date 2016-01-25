@@ -6,6 +6,7 @@
     "blueimp-file-upload": "^9.11.2",
     "bootstrap": "^3.3.6",
     "bower": "^1.7.4",
+    "d3": "^3.5.13",
     "font-awesome": "^4.5.0",
     "gulp": "^3.9.0",
     "jquery": "^2.2.0",
