@@ -4,6 +4,7 @@ require('../../../bower_components/ResponsiveSlides.js/responsiveslides');
 require('../../../bower_components/qtip2/jquery.qtip');
 require('timeago');
 require('blueimp-file-upload');
+require('bootstrap');
 
 window._ = require('lodash');
 window.Layzr = require('layzr.js');
