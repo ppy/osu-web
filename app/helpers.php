@@ -190,7 +190,7 @@ function lazy_load_image($url, $class = '', $alt = '')
 {
     $url = e($url);
 
-    return "<img class='{$class}' src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-layzr='{$url}' alt='{$alt}' />";
+    return "<img class='{$class}' src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-normal='{$url}' alt='{$alt}' />";
 }
 
 function nav_links()

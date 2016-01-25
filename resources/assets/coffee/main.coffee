@@ -52,9 +52,12 @@ $(document).on 'ready page:load', =>
   @logoMenu ||= new LogoMenu
 
 
-$(document).on 'ready page:load osu:page:change', ->
+
+$(document).on 'ready page:load osu:page:change', =>
   osu.initTimeago()
-  new Layzr
+
+  @layzr ||= Layzr().handlers(true)
+  @layzr.update()
 
 
 $(document).on 'ready page:load', =>
