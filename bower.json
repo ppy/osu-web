@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "ResponsiveSlides.js": "latest",
-    "jquery-ujs": "~1.2.0"
+    "jquery-ujs": "~1.2.0",
+    "qtip2": "^2.2.1"
   }
 }
