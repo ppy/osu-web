@@ -1,0 +1,18 @@
+window.$ = window.jQuery = require('jquery');
+require('../../../bower_components/jquery-ujs/src/rails');
+require('../../../bower_components/ResponsiveSlides.js/responsiveslides');
+require('qtip2');
+require('timeago');
+require('blueimp-file-upload');
+
+window._ = require('lodash');
+window.Layzr = require('layzr.js');
+
+window.React = require('react');
+React.addons = {}
+React.addons.PureRenderMixin = require('react-addons-pure-render-mixin');
+
+window.ReactDOM = require('react-dom');
+
+window.PhotoSwipe = require('photoswipe/dist/photoswipe');
+window.PhotoSwipeUI_Default = require('photoswipe/dist/photoswipe-ui-default');
