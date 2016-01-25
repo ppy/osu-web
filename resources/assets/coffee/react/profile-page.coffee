@@ -20,6 +20,7 @@ element = React.createElement ProfilePage.Main,
   userPage: user.page.data
   achievements: achievements
   allAchievements: user.allAchievements.data
+  allRankHistories: user.allRankHistories.data
   allStats: user.allStatistics.data
   allScores: user.allScores.data
   allScoresBest: user.allScoresBest.data
