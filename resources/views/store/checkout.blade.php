@@ -62,7 +62,7 @@
             <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
                 <h1>Payment</h1>
 
-                @if($delayedShipping)
+                @if($delayedShipping && $order->requiresShipping())
                 <div class="alert alert-warning">
                     <p><strong>IMPORTANT: SHIPPING DELAYS</strong></p>
 

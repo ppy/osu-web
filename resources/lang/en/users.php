@@ -100,6 +100,16 @@ return [
                 'title' => 'Top Ranks',
                 'weighted_pp' => 'weighted :percentage (:pp)',
             ],
+            'beatmaps' => [
+                'title' => 'Beatmaps',
+                'favourite' => [
+                    'title' => 'Favourite Beatmaps (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                ],
+                'none' => 'None... yet.',
+            ],
         ],
         'first_members' => 'here since the beginning',
         'is_supporter' => 'osu!supporter',
