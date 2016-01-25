@@ -26,16 +26,17 @@ class @BeatmapDifficultyIcon extends React.Component
     rating = undefined
     mode = undefined
 
-    if difficulty['rating'] <= 1.5
+    if difficulty['rating'] < 1.5
       rating = 'easy'
-    else if difficulty['rating'] <= 2.5
+    else if difficulty['rating'] < 2.25
       rating = 'normal'
-    else if difficulty['rating'] <= 4
+    else if difficulty['rating'] < 3.75
       rating = 'hard'
-    else if difficulty['rating'] <= 5
+    else if difficulty['rating'] < 5.25
       rating = 'insane'
     else
       rating = 'expert'
+
     switch difficulty['mode']
       when 0
         mode = 'osu'

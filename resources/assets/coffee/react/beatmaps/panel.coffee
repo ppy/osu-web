@@ -24,33 +24,33 @@ class @Panel extends React.Component
   render: ->
     beatmap = @props.beatmap
     difficulties = []
-    if beatmap.difficulties.length > 0
-      if beatmap.difficulties.length > 5
-        difficulties.push el(BeatmapDifficultyIcon, difficulty: beatmap.difficulties[0], key: 0)
-        difficulties.push span key: 'over', beatmap.difficulties.length - 1
+    if beatmap.difficulties.data.length > 0
+      if beatmap.difficulties.data.length > 5
+        difficulties.push el(BeatmapDifficultyIcon, difficulty: beatmap.difficulties.data[0], key: 0)
+        difficulties.push span key: 'over', "+#{(beatmap.difficulties.data.length - 2)}"
       else
-        for difficulty, index in beatmap.difficulties
+        for difficulty, index in beatmap.difficulties.data
           difficulties.push el(BeatmapDifficultyIcon, difficulty: difficulty, key: index)
 
-    div href: '/beatmaps/modding/'+beatmap.beatmapset_id, className: 'beatmap object_link shadow-hover', objectid: beatmap.beatmapset_id,
+    div className: 'beatmap object_link shadow-hover', objectid: beatmap.beatmapset_id,
       div className: 'panel',
         div className: 'thumb', style: {backgroundImage: "url(//b.ppy.sh/thumb/#{beatmap.beatmapset_id}l.jpg)"}
         div className: 'thumb_cover', style: {backgroundImage: "url(//b.ppy.sh/thumb/#{beatmap.beatmapset_id}l.jpg)"}
         div className: 'bottom_left',
           div className: 'title',
-            span title: beatmap.title, beatmap.title
+            span {}, beatmap.title
           div className: 'artist',
-            span title: beatmap.artist, beatmap.artist
+            span {}, beatmap.artist
 
         div className: 'top_right',
           div className: 'stats',
             div className: 'plays',
-              span title: beatmap.play_count,
+              span {},
                 beatmap.play_count
               i className: 'fa fa-play-circle'
 
             div className: 'favourites',
-              span title: beatmap.favourite_count,
+              span {},
                 beatmap.favourite_count
               i className: 'fa fa-heart'
 

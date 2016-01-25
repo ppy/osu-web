@@ -19,17 +19,13 @@
 // main: compiled.less
 @import "app";
 
-#beatmaps {
+#beatmaps-listing {
 	text-align: center;
 	padding: 5px 0;
 
 	margin-top: 10px;
 	margin-left: -20px;
 	margin-right: -20px;
-
-	.beatmap {
-		margin: 5px;
-	}
 
 	.beatmap-container {
 		opacity: 1;
@@ -227,6 +223,8 @@
 
 	cursor: pointer;
 
+	margin: 5px;
+
 	&:hover {
 		z-index: 500;
 		/*.stats { color: @pink; }*/
@@ -264,7 +262,7 @@
 
 		.bottom_left {
 			position: absolute;
-			top: 50px;
+			top: 45px;
 			left: 10px;
 
 			.title {
