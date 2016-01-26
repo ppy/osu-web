@@ -172,6 +172,8 @@ class Order extends Model
 
                 if (!$product->inStock($item->quantity)) {
                     $result = [false, 'not enough stock'];
+                } elseif (!$item->enabled) {
+                    $result = [false, 'invalid item'];
                 } elseif ($item->quantity > $product->max_quantity) {
                     $result = [false, "you can only order {$product->max_quantity} of this item per order. visit your <a href='/store/cart'>shopping cart</a> to confirm your current order"];
                 } else {

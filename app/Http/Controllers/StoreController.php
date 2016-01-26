@@ -97,6 +97,9 @@ class StoreController extends Controller
         $cart = $this->userCart();
         $product = Store\Product::with('masterProduct')->findOrFail($id);
 
+        if (!$product->enabled)
+            abort(404);
+
         return view('store.product', compact('cart', 'product'));
     }
 
