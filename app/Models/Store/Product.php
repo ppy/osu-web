@@ -38,7 +38,7 @@ class Product extends Model
         'promoted' => 'boolean',
         'stock' => 'integer',
         'weight' => 'integer',
-        'enabled' => 'boolean'
+        'enabled' => 'boolean',
     ];
 
     private $images;
