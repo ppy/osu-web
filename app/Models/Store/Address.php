@@ -65,6 +65,7 @@ class Address extends Model
         //todo: move to database
         switch (Auth::user()->user_id)
         {
+            default:
             case 4916903:
                 return new self([
                     'first_name' => 'osu!store',
