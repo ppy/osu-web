@@ -38,7 +38,6 @@ class @SearchFilter extends React.Component
     multiselect: React.PropTypes.bool
 
   select: (i, e) ->
-    e.preventDefault()
     if @selected(i)
       if @props.multiselect
         @setState { selected: _.without(@state.selected, i) }, @triggerUpdate
@@ -49,6 +48,9 @@ class @SearchFilter extends React.Component
         @setState { selected: @state.selected.concat(i) }, @triggerUpdate
       else
         @setState { selected: [ i ] }, @triggerUpdate
+
+  clickReject: (e) ->
+    e.preventDefault()
 
   triggerUpdate: ->
     if @props.multiselect
@@ -69,7 +71,7 @@ class @SearchFilter extends React.Component
   render: ->
     selectors = []
     $.each @props.options, (i, e) =>
-      selectors.push a href:'#', className: ('active' if @selected(e['id'])), value: e['id'], key: i, onMouseDown: @select.bind(@, e['id']), e['name']
+      selectors.push a href:'#', className: ('active' if @selected(e['id'])), value: e['id'], key: i, onClick: @clickReject, onMouseDown: @select.bind(@, e['id']), e['name']
 
     div id: @props.id, className: 'selector', 'data-name': @props.name,
       span className:'header', @props.title

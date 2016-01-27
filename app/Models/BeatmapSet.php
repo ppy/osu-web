@@ -296,7 +296,7 @@ class BeatmapSet extends Model
 
         if (!empty($rank)) {
             $klass = presence($mode != null) ? Score\Best\Model::getClass($mode) : Score\Best\Combined::class;
-            $scores = $klass::forUser(Auth::user())->whereIn('rank', $rank)->lists('beatmapset_id');
+            $scores = $klass::forUser(Auth::user())->whereIn('rank', $rank)->get()->lists('beatmapset_id');
             $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $scores]];
         }
 

@@ -22,7 +22,6 @@ el = React.createElement
 
 class @SearchSort extends React.Component
   select: (i, e) ->
-    e.preventDefault
     order = @props.sorting.order
 
     if @selected(i)
@@ -33,6 +32,9 @@ class @SearchSort extends React.Component
     $(document).trigger 'beatmap:search:sorted',
       field: i,
       order: order
+
+  clickReject: (e) ->
+    e.preventDefault()
 
   selected: (i) ->
     @props.sorting.field == i
@@ -51,7 +53,7 @@ class @SearchSort extends React.Component
       classes = []
       if @selected(e['id'])
         classes = ['active', @props.sorting.order]
-      selectors.push a href:'#', className: classes.join(' '), value: e['id'], key: i, onMouseDown: @select.bind(@, e['id']), e['name']
+      selectors.push a href:'#', className: classes.join(' '), value: e['id'], key: i, onClick: @clickReject, onMouseDown: @select.bind(@, e['id']), e['name']
 
     div className: 'sorting',
       selectors
