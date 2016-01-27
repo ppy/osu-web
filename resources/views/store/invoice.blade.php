@@ -118,7 +118,7 @@
                 <td>{{{ $sentViaAddress->first_name }}} {{{ $sentViaAddress->last_name }}}</td>
                 <td>#{{{ $order->order_id }}}</td>
                 <td>
-                @if(($order->status == 'shipped' || $order->status == 'delivered') && $order->tracking_code)
+                @if(($order->status == 'shipped' || $order->status == 'delivered' || Auth::user()->isAdmin()) && $order->tracking_code)
                     EMS ({{ $order->tracking_code }})
                 @else
                     N/A
