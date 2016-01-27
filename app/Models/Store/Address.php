@@ -63,8 +63,7 @@ class Address extends Model
     public static function sender()
     {
         //todo: move to database
-        switch (Auth::user()->user_id)
-        {
+        switch (Auth::user()->user_id) {
             default:
             case 4916903:
                 return new self([
