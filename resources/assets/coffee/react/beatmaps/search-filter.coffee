@@ -71,7 +71,7 @@ class @SearchFilter extends React.Component
   triggerUpdate: ->
     if @props.multiselect
       value = @state.selected.filter (n) ->
-        n != undefined
+        n != undefined && n != null && n != ""
       .join('-')
     else
       value = @state.selected[0]
