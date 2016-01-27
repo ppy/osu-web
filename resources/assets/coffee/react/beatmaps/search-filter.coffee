@@ -23,8 +23,15 @@ el = React.createElement
 class @SearchFilter extends React.Component
   constructor: (props) ->
     super props
+
+    if @props.default != undefined
+      if @props.multiselect
+        selected = @props.default.split('-')
+      else
+        selected = @props.default
+
     @state =
-      selected: [].concat(@props.default)
+      selected: [].concat(selected)
 
   @defaultProps: ->
     multiselect: false
@@ -34,7 +41,7 @@ class @SearchFilter extends React.Component
   @propTypes:
     title: React.PropTypes.string.isRequired
     options: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
-    selected: React.PropTypes.arrayOf(React.PropTypes.number)
+    # selected: React.PropTypes.oneOfType [React.PropTypes.arrayOf(React.PropTypes.string), React.PropTypes.string]
     multiselect: React.PropTypes.bool
 
   select: (i, e) ->
@@ -51,6 +58,15 @@ class @SearchFilter extends React.Component
 
   clickReject: (e) ->
     e.preventDefault()
+
+  componentWillReceiveProps: (props) ->
+    if @state.selected != props.selected
+      if @props.multiselect
+        selected = props.selected?.split('-')
+      else
+        selected = props.selected
+
+      @setState {selected: [].concat(selected)}
 
   triggerUpdate: ->
     if @props.multiselect

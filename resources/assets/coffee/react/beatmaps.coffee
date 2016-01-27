@@ -23,24 +23,29 @@ el = React.createElement
 class @Beatmaps extends React.Component
   constructor: (props) ->
     super props
+    beatmaps = JSON.parse(document.getElementById('json-beatmaps').text)['data']
     @state =
-      beatmaps: JSON.parse(document.getElementById('json-beatmaps').text)['data']
+      beatmaps: beatmaps
+      query: null
       paging:
         page: 1
         url: '/beatmaps/search'
         loading: false
-        more: true
-      filters:
-        mode: 0
-        status: 0
-        genre: null
-        language: null
-        extra: null
-        rank: null
+        more: beatmaps.length > 0
+      filters: @filterDefaults
       sorting:
         field: 'ranked'
         order: 'desc'
       loading: false
+      just_restored: true
+
+  filterDefaults:
+    mode: '0'
+    status: '0'
+    genre: null
+    language: null
+    extra: null
+    rank: null
 
   getFilterState: =>
     'm': @state.filters.mode
@@ -53,26 +58,64 @@ class @Beatmaps extends React.Component
   getSortState: =>
     'sort': [@state.sorting.field, @state.sorting.order].join('_')
 
+  charToKey: (char) ->
+    switch char
+      when 'm' then 'mode'
+      when 's' then 'status'
+      when 'g' then 'genre'
+      when 'l' then 'language'
+      when 'e' then 'extra'
+      when 'r' then 'rank'
+      when 'q' then 'query'
+
   search: =>
-    searchText = $('#searchbox').val().trim()
+    # return
+    console.log('search')
+    searchText = $('#searchbox').val()?.trim()
+    # @showLoader()
 
-    @showLoader()
+    # update url
+    filterState = @getFilterState()
 
-    $.ajax(@state.paging.url,
-      method: 'get'
-      dataType: 'json'
-      data: $.extend({'q': searchText}, @getFilterState(), @getSortState())).done ((data) ->
-        more = data['data'].length > 10
-        @setState
-          beatmaps: data['data']
-          paging:
-            page: 1
-            url: @state.paging.url
-            loading: false
-            more: more
-          loading: false, ->
-            $(document).trigger 'beatmap:search:done'
-    ).bind(this)
+    $.each filterState, (k,v) =>
+      if !v || @filterDefaults[@charToKey(k)] == v
+        delete filterState[k]
+
+    params = []
+    if searchText
+      params.push("q=#{searchText}")
+    for key of filterState
+      params.push("#{key}=#{filterState[key]}")
+
+    # debugger
+
+    if @state.just_restored or location.search.substr(1) != params.join('&')
+      console.log('doing')
+      if !@state.just_restored
+        console.log('setState1')
+        history.pushState(@state, "¯\_(ツ)_/¯", "/beatmaps/?#{params.join('&')}")
+        console.log('setState2')
+
+      console.log('ajax:start')
+      $.ajax(@state.paging.url,
+        method: 'get'
+        dataType: 'json'
+        data: $.extend({'q': searchText}, @getFilterState(), @getSortState())).done ((data) ->
+          more = data['data'].length > 10
+          @setState
+            beatmaps: data['data']
+            query: searchText
+            paging:
+              page: 1
+              url: @state.paging.url
+              loading: false
+              more: more
+            just_restored: false
+            loading: false, ->
+              console.log('ajax:callback')
+              $(document).trigger 'beatmap:search:done'
+              console.log('ajax:callback:done')
+      ).bind(this)
 
   loadMore: =>
     if @state.loading or @state.paging.loading or !@state.paging.more
@@ -113,7 +156,7 @@ class @Beatmaps extends React.Component
     newFilters[payload.name] = payload.value
 
     if @state.filters != newFilters
-      @setState { filters: newFilters }, ->
+      @setState filters: newFilters, ->
         $(document).trigger 'beatmap:search:start'
 
   updateSort: (_b, payload) =>
@@ -121,20 +164,73 @@ class @Beatmaps extends React.Component
       @setState sorting: payload, ->
         $(document).trigger 'beatmap:search:start'
 
+  convertFilterKeys: (obj) ->
+    newObj = {}
+    for key of obj
+      newObj[@charToKey(key)] = obj[key]
+    return newObj
+
+  restoreState: ->
+    state = {}
+    params = location.search.substr(1).split('&')
+    filters = []
+
+    for filter of @getFilterState()
+      filters.push(filter)
+
+    expand = false
+    present = false
+    query = null
+
+    for value in params
+      parts = value.split('=')
+      if $.inArray(parts[0], ['g', 'l', 'e', 'r']) > -1
+        expand = true
+
+      if $.inArray(parts[0], filters) > -1
+        state[parts[0]] = parts[1]
+        present = true
+
+      if parts[0] == 'q'
+        $('#searchbox').val(parts[1])
+        query = parts[1]
+        present = true
+
+    if present
+      console.log('presnt')
+      newState = $.extend(this.getFilterState(), state) # clone
+      newState = @convertFilterKeys(newState)           # convert keys
+
+      @setState filters: newState, just_restored: true, ->
+        @search()
+        if expand
+          $('#search').addClass 'expanded' #such seperation of concerns
+    else
+      console.log('not presnt')
+
   componentDidMount: ->
+    @componentWillUnmount()
     $(document).on 'beatmap:load_more', @loadMore
     $(document).on 'beatmap:search:start', @search
     $(document).on 'beatmap:search:done', @hideLoader
     $(document).on 'beatmap:search:filtered', @updateFilters
     $(document).on 'beatmap:search:sorted', @updateSort
-    $(document).on 'ready page:load osu:page:change', ->
-      setTimeout @onScroll, 1000
+    $(document).on 'ready page:load osu:page:change', (e) =>
+      console.log(e.type)
+      @restoreState()
+      # setTimeout @onScroll, 1000
+    $(window).on 'popstate', (e) =>
+      console.log(e.type)
+      @restoreState()
 
   componentWillUnmount: ->
     $(document).off 'beatmap:load_more'
     $(document).off 'beatmap:search:start'
     $(document).off 'beatmap:search:done'
     $(document).off 'beatmap:search:filtered'
+    $(document).off 'beatmap:search:sorted'
+    $(document).off 'ready page:load osu:page:change'
+    $(window).off 'popstate'
 
   render: ->
     searchBackground = undefined

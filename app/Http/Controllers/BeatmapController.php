@@ -46,23 +46,23 @@ class BeatmapController extends Controller
         // temporarily put filters here
         $modes = [['id' => null, 'name' => trans('beatmaps.mode.any')]];
         foreach (Beatmap::modes() as $name => $id) {
-            $modes[] = ['id' => $id, 'name' => trans("beatmaps.mode.{$name}")];
+            $modes[] = ['id' => (string)$id, 'name' => trans("beatmaps.mode.{$name}")];
         }
 
         $statuses = [
             ['id' => null, 'name' => trans('beatmaps.status.any')],
-            ['id' => 0, 'name' => trans('beatmaps.status.ranked-approved')],
-            ['id' => 1, 'name' => trans('beatmaps.status.approved')],
-            ['id' => 2, 'name' => trans('beatmaps.status.faves')],
-            ['id' => 3, 'name' => trans('beatmaps.status.modreqs')],
-            ['id' => 4, 'name' => trans('beatmaps.status.pending')],
-            ['id' => 5, 'name' => trans('beatmaps.status.graveyard')],
-            ['id' => 6, 'name' => trans('beatmaps.status.my-maps')],
+            ['id' => '0', 'name' => trans('beatmaps.status.ranked-approved')],
+            ['id' => '1', 'name' => trans('beatmaps.status.approved')],
+            ['id' => '2', 'name' => trans('beatmaps.status.faves')],
+            ['id' => '3', 'name' => trans('beatmaps.status.modreqs')],
+            ['id' => '4', 'name' => trans('beatmaps.status.pending')],
+            ['id' => '5', 'name' => trans('beatmaps.status.graveyard')],
+            ['id' => '6', 'name' => trans('beatmaps.status.my-maps')],
         ];
 
         $extras = [
-            ['id' => 0, 'name' => trans('beatmaps.extra.video')],
-            ['id' => 1, 'name' => trans('beatmaps.extra.storyboard')],
+            ['id' => '0', 'name' => trans('beatmaps.extra.video')],
+            ['id' => '1', 'name' => trans('beatmaps.extra.storyboard')],
         ];
 
         $ranks = [];
