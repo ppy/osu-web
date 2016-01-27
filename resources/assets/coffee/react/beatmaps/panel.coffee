@@ -34,6 +34,7 @@ class @Panel extends React.Component
 
     div className: 'beatmap object_link shadow-hover', objectid: beatmap.beatmapset_id,
       div className: 'panel',
+        div className: 'thumb_gradient', ""
         div className: 'thumb', style: {backgroundImage: "url(//b.ppy.sh/thumb/#{beatmap.beatmapset_id}l.jpg)"}
         div className: 'thumb_cover', style: {backgroundImage: "url(//b.ppy.sh/thumb/#{beatmap.beatmapset_id}l.jpg)"}
         div className: 'bottom_left',

@@ -251,6 +251,7 @@
 		width: 100%;
 		height: 100px;
 
+		.at2x('/images/layout/beatmap-default.png');
 		background-position: top center !important;
 		background-repeat:no-repeat !important;
 		background-size: 100% auto !important;
@@ -264,6 +265,7 @@
 			position: absolute;
 			top: 45px;
 			left: 10px;
+			z-index: 2;
 
 			.title {
 				font-size: 130%;
@@ -291,6 +293,7 @@
 			position: absolute;
 			top: 10px;
 			right: 10px;
+			z-index: 2;
 
 			.stats {
 				text-align: right;
@@ -304,6 +307,20 @@
 		}
 		overflow: hidden;
 
+		.thumb_gradient {
+			position: absolute;
+			height: 100px;
+			width: 100%;
+			background: rgba(0,0,0,0);
+			background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
+			background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(100%, rgba(0,0,0,0.6)));
+			background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
+			background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
+			background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
+			background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
+			z-index: 1;
+		}
 		.thumb {
 			position: absolute;
 			top: -10%;
