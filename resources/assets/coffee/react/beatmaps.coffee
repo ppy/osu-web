@@ -126,7 +126,7 @@ class @Beatmaps extends React.Component
 
     @setState paging: paging_state
 
-    searchText = $('#searchbox').val().trim()
+    searchText = $('#searchbox').val()?.trim()
 
     $.ajax(@state.paging.url,
       method: 'get'

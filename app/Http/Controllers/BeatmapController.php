@@ -79,8 +79,12 @@ class BeatmapController extends Controller
     {
         $current_user = Auth::user();
 
+        $params = [];
+
         if (is_null($current_user)) {
-            $beatmaps = [];
+            $params = [
+                'page' => Request::input('page'),
+                ];
         } else {
             $params = [
                 'query' => Request::input('q'),
@@ -97,21 +101,21 @@ class BeatmapController extends Controller
             if (!$current_user->isSupporter()) {
                 unset($params['rank']);
             }
-
-            $params = array_filter(
-                $params,
-                function ($v, $k) {
-                    if (is_array($v)) {
-                        return !empty($v);
-                    } else {
-                        return presence($v) !== null;
-                    }
-                },
-                ARRAY_FILTER_USE_BOTH
-            );
-
-            $beatmaps = BeatmapSet::search($params);
         }
+
+        $params = array_filter(
+            $params,
+            function ($v, $k) {
+                if (is_array($v)) {
+                    return !empty($v);
+                } else {
+                    return presence($v) !== null;
+                }
+            },
+            ARRAY_FILTER_USE_BOTH
+        );
+
+        $beatmaps = BeatmapSet::search($params);
 
         return fractal_collection_array(
             $beatmaps,
