@@ -15,9 +15,12 @@ React.addons = {}
 React.addons.PureRenderMixin = require('react-addons-pure-render-mixin');
 
 window.ReactDOM = require('react-dom');
-window.ReactFauxDOM = require('react-faux-dom');
 
 window.PhotoSwipe = require('photoswipe/dist/photoswipe');
 window.PhotoSwipeUI_Default = require('photoswipe/dist/photoswipe-ui-default');
 
 window.d3 = require('d3');
+window.nv = require('nvd3');
+window.NVD3Chart = require('react-nvd3');
+
+window.moment = require('moment');
