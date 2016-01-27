@@ -86,7 +86,8 @@ class @Beatmaps extends React.Component
     for key, value of filterState
       params.push("#{key}=#{value}")
     for key, value of sortState
-      params.push("so=#{value}")
+      if value != 'ranked_desc'
+        params.push("so=#{value}")
 
     if @state.just_restored or location.search.substr(1) != params.join('&')
       if !@state.just_restored
