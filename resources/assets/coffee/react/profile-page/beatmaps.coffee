@@ -25,8 +25,8 @@ ProfilePage.Beatmaps = React.createClass
 
   render: ->
     beatmaps =
-      'favourite': @props.favouriteBeatmaps?.data || [],
-      'ranked_and_approved': @props.rankedAndApprovedBeatmaps?.data || []
+      'favourite': @props.favouriteBeatmapSets?.data || [],
+      'ranked_and_approved': @props.rankedAndApprovedBeatmapSets?.data || []
 
     div
       className: 'osu-layout__row osu-layout__row--page profile-extra'

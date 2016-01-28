@@ -21,7 +21,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FavouriteBeatmap extends Model
+class FavouriteBeatmapSet extends Model
 {
     protected $table = 'osu_favouritemaps';
     protected $primaryKey = null;
