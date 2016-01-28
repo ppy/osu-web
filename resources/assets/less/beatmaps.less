@@ -226,7 +226,7 @@
 	margin: 5px;
 
 	&:hover {
-		z-index: 4;
+		z-index: @z-index--beatmaps-panel;
 		.panel {
 			.thumb_cover {
 				opacity: 1;
@@ -263,7 +263,7 @@
 			position: absolute;
 			top: 45px;
 			left: 10px;
-			z-index: 2;
+			z-index: @z-index--beatmaps-panel - 2;
 
 			.title {
 				font-size: 130%;
@@ -291,7 +291,7 @@
 			position: absolute;
 			top: 10px;
 			right: 10px;
-			z-index: 2;
+			z-index: @z-index--beatmaps-panel - 2;
 
 			.stats {
 				text-align: right;
@@ -310,7 +310,7 @@
 			height: 100px;
 			width: 100%;
 			background-image: linear-gradient(to bottom, transparent, fade(#000, 60%));
-			z-index: 1;
+			z-index: @z-index--beatmaps-panel - 3;
 		}
 		.thumb {
 			position: absolute;
