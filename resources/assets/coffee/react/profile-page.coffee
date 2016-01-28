@@ -25,6 +25,8 @@ element = React.createElement ProfilePage.Main,
   recentAchievements: user.recentAchievements.data
   recentActivities: user.recentActivities.data
   recentlyReceivedKudosu: user.recentlyReceivedKudosu.data
+  favouriteBeatmapSets: user.favouriteBeatmapSets
+  rankedAndApprovedBeatmapSets: user.rankedAndApprovedBeatmapSets
 
 target = document.getElementsByClassName('js-content')[0]
 

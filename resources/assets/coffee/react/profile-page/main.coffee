@@ -89,6 +89,8 @@ class ProfilePage.Main extends React.Component
       el ProfilePage.Extra,
         recentActivities: @props.recentActivities
         recentlyReceivedKudosu: @props.recentlyReceivedKudosu
+        favouriteBeatmapSets: @props.favouriteBeatmapSets
+        rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
         user: @state.user
         scoresBest: scoresBest
         scoresFirst: scoresFirst
