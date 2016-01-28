@@ -58,6 +58,12 @@ class @Beatmaps extends React.Component
   getSortState: =>
     'sort': [@state.sorting.field, @state.sorting.order].join('_')
 
+  validSortFields: ->
+    ['title', 'artist', 'creator', 'difficulty', 'ranked', 'rating', 'plays']
+
+  validSortOrders: ->
+    ['asc', 'desc']
+
   charToKey: (char) ->
     switch char
       when 'm' then 'mode'
@@ -188,7 +194,7 @@ class @Beatmaps extends React.Component
 
       if key == 'so'
         [sort_field, sort_order] = value.split('_')
-        if $.inArray(sort_field, ['title', 'artist', 'creator', 'difficulty', 'ranked', 'rating', 'plays']) > -1 && $.inArray(sort_order, ['asc', 'desc']) > -1
+        if $.inArray(sort_field, @validSortFields()) > -1 && $.inArray(sort_order, @validSortOrders()) > -1
           sorting = {'field': sort_field, 'order': sort_order}
           present = true
 
