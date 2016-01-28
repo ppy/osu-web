@@ -41,7 +41,7 @@ class @SearchFilter extends React.Component
   @propTypes:
     title: React.PropTypes.string.isRequired
     options: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
-    selected: React.PropTypes.arrayOf(React.PropTypes.string)
+    selected: React.PropTypes.string
     multiselect: React.PropTypes.bool
 
   select: (i, e) ->
