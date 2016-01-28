@@ -239,7 +239,6 @@ class @Beatmaps extends React.Component
     $(window).off 'popstate'
 
   render: ->
-    searchBackground = undefined
     if @state.beatmaps.length > 0
       searchBackground = '//b.ppy.sh/thumb/' + @state.beatmaps[0].beatmapset_id + 'l.jpg'
     else
@@ -248,9 +247,7 @@ class @Beatmaps extends React.Component
     div className: 'osu-layout__section',
       el(SearchPanel, background: searchBackground, filters: @state.filters)
       div id: 'beatmaps-listing', className: 'osu-layout__row',
-        if (currentUser.id == undefined)
-          div
-        else
+        if (currentUser.id != undefined)
           el(SearchSort, sorting: @state.sorting)
         el(BeatmapsListing, beatmaps: @state.beatmaps, loading: @state.loading)
         el(Paginator, paging: @state.paging)
