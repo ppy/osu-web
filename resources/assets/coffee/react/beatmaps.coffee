@@ -74,6 +74,9 @@ class @Beatmaps extends React.Component
       when 'r' then 'rank'
       when 'q' then 'query'
 
+  buildSearchQuery: (query) =>
+    $.extend {'q': query}, @getFilterState(), @getSortState()
+
   search: =>
     searchText = $('#searchbox').val()?.trim()
     @showLoader()
@@ -99,23 +102,24 @@ class @Beatmaps extends React.Component
       if !@state.just_restored
         history.pushState(@state, "¯\_(ツ)_/¯", "/beatmaps/?#{params.join('&')}")
 
-      $.ajax(@state.paging.url,
+      $.ajax @state.paging.url,
         method: 'get'
         dataType: 'json'
-        data: $.extend({'q': searchText}, @getFilterState(), @getSortState())).done ((data) ->
-          more = data['data'].length > 10
-          @setState
-            beatmaps: data['data']
-            query: searchText
-            paging:
-              page: 1
-              url: @state.paging.url
-              loading: false
-              more: more
-            just_restored: false
-            loading: false, ->
-              $(document).trigger 'beatmap:search:done'
-      ).bind(this)
+        data: @buildSearchQuery(searchText)
+      .done (data) =>
+        newState =
+          beatmaps: data['data']
+          query: searchText
+          paging:
+            page: 1
+            url: @state.paging.url
+            loading: false
+            more: data['data'].length > 10
+          just_restored: false
+          loading: false
+
+        @setState newState, ->
+            $(document).trigger 'beatmap:search:done'
 
   loadMore: =>
     if @state.loading or @state.paging.loading or !@state.paging.more
@@ -128,20 +132,21 @@ class @Beatmaps extends React.Component
 
     searchText = $('#searchbox').val()?.trim()
 
-    $.ajax(@state.paging.url,
+    $.ajax @state.paging.url,
       method: 'get'
       dataType: 'json'
-      data: $.extend({'q': searchText}, @getFilterState(), @getSortState(),
-        'page': @state.paging.page + 1)).done ((data) =>
-          more = data['data'].length > 10
-          @setState
-            beatmaps: @state.beatmaps.concat(data['data'])
-            paging:
-              page: @state.paging.page + (if more then 1 else 0)
-              url: @state.paging.url
-              more: more
-            loading: false
-    ).bind(this)
+      data: $.extend(@buildSearchQuery(searchText), 'page': @state.paging.page + 1)
+    .done (data) =>
+      more = data['data'].length > 10
+      newState =
+        beatmaps: @state.beatmaps.concat(data['data'])
+        paging:
+          page: @state.paging.page + (if more then 1 else 0)
+          url: @state.paging.url
+          more: more
+        loading: false
+
+      @setState newState
 
   showLoader: =>
     @setState loading: true
