@@ -112,12 +112,12 @@ ProfilePage.Historical = React.createClass
 
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.historical.title')
 
-      h3
-        className: 'profile-extra__title profile-extra__title--small'
-        Lang.get('users.show.extra.historical.rank_history.title')
+      # h3
+      #   className: 'profile-extra__title profile-extra__title--small'
+      #   Lang.get('users.show.extra.historical.rank_history.title')
 
-      if @props.rankHistories
-        @_rankHistoriesChart()
+      # if @props.rankHistories
+      #   @_rankHistoriesChart()
 
       h3
         className: 'profile-extra__title profile-extra__title--small'

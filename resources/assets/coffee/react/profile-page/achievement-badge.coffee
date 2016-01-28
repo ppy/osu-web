@@ -61,7 +61,7 @@ class ProfilePage.AchievementBadge extends React.Component
         title: @props.achievement.name
         className: imageClasses
         'data-tooltip-target': tooltipId
-        onMouseOver: @onMouseOver
+        # onMouseOver: @onMouseOver
         osu.src2x @iconUrl(@props.bigIcon)
 
       div
