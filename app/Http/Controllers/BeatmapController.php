@@ -84,7 +84,7 @@ class BeatmapController extends Controller
         if (is_null($current_user)) {
             $params = [
                 'page' => Request::input('page'),
-                ];
+            ];
         } else {
             $params = [
                 'query' => Request::input('q'),
