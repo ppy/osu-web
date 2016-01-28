@@ -171,6 +171,16 @@ class BeatmapSet extends Model
         return $query->where('approved', '=', static::QUALIFIED);
     }
 
+    public function scopeRankedOrApproved($query)
+    {
+        return $query->whereIn('approved', [static::RANKED, static::APPROVED]);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', '=', true);
+    }
+
     // one-time checks
 
     public function isGraveyard()
@@ -473,7 +483,7 @@ class BeatmapSet extends Model
 
     public function beatmaps()
     {
-        return $this->hasMany(Beatmap::class);
+        return $this->hasMany(Beatmap::class, 'beatmapset_id');
     }
 
     public function mods()

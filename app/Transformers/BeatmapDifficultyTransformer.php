@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -14,57 +16,20 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
-.store-cart-footer {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 100%;
+namespace App\Transformers;
 
-  &__info-box {
-    flex: 1;
-    width: 100%;
+use App\Models\Beatmap;
+use League\Fractal;
 
-    @media @desktop {
-      width: auto;
+class BeatmapDifficultyTransformer extends Fractal\TransformerAbstract
+{
+    public function transform(Beatmap $b)
+    {
+        return [
+            'mode' => $b->playmode,
+            'rating' => $b->difficultyrating,
+            'name' => $b->version,
+        ];
     }
-  }
-
-  &__total-box {
-    flex: none;
-    width: 100%;
-
-    @media @desktop {
-      width: auto;
-    }
-
-    &--full {
-      @media @desktop {
-        width: 100%;
-      }
-    }
-
-    &--padded {
-      @media @desktop {
-        padding-right: 87px;
-      }
-    }
-  }
-
-  &__text {
-    text-align: right;
-    font-style: italic;
-    margin: 0;
-
-    &--amount {
-      color: @pink-text;
-      font-size: 140%;
-    }
-
-    &--shipping {
-      color: @gray-light;
-      font-size: 90%;
-    }
-  }
 }

@@ -39,6 +39,8 @@ class UserTransformer extends Fractal\TransformerAbstract
         'page',
         'recentActivities',
         'recentlyReceivedKudosu',
+        'rankedAndApprovedBeatmaps',
+        'favouriteBeatmaps',
     ];
 
     public function transform(User $user)
@@ -225,6 +227,22 @@ class UserTransformer extends Fractal\TransformerAbstract
                 ->limit(15)
                 ->get(),
             new KudosuHistoryTransformer()
+        );
+    }
+
+    public function includeRankedAndApprovedBeatmaps(User $user)
+    {
+        return $this->collection(
+            $user->beatmaps()->rankedOrApproved()->active()->get(),
+            new BeatmapSetTransformer()
+        );
+    }
+
+    public function includeFavouriteBeatmaps(User $user)
+    {
+        return $this->collection(
+            $user->favouriteBeatmaps()->get(),
+            new BeatmapSetTransformer()
         );
     }
 }

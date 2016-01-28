@@ -56,29 +56,29 @@ body.home      { .section(@purple-lighter, @purple-light, @purple, @purple-dark,
 body.error     { .section(@pink-lighter, @pink-light, @pink, @pink-dark, @pink-darker); }
 body.user      { .section(@blue-lighter, @blue-light, @blue, @blue-dark, @blue-darker); }
 
-._section(~'beatmaps', @pink-darker);
-._section(~'store', @pink-darker);
-._section(~'ranking', @green-darker);
-._section(~'community', @pink-darker);
-._section(~'help', @yellow-darker);
-._section(~'home', @purple-darker);
-._section(~'error', @pink-darker);
-._section(~'user', @blue-darker);
+._section(~'beatmaps', @pink-darker, @pink-text);
+._section(~'store', @pink-darker, @pink-text);
+._section(~'ranking', @green-darker, @green-text);
+._section(~'community', @pink-darker, @pink-text);
+._section(~'help', @yellow-darker, @yellow-text);
+._section(~'home', @purple-darker, @purple-text);
+._section(~'error', @pink-darker, @pink-text);
+._section(~'user', @blue-darker, @blue-text);
 
-._section(@section-name, @colour) {
+._section(@section-name, @bg-colour, @text-colour) {
   .bg--@{section-name} {
-    background-color: @colour;
+    background-color: @bg-colour;
   }
 
   .colour--@{section-name} {
-    color: @colour;
+    color: @text-colour;
   }
 
   .colour-hover--@{section-name} {
     &:focus,
     &:hover,
     &:active {
-      color: @colour;
+      color: @text-colour;
     }
   }
 }

@@ -17,24 +17,32 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Models\Store;
+use Illuminate\Database\Migrations\Migration;
 
-return [
-    'admin' => [
-        'warehouse' => 'Warehouse',
-    ],
+class DisableProducts extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::connection('mysql-store')->table('products', function ($table) {
+            $table->boolean('enabled')->default(true);
+        });
+    }
 
-    'checkout' => [
-        'pay' => 'Checkout with Paypal',
-        'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
-    ],
-
-    'order' => [
-        'item' => [
-            'quantity' => 'Quantity',
-        ],
-    ],
-
-    'product' => [
-        'name' => 'Name',
-    ],
-];
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::connection('mysql-store')->table('products', function ($table) {
+            $table->dropColumn(['enabled']);
+        });
+    }
+}

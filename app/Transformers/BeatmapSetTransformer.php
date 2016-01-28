@@ -24,52 +24,9 @@ use League\Fractal;
 
 class BeatmapSetTransformer extends Fractal\TransformerAbstract
 {
-    // beatmap difficulty grouping (for beatmap card display)
-
-    private function groupDifficulties(array &$beatmap)
-    {
-        $difficulty_data = $beatmap['difficulties'];
-        $difficulties = [];
-
-        if (!is_array($difficulty_data['version'])) {
-            $fields_to_convert = [
-                'beatmap_id',
-                'version',
-                'hit_length',
-                'diff_drain',
-                'diff_size',
-                'diff_overall',
-                'diff_approach',
-                'playmode',
-                'difficultyrating',
-            ];
-
-            foreach ($fields_to_convert as $field) {
-                $difficulty_data[$field] = [$difficulty_data[$field]];
-            }
-        }
-
-        foreach ($difficulty_data['version'] as $key => $difficulty) {
-            $difficulties[$key]['name'] = $difficulty;
-            $difficulties[$key]['rating'] = $difficulty_data['difficultyrating'][min(count($difficulty_data['difficultyrating']) - 1, $key)];
-
-            if (is_array($difficulty_data['playmode'])) {
-                $difficulties[$key]['mode'] = $difficulty_data['playmode'][0];
-            } else {
-                $difficulties[$key]['mode'] = $difficulty_data['playmode'];
-            }
-        }
-
-        usort($difficulties, function ($a, $b) {
-            if ($a['mode'] == $b['mode']) {
-                return $a['rating'] - $b['rating'];
-            } else {
-                $a['mode'] - $b['mode'];
-            }
-        });
-
-        return $difficulties;
-    }
+    protected $availableIncludes = [
+        'difficulties',
+    ];
 
     public function transform(BeatmapSet $beatmap = null)
     {
@@ -86,8 +43,15 @@ class BeatmapSetTransformer extends Fractal\TransformerAbstract
             'creator' => $beatmap->creator,
             'user_id' => $beatmap->user_id,
             'source' => $beatmap->source,
-            'difficulties' => [], //self::groupDifficulties($beatmap),
             'coverUrl' => $beatmap->coverUrl(),
         ];
+    }
+
+    public function includeDifficulties(BeatmapSet $beatmapSet)
+    {
+        return $this->collection(
+            $beatmapSet->beatmaps()->orderBy('playmode', 'asc')->orderBy('difficultyrating', 'asc')->get(),
+            new BeatmapDifficultyTransformer()
+        );
     }
 }

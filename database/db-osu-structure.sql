@@ -283,6 +283,22 @@ CREATE TABLE `osu_events` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `osu_favouritemaps`
+--
+
+DROP TABLE IF EXISTS `osu_favouritemaps`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_favouritemaps` (
+  `user_id` mediumint(9) unsigned NOT NULL,
+  `beatmapset_id` mediumint(9) unsigned NOT NULL,
+  `dateadded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_id`,`beatmapset_id`),
+  KEY `beatmapset_id` (`beatmapset_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `osu_kudos_exchange`
 --
 

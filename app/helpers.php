@@ -223,17 +223,17 @@ function nav_links()
             'getCountry' => route('ranking-country'),
             'getMapper' => route('ranking-mapper'),
         ];
+    } else {
+        $links['beatmaps'] = [
+            'getListing' => route('beatmaps'),
+        ];
     }
 
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
         'tournaments' => route('tournaments.index'),
+        'getLive' => route('live'),
     ];
-
-    if (config('app.debug')) {
-        $links['community']['getChat'] = route('chat');
-        $links['community']['getLive'] = route('live');
-    }
 
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),

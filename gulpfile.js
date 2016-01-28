@@ -70,6 +70,8 @@ elixir(function(mix) {
     'main.coffee',
   ], 'public/js/app.js')
   .coffee([
+    'react/beatmaps/difficulty-icon.coffee',
+    'react/beatmaps/panel.coffee',
     'react/profile-page/*.coffee',
     'react/profile-page.coffee',
   ], 'public/js/react/profile-page.js')

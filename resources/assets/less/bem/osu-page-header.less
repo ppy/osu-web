@@ -16,21 +16,32 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
-.kudosu-entries {
-  margin-top: @grid-gutter-width/2;
+
+.osu-page-header {
+  background-size: cover;
+
+  padding: (@spacing * 2);
+
+  @media @desktop {
+    // header left margin (20) + logo (100) + menu left margin (10)
+    padding-left: 130px;
+  }
+
+  &--tournaments {
+    .at2x-simple("/images/headers/tournament.jpg");
+  }
 
   &__title {
-    font-size: 16px;
-    margin: 0px 0px @grid-gutter-width/4;
+    font-size: 32px;
+    margin-bottom: 10px;
+    .default-text-shadow();
+    color: #fff;
+
+    font-style: normal;
+
+    &--small {
+      font-size: 16px;
+    }
   }
 
-  &__link {
-    font-style: italic;
-  }
-
-  &__amount {
-    font-weight: inherit;
-    font-style: italic;
-    color: @pink-text;
-  }
 }

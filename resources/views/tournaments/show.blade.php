@@ -18,10 +18,12 @@
 @extends("master")
 
 @section("content")
-<div class="osu-layout__row osu-layout__row--page wiki-header">
-    <div class="text">
-        <h1>{{ $tournament->name }}</h1>
-        <h2>{{ $tournament->start_date->toFormattedDateString() }} ~ {{ $tournament->end_date->toFormattedDateString() }}</h2>
+<div class="osu-layout__row osu-layout__row--page">
+    <div class="osu-page-header osu-page-header--tournaments">
+        <h1 class="osu-page-header__title">{{ $tournament->name }}</h1>
+        <h2 class="osu-page-header__title osu-page-header__title--small">
+            {{ $tournament->start_date->toFormattedDateString() }} ~ {{ $tournament->end_date->toFormattedDateString() }}
+        </h2>
     </div>
 </div>
 

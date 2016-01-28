@@ -126,6 +126,8 @@ class UsersController extends Controller
                 'page',
                 'recentActivities',
                 'recentlyReceivedKudosu',
+                'rankedAndApprovedBeatmaps.difficulties',
+                'favouriteBeatmaps.difficulties',
             ])
         );
 

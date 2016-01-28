@@ -18,6 +18,7 @@ _mysqldump osu \
   osu_changelog \
   osu_countries \
   osu_events \
+  osu_favouritemaps \
   osu_kudos_exchange \
   osu_leaders \
   osu_leaders_fruits \

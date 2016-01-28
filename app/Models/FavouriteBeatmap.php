@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -14,57 +16,13 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
-.store-cart-footer {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 100%;
+namespace App\Models;
 
-  &__info-box {
-    flex: 1;
-    width: 100%;
+use Illuminate\Database\Eloquent\Model;
 
-    @media @desktop {
-      width: auto;
-    }
-  }
-
-  &__total-box {
-    flex: none;
-    width: 100%;
-
-    @media @desktop {
-      width: auto;
-    }
-
-    &--full {
-      @media @desktop {
-        width: 100%;
-      }
-    }
-
-    &--padded {
-      @media @desktop {
-        padding-right: 87px;
-      }
-    }
-  }
-
-  &__text {
-    text-align: right;
-    font-style: italic;
-    margin: 0;
-
-    &--amount {
-      color: @pink-text;
-      font-size: 140%;
-    }
-
-    &--shipping {
-      color: @gray-light;
-      font-size: 90%;
-    }
-  }
+class FavouriteBeatmap extends Model
+{
+    protected $table = 'osu_favouritemaps';
+    protected $primaryKey = null;
 }
