@@ -92,6 +92,8 @@ class ProfilePage.Main extends React.Component
         achievements: @props.achievements
         allAchievements: @props.allAchievements
         beatmapPlaycounts: @props.beatmapPlaycounts
+        favouriteBeatmapSets: @props.favouriteBeatmapSets
+        rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
         rankHistories: rankHistories
         recentActivities: @props.recentActivities
         recentlyReceivedKudosu: @props.recentlyReceivedKudosu

@@ -491,7 +491,7 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany("App\Models\Notification", 'user_id', 'user_id');
     }
 
-    public function sets()
+    public function beatmapSets()
     {
         return $this->hasMany(BeatmapSet::class);
     }
@@ -501,9 +501,9 @@ class User extends Model implements AuthenticatableContract
         return $this->hasManyThrough(Beatmap::class, BeatmapSet::class, 'user_id', 'beatmapset_id');
     }
 
-    public function favouriteBeatmaps()
+    public function favouriteBeatmapSets()
     {
-        return BeatmapSet::whereIn('beatmapset_id', FavouriteBeatmap::where('user_id', '=', $this->user_id)->select('beatmapset_id')->get());
+        return BeatmapSet::whereIn('beatmapset_id', FavouriteBeatmapSet::where('user_id', '=', $this->user_id)->select('beatmapset_id')->get());
     }
 
     public function beatmapPlaycounts()
