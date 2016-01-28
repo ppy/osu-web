@@ -35,8 +35,8 @@ class @BeatmapsListing extends React.Component
         else
           div {},
             img
-              src: '/images/layout/unamused.png'
-              srcSet: "/images/layout/unamused.png 1x, /images/layout/unamused@2x.png 2x"
+              src: '/images/layout/beatmaps/not-found.png'
+              srcSet: "/images/layout/beatmaps/not-found.png 1x, /images/layout/beatmaps/not-found@2x.png 2x"
               alt: 'no results'
               title: 'no results'
               style:
