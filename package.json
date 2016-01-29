@@ -9,7 +9,7 @@
     "d3": "^3.5.13",
     "font-awesome": "^4.5.0",
     "gulp": "^3.9.0",
-    "jquery": "^2.2.0",
+    "jquery": "~2.1.0",
     "jquery.scrollto": "^2.1.2",
     "laravel-elixir": "^4.2.0",
     "layzr.js": "^2.0.0",
