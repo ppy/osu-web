@@ -37,6 +37,9 @@ class ProfilePage.AchievementBadge extends React.Component
         delay: 100
       style:
         classes: 'qtip tooltip-achievement__main'
+        tip:
+          width: 10
+          height: 8
 
     $(event.target).qtip options, event
 
