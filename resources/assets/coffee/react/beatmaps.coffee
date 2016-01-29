@@ -91,7 +91,7 @@ class @Beatmaps extends React.Component
 
     params = []
     if searchText
-      params.push("q=#{searchText}")
+      params.push("q=#{encodeURIComponent(searchText)}")
     for key, value of filterState
       params.push("#{key}=#{value}")
     for key, value of sortState
@@ -204,6 +204,7 @@ class @Beatmaps extends React.Component
           present = true
 
       if key == 'q'
+        value = decodeURIComponent(value)
         $('#searchbox').val(value)
         query = value
         present = true
