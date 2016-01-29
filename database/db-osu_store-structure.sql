@@ -123,6 +123,7 @@ CREATE TABLE `products` (
   `master_product_id` int(11) DEFAULT NULL,
   `type_mappings_json` text,
   `custom_class` varchar(255) DEFAULT NULL,
+  `enabled` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
