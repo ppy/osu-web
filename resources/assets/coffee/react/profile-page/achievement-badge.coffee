@@ -61,10 +61,9 @@ class ProfilePage.AchievementBadge extends React.Component
       className: "badge-achievement #{@props.additionalClasses}",
       img _.extend
         alt: @props.achievement.name
-        title: @props.achievement.name
         className: imageClasses
         'data-tooltip-target': tooltipId
-        # onMouseOver: @onMouseOver
+        onMouseOver: @onMouseOver
         osu.src2x @iconUrl(@props.bigIcon)
 
       div
@@ -74,7 +73,7 @@ class ProfilePage.AchievementBadge extends React.Component
           'data-tooltip-id': tooltipId
           div
             className: 'tooltip-achievement__title'
-            @props.achievement.name
+            @props.achievement.grouping
           div
             className: 'tooltip-achievement__badge'
             img _.extend
