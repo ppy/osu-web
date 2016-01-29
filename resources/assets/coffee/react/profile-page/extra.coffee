@@ -123,4 +123,3 @@ class ProfilePage.Extra extends React.Component
         el ProfilePage.Historical,
           beatmapPlaycounts: @props.beatmapPlaycounts
           scores: @props.scores
-          rankHistories: @props.rankHistories

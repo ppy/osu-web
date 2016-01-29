@@ -71,53 +71,12 @@ ProfilePage.Historical = React.createClass
             className: 'beatmapset-row__detail-column'
             details[1]
 
-  _rankHistoriesChart: ->
-    # chartEl = ReactFauxDOM.createElement('svg')
-    # chartEl.setAttribute 'width', '1000'
-    # chartEl.setAttribute 'height', '250'
-
-    rawData = @props.rankHistories.data.filter (rank) -> rank > 0
-
-    startDate = moment().subtract(rawData.length, 'days')
-
-    chartData = [
-      key: 'rankHistories'
-      values: rawData.map (rank) ->
-        x: startDate.add(1, 'day').unix()
-        # rank must be drawn inverted.
-        y: -rank
-    ]
-
-    div
-      className: 'chart chart--historical'
-      el NVD3Chart,
-        type: 'lineChart'
-        datum: chartData
-        margin:
-          left: 100
-        xAxis:
-          tickFormat: (d) ->
-            moment.unix(d).format('MMM-D')
-        yAxis:
-          tickFormat: (d) ->
-            # The rank data passed here is inverted.
-            # Invert back to get actual number.
-            "##{(-d).toLocaleString()}"
-
-
   render: ->
     div
       className: 'profile-extra'
       div className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'historical'
 
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.historical.title')
-
-      # h3
-      #   className: 'profile-extra__title profile-extra__title--small'
-      #   Lang.get('users.show.extra.historical.rank_history.title')
-
-      # if @props.rankHistories
-      #   @_rankHistoriesChart()
 
       h3
         className: 'profile-extra__title profile-extra__title--small'

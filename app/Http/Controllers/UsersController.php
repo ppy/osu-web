@@ -117,7 +117,6 @@ class UsersController extends Controller
             $user,
             new UserTransformer(), implode(',', [
                 'allAchievements',
-                'allRankHistories',
                 'allScores',
                 'allScoresBest',
                 'allScoresFirst',
