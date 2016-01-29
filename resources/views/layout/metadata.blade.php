@@ -34,8 +34,6 @@
 <link rel="stylesheet" media="all" href="{{ elixir("css/app.css") }}" data-turbolinks-track>
 <link rel="stylesheet" media="all" href="/vendor/_photoswipe-default-skin/default-skin.css">
 
-<script src="{{ elixir("js/messages.js") }}" data-turbolinks-track></script>
-<script src="{{ elixir("js/vendor.js") }}" data-turbolinks-track></script>
 <script src="{{ elixir("js/app.js") }}" data-turbolinks-track></script>
 
 @if (isset($rss))

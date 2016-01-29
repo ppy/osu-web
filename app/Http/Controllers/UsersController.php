@@ -19,8 +19,10 @@
  */
 namespace App\Http\Controllers;
 
+use App\Models\Achievement;
 use App\Models\LoginAttempt;
 use App\Models\User;
+use App\Transformers\AchievementTransformer;
 use App\Transformers\UserTransformer;
 use Auth;
 use Request;
@@ -106,12 +108,28 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $userArray = fractal_item_array(
-            $user,
-            new UserTransformer(),
-            'allStatistics,allScoresBest,allScoresFirst,page,recentAchievements,recentActivities,recentlyReceivedKudosu,rankedAndApprovedBeatmaps.difficulties,favouriteBeatmaps.difficulties'
+        $achievements = fractal_collection_array(
+            Achievement::achievable()->orderBy('grouping')->orderBy('ordering')->get(),
+            new AchievementTransformer()
         );
 
-        return view('users.show', compact('user', 'userArray'));
+        $userArray = fractal_item_array(
+            $user,
+            new UserTransformer(), implode(',', [
+                'allAchievements',
+                'allScores',
+                'allScoresBest',
+                'allScoresFirst',
+                'allStatistics',
+                'beatmapPlaycounts',
+                'page',
+                'recentActivities',
+                'recentlyReceivedKudosu',
+                'rankedAndApprovedBeatmapSets.difficulties',
+                'favouriteBeatmapSets.difficulties',
+            ])
+        );
+
+        return view('users.show', compact('user', 'userArray', 'achievements'));
     }
 }

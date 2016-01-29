@@ -17,6 +17,7 @@ _mysqldump osu \
   osu_beatmapsets \
   osu_changelog \
   osu_countries \
+  osu_counts \
   osu_events \
   osu_favouritemaps \
   osu_kudos_exchange \
@@ -35,7 +36,9 @@ _mysqldump osu \
   osu_scores_taiko_high \
   osu_user_achievements \
   osu_user_banhistory \
+  osu_user_beatmap_playcount \
   osu_user_donations \
+  osu_user_performance_rank \
   osu_user_stats \
   osu_user_stats_fruits \
   osu_user_stats_mania \

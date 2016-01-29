@@ -17,12 +17,21 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models;
+namespace App\Transformers;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Achievement;
+use League\Fractal;
 
-class FavouriteBeatmap extends Model
+class AchievementTransformer extends Fractal\TransformerAbstract
 {
-    protected $table = 'osu_favouritemaps';
-    protected $primaryKey = null;
+    public function transform(Achievement $achievement)
+    {
+        return [
+            'id' => $achievement->achievement_id,
+            'name' => $achievement->name,
+            'grouping' => $achievement->grouping,
+            'slug' => $achievement->slug,
+            'description' => $achievement->description,
+        ];
+    }
 }
