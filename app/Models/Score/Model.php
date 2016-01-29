@@ -136,7 +136,7 @@ abstract class Model extends BaseModel
             }
 
             $enabledMods = array_filter($enabledMods, function ($modId) use ($impliedIds) {
-                return in_array($modId, $impliedIds, true);
+                return in_array($modId, $impliedIds, true) === false;
             }, ARRAY_FILTER_USE_KEY);
 
             $this->_enabledMods = array_values($enabledMods);
