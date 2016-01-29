@@ -39,7 +39,7 @@ DROP TABLE IF EXISTS `osu_achievements`;
 CREATE TABLE `osu_achievements` (
   `achievement_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(40) NOT NULL,
-  `description` text NOT NULL,
+  `description` text,
   `slug` varchar(255) NOT NULL,
   `image` varchar(50) NOT NULL,
   `grouping` varchar(30) NOT NULL DEFAULT '-',

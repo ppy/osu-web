@@ -12,7 +12,7 @@ class AddDescriptionToAchievements extends Migration
     public function up()
     {
         Schema::table('osu_achievements', function ($table) {
-            $table->text('description')->after('name');
+            $table->text('description')->nullable()->after('name');
         });
     }
 
