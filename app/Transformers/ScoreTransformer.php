@@ -40,6 +40,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'accuracy' => $score->accuracy(),
             'rank' => $score->rank,
             'mods' => $score->enabled_mods,
+            'score' => $score->score,
         ];
     }
 

@@ -39,6 +39,7 @@ DROP TABLE IF EXISTS `osu_achievements`;
 CREATE TABLE `osu_achievements` (
   `achievement_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(40) NOT NULL,
+  `description` text,
   `slug` varchar(255) NOT NULL,
   `image` varchar(50) NOT NULL,
   `grouping` varchar(30) NOT NULL DEFAULT '-',
@@ -223,6 +224,20 @@ CREATE TABLE `osu_countries` (
   KEY `rankedscore` (`rankedscore`),
   KEY `playcount` (`playcount`),
   KEY `display` (`display`,`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `osu_counts`
+--
+
+DROP TABLE IF EXISTS `osu_counts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_counts` (
+  `name` varchar(200) NOT NULL,
+  `count` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -810,6 +825,21 @@ CREATE TABLE `osu_user_banhistory` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `osu_user_beatmap_playcount`
+--
+
+DROP TABLE IF EXISTS `osu_user_beatmap_playcount`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_user_beatmap_playcount` (
+  `user_id` mediumint(8) unsigned NOT NULL,
+  `beatmap_id` mediumint(8) unsigned NOT NULL,
+  `playcount` smallint(8) unsigned NOT NULL,
+  PRIMARY KEY (`user_id`,`beatmap_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `osu_user_donations`
 --
 
@@ -828,6 +858,115 @@ CREATE TABLE `osu_user_donations` (
   KEY `timestamp` (`timestamp`),
   KEY `transaction_id` (`transaction_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `osu_user_performance_rank`
+--
+
+DROP TABLE IF EXISTS `osu_user_performance_rank`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_user_performance_rank` (
+  `user_id` int(11) unsigned NOT NULL,
+  `mode` tinyint(3) NOT NULL,
+  `r0` int(11) NOT NULL DEFAULT '0',
+  `r1` int(11) NOT NULL DEFAULT '0',
+  `r2` int(11) NOT NULL DEFAULT '0',
+  `r3` int(11) NOT NULL DEFAULT '0',
+  `r4` int(11) NOT NULL DEFAULT '0',
+  `r5` int(11) NOT NULL DEFAULT '0',
+  `r6` int(11) NOT NULL DEFAULT '0',
+  `r7` int(11) NOT NULL DEFAULT '0',
+  `r8` int(11) NOT NULL DEFAULT '0',
+  `r9` int(11) NOT NULL DEFAULT '0',
+  `r10` int(11) NOT NULL DEFAULT '0',
+  `r11` int(11) NOT NULL DEFAULT '0',
+  `r12` int(11) NOT NULL DEFAULT '0',
+  `r13` int(11) NOT NULL DEFAULT '0',
+  `r14` int(11) NOT NULL DEFAULT '0',
+  `r15` int(11) NOT NULL DEFAULT '0',
+  `r16` int(11) NOT NULL DEFAULT '0',
+  `r17` int(11) NOT NULL DEFAULT '0',
+  `r18` int(11) NOT NULL DEFAULT '0',
+  `r19` int(11) NOT NULL DEFAULT '0',
+  `r20` int(11) NOT NULL DEFAULT '0',
+  `r21` int(11) NOT NULL DEFAULT '0',
+  `r22` int(11) NOT NULL DEFAULT '0',
+  `r23` int(11) NOT NULL DEFAULT '0',
+  `r24` int(11) NOT NULL DEFAULT '0',
+  `r25` int(11) NOT NULL DEFAULT '0',
+  `r26` int(11) NOT NULL DEFAULT '0',
+  `r27` int(11) NOT NULL DEFAULT '0',
+  `r28` int(11) NOT NULL DEFAULT '0',
+  `r29` int(11) NOT NULL DEFAULT '0',
+  `r30` int(11) NOT NULL DEFAULT '0',
+  `r31` int(11) NOT NULL DEFAULT '0',
+  `r32` int(11) NOT NULL DEFAULT '0',
+  `r33` int(11) NOT NULL DEFAULT '0',
+  `r34` int(11) NOT NULL DEFAULT '0',
+  `r35` int(11) NOT NULL DEFAULT '0',
+  `r36` int(11) NOT NULL DEFAULT '0',
+  `r37` int(11) NOT NULL DEFAULT '0',
+  `r38` int(11) NOT NULL DEFAULT '0',
+  `r39` int(11) NOT NULL DEFAULT '0',
+  `r40` int(11) NOT NULL DEFAULT '0',
+  `r41` int(11) NOT NULL DEFAULT '0',
+  `r42` int(11) NOT NULL DEFAULT '0',
+  `r43` int(11) NOT NULL DEFAULT '0',
+  `r44` int(11) NOT NULL DEFAULT '0',
+  `r45` int(11) NOT NULL DEFAULT '0',
+  `r46` int(11) NOT NULL DEFAULT '0',
+  `r47` int(11) NOT NULL DEFAULT '0',
+  `r48` int(11) NOT NULL DEFAULT '0',
+  `r49` int(11) NOT NULL DEFAULT '0',
+  `r50` int(11) NOT NULL DEFAULT '0',
+  `r51` int(11) NOT NULL DEFAULT '0',
+  `r52` int(11) NOT NULL DEFAULT '0',
+  `r53` int(11) NOT NULL DEFAULT '0',
+  `r54` int(11) NOT NULL DEFAULT '0',
+  `r55` int(11) NOT NULL DEFAULT '0',
+  `r56` int(11) NOT NULL DEFAULT '0',
+  `r57` int(11) NOT NULL DEFAULT '0',
+  `r58` int(11) NOT NULL DEFAULT '0',
+  `r59` int(11) NOT NULL DEFAULT '0',
+  `r60` int(11) NOT NULL DEFAULT '0',
+  `r61` int(11) NOT NULL DEFAULT '0',
+  `r62` int(11) NOT NULL DEFAULT '0',
+  `r63` int(11) NOT NULL DEFAULT '0',
+  `r64` int(11) NOT NULL DEFAULT '0',
+  `r65` int(11) NOT NULL DEFAULT '0',
+  `r66` int(11) NOT NULL DEFAULT '0',
+  `r67` int(11) NOT NULL DEFAULT '0',
+  `r68` int(11) NOT NULL DEFAULT '0',
+  `r69` int(11) NOT NULL DEFAULT '0',
+  `r70` int(11) NOT NULL DEFAULT '0',
+  `r71` int(11) NOT NULL DEFAULT '0',
+  `r72` int(11) NOT NULL DEFAULT '0',
+  `r73` int(11) NOT NULL DEFAULT '0',
+  `r74` int(11) NOT NULL DEFAULT '0',
+  `r75` int(11) NOT NULL DEFAULT '0',
+  `r76` int(11) NOT NULL DEFAULT '0',
+  `r77` int(11) NOT NULL DEFAULT '0',
+  `r78` int(11) NOT NULL DEFAULT '0',
+  `r79` int(11) NOT NULL DEFAULT '0',
+  `r80` int(11) NOT NULL DEFAULT '0',
+  `r81` int(11) NOT NULL DEFAULT '0',
+  `r82` int(11) NOT NULL DEFAULT '0',
+  `r83` int(11) NOT NULL DEFAULT '0',
+  `r84` int(11) NOT NULL DEFAULT '0',
+  `r85` int(11) NOT NULL DEFAULT '0',
+  `r86` int(11) NOT NULL DEFAULT '0',
+  `r87` int(11) NOT NULL DEFAULT '0',
+  `r88` int(11) NOT NULL DEFAULT '0',
+  `r89` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`user_id`,`mode`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC
+/*!50100 PARTITION BY RANGE (mode)
+(PARTITION p0 VALUES LESS THAN (1) ENGINE = InnoDB,
+ PARTITION p1 VALUES LESS THAN (2) ENGINE = InnoDB,
+ PARTITION p2 VALUES LESS THAN (3) ENGINE = InnoDB,
+ PARTITION p3 VALUES LESS THAN (4) ENGINE = InnoDB) */;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1427,12 +1566,13 @@ DROP TABLE IF EXISTS `user_profile_customizations`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_profile_customizations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
+  `user_id` mediumint(8) unsigned DEFAULT NULL,
   `cover_json` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
-  KEY `user_profile_customizations_user_id_index` (`user_id`)
+  UNIQUE KEY `user_profile_customizations_user_id_unique` (`user_id`),
+  CONSTRAINT `user_profile_customizations_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `phpbb_users` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -18,11 +18,16 @@
 element = React.createElement ProfilePage.Main,
   user: user
   userPage: user.page.data
+  achievements: achievements
+  allAchievements: user.allAchievements.data
   allStats: user.allStatistics.data
+  allScores: user.allScores.data
   allScoresBest: user.allScoresBest.data
   allScoresFirst: user.allScoresFirst.data
+  favouriteBeatmapSets: user.favouriteBeatmapSets.data
+  rankedAndApprovedBeatmapSets: user.rankedAndApprovedBeatmapSets.data
+  beatmapPlaycounts: user.beatmapPlaycounts.data
   withEdit: user.id == window.currentUser.id
-  recentAchievements: user.recentAchievements.data
   recentActivities: user.recentActivities.data
   recentlyReceivedKudosu: user.recentlyReceivedKudosu.data
 

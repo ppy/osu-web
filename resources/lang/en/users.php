@@ -67,6 +67,15 @@ return [
                 'title' => 'Beatmaps',
             ],
             'historical' => [
+                'empty' => 'No performance records. :(',
+                'most_played' => [
+                    'count' => 'times played',
+                    'title' => 'Most Played Beatmaps',
+                ],
+                'recent_plays' => [
+                    'accuracy' => 'accuracy: :percentage',
+                    'title' => 'Recent Plays',
+                ],
                 'title' => 'Historical',
             ],
             'kudosu' => [
@@ -85,6 +94,9 @@ return [
             'me' => [
                 'title' => 'me!',
             ],
+            'medals' => [
+                'title' => 'Medals',
+            ],
             'recent_activities' => [
                 'title' => 'Recent Activities',
             ],
@@ -98,7 +110,7 @@ return [
                 ],
                 'pp' => ':amountpp',
                 'title' => 'Top Ranks',
-                'weighted_pp' => 'weighted :percentage (:pp)',
+                'weighted_pp' => 'weighted: :pp (:percentage)',
             ],
             'beatmaps' => [
                 'title' => 'Beatmaps',

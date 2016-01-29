@@ -22,9 +22,4 @@ namespace App\Models\Score\Best;
 class Osu extends Model
 {
     protected $table = 'osu_scores_high';
-
-    public function gameModeString()
-    {
-        return 'osu';
-    }
 }

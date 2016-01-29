@@ -19,8 +19,9 @@ el = React.createElement
 
 class ProfilePage.RecentAchievements extends React.Component
   render: =>
+    maxDisplayed = 8
     achievementsProgress = (100 * @props.achievementsCounts.current / @props.achievementsCounts.total).toFixed()
-    moreCount = @props.achievementsCounts.current - @props.recentAchievements.length
+    moreCount = @props.achievementsCounts.current - Math.min(@props.allAchievements.length, maxDisplayed)
 
     el 'div', className: 'profile-content flex-col-33 text-center',
       el 'div', className: 'profile-row profile-row--top',
@@ -39,10 +40,10 @@ class ProfilePage.RecentAchievements extends React.Component
           el 'dd', null, "#{achievementsProgress}%"
 
       el 'div', className: 'profile-row profile-recent-achievements',
-        @props.recentAchievements.map (achievement) =>
+        @props.allAchievements.slice(0, maxDisplayed).map (userAchievement, i) =>
           el ProfilePage.AchievementBadge,
-            key: "profile-achievement-#{achievement.achievement_id}"
-            achievement: achievement
+            key: "profile-achievement-#{i}"
+            achievement: userAchievement.achievement.data
             additionalClasses: 'badge-achievement--recent'
 
       if moreCount > 0

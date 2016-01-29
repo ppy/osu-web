@@ -22,8 +22,6 @@
     "mariuzzo/laravel-js-localization": "^1.2.1",
     "league/flysystem-aws-s3-v2": "^1.0",
     "league/fractal": "^0.13.0",
-    "flesler/jquery.scrollto": "*",
-    "components/jquery": "*",
     "shift31/laravel-elasticsearch": "~1.0"
   },
   "require-dev": {

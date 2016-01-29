@@ -32,4 +32,9 @@ class Achievement extends Model
         'quest_ordering' => 'integer',
     ];
     public $timestamps = false;
+
+    public function scopeAchievable($query)
+    {
+        return $query->where('slug', '<>', '');
+    }
 }
