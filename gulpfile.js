@@ -41,12 +41,6 @@ elixir(function(mix) {
   .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
   .less('app.less')
   .browserify(['vendor-modules.js'], 'resources/assets/js/build/vendor-modules.js')
-  .scripts([
-    path.join(composer_root, 'helthe/turbolinks/Resources/public/js/turbolinks.js'),
-    'build/vendor-modules.js',
-    'ga.js',
-    'messages.js',
-  ], 'public/js/vendor.js')
   .coffee([
     '_classes/*.coffee',
     'react/_components/*.coffee',
@@ -68,6 +62,13 @@ elixir(function(mix) {
     'shared.coffee',
 
     'main.coffee',
+  ], 'resources/assets/js/build/app-main.js')
+  .scripts([
+    path.join(composer_root, 'helthe/turbolinks/Resources/public/js/turbolinks.js'),
+    'build/vendor-modules.js',
+    'ga.js',
+    'messages.js',
+    'build/app-main.js',
   ], 'public/js/app.js')
   .coffee([
     'react/beatmaps/difficulty-icon.coffee',
@@ -83,6 +84,5 @@ elixir(function(mix) {
     'js/app.js',
     'js/react/profile-page.js',
     'js/react/beatmaps.js',
-    'js/vendor.js',
   ]);
 });
