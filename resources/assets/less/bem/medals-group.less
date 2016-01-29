@@ -25,11 +25,14 @@
   &__group {
     .default-box-shadow();
     .default-border-radius();
-    width: calc(50% ~'-' (@spacing * 2));
     margin: @spacing;
     padding: @spacing;
     display: inline-flex;
     flex-direction: column;
+
+    @media @desktop {
+      width: calc(50% ~'-' (@spacing * 2));
+    }
   }
 
   &__medal {
