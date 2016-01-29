@@ -30,7 +30,7 @@ class RankHistory extends Model
     protected $casts = [
         'user_id' => 'integer',
         'mode' => 'integer',
-        // supposedly r0..r99 are also integer
+        // supposedly r0..r89 are also integer
         // but I'm not going to write them here <_<
     ];
 
