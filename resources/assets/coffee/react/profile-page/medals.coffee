@@ -30,7 +30,7 @@ ProfilePage.Medals = React.createClass
     @_achieved ||= @props.allAchievements.map (achieved) ->
       achieved.achievement.data.id
 
-    @_achieved.includes id
+    _.includes @_achieved, id
 
 
   render: ->
