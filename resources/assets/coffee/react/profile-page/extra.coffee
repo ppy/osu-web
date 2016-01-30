@@ -113,8 +113,8 @@ class ProfilePage.Extra extends React.Component
 
       div className: 'osu-layout__row',
         el ProfilePage.Beatmaps,
-          favouriteBeatmaps: @props.user.favouriteBeatmapSets,
-          rankedAndApprovedBeatmaps: @props.user.rankedAndApprovedBeatmapSets
+          favouriteBeatmapSets: @props.favouriteBeatmapSets
+          rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
 
       div className: 'osu-layout__row',
         el ProfilePage.Medals, achievements: @props.achievements, allAchievements: @props.allAchievements
