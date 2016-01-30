@@ -25,8 +25,8 @@ ProfilePage.Beatmaps = React.createClass
 
   render: ->
     beatmaps =
-      'favourite': @props.favouriteBeatmapSets?.data || [],
-      'ranked_and_approved': @props.rankedAndApprovedBeatmapSets?.data || []
+      favourite: @props.favouriteBeatmapSets
+      ranked_and_approved: @props.rankedAndApprovedBeatmapSets
 
     div
       className: 'profile-extra'
