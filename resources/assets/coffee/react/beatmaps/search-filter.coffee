@@ -23,8 +23,15 @@ el = React.createElement
 class @SearchFilter extends React.Component
   constructor: (props) ->
     super props
+
+    if @props.default != undefined
+      if @props.multiselect
+        selected = @props.default.split('-')
+      else
+        selected = @props.default
+
     @state =
-      selected: [].concat(@props.default)
+      selected: [].concat(selected)
 
   @defaultProps: ->
     multiselect: false
@@ -34,11 +41,10 @@ class @SearchFilter extends React.Component
   @propTypes:
     title: React.PropTypes.string.isRequired
     options: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
-    selected: React.PropTypes.arrayOf(React.PropTypes.number)
+    selected: React.PropTypes.string
     multiselect: React.PropTypes.bool
 
   select: (i, e) ->
-    e.preventDefault()
     if @selected(i)
       if @props.multiselect
         @setState { selected: _.without(@state.selected, i) }, @triggerUpdate
@@ -50,10 +56,22 @@ class @SearchFilter extends React.Component
       else
         @setState { selected: [ i ] }, @triggerUpdate
 
+  clickReject: (e) ->
+    e.preventDefault()
+
+  componentWillReceiveProps: (props) ->
+    if @state.selected != props.selected
+      if @props.multiselect
+        selected = props.selected?.split('-')
+      else
+        selected = props.selected
+
+      @setState {selected: [].concat(selected)}
+
   triggerUpdate: ->
     if @props.multiselect
       value = @state.selected.filter (n) ->
-        n != undefined
+        n != undefined && n != null && n != ""
       .join('-')
     else
       value = @state.selected[0]
@@ -69,7 +87,7 @@ class @SearchFilter extends React.Component
   render: ->
     selectors = []
     $.each @props.options, (i, e) =>
-      selectors.push a href:'#', className: ('active' if @selected(e['id'])), value: e['id'], key: i, onMouseDown: @select.bind(@, e['id']), e['name']
+      selectors.push a href:'#', className: ('active' if @selected(e['id'])), value: e['id'], key: i, onClick: @clickReject, onMouseDown: @select.bind(@, e['id']), e['name']
 
     div id: @props.id, className: 'selector', 'data-name': @props.name,
       span className:'header', @props.title

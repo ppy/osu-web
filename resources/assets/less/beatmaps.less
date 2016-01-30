@@ -90,7 +90,7 @@
 				display: none;
 			}
 			i {
-				display: block;
+				display: inline-block;
 			}
 		}
 	}
@@ -226,9 +226,7 @@
 	margin: 5px;
 
 	&:hover {
-		z-index: 500;
-		/*.stats { color: @pink; }*/
-
+		z-index: @z-index--beatmaps-panel;
 		.panel {
 			.thumb_cover {
 				opacity: 1;
@@ -251,6 +249,7 @@
 		width: 100%;
 		height: 100px;
 
+		.at2x('/images/layout/beatmaps/default-bg.png');
 		background-position: top center !important;
 		background-repeat:no-repeat !important;
 		background-size: 100% auto !important;
@@ -264,6 +263,7 @@
 			position: absolute;
 			top: 45px;
 			left: 10px;
+			z-index: @z-index--beatmaps-panel - 2;
 
 			.title {
 				font-size: 130%;
@@ -291,6 +291,7 @@
 			position: absolute;
 			top: 10px;
 			right: 10px;
+			z-index: @z-index--beatmaps-panel - 2;
 
 			.stats {
 				text-align: right;
@@ -304,6 +305,13 @@
 		}
 		overflow: hidden;
 
+		.thumb_gradient {
+			position: absolute;
+			height: 100px;
+			width: 100%;
+			background-image: linear-gradient(to bottom, transparent, fade(#000, 60%));
+			z-index: @z-index--beatmaps-panel - 3;
+		}
 		.thumb {
 			position: absolute;
 			top: -10%;
