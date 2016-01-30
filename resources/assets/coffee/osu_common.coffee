@@ -38,10 +38,13 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
   isMobile: -> ! window.matchMedia('(min-width: 920px)').matches
 
+  src2x: (mainUrl) ->
+    src: mainUrl
+    srcSet: "#{mainUrl} 1x, #{mainUrl.replace(/(\.[^.]+)$/, '@2x$1')} 2x"
+
   link: (url, text, options = {}) ->
     el = document.createElement('a')
     el.setAttribute 'href', url
-    el.setAttribute 'title', text
     el.setAttribute 'data-remote', true if options.isRemote
     el.className = options.classNames.join(' ') if options.classNames
     el.textContent = text

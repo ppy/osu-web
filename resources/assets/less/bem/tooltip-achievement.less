@@ -17,13 +17,14 @@
  *
  */
 .tooltip-achievement {
-  @_badge-height: 60px;
+  @_badge-height: 120px;
 
   .default-border-radius();
   overflow: hidden;
   .default-box-shadow();
   background-color: @grey-f;
   display: flex;
+  line-height: 1.1;
 
   width: 100%;
 
@@ -35,15 +36,20 @@
   }
 
   &__content {
-    padding: @spacing;
-    padding-top: (@_badge-height / 2);
+    padding: (@spacing * 2);
+    padding-top: (@spacing * 2 + @_badge-height / 2);
     text-align: center;
+  }
+
+  &__description {
+    margin-top: (@spacing * 2);
+    font-size: 12px;
   }
 
   &__main {
     .default-border-radius();
-    background-color: @blue-dark;
-    border-color: @blue-dark;
+    background-color: fade(@blue-dark, 80%);
+    border: 0 solid transparent;
     width: 280px;
 
     .qtip-content {
@@ -51,12 +57,23 @@
     }
   }
 
+  &__nickname {
+    font-size: 24px;
+    font-style: italic;
+  }
+
   &__title {
-    background-color: @grey-2;
+    background-color: @blue-darker;
+    background-image: url("/images/backgrounds/button.svg");
+    background-size: cover;
     color: @grey-f;
     text-align: center;
 
-    padding: @spacing;
-    padding-bottom: (@_badge-height / 2);
+    padding: (@spacing * 2);
+    padding-bottom: (@spacing * 2 + @_badge-height / 2);
+
+    font-weight: bold;
+    font-style: italic;
+    font-size: 14px;
   }
 }

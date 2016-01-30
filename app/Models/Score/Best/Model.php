@@ -26,8 +26,6 @@ use League\Flysystem\Filesystem;
 
 abstract class Model extends BaseModel
 {
-    abstract public function gameModeString();
-
     public $position = null;
     public $weight = null;
 

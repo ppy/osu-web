@@ -33,7 +33,7 @@ class CleanHTML
 
         $def = $config->getHTMLDefinition(true);
 
-        $def->addAttribute('img', 'data-layzr', 'Text');
+        $def->addAttribute('img', 'data-normal', 'Text');
         $def->addAttribute('img', 'src', 'Text');
 
         $def->addAttribute('span', 'data-src', 'Text');

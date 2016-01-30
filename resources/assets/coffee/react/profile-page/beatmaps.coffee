@@ -29,7 +29,7 @@ ProfilePage.Beatmaps = React.createClass
       'ranked_and_approved': @props.rankedAndApprovedBeatmapSets?.data || []
 
     div
-      className: 'osu-layout__row osu-layout__row--page profile-extra'
+      className: 'profile-extra'
       div className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'beatmaps'
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.beatmaps.title')
       ['favourite', 'ranked_and_approved'].map (section) ->

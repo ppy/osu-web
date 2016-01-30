@@ -190,7 +190,7 @@ function lazy_load_image($url, $class = '', $alt = '')
 {
     $url = e($url);
 
-    return "<img class='{$class}' src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-layzr='{$url}' alt='{$alt}' />";
+    return "<img class='{$class}' src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-normal='{$url}' alt='{$alt}' />";
 }
 
 function nav_links()
@@ -406,7 +406,12 @@ function bem($block, $element = null, $modifiers = [])
     return " {$ret} ";
 }
 
-function get_namespace($className)
+function get_class_basename($className)
+{
+    return substr($className, strrpos($className, '\\') + 1);
+}
+
+function get_class_namespace($className)
 {
     return substr($className, 0, strrpos($className, '\\'));
 }

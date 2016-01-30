@@ -491,19 +491,24 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany("App\Models\Notification", 'user_id', 'user_id');
     }
 
-    public function sets()
-    {
-        return $this->hasMany("App\Models\Set", 'user_id', 'user_id');
-    }
-
     public function beatmapSets()
     {
-        return $this->hasMany("App\Models\BeatmapSet");
+        return $this->hasMany(BeatmapSet::class);
+    }
+
+    public function beatmaps()
+    {
+        return $this->hasManyThrough(Beatmap::class, BeatmapSet::class, 'user_id', 'beatmapset_id');
     }
 
     public function favouriteBeatmapSets()
     {
         return BeatmapSet::whereIn('beatmapset_id', FavouriteBeatmapSet::where('user_id', '=', $this->user_id)->select('beatmapset_id')->get());
+    }
+
+    public function beatmapPlaycounts()
+    {
+        return $this->hasMany(BeatmapPlaycount::class);
     }
 
     public function posts()
@@ -531,6 +536,11 @@ class User extends Model implements AuthenticatableContract
     public function rank()
     {
         return $this->belongsTo("App\Models\Rank", 'user_rank', 'rank_id');
+    }
+
+    public function rankHistories()
+    {
+        return $this->hasMany(RankHistory::class);
     }
 
     public function country()
@@ -570,6 +580,43 @@ class User extends Model implements AuthenticatableContract
             return $this->hasOne("App\Models\UserStatistics\\{$mode}", 'user_id', 'user_id');
         } else {
             $relation = "statistics{$mode}";
+
+            return $this->$relation;
+        }
+    }
+
+    public function scoresOsu()
+    {
+        return $this->scores('osu', true);
+    }
+
+    public function scoresFruits()
+    {
+        return $this->scores('fruits', true);
+    }
+
+    public function scoresMania()
+    {
+        return $this->scores('mania', true);
+    }
+
+    public function scoresTaiko()
+    {
+        return $this->scores('taiko', true);
+    }
+
+    public function scores($mode, $returnQuery = false)
+    {
+        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+            return;
+        }
+
+        $mode = studly_case($mode);
+
+        if ($returnQuery === true) {
+            return $this->hasMany("App\Models\Score\\{$mode}");
+        } else {
+            $relation = "scores{$mode}";
 
             return $this->$relation;
         }

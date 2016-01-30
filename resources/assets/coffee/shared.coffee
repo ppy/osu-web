@@ -68,13 +68,6 @@ $(document).on 'ready page:load', ->
     $el = $(el)
     $el.data('last-submitted-value', $el.html())
 
-# zooooom ...product image
-$(document).on 'ready page:load', ->
-  $('.preview').each (_i, el) ->
-    $el = $(el)
-    $el.zoom url: $el.data('image')
-
-
 # fadeOut effect for popup
 $(document).on 'click', '#popup-container, #overlay', (e) ->
   $('#overlay').fadeOut()

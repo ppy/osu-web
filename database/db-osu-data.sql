@@ -32,6 +32,9 @@ INSERT INTO `migrations` VALUES ('2015_08_10_083016_add_slug_to_achievements',14
 INSERT INTO `migrations` VALUES ('2015_11_16_065319_create_topic_covers_table',15);
 INSERT INTO `migrations` VALUES ('2015_11_20_122003_add_unique_index_to_forum_topic_covers_forum_id',16);
 INSERT INTO `migrations` VALUES ('2015_12_07_061307_create_forum_covers_table',17);
+INSERT INTO `migrations` VALUES ('2016_01_12_074035_unique_user_customization_user_id',18);
+INSERT INTO `migrations` VALUES ('2016_01_26_194005_disable_products',19);
+INSERT INTO `migrations` VALUES ('2016_01_29_090810_add_description_to_achievements',20);
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
