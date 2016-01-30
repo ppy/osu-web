@@ -34,6 +34,7 @@ class @Panel extends React.Component
 
     div className: 'beatmap object_link shadow-hover', objectid: beatmap.beatmapset_id,
       div className: 'panel',
+        div className: 'thumb_gradient', ''
         div className: 'thumb', style: {backgroundImage: "url(//b.ppy.sh/thumb/#{beatmap.beatmapset_id}l.jpg)"}
         div className: 'thumb_cover', style: {backgroundImage: "url(//b.ppy.sh/thumb/#{beatmap.beatmapset_id}l.jpg)"}
         div className: 'bottom_left',
@@ -56,7 +57,7 @@ class @Panel extends React.Component
 
       div className: 'bottom_left',
         span className: 'hidden', ref: beatmap.beatmapset_id, beatmap.beatmapset_id
-        div className: 'creator', dangerouslySetInnerHTML: { __html: Lang.get 'beatmaps.listing.mapped-by', mapper: React.renderToStaticMarkup(a href: '/u/'+beatmap.user_id, beatmap.creator) }
+        div className: 'creator', dangerouslySetInnerHTML: { __html: Lang.get('beatmaps.listing.mapped-by', mapper: osu.link('/u/'+beatmap.user_id, beatmap.creator)) }
         div className: 'source', beatmap.source
 
       div className: 'bottom_right show_on_hover',

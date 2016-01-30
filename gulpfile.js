@@ -77,7 +77,8 @@ elixir(function(mix) {
     'react/profile-page.coffee',
   ], 'public/js/react/profile-page.js')
   .coffee([
-    'react/beatmaps/*.coffee'
+    'react/beatmaps/*.coffee',
+    'react/beatmaps.coffee'
   ], 'public/js/react/beatmaps.js')
   .version([
     'css/app.css',

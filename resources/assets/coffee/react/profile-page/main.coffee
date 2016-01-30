@@ -95,6 +95,8 @@ class ProfilePage.Main extends React.Component
         rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
         recentActivities: @props.recentActivities
         recentlyReceivedKudosu: @props.recentlyReceivedKudosu
+        favouriteBeatmapSets: @props.favouriteBeatmapSets
+        rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
         user: @state.user
         scores: scores
         scoresBest: scoresBest

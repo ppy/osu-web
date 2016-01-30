@@ -73,16 +73,16 @@ class @SearchPanel extends React.Component
           input id: 'searchbox', type: 'textbox', name: 'search', placeholder: Lang.get("beatmaps.listing.search.prompt")
           i className:'fa fa-search'
 
-        el(SearchFilter, name: 'mode', title: 'Mode', options: filters.modes, default: 0)
-        el(SearchFilter, name:'status', title: 'Rank Status', options: filters.statuses, default: 0)
+        el(SearchFilter, name: 'mode', title: 'Mode', options: filters.modes, default: '0', selected: @props.filters.mode)
+        el(SearchFilter, name:'status', title: 'Rank Status', options: filters.statuses, default: '0', selected: @props.filters.status)
 
         div className: 'more',
           a className: 'toggle', href:'#', onMouseDown: @show_more,
             div {}, Lang.get('beatmaps.listing.search.options')
             div {}, i className:'fa fa-angle-down'
 
-          el(SearchFilter, name: 'genre', title: 'Genre', options: filters.genres, default: filters.genres[0]['id'])
-          el(SearchFilter, name: 'language', title: 'Language', options: filters.languages, default: filters.languages[0]['id'])
-          el(SearchFilter, name: 'extra', title: 'Extra', options: filters.extras, multiselect: true)
+          el(SearchFilter, name: 'genre', title: 'Genre', options: filters.genres, default: filters.genres[0]['id'], selected: @props.filters.genre)
+          el(SearchFilter, name: 'language', title: 'Language', options: filters.languages, default: filters.languages[0]['id'], selected: @props.filters.language)
+          el(SearchFilter, name: 'extra', title: 'Extra', options: filters.extras, multiselect: true, selected: @props.filters.extra)
           if currentUser.isSupporter
-            el(SearchFilter, name: 'rank', title: 'Rank Achieved', options: filters.ranks, multiselect: true)
+            el(SearchFilter, name: 'rank', title: 'Rank Achieved', options: filters.ranks, multiselect: true, selected: @props.filters.rank)

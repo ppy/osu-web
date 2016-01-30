@@ -19,7 +19,8 @@
   'current_section' => 'beatmaps',
   'current_action' => 'index',
   'title' => 'Beatmaps Listing',
-  'pageDescription' => 'Beatmaps Listing'
+  'pageDescription' => 'Beatmaps Listing',
+  'body_additional_classes' => 'data-no-turbolink'
 ])
 
 @section("content")
