@@ -47,7 +47,7 @@ class AccountController extends Controller
         try {
             Auth::user()
                 ->profileCustomization()
-                ->firstOrNew([])
+                ->firstOrCreate([])
                 ->setCover(Request::input('cover_id'), Request::file('cover_file'));
         } catch (ImageProcessorException $e) {
             return error_popup($e->getMessage());
