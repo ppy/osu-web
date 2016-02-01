@@ -61,7 +61,7 @@ class OrderController extends Controller
     {
         $order = Store\Order::findOrFail($id);
 
-        if ($order->status != 'paid') {
+        if ($order->status !== 'paid') {
             return error_popup("order status {$order->status} is invalid.");
         }
 

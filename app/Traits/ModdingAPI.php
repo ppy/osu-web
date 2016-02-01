@@ -41,7 +41,7 @@ trait ModdingAPI
                 return $this->error('missing', 'beatmaps.modding');
             }
 
-            if ($parent->beatmapset_id != $id) {
+            if ($parent->beatmapset_id !== $id) {
                 // someone is trying to be a twat
                 return $this->error('access-denied', 'beatmaps.modding');
             }
@@ -56,7 +56,7 @@ trait ModdingAPI
                     ]);
                     $mod->save();
 
-                    if (Input::get('reply-type') == 'fix') {
+                    if (Input::get('reply-type') === 'fix') {
                         // we need to resolve the parent comment
                         if (Auth::user()->canEditMod($parent)) {
                             $parent->resolve();
@@ -149,10 +149,10 @@ trait ModdingAPI
 
         $type = strtolower(Input::get('type'));
 
-        if ($type and in_array($type, $this->types)) {
+        if ($type and in_array($type, $this->types, true)) {
 
             // restrict nominations
-            if ($type == 'nomination' and !$user->canNominate()) {
+            if ($type === 'nomination' and !$user->canNominate()) {
                 return $this->error('access-denied', 'beatmaps.modding');
             }
 

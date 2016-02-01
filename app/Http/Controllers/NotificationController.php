@@ -101,7 +101,7 @@ class NotificationController extends Controller
 
     public function getUser($user, $limit = 20, $page = 0)
     {
-        if ($this->user->user_id != $user) {
+        if ($this->user->user_id !== intval($user)) {
             if (!$this->user->isHax() or !$this->user->isDev()) {
                 return $this->error('not authorized', 403);
             }

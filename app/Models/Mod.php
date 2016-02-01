@@ -56,15 +56,15 @@ class Mod extends Eloquent
         $beatmaps = $set->beatmaps->toArray();
         $ids = array_column($beatmaps, 'beatmap_id');
 
-        if (in_array($beatmap, $ids)) {
+        if (in_array($beatmap, $ids, true)) {
             return $beatmap;
         }
 
-        if ($beatmap == 'first') {
+        if ($beatmap === 'first') {
             return $ids[0];
         }
 
-        if ($beatmap == 'general' or $beatmap == 'nomination') {
+        if ($beatmap === 'general' or $beatmap === 'nomination') {
             return;
         }
 

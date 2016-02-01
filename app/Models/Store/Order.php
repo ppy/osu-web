@@ -104,7 +104,7 @@ class Order extends Model
 
         //then add up the total
         foreach ($this->items as $i) {
-            if ($primaryShipping == $i->product->base_shipping) {
+            if ($primaryShipping === $i->product->base_shipping) {
                 $total += $i->product->base_shipping * 1 + ($i->quantity - 1) * $i->product->next_shipping;
             } else {
                 $total += ($i->quantity) * $i->product->next_shipping;
