@@ -15,10 +15,16 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{dd, dl, div, dt, small, span} = React.DOM
+{a, dd, dl, div, dt, small, span} = React.DOM
 el = React.createElement
 
 class ProfilePage.RecentAchievements extends React.Component
+  _showAllMedals: (e) =>
+    e.preventDefault()
+
+    $.publish 'profilePageExtra:tab', 'medals'
+
+
   render: =>
     maxDisplayed = 8
     achievementsProgress = (100 * @props.achievementsCounts.current / @props.achievementsCounts.total).toFixed()
@@ -48,5 +54,8 @@ class ProfilePage.RecentAchievements extends React.Component
             additionalClasses: 'badge-achievement--recent'
 
       if moreCount > 0
-        small {},
-          Lang.get('users.show.more_achievements', count: moreCount)
+        a
+          href: '#'
+          onClick: @_showAllMedals
+          small {},
+            Lang.get('users.show.more_achievements', count: moreCount)
