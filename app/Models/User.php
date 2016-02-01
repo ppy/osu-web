@@ -951,9 +951,15 @@ class User extends Model implements AuthenticatableContract
             $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums())->count();
         }
 
+        $lastPost = $this->forumPosts()->last()->select('post_time')->first();
+
+        // null time will be stored as 0 by the db. Nothing can be done about
+        // it, short of changing the column to allow null.
+        $lastPostTime = $lastPost !== null ? $lastPost->post_time : null;
+
         return $this->update([
             'user_posts' => $newPostsCount,
-            'user_lastpost_time' => $this->forumPosts()->last()->select('post_time')->first()->post_time,
+            'user_lastpost_time' => $lastPostTime,
         ]);
     }
 }
