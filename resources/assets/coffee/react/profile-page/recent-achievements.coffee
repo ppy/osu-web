@@ -15,31 +15,38 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+{a, dd, dl, div, dt, small, span} = React.DOM
 el = React.createElement
 
 class ProfilePage.RecentAchievements extends React.Component
+  _showAllMedals: (e) =>
+    e.preventDefault()
+
+    $.publish 'profilePageExtra:tab', 'medals'
+
+
   render: =>
     maxDisplayed = 8
     achievementsProgress = (100 * @props.achievementsCounts.current / @props.achievementsCounts.total).toFixed()
     moreCount = @props.achievementsCounts.current - Math.min(@props.allAchievements.length, maxDisplayed)
 
-    el 'div', className: 'profile-content flex-col-33 text-center',
-      el 'div', className: 'profile-row profile-row--top',
-        el 'div', className: 'profile-achievements-badge profile-top-badge',
-          el 'span', className: 'profile-badge-number',
+    div className: 'profile-content flex-col-33 text-center',
+      div className: 'profile-row profile-row--top',
+        div className: 'profile-achievements-badge profile-top-badge',
+          span className: 'profile-badge-number',
             @props.achievementsCounts.current
 
-        el 'div', className: 'profile-exp-bar',
-          el 'div',
+        div className: 'profile-exp-bar',
+          div
             className: 'profile-exp-bar-fill'
             style:
               width: "#{achievementsProgress}%"
 
-        el 'dl', className: 'profile-stats profile-stats--light',
-          el 'dt'
-          el 'dd', null, "#{achievementsProgress}%"
+        dl className: 'profile-stats profile-stats--light',
+          dt()
+          dd {}, "#{achievementsProgress}%"
 
-      el 'div', className: 'profile-row profile-recent-achievements',
+      div className: 'profile-row profile-recent-achievements',
         @props.allAchievements.slice(0, maxDisplayed).map (userAchievement, i) =>
           el ProfilePage.AchievementBadge,
             key: "profile-achievement-#{i}"
@@ -47,5 +54,8 @@ class ProfilePage.RecentAchievements extends React.Component
             additionalClasses: 'badge-achievement--recent'
 
       if moreCount > 0
-        el 'small', null,
-          Lang.get('users.show.more_achievements', count: moreCount)
+        a
+          href: '#'
+          onClick: @_showAllMedals
+          small {},
+            Lang.get('users.show.more_achievements', count: moreCount)
