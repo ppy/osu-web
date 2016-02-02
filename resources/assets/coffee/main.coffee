@@ -61,7 +61,8 @@ initPage = =>
 # Don't bother moving initPage to osu junk drawer and removing the
 # osu:page:change. It's intended to allow other scripts to attach
 # callbacks to osu:page:change.
-$(document).on 'ready page:load osu:page:change', _.debounce(initPage, 500)
+$(document).on 'ready page:load', initPage
+$(document).on 'osu:page:change', _.debounce(initPage, 500)
 
 
 $(document).on 'ready page:load', =>
