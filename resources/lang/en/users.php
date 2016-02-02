@@ -49,6 +49,7 @@ return [
                 'button' => 'Change Profile Cover',
                 'defaults_info' => 'More cover options will be available in the future',
                 'upload' => [
+                    'broken_file' => 'Failed processing image. Verify uploaded image and try again.',
                     'button' => 'Upload image',
                     'dropzone' => 'Drop here to upload',
                     'dropzone_info' => 'You can also drop your image here to upload',
