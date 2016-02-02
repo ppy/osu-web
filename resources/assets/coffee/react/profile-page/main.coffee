@@ -48,7 +48,7 @@ class ProfilePage.Main extends React.Component
 
 
   userPageUpdate: (_e, newUserPage) =>
-    currentUserPage = @state.userPage
+    currentUserPage = _.cloneDeep @state.userPage
     @setState userPage: _.extend(currentUserPage, newUserPage)
 
 

@@ -18,54 +18,39 @@
 el = React.createElement
 
 class ProfilePage.UserPageEditor extends React.Component
-  constructor: (props) ->
-    super props
-    @state = raw: @props.userPage.raw
-
-
   componentDidMount: =>
-    body = @_body()
-    $(body).on 'change', @_change
-    body.selectionStart = @props.userPage.selection[0]
-    body.selectionEnd = @props.userPage.selection[1]
-    @_focus()
+    @refs.body.selectionStart = @props.userPage.selection[0]
+    @refs.body.selectionEnd = @props.userPage.selection[1]
+    @refs.body.focus()
 
 
   componentWillUnmount: =>
-    body = @_body()
-    $(body).off 'change', @_change
-
     $.publish 'user:page:update',
-      raw: @state.raw
-      selection: [body.selectionStart, body.selectionEnd]
+      selection: [@refs.body.selectionStart, @refs.body.selectionEnd]
 
 
-  _body: => React.findDOMNode(@refs.body)
+  _reset: =>
+    $.publish 'user:page:update',
+      raw: @props.userPage.initialRaw
 
-
-  _focus: => @_body().focus()
-
-
-  _reset: (_e, callback) =>
-    if typeof callback != 'function'
-      callback = @_focus
-
-    @setState raw: @props.userPage.initialRaw, callback
+    @refs.body.focus()
 
 
   _cancel: =>
-    @_reset null, ->
-      $.publish 'user:page:update', editing: false
+    $.publish 'user:page:update',
+      editing: false
+      raw: @props.userPage.initialRaw
 
 
   _save: (e) =>
-    body = @state.raw
+    body = @props.userPage.raw
     osu.showLoadingOverlay()
 
     $.ajax window.changePageUrl,
       method: 'PUT'
       dataType: 'json'
-      data: body: body
+      data:
+        body: body
     .done (data) ->
       $.publish 'user:page:update',
         html: data.html
@@ -75,7 +60,9 @@ class ProfilePage.UserPageEditor extends React.Component
     .always osu.hideLoadingOverlay
 
 
-  _change: (e) => @setState(raw: e.target.value)
+  _change: (e) =>
+    $.publish 'user:page:update',
+      raw: e.target.value
 
 
   render: =>
@@ -83,7 +70,7 @@ class ProfilePage.UserPageEditor extends React.Component
       el 'textarea',
         className: 'flex-full profile-page-editor-body'
         name: 'body'
-        value: @state.raw
+        value: @props.userPage.raw
         onChange: @_change
         placeholder: Lang.get('users.show.page.placeholder')
         ref: 'body'

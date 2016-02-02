@@ -303,13 +303,23 @@ function open_image($path, $dimensions = null)
         $dimensions = getimagesize($path);
     }
 
-    switch ($dimensions[2]) {
-        case IMAGETYPE_GIF:
-            return imagecreatefromgif($path);
-        case IMAGETYPE_JPEG:
-            return imagecreatefromjpeg($path);
-        case IMAGETYPE_PNG:
-            return imagecreatefrompng($path);
+    if (!isset($dimensions[2]) || !is_int($dimensions[2])) {
+        return false;
+    }
+
+    try {
+        switch ($dimensions[2]) {
+            case IMAGETYPE_GIF:
+                return imagecreatefromgif($path);
+            case IMAGETYPE_JPEG:
+                return imagecreatefromjpeg($path);
+            case IMAGETYPE_PNG:
+                return imagecreatefrompng($path);
+        }
+
+        return false;
+    } catch (ErrorException $_e) {
+        return false;
     }
 }
 

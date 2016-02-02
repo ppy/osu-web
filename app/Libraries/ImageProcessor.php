@@ -93,16 +93,20 @@ class ImageProcessor
 
         $this->purgeExif();
 
+        $inputImage = open_image($this->inputPath, $this->inputDim);
+
+        if ($inputImage === false) {
+            throw new ImageProcessorException(trans('users.show.edit.cover.upload.broken_file'));
+        }
+
         if ($this->inputDim[0] === $this->targetDim[0] &&
             $this->inputDim[1] === $this->targetDim[1]) {
             if ($this->inputFileSize < $this->targetFileSize) {
                 return;
             }
 
-            $image = open_image($this->inputPath, $this->inputDim);
+            $image = $inputImage;
         } else {
-            $inputImage = open_image($this->inputPath, $this->inputDim);
-
             $start = [0, 0];
             $inDim = [$this->inputDim[0], $this->inputDim[1]];
             $outDim = [$this->targetDim[0], $this->targetDim[1]];
