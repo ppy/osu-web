@@ -40,11 +40,13 @@ ProfilePage.Medals = React.createClass
     achievementsHtml = []
 
     for own group, achievements of groupedAchievements
-      groupHtml = div
-        key: group
-        className: 'medals-group__group'
-        h3 className: 'medals-group__title', group
-        div
+      orderedAchievements = _.groupBy achievements, (achievement) ->
+        achievement.ordering
+
+      orderingHtml = []
+
+      for own ordering, achievements of orderedAchievements
+        achievementHtml = div
           className: 'medals-group__medals'
           achievements.map (achievement, i) =>
             div
@@ -54,9 +56,15 @@ ProfilePage.Medals = React.createClass
                 achievement: achievement
                 isLocked: !@_isAchieved(achievement.id)
                 bigIcon: true
+        orderingHtml.push achievementHtml
+
+      groupHtml = div
+        key: group
+        className: 'medals-group__group'
+        h3 className: 'medals-group__title', group
+        orderingHtml
 
       achievementsHtml.push groupHtml
-
     div
       className: 'profile-extra'
       div className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'medals'
