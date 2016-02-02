@@ -109,7 +109,7 @@ class UsersController extends Controller
         }
 
         $achievements = fractal_collection_array(
-            Achievement::achievable()->orderBy('grouping')->orderBy('ordering')->get(),
+            Achievement::achievable()->orderBy('grouping')->orderBy('ordering')->orderBy('progression')->get(),
             new AchievementTransformer()
         );
 
