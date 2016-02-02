@@ -33,38 +33,28 @@ ProfilePage.Medals = React.createClass
     _.includes @_achieved, id
 
 
-  render: ->
-    groupedAchievements = _.groupBy @props.achievements, (achievement) ->
+  _groupedAchievements: ->
+    _.groupBy @props.achievements, (achievement) =>
       achievement.grouping
 
-    achievementsHtml = []
 
-    for own group, achievements of groupedAchievements
-      orderedAchievements = _.groupBy achievements, (achievement) ->
+  _orderedAchievements: (achievements) ->
+      _.groupBy achievements, (achievement) =>
         achievement.ordering
 
-      orderingHtml = []
 
-      for own ordering, achievements of orderedAchievements
-        achievementHtml = div
-          className: 'medals-group__medals'
-          achievements.map (achievement, i) =>
-            div
-              key: i
-              className: 'medals-group__medal'
-              el ProfilePage.AchievementBadge,
-                achievement: achievement
-                isLocked: !@_isAchieved(achievement.id)
-                bigIcon: true
-        orderingHtml.push achievementHtml
+  _medal: (achievement, i) ->
+    div
+      key: i
+      className: 'medals-group__medal'
+      el ProfilePage.AchievementBadge,
+        additionalClasses: 'badge-achievement--listing'
+        achievement: achievement
+        isLocked: !@_isAchieved(achievement.id)
+        bigIcon: true
 
-      groupHtml = div
-        key: group
-        className: 'medals-group__group'
-        h3 className: 'medals-group__title', group
-        orderingHtml
 
-      achievementsHtml.push groupHtml
+  render: ->
     div
       className: 'profile-extra'
       div className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'medals'
@@ -72,4 +62,13 @@ ProfilePage.Medals = React.createClass
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.medals.title')
 
       div className: 'medals-group',
-        achievementsHtml
+        _.map @_groupedAchievements(), (groupedAchievements, grouping) =>
+          div
+            key: grouping
+            className: 'medals-group__group'
+            h3 className: 'medals-group__title', grouping
+            _.map @_orderedAchievements(groupedAchievements), (achievements, ordering) =>
+                div
+                  key: ordering
+                  className: 'medals-group__medals'
+                  achievements.map @_medal

@@ -20,7 +20,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0 (-@spacing);
 
   &__group {
     .default-box-shadow();
@@ -38,14 +37,10 @@
   }
 
   &__medal {
+    min-width: (@spacing + 70px);
     width: 25%;
-    margin: (@spacing) 0;
-  }
-
-  &__medals {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 (-@spacing);
+    margin: @spacing 0;
+    display: inline-block;
   }
 
   &__title {
