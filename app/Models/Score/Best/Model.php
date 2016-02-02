@@ -26,7 +26,8 @@ use League\Flysystem\Filesystem;
 
 abstract class Model extends BaseModel
 {
-    abstract public function gameModeString();
+    public $position = null;
+    public $weight = null;
 
     public function getReplay()
     {
@@ -50,5 +51,60 @@ abstract class Model extends BaseModel
         }
 
         return $replay;
+    }
+
+    public function position()
+    {
+        if ($this->position === null) {
+            /*
+             * pp is float and comparing floats is inaccurate thanks to
+             * all the castings involved and thus it's better to obtain the
+             * number directly from database. The result is this fancy query.
+             */
+            $this->position = static::where('user_id', $this->user_id)
+                ->where('pp', '>', function ($q) {
+                    $q->from($this->table)->where('score_id', $this->score_id)->select('pp');
+                })
+                ->orderBy('pp', 'desc')
+                ->count();
+        }
+
+        return $this->position;
+    }
+
+    public function weight()
+    {
+        if ($this->weight === null) {
+            $this->weight = pow(0.95, $this->position());
+        }
+
+        return $this->weight;
+    }
+
+    public function weightedPp()
+    {
+        return $this->weight() * $this->pp;
+    }
+
+    /**
+     * $scores shall be pre-sorted by pp (or whatever default scoring order).
+     */
+    public static function fillInPosition($scores)
+    {
+        if ($scores->first() === null) {
+            return;
+        }
+
+        $position = $scores->first()->position();
+
+        foreach ($scores as $score) {
+            $score->position = $position;
+            $position++;
+        }
+    }
+
+    public function scopeDefault($query)
+    {
+        return $query->orderBy('pp', 'desc');
     }
 }

@@ -24,7 +24,6 @@ use App\Models\BeatmapSet;
 use App\Models\Genre;
 use App\Models\Language;
 use League\Fractal\Manager;
-use League\Fractal\Resource\Collection;
 use App\Transformers\BeatmapSetTransformer;
 use Request;
 use Auth;
@@ -38,41 +37,38 @@ class BeatmapController extends Controller
         $fractal = new Manager();
         $languages = Language::listing();
         $genres = Genre::listing();
-        $data = new Collection(BeatmapSet::listing(), new BeatmapSetTransformer);
-        $beatmaps = $fractal->createData($data)->toArray();
+        $beatmaps = fractal_collection_array(
+            BeatmapSet::listing(),
+            new BeatmapSetTransformer,
+            'difficulties'
+        );
 
         // temporarily put filters here
         $modes = [['id' => null, 'name' => trans('beatmaps.mode.any')]];
         foreach (Beatmap::modes() as $name => $id) {
-            $modes[] = ['id' => $id, 'name' => trans("beatmaps.mode.{$name}")];
+            $modes[] = ['id' => (string) $id, 'name' => trans("beatmaps.mode.{$name}")];
         }
 
         $statuses = [
             ['id' => null, 'name' => trans('beatmaps.status.any')],
-            ['id' => 0, 'name' => trans('beatmaps.status.ranked-approved')],
-            ['id' => 1, 'name' => trans('beatmaps.status.approved')],
-            ['id' => 2, 'name' => trans('beatmaps.status.faves')],
-            ['id' => 3, 'name' => trans('beatmaps.status.modreqs')],
-            ['id' => 4, 'name' => trans('beatmaps.status.pending')],
-            ['id' => 5, 'name' => trans('beatmaps.status.graveyard')],
-            ['id' => 6, 'name' => trans('beatmaps.status.my-maps')],
+            ['id' => '0', 'name' => trans('beatmaps.status.ranked-approved')],
+            ['id' => '1', 'name' => trans('beatmaps.status.approved')],
+            ['id' => '2', 'name' => trans('beatmaps.status.faves')],
+            ['id' => '3', 'name' => trans('beatmaps.status.modreqs')],
+            ['id' => '4', 'name' => trans('beatmaps.status.pending')],
+            ['id' => '5', 'name' => trans('beatmaps.status.graveyard')],
+            ['id' => '6', 'name' => trans('beatmaps.status.my-maps')],
         ];
 
         $extras = [
-            ['id' => 0, 'name' => trans('beatmaps.extra.video')],
-            ['id' => 1, 'name' => trans('beatmaps.extra.storyboard')],
+            ['id' => '0', 'name' => trans('beatmaps.extra.video')],
+            ['id' => '1', 'name' => trans('beatmaps.extra.storyboard')],
         ];
 
-        $ranks = [
-            ['id' => 'XH', 'name' => trans('beatmaps.rank.silver-ss')],
-            ['id' => 'X', 'name' => trans('beatmaps.rank.ss')],
-            ['id' => 'SH', 'name' => trans('beatmaps.rank.silver-s')],
-            ['id' => 'S', 'name' => trans('beatmaps.rank.s')],
-            ['id' => 'A', 'name' => trans('beatmaps.rank.a')],
-            ['id' => 'B', 'name' => trans('beatmaps.rank.b')],
-            ['id' => 'C', 'name' => trans('beatmaps.rank.c')],
-            ['id' => 'D', 'name' => trans('beatmaps.rank.d')],
-        ];
+        $ranks = [];
+        foreach (['XH', 'X', 'SH', 'S', 'A', 'B', 'C', 'D'] as $rank) {
+            $ranks[] = ['id' => $rank, 'name' => trans("beatmaps.rank.{$rank}")];
+        }
 
         $filters = ['data' => compact('modes', 'statuses', 'genres', 'languages', 'extras', 'ranks')];
 
@@ -83,8 +79,12 @@ class BeatmapController extends Controller
     {
         $current_user = Auth::user();
 
+        $params = [];
+
         if (is_null($current_user)) {
-            $data = new Collection([]);
+            $params = [
+                'page' => Request::input('page'),
+            ];
         } else {
             $params = [
                 'query' => Request::input('q'),
@@ -101,25 +101,26 @@ class BeatmapController extends Controller
             if (!$current_user->isSupporter()) {
                 unset($params['rank']);
             }
-
-            $params = array_filter(
-                $params,
-                function ($v, $k) {
-                    if (is_array($v)) {
-                        return !empty($v);
-                    } else {
-                        return presence($v) !== null;
-                    }
-                },
-                ARRAY_FILTER_USE_BOTH
-            );
-
-            $data = new Collection(BeatmapSet::search($params), new BeatmapSetTransformer);
         }
 
-        $fractal = new Manager();
-        $beatmaps = $fractal->createData($data)->toArray();
+        $params = array_filter(
+            $params,
+            function ($v, $k) {
+                if (is_array($v)) {
+                    return !empty($v);
+                } else {
+                    return presence($v) !== null;
+                }
+            },
+            ARRAY_FILTER_USE_BOTH
+        );
 
-        return $beatmaps;
+        $beatmaps = BeatmapSet::search($params);
+
+        return fractal_collection_array(
+            $beatmaps,
+            new BeatmapSetTransformer,
+            'difficulties'
+        );
     }
 }

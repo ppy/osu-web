@@ -39,14 +39,11 @@ class UserProfileCustomization extends Model
         return $this->_cover;
     }
 
-    public function setCover(&$errors, $id, $file)
+    public function setCover($id, $file)
     {
         $this->cover_json = $this->cover->set($id, $file);
-        $errors = $this->cover->errors;
 
-        if (count($errors) === 0) {
-            $this->save();
-        }
+        $this->save();
     }
 
     public function __construct($attributes = [])

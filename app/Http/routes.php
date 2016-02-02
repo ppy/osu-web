@@ -74,6 +74,8 @@ Route::get('/ranking/mapper', ['as' => 'ranking-mapper', 'uses' => 'RankingContr
 Route::get('/community/forum', function () { return Redirect::to('/forum'); });
 
 Route::get('/community/live', ['as' => 'live', 'uses' => 'CommunityController@getLive']);
+Route::post('/community/live', ['as' => 'live', 'uses' => 'CommunityController@postLive']);
+
 Route::get('/community/chat', ['as' => 'chat', 'uses' => 'CommunityController@getChat']);
 Route::get('/community/profile/{id}', function ($id) { return Redirect::route('users.show', $id); });
 

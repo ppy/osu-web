@@ -30,7 +30,7 @@ class ProfilePage.Extra extends React.Component
     @_removeListeners()
     $.subscribe 'profilePageExtra:tab.profileContentsExtra', @_modeSwitch
     $.subscribe 'stickyHeader.profileContentsExtra', @_tabsStick
-    $(window).on 'scroll.profileContentsExtra', @_modeScan
+    $(window).on 'throttled-scroll.profileContentsExtra', @_modeScan
     osu.pageChange()
     @_modeScan()
 
@@ -51,6 +51,7 @@ class ProfilePage.Extra extends React.Component
       continue unless page.getBoundingClientRect().top <= 0
 
       @setState mode: page.getAttribute('id')
+
       return
 
     @setState mode: page.getAttribute('id')
@@ -75,7 +76,7 @@ class ProfilePage.Extra extends React.Component
 
     withMePage = @props.userPage.html != '' || @props.withEdit
 
-    pages = ['recent_activities', 'kudosu']
+    pages = ['recent_activities', 'kudosu', 'top_ranks', 'beatmaps', 'medals', 'historical']
     pages.unshift 'me' if withMePage
 
     tabsContainerClasses = 'profile-extra-tabs__container js-fixed-element'
@@ -98,6 +99,27 @@ class ProfilePage.Extra extends React.Component
                 el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
 
       if withMePage
-        el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
-      el ProfilePage.RecentActivities, recentActivities: @props.recentActivities
-      el ProfilePage.Kudosu, user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu
+        div className: 'osu-layout__row',
+          el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
+
+      div className: 'osu-layout__row',
+        el ProfilePage.RecentActivities, recentActivities: @props.recentActivities
+
+      div className: 'osu-layout__row',
+        el ProfilePage.Kudosu, user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu
+
+      div className: 'osu-layout__row',
+        el ProfilePage.TopRanks, user: @props.user, scoresBest: @props.scoresBest, scoresFirst: @props.scoresFirst
+
+      div className: 'osu-layout__row',
+        el ProfilePage.Beatmaps,
+          favouriteBeatmapSets: @props.favouriteBeatmapSets
+          rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
+
+      div className: 'osu-layout__row',
+        el ProfilePage.Medals, achievements: @props.achievements, allAchievements: @props.allAchievements
+
+      div className: 'osu-layout__row',
+        el ProfilePage.Historical,
+          beatmapPlaycounts: @props.beatmapPlaycounts
+          scores: @props.scores

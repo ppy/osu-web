@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.24-72.2, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.15  Distrib 10.0.23-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: osu_store
 -- ------------------------------------------------------
--- Server version	5.6.24-72.2-log
+-- Server version	5.7.9-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -123,6 +123,7 @@ CREATE TABLE `products` (
   `master_product_id` int(11) DEFAULT NULL,
   `type_mappings_json` text,
   `custom_class` varchar(255) DEFAULT NULL,
+  `enabled` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -136,4 +137,4 @@ CREATE TABLE `products` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-04 16:41:57
+-- Dump completed on 2016-01-04 19:33:20

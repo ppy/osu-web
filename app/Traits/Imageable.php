@@ -24,11 +24,59 @@ use App\Libraries\StorageAuto;
 
 trait Imageable
 {
-    public $_storage = null;
+    protected $_storage = null;
 
-    // public $maxDimensions = [1000, 1000];
-    // public $maxFileSize = 1000000;
-    // public $fileRoot = 'imageable';
+    /**
+     * Returns maximum dimensions of the image as an array of [width, height].
+     */
+    abstract public function getMaxDimensions();
+
+    /**
+     * Returns maximum size of the file in bytes. Defaults to 1 MB.
+     */
+    public function getMaxFileSize()
+    {
+        return 1000000;
+    }
+
+    /**
+     * Returns root path of where the files are to be stored.
+     */
+    abstract public function getFileRoot();
+
+    public function getFileId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Returns a hash with contents of at least 'hash' and 'ext' if there's
+     * image or otherwise null.
+     *
+     * Assumes attributes 'hash' and 'ext' of the object by default.
+     */
+    public function getFileProperties()
+    {
+        if ($this->hash === null || $this->ext === null) {
+            return;
+        }
+
+        return [
+            'hash' => $this->hash,
+            'ext' => $this->ext,
+        ];
+    }
+
+    /**
+     * Sets file properties. Either a hash of 'hash' and 'ext' or null.
+     *
+     * Assumes attributes 'hash' and 'ext' of the object by default.
+     */
+    public function setFileProperties($props)
+    {
+        $this->hash = array_get($props, 'hash');
+        $this->ext = array_get($props, 'ext');
+    }
 
     public function storage()
     {
@@ -41,12 +89,12 @@ trait Imageable
 
     public function fileDir()
     {
-        return "{$this->fileRoot}/{$this->id}";
+        return $this->getFileRoot().'/'.$this->getFileId();
     }
 
     public function fileName()
     {
-        return "{$this->hash}.{$this->ext}";
+        return $this->getFileProperties()['hash'].'.'.$this->getFileProperties()['ext'];
     }
 
     public function filePath()
@@ -56,7 +104,7 @@ trait Imageable
 
     public function fileUrl()
     {
-        if (presence($this->hash) === null) {
+        if ($this->getFileProperties() === null) {
             return;
         }
 
@@ -72,7 +120,7 @@ trait Imageable
 
     public function deleteFile()
     {
-        if (presence($this->hash) === null) {
+        if ($this->getFileProperties() === null) {
             return;
         }
 
@@ -81,12 +129,14 @@ trait Imageable
 
     public function storeFile($filePath)
     {
-        $image = new ImageProcessor($filePath, $this->maxDimensions, $this->maxFileSize);
+        $image = new ImageProcessor($filePath, $this->getMaxDimensions(), $this->getMaxFileSize());
         $image->process();
 
         $this->deleteFile();
-        $this->hash = hash_file('sha256', $image->inputPath);
-        $this->ext = $image->ext();
+        $this->setFileProperties([
+            'hash' => hash_file('sha256', $image->inputPath),
+            'ext' => $image->ext(),
+        ]);
 
         $this->storage()->put($this->filePath(), file_get_contents($image->inputPath));
     }

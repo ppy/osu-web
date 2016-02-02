@@ -8,7 +8,9 @@ class ProfilePage.RecentActivities extends React.Component
     switch event.type
       when 'rank'
         badge = el 'div',
-          className: "badge-rank badge-rank--#{event.scoreRank} profile-extra-entries__icon"
+          className: "profile-extra-entries__icon"
+          el 'div',
+            className: "badge-rank badge-rank--#{event.scoreRank} profile-extra-entries__icon"
 
         text = el 'div',
           className: 'profile-extra-entries__text'
@@ -117,7 +119,7 @@ class ProfilePage.RecentActivities extends React.Component
 
   render: =>
     el 'div',
-      className: 'osu-layout__row osu-layout__row--page profile-extra'
+      className: 'profile-extra'
       el 'div', className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'recent_activities'
       el 'h2', className: 'profile-extra__title', Lang.get('users.show.extra.recent_activities.title')
       if @props.recentActivities.length

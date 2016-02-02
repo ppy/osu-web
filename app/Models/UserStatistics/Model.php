@@ -79,11 +79,11 @@ abstract class Model extends BaseModel
             return;
         }
 
-        # Using $this->rank_score isn't accurate because it's a float value.
-        # Hence the raw sql query.
-        # There's this alternative
-        #   rank_score_index < $this->rank_score_index AND rank_score_index > 0 AND rank_score > 0
-        # but it is slower.
+        // Using $this->rank_score isn't accurate because it's a float value.
+        // Hence the raw sql query.
+        // There's this alternative
+        //   rank_score_index < $this->rank_score_index AND rank_score_index > 0 AND rank_score > 0
+        // but it is slower.
         return static::where('country_acronym', $this->country_acronym)
             ->where('rank_score', '>', function ($q) {
                 $q->from($this->table)->where('user_id', $this->user_id)->select('rank_score');

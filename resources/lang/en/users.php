@@ -49,6 +49,7 @@ return [
                 'button' => 'Change Profile Cover',
                 'defaults_info' => 'More cover options will be available in the future',
                 'upload' => [
+                    'broken_file' => 'Failed processing image. Verify uploaded image and try again.',
                     'button' => 'Upload image',
                     'dropzone' => 'Drop here to upload',
                     'dropzone_info' => 'You can also drop your image here to upload',
@@ -67,6 +68,15 @@ return [
                 'title' => 'Beatmaps',
             ],
             'historical' => [
+                'empty' => 'No performance records. :(',
+                'most_played' => [
+                    'count' => 'times played',
+                    'title' => 'Most Played Beatmaps',
+                ],
+                'recent_plays' => [
+                    'accuracy' => 'accuracy: :percentage',
+                    'title' => 'Recent Plays',
+                ],
                 'title' => 'Historical',
             ],
             'kudosu' => [
@@ -85,11 +95,33 @@ return [
             'me' => [
                 'title' => 'me!',
             ],
+            'medals' => [
+                'title' => 'Medals',
+            ],
             'recent_activities' => [
                 'title' => 'Recent Activities',
             ],
             'top_ranks' => [
+                'best' => [
+                    'title' => 'Best Performance',
+                ],
+                'empty' => 'No awesome performance records yet. :(',
+                'first' => [
+                    'title' => 'First Place Ranks',
+                ],
+                'pp' => ':amountpp',
                 'title' => 'Top Ranks',
+                'weighted_pp' => 'weighted: :pp (:percentage)',
+            ],
+            'beatmaps' => [
+                'title' => 'Beatmaps',
+                'favourite' => [
+                    'title' => 'Favourite Beatmaps (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                ],
+                'none' => 'None... yet.',
             ],
         ],
         'first_members' => 'here since the beginning',

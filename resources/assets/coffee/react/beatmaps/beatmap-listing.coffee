@@ -35,12 +35,12 @@ class @BeatmapsListing extends React.Component
         else
           div {},
             img
-              src: '/images/layout/unamused.png'
-              srcSet: "/images/layout/unamused.png 1x, /images/layout/unamused@2x.png 2x"
-              alt: 'no results'
-              title: 'no results'
+              src: '/images/layout/beatmaps/not-found.png'
+              srcSet: "/images/layout/beatmaps/not-found.png 1x, /images/layout/beatmaps/not-found@2x.png 2x"
+              alt: Lang.get("beatmaps.listing.search.not-found")
+              title: Lang.get("beatmaps.listing.search.not-found")
               style:
                 paddingTop: '25px'
                 paddingRight: '25px'
                 marginBottom: '-25px'
-            span {}, '... nope, nothing found.'
+            span {}, Lang.get("beatmaps.listing.search.not-found-quote")

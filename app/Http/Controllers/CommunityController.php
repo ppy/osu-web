@@ -19,6 +19,11 @@
  */
 namespace App\Http\Controllers;
 
+use Cache;
+use Auth;
+use Redirect;
+use Illuminate\Http\Request;
+
 class CommunityController extends Controller
 {
     /*
@@ -40,8 +45,52 @@ class CommunityController extends Controller
         return view('community.chat');
     }
 
-    public function getLive()
+    public function getLive(Request $request)
     {
-        return view('community.live');
+        $featuredStream = null;
+        $streams = Cache::remember('livestreams', 5, function () {
+            $twitchApiUrl = config('osu.urls.twitch_livestreams_api');
+            $data = json_decode(file_get_contents($twitchApiUrl));
+
+            return $data->streams;
+        });
+
+        //dirty hack to add https urls to images
+        //with allowance from nanaya
+        foreach ($streams as &$stream) {
+            foreach ($stream->preview as &$preview) {
+                $preview = str_replace('http:', 'https:', $preview);
+            }
+        }
+
+        $featuredStreamId = Cache::get('featuredStream');
+        if ($featuredStreamId !== null) {
+            foreach ($streams as $stream) {
+                if ($stream->_id !== $featuredStreamId) {
+                    continue;
+                }
+                $featuredStream = $stream;
+                break;
+            }
+        }
+
+        return view('community.live', compact('streams', 'featuredStream'));
+    }
+
+    public function postLive(Request $request)
+    {
+        if (Auth::check() !== true || Auth::user()->isGmt() !== true) {
+            abort(403);
+        }
+
+        if ($request->has('promote')) {
+            Cache::forever('featuredStream', intval($request->promote));
+        }
+
+        if ($request->has('demote')) {
+            Cache::forget('featuredStream');
+        }
+
+        return Redirect::back();
     }
 }

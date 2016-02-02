@@ -190,7 +190,7 @@ function lazy_load_image($url, $class = '', $alt = '')
 {
     $url = e($url);
 
-    return "<img class='{$class}' src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-layzr='{$url}' alt='{$alt}' />";
+    return "<img class='{$class}' src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-normal='{$url}' alt='{$alt}' />";
 }
 
 function nav_links()
@@ -223,17 +223,17 @@ function nav_links()
             'getCountry' => route('ranking-country'),
             'getMapper' => route('ranking-mapper'),
         ];
+    } else {
+        $links['beatmaps'] = [
+            'getListing' => route('beatmaps'),
+        ];
     }
 
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
         'tournaments' => route('tournaments.index'),
+        'getLive' => route('live'),
     ];
-
-    if (config('app.debug')) {
-        $links['community']['getChat'] = route('chat');
-        $links['community']['getLive'] = route('live');
-    }
 
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),
@@ -286,6 +286,10 @@ function base62_encode($input)
 
 function display_regdate($user)
 {
+    if ($user->user_regdate === null) {
+        return;
+    }
+
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
         return trans('users.show.first_members');
     }
@@ -299,19 +303,33 @@ function open_image($path, $dimensions = null)
         $dimensions = getimagesize($path);
     }
 
-    switch ($dimensions[2]) {
-        case IMAGETYPE_GIF:
-            return imagecreatefromgif($path);
-        case IMAGETYPE_JPEG:
-            return imagecreatefromjpeg($path);
-        case IMAGETYPE_PNG:
-            return imagecreatefrompng($path);
+    if (!isset($dimensions[2]) || !is_int($dimensions[2])) {
+        return false;
+    }
+
+    try {
+        switch ($dimensions[2]) {
+            case IMAGETYPE_GIF:
+                return imagecreatefromgif($path);
+            case IMAGETYPE_JPEG:
+                return imagecreatefromjpeg($path);
+            case IMAGETYPE_PNG:
+                return imagecreatefrompng($path);
+        }
+
+        return false;
+    } catch (ErrorException $_e) {
+        return false;
     }
 }
 
-function fractal_collection_array($models, $transformer)
+function fractal_collection_array($models, $transformer, $includes = null)
 {
     $manager = new League\Fractal\Manager();
+    if ($includes !== null) {
+        $manager->parseIncludes($includes);
+    }
+
     $collection = new League\Fractal\Resource\Collection($models, $transformer);
 
     return $manager->createData($collection)->toArray();
@@ -398,7 +416,12 @@ function bem($block, $element = null, $modifiers = [])
     return " {$ret} ";
 }
 
-function get_namespace($className)
+function get_class_basename($className)
+{
+    return substr($className, strrpos($className, '\\') + 1);
+}
+
+function get_class_namespace($className)
 {
     return substr($className, 0, strrpos($className, '\\'));
 }

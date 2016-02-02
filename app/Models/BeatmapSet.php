@@ -31,15 +31,34 @@ class BeatmapSet extends Model
     protected $primaryKey = 'beatmapset_id';
 
     protected $casts = [
-        'bpm' => 'integer',
+        'active' => 'boolean',
+        'approved' => 'integer',
+        'approvedby_id' => 'integer',
+        'beatmapset_id' => 'integer',
+        'bpm' => 'float',
+        'download_disabled' => 'boolean',
+        'epilepsy' => 'boolean',
+        'favourite_count' => 'integer',
+        'filesize' => 'integer',
+        'filesize_novideo' => 'integer',
         'genre_id' => 'integer',
         'language_id' => 'integer',
-        'favourite_count' => 'integer',
+        'offset' => 'integer',
+        'play_count' => 'integer',
+        'rating' => 'float',
+        'star_priority' => 'integer',
+        'storyboard' => 'boolean',
+        'thread_id' => 'integer',
+        'user_id' => 'integer',
+        'versions_available' => 'integer',
+        'video' => 'boolean',
     ];
 
     protected $dates = [
         'approved_date',
         'last_update',
+        'submit_date',
+        'thread_icon_date',
     ];
 
     public $timestamps = false;
@@ -150,6 +169,16 @@ class BeatmapSet extends Model
     public function scopeQualified($query)
     {
         return $query->where('approved', '=', static::QUALIFIED);
+    }
+
+    public function scopeRankedOrApproved($query)
+    {
+        return $query->whereIn('approved', [static::RANKED, static::APPROVED]);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', '=', true);
     }
 
     // one-time checks
@@ -266,8 +295,8 @@ class BeatmapSet extends Model
         }
 
         if (!empty($rank)) {
-            $klass = presence($mode != null) ? Score\Best\Model::getClass($mode) : Score\Best\Combined::class;
-            $scores = $klass::forUser(Auth::user())->whereIn('rank', $rank)->lists('beatmapset_id');
+            $klass = presence($mode) != null ? Score\Best\Model::getClass(intval($mode)) : Score\Best\Combined::class;
+            $scores = $klass::forUser(Auth::user())->whereIn('rank', $rank)->get()->lists('beatmapset_id');
             $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $scores]];
         }
 
@@ -454,7 +483,7 @@ class BeatmapSet extends Model
 
     public function beatmaps()
     {
-        return $this->hasMany(Beatmap::class);
+        return $this->hasMany(Beatmap::class, 'beatmapset_id');
     }
 
     public function mods()
@@ -470,5 +499,10 @@ class BeatmapSet extends Model
     public function approver()
     {
         return $this->belongsTo("App\Models\User", 'user_id', 'approvedby_id');
+    }
+
+    public function coverUrl()
+    {
+        return "https://b.ppy.sh/thumb/{$this->beatmapset_id}l.jpg";
     }
 }

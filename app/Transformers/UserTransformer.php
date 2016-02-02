@@ -20,18 +20,27 @@
 namespace App\Transformers;
 
 use App\Models\Achievement;
+use App\Models\Beatmap;
 use App\Models\User;
+use App\Models\Score\Best\Model as ScoreBestModel;
 use League\Fractal;
 
 class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
+        'allAchievements',
+        'allRankHistories',
+        'allScores',
+        'allScoresBest',
+        'allScoresFirst',
         'allStatistics',
+        'beatmapPlaycounts',
         'defaultStatistics',
         'page',
-        'recentAchievements',
         'recentActivities',
         'recentlyReceivedKudosu',
+        'rankedAndApprovedBeatmapSets',
+        'favouriteBeatmapSets',
     ];
 
     public function transform(User $user)
@@ -60,12 +69,12 @@ class UserTransformer extends Fractal\TransformerAbstract
             'playmode' => $user->playmode,
             'profileColour' => $user->user_colour,
             'cover' => [
-                'customUrl' => $profileCustomization->cover->customUrl(),
+                'customUrl' => $profileCustomization->cover->fileUrl(),
                 'url' => $profileCustomization->cover->url(),
                 'id' => $profileCustomization->cover->id(),
             ],
             'achievements' => [
-                'total' => Achievement::count(),
+                'total' => Achievement::achievable()->count(),
                 'current' => $user->achievements()->count(),
             ],
             'kudosu' => [
@@ -86,8 +95,78 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($user, function ($user) {
             $all = [];
-            foreach ($user->statisticsAll() as $mode => $statistics) {
-                $all[$mode] = fractal_item_array($statistics, new UserStatisticsTransformer());
+            foreach (array_keys(Beatmap::modes()) as $mode) {
+                $all[$mode] = fractal_item_array($user->statistics($mode), new UserStatisticsTransformer());
+            }
+
+            return $all;
+        });
+    }
+
+    public function includeAllRankHistories(User $user)
+    {
+        return $this->item($user, function ($user) {
+            $all = [];
+
+            foreach ($user->rankHistories as $history) {
+                $modeStr = Beatmap::modeStr($history->mode);
+
+                $all[$modeStr] = fractal_item_array($history, new RankHistoryTransformer());
+            }
+
+            return $all;
+        });
+    }
+
+    public function includeAllScoresFirst(User $user)
+    {
+        return $this->item($user, function ($user) {
+            $all = [];
+            foreach (array_keys(Beatmap::modes()) as $mode) {
+                $scores = $user
+                    ->scoresFirst($mode, true)
+                    ->default()
+                    ->with('beatmapSet', 'beatmap')
+                    ->limit(100)
+                    ->get();
+
+                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapSet');
+            }
+
+            return $all;
+        });
+    }
+
+    public function includeAllScoresBest(User $user)
+    {
+        return $this->item($user, function ($user) {
+            $all = [];
+            foreach (array_keys(Beatmap::modes()) as $mode) {
+                $scores = $user
+                    ->scoresBest($mode, true)
+                    ->default()
+                    ->with('beatmapSet', 'beatmap')
+                    ->limit(100)
+                    ->get();
+
+                ScoreBestModel::fillInPosition($scores);
+
+                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapSet,weight');
+            }
+
+            return $all;
+        });
+    }
+
+    public function includeAllScores(User $user)
+    {
+        return $this->item($user, function ($user) {
+            $all = [];
+
+            foreach (array_keys(Beatmap::modes()) as $mode) {
+                $scores = $user->scores($mode, true)->default()->with('beatmapSet', 'beatmap')->get();
+
+                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapSet');
             }
 
             return $all;
@@ -108,10 +187,10 @@ class UserTransformer extends Fractal\TransformerAbstract
         });
     }
 
-    public function includeRecentAchievements(User $user)
+    public function includeAllAchievements(User $user)
     {
         return $this->collection(
-            $user->achievements()->with('achievement')->orderBy('date', 'desc')->limit(8)->get(),
+            $user->achievements()->with('achievement')->orderBy('date', 'desc')->get(),
             new UserAchievementTransformer()
         );
     }
@@ -122,6 +201,19 @@ class UserTransformer extends Fractal\TransformerAbstract
             $user->events()->recent()->get(),
             new EventTransformer()
         );
+    }
+
+    public function includeBeatmapPlaycounts(User $user)
+    {
+        $beatmapPlaycounts = $user->beatmapPlaycounts()
+            ->with('beatmap', 'beatmap.set')
+            ->orderBy('playcount', 'desc')
+            ->get()
+            ->filter(function ($pc) {
+                return $pc->beatmap !== null && $pc->beatmap->set !== null;
+            });
+
+        return $this->collection($beatmapPlaycounts, new BeatmapPlaycountTransformer());
     }
 
     public function includeRecentlyReceivedKudosu(User $user)
@@ -135,6 +227,22 @@ class UserTransformer extends Fractal\TransformerAbstract
                 ->limit(15)
                 ->get(),
             new KudosuHistoryTransformer()
+        );
+    }
+
+    public function includeRankedAndApprovedBeatmapSets(User $user)
+    {
+        return $this->collection(
+            $user->beatmapSets()->rankedOrApproved()->active()->get(),
+            new BeatmapSetTransformer()
+        );
+    }
+
+    public function includeFavouriteBeatmapSets(User $user)
+    {
+        return $this->collection(
+            $user->favouriteBeatmapSets()->get(),
+            new BeatmapSetTransformer()
         );
     }
 }

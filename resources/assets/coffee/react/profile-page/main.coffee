@@ -48,7 +48,7 @@ class ProfilePage.Main extends React.Component
 
 
   userPageUpdate: (_e, newUserPage) =>
-    currentUserPage = @state.userPage
+    currentUserPage = _.cloneDeep @state.userPage
     @setState userPage: _.extend(currentUserPage, newUserPage)
 
 
@@ -69,6 +69,9 @@ class ProfilePage.Main extends React.Component
 
   render: =>
     stats = @props.allStats[@state.mode].data
+    scores = @props.allScores[@state.mode].data
+    scoresBest = @props.allScoresBest[@state.mode].data
+    scoresFirst = @props.allScoresFirst[@state.mode].data
 
     div className: 'osu-layout__section',
       el ProfilePage.Header,
@@ -82,11 +85,21 @@ class ProfilePage.Main extends React.Component
         user: @state.user
         stats: stats
         mode: @state.mode
-        recentAchievements: @props.recentAchievements
+        allAchievements: @props.allAchievements
 
       el ProfilePage.Extra,
+        achievements: @props.achievements
+        allAchievements: @props.allAchievements
+        beatmapPlaycounts: @props.beatmapPlaycounts
+        favouriteBeatmapSets: @props.favouriteBeatmapSets
+        rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
         recentActivities: @props.recentActivities
         recentlyReceivedKudosu: @props.recentlyReceivedKudosu
+        favouriteBeatmapSets: @props.favouriteBeatmapSets
+        rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
         user: @state.user
+        scores: scores
+        scoresBest: scoresBest
+        scoresFirst: scoresFirst
         withEdit: @props.withEdit
         userPage: @state.userPage

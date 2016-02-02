@@ -45,6 +45,16 @@ class StoreController extends Controller
             'postUpdateCart',
         ]]);
 
+        $this->middleware('App\Http\Middleware\CheckUserRestricted', ['only' => [
+            'getInvoice',
+            'postUpdateCart',
+            'postAddToCart',
+            'postCheckout',
+            'postNewAddress',
+            'postUpdateAddress',
+            'postUpdateCart',
+        ]]);
+
         return parent::__construct();
     }
 
@@ -87,6 +97,10 @@ class StoreController extends Controller
         $cart = $this->userCart();
         $product = Store\Product::with('masterProduct')->findOrFail($id);
 
+        if (!$product->enabled) {
+            abort(404);
+        }
+
         return view('store.product', compact('cart', 'product'));
     }
 
@@ -105,7 +119,9 @@ class StoreController extends Controller
 
         $addresses = Auth::user()->storeAddresses()->with('country')->get();
 
-        return view('store.checkout', compact('order', 'addresses'));
+        $delayedShipping = Store\Order::where('orders.status', 'paid')->count() > config('osu.store.delayed_shipping_order_threshold');
+
+        return view('store.checkout', compact('order', 'addresses', 'delayedShipping'));
     }
 
     public function missingMethod($parameters = [])

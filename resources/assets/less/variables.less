@@ -1,6 +1,7 @@
 @import "app";
 
 @desktop: ~"(min-width: @{screen-sm-min})";
+@mobile: ~"(max-width: @{screen-sm-min})";
 
 @spacing: 10px;
 
@@ -10,7 +11,8 @@
 
 @z-index--visibility-hidden: 0;
 @z-index--body-background: 0;
-@z-index--profile-extra-tabs: 2;
+@z-index--beatmaps-panel: 4;
+@z-index--profile-extra-tabs: 5;
 // navbar-static-top: 1000 (bootstrap nav for mobile)
 @z-index--forum-topic-headernav: 1001;
 @z-index--fixed-bar: 1001;
@@ -19,25 +21,25 @@
 @z-index--editor-zoom: 9999;
 
 @forum-category-colour--osu-bg: @pink;
-@forum-category-colour--osu-link: @pink-darker;
+@forum-category-colour--osu-link: @pink-text;
 @forum-category-colour--osu-link-hover: @pink;
 
 @forum-category-colour--language-specific-bg: @yellow;
-@forum-category-colour--language-specific-link: @yellow-darker;
+@forum-category-colour--language-specific-link: @yellow-text;
 @forum-category-colour--language-specific-link-hover: @yellow-dark;
 
 @forum-category-colour--other-bg: @green;
-@forum-category-colour--other-link: @green-darker;
+@forum-category-colour--other-link: @green-text;
 @forum-category-colour--other-link-hover: @green;
 
 @forum-category-colour--beatmaps-bg: @purple;
-@forum-category-colour--beatmaps-link: @purple-darker;
+@forum-category-colour--beatmaps-link: @purple-text;
 @forum-category-colour--beatmaps-link-hover: @purple;
 
 @forum-category-colour--osu-bg: @pink;
-@forum-category-colour--osu-link: @pink-darker;
+@forum-category-colour--osu-link: @pink-text;
 @forum-category-colour--osu-link-hover: @pink;
 
 @forum-category-colour--management-bg: @gray;
-@forum-category-colour--management-link: @gray-darker;
+@forum-category-colour--management-link: @gray-text;
 @forum-category-colour--management-link-hover: @gray;

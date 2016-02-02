@@ -67,10 +67,10 @@ class ProfilePage.Stats extends React.Component
         el 'dl', className: 'profile-stats profile-stats--full',
           el 'dt', null, Lang.get('users.show.stats.score_ranks')
           el 'dd', className: 'profile-score-ranks',
-            ['ss', 's', 'a'].map (x) =>
+            for own rankName, rankCount of @props.stats.scoreRanks
               el 'div',
-                key: "rank-#{x}"
+                key: "rank-#{rankName}"
                 className: 'profile-score-rank'
                 el 'div',
-                  className: "badge-rank badge-rank--#{x}"
-                el 'div', null, @props.stats.scoreRanks[x].toLocaleString()
+                  className: "badge-rank badge-rank--medium badge-rank--#{rankName}"
+                el 'div', null, rankCount.toLocaleString()

@@ -38,6 +38,7 @@ class Product extends Model
         'promoted' => 'boolean',
         'stock' => 'integer',
         'weight' => 'integer',
+        'enabled' => 'boolean',
     ];
 
     private $images;
@@ -111,6 +112,7 @@ class Product extends Model
     {
         return $query
             ->where('master_product_id', null)
+            ->where('enabled', true)
             ->with('masterProduct')
             ->orderBy('promoted', 'desc')
             ->orderBy('display_order', 'desc');

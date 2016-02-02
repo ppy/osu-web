@@ -19,17 +19,13 @@
 // main: compiled.less
 @import "app";
 
-#beatmaps {
+#beatmaps-listing {
 	text-align: center;
 	padding: 5px 0;
 
 	margin-top: 10px;
 	margin-left: -20px;
 	margin-right: -20px;
-
-	.beatmap {
-		margin: 5px;
-	}
 
 	.beatmap-container {
 		opacity: 1;
@@ -94,7 +90,7 @@
 				display: none;
 			}
 			i {
-				display: block;
+				display: inline-block;
 			}
 		}
 	}
@@ -227,10 +223,10 @@
 
 	cursor: pointer;
 
-	&:hover {
-		z-index: 500;
-		/*.stats { color: @pink; }*/
+	margin: 5px;
 
+	&:hover {
+		z-index: @z-index--beatmaps-panel;
 		.panel {
 			.thumb_cover {
 				opacity: 1;
@@ -253,6 +249,7 @@
 		width: 100%;
 		height: 100px;
 
+		.at2x('/images/layout/beatmaps/default-bg.png');
 		background-position: top center !important;
 		background-repeat:no-repeat !important;
 		background-size: 100% auto !important;
@@ -264,8 +261,9 @@
 
 		.bottom_left {
 			position: absolute;
-			top: 50px;
+			top: 45px;
 			left: 10px;
+			z-index: @z-index--beatmaps-panel - 2;
 
 			.title {
 				font-size: 130%;
@@ -293,6 +291,7 @@
 			position: absolute;
 			top: 10px;
 			right: 10px;
+			z-index: @z-index--beatmaps-panel - 2;
 
 			.stats {
 				text-align: right;
@@ -306,6 +305,13 @@
 		}
 		overflow: hidden;
 
+		.thumb_gradient {
+			position: absolute;
+			height: 100px;
+			width: 100%;
+			background-image: linear-gradient(to bottom, transparent, fade(#000, 60%));
+			z-index: @z-index--beatmaps-panel - 3;
+		}
 		.thumb {
 			position: absolute;
 			top: -10%;

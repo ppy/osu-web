@@ -111,8 +111,8 @@ class User extends Model implements AuthenticatableContract
             return Carbon::now()->addYears(10);
         }
 
-        $playCount = array_reduce($user->statisticsAll(true), function ($result, $stats) {
-                return $result + $stats->value('playcount');
+        $playCount = array_reduce(array_keys(Beatmap::modes()), function ($result, $mode) use ($user) {
+                return $result + $user->statistics($mode, true)->value('playcount');
             }, 0);
 
         return $user->user_lastvisit
@@ -491,14 +491,24 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany("App\Models\Notification", 'user_id', 'user_id');
     }
 
-    public function sets()
+    public function beatmapSets()
     {
-        return $this->hasMany("App\Models\Set", 'user_id', 'user_id');
+        return $this->hasMany(BeatmapSet::class);
     }
 
     public function beatmaps()
     {
-        return $this->hasManyThrough("App\Models\Beatmap", 'Set');
+        return $this->hasManyThrough(Beatmap::class, BeatmapSet::class, 'user_id', 'beatmapset_id');
+    }
+
+    public function favouriteBeatmapSets()
+    {
+        return BeatmapSet::whereIn('beatmapset_id', FavouriteBeatmapSet::where('user_id', '=', $this->user_id)->select('beatmapset_id')->get());
+    }
+
+    public function beatmapPlaycounts()
+    {
+        return $this->hasMany(BeatmapPlaycount::class);
     }
 
     public function posts()
@@ -528,6 +538,11 @@ class User extends Model implements AuthenticatableContract
         return $this->belongsTo("App\Models\Rank", 'user_rank', 'rank_id');
     }
 
+    public function rankHistories()
+    {
+        return $this->hasMany(RankHistory::class);
+    }
+
     public function country()
     {
         return $this->belongsTo("App\Models\Country", 'country_acronym', 'acronym');
@@ -535,46 +550,152 @@ class User extends Model implements AuthenticatableContract
 
     public function statisticsOsu()
     {
-        return $this->hasOne("App\Models\UserStatistics\Osu", 'user_id', 'user_id');
+        return $this->statistics('osu', true);
     }
 
     public function statisticsFruits()
     {
-        return $this->hasOne("App\Models\UserStatistics\Fruits", 'user_id', 'user_id');
+        return $this->statistics('fruits', true);
     }
 
     public function statisticsMania()
     {
-        return $this->hasOne("App\Models\UserStatistics\Mania", 'user_id', 'user_id');
+        return $this->statistics('mania', true);
     }
 
     public function statisticsTaiko()
     {
-        return $this->hasOne("App\Models\UserStatistics\Taiko", 'user_id', 'user_id');
+        return $this->statistics('taiko', true);
     }
 
     public function statistics($mode, $returnQuery = false)
     {
-        if (!in_array($mode, ['osu', 'fruits', 'mania', 'taiko'], true)) {
+        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
             return;
         }
 
-        $relation = camel_case("statistics_{$mode}");
-        if ($returnQuery) {
-            return $this->{$relation}();
+        $mode = studly_case($mode);
+
+        if ($returnQuery === true) {
+            return $this->hasOne("App\Models\UserStatistics\\{$mode}", 'user_id', 'user_id');
         } else {
+            $relation = "statistics{$mode}";
+
             return $this->$relation;
         }
     }
 
-    public function statisticsAll($returnQuery = false)
+    public function scoresOsu()
     {
-        $all = [];
-        foreach (['osu', 'fruits', 'mania', 'taiko'] as $mode) {
-            $all[$mode] = $this->statistics($mode, $returnQuery);
+        return $this->scores('osu', true);
+    }
+
+    public function scoresFruits()
+    {
+        return $this->scores('fruits', true);
+    }
+
+    public function scoresMania()
+    {
+        return $this->scores('mania', true);
+    }
+
+    public function scoresTaiko()
+    {
+        return $this->scores('taiko', true);
+    }
+
+    public function scores($mode, $returnQuery = false)
+    {
+        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+            return;
         }
 
-        return $all;
+        $mode = studly_case($mode);
+
+        if ($returnQuery === true) {
+            return $this->hasMany("App\Models\Score\\{$mode}");
+        } else {
+            $relation = "scores{$mode}";
+
+            return $this->$relation;
+        }
+    }
+
+    public function scoresFirstOsu()
+    {
+        return $this->scoresFirst('osu', true);
+    }
+
+    public function scoresFirstFruits()
+    {
+        return $this->scoresFirst('fruits', true);
+    }
+
+    public function scoresFirstMania()
+    {
+        return $this->scoresFirst('mania', true);
+    }
+
+    public function scoresFirstTaiko()
+    {
+        return $this->scoresFirst('taiko', true);
+    }
+
+    public function scoresFirst($mode, $returnQuery = false)
+    {
+        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+            return;
+        }
+
+        $casedMode = studly_case($mode);
+
+        if ($returnQuery === true) {
+            $suffix = $mode === 'osu' ? '' : "_{$mode}";
+
+            return $this->belongsToMany("App\Models\Score\Best\\{$casedMode}", "osu_leaders{$suffix}", 'user_id', 'score_id');
+        } else {
+            $relation = "scoresFirst{$casedMode}";
+
+            return $this->$relation;
+        }
+    }
+
+    public function scoresBestOsu()
+    {
+        return $this->scoresBest('osu', true);
+    }
+
+    public function scoresBestFruits()
+    {
+        return $this->scoresBest('fruits', true);
+    }
+
+    public function scoresBestMania()
+    {
+        return $this->scoresBest('mania', true);
+    }
+
+    public function scoresBestTaiko()
+    {
+        return $this->scoresBest('taiko', true);
+    }
+
+    public function scoresBest($mode, $returnQuery = false)
+    {
+        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+            return;
+        }
+
+        if ($returnQuery) {
+            $mode = studly_case($mode);
+
+            return $this->hasMany("App\Models\Score\Best\\{$mode}")->default();
+        } else {
+            $relation = camel_case("scores_best_{$mode}");
+
+            return $this->$relation;
+        }
     }
 
     public function profileCustomization()
@@ -818,11 +939,27 @@ class User extends Model implements AuthenticatableContract
         return 3;
     }
 
-    public function refreshForumCache()
+    public function refreshForumCache($forum = null, $postsChangeCount = 0)
     {
+        if ($forum !== null) {
+            if (Forum\Authorize::increasesPostsCount($forum) !== true) {
+                $postsChangeCount = 0;
+            }
+
+            $newPostsCount = DB::raw("user_posts + {$postsChangeCount}");
+        } else {
+            $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums())->count();
+        }
+
+        $lastPost = $this->forumPosts()->last()->select('post_time')->first();
+
+        // null time will be stored as 0 by the db. Nothing can be done about
+        // it, short of changing the column to allow null.
+        $lastPostTime = $lastPost !== null ? $lastPost->post_time : null;
+
         return $this->update([
-            'user_posts' => $this->forumPosts()->count(),
-            'user_lastpost_time' => $this->forumPosts()->last()->select('post_time')->first()->post_time,
+            'user_posts' => $newPostsCount,
+            'user_lastpost_time' => $lastPostTime,
         ]);
     }
 }

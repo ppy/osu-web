@@ -19,6 +19,7 @@
  */
 namespace App\Http\Controllers;
 
+use App\Exceptions\ImageProcessorException;
 use Auth;
 use Request;
 
@@ -43,13 +44,16 @@ class AccountController extends Controller
             return error_popup(trans('errors.supporter_only'));
         }
 
-        $customization = Auth::user()->profileCustomization()->firstOrNew([]);
-        $customization->setCover($errors, Request::input('cover_id'), Request::file('cover_file'));
-        if (count($errors) === 0) {
-            return Auth::user()->defaultJson();
-        } else {
-            return error_popup(implode(',', $errors));
+        try {
+            Auth::user()
+                ->profileCustomization()
+                ->firstOrCreate([])
+                ->setCover(Request::input('cover_id'), Request::file('cover_file'));
+        } catch (ImageProcessorException $e) {
+            return error_popup($e->getMessage());
         }
+
+        return Auth::user()->defaultJson();
     }
 
     public function updatePage()

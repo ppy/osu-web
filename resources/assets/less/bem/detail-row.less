@@ -1,0 +1,140 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid @grey-e;
+  margin: 0;
+  padding: @spacing 0;
+
+  &::before {
+    .full-size();
+    margin: 0 (-@spacing);
+    width: calc(100% ~'+' (@spacing * 2));
+    pointer-events: none;
+    will-change: opacity;
+    transition: all 25ms ease-out;
+    opacity: 0;
+
+    background-color: @grey-e;
+    .default-box-shadow();
+  }
+
+  &:hover::before {
+    opacity: 1;
+    transition: all 50ms ease-out;
+  }
+
+  &__detail {
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+    &--vertical {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  &__detail-column {
+    flex: none;
+
+    &--full {
+      min-width: 0;
+      flex: 1;
+    }
+
+    &--score-data {
+      display: flex;
+      flex-direction: column;
+
+      @media @desktop {
+        align-items: center;
+        flex-direction: row;
+      }
+    }
+  }
+
+  &__detail-row {
+    display: flex;
+
+    &--main {
+      min-height: 22px;
+      align-items: flex-end;
+    }
+
+    &--bottom {
+      min-height: 18px;
+      align-items: flex-start;
+    }
+  }
+
+
+  &__score-data {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    &--main {
+      min-width: 150px;
+      order: 2;
+    }
+
+    &--mods {
+      order: 3;
+      @media @desktop {
+        order: 1;
+      }
+    }
+  }
+
+  &__text-score {
+    font-style: italic;
+    font-size: 11px;
+
+    &--title {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    &--artist {
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    &--pp {
+      font-size: 18px;
+      font-weight: bold;
+      color: @pink-darker;
+    }
+
+    &--time {
+      font-style: normal;
+    }
+  }
+
+  &__icon {
+    flex: none;
+    width: 40px;
+    align-self: stretch;
+    margin-right: @spacing;
+  }
+}

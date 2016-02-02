@@ -23,8 +23,7 @@ class UserDropdownModal
 
 
   constructor: ->
-    $(window).on 'resize scroll', =>
-      requestAnimationFrame @reposition
+    $(window).on 'throttled-resize throttled-scroll', @reposition
 
     $(document).on 'show.bs.modal', '#user-dropdown-modal', @activate
     $(document).on 'hidden.bs.modal', '#user-dropdown-modal', @deactivate

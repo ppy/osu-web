@@ -20,9 +20,6 @@ el = React.createElement
 
 class ProfilePage.AchievementBadge extends React.Component
   onMouseOver: (event) =>
-    # remove to reenable
-    return
-
     name = event.target.getAttribute 'data-tooltip-target'
 
     options =
@@ -35,28 +32,39 @@ class ProfilePage.AchievementBadge extends React.Component
       show:
         event: event.type
         ready: true
+      hide:
+        fixed: true
+        delay: 100
       style:
         classes: 'qtip tooltip-achievement__main'
+        tip:
+          width: 10
+          height: 8
 
     $(event.target).qtip options, event
 
 
+  iconUrl: (big = false) =>
+    filename = "/images/badges/user-achievements/#{@props.achievement.slug}"
+    filename += '-big' if big
+
+    "#{filename}.png"
+
+
   render: =>
-    filename = "/images/badges/user-achievements/#{@props.achievement.slug}.png"
-    filename2x = "/images/badges/user-achievements/#{@props.achievement.slug}@2x.png"
-    srcSet = "#{filename} 1x, #{filename2x} 2x"
     tooltipId = "#{@props.achievement.slug}-#{Math.floor(Math.random() * 1000000)}"
+    imageClasses = 'js-tooltip-achievement badge-achievement__image'
+
+    imageClasses += ' badge-achievement__image--locked' if @props.isLocked
 
     div
       className: "badge-achievement #{@props.additionalClasses}",
-      img
-        src: filename
-        srcSet: srcSet
+      img _.extend
         alt: @props.achievement.name
-        title: @props.achievement.name
-        className: 'js-tooltip-achievement badge-achievement__image'
+        className: imageClasses
         'data-tooltip-target': tooltipId
         onMouseOver: @onMouseOver
+        osu.src2x @iconUrl(@props.bigIcon)
 
       div
         className: 'hidden'
@@ -65,13 +73,18 @@ class ProfilePage.AchievementBadge extends React.Component
           'data-tooltip-id': tooltipId
           div
             className: 'tooltip-achievement__title'
-            @props.achievement.name
+            @props.achievement.grouping
           div
             className: 'tooltip-achievement__badge'
-            img
-              src: filename
-              srcSet: srcSet
+            img _.extend
               alt: @props.achievement.name
+              osu.src2x @iconUrl(true)
           div
             className: 'tooltip-achievement__content'
-            @props.achievement.name
+            div
+              className: 'tooltip-achievement__nickname'
+              @props.achievement.name
+            div
+              className: 'tooltip-achievement__description'
+              dangerouslySetInnerHTML:
+                __html: @props.achievement.description

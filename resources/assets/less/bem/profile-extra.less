@@ -17,7 +17,11 @@
  *
  */
 .profile-extra {
-  padding: (@grid-gutter-width / 2) (@grid-gutter-width * 3 / 4);
+  .default-box-shadow;
+  background-color: @grey-f;
+  padding: (@spacing * 2) (@spacing * 3);
+  margin-bottom: @spacing;
+
   font-size: 14px;
 
   &:hover &__actions {
@@ -55,6 +59,11 @@
   &__title {
     font-size: 18px;
     font-weight: 500;
-    margin: (@grid-gutter-width / 8) 0px (@grid-gutter-width * 3 / 8);
+    margin: 0 0 (@spacing * 2);
+
+    &--small {
+      font-size: 15px;
+      margin-top: (@spacing * 3);
+    }
   }
 }

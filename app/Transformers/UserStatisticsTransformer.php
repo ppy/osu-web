@@ -51,9 +51,9 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
             'replaysWatchedByOthers' => $stats->replay_popularity,
 
             'scoreRanks' => [
-                'ss' => $stats->x_rank_count,
-                's' => $stats->s_rank_count,
-                'a' => $stats->a_rank_count,
+                'X' => $stats->x_rank_count,
+                'S' => $stats->s_rank_count,
+                'A' => $stats->a_rank_count,
             ],
         ];
     }
