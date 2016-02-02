@@ -44,6 +44,7 @@ CREATE TABLE `osu_achievements` (
   `image` varchar(50) NOT NULL,
   `grouping` varchar(30) NOT NULL DEFAULT '-',
   `ordering` tinyint(10) unsigned NOT NULL,
+  `progression` tinyint(10) unsigned NOT NULL,
   `quest_ordering` tinyint(4) DEFAULT NULL,
   `quest_instructions` text,
   PRIMARY KEY (`achievement_id`),
