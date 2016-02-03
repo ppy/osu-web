@@ -28,13 +28,14 @@ class Order extends Model
     protected $primaryKey = 'order_id';
 
     protected $casts = [
+        'order_id' => 'integer',
         'user_id' => 'integer',
+        'address_id' => 'integer',
+
+        'shipping' => 'float',
     ];
 
-    public function getDates()
-    {
-        return ['created_at', 'updated_at', 'deleted_at', 'shipped_at', 'paid_at'];
-    }
+    protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
 
     public function items()
     {
