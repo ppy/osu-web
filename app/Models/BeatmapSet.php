@@ -185,44 +185,44 @@ class BeatmapSet extends Model
 
     public function isGraveyard()
     {
-        return $this->approved == static::GRAVEYARD;
+        return $this->approved === static::GRAVEYARD;
     }
 
     public function isWIP()
     {
-        return $this->approved == static::WIP;
+        return $this->approved === static::WIP;
     }
 
     public function isPending()
     {
-        return $this->approved == static::PENDING;
+        return $this->approved === static::PENDING;
     }
 
     public function isRanked()
     {
-        return $this->approved == static::RANKED;
+        return $this->approved === static::RANKED;
     }
 
     public function isApproved()
     {
-        return $this->approved == static::APPROVED;
+        return $this->approved === static::APPROVED;
     }
 
     public function isQualified()
     {
-        return $this->approved == static::QUALIFIED;
+        return $this->approved === static::QUALIFIED;
     }
 
     private static function sanitizeSearchParams(array &$params = [])
     {
         // sort param
-        if (count($params['sort']) != 2) {
+        if (count($params['sort']) !== 2) {
             $params['sort'] = ['ranked', 'desc'];
         }
 
         $valid_sort_fields = ['title', 'artist', 'creator', 'difficulty', 'ranked', 'rating', 'plays'];
         $valid_sort_orders = ['asc', 'desc'];
-        if (!in_array($params['sort'][0], $valid_sort_fields) || !in_array($params['sort'][1], $valid_sort_orders)) {
+        if (!in_array($params['sort'][0], $valid_sort_fields, true) || !in_array($params['sort'][1], $valid_sort_orders, true)) {
             $params['sort'] = ['ranked', 'desc'];
         }
 
@@ -238,7 +238,7 @@ class BeatmapSet extends Model
 
         $valid_ranks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
         foreach ($params['rank'] as $rank) {
-            if (!in_array($rank, $valid_ranks)) {
+            if (!in_array($rank, $valid_ranks, true)) {
                 unset($params['rank'][$rank]);
             }
         }
@@ -269,11 +269,11 @@ class BeatmapSet extends Model
         $searchParams['fields'] = ['id'];
         $matchParams = [];
 
-        if (presence($genre) != null) {
+        if (presence($genre) !== null) {
             $matchParams[] = ['match' => ['genre_id' => (int) $genre]];
         }
 
-        if (presence($language) != null) {
+        if (presence($language) !== null) {
             $matchParams[] = ['match' => ['language_id' => (int) $language]];
         }
 
@@ -290,17 +290,17 @@ class BeatmapSet extends Model
             }
         }
 
-        if (presence($query) != null) {
+        if (presence($query) !== null) {
             $matchParams[] = ['query_string' => ['query' => $query]];
         }
 
         if (!empty($rank)) {
-            $klass = presence($mode) != null ? Score\Best\Model::getClass(intval($mode)) : Score\Best\Combined::class;
+            $klass = presence($mode) !== null ? Score\Best\Model::getClass(intval($mode)) : Score\Best\Combined::class;
             $scores = $klass::forUser(Auth::user())->whereIn('rank', $rank)->get()->lists('beatmapset_id');
             $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $scores]];
         }
 
-        if (presence($mode) != null && presence($rank) == null) {
+        if (presence($mode) !== null && presence($rank) === null) {
             $matchParams[] = ['match' => ['playmode' => (int) $mode]];
         }
 

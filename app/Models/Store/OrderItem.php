@@ -28,6 +28,11 @@ class OrderItem extends Model
     protected $primaryKey = 'id';
 
     protected $casts = [
+        'id' => 'integer',
+        'order_id' => 'integer',
+        'product_id' => 'integer',
+
+        'cost' => 'float',
         'quantity' => 'integer',
     ];
 

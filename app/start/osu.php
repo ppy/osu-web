@@ -56,7 +56,7 @@ function format()
 
 function pending($a)
 {
-    if (!$a['is_resolved'] && !$a['parent_item_id'] && !in_array($a['type'], ['nomination', 'praise'])) {
+    if (!$a['is_resolved'] && !$a['parent_item_id'] && !in_array($a['type'], ['nomination', 'praise'], true)) {
         return true;
     }
 
@@ -65,7 +65,7 @@ function pending($a)
 
 function resolved($a)
 {
-    if ($a['is_resolved'] && !$a['parent_item_id'] && !in_array($a['type'], ['nomination', 'praise'])) {
+    if ($a['is_resolved'] && !$a['parent_item_id'] && !in_array($a['type'], ['nomination', 'praise'], true)) {
         return true;
     }
 
@@ -74,7 +74,7 @@ function resolved($a)
 
 function mod_total($a)
 {
-    if (!$a['parent_item_id'] && !in_array($a['type'], ['nomination', 'praise'])) {
+    if (!$a['parent_item_id'] && !in_array($a['type'], ['nomination', 'praise'], true)) {
         return true;
     }
 
@@ -131,7 +131,7 @@ function linkify($text)
         function ($matches) {
             if ($matches['paren']) {
                 $end = '';
-                if (substr($matches['link'], -1) == ')') {
+                if (substr($matches['link'], -1) === ')') {
                     $matches['link'] = substr($matches['link'], 0, -1);
                     $end = ')';
                 }

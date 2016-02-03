@@ -255,7 +255,7 @@ class APIController extends Controller
         }
 
         $replay = $score->getReplay();
-        if ($replay == null) {
+        if ($replay === null) {
             return Response::json([]);
         }
 
@@ -273,9 +273,9 @@ class APIController extends Controller
         $user_id = Request::input('u'); // - specify a user_id or a username to return metadata from.
         $type = Request::input('type'); // - specify if `u` is a user_id or a username. Use `string` for usernames or `id` for user_ids. Optional, default behaviour is automatic recognition (may be problematic for usernames made up of digits only).
         $mode = get_int(Request::input('m')); // - mode (0 = osu!, 1 = Taiko, 2 = osu!catch, 3 = osu!mania). Optional, maps of all modes are returned by default.
-        $include_converted = Request::input('a', 0); // - specify whether converted beatmaps are included (0 = not included, 1 = included). Only has an effect if `m` is chosen and not 0. Converted maps show their converted difficulty rating. Optional, default is 0.
+        $include_converted = intval(Request::input('a', 0)); // - specify whether converted beatmaps are included (0 = not included, 1 = included). Only has an effect if `m` is chosen and not 0. Converted maps show their converted difficulty rating. Optional, default is 0.
         $hash = Request::input('h'); // - the beatmap hash. It can be used, for instance, if you're trying to get what beatmap has a replay played in, as .osr replays only provide beatmap hashes (example of hash: a5b99395a42bd55bc5eb1d2411cbdf8b). Optional, by default all beatmaps are returned independently from the hash.
-        $limit = Request::input('limit', 500); // - amount of results. Optional, default and maximum are 500.
+        $limit = intval(Request::input('limit', 500)); // - amount of results. Optional, default and maximum are 500.
 
         $beatmaps = new Beatmap;
 
@@ -311,7 +311,7 @@ class APIController extends Controller
             $playmodes[] = $mode;
         }
 
-        if (present($include_converted) && $include_converted == 1) {
+        if (present($include_converted) && $include_converted === 1) {
             $playmodes[] = 0;
         }
 
