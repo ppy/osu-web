@@ -29,12 +29,14 @@ class ProfilePage.AchievementBadge extends React.Component
         my: 'bottom center'
         at: 'top center'
         viewport: $(window)
+        adjust:
+          scroll: false
       show:
         event: event.type
         ready: true
       hide:
         fixed: true
-        delay: 100
+        delay: 200
       style:
         classes: 'qtip tooltip-achievement__main'
         tip:
