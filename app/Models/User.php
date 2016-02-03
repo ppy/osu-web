@@ -122,7 +122,7 @@ class User extends Model implements AuthenticatableContract
 
     public static function validateUsername($username)
     {
-        if ($username != trim($username)) {
+        if ($username !== trim($username)) {
             return ["Username can't start or end with spaces!"];
         }
 
@@ -168,7 +168,7 @@ class User extends Model implements AuthenticatableContract
             return ["You must have <a href='http://osu.ppy.sh/p/support'>supported osu!</a> to change your name!"];
         }
 
-        if ($username == $this->username) {
+        if ($username === $this->username) {
             return ['This is already your username, silly!'];
         }
 

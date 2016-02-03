@@ -28,13 +28,14 @@ class Order extends Model
     protected $primaryKey = 'order_id';
 
     protected $casts = [
+        'order_id' => 'integer',
         'user_id' => 'integer',
+        'address_id' => 'integer',
+
+        'shipping' => 'float',
     ];
 
-    public function getDates()
-    {
-        return ['created_at', 'updated_at', 'deleted_at', 'shipped_at', 'paid_at'];
-    }
+    protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
 
     public function items()
     {
@@ -104,7 +105,7 @@ class Order extends Model
 
         //then add up the total
         foreach ($this->items as $i) {
-            if ($primaryShipping == $i->product->base_shipping) {
+            if ($primaryShipping === $i->product->base_shipping) {
                 $total += $i->product->base_shipping * 1 + ($i->quantity - 1) * $i->product->next_shipping;
             } else {
                 $total += ($i->quantity) * $i->product->next_shipping;

@@ -55,7 +55,7 @@ function countries_array_for_select()
 
 function currency($price)
 {
-    if ($price == 0) {
+    if ($price === 0) {
         return 'free!';
     }
 

@@ -117,7 +117,7 @@ class StoreCheckOrderTrackingStatus extends Command
 	The osu!store team", 'From: "osu!store team" <osustore@ppy.sh>');
                 }
 
-                if ($lastStatus != $o->last_tracking_state) {
+                if ($lastStatus !== $o->last_tracking_state) {
                     switch ($lastStatus) {
                         case 'Final delivery':
                         case 'P.O.Box Delivery':

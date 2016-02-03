@@ -27,7 +27,7 @@ class GenreTransformer extends Fractal\TransformerAbstract
     public function transform(Genre $genre)
     {
         return [
-            'id' => $genre->genre_id == 0 ? null : $genre->genre_id,
+            'id' => $genre->genre_id === 0 ? null : $genre->genre_id,
             'name' => trans('beatmaps.genre.'.str_replace(' ', '-', strtolower($genre->name))),
         ];
     }
