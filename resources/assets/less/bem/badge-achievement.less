@@ -17,11 +17,17 @@
 *
 */
 .badge-achievement {
+  @_top: ~"badge-achievement";
   overflow: hidden;
 
   &--listing {
     width: 70px;
     margin: auto;
+  }
+
+  &--locked {
+    background-image: url('/images/badges/user-achievements/_blank-big@2x.png');
+    background-size: cover;
   }
 
   &--recent {
@@ -32,8 +38,9 @@
   &__image {
     max-width: 100%;
 
-    &--locked {
+    .@{_top}--locked & {
       opacity: 0.25;
+      filter: saturate(0);
     }
   }
 }
