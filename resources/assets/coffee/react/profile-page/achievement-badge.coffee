@@ -84,6 +84,7 @@ class ProfilePage.AchievementBadge extends React.Component
             className: 'tooltip-achievement__badge'
             div
               className: badgeClasses
+              div className: 'badge-achievement__locked-bg badge-achievement__locked-bg--big'
               img _.extend
                 alt: @props.achievement.name
                 osu.src2x @iconUrl(true)

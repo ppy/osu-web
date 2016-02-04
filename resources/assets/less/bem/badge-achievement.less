@@ -25,14 +25,21 @@
     margin: auto;
   }
 
-  &--locked {
-    background-image: url('/images/badges/user-achievements/_blank-big@2x.png');
-    background-size: cover;
-  }
-
   &--recent {
     width: 25%;
     display: inline-block;
+  }
+
+  &__locked-bg {
+    .full-size();
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    .at2x-simple("/images/badges/user-achievements/blank.png");
+
+    &--big {
+      .at2x-simple("/images/badges/user-achievements/blank-big.png");
+    }
   }
 
   &__image {
