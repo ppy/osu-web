@@ -34,6 +34,7 @@ class ProfilePage.AchievementBadge extends React.Component
       show:
         event: event.type
         ready: true
+        delay: 200
       hide:
         fixed: true
         delay: 200
