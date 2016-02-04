@@ -22,6 +22,9 @@ class ProfilePage.AchievementBadge extends React.Component
   onMouseOver: (event) =>
     name = event.target.getAttribute 'data-tooltip-target'
 
+    classes = 'qtip tooltip-achievement'
+    classes += ' tooltip-achievement--locked' if @props.isLocked
+
     options =
       overwrite: false
       content: $(".js-tooltip-achievement--content[data-tooltip-id='#{name}']").clone()
@@ -29,14 +32,17 @@ class ProfilePage.AchievementBadge extends React.Component
         my: 'bottom center'
         at: 'top center'
         viewport: $(window)
+        adjust:
+          scroll: false
       show:
         event: event.type
         ready: true
+        delay: 200
       hide:
         fixed: true
-        delay: 100
+        delay: 200
       style:
-        classes: 'qtip tooltip-achievement__main'
+        classes: classes
         tip:
           width: 10
           height: 8
@@ -53,15 +59,15 @@ class ProfilePage.AchievementBadge extends React.Component
 
   render: =>
     tooltipId = "#{@props.achievement.slug}-#{Math.floor(Math.random() * 1000000)}"
-    imageClasses = 'js-tooltip-achievement badge-achievement__image'
 
-    imageClasses += ' badge-achievement__image--locked' if @props.isLocked
+    badgeClasses = 'badge-achievement'
+    badgeClasses += ' badge-achievement--locked' if @props.isLocked
 
     div
-      className: "badge-achievement #{@props.additionalClasses}",
+      className: "js-tooltip-achievement #{badgeClasses} #{@props.additionalClasses}",
       img _.extend
         alt: @props.achievement.name
-        className: imageClasses
+        className: 'badge-achievement__image'
         'data-tooltip-target': tooltipId
         onMouseOver: @onMouseOver
         osu.src2x @iconUrl(@props.bigIcon)
@@ -69,16 +75,20 @@ class ProfilePage.AchievementBadge extends React.Component
       div
         className: 'hidden'
         div
-          className: 'js-tooltip-achievement--content tooltip-achievement'
+          className: 'js-tooltip-achievement--content tooltip-achievement__main'
           'data-tooltip-id': tooltipId
           div
             className: 'tooltip-achievement__title'
             @props.achievement.grouping
           div
             className: 'tooltip-achievement__badge'
-            img _.extend
-              alt: @props.achievement.name
-              osu.src2x @iconUrl(true)
+            div
+              className: badgeClasses
+              div className: 'badge-achievement__locked-bg badge-achievement__locked-bg--big'
+              img _.extend
+                alt: @props.achievement.name
+                osu.src2x @iconUrl(true)
+                className: 'badge-achievement__image'
           div
             className: 'tooltip-achievement__content'
             div

@@ -21,6 +21,7 @@ _mysqldump osu \
   osu_events \
   osu_favouritemaps \
   osu_kudos_exchange \
+  osu_languages \
   osu_leaders \
   osu_leaders_fruits \
   osu_leaders_mania \
@@ -68,4 +69,5 @@ _mysqldump osu_store \
 
 mysqldump -t --skip-opt osu \
   migrations \
+  osu_languages \
 > "${root}/db-osu-data.sql"
