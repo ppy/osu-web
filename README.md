@@ -25,7 +25,7 @@ Deploying
 
     c:\osuweb\vagrant> vagrant ssh
     $ cd /data/osu\!web
-    $ hhvm artisan tinker
+    $ php artisan tinker
     >>> App\Models\User::create(["username" => "yourusername", "user_password" => password_hash(md5("yourpassword"), PASSWORD_BCRYPT)]);
 
 ### Generating assets
@@ -34,7 +34,7 @@ Using Laravel's [Elixir](http://laravel.com/docs/5.1/elixir).
 
     c:\osu-web\vagrant> vagrant ssh
     $ cd /data/osu\!web
-    $ hhvm artisan lang:js resources/assets/js/messages.js
+    $ php artisan lang:js resources/assets/js/messages.js
     $ ./node_modules/.bin/gulp
 
 Contributing
