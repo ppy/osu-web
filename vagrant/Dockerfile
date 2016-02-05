@@ -1,4 +1,4 @@
-FROM ubuntu:vivid
+FROM ubuntu:trusty
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
   openssh-server \
