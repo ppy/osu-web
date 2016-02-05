@@ -4,6 +4,10 @@
 # provision script for the vm
 provision_script = <<SCRIPT
 
+# Required to add php 7 repository
+# https://launchpad.net/~ondrej/+archive/ubuntu/php
+export LANG=en_US.UTF-8
+
 echo I am provisioning...
 cd /data/osu\!web/
 
