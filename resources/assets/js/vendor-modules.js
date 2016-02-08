@@ -18,3 +18,5 @@ window.ReactDOM = require('react-dom');
 
 window.PhotoSwipe = require('photoswipe/dist/photoswipe');
 window.PhotoSwipeUI_Default = require('photoswipe/dist/photoswipe-ui-default');
+
+window.d3 = require('d3');
