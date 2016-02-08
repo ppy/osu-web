@@ -41,11 +41,11 @@ class ProfilePage.UserPage extends React.Component
         dangerouslySetInnerHTML:
           __html: Lang.get('users.show.page.description')
 
-      el 'p',
-        className: 'profile-page-new-content'
-        dangerouslySetInnerHTML:
-          __html: Lang.get('users.show.page.restriction_info')
-
+      if !@props.user.isSupporter
+        el 'p',
+          className: 'profile-page-new-content'
+          dangerouslySetInnerHTML:
+            __html: Lang.get('users.show.page.restriction_info')
 
   pageShow: =>
     el 'div', dangerouslySetInnerHTML:
