@@ -20,18 +20,24 @@ class @TooltipDefault
     $(document).on 'mouseover', '[title]', @onMouseOver
 
   onMouseOver: (event) =>
-    return if event.currentTarget._tooltip
+    el = event.currentTarget
 
-    event.currentTarget._tooltip = true
+    return if el._tooltip
 
-    title = event.currentTarget.getAttribute 'title'
+    el._tooltip = true
 
-    at = event.currentTarget.getAttribute('data-tooltip-position') || 'top center'
+    title = el.getAttribute 'title'
+
+    at = el.getAttribute('data-tooltip-position') || 'top center'
 
     my = switch at
       when 'top center' then 'bottom center'
       when 'left center' then 'right center'
       when 'right center' then 'left center'
+
+    classes = 'qtip tooltip-default'
+    if el.getAttribute('data-tooltip-float') == 'fixed'
+      classes += ' tooltip-default--fixed'
 
     options =
       overwrite: false
@@ -46,12 +52,12 @@ class @TooltipDefault
       hide:
         inactive: 3000
       style:
-        classes: 'qtip tooltip-default'
+        classes: classes
         tip:
           width: 10
           height: 8
 
-    event.currentTarget.setAttribute 'data-orig-title', title
-    event.currentTarget.removeAttribute 'title'
+    el.setAttribute 'data-orig-title', title
+    el.removeAttribute 'title'
 
-    $(event.currentTarget).qtip options, event
+    $(el).qtip options, event
