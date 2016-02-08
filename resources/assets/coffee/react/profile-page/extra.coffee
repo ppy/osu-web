@@ -122,4 +122,5 @@ class ProfilePage.Extra extends React.Component
       div className: 'osu-layout__row',
         el ProfilePage.Historical,
           beatmapPlaycounts: @props.beatmapPlaycounts
+          rankHistories: @props.rankHistories
           scores: @props.scores

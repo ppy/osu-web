@@ -20,3 +20,4 @@ window.PhotoSwipe = require('photoswipe/dist/photoswipe');
 window.PhotoSwipeUI_Default = require('photoswipe/dist/photoswipe-ui-default');
 
 window.d3 = require('d3');
+window.moment = require('moment');

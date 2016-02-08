@@ -25,6 +25,11 @@ ProfilePage.Historical = React.createClass
     showingPlaycounts: 5
     showingRecent: 5
 
+
+  componentDidMount: ->
+    @_rankHistory()
+
+
   _showMore: (key, e) ->
     e.preventDefault() if e
 
@@ -71,12 +76,113 @@ ProfilePage.Historical = React.createClass
             className: 'beatmapset-row__detail-column'
             details[1]
 
+
+  _rankHistory: ->
+    rawData = @props.rankHistories.data.filter (rank) -> rank > 0
+
+    startDate = moment().subtract(rawData.length, 'days')
+
+    chartData = rawData.map (rank) ->
+      date: startDate.add(1, 'day').clone().toDate()
+      # rank must be drawn inverted.
+      rank: -rank
+
+    chartArea = @refs.chartArea
+
+    chartAreaDims = chartArea.getBoundingClientRect()
+
+    margin =
+      top: 20
+      right: 20
+      bottom: 20
+      left: 100
+
+    width = chartAreaDims.width - (margin.left + margin.right)
+    height = chartAreaDims.height - (margin.top + margin.bottom)
+
+    x = d3.time.scale()
+      .range [0, width]
+
+    y = d3.scale.linear()
+      .range [height, 0]
+
+    color = d3.interpolateLab '#777', '#EFEFEF'
+
+    xAxis = d3.svg.axis()
+      .scale x
+      .ticks 5
+      .innerTickSize -height
+      .outerTickSize 0
+      .tickPadding 5
+      .tickFormat (d) =>
+        d3.time.format('%b %Y') d
+      .orient 'bottom'
+
+    yAxis = d3.svg.axis()
+      .scale y
+      .ticks 3
+      .innerTickSize -width
+      .orient 'left'
+
+    line = d3.svg.line()
+      .x (d) => x d.date
+      .y (d) => y d.rank
+
+    svg = d3.select(chartArea).append('svg')
+      .attr 'width', width + (margin.left + margin.right)
+      .attr 'height', height + (margin.top + margin.bottom )
+      .append 'g'
+      .attr 'transform', "translate(#{margin.left}, #{margin.top})"
+
+    x.domain d3.extent(chartData, (d) => d.date)
+    y.domain d3.extent(chartData, (d) => d.rank)
+
+    svg.append 'g'
+      .attr 'class', 'axis x'
+      .attr 'transform', "translate(0, #{height})"
+      .call xAxis
+
+    svg.append 'g'
+      .attr 'class', 'axis y'
+      .call yAxis
+      .selectAll('tick line').each (d) ->
+        tick = d3.select(@)
+        min = yAxis.scale().domain()[0]
+        max = yAxis.scale().domain()[1]
+
+        tick.style 'stroke', (d) =>
+          color((d - min) / (max - min))
+
+        tick.style 'fill', (d) =>
+          color((d - min) / (max - min))
+
+    path = svg.append 'path'
+      .datum chartData
+      .attr 'class', 'line'
+      .attr 'd', line
+
+    len = path.node().getTotalLength()
+
+
+
   render: ->
     div
       className: 'profile-extra'
       div className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'historical'
 
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.historical.title')
+
+      if @props.rankHistories
+        [
+          h3
+            key: 'title'
+            className: 'profile-extra__title profile-extra__title--small'
+            Lang.get('users.show.extra.historical.rank_history.title')
+          div
+            key: 'area'
+            ref: 'chartArea'
+            className: 'chart'
+        ]
 
       h3
         className: 'profile-extra__title profile-extra__title--small'
