@@ -2,13 +2,17 @@
 # vi: set ft=ruby :
 
 # provision script for the vm
-$provisionScript = <<SCRIPT
+provision_script = <<SCRIPT
+
+# Required to add php 7 repository
+# https://launchpad.net/~ondrej/+archive/ubuntu/php
+export LANG=en_US.UTF-8
 
 echo I am provisioning...
 cd /data/osu\!web/
 
-echo Setting up hhvm, nginx, mysql
-sudo ./bootstrap.sh
+echo Setting up php, nginx, mysql
+./bootstrap.sh
 
 echo Bind mounting node_modules
 echo "/data/node_modules $PWD/node_modules none bind,noauto 0 0" >> /etc/fstab
@@ -30,8 +34,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "vivid64"
-  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/vivid/current/vivid-server-cloudimg-amd64-vagrant-disk1.box"
+  config.vm.box = "ubuntu/trusty32"
 
   config.vm.network :forwarded_port, guest: 80, host: 8080
   config.vm.network :forwarded_port, guest: 8000, host: 8081
@@ -42,7 +45,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider :virtualbox do |vb|
     vb.name = "osu!web"
     vb.customize ["modifyvm", :id, "--memory", "2048"]
-    vb.customize ["modifyvm", :id, "--ostype", "Ubuntu_64"]
+    vb.customize ["modifyvm", :id, "--ostype", "Ubuntu"]
     vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
   end
 
@@ -55,7 +58,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     d.create_args = ["--privileged"]
   end
 
-  config.vm.provision "shell", inline: $provisionScript
+  config.vm.provision "shell", inline: provision_script
   config.vm.provision "shell", inline: "mount /data/osu!web/node_modules",
     run: "always"
   config.vm.provision "shell", inline: "sudo service nginx restart",

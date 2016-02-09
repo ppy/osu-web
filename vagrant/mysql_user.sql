@@ -1,7 +1,9 @@
 -- create users for mysql
-GRANT ALL PRIVILEGES ON *.* TO 'osuweb'@'%' IDENTIFIED BY '' WITH GRANT OPTION;
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '' WITH GRANT OPTION;
--- delete all users with no username
-DELETE FROM mysql.user WHERE user='';
+CREATE USER 'osuweb'@'%' IDENTIFIED BY '';
+GRANT ALL PRIVILEGES ON *.* TO 'osuweb'@'%' WITH GRANT OPTION;
+
+CREATE USER 'root'@'%' IDENTIFIED BY '';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+
 -- reload mysql users
 FLUSH PRIVILEGES;

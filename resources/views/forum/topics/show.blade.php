@@ -157,6 +157,7 @@
                 @if ($topic->isLocked())
                     <span
                         class="forum-topic-nav__button-circle forum-topic-nav__button-circle--blank"
+                        data-tooltip-float="fixed"
                         title="{{ trans('forum.topics.lock.is_locked') }}"
                     >
                         <i class="fa fa-lock"></i>
@@ -191,6 +192,7 @@
                         forum-topic-nav__item--main
                         forum-topic-nav__item--button"
                     data-jump-target="first"
+                    data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.first') }}"
                 >
                     <i class="fa fa-angle-double-left"></i>
@@ -203,6 +205,7 @@
                         forum-topic-nav__item--main
                         forum-topic-nav__item--button"
                     data-jump-target="previous"
+                    data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.previous') }}"
                 >
                     <i class="fa fa-angle-left"></i>
@@ -242,7 +245,11 @@
                         js-forum__total-count"
                     >{{ $topic->postsCount() }}</span>
 
-                    <div title="{{ trans('forum.topic.jump.enter') }}" class="js-forum-topic-post-jump--cover forum-topic-nav__counter-cover"></div>
+                    <div
+                        class="js-forum-topic-post-jump--cover forum-topic-nav__counter-cover"
+                        data-tooltip-float="fixed"
+                        title="{{ trans('forum.topic.jump.enter') }}"
+                    ></div>
                 </div>
 
                 <a
@@ -252,6 +259,7 @@
                         forum-topic-nav__item--main
                         forum-topic-nav__item--button"
                     data-jump-target="next"
+                    data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.next') }}"
                 >
                     <i class="fa fa-angle-right"></i>
@@ -265,6 +273,7 @@
                         forum-topic-nav__item--main
                         forum-topic-nav__item--button"
                     data-jump-target="last"
+                    data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.last') }}"
                 >
                     <i class="fa fa-angle-double-right"></i>
@@ -275,6 +284,7 @@
                 <a
                     href="#"
                     class="forum-topic-nav__button-circle forum-topic-nav__button-circle--reply js-forum-topic-reply--new"
+                    data-tooltip-float="fixed"
                     title="{{ trans('forum.topics.actions.reply') }}"
                 >
                     <i class="fa fa-plus"></i>
