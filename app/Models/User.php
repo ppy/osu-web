@@ -20,6 +20,7 @@
 namespace App\Models;
 
 use App\Transformers\UserTransformer;
+use Auth;
 use Cache;
 use Carbon\Carbon;
 use DB;
@@ -220,10 +221,15 @@ class User extends Model implements AuthenticatableContract
         }
 
         if (!$find_all) {
-            $user = $user->where('user_type', 0)->where('user_warnings', 0);
+            $user = $user->where('user_type', 0);
         }
 
-        return $user->first();
+        $user = $user->first();
+        if (!$user || !$user->canView()) {
+            return;
+        }
+
+        return $user;
     }
 
     public function getUserAvatarAttribute($value)
@@ -447,6 +453,12 @@ class User extends Model implements AuthenticatableContract
     public function isRestricted()
     {
         return $this->isBanned() || $this->user_warnings > 0;
+    }
+
+    public function canView()
+    {
+        return !$this->isRestricted() ||
+            Auth::check() && (Auth::user()->user_id === $this->user_id || Auth::user()->isPrivileged());
     }
 
     public function isSilenced()
@@ -860,7 +872,7 @@ class User extends Model implements AuthenticatableContract
     {
         return
             $this->user_id !== null
-            && !$this->isRestricted()
+            && $this->canView()
             && $this->group_id !== 6; // bots
     }
 
