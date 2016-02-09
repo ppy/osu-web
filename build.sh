@@ -12,7 +12,7 @@ if [ ! -d node_modules ]; then
   ln -snf ~/node_modules node_modules
 fi
 
-curl https://getcomposer.org/installer > composer-installer
+curl -sL https://getcomposer.org/installer > composer-installer
 php composer-installer
 
 # dummy user, no privilege github token to avoid github api limit
