@@ -106,8 +106,6 @@ ProfilePage.Historical = React.createClass
     y = d3.scale.linear()
       .range [height, 0]
 
-    color = d3.interpolateLab '#777', '#EFEFEF'
-
     xAxis = d3.svg.axis()
       .scale x
       .ticks 5
@@ -115,20 +113,42 @@ ProfilePage.Historical = React.createClass
       .outerTickSize 0
       .tickPadding 5
       .tickFormat (d) =>
-        d3.time.format('%b %Y') d
+        d3.time.format('%b-%e') d
       .orient 'bottom'
 
     yAxis = d3.svg.axis()
       .scale y
-      .ticks 3
+      .ticks 4
+      .tickFormat (d) =>
+        (-d).toLocaleString()
       .innerTickSize -width
       .orient 'left'
 
     line = d3.svg.line()
       .x (d) => x d.date
       .y (d) => y d.rank
+      .interpolate 'monotone'
 
-    svg = d3.select(chartArea).append('svg')
+    topSvg = d3.select(chartArea).append('svg')
+
+    xAxisLine = topSvg.append 'defs'
+      .append 'linearGradient'
+      .attr 'id', 'xAxisLineGradient'
+      .attr 'gradientUnits', 'userSpaceOnUse'
+      .attr 'x1', '0'
+      .attr 'x2', '0'
+      .attr 'y1', '-100%'
+      .attr 'y2', '0'
+
+    xAxisLine.append 'stop'
+      .attr 'offset', '20%'
+      .attr 'stop-color', '#fff'
+
+    xAxisLine.append 'stop'
+      .attr 'offset', '100%'
+      .attr 'stop-color', '#ccc'
+
+    svg = topSvg
       .attr 'width', width + (margin.left + margin.right)
       .attr 'height', height + (margin.top + margin.bottom )
       .append 'g'
@@ -138,27 +158,17 @@ ProfilePage.Historical = React.createClass
     y.domain d3.extent(chartData, (d) => d.rank)
 
     svg.append 'g'
-      .attr 'class', 'axis x'
+      .attr 'class', 'chart__axis chart__axis--x'
       .attr 'transform', "translate(0, #{height})"
       .call xAxis
 
     svg.append 'g'
-      .attr 'class', 'axis y'
+      .attr 'class', 'chart__axis chart__axis--y'
       .call yAxis
-      .selectAll('tick line').each (d) ->
-        tick = d3.select(@)
-        min = yAxis.scale().domain()[0]
-        max = yAxis.scale().domain()[1]
-
-        tick.style 'stroke', (d) =>
-          color((d - min) / (max - min))
-
-        tick.style 'fill', (d) =>
-          color((d - min) / (max - min))
 
     path = svg.append 'path'
       .datum chartData
-      .attr 'class', 'line'
+      .attr 'class', 'chart__line'
       .attr 'd', line
 
     len = path.node().getTotalLength()

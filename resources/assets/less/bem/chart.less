@@ -18,4 +18,25 @@
  */
 .chart {
   height: 250px;
+
+  &__axis {
+    line, path {
+      fill: none;
+      stroke: @grey-c;
+      stroke-width: 1px;
+      shape-rendering: crispEdges;
+    }
+
+    &--x {
+      line, path {
+        stroke: url(#xAxisLineGradient);
+      }
+    }
+  }
+
+  &__line {
+    fill: none;
+    stroke: @pink-darker;
+    stroke-width: 3px;
+  }
 }
