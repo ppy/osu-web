@@ -78,6 +78,23 @@ ProfilePage.Historical = React.createClass
 
 
   _rankHistory: ->
+    margins =
+      top: 20
+      right: 20
+      bottom: 20
+      left: 100
+
+    measure = (area) =>
+      chartAreaDims = @refs.chartArea.getBoundingClientRect()
+
+      width: chartAreaDims.width - (margins.left + margins.right)
+      height: chartAreaDims.height - (margins.top + margins.bottom)
+
+    dimensions = measure()
+
+    width = dimensions.width
+    height = dimensions.height
+
     rawData = @props.rankHistories.data.filter (rank) -> rank > 0
 
     startDate = moment().subtract(rawData.length, 'days')
@@ -87,33 +104,22 @@ ProfilePage.Historical = React.createClass
       # rank must be drawn inverted.
       rank: -rank
 
-    chartArea = @refs.chartArea
-
-    chartAreaDims = chartArea.getBoundingClientRect()
-
-    margin =
-      top: 20
-      right: 20
-      bottom: 20
-      left: 100
-
-    width = chartAreaDims.width - (margin.left + margin.right)
-    height = chartAreaDims.height - (margin.top + margin.bottom)
-
     x = d3.time.scale()
       .range [0, width]
+      .domain d3.extent(chartData, (d) => d.date)
 
     y = d3.scale.linear()
       .range [height, 0]
+      .domain d3.extent(chartData, (d) => d.rank)
 
     xAxis = d3.svg.axis()
       .scale x
-      .ticks 5
+      .ticks 15
       .innerTickSize -height
       .outerTickSize 0
       .tickPadding 5
       .tickFormat (d) =>
-        d3.time.format('%b-%e') d
+        d3.time.format('%b-%-d') d
       .orient 'bottom'
 
     yAxis = d3.svg.axis()
@@ -129,7 +135,7 @@ ProfilePage.Historical = React.createClass
       .y (d) => y d.rank
       .interpolate 'monotone'
 
-    topSvg = d3.select(chartArea).append('svg')
+    topSvg = d3.select(@refs.chartArea).append('svg')
 
     xAxisLine = topSvg.append 'defs'
       .append 'linearGradient'
@@ -149,13 +155,10 @@ ProfilePage.Historical = React.createClass
       .attr 'stop-color', '#ccc'
 
     svg = topSvg
-      .attr 'width', width + (margin.left + margin.right)
-      .attr 'height', height + (margin.top + margin.bottom )
+      .attr 'width', width + (margins.left + margins.right)
+      .attr 'height', height + (margins.top + margins.bottom)
       .append 'g'
-      .attr 'transform', "translate(#{margin.left}, #{margin.top})"
-
-    x.domain d3.extent(chartData, (d) => d.date)
-    y.domain d3.extent(chartData, (d) => d.rank)
+      .attr 'transform', "translate(#{margins.left}, #{margins.top})"
 
     svg.append 'g'
       .attr 'class', 'chart__axis chart__axis--x'
@@ -170,9 +173,6 @@ ProfilePage.Historical = React.createClass
       .datum chartData
       .attr 'class', 'chart__line'
       .attr 'd', line
-
-    len = path.node().getTotalLength()
-
 
 
   render: ->
