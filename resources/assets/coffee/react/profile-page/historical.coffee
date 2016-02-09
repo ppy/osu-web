@@ -135,7 +135,9 @@ ProfilePage.Historical = React.createClass
       .y (d) => y d.rank
       .interpolate 'monotone'
 
-    topSvg = d3.select(@refs.chartArea).append('svg')
+    topSvg = d3.select(@refs.chartArea).append 'svg'
+      .attr 'width', width + (margins.left + margins.right)
+      .attr 'height', height + (margins.top + margins.bottom)
 
     xAxisLine = topSvg.append 'defs'
       .append 'linearGradient'
@@ -154,10 +156,7 @@ ProfilePage.Historical = React.createClass
       .attr 'offset', '100%'
       .attr 'stop-color', '#ccc'
 
-    svg = topSvg
-      .attr 'width', width + (margins.left + margins.right)
-      .attr 'height', height + (margins.top + margins.bottom)
-      .append 'g'
+    svg = topSvg.append 'g'
       .attr 'transform', "translate(#{margins.left}, #{margins.top})"
 
     svg.append 'g'
