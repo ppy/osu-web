@@ -35,6 +35,36 @@ class HelpController extends Controller
 
     public function getSupport()
     {
-        return view('help.support');
+        return view('help.support')
+        ->with('data', [
+          // why support's blocks
+          'blocks' => [
+            // localization's name => icon
+            'dev' => 'user', 
+            'time' => 'clock-o', 
+            'ads' => 'thumbs-up', 
+            'goodies' => 'star',
+          ],
+
+          // supporter's perks
+          'perks' => [
+            // localization's name => icon
+            'osu_direct' => 'search',
+            'auto_downloads' => 'cloud-download',
+            'upload_more' => 'cloud-upload',
+            'early_access' => 'flask',
+            'customisation' => 'picture-o',
+            'beatmap_filters' => 'filter',
+            'yellow_fellow' => 'fire',
+            'speedy_downloads' => 'dashboard',
+            'change_username' => 'magic',
+            'skinnables' => 'paint-brush',
+            'feature_votes' => 'thumbs-up',
+            'sort_options' => 'trophy',
+            '' => '', // blank so the last two can be centered
+            'feel_special' => 'heart',
+            'more_to_come' => 'gift',
+          ],
+        ]);
     }
 }
