@@ -78,12 +78,12 @@ class @LineChart
       .attr 'y2', '0'
 
     @xAxisLine.append 'stop'
+      .classed 'chart__tick-gradient chart__tick-gradient--start', true
       .attr 'offset', '20%'
-      .attr 'stop-color', '#fff'
 
     @xAxisLine.append 'stop'
+      .classed 'chart__tick-gradient chart__tick-gradient--end', true
       .attr 'offset', '100%'
-      .attr 'stop-color', '#ccc'
 
 
   setDimensions: =>
@@ -139,18 +139,25 @@ class @LineChart
     @svgYAxis
       .call @yAxis
 
+    @svgXAxis.selectAll '.tick line'
+      .classed 'chart__tick-line', true
+      .attr 'stroke', 'url(#x-axis-line-gradient)'
+
+    @svgYAxis.selectAll '.tick line'
+      .classed 'chart__tick-line chart__tick-line--default', true
+
+    @svgXAxis.selectAll '.domain'
+      .classed 'chart__tick-line chart__tick-line--default', true
+
+    @svgYAxis.selectAll '.domain'
+      .classed 'chart__tick-line', true
+
     @svgXAxis.selectAll 'text'
       .style 'text-anchor', ''
+      .classed 'chart__tick-text', true
 
-    for axis in [@svgXAxis, @svgYAxis]
-      axis.selectAll '.tick line'
-        .classed 'chart__tick-line chart__tick-line--tick', true
-
-      axis.selectAll '.domain'
-        .classed 'domain chart__tick-line chart__tick-line--domain', true
-
-      axis.selectAll 'text'
-        .classed 'chart__tick-text', true
+    @svgYAxis.selectAll 'text'
+      .classed 'chart__tick-text', true
 
 
   drawLine: =>

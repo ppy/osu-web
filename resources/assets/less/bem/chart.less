@@ -21,6 +21,16 @@
 
   height: 250px;
 
+  &__tick-gradient {
+    &--end {
+      stop-color: @grey-c;
+    }
+
+    &--start {
+      stop-color: @grey-f;
+    }
+  }
+
   &__axis {
     fill: @text-color;
 
@@ -38,20 +48,11 @@
 
   &__tick-line {
     fill: none;
-    stroke: @grey-c;
     stroke-width: 1px;
     shape-rendering: crispEdges;
 
-    &--domain {
-      .@{_top}__axis--y & {
-        stroke: none;
-      }
-    }
-
-    &--tick {
-      .@{_top}__axis--x & {
-        stroke: url(#x-axis-line-gradient);
-      }
+    &--default {
+      stroke: @grey-c;
     }
   }
 
