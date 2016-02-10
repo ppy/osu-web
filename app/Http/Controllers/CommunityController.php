@@ -101,9 +101,9 @@ class CommunityController extends Controller
             // why support's blocks
             'blocks' => [
                 // localization's name => icon
-                'dev' => 'user', 
-                'time' => 'clock-o', 
-                'ads' => 'thumbs-up', 
+                'dev' => 'user',
+                'time' => 'clock-o',
+                'ads' => 'thumbs-up',
                 'goodies' => 'star',
             ],
 
