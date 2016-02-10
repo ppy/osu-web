@@ -58,6 +58,7 @@ return [
             '_' => 'community',
             'getForum' => 'forum',
             'getChat' => 'chat',
+            'getSupport' => 'support',
             'getLive' => 'live',
             'profile' => 'profile',
             'tournaments' => 'tournaments',

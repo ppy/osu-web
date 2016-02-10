@@ -18,11 +18,7 @@
 */
 @import "app";
 
-.help-support {
-  .full-width {
-    width: 100%;
-  }
-
+.community-support {
   .text-center {
     text-align: center;
   }
@@ -36,7 +32,7 @@
     transition: all 0.2s ease-in-out;
 
     // only .hover activates :hover style
-    &.hover {
+    &--hover {
       &:hover {
         box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
       }
@@ -51,11 +47,23 @@
     &.under-parent {
       margin-top: -20px !important;
     }
+      
+    .perk-row {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
     .perk {
+      width: 24%;
+      padding-left: 0.5%;
+      padding-right: 0.5%;
+
       padding-bottom: 40px;
 
-      .perk-container {
+
+      &__container {
         text-align: center;
         border-radius: 6px;
         height: 100%;
@@ -72,13 +80,13 @@
           }
         }
 
-        &.blue {
+        &--blue {
           > .header {
             background: #449EE0 url('../../images/backgrounds/grid-0.1.png');
           }
         }
 
-        &.green {
+        &--green {
           > .header {
             background: #92B71E url('../../images/backgrounds/grid-0.1.png');
           }
@@ -113,39 +121,30 @@
 
   > .header {
     .bg {
-      // size
       width: 100%;
-
-      // position
-      position: absolute;
+      position: relative;
       z-index: 1;
     }
 
     .info {
-      float: right;
       z-index: 2;
-      position: relative;
-
-      // full width
-      top: -10px;
-      left: -180px;
+      position: absolute;
+      right: 30px;
+      left: inherit;
 
       .big-desc {
         text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-        font-size: 42px;
+        font-size: 3em;
+
         color: #fafafa;
         font-weight: bold;
-
-        // full width
         margin-top: 100px;
       }
 
       .small-desc {
         text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
         color: #fafafa;
-        font-size: 18px;
-
-        // full width
+        font-size: 1.7em;
         margin-top: 20px;
         margin-bottom: 50px;
       }
@@ -170,14 +169,14 @@
   }
 
   .convinced {
-    > .heart {
+    &__heart {
       box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
       border-radius: 360px;
       width: 140px;
       padding: 10px;
       margin: 0 auto;
 
-      > .inner {
+      &__inner {
         background: #cc5288;
         border-radius: 360px;
         padding: 16px;
@@ -205,63 +204,62 @@
   }
 }
 
-@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
-  .help-support {
-    > .header {
-      .info {
-        top: -40px;
-        left: -30px;
+@media (max-width: 1220px) {
+  .community-support {
+    > .header > .info {
+      top: -5vmax;
+      
+      .big-desc {
+        font-size: 2.7vmax;
+      }
 
-        .big-desc {
-          font-size: 32px;
-        }
-
-        .small-desc {
-          font-size: 18px;
-        }
+      .small-desc, .button {
+        font-size: 1.8vmax;
       }
     }
   }
 }
 
-@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-  .help-support {
-    > .header {
-      .info {
-        top: -50px;
-        left: -30px;
-
-        .big-desc {
-          font-size: 24px;
-        }
-
-        .small-desc {
-          font-size: 12px;
-        }
-
-        .button {
-          margin: 0 auto;
-        }
-      }
+@media (min-width: 560px) and (max-width: 1220px) {
+  .community-support {
+    .perk {
+      width: 49% !important;
     }
   }
 }
 
-@media (max-width: @screen-xs-max) {
-  .help-support {
+@media (max-width: 560px) {
+  .community-support {
     > .header {
       .info {
-        top: -60px;
-        left: -30px;
+        position: relative;
+        left: 0;
+        right: 0;
 
-        .big-desc {
-          font-size: 22px;
+        width: 100%;
+        background: #EE65A2;
+        text-align: center;
+
+        padding: 20px;
+        padding-bottom: 40px;
+
+        > .big-desc {
+          margin-top: 40px;
+          font-size: 4vmax;
         }
 
-        .small-desc {
-          font-size: 10px;
+        > .small-desc, .button {
+          font-size: 2.5vmax;
         }
       }
+
+      > .bg {
+        display: none;
+      }
+    }
+
+    .perk {
+      width: 99% !important;
     }
   }
 }
