@@ -68,6 +68,7 @@ class ProfilePage.Main extends React.Component
     $.unsubscribe '.profilePage'
 
   render: =>
+    rankHistories = @props.allRankHistories[@state.mode]?.data
     stats = @props.allStats[@state.mode].data
     scores = @props.allScores[@state.mode].data
     scoresBest = @props.allScoresBest[@state.mode].data
@@ -96,6 +97,7 @@ class ProfilePage.Main extends React.Component
         recentActivities: @props.recentActivities
         recentlyReceivedKudosu: @props.recentlyReceivedKudosu
         favouriteBeatmapSets: @props.favouriteBeatmapSets
+        rankHistories: rankHistories
         rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
         user: @state.user
         scores: scores
