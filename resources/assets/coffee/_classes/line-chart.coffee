@@ -143,7 +143,7 @@ class @LineChart
       .style 'text-anchor', ''
 
     for axis in [@svgXAxis, @svgYAxis]
-      axis.selectAll '.tick line, .tick path'
+      axis.selectAll '.tick line'
         .classed 'chart__tick-line chart__tick-line--tick', true
 
       axis.selectAll '.domain'
