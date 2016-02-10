@@ -61,13 +61,13 @@ class @LineChart
       .interpolate 'monotone'
 
     @svgXAxis = @wrapper.append 'g'
-      .attr 'class', 'chart__axis chart__axis--x'
+      .classed 'chart__axis chart__axis--x', true
 
     @svgYAxis = @wrapper.append 'g'
-      .attr 'class', 'chart__axis chart__axis--y'
+      .classed 'chart__axis chart__axis--y', true
 
     @svgLine = @wrapper.append 'path'
-      .attr 'class', 'chart__line'
+      .classed 'chart__line', true
       .datum @data
 
     @resize()
@@ -160,13 +160,13 @@ class @LineChart
 
     for axis in [@svgXAxis, @svgYAxis]
       axis.selectAll '.tick line, .tick path'
-        .attr 'class', 'chart__tick-line chart__tick-line--tick'
+        .classed 'chart__tick-line chart__tick-line--tick', true
 
       axis.selectAll '.domain'
-        .attr 'class', 'chart__tick-line chart__tick-line--domain'
+        .classed 'domain chart__tick-line chart__tick-line--domain', true
 
       axis.selectAll 'text'
-        .attr 'class', 'chart__tick-text'
+        .classed 'chart__tick-text', true
 
 
   drawLine: =>
