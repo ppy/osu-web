@@ -33,7 +33,7 @@
 
     <!-- quote -->
     <div class="osu-layout__row osu-layout__row--page-compact page-container under-parent">
-        <p><span class="fa fa-quote-left fa-5x"></span>&nbsp;&nbsp;&nbsp;“{{ trans('help.support.dev_quote') }}”</p>
+        <p><span class="fa fa-quote-left fa-5x"></span>&nbsp;&nbsp;&nbsp;“{!! trans('help.support.dev_quote') !!}”</p>
         <strong style="float: right;">— Dean “peppy” Herbert</strong>
         <br/>
     </div>
