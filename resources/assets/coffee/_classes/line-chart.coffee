@@ -35,10 +35,7 @@ class @LineChart
     @y = d3.scale.linear()
       .domain d3.extent(@data, (d) => d.rank)
 
-    @setScalesRange()
-
     @svg = d3.select(@area).append 'svg'
-    @setSvgSize()
 
     @createXAxisLine()
 
