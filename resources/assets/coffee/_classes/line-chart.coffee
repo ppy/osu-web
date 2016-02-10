@@ -176,9 +176,11 @@ class @LineChart
 
   resize: =>
     @setDimensions()
+
+    @setScalesRange()
+
     @setSvgSize()
     @setWrapperSize()
-    @setScalesRange()
     @setAxesSize()
     @setLineSize()
 
