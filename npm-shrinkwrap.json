@@ -3733,6 +3733,11 @@
       "from": "bower@>=1.7.4 <2.0.0",
       "resolved": "https://registry.npmjs.org/bower/-/bower-1.7.7.tgz"
     },
+    "d3": {
+      "version": "3.5.14",
+      "from": "d3@latest",
+      "resolved": "https://registry.npmjs.org/d3/-/d3-3.5.14.tgz"
+    },
     "font-awesome": {
       "version": "4.5.0",
       "from": "font-awesome@>=4.5.0 <5.0.0",
