@@ -35,7 +35,7 @@ return [
             and do at times struggle to maintain the standards I strive for. 
             I would like to offer my personal thanks to those who have supported osu! thus far, 
             and just as much to those who continue to support this amazing game and community into the future :).',
-        
+
         'why_support' => [
             'title' => 'Why should I support osu!?',
             'blocks' => [
