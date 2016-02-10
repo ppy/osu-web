@@ -16,7 +16,7 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @LineChart
-  constructor: (@area, @input) ->
+  constructor: (@area, @formats) ->
     @x = d3.time.scale()
 
     @y = d3.scale.linear()
@@ -41,18 +41,16 @@ class @LineChart
       .ticks 15
       .outerTickSize 0
       .tickPadding 5
-      .tickFormat @input.formats.x
+      .tickFormat @formats.x
       .orient 'bottom'
 
     @yAxis = d3.svg.axis()
       .ticks 4
-      .tickFormat @input.formats.y
+      .tickFormat @formats.y
       .orient 'left'
 
     @line = d3.svg.line()
       .interpolate 'monotone'
-
-    @loadData(@input.data)
 
 
   margins:
