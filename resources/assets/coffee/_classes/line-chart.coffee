@@ -153,8 +153,9 @@ class @LineChart
       .classed 'chart__tick-line', true
 
     @svgXAxis.selectAll 'text'
-      .style 'text-anchor', ''
-      .classed 'chart__tick-text', true
+      .style 'text-anchor', 'start'
+      .attr 'transform', 'rotate(45)'
+      .classed 'chart__tick-text chart__tick-text--strong', true
 
     @svgYAxis.selectAll 'text'
       .classed 'chart__tick-text', true
