@@ -47,11 +47,14 @@ class ProfilePage.Extra extends React.Component
     elements = document.getElementsByClassName('js-profile-page-extra--scrollspy')
     return unless elements.length
 
+    if osu.bottomPage()
+      @setState mode: _.last(elements).getAttribute('id')
+      return
+
     for page in elements by -1
       continue unless page.getBoundingClientRect().top <= 0
 
       @setState mode: page.getAttribute('id')
-
       return
 
     @setState mode: page.getAttribute('id')
