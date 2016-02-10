@@ -17,26 +17,16 @@
  *
  */
 .chart {
+  @_top: ~"chart";
+
   height: 250px;
 
   &__axis {
-    line, path {
-      fill: none;
-      stroke: @grey-c;
-      stroke-width: 1px;
-      shape-rendering: crispEdges;
-    }
+    fill: @text-color;
 
     &--x {
-      line, path {
-        stroke: url(#xAxisLineGradient);
-      }
-    }
-
-    &--y {
-      .domain {
-        stroke: none;
-      }
+      font-weight: 700;
+      font-size: 12px;
     }
   }
 
@@ -44,5 +34,31 @@
     fill: none;
     stroke: @pink-darker;
     stroke-width: 3px;
+  }
+
+  &__tick-line {
+    fill: none;
+    stroke: @grey-c;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+
+    &--domain {
+      .@{_top}__axis--y & {
+        stroke: none;
+      }
+    }
+
+    &--tick {
+      .@{_top}__axis--x & {
+        stroke: url(#x-axis-line-gradient);
+      }
+    }
+  }
+
+  &__tick-text {
+    .@{_top}__axis--x & {
+      text-anchor: start;
+      transform: rotate(45deg);
+    }
   }
 }

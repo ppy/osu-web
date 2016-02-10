@@ -91,7 +91,7 @@ class @LineChart
   createXAxisLine: =>
     @xAxisLine = @svg.append 'defs'
       .append 'linearGradient'
-      .attr 'id', 'xAxisLineGradient'
+      .attr 'id', 'x-axis-line-gradient'
       .attr 'gradientUnits', 'userSpaceOnUse'
       .attr 'x1', '0'
       .attr 'x2', '0'
@@ -147,19 +147,26 @@ class @LineChart
       .attr 'height', @height
 
 
-  drawXAxis: =>
+  drawAxes: =>
     @svgXAxis
       .attr 'transform', "translate(0, #{@height})"
       .call @xAxis
 
-    @svgXAxis.selectAll 'text'
-      .style 'text-anchor', 'end'
-      .attr 'transform', 'rotate(-45)'
-
-
-  drawYAxis: =>
     @svgYAxis
       .call @yAxis
+
+    @svgXAxis.selectAll 'text'
+      .style 'text-anchor', ''
+
+    for axis in [@svgXAxis, @svgYAxis]
+      axis.selectAll '.tick line, .tick path'
+        .attr 'class', 'chart__tick-line chart__tick-line--tick'
+
+      axis.selectAll '.domain'
+        .attr 'class', 'chart__tick-line chart__tick-line--domain'
+
+      axis.selectAll 'text'
+        .attr 'class', 'chart__tick-text'
 
 
   drawLine: =>
@@ -175,6 +182,5 @@ class @LineChart
     @setAxesSize()
     @setLineSize()
 
-    @drawXAxis()
-    @drawYAxis()
+    @drawAxes()
     @drawLine()
