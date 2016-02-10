@@ -25,6 +25,20 @@ ProfilePage.Historical = React.createClass
     showingPlaycounts: 5
     showingRecent: 5
 
+
+  componentDidMount: ->
+    @_rankHistory()
+    $(window).on 'throttled-resize.profilePageHistorical', @_rankHistoryChart.resize
+
+
+  componentDidUpdate: ->
+    @_rankHistory()
+
+
+  componentWillUnmount: ->
+    $(window).off '.profilePageHistorical'
+
+
   _showMore: (key, e) ->
     e.preventDefault() if e
 
@@ -71,12 +85,45 @@ ProfilePage.Historical = React.createClass
             className: 'beatmapset-row__detail-column'
             details[1]
 
+
+  _rankHistory: ->
+    data = @props.rankHistories.data
+
+    startDate = moment().subtract(data.length, 'days')
+
+    data = data
+      .filter (rank) => rank > 0
+      .map (rank) =>
+        x: startDate.add(1, 'day').clone().toDate()
+        # rank must be drawn inverted.
+        y: -rank
+
+    formats =
+      x: d3.time.format '%b-%-d'
+      y: (d) => "##{(-d).toLocaleString()}"
+
+    @_rankHistoryChart ||= new LineChart(@refs.chartArea, formats)
+    @_rankHistoryChart.loadData(data)
+
+
   render: ->
     div
       className: 'profile-extra'
       div className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'historical'
 
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.historical.title')
+
+      if @props.rankHistories
+        [
+          h3
+            key: 'title'
+            className: 'profile-extra__title profile-extra__title--small'
+            Lang.get('users.show.extra.historical.rank_history.title')
+          div
+            key: 'area'
+            ref: 'chartArea'
+            className: 'chart'
+        ]
 
       h3
         className: 'profile-extra__title profile-extra__title--small'
