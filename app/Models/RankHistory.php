@@ -38,8 +38,8 @@ class RankHistory extends Model
     {
         $data = [];
 
-        $startOffset = Count::currentRankStart();
-        $end = $startOffset + 90;
+        $startOffset = Count::currentRankStart() + 1;
+        $end = $startOffset + 89;
 
         for ($i = $startOffset; $i < $end; $i++) {
             $column = 'r'.strval($i % 90);
