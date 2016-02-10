@@ -28,6 +28,14 @@ ProfilePage.Historical = React.createClass
 
   componentDidMount: ->
     @_rankHistory()
+    $(window).on 'throttled-resize.profilePageHistorical', @_rankHistoryChart.resize
+
+
+  componentDidUpdate: ->
+
+
+  componentWillUnmount: ->
+    $(window).off '.profilePageHistorical'
 
 
   _showMore: (key, e) ->
@@ -78,7 +86,24 @@ ProfilePage.Historical = React.createClass
 
 
   _rankHistory: ->
-    @_rankHistoriesChart = new LineChart(@refs.chartArea, @props.rankHistories.data)
+    data = @props.rankHistories.data
+
+    startDate = moment().subtract(data.length, 'days')
+
+    input =
+      data:
+        data
+          .filter (rank) => rank > 0
+          .map (rank) =>
+            x: startDate.add(1, 'day').clone().toDate()
+            # rank must be drawn inverted.
+            y: -rank
+
+      formats:
+        x: d3.time.format '%b-%-d'
+        y: (d) => (-d).toLocaleString()
+
+    @_rankHistoryChart = new LineChart(@refs.chartArea, input)
 
 
   render: ->

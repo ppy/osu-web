@@ -16,60 +16,43 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @LineChart
-  constructor: (@area, data) ->
-
-    startDate = moment().subtract(data.length, 'days')
-
-    @data = data
-      .filter (rank) => rank > 0
-      .map (rank) =>
-        date: startDate.add(1, 'day').clone().toDate()
-        # rank must be drawn inverted.
-        rank: -rank
-
-    @setDimensions()
-
+  constructor: (@area, @input) ->
     @x = d3.time.scale()
-      .domain d3.extent(@data, (d) => d.date)
 
     @y = d3.scale.linear()
-      .domain d3.extent(@data, (d) => d.rank)
 
     @svg = d3.select(@area).append 'svg'
 
     @createXAxisLine()
 
-    @wrapper = @svg.append 'g'
-      .attr 'transform', "translate(#{@margins.left}, #{@margins.top})"
+    @svgWrapper = @svg.append 'g'
+      .classed 'chart__wrapper', true
+
+    @svgXAxis = @svgWrapper.append 'g'
+      .classed 'chart__axis chart__axis--x', true
+
+    @svgYAxis = @svgWrapper.append 'g'
+      .classed 'chart__axis chart__axis--y', true
+
+    @svgLine = @svgWrapper.append 'path'
+      .classed 'chart__line', true
 
     @xAxis = d3.svg.axis()
       .ticks 15
       .outerTickSize 0
       .tickPadding 5
-      .tickFormat @xFormat
+      .tickFormat @input.formats.x
       .orient 'bottom'
 
     @yAxis = d3.svg.axis()
       .ticks 4
-      .tickFormat @yFormat
+      .tickFormat @input.formats.y
       .orient 'left'
 
     @line = d3.svg.line()
       .interpolate 'monotone'
 
-    @svgXAxis = @wrapper.append 'g'
-      .classed 'chart__axis chart__axis--x', true
-
-    @svgYAxis = @wrapper.append 'g'
-      .classed 'chart__axis chart__axis--y', true
-
-    @svgLine = @wrapper.append 'path'
-      .classed 'chart__line', true
-      .datum @data
-
-    @resize()
-
-    $(window).on 'throttled-resize', @resize
+    @loadData(@input.data)
 
 
   margins:
@@ -79,13 +62,14 @@ class @LineChart
     left: 100
 
 
-  xFormat: d3.time.format '%b-%-d'
+  loadData: (data) =>
+    @data = data
+    @svgLine.datum data
+
+    @resize()
 
 
-  yFormat: (d) => (-d).toLocaleString()
-
-
-  createXAxisLine: =>
+  createXAxisLine: () =>
     @xAxisLine = @svg.append 'defs'
       .append 'linearGradient'
       .attr 'id', 'x-axis-line-gradient'
@@ -112,8 +96,12 @@ class @LineChart
 
 
   setScalesRange: =>
-    @x.range [0, @width]
-    @y.range [@height, 0]
+    @x
+      .range [0, @width]
+      .domain d3.extent(@data, (d) => d.x)
+    @y
+      .range [@height, 0]
+      .domain d3.extent(@data, (d) => d.y)
 
 
   setAxesSize: =>
@@ -128,8 +116,8 @@ class @LineChart
 
   setLineSize: =>
     @line
-      .x (d) => @x d.date
-      .y (d) => @y d.rank
+      .x (d) => @x d.x
+      .y (d) => @y d.y
 
 
   setSvgSize: =>
@@ -139,9 +127,10 @@ class @LineChart
 
 
   setWrapperSize: =>
-    @wrapper
+    @svgWrapper
       .attr 'width', @width
       .attr 'height', @height
+      .attr 'transform', "translate(#{@margins.left}, #{@margins.top})"
 
 
   drawAxes: =>
