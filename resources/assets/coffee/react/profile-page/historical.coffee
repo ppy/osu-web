@@ -100,7 +100,7 @@ ProfilePage.Historical = React.createClass
 
     formats =
       x: d3.time.format '%b-%-d'
-      y: (d) => (-d).toLocaleString()
+      y: (d) => "##{(-d).toLocaleString()}"
 
     @_rankHistoryChart ||= new LineChart(@refs.chartArea, formats)
     @_rankHistoryChart.loadData(data)
