@@ -65,15 +65,15 @@ class CommunityController extends Controller
 
         $featuredStreamId = Cache::get('featuredStream');
         if ($featuredStreamId !== null) {
+            $featuredStreamId = floatval($featuredStreamId);
             foreach ($streams as $stream) {
-                if ($stream->_id !== $featuredStreamId) {
+                if (floatval($stream->_id) !== $featuredStreamId) {
                     continue;
                 }
                 $featuredStream = $stream;
                 break;
             }
         }
-
         return view('community.live', compact('streams', 'featuredStream'));
     }
 
@@ -84,7 +84,7 @@ class CommunityController extends Controller
         }
 
         if ($request->has('promote')) {
-            Cache::forever('featuredStream', intval($request->promote));
+            Cache::forever('featuredStream', floatval($request->promote));
         }
 
         if ($request->has('demote')) {
