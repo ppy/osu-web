@@ -65,9 +65,9 @@ class CommunityController extends Controller
 
         $featuredStreamId = Cache::get('featuredStream');
         if ($featuredStreamId !== null) {
-            $featuredStreamId = floatval($featuredStreamId);
+            $featuredStreamId = (string)$featuredStreamId;
             foreach ($streams as $stream) {
-                if (floatval($stream->_id) !== $featuredStreamId) {
+                if ((string)$stream->_id !== $featuredStreamId) {
                     continue;
                 }
                 $featuredStream = $stream;
