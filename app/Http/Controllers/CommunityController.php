@@ -74,6 +74,7 @@ class CommunityController extends Controller
                 break;
             }
         }
+
         return view('community.live', compact('streams', 'featuredStream'));
     }
 
