@@ -44,6 +44,8 @@ class ProfilePage.Extra extends React.Component
 
 
   _modeScan: =>
+    return if @_scrolling
+
     pages = document.getElementsByClassName('js-profile-page-extra--scrollspy')
     return unless pages.length
 
@@ -65,8 +67,12 @@ class ProfilePage.Extra extends React.Component
 
 
   _modeSwitch: (_e, mode) =>
+    @_scrolling = true
     $.scrollTo "##{mode}", 500,
-      onAfter: => @setState mode: mode
+      onAfter: =>
+        @setState mode: mode
+        setTimeout (=> @_scrolling = false), 100
+      offset: @refs.tabs.getBoundingClientRect().height * -1
 
 
   _removeListeners: ->
@@ -96,6 +102,7 @@ class ProfilePage.Extra extends React.Component
       div
         className: 'profile-extra-tabs js-sticky-header'
         'data-sticky-header-target': 'profile-extra-tabs'
+        ref: 'tabs'
         div
           className: tabsContainerClasses
           div className: 'osu-layout__row',
