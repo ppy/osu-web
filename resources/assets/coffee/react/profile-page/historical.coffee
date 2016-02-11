@@ -87,6 +87,8 @@ ProfilePage.Historical = React.createClass
 
 
   _rankHistory: ->
+    return unless @props.rankHistories
+
     data = @props.rankHistories.data
 
     startDate = moment().subtract(data.length, 'days')
@@ -113,17 +115,14 @@ ProfilePage.Historical = React.createClass
 
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.historical.title')
 
-      if @props.rankHistories
-        [
-          h3
-            key: 'title'
-            className: 'profile-extra__title profile-extra__title--small'
-            Lang.get('users.show.extra.historical.rank_history.title')
-          div
-            key: 'area'
-            ref: 'chartArea'
-            className: 'chart'
-        ]
+      div
+        className: 'hidden' unless @props.rankHistories
+        h3
+          className: 'profile-extra__title profile-extra__title--small'
+          Lang.get('users.show.extra.historical.rank_history.title')
+        div
+          ref: 'chartArea'
+          className: 'chart'
 
       h3
         className: 'profile-extra__title profile-extra__title--small'
