@@ -56,6 +56,8 @@ class ProfilePage.Extra extends React.Component
       @setState mode: _.last(elements).getAttribute('id')
       return
 
+    # FIXME: I don't remember why this one scans from bottom while
+    # the one in forum.refreshCounter does it from top.
     for page in pages by -1
       pageTop = page.getBoundingClientRect().top
       continue unless pageTop <= anchorHeight
@@ -67,11 +69,18 @@ class ProfilePage.Extra extends React.Component
 
 
   _modeSwitch: (_e, mode) =>
+    # Don't bother scanning the current position.
+    # The result will be wrong when target page is too short anyway.
     @_scrolling = true
+
     $.scrollTo "##{mode}", 500,
       onAfter: =>
-        @setState mode: mode
-        setTimeout (=> @_scrolling = false), 100
+        # Manually set the mode to avoid confusion (wrong highlight).
+        # Scrolling will obviously break it but that's unfortunate result
+        # from having the scrollspy marker at middle of page.
+        @setState mode: mode, =>
+          @_scrolling = false
+      # count for the tabs height
       offset: @refs.tabs.getBoundingClientRect().height * -1
 
 
