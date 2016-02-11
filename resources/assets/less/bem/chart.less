@@ -21,12 +21,13 @@
 
   height: 250px;
 
-  &__axis {
-    fill: @text-color;
+  &__tick-gradient {
+    &--end {
+      stop-color: @grey-c;
+    }
 
-    &--x {
-      font-weight: 700;
-      font-size: 12px;
+    &--start {
+      stop-color: @grey-f;
     }
   }
 
@@ -38,27 +39,20 @@
 
   &__tick-line {
     fill: none;
-    stroke: @grey-c;
     stroke-width: 1px;
     shape-rendering: crispEdges;
 
-    &--domain {
-      .@{_top}__axis--y & {
-        stroke: none;
-      }
-    }
-
-    &--tick {
-      .@{_top}__axis--x & {
-        stroke: url(#x-axis-line-gradient);
-      }
+    &--default {
+      stroke: @grey-c;
     }
   }
 
   &__tick-text {
-    .@{_top}__axis--x & {
-      text-anchor: start;
-      transform: rotate(45deg);
+    fill: @text-color;
+    font-size: 12px;
+
+    &--strong {
+      font-weight: 700;
     }
   }
 }
