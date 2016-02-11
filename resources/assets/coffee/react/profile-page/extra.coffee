@@ -79,7 +79,11 @@ class ProfilePage.Extra extends React.Component
         # Scrolling will obviously break it but that's unfortunate result
         # from having the scrollspy marker at middle of page.
         @setState mode: mode, =>
-          @_scrolling = false
+          # Doesn't work:
+          # - part of state (callback, part of mode setting)
+          # - simple variable in callback
+          # Both still change the switch too soon.
+          setTimeout (=> @_scrolling = false), 100
       # count for the tabs height
       offset: @refs.tabs.getBoundingClientRect().height * -1
 
