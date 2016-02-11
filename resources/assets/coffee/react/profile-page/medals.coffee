@@ -57,8 +57,6 @@ ProfilePage.Medals = React.createClass
   render: ->
     div
       className: 'profile-extra'
-      div className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'medals'
-
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.medals.title')
 
       div className: 'medals-group',

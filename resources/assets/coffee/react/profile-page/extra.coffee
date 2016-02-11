@@ -106,27 +106,41 @@ class ProfilePage.Extra extends React.Component
                 el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
 
       if withMePage
-        div className: 'osu-layout__row',
+        div
+          className: 'osu-layout__row js-profile-page-extra--scrollspy'
+          id: 'me'
           el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
 
-      div className: 'osu-layout__row',
+      div
+        className: 'osu-layout__row js-profile-page-extra--scrollspy'
+        id: 'recent_activities'
         el ProfilePage.RecentActivities, recentActivities: @props.recentActivities
 
-      div className: 'osu-layout__row',
+      div
+        className: 'osu-layout__row js-profile-page-extra--scrollspy'
+        id: 'kudosu'
         el ProfilePage.Kudosu, user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu
 
-      div className: 'osu-layout__row',
+      div
+        className: 'osu-layout__row js-profile-page-extra--scrollspy'
+        id: 'top_ranks'
         el ProfilePage.TopRanks, user: @props.user, scoresBest: @props.scoresBest, scoresFirst: @props.scoresFirst
 
-      div className: 'osu-layout__row',
+      div
+        className: 'osu-layout__row js-profile-page-extra--scrollspy'
+        id: 'beatmaps'
         el ProfilePage.Beatmaps,
           favouriteBeatmapSets: @props.favouriteBeatmapSets
           rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
 
-      div className: 'osu-layout__row',
+      div
+        className: 'osu-layout__row js-profile-page-extra--scrollspy'
+        id: 'medals'
         el ProfilePage.Medals, achievements: @props.achievements, allAchievements: @props.allAchievements
 
-      div className: 'osu-layout__row',
+      div
+        className: 'osu-layout__row js-profile-page-extra--scrollspy'
+        id: 'historical'
         el ProfilePage.Historical,
           beatmapPlaycounts: @props.beatmapPlaycounts
           rankHistories: @props.rankHistories
