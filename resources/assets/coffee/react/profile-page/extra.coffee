@@ -44,15 +44,19 @@ class ProfilePage.Extra extends React.Component
 
 
   _modeScan: =>
-    elements = document.getElementsByClassName('js-profile-page-extra--scrollspy')
-    return unless elements.length
+    pages = document.getElementsByClassName('js-profile-page-extra--scrollspy')
+    return unless pages.length
+
+    currentPage = null
+    anchorHeight = window.innerHeight * 0.5
 
     if osu.bottomPage()
       @setState mode: _.last(elements).getAttribute('id')
       return
 
-    for page in elements by -1
-      continue unless page.getBoundingClientRect().top <= 0
+    for page in pages by -1
+      pageTop = page.getBoundingClientRect().top
+      continue unless pageTop <= anchorHeight
 
       @setState mode: page.getAttribute('id')
       return
