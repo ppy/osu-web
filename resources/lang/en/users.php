@@ -126,6 +126,9 @@ return [
                 ],
                 'none' => 'None... yet.',
             ],
+            'misc' => [
+                'reorder' => 'Reorder',
+            ],
         ],
         'first_members' => 'here since the beginning',
         'is_supporter' => 'osu!supporter',

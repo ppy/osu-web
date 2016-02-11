@@ -57,6 +57,8 @@ ProfilePage.Medals = React.createClass
   render: ->
     div
       className: 'profile-extra'
+      el ProfilePage.DragDropToggle
+
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.medals.title')
 
       div className: 'medals-group',
