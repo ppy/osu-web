@@ -28,7 +28,6 @@ ProfilePage.Historical = React.createClass
 
   componentDidMount: ->
     @_rankHistory()
-    $(window).on 'throttled-resize.profilePageHistorical', @_rankHistoryChart.resize
 
 
   componentDidUpdate: ->
@@ -104,7 +103,10 @@ ProfilePage.Historical = React.createClass
       x: d3.time.format '%b-%-d'
       y: (d) => "##{(-d).toLocaleString()}"
 
-    @_rankHistoryChart ||= new LineChart(@refs.chartArea, formats)
+    unless @_rankHistoryChart
+      @_rankHistoryChart ||= new LineChart(@refs.chartArea, formats)
+      $(window).on 'throttled-resize.profilePageHistorical', @_rankHistoryChart.resize
+
     @_rankHistoryChart.loadData(data)
 
 
