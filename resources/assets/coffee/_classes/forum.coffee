@@ -99,11 +99,7 @@ class @Forum
     currentPost = null
     anchorHeight = window.innerHeight * 0.5
 
-    pageBottom = document.getElementsByClassName('js-page-footer')[0]
-      .getBoundingClientRect()
-      .bottom
-
-    if pageBottom == window.innerHeight
+    if osu.bottomPage()
       currentPost = @posts[@posts.length - 1]
     else
       for post in @posts

@@ -18,6 +18,15 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 @osu =
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
 
+
+  bottomPage: ->
+    pageBottom = document.getElementsByClassName('js-page-footer')[0]
+      .getBoundingClientRect()
+      .bottom
+
+    pageBottom == window.innerHeight
+
+
   ajaxError: (xhr) ->
     message = xhr?.responseJSON?.error
 
