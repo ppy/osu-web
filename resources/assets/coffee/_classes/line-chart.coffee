@@ -96,10 +96,10 @@ class @LineChart
   setScalesRange: =>
     @x
       .range [0, @width]
-      .domain d3.extent(@data, (d) => d.x)
+      .domain @options.domains?.x || d3.extent(@data, (d) => d.x)
     @y
       .range [@height, 0]
-      .domain d3.extent(@data, (d) => d.y)
+      .domain @options.domains?.y || d3.extent(@data, (d) => d.y)
 
 
   setAxesSize: =>
