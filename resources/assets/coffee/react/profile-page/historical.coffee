@@ -113,8 +113,6 @@ ProfilePage.Historical = React.createClass
   render: ->
     div
       className: 'profile-extra'
-      div className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'historical'
-
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.historical.title')
 
       div

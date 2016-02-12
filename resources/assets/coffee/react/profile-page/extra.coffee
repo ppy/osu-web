@@ -44,15 +44,23 @@ class ProfilePage.Extra extends React.Component
 
 
   _modeScan: =>
-    elements = document.getElementsByClassName('js-profile-page-extra--scrollspy')
-    return unless elements.length
+    return if @_scrolling
+
+    pages = document.getElementsByClassName('js-profile-page-extra--scrollspy')
+    return unless pages.length
+
+    currentPage = null
+    anchorHeight = window.innerHeight * 0.5
 
     if osu.bottomPage()
       @setState mode: _.last(elements).getAttribute('id')
       return
 
-    for page in elements by -1
-      continue unless page.getBoundingClientRect().top <= 0
+    # FIXME: I don't remember why this one scans from bottom while
+    # the one in forum.refreshCounter does it from top.
+    for page in pages by -1
+      pageTop = page.getBoundingClientRect().top
+      continue unless pageTop <= anchorHeight
 
       @setState mode: page.getAttribute('id')
       return
@@ -61,8 +69,23 @@ class ProfilePage.Extra extends React.Component
 
 
   _modeSwitch: (_e, mode) =>
+    # Don't bother scanning the current position.
+    # The result will be wrong when target page is too short anyway.
+    @_scrolling = true
+
     $.scrollTo "##{mode}", 500,
-      onAfter: => @setState mode: mode
+      onAfter: =>
+        # Manually set the mode to avoid confusion (wrong highlight).
+        # Scrolling will obviously break it but that's unfortunate result
+        # from having the scrollspy marker at middle of page.
+        @setState mode: mode, =>
+          # Doesn't work:
+          # - part of state (callback, part of mode setting)
+          # - simple variable in callback
+          # Both still change the switch too soon.
+          setTimeout (=> @_scrolling = false), 100
+      # count for the tabs height
+      offset: @refs.tabs.getBoundingClientRect().height * -1
 
 
   _removeListeners: ->
@@ -92,6 +115,7 @@ class ProfilePage.Extra extends React.Component
       div
         className: 'profile-extra-tabs js-sticky-header'
         'data-sticky-header-target': 'profile-extra-tabs'
+        ref: 'tabs'
         div
           className: tabsContainerClasses
           div className: 'osu-layout__row',
@@ -102,27 +126,41 @@ class ProfilePage.Extra extends React.Component
                 el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
 
       if withMePage
-        div className: 'osu-layout__row',
+        div
+          className: 'osu-layout__row js-profile-page-extra--scrollspy'
+          id: 'me'
           el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
 
-      div className: 'osu-layout__row',
+      div
+        className: 'osu-layout__row js-profile-page-extra--scrollspy'
+        id: 'recent_activities'
         el ProfilePage.RecentActivities, recentActivities: @props.recentActivities
 
-      div className: 'osu-layout__row',
+      div
+        className: 'osu-layout__row js-profile-page-extra--scrollspy'
+        id: 'kudosu'
         el ProfilePage.Kudosu, user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu
 
-      div className: 'osu-layout__row',
+      div
+        className: 'osu-layout__row js-profile-page-extra--scrollspy'
+        id: 'top_ranks'
         el ProfilePage.TopRanks, user: @props.user, scoresBest: @props.scoresBest, scoresFirst: @props.scoresFirst
 
-      div className: 'osu-layout__row',
+      div
+        className: 'osu-layout__row js-profile-page-extra--scrollspy'
+        id: 'beatmaps'
         el ProfilePage.Beatmaps,
           favouriteBeatmapSets: @props.favouriteBeatmapSets
           rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
 
-      div className: 'osu-layout__row',
+      div
+        className: 'osu-layout__row js-profile-page-extra--scrollspy'
+        id: 'medals'
         el ProfilePage.Medals, achievements: @props.achievements, allAchievements: @props.allAchievements
 
-      div className: 'osu-layout__row',
+      div
+        className: 'osu-layout__row js-profile-page-extra--scrollspy'
+        id: 'historical'
         el ProfilePage.Historical,
           beatmapPlaycounts: @props.beatmapPlaycounts
           rankHistories: @props.rankHistories

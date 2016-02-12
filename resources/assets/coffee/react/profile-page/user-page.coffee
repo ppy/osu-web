@@ -63,7 +63,6 @@ class ProfilePage.UserPage extends React.Component
       page = @pageShow()
 
     el 'div', className: 'profile-extra',
-      el 'div', className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'me'
       el 'h2', className: 'profile-extra__title', Lang.get('users.show.extra.me.title')
       if withEditButton && !@props.userPage.editing
         el 'div', className: 'profile-extra__actions',

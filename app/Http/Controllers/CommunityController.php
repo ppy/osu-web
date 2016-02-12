@@ -65,8 +65,9 @@ class CommunityController extends Controller
 
         $featuredStreamId = Cache::get('featuredStream');
         if ($featuredStreamId !== null) {
+            $featuredStreamId = (string) $featuredStreamId;
             foreach ($streams as $stream) {
-                if ($stream->_id !== $featuredStreamId) {
+                if ((string) $stream->_id !== $featuredStreamId) {
                     continue;
                 }
                 $featuredStream = $stream;
@@ -84,7 +85,7 @@ class CommunityController extends Controller
         }
 
         if ($request->has('promote')) {
-            Cache::forever('featuredStream', intval($request->promote));
+            Cache::forever('featuredStream', floatval($request->promote));
         }
 
         if ($request->has('demote')) {
