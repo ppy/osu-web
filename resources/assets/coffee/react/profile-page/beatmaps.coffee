@@ -24,21 +24,21 @@ ProfilePage.Beatmaps = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
   render: ->
-    beatmaps =
+    allBeatmapSets =
       favourite: @props.favouriteBeatmapSets
       ranked_and_approved: @props.rankedAndApprovedBeatmapSets
 
     div
       className: 'profile-extra'
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.beatmaps.title')
-      ['favourite', 'ranked_and_approved'].map (section) ->
+      _.map allBeatmapSets, (beatmapSets, section) =>
         div
           key: section
-          h3 className: 'profile-extra__title--small', Lang.get("users.show.extra.beatmaps.#{section}.title", count: beatmaps[section].length)
-          if beatmaps[section].length
+          h3 className: 'profile-extra__title--small', Lang.get("users.show.extra.beatmaps.#{section}.title", count: beatmapSets.length)
+          if beatmapSets.length
             div className: 'beatmap-container',
               div className: 'listing',
-                beatmaps[section].map (beatmap) ->
-                  el(Panel, beatmap: beatmap, key: beatmap.beatmapset_id)
+                beatmapSets.map (beatmapSet) =>
+                  el(Panel, beatmap: beatmapSet, key: beatmapSet.beatmapset_id)
           else
             p className: 'profile-extra-entries', Lang.get('users.show.extra.beatmaps.none')
