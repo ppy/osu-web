@@ -17,9 +17,9 @@
 ###
 class @LineChart
   constructor: (@area, @options = {}) ->
-    @x = @options.scales?.x || d3.time.scale()
-
-    @y = @options.scales?.y || d3.scale.linear()
+    @options.scales ||= {}
+    @options.scales.x ||= d3.time.scale()
+    @options.scales.y ||= d3.scale.linear()
 
     @svg = d3.select(@area).append 'svg'
 
@@ -41,12 +41,10 @@ class @LineChart
       .ticks 15
       .outerTickSize 0
       .tickPadding 5
-      .tickFormat @options.formats?.x
       .orient 'bottom'
 
     @yAxis = d3.svg.axis()
       .ticks 4
-      .tickFormat @options.formats?.y
       .orient 'left'
 
     @line = d3.svg.line()
@@ -94,28 +92,32 @@ class @LineChart
 
 
   setScalesRange: =>
-    @x
+    @options.scales.x
       .range [0, @width]
       .domain @options.domains?.x || d3.extent(@data, (d) => d.x)
-    @y
+    @options.scales.y
       .range [@height, 0]
       .domain @options.domains?.y || d3.extent(@data, (d) => d.y)
 
 
   setAxesSize: =>
     @xAxis
-      .scale @x
+      .scale @options.scales.x
       .innerTickSize -@height
+      .tickFormat @options.formats?.x
+      .tickValues @options.tickValues?.x
 
     @yAxis
-      .scale @y
+      .scale @options.scales.y
       .innerTickSize -@width
+      .tickFormat @options.formats?.y
+      .tickValues @options.tickValues?.y
 
 
   setLineSize: =>
     @line
-      .x (d) => @x d.x
-      .y (d) => @y d.y
+      .x (d) => @options.scales.x d.x
+      .y (d) => @options.scales.y d.y
 
 
   setSvgSize: =>
