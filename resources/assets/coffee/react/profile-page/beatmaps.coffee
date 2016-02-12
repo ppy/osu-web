@@ -30,7 +30,6 @@ ProfilePage.Beatmaps = React.createClass
 
     div
       className: 'profile-extra'
-      div className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'beatmaps'
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.beatmaps.title')
       ['favourite', 'ranked_and_approved'].map (section) ->
         div null,
