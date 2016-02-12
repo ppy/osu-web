@@ -53,7 +53,7 @@ class ProfilePage.Extra extends React.Component
     anchorHeight = window.innerHeight * 0.5
 
     if osu.bottomPage()
-      @setState mode: _.last(elements).getAttribute('id')
+      @setState mode: _.last(pages).getAttribute('id')
       return
 
     # FIXME: I don't remember why this one scans from bottom while
