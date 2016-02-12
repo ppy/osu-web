@@ -55,7 +55,7 @@ class @LineChart
     top: 20
     right: 20
     bottom: 50
-    left: 100
+    left: 80
 
 
   loadData: (data) =>
