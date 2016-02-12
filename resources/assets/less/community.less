@@ -120,11 +120,13 @@
   }
 
   > .header {
-    .bg {
-      width: 100%;
-      position: relative;
-      z-index: 1;
-    }
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+
+    .at2x-simple("../../images/headers/community-support.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 1;
+    padding-bottom: 49.89%;
 
     .info {
       z-index: 2;
@@ -166,6 +168,13 @@
         font-style: italic;
       }
     }
+  }
+
+  &__preview {
+    .at2x-simple("../../images/headers/community-support-preview.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding-bottom: 28%;
   }
 
   .convinced {
@@ -231,6 +240,10 @@
 @media (max-width: 560px) {
   .community-support {
     > .header {
+      background-image: inherit;
+      padding-bottom: inherit;
+      box-shadow: inherit;
+
       .info {
         position: relative;
         left: 0;

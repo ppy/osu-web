@@ -18,18 +18,18 @@
 @extends("master")
 @section("content")
 <div class="community-support osu-layout__row">
-  <div id="community_support_header" class="header">
 
+  <div class="header">
     <!-- header info -->
     <div class="info">
       <h2 class="big-desc">{!! trans('community.support.header.big_description') !!}</h2>
       <p class="small-desc">{!! trans('community.support.header.small_description') !!}</p>
 
-      <a class="shadow shadow--hover button" href="">{!! trans('community.support.header.support_button') !!}&nbsp;&nbsp;<span class="fa fa-heart"></span></a>
+      <a class="shadow shadow--hover button" href="">
+        {!! trans('community.support.header.support_button') !!}&nbsp;&nbsp;<span class="fa fa-heart"></span>
+      </a>
     </div><!-- end: header info -->
-
-    <img class="bg" src="../images/headers/community-support.png" alt="support osu!">
-  </div> <!-- end: header -->
+  </div>
 
   <!-- quote -->
   <div class="osu-layout__row osu-layout__row--page-compact page-container under-parent">
@@ -74,7 +74,7 @@
     <br/><br/>
 
     <!-- preview -->
-    <img class="img-responsive" src="../images/headers/community-support-preview.png" alt="supporter preview">
+    <div class="community-support__preview"></div>
     <br/><br/>
     
     <div class="perk-row text-center">
