@@ -110,12 +110,11 @@ ProfilePage.Historical = React.createClass
     return unless @props.rankHistories
 
     data = @props.rankHistories.data
+      .filter (rank) => rank > 0
 
     startDate = moment().subtract(data.length, 'days')
 
-    data = data
-      .filter (rank) => rank > 0
-      .map (rank) =>
+    data = data.map (rank) =>
         x: startDate.add(1, 'day').clone().toDate()
         # rank must be drawn inverted.
         y: -rank
