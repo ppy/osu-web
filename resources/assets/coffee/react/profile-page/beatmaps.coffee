@@ -32,7 +32,8 @@ ProfilePage.Beatmaps = React.createClass
       className: 'profile-extra'
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.beatmaps.title')
       ['favourite', 'ranked_and_approved'].map (section) ->
-        div null,
+        div
+          key: section
           h3 className: 'profile-extra__title--small', Lang.get("users.show.extra.beatmaps.#{section}.title", count: beatmaps[section].length)
           if beatmaps[section].length
             div className: 'beatmap-container',
