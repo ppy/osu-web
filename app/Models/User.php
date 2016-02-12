@@ -350,6 +350,11 @@ class User extends Model implements AuthenticatableContract
     const MEDALS = 6;
     const HISTORICAL = 7;
 
+    /**
+     * How many elements are we displaying on the profile page.
+     */
+    const EXTRAS_COUNT = 7;
+
     public function getExtrasOrderAttribute($value)
     {
         return unserialize($value);
