@@ -104,7 +104,7 @@ ProfilePage.Historical = React.createClass
       y: (d) => "##{(-d).toLocaleString()}"
 
     unless @_rankHistoryChart
-      @_rankHistoryChart ||= new LineChart(@refs.chartArea, formats)
+      @_rankHistoryChart = new LineChart(@refs.chartArea, formats)
       $(window).on 'throttled-resize.profilePageHistorical', @_rankHistoryChart.resize
 
     @_rankHistoryChart.loadData(data)
