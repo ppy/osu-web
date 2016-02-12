@@ -16,10 +16,10 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @LineChart
-  constructor: (@area, @formats) ->
-    @x = d3.time.scale()
+  constructor: (@area, @options = {}) ->
+    @x = @options.scales?.x || d3.time.scale()
 
-    @y = d3.scale.linear()
+    @y = @options.scales?.y || d3.scale.linear()
 
     @svg = d3.select(@area).append 'svg'
 
@@ -41,12 +41,12 @@ class @LineChart
       .ticks 15
       .outerTickSize 0
       .tickPadding 5
-      .tickFormat @formats.x
+      .tickFormat @options.formats?.x
       .orient 'bottom'
 
     @yAxis = d3.svg.axis()
       .ticks 4
-      .tickFormat @formats.y
+      .tickFormat @options.formats?.y
       .orient 'left'
 
     @line = d3.svg.line()
