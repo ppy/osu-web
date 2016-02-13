@@ -85,7 +85,7 @@ class CommunityController extends Controller
         }
 
         if ($request->has('promote')) {
-            Cache::forever('featuredStream', floatval($request->promote));
+            Cache::forever('featuredStream', (string) $request->promote);
         }
 
         if ($request->has('demote')) {
