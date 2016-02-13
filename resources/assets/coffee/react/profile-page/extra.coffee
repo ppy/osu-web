@@ -96,6 +96,8 @@ class ProfilePage.Extra extends React.Component
   _tabsStick: (_e, target) =>
     @setState tabsSticky: (target == 'profile-extra-tabs')
 
+  getChildContext: ->
+    return {withEdit: @props.withEdit}
 
   render: =>
     return if @props.mode == 'me'
@@ -165,3 +167,6 @@ class ProfilePage.Extra extends React.Component
           beatmapPlaycounts: @props.beatmapPlaycounts
           rankHistories: @props.rankHistories
           scores: @props.scores
+
+ProfilePage.Extra.childContextTypes =
+  withEdit: React.PropTypes.bool

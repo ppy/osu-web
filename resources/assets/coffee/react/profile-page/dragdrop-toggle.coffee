@@ -19,6 +19,14 @@
 
 class ProfilePage.DragDropToggle extends React.Component
   render: ->
-    span
-      className: 'fa fa-bars profile-extra__dragdrop-toggle'
-      title: Lang.get('users.show.extra.misc.reorder')
+    if @context.withEdit
+      span
+        className: 'fa fa-bars profile-extra__dragdrop-toggle'
+        title: Lang.get('users.show.extra.misc.reorder')
+    else
+      # empty selector so react stops complaining that render() returns nothing
+      span
+        className: ''
+
+ProfilePage.DragDropToggle.contextTypes =
+  withEdit: React.PropTypes.bool
