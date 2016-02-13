@@ -11,6 +11,8 @@ _mysqldump() {
 
 _mysqldump osu \
   migrations \
+  forum_forum_covers \
+  forum_topic_covers \
   osu_achievements \
   osu_apikeys \
   osu_beatmaps \

@@ -29,8 +29,8 @@ class ExtendProductsTable extends Migration
     public function up()
     {
         Schema::table('osu_store.products', function ($table) {
-            $table->boolean('promoted');
-            $table->integer('display_order');
+            $table->boolean('promoted')->default(false);
+            $table->integer('display_order')->default(0);
             $table->string('header_description');
             $table->string('header_image');
             $table->text('images_json');
