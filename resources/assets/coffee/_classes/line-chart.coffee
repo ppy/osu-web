@@ -16,12 +16,14 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @LineChart
-  constructor: (@area, @formats) ->
-    @x = d3.time.scale()
+  constructor: (area, @options = {}) ->
+    @options.scales ||= {}
+    @options.scales.x ||= d3.time.scale()
+    @options.scales.y ||= d3.scale.linear()
 
-    @y = d3.scale.linear()
+    @area = d3.select(area)
 
-    @svg = d3.select(@area).append 'svg'
+    @svg = @area.append 'svg'
 
     @createXAxisLine()
 
@@ -37,16 +39,38 @@ class @LineChart
     @svgLine = @svgWrapper.append 'path'
       .classed 'chart__line', true
 
+    @svgHoverArea = @svgWrapper.append 'rect'
+      .classed 'chart__hover-area', true
+      .on 'mouseout', @hideTooltip
+      .on 'mousemove', @positionTooltip
+      .on 'drag', @positionTooltip
+
+    @svgHoverMark = @svgWrapper.append 'circle'
+      .classed 'chart__hover-mark', true
+      .attr 'data-visibility', 'hidden'
+      .attr 'r', 5
+
+    @tooltip = @area.append 'div'
+      .classed 'chart__tooltip', true
+      .attr 'data-visibility', 'hidden'
+
+    @tooltipContainer = @tooltip.append 'div'
+      .classed 'chart__tooltip-container', true
+
+    @tooltipY = @tooltipContainer.append 'div'
+      .classed 'chart__tooltip-text chart__tooltip-text--y', true
+
+    @tooltipX = @tooltipContainer.append 'div'
+      .classed 'chart__tooltip-text chart__tooltip-text--x', true
+
     @xAxis = d3.svg.axis()
       .ticks 15
       .outerTickSize 0
       .tickPadding 5
-      .tickFormat @formats.x
       .orient 'bottom'
 
     @yAxis = d3.svg.axis()
       .ticks 4
-      .tickFormat @formats.y
       .orient 'left'
 
     @line = d3.svg.line()
@@ -57,7 +81,7 @@ class @LineChart
     top: 20
     right: 20
     bottom: 50
-    left: 100
+    left: 80
 
 
   loadData: (data) =>
@@ -87,35 +111,40 @@ class @LineChart
 
 
   setDimensions: =>
-    areaDims = @area.getBoundingClientRect()
+    areaDims = @area.node().getBoundingClientRect()
 
     @width = areaDims.width - (@margins.left + @margins.right)
     @height = areaDims.height - (@margins.top + @margins.bottom)
 
 
   setScalesRange: =>
-    @x
+    @options.scales.x
       .range [0, @width]
-      .domain d3.extent(@data, (d) => d.x)
-    @y
+      .domain @options.domains?.x || d3.extent(@data, (d) => d.x)
+
+    @options.scales.y
       .range [@height, 0]
-      .domain d3.extent(@data, (d) => d.y)
+      .domain @options.domains?.y || d3.extent(@data, (d) => d.y)
 
 
   setAxesSize: =>
     @xAxis
-      .scale @x
+      .scale @options.scales.x
       .innerTickSize -@height
+      .tickFormat @options.formats?.x
+      .tickValues @options.tickValues?.x
 
     @yAxis
-      .scale @y
+      .scale @options.scales.y
       .innerTickSize -@width
+      .tickFormat @options.formats?.y
+      .tickValues @options.tickValues?.y
 
 
   setLineSize: =>
     @line
-      .x (d) => @x d.x
-      .y (d) => @y d.y
+      .x (d) => @options.scales.x d.x
+      .y (d) => @options.scales.y d.y
 
 
   setSvgSize: =>
@@ -126,9 +155,12 @@ class @LineChart
 
   setWrapperSize: =>
     @svgWrapper
+      .attr 'transform', "translate(#{@margins.left}, #{@margins.top})"
+
+  setHoverAreaSize: =>
+    @svgHoverArea
       .attr 'width', @width
       .attr 'height', @height
-      .attr 'transform', "translate(#{@margins.left}, #{@margins.top})"
 
 
   drawAxes: =>
@@ -166,6 +198,52 @@ class @LineChart
       .attr 'd', @line
 
 
+  showTooltip: =>
+    fade.in @svgHoverMark.node()
+    fade.in @tooltip.node()
+
+
+  hideTooltip: =>
+    fade.out @svgHoverMark.node()
+    fade.out @tooltip.node()
+
+
+  positionTooltip: =>
+    d = @lookupX @options.scales.x.invert(d3.mouse(@svgHoverArea.node())[0])
+
+    return unless d
+
+    # only work in mobile
+    @showTooltip()
+    clearTimeout @_autoHideTooltip
+    @_autoHideTooltip = setTimeout @hideTooltip, 3000
+
+    coords = ['x', 'y'].map (axis) => @options.scales[axis] d[axis]
+
+    # avoids blurry positioning
+    coordsTooltip = [
+      coords[0] + @margins.left
+      coords[1] + @margins.top
+    ].map (coord) => "#{Math.round coord}px"
+
+    @svgHoverMark
+      .attr 'transform', "translate(#{coords.join(', ')})"
+
+    @tooltipX.text @options.formats.x(d.x)
+    @tooltipY.text @options.formats.y(d.y)
+    @tooltip
+      .style 'transform', "translate(#{coordsTooltip.join(', ')})"
+
+    unless @tooltipContainer.attr('data-width-set') == '1'
+      @tooltipContainer
+        .attr 'data-width-set', '1'
+        .style 'width', "#{@tooltipContainer.node().getBoundingClientRect().width}px"
+
+
+  lookupX: (x) =>
+    @data[d3.bisector((d) => d.x).right @data, x]
+
+
   resize: =>
     @setDimensions()
 
@@ -173,6 +251,7 @@ class @LineChart
 
     @setSvgSize()
     @setWrapperSize()
+    @setHoverAreaSize()
     @setAxesSize()
     @setLineSize()
 
