@@ -237,7 +237,7 @@ class @LineChart
     unless @tooltipContainer.attr('data-width-set') == '1'
       @tooltipContainer
         .attr 'data-width-set', '1'
-        .style 'width', "#{@tooltipContainer.node().getBoundingClientRect().width}px"
+        .style 'width', "#{@tooltipContainer.node().getBoundingClientRect().width * 1.2}px"
 
 
   lookupX: (x) =>
