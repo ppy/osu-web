@@ -22,10 +22,10 @@ class ProfileExtrasTest extends TestCase
 
         $this->actingAs($this->user)
             ->json('POST', '/account/update-profile-order', [
-                'order' => [7,6,5,4,3,2,1],
+                'order' => [7, 6, 5, 4, 3, 2, 1],
                 ])
             ->seeJson([
-                'status' => 'OK'
+                'status' => 'OK',
             ]);
     }
 
@@ -35,11 +35,11 @@ class ProfileExtrasTest extends TestCase
 
         $this->actingAs($this->user)
             ->json('POST', '/account/update-profile-order', [
-                'order' => [1,2,3,4,5,6,7,1],
+                'order' => [1, 2, 3, 4, 5, 6, 7, 1],
             ])
             ->seeJson([
                 'status' => 'error',
-                'errors' => [trans('errors.account.profile-order.duplicate')]
+                'errors' => [trans('errors.account.profile-order.duplicate')],
             ]);
     }
 
@@ -49,11 +49,11 @@ class ProfileExtrasTest extends TestCase
 
         $this->actingAs($this->user)
             ->json('POST', '/account/update-profile-order', [
-                'order' => [1,2,3,4,5,6,7,8],
+                'order' => [1, 2, 3, 4, 5, 6, 7, 8],
             ])
             ->seeJson([
                 'status' => 'error',
-                'errors' => [trans('errors.account.profile-order.invalid-id', ['count' => 7])]
+                'errors' => [trans('errors.account.profile-order.invalid-id', ['count' => 7])],
             ]);
     }
 }

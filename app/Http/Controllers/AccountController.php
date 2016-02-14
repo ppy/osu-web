@@ -85,8 +85,7 @@ class AccountController extends Controller
             'order' => 'required|array',
         ]);
 
-        if (!Auth::check())
-        {
+        if (!Auth::check()) {
             abort(403, trans('errors.codes.http-403'));
         }
 
@@ -96,30 +95,25 @@ class AccountController extends Controller
         // jQuery's AJAX methods convert ints to strings unfortunately,
         // so here we convert them back
         $order = array_map(function ($x) {
-            if (gettype($x) === 'string')
-            {
+            if (gettype($x) === 'string') {
                 return intval($x);
-            }
-            else
-            {
+            } else {
                 return $x;
             }
         }, $order);
 
         $count = array_fill(1, User::EXTRAS_COUNT, 0);
 
-        foreach($order as $i)
-        {
+        foreach ($order as $i) {
             // Checking whether there are any values in the order array
             // that are not IDs of profile page blocks.
-            if($i > User::EXTRAS_COUNT || $i < 1)
-            {
+            if ($i > User::EXTRAS_COUNT || $i < 1) {
                 return response()
                     ->json([
                         'status' => 'error',
                         'errors' => [
-                            trans('errors.account.profile-order.invalid-id', ['count' => User::EXTRAS_COUNT])
-                        ]
+                            trans('errors.account.profile-order.invalid-id', ['count' => User::EXTRAS_COUNT]),
+                        ],
                     ]);
             }
         }
@@ -128,16 +122,14 @@ class AccountController extends Controller
         // so we don't get repeating blocks on the profile page.
         $occurences = array_count_values($order);
 
-        foreach($occurences as $i)
-        {
-            if($i > 1)
-            {
+        foreach ($occurences as $i) {
+            if ($i > 1) {
                 return response()
                     ->json([
                         'status' => 'error',
                         'errors' => [
-                            trans('errors.account.profile-order.duplicate')
-                        ]
+                            trans('errors.account.profile-order.duplicate'),
+                        ],
                     ]);
             }
         }
@@ -147,7 +139,7 @@ class AccountController extends Controller
 
         return response()
             ->json([
-                'status' => 'OK'
+                'status' => 'OK',
             ]);
     }
 }

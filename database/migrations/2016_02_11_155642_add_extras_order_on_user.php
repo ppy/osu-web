@@ -17,7 +17,6 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use App\Models\User;
 
@@ -38,7 +37,7 @@ class AddExtrasOrderOnUser extends Migration
                 User::TOP_RANKS,
                 User::BEATMAPS,
                 User::MEDALS,
-                User::HISTORICAL
+                User::HISTORICAL,
             ]));
         });
     }
@@ -50,7 +49,7 @@ class AddExtrasOrderOnUser extends Migration
      */
     public function down()
     {
-        Schema::table('phpbb_users', function($table) {
+        Schema::table('phpbb_users', function ($table) {
             $table->dropColumn('extras_order');
         });
     }
