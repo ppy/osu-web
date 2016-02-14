@@ -19,6 +19,8 @@
 el = React.createElement
 
 class ProfilePage.Extra extends React.Component
+  # Mirrored from App/Models/User.php
+  # The numbers corresponding to particular profile section.
   USER_PAGE = 1
   RECENT_ACTIVITIES = 2
   KUDOSU = 3
@@ -27,21 +29,46 @@ class ProfilePage.Extra extends React.Component
   MEDALS = 6
   HISTORICAL = 7
 
+  sections = []
+
+  sections[USER_PAGE] = 'me'
+  sections[RECENT_ACTIVITIES] = 'recent_activities'
+  sections[KUDOSU] = 'kudosu'
+  sections[TOP_RANKS] = 'top_ranks'
+  sections[BEATMAPS] = 'beatmaps'
+  sections[MEDALS] = 'medals'
+  sections[HISTORICAL] = 'historical'
+
   constructor: (props) ->
     super props
 
     @state =
       tabsSticky: false
       profileOrder: @props.user.profileOrder
-
+      draggingEnabled: false
 
   componentDidMount: =>
     @_removeListeners()
     $.subscribe 'profilePageExtra:tab.profileContentsExtra', @_modeSwitch
     $.subscribe 'stickyHeader.profileContentsExtra', @_tabsStick
+    $.subscribe 'profilePageExtraToggle:toggleDragging', @_toggleDragging
     $(window).on 'throttled-scroll.profileContentsExtra', @_modeScan
     osu.pageChange()
     @_modeScan()
+
+    $('#profile-extra-list').sortable({
+      disabled: true,
+      cursor: 'move',
+      revert: 150,
+      scrollSpeed: 10,
+      update: (event, ui) =>
+        newOrder = $('#profile-extra-list').sortable('toArray')
+
+        newOrder = newOrder.map (m) ->
+          return sections.indexOf(m)
+
+        @setState profileOrder: newOrder
+      })
 
 
   componentWillUnmount: =>
@@ -99,11 +126,40 @@ class ProfilePage.Extra extends React.Component
 
   _removeListeners: ->
     $.unsubscribe '.profileContentsExtra'
+    $.unsubscribe 'profilePageExtraToggle:toggleDragging'
     $(window).off '.profileContentsExtra'
 
 
   _tabsStick: (_e, target) =>
     @setState tabsSticky: (target == 'profile-extra-tabs')
+
+  _toggleDragging: =>
+    if @state.draggingEnabled
+
+      csrfParam = $('meta[name=csrf-param]').attr('content')
+      csrfToken = $('meta[name=csrf-token]').attr('content')
+
+      osu.showLoadingOverlay
+
+      $.ajax '/account/update-profile-order', {
+        method: 'POST',
+        dataType: 'JSON',
+        data: {
+          csrfParam: csrfToken,
+          'order': @state.profileOrder
+        },
+        success: (data, textStatus, jqHXR) ->
+          osu.hideLoadingOverlay
+          if data.status == 'error'
+            osu.popup Lang.get('errors.account.profile-order.error'), 'warning'
+      }
+
+      $('#profile-extra-list').sortable('disable')
+
+      @setState draggingEnabled: false
+    else
+      $('#profile-extra-list').sortable('enable')
+      @setState draggingEnabled: true
 
   getChildContext: ->
     return {withEdit: @props.withEdit}
@@ -113,18 +169,8 @@ class ProfilePage.Extra extends React.Component
 
     withMePage = @props.userPage.html != '' || @props.withEdit
 
-    pages = []
-
-    pages[USER_PAGE] = 'me'
-    pages[RECENT_ACTIVITIES] = 'recent_activities'
-    pages[KUDOSU] = 'kudosu'
-    pages[TOP_RANKS] = 'top_ranks'
-    pages[BEATMAPS] = 'beatmaps'
-    pages[MEDALS] = 'medals'
-    pages[HISTORICAL] = 'historical'
-
     if not withMePage
-      delete pages[USER_PAGE]
+      delete sections[USER_PAGE]
 
     tabsContainerClasses = 'profile-extra-tabs__container js-fixed-element'
     tabsClasses = 'profile-extra-tabs__items'
@@ -144,53 +190,54 @@ class ProfilePage.Extra extends React.Component
               className: tabsClasses
               'data-sticky-header-id': 'profile-extra-tabs'
               @state.profileOrder.map (m) =>
-                  if pages[m] == undefined
-                    return
-                  el ProfilePage.ExtraTab, mode: pages[m], currentMode: @state.mode
+                if sections[m] == undefined
+                  return
+                el ProfilePage.ExtraTab, key: sections[m], mode: sections[m], currentMode: @state.mode
 
-      @props.user.profileOrder.map (m) =>
-        switch m
-          when USER_PAGE
-            if withMePage
+      div {id: 'profile-extra-list'},
+        @props.user.profileOrder.map (m) =>
+          switch m
+            when USER_PAGE
+              if withMePage
+                div
+                  className: 'osu-layout__row js-profile-page-extra--scrollspy'
+                  id: 'me'
+                  el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
+            when RECENT_ACTIVITIES
               div
                 className: 'osu-layout__row js-profile-page-extra--scrollspy'
-                id: 'me'
-                el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
-          when RECENT_ACTIVITIES
-            div
-              className: 'osu-layout__row js-profile-page-extra--scrollspy'
-              id: 'recent_activities'
-              el ProfilePage.RecentActivities, recentActivities: @props.recentActivities
-          when KUDOSU
-            div
-              className: 'osu-layout__row js-profile-page-extra--scrollspy'
-              id: 'kudosu'
-              el ProfilePage.Kudosu, user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu
-          when TOP_RANKS
-            div
-              className: 'osu-layout__row js-profile-page-extra--scrollspy'
-              id: 'top_ranks'
-              el ProfilePage.TopRanks, user: @props.user, scoresBest: @props.scoresBest, scoresFirst: @props.scoresFirst
-          when BEATMAPS
-            div
-              className: 'osu-layout__row js-profile-page-extra--scrollspy'
-              id: 'beatmaps'
-              el ProfilePage.Beatmaps,
-                favouriteBeatmapSets: @props.favouriteBeatmapSets
-                rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
-          when MEDALS
-            div
-              className: 'osu-layout__row js-profile-page-extra--scrollspy'
-              id: 'medals'
-              el ProfilePage.Medals, achievements: @props.achievements, allAchievements: @props.allAchievements
-          when HISTORICAL
-            div
-              className: 'osu-layout__row js-profile-page-extra--scrollspy'
-              id: 'historical'
-              el ProfilePage.Historical,
-                beatmapPlaycounts: @props.beatmapPlaycounts
-                rankHistories: @props.rankHistories
-                scores: @props.scores
+                id: 'recent_activities'
+                el ProfilePage.RecentActivities, recentActivities: @props.recentActivities
+            when KUDOSU
+              div
+                className: 'osu-layout__row js-profile-page-extra--scrollspy'
+                id: 'kudosu'
+                el ProfilePage.Kudosu, user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu
+            when TOP_RANKS
+              div
+                className: 'osu-layout__row js-profile-page-extra--scrollspy'
+                id: 'top_ranks'
+                el ProfilePage.TopRanks, user: @props.user, scoresBest: @props.scoresBest, scoresFirst: @props.scoresFirst
+            when BEATMAPS
+              div
+                className: 'osu-layout__row js-profile-page-extra--scrollspy'
+                id: 'beatmaps'
+                el ProfilePage.Beatmaps,
+                  favouriteBeatmapSets: @props.favouriteBeatmapSets
+                  rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
+            when MEDALS
+              div
+                className: 'osu-layout__row js-profile-page-extra--scrollspy'
+                id: 'medals'
+                el ProfilePage.Medals, achievements: @props.achievements, allAchievements: @props.allAchievements
+            when HISTORICAL
+              div
+                className: 'osu-layout__row js-profile-page-extra--scrollspy'
+                id: 'historical'
+                el ProfilePage.Historical,
+                  beatmapPlaycounts: @props.beatmapPlaycounts
+                  rankHistories: @props.rankHistories
+                  scores: @props.scores
 
 ProfilePage.Extra.childContextTypes =
   withEdit: React.PropTypes.bool

@@ -93,6 +93,19 @@ class AccountController extends Controller
         $user = Auth::user();
         $order = Request::input('order');
 
+        // jQuery's AJAX methods convert ints to strings unfortunately,
+        // so here we convert them back
+        $order = array_map(function ($x) {
+            if (gettype($x) === 'string')
+            {
+                return intval($x);
+            }
+            else
+            {
+                return $x;
+            }
+        }, $order);
+
         $count = array_fill(1, User::EXTRAS_COUNT, 0);
 
         foreach($order as $i)

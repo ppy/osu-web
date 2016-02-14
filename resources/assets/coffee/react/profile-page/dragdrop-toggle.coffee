@@ -18,11 +18,14 @@
 {span} = React.DOM
 
 class ProfilePage.DragDropToggle extends React.Component
+  handleClick: ->
+    $.publish 'profilePageExtraToggle:toggleDragging'
+
   render: ->
     if @context.withEdit
       span
         className: 'fa fa-bars profile-extra__dragdrop-toggle'
-        title: Lang.get('users.show.extra.misc.reorder')
+        onClick: @handleClick
     else
       # empty selector so react stops complaining that render() returns nothing
       span

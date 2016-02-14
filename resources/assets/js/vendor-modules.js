@@ -3,6 +3,7 @@ require('../../../bower_components/jquery-ujs/src/rails');
 require('../../../bower_components/ResponsiveSlides.js/responsiveslides');
 require('../../../bower_components/qtip2/jquery.qtip');
 require('jquery.scrollto');
+require('jquery-ui/sortable');
 require('timeago');
 require('blueimp-file-upload');
 require('bootstrap');
