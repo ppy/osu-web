@@ -18,6 +18,9 @@
 {span} = React.DOM
 
 class ProfilePage.DragDropToggle extends React.Component
+  @contextTypes:
+    withEdit: React.PropTypes.bool
+
   handleClick: ->
     $.publish 'profilePageExtra:toggleDragging'
 
@@ -30,6 +33,3 @@ class ProfilePage.DragDropToggle extends React.Component
       # empty selector so react stops complaining that render() returns nothing
       span
         className: ''
-
-ProfilePage.DragDropToggle.contextTypes =
-  withEdit: React.PropTypes.bool

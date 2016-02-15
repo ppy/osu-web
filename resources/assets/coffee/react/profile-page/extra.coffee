@@ -33,6 +33,9 @@ class ProfilePage.Extra extends React.Component
       profileOrder: @props.profileOrder
       draggingEnabled: false
 
+  @childContextTypes:
+    withEdit: React.PropTypes.bool
+
   componentDidMount: =>
     @_removeListeners()
     $.subscribe 'profilePageExtra:tab.profileContentsExtra', @_modeSwitch
@@ -204,6 +207,3 @@ class ProfilePage.Extra extends React.Component
                   beatmapPlaycounts: @props.beatmapPlaycounts
                   rankHistories: @props.rankHistories
                   scores: @props.scores
-
-ProfilePage.Extra.childContextTypes =
-  withEdit: React.PropTypes.bool
