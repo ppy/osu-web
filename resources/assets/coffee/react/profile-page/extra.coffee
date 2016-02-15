@@ -115,7 +115,7 @@ class ProfilePage.Extra extends React.Component
   _toggleDragging: =>
     if @state.draggingEnabled
 
-      osu.showLoadingOverlay
+      osu.showLoadingOverlay()
 
       $.ajax '/account/update-profile', {
         method: 'PUT',
@@ -124,9 +124,7 @@ class ProfilePage.Extra extends React.Component
           'order': @state.profileOrder,
         },
         success: (data, textStatus, jqHXR) ->
-          osu.hideLoadingOverlay
-          if data.status == 'error'
-            osu.popup Lang.get('errors.account.profile-order.error'), 'warning'
+          osu.hideLoadingOverlay()
       }
 
       $('#profile-extra-list').sortable('disable')
