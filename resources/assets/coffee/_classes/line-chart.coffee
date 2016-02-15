@@ -209,15 +209,17 @@ class @LineChart
 
 
   positionTooltip: =>
-    d = @lookupX @options.scales.x.invert(d3.mouse(@svgHoverArea.node())[0])
+    x = @options.scales.x.invert(d3.mouse(@svgHoverArea.node())[0])
+    i = @lookupIndexFromX x
 
-    return unless d
+    return unless i
 
     # only work in mobile
     @showTooltip()
     clearTimeout @_autoHideTooltip
     @_autoHideTooltip = setTimeout @hideTooltip, 3000
 
+    d = if x - @data[i - 1].x <= @data[i].x - x then @data[i - 1] else @data[i]
     coords = ['x', 'y'].map (axis) => @options.scales[axis] d[axis]
 
     # avoids blurry positioning
@@ -240,8 +242,8 @@ class @LineChart
         .style 'width', "#{@tooltipContainer.node().getBoundingClientRect().width * 1.2}px"
 
 
-  lookupX: (x) =>
-    @data[d3.bisector((d) => d.x).right @data, x]
+  lookupIndexFromX: (x) =>
+    d3.bisector((d) => d.x).left @data, x
 
 
   resize: =>
