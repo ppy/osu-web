@@ -115,17 +115,13 @@ class ProfilePage.Extra extends React.Component
   _toggleDragging: =>
     if @state.draggingEnabled
 
-      csrfParam = $('meta[name=csrf-param]').attr('content')
-      csrfToken = $('meta[name=csrf-token]').attr('content')
-
       osu.showLoadingOverlay
 
       $.ajax '/account/update-profile', {
         method: 'PUT',
         dataType: 'JSON',
         data: {
-          csrfParam: csrfToken,
-          'order': @state.profileOrder
+          'order': @state.profileOrder,
         },
         success: (data, textStatus, jqHXR) ->
           osu.hideLoadingOverlay
