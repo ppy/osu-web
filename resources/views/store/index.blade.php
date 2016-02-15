@@ -20,23 +20,11 @@
 @section("content")
     @include("store.header")
 
-    <div class="osu-layout__row osu-layout__row--with-gutter product-listing">
-        @foreach($products as $p)
-        <div class="{{ $p->promoted ? "wide col-sm-12" : "small col-sm-6 col-lg-4" }}">
-            <a
-                href="/store/product/{{ $p->product_id }}"
-                class="product-box product-box--{{ $p->promoted ? 'large' : 'small' }}"
-                style="background-image: url('{{ $p->promoted ? $p->header_image : $p->image }}')"
-            >
-                <div class="product-box__text product-box__text--{{ $p->promoted === true ? 'large' : 'small' }}">
-                    {!! Markdown::convertToHtml($p->header_description) !!}
-                </div>
-
-                @if(!$p->inStock())
-                    <i class="product-box__bar product-box__bar--oos"></i>
-                @endif
-            </a>
+    <div class="osu-layout__row osu-layout__row--with-gutter">
+        <div class="osu-layout__col-container">
+            @foreach($products as $product)
+                @include('store._product', ['product' => $product])
+            @endforeach
         </div>
-        @endforeach
     </div>
 @stop

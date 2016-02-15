@@ -49,14 +49,29 @@ class Product extends Model
         return $this->belongsTo(self::class, 'master_product_id', 'product_id');
     }
 
+    public function variations()
+    {
+        return $this->hasMany(static::class, 'master_product_id', 'product_id');
+    }
+
     public function category()
     {
         return $this->hasOne('Category');
     }
 
-    public function inStock($quantity = 1)
+    public function inStock($quantity = 1, $includeVariations = false)
     {
-        return $this->stock === null || $this->stock >= $quantity;
+        $inStock = $this->stock === null || $this->stock >= $quantity;
+
+        if ($inStock === false && $includeVariations === true) {
+            $inStock = ($this->masterProduct ?? $this)
+                ->variations
+                ->contains(function ($_, $variation) use ($quantity) {
+                    return $variation->inStock($quantity);
+                });
+        }
+
+        return $inStock;
     }
 
     public function getHeaderImageAttribute($value)
@@ -114,6 +129,7 @@ class Product extends Model
             ->where('master_product_id', null)
             ->where('enabled', true)
             ->with('masterProduct')
+            ->with('variations')
             ->orderBy('promoted', 'desc')
             ->orderBy('display_order', 'desc');
     }

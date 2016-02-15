@@ -191,9 +191,10 @@ class Order extends Model
 
     public static function cart($user)
     {
-        $cart = self::query()
+        $cart = static::query()
             ->where('user_id', $user->user_id)
             ->where('status', 'incart')
+            ->with('items.product')
             ->first();
 
         if ($cart) {
