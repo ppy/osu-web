@@ -63,8 +63,12 @@ class Product extends Model
     {
         $inStock = $this->stock === null || $this->stock >= $quantity;
 
-        if (!$inStock && $includeVariations) {
-            $inStock = $this->variations()->where('stock', '>', 0)->exists();
+        if ($inStock === false && $includeVariations === true) {
+            $inStock = $this
+                ->variations
+                ->contains(function ($_, $variation) use ($quantity) {
+                    return $variation->inStock($quantity);
+                });
         }
 
         return $inStock;
