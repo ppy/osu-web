@@ -105,7 +105,7 @@ class ProfilePage.Extra extends React.Component
     pages = ['recent_activities', 'kudosu', 'top_ranks', 'beatmaps', 'medals', 'historical']
     pages.unshift 'me' if withMePage
 
-    tabsContainerClasses = 'profile-extra-tabs__container js-fixed-element'
+    tabsContainerClasses = 'hidden-xs profile-extra-tabs__container js-fixed-element'
     tabsClasses = 'profile-extra-tabs__items'
     if @state.tabsSticky
       tabsContainerClasses += ' profile-extra-tabs__container--fixed js-sticky-header--active'
