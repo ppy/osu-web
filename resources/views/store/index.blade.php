@@ -23,7 +23,9 @@
     <div class="osu-layout__row osu-layout__row--with-gutter">
         <div class="osu-layout__col-container">
             @foreach($products as $p)
-            <div class="{{ $p->promoted ? "osu-layout__col" : "osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-4" }}">
+            <div class="{{ $p->promoted ? "osu-layout__col" : "osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-4" }}"
+                style="order: {{ $p->inStock(1, true) === true ? '0' : '1' }};"
+            >
                 <a
                     href="/store/product/{{ $p->product_id }}"
                     class="product-box product-box--{{ $p->promoted ? 'large' : 'small' }}"
