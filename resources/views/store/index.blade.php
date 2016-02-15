@@ -23,9 +23,17 @@
     <div class="osu-layout__row osu-layout__row--with-gutter">
         <div class="osu-layout__col-container">
             @foreach($products as $p)
-            <div class="{{ $p->promoted ? "osu-layout__col" : "osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-4" }}"
-                style="order: {{ $p->inStock(1, true) === true ? '0' : '1' }};"
-            >
+            <?php
+                $_inStock = $p->inStock(1, true);
+
+                $_topClass = 'osu-layout__col';
+
+                if (!$p->promoted || !$_inStock) {
+                    $_topClass .= ' osu-layout__col--sm-6 osu-layout__col--lg-4';
+                }
+            ?>
+
+            <div class="{{ $_topClass }}" style="order: {{ $_inStock ? '0' : '1' }};">
                 <a
                     href="/store/product/{{ $p->product_id }}"
                     class="product-box product-box--{{ $p->promoted ? 'large' : 'small' }}"
@@ -35,7 +43,7 @@
                         {!! Markdown::convertToHtml($p->header_description) !!}
                     </div>
 
-                    @if(!$p->inStock(1, true))
+                    @if(!$_inStock)
                         <i class="product-box__bar product-box__bar--oos"></i>
                     @endif
                 </a>
