@@ -169,40 +169,33 @@ class ProfilePage.Extra extends React.Component
           switch m
             when 'me'
               div
-                className: 'osu-layout__row js-profile-page-extra--scrollspy'
-                id: 'me'
+                className: 'osu-layout__row js-profile-page-extra--scrollspy', id: 'me'
                 el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
             when 'recent_activities'
               div
-                className: 'osu-layout__row js-profile-page-extra--scrollspy'
-                id: 'recent_activities'
+                className: 'osu-layout__row js-profile-page-extra--scrollspy', id: 'recent_activities'
                 el ProfilePage.RecentActivities, recentActivities: @props.recentActivities
             when 'kudosu'
               div
-                className: 'osu-layout__row js-profile-page-extra--scrollspy'
-                id: 'kudosu'
+                className: 'osu-layout__row js-profile-page-extra--scrollspy', id: 'kudosu'
                 el ProfilePage.Kudosu, user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu
             when 'top_ranks'
               div
-                className: 'osu-layout__row js-profile-page-extra--scrollspy'
-                id: 'top_ranks'
+                className: 'osu-layout__row js-profile-page-extra--scrollspy', id: 'top_ranks'
                 el ProfilePage.TopRanks, user: @props.user, scoresBest: @props.scoresBest, scoresFirst: @props.scoresFirst
             when 'beatmaps'
               div
-                className: 'osu-layout__row js-profile-page-extra--scrollspy'
-                id: 'beatmaps'
+                className: 'osu-layout__row js-profile-page-extra--scrollspy', id: 'beatmaps'
                 el ProfilePage.Beatmaps,
                   favouriteBeatmapSets: @props.favouriteBeatmapSets
                   rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
             when 'medals'
               div
-                className: 'osu-layout__row js-profile-page-extra--scrollspy'
-                id: 'medals'
+                className: 'osu-layout__row js-profile-page-extra--scrollspy', id: 'medals'
                 el ProfilePage.Medals, achievements: @props.achievements, allAchievements: @props.allAchievements
             when 'historical'
               div
-                className: 'osu-layout__row js-profile-page-extra--scrollspy'
-                id: 'historical'
+                className: 'osu-layout__row js-profile-page-extra--scrollspy', id: 'historical'
                 el ProfilePage.Historical,
                   beatmapPlaycounts: @props.beatmapPlaycounts
                   rankHistories: @props.rankHistories
