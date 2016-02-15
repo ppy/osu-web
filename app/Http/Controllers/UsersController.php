@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 use App\Models\Achievement;
 use App\Models\LoginAttempt;
 use App\Models\User;
+use App\Models\UserProfileCustomization;
 use App\Transformers\AchievementTransformer;
 use App\Transformers\UserTransformer;
 use Auth;
@@ -131,6 +132,11 @@ class UsersController extends Controller
             ])
         );
 
-        return view('users.show', compact('user', 'userArray', 'achievements'));
+        // The default order of the profile sections,
+        // used when the particular user has no profile customization
+        // object created.
+        $defaultProfileOrder = UserProfileCustomization::$sections;
+
+        return view('users.show', compact('user', 'userArray', 'achievements', 'defaultProfileOrder'));
     }
 }

@@ -338,33 +338,6 @@ class User extends Model implements AuthenticatableContract
         $this->api->save();
     }
 
-    /**
-     * Constants referring to the user profile extras (kudosu,
-     * recent activities, etc).
-     */
-    const USER_PAGE = 1;
-    const RECENT_ACTIVITIES = 2;
-    const KUDOSU = 3;
-    const TOP_RANKS = 4;
-    const BEATMAPS = 5;
-    const MEDALS = 6;
-    const HISTORICAL = 7;
-
-    /**
-     * How many elements are we displaying on the profile page.
-     */
-    const EXTRAS_COUNT = 7;
-
-    public function getExtrasOrderAttribute($value)
-    {
-        return unserialize($value);
-    }
-
-    public function setExtrasOrderAttribute($value)
-    {
-        $this->attributes['extras_order'] = serialize($value);
-    }
-
     /*
     |--------------------------------------------------------------------------
     | Modding System-specific functions.

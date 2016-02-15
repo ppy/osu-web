@@ -21,11 +21,11 @@ class ProfileExtrasTest extends TestCase
         $this->withoutMiddleware();
 
         $this->actingAs($this->user)
-            ->json('POST', '/account/update-profile-order', [
-                'order' => [7, 6, 5, 4, 3, 2, 1],
+            ->json('PUT', route ('account.update-profile'), [
+                'order' => ['historical','medals','beatmaps','top_ranks','kudosu','recent_activities','me',],
                 ])
             ->seeJson([
-                'status' => 'OK',
+                'profileOrder' => ['historical','medals','beatmaps','top_ranks','kudosu','recent_activities','me',],
             ]);
     }
 
@@ -34,12 +34,11 @@ class ProfileExtrasTest extends TestCase
         $this->withoutMiddleware();
 
         $this->actingAs($this->user)
-            ->json('POST', '/account/update-profile-order', [
-                'order' => [1, 2, 3, 4, 5, 6, 7, 1],
+            ->json('PUT', route ('account.update-profile'), [
+                'order' => ['me','recent_activities','kudosu','top_ranks','beatmaps','medals','historical', 'me',],
             ])
             ->seeJson([
-                'status' => 'error',
-                'errors' => [trans('errors.account.profile-order.duplicate')],
+                'error' => trans('errors.account.profile-order.generic'),
             ]);
     }
 
@@ -48,12 +47,11 @@ class ProfileExtrasTest extends TestCase
         $this->withoutMiddleware();
 
         $this->actingAs($this->user)
-            ->json('POST', '/account/update-profile-order', [
-                'order' => [1, 2, 3, 4, 5, 6, 7, 8],
+            ->json('PUT', route ('account.update-profile'), [
+                'order' => ['me','recent_activities','kudosu','top_ranks','beatmaps','medals','historical', 'test'],
             ])
             ->seeJson([
-                'status' => 'error',
-                'errors' => [trans('errors.account.profile-order.invalid-id', ['count' => 7])],
+                'error' => trans('errors.account.profile-order.generic'),
             ]);
     }
 }

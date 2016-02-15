@@ -46,6 +46,28 @@ class UserProfileCustomization extends Model
         $this->save();
     }
 
+    /**
+     * An array of all possible profile sections, also in their default order.
+     */
+    public static $sections = ['me', 'recent_activities', 'kudosu', 'top_ranks', 'beatmaps', 'medals', 'historical'];
+
+    public function getExtrasOrderAttribute($value)
+    {
+        return unserialize($value);
+    }
+
+    public function setExtrasOrderAttribute($value)
+    {
+        $this->attributes['extras_order'] = serialize($value);
+    }
+
+    public function setExtrasOrder($order)
+    {
+        $this->extras_order = $order;
+
+        $this->save();
+    }
+
     public function __construct($attributes = [])
     {
         $this->cover_json = ['id' => null, 'file' => null];

@@ -25,9 +25,7 @@ return [
     ],
     'account' => [
         'profile-order' => [
-            'duplicate' => 'The values in order must be unique.',
-            'invalid-id' => 'The values in order must be between 1 and :count',
-            'error' => 'An error occured. Try refreshing the page.',
+            'generic' => 'An error occured. Try refreshing the page.',
         ],
     ],
     'logged_out' => 'You have been logged out. Please login and retry.',

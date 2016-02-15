@@ -19,32 +19,18 @@
 el = React.createElement
 
 class ProfilePage.Extra extends React.Component
-  # Mirrored from App/Models/User.php
-  # The numbers corresponding to particular profile section.
-  USER_PAGE = 1
-  RECENT_ACTIVITIES = 2
-  KUDOSU = 3
-  TOP_RANKS = 4
-  BEATMAPS = 5
-  MEDALS = 6
-  HISTORICAL = 7
-
-  sections = []
-
-  sections[USER_PAGE] = 'me'
-  sections[RECENT_ACTIVITIES] = 'recent_activities'
-  sections[KUDOSU] = 'kudosu'
-  sections[TOP_RANKS] = 'top_ranks'
-  sections[BEATMAPS] = 'beatmaps'
-  sections[MEDALS] = 'medals'
-  sections[HISTORICAL] = 'historical'
-
   constructor: (props) ->
+    withMePage = props.userPage.html != '' || props.withEdit
+
+    if not withMePage
+      index = props.profileOrder.indexOf 'me'
+      props.profileOrder.splice index, 1
+
     super props
 
     @state =
       tabsSticky: false
-      profileOrder: @props.user.profileOrder
+      profileOrder: @props.profileOrder
       draggingEnabled: false
 
   componentDidMount: =>
@@ -63,14 +49,8 @@ class ProfilePage.Extra extends React.Component
       scrollSpeed: 10,
       update: (event, ui) =>
         newOrder = $('#profile-extra-list').sortable('toArray')
-
-        newOrder = newOrder.map (m) ->
-          return sections.indexOf(m)
-
         @setState profileOrder: newOrder
       })
-
-
   componentWillUnmount: =>
     @_removeListeners()
 
@@ -141,8 +121,8 @@ class ProfilePage.Extra extends React.Component
 
       osu.showLoadingOverlay
 
-      $.ajax '/account/update-profile-order', {
-        method: 'POST',
+      $.ajax '/account/update-profile', {
+        method: 'PUT',
         dataType: 'JSON',
         data: {
           csrfParam: csrfToken,
@@ -167,11 +147,6 @@ class ProfilePage.Extra extends React.Component
   render: =>
     return if @props.mode == 'me'
 
-    withMePage = @props.userPage.html != '' || @props.withEdit
-
-    if not withMePage
-      delete sections[USER_PAGE]
-
     tabsContainerClasses = 'profile-extra-tabs__container js-fixed-element'
     tabsClasses = 'profile-extra-tabs__items'
     if @state.tabsSticky
@@ -190,47 +165,45 @@ class ProfilePage.Extra extends React.Component
               className: tabsClasses
               'data-sticky-header-id': 'profile-extra-tabs'
               @state.profileOrder.map (m) =>
-                if sections[m] == undefined
-                  return
-                el ProfilePage.ExtraTab, key: sections[m], mode: sections[m], currentMode: @state.mode
+
+                el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
 
       div {id: 'profile-extra-list'},
-        @props.user.profileOrder.map (m) =>
+        @props.profileOrder.map (m) =>
           switch m
-            when USER_PAGE
-              if withMePage
-                div
-                  className: 'osu-layout__row js-profile-page-extra--scrollspy'
-                  id: 'me'
-                  el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
-            when RECENT_ACTIVITIES
+            when 'me'
+              div
+                className: 'osu-layout__row js-profile-page-extra--scrollspy'
+                id: 'me'
+                el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
+            when 'recent_activities'
               div
                 className: 'osu-layout__row js-profile-page-extra--scrollspy'
                 id: 'recent_activities'
                 el ProfilePage.RecentActivities, recentActivities: @props.recentActivities
-            when KUDOSU
+            when 'kudosu'
               div
                 className: 'osu-layout__row js-profile-page-extra--scrollspy'
                 id: 'kudosu'
                 el ProfilePage.Kudosu, user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu
-            when TOP_RANKS
+            when 'top_ranks'
               div
                 className: 'osu-layout__row js-profile-page-extra--scrollspy'
                 id: 'top_ranks'
                 el ProfilePage.TopRanks, user: @props.user, scoresBest: @props.scoresBest, scoresFirst: @props.scoresFirst
-            when BEATMAPS
+            when 'beatmaps'
               div
                 className: 'osu-layout__row js-profile-page-extra--scrollspy'
                 id: 'beatmaps'
                 el ProfilePage.Beatmaps,
                   favouriteBeatmapSets: @props.favouriteBeatmapSets
                   rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
-            when MEDALS
+            when 'medals'
               div
                 className: 'osu-layout__row js-profile-page-extra--scrollspy'
                 id: 'medals'
                 el ProfilePage.Medals, achievements: @props.achievements, allAchievements: @props.allAchievements
-            when HISTORICAL
+            when 'historical'
               div
                 className: 'osu-layout__row js-profile-page-extra--scrollspy'
                 id: 'historical'

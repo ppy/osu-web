@@ -18,9 +18,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 use Illuminate\Database\Migrations\Migration;
-use App\Models\User;
+use App\Models\UserProfileCustomization;
 
-class AddExtrasOrderOnUser extends Migration
+class AddExtrasOrderOnUserProfileCustomization extends Migration
 {
     /**
      * Run the migrations.
@@ -29,16 +29,8 @@ class AddExtrasOrderOnUser extends Migration
      */
     public function up()
     {
-        Schema::table('phpbb_users', function ($table) {
-            $table->string('extras_order')->default(serialize([
-                User::USER_PAGE,
-                User::RECENT_ACTIVITIES,
-                User::KUDOSU,
-                User::TOP_RANKS,
-                User::BEATMAPS,
-                User::MEDALS,
-                User::HISTORICAL,
-            ]));
+        Schema::table('user_profile_customizations', function ($table) {
+            $table->string('extras_order')->default(serialize(UserProfileCustomization::$sections));
         });
     }
 
@@ -49,7 +41,7 @@ class AddExtrasOrderOnUser extends Migration
      */
     public function down()
     {
-        Schema::table('phpbb_users', function ($table) {
+        Schema::table('user_profile_customizations', function ($table) {
             $table->dropColumn('extras_order');
         });
     }

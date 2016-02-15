@@ -22,6 +22,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
       'username' => $faker->userName,
       'username_clean' => $faker->userName,
       'user_password' => password_hash(md5($faker->password), PASSWORD_BCRYPT),
+      'user_lastvisit' => 0, 
   ];
 });
 
