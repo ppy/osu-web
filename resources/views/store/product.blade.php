@@ -113,10 +113,16 @@
                             </div>
                         </div>
                     </div>
+                    @elseif($product->inStock(1, true))
+                    <div class="row">
+                        <div class="col-md-12">
+                            {{ trans('store.product.stock.out_with_alternative') }}
+                        </div>
+                    </div>
                     @else
                     <div class="row">
                         <div class="col-md-12">
-                            Currently out of stock :(. Check back soon.
+                            {{ trans('store.product.stock.out') }}
                         </div>
                     </div>
                     @endif

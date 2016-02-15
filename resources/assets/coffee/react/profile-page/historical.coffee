@@ -112,7 +112,7 @@ ProfilePage.Historical = React.createClass
     data = @props.rankHistories.data
       .filter (rank) => rank > 0
 
-    startDate = moment().subtract(data.length, 'days')
+    startDate = moment().startOf('day').subtract(data.length, 'days')
 
     data = data.map (rank) =>
         x: startDate.add(1, 'day').clone().toDate()
