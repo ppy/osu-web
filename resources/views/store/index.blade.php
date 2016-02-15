@@ -32,7 +32,7 @@
                     {!! Markdown::convertToHtml($p->header_description) !!}
                 </div>
 
-                @if(!$p->inStock())
+                @if(!$p->inStock(1, true))
                     <i class="product-box__bar product-box__bar--oos"></i>
                 @endif
             </a>
