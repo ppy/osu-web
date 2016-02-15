@@ -214,7 +214,6 @@ class @LineChart
 
     return unless i
 
-    # only work in mobile
     @showTooltip()
     clearTimeout @_autoHideTooltip
     @_autoHideTooltip = setTimeout @hideTooltip, 3000
