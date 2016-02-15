@@ -37,7 +37,7 @@ class ProfilePage.Extra extends React.Component
     @_removeListeners()
     $.subscribe 'profilePageExtra:tab.profileContentsExtra', @_modeSwitch
     $.subscribe 'stickyHeader.profileContentsExtra', @_tabsStick
-    $.subscribe 'profilePageExtraToggle:toggleDragging', @_toggleDragging
+    $.subscribe 'profilePageExtra:toggleDragging', @_toggleDragging
     $(window).on 'throttled-scroll.profileContentsExtra', @_modeScan
     osu.pageChange()
     @_modeScan()
@@ -106,7 +106,6 @@ class ProfilePage.Extra extends React.Component
 
   _removeListeners: ->
     $.unsubscribe '.profileContentsExtra'
-    $.unsubscribe 'profilePageExtraToggle:toggleDragging'
     $(window).off '.profileContentsExtra'
 
 

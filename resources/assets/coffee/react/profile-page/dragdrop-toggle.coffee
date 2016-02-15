@@ -19,7 +19,7 @@
 
 class ProfilePage.DragDropToggle extends React.Component
   handleClick: ->
-    $.publish 'profilePageExtraToggle:toggleDragging'
+    $.publish 'profilePageExtra:toggleDragging'
 
   render: ->
     if @context.withEdit
