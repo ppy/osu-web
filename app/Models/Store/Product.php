@@ -128,6 +128,7 @@ class Product extends Model
         return $query
             ->where('master_product_id', null)
             ->where('enabled', true)
+            ->with('masterProduct')
             ->with('variations')
             ->orderBy('promoted', 'desc')
             ->orderBy('display_order', 'desc');
