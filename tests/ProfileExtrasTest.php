@@ -21,11 +21,11 @@ class ProfileExtrasTest extends TestCase
         $this->withoutMiddleware();
 
         $this->actingAs($this->user)
-            ->json('PUT', route ('account.update-profile'), [
-                'order' => ['historical','medals','beatmaps','top_ranks','kudosu','recent_activities','me',],
+            ->json('PUT', route('account.update-profile'), [
+                'order' => ['historical', 'medals', 'beatmaps', 'top_ranks', 'kudosu', 'recent_activities', 'me'],
                 ])
             ->seeJson([
-                'profileOrder' => ['historical','medals','beatmaps','top_ranks','kudosu','recent_activities','me',],
+                'profileOrder' => ['historical', 'medals', 'beatmaps', 'top_ranks', 'kudosu', 'recent_activities', 'me'],
             ]);
     }
 
@@ -34,8 +34,8 @@ class ProfileExtrasTest extends TestCase
         $this->withoutMiddleware();
 
         $this->actingAs($this->user)
-            ->json('PUT', route ('account.update-profile'), [
-                'order' => ['me','recent_activities','kudosu','top_ranks','beatmaps','medals','historical', 'me',],
+            ->json('PUT', route('account.update-profile'), [
+                'order' => ['me', 'recent_activities', 'kudosu', 'top_ranks', 'beatmaps', 'medals', 'historical', 'me'],
             ])
             ->seeJson([
                 'error' => trans('errors.account.profile-order.generic'),
@@ -47,8 +47,8 @@ class ProfileExtrasTest extends TestCase
         $this->withoutMiddleware();
 
         $this->actingAs($this->user)
-            ->json('PUT', route ('account.update-profile'), [
-                'order' => ['me','recent_activities','kudosu','top_ranks','beatmaps','medals','historical', 'test'],
+            ->json('PUT', route('account.update-profile'), [
+                'order' => ['me', 'recent_activities', 'kudosu', 'top_ranks', 'beatmaps', 'medals', 'historical', 'test'],
             ])
             ->seeJson([
                 'error' => trans('errors.account.profile-order.generic'),

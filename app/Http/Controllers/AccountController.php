@@ -21,7 +21,6 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ImageProcessorException;
 use Auth;
-use Illuminate\Http\Request as HttpRequest;
 use Request;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
@@ -47,7 +46,7 @@ class AccountController extends Controller
             return error_popup(trans('errors.supporter_only'));
         }
 
-        if (Request::hasFile('cover_file') || Request::has('cover_id'))
+        if (Request::hasFile('cover_file') || Request::has('cover_id')) {
             try {
                 Auth::user()
                     ->profileCustomization()
@@ -55,40 +54,41 @@ class AccountController extends Controller
                     ->setCover(Request::input('cover_id'), Request::file('cover_file'));
             } catch (ImageProcessorException $e) {
                 return error_popup($e->getMessage());
+            }
         }
 
-        if (Request::has ('order')) {
+        if (Request::has('order')) {
             $order = Request::input('order');
 
             $error = 'errors.account.profile-order.generic';
 
             // Checking whether the input has the same amount of elements
             // as the master sections array.
-            if (count ($order) != count (UserProfileCustomization::$sections)) {
-                return error_popup (trans ($error), 422);
+            if (count($order) !== count(UserProfileCustomization::$sections)) {
+                return error_popup(trans($error), 422);
             }
 
             // Checking if any section that was sent in input
             // also appears in the master sections arrray.
             foreach ($order as $i) {
-                if (!in_array ($i, UserProfileCustomization::$sections)) {
-                    return error_popup (trans ($error), 422);
+                if (!in_array($i, UserProfileCustomization::$sections, true)) {
+                    return error_popup(trans($error), 422);
                 }
             }
 
             // Checking whether the elements sent in input do not repeat.
-            $occurences = array_count_values ($order);
+            $occurences = array_count_values($order);
 
             foreach ($occurences as $i) {
                 if ($i > 1) {
-                    return error_popup (trans ($error), 422);
+                    return error_popup(trans($error), 422);
                 }
             }
 
-            Auth::user ()
-                ->profileCustomization ()
-                ->firstOrCreate ([])
-                ->setExtrasOrder ($order);
+            Auth::user()
+                ->profileCustomization()
+                ->firstOrCreate([])
+                ->setExtrasOrder($order);
         }
 
         return Auth::user()->defaultJson();
