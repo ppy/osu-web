@@ -20,7 +20,7 @@
 {div,a,span} = React.DOM
 el = React.createElement
 
-class @SearchFilter extends React.Component
+class Beatmaps.SearchFilter extends React.Component
   constructor: (props) ->
     super props
 

@@ -20,7 +20,7 @@
 {div,a,img,span} = React.DOM
 el = React.createElement
 
-class @BeatmapsListing extends React.Component
+class Beatmaps.BeatmapsListing extends React.Component
   render: ->
     beatmaps = []
     return if @props.beatmaps == undefined
@@ -28,7 +28,7 @@ class @BeatmapsListing extends React.Component
       panel = div
         className: 'osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-4'
         key: beatmap.beatmapset_id
-        el Panel, beatmap: beatmap
+        el BeatmapsetPanel, beatmap: beatmap
 
       beatmaps.push panel
 
