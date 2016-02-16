@@ -25,11 +25,16 @@ class @BeatmapsListing extends React.Component
     beatmaps = []
     return if @props.beatmaps == undefined
     for beatmap in @props.beatmaps
-      beatmaps.push el(Panel, beatmap: beatmap, key: beatmap.beatmapset_id)
+      panel = div
+        className: 'osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-4'
+        key: beatmap.beatmapset_id
+        el Panel, beatmap: beatmap
+
+      beatmaps.push panel
 
     div className: ['beatmap-container', ('dimmed' if @props.loading)].join(' '),
       div className: 'view_mode'
-      div className: 'listing',
+      div className: 'listing osu-layout__col-container osu-layout__col-container--with-gutter',
         if beatmaps.length > 0
           beatmaps
         else
