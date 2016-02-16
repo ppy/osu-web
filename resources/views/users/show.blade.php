@@ -37,8 +37,6 @@
         var updateProfileUrl = '{{ route("account.update-profile") }}';
         var changePageUrl = '{{ route("account.page") }}';
 
-        var defaultProfileOrder = {!! json_encode($defaultProfileOrder) !!}
-
         var user = {!! json_encode($userArray['data']) !!};
         var achievements = {!! json_encode($achievements['data']) !!};
         var postEditorToolbar = {!! json_encode(["html" => view()->make('forum._post_toolbar')->render()]) !!};

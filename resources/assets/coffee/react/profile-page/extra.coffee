@@ -20,12 +20,6 @@ el = React.createElement
 
 class ProfilePage.Extra extends React.Component
   constructor: (props) ->
-    withMePage = props.userPage.html != '' || props.withEdit
-
-    if not withMePage
-      index = props.profileOrder.indexOf 'me'
-      props.profileOrder.splice index, 1
-
     super props
 
     @state =
@@ -161,7 +155,6 @@ class ProfilePage.Extra extends React.Component
               className: tabsClasses
               'data-sticky-header-id': 'profile-extra-tabs'
               @state.profileOrder.map (m) =>
-
                 el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
 
       div {id: 'profile-extra-list'},
