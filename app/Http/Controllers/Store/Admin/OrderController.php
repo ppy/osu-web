@@ -42,8 +42,7 @@ class OrderController extends Controller
         $orders = $orders->orderBy('created_at')->get();
 
         $productId = (int) Request::input('product');
-        if ($productId)
-        {
+        if ($productId) {
             $orders = array_where($orders, function ($_i, $order) use ($productId) {
                 return $order->items()->where('product_id', $productId)->exists();
             });
