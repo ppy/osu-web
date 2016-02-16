@@ -71,7 +71,7 @@
                 <tbody>
                     @foreach ($ordersItemsQuantities as $ordersItemsQuantity)
                         <tr>
-                            <td>{{ $ordersItemsQuantity->name }}</td>
+                            <td><a href='?product={{ $ordersItemsQuantity->product_id }}'>{{ $ordersItemsQuantity->name }}</a></td>
                             <td>{{ $ordersItemsQuantity->quantity }}</td>
                         </tr>
                     @endforeach
