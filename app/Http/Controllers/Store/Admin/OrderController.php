@@ -27,18 +27,27 @@ class OrderController extends Controller
         return $this->show();
     }
 
-    public function show($id = null)
+    public function show($orderId = null)
     {
         $orders = Store\Order::with('user', 'address', 'address.country', 'items.product');
 
-        if ($id) {
-            $orders->where('orders.order_id', $id);
+        if ($orderId) {
+            $orders->where('orders.order_id', $orderId);
         } else {
             $orders->where('orders.status', 'paid');
         }
 
         $ordersItemsQuantities = Store\Order::itemsQuantities($orders);
+
         $orders = $orders->orderBy('created_at')->get();
+
+        $productId = (int) Request::input('product');
+        if ($productId)
+        {
+            $orders = array_where($orders, function ($_i, $order) use ($productId) {
+                return $order->items()->where('product_id', $productId)->exists();
+            });
+        }
 
         return view('store.admin', compact('orders', 'ordersItemsQuantities'));
     }
