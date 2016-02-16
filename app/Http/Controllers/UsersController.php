@@ -132,11 +132,6 @@ class UsersController extends Controller
             ])
         );
 
-        // The default order of the profile sections,
-        // used when the particular user has no profile customization
-        // object created.
-        $defaultProfileOrder = UserProfileCustomization::$sections;
-
-        return view('users.show', compact('user', 'userArray', 'achievements', 'defaultProfileOrder'));
+        return view('users.show', compact('user', 'userArray', 'achievements'));
     }
 }

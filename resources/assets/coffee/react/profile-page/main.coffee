@@ -105,4 +105,4 @@ class ProfilePage.Main extends React.Component
         scoresFirst: scoresFirst
         withEdit: @props.withEdit
         userPage: @state.userPage
-        profileOrder: if @props.user.profileOrder then @props.user.profileOrder else window.defaultProfileOrder
+        profileOrder: @props.user.profileOrder

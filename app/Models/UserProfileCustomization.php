@@ -68,9 +68,20 @@ class UserProfileCustomization extends Model
         $this->save();
     }
 
+    public function getExtrasOrder()
+    {
+        if ($this->extras_order === null)
+        {
+            $this->extras_order = self::$sections;
+        }
+
+        return $this->extras_order;
+    }
+
     public function __construct($attributes = [])
     {
         $this->cover_json = ['id' => null, 'file' => null];
+        $this->extras_order = null;
 
         return parent::__construct($attributes);
     }
