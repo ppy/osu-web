@@ -28,7 +28,7 @@ class ProfilePage.CoverUploader extends React.Component
       'data-url': window.changeCoverUrl
       disabled: !@props.canUpload
 
-    $(React.findDOMNode @refs.uploadButtonContainer).append($uploadButton)
+    $(@refs.uploadButtonContainer).append($uploadButton)
 
     $uploadButton.fileupload
       method: 'PUT'
