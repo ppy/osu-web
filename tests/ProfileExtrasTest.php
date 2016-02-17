@@ -59,7 +59,7 @@ class ProfileExtrasTest extends TestCase
     {
         $this->actingAs($this->user)
             ->visit('/u/'.$this->user->user_id)
-            ->see('"profileOrder":["me","recent_activities","kudosu","top_ranks","beatmaps","medals","historical"]');
+            ->see('"profileOrder":["me","recent_activities","top_ranks","medals","historical","beatmaps","kudosu"]');
     }
 
     public function testUserPageNotDisplayedOnOtherUsers()
@@ -68,6 +68,6 @@ class ProfileExtrasTest extends TestCase
 
         $this->actingAs($this->user)
             ->visit('/u/'.$visitedUser->user_id)
-            ->see('"profileOrder":["recent_activities","kudosu","top_ranks","beatmaps","medals","historical"]');
+            ->see('"profileOrder":["recent_activities","top_ranks","medals","historical","beatmaps","kudosu"]');
     }
 }
