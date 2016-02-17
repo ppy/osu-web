@@ -34,18 +34,18 @@ class Beatmaps.BeatmapsListing extends React.Component
 
     div className: ['beatmap-container', ('dimmed' if @props.loading)].join(' '),
       div className: 'view_mode'
-      div className: 'listing osu-layout__col-container osu-layout__col-container--with-gutter',
-        if beatmaps.length > 0
+      if beatmaps.length > 0
+        div className: 'listing osu-layout__col-container osu-layout__col-container--with-gutter',
           beatmaps
-        else
-          div {},
-            img
-              src: '/images/layout/beatmaps/not-found.png'
-              srcSet: "/images/layout/beatmaps/not-found.png 1x, /images/layout/beatmaps/not-found@2x.png 2x"
-              alt: Lang.get("beatmaps.listing.search.not-found")
-              title: Lang.get("beatmaps.listing.search.not-found")
-              style:
-                paddingTop: '25px'
-                paddingRight: '25px'
-                marginBottom: '-25px'
-            span {}, Lang.get("beatmaps.listing.search.not-found-quote")
+      else
+        div className: 'text-center',
+          img
+            src: '/images/layout/beatmaps/not-found.png'
+            srcSet: "/images/layout/beatmaps/not-found.png 1x, /images/layout/beatmaps/not-found@2x.png 2x"
+            alt: Lang.get("beatmaps.listing.search.not-found")
+            title: Lang.get("beatmaps.listing.search.not-found")
+            style:
+              paddingTop: '25px'
+              paddingRight: '25px'
+              marginBottom: '-20px'
+          span {}, Lang.get("beatmaps.listing.search.not-found-quote")
