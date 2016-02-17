@@ -34,10 +34,10 @@ Beatmaps.Paginator = React.createClass
 
   componentDidMount: ->
     @autoPagerTarget = $('#js-beatmaps-load-more')
-    @autoPagerScrollHandle = $(window).on('scroll', _.throttle(@autoPagerOnScroll, 500))
+    $(window).on 'scroll.paginator', _.throttle(@autoPagerOnScroll, 500)
 
   componentWillUnmount: ->
-    $(window).off @autoPagerScrollHandle
+    $(window).off '.paginator'
 
   render: ->
     div className: ['beatmaps-load-more', ('loading ' if @props.paging.loading), ('no_more' if not @props.paging.more)].join(' '),
