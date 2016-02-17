@@ -25,7 +25,6 @@ class ProfilePage.Extra extends React.Component
     @state =
       tabsSticky: false
       profileOrder: @props.profileOrder
-      draggingEnabled: false
 
   @childContextTypes:
     withEdit: React.PropTypes.bool
@@ -34,19 +33,17 @@ class ProfilePage.Extra extends React.Component
     @_removeListeners()
     $.subscribe 'profilePageExtra:tab.profileContentsExtra', @_modeSwitch
     $.subscribe 'stickyHeader.profileContentsExtra', @_tabsStick
-    $.subscribe 'profilePageExtra:toggleDragging', @_toggleDragging
     $(window).on 'throttled-scroll.profileContentsExtra', @_modeScan
     osu.pageChange()
     @_modeScan()
 
     $('#profile-extra-list').sortable({
-      disabled: true,
       cursor: 'move',
+      handle: '.profile-extra__dragdrop-toggle'
       revert: 150,
       scrollSpeed: 10,
       update: (event, ui) =>
-        newOrder = $('#profile-extra-list').sortable('toArray')
-        @setState profileOrder: newOrder
+        @updateOrder ui.item
       })
   componentWillUnmount: =>
     @_removeListeners()
@@ -109,27 +106,30 @@ class ProfilePage.Extra extends React.Component
   _tabsStick: (_e, target) =>
     @setState tabsSticky: (target == 'profile-extra-tabs')
 
-  _toggleDragging: =>
-    if @state.draggingEnabled
+  updateOrder: (element) =>
+    oldOrder = @state.profileOrder
+    newOrder = $('#profile-extra-list').sortable('toArray')
 
-      osu.showLoadingOverlay()
+    id = element.attr 'id'
 
-      $.ajax '/account/update-profile', {
-        method: 'PUT',
-        dataType: 'JSON',
-        data: {
-          'order': @state.profileOrder,
-        },
-        success: (data, textStatus, jqHXR) ->
-          osu.hideLoadingOverlay()
-      }
+    @setState profileOrder: newOrder
 
-      $('#profile-extra-list').sortable('disable')
+    $.ajax '/account/update-profile', {
+      method: 'PUT',
+      dataType: 'JSON',
+      data: {
+        'order': @state.profileOrder,
+      },
+      error: (jqHXR, textStatus, errorThrown) =>
+        osu.ajaxError jqHXR
 
-      @setState draggingEnabled: false
-    else
-      $('#profile-extra-list').sortable('enable')
-      @setState draggingEnabled: true
+        @setState profileOrder: oldOrder
+
+        position = (oldOrder.indexOf id) - 1
+        prevElement = $('#' + oldOrder[position])
+
+        element.insertAfter prevElement
+    }
 
   getChildContext: ->
     return {withEdit: @props.withEdit}

@@ -21,14 +21,10 @@ class ProfilePage.DragDropToggle extends React.Component
   @contextTypes:
     withEdit: React.PropTypes.bool
 
-  handleClick: ->
-    $.publish 'profilePageExtra:toggleDragging'
-
   render: ->
     if @context.withEdit
       span
         className: 'fa fa-bars profile-extra__dragdrop-toggle'
-        onClick: @handleClick
     else
       # empty selector so react stops complaining that render() returns nothing
       span

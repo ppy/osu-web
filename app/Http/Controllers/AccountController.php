@@ -65,14 +65,14 @@ class AccountController extends Controller
             // Checking whether the input has the same amount of elements
             // as the master sections array.
             if (count($order) !== count(UserProfileCustomization::$sections)) {
-                return error_popup(trans($error), 422);
+                return error_popup(trans($error));
             }
 
             // Checking if any section that was sent in input
             // also appears in the master sections arrray.
             foreach ($order as $i) {
                 if (!in_array($i, UserProfileCustomization::$sections, true)) {
-                    return error_popup(trans($error), 422);
+                    return error_popup(trans($error));
                 }
             }
 
@@ -81,7 +81,7 @@ class AccountController extends Controller
 
             foreach ($occurences as $i) {
                 if ($i > 1) {
-                    return error_popup(trans($error), 422);
+                    return error_popup(trans($error));
                 }
             }
 
