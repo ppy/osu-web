@@ -157,7 +157,7 @@ class ProfilePage.Extra extends React.Component
               @state.profileOrder.map (m) =>
                 el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
 
-      div className: 'profile-extra__list', id: 'profile-extra-list',
+      div className: 'osu-layout__row', id: 'profile-extra-list',
         @props.profileOrder.map (m) =>
           switch m
             when 'me'

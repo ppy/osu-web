@@ -63,24 +63,4 @@
     float: right;
     cursor: move;
   }
-
-  &__list {
-    ._width(@extra-margin: 0px) {
-      width: calc(100% ~'-' (@extra-margin * 2));
-      max-width: (@container-sm - @extra-margin * 2);
-    }
-
-    ._width-desktop(@extra-margin: 0px) {
-      width: calc(100% ~'-' ((@extra-margin + @grid-gutter-width) * 2));
-      max-width: (@container-sm - @extra-margin * 2);
-    }
-
-    align-self: center;
-    margin-left: auto;
-    margin-right: auto;
-    ._width;
-    @media @desktop {
-      ._width-desktop;
-    }
-  }
 }
