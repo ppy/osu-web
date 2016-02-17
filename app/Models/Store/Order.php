@@ -247,7 +247,7 @@ class Order extends Model
             ->join('products', 'order_items.product_id', '=', 'products.product_id')
             ->groupBy('order_items.product_id')
             ->groupBy('name')
-            ->select(DB::raw('sum(order_items.quantity) as quantity, name'));
+            ->select(DB::raw('sum(order_items.quantity) as quantity, name, products.product_id'));
 
         return $query->get();
     }

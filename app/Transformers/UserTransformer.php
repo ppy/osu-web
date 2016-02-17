@@ -208,6 +208,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         $beatmapPlaycounts = $user->beatmapPlaycounts()
             ->with('beatmap', 'beatmap.set')
             ->orderBy('playcount', 'desc')
+            ->limit(100)
             ->get()
             ->filter(function ($pc) {
                 return $pc->beatmap !== null && $pc->beatmap->set !== null;
