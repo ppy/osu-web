@@ -16,24 +16,32 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @ReactTurbolinks
-  constructor: (@components = []) ->
+  constructor: (@components = {}) ->
+    $(document).on 'ready page:change page:load reactTurbolinks:try', =>
+      for own _name, component of @components
+        continue if component.loaded
+
+        continue unless component.target.length
+
+        component.loaded = true
+        ReactDOM.render React.createElement(component.element, component.propsFunction()), component.target[0]
 
 
-  boot: (name, element, propsFunction = ->) =>
-    return if @components.indexOf(name) != -1
+    $(document).on 'page:before-unload', =>
+      for own _name, component of @components
+        continue unless component.loaded
 
-    @components.push name
+        component.loaded = false
+        ReactDOM.unmountComponentAtNode component.target[0]
 
-    target = document.getElementsByClassName("js-react--#{name}")
 
-    boot = =>
-      return unless target.length
+  register: (name, element, propsFunction = ->) =>
+    return if @components[name]
 
-      $(document).one 'page:before-unload', =>
-        ReactDOM.unmountComponentAtNode target[0]
+    @components[name] =
+      loaded: false
+      target: document.getElementsByClassName("js-react--#{name}")
+      element: element
+      propsFunction: propsFunction
 
-      ReactDOM.render React.createElement(element, propsFunction()), target[0]
-
-    $(document).on "ready page:change", boot
-
-    boot()
+    $(document).trigger 'reactTurbolinks:try'

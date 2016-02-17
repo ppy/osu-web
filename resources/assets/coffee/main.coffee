@@ -26,7 +26,7 @@ $(document).on 'submit', 'form', osu.showLoadingOverlay
 
 @reactTurbolinks ||= new ReactTurbolinks
 
-reactTurbolinks.boot 'user-card', UserCard
+reactTurbolinks.register 'user-card', UserCard
 
 
 $(document).on 'ready page:load', =>

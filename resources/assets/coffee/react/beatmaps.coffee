@@ -16,4 +16,4 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 ###
-reactTurbolinks.boot 'beatmaps', Beatmaps.Main
+reactTurbolinks.register 'beatmaps', Beatmaps.Main

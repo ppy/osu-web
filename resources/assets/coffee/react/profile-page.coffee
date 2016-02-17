@@ -32,4 +32,4 @@ propsFunction = =>
   recentActivities: user.recentActivities.data
   recentlyReceivedKudosu: user.recentlyReceivedKudosu.data
 
-reactTurbolinks.boot 'profile-page', ProfilePage.Main, propsFunction
+reactTurbolinks.register 'profile-page', ProfilePage.Main, propsFunction
