@@ -18,7 +18,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 use Illuminate\Database\Migrations\Migration;
-use App\Models\UserProfileCustomization;
 
 class AddExtrasOrderOnUserProfileCustomization extends Migration
 {
@@ -30,7 +29,7 @@ class AddExtrasOrderOnUserProfileCustomization extends Migration
     public function up()
     {
         Schema::table('user_profile_customizations', function ($table) {
-            $table->string('extras_order')->default(serialize(UserProfileCustomization::$sections));
+            $table->string('extras_order')->nullable();
         });
     }
 
