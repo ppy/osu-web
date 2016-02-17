@@ -233,6 +233,7 @@ function nav_links()
         'forum-forums-index' => route('forum.forums.index'),
         'tournaments' => route('tournaments.index'),
         'getLive' => route('live'),
+        'getSupport' => route('community.support'),
     ];
 
     $links['store'] = [
