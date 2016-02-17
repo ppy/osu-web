@@ -220,24 +220,19 @@ class Beatmaps.Main extends React.Component
 
   componentDidMount: ->
     @componentWillUnmount()
-    $(document).on 'beatmap:load_more', @loadMore
-    $(document).on 'beatmap:search:start', @search
-    $(document).on 'beatmap:search:done', @hideLoader
-    $(document).on 'beatmap:search:filtered', @updateFilters
-    $(document).on 'beatmap:search:sorted', @updateSort
-    $(document).on 'ready page:load osu:page:change', (e) =>
+    $(document).on 'beatmap:load_more.beatmaps', @loadMore
+    $(document).on 'beatmap:search:start.beatmaps', @search
+    $(document).on 'beatmap:search:done.beatmaps', @hideLoader
+    $(document).on 'beatmap:search:filtered.beatmaps', @updateFilters
+    $(document).on 'beatmap:search:sorted.beatmaps', @updateSort
+    $(document).on 'ready.beatmaps page:load.beatmaps osu:page:change.beatmaps', (e) =>
       @restoreState()
-    $(window).on 'popstate', (e) =>
+    $(window).on 'popstate.beatmaps', (e) =>
       @restoreState()
 
   componentWillUnmount: ->
-    $(document).off 'beatmap:load_more'
-    $(document).off 'beatmap:search:start'
-    $(document).off 'beatmap:search:done'
-    $(document).off 'beatmap:search:filtered'
-    $(document).off 'beatmap:search:sorted'
-    $(document).off 'ready page:load osu:page:change'
-    $(window).off 'popstate'
+    $(document).off '.beatmaps'
+    $(window).off '.beatmaps'
 
   render: ->
     if @state.beatmaps.length > 0
