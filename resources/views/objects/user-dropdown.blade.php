@@ -39,7 +39,7 @@
 
 @section('user-dropdown-modal')
     <div id="user-dropdown-modal" class="modal fade" tabindex="-1">
-        <div class="modal-dialog modal__dialog js-user-dropdown-modal__dialog">
+        <div class="modal-dialog modal__dialog js-user-dropdown-modal__dialog js-react--user-card">
             @if (!Auth::check())
                 <div class="modal-content modal-content--no-shadow">
                     <div class="modal-header modal-header--login"><h1 class="modal-header__title">{{ trans("users.login._") }}</h1></div>

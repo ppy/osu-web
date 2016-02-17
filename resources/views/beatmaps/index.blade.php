@@ -24,6 +24,7 @@
 ])
 
 @section("content")
+  <div class="js-react--beatmaps"></div>
   {{--
     this should content a server side react.js render which doesn't exist in hhvm
     because the only library for it, which is experimental, requires PHP extension
@@ -42,5 +43,5 @@
     {!! json_encode($beatmaps) !!}
   </script>
 
-  <script src="{{ elixir("js/react/beatmaps.js") }}" data-turbolinks-eval="always" data-turbolinks-track></script>
+  <script src="{{ elixir("js/react/beatmaps.js") }}" data-turbolinks-track></script>
 @stop
