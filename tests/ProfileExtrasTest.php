@@ -54,4 +54,20 @@ class ProfileExtrasTest extends TestCase
                 'error' => trans('errors.account.profile-order.generic'),
             ]);
     }
+
+    public function testUserPageDisplayedOnLoggedInUser()
+    {
+        $this->actingAs($this->user)
+            ->visit('/u/'.$this->user->user_id)
+            ->see('"profileOrder":["me","recent_activities","kudosu","top_ranks","beatmaps","medals","historical"]');
+    }
+
+    public function testUserPageNotDisplayedOnOtherUsers()
+    {
+        $visitedUser = factory(User::class)->create();
+
+        $this->actingAs($this->user)
+            ->visit('/u/'.$visitedUser->user_id)
+            ->see('"profileOrder":["recent_activities","kudosu","top_ranks","beatmaps","medals","historical"]');
+    }
 }

@@ -131,8 +131,8 @@ class UsersController extends Controller
             ])
         );
 
-        if ((Auth::check() && Auth::user()->user_id === $user->user_id) ||
-            $userArray['data']['page']['data']['html'] === '') {
+        if ($userArray['data']['page']['data']['html'] === '' &&
+            (Auth::check() && Auth::user()->user_id !== $user->user_id)) {
             if (($index = array_search('me', $userArray['data']['profileOrder'], true)) !== false) {
                 array_splice($userArray['data']['profileOrder'], $index, 1);
             }
