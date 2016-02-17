@@ -37,6 +37,21 @@ INSERT INTO `migrations` VALUES ('2016_01_26_194005_disable_products',19);
 INSERT INTO `migrations` VALUES ('2016_01_29_090810_add_description_to_achievements',20);
 
 --
+-- Dumping data for table `osu_genres`
+--
+
+INSERT INTO `osu_genres` VALUES (0,'Any');
+INSERT INTO `osu_genres` VALUES (1,'Unspecified');
+INSERT INTO `osu_genres` VALUES (2,'Video Game');
+INSERT INTO `osu_genres` VALUES (3,'Anime');
+INSERT INTO `osu_genres` VALUES (4,'Rock');
+INSERT INTO `osu_genres` VALUES (5,'Pop');
+INSERT INTO `osu_genres` VALUES (6,'Other');
+INSERT INTO `osu_genres` VALUES (7,'Novelty');
+INSERT INTO `osu_genres` VALUES (9,'Hip Hop');
+INSERT INTO `osu_genres` VALUES (10,'Electronic');
+
+--
 -- Dumping data for table `osu_languages`
 --
 

@@ -18,8 +18,14 @@
  */
 .profile-extra-tabs {
   @height: @profile-extra-tabs--items-height;
-  height: @height;
   width: 100%;
+
+  margin-bottom: @spacing;
+
+  @media @desktop {
+    height: @height;
+    margin-bottom: 0;
+  }
 
   &__container {
     display: flex;

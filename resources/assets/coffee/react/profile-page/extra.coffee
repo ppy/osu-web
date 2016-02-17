@@ -137,7 +137,7 @@ class ProfilePage.Extra extends React.Component
   render: =>
     return if @props.mode == 'me'
 
-    tabsContainerClasses = 'profile-extra-tabs__container js-fixed-element'
+    tabsContainerClasses = 'hidden-xs profile-extra-tabs__container js-fixed-element'
     tabsClasses = 'profile-extra-tabs__items'
     if @state.tabsSticky
       tabsContainerClasses += ' profile-extra-tabs__container--fixed js-sticky-header--active'

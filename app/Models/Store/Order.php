@@ -191,9 +191,10 @@ class Order extends Model
 
     public static function cart($user)
     {
-        $cart = self::query()
+        $cart = static::query()
             ->where('user_id', $user->user_id)
             ->where('status', 'incart')
+            ->with('items.product')
             ->first();
 
         if ($cart) {
@@ -246,7 +247,7 @@ class Order extends Model
             ->join('products', 'order_items.product_id', '=', 'products.product_id')
             ->groupBy('order_items.product_id')
             ->groupBy('name')
-            ->select(DB::raw('sum(order_items.quantity) as quantity, name'));
+            ->select(DB::raw('sum(order_items.quantity) as quantity, name, products.product_id'));
 
         return $query->get();
     }
