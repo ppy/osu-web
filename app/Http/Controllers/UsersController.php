@@ -22,7 +22,6 @@ namespace App\Http\Controllers;
 use App\Models\Achievement;
 use App\Models\LoginAttempt;
 use App\Models\User;
-use App\Models\UserProfileCustomization;
 use App\Transformers\AchievementTransformer;
 use App\Transformers\UserTransformer;
 use Auth;
@@ -132,12 +131,10 @@ class UsersController extends Controller
             ])
         );
 
-        if ((Auth::check () && Auth::user ()->user_id === $user->user_id) ||
-            $userArray['data']['page']['data']['html'] === '')
-        {
-            if (($index = array_search ('me', $userArray['data']['profileOrder'])) != false)
-            {
-                array_splice ($userArray['data']['profileOrder'], $index, 1);
+        if ((Auth::check() && Auth::user()->user_id === $user->user_id) ||
+            $userArray['data']['page']['data']['html'] === '') {
+            if (($index = array_search('me', $userArray['data']['profileOrder'], true)) !== false) {
+                array_splice($userArray['data']['profileOrder'], $index, 1);
             }
         }
 

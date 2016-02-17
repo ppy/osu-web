@@ -70,8 +70,7 @@ class UserProfileCustomization extends Model
 
     public function getExtrasOrder()
     {
-        if ($this->extras_order === null)
-        {
+        if ($this->extras_order === null) {
             $this->extras_order = self::$sections;
         }
 
