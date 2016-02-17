@@ -193,3 +193,8 @@ class ProfilePage.Extra extends React.Component
                   beatmapPlaycounts: @props.beatmapPlaycounts
                   rankHistories: @props.rankHistories
                   scores: @props.scores
+            when 'performance'
+              div
+                className: 'js-profile-page-extra--scrollspy', id: 'performance'
+                el ProfilePage.Performance,
+                  rankHistories: @props.rankHistories

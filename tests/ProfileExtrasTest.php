@@ -22,10 +22,10 @@ class ProfileExtrasTest extends TestCase
 
         $this->actingAs($this->user)
             ->json('PUT', route('account.update-profile'), [
-                'order' => ['historical', 'medals', 'beatmaps', 'top_ranks', 'kudosu', 'recent_activities', 'me'],
+                'order' => ['historical', 'medals', 'beatmaps', 'top_ranks', 'kudosu', 'recent_activities', 'me', 'performance'],
                 ])
             ->seeJson([
-                'profileOrder' => ['historical', 'medals', 'beatmaps', 'top_ranks', 'kudosu', 'recent_activities', 'me'],
+                'profileOrder' => ['historical', 'medals', 'beatmaps', 'top_ranks', 'kudosu', 'recent_activities', 'me', 'performance'],
             ]);
     }
 
@@ -35,7 +35,7 @@ class ProfileExtrasTest extends TestCase
 
         $this->actingAs($this->user)
             ->json('PUT', route('account.update-profile'), [
-                'order' => ['me', 'recent_activities', 'kudosu', 'top_ranks', 'beatmaps', 'medals', 'historical', 'me'],
+                'order' => ['me', 'recent_activities', 'kudosu', 'top_ranks', 'beatmaps', 'medals', 'historical', 'performance', 'me'],
             ])
             ->seeJson([
                 'error' => trans('errors.account.profile-order.generic'),
@@ -48,7 +48,7 @@ class ProfileExtrasTest extends TestCase
 
         $this->actingAs($this->user)
             ->json('PUT', route('account.update-profile'), [
-                'order' => ['me', 'recent_activities', 'kudosu', 'top_ranks', 'beatmaps', 'medals', 'historical', 'test'],
+                'order' => ['me', 'recent_activities', 'kudosu', 'top_ranks', 'beatmaps', 'medals', 'historical', 'performance', 'test'],
             ])
             ->seeJson([
                 'error' => trans('errors.account.profile-order.generic'),
@@ -59,7 +59,7 @@ class ProfileExtrasTest extends TestCase
     {
         $this->actingAs($this->user)
             ->visit('/u/'.$this->user->user_id)
-            ->see('"profileOrder":["me","recent_activities","top_ranks","medals","historical","beatmaps","kudosu"]');
+            ->see('"profileOrder":["me","performance","recent_activities","top_ranks","medals","historical","beatmaps","kudosu"]');
     }
 
     public function testUserPageNotDisplayedOnOtherUsers()
@@ -68,6 +68,6 @@ class ProfileExtrasTest extends TestCase
 
         $this->actingAs($this->user)
             ->visit('/u/'.$visitedUser->user_id)
-            ->see('"profileOrder":["recent_activities","top_ranks","medals","historical","beatmaps","kudosu"]');
+            ->see('"profileOrder":["performance","recent_activities","top_ranks","medals","historical","beatmaps","kudosu"]');
     }
 }

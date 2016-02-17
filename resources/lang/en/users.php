@@ -73,14 +73,14 @@ return [
                     'count' => 'times played',
                     'title' => 'Most Played Beatmaps',
                 ],
-                'rank_history' => [
-                    'title' => 'Rank History',
-                ],
                 'recent_plays' => [
                     'accuracy' => 'accuracy: :percentage',
                     'title' => 'Recent Plays',
                 ],
                 'title' => 'Historical',
+            ],
+            'performance' => [
+                'title' => 'Performance',
             ],
             'kudosu' => [
                 'available' => 'Kudosu Available',

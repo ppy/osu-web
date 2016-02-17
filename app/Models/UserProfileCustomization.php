@@ -50,7 +50,7 @@ class UserProfileCustomization extends Model
     /**
      * An array of all possible profile sections, also in their default order.
      */
-    public static $sections = ['me', 'recent_activities', 'top_ranks', 'medals', 'historical', 'beatmaps', 'kudosu'];
+    public static $sections = ['me', 'performance', 'recent_activities', 'top_ranks', 'medals', 'historical', 'beatmaps', 'kudosu'];
 
     public function setExtrasOrder($order)
     {
