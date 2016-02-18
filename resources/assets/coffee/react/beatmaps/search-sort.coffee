@@ -20,7 +20,7 @@
 {div,a,span} = React.DOM
 el = React.createElement
 
-class @SearchSort extends React.Component
+class Beatmaps.SearchSort extends React.Component
   select: (i, e) ->
     order = @props.sorting.order
 

@@ -20,27 +20,32 @@
 {div,a,img,span} = React.DOM
 el = React.createElement
 
-class @BeatmapsListing extends React.Component
+class Beatmaps.BeatmapsListing extends React.Component
   render: ->
     beatmaps = []
     return if @props.beatmaps == undefined
     for beatmap in @props.beatmaps
-      beatmaps.push el(Panel, beatmap: beatmap, key: beatmap.beatmapset_id)
+      panel = div
+        className: 'osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-4'
+        key: beatmap.beatmapset_id
+        el BeatmapsetPanel, beatmap: beatmap
+
+      beatmaps.push panel
 
     div className: ['beatmap-container', ('dimmed' if @props.loading)].join(' '),
       div className: 'view_mode'
-      div className: 'listing',
-        if beatmaps.length > 0
+      if beatmaps.length > 0
+        div className: 'listing osu-layout__col-container osu-layout__col-container--with-gutter',
           beatmaps
-        else
-          div {},
-            img
-              src: '/images/layout/beatmaps/not-found.png'
-              srcSet: "/images/layout/beatmaps/not-found.png 1x, /images/layout/beatmaps/not-found@2x.png 2x"
-              alt: Lang.get("beatmaps.listing.search.not-found")
-              title: Lang.get("beatmaps.listing.search.not-found")
-              style:
-                paddingTop: '25px'
-                paddingRight: '25px'
-                marginBottom: '-25px'
-            span {}, Lang.get("beatmaps.listing.search.not-found-quote")
+      else
+        div className: 'text-center',
+          img
+            src: '/images/layout/beatmaps/not-found.png'
+            srcSet: "/images/layout/beatmaps/not-found.png 1x, /images/layout/beatmaps/not-found@2x.png 2x"
+            alt: Lang.get("beatmaps.listing.search.not-found")
+            title: Lang.get("beatmaps.listing.search.not-found")
+            style:
+              paddingTop: '25px'
+              paddingRight: '25px'
+              marginBottom: '-20px'
+          span {}, Lang.get("beatmaps.listing.search.not-found-quote")
