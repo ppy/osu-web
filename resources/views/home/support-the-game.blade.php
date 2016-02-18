@@ -25,7 +25,7 @@
       <h2 class="big-desc">{!! trans('community.support.header.big_description') !!}</h2>
       <p class="small-desc">{!! trans('community.support.header.small_description') !!}</p>
 
-      <a class="shadow shadow--hover button" href="">
+      <a class="shadow shadow--hover button" href="{{ config('osu.urls.-game') }}">
         {!! trans('community.support.header.support_button') !!}&nbsp;&nbsp;<span class="fa fa-heart"></span>
       </a>
     </div><!-- end: header info -->
@@ -76,7 +76,7 @@
     <!-- preview -->
     <div class="community-support__preview"></div>
     <br/><br/>
-    
+
     <div class="perk-row text-center">
       @foreach($data['perks'] as $name => $icon)
         @if (strlen($name) > 0)
@@ -104,11 +104,11 @@
     <h2>{{ trans('community.support.convinced.title') }}</h2>
     <br/><br/>
 
-    <div class="convinced__heart" href="">
+    <a class="convinced__heart link--white" href="{{ config('osu.urls.-game') }}">
       <div class="convinced__heart__inner">
-        <span class="fa fa-heart fa-5x"></span>
+        <i class="fa fa-heart fa-5x"></i>
       </div>
-    </div>
+    </a>
 
     <h3>{{ trans('community.support.convinced.support') }}</h3>
     <h4 class="first">{{ trans('community.support.convinced.gift') }}</h4>
