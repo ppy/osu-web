@@ -54,32 +54,51 @@ class ProfilePage.Performance extends React.Component
     data = @props.rankHistories.data
       .filter (rank) => rank > 0
 
-    startDate = moment().startOf('day').subtract(data.length, 'days')
-
-    data = data.map (rank) =>
-      x: startDate.add(1, 'day').clone().toDate()
+    data = data.map (rank, i) =>
+      x: i - data.length + 1
       # rank must be drawn inverted.
       y: -rank
 
-    yAxisTickValues = @_yAxisTickValues data
-
     unless @_rankHistoryChart
+      tickValues =
+        x: [-90, -60, -30, 0]
+
+      domains =
+        x: d3.extent(tickValues.x)
+
       formats =
-        x: d3.time.format '%b-%-d'
+        x: (d) =>
+          if d == 0
+            Lang.get('common.time.now')
+          else
+            Lang.choice('common.time.days_ago', -d)
         y: (d) => "##{(-d).toLocaleString()}"
 
+      tooltipFormats =
+        x: (d) =>
+          date = moment().add(d, 'days').format 'MMM D'
+          "#{formats.x(d)}<br>#{date}"
+
       scales =
+        x: d3.scale.linear()
         y: d3.scale.log()
 
       options =
         formats: formats
+        tooltipFormats: tooltipFormats
         scales: scales
+        tickValues: tickValues
+        domains: domains
 
       @_rankHistoryChart = new LineChart(@refs.chartArea, options)
+      @_rankHistoryChart.margins.bottom = 65
+      @_rankHistoryChart.xAxis.tickPadding 5
+
       $(window).on 'throttled-resize.profilePagePerformance', @_rankHistoryChart.resize
 
-    @_rankHistoryChart.options.domains = y: d3.extent(yAxisTickValues)
-    @_rankHistoryChart.options.tickValues = y: yAxisTickValues
+    yTickValues = @_yAxisTickValues data
+    @_rankHistoryChart.options.tickValues.y = yTickValues
+    @_rankHistoryChart.options.domains.y = d3.extent(yTickValues)
     @_rankHistoryChart.loadData(data)
 
   render: ->

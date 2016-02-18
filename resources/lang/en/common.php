@@ -38,4 +38,9 @@ return [
             'previous' => 'prev',
             'next' => 'next',
         ],
+
+        'time' => [
+            'days_ago' => ':count day ago|:count days ago',
+            'now' => 'now',
+        ],
 ];

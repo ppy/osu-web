@@ -186,7 +186,7 @@ class @LineChart
 
     @svgXAxis.selectAll 'text'
       .style 'text-anchor', 'start'
-      .attr 'transform', 'rotate(45)'
+      .attr 'transform', 'rotate(45) translate(5, 0)'
       .classed 'chart__tick-text chart__tick-text--strong', true
 
     @svgYAxis.selectAll 'text'
@@ -230,8 +230,8 @@ class @LineChart
     @svgHoverMark
       .attr 'transform', "translate(#{coords.join(', ')})"
 
-    @tooltipX.text @options.formats.x(d.x)
-    @tooltipY.text @options.formats.y(d.y)
+    @tooltipX.html (@options.tooltipFormats?.x || @options.formats.x)(d.x)
+    @tooltipY.html (@options.tooltipFormats?.y || @options.formats.y)(d.y)
     @tooltip
       .style 'transform', "translate(#{coordsTooltip.join(', ')})"
 
