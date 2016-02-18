@@ -83,7 +83,7 @@ class ProfilePage.Extra extends React.Component
     # The result will be wrong when target page is too short anyway.
     @_scrolling = true
 
-    $.scrollTo "##{mode}", 500,
+    $(window).stop().scrollTo "##{mode}", 500,
       onAfter: =>
         # Manually set the mode to avoid confusion (wrong highlight).
         # Scrolling will obviously break it but that's unfortunate result
@@ -137,6 +137,8 @@ class ProfilePage.Extra extends React.Component
   render: =>
     return if @props.mode == 'me'
 
+    withMePage = @props.userPage.html != '' || @props.withEdit
+
     tabsContainerClasses = 'hidden-xs profile-extra-tabs__container js-fixed-element'
     tabsClasses = 'profile-extra-tabs__items'
     if @state.tabsSticky
@@ -155,46 +157,40 @@ class ProfilePage.Extra extends React.Component
               className: tabsClasses
               'data-sticky-header-id': 'profile-extra-tabs'
               @state.profileOrder.map (m) =>
+                return if m == 'me' && !withMePage
+
                 el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
 
       div className: 'osu-layout__row', id: 'profile-extra-list',
         @props.profileOrder.map (m) =>
-          switch m
-            when 'me'
-              div
-                className: 'js-profile-page-extra--scrollspy', id: 'me'
+          topClassName = 'js-profile-page-extra--scrollspy'
+          page =
+            switch m
+              when 'me'
+                topClassName += ' hidden' unless withMePage
                 el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
-            when 'recent_activities'
-              div
-                className: 'js-profile-page-extra--scrollspy', id: 'recent_activities'
+              when 'recent_activities'
                 el ProfilePage.RecentActivities, recentActivities: @props.recentActivities
-            when 'kudosu'
-              div
-                className: 'js-profile-page-extra--scrollspy', id: 'kudosu'
+              when 'kudosu'
                 el ProfilePage.Kudosu, user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu
-            when 'top_ranks'
-              div
-                className: 'js-profile-page-extra--scrollspy', id: 'top_ranks'
+              when 'top_ranks'
                 el ProfilePage.TopRanks, user: @props.user, scoresBest: @props.scoresBest, scoresFirst: @props.scoresFirst
-            when 'beatmaps'
-              div
-                className: 'js-profile-page-extra--scrollspy', id: 'beatmaps'
+              when 'beatmaps'
                 el ProfilePage.Beatmaps,
                   favouriteBeatmapSets: @props.favouriteBeatmapSets
                   rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
-            when 'medals'
-              div
-                className: 'js-profile-page-extra--scrollspy', id: 'medals'
+              when 'medals'
                 el ProfilePage.Medals, achievements: @props.achievements, allAchievements: @props.allAchievements
-            when 'historical'
-              div
-                className: 'js-profile-page-extra--scrollspy', id: 'historical'
+              when 'historical'
                 el ProfilePage.Historical,
                   beatmapPlaycounts: @props.beatmapPlaycounts
                   rankHistories: @props.rankHistories
                   scores: @props.scores
-            when 'performance'
-              div
-                className: 'js-profile-page-extra--scrollspy', id: 'performance'
+              when 'performance'
                 el ProfilePage.Performance,
                   rankHistories: @props.rankHistories
+          div
+            key: m
+            id: m
+            className: topClassName
+            page

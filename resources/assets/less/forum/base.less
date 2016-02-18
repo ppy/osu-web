@@ -86,17 +86,18 @@ body.community {
 }
 
 #forum-index-header {
-  .at2x-simple("/images/headers/forum-top.jpg");
-  background-size: cover;
+  .at2x-simple("/images/headers/forum-top.png");
+  background-size: 1350px 200px;
+  background-position: 0 0;
   height: 200px;
 
   .text-area {
     position: absolute;
     width: 100%;
     // the diameter of circle thing (more or less)
-    max-width: 570px;
-    left: 0px;
-    bottom: 0px;
+    max-width: 740px;
+    left: 0;
+    bottom: 0;
 
     // the thickness of the circle (more or less)
     padding: 0px 70px;
@@ -446,11 +447,14 @@ body.community {
 
     .right {
       flex: none;
+      padding-top: (@spacing / 2);
+      padding-left: @grid-gutter-width/4;
+
       @media @desktop {
         flex: 0 0 200px;
         text-align: right;
+        padding-top: 0;
       }
-      padding-left: @grid-gutter-width/4;
 
       .latest-reply-by {
         overflow: hidden;
@@ -492,9 +496,15 @@ body.community {
 
 .forum__issue-icons {
   flex: none;
-  align-self: center;
   display: flex;
-  padding: 0px @grid-gutter-width/4;
+  padding: (@spacing / 2) (@spacing / 2) 0;
+  order: 1;
+
+  @media @desktop {
+    align-self: center;
+    order: 0;
+    padding-top: 0;
+  }
 }
 
 .forum__avatar-container {

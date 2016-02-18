@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div} = React.DOM
+{a, div, h1} = React.DOM
 el = React.createElement
 
 
@@ -73,7 +73,12 @@ class @UserCard extends React.Component
             user.achievements.current
 
         el 'div', className: 'modal-header__userinfo userinfo-small',
-          el 'h1', className: 'userinfo-small__username', user.username
+          h1
+            className: 'userinfo-small__username'
+            a
+              className: 'link link--white link--no-underline'
+              href: OsuUrl.user(user.id)
+              user.username
 
           el FlagCountry, country: user.country, classModifiers: ['userinfo-small']
 
@@ -132,7 +137,6 @@ class @UserCard extends React.Component
                 el 'i', className: 'fa fa-cog user-dropdown-modal-menu__icon'
             el 'a',
               href: window.logoutUrl
-              title: Lang.get('layout.menu.user.logout')
               className: 'user-dropdown-modal-menu__item js-logout-link'
               'data-method': 'delete'
               'data-confirm': Lang.get 'users.logout_confirm'
@@ -141,7 +145,6 @@ class @UserCard extends React.Component
               el 'i', className: 'fa fa-sign-out user-dropdown-modal-menu__icon'
             el 'a',
               href: window.helpUrl
-              title: Lang.get('layout.menu.user.help')
               className: 'user-dropdown-modal-menu__item'
               Lang.get 'layout.menu.user.help'
               el 'i', className: 'fa fa-question-circle user-dropdown-modal-menu__icon'

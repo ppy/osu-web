@@ -21,7 +21,7 @@
     <div id="forum-index-header" class="osu-layout__row osu-layout__row--page">
         <div class="text-area">
             <div class="text">
-                <h2>not so random subtitles.</h2>
+                <h2>it's dangerous to play alone.</h2>
                 <h1>{{ trans("forum.title") }}</h1>
             </div>
         </div>
