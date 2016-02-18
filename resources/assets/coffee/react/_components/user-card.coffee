@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div} = React.DOM
+{a, div, h1} = React.DOM
 el = React.createElement
 
 
@@ -73,7 +73,12 @@ class @UserCard extends React.Component
             user.achievements.current
 
         el 'div', className: 'modal-header__userinfo userinfo-small',
-          el 'h1', className: 'userinfo-small__username', user.username
+          h1
+            className: 'userinfo-small__username'
+            a
+              className: 'link link--white link--no-underline'
+              href: OsuUrl.user(user.id)
+              user.username
 
           el FlagCountry, country: user.country, classModifiers: ['userinfo-small']
 
