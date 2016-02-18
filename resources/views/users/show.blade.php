@@ -34,7 +34,7 @@
     @parent
 
     <script data-turbolinks-eval="always">
-        var changeCoverUrl = '{{ route("account.update-profile-cover") }}';
+        var updateProfileUrl = '{{ route("account.update-profile") }}';
         var changePageUrl = '{{ route("account.page") }}';
 
         var user = {!! json_encode($userArray['data']) !!};

@@ -30,6 +30,7 @@ ProfilePage.Beatmaps = React.createClass
 
     div
       className: 'profile-extra'
+      el ProfilePage.DragDropToggle
       h2 className: 'profile-extra__title', Lang.get('users.show.extra.beatmaps.title')
       _.map allBeatmapSets, (beatmapSets, section) =>
         div
