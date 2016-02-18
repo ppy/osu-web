@@ -61,13 +61,4 @@ class ProfileExtrasTest extends TestCase
             ->visit('/u/'.$this->user->user_id)
             ->see('"profileOrder":["me","performance","recent_activities","top_ranks","medals","historical","beatmaps","kudosu"]');
     }
-
-    public function testUserPageNotDisplayedOnOtherUsers()
-    {
-        $visitedUser = factory(User::class)->create();
-
-        $this->actingAs($this->user)
-            ->visit('/u/'.$visitedUser->user_id)
-            ->see('"profileOrder":["performance","recent_activities","top_ranks","medals","historical","beatmaps","kudosu"]');
-    }
 }
