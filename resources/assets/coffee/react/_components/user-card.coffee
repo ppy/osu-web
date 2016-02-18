@@ -137,7 +137,6 @@ class @UserCard extends React.Component
                 el 'i', className: 'fa fa-cog user-dropdown-modal-menu__icon'
             el 'a',
               href: window.logoutUrl
-              title: Lang.get('layout.menu.user.logout')
               className: 'user-dropdown-modal-menu__item js-logout-link'
               'data-method': 'delete'
               'data-confirm': Lang.get 'users.logout_confirm'
@@ -146,7 +145,6 @@ class @UserCard extends React.Component
               el 'i', className: 'fa fa-sign-out user-dropdown-modal-menu__icon'
             el 'a',
               href: window.helpUrl
-              title: Lang.get('layout.menu.user.help')
               className: 'user-dropdown-modal-menu__item'
               Lang.get 'layout.menu.user.help'
               el 'i', className: 'fa fa-question-circle user-dropdown-modal-menu__icon'
