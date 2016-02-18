@@ -41,8 +41,6 @@ class StoreCheckOrderTrackingStatus extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -67,14 +65,14 @@ class StoreCheckOrderTrackingStatus extends Command
 
         Slack::send("Checking order tracking status ($count orders)...");
 
-        $statuses = [];
+        $globalStatuses = [];
 
         $i = 0;
         foreach ($orders as $o) {
-            $i++;
+            ++$i;
 
             try {
-                if (!strlen(trim($o->tracking_code)) || strpos($o->tracking_code, 'EJ') !== 0) {
+                if (!strlen(trim($o->tracking_code)) || (strpos($o->tracking_code, 'EJ') !== 0 && strpos($o->tracking_code, 'RR') !== 0)) {
                     continue;
                 }
 
@@ -83,83 +81,101 @@ class StoreCheckOrderTrackingStatus extends Command
                     $o->save();
                 }
 
-                $response = file_get_contents("https://trackings.post.japanpost.jp/services/srv/search/direct?searchKind=S004&locale=en&reqCodeNo1=$o->tracking_code");
+                $orderStatuses = [];
+                $retainedCodes = [];
+                $deliveredCodes = [];
+                $trackingCodes = explode(',', $o->tracking_code);
 
-                preg_match_all("/\<td rowspan=\"2\" class=\"w_150\"\>([^\<]*)\<\/td\>/", $response, $status);
+                //a single order may have multiple tracking numbers
+                foreach ($trackingCodes as $code) {
+                    $code = trim($code);
 
-                if (!count($status[1])) {
-                    if (!$o->last_tracking_state) {
-                        $days_until_warning = 4;
-                        if (time() - $o->shipped_at->timestamp > 3600 * 24 * $days_until_warning) {
-                            Slack::send("WARNING: <https://store.ppy.sh/store/admin/orders/{$o->order_id}|Order #{$o->order_id}> has no tracking after {$days_until_warning} days!");
+                    $response = file_get_contents("https://trackings.post.japanpost.jp/services/srv/search/direct?searchKind=S004&locale=en&reqCodeNo1=$code");
+
+                    preg_match_all("/\<td rowspan=\"2\" class=\"w_150\"\>([^\<]*)\<\/td\>/", $response, $status);
+
+                    if (!count($status[1])) {
+                        if (!$o->last_tracking_state) {
+                            $days_until_warning = 4;
+                            if (time() - $o->shipped_at->timestamp > 3600 * 24 * $days_until_warning) {
+                                Slack::send("WARNING: <https://store.ppy.sh/store/admin/orders/{$o->order_id}|Order #{$o->order_id}> has no tracking after {$days_until_warning} days!");
+                            }
                         }
+                        continue;
                     }
-                    continue;
-                }
 
-                $lastStatus = end($status[1]);
+                    $thisStatus = end($status[1]);
 
-                $statuses[$lastStatus][] = $o;
-
-                $this->info("#$i: Order #{$o->order_id} (https://store.ppy.sh/store/invoice/{$o->order_id})\t{$o->address->country_code}\tshipped {$o->shipped_at}\t$lastStatus");
-
-                if (!$o->last_tracking_state) {
-                    mail($o->user->user_email, 'Your osu!store order is on its way!',
-                    "Hi {$o->user->username},
-
-	Thanks again for your osu!store order!
-
-	We have just shipped your order out from Japan! You can follow the progress of it at https://store.ppy.sh/store/invoice/{$o->order_id}.
-
-	If you have any questions, don't hesitate to reply to this email.
-
-	Regards,
-	The osu!store team", 'From: "osu!store team" <osustore@ppy.sh>');
-                }
-
-                if ($lastStatus !== $o->last_tracking_state) {
-                    switch ($lastStatus) {
+                    switch ($thisStatus) {
                         case 'Final delivery':
                         case 'P.O.Box Delivery':
-                            Slack::send("<https://store.ppy.sh/store/invoice/{$o->order_id}|Order #{$o->order_id}> has been delivered!");
-                            $o->status = 'delivered';
+                            array_push($deliveredCodes, $code);
                             break;
                         case 'Retention':
                         case 'Absence. Attempted delivery.':
-                                mail($o->user->user_email,
-                        'IMPORTANT: Your osu!store order is pending delivery',
-                        "Hi {$o->user->username},
-
-	We have been tracking your order and noticed that it is currently in the state of \"{$lastStatus}\".
-
-	This means it has likely reached your local post office, but you weren't around to collect the package. Please check your letterbox for any notices of missed packages, and if there is no sign of such a notice please contact or visit your local post office and enquire using your tracking number ({$o->tracking_code}) to ensure you receive your order successfully. If no action is taken in 7 days, they are likely to return the package to us, so it is very important that you follow up on this.
-
-	You can check the current tracking status here: https://store.ppy.sh/store/invoice/{$o->order_id}.
-
-	If you have any questions, don't hesitate to reply to this email.
-
-	Regards,
-	The osu!store team", 'From: "osu!store team" <osustore@ppy.sh>');
-                            Slack::send("<https://store.ppy.sh/store/invoice/{$o->order_id}|Order #{$o->order_id}> is being held at the destination post office. Contacting user ({$o->user->user_email}).");
+                            array_push($retainedCodes, $code);
                             break;
-                        default:
-                            if ($o->last_tracking_state) {
-                                Slack::send("<https://store.ppy.sh/store/invoice/{$o->order_id}|Order #{$o->order_id}> has changed status from \"{$o->last_tracking_state}\" to \"$lastStatus\"");
-                            } else {
-                                Slack::send("<https://store.ppy.sh/store/invoice/{$o->order_id}|Order #{$o->order_id}> is now being tracked with an initial state of \"$lastStatus\"");
-                            }
                     }
 
-                    $o->last_tracking_state = $lastStatus;
-                    $o->save();
+                    array_push($orderStatuses, $thisStatus);
                 }
+
+                $lastStatus = implode(' / ', $orderStatuses);
+                $globalStatuses[$lastStatus][] = $o;
+
+                if (strlen($lastStatus) === 0 || $lastStatus === $o->last_tracking_state) {
+                    continue;
+                } //no change in tracking state since our last check.
+
+                $this->info("#$i: Order #{$o->order_id} (https://store.ppy.sh/store/invoice/{$o->order_id})\t{$o->address->country_code}\tshipped {$o->shipped_at}\t$lastStatus");
+
+                foreach ($retainedCodes as $code) {
+                    mail($o->user->user_email, 'IMPORTANT: Your osu!store order is pending delivery', "Hi {$o->user->username},
+
+We have been tracking your order and noticed that it is currently in the state of \"{$thisStatus}\".
+
+This means it has likely reached your local post office, but you weren't around to collect the package. Please check your letterbox for any notices of missed packages, and if there is no sign of such a notice please contact or visit your local post office and enquire using your tracking number ({$code}) to ensure you receive your order successfully. If no action is taken in 7 days, they are likely to return the package to us, so it is very important that you follow up on this.
+
+You can check the current tracking status here: https://store.ppy.sh/store/invoice/{$o->order_id}.
+
+If you have any questions, don't hesitate to reply to this email.
+
+Regards,
+The osu!store team", 'From: "osu!store team" <osustore@ppy.sh>');
+                    Slack::send("<https://store.ppy.sh/store/invoice/{$o->order_id}|Order #{$o->order_id}> is being held at the destination post office. Contacting user ({$o->user->user_email}).");
+                }
+
+                if (count($deliveredCodes) === count($trackingCodes)) {
+                    Slack::send("<https://store.ppy.sh/store/invoice/{$o->order_id}|Order #{$o->order_id}> has been delivered!");
+                    $o->status = 'delivered';
+                }
+
+                if (!$o->last_tracking_state) {
+                    //first status update should sent out an email to the user.
+                    Slack::send("<https://store.ppy.sh/store/invoice/{$o->order_id}|Order #{$o->order_id}> is now being tracked with an initial state of \"$lastStatus\"");
+                    mail($o->user->user_email, 'Your osu!store order is on its way!', "Hi {$o->user->username},
+
+Thanks again for your osu!store order!
+
+We have just shipped your order out from Japan! You can follow the progress of it at https://store.ppy.sh/store/invoice/{$o->order_id}.
+
+If you have any questions, don't hesitate to reply to this email.
+
+Regards,
+The osu!store team", 'From: "osu!store team" <osustore@ppy.sh>');
+                } else {
+                    Slack::send("<https://store.ppy.sh/store/invoice/{$o->order_id}|Order #{$o->order_id}> has changed status from \"{$o->last_tracking_state}\" to \"$lastStatus\"");
+                }
+
+                $o->last_tracking_state = $lastStatus;
+                $o->save();
             } catch (\Exception $e) {
                 //slack could throw errors here if their servers are dead.
             }
         }
 
         $fields = [];
-        foreach ($statuses as $k => $v) {
+        foreach ($globalStatuses as $k => $v) {
             $orderstring = '';
             foreach ($v as $o) {
                 $orderstring .= "<https://store.ppy.sh/store/invoice/{$o->order_id}|{$o->order_id}({$o->address->country_code})> ";

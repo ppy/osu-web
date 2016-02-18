@@ -146,11 +146,10 @@ window.onload = function() {
 </script>
 @endif
 
-<div class="osu-layout__row osu-layout__row--page osu-layout__row--bootstrap no-print">
-    <div class="col-xs-12">
+<div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1">
+    <div class='osu-layout__sub-row osu-layout__sub-row--with-separator'>
         <h3>Order Status</h3>
-    </div>
-    <div class="col-xs-12">
+
         @if ($order->status == 'delivered')
             <p><strong>Your order has been delivered! We hope you are enjoying it!</strong></p>
             <p>
@@ -167,16 +166,15 @@ window.onload = function() {
                 If you didn't request a cancellation please contact <a href='mailto:osustore@ppy.sh'>osu!store support</a> quoting your order number (#{{$order->order_id}}).
             </p>
         @elseif (($order->status == 'shipped' && ($order->last_tracking_state || !$order->tracking_code)) || $order->status == 'delivered')
+            <p><strong>Your order has been shipped!</strong></p>
             @if($order->tracking_code)
-                <iframe src="https://trackings.post.japanpost.jp/services/srv/search/direct?searchKind=S004&locale=en&reqCodeNo1={{ $order->tracking_code }}" frameBorder="0" width="100%" height="600px">
-                </iframe>
+                <p>
+                    Tracking details follow:
+                </p>
             @else
-                <div>
-                    <p><strong>Your order has been shipped!</strong></p>
-                    <p>
-                        We don't have tracking details as it was send in a small envelope, but you can expect to receive it within 1-2 weeks at the most. If you have any concerns, please reply to the order confirmation email you received (or <a href='mailto:osustore@ppy.sh'>send us an email</a>).
-                    </p>
-                </div>
+                <p>
+                    We don't have tracking details as it was sent in a small envelope, but you can expect to receive it within 1-2 weeks at the most. If you have any concerns, please reply to the order confirmation email you received (or <a href='mailto:osustore@ppy.sh'>send us an email</a>).
+                </p>
             @endif
         @else
             <p><strong>Your order is being prepared!</strong></p>
@@ -189,6 +187,17 @@ window.onload = function() {
             </p>
         @endif
     </div>
+
+    @if ($order->status == 'shipped' && $order->tracking_code)
+    @foreach(explode(',', $order->tracking_code) as $code)
+    <div class='osu-layout__sub-row osu-layout__sub-row--with-separator'>
+        <h4>Tracking for {{ $code }}</h4>
+
+        <iframe src="https://trackings.post.japanpost.jp/services/srv/search/direct?searchKind=S004&locale=en&reqCodeNo1={{ $code }}" frameBorder="0" width="100%" height="600px">
+        </iframe>
+    </div>
+    @endforeach
+    @endif
 </div>
 @endif
 
