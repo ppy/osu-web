@@ -76,11 +76,11 @@ class ProfilePage.Main extends React.Component
 
     withMePage = @props.userPage.html != '' || @props.withEdit
 
-    profileOrder = @props.user.profileOrder.map (m) ->
-      if m is not 'me'
-        return m
-      else if withMePage and m is 'me'
-        return m
+    profileOrder = _.filter @props.user.profileOrder, (p) =>
+      if p == 'me'
+        withMePage
+      else
+        true
 
     div className: 'osu-layout__section',
       el ProfilePage.Header,
