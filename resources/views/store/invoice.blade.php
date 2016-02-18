@@ -173,7 +173,7 @@ window.onload = function() {
                 </p>
             @else
                 <p>
-                    We don't have tracking details as it was send in a small envelope, but you can expect to receive it within 1-2 weeks at the most. If you have any concerns, please reply to the order confirmation email you received (or <a href='mailto:osustore@ppy.sh'>send us an email</a>).
+                    We don't have tracking details as it was sent in a small envelope, but you can expect to receive it within 1-2 weeks at the most. If you have any concerns, please reply to the order confirmation email you received (or <a href='mailto:osustore@ppy.sh'>send us an email</a>).
                 </p>
             @endif
         @else
