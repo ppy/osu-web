@@ -124,7 +124,7 @@ class StoreCheckOrderTrackingStatus extends Command
                 $lastStatus = implode(' / ', $orderStatuses);
                 $globalStatuses[$lastStatus][] = $o;
 
-                if ($lastStatus == $o->last_tracking_state) {
+                if (strlen($lastStatus) === 0 || $lastStatus === $o->last_tracking_state) {
                     continue;
                 } //no change in tracking state since our last check.
 
@@ -146,7 +146,7 @@ The osu!store team", 'From: "osu!store team" <osustore@ppy.sh>');
                     Slack::send("<https://store.ppy.sh/store/invoice/{$o->order_id}|Order #{$o->order_id}> is being held at the destination post office. Contacting user ({$o->user->user_email}).");
                 }
 
-                if (count($deliveredCodes) == count($trackingCodes)) {
+                if (count($deliveredCodes) === count($trackingCodes)) {
                     Slack::send("<https://store.ppy.sh/store/invoice/{$o->order_id}|Order #{$o->order_id}> has been delivered!");
                     $o->status = 'delivered';
                 }
