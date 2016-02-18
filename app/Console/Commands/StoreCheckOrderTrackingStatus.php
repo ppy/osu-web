@@ -74,7 +74,7 @@ class StoreCheckOrderTrackingStatus extends Command
             $i++;
 
             try {
-                if (!strlen(trim($o->tracking_code)) || strpos($o->tracking_code, 'EJ') !== 0) {
+                if (!strlen(trim($o->tracking_code)) || (strpos($o->tracking_code, 'EJ') !== 0 && strpos($o->tracking_code, 'RR') !== 0)) {
                     continue;
                 }
 
