@@ -24,8 +24,7 @@ return [
             // size in font-size
             'big_description' => 'Love osu!?<br/>
                                 Support the osu! dev :D',
-            'small_description' => 'Bitch, it takes fuckload of effort to develop and<br/>
-                                  maintain this gowd damn game. Pay up, bitches.',
+            'small_description' => '',
             'support_button' => 'I want to support osu!',
         ],
 
