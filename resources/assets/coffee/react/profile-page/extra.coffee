@@ -190,5 +190,7 @@ class ProfilePage.Extra extends React.Component
                 el ProfilePage.Performance,
                   rankHistories: @props.rankHistories
           div
-            className: topClassName, id: m
+            key: m
+            id: m
+            className: topClassName
             page
