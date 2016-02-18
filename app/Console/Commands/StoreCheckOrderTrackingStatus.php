@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Console\Commands;
 
 use App\Models\Store;
@@ -41,8 +42,6 @@ class StoreCheckOrderTrackingStatus extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -71,7 +70,7 @@ class StoreCheckOrderTrackingStatus extends Command
 
         $i = 0;
         foreach ($orders as $o) {
-            $i++;
+            ++$i;
 
             try {
                 if (!strlen(trim($o->tracking_code)) || (strpos($o->tracking_code, 'EJ') !== 0 && strpos($o->tracking_code, 'RR') !== 0)) {
@@ -89,8 +88,7 @@ class StoreCheckOrderTrackingStatus extends Command
                 $trackingCodes = explode(',', $o->tracking_code);
 
                 //a single order may have multiple tracking numbers
-                foreach ($trackingCodes as $code)
-                {
+                foreach ($trackingCodes as $code) {
                     $code = trim($code);
 
                     $response = file_get_contents("https://trackings.post.japanpost.jp/services/srv/search/direct?searchKind=S004&locale=en&reqCodeNo1=$code");
@@ -109,8 +107,7 @@ class StoreCheckOrderTrackingStatus extends Command
 
                     $thisStatus = end($status[1]);
 
-                    switch ($thisStatus)
-                    {
+                    switch ($thisStatus) {
                         case 'Final delivery':
                         case 'P.O.Box Delivery':
                             array_push($deliveredCodes, $code);
@@ -127,13 +124,13 @@ class StoreCheckOrderTrackingStatus extends Command
                 $lastStatus = implode(' / ', $orderStatuses);
                 $globalStatuses[$lastStatus][] = $o;
 
-                if ($lastStatus == $o->last_tracking_state)
-                    continue; //no change in tracking state since our last check.
+                if ($lastStatus == $o->last_tracking_state) {
+                    continue;
+                } //no change in tracking state since our last check.
 
                 $this->info("#$i: Order #{$o->order_id} (https://store.ppy.sh/store/invoice/{$o->order_id})\t{$o->address->country_code}\tshipped {$o->shipped_at}\t$lastStatus");
 
-                foreach ($retainedCodes as $code)
-                {
+                foreach ($retainedCodes as $code) {
                     mail($o->user->user_email, 'IMPORTANT: Your osu!store order is pending delivery', "Hi {$o->user->username},
 
 We have been tracking your order and noticed that it is currently in the state of \"{$thisStatus}\".
@@ -149,8 +146,7 @@ The osu!store team", 'From: "osu!store team" <osustore@ppy.sh>');
                     Slack::send("<https://store.ppy.sh/store/invoice/{$o->order_id}|Order #{$o->order_id}> is being held at the destination post office. Contacting user ({$o->user->user_email}).");
                 }
 
-                if (count($deliveredCodes) == count($trackingCodes))
-                {
+                if (count($deliveredCodes) == count($trackingCodes)) {
                     Slack::send("<https://store.ppy.sh/store/invoice/{$o->order_id}|Order #{$o->order_id}> has been delivered!");
                     $o->status = 'delivered';
                 }
@@ -168,9 +164,7 @@ If you have any questions, don't hesitate to reply to this email.
 
 Regards,
 The osu!store team", 'From: "osu!store team" <osustore@ppy.sh>');
-                }
-                else
-                {
+                } else {
                     Slack::send("<https://store.ppy.sh/store/invoice/{$o->order_id}|Order #{$o->order_id}> has changed status from \"{$o->last_tracking_state}\" to \"$lastStatus\"");
                 }
 
