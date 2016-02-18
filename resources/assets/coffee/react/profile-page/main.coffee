@@ -74,6 +74,14 @@ class ProfilePage.Main extends React.Component
     scoresBest = @props.allScoresBest[@state.mode].data
     scoresFirst = @props.allScoresFirst[@state.mode].data
 
+    withMePage = @props.userPage.html != '' || @props.withEdit
+
+    profileOrder = @props.user.profileOrder.map (m) ->
+      if m is not 'me'
+        return m
+      else if withMePage and m is 'me'
+        return m
+
     div className: 'osu-layout__section',
       el ProfilePage.Header,
         user: @state.user
@@ -105,3 +113,4 @@ class ProfilePage.Main extends React.Component
         scoresFirst: scoresFirst
         withEdit: @props.withEdit
         userPage: @state.userPage
+        profileOrder: profileOrder

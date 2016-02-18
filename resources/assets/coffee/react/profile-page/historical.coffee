@@ -25,19 +25,6 @@ ProfilePage.Historical = React.createClass
     showingPlaycounts: 5
     showingRecent: 5
 
-
-  componentDidMount: ->
-    @_rankHistory()
-
-
-  componentDidUpdate: ->
-    @_rankHistory()
-
-
-  componentWillUnmount: ->
-    $(window).off '.profilePageHistorical'
-
-
   _showMore: (key, e) ->
     e.preventDefault() if e
 
@@ -84,76 +71,12 @@ ProfilePage.Historical = React.createClass
             className: 'beatmapset-row__detail-column'
             details[1]
 
-
-  _yAxisTickValues: (data) ->
-    rankRange = d3.extent data, (d) => d.y
-
-    @_allTicks ||= [-1, -2.5, -5]
-
-    while _.last(@_allTicks) >= rankRange[0]
-      @_allTicks.push (10 * @_allTicks[@_allTicks.length - 3])
-
-    ticks = [@_allTicks[0]]
-
-    for tick in @_allTicks
-      tick = Math.trunc(tick)
-      if tick > rankRange[1]
-        ticks[0] = tick
-      else
-        ticks.push tick
-        break if tick < rankRange[0]
-
-    ticks
-
-
-  _rankHistory: ->
-    return unless @props.rankHistories
-
-    data = @props.rankHistories.data
-      .filter (rank) => rank > 0
-
-    startDate = moment().startOf('day').subtract(data.length, 'days')
-
-    data = data.map (rank) =>
-        x: startDate.add(1, 'day').clone().toDate()
-        # rank must be drawn inverted.
-        y: -rank
-
-    yAxisTickValues = @_yAxisTickValues data
-
-    unless @_rankHistoryChart
-      formats =
-        x: d3.time.format '%b-%-d'
-        y: (d) => "##{(-d).toLocaleString()}"
-
-      scales =
-        y: d3.scale.log()
-
-      options =
-        formats: formats
-        scales: scales
-
-      @_rankHistoryChart = new LineChart(@refs.chartArea, options)
-      $(window).on 'throttled-resize.profilePageHistorical', @_rankHistoryChart.resize
-
-    @_rankHistoryChart.options.domains = y: d3.extent(yAxisTickValues)
-    @_rankHistoryChart.options.tickValues = y: yAxisTickValues
-    @_rankHistoryChart.loadData(data)
-
-
   render: ->
     div
       className: 'profile-extra'
-      h2 className: 'profile-extra__title', Lang.get('users.show.extra.historical.title')
 
-      div
-        className: 'hidden' unless @props.rankHistories
-        h3
-          className: 'profile-extra__title profile-extra__title--small'
-          Lang.get('users.show.extra.historical.rank_history.title')
-        div
-          ref: 'chartArea'
-          className: 'chart'
+      el ProfilePage.DragDropToggle
+      h2 className: 'profile-extra__title', Lang.get('users.show.extra.historical.title')
 
       h3
         className: 'profile-extra__title profile-extra__title--small'

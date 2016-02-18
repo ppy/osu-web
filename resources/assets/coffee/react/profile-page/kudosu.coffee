@@ -21,6 +21,8 @@ class ProfilePage.Kudosu extends React.Component
   render: =>
     el 'div',
       className: 'profile-extra'
+
+      el ProfilePage.DragDropToggle
       el 'h2', className: 'profile-extra__title', Lang.get('users.show.extra.kudosu.title')
 
       el 'div', className: 'kudosu-box',

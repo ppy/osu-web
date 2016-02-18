@@ -25,10 +25,10 @@ class ProfilePage.CoverUploader extends React.Component
       class: 'js-profile-cover-upload fileupload__input'
       type: 'file'
       name: 'cover_file'
-      'data-url': window.changeCoverUrl
+      'data-url': window.updateProfileUrl
       disabled: !@props.canUpload
 
-    $(React.findDOMNode @refs.uploadButtonContainer).append($uploadButton)
+    $(@refs.uploadButtonContainer).append($uploadButton)
 
     $uploadButton.fileupload
       method: 'PUT'

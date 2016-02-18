@@ -24,7 +24,10 @@ class ProfilePage.Extra extends React.Component
 
     @state =
       tabsSticky: false
+      profileOrder: @props.profileOrder
 
+  @childContextTypes:
+    withEdit: React.PropTypes.bool
 
   componentDidMount: =>
     @_removeListeners()
@@ -34,7 +37,14 @@ class ProfilePage.Extra extends React.Component
     osu.pageChange()
     @_modeScan()
 
-
+    $('#profile-extra-list').sortable({
+      cursor: 'move',
+      handle: '.profile-extra__dragdrop-toggle'
+      revert: 150,
+      scrollSpeed: 10,
+      update: (event, ui) =>
+        @updateOrder ui.item
+      })
   componentWillUnmount: =>
     @_removeListeners()
 
@@ -96,14 +106,36 @@ class ProfilePage.Extra extends React.Component
   _tabsStick: (_e, target) =>
     @setState tabsSticky: (target == 'profile-extra-tabs')
 
+  updateOrder: (element) =>
+    oldOrder = @state.profileOrder
+    newOrder = $('#profile-extra-list').sortable('toArray')
+
+    id = element.attr 'id'
+
+    @setState profileOrder: newOrder
+
+    $.ajax '/account/update-profile', {
+      method: 'PUT',
+      dataType: 'JSON',
+      data: {
+        'order': @state.profileOrder,
+      },
+      error: (jqHXR, textStatus, errorThrown) =>
+        osu.ajaxError jqHXR
+
+        @setState profileOrder: oldOrder
+
+        position = (oldOrder.indexOf id) - 1
+        prevElement = $('#' + oldOrder[position])
+
+        element.insertAfter prevElement
+    }
+
+  getChildContext: ->
+    return {withEdit: @props.withEdit}
 
   render: =>
     return if @props.mode == 'me'
-
-    withMePage = @props.userPage.html != '' || @props.withEdit
-
-    pages = ['recent_activities', 'kudosu', 'top_ranks', 'beatmaps', 'medals', 'historical']
-    pages.unshift 'me' if withMePage
 
     tabsContainerClasses = 'hidden-xs profile-extra-tabs__container js-fixed-element'
     tabsClasses = 'profile-extra-tabs__items'
@@ -122,46 +154,47 @@ class ProfilePage.Extra extends React.Component
             div
               className: tabsClasses
               'data-sticky-header-id': 'profile-extra-tabs'
-              pages.map (m) =>
+              @state.profileOrder.map (m) =>
                 el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
 
-      if withMePage
-        div
-          className: 'osu-layout__row js-profile-page-extra--scrollspy'
-          id: 'me'
-          el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
-
-      div
-        className: 'osu-layout__row js-profile-page-extra--scrollspy'
-        id: 'recent_activities'
-        el ProfilePage.RecentActivities, recentActivities: @props.recentActivities
-
-      div
-        className: 'osu-layout__row js-profile-page-extra--scrollspy'
-        id: 'kudosu'
-        el ProfilePage.Kudosu, user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu
-
-      div
-        className: 'osu-layout__row js-profile-page-extra--scrollspy'
-        id: 'top_ranks'
-        el ProfilePage.TopRanks, user: @props.user, scoresBest: @props.scoresBest, scoresFirst: @props.scoresFirst
-
-      div
-        className: 'osu-layout__row js-profile-page-extra--scrollspy'
-        id: 'beatmaps'
-        el ProfilePage.Beatmaps,
-          favouriteBeatmapSets: @props.favouriteBeatmapSets
-          rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
-
-      div
-        className: 'osu-layout__row js-profile-page-extra--scrollspy'
-        id: 'medals'
-        el ProfilePage.Medals, achievements: @props.achievements, allAchievements: @props.allAchievements
-
-      div
-        className: 'osu-layout__row js-profile-page-extra--scrollspy'
-        id: 'historical'
-        el ProfilePage.Historical,
-          beatmapPlaycounts: @props.beatmapPlaycounts
-          rankHistories: @props.rankHistories
-          scores: @props.scores
+      div className: 'osu-layout__row', id: 'profile-extra-list',
+        @props.profileOrder.map (m) =>
+          switch m
+            when 'me'
+              div
+                className: 'js-profile-page-extra--scrollspy', id: 'me'
+                el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
+            when 'recent_activities'
+              div
+                className: 'js-profile-page-extra--scrollspy', id: 'recent_activities'
+                el ProfilePage.RecentActivities, recentActivities: @props.recentActivities
+            when 'kudosu'
+              div
+                className: 'js-profile-page-extra--scrollspy', id: 'kudosu'
+                el ProfilePage.Kudosu, user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu
+            when 'top_ranks'
+              div
+                className: 'js-profile-page-extra--scrollspy', id: 'top_ranks'
+                el ProfilePage.TopRanks, user: @props.user, scoresBest: @props.scoresBest, scoresFirst: @props.scoresFirst
+            when 'beatmaps'
+              div
+                className: 'js-profile-page-extra--scrollspy', id: 'beatmaps'
+                el ProfilePage.Beatmaps,
+                  favouriteBeatmapSets: @props.favouriteBeatmapSets
+                  rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
+            when 'medals'
+              div
+                className: 'js-profile-page-extra--scrollspy', id: 'medals'
+                el ProfilePage.Medals, achievements: @props.achievements, allAchievements: @props.allAchievements
+            when 'historical'
+              div
+                className: 'js-profile-page-extra--scrollspy', id: 'historical'
+                el ProfilePage.Historical,
+                  beatmapPlaycounts: @props.beatmapPlaycounts
+                  rankHistories: @props.rankHistories
+                  scores: @props.scores
+            when 'performance'
+              div
+                className: 'js-profile-page-extra--scrollspy', id: 'performance'
+                el ProfilePage.Performance,
+                  rankHistories: @props.rankHistories
