@@ -83,7 +83,7 @@ class ProfilePage.Extra extends React.Component
     # The result will be wrong when target page is too short anyway.
     @_scrolling = true
 
-    $.scrollTo "##{mode}", 500,
+    $(window).stop().scrollTo "##{mode}", 500,
       onAfter: =>
         # Manually set the mode to avoid confusion (wrong highlight).
         # Scrolling will obviously break it but that's unfortunate result
