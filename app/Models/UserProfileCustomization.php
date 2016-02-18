@@ -26,6 +26,7 @@ class UserProfileCustomization extends Model
 {
     protected $casts = [
         'cover_json' => 'array',
+        'extras_order' => 'array',
     ];
 
     private $_cover;
@@ -46,9 +47,31 @@ class UserProfileCustomization extends Model
         $this->save();
     }
 
+    /**
+     * An array of all possible profile sections, also in their default order.
+     */
+    public static $sections = ['me', 'performance', 'recent_activities', 'top_ranks', 'medals', 'historical', 'beatmaps', 'kudosu'];
+
+    public function setExtrasOrder($order)
+    {
+        $this->extras_order = $order;
+
+        $this->save();
+    }
+
+    public function getExtrasOrder()
+    {
+        if ($this->extras_order === null) {
+            $this->extras_order = self::$sections;
+        }
+
+        return $this->extras_order;
+    }
+
     public function __construct($attributes = [])
     {
         $this->cover_json = ['id' => null, 'file' => null];
+        $this->extras_order = null;
 
         return parent::__construct($attributes);
     }

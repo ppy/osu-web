@@ -39,11 +39,14 @@ class ProfilePage.Header extends React.Component
 
 
   componentWillUnmount: =>
+    @coverSet.cancel
+
     @_removeListeners()
 
 
   _removeListeners: =>
     $.unsubscribe '.profilePageHeader'
+    $(document).off '.profilePageHeader'
 
 
   closeEdit: =>
@@ -54,13 +57,13 @@ class ProfilePage.Header extends React.Component
 
   toggleEdit: =>
     if @state.editing
-      @coverReset()
+      @debouncedCoverReset()
       fade.out $('.blackout')[0]
-      $(document).off 'click.profilePageHeader:toggleHeaderEdit'
+      $(document).off 'click.profilePageHeader.toggleHeaderEdit'
     else
       fade.in $('.blackout')[0]
 
-      $(document).on 'click.profilePageHeader:toggleHeaderEdit', (e) =>
+      $(document).on 'click.profilePageHeader.toggleHeaderEdit', (e) =>
         return if $(e.target).closest('.profile-change-cover-popup').length
         return if $(e.target).closest('.profile-change-cover-button').length
         return if $('#overlay').is(':visible')
@@ -75,6 +78,7 @@ class ProfilePage.Header extends React.Component
 
   coverSet: (_e, url) =>
     return if @props.isCoverUpdating
+
     @setState coverUrl: url
 
 

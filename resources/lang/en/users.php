@@ -73,14 +73,14 @@ return [
                     'count' => 'times played',
                     'title' => 'Most Played Beatmaps',
                 ],
-                'rank_history' => [
-                    'title' => 'Rank History',
-                ],
                 'recent_plays' => [
                     'accuracy' => 'accuracy: :percentage',
                     'title' => 'Recent Plays',
                 ],
                 'title' => 'Historical',
+            ],
+            'performance' => [
+                'title' => 'Performance',
             ],
             'kudosu' => [
                 'available' => 'Kudosu Available',
@@ -102,7 +102,7 @@ return [
                 'title' => 'Medals',
             ],
             'recent_activities' => [
-                'title' => 'Recent Activities',
+                'title' => 'Recent',
             ],
             'top_ranks' => [
                 'best' => [
@@ -113,7 +113,7 @@ return [
                     'title' => 'First Place Ranks',
                 ],
                 'pp' => ':amountpp',
-                'title' => 'Top Ranks',
+                'title' => 'Ranks',
                 'weighted_pp' => 'weighted: :pp (:percentage)',
             ],
             'beatmaps' => [

@@ -24,6 +24,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 # TODO: use Turbolinks.replace instead when it's released.
 @osu.replacePage = (html) ->
+  $(document).trigger 'page:before-unload'
   # getting contents of body, copied off turbolinks.
   newDoc = document.documentElement.cloneNode()
   newDoc.innerHTML = html

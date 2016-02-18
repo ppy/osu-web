@@ -79,6 +79,8 @@ Route::post('/community/live', ['as' => 'live', 'uses' => 'CommunityController@p
 Route::get('/community/chat', ['as' => 'chat', 'uses' => 'CommunityController@getChat']);
 Route::get('/community/profile/{id}', function ($id) { return Redirect::route('users.show', $id); });
 
+Route::get('/community/support', ['as' => 'community.support', 'uses' => 'CommunityController@getSupport']);
+
 Route::get('/u/{id}', ['as' => 'users.show', 'uses' => 'UsersController@show']);
 
 // Authentication section (Temporarily set up as replacement/improvement of config("osu.urls.*"))
@@ -142,7 +144,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::resource('logs', 'LogsController', ['only' => ['index']]);
 });
 
-Route::put('/account/update-profile-cover', ['as' => 'account.update-profile-cover', 'uses' => 'AccountController@updateProfileCover']);
+Route::put('/account/update-profile', ['as' => 'account.update-profile', 'uses' => 'AccountController@updateProfile']);
 Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
 
 // API

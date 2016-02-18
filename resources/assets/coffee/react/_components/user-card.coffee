@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+{div} = React.DOM
 el = React.createElement
 
 
@@ -45,6 +46,12 @@ class @UserCard extends React.Component
 
 
   render: =>
+    # check if page state has been changed
+    unless @state.user.id
+      osu.reloadPage()
+
+      return div()
+
     user = @state.user
     stats = user.defaultStatistics.data
 

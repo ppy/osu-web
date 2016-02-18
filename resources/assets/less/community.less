@@ -1,0 +1,278 @@
+/**
+*    Copyright 2015 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License version 3
+*    as published by the Free Software Foundation.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+@import "app";
+
+.community-support {
+  .text-center {
+    text-align: center;
+  }
+
+  .shadow-before:before {
+    text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  }
+
+  .shadow {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    transition: all 0.2s ease-in-out;
+
+    // only .hover activates :hover style
+    &--hover {
+      &:hover {
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+      }
+    }
+  }
+
+  > .page-container {
+    background: #fafafa;
+    padding: 22px 30px;
+    margin-top: 20px;
+
+    &.under-parent {
+      margin-top: -20px !important;
+    }
+      
+    .perk-row {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .perk {
+      width: 24%;
+      padding-left: 0.5%;
+      padding-right: 0.5%;
+
+      padding-bottom: 40px;
+
+
+      &__container {
+        text-align: center;
+        border-radius: 6px;
+        height: 100%;
+
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+
+          > .header {
+            // pink
+            background: #cc5288 url('../../images/backgrounds/grid-0.1.png') !important;
+          }
+        }
+
+        &--blue {
+          > .header {
+            background: #449EE0 url('../../images/backgrounds/grid-0.1.png');
+          }
+        }
+
+        &--green {
+          > .header {
+            background: #92B71E url('../../images/backgrounds/grid-0.1.png');
+          }
+        }
+
+        > .header {
+          transition: all 0.2s ease-in-out;
+          padding-top: 20px;
+          padding-bottom: 20px;
+          color: #fff;
+          width: 100%;
+          
+          border-top-left-radius: 6px;
+          border-top-right-radius: 6px;
+        }
+
+        > .text {
+          color: #444;
+          font-style: italic;
+          font-size: 18px;
+          padding: 22px;
+          height: 200px;
+
+          > h3 {
+            margin-top: 0 !important;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  > .header {
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+
+    .at2x-simple("../../images/headers/community-support.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 1;
+    padding-bottom: 49.89%;
+
+    .info {
+      z-index: 2;
+      position: absolute;
+      right: 30px;
+      left: inherit;
+
+      .big-desc {
+        text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        font-size: 3em;
+
+        color: #fafafa;
+        font-weight: bold;
+        margin-top: 100px;
+      }
+
+      .small-desc {
+        text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        color: #fafafa;
+        font-size: 1.7em;
+        margin-top: 20px;
+        margin-bottom: 50px;
+      }
+
+      .button {
+        // position
+        padding: 12px 10px;
+
+        // style
+        background: #fafafa;
+        border-radius: 4px;
+
+        // text
+        color: #bb1177;
+        text-decoration: none;
+
+        font-weight: bold;
+        font-size: 20px;
+        font-style: italic;
+      }
+    }
+  }
+
+  &__preview {
+    .at2x-simple("../../images/headers/community-support-preview.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding-bottom: 28%;
+  }
+
+  .convinced {
+    &__heart {
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+      border-radius: 360px;
+      width: 140px;
+      padding: 10px;
+      margin: 0 auto;
+
+      &__inner {
+        background: #cc5288;
+        border-radius: 360px;
+        padding: 16px;
+        margin: 0 auto;
+
+        > span {
+          color: #fff;
+          margin-top: 12px;
+        }
+      }
+    }
+
+    > h3 {
+      color: #333;
+      font-weight: bold;
+    }
+
+    > h4.first {
+      color: #555;
+    }
+
+    > h4.last {
+      color: #999;
+    }
+  }
+}
+
+@media (max-width: 1220px) {
+  .community-support {
+    > .header > .info {
+      top: -5vmax;
+      
+      .big-desc {
+        font-size: 2.7vmax;
+      }
+
+      .small-desc, .button {
+        font-size: 1.8vmax;
+      }
+    }
+  }
+}
+
+@media (min-width: 560px) and (max-width: 1220px) {
+  .community-support {
+    .perk {
+      width: 49% !important;
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .community-support {
+    > .header {
+      background-image: inherit;
+      padding-bottom: inherit;
+      box-shadow: inherit;
+
+      .info {
+        position: relative;
+        left: 0;
+        right: 0;
+
+        width: 100%;
+        background: #EE65A2;
+        text-align: center;
+
+        padding: 20px;
+        padding-bottom: 40px;
+
+        > .big-desc {
+          margin-top: 40px;
+          font-size: 4vmax;
+        }
+
+        > .small-desc, .button {
+          font-size: 2.5vmax;
+        }
+      }
+
+      > .bg {
+        display: none;
+      }
+    }
+
+    .perk {
+      width: 99% !important;
+    }
+  }
+}

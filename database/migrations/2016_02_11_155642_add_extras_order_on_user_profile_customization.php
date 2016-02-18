@@ -17,19 +17,31 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use Illuminate\Database\Migrations\Migration;
 
-return [
-    'codes' => [
-        'http-403' => 'Access denied.',
-        'http-401' => 'Please login to proceed.',
-    ],
-    'account' => [
-        'profile-order' => [
-            'generic' => 'An error occured. Try refreshing the page.',
-        ],
-    ],
-    'logged_out' => 'You have been logged out. Please login and retry.',
-    'supporter_only' => 'You must be a supporter to use this feature.',
-    'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',
-    'unknown' => 'Unknown error occurred.',
-];
+class AddExtrasOrderOnUserProfileCustomization extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('user_profile_customizations', function ($table) {
+            $table->string('extras_order')->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('user_profile_customizations', function ($table) {
+            $table->dropColumn('extras_order');
+        });
+    }
+}

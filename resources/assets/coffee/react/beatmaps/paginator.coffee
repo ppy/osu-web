@@ -20,7 +20,12 @@
 {div,a,span,i} = React.DOM
 el = React.createElement
 
-window.AutoPager =
+Beatmaps.Paginator = React.createClass
+  autoPagerTriggerDistance: 3000
+  clicked: (e) ->
+    e.preventDefault()
+    $(document).trigger 'beatmap:load_more'
+
   autoPagerOnScroll: (e) ->
     if @autoPagerTarget == 'undefined' or @autoPagerTarget[0].getBoundingClientRect().top > document.documentElement.clientHeight + @autoPagerTriggerDistance
       return
@@ -28,21 +33,11 @@ window.AutoPager =
     $(document).trigger 'beatmap:load_more'
 
   componentDidMount: ->
-    @autoPagerScrollHandle = $(window).on('scroll', _.throttle(@autoPagerOnScroll, 500))
+    @autoPagerTarget = $('#js-beatmaps-load-more')
+    $(window).on 'scroll.paginator', _.throttle(@autoPagerOnScroll, 500)
 
   componentWillUnmount: ->
-    $(window).off @autoPagerScrollHandle
-
-window.Paginator = React.createClass
-  displayName: 'Paginator'
-  mixins: [ AutoPager ]
-  autoPagerTriggerDistance: 3000
-  clicked: (e) ->
-    e.preventDefault()
-    $(document).trigger 'beatmap:load_more'
-
-  componentDidMount: ->
-    @autoPagerTarget = $('#js-beatmaps-load-more')
+    $(window).off '.paginator'
 
   render: ->
     div className: ['beatmaps-load-more', ('loading ' if @props.paging.loading), ('no_more' if not @props.paging.more)].join(' '),
