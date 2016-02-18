@@ -21,11 +21,6 @@
 
 #beatmaps-listing {
 	text-align: center;
-	padding: 5px 0;
-
-	margin-top: 10px;
-	margin-left: -20px;
-	margin-right: -20px;
 
 	.beatmap-container {
 		opacity: 1;
@@ -45,13 +40,9 @@
 		}
 	}
 
-	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-	background: white;
-
 	.sorting {
-		padding: 10px;
 		text-align: left;
-		margin-left: 35px;
+		margin-bottom: @spacing;
 		font-size: 12px;
 		a {
 			margin-right: 15px;
@@ -74,15 +65,13 @@
 	}
 
 	.beatmaps-load-more {
-		padding: 10px;
+		padding-top: 10px;
 		i {
 			display: none;
 		}
 
 		&.no_more {
-			a {
-				display: none;
-			}
+			display: none;
 		}
 
 		&.loading {
@@ -214,7 +203,7 @@
 
 	text-align: left;
 
-	width: 400px;
+	width: 100%;
 	height: 175px;
 
 	border-radius: 3px;
@@ -222,8 +211,6 @@
 	background: #ffffff;
 
 	cursor: pointer;
-
-	margin: 5px;
 
 	&:hover {
 		z-index: @z-index--beatmaps-panel;

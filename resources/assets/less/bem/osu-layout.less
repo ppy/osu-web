@@ -46,7 +46,7 @@
 
   &__col {
     width: calc(100% ~'-' @spacing);
-    margin: 0 (@spacing / 2) @spacing;
+    margin: (@spacing / 2);
 
     &--sm-6 {
       @media @desktop {
@@ -64,6 +64,10 @@
   &__col-container {
     display: flex;
     flex-wrap: wrap;
+
+    &--with-gutter {
+      margin: (-@spacing / 2);
+    }
   }
 
   &__row {
@@ -144,6 +148,9 @@
     }
 
     &--with-gutter {
+      margin-top: (-@spacing / 2);
+      margin-bottom: (@spacing + (-@spacing / 2));
+
       width: 100%;
       @media @desktop {
         ._width-desktop(-@spacing / 2);
