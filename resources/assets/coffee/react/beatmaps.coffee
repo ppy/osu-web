@@ -16,7 +16,4 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 ###
-el = React.createElement
-
-$(document).ready ->
-  ReactDOM.render el(Beatmaps.Main), document.getElementsByClassName('js-content')[0]
+reactTurbolinks.register 'beatmaps', Beatmaps.Main
