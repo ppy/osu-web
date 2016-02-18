@@ -79,7 +79,7 @@ class ProfilePage.Main extends React.Component
     profileOrder = @props.user.profileOrder.map (m) ->
       if m is not 'me'
         return m
-      else if withMePage and m is 'me'
+      else if withMePage
         return m
 
     div className: 'osu-layout__section',
