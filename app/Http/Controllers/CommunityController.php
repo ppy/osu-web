@@ -94,38 +94,4 @@ class CommunityController extends Controller
 
         return Redirect::back();
     }
-
-    public function getSupport()
-    {
-        return view('community.support')
-        ->with('data', [
-            // why support's blocks
-            'blocks' => [
-                // localization's name => icon
-                'dev' => 'user',
-                'time' => 'clock-o',
-                'ads' => 'thumbs-up',
-                'goodies' => 'star',
-            ],
-
-            // supporter's perks
-            'perks' => [
-                // localization's name => icon
-                'osu_direct' => 'search',
-                'auto_downloads' => 'cloud-download',
-                'upload_more' => 'cloud-upload',
-                'early_access' => 'flask',
-                'customisation' => 'picture-o',
-                'beatmap_filters' => 'filter',
-                'yellow_fellow' => 'fire',
-                'speedy_downloads' => 'dashboard',
-                'change_username' => 'magic',
-                'skinnables' => 'paint-brush',
-                'feature_votes' => 'thumbs-up',
-                'sort_options' => 'trophy',
-                'feel_special' => 'heart',
-                'more_to_come' => 'gift',
-            ],
-        ]);
-    }
 }

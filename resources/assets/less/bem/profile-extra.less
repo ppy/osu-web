@@ -19,10 +19,15 @@
 .profile-extra {
   .default-box-shadow;
   background-color: @grey-f;
-  padding: (@spacing * 2) (@spacing * 3);
+  padding: (@spacing * 2) @spacing;
   margin-bottom: @spacing;
 
   font-size: 14px;
+
+  @media @desktop {
+    padding-left: (@spacing * 3);
+    padding-right: (@spacing * 3);
+  }
 
   &:hover &__actions {
     opacity: 1;
