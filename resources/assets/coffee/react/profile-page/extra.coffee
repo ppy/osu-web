@@ -37,14 +37,15 @@ class ProfilePage.Extra extends React.Component
     osu.pageChange()
     @_modeScan()
 
-    $('#profile-extra-list').sortable({
-      cursor: 'move',
+    $('#profile-extra-list').sortable
+      cursor: 'move'
       handle: '.profile-extra__dragdrop-toggle'
-      revert: 150,
-      scrollSpeed: 10,
+      revert: 150
+      scrollSpeed: 10
       update: (event, ui) =>
         @updateOrder ui.item
-      })
+
+
   componentWillUnmount: =>
     @_removeListeners()
 
