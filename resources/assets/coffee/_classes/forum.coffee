@@ -24,11 +24,18 @@ class @Forum
   loadMoreLinks: document.getElementsByClassName('js-forum-posts-show-more')
 
   boot: =>
-    @initialScrollTo()
     @refreshCounter()
     @refreshLoadMoreLinks()
 
+    # Scroll last because other actions may change page's height.
+    @initialScrollTo()
+
+
   constructor: ->
+    # `boot` is called first to avoid triggering anything when scrolling to
+    # target post.
+    @boot()
+
     $(window).on 'throttled-scroll', @refreshCounter
 
     $(document).on 'ready page:load osu:page:change', @boot
@@ -38,8 +45,6 @@ class @Forum
     $(document).on 'submit', '.js-forum-posts-jump-to', @jumpToSubmit
 
     $.subscribe 'stickyHeader', @stickHeader
-
-    @boot()
 
 
   totalPosts: =>
