@@ -16,4 +16,5 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @OsuUrl
-  @user: (id) => "/u/#{id}"
+  @users:
+    show: (id) => "/u/#{id}"
