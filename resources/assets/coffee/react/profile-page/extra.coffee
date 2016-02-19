@@ -62,7 +62,7 @@ class ProfilePage.Extra extends React.Component
     anchorHeight = window.innerHeight * 0.5
 
     if osu.bottomPage()
-      @setState mode: _.last(pages).getAttribute('id')
+      @_setMode _.last(pages).id
       return
 
     # FIXME: I don't remember why this one scans from bottom while
@@ -71,10 +71,10 @@ class ProfilePage.Extra extends React.Component
       pageTop = page.getBoundingClientRect().top
       continue unless pageTop <= anchorHeight
 
-      @setState mode: page.getAttribute('id')
+      @_setMode page.id
       return
 
-    @setState mode: page.getAttribute('id')
+    @_setMode page.id
 
 
   _modeSwitch: (_e, mode) =>
@@ -87,7 +87,7 @@ class ProfilePage.Extra extends React.Component
         # Manually set the mode to avoid confusion (wrong highlight).
         # Scrolling will obviously break it but that's unfortunate result
         # from having the scrollspy marker at middle of page.
-        @setState mode: mode, =>
+        @_setMode mode, =>
           # Doesn't work:
           # - part of state (callback, part of mode setting)
           # - simple variable in callback
@@ -100,6 +100,12 @@ class ProfilePage.Extra extends React.Component
   _removeListeners: ->
     $.unsubscribe '.profileContentsExtra'
     $(window).off '.profileContentsExtra'
+
+
+  _setMode: (mode, callback) =>
+    return if mode == @state.mode
+
+    @setState mode: mode, callback
 
 
   _tabsStick: (_e, target) =>
