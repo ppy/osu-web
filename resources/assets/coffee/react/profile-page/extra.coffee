@@ -37,6 +37,29 @@ class ProfilePage.Extra extends React.Component
     osu.pageChange()
     @_modeScan()
 
+    if window.location.hash
+      url = window.location.href
+      anchor = url.substring(url.indexOf('#') + 1)
+      mode = ''
+      switch anchor
+        when 'me!'
+          mode = 'me'
+        when 'Performance'
+          mode = 'performance'
+        when 'Recent'
+          mode = 'recent_activities'
+        when 'Ranks'
+          mode = 'top_ranks'
+        when 'Medals'
+          mode = 'medals'
+        when 'Historical'
+          mode = 'historical'
+        when 'Beatmaps'
+          mode = 'beatmaps'
+        when 'Kudosu!'
+          mode = 'kudosu'
+      @_modeSwitch 'pageload', mode
+
     $('#profile-extra-list').sortable({
       cursor: 'move',
       handle: '.profile-extra__dragdrop-toggle'
@@ -194,3 +217,4 @@ class ProfilePage.Extra extends React.Component
             id: m
             className: topClassName
             page
+            
