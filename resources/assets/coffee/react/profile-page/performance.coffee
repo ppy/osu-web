@@ -104,9 +104,6 @@ class ProfilePage.Performance extends React.Component
 
   render: ->
     div className: 'profile-extra',
-      el ProfilePage.DragDropToggle
+      @props.header
 
-      h2 className: 'profile-extra__title', Lang.get('users.show.extra.performance.title')
-      
-      div
-        div ref: 'chartArea', className: 'chart'
+      div ref: 'chartArea', className: 'chart'

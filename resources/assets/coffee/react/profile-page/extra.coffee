@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div} = React.DOM
+{div, h2, span} = React.DOM
 el = React.createElement
 
 class ProfilePage.Extra extends React.Component
@@ -26,8 +26,6 @@ class ProfilePage.Extra extends React.Component
       tabsSticky: false
       profileOrder: @props.profileOrder
 
-  @childContextTypes:
-    withEdit: React.PropTypes.bool
 
   componentDidMount: =>
     @_removeListeners()
@@ -132,8 +130,6 @@ class ProfilePage.Extra extends React.Component
         element.insertAfter prevElement
     }
 
-  getChildContext: ->
-    return {withEdit: @props.withEdit}
 
   render: =>
     return if @props.mode == 'me'
@@ -165,33 +161,57 @@ class ProfilePage.Extra extends React.Component
       div className: 'osu-layout__row', ref: 'pages',
         @props.profileOrder.map (m) =>
           topClassName = 'js-profile-page-extra--scrollspy'
-          page =
+
+          elem =
             switch m
               when 'me'
                 topClassName += ' hidden' unless withMePage
-                el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
+                props = userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
+                ProfilePage.UserPage
+
               when 'recent_activities'
-                el ProfilePage.RecentActivities, recentActivities: @props.recentActivities
+                props = recentActivities: @props.recentActivities
+                ProfilePage.RecentActivities
+
               when 'kudosu'
-                el ProfilePage.Kudosu, user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu
+                props = user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu
+                ProfilePage.Kudosu
+
               when 'top_ranks'
-                el ProfilePage.TopRanks, user: @props.user, scoresBest: @props.scoresBest, scoresFirst: @props.scoresFirst
+                props = user: @props.user, scoresBest: @props.scoresBest, scoresFirst: @props.scoresFirst
+                ProfilePage.TopRanks
+
               when 'beatmaps'
-                el ProfilePage.Beatmaps,
+                props =
                   favouriteBeatmapSets: @props.favouriteBeatmapSets
                   rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
+                ProfilePage.Beatmaps
+
               when 'medals'
-                el ProfilePage.Medals, achievements: @props.achievements, allAchievements: @props.allAchievements
+                props = achievements: @props.achievements, allAchievements: @props.allAchievements
+                ProfilePage.Medals
+
               when 'historical'
-                el ProfilePage.Historical,
+                props =
                   beatmapPlaycounts: @props.beatmapPlaycounts
                   rankHistories: @props.rankHistories
                   scores: @props.scores
+                ProfilePage.Historical
+
               when 'performance'
-                el ProfilePage.Performance,
-                  rankHistories: @props.rankHistories
+                props = rankHistories: @props.rankHistories
+                ProfilePage.Performance
+
+          props.header =
+            div
+              key: 'header'
+              h2 className: 'profile-extra__title', Lang.get("users.show.extra.#{m}.title")
+              if @props.withEdit
+                span className: 'profile-extra__dragdrop-toggle',
+                  el Icon, name: 'bars'
+
           div
             key: m
             id: m
             className: topClassName
-            page
+            el elem, props

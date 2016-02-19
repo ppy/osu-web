@@ -75,8 +75,7 @@ ProfilePage.Historical = React.createClass
     div
       className: 'profile-extra'
 
-      el ProfilePage.DragDropToggle
-      h2 className: 'profile-extra__title', Lang.get('users.show.extra.historical.title')
+      @props.header
 
       h3
         className: 'profile-extra__title profile-extra__title--small'
