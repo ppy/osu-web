@@ -109,7 +109,8 @@ class ProfilePage.Extra extends React.Component
 
 
   _tabsStick: (_e, target) =>
-    @setState tabsSticky: (target == 'profile-extra-tabs')
+    newState = (target == 'profile-extra-tabs')
+    @setState(tabsSticky: newState) if newState != @state.tabsSticky
 
   updateOrder: (element) =>
     oldOrder = @state.profileOrder
