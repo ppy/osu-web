@@ -37,7 +37,7 @@ class ProfilePage.Extra extends React.Component
     osu.pageChange()
     @_modeScan()
 
-    $('#profile-extra-list').sortable
+    $(@refs.pages).sortable
       cursor: 'move'
       handle: '.profile-extra__dragdrop-toggle'
       revert: 150
@@ -109,7 +109,7 @@ class ProfilePage.Extra extends React.Component
 
   updateOrder: (element) =>
     oldOrder = @state.profileOrder
-    newOrder = $('#profile-extra-list').sortable('toArray')
+    newOrder = $(@refs.pages).sortable('toArray')
 
     id = element.attr 'id'
 
@@ -162,7 +162,7 @@ class ProfilePage.Extra extends React.Component
 
                 el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
 
-      div className: 'osu-layout__row', id: 'profile-extra-list',
+      div className: 'osu-layout__row', ref: 'pages',
         @props.profileOrder.map (m) =>
           topClassName = 'js-profile-page-extra--scrollspy'
           page =
