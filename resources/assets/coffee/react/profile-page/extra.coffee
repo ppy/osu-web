@@ -38,26 +38,27 @@ class ProfilePage.Extra extends React.Component
     @_modeScan()
 
     if window.location.hash
+      title_id = @props.user.sections
       url = window.location.href
       anchor = url.substring(url.indexOf('#') + 1)
       mode = ''
       switch anchor
         when Lang.get('users.show.extra.me.title')
-          mode = 'me'
+          mode = @props.user.sections[0]
         when Lang.get('users.show.extra.performance.title')
-          mode = 'performance'
+          mode = @props.user.sections[1]
         when Lang.get('users.show.extra.recent_activities.title')
-          mode = 'recent_activities'
+          mode = @props.user.sections[2]
         when Lang.get('users.show.extra.top_ranks.title')
-          mode = 'top_ranks'
+          mode = @props.user.sections[3]
         when Lang.get('users.show.extra.medals.title')
-          mode = 'medals'
+          mode = @props.user.sections[4]
         when Lang.get('users.show.extra.historical.title')
-          mode = 'historical'
+          mode = @props.user.sections[5]
         when Lang.get('users.show.extra.beatmaps.title')
-          mode = 'beatmaps'
+          mode = @props.user.sections[6]
         when Lang.get('users.show.extra.kudosu.title')
-          mode = 'kudosu'
+          mode = @props.user.sections[7]
       @_modeSwitch 'pageload', mode
 
     $('#profile-extra-list').sortable({

@@ -68,6 +68,11 @@ class UserProfileCustomization extends Model
         return $this->extras_order;
     }
 
+    public function getSections()
+    {
+        return self::$sections;
+    }
+
     public function __construct($attributes = [])
     {
         $this->cover_json = ['id' => null, 'file' => null];
