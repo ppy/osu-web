@@ -42,21 +42,21 @@ class ProfilePage.Extra extends React.Component
       anchor = url.substring(url.indexOf('#') + 1)
       mode = ''
       switch anchor
-        when 'me!'
+        when Lang.get('users.show.extra.me.title')
           mode = 'me'
-        when 'Performance'
+        when Lang.get('users.show.extra.performance.title')
           mode = 'performance'
-        when 'Recent'
+        when Lang.get('users.show.extra.recent_activities.title')
           mode = 'recent_activities'
-        when 'Ranks'
+        when Lang.get('users.show.extra.top_ranks.title')
           mode = 'top_ranks'
-        when 'Medals'
+        when Lang.get('users.show.extra.medals.title')
           mode = 'medals'
-        when 'Historical'
+        when Lang.get('users.show.extra.historical.title')
           mode = 'historical'
-        when 'Beatmaps'
+        when Lang.get('users.show.extra.beatmaps.title')
           mode = 'beatmaps'
-        when 'Kudosu!'
+        when Lang.get('users.show.extra.kudosu.title')
           mode = 'kudosu'
       @_modeSwitch 'pageload', mode
 
@@ -217,4 +217,3 @@ class ProfilePage.Extra extends React.Component
             id: m
             className: topClassName
             page
-            
