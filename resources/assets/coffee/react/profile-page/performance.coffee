@@ -18,7 +18,10 @@
 {div, h2} = React.DOM
 el = React.createElement
 
-class ProfilePage.Performance extends React.Component
+ProfilePage.Performance = React.createClass
+  mixins: [React.addons.PureRenderMixin]
+
+
   componentDidMount: ->
     @minimumRankTick = -24
     @_rankHistory()
