@@ -37,6 +37,30 @@ class ProfilePage.Extra extends React.Component
     osu.pageChange()
     @_modeScan()
 
+    if window.location.hash
+      title_id = @props.user.sections
+      url = window.location.href
+      anchor = url.substring(url.indexOf('#') + 1)
+      mode = ''
+      switch anchor
+        when Lang.get('users.show.extra.me.title')
+          mode = title_id[0]
+        when Lang.get('users.show.extra.performance.title')
+          mode = title_id[1]
+        when Lang.get('users.show.extra.recent_activities.title')
+          mode = title_id[2]
+        when Lang.get('users.show.extra.top_ranks.title')
+          mode = title_id[3]
+        when Lang.get('users.show.extra.medals.title')
+          mode = title_id[4]
+        when Lang.get('users.show.extra.historical.title')
+          mode = title_id[5]
+        when Lang.get('users.show.extra.beatmaps.title')
+          mode = title_id[6]
+        when Lang.get('users.show.extra.kudosu.title')
+          mode = title_id[7]
+      @_modeSwitch 'pageload', mode
+
     $('#profile-extra-list').sortable({
       cursor: 'move',
       handle: '.profile-extra__dragdrop-toggle'

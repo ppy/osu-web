@@ -20,6 +20,8 @@ el = React.createElement
 class ProfilePage.ExtraTab extends React.Component
   _modeSwitch: =>
     $.publish 'profilePageExtra:tab', @props.mode
+    url = "#".concat(Lang.get("users.show.extra.#{@props.mode}.title"))
+    window.history.pushState('obj', 'newtitle', url);
 
 
   render: =>
