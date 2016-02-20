@@ -43,14 +43,6 @@ class ForumSeeder extends Seeder
           }
          });
 
-        // for ($i=0;$i<5;$i++) {
-        //   App\Models\Forum\Forum::create([
-        //     'forum_name' => $faker->catchPhrase,
-        //     'forum_desc' => $faker->realtext(80),
-        //     'parent_id'  => $forum_id
-        //   ]);
-        // }
-        // Add forum cover
         } catch (\Illuminate\Database\QueryException $e) {
             echo $e->getMessage().'\r\n';
         } catch (Exception $ex) {

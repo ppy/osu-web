@@ -40,9 +40,6 @@ $factory->define(App\Models\Forum\Topic::class, function (Faker\Generator $faker
         'topic_views' => rand(0, 99999),
         'topic_approved' => 1,
         'topic_time' => rand(1451606400, time()), // random time between 01/01/2016 12am and now
-        // 'topic_last_post_time' => rand(1451606400,Carbon::now()->timestamp) // random time between 01/01/2016 12am and now
-        // 'topic_last_post_subject' => $faker->catchPhrase,
-        // 'topic_last_poster_name' =>
     ];
 });
 
