@@ -15,14 +15,15 @@ class MiscSeeder extends Seeder
 
           //DELETE TABLES
           DB::table('osu_genres')->delete();
-          DB::table('osu_languages')->delete();
+            DB::table('osu_languages')->delete();
 
           //COUNTS
-          if (!DB::table('osu_counts')->where('name', 'pp_rank_column')->get())
-          DB::table('osu_counts')->insert([
+          if (!DB::table('osu_counts')->where('name', 'pp_rank_column')->get()) {
+              DB::table('osu_counts')->insert([
             'name' => 'pp_rank_column',
-            'count'=> 90
+            'count' => 90,
           ]);
+          }
           //END COUNTS
 
           //GENRES
@@ -37,7 +38,7 @@ class MiscSeeder extends Seeder
             ['genre_id' => 7, 'name' => 'Novelty'],
             // genre_id 8 doesnt exist
             ['genre_id' => 9, 'name' => 'Hip Hop'],
-            ['genre_id' => 10,'name' => 'Electronic'],
+            ['genre_id' => 10, 'name' => 'Electronic'],
           ]);
           //  END GENRES
 
@@ -53,16 +54,14 @@ class MiscSeeder extends Seeder
             ['language_id' => 7, 'name' => 'French', 'display_order' => 3],
             ['language_id' => 8, 'name' => 'German', 'display_order' => 4],
             ['language_id' => 9, 'name' => 'Swedish', 'display_order' => 9],
-            ['language_id' => 10,'name' => 'Spanish', 'display_order' => 8],
-            ['language_id' => 11,'name' => 'Italian', 'display_order' => 5],
+            ['language_id' => 10, 'name' => 'Spanish', 'display_order' => 8],
+            ['language_id' => 11, 'name' => 'Italian', 'display_order' => 5],
           ]);
           //END LANGUAGES
-
-
         } catch (\Illuminate\Database\QueryException $e) {
-              echo $e->getMessage()."\r\n";
+            echo $e->getMessage()."\r\n";
         } catch (Exception $ex) {
-              echo $ex->getMessage()."\r\n";
+            echo $ex->getMessage()."\r\n";
         }
     }
 }
