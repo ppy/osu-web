@@ -54,6 +54,7 @@ abstract class Model extends BaseModel
     {
         // Do nothing.
     }
+
     public function getCreatedAtColumn()
     {
         // Do nothing.

@@ -12,26 +12,26 @@ class ForumSeeder extends Seeder
      */
     public function run()
     {
-      $faker = Faker\Factory::create();
+        $faker = Faker\Factory::create();
 
-      try {
-        DB::table('phpbb_forums')->delete();
-        DB::table('phpbb_topics')->delete();
-        DB::table('phpbb_posts')->delete();
+        try {
+            DB::table('phpbb_forums')->delete();
+            DB::table('phpbb_topics')->delete();
+            DB::table('phpbb_posts')->delete();
 
-        $forums = [];
+            $forums = [];
 
         // Create 3 forums
-        factory(App\Models\Forum\Forum::class, 'parent', 3)->create()->each(function($f) {
-          for ($i=0; $i<4; $i++) {
-            // Subforums for each forum.
+        factory(App\Models\Forum\Forum::class, 'parent', 3)->create()->each(function ($f) {
+          for ($i = 0; $i < 4; $i++) {
+              // Subforums for each forum.
               $f2 = $f->subforums()->save(factory(App\Models\Forum\Forum::class, 'child')->make());
               // Topics for each subforum
-              for ($j=0; $j<3; $j++) {
-                $t = $f2->topics()->save(factory(App\Models\Forum\Topic::class)->make());
+              for ($j = 0; $j < 3; $j++) {
+                  $t = $f2->topics()->save(factory(App\Models\Forum\Topic::class)->make());
                 // Replies to the topic
-                for ($k=0; $k<5; $k++) {
-                  $p = $t->posts()->save(factory(App\Models\Forum\Post::class)->make());
+                for ($k = 0; $k < 5; $k++) {
+                    $p = $t->posts()->save(factory(App\Models\Forum\Post::class)->make());
                 }
                 // Refresh topic cache (updates last post times etc)
                 $t->refreshCache();
@@ -40,9 +40,8 @@ class ForumSeeder extends Seeder
               }
               // Refresh forum cache
               $f2->refreshCache();
-            }
+          }
          });
-
 
         // for ($i=0;$i<5;$i++) {
         //   App\Models\Forum\Forum::create([
@@ -52,12 +51,10 @@ class ForumSeeder extends Seeder
         //   ]);
         // }
         // Add forum cover
-
-      } catch (\Illuminate\Database\QueryException $e) {
-        echo $e->getMessage().'\r\n';
-      } catch (Exception $ex) {
-        echo $ex->getMessage().'\r\n';
-      }
-
+        } catch (\Illuminate\Database\QueryException $e) {
+            echo $e->getMessage().'\r\n';
+        } catch (Exception $ex) {
+            echo $ex->getMessage().'\r\n';
+        }
     }
 }
