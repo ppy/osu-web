@@ -23,6 +23,10 @@ class DatabaseSeeder extends Seeder
       // Users Profile Data (e.g. favourite maps, first place ranks, playcounts)
           $this->command->info('Seeding Users Profile Data (e.g. favourite maps, first place ranks, playcounts)');
         $this->call(UserProfileSeeder::class);
+
+      // Miscellaneous Data (e.g. counts)
+          $this->command->info('Seeding Misecllaneous Data');
+        $this->call(MiscSeeder::class);
     }
 
     public function runUserBeatmapSeeder()
