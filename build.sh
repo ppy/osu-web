@@ -23,6 +23,8 @@ php composer.phar install
 php artisan migrate --force
 php artisan lang:js resources/assets/js/messages.js
 
+php artisan db:seed
+
 npm install
 ./node_modules/bower/bin/bower install --allow-root
 ./node_modules/gulp/bin/gulp.js --production

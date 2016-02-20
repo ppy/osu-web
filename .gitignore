@@ -79,3 +79,5 @@ sftp-settings.json
 /resources/assets/js/build/
 
 composer-installer
+
+/database/data/json/

@@ -1,29 +1,58 @@
 <?php
 
-/**
- *    Copyright 2015 ppy Pty. Ltd.
- *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
- *
- *    osu!web is free software: you can redistribute it and/or modify
- *    it under the terms of the Affero GNU General Public License version 3
- *    as published by the Free Software Foundation.
- *
- *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
- *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *    See the GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- */
-$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
-    return [
-      'username' => $faker->userName,
-      'username_clean' => $faker->userName,
-      'user_password' => password_hash(md5($faker->password), PASSWORD_BCRYPT),
-      'user_lastvisit' => 0,
-  ];
+use App\Models\User;
+use Carbon\Carbon;
+
+/*
+|--------------------------------------------------------------------------
+| Model Factories
+|--------------------------------------------------------------------------
+|
+| Here you may define all of your model factories. Model factories give
+| you a convenient way to create models for testing and seeding your
+| database. Just tell the factory how a default model should look.
+|
+*/
+
+$factory->defineAs(App\Models\Forum\Forum::class, 'parent', function (Faker\Generator $faker) {
+    return  [
+        'forum_name' => $faker->catchPhrase,
+        'forum_desc' => $faker->realtext(80),
+        'forum_type' => 0
+    ];
 });
 
-?>
+$factory->defineAs(App\Models\Forum\Forum::class, 'child', function (Faker\Generator $faker) {
+    return  [
+        'forum_name' => $faker->catchPhrase,
+        'forum_desc' => $faker->realtext(80),
+        'forum_type' => 1
+    ];
+});
+
+$factory->define(App\Models\Forum\Topic::class, function (Faker\Generator $faker) {
+  $u = User::orderByRaw("RAND()")->first();
+    return  [
+        'topic_poster'  => $u->user_id,
+        'topic_first_poster_name' => $u->username,
+        'topic_title' => $faker->catchPhrase,
+        'topic_views' => rand(0,99999),
+        'topic_approved' => 1,
+        'topic_time' => rand(1451606400,time()) // random time between 01/01/2016 12am and now
+        // 'topic_last_post_time' => rand(1451606400,Carbon::now()->timestamp) // random time between 01/01/2016 12am and now
+        // 'topic_last_post_subject' => $faker->catchPhrase,
+        // 'topic_last_poster_name' =>
+    ];
+});
+
+$factory->define(App\Models\Forum\Post::class, function (Faker\Generator $faker) {
+  $u = User::orderByRaw("RAND()")->first();
+    return  [
+        'poster_id'  => $u->user_id,
+        'post_username'  => $u->username,
+        'post_subject'  => $faker->catchPhrase,
+        'post_text'     => $faker->realtext(300),
+        'post_time' => rand(1451606400,time()), // random time between 01/01/2016 12am and now
+        'post_approved' => 1,
+    ];
+});

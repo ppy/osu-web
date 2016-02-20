@@ -323,7 +323,6 @@ CREATE TABLE `osu_favouritemaps` (
   `user_id` mediumint(9) unsigned NOT NULL,
   `beatmapset_id` mediumint(9) unsigned NOT NULL,
   `dateadded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`user_id`,`beatmapset_id`),
   KEY `beatmapset_id` (`beatmapset_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1615,5 +1614,45 @@ CREATE TABLE `user_profile_customizations` (
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+--
+-- Table structure for table `forum_forum_covers`
+-------------------------------------------------------------
+
+CREATE TABLE `forum_forum_covers` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `forum_id` mediumint(8) unsigned DEFAULT NULL,
+  `user_id` mediumint(8) unsigned DEFAULT NULL,
+  `hash` varchar(255) NOT NULL,
+  `ext` varchar(255) NOT NULL,
+  `created_at` timestamp,
+  `updated_at` timestamp,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `forum_forum_covers_forum_id_unique` (`forum_id`),
+  KEY `forum_forum_covers_user_id_index` (`user_id`),
+  CONSTRAINT `forum_forum_covers_forum_id_foreign` FOREIGN KEY (`forum_id`) REFERENCES `phpbb_forums` (`forum_id`) ON DELETE SET NULL,
+  CONSTRAINT `forum_forum_covers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `phpbb_users` (`user_id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Table structure for table `forum_topic_covers`
+---------------------------------------------------------
+
+CREATE TABLE `forum_topic_covers` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `topic_id` mediumint(8) unsigned DEFAULT NULL,
+  `user_id` mediumint(8) unsigned DEFAULT NULL,
+  `hash` varchar(255) NOT NULL,
+  `ext` varchar(255) NOT NULL,
+  `created_at` timestamp,
+  `updated_at` timestamp,
+  PRIMARY KEY (`id`),
+  KEY `forum_topic_covers_topic_id_index` (`topic_id`),
+  KEY `forum_topic_covers_user_id_index` (`user_id`),
+  CONSTRAINT `forum_topic_covers_topic_id_foreign` FOREIGN KEY (`topic_id`) REFERENCES `phpbb_topics` (`topic_id`) ON DELETE SET NULL,
+  CONSTRAINT `forum_topic_covers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `phpbb_users` (`user_id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
 
 -- Dump completed on 2016-01-04 19:33:15
