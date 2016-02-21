@@ -23,7 +23,7 @@ php composer.phar install
 php artisan migrate --force
 php artisan lang:js resources/assets/js/messages.js
 
-php artisan db:seed
+php artisan db:seed --force
 
 npm install
 ./node_modules/bower/bin/bower install --allow-root
