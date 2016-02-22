@@ -12,6 +12,14 @@ use App\Models\User;
 | database. Just tell the factory how a default model should look.
 |
 */
+$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
+    return [
+      'username' => $faker->userName,
+      'username_clean' => $faker->userName,
+      'user_password' => password_hash(md5($faker->password), PASSWORD_BCRYPT),
+      'user_lastvisit' => 0,
+  ];
+});
 
 $factory->defineAs(App\Models\Forum\Forum::class, 'parent', function (Faker\Generator $faker) {
     return  [

@@ -323,6 +323,7 @@ CREATE TABLE `osu_favouritemaps` (
   `user_id` mediumint(9) unsigned NOT NULL,
   `beatmapset_id` mediumint(9) unsigned NOT NULL,
   `dateadded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_id`,`beatmapset_id`),
   KEY `beatmapset_id` (`beatmapset_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
