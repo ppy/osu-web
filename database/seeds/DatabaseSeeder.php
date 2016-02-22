@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserProfileSeeder::class);
 
       // Miscellaneous Data (e.g. counts)
-          $this->command->info('Seeding Misecllaneous Data');
+          $this->command->info('Seeding Miscellaneous Data');
         $this->call(MiscSeeder::class);
     }
 
