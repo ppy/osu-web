@@ -35,4 +35,5 @@ class ProfilePage.ExtraTab extends React.Component
       href: ProfilePageHash.generate page: @props.page, mode: @props.currentMode
       className: className
       onClick: @pageSwitch
+      'data-page-id': @props.page
       Lang.get("users.show.extra.#{@props.page}.title")

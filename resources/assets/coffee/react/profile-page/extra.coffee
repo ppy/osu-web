@@ -34,11 +34,19 @@ class ProfilePage.Extra extends React.Component
 
     $(@refs.pages).sortable
       cursor: 'move'
-      handle: '.profile-extra__dragdrop-toggle'
+      handle: '.js-profile-page-extra--sortable-handle'
       revert: 150
       scrollSpeed: 10
-      update: (event, ui) =>
-        @updateOrder ui.item
+      update: =>
+        @updateOrder @refs.pages
+
+    $(@refs.tabs).sortable
+      cursor: 'move'
+      revert: 150
+      scrollSpeed: 0
+      update: =>
+        @updateOrder @refs.tabs
+
 
 
   componentWillUnmount: =>
@@ -60,14 +68,14 @@ class ProfilePage.Extra extends React.Component
     newState = (target == 'profile-extra-tabs')
     @setState(tabsSticky: newState) if newState != @state.tabsSticky
 
-  updateOrder: =>
-    $pages = $(@refs.pages)
+  updateOrder: (elems) =>
+    $elems = $(elems)
 
-    newOrder = $pages.sortable('toArray', attribute: 'data-page-id')
+    newOrder = $elems.sortable('toArray', attribute: 'data-page-id')
 
     osu.showLoadingOverlay()
 
-    $pages.sortable('cancel')
+    $elems.sortable('cancel')
 
     @setState profileOrder: newOrder, =>
       $.ajax Url.updateProfileAccount,
@@ -106,6 +114,7 @@ class ProfilePage.Extra extends React.Component
             div
               className: tabsClasses
               'data-sticky-header-id': 'profile-extra-tabs'
+              ref: 'tabs'
               @state.profileOrder.map (m) =>
                 return if m == 'me' && !withMePage
 
@@ -160,7 +169,7 @@ class ProfilePage.Extra extends React.Component
               key: 'header'
               h2 className: 'profile-extra__title', Lang.get("users.show.extra.#{m}.title")
               if @props.withEdit
-                span className: 'profile-extra__dragdrop-toggle',
+                span className: 'profile-extra__dragdrop-toggle js-profile-page-extra--sortable-handle',
                   el Icon, name: 'bars'
 
           div
