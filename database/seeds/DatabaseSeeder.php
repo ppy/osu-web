@@ -34,10 +34,15 @@ class DatabaseSeeder extends Seeder
         $datapath = base_path().'/database/data/json/';
 
         $filelist = [$datapath.'beatmaps.json', $datapath.'beatmapsets.json', $datapath.'events.json', $datapath.'hist.json', $datapath.'scores_best.json', $datapath.'scores.json', $datapath.'stats.json', $datapath.'users.json'];
+        $files_ok = true;
         foreach ($filelist as $file) {
             if (!file_exists($file)) {
                 $this->command->error('Error: Couldnt find json file at '.$file.' required for seeding UserBeatmapSeeder');
+                $files_ok = false;
             }
+        }
+        if ($files_ok === true) {
+          $this->call(UserBeatmapSeeder::class);
         }
     }
 }
