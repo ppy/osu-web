@@ -18,3 +18,22 @@
 class @OsuUrl
   @users:
     show: (id) => "/u/#{id}"
+
+    showHash:
+      noMode: ['kudosu', 'me', 'medals']
+      parse: (hash) =>
+        hash = hash.slice 1
+        if OsuUrl.users.showHash.noMode.indexOf(hash) != -1
+          page: hash
+        else
+          split = hash.split '/'
+          mode: split[0]
+          page: split[1] || 'main'
+
+      generate: (options) =>
+        if OsuUrl.users.showHash.noMode.indexOf(options.page) != -1
+          "##{options.page}"
+        else
+          hash = "##{options.mode}"
+          hash += "/#{options.page}" if options.page != 'main'
+          hash

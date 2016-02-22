@@ -29,11 +29,8 @@ class ProfilePage.Extra extends React.Component
 
   componentDidMount: =>
     @_removeListeners()
-    $.subscribe 'profilePageExtra:tab.profileContentsExtra', @_modeSwitch
     $.subscribe 'stickyHeader.profileContentsExtra', @_tabsStick
-    $(window).on 'throttled-scroll.profileContentsExtra', @_modeScan
     osu.pageChange()
-    @_modeScan()
 
     $(@refs.pages).sortable
       cursor: 'move'
@@ -48,68 +45,13 @@ class ProfilePage.Extra extends React.Component
     @_removeListeners()
 
 
-  componentWillReceiveProps: =>
+  componentWillReceiveProps: (newProps) =>
     osu.pageChange()
-
-
-  _modeScan: =>
-    return if @_scrolling
-
-    pages = document.getElementsByClassName('js-profile-page-extra--scrollspy')
-    return unless pages.length
-
-    currentPage = null
-    anchorHeight = window.innerHeight * 0.5
-
-    if osu.bottomPage()
-      @_setMode _.last(pages).dataset.id
-      return
-
-    # FIXME: I don't remember why this one scans from bottom while
-    # the one in forum.refreshCounter does it from top.
-    for page in pages by -1
-      pageTop = page.getBoundingClientRect().top
-      continue unless pageTop <= anchorHeight
-
-      @_setMode page.dataset.id
-      return
-
-    @_setMode page.dataset.id
-
-
-  _modeSwitch: (_e, mode) =>
-    # Don't bother scanning the current position.
-    # The result will be wrong when target page is too short anyway.
-    @_scrolling = true
-
-    target = @refs["page-#{mode}"]
-
-    return unless target
-
-    $(window).stop().scrollTo target, 500,
-      onAfter: =>
-        # Manually set the mode to avoid confusion (wrong highlight).
-        # Scrolling will obviously break it but that's unfortunate result
-        # from having the scrollspy marker at middle of page.
-        @_setMode mode, =>
-          # Doesn't work:
-          # - part of state (callback, part of mode setting)
-          # - simple variable in callback
-          # Both still change the switch too soon.
-          setTimeout (=> @_scrolling = false), 100
-      # count for the tabs height
-      offset: @refs.tabs.getBoundingClientRect().height * -1
 
 
   _removeListeners: ->
     $.unsubscribe '.profileContentsExtra'
     $(window).off '.profileContentsExtra'
-
-
-  _setMode: (mode, callback) =>
-    return if mode == @state.mode
-
-    @setState mode: mode, callback
 
 
   _tabsStick: (_e, target) =>
@@ -143,8 +85,6 @@ class ProfilePage.Extra extends React.Component
 
 
   render: =>
-    return if @props.mode == 'me'
-
     withMePage = @props.userPage.html != '' || @props.withEdit
 
     tabsContainerClasses = 'hidden-xs profile-extra-tabs__container js-fixed-element'
@@ -155,9 +95,8 @@ class ProfilePage.Extra extends React.Component
 
     div className: 'osu-layout__section osu-layout__section--extra',
       div
-        className: 'profile-extra-tabs js-sticky-header'
+        className: 'profile-extra-tabs js-sticky-header js-profile-page--scrollspy-offset'
         'data-sticky-header-target': 'profile-extra-tabs'
-        ref: 'tabs'
         div
           className: tabsContainerClasses
           div className: 'osu-layout__row',
@@ -167,11 +106,11 @@ class ProfilePage.Extra extends React.Component
               @state.profileOrder.map (m) =>
                 return if m == 'me' && !withMePage
 
-                el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
+                el ProfilePage.ExtraTab, key: m, page: m, currentPage: @props.currentPage, currentMode: @props.currentMode
 
       div className: 'osu-layout__row', ref: 'pages',
         @props.profileOrder.map (m) =>
-          topClassName = 'js-profile-page-extra--scrollspy'
+          topClassName = 'js-profile-page--scrollspy'
 
           elem =
             switch m
@@ -223,7 +162,6 @@ class ProfilePage.Extra extends React.Component
 
           div
             key: m
-            ref: "page-#{m}"
             'data-id': m
             className: topClassName
             el elem, props
