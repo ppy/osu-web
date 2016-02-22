@@ -25,11 +25,11 @@ class UserProfileSeeder extends Seeder
         // FAVOURITE BEATMAPS AND BEATMAP PLAYCOUNTS FOR EACH USER
 
         foreach (App\Models\User::all()as $usr) {
-          // $usr = App\Models\User::find($usr_id);
+            // $usr = App\Models\User::find($usr_id);
           $bms = $usr->scoresBestOsu()->get();
-          $usr_id = $usr->user_id;
+            $usr_id = $usr->user_id;
 
-          foreach($bms as $bm) {
+            foreach ($bms as $bm) {
                 // $bm = array_rand($bms, 1);
                 // dd($bm);
                 if (DB::table('osu_favouritemaps')->where('user_id', $usr_id)->where('beatmapset_id', $bm['beatmapset_id'])->first()) {
@@ -65,8 +65,8 @@ class UserProfileSeeder extends Seeder
                 $leader->beatmap_id = $bm['beatmap_id'];
                 $leader->user_id = $usr_id;
                 $leader->score_id = $bm['score_id'];
-                $leader->save();                
-              }
+                $leader->save();
+            }
         }
         } catch (\Illuminate\Database\QueryException $e) {
             echo "Error: Unable to save User Profile Data\r\n".$e;
