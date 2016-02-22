@@ -62,7 +62,7 @@ class ProfilePage.Extra extends React.Component
     anchorHeight = window.innerHeight * 0.5
 
     if osu.bottomPage()
-      @_setMode _.last(pages).id
+      @_setMode _.last(pages).dataset.id
       return
 
     # FIXME: I don't remember why this one scans from bottom while
@@ -71,10 +71,10 @@ class ProfilePage.Extra extends React.Component
       pageTop = page.getBoundingClientRect().top
       continue unless pageTop <= anchorHeight
 
-      @_setMode page.id
+      @_setMode page.dataset.id
       return
 
-    @_setMode page.id
+    @_setMode page.dataset.id
 
 
   _modeSwitch: (_e, mode) =>
@@ -82,7 +82,11 @@ class ProfilePage.Extra extends React.Component
     # The result will be wrong when target page is too short anyway.
     @_scrolling = true
 
-    $(window).stop().scrollTo "##{mode}", 500,
+    target = @refs["page-#{mode}"]
+
+    return unless target
+
+    $(window).stop().scrollTo target, 500,
       onAfter: =>
         # Manually set the mode to avoid confusion (wrong highlight).
         # Scrolling will obviously break it but that's unfortunate result
@@ -114,7 +118,7 @@ class ProfilePage.Extra extends React.Component
 
   updateOrder: (element) =>
     oldOrder = @state.profileOrder
-    newOrder = $(@refs.pages).sortable('toArray')
+    newOrder = $(@refs.pages).sortable('toArray', attribute: 'data-id')
 
     id = element.attr 'id'
 
@@ -219,6 +223,7 @@ class ProfilePage.Extra extends React.Component
 
           div
             key: m
-            id: m
+            ref: "page-#{m}"
+            'data-id': m
             className: topClassName
             el elem, props
