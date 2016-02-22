@@ -20,11 +20,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
 
   bottomPage: ->
-    pageBottom = document.getElementsByClassName('js-page-footer')[0]
-      .getBoundingClientRect()
-      .bottom
-
-    pageBottom == window.innerHeight
+    document.body.clientHeight == (document.body.scrollHeight - document.body.scrollTop)
 
 
   ajaxError: (xhr) ->
