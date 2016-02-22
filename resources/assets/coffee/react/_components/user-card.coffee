@@ -77,7 +77,7 @@ class @UserCard extends React.Component
             className: 'userinfo-small__username'
             a
               className: 'link link--white link--no-underline'
-              href: Url.users.show(user.id)
+              href: Url.user(user.id)
               user.username
 
           el FlagCountry, country: user.country, classModifiers: ['userinfo-small']
