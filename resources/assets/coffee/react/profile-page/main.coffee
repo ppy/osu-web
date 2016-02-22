@@ -133,9 +133,7 @@ class ProfilePage.Main extends React.Component
     $.subscribe 'profile:page:jump.profilePage', @pageJump
     $(window).on 'throttled-scroll.profilePage', @pageScan
 
-    initialScroll = =>
-      @pageJump null, @initialPage
-    @timeouts.initialScroll = setTimeout initialScroll, 100
+    @pageJump null, @initialPage
 
 
   componentWillUnmount: =>
