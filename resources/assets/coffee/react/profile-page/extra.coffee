@@ -24,7 +24,7 @@ class ProfilePage.Extra extends React.Component
 
     @state =
       tabsSticky: false
-      profileOrder: @props.profileOrder
+      profileOrder: @props.user.profileOrder
 
 
   componentDidMount: =>
@@ -46,6 +46,7 @@ class ProfilePage.Extra extends React.Component
 
 
   componentWillReceiveProps: (newProps) =>
+    @setState profileOrder: newProps.user.profileOrder
     osu.pageChange()
 
 
@@ -58,29 +59,31 @@ class ProfilePage.Extra extends React.Component
     newState = (target == 'profile-extra-tabs')
     @setState(tabsSticky: newState) if newState != @state.tabsSticky
 
-  updateOrder: (element) =>
-    oldOrder = @state.profileOrder
-    newOrder = $(@refs.pages).sortable('toArray', attribute: 'data-page-id')
+  updateOrder: =>
+    $pages = $(@refs.pages)
 
-    id = element[0].dataset.pageId
+    newOrder = $pages.sortable('toArray', attribute: 'data-page-id')
 
-    @setState profileOrder: newOrder
+    osu.showLoadingOverlay()
 
-    $.ajax Url.updateProfileAccount
-      method: 'PUT'
-      dataType: 'JSON'
-      data:
-        order: @state.profileOrder
+    $pages.sortable('cancel')
 
-    .fail (xhr) =>
-      osu.ajaxError xhr
+    @setState profileOrder: newOrder, =>
+      $.ajax Url.updateProfileAccount,
+        method: 'PUT'
+        dataType: 'JSON'
+        data:
+          order: @state.profileOrder
 
-      @setState profileOrder: oldOrder
+      .done (userData) =>
+        $.publish 'user:update', userData.data
 
-      position = (oldOrder.indexOf id) - 1
-      prevElement = $("[data-page-id='#{oldOrder[position]}']")
+      .fail (xhr) =>
+        osu.ajaxError xhr
 
-      element.insertAfter prevElement
+        @setState profileOrder: @props.user.profileOrder
+
+      .always osu.hideLoadingOverlay
 
 
   render: =>
@@ -108,7 +111,7 @@ class ProfilePage.Extra extends React.Component
                 el ProfilePage.ExtraTab, key: m, page: m, currentPage: @props.currentPage, currentMode: @props.currentMode
 
       div className: 'osu-layout__row', ref: 'pages',
-        @props.profileOrder.map (m) =>
+        @state.profileOrder.map (m) =>
           topClassName = 'js-profile-page--scrollspy'
 
           elem =

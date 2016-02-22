@@ -186,6 +186,5 @@ class ProfilePage.Main extends React.Component
         scoresFirst: scoresFirst
         withEdit: @props.withEdit
         userPage: @state.userPage
-        profileOrder: @props.user.profileOrder
         currentPage: @state.currentPage
         currentMode: @state.currentMode
