@@ -101,7 +101,7 @@ class ProfilePage.Main extends React.Component
       @setCurrentPage null, page
       return
 
-    target = $("[data-page-id='#{page}']")
+    target = $(".js-profile-page--page[data-page-id='#{page}']")
 
     return unless target.length
     # Don't bother scanning the current position.

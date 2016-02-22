@@ -31,7 +31,7 @@ class ProfilePage.Contents extends React.Component
     tabs = ['osu', 'taiko', 'fruits', 'mania']
 
     div
-      className: 'osu-layout__row osu-layout__row--page-profile js-profile-page--scrollspy'
+      className: 'osu-layout__row osu-layout__row--page-profile js-profile-page--scrollspy js-profile-page--page'
       'data-page-id': 'main'
       el 'div', className: 'profile-tabs',
         tabs.map (t) =>

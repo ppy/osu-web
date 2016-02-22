@@ -113,7 +113,7 @@ class ProfilePage.Extra extends React.Component
 
       div className: 'osu-layout__row', ref: 'pages',
         @state.profileOrder.map (m) =>
-          topClassName = 'js-profile-page--scrollspy'
+          topClassName = 'js-profile-page--scrollspy js-profile-page--page'
 
           elem =
             switch m
