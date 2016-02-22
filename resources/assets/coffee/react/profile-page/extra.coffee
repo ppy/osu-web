@@ -42,6 +42,7 @@ class ProfilePage.Extra extends React.Component
 
     $(@refs.tabs).sortable
       cursor: 'move'
+      disabled: !@props.withEdit
       revert: 150
       scrollSpeed: 0
       update: =>
