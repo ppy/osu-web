@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
             }
         }
         if ($files_ok === true) {
-          $this->call(UserBeatmapSeeder::class);
+            $this->call(UserBeatmapSeeder::class);
         }
     }
 }
