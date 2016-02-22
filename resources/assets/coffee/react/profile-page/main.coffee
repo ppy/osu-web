@@ -82,7 +82,7 @@ class ProfilePage.Main extends React.Component
     anchorHeight = @pagesOffset[0].getBoundingClientRect().height
 
     if osu.bottomPage()
-      @setCurrentPage null, _.last(@pages).dataset.id
+      @setCurrentPage null, _.last(@pages).dataset.pageId
       return
 
     for page in @pages
@@ -90,10 +90,10 @@ class ProfilePage.Main extends React.Component
       pageBottom = pageDims.bottom - Math.min(pageDims.height * 0.75, 200)
       continue unless pageBottom > anchorHeight
 
-      @setCurrentPage null, page.dataset.id
+      @setCurrentPage null, page.dataset.pageId
       return
 
-    @setCurrentPage null, page.dataset.id
+    @setCurrentPage null, page.dataset.pageId
 
 
   pageJump: (_e, page) =>
@@ -101,7 +101,7 @@ class ProfilePage.Main extends React.Component
       @setCurrentPage null, page
       return
 
-    target = $("[data-id='#{page}']")
+    target = $("[data-page-id='#{page}']")
 
     return unless target.length
     # Don't bother scanning the current position.

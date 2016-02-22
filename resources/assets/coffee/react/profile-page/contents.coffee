@@ -32,7 +32,7 @@ class ProfilePage.Contents extends React.Component
 
     div
       className: 'osu-layout__row osu-layout__row--page-profile js-profile-page--scrollspy'
-      'data-id': 'main'
+      'data-page-id': 'main'
       el 'div', className: 'profile-tabs',
         tabs.map (t) =>
           el ProfilePage.ContentsTab,

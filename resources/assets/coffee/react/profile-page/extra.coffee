@@ -60,9 +60,9 @@ class ProfilePage.Extra extends React.Component
 
   updateOrder: (element) =>
     oldOrder = @state.profileOrder
-    newOrder = $(@refs.pages).sortable('toArray', attribute: 'data-id')
+    newOrder = $(@refs.pages).sortable('toArray', attribute: 'data-page-id')
 
-    id = element.attr 'id'
+    id = element[0].dataset.pageId
 
     @setState profileOrder: newOrder
 
@@ -162,6 +162,6 @@ class ProfilePage.Extra extends React.Component
 
           div
             key: m
-            'data-id': m
+            'data-page-id': m
             className: topClassName
             el elem, props
