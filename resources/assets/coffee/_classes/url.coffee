@@ -18,24 +18,3 @@
 class @Url
   @users:
     show: (id) => "/u/#{id}"
-
-    showHash:
-      noMode: (page) =>
-        ['kudosu', 'me', 'medals'].indexOf(page) != -1
-
-      parse: (hash) =>
-        hash = hash.slice 1
-        if Url.users.showHash.noMode(hash)
-          page: hash
-        else
-          split = hash.split '/'
-          mode: split[0]
-          page: split[1] || 'main'
-
-      generate: (options) =>
-        if Url.users.showHash.noMode(options.page)
-          "##{options.page}"
-        else
-          hash = "##{options.mode}"
-          hash += "/#{options.page}" if options.page != 'main'
-          hash

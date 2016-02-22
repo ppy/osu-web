@@ -15,24 +15,23 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{a} = React.DOM
-el = React.createElement
+class @ProfilePageHash
+  @noMode: (page) =>
+    ['kudosu', 'me', 'medals'].indexOf(page) != -1
 
-class ProfilePage.ExtraTab extends React.Component
-  pageSwitch: (e) =>
-    e.preventDefault()
+  @parse: (hash) =>
+    hash = hash.slice 1
+    if @noMode(hash)
+      page: hash
+    else
+      split = hash.split '/'
+      mode: split[0]
+      page: split[1] || 'main'
 
-    $.publish 'profile:page:jump', @props.page
-
-
-  render: =>
-    className = 'link link--white link--no-underline profile-extra-tabs__item'
-
-    if @props.page == @props.currentPage
-      className += ' profile-extra-tabs__item--active'
-
-    a
-      href: ProfilePageHash.generate page: @props.page, mode: @props.currentMode
-      className: className
-      onClick: @pageSwitch
-      Lang.get("users.show.extra.#{@props.page}.title")
+  @generate: (options) =>
+    if @noMode(options.page)
+      "##{options.page}"
+    else
+      hash = "##{options.mode}"
+      hash += "/#{options.page}" if options.page != 'main'
+      hash
