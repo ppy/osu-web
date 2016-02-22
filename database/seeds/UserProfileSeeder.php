@@ -23,14 +23,15 @@ class UserProfileSeeder extends Seeder
             }
 
         // FAVOURITE BEATMAPS AND BEATMAP PLAYCOUNTS FOR EACH USER
-        foreach ($userids as $usr_id) {
-            for ($n = 0; $n < 5; $n++) {
-                $usr = App\Models\User::find($usr_id);
-            // Get a random beatmap
-            // $bms = App\Models\Beatmap::orderByRaw("RAND()")->get();
-            $bms = $usr->scoresOsu()->get()->toArray();
 
-                $bm = $bms[rand(0, count($bms) - 1)];
+        foreach (App\Models\User::all()as $usr) {
+          // $usr = App\Models\User::find($usr_id);
+          $bms = $usr->scoresBestOsu()->get();
+          $usr_id = $usr->user_id;
+
+          foreach($bms as $bm) {
+                // $bm = array_rand($bms, 1);
+                // dd($bm);
                 if (DB::table('osu_favouritemaps')->where('user_id', $usr_id)->where('beatmapset_id', $bm['beatmapset_id'])->first()) {
                     DB::table('osu_favouritemaps')->where('user_id', $usr_id)->where('beatmapset_id', $bm['beatmapset_id'])->delete();
                 }
@@ -55,22 +56,22 @@ class UserProfileSeeder extends Seeder
                 $bm = $bms[rand(0, count($bms) - 1)];
                 if (DB::table('osu_leaders')->where('beatmap_id', $bm['beatmap_id'])->first()) {
                     $bm = $bms[rand(0, count($bms) - 1)];
-              // try once more
-              if (DB::table('osu_leaders')->where('beatmap_id', $bm['beatmap_id'])->first()) {
-                  DB::table('osu_leaders')->where('beatmap_id', $bm['beatmap_id'])->delete();
-              }
+                    // try once more
+                    if (DB::table('osu_leaders')->where('beatmap_id', $bm['beatmap_id'])->first()) {
+                        DB::table('osu_leaders')->where('beatmap_id', $bm['beatmap_id'])->delete();
+                    }
                 }
                 $leader = new App\Models\BeatmapLeader\Osu;
                 $leader->beatmap_id = $bm['beatmap_id'];
                 $leader->user_id = $usr_id;
                 $leader->score_id = $bm['score_id'];
-                $leader->save();
-            }
+                $leader->save();                
+              }
         }
         } catch (\Illuminate\Database\QueryException $e) {
-            echo "Error: Unable to save User Profile Data\r\n".$e->getMessage();
+            echo "Error: Unable to save User Profile Data\r\n".$e;
         } catch (Exception $ex) {
-            echo "Error: Unable to save User Profile Data\r\n".$ex->getMessage();
+            echo "Error: Unable to save User Profile Data\r\n".$ex;
         }
     }
 }

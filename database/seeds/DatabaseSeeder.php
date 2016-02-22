@@ -31,19 +31,12 @@ class DatabaseSeeder extends Seeder
 
     public function runUserBeatmapSeeder()
     {
-        $zip = new ZipArchive;
-        $datapath = base_path().'/database/data/';
-        $res = $zip->open($datapath.'jsondata.zip');
+        $datapath = base_path().'/database/data/json/';
 
-        if ($res === true) {
-            $zip->extractTo($datapath.'/json/');
-            $zip->close();
-            $this->command->info('Unzipped Data files');
-            $this->command->info('Seeding Users, User Ranks & Stats, Beatmaps and Beatmapsets...');
-
-            $this->call(UserBeatmapSeeder::class);
-        } else {
-            $this->command->info('Error: Users and Beatmaps not seeded. Couldnt unzip database/data/jsondata.zip. Does the file exist?');
+        $filelist = array($datapath."beatmaps.json", $datapath."beatmapsets.json", $datapath."events.json", $datapath."hist.json", $datapath."scores_best.json", $datapath."scores.json", $datapath."stats.json", $datapath."users.json");
+        foreach ($filelist as $file) {
+          if (!file_exists($file)) $this->command->error('Error: Couldnt find json file at '.$file .' required for seeding UserBeatmapSeeder');
         }
+
     }
 }
