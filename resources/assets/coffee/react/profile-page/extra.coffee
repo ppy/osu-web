@@ -66,22 +66,21 @@ class ProfilePage.Extra extends React.Component
 
     @setState profileOrder: newOrder
 
-    $.ajax '/account/update-profile', {
-      method: 'PUT',
-      dataType: 'JSON',
-      data: {
-        'order': @state.profileOrder,
-      },
-      error: (jqHXR, textStatus, errorThrown) =>
-        osu.ajaxError jqHXR
+    $.ajax Url.updateProfileAccount
+      method: 'PUT'
+      dataType: 'JSON'
+      data:
+        order: @state.profileOrder
 
-        @setState profileOrder: oldOrder
+    .fail (xhr) =>
+      osu.ajaxError xhr
 
-        position = (oldOrder.indexOf id) - 1
-        prevElement = $('#' + oldOrder[position])
+      @setState profileOrder: oldOrder
 
-        element.insertAfter prevElement
-    }
+      position = (oldOrder.indexOf id) - 1
+      prevElement = $("[data-page-id='#{oldOrder[position]}']")
+
+      element.insertAfter prevElement
 
 
   render: =>

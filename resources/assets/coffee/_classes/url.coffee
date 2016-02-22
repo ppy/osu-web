@@ -16,4 +16,6 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @Url
+  @updateProfileAccount: '/account/update-profile'
+
   @user: (id) => "/u/#{id}"
