@@ -22,7 +22,7 @@ class ProfilePage.Main extends React.Component
   constructor: (props) ->
     super props
 
-    optionsHash = OsuUrl.users.showHash.parse location.hash
+    optionsHash = Url.users.showHash.parse location.hash
     @initialPage = optionsHash.page
     @timeouts = {}
 
@@ -57,7 +57,7 @@ class ProfilePage.Main extends React.Component
   setHash: =>
     newState = _.cloneDeep history.state
     newState.url = location.href.replace /#.*/, ''
-    newState.url += OsuUrl.users.showHash.generate page: @state.currentPage, mode: @state.currentMode
+    newState.url += Url.users.showHash.generate page: @state.currentPage, mode: @state.currentMode
 
     history.replaceState newState, null, newState.url
 

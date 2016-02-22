@@ -27,7 +27,7 @@ class ProfilePage.ContentsTab extends React.Component
     className += ' profile-tab--active' if @props.mode == @props.currentMode
 
     el 'a',
-      href: OsuUrl.users.showHash.generate page: @props.currentPage, mode: @props.mode
+      href: Url.users.showHash.generate page: @props.currentPage, mode: @props.mode
       onClick: @onClick
       className: className
       Lang.get "beatmaps.mode.#{@props.mode}"

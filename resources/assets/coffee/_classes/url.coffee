@@ -15,15 +15,17 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class @OsuUrl
+class @Url
   @users:
     show: (id) => "/u/#{id}"
 
     showHash:
-      noMode: ['kudosu', 'me', 'medals']
+      noMode: (page) =>
+        ['kudosu', 'me', 'medals'].indexOf(page) != -1
+
       parse: (hash) =>
         hash = hash.slice 1
-        if OsuUrl.users.showHash.noMode.indexOf(hash) != -1
+        if Url.users.showHash.noMode(hash)
           page: hash
         else
           split = hash.split '/'
@@ -31,7 +33,7 @@ class @OsuUrl
           page: split[1] || 'main'
 
       generate: (options) =>
-        if OsuUrl.users.showHash.noMode.indexOf(options.page) != -1
+        if Url.users.showHash.noMode(options.page)
           "##{options.page}"
         else
           hash = "##{options.mode}"

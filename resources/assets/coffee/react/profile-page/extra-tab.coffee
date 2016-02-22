@@ -32,7 +32,7 @@ class ProfilePage.ExtraTab extends React.Component
       className += ' profile-extra-tabs__item--active'
 
     a
-      href: OsuUrl.users.showHash.generate page: @props.page, mode: @props.currentMode
+      href: Url.users.showHash.generate page: @props.page, mode: @props.currentMode
       className: className
       onClick: @pageSwitch
       Lang.get("users.show.extra.#{@props.page}.title")
