@@ -14,6 +14,8 @@
 -- Dumping data for table `migrations`
 --
 
+INSERT INTO `migrations` VALUES ('2015_01_01_133337_base_tables',1);
+INSERT INTO `migrations` VALUES ('2015_01_01_133337_store_base_tables',1);
 INSERT INTO `migrations` VALUES ('2015_01_23_114030_extend_products_table',1);
 INSERT INTO `migrations` VALUES ('2015_01_29_013313_add_last_order_tracking_state',1);
 INSERT INTO `migrations` VALUES ('2015_02_03_051509_record_cost_and_shipping_in_order',1);
@@ -73,4 +75,4 @@ INSERT INTO `osu_languages` VALUES (11,'Italian',5);
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-02-12 21:58:48
+-- Dump completed on 2016-02-19 18:41:04
