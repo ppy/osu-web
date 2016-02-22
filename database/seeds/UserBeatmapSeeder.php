@@ -22,7 +22,7 @@ class UserBeatmapSeeder extends Seeder
         // USERS
 
         // Store saved / overwritten data in arrays
-        $savedusers = [];
+            $savedusers = [];
             $overusers = [];
             $overstats = [];
             $overhist = [];
@@ -52,7 +52,7 @@ class UserBeatmapSeeder extends Seeder
                 $user->save();
                 $userGroup = new \App\Models\UserGroup;
                 $userGroup->group_id = 5; // Admin
-            $user->userGroups()->save($userGroup);
+                $user->userGroups()->save($userGroup);
                 $saveduserids[] = $u->user_id;
                 $savedusers[] = $u->username;
             } // END USERS

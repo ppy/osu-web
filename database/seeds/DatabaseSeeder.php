@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
 
       // Users, Stats, Ranks, Scores, Events and Beatmaps/sets
-          $this->command->info('Seeding Users, Stats and Beatmaps using zip data...');
+          $this->command->info('Seeding Users, Stats and Beatmaps using json data...');
         $this->runUserBeatmapSeeder();
 
      // Forums, topics, posts etc

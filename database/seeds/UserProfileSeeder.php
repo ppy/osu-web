@@ -29,7 +29,9 @@ class UserProfileSeeder extends Seeder
           $bms = $usr->scoresBestOsu()->get();
             $usr_id = $usr->user_id;
 
+            $bmcount = 0;
             foreach ($bms as $bm) {
+              if ($bmcount < 5) {
                 // $bm = array_rand($bms, 1);
                 // dd($bm);
                 if (DB::table('osu_favouritemaps')->where('user_id', $usr_id)->where('beatmapset_id', $bm['beatmapset_id'])->first()) {
@@ -42,7 +44,7 @@ class UserProfileSeeder extends Seeder
 
             // Add a random couple few first place ranks
 
-            $bm = $bms[rand(0, count($bms) - 1)];
+                $bm = $bms[rand(0, count($bms) - 1)];
                 if (DB::table('osu_user_beatmap_playcount')->where('user_id', $usr_id)->where('beatmap_id', $bm['beatmap_id'])->first()) {
                     DB::table('osu_user_beatmap_playcount')->where('user_id', $usr_id)->where('beatmap_id', $bm['beatmap_id'])->delete();
                 }
@@ -66,8 +68,11 @@ class UserProfileSeeder extends Seeder
                 $leader->user_id = $usr_id;
                 $leader->score_id = $bm['score_id'];
                 $leader->save();
+
+                ++$bmcount;
+              }
             }
-        }
+          }
         } catch (\Illuminate\Database\QueryException $e) {
             echo "Error: Unable to save User Profile Data\r\n".$e;
         } catch (Exception $ex) {
