@@ -19,7 +19,7 @@
 topIcon = document.getElementsByClassName('js-navbar-mobile--top-icon')
 
 $(document).on 'show.bs.collapse', '.js-navbar-mobile--menu', ->
-  fade.out topIcon[0]
+  Fade.out topIcon[0]
 
 $(document).on 'hide.bs.collapse', '.js-navbar-mobile--menu', ->
-  fade.in topIcon[0]
+  Fade.in topIcon[0]

@@ -48,7 +48,7 @@ class @ForumCover
 
     return if $('#overlay').is(':visible')
 
-    fade.out $('.blackout')[0]
+    Fade.out $('.blackout')[0]
     @header[0].classList.remove 'forum-category-header--cover-modal'
 
     @header[0]._open = false
@@ -72,7 +72,7 @@ class @ForumCover
 
 
   openModal: =>
-    fade.in $('.blackout')[0]
+    Fade.in $('.blackout')[0]
     @header[0]._open = true
     @header[0].classList.add 'forum-category-header--cover-modal'
 

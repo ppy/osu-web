@@ -177,9 +177,9 @@ class @Forum
     return unless @_stickyHeaderTopic.length
 
     if target == 'forum-topic-headernav'
-      fade.in @_stickyHeaderTopic[0]
+      Fade.in @_stickyHeaderTopic[0]
     else
-      fade.out @_stickyHeaderTopic[0]
+      Fade.out @_stickyHeaderTopic[0]
 
 
   showMore: (e) =>

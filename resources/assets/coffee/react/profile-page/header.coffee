@@ -58,10 +58,10 @@ class ProfilePage.Header extends React.Component
   toggleEdit: =>
     if @state.editing
       @coverReset()
-      fade.out $('.blackout')[0]
+      Fade.out $('.blackout')[0]
       $(document).off 'click.profilePageHeader.toggleHeaderEdit'
     else
-      fade.in $('.blackout')[0]
+      Fade.in $('.blackout')[0]
 
       $(document).on 'click.profilePageHeader.toggleHeaderEdit', (e) =>
         return if $(e.target).closest('.profile-change-cover-popup').length
