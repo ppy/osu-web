@@ -17,5 +17,6 @@
 ###
 class @Url
   @updateProfileAccount: '/account/update-profile'
+  @pageAccount: '/account/page'
 
   @user: (id) => "/u/#{id}"
