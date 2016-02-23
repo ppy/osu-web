@@ -114,7 +114,7 @@ class ProfilePage.Header extends React.Component
           el ProfilePage.Rank,
             rank: @props.stats.rank
             countryName: @props.user.country.name
-            mode: @props.mode
+            currentMode: @props.currentMode
 
       if @props.withEdit
         el 'div', className: 'profile-change-cover-button', onClick: @toggleEdit,
