@@ -31,6 +31,7 @@ class ProfilePage.CoverUploader extends React.Component
     $(@refs.uploadButtonContainer).append($uploadButton)
 
     $uploadButton.fileupload
+      url: Url.updateProfileAccount
       dataType: 'json'
       dropZone: $dropzone
       submit: ->
@@ -60,12 +61,8 @@ class ProfilePage.CoverUploader extends React.Component
         isSelected: @props.cover.id == null
         name: -1
 
-      form
-        action: Url.updateProfileAccount
-        method: 'post'
-        input type: 'hidden', name: '_method', value: 'put'
-        el 'label', className: labelClass, ref: 'uploadButtonContainer',
-          Lang.get 'users.show.edit.cover.upload.button'
+      el 'label', className: labelClass, ref: 'uploadButtonContainer',
+        Lang.get 'users.show.edit.cover.upload.button'
 
       el 'div', className: 'profile-cover-upload-info',
         el 'p', className: 'profile-cover-upload-info-entry',

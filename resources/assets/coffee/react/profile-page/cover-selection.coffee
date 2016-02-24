@@ -22,7 +22,7 @@ class ProfilePage.CoverSelection extends React.Component
     return if @props.url == null
 
     $.ajax Url.updateProfileAccount,
-      method: 'put'
+      method: 'post'
       data:
         cover_id: @props.name
       dataType: 'json'
