@@ -57,10 +57,7 @@ ProfilePage.Medals = React.createClass
   render: ->
     div
       className: 'profile-extra'
-      el ProfilePage.DragDropToggle
-
-      h2 className: 'profile-extra__title', Lang.get('users.show.extra.medals.title')
-
+      @props.header
       div className: 'medals-group',
         _.map @_groupedAchievements(), (groupedAchievements, grouping) =>
           div

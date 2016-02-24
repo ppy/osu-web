@@ -37,7 +37,6 @@ $(document).on 'ready page:load', =>
   @stickyHeader ||= new StickyHeader
   @globalDrag ||= new GlobalDrag
   @gallery ||= new Gallery
-  @fade ||= new Fade
   @formPlaceholderHide ||= new FormPlaceholderHide
   @headerMenu ||= new HeaderMenu
   @tooltipDefault ||= new TooltipDefault

@@ -15,5 +15,23 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class @OsuUrl
-  @user: (id) => "/u/#{id}"
+class @ProfilePageHash
+  @noMode: (page) =>
+    ['kudosu', 'me', 'medals'].indexOf(page) != -1
+
+  @parse: (hash) =>
+    hash = hash.slice 1
+    if @noMode(hash)
+      page: hash
+    else
+      split = hash.split '/'
+      mode: split[0]
+      page: split[1] || 'main'
+
+  @generate: (options) =>
+    if @noMode(options.page)
+      "##{options.page}"
+    else
+      hash = "##{options.mode}"
+      hash += "/#{options.page}" if options.page != 'main'
+      hash

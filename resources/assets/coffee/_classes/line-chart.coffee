@@ -199,13 +199,13 @@ class @LineChart
 
 
   showTooltip: =>
-    fade.in @svgHoverMark.node()
-    fade.in @tooltip.node()
+    Fade.in @svgHoverMark.node()
+    Fade.in @tooltip.node()
 
 
   hideTooltip: =>
-    fade.out @svgHoverMark.node()
-    fade.out @tooltip.node()
+    Fade.out @svgHoverMark.node()
+    Fade.out @tooltip.node()
 
 
   positionTooltip: =>
