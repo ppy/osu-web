@@ -53,6 +53,7 @@ Route::get('/beatmaps/search/{filters?}', ['as' => 'beatmaps.search', 'uses' => 
 
 // maps
 Route::get('/beatmaps/{id}/covers/regenerate', ['as' => 'regenerate-covers', 'uses' => 'BeatmapController@regenerateCovers']);
+Route::get('/beatmaps/{id}/covers', ['as' => 'check-covers', 'uses' => 'BeatmapController@checkCovers']);
 Route::get('/beatmaps/set/{id}', ['as' => 'set', 'uses' => 'BeatmapController@getMapSet']);
 Route::get('/beatmaps/map/{id}', ['as' => 'beatmap', 'uses' => 'BeatmapController@getMap']);
 Route::get('/beatmaps/modding/{id?}', ['as' => 'modding', 'uses' => 'ModdingController@getModding']);

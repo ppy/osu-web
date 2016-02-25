@@ -75,6 +75,35 @@ class BeatmapController extends Controller
         return view('beatmaps.index', compact('filters', 'beatmaps'));
     }
 
+    public function checkCovers($id)
+    {
+        $current_user = Auth::user();
+        if (!$current_user || !$current_user->isDev()) {
+            return;
+        }
+
+        $beatmapSet = BeatmapSet::find($id);
+        $time = time();
+
+        $output = [];
+        $rawUrl = $beatmapSet->coverImageURL('raw');
+        array_push($output, "raw... $rawUrl");
+        array_push($output, "<img src='$rawUrl?$time'>");
+        $optimizedUrl = $beatmapSet->coverImageURL('fullsize');
+        array_push($output, "optimized... $optimizedUrl");
+        array_push($output, "<img src='$optimizedUrl?$time'>");
+        $sizes = ['cover', 'card', 'list'];
+        $scales = ['', '@2x'];
+        foreach ($sizes as $size) {
+            foreach ($scales as $scale) {
+                $url = $beatmapSet->coverImageURL("$size$scale");
+                array_push($output, "$size$scale... $url");
+                array_push($output, "<img src='$url?$time'>");
+            }
+        }
+        echo join($output, "<br/>");
+    }
+
     public function regenerateCovers($id)
     {
         $current_user = Auth::user();
