@@ -40,7 +40,9 @@ class ProfilePage.Extra extends React.Component
       update: =>
         @updateOrder @refs.pages
 
-    $(@refs.tabs).sortable
+    sortableTabsOptions =
+      items: '[data-page-id]'
+      tolerance: 'pointer'
       cursor: 'move'
       disabled: !@props.withEdit
       revert: 150
@@ -48,6 +50,8 @@ class ProfilePage.Extra extends React.Component
       update: =>
         @updateOrder @refs.tabs
 
+    $(@refs.tabs).sortable sortableTabsOptions
+    $(@refs.fixedTabs).sortable sortableTabsOptions
 
 
   componentWillUnmount: =>
@@ -69,6 +73,7 @@ class ProfilePage.Extra extends React.Component
     newState = (target == 'profile-extra-tabs')
     @setState(tabsSticky: newState) if newState != @state.tabsSticky
 
+
   updateOrder: (elems) =>
     $elems = $(elems)
 
@@ -80,7 +85,7 @@ class ProfilePage.Extra extends React.Component
 
     @setState profileOrder: newOrder, =>
       $.ajax Url.updateProfileAccount,
-        method: 'PUT'
+        method: 'POST'
         dataType: 'JSON'
         data:
           order: @state.profileOrder
@@ -99,27 +104,28 @@ class ProfilePage.Extra extends React.Component
   render: =>
     withMePage = @props.userPage.html != '' || @props.withEdit
 
-    tabsContainerClasses = 'hidden-xs profile-extra-tabs__container js-fixed-element'
-    tabsClasses = 'profile-extra-tabs__items'
-    if @state.tabsSticky
-      tabsContainerClasses += ' profile-extra-tabs__container--fixed js-sticky-header--active'
-      tabsClasses += ' profile-extra-tabs__items--fixed'
+    tabs = div
+      className: 'hidden-xs profile-extra-tabs__container'
+      div className: 'osu-layout__row',
+        div
+          className: 'profile-extra-tabs__items'
+          @state.profileOrder.map (m) =>
+            return if m == 'me' && !withMePage
+
+            el ProfilePage.ExtraTab, key: m, page: m, currentPage: @props.currentPage, currentMode: @props.currentMode
 
     div className: 'osu-layout__section osu-layout__section--extra',
       div
         className: 'profile-extra-tabs js-sticky-header js-profile-page--scrollspy-offset'
         'data-sticky-header-target': 'profile-extra-tabs'
-        div
-          className: tabsContainerClasses
-          div className: 'osu-layout__row',
-            div
-              className: tabsClasses
-              'data-sticky-header-id': 'profile-extra-tabs'
-              ref: 'tabs'
-              @state.profileOrder.map (m) =>
-                return if m == 'me' && !withMePage
+        ref: 'tabs'
+        tabs
 
-                el ProfilePage.ExtraTab, key: m, page: m, currentPage: @props.currentPage, currentMode: @props.currentMode
+      div
+        className: 'profile-extra-tabs profile-extra-tabs--fixed'
+        'data-visibility': if @state.tabsSticky then '' else 'hidden'
+        ref: 'fixedTabs'
+        tabs
 
       div className: 'osu-layout__row', ref: 'pages',
         @state.profileOrder.map (m) =>
