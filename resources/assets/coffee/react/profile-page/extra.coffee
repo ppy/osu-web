@@ -80,7 +80,7 @@ class ProfilePage.Extra extends React.Component
 
     @setState profileOrder: newOrder, =>
       $.ajax Url.updateProfileAccount,
-        method: 'PUT'
+        method: 'POST'
         dataType: 'JSON'
         data:
           order: @state.profileOrder
