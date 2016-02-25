@@ -24,9 +24,12 @@ use Es;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
 use DB;
+use App\Libraries\StorageAuto;
+use App\Models\BeatmapMirror;
 
 class BeatmapSet extends Model
 {
+    protected $_storage = null;
     protected $table = 'osu_beatmapsets';
     protected $primaryKey = 'beatmapset_id';
 
@@ -59,6 +62,7 @@ class BeatmapSet extends Model
         'last_update',
         'submit_date',
         'thread_icon_date',
+        'cover_updated_at'
     ];
 
     public $timestamps = false;
@@ -72,6 +76,10 @@ class BeatmapSet extends Model
         'difficulty_names',
         'thread_icon_date',
         'thread_id',
+    ];
+
+    protected $fillable = [
+        'cover_updated_at'
     ];
 
     const GRAVEYARD = -2;
@@ -469,6 +477,137 @@ class BeatmapSet extends Model
         }
 
         return $new;
+    }
+
+
+    public function coverImageURL($cover_size = 'cover')
+    {
+        # todo: should probably move these out into their own model, i.e. BeatmapSetCover or something
+        $validSizes = ['raw', 'fullsize'];
+        $shapes = ['cover', 'card', 'list'];
+        $scales = ['', '@2x'];
+        foreach ($shapes as $shape) {
+            foreach ($scales as $scale) {
+                array_push($validSizes, "$shape$scale");
+            }
+        }
+        if (!in_array($cover_size, $validSizes)) {
+            return false;
+        }
+        return $this->storage()->url("/beatmaps/{$this->beatmapset_id}/covers/{$cover_size}.jpg");
+    }
+
+    public function storage()
+    {
+        if ($this->_storage === null) {
+            $this->_storage = StorageAuto::get();
+        }
+
+        return $this->_storage;
+    }
+
+    # todo: generalize method
+    public function oszDownloadURL($noVideo = 1)
+    {
+        $mirrors = config('osu.beatmap_processor.mirrors_to_use');
+        $mirror = BeatmapMirror::find($mirrors[array_rand($mirrors)]);
+
+        $diskFilename = $serveFilename = $this->filename;
+        $time = time();
+        $checksum = md5("{$this->beatmapset_id}{$diskFilename}{$serveFilename}{$time}{$noVideo}{$mirror->secret_key}");
+
+        $url = "{$mirror->base_url}d/{$this->beatmapset_id}?fs=".rawurlencode($serveFilename)."&fd=".rawurlencode($diskFilename)."&ts=$time&cs=$checksum&u=0&nv=$noVideo";
+        return $url;
+    }
+
+    public function regenerateCovers()
+    {
+        $time = time();
+
+        $tmpBase = sys_get_temp_dir() . "/bm/$this->beatmapset_id/$time";
+        $osz = "$tmpBase/$this->beatmapset_id.zip";
+        $workingFolder = "$tmpBase/working/$this->beatmapset_id";
+        $outputFolder  = "$tmpBase/out/$this->beatmapset_id";
+
+        # make our temp folders if they don't exist
+        if (!is_dir($workingFolder)) {
+            mkdir($workingFolder, 0755, true);
+        }
+        if (!is_dir($outputFolder)) {
+            mkdir($outputFolder, 0755, true);
+        }
+
+        # download and extract beatmap
+        copy($this->oszDownloadURL(), $osz);
+        $zip = new \ZipArchive;
+        $zip->open($osz);
+        $zip->extractTo($workingFolder);
+        $zip->close();
+
+        # grab the first beatmap (as per old implementation) and scan for background image
+        $beatmap = $this->beatmaps()->first();
+        $beatmapFilename = $beatmap->filename;
+        $bg = $this::scanBMForBG("$workingFolder/$beatmapFilename");
+        if (!$bg) {
+            return false;
+        }
+
+        # upload original image
+        $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/raw.jpg", file_get_contents("{$workingFolder}/{$bg}"));
+        $originalImage = preg_replace("/http[s]?:\/\//", "", $this->coverImageURL('raw'));
+
+        # upload optimized version
+        $resizerEndpoint = config('osu.beatmap_processor.thumbnailer');
+        $optimizedImage = preg_replace("/http[s]?:\/\//", "", $this->coverImageURL('fullsize'));
+
+        copy("$resizerEndpoint/optim/$originalImage", "$outputFolder/fullsize.jpg");
+        $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/fullsize.jpg", file_get_contents("$outputFolder/fullsize.jpg"));
+
+        # use thumbnailer to generate and upload all our variants
+        $shapes = ['cover', 'card', 'list'];
+        $scales = ['', '@2x'];
+        foreach ($shapes as $shape) {
+            foreach ($scales as $scale) {
+                copy("$resizerEndpoint/thumb/$shape$scale/$optimizedImage", "$outputFolder/$shape$scale.jpg");
+                $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/$shape$scale.jpg", file_get_contents("$outputFolder/$shape$scale.jpg"));
+            }
+        }
+
+        # clean up after ourselves
+        deltree($workingFolder);
+
+        $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+
+        return true;
+    }
+
+    # todo: maybe move this somewhere else (copypasta from old implementation)
+    public function scanBMForBG($beatmapFilename)
+    {
+        $content = file_get_contents($beatmapFilename);
+        if (!$content) {
+            return false;
+        }
+        $matching = false;
+        $image = "";
+        $lines = explode("\n", $content);
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if ($matching) {
+                $parts = explode(',', $line);
+                if (sizeof($parts) > 2 && $parts[0] == '0') {
+                    $image = str_replace('"', '', $parts[2]);
+                    break;
+                }
+            }
+            if ($line == "[Events]") {
+                $matching = true;
+            }
+            if ($line == "[HitObjects]") {
+                break;
+            }
+        }
+        return $image;
     }
 
     /*

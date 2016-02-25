@@ -75,6 +75,27 @@ class BeatmapController extends Controller
         return view('beatmaps.index', compact('filters', 'beatmaps'));
     }
 
+    public function regenerateCovers($id)
+    {
+        $current_user = Auth::user();
+        if (!$current_user || !$current_user->isDev()) {
+            return;
+        }
+
+        set_time_limit(0);
+        $set = BeatmapSet::find($id);
+        if (!$set) {
+            echo "beatmapset not found";
+            return;
+        }
+        $covers = $set->regenerateCovers();
+        if ($covers) {
+            echo "OK <a href='/beatmaps/{$id}/covers'>/beatmaps/{$id}/covers</a>";
+        } else {
+            echo "An error occured (or no image to process)";
+        }
+    }
+
     public function search()
     {
         $current_user = Auth::user();

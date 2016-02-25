@@ -425,3 +425,12 @@ function get_class_namespace($className)
 {
     return substr($className, 0, strrpos($className, '\\'));
 }
+
+function deltree($dir)
+{
+    $files = array_diff(scandir($dir), array('.','..'));
+    foreach ($files as $file) {
+        (is_dir("$dir/$file")) ? delTree("$dir/$file") : unlink("$dir/$file");
+    }
+    return rmdir($dir);
+}

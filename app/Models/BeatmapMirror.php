@@ -17,24 +17,16 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Libraries;
+namespace App\Models;
 
-use Storage;
+use Illuminate\Database\Eloquent\Model;
 
-class StorageLocal
+class BeatmapMirror extends Model
 {
-    public function put($path, $content)
-    {
-        return Storage::put($path, $content);
-    }
+    protected $table = 'osu_mirrors';
+    protected $primaryKey = 'mirror_id';
 
-    public function deleteDirectory($path)
-    {
-        return Storage::deleteDirectory($path);
-    }
+    public $timestamps = false;
 
-    public function url($path)
-    {
-        return config('app.url') . "/uploads{$path}";
-    }
+    protected $hidden = ['secret_key'];
 }
