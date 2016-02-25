@@ -146,7 +146,7 @@ window.onload = function() {
 </script>
 @endif
 
-<div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1">
+<div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 no-print">
     <div class='osu-layout__sub-row osu-layout__sub-row--with-separator'>
         <h3>Order Status</h3>
 
