@@ -46,7 +46,7 @@ class ProfilePage.UserPageEditor extends React.Component
     body = @props.userPage.raw
     osu.showLoadingOverlay()
 
-    $.ajax window.changePageUrl,
+    $.ajax Url.pageAccount,
       method: 'PUT'
       dataType: 'json'
       data:

@@ -31,7 +31,7 @@ class @ForumPostsSeek
 
 
   hideTooltip: =>
-    fade.out @tooltip[0]
+    Fade.out @tooltip[0]
 
   move: (e) =>
     e.preventDefault()
@@ -39,7 +39,7 @@ class @ForumPostsSeek
 
     @setPostPosition(e.clientX)
 
-    fade.in @tooltip[0]
+    Fade.in @tooltip[0]
 
     clearTimeout @_autohide
     @_autohide = setTimeout @hideTooltip, 1000

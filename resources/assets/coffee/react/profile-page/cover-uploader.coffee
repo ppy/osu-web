@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+{form, input} = React.DOM
 el = React.createElement
 
 
@@ -25,13 +26,12 @@ class ProfilePage.CoverUploader extends React.Component
       class: 'js-profile-cover-upload fileupload__input'
       type: 'file'
       name: 'cover_file'
-      'data-url': window.updateProfileUrl
       disabled: !@props.canUpload
 
     $(@refs.uploadButtonContainer).append($uploadButton)
 
     $uploadButton.fileupload
-      method: 'PUT'
+      url: Url.updateProfileAccount
       dataType: 'json'
       dropZone: $dropzone
       submit: ->
@@ -59,6 +59,7 @@ class ProfilePage.CoverUploader extends React.Component
         url: @props.cover.customUrl
         thumbUrl: @props.cover.customUrl
         isSelected: @props.cover.id == null
+        name: -1
 
       el 'label', className: labelClass, ref: 'uploadButtonContainer',
         Lang.get 'users.show.edit.cover.upload.button'

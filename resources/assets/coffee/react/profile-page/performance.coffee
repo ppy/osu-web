@@ -29,6 +29,8 @@ class ProfilePage.Performance extends React.Component
     $(window).off '.profilePagePerformance'
 
   _yAxisTickValues: (data) ->
+    return [] unless data.length
+
     rankRange = d3.extent data, (d) => d.y
 
     @_allTicks ||= [-1, -2.5, -5]
@@ -48,10 +50,9 @@ class ProfilePage.Performance extends React.Component
 
     ticks
 
-  _rankHistory: ->
-    return unless @props.rankHistories
 
-    data = @props.rankHistories.data
+  _rankHistory: ->
+    data = (@props.rankHistories?.data || [])
       .filter (rank) => rank > 0
 
     data = data.map (rank, i) =>
@@ -103,10 +104,6 @@ class ProfilePage.Performance extends React.Component
 
   render: ->
     div className: 'profile-extra',
-      el ProfilePage.DragDropToggle
+      @props.header
 
-      h2 className: 'profile-extra__title', Lang.get('users.show.extra.performance.title')
-      
-      div
-        className: 'hidden' unless @props.rankHistories
-        div ref: 'chartArea', className: 'chart'
+      div ref: 'chartArea', className: 'chart'

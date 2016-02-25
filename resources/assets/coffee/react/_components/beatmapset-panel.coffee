@@ -59,7 +59,7 @@ class @BeatmapsetPanel extends React.Component
 
       div className: 'bottom_left',
         span className: 'hidden', ref: beatmap.beatmapset_id, beatmap.beatmapset_id
-        div className: 'creator', dangerouslySetInnerHTML: { __html: Lang.get('beatmaps.listing.mapped-by', mapper: osu.link('/u/'+beatmap.user_id, beatmap.creator)) }
+        div className: 'creator', dangerouslySetInnerHTML: { __html: Lang.get('beatmaps.listing.mapped-by', mapper: osu.link(Url.user(beatmap.user_id), beatmap.creator)) }
         div className: 'source', beatmap.source
 
       div className: 'bottom_right show_on_hover',

@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+{div} = React.DOM
 el = React.createElement
 
 class ProfilePage.Contents extends React.Component
@@ -29,12 +30,15 @@ class ProfilePage.Contents extends React.Component
   render: =>
     tabs = ['osu', 'taiko', 'fruits', 'mania']
 
-    el 'div', className: 'osu-layout__row osu-layout__row--page-profile',
+    div
+      className: 'osu-layout__row osu-layout__row--page-profile js-profile-page--scrollspy js-profile-page--page'
+      'data-page-id': 'main'
       el 'div', className: 'profile-tabs',
         tabs.map (t) =>
           el ProfilePage.ContentsTab,
             key: t
-            currentMode: @props.mode
+            currentMode: @props.currentMode
+            currentPage: @props.currentPage
             mode: t
       el 'div', className: 'profile-contents flex-full flex-row',
         el ProfilePage.Info, user: @props.user

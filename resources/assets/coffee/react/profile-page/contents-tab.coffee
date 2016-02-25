@@ -20,14 +20,14 @@ el = React.createElement
 class ProfilePage.ContentsTab extends React.Component
   onClick: (e) =>
     e.preventDefault()
-    $.publish 'profilePageMode:change', @props.mode
+    $.publish 'profile:mode:set', @props.mode
 
   render: =>
     className = 'profile-tab'
     className += ' profile-tab--active' if @props.mode == @props.currentMode
 
     el 'a',
-      href: '#'
+      href: ProfilePageHash.generate page: @props.currentPage, mode: @props.mode
       onClick: @onClick
       className: className
       Lang.get "beatmaps.mode.#{@props.mode}"

@@ -63,6 +63,19 @@ Contributions can be made via pull requests to this repository. We hope to credi
 
 Note that while we already have certain standards in place, nothing is set in stone. If you have an issue with the way code is structured; with any libraries we are using; with any processes involved with contributing, *please* bring it up. I welcome all feedback so we can make contributing to this project as easy as possible.
 
+Seeking Help
+------------
+
+If you need help with anything, you have two options:
+
+#### Create an Issue
+
+If you have something you want to discuss in detail, or have hit an issue which you believe others will also have in deployment or development on the system, [opening an issue](https://github.com/ppy/osu-web/issues) is the best way to get help. It creates a permanent resource for others wishing to contribute to conversation. Please **make sure to search first** in case someone else has already addressed the same issue!
+
+#### Ask on Slack
+
+We have a channel on the [osu! public slack](https://osu.ppy.sh/p/slack) dedicated to osu-web development. If you have a problem which you think might be the result of your own stupidity, want to ask a quick question that doesn't deserve opening an issue or just discuss things in a casual environment, this is for you!
+
 Licence
 -------
 
