@@ -21,8 +21,8 @@ class ProfilePage.CoverSelection extends React.Component
   onClick: =>
     return if @props.url == null
 
-    $.ajax window.updateProfileUrl,
-      method: 'put'
+    $.ajax Url.updateProfileAccount,
+      method: 'post'
       data:
         cover_id: @props.name
       dataType: 'json'

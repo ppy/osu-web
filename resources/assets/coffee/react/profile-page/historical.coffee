@@ -65,7 +65,7 @@ ProfilePage.Historical = React.createClass
             className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
             span dangerouslySetInnerHTML:
                 __html: Lang.get 'beatmaps.listing.mapped-by',
-                  mapper: osu.link("/u/#{bmset.user_id}", bmset.creator,
+                  mapper: osu.link(Url.user(bmset.user_id), bmset.creator,
                     classNames: ['beatmapset-row__title-small'])
           div
             className: 'beatmapset-row__detail-column'
@@ -75,8 +75,7 @@ ProfilePage.Historical = React.createClass
     div
       className: 'profile-extra'
 
-      el ProfilePage.DragDropToggle
-      h2 className: 'profile-extra__title', Lang.get('users.show.extra.historical.title')
+      @props.header
 
       h3
         className: 'profile-extra__title profile-extra__title--small'

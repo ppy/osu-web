@@ -22,8 +22,12 @@ class ProfilePage.Main extends React.Component
   constructor: (props) ->
     super props
 
+    optionsHash = ProfilePageHash.parse location.hash
+    @initialPage = optionsHash.page
+    @timeouts = {}
+
     @state =
-      mode: props.user.playmode
+      currentMode: optionsHash.mode || props.user.playmode
       user: props.user
       userPage:
         html: props.userPage.html
@@ -38,8 +42,24 @@ class ProfilePage.Main extends React.Component
     @setState isCoverUpdating: state
 
 
-  modeChange: (_e, mode) =>
-    @setState mode: mode
+  setCurrentMode: (_e, mode) =>
+    return if @state.currentMode == mode
+    @setState currentMode: mode, @setHash
+
+
+  setCurrentPage: (_e, page, callback) =>
+    return if @state.currentPage == page
+    @setState currentPage: page, =>
+      callback() if callback
+      @setHash()
+
+
+  setHash: =>
+    newState = _.cloneDeep history.state
+    newState.url = location.href.replace /#.*/, ''
+    newState.url += ProfilePageHash.generate page: @state.currentPage, mode: @state.currentMode
+
+    history.replaceState newState, null, newState.url
 
 
   userUpdate: (_e, user) =>
@@ -52,40 +72,101 @@ class ProfilePage.Main extends React.Component
     @setState userPage: _.extend(currentUserPage, newUserPage)
 
 
+  pages: document.getElementsByClassName('js-profile-page--scrollspy')
+  pagesOffset: document.getElementsByClassName('js-profile-page--scrollspy-offset')
+
+  pageScan: =>
+    return if @scrolling
+    return if @pages.length == 0
+
+    anchorHeight = @pagesOffset[0].getBoundingClientRect().height
+
+    if osu.bottomPage()
+      @setCurrentPage null, _.last(@pages).dataset.pageId
+      return
+
+    for page in @pages
+      pageDims = page.getBoundingClientRect()
+      pageBottom = pageDims.bottom - Math.min(pageDims.height * 0.75, 200)
+      continue unless pageBottom > anchorHeight
+
+      @setCurrentPage null, page.dataset.pageId
+      return
+
+    @setCurrentPage null, page.dataset.pageId
+
+
+  pageJump: (_e, page) =>
+    if page == 'main'
+      @setCurrentPage null, page
+      return
+
+    target = $(".js-profile-page--page[data-page-id='#{page}']")
+
+    return unless target.length
+    # Don't bother scanning the current position.
+    # The result will be wrong when target page is too short anyway.
+    @scrolling = true
+    clearTimeout @timeouts.scrolling
+
+    $(window).stop().scrollTo target, 500,
+      onAfter: =>
+        # Manually set the mode to avoid confusion (wrong highlight).
+        # Scrolling will obviously break it but that's unfortunate result
+        # from having the scrollspy marker at middle of page.
+        @setCurrentPage null, page, =>
+          # Doesn't work:
+          # - part of state (callback, part of mode setting)
+          # - simple variable in callback
+          # Both still change the switch too soon.
+          @timeouts.scrolling = setTimeout (=> @scrolling = false), 100
+      # count for the tabs height
+      offset: @pagesOffset[0].getBoundingClientRect().height * -1
+
+
   componentDidMount: =>
-    @_removeListeners()
+    @removeListeners()
     $.subscribe 'user:update.profilePage', @userUpdate
     $.subscribe 'user:cover:upload:state.profilePage', @coverUploadState
     $.subscribe 'user:page:update.profilePage', @userPageUpdate
-    $.subscribe 'profilePageMode:change.profilePage', @modeChange
+    $.subscribe 'profile:mode:set.profilePage', @setCurrentMode
+    $.subscribe 'profile:page:jump.profilePage', @pageJump
+    $(window).on 'throttled-scroll.profilePage', @pageScan
+
+    @pageJump null, @initialPage
 
 
   componentWillUnmount: =>
-    @_removeListeners()
+    for own _name, timeout of @timeouts
+      clearTimeout timeout
+
+    @removeListeners()
 
 
-  _removeListeners: =>
+  removeListeners: =>
     $.unsubscribe '.profilePage'
+    $(window).off '.profilePage'
 
   render: =>
-    rankHistories = @props.allRankHistories[@state.mode]?.data
-    stats = @props.allStats[@state.mode].data
-    scores = @props.allScores[@state.mode].data
-    scoresBest = @props.allScoresBest[@state.mode].data
-    scoresFirst = @props.allScoresFirst[@state.mode].data
+    rankHistories = @props.allRankHistories[@state.currentMode]?.data
+    stats = @props.allStats[@state.currentMode].data
+    scores = @props.allScores[@state.currentMode].data
+    scoresBest = @props.allScoresBest[@state.currentMode].data
+    scoresFirst = @props.allScoresFirst[@state.currentMode].data
 
     div className: 'osu-layout__section',
       el ProfilePage.Header,
         user: @state.user
         stats: stats
-        mode: @state.mode
+        currentMode: @state.currentMode
         withEdit: @props.withEdit
         isCoverUpdating: @state.isCoverUpdating
 
       el ProfilePage.Contents,
         user: @state.user
         stats: stats
-        mode: @state.mode
+        currentMode: @state.currentMode
+        currentPage: @state.currentPage
         allAchievements: @props.allAchievements
 
       el ProfilePage.Extra,
@@ -105,4 +186,5 @@ class ProfilePage.Main extends React.Component
         scoresFirst: scoresFirst
         withEdit: @props.withEdit
         userPage: @state.userPage
-        profileOrder: @props.user.profileOrder
+        currentPage: @state.currentPage
+        currentMode: @state.currentMode

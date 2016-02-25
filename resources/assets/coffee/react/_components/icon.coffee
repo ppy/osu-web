@@ -15,24 +15,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-
-class @Fade
-  @isVisible: (el) ->
-    el.getAttribute('data-visibility') != 'hidden'
-
-
-  @out: (el) ->
-    el.setAttribute('data-visibility', 'hidden')
-
-
-  @in: (el) ->
-    el.setAttribute('data-visibility', '')
-
-
-  @toggle: (el, makeVisible) =>
-    makeVisible ?= !@isVisible el
-
-    if makeVisible
-      @in el
-    else
-      @out el
+class @Icon extends React.Component
+  render: =>
+    React.DOM.span className: "fa fa-#{@props.name}"

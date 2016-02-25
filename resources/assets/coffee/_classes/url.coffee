@@ -15,17 +15,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{span} = React.DOM
+class @Url
+  @updateProfileAccount: '/account/update-profile'
+  @pageAccount: '/account/page'
 
-class ProfilePage.DragDropToggle extends React.Component
-  @contextTypes:
-    withEdit: React.PropTypes.bool
-
-  render: ->
-    if @context.withEdit
-      span
-        className: 'fa fa-bars profile-extra__dragdrop-toggle'
-    else
-      # empty selector so react stops complaining that render() returns nothing
-      span
-        className: ''
+  @user: (id) => "/u/#{id}"

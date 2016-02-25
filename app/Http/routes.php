@@ -144,7 +144,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::resource('logs', 'LogsController', ['only' => ['index']]);
 });
 
-Route::put('/account/update-profile', ['as' => 'account.update-profile', 'uses' => 'AccountController@updateProfile']);
+// Uploading file doesn't quite work with PUT/PATCH.
+// Reference: https://bugs.php.net/bug.php?id=55815
+// Note that hhvm behaves differently (the same as POST).
+Route::post('/account/update-profile', ['as' => 'account.update-profile', 'uses' => 'AccountController@updateProfile']);
 Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
 
 // API
