@@ -40,18 +40,17 @@ class ProfilePage.Extra extends React.Component
       update: =>
         @updateOrder @refs.pages
 
-    sortableTabsOptions =
-      items: '[data-page-id]'
-      tolerance: 'pointer'
-      cursor: 'move'
-      disabled: !@props.withEdit
-      revert: 150
-      scrollSpeed: 0
-      update: =>
-        @updateOrder @refs.tabs
-
-    $(@refs.tabs).sortable sortableTabsOptions
-    $(@refs.fixedTabs).sortable sortableTabsOptions
+    for tabType in ['tabs', 'fixedTabs']
+      tabs = @refs[tabType]
+      $(tabs).sortable
+        items: '[data-page-id]'
+        tolerance: 'pointer'
+        cursor: 'move'
+        disabled: !@props.withEdit
+        revert: 150
+        scrollSpeed: 0
+        update: =>
+          @updateOrder tabs
 
 
   componentWillUnmount: =>
