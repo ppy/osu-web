@@ -12,12 +12,12 @@ class UserSeeder extends Seeder
     public function run()
     {
       //test
-      DB::table('phpbb_users')->delete();
-      DB::table('osu_user_stats')->delete();
-      DB::table('osu_user_stats_fruits')->delete();
-      DB::table('osu_user_stats_mania')->delete();
-      DB::table('osu_user_stats_taiko')->delete();
-      DB::table('osu_user_performance_rank')->delete();
+      // DB::table('phpbb_users')->delete();
+      // DB::table('osu_user_stats')->delete();
+      // DB::table('osu_user_stats_fruits')->delete();
+      // DB::table('osu_user_stats_mania')->delete();
+      // DB::table('osu_user_stats_taiko')->delete();
+      // DB::table('osu_user_performance_rank')->delete();
 
 
       $this->beatmapCount = App\Models\Beatmap::count();
@@ -57,7 +57,7 @@ class UserSeeder extends Seeder
 
         // Create rank histories for all 3 modes
         for ($c=0; $c<=3; $c++) {
-          
+
           switch ($c){
             case 0: $rank = $st->rank; break;
             case 1: $rank = $st1->rank; break;
