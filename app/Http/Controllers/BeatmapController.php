@@ -25,6 +25,7 @@ use App\Models\Genre;
 use App\Models\Language;
 use League\Fractal\Manager;
 use App\Transformers\BeatmapSetTransformer;
+use App\Jobs\RegenerateBeatmapSetCover;
 use Request;
 use Auth;
 
@@ -111,17 +112,24 @@ class BeatmapController extends Controller
             return;
         }
 
-        set_time_limit(0);
-        $set = BeatmapSet::find($id);
-        if (!$set) {
+        $beatmapset = BeatmapSet::find($id);
+        if (!$beatmapset) {
             echo "beatmapset not found";
             return;
         }
-        $covers = $set->regenerateCovers();
-        if ($covers) {
-            echo "OK <a href='/beatmaps/{$id}/covers'>/beatmaps/{$id}/covers</a>";
+
+        if (Request::has('now')) {
+            set_time_limit(0);
+            $covers = $beatmapset->regenerateCovers();
+            if ($covers) {
+                echo "OK <a href='/beatmaps/{$id}/covers'>/beatmaps/{$id}/covers</a>";
+            } else {
+                echo "An error occured (or no image to process)";
+            }
         } else {
-            echo "An error occured (or no image to process)";
+            $job = (new RegenerateBeatmapSetCover($beatmapset))->onQueue('beatmap_processor');
+            $this->dispatch($job);
+            echo "Job Queued";
         }
     }
 
