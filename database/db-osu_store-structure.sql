@@ -1,8 +1,8 @@
--- MySQL dump 10.15  Distrib 10.0.23-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.11, for Linux (i686)
 --
 -- Host: localhost    Database: osu_store
 -- ------------------------------------------------------
--- Server version	5.7.9-log
+-- Server version	5.7.11
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -56,7 +56,7 @@ CREATE TABLE `order_items` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `cost` float(8,2) DEFAULT NULL,
+  `cost` double(8,2) DEFAULT NULL,
   `extra_info` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_id_product_id` (`order_id`,`product_id`),
@@ -83,7 +83,7 @@ CREATE TABLE `orders` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `last_tracking_state` varchar(255) DEFAULT NULL,
-  `shipping` float(8,2) DEFAULT NULL,
+  `shipping` double(8,2) DEFAULT NULL,
   `transaction_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`order_id`),
   KEY `user_id` (`user_id`),
@@ -137,4 +137,4 @@ CREATE TABLE `products` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-01-04 19:33:20
+-- Dump completed on 2016-02-12 21:58:48
