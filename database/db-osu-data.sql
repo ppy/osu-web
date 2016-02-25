@@ -67,6 +67,13 @@ INSERT INTO `osu_languages` VALUES (8,'German',4);
 INSERT INTO `osu_languages` VALUES (9,'Swedish',9);
 INSERT INTO `osu_languages` VALUES (10,'Spanish',8);
 INSERT INTO `osu_languages` VALUES (11,'Italian',5);
+
+--
+-- Dumping data for table `osu_counts`
+--
+INSERT INTO `osu_counts` VALUES ('pp_rank_column',90);
+
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
