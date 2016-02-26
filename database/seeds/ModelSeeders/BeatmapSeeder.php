@@ -18,9 +18,9 @@ class BeatmapSeeder extends Seeder
 
         $count_api_calls = 0;
         $base_url = 'https://osu.ppy.sh/api/';
-        $api_key = env('OSU_API', null); // Set your osu API key in your .env file
+        $api_key = env('OSU_API_KEY', null); // Set your osu API key in your .env file
           if (empty($api_key)) {
-              $this->command->error('Error: No OSU_API key set in .env file. Can\'t seed beatmap data!');
+              $this->command->error('Error: No OSU_API_KEY value set in .env file. Can\'t seed beatmap data!');
 
               return;
           }
