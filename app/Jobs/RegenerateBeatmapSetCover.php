@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Jobs\Job;
 use App\Models\BeatmapSet;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;

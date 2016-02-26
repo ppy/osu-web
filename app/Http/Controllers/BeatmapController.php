@@ -102,7 +102,7 @@ class BeatmapController extends Controller
                 array_push($output, "<img src='$url?$time'>");
             }
         }
-        echo join($output, "<br/>");
+        echo implode($output, '<br/>');
     }
 
     public function regenerateCovers($id)
@@ -114,7 +114,8 @@ class BeatmapController extends Controller
 
         $beatmapset = BeatmapSet::find($id);
         if (!$beatmapset) {
-            echo "beatmapset not found";
+            echo 'beatmapset not found';
+
             return;
         }
 
@@ -124,12 +125,12 @@ class BeatmapController extends Controller
             if ($covers) {
                 echo "OK <a href='/beatmaps/{$id}/covers'>/beatmaps/{$id}/covers</a>";
             } else {
-                echo "An error occured (or no image to process)";
+                echo 'An error occured (or no image to process)';
             }
         } else {
             $job = (new RegenerateBeatmapSetCover($beatmapset))->onQueue('beatmap_processor');
             $this->dispatch($job);
-            echo "Job Queued";
+            echo 'Job Queued';
         }
     }
 

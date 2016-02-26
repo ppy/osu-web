@@ -35,6 +35,6 @@ class StorageLocal
 
     public function url($path)
     {
-        return config('app.url') . "/uploads{$path}";
+        return config('app.url')."/uploads{$path}";
     }
 }
