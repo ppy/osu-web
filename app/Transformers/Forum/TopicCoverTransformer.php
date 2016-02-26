@@ -30,7 +30,7 @@ class TopicCoverTransformer extends Fractal\TransformerAbstract
             $cover = new TopicCover;
         }
 
-        if ($cover->id === null) {
+        if ($cover->getFileProperties() === null) {
             $data = [
                 'method' => 'post',
                 'url' => route('forum.topic-covers.store', ['topic_id' => $cover->topic_id]),

@@ -124,6 +124,7 @@ trait Imageable
             return;
         }
 
+        $this->setFileProperties(null);
         return $this->storage()->deleteDirectory($this->fileDir());
     }
 

@@ -80,7 +80,7 @@ class ForumCoversController extends Controller
             $cover->deleteWithFile();
         }
 
-        return fractal_item_array(null, new ForumCoverTransformer());
+        return fractal_item_array($cover, new ForumCoverTransformer());
     }
 
     public function update($id)

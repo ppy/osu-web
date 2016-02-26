@@ -17,7 +17,7 @@
 ###
 class @ForumCover
   header: document.getElementsByClassName('js-forum-cover--header')
-  $uploadButton: -> $('.js-forum-cover--upload-button')
+  $uploadButton: => $(@uploadButton[0])
   uploadButton: document.getElementsByClassName('js-forum-cover--upload-button')
   overlay: document.getElementsByClassName('js-forum-cover--overlay')
   loading: document.getElementsByClassName('js-forum-cover--loading')
@@ -55,11 +55,11 @@ class @ForumCover
 
 
   hasCover: =>
-    return @uploadButton[0].getAttribute('data-method') != 'post'
+    @uploadButton[0].dataset.customMethod != 'post'
 
 
   hasCoverEditor: =>
-    return @uploadButton.length > 0
+    @uploadButton.length > 0
 
 
   toggleModal: (e) =>
@@ -78,25 +78,29 @@ class @ForumCover
 
     $dropZone = $('.js-forum-cover--modal')
 
-    $button = @$uploadButton()
+    return if @uploadButton[0]._initialized
 
-    return if $button[0]._initialised
-
-    $button.fileupload
-      url: $button.attr('data-url')
-      dataType: 'json'
+    @$uploadButton().fileupload
+      method: 'POST'
       paramName: 'cover_file'
+      dataType: 'json'
       dropZone: $dropZone
+
       submit: =>
-        @loading[0].setAttribute('data-state', 'enabled')
+        @loading[0].dataset.state = 'enabled'
+
       done: (_e, data) =>
         @update(data.result.data)
+
       fail: (_e, data) ->
         osu.ajaxError data.jqXHR
-      complete: (_e, data) =>
-        @loading[0].setAttribute('data-state', '')
 
-    $button[0]._initialised = true
+      complete: (_e, data) =>
+        @loading[0].dataset.state = ''
+
+    @updateOptions()
+
+    @uploadButton[0]._initialized = true
 
 
   setOverlay: (targetState) =>
@@ -110,43 +114,45 @@ class @ForumCover
   update: (cover) =>
     $('.js-forum-cover--input').val(cover.id)
 
-    $button = @$uploadButton()
+    @uploadButton[0].dataset.url = cover.url
+    @uploadButton[0].dataset.customMethod = cover.method
+    @uploadButton[0].dataset.fileUrl = cover.fileUrl || ''
 
-    if $button[0]._initialised
-      $button.fileupload 'option',
-        url: cover.url
-        method: cover.method
-
-    $button.attr('data-url', cover.url)
-    $button.attr('data-method', cover.method)
-    $button.attr('data-file-url', cover.fileUrl)
-
+    @updateOptions()
     @refresh()
+
+
+  updateOptions: =>
+    return unless @uploadButton[0]._initialized
+
+    @$uploadButton().fileupload 'option',
+      url: @uploadButton[0].dataset.url
+      formData:
+        _method: @uploadButton[0].dataset.customMethod
 
 
   remove: (e) =>
     e.preventDefault()
 
-    $button = @$uploadButton()
+    return if !@hasCover()
 
-    return unless @hasCover()
+    return if !confirm(e.currentTarget.dataset.destroyConfirm)
 
-    return unless confirm e.currentTarget.getAttribute('data-destroy-confirm')
+    @loading[0].dataset.state = 'enabled'
 
-    @loading[0].setAttribute('data-state', 'enabled')
     $.ajax
-      url: $button.attr('data-url')
+      url: @uploadButton[0].dataset.url
       method: 'delete'
     .done (data) =>
       @update data.data
     .always =>
-      @loading[0].setAttribute('data-state', '')
+      @loading[0].dataset.state = ''
 
 
   refresh: =>
     return unless @hasCoverEditor()
 
-    backgroundImage = if @hasCover() then "url('#{@uploadButton[0].getAttribute('data-file-url')}')" else ''
+    backgroundImage = if @hasCover() then "url('#{@uploadButton[0].dataset.fileUrl}')" else ''
     @header[0].style.backgroundImage = backgroundImage
 
-    $('.js-forum-cover--remove').toggleClass("forum-post-actions__action--disabled", !@hasCover())
+    $('.js-forum-cover--remove').toggleClass('forum-post-actions__action--disabled', !@hasCover())
