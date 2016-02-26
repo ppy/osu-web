@@ -574,7 +574,7 @@ class BeatmapSet extends Model
         }
 
         // clean up after ourselves
-        deltree($workingFolder);
+        deltree($tmpBase);
 
         $this->update(['cover_updated_at' => $this->freshTimestamp()]);
 
