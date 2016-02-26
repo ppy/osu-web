@@ -94,4 +94,9 @@ class CommunityController extends Controller
 
         return Redirect::back();
     }
+
+    public function getSlack()
+    {
+        return view('community.slack');
+    }
 }

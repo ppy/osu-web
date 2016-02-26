@@ -81,6 +81,8 @@ Route::post('/community/live', ['as' => 'live', 'uses' => 'CommunityController@p
 Route::get('/community/chat', ['as' => 'chat', 'uses' => 'CommunityController@getChat']);
 Route::get('/community/profile/{id}', function ($id) { return Redirect::route('users.show', $id); });
 
+Route::get('/community/slack', ['as' => 'slack', 'uses' => 'CommunityController@getSlack']);
+
 Route::get('/u/{id}', ['as' => 'users.show', 'uses' => 'UsersController@show']);
 
 // Authentication section (Temporarily set up as replacement/improvement of config("osu.urls.*"))
