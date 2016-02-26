@@ -58,6 +58,6 @@ class StorageS3v2
 
     public function url($path)
     {
-        return config('osu.urls.assets').$path;
+        return config('osu.urls.assets')."/{$path}";
     }
 }
