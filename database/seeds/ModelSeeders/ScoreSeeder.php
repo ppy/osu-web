@@ -33,6 +33,8 @@ class ScoreSeeder extends Seeder
 
         $allBeatmapSets = App\Models\BeatmapSet::all();
 
+        $possible_ranks = ['A', 'S', 'B', 'SH', 'XH', 'X'];
+
         foreach ($users as $k => $u) {
             $osuBeatmaps = $beatmaps->where('playmode', 0)->take(20);
             $taikoBeatmaps = $beatmaps->where('playmode', 1)->take(20);
@@ -50,7 +52,6 @@ class ScoreSeeder extends Seeder
             'beatmapset_id' => $bm->beatmapset_id,
             'score' => rand(50000, 100000000),
             'maxcombo' => $maxcombo,
-            'rank' => rand(1, 1000),
             'count300' => round($maxcombo * 0.8),
             'count100' => rand(0, round($maxcombo * 0.15)),
             'count50' => rand(0, round($maxcombo * 0.05)),
@@ -60,6 +61,7 @@ class ScoreSeeder extends Seeder
             'enabled_mods' => $possible_mods[array_rand($possible_mods)],
             'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now,
             'pass' => $faker->boolean(85), //85% chance of pass
+            'rank' => $possible_ranks[array_rand($possible_ranks)],
           ]);
 
             $sc2 = App\Models\Score\Best\Osu::create([
@@ -68,7 +70,6 @@ class ScoreSeeder extends Seeder
             'beatmapset_id' => $bm->beatmapset_id,
             'score' => rand(50000, 100000000),
             'maxcombo' => $maxcombo,
-            'rank' => rand(1, 1000),
             'count300' => round($maxcombo * 0.8),
             'count100' => rand(0, round($maxcombo * 0.15)),
             'count50' => rand(0, round($maxcombo * 0.05)),
@@ -78,6 +79,7 @@ class ScoreSeeder extends Seeder
             'enabled_mods' => $possible_mods[array_rand($possible_mods)],
             'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now,
             'pp' => $faker->biasedNumberBetween(10, 100) * 1.5 * $bm->difficultyrating,
+            'rank' => $possible_ranks[array_rand($possible_ranks)],
           ]);
         }
 
@@ -92,7 +94,6 @@ class ScoreSeeder extends Seeder
             'beatmapset_id' => $bm->beatmapset_id,
             'score' => rand(50000, 100000000),
             'maxcombo' => $maxcombo,
-            'rank' => rand(1, 1000),
             'count300' => round($maxcombo * 0.8),
             'count100' => rand(0, round($maxcombo * 0.15)),
             'count50' => rand(0, round($maxcombo * 0.05)),
@@ -102,6 +103,7 @@ class ScoreSeeder extends Seeder
             'enabled_mods' => $possible_mods[array_rand($possible_mods)],
             'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now,
             'pass' => $faker->boolean(85), //85% chance of pass
+            'rank' => $possible_ranks[array_rand($possible_ranks)],
           ]);
 
             $sc4 = App\Models\Score\Best\Taiko::create([
@@ -110,7 +112,7 @@ class ScoreSeeder extends Seeder
             'beatmapset_id' => $bm->beatmapset_id,
             'score' => rand(50000, 100000000),
             'maxcombo' => $maxcombo,
-            'rank' => rand(1, 1000),
+            'rank' => $possible_ranks[array_rand($possible_ranks)],
             'count300' => round($maxcombo * 0.8),
             'count100' => rand(0, round($maxcombo * 0.15)),
             'count50' => rand(0, round($maxcombo * 0.05)),
@@ -134,7 +136,7 @@ class ScoreSeeder extends Seeder
             'beatmapset_id' => $bm->beatmapset_id,
             'score' => rand(50000, 100000000),
             'maxcombo' => $maxcombo,
-            'rank' => rand(1, 1000),
+            'rank' => $possible_ranks[array_rand($possible_ranks)],
             'count300' => round($maxcombo * 0.8),
             'count100' => rand(0, round($maxcombo * 0.15)),
             'count50' => rand(0, round($maxcombo * 0.05)),
@@ -152,7 +154,7 @@ class ScoreSeeder extends Seeder
             'beatmapset_id' => $bm->beatmapset_id,
             'score' => rand(50000, 100000000),
             'maxcombo' => $maxcombo,
-            'rank' => rand(1, 1000),
+            'rank' => $possible_ranks[array_rand($possible_ranks)],
             'count300' => round($maxcombo * 0.8),
             'count100' => rand(0, round($maxcombo * 0.15)),
             'count50' => rand(0, round($maxcombo * 0.05)),
@@ -176,7 +178,7 @@ class ScoreSeeder extends Seeder
             'beatmapset_id' => $bm->beatmapset_id,
             'score' => rand(50000, 100000000),
             'maxcombo' => $maxcombo,
-            'rank' => rand(1, 1000),
+            'rank' => $possible_ranks[array_rand($possible_ranks)],
             'count300' => round($maxcombo * 0.8),
             'count100' => rand(0, round($maxcombo * 0.15)),
             'count50' => rand(0, round($maxcombo * 0.05)),
@@ -194,7 +196,7 @@ class ScoreSeeder extends Seeder
             'beatmapset_id' => $bm->beatmapset_id,
             'score' => rand(50000, 100000000),
             'maxcombo' => $maxcombo,
-            'rank' => rand(1, 1000),
+            'rank' => $possible_ranks[array_rand($possible_ranks)],
             'count300' => round($maxcombo * 0.8),
             'count100' => rand(0, round($maxcombo * 0.15)),
             'count50' => rand(0, round($maxcombo * 0.05)),
