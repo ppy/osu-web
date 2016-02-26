@@ -16,3 +16,14 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends("master")
+
+@section("content")
+    <div class="osu-layout__row osu-layout__row--page-compact">
+        <div class="slack-header">
+            <div class="slack-header__text">
+                <h2>{{ trans('community.slack.header.small') }}</h2>
+                <h1>{{ trans('community.slack.header.large') }}</h1>
+            </div>
+        </div>
+    </div>
+@endsection
