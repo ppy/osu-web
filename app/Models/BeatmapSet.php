@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
 use Auth;
 use DB;
 use App\Libraries\StorageAuto;
+use App\Exceptions\BeatmapProcessorException;
 
 class BeatmapSet extends Model
 {
@@ -538,7 +539,10 @@ class BeatmapSet extends Model
         }
 
         // download and extract beatmap
-        copy($this->oszDownloadURL(), $osz);
+        $ok = copy($this->oszDownloadURL(), $osz);
+        if (!$ok) {
+            throw new BeatmapProcessorException('Error retrieving beatmap.');
+        }
         $zip = new \ZipArchive;
         $zip->open($osz);
         $zip->extractTo($workingFolder);
@@ -560,7 +564,10 @@ class BeatmapSet extends Model
         $resizerEndpoint = config('osu.beatmap_processor.thumbnailer');
         $optimizedImage = preg_replace("/http[s]?:\/\//", '', $this->coverImageURL('fullsize'));
 
-        copy("$resizerEndpoint/optim/$originalImage", "$outputFolder/fullsize.jpg");
+        $ok = copy("$resizerEndpoint/optim/$originalImage", "$outputFolder/fullsize.jpg");
+        if (!$ok || filesize("$outputFolder/fullsize.jpg") < 100) {
+            throw new BeatmapProcessorException('Error retrieving optimized image.');
+        }
         $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/fullsize.jpg", file_get_contents("$outputFolder/fullsize.jpg"));
 
         // use thumbnailer to generate and upload all our variants
@@ -568,7 +575,10 @@ class BeatmapSet extends Model
         $scales = ['', '@2x'];
         foreach ($shapes as $shape) {
             foreach ($scales as $scale) {
-                copy("$resizerEndpoint/thumb/$shape$scale/$optimizedImage", "$outputFolder/$shape$scale.jpg");
+                $ok = copy("$resizerEndpoint/thumb/$shape$scale/$optimizedImage", "$outputFolder/$shape$scale.jpg");
+                if (!$ok || filesize("$outputFolder/$shape$scale.jpg") < 100) {
+                    throw new BeatmapProcessorException('Error retrieving resized image.');
+                }
                 $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/$shape$scale.jpg", file_get_contents("$outputFolder/$shape$scale.jpg"));
             }
         }
