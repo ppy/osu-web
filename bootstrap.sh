@@ -32,6 +32,8 @@ apt-get install \
     php7.0-json \
     php7.0-mcrypt \
     php7.0-mysql \
+    php7.0-mbstring \
+    php7.0-xml \
     redis-server \
     tmux \
     vim \
