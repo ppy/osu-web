@@ -7,7 +7,7 @@ class EventSeeder extends Seeder
 {
     public function run()
     {
-        // DB::table('osu_events')->delete();
+        DB::table('osu_events')->delete();
       App\Models\Event::unguard();
 
         $beatmapCount = App\Models\Beatmap::count();

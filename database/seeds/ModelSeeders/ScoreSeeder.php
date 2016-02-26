@@ -12,12 +12,12 @@ class ScoreSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('osu_scores')->delete();
-      // DB::table('osu_scores_high')->delete();
-      // DB::table('osu_scores_taiko')->delete();
-      // DB::table('osu_scores_taiko_high')->delete();
-      // DB::table('osu_scores_fruits')->delete();
-      // DB::table('osu_scores_fruits_high')->delete();
+        DB::table('osu_scores')->delete();
+      DB::table('osu_scores_high')->delete();
+      DB::table('osu_scores_taiko')->delete();
+      DB::table('osu_scores_taiko_high')->delete();
+      DB::table('osu_scores_fruits')->delete();
+      DB::table('osu_scores_fruits_high')->delete();
       $beatmaps = App\Models\Beatmap::orderByRaw('RAND()')->get();
         $beatmapCount = count($beatmaps);
         $faker = Faker::create();

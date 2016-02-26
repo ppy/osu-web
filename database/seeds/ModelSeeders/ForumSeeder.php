@@ -15,9 +15,9 @@ class ForumSeeder extends Seeder
         $faker = Faker\Factory::create();
 
         try {
-            // DB::table('phpbb_forums')->delete();
-            // DB::table('phpbb_topics')->delete();
-            // DB::table('phpbb_posts')->delete();
+            DB::table('phpbb_forums')->delete();
+            DB::table('phpbb_topics')->delete();
+            DB::table('phpbb_posts')->delete();
 
             $forums = [];
 

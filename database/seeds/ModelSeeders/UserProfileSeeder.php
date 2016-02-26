@@ -12,9 +12,9 @@ class UserProfileSeeder extends Seeder
     public function run()
     {
         try {
-            // DB::table('osu_favouritemaps')->delete();
-            // DB::table('osu_user_beatmap_playcount')->delete();
-            // DB::table('osu_leaders')->delete();
+            DB::table('osu_favouritemaps')->delete();
+            DB::table('osu_user_beatmap_playcount')->delete();
+            DB::table('osu_leaders')->delete();
 
             $allusers = App\Models\User::all()->toArray();
             $userids = [];
