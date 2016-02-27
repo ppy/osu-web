@@ -23,6 +23,11 @@ return [
         'http-403' => 'Access denied.',
         'http-401' => 'Please login to proceed.',
     ],
+    'account' => [
+        'profile-order' => [
+            'generic' => 'An error occured. Try refreshing the page.',
+        ],
+    ],
     'logged_out' => 'You have been logged out. Please login and retry.',
     'supporter_only' => 'You must be a supporter to use this feature.',
     'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',

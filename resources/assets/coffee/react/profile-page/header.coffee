@@ -35,15 +35,18 @@ class ProfilePage.Header extends React.Component
 
 
   componentWillReceiveProps: (newProps) =>
-    @setState coverUrl: newProps.user.cover.url
+    @coverSet null, newProps.user.cover.url
 
 
   componentWillUnmount: =>
+    @coverSet.cancel
+
     @_removeListeners()
 
 
   _removeListeners: =>
     $.unsubscribe '.profilePageHeader'
+    $(document).off '.profilePageHeader'
 
 
   closeEdit: =>
@@ -55,12 +58,12 @@ class ProfilePage.Header extends React.Component
   toggleEdit: =>
     if @state.editing
       @coverReset()
-      fade.out $('.blackout')[0]
-      $(document).off 'click.profilePageHeader:toggleHeaderEdit'
+      Fade.out $('.blackout')[0]
+      $(document).off 'click.profilePageHeader.toggleHeaderEdit'
     else
-      fade.in $('.blackout')[0]
+      Fade.in $('.blackout')[0]
 
-      $(document).on 'click.profilePageHeader:toggleHeaderEdit', (e) =>
+      $(document).on 'click.profilePageHeader.toggleHeaderEdit', (e) =>
         return if $(e.target).closest('.profile-change-cover-popup').length
         return if $(e.target).closest('.profile-change-cover-button').length
         return if $('#overlay').is(':visible')
@@ -75,6 +78,7 @@ class ProfilePage.Header extends React.Component
 
   coverSet: (_e, url) =>
     return if @props.isCoverUpdating
+
     @setState coverUrl: url
 
 
@@ -110,7 +114,7 @@ class ProfilePage.Header extends React.Component
           el ProfilePage.Rank,
             rank: @props.stats.rank
             countryName: @props.user.country.name
-            mode: @props.mode
+            currentMode: @props.currentMode
 
       if @props.withEdit
         el 'div', className: 'profile-change-cover-button', onClick: @toggleEdit,

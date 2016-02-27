@@ -44,6 +44,32 @@
     }
   }
 
+  &__col {
+    width: calc(100% ~'-' @spacing);
+    margin: (@spacing / 2);
+
+    &--sm-6 {
+      @media @desktop {
+        width: calc((6 / 12 * 100%) ~'-' @spacing);
+      }
+    }
+
+    &--lg-4 {
+      @media @screen-large {
+        width: calc((4 / 12 * 100%) ~'-' @spacing);
+      }
+    }
+  }
+
+  &__col-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    &--with-gutter {
+      margin: (-@spacing / 2);
+    }
+  }
+
   &__row {
     ._width(@extra-margin: 0px) {
       width: calc(100% ~'-' (@extra-margin * 2));
@@ -122,6 +148,9 @@
     }
 
     &--with-gutter {
+      margin-top: (-@spacing / 2);
+      margin-bottom: (@spacing + (-@spacing / 2));
+
       width: 100%;
       @media @desktop {
         ._width-desktop(-@spacing / 2);

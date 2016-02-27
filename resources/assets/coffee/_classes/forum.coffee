@@ -24,11 +24,18 @@ class @Forum
   loadMoreLinks: document.getElementsByClassName('js-forum-posts-show-more')
 
   boot: =>
-    @initialScrollTo()
     @refreshCounter()
     @refreshLoadMoreLinks()
 
+    # Scroll last because other actions may change page's height.
+    @initialScrollTo()
+
+
   constructor: ->
+    # `boot` is called first to avoid triggering anything when scrolling to
+    # target post.
+    @boot()
+
     $(window).on 'throttled-scroll', @refreshCounter
 
     $(document).on 'ready page:load osu:page:change', @boot
@@ -38,8 +45,6 @@ class @Forum
     $(document).on 'submit', '.js-forum-posts-jump-to', @jumpToSubmit
 
     $.subscribe 'stickyHeader', @stickHeader
-
-    @boot()
 
 
   totalPosts: =>
@@ -99,11 +104,7 @@ class @Forum
     currentPost = null
     anchorHeight = window.innerHeight * 0.5
 
-    pageBottom = document.getElementsByClassName('js-page-footer')[0]
-      .getBoundingClientRect()
-      .bottom
-
-    if pageBottom == window.innerHeight
+    if osu.bottomPage()
       currentPost = @posts[@posts.length - 1]
     else
       for post in @posts
@@ -181,9 +182,9 @@ class @Forum
     return unless @_stickyHeaderTopic.length
 
     if target == 'forum-topic-headernav'
-      fade.in @_stickyHeaderTopic[0]
+      Fade.in @_stickyHeaderTopic[0]
     else
-      fade.out @_stickyHeaderTopic[0]
+      Fade.out @_stickyHeaderTopic[0]
 
 
   showMore: (e) =>

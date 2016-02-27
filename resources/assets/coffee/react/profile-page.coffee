@@ -15,11 +15,12 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-element = React.createElement ProfilePage.Main,
+propsFunction = =>
   user: user
   userPage: user.page.data
   achievements: achievements
   allAchievements: user.allAchievements.data
+  allRankHistories: user.allRankHistories.data
   allStats: user.allStatistics.data
   allScores: user.allScores.data
   allScoresBest: user.allScoresBest.data
@@ -31,6 +32,4 @@ element = React.createElement ProfilePage.Main,
   recentActivities: user.recentActivities.data
   recentlyReceivedKudosu: user.recentlyReceivedKudosu.data
 
-target = document.getElementsByClassName('js-content')[0]
-
-ReactDOM.render element, target
+reactTurbolinks.register 'profile-page', ProfilePage.Main, propsFunction

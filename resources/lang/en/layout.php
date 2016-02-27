@@ -30,6 +30,7 @@ return [
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
+            'supportTheGame' => 'support the game',
         ],
         'help' => [
             '_' => 'help',
@@ -58,6 +59,7 @@ return [
             '_' => 'community',
             'getForum' => 'forum',
             'getChat' => 'chat',
+            'getSupport' => 'support',
             'getLive' => 'live',
             'profile' => 'profile',
             'tournaments' => 'tournaments',

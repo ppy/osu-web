@@ -17,9 +17,18 @@
  *
  */
 .profile-extra-tabs {
-  @height: @profile-extra-tabs--items-height;
-  height: @height;
+  @_top: profile-extra-tabs;
   width: 100%;
+
+  margin-bottom: @spacing;
+
+  @media @desktop {
+    margin-bottom: 0;
+  }
+
+  &--fixed {
+    z-index: @z-index--profile-extra-tabs;
+  }
 
   &__container {
     display: flex;
@@ -27,17 +36,15 @@
     align-items: center;
     width: 100%;
 
-    &--fixed {
+    .@{_top}--fixed & {
       top: 0;
       left: 0;
       position: fixed;
-      z-index: @z-index--profile-extra-tabs;
     }
   }
 
   &__items {
     display: flex;
-    height: @height;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -46,16 +53,15 @@
     font-weight: 500;
     transition: background-color 120ms;
 
-    &--fixed {
+    .@{_top}--fixed & {
       background-color: @gray-dark;
     }
   }
 
   &__item {
-    &:extend(.default-border-radius);
-    padding: @grid-gutter-width/8 @grid-gutter-width/4;
-    margin: 0px @grid-gutter-width/8;
-    cursor: pointer;
+    .default-border-radius();
+    padding: (@spacing / 2) @spacing;
+    margin: (@spacing * 3 / 2) (@spacing / 2);
 
     &:hover, &--active {
       background-color: @pink-text;

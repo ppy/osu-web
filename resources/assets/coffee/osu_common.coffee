@@ -18,6 +18,11 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 @osu =
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
 
+
+  bottomPage: ->
+    document.body.clientHeight == (document.body.scrollHeight - document.body.scrollTop)
+
+
   ajaxError: (xhr) ->
     message = xhr?.responseJSON?.error
 

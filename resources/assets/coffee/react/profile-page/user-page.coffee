@@ -41,11 +41,11 @@ class ProfilePage.UserPage extends React.Component
         dangerouslySetInnerHTML:
           __html: Lang.get('users.show.page.description')
 
-      el 'p',
-        className: 'profile-page-new-content'
-        dangerouslySetInnerHTML:
-          __html: Lang.get('users.show.page.restriction_info')
-
+      if !@props.user.isSupporter
+        el 'p',
+          className: 'profile-page-new-content'
+          dangerouslySetInnerHTML:
+            __html: Lang.get('users.show.page.restriction_info')
 
   pageShow: =>
     el 'div', dangerouslySetInnerHTML:
@@ -63,8 +63,8 @@ class ProfilePage.UserPage extends React.Component
       page = @pageShow()
 
     el 'div', className: 'profile-extra',
-      el 'div', className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'me'
-      el 'h2', className: 'profile-extra__title', Lang.get('users.show.extra.me.title')
+      @props.header
+
       if withEditButton && !@props.userPage.editing
         el 'div', className: 'profile-extra__actions',
           el 'div', className: 'forum-post-actions',

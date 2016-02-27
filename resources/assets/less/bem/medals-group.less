@@ -19,7 +19,7 @@
 .medals-group {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  margin: 0 (-@spacing);
 
   &__group {
     .default-box-shadow();
@@ -38,6 +38,7 @@
 
   &__medal {
     min-width: (@spacing + 70px);
+    height: 76px;
     width: 25%;
     margin: @spacing 0;
     display: inline-block;

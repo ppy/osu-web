@@ -138,7 +138,7 @@
                     </a>
                 @endforeach
 
-                <a class="osu-nav__link yellow-normal" href="{{ config("osu.urls.support-the-game") }}" target="_blank">support the game</a>
+                <a class="osu-nav__link yellow-normal" href="{{ route("support-the-game") }}">support the game</a>
 
                 <a class="osu-nav__link" href="{{ config("osu.urls.social.facebook") }}" target="_blank"><i class="fa fa-facebook-f"></i></a>
 

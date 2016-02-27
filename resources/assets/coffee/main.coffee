@@ -24,6 +24,11 @@ $(document).on 'page:receive', osu.hideLoadingOverlay
 $(document).on 'submit', 'form', osu.showLoadingOverlay
 
 
+@reactTurbolinks ||= new ReactTurbolinks
+
+reactTurbolinks.register 'user-card', UserCard
+
+
 $(document).on 'ready page:load', =>
   LocalStoragePolyfill.fillIn()
 
@@ -32,7 +37,6 @@ $(document).on 'ready page:load', =>
   @stickyHeader ||= new StickyHeader
   @globalDrag ||= new GlobalDrag
   @gallery ||= new Gallery
-  @fade ||= new Fade
   @formPlaceholderHide ||= new FormPlaceholderHide
   @headerMenu ||= new HeaderMenu
   @tooltipDefault ||= new TooltipDefault
@@ -63,11 +67,6 @@ initPage = =>
 # callbacks to osu:page:change.
 $(document).on 'ready page:load', initPage
 $(document).on 'osu:page:change', _.debounce(initPage, 500)
-
-
-$(document).on 'ready page:load', =>
-  return if currentUser.id == undefined
-  ReactDOM.render React.createElement(UserCard), $('.js-user-dropdown-modal__dialog')[0]
 
 
 $(document).on 'change', '.js-url-selector', (e) ->

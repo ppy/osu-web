@@ -159,7 +159,7 @@ class StoreController extends Controller
                 return js_view('layout.ujs-reload');
                 break;
             case 'remove':
-                if ($order->address_id == $address_id) {
+                if ($order->address_id === $address_id) {
                     return error_popup('Address is being used for this order!');
                 }
 
@@ -233,7 +233,7 @@ class StoreController extends Controller
 
         $order->refreshCost(true);
 
-        if ($order->getTotal() == 0 && Request::input('completed')) {
+        if ((float) $order->getTotal() === 0.0 && Request::input('completed')) {
             file_get_contents("https://osu.ppy.sh/web/ipn.php?mc_gross=0&item_number=store-{$order->user_id}-{$order->order_id}");
 
             return ujs_redirect(action('StoreController@getInvoice', [$order->order_id]).'?thanks=1');

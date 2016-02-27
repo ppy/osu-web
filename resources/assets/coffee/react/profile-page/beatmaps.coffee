@@ -24,21 +24,24 @@ ProfilePage.Beatmaps = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
   render: ->
-    beatmaps =
+    allBeatmapSets =
       favourite: @props.favouriteBeatmapSets
       ranked_and_approved: @props.rankedAndApprovedBeatmapSets
 
     div
       className: 'profile-extra'
-      div className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'beatmaps'
-      h2 className: 'profile-extra__title', Lang.get('users.show.extra.beatmaps.title')
-      ['favourite', 'ranked_and_approved'].map (section) ->
-        div null,
-          h3 className: 'profile-extra__title--small', Lang.get("users.show.extra.beatmaps.#{section}.title", count: beatmaps[section].length)
-          if beatmaps[section].length
+      @props.header
+      _.map allBeatmapSets, (beatmapSets, section) =>
+        div
+          key: section
+          h3 className: 'profile-extra__title--small', Lang.get("users.show.extra.beatmaps.#{section}.title", count: beatmapSets.length)
+          if beatmapSets.length
             div className: 'beatmap-container',
-              div className: 'listing',
-                beatmaps[section].map (beatmap) ->
-                  el(Panel, beatmap: beatmap, key: beatmap.beatmapset_id)
+              div className: 'listing osu-layout__col-container osu-layout__col-container--with-gutter',
+                beatmapSets.map (beatmapSet) =>
+                  div
+                    key: beatmapSet.beatmapset_id
+                    className: 'osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-4'
+                    el BeatmapsetPanel, beatmap: beatmapSet
           else
             p className: 'profile-extra-entries', Lang.get('users.show.extra.beatmaps.none')

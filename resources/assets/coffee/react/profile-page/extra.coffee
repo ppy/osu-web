@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div} = React.DOM
+{div, h2, span} = React.DOM
 el = React.createElement
 
 class ProfilePage.Extra extends React.Component
@@ -24,42 +24,43 @@ class ProfilePage.Extra extends React.Component
 
     @state =
       tabsSticky: false
+      profileOrder: @props.user.profileOrder
 
 
   componentDidMount: =>
     @_removeListeners()
-    $.subscribe 'profilePageExtra:tab.profileContentsExtra', @_modeSwitch
     $.subscribe 'stickyHeader.profileContentsExtra', @_tabsStick
-    $(window).on 'throttled-scroll.profileContentsExtra', @_modeScan
     osu.pageChange()
-    @_modeScan()
+
+    $(@refs.pages).sortable
+      cursor: 'move'
+      handle: '.js-profile-page-extra--sortable-handle'
+      revert: 150
+      scrollSpeed: 10
+      update: =>
+        @updateOrder @refs.pages
+
+    for tabType in ['tabs', 'fixedTabs']
+      tabs = @refs[tabType]
+      $(tabs).sortable
+        items: '[data-page-id]'
+        tolerance: 'pointer'
+        cursor: 'move'
+        disabled: !@props.withEdit
+        revert: 150
+        scrollSpeed: 0
+        update: =>
+          @updateOrder tabs
 
 
   componentWillUnmount: =>
     @_removeListeners()
+    $(@refs.pages).sortable 'destroy'
 
 
-  componentWillReceiveProps: =>
+  componentWillReceiveProps: (newProps) =>
+    @setState profileOrder: newProps.user.profileOrder
     osu.pageChange()
-
-
-  _modeScan: =>
-    elements = document.getElementsByClassName('js-profile-page-extra--scrollspy')
-    return unless elements.length
-
-    for page in elements by -1
-      continue unless page.getBoundingClientRect().top <= 0
-
-      @setState mode: page.getAttribute('id')
-
-      return
-
-    @setState mode: page.getAttribute('id')
-
-
-  _modeSwitch: (_e, mode) =>
-    $.scrollTo "##{mode}", 500,
-      onAfter: => @setState mode: mode
 
 
   _removeListeners: ->
@@ -68,58 +69,117 @@ class ProfilePage.Extra extends React.Component
 
 
   _tabsStick: (_e, target) =>
-    @setState tabsSticky: (target == 'profile-extra-tabs')
+    newState = (target == 'profile-extra-tabs')
+    @setState(tabsSticky: newState) if newState != @state.tabsSticky
+
+
+  updateOrder: (elems) =>
+    $elems = $(elems)
+
+    newOrder = $elems.sortable('toArray', attribute: 'data-page-id')
+
+    osu.showLoadingOverlay()
+
+    $elems.sortable('cancel')
+
+    @setState profileOrder: newOrder, =>
+      $.ajax Url.updateProfileAccount,
+        method: 'POST'
+        dataType: 'JSON'
+        data:
+          order: @state.profileOrder
+
+      .done (userData) =>
+        $.publish 'user:update', userData.data
+
+      .fail (xhr) =>
+        osu.ajaxError xhr
+
+        @setState profileOrder: @props.user.profileOrder
+
+      .always osu.hideLoadingOverlay
 
 
   render: =>
-    return if @props.mode == 'me'
-
     withMePage = @props.userPage.html != '' || @props.withEdit
 
-    pages = ['recent_activities', 'kudosu', 'top_ranks', 'beatmaps', 'medals', 'historical']
-    pages.unshift 'me' if withMePage
+    tabs = div
+      className: 'hidden-xs profile-extra-tabs__container'
+      div className: 'osu-layout__row',
+        div
+          className: 'profile-extra-tabs__items'
+          @state.profileOrder.map (m) =>
+            return if m == 'me' && !withMePage
 
-    tabsContainerClasses = 'profile-extra-tabs__container js-fixed-element'
-    tabsClasses = 'profile-extra-tabs__items'
-    if @state.tabsSticky
-      tabsContainerClasses += ' profile-extra-tabs__container--fixed js-sticky-header--active'
-      tabsClasses += ' profile-extra-tabs__items--fixed'
+            el ProfilePage.ExtraTab, key: m, page: m, currentPage: @props.currentPage, currentMode: @props.currentMode
 
     div className: 'osu-layout__section osu-layout__section--extra',
       div
-        className: 'profile-extra-tabs js-sticky-header'
+        className: 'profile-extra-tabs js-sticky-header js-profile-page--scrollspy-offset'
         'data-sticky-header-target': 'profile-extra-tabs'
-        div
-          className: tabsContainerClasses
-          div className: 'osu-layout__row',
+        ref: 'tabs'
+        tabs
+
+      div
+        className: 'profile-extra-tabs profile-extra-tabs--fixed'
+        'data-visibility': if @state.tabsSticky then '' else 'hidden'
+        ref: 'fixedTabs'
+        tabs
+
+      div className: 'osu-layout__row', ref: 'pages',
+        @state.profileOrder.map (m) =>
+          topClassName = 'js-profile-page--scrollspy js-profile-page--page'
+
+          elem =
+            switch m
+              when 'me'
+                topClassName += ' hidden' unless withMePage
+                props = userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
+                ProfilePage.UserPage
+
+              when 'recent_activities'
+                props = recentActivities: @props.recentActivities
+                ProfilePage.RecentActivities
+
+              when 'kudosu'
+                props = user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu
+                ProfilePage.Kudosu
+
+              when 'top_ranks'
+                props = user: @props.user, scoresBest: @props.scoresBest, scoresFirst: @props.scoresFirst
+                ProfilePage.TopRanks
+
+              when 'beatmaps'
+                props =
+                  favouriteBeatmapSets: @props.favouriteBeatmapSets
+                  rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
+                ProfilePage.Beatmaps
+
+              when 'medals'
+                props = achievements: @props.achievements, allAchievements: @props.allAchievements
+                ProfilePage.Medals
+
+              when 'historical'
+                props =
+                  beatmapPlaycounts: @props.beatmapPlaycounts
+                  rankHistories: @props.rankHistories
+                  scores: @props.scores
+                ProfilePage.Historical
+
+              when 'performance'
+                props = rankHistories: @props.rankHistories
+                ProfilePage.Performance
+
+          props.header =
             div
-              className: tabsClasses
-              'data-sticky-header-id': 'profile-extra-tabs'
-              pages.map (m) =>
-                el ProfilePage.ExtraTab, key: m, mode: m, currentMode: @state.mode
+              key: 'header'
+              h2 className: 'profile-extra__title', Lang.get("users.show.extra.#{m}.title")
+              if @props.withEdit
+                span className: 'profile-extra__dragdrop-toggle js-profile-page-extra--sortable-handle',
+                  el Icon, name: 'bars'
 
-      if withMePage
-        div className: 'osu-layout__row',
-          el ProfilePage.UserPage, userPage: @props.userPage, withEdit: @props.withEdit, user: @props.user
-
-      div className: 'osu-layout__row',
-        el ProfilePage.RecentActivities, recentActivities: @props.recentActivities
-
-      div className: 'osu-layout__row',
-        el ProfilePage.Kudosu, user: @props.user, recentlyReceivedKudosu: @props.recentlyReceivedKudosu
-
-      div className: 'osu-layout__row',
-        el ProfilePage.TopRanks, user: @props.user, scoresBest: @props.scoresBest, scoresFirst: @props.scoresFirst
-
-      div className: 'osu-layout__row',
-        el ProfilePage.Beatmaps,
-          favouriteBeatmapSets: @props.favouriteBeatmapSets
-          rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
-
-      div className: 'osu-layout__row',
-        el ProfilePage.Medals, achievements: @props.achievements, allAchievements: @props.allAchievements
-
-      div className: 'osu-layout__row',
-        el ProfilePage.Historical,
-          beatmapPlaycounts: @props.beatmapPlaycounts
-          scores: @props.scores
+          div
+            key: m
+            'data-page-id': m
+            className: topClassName
+            el elem, props

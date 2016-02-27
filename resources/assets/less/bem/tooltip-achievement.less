@@ -17,16 +17,21 @@
  *
  */
 .tooltip-achievement {
+  @_top: ~"tooltip-achievement";
   @_badge-height: 120px;
 
   .default-border-radius();
-  overflow: hidden;
-  .default-box-shadow();
-  background-color: @grey-f;
-  display: flex;
-  line-height: 1.1;
+  background-color: fade(@blue-dark, 80%);
+  border: 0 solid transparent;
+  width: 280px;
 
-  width: 100%;
+  &--locked {
+    background-color: fade(@gray, 50%);
+  }
+
+  .qtip-content {
+    padding: (@spacing / 2);
+  }
 
   &__badge {
     height: 0;
@@ -48,12 +53,16 @@
 
   &__main {
     .default-border-radius();
-    background-color: fade(@blue-dark, 80%);
-    border: 0 solid transparent;
-    width: 280px;
+    overflow: hidden;
+    .default-box-shadow();
+    background-color: @grey-f;
+    display: flex;
+    line-height: 1.1;
 
-    .qtip-content {
-      padding: (@spacing / 2);
+    width: 100%;
+
+    .@{_top}--locked & {
+      background-color: @grey-c;
     }
   }
 
@@ -75,5 +84,10 @@
     font-weight: bold;
     font-style: italic;
     font-size: 14px;
+
+    .@{_top}--locked & {
+      background-color: @grey-9;
+      color: @gray;
+    }
   }
 }

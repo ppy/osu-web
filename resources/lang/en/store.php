@@ -36,5 +36,10 @@ return [
 
     'product' => [
         'name' => 'Name',
+
+        'stock' => [
+            'out' => 'Currently out of stock :(. Check back soon.',
+            'out_with_alternative' => 'This type is currently out of stock :(. Try other type or check back soon.',
+        ],
     ],
 ];

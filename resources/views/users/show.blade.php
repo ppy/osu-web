@@ -23,6 +23,7 @@
 ])
 
 @section("content")
+    <div class="js-react--profile-page"></div>
     {{--
         this should content a server side react.js render which doesn't exist in hhvm
         because the only library for it, which is experimental, requires PHP extension
@@ -34,13 +35,10 @@
     @parent
 
     <script data-turbolinks-eval="always">
-        var changeCoverUrl = '{{ route("account.update-profile-cover") }}';
-        var changePageUrl = '{{ route("account.page") }}';
-
         var user = {!! json_encode($userArray['data']) !!};
         var achievements = {!! json_encode($achievements['data']) !!};
         var postEditorToolbar = {!! json_encode(["html" => view()->make('forum._post_toolbar')->render()]) !!};
     </script>
 
-    <script src="{{ elixir("js/react/profile-page.js") }}" data-turbolinks-eval="always" data-turbolinks-track></script>
+    <script src="{{ elixir("js/react/profile-page.js") }}" data-turbolinks-track></script>
 @endsection

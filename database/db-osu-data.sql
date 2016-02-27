@@ -35,6 +35,38 @@ INSERT INTO `migrations` VALUES ('2015_12_07_061307_create_forum_covers_table',1
 INSERT INTO `migrations` VALUES ('2016_01_12_074035_unique_user_customization_user_id',18);
 INSERT INTO `migrations` VALUES ('2016_01_26_194005_disable_products',19);
 INSERT INTO `migrations` VALUES ('2016_01_29_090810_add_description_to_achievements',20);
+
+--
+-- Dumping data for table `osu_genres`
+--
+
+INSERT INTO `osu_genres` VALUES (0,'Any');
+INSERT INTO `osu_genres` VALUES (1,'Unspecified');
+INSERT INTO `osu_genres` VALUES (2,'Video Game');
+INSERT INTO `osu_genres` VALUES (3,'Anime');
+INSERT INTO `osu_genres` VALUES (4,'Rock');
+INSERT INTO `osu_genres` VALUES (5,'Pop');
+INSERT INTO `osu_genres` VALUES (6,'Other');
+INSERT INTO `osu_genres` VALUES (7,'Novelty');
+INSERT INTO `osu_genres` VALUES (9,'Hip Hop');
+INSERT INTO `osu_genres` VALUES (10,'Electronic');
+
+--
+-- Dumping data for table `osu_languages`
+--
+
+INSERT INTO `osu_languages` VALUES (0,'Any',0);
+INSERT INTO `osu_languages` VALUES (1,'Other',11);
+INSERT INTO `osu_languages` VALUES (2,'English',1);
+INSERT INTO `osu_languages` VALUES (3,'Japanese',6);
+INSERT INTO `osu_languages` VALUES (4,'Chinese',2);
+INSERT INTO `osu_languages` VALUES (5,'Instrumental',10);
+INSERT INTO `osu_languages` VALUES (6,'Korean',7);
+INSERT INTO `osu_languages` VALUES (7,'French',3);
+INSERT INTO `osu_languages` VALUES (8,'German',4);
+INSERT INTO `osu_languages` VALUES (9,'Swedish',9);
+INSERT INTO `osu_languages` VALUES (10,'Spanish',8);
+INSERT INTO `osu_languages` VALUES (11,'Italian',5);
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

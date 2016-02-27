@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -14,8 +16,14 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
-.js-page-footer-padding {
-  transition: all 120ms;
-}
+$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
+    return [
+      'username' => $faker->userName,
+      'username_clean' => $faker->userName,
+      'user_password' => password_hash(md5($faker->password), PASSWORD_BCRYPT),
+      'user_lastvisit' => 0,
+  ];
+});
+
+?>

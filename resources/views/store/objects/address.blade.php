@@ -15,8 +15,23 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+<?php
+    $mainClasses = 'address';
+
+    if (isset($selected)) {
+        if ($selected) {
+            $mainClasses .= ' shadow-selected';
+        } else {
+            $mainClasses .= ' shadow-hover';
+
+            if (isset($modifiable) && $modifiable) {
+                $mainClasses .= ' clickable-row';
+            }
+        }
+    }
+?>
 <div class="{{{ $grid or 'col-md-6' }}}" id="address-{{ $data->address_id }}">
-    <div class="{{{ isset($selected) ? ($selected ? "shadow-selected" : "shadow-hover") : "" }}} address">
+    <div class="{{ $mainClasses }}">
         @if((isset($modifiable) && $modifiable))
         {!! Form::open(['action' => 'StoreController@postUpdateAddress', "data-remote" => true]) !!}
         @endif
@@ -31,7 +46,7 @@
             {!! Form::hidden('id', $data->address_id) !!}
 
             <button type="submit" class="address-delete-button" name="action" value="remove"><i class="fa fa-trash-o"></i></button>
-            <button type="submit" class="address-select-button" name="action" value="use"><i class="fa fa-check"></i> Use</button>
+            <button type="submit" class="clickable-row-link address-select-button" name="action" value="use"><i class="fa fa-check"></i> Use</button>
         @endif
 
         @if((isset($modifiable) && $modifiable))

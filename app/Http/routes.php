@@ -43,6 +43,8 @@ if (Config::get('app.debug')) {
 Route::get('/home/news', ['as' => 'news', 'uses' => 'HomeController@getNews']);
 Route::get('/home/download', ['as' => 'download', 'uses' => 'HomeController@getDownload']);
 Route::get('/home/changelog', ['as' => 'changelog', 'uses' => 'HomeController@getChangelog']);
+Route::get('/home/support', ['as' => 'support-the-game', 'uses' => 'HomeController@supportTheGame']);
+
 Route::get('/icons', 'HomeController@getIcons');
 
 // beatmaps section
@@ -152,7 +154,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::resource('logs', 'LogsController', ['only' => ['index']]);
 });
 
-Route::put('/account/update-profile-cover', ['as' => 'account.update-profile-cover', 'uses' => 'AccountController@updateProfileCover']);
+// Uploading file doesn't quite work with PUT/PATCH.
+// Reference: https://bugs.php.net/bug.php?id=55815
+// Note that hhvm behaves differently (the same as POST).
+Route::post('/account/update-profile', ['as' => 'account.update-profile', 'uses' => 'AccountController@updateProfile']);
 Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
 
 // API

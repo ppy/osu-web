@@ -299,6 +299,20 @@ CREATE TABLE `osu_events` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `osu_genres`
+--
+
+DROP TABLE IF EXISTS `osu_genres`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_genres` (
+  `genre_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) NOT NULL,
+  PRIMARY KEY (`genre_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `osu_favouritemaps`
 --
 
@@ -334,6 +348,22 @@ CREATE TABLE `osu_kudos_exchange` (
   KEY `giver_id` (`giver_id`),
   KEY `receiver_id` (`receiver_id`,`date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `osu_languages`
+--
+
+DROP TABLE IF EXISTS `osu_languages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `osu_languages` (
+  `language_id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `display_order` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`language_id`),
+  KEY `order` (`display_order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

@@ -37,9 +37,7 @@ ProfilePage.TopRanks = React.createClass
   render: ->
     div
       className: 'profile-extra'
-      div className: 'profile-extra__anchor js-profile-page-extra--scrollspy', id: 'top_ranks'
-
-      h2 className: 'profile-extra__title', Lang.get('users.show.extra.top_ranks.title')
+      @props.header
 
       div null,
         h3 className: 'profile-extra__title profile-extra__title--small', Lang.get('users.show.extra.top_ranks.best.title')

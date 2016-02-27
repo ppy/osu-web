@@ -106,9 +106,9 @@ class @Menu
       menuId = menu.getAttribute('data-menu-id')
 
       if currentTree.indexOf(menuId) == -1
-        fade.out menu
+        Fade.out menu
         @$menuLink(menuId).removeClass('js-menu--active')
 
       else
-        fade.in menu
+        Fade.in menu
         @$menuLink(menuId).addClass('js-menu--active')

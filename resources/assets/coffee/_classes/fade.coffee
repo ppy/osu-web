@@ -17,22 +17,22 @@
 ###
 
 class @Fade
-  isVisible: (el) ->
+  @isVisible: (el) ->
     el.getAttribute('data-visibility') != 'hidden'
 
 
-  out: (el) ->
+  @out: (el) ->
     el.setAttribute('data-visibility', 'hidden')
 
 
-  in: (el) ->
+  @in: (el) ->
     el.setAttribute('data-visibility', '')
 
 
-  toggle: (el, makeVisible) =>
+  @toggle: (el, makeVisible) =>
     makeVisible ?= !@isVisible el
 
     if makeVisible
-      fade.in el
+      @in el
     else
-      fade.out el
+      @out el

@@ -19,10 +19,15 @@
 .profile-extra {
   .default-box-shadow;
   background-color: @grey-f;
-  padding: (@spacing * 2) (@spacing * 3);
+  padding: (@spacing * 2) @spacing;
   margin-bottom: @spacing;
 
   font-size: 14px;
+
+  @media @desktop {
+    padding-left: (@spacing * 3);
+    padding-right: (@spacing * 3);
+  }
 
   &:hover &__actions {
     opacity: 1;
@@ -45,17 +50,6 @@
     }
   }
 
-  &__anchor {
-    @height: @profile-extra-tabs--items-height;
-    margin-top: -@height;
-    height: @height;
-    width: 1px;
-    position: absolute;
-
-    left: 0px;
-    top: 0px;
-  }
-
   &__title {
     font-size: 18px;
     font-weight: 500;
@@ -65,5 +59,13 @@
       font-size: 15px;
       margin-top: (@spacing * 3);
     }
+  }
+
+  &__dragdrop-toggle {
+    font-size: 18px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: move;
   }
 }

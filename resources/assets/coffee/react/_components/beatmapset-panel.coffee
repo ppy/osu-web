@@ -20,17 +20,19 @@
 {div,a,i,span} = React.DOM
 el = React.createElement
 
-class @Panel extends React.Component
+class @BeatmapsetPanel extends React.Component
   render: ->
     beatmap = @props.beatmap
     difficulties = []
-    if beatmap.difficulties.data.length > 0
-      if beatmap.difficulties.data.length > 5
-        difficulties.push el(BeatmapDifficultyIcon, difficulty: beatmap.difficulties.data[0], key: 0)
-        difficulties.push span key: 'over', "+#{(beatmap.difficulties.data.length - 2)}"
-      else
-        for difficulty, index in beatmap.difficulties.data
-          difficulties.push el(BeatmapDifficultyIcon, difficulty: difficulty, key: index)
+
+    # arbitrary number
+    maxDisplayedDifficulty = 10
+
+    for difficulty, index in beatmap.difficulties.data.slice(0, maxDisplayedDifficulty)
+      difficulties.push el(BeatmapDifficultyIcon, difficulty: difficulty, key: index)
+
+    if beatmap.difficulties.data.length > maxDisplayedDifficulty
+      difficulties.push span key: 'over', "+#{(beatmap.difficulties.data.length - maxDisplayedDifficulty)}"
 
     div className: 'beatmap object_link shadow-hover', objectid: beatmap.beatmapset_id,
       div className: 'panel',
@@ -57,7 +59,7 @@ class @Panel extends React.Component
 
       div className: 'bottom_left',
         span className: 'hidden', ref: beatmap.beatmapset_id, beatmap.beatmapset_id
-        div className: 'creator', dangerouslySetInnerHTML: { __html: Lang.get('beatmaps.listing.mapped-by', mapper: osu.link('/u/'+beatmap.user_id, beatmap.creator)) }
+        div className: 'creator', dangerouslySetInnerHTML: { __html: Lang.get('beatmaps.listing.mapped-by', mapper: osu.link(Url.user(beatmap.user_id), beatmap.creator)) }
         div className: 'source', beatmap.source
 
       div className: 'bottom_right show_on_hover',
