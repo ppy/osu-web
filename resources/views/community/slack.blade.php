@@ -36,5 +36,11 @@
                 <p>{!! trans('community.slack.bullet-points', ['link' => 'http://blog.ppy.sh/post/124145059058/20150715-slack']) !!}</p>
             </div>
         </div>
+        <div class="osu-layout__row">
+            <div class="slack-content__button-container">
+                <p class="slack-content__offences-notice">{!! trans('community.slack.recent-issues', ['mail' => 'accounts@ppy.sh']) !!}</p>
+                <button class="btn-osu btn-osu-default slack-content__button">{{ trans('community.slack.agree-button') }}</button>
+            </div>
+        </div>
     </div>
 @endsection
