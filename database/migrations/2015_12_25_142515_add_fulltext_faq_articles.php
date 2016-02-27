@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class AddFulltextFaqArticles extends Migration
@@ -22,9 +21,8 @@ class AddFulltextFaqArticles extends Migration
      */
     public function down()
     {
-        Schema::table('faq_articles', function($table) {
+        Schema::table('faq_articles', function ($table) {
             $table->dropIndex('search');
         });
-
     }
 }

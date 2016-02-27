@@ -15,7 +15,7 @@ class CreateFaqCategoriesTable extends Migration
         Schema::create('faq_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->mediumInteger('creator_id')->unsigned()->nullable();
-            $table->string("title");
+            $table->string('title');
             $table->timestamps();
         });
     }
