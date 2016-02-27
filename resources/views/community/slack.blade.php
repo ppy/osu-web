@@ -26,4 +26,15 @@
             </div>
         </div>
     </div>
+
+    <div class="osu-layout__row osu-layout__row--page-compact slack-content">
+        <div class="osu-layout__row slack-content__flex">
+            <div class="slack-content__flex-item slack-content__flex-image"><img src="/images/layout/slack/slack-logo.png"/></div>
+            <div class="slack-content__flex-item slack-content__flex-image"><img src="/images/layout/slack/slack-devices.png"/></div>
+            <div class="slack-content__flex-item slack-content__flex-text">
+                <p>{{ trans('community.slack.receive-invite') }}</p><br />
+                <p>{!! trans('community.slack.bullet-points', ['link' => 'http://blog.ppy.sh/post/124145059058/20150715-slack']) !!}</p>
+            </div>
+        </div>
+    </div>
 @endsection

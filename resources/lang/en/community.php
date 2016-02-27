@@ -131,5 +131,8 @@ return [
             'small' => 'osu!dev',
             'large' => 'osu!public Slack Access',
         ],
+
+        'receive-invite' => 'You can receive an invite for the public osu! slack network here.',
+        'bullet-points' => '- Please read thorougly through the conditions on <a href=":link">this post.</a><br />- Please note that any offences on your account will not be tolerated.'
     ],
 ];
