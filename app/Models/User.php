@@ -20,6 +20,7 @@
 namespace App\Models;
 
 use App\Transformers\UserTransformer;
+use App\Models\SlackUser;
 use Cache;
 use Carbon\Carbon;
 use DB;
@@ -961,5 +962,17 @@ class User extends Model implements AuthenticatableContract
             'user_posts' => $newPostsCount,
             'user_lastpost_time' => $lastPostTime,
         ]);
+    }
+
+    public function isSlackEligible()
+    {
+        $canInvite = $this->beatmapPlaycounts()->sum('playcount') > 100
+            && SlackUser::where('user_id', '=', $this->user_id)->count() == 0
+            && $this->user_type != self::ANONYMOUS
+            && $this->user_warnings == 0
+            && $this->banHistories()->where('timestamp', '>', Carbon::now()->subDays(28))
+                ->where('ban_status', '=', 2)->count() == 0;
+
+        return $canInvite;
     }
 }
