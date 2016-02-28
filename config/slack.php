@@ -78,4 +78,14 @@ return [
 
   'unfurl_links' => false,
 
+  /*
+  |-------------------------------------------------------------
+  | Access token
+  |-------------------------------------------------------------
+  |
+  | Used to access Slack's API to send out user invites.
+  |
+   */
+  'token' => env('SLACK_TOKEN'),
+
 ];

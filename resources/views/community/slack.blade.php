@@ -38,8 +38,15 @@
         </div>
         <div class="osu-layout__row">
             <div class="slack-content__button-container">
-                <p class="slack-content__offences-notice">{!! trans('community.slack.recent-issues', ['mail' => 'accounts@ppy.sh']) !!}</p>
-                <button class="btn-osu btn-osu-default slack-content__button">{{ trans('community.slack.agree-button') }}</button>
+                @if ($accepted === true || ($agree === true && $isEligible == true))
+                    <p class="slack-content__accepted">Your request has been accepted. You should receive an email soon.</p>
+                @else
+                    <p class="slack-content__offences-notice @if ($isEligible === true) invisible @endif">{!! trans('community.slack.recent-issues', ['mail' => 'accounts@ppy.sh']) !!}</p>
+                    <form>
+                        <input type="hidden" name="agree" value="1">
+                        <button class="btn-osu @if ($isEligible === true) btn-osu-default @else disabled @endif slack-content__button" type="submit" formaction="{{ route('slack') }}">{{ trans('community.slack.agree-button') }}</button>
+                    </form>
+                @endif
             </div>
         </div>
     </div>

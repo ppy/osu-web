@@ -22,7 +22,8 @@ namespace App\Http\Controllers;
 use Cache;
 use Auth;
 use Redirect;
-use Illuminate\Http\Request;
+use Illuminate\Http\Request as HttpRequest;
+use Request;
 
 class CommunityController extends Controller
 {
@@ -45,7 +46,7 @@ class CommunityController extends Controller
         return view('community.chat');
     }
 
-    public function getLive(Request $request)
+    public function getLive(HttpRequest $request)
     {
         $featuredStream = null;
         $streams = Cache::remember('livestreams', 5, function () {
@@ -78,7 +79,7 @@ class CommunityController extends Controller
         return view('community.live', compact('streams', 'featuredStream'));
     }
 
-    public function postLive(Request $request)
+    public function postLive(HttpRequest $request)
     {
         if (Auth::check() !== true || Auth::user()->isGmt() !== true) {
             abort(403);
@@ -97,6 +98,22 @@ class CommunityController extends Controller
 
     public function getSlack()
     {
-        return view('community.slack');
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            $agree = Request::has('agree') ? Request::input('agree') === '1' : false;
+            $isEligible = $user->isSlackEligible();
+            $accepted = $user->isSlackAccepted();
+
+            if ($agree && $isEligible) {
+                $token = config('slack.token');
+                file_get_contents("https://osu-public.slack.com/api/users.admin.invite?email={$user->user_email}&token={$token}&set_active=true");
+            }
+
+            return view('community.slack', compact('agree', 'isEligible', 'accepted'));
+        }
+        else {
+            return view('community.slack');
+        }
     }
 }

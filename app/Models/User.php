@@ -964,10 +964,15 @@ class User extends Model implements AuthenticatableContract
         ]);
     }
 
+    public function isSlackAccepted()
+    {
+        return SlackUser::where('user_id', '=', $this->user_id)->count() > 0;
+    }
+
     public function isSlackEligible()
     {
         $canInvite = $this->beatmapPlaycounts()->sum('playcount') > 100
-            && SlackUser::where('user_id', '=', $this->user_id)->count() == 0
+            && !$this->isSlackAccepted()
             && $this->user_type != self::ANONYMOUS
             && $this->user_warnings == 0
             && $this->banHistories()->where('timestamp', '>', Carbon::now()->subDays(28))
