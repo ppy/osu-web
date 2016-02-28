@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class SlackUser extends Model
 {
-    protected $table = "osu_slack_users";
-    protected $primaryKey = "slack_id";
+    protected $table = 'osu_slack_users';
+    protected $primaryKey = 'slack_id';
 
     public $incrementing = false;
     public $timestamps = false;
 
-    protected $dates = ["created_at"];
+    protected $dates = ['created_at'];
 }

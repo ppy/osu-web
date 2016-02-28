@@ -111,8 +111,7 @@ class CommunityController extends Controller
             }
 
             return view('community.slack', compact('agree', 'isEligible', 'accepted'));
-        }
-        else {
+        } else {
             return view('community.slack');
         }
     }

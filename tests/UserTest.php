@@ -16,17 +16,15 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 use App\Models\User;
 use App\Models\Beatmap;
 use App\Models\BeatmapPlaycount;
 use App\Models\UserBanHistory;
-
 use Carbon\Carbon;
 
 class UserTest extends TestCase
 {
-    public function setUp ()
+    public function setUp()
     {
         parent::setUp();
 
@@ -59,7 +57,7 @@ class UserTest extends TestCase
      * an appropriate value if the user had any bans
      * in the last 28 days.
      */
-    public function testSlackBanHistory ()
+    public function testSlackBanHistory()
     {
         $bh = new UserBanHistory();
 
