@@ -157,6 +157,7 @@ Route::group(['namespace' => 'Beatmapsets'], function () {
 
 Route::group(['namespace' => 'Beatmaps'], function () {
     Route::resource('beatmaps.discussions', 'DiscussionsController');
+    Route::resource('beatmaps.discussions.replies', 'DiscussionRepliesController');
 });
 
 // Uploading file doesn't quite work with PUT/PATCH.

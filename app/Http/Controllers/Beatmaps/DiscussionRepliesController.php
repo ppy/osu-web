@@ -22,11 +22,13 @@ namespace App\Http\Controllers\Beatmaps;
 use Auth;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
+use App\Models\BeatmapDiscussionReply;
 use App\Models\BeatmapsetDiscussion;
 use Request;
 
 class DiscussionRepliesController extends Controller
 {
+    // the beatmap id isn't actually needed in most cases
     public function __construct()
     {
         $this->middleware('auth', ['except' => []]);
@@ -34,48 +36,37 @@ class DiscussionRepliesController extends Controller
         return parent::__construct();
     }
 
-    public function create($beatmapId)
+    public function create($beatmapId, $beatmapDiscussionId)
     {
-        $beatmap = Beatmap::findOrFail($beatmapId);
-        $beatmapsetDiscussion = BeatmapsetDiscussion::findOrFail($beatmap->beatmapset_id);
+        $discussion = BeatmapDiscussion::findOrFail($beatmapDiscussionId);
 
-        $discussion = new BeatmapDiscussion([
-            'beatmap_id' => $beatmap->beatmap_id,
-            'beatmapset_discussion_id' => $beatmapsetDiscussion->id,
+        $reply = new BeatmapDiscussionReply([
+            'beatmap_discussion_id' => $discussion->id,
         ]);
 
-        return view('beatmaps.discussions.create', compact('beatmap', 'discussion'));
+        return view('beatmaps.discussion-replies.create', compact('discussion', 'reply'));
     }
 
-    public function index($beatmapId)
+    public function store($beatmapId, $beatmapDiscussionId)
     {
-        return Beatmap::findOrFail($beatmapId)->beatmapDiscussions;
-    }
-
-    public function store($beatmapId)
-    {
-        $beatmap = Beatmap::findOrFail($beatmapId);
-        $beatmapsetDiscussion = BeatmapsetDiscussion::findOrFail($beatmap->beatmapset_id);
+        $discussion = BeatmapDiscussion::findOrFail($beatmapDiscussionId);
 
         $params = array_merge(
-            get_params(Request::all(), 'beatmap_discussion', [
+            get_params(Request::all(), 'beatmap_discussion_reply', [
                 'message',
-                'message_type',
-                'timestamp',
             ]),
             [
-                'beatmap_id' => $beatmap->beatmap_id,
-                'beatmapset_discussion_id' => $beatmapsetDiscussion->id,
+                'beatmap_discussion_id' => $discussion->id,
                 'user_id' => Auth::user()->user_id,
             ]
         );
 
-        $discussion = BeatmapDiscussion::create($params);
+        $reply = BeatmapDiscussionReply::create($params);
 
         if ($discussion->id !== null) {
-            return ujs_redirect(route('beatmaps.discussions.show', $beatmap, $discussion));
+            return ujs_redirect(route('beatmaps.discussions.show', $discussion->beatmap_id, $discussion));
         } else {
-            return view('beatmaps.discussions.create', compact('beatmap', 'discussion'));
+            return view('beatmaps.discussion-replies.create', compact('discussion', 'reply'));
         }
     }
 }
