@@ -20,31 +20,39 @@
 @section("content")
     <div class="osu-layout__row osu-layout__row--page-compact">
         <div class="slack-header">
-            <div class="slack-header__text">
-                <h2>{{ trans('community.slack.header.small') }}</h2>
-                <h1>{{ trans('community.slack.header.large') }}</h1>
+            <div class="slack-header__text-container">
+                <h2 class="slack-header__text slack-header__text--small">{{ trans('community.slack.header.small') }}</h2>
+                <h1 class="slack-header__text slack-header__text--large">{{ trans('community.slack.header.large') }}</h1>
             </div>
         </div>
     </div>
 
-    <div class="osu-layout__row osu-layout__row--page-compact slack-content">
-        <div class="osu-layout__row slack-content__flex">
-            <div class="slack-content__flex-item slack-content__flex-image"><img src="/images/layout/slack/slack-logo.png"/></div>
-            <div class="slack-content__flex-item slack-content__flex-image"><img src="/images/layout/slack/slack-devices.png"/></div>
-            <div class="slack-content__flex-item slack-content__flex-text">
+    <div class="osu-layout__row osu-layout__row--page-compact">
+        <div class="osu-layout__row slack-content">
+            <div class="slack-content__item slack-content__image-container"><img class="slack-content__image" src="/images/layout/slack/slack-logo.png"/></div>
+            <div class="slack-content__item slack-content__image-container"><img class="slack-content__image" src="/images/layout/slack/slack-devices.png"/></div>
+            <div class="slack-content__item slack-content__text">
                 <p>{{ trans('community.slack.receive-invite') }}</p><br />
                 <p>{!! trans('community.slack.bullet-points', ['link' => 'http://blog.ppy.sh/post/124145059058/20150715-slack']) !!}</p>
             </div>
         </div>
         <div class="osu-layout__row">
-            <div class="slack-content__button-container">
+            <div class="slack-button-container">
                 @if ($accepted === true || ($agree === true && $isEligible == true))
-                    <p class="slack-content__accepted">Your request has been accepted. You should receive an email soon.</p>
+                    <p class="slack-button-container__accepted">Your request has been accepted. You should receive an email soon.</p>
                 @else
-                    <p class="slack-content__offences-notice @if ($isEligible === true) invisible @endif">{!! trans('community.slack.recent-issues', ['mail' => 'accounts@ppy.sh']) !!}</p>
+                    <p class="slack-button-container__issues
+                              @if ($isEligible === true)
+                                slack-button-container__issues--hidden
+                              @endif">{!! trans('community.slack.recent-issues', ['mail' => 'accounts@ppy.sh']) !!}</p>
                     <form>
                         <input type="hidden" name="agree" value="1">
-                        <button class="btn-osu @if ($isEligible === true) btn-osu-default @else disabled @endif slack-content__button" type="submit" formaction="{{ route('slack') }}">{{ trans('community.slack.agree-button') }}</button>
+                        <button class="btn-osu slack-button-container__button
+                                    @if ($isEligible === true)
+                                        btn-osu-default
+                                    @else
+                                        disabled
+                                    @endif" type="submit" formaction="{{ route('slack') }}">{{ trans('community.slack.agree-button') }}</button>
                     </form>
                 @endif
             </div>

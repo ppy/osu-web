@@ -21,37 +21,37 @@
   background-size: cover;
   background-position: center;
   .default-box-shadow;
-  .own-layer();
 
   height: 200px;
   padding: @grid-gutter-width/8 @grid-gutter-width/2;
 
-  &__text {
+  &__text-container {
     position: absolute;
     bottom: 0;
     left: 0;
+
+    width: 100%;
+  }
+
+  &__text {
+    .default-text-shadow;
+    color: #ffffff;
+
+    @media @mobile {
+      text-align: center;
+    }
 
     @media @desktop {
       padding-left: 130px;
     }
 
-    @media @mobile {
-      width: 100%;
-    }
-
-    h1, h2 {
-      @media @mobile {
-        text-align: center;
-      }
-
-      .default-text-shadow;
-      color: #ffffff;
-    }
-
-    h1 { font-size: 32px; }
-    h2 {
+    &--small {
       margin: 0 0 10px 0;
       font-size: 16px;
+    }
+
+    &--large {
+      font-size: 32px;
     }
   }
 }
