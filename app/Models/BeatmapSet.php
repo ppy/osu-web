@@ -83,6 +83,11 @@ class BeatmapSet extends Model
 
     // ranking functions for the set
 
+    public function discussion()
+    {
+        return $this->hasOne(BeatmapsetDiscussion::class);
+    }
+
     public function rank(User $user = null)
     {
         $this->setRank(static::RANKED, $user);
