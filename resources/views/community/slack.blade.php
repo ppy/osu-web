@@ -33,7 +33,7 @@
             <div class="slack-content__item slack-content__image-container"><img class="slack-content__image" src="/images/layout/slack/slack-devices.png"/></div>
             <div class="slack-content__item slack-content__text">
                 <p>{{ trans('community.slack.receive-invite') }}</p><br />
-                <p>{!! trans('community.slack.bullet-points', ['link' => 'http://blog.ppy.sh/post/124145059058/20150715-slack']) !!}</p>
+                <p>{!! trans('community.slack.bullet-points', ['link' => config('slack.link')]) !!}</p>
             </div>
         </div>
         <div class="osu-layout__row">
@@ -44,7 +44,7 @@
                     <p class="slack-button-container__issues
                               @if ($isEligible === true)
                                 slack-button-container__issues--hidden
-                              @endif">{!! trans('community.slack.recent-issues', ['mail' => 'accounts@ppy.sh']) !!}</p>
+                              @endif">{!! trans('community.slack.recent-issues', ['mail' => config('osu.emails.account')]) !!}</p>
                     <form>
                         <input type="hidden" name="agree" value="1">
                         <button class="btn-osu slack-button-container__button

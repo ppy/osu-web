@@ -88,4 +88,15 @@ return [
    */
   'token' => env('SLACK_TOKEN'),
 
+  /*
+  |-------------------------------------------------------------
+  | Access token
+  |-------------------------------------------------------------
+  |
+  | Link to the slack invite conditions displayed on the page.
+  |
+   */
+  'link' => 'http://blog.ppy.sh/post/124145059058/20150715-slack',
+
+
 ];
