@@ -12,7 +12,7 @@ class CreateBeatmapDiscussions extends Migration
      */
     public function up()
     {
-        Schema::create('beatmap_discussions', function(Blueprint $table) {
+        Schema::create('beatmap_discussions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('beatmapset_discussion_id')->unsigned();
             $table->mediumInteger('beatmap_id')->unsigned();
