@@ -58,12 +58,11 @@ class BeatmapDiscussion extends Model
 
     public function getMessageTypeAttribute($value)
     {
-        return array_search_null((int) $value, static::MESSAGE_TYPES);
+        return array_search_null(get_int($value), static::MESSAGE_TYPES);
     }
 
     public function setMessageTypeAttribute($value)
     {
-
         return $this->attributes['message_type'] = array_get(static::MESSAGE_TYPES, $value);
     }
 
@@ -72,5 +71,15 @@ class BeatmapDiscussion extends Model
         return
             $this->beatmap_id === null ||
             ($this->beatmap && $this->beatmap->beatmapset_id === $this->beatmapsetDiscussion->beatmapset_id);
+    }
+
+    /*
+     * Called before saving. The callback definition is located in
+     * App\Providers\AppServiceProvider. Don't ask me why it's there;
+     * ask Laravel.
+     */
+    public function isValid()
+    {
+        return $this->hasValidBeatmap();
     }
 }

@@ -89,6 +89,11 @@ class Beatmap extends Model
         return $this->belongsTo(BeatmapSet::class, 'beatmapset_id');
     }
 
+    public function beatmapDiscussions()
+    {
+        return $this->hasMany(BeatmapDiscussion::class);
+    }
+
     public function creator()
     {
         return $this->parent->user();

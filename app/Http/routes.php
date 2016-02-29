@@ -151,6 +151,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::resource('logs', 'LogsController', ['only' => ['index']]);
 });
 
+Route::group(['namespace' => 'Beatmapsets'], function () {
+    Route::get('beatmapsets/{beatmapsets}/discussion', ['as' => 'beatmapsets.discussion', 'uses' => 'DiscussionsController@show']);
+});
+
+Route::group(['namespace' => 'Beatmaps'], function () {
+    Route::resource('beatmaps.discussions', 'DiscussionsController');
+});
+
 // Uploading file doesn't quite work with PUT/PATCH.
 // Reference: https://bugs.php.net/bug.php?id=55815
 // Note that hhvm behaves differently (the same as POST).

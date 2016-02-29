@@ -19,6 +19,7 @@
  */
 namespace App\Providers;
 
+use App\Models\BeatmapDiscussion;
 use Illuminate\Support\ServiceProvider;
 use Validator;
 
@@ -34,6 +35,10 @@ class AppServiceProvider extends ServiceProvider
         //
         Validator::extend('mixture', function ($attribute, $value, $parameters, $validator) {
             return preg_match('/[\d]/', $value) === 1 && preg_match('/[^\d\s]/', $value) === 1;
+        });
+
+        BeatmapDiscussion::saving(function ($discussion) {
+            return $discussion->isValid();
         });
     }
 
