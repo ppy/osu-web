@@ -81,7 +81,7 @@ class Log extends Model
         return $this->belongsTo(User::class, 'reportee_id');
     }
 
-    public function logModerateForumTopic($operation, $topic, $user = null)
+    public static function logModerateForumTopic($operation, $topic, $user = null)
     {
         return static::log([
             'log_type' => static::LOG_FORUM_MOD,
@@ -94,7 +94,7 @@ class Log extends Model
         ]);
     }
 
-    public function logModerateForumPost($operation, $post, $user = null)
+    public static function logModerateForumPost($operation, $post, $user = null)
     {
         // ideally should log post_id as well but current phpbb logging doesn't
         // log it and I'm just matching with whatever it's doing. Except post
