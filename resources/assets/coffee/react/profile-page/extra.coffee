@@ -170,13 +170,8 @@ class ProfilePage.Extra extends React.Component
                 props = rankHistories: @props.rankHistories
                 ProfilePage.Performance
 
-          props.header =
-            div
-              key: 'header'
-              h2 className: 'profile-extra__title', Lang.get("users.show.extra.#{m}.title")
-              if @props.withEdit
-                span className: 'profile-extra__dragdrop-toggle js-profile-page-extra--sortable-handle',
-                  el Icon, name: 'bars'
+          props.withEdit = @props.withEdit
+          props.name = m
 
           div
             key: m
