@@ -52,4 +52,4 @@ BeatmapsetDiscussion.Main = React.createClass
             className: 'beatmap-discussion-overview__beatmaps'
             div
               className: 'beatmap-list'
-              el BeatmapIcon, beatmap: currentBeatmap
+              el BeatmapIcon, beatmap: currentBeatmap, modifier: 'big'

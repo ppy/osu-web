@@ -22,11 +22,17 @@
   .center-content();
 
   color: @grey-f;
+  border: 2px solid @grey-f;
 
-  .circle(19px);
-  font-size: 22px;
+  .circle(20px);
+  font-size: 20px;
 
   padding: 0;
+
+  &--big {
+    .circle(30px);
+    font-size: 33px;
+  }
 
   &--easy {
     background-color: @green;

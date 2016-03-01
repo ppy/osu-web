@@ -35,6 +35,6 @@ el = React.createElement
       else 'expert'
 
     div
-      className: "beatmap-icon beatmap-icon--#{difficultyRating}"
+      className: "beatmap-icon beatmap-icon--#{difficultyRating} beatmap-icon--#{@props.modifier}"
       title: beatmap.version
       el Icon, name: "osumode-#{beatmap.mode}"
