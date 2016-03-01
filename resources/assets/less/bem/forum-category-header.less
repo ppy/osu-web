@@ -28,9 +28,12 @@
   .own-layer();
 
   height: 60px;
-  padding: @grid-gutter-width/8 @grid-gutter-width/2;
+  padding: (@spacing * 2);
 
   transition: background-image 120ms;
+
+  display: flex;
+  align-items: flex-end;
 
   &--cover-modal {
     z-index: @z-index--blackout-visible;
@@ -228,11 +231,6 @@
   }
 
   &__titles {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    padding: (@spacing * 2);
-
     &--forum {
       width: 100%;
       text-align: center;
