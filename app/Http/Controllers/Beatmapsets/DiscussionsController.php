@@ -20,7 +20,6 @@
 namespace App\Http\Controllers\Beatmapsets;
 
 use App\Models\BeatmapSet;
-use App\Models\BeatmapsetDiscussion;
 use App\Transformers\BeatmapSetTransformer;
 
 class DiscussionsController extends Controller

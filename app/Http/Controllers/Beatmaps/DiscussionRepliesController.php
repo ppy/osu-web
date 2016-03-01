@@ -23,7 +23,6 @@ use Auth;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionReply;
-use App\Models\BeatmapsetDiscussion;
 use Request;
 
 class DiscussionRepliesController extends Controller
