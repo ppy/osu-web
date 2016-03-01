@@ -26,7 +26,7 @@ class ProfilePage.Rank extends React.Component
           className: 'profile-basic profile-basic--large'
           title: Lang.get('users.show.rank.global', mode: Lang.get("beatmaps.mode.#{@props.currentMode}"))
           el 'span', className: 'user-rank-icon',
-            el 'i', className: "fa osu fa-#{@props.currentMode}-o"
+            el Icon, name: "osu-#{@props.currentMode}-o"
           "##{@props.rank.global.toLocaleString()}"
         if @props.countryName != null
           el 'p',
