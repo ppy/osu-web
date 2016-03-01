@@ -28,7 +28,8 @@ BeatmapsetDiscussion.Main = React.createClass
 
 
   render: ->
-    currentBeatmap = @state.beatmapset.difficulties.data[@state.currentBeatmapIndex]
+    currentBeatmap = @state.beatmapset.beatmaps.data[@state.currentBeatmapIndex]
+
     div null,
       div
         className: 'osu-layout__row'
@@ -51,4 +52,4 @@ BeatmapsetDiscussion.Main = React.createClass
             className: 'beatmap-discussion-overview__beatmaps'
             div
               className: 'beatmap-list'
-              el BeatmapDifficultyIcon, difficulty: currentBeatmap
+              el BeatmapIcon, beatmap: currentBeatmap

@@ -25,7 +25,7 @@ use League\Fractal;
 class BeatmapSetTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'difficulties',
+        'beatmaps',
     ];
 
     public function transform(BeatmapSet $beatmap = null)
@@ -47,11 +47,11 @@ class BeatmapSetTransformer extends Fractal\TransformerAbstract
         ];
     }
 
-    public function includeDifficulties(BeatmapSet $beatmapSet)
+    public function includeBeatmaps(BeatmapSet $beatmapSet)
     {
         return $this->collection(
-            $beatmapSet->beatmaps()->orderBy('playmode', 'asc')->orderBy('difficultyrating', 'asc')->get(),
-            new BeatmapDifficultyTransformer()
+            $beatmapSet->beatmaps()->default()->get(),
+            new BeatmapTransformer()
         );
     }
 }

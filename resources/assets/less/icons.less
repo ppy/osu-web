@@ -21,10 +21,15 @@
 // lists all of the osu! fonts under FontAwesome's namespace.
 
 @fa-osu-prefix: ~"@{fa-css-prefix}-osu";
+@fa-osumode-prefix: ~"@{fa-css-prefix}-osumode";
 
 // osu modifier to change the font used
 [class^="@{fa-osu-prefix}-"], [class*=" @{fa-osu-prefix}-"] {
   font-family: "osu!";
+}
+
+[class^="@{fa-osumode-prefix}-"], [class*=" @{fa-osumode-prefix}-"] {
+  font-family: "osu";
 }
 
 // gamemode icons in circles
@@ -32,6 +37,12 @@
 .@{fa-osu-prefix}-mania-o::before { content: '\e001'; }
 .@{fa-osu-prefix}-fruits-o::before { content: '\e002'; }
 .@{fa-osu-prefix}-taiko-o::before { content: '\e003'; }
+
+// gamemode icons in circles, alternative version
+.@{fa-osumode-prefix}-osu::before { content: '\e800'; }
+.@{fa-osumode-prefix}-fruits::before { content: '\e801'; }
+.@{fa-osumode-prefix}-mania::before { content: '\e802'; }
+.@{fa-osumode-prefix}-taiko::before { content: '\e803'; }
 
 // gamemode icons without circles
 .@{fa-osu-prefix}-osu::before { content: '\e004'; }

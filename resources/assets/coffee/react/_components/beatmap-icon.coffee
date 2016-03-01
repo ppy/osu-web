@@ -20,35 +20,21 @@
 {div,i} = React.DOM
 el = React.createElement
 
-class @BeatmapDifficultyIcon extends React.Component
+@BeatmapIcon = React.createClass
+  mixins: [React.addons.PureRenderMixin]
+
+
   render: ->
-    difficulty = @props.difficulty
-    rating = undefined
-    mode = undefined
+    beatmap = @props.beatmap
 
-    if difficulty['rating'] < 1.5
-      rating = 'easy'
-    else if difficulty['rating'] < 2.25
-      rating = 'normal'
-    else if difficulty['rating'] < 3.75
-      rating = 'hard'
-    else if difficulty['rating'] < 5.25
-      rating = 'insane'
-    else
-      rating = 'expert'
+    difficultyRating = switch
+      when beatmap.difficulty_rating < 1.5 then 'easy'
+      when beatmap.difficulty_rating < 2.25 then 'normal'
+      when beatmap.difficulty_rating < 3.75 then 'hard'
+      when beatmap.difficulty_rating < 5.25 then 'insane'
+      else 'expert'
 
-    switch difficulty['mode']
-      when 0
-        mode = 'osu'
-      when 1
-        mode = 'mania'
-      when 2
-        mode = 'fruits'
-      when 3
-        mode = 'taiko'
-      else
-        mode = 'osu'
-        break
-
-    div className: 'difficulty-icon ' + rating, title: difficulty.name,
-      i className: 'mode-' + mode
+    div
+      className: "beatmap-icon beatmap-icon--#{difficultyRating}"
+      title: beatmap.version
+      el Icon, name: "osumode-#{beatmap.mode}"

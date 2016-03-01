@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -16,26 +14,37 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-namespace App\Transformers;
+.beatmap-icon {
+  .icon-bg();
+  .default-box-shadow();
+  .center-content();
 
-use App\Models\Beatmap;
-use League\Fractal;
+  color: @grey-f;
 
-class BeatmapTransformer extends Fractal\TransformerAbstract
-{
-    public function transform(Beatmap $beatmap = null)
-    {
-        if ($beatmap === null) {
-            return [];
-        }
+  .circle(19px);
+  font-size: 22px;
 
-        return [
-            'id' => $beatmap->beatmap_id,
-            'mode' => $beatmap->mode,
-            'difficulty_rating' => $beatmap->difficultyrating,
-            'version' => $beatmap->version,
-            'url' => route('beatmaps.show', ['id' => $beatmap->beatmap_id, 'm' => $beatmap->playmode]),
-        ];
-    }
+  padding: 0;
+
+  &--easy {
+    background-color: @green;
+  }
+
+  &--normal {
+    background-color: @yellow;
+  }
+
+  &--hard {
+    background-color: @pink;
+  }
+
+  &--insane {
+    background-color: @purple;
+  }
+
+  &--expert {
+    background-color: @grey-0;
+  }
 }

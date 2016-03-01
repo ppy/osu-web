@@ -58,30 +58,21 @@ class Beatmap extends Model
         return $this->hasMany(Mod::class, 'beatmap_id', 'beatmap_id');
     }
 
-    public static function modes()
-    {
-        return [
-            'osu' => 0,
-            'taiko' => 1,
-            'fruits' => 2,
-            'mania' => 3,
-        ];
-    }
+    const MODES = [
+        'osu' => 0,
+        'taiko' => 1,
+        'fruits' => 2,
+        'mania' => 3,
+    ];
 
     public static function modeInt($str)
     {
-        if (isset(static::modes()[$str]) === true) {
-            return static::modes()[$str];
-        }
+        return array_get(static::MODES, $str);
     }
 
     public static function modeStr($int)
     {
-        $str = array_search($int, static::modes(), true);
-
-        if ($str !== false) {
-            return $str;
-        }
+        return array_search_null($int, static::MODES);
     }
 
     public function set()
@@ -107,5 +98,17 @@ class Beatmap extends Model
     public function difficultyAttribs()
     {
         return $this->hasMany(BeatmapDifficultyAttrib::class);
+    }
+
+    public function getModeAttribute()
+    {
+        return static::modeStr($this->playmode);
+    }
+
+    public function scopeDefault($query)
+    {
+        return $query
+            ->orderBy('playmode', 'ASC')
+            ->orderBy('difficultyrating', 'ASC');
     }
 }
