@@ -40,6 +40,7 @@ return [
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
+            'beatmapsets-discussions-show' => 'discussion',
             'getListing' => 'listing',
             'getPacks' => 'packs',
             'getCharts' => 'charts',
