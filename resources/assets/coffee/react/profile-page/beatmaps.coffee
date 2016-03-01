@@ -30,7 +30,7 @@ ProfilePage.Beatmaps = React.createClass
 
     div
       className: 'profile-extra'
-      @props.header
+      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
       _.map allBeatmapSets, (beatmapSets, section) =>
         div
           key: section
