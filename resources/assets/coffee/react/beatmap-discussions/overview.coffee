@@ -18,7 +18,7 @@
 {a, div, h1, p} = React.DOM
 el = React.createElement
 
-BeatmapsetDiscussion.Overview = React.createClass
+BeatmapDiscussions.Overview = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
@@ -27,10 +27,10 @@ BeatmapsetDiscussion.Overview = React.createClass
     user = @props.beatmapset.user.data
 
     div
-      className: 'beatmap-discussion-overview'
+      className: 'beatmap-discussions-overview'
 
       div
-        className: 'beatmap-discussion-overview__beatmaps'
+        className: 'beatmap-discussions-overview__beatmaps'
         div
           className: 'beatmap-list'
           div 'beatmap-list__display',
@@ -44,34 +44,34 @@ BeatmapsetDiscussion.Overview = React.createClass
             div className: 'beatmap-list__switch-button',
               el Icon, name: 'chevron-down'
       div
-        className: 'beatmap-discussion-overview__timeline'
+        className: 'beatmap-discussions-overview__timeline'
 
       div
-        className: 'beatmap-discussion-overview__info'
+        className: 'beatmap-discussions-overview__info'
 
         div null,
           div
-            className: 'beatmap-discussion-overview__meta-text beatmap-discussion-overview__meta-text--large'
+            className: 'beatmap-discussions-overview__meta-text beatmap-discussions-overview__meta-text--large'
             @props.beatmapset.title
           div
-            className: 'beatmap-discussion-overview__meta-text'
+            className: 'beatmap-discussions-overview__meta-text'
             @props.beatmapset.artist
           div
-            className: 'beatmap-discussion-overview__meta-text'
+            className: 'beatmap-discussions-overview__meta-text'
             dangerouslySetInnerHTML:
               __html: Lang.get 'beatmaps.listing.mapped-by',
                 mapper: "<strong>#{osu.link Url.user(user.user_id), user.username}</strong>"
 
         div null,
           div
-            className: 'beatmap-discussion-stats beatmap-discussion-stats--resolved'
-            p className: 'beatmap-discussion-stats__text beatmap-discussion-stats__text--type', 'Resolved'
-            p className: 'beatmap-discussion-stats__text beatmap-discussion-stats__text--count', '∞'
+            className: 'beatmap-discussions-stats beatmap-discussions-stats--resolved'
+            p className: 'beatmap-discussions-stats__text beatmap-discussions-stats__text--type', 'Resolved'
+            p className: 'beatmap-discussions-stats__text beatmap-discussions-stats__text--count', '∞'
           div
-            className: 'beatmap-discussion-stats beatmap-discussion-stats--pending'
-            p className: 'beatmap-discussion-stats__text beatmap-discussion-stats__text--type', 'Pending'
-            p className: 'beatmap-discussion-stats__text beatmap-discussion-stats__text--count', '-∞'
+            className: 'beatmap-discussions-stats beatmap-discussions-stats--pending'
+            p className: 'beatmap-discussions-stats__text beatmap-discussions-stats__text--type', 'Pending'
+            p className: 'beatmap-discussions-stats__text beatmap-discussions-stats__text--count', '-∞'
           div
-            className: 'beatmap-discussion-stats beatmap-discussion-stats--total'
-            p className: 'beatmap-discussion-stats__text beatmap-discussion-stats__text--type', 'Total'
-              p className: 'beatmap-discussion-stats__text beatmap-discussion-stats__text--count', 'NaN'
+            className: 'beatmap-discussions-stats beatmap-discussions-stats--total'
+            p className: 'beatmap-discussions-stats__text beatmap-discussions-stats__text--type', 'Total'
+              p className: 'beatmap-discussions-stats__text beatmap-discussions-stats__text--count', 'NaN'

@@ -20,7 +20,7 @@
 ])
 
 @section('content')
-    <div class="js-react--beatmapset-discussion"></div>
+    <div class="js-react--beatmap-discussions"></div>
     {{--
         this should content a server side react.js render which doesn't exist in hhvm
         because the only library for it, which is experimental, requires PHP extension
@@ -37,5 +37,5 @@
         };
     </script>
 
-    <script src="{{ elixir("js/react/beatmapset-discussion.js") }}" data-turbolinks-track></script>
+    <script src="{{ elixir("js/react/beatmap-discussions.js") }}" data-turbolinks-track></script>
 @endsection

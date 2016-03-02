@@ -18,7 +18,7 @@
 {a, div, h1, p} = React.DOM
 el = React.createElement
 
-BeatmapsetDiscussion.Main = React.createClass
+BeatmapDiscussions.Main = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
@@ -48,4 +48,9 @@ BeatmapsetDiscussion.Main = React.createClass
                 className: 'link link--white link--no-underline'
                 @state.beatmapset.title
 
-        el BeatmapsetDiscussion.Overview, currentBeatmapIndex: @state.currentBeatmapIndex, beatmapset: @state.beatmapset
+        el BeatmapDiscussions.Overview, currentBeatmapIndex: @state.currentBeatmapIndex, beatmapset: @state.beatmapset
+
+      div
+        className: 'osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact'
+        el BeatmapDiscussions.NewPost
+        el BeatmapDiscussions.Posts
