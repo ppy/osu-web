@@ -137,5 +137,7 @@ return [
 
         'recent-issues' => 'Your account has recent issues. Please <a href="mailto::mail">contact support</a> for more details.',
         'agree-button' => 'Agree',
+
+        'accepted' => 'Your request has been accepted. You should receive an email soon.',
     ],
 ];

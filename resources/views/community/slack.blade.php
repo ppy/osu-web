@@ -28,18 +28,18 @@
     </div>
 
     <div class="osu-layout__row osu-layout__row--page-compact">
-        <div class="osu-layout__row slack-content">
-            <div class="slack-content__item slack-content__image-container"><img class="slack-content__image" src="/images/layout/slack/slack-logo.png"/></div>
-            <div class="slack-content__item slack-content__image-container"><img class="slack-content__image" src="/images/layout/slack/slack-devices.png"/></div>
-            <div class="slack-content__item slack-content__text">
-                <p>{{ trans('community.slack.receive-invite') }}</p><br />
+        <div class="slack-content">
+            <div class="slack-content__image-container"><img class="slack-content__item slack-content__item--image" src="/images/layout/slack/slack-logo.png"/></div>
+            <div class="slack-content__image-container"><img class="slack-content__item slack-content__item--image" src="/images/layout/slack/slack-devices.png"/></div>
+            <div class="slack-content__item slack-content__item--text">
+                <p class="slack-content__invite-info">{{ trans('community.slack.receive-invite') }}</p>
                 <p>{!! trans('community.slack.bullet-points', ['link' => config('slack.link')]) !!}</p>
             </div>
         </div>
         <div class="osu-layout__row">
             <div class="slack-button-container">
                 @if ($accepted === true || ($agree === true && $isEligible == true))
-                    <p class="slack-button-container__accepted">Your request has been accepted. You should receive an email soon.</p>
+                    <p class="slack-button-container__accepted">{{ trans('community.slack.accepted') }}</p>
                 @else
                     <p class="slack-button-container__issues
                               @if ($isEligible === true)

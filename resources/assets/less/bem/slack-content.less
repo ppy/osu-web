@@ -33,21 +33,27 @@
 
   &__item {
     padding: 0 20px 0 20px;
-  }
 
-  &__text {
-    @media @desktop {
-      flex-basis: 100%;
+    &--text {
+      @media @desktop {
+        flex-basis: 100%;
+      }
     }
-  }
 
-  &__image {
-    max-width: 100%;
-    height: auto;
+    &--image {
+      max-width: 100%;
+      height: auto;
+    }
+
   }
 
   &__image-container {
     min-width: 0;
     padding-bottom: 15px;
+  }
+
+  &__invite-info {
+    padding-bottom: 20px;
+    margin: 0;
   }
 }

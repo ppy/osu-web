@@ -97,6 +97,4 @@ return [
   |
    */
   'link' => 'http://blog.ppy.sh/post/124145059058/20150715-slack',
-
-
 ];
