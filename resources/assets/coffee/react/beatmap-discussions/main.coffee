@@ -25,12 +25,10 @@ BeatmapDiscussions.Main = React.createClass
   getInitialState: ->
     beatmapset: initial.beatmapset.data
     currentBeatmapIndex: 0
+    user: currentUser
 
 
   render: ->
-    currentBeatmap = @state.beatmapset.beatmaps.data[@state.currentBeatmapIndex]
-    user = @state.beatmapset.user.data
-
     div null,
       div
         className: 'osu-layout__row'
@@ -48,9 +46,11 @@ BeatmapDiscussions.Main = React.createClass
                 className: 'link link--white link--no-underline'
                 @state.beatmapset.title
 
-        el BeatmapDiscussions.Overview, currentBeatmapIndex: @state.currentBeatmapIndex, beatmapset: @state.beatmapset
+        el BeatmapDiscussions.Overview,
+          beatmapset: @state.beatmapset
+          currentBeatmapIndex: @state.currentBeatmapIndex
 
       div
         className: 'osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact'
-        el BeatmapDiscussions.NewPost
+        el BeatmapDiscussions.NewPost, user: @state.user
         el BeatmapDiscussions.Posts

@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{a, div, h1, p} = React.DOM
+{button, div, form, input, textarea} = React.DOM
 el = React.createElement
 
 bn = 'beatmap-discussions-new-post'
@@ -24,11 +24,34 @@ BeatmapDiscussions.NewPost = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
+  getInitialState: ->
+    message: ''
+    timestamp: ''
+
+
   render: ->
-    div className: bn,
+    form
+      className: bn
       div className: "#{bn}__col #{bn}__col--left",
-        'timing goes here'
+        div className: "#{bn}__timestamp-box",
+          input
+            className: "#{bn}__input #{bn}__input--timestamp",
+            type: 'text'
+            value: @state.timestamp
+
       div className: "#{bn}__col #{bn}__col--main",
-        'input box goes here'
+        div className: "#{bn}__message-box",
+          div
+            className: "#{bn}__avatar"
+            div
+              className: 'avatar avatar--full-rounded'
+              style:
+                backgroundImage: "url('#{@props.user.avatarUrl}')"
+          textarea
+            className: "#{bn}__message"
+            value: @state.message
+
       div className: "#{bn}__col #{bn}__col--right",
-        'button and stuff goes here'
+        button
+          className: "#{bn}__button"
+          Lang.get('common.buttons.post')

@@ -17,7 +17,14 @@
  *
  */
 .beatmap-discussions-new-post {
+  @_avatar-size: 45px;
+
   display: flex;
+
+  &__avatar {
+    width: @_avatar-size;
+    height: @_avatar-size;
+  }
 
   &__col {
     flex: none;
@@ -36,5 +43,21 @@
       flex: 1 0 auto;
       background-color: @grey-f;
     }
+  }
+
+  &__message {
+    flex: 1 0 auto;
+    padding-left: @spacing;
+    border: none;
+    resize: vertical;
+    font-size: 12px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__message-box {
+    display: flex;
   }
 }
