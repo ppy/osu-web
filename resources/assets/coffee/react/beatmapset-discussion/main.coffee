@@ -53,7 +53,7 @@ BeatmapsetDiscussion.Main = React.createClass
             div
               className: 'beatmap-list'
               div 'beatmap-list__display',
-                el BeatmapIcon, beatmap: currentBeatmap, modifier: 'big'
+                el BeatmapIcon, beatmap: currentBeatmap, modifier: 'large'
               div className: 'beatmap-list__display beatmap-list__display--main',
                 div className: 'beatmap-list__mode',
                   Lang.get("beatmaps.mode.#{currentBeatmap.mode}")
@@ -70,13 +70,13 @@ BeatmapsetDiscussion.Main = React.createClass
 
             div null,
               div
-                className: 'beatmap-discussion-overview__title'
+                className: 'beatmap-discussion-overview__meta-text beatmap-discussion-overview__meta-text--large'
                 @state.beatmapset.title
               div
-                className: 'beatmap-discussion-overview__artist'
+                className: 'beatmap-discussion-overview__meta-text'
                 @state.beatmapset.artist
               div
-                className: 'beatmap-discussion-overview__mapper'
+                className: 'beatmap-discussion-overview__meta-text'
                 @state.beatmapset.user_id
 
             div null,
