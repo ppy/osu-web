@@ -52,7 +52,9 @@ class ProfilePage.Extra extends React.Component
 
   componentWillUnmount: =>
     @_removeListeners()
-    $(@refs.pages).sortable 'destroy'
+
+    for sortable in ['pages', 'tabs', 'fixedTabs']
+      $(@refs[sortable]).sortable 'destroy'
 
 
   componentWillReceiveProps: (newProps) =>
