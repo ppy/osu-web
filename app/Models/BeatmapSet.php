@@ -527,8 +527,8 @@ class BeatmapSet extends Model
 
         $tmpBase = sys_get_temp_dir()."/bm/$this->beatmapset_id/$time";
         $osz = "$tmpBase/$this->beatmapset_id.zip";
-        $workingFolder = "$tmpBase/working/$this->beatmapset_id";
-        $outputFolder = "$tmpBase/out/$this->beatmapset_id";
+        $workingFolder = "$tmpBase/working";
+        $outputFolder = "$tmpBase/out";
 
         // make our temp folders if they don't exist
         if (!is_dir($workingFolder)) {
@@ -541,7 +541,7 @@ class BeatmapSet extends Model
         // download and extract beatmap
         $ok = copy($this->oszDownloadURL(), $osz);
         if (!$ok) {
-            throw new BeatmapProcessorException('Error retrieving beatmap.');
+            throw new BeatmapProcessorException('Error retrieving beatmap');
         }
         $zip = new \ZipArchive;
         $zip->open($osz);
@@ -556,8 +556,13 @@ class BeatmapSet extends Model
             return false;
         }
 
+        $bg_file = ci_file_search("{$workingFolder}/{$bg}");
+        if (!$bg_file) {
+            throw new BeatmapProcessorException('Background image missing');
+        }
+
         // upload original image
-        $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/raw.jpg", file_get_contents("{$workingFolder}/{$bg}"));
+        $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/raw.jpg", file_get_contents($bg_file));
         $originalImage = preg_replace("/http[s]?:\/\//", '', $this->coverImageURL('raw'));
 
         // upload optimized version
