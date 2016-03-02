@@ -123,7 +123,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($user, function ($user) {
             $all = [];
-            foreach (array_keys(Beatmap::MOES) as $mode) {
+            foreach (array_keys(Beatmap::MODES) as $mode) {
                 $scores = $user
                     ->scoresFirst($mode, true)
                     ->default()
