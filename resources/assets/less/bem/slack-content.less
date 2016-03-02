@@ -26,13 +26,15 @@
   padding-top: 24px;
 
   @media @desktop {
-    width: 690px;
+    width: calc(100% ~'-' 260px);
     margin-left: auto;
     margin-right: auto;
   }
 
   &__item {
-    padding: 0 20px 0 20px;
+    @media @mobile {
+      padding: 0 20px 0 20px;
+    }
 
     &--text {
       @media @desktop {
@@ -50,6 +52,24 @@
   &__image-container {
     min-width: 0;
     padding-bottom: 15px;
+
+    &--logo {
+      @media @desktop {
+        max-width: 42%;
+        padding-right: 4%;
+      }
+
+      @media @mobile {
+        max-width: 75%;
+      }
+    }
+
+    &--devices {
+      @media @desktop {
+        max-width: 58%;
+        padding-left: 4%;
+      }
+    }
   }
 
   &__invite-info {

@@ -29,8 +29,8 @@
 
     <div class="osu-layout__row osu-layout__row--page-compact">
         <div class="slack-content">
-            <div class="slack-content__image-container"><img class="slack-content__item slack-content__item--image" src="/images/layout/slack/slack-logo.png"/></div>
-            <div class="slack-content__image-container"><img class="slack-content__item slack-content__item--image" src="/images/layout/slack/slack-devices.png"/></div>
+            <div class="slack-content__image-container slack-content__image-container--logo"><img class="slack-content__item slack-content__item--image" src="/images/layout/slack/slack-logo.png"/></div>
+            <div class="slack-content__image-container slack-content__image-container--devices"><img class="slack-content__item slack-content__item--image" src="/images/layout/slack/slack-devices.png"/></div>
             <div class="slack-content__item slack-content__item--text">
                 <p class="slack-content__invite-info">{{ trans('community.slack.receive-invite') }}</p>
                 <p>{!! trans('community.slack.bullet-points', ['link' => config('slack.link')]) !!}</p>
@@ -47,12 +47,7 @@
                               @endif">{!! trans('community.slack.recent-issues', ['mail' => config('osu.emails.account')]) !!}</p>
                     <form>
                         <input type="hidden" name="agree" value="1">
-                        <button class="btn-osu slack-button-container__button
-                                    @if ($isEligible === true)
-                                        btn-osu-default
-                                    @else
-                                        disabled
-                                    @endif" type="submit" formaction="{{ route('slack') }}">{{ trans('community.slack.agree-button') }}</button>
+                        <button class="btn-osu slack-button-container__button {{ $isEligible === true ? 'btn-osu-default' : 'disabled' }}" type="submit" formaction="{{ route('slack') }}">{{ trans('community.slack.agree-button') }}</button>
                     </form>
                 @endif
             </div>
