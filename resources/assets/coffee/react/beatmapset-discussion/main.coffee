@@ -29,10 +29,12 @@ BeatmapsetDiscussion.Main = React.createClass
 
   render: ->
     currentBeatmap = @state.beatmapset.beatmaps.data[@state.currentBeatmapIndex]
+    user = @state.beatmapset.user.data
 
     div null,
       div
         className: 'osu-layout__row'
+
         div
           className: 'forum-category-header forum-category-header--topic'
           style:
@@ -45,50 +47,5 @@ BeatmapsetDiscussion.Main = React.createClass
                 href: 'butts'
                 className: 'link link--white link--no-underline'
                 @state.beatmapset.title
-        div
-          className: 'beatmap-discussion-overview'
 
-          div
-            className: 'beatmap-discussion-overview__beatmaps'
-            div
-              className: 'beatmap-list'
-              div 'beatmap-list__display',
-                el BeatmapIcon, beatmap: currentBeatmap, modifier: 'large'
-              div className: 'beatmap-list__display beatmap-list__display--main',
-                div className: 'beatmap-list__mode',
-                  Lang.get("beatmaps.mode.#{currentBeatmap.mode}")
-                div className: 'beatmap-list__version',
-                  currentBeatmap.version
-              div 'beatmap-list__display',
-                div className: 'beatmap-list__switch-button',
-                  el Icon, name: 'chevron-down'
-          div
-            className: 'beatmap-discussion-overview__timeline'
-
-          div
-            className: 'beatmap-discussion-overview__info'
-
-            div null,
-              div
-                className: 'beatmap-discussion-overview__meta-text beatmap-discussion-overview__meta-text--large'
-                @state.beatmapset.title
-              div
-                className: 'beatmap-discussion-overview__meta-text'
-                @state.beatmapset.artist
-              div
-                className: 'beatmap-discussion-overview__meta-text'
-                @state.beatmapset.user_id
-
-            div null,
-              div
-                className: 'beatmap-discussion-stats beatmap-discussion-stats--resolved'
-                p className: 'beatmap-discussion-stats__text beatmap-discussion-stats__text--type', 'Resolved'
-                p className: 'beatmap-discussion-stats__text beatmap-discussion-stats__text--count', '∞'
-              div
-                className: 'beatmap-discussion-stats beatmap-discussion-stats--pending'
-                p className: 'beatmap-discussion-stats__text beatmap-discussion-stats__text--type', 'Pending'
-                p className: 'beatmap-discussion-stats__text beatmap-discussion-stats__text--count', '-∞'
-              div
-                className: 'beatmap-discussion-stats beatmap-discussion-stats--total'
-                p className: 'beatmap-discussion-stats__text beatmap-discussion-stats__text--type', 'Total'
-                p className: 'beatmap-discussion-stats__text beatmap-discussion-stats__text--count', 'NaN'
+        el BeatmapsetDiscussion.Overview, currentBeatmapIndex: @state.currentBeatmapIndex, beatmapset: @state.beatmapset

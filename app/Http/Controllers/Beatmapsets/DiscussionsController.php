@@ -39,7 +39,7 @@ class DiscussionsController extends Controller
         $beatmapset = fractal_item_array(
             $beatmapset,
             new BeatmapSetTransformer,
-            'beatmaps'
+            'beatmaps,user'
         );
 
         return view('beatmapsets.discussions.show', compact('beatmapset', 'discussion'));
