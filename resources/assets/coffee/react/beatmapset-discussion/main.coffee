@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{a, div, h1} = React.DOM
+{a, div, h1, p} = React.DOM
 el = React.createElement
 
 BeatmapsetDiscussion.Main = React.createClass
@@ -52,4 +52,43 @@ BeatmapsetDiscussion.Main = React.createClass
             className: 'beatmap-discussion-overview__beatmaps'
             div
               className: 'beatmap-list'
-              el BeatmapIcon, beatmap: currentBeatmap, modifier: 'big'
+              div 'beatmap-list__display',
+                el BeatmapIcon, beatmap: currentBeatmap, modifier: 'big'
+              div className: 'beatmap-list__display beatmap-list__display--main',
+                div className: 'beatmap-list__mode',
+                  Lang.get("beatmaps.mode.#{currentBeatmap.mode}")
+                div className: 'beatmap-list__version',
+                  currentBeatmap.version
+              div 'beatmap-list__display',
+                div className: 'beatmap-list__switch-button',
+                  el Icon, name: 'chevron-down'
+          div
+            className: 'beatmap-discussion-overview__timeline'
+
+          div
+            className: 'beatmap-discussion-overview__info'
+
+            div null,
+              div
+                className: 'beatmap-discussion-overview__title'
+                @state.beatmapset.title
+              div
+                className: 'beatmap-discussion-overview__artist'
+                @state.beatmapset.artist
+              div
+                className: 'beatmap-discussion-overview__mapper'
+                @state.beatmapset.user_id
+
+            div null,
+              div
+                className: 'beatmap-discussion-stats beatmap-discussion-stats--resolved'
+                p className: 'beatmap-discussion-stats__text beatmap-discussion-stats__text--type', 'Resolved'
+                p className: 'beatmap-discussion-stats__text beatmap-discussion-stats__text--count', '∞'
+              div
+                className: 'beatmap-discussion-stats beatmap-discussion-stats--pending'
+                p className: 'beatmap-discussion-stats__text beatmap-discussion-stats__text--type', 'Pending'
+                p className: 'beatmap-discussion-stats__text beatmap-discussion-stats__text--count', '-∞'
+              div
+                className: 'beatmap-discussion-stats beatmap-discussion-stats--total'
+                p className: 'beatmap-discussion-stats__text beatmap-discussion-stats__text--type', 'Total'
+                p className: 'beatmap-discussion-stats__text beatmap-discussion-stats__text--count', 'NaN'
