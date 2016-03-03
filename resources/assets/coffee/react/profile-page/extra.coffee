@@ -37,25 +37,24 @@ class ProfilePage.Extra extends React.Component
       handle: '.js-profile-page-extra--sortable-handle'
       revert: 150
       scrollSpeed: 10
-      update: =>
-        @updateOrder @refs.pages
+      update: @updateOrder
 
     for tabType in ['tabs', 'fixedTabs']
-      tabs = @refs[tabType]
-      $(tabs).sortable
+      $(@refs[tabType]).sortable
         items: '[data-page-id]'
         tolerance: 'pointer'
         cursor: 'move'
         disabled: !@props.withEdit
         revert: 150
         scrollSpeed: 0
-        update: =>
-          @updateOrder tabs
+        update: @updateOrder
 
 
   componentWillUnmount: =>
     @_removeListeners()
-    $(@refs.pages).sortable 'destroy'
+
+    for sortable in ['pages', 'tabs', 'fixedTabs']
+      $(@refs[sortable]).sortable 'destroy'
 
 
   componentWillReceiveProps: (newProps) =>
@@ -73,8 +72,8 @@ class ProfilePage.Extra extends React.Component
     @setState(tabsSticky: newState) if newState != @state.tabsSticky
 
 
-  updateOrder: (elems) =>
-    $elems = $(elems)
+  updateOrder: (event) =>
+    $elems = $(event.target)
 
     newOrder = $elems.sortable('toArray', attribute: 'data-page-id')
 
@@ -170,13 +169,8 @@ class ProfilePage.Extra extends React.Component
                 props = rankHistories: @props.rankHistories
                 ProfilePage.Performance
 
-          props.header =
-            div
-              key: 'header'
-              h2 className: 'profile-extra__title', Lang.get("users.show.extra.#{m}.title")
-              if @props.withEdit
-                span className: 'profile-extra__dragdrop-toggle js-profile-page-extra--sortable-handle',
-                  el Icon, name: 'bars'
+          props.withEdit = @props.withEdit
+          props.name = m
 
           div
             key: m

@@ -37,7 +37,7 @@ ProfilePage.TopRanks = React.createClass
   render: ->
     div
       className: 'profile-extra'
-      @props.header
+      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       div null,
         h3 className: 'profile-extra__title profile-extra__title--small', Lang.get('users.show.extra.top_ranks.best.title')
