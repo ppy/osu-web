@@ -440,6 +440,7 @@ function ci_file_search($fileName)
             return $file;
         }
     }
+
     return false;
 }
 

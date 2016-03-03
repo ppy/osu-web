@@ -44,7 +44,7 @@ class RegenerateBeatmapSetCover extends Job implements SelfHandling, ShouldQueue
                 ];
                 $client = new Raven_Client(config('osu.beatmap_processor.sentry'), ['tags' => $tags]);
                 $client->captureException($e);
-                throw new SilencedException("Silenced Exception: [".get_class($e)."] ".$e->getMessage());
+                throw new SilencedException('Silenced Exception: ['.get_class($e).'] '.$e->getMessage());
             } else {
                 throw $e;
             }
