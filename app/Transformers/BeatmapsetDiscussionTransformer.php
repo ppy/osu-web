@@ -19,35 +19,17 @@
  */
 namespace App\Transformers;
 
-use App\Models\Beatmap;
+use App\Models\BeatmapsetDiscussion;
 use League\Fractal;
 
-class BeatmapTransformer extends Fractal\TransformerAbstract
+class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
 {
-    protected $availableIncludes = [
-        'beatmap_discussions',
-    ];
-
-    public function transform(Beatmap $beatmap = null)
+    public function transform(BeatmapsetDiscussion $discussion)
     {
-        if ($beatmap === null) {
-            return [];
-        }
-
         return [
-            'id' => $beatmap->beatmap_id,
-            'mode' => $beatmap->mode,
-            'difficulty_rating' => $beatmap->difficultyrating,
-            'version' => $beatmap->version,
-            'url' => route('beatmaps.show', ['id' => $beatmap->beatmap_id, 'm' => $beatmap->playmode]),
+            'id' => $discussion->id,
+            'created_at' => $discussion->created_at->toIso8601String(),
+            'updated_at' => $discussion->updated_at->toIso8601String(),
         ];
-    }
-
-    public function includeBeatmapDiscussions(Beatmap $beatmap)
-    {
-        return $this->collection(
-            $beatmap->beatmapDiscussions,
-            new BeatmapDiscussionTransformer()
-        );
     }
 }

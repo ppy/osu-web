@@ -29,6 +29,14 @@ BeatmapDiscussions.NewPost = React.createClass
     timestamp: ''
 
 
+  setTimestamp: (e) ->
+    @setState timestamp: e.target.value
+
+
+  setMessage: (e) ->
+    @setState message: e.target.value
+
+
   render: ->
     form
       className: bn
@@ -38,6 +46,7 @@ BeatmapDiscussions.NewPost = React.createClass
             className: "#{bn}__input #{bn}__input--timestamp",
             type: 'text'
             value: @state.timestamp
+            onChange: @setTimestamp
 
       div className: "#{bn}__col #{bn}__col--main",
         div className: "#{bn}__message-box",
@@ -50,6 +59,7 @@ BeatmapDiscussions.NewPost = React.createClass
           textarea
             className: "#{bn}__message"
             value: @state.message
+            onChange: @setMessage
 
       div className: "#{bn}__col #{bn}__col--right",
         button

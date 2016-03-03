@@ -23,7 +23,6 @@ BeatmapDiscussions.Overview = React.createClass
 
 
   render: ->
-    currentBeatmap = @props.beatmapset.beatmaps.data[@props.currentBeatmapIndex]
     user = @props.beatmapset.user.data
 
     div
@@ -34,12 +33,12 @@ BeatmapDiscussions.Overview = React.createClass
         div
           className: 'beatmap-list'
           div 'beatmap-list__display',
-            el BeatmapIcon, beatmap: currentBeatmap, modifier: 'large'
+            el BeatmapIcon, beatmap: @props.beatmap, modifier: 'large'
           div className: 'beatmap-list__display beatmap-list__display--main',
             div className: 'beatmap-list__mode',
-              Lang.get("beatmaps.mode.#{currentBeatmap.mode}")
+              Lang.get("beatmaps.mode.#{@props.beatmap.mode}")
             div className: 'beatmap-list__version',
-              currentBeatmap.version
+              @props.beatmap.version
           div 'beatmap-list__display',
             div className: 'beatmap-list__switch-button',
               el Icon, name: 'chevron-down'

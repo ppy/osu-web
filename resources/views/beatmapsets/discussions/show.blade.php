@@ -34,6 +34,7 @@
     <script data-turbolinks-eval="always">
         var initial = {
             beatmapset: {!! json_encode($beatmapset) !!},
+            beatmapsetDiscussion: {!! json_encode($discussion) !!},
         };
     </script>
 

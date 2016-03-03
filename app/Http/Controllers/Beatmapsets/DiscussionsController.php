@@ -21,6 +21,7 @@ namespace App\Http\Controllers\Beatmapsets;
 
 use App\Models\BeatmapSet;
 use App\Transformers\BeatmapSetTransformer;
+use App\Transformers\BeatmapsetDiscussionTransformer;
 
 class DiscussionsController extends Controller
 {
@@ -34,12 +35,17 @@ class DiscussionsController extends Controller
     public function show($beatmapsetId)
     {
         $beatmapset = BeatmapSet::findOrFail($beatmapsetId);
-        $discussion = $beatmapset->discussion;
+        $discussion = $beatmapset->beatmapsetDiscussion;
 
         $beatmapset = fractal_item_array(
             $beatmapset,
             new BeatmapSetTransformer,
-            'beatmaps,user'
+            'user,beatmaps.beatmap_discussions.user'
+        );
+
+        $discussion = fractal_item_array(
+            $discussion,
+            new BeatmapsetDiscussionTransformer
         );
 
         return view('beatmapsets.discussions.show', compact('beatmapset', 'discussion'));

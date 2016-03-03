@@ -18,9 +18,42 @@
 {a, div, h1, p} = React.DOM
 el = React.createElement
 
+bn = 'beatmap-discussions-posts'
+
 BeatmapDiscussions.Posts = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
+  getInitialState: ->
+    mode: 'timeline'
+
+
+  willReceiveProps: (newProps) ->
+    if @props.currentBeatmapIndex != newProps.currentBeatmapIndex
+      @_currentDiscussions = null
+
+
+  currentDiscussions: ->
+    unless @_currentDiscussions
+      @_currentDiscussions ||= @props.beatmap.beatmap_discussions.data.filter (discussion) =>
+        discussion.timestamp
+
+    @_currentDiscussions
+
+
   render: ->
-    div null, 'here be posts'
+    div
+      className: bn
+
+      if @state.mode == 'timeline'
+        div className: "#{bn}__timeline-circle"
+        div className: "#{bn}__timeline-line"
+
+      @currentDiscussions().map (post) =>
+        div
+          key: post.id
+          className: "#{bn}__post"
+          el BeatmapDiscussions.Post, post: post
+
+      if @state.mode == 'timeline'
+        div className: "#{bn}__timeline-circle"
