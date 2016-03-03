@@ -11,8 +11,8 @@ return [
         'max' => 50,
     ],
     'beatmap_processor' => [
-        'mirrors_to_use' => array_map('intval', explode(' ', env('BM_PROCESSING_MIRRORS', '1'))),
-        'thumbnailer' => env('BM_PROCESSING_THUMBNAILER', 'http://localhost:4001'),
+        'mirrors_to_use' => array_map('intval', explode(' ', env('BM_PROCESSOR_MIRRORS', '1'))),
+        'thumbnailer' => env('BM_PROCESSOR_THUMBNAILER', 'http://localhost:4001'),
         'sentry' => env('BM_PROCESSOR_SENTRY'),
     ],
     'camo' => [
