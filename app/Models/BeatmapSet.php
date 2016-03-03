@@ -563,11 +563,11 @@ class BeatmapSet extends Model
 
         // upload original image
         $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/raw.jpg", file_get_contents($bg_file));
-        $originalImage = preg_replace("/http[s]?:\/\//", '', $this->coverImageURL('raw'));
+        $originalImage = preg_replace("/https?:\/\//", '', $this->coverImageURL('raw'));
 
         // upload optimized version
         $resizerEndpoint = config('osu.beatmap_processor.thumbnailer');
-        $optimizedImage = preg_replace("/http[s]?:\/\//", '', $this->coverImageURL('fullsize'));
+        $optimizedImage = preg_replace("/https?:\/\//", '', $this->coverImageURL('fullsize'));
 
         $ok = copy("$resizerEndpoint/optim/$originalImage", "$outputFolder/fullsize.jpg");
         if (!$ok || filesize("$outputFolder/fullsize.jpg") < 100) {
