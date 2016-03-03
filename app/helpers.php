@@ -433,10 +433,10 @@ function ci_file_search($fileName)
     }
 
     $directoryName = dirname($fileName);
-    $fileArray = glob($directoryName . '/*', GLOB_NOSORT);
+    $fileArray = glob($directoryName.'/*', GLOB_NOSORT);
     $fileNameLowerCase = strtolower($fileName);
     foreach ($fileArray as $file) {
-        if (strtolower($file) == $fileNameLowerCase) {
+        if (strtolower($file) === $fileNameLowerCase) {
             return $file;
         }
     }
