@@ -23,7 +23,7 @@
   align-items: center;
   justify-content: center;
 
-  padding-top: 24px;
+  padding-top: (@spacing * 3);
 
   @media @desktop {
     width: calc(100% ~'-' 260px);
@@ -33,7 +33,7 @@
 
   &__item {
     @media @mobile {
-      padding: 0 20px 0 20px;
+      padding: 0 (@spacing * 2);
     }
 
     &--text {
@@ -51,7 +51,7 @@
 
   &__image-container {
     min-width: 0;
-    padding-bottom: 15px;
+    padding-bottom: (@spacing * 2);
 
     &--logo {
       @media @desktop {
@@ -73,7 +73,7 @@
   }
 
   &__invite-info {
-    padding-bottom: 20px;
+    padding-bottom: (@spacing * 2);
     margin: 0;
   }
 }
