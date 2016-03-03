@@ -21,6 +21,7 @@ php composer.phar config -g github-oauth.github.com 98cbc568911ef1e060a3a31623f2
 php composer.phar install
 
 php artisan migrate --force
+php artisan queue:restart
 php artisan lang:js resources/assets/js/messages.js
 
 npm install

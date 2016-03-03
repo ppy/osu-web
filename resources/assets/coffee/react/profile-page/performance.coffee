@@ -104,6 +104,6 @@ class ProfilePage.Performance extends React.Component
 
   render: ->
     div className: 'profile-extra',
-      @props.header
+      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       div ref: 'chartArea', className: 'chart'

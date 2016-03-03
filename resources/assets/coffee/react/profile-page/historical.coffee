@@ -75,7 +75,7 @@ ProfilePage.Historical = React.createClass
     div
       className: 'profile-extra'
 
-      @props.header
+      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       h3
         className: 'profile-extra__title profile-extra__title--small'
