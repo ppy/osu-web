@@ -30,8 +30,19 @@ class RegenerateBeatmapSetCover extends Job implements SelfHandling, ShouldQueue
      */
     public function handle()
     {
-        echo "Processing {$this->beatmapset->beatmapset_id}... ";
-        $this->beatmapset->regenerateCovers();
-        echo "ok.\n";
+        try {
+            echo "Processing {$this->beatmapset->beatmapset_id}... ";
+            $this->beatmapset->regenerateCovers();
+            echo "ok.\n";
+        } catch (Exception $e) {
+            if (config('osu.beatmap_processor.sentry')) {
+                $tags = [
+                    'beatmapset_id' => $this->beatmapset->beatmapset_id,
+                ];
+                $client = new Raven_Client(config('osu.beatmap_processor.sentry'), ['tags' => $tags]);
+                $client->captureException($e);
+                throw new SilencedException("Silenced Exception: [{get_class($e)}] " . $e->getMessage());
+            }
+        }
     }
 }
