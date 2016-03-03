@@ -552,7 +552,9 @@ class BeatmapSet extends Model
         $beatmap = $this->beatmaps()->first();
         $beatmapFilename = $beatmap->filename;
         $bg = $this::scanBMForBG("$workingFolder/$beatmapFilename");
+        $bg = str_replace("\\", "/", $bg); // windows pathing woo
         if (!$bg) {
+            $this->update(['cover_updated_at' => $this->freshTimestamp()]);
             return false;
         }
 
