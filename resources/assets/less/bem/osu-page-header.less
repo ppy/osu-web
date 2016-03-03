@@ -19,7 +19,7 @@
 
 .osu-page-header {
   background-size: cover;
-
+  .default-box-shadow;
   padding: (@spacing * 2);
 
   @media @desktop {
@@ -29,6 +29,11 @@
 
   &--tournaments {
     .at2x-simple("/images/headers/tournament.jpg");
+  }
+
+  &--slack {
+    .at2x-simple("/images/headers/slack.png");
+    height: 200px;
   }
 
   &__title {
@@ -44,4 +49,8 @@
     }
   }
 
+  &__title-box {
+    position: absolute;
+    bottom: (@spacing * 2 - 10px);
+  }
 }

@@ -19,10 +19,10 @@
 
 @section("content")
     <div class="osu-layout__row osu-layout__row--page-compact">
-        <div class="slack-header">
-            <div class="slack-header__text-container">
-                <h2 class="slack-header__text slack-header__text--small">{{ trans('community.slack.header.small') }}</h2>
-                <h1 class="slack-header__text slack-header__text--large">{{ trans('community.slack.header.large') }}</h1>
+        <div class="osu-page-header osu-page-header--slack">
+            <div class="osu-page-header__title-box">
+                <h2 class="osu-page-header__title osu-page-header__title--small">{{ trans('community.slack.header.small') }}</h2>
+                <h1 class="osu-page-header__title">{{ trans('community.slack.header.large') }}</h1>
             </div>
         </div>
     </div>
