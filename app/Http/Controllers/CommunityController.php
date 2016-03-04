@@ -101,7 +101,7 @@ class CommunityController extends Controller
         $isEligible = false;
         $accepted = false;
         $isInviteAccepted = false;
-        $mail = config('osu.emails.account');
+        $supportMail = config('osu.emails.account');
 
         if (Auth::check()) {
             $user = Auth::user();

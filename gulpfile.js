@@ -79,8 +79,9 @@ elixir(function(mix) {
     'react/beatmaps.coffee'
   ], 'public/js/react/beatmaps.js')
   .coffee([
-    'react/slack-button-container.coffee'
-  ], 'public/js/react/slack-button-container.js')
+    'react/slack-page/*.coffee',
+    'react/slack-page.coffee'
+  ], 'public/js/react/slack-page.js')
   .version([
     'css/app.css',
     'js/app.js',

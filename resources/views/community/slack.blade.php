@@ -36,7 +36,7 @@
                 <p>{!! trans('community.slack.bullet-points', ['link' => config('slack.link')]) !!}</p>
             </div>
         </div>
-        <div class="osu-layout__row js-slack-button-container"></div>
+        <div class="osu-layout__row js-react__slack-button-container"></div>
     </div>
 @endsection
 
@@ -45,7 +45,7 @@
         var accepted = {!! json_encode($accepted) !!};
         var isInviteAccepted = {!! json_encode($isInviteAccepted) !!};
         var isEligible = {!! json_encode($isEligible) !!};
-        var mail = {!! json_encode($mail) !!};
+        var supportMail = {!! json_encode($mail) !!};
     </script>
 
     <script src="{{ elixir("js/react/slack-button-container.js") }}" data-turbolinks-track></script>
