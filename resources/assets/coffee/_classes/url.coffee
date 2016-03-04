@@ -19,4 +19,6 @@ class @Url
   @updateProfileAccount: '/account/update-profile'
   @pageAccount: '/account/page'
 
+  @requestSlackInvite: '/community/slack/agree'
+
   @user: (id) => "/u/#{id}"

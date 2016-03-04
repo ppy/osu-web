@@ -36,21 +36,16 @@
                 <p>{!! trans('community.slack.bullet-points', ['link' => config('slack.link')]) !!}</p>
             </div>
         </div>
-        <div class="osu-layout__row">
-            <div class="slack-button-container">
-                @if ($accepted === true || ($agree === true && $isEligible == true))
-                    <p class="slack-button-container__accepted">{{ trans('community.slack.accepted') }}</p>
-                @else
-                    <p class="slack-button-container__issues
-                              @if ($isEligible === true)
-                                slack-button-container__issues--hidden
-                              @endif">{!! trans('community.slack.recent-issues', ['mail' => config('osu.emails.account')]) !!}</p>
-                    <form>
-                        <input type="hidden" name="agree" value="1">
-                        <button class="btn-osu slack-button-container__button {{ $isEligible === true ? 'btn-osu-default' : 'disabled' }}" type="submit" formaction="{{ route('slack') }}">{{ trans('community.slack.agree-button') }}</button>
-                    </form>
-                @endif
-            </div>
-        </div>
+        <div class="osu-layout__row js-slack-button-container"></div>
     </div>
+@endsection
+
+@section("script")
+    <script data-turbolinks-eval="always">
+        var accepted = {!! json_encode($accepted) !!};
+        var isEligible = {!! json_encode($isEligible) !!};
+        var mail = {!! json_encode($mail) !!};
+    </script>
+
+    <script src="{{ elixir("js/react/slack-button-container.js") }}" data-turbolinks-track></script>
 @endsection

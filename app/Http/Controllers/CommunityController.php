@@ -24,6 +24,7 @@ use Auth;
 use Redirect;
 use Illuminate\Http\Request as HttpRequest;
 use Request;
+use App\Models\SlackUser;
 
 class CommunityController extends Controller
 {
@@ -98,21 +99,53 @@ class CommunityController extends Controller
 
     public function getSlack()
     {
+        $isEligible = false;
+        $accepted = false;
+        $mail = config('osu.emails.account');
+
         if (Auth::check()) {
             $user = Auth::user();
 
-            $agree = Request::has('agree') ? Request::input('agree') === '1' : false;
             $isEligible = $user->isSlackEligible();
             $accepted = $user->isSlackAccepted();
+        }
 
-            if ($agree && $isEligible) {
+        return view('community.slack', compact('isEligible', 'accepted', 'mail'));
+    }
+
+    public function postSlackAgree()
+    {
+        $message = 'errors.unknown';
+
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            if (true) {
                 $token = config('slack.token');
-                file_get_contents("https://osu-public.slack.com/api/users.admin.invite?email={$user->user_email}&token={$token}&set_active=true");
-            }
+                $contents = file_get_contents("https://osu-public.slack.com/api/users.admin.invite?email={$user->user_email}&token={$token}&set_active=true");
 
-            return view('community.slack', compact('agree', 'isEligible', 'accepted'));
+                if ($contents) {
+                    $contents = json_decode($contents, true);
+                    
+                    if ($contents['ok'] === true)
+                    {
+                        $slackUser = new SlackUser();
+                        $slackUser->slack_id = null;
+
+                        $user->slackUsers()->save($slackUser);
+
+                        return ['ok' => true];
+                    } else {
+                        return error_popup(trans($message));
+                    }
+                } else {
+                    return error_popup(trans($message));
+                }
+            } else {
+                return error_popup(trans($message));
+            }
         } else {
-            return view('community.slack');
+            abort (403);
         }
     }
 }

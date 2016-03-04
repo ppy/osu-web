@@ -78,10 +78,14 @@ elixir(function(mix) {
     'react/beatmaps/*.coffee',
     'react/beatmaps.coffee'
   ], 'public/js/react/beatmaps.js')
+  .coffee([
+    'react/slack-button-container.coffee'
+  ], 'public/js/react/slack-button-container.js')
   .version([
     'css/app.css',
     'js/app.js',
     'js/react/profile-page.js',
     'js/react/beatmaps.js',
+    'js/react/slack-button-container.js',
   ]);
 });
