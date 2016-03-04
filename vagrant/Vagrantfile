@@ -24,6 +24,7 @@ echo setup osu!web stuff
 mysql -u root < vagrant/mysql_user.sql
 cp .env.example .env
 sudo -H -u vagrant ./build.sh
+./bin/db_seed
 
 date > /etc/vagrant_provisioned_at
 SCRIPT
