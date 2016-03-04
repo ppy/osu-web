@@ -25,8 +25,7 @@ class UserProfileSeeder extends Seeder
         // FAVOURITE BEATMAPS AND BEATMAP PLAYCOUNTS FOR EACH USER
 
         foreach (App\Models\User::all()as $usr) {
-            // $usr = App\Models\User::find($usr_id);
-          $bms = $usr->scoresBestOsu()->get();
+            $bms = $usr->scoresBestOsu()->get();
             $usr_id = $usr->user_id;
 
             foreach ($bms as $bm) {
@@ -38,9 +37,9 @@ class UserProfileSeeder extends Seeder
                 $fav->user_id = $usr_id;
                 $fav->save();
 
-            // Add a random couple few first place ranks
+                // Add a random couple few first place ranks
 
-            $bm = $bms[rand(0, count($bms) - 1)];
+                $bm = $bms[rand(0, count($bms) - 1)];
                 if (DB::table('osu_user_beatmap_playcount')->where('user_id', $usr_id)->where('beatmap_id', $bm['beatmap_id'])->first()) {
                     DB::table('osu_user_beatmap_playcount')->where('user_id', $usr_id)->where('beatmap_id', $bm['beatmap_id'])->delete();
                 }

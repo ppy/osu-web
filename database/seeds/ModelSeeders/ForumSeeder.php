@@ -35,8 +35,6 @@ class ForumSeeder extends Seeder
                 }
                 // Refresh topic cache (updates last post times etc)
                 $t->refreshCache();
-                // Update user forum cache (this doesn't appear to be necessary)
-                // App\Models\User::find($p->poster_id)->refreshForumCache($f2, 1);
               }
               // Refresh forum cache
               $f2->refreshCache();

@@ -33,32 +33,30 @@ class EventSeeder extends Seeder
 
         foreach ($users as $u) {
             if ($beatmapCount > 0) {
-                // Create rank events
-          $all_beatmaps = App\Models\Beatmap::orderByRaw('RAND()')->get();
+                $all_beatmaps = App\Models\Beatmap::orderByRaw('RAND()')->get();
                 for ($c = 0; $c < 4; $c++) {
                     if ($all_beatmaps[$c]) {
                         $bm = $all_beatmaps[$c];
                         $bms = App\Models\BeatmapSet::find($bm->beatmapset_id);
                         if (isset($bms)) {
-                            $is_rank_1 = $faker->boolean(20); // 20% chance of being a rank 1 event
-                if ($is_rank_1 === true) {
-                    $rank = 1;
-                    $epicfactor = 2;
-                } else {
-                    $rank = strval(rand(1, 499));
-                    $epicfactor = 1;
-                };
-                            $txt = $generateEventText($bm, $bms, $u, $rank);
-
-                            $ev = $u->events()->save(App\Models\Event::create([
-                  'user_id' => $u->user_id,
-                  'text' => $txt,
-                  'text_clean' => $txt,
-                  'epicfactor' => $epicfactor,
-                  'beatmap_id' => $bm->beatmap_id,
-                  'beatmapset_id' => $bm->beatmapset_id,
-                  'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now
-                ]));
+                            $is_rank_1 = $faker->boolean(20);
+                            if ($is_rank_1 === true) {
+                                $rank = 1;
+                                $epicfactor = 2;
+                            } else {
+                                $rank = strval(rand(1, 499));
+                                $epicfactor = 1;
+                            };
+                              $txt = $generateEventText($bm, $bms, $u, $rank);
+                              $ev = $u->events()->save(App\Models\Event::create([
+                              'user_id' => $u->user_id,
+                              'text' => $txt,
+                              'text_clean' => $txt,
+                              'epicfactor' => $epicfactor,
+                              'beatmap_id' => $bm->beatmap_id,
+                              'beatmapset_id' => $bm->beatmapset_id,
+                              'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now
+                            ]));
                         }
                     }
                 }
