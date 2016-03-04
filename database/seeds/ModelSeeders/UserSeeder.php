@@ -13,12 +13,12 @@ class UserSeeder extends Seeder
     public function run()
     {
         //test
-      DB::table('phpbb_users')->delete();
-        DB::table('osu_user_stats')->delete();
-        DB::table('osu_user_stats_fruits')->delete();
-        DB::table('osu_user_stats_mania')->delete();
-        DB::table('osu_user_stats_taiko')->delete();
-        DB::table('osu_user_performance_rank')->delete();
+        // DB::table('phpbb_users')->delete();
+        // DB::table('osu_user_stats')->delete();
+        // DB::table('osu_user_stats_fruits')->delete();
+        // DB::table('osu_user_stats_mania')->delete();
+        // DB::table('osu_user_stats_taiko')->delete();
+        // DB::table('osu_user_performance_rank')->delete();
 
         $this->beatmapCount = App\Models\Beatmap::count();
         $this->faker = Faker::create();

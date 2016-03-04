@@ -36,7 +36,15 @@ Using Laravel's [Elixir](http://laravel.com/docs/5.1/elixir).
     $ cd /data/osu\!web
     $ php artisan lang:js resources/assets/js/messages.js
     $ ./node_modules/.bin/gulp
-    
+
+### Reset the database + add sample data
+
+    c:\osuweb\vagrant> vagrant ssh
+    $ cd /data/osu\!web
+    $ php artisan migrate:refresh --seed
+
+Run the above command to rebuild the database and seed with sample data.
+
 Developing
 ---------
 
