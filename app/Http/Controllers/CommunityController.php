@@ -139,7 +139,7 @@ class CommunityController extends Controller
                         $slackUser = new SlackUser();
                         $slackUser->slack_id = null;
 
-                        $user->slackUsers()->save($slackUser);
+                        $user->slackUser()->save($slackUser);
 
                         return ['ok' => true];
                     } else {
