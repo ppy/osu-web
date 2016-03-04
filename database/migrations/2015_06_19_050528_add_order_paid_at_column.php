@@ -30,6 +30,7 @@ class AddOrderPaidAtColumn extends Migration
     {
         Schema::connection('mysql-store')->table('orders', function ($table) {
             $table->timestamp('paid_at')->nullable()->after('tracking_code');
+            $table->index('paid_at', 'paid_at');
         });
     }
 
