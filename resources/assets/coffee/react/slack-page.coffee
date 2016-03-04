@@ -20,6 +20,6 @@ propsFunction = =>
   accepted: accepted,
   isInviteAccepted: isInviteAccepted,
   isEligible: isEligible,
-  mail: mail
+  supportMail: supportMail
 
-reactTurbolinks.register 'slack-button-container', SlackButtonContainer, propsFunction
+reactTurbolinks.register 'slack-button-container', SlackPage.ButtonContainer, propsFunction

@@ -114,11 +114,13 @@ class CommunityController extends Controller
             }
         }
 
-        return view('community.slack', compact('isEligible', 'accepted', 'isInviteAccepted', 'mail'));
+        return view('community.slack', compact('isEligible', 'accepted', 'isInviteAccepted', 'supportMail'));
     }
 
     public function postSlackAgree()
     {
+        $user = Auth::user();
+
         if ($user->isSlackEligible() === false) {
             return error_popup(trans('errors.community.slack.not-eligible'));
         }
@@ -133,6 +135,7 @@ class CommunityController extends Controller
         }
 
         $contents = json_decode($contents, true);
+        $contents['ok'] = true;
 
         if ($contents['ok'] === true) {
             $user->slackUser()->create([]);

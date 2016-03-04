@@ -17,7 +17,7 @@
 ###
 {div, p, button} = React.DOM
 
-class SlackButtonContainer extends React.Component
+class SlackPage.ButtonContainer extends React.Component
   constructor: (props) ->
     super props
 

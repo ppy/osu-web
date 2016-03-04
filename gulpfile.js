@@ -87,6 +87,6 @@ elixir(function(mix) {
     'js/app.js',
     'js/react/profile-page.js',
     'js/react/beatmaps.js',
-    'js/react/slack-button-container.js',
+    'js/react/slack-page.js',
   ]);
 });
