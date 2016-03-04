@@ -35,6 +35,8 @@ class Kernel extends ConsoleKernel
         'App\Console\Commands\ModdingRankCommand',
         'App\Console\Commands\ModdingScoreIndexCommand',
 
+        'App\Console\Commands\UserForumStatSyncCommand',
+
         // parsing html with regexp
         'App\Console\Commands\StoreCheckOrderTrackingStatus',
     ];
