@@ -47,16 +47,16 @@ class UserSeeder extends Seeder
         $rank2 = rand(1, 500000);
         $rank3 = rand(1, 500000);
         $rank4 = rand(1, 500000);
-        $st = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Osu::class)->create(['country_acronym' => $country_code, 'rank' => $rank1, 'rank_score_index'=>$rank1]));
-        $st1 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Taiko::class)->create(['country_acronym' => $country_code, 'rank' => $rank2, 'rank_score_index'=>$rank2]));
+        $st = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Osu::class)->create(['country_acronym' => $country_code, 'rank' => $rank1, 'rank_score_index' => $rank1]));
+        $st1 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Taiko::class)->create(['country_acronym' => $country_code, 'rank' => $rank2, 'rank_score_index' => $rank2]));
         if ($st1) {
             ++$this->stats_count;
         }
-        $st2 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Fruits::class)->create(['country_acronym' => $country_code, 'rank' => $rank3, 'rank_score_index'=>$rank3]));
+        $st2 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Fruits::class)->create(['country_acronym' => $country_code, 'rank' => $rank3, 'rank_score_index' => $rank3]));
         if ($st2) {
             ++$this->stats_count;
         }
-        $st3 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Mania::class)->create(['country_acronym' => $country_code, 'rank' => $rank4, 'rank_score_index'=>$rank4]));
+        $st3 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Mania::class)->create(['country_acronym' => $country_code, 'rank' => $rank4, 'rank_score_index' => $rank4]));
         if ($st3) {
             ++$this->stats_count;
         }
