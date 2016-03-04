@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# this should only be temporary
+
+set -e
+set -u
+
+# goes to top directory.
+cd "$(dirname "${0}")/.."
+
+for db in osu osu_store; do
+  file="database/db-${db}-data.sql"
+  test -f "${file}" || continue
+  mysql -u root "${db}" < "${file}"
+done
