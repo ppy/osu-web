@@ -539,8 +539,8 @@ class User extends Model implements AuthenticatableContract
     }
 
     public function rankHistories()
-    {
-        return $this->hasMany("App\Models\RankHistory", 'user_id', 'user_id');
+    {        
+        return $this->hasMany(RankHistory::class);
     }
 
     public function country()
