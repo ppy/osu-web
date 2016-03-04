@@ -46,8 +46,7 @@ class BeatmapSeeder extends Seeder
                   $set_playcount += $bm->playcount;
               } else {
                   // Create new beatmapset based on the PREVIOUS beatmap (since current one is in the next set)
-                  rtrim($beatmap_diff_names, ','); // take last comma off string
-                  // echo 'Set ID: '.$previous_beatmap->beatmapset_id.' Difficulties: '.$beatmap_diff_names.'<br>';
+                  rtrim($beatmap_diff_names, ',');
                   $set = \App\Models\BeatmapSet::where('beatmapset_id', $previous_beatmap->beatmapset_id)->first();
                   if ($set) {
                       $set->delete();
@@ -75,8 +74,7 @@ class BeatmapSeeder extends Seeder
                   $set->difficulty_names = $beatmap_diff_names;
                   $beatmapset_array[] = $set;
 
-                     // Reset variables to contain only current beatmap
-                     $set_playcount = $bm->playcount;
+                  $set_playcount = $bm->playcount;
                   $beatmapset_versions = 1;
                   $beatmap_diff_names = $bm->version;
               }
@@ -94,10 +92,10 @@ class BeatmapSeeder extends Seeder
                 $new_bm->total_length = $bm->total_length;
                 $new_bm->hit_length = $bm->hit_length;
                 $new_bm->countTotal = $bm->max_combo !== null ? $bm->max_combo : 1500;
-                $new_bm->countNormal = round(intval($bm->max_combo) - (0.2 * intval($bm->max_combo))); // sample
-                       $new_bm->countSlider = round(intval($bm->max_combo) - (0.8 * intval($bm->max_combo))) - 1; // sample
-                       $new_bm->countSpinner = 1; // sample
-                       $new_bm->diff_drain = $bm->diff_drain;
+                $new_bm->countNormal = round(intval($bm->max_combo) - (0.2 * intval($bm->max_combo)));
+                $new_bm->countSlider = round(intval($bm->max_combo) - (0.8 * intval($bm->max_combo))) - 1;
+                $new_bm->countSpinner = 1;
+                $new_bm->diff_drain = $bm->diff_drain;
                 $new_bm->diff_size = $bm->diff_size;
                 $new_bm->diff_overall = $bm->diff_overall;
                 $new_bm->diff_approach = $bm->diff_approach;
