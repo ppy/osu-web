@@ -47,8 +47,8 @@ class EventSeeder extends Seeder
                                 $rank = strval(rand(1, 499));
                                 $epicfactor = 1;
                             };
-                              $txt = $generateEventText($bm, $bms, $u, $rank);
-                              $ev = $u->events()->save(App\Models\Event::create([
+                            $txt = $generateEventText($bm, $bms, $u, $rank);
+                            $ev = $u->events()->save(App\Models\Event::create([
                               'user_id' => $u->user_id,
                               'text' => $txt,
                               'text_clean' => $txt,

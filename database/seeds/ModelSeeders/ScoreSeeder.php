@@ -36,16 +36,16 @@ class ScoreSeeder extends Seeder
         $possible_ranks = ['A', 'S', 'B', 'SH', 'XH', 'X'];
 
         foreach ($users as $k => $u) {
-          $osuBeatmaps = $beatmaps->where('playmode', 0)->take(20);
-          $taikoBeatmaps = $beatmaps->where('playmode', 1)->take(20);
-          $fruitsBeatmaps = $beatmaps->where('playmode', 2)->take(20);
-          $maniaBeatmaps = $beatmaps->where('playmode', 3)->take(20);
+            $osuBeatmaps = $beatmaps->where('playmode', 0)->take(20);
+            $taikoBeatmaps = $beatmaps->where('playmode', 1)->take(20);
+            $fruitsBeatmaps = $beatmaps->where('playmode', 2)->take(20);
+            $maniaBeatmaps = $beatmaps->where('playmode', 3)->take(20);
 
           //add 20 osu! Standard scores
           foreach ($osuBeatmaps as $bm) {
-            $bms = $allBeatmapSets->find($bm->beatmapset_id);
-            $maxcombo = rand(1, 5000);
-            $possible_mods = [0, 16, 24, 64, 72]; // hr, hd/hr, dt, hd/dt
+              $bms = $allBeatmapSets->find($bm->beatmapset_id);
+              $maxcombo = rand(1, 5000);
+              $possible_mods = [0, 16, 24, 64, 72]; // hr, hd/hr, dt, hd/dt
             $sc = App\Models\Score\Osu::create([
               'user_id' => $u->user_id,
               'beatmap_id' => $bm->beatmap_id,
@@ -64,7 +64,7 @@ class ScoreSeeder extends Seeder
               'rank' => $possible_ranks[array_rand($possible_ranks)],
             ]);
 
-            $sc2 = App\Models\Score\Best\Osu::create([
+              $sc2 = App\Models\Score\Best\Osu::create([
               'user_id' => $u->user_id,
               'beatmap_id' => $bm->beatmap_id,
               'beatmapset_id' => $bm->beatmapset_id,
@@ -85,10 +85,10 @@ class ScoreSeeder extends Seeder
 
           //Taiko scores
           foreach ($taikoBeatmaps as $bm) {
-            $bms = $allBeatmapSets->find($bm->beatmapset_id);
-            $maxcombo = rand(1, 5000);
-            $possible_mods = [0, 16, 24, 64, 72];
-            $sc3 = App\Models\Score\Taiko::create([
+              $bms = $allBeatmapSets->find($bm->beatmapset_id);
+              $maxcombo = rand(1, 5000);
+              $possible_mods = [0, 16, 24, 64, 72];
+              $sc3 = App\Models\Score\Taiko::create([
               'user_id' => $u->user_id,
               'beatmap_id' => $bm->beatmap_id,
               'beatmapset_id' => $bm->beatmapset_id,
@@ -106,7 +106,7 @@ class ScoreSeeder extends Seeder
               'rank' => $possible_ranks[array_rand($possible_ranks)],
             ]);
 
-            $sc4 = App\Models\Score\Best\Taiko::create([
+              $sc4 = App\Models\Score\Best\Taiko::create([
               'user_id' => $u->user_id,
               'beatmap_id' => $bm->beatmap_id,
               'beatmapset_id' => $bm->beatmapset_id,
@@ -127,10 +127,10 @@ class ScoreSeeder extends Seeder
 
           //Fruits scores
           foreach ($fruitsBeatmaps as $bm) {
-            $bms = $allBeatmapSets->find($bm->beatmapset_id);
-            $maxcombo = rand(1, 5000);
-            $possible_mods = [0, 16, 24, 64, 72];
-            $sc5 = App\Models\Score\Fruits::create([
+              $bms = $allBeatmapSets->find($bm->beatmapset_id);
+              $maxcombo = rand(1, 5000);
+              $possible_mods = [0, 16, 24, 64, 72];
+              $sc5 = App\Models\Score\Fruits::create([
               'user_id' => $u->user_id,
               'beatmap_id' => $bm->beatmap_id,
               'beatmapset_id' => $bm->beatmapset_id,
@@ -148,7 +148,7 @@ class ScoreSeeder extends Seeder
               'pass' => $faker->boolean(85), //85% chance of pass
             ]);
 
-            $sc6 = App\Models\Score\Best\Fruits::create([
+              $sc6 = App\Models\Score\Best\Fruits::create([
               'user_id' => $u->user_id,
               'beatmap_id' => $bm->beatmap_id,
               'beatmapset_id' => $bm->beatmapset_id,
@@ -169,9 +169,9 @@ class ScoreSeeder extends Seeder
 
           //Mania scores
           foreach ($maniaBeatmaps as $bm) {
-            $bms = $allBeatmapSets->find($bm->beatmapset_id);
-            $maxcombo = rand(1, 5000);
-            $possible_mods = [0, 16, 24, 64, 72]; // hr, hd/hr, dt, hd/dt
+              $bms = $allBeatmapSets->find($bm->beatmapset_id);
+              $maxcombo = rand(1, 5000);
+              $possible_mods = [0, 16, 24, 64, 72]; // hr, hd/hr, dt, hd/dt
             $sc7 = App\Models\Score\Mania::create([
             'user_id' => $u->user_id,
             'beatmap_id' => $bm->beatmap_id,
@@ -190,7 +190,7 @@ class ScoreSeeder extends Seeder
             'pass' => $faker->boolean(85), //85% chance of pass
           ]);
 
-            $sc8 = App\Models\Score\Best\Mania::create([
+              $sc8 = App\Models\Score\Best\Mania::create([
               'user_id' => $u->user_id,
               'beatmap_id' => $bm->beatmap_id,
               'beatmapset_id' => $bm->beatmapset_id,

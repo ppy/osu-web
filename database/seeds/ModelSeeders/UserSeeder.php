@@ -73,9 +73,9 @@ class UserSeeder extends Seeder
             default: $rank = $st->rank;
           }
 
-          $hist = new App\Models\RankHistory;
+            $hist = new App\Models\RankHistory;
 
-          $hist->mode = $c; // 0 = standard, 1 = taiko etc...
+            $hist->mode = $c; // 0 = standard, 1 = taiko etc...
 
           $play_freq = rand(10, 35); // How regulary the user plays (as a % chance per day)
 
