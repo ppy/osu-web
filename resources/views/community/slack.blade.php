@@ -43,6 +43,7 @@
 @section("script")
     <script data-turbolinks-eval="always">
         var accepted = {!! json_encode($accepted) !!};
+        var isInviteAccepted = {!! json_encode($isInviteAccepted) !!};
         var isEligible = {!! json_encode($isEligible) !!};
         var mail = {!! json_encode($mail) !!};
     </script>

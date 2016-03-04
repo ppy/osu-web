@@ -52,15 +52,24 @@ class SlackButtonContainer extends React.Component
 
     div className: 'slack-button-container',
       if @state.accepted
-        p className: 'slack-button-container__accepted',
-          Lang.get 'community.slack.accepted'
+        if @props.isInviteAccepted
+          p
+            className: 'slack-button-container__accepted slack-button-container__accepted--invite-accepted',
+            dangerouslySetInnerHTML: { __html: Lang.get('community.slack.invite-already-accepted', mail: @props.mail) }
+
+        else
+          p className: 'slack-button-container__accepted',
+            Lang.get 'community.slack.accepted'
+
       else
         div className: '',
-          p className: issuesClasses, dangerouslySetInnerHTML: { __html: Lang.get('community.slack.recent-issues', mail: @props.mail) }
+          p
+            className: issuesClasses,
+            dangerouslySetInnerHTML: { __html: Lang.get('community.slack.recent-issues', mail: @props.mail) }
           button className: buttonClasses, onClick: @sendInviteRequest,
             Lang.get 'community.slack.agree-button'
 
 target = document.getElementsByClassName('js-slack-button-container')[0]
-element = React.createElement SlackButtonContainer, accepted: accepted, isEligible: isEligible, mail: mail
+element = React.createElement SlackButtonContainer, accepted: accepted, isInviteAccepted: isInviteAccepted, isEligible: isEligible, mail: mail
 
 ReactDOM.render element, target

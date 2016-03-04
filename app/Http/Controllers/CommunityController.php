@@ -23,7 +23,6 @@ use Cache;
 use Auth;
 use Redirect;
 use Illuminate\Http\Request as HttpRequest;
-use Request;
 use App\Models\SlackUser;
 
 class CommunityController extends Controller
@@ -101,6 +100,7 @@ class CommunityController extends Controller
     {
         $isEligible = false;
         $accepted = false;
+        $isInviteAccepted = false;
         $mail = config('osu.emails.account');
 
         if (Auth::check()) {
@@ -108,9 +108,17 @@ class CommunityController extends Controller
 
             $isEligible = $user->isSlackEligible();
             $accepted = $user->isSlackAccepted();
+
+            if ($accepted) {
+                $slackUser = $user->slackUser()->first();
+
+                if ($slackUser->slack_id !== null) {
+                    $isInviteAccepted = true;
+                }
+            }
         }
 
-        return view('community.slack', compact('isEligible', 'accepted', 'mail'));
+        return view('community.slack', compact('isEligible', 'accepted', 'isInviteAccepted', 'mail'));
     }
 
     public function postSlackAgree()
@@ -126,9 +134,8 @@ class CommunityController extends Controller
 
                 if ($contents) {
                     $contents = json_decode($contents, true);
-                    
-                    if ($contents['ok'] === true)
-                    {
+
+                    if ($contents['ok'] === true) {
                         $slackUser = new SlackUser();
                         $slackUser->slack_id = null;
 
@@ -145,7 +152,7 @@ class CommunityController extends Controller
                 return error_popup(trans($message));
             }
         } else {
-            abort (403);
+            abort(403);
         }
     }
 }
