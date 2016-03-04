@@ -15,7 +15,7 @@ class MiscSeeder extends Seeder
 
           //DELETE TABLES
           DB::table('osu_genres')->delete();
-          DB::table('osu_languages')->delete();
+            DB::table('osu_languages')->delete();
 
           //COUNTS
           if (!DB::table('osu_counts')->where('name', 'pp_rank_column')->get()) {
