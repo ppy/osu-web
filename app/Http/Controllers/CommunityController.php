@@ -107,14 +107,10 @@ class CommunityController extends Controller
             $user = Auth::user();
 
             $isEligible = $user->isSlackEligible();
-            $accepted = $user->isSlackAccepted();
 
-            if ($accepted) {
-                $slackUser = $user->slackUser()->first();
-
-                if ($slackUser->slack_id !== null) {
-                    $isInviteAccepted = true;
-                }
+            if ($user->slackUser !== null) {
+                $accepted = true;
+                $isInviteAccepted = $user->slackUser->slack_id !== null;
             }
         }
 
@@ -123,33 +119,27 @@ class CommunityController extends Controller
 
     public function postSlackAgree()
     {
-        $message = 'errors.unknown';
+        if ($user->isSlackEligible() === false) {
+            return error_popup(trans('errors.community.slack.not-eligible'));
+        }
 
-        if (Auth::check()) {
-            $user = Auth::user();
+        $user = Auth::user();
 
-            if ($user->isSlackEligible()) {
-                $token = config('slack.token');
-                $contents = file_get_contents("https://osu-public.slack.com/api/users.admin.invite?email={$user->user_email}&token={$token}&set_active=true");
+        $token = config('slack.token');
+        $contents = file_get_contents("https://osu-public.slack.com/api/users.admin.invite?email={$user->user_email}&token={$token}&set_active=true");
 
-                if ($contents) {
-                    $contents = json_decode($contents, true);
+        if ($contents === false) {
+            return error_popup(trans('errors.community.slack.slack-error'));
+        }
 
-                    if ($contents['ok'] === true) {
-                        $user->slackUser()->create([]);
+        $contents = json_decode($contents, true);
 
-                        return ['ok' => true];
-                    } else {
-                        return error_popup(trans($message));
-                    }
-                } else {
-                    return error_popup(trans($message));
-                }
-            } else {
-                return error_popup(trans($message));
-            }
+        if ($contents['ok'] === true) {
+            $user->slackUser()->create([]);
+
+            return ['ok' => true];
         } else {
-            abort(403);
+            return error_popup(trans(trans('errors.community.slack.slack-error')));
         }
     }
 }

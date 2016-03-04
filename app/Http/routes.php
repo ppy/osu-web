@@ -82,7 +82,7 @@ Route::get('/community/chat', ['as' => 'chat', 'uses' => 'CommunityController@ge
 Route::get('/community/profile/{id}', function ($id) { return Redirect::route('users.show', $id); });
 
 Route::get('/community/slack', ['as' => 'slack', 'uses' => 'CommunityController@getSlack']);
-Route::post('/community/slack/agree', ['as' => 'slack.agree', 'uses' => 'CommunityController@postSlackAgree']);
+Route::post('/community/slack/agree', ['as' => 'slack.agree', 'uses' => 'CommunityController@postSlackAgree', 'middleware' => 'auth']);
 
 Route::get('/u/{id}', ['as' => 'users.show', 'uses' => 'UsersController@show']);
 
