@@ -528,7 +528,7 @@ class User extends Model implements AuthenticatableContract
 
     public function slackUser()
     {
-        return $this->hasOne("App\Models\SlackUser", 'user_id');
+        return $this->hasOne(SlackUser::class, 'user_id');
     }
 
     //public function country() { return $this->hasOne("Country"); }
@@ -970,7 +970,7 @@ class User extends Model implements AuthenticatableContract
 
     public function isSlackAccepted()
     {
-        return $this->slackUser()->count() > 0;
+        return $this->slackUser()->exists();
     }
 
     public function isSlackEligible()
