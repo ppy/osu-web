@@ -31,6 +31,7 @@ $factory->defineAs(App\Models\Forum\Forum::class, 'child', function (Faker\Gener
 
 $factory->define(App\Models\Forum\Topic::class, function (Faker\Generator $faker) {
     $u = User::orderByRaw('RAND()')->first();
+
     return  [
         'topic_poster' => $u->user_id,
         'topic_first_poster_name' => $u->username,
@@ -43,6 +44,7 @@ $factory->define(App\Models\Forum\Topic::class, function (Faker\Generator $faker
 
 $factory->define(App\Models\Forum\Post::class, function (Faker\Generator $faker) {
     $u = User::orderByRaw('RAND()')->first();
+
     return  [
         'poster_id' => $u->user_id,
         'post_username' => $u->username,

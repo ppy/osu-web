@@ -24,6 +24,7 @@ class ScoreSeeder extends Seeder
 
         if ($beatmapCount < 1) {
             $this->command->error('Unable to seed scores due to not having enough beatmap data.');
+
             return;
         }
 

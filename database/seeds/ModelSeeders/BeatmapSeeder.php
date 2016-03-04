@@ -21,6 +21,7 @@ class BeatmapSeeder extends Seeder
         $api_key = env('OSU_API_KEY', null);
         if (empty($api_key)) {
             $this->command->error('Error: No OSU_API_KEY value set in .env file. Can\'t seed beatmap data!');
+
             return;
         }
         $api = '&k='.$api_key;
