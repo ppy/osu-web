@@ -128,7 +128,7 @@ class CommunityController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
 
-            if (true) {
+            if ($user->isSlackEligible()) {
                 $token = config('slack.token');
                 $contents = file_get_contents("https://osu-public.slack.com/api/users.admin.invite?email={$user->user_email}&token={$token}&set_active=true");
 
@@ -136,10 +136,7 @@ class CommunityController extends Controller
                     $contents = json_decode($contents, true);
 
                     if ($contents['ok'] === true) {
-                        $slackUser = new SlackUser();
-                        $slackUser->slack_id = null;
-
-                        $user->slackUser()->save($slackUser);
+                        $user->slackUser()->create([]);
 
                         return ['ok' => true];
                     } else {
