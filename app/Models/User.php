@@ -539,7 +539,7 @@ class User extends Model implements AuthenticatableContract
     }
 
     public function rankHistories()
-    {        
+    {
         return $this->hasMany(RankHistory::class);
     }
 
