@@ -28,7 +28,7 @@ class MiscSeeder extends Seeder
 
           //GENRES
           DB::table('osu_genres')->insert([
-            ['genre_id' => 0, 'name' => 'Any'],
+            ['genre_id' => 99, 'name' => 'Any'],
             ['genre_id' => 1, 'name' => 'Unspecified'],
             ['genre_id' => 2, 'name' => 'Video Game'],
             ['genre_id' => 3, 'name' => 'Anime'],
@@ -40,11 +40,14 @@ class MiscSeeder extends Seeder
             ['genre_id' => 9, 'name' => 'Hip Hop'],
             ['genre_id' => 10, 'name' => 'Electronic'],
           ]);
+          $any_genre = \App\Models\Genre::find(99);
+          $any_genre->genre_id = 0;
+          $any_genre->save();
           //  END GENRES
 
           //LANGUAGES
           DB::table('osu_languages')->insert([
-            ['language_id' => 0, 'name' => 'Any', 'display_order' => 0],
+            ['language_id' => 99, 'name' => 'Any', 'display_order' => 0],
             ['language_id' => 1, 'name' => 'Other', 'display_order' => 11],
             ['language_id' => 2, 'name' => 'English', 'display_order' => 1],
             ['language_id' => 3, 'name' => 'Japanese', 'display_order' => 6],
@@ -57,6 +60,9 @@ class MiscSeeder extends Seeder
             ['language_id' => 10, 'name' => 'Spanish', 'display_order' => 8],
             ['language_id' => 11, 'name' => 'Italian', 'display_order' => 5],
           ]);
+          $any_language = \App\Models\Language::find(99);
+          $any_language->language_id = 0;
+          $any_language->save();
           //END LANGUAGES
         } catch (\Illuminate\Database\QueryException $e) {
             echo $e->getMessage()."\r\n";
