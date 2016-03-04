@@ -73,7 +73,7 @@ class StoreController extends Controller
             ->with('products', Store\Product::latest()->simplePaginate(30));
     }
 
-    public function getInvoice($id)
+    public function getInvoice($id = null)
     {
         $order = Store\Order::findOrFail($id);
         if ($order->shipping === null) {

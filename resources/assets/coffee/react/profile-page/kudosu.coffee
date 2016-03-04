@@ -22,7 +22,7 @@ class ProfilePage.Kudosu extends React.Component
     el 'div',
       className: 'profile-extra'
 
-      @props.header
+      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       el 'div', className: 'kudosu-box',
         el 'div', className: 'kudosu-box__content',

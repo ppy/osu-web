@@ -10,7 +10,8 @@ _mysqldump() {
 }
 
 _mysqldump osu \
-  migrations \
+  forum_forum_covers \
+  forum_topic_covers \
   osu_achievements \
   osu_apikeys \
   osu_beatmaps \
@@ -69,7 +70,6 @@ _mysqldump osu_store \
 > "${root}/db-osu_store-structure.sql"
 
 mysqldump -t --skip-opt osu \
-  migrations \
   osu_genres \
   osu_languages \
 > "${root}/db-osu-data.sql"
