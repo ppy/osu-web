@@ -40,9 +40,9 @@ class MiscSeeder extends Seeder
             ['genre_id' => 9, 'name' => 'Hip Hop'],
             ['genre_id' => 10, 'name' => 'Electronic'],
           ]);
-          $any_genre = \App\Models\Genre::find(99);
-          $any_genre->genre_id = 0;
-          $any_genre->save();
+            $any_genre = \App\Models\Genre::find(99);
+            $any_genre->genre_id = 0;
+            $any_genre->save();
           //  END GENRES
 
           //LANGUAGES
@@ -60,9 +60,9 @@ class MiscSeeder extends Seeder
             ['language_id' => 10, 'name' => 'Spanish', 'display_order' => 8],
             ['language_id' => 11, 'name' => 'Italian', 'display_order' => 5],
           ]);
-          $any_language = \App\Models\Language::find(99);
-          $any_language->language_id = 0;
-          $any_language->save();
+            $any_language = \App\Models\Language::find(99);
+            $any_language->language_id = 0;
+            $any_language->save();
           //END LANGUAGES
         } catch (\Illuminate\Database\QueryException $e) {
             echo $e->getMessage()."\r\n";
