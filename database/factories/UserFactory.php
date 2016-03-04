@@ -30,11 +30,11 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     }
 
     return [
-      'username' => $username,
-      'username_clean' => $username,
-      'user_id' => $userid,
-      'user_password' => password_hash(md5('password'), PASSWORD_BCRYPT),
-      'user_lastvisit' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now
-      'user_posts' => rand(1, 500),
-  ];
+        'username' => $username,
+        'username_clean' => $username,
+        'user_id' => $userid,
+        'user_password' => password_hash(md5('password'), PASSWORD_BCRYPT),
+        'user_lastvisit' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now
+        'user_posts' => rand(1, 500),
+    ];
 });

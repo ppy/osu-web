@@ -18,12 +18,11 @@ class BeatmapSeeder extends Seeder
 
         $count_api_calls = 0;
         $base_url = 'https://osu.ppy.sh/api/';
-        $api_key = env('OSU_API_KEY', null); // Set your osu API key in your .env file
-          if (empty($api_key)) {
-              $this->command->error('Error: No OSU_API_KEY value set in .env file. Can\'t seed beatmap data!');
-
-              return;
-          }
+        $api_key = env('OSU_API_KEY', null);
+        if (empty($api_key)) {
+            $this->command->error('Error: No OSU_API_KEY value set in .env file. Can\'t seed beatmap data!');
+            return;
+        }
         $api = '&k='.$api_key;
         $beatmaplimit = 20;
 
@@ -38,46 +37,45 @@ class BeatmapSeeder extends Seeder
             $first_map = true;
 
             foreach ($beatmaps as $bm) {
+                // Here we are going to check if the current beatmap belongs to a new set, and make the set if necessary
+                if ($last_beatmapset === $bm->beatmapset_id || $first_map === true) {
+                    ++$beatmapset_versions;
+                    $beatmap_diff_names = $beatmap_diff_names.$bm->version.',';
+                    $set_playcount += $bm->playcount;
+                } else {
+                    // Create new beatmapset based on the PREVIOUS beatmap (since current one is in the next set)
+                    rtrim($beatmap_diff_names, ',');
+                    $set = \App\Models\BeatmapSet::where('beatmapset_id', $previous_beatmap->beatmapset_id)->first();
+                    if ($set) {
+                        $set->delete();
+                        $overbeatmapsets[] = $previous_beatmap->beatmapset_id;
+                    }
+                    $set = new \App\Models\BeatmapSet;
+                    $set->beatmapset_id = $previous_beatmap->beatmapset_id;
+                    $set->creator = $previous_beatmap->creator;
+                    $set->artist = $previous_beatmap->artist;
+                    $set->title = $previous_beatmap->title;
+                    $set->displaytitle = $previous_beatmap->title;
+                    $set->source = $previous_beatmap->source;
+                    $set->tags = $previous_beatmap->tags;
+                    $set->bpm = $previous_beatmap->bpm;
+                    $set->approved = $previous_beatmap->approved;
+                    $set->approved_date = $previous_beatmap->approved_date;
+                    $set->genre_id = $previous_beatmap->genre_id;
+                    $set->language_id = $previous_beatmap->language_id;
+                    $set->versions_available = $beatmapset_versions;
+                    $set->difficulty_names = $beatmap_diff_names;
+                    $set->play_count = $set_playcount;
+                    $set->favourite_count = $previous_beatmap->favourite_count;
+                    $set->save();
 
-              // Here we are going to check if the current beatmap belongs to a new set, and make the set if necessary
-              if ($last_beatmapset === $bm->beatmapset_id || $first_map === true) {
-                  ++$beatmapset_versions;
-                  $beatmap_diff_names = $beatmap_diff_names.$bm->version.',';
-                  $set_playcount += $bm->playcount;
-              } else {
-                  // Create new beatmapset based on the PREVIOUS beatmap (since current one is in the next set)
-                  rtrim($beatmap_diff_names, ',');
-                  $set = \App\Models\BeatmapSet::where('beatmapset_id', $previous_beatmap->beatmapset_id)->first();
-                  if ($set) {
-                      $set->delete();
-                      $overbeatmapsets[] = $previous_beatmap->beatmapset_id;
-                  }
-                  $set = new \App\Models\BeatmapSet;
-                  $set->beatmapset_id = $previous_beatmap->beatmapset_id;
-                  $set->creator = $previous_beatmap->creator;
-                  $set->artist = $previous_beatmap->artist;
-                  $set->title = $previous_beatmap->title;
-                  $set->displaytitle = $previous_beatmap->title;
-                  $set->source = $previous_beatmap->source;
-                  $set->tags = $previous_beatmap->tags;
-                  $set->bpm = $previous_beatmap->bpm;
-                  $set->approved = $previous_beatmap->approved;
-                  $set->approved_date = $previous_beatmap->approved_date;
-                  $set->genre_id = $previous_beatmap->genre_id;
-                  $set->language_id = $previous_beatmap->language_id;
-                  $set->versions_available = $beatmapset_versions;
-                  $set->difficulty_names = $beatmap_diff_names;
-                  $set->play_count = $set_playcount;
-                  $set->favourite_count = $previous_beatmap->favourite_count;
-                  $set->save();
+                    $set->difficulty_names = $beatmap_diff_names;
+                    $beatmapset_array[] = $set;
 
-                  $set->difficulty_names = $beatmap_diff_names;
-                  $beatmapset_array[] = $set;
-
-                  $set_playcount = $bm->playcount;
-                  $beatmapset_versions = 1;
-                  $beatmap_diff_names = $bm->version;
-              }
+                    $set_playcount = $bm->playcount;
+                    $beatmapset_versions = 1;
+                    $beatmap_diff_names = $bm->version;
+                }
 
                 if ($new_bm = \App\Models\Beatmap::where('beatmap_id', $bm->beatmap_id)->first()) {
                     $new_bm->delete();
@@ -115,7 +113,7 @@ class BeatmapSeeder extends Seeder
                 $previous_beatmap = $bm;
             } // end foreach beatmap
 
-             $this->command->info('Saved '.strval(count($beatmaps_array)).' Beatmaps (Overwritten '.strval(count($overbeatmaps)).').');
+            $this->command->info('Saved '.strval(count($beatmaps_array)).' Beatmaps (Overwritten '.strval(count($overbeatmaps)).').');
             $this->command->info('Saved '.strval(count($beatmapset_array)).' Beatmap Sets (Overwritten '.strval(count($overbeatmapsets)).').');
         } catch (\Illuminate\Database\QueryException $e) {
             $this->command->error("DB Error: Unable to save User Profile Data\r\n".$e->getMessage());

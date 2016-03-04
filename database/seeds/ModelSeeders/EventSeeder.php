@@ -25,8 +25,8 @@ class EventSeeder extends Seeder
         $rank_letter = $rank_letters[array_rand($rank_letters)];
 
         $string = "<img src='/images/".$rank_letter."_small.png'/> <b><a href='/u/".$u->user_id."'>".$u->username.'</a></b> achieved rank #'
-          .$rank." on <a href='/b/".$bm->beatmap_id."?m=0'>".$bms->artist.' - '.$bms->title
-          .' ['.$bm->version.']'.'</a> ('.$playmode.')';
+            .$rank." on <a href='/b/".$bm->beatmap_id."?m=0'>".$bms->artist.' - '.$bms->title
+            .' ['.$bm->version.']'.'</a> ('.$playmode.')';
 
         return $string;
       };
@@ -49,13 +49,13 @@ class EventSeeder extends Seeder
                             };
                             $txt = $generateEventText($bm, $bms, $u, $rank);
                             $ev = $u->events()->save(App\Models\Event::create([
-                              'user_id' => $u->user_id,
-                              'text' => $txt,
-                              'text_clean' => $txt,
-                              'epicfactor' => $epicfactor,
-                              'beatmap_id' => $bm->beatmap_id,
-                              'beatmapset_id' => $bm->beatmapset_id,
-                              'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now
+                                'user_id' => $u->user_id,
+                                'text' => $txt,
+                                'text_clean' => $txt,
+                                'epicfactor' => $epicfactor,
+                                'beatmap_id' => $bm->beatmap_id,
+                                'beatmapset_id' => $bm->beatmapset_id,
+                                'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now
                             ]));
                         }
                     }
@@ -65,26 +65,26 @@ class EventSeeder extends Seeder
           // Create a random supporter/name change event
           $string = '';
             switch (rand(1, 4)) {
-            case 1:
-              $string = "<b><a href='/u/".$u->user_id."'>".$u->username.'</a></b> has once again chosen to support osu! - thanks for your generosity!';
-            break;
-            case 2:
-              $string = "<b><a href='/u/".$u->user_id."'>".$u->username.'</a></b> has become an osu! supporter - thanks for your generosity!';
-            break;
-            case 3:
-              $string = "<b><a href='/u/".$u->user_id."'>".$u->username.'</a></b> has received the gift of osu! supporter!';
-            break;
-            case 4:
-              $string = "<b><a href='/u/".$u->user_id."'>".$faker->userName.'</a></b> has changed their username to '.$u->username.'!';
-            break;
-          }
+                case 1:
+                  $string = "<b><a href='/u/".$u->user_id."'>".$u->username.'</a></b> has once again chosen to support osu! - thanks for your generosity!';
+                break;
+                case 2:
+                  $string = "<b><a href='/u/".$u->user_id."'>".$u->username.'</a></b> has become an osu! supporter - thanks for your generosity!';
+                break;
+                case 3:
+                  $string = "<b><a href='/u/".$u->user_id."'>".$u->username.'</a></b> has received the gift of osu! supporter!';
+                break;
+                case 4:
+                  $string = "<b><a href='/u/".$u->user_id."'>".$faker->userName.'</a></b> has changed their username to '.$u->username.'!';
+                break;
+            }
             $ev2 = $u->events()->save(App\Models\Event::create([
-            'user_id' => $u->user_id,
-            'text' => $string,
-            'text_clean' => $string,
-            'epicfactor' => 1,
-            'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now
-          ]));
+                'user_id' => $u->user_id,
+                'text' => $string,
+                'text_clean' => $string,
+                'epicfactor' => 1,
+                'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now
+            ]));
         }
 
       // END EVENTS

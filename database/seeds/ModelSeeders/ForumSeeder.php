@@ -21,25 +21,25 @@ class ForumSeeder extends Seeder
 
             $forums = [];
 
-        // Create 3 forums
-        factory(App\Models\Forum\Forum::class, 'parent', 3)->create()->each(function ($f) {
-          for ($i = 0; $i < 4; $i++) {
-              // Subforums for each forum.
-              $f2 = $f->subforums()->save(factory(App\Models\Forum\Forum::class, 'child')->make());
-              // Topics for each subforum
-              for ($j = 0; $j < 3; $j++) {
-                  $t = $f2->topics()->save(factory(App\Models\Forum\Topic::class)->make());
-                // Replies to the topic
-                for ($k = 0; $k < 5; $k++) {
-                    $p = $t->posts()->save(factory(App\Models\Forum\Post::class)->make());
+            // Create 3 forums
+            factory(App\Models\Forum\Forum::class, 'parent', 3)->create()->each(function ($f) {
+                for ($i = 0; $i < 4; $i++) {
+                    // Subforums for each forum.
+                    $f2 = $f->subforums()->save(factory(App\Models\Forum\Forum::class, 'child')->make());
+                    // Topics for each subforum
+                    for ($j = 0; $j < 3; $j++) {
+                        $t = $f2->topics()->save(factory(App\Models\Forum\Topic::class)->make());
+                        // Replies to the topic
+                        for ($k = 0; $k < 5; $k++) {
+                            $p = $t->posts()->save(factory(App\Models\Forum\Post::class)->make());
+                        }
+                        // Refresh topic cache (updates last post times etc)
+                        $t->refreshCache();
+                    }
+                    // Refresh forum cache
+                    $f2->refreshCache();
                 }
-                // Refresh topic cache (updates last post times etc)
-                $t->refreshCache();
-              }
-              // Refresh forum cache
-              $f2->refreshCache();
-          }
-         });
+            });
         } catch (\Illuminate\Database\QueryException $e) {
             echo $e->getMessage()."\r\n";
         } catch (Exception $ex) {
