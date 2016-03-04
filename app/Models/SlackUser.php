@@ -7,10 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class SlackUser extends Model
 {
     protected $table = 'osu_slack_users';
-    protected $primaryKey = 'slack_id';
+    protected $primaryKey = 'user_id';
 
     public $incrementing = false;
     public $timestamps = false;
 
     protected $dates = ['created_at'];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id', 'user_id');
+    }
 }
