@@ -226,4 +226,10 @@ class TopicsController extends Controller
 
         return ['message' => trans('forum.topics.lock.locked-'.($lock === true ? '1' : '0'))];
     }
+    public function checkForDoublePost($topic_id)
+    {
+        $topic=Topic::FindOrFail($topic_id);
+        $user=Auth::user();
+        return ['doublepost' => $topic->isadoublepost($user) === true];
+    }
 }

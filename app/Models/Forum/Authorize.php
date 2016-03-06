@@ -78,7 +78,7 @@ class Authorize extends Model
         if ($topic !== null && $topic->isLocked()) {
             return false;
         }
-
+        if ($topic->isadoublepost($user) === true) return false;
         $permissions = static::where('group_id', static::$groups['default'])
             ->where('forum_id', $forum->forum_id)
             ->get();

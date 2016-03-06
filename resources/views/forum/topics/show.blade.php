@@ -115,9 +115,11 @@
                         </div>
                     </div>
                 </div>
+                <div class='forum-post__warning-overlay forum-post__warning-overlay--hidden'>
+                    {{trans("forum.topic.doublepost_message")}}
+                </div>
             </div>
         {!! Form::close() !!}
-
     </div>
     <div class="js-sticky-footer" data-sticky-footer-disabled="1" data-sticky-footer-target="forum-topic-reply"></div>
 @endsection

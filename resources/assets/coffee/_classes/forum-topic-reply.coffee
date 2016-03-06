@@ -74,7 +74,7 @@ class @ForumTopicReply
 
     @stickyFooter.markerEnable @marker()
     $.publish 'stickyFooter:check'
-
+    @checkForDoublePost()
 
   activateWithReply: (e, data) =>
     data += '\n'
@@ -159,3 +159,13 @@ class @ForumTopicReply
       @stick()
     else
       @unstick()
+
+  checkForDoublePost:  =>
+    $.ajax
+      url: location.href+'/doublepost',
+      method: 'get',
+      dataType: 'json',
+    .success (data) ->
+      $('.forum-post__warning-overlay.forum-post__warning-overlay--hidden').attr('class', 'forum-post__warning-overlay') if data.doublepost == true 
+      return
+    return

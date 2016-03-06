@@ -80,6 +80,7 @@ return [
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Type here to reply',
         'started_by' => 'by :user',
+        'doublepost_message' => 'You just posted. Wait a bit or edit your last post.',
     ],
     'topics' => [
         '_' => 'Topics',
