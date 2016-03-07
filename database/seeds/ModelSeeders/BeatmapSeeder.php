@@ -16,7 +16,6 @@ class BeatmapSeeder extends Seeder
         $overbeatmaps = [];
         $overbeatmapsets = [];
 
-        $count_api_calls = 0;
         $base_url = 'https://osu.ppy.sh/api/';
         $api_key = env('OSU_API_KEY', null);
         if (empty($api_key)) {
@@ -27,8 +26,7 @@ class BeatmapSeeder extends Seeder
         $api = '&k='.$api_key;
 
         try {
-            $beatmaps = json_decode(file_get_contents($base_url.'get_beatmaps?since=2016-01-01%2000:00:00'.$api));
-            ++$count_api_calls;
+            $beatmaps = json_decode(file_get_contents($base_url.'get_beatmaps?since=2016-01-01%2000:00:00'.$api));            
             $last_beatmapset = null;
             $beatmap_diff_names = [];
             $beatmapset_versions = 0;
@@ -59,7 +57,7 @@ class BeatmapSeeder extends Seeder
                     } else {
                         $the_beatmap = $previous_beatmap;
                     }
-                    // Create new beatmapset based on the PREVIOUS beatmap (since current one is in the next set)
+                    // Create new beatmapset
                     $set = \App\Models\BeatmapSet::where('beatmapset_id', $the_beatmap->beatmapset_id)->first();
                     if ($set) {
                         $set->delete();

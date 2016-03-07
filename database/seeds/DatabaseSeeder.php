@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         try {
-            // Beatmaps andsets
+            // Beatmaps and sets
             $this->command->info('Seeding Beatmaps...');
             $this->call(BeatmapSeeder::class);
 
