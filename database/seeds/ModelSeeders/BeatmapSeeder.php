@@ -88,7 +88,7 @@ class BeatmapSeeder extends Seeder
 
                     $set_playcount = $bm->playcount;
                     $beatmapset_versions = 1;
-                    $beatmap_diff_names = [$bm->version];
+                    $beatmap_diff_names = [$bm->version.'@'.$bm->mode];
                 }
 
                 if ($new_bm = \App\Models\Beatmap::where('beatmap_id', $bm->beatmap_id)->first()) {
