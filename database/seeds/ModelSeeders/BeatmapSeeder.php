@@ -65,7 +65,7 @@ class BeatmapSeeder extends Seeder
                         $set->delete();
                         $overbeatmapsets[] = $the_beatmap->beatmapset_id;
                     }
-                    $beatmap_diff_names = implode(",", $beatmap_diff_names);
+                    $beatmap_diff_names = implode(',', $beatmap_diff_names);
                     $set = new \App\Models\BeatmapSet;
                     $set->beatmapset_id = $the_beatmap->beatmapset_id;
                     $set->creator = $the_beatmap->creator;
