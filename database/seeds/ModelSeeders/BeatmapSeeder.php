@@ -24,50 +24,65 @@ class BeatmapSeeder extends Seeder
 
             return;
         }
-        $api = '&k='.$api_key;
-        $beatmaplimit = 20;
+        $api = '&k='.$api_key;        
 
         try {
             $beatmaps = json_decode(file_get_contents($base_url.'get_beatmaps?since=2016-01-01%2000:00:00'.$api));
             ++$count_api_calls;
             $last_beatmapset = null;
-            $beatmap_diff_names = '';
+            $beatmap_diff_names = [];
             $beatmapset_versions = 0;
             $set_playcount = 0;
-
-            $first_map = true;
+            $number_of_beatmaps = count($beatmaps);
+            $i = 0;
+            $first_map = true; 
+            $last_map = false;                       
 
             foreach ($beatmaps as $bm) {
-                // Here we are going to check if the current beatmap belongs to a new set, and make the set if necessary
+                $make_new_set = false;
+                if ($i === $number_of_beatmaps -1) {
+                    $make_new_set = true;
+                    $last_map = true;
+                    }
+
+                // Here we are going to check if the current beatmap belongs to a new set, and make the set if necessary                
                 if ($last_beatmapset === $bm->beatmapset_id || $first_map === true) {
                     ++$beatmapset_versions;
-                    $beatmap_diff_names = $beatmap_diff_names.$bm->version.',';
-                    $set_playcount += $bm->playcount;
+                    $beatmap_diff_names[] = $bm->version.'@'.$bm->playmode;
+                    $set_playcount += $bm->playcount;                    
                 } else {
+                    $make_new_set = true;
+                }
+                if ($make_new_set === true) {
+                    if ($last_map === true) {                        
+                        $the_beatmap = $bm;
+                    } else {
+                        $the_beatmap = $previous_beatmap;
+                    }
                     // Create new beatmapset based on the PREVIOUS beatmap (since current one is in the next set)
-                    rtrim($beatmap_diff_names, ',');
-                    $set = \App\Models\BeatmapSet::where('beatmapset_id', $previous_beatmap->beatmapset_id)->first();
+                    $set = \App\Models\BeatmapSet::where('beatmapset_id', $the_beatmap->beatmapset_id)->first();
                     if ($set) {
                         $set->delete();
-                        $overbeatmapsets[] = $previous_beatmap->beatmapset_id;
-                    }
+                        $overbeatmapsets[] = $the_beatmap->beatmapset_id;
+                    }                    
+                    $beatmap_diff_names = implode(",",$beatmap_diff_names);
                     $set = new \App\Models\BeatmapSet;
-                    $set->beatmapset_id = $previous_beatmap->beatmapset_id;
-                    $set->creator = $previous_beatmap->creator;
-                    $set->artist = $previous_beatmap->artist;
-                    $set->title = $previous_beatmap->title;
-                    $set->displaytitle = $previous_beatmap->title;
-                    $set->source = $previous_beatmap->source;
-                    $set->tags = $previous_beatmap->tags;
-                    $set->bpm = $previous_beatmap->bpm;
-                    $set->approved = $previous_beatmap->approved;
-                    $set->approved_date = $previous_beatmap->approved_date;
-                    $set->genre_id = $previous_beatmap->genre_id;
-                    $set->language_id = $previous_beatmap->language_id;
+                    $set->beatmapset_id = $the_beatmap->beatmapset_id;
+                    $set->creator = $the_beatmap->creator;
+                    $set->artist = $the_beatmap->artist;
+                    $set->title = $the_beatmap->title;
+                    $set->displaytitle = $the_beatmap->title;
+                    $set->source = $the_beatmap->source;
+                    $set->tags = $the_beatmap->tags;
+                    $set->bpm = $the_beatmap->bpm;
+                    $set->approved = $the_beatmap->approved;
+                    $set->approved_date = $the_beatmap->approved_date;
+                    $set->genre_id = $the_beatmap->genre_id;
+                    $set->language_id = $the_beatmap->language_id;
                     $set->versions_available = $beatmapset_versions;
                     $set->difficulty_names = $beatmap_diff_names;
                     $set->play_count = $set_playcount;
-                    $set->favourite_count = $previous_beatmap->favourite_count;
+                    $set->favourite_count = $the_beatmap->favourite_count;
                     $set->save();
 
                     $set->difficulty_names = $beatmap_diff_names;
@@ -75,7 +90,7 @@ class BeatmapSeeder extends Seeder
 
                     $set_playcount = $bm->playcount;
                     $beatmapset_versions = 1;
-                    $beatmap_diff_names = $bm->version;
+                    $beatmap_diff_names = [$bm->version];
                 }
 
                 if ($new_bm = \App\Models\Beatmap::where('beatmap_id', $bm->beatmap_id)->first()) {
@@ -112,6 +127,7 @@ class BeatmapSeeder extends Seeder
                 }
                 $last_beatmapset = $bm->beatmapset_id;
                 $previous_beatmap = $bm;
+                ++$i;
             } // end foreach beatmap
 
             $this->command->info('Saved '.strval(count($beatmaps_array)).' Beatmaps (Overwritten '.strval(count($overbeatmaps)).').');
