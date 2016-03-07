@@ -24,7 +24,7 @@ class BeatmapSeeder extends Seeder
 
             return;
         }
-        $api = '&k='.$api_key;        
+        $api = '&k='.$api_key;
 
         try {
             $beatmaps = json_decode(file_get_contents($base_url.'get_beatmaps?since=2016-01-01%2000:00:00'.$api));
@@ -35,26 +35,26 @@ class BeatmapSeeder extends Seeder
             $set_playcount = 0;
             $number_of_beatmaps = count($beatmaps);
             $i = 0;
-            $first_map = true; 
-            $last_map = false;                       
+            $first_map = true;
+            $last_map = false;
 
             foreach ($beatmaps as $bm) {
                 $make_new_set = false;
                 if ($i === $number_of_beatmaps -1) {
                     $make_new_set = true;
                     $last_map = true;
-                    }
+                }
 
-                // Here we are going to check if the current beatmap belongs to a new set, and make the set if necessary                
+                // Here we are going to check if the current beatmap belongs to a new set, and make the set if necessary
                 if ($last_beatmapset === $bm->beatmapset_id || $first_map === true) {
                     ++$beatmapset_versions;
-                    $beatmap_diff_names[] = $bm->version.'@'.$bm->playmode;
-                    $set_playcount += $bm->playcount;                    
+                    $beatmap_diff_names[] = $bm->version.'@'.$bm->mode;
+                    $set_playcount += $bm->playcount;
                 } else {
                     $make_new_set = true;
                 }
                 if ($make_new_set === true) {
-                    if ($last_map === true) {                        
+                    if ($last_map === true) {
                         $the_beatmap = $bm;
                     } else {
                         $the_beatmap = $previous_beatmap;
@@ -64,7 +64,7 @@ class BeatmapSeeder extends Seeder
                     if ($set) {
                         $set->delete();
                         $overbeatmapsets[] = $the_beatmap->beatmapset_id;
-                    }                    
+                    }
                     $beatmap_diff_names = implode(",",$beatmap_diff_names);
                     $set = new \App\Models\BeatmapSet;
                     $set->beatmapset_id = $the_beatmap->beatmapset_id;
