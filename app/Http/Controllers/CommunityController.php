@@ -125,8 +125,6 @@ class CommunityController extends Controller
             return error_popup(trans('errors.community.slack.not-eligible'));
         }
 
-        $user = Auth::user();
-
         $token = config('slack.token');
         $contents = file_get_contents("https://osu-public.slack.com/api/users.admin.invite?email={$user->user_email}&token={$token}&set_active=true");
 
@@ -135,7 +133,6 @@ class CommunityController extends Controller
         }
 
         $contents = json_decode($contents, true);
-        $contents['ok'] = true;
 
         if ($contents['ok'] === true) {
             $user->slackUser()->create([]);
@@ -144,5 +141,4 @@ class CommunityController extends Controller
         } else {
             return error_popup(trans(trans('errors.community.slack.slack-error')));
         }
-    }
-}
+    }}
