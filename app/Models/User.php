@@ -156,12 +156,10 @@ class User extends Model implements AuthenticatableContract
                 return ['Username is already in use!'];
             } elseif ($remaining->days > 0) {
                 return ["This username will be available for use in <strong>{$remaining->days}</strong> days."];
+            } elseif ($remaining->h > 0) {
+                return ["This username will be available for use in <strong>{$remaining->h}</strong> hours."];
             } else {
-                if ($remaining->h > 0) {
-                    return ["This username will be available for use in <strong>{$remaining->h}</strong> hours."];
-                } else {
-                    return ['This username will be available for use any minute now!'];
-                }
+                return ['This username will be available for use any minute now!'];
             }
         }
 
