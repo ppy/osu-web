@@ -141,4 +141,5 @@ class CommunityController extends Controller
         } else {
             return error_popup(trans(trans('errors.community.slack.slack-error')));
         }
-    }}
+    }
+}
