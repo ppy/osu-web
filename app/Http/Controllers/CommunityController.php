@@ -41,6 +41,11 @@ class CommunityController extends Controller
     */
     protected $section = 'community';
 
+    public function __construct()
+    {
+        $this->middleware ('auth' ['only' => ['postSlackAgree']]);
+    }
+
     public function getChat()
     {
         return view('community.chat');
