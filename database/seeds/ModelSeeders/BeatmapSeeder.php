@@ -26,7 +26,7 @@ class BeatmapSeeder extends Seeder
         $api = '&k='.$api_key;
 
         try {
-            $beatmaps = json_decode(file_get_contents($base_url.'get_beatmaps?since=2016-01-01%2000:00:00'.$api));            
+            $beatmaps = json_decode(file_get_contents($base_url.'get_beatmaps?since=2016-01-01%2000:00:00'.$api));
             $last_beatmapset = null;
             $beatmap_diff_names = [];
             $beatmapset_versions = 0;
