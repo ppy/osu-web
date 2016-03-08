@@ -1,0 +1,80 @@
+
+.faq__list-heading {
+	padding-left: 0px;
+	@listing-margin: 25px;
+	margin-left: @listing-margin;
+	margin-right: @listing-margin;
+	&--header * {
+		text-align: center;
+		width: 100%;
+		font-weight: 400;
+		font-size: 30px;
+	}
+	&--item {
+		padding-top: 15px;
+		list-style: none;
+		text-decoration: none;
+	}
+	&--link {
+		font-size: 20px;
+	}
+}
+.faq__list {
+	padding-left: 0px;
+	@listing-margin: 15px;
+	margin-left: @listing-margin;
+	margin-right: @listing-margin;
+	&--header * {
+		text-align: left;
+		width: 100%;
+		font-weight: 400;
+		font-size: 25px;
+	}
+	&--item {
+		list-style: none;
+		text-decoration: none;
+	}
+	&--link {
+		margin-top: 8px;
+		font-size: 18px;
+	}
+	&--more {
+		position: absolute;
+		&::after{
+			content: " »";
+		}
+		&:hover {
+			color: @grey-9;
+		}
+		@media @desktop {
+			left: auto;
+			right: 15px;
+		}
+		color: @grey-9;
+		left: 15px;
+		bottom: 25px;
+	}
+}
+.faq__row {
+	&--page {
+		padding-bottom: 35px !important;
+		@placeholder-height: 102px + (18px * 10);
+		height: @placeholder-height;
+		&:hover .forum-post__actions {
+			opacity: 1;
+		}
+		& .forum-post__actions {
+			z-index: 9000;
+		}
+	}
+	&--page-main {
+		&:extend(.faq__row--page);
+		height: 100%;
+		&:hover .forum-post__actions {
+			opacity: 1;
+		}
+		& .forum-post__actions {
+			z-index: 9000;
+		}
+	}
+}

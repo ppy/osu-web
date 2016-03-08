@@ -1,0 +1,40 @@
+.faq-creation {
+  float: none;
+  &__heading {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  &__heading-input {
+    width: 100%;
+  }
+  &__picker-container {
+    margin-bottom: 40px;
+    width: 100%;
+    &:extend(.default-box-shadow);
+    &:extend(.default-border-radius);
+    background: #fff;
+    border: 1px solid #ccc;
+  }
+  &__picker-select {
+    background: transparent;
+    width: 100%;
+    padding: 5px;
+    line-height: 1.2;
+    border: 0;
+    border-radius: 0;
+    -webkit-appearance: none;
+  }
+  &__input {
+    outline: 0;
+    border: none;
+    resize: vertical;
+    width: 100%;
+    padding: 0;
+    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+    min-height: 500px;
+  }
+  &__controls {
+    text-align: right;
+    padding: 10px;
+  }
+}

@@ -89,9 +89,19 @@ Route::get('/users/register', ['as' => 'users.register', function () { return Re
 
 // help section
 Route::get('/wiki', ['as' => 'wiki', function () { return Redirect::to('https://osu.ppy.sh/wiki'); }]);
-
 Route::get('/help/support', ['as' => 'support', 'uses' => 'HelpController@getSupport']);
-Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);
+
+Route::group(['prefix' => '/help/faq'], function () {
+    Route::get('/', ['as' => 'faq', 'uses' => 'Faq\FaqController@getIndex']);
+    Route::post('/update-category/{id}', ['as' => 'faq.update-category', 'uses' => 'Faq\FaqController@postUpdateCategory']);
+    Route::get('/create/{id?}', ['as' => 'faq.create', 'uses' => 'Faq\FaqController@getCreate']);
+    Route::post('/create', ['as' => 'faq.create', 'uses' => 'Faq\FaqController@postCreate']);
+    Route::get('/view/{id}', ['as' => 'faq.view', 'uses' => 'Faq\FaqController@getView']);
+    Route::get('/update/{id}', ['as' => 'faq.update', 'uses' => 'Faq\FaqController@getUpdate']);
+    Route::post('/update/{id}', ['as' => 'faq.update', 'uses' => 'Faq\FaqController@postUpdate']);
+    Route::get('/search', ['as' => 'faq.search', 'uses' => 'Faq\FaqController@getSearch']);
+    Route::get('/category/{id}', ['as' => 'faq.category', 'uses' => 'Faq\FaqController@getCategory']);
+});
 
 // store admin
 Route::group(['prefix' => 'store/admin', 'namespace' => 'Store\Admin'], function () {
