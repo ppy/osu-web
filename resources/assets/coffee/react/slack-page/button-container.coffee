@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, p, button} = React.DOM
+{div, p, button, a} = React.DOM
 
 class SlackPage.ButtonContainer extends React.Component
   constructor: (props) ->
@@ -52,16 +52,26 @@ class SlackPage.ButtonContainer extends React.Component
       buttonClasses += ' disabled'
 
     div className: 'slack-button-container',
-      if @state.accepted
+      if _.isEmpty currentUser
+        p className: 'slack-button-container__notice',
+          Lang.get 'community.slack.guest-begin'
+          a
+            href: '#'
+            'data-target': '#user-dropdown-modal',
+            'data-toggle': 'modal',
+            title: Lang.get 'users.anonymous.login-link'
+            Lang.get 'community.slack.guest-middle'
+          Lang.get 'community.slack.guest-end'
+
+      else if @state.accepted
         if @props.isInviteAccepted
           p
-            className: 'slack-button-container__accepted slack-button-container__accepted--invite-accepted',
+            className: 'slack-button-container__notice',
             dangerouslySetInnerHTML: { __html: Lang.get('community.slack.invite-already-accepted', mail: @props.supportMail) }
 
         else
-          p className: 'slack-button-container__accepted',
+          p className: 'slack-button-container__notice slack-button-container__notice--accepted',
             Lang.get 'community.slack.accepted'
-
       else
         div className: '',
           p

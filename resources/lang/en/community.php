@@ -132,6 +132,10 @@ return [
             'large' => 'osu!public Slack Access',
         ],
 
+        'guest-begin' => 'You need to be ',
+        'guest-middle' => 'logged in',
+        'guest-end' => ' to receive a slack invite!',
+
         'receive-invite' => 'You can receive an invite for the public osu! slack network here.',
         'bullet-points' => 'Please read thoroughly through the conditions on <a href=":link">this post.</a><br />Please note that any offences on your account will not be tolerated.',
 
