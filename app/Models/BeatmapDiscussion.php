@@ -46,6 +46,11 @@ class BeatmapDiscussion extends Model
         return $this->belongsTo(Beatmap::class);
     }
 
+    public function beatmapDiscussionReplies()
+    {
+        return $this->hasMany(BeatmapDiscussionReply::class);
+    }
+
     public function beatmapsetDiscussion()
     {
         return $this->belongsTo(BeatmapsetDiscussion::class);

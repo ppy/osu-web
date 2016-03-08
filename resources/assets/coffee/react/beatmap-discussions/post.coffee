@@ -24,30 +24,38 @@ BeatmapDiscussions.Post = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
-  render: ->
-    post = @props.post
+  post: (post, type = '') ->
     user = post.user.data
 
+    div
+      className: "#{bn}__post #{bn}__post--#{type}"
+      key: "#{type}-#{post.id}"
+      div className: "#{bn}__avatar",
+        div
+          className: 'avatar avatar--full-rounded'
+          style:
+            backgroundImage: "url('#{user.avatarUrl}')"
+      div className: "#{bn}__message-container",
+        div className: "#{bn}__message #{bn}__message--#{type}", post.message
+        div
+          className: "#{bn}__info"
+          dangerouslySetInnerHTML:
+            __html: "#{osu.link Url.user(user.id), user.username}, #{osu.timeago post.created_at}"
+
+
+  render: ->
     div className: bn,
+      div className: "#{bn}__timestamp-line"
       div className: "#{bn}__timestamp-container",
         div className: "#{bn}__timestamp-point"
         div className: "#{bn}__icons-container",
           div className: "#{bn}__icons",
             div className: "#{bn}__icon",
-              el BeatmapDiscussions.PostIcon, messageType: post.message_type
+              el BeatmapDiscussions.PostIcon, messageType: @props.post.message_type
           div className: "#{bn}__timestamp",
             moment(@props.post.timestamp).utcOffset(0).format('HH:mm:ss.SSS')
 
       div className: "#{bn}__post-container",
-        div className: "#{bn}__post",
-          div className: "#{bn}__avatar",
-            div
-              className: 'avatar avatar--full-rounded'
-              style:
-                backgroundImage: "url('#{user.avatarUrl}')"
-          div className: "#{bn}__message-container",
-            div className: "#{bn}__message", post.message
-            div
-              className: "#{bn}__info"
-              dangerouslySetInnerHTML:
-                __html: "#{osu.link Url.user(user.id), user.username}, #{osu.timeago post.created_at}"
+        @post @props.post, 'discussion'
+        @props.post.beatmap_discussion_replies.data.map (reply) =>
+          @post reply, 'reply'

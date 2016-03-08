@@ -26,6 +26,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'user',
+        'beatmap_discussion_replies',
     ];
 
     public function transform(BeatmapDiscussion $discussion)
@@ -36,5 +37,13 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
     public function includeUser(BeatmapDiscussion $discussion)
     {
         return $this->item($discussion->user, new UserTransformer);
+    }
+
+    public function includeBeatmapDiscussionReplies(BeatmapDiscussion $discussion)
+    {
+        return $this->collection(
+            $discussion->beatmapDiscussionReplies,
+            new BeatmapDiscussionReplyTransformer
+        );
     }
 }

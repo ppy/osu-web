@@ -19,6 +19,13 @@
  */
 
 return [
+    'discussions' => [
+        'mode' => [
+            'general' => 'General',
+            'timeline' => 'Timeline',
+        ],
+    ],
+
     'listing' => [
         'search' => [
             'prompt' => 'type in keywords...',

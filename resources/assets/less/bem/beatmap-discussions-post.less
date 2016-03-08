@@ -19,17 +19,21 @@
 .beatmap-discussions-post {
   @_avatar-size: 40px;
   @_timestamp-container-width: 110px;
-  @_timestamp-container-height: (@_avatar-size + @spacing * 2);
+  // avatar + paddings + margins
+  @_timestamp-container-height: (@_avatar-size + @spacing * 2 + @spacing);
 
   @_info-text-size: 10px;
-  @_message-text-size: 15px;
   @_timestamp-text-size: 9px;
 
-  @_timestamp-point-total-width: (@spacing * 3 / 2);
-  @_timestamp-point-circle-diameter: 7px;
+  @_discussion-text-size: 15px;
+  @_reply-text-size: 11px;
+
+  @_timestamp-line-total-width: (@spacing * 3 / 2);
+  @_timestamp-point-diameter: 7px;
+  @_timestamp-line-width: 3px;
+  @_timestamp-line-color: @grey-5;
 
   display: flex;
-  margin: (@spacing / 2) 0;
 
   &__avatar {
     width: @_avatar-size;
@@ -54,11 +58,22 @@
   }
 
   &__message {
-    font-size: @_message-text-size;
+    &--discussion {
+      font-size: @_discussion-text-size;
+    }
+
+    &--reply {
+      font-size: @_reply-text-size;
+    }
   }
 
   &__post {
     display: flex;
+
+    &--reply {
+      margin-top: @spacing;
+      margin-left: (@_avatar-size + @spacing);
+    }
   }
 
   &__post-container {
@@ -66,6 +81,7 @@
 
     .default-box-shadow();
     padding: @spacing;
+    margin: (@spacing / 2) 0;
 
     display: flex;
     flex-direction: column;
@@ -73,6 +89,8 @@
 
   &__timestamp {
     font-size: @_timestamp-text-size;
+    // To prevent the height being included when calculating vertical center
+    // position of the icons.
     height: 0;
   }
 
@@ -86,8 +104,17 @@
   }
 
   &__timestamp-point {
-    .circle(@_timestamp-point-circle-diameter);
-    margin: 0 ((@_timestamp-point-total-width - @_timestamp-point-circle-diameter) / 2);
-    background-color: @grey-5;
+    .circle(@_timestamp-point-diameter);
+    margin: 0 ((@_timestamp-line-total-width - @_timestamp-point-diameter) / 2);
+    background-color: @_timestamp-line-color;
+  }
+
+  &__timestamp-line {
+    display: none;
+    position: absolute;
+    width: @_timestamp-line-width;
+    height: 100%;
+    margin: 0 ((@_timestamp-line-total-width - @_timestamp-line-width) / 2);
+    background-color: @_timestamp-line-color;
   }
 }

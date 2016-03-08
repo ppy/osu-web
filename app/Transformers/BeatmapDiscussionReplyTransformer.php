@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -14,53 +16,25 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
-.beatmap-discussions-posts {
-  @_mode-circle-diameter: (@spacing * 3 / 2);
-  @_timeline-line-width: 3px;
+namespace App\Transformers;
 
-  .inner-shadow-top();
-  padding: (@spacing * 2);
+use App\Models\BeatmapDiscussionReply;
+use League\Fractal;
 
-  &__mode {
-    display: flex;
-    align-items: center;
+class BeatmapDiscussionReplyTransformer extends Fractal\TransformerAbstract
+{
+    protected $availableIncludes = [
+        'user',
+    ];
 
-    padding: (@spacing / 2) 0;
-  }
-
-  &__mode-circle {
-    .circle(@_mode-circle-diameter);
-    border: 3px solid @grey-5;
-    margin-right: @spacing;
-
-    &--active {
-      background-color: @grey-5;
-    }
-  }
-
-  &__mode-text {
-  }
-
-  &__timeline-line {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: @_timeline-line-width;
-    height: 100%;
-
-    margin: 0 ((@_mode-circle-diameter - @_timeline-line-width) / 2);
-
-    background-color: @grey-5;
-
-    &--half {
-      height: 50%;
+    public function transform(BeatmapDiscussionReply $reply)
+    {
+        return $reply->toArray();
     }
 
-    &--bottom {
-      top: 50%;
+    public function includeUser(BeatmapDiscussionReply $reply)
+    {
+        return $this->item($reply->user, new UserTransformer);
     }
-  }
 }
