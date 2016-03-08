@@ -149,13 +149,17 @@ class User extends Model implements AuthenticatableContract
         }
 
         if (($availableDate = self::checkWhenUsernameAvailable($username)) > Carbon::now()) {
-            $remainingDays = max(1, Carbon::now()->diffInDays($availableDate, false));
+            $remaining = Carbon::now()->diff($availableDate, false);
 
-            if ($remainingDays > 365 * 3) {
+            if ($remaining->days > 365 * 2) {
                 //no need to mention the inactivity period of the account is actively in use.
                 return ['Username is already in use!'];
+            } elseif ($remaining->days > 0) {
+                return ["This username will be available for use in <strong>{$remaining->days}</strong> days."];
+            } elseif ($remaining->h > 0) {
+                return ["This username will be available for use in <strong>{$remaining->h}</strong> hours."];
             } else {
-                return ["This username will be available for use in <strong>{$remainingDays}</strong> more days."];
+                return ['This username will be available for use any minute now!'];
             }
         }
 
