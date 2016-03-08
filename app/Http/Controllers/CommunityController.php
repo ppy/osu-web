@@ -43,7 +43,7 @@ class CommunityController extends Controller
 
     public function __construct()
     {
-        $this->middleware ('auth' ['only' => ['postSlackAgree']]);
+        $this->middleware ('auth', ['only' => ['postSlackAgree']]);
     }
 
     public function getChat()
