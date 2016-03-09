@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
         ];
 
         // Create 10 users and their stats
-        factory(App\Models\User::class, 'userseeder', 10)->create()->each(function ($u) {
+        factory(App\Models\User::class, 10)->create()->each(function ($u) {
 
             // USER STATS
             $common_countries = ['US', 'JP', 'CN', 'DE', 'TW', 'RU', 'KR', 'PL', 'CA', 'FR', 'BR', 'GB', 'AU'];
