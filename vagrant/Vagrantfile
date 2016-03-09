@@ -56,7 +56,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     d.has_ssh = true
     d.build_dir = "."
     d.build_args = ["-t", "osu-web"]
-    d.create_args = ["--privileged"]
   end
 
   config.vm.provision "shell", inline: provision_script
