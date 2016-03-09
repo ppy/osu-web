@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{button, div, form, input, textarea} = React.DOM
+{button, div, input, span, textarea} = React.DOM
 el = React.createElement
 
 bn = 'beatmap-discussions-new-post'
@@ -26,19 +26,12 @@ BeatmapDiscussions.NewPost = React.createClass
 
   getInitialState: ->
     message: ''
+    messageType: null
     timestamp: ''
 
 
-  setTimestamp: (e) ->
-    @setState timestamp: e.target.value
-
-
-  setMessage: (e) ->
-    @setState message: e.target.value
-
-
   render: ->
-    form
+    div
       className: bn
       div className: "#{bn}__col #{bn}__col--left",
         div className: "#{bn}__timestamp-box",
@@ -62,6 +55,65 @@ BeatmapDiscussions.NewPost = React.createClass
             onChange: @setMessage
 
       div className: "#{bn}__col #{bn}__col--right",
+        div
+          className: "#{bn}__message-types"
+          span className: "#{bn}__message-type",
+            Lang.get('beatmaps.discussions.message_type_select')
+
+          ['praise', 'suggestion', 'problem'].map (type) =>
+            @messageTypeSelection type
+
         button
-          className: "#{bn}__button"
+          className: "btn-osu-lite btn-osu-lite--default"
+          disabled: @state.messageType == null
+          onClick: @post
           Lang.get('common.buttons.post')
+
+
+  setTimestamp: (e) ->
+    @setState timestamp: e.target.value
+
+
+  setMessage: (e) ->
+    @setState message: e.target.value
+
+
+  post: ->
+    osu.showLoadingOverlay()
+
+    $.ajax Url.beatmapDiscussions(@props.currentBeatmap.id),
+      method: 'POST'
+      data:
+        beatmap_discussion:
+          message: @state.message
+          message_type: @state.messageType
+          timestamp: @state.timestamp
+
+    .done (data) =>
+      @setState
+        message: null
+        message_type: null
+        timestamp: null
+
+      $.publish 'beatmapsetDiscussion:update', data.data
+
+    .fail osu.ajaxError
+
+    .always osu.hideLoadingOverlay
+
+
+  messageTypeSelection: (type) ->
+    do (type) =>
+      iconClassesBn = 'beatmap-discussions-post-icon'
+      iconClasses = iconClassesBn
+
+      iconClasses += " #{iconClassesBn}--#{type}" if type == @state.messageType
+
+      button
+        key: type
+        className: "#{bn}__message-type"
+        onClick: => @setState messageType: type
+        div className: iconClasses,
+          el BeatmapDiscussions.PostIcon, messageType: type
+          span className: "#{bn}__message-type-text",
+            Lang.get("beatmaps.discussions.message_type.#{type}")

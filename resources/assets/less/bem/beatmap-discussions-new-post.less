@@ -18,6 +18,7 @@
  */
 .beatmap-discussions-new-post {
   @_avatar-size: 45px;
+  @_message-type-text-size: 11px;
 
   display: flex;
 
@@ -37,11 +38,15 @@
 
     &--right {
       padding-right: (@spacing * 2);
+
+      display: flex;
+      align-items: center;
     }
 
     &--main {
       flex: 1 0 auto;
       background-color: @grey-f;
+      display: flex;
     }
   }
 
@@ -58,6 +63,29 @@
   }
 
   &__message-box {
+    width: 100%;
     display: flex;
+  }
+
+  &__message-type {
+    &, &:hover, &:active, &:focus {
+      background: none;
+      outline: none;
+      border: none;
+    }
+
+    display: block;
+    text-align: left;
+    font-size: @_message-type-text-size;
+    padding: 0;
+    margin: 0 0 (@spacing / 2);
+  }
+
+  &__message-type-text {
+    margin-left: (@spacing / 2);
+  }
+
+  &__message-types {
+    margin-right: @spacing;
   }
 }

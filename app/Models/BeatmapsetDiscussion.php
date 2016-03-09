@@ -19,6 +19,7 @@
  */
 namespace App\Models;
 
+use App\Transformers\BeatmapsetDiscussionTransformer;
 use Illuminate\Database\Eloquent\Model;
 
 class BeatmapsetDiscussion extends Model
@@ -43,5 +44,14 @@ class BeatmapsetDiscussion extends Model
     public function user()
     {
         return $this->beatmapset->user();
+    }
+
+    public function defaultJson()
+    {
+        return fractal_item_array(
+            $this,
+            new BeatmapsetDiscussionTransformer(),
+            'beatmap_discussions.user,beatmap_discussions.beatmap_discussion_replies.user'
+        );
     }
 }

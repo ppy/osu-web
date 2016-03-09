@@ -55,7 +55,7 @@ class DiscussionsController extends Controller
     public function store($beatmapId)
     {
         $beatmap = Beatmap::findOrFail($beatmapId);
-        $beatmapsetDiscussion = BeatmapsetDiscussion::findOrFail($beatmap->beatmapset_id);
+        $beatmapsetDiscussion = BeatmapsetDiscussion::where('beatmapset_id', $beatmap->beatmapset_id)->firstOrFail();
 
         $params = array_merge(
             get_params(Request::all(), 'beatmap_discussion', [
@@ -73,9 +73,9 @@ class DiscussionsController extends Controller
         $discussion = BeatmapDiscussion::create($params);
 
         if ($discussion->id !== null) {
-            return ujs_redirect(route('beatmaps.discussions.show', $beatmap, $discussion));
+            return $discussion->beatmapsetDiscussion->defaultJson();
         } else {
-            return view('beatmaps.discussions.create', compact('beatmap', 'discussion'));
+            return error_popup(trans('beatmaps.discussions.store.error'));
         }
     }
 }

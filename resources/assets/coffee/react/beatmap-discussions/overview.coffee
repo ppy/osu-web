@@ -18,6 +18,8 @@
 {a, div, h1, p} = React.DOM
 el = React.createElement
 
+bn = 'beatmap-discussions-overview'
+
 BeatmapDiscussions.Overview = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
@@ -26,37 +28,29 @@ BeatmapDiscussions.Overview = React.createClass
     user = @props.beatmapset.user.data
 
     div
-      className: 'beatmap-discussions-overview'
+      className: bn
 
       div
-        className: 'beatmap-discussions-overview__beatmaps'
-        div
-          className: 'beatmap-list'
-          div 'beatmap-list__display',
-            el BeatmapIcon, beatmap: @props.beatmap, modifier: 'large'
-          div className: 'beatmap-list__display beatmap-list__display--main',
-            div className: 'beatmap-list__mode',
-              Lang.get("beatmaps.mode.#{@props.beatmap.mode}")
-            div className: 'beatmap-list__version',
-              @props.beatmap.version
-          div 'beatmap-list__display',
-            div className: 'beatmap-list__switch-button',
-              el Icon, name: 'chevron-down'
-      div
-        className: 'beatmap-discussions-overview__timeline'
+        className: "#{bn}__beatmaps"
+        el BeatmapDiscussions.BeatmapList,
+          currentBeatmap: @props.currentBeatmap
+          beatmapset: @props.beatmapset
 
       div
-        className: 'beatmap-discussions-overview__info'
+        className: "#{bn}__timeline"
+
+      div
+        className: "#{bn}__info"
 
         div null,
           div
-            className: 'beatmap-discussions-overview__meta-text beatmap-discussions-overview__meta-text--large'
+            className: "#{bn}__meta-text #{bn}__meta-text--large"
             @props.beatmapset.title
           div
-            className: 'beatmap-discussions-overview__meta-text'
+            className: "#{bn}__meta-text"
             @props.beatmapset.artist
           div
-            className: 'beatmap-discussions-overview__meta-text'
+            className: "#{bn}__meta-text"
             dangerouslySetInnerHTML:
               __html: Lang.get 'beatmaps.listing.mapped-by',
                 mapper: "<strong>#{osu.link Url.user(user.user_id), user.username}</strong>"

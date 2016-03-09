@@ -15,19 +15,21 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{span} = React.DOM
+{button} = React.DOM
 el = React.createElement
 
-bn = 'beatmap-discussions-post-icon'
+bn = 'beatmap-selection'
 
-BeatmapDiscussions.PostIcon = React.createClass
+BeatmapDiscussions.BeatmapSelection = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
   render: ->
-    name = switch @props.messageType
-      when 'praise' then 'heart'
-      when 'suggestion' then 'circle-o'
-      when 'problem' then 'exclamation-circle'
+    button
+      className: bn
+      onClick: @setBeatmap
+      @props.beatmap.version
 
-    el Icon, name: name
+
+  setBeatmap: ->
+    $.publish 'beatmap:select', @props.beatmap.id

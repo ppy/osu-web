@@ -20,6 +20,14 @@
 
 return [
     'discussions' => [
+        'message_type' => [
+            'praise' => 'Praise',
+            'problem' => 'Problem',
+            'suggestion' => 'Suggestion',
+        ],
+
+        'message_type_select' => 'Select Comment Type',
+
         'mode' => [
             'general' => 'General',
             'timeline' => 'Timeline',

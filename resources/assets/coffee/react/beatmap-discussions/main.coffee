@@ -25,13 +25,20 @@ BeatmapDiscussions.Main = React.createClass
   getInitialState: ->
     beatmapset: initial.beatmapset.data
     beatmapsetDiscussion: initial.beatmapsetDiscussion.data
-    currentBeatmapIndex: 0
+    currentBeatmap: initial.beatmapset.data.beatmaps.data[0]
     user: currentUser
 
 
-  render: ->
-    beatmap = @state.beatmapset.beatmaps.data[@state.currentBeatmapIndex]
+  componentDidMount: ->
+    $.subscribe 'beatmap:select.beatmapDiscussions', @setCurrentBeatmapIndex
+    $.subscribe 'beatmapsetDiscussion:update.beatmapDiscussions', @setBeatmapsetDiscussion
 
+
+  componentWillUnmount: ->
+    $.unsubscribe '.beatmapDiscussions'
+
+
+  render: ->
     div null,
       div
         className: 'osu-layout__row'
@@ -51,13 +58,29 @@ BeatmapDiscussions.Main = React.createClass
 
         el BeatmapDiscussions.Overview,
           beatmapset: @state.beatmapset
-          beatmap: beatmap
+          currentBeatmap: @state.currentBeatmap
 
       div
         className: 'osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact'
-        el BeatmapDiscussions.NewPost, user: @state.user
+        el BeatmapDiscussions.NewPost, user: @state.user, currentBeatmap: @state.currentBeatmap
 
         el BeatmapDiscussions.Posts,
           beatmapset: @state.beatmapset
-          beatmap: beatmap
+          currentBeatmap: @state.currentBeatmap
           beatmapsetDiscussion: @state.beatmapsetDiscussion
+
+
+  setBeatmapsetDiscussion: (_e, beatmapsetDiscussion) ->
+    console.log 'new!', beatmapsetDiscussion
+    @setState beatmapsetDiscussion: beatmapsetDiscussion
+
+
+  setCurrentBeatmapIndex: (_e, id) ->
+    return if id == @state.currentBeatmap.id
+
+    beatmap = @state.beatmapset.beatmaps.data.find (bm) =>
+      bm.id == id
+
+    return if beatmap == undefined
+
+    @setState currentBeatmap: beatmap

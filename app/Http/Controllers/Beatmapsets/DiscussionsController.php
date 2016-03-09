@@ -40,13 +40,10 @@ class DiscussionsController extends Controller
         $beatmapset = fractal_item_array(
             $beatmapset,
             new BeatmapSetTransformer,
-            'user,beatmaps.beatmap_discussions.user,beatmaps.beatmap_discussions.beatmap_discussion_replies.user'
+            'user,beatmaps'
         );
 
-        $discussion = fractal_item_array(
-            $discussion,
-            new BeatmapsetDiscussionTransformer
-        );
+        $discussion = $discussion->defaultJson();
 
         return view('beatmapsets.discussions.show', compact('beatmapset', 'discussion'));
     }

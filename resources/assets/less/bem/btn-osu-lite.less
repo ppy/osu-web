@@ -16,53 +16,46 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.beatmap-discussions-posts {
-  @_mode-text-size: 10px;
-  @_mode-circle-diameter: (@spacing * 3 / 2);
-  @_timeline-line-width: 3px;
+.btn-osu-lite {
+  .default-border-radius();
+  .default-box-shadow();
+  .default-text-shadow();
 
-  .inner-shadow-top();
-  padding: (@spacing * 2);
+  text-align: center;
+  vertical-align: middle;
 
-  &__mode {
-    display: flex;
-    align-items: center;
+  font-size: 12px;
+  padding: (@spacing / 2) @spacing;
 
-    padding: (@spacing / 2) 0;
+  &, &:active, &:focus, &:hover {
+    background: none;
+    outline: none;
+    border: none;
   }
 
-  &__mode-circle {
-    .circle(@_mode-circle-diameter);
-    border: 3px solid @grey-5;
-    margin-right: @spacing;
+  &--default {
+    @__bgcolor: @blue-dark;
+    background-color: @__bgcolor;
+    color: @grey-f;
 
-    &--active {
-      background-color: @grey-5;
+    &:focus {
+      background-color: darken(@__bgcolor, 5%);
+    }
+
+    &:hover {
+      background-color: darken(@__bgcolor, 10%);
+    }
+
+    &:active {
+      background-color: darken(@__bgcolor, 15%);
     }
   }
 
-  &__mode-text {
-    font-size: @_mode-text-size;
-  }
-
-  &__timeline-line {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: @_timeline-line-width;
-    height: 100%;
-
-    margin: 0 ((@_mode-circle-diameter - @_timeline-line-width) / 2);
-
-    background-color: @grey-5;
-
-    &--half {
-      height: 50%;
-    }
-
-    &--bottom {
-      top: 50%;
+  // this must be the last modifier
+  &[disabled], &.disabled, &--disabled {
+    &, &:active, &:focus, &:hover {
+      background-color: @grey-9;
+      color: @grey-f;
     }
   }
 }

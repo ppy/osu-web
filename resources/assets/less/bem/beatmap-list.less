@@ -17,13 +17,23 @@
  *
  */
 .beatmap-list {
-  .default-box-shadow();
-  .default-border-radius();
-  background-color: @grey-f;
-  padding: @spacing;
+  &__current {
+    &, &:focus, &:hover, &:active {
+      outline: none;
+      border: none;
+      background: @grey-f;
+    }
 
-  display: flex;
-  align-items: center;
+    .default-box-shadow();
+    .default-border-radius();
+    padding: @spacing;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    text-align: left;
+  }
 
   &__icon {
   }
@@ -40,6 +50,17 @@
   &__mode {
     font-size: 15px;
     font-weight: 700;
+  }
+
+  &__selector {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: @z-index--beatmap-selector-popup;
+    margin-top: @spacing;
   }
 
   &__switch-button {

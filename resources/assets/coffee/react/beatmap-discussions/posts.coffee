@@ -29,14 +29,8 @@ BeatmapDiscussions.Posts = React.createClass
     mode: 'timeline'
 
 
-  willReceiveProps: (newProps) ->
-    if @props.currentBeatmapIndex != newProps.currentBeatmapIndex
-      @_currentDiscussions = null
-
-
-  currentDiscussions: ->
-    @_currentDiscussions ?= @props.beatmap.beatmap_discussions.data.filter (discussion) =>
-      discussion.timestamp
+  componentWillReceiveProps: ->
+    @_currentDiscussions = null
 
 
   render: ->
@@ -70,3 +64,8 @@ BeatmapDiscussions.Posts = React.createClass
 
       if @state.mode == 'timeline'
         div className: "#{bn}__mode-circle #{bn}__mode-circle--active"
+
+
+  currentDiscussions: ->
+    @_currentDiscussions ?= @props.beatmapsetDiscussion.beatmap_discussions.data.filter (discussion) =>
+      discussion.beatmap_id == @props.currentBeatmap.id && discussion.timestamp

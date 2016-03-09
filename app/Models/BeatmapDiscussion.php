@@ -68,7 +68,12 @@ class BeatmapDiscussion extends Model
 
     public function setMessageTypeAttribute($value)
     {
-        return $this->attributes['message_type'] = array_get(static::MESSAGE_TYPES, $value);
+        return $this->attributes['message_type'] = array_get(static::MESSAGE_TYPES, $value ?? '');
+    }
+
+    public function setTimestampAttribute($value)
+    {
+        return $this->attributes['timestamp'] = get_int($value);
     }
 
     public function hasValidBeatmap()
@@ -78,6 +83,20 @@ class BeatmapDiscussion extends Model
             ($this->beatmap && $this->beatmap->beatmapset_id === $this->beatmapsetDiscussion->beatmapset_id);
     }
 
+    public function hasValidMessageType()
+    {
+        return
+            ($this->beatmap_id === null && $this->message_type === null) ||
+            ($this->beatmap_id !== null && $this->message_type !== null);
+    }
+
+    public function hasValidTimestamp()
+    {
+        return
+            ($this->beatmap_id === null && $this->timestamp === null) ||
+            ($this->beatmap_id !== null && $this->timestamp !== null && $this->timestamp < ($this->beatmap->total_length * 1000));
+    }
+
     /*
      * Called before saving. The callback definition is located in
      * App\Providers\AppServiceProvider. Don't ask me why it's there;
@@ -85,6 +104,8 @@ class BeatmapDiscussion extends Model
      */
     public function isValid()
     {
-        return $this->hasValidBeatmap();
+        return $this->hasValidBeatmap() &&
+            $this->hasValidMessageType() &&
+            $this->hasValidTimestamp();
     }
 }
