@@ -40,7 +40,7 @@ BeatmapDiscussions.Post = React.createClass
                 className: "beatmap-discussions-post-icon beatmap-discussions-post-icon--#{@props.post.message_type}"
                 el BeatmapDiscussions.PostIcon, messageType: @props.post.message_type
           div className: "#{bn}__timestamp",
-            moment(@props.post.timestamp).utcOffset(0).format('HH:mm:ss.SSS')
+            osu.formatBeatmapTimestamp(@props.post.timestamp)
 
       div className: "#{bn}__post-container",
         @post @props.post, 'discussion'

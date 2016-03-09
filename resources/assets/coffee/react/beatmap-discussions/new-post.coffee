@@ -27,7 +27,7 @@ BeatmapDiscussions.NewPost = React.createClass
   getInitialState: ->
     message: ''
     messageType: null
-    timestamp: ''
+    timestamp: null
 
 
   render: ->
@@ -35,11 +35,17 @@ BeatmapDiscussions.NewPost = React.createClass
       className: bn
       div className: "#{bn}__col #{bn}__col--left",
         div className: "#{bn}__timestamp-box",
-          input
-            className: "#{bn}__input #{bn}__input--timestamp",
-            type: 'text'
-            value: @state.timestamp
-            onChange: @setTimestamp
+          div className: "#{bn}__types",
+            _.map { general: 'circle-o' , timeline: 'clock-o' }, (icon, type) =>
+              span
+                key: type
+                className: "#{bn}__type #{bn}__type--#{'active' if @currentType() == type}"
+                el Icon, name: icon
+
+          if @currentType() == 'timeline'
+            div
+              className: "#{bn}__timestamp"
+              osu.formatBeatmapTimestamp @state.timestamp
 
       div className: "#{bn}__col #{bn}__col--main",
         div className: "#{bn}__message-box",
@@ -56,7 +62,7 @@ BeatmapDiscussions.NewPost = React.createClass
 
       div className: "#{bn}__col #{bn}__col--right",
         div
-          className: "#{bn}__message-types"
+          className: "#{bn}__message-types #{bn}__message-types--#{'disabled' if @currentType() != 'timeline'}"
           span className: "#{bn}__message-type",
             Lang.get('beatmaps.discussions.message_type_select')
 
@@ -65,7 +71,7 @@ BeatmapDiscussions.NewPost = React.createClass
 
         button
           className: "btn-osu-lite btn-osu-lite--default"
-          disabled: @state.messageType == null
+          disabled: !@canPost()
           onClick: @post
           Lang.get('common.buttons.post')
 
@@ -75,23 +81,29 @@ BeatmapDiscussions.NewPost = React.createClass
 
 
   setMessage: (e) ->
-    @setState message: e.target.value
+    @setState message: e.target.value, @parseTimestamp
 
 
   post: ->
+    return unless @canPost()
+
     osu.showLoadingOverlay()
+
+    data =
+        beatmap_discussion:
+          message: @state.message
+
+    if @state.timestamp
+      data.beatmap_discussion.message_type = @state.messageType
+      data.beatmap_discussion.timestamp = @state.timestamp
 
     $.ajax Url.beatmapDiscussions(@props.currentBeatmap.id),
       method: 'POST'
-      data:
-        beatmap_discussion:
-          message: @state.message
-          message_type: @state.messageType
-          timestamp: @state.timestamp
+      data: data
 
     .done (data) =>
       @setState
-        message: null
+        message: ''
         message_type: null
         timestamp: null
 
@@ -107,7 +119,8 @@ BeatmapDiscussions.NewPost = React.createClass
       iconClassesBn = 'beatmap-discussions-post-icon'
       iconClasses = iconClassesBn
 
-      iconClasses += " #{iconClassesBn}--#{type}" if type == @state.messageType
+      if @currentType() == 'timeline' && @state.messageType == type
+        iconClasses += " #{iconClassesBn}--#{type}"
 
       button
         key: type
@@ -117,3 +130,27 @@ BeatmapDiscussions.NewPost = React.createClass
           el BeatmapDiscussions.PostIcon, messageType: type
           span className: "#{bn}__message-type-text",
             Lang.get("beatmaps.discussions.message_type.#{type}")
+
+
+  canPost: ->
+    return false unless @state.message
+
+    @state.timestamp == null || @state.messageType != null
+
+
+  parseTimestamp: ->
+    timestampRe = @state.message.match /^(\d{2}):(\d{2})[:.](\d{3}) /
+
+    @setState timestamp:
+      if timestampRe == null
+        null
+      else
+        timestamp = timestampRe.slice(1).map (x) => parseInt x, 10
+
+        # this isn't all that smart
+        (timestamp[0] * 60 + timestamp[1]) * 1000 + timestamp[2]
+
+
+
+  currentType: ->
+    if @state.timestamp != null then 'timeline' else 'general'

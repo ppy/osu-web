@@ -41,6 +41,11 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
   parseJson: (id) ->
     JSON.parse document.getElementById(id).text
 
+
+  formatBeatmapTimestamp: (timestamp) ->
+    moment(timestamp).utcOffset(0).format('mm:ss.SSS')
+
+
   isMobile: -> ! window.matchMedia('(min-width: 920px)').matches
 
   src2x: (mainUrl) ->

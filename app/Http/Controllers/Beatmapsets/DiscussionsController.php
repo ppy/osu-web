@@ -21,7 +21,6 @@ namespace App\Http\Controllers\Beatmapsets;
 
 use App\Models\BeatmapSet;
 use App\Transformers\BeatmapSetTransformer;
-use App\Transformers\BeatmapsetDiscussionTransformer;
 
 class DiscussionsController extends Controller
 {

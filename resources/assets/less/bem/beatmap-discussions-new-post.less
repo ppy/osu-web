@@ -19,6 +19,9 @@
 .beatmap-discussions-new-post {
   @_avatar-size: 45px;
   @_message-type-text-size: 11px;
+  @_timestamp-box-width: 90px;
+  @_timestamp-box-height: @_avatar-size;
+  @_timestamp-box-text-size: 11px;
 
   display: flex;
 
@@ -87,5 +90,44 @@
 
   &__message-types {
     margin-right: @spacing;
+
+    &--disabled {
+      color: @grey-9;
+    }
+  }
+
+  &__timestamp {
+    text-align: center;
+  }
+
+  &__timestamp-box {
+    .default-border-radius();
+    .default-text-shadow();
+
+    width: @_timestamp-box-width;
+    height: @_timestamp-box-height;
+    font-size: @_timestamp-box-text-size;
+    background-color: @grey-5;
+    color: @grey-f;
+    padding: (@spacing / 2) @spacing;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__type {
+    color: @grey-9;
+    margin: 0 (@spacing / 2);
+
+    &--active {
+      color: @grey-f;
+    }
+  }
+
+  &__types {
+    display: flex;
+    justify-content: center;
+    margin-bottom: (@spacing / 2);
   }
 }
