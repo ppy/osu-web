@@ -530,6 +530,11 @@ class User extends Model implements AuthenticatableContract
         return $this->hasOne("App\Models\ApiKey", 'user_id');
     }
 
+    public function slackUser()
+    {
+        return $this->hasOne(SlackUser::class, 'user_id');
+    }
+
     //public function country() { return $this->hasOne("Country"); }
 
     public function storeAddresses()
@@ -965,5 +970,17 @@ class User extends Model implements AuthenticatableContract
             'user_posts' => $newPostsCount,
             'user_lastpost_time' => $lastPostTime,
         ]);
+    }
+
+    public function isSlackEligible()
+    {
+        $canInvite = $this->beatmapPlaycounts()->sum('playcount') > 100
+            && $this->slackUser === null
+            && $this->user_type !== self::ANONYMOUS
+            && $this->user_warnings === 0
+            && $this->banHistories()->where('timestamp', '>', Carbon::now()->subDays(28))
+                ->where('ban_status', '=', 2)->count() === 0;
+
+        return $canInvite;
     }
 }

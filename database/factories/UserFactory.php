@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
+$factory->defineAs(App\Models\User::class, 'userseeder', function (Faker\Generator $faker) {
     $existing_users = DB::table('phpbb_users')->get();
 
     $existing_names = [];
