@@ -30,6 +30,12 @@ class BeatmapDifficultyTransformer extends Fractal\TransformerAbstract
             'mode' => $b->playmode,
             'rating' => $b->difficultyrating,
             'name' => $b->version,
+            'cs' => $b->diff_size,
+            'drain' => $b->diff_drain,
+            'accuracy' => $b->diff_overall,
+            'ar' => $b->diff_approach,
+            'stars' => $b->difficultyrating,
+            'length' => $b->total_length,
         ];
     }
 }

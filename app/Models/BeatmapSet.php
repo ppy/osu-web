@@ -26,6 +26,8 @@ use DB;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\ImageProcessorService;
 use App\Exceptions\BeatmapProcessorException;
+use App\Models\Forum\Topic;
+use App\Models\Forum\Post;
 
 class BeatmapSet extends Model
 {
@@ -683,5 +685,15 @@ class BeatmapSet extends Model
     public function approver()
     {
         return $this->belongsTo("App\Models\User", 'user_id', 'approvedby_id');
+    }
+
+    public function description ()
+    {
+        $topic = Topic::find($this->thread_id);
+        $post = Post::find($topic->topic_first_post_id);
+
+        $split = preg_split("[-{15}]", $post->bodyRaw);
+
+        return bbcode($split[1], $post->bbcode_uid, true);
     }
 }
