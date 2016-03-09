@@ -36,5 +36,7 @@ $factory->defineAs(App\Models\User::class, 'userseeder', function (Faker\Generat
         'user_password' => password_hash(md5('password'), PASSWORD_BCRYPT),
         'user_lastvisit' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now
         'user_posts' => rand(1, 500),
+        'user_warnings' => 0,
+        'user_type' => 0,
     ];
 });
