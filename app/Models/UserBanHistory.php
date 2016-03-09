@@ -39,6 +39,11 @@ class UserBanHistory extends Model
         'user_id' => 'integer',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
+    }
+
     public function endTime()
     {
         return $this->timestamp->addSeconds($this->period);
