@@ -16,41 +16,61 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
+.slack-content {
+  display: flex;
+  flex-flow: row wrap;
 
-.osu-page-header {
-  background-size: cover;
+  align-items: center;
+  justify-content: center;
 
-  padding: (@spacing * 2);
+  padding-top: (@spacing * 3);
 
   @media @desktop {
-    // header left margin (20) + logo (100) + menu left margin (10)
     padding-left: @padding-big;
+    padding-right: @padding-big;
   }
 
-  &--tournaments {
-    .at2x-simple("/images/headers/tournament.jpg");
+  &__item {
+    @media @mobile {
+      padding: 0 (@spacing * 2);
+    }
+
+    &--text {
+      @media @desktop {
+        flex-basis: 100%;
+      }
+    }
+
+    &--image {
+      max-width: 100%;
+      height: auto;
+    }
+
   }
 
-  &--slack {
-    .at2x-simple("/images/headers/slack.png");
-    height: 200px;
-  }
+  &__image-container {
+    min-width: 0;
+    padding-bottom: (@spacing * 2);
 
-  &__title {
-    font-size: 32px;
-    margin-bottom: 10px;
-    .default-text-shadow();
-    color: #fff;
+    &--logo {
+      @media @desktop {
+        max-width: 42%;
+        padding-right: 4%;
+      }
 
-    font-style: normal;
+      max-width: 75%;
+    }
 
-    &--small {
-      font-size: 16px;
+    &--devices {
+      @media @desktop {
+        max-width: 58%;
+        padding-left: 4%;
+      }
     }
   }
 
-  &__title-box {
-    position: absolute;
-    bottom: (@spacing * 2 - 10px);
+  &__invite-info {
+    padding-bottom: (@spacing * 2);
+    margin: 0;
   }
 }
