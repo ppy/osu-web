@@ -65,7 +65,7 @@ class DiscussionRepliesController extends Controller
         if ($discussion->id !== null) {
             return ujs_redirect(route('beatmaps.discussions.show', $discussion->beatmap_id, $discussion));
         } else {
-            return view('beatmaps.discussion-replies.create', compact('discussion', 'reply'));
+            return view('beatmaps.discussion_replies.create', compact('discussion', 'reply'));
         }
     }
 }
