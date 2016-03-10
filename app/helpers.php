@@ -427,6 +427,7 @@ function get_class_namespace($className)
     return substr($className, 0, strrpos($className, '\\'));
 }
 
-function array_rand_val($array) {
+function array_rand_val($array)
+{
     return $array[array_rand($array)];
 }
