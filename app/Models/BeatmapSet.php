@@ -579,7 +579,7 @@ class BeatmapSet extends Model
 
         $bg_file = ci_file_search("{$workingFolder}/{$bg}");
         if (!$bg_file) {
-            throw new BeatmapProcessorException('Background image missing');
+            throw new BeatmapProcessorException('Background image missing: '. $bg);
         }
 
         // upload original image
