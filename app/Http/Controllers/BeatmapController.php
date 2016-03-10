@@ -88,6 +88,7 @@ class BeatmapController extends Controller
 
         $output = [];
         $rawUrl = $beatmapSet->coverImageURL('raw');
+        array_push($output, "<a href='/beatmaps/{$id}/covers/regenerate'>regenerate</a>");
         array_push($output, "raw... $rawUrl");
         array_push($output, "<img src='$rawUrl?$time'>");
         $optimizedUrl = $beatmapSet->coverImageURL('fullsize');
@@ -130,7 +131,7 @@ class BeatmapController extends Controller
         } else {
             $job = (new RegenerateBeatmapSetCover($beatmapset))->onQueue('beatmap_processor');
             $this->dispatch($job);
-            echo 'Job Queued';
+            header("Location: /beatmaps/{$id}/covers");
         }
     }
 
