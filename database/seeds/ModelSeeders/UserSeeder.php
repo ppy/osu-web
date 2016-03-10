@@ -97,7 +97,7 @@ class UserSeeder extends Seeder
                         $hist->$r = $new_rank; // Slight decay of between 0.98 and 0.99
                     }
                 }
-                $u->rankHistories()->save($hist)
+                $u->rankHistories()->save($hist);
             }
             // END RANK HISTORY
 
