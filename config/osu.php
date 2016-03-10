@@ -45,7 +45,7 @@ return [
             'osustatus' => 'https://twitter.com/osustatus',
             'server' => 'http://stat.ppy.sh/',
         ],
-        'support-the-game' => 'https://osu.ppy.sh/p/support#items',
+        'support-the-game' => 'https://osu.ppy.sh/p/support#transactionarea',
         'user' => [
             'kudosu' => 'https://osu.ppy.sh/wiki/Kudosu',
             'rules' => 'https://osu.ppy.sh/wiki/Osu!:Rules',
