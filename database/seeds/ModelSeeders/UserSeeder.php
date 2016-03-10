@@ -25,19 +25,19 @@ class UserSeeder extends Seeder
             $this->command->info('Can\'t seed events, scores, events or favourite maps due to having no beatmap data.');
         }
 
-        // Store some modifiers
+        // Store some constants
         $this->improvement_speeds = [
             (rand(100, 110) / 100), // Fast Learner
             (rand(100, 102) / 100), // Slow Learner
             (rand(100, 115) / 100), // Genius / Multiaccounter :P
         ];
+        $this->common_countries = ['US', 'JP', 'CN', 'DE', 'TW', 'RU', 'KR', 'PL', 'CA', 'FR', 'BR', 'GB', 'AU'];
 
         // Create 10 users and their stats
         factory(App\Models\User::class, 10)->create()->each(function ($u) {
 
             // USER STATS
-            $common_countries = ['US', 'JP', 'CN', 'DE', 'TW', 'RU', 'KR', 'PL', 'CA', 'FR', 'BR', 'GB', 'AU'];
-            $country_code = $common_countries[array_rand($common_countries)];
+            $country_code = array_rand_val($this->common_countries);
 
             $rank0 = rand(1, 500000);
             $rank1 = rand(1, 500000);
@@ -81,7 +81,7 @@ class UserSeeder extends Seeder
                         if ($extreme_improvement === true) {
                             $improvement_modifier = 1.5;
                         } else {
-                            $improvement_modifier = $this->improvement_speeds[array_rand($this->improvement_speeds)];
+                            $improvement_modifier = array_rand_val($this->improvement_speeds);
                         }
                         $new_rank = round($hist->$prev_r * $improvement_modifier);
                         if ($new_rank < 1) {

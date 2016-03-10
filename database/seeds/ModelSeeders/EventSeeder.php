@@ -22,7 +22,7 @@ class EventSeeder extends Seeder
             case 3: $playmode = 'osu!mania'; break;
             }
             $rank_letters = ['X', 'S', 'A'];
-            $rank_letter = $rank_letters[array_rand($rank_letters)];
+            $rank_letter = array_rand_val($rank_letters);
 
             $string = "<img src='/images/".$rank_letter."_small.png'/> <b><a href='/u/".$u->user_id."'>".$u->username.'</a></b> achieved rank #'
                 .$rank." on <a href='/b/".$bm->beatmap_id."?m=0'>".$bms->artist.' - '.$bms->title

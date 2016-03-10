@@ -44,7 +44,7 @@ class ScoreSeeder extends Seeder
             //add 20 osu! Standard scores
             foreach ($osuBeatmaps as $bm) {
                 $bms = $allBeatmapSets->find($bm->beatmapset_id);
-                $maxcombo = rand(1, 5000);
+                $maxcombo = rand(1, $bm->countTotal);
                 $possible_mods = [0, 16, 24, 64, 72]; // hr, hd/hr, dt, hd/dt
                 $sc = App\Models\Score\Osu::create([
                     'user_id' => $u->user_id,
@@ -58,10 +58,10 @@ class ScoreSeeder extends Seeder
                     'countgeki' => round($maxcombo * 0.3),
                     'countmiss' => round($maxcombo * 0.05),
                     'countkatu' => round($maxcombo * 0.05),
-                    'enabled_mods' => $possible_mods[array_rand($possible_mods)],
+                    'enabled_mods' => array_rand_val($possible_mods),
                     'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now,
                     'pass' => $faker->boolean(85), //85% chance of pass
-                    'rank' => $possible_ranks[array_rand($possible_ranks)],
+                    'rank' => array_rand_val($possible_ranks),
                 ]);
 
                 $sc2 = App\Models\Score\Best\Osu::create([
@@ -76,17 +76,17 @@ class ScoreSeeder extends Seeder
                     'countgeki' => round($maxcombo * 0.3),
                     'countmiss' => round($maxcombo * 0.05),
                     'countkatu' => round($maxcombo * 0.05),
-                    'enabled_mods' => $possible_mods[array_rand($possible_mods)],
+                    'enabled_mods' => array_rand_val($possible_mods),
                     'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now,
                     'pp' => $faker->biasedNumberBetween(10, 100) * 1.5 * $bm->difficultyrating,
-                    'rank' => $possible_ranks[array_rand($possible_ranks)],
+                    'rank' => array_rand_val($possible_ranks),
                 ]);
             }
 
             //Taiko scores
             foreach ($taikoBeatmaps as $bm) {
                 $bms = $allBeatmapSets->find($bm->beatmapset_id);
-                $maxcombo = rand(1, 5000);
+                $maxcombo = rand(1, $bm->countTotal);
                 $possible_mods = [0, 16, 24, 64, 72];
                 $sc3 = App\Models\Score\Taiko::create([
                     'user_id' => $u->user_id,
@@ -100,10 +100,10 @@ class ScoreSeeder extends Seeder
                     'countgeki' => round($maxcombo * 0.3),
                     'countmiss' => round($maxcombo * 0.05),
                     'countkatu' => round($maxcombo * 0.05),
-                    'enabled_mods' => $possible_mods[array_rand($possible_mods)],
+                    'enabled_mods' => array_rand_val($possible_mods),
                     'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now,
                     'pass' => $faker->boolean(85), //85% chance of pass
-                    'rank' => $possible_ranks[array_rand($possible_ranks)],
+                    'rank' => array_rand_val($possible_ranks),
                 ]);
 
                 $sc4 = App\Models\Score\Best\Taiko::create([
@@ -112,14 +112,14 @@ class ScoreSeeder extends Seeder
                     'beatmapset_id' => $bm->beatmapset_id,
                     'score' => rand(50000, 100000000),
                     'maxcombo' => $maxcombo,
-                    'rank' => $possible_ranks[array_rand($possible_ranks)],
+                    'rank' => array_rand_val($possible_ranks),
                     'count300' => round($maxcombo * 0.8),
                     'count100' => rand(0, round($maxcombo * 0.15)),
                     'count50' => rand(0, round($maxcombo * 0.05)),
                     'countgeki' => round($maxcombo * 0.3),
                     'countmiss' => round($maxcombo * 0.05),
                     'countkatu' => round($maxcombo * 0.05),
-                    'enabled_mods' => $possible_mods[array_rand($possible_mods)],
+                    'enabled_mods' => array_rand_val($possible_mods),
                     'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now,
                     'pp' => $faker->biasedNumberBetween(10, 100) * 1.3 * $bm->difficultyrating,
                 ]);
@@ -128,7 +128,7 @@ class ScoreSeeder extends Seeder
             //Fruits scores
             foreach ($fruitsBeatmaps as $bm) {
                 $bms = $allBeatmapSets->find($bm->beatmapset_id);
-                $maxcombo = rand(1, 5000);
+                $maxcombo = rand(1, $bm->countTotal);
                 $possible_mods = [0, 16, 24, 64, 72];
                 $sc5 = App\Models\Score\Fruits::create([
                     'user_id' => $u->user_id,
@@ -136,14 +136,14 @@ class ScoreSeeder extends Seeder
                     'beatmapset_id' => $bm->beatmapset_id,
                     'score' => rand(50000, 100000000),
                     'maxcombo' => $maxcombo,
-                    'rank' => $possible_ranks[array_rand($possible_ranks)],
+                    'rank' => array_rand_val($possible_ranks),
                     'count300' => round($maxcombo * 0.8),
                     'count100' => rand(0, round($maxcombo * 0.15)),
                     'count50' => rand(0, round($maxcombo * 0.05)),
                     'countgeki' => round($maxcombo * 0.3),
                     'countmiss' => round($maxcombo * 0.05),
                     'countkatu' => round($maxcombo * 0.05),
-                    'enabled_mods' => $possible_mods[array_rand($possible_mods)],
+                    'enabled_mods' => array_rand_val($possible_mods),
                     'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now,
                     'pass' => $faker->boolean(85), //85% chance of pass
                 ]);
@@ -154,14 +154,14 @@ class ScoreSeeder extends Seeder
                     'beatmapset_id' => $bm->beatmapset_id,
                     'score' => rand(50000, 100000000),
                     'maxcombo' => $maxcombo,
-                    'rank' => $possible_ranks[array_rand($possible_ranks)],
+                    'rank' => array_rand_val($possible_ranks),
                     'count300' => round($maxcombo * 0.8),
                     'count100' => rand(0, round($maxcombo * 0.15)),
                     'count50' => rand(0, round($maxcombo * 0.05)),
                     'countgeki' => round($maxcombo * 0.3),
                     'countmiss' => round($maxcombo * 0.05),
                     'countkatu' => round($maxcombo * 0.05),
-                    'enabled_mods' => $possible_mods[array_rand($possible_mods)],
+                    'enabled_mods' => array_rand_val($possible_mods),
                     'date' => rand(1451606400, time()),
                     'pp' => $faker->biasedNumberBetween(10, 100) * 1.3 * $bm->difficultyrating,
                 ]);
@@ -170,7 +170,7 @@ class ScoreSeeder extends Seeder
             //Mania scores
             foreach ($maniaBeatmaps as $bm) {
                 $bms = $allBeatmapSets->find($bm->beatmapset_id);
-                $maxcombo = rand(1, 5000);
+                $maxcombo = rand(1, $bm->countTotal);
                 $possible_mods = [0, 16, 24, 64, 72]; // hr, hd/hr, dt, hd/dt
                 $sc7 = App\Models\Score\Mania::create([
                     'user_id' => $u->user_id,
@@ -178,14 +178,14 @@ class ScoreSeeder extends Seeder
                     'beatmapset_id' => $bm->beatmapset_id,
                     'score' => rand(50000, 100000000),
                     'maxcombo' => $maxcombo,
-                    'rank' => $possible_ranks[array_rand($possible_ranks)],
+                    'rank' => array_rand_val($possible_ranks),
                     'count300' => round($maxcombo * 0.8),
                     'count100' => rand(0, round($maxcombo * 0.15)),
                     'count50' => rand(0, round($maxcombo * 0.05)),
                     'countgeki' => round($maxcombo * 0.3),
                     'countmiss' => round($maxcombo * 0.05),
                     'countkatu' => round($maxcombo * 0.05),
-                    'enabled_mods' => $possible_mods[array_rand($possible_mods)],
+                    'enabled_mods' => array_rand_val($possible_mods),
                     'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now,
                     'pass' => $faker->boolean(85), //85% chance of pass
                 ]);
@@ -196,14 +196,14 @@ class ScoreSeeder extends Seeder
                     'beatmapset_id' => $bm->beatmapset_id,
                     'score' => rand(50000, 100000000),
                     'maxcombo' => $maxcombo,
-                    'rank' => $possible_ranks[array_rand($possible_ranks)],
+                    'rank' => array_rand_val($possible_ranks),
                     'count300' => round($maxcombo * 0.8),
                     'count100' => rand(0, round($maxcombo * 0.15)),
                     'count50' => rand(0, round($maxcombo * 0.05)),
                     'countgeki' => round($maxcombo * 0.3),
                     'countmiss' => round($maxcombo * 0.05),
                     'countkatu' => round($maxcombo * 0.05),
-                    'enabled_mods' => $possible_mods[array_rand($possible_mods)],
+                    'enabled_mods' => array_rand_val($possible_mods),
                     'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now,
                     'pp' => $faker->biasedNumberBetween(10, 100) * 2 * $bm->difficultyrating,
                 ]);
