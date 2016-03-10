@@ -15,19 +15,27 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{span} = React.DOM
+{div, span} = React.DOM
 el = React.createElement
 
-bn = 'beatmap-discussions-post-icon'
+bn = 'beatmap-discussion-reply-new'
 
-BeatmapDiscussions.PostIcon = React.createClass
+BeatmapDiscussions.NewReply = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
   render: ->
-    name = switch @props.messageType
-      when 'praise' then 'heart'
-      when 'suggestion' then 'circle-o'
-      when 'problem' then 'exclamation-circle'
+    return div()
 
-    el Icon, name: name
+    div className: "#{bn}__discussion #{bn}__discussion--new-reply",
+      div className: "#{bn}__avatar",
+        div
+          className: 'avatar avatar--full-rounded'
+          style:
+            backgroundImage: "url('#{@props.currentUser.avatarUrl}')"
+      div className: "#{bn}__message-container",
+        div className: "#{bn}__message #{bn}__message--new-reply", @state.message
+        div
+          className: "#{bn}__info"
+          dangerouslySetInnerHTML:
+            __html: "#{osu.link Url.user(user.id), user.username}, #{osu.timeago post.created_at}"

@@ -18,9 +18,9 @@
 {div, span} = React.DOM
 el = React.createElement
 
-bn = 'beatmap-discussions-post'
+bn = 'beatmap-discussion'
 
-BeatmapDiscussions.Post = React.createClass
+BeatmapDiscussions.Discussion = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
@@ -37,15 +37,17 @@ BeatmapDiscussions.Post = React.createClass
           div className: "#{bn}__icons",
             div className: "#{bn}__icon",
               span
-                className: "beatmap-discussions-post-icon beatmap-discussions-post-icon--#{@props.post.message_type}"
-                el BeatmapDiscussions.PostIcon, messageType: @props.post.message_type
+                className: "beatmap-discussion-message-type beatmap-discussion-message-type--#{@props.discussion.message_type}"
+                el BeatmapDiscussions.MessageIcon, messageType: @props.discussion.message_type
           div className: "#{bn}__timestamp",
-            osu.formatBeatmapTimestamp(@props.post.timestamp)
+            osu.formatBeatmapTimestamp(@props.discussion.timestamp)
 
-      div className: "#{bn}__post-container",
-        @post @props.post, 'discussion'
-        @props.post.beatmap_discussion_replies.data.map (reply) =>
+      div className: "#{bn}__discussion",
+        @post @props.discussion, 'discussion'
+        @props.discussion.beatmap_discussion_replies.data.map (reply) =>
           @post reply, 'reply'
+
+        el BeatmapDiscussions.NewReply, currentUser: @props.currentUser, beatmapset: @props.beatmapset
 
 
   post: (post, type = '') ->

@@ -18,9 +18,9 @@
 {button, div, input, span, textarea} = React.DOM
 el = React.createElement
 
-bn = 'beatmap-discussions-new-post'
+bn = 'beatmap-discussion-new'
 
-BeatmapDiscussions.NewPost = React.createClass
+BeatmapDiscussions.NewDiscussion = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
@@ -54,7 +54,7 @@ BeatmapDiscussions.NewPost = React.createClass
             div
               className: 'avatar avatar--full-rounded'
               style:
-                backgroundImage: "url('#{@props.user.avatarUrl}')"
+                backgroundImage: "url('#{@props.currentUser.avatarUrl}')"
           textarea
             className: "#{bn}__message"
             value: @state.message
@@ -116,7 +116,7 @@ BeatmapDiscussions.NewPost = React.createClass
 
   messageTypeSelection: (type) ->
     do (type) =>
-      iconClassesBn = 'beatmap-discussions-post-icon'
+      iconClassesBn = 'beatmap-discussion-message-type'
       iconClasses = iconClassesBn
 
       if @currentType() == 'timeline' && @state.messageType == type
@@ -127,7 +127,7 @@ BeatmapDiscussions.NewPost = React.createClass
         className: "#{bn}__message-type"
         onClick: => @setState messageType: type
         div className: iconClasses,
-          el BeatmapDiscussions.PostIcon, messageType: type
+          el BeatmapDiscussions.MessageIcon, messageType: type
           span className: "#{bn}__message-type-text",
             Lang.get("beatmaps.discussions.message_type.#{type}")
 

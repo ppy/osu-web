@@ -18,10 +18,10 @@
 {a, div, p, span} = React.DOM
 el = React.createElement
 
-bn = 'beatmap-discussions-posts'
+bn = 'beatmap-discussions'
 lp = 'beatmaps.discussions'
 
-BeatmapDiscussions.Posts = React.createClass
+BeatmapDiscussions.Discussions = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
@@ -51,16 +51,16 @@ BeatmapDiscussions.Posts = React.createClass
             Lang.get("#{lp}.mode.#{mode}")
 
       div
-        className: "#{bn}__posts"
+        className: "#{bn}__discussions"
         if @state.mode == 'timeline'
           div className: "#{bn}__timeline-line"
 
-        div className: "#{bn}__posts",
-          @currentDiscussions().map (post) =>
+        div className: "#{bn}__discussions",
+          @currentDiscussions().map (discussion) =>
             div
-              key: post.id
-              className: "#{bn}__post"
-              el BeatmapDiscussions.Post, post: post
+              key: discussion.id
+              className: "#{bn}__discussion"
+              el BeatmapDiscussions.Discussion, discussion: discussion, currentUser: @props.currentUser, beatmapset: @props.beatmapset
 
       if @state.mode == 'timeline'
         div className: "#{bn}__mode-circle #{bn}__mode-circle--active"

@@ -26,7 +26,7 @@ BeatmapDiscussions.Main = React.createClass
     beatmapset: initial.beatmapset.data
     beatmapsetDiscussion: initial.beatmapsetDiscussion.data
     currentBeatmap: initial.beatmapset.data.beatmaps.data[0]
-    user: currentUser
+    currentUser: currentUser
 
 
   componentDidMount: ->
@@ -62,16 +62,16 @@ BeatmapDiscussions.Main = React.createClass
 
       div
         className: 'osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact'
-        el BeatmapDiscussions.NewPost, user: @state.user, currentBeatmap: @state.currentBeatmap
+        el BeatmapDiscussions.NewDiscussion, currentUser: @state.currentUser, currentBeatmap: @state.currentBeatmap
 
-        el BeatmapDiscussions.Posts,
+        el BeatmapDiscussions.Discussions,
           beatmapset: @state.beatmapset
           currentBeatmap: @state.currentBeatmap
+          currentUser: @state.currentUser
           beatmapsetDiscussion: @state.beatmapsetDiscussion
 
 
   setBeatmapsetDiscussion: (_e, beatmapsetDiscussion) ->
-    console.log 'new!', beatmapsetDiscussion
     @setState beatmapsetDiscussion: beatmapsetDiscussion
 
 
