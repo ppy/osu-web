@@ -60,7 +60,11 @@ BeatmapDiscussions.Discussions = React.createClass
             div
               key: discussion.id
               className: "#{bn}__discussion"
-              el BeatmapDiscussions.Discussion, discussion: discussion, currentUser: @props.currentUser, beatmapset: @props.beatmapset
+              el BeatmapDiscussions.Discussion,
+                discussion: discussion
+                currentUser: @props.currentUser
+                beatmapset: @props.beatmapset
+                currentBeatmap: @props.currentBeatmap
 
       if @state.mode == 'timeline'
         div className: "#{bn}__mode-circle #{bn}__mode-circle--active"

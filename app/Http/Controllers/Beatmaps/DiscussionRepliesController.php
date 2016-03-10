@@ -63,7 +63,7 @@ class DiscussionRepliesController extends Controller
         $reply = BeatmapDiscussionReply::create($params);
 
         if ($discussion->id !== null) {
-            return ujs_redirect(route('beatmaps.discussions.show', $discussion->beatmap_id, $discussion));
+            return $reply->beatmapDiscussion->beatmapsetDiscussion->defaultJson();
         } else {
             return view('beatmaps.discussion_replies.create', compact('discussion', 'reply'));
         }

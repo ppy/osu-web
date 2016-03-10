@@ -24,5 +24,6 @@ class @Url
   @beatmapsetCover: (id) => "//b.ppy.sh/thumb/#{id}l.jpg"
 
   @beatmapDiscussions: (beatmapId) => "/beatmaps/#{beatmapId}/discussions"
+  @beatmapDiscussionReplies: (beatmapId, discussionId) => "/beatmaps/#{beatmapId}/discussions/#{discussionId}/replies"
 
   @user: (id) => "/u/#{id}"

@@ -15,27 +15,58 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, span} = React.DOM
+{button, div, form, input} = React.DOM
 el = React.createElement
 
-bn = 'beatmap-discussion-reply-new'
+bn = 'beatmap-discussion-new-reply'
 
 BeatmapDiscussions.NewReply = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
-  render: ->
-    return div()
+  getInitialState: ->
+    message: ''
 
-    div className: "#{bn}__discussion #{bn}__discussion--new-reply",
+
+  render: ->
+    form
+      className: bn
+      onSubmit: @post
+      button className: 'hidden'
+
       div className: "#{bn}__avatar",
         div
           className: 'avatar avatar--full-rounded'
           style:
             backgroundImage: "url('#{@props.currentUser.avatarUrl}')"
       div className: "#{bn}__message-container",
-        div className: "#{bn}__message #{bn}__message--new-reply", @state.message
-        div
-          className: "#{bn}__info"
-          dangerouslySetInnerHTML:
-            __html: "#{osu.link Url.user(user.id), user.username}, #{osu.timeago post.created_at}"
+        input
+          className: "#{bn}__message"
+          type: 'text'
+          value: @state.message
+          onChange: @setMessage
+
+
+  post: (e) ->
+    e.preventDefault()
+
+    # osu.showLoadingOverlay already called by global listener
+
+    $.ajax Url.beatmapDiscussionReplies(@props.discussion.beatmap_id, @props.discussion.id),
+      method: 'POST'
+      data:
+        beatmap_discussion_reply:
+          message: @state.message
+
+    .done (data) =>
+      @setState message: ''
+      $.publish 'beatmapsetDiscussion:update', data.data
+
+    .fail osu.ajaxError
+
+    .always osu.hideLoadingOverlay
+
+
+  setMessage: (e) ->
+    console.log e
+    @setState message: e.target.value

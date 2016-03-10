@@ -27,6 +27,7 @@
 
   @_discussion-text-size: 15px;
   @_reply-text-size: 11px;
+  @_replies-area-padding-left: (@_avatar-size + @spacing);
 
   @_timestamp-line-total-width: (@spacing * 3 / 2);
   @_timestamp-point-diameter: 7px;
@@ -39,6 +40,17 @@
     width: @_avatar-size;
     height: @_avatar-size;
     margin-right: @spacing;
+  }
+
+  &__discussion {
+    flex: 1 0 auto;
+
+    .default-box-shadow();
+    padding: (@spacing / 2) @spacing;
+    margin: (@spacing / 2) 0;
+
+    display: flex;
+    flex-direction: column;
   }
 
   &__icon {
@@ -69,22 +81,11 @@
 
   &__post {
     display: flex;
-
-    &--reply {
-      margin-top: @spacing;
-      margin-left: (@_avatar-size + @spacing);
-    }
+    margin: (@spacing / 2) 0;
   }
 
-  &__discussion {
-    flex: 1 0 auto;
-
-    .default-box-shadow();
-    padding: @spacing;
-    margin: (@spacing / 2) 0;
-
-    display: flex;
-    flex-direction: column;
+  &__replies {
+    padding-left: @_replies-area-padding-left;
   }
 
   &__timestamp {
