@@ -77,7 +77,7 @@ class UserSeeder extends Seeder
                     // We wouldn't expect the user to improve every day
                     $does_improve = $this->faker->boolean($play_freq);
                     if ($does_improve === true) {
-                        $extreme_improvement = $this->faker->boolean(2); // 1% chance of extreme improvement today
+                        $extreme_improvement = $this->faker->boolean(2); // chance of extreme improvement today
                         if ($extreme_improvement === true) {
                             $improvement_modifier = 1.5;
                         } else {

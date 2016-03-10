@@ -29,9 +29,7 @@ class UserProfileSeeder extends Seeder
                 $usr_id = $usr->user_id;
 
                 foreach ($bms as $bm) {
-                    if (DB::table('osu_favouritemaps')->where('user_id', $usr_id)->where('beatmapset_id', $bm['beatmapset_id'])->first()) {
-                        DB::table('osu_favouritemaps')->where('user_id', $usr_id)->where('beatmapset_id', $bm['beatmapset_id'])->delete();
-                    }
+                    DB::table('osu_favouritemaps')->where('user_id', $usr_id)->where('beatmapset_id', $bm['beatmapset_id'])->delete();
                     $fav = new App\Models\FavouriteBeatmapSet;
                     $fav->beatmapset_id = $bm['beatmapset_id'];
                     $fav->user_id = $usr_id;
@@ -40,9 +38,7 @@ class UserProfileSeeder extends Seeder
                     // Add a random couple few first place ranks
 
                     $bm = $bms[rand(0, count($bms) - 1)];
-                    if (DB::table('osu_user_beatmap_playcount')->where('user_id', $usr_id)->where('beatmap_id', $bm['beatmap_id'])->first()) {
-                        DB::table('osu_user_beatmap_playcount')->where('user_id', $usr_id)->where('beatmap_id', $bm['beatmap_id'])->delete();
-                    }
+                    DB::table('osu_user_beatmap_playcount')->where('user_id', $usr_id)->where('beatmap_id', $bm['beatmap_id'])->delete();
                     $playcount = new App\Models\BeatmapPlaycount;
 
                     $playcount->user_id = $usr_id;
@@ -66,9 +62,9 @@ class UserProfileSeeder extends Seeder
                 }
             }
         } catch (\Illuminate\Database\QueryException $e) {
-            echo "Error: Unable to save User Profile Data\r\n".$e;
+            $this->command->error("Error: Unable to save User Profile Data\r\n".$e->getMessage());
         } catch (Exception $ex) {
-            echo "Error: Unable to save User Profile Data\r\n".$ex;
+            $this->command->error("Error: Unable to save User Profile Data\r\n".$ex->getMessage());
         }
     }
 }
