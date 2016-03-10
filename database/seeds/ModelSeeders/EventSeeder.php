@@ -15,21 +15,21 @@ class EventSeeder extends Seeder
         $users = App\Models\User::all();
 
         $generateEventText = function ($bm, $bms, $u, $rank) {
-        switch ($bm->playmode) {
-        case 0: $playmode = 'osu!'; break;
-        case 1: $playmode = 'Taiko'; break;
-        case 2: $playmode = 'Catch the Beat'; break;
-        case 3: $playmode = 'osu!mania'; break;
-        }
-        $rank_letters = ['X', 'S', 'A'];
-        $rank_letter = $rank_letters[array_rand($rank_letters)];
+            switch ($bm->playmode) {
+            case 0: $playmode = 'osu!'; break;
+            case 1: $playmode = 'Taiko'; break;
+            case 2: $playmode = 'Catch the Beat'; break;
+            case 3: $playmode = 'osu!mania'; break;
+            }
+            $rank_letters = ['X', 'S', 'A'];
+            $rank_letter = $rank_letters[array_rand($rank_letters)];
 
-        $string = "<img src='/images/".$rank_letter."_small.png'/> <b><a href='/u/".$u->user_id."'>".$u->username.'</a></b> achieved rank #'
-            .$rank." on <a href='/b/".$bm->beatmap_id."?m=0'>".$bms->artist.' - '.$bms->title
-            .' ['.$bm->version.']'.'</a> ('.$playmode.')';
+            $string = "<img src='/images/".$rank_letter."_small.png'/> <b><a href='/u/".$u->user_id."'>".$u->username.'</a></b> achieved rank #'
+                .$rank." on <a href='/b/".$bm->beatmap_id."?m=0'>".$bms->artist.' - '.$bms->title
+                .' ['.$bm->version.']'.'</a> ('.$playmode.')';
 
-        return $string;
-      };
+            return $string;
+        };
 
         foreach ($users as $u) {
             if ($beatmapCount > 0) {
@@ -62,8 +62,8 @@ class EventSeeder extends Seeder
                 }
             } // end rank events
 
-          // Create a random supporter/name change event
-          $string = '';
+            // Create a random supporter/name change event
+            $string = '';
             switch (rand(1, 4)) {
                 case 1:
                   $string = "<b><a href='/u/".$u->user_id."'>".$u->username.'</a></b> has once again chosen to support osu! - thanks for your generosity!';
@@ -87,7 +87,7 @@ class EventSeeder extends Seeder
             ]));
         }
 
-      // END EVENTS
+        // END EVENTS
         App\Models\Event::reguard();
     }
 }

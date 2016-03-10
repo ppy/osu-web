@@ -25,9 +25,6 @@ class UserSeeder extends Seeder
             $this->command->info('Can\'t seed events, scores, events or favourite maps due to having no beatmap data.');
         }
 
-        $this->stats_count = 0;
-        $this->hist_count = 0;
-
         // Store some modifiers
         $this->improvement_speeds = [
             (rand(100, 110) / 100), // Fast Learner
@@ -48,22 +45,13 @@ class UserSeeder extends Seeder
             $rank4 = rand(1, 500000);
             $st = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Osu::class)->create(['country_acronym' => $country_code, 'rank' => $rank1, 'rank_score_index' => $rank1]));
             $st1 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Taiko::class)->create(['country_acronym' => $country_code, 'rank' => $rank2, 'rank_score_index' => $rank2]));
-            if ($st1) {
-                ++$this->stats_count;
-            }
             $st2 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Fruits::class)->create(['country_acronym' => $country_code, 'rank' => $rank3, 'rank_score_index' => $rank3]));
-            if ($st2) {
-                ++$this->stats_count;
-            }
             $st3 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Mania::class)->create(['country_acronym' => $country_code, 'rank' => $rank4, 'rank_score_index' => $rank4]));
-            if ($st3) {
-                ++$this->stats_count;
-            }
             // END USER STATS
 
             // RANK HISTORY
 
-            // Create rank histories for all 3 modes
+            // Create rank histories for all 4 modes
             for ($c = 0; $c <= 3; $c++) {
                 switch ($c) {
                     case 0: $rank = $st->rank; break;
@@ -109,9 +97,7 @@ class UserSeeder extends Seeder
                         $hist->$r = $new_rank; // Slight decay of between 0.98 and 0.99
                     }
                 }
-                if ($u->rankHistories()->save($hist)) {
-                    ++$this->hist_count;
-                }
+                $u->rankHistories()->save($hist)
             }
             // END RANK HISTORY
 
