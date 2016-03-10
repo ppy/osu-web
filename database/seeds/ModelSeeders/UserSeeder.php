@@ -67,8 +67,6 @@ class UserSeeder extends Seeder
 
                 $play_freq = rand(10, 35); // How regulary the user plays (as a % chance per day)
 
-                $improvement_speed = $this->improvement_speeds[array_rand($this->improvement_speeds)];
-
                 // Start with current rank, and move down (back in time) to r0
                 $hist->r89 = $rank;
 
@@ -83,20 +81,19 @@ class UserSeeder extends Seeder
                         if ($extreme_improvement === true) {
                             $improvement_modifier = 1.5;
                         } else {
-                            $improvement_modifier = $improvement_speed;
+                            $improvement_modifier = $this->improvement_speeds[array_rand($this->improvement_speeds)];
                         }
                         $new_rank = round($hist->$prev_r * $improvement_modifier);
                         if ($new_rank < 1) {
                             $new_rank = 1;
                         }
-                        // User rank will be modified by somewhere between 0.97 and 1.1 of current rank (realistic amount)
                         $hist->$r = $new_rank;
                     } else {
                         $new_rank = round($hist->$prev_r * (rand(998, 999) / 1000));
                         if ($new_rank < 1) {
                             $new_rank = 1;
                         }
-                        $hist->$r = $new_rank; // Slight decay of between 0.98 and 0.99
+                        $hist->$r = $new_rank; // Slight decay
                     }
                 }
                 $u->rankHistories()->save($hist);
