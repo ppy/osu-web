@@ -479,6 +479,20 @@ class BeatmapSet extends Model
         return $new;
     }
 
+    public function allImageURLs()
+    {
+        $return = [];
+
+        $shapes = ['cover', 'card', 'list'];
+        $scales = ['', '@2x'];
+        foreach ($shapes as $shape) {
+            foreach ($scales as $scale) {
+                $return["$shape$scale"] = $this->coverImageURL("$shape$scale");
+            }
+        }
+        return $return;
+    }
+
     public function coverImageURL($cover_size = 'cover')
     {
         // todo: should probably move these out into their own model, i.e. BeatmapSetCover or something
@@ -494,7 +508,12 @@ class BeatmapSet extends Model
             return false;
         }
 
-        return $this->storage()->url("/beatmaps/{$this->beatmapset_id}/covers/{$cover_size}.jpg");
+        $timestamp = 0;
+        if ($this->cover_updated_at) {
+            $timestamp = $this->cover_updated_at->format('U');
+        }
+
+        return $this->storage()->url("/beatmaps/{$this->beatmapset_id}/covers/{$cover_size}.jpg?{$timestamp}");
     }
 
     public function storage()
