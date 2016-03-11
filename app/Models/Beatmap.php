@@ -116,4 +116,18 @@ class Beatmap extends Model
             ->orderBy('playmode', 'ASC')
             ->orderBy('difficultyrating', 'ASC');
     }
+
+    public function scores()
+    {
+        $mode = studly_case($this->modeStr($this->playmode));
+
+        return $this->hasMany("App\Models\Score\\{$mode}");
+    }
+
+    public function scoresBest()
+    {
+        $mode = studly_case($this->modeStr($this->playmode));
+
+        return $this->hasMany("App\Models\Score\Best\\{$mode}");
+    }
 }

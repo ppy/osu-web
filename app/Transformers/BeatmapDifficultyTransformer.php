@@ -20,13 +20,19 @@
 namespace App\Transformers;
 
 use App\Models\Beatmap;
+use App\Models\Score\Best\Model as ScoreBestModel;
 use League\Fractal;
 
 class BeatmapDifficultyTransformer extends Fractal\TransformerAbstract
 {
+    protected $availableIncludes = [
+        'scoresBest',
+    ];
+
     public function transform(Beatmap $b)
     {
         return [
+            'beatmap_id' => $b->beatmap_id,
             'mode' => $b->playmode,
             'rating' => $b->difficultyrating,
             'name' => $b->version,
@@ -37,5 +43,16 @@ class BeatmapDifficultyTransformer extends Fractal\TransformerAbstract
             'stars' => $b->difficultyrating,
             'length' => $b->total_length,
         ];
+    }
+
+    public function includeScoresBest(Beatmap $b)
+    {
+        $scores = $b
+            ->scoresBest()
+            ->orderBy('score', 'desc')
+            ->limit(50)
+            ->get();
+
+        return $this->collection($scores, new ScoreTransformer);
     }
 }
