@@ -336,7 +336,7 @@ class BeatmapSet extends Model
         // default search params
         $params += [
             'query' => null,
-            'mode' => 0,
+            'mode' => null,
             'status' => 0,
             'genre' => null,
             'language' => null,
