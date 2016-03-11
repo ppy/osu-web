@@ -90,17 +90,17 @@ class BeatmapController extends Controller
         $rawUrl = $beatmapSet->coverImageURL('raw');
         array_push($output, "<a href='/beatmaps/{$id}/covers/regenerate'>regenerate</a>");
         array_push($output, "raw... $rawUrl");
-        array_push($output, "<img src='$rawUrl?$time'>");
+        array_push($output, "<img src='$rawUrl'>");
         $optimizedUrl = $beatmapSet->coverImageURL('fullsize');
         array_push($output, "optimized... $optimizedUrl");
-        array_push($output, "<img src='$optimizedUrl?$time'>");
+        array_push($output, "<img src='$optimizedUrl'>");
         $sizes = ['cover', 'card', 'list'];
         $scales = ['', '@2x'];
         foreach ($sizes as $size) {
             foreach ($scales as $scale) {
                 $url = $beatmapSet->coverImageURL("$size$scale");
                 array_push($output, "$size$scale... $url");
-                array_push($output, "<img src='$url?$time'>");
+                array_push($output, "<img src='$url'>");
             }
         }
         echo implode($output, '<br/>');
