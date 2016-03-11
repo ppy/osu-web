@@ -19,11 +19,7 @@ class UserSeeder extends Seeder
         // DB::table('osu_user_stats_taiko')->delete();
         // DB::table('osu_user_performance_rank')->delete();
 
-        $this->beatmapCount = App\Models\Beatmap::count();
         $this->faker = Faker::create();
-        if ($this->beatmapCount === 0) {
-            $this->command->info('Can\'t seed events, scores, events or favourite maps due to having no beatmap data.');
-        }
 
         // Store some constants
         $this->improvement_speeds = [

@@ -11,6 +11,11 @@ class EventSeeder extends Seeder
         App\Models\Event::unguard();
 
         $beatmapCount = App\Models\Beatmap::count();
+        if ($beatmapCount === 0) {
+            $this->command->info('Can\'t seed events due to having no beatmap data.');
+            return;
+        }
+
         $faker = Faker::create();
         $users = App\Models\User::all();
 

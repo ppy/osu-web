@@ -18,15 +18,15 @@ class ScoreSeeder extends Seeder
         // DB::table('osu_scores_taiko_high')->delete();
         // DB::table('osu_scores_fruits')->delete();
         // DB::table('osu_scores_fruits_high')->delete();
+
         $beatmaps = App\Models\Beatmap::orderByRaw('RAND()')->get();
         $beatmapCount = count($beatmaps);
-        $faker = Faker::create();
-
-        if ($beatmapCount < 1) {
-            $this->command->error('Unable to seed scores due to not having enough beatmap data.');
-
+        if ($beatmapCount === 0) {
+            $this->command->info('Can\'t seed Scores due to having no beatmap data.');
             return;
         }
+        $faker = Faker::create();
+
 
         $users = App\Models\User::all();
         App\Models\Score\Model::unguard();

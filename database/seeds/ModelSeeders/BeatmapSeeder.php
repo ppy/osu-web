@@ -24,6 +24,10 @@ class BeatmapSeeder extends Seeder
             return;
         }
         $api = '&k='.$api_key;
+        $users = App\Models\User::orderByRaw('RAND()')->get()->toArray();
+        if (count($users) < 1) {
+            $users = [['user_id'=>1]];
+        }
 
         try {
             $beatmaps = json_decode(file_get_contents($base_url.'get_beatmaps?since=2016-01-01%2000:00:00'.$api));
@@ -81,6 +85,7 @@ class BeatmapSeeder extends Seeder
                     $set->difficulty_names = $beatmap_diff_names;
                     $set->play_count = $set_playcount;
                     $set->favourite_count = $the_beatmap->favourite_count;
+                    $set->user_id = array_rand_val($users)['user_id'];
                     $set->save();
 
                     $set->difficulty_names = $beatmap_diff_names;
@@ -116,6 +121,7 @@ class BeatmapSeeder extends Seeder
                 $new_bm->difficultyrating = $bm->difficultyrating;
                 $new_bm->playcount = $bm->playcount;
                 $new_bm->passcount = $bm->passcount;
+                $new_bm->user_id = array_rand_val($users)['user_id'];
                 $new_bm->save();
 
                 $beatmaps_array[] = $new_bm;
@@ -131,9 +137,9 @@ class BeatmapSeeder extends Seeder
             $this->command->info('Saved '.strval(count($beatmaps_array)).' Beatmaps (Overwritten '.strval(count($overbeatmaps)).').');
             $this->command->info('Saved '.strval(count($beatmapset_array)).' Beatmap Sets (Overwritten '.strval(count($overbeatmapsets)).').');
         } catch (\Illuminate\Database\QueryException $e) {
-            $this->command->error("DB Error: Unable to save User Profile Data\r\n".$e->getMessage());
+            $this->command->error("DB Error: Unable to save Beatmap Data\r\n".$e->getMessage());
         } catch (Exception $ex) {
-            $this->command->error("Error: Unable to save User Profile Data\r\n".$ex->getMessage());
+            $this->command->error("Error: Unable to save Beatmap Data\r\n".$ex->getMessage());
         }
     }
 }

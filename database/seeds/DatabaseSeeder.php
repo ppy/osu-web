@@ -12,13 +12,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         try {
+            // Users, Stats, Ranks
+            $this->command->info('Seeding Users and Stats/Rank History...');
+            $this->call(UserSeeder::class);
+
             // Beatmaps and sets
             $this->command->info('Seeding Beatmaps...');
             $this->call(BeatmapSeeder::class);
-
-            // Users, Stats, Ranks
-            $this->command->info('Seeding Users and Stats...');
-            $this->call(UserSeeder::class);
 
             // Events
             $this->command->info('Seeding Events...');
