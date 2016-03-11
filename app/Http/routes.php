@@ -165,3 +165,12 @@ Route::get('/api/get_beatmaps', ['uses' => 'APIController@getBeatmaps']);
 
 Route::resource('post', 'PostController');
 Route::resource('modding', 'ModdingPostController');
+
+// status
+if (Config::get('app.debug')) {
+    Route::get('/status', ['uses' => 'StatusController@getMain']);
+} else {
+    Route::group(['domain' => 'stat.ppy.sh'], function () {
+        Route::get('/', ['uses' => 'StatusController@getMain']);
+    });
+}

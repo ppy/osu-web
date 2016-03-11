@@ -34,8 +34,9 @@
         <div id="overlay" style="display: none;"></div>
         <div class="blackout" data-visibility="hidden"></div>
 
-        @include("layout.header")
-
+        @if (!isset($blank))
+            @include("layout.header")
+        @endif
         <div class="osu-layout__section osu-layout__section--full js-content {{ $current_section }}_{{ $current_action }}">
             @include("layout.popup")
             @if (View::hasSection('content'))
@@ -51,9 +52,10 @@
                 </div>
             @endif
         </div>
-
-        @include("layout.gallery_window")
-        @include("layout.footer")
+        @if (!isset($blank))
+            @include("layout.gallery_window")
+            @include("layout.footer")
+        @endif
 
         <div
             class="fixed-bar
