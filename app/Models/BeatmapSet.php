@@ -228,6 +228,10 @@ class BeatmapSet extends Model
             $params['sort'] = ['ranked', 'desc'];
         }
 
+        if (!in_array((int)$params['mode'], Beatmap::modes(), true)) {
+            $params['mode'] = null;
+        }
+
         $valid_sort_fields = ['title', 'artist', 'creator', 'difficulty', 'ranked', 'rating', 'plays'];
         $valid_sort_orders = ['asc', 'desc'];
         if (!in_array($params['sort'][0], $valid_sort_fields, true) || !in_array($params['sort'][1], $valid_sort_orders, true)) {
@@ -308,7 +312,7 @@ class BeatmapSet extends Model
             $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $scores]];
         }
 
-        if (presence($mode) !== null && presence($rank) === null) {
+        if (presence($mode) !== null) {
             $matchParams[] = ['match' => ['playmode' => (int) $mode]];
         }
 
