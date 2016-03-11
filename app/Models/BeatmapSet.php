@@ -680,9 +680,4 @@ class BeatmapSet extends Model
     {
         return $this->belongsTo("App\Models\User", 'user_id', 'approvedby_id');
     }
-
-    public function coverUrl()
-    {
-        return "https://b.ppy.sh/thumb/{$this->beatmapset_id}l.jpg";
-    }
 }
