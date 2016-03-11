@@ -595,10 +595,10 @@ class BeatmapSet extends Model
     {
         $time = time();
 
-        $tmpBase = sys_get_temp_dir()."/bm/$this->beatmapset_id/$time";
-        $osz = "$tmpBase/$this->beatmapset_id.zip";
-        $workingFolder = "$tmpBase/working";
-        $outputFolder = "$tmpBase/out";
+        $tmpBase = sys_get_temp_dir()."/bm/$this->beatmapset_id";
+        $osz = "$tmpBase/$time/$this->beatmapset_id.zip";
+        $workingFolder = "$tmpBase/$time/working";
+        $outputFolder = "$tmpBase/$time/out";
 
         // make our temp folders if they don't exist
         if (!is_dir($workingFolder)) {
