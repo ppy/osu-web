@@ -40,10 +40,12 @@
     width: @_avatar-size;
     height: @_avatar-size;
     margin-right: @spacing;
+    flex: none;
   }
 
   &__discussion {
-    flex: 1 0 auto;
+    flex: 1;
+    min-width: 0;
 
     .default-box-shadow();
     padding: (@spacing / 2) @spacing;
@@ -70,6 +72,8 @@
   }
 
   &__message {
+    word-wrap: break-word;
+
     &--discussion {
       font-size: @_discussion-text-size;
     }
@@ -77,6 +81,11 @@
     &--reply {
       font-size: @_reply-text-size;
     }
+  }
+
+  &__message-container {
+    flex: 1;
+    min-width: 0;
   }
 
   &__post {
