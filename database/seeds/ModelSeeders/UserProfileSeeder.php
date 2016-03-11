@@ -28,6 +28,7 @@ class UserProfileSeeder extends Seeder
                 $bms = $usr->scoresBestOsu()->get();
                 if (count($bms) < 1) {
                     $this->command->info('Can\'t seed favourite maps, map playcounts or leaders due to having no beatmap data.');
+
                     return;
                 }
                 $usr_id = $usr->user_id;

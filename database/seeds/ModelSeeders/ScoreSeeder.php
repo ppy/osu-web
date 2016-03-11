@@ -23,10 +23,10 @@ class ScoreSeeder extends Seeder
         $beatmapCount = count($beatmaps);
         if ($beatmapCount === 0) {
             $this->command->info('Can\'t seed Scores due to having no beatmap data.');
+
             return;
         }
         $faker = Faker::create();
-
 
         $users = App\Models\User::all();
         App\Models\Score\Model::unguard();

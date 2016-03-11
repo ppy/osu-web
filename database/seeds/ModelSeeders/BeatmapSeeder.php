@@ -26,7 +26,7 @@ class BeatmapSeeder extends Seeder
         $api = '&k='.$api_key;
         $users = App\Models\User::orderByRaw('RAND()')->get()->toArray();
         if (count($users) < 1) {
-            $users = [['user_id'=>1]];
+            $users = [['user_id' => 1]];
         }
 
         try {

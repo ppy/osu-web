@@ -13,6 +13,7 @@ class EventSeeder extends Seeder
         $beatmapCount = App\Models\Beatmap::count();
         if ($beatmapCount === 0) {
             $this->command->info('Can\'t seed events due to having no beatmap data.');
+
             return;
         }
 
