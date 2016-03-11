@@ -30,17 +30,8 @@ BeatmapDiscussions.Discussion = React.createClass
 
   render: ->
     div className: bn,
-      div className: "#{bn}__timestamp-line"
-      div className: "#{bn}__timestamp-container",
-        div className: "#{bn}__timestamp-point"
-        div className: "#{bn}__icons-container",
-          div className: "#{bn}__icons",
-            div className: "#{bn}__icon",
-              span
-                className: "beatmap-discussion-message-type beatmap-discussion-message-type--#{@props.discussion.message_type}"
-                el BeatmapDiscussions.MessageIcon, messageType: @props.discussion.message_type
-          div className: "#{bn}__timestamp",
-            osu.formatBeatmapTimestamp(@props.discussion.timestamp)
+      div className: "#{bn}__timestamp",
+        @timestamp()
 
       div className: "#{bn}__discussion",
         @post @props.discussion, 'discussion'
@@ -55,20 +46,36 @@ BeatmapDiscussions.Discussion = React.createClass
             discussion: @props.discussion
 
 
+  timestamp: ->
+    tbn = 'beatmap-discussion-timestamp'
+
+    div className: tbn,
+      div className: "#{tbn}__point"
+      div className: "#{tbn}__icons-container",
+        div className: "#{tbn}__icons",
+          div className: "#{tbn}__icon",
+            span
+              className: "beatmap-discussion-message-type beatmap-discussion-message-type--#{@props.discussion.message_type}"
+              el BeatmapDiscussions.MessageIcon, messageType: @props.discussion.message_type
+        div className: "#{tbn}__text",
+          osu.formatBeatmapTimestamp(@props.discussion.timestamp)
+
+
   post: (post, type = '') ->
+    pbn = 'beatmap-discussion-post'
     user = post.user.data
 
     div
-      className: "#{bn}__post #{bn}__post--#{type}"
+      className: pbn
       key: "#{type}-#{post.id}"
-      div className: "#{bn}__avatar",
+      div className: "#{pbn}__avatar",
         div
           className: 'avatar avatar--full-rounded'
           style:
             backgroundImage: "url('#{user.avatarUrl}')"
-      div className: "#{bn}__message-container",
-        div className: "#{bn}__message #{bn}__message--#{type}", post.message
+      div className: "#{pbn}__message-container",
+        div className: "#{pbn}__message #{pbn}__message--#{type}", post.message
         div
-          className: "#{bn}__info"
+          className: "#{pbn}__info"
           dangerouslySetInnerHTML:
             __html: "#{osu.link Url.user(user.id), user.username}, #{osu.timeago post.created_at}"

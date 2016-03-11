@@ -18,7 +18,7 @@
 {button, div, form, input} = React.DOM
 el = React.createElement
 
-bn = 'beatmap-discussion-new-reply'
+bn = 'beatmap-discussion-post'
 
 BeatmapDiscussions.NewReply = React.createClass
   mixins: [React.addons.PureRenderMixin]
@@ -41,7 +41,7 @@ BeatmapDiscussions.NewReply = React.createClass
             backgroundImage: "url('#{@props.currentUser.avatarUrl}')"
       div className: "#{bn}__message-container",
         input
-          className: "#{bn}__message"
+          className: "#{bn}__message #{bn}__message--new-reply"
           type: 'text'
           value: @state.message
           onChange: @setMessage
@@ -68,5 +68,4 @@ BeatmapDiscussions.NewReply = React.createClass
 
 
   setMessage: (e) ->
-    console.log e
     @setState message: e.target.value
