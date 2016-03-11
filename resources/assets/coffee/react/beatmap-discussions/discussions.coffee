@@ -30,7 +30,7 @@ BeatmapDiscussions.Discussions = React.createClass
 
 
   componentWillReceiveProps: ->
-    @_currentDiscussions = null
+    @_currentDiscussions = undefined
 
 
   render: ->
@@ -38,17 +38,19 @@ BeatmapDiscussions.Discussions = React.createClass
       className: bn
 
       ['general', 'timeline'].map (mode) =>
-        circleClass = "#{bn}__mode-circle"
-        circleClass += " #{bn}__mode-circle--active" if mode == @state.mode
+        do (mode) =>
+          circleClass = "#{bn}__mode-circle"
+          circleClass += " #{bn}__mode-circle--active" if mode == @state.mode
 
-        div
-          key: "mode-#{mode}"
-          className: "#{bn}__mode"
-          div className: circleClass
-          if mode == 'timeline' && mode == @state.mode
-            div className: "#{bn}__timeline-line #{bn}__timeline-line--bottom #{bn}__timeline-line--half"
-          span className: "#{bn}__mode-text",
-            Lang.get("#{lp}.mode.#{mode}")
+          div
+            key: "mode-#{mode}"
+            className: "#{bn}__mode"
+            onClick: => @setMode mode
+            div className: circleClass
+            if mode == 'timeline' && mode == @state.mode
+              div className: "#{bn}__timeline-line #{bn}__timeline-line--bottom #{bn}__timeline-line--half"
+            span className: "#{bn}__mode-text",
+              Lang.get("#{lp}.mode.#{mode}")
 
       div
         className: "#{bn}__discussions"
@@ -71,5 +73,18 @@ BeatmapDiscussions.Discussions = React.createClass
 
 
   currentDiscussions: ->
-    @_currentDiscussions ?= @props.beatmapsetDiscussion.beatmap_discussions.data.filter (discussion) =>
-      discussion.beatmap_id == @props.currentBeatmap.id && discussion.timestamp
+    if @_currentDiscussions == undefined
+      beatmapId = if @state.mode == 'general' then null else @props.currentBeatmap.id
+
+      @_currentDiscussions = @props.beatmapsetDiscussion.beatmap_discussions.data.filter (discussion) =>
+        discussion.beatmap_id == beatmapId
+
+    @_currentDiscussions
+
+
+  setMode: (mode) ->
+    return if @state.mode == mode
+
+    console.log 'switching to:', mode
+    @_currentDiscussions = undefined
+    @setState mode: mode

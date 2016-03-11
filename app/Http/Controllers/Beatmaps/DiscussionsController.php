@@ -64,11 +64,14 @@ class DiscussionsController extends Controller
                 'timestamp',
             ]),
             [
-                'beatmap_id' => $beatmap->beatmap_id,
                 'beatmapset_discussion_id' => $beatmapsetDiscussion->id,
                 'user_id' => Auth::user()->user_id,
             ]
         );
+
+        if (present(array_get($params, 'timestamp')) === true) {
+            $params['beatmap_id'] = $beatmap->beatmap_id;
+        }
 
         $discussion = BeatmapDiscussion::create($params);
 

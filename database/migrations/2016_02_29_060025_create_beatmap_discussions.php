@@ -15,7 +15,7 @@ class CreateBeatmapDiscussions extends Migration
         Schema::create('beatmap_discussions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('beatmapset_discussion_id')->unsigned();
-            $table->mediumInteger('beatmap_id')->unsigned();
+            $table->mediumInteger('beatmap_id')->unsigned()->nullable();
             $table->mediumInteger('user_id')->unsigned()->nullable();
 
             $table->integer('message_type')->nullable();
