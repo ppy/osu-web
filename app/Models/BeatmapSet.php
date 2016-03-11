@@ -573,12 +573,14 @@ class BeatmapSet extends Model
         $bg = $this::scanBMForBG("$workingFolder/$beatmapFilename");
         $bg = str_replace('\\', '/', $bg); // windows pathing woo
         if (!$bg) {
+            deltree($tmpBase);
             $this->update(['cover_updated_at' => $this->freshTimestamp()]);
-            return false;
+            return true;
         }
 
         $bg_file = ci_file_search("{$workingFolder}/{$bg}");
         if (!$bg_file) {
+            deltree($tmpBase);
             throw new BeatmapProcessorException('Background image missing: '. $bg);
         }
 
@@ -592,6 +594,7 @@ class BeatmapSet extends Model
 
         $ok = copy("$resizerEndpoint/optim/$originalImage", "$outputFolder/fullsize.jpg");
         if (!$ok || filesize("$outputFolder/fullsize.jpg") < 100) {
+            deltree($tmpBase);
             throw new BeatmapProcessorException('Error retrieving optimized image.');
         }
         $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/fullsize.jpg", file_get_contents("$outputFolder/fullsize.jpg"));
@@ -603,6 +606,7 @@ class BeatmapSet extends Model
             foreach ($scales as $scale) {
                 $ok = copy("$resizerEndpoint/thumb/$shape$scale/$optimizedImage", "$outputFolder/$shape$scale.jpg");
                 if (!$ok || filesize("$outputFolder/$shape$scale.jpg") < 100) {
+                    deltree($tmpBase);
                     throw new BeatmapProcessorException('Error retrieving resized image.');
                 }
                 $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/$shape$scale.jpg", file_get_contents("$outputFolder/$shape$scale.jpg"));
