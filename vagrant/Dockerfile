@@ -17,5 +17,4 @@ RUN useradd vagrant --create-home --shell /bin/bash && echo -n 'vagrant:vagrant'
 
 EXPOSE 22
 
-COPY docker/start.sh /start.sh
-CMD /start.sh
+CMD /usr/sbin/sshd -D

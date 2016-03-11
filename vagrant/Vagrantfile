@@ -48,6 +48,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--memory", "2048"]
     vb.customize ["modifyvm", :id, "--ostype", "Ubuntu"]
     vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
+
+    override.vm.provision "shell", inline: "mount /data/osu!web/node_modules", run: "always"
   end
 
   config.vm.provider :docker do |d, override|
@@ -59,8 +61,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provision "shell", inline: provision_script
-  config.vm.provision "shell", inline: "mount /data/osu!web/node_modules",
-    run: "always"
-  config.vm.provision "shell", inline: "sudo service nginx restart",
-    run: "always"
+  config.vm.provision "shell", inline: "sudo service mysql restart", run: "always"
+  config.vm.provision "shell", inline: "sudo service php7.0-fpm restart", run: "always"
+  config.vm.provision "shell", inline: "sudo service nginx restart", run: "always"
 end
