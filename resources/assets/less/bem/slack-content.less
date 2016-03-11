@@ -1,0 +1,76 @@
+/**
+*    Copyright 2015 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License version 3
+*    as published by the Free Software Foundation.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+.slack-content {
+  display: flex;
+  flex-flow: row wrap;
+
+  align-items: center;
+  justify-content: center;
+
+  padding-top: (@spacing * 3);
+
+  @media @desktop {
+    padding-left: @padding-big;
+    padding-right: @padding-big;
+  }
+
+  &__item {
+    @media @mobile {
+      padding: 0 (@spacing * 2);
+    }
+
+    &--text {
+      @media @desktop {
+        flex-basis: 100%;
+      }
+    }
+
+    &--image {
+      max-width: 100%;
+      height: auto;
+    }
+
+  }
+
+  &__image-container {
+    min-width: 0;
+    padding-bottom: (@spacing * 2);
+
+    &--logo {
+      @media @desktop {
+        max-width: 42%;
+        padding-right: 4%;
+      }
+
+      max-width: 75%;
+    }
+
+    &--devices {
+      @media @desktop {
+        max-width: 58%;
+        padding-left: 4%;
+      }
+    }
+  }
+
+  &__invite-info {
+    padding-bottom: (@spacing * 2);
+    margin: 0;
+  }
+}

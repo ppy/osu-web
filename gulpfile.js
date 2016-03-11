@@ -78,10 +78,20 @@ elixir(function(mix) {
     'react/beatmaps/*.coffee',
     'react/beatmaps.coffee'
   ], 'public/js/react/beatmaps.js')
+  .coffee([
+    'react/slack-page/*.coffee',
+    'react/slack-page.coffee'
+  ], 'public/js/react/slack-page.js')
+  .coffee([
+    'react/status-page/*.coffee',
+    'react/status-page.coffee'
+  ], 'public/js/react/status-page.js')
   .version([
     'css/app.css',
     'js/app.js',
     'js/react/profile-page.js',
     'js/react/beatmaps.js',
+    'js/react/slack-page.js',
+    'js/react/status-page.js'
   ]);
 });

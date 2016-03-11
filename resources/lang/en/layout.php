@@ -61,6 +61,7 @@ return [
             'getChat' => 'chat',
             'getSupport' => 'support',
             'getLive' => 'live',
+            'getSlack' => 'osu!dev',
             'profile' => 'profile',
             'tournaments' => 'tournaments',
             'tournaments-index' => 'tournaments',

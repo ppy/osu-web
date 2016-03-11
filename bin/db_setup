@@ -8,9 +8,4 @@ cd "$(dirname "${0}")/.."
 
 for db in osu osu_store; do
   echo "CREATE DATABASE ${db} DEFAULT CHARSET utf8mb4" | mysql -u root
-  for dumptype in structure data; do
-    file="database/db-${db}-${dumptype}.sql"
-    test -f "${file}" || continue
-    mysql -u root "${db}" < "${file}"
-  done
 done

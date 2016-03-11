@@ -24,11 +24,17 @@
 
   @media @desktop {
     // header left margin (20) + logo (100) + menu left margin (10)
-    padding-left: 130px;
+    padding-left: @padding-big;
   }
 
   &--tournaments {
     .at2x-simple("/images/headers/tournament.jpg");
+  }
+
+  &--slack {
+    .at2x-simple("/images/headers/slack.jpg");
+    background-position: center;
+    height: 200px;
   }
 
   &__title {
@@ -44,4 +50,8 @@
     }
   }
 
+  &__title-box {
+    position: absolute;
+    bottom: (@spacing * 2 - 10px);
+  }
 }

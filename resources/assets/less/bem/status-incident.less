@@ -1,0 +1,135 @@
+/**
+ *    Copyright 2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+@import '../app';
+
+// incident colors
+@resolved: @green-light;
+@resolving: @yellow;
+@unknown: @pink;
+@username: @blue-dark;
+
+.status-incident {
+  @media (max-width: @screen-lg-min) {
+    margin-left: -8px;
+  }
+
+  &--active {
+    font-weight: bold;
+    color: @pink-dark;
+  }
+
+  &:first-child {
+    .status-incident__state:after {
+      background: transparent;
+    }
+  }
+
+  &:last-child {
+    .status-incident__state:before {
+      background: transparent;
+    }
+  }
+
+  &--no-line {
+    .status-incident__state {
+      &:before, &:after {
+        content: none;
+      }
+    }
+  }
+
+  &__state {
+    width: 28px;
+    height: 16px;
+    float: left;
+    background: red;
+    border-radius: 5px;
+    margin: 10px;
+    margin-left: 0;
+    margin-top: 3px;
+
+    @media (max-width: @screen-lg-min) {
+      margin-left: 10px;
+    }
+
+    &--resolved {
+      background: @resolved;
+    }
+
+    &--resolving {
+      background: @resolving;
+    }
+
+    &--unknown {
+      background: @unknown;
+    }
+
+    &:before, &:after {
+      content: ' ';
+      position: absolute;
+      background: #999;
+    }
+
+    &:before {
+      width: 3px;
+      height: 68px;
+      top: 16px;
+      left: 13px;
+    }
+
+    &:after {
+      width: 3px;
+      height: 62px;
+      top: -62px;
+      left: 13px;
+    }
+  }
+
+  &__content {
+    margin-top: 40px;
+    margin-bottom: 40px;
+
+    @media (max-width: @screen-lg-min) {
+      padding-left: 10px;
+    }
+  }
+
+  &__info-date {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 14px;
+  }
+
+  &__info-by {
+    font-weight: 500;
+    font-style: italic;
+    color: @username;
+    font-size: 14px;
+  }
+
+  &__desc {
+    margin-left: 38px;
+    font-style: italic;
+    font-size: 14px;
+
+    &--resolved {
+      text-decoration: line-through;
+    }
+  }
+}

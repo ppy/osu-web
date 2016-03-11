@@ -149,13 +149,17 @@ class User extends Model implements AuthenticatableContract
         }
 
         if (($availableDate = self::checkWhenUsernameAvailable($username)) > Carbon::now()) {
-            $remainingDays = max(1, Carbon::now()->diffInDays($availableDate, false));
+            $remaining = Carbon::now()->diff($availableDate, false);
 
-            if ($remainingDays > 365 * 3) {
+            if ($remaining->days > 365 * 2) {
                 //no need to mention the inactivity period of the account is actively in use.
                 return ['Username is already in use!'];
+            } elseif ($remaining->days > 0) {
+                return ["This username will be available for use in <strong>{$remaining->days}</strong> days."];
+            } elseif ($remaining->h > 0) {
+                return ["This username will be available for use in <strong>{$remaining->h}</strong> hours."];
             } else {
-                return ["This username will be available for use in <strong>{$remainingDays}</strong> more days."];
+                return ['This username will be available for use any minute now!'];
             }
         }
 
@@ -524,6 +528,11 @@ class User extends Model implements AuthenticatableContract
     public function apiKey()
     {
         return $this->hasOne("App\Models\ApiKey", 'user_id');
+    }
+
+    public function slackUser()
+    {
+        return $this->hasOne(SlackUser::class, 'user_id');
     }
 
     //public function country() { return $this->hasOne("Country"); }
@@ -961,5 +970,17 @@ class User extends Model implements AuthenticatableContract
             'user_posts' => $newPostsCount,
             'user_lastpost_time' => $lastPostTime,
         ]);
+    }
+
+    public function isSlackEligible()
+    {
+        $canInvite = $this->beatmapPlaycounts()->sum('playcount') > 100
+            && $this->slackUser === null
+            && $this->user_type !== self::ANONYMOUS
+            && $this->user_warnings === 0
+            && $this->banHistories()->where('timestamp', '>', Carbon::now()->subDays(28))
+                ->where('ban_status', '=', 2)->count() === 0;
+
+        return $canInvite;
     }
 }

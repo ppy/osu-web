@@ -83,6 +83,9 @@ Route::post('/community/live', ['as' => 'live', 'uses' => 'CommunityController@p
 Route::get('/community/chat', ['as' => 'chat', 'uses' => 'CommunityController@getChat']);
 Route::get('/community/profile/{id}', function ($id) { return Redirect::route('users.show', $id); });
 
+Route::get('/community/slack', ['as' => 'slack', 'uses' => 'CommunityController@getSlack']);
+Route::post('/community/slack/agree', ['as' => 'slack.agree', 'uses' => 'CommunityController@postSlackAgree']);
+
 Route::get('/u/{id}', ['as' => 'users.show', 'uses' => 'UsersController@show']);
 
 // Authentication section (Temporarily set up as replacement/improvement of config("osu.urls.*"))
@@ -164,3 +167,12 @@ Route::get('/api/get_beatmaps', ['uses' => 'APIController@getBeatmaps']);
 
 Route::resource('post', 'PostController');
 Route::resource('modding', 'ModdingPostController');
+
+// status
+if (Config::get('app.debug')) {
+    Route::get('/status', ['uses' => 'StatusController@getMain']);
+} else {
+    Route::group(['domain' => 'stat.ppy.sh'], function () {
+        Route::get('/', ['uses' => 'StatusController@getMain']);
+    });
+}
