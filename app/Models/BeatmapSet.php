@@ -280,6 +280,7 @@ class BeatmapSet extends Model
         $searchParams['body']['sort'] = [$sort_field => ['order' => $sort_order]];
         $searchParams['fields'] = ['id'];
         $matchParams = [];
+        $shouldParams = [];
 
         if (presence($genre) !== null) {
             $matchParams[] = ['match' => ['genre_id' => (int) $genre]];
@@ -312,12 +313,58 @@ class BeatmapSet extends Model
             $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $scores]];
         }
 
+        // TODO: This logic probably shouldn't be at the model level... maybe?
+        if (presence($status) !== null) {
+            switch ((int)$status) {
+                case 0: // Ranked & Approved
+                    $shouldParams[] = [
+                        ['match' => ['approved' => 1]],
+                        ['match' => ['approved' => 2]],
+                    ];
+                    break;
+                case 1: // Approved
+                    $matchParams[] = ['match' => ['approved' => 2]];
+                    break;
+                case 2: // Favourites
+                    $favs = Auth::user()->favouriteBeatmapSets()->get()->lists('beatmapset_id');
+                    $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $favs]];
+                    break;
+                case 3: // Mod Requests
+                    $maps = ModQueue::all()->lists('beatmapset_id');
+                    $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
+                    $matchParams[] = ['match' => ['approved' => 0]];
+                    break;
+                case 4: // Pending
+                    $shouldParams[] = [
+                        ['match' => ['approved' => -1]],
+                        ['match' => ['approved' => 0]],
+                    ];
+                    break;
+                case 5: // Graveyard
+                    $matchParams[] = ['match' => ['approved' => -2]];
+                    break;
+                case 6: // My Maps
+                    $maps = Auth::user()->beatmapSets()->get()->lists('beatmapset_id');
+                    $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
+                    break;
+                default: // null, etc
+                    break;
+            }
+        } else {
+            $matchParams[] = ['range' => ['approved' => ['gte' => 0]]];
+        }
+
         if (presence($mode) !== null) {
             $matchParams[] = ['match' => ['playmode' => (int) $mode]];
         }
 
         if (!empty($matchParams)) {
             $searchParams['body']['query']['bool']['must'] = $matchParams;
+        }
+
+        if (!empty($shouldParams)) {
+            $searchParams['body']['query']['bool']['should'] = $shouldParams;
+            $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
         }
 
         try {
