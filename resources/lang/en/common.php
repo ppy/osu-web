@@ -41,6 +41,7 @@ return [
 
         'time' => [
             'days_ago' => ':count day ago|:count days ago',
+            'hours_ago' => ':count hour ago|:count hours ago',
             'now' => 'now',
         ],
 ];

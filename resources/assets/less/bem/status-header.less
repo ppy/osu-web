@@ -16,42 +16,43 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
+@import "../app";
 
-.osu-page-header {
+.status-header {
+  .at2x-simple("/images/headers/status.png");
+  background-repeat: no-repeat;
   background-size: cover;
+  background-position: left center;
 
-  padding: (@spacing * 2);
+  padding: @spacing;
+  margin-top: @spacing;
+  margin-bottom: @spacing;
+  display: flex;
+  align-items: center;
 
-  @media @desktop {
-    // header left margin (20) + logo (100) + menu left margin (10)
-    padding-left: @padding-big;
-  }
+  &:extend(.default-box-shadow);
 
-  &--tournaments {
-    .at2x-simple("/images/headers/tournament.jpg");
-  }
-
-  &--slack {
-    .at2x-simple("/images/headers/slack.jpg");
-    background-position: center;
-    height: 200px;
+  &__text {
+    padding-left: 10px;
   }
 
   &__title {
-    font-size: 32px;
-    margin-bottom: 10px;
-    .default-text-shadow();
-    color: #fff;
-
-    font-style: normal;
-
-    &--small {
-      font-size: 16px;
-    }
+    font-size: 18px;
+    margin: 0;
   }
 
-  &__title-box {
-    position: absolute;
-    bottom: (@spacing * 2 - 10px);
+  &__desc {
+    font-size: 14px;
+    color: @grey-4;
+    
+    margin: 0;
+  }
+
+  &__logo {
+    .at2x-simple('/images/layout/osu-logo.png');
+    width: 45px;
+    height: 45px;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 }

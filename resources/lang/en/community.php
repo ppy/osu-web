@@ -29,10 +29,10 @@ return [
         ],
 
         'dev_quote' => 'osu! is a completely free-to-play game, but running it is most definitely not so free. Between the cost of commissioning servers and high quality international bandwidth, the time spent maintaining the system and community, providing prizes for competitions, answering support questions and generally keeping people happy, osu! consumes quite a hefty amount of money! Oh, and don\'t forget the fact that we do it without any advertising or partnering with silly toolbars and the likes!
-            <br/><br/>osu! is at the end of the day largely run by myself, to which you may know best as "peppy". 
-            I have had to quit my day job in order to keep up with osu!, 
-            and do at times struggle to maintain the standards I strive for. 
-            I would like to offer my personal thanks to those who have supported osu! thus far, 
+            <br/><br/>osu! is at the end of the day largely run by myself, to which you may know best as "peppy".
+            I have had to quit my day job in order to keep up with osu!,
+            and do at times struggle to maintain the standards I strive for.
+            I would like to offer my personal thanks to those who have supported osu! thus far,
             and just as much to those who continue to support this amazing game and community into the future :).',
 
         'why_support' => [
@@ -125,5 +125,24 @@ return [
             'gift' => 'or gift support to other players',
             'instructions' => 'click the heart button to proceed to the osu!store',
         ],
+    ],
+    'slack' => [
+        'header' => [
+            'small' => 'osu!dev',
+            'large' => 'osu!public Slack Access',
+        ],
+
+        'guest-begin' => 'You need to be ',
+        'guest-middle' => 'logged in',
+        'guest-end' => ' to receive a slack invite!',
+
+        'receive-invite' => 'You can receive an invite for the public osu! slack network here.',
+        'bullet-points' => 'Please read thoroughly through the conditions on <a href=":link">this post.</a><br />Please note that any offences on your account will not be tolerated.',
+
+        'recent-issues' => 'Your account has recent issues. Please <a href="mailto::mail">contact support</a> for more details.',
+        'agree-button' => 'Agree',
+
+        'accepted' => 'Your request has been accepted. You should receive an email soon.',
+        'invite-already-accepted' => 'You already have a slack account! If you have issues, <a href="mailto::mail">contact support.</a>',
     ],
 ];

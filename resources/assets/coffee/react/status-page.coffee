@@ -15,10 +15,4 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class @Url
-  @updateProfileAccount: '/account/update-profile'
-  @pageAccount: '/account/page'
-
-  @requestSlackInvite: '/community/slack/agree'
-
-  @user: (id) => "/u/#{id}"
+reactTurbolinks.register 'status-page', Status.Page

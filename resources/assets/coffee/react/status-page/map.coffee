@@ -15,10 +15,25 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class @Url
-  @updateProfileAccount: '/account/update-profile'
-  @pageAccount: '/account/page'
+{div, span} = React.DOM
+el = React.createElement
 
-  @requestSlackInvite: '/community/slack/agree'
+class Status.Map extends React.Component
+  constructor: (props) ->
+    super props
 
-  @user: (id) => "/u/#{id}"
+  componentDidMount: =>
+    @_map()
+
+  componentDidUpdate: =>
+    @_map()
+
+  _map: ->
+    unless @map
+      @map = new StatusMap(@refs.status__map)
+    @map.update(@props.servers)
+
+  render: =>
+    div
+      ref: 'status__map'
+      className: 'status-map osu-layout__row--page-compact'

@@ -25,7 +25,7 @@
       <h2 class="big-desc">{!! trans('community.support.header.big_description') !!}</h2>
       <p class="small-desc">{!! trans('community.support.header.small_description') !!}</p>
 
-      <a class="shadow shadow--hover button" href="{{ config('osu.urls.-game') }}">
+      <a class="shadow shadow--hover button" href="{{ config('osu.urls.support-the-game') }}">
         {!! trans('community.support.header.support_button') !!}&nbsp;&nbsp;<span class="fa fa-heart"></span>
       </a>
     </div><!-- end: header info -->
@@ -104,7 +104,7 @@
     <h2>{{ trans('community.support.convinced.title') }}</h2>
     <br/><br/>
 
-    <a class="convinced__heart link--white" href="{{ config('osu.urls.-game') }}">
+    <a class="convinced__heart link--white" href="{{ config('osu.urls.support-the-game') }}">
       <div class="convinced__heart__inner">
         <i class="fa fa-heart fa-5x"></i>
       </div>
