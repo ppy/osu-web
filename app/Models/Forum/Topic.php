@@ -428,17 +428,26 @@ class Topic extends Model
     }
     public function isADoublePost(User $user)
     {
-        if($user === null) return false;
-        if($user->user_id == $this->topic_poster)
-        {
-            if(Carbon::now()->subdays(1)>$this->topic_last_post_time)return false;
-            if($user->user_id !== $this->topic_last_poster_id)return false;
-            return true;
+        if($user === null) {
+            return false;
         }
-        else
-        {
-            if(Carbon::now()->subdays(3) > $this->topic_last_post_time)return false;
-            if($user->user_id !== $this->topic_last_poster_id)return false;
+        if($user->user_id == $this->topic_poster) {
+            if(Carbon::now()->subdays(1)>$this->topic_last_post_time) {
+                return false;
+            }
+            if($user->user_id !== $this->topic_last_poster_id) {
+                return false;
+            }
+
+            return true;
+        } else {
+            if(Carbon::now()->subdays(3) > $this->topic_last_post_time) {
+                return false;
+            }
+            if($user->user_id !== $this->topic_last_poster_id) {
+                return false;
+            }
+
             return true;
         }
     }
