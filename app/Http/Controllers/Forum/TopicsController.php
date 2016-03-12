@@ -228,8 +228,8 @@ class TopicsController extends Controller
     }
     public function checkForDoublePost($topic_id)
     {
-        $topic=Topic::FindOrFail($topic_id);
-        $user=Auth::user();
+        $topic = Topic::FindOrFail($topic_id);
+        $user = Auth::user();
         return ['doublepost' => $topic->isadoublepost($user) === true];
     }
 }
