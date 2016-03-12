@@ -426,6 +426,7 @@ class Topic extends Model
 
         $this->delete();
     }
+
     public function isADoublePost(User $user)
     {
         if ($user === null) {
