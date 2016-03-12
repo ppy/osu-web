@@ -117,6 +117,11 @@ class Beatmap extends Model
             ->orderBy('difficultyrating', 'ASC');
     }
 
+    public function failtimes()
+    {
+        return $this->hasMany(BeatmapFailtimes::class);
+    }
+
     public function scores()
     {
         $mode = studly_case($this->modeStr($this->playmode));
