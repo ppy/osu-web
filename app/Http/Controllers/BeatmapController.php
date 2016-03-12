@@ -123,4 +123,16 @@ class BeatmapController extends Controller
             'beatmaps'
         );
     }
+
+    public function getMapSet($id)
+    {
+        $set = BeatmapSet::find($id);
+        $set = fractal_item_array(
+            $set,
+            new BeatmapSetTransformer(),
+            implode (',', ['difficulties.scoresBest.user', 'difficulties.failtimes'])
+        );
+
+        return view('beatmaps.sets.show', compact('set'));
+    }
 }
