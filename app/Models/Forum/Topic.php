@@ -431,8 +431,8 @@ class Topic extends Model
         if ($user === null) {
             return false;
         }
-        if ($user->user_id == $this->topic_poster) {
-            if (Carbon::now()->subdays(1)>$this->topic_last_post_time) {
+        if ($user->user_id === $this->topic_poster) {
+            if (Carbon::now()->subdays(1) > $this->topic_last_post_time) {
                 return false;
             }
             if ($user->user_id !== $this->topic_last_poster_id) {
