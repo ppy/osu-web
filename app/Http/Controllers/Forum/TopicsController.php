@@ -119,7 +119,7 @@ class TopicsController extends Controller
         $skipLayout = Request::input('skip_layout') === '1';
         $jumpTo = null;
 
-        $topic = Topic::findOrFail($id);
+        $topic = Topic::with('forum.cover')->findOrFail($id);
 
         $this->authorizeView($topic->forum);
 
