@@ -17,31 +17,31 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use Illuminate\Database\Migrations\Migration;
 
-return [
-        'buttons' => [
-            'cancel' => 'Cancel',
-            'reset' => 'Reset',
-            'save' => 'Save',
-            'show_more' => 'show more',
-        ],
+class AddDefaultTopicCoverToForumCovers extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('forum_forum_covers', function ($table) {
+            $table->text('default_topic_cover_json')->nullable();
+        });
+    }
 
-        'count' => [
-            'item' => ':count unit|:count units',
-        ],
-
-        'dropzone' => [
-            'target' => 'drop here to upload',
-        ],
-
-        'pagination' => [
-            'previous' => 'prev',
-            'next' => 'next',
-        ],
-
-        'time' => [
-            'days_ago' => ':count day ago|:count days ago',
-            'hours_ago' => ':count hour ago|:count hours ago',
-            'now' => 'now',
-        ],
-];
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('forum_forum_covers', function ($table) {
+            $table->dropColumn('default_topic_cover_json');
+        });
+    }
+}

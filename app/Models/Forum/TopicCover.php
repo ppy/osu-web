@@ -28,6 +28,8 @@ class TopicCover extends Model
 {
     use Imageable;
 
+    const MAX_DIMENSIONS = [2700, 400];
+
     protected $table = 'forum_topic_covers';
 
     protected $casts = [
@@ -40,7 +42,7 @@ class TopicCover extends Model
 
     public function getMaxDimensions()
     {
-        return [2700, 700];
+        return static::MAX_DIMENSIONS;
     }
 
     public function getFileRoot()
@@ -133,5 +135,14 @@ class TopicCover extends Model
         }
 
         return $this->owner()->user_id === $user->user_id;
+    }
+
+    public function defaultFileUrl()
+    {
+        try {
+            return $this->topic->forum->cover->defaultTopicCover->fileUrl();
+        } catch (Exception $_e) {
+            // do nothing
+        }
     }
 }

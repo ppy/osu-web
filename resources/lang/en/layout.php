@@ -66,6 +66,7 @@ return [
             'tournaments' => 'tournaments',
             'tournaments-index' => 'tournaments',
             'tournaments-show' => 'tournament info',
+            'forum-admin-forum-covers-index' => 'admin: forum covers',
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',

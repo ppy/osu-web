@@ -141,6 +141,10 @@ Route::group(['prefix' => 'forum'], function () {
     Route::patch('p/{posts}', ['as' => 'forum.posts.update', 'uses' => "Forum\PostsController@update"]);
     Route::get('p/{posts}/edit', ['as' => 'forum.posts.edit', 'uses' => "Forum\PostsController@edit"]);
     Route::get('p/{posts}/raw', ['as' => 'forum.posts.raw', 'uses' => "Forum\PostsController@raw"]);
+
+    Route::group(['prefix' => 'admin', 'namespace' => 'Forum\Admin'], function () {
+        Route::resource('forum-covers', 'ForumCoversController', ['only' => ['index', 'store', 'update']]);
+    });
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
@@ -165,3 +169,12 @@ Route::get('/api/get_beatmaps', ['uses' => 'APIController@getBeatmaps']);
 
 Route::resource('post', 'PostController');
 Route::resource('modding', 'ModdingPostController');
+
+// status
+if (Config::get('app.debug')) {
+    Route::get('/status', ['uses' => 'StatusController@getMain']);
+} else {
+    Route::group(['domain' => 'stat.ppy.sh'], function () {
+        Route::get('/', ['uses' => 'StatusController@getMain']);
+    });
+}
