@@ -28,6 +28,8 @@ class TopicCover extends Model
 {
     use Imageable;
 
+    const MAX_DIMENSIONS = [2700, 400];
+
     protected $table = 'forum_topic_covers';
 
     protected $casts = [
@@ -40,7 +42,7 @@ class TopicCover extends Model
 
     public function getMaxDimensions()
     {
-        return [2700, 400];
+        return static::MAX_DIMENSIONS;
     }
 
     public function getFileRoot()
