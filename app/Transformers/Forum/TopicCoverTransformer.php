@@ -46,6 +46,7 @@ class TopicCoverTransformer extends Fractal\TransformerAbstract
         }
 
         $data['dimensions'] = $cover->getMaxDimensions();
+        $data['defaultFileUrl'] = $cover->defaultFileUrl();
 
         return $data;
     }

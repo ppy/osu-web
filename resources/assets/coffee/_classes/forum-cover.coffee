@@ -152,7 +152,9 @@ class @ForumCover
   refresh: =>
     return unless @hasCoverEditor()
 
-    backgroundImage = if @hasCover() then "url('#{@uploadButton[0].dataset.fileUrl}')" else ''
+    backgroundImageUrl = @uploadButton[0].dataset.fileUrl || @uploadButton[0].dataset.defaultFileUrl || null
+
+    backgroundImage = if backgroundImageUrl != null then "url('#{backgroundImageUrl}')" else ''
     @header[0].style.backgroundImage = backgroundImage
 
     $('.js-forum-cover--remove').toggleClass('forum-post-actions__action--disabled', !@hasCover())

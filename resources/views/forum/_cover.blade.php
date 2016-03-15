@@ -37,7 +37,8 @@
                         js-forum-cover--upload-button
                         fileupload
                         forum-category-header__cover-uploader-label"
-                    data-file-url="{{ array_get($cover, 'data.fileUrl') }}"
+                    data-default-file-url="{{ $cover['data']['defaultFileUrl'] or '' }}"
+                    data-file-url="{{ $cover['data']['fileUrl'] or '' }}"
                     data-url="{{ $cover['data']['url'] }}"
                     data-custom-method="{{ $cover['data']['method'] }}"
                 >

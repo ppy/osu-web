@@ -57,7 +57,7 @@ trait Imageable
      */
     public function getFileProperties()
     {
-        if ($this->hash === null || $this->ext === null) {
+        if (present($this->hash) === false || present($this->ext) === false) {
             return;
         }
 
@@ -74,8 +74,8 @@ trait Imageable
      */
     public function setFileProperties($props)
     {
-        $this->hash = array_get($props, 'hash');
-        $this->ext = array_get($props, 'ext');
+        $this->hash = $props['hash'] ?? null;
+        $this->ext = $props['ext'] ?? null;
     }
 
     public function storage()
@@ -125,6 +125,7 @@ trait Imageable
         }
 
         $this->setFileProperties(null);
+
         return $this->storage()->deleteDirectory($this->fileDir());
     }
 

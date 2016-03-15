@@ -15,6 +15,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+<?php
+    $headerCover = $cover['data']['fileUrl'] ?? $cover['data']['defaultFileUrl'] ?? null;
+?>
 <div class="osu-layout__row">
     <div
         class="forum-category-header
@@ -25,7 +28,7 @@
             }}
             js-forum-cover--header
             js-header--main"
-        style="{{ isset($cover['data']['fileUrl']) === true ? "background-image: url('{$cover['data']['fileUrl']}');" : '' }}"
+        style="{{ $headerCover !== null ? "background-image: url('{$headerCover}');" : '' }}"
     >
         <div class="forum-category-header__loading js-forum-cover--loading">
             @include('objects._spinner')

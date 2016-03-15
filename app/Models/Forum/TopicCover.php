@@ -136,4 +136,13 @@ class TopicCover extends Model
 
         return $this->owner()->user_id === $user->user_id;
     }
+
+    public function defaultFileUrl()
+    {
+        try {
+            return $this->topic->forum->cover->defaultTopicCover->fileUrl();
+        } catch (Exception $_e) {
+            // do nothing
+        }
+    }
 }
