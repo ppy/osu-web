@@ -152,7 +152,7 @@ class BeatmapDiscussion extends Model
     {
         return $this->hasValidBeatmap() &&
             $this->hasValidMessageType() &&
-            $this->hasValidMessage();
+            $this->hasValidMessage() &&
             $this->hasValidTimestamp();
     }
 }
