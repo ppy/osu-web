@@ -77,6 +77,11 @@ class Beatmap extends Model
 
     public function set()
     {
+        return $this->beatmapset();
+    }
+
+    public function beatmapset()
+    {
         return $this->belongsTo(BeatmapSet::class, 'beatmapset_id');
     }
 
