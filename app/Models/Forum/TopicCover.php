@@ -40,7 +40,7 @@ class TopicCover extends Model
 
     public function getMaxDimensions()
     {
-        return [2700, 700];
+        return [2700, 400];
     }
 
     public function getFileRoot()
