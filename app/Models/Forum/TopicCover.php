@@ -22,6 +22,7 @@ namespace App\Models\Forum;
 use App\Models\User;
 use App\Traits\Imageable;
 use DB;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 
 class TopicCover extends Model
