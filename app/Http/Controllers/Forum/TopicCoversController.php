@@ -78,7 +78,6 @@ class TopicCoversController extends Controller
 
     public function destroy($id)
     {
-        $return = fractal_item_array(null, new TopicCoverTransformer());
         $cover = TopicCover::find($id);
 
         if ($cover === null) {
@@ -91,7 +90,7 @@ class TopicCoversController extends Controller
 
         $cover->deleteWithFile();
 
-        return $return;
+        return fractal_item_array($cover, new TopicCoverTransformer());
     }
 
     public function update($id)

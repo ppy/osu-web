@@ -132,6 +132,7 @@ Route::group(['prefix' => 'forum'], function () {
     Route::get('t/{topics}', ['as' => 'forum.topics.show', 'uses' => "Forum\TopicsController@show"]);
     Route::post('t/{topics}/reply', ['as' => 'forum.topics.reply', 'uses' => "Forum\TopicsController@reply"]);
     Route::post('t/{topics}/lock', ['as' => 'forum.topics.lock', 'uses' => "Forum\TopicsController@lock"]);
+    Route::get('t/{topics}/doublepost', "Forum\TopicsController@checkForDoublePost");
 
     Route::resource('forum-covers', 'Forum\ForumCoversController', ['only' => ['store', 'update', 'destroy']]);
     Route::resource('topic-covers', 'Forum\TopicCoversController', ['only' => ['store', 'update', 'destroy']]);
@@ -141,7 +142,10 @@ Route::group(['prefix' => 'forum'], function () {
     Route::patch('p/{posts}', ['as' => 'forum.posts.update', 'uses' => "Forum\PostsController@update"]);
     Route::get('p/{posts}/edit', ['as' => 'forum.posts.edit', 'uses' => "Forum\PostsController@edit"]);
     Route::get('p/{posts}/raw', ['as' => 'forum.posts.raw', 'uses' => "Forum\PostsController@raw"]);
-    Route::get('t/{topics}/doublepost', "Forum\TopicsController@checkForDoublePost");
+
+    Route::group(['prefix' => 'admin', 'namespace' => 'Forum\Admin'], function () {
+        Route::resource('forum-covers', 'ForumCoversController', ['only' => ['index', 'store', 'update']]);
+    });
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
