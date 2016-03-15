@@ -32,6 +32,8 @@ return [
             'general' => 'General',
             'timeline' => 'Timeline',
         ],
+
+        'resolved' => 'Resolved',
     ],
 
     'listing' => [

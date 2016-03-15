@@ -51,6 +51,7 @@
       font-size: @_reply-text-size;
       width: 100%;
       padding: @spacing;
+      resize: vertical;
     }
 
     &--reply {
@@ -61,5 +62,9 @@
   &__message-container {
     flex: 1;
     min-width: 0;
+  }
+
+  &__resolved {
+    margin-top: (@spacing / 2);
   }
 }

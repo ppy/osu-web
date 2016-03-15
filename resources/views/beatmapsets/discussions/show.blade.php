@@ -32,10 +32,7 @@
     @parent
 
     <script data-turbolinks-eval="always">
-        var initial = {
-            beatmapset: {!! json_encode($beatmapset) !!},
-            beatmapsetDiscussion: {!! json_encode($discussion) !!},
-        };
+        var initial = {!! json_encode($initialData) !!};
     </script>
 
     <script src="{{ elixir("js/react/beatmap-discussions.js") }}" data-turbolinks-track></script>

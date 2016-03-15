@@ -46,6 +46,11 @@ class BeatmapDiscussion extends Model
         return $this->belongsTo(Beatmap::class);
     }
 
+    public function beatmapset()
+    {
+        return $this->beatmap->beatmapset();
+    }
+
     public function beatmapDiscussionReplies()
     {
         return $this->hasMany(BeatmapDiscussionReply::class);
@@ -97,6 +102,47 @@ class BeatmapDiscussion extends Model
             ($this->beatmap_id !== null && $this->timestamp !== null && $this->timestamp < ($this->beatmap->total_length * 1000));
     }
 
+    public function hasValidMessage()
+    {
+        return present($this->message);
+    }
+
+    public function canBeUpdatedBy($user)
+    {
+        // no point closing general discussion
+        if ($this->timestamp === null) {
+            return false;
+        }
+
+        // no anonymous posting
+        if ($user === null) {
+            return false;
+        }
+
+        if ($user->isAdmin()) {
+            return true;
+        }
+
+        if ($user->user_id === $this->user_id) {
+            return true;
+        }
+
+        if ($user->user_id === $this->beatmapset->user_id) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function canBeRepliedBy($user)
+    {
+        if ($this->canBeUpdatedBy($user)) {
+            return true;
+        }
+
+        return !$this->resolved;
+    }
+
     /*
      * Called before saving. The callback definition is located in
      * App\Providers\AppServiceProvider. Don't ask me why it's there;
@@ -106,6 +152,7 @@ class BeatmapDiscussion extends Model
     {
         return $this->hasValidBeatmap() &&
             $this->hasValidMessageType() &&
+            $this->hasValidMessage();
             $this->hasValidTimestamp();
     }
 }

@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -16,42 +14,45 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+// block should be a label
+.osu-checkbox {
+  @_top: osu-checkbox;
 
-class BeatmapDiscussionReply extends Model
-{
-    protected $guarded = [];
+  text-transform: initial;
 
-    protected $casts = [
-        'id' => 'integer',
-        'beatmap_discussion_id' => 'integer',
-        'user_id' => 'integer',
-    ];
+  // the input is hidden
+  &__input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
 
-    public function beatmapDiscussion()
-    {
-        return $this->belongsTo(BeatmapDiscussion::class);
+  &__tick {
+    visibility: hidden;
+    padding: 3px;
+    color: @grey-f;
+    margin-right: (@spacing / 2);
+
+    .@{_top}__input:checked ~ & {
+      visibility: visible;
+
+      &::before {
+        background-color: @green;
+      }
     }
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+    // tick box
+    &::before {
+      .full-size();
+      .default-border-radius();
+      .default-box-shadow();
+      border: 2px solid @grey-f;
+      visibility: visible;
+      background-color: @grey-c;
     }
-
-    public function hasValidMessage()
-    {
-        return present($this->message);
-    }
-
-    /*
-     * Called before saving. Callback definition in
-     * App\Providers\AppServiceProviders.
-     */
-    public function isValid()
-    {
-        return $this->hasValidMessage();
-    }
+  }
 }

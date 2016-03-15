@@ -67,6 +67,7 @@ BeatmapDiscussions.Discussions = React.createClass
                 currentUser: @props.currentUser
                 beatmapset: @props.beatmapset
                 currentBeatmap: @props.currentBeatmap
+                userPermissions: @props.userPermissions
 
       if @state.mode == 'timeline'
         div className: "#{bn}__mode-circle #{bn}__mode-circle--active"
@@ -85,6 +86,5 @@ BeatmapDiscussions.Discussions = React.createClass
   setMode: (mode) ->
     return if @state.mode == mode
 
-    console.log 'switching to:', mode
     @_currentDiscussions = undefined
     @setState mode: mode

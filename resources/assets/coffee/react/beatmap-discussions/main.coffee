@@ -27,6 +27,7 @@ BeatmapDiscussions.Main = React.createClass
     beatmapsetDiscussion: initial.beatmapsetDiscussion.data
     currentBeatmap: initial.beatmapset.data.beatmaps.data[0]
     currentUser: currentUser
+    userPermissions: initial.userPermissions
 
 
   componentDidMount: ->
@@ -69,6 +70,7 @@ BeatmapDiscussions.Main = React.createClass
           currentBeatmap: @state.currentBeatmap
           currentUser: @state.currentUser
           beatmapsetDiscussion: @state.beatmapsetDiscussion
+          userPermissions: @state.userPermissions
 
 
   setBeatmapsetDiscussion: (_e, beatmapsetDiscussion) ->

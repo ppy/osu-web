@@ -21,6 +21,7 @@ namespace App\Http\Controllers\Beatmapsets;
 
 use App\Models\BeatmapSet;
 use App\Transformers\BeatmapSetTransformer;
+use Auth;
 
 class DiscussionsController extends Controller
 {
@@ -33,17 +34,26 @@ class DiscussionsController extends Controller
 
     public function show($beatmapsetId)
     {
+        $user = Auth::user();
+
         $beatmapset = BeatmapSet::findOrFail($beatmapsetId);
         $discussion = $beatmapset->beatmapsetDiscussion;
 
-        $beatmapset = fractal_item_array(
-            $beatmapset,
-            new BeatmapSetTransformer,
-            'user,beatmaps'
-        );
+        $userPermissions = [
+            'can_post_new' => $discussion->canBePostedBy(Auth::user()),
+            'beatmap_discussions' => [],
+        ];
 
-        $discussion = $discussion->defaultJson();
+        $initialData = [
+            'beatmapset' => fractal_item_array(
+                $beatmapset,
+                new BeatmapSetTransformer,
+                'user,beatmaps'
+            ),
 
-        return view('beatmapsets.discussions.show', compact('beatmapset', 'discussion'));
+            'beatmapsetDiscussion' => $discussion->defaultJson(),
+        ];
+
+        return view('beatmapsets.discussions.show', compact('initialData'));
     }
 }

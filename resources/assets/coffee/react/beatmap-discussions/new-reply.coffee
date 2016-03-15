@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{button, div, form, input} = React.DOM
+{button, div, form, input, label, span, textarea} = React.DOM
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -26,35 +26,51 @@ BeatmapDiscussions.NewReply = React.createClass
 
   getInitialState: ->
     message: ''
+    resolveDiscussion: @canUpdate() && @props.discussion.resolved
 
 
   render: ->
-    form
+    div
       className: bn
-      onSubmit: @post
-      button className: 'hidden'
 
       div className: "#{bn}__avatar",
         div
           className: 'avatar avatar--full-rounded'
           style:
             backgroundImage: "url('#{@props.currentUser.avatarUrl}')"
+
       div className: "#{bn}__message-container",
-        input
+        textarea
           className: "#{bn}__message #{bn}__message--new-reply"
           type: 'text'
+          rows: 2
           value: @state.message
           onChange: @setMessage
 
+        if @canUpdate()
+          div className: "#{bn}__resolved",
+            label
+              className: 'osu-checkbox'
+              input
+                className: 'osu-checkbox__input'
+                type: 'checkbox'
+                checked: @state.resolveDiscussion
+                onChange: (e) => @setState resolveDiscussion: e.target.checked
 
-  post: (e) ->
-    e.preventDefault()
+              span className: 'osu-checkbox__tick',
+                el Icon, name: 'check'
 
-    # osu.showLoadingOverlay already called by global listener
+              Lang.get('beatmaps.discussions.resolved')
+
+
+  post: ->
+    osu.showLoadingOverlay()
 
     $.ajax Url.beatmapDiscussionReplies(@props.discussion.beatmap_id, @props.discussion.id),
       method: 'POST'
       data:
+        beatmap_discussion:
+          resolved: @state.resolveDiscussion
         beatmap_discussion_reply:
           message: @state.message
 
@@ -68,4 +84,17 @@ BeatmapDiscussions.NewReply = React.createClass
 
 
   setMessage: (e) ->
-    @setState message: e.target.value
+    newValue = e.target.value
+
+    if _.last(newValue) != '\n'
+      @setState message: e.target.value
+    else
+      @post()
+
+
+  canUpdate: ->
+    return false unless @props.currentUser
+
+    @props.currentUser.isAdmin ||
+      @props.currentUser.id == @props.beatmapset.user_id ||
+      @props.currentUser.id == @props.discussion.user_id

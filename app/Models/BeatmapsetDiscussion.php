@@ -54,4 +54,10 @@ class BeatmapsetDiscussion extends Model
             'beatmap_discussions.user,beatmap_discussions.beatmap_discussion_replies.user'
         );
     }
+
+    public function canBePostedBy($user)
+    {
+        // FIXME: check for beatmapset status?
+        return true;
+    }
 }

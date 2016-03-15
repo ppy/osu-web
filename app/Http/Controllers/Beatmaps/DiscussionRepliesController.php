@@ -23,6 +23,8 @@ use Auth;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionReply;
+use DB;
+use Exception;
 use Request;
 
 class DiscussionRepliesController extends Controller
@@ -50,6 +52,12 @@ class DiscussionRepliesController extends Controller
     {
         $discussion = BeatmapDiscussion::findOrFail($beatmapDiscussionId);
 
+        $resolveDiscussion = array_get(Request::input(), 'resolve_discussion') === 'true';
+
+        if (!$discussion->canBeRepliedBy(Auth::user())) {
+            abort(403);
+        }
+
         $params = array_merge(
             get_params(Request::all(), 'beatmap_discussion_reply', [
                 'message',
@@ -60,12 +68,35 @@ class DiscussionRepliesController extends Controller
             ]
         );
 
-        $reply = BeatmapDiscussionReply::create($params);
+        $discussionParams = get_params(Request::all(), 'beatmap_discussion', ['resolved:bool']);
 
-        if ($discussion->id !== null) {
+        if (array_get($discussionParams, 'resolve') === true && !$discussion->canBeUpdatedBy(Auth::user())) {
+            abort(403);
+        }
+
+        $reply = new BeatmapDiscussionReply($params);
+        $discussion->fill($discussionParams);
+
+        try {
+            $saved = DB::transaction(function () use ($reply, $discussion) {
+                if ($reply->save() === false) {
+                    throw new Exception('failed');
+                }
+
+                if ($discussion->save() === false) {
+                    throw new Exception('failed');
+                }
+
+                return true;
+            });
+        } catch (Exception $_e) {
+            $saved = false;
+        }
+
+        if ($saved === true) {
             return $reply->beatmapDiscussion->beatmapsetDiscussion->defaultJson();
         } else {
-            return view('beatmaps.discussion_replies.create', compact('discussion', 'reply'));
+            return error_popup(trans('beatmaps.discussion-replies.store.error'));
         }
     }
 }
