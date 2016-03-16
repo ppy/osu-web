@@ -36,24 +36,24 @@ class @BeatmapsetPanel extends React.Component
 
     div className: 'beatmap object_link shadow-hover', objectid: beatmap.beatmapset_id,
       div className: 'beatmap-panel',
-        div className: 'thumb', style: {backgroundImage: 'url(' + beatmap.images['card@2x'] + ')'}
-        div className: 'bottom_left',
-          div className: 'title',
-            span {}, beatmap.title
-          div className: 'artist',
-            span {}, beatmap.artist
+        a href:'https://osu.ppy.sh/s/'+beatmap.beatmapset_id, target: '_blank', className: 'thumb', style: {backgroundImage: 'url(' + beatmap.images['card@2x'] + ')'},
+          div className: 'bottom_left',
+            div className: 'title',
+              span {}, beatmap.title
+            div className: 'artist',
+              span {}, beatmap.artist
 
-        div className: 'top_right',
-          div className: 'stats',
-            div className: 'plays',
-              span {},
-                beatmap.play_count
-              i className: 'fa fa-play-circle'
+          div className: 'top_right',
+            div className: 'stats',
+              div className: 'plays',
+                span {},
+                  beatmap.play_count
+                i className: 'fa fa-play-circle'
 
-            div className: 'favourites',
-              span {},
-                beatmap.favourite_count
-              i className: 'fa fa-heart'
+              div className: 'favourites',
+                span {},
+                  beatmap.favourite_count
+                i className: 'fa fa-heart'
 
       div className: 'bottom_left',
         span className: 'hidden', ref: beatmap.beatmapset_id, beatmap.beatmapset_id
