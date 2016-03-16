@@ -1,2 +1,2 @@
-# Initialize main object/namespace for ProfilePage classes
+# Initialize main object/namespace for the classes
 @BeatmapDiscussions = {}
