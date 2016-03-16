@@ -35,8 +35,7 @@ class @BeatmapsetPanel extends React.Component
       difficulties.push span key: 'over', "+#{(beatmap.difficulties.data.length - maxDisplayedDifficulty)}"
 
     div className: 'beatmap object_link shadow-hover', objectid: beatmap.beatmapset_id,
-      div className: 'panel',
-        div className: 'thumb_gradient', ''
+      div className: 'beatmap-panel',
         div className: 'thumb', style: {backgroundImage: 'url(' + beatmap.images['card@2x'] + ')'}
         div className: 'bottom_left',
           div className: 'title',

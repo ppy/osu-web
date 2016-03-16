@@ -24,19 +24,9 @@
 
 	.beatmap-container {
 		opacity: 1;
-		transition: all 120ms ease-in-out;
 
 		&.dimmed {
 			opacity: 0.2;
-		}
-
-		.panel-enter {
-			opacity: 0.01;
-		}
-
-		.panel-enter.panel-enter-active {
-			opacity: 1;
-			transition: all 120ms ease-in-out;
 		}
 	}
 
@@ -171,20 +161,12 @@
 
 		.toggle {
 			.text-center;
-			-webkit-transition: 120ms ease-in-out;
-							transition: 120ms ease-in-out;
 		}
-
 
 		.selector {
 			opacity: 0;
-			-webkit-transition: 120ms ease-in-out;
-							transition: 120ms ease-in-out;
 		}
 	}
-
-	-webkit-transition: 120ms ease-in-out;
-					transition: 120ms ease-in-out;
 
 	&.expanded {
 		height: 300px;
@@ -219,7 +201,7 @@
 		z-index: @z-index--beatmaps-panel;
 	}
 
-	.panel {
+	.beatmap-panel {
 		position: absolute;
 		left: 0px;
 		top: 0px;
@@ -289,24 +271,20 @@
 		}
 		overflow: hidden;
 
-		.thumb_gradient {
-			position: absolute;
-			height: 100px;
-			width: 100%;
-			background-image: linear-gradient(to bottom, fade(#000, 10%), fade(#000, 70%));
-			z-index: @z-index--beatmaps-panel - 3;
-		}
 		.thumb {
-			position: absolute;
-			top: -10%;
-			left: -10%;
-			bottom: -10%;
-			right: -10%;
 			height: 120px;
-			width: 120%;
-			background-position: top center;
+			background-position: center;
 			background-repeat: no-repeat;
-			background-size: 100% auto;
+			background-size: cover;
+			&:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				background-image: linear-gradient(to bottom, fade(#000, 10%), fade(#000, 70%));
+			}
 		}
 	}
 
@@ -338,8 +316,6 @@
 
 	&:hover .show_on_hover {
 		opacity: 1 !important;
-		-webkit-transition: 120ms ease-in-out;
-						transition: 120ms ease-in-out;
 	}
 
 	.difficulties {
