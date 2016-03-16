@@ -47,7 +47,7 @@ BeatmapDiscussions.NewReply = React.createClass
           value: @state.message
           onChange: @setMessage
 
-        if @canUpdate()
+        if @props.discussion.timestamp != null && @canUpdate()
           div className: "#{bn}__resolved",
             label
               className: 'osu-checkbox'
