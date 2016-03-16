@@ -34,10 +34,7 @@ BeatmapDiscussions.NewReply = React.createClass
       className: bn
 
       div className: "#{bn}__avatar",
-        div
-          className: 'avatar avatar--full-rounded'
-          style:
-            backgroundImage: "url('#{@props.currentUser.avatarUrl}')"
+        el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
 
       div className: "#{bn}__message-container",
         textarea

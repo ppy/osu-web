@@ -51,10 +51,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
         div className: "#{bn}__message-box",
           div
             className: "#{bn}__avatar"
-            div
-              className: 'avatar avatar--full-rounded'
-              style:
-                backgroundImage: "url('#{@props.currentUser.avatarUrl}')"
+            el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
           textarea
             className: "#{bn}__message"
             value: @state.message

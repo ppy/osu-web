@@ -87,11 +87,10 @@ BeatmapDiscussions.Discussion = React.createClass
     div
       className: pbn
       key: "#{type}-#{post.id}"
+
       div className: "#{pbn}__avatar",
-        div
-          className: 'avatar avatar--full-rounded'
-          style:
-            backgroundImage: "url('#{user.avatarUrl}')"
+        el UserAvatar, user: user, modifiers: ['full-rounded']
+
       div className: "#{pbn}__message-container",
         div className: "#{pbn}__message #{pbn}__message--#{type}", post.message
         div
