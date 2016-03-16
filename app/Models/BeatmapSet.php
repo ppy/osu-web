@@ -228,7 +228,7 @@ class BeatmapSet extends Model
             $params['sort'] = ['ranked', 'desc'];
         }
 
-        if (!in_array((int)$params['mode'], Beatmap::modes(), true)) {
+        if (!in_array((int) $params['mode'], Beatmap::modes(), true)) {
             $params['mode'] = null;
         }
 
@@ -272,6 +272,7 @@ class BeatmapSet extends Model
         extract($params);
         $count = config('osu.beatmaps.max', 50);
         $offset = (max(0, $page - 1)) * $count;
+        $current_user = Auth::user();
 
         $searchParams['index'] = env('ES_INDEX', 'osu');
         $searchParams['type'] = 'beatmaps';
@@ -309,49 +310,49 @@ class BeatmapSet extends Model
 
         if (!empty($rank)) {
             $klass = presence($mode) !== null ? Score\Best\Model::getClass(intval($mode)) : Score\Best\Combined::class;
-            $scores = $klass::forUser(Auth::user())->whereIn('rank', $rank)->get()->lists('beatmapset_id');
+            $scores = $klass::forUser($current_user)->whereIn('rank', $rank)->get()->lists('beatmapset_id');
             $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $scores]];
         }
 
         // TODO: This logic probably shouldn't be at the model level... maybe?
         if (presence($status) !== null) {
-            switch ((int)$status) {
+            switch ((int) $status) {
                 case 0: // Ranked & Approved
                     $shouldParams[] = [
-                        ['match' => ['approved' => 1]],
-                        ['match' => ['approved' => 2]],
+                        ['match' => ['approved' => self::RANKED]],
+                        ['match' => ['approved' => self::APPROVED]],
                     ];
                     break;
                 case 1: // Approved
-                    $matchParams[] = ['match' => ['approved' => 2]];
+                    $matchParams[] = ['match' => ['approved' => self::APPROVED]];
                     break;
                 case 2: // Favourites
-                    $favs = Auth::user()->favouriteBeatmapSets()->get()->lists('beatmapset_id');
+                    $favs = $current_user->favouriteBeatmapSets()->get()->lists('beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $favs]];
                     break;
                 case 3: // Mod Requests
                     $maps = ModQueue::all()->lists('beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
-                    $matchParams[] = ['match' => ['approved' => 0]];
+                    $matchParams[] = ['match' => ['approved' => self::PENDING]];
                     break;
                 case 4: // Pending
                     $shouldParams[] = [
-                        ['match' => ['approved' => -1]],
-                        ['match' => ['approved' => 0]],
+                        ['match' => ['approved' => self::WIP]],
+                        ['match' => ['approved' => self::PENDING]],
                     ];
                     break;
                 case 5: // Graveyard
-                    $matchParams[] = ['match' => ['approved' => -2]];
+                    $matchParams[] = ['match' => ['approved' => self::GRAVEYARD]];
                     break;
                 case 6: // My Maps
-                    $maps = Auth::user()->beatmapSets()->get()->lists('beatmapset_id');
+                    $maps = $current_user->beatmapSets()->get()->lists('beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
                     break;
                 default: // null, etc
                     break;
             }
         } else {
-            $matchParams[] = ['range' => ['approved' => ['gte' => 0]]];
+            $matchParams[] = ['range' => ['approved' => ['gte' => self::PENDING]]];
         }
 
         if (presence($mode) !== null) {
@@ -413,64 +414,6 @@ class BeatmapSet extends Model
     public static function listing()
     {
         return self::search();
-    }
-
-    public function scopeSort($query)
-    {
-        switch (Request::input('sort', 'id')) {
-            case 'id':
-            default:
-                $by = 'desc';
-                $order = $this->primaryKey;
-                break;
-        }
-
-        return $query->orderBy($order, $by);
-    }
-
-    public function scopeFilters($query)
-    {
-        switch (Request::input('filter')) {
-            case 'qualified':
-                $filter = static::QUALIFIED;
-                break;
-
-            case 'ranked':
-                $filter = static::RANKED;
-                break;
-
-            case 'approved':
-                $filter = static::APPROVED;
-                break;
-
-            case 'modreq':
-            case 'pending':
-                $filter = static::PENDING;
-                break;
-
-            case 'all':
-                return $query;
-
-            case 'graveyard':
-                $filter = static::GRAVEYARD;
-                break;
-
-            case 'my-maps':
-                if (Auth::check()) {
-                    return $query->where('user_id', '=', Auth::user()->user_id);
-                }
-                break;
-
-            case 'faves':
-                return $query->faves();
-                break;
-
-            case 'ranked-approved':
-            default:
-                return $query->whereIn('approved', [static::RANKED, static::APPROVED]);
-        }
-
-        return $query->where('approved', '=', $filter);
     }
 
     public function comments($time = null)
@@ -632,7 +575,7 @@ class BeatmapSet extends Model
         $bg_file = ci_file_search("{$workingFolder}/{$bg}");
         if (!$bg_file) {
             deltree($tmpBase);
-            throw new BeatmapProcessorException('Background image missing: '. $bg);
+            throw new BeatmapProcessorException("Background image missing: {$bg}");
         }
 
         // upload original image
