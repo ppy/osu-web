@@ -79,7 +79,6 @@ class Beatmaps.Main extends React.Component
 
   search: =>
     searchText = $('#searchbox').val()?.trim()
-    @showLoader()
 
     # update url
     filterState = @getFilterState()
@@ -102,6 +101,7 @@ class Beatmaps.Main extends React.Component
       if !@state.just_restored
         history.pushState(@state, "¯\_(ツ)_/¯", "/beatmaps/?#{params.join('&')}")
 
+      @showLoader()
       $.ajax @state.paging.url,
         method: 'get'
         dataType: 'json'
