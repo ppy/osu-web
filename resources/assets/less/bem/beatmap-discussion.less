@@ -21,6 +21,32 @@
 
   display: flex;
 
+  &__actions {
+    // cancels out &__discussion's padding
+    margin: 0 (-@spacing);
+    flex: none;
+    background-image: linear-gradient(to bottom, transparent, @grey-c 50%, transparent);
+
+    display: flex;
+  }
+
+  &__action {
+    border: none;
+    outline: none;
+    background: @grey-f;
+    padding: @spacing;
+
+    &--with-line {
+      margin-left: 1px;
+    }
+  }
+
+  &__action-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   &__discussion {
     flex: 1;
     min-width: 0;
@@ -42,5 +68,10 @@
   &__timestamp {
     flex: none;
     width: 110px;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
   }
 }

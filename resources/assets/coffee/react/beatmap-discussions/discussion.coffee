@@ -15,13 +15,17 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, span} = React.DOM
+{button, div, span} = React.DOM
 el = React.createElement
 
 bn = 'beatmap-discussion'
 
 BeatmapDiscussions.Discussion = React.createClass
   mixins: [React.addons.PureRenderMixin]
+
+
+  getInitialState: ->
+    collapsed: false
 
 
   componentDidUpdate: ->
@@ -34,8 +38,17 @@ BeatmapDiscussions.Discussion = React.createClass
         @timestamp() if @props.discussion.timestamp
 
       div className: "#{bn}__discussion",
-        @post @props.discussion, 'discussion'
-        div className: "#{bn}__replies",
+        div className: "#{bn}__top",
+          @post @props.discussion, 'discussion'
+
+          div className: "#{bn}__actions",
+            button
+              className: "#{bn}__action #{bn}__action--with-line"
+              onClick: => @setState collapsed: !@state.collapsed
+              div className: "#{bn}__action-content",
+                el Icon, name: (if @state.collapsed then 'chevron-down' else 'chevron-up')
+        div
+          className: "#{bn}__replies #{'hidden' if @state.collapsed}"
           @props.discussion.beatmap_discussion_replies.data.map (reply) =>
             @post reply, 'reply'
 
