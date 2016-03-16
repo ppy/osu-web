@@ -62,11 +62,13 @@ BeatmapDiscussions.NewReply = React.createClass
           div className: "#{bn}__actions-group",
             button
               className: 'btn-osu-lite btn-osu-lite--default'
+              disabled: !@canPost()
               onClick: @post
               Lang.get('common.buttons.reply')
 
 
   post: ->
+    return if !@canPost()
     osu.showLoadingOverlay()
 
     $.ajax Url.beatmapDiscussionReplies(@props.discussion.beatmap_id, @props.discussion.id),
@@ -96,8 +98,11 @@ BeatmapDiscussions.NewReply = React.createClass
 
 
   canUpdate: ->
-    return false unless @props.currentUser
+    return false if @props.currentUser.id == undefined
 
     @props.currentUser.isAdmin ||
       @props.currentUser.id == @props.beatmapset.user_id ||
       @props.currentUser.id == @props.discussion.user_id
+
+  canPost: ->
+    @state.message.length != 0
