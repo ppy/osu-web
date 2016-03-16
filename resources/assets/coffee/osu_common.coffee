@@ -72,14 +72,10 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     return if $overlay.hasClass('loading-overlay--visible')
 
     $overlay.addClass 'loading-overlay--visible'
-    $('button, .btn').prop 'disabled', true
-    $('a.btn').addClass 'disabled'
 
 
   hideLoadingOverlay: ->
     $('.loading-overlay').removeClass 'loading-overlay--visible'
-    $('button, .btn').prop 'disabled', false
-    $('a.btn').removeClass 'disabled'
 
 
   initTimeago: ->
