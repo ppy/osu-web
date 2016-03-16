@@ -34,6 +34,12 @@ return [
         ],
 
         'resolved' => 'Resolved',
+
+        'stats' => [
+            'pending' => 'Pending',
+            'resolved' => 'Resolved',
+            'total' => 'Total',
+        ],
     ],
 
     'listing' => [

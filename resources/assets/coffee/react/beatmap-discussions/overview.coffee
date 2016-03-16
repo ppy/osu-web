@@ -56,15 +56,33 @@ BeatmapDiscussions.Overview = React.createClass
                 mapper: "<strong>#{osu.link Url.user(user.user_id), user.username}</strong>"
 
         div null,
-          div
-            className: 'beatmap-discussions-stats beatmap-discussions-stats--resolved'
-            p className: 'beatmap-discussions-stats__text beatmap-discussions-stats__text--type', 'Resolved'
-            p className: 'beatmap-discussions-stats__text beatmap-discussions-stats__text--count', '∞'
-          div
-            className: 'beatmap-discussions-stats beatmap-discussions-stats--pending'
-            p className: 'beatmap-discussions-stats__text beatmap-discussions-stats__text--type', 'Pending'
-            p className: 'beatmap-discussions-stats__text beatmap-discussions-stats__text--count', '-∞'
-          div
-            className: 'beatmap-discussions-stats beatmap-discussions-stats--total'
-            p className: 'beatmap-discussions-stats__text beatmap-discussions-stats__text--type', 'Total'
-              p className: 'beatmap-discussions-stats__text beatmap-discussions-stats__text--count', 'NaN'
+          @stats()
+
+
+  stats: ->
+    sbn = 'beatmap-discussions-stats'
+
+    discussions = @props
+      .beatmapsetDiscussion
+      .beatmap_discussions
+      .data
+      .filter (discussion) =>
+        discussion.beatmap_id == @props.currentBeatmap.id &&
+          discussion.timestamp != null &&
+          discussion.message_type != 'praise'
+
+    count =
+      resolved:
+        discussions
+          .filter (discussion) => discussion.resolved
+          .length
+      total: discussions.length
+
+    count.pending = count.total - count.resolved
+
+    ['resolved', 'pending', 'total'].map (type) =>
+      div
+        key: type
+        className: "#{sbn} #{sbn}--#{type}"
+        p className: "#{sbn}__text #{sbn}__text--type", Lang.get("beatmaps.discussions.stats.#{type}")
+        p className: "#{sbn}__text #{sbn}__text--count", count[type]

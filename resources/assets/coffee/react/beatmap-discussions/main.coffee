@@ -60,6 +60,7 @@ BeatmapDiscussions.Main = React.createClass
         el BeatmapDiscussions.Overview,
           beatmapset: @state.beatmapset
           currentBeatmap: @state.currentBeatmap
+          beatmapsetDiscussion: @state.beatmapsetDiscussion
 
       div
         className: 'osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact'
