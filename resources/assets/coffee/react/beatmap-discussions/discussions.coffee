@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{a, div, p, span} = React.DOM
+{a, button, div, p, span} = React.DOM
 el = React.createElement
 
 bn = 'beatmap-discussions'
@@ -42,7 +42,7 @@ BeatmapDiscussions.Discussions = React.createClass
           circleClass = "#{bn}__mode-circle"
           circleClass += " #{bn}__mode-circle--active" if mode == @state.mode
 
-          div
+          button
             key: "mode-#{mode}"
             className: "#{bn}__mode"
             onClick: => @setMode mode

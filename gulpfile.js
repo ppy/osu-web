@@ -87,10 +87,6 @@ elixir(function(mix) {
     'react/status-page.coffee'
   ], 'public/js/react/status-page.js')
   .coffee([
-    'react/beatmapset-discussion/*.coffee',
-    'react/beatmapset-discussion.coffee'
-  ], 'public/js/react/beatmapset-discussion.js')
-  .coffee([
     'react/beatmap-discussions/*.coffee',
     'react/beatmap-discussions.coffee'
   ], 'public/js/react/beatmap-discussions.js')
@@ -101,7 +97,6 @@ elixir(function(mix) {
     'js/react/beatmaps.js',
     'js/react/slack-page.js',
     'js/react/status-page.js',
-    'js/react/beatmapset-discussion.js',
     'js/react/beatmap-discussions.js',
   ]);
 });
