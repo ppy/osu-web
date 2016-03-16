@@ -33,6 +33,7 @@ return [
             'timeline' => 'Timeline',
         ],
 
+        'require-login' => 'Please login to post or reply',
         'resolved' => 'Resolved',
 
         'stats' => [

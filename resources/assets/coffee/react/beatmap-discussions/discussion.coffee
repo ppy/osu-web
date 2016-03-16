@@ -52,12 +52,13 @@ BeatmapDiscussions.Discussion = React.createClass
           @props.discussion.beatmap_discussion_replies.data.map (reply) =>
             @post reply, 'reply'
 
-          el BeatmapDiscussions.NewReply,
-            currentUser: @props.currentUser
-            beatmapset: @props.beatmapset
-            currentBeatmap: @props.currentBeatmap
-            discussion: @props.discussion
-            userPermissions: @props.userPermissions
+          if @props.currentUser.id != undefined
+            el BeatmapDiscussions.NewReply,
+              currentUser: @props.currentUser
+              beatmapset: @props.beatmapset
+              currentBeatmap: @props.currentBeatmap
+              discussion: @props.discussion
+              userPermissions: @props.userPermissions
 
 
   timestamp: ->

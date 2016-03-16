@@ -52,10 +52,15 @@ BeatmapDiscussions.NewDiscussion = React.createClass
           div
             className: "#{bn}__avatar"
             el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
-          textarea
-            className: "#{bn}__message"
-            value: @state.message
-            onChange: @setMessage
+
+          if @props.currentUser.id == undefined
+            div className: "#{bn}__message",
+              Lang.get('beatmaps.discussions.require-login')
+          else
+            textarea
+              className: "#{bn}__message"
+              value: @state.message
+              onChange: @setMessage
 
       div className: "#{bn}__col #{bn}__col--right",
         div
