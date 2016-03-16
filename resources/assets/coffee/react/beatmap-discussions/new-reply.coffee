@@ -47,20 +47,26 @@ BeatmapDiscussions.NewReply = React.createClass
           value: @state.message
           onChange: @setMessage
 
-        if @props.discussion.timestamp != null && @canUpdate()
-          div className: "#{bn}__resolved",
-            label
-              className: 'osu-checkbox'
-              input
-                className: 'osu-checkbox__input'
-                type: 'checkbox'
-                checked: @state.resolveDiscussion
-                onChange: (e) => @setState resolveDiscussion: e.target.checked
+        div className: "#{bn}__actions",
+          div className: "#{bn}__actions-group",
+            if @props.discussion.timestamp != null && @canUpdate()
+              label
+                className: 'osu-checkbox'
+                input
+                  className: 'osu-checkbox__input'
+                  type: 'checkbox'
+                  checked: @state.resolveDiscussion
+                  onChange: (e) => @setState resolveDiscussion: e.target.checked
 
-              span className: 'osu-checkbox__tick',
-                el Icon, name: 'check'
+                span className: 'osu-checkbox__tick',
+                  el Icon, name: 'check'
 
-              Lang.get('beatmaps.discussions.resolved')
+                Lang.get('beatmaps.discussions.resolved')
+          div className: "#{bn}__actions-group",
+            button
+              className: 'btn-osu-lite btn-osu-lite--default'
+              onClick: @post
+              Lang.get('common.buttons.reply')
 
 
   post: ->
