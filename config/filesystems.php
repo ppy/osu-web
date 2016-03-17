@@ -46,6 +46,7 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => public_path().'/uploads',
+            'url_prefix' => '/uploads',
         ],
 
         's3' => [
@@ -54,6 +55,7 @@ return [
             'secret' => env('S3_SECRET'),
             'region' => env('S3_REGION'),
             'bucket' => env('S3_BUCKET'),
+            'url_prefix' => env('S3_URL_PREFIX', 'https://assets.ppy.sh'),
         ],
 
         's3-avatars' => [
@@ -62,6 +64,7 @@ return [
             'secret' => env('S3_SECRET'),
             'region' => env('S3_REGION'),
             'bucket' => env('S3_BUCKET_AVATARS'),
+            'url_prefix' => env('S3_URL_PREFIX_AVATARS'),
         ],
 
     ],

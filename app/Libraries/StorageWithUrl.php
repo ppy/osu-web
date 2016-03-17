@@ -21,20 +21,27 @@ namespace App\Libraries;
 
 use Storage;
 
-class StorageLocal
+class StorageWithUrl
 {
-    public function put($path, $content)
-    {
-        return Storage::put($path, $content);
-    }
+    private $disk;
+    private $urlPrefix;
 
-    public function deleteDirectory($path)
+    public function __construct($diskName = null)
     {
-        return Storage::deleteDirectory($path);
+        $diskName = $diskName ?? config('filesystems.default');
+
+        $this->disk = Storage::disk($diskName);
+
+        $this->urlPrefix = config("filesystems.disks.{$diskName}.url_prefix");
     }
 
     public function url($path)
     {
-        return "/uploads/{$path}";
+        return "{$this->urlPrefix}/{$path}";
+    }
+
+    public function __call($method, $parameters)
+    {
+        call_user_func_array([$this->disk, $method], $parameters);
     }
 }
