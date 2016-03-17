@@ -43,6 +43,7 @@ BeatmapDiscussions.NewReply = React.createClass
           rows: 2
           value: @state.message
           onChange: @setMessage
+          onKeyDown: @submitIfEnter
 
         div className: "#{bn}__actions",
           div className: "#{bn}__actions-group",
@@ -91,10 +92,7 @@ BeatmapDiscussions.NewReply = React.createClass
   setMessage: (e) ->
     newValue = e.target.value
 
-    if _.last(newValue) != '\n'
-      @setState message: e.target.value
-    else
-      @post()
+    @setState message: e.target.value
 
 
   canUpdate: ->
@@ -107,3 +105,10 @@ BeatmapDiscussions.NewReply = React.createClass
 
   validPost: ->
     @state.message.length != 0
+
+
+  submitIfEnter: (e) ->
+    return if e.keyCode != 13
+
+    e.preventDefault()
+    @post()
