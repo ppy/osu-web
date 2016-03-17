@@ -4,47 +4,64 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d5b155a0e3b7510768a979108c9b5844",
-    "content-hash": "c9e77cc18e3d4ddb01e0af993e560920",
+    "hash": "d056a636dacb2c7da344e9e99d80ed62",
+    "content-hash": "25e9788db789709dcd0569edffc1919c",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "2.8.24",
+            "version": "3.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "54b67f902bb2c5bbab481bc3c46537752a018830"
+                "reference": "202a3abc5d3262c170a4a8407c9998096e33af1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/54b67f902bb2c5bbab481bc3c46537752a018830",
-                "reference": "54b67f902bb2c5bbab481bc3c46537752a018830",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/202a3abc5d3262c170a4a8407c9998096e33af1e",
+                "reference": "202a3abc5d3262c170a4a8407c9998096e33af1e",
                 "shasum": ""
             },
             "require": {
-                "guzzle/guzzle": "~3.7",
-                "php": ">=5.3.3"
+                "guzzlehttp/guzzle": "~5.3|~6.0.1|~6.1",
+                "guzzlehttp/promises": "~1.0",
+                "guzzlehttp/psr7": "~1.0",
+                "mtdowling/jmespath.php": "~2.2",
+                "php": ">=5.5"
             },
             "require-dev": {
-                "doctrine/cache": "~1.0",
+                "andrewsville/php-token-reflection": "^1.4",
+                "aws/aws-php-sns-message-validator": "~1.0",
+                "behat/behat": "~3.0",
+                "doctrine/cache": "~1.4",
+                "ext-dom": "*",
+                "ext-json": "*",
                 "ext-openssl": "*",
-                "monolog/monolog": "~1.4",
-                "phpunit/phpunit": "~4.0",
-                "phpunit/phpunit-mock-objects": "2.3.1",
-                "symfony/yaml": "~2.1"
+                "ext-pcre": "*",
+                "ext-simplexml": "*",
+                "ext-spl": "*",
+                "nette/neon": "^2.3",
+                "phpunit/phpunit": "~4.0|~5.0",
+                "psr/cache": "^1.0"
             },
             "suggest": {
-                "doctrine/cache": "Adds support for caching of credentials and responses",
-                "ext-apc": "Allows service description opcode caching, request and response caching, and credentials caching",
-                "ext-openssl": "Allows working with CloudFront private distributions and verifying received SNS messages",
-                "monolog/monolog": "Adds support for logging HTTP requests and responses",
-                "symfony/yaml": "Eases the ability to write manifests for creating jobs in AWS Import/Export"
+                "aws/aws-php-sns-message-validator": "To validate incoming SNS notifications",
+                "doctrine/cache": "To use the DoctrineCacheAdapter",
+                "ext-curl": "To send requests using cURL",
+                "ext-openssl": "Allows working with CloudFront private distributions and verifying received SNS messages"
             },
             "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Aws": "src/"
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
                 }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Aws\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -68,7 +85,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2015-11-16 22:34:08"
+            "time": "2016-03-15 23:35:49"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -1605,16 +1622,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.16",
+            "version": "1.0.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "183e1a610664baf6dcd6fceda415baf43cbdc031"
+                "reference": "e87a786e3ae12a25cf78a71bb07b4b384bfaa83a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/183e1a610664baf6dcd6fceda415baf43cbdc031",
-                "reference": "183e1a610664baf6dcd6fceda415baf43cbdc031",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/e87a786e3ae12a25cf78a71bb07b4b384bfaa83a",
+                "reference": "e87a786e3ae12a25cf78a71bb07b4b384bfaa83a",
                 "shasum": ""
             },
             "require": {
@@ -1627,8 +1644,7 @@
                 "ext-fileinfo": "*",
                 "mockery/mockery": "~0.9",
                 "phpspec/phpspec": "^2.2",
-                "phpspec/prophecy-phpunit": "~1.0",
-                "phpunit/phpunit": "~4.8"
+                "phpunit/phpunit": "~4.8 || ~5.0"
             },
             "suggest": {
                 "ext-fileinfo": "Required for MimeType",
@@ -1685,30 +1701,30 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2015-12-19 20:16:43"
+            "time": "2016-03-14 21:54:11"
         },
         {
-            "name": "league/flysystem-aws-s3-v2",
-            "version": "1.0.3",
+            "name": "league/flysystem-aws-s3-v3",
+            "version": "1.0.9",
             "source": {
                 "type": "git",
-                "url": "https://github.com/thephpleague/flysystem-aws-s3-v2.git",
-                "reference": "e464a35e34abed572c76b76aa2f278d178e141c6"
+                "url": "https://github.com/thephpleague/flysystem-aws-s3-v3.git",
+                "reference": "595e24678bf78f8107ebc9355d8376ae0eb712c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem-aws-s3-v2/zipball/e464a35e34abed572c76b76aa2f278d178e141c6",
-                "reference": "e464a35e34abed572c76b76aa2f278d178e141c6",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-aws-s3-v3/zipball/595e24678bf78f8107ebc9355d8376ae0eb712c6",
+                "reference": "595e24678bf78f8107ebc9355d8376ae0eb712c6",
                 "shasum": ""
             },
             "require": {
-                "aws/aws-sdk-php": "~2.7",
+                "aws/aws-sdk-php": "^3.0.0",
                 "league/flysystem": "~1.0",
-                "php": ">=5.4.0"
+                "php": ">=5.5.0"
             },
             "require-dev": {
-                "mockery/mockery": "0.9.*",
-                "phpunit/phpunit": "~4.0"
+                "henrikbjorn/phpspec-code-coverage": "~1.0.1",
+                "phpspec/phpspec": "^2.0.0"
             },
             "type": "library",
             "extra": {
@@ -1718,7 +1734,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "League\\Flysystem\\AwsS3v2\\": "src/"
+                    "League\\Flysystem\\AwsS3v3\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1731,8 +1747,8 @@
                     "email": "info@frenky.net"
                 }
             ],
-            "description": "Flysystem adapter for AWS S3 SDK v2",
-            "time": "2015-10-15 15:55:48"
+            "description": "Flysystem adapter for the AWS S3 SDK v3.x",
+            "time": "2015-11-19 08:44:16"
         },
         {
             "name": "league/fractal",
@@ -1796,6 +1812,52 @@
                 "rest"
             ],
             "time": "2015-10-07 14:48:58"
+        },
+        {
+            "name": "league/statsd",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/statsd.git",
+                "reference": "3dafde1b6c5e3896073cc947130cf9536b335975"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/statsd/zipball/3dafde1b6c5e3896073cc947130cf9536b335975",
+                "reference": "3dafde1b6c5e3896073cc947130cf9536b335975",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "silex/silex": "~1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\StatsD\\": "src",
+                    "League\\StatsD\\Test\\": "tests"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marc Qualie",
+                    "email": "marc@marcqualie.com",
+                    "homepage": "http://marcqualie.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple library for working with StatsD in PHP.",
+            "homepage": "https://github.com/thephpleague/statsd",
+            "keywords": [
+                "graphite",
+                "library",
+                "statsd"
+            ],
+            "time": "2016-03-14 17:43:42"
         },
         {
             "name": "maknz/slack",
@@ -2036,6 +2098,61 @@
                 "schedule"
             ],
             "time": "2015-01-11 23:07:46"
+        },
+        {
+            "name": "mtdowling/jmespath.php",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jmespath/jmespath.php.git",
+                "reference": "192f93e43c2c97acde7694993ab171b3de284093"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jmespath/jmespath.php/zipball/192f93e43c2c97acde7694993ab171b3de284093",
+                "reference": "192f93e43c2c97acde7694993ab171b3de284093",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "bin": [
+                "bin/jp.php"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JmesPath\\": "src/"
+                },
+                "files": [
+                    "src/JmesPath.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Declaratively specify how to extract elements from a JSON document",
+            "keywords": [
+                "json",
+                "jsonpath"
+            ],
+            "time": "2016-01-05 18:25:05"
         },
         {
             "name": "nesbot/carbon",
@@ -2809,16 +2926,16 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.2",
+            "version": "v2.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "ee278f7c851533e58ca307f66305ccb9188aceda"
+                "reference": "78c468665c9568c3faaa9c416a7134308f2d85c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/ee278f7c851533e58ca307f66305ccb9188aceda",
-                "reference": "ee278f7c851533e58ca307f66305ccb9188aceda",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/78c468665c9568c3faaa9c416a7134308f2d85c3",
+                "reference": "78c468665c9568c3faaa9c416a7134308f2d85c3",
                 "shasum": ""
             },
             "require": {
@@ -2865,7 +2982,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2016-01-13 10:28:07"
+            "time": "2016-01-27 05:14:19"
         },
         {
             "name": "symfony/finder",
@@ -4727,7 +4844,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "league/statsd": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
