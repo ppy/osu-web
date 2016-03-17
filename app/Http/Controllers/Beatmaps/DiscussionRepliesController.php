@@ -52,8 +52,6 @@ class DiscussionRepliesController extends Controller
     {
         $discussion = BeatmapDiscussion::findOrFail($beatmapDiscussionId);
 
-        $resolveDiscussion = array_get(Request::input(), 'resolve_discussion') === 'true';
-
         if (!$discussion->canBeRepliedBy(Auth::user())) {
             abort(403);
         }
