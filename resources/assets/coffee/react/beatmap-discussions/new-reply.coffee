@@ -104,5 +104,6 @@ BeatmapDiscussions.NewReply = React.createClass
       @props.currentUser.id == @props.beatmapset.user_id ||
       @props.currentUser.id == @props.discussion.user_id
 
+
   validPost: ->
     @state.message.length != 0
