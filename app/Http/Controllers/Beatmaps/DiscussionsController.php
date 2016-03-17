@@ -34,24 +34,6 @@ class DiscussionsController extends Controller
         return parent::__construct();
     }
 
-    public function create($beatmapId)
-    {
-        $beatmap = Beatmap::findOrFail($beatmapId);
-        $beatmapsetDiscussion = BeatmapsetDiscussion::findOrFail($beatmap->beatmapset_id);
-
-        $discussion = new BeatmapDiscussion([
-            'beatmap_id' => $beatmap->beatmap_id,
-            'beatmapset_discussion_id' => $beatmapsetDiscussion->id,
-        ]);
-
-        return view('beatmaps.discussions.create', compact('beatmap', 'discussion'));
-    }
-
-    public function index($beatmapId)
-    {
-        return Beatmap::findOrFail($beatmapId)->beatmapDiscussions;
-    }
-
     public function store($beatmapId)
     {
         $beatmap = Beatmap::findOrFail($beatmapId);

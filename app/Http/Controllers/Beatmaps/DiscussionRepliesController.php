@@ -37,17 +37,6 @@ class DiscussionRepliesController extends Controller
         return parent::__construct();
     }
 
-    public function create($beatmapId, $beatmapDiscussionId)
-    {
-        $discussion = BeatmapDiscussion::findOrFail($beatmapDiscussionId);
-
-        $reply = new BeatmapDiscussionReply([
-            'beatmap_discussion_id' => $discussion->id,
-        ]);
-
-        return view('beatmaps.discussion-replies.create', compact('discussion', 'reply'));
-    }
-
     public function store($beatmapId, $beatmapDiscussionId)
     {
         $discussion = BeatmapDiscussion::findOrFail($beatmapDiscussionId);
