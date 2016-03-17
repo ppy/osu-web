@@ -43,7 +43,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.synced_folder "../", "/data/osu!web", :mount_options => ["dmode=777,fmode=777"]
 
-  config.vm.provider :virtualbox do |vb|
+  config.vm.provider :virtualbox do |vb, override|
     vb.name = "osu!web"
     vb.customize ["modifyvm", :id, "--memory", "2048"]
     vb.customize ["modifyvm", :id, "--ostype", "Ubuntu"]
