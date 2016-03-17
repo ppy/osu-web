@@ -19,7 +19,6 @@
  */
 namespace App\Models;
 
-use Request;
 use Es;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
@@ -484,6 +483,7 @@ class BeatmapSet extends Model
                 $return["$shape$scale"] = $this->coverImageURL("$shape$scale");
             }
         }
+
         return $return;
     }
 
@@ -569,6 +569,7 @@ class BeatmapSet extends Model
         if (!$bg) {
             deltree($tmpBase);
             $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+
             return true;
         }
 
