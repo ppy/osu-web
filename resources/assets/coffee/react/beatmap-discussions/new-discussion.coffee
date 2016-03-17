@@ -73,7 +73,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
 
         button
           className: "btn-osu-lite btn-osu-lite--default"
-          disabled: !@canPost()
+          disabled: !@validPost()
           onClick: @post
           Lang.get('common.buttons.post')
 
@@ -87,7 +87,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
 
 
   post: ->
-    return unless @canPost()
+    return unless @validPost()
 
     osu.showLoadingOverlay()
 
@@ -134,7 +134,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
             Lang.get("beatmaps.discussions.message_type.#{type}")
 
 
-  canPost: ->
+  validPost: ->
     return false if @state.message.length == 0
 
     @state.timestamp == null || @state.messageType != null

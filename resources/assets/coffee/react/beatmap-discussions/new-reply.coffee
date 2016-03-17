@@ -62,13 +62,13 @@ BeatmapDiscussions.NewReply = React.createClass
           div className: "#{bn}__actions-group",
             button
               className: 'btn-osu-lite btn-osu-lite--default'
-              disabled: !@canPost()
+              disabled: !@validPost()
               onClick: @post
               Lang.get('common.buttons.reply')
 
 
   post: ->
-    return if !@canPost()
+    return if !@validPost()
     osu.showLoadingOverlay()
 
     $.ajax Url.beatmapDiscussionReplies(@props.discussion.beatmap_id, @props.discussion.id),
@@ -104,5 +104,5 @@ BeatmapDiscussions.NewReply = React.createClass
       @props.currentUser.id == @props.beatmapset.user_id ||
       @props.currentUser.id == @props.discussion.user_id
 
-  canPost: ->
+  validPost: ->
     @state.message.length != 0
