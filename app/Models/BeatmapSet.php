@@ -23,7 +23,7 @@ use Es;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
 use DB;
-use App\Libraries\StorageAuto;
+use App\Libraries\StorageWithUrl;
 use App\Exceptions\BeatmapProcessorException;
 
 class BeatmapSet extends Model
@@ -513,7 +513,7 @@ class BeatmapSet extends Model
     public function storage()
     {
         if ($this->_storage === null) {
-            $this->_storage = StorageAuto::get();
+            $this->_storage = new StorageWithUrl();
         }
 
         return $this->_storage;
