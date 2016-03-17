@@ -55,7 +55,7 @@ return [
             'secret' => env('S3_SECRET'),
             'region' => env('S3_REGION'),
             'bucket' => env('S3_BUCKET'),
-            'base_url' => env('S3_BASE_URL', 'https://assets.ppy.sh'),
+            'base_url' => env('S3_BASE_URL'),
         ],
 
         's3-avatars' => [
@@ -64,7 +64,7 @@ return [
             'secret' => env('S3_SECRET'),
             'region' => env('S3_REGION'),
             'bucket' => env('S3_BUCKET_AVATARS'),
-            'base_url' => env('S3_BASE_URL_AVATARS', 'https://a.ppy.sh'),
+            'base_url' => env('S3_BASE_URL_AVATARS'),
         ],
 
     ],
