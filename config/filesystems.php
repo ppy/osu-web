@@ -46,7 +46,7 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => public_path().'/uploads',
-            'url_prefix' => '/uploads',
+            'url_prefix' => config('app.url').'/uploads',
         ],
 
         's3' => [
@@ -64,7 +64,7 @@ return [
             'secret' => env('S3_SECRET'),
             'region' => env('S3_REGION'),
             'bucket' => env('S3_BUCKET_AVATARS'),
-            'url_prefix' => env('S3_URL_PREFIX_AVATARS'),
+            'url_prefix' => env('S3_URL_PREFIX_AVATARS', 'https://a.ppy.sh'),
         ],
 
     ],
