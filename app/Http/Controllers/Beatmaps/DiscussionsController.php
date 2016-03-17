@@ -61,7 +61,7 @@ class DiscussionsController extends Controller
             get_params(Request::all(), 'beatmap_discussion', [
                 'message',
                 'message_type',
-                'timestamp',
+                'timestamp:int',
             ]),
             [
                 'beatmapset_discussion_id' => $beatmapsetDiscussion->id,
