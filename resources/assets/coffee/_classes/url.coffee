@@ -27,3 +27,6 @@ class @Url
   @beatmapDiscussionReplies: (beatmapId, discussionId) => "/beatmaps/#{beatmapId}/discussions/#{discussionId}/replies"
 
   @user: (id) => "/u/#{id}"
+
+  # external link
+  @openBeatmapEditor: (timestampWithRange) => "osu://edit/#{timestampWithRange}"

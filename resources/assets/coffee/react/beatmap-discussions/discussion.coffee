@@ -93,8 +93,19 @@ BeatmapDiscussions.Discussion = React.createClass
         el UserAvatar, user: user, modifiers: ['full-rounded']
 
       div className: "#{pbn}__message-container",
-        div className: "#{pbn}__message #{pbn}__message--#{type}", post.message
+        div
+          className: "#{pbn}__message #{pbn}__message--#{type}"
+          dangerouslySetInnerHTML:
+            __html: @addEditorLink post.message
         div
           className: "#{pbn}__info"
           dangerouslySetInnerHTML:
             __html: "#{osu.link Url.user(user.id), user.username}, #{osu.timeago post.created_at}"
+
+
+  addEditorLink: (message) ->
+    _.chain message
+      .escape()
+      .replace /(^|\s)((\d{2}):(\d{2})[:.](\d{3})( \([\d,]+\))?(?=\s))/g, (_, prefix, text, m, s, ms, range) =>
+        "#{prefix}#{osu.link Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range || ''}"), text}"
+      .value()
