@@ -58,15 +58,6 @@ return [
             'base_url' => env('S3_BASE_URL'),
         ],
 
-        's3-avatars' => [
-            'driver' => 's3',
-            'key' => env('S3_KEY'),
-            'secret' => env('S3_SECRET'),
-            'region' => env('S3_REGION'),
-            'bucket' => env('S3_BUCKET_AVATARS'),
-            'base_url' => env('S3_BASE_URL_AVATARS'),
-        ],
-
     ],
 
 ];
