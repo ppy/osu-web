@@ -1,7 +1,5 @@
-<?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,25 +14,30 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-namespace App\Libraries;
+@import "../app";
 
-use Storage;
+.status-map {
+  background: @grey-3;
+  
+  &__circle {
+    stroke-miterlimit: 0;
+    stroke-width: 5;
+    fill: none;
+  }
 
-class StorageLocal
-{
-    public function put($path, $content)
-    {
-        return Storage::put($path, $content);
-    }
+  &__circle--up {
+    stroke: @green-light;
+  }
 
-    public function deleteDirectory($path)
-    {
-        return Storage::deleteDirectory($path);
-    }
+  &__circle--down {
+    stroke: @red;
+  }
 
-    public function url($path)
-    {
-        return "/uploads/{$path}";
-    }
+  &__text {
+    text-anchor: middle;
+    font-size: 13px;
+    fill: white;
+  }
 }
