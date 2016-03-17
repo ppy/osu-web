@@ -135,7 +135,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
 
 
   canPost: ->
-    return false unless @state.message
+    return false if @state.message.length == 0
 
     @state.timestamp == null || @state.messageType != null
 
