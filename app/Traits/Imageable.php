@@ -20,7 +20,7 @@
 namespace App\Traits;
 
 use App\Libraries\ImageProcessor;
-use App\Libraries\StorageAuto;
+use App\Libraries\StorageWithUrl;
 
 trait Imageable
 {
@@ -81,7 +81,7 @@ trait Imageable
     public function storage()
     {
         if ($this->_storage === null) {
-            $this->_storage = StorageAuto::get();
+            $this->_storage = new StorageWithUrl();
         }
 
         return $this->_storage;
