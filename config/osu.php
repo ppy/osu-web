@@ -32,7 +32,6 @@ return [
         'delayed_shipping_order_message' => env('DELAYED_SHIPPING_ORDER_MESSAGE'),
     ],
     'urls' => [
-        'assets' => env('ASSETS_URL', 'https://assets.ppy.sh/'),
         'legal' => [
             'dmca' => 'https://osu.ppy.sh/p/copyright',
             'tos' => 'https://osu.ppy.sh/p/terms',
