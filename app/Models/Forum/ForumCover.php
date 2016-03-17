@@ -19,6 +19,7 @@
  */
 namespace App\Models\Forum;
 
+use App\Libraries\ForumDefaultTopicCover;
 use App\Models\User;
 use App\Traits\Imageable;
 use DB;
@@ -30,15 +31,20 @@ class ForumCover extends Model
 
     protected $table = 'forum_forum_covers';
 
+    protected $guarded = [];
+
     protected $casts = [
         'id' => 'integer',
         'forum_id' => 'integer',
         'user_id' => 'integer',
+        'default_topic_cover_json' => 'array',
     ];
+
+    private $_defaultTopicCover;
 
     public function getMaxDimensions()
     {
-        return [2700, 500];
+        return [2700, 400];
     }
 
     public function getFileRoot()
@@ -78,5 +84,34 @@ class ForumCover extends Model
         $this->save();
 
         return $this->fresh();
+    }
+
+    public function getDefaultTopicCoverAttribute()
+    {
+        if ($this->_defaultTopicCover === null) {
+            $this->_defaultTopicCover = new ForumDefaultTopicCover($this->id, $this->default_topic_cover_json);
+        }
+
+        return $this->_defaultTopicCover;
+    }
+
+    public function setMainCoverAttribute($value)
+    {
+        if (($value['_delete'] ?? false) === true) {
+            $this->deleteFile();
+        } elseif (($value['cover_file'] ?? null) !== null) {
+            $this->storeFile($value['cover_file']);
+        }
+    }
+
+    public function setDefaultTopicCoverAttribute($value)
+    {
+        if (($value['_delete'] ?? false) === true) {
+            $this->defaultTopicCover->deleteFile();
+        } elseif (($value['cover_file'] ?? null) !== null) {
+            $this->defaultTopicCover->storeFile($value['cover_file']);
+        }
+
+        $this->default_topic_cover_json = $this->defaultTopicCover->getFileProperties();
     }
 }

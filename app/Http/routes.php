@@ -143,6 +143,10 @@ Route::group(['prefix' => 'forum'], function () {
     Route::patch('p/{posts}', ['as' => 'forum.posts.update', 'uses' => "Forum\PostsController@update"]);
     Route::get('p/{posts}/edit', ['as' => 'forum.posts.edit', 'uses' => "Forum\PostsController@edit"]);
     Route::get('p/{posts}/raw', ['as' => 'forum.posts.raw', 'uses' => "Forum\PostsController@raw"]);
+
+    Route::group(['prefix' => 'admin', 'namespace' => 'Forum\Admin'], function () {
+        Route::resource('forum-covers', 'ForumCoversController', ['only' => ['index', 'store', 'update']]);
+    });
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {

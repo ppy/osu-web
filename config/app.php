@@ -159,7 +159,7 @@ return [
         'Maknz\Slack\SlackServiceProvider',
         'Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider',
         'Shift31\LaravelElasticsearch\ElasticsearchServiceProvider',
-
+        'League\StatsD\Laravel5\Provider\StatsdServiceProvider',
     ],
 
     /*
@@ -214,6 +214,7 @@ return [
         'Markdown' => 'GrahamCampbell\Markdown\Facades\Markdown',
 
         'Slack' => 'Maknz\Slack\Facades\Slack',
+        'Statsd' => 'League\StatsD\Laravel5\Facade\StatsdFacade',
 
     ],
 

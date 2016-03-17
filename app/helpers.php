@@ -454,3 +454,48 @@ function deltree($dir)
 
     return rmdir($dir);
 }
+
+function get_param_value($input, $type)
+{
+    if ($type === 'bool') {
+        return $input === '1' || $input === 'true';
+    }
+
+    if ($type === 'int') {
+        return get_int($input);
+    }
+
+    if ($type === 'file') {
+        if ($input instanceof Symfony\Component\HttpFoundation\File\UploadedFile) {
+            return $input->getRealPath();
+        } else {
+            return;
+        }
+    }
+
+    return (string) $input;
+}
+
+function get_params($input, $namespace, $keys)
+{
+    if ($namespace !== null) {
+        $input = array_get($input, $namespace);
+    }
+
+    $params = [];
+
+    foreach ($keys as $keyAndType) {
+        $keyAndType = explode(':', $keyAndType);
+
+        $key = $keyAndType[0];
+        $type = $keyAndType[1] ?? null;
+
+        $value = get_param_value(array_get($input, $key), $type);
+
+        if ($value !== null) {
+            array_set($params, $key, $value);
+        }
+    }
+
+    return $params;
+}

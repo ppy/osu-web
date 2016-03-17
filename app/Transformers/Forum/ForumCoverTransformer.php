@@ -30,14 +30,14 @@ class ForumCoverTransformer extends Fractal\TransformerAbstract
             $cover = new ForumCover;
         }
 
-        if ($cover->id === null) {
+        if ($cover->getFileProperties() === null) {
             $data = [
                 'method' => 'post',
                 'url' => route('forum.forum-covers.store', ['forum_id' => $cover->forum_id]),
             ];
         } else {
             $data = [
-                'method' => 'put',
+                'method' => 'patch',
                 'url' => route('forum.forum-covers.update', [$cover, 'forum_id' => $cover->forum_id]),
 
                 'id' => $cover->id,
