@@ -24,7 +24,7 @@ use Storage;
 class StorageWithUrl
 {
     private $disk;
-    private $urlPrefix;
+    private $baseUrl;
 
     public function __construct($diskName = null)
     {
@@ -32,12 +32,12 @@ class StorageWithUrl
 
         $this->disk = Storage::disk($diskName);
 
-        $this->urlPrefix = config("filesystems.disks.{$diskName}.url_prefix");
+        $this->baseUrl = config("filesystems.disks.{$diskName}.base_url");
     }
 
     public function url($path)
     {
-        return "{$this->urlPrefix}/{$path}";
+        return "{$this->baseUrl}/{$path}";
     }
 
     public function __call($method, $parameters)
