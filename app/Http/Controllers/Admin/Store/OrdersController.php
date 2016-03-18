@@ -8,7 +8,8 @@ use Request;
 
 class OrdersController extends Controller
 {
-    protected $section = 'storeAdmin';
+    protected $section = 'admin-store';
+    protected $actionPrefix = 'orders-';
 
     public function index()
     {

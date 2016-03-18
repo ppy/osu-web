@@ -27,15 +27,9 @@ use Request;
 
 class ForumCoversController extends Controller
 {
-    protected $section = 'community';
+    protected $section = 'admin-forum';
+    protected $actionPrefix = 'forum-covers-';
     private $params = [];
-
-    public function __construct()
-    {
-        parent::__construct();
-
-        view()->share('current_action', 'forum-admin-forum-covers-'.current_action());
-    }
 
     public function index()
     {
