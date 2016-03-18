@@ -22,22 +22,50 @@ return [
 
     'forum' => [
         'forum-covers' => [
-            'delete' => 'Delete',
+            'index' => [
+                'delete' => 'Delete',
 
-            'forum-name' => 'Forum #:id: :name',
+                'forum-name' => 'Forum #:id: :name',
 
-            'no-cover' => 'No cover set',
+                'no-cover' => 'No cover set',
 
-            'submit' => [
-                'save' => 'Save',
-                'update' => 'Update',
+                'submit' => [
+                    'save' => 'Save',
+                    'update' => 'Update',
+                ],
+
+                'title' => 'Forum Covers List',
+
+                'type-title' => [
+                    'default-topic' => 'Default Topic Cover',
+                    'main' => 'Forum Cover',
+                ],
             ],
+        ],
+    ],
 
-            'title' => 'Forum Covers List',
+    'logs' => [
+        'index' => [
+            'title' => 'Log Viewer',
+        ],
+    ],
 
-            'type-title' => [
-                'default-topic' => 'Default Topic Cover',
-                'main' => 'Forum Cover',
+    'pages' => [
+        'root' => [
+            'title' => 'Admin Console Thingy',
+
+            'sections' => [
+                'forum' => 'Forum',
+                'general' => 'General',
+                'store' => 'Store',
+            ],
+        ],
+    ],
+
+    'store' => [
+        'orders' => [
+            'index' => [
+                'title' => 'Order Listing',
             ],
         ],
     ],

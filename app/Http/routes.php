@@ -133,6 +133,8 @@ Route::group(['prefix' => 'forum'], function () {
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::get('/', ['as' => 'admin.root', 'uses' => 'PagesController@root']);
+
     Route::resource('logs', 'LogsController', ['only' => ['index']]);
 
     // store admin
