@@ -23,7 +23,8 @@
     "league/fractal": "^0.13.0",
     "shift31/laravel-elasticsearch": "~1.0",
     "league/statsd": "dev-master#3dafde1b6c5e3896073cc947130cf9536b335975",
-    "league/flysystem-aws-s3-v3": "^1.0"
+    "league/flysystem-aws-s3-v3": "^1.0",
+    "lucadegasperi/oauth2-server-laravel": "^5.1"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.5",

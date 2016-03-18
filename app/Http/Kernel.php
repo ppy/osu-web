@@ -34,10 +34,10 @@ class Kernel extends HttpKernel
         'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
         'Illuminate\Session\Middleware\StartSession',
         'Illuminate\View\Middleware\ShareErrorsFromSession',
-        'App\Http\Middleware\VerifyCsrfToken',
         'App\Http\Middleware\CheckUserBanStatus',
         'App\Http\Middleware\UpdateUserLastvisit',
         'Clockwork\Support\Laravel\ClockworkMiddleware',
+        'LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware',
     ];
 
     /**
@@ -48,6 +48,7 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth' => 'App\Http\Middleware\Authenticate',
         'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
+        'csrf' => 'App\Http\Middleware\VerifyCsrfToken',
         'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
     ];
 }
