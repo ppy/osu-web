@@ -96,17 +96,6 @@ Route::get('/wiki', ['as' => 'wiki', function () { return Redirect::to('https://
 Route::get('/help/support', ['as' => 'support', 'uses' => 'HelpController@getSupport']);
 Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);
 
-// store admin
-Route::group(['prefix' => 'store/admin', 'namespace' => 'Store\Admin'], function () {
-    Route::post('orders/ship', ['as' => 'store.admin.orders.ship', 'uses' => 'OrderController@ship']);
-    Route::resource('orders', 'OrderController', ['only' => ['index', 'show', 'update']]);
-    Route::resource('orders.items', 'OrderItemController', ['only' => ['update']]);
-
-    Route::resource('addresses', 'AddressController', ['only' => ['update']]);
-
-    Route::get('/', function () { return Redirect::route('store.admin.orders.index'); });
-});
-
 // catchall controllers
 Route::controller('/notifications', 'NotificationController');
 Route::controller('/store', 'StoreController');
@@ -149,6 +138,17 @@ Route::group(['prefix' => 'forum'], function () {
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::resource('logs', 'LogsController', ['only' => ['index']]);
+
+    // store admin
+    Route::group(['prefix' => 'store', 'namespace' => 'Store'], function () {
+        Route::post('orders/ship', ['as' => 'admin.store.orders.ship', 'uses' => 'OrderController@ship']);
+        Route::resource('orders', 'OrderController', ['only' => ['index', 'show', 'update']]);
+        Route::resource('orders.items', 'OrderItemController', ['only' => ['update']]);
+
+        Route::resource('addresses', 'AddressController', ['only' => ['update']]);
+
+        Route::get('/', function () { return Redirect::route('admin.store.orders.index'); });
+    });
 });
 
 // Uploading file doesn't quite work with PUT/PATCH.
