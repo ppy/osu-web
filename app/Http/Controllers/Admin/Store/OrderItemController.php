@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin\Store;
 
 use App\Http\Controllers\Admin\Controller;
 use App\Models\Store;
-use Auth;
 use Request;
 
 class OrderItemController extends Controller
