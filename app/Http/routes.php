@@ -138,10 +138,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     // store admin
     Route::group(['prefix' => 'store', 'namespace' => 'Store'], function () {
         Route::post('orders/ship', ['as' => 'admin.store.orders.ship', 'uses' => 'OrderController@ship']);
-        Route::resource('orders', 'OrderController', ['only' => ['index', 'show', 'update']]);
-        Route::resource('orders.items', 'OrderItemController', ['only' => ['update']]);
+        Route::resource('orders', 'OrdersController', ['only' => ['index', 'show', 'update']]);
+        Route::resource('orders.items', 'OrderItemsController', ['only' => ['update']]);
 
-        Route::resource('addresses', 'AddressController', ['only' => ['update']]);
+        Route::resource('addresses', 'AddressesController', ['only' => ['update']]);
 
         Route::get('/', function () { return Redirect::route('admin.store.orders.index'); });
     });

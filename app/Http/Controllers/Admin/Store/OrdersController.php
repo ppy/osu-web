@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\Controller;
 use App\Models\Store;
 use Request;
 
-class OrderController extends Controller
+class OrdersController extends Controller
 {
     protected $section = 'storeAdmin';
 
