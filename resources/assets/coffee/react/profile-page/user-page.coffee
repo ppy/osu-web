@@ -26,24 +26,24 @@ class ProfilePage.UserPage extends React.Component
   pageNew: =>
     canCreate = @props.withEdit and @props.user.isSupporter
 
-    el 'div', className: 'text-center',
+    el 'div', className: 'profile-extra-user-page--new',
       el 'button',
-        className: 'profile-page-new-content btn-osu btn-osu--lite btn-osu--profile-page-edit'
+        className: 'profile-extra-user-page__new-content btn-osu btn-osu--lite btn-osu--profile-page-edit'
         onClick: @editStart
         disabled: !canCreate
         Lang.get('users.show.page.edit_big')
 
-      el 'p', className: 'profile-page-new-content profile-page-new-icon',
+      el 'p', className: 'profile-extra-user-page__new-content profile-extra-user-page__new-content--icon',
         el 'i', className: 'fa fa-pencil-square-o'
 
       el 'p',
-        className: 'profile-page-new-content'
+        className: 'profile-extra-user-page__new-content'
         dangerouslySetInnerHTML:
           __html: Lang.get('users.show.page.description')
 
       if !@props.user.isSupporter
         el 'p',
-          className: 'profile-page-new-content'
+          className: 'profile-extra-user-page__new-content'
           dangerouslySetInnerHTML:
             __html: Lang.get('users.show.page.restriction_info')
 
@@ -62,11 +62,11 @@ class ProfilePage.UserPage extends React.Component
     else
       page = @pageShow()
 
-    el 'div', className: 'profile-extra',
+    el 'div', className: 'page-extra',
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       if withEditButton && !@props.userPage.editing
-        el 'div', className: 'profile-extra__actions',
+        el 'div', className: 'page-extra__actions',
           el 'div', className: 'forum-post-actions',
             el 'a',
               className: 'forum-post-actions__action'

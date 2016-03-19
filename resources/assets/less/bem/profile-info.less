@@ -1,5 +1,5 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
+*    Copyright 2016 ppy Pty. Ltd.
 *
 *    This file is part of osu!web. osu!web is distributed with the hope of
 *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,52 +17,42 @@
 *
 */
 
-.user-profile-header {
-  &__bar {
+.profile-info {
+  &__icons {
     display: flex;
-
-    &--right {
-      margin-right: @grid-gutter-width/4;
-    }
-  }
-
-  &__basic {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-
-    &--flags {
-      padding: 0px @grid-gutter-width/4;
-      margin-right: @grid-gutter-width/4;
-      background-color: @blue-darker;
-
-      @media @desktop {
-        padding-left: @profile-avatar-size + @grid-gutter-width/2;
-        margin-left: @grid-gutter-width/2;
-      }
-    }
-
-    &--right {
-      text-align: right;
-    }
   }
 
-  &__text {
+  &__icon {
+    .circle(50px);
+    border-width: 5px;
+    font-size: 20px;
+  }
+
+  &__title {
+    font-weight: bold;
     margin: 0px;
-    padding: 0px;
 
-    color: @gray;
-    font-size: 12px;
-    font-style: normal;
-    line-height: 1.1;
-
-    &--large {
-      font-size: 24px;
+    &--supporter {
+      color: @pink-dark;
     }
   }
 
-  &__rank-icon {
-    margin-right: @grid-gutter-width/4;
-    top: -1px;
+  &__location {
+    margin: 0px;
+  }
+
+  &__data-key {
+    font-weight: normal;
+    font-size: 12px;
+  }
+
+  &__data-value {
+    font-weight: bold;
+    margin-bottom: @grid-gutter-width/4;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
   }
 }

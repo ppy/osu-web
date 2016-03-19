@@ -18,7 +18,7 @@
 {div} = React.DOM
 el = React.createElement
 
-class ProfilePage.Main extends React.Component
+class ProfilePage.Main extends SwitchableModePage
   constructor: (props) ->
     super props
 
@@ -42,18 +42,6 @@ class ProfilePage.Main extends React.Component
     @setState isCoverUpdating: state
 
 
-  setCurrentMode: (_e, mode) =>
-    return if @state.currentMode == mode
-    @setState currentMode: mode, @setHash
-
-
-  setCurrentPage: (_e, page, callback) =>
-    return if @state.currentPage == page
-    @setState currentPage: page, =>
-      callback() if callback
-      @setHash()
-
-
   setHash: =>
     osu.setHash ProfilePageHash.generate(page: @state.currentPage, mode: @state.currentMode)
 
@@ -66,58 +54,6 @@ class ProfilePage.Main extends React.Component
   userPageUpdate: (_e, newUserPage) =>
     currentUserPage = _.cloneDeep @state.userPage
     @setState userPage: _.extend(currentUserPage, newUserPage)
-
-
-  pages: document.getElementsByClassName('js-profile-page--scrollspy')
-  pagesOffset: document.getElementsByClassName('js-profile-page--scrollspy-offset')
-
-  pageScan: =>
-    return if @scrolling
-    return if @pages.length == 0
-
-    anchorHeight = @pagesOffset[0].getBoundingClientRect().height
-
-    if osu.bottomPage()
-      @setCurrentPage null, _.last(@pages).dataset.pageId
-      return
-
-    for page in @pages
-      pageDims = page.getBoundingClientRect()
-      pageBottom = pageDims.bottom - Math.min(pageDims.height * 0.75, 200)
-      continue unless pageBottom > anchorHeight
-
-      @setCurrentPage null, page.dataset.pageId
-      return
-
-    @setCurrentPage null, page.dataset.pageId
-
-
-  pageJump: (_e, page) =>
-    if page == 'main'
-      @setCurrentPage null, page
-      return
-
-    target = $(".js-profile-page--page[data-page-id='#{page}']")
-
-    return unless target.length
-    # Don't bother scanning the current position.
-    # The result will be wrong when target page is too short anyway.
-    @scrolling = true
-    clearTimeout @timeouts.scrolling
-
-    $(window).stop().scrollTo target, 500,
-      onAfter: =>
-        # Manually set the mode to avoid confusion (wrong highlight).
-        # Scrolling will obviously break it but that's unfortunate result
-        # from having the scrollspy marker at middle of page.
-        @setCurrentPage null, page, =>
-          # Doesn't work:
-          # - part of state (callback, part of mode setting)
-          # - simple variable in callback
-          # Both still change the switch too soon.
-          @timeouts.scrolling = setTimeout (=> @scrolling = false), 100
-      # count for the tabs height
-      offset: @pagesOffset[0].getBoundingClientRect().height * -1
 
 
   componentDidMount: =>

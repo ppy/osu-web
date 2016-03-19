@@ -30,23 +30,25 @@ class ProfilePage.RecentAchievements extends React.Component
     achievementsProgress = (100 * @props.achievementsCounts.current / @props.achievementsCounts.total).toFixed()
     moreCount = @props.achievementsCounts.current - Math.min(@props.allAchievements.length, maxDisplayed)
 
-    div className: 'profile-content flex-col-33 text-center',
-      div className: 'profile-row profile-row--top',
-        div className: 'profile-achievements-badge profile-top-badge',
-          span className: 'profile-badge-number',
+    div className: 'page-contents__content profile-achievements text-center',
+      div className: 'page-contents__row page-contents__row--top',
+        div className: 'profile-badge profile-badge--achievements',
+          span className: 'profile-badge__number',
             @props.achievementsCounts.current
 
         div className: 'profile-exp-bar',
           div
-            className: 'profile-exp-bar-fill'
+            className: 'profile-exp-bar--fill'
             style:
               width: "#{achievementsProgress}%"
 
-        dl className: 'profile-stats profile-stats--light',
-          dt()
-          dd {}, "#{achievementsProgress}%"
+        # dl className: 'profile-stats profile-stats--light',
+        #   dt()
+        #   dd {}, "#{achievementsProgress}%"
+        span className: 'profile-achievements__percentage',
+          "#{achievementsProgress}%"
 
-      div className: 'profile-row profile-recent-achievements',
+      div className: 'page-contents__row profile-achievements__list',
         @props.allAchievements.slice(0, maxDisplayed).map (userAchievement, i) =>
           el ProfilePage.AchievementBadge,
             key: "profile-achievement-#{i}"

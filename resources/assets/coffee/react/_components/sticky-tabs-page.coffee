@@ -15,19 +15,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-el = React.createElement
 
-class ProfilePage.ContentsTab extends React.Component
-  onClick: (e) =>
-    e.preventDefault()
-    $.publish 'profile:mode:set', @props.mode
-
-  render: =>
-    className = 'page-tabs__tab'
-    className += ' page-tabs__tab--active' if @props.mode == @props.currentMode
-
-    el 'a',
-      href: ProfilePageHash.generate page: @props.currentPage, mode: @props.mode
-      onClick: @onClick
-      className: className
-      Lang.get "beatmaps.mode.#{@props.mode}"
+class @StickyTabsPage extends React.Component
+  _tabsStick: (_e, target) =>
+    newState = (target == 'page-extra-tabs')
+    @setState(tabsSticky: newState) if newState != @state.tabsSticky
