@@ -28,10 +28,10 @@ class ForumSeeder extends Seeder
                     $f2 = $f->subforums()->save(factory(App\Models\Forum\Forum::class, 'child')->make());
                     // Topics for each subforum
                     for ($j = 0; $j < 3; $j++) {
-                        $t = $f2->topics()->save(factory(App\Models\Forum\Topic::class)->make());
+                        $t = $f2->topics()->save(factory(App\Models\Forum\Topic::class)->make(['forum_id' => $f2->forum_id]));
                         // Replies to the topic
                         for ($k = 0; $k < 5; $k++) {
-                            $p = $t->posts()->save(factory(App\Models\Forum\Post::class)->make());
+                            $p = $t->posts()->save(factory(App\Models\Forum\Post::class)->make(['forum_id' => $f2->forum_id]));
                         }
                         // Refresh topic cache (updates last post times etc)
                         $t->refreshCache();
