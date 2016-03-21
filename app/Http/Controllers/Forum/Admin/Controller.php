@@ -17,17 +17,21 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Libraries;
+namespace App\Http\Controllers\Forum\Admin;
 
-class StorageAuto
+use App\Http\Controllers\Forum\Controller as BaseController;
+use Auth;
+
+abstract class Controller extends BaseController
 {
-    public static function get()
+    public function __construct()
     {
-        switch (config('filesystems.default')) {
-            case 'local':
-                return new StorageLocal();
-            case 's3':
-                return new StorageS3v2();
+        $this->middleware('auth');
+
+        if (Auth::check() === true && Auth::user()->isAdmin() === false) {
+            abort(403);
         }
+
+        return parent::__construct();
     }
 }

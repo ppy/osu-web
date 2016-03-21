@@ -20,9 +20,10 @@
     "helthe/turbolinks": "~1.4",
     "ezyang/htmlpurifier": "^4.7",
     "mariuzzo/laravel-js-localization": "^1.2.1",
-    "league/flysystem-aws-s3-v2": "^1.0",
     "league/fractal": "^0.13.0",
-    "shift31/laravel-elasticsearch": "~1.0"
+    "shift31/laravel-elasticsearch": "~1.0",
+    "league/statsd": "dev-master#3dafde1b6c5e3896073cc947130cf9536b335975",
+    "league/flysystem-aws-s3-v3": "^1.0"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.5",

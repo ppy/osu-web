@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -16,25 +14,19 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-namespace App\Libraries;
+.forum-cover-admin-item {
+  .default-border-radius();
+  .default-box-shadow();
+  padding: @spacing;
+  margin-bottom: @spacing;
 
-use Storage;
-
-class StorageLocal
-{
-    public function put($path, $content)
-    {
-        return Storage::put($path, $content);
-    }
-
-    public function deleteDirectory($path)
-    {
-        return Storage::deleteDirectory($path);
-    }
-
-    public function url($path)
-    {
-        return "/uploads/{$path}";
-    }
+  &__cover-image {
+    width: 100%;
+    padding-bottom: (100% / (1350 / 200));
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 }

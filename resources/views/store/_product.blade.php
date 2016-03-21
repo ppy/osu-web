@@ -17,10 +17,11 @@
 --}}
 <?php
     $_inStock = $product->inStock(1, true);
+    $_large = $product->promoted && $_inStock;
 
     $_topClass = 'osu-layout__col';
 
-    if (!$product->promoted || !$_inStock) {
+    if (!$_large) {
         $_topClass .= ' osu-layout__col--sm-6 osu-layout__col--lg-4';
     }
 ?>
@@ -28,10 +29,10 @@
 <div class="{{ $_topClass }}" style="order: {{ $_inStock ? '0' : '1' }};">
     <a
         href="/store/product/{{ $product->product_id }}"
-        class="product-box product-box--{{ $product->promoted ? 'large' : 'small' }}"
-        style="background-image: url('{{ $product->promoted ? $product->header_image : $product->image }}')"
+        class="product-box product-box--{{ $_large ? 'large' : 'small' }}"
+        style="background-image: url('{{ $_large ? $product->header_image : $product->image }}')"
     >
-        <div class="product-box__text product-box__text--{{ $product->promoted === true ? 'large' : 'small' }}">
+        <div class="product-box__text">
             {!! Markdown::convertToHtml($product->header_description) !!}
         </div>
 
