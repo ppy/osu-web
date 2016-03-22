@@ -16,54 +16,35 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.beatmap-list {
-  @_top: beatmap-list;
+.beatmap-list-item {
+  padding: @spacing;
 
-  &--selecting {
-    z-index: @z-index--blackout-visible;
-  }
+  display: flex;
+  align-items: center;
 
-  &__selector {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    margin-top: @spacing;
+  width: 100%;
+  text-align: left;
 
-    flex-direction: column;
+  &__col {
+    flex: none;
 
-    .default-box-shadow();
-    .default-border-radius();
-    overflow: hidden;
-
-    display: none;
-    .@{_top}--selecting & {
-      display: flex;
+    &--main {
+      flex: 1 0 auto;
+      padding: 0 @spacing;
     }
   }
 
-  &__item {
-    .reset-button();
-    background-color: @grey-f;
+  &__mode {
+    font-size: 15px;
+    font-weight: 700;
+  }
 
-    &:hover {
-      background-color: @text-color;
-      color: @grey-f;
-    }
+  &__switch-button {
+    font-size: 15px;
+    font-weight: 700;
+  }
 
-    &--selected {
-      .default-box-shadow();
-      .default-border-radius();
-    }
-
-    &--current {
-      background-color: @grey-c;
-    }
-
-    display: flex;
-    align-items: center;
-
-    width: 100%;
-    text-align: left;
+  &__version {
+    font-size: 11px;
   }
 }

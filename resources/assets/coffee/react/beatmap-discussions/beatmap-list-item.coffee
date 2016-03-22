@@ -15,21 +15,29 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{button} = React.DOM
+{div} = React.DOM
 el = React.createElement
 
-bn = 'beatmap-selection'
+bn = 'beatmap-list-item'
 
-BeatmapDiscussions.BeatmapSelection = React.createClass
+BeatmapDiscussions.BeatmapListItem = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
   render: ->
-    button
+    div
       className: bn
-      onClick: @setBeatmap
-      @props.beatmap.version
 
+      div className: "#{bn}__col",
+        el BeatmapIcon, beatmap: @props.beatmap, modifier: 'large'
 
-  setBeatmap: ->
-    $.publish 'beatmap:select', @props.beatmap.id
+      div className: "#{bn}__col #{bn}__col--main",
+        div className: "#{bn}__mode",
+          Lang.get("beatmaps.mode.#{@props.beatmap.mode}")
+        div className: "#{bn}__version",
+          @props.beatmap.version
+
+      if @props.withSwitchButton
+        div className: "#{bn}__col",
+          div className: 'beatmap-list-item__switch-button',
+            el Icon, name: 'chevron-down'

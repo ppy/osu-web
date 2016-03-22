@@ -38,28 +38,31 @@ BeatmapDiscussions.BeatmapList = React.createClass
 
   render: ->
     div
-      className: bn
+      className: "#{bn} #{"#{bn}--selecting" if @state.showingSelector}"
       button
-        className: "#{bn}__current"
+        className: "#{bn}__item #{bn}__item--selected"
         onClick: @toggleSelector
         ref: 'openSelectorButton'
-        div "#{bn}__display",
-          el BeatmapIcon, beatmap: @props.currentBeatmap, modifier: 'large'
-        div className: "#{bn}__display #{bn}__display--main",
-          div className: "#{bn}__mode",
-            Lang.get("beatmaps.mode.#{@props.currentBeatmap.mode}")
-          div className: "#{bn}__version",
-            @props.currentBeatmap.version
-        div "#{bn}__display",
-          div className: "#{bn}__switch-button",
-            el Icon, name: 'chevron-down'
+        div className: 'beatmap-list-item',
+          div className: 'beatmap-list-item__col',
+            el BeatmapIcon, beatmap: @props.currentBeatmap, modifier: 'large'
+          div className: 'beatmap-list-item__col beatmap-list-item__col--main',
+            div className: 'beatmap-list-item__mode',
+              Lang.get("beatmaps.mode.#{@props.currentBeatmap.mode}")
+            div className: 'beatmap-list-item__version',
+              @props.currentBeatmap.version
+          div className: 'beatmap-list-item__col',
+            div className: 'beatmap-list-item__switch-button',
+              el Icon, name: 'chevron-down'
 
       div
-        className: "#{bn}__selector #{'hidden' if !@state.showingSelector}"
+        className: "#{bn}__selector"
         @props.beatmapset.beatmaps.data.map (beatmap) =>
-          el BeatmapDiscussions.BeatmapSelection,
+          button
+            className: "#{bn}__item #{"#{bn}__item--current" if beatmap.id == @props.currentBeatmap.id}",
             key: beatmap.id
-            beatmap: beatmap
+            onClick: => @selectBeatmap beatmap.id
+            el BeatmapDiscussions.BeatmapListItem, beatmap: beatmap
 
 
   hideSelector: (e) ->
@@ -67,7 +70,7 @@ BeatmapDiscussions.BeatmapList = React.createClass
       e.stopPropagation()
       return
 
-    @setSelector null, false
+    @setSelector false
 
 
   toggleSelector: ->
@@ -77,4 +80,10 @@ BeatmapDiscussions.BeatmapList = React.createClass
   setSelector: (state) ->
     return if @state.showingSelector == state
 
+    Fade.toggle $('.blackout')[0], state
+
     @setState showingSelector: state
+
+
+  selectBeatmap: (id) ->
+    $.publish 'beatmap:select', id
