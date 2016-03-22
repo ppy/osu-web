@@ -33,7 +33,7 @@ class ForumSeeder extends Seeder
                 $f2 = $f->subforums()->save(factory(App\Models\Forum\Forum::class, 'child')->make([
                     'parent_id' => 1,
                     'forum_name' => 'Beatmap Threads',
-                    'forum_desc' => 'Beatmap thread info for beatmaps'
+                    'forum_desc' => 'Beatmap thread info for beatmaps',
                 ]));
 
                 $bms = App\Models\Beatmapset::all();
@@ -41,7 +41,7 @@ class ForumSeeder extends Seeder
                     $t = $f2->topics()->save(factory(App\Models\Forum\Topic::class)->make([
                         'forum_id' => $f2->forum_id,
                         'topic_poster' => $set->creator,
-                        'topic_title' => $set->artist. ' - '.$set->title
+                        'topic_title' => $set->artist. ' - '.$set->title,
                     ]));
 
                     $p = $t->posts()->save(factory(App\Models\Forum\Post::class)->make([
@@ -49,7 +49,7 @@ class ForumSeeder extends Seeder
                         'poster_id' => $set->user_id,
                         'post_username' => $set->creator,
                         'post_subject' => $set->artist. ' - '.$set->title,
-                        'post_text' => '---------------'
+                        'post_text' => '---------------',
                     ]));
 
                     $t->refreshCache();
