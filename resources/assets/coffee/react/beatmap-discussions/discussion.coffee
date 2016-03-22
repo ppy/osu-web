@@ -42,11 +42,16 @@ BeatmapDiscussions.Discussion = React.createClass
           @post @props.discussion, 'discussion'
 
           div className: "#{bn}__actions",
-            button
-              className: "#{bn}__action #{bn}__action--with-line"
-              onClick: => @setState collapsed: !@state.collapsed
-              div className: "#{bn}__action-content",
-                el Icon, name: (if @state.collapsed then 'chevron-down' else 'chevron-up')
+            div className: "#{bn}__action", @displayVote 'up'
+
+            div className: "#{bn}__action", @displayVote 'down'
+
+            div className: "#{bn}__action #{bn}__action--with-line",
+              button
+                className: "beatmap-discussion-expand"
+                onClick: => @setState collapsed: !@state.collapsed
+                div className: 'beatmap-discussion-expand__content',
+                  el Icon, name: (if @state.collapsed then 'chevron-down' else 'chevron-up')
         div
           className: "#{bn}__replies #{'hidden' if @state.collapsed}"
           @props.discussion.beatmap_discussion_replies.data.map (reply) =>
@@ -109,3 +114,45 @@ BeatmapDiscussions.Discussion = React.createClass
       .replace /(^|\s)((\d{2}):(\d{2})[:.](\d{3})( \([\d,]+\))?(?=\s))/g, (_, prefix, text, m, s, ms, range) =>
         "#{prefix}#{osu.link Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range || ''}"), text}"
       .value()
+
+
+  doVote: (score) ->
+    $.ajax Url.beatmapDiscussionVote(@props.discussion.beatmap_id, @props.discussion.id),
+      method: 'PUT',
+      data:
+        beatmap_discussion_vote:
+          score: score
+
+    .done (data) =>
+      $.publish 'beatmapsetDiscussion:update', data.data
+
+    .fail osu.ajaxError
+
+    .always osu.hideLoadingOverlay
+
+
+  displayVote: (type) ->
+    vbn = 'beatmap-discussion-vote'
+
+    [baseScore, icon] = switch type
+      when 'up' then [1, 'thumbs-up']
+      when 'down' then [-1, 'thumbs-down']
+
+    return if baseScore == undefined
+
+    currentVote = @props.discussion.current_user_attributes.data.vote_score
+
+    classes = "#{vbn} #{vbn}--#{type}"
+
+    if currentVote == baseScore
+      score = 0
+    else
+      score = baseScore
+
+    div className: classes,
+      button
+        className: "#{vbn}__button"
+        onClick: => @doVote score
+        el Icon, name: icon
+      span className: "#{vbn}__count #{"#{vbn}__count--inactive" if score != 0}",
+        @props.discussion.votes[type]

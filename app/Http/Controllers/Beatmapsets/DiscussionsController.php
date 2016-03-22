@@ -51,7 +51,7 @@ class DiscussionsController extends Controller
                 'user,beatmaps'
             ),
 
-            'beatmapsetDiscussion' => $discussion->defaultJson(),
+            'beatmapsetDiscussion' => $discussion->defaultJson(Auth::user()),
         ];
 
         return view('beatmapsets.discussions.show', compact('initialData'));

@@ -19,6 +19,12 @@
  */
 
 return [
+    'discussion-votes' => [
+        'update' => [
+            'error' => 'Failed updating vote',
+        ],
+    ],
+
     'discussions' => [
         'message_type' => [
             'praise' => 'Praise',

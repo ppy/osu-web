@@ -81,7 +81,7 @@ class DiscussionRepliesController extends Controller
         }
 
         if ($saved === true) {
-            return $reply->beatmapDiscussion->beatmapsetDiscussion->defaultJson();
+            return $reply->beatmapDiscussion->beatmapsetDiscussion->defaultJson(Auth::user());
         } else {
             return error_popup(trans('beatmaps.discussion-replies.store.error'));
         }

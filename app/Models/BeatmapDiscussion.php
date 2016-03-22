@@ -56,6 +56,11 @@ class BeatmapDiscussion extends Model
         return $this->hasMany(BeatmapDiscussionReply::class);
     }
 
+    public function beatmapDiscussionVotes()
+    {
+        return $this->hasMany(BeatmapDiscussionVote::class);
+    }
+
     public function beatmapsetDiscussion()
     {
         return $this->belongsTo(BeatmapsetDiscussion::class);
@@ -107,6 +112,11 @@ class BeatmapDiscussion extends Model
         return present($this->message);
     }
 
+    public function canBeVotedBy($user)
+    {
+        return $user !== null;
+    }
+
     public function canBeUpdatedBy($user)
     {
         // no point closing general discussion
@@ -141,6 +151,21 @@ class BeatmapDiscussion extends Model
         }
 
         return !$this->resolved;
+    }
+
+    public function getVotesSummaryAttribute()
+    {
+        $votes = ['up' => 0, 'down' => 0];
+
+        foreach ($this->beatmapDiscussionVotes as $vote) {
+            if ($vote->score === 1) {
+                $votes['up'] += 1;
+            } elseif ($vote->score === -1) {
+                $votes['down'] += 1;
+            }
+        }
+
+        return $votes;
     }
 
     /*

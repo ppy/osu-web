@@ -25,6 +25,7 @@ class @Url
 
   @beatmapDiscussions: (beatmapId) => "/beatmaps/#{beatmapId}/discussions"
   @beatmapDiscussionReplies: (beatmapId, discussionId) => "/beatmaps/#{beatmapId}/discussions/#{discussionId}/replies"
+  @beatmapDiscussionVote: (beatmapId, discussionId) => "/beatmaps/#{beatmapId}/discussions/#{discussionId}/vote"
 
   @user: (id) => "/u/#{id}"
 

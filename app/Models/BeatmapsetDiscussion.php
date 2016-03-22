@@ -46,12 +46,22 @@ class BeatmapsetDiscussion extends Model
         return $this->beatmapset->user();
     }
 
-    public function defaultJson()
+    public function defaultJson($currentUser = null)
     {
+        $includes = [
+            'beatmap_discussions.user',
+            'beatmap_discussions.beatmap_discussion_replies.user',
+            'beatmap_discussion',
+        ];
+
+        if ($currentUser !== null) {
+            $includes[] = "beatmap_discussions.current_user_attributes:user_id({$currentUser->user_id})";
+        }
+
         return fractal_item_array(
             $this,
             new BeatmapsetDiscussionTransformer(),
-            'beatmap_discussions.user,beatmap_discussions.beatmap_discussion_replies.user'
+            implode(',', $includes)
         );
     }
 

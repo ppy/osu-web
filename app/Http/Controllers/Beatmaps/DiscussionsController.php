@@ -58,9 +58,43 @@ class DiscussionsController extends Controller
         $discussion = BeatmapDiscussion::create($params);
 
         if ($discussion->id !== null) {
-            return $discussion->beatmapsetDiscussion->defaultJson();
+            return $discussion->beatmapsetDiscussion->defaultJson(Auth::user());
         } else {
             return error_popup(trans('beatmaps.discussions.store.error'));
+        }
+    }
+
+    public function vote($beatmapId, $id)
+    {
+        $discussion = BeatmapDiscussion::findOrFail($id);
+
+        if (!$discussion->canBeVotedBy(Auth::user())) {
+            abort(403);
+        }
+
+        $params = array_merge(
+            get_params(Request::all(), 'beatmap_discussion_vote', [
+                'score:int',
+            ]),
+            [
+                'beatmap_discussion_id' => $discussion->id,
+                'user_id' => Auth::user()->user_id,
+            ]
+        );
+
+        $vote = $discussion->beatmapDiscussionVotes()->where(['user_id' => Auth::user()->user_id])->firstOrNew([]);
+        $vote->fill($params);
+
+        if (($params['score'] ?? null) === 0 && $vote->id !== null) {
+            $result = $vote->delete();
+        } else {
+            $result = $vote->save();
+        }
+
+        if ($result === true) {
+            return $discussion->beatmapsetDiscussion->defaultJson(Auth::user());
+        } else {
+            return error_popup(trans('beatmaps.discussion-votes.update.error'));
         }
     }
 }
