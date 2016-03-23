@@ -28,6 +28,10 @@ BeatmapDiscussions.Discussion = React.createClass
     collapsed: false
 
 
+  componentDidMount: ->
+    osu.pageChange()
+
+
   componentDidUpdate: ->
     osu.pageChange()
 
