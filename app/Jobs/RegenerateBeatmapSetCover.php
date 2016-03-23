@@ -9,7 +9,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Raven_Client;
 use App\Exceptions\SilencedException;
-use League\StatsD;
+use Statsd;
 
 class RegenerateBeatmapSetCover extends Job implements SelfHandling, ShouldQueue
 {
@@ -33,14 +33,13 @@ class RegenerateBeatmapSetCover extends Job implements SelfHandling, ShouldQueue
      */
     public function handle()
     {
-        $statsd = StatsD\Client::instance('datadog');
         try {
             echo "Processing {$this->beatmapset->beatmapset_id}... ";
             $this->beatmapset->regenerateCovers();
-            $statsd->increment(['thumbdonger.processed', 'thumbdonger.ok']);
+            Statsd::increment(['thumbdonger.processed', 'thumbdonger.ok']);
             echo "ok.\n";
         } catch (\Exception $e) {
-            $statsd->increment(['thumbdonger.processed', 'thumbdonger.error']);
+            Statsd::increment(['thumbdonger.processed', 'thumbdonger.error']);
             echo "errored.\n";
             if (config('osu.beatmap_processor.sentry')) {
                 $tags = [
