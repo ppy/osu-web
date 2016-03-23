@@ -92,7 +92,7 @@ BeatmapDiscussions.Discussion = React.createClass
 
   post: (post, type = '') ->
     pbn = 'beatmap-discussion-post'
-    user = post.user.data
+    user = @props.lookupUser post.user_id
 
     div
       className: pbn

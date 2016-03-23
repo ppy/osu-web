@@ -28,6 +28,7 @@ BeatmapDiscussions.Main = React.createClass
     currentBeatmap: initial.beatmapset.data.beatmaps.data[0]
     currentUser: currentUser
     userPermissions: initial.userPermissions
+    users: @indexUsers initial.beatmapsetDiscussion.data.users.data
 
 
   componentDidMount: ->
@@ -61,6 +62,7 @@ BeatmapDiscussions.Main = React.createClass
           beatmapset: @state.beatmapset
           currentBeatmap: @state.currentBeatmap
           beatmapsetDiscussion: @state.beatmapsetDiscussion
+          lookupUser: @lookupUser
 
       div
         className: 'osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact'
@@ -71,11 +73,14 @@ BeatmapDiscussions.Main = React.createClass
           currentBeatmap: @state.currentBeatmap
           currentUser: @state.currentUser
           beatmapsetDiscussion: @state.beatmapsetDiscussion
+          lookupUser: @lookupUser
           userPermissions: @state.userPermissions
 
 
   setBeatmapsetDiscussion: (_e, beatmapsetDiscussion) ->
-    @setState beatmapsetDiscussion: beatmapsetDiscussion
+    @setState
+      beatmapsetDiscussion: beatmapsetDiscussion
+      users: @indexUsers beatmapsetDiscussion.users.data
 
 
   setCurrentBeatmapIndex: (_e, id) ->
@@ -87,3 +92,15 @@ BeatmapDiscussions.Main = React.createClass
     return if beatmap == undefined
 
     @setState currentBeatmap: beatmap
+
+
+  indexUsers: (usersArray) ->
+    reducer = (prev, curr) =>
+      prev[curr.id] = curr
+      prev
+
+    usersArray.reduce reducer, {}
+
+
+  lookupUser: (id) ->
+    @state.users[id]

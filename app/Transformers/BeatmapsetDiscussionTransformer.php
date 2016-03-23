@@ -20,12 +20,14 @@
 namespace App\Transformers;
 
 use App\Models\BeatmapsetDiscussion;
+use App\Models\User;
 use League\Fractal;
 
 class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmap_discussions',
+        'users',
     ];
 
     public function transform(BeatmapsetDiscussion $discussion)
@@ -40,8 +42,26 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
     public function includeBeatmapDiscussions(BeatmapsetDiscussion $discussion)
     {
         return $this->collection(
-            $discussion->beatmapDiscussions()->orderBy('timestamp')->get(),
+            $discussion->beatmapDiscussions->all(),
             new BeatmapDiscussionTransformer()
         );
+    }
+
+    public function includeUsers(BeatmapsetDiscussion $discussion)
+    {
+        $userIds = [$discussion->beatmapset->user_id];
+
+        foreach ($discussion->beatmapDiscussions as $beatmapDiscussion) {
+            $userIds[] = $beatmapDiscussion->user_id;
+
+            foreach ($beatmapDiscussion->beatmapDiscussionReplies as $reply) {
+                $userIds[] = $reply->user_id;
+            }
+        }
+
+        $userIds = array_unique($userIds);
+        $users = User::whereIn('user_id', $userIds)->get();
+
+        return $this->collection($users, new UserCompactTransformer());
     }
 }

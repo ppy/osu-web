@@ -25,7 +25,7 @@ BeatmapDiscussions.Overview = React.createClass
 
 
   render: ->
-    user = @props.beatmapset.user.data
+    user = @props.lookupUser @props.beatmapset.user_id
 
     div
       className: bn

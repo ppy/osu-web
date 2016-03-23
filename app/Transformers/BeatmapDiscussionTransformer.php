@@ -67,10 +67,19 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
             return;
         }
 
-        $vote = $discussion->beatmapDiscussionVotes()->where('user_id', $params->get('user_id'))->firstOrNew([]);
+        $userId = get_int($params->get('user_id'));
 
-        return $this->item($discussion, function ($discussion) use ($vote) {
-            return ['vote_score' => $vote->score];
+        $score = 0;
+
+        foreach ($discussion->beatmapDiscussionVotes as $vote) {
+            if ($vote->user_id === $userId) {
+                $score = $vote->score;
+                break;
+            }
+        }
+
+        return $this->item($discussion, function ($discussion) use ($score) {
+            return ['vote_score' => $score];
         });
     }
 }
