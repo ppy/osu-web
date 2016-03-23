@@ -564,23 +564,23 @@ class BeatmapSet extends Model
         // grab the first beatmap (as per old implementation) and scan for background image
         $beatmap = $this->beatmaps()->first();
         $beatmapFilename = $beatmap->filename;
-        $bg = $this::scanBMForBG("$workingFolder/$beatmapFilename");
-        $bg = str_replace('\\', '/', $bg); // windows pathing woo
-        if (!$bg) {
+        $bgFilename = $this::scanBMForBG("$workingFolder/$beatmapFilename");
+
+        if (!$bgFilename) {
             deltree($tmpBase);
             $this->update(['cover_updated_at' => $this->freshTimestamp()]);
 
             return true;
         }
 
-        $bg_file = ci_file_search("{$workingFolder}/{$bg}");
-        if (!$bg_file) {
+        $bgFile = ci_file_search("{$workingFolder}/{$bgFilename}");
+        if (!$bgFile) {
             deltree($tmpBase);
-            throw new BeatmapProcessorException("Background image missing: {$bg}");
+            throw new BeatmapProcessorException("Background image missing: {$bgFile}");
         }
 
         // upload original image
-        $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/raw.jpg", file_get_contents($bg_file));
+        $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/raw.jpg", file_get_contents($bgFile));
         $originalImage = preg_replace("/https?:\/\//", '', $this->coverImageURL('raw'));
 
         // upload optimized version
@@ -624,14 +624,14 @@ class BeatmapSet extends Model
             return false;
         }
         $matching = false;
-        $image = '';
+        $imageFilename = '';
         $lines = explode("\n", $content);
         foreach ($lines as $line) {
             $line = trim($line);
             if ($matching) {
                 $parts = explode(',', $line);
                 if (count($parts) > 2 && $parts[0] === '0') {
-                    $image = str_replace('"', '', $parts[2]);
+                    $imageFilename = str_replace('"', '', $parts[2]);
                     break;
                 }
             }
@@ -643,7 +643,10 @@ class BeatmapSet extends Model
             }
         }
 
-        return $image;
+        // older beatmaps may not have sanitized paths
+        $imageFilename = str_replace('\\', '/', $imageFilename);
+
+        return $imageFilename;
     }
 
     /*
