@@ -95,7 +95,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
         beatmap_discussion:
           message: @state.message
 
-    if @state.timestamp
+    if @state.timestamp != null
       data.beatmap_discussion.message_type = @state.messageType
       data.beatmap_discussion.timestamp = @state.timestamp
 
