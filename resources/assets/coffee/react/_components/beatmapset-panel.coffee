@@ -36,7 +36,7 @@ class @BeatmapsetPanel extends React.Component
 
     div className: 'beatmap object_link shadow-hover', objectid: beatmap.beatmapset_id,
       div className: 'beatmap-panel',
-        a href: 'https://osu.ppy.sh/s/'+beatmap.beatmapset_id, target: '_blank', className: 'thumb', style: {backgroundImage: 'url(' + beatmap.images['card'] + ')'},
+        a href: "https://osu.ppy.sh/s/#{beatmap.beatmapset_id}", target: '_blank', className: 'thumb', style: {backgroundImage: "url(#{beatmap.images['card']})"},
           div className: 'bottom_left',
             div className: 'title',
               span {}, beatmap.title
@@ -61,7 +61,7 @@ class @BeatmapsetPanel extends React.Component
         div className: 'source', beatmap.source
 
       div className: 'bottom_right show_on_hover',
-        a href: 'https://osu.ppy.sh/d/'+beatmap.beatmapset_id, className: 'object_link',
+        a href: "https://osu.ppy.sh/d/#{beatmap.beatmapset_id}", className: 'object_link',
           i className: 'fa fa-download'
         a href: '#', className:'object_link',
           i className:'fa fa-heart'
