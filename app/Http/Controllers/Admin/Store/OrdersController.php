@@ -1,26 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Store\Admin;
+namespace App\Http\Controllers\Admin\Store;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\Controller;
 use App\Models\Store;
-use Auth;
 use Request;
 
-class OrderController extends Controller
+class OrdersController extends Controller
 {
-    protected $section = 'storeAdmin';
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-
-        if (Auth::user() && !Auth::user()->isAdmin()) {
-            abort(403);
-        }
-
-        return parent::__construct();
-    }
+    protected $section = 'admin-store';
+    protected $actionPrefix = 'orders-';
 
     public function index()
     {
@@ -48,7 +37,7 @@ class OrderController extends Controller
             });
         }
 
-        return view('store.admin', compact('orders', 'ordersItemsQuantities'));
+        return view('admin.store.orders.show', compact('orders', 'ordersItemsQuantities'));
     }
 
     public function ship()
@@ -62,7 +51,7 @@ class OrderController extends Controller
             $o->save();
         }
 
-        return ujs_redirect(route('store.admin.orders.index'));
+        return ujs_redirect(route('admin.store.orders.index'));
     }
 
     public function update($id)
