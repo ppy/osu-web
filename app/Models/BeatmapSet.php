@@ -473,7 +473,7 @@ class BeatmapSet extends Model
         return $new;
     }
 
-    public static function imageSizes()
+    public static function coverSizes()
     {
         $shapes = ['cover', 'card', 'list'];
         $scales = ['', '@2x'];
@@ -488,11 +488,11 @@ class BeatmapSet extends Model
         return $sizes;
     }
 
-    public function allImageURLs()
+    public function allCoverURLs()
     {
         $urls = [];
-        foreach (self::imageSizes() as $size) {
-            $urls[$size] = $this->coverImageURL($size);
+        foreach (self::coverSizes() as $size) {
+            $urls[$size] = $this->coverURL($size);
         }
 
         return $urls;
@@ -500,12 +500,12 @@ class BeatmapSet extends Model
 
     public static function isValidCoverSize($coverSize)
     {
-        $validSizes = array_merge(['raw', 'fullsize'], self::imageSizes());
+        $validSizes = array_merge(['raw', 'fullsize'], self::coverSizes());
 
         return in_array($coverSize, $validSizes, true);
     }
 
-    public function coverImageURL($coverSize = 'cover')
+    public function coverURL($coverSize = 'cover')
     {
         if (!self::isValidCoverSize($coverSize)) {
             return false;
@@ -598,15 +598,15 @@ class BeatmapSet extends Model
             $processor = new ImageProcessorService($tmpBase);
 
             // upload original image
-            $this->storeCover("raw.jpg", $bgFile);
+            $this->storeCover('raw.jpg', $bgFile);
 
             // upload optimized version
-            $optimized = $processor->optimize($this->coverImageURL('raw'));
-            $this->storeCover("fullsize.jpg", $optimized);
+            $optimized = $processor->optimize($this->coverURL('raw'));
+            $this->storeCover('fullsize.jpg', $optimized);
 
             // use thumbnailer to generate and upload all our variants
-            foreach (self::imageSizes() as $size) {
-                $resized = $processor->resize($this->coverImageURL('fullsize'), $size);
+            foreach (self::coverSizes() as $size) {
+                $resized = $processor->resize($this->coverURL('fullsize'), $size);
                 $this->storeCover("$size.jpg", $resized);
             }
 

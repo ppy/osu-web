@@ -236,7 +236,7 @@ class Beatmaps.Main extends React.Component
 
   render: ->
     if @state.beatmaps.length > 0
-      searchBackground = @state.beatmaps[0]['images']['cover']
+      searchBackground = @state.beatmaps[0].covers.cover
     else
       searchBackground = ''
 

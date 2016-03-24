@@ -27,10 +27,10 @@
         ]) !!}
             <button>regenerate</button>
         {!! Form::close() !!}
-        @foreach ($beatmapSet->imageSizes() as $size)
+        @foreach ($beatmapSet->coverSizes() as $size)
             <h3>{{$size}}</h3>
-            <p>{{$beatmapSet->coverImageURL($size)}}</p>
-            <img src="{{$beatmapSet->coverImageURL($size)}}">
+            <p>{{$beatmapSet->coverURL($size)}}</p>
+            <img src="{{$beatmapSet->coverURL($size)}}">
             <br>
         @endforeach
     </div>

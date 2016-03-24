@@ -32,7 +32,7 @@ class ImageProcessorService
 
     private static function isValidFormat($size)
     {
-        return in_array($size, BeatmapSet::imageSizes(), true);
+        return in_array($size, BeatmapSet::coverSizes(), true);
     }
 
     public function optimize($src)
