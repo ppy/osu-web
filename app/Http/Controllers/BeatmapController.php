@@ -25,7 +25,6 @@ use App\Models\Genre;
 use App\Models\Language;
 use League\Fractal\Manager;
 use App\Transformers\BeatmapSetTransformer;
-use App\Jobs\RegenerateBeatmapSetCover;
 use Request;
 use Auth;
 
@@ -74,65 +73,6 @@ class BeatmapController extends Controller
         $filters = ['data' => compact('modes', 'statuses', 'genres', 'languages', 'extras', 'ranks')];
 
         return view('beatmaps.index', compact('filters', 'beatmaps'));
-    }
-
-    public function checkCovers($id)
-    {
-        $current_user = Auth::user();
-        if (!$current_user || !$current_user->isDev()) {
-            return;
-        }
-
-        $beatmapSet = BeatmapSet::find($id);
-        $time = time();
-
-        $output = [];
-        $rawUrl = $beatmapSet->coverImageURL('raw');
-        array_push($output, "<a href='/beatmaps/{$id}/covers/regenerate'>regenerate</a>");
-        array_push($output, "raw... $rawUrl");
-        array_push($output, "<img src='$rawUrl'>");
-        $optimizedUrl = $beatmapSet->coverImageURL('fullsize');
-        array_push($output, "optimized... $optimizedUrl");
-        array_push($output, "<img src='$optimizedUrl'>");
-        $sizes = ['cover', 'card', 'list'];
-        $scales = ['', '@2x'];
-        foreach ($sizes as $size) {
-            foreach ($scales as $scale) {
-                $url = $beatmapSet->coverImageURL("$size$scale");
-                array_push($output, "$size$scale... $url");
-                array_push($output, "<img src='$url'>");
-            }
-        }
-        echo implode($output, '<br/>');
-    }
-
-    public function regenerateCovers($id)
-    {
-        $current_user = Auth::user();
-        if (!$current_user || !$current_user->isDev()) {
-            return;
-        }
-
-        $beatmapset = BeatmapSet::find($id);
-        if (!$beatmapset) {
-            echo 'beatmapset not found';
-
-            return;
-        }
-
-        if (Request::has('now')) {
-            set_time_limit(0);
-            $covers = $beatmapset->regenerateCovers();
-            if ($covers) {
-                echo "OK <a href='/beatmaps/{$id}/covers'>/beatmaps/{$id}/covers</a>";
-            } else {
-                echo 'An error occured (or no image to process)';
-            }
-        } else {
-            $job = (new RegenerateBeatmapSetCover($beatmapset))->onQueue('beatmap_processor');
-            $this->dispatch($job);
-            header("Location: /beatmaps/{$id}/covers");
-        }
     }
 
     public function search()

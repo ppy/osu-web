@@ -52,8 +52,6 @@ Route::get('/beatmaps', ['as' => 'beatmaps', 'uses' => 'BeatmapController@index'
 Route::get('/beatmaps/search/{filters?}', ['as' => 'beatmaps.search', 'uses' => 'BeatmapController@search']);
 
 // maps
-Route::get('/beatmaps/{id}/covers/regenerate', ['as' => 'regenerate-covers', 'uses' => 'BeatmapController@regenerateCovers']);
-Route::get('/beatmaps/{id}/covers', ['as' => 'check-covers', 'uses' => 'BeatmapController@checkCovers']);
 Route::get('/beatmaps/set/{id}', ['as' => 'set', 'uses' => 'BeatmapController@getMapSet']);
 Route::get('/beatmaps/map/{id}', ['as' => 'beatmap', 'uses' => 'BeatmapController@getMap']);
 Route::get('/beatmaps/modding/{id?}', ['as' => 'modding', 'uses' => 'ModdingController@getModding']);
@@ -138,6 +136,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/', ['as' => 'admin.root', 'uses' => 'PagesController@root']);
 
     Route::resource('logs', 'LogsController', ['only' => ['index']]);
+
+    Route::get('/beatmaps/{id}/covers', ['as' => 'admin.beatmaps.covers', 'uses' => 'BeatmapController@covers']);
+    Route::post('/beatmaps/{id}/covers/regenerate', ['as' => 'admin.beatmaps.covers.regenerate', 'uses' => 'BeatmapController@regenerateCovers']);
 
     // store admin
     Route::group(['prefix' => 'store', 'namespace' => 'Store'], function () {
