@@ -24,10 +24,6 @@ use League\Fractal;
 
 class BeatmapTransformer extends Fractal\TransformerAbstract
 {
-    protected $availableIncludes = [
-        'beatmap_discussions',
-    ];
-
     public function transform(Beatmap $beatmap = null)
     {
         if ($beatmap === null) {
@@ -41,13 +37,5 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             'version' => $beatmap->version,
             'url' => route('beatmaps.show', ['id' => $beatmap->beatmap_id, 'm' => $beatmap->playmode]),
         ];
-    }
-
-    public function includeBeatmapDiscussions(Beatmap $beatmap)
-    {
-        return $this->collection(
-            $beatmap->beatmapDiscussions,
-            new BeatmapDiscussionTransformer()
-        );
     }
 }
