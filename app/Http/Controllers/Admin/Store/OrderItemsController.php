@@ -1,26 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Store\Admin;
+namespace App\Http\Controllers\Admin\Store;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\Controller;
 use App\Models\Store;
-use Auth;
 use Request;
 
-class OrderItemController extends Controller
+class OrderItemsController extends Controller
 {
     protected $section = 'storeAdmin';
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-
-        if (Auth::user() && !Auth::user()->isAdmin()) {
-            abort(403);
-        }
-
-        return parent::__construct();
-    }
 
     public function update($orderId, $orderItemId)
     {

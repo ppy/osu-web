@@ -17,21 +17,12 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Http\Controllers\Forum\Admin;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Forum\Controller as BaseController;
-use Auth;
-
-abstract class Controller extends BaseController
+class PagesController extends Controller
 {
-    public function __construct()
+    public function root()
     {
-        $this->middleware('auth');
-
-        if (Auth::check() === true && Auth::user()->isAdmin() === false) {
-            abort(403);
-        }
-
-        return parent::__construct();
+        return view('admin.pages.root');
     }
 }
