@@ -516,7 +516,17 @@ class BeatmapSet extends Model
             $timestamp = $this->cover_updated_at->format('U');
         }
 
-        return $this->storage()->url("/beatmaps/{$this->beatmapset_id}/covers/{$coverSize}.jpg?{$timestamp}");
+        return $this->storage()->url($this->coverPath()."{$coverSize}.jpg?{$timestamp}");
+    }
+
+    public function coverPath()
+    {
+        return "/beatmaps/{$this->beatmapset_id}/covers/";
+    }
+
+    public function storeCover($target_filename, $source_path)
+    {
+        $this->storage()->put($this->coverPath().$target_filename, file_get_contents($source_path));
     }
 
     public function storage()
@@ -588,16 +598,16 @@ class BeatmapSet extends Model
             $processor = new ImageProcessorService($tmpBase);
 
             // upload original image
-            $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/raw.jpg", file_get_contents($bgFile));
+            $this->storeCover("raw.jpg", $bgFile);
 
             // upload optimized version
             $optimized = $processor->optimize($this->coverImageURL('raw'));
-            $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/fullsize.jpg", file_get_contents($optimized));
+            $this->storeCover("fullsize.jpg", $optimized);
 
             // use thumbnailer to generate and upload all our variants
             foreach (self::imageSizes() as $size) {
                 $resized = $processor->resize($this->coverImageURL('fullsize'), $size);
-                $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/$size.jpg", file_get_contents($resized));
+                $this->storeCover("$size.jpg", $resized);
             }
 
             $this->update(['cover_updated_at' => $this->freshTimestamp()]);
