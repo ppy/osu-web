@@ -30,45 +30,43 @@ class @BeatmapsetPanel extends React.Component
 
     difficulties = beatmap.beatmaps.data.slice(0, maxDisplayedDifficulty).map (b) =>
       div
-        className: 'beatmapset-panel__beatmap'
+        className: 'beatmapset-panel__difficulty-icon'
         key: b.version
         el BeatmapIcon, beatmap: b
 
     if beatmap.beatmaps.data.length > maxDisplayedDifficulty
       difficulties.push span key: 'over', "+#{(beatmap.beatmaps.data.length - maxDisplayedDifficulty)}"
 
-    div className: 'beatmapset-panel beatmap object_link shadow-hover', objectid: beatmap.beatmapset_id,
-      div className: 'beatmap-panel',
-        a href: "https://osu.ppy.sh/s/#{beatmap.beatmapset_id}", target: '_blank', className: 'thumb', style: {backgroundImage: "url(#{beatmap.covers.card})"},
-          div className: 'bottom_left',
-            div className: 'title',
-              span {}, beatmap.title
-            div className: 'artist',
-              span {}, beatmap.artist
+    div className: 'beatmapset-panel shadow-hover', objectid: beatmap.beatmapset_id,
+      div className: 'beatmapset-panel__header',
+        a
+          href: "https://osu.ppy.sh/s/#{beatmap.beatmapset_id}"
+          target: '_blank', className: 'beatmapset-panel__thumb'
+          style: {backgroundImage: "url(#{beatmap.covers.card})"}
+          div className: 'beatmapset-panel__title-artist-box',
+            div className: 'beatmapset-panel__header-text beatmapset-panel__header-text--title',
+              beatmap.title
+            div className: 'beatmapset-panel__header-text',
+              beatmap.artist
 
-          div className: 'top_right',
-            div className: 'stats',
-              div className: 'plays',
-                span {},
-                  beatmap.play_count
-                i className: 'fa fa-play-circle'
+          div className: 'beatmapset-panel__counts-box',
+            div className: 'beatmapset-panel__count',
+              span className: 'beatmapset-panel__count-number', beatmap.play_count
+              i className: 'fa fa-play-circle'
 
-              div className: 'favourites',
-                span {},
-                  beatmap.favourite_count
-                i className: 'fa fa-heart'
+            div className: 'beatmapset-panel__count',
+              span className: 'beatmapset-panel__count-number', beatmap.favourite_count
+              i className: 'fa fa-heart'
 
-      div className: 'bottom_left',
+      div className: 'beatmapset-panel__mapper-source-box',
         span className: 'hidden', ref: beatmap.beatmapset_id, beatmap.beatmapset_id
-        div className: 'creator', dangerouslySetInnerHTML: { __html: Lang.get('beatmaps.listing.mapped-by', mapper: osu.link(Url.user(beatmap.user_id), beatmap.creator)) }
-        div className: 'source', beatmap.source
+        div className: 'beatmapset-panel__mapper', dangerouslySetInnerHTML: { __html: Lang.get('beatmaps.listing.mapped-by', mapper: osu.link(Url.user(beatmap.user_id), beatmap.creator)) }
+        div className: 'beatmapset-panel__source', beatmap.source
 
-      div className: 'bottom_right show_on_hover',
-        a href: "https://osu.ppy.sh/d/#{beatmap.beatmapset_id}", className: 'object_link',
+      div className: 'beatmapset-panel__icons-box',
+        a href: "https://osu.ppy.sh/d/#{beatmap.beatmapset_id}", className: 'beatmapset-panel__icon',
           i className: 'fa fa-download'
-        a href: '#', className:'object_link',
+        a href: '#', className: 'beatmapset-panel__icon',
           i className:'fa fa-heart'
 
-      div className: 'difficulties', difficulties
-
-      el('paper-shadow', z: '1', animated: 'true')
+      div className: 'beatmapset-panel__difficulties', difficulties
