@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
 use Auth;
 use DB;
 use App\Libraries\StorageWithUrl;
+use App\Libraries\ImageProcessorService;
 use App\Exceptions\BeatmapProcessorException;
 
 class BeatmapSet extends Model
@@ -472,33 +473,40 @@ class BeatmapSet extends Model
         return $new;
     }
 
-    public function allImageURLs()
+    public static function imageSizes()
     {
-        $return = [];
-
         $shapes = ['cover', 'card', 'list'];
         $scales = ['', '@2x'];
+
+        $sizes = [];
         foreach ($shapes as $shape) {
             foreach ($scales as $scale) {
-                $return["$shape$scale"] = $this->coverImageURL("$shape$scale");
+                $sizes[] = "$shape$scale";
             }
         }
 
-        return $return;
+        return $sizes;
     }
 
-    public function coverImageURL($cover_size = 'cover')
+    public function allImageURLs()
     {
-        // todo: should probably move these out into their own model, i.e. BeatmapSetCover or something
-        $validSizes = ['raw', 'fullsize'];
-        $shapes = ['cover', 'card', 'list'];
-        $scales = ['', '@2x'];
-        foreach ($shapes as $shape) {
-            foreach ($scales as $scale) {
-                array_push($validSizes, "$shape$scale");
-            }
+        $urls = [];
+        foreach (self::imageSizes() as $size) {
+            $urls[$size] = $this->coverImageURL($size);
         }
-        if (!in_array($cover_size, $validSizes, true)) {
+
+        return $urls;
+    }
+
+    public static function isValidCoverSize($coverSize)
+    {
+        $validSizes = array_merge(['raw', 'fullsize'], self::imageSizes());
+        return in_array($coverSize, $validSizes, true);
+    }
+
+    public function coverImageURL($coverSize = 'cover')
+    {
+        if (!self::isValidCoverSize($coverSize)) {
             return false;
         }
 
@@ -507,7 +515,7 @@ class BeatmapSet extends Model
             $timestamp = $this->cover_updated_at->format('U');
         }
 
-        return $this->storage()->url("/beatmaps/{$this->beatmapset_id}/covers/{$cover_size}.jpg?{$timestamp}");
+        return $this->storage()->url("/beatmaps/{$this->beatmapset_id}/covers/{$coverSize}.jpg?{$timestamp}");
     }
 
     public function storage()
@@ -536,84 +544,69 @@ class BeatmapSet extends Model
 
     public function regenerateCovers()
     {
-        $time = time();
+        $tmpBase = sys_get_temp_dir()."/bm/{$this->beatmapset_id}-".time();
+        $workingFolder = "$tmpBase/working";
+        $outputFolder = "$tmpBase/out";
 
-        $tmpBase = sys_get_temp_dir()."/bm/$this->beatmapset_id";
-        $osz = "$tmpBase/$time/$this->beatmapset_id.zip";
-        $workingFolder = "$tmpBase/$time/working";
-        $outputFolder = "$tmpBase/$time/out";
-
-        // make our temp folders if they don't exist
-        if (!is_dir($workingFolder)) {
-            mkdir($workingFolder, 0755, true);
-        }
-        if (!is_dir($outputFolder)) {
-            mkdir($outputFolder, 0755, true);
-        }
-
-        // download and extract beatmap
-        $ok = copy($this->oszDownloadURL(), $osz);
-        if (!$ok) {
-            throw new BeatmapProcessorException('Error retrieving beatmap');
-        }
-        $zip = new \ZipArchive;
-        $zip->open($osz);
-        $zip->extractTo($workingFolder);
-        $zip->close();
-
-        // grab the first beatmap (as per old implementation) and scan for background image
-        $beatmap = $this->beatmaps()->first();
-        $beatmapFilename = $beatmap->filename;
-        $bgFilename = $this::scanBMForBG("$workingFolder/$beatmapFilename");
-
-        if (!$bgFilename) {
-            deltree($tmpBase);
-            $this->update(['cover_updated_at' => $this->freshTimestamp()]);
-
-            return true;
-        }
-
-        $bgFile = ci_file_search("{$workingFolder}/{$bgFilename}");
-        if (!$bgFile) {
-            deltree($tmpBase);
-            throw new BeatmapProcessorException("Background image missing: {$bgFile}");
-        }
-
-        // upload original image
-        $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/raw.jpg", file_get_contents($bgFile));
-        $originalImage = preg_replace("/https?:\/\//", '', $this->coverImageURL('raw'));
-
-        // upload optimized version
-        $resizerEndpoint = config('osu.beatmap_processor.thumbnailer');
-        $optimizedImage = preg_replace("/https?:\/\//", '', $this->coverImageURL('fullsize'));
-
-        $ok = copy("$resizerEndpoint/optim/$originalImage", "$outputFolder/fullsize.jpg");
-        if (!$ok || filesize("$outputFolder/fullsize.jpg") < 100) {
-            deltree($tmpBase);
-            throw new BeatmapProcessorException('Error retrieving optimized image.');
-        }
-        $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/fullsize.jpg", file_get_contents("$outputFolder/fullsize.jpg"));
-
-        // use thumbnailer to generate and upload all our variants
-        $shapes = ['cover', 'card', 'list'];
-        $scales = ['', '@2x'];
-        foreach ($shapes as $shape) {
-            foreach ($scales as $scale) {
-                $ok = copy("$resizerEndpoint/thumb/$shape$scale/$optimizedImage", "$outputFolder/$shape$scale.jpg");
-                if (!$ok || filesize("$outputFolder/$shape$scale.jpg") < 100) {
-                    deltree($tmpBase);
-                    throw new BeatmapProcessorException('Error retrieving resized image.');
-                }
-                $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/$shape$scale.jpg", file_get_contents("$outputFolder/$shape$scale.jpg"));
+        try {
+            // make our temp folders if they don't exist
+            if (!is_dir($workingFolder)) {
+                mkdir($workingFolder, 0755, true);
             }
+            if (!is_dir($outputFolder)) {
+                mkdir($outputFolder, 0755, true);
+            }
+
+            // download and extract beatmap
+            $osz = "$tmpBase/osz.zip";
+            $ok = copy($this->oszDownloadURL(), $osz);
+            if (!$ok) {
+                throw new BeatmapProcessorException('Error retrieving beatmap');
+            }
+            $zip = new \ZipArchive;
+            $zip->open($osz);
+            $zip->extractTo($workingFolder);
+            $zip->close();
+
+            // grab the first beatmap (as per old implementation) and scan for background image
+            $beatmap = $this->beatmaps()->first();
+            $beatmapFilename = $beatmap->filename;
+            $bgFilename = self::scanBMForBG("$workingFolder/$beatmapFilename");
+
+            if (!$bgFilename) {
+                $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+                return;
+            }
+
+            $bgFile = ci_file_search("{$workingFolder}/{$bgFilename}");
+            if (!$bgFile) {
+                throw new BeatmapProcessorException("Background image missing: {$bgFile}");
+            }
+
+            $processor = new ImageProcessorService($tmpBase);
+
+            // upload original image
+            $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/raw.jpg", file_get_contents($bgFile));
+
+            // upload optimized version
+            $optimized = $processor->optimize($this->coverImageURL('raw'));
+            $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/fullsize.jpg", file_get_contents($optimized));
+
+            // use thumbnailer to generate and upload all our variants
+            foreach (self::imageSizes() as $size) {
+                $resized = $processor->resize($this->coverImageURL('fullsize'), $size);
+                $this->storage()->put("/beatmaps/{$this->beatmapset_id}/covers/$size.jpg", file_get_contents($resized));
+            }
+
+            $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+        } catch (BeatmapProcessorException $e) {
+            throw $e;
+        } catch (ImageProcessorException $e) {
+            throw $e;
+        } finally {
+            // clean up after ourselves
+            deltree($tmpBase);
         }
-
-        // clean up after ourselves
-        deltree($tmpBase);
-
-        $this->update(['cover_updated_at' => $this->freshTimestamp()]);
-
-        return true;
     }
 
     // todo: maybe move this somewhere else (copypasta from old implementation)
