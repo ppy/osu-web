@@ -601,10 +601,6 @@ class BeatmapSet extends Model
             }
 
             $this->update(['cover_updated_at' => $this->freshTimestamp()]);
-        } catch (BeatmapProcessorException $e) {
-            throw $e;
-        } catch (ImageProcessorException $e) {
-            throw $e;
         } finally {
             // clean up after ourselves
             deltree($tmpBase);
