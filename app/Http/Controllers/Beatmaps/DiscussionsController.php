@@ -58,7 +58,10 @@ class DiscussionsController extends Controller
         $discussion = BeatmapDiscussion::create($params);
 
         if ($discussion->id !== null) {
-            return $discussion->beatmapsetDiscussion->defaultJson(Auth::user());
+            return [
+                'beatmapset_discussion' => $discussion->beatmapsetDiscussion->defaultJson(Auth::user()),
+                'beatmap_discussion_id' => $discussion->id,
+            ];
         } else {
             return error_popup(trans('beatmaps.discussions.store.error'));
         }

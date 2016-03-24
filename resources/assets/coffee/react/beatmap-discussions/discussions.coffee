@@ -25,10 +25,6 @@ BeatmapDiscussions.Discussions = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
-  getInitialState: ->
-    mode: 'timeline'
-
-
   componentWillReceiveProps: ->
     @_currentDiscussions = undefined
 
@@ -40,21 +36,21 @@ BeatmapDiscussions.Discussions = React.createClass
       ['general', 'timeline'].map (mode) =>
         do (mode) =>
           circleClass = "#{bn}__mode-circle"
-          circleClass += " #{bn}__mode-circle--active" if mode == @state.mode
+          circleClass += " #{bn}__mode-circle--active" if mode == @props.mode
 
           button
             key: "mode-#{mode}"
             className: "#{bn}__mode"
-            onClick: => @setMode mode
+            onClick: => $.publish 'beatmapDiscussion:setMode', mode
             div className: circleClass
-            if mode == 'timeline' && mode == @state.mode
+            if mode == 'timeline' && mode == @props.mode
               div className: "#{bn}__timeline-line #{bn}__timeline-line--bottom #{bn}__timeline-line--half"
             span className: "#{bn}__mode-text",
               Lang.get("#{lp}.mode.#{mode}")
 
       div
         className: "#{bn}__discussions"
-        if @state.mode == 'timeline'
+        if @props.mode == 'timeline'
           div className: "#{bn}__timeline-line"
 
         div className: "#{bn}__discussions",
@@ -70,13 +66,13 @@ BeatmapDiscussions.Discussions = React.createClass
                 currentBeatmap: @props.currentBeatmap
                 userPermissions: @props.userPermissions
 
-      if @state.mode == 'timeline'
+      if @props.mode == 'timeline'
         div className: "#{bn}__mode-circle #{bn}__mode-circle--active"
 
 
   currentDiscussions: ->
     if @_currentDiscussions == undefined
-      beatmapId = if @state.mode == 'general' then null else @props.currentBeatmap.id
+      beatmapId = if @props.mode == 'general' then null else @props.currentBeatmap.id
 
       @_currentDiscussions = _.chain @props.beatmapsetDiscussion.beatmap_discussions.data
         .filter (discussion) =>
@@ -85,10 +81,3 @@ BeatmapDiscussions.Discussions = React.createClass
         .value()
 
     @_currentDiscussions
-
-
-  setMode: (mode) ->
-    return if @state.mode == mode
-
-    @_currentDiscussions = undefined
-    @setState mode: mode

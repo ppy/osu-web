@@ -29,11 +29,14 @@ BeatmapDiscussions.Main = React.createClass
     currentUser: currentUser
     userPermissions: initial.userPermissions
     users: @indexUsers initial.beatmapsetDiscussion.data.users.data
+    mode: 'timeline'
 
 
   componentDidMount: ->
     $.subscribe 'beatmap:select.beatmapDiscussions', @setCurrentBeatmapIndex
     $.subscribe 'beatmapsetDiscussion:update.beatmapDiscussions', @setBeatmapsetDiscussion
+    $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
+    $.subscribe 'beatmapDiscussion:setMode.beatmapDiscussions', @setMode
 
 
   componentWillUnmount: ->
@@ -75,6 +78,7 @@ BeatmapDiscussions.Main = React.createClass
           beatmapsetDiscussion: @state.beatmapsetDiscussion
           lookupUser: @lookupUser
           userPermissions: @state.userPermissions
+          mode: @state.mode
 
 
   setBeatmapsetDiscussion: (_e, beatmapsetDiscussion) ->
@@ -104,3 +108,22 @@ BeatmapDiscussions.Main = React.createClass
 
   lookupUser: (id) ->
     @state.users[id]
+
+
+  jumpTo: (_e, beatmapDiscussionId) ->
+    discussion = @state.beatmapsetDiscussion.beatmap_discussions.data.find (d) => d.id == beatmapDiscussionId
+
+    return if discussion == undefined
+
+    mode = if discussion.timestamp == null then 'general' else 'timeline'
+    @setMode null, mode
+
+    target = "#beatmap-discussion-#{beatmapDiscussionId}"
+
+    $(window).stop().scrollTo target, 500
+
+
+  setMode: (_e, mode) ->
+    return if mode == @state.mode
+
+    @setState mode: mode

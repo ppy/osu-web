@@ -109,7 +109,8 @@ BeatmapDiscussions.NewDiscussion = React.createClass
         message_type: null
         timestamp: null
 
-      $.publish 'beatmapsetDiscussion:update', data.data
+      $.publish 'beatmapsetDiscussion:update', data.beatmapset_discussion.data
+      $.publish 'beatmapDiscussion:jump', data.beatmap_discussion_id
 
     .fail osu.ajaxError
 
