@@ -96,7 +96,7 @@ BeatmapDiscussions.NewReply = React.createClass
 
 
   canUpdate: ->
-    return false if @props.currentUser.id == undefined
+    return false if !@props.currentUser.id?
 
     @props.currentUser.isAdmin ||
       @props.currentUser.id == @props.beatmapset.user_id ||

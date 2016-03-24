@@ -53,14 +53,14 @@ BeatmapDiscussions.NewDiscussion = React.createClass
             className: "#{bn}__avatar"
             el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
 
-          if @props.currentUser.id == undefined
-            div className: "#{bn}__message",
-              Lang.get('beatmaps.discussions.require-login')
-          else
+          if @props.currentUser.id?
             textarea
               className: "#{bn}__message"
               value: @state.message
               onChange: @setMessage
+          else
+            div className: "#{bn}__message",
+              Lang.get('beatmaps.discussions.require-login')
 
       div className: "#{bn}__col #{bn}__col--right",
         div
@@ -138,16 +138,14 @@ BeatmapDiscussions.NewDiscussion = React.createClass
   validPost: ->
     return false if @state.message.length == 0
 
-    @state.timestamp == null || @state.messageType != null
+    !@state.timestamp? || @state.messageType?
 
 
   parseTimestamp: ->
     timestampRe = @state.message.match /^(\d{2}):(\d{2})[:.](\d{3}) /
 
     @setState timestamp:
-      if timestampRe == null
-        null
-      else
+      if timestampRe?
         timestamp = timestampRe.slice(1).map (x) => parseInt x, 10
 
         # this isn't all that smart
@@ -156,4 +154,4 @@ BeatmapDiscussions.NewDiscussion = React.createClass
 
 
   currentType: ->
-    if @state.timestamp != null then 'timeline' else 'general'
+    if @state.timestamp? then 'timeline' else 'general'

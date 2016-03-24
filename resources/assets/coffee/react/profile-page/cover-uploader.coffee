@@ -58,7 +58,7 @@ class ProfilePage.CoverUploader extends React.Component
       el ProfilePage.CoverSelection,
         url: @props.cover.customUrl
         thumbUrl: @props.cover.customUrl
-        isSelected: @props.cover.id == null
+        isSelected: !@props.cover.id?
         name: -1
 
       el 'label', className: labelClass, ref: 'uploadButtonContainer',

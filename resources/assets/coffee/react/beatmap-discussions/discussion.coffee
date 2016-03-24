@@ -146,7 +146,7 @@ BeatmapDiscussions.Discussion = React.createClass
       when 'up' then [1, 'thumbs-up']
       when 'down' then [-1, 'thumbs-down']
 
-    return if baseScore == undefined
+    return if !baseScore?
 
     currentVote = @props.discussion.current_user_attributes.data.vote_score
 

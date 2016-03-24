@@ -26,7 +26,7 @@ BeatmapDiscussions.Discussions = React.createClass
 
 
   componentWillReceiveProps: ->
-    @_currentDiscussions = undefined
+    @_currentDiscussions = null
 
 
   render: ->
@@ -71,7 +71,7 @@ BeatmapDiscussions.Discussions = React.createClass
 
 
   currentDiscussions: ->
-    if @_currentDiscussions == undefined
+    if !@_currentDiscussions?
       beatmapId = if @props.mode == 'general' then null else @props.currentBeatmap.id
 
       @_currentDiscussions = _.chain @props.beatmapsetDiscussion.beatmap_discussions.data

@@ -31,10 +31,10 @@ bn = 'avatar'
 
     className = "#{bn} #{modifiers}"
 
-    if @props.user.id == undefined
-      div className: "#{className} #{bn}--guest"
-    else
+    if @props.user.id?
       div
         className: className
         style:
           backgroundImage: "url('#{@props.user.avatarUrl}')"
+    else
+      div className: "#{className} #{bn}--guest"

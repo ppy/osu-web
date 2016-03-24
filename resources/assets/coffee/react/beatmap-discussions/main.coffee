@@ -93,7 +93,7 @@ BeatmapDiscussions.Main = React.createClass
     beatmap = @state.beatmapset.beatmaps.data.find (bm) =>
       bm.id == id
 
-    return if beatmap == undefined
+    return if !beatmap?
 
     @setState currentBeatmap: beatmap
 
@@ -113,9 +113,9 @@ BeatmapDiscussions.Main = React.createClass
   jumpTo: (_e, beatmapDiscussionId) ->
     discussion = @state.beatmapsetDiscussion.beatmap_discussions.data.find (d) => d.id == beatmapDiscussionId
 
-    return if discussion == undefined
+    return if !discussion?
 
-    mode = if discussion.timestamp == null then 'general' else 'timeline'
+    mode = if discussion.timestamp? then 'general' else 'timeline'
     @setMode null, mode
 
     target = "#beatmap-discussion-#{beatmapDiscussionId}"

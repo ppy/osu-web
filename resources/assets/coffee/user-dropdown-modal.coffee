@@ -30,7 +30,7 @@ class UserDropdownModal
     $(document).on 'ajax:success', '#login-form', @loginSuccess
 
     $(document).on 'click', '.js-login-required--click', (event) =>
-      return unless window.currentUser.id == undefined
+      return if window.currentUser.id?
       event.preventDefault()
       @show event.target
 
@@ -62,7 +62,7 @@ class UserDropdownModal
 
 
   reposition: =>
-    return if @activeBox[0] == undefined
+    return if !@activeBox[0]?
 
     if osu.isMobile()
       @box[0].classList.add 'js-user-dropdown-modal__dialog--centre'
