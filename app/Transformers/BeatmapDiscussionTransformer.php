@@ -63,11 +63,15 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
     public function includeCurrentUserAttributes(BeatmapDiscussion $discussion, ParamBag $params = null)
     {
-        if ($params === null || $params->get('user_id') === null) {
+        if ($params === null) {
             return;
         }
 
-        $userId = get_int($params->get('user_id'));
+        $userId = get_int($params->get('user_id')[0] ?? null);
+
+        if ($userId === null) {
+            return;
+        }
 
         $score = 0;
 
