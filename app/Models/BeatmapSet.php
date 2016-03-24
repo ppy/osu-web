@@ -501,6 +501,7 @@ class BeatmapSet extends Model
     public static function isValidCoverSize($coverSize)
     {
         $validSizes = array_merge(['raw', 'fullsize'], self::imageSizes());
+
         return in_array($coverSize, $validSizes, true);
     }
 
@@ -575,6 +576,7 @@ class BeatmapSet extends Model
 
             if (!$bgFilename) {
                 $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+
                 return;
             }
 
