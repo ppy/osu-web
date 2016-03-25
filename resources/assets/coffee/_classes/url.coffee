@@ -21,8 +21,6 @@ class @Url
 
   @requestSlackInvite: '/community/slack/agree'
 
-  @beatmapsetCover: (id) => "//b.ppy.sh/thumb/#{id}l.jpg"
-
   @beatmapDiscussions: (beatmapId) => "/beatmaps/#{beatmapId}/discussions"
   @beatmapDiscussionReplies: (beatmapId, discussionId) => "/beatmaps/#{beatmapId}/discussions/#{discussionId}/replies"
   @beatmapDiscussionVote: (beatmapId, discussionId) => "/beatmaps/#{beatmapId}/discussions/#{discussionId}/vote"

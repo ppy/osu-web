@@ -51,7 +51,7 @@ BeatmapDiscussions.Main = React.createClass
         div
           className: 'forum-category-header forum-category-header--topic'
           style:
-            backgroundImage: "url('#{Url.beatmapsetCover @state.beatmapset.beatmapset_id}')"
+            backgroundImage: "url('#{@state.beatmapset.covers.cover}')"
           div
             className: 'forum-category-header__titles'
             h1
