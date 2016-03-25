@@ -33,7 +33,7 @@ BeatmapDiscussions.Main = React.createClass
 
 
   componentDidMount: ->
-    $.subscribe 'beatmap:select.beatmapDiscussions', @setCurrentBeatmapIndex
+    $.subscribe 'beatmap:select.beatmapDiscussions', @setCurrentBeatmapId
     $.subscribe 'beatmapsetDiscussion:update.beatmapDiscussions', @setBeatmapsetDiscussion
     $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
     $.subscribe 'beatmapDiscussion:setMode.beatmapDiscussions', @setMode
@@ -87,7 +87,7 @@ BeatmapDiscussions.Main = React.createClass
       users: @indexUsers beatmapsetDiscussion.users.data
 
 
-  setCurrentBeatmapIndex: (_e, id) ->
+  setCurrentBeatmapId: (_e, id) ->
     return if id == @state.currentBeatmap.id
 
     beatmap = @state.beatmapset.beatmaps.data.find (bm) =>
@@ -115,8 +115,9 @@ BeatmapDiscussions.Main = React.createClass
 
     return if !discussion?
 
-    mode = if discussion.timestamp? then 'general' else 'timeline'
+    mode = if discussion.timestamp? then 'timeline' else 'general'
     @setMode null, mode
+    @setCurrentBeatmapId null, discussion.beatmap_id
 
     target = "#beatmap-discussion-#{beatmapDiscussionId}"
 
