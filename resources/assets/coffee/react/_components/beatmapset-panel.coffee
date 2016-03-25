@@ -38,27 +38,25 @@ class @BeatmapsetPanel extends React.Component
       difficulties.push span key: 'over', "+#{(beatmap.beatmaps.data.length - maxDisplayedDifficulty)}"
 
     div className: 'beatmapset-panel beatmap object_link shadow-hover', objectid: beatmap.beatmapset_id,
-      div className: 'panel',
-        div className: 'thumb_gradient', ''
-        div className: 'thumb', style: {backgroundImage: "url(//b.ppy.sh/thumb/#{beatmap.beatmapset_id}l.jpg)"}
-        div className: 'thumb_cover', style: {backgroundImage: "url(//b.ppy.sh/thumb/#{beatmap.beatmapset_id}l.jpg)"}
-        div className: 'bottom_left',
-          div className: 'title',
-            span {}, beatmap.title
-          div className: 'artist',
-            span {}, beatmap.artist
+      div className: 'beatmap-panel',
+        a href: "https://osu.ppy.sh/s/#{beatmap.beatmapset_id}", target: '_blank', className: 'thumb', style: {backgroundImage: "url(#{beatmap.covers.card})"},
+          div className: 'bottom_left',
+            div className: 'title',
+              span {}, beatmap.title
+            div className: 'artist',
+              span {}, beatmap.artist
 
-        div className: 'top_right',
-          div className: 'stats',
-            div className: 'plays',
-              span {},
-                beatmap.play_count
-              i className: 'fa fa-play-circle'
+          div className: 'top_right',
+            div className: 'stats',
+              div className: 'plays',
+                span {},
+                  beatmap.play_count
+                i className: 'fa fa-play-circle'
 
-            div className: 'favourites',
-              span {},
-                beatmap.favourite_count
-              i className: 'fa fa-heart'
+              div className: 'favourites',
+                span {},
+                  beatmap.favourite_count
+                i className: 'fa fa-heart'
 
       div className: 'bottom_left',
         span className: 'hidden', ref: beatmap.beatmapset_id, beatmap.beatmapset_id
@@ -66,7 +64,7 @@ class @BeatmapsetPanel extends React.Component
         div className: 'source', beatmap.source
 
       div className: 'bottom_right show_on_hover',
-        a href: 'https://osu.ppy.sh/d/'+beatmap.beatmapset_id, className: 'object_link',
+        a href: "https://osu.ppy.sh/d/#{beatmap.beatmapset_id}", className: 'object_link',
           i className: 'fa fa-download'
         a href: '#', className:'object_link',
           i className:'fa fa-heart'

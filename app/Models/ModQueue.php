@@ -17,21 +17,15 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Http\Controllers\Forum\Admin;
+namespace App\Models;
 
-use App\Http\Controllers\Forum\Controller as BaseController;
-use Auth;
+use Illuminate\Database\Eloquent\Model;
 
-abstract class Controller extends BaseController
+class ModQueue extends Model
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
+    protected $table = 'osu_mod_queue';
+    protected $primaryKey = 'mod_queue_id';
 
-        if (Auth::check() === true && Auth::user()->isAdmin() === false) {
-            abort(403);
-        }
-
-        return parent::__construct();
-    }
+    public $timestamps = false;
+    public $dates = ['timestamp'];
 }

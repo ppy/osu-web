@@ -17,7 +17,7 @@
  *
  */
 .product-box {
-  @_top: ~"product-box";
+  @_top: product-box;
 
   display: block;
   padding-left: (@spacing * 2);
@@ -74,7 +74,7 @@
       opacity: 0;
     }
 
-    &--small {
+    .@{_top}--small & {
       h1 { font-size: 30px; }
 
       p { display: none; }

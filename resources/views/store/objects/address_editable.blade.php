@@ -17,7 +17,7 @@
 --}}
 <div class="{{{ $grid or 'col-md-6' }}}" id="address-{{ $data->address_id }}">
     <div>
-        {!! Form::open(['route' => ['store.admin.addresses.update', $data->address_id], 'class' => 'editable-content-form', 'method' => 'put', 'data-remote' => true]) !!}
+        {!! Form::open(['route' => ['admin.store.addresses.update', $data->address_id], 'class' => 'editable-content-form', 'method' => 'put', 'data-remote' => true]) !!}
             <div class="first_name">
                 <span class="content-editable-submit" contenteditable="true" data-name="address[first_name]">{{{$data->first_name}}}</span> <span class="content-editable-submit" contenteditable="true" data-name="address[last_name]">{{{$data->last_name}}}</span></div>
             <div class="street">

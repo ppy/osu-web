@@ -44,7 +44,7 @@ class BeatmapSetTransformer extends Fractal\TransformerAbstract
             'creator' => $beatmap->creator,
             'user_id' => $beatmap->user_id,
             'source' => $beatmap->source,
-            'coverUrl' => $beatmap->coverUrl(),
+            'covers' => $beatmap->allCoverURLs(),
         ];
     }
 
