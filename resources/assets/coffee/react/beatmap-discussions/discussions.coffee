@@ -30,6 +30,8 @@ BeatmapDiscussions.Discussions = React.createClass
 
 
   render: ->
+    currentBeatmapId = if @props.mode == 'general' then null else @props.currentBeatmap.id
+
     div
       className: bn
 
@@ -55,9 +57,12 @@ BeatmapDiscussions.Discussions = React.createClass
 
         div className: "#{bn}__discussions",
           @currentDiscussions().map (discussion) =>
+            className = "#{bn}__discussion"
+            className += ' hidden' if discussion.beatmap_id != currentBeatmapId
+
             div
               key: discussion.id
-              className: "#{bn}__discussion"
+              className: className
               el BeatmapDiscussions.Discussion,
                 discussion: discussion
                 lookupUser: @props.lookupUser
@@ -72,11 +77,7 @@ BeatmapDiscussions.Discussions = React.createClass
 
   currentDiscussions: ->
     if !@_currentDiscussions?
-      beatmapId = if @props.mode == 'general' then null else @props.currentBeatmap.id
-
       @_currentDiscussions = _.chain @props.beatmapsetDiscussion.beatmap_discussions.data
-        .filter (discussion) =>
-          discussion.beatmap_id == beatmapId
         .orderBy ['timestamp', 'id'], ['asc', 'asc']
         .value()
 
