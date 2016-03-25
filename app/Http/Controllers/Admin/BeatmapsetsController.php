@@ -24,7 +24,7 @@ use App\Jobs\RegenerateBeatmapSetCover;
 
 class BeatmapsetsController extends Controller
 {
-    protected $section = 'beatmapsets';
+    protected $section = 'admin.beatmapsets';
 
     public function covers($id)
     {
