@@ -50,9 +50,12 @@ BeatmapDiscussions.Discussion = React.createClass
           @post @props.discussion, 'discussion'
 
           div className: "#{bn}__actions",
-            div className: "#{bn}__action", @displayVote 'up'
-
-            div className: "#{bn}__action", @displayVote 'down'
+            if @canBeVoted()
+              ['up', 'down'].map (direction) =>
+                div
+                  key: direction
+                  className: "#{bn}__action"
+                  @displayVote direction
 
             div className: "#{bn}__action #{bn}__action--with-line",
               button
@@ -164,3 +167,8 @@ BeatmapDiscussions.Discussion = React.createClass
         el Icon, name: icon
       span className: "#{vbn}__count #{"#{vbn}__count--inactive" if score != 0}",
         @props.discussion.votes[type]
+
+
+
+  canBeVoted: ->
+    !!@props.discussion.timestamp?
