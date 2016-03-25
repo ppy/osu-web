@@ -18,7 +18,7 @@
 @extends("master")
 
 @section("content")
-    <div class="js-react--beatmapset-detail"></div>
+    <div class="js-react--beatmapset-page"></div>
     {{--
         this should content a server side react.js render which doesn't exist in hhvm
         because the only library for it, which is experimental, requires PHP extension
@@ -32,4 +32,6 @@
     <script data-turbolinks-eval="always">
         var set = {!! json_encode($set['data']) !!};
     </script>
+
+    <script src="{{ elixir("js/react/beatmapset-page.js") }}" data-turbolinks-track></script>
 @endsection

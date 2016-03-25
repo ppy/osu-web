@@ -41,6 +41,7 @@ return [
         'beatmaps' => [
             '_' => 'beatmaps',
             'getListing' => 'listing',
+            'getMapSet' => 'info',
             'getPacks' => 'packs',
             'getCharts' => 'charts',
             'getModding' => 'modding',

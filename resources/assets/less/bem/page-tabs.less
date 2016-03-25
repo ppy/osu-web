@@ -55,5 +55,15 @@
       font-weight: 900;
       border-bottom-color: @pink-text;
     }
+
+    &--disabled {
+      color: @grey-c;
+      cursor: default;
+
+      &:hover, &:active, &:focus {
+        color: @grey-c;
+        text-decoration: none;
+      }
+    }
   }
 }

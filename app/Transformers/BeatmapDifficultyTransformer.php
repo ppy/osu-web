@@ -41,7 +41,6 @@ class BeatmapDifficultyTransformer extends Fractal\TransformerAbstract
             'drain' => $b->diff_drain,
             'accuracy' => $b->diff_overall,
             'ar' => $b->diff_approach,
-            'stars' => $b->difficultyrating,
             'length' => $b->total_length,
         ];
     }

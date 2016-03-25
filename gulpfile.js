@@ -90,6 +90,10 @@ elixir(function(mix) {
     'react/beatmap-discussions/*.coffee',
     'react/beatmap-discussions.coffee'
   ], 'public/js/react/beatmap-discussions.js')
+  .coffee([
+    'react/beatmapset-page/*.coffee',
+    'react/beatmapset-page.coffee'
+  ], 'public/js/react/beatmapset-page.js')
   .version([
     'css/app.css',
     'js/app.js',
@@ -98,5 +102,6 @@ elixir(function(mix) {
     'js/react/slack-page.js',
     'js/react/status-page.js',
     'js/react/beatmap-discussions.js',
+    'js/react/beatmapset-page.js',
   ]);
 });

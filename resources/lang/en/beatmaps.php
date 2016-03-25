@@ -89,6 +89,21 @@ return [
         'source' => 'from :source',
         'load-more' => 'Load more...',
     ],
+    'beatmapset' => [
+        'show' => [
+            'extra' => [
+                'description' => [
+                    'title' => 'Description',
+                ],
+                'success-rate' => [
+                    'title' => 'Success Rate',
+                ],
+                'scoreboard' => [
+                    'title' => 'Scoreboard',
+                ],
+            ],
+        ],
+    ],
     'mode' => [
         'any' => 'Any',
         'osu' => 'osu!',
