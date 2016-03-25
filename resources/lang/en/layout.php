@@ -120,6 +120,10 @@ return [
         'admin' => [
             '_' => 'admin',
             'logs-index' => 'log',
+            'beatmapsets' => [
+                '_' => 'beatmapsets',
+                'covers' => 'covers',
+            ],
         ],
     ],
     'errors' => [

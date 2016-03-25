@@ -137,6 +137,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     Route::resource('logs', 'LogsController', ['only' => ['index']]);
 
+    Route::get('/beatmapsets/{id}/covers', ['as' => 'admin.beatmapsets.covers', 'uses' => 'BeatmapsetsController@covers']);
+    Route::post('/beatmapsets/{id}/covers/regenerate', ['as' => 'admin.beatmapsets.covers.regenerate', 'uses' => 'BeatmapsetsController@regenerateCovers']);
+
     // store admin
     Route::group(['prefix' => 'store', 'namespace' => 'Store'], function () {
         Route::post('orders/ship', ['as' => 'admin.store.orders.ship', 'uses' => 'OrderController@ship']);
