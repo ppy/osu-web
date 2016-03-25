@@ -75,6 +75,11 @@ BeatmapDiscussions.Discussion = React.createClass
               discussion: @props.discussion
               userPermissions: @props.userPermissions
 
+        if @props.discussion.resolved
+          div
+            className: "#{bn}__resolved"
+            Lang.get 'beatmaps.discussions.resolved'
+
 
   timestamp: ->
     tbn = 'beatmap-discussion-timestamp'
