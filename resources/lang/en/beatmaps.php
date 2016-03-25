@@ -46,6 +46,10 @@ return [
         'require-login' => 'Please login to post or reply',
         'resolved' => 'Resolved',
 
+        'show' => [
+            'title' => 'Beatmap Discussion',
+        ],
+
         'stats' => [
             'pending' => 'Pending',
             'resolved' => 'Resolved',
