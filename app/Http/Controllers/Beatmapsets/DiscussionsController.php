@@ -29,8 +29,6 @@ class DiscussionsController extends Controller
 
     public function show($beatmapsetId)
     {
-        $user = Auth::user();
-
         $beatmapset = BeatmapSet::findOrFail($beatmapsetId);
         $discussion = $beatmapset->beatmapsetDiscussion;
 
