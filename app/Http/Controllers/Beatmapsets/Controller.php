@@ -24,9 +24,4 @@ use App\Http\Controllers\Controller as BaseController;
 abstract class Controller extends BaseController
 {
     protected $section = 'beatmaps';
-
-    public function __construct()
-    {
-        return parent::__construct();
-    }
 }
