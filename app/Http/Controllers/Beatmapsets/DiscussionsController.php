@@ -25,12 +25,7 @@ use Auth;
 
 class DiscussionsController extends Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        view()->share('current_action', 'beatmapsets-discussions-'.current_action());
-    }
+    protected $actionPrefix = 'beatmapsets-discussions-';
 
     public function show($beatmapsetId)
     {
