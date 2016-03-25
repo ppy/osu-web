@@ -86,7 +86,7 @@ class UserDropdownModal
     window.currentUser = data.data
     $(document).off 'ajax:complete', osu.hideLoadingOverlay()
     osu.showLoadingOverlay()
-    if @clickAfterLogin != null
+    if @clickAfterLogin?
       if @clickAfterLogin.submit
         # plain javascript here doesn't trigger submit events
         # which means jquery-ujs handler won't be triggered

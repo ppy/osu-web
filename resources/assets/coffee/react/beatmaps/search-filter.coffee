@@ -24,7 +24,7 @@ class Beatmaps.SearchFilter extends React.Component
   constructor: (props) ->
     super props
 
-    if @props.default != undefined
+    if @props.default?
       if @props.multiselect
         selected = @props.default.split('-')
       else
@@ -71,7 +71,7 @@ class Beatmaps.SearchFilter extends React.Component
   triggerUpdate: ->
     if @props.multiselect
       value = @state.selected.filter (n) ->
-        n != undefined && n != null && n != ""
+        n? && n != ""
       .join('-')
     else
       value = @state.selected[0]

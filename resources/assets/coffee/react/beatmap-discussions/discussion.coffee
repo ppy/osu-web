@@ -43,7 +43,7 @@ BeatmapDiscussions.Discussion = React.createClass
       id: "beatmap-discussion-#{@props.discussion.id}"
 
       div className: "#{bn}__timestamp",
-        @timestamp() if @props.discussion.timestamp != null
+        @timestamp() if @props.discussion.timestamp?
 
       div className: "#{bn}__discussion",
         div className: "#{bn}__top",
@@ -67,7 +67,7 @@ BeatmapDiscussions.Discussion = React.createClass
           @props.discussion.beatmap_discussion_replies.data.map (reply) =>
             @post reply, 'reply'
 
-          if @props.currentUser.id != undefined
+          if @props.currentUser.id?
             el BeatmapDiscussions.NewReply,
               currentUser: @props.currentUser
               beatmapset: @props.beatmapset

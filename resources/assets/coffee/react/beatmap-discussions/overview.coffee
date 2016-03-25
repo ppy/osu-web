@@ -68,7 +68,7 @@ BeatmapDiscussions.Overview = React.createClass
       .data
       .filter (discussion) =>
         discussion.beatmap_id == @props.currentBeatmap.id &&
-          discussion.timestamp != null &&
+          discussion.timestamp? &&
           discussion.message_type != 'praise'
 
     count =

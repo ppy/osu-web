@@ -47,7 +47,7 @@ BeatmapDiscussions.NewReply = React.createClass
 
         div className: "#{bn}__actions",
           div className: "#{bn}__actions-group",
-            if @props.discussion.timestamp != null && @canUpdate()
+            if @props.discussion.timestamp? && @canUpdate()
               label
                 className: 'osu-checkbox'
                 input
