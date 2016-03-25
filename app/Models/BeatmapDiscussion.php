@@ -114,10 +114,6 @@ class BeatmapDiscussion extends Model
 
     public function canBeVotedBy($user)
     {
-        if ($this->timestamp === null) {
-            return false;
-        }
-
         return $user !== null;
     }
 
