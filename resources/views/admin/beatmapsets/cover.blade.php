@@ -22,7 +22,7 @@
         <h2>{{$beatmapSet->title}} - {{$beatmapSet->artist}}</h2>
         <br>
         {!! Form::open([
-            'route' => ['admin.beatmaps.covers.regenerate', $beatmapSet->beatmapset_id],
+            'route' => ['admin.beatmapsets.covers.regenerate', $beatmapSet->beatmapset_id],
             'method' => 'POST'
         ]) !!}
             <button>regenerate</button>

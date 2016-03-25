@@ -137,8 +137,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     Route::resource('logs', 'LogsController', ['only' => ['index']]);
 
-    Route::get('/beatmaps/{id}/covers', ['as' => 'admin.beatmaps.covers', 'uses' => 'BeatmapController@covers']);
-    Route::post('/beatmaps/{id}/covers/regenerate', ['as' => 'admin.beatmaps.covers.regenerate', 'uses' => 'BeatmapController@regenerateCovers']);
+    Route::get('/beatmapsets/{id}/covers', ['as' => 'admin.beatmapsets.covers', 'uses' => 'BeatmapsetsController@covers']);
+    Route::post('/beatmapsets/{id}/covers/regenerate', ['as' => 'admin.beatmapsets.covers.regenerate', 'uses' => 'BeatmapsetsController@regenerateCovers']);
 
     // store admin
     Route::group(['prefix' => 'store', 'namespace' => 'Store'], function () {

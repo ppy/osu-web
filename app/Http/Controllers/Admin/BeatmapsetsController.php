@@ -22,25 +22,20 @@ namespace App\Http\Controllers\Admin;
 use App\Models\BeatmapSet;
 use App\Jobs\RegenerateBeatmapSetCover;
 
-class BeatmapController extends Controller
+class BeatmapsetsController extends Controller
 {
-    protected $section = 'beatmaps';
+    protected $section = 'beatmapsets';
 
     public function covers($id)
     {
-        $beatmapSet = BeatmapSet::find($id);
+        $beatmapSet = BeatmapSet::findOrFail($id);
 
-        return view('admin.beatmaps.cover', compact('beatmapSet'));
+        return view('admin.beatmapsets.cover', compact('beatmapSet'));
     }
 
     public function regenerateCovers($id)
     {
-        $beatmapSet = BeatmapSet::find($id);
-        if (!$beatmapSet) {
-            echo 'beatmapset not found';
-
-            return;
-        }
+        $beatmapSet = BeatmapSet::findOrFail($id);
 
         $job = (new RegenerateBeatmapSetCover($beatmapSet))->onQueue('beatmap_processor');
         $this->dispatch($job);
