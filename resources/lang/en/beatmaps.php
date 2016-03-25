@@ -26,6 +26,10 @@ return [
     ],
 
     'discussions' => [
+        'message_hint' => 'Start message with timestamp (e.g. 00:12:345) to mod.',
+
+        'message_placeholder' => 'Type here to post',
+
         'message_type' => [
             'praise' => 'Praise',
             'problem' => 'Problem',

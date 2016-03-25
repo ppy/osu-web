@@ -56,18 +56,30 @@
   &__message {
     flex: 1 0 auto;
     padding-left: @spacing;
-    border: none;
-    resize: vertical;
     font-size: 12px;
 
-    &:focus {
-      outline: none;
-    }
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__message-area {
+    border: none;
+    outline: none;
+    resize: vertical;
+    width: 100%;
+
+    flex: 1 0 auto;
   }
 
   &__message-box {
     width: 100%;
     display: flex;
+  }
+
+  &__message-hint {
+    margin: 0;
+    margin-top: (@spacing / 2);
+    color: @green;
   }
 
   &__message-type {

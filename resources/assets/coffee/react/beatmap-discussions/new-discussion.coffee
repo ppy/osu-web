@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{button, div, input, span, textarea} = React.DOM
+{button, div, input, p, span, textarea} = React.DOM
 el = React.createElement
 
 bn = 'beatmap-discussion-new'
@@ -53,13 +53,21 @@ BeatmapDiscussions.NewDiscussion = React.createClass
             className: "#{bn}__avatar"
             el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
 
-          if @props.currentUser.id?
-            textarea
-              className: "#{bn}__message"
-              value: @state.message
-              onChange: @setMessage
-          else
-            div className: "#{bn}__message",
+          div className: "#{bn}__message",
+            if @props.currentUser.id?
+              [
+                textarea
+                  key: 'area'
+                  className: "#{bn}__message-area"
+                  value: @state.message
+                  onChange: @setMessage
+                  placeholder: Lang.get 'beatmaps.discussions.message_placeholder'
+                p
+                  key: 'hint'
+                  className: "#{bn}__message-hint"
+                  Lang.get 'beatmaps.discussions.message_hint'
+              ]
+            else
               Lang.get('beatmaps.discussions.require-login')
 
       div className: "#{bn}__col #{bn}__col--right",
