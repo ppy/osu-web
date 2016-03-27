@@ -427,6 +427,34 @@ function get_class_namespace($className)
     return substr($className, 0, strrpos($className, '\\'));
 }
 
+function ci_file_search($fileName)
+{
+    if (file_exists($fileName)) {
+        return $fileName;
+    }
+
+    $directoryName = dirname($fileName);
+    $fileArray = glob($directoryName.'/*', GLOB_NOSORT);
+    $fileNameLowerCase = strtolower($fileName);
+    foreach ($fileArray as $file) {
+        if (strtolower($file) === $fileNameLowerCase) {
+            return $file;
+        }
+    }
+
+    return false;
+}
+
+function deltree($dir)
+{
+    $files = array_diff(scandir($dir), ['.', '..']);
+    foreach ($files as $file) {
+        (is_dir("$dir/$file")) ? deltree("$dir/$file") : unlink("$dir/$file");
+    }
+
+    return rmdir($dir);
+}
+
 function get_param_value($input, $type)
 {
     if ($type === 'bool') {

@@ -98,7 +98,7 @@ class StoreCheckOrderTrackingStatus extends Command
                         if (!$o->last_tracking_state) {
                             $days_until_warning = 4;
                             if (time() - $o->shipped_at->timestamp > 3600 * 24 * $days_until_warning) {
-                                Slack::send("WARNING: <https://store.ppy.sh/store/admin/orders/{$o->order_id}|Order #{$o->order_id}> has no tracking after {$days_until_warning} days!");
+                                Slack::send("WARNING: <https://store.ppy.sh/admin/store/orders/{$o->order_id}|Order #{$o->order_id}> has no tracking after {$days_until_warning} days!");
                             }
                         }
                         continue;

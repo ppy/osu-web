@@ -19,21 +19,10 @@
  */
 namespace App\Http\Controllers\Admin;
 
-use Auth;
-use App\Http\Controllers\Controller as BaseController;
-
-abstract class Controller extends BaseController
+class PagesController extends Controller
 {
-    protected $section = 'admin';
-
-    public function __construct()
+    public function root()
     {
-        $this->middleware('auth');
-
-        if (Auth::check() === true && Auth::user()->isAdmin() !== true) {
-            abort(403);
-        }
-
-        return parent::__construct();
+        return view('admin.pages.root');
     }
 }

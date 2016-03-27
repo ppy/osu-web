@@ -19,21 +19,27 @@
  */
 namespace App\Http\Controllers\Admin;
 
-use Auth;
-use App\Http\Controllers\Controller as BaseController;
+use App\Models\BeatmapSet;
+use App\Jobs\RegenerateBeatmapSetCover;
 
-abstract class Controller extends BaseController
+class BeatmapsetsController extends Controller
 {
-    protected $section = 'admin';
+    protected $section = 'admin.beatmapsets';
 
-    public function __construct()
+    public function covers($id)
     {
-        $this->middleware('auth');
+        $beatmapSet = BeatmapSet::findOrFail($id);
 
-        if (Auth::check() === true && Auth::user()->isAdmin() !== true) {
-            abort(403);
-        }
+        return view('admin.beatmapsets.cover', compact('beatmapSet'));
+    }
 
-        return parent::__construct();
+    public function regenerateCovers($id)
+    {
+        $beatmapSet = BeatmapSet::findOrFail($id);
+
+        $job = (new RegenerateBeatmapSetCover($beatmapSet))->onQueue('beatmap_processor');
+        $this->dispatch($job);
+
+        return back();
     }
 }

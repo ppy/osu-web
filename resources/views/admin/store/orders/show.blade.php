@@ -99,7 +99,7 @@
             </div>
             <div class="panel-body">
                 <div class='row'>
-                    {!! Form::open(['route' => ['store.admin.orders.update', $o->order_id], 'method' => 'put', 'data-remote' => true]) !!}
+                    {!! Form::open(['route' => ['admin.store.orders.update', $o->order_id], 'method' => 'put', 'data-remote' => true]) !!}
                     <div class='col-md-8'>
                         <div class="form-group">
                         @if ($o->status === 'paid' || $o->status === 'shipped')
@@ -133,7 +133,7 @@
                     @foreach($o->items as $i)
                     <tr>
                         <td class="product_{{ $i->product_id }} {{ $i->quantity > 1 ? "bold" : "" }}">
-                            {!! Form::open(['route' => ['store.admin.orders.items.update', $o->order_id, $i->id], 'method' => 'put', 'data-remote' => true]) !!}
+                            {!! Form::open(['route' => ['admin.store.orders.items.update', $o->order_id, $i->id], 'method' => 'put', 'data-remote' => true]) !!}
                             <span class="content-editable-submit" contenteditable="true" data-name="item[quantity]">{{{ $i->quantity }}}</span>
                             x
                             <span class="product_name_expanded">
@@ -167,7 +167,7 @@
 </div>
 
 <div class="osu-layout__row osu-layout__row--page osu-layout__row--bootstrap">
-    {!! Form::open(['route' => 'store.admin.orders.ship', 'method' => 'post', 'data-remote' => true]) !!}
+    {!! Form::open(['route' => 'admin.store.orders.ship', 'method' => 'post', 'data-remote' => true]) !!}
     <div class="big-button">
         <button type="submit" class="btn-osu btn-osu-danger">Ship all tracked orders</button>
     </div>

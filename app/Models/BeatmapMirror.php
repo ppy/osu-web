@@ -17,23 +17,16 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Http\Controllers\Admin;
+namespace App\Models;
 
-use Auth;
-use App\Http\Controllers\Controller as BaseController;
+use Illuminate\Database\Eloquent\Model;
 
-abstract class Controller extends BaseController
+class BeatmapMirror extends Model
 {
-    protected $section = 'admin';
+    protected $table = 'osu_mirrors';
+    protected $primaryKey = 'mirror_id';
 
-    public function __construct()
-    {
-        $this->middleware('auth');
+    public $timestamps = false;
 
-        if (Auth::check() === true && Auth::user()->isAdmin() !== true) {
-            abort(403);
-        }
-
-        return parent::__construct();
-    }
+    protected $hidden = ['secret_key'];
 }

@@ -96,17 +96,6 @@ Route::get('/wiki', ['as' => 'wiki', function () { return Redirect::to('https://
 Route::get('/help/support', ['as' => 'support', 'uses' => 'HelpController@getSupport']);
 Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);
 
-// store admin
-Route::group(['prefix' => 'store/admin', 'namespace' => 'Store\Admin'], function () {
-    Route::post('orders/ship', ['as' => 'store.admin.orders.ship', 'uses' => 'OrderController@ship']);
-    Route::resource('orders', 'OrderController', ['only' => ['index', 'show', 'update']]);
-    Route::resource('orders.items', 'OrderItemController', ['only' => ['update']]);
-
-    Route::resource('addresses', 'AddressController', ['only' => ['update']]);
-
-    Route::get('/', function () { return Redirect::route('store.admin.orders.index'); });
-});
-
 // catchall controllers
 Route::controller('/notifications', 'NotificationController');
 Route::controller('/store', 'StoreController');
@@ -142,14 +131,30 @@ Route::group(['prefix' => 'forum'], function () {
     Route::patch('p/{posts}', ['as' => 'forum.posts.update', 'uses' => "Forum\PostsController@update"]);
     Route::get('p/{posts}/edit', ['as' => 'forum.posts.edit', 'uses' => "Forum\PostsController@edit"]);
     Route::get('p/{posts}/raw', ['as' => 'forum.posts.raw', 'uses' => "Forum\PostsController@raw"]);
-
-    Route::group(['prefix' => 'admin', 'namespace' => 'Forum\Admin'], function () {
-        Route::resource('forum-covers', 'ForumCoversController', ['only' => ['index', 'store', 'update']]);
-    });
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::get('/', ['as' => 'admin.root', 'uses' => 'PagesController@root']);
+
     Route::resource('logs', 'LogsController', ['only' => ['index']]);
+
+    Route::get('/beatmapsets/{id}/covers', ['as' => 'admin.beatmapsets.covers', 'uses' => 'BeatmapsetsController@covers']);
+    Route::post('/beatmapsets/{id}/covers/regenerate', ['as' => 'admin.beatmapsets.covers.regenerate', 'uses' => 'BeatmapsetsController@regenerateCovers']);
+
+    // store admin
+    Route::group(['prefix' => 'store', 'namespace' => 'Store'], function () {
+        Route::post('orders/ship', ['as' => 'admin.store.orders.ship', 'uses' => 'OrderController@ship']);
+        Route::resource('orders', 'OrdersController', ['only' => ['index', 'show', 'update']]);
+        Route::resource('orders.items', 'OrderItemsController', ['only' => ['update']]);
+
+        Route::resource('addresses', 'AddressesController', ['only' => ['update']]);
+
+        Route::get('/', function () { return Redirect::route('admin.store.orders.index'); });
+    });
+
+    Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
+        Route::resource('forum-covers', 'ForumCoversController', ['only' => ['index', 'store', 'update']]);
+    });
 });
 
 // Uploading file doesn't quite work with PUT/PATCH.

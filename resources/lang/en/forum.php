@@ -20,28 +20,6 @@
 
 return [
 
-    'admin' => [
-        'forum-covers' => [
-            'delete' => 'Delete',
-
-            'forum-name' => 'Forum #:id: :name',
-
-            'no-cover' => 'No cover set',
-
-            'submit' => [
-                'save' => 'Save',
-                'update' => 'Update',
-            ],
-
-            'title' => 'Forum Covers List',
-
-            'type-title' => [
-                'default-topic' => 'Default Topic Cover',
-                'main' => 'Forum Cover',
-            ],
-        ],
-    ],
-
     'covers' => [
         'create' => [
             '_' => 'Set cover image',

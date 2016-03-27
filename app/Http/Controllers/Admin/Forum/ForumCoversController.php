@@ -17,8 +17,9 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Http\Controllers\Forum\Admin;
+namespace App\Http\Controllers\Admin\Forum;
 
+use App\Http\Controllers\Admin\Controller;
 use App\Models\Forum\Forum;
 use App\Models\Forum\ForumCover;
 use Auth;
@@ -26,21 +27,15 @@ use Request;
 
 class ForumCoversController extends Controller
 {
-    protected $section = 'community';
+    protected $section = 'admin-forum';
+    protected $actionPrefix = 'forum-covers-';
     private $params = [];
-
-    public function __construct()
-    {
-        parent::__construct();
-
-        view()->share('current_action', 'forum-admin-forum-covers-'.current_action());
-    }
 
     public function index()
     {
         $forums = Forum::with('cover')->get();
 
-        return view('forum.admin.forum_covers.index', compact('forums'));
+        return view('admin.forum.forum_covers.index', compact('forums'));
     }
 
     public function store()
@@ -53,7 +48,7 @@ class ForumCoversController extends Controller
 
         $cover->update($this->coverParams());
 
-        return redirect(route('forum.admin.forum-covers.index').'#forum-'.$cover->forum_id);
+        return redirect(route('admin.forum.forum-covers.index').'#forum-'.$cover->forum_id);
     }
 
     public function update($id)
@@ -62,7 +57,7 @@ class ForumCoversController extends Controller
 
         $cover->update($this->coverParams());
 
-        return redirect(route('forum.admin.forum-covers.index').'#forum-'.$cover->forum_id);
+        return redirect(route('admin.forum.forum-covers.index').'#forum-'.$cover->forum_id);
     }
 
     private function coverParams()
