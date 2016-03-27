@@ -52,3 +52,7 @@ class BeatmapSetPage.Contents extends React.Component
 
         p className: 'beatmapset-difficulties__name',
           Lang.get("beatmaps.mode.#{Mode.toString @props.currentPlaymode}") + " #{diff.name}"
+
+      div className: 'page-contents',
+        el BeatmapSetPage.Details,
+          set: @props.set

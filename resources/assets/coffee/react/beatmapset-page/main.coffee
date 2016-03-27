@@ -71,6 +71,7 @@ class BeatmapSetPage.Main extends SwitchableModePage
         cover: @props.set.coverUrl
 
       el BeatmapSetPage.Contents,
+        set: @props.set
         diffs: @props.diffs
         diffsByMode: @props.diffsByMode
         diffCount: @props.diffCount

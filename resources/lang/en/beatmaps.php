@@ -91,6 +91,17 @@ return [
     ],
     'beatmapset' => [
         'show' => [
+            'contents' => [
+                'made-by' => 'made by ',
+                'submitted' => 'submitted on ',
+                'ranked' => 'ranked on ',
+                'logged-out' => 'You need to log in before downloading any beatmaps!',
+                'download' => [
+                    'normal' => 'download',
+                    'direct' => 'osu!direct',
+                    'no-video' => 'without video version',
+                ],
+            ],
             'extra' => [
                 'description' => [
                     'title' => 'Description',

@@ -37,10 +37,6 @@ class ProfilePage.Stats extends React.Component
             Lang.get 'users.show.stats.level', level: @props.stats.level.current
           el 'dd', className: 'profile-stats__stat-value, profile-stats__stat-value--light',
             "#{@props.stats.level.progress.toFixed()}"
-        # el 'span', className: 'profile-stats__level',
-        #   Lang.get 'users.show.stats.level', level: @props.stats.level.current
-        # el 'span', className: 'profile-stats__percentage',
-        #   "#{@props.stats.level.progress.toFixed()}"
 
       el 'div', className: 'page-contents__row',
         datas.map (m) =>

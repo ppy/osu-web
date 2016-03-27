@@ -19,6 +19,13 @@ class @Url
   @updateProfileAccount: '/account/update-profile'
   @pageAccount: '/account/page'
 
+  @beatmapDownload: (id, video = true) ->
+    url = "https://osu.ppy.sh/d/#{id}"
+    url += 'n' if not video
+    url
+
+  @beatmapDownloadDirect: (id) -> "osu://dl/#{id}"
+
   @requestSlackInvite: '/community/slack/agree'
 
   @beatmapset: (id) => "/s/#{id}"
@@ -26,6 +33,8 @@ class @Url
   @beatmapDiscussionVote: (discussionId) => "/beatmap-discussions/#{discussionId}/vote"
   @beatmapDiscussionPost: (id) => "/beatmap-discussion-posts/#{id}"
   @beatmapDiscussionPosts: '/beatmap-discussion-posts'
+
+  @support: '/home/support'
 
   @user: (id) => "/u/#{id}"
 
