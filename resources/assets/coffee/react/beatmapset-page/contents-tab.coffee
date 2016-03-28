@@ -19,7 +19,7 @@
 
 class BeatmapSetPage.ContentsTab extends React.Component
   onClick: (e) =>
-    return if @props.count == 0
+    return if @props.disabled
     e.preventDefault()
     $.publish 'beatmapset:playmode:set', @props.playmode
     $.publish 'beatmapset:mode:set', @props.newMode
