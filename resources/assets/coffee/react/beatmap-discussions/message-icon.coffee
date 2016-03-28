@@ -25,9 +25,10 @@ BeatmapDiscussions.MessageIcon = React.createClass
 
 
   render: ->
-    name = switch @props.messageType
-      when 'praise' then 'heart'
-      when 'suggestion' then 'circle-o'
-      when 'problem' then 'exclamation-circle'
+    el Icon, name: @typeMapping[@props.messageType]
 
-    el Icon, name: name
+
+  typeMapping:
+    praise: 'heart'
+    suggestion: 'circle-o'
+    problem: 'exclamation-circle'
