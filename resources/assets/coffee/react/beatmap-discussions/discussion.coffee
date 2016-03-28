@@ -91,7 +91,7 @@ BeatmapDiscussions.Discussion = React.createClass
           div className: "#{tbn}__icon",
             span
               className: "beatmap-discussion-message-type beatmap-discussion-message-type--#{@props.discussion.message_type}"
-              el BeatmapDiscussions.MessageIcon, messageType: @props.discussion.message_type
+              el Icon, name: BeatmapDiscussionMessageType.icon[@props.discussion.message_type]
 
           if @props.discussion.resolved
             div className: "#{tbn}__icon #{tbn}__icon--resolved",

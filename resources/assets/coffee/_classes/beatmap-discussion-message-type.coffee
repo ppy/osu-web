@@ -15,20 +15,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{span} = React.DOM
-el = React.createElement
-
-bn = 'beatmap-discussions-post-icon'
-
-BeatmapDiscussions.MessageIcon = React.createClass
-  mixins: [React.addons.PureRenderMixin]
-
-
-  render: ->
-    el Icon, name: @typeMapping[@props.messageType]
-
-
-  typeMapping:
+class @BeatmapDiscussionMessageType
+  @icon:
     praise: 'heart'
     suggestion: 'circle-o'
     problem: 'exclamation-circle'

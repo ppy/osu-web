@@ -138,7 +138,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
         className: "#{bn}__message-type"
         onClick: => @setState messageType: type
         div className: iconClasses,
-          el BeatmapDiscussions.MessageIcon, messageType: type
+          el Icon, name: BeatmapDiscussionMessageType.icon[type]
           span className: "#{bn}__message-type-text",
             Lang.get("beatmaps.discussions.message_type.#{type}")
 
