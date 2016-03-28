@@ -24,6 +24,22 @@ BeatmapDiscussions.Overview = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
+  componentDidMount: ->
+    @updateChart()
+
+
+  componentWillUpdate: ->
+    @_currentDiscussions = null
+
+
+  componentDidUpdate: ->
+    @updateChart()
+
+
+  componentWillUnmount: ->
+    $(window).off '.beatmapDiscussionsOverview'
+
+
   render: ->
     user = @props.lookupUser @props.beatmapset.user_id
 
@@ -31,16 +47,17 @@ BeatmapDiscussions.Overview = React.createClass
       className: bn
 
       div
-        className: "#{bn}__beatmaps"
+        className: "#{bn}__row #{bn}__row--beatmaps"
         el BeatmapDiscussions.BeatmapList,
           currentBeatmap: @props.currentBeatmap
           beatmapset: @props.beatmapset
 
       div
-        className: "#{bn}__timeline"
+        className: "#{bn}__row #{bn}__row--chart"
+        div ref: 'chartArea', className: 'beatmap-discussions-chart'
 
       div
-        className: "#{bn}__info"
+        className: "#{bn}__row #{bn}__row--info"
 
         div null,
           div
@@ -59,17 +76,24 @@ BeatmapDiscussions.Overview = React.createClass
           @stats()
 
 
+  currentDiscussions: ->
+    if !@_currentDiscussions?
+      @_currentDiscussions = @props
+        .beatmapsetDiscussion
+        .beatmap_discussions
+        .data
+        .filter (discussion) =>
+          discussion.beatmap_id == @props.currentBeatmap.id
+
+    @_currentDiscussions
+
+
   stats: ->
     sbn = 'beatmap-discussions-stats'
 
-    discussions = @props
-      .beatmapsetDiscussion
-      .beatmap_discussions
-      .data
-      .filter (discussion) =>
-        discussion.beatmap_id == @props.currentBeatmap.id &&
-          discussion.timestamp? &&
-          discussion.message_type != 'praise'
+    discussions = @currentDiscussions().filter (discussion) =>
+      discussion.timestamp? &&
+      discussion.message_type != 'praise'
 
     count =
       resolved:
@@ -86,3 +110,17 @@ BeatmapDiscussions.Overview = React.createClass
         className: "#{sbn} #{sbn}--#{type}"
         p className: "#{sbn}__text #{sbn}__text--type", Lang.get("beatmaps.discussions.stats.#{type}")
         p className: "#{sbn}__text #{sbn}__text--count", count[type]
+
+
+  updateChart: ->
+    if !@_chart?
+      area = @refs.chartArea
+      length = @props.currentBeatmap.total_length * 1000
+
+      @_chart = new BeatmapDiscussionsChart(area, length)
+
+      $(window).on 'throttled-resize.beatmapDiscussionsOverview', @_chart.resize
+
+      window.butts = @_chart
+
+    @_chart.loadData @currentDiscussions()

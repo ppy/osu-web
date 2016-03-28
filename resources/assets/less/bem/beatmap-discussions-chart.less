@@ -16,16 +16,23 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.beatmap-discussion-message-type {
-  &--praise {
-    color: @beatmap-discussion--color-praise;
-  }
+.beatmap-discussions-chart {
+  width: 100%;
+  height: 100%;
 
-  &--problem {
-    color: @beatmap-discussion--color-problem;
-  }
+  &__point {
+    font-size: 12px;
 
-  &--suggestion {
-    color: @beatmap-discussion--color-suggestion;
+    &--praise {
+      fill: @beatmap-discussion--color-praise;
+    }
+
+    &--problem {
+      fill: @beatmap-discussion--color-problem;
+    }
+
+    &--suggestion {
+      fill: @beatmap-discussion--color-suggestion;
+    }
   }
 }

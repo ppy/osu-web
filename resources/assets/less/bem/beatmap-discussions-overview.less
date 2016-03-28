@@ -17,7 +17,7 @@
  *
  */
 .beatmap-discussions-overview {
-  padding: (@spacing * 2) (@spacing * 4);
+  padding: @spacing 0;
   .default-box-shadow();
   background-color: @grey-f;
   margin-bottom: (@spacing / 2);
@@ -25,20 +25,31 @@
   display: flex;
   flex-direction: column;
 
-  &__beatmaps {
-    align-self: center;
+  &__row {
+    padding: @spacing (@spacing * 4);
 
-    width: 100%;
+    &--beatmaps {
+      align-self: center;
 
-    @media @desktop {
-      width: 350px;
+      width: 100%;
+
+      @media @desktop {
+        width: 350px;
+      }
     }
-  }
 
-  &__info {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    &--chart {
+      height: 130px;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    &--info {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
   }
 
   &__meta-text {
@@ -48,9 +59,5 @@
       font-size: 15px;
       font-weight: 500;
     }
-  }
-
-  &__timeline {
-    height: 130px;
   }
 }

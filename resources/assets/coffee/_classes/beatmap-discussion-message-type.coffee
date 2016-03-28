@@ -20,3 +20,8 @@ class @BeatmapDiscussionMessageType
     praise: 'heart'
     suggestion: 'circle-o'
     problem: 'exclamation-circle'
+
+  @iconText:
+    praise: '&#xf004;'
+    suggestion: '&#xf10c;'
+    problem: '&#xf06a;'

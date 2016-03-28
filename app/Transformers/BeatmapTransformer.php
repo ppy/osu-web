@@ -35,6 +35,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             'mode' => $beatmap->mode,
             'difficulty_rating' => $beatmap->difficultyrating,
             'version' => $beatmap->version,
+            'total_length' => $beatmap->total_length,
             'url' => route('beatmaps.show', ['id' => $beatmap->beatmap_id, 'm' => $beatmap->playmode]),
         ];
     }
