@@ -44,11 +44,12 @@ BeatmapDiscussions.Discussions = React.createClass
             key: "mode-#{mode}"
             className: "#{bn}__mode"
             onClick: => $.publish 'beatmapDiscussion:setMode', mode
-            div className: circleClass
-            if mode == 'timeline' && mode == @props.mode
-              div className: "#{bn}__timeline-line #{bn}__timeline-line--bottom #{bn}__timeline-line--half"
-            span className: "#{bn}__mode-text",
-              Lang.get("#{lp}.mode.#{mode}")
+            div className: "#{bn}__mode-container",
+              div className: circleClass
+              if mode == 'timeline' && mode == @props.mode
+                div className: "#{bn}__timeline-line #{bn}__timeline-line--bottom #{bn}__timeline-line--half"
+              span className: "#{bn}__mode-text",
+                Lang.get("#{lp}.mode.#{mode}")
 
       div
         className: "#{bn}__discussions"
