@@ -155,7 +155,7 @@ BeatmapDiscussions.Discussion = React.createClass
 
     return if !baseScore?
 
-    currentVote = @props.discussion.current_user_attributes.data.vote_score
+    currentVote = @props.discussion.current_user_attributes?.data?.vote_score
 
     classes = "#{vbn} #{vbn}--#{type}"
 
