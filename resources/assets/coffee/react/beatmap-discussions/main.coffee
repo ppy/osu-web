@@ -38,6 +38,8 @@ BeatmapDiscussions.Main = React.createClass
     $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
     $.subscribe 'beatmapDiscussion:setMode.beatmapDiscussions', @setMode
 
+    @jumpByHash()
+
 
   componentWillUnmount: ->
     $.unsubscribe '.beatmapDiscussions'
@@ -81,21 +83,22 @@ BeatmapDiscussions.Main = React.createClass
           mode: @state.mode
 
 
-  setBeatmapsetDiscussion: (_e, beatmapsetDiscussion) ->
+  setBeatmapsetDiscussion: (_e, beatmapsetDiscussion, callback) ->
     @setState
       beatmapsetDiscussion: beatmapsetDiscussion
       users: @indexUsers beatmapsetDiscussion.users.data
+      callback
 
 
-  setCurrentBeatmapId: (_e, id) ->
-    return if id == @state.currentBeatmap.id
+  setCurrentBeatmapId: (_e, id, callback) ->
+    return callback?() if id == @state.currentBeatmap.id
 
     beatmap = @state.beatmapset.beatmaps.data.find (bm) =>
       bm.id == id
 
-    return if !beatmap?
+    return callback?() if !beatmap?
 
-    @setState currentBeatmap: beatmap
+    @setState currentBeatmap: beatmap, callback
 
 
   indexUsers: (usersArray) ->
@@ -116,15 +119,24 @@ BeatmapDiscussions.Main = React.createClass
     return if !discussion?
 
     mode = if discussion.timestamp? then 'timeline' else 'general'
-    @setMode null, mode
-    @setCurrentBeatmapId null, discussion.beatmap_id
 
-    target = "#beatmap-discussion-#{beatmapDiscussionId}"
+    @setMode null, mode, =>
+      @setCurrentBeatmapId null, discussion.beatmap_id, =>
+        target = $(".js-beatmap-discussion-jump[data-id='#{beatmapDiscussionId}']")
+        $(window).stop().scrollTo target, 500
 
-    $(window).stop().scrollTo target, 500
+
+  setMode: (_e, mode, callback) ->
+    return callback?() if mode == @state.mode
+
+    @setState mode: mode, callback
 
 
-  setMode: (_e, mode) ->
-    return if mode == @state.mode
+  jumpByHash: =>
+    jumpId = _.chain document.location.hash
+      .replace /#\/(\d+)/, '$1'
+      .parseInt 10
+      .value()
 
-    @setState mode: mode
+    if jumpId?
+      $.publish 'beatmapDiscussion:jump', jumpId

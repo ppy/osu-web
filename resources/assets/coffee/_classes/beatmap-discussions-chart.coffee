@@ -60,9 +60,14 @@ class @BeatmapDiscussionsChart
     @svgPoints = @svgPoints.data @data, (d) => d.id
 
     points = @svgPoints.enter()
-      .append 'g'
+      .append 'a'
+      .attr 'xlink:href', (d) => "#/#{d.id}"
+      .attr 'data-target-id', (d) => d.id
       .attr 'class', (d) =>
         "#{bn}__point #{bn}__point--#{d.message_type}"
+      .on 'click', (d) =>
+        d3.event.preventDefault()
+        $.publish 'beatmapDiscussion:jump', d.id
 
     points
       .append 'line'

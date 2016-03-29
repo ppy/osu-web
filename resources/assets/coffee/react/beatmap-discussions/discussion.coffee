@@ -39,8 +39,8 @@ BeatmapDiscussions.Discussion = React.createClass
   render: ->
 
     div
-      className: bn
-      id: "beatmap-discussion-#{@props.discussion.id}"
+      className: "#{bn} js-beatmap-discussion-jump"
+      'data-id': @props.discussion.id
 
       div className: "#{bn}__timestamp",
         @timestamp() if @props.discussion.timestamp?
