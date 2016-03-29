@@ -25,17 +25,20 @@
     // cancels out &__discussion's padding
     margin: 0 (-@spacing);
     flex: none;
-    background-image: linear-gradient(to bottom, transparent, @grey-c 50%, transparent);
 
     display: flex;
   }
 
   &__action {
-    background-color: @grey-f;
     display: flex;
 
     &--with-line {
-      margin-left: 1px;
+      &::before {
+        .full-size();
+        width: 1px;
+        right: 100%;
+        background-image: linear-gradient(to bottom, transparent, @grey-c 50%, transparent);
+      }
     }
   }
 
