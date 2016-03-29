@@ -77,7 +77,7 @@ BeatmapDiscussions.Discussion = React.createClass
 
         if @props.discussion.resolved
           div
-            className: "#{bn}__resolved"
+            className: "#{bn}__resolved #{'hidden' if @state.collapsed}"
             Lang.get 'beatmaps.discussions.resolved'
 
 
