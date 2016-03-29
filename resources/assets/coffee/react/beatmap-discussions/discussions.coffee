@@ -49,14 +49,14 @@ BeatmapDiscussions.Discussions = React.createClass
             div className: "#{bn}__mode-container",
               div className: circleClass
               if mode == 'timeline' && mode == @props.mode
-                div className: "#{bn}__timeline-line #{bn}__timeline-line--bottom #{bn}__timeline-line--half"
+                div className: "#{bn}__timeline-line #{bn}__timeline-line--bottom #{bn}__timeline-line--half hidden-xs"
               span className: "#{bn}__mode-text",
                 Lang.get("#{lp}.mode.#{mode}")
 
       div
         className: "#{bn}__discussions"
         if @props.mode == 'timeline'
-          div className: "#{bn}__timeline-line"
+          div className: "#{bn}__timeline-line hidden-xs"
 
         div className: "#{bn}__discussions",
           @currentDiscussions().map (discussion) =>
@@ -81,7 +81,7 @@ BeatmapDiscussions.Discussions = React.createClass
             div className: "#{bn}__discussion #{bn}__discussion--empty", Lang.get 'beatmaps.discussions.empty'
 
       if @props.mode == 'timeline'
-        div className: "#{bn}__mode-circle #{bn}__mode-circle--active"
+        div className: "#{bn}__mode-circle #{bn}__mode-circle--active hidden-xs"
 
 
   currentDiscussions: ->

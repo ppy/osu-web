@@ -72,7 +72,7 @@ BeatmapDiscussions.Overview = React.createClass
               __html: Lang.get 'beatmaps.listing.mapped-by',
                 mapper: "<strong>#{osu.link Url.user(user.user_id), user.username}</strong>"
 
-        div null,
+        div className: 'text-right',
           @stats()
 
 

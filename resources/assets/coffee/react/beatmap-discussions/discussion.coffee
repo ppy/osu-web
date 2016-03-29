@@ -42,7 +42,7 @@ BeatmapDiscussions.Discussion = React.createClass
       className: "#{bn} js-beatmap-discussion-jump"
       'data-id': @props.discussion.id
 
-      div className: "#{bn}__timestamp",
+      div className: "#{bn}__timestamp hidden-xs",
         @timestamp() if @props.discussion.timestamp?
 
       div className: "#{bn}__discussion",
@@ -53,7 +53,7 @@ BeatmapDiscussions.Discussion = React.createClass
             ['up', 'down'].map (direction) =>
               div
                 key: direction
-                className: "#{bn}__action"
+                className: "#{bn}__action hidden-xs"
                 @displayVote direction
 
             div className: "#{bn}__action #{bn}__action--with-line",
