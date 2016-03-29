@@ -32,6 +32,8 @@ BeatmapDiscussions.Discussions = React.createClass
   render: ->
     currentBeatmapId = if @props.mode == 'general' then null else @props.currentBeatmap.id
 
+    hasVisibleDiscussion = false
+
     div
       className: bn
 
@@ -59,7 +61,10 @@ BeatmapDiscussions.Discussions = React.createClass
         div className: "#{bn}__discussions",
           @currentDiscussions().map (discussion) =>
             className = "#{bn}__discussion"
-            className += ' hidden' if discussion.beatmap_id != currentBeatmapId
+            if discussion.beatmap_id != currentBeatmapId
+              className += ' hidden'
+            else
+              hasVisibleDiscussion = true
 
             div
               key: discussion.id
@@ -71,6 +76,9 @@ BeatmapDiscussions.Discussions = React.createClass
                 beatmapset: @props.beatmapset
                 currentBeatmap: @props.currentBeatmap
                 userPermissions: @props.userPermissions
+
+          if !hasVisibleDiscussion
+            div className: "#{bn}__discussion #{bn}__discussion--empty", Lang.get 'beatmaps.discussions.empty'
 
       if @props.mode == 'timeline'
         div className: "#{bn}__mode-circle #{bn}__mode-circle--active"

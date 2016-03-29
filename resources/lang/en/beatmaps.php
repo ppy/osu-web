@@ -26,6 +26,8 @@ return [
     ],
 
     'discussions' => [
+        'empty' => 'No discussions yet!',
+
         'message_hint' => 'Start message with timestamp (e.g. 00:12:345) to mod.',
 
         'message_placeholder' => 'Type here to post',

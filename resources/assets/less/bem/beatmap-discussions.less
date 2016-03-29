@@ -18,11 +18,19 @@
  */
 .beatmap-discussions {
   @_mode-text-size: 10px;
+  @_empty-text-size: 12px;
   @_mode-circle-diameter: (@spacing * 3 / 2);
   @_timeline-line-width: 3px;
 
   .inner-shadow-top();
   padding: (@spacing * 2);
+
+  &__discussion {
+    &--empty {
+      padding-left: @beatmap-discussion--timestamp-width;
+      font-size: @_empty-text-size;
+    }
+  }
 
   &__mode {
     outline: none;
