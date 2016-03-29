@@ -32,7 +32,10 @@ class @BeatmapDiscussionsChart
     @svgWrapper = @svg.append 'g'
       .classed "#{bn}__wrapper", true
 
-    @svgXAxis = @svgWrapper.append 'g'
+    @svgXAxis = @svgWrapper.append 'rect'
+      .attr 'x', 0
+      .attr 'y', 70
+      .attr 'height', 5
       .classed "#{bn}__axis #{bn}__axis--x", true
 
     @svgPoints = @svgWrapper.append 'g'
@@ -62,11 +65,12 @@ class @BeatmapDiscussionsChart
         "#{bn}__point #{bn}__point--#{d.message_type}"
 
     points
-      .append 'rect'
+      .append 'line'
       .classed "#{bn}__bar", true
-      .attr 'width', '1'
-      .attr 'y', '30'
-      .attr 'height', '55'
+      .attr 'x1', 0
+      .attr 'x2', 0
+      .attr 'y1', 30
+      .attr 'y2', 85
 
     points
       .append 'text'
@@ -112,9 +116,13 @@ class @BeatmapDiscussionsChart
       .attr 'transform', "translate(#{@margins.left}, #{@margins.top})"
 
 
+  drawXAxis: =>
+    @svgXAxis.attr 'width', @width
+
+
   positionPoints: =>
     @svgPoints
-      .attr 'transform', (d) => "translate(#{@scaleX(d.timestamp)}, 0)"
+      .attr 'transform', (d) => "translate(#{Math.round(@scaleX(d.timestamp))}, 0)"
 
 
 
@@ -126,4 +134,5 @@ class @BeatmapDiscussionsChart
     @setWrapperSize()
     @setAxesSize()
 
+    @drawXAxis()
     @positionPoints()

@@ -17,22 +17,43 @@
  *
  */
 .beatmap-discussions-chart {
+  @_top: beatmap-discussions-chart;
   width: 100%;
   height: 100%;
+
+  &__axis {
+    fill: @grey-c;
+  }
+
+  &__bar {
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+
+    .@{_top}__point:hover & {
+      stroke-width: 2;
+    }
+  }
+
+  &__icon {
+    stroke-width: 0;
+  }
 
   &__point {
     font-size: 12px;
 
     &--praise {
       fill: @beatmap-discussion--color-praise;
+      stroke: @beatmap-discussion--color-praise;
     }
 
     &--problem {
       fill: @beatmap-discussion--color-problem;
+      stroke: @beatmap-discussion--color-problem;
     }
 
     &--suggestion {
       fill: @beatmap-discussion--color-suggestion;
+      stroke: @beatmap-discussion--color-suggestion;
     }
   }
 }
