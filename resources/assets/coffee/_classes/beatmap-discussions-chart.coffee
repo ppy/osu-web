@@ -57,7 +57,7 @@ class @BeatmapDiscussionsChart
   loadData: (data) =>
     @data = _.orderBy data, 'timestamp'
 
-    @svgPoints = @svgPoints.data @data
+    @svgPoints = @svgPoints.data @data, (d) => d.id
 
     points = @svgPoints.enter()
       .append 'g'
