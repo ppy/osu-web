@@ -51,7 +51,7 @@ class DiscussionsController extends Controller
             ]
         );
 
-        if (present(array_get($params, 'timestamp')) === true) {
+        if (($params['timestamp'] ?? null) !== null) {
             $params['beatmap_id'] = $beatmap->beatmap_id;
         }
 
