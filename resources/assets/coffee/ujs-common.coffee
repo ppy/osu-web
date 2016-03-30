@@ -16,8 +16,8 @@ You should have received a copy of the GNU Affero General Public License
 along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 $(document).on 'ajax:before', ->
-  osu.showLoadingOverlay()
-  $(document).one 'ajax:complete', osu.hideLoadingOverlay
+  loadingOverlay.show()
+  $(document).one 'ajax:complete.ujsHideLoadingOverlay', loadingOverlay.hide
 
 
 $(document).on 'ajax:success', (event, data) ->

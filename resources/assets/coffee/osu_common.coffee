@@ -67,16 +67,6 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     el.textContent = time
     el.outerHTML
 
-  showLoadingOverlay: ->
-    $overlay = $('.loading-overlay')
-    return if $overlay.hasClass('loading-overlay--visible')
-
-    $overlay.addClass 'loading-overlay--visible'
-
-
-  hideLoadingOverlay: ->
-    $('.loading-overlay').removeClass 'loading-overlay--visible'
-
 
   initTimeago: ->
     $('.timeago-raw').timeago().removeClass 'timeago-raw'
@@ -91,7 +81,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
 
   reloadPage: (fallback, forceReload) ->
-    $(document).off 'ajax:complete', osu.hideLoadingOverlay
+    $(document).off '.ujsHideLoadingOverlay'
 
     $.get document.location.href
     .done osu.replacePage
@@ -99,7 +89,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
       return osu.navigate fallback if fallback
       return document.location.reload() if forceReload
       osu.popup 'Failed loading page', 'danger'
-    .always osu.hideLoadingOverlay
+    .always loadingOverlay.hide
 
 
   navigate: (url, keepScroll) ->

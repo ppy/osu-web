@@ -77,7 +77,7 @@ class ProfilePage.Extra extends React.Component
 
     newOrder = $elems.sortable('toArray', attribute: 'data-page-id')
 
-    osu.showLoadingOverlay()
+    loadingOverlay.show()
 
     $elems.sortable('cancel')
 
@@ -96,7 +96,7 @@ class ProfilePage.Extra extends React.Component
 
         @setState profileOrder: @props.user.profileOrder
 
-      .always osu.hideLoadingOverlay
+      .always loadingOverlay.hide
 
 
   render: =>

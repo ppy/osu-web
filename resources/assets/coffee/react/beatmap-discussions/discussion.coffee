@@ -143,7 +143,7 @@ BeatmapDiscussions.Discussion = React.createClass
 
     .fail osu.ajaxError
 
-    .always osu.hideLoadingOverlay
+    .always loadingOverlay.hide
 
 
   displayVote: (type) ->

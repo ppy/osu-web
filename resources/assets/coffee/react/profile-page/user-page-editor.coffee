@@ -44,7 +44,7 @@ class ProfilePage.UserPageEditor extends React.Component
 
   _save: (e) =>
     body = @props.userPage.raw
-    osu.showLoadingOverlay()
+    loadingOverlay.show()
 
     $.ajax Url.pageAccount,
       method: 'PUT'
@@ -57,7 +57,7 @@ class ProfilePage.UserPageEditor extends React.Component
         editing: false
         raw: body
         initialRaw: body
-    .always osu.hideLoadingOverlay
+    .always loadingOverlay.hide
 
 
   _change: (e) =>

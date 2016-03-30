@@ -16,14 +16,7 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-# loading animation overlay
-# fired from turbolinks
-$(document).on 'page:fetch', osu.showLoadingOverlay
-$(document).on 'page:receive', osu.hideLoadingOverlay
-# form submission is not covered by turbolinks
-$(document).on 'submit', 'form', osu.showLoadingOverlay
-
-
+@loadingOverlay ||= new LoadingOverlay
 @reactTurbolinks ||= new ReactTurbolinks
 
 reactTurbolinks.register 'user-card', UserCard
@@ -67,6 +60,13 @@ initPage = =>
 # callbacks to osu:page:change.
 $(document).on 'ready page:load', initPage
 $(document).on 'osu:page:change', _.debounce(initPage, 500)
+
+# loading animation overlay
+# fired from turbolinks
+$(document).on 'page:fetch', loadingOverlay.show
+$(document).on 'page:receive', loadingOverlay.hide
+# form submission is not covered by turbolinks
+$(document).on 'submit', 'form', loadingOverlay.show
 
 
 $(document).on 'change', '.js-url-selector', (e) ->
