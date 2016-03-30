@@ -18,7 +18,20 @@
 bn = 'beatmap-discussions-chart'
 
 class @BeatmapDiscussionsChart
-  transition: 1000
+  dimensions:
+    barHeight: 55
+    barTop: 30
+    iconTop: 100
+    xAxisTop: 70
+    xAxisHeight: 5
+
+
+  margins:
+    top: 0
+    right: 40
+    bottom: 0
+    left: 40
+
 
   constructor: (area, @length) ->
     @scaleX = d3.scale.linear()
@@ -34,8 +47,8 @@ class @BeatmapDiscussionsChart
 
     @svgXAxis = @svgWrapper.append 'rect'
       .attr 'x', 0
-      .attr 'y', 70
-      .attr 'height', 5
+      .attr 'y', @dimensions.xAxisTop
+      .attr 'height', @dimensions.xAxisHeight
       .classed "#{bn}__axis #{bn}__axis--x", true
 
     @svgPoints = @svgWrapper.append 'g'
@@ -45,13 +58,6 @@ class @BeatmapDiscussionsChart
       .ticks 0
       .outerTickSize 0
       .orient 'bottom'
-
-
-  margins:
-    top: 0
-    right: 40
-    bottom: 0
-    left: 40
 
 
   loadData: (data) =>
@@ -74,14 +80,14 @@ class @BeatmapDiscussionsChart
       .classed "#{bn}__bar", true
       .attr 'x1', 0
       .attr 'x2', 0
-      .attr 'y1', 30
-      .attr 'y2', 85
+      .attr 'y1', @dimensions.barTop
+      .attr 'y2', @dimensions.barTop + @dimensions.barHeight
 
     points
       .append 'text'
       .classed "#{bn}__icon", true
       .style 'text-anchor', 'middle'
-      .attr 'y', 100
+      .attr 'y', @dimensions.iconTop
       .html (d) =>
         icon = BeatmapDiscussionMessageType.icon[d.message_type]
         text = BeatmapDiscussionMessageType.iconText[d.message_type]
