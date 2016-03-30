@@ -97,7 +97,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
   post: ->
     return unless @validPost()
 
-    loadingOverlay.show()
+    LoadingOverlay.show()
 
     data =
         beatmap_discussion:
@@ -122,7 +122,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
 
     .fail osu.ajaxError
 
-    .always loadingOverlay.hide
+    .always LoadingOverlay.hide
 
 
   messageTypeSelection: (type) ->

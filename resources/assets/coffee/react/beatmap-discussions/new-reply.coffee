@@ -70,7 +70,7 @@ BeatmapDiscussions.NewReply = React.createClass
 
   post: ->
     return if !@validPost()
-    loadingOverlay.show()
+    LoadingOverlay.show()
 
     $.ajax Url.beatmapDiscussionReplies(@props.discussion.beatmap_id, @props.discussion.id),
       method: 'POST'
@@ -86,7 +86,7 @@ BeatmapDiscussions.NewReply = React.createClass
 
     .fail osu.ajaxError
 
-    .always loadingOverlay.hide
+    .always LoadingOverlay.hide
 
 
   setMessage: (e) ->

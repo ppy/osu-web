@@ -85,7 +85,7 @@ class UserDropdownModal
   loginSuccess: (_event, data) =>
     window.currentUser = data.data
     $(document).off '.ujsHideLoadingOverlay'
-    loadingOverlay.show()
+    LoadingOverlay.show()
     if @clickAfterLogin?
       if @clickAfterLogin.submit
         # plain javascript here doesn't trigger submit events

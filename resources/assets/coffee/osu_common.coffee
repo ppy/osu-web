@@ -89,7 +89,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
       return osu.navigate fallback if fallback
       return document.location.reload() if forceReload
       osu.popup 'Failed loading page', 'danger'
-    .always loadingOverlay.hide
+    .always LoadingOverlay.hide
 
 
   navigate: (url, keepScroll) ->

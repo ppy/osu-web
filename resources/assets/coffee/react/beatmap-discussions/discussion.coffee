@@ -132,7 +132,7 @@ BeatmapDiscussions.Discussion = React.createClass
 
 
   doVote: (score) ->
-    loadingOverlay.show()
+    LoadingOverlay.show()
 
     $.ajax Url.beatmapDiscussionVote(@props.discussion.beatmap_id, @props.discussion.id),
       method: 'PUT',
@@ -145,7 +145,7 @@ BeatmapDiscussions.Discussion = React.createClass
 
     .fail osu.ajaxError
 
-    .always loadingOverlay.hide
+    .always LoadingOverlay.hide
 
 
   displayVote: (type) ->

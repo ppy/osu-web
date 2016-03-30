@@ -15,23 +15,25 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-
-class @LoadingOverlay
-  overlay: document.getElementsByClassName 'js-loading-overlay'
+overlay = document.getElementsByClassName 'js-loading-overlay'
 
 
-  constructor: ->
-    @show = _.debounce @show, 300
+show = ->
+  return if overlay.length == 0
+
+  overlay[0].classList.add 'loading-overlay--visible'
 
 
-  show: =>
-    return if @overlay.length == 0
-
-    @overlay[0].classList.add 'loading-overlay--visible'
+show = _.debounce show, 300, maxWait: 300
 
 
-  hide: =>
-    return if @overlay.length == 0
+hide = ->
+  return if overlay.length == 0
 
-    @show.cancel()
-    @overlay[0].classList.remove 'loading-overlay--visible'
+  show.cancel()
+  overlay[0].classList.remove 'loading-overlay--visible'
+
+
+@LoadingOverlay =
+  show: show
+  hide: hide
