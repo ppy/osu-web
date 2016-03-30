@@ -88,8 +88,13 @@ class DiscussionsController extends Controller
         $vote = $discussion->beatmapDiscussionVotes()->where(['user_id' => Auth::user()->user_id])->firstOrNew([]);
         $vote->fill($params);
 
-        if (($params['score'] ?? null) === 0 && $vote->id !== null) {
-            $result = $vote->delete();
+        if (($params['score'] ?? null) === 0) {
+            if ($vote->id === null) {
+                // no existing vote and setting to 0 is noop
+                $result = true;
+            } else {
+                $result = $vote->delete();
+            }
         } else {
             $result = $vote->save();
         }
