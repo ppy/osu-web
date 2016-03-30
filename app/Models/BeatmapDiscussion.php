@@ -145,11 +145,7 @@ class BeatmapDiscussion extends Model
 
     public function canBeRepliedBy($user)
     {
-        if ($this->canBeUpdatedBy($user)) {
-            return true;
-        }
-
-        return !$this->resolved;
+        return $user !== null;
     }
 
     public function getVotesSummaryAttribute()
