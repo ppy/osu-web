@@ -52,7 +52,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
     {
         return $this->collection(
             $discussion->beatmapDiscussionReplies,
-            new BeatmapDiscussionReplyTransformer
+            new BeatmapDiscussionReplyTransformer()
         );
     }
 
