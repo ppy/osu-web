@@ -20,7 +20,6 @@
 namespace App\Http\Controllers\Beatmaps;
 
 use Auth;
-use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionReply;
 use DB;
