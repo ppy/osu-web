@@ -81,11 +81,6 @@ class BeatmapDiscussion extends Model
         return $this->attributes['message_type'] = static::MESSAGE_TYPES[$value] ?? null;
     }
 
-    public function setTimestampAttribute($value)
-    {
-        return $this->attributes['timestamp'] = get_int($value);
-    }
-
     public function hasValidBeatmap()
     {
         return
