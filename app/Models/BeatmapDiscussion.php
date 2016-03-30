@@ -117,14 +117,13 @@ class BeatmapDiscussion extends Model
         return $user !== null;
     }
 
-    public function canBeUpdatedBy($user)
+    public function canBeResolvedBy($user)
     {
-        // no point closing general discussion
+        // no point resolving general discussion?
         if ($this->timestamp === null) {
             return false;
         }
 
-        // no anonymous posting
         if ($user === null) {
             return false;
         }
