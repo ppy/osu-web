@@ -70,6 +70,8 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
         $score = 0;
 
+        // This assumes beatmapDiscussionVotes are already preloaded and
+        // thus will save one query.
         foreach ($discussion->beatmapDiscussionVotes as $vote) {
             if ($vote->user_id === $userId) {
                 $score = $vote->score;
