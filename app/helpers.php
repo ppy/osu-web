@@ -474,7 +474,13 @@ function deltree($dir)
 function get_param_value($input, $type)
 {
     if ($type === 'bool') {
-        return $input === '1' || $input === 'true';
+        if ($input === '1' || $input === 'true') {
+            return true;
+        } elseif ($input === '0' || $input === 'false') {
+            return false;
+        } else {
+            return;
+        }
     }
 
     if ($type === 'int') {
