@@ -21,6 +21,7 @@ class @BeatmapDiscussionMessageType
     suggestion: 'circle-o'
     problem: 'exclamation-circle'
 
+  # used for svg since it doesn't seem to have ::before pseudo-element
   @iconText:
     praise: '&#xf004;'
     suggestion: '&#xf10c;'
