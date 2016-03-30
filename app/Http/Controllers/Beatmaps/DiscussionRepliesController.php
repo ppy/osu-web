@@ -29,7 +29,6 @@ use Request;
 
 class DiscussionRepliesController extends Controller
 {
-    // the beatmap id isn't actually needed in most cases
     public function __construct()
     {
         $this->middleware('auth');
