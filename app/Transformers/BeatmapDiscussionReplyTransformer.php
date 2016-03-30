@@ -30,7 +30,16 @@ class BeatmapDiscussionReplyTransformer extends Fractal\TransformerAbstract
 
     public function transform(BeatmapDiscussionReply $reply)
     {
-        return $reply->toArray();
+        return [
+            'id' => $reply->id,
+            'beatmap_discussion_id' => $reply->beatmap_discussion_id,
+            'user_id' => $reply->user_id,
+
+            'message' => $reply->message,
+
+            'created_at' => $reply->created_at->toIso8601String(),
+            'updated_at' => $reply->updated_at->toIso8601String(),
+        ];
     }
 
     public function includeUser(BeatmapDiscussionReply $reply)
