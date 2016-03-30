@@ -57,7 +57,7 @@ class DiscussionRepliesController extends Controller
 
         $discussionParams = get_params(Request::all(), 'beatmap_discussion', ['resolved:bool']);
 
-        if (array_get($discussionParams, 'resolve') === true && !$discussion->canBeUpdatedBy(Auth::user())) {
+        if (($discussionParams['resolve'] ?? null) === true && !$discussion->canBeUpdatedBy(Auth::user())) {
             abort(403);
         }
 
