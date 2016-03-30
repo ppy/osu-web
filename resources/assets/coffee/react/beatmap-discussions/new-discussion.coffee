@@ -45,7 +45,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
           if @currentType() == 'timeline'
             div
               className: "#{bn}__timestamp"
-              osu.formatBeatmapTimestamp @state.timestamp
+              BeatmapDiscussionHelper.formatTimestamp @state.timestamp
 
       div className: "#{bn}__col #{bn}__col--main",
         div className: "#{bn}__message-box",
@@ -138,7 +138,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
         className: "#{bn}__message-type"
         onClick: => @setState messageType: type
         div className: iconClasses,
-          el Icon, name: BeatmapDiscussionMessageType.icon[type]
+          el Icon, name: BeatmapDiscussionHelper.messageType.icon[type]
           span className: "#{bn}__message-type-text",
             Lang.get("beatmaps.discussions.message_type.#{type}")
 

@@ -15,14 +15,18 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class @BeatmapDiscussionMessageType
-  @icon:
-    praise: 'heart'
-    suggestion: 'circle-o'
-    problem: 'exclamation-circle'
+class @BeatmapDiscussionHelper
+  @messageType:
+    icon:
+      praise: 'heart'
+      suggestion: 'circle-o'
+      problem: 'exclamation-circle'
 
-  # used for svg since it doesn't seem to have ::before pseudo-element
-  @iconText:
-    praise: '&#xf004;'
-    suggestion: '&#xf10c;'
-    problem: '&#xf06a;'
+    # used for svg since it doesn't seem to have ::before pseudo-element
+    iconText:
+      praise: '&#xf004;'
+      suggestion: '&#xf10c;'
+      problem: '&#xf06a;'
+
+  @formatTimestamp: (timestamp) =>
+    moment(timestamp).utcOffset(0).format('mm:ss.SSS')

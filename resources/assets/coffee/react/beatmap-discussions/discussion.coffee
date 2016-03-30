@@ -91,14 +91,14 @@ BeatmapDiscussions.Discussion = React.createClass
           div className: "#{tbn}__icon",
             span
               className: "beatmap-discussion-message-type beatmap-discussion-message-type--#{@props.discussion.message_type}"
-              el Icon, name: BeatmapDiscussionMessageType.icon[@props.discussion.message_type]
+              el Icon, name: BeatmapDiscussionHelper.messageType.icon[@props.discussion.message_type]
 
           if @props.discussion.resolved
             div className: "#{tbn}__icon #{tbn}__icon--resolved",
               el Icon, name: 'check-circle-o'
 
         div className: "#{tbn}__text",
-          osu.formatBeatmapTimestamp(@props.discussion.timestamp)
+          BeatmapDiscussionHelper.formatTimestamp @props.discussion.timestamp
 
 
   post: (post, type = '') ->

@@ -91,7 +91,7 @@ class @BeatmapDiscussionsChart
       .append 'tspan'
       .classed 'fa', true
       .html (d) =>
-        BeatmapDiscussionMessageType.iconText[d.message_type]
+        BeatmapDiscussionHelper.messageType.iconText[d.message_type]
 
     @svgPoints.exit().remove()
 
