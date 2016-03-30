@@ -88,11 +88,10 @@ class @BeatmapDiscussionsChart
       .classed "#{bn}__icon", true
       .style 'text-anchor', 'middle'
       .attr 'y', @dimensions.iconTop
+      .append 'tspan'
+      .classed 'fa', true
       .html (d) =>
-        icon = BeatmapDiscussionMessageType.icon[d.message_type]
-        text = BeatmapDiscussionMessageType.iconText[d.message_type]
-
-        "<tspan class='fa fa-#{icon}'>#{text}</tspan>"
+        BeatmapDiscussionMessageType.iconText[d.message_type]
 
     @svgPoints.exit().remove()
 
