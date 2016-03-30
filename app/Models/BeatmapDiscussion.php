@@ -78,7 +78,7 @@ class BeatmapDiscussion extends Model
 
     public function setMessageTypeAttribute($value)
     {
-        return $this->attributes['message_type'] = array_get(static::MESSAGE_TYPES, $value ?? '');
+        return $this->attributes['message_type'] = static::MESSAGE_TYPES[$value] ?? null;
     }
 
     public function setTimestampAttribute($value)

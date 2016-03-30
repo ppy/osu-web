@@ -67,7 +67,7 @@ class Beatmap extends Model
 
     public static function modeInt($str)
     {
-        return array_get(static::MODES, $str);
+        return static::MODES[$str] ?? null;
     }
 
     public static function modeStr($int)
