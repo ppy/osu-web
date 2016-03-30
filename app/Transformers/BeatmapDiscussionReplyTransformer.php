@@ -24,10 +24,6 @@ use League\Fractal;
 
 class BeatmapDiscussionReplyTransformer extends Fractal\TransformerAbstract
 {
-    protected $availableIncludes = [
-        'user',
-    ];
-
     public function transform(BeatmapDiscussionReply $reply)
     {
         return [
@@ -40,10 +36,5 @@ class BeatmapDiscussionReplyTransformer extends Fractal\TransformerAbstract
             'created_at' => $reply->created_at->toIso8601String(),
             'updated_at' => $reply->updated_at->toIso8601String(),
         ];
-    }
-
-    public function includeUser(BeatmapDiscussionReply $reply)
-    {
-        return $this->item($reply->user, new UserTransformer);
     }
 }

@@ -26,7 +26,6 @@ use League\Fractal\ParamBag;
 class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'user',
         'beatmap_discussion_replies',
         'current_user_attributes',
     ];
@@ -47,11 +46,6 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
             'votes' => $discussion->votes_summary,
             'duration' => $discussion->total_length,
         ];
-    }
-
-    public function includeUser(BeatmapDiscussion $discussion)
-    {
-        return $this->item($discussion->user, new UserTransformer);
     }
 
     public function includeBeatmapDiscussionReplies(BeatmapDiscussion $discussion)
