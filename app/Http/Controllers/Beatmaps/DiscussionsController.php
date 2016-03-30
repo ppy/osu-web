@@ -34,9 +34,9 @@ class DiscussionsController extends Controller
         return parent::__construct();
     }
 
-    public function store($beatmapId)
+    public function store()
     {
-        $beatmap = Beatmap::findOrFail($beatmapId);
+        $beatmap = Beatmap::findOrFail(Request::input('beatmap_id'));
         $beatmapsetDiscussion = BeatmapsetDiscussion::where('beatmapset_id', $beatmap->beatmapset_id)->firstOrFail();
 
         $params = array_merge(
@@ -67,7 +67,7 @@ class DiscussionsController extends Controller
         }
     }
 
-    public function vote($beatmapId, $id)
+    public function vote($id)
     {
         $discussion = BeatmapDiscussion::findOrFail($id);
 

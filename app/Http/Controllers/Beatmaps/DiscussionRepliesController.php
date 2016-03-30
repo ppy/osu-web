@@ -36,9 +36,9 @@ class DiscussionRepliesController extends Controller
         return parent::__construct();
     }
 
-    public function store($beatmapId, $beatmapDiscussionId)
+    public function store()
     {
-        $discussion = BeatmapDiscussion::findOrFail($beatmapDiscussionId);
+        $discussion = BeatmapDiscussion::findOrFail(Request::input('beatmap_discussion_id'));
 
         if (!$discussion->canBeRepliedBy(Auth::user())) {
             abort(403);

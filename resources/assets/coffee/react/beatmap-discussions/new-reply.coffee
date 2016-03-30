@@ -72,7 +72,7 @@ BeatmapDiscussions.NewReply = React.createClass
     return if !@validPost()
     LoadingOverlay.show()
 
-    $.ajax Url.beatmapDiscussionReplies(@props.discussion.beatmap_id, @props.discussion.id),
+    $.ajax Url.beatmapDiscussionReplies(@props.discussion.id),
       method: 'POST'
       data:
         beatmap_discussion:

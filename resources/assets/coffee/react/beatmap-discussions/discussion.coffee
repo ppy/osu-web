@@ -134,7 +134,7 @@ BeatmapDiscussions.Discussion = React.createClass
   doVote: (score) ->
     LoadingOverlay.show()
 
-    $.ajax Url.beatmapDiscussionVote(@props.discussion.beatmap_id, @props.discussion.id),
+    $.ajax Url.beatmapDiscussionVote(@props.discussion.id),
       method: 'PUT',
       data:
         beatmap_discussion_vote:

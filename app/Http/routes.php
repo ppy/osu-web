@@ -161,11 +161,10 @@ Route::group(['namespace' => 'Beatmapsets'], function () {
 });
 
 Route::group(['namespace' => 'Beatmaps'], function () {
-    Route::resource('beatmaps.discussions', 'DiscussionsController', ['only' => ['store']]);
-    Route::put('beatmaps/{beatmaps}/discussions/{discussions}/vote', 'DiscussionsController@vote', ['as' => 'beatmaps.discussions.vote']);
+    Route::resource('beatmap-discussions', 'DiscussionsController', ['only' => ['store']]);
+    Route::put('beatmap-discussions/{beatmap_discussions}/vote', ['uses' => 'DiscussionsController@vote', 'as' => 'beatmap-discussions.vote']);
 
-    Route::resource('beatmaps.discussions.replies', 'DiscussionRepliesController', ['only' => ['store']]);
-
+    Route::resource('beatmap-discussion-replies', 'DiscussionRepliesController', ['only' => ['store']]);
 });
 
 // Uploading file doesn't quite work with PUT/PATCH.
