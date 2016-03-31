@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Console\Commands;
 
 use App\Models\Store;
@@ -72,7 +73,9 @@ class StoreCheckOrderTrackingStatus extends Command
             ++$i;
 
             try {
-                if (!strlen(trim($o->tracking_code)) || (strpos($o->tracking_code, 'EJ') !== 0 && strpos($o->tracking_code, 'RR') !== 0)) {
+                $trackingCodes = $o->trackingCodes();
+
+                if (!count($trackingCodes)) {
                     continue;
                 }
 
@@ -84,7 +87,6 @@ class StoreCheckOrderTrackingStatus extends Command
                 $orderStatuses = [];
                 $retainedCodes = [];
                 $deliveredCodes = [];
-                $trackingCodes = explode(',', $o->tracking_code);
 
                 //a single order may have multiple tracking numbers
                 foreach ($trackingCodes as $code) {

@@ -167,7 +167,7 @@ window.onload = function() {
             </p>
         @elseif (($order->status == 'shipped' && ($order->last_tracking_state || !$order->tracking_code)) || $order->status == 'delivered')
             <p><strong>Your order has been shipped!</strong></p>
-            @if($order->tracking_code)
+            @if(count($order->trackingCodes()))
                 <p>
                     Tracking details follow:
                 </p>
@@ -188,8 +188,8 @@ window.onload = function() {
         @endif
     </div>
 
-    @if ($order->status == 'shipped' && $order->tracking_code)
-    @foreach(explode(',', $order->tracking_code) as $code)
+    @if ($order->status == 'shipped')
+    @foreach($order->trackingCodes() as $code)
     <div class='osu-layout__sub-row osu-layout__sub-row--with-separator'>
         <h4>Tracking for {{ $code }}</h4>
 

@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models\Store;
 
 use DB;
@@ -50,6 +51,14 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo("App\Models\User");
+    }
+
+    public function trackingCodes()
+    {
+        $codes = [];
+        preg_match_all('/([A-Z]{2}[A-Z0-9]{9,11})/', $this->tracking_code, $codes);
+
+        return $codes[0];
     }
 
     public function getItemCount()
