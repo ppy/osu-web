@@ -10,6 +10,11 @@ return [
     'beatmaps' => [
         'max' => 50,
     ],
+    'beatmap_processor' => [
+        'mirrors_to_use' => array_map('intval', explode(' ', env('BM_PROCESSOR_MIRRORS', '1'))),
+        'thumbnailer' => env('BM_PROCESSOR_THUMBNAILER', 'http://localhost:4001'),
+        'sentry' => env('BM_PROCESSOR_SENTRY'),
+    ],
     'camo' => [
         'key' => env('CAMO_KEY'),
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),

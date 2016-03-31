@@ -427,6 +427,79 @@ function get_class_namespace($className)
     return substr($className, 0, strrpos($className, '\\'));
 }
 
+function ci_file_search($fileName)
+{
+    if (file_exists($fileName)) {
+        return $fileName;
+    }
+
+    $directoryName = dirname($fileName);
+    $fileArray = glob($directoryName.'/*', GLOB_NOSORT);
+    $fileNameLowerCase = strtolower($fileName);
+    foreach ($fileArray as $file) {
+        if (strtolower($file) === $fileNameLowerCase) {
+            return $file;
+        }
+    }
+
+    return false;
+}
+
+function deltree($dir)
+{
+    $files = array_diff(scandir($dir), ['.', '..']);
+    foreach ($files as $file) {
+        (is_dir("$dir/$file")) ? deltree("$dir/$file") : unlink("$dir/$file");
+    }
+
+    return rmdir($dir);
+}
+
+function get_param_value($input, $type)
+{
+    if ($type === 'bool') {
+        return $input === '1' || $input === 'true';
+    }
+
+    if ($type === 'int') {
+        return get_int($input);
+    }
+
+    if ($type === 'file') {
+        if ($input instanceof Symfony\Component\HttpFoundation\File\UploadedFile) {
+            return $input->getRealPath();
+        } else {
+            return;
+        }
+    }
+
+    return (string) $input;
+}
+
+function get_params($input, $namespace, $keys)
+{
+    if ($namespace !== null) {
+        $input = array_get($input, $namespace);
+    }
+
+    $params = [];
+
+    foreach ($keys as $keyAndType) {
+        $keyAndType = explode(':', $keyAndType);
+
+        $key = $keyAndType[0];
+        $type = $keyAndType[1] ?? null;
+
+        $value = get_param_value(array_get($input, $key), $type);
+
+        if ($value !== null) {
+            array_set($params, $key, $value);
+        }
+    }
+
+    return $params;
+}
+
 function array_rand_val($array)
 {
     return $array[array_rand($array)];

@@ -19,14 +19,17 @@
  */
 namespace App\Models;
 
-use Request;
 use Es;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
 use DB;
+use App\Libraries\StorageWithUrl;
+use App\Libraries\ImageProcessorService;
+use App\Exceptions\BeatmapProcessorException;
 
 class BeatmapSet extends Model
 {
+    protected $_storage = null;
     protected $table = 'osu_beatmapsets';
     protected $primaryKey = 'beatmapset_id';
 
@@ -59,6 +62,7 @@ class BeatmapSet extends Model
         'last_update',
         'submit_date',
         'thread_icon_date',
+        'cover_updated_at',
     ];
 
     public $timestamps = false;
@@ -72,6 +76,10 @@ class BeatmapSet extends Model
         'difficulty_names',
         'thread_icon_date',
         'thread_id',
+    ];
+
+    protected $fillable = [
+        'cover_updated_at',
     ];
 
     const GRAVEYARD = -2;
@@ -220,6 +228,10 @@ class BeatmapSet extends Model
             $params['sort'] = ['ranked', 'desc'];
         }
 
+        if (!in_array((int) $params['mode'], Beatmap::modes(), true)) {
+            $params['mode'] = null;
+        }
+
         $valid_sort_fields = ['title', 'artist', 'creator', 'difficulty', 'ranked', 'rating', 'plays'];
         $valid_sort_orders = ['asc', 'desc'];
         if (!in_array($params['sort'][0], $valid_sort_fields, true) || !in_array($params['sort'][1], $valid_sort_orders, true)) {
@@ -260,6 +272,7 @@ class BeatmapSet extends Model
         extract($params);
         $count = config('osu.beatmaps.max', 50);
         $offset = (max(0, $page - 1)) * $count;
+        $current_user = Auth::user();
 
         $searchParams['index'] = env('ES_INDEX', 'osu');
         $searchParams['type'] = 'beatmaps';
@@ -268,6 +281,7 @@ class BeatmapSet extends Model
         $searchParams['body']['sort'] = [$sort_field => ['order' => $sort_order]];
         $searchParams['fields'] = ['id'];
         $matchParams = [];
+        $shouldParams = [];
 
         if (presence($genre) !== null) {
             $matchParams[] = ['match' => ['genre_id' => (int) $genre]];
@@ -296,16 +310,62 @@ class BeatmapSet extends Model
 
         if (!empty($rank)) {
             $klass = presence($mode) !== null ? Score\Best\Model::getClass(intval($mode)) : Score\Best\Combined::class;
-            $scores = $klass::forUser(Auth::user())->whereIn('rank', $rank)->get()->lists('beatmapset_id');
+            $scores = $klass::forUser($current_user)->whereIn('rank', $rank)->get()->lists('beatmapset_id');
             $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $scores]];
         }
 
-        if (presence($mode) !== null && presence($rank) === null) {
+        // TODO: This logic probably shouldn't be at the model level... maybe?
+        if (presence($status) !== null) {
+            switch ((int) $status) {
+                case 0: // Ranked & Approved
+                    $shouldParams[] = [
+                        ['match' => ['approved' => self::RANKED]],
+                        ['match' => ['approved' => self::APPROVED]],
+                    ];
+                    break;
+                case 1: // Approved
+                    $matchParams[] = ['match' => ['approved' => self::APPROVED]];
+                    break;
+                case 2: // Favourites
+                    $favs = $current_user->favouriteBeatmapSets()->get()->lists('beatmapset_id');
+                    $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $favs]];
+                    break;
+                case 3: // Mod Requests
+                    $maps = ModQueue::all()->lists('beatmapset_id');
+                    $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
+                    $matchParams[] = ['match' => ['approved' => self::PENDING]];
+                    break;
+                case 4: // Pending
+                    $shouldParams[] = [
+                        ['match' => ['approved' => self::WIP]],
+                        ['match' => ['approved' => self::PENDING]],
+                    ];
+                    break;
+                case 5: // Graveyard
+                    $matchParams[] = ['match' => ['approved' => self::GRAVEYARD]];
+                    break;
+                case 6: // My Maps
+                    $maps = $current_user->beatmapSets()->get()->lists('beatmapset_id');
+                    $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
+                    break;
+                default: // null, etc
+                    break;
+            }
+        } else {
+            $matchParams[] = ['range' => ['approved' => ['gte' => self::PENDING]]];
+        }
+
+        if (presence($mode) !== null) {
             $matchParams[] = ['match' => ['playmode' => (int) $mode]];
         }
 
         if (!empty($matchParams)) {
             $searchParams['body']['query']['bool']['must'] = $matchParams;
+        }
+
+        if (!empty($shouldParams)) {
+            $searchParams['body']['query']['bool']['should'] = $shouldParams;
+            $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
         }
 
         try {
@@ -328,7 +388,7 @@ class BeatmapSet extends Model
         // default search params
         $params += [
             'query' => null,
-            'mode' => 0,
+            'mode' => null,
             'status' => 0,
             'genre' => null,
             'language' => null,
@@ -354,64 +414,6 @@ class BeatmapSet extends Model
     public static function listing()
     {
         return self::search();
-    }
-
-    public function scopeSort($query)
-    {
-        switch (Request::input('sort', 'id')) {
-            case 'id':
-            default:
-                $by = 'desc';
-                $order = $this->primaryKey;
-                break;
-        }
-
-        return $query->orderBy($order, $by);
-    }
-
-    public function scopeFilters($query)
-    {
-        switch (Request::input('filter')) {
-            case 'qualified':
-                $filter = static::QUALIFIED;
-                break;
-
-            case 'ranked':
-                $filter = static::RANKED;
-                break;
-
-            case 'approved':
-                $filter = static::APPROVED;
-                break;
-
-            case 'modreq':
-            case 'pending':
-                $filter = static::PENDING;
-                break;
-
-            case 'all':
-                return $query;
-
-            case 'graveyard':
-                $filter = static::GRAVEYARD;
-                break;
-
-            case 'my-maps':
-                if (Auth::check()) {
-                    return $query->where('user_id', '=', Auth::user()->user_id);
-                }
-                break;
-
-            case 'faves':
-                return $query->faves();
-                break;
-
-            case 'ranked-approved':
-            default:
-                return $query->whereIn('approved', [static::RANKED, static::APPROVED]);
-        }
-
-        return $query->where('approved', '=', $filter);
     }
 
     public function comments($time = null)
@@ -471,6 +473,183 @@ class BeatmapSet extends Model
         return $new;
     }
 
+    public static function coverSizes()
+    {
+        $shapes = ['cover', 'card', 'list'];
+        $scales = ['', '@2x'];
+
+        $sizes = [];
+        foreach ($shapes as $shape) {
+            foreach ($scales as $scale) {
+                $sizes[] = "$shape$scale";
+            }
+        }
+
+        return $sizes;
+    }
+
+    public function allCoverURLs()
+    {
+        $urls = [];
+        foreach (self::coverSizes() as $size) {
+            $urls[$size] = $this->coverURL($size);
+        }
+
+        return $urls;
+    }
+
+    public static function isValidCoverSize($coverSize)
+    {
+        $validSizes = array_merge(['raw', 'fullsize'], self::coverSizes());
+
+        return in_array($coverSize, $validSizes, true);
+    }
+
+    public function coverURL($coverSize = 'cover')
+    {
+        if (!self::isValidCoverSize($coverSize)) {
+            return false;
+        }
+
+        $timestamp = 0;
+        if ($this->cover_updated_at) {
+            $timestamp = $this->cover_updated_at->format('U');
+        }
+
+        return $this->storage()->url($this->coverPath()."{$coverSize}.jpg?{$timestamp}");
+    }
+
+    public function coverPath()
+    {
+        return "/beatmaps/{$this->beatmapset_id}/covers/";
+    }
+
+    public function storeCover($target_filename, $source_path)
+    {
+        $this->storage()->put($this->coverPath().$target_filename, file_get_contents($source_path));
+    }
+
+    public function storage()
+    {
+        if ($this->_storage === null) {
+            $this->_storage = new StorageWithUrl();
+        }
+
+        return $this->_storage;
+    }
+
+    // todo: generalize method
+    public function oszDownloadURL($noVideo = 1)
+    {
+        $mirrors = config('osu.beatmap_processor.mirrors_to_use');
+        $mirror = BeatmapMirror::find($mirrors[array_rand($mirrors)]);
+
+        $diskFilename = $serveFilename = $this->filename;
+        $time = time();
+        $checksum = md5("{$this->beatmapset_id}{$diskFilename}{$serveFilename}{$time}{$noVideo}{$mirror->secret_key}");
+
+        $url = "{$mirror->base_url}d/{$this->beatmapset_id}?fs=".rawurlencode($serveFilename).'&fd='.rawurlencode($diskFilename)."&ts=$time&cs=$checksum&u=0&nv=$noVideo";
+
+        return $url;
+    }
+
+    public function regenerateCovers()
+    {
+        $tmpBase = sys_get_temp_dir()."/bm/{$this->beatmapset_id}-".time();
+        $workingFolder = "$tmpBase/working";
+        $outputFolder = "$tmpBase/out";
+
+        try {
+            // make our temp folders if they don't exist
+            if (!is_dir($workingFolder)) {
+                mkdir($workingFolder, 0755, true);
+            }
+            if (!is_dir($outputFolder)) {
+                mkdir($outputFolder, 0755, true);
+            }
+
+            // download and extract beatmap
+            $osz = "$tmpBase/osz.zip";
+            $ok = copy($this->oszDownloadURL(), $osz);
+            if (!$ok) {
+                throw new BeatmapProcessorException('Error retrieving beatmap');
+            }
+            $zip = new \ZipArchive;
+            $zip->open($osz);
+            $zip->extractTo($workingFolder);
+            $zip->close();
+
+            // grab the first beatmap (as per old implementation) and scan for background image
+            $beatmap = $this->beatmaps()->first();
+            $beatmapFilename = $beatmap->filename;
+            $bgFilename = self::scanBMForBG("$workingFolder/$beatmapFilename");
+
+            if (!$bgFilename) {
+                $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+
+                return;
+            }
+
+            $bgFile = ci_file_search("{$workingFolder}/{$bgFilename}");
+            if (!$bgFile) {
+                throw new BeatmapProcessorException("Background image missing: {$bgFile}");
+            }
+
+            $processor = new ImageProcessorService($tmpBase);
+
+            // upload original image
+            $this->storeCover('raw.jpg', $bgFile);
+
+            // upload optimized version
+            $optimized = $processor->optimize($this->coverURL('raw'));
+            $this->storeCover('fullsize.jpg', $optimized);
+
+            // use thumbnailer to generate and upload all our variants
+            foreach (self::coverSizes() as $size) {
+                $resized = $processor->resize($this->coverURL('fullsize'), $size);
+                $this->storeCover("$size.jpg", $resized);
+            }
+
+            $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+        } finally {
+            // clean up after ourselves
+            deltree($tmpBase);
+        }
+    }
+
+    // todo: maybe move this somewhere else (copypasta from old implementation)
+    public function scanBMForBG($beatmapFilename)
+    {
+        $content = file_get_contents($beatmapFilename);
+        if (!$content) {
+            return false;
+        }
+        $matching = false;
+        $imageFilename = '';
+        $lines = explode("\n", $content);
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if ($matching) {
+                $parts = explode(',', $line);
+                if (count($parts) > 2 && $parts[0] === '0') {
+                    $imageFilename = str_replace('"', '', $parts[2]);
+                    break;
+                }
+            }
+            if ($line === '[Events]') {
+                $matching = true;
+            }
+            if ($line === '[HitObjects]') {
+                break;
+            }
+        }
+
+        // older beatmaps may not have sanitized paths
+        $imageFilename = str_replace('\\', '/', $imageFilename);
+
+        return $imageFilename;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Relationships
@@ -499,10 +678,5 @@ class BeatmapSet extends Model
     public function approver()
     {
         return $this->belongsTo("App\Models\User", 'user_id', 'approvedby_id');
-    }
-
-    public function coverUrl()
-    {
-        return "https://b.ppy.sh/thumb/{$this->beatmapset_id}l.jpg";
     }
 }

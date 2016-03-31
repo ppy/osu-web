@@ -39,6 +39,7 @@ class Handler extends ExceptionHandler
         HttpException::class,
         ModelNotFoundException::class,
         TokenMisMatchException::class,
+        SilencedException::class,
     ];
 
     /**

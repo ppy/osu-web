@@ -1222,6 +1222,20 @@ class BaseTables extends Migration
             $table->unique(['username', 'user_id'], 'username_id');
         });
         $this->setRowFormat('phpbb_users', 'DYNAMIC');
+
+        Schema::create('osu_mod_queue', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
+
+            $table->increments('mod_queue_id');
+            $table->mediumInteger('beatmapset_id');
+            $table->timestamp('timestamp')->useCurrent();
+
+            $table->index('beatmapset_id');
+            $table->index('timestamp');
+        });
+        $this->comment('osu_mod_queue', 'Data table for BanchoBot mod queue ~mm201');
+        $this->setRowFormat('osu_mod_queue', 'DYNAMIC');
     }
 
     /**
@@ -1276,6 +1290,7 @@ class BaseTables extends Migration
         Schema::drop('phpbb_topics_track');
         Schema::drop('phpbb_user_group');
         Schema::drop('phpbb_users');
+        Schema::drop('osu_mod_queue');
     }
 
     private function setRowFormat($table, $format)
