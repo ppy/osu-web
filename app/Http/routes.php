@@ -142,7 +142,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     // store admin
     Route::group(['prefix' => 'store', 'namespace' => 'Store'], function () {
-        Route::post('orders/ship', ['as' => 'admin.store.orders.ship', 'uses' => 'OrderController@ship']);
+        Route::post('orders/ship', ['as' => 'admin.store.orders.ship', 'uses' => 'OrdersController@ship']);
         Route::resource('orders', 'OrdersController', ['only' => ['index', 'show', 'update']]);
         Route::resource('orders.items', 'OrderItemsController', ['only' => ['update']]);
 
