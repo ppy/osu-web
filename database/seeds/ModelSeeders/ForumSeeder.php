@@ -41,14 +41,14 @@ class ForumSeeder extends Seeder
                     $t = $f2->topics()->save(factory(App\Models\Forum\Topic::class)->make([
                         'forum_id' => $f2->forum_id,
                         'topic_poster' => $set->creator,
-                        'topic_title' => $set->artist. ' - '.$set->title,
+                        'topic_title' => $set->artist.' - '.$set->title,
                     ]));
 
                     $p = $t->posts()->save(factory(App\Models\Forum\Post::class)->make([
                         'forum_id' => $f2->forum_id,
                         'poster_id' => $set->user_id,
                         'post_username' => $set->creator,
-                        'post_subject' => $set->artist. ' - '.$set->title,
+                        'post_subject' => $set->artist.' - '.$set->title,
                         'post_text' => '---------------',
                     ]));
 
