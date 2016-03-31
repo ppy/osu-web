@@ -43,6 +43,7 @@ BeatmapDiscussions.Discussion = React.createClass
     div
       className: topClasses
       'data-id': @props.discussion.id
+      onClick: @setHighlight
 
       div className: "#{bn}__timestamp hidden-xs",
         @timestamp() if @props.discussion.timestamp?
