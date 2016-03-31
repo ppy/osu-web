@@ -37,9 +37,11 @@ BeatmapDiscussions.Discussion = React.createClass
 
 
   render: ->
+    topClasses = "#{bn} js-beatmap-discussion-jump"
+    topClasses += " #{bn}--highlighted" if @props.highlighted
 
     div
-      className: "#{bn} js-beatmap-discussion-jump"
+      className: topClasses
       'data-id': @props.discussion.id
 
       div className: "#{bn}__timestamp hidden-xs",
@@ -47,7 +49,7 @@ BeatmapDiscussions.Discussion = React.createClass
 
       div className: "#{bn}__discussion",
         div className: "#{bn}__top",
-          @post @props.discussion, 'discussion'
+          @post @props.discussion, 'discussion', @props.read
 
           div className: "#{bn}__actions",
             ['up', 'down'].map (direction) =>
@@ -65,7 +67,7 @@ BeatmapDiscussions.Discussion = React.createClass
         div
           className: "#{bn}__replies #{'hidden' if @state.collapsed}"
           @props.discussion.beatmap_discussion_replies.data.map (reply) =>
-            @post reply, 'reply'
+            @post reply, 'reply', _.includes(@props.readReplyIds, reply.id)
 
           if @props.currentUser.id?
             el BeatmapDiscussions.NewReply,
@@ -101,13 +103,18 @@ BeatmapDiscussions.Discussion = React.createClass
           BeatmapDiscussionHelper.formatTimestamp @props.discussion.timestamp
 
 
-  post: (post, type = '') ->
+  post: (post, type = '', read = false) ->
     pbn = 'beatmap-discussion-post'
     user = @props.lookupUser post.user_id
 
+    topClasses = "#{pbn} #{pbn}--#{type}"
+    topClasses += " #{pbn}--unread" if !read
+
     div
-      className: pbn
+      className: topClasses
       key: "#{type}-#{post.id}"
+      onClick: =>
+        $.publish 'beatmapDiscussion:markRead', id: post.id, type: type
 
       div className: "#{pbn}__avatar",
         el UserAvatar, user: user, modifiers: ['full-rounded']
@@ -173,3 +180,9 @@ BeatmapDiscussions.Discussion = React.createClass
         el Icon, name: icon
       span className: "#{vbn}__count #{"#{vbn}__count--inactive" if score != 0}",
         @props.discussion.votes[type]
+
+
+  setHighlight: ->
+    return if @props.highlighted
+
+    $.publish 'beatmapDiscussion:setHighlight', @props.discussion.id

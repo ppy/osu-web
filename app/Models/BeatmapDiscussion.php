@@ -25,6 +25,8 @@ class BeatmapDiscussion extends Model
 {
     protected $guarded = [];
 
+    protected $touches = ['beatmapsetDiscussion'];
+
     protected $casts = [
         'id' => 'integer',
         'beatmapset_discussion_id' => 'integer',

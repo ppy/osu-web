@@ -30,6 +30,12 @@ BeatmapDiscussions.Main = React.createClass
     userPermissions: initial.userPermissions
     users: @indexUsers initial.beatmapsetDiscussion.data.users.data
     mode: 'timeline'
+    readDiscussionIds: initial.beatmapsetDiscussion.data.beatmap_discussions.data.map (d) => d.id
+    readReplyIds: _.chain(initial.beatmapsetDiscussion.data.beatmap_discussions.data)
+      .map (d) => d.beatmap_discussion_replies.data.map (r) => r.id
+      .flatten()
+      .value()
+    highlightedDiscussionId: null
 
 
   componentDidMount: ->
@@ -37,12 +43,19 @@ BeatmapDiscussions.Main = React.createClass
     $.subscribe 'beatmapsetDiscussion:update.beatmapDiscussions', @setBeatmapsetDiscussion
     $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
     $.subscribe 'beatmapDiscussion:setMode.beatmapDiscussions', @setMode
+    $.subscribe 'beatmapDiscussion:markRead.beatmapDiscussions', @markRead
+    $.subscribe 'beatmapDiscussion:setHighlight.beatmapDiscussions', @setHighlight
 
     @jumpByHash()
+
+    @checkNewTimeout = setTimeout @checkNew, @checkNewTimeoutDefault
 
 
   componentWillUnmount: ->
     $.unsubscribe '.beatmapDiscussions'
+
+    clearTimeout @checkNewTimeout
+    @checkNewAjax?.abort?()
 
 
   render: ->
@@ -81,6 +94,9 @@ BeatmapDiscussions.Main = React.createClass
           lookupUser: @lookupUser
           userPermissions: @state.userPermissions
           mode: @state.mode
+          highlightedDiscussionId: @state.highlightedDiscussionId
+          readDiscussionIds: @state.readDiscussionIds
+          readReplyIds: @state.readReplyIds
 
 
   setBeatmapsetDiscussion: (_e, beatmapsetDiscussion, callback) ->
@@ -122,6 +138,8 @@ BeatmapDiscussions.Main = React.createClass
 
     @setMode null, mode, =>
       @setCurrentBeatmapId null, discussion.beatmap_id, =>
+        @setState highlightedDiscussionId: discussion.id
+
         target = $(".js-beatmap-discussion-jump[data-id='#{beatmapDiscussionId}']")
         $(window).stop().scrollTo target, 500
 
@@ -140,3 +158,52 @@ BeatmapDiscussions.Main = React.createClass
 
     if jumpId?
       $.publish 'beatmapDiscussion:jump', jumpId
+
+
+  checkNewTimeoutDefault: 10000
+  checkNewTimeoutMax: 300000
+
+  checkNew: ->
+    @nextTimeout ?= @checkNewTimeoutDefault
+
+    clearTimeout @checkNewTimeout
+
+    @checkNewAjax = $.ajax document.location.pathname,
+      data:
+        format: 'json'
+        last_updated: moment(@state.beatmapsetDiscussion.updated_at).unix()
+
+    .done (data) =>
+      if data.updated? && !data.updated
+        @nextTimeout *= 2
+        return
+
+      @nextTimeout = @checkNewTimeoutDefault
+
+      @setState beatmapsetDiscussion: data.beatmapsetDiscussion.data
+
+    .always =>
+      @nextTimeout = Math.min @nextTimeout, @checkNewTimeoutMax
+
+      @checkNewTimeout = setTimeout @checkNew, @nextTimeout
+
+
+  setHighlight: (_e, id) ->
+    @setState highlightedDiscussionId: id
+
+
+  markRead: (_e, options) ->
+    targetIds = switch options.type
+      when 'discussion' then 'readDiscussionIds'
+      when 'reply' then 'readReplyIds'
+
+    currentTargetIds = @state[targetIds]
+
+    return if _.includes currentTargetIds, options.id
+
+    newTargetIds = _.chain(@state[targetIds])
+      .concat options.id
+      .uniq()
+      .value()
+
+    @setState "#{targetIds}": newTargetIds

@@ -17,13 +17,10 @@
  *
  */
 .beatmap-discussion {
-  @_replies-area-padding-left: (@beatmap-discussion--avatar-size + @spacing);
-
+  @_top: beatmap-discussion;
   display: flex;
 
   &__actions {
-    // cancels out &__discussion's padding
-    margin-right: (-@spacing);
     flex: none;
 
     display: flex;
@@ -47,15 +44,18 @@
     min-width: 0;
 
     .default-box-shadow();
-    padding: (@spacing / 2) @spacing;
+    padding: (@spacing / 2) 0;
     margin: (@spacing / 2) 0;
 
     display: flex;
     flex-direction: column;
+
+    .@{_top}--highlighted & {
+      .thicker-box-shadow();
+    }
   }
 
   &__replies {
-    padding-left: @_replies-area-padding-left;
     display: flex;
     flex-direction: column;
   }

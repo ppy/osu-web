@@ -22,6 +22,7 @@ namespace App\Http\Controllers\Beatmapsets;
 use App\Models\BeatmapSet;
 use App\Transformers\BeatmapSetTransformer;
 use Auth;
+use Request;
 
 class DiscussionsController extends Controller
 {
@@ -29,8 +30,16 @@ class DiscussionsController extends Controller
 
     public function show($beatmapsetId)
     {
+        $returnJson = Request::input('format') === 'json';
+        $lastUpdated = get_int(Request::input('last_updated'));
+
         $beatmapset = BeatmapSet::findOrFail($beatmapsetId);
+
         $discussion = $beatmapset->beatmapsetDiscussion;
+
+        if ($returnJson && $lastUpdated !== null && $lastUpdated >= $discussion->updated_at->timestamp) {
+            return ['updated' => false];
+        }
 
         $userPermissions = [
             'can_post_new' => $discussion->canBePostedBy(Auth::user()),
@@ -47,6 +56,10 @@ class DiscussionsController extends Controller
             'beatmapsetDiscussion' => $discussion->defaultJson(Auth::user()),
         ];
 
-        return view('beatmapsets.discussions.show', compact('initialData'));
+        if ($returnJson) {
+            return $initialData;
+        } else {
+            return view('beatmapsets.discussions.show', compact('initialData'));
+        }
     }
 }

@@ -21,12 +21,28 @@
 
   @_discussion-text-size: 15px;
   @_reply-text-size: 12px;
+  @_reply-padding-left: (@beatmap-discussion--avatar-size + (@spacing * 2));
+
 
   display: flex;
-  margin: (@spacing / 2) 0;
+  padding: (@spacing / 2) @spacing;
 
   flex: 1;
   min-width: 0;
+
+  &--reply {
+    padding-left: @_reply-padding-left;
+  }
+
+  &--unread {
+    &::before {
+      .full-size();
+      background-color: @green;
+      width: (@spacing / 2);
+      height: calc(100% ~'+' @spacing);
+      top: (-@spacing / 2);
+    }
+  }
 
   &__actions {
     display: flex;

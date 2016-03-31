@@ -25,6 +25,8 @@ class BeatmapDiscussionReply extends Model
 {
     protected $guarded = [];
 
+    protected $touches = ['beatmapDiscussion'];
+
     protected $casts = [
         'id' => 'integer',
         'beatmap_discussion_id' => 'integer',
@@ -34,6 +36,11 @@ class BeatmapDiscussionReply extends Model
     public function beatmapDiscussion()
     {
         return $this->belongsTo(BeatmapDiscussion::class);
+    }
+
+    public function beatmapsetDiscussion()
+    {
+        return $this->beatmapDiscussion->beatmapsetDiscussion();
     }
 
     public function user()

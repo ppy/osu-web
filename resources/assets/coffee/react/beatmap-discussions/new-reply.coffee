@@ -31,7 +31,7 @@ BeatmapDiscussions.NewReply = React.createClass
 
   render: ->
     div
-      className: bn
+      className: "#{bn} #{bn}--reply"
 
       div className: "#{bn}__avatar",
         el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
@@ -82,7 +82,8 @@ BeatmapDiscussions.NewReply = React.createClass
 
     .done (data) =>
       @setState message: ''
-      $.publish 'beatmapsetDiscussion:update', data.data
+      $.publish 'beatmapDiscussion:markRead', id: data.beatmap_discussion_reply_id, type: 'reply'
+      $.publish 'beatmapsetDiscussion:update', data.beatmapset_discussion.data
 
     .fail osu.ajaxError
 

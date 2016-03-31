@@ -76,6 +76,9 @@ BeatmapDiscussions.Discussions = React.createClass
                 beatmapset: @props.beatmapset
                 currentBeatmap: @props.currentBeatmap
                 userPermissions: @props.userPermissions
+                highlighted: discussion.id == @props.highlightedDiscussionId
+                read: _.includes(@props.readDiscussionIds, discussion.id)
+                readReplyIds: @props.readReplyIds
 
           if !hasVisibleDiscussion
             div className: "#{bn}__discussion #{bn}__discussion--empty", Lang.get 'beatmaps.discussions.empty'
