@@ -41,11 +41,6 @@ class DiscussionsController extends Controller
             return ['updated' => false];
         }
 
-        $userPermissions = [
-            'can_post_new' => $discussion->canBePostedBy(Auth::user()),
-            'beatmap_discussions' => [],
-        ];
-
         $initialData = [
             'beatmapset' => fractal_item_array(
                 $beatmapset,
