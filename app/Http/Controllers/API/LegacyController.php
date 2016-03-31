@@ -17,7 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use Request;
 use Response;
@@ -37,27 +37,10 @@ use App\Transformers\API\StatisticsTransformer;
 use App\Transformers\API\EventTransformer;
 use App\Transformers\API\BeatmapTransformer;
 use App\Transformers\API\BeatmapPackTransformer;
+use Illuminate\Routing\Controller as Controller;
 
-class APIController extends Controller
+class LegacyController extends Controller
 {
-    public function __construct()
-    {
-        $this->beforeFilter('@validateKey');
-    }
-
-    public function validateKey($route, $request)
-    {
-        $matches = ApiKey::where('api_key', Request::input('k'))->where('enabled', true)->where('revoked', false)->count();
-        if ($matches < 1) {
-            return $this->redirectToWiki();
-        }
-    }
-
-    public function redirectToWiki()
-    {
-        return Redirect::to('https://github.com/ppy/osu-api/wiki');
-    }
-
     public function getMatch()
     {
         $match_id = Request::input('mp');

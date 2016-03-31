@@ -158,14 +158,21 @@ Route::post('/account/update-profile', ['as' => 'account.update-profile', 'uses'
 Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
 
 // API
-Route::get('/api/get_match', ['uses' => 'APIController@getMatch']);
-Route::get('/api/get_packs', ['uses' => 'APIController@getPacks']);
-Route::get('/api/get_user', ['uses' => 'APIController@getUser']);
-Route::get('/api/get_user_best', ['uses' => 'APIController@getUserBest']);
-Route::get('/api/get_user_recent', ['uses' => 'APIController@getUserRecent']);
-Route::get('/api/get_replay', ['uses' => 'APIController@getReplay']);
-Route::get('/api/get_scores', ['uses' => 'APIController@getScores']);
-Route::get('/api/get_beatmaps', ['uses' => 'APIController@getBeatmaps']);
+Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'oauth'], function () {
+    Route::get('get_messages', ['uses' => 'MessagesController@getMessages']);
+
+    // legacy routes
+    Route::group(['prefix' => '1'], function () {
+        Route::get('get_match', ['uses' => 'LegacyController@getMatch']);
+        Route::get('get_packs', ['uses' => 'LegacyController@getPacks']);
+        Route::get('get_user', ['uses' => 'LegacyController@getUser']);
+        Route::get('get_user_best', ['uses' => 'LegacyController@getUserBest']);
+        Route::get('get_user_recent', ['uses' => 'LegacyController@getUserRecent']);
+        Route::get('get_replay', ['uses' => 'LegacyController@getReplay']);
+        Route::get('get_scores', ['uses' => 'LegacyController@getScores']);
+        Route::get('get_beatmaps', ['uses' => 'LegacyController@getBeatmaps']);
+    });
+});
 
 Route::resource('post', 'PostController');
 Route::resource('modding', 'ModdingPostController');
