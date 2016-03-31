@@ -78,7 +78,6 @@ class ForumSeeder extends Seeder
                     $f2->refreshCache();
                 }
             });
-
         } catch (\Illuminate\Database\QueryException $e) {
             echo $e->getMessage()."\r\n";
         } catch (Exception $ex) {
