@@ -173,7 +173,7 @@ window.onload = function() {
                 </p>
             @else
                 <p>
-                    We don't have tracking details as it was sent in a small envelope, but you can expect to receive it within 1-2 weeks at the most. If you have any concerns, please reply to the order confirmation email you received (or <a href='mailto:osustore@ppy.sh'>send us an email</a>).
+                    We don't have tracking details as we sent your package via Air Mail, but you can expect to receive it within 1-3 weeks. For Europe, sometimes customs can delay the order out of our control. If you have any concerns, please reply to the order confirmation email you received (or <a href='mailto:osustore@ppy.sh'>send us an email</a>).
                 </p>
             @endif
         @else
@@ -183,7 +183,7 @@ window.onload = function() {
             </p>
 
             <p>
-                We send all orders from Japan using EMS. This is the most efficient service available to us, and it should reach you in a very short time (3~14 days after we send it). For Europe, sometimes customs can delay the order out of our control.
+                We send all orders from Japan using a variety of shipping services depending on the weight and value. This area will update with specifics once we have shipped the order.
             </p>
         @endif
     </div>
