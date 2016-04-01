@@ -17,6 +17,20 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+/*
+ * Like array_search but returns null if not found instead of false.
+ * Strict mode only.
+ */
+function array_search_null($value, $array)
+{
+    $key = array_search($value, $array, true);
+
+    if ($key !== false) {
+        return $key;
+    }
+}
+
 function item_count($count)
 {
     return Lang::choice('common.count.item', $count, ['count' => $count]);
