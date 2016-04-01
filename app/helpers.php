@@ -499,3 +499,8 @@ function get_params($input, $namespace, $keys)
 
     return $params;
 }
+
+function array_rand_val($array)
+{
+    return $array[array_rand($array)];
+}

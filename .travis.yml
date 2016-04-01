@@ -23,4 +23,3 @@ before_install:
   - nvm use 4.2
   - ./bin/db_setup
   - ./build.sh
-  - ./bin/db_seed
