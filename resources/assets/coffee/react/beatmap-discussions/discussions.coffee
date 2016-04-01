@@ -37,21 +37,7 @@ BeatmapDiscussions.Discussions = React.createClass
     div
       className: bn
 
-      ['general', 'timeline'].map (mode) =>
-        do (mode) =>
-          circleClass = "#{bn}__mode-circle"
-          circleClass += " #{bn}__mode-circle--active" if mode == @props.mode
-
-          button
-            key: "mode-#{mode}"
-            className: "#{bn}__mode"
-            onClick: => $.publish 'beatmapDiscussion:setMode', mode
-            div className: "#{bn}__mode-container",
-              div className: circleClass
-              if mode == 'timeline' && mode == @props.mode
-                div className: "#{bn}__timeline-line #{bn}__timeline-line--bottom #{bn}__timeline-line--half hidden-xs"
-              span className: "#{bn}__mode-text",
-                Lang.get("#{lp}.mode.#{mode}")
+      ['general', 'timeline'].map @modeSwitchButton
 
       div
         className: "#{bn}__discussions"
@@ -94,3 +80,19 @@ BeatmapDiscussions.Discussions = React.createClass
         .value()
 
     @_currentDiscussions
+
+
+  modeSwitchButton: (mode) ->
+    circleClass = "#{bn}__mode-circle"
+    circleClass += " #{bn}__mode-circle--active" if mode == @props.mode
+
+    button
+      key: "mode-#{mode}"
+      className: "#{bn}__mode"
+      onClick: => $.publish 'beatmapDiscussion:setMode', mode
+      div className: "#{bn}__mode-container",
+        div className: circleClass
+        if mode == 'timeline' && mode == @props.mode
+          div className: "#{bn}__timeline-line #{bn}__timeline-line--bottom #{bn}__timeline-line--half hidden-xs"
+        span className: "#{bn}__mode-text",
+          Lang.get("#{lp}.mode.#{mode}")
