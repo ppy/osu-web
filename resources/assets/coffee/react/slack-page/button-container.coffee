@@ -59,7 +59,7 @@ class SlackPage.ButtonContainer extends React.Component
             href: '#'
             'data-target': '#user-dropdown-modal',
             'data-toggle': 'modal',
-            title: Lang.get 'users.anonymous.login-link'
+            title: Lang.get 'users.anonymous.login_link'
             Lang.get 'community.slack.guest-middle'
           Lang.get 'community.slack.guest-end'
 
