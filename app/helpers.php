@@ -260,16 +260,12 @@ function nav_links()
 
 function presence($string, $valueIfBlank = null)
 {
-    if ($string === '' || $string === null) {
-        $string = $valueIfBlank;
-    }
-
-    return $string;
+    return present($string) === true ? $string : $valueIfBlank;
 }
 
 function present($string)
 {
-    return presence($string) !== null;
+    return $string !== null && $string !== '';
 }
 
 function user_colour_style($colour, $style)
