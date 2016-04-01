@@ -111,7 +111,7 @@ class User extends Model implements AuthenticatableContract
             return Carbon::now()->addYears(10);
         }
 
-        $playCount = array_reduce(array_keys(Beatmap::modes()), function ($result, $mode) use ($user) {
+        $playCount = array_reduce(array_keys(Beatmap::MODES), function ($result, $mode) use ($user) {
                 return $result + $user->statistics($mode, true)->value('playcount');
             }, 0);
 
@@ -579,7 +579,7 @@ class User extends Model implements AuthenticatableContract
 
     public function statistics($mode, $returnQuery = false)
     {
-        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+        if (!in_array($mode, array_keys(Beatmap::MODES), true)) {
             return;
         }
 
@@ -616,7 +616,7 @@ class User extends Model implements AuthenticatableContract
 
     public function scores($mode, $returnQuery = false)
     {
-        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+        if (!in_array($mode, array_keys(Beatmap::MODES), true)) {
             return;
         }
 
@@ -653,7 +653,7 @@ class User extends Model implements AuthenticatableContract
 
     public function scoresFirst($mode, $returnQuery = false)
     {
-        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+        if (!in_array($mode, array_keys(Beatmap::MODES), true)) {
             return;
         }
 
@@ -692,7 +692,7 @@ class User extends Model implements AuthenticatableContract
 
     public function scoresBest($mode, $returnQuery = false)
     {
-        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+        if (!in_array($mode, array_keys(Beatmap::MODES), true)) {
             return;
         }
 
