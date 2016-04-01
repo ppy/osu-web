@@ -217,6 +217,7 @@
 
   // also used by input form
   &__title {
+    .reset-input();
     margin: 0;
     padding: @spacing 0 @spacing (@spacing * 2);
     width: 100%;
@@ -225,11 +226,7 @@
     font-style: normal;
     .default-text-shadow;
     color: @grey-f;
-    background: transparent;
     display: block;
-
-    outline: none;
-    border: none;
   }
 
   &__titles {

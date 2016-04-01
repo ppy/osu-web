@@ -17,6 +17,7 @@
  *
  */
 .btn-osu-lite {
+  .reset-input();
   .default-border-radius();
   .default-box-shadow();
   .default-text-shadow();
@@ -26,12 +27,6 @@
 
   font-size: 12px;
   padding: (@spacing / 2) @spacing;
-
-  &, &:active, &:focus, &:hover {
-    background: none;
-    outline: none;
-    border: none;
-  }
 
   &--default {
     @__bgcolor: @blue-dark;

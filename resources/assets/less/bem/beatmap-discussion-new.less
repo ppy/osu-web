@@ -81,8 +81,7 @@
   }
 
   &__message-area {
-    border: none;
-    outline: none;
+    .reset-input();
     resize: vertical;
     width: 100%;
 
@@ -101,16 +100,10 @@
   }
 
   &__message-type {
-    &, &:hover, &:active, &:focus {
-      background: none;
-      outline: none;
-      border: none;
-    }
-
+    .reset-input();
     display: block;
     text-align: left;
     font-size: @_message-type-text-size;
-    padding: 0;
     margin: 0 0 (@spacing / 2);
   }
 
