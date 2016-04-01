@@ -25,14 +25,8 @@ BeatmapDiscussions.Discussions = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
-  componentWillReceiveProps: ->
-    @_currentDiscussions = null
-
-
   render: ->
-    currentBeatmapId = if @props.mode == 'general' then null else @props.currentBeatmap.id
-
-    hasVisibleDiscussion = false
+    @reboot()
 
     div
       className: bn
@@ -45,41 +39,13 @@ BeatmapDiscussions.Discussions = React.createClass
           div className: "#{bn}__timeline-line hidden-xs"
 
         div className: "#{bn}__discussions",
-          @currentDiscussions().map (discussion) =>
-            className = "#{bn}__discussion"
-            if discussion.beatmap_id != currentBeatmapId
-              className += ' hidden'
-            else
-              hasVisibleDiscussion = true
+          @currentDiscussions.map @discussionPage
 
-            div
-              key: discussion.id
-              className: className
-              el BeatmapDiscussions.Discussion,
-                discussion: discussion
-                lookupUser: @props.lookupUser
-                currentUser: @props.currentUser
-                beatmapset: @props.beatmapset
-                currentBeatmap: @props.currentBeatmap
-                userPermissions: @props.userPermissions
-                highlighted: discussion.id == @props.highlightedDiscussionId
-                read: _.includes(@props.readDiscussionIds, discussion.id)
-                readReplyIds: @props.readReplyIds
-
-          if !hasVisibleDiscussion
+          if !@hasVisibleDiscussion
             div className: "#{bn}__discussion #{bn}__discussion--empty", Lang.get 'beatmaps.discussions.empty'
 
       if @props.mode == 'timeline'
         div className: "#{bn}__mode-circle #{bn}__mode-circle--active hidden-xs"
-
-
-  currentDiscussions: ->
-    if !@_currentDiscussions?
-      @_currentDiscussions = _.chain @props.beatmapsetDiscussion.beatmap_discussions.data
-        .orderBy ['timestamp', 'id'], ['asc', 'asc']
-        .value()
-
-    @_currentDiscussions
 
 
   modeSwitchButton: (mode) ->
@@ -96,3 +62,34 @@ BeatmapDiscussions.Discussions = React.createClass
           div className: "#{bn}__timeline-line #{bn}__timeline-line--bottom #{bn}__timeline-line--half hidden-xs"
         span className: "#{bn}__mode-text",
           Lang.get("#{lp}.mode.#{mode}")
+
+  discussionPage: (discussion) ->
+    className = "#{bn}__discussion"
+    if discussion.beatmap_id != @currentBeatmapId
+      className += ' hidden'
+    else
+      @hasVisibleDiscussion = true
+
+    div
+      key: discussion.id
+      className: className
+      el BeatmapDiscussions.Discussion,
+        discussion: discussion
+        lookupUser: @props.lookupUser
+        currentUser: @props.currentUser
+        beatmapset: @props.beatmapset
+        currentBeatmap: @props.currentBeatmap
+        userPermissions: @props.userPermissions
+        highlighted: discussion.id == @props.highlightedDiscussionId
+        read: _.includes(@props.readDiscussionIds, discussion.id)
+        readReplyIds: @props.readReplyIds
+
+
+  reboot: ->
+    @currentDiscussions = _.chain @props.beatmapsetDiscussion.beatmap_discussions.data
+      .orderBy ['timestamp', 'id'], ['asc', 'asc']
+      .value()
+
+    @currentBeatmapId = if @props.mode == 'general' then null else @props.currentBeatmap.id
+
+    @hasVisibleDiscussion = false
