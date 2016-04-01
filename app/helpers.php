@@ -315,22 +315,29 @@ function open_image($path, $dimensions = null)
     }
 
     if (!isset($dimensions[2]) || !is_int($dimensions[2])) {
-        return false;
+        return;
     }
 
     try {
+        $image = null;
+
         switch ($dimensions[2]) {
             case IMAGETYPE_GIF:
-                return imagecreatefromgif($path);
+                $image = imagecreatefromgif($path);
+                break;
             case IMAGETYPE_JPEG:
-                return imagecreatefromjpeg($path);
+                $image = imagecreatefromjpeg($path);
+                break;
             case IMAGETYPE_PNG:
-                return imagecreatefrompng($path);
+                $image = imagecreatefrompng($path);
+                break;
         }
 
-        return false;
+        if ($image !== false) {
+            return $image;
+        }
     } catch (ErrorException $_e) {
-        return false;
+        // do nothing
     }
 }
 
