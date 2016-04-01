@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 (function() {
-    $(document).off("ajax:complete", osu.hideLoadingOverlay)
+    $(document).off(".ujsHideLoadingOverlay")
 
     $("#overlay").fadeIn()
     osu.popup("Redirecting to Paypal...", "success")

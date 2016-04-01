@@ -27,7 +27,7 @@ class SlackPage.ButtonContainer extends React.Component
   sendInviteRequest: =>
     return unless @props.isEligible
 
-    osu.showLoadingOverlay()
+    LoadingOverlay.show()
 
     $.ajax Url.requestSlackInvite,
       method: 'POST',
@@ -39,7 +39,7 @@ class SlackPage.ButtonContainer extends React.Component
     .fail (xhr) =>
       osu.ajaxError xhr
 
-    .always osu.hideLoadingOverlay
+    .always LoadingOverlay.hide
 
   render: ->
     issuesClasses = 'slack-button-container__issues'
