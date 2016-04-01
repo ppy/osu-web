@@ -59,12 +59,11 @@ BeatmapDiscussions.Discussion = React.createClass
                 className: "#{bn}__action hidden-xs"
                 @displayVote direction
 
-            div className: "#{bn}__action #{bn}__action--with-line",
-              button
-                className: "beatmap-discussion-expand"
-                onClick: => @setState collapsed: !@state.collapsed
-                div className: 'beatmap-discussion-expand__content',
-                  el Icon, name: (if @state.collapsed then 'chevron-down' else 'chevron-up')
+            button
+              className: "#{bn}__action #{bn}__action--with-line"
+              onClick: => @setState collapsed: !@state.collapsed
+              div className: 'beatmap-discussion-expand',
+                el Icon, name: (if @state.collapsed then 'chevron-down' else 'chevron-up')
         div
           className: "#{bn}__replies #{'hidden' if @state.collapsed}"
           @props.discussion.beatmap_discussion_replies.data.map (reply) =>
