@@ -404,16 +404,15 @@ function fast_imagesize($url)
     });
 }
 
-// parses a string, if it's not an empty string or null,
-// return parsed integer value of it, otherwise return null
+/*
+ * Parses a string. If it's not an empty string or null,
+ * return parsed integer value of it, otherwise return null.
+ */
 function get_int($string)
 {
-    $val = presence($string);
-    if ($val !== null) {
-        $val = intval($val);
+    if (present($string) === true) {
+        return (int) $string;
     }
-
-    return $val;
 }
 
 // should it be used?
