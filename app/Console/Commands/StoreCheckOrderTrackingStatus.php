@@ -72,7 +72,9 @@ class StoreCheckOrderTrackingStatus extends Command
             ++$i;
 
             try {
-                if (!strlen(trim($o->tracking_code)) || (strpos($o->tracking_code, 'EJ') !== 0 && strpos($o->tracking_code, 'RR') !== 0)) {
+                $trackingCodes = $o->trackingCodes();
+
+                if (!count($trackingCodes)) {
                     continue;
                 }
 
@@ -84,7 +86,6 @@ class StoreCheckOrderTrackingStatus extends Command
                 $orderStatuses = [];
                 $retainedCodes = [];
                 $deliveredCodes = [];
-                $trackingCodes = explode(',', $o->tracking_code);
 
                 //a single order may have multiple tracking numbers
                 foreach ($trackingCodes as $code) {
