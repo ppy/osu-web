@@ -36,5 +36,5 @@ class @SyncHeight
     for target in @targets
       height = heights[target.getAttribute('data-sync-height-id')]
 
-      if height != undefined
+      if height?
         target.style.minHeight = "#{height}px"

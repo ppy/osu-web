@@ -160,7 +160,7 @@ class @Forum
 
   initialScrollTo: =>
     return if location.hash != '' ||
-      window.postJumpTo == undefined ||
+      !window.postJumpTo? ||
       window.postJumpTo == 0
 
     @scrollTo window.postJumpTo
