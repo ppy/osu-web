@@ -134,7 +134,7 @@ BeatmapDiscussions.Discussion = React.createClass
     _.chain message
       .escape()
       .replace /(^|\s)((\d{2}):(\d{2})[:.](\d{3})( \([\d,]+\))?(?=\s))/g, (_, prefix, text, m, s, ms, range) =>
-        "#{prefix}#{osu.link Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range || ''}"), text}"
+        "#{prefix}#{osu.link Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text}"
       .value()
 
 
@@ -168,10 +168,7 @@ BeatmapDiscussions.Discussion = React.createClass
 
     classes = "#{vbn} #{vbn}--#{type}"
 
-    if currentVote == baseScore
-      score = 0
-    else
-      score = baseScore
+    score = if currentVote == baseScore then 0 else baseScore
 
     div className: classes,
       button
