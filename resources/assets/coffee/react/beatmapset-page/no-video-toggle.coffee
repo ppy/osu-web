@@ -26,4 +26,4 @@ class BeatmapSetPage.NoVideoToggle extends React.Component
     div className: 'beatmapset-details__novideo',
       div className: className
       span className: 'beatmapset-details__text',
-        Lang.get 'beatmaps.beatmapset.show.contents.download.no-video'
+        Lang.get 'beatmaps.beatmapset.show.details.download.no-video'

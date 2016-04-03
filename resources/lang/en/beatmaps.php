@@ -91,7 +91,7 @@ return [
     ],
     'beatmapset' => [
         'show' => [
-            'contents' => [
+            'details' => [
                 'made-by' => 'made by ',
                 'submitted' => 'submitted on ',
                 'ranked' => 'ranked on ',
@@ -101,6 +101,26 @@ return [
                     'direct' => 'osu!direct',
                     'no-video' => 'without video version',
                 ],
+            ],
+            'stats' => [
+                'cs' => 'Circle Size',
+                'hp' => 'HP Drain',
+                'od' => 'Accuracy',
+                'ar' => 'Approach Rate',
+                'stars' => 'Star Difficulty',
+                'length' => 'Length',
+                'bpm' => 'BPM',
+
+                'chart' =>  [
+                    'cs' => 'CS',
+                    'hp' => 'HP',
+                    'od' => 'OD',
+                    'ar' => 'AR',
+                    'sd' => 'SD',
+                ],
+
+                'source' => 'Source',
+                'tags' => 'Tags',
             ],
             'extra' => [
                 'description' => [

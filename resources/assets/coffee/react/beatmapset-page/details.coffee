@@ -40,15 +40,15 @@ class BeatmapSetPage.Details extends React.Component
             backgroundImage: "url(#{@props.set.avatarUrl})"
 
       div className: 'beatmapset-details__mapper',
-        Lang.get 'beatmaps.beatmapset.show.contents.made-by'
+        Lang.get 'beatmaps.beatmapset.show.details.made-by'
         span className: 'beatmapset-details__mapper beatmapset-details__mapper--username', @props.set.creator
 
       div className: 'beatmapset-details__date',
-        Lang.get 'beatmaps.beatmapset.show.contents.submitted'
+        Lang.get 'beatmaps.beatmapset.show.details.submitted'
         @props.set.submitted
 
       div className: 'beatmapset-details__date',
-        Lang.get 'beatmaps.beatmapset.show.contents.ranked'
+        Lang.get 'beatmaps.beatmapset.show.details.ranked'
         @props.set.ranked
 
       hr className: 'beatmapset-details__line'
@@ -71,11 +71,11 @@ class BeatmapSetPage.Details extends React.Component
             a
               href: if currentUser.isSupporter then Url.beatmapDownloadDirect @props.set.beatmapset_id else Url.support
               className: 'beatmapset-details__button'
-              Lang.get 'beatmaps.beatmapset.show.contents.download.direct'
+              Lang.get 'beatmaps.beatmapset.show.details.download.direct'
             a
               href: Url.beatmapDownload @props.set.beatmapset_id, @state.video
               className: 'beatmapset-details__button'
-              Lang.get 'beatmaps.beatmapset.show.contents.download.normal'
+              Lang.get 'beatmaps.beatmapset.show.details.download.normal'
 
             if @props.set.video
               div onClick: @toggleVideo,
