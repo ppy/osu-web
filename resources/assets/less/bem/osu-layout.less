@@ -140,6 +140,16 @@
       margin-bottom: @spacing;
     }
 
+    &--page-beatmapset {
+      ._page;
+      padding: (@spacing * 2);
+      padding-bottom: 0;
+
+      @media @mobile {
+        padding: 0;
+      }
+    }
+
     &--sm1 {
       ._width(@spacing * 2);
       @media @desktop {

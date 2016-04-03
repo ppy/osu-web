@@ -26,7 +26,7 @@ class BeatmapSetPage.Contents extends React.Component
     diff = @props.diffs[@props.currentMode]
 
     div
-      className: 'osu-layout__row osu-layout__row--page js-switchable-mode-page--scrollspy js-switchable-mode-page--page',
+      className: 'osu-layout__row osu-layout__row--page-beatmapset js-switchable-mode-page--scrollspy js-switchable-mode-page--page',
       'data-page-id': 'main'
       div className: 'page-tabs',
         Mode.modesInt.map (m) =>
