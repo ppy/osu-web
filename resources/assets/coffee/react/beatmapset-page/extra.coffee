@@ -65,6 +65,7 @@ class BeatmapSetPage.Extra extends StickyTabsPage
           elem =
             switch m
               when 'description'
+                props = description: @props.set.description
                 BeatmapSetPage.Description
               when 'success-rate'
                 BeatmapSetPage.SuccessRate
@@ -75,4 +76,4 @@ class BeatmapSetPage.Extra extends StickyTabsPage
             className: 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
             key: m
             'data-page-id': m
-            el elem
+            el elem, props

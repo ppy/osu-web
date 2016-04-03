@@ -23,3 +23,6 @@ class BeatmapSetPage.Description extends React.Component
     div
       className: 'page-extra'
       el BeatmapSetPage.ExtraHeader, name: 'description'
+
+      div className: 'beatmapset-description', dangerouslySetInnerHTML:
+        __html: @props.description
