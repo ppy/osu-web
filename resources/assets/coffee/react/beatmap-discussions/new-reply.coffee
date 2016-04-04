@@ -83,7 +83,7 @@ BeatmapDiscussions.NewReply = React.createClass
 
     .done (data) =>
       @setState message: ''
-      $.publish 'beatmapDiscussionPost:markRead', data.beatmap_discussion_post_id
+      $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_id
       $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion.data
 
     .fail osu.ajaxError

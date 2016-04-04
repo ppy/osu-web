@@ -120,7 +120,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
         message_type: null
         timestamp: null
 
-      $.publish 'beatmapDiscussionPost:markRead', data.beatmap_discussion_post_id
+      $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_id
       $.publish 'beatmapsetDiscussion:update',
         beatmapsetDiscussion: data.beatmapset_discussion.data,
         callback: =>
