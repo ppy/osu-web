@@ -35,7 +35,7 @@ class EventSeeder extends Seeder
                 .' ['.$bm->version.']'.'</a> ('.$playmode.')';
 
             return $string;
-        }
+        };
 
         foreach ($users as $u) {
             if ($beatmapCount > 0) {
