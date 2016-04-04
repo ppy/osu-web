@@ -35,7 +35,7 @@ class EventSeeder extends Seeder
                 .' ['.$bm->version.']'.'</a> ('.$playmode.')';
 
             return $string;
-        };
+        }
 
         foreach ($users as $u) {
             if ($beatmapCount > 0) {
@@ -52,7 +52,7 @@ class EventSeeder extends Seeder
                             } else {
                                 $rank = strval(rand(1, 499));
                                 $epicfactor = 1;
-                            };
+                            }
                             $txt = $generateEventText($bm, $bms, $u, $rank);
                             $ev = $u->events()->save(App\Models\Event::create([
                                 'user_id' => $u->user_id,
