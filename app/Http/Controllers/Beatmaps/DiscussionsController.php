@@ -20,7 +20,6 @@
 namespace App\Http\Controllers\Beatmaps;
 
 use Auth;
-use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapsetDiscussion;
 use Request;
@@ -32,39 +31,6 @@ class DiscussionsController extends Controller
         $this->middleware('auth');
 
         return parent::__construct();
-    }
-
-    public function store()
-    {
-        $beatmap = Beatmap::findOrFail(Request::input('beatmap_id'));
-        $beatmapsetDiscussion = BeatmapsetDiscussion::where('beatmapset_id', $beatmap->beatmapset_id)->firstOrFail();
-
-        $params = array_merge(
-            get_params(Request::all(), 'beatmap_discussion', [
-                'message',
-                'message_type',
-                'timestamp:int',
-            ]),
-            [
-                'beatmapset_discussion_id' => $beatmapsetDiscussion->id,
-                'user_id' => Auth::user()->user_id,
-            ]
-        );
-
-        if (($params['timestamp'] ?? null) !== null) {
-            $params['beatmap_id'] = $beatmap->beatmap_id;
-        }
-
-        $discussion = BeatmapDiscussion::create($params);
-
-        if ($discussion->id !== null) {
-            return [
-                'beatmapset_discussion' => $discussion->beatmapsetDiscussion->defaultJson(Auth::user()),
-                'beatmap_discussion_id' => $discussion->id,
-            ];
-        } else {
-            return error_popup(trans('beatmaps.discussions.store.error'));
-        }
     }
 
     public function vote($id)

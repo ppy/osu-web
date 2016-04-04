@@ -21,7 +21,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BeatmapDiscussionReply extends Model
+class BeatmapDiscussionPost extends Model
 {
     protected $guarded = [];
 

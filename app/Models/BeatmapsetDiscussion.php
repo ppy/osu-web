@@ -49,7 +49,7 @@ class BeatmapsetDiscussion extends Model
     public function defaultJson($currentUser = null)
     {
         $includes = [
-            'beatmap_discussions.beatmap_discussion_replies',
+            'beatmap_discussions.beatmap_discussion_posts',
             'users',
         ];
 
@@ -58,7 +58,7 @@ class BeatmapsetDiscussion extends Model
         }
 
         return fractal_item_array(
-            static::with('beatmapDiscussions.beatmapDiscussionReplies', 'beatmapDiscussions.beatmapDiscussionVotes')->find($this->id),
+            static::with('beatmapDiscussions.beatmapDiscussionPosts', 'beatmapDiscussions.beatmapDiscussionVotes')->find($this->id),
             new BeatmapsetDiscussionTransformer(),
             implode(',', $includes)
         );

@@ -19,6 +19,12 @@
  */
 
 return [
+    'discussion-posts' => [
+        'store' => [
+            'error' => 'Failed saving post',
+        ],
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => 'Failed updating vote',

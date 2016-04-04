@@ -26,7 +26,7 @@ use League\Fractal\ParamBag;
 class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'beatmap_discussion_replies',
+        'beatmap_discussion_posts',
         'current_user_attributes',
     ];
 
@@ -39,7 +39,6 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
             'user_id' => $discussion->user_id,
             'message_type' => $discussion->message_type,
             'timestamp' => $discussion->timestamp,
-            'message' => $discussion->message,
             'resolved' => $discussion->resolved,
             'created_at' => $discussion->created_at->toIso8601String(),
             'updated_at' => $discussion->updated_at->toIso8601String(),
@@ -48,11 +47,11 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
         ];
     }
 
-    public function includeBeatmapDiscussionReplies(BeatmapDiscussion $discussion)
+    public function includeBeatmapDiscussionPosts(BeatmapDiscussion $discussion)
     {
         return $this->collection(
-            $discussion->beatmapDiscussionReplies,
-            new BeatmapDiscussionReplyTransformer()
+            $discussion->beatmapDiscussionPosts,
+            new BeatmapDiscussionPostTransformer()
         );
     }
 

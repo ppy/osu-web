@@ -20,7 +20,7 @@
 namespace App\Providers;
 
 use App\Models\BeatmapDiscussion;
-use App\Models\BeatmapDiscussionReply;
+use App\Models\BeatmapDiscussionPost;
 use Illuminate\Support\ServiceProvider;
 use Validator;
 
@@ -42,8 +42,8 @@ class AppServiceProvider extends ServiceProvider
             return $discussion->isValid();
         });
 
-        BeatmapDiscussionReply::saving(function ($reply) {
-            return $reply->isValid();
+        BeatmapDiscussionPost::saving(function ($post) {
+            return $post->isValid();
         });
     }
 

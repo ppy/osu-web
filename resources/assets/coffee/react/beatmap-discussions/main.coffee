@@ -30,9 +30,8 @@ BeatmapDiscussions.Main = React.createClass
     userPermissions: initial.userPermissions
     users: @indexUsers initial.beatmapsetDiscussion.data.users.data
     mode: 'timeline'
-    readDiscussionIds: initial.beatmapsetDiscussion.data.beatmap_discussions.data.map (d) => d.id
-    readReplyIds: _.chain(initial.beatmapsetDiscussion.data.beatmap_discussions.data)
-      .map (d) => d.beatmap_discussion_replies.data.map (r) => r.id
+    readPostIds: _.chain(initial.beatmapsetDiscussion.data.beatmap_discussions.data)
+      .map (d) => d.beatmap_discussion_posts.data.map (r) => r.id
       .flatten()
       .value()
     highlightedDiscussionId: null
@@ -43,7 +42,7 @@ BeatmapDiscussions.Main = React.createClass
     $.subscribe 'beatmapsetDiscussion:update.beatmapDiscussions', @setBeatmapsetDiscussion
     $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
     $.subscribe 'beatmapDiscussion:setMode.beatmapDiscussions', @setMode
-    $.subscribe 'beatmapDiscussion:markRead.beatmapDiscussions', @markRead
+    $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
     $.subscribe 'beatmapDiscussion:setHighlight.beatmapDiscussions', @setHighlight
 
     @jumpByHash()
@@ -95,18 +94,17 @@ BeatmapDiscussions.Main = React.createClass
           userPermissions: @state.userPermissions
           mode: @state.mode
           highlightedDiscussionId: @state.highlightedDiscussionId
-          readDiscussionIds: @state.readDiscussionIds
-          readReplyIds: @state.readReplyIds
+          readPostIds: @state.readPostIds
 
 
-  setBeatmapsetDiscussion: (_e, beatmapsetDiscussion, callback) ->
+  setBeatmapsetDiscussion: (_e, {beatmapsetDiscussion, callback}) ->
     @setState
       beatmapsetDiscussion: beatmapsetDiscussion
       users: @indexUsers beatmapsetDiscussion.users.data
       callback
 
 
-  setCurrentBeatmapId: (_e, id, callback) ->
+  setCurrentBeatmapId: (_e, {id, callback}) ->
     return callback?() if id == @state.currentBeatmap.id
 
     beatmap = @state.beatmapset.beatmaps.data.find (bm) =>
@@ -137,8 +135,10 @@ BeatmapDiscussions.Main = React.createClass
     mode = if discussion.timestamp? then 'timeline' else 'general'
 
     @setMode null, mode, =>
-      @setCurrentBeatmapId null, discussion.beatmap_id, =>
-        @setState highlightedDiscussionId: discussion.id
+      @setCurrentBeatmapId null,
+        id: discussion.beatmap_id
+        callback: =>
+          @setState highlightedDiscussionId: discussion.id
 
         target = $(".js-beatmap-discussion-jump[data-id='#{beatmapDiscussionId}']")
         $(window).stop().scrollTo target, 500
@@ -156,7 +156,7 @@ BeatmapDiscussions.Main = React.createClass
       .parseInt 10
       .value()
 
-    if jumpId?
+    if isFinite(jumpId)
       $.publish 'beatmapDiscussion:jump', jumpId
 
 
@@ -192,18 +192,12 @@ BeatmapDiscussions.Main = React.createClass
     @setState highlightedDiscussionId: id
 
 
-  markRead: (_e, options) ->
-    targetIds = switch options.type
-      when 'discussion' then 'readDiscussionIds'
-      when 'reply' then 'readReplyIds'
+  markPostRead: (_e, {id}) ->
+    return if _.includes @state.readPostIds, id
 
-    currentTargetIds = @state[targetIds]
-
-    return if _.includes currentTargetIds, options.id
-
-    newTargetIds = _.chain(@state[targetIds])
-      .concat options.id
+    newTargetIds = _.chain(@state.readPostIds)
+      .concat id
       .uniq()
       .value()
 
-    @setState "#{targetIds}": newTargetIds
+    @setState readPostIds: newTargetIds

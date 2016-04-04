@@ -53,9 +53,9 @@ class BeatmapDiscussion extends Model
         return $this->beatmap->beatmapset();
     }
 
-    public function beatmapDiscussionReplies()
+    public function beatmapDiscussionPosts()
     {
-        return $this->hasMany(BeatmapDiscussionReply::class);
+        return $this->hasMany(BeatmapDiscussionPost::class);
     }
 
     public function beatmapDiscussionVotes()
@@ -104,11 +104,6 @@ class BeatmapDiscussion extends Model
             ($this->beatmap_id !== null && $this->timestamp !== null && $this->timestamp < ($this->beatmap->total_length * 1000));
     }
 
-    public function hasValidMessage()
-    {
-        return present($this->message);
-    }
-
     public function canBeVotedBy($user)
     {
         return $user !== null;
@@ -140,7 +135,7 @@ class BeatmapDiscussion extends Model
         return false;
     }
 
-    public function canBeRepliedBy($user)
+    public function canBePostedBy($user)
     {
         return $user !== null;
     }
@@ -169,7 +164,6 @@ class BeatmapDiscussion extends Model
     {
         return $this->hasValidBeatmap() &&
             $this->hasValidMessageType() &&
-            $this->hasValidMessage() &&
             $this->hasValidTimestamp();
     }
 }

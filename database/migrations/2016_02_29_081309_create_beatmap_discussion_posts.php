@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBeatmapDiscussionReplies extends Migration
+class CreateBeatmapDiscussionPosts extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateBeatmapDiscussionReplies extends Migration
      */
     public function up()
     {
-        Schema::create('beatmap_discussion_replies', function (Blueprint $table) {
+        Schema::create('beatmap_discussion_posts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('beatmap_discussion_id')->unsigned();
             $table->mediumInteger('user_id')->unsigned()->nullable();

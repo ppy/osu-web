@@ -72,18 +72,19 @@ BeatmapDiscussions.NewReply = React.createClass
     return if !@validPost()
     LoadingOverlay.show()
 
-    $.ajax Url.beatmapDiscussionReplies(@props.discussion.id),
+    $.ajax Url.beatmapDiscussionPosts,
       method: 'POST'
       data:
+        beatmap_discussion_id: @props.discussion.id
         beatmap_discussion:
           resolved: @state.resolveDiscussion
-        beatmap_discussion_reply:
+        beatmap_discussion_post:
           message: @state.message
 
     .done (data) =>
       @setState message: ''
-      $.publish 'beatmapDiscussion:markRead', id: data.beatmap_discussion_reply_id, type: 'reply'
-      $.publish 'beatmapsetDiscussion:update', data.beatmapset_discussion.data
+      $.publish 'beatmapDiscussionPost:markRead', data.beatmap_discussion_post_id
+      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion.data
 
     .fail osu.ajaxError
 

@@ -20,7 +20,6 @@ class CreateBeatmapDiscussions extends Migration
 
             $table->integer('message_type')->nullable();
             $table->integer('timestamp')->nullable();
-            $table->text('message')->default('');
             $table->boolean('resolved')->default(false);
 
             $table->timestamps();

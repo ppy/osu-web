@@ -100,14 +100,17 @@ BeatmapDiscussions.NewDiscussion = React.createClass
     LoadingOverlay.show()
 
     data =
-        beatmap_discussion:
+        beatmapset_id: @props.currentBeatmap.beatmapset_id
+        beatmap_discussion_post:
           message: @state.message
 
     if @state.timestamp?
-      data.beatmap_discussion.message_type = @state.messageType
-      data.beatmap_discussion.timestamp = @state.timestamp
+      data.beatmap_discussion =
+        message_type: @state.messageType
+        timestamp: @state.timestamp
+        beatmap_id: @props.currentBeatmap.id
 
-    $.ajax Url.beatmapDiscussions(@props.currentBeatmap.id),
+    $.ajax Url.beatmapDiscussionPosts,
       method: 'POST'
       data: data
 
@@ -117,9 +120,11 @@ BeatmapDiscussions.NewDiscussion = React.createClass
         message_type: null
         timestamp: null
 
-      $.publish 'beatmapDiscussion:markRead', id: data.beatmap_discussion_id, type: 'discussion'
-      $.publish 'beatmapsetDiscussion:update', data.beatmapset_discussion.data, =>
-        $.publish 'beatmapDiscussion:jump', data.beatmap_discussion_id
+      $.publish 'beatmapDiscussionPost:markRead', data.beatmap_discussion_post_id
+      $.publish 'beatmapsetDiscussion:update',
+        beatmapsetDiscussion: data.beatmapset_discussion.data,
+        callback: =>
+          $.publish 'beatmapDiscussion:jump', data.beatmap_discussion_id
 
     .fail osu.ajaxError
 

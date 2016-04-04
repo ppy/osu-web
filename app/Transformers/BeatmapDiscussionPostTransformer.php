@@ -19,22 +19,22 @@
  */
 namespace App\Transformers;
 
-use App\Models\BeatmapDiscussionReply;
+use App\Models\BeatmapDiscussionPost;
 use League\Fractal;
 
-class BeatmapDiscussionReplyTransformer extends Fractal\TransformerAbstract
+class BeatmapDiscussionPostTransformer extends Fractal\TransformerAbstract
 {
-    public function transform(BeatmapDiscussionReply $reply)
+    public function transform(BeatmapDiscussionPost $post)
     {
         return [
-            'id' => $reply->id,
-            'beatmap_discussion_id' => $reply->beatmap_discussion_id,
-            'user_id' => $reply->user_id,
+            'id' => $post->id,
+            'beatmap_discussion_id' => $post->beatmap_discussion_id,
+            'user_id' => $post->user_id,
 
-            'message' => $reply->message,
+            'message' => $post->message,
 
-            'created_at' => $reply->created_at->toIso8601String(),
-            'updated_at' => $reply->updated_at->toIso8601String(),
+            'created_at' => $post->created_at->toIso8601String(),
+            'updated_at' => $post->updated_at->toIso8601String(),
         ];
     }
 }

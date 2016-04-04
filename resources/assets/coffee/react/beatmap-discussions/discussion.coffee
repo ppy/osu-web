@@ -37,6 +37,8 @@ BeatmapDiscussions.Discussion = React.createClass
 
 
   render: ->
+    return div() if @props.discussion.beatmap_discussion_posts.data.length == 0
+
     topClasses = "#{bn} js-beatmap-discussion-jump"
     topClasses += " #{bn}--highlighted" if @props.highlighted
 
@@ -50,7 +52,7 @@ BeatmapDiscussions.Discussion = React.createClass
 
       div className: "#{bn}__discussion",
         div className: "#{bn}__top",
-          @post @props.discussion, 'discussion', @props.read
+          @post @props.discussion.beatmap_discussion_posts.data[0], 'discussion'
 
           div className: "#{bn}__actions",
             ['up', 'down'].map (direction) =>
@@ -66,8 +68,8 @@ BeatmapDiscussions.Discussion = React.createClass
                 el Icon, name: (if @state.collapsed then 'chevron-down' else 'chevron-up')
         div
           className: "#{bn}__replies #{'hidden' if @state.collapsed}"
-          @props.discussion.beatmap_discussion_replies.data.map (reply) =>
-            @post reply, 'reply', _.includes(@props.readReplyIds, reply.id)
+          @props.discussion.beatmap_discussion_posts.data.slice(1).map (reply) =>
+            @post reply, 'reply'
 
           if @props.currentUser.id?
             el BeatmapDiscussions.NewReply,
@@ -77,10 +79,9 @@ BeatmapDiscussions.Discussion = React.createClass
               discussion: @props.discussion
               userPermissions: @props.userPermissions
 
-        if @props.discussion.resolved
-          div
-            className: "#{bn}__resolved #{'hidden' if @state.collapsed}"
-            Lang.get 'beatmaps.discussions.resolved'
+        div
+          className: "#{bn}__resolved #{'hidden' if @state.collapsed || !@props.discussion.resolved}"
+          Lang.get 'beatmaps.discussions.resolved'
 
 
   timestamp: ->
@@ -103,9 +104,10 @@ BeatmapDiscussions.Discussion = React.createClass
           BeatmapDiscussionHelper.formatTimestamp @props.discussion.timestamp
 
 
-  post: (post, type = '', read = false) ->
+  post: (post, type = '') ->
     pbn = 'beatmap-discussion-post'
     user = @props.lookupUser post.user_id
+    read = _.includes @props.readPostIds, post.id
 
     topClasses = "#{pbn} #{pbn}--#{type}"
     topClasses += " #{pbn}--unread" if !read
@@ -114,7 +116,7 @@ BeatmapDiscussions.Discussion = React.createClass
       className: topClasses
       key: "#{type}-#{post.id}"
       onClick: =>
-        $.publish 'beatmapDiscussion:markRead', id: post.id, type: type
+        $.publish 'beatmapDiscussionPost:markRead', id: post.id
 
       div className: "#{pbn}__avatar",
         el UserAvatar, user: user, modifiers: ['full-rounded']
@@ -148,7 +150,7 @@ BeatmapDiscussions.Discussion = React.createClass
           score: score
 
     .done (data) =>
-      $.publish 'beatmapsetDiscussion:update', data.data
+      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.data
 
     .fail osu.ajaxError
 

@@ -54,8 +54,8 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
         foreach ($discussion->beatmapDiscussions as $beatmapDiscussion) {
             $userIds[] = $beatmapDiscussion->user_id;
 
-            foreach ($beatmapDiscussion->beatmapDiscussionReplies as $reply) {
-                $userIds[] = $reply->user_id;
+            foreach ($beatmapDiscussion->beatmapDiscussionPosts as $post) {
+                $userIds[] = $post->user_id;
             }
         }
 
