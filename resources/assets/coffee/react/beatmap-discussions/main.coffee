@@ -161,7 +161,7 @@ BeatmapDiscussions.Main = React.createClass
 
 
   checkNewTimeoutDefault: 10000
-  checkNewTimeoutMax: 300000
+  checkNewTimeoutMax: 60000
 
   checkNew: ->
     @nextTimeout ?= @checkNewTimeoutDefault
