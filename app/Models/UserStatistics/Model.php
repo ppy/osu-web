@@ -48,6 +48,18 @@ abstract class Model extends BaseModel
 
     protected $guarded = [];
 
+    const UPDATED_AT = 'last_update';
+
+    public function setCreatedAt($value)
+    {
+        // Do nothing.
+    }
+
+    public function getCreatedAtColumn()
+    {
+        // Do nothing.
+    }
+
     public function getCountryAcronymAttribute($value)
     {
         return presence($value);
