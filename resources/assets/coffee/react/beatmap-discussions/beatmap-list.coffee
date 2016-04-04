@@ -86,4 +86,4 @@ BeatmapDiscussions.BeatmapList = React.createClass
 
 
   selectBeatmap: (id) ->
-    $.publish 'beatmap:select', id
+    $.publish 'beatmap:select', id: id
