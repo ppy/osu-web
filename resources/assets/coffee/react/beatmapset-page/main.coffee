@@ -81,5 +81,6 @@ class BeatmapSetPage.Main extends SwitchableModePage
 
       el BeatmapSetPage.Extra,
         set: @props.set
+        diff: @props.diffs[@state.currentMode]
         currentPage: @state.currentPage
         currentMode: @state.currentMode
