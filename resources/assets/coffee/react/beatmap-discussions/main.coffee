@@ -116,11 +116,7 @@ BeatmapDiscussions.Main = React.createClass
 
 
   indexUsers: (usersArray) ->
-    reducer = (prev, curr) =>
-      prev[curr.id] = curr
-      prev
-
-    usersArray.reduce reducer, {}
+    _.keyBy usersArray, (u) => u.id
 
 
   lookupUser: (id) ->
