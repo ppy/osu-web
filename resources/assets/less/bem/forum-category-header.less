@@ -27,7 +27,6 @@
   .default-box-shadow;
   .own-layer();
 
-  height: 60px;
   padding: (@spacing * 2);
 
   transition: background-image 120ms;
@@ -53,6 +52,12 @@
       background-image: linear-gradient(to bottom, transparent, fade(#000, 40%));
       content: " ";
     }
+  }
+
+  &--forum-index {
+    padding: (@spacing / 2) (@spacing * 2);
+    height: 60px;
+    justify-content: flex-start;
   }
 
   &--topic {
