@@ -31,8 +31,8 @@
 @section ("script")
     @parent
 
-    <script data-turbolinks-eval="always">
-        var initial = {!! json_encode($initialData) !!};
+    <script id="json-beatmapset-discussion" type="application/json">
+        {!! json_encode($initialData) !!}
     </script>
 
     <script src="{{ elixir("js/react/beatmap-discussions.js") }}" data-turbolinks-track></script>

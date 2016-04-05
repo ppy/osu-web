@@ -23,6 +23,8 @@ BeatmapDiscussions.Main = React.createClass
 
 
   getInitialState: ->
+    initial = osu.parseJson 'json-beatmapset-discussion'
+
     beatmapset: initial.beatmapset.data
     beatmapsetDiscussion: initial.beatmapsetDiscussion.data
     currentBeatmap: initial.beatmapset.data.beatmaps.data[0]
