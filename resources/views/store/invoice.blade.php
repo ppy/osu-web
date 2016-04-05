@@ -165,7 +165,7 @@ window.onload = function() {
             <p>
                 If you didn't request a cancellation please contact <a href='mailto:osustore@ppy.sh'>osu!store support</a> quoting your order number (#{{$order->order_id}}).
             </p>
-        @elseif (($order->status == 'shipped' && ($order->last_tracking_state || !$order->tracking_code)) || $order->status == 'delivered')
+        @elseif (($order->status == 'shipped' && ($order->last_tracking_state || count($order->trackingCodes()) == 0)) || $order->status == 'delivered')
             <p><strong>Your order has been shipped!</strong></p>
             @if(count($order->trackingCodes()))
                 <p>
