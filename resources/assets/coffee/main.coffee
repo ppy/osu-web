@@ -70,8 +70,7 @@ $(document).on 'osu:page:change', _.debounce(initPage, 500)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->
-  $target = $(e.target)
-  osu.navigate $target.val(), $target.attr('data-keep-scroll') == '1'
+  osu.navigate e.target.value, (e.target.dataset.keepScroll == '1')
 
 
 $(document).on 'keydown', (e) ->
