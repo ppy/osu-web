@@ -39,6 +39,10 @@ class DatabaseSeeder extends Seeder
             // Miscellaneous Data (e.g. counts)
             $this->command->info('Seeding Miscellaneous Data');
             $this->call(MiscSeeder::class);
+
+            //Store Products
+            $this->command->info('Seeding Store Products');
+            $this->call(ProductSeeder::class);
         } catch (ErrorException $er) {
             $this->command->error($er->getMessage());
         } catch (Exception $ex) {
