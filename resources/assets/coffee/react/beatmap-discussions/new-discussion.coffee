@@ -132,21 +132,20 @@ BeatmapDiscussions.NewDiscussion = React.createClass
 
 
   messageTypeSelection: (type) ->
-    do (type) =>
-      iconClassesBn = 'beatmap-discussion-message-type'
-      iconClasses = iconClassesBn
+    iconClassesBn = 'beatmap-discussion-message-type'
+    iconClasses = iconClassesBn
 
-      if @currentType() == 'timeline' && @state.messageType == type
-        iconClasses += " #{iconClassesBn}--#{type}"
+    if @currentType() == 'timeline' && @state.messageType == type
+      iconClasses += " #{iconClassesBn}--#{type}"
 
-      button
-        key: type
-        className: "#{bn}__message-type"
-        onClick: => @setState messageType: type
-        div className: iconClasses,
-          el Icon, name: BeatmapDiscussionHelper.messageType.icon[type]
-          span className: "#{bn}__message-type-text",
-            Lang.get("beatmaps.discussions.message_type.#{type}")
+    button
+      key: type
+      className: "#{bn}__message-type"
+      onClick: => @setState messageType: type
+      div className: iconClasses,
+        el Icon, name: BeatmapDiscussionHelper.messageType.icon[type]
+        span className: "#{bn}__message-type-text",
+          Lang.get("beatmaps.discussions.message_type.#{type}")
 
 
   validPost: ->
