@@ -184,4 +184,4 @@ BeatmapDiscussions.Discussion = React.createClass
   setHighlight: ->
     return if @props.highlighted
 
-    $.publish 'beatmapDiscussion:setHighlight', @props.discussion.id
+    $.publish 'beatmapDiscussion:setHighlight', id: @props.discussion.id

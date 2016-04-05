@@ -73,7 +73,7 @@ class @BeatmapDiscussionsChart
         "#{bn}__point #{bn}__point--#{d.message_type}"
       .on 'click', (d) =>
         d3.event.preventDefault()
-        $.publish 'beatmapDiscussion:jump', d.id
+        $.publish 'beatmapDiscussion:jump', id: d.id
 
     points
       .append 'line'

@@ -123,8 +123,8 @@ BeatmapDiscussions.Main = React.createClass
     @state.users[id]
 
 
-  jumpTo: (_e, beatmapDiscussionId) ->
-    discussion = @state.beatmapsetDiscussion.beatmap_discussions.data.find (d) => d.id == beatmapDiscussionId
+  jumpTo: (_e, {id}) ->
+    discussion = @state.beatmapsetDiscussion.beatmap_discussions.data.find (d) => d.id == id
 
     return if !discussion?
 
@@ -134,9 +134,9 @@ BeatmapDiscussions.Main = React.createClass
       @setCurrentBeatmapId null,
         id: discussion.beatmap_id
         callback: =>
-          @setState highlightedDiscussionId: discussion.id
+          $.publish 'beatmapDiscussion:setHighlight', id: discussion.id
 
-        target = $(".js-beatmap-discussion-jump[data-id='#{beatmapDiscussionId}']")
+        target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
         $(window).stop().scrollTo target, 500
 
 
@@ -153,7 +153,7 @@ BeatmapDiscussions.Main = React.createClass
       .value()
 
     if isFinite(jumpId)
-      $.publish 'beatmapDiscussion:jump', jumpId
+      $.publish 'beatmapDiscussion:jump', id: jumpId
 
 
   checkNewTimeoutDefault: 10000
@@ -184,16 +184,13 @@ BeatmapDiscussions.Main = React.createClass
       @checkNewTimeout = setTimeout @checkNew, @nextTimeout
 
 
-  setHighlight: (_e, id) ->
+  setHighlight: (_e, {id}) ->
+    return if @state.highlightedDiscussionId == id
+
     @setState highlightedDiscussionId: id
 
 
   markPostRead: (_e, {id}) ->
     return if _.includes @state.readPostIds, id
 
-    newTargetIds = _.chain(@state.readPostIds)
-      .concat id
-      .uniq()
-      .value()
-
-    @setState readPostIds: newTargetIds
+    @setState readPostIds: @state.readPostIds.concat(id)
