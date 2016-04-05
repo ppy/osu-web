@@ -18,7 +18,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     while ($username === null) {
         if (!in_array($uname = $faker->userName, $existing_names, true)) {
             $username = str_replace('.', ' ', $uname); // remove fullstops from username
-        };
+        }
     }
 
     // Generate a random unique ID
@@ -26,7 +26,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     while ($userid === null) {
         if (!in_array($uid = rand(1, 600000), $existing_ids, true)) {
             $userid = $uid;
-        };
+        }
     }
 
     return [
