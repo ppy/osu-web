@@ -19,7 +19,7 @@
  */
 use App\Models\Forum\Topic;
 
-class ForumTopicTest extends TestCase
+class TopicTest extends TestCase
 {
     public function testIssues()
     {
