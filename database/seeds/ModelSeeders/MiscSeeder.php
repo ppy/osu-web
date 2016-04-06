@@ -16,6 +16,7 @@ class MiscSeeder extends Seeder
             //DELETE TABLES
             DB::table('osu_genres')->delete();
             DB::table('osu_languages')->delete();
+            DB::table('osu_countries')->delete();
 
             //COUNTS
             if (!DB::table('osu_counts')->where('name', 'pp_rank_column')->get()) {
@@ -64,6 +65,23 @@ class MiscSeeder extends Seeder
             $any_language->language_id = 0;
             $any_language->save();
             //END LANGUAGES
+
+            //COUNTRIES
+            DB::table('osu_countries')->insert([
+                ['acronym' => 'GB', 'name' => 'United Kingdom', 'rankedscore' => rand(5000000,500000000)*10000, 'playcount' => rand(10000000,200000000), 'usercount' => rand(10000,600000), 'pp' => rand(1000000,45000000)],
+                ['acronym' => 'US', 'name' => 'United States', 'rankedscore' => rand(5000000,500000000)*10000, 'playcount' => rand(10000000,200000000), 'usercount' => rand(10000,600000), 'pp' => rand(1000000,45000000)],
+                ['acronym' => 'JP', 'name' => 'United States', 'rankedscore' => rand(5000000,500000000)*10000, 'playcount' => rand(10000000,200000000), 'usercount' => rand(10000,600000), 'pp' => rand(1000000,45000000)],
+                ['acronym' => 'CN', 'name' => 'China', 'rankedscore' => rand(5000000,500000000)*10000, 'playcount' => rand(10000000,200000000), 'usercount' => rand(10000,600000), 'pp' => rand(1000000,45000000)],
+                ['acronym' => 'DE', 'name' => 'Germany', 'rankedscore' => rand(5000000,500000000)*10000, 'playcount' => rand(10000000,200000000), 'usercount' => rand(10000,600000), 'pp' => rand(1000000,45000000)],
+                ['acronym' => 'TW', 'name' => 'Taiwan', 'rankedscore' => rand(5000000,500000000)*10000, 'playcount' => rand(10000000,200000000), 'usercount' => rand(10000,600000), 'pp' => rand(1000000,45000000)],
+                ['acronym' => 'KR', 'name' => 'South Korea', 'rankedscore' => rand(5000000,500000000)*10000, 'playcount' => rand(10000000,200000000), 'usercount' => rand(10000,600000), 'pp' => rand(1000000,45000000)],
+                ['acronym' => 'RU', 'name' => 'Russian Federation', 'rankedscore' => rand(5000000,500000000)*10000, 'playcount' => rand(10000000,200000000), 'usercount' => rand(10000,600000), 'pp' => rand(1000000,45000000)],
+                ['acronym' => 'PL', 'name' => 'Poland', 'rankedscore' => rand(5000000,500000000)*10000, 'playcount' => rand(10000000,200000000), 'usercount' => rand(10000,600000), 'pp' => rand(1000000,45000000)],
+                ['acronym' => 'FR', 'name' => 'France', 'rankedscore' => rand(5000000,500000000)*10000, 'playcount' => rand(10000000,200000000), 'usercount' => rand(10000,600000), 'pp' => rand(1000000,45000000)],
+                ['acronym' => 'CA', 'name' => 'Canada', 'rankedscore' => rand(5000000,500000000)*10000, 'playcount' => rand(10000000,200000000), 'usercount' => rand(10000,600000), 'pp' => rand(1000000,45000000)],
+                ['acronym' => 'BR', 'name' => 'Brazil', 'rankedscore' => rand(5000000,500000000)*10000, 'playcount' => rand(10000000,200000000), 'usercount' => rand(10000,600000), 'pp' => rand(1000000,45000000)],
+            ]);
+            //END COUNTRIES
         } catch (\Illuminate\Database\QueryException $e) {
             echo $e->getMessage()."\r\n";
         } catch (Exception $ex) {
