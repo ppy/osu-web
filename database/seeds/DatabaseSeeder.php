@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
             $this->call(MiscSeeder::class);
 
             //Store Products
-            $this->command->info('Seeding Store Products');
+            $this->command->info('Seeding Products');
             $this->call(ProductSeeder::class);
         } catch (ErrorException $er) {
             $this->command->error($er->getMessage());

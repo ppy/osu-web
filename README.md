@@ -37,13 +37,13 @@ Using Laravel's [Elixir](http://laravel.com/docs/5.1/elixir).
     $ php artisan lang:js resources/assets/js/messages.js
     $ ./node_modules/.bin/gulp
 
-### Reset the database + seed
+### Reset the database + Seeding sample data
 
     c:\osuweb\vagrant> vagrant ssh
     $ cd /data/osu\!web
     $ php artisan migrate:refresh --seed
 
-Run the above command to rebuild the database and seed with sample data. Note: to seed beatmaps, you must add a valid osu! API key into the .env configuration file as it obtains beatmap data from the osu! API.
+Run the above command to rebuild the database and seed with sample data. In order for the seeder to seed beatmaps, you must enter a valid osu! API key into your .env configuration file as it obtains beatmap data from the osu! API.
 
 Developing
 ---------

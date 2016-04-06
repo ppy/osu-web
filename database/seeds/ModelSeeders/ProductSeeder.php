@@ -22,7 +22,7 @@ class ProductSeeder extends Seeder
             ++$this->count;
         });
 
-        // Add the child product IDs to the master product's type_mappings_json
+        // Add the child shirt IDs to the master shirt's type_mappings_json
         $type_mappings_json = [];
         $sizes = ['S', 'M', 'L', 'XL'];
         $i = 1;
