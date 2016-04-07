@@ -3,7 +3,7 @@
 $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     $existing_users = DB::table('phpbb_users')->get();
     $countries = DB::table('osu_countries')->get();
-    $playstyles = [1,2,4,8];
+    $playstyles = [1, 2, 4, 8];
 
     $existing_names = [];
     $existing_ids = [];
@@ -41,9 +41,9 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'user_warnings' => 0,
         'user_type' => 0,
         'osu_subscriber' => 1,
-        'osu_kudosavailable' => rand(1,500),
-        'osu_kudosdenied' => rand(1,500),
-        'osu_kudostotal' => rand(1,500),
+        'osu_kudosavailable' => rand(1, 500),
+        'osu_kudosdenied' => rand(1, 500),
+        'osu_kudostotal' => rand(1, 500),
         'country_acronym' => array_rand_val($countries)->acronym,
         'osu_playstyle' => array_rand_val($playstyles),
         'user_website' => 'http://www.google.com/',
@@ -52,6 +52,6 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'user_occ' => $faker->catchPhrase,
         'user_sig' => $faker->realText(155),
         'user_from' => $faker->country,
-        'user_regdate' => $faker->dateTimeBetween($startDate = '-6 years', $endDate = 'now')
+        'user_regdate' => $faker->dateTimeBetween($startDate = '-6 years', $endDate = 'now'),
     ];
 });

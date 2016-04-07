@@ -16,7 +16,7 @@ $factory->define(App\Models\Achievement::class, function (Faker\Generator $faker
     return  [
         'name' => $faker->catchPhrase,
         'description' => $faker->realText(30),
-        'quest_instructions' => $faker->realText(30),        
+        'quest_instructions' => $faker->realText(30),
         'image' => 'http://s.ppy.sh/images/achievements/gamer2.png',
     ];
 });

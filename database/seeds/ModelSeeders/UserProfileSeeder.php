@@ -78,7 +78,7 @@ class UserProfileSeeder extends Seeder
 
                     foreach ($achs as $ach) {
                         // 50% of obtaining each achievement
-                        if (rand(0,1) === 1) {
+                        if (rand(0, 1) === 1) {
                             DB::table('osu_user_achievements')->insert([
                                 'user_id' => $usr_id,
                                 'achievement_id' => $ach->achievement_id,
@@ -91,11 +91,10 @@ class UserProfileSeeder extends Seeder
                     DB::table('user_profile_customizations')->where('user_id', $usr_id)->delete();
                     DB::table('user_profile_customizations')->insert([
                         'user_id' => $usr_id,
-                        'cover_json' => '{"id":"'.rand(1,8).'","file":null}'
+                        'cover_json' => '{"id":"'.rand(1, 8).'","file":null}',
                     ]);
                     // END PROFILE COVERS
                 }
-
             }
         } catch (\Illuminate\Database\QueryException $e) {
             $this->command->error("Error: Unable to save User Profile Data\r\n".$e->getMessage());

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +19,7 @@ $factory->defineAs(App\Models\Store\Product::class, 'master_tshirt', function (F
         'weight' => 100,
         'base_shipping' => 5.00,
         'next_shipping' => 4.00,
-        'stock' => rand(1,100),
+        'stock' => rand(1, 100),
         'max_quantity' => 5,
         'header_description' => '# osu! t-shirt swag',
         'promoted' => 1,
@@ -44,7 +43,7 @@ NOTE: These are Japanese sizes. Overseas customers are advised to check the size
         'images_json' => json_encode([
                 ['https://puu.sh/hxpsp/d0b8704769.jpg', 'https://puu.sh/hxpsp/d0b8704769.jpg'],
                 ['https://puu.sh/hxptO/71121e05e7.jpg', 'https://puu.sh/hxptO/71121e05e7.jpg'],
-                ['https://puu.sh/hzfUF/1b9af4dbd1.jpg', 'https://puu.sh/hzfUF/1b9af4dbd1.jpg']
+                ['https://puu.sh/hzfUF/1b9af4dbd1.jpg', 'https://puu.sh/hzfUF/1b9af4dbd1.jpg'],
             ]),
     ];
 });
@@ -56,7 +55,7 @@ $factory->defineAs(App\Models\Store\Product::class, 'child_tshirt', function (Fa
         'weight' => 100,
         'base_shipping' => 5.00,
         'next_shipping' => 4.00,
-        'stock' => rand(1,100),
+        'stock' => rand(1, 100),
         'max_quantity' => 5,
     ];
 });

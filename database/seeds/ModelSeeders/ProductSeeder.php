@@ -17,7 +17,7 @@ class ProductSeeder extends Seeder
         $master_tshirt = factory(App\Models\Store\Product::class, 'master_tshirt')->create();
         $child_shirts = factory(App\Models\Store\Product::class, 'child_tshirt', 7)->create([
             'master_product_id' => $master_tshirt->product_id,
-        ])->each(function($s){
+        ])->each(function ($s) {
             $this->product_ids[] = $s->product_id;
             ++$this->count;
         });
@@ -32,7 +32,7 @@ class ProductSeeder extends Seeder
             'colour' => 'White',
         ];
         foreach ($this->product_ids as $id) {
-            if ($i == 4) {
+            if ($i === 4) {
                 // Reset the counter back to 0 after every 4 so sizes are cycled
                 $i = 0;
             }
