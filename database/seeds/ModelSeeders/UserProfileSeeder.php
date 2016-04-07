@@ -24,7 +24,7 @@ class UserProfileSeeder extends Seeder
 
             foreach (App\Models\User::all()as $usr) {
                 $usr_id = $usr->user_id;
-                
+
                 // FAVOURITES
                 $someMaps = App\Models\Beatmapset::take(6)->get();
                 foreach ($someMaps as $favmap) {
@@ -86,6 +86,14 @@ class UserProfileSeeder extends Seeder
                         }
                     }
                     // END ACHIEVEMENTS
+
+                    // PROFILE COVERS
+                    DB::table('user_profile_customizations')->where('user_id', $usr_id)->delete();
+                    DB::table('user_profile_customizations')->insert([
+                        'user_id' => $usr_id,
+                        'cover_json' => '{"id":"'.rand(1,8).'","file":null}'
+                    ]);
+                    // END PROFILE COVERS
                 }
 
             }
