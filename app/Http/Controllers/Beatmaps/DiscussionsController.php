@@ -41,10 +41,9 @@ class DiscussionsController extends Controller
             abort(403);
         }
 
-        $params = array_merge(
-            get_params(Request::all(), 'beatmap_discussion_vote', [
-                'score:int',
-            ]),
+        $params = get_params(Request::all(), 'beatmap_discussion_vote',
+            ['score:int'],
+            [],
             [
                 'beatmap_discussion_id' => $discussion->id,
                 'user_id' => Auth::user()->user_id,

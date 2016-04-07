@@ -103,26 +103,18 @@ class DiscussionPostsController extends Controller
             ]);
         }
 
-        $params = array_merge(
-            get_params(Request::all(), 'beatmap_discussion', $filters),
-            [
-                'user_id' => Auth::user()->user_id,
-            ]
+        return get_params(Request::all(), 'beatmap_discussion',
+            $filters,
+            ['resolved' => false],
+            ['user_id' => Auth::user()->user_id]
         );
-
-        if (!isset($params['resolved'])) {
-            $params['resolved'] = false;
-        }
-
-        return $params;
     }
 
     private function postParams($discussion)
     {
-        return array_merge(
-            get_params(Request::all(), 'beatmap_discussion_post', [
-                'message',
-            ]),
+        return get_params(Request::all(), 'beatmap_discussion_post',
+            ['message'],
+            [],
             [
                 'beatmap_discussion_id' => $discussion->id,
                 'user_id' => Auth::user()->user_id,
