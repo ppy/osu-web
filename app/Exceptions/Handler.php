@@ -113,11 +113,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if (config('app.debug') && App::environment() !== 'testing') {
+        if (config('app.debug')) {
             if ($this->isHttpException($e)) {
-                return $this->renderHttpException($e);
+                $response = $this->renderHttpException($e);
             } else {
-                return parent::render($request, $e);
+                $response = parent::render($request, $e);
             }
         } else {
             if ($request->ajax()) {
@@ -126,8 +126,8 @@ class Handler extends ExceptionHandler
             } else {
                 $response = response()->view('layout.error');
             }
-
-            return $response->setStatusCode($this->statusCode($e));
         }
+
+        return $response->setStatusCode($this->statusCode($e));
     }
 }
