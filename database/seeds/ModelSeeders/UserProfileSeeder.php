@@ -22,26 +22,28 @@ class UserProfileSeeder extends Seeder
                 $userids[] = $allusers[$ct]['user_id'];
             }
 
-            // FAVOURITE BEATMAPS AND BEATMAP PLAYCOUNTS FOR EACH USER
-
             foreach (App\Models\User::all()as $usr) {
+                $usr_id = $usr->user_id;
+                
+                // FAVOURITES
+                $someMaps = App\Models\Beatmapset::take(6)->get();
+                foreach ($someMaps as $favmap) {
+                    DB::table('osu_favouritemaps')->where('user_id', $usr_id)->where('beatmapset_id', $favmap['beatmapset_id'])->delete();
+                    $fav = new App\Models\FavouriteBeatmapSet;
+                    $fav->beatmapset_id = $favmap['beatmapset_id'];
+                    $fav->user_id = $usr_id;
+                    $fav->save();
+                }
+                // END FAVOURITES
+
                 $bms = $usr->scoresBestOsu()->get();
                 if (count($bms) < 1) {
                     $this->command->info('Can\'t seed favourite maps, map playcounts or leaders due to having no beatmap data.');
 
                     return;
                 }
-                $usr_id = $usr->user_id;
 
                 foreach ($bms as $bm) {
-                    // FAVOURITES
-                    DB::table('osu_favouritemaps')->where('user_id', $usr_id)->where('beatmapset_id', $bm['beatmapset_id'])->delete();
-                    $fav = new App\Models\FavouriteBeatmapSet;
-                    $fav->beatmapset_id = $bm['beatmapset_id'];
-                    $fav->user_id = $usr_id;
-                    $fav->save();
-                    // END FAVOURITES
-
                     $bm = $bms[rand(0, count($bms) - 1)];
                     DB::table('osu_user_beatmap_playcount')->where('user_id', $usr_id)->where('beatmap_id', $bm['beatmap_id'])->delete();
 
@@ -80,7 +82,7 @@ class UserProfileSeeder extends Seeder
                             DB::table('osu_user_achievements')->insert([
                                 'user_id' => $usr_id,
                                 'achievement_id' => $ach->achievement_id,
-                            ]);    
+                            ]);
                         }
                     }
                     // END ACHIEVEMENTS

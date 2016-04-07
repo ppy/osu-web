@@ -12,6 +12,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         try {
+            // Miscellaneous Data (e.g. counts)
+            $this->command->info('Seeding Miscellaneous Data');
+            $this->call(MiscSeeder::class);
+
             // Users, Stats, Ranks
             $this->command->info('Seeding Users and Stats/Rank History...');
             $this->call(UserSeeder::class);
@@ -31,10 +35,6 @@ class DatabaseSeeder extends Seeder
             // Forums, topics, posts etc
             $this->command->info('Seeding Forum Data...');
             $this->call(ForumSeeder::class);
-
-            // Miscellaneous Data (e.g. counts)
-            $this->command->info('Seeding Miscellaneous Data');
-            $this->call(MiscSeeder::class);
 
             // Users Profile Data (Favourite maps, First place ranks, Playcounts)
             $this->command->info('Seeding Users Profile Data (e.g. favourite maps, first place ranks, playcounts)');
