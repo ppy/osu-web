@@ -34,23 +34,27 @@ class UserProfileSeeder extends Seeder
                 $usr_id = $usr->user_id;
 
                 foreach ($bms as $bm) {
+                    // FAVOURITES
                     DB::table('osu_favouritemaps')->where('user_id', $usr_id)->where('beatmapset_id', $bm['beatmapset_id'])->delete();
                     $fav = new App\Models\FavouriteBeatmapSet;
                     $fav->beatmapset_id = $bm['beatmapset_id'];
                     $fav->user_id = $usr_id;
                     $fav->save();
-
-                    // Add a random couple few first place ranks
+                    // END FAVOURITES
 
                     $bm = $bms[rand(0, count($bms) - 1)];
                     DB::table('osu_user_beatmap_playcount')->where('user_id', $usr_id)->where('beatmap_id', $bm['beatmap_id'])->delete();
+
+                    // USER BEATMAP PLAYCOUNTS
                     $playcount = new App\Models\BeatmapPlaycount;
 
                     $playcount->user_id = $usr_id;
                     $playcount->beatmap_id = $bm['beatmap_id'];
                     $playcount->playcount = rand(0, 1500);
                     $playcount->save();
+                    // END USER BEATMAP PLAYCOUNTS
 
+                    // FIRST PLACE RANKS
                     $bm = $bms[rand(0, count($bms) - 1)];
                     if (DB::table('osu_leaders')->where('beatmap_id', $bm['beatmap_id'])->first()) {
                         $bm = $bms[rand(0, count($bms) - 1)];
@@ -64,7 +68,24 @@ class UserProfileSeeder extends Seeder
                     $leader->user_id = $usr_id;
                     $leader->score_id = $bm['score_id'];
                     $leader->save();
+                    // END FIRST PLACE RANKS
+
+                    // ACHIEVEMENTS
+                    DB::table('osu_user_achievements')->where('user_id', $usr_id)->delete();
+                    $achs = App\Models\Achievement::all();
+
+                    foreach ($achs as $ach) {
+                        // 50% of obtaining each achievement
+                        if (rand(0,1) === 1) {
+                            DB::table('osu_user_achievements')->insert([
+                                'user_id' => $usr_id,
+                                'achievement_id' => $ach->achievement_id,
+                            ]);    
+                        }
+                    }
+                    // END ACHIEVEMENTS
                 }
+
             }
         } catch (\Illuminate\Database\QueryException $e) {
             $this->command->error("Error: Unable to save User Profile Data\r\n".$e->getMessage());

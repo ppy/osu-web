@@ -17,6 +17,7 @@ class MiscSeeder extends Seeder
             DB::table('osu_genres')->delete();
             DB::table('osu_languages')->delete();
             DB::table('osu_countries')->delete();
+            DB::table('osu_achievements')->delete();
 
             //COUNTS
             if (!DB::table('osu_counts')->where('name', 'pp_rank_column')->get()) {
@@ -82,6 +83,19 @@ class MiscSeeder extends Seeder
                 ['acronym' => 'BR', 'name' => 'Brazil', 'rankedscore' => rand(5000000,500000000)*10000, 'playcount' => rand(10000000,200000000), 'usercount' => rand(10000,600000), 'pp' => rand(1000000,45000000)],
             ]);
             //END COUNTRIES
+
+            //ACHIEVEMENTS
+            $beatmapSlugs = ['all-packs-anime-1', 'all-packs-anime-2', 'all-packs-gamer-1', 'all-packs-gamer-2', 'all-packs-rhythm-1', 'all-packs-rhythm-2'];
+            factory(App\Models\Achievement::class, 5)->create([
+                'grouping' => 'Beatmap Packs',
+                'slug' => array_rand_val($beatmapSlugs),
+            ]);
+            $comboSlugs = ['osu-combo-500', 'osu-combo-750', 'osu-combo-1000', 'osu-combo-2000'];
+            factory(App\Models\Achievement::class, 5)->create([
+                'grouping' => 'Combo',
+                'slug' => array_rand_val($comboSlugs),
+            ]);
+            //END ACHIEVEMENTS
         } catch (\Illuminate\Database\QueryException $e) {
             echo $e->getMessage()."\r\n";
         } catch (Exception $ex) {

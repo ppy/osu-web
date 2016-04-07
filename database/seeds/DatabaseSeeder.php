@@ -32,13 +32,13 @@ class DatabaseSeeder extends Seeder
             $this->command->info('Seeding Forum Data...');
             $this->call(ForumSeeder::class);
 
-            // Users Profile Data (Favourite maps, First place ranks, Playcounts)
-            $this->command->info('Seeding Users Profile Data (e.g. favourite maps, first place ranks, playcounts)');
-            $this->call(UserProfileSeeder::class);
-
             // Miscellaneous Data (e.g. counts)
             $this->command->info('Seeding Miscellaneous Data');
             $this->call(MiscSeeder::class);
+
+            // Users Profile Data (Favourite maps, First place ranks, Playcounts)
+            $this->command->info('Seeding Users Profile Data (e.g. favourite maps, first place ranks, playcounts)');
+            $this->call(UserProfileSeeder::class);
 
             //Store Products
             $this->command->info('Seeding Products');
