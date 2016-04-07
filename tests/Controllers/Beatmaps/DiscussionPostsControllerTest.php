@@ -68,4 +68,23 @@ class DiscussionPostsControllerTest extends TestCase
         $this->assertEquals($currentDiscussions, BeatmapDiscussion::count());
         $this->assertEquals($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
     }
+
+    public function testPostStoreNewDiscussionRequestBeatmapsetDiscussion()
+    {
+        $currentDiscussions = BeatmapDiscussion::count();
+        $currentDiscussionPosts = BeatmapDiscussionPost::count();
+
+        $this
+            ->actingAs($this->user)
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmapset_id' => $this->otherBeatmapset->beatmapset_id,
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ])
+            ->assertResponseStatus(404);
+
+        $this->assertEquals($currentDiscussions, BeatmapDiscussion::count());
+        $this->assertEquals($currentDiscussionPosts, BeatmapDiscussionPost::count());
+    }
 }
