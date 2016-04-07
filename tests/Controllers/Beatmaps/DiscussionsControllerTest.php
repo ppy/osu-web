@@ -64,7 +64,7 @@ class DiscussionsControllerTest extends TestCase
             ->actingAs($this->user)
             ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
                 'beatmap_discussion_vote' => ['score' => '0'],
-                ])
+            ])
             ->seeJson([]);
 
         $this->assertEquals($currentVotes - 1, BeatmapDiscussionVote::count());
