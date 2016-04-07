@@ -31,6 +31,16 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         }
     }
 
+    // Get a random country
+    if (count($countries) > 0) {
+        $country = array_rand_val($countries);
+        if ($country->acronym) {
+            $country_ac = $country->acronym;
+        }
+    } else {
+        $country_ac = '';
+    }
+
     return [
         'username' => $username,
         'username_clean' => $username,
@@ -44,7 +54,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'osu_kudosavailable' => rand(1, 500),
         'osu_kudosdenied' => rand(1, 500),
         'osu_kudostotal' => rand(1, 500),
-        'country_acronym' => array_rand_val($countries)->acronym,
+        'country_acronym' => $country_ac,
         'osu_playstyle' => array_rand_val($playstyles),
         'user_website' => 'http://www.google.com/',
         'user_twitter' => 'ppy',
