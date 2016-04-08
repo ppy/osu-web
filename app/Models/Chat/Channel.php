@@ -27,4 +27,9 @@ class Channel extends Model
         'creation_time',
     ];
     public $timestamps = false;
+
+    public function messages()
+    {
+        $this->hasMany(Message::class, 'channel_id', 'channel_id');
+    }
 }
