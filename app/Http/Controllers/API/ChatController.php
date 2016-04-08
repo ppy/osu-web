@@ -58,9 +58,9 @@ class ChatController extends Controller
             ->limit(50)
             ->get();
 
-        return fractal_api_serialize_collection(
+        return array_reverse(fractal_api_serialize_collection(
             $messages,
             new MessageTransformer()
-        );
+        ));
     }
 }
