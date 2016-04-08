@@ -190,7 +190,7 @@ if (Config::get('app.debug')) {
     });
 }
 
-// OAuth
-Route::get('oauth/authorize', ['as' => 'oauth.authorize.get', 'middleware' => ['check-authorization-params', 'auth'], 'uses' => 'OAuthController@authorizeForm']);
-Route::post('oauth/authorize', ['as' => 'oauth.authorize.post', 'middleware' => ['csrf', 'check-authorization-params', 'auth'], 'uses' => 'OAuthController@authorizePost']);
+// OAuth2 (for API)
+Route::get('oauth/authorize', ['as' => 'oauth.authorize.get', 'middleware' => ['check-authorization-params'], 'uses' => 'OAuthController@authorizeForm']);
+Route::post('oauth/authorize', ['as' => 'oauth.authorize.post', 'middleware' => ['csrf', 'check-authorization-params'], 'uses' => 'OAuthController@authorizePost']);
 Route::post('oauth/access_token', ['uses' => 'OAuthController@getAccessToken']);

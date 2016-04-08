@@ -28,6 +28,15 @@ class OAuthController extends Controller
 {
     protected $section = 'oauth';
 
+    public function __construct()
+    {
+        # TODO: uh yeah, there's gotta be a better way to do this :v
+        if (current_action() !== 'getAccessToken') {
+            $this->middleware('auth');
+        }
+        return parent::__construct();
+    }
+
     public function authorizeForm()
     {
         $authParams = Authorizer::getAuthCodeRequestParams();
