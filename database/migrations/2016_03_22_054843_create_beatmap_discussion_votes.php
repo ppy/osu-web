@@ -17,7 +17,7 @@ class CreateBeatmapDiscussionVotes extends Migration
             $table->bigInteger('beatmap_discussion_id')->unsigned();
             $table->mediumInteger('user_id')->unsigned()->nullable();
             $table->tinyInteger('score');
-            $table->timestamps();
+            $table->nullableTimestamps();
 
             $table->foreign('beatmap_discussion_id')
                 ->references('id')

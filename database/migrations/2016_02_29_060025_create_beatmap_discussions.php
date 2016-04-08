@@ -22,7 +22,7 @@ class CreateBeatmapDiscussions extends Migration
             $table->integer('timestamp')->nullable();
             $table->boolean('resolved')->default(false);
 
-            $table->timestamps();
+            $table->nullableTimestamps();
 
             $table->foreign('beatmapset_discussion_id')
                 ->references('id')
