@@ -50,12 +50,13 @@ class ChatController extends Controller
     {
         $channels = array_map('intval', explode(',', Request::input('channels')));
         $since = intval(Request::input('since'));
+        $limit = intval(Request::input('limit', 50));
 
         $messages = Message::whereIn('channel_id', $channels)
             ->with('user')
             ->where('message_id', '>', $since)
             ->orderBy('message_id', 'desc')
-            ->limit(50)
+            ->limit(min(abs($limit), 50))
             ->get();
 
         return array_reverse(fractal_api_serialize_collection(
