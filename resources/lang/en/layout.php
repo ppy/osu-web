@@ -124,6 +124,7 @@ return [
             'beatmapsets' => [
                 '_' => 'beatmapsets',
                 'covers' => 'covers',
+                'show' => 'detail',
             ],
         ],
     ],
