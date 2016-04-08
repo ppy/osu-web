@@ -23,6 +23,7 @@ use Auth;
 use Request;
 use Response;
 use Authorizer;
+use DB;
 
 class OAuthController extends Controller
 {
@@ -39,6 +40,7 @@ class OAuthController extends Controller
 
     public function authorizeForm()
     {
+        $user = Auth::user();
         $authParams = Authorizer::getAuthCodeRequestParams();
         $formParams = array_except($authParams, 'client');
         $formParams['client_id'] = $authParams['client']->getId();
@@ -46,7 +48,22 @@ class OAuthController extends Controller
             return $scope->getId();
         }, $authParams['scopes']));
 
-        return view('oauth.authorization-form', ['params' => $formParams, 'client' => $authParams['client']]);
+        $client_id = $formParams['client_id'];
+
+        $sessions = DB::table('oauth_sessions')
+            ->where('client_id', '=', $client_id)
+            ->where('owner_id', $user->user_id)
+            ->join('oauth_clients', 'oauth_clients.id', '=', 'oauth_sessions.client_id')
+            ->groupBy('oauth_sessions.client_id')
+            // TODO: check that grants are the same when we start using grants
+            ->get();
+
+        if ($sessions) {
+            $formParams['user_id'] = $user->user_id;
+            return redirect(Authorizer::issueAuthCode('user', $user->user_id, $formParams));
+        } else {
+            return view('oauth.authorization-form', ['params' => $formParams, 'client' => $authParams['client']]);
+        }
     }
 
     public function authorizePost()
