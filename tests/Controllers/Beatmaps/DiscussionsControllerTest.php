@@ -35,30 +35,35 @@ class DiscussionsControllerTest extends TestCase
     {
         // normal vote
         $currentVotes = BeatmapDiscussionVote::count();
+        $currentScore = $this->currentScore($this->beatmapDiscussion);
 
         $this
             ->actingAs($this->user)
             ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
                 'beatmap_discussion_vote' => ['score' => '1'],
-                ])
+            ])
             ->seeJson([]);
 
         $this->assertEquals($currentVotes + 1, BeatmapDiscussionVote::count());
+        $this->assertEquals($currentScore + 1, $this->currentScore($this->beatmapDiscussion));
 
-        // voting again doesn't change anything
+        // voting again only changes the score
         $currentVotes = BeatmapDiscussionVote::count();
+        $currentScore = $this->currentScore($this->beatmapDiscussion);
 
         $this
             ->actingAs($this->user)
             ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
-                ])
+            ])
             ->seeJson([]);
 
         $this->assertEquals($currentVotes, BeatmapDiscussionVote::count());
+        $this->assertEquals($currentScore - 2, $this->currentScore($this->beatmapDiscussion));
 
         // but voting 0 will remove the vote
         $currentVotes = BeatmapDiscussionVote::count();
+        $currentScore = $this->currentScore($this->beatmapDiscussion);
 
         $this
             ->actingAs($this->user)
@@ -68,5 +73,11 @@ class DiscussionsControllerTest extends TestCase
             ->seeJson([]);
 
         $this->assertEquals($currentVotes - 1, BeatmapDiscussionVote::count());
+        $this->assertEquals($currentScore + 1, $this->currentScore($this->beatmapDiscussion));
+    }
+
+    private function currentScore($discussion)
+    {
+        return $discussion->fresh()->beatmapDiscussionVotes()->sum('score');
     }
 }
