@@ -159,14 +159,14 @@ Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountControlle
 
 // API
 Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'oauth'], function () {
-    Route::group(['prefix' => '2'], function () {
+    Route::group(['prefix' => 'v2'], function () {
         Route::group(['prefix' => 'chat'], function () {
             Route::get('channels', ['uses' => 'ChatController@channels']);
             Route::get('messages', ['uses' => 'ChatController@messages']);
         });
     });
-    // legacy routes
-    Route::group(['prefix' => '1'], function () {
+    // legacy api routes
+    Route::group(['prefix' => 'v1'], function () {
         Route::get('get_match', ['uses' => 'LegacyController@getMatch']);
         Route::get('get_packs', ['uses' => 'LegacyController@getPacks']);
         Route::get('get_user', ['uses' => 'LegacyController@getUser']);
