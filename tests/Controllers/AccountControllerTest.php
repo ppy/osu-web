@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use App\Models\User;
 
 class AccountControllerTest extends TestCase
@@ -18,8 +17,6 @@ class AccountControllerTest extends TestCase
      */
     public function testValidProfileOrderChangeRequest()
     {
-        $this->withoutMiddleware();
-
         $this->actingAs($this->user)
             ->json('POST', route('account.update-profile'), [
                 'order' => ['historical', 'medals', 'beatmaps', 'top_ranks', 'kudosu', 'recent_activities', 'me', 'performance'],
@@ -31,8 +28,6 @@ class AccountControllerTest extends TestCase
 
     public function testDuplicatesInProfileOrder()
     {
-        $this->withoutMiddleware();
-
         $this->actingAs($this->user)
             ->json('POST', route('account.update-profile'), [
                 'order' => ['me', 'recent_activities', 'kudosu', 'top_ranks', 'beatmaps', 'medals', 'historical', 'performance', 'me'],
@@ -44,8 +39,6 @@ class AccountControllerTest extends TestCase
 
     public function testInvalidIdsInProfileOrder()
     {
-        $this->withoutMiddleware();
-
         $this->actingAs($this->user)
             ->json('POST', route('account.update-profile'), [
                 'order' => ['me', 'recent_activities', 'kudosu', 'top_ranks', 'beatmaps', 'medals', 'historical', 'performance', 'test'],

@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use App\Models\User;
 
 class UsersControllerTest extends TestCase
