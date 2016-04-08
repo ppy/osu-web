@@ -19,7 +19,11 @@
  */
 namespace App\Models\Chat;
 
-class Channel extends Model
+use App\Models\User;
+use App\Models\Multiplayer\Match;
+use App\Interfaces\Messageable;
+
+class Channel extends Model implements Messageable
 {
     protected $table = 'channels';
     protected $primaryKey = 'channel_id';
@@ -31,5 +35,66 @@ class Channel extends Model
     public function messages()
     {
         $this->hasMany(Message::class, 'channel_id', 'channel_id');
+    }
+
+    public function allowedGroups()
+    {
+        return array_map('intval', explode(',', $this->allowed_groups));
+    }
+
+    public function canBeMessagedBy(User $user)
+    {
+        // feels a bit redundant at the moment, but may be useful later for read-only channels, etc
+        return $this->canBeReadBy($user);
+    }
+
+    public function canBeReadBy(User $user)
+    {
+        if ($user->isBanned() || $user->isRestricted() || $user->isSilenced()) {
+            return false;
+        }
+
+        switch (strtolower($this->type)) {
+            case 'public':
+                return true;
+                break;
+
+            case 'private':
+                $common_groups = array_intersect(
+                    array_pluck($user->userGroups()->get(['group_id'])->toArray(), 'group_id'),
+                    $this->allowedGroups()
+                );
+                return count($common_groups) > 0;
+                break;
+
+            case 'spectator':
+            case 'multiplayer':
+            case 'temporary': // this and the comparisons below are needed until bancho is updated to use the new channel types
+                if (substr($this->name, 0, 7) === '#spect_') {
+                    return true;
+                }
+                if (substr($this->name, 0, 4) === '#mp_') {
+                    $match_id = intval(str_replace('#mp_', '', $this->name));
+                    return in_array($user->user_id, Match::find($match_id)->currentPlayers());
+                }
+                return false;
+                break;
+
+            default:
+                return false;
+        }
+    }
+
+    public function sendMessage(User $sender, $body)
+    {
+        if (!$this->canBeMessagedBy($sender)) {
+            return false;
+        }
+
+        $message = new Message();
+        $message->user_id = $sender->user_id;
+        $message->content = $body;
+        $message->channel()->associate($this);
+        $message->save();
     }
 }

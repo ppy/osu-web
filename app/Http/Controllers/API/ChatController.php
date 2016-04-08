@@ -28,6 +28,8 @@ use App\Models\Chat\Message;
 use DB;
 use App\Transformers\API\Chat\MessageTransformer;
 use App\Transformers\API\Chat\ChannelTransformer;
+use Authorizer;
+use App\Models\User;
 
 class ChatController extends Controller
 {
@@ -47,6 +49,7 @@ class ChatController extends Controller
         $since = intval(Request::input('since'));
         $limit = intval(Request::input('limit', 50));
 
+        # TODO: permissions check
         $messages = Message::whereIn('channel_id', $channels)
             ->with('user')
             ->where('message_id', '>', $since)
@@ -58,5 +61,24 @@ class ChatController extends Controller
             $messages,
             new MessageTransformer()
         ));
+    }
+
+    public function postMessage()
+    {
+        $current_user = User::find(Authorizer::getResourceOwnerId());
+
+        $target_type = Request::input('target_type');
+        switch ($target_type) {
+            case 'channel':
+                $target = Channel::findOrFail(Request::input('channel_id'));
+                break;
+            case 'user':
+                $target = User::findOrFail(Request::input('user_id'));
+                break;
+        }
+
+        if (!$target || !$target->sendMessage($current_user, Request::input('message'))) {
+            abort(401);
+        }
     }
 }

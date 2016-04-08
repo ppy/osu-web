@@ -34,4 +34,25 @@ class Match extends Model
     {
         return $this->hasMany(Game::class);
     }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
+    public function currentPlayers()
+    {
+        $players = [];
+        if (!$this->end_time) { # match hasn't ended, i.e. ongoing match
+            $join_events = $this->events()->whereIn('text', ['JOIN', 'PART'])->orderBy('event_id', 'asc')->get();
+            foreach ($join_events as $event) {
+                if ($event->text === 'JOIN') {
+                    array_push($players, $event->user_id);
+                } else {
+                    array_splice($players, array_search($event->user_id, $players), 1);
+                }
+            }
+        }
+        return $players;
+    }
 }
