@@ -19,34 +19,18 @@
  */
 namespace App\Http\Controllers\Admin;
 
-use App\Models\BeatmapSet;
-use App\Jobs\RegenerateBeatmapSetCover;
+use App\Models\BeatmapSet as Beatmapset;
+use Request;
 
-class BeatmapsetsController extends Controller
+class BeatmapsetDiscussionsController extends Controller
 {
-    protected $section = 'admin.beatmapsets';
+    protected $section = 'admin-beatmapset-discussions';
 
-    public function covers($id)
+    public function store()
     {
-        $beatmapSet = BeatmapSet::findOrFail($id);
+        $beatmapset = Beatmapset::findOrFail(Request::input('beatmapset_id'));
+        $discussion = $beatmapset->beatmapsetDiscussion()->firstOrCreate([]);
 
-        return view('admin.beatmapsets.cover', compact('beatmapSet'));
-    }
-
-    public function regenerateCovers($id)
-    {
-        $beatmapSet = BeatmapSet::findOrFail($id);
-
-        $job = (new RegenerateBeatmapSetCover($beatmapSet))->onQueue('beatmap_processor');
-        $this->dispatch($job);
-
-        return back();
-    }
-
-    public function show($id)
-    {
-        $beatmapset = BeatmapSet::findOrFail($id);
-
-        return view('admin.beatmapsets.show', compact('beatmapset'));
+        return redirect(route('admin.beatmapsets.show', $beatmapset));
     }
 }
