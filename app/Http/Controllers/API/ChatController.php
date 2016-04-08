@@ -25,17 +25,12 @@ use Redirect;
 use Carbon\Carbon;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
-use App\Http\Controllers\Controller as Controller;
 use DB;
 use App\Transformers\API\Chat\MessageTransformer;
 use App\Transformers\API\Chat\ChannelTransformer;
 
 class ChatController extends Controller
 {
-    public function __construct()
-    {
-    }
-
     public function channels()
     {
         $channels = Channel::where('type', 'Public')->get();
