@@ -15,11 +15,40 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div} = React.DOM
+{div, span} = React.DOM
 el = React.createElement
 
 class BeatmapSetPage.Scoreboard extends React.Component
+  constructor: (props) ->
+    super props
+
+    @state =
+      currentScoreboard: 'global'
+
+  componentDidMount: ->
+    $.subscribe 'beatmapset:scoreboard:set.beatmapSetPageScoreboard', @_scoreboardSwitch
+
+  componentWillUnmount: ->
+    $.unsubscribe '.beatmapSetPageScoreboard'
+
+  _scoreboardSwitch: (_e, scoreboard) =>
+    @setState currentScoreboard: scoreboard
+
+  scoreboards = ['global', 'country', 'friend']
+
   render: ->
     div
-      className: 'page-extra'
+      className: 'page-extra beatmapset-scoreboard'
       el BeatmapSetPage.ExtraHeader, name: 'scoreboard'
+
+      div className: 'beatmapset-scoreboard__tabs',
+        scoreboards.map (m) =>
+          el BeatmapSetPage.ScoreboardTab,
+            key: m
+            scoreboard: m
+            currentScoreboard: @state.currentScoreboard
+
+      div className: 'beatmapset-scoreboard__line'
+
+      el BeatmapSetPage.ScoreboardFirst,
+        score: @props.scores[0]

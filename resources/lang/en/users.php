@@ -39,6 +39,7 @@ return [
     'anonymous' => [
         'login_link' => 'click to login',
         'username' => 'Guest',
+        'error' => 'You need to be logged in to do this.',
     ],
     'logout_confirm' => 'Are you sure you want to log out? :(',
     'show' => [

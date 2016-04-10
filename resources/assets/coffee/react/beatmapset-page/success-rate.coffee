@@ -69,7 +69,7 @@ class BeatmapSetPage.SuccessRate extends React.Component
 
         div className: 'beatmapset-success-rate__legend',
           legend.map (m) ->
-            div className: 'beatmapset-success-rate__legend-item',
+            div className: 'beatmapset-success-rate__legend-item', key: m,
               span className: 'beatmapset-success-rate__legend-label', Lang.get "beatmaps.beatmapset.show.extra.success-rate.#{m}"
               div className: "beatmapset-success-rate__legend-color beatmapset-success-rate__legend-color--#{m}"
 

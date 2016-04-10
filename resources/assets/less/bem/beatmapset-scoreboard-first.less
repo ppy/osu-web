@@ -1,0 +1,141 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+.beatmapset-scoreboard-first {
+  display: flex;
+  align-items: stretch;
+
+  max-width: 820px;
+
+  margin-top: @spacing * 2;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media @desktop {
+    padding: 0 100px;
+  }
+
+  @media @mobile {
+    flex-wrap: wrap;
+    max-width: 400px;
+
+    padding: 0 @spacing * 2;
+    padding-top: @spacing * 2;
+  }
+
+  .default-box-shadow;
+
+  &__item {
+    flex-basis: 100%;
+
+    @media @desktop {
+      flex-basis: 50%;
+
+      padding: 30px 0;
+
+      border-width: 0px 1px 0px 0px;
+      border-style: solid;
+      border-image: linear-gradient(to top, #ccc, transparent 80%) 1;
+
+      align-items: center;
+
+      &:last-child {
+        border: none;
+      }
+
+      &--right {
+        padding-left: @spacing * 2;
+      }
+    }
+
+    @media @mobile {
+      padding-bottom: @spacing * 2;
+    }
+
+    &--left {
+      display: flex;
+
+      @media @desktop {
+        padding-right: @spacing * 2;
+      }
+
+      @media @mobile {
+        justify-content: center;
+      }
+    }
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+
+    padding-right: @spacing * 5;
+  }
+
+  &__label {
+    font-style: italic;
+    font-weight: 600;
+
+    padding-bottom: @spacing * 0.5;
+
+    &--rank {
+      font-size: 24px;
+      color: @yellow-dark;
+    }
+
+    &--username {
+      font-size: 20px;
+      color: #1188aa;
+    }
+  }
+
+  &__avatar-container {
+    width: @beatmapset-scoreboard-avatar-container-size;
+    height: @beatmapset-scoreboard-avatar-container-size;
+
+    border-radius: 5px;
+    background-color: #ffffff;
+
+    .default-box-shadow;
+  }
+
+  &__avatar {
+    position: absolute;
+
+    left: 2px;
+    bottom: 2px;
+  }
+
+  &__stat-row {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 3px;
+  }
+
+  &__stat {
+    font-size: 15px;
+    font-style: italic;
+    font-weight: normal;
+
+    &--value {
+      font-weight: 600;
+    }
+  }
+}
