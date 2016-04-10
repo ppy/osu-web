@@ -52,7 +52,7 @@ class BeatmapDifficultyTransformer extends Fractal\TransformerAbstract
         $scores = $b
             ->scoresBest()
             ->orderBy('score', 'desc')
-            ->limit(50)
+            ->limit(config('osu.beatmaps.max-scores'))
             ->get();
 
         return $this->collection($scores, new ScoreTransformer);
