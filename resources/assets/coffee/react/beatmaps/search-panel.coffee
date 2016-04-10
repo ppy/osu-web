@@ -37,7 +37,7 @@ class Beatmaps.SearchPanel extends React.Component
       return
 
     @prevText = text
-    if @keyDelay != null
+    if @keyDelay?
       clearTimeout @keyDelay
     @keyDelay = setTimeout(@submit.bind(this), 500)
 
@@ -59,14 +59,7 @@ class Beatmaps.SearchPanel extends React.Component
     background = {backgroundImage: "url(#{@props.background})"}
     filters = @state.filters
 
-    if (currentUser.id == undefined)
-      div id: 'forum-index-header', className: 'beatmaps-header osu-layout__row osu-layout__row--page',
-        div className: 'background', style: background
-        div className: 'text-area',
-          div className: 'text',
-            h2 {}, 'witty tag line'
-            h1 {}, 'beatmaps'
-    else
+    if currentUser.id?
       div id: 'search', className: 'osu-layout__row osu-layout__row--page',
         div className: 'background', style: background
         div className: 'box',
@@ -86,3 +79,10 @@ class Beatmaps.SearchPanel extends React.Component
           el(Beatmaps.SearchFilter, name: 'extra', title: 'Extra', options: filters.extras, multiselect: true, selected: @props.filters.extra)
           if currentUser.isSupporter
             el(Beatmaps.SearchFilter, name: 'rank', title: 'Rank Achieved', options: filters.ranks, multiselect: true, selected: @props.filters.rank)
+    else
+      div id: 'forum-index-header', className: 'beatmaps-header osu-layout__row osu-layout__row--page',
+        div className: 'background', style: background
+        div className: 'text-area',
+          div className: 'text',
+            h2 {}, 'witty tag line'
+            h1 {}, 'beatmaps'

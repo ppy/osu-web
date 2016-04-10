@@ -23,7 +23,7 @@ el = React.createElement
 class Beatmaps.BeatmapsListing extends React.Component
   render: ->
     beatmaps = []
-    return if @props.beatmaps == undefined
+    return if !@props.beatmaps?
     for beatmap in @props.beatmaps
       panel = div
         className: 'osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-4'

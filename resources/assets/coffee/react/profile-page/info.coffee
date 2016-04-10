@@ -28,9 +28,9 @@ class ProfilePage.Info extends React.Component
 
   originKeys: =>
     keys = []
-    if @props.user.country.name != null
+    if @props.user.country.name?
       keys.push 'country'
-    if @props.user.age != null
+    if @props.user.age?
       keys.push 'age'
 
     return keys
@@ -50,7 +50,7 @@ class ProfilePage.Info extends React.Component
           el 'p', className: 'profile-title profile-title--supporter',
             Lang.get('users.show.is_supporter')
 
-        if @props.user.title != null
+        if @props.user.title?
           el 'p', className: 'profile-title', @props.user.title
 
       el 'div', className: 'compact profile-row',

@@ -19,7 +19,7 @@ el = React.createElement
 
 class ProfilePage.CoverSelection extends React.Component
   onClick: =>
-    return if @props.url == null
+    return if !@props.url?
 
     $.ajax Url.updateProfileAccount,
       method: 'post'
@@ -32,7 +32,7 @@ class ProfilePage.CoverSelection extends React.Component
 
 
   onMouseEnter: =>
-    return if @props.url == null
+    return if !@props.url?
     $.publish 'user:cover:set', @props.url
 
 

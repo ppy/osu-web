@@ -228,7 +228,7 @@ class BeatmapSet extends Model
             $params['sort'] = ['ranked', 'desc'];
         }
 
-        if (!in_array((int) $params['mode'], Beatmap::modes(), true)) {
+        if (!in_array((int) $params['mode'], Beatmap::MODES, true)) {
             $params['mode'] = null;
         }
 
