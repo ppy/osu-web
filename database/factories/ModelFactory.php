@@ -17,17 +17,4 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
-  $username = $faker->userName;
-
-    return [
-      'username' => $username,
-      'username_clean' => $username,
-      'user_password' => password_hash(md5($faker->password), PASSWORD_BCRYPT),
-      'user_lastvisit' => 0,
-      'user_warnings' => 0,
-      'user_type' => 0,
-  ];
-});
-
 ?>
