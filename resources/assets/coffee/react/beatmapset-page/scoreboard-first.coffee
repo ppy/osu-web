@@ -36,7 +36,7 @@ class BeatmapSetPage.ScoreboardFirst extends React.Component
               backgroundImage: "url(#{@props.score.user.data.avatarUrl})"
       div className: 'beatmapset-scoreboard-first__item beatmapset-scoreboard-first__item--right',
         stats.map (m) =>
-          dt = Lang.get "beatmaps.beatmapset.show.extra.scoreboard.#{m}"
+          dt = Lang.get "beatmaps.beatmapset.show.extra.scoreboard.first.#{m}"
           switch m
             when 'score'
               dd = @props.score.score.toLocaleString()

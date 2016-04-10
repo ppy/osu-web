@@ -137,11 +137,13 @@ return [
                     'global' => 'Global Ranking',
                     'country' => 'Country Ranking',
                     'friend' => 'Friend Ranking',
-                    'accuracy' => 'Accuracy:',
-                    'score' => 'Score:',
-                    '300' => '300:',
-                    '100' => '100:',
-                    '50' => '50:',
+                    'first' => [
+                        'accuracy' => 'Accuracy:',
+                        'score' => 'Score:',
+                        '300' => '300:',
+                        '100' => '100:',
+                        '50' => '50:',
+                    ]
                 ],
             ],
         ],
