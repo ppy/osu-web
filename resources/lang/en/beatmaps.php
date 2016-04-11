@@ -143,7 +143,13 @@ return [
                         '300' => '300:',
                         '100' => '100:',
                         '50' => '50:',
-                    ]
+                    ],
+                    'list' => [
+                        'rank-header' => 'Rank',
+                        'player' => 'Player',
+                        'score' => 'Score',
+                        'accuracy' => 'Accuracy',
+                    ],
                 ],
             ],
         ],

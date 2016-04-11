@@ -44,4 +44,62 @@
     border-style: solid;
     border-image: linear-gradient(to left, transparent 5%, @grey-5, transparent 95%) 1;
   }
+
+  &__row {
+    display: flex;
+    align-items: center;
+
+    height: 30px;
+
+    padding: 0 @spacing;
+
+    &--score {
+      &:hover {
+        background-color: #d1d2d3;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  &__row-item {
+    font-size: 15px;
+    font-style: italic;
+
+    &--header {
+      font-weight: 600;
+    }
+
+    &--rank-header {
+      width: 90px;
+    }
+
+    &--rank {
+      width: 50px;
+    }
+
+    &--flag {
+      height: 20px;
+      width: 40px;
+    }
+
+    &--player {
+      flex-grow: 1;
+    }
+
+    &--icons {
+      text-align: right;
+      width: 20px;
+      height: 20px;
+    }
+
+    &--score {
+      width: 80px;
+      text-align: right;
+    }
+
+    &--accuracy {
+      width: 90px;
+      text-align: right;
+    }
+  }
 }

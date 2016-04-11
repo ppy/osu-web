@@ -35,6 +35,7 @@ class BeatmapSetPage.Scoreboard extends React.Component
     @setState currentScoreboard: scoreboard
 
   scoreboards = ['global', 'country', 'friend']
+  header = ['rank-header', 'player', 'score', 'accuracy']
 
   render: ->
     div
@@ -52,3 +53,14 @@ class BeatmapSetPage.Scoreboard extends React.Component
 
       el BeatmapSetPage.ScoreboardFirst,
         score: @props.scores[0]
+
+      div className: 'beatmapset-scoreboard__row',
+        header.map (m) =>
+          className = 'beatmapset-scoreboard__row-item beatmapset-scoreboard__row-item--header'
+          className += " beatmapset-scoreboard__row-item--#{m}"
+
+          span className: className, key: m, Lang.get "beatmaps.beatmapset.show.extra.scoreboard.list.#{m}"
+
+
+      @props.scores[1..].map (s, i) =>
+        el BeatmapSetPage.ScoreboardItem, score: s, position: i + 2, key: i
