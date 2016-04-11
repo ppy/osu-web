@@ -410,7 +410,7 @@ function fast_imagesize($url)
  */
 function get_int($string)
 {
-    if (present($string)) {
+    if (present($string) === true) {
         return (int) $string;
     }
 }
