@@ -105,12 +105,13 @@ class DiscussionPostsController extends Controller
 
         $params = get_params(Request::all(), 'beatmap_discussion',
             $filters,
-            ['resolved' => false],
-            ['user_id' => Auth::user()->user_id]
+            ['resolved' => false]
         );
 
-        if ($params['resolved']) {
-            $params['resolver_id'] = Auth::user()->user_id;
+        $params['resolver_id'] = $params['resolved'] ? Auth::user()->user_id : null;
+
+        if ($isNew) {
+            $params['user_id'] = Auth::user()->user_id;
         }
 
         return $params;
