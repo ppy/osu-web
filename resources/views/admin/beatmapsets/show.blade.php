@@ -19,7 +19,7 @@
 
 @section('content')
     <div class="osu-layout__row osu-layout__row--page">
-        <h2>{{ $beatmapset->title }} - {{ $beatmapset->artist }}</h2>
+        <h1>{{ $beatmapset->title }} - {{ $beatmapset->artist }}</h1>
 
         <ul>
             <li>{{ trans('admin.beatmapsets.show.discussion._') }}:
