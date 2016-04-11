@@ -135,7 +135,7 @@ BeatmapDiscussions.Discussion = React.createClass
   addEditorLink: (message) ->
     _.chain message
       .escape()
-      .replace /(^|\s)((\d{2}):(\d{2})[:.](\d{3})( \([\d,]+\))?(?=\s))/g, (_, prefix, text, m, s, ms, range) =>
+      .replace /(^|\s)((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\))?(?=\s))/g, (_, prefix, text, m, s, ms, range) =>
         "#{prefix}#{osu.link Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text}"
       .value()
 
