@@ -19,6 +19,7 @@
  */
 namespace App\Http\Middleware;
 
+use App;
 use Closure;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 
@@ -34,6 +35,11 @@ class VerifyCsrfToken extends BaseVerifier
      */
     public function handle($request, Closure $next)
     {
-        return parent::handle($request, $next);
+        // FIXME: this is fixed in 5.2
+        if (App::environment() === 'testing') {
+            return $next($request);
+        } else {
+            return parent::handle($request, $next);
+        }
     }
 }

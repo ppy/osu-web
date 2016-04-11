@@ -21,6 +21,8 @@
 return [
         'buttons' => [
             'cancel' => 'Cancel',
+            'post' => 'Post',
+            'reply' => 'Reply',
             'reset' => 'Reset',
             'save' => 'Save',
             'show_more' => 'show more',

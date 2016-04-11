@@ -1,0 +1,156 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+.beatmap-discussion-new {
+  @_avatar-size: 45px;
+  @_message-type-text-size: 11px;
+  @_timestamp-box-width: 90px;
+  @_timestamp-box-height: @_avatar-size;
+  @_timestamp-box-text-size: 11px;
+
+  display: flex;
+  flex-direction: column;
+
+  @media @desktop {
+    flex-direction: row;
+  }
+
+  &__avatar {
+    flex: none;
+    width: @_avatar-size;
+    height: @_avatar-size;
+  }
+
+  &__col {
+    background-color: @grey-e;
+    padding: (@spacing * 2) @spacing;
+
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: center;
+
+    @media @desktop {
+      flex: none;
+    }
+
+    &--left {
+      @media @desktop {
+        padding-left: (@spacing * 2);
+      }
+
+      justify-content: center;
+    }
+
+    &--right {
+      padding-right: (@spacing * 2);
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    &--main {
+      flex: 1 0 auto;
+      background-color: @grey-f;
+      display: flex;
+    }
+  }
+
+  &__message {
+    flex: 1;
+    padding-left: @spacing;
+    font-size: 12px;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__message-area {
+    .reset-input();
+    resize: vertical;
+    width: 100%;
+
+    flex: 1 0 auto;
+  }
+
+  &__message-box {
+    width: 100%;
+    display: flex;
+  }
+
+  &__message-hint {
+    margin: 0;
+    margin-top: (@spacing / 2);
+    color: @green;
+  }
+
+  &__message-type {
+    .reset-input();
+    display: block;
+    text-align: left;
+    font-size: @_message-type-text-size;
+    margin: 0 0 (@spacing / 2);
+  }
+
+  &__message-type-text {
+    margin-left: (@spacing / 2);
+  }
+
+  &__message-types {
+    margin-right: @spacing;
+
+    &--disabled {
+      color: @grey-9;
+    }
+  }
+
+  &__timestamp {
+    text-align: center;
+  }
+
+  &__timestamp-box {
+    .default-border-radius();
+    .default-text-shadow();
+
+    width: @_timestamp-box-width;
+    height: @_timestamp-box-height;
+    font-size: @_timestamp-box-text-size;
+    background-color: @grey-5;
+    color: @grey-f;
+    padding: (@spacing / 2) @spacing;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__type {
+    color: @grey-9;
+    margin: 0 (@spacing / 2);
+
+    &--active {
+      color: @grey-f;
+    }
+  }
+
+  &__types {
+    display: flex;
+    justify-content: center;
+    margin-bottom: (@spacing / 2);
+  }
+}

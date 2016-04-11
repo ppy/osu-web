@@ -21,4 +21,10 @@ class @Url
 
   @requestSlackInvite: '/community/slack/agree'
 
+  @beatmapDiscussionVote: (discussionId) => "/beatmap-discussions/#{discussionId}/vote"
+  @beatmapDiscussionPosts: '/beatmap-discussion-posts'
+
   @user: (id) => "/u/#{id}"
+
+  # external link
+  @openBeatmapEditor: (timestampWithRange) => "osu://edit/#{timestampWithRange}"

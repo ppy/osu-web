@@ -47,6 +47,10 @@ return [
             'moddingreact' => 'modding',
             'index' => 'listing',
         ],
+        'beatmapsets' => [
+            '_' => 'beatmapsets',
+            'discussion' => 'modding',
+        ],
         'ranking' => [
             '_' => 'ranking',
             'getOverall' => 'overall',
@@ -123,6 +127,7 @@ return [
             'beatmapsets' => [
                 '_' => 'beatmapsets',
                 'covers' => 'covers',
+                'show' => 'detail',
             ],
         ],
     ],

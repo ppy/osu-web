@@ -27,10 +27,13 @@
   .default-box-shadow;
   .own-layer();
 
-  height: 60px;
-  padding: @grid-gutter-width/8 @grid-gutter-width/2;
+  padding: (@spacing * 2);
 
   transition: background-image 120ms;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 
   &--cover-modal {
     z-index: @z-index--blackout-visible;
@@ -49,6 +52,12 @@
       background-image: linear-gradient(to bottom, transparent, fade(#000, 40%));
       content: " ";
     }
+  }
+
+  &--forum-index {
+    padding: (@spacing / 2) (@spacing * 2);
+    height: 60px;
+    justify-content: flex-start;
   }
 
   &--topic {
@@ -213,26 +222,19 @@
 
   // also used by input form
   &__title {
-    padding: 0;
-    margin: @spacing 0 @spacing (@spacing * 3);
+    .reset-input();
+    margin: 0;
+    padding: @spacing 0 @spacing (@spacing * 2);
+    width: 100%;
     font-weight: 200;
     font-size: 36px;
     font-style: normal;
     .default-text-shadow;
     color: @grey-f;
-    background: transparent;
     display: block;
-
-    outline: none;
-    border: none;
   }
 
   &__titles {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    padding: (@spacing * 2);
-
     &--forum {
       width: 100%;
       text-align: center;

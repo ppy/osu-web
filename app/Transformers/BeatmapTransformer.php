@@ -32,7 +32,11 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
 
         return [
             'id' => $beatmap->beatmap_id,
+            'beatmapset_id' => $beatmap->beatmapset_id,
+            'mode' => $beatmap->mode,
+            'difficulty_rating' => $beatmap->difficultyrating,
             'version' => $beatmap->version,
+            'total_length' => $beatmap->total_length,
             'url' => route('beatmaps.show', ['id' => $beatmap->beatmap_id, 'm' => $beatmap->playmode]),
         ];
     }

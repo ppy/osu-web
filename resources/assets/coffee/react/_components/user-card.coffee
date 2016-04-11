@@ -95,8 +95,9 @@ class @UserCard extends React.Component
               el 'i', className: "fa osu fa-#{user.playmode}-o rankinginfo-small__mode-icon"
               " ##{stats.rank.global.toLocaleString()}"
 
-            el 'span', className: 'rankinginfo-small__country',
-              "#{user.country.name} ##{stats.rank.country.toLocaleString()}"
+            if user.country.name?
+              el 'span', className: 'rankinginfo-small__country',
+                "#{user.country.name} ##{stats.rank.country.toLocaleString()}"
 
       el 'div',
         className: 'modal-body modal-body--user-dropdown modal-body--compartimentalized'
