@@ -178,7 +178,7 @@ BeatmapDiscussions.Main = React.createClass
 
       @nextTimeout = @checkNewTimeoutDefault
 
-      @setBeatmapsetDiscussion beatmapsetDiscussion: data.beatmapsetDiscussion.data
+      @setBeatmapsetDiscussion null, beatmapsetDiscussion: data.beatmapsetDiscussion.data
 
     .always =>
       @nextTimeout = Math.min @nextTimeout, @checkNewTimeoutMax
