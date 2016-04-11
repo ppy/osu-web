@@ -42,4 +42,11 @@ class BeatmapsetsController extends Controller
 
         return back();
     }
+
+    public function show($id)
+    {
+        $beatmapset = BeatmapSet::findOrFail($id);
+
+        return view('admin.beatmapsets.show', compact('beatmapset'));
+    }
 }

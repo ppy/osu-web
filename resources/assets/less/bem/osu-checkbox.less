@@ -1,0 +1,58 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+// block should be a label
+.osu-checkbox {
+  @_top: osu-checkbox;
+
+  text-transform: initial;
+
+  // the input is hidden
+  &__input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  &__tick {
+    visibility: hidden;
+    padding: 3px;
+    color: @grey-f;
+    margin-right: (@spacing / 2);
+
+    .@{_top}__input:checked ~ & {
+      visibility: visible;
+
+      &::before {
+        background-color: @green;
+      }
+    }
+
+    // tick box
+    &::before {
+      .full-size();
+      .default-border-radius();
+      .default-box-shadow();
+      border: 2px solid @grey-f;
+      visibility: visible;
+      background-color: @grey-c;
+    }
+  }
+}

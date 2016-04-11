@@ -498,13 +498,13 @@ function get_param_value($input, $type)
     return (string) $input;
 }
 
-function get_params($input, $namespace, $keys)
+function get_params($input, $namespace, $keys, $defaults = [], $overrides = [])
 {
     if ($namespace !== null) {
         $input = array_get($input, $namespace);
     }
 
-    $params = [];
+    $params = $defaults;
 
     foreach ($keys as $keyAndType) {
         $keyAndType = explode(':', $keyAndType);
@@ -519,7 +519,7 @@ function get_params($input, $namespace, $keys)
         }
     }
 
-    return $params;
+    return array_merge($params, $overrides);
 }
 
 function array_rand_val($array)

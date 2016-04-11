@@ -77,7 +77,17 @@ class Beatmap extends Model
 
     public function set()
     {
+        return $this->beatmapset();
+    }
+
+    public function beatmapset()
+    {
         return $this->belongsTo(BeatmapSet::class, 'beatmapset_id');
+    }
+
+    public function beatmapDiscussions()
+    {
+        return $this->hasMany(BeatmapDiscussion::class);
     }
 
     public function creator()
@@ -93,5 +103,17 @@ class Beatmap extends Model
     public function difficultyAttribs()
     {
         return $this->hasMany(BeatmapDifficultyAttrib::class);
+    }
+
+    public function getModeAttribute()
+    {
+        return static::modeStr($this->playmode);
+    }
+
+    public function scopeDefault($query)
+    {
+        return $query
+            ->orderBy('playmode', 'ASC')
+            ->orderBy('difficultyrating', 'ASC');
     }
 }

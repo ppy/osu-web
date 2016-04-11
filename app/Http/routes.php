@@ -137,8 +137,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     Route::resource('logs', 'LogsController', ['only' => ['index']]);
 
+    Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['show']]);
     Route::get('/beatmapsets/{id}/covers', ['as' => 'admin.beatmapsets.covers', 'uses' => 'BeatmapsetsController@covers']);
     Route::post('/beatmapsets/{id}/covers/regenerate', ['as' => 'admin.beatmapsets.covers.regenerate', 'uses' => 'BeatmapsetsController@regenerateCovers']);
+
+    Route::resource('beatmapset-discussions', 'BeatmapsetDiscussionsController', ['only' => ['store']]);
 
     // store admin
     Route::group(['prefix' => 'store', 'namespace' => 'Store'], function () {
@@ -155,6 +158,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::resource('forum-covers', 'ForumCoversController', ['only' => ['index', 'store', 'update']]);
     });
 });
+
+Route::get('beatmapsets/{beatmapsets}/discussion', ['as' => 'beatmapsets.discussion', 'uses' => 'BeatmapsetsController@discussion']);
+
+Route::put('beatmap-discussions/{beatmap_discussions}/vote', ['uses' => 'BeatmapDiscussionsController@vote', 'as' => 'beatmap-discussions.vote']);
+Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['store']]);
 
 // Uploading file doesn't quite work with PUT/PATCH.
 // Reference: https://bugs.php.net/bug.php?id=55815

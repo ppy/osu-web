@@ -40,7 +40,7 @@ class BeatmapController extends Controller
         $beatmaps = fractal_collection_array(
             BeatmapSet::listing(),
             new BeatmapSetTransformer,
-            'difficulties'
+            'beatmaps'
         );
 
         // temporarily put filters here
@@ -120,7 +120,7 @@ class BeatmapController extends Controller
         return fractal_collection_array(
             $beatmaps,
             new BeatmapSetTransformer,
-            'difficulties'
+            'beatmaps'
         );
     }
 }

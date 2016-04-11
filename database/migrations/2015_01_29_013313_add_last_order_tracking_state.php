@@ -28,7 +28,7 @@ class AddLastOrderTrackingState extends Migration
      */
     public function up()
     {
-        Schema::table('osu_store.orders', function ($table) {
+        Schema::connection('mysql-store')->table('orders', function ($table) {
             $table->string('last_tracking_state')->nullable();
         });
     }
@@ -40,7 +40,7 @@ class AddLastOrderTrackingState extends Migration
      */
     public function down()
     {
-        Schema::table('osu_store.orders', function ($table) {
+        Schema::connection('mysql-store')->table('orders', function ($table) {
             $table->dropColumn(['last_tracking_state']);
         });
     }

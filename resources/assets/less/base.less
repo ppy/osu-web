@@ -49,9 +49,6 @@ a.object_link
   color: @gray !important;
 }
 
-//jquery-placeholder
-input, textarea { color: #000; }
-
 @font-face {
   font-family: 'osu!';
   src: url('@{fa-osu-font-path}/osu!font.eot');
@@ -321,59 +318,6 @@ a[disabled] { &:extend(.btn[disabled]); }
   }
 }
 
-.avatar {
-  @default-avatar-size: 70px;
-  width: @default-avatar-size;
-  height: @default-avatar-size;
-
-  &:extend(.default-box-shadow);
-  &:extend(.default-border-radius);
-
-  background-color: #fff;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-
-  &--profile {
-    width: @profile-avatar-size;
-    height: @profile-avatar-size;
-
-    // brings avatar on top of following row
-    z-index: 2;
-  }
-
-  &--guest {
-    .at2x-simple("/images/layout/avatar-guest.png");
-  }
-
-  &--full {
-    width: 100%;
-    height: 0px;
-    padding-bottom: 100%;
-    box-shadow: none;
-    border-radius: 0px;
-  }
-
-  &--full-rounded {
-    width: 100%;
-    height: 0px;
-    padding-bottom: 100%;
-    box-shadow: none;
-  }
-
-  &--nav {
-    width: @nav-avatar-size;
-    height: @nav-avatar-size;
-    display: block;
-  }
-
-  &--navbar-mobile {
-    width: @navbar-mobile--content-height;
-    height: @navbar-mobile--content-height;
-    margin-right: @grid-gutter-width/4;
-    display: block;
-  }
-}
 
 .user-icon {
   .icon-bg;

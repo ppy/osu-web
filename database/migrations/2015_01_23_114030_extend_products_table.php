@@ -28,7 +28,7 @@ class ExtendProductsTable extends Migration
      */
     public function up()
     {
-        Schema::table('osu_store.products', function ($table) {
+        Schema::connection('mysql-store')->table('products', function ($table) {
             $table->boolean('promoted')->default(false);
             $table->integer('display_order')->default(0);
             $table->string('header_description');
@@ -44,7 +44,7 @@ class ExtendProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('osu_store.products', function ($table) {
+        Schema::connection('mysql-store')->table('products', function ($table) {
             $table->dropColumn(['promoted', 'display_order', 'header_description', 'header_image', 'images_json']);
         });
     }
