@@ -1,0 +1,85 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+.beatmap-discussion {
+  @_top: beatmap-discussion;
+  display: flex;
+
+  &__actions {
+    flex: none;
+
+    display: flex;
+
+    height: @beatmap-discussion--avatar-size;
+    margin: (@spacing / 2) 0;
+  }
+
+  &__action {
+    .reset-input();
+    display: flex;
+
+    &--with-line {
+      &::before {
+        .full-size();
+        width: 1px;
+        right: 100%;
+        background-image: linear-gradient(to bottom, transparent, @grey-c 50%, transparent);
+      }
+    }
+  }
+
+  &__discussion {
+    flex: 1;
+    min-width: 0;
+
+    .default-box-shadow();
+    padding: (@spacing / 2) 0;
+    margin: (@spacing / 2) 0;
+
+    display: flex;
+    flex-direction: column;
+
+    .@{_top}--highlighted & {
+      .thicker-box-shadow();
+    }
+  }
+
+  &__replies {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__resolved {
+    text-align: center;
+    color: @green-dark;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: lowercase;
+    margin: (@spacing / 2) 0;
+  }
+
+  &__timestamp {
+    flex: none;
+    width: @beatmap-discussion--timestamp-width;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+  }
+}

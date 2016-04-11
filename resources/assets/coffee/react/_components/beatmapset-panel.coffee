@@ -22,19 +22,22 @@ el = React.createElement
 
 class @BeatmapsetPanel extends React.Component
   render: ->
+    # this is actually "beatmapset"
     beatmap = @props.beatmap
-    difficulties = []
 
     # arbitrary number
     maxDisplayedDifficulty = 10
 
-    for difficulty, index in beatmap.difficulties.data.slice(0, maxDisplayedDifficulty)
-      difficulties.push el(BeatmapDifficultyIcon, difficulty: difficulty, key: index)
+    difficulties = beatmap.beatmaps.data.slice(0, maxDisplayedDifficulty).map (b) =>
+      div
+        className: 'beatmapset-panel__beatmap'
+        key: b.version
+        el BeatmapIcon, beatmap: b
 
-    if beatmap.difficulties.data.length > maxDisplayedDifficulty
-      difficulties.push span key: 'over', "+#{(beatmap.difficulties.data.length - maxDisplayedDifficulty)}"
+    if beatmap.beatmaps.data.length > maxDisplayedDifficulty
+      difficulties.push span key: 'over', "+#{(beatmap.beatmaps.data.length - maxDisplayedDifficulty)}"
 
-    div className: 'beatmap object_link shadow-hover', objectid: beatmap.beatmapset_id,
+    div className: 'beatmapset-panel beatmap object_link shadow-hover', objectid: beatmap.beatmapset_id,
       div className: 'beatmap-panel',
         a href: "https://osu.ppy.sh/s/#{beatmap.beatmapset_id}", target: '_blank', className: 'thumb', style: {backgroundImage: "url(#{beatmap.covers.card})"},
           div className: 'bottom_left',

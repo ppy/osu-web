@@ -86,12 +86,17 @@ elixir(function(mix) {
     'react/status-page/*.coffee',
     'react/status-page.coffee'
   ], 'public/js/react/status-page.js')
+  .coffee([
+    'react/beatmap-discussions/*.coffee',
+    'react/beatmap-discussions.coffee'
+  ], 'public/js/react/beatmap-discussions.js')
   .version([
     'css/app.css',
     'js/app.js',
     'js/react/profile-page.js',
     'js/react/beatmaps.js',
     'js/react/slack-page.js',
-    'js/react/status-page.js'
+    'js/react/status-page.js',
+    'js/react/beatmap-discussions.js',
   ]);
 });

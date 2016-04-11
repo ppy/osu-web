@@ -1,0 +1,69 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+.beatmap-list {
+  @_top: beatmap-list;
+
+  &--selecting {
+    z-index: @z-index--blackout-visible;
+  }
+
+  &__selector {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    margin-top: @spacing;
+
+    flex-direction: column;
+
+    .default-box-shadow();
+    .default-border-radius();
+    overflow: hidden;
+
+    display: none;
+    .@{_top}--selecting & {
+      display: flex;
+    }
+  }
+
+  &__item {
+    .reset-input();
+    background-color: @grey-f;
+
+    &:hover {
+      background-color: @text-color;
+      color: @grey-f;
+    }
+
+    &--selected {
+      .default-box-shadow();
+      .default-border-radius();
+    }
+
+    &--current {
+      background-color: @grey-c;
+    }
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    text-align: left;
+  }
+}

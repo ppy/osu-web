@@ -96,7 +96,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($user, function ($user) {
             $all = [];
-            foreach (array_keys(Beatmap::modes()) as $mode) {
+            foreach (array_keys(Beatmap::MODES) as $mode) {
                 $all[$mode] = fractal_item_array($user->statistics($mode), new UserStatisticsTransformer());
             }
 
@@ -123,7 +123,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($user, function ($user) {
             $all = [];
-            foreach (array_keys(Beatmap::modes()) as $mode) {
+            foreach (array_keys(Beatmap::MODES) as $mode) {
                 $scores = $user
                     ->scoresFirst($mode, true)
                     ->default()
@@ -142,7 +142,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($user, function ($user) {
             $all = [];
-            foreach (array_keys(Beatmap::modes()) as $mode) {
+            foreach (array_keys(Beatmap::MODES) as $mode) {
                 $scores = $user
                     ->scoresBest($mode, true)
                     ->default()
@@ -164,7 +164,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->item($user, function ($user) {
             $all = [];
 
-            foreach (array_keys(Beatmap::modes()) as $mode) {
+            foreach (array_keys(Beatmap::MODES) as $mode) {
                 $scores = $user->scores($mode, true)->default()->with('beatmapSet', 'beatmap')->get();
 
                 $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapSet');

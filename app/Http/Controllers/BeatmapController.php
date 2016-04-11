@@ -40,12 +40,12 @@ class BeatmapController extends Controller
         $beatmaps = fractal_collection_array(
             BeatmapSet::listing(),
             new BeatmapSetTransformer,
-            'difficulties'
+            'beatmaps'
         );
 
         // temporarily put filters here
         $modes = [['id' => null, 'name' => trans('beatmaps.mode.any')]];
-        foreach (Beatmap::modes() as $name => $id) {
+        foreach (Beatmap::MODES as $name => $id) {
             $modes[] = ['id' => (string) $id, 'name' => trans("beatmaps.mode.{$name}")];
         }
 
@@ -120,7 +120,7 @@ class BeatmapController extends Controller
         return fractal_collection_array(
             $beatmaps,
             new BeatmapSetTransformer,
-            'difficulties'
+            'beatmaps'
         );
     }
 }

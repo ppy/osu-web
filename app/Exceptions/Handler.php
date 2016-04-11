@@ -19,6 +19,7 @@
  */
 namespace App\Exceptions;
 
+use App;
 use Auth;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -114,9 +115,9 @@ class Handler extends ExceptionHandler
     {
         if (config('app.debug')) {
             if ($this->isHttpException($e)) {
-                return $this->renderHttpException($e);
+                $response = $this->renderHttpException($e);
             } else {
-                return parent::render($request, $e);
+                $response = parent::render($request, $e);
             }
         } else {
             if ($request->ajax()) {
@@ -125,8 +126,8 @@ class Handler extends ExceptionHandler
             } else {
                 $response = response()->view('layout.error');
             }
-
-            return $response->setStatusCode($this->statusCode($e));
         }
+
+        return $response->setStatusCode($this->statusCode($e));
     }
 }

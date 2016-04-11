@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -16,26 +14,46 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-use App\Models\Forum\Topic;
+.beatmap-discussions-chart {
+  @_top: beatmap-discussions-chart;
+  width: 100%;
+  height: 100%;
 
-class ForumTopicTest extends TestCase
-{
-    public function testIssues()
-    {
-        $topic = new Topic();
-        $topic->forum_id = config('osu.forum.help_forum_ids')[0];
+  &__axis {
+    fill: @grey-c;
+  }
 
-        $topic->topic_title = '[invalid] herp a derp';
-        $this->assertEquals(['invalid'], $topic->issues());
+  &__bar {
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+
+    .@{_top}__point:hover & {
+      stroke-width: 2;
+    }
+  }
+
+  &__icon {
+    stroke-width: 0;
+  }
+
+  &__point {
+    font-size: 12px;
+
+    &--praise {
+      fill: @beatmap-discussion--color-praise;
+      stroke: @beatmap-discussion--color-praise;
     }
 
-    public function testIssuesWithKeywordAsTitle()
-    {
-        $topic = new Topic();
-        $topic->forum_id = config('osu.forum.help_forum_ids')[0];
-
-        $topic->topic_title = 'invalid herp a derp';
-        $this->assertEquals([], $topic->issues());
+    &--problem {
+      fill: @beatmap-discussion--color-problem;
+      stroke: @beatmap-discussion--color-problem;
     }
+
+    &--suggestion {
+      fill: @beatmap-discussion--color-suggestion;
+      stroke: @beatmap-discussion--color-suggestion;
+    }
+  }
 }

@@ -19,6 +19,52 @@
  */
 
 return [
+    'discussion-posts' => [
+        'store' => [
+            'error' => 'Failed saving post',
+        ],
+    ],
+
+    'discussion-votes' => [
+        'update' => [
+            'error' => 'Failed updating vote',
+        ],
+    ],
+
+    'discussions' => [
+        'empty' => 'No discussions yet!',
+
+        'message_hint' => 'Start message with timestamp (e.g. 00:12:345) to mod.',
+
+        'message_placeholder' => 'Type here to post',
+
+        'message_type' => [
+            'praise' => 'Praise',
+            'problem' => 'Problem',
+            'suggestion' => 'Suggestion',
+        ],
+
+        'message_type_select' => 'Select Comment Type',
+
+        'mode' => [
+            'general' => 'General',
+            'timeline' => 'Timeline',
+        ],
+
+        'require-login' => 'Please login to post or reply',
+        'resolved' => 'Resolved',
+
+        'show' => [
+            'title' => 'Beatmap Discussion',
+        ],
+
+        'stats' => [
+            'pending' => 'Pending',
+            'resolved' => 'Resolved',
+            'total' => 'Total',
+        ],
+    ],
+
     'listing' => [
         'search' => [
             'prompt' => 'type in keywords...',

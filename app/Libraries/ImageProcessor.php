@@ -95,7 +95,7 @@ class ImageProcessor
 
         $inputImage = open_image($this->inputPath, $this->inputDim);
 
-        if ($inputImage === false) {
+        if ($inputImage === null) {
             throw new ImageProcessorException(trans('users.show.edit.cover.upload.broken_file'));
         }
 

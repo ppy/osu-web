@@ -63,7 +63,7 @@ class ProfilePage.Main extends React.Component
 
 
   userUpdate: (_e, user) =>
-    return unless user != undefined && user != null
+    return if !user?
     @setState user: user
 
 
