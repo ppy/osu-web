@@ -103,11 +103,17 @@ class DiscussionPostsController extends Controller
             ]);
         }
 
-        return get_params(Request::all(), 'beatmap_discussion',
+        $params = get_params(Request::all(), 'beatmap_discussion',
             $filters,
             ['resolved' => false],
             ['user_id' => Auth::user()->user_id]
         );
+
+        if ($params['resolved']) {
+            $params['resolver_id'] = Auth::user()->user_id;
+        }
+
+        return $params;
     }
 
     private function postParams($discussion)
