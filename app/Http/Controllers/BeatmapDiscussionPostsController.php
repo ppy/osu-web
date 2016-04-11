@@ -17,7 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Http\Controllers\Beatmaps;
+namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\BeatmapDiscussion;
@@ -27,8 +27,10 @@ use DB;
 use Exception;
 use Request;
 
-class DiscussionPostsController extends Controller
+class BeatmapDiscussionPostsController extends Controller
 {
+    protected $section = 'beatmaps';
+
     public function __construct()
     {
         $this->middleware('auth');

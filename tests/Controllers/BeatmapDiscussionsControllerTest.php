@@ -8,7 +8,7 @@ use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionVote;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class BeatmapsDiscussionsControllerTest extends TestCase
+class BeatmapDiscussionsControllerTest extends TestCase
 {
     use DatabaseTransactions;
 

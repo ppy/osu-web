@@ -161,11 +161,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
 Route::get('beatmapsets/{beatmapsets}/discussion', ['as' => 'beatmapsets.discussion', 'uses' => 'BeatmapsetsController@discussion']);
 
-Route::group(['namespace' => 'Beatmaps'], function () {
-    Route::put('beatmap-discussions/{beatmap_discussions}/vote', ['uses' => 'DiscussionsController@vote', 'as' => 'beatmap-discussions.vote']);
-
-    Route::resource('beatmap-discussion-posts', 'DiscussionPostsController', ['only' => ['store']]);
-});
+Route::put('beatmap-discussions/{beatmap_discussions}/vote', ['uses' => 'BeatmapDiscussionsController@vote', 'as' => 'beatmap-discussions.vote']);
+Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['store']]);
 
 // Uploading file doesn't quite work with PUT/PATCH.
 // Reference: https://bugs.php.net/bug.php?id=55815
