@@ -69,7 +69,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
                 p
                   key: 'hint'
                   className: "#{bn}__message-hint"
-                  Lang.get 'beatmaps.discussions.message_hint'
+                  Lang.get "beatmaps.discussions.message_hint.in_#{@currentType()}"
               ]
             else
               Lang.get('beatmaps.discussions.require-login')
