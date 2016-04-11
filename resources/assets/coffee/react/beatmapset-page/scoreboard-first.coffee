@@ -41,7 +41,7 @@ class BeatmapSetPage.ScoreboardFirst extends React.Component
             when 'score'
               dd = @props.score.score.toLocaleString()
             when 'accuracy'
-              dd = "#{(@props.score.accuracy.toFixed 4) * 100}%"
+              dd = "#{_.round @props.score.accuracy * 100, 2}%"
             when '300'
               dd = @props.score.count300
             when '100'
