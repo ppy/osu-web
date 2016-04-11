@@ -17,23 +17,23 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Http\Controllers\Beatmapsets;
+namespace App\Http\Controllers;
 
 use App\Models\BeatmapSet;
 use App\Transformers\BeatmapSetTransformer;
 use Auth;
 use Request;
 
-class DiscussionsController extends Controller
+class BeatmapsetsController extends Controller
 {
-    protected $actionPrefix = 'beatmapsets-discussions-';
+    protected $section = 'beatmapsets';
 
-    public function show($beatmapsetId)
+    public function discussion($id)
     {
         $returnJson = Request::input('format') === 'json';
         $lastUpdated = get_int(Request::input('last_updated'));
 
-        $beatmapset = BeatmapSet::findOrFail($beatmapsetId);
+        $beatmapset = BeatmapSet::findOrFail($id);
 
         $discussion = $beatmapset->beatmapsetDiscussion;
 
@@ -54,7 +54,7 @@ class DiscussionsController extends Controller
         if ($returnJson) {
             return $initialData;
         } else {
-            return view('beatmapsets.discussions.show', compact('initialData'));
+            return view('beatmapsets.discussion', compact('initialData'));
         }
     }
 }

@@ -159,9 +159,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     });
 });
 
-Route::group(['namespace' => 'Beatmapsets'], function () {
-    Route::get('beatmapsets/{beatmapsets}/discussion', ['as' => 'beatmapsets.discussion', 'uses' => 'DiscussionsController@show']);
-});
+Route::get('beatmapsets/{beatmapsets}/discussion', ['as' => 'beatmapsets.discussion', 'uses' => 'BeatmapsetsController@discussion']);
 
 Route::group(['namespace' => 'Beatmaps'], function () {
     Route::put('beatmap-discussions/{beatmap_discussions}/vote', ['uses' => 'DiscussionsController@vote', 'as' => 'beatmap-discussions.vote']);

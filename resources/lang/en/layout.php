@@ -40,13 +40,16 @@ return [
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'beatmapsets-discussions-show' => 'discussion',
             'getListing' => 'listing',
             'getPacks' => 'packs',
             'getCharts' => 'charts',
             'getModding' => 'modding',
             'moddingreact' => 'modding',
             'index' => 'listing',
+        ],
+        'beatmapsets' => [
+            '_' => 'beatmapsets',
+            'discussion' => 'modding',
         ],
         'ranking' => [
             '_' => 'ranking',
