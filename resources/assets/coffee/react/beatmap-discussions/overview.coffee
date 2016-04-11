@@ -121,6 +121,4 @@ BeatmapDiscussions.Overview = React.createClass
 
       $(window).on 'throttled-resize.beatmapDiscussionsOverview', @_chart.resize
 
-      window.butts = @_chart
-
     @_chart.loadData @currentDiscussions()
