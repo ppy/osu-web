@@ -70,7 +70,7 @@ BeatmapDiscussions.Overview = React.createClass
             className: "#{bn}__meta-text"
             dangerouslySetInnerHTML:
               __html: Lang.get 'beatmaps.listing.mapped-by',
-                mapper: "<strong>#{osu.link Url.user(user.user_id), user.username}</strong>"
+                mapper: "<strong>#{osu.link Url.user(user.id), user.username}</strong>"
 
         div className: 'text-right',
           @stats()
