@@ -32,6 +32,11 @@ return [
     ],
 
     'discussions' => [
+        'collapse' => [
+            'all-collapse' => 'Collapse all',
+            'all-expand' => 'Expand all',
+        ],
+
         'empty' => 'No discussions yet!',
 
         'message_hint' => [

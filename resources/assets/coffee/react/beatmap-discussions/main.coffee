@@ -204,10 +204,16 @@ BeatmapDiscussions.Main = React.createClass
     @setState readPostIds: @state.readPostIds.concat(id)
 
 
-  collapseBeatmapDiscussion: (_e, {id}) ->
-    if _.includes @state.collapsedBeatmapDiscussionIds, id
-      newIds = _.filter @state.collapsedBeatmapDiscussionIds, (i) => i != id
-    else
-      newIds = _.concat @state.collapsedBeatmapDiscussionIds, id
+  collapseBeatmapDiscussion: (_e, {all, id}) ->
+    newIds =
+      if all == 'collapse'
+        @state.beatmapsetDiscussion.beatmap_discussions.data.map (d) =>
+          d.id
+      else if all == 'expand'
+        []
+      else if _.includes @state.collapsedBeatmapDiscussionIds, id
+        _.filter @state.collapsedBeatmapDiscussionIds, (i) => i != id
+      else
+        _.concat @state.collapsedBeatmapDiscussionIds, id
 
     @setState collapsedBeatmapDiscussionIds: newIds

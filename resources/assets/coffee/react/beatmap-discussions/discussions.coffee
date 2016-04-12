@@ -31,7 +31,24 @@ BeatmapDiscussions.Discussions = React.createClass
     div
       className: bn
 
-      ['general', 'timeline'].map @modeSwitchButton
+      div className: "#{bn}__toolbar",
+        div null,
+          ['general', 'timeline'].map @modeSwitchButton
+
+        div null,
+          button
+            className: "btn-osu-lite btn-osu-lite--default #{bn}__collapse-button"
+            onClick: => $.publish 'beatmapDiscussion:collapse', all: 'collapse'
+            el Icon, name: 'minus-circle'
+            span className: "#{bn}__collapse-button-text",
+              Lang.get('beatmaps.discussions.collapse.all-collapse')
+
+          button
+            className: "btn-osu-lite btn-osu-lite--default #{bn}__collapse-button"
+            onClick: => $.publish 'beatmapDiscussion:collapse', all: 'expand'
+            el Icon, name: 'plus-circle'
+            span className: "#{bn}__collapse-button-text",
+              Lang.get('beatmaps.discussions.collapse.all-expand')
 
       div
         className: "#{bn}__discussions"
