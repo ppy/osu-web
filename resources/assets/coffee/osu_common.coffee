@@ -48,6 +48,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     callback = -> $(document).trigger('osu:page:change')
     setTimeout callback, 0
 
+
   parseJson: (id) ->
     JSON.parse document.getElementById(id).text
 
