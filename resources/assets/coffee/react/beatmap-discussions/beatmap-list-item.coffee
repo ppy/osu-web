@@ -32,10 +32,10 @@ BeatmapDiscussions.BeatmapListItem = React.createClass
         el BeatmapIcon, beatmap: @props.beatmap, modifier: 'large'
 
       div className: "#{bn}__col #{bn}__col--main",
-        div className: "#{bn}__mode",
-          Lang.get("beatmaps.mode.#{@props.beatmap.mode}")
         div className: "#{bn}__version",
           @props.beatmap.version
+        div className: "#{bn}__mode",
+          Lang.get("beatmaps.mode.#{@props.beatmap.mode}")
 
       if @props.withSwitchButton
         div className: "#{bn}__col",
