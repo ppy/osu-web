@@ -96,8 +96,6 @@ BeatmapDiscussions.NewReply = React.createClass
 
 
   setMessage: (e) ->
-    newValue = e.target.value
-
     @setState message: e.target.value
 
 
