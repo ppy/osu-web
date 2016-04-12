@@ -20,10 +20,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->beatmapset = factory(BeatmapSet::class)->create();
         $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
         $this->beatmapsetDiscussion = BeatmapsetDiscussion::create(['beatmapset_id' => $this->beatmap->beatmapset_id]);
-        $this->beatmapDiscussion = BeatmapDiscussion::create([
+        $this->beatmapDiscussion = factory(BeatmapDiscussion::class, 'timeline')->create([
             'beatmapset_discussion_id' => $this->beatmapsetDiscussion->id,
-            'timestamp' => 0,
-            'message_type' => 'praise',
             'beatmap_id' => $this->beatmap->beatmap_id,
         ]);
 
