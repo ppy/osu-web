@@ -67,6 +67,6 @@ class BeatmapsetsController extends Controller
             implode (',', ['beatmaps.scoresBest.user', 'beatmaps.failtimes'])
         );
 
-        return view('beatmaps.sets.show', compact('set'));
+        return view('beatmapsets.show', compact('set'));
     }
 }
