@@ -107,6 +107,8 @@ BeatmapDiscussions.Main = React.createClass
 
 
   setCurrentBeatmapId: (_e, {id, callback}) ->
+    osu.setHash "#:#{id}"
+
     return callback?() if id == @state.currentBeatmap.id
 
     beatmap = @state.beatmapset.beatmaps.data.find (bm) =>
@@ -148,14 +150,15 @@ BeatmapDiscussions.Main = React.createClass
     @setState mode: mode, callback
 
 
-  jumpByHash: =>
-    jumpId = _.chain document.location.hash
-      .replace /#\/(\d+)/, '$1'
-      .parseInt 10
-      .value()
+  jumpByHash: ->
+    jumpId = document.location.hash.match(/\/(\d+)/)?[1]
 
-    if isFinite(jumpId)
-      $.publish 'beatmapDiscussion:jump', id: jumpId
+    if jumpId?
+      return $.publish 'beatmapDiscussion:jump', id: parseInt(jumpId, 10)
+
+    beatmapId = document.location.hash.match(/:(\d+)/)?[1]
+    beatmapId ?= @state.currentBeatmap.id
+    $.publish 'beatmap:select', id: parseInt(beatmapId, 10)
 
 
   checkNewTimeoutDefault: 10000
