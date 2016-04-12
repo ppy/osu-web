@@ -73,7 +73,7 @@ BeatmapDiscussions.Main = React.createClass
             h1
               className: 'forum-category-header__title'
               a
-                href: 'butts'
+                href: Url.beatmapset @state.beatmapset.beatmapset_id
                 className: 'link link--white link--no-underline'
                 @state.beatmapset.title
 
@@ -178,7 +178,7 @@ BeatmapDiscussions.Main = React.createClass
 
       @nextTimeout = @checkNewTimeoutDefault
 
-      @setState beatmapsetDiscussion: data.beatmapsetDiscussion.data
+      @setBeatmapsetDiscussion null, beatmapsetDiscussion: data.beatmapsetDiscussion.data
 
     .always =>
       @nextTimeout = Math.min @nextTimeout, @checkNewTimeoutMax

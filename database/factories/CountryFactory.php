@@ -25,9 +25,7 @@ $factory->define(App\Models\Country::class, function (Faker\Generator $faker) {
         $country = $faker->unique()->catchPhrase;
     }
 
-
-    echo $country . ' , ' . $acronym . ' | ';
-
+    echo $country.' , '.$acronym.' | ';
 
     return  [
         'acronym' => $acronym,

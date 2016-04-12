@@ -1,4 +1,6 @@
-<?php return [
+<?php
+
+return [
   'AF' => 'Afghanistan',
   'AX' => 'Åland Islands',
   'AL' => 'Albania',
