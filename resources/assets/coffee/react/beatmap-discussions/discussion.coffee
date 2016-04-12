@@ -24,14 +24,6 @@ BeatmapDiscussions.Discussion = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
-  componentDidMount: ->
-    osu.pageChange()
-
-
-  componentDidUpdate: ->
-    osu.pageChange()
-
-
   render: ->
     return div() if @props.discussion.beatmap_discussion_posts.data.length == 0
 
@@ -100,42 +92,6 @@ BeatmapDiscussions.Discussion = React.createClass
           BeatmapDiscussionHelper.formatTimestamp @props.discussion.timestamp
 
 
-  post: (post, type = '') ->
-    pbn = 'beatmap-discussion-post'
-    user = @props.lookupUser post.user_id
-    read = _.includes @props.readPostIds, post.id
-
-    topClasses = "#{pbn} #{pbn}--#{type}"
-    topClasses += " #{pbn}--unread" if !read
-
-    div
-      className: topClasses
-      key: "#{type}-#{post.id}"
-      onClick: =>
-        $.publish 'beatmapDiscussionPost:markRead', id: post.id
-
-      div className: "#{pbn}__avatar",
-        el UserAvatar, user: user, modifiers: ['full-rounded']
-
-      div className: "#{pbn}__message-container",
-        div
-          className: "#{pbn}__message #{pbn}__message--#{type}"
-          dangerouslySetInnerHTML:
-            __html: @addEditorLink post.message
-        div
-          className: "#{pbn}__info"
-          dangerouslySetInnerHTML:
-            __html: "#{osu.link Url.user(user.id), user.username}, #{osu.timeago post.created_at}"
-
-
-  addEditorLink: (message) ->
-    _.chain message
-      .escape()
-      .replace /(^|\s)((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\))?(?=\s))/g, (_, prefix, text, m, s, ms, range) =>
-        "#{prefix}#{osu.link Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text}"
-      .value()
-
-
   doVote: (score) ->
     LoadingOverlay.show()
 
@@ -181,3 +137,11 @@ BeatmapDiscussions.Discussion = React.createClass
     return if @props.highlighted
 
     $.publish 'beatmapDiscussion:setHighlight', id: @props.discussion.id
+
+
+  post: (post, type) ->
+    el BeatmapDiscussions.Post,
+      post: post
+      type: type
+      read: _.includes @props.readPostIds, post.id
+      user: @props.lookupUser post.user_id
