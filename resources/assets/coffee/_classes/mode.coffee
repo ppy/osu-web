@@ -17,18 +17,4 @@
 ###
 
 class @Mode
-  @modes = []
-
-  @modes[0] = 'osu'
-  @modes[1] = 'taiko'
-  @modes[2] = 'fruits'
-  @modes[3] = 'mania'
-
-  @modesInt = [0, 1, 2, 3]
-
-  @toString: (mode) ->
-    @modes[0] unless mode <= 3 and mode >= 0
-    @modes[mode]
-
-  @toInt: (mode) ->
-    @modes.indexOf mode
+  @modes = ['osu', 'taiko', 'fruits', 'mania']

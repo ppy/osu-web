@@ -23,41 +23,41 @@ class BeatmapSetPage.Contents extends React.Component
     e.preventDefault()
 
   render: ->
-    diff = @props.diffs[@props.currentMode]
+    beatmap = @props.beatmaps[@props.currentMode]
 
     div
       className: 'osu-layout__row osu-layout__row--page-beatmapset js-switchable-mode-page--scrollspy js-switchable-mode-page--page',
       'data-page-id': 'main'
       div className: 'page-tabs',
-        Mode.modesInt.map (m) =>
-          newDiff = _.last @props.diffsByMode[m]
+        Mode.modes.map (mode) =>
+          newBeatmap = _.last @props.beatmapsByMode[mode]
 
           el BeatmapSetPage.ContentsTab,
-            key: m
-            playmode: m
-            disabled: @props.diffCount[m] == 0
+            key: mode
+            playmode: mode
+            disabled: @props.beatmapCount[mode] == 0
             currentMode: @props.currentMode
-            newMode: newDiff.beatmap_id if newDiff
+            newMode: newBeatmap.id if newBeatmap
             currentPage: @props.currentPage
             currentPlaymode: @props.currentPlaymode
 
       div className: 'beatmapset-difficulties',
         div className: 'beatmapset-difficulties__list',
-          @props.diffsByMode[@props.currentPlaymode].map (m) =>
-            el BeatmapSetPage.ContentsDifficultyIcon,
-              key: m.beatmap_id
-              difficulty: m
+          @props.beatmapsByMode[@props.currentPlaymode].map (beatmap) =>
+            el BeatmapSetPage.ContentsBeatmapIcon,
+              key: beatmap.id
+              beatmap: beatmap
               currentPage: @props.currentPage
               currentMode: @props.currentMode
 
         p className: 'beatmapset-difficulties__name',
-          Lang.get("beatmaps.mode.#{Mode.toString @props.currentPlaymode}") + " #{diff.name}"
+          Lang.get("beatmaps.mode.#{@props.currentPlaymode}") + " #{beatmap.version}"
 
       div className: 'page-contents',
         el BeatmapSetPage.Details,
           set: @props.set
         el BeatmapSetPage.DifficultyChart,
-          diff: diff
+          beatmap: beatmap
         el BeatmapSetPage.Stats,
           set: @props.set
-          diff: diff
+          beatmap: beatmap

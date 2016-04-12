@@ -69,12 +69,12 @@ class BeatmapSetPage.Extra extends StickyTabsPage
                 BeatmapSetPage.Description
               when 'success-rate'
                 props =
-                  diff: @props.diff
-                  failtimes: @props.diff.failtimes.data
+                  beatmap: @props.beatmap
+                  failtimes: @props.beatmap.failtimes.data
                 BeatmapSetPage.SuccessRate
               when 'scoreboard'
                 props =
-                  scores: @props.diff.scoresBest.data
+                  scores: @props.beatmap.scoresBest.data
                 BeatmapSetPage.Scoreboard
 
           div

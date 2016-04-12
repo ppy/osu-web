@@ -18,21 +18,21 @@
 {a} = React.DOM
 el = React.createElement
 
-class BeatmapSetPage.ContentsDifficultyIcon extends React.Component
+class BeatmapSetPage.ContentsBeatmapIcon extends React.Component
   modeSwitch: (e) =>
     e.preventDefault()
-    $.publish 'beatmapset:mode:set', @props.difficulty.beatmap_id
+    $.publish 'beatmapset:mode:set', @props.beatmap.id
 
   render: ->
     className = 'beatmapset-difficulties__icon'
-    if @props.currentMode == @props.difficulty.beatmap_id
+    if @props.currentMode == @props.beatmap.id
       className += " beatmapset-difficulties__icon--active"
-      className += " beatmapset-difficulties__icon--active-#{DifficultyRating.get @props.difficulty.rating}"
+      className += " beatmapset-difficulties__icon--active-#{DifficultyRating.get @props.beatmap.difficulty_rating}"
 
     a
       className: className
       onClick: @modeSwitch
-      href: BeatmapSetPageHash.generate mode: @props.difficulty.beatmap_id, page: @props.currentPage
-      el BeatmapDifficultyIcon,
-        difficulty: @props.difficulty
-        modifier: 'large'
+      href: BeatmapSetPageHash.generate mode: @props.beatmap.id, page: @props.currentPage
+      el BeatmapIcon,
+        beatmap: @props.beatmap
+        modifier: 'beatmapset'

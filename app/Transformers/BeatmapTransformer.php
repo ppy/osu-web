@@ -24,6 +24,11 @@ use League\Fractal;
 
 class BeatmapTransformer extends Fractal\TransformerAbstract
 {
+    protected $availableIncludes = [
+        'scoresBest',
+        'failtimes',
+    ];
+
     public function transform(Beatmap $beatmap = null)
     {
         if ($beatmap === null) {
@@ -34,10 +39,33 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             'id' => $beatmap->beatmap_id,
             'beatmapset_id' => $beatmap->beatmapset_id,
             'mode' => $beatmap->mode,
+            'mode_int' => $beatmap->playmode,
             'difficulty_rating' => $beatmap->difficultyrating,
             'version' => $beatmap->version,
             'total_length' => $beatmap->total_length,
+            'cs' => $beatmap->diff_size,
+            'drain' => $beatmap->diff_drain,
+            'accuracy' => $beatmap->diff_overall,
+            'ar' => $beatmap->diff_approach,
+            'playcount' => $beatmap->playcount,
+            'passcount' => $beatmap->passcount,
             'url' => route('beatmaps.show', ['id' => $beatmap->beatmap_id, 'm' => $beatmap->playmode]),
         ];
+    }
+
+    public function includeScoresBest(Beatmap $beatmap)
+    {
+        $scores = $beatmap
+            ->scoresBest()
+            ->orderBy('score', 'desc')
+            ->limit(config('osu.beatmaps.max-scores'))
+            ->get();
+
+        return $this->collection($scores, new ScoreTransformer);
+    }
+
+    public function includeFailtimes(Beatmap $beatmap)
+    {
+        return $this->collection($beatmap->failtimes, new BeatmapFailtimesTransformer);
     }
 }

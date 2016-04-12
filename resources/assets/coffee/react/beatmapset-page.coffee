@@ -16,22 +16,24 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-diffs = []
-diffs[diff.beatmap_id] = diff for diff in set.difficulties.data
+beatmaps = []
+beatmaps[beatmap.id] = beatmap for beatmap in set.beatmaps.data
 
-diffsByMode = [[], [], [], []]
-diffsByMode[diff.mode].push diff for diff in set.difficulties.data
+beatmapsByMode = []
+beatmapsByMode[mode] = [] for mode in Mode.modes
+beatmapsByMode[beatmap.mode].push beatmap for beatmap in set.beatmaps.data
 
-diffCount = [0, 0, 0, 0]
-diffCount[diff.mode]++ for diff in set.difficulties.data
+beatmapCount = []
+beatmapCount[mode] = 0 for mode in Mode.modes
+beatmapCount[beatmap.mode]++ for beatmap in set.beatmaps.data
 
-displayedDiff = _.last(set.difficulties.data).beatmap_id
+displayedBeatmap = _.last(set.beatmaps.data).id
 
 propsFunction = =>
   set: set
-  diffs: diffs
-  diffsByMode: diffsByMode
-  diffCount: diffCount
-  displayedDiff: displayedDiff
+  beatmaps: beatmaps
+  beatmapsByMode: beatmapsByMode
+  beatmapCount: beatmapCount
+  displayedBeatmap: displayedBeatmap
 
 reactTurbolinks.register 'beatmapset-page', BeatmapSetPage.Main, propsFunction

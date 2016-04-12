@@ -52,8 +52,6 @@ class BeatmapSetPage.SuccessRate extends React.Component
   legend = ['retry', 'fail']
 
   render: ->
-    percentage = (@props.diff.passcount / @props.diff.playcount) * 100
-
     div
       className: 'page-extra'
       el BeatmapSetPage.ExtraHeader, name: 'success-rate'
@@ -62,9 +60,9 @@ class BeatmapSetPage.SuccessRate extends React.Component
         p
           className: 'beatmapset-success-rate__label'
           Lang.get 'beatmaps.beatmapset.show.extra.success-rate.points',
-            percentage: percentage.toFixed 1
-            failed: @props.diff.passcount
-            all: @props.diff.playcount
+            percentage: _.round (@props.beatmap.passcount / @props.beatmap.playcount) * 100, 1
+            failed: @props.beatmap.passcount
+            all: @props.beatmap.playcount
 
 
         div className: 'beatmapset-success-rate__legend',

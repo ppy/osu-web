@@ -27,7 +27,6 @@ class BeatmapSetPage.Details extends React.Component
       video: true
 
   toggleVideo: =>
-    console.log 'boom'
     @setState (state, props) =>
       video: !state.video
 

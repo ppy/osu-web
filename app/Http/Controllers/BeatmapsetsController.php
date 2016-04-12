@@ -57,4 +57,16 @@ class BeatmapsetsController extends Controller
             return view('beatmapsets.discussion', compact('initialData'));
         }
     }
+
+    public function getBeatmapset($id)
+    {
+        $set = BeatmapSet::find($id);
+        $set = fractal_item_array(
+            $set,
+            new BeatmapSetTransformer(),
+            implode (',', ['beatmaps.scoresBest.user', 'beatmaps.failtimes'])
+        );
+
+        return view('beatmaps.sets.show', compact('set'));
+    }
 }

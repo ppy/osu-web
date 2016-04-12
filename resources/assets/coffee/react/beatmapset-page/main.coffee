@@ -26,11 +26,11 @@ class BeatmapSetPage.Main extends SwitchableModePage
     @initialPage = optionsHash.page
     @timeouts = {}
 
-    currentMode = if optionsHash.mode then parseInt optionsHash.mode, 10 else props.displayedDiff
+    currentMode = if optionsHash.mode then parseInt optionsHash.mode, 10 else props.displayedBeatmap
 
     @state =
       currentMode: currentMode
-      currentPlaymode: props.diffs[currentMode].mode
+      currentPlaymode: props.beatmaps[currentMode].mode
 
   setHash: ->
     History.setHash BeatmapSetPageHash.generate page: @state.currentPage, mode: @state.currentMode
@@ -72,15 +72,15 @@ class BeatmapSetPage.Main extends SwitchableModePage
 
       el BeatmapSetPage.Contents,
         set: @props.set
-        diffs: @props.diffs
-        diffsByMode: @props.diffsByMode
-        diffCount: @props.diffCount
+        beatmaps: @props.beatmaps
+        beatmapsByMode: @props.beatmapsByMode
+        beatmapCount: @props.beatmapCount
         currentPlaymode: @state.currentPlaymode
         currentMode: @state.currentMode
         currentPage: @state.currentPage
 
       el BeatmapSetPage.Extra,
         set: @props.set
-        diff: @props.diffs[@state.currentMode]
+        beatmap: @props.beatmaps[@state.currentMode]
         currentPage: @state.currentPage
         currentMode: @state.currentMode

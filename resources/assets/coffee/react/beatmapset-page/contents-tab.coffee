@@ -39,4 +39,4 @@ class BeatmapSetPage.ContentsTab extends React.Component
       className: className
       onClick: @onClick if not active
       href: url if not @props.disabled
-      Lang.get "beatmaps.mode.#{Mode.toString @props.playmode}"
+      Lang.get "beatmaps.mode.#{@props.playmode}"
