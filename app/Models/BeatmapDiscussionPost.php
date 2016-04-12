@@ -32,6 +32,7 @@ class BeatmapDiscussionPost extends Model
         'id' => 'integer',
         'beatmap_discussion_id' => 'integer',
         'user_id' => 'integer',
+        'last_editor_id' => 'integer',
     ];
 
     public function beatmapDiscussion()

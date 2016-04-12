@@ -104,9 +104,11 @@ class BeatmapDiscussionPostsController extends Controller
             return error_popup($e->getMessage(), 403);
         }
 
-        $post->update($this->postParams($post->beatmapDiscussion));
+        $post->update($this->postParams($post->beatmapDiscussion, false));
 
-        return $post->beatmapsetDiscussion->defaultJson();
+        return [
+            'beatmapset_discussion' => $post->beatmapsetDiscussion->defaultJson(),
+        ];
     }
 
     private function discussionParams($isNew)
@@ -135,15 +137,21 @@ class BeatmapDiscussionPostsController extends Controller
         return $params;
     }
 
-    private function postParams($discussion)
+    private function postParams($discussion, $isNew = true)
     {
-        return get_params(Request::all(), 'beatmap_discussion_post',
+        $params = get_params(Request::all(), 'beatmap_discussion_post',
             ['message'],
             [],
             [
                 'beatmap_discussion_id' => $discussion->id,
-                'user_id' => Auth::user()->user_id,
+                'last_editor_id' => Auth::user()->user_id,
             ]
         );
+
+        if ($isNew) {
+            $params['user_id'] = Auth::user()->user_id;
+        }
+
+        return $params;
     }
 }
