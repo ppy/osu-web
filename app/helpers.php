@@ -76,9 +76,9 @@ function currency($price)
     return sprintf('US$%.2f', $price);
 }
 
-function error_popup($message)
+function error_popup($message, $statusCode = 422)
 {
-    return response(['error' => $message], 422);
+    return response(['error' => $message], $statusCode);
 }
 
 function i18n_view($view)

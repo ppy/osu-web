@@ -20,6 +20,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Exceptions\AuthorizationException;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapsetDiscussion;
@@ -91,6 +92,21 @@ class BeatmapDiscussionPostsController extends Controller
         } else {
             return error_popup(trans('beatmaps.discussion-posts.store.error'));
         }
+    }
+
+    public function update($id)
+    {
+        $post = BeatmapDiscussionPost::findOrFail($id);
+
+        try {
+            $post->authorizeUpdate(Auth::user());
+        } catch (AuthorizationException $e) {
+            return error_popup($e->getMessage(), 403);
+        }
+
+        $post->update($this->postParams($post->beatmapDiscussion));
+
+        return $post->beatmapsetDiscussion->defaultJson();
     }
 
     private function discussionParams($isNew)
