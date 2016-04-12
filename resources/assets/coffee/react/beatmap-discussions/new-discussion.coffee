@@ -30,6 +30,10 @@ BeatmapDiscussions.NewDiscussion = React.createClass
     timestamp: null
 
 
+  componentDidMount: ->
+    @throttledPost = _.throttle @post, 1000
+
+
   render: ->
     div
       className: bn
@@ -65,7 +69,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
                 p
                   key: 'hint'
                   className: "#{bn}__message-hint"
-                  Lang.get 'beatmaps.discussions.message_hint'
+                  Lang.get "beatmaps.discussions.message_hint.in_#{@currentType()}"
               ]
             else
               Lang.get('beatmaps.discussions.require-login')
@@ -82,7 +86,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
         button
           className: "btn-osu-lite btn-osu-lite--default"
           disabled: !@validPost()
-          onClick: @post
+          onClick: @throttledPost
           Lang.get('common.buttons.post')
 
 

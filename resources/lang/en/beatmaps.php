@@ -34,7 +34,10 @@ return [
     'discussions' => [
         'empty' => 'No discussions yet!',
 
-        'message_hint' => 'Start message with timestamp (e.g. 00:12:345) to mod.',
+        'message_hint' => [
+            'in_general' => 'This post will go to general beatmapset discussion. To mod this beatmap, start message with timestamp (e.g. 00:12:345).',
+            'in_timeline' => 'To mod multiple timestamps, post multiple times (one post per timestamp).',
+        ],
 
         'message_placeholder' => 'Type here to post',
 

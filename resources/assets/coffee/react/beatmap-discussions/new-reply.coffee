@@ -24,6 +24,10 @@ BeatmapDiscussions.NewReply = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
+  componentDidMount: ->
+    @throttledPost = _.throttle @post, 1000
+
+
   getInitialState: ->
     message: ''
     resolveDiscussion: @canUpdate() && @props.discussion.resolved
@@ -64,7 +68,7 @@ BeatmapDiscussions.NewReply = React.createClass
             button
               className: 'btn-osu-lite btn-osu-lite--default'
               disabled: !@validPost()
-              onClick: @post
+              onClick: @throttledPost
               Lang.get('common.buttons.reply')
 
 
@@ -113,4 +117,4 @@ BeatmapDiscussions.NewReply = React.createClass
     return if e.keyCode != 13
 
     e.preventDefault()
-    @post()
+    @throttledPost()
