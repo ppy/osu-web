@@ -82,6 +82,7 @@ BeatmapDiscussions.Discussions = React.createClass
         userPermissions: @props.userPermissions
         highlighted: discussion.id == @props.highlightedDiscussionId
         readPostIds: @props.readPostIds
+        collapsed: _.includes @props.collapsedBeatmapDiscussionIds, discussion.id
 
 
   reboot: ->

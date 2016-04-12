@@ -37,11 +37,13 @@ BeatmapDiscussions.Main = React.createClass
       .flatten()
       .value()
     highlightedDiscussionId: null
+    collapsedBeatmapDiscussionIds: []
 
 
   componentDidMount: ->
     $.subscribe 'beatmap:select.beatmapDiscussions', @setCurrentBeatmapId
     $.subscribe 'beatmapsetDiscussion:update.beatmapDiscussions', @setBeatmapsetDiscussion
+    $.subscribe 'beatmapDiscussion:collapse.beatmapDiscussions', @collapseBeatmapDiscussion
     $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
     $.subscribe 'beatmapDiscussion:setMode.beatmapDiscussions', @setMode
     $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
@@ -97,6 +99,7 @@ BeatmapDiscussions.Main = React.createClass
           mode: @state.mode
           highlightedDiscussionId: @state.highlightedDiscussionId
           readPostIds: @state.readPostIds
+          collapsedBeatmapDiscussionIds: @state.collapsedBeatmapDiscussionIds
 
 
   setBeatmapsetDiscussion: (_e, {beatmapsetDiscussion, callback}) ->
@@ -199,3 +202,12 @@ BeatmapDiscussions.Main = React.createClass
     return if _.includes @state.readPostIds, id
 
     @setState readPostIds: @state.readPostIds.concat(id)
+
+
+  collapseBeatmapDiscussion: (_e, {id}) ->
+    if _.includes @state.collapsedBeatmapDiscussionIds, id
+      newIds = _.filter @state.collapsedBeatmapDiscussionIds, (i) => i != id
+    else
+      newIds = _.concat @state.collapsedBeatmapDiscussionIds, id
+
+    @setState collapsedBeatmapDiscussionIds: newIds

@@ -24,10 +24,6 @@ BeatmapDiscussions.Discussion = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
-  getInitialState: ->
-    collapsed: false
-
-
   componentDidMount: ->
     osu.pageChange()
 
@@ -63,11 +59,11 @@ BeatmapDiscussions.Discussion = React.createClass
 
             button
               className: "#{bn}__action #{bn}__action--with-line"
-              onClick: => @setState collapsed: !@state.collapsed
+              onClick: => $.publish 'beatmapDiscussion:collapse', id: @props.discussion.id
               div className: 'beatmap-discussion-expand',
-                el Icon, name: (if @state.collapsed then 'chevron-down' else 'chevron-up')
+                el Icon, name: (if @props.collapsed then 'chevron-down' else 'chevron-up')
         div
-          className: "#{bn}__replies #{'hidden' if @state.collapsed}"
+          className: "#{bn}__replies #{'hidden' if @props.collapsed}"
           @props.discussion.beatmap_discussion_posts.data.slice(1).map (reply) =>
             @post reply, 'reply'
 
@@ -80,7 +76,7 @@ BeatmapDiscussions.Discussion = React.createClass
               userPermissions: @props.userPermissions
 
         div
-          className: "#{bn}__resolved #{'hidden' if @state.collapsed || !@props.discussion.resolved}"
+          className: "#{bn}__resolved #{'hidden' if @props.collapsed || !@props.discussion.resolved}"
           Lang.get 'beatmaps.discussions.resolved'
 
 
