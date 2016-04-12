@@ -17,6 +17,8 @@
  *
  */
 .beatmap-discussion-post {
+  @_top: beatmap-discussion-post;
+
   @_info-text-size: 10px;
 
   @_discussion-text-size: 15px;
@@ -63,8 +65,29 @@
     flex: none;
   }
 
+  &__hover-action {
+    margin-left: (@spacing / 2);
+  }
+
+  &__hover-actions {
+    opacity: 0;
+    will-change: opacity;
+    position: absolute;
+    right: (-@spacing / 2);
+    bottom: 0;
+
+    .@{_top}:hover & {
+      opacity: 1;
+    }
+  }
+
   &__info {
     font-size: @_info-text-size;
+
+    &--edited {
+      color: @gray-light;
+      font-style: italic;
+    }
   }
 
   &__message {

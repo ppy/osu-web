@@ -141,7 +141,10 @@ BeatmapDiscussions.Discussion = React.createClass
 
   post: (post, type) ->
     el BeatmapDiscussions.Post,
+      key: post.id
       post: post
       type: type
       read: _.includes @props.readPostIds, post.id
       user: @props.lookupUser post.user_id
+      lastEditor: @props.lookupUser post.last_editor_id
+      canBeEdited: @props.currentUser.isAdmin || (@props.currentUser.id == post.user_id)

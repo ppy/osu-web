@@ -24,6 +24,7 @@ class @Url
   @beatmapset: (id) => "/s/#{id}"
 
   @beatmapDiscussionVote: (discussionId) => "/beatmap-discussions/#{discussionId}/vote"
+  @beatmapDiscussionPost: (id) => "/beatmap-discussion-posts/#{id}"
   @beatmapDiscussionPosts: '/beatmap-discussion-posts'
 
   @user: (id) => "/u/#{id}"
