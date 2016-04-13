@@ -68,7 +68,7 @@ class BeatmapSetPage.Main extends SwitchableModePage
         artist: @props.set.artist
         playcount: @props.set.play_count
         favcount: @props.set.favourite_count
-        cover: @props.set.coverUrl
+        cover: @props.set.covers.cover
 
       el BeatmapSetPage.Contents,
         set: @props.set
