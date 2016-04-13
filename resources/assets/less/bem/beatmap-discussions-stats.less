@@ -17,27 +17,66 @@
  *
  */
 .beatmap-discussions-stats {
+  .reset-input();
+  @_top: beatmap-discussions-stats;
   margin-left: @spacing;
   margin-top: @spacing;
   display: inline-block;
   min-width: 90px;
-  border: 2px solid @grey-d;
+  border: 2px solid;
   .default-border-radius();
 
-  text-align: center;
+  text-align: left;
   padding: (@spacing / 2) @spacing;
 
+  .theme(@color) {
+    border-color: @color;
+
+    .@{_top}__line {
+      border-color: @color;
+    }
+  }
 
   &--pending {
     color: @pink-darker;
+    &, &:hover {
+      .theme(@pink-darker);
+    }
+  }
+
+  &--praises {
+    color: @blue-darker;
+    &, &:hover {
+      .theme(@blue-darker);
+    }
   }
 
   &--resolved {
     color: @green;
+    &, &:hover {
+      .theme(@green);
+    }
   }
 
   &--total {
-    border-color: @grey-5;
+    color: @grey-5;
+    &, &:hover {
+      .theme(@grey-5);
+    }
+  }
+
+  &--inactive {
+    .theme(@grey-d);
+  }
+
+  &__line {
+    .full-size();
+    width: 0;
+    left: auto;
+    right: 0;
+    margin: @spacing;
+    height: calc(100% ~'-' (@spacing * 2));
+    border: 1px solid;
   }
 
   &__text {

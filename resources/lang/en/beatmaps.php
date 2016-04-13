@@ -69,6 +69,7 @@ return [
 
         'stats' => [
             'pending' => 'Pending',
+            'praises' => 'Praises',
             'resolved' => 'Resolved',
             'total' => 'Total',
         ],

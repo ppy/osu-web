@@ -82,7 +82,7 @@ BeatmapDiscussions.Discussions = React.createClass
 
   discussionPage: (discussion) ->
     className = "#{bn}__discussion"
-    if discussion.beatmap_id != @currentBeatmapId
+    if !@visible(discussion)
       className += ' hidden'
     else
       @hasVisibleDiscussion = true
@@ -100,6 +100,17 @@ BeatmapDiscussions.Discussions = React.createClass
         highlighted: discussion.id == @props.highlightedDiscussionId
         readPostIds: @props.readPostIds
         collapsed: _.includes @props.collapsedBeatmapDiscussionIds, discussion.id
+
+
+  visible: (discussion) ->
+    visible =
+      switch @props.currentFilter
+        when 'resolved' then discussion.message_type != 'praise' && discussion.resolved
+        when 'pending' then discussion.message_type != 'praise' && !discussion.resolved
+        when 'praises' then discussion.message_type == 'praise'
+        else true
+
+    visible && (discussion.beatmap_id == @currentBeatmapId)
 
 
   reboot: ->

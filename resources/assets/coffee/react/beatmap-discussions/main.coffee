@@ -38,6 +38,7 @@ BeatmapDiscussions.Main = React.createClass
       .value()
     highlightedDiscussionId: null
     collapsedBeatmapDiscussionIds: []
+    currentFilter: 'total'
 
 
   componentDidMount: ->
@@ -48,6 +49,7 @@ BeatmapDiscussions.Main = React.createClass
     $.subscribe 'beatmapDiscussion:setMode.beatmapDiscussions', @setMode
     $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
     $.subscribe 'beatmapDiscussion:setHighlight.beatmapDiscussions', @setHighlight
+    $.subscribe 'beatmapDiscussion:filter.beatmapDiscussions', @setFilter
 
     @jumpByHash()
 
@@ -82,6 +84,7 @@ BeatmapDiscussions.Main = React.createClass
         el BeatmapDiscussions.Overview,
           beatmapset: @state.beatmapset
           currentBeatmap: @state.currentBeatmap
+          currentFilter: @state.currentFilter
           beatmapsetDiscussion: @state.beatmapsetDiscussion
           lookupUser: @lookupUser
 
@@ -100,6 +103,7 @@ BeatmapDiscussions.Main = React.createClass
           highlightedDiscussionId: @state.highlightedDiscussionId
           readPostIds: @state.readPostIds
           collapsedBeatmapDiscussionIds: @state.collapsedBeatmapDiscussionIds
+          currentFilter: @state.currentFilter
 
 
   setBeatmapsetDiscussion: (_e, {beatmapsetDiscussion, callback}) ->
@@ -217,3 +221,9 @@ BeatmapDiscussions.Main = React.createClass
         _.concat @state.collapsedBeatmapDiscussionIds, id
 
     @setState collapsedBeatmapDiscussionIds: newIds
+
+
+  setFilter: (_e, {filter}) ->
+    return if filter == @state.currentFilter
+
+    @setState currentFilter: filter
