@@ -37,6 +37,7 @@ return [
             'all-expand' => 'Expand all',
         ],
 
+        'edit' => 'edit',
         'edited' => 'Last edited by :editor :update_time',
         'empty' => 'No discussions yet!',
 

@@ -109,8 +109,15 @@ BeatmapDiscussions.Post = React.createClass
 
       div
         className: "#{bn}__info"
-        dangerouslySetInnerHTML:
-          __html: "#{osu.link Url.user(@props.user.id), @props.user.username}, #{osu.timeago @props.post.created_at}"
+        span
+          dangerouslySetInnerHTML:
+            __html: "#{osu.link Url.user(@props.user.id), @props.user.username}, #{osu.timeago @props.post.created_at}"
+
+        if @props.canBeEdited
+          button
+            className: "#{bn}__edit-button"
+            onClick: @startEditing
+            Lang.get('beatmaps.discussions.edit')
 
       if @props.post.updated_at != @props.post.created_at
         div
@@ -120,12 +127,6 @@ BeatmapDiscussions.Post = React.createClass
               editor: osu.link Url.user(@props.lastEditor.id), @props.lastEditor.username
               update_time: osu.timeago @props.post.updated_at
 
-      div className: "#{bn}__hover-actions",
-        if @props.canBeEdited
-          button
-            className: "btn-osu-lite btn-osu-lite--default #{bn}__hover-action"
-            onClick: @startEditing
-            el Icon, name: 'edit'
 
 
   messageEditor: ->
@@ -144,11 +145,11 @@ BeatmapDiscussions.Post = React.createClass
 
         div className: "#{bn}__actions-group",
           button
-            className: "btn-osu-lite btn-osu-lite--default #{bn}__hover-action"
+            className: "btn-osu-lite btn-osu-lite--default #{bn}__action"
             onClick: => @setState editing: false
             Lang.get 'common.buttons.cancel'
 
           button
-            className: "btn-osu-lite btn-osu-lite--default #{bn}__hover-action"
+            className: "btn-osu-lite btn-osu-lite--default #{bn}__action"
             onClick: @throttledUpdatePost
             Lang.get 'common.buttons.save'

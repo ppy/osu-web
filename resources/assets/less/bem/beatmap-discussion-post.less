@@ -45,6 +45,10 @@
     }
   }
 
+  &__action {
+    margin-left: (@spacing / 2);
+  }
+
   &__actions {
     display: flex;
     justify-content: space-between;
@@ -64,19 +68,14 @@
     flex: none;
   }
 
-  &__hover-action {
-    margin-left: (@spacing / 2);
-  }
+  &__edit-button {
+    .reset-input();
+    margin-left: @spacing;
+    color: @link-color;
 
-  &__hover-actions {
-    opacity: 0;
-    will-change: opacity;
-    position: absolute;
-    right: (-@spacing / 2);
-    bottom: 0;
-
-    .@{_top}:hover & {
-      opacity: 1;
+    &:hover {
+      color: @link-hover-color;
+      text-decoration: underline;
     }
   }
 
@@ -91,6 +90,7 @@
 
   &__message {
     word-wrap: break-word;
+    margin-bottom: (@spacing / 2);
 
     .@{_top}--discussion & {
       font-size: @_discussion-text-size;
