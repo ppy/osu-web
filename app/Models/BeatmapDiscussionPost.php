@@ -33,6 +33,7 @@ class BeatmapDiscussionPost extends Model
         'beatmap_discussion_id' => 'integer',
         'user_id' => 'integer',
         'last_editor_id' => 'integer',
+        'system' => 'boolean',
     ];
 
     public function beatmapDiscussion()
@@ -66,8 +67,12 @@ class BeatmapDiscussionPost extends Model
 
     public function authorizeUpdate($user)
     {
+        if ($this->system) {
+            throw new AuthorizationException(trans('beatmap_discussions.authorizations.update.system_generated'));
+        }
+
         if ($user === null) {
-            throw new AuthorizationException(trans('beatmap_discussions.update.null_user'));
+            throw new AuthorizationException(trans('beatmap_discussions.authorizations.update.null_user'));
         }
 
         if ($user->isAdmin()) {
@@ -75,7 +80,38 @@ class BeatmapDiscussionPost extends Model
         }
 
         if ($user->user_id !== $this->user_id) {
-            throw new AuthorizationException(trans('beatmap_discussions.update.wrong_user'));
+            throw new AuthorizationException(trans('beatmap_discussions.authorizations.update.wrong_user'));
         }
+    }
+
+    public function getMessageAttribute($value)
+    {
+        if ($this->system) {
+            return json_decode($value);
+        } else {
+            return $value;
+        }
+    }
+
+    public function setMessageAttribute($value)
+    {
+        // don't shoot me ;_;
+        if ($this->system || is_array($value)) {
+            $value = json_encode($value);
+        }
+
+        $this->attributes['message'] = $value;
+    }
+
+    public static function generateLogResolveChange($user, $resolved)
+    {
+        return new static([
+            'user_id' => $user->user_id,
+            'system' => true,
+            'message' => [
+                'type' => 'resolved',
+                'value' => $resolved,
+            ],
+        ]);
     }
 }

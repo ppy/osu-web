@@ -140,7 +140,9 @@ BeatmapDiscussions.Discussion = React.createClass
 
 
   post: (post, type) ->
-    el BeatmapDiscussions.Post,
+    elementName = if post.system then 'SystemPost' else 'Post'
+
+    el BeatmapDiscussions[elementName],
       key: post.id
       post: post
       type: type

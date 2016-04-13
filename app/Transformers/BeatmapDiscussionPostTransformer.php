@@ -32,6 +32,7 @@ class BeatmapDiscussionPostTransformer extends Fractal\TransformerAbstract
             'user_id' => $post->user_id,
             'last_editor_id' => presence($post->last_editor_id, $post->user_id),
 
+            'system' => $post->system,
             'message' => $post->message,
 
             'created_at' => $post->created_at->toIso8601String(),
