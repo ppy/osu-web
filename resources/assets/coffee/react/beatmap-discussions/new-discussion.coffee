@@ -84,7 +84,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
             @messageTypeSelection type
 
         button
-          className: "btn-osu-lite btn-osu-lite--default"
+          className: 'btn-osu-lite btn-osu-lite--default btn-osu-lite--fat'
           disabled: !@validPost()
           onClick: @throttledPost
           Lang.get('common.buttons.post')
