@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, span} = React.DOM
+{div, span, p} = React.DOM
 el = React.createElement
 
 class BeatmapSetPage.Scoreboard extends React.Component
@@ -46,25 +46,31 @@ class BeatmapSetPage.Scoreboard extends React.Component
       className: 'page-extra beatmapset-scoreboard'
       el BeatmapSetPage.ExtraHeader, name: 'scoreboard'
 
-      div className: 'beatmapset-scoreboard__tabs',
-        scoreboards.map (m) =>
-          el BeatmapSetPage.ScoreboardTab,
-            key: m
-            scoreboard: m
-            currentScoreboard: @state.currentScoreboard
+      if @state.scores.length == 0
+        p
+          className: 'beatmapset-scoreboard__no-scores'
+          Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.no-scores'
+      else
+        div {},
+          div className: 'beatmapset-scoreboard__tabs',
+            scoreboards.map (m) =>
+              el BeatmapSetPage.ScoreboardTab,
+                key: m
+                scoreboard: m
+                currentScoreboard: @state.currentScoreboard
 
-      div className: 'beatmapset-scoreboard__line'
+          div className: 'beatmapset-scoreboard__line'
 
-      el BeatmapSetPage.ScoreboardFirst,
-        score: @state.scores[0]
+          el BeatmapSetPage.ScoreboardFirst,
+            score: @state.scores[0]
 
-      div className: 'beatmapset-scoreboard__row',
-        header.map (m) =>
-          className = 'beatmapset-scoreboard__row-item beatmapset-scoreboard__row-item--header'
-          className += " beatmapset-scoreboard__row-item--#{m}"
+          div className: 'beatmapset-scoreboard__row',
+            header.map (m) =>
+              className = 'beatmapset-scoreboard__row-item beatmapset-scoreboard__row-item--header'
+              className += " beatmapset-scoreboard__row-item--#{m}"
 
-          span className: className, key: m, Lang.get "beatmaps.beatmapset.show.extra.scoreboard.list.#{m}"
+              span className: className, key: m, Lang.get "beatmaps.beatmapset.show.extra.scoreboard.list.#{m}"
 
 
-      @state.scores[1..].map (s, i) =>
-        el BeatmapSetPage.ScoreboardItem, score: s, position: i + 2, key: i
+          @state.scores[1..].map (s, i) =>
+            el BeatmapSetPage.ScoreboardItem, score: s, position: i + 2, key: i

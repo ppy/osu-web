@@ -134,6 +134,7 @@ return [
                 ],
                 'scoreboard' => [
                     'title' => 'Scoreboard',
+                    'no-scores' => 'No scores yet. Maybe you should try setting some?',
                     'global' => 'Global Ranking',
                     'country' => 'Country Ranking',
                     'friend' => 'Friend Ranking',
