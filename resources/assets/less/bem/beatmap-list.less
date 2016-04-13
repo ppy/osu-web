@@ -28,17 +28,24 @@
     top: 100%;
     left: 0;
     width: 100%;
-    margin-top: @spacing;
+    margin-top: (@spacing / 2);
+    background-color: @grey-f;
 
     flex-direction: column;
 
     .default-box-shadow();
-    .default-border-radius();
-    overflow: hidden;
 
     display: none;
     .@{_top}--selecting & {
       display: flex;
+    }
+
+    &--submenu {
+      top: 0;
+      left: 100%;
+      margin-left: (@spacing / 2);
+      margin-top: 0;
+      padding: @spacing 0;
     }
   }
 
@@ -46,7 +53,15 @@
     .reset-input();
     background-color: @grey-f;
 
-    &:hover {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    text-align: left;
+
+    padding: 0 @spacing;
+
+    &.js-menu--active, &:hover {
       background-color: @text-color;
       color: @grey-f;
     }
@@ -60,10 +75,8 @@
       background-color: @grey-c;
     }
 
-    display: flex;
-    align-items: center;
-
-    width: 100%;
-    text-align: left;
+    &--large {
+      padding: @spacing;
+    }
   }
 }
