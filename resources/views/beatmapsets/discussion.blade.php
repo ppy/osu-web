@@ -17,6 +17,7 @@
 --}}
 @extends('master', [
     'title' => trans('beatmaps.discussions.show.title', ['username']),
+    'body_additional_classes' => 'osu-layout--body-ddd',
 ])
 
 @section('content')

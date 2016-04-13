@@ -1,8 +1,10 @@
+<?php
+
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
+ *    This file is part of osu!web. osu!web is distributed in the hopes of
+ *    attracting more community contributions to the core ecosystem of osu!
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -14,37 +16,21 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
-.beatmap-list-item {
-  padding: @spacing;
 
-  display: flex;
-  align-items: center;
+return [
+    'authorizations' => [
+        'update' => [
+            'null_user' => 'Must be logged in to edit.',
+            'system_generated' => 'System-generated post can not be edited.',
+            'wrong_user' => 'Must be owner of the post to edit.',
+        ],
+    ],
 
-  width: 100%;
-  text-align: left;
-
-  &__col {
-    flex: none;
-
-    &--main {
-      flex: 1 0 auto;
-      padding: 0 @spacing;
-    }
-  }
-
-  &__mode {
-    font-size: 11px;
-  }
-
-  &__switch-button {
-    font-size: 15px;
-    font-weight: 700;
-  }
-
-  &__version {
-    font-size: 15px;
-    font-weight: 700;
-  }
-}
+    'system' => [
+        'resolved' => [
+            'true' => 'Marked as resolved by :user',
+            'false' => 'Reopened by :user',
+        ],
+    ],
+];

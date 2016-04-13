@@ -46,7 +46,7 @@ class UseUserIdForResolvingIssue extends Migration
     public function down()
     {
         Schema::table('beatmap_discussions', function ($table) {
-            $table->dropColumn('resolved_id');
+            $table->dropColumn('resolver_id');
         });
     }
 }

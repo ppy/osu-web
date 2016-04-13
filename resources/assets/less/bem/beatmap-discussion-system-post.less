@@ -16,45 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.btn-osu-lite {
-  .reset-input();
-  .default-border-radius();
-  .default-box-shadow();
-  .default-text-shadow();
-
-  text-align: center;
-  vertical-align: middle;
-
-  font-size: 12px;
-  padding: (@spacing / 2) @spacing;
-
-  &--default {
-    @__bgcolor: @blue-dark;
-    background-color: @__bgcolor;
-    color: @grey-f;
-
-    &:focus {
-      background-color: darken(@__bgcolor, 5%);
-    }
-
-    &:hover {
-      background-color: darken(@__bgcolor, 10%);
-    }
-
-    &:active {
-      background-color: darken(@__bgcolor, 15%);
-    }
-  }
-
-  &--fat {
-    padding: (@spacing * 2) (@spacing * 5 / 2);
-  }
-
-  // this must be the last modifier
-  &[disabled], &.disabled, &--disabled {
-    &, &:active, &:focus, &:hover {
-      background-color: @grey-9;
-      color: @grey-f;
-    }
-  }
+.beatmap-discussion-system-post {
+  padding: @spacing;
+  padding-left: @beatmap-discussion--reply-padding;
+  font-size: 14px;
 }

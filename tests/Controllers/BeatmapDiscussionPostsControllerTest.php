@@ -20,11 +20,10 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $this->beatmapset = factory(BeatmapSet::class)->create();
         $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
         $this->beatmapsetDiscussion = BeatmapsetDiscussion::create(['beatmapset_id' => $this->beatmap->beatmapset_id]);
-        $this->beatmapDiscussion = BeatmapDiscussion::create([
+        $this->beatmapDiscussion = factory(BeatmapDiscussion::class, 'timeline')->create([
             'beatmapset_discussion_id' => $this->beatmapsetDiscussion->id,
-            'timestamp' => 0,
-            'message_type' => 'praise',
             'beatmap_id' => $this->beatmap->beatmap_id,
+            'user_id' => $this->user->user_id,
         ]);
 
         $this->otherBeatmapset = factory(BeatmapSet::class)->create();
@@ -67,6 +66,24 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this->assertEquals($currentDiscussions, BeatmapDiscussion::count());
         $this->assertEquals($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
+
+        // changing resolve status adds two posts
+        $currentDiscussionPosts = BeatmapDiscussionPost::count();
+
+        $this
+            ->actingAs($this->user)
+            ->post(route('beatmap-discussion-posts.store'), [
+                'beatmap_discussion_id' => $this->beatmapDiscussion->id,
+                'beatmap_discussion' => [
+                    'resolved' => !$this->beatmapDiscussion->fresh()->resolved,
+                ],
+                'beatmap_discussion_post' => [
+                    'message' => 'Hello',
+                ],
+            ])
+            ->seeJson([]);
+
+        $this->assertEquals($currentDiscussionPosts + 2, BeatmapDiscussionPost::count());
     }
 
     public function testPostStoreNewDiscussionRequestBeatmapsetDiscussion()
@@ -86,5 +103,46 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this->assertEquals($currentDiscussions, BeatmapDiscussion::count());
         $this->assertEquals($currentDiscussionPosts, BeatmapDiscussionPost::count());
+    }
+
+    public function testPostUpdate()
+    {
+        $beatmapDiscussionPost = factory(BeatmapDiscussionPost::class)->create([
+            'beatmap_discussion_id' => $this->beatmapDiscussion->id,
+            'user_id' => $this->user->user_id,
+        ]);
+
+        $initialMessage = $beatmapDiscussionPost->message;
+        $editedMessage = "{$initialMessage} Edited";
+
+        $otherUser = factory(User::class)->create();
+
+        // invalid user
+        $this
+            ->actingAs($otherUser)
+            ->put(route('beatmap-discussion-posts.update', $beatmapDiscussionPost->id), [
+                'beatmap_discussion_post' => [
+                    'message' => $editedMessage,
+                ],
+            ])
+            ->assertResponseStatus(403);
+
+        $beatmapDiscussionPost = $beatmapDiscussionPost->fresh();
+
+        $this->assertEquals($initialMessage, $beatmapDiscussionPost->message);
+
+        // correct user
+        $this
+            ->actingAs($this->user)
+            ->put(route('beatmap-discussion-posts.update', $beatmapDiscussionPost->id), [
+                'beatmap_discussion_post' => [
+                    'message' => $editedMessage,
+                ],
+            ])
+            ->assertResponseStatus(200);
+
+        $beatmapDiscussionPost = $beatmapDiscussionPost->fresh();
+
+        $this->assertEquals($editedMessage, $beatmapDiscussionPost->message);
     }
 }

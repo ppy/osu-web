@@ -17,11 +17,12 @@
  *
  */
 .beatmap-discussion-post {
+  @_top: beatmap-discussion-post;
+
   @_info-text-size: 10px;
 
   @_discussion-text-size: 15px;
   @_reply-text-size: 12px;
-  @_reply-padding-left: (@beatmap-discussion--avatar-size + (@spacing * 2));
 
 
   display: flex;
@@ -31,17 +32,21 @@
   min-width: 0;
 
   &--reply {
-    padding-left: @_reply-padding-left;
+    padding-left: @beatmap-discussion--reply-padding;
   }
 
   &--unread {
     &::before {
       .full-size();
-      background-color: @green;
+      background-color: @blue-darker;
       width: (@spacing / 2);
       height: calc(100% ~'+' @spacing);
       top: (-@spacing / 2);
     }
+  }
+
+  &__action {
+    margin-left: (@spacing / 2);
   }
 
   &__actions {
@@ -63,29 +68,45 @@
     flex: none;
   }
 
+  &__edit-button {
+    .reset-input();
+    margin-left: @spacing;
+    color: @link-color;
+
+    &:hover {
+      color: @link-hover-color;
+      text-decoration: underline;
+    }
+  }
+
   &__info {
     font-size: @_info-text-size;
+
+    &--edited {
+      color: @gray-light;
+      font-style: italic;
+    }
   }
 
   &__message {
     word-wrap: break-word;
+    margin-bottom: (@spacing / 2);
 
-    &--discussion {
+    .@{_top}--discussion & {
       font-size: @_discussion-text-size;
     }
 
-    &--new-reply {
+    .@{_top}--reply & {
+      font-size: @_reply-text-size;
+    }
+
+    &--editor {
       .reset-input();
       .default-border-radius();
       .inset-box-shadow();
-      font-size: @_reply-text-size;
       width: 100%;
       padding: @spacing;
       resize: vertical;
-    }
-
-    &--reply {
-      font-size: @_reply-text-size;
     }
   }
 
