@@ -42,7 +42,7 @@ BeatmapDiscussions.NewReply = React.createClass
 
       div className: "#{bn}__message-container",
         textarea
-          className: "#{bn}__message #{bn}__message--new-reply"
+          className: "#{bn}__message #{bn}__message--editor"
           type: 'text'
           rows: 2
           value: @state.message
@@ -87,7 +87,7 @@ BeatmapDiscussions.NewReply = React.createClass
 
     .done (data) =>
       @setState message: ''
-      $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_id
+      $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_ids
       $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion.data
 
     .fail osu.ajaxError
@@ -96,8 +96,6 @@ BeatmapDiscussions.NewReply = React.createClass
 
 
   setMessage: (e) ->
-    newValue = e.target.value
-
     @setState message: e.target.value
 
 

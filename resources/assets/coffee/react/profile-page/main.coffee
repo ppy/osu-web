@@ -55,11 +55,7 @@ class ProfilePage.Main extends React.Component
 
 
   setHash: =>
-    newState = _.cloneDeep history.state
-    newState.url = location.href.replace /#.*/, ''
-    newState.url += ProfilePageHash.generate page: @state.currentPage, mode: @state.currentMode
-
-    history.replaceState newState, null, newState.url
+    osu.setHash ProfilePageHash.generate(page: @state.currentPage, mode: @state.currentMode)
 
 
   userUpdate: (_e, user) =>

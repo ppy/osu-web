@@ -20,6 +20,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Exceptions\AuthorizationException;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapsetDiscussion;
@@ -51,7 +52,8 @@ class BeatmapDiscussionPostsController extends Controller
             $discussion->beatmapset_discussion_id = $beatmapsetDiscussion->id;
         }
 
-        $post = new BeatmapDiscussionPost($this->postParams($discussion));
+        $posts = [new BeatmapDiscussionPost($this->postParams($discussion))];
+        $previousDiscussionResolved = $discussion->resolved;
         $discussion->fill($this->discussionParams($isNewDiscussion));
 
         if (!$discussion->canBePostedBy(Auth::user())) {
@@ -62,18 +64,23 @@ class BeatmapDiscussionPostsController extends Controller
             abort(403);
         }
 
+        if (!$isNewDiscussion && ($discussion->resolved !== $previousDiscussionResolved)) {
+            $posts[] = BeatmapDiscussionPost::generateLogResolveChange(Auth::user(), $discussion->resolved);
+        }
+
         try {
-            $saved = DB::transaction(function () use ($post, $discussion, $isNewDiscussion) {
+            $saved = DB::transaction(function () use ($posts, $discussion) {
                 if ($discussion->save() === false) {
                     throw new Exception('failed');
                 }
 
-                if ($isNewDiscussion) {
+                foreach ($posts as $post) {
+                    // done here since discussion may or may not previously exist
                     $post->beatmap_discussion_id = $discussion->id;
-                }
 
-                if ($post->save() === false) {
-                    throw new Exception('failed');
+                    if ($post->save() === false) {
+                        throw new Exception('failed');
+                    }
                 }
 
                 return true;
@@ -82,15 +89,36 @@ class BeatmapDiscussionPostsController extends Controller
             $saved = false;
         }
 
+        $postIds = array_map(function ($post) {
+            return $post->id;
+        }, $posts);
+
         if ($saved === true) {
             return [
-                'beatmapset_discussion' => $post->beatmapsetDiscussion->defaultJson(Auth::user()),
-                'beatmap_discussion_post_id' => $post->id,
+                'beatmapset_discussion' => $posts[0]->beatmapsetDiscussion->defaultJson(Auth::user()),
+                'beatmap_discussion_post_ids' => $postIds,
                 'beatmap_discussion_id' => $discussion->id,
             ];
         } else {
             return error_popup(trans('beatmaps.discussion-posts.store.error'));
         }
+    }
+
+    public function update($id)
+    {
+        $post = BeatmapDiscussionPost::findOrFail($id);
+
+        try {
+            $post->authorizeUpdate(Auth::user());
+        } catch (AuthorizationException $e) {
+            return error_popup($e->getMessage(), 403);
+        }
+
+        $post->update($this->postParams($post->beatmapDiscussion, false));
+
+        return [
+            'beatmapset_discussion' => $post->beatmapsetDiscussion->defaultJson(),
+        ];
     }
 
     private function discussionParams($isNew)
@@ -110,8 +138,6 @@ class BeatmapDiscussionPostsController extends Controller
             ['resolved' => false]
         );
 
-        $params['resolver_id'] = $params['resolved'] ? Auth::user()->user_id : null;
-
         if ($isNew) {
             $params['user_id'] = Auth::user()->user_id;
         }
@@ -119,15 +145,21 @@ class BeatmapDiscussionPostsController extends Controller
         return $params;
     }
 
-    private function postParams($discussion)
+    private function postParams($discussion, $isNew = true)
     {
-        return get_params(Request::all(), 'beatmap_discussion_post',
+        $params = get_params(Request::all(), 'beatmap_discussion_post',
             ['message'],
             [],
             [
                 'beatmap_discussion_id' => $discussion->id,
-                'user_id' => Auth::user()->user_id,
+                'last_editor_id' => Auth::user()->user_id,
             ]
         );
+
+        if ($isNew) {
+            $params['user_id'] = Auth::user()->user_id;
+        }
+
+        return $params;
     }
 }

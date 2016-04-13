@@ -24,18 +24,6 @@ BeatmapDiscussions.Discussion = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
-  getInitialState: ->
-    collapsed: false
-
-
-  componentDidMount: ->
-    osu.pageChange()
-
-
-  componentDidUpdate: ->
-    osu.pageChange()
-
-
   render: ->
     return div() if @props.discussion.beatmap_discussion_posts.data.length == 0
 
@@ -63,11 +51,11 @@ BeatmapDiscussions.Discussion = React.createClass
 
             button
               className: "#{bn}__action #{bn}__action--with-line"
-              onClick: => @setState collapsed: !@state.collapsed
+              onClick: => $.publish 'beatmapDiscussion:collapse', id: @props.discussion.id
               div className: 'beatmap-discussion-expand',
-                el Icon, name: (if @state.collapsed then 'chevron-down' else 'chevron-up')
+                el Icon, name: (if @props.collapsed then 'chevron-down' else 'chevron-up')
         div
-          className: "#{bn}__replies #{'hidden' if @state.collapsed}"
+          className: "#{bn}__replies #{'hidden' if @props.collapsed}"
           @props.discussion.beatmap_discussion_posts.data.slice(1).map (reply) =>
             @post reply, 'reply'
 
@@ -80,7 +68,7 @@ BeatmapDiscussions.Discussion = React.createClass
               userPermissions: @props.userPermissions
 
         div
-          className: "#{bn}__resolved #{'hidden' if @state.collapsed || !@props.discussion.resolved}"
+          className: "#{bn}__resolved #{'hidden' if @props.collapsed || !@props.discussion.resolved}"
           Lang.get 'beatmaps.discussions.resolved'
 
 
@@ -102,42 +90,6 @@ BeatmapDiscussions.Discussion = React.createClass
 
         div className: "#{tbn}__text",
           BeatmapDiscussionHelper.formatTimestamp @props.discussion.timestamp
-
-
-  post: (post, type = '') ->
-    pbn = 'beatmap-discussion-post'
-    user = @props.lookupUser post.user_id
-    read = _.includes @props.readPostIds, post.id
-
-    topClasses = "#{pbn} #{pbn}--#{type}"
-    topClasses += " #{pbn}--unread" if !read
-
-    div
-      className: topClasses
-      key: "#{type}-#{post.id}"
-      onClick: =>
-        $.publish 'beatmapDiscussionPost:markRead', id: post.id
-
-      div className: "#{pbn}__avatar",
-        el UserAvatar, user: user, modifiers: ['full-rounded']
-
-      div className: "#{pbn}__message-container",
-        div
-          className: "#{pbn}__message #{pbn}__message--#{type}"
-          dangerouslySetInnerHTML:
-            __html: @addEditorLink post.message
-        div
-          className: "#{pbn}__info"
-          dangerouslySetInnerHTML:
-            __html: "#{osu.link Url.user(user.id), user.username}, #{osu.timeago post.created_at}"
-
-
-  addEditorLink: (message) ->
-    _.chain message
-      .escape()
-      .replace /(^|\s)((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\))?(?=\s))/g, (_, prefix, text, m, s, ms, range) =>
-        "#{prefix}#{osu.link Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text}"
-      .value()
 
 
   doVote: (score) ->
@@ -185,3 +137,16 @@ BeatmapDiscussions.Discussion = React.createClass
     return if @props.highlighted
 
     $.publish 'beatmapDiscussion:setHighlight', id: @props.discussion.id
+
+
+  post: (post, type) ->
+    elementName = if post.system then 'SystemPost' else 'Post'
+
+    el BeatmapDiscussions[elementName],
+      key: post.id
+      post: post
+      type: type
+      read: _.includes @props.readPostIds, post.id
+      user: @props.lookupUser post.user_id
+      lastEditor: @props.lookupUser post.last_editor_id
+      canBeEdited: @props.currentUser.isAdmin || (@props.currentUser.id == post.user_id)

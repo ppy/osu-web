@@ -15,29 +15,23 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div} = React.DOM
+{button, div, span} = React.DOM
 el = React.createElement
 
-bn = 'beatmap-list-item'
+bn = 'beatmap-discussion-system-post'
 
-BeatmapDiscussions.BeatmapListItem = React.createClass
+BeatmapDiscussions.SystemPost = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
   render: ->
+    message =
+      switch @props.post.message.type
+        when 'resolved'
+          Lang.get "beatmap_discussions.system.resolved.#{@props.post.message.value}",
+            user: osu.link Url.user(@props.user.id), @props.user.username
+
     div
       className: bn
-
-      div className: "#{bn}__col",
-        el BeatmapIcon, beatmap: @props.beatmap, modifier: 'large'
-
-      div className: "#{bn}__col #{bn}__col--main",
-        div className: "#{bn}__version",
-          @props.beatmap.version
-        div className: "#{bn}__mode",
-          Lang.get("beatmaps.mode.#{@props.beatmap.mode}")
-
-      if @props.withSwitchButton
-        div className: "#{bn}__col",
-          div className: 'beatmap-list-item__switch-button',
-            el Icon, name: 'chevron-down'
+      dangerouslySetInnerHTML:
+        __html: message

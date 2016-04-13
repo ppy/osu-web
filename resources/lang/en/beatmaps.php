@@ -32,6 +32,13 @@ return [
     ],
 
     'discussions' => [
+        'collapse' => [
+            'all-collapse' => 'Collapse all',
+            'all-expand' => 'Expand all',
+        ],
+
+        'edit' => 'edit',
+        'edited' => 'Last edited by :editor :update_time',
         'empty' => 'No discussions yet!',
 
         'message_hint' => [
@@ -63,6 +70,7 @@ return [
 
         'stats' => [
             'pending' => 'Pending',
+            'praises' => 'Praises',
             'resolved' => 'Resolved',
             'total' => 'Total',
         ],

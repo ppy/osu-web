@@ -43,17 +43,7 @@ BeatmapDiscussions.BeatmapList = React.createClass
         className: "#{bn}__item #{bn}__item--selected"
         onClick: @toggleSelector
         ref: 'openSelectorButton'
-        div className: 'beatmap-list-item',
-          div className: 'beatmap-list-item__col',
-            el BeatmapIcon, beatmap: @props.currentBeatmap, modifier: 'large'
-          div className: 'beatmap-list-item__col beatmap-list-item__col--main',
-            div className: 'beatmap-list-item__mode',
-              Lang.get("beatmaps.mode.#{@props.currentBeatmap.mode}")
-            div className: 'beatmap-list-item__version',
-              @props.currentBeatmap.version
-          div className: 'beatmap-list-item__col',
-            div className: 'beatmap-list-item__switch-button',
-              el Icon, name: 'chevron-down'
+        el BeatmapDiscussions.BeatmapListItem, beatmap: @props.currentBeatmap, withSwitchButton: true
 
       div
         className: "#{bn}__selector"
