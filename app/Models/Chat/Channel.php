@@ -44,7 +44,14 @@ class Channel extends Model implements Messageable
 
     public function canBeMessagedBy(User $user)
     {
-        // feels a bit redundant at the moment, but may be useful later for read-only channels, etc
+        if ($user->isAdmin()) {
+            return true;
+        }
+
+        if ($user->isBanned() || $user->isRestricted() || $user->isSilenced() || $this->moderated) {
+            return false;
+        }
+
         return $this->canBeReadBy($user);
     }
 
