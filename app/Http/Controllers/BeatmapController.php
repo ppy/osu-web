@@ -24,7 +24,7 @@ use App\Models\BeatmapSet;
 use App\Models\Genre;
 use App\Models\Language;
 use League\Fractal\Manager;
-use App\Transformers\BeatmapSetTransformer;
+use App\Transformers\ScoreTransformer;
 use Request;
 use Auth;
 
@@ -122,5 +122,38 @@ class BeatmapController extends Controller
             new BeatmapSetTransformer,
             'beatmaps'
         );
+    }
+
+    public function getScores($id)
+    {
+        $type = Request::input ('type', 'global');
+
+        if (!Auth::check() && $type !== 'global') {
+            abort (403);
+        }
+
+        $user = Auth::user ();
+
+        if ($type !== 'global' && !$user->isSupporter ()) {
+            return error_popup (trans('errors.supporter_only'));
+        }
+
+        $beatmap = Beatmap::findOrFail($id);
+
+        $scores = $beatmap->scoresBest()->orderBy('score', 'desc');
+
+        switch ($type) {
+            case 'country':
+                $scores = $scores
+                    ->whereHas('user', function ($query) use (&$user) {
+                        $query->where('country_acronym', $user->country_acronym);
+                    });
+                break;
+            case 'friend':
+                // TODO: add querying by friends list
+                break;
+        }
+
+        return fractal_collection_array($scores->get(), new ScoreTransformer, 'user');
     }
 }
