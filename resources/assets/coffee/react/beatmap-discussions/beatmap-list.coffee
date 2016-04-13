@@ -40,23 +40,47 @@ BeatmapDiscussions.BeatmapList = React.createClass
     div
       className: "#{bn} #{"#{bn}--selecting" if @state.showingSelector}"
       button
-        className: "#{bn}__item #{bn}__item--selected"
+        className: "#{bn}__item #{bn}__item--selected #{bn}__item--large"
         onClick: @toggleSelector
-        ref: 'openSelectorButton'
-        el BeatmapDiscussions.BeatmapListItem, beatmap: @props.currentBeatmap, withSwitchButton: true
+        ref: 'noGlobalHide-top'
+        el BeatmapDiscussions.BeatmapListItem, beatmap: @props.currentBeatmap, large: true, withButton: 'down', mode: 'complete'
 
       div
         className: "#{bn}__selector"
-        @props.beatmapset.beatmaps.data.map (beatmap) =>
-          button
-            className: "#{bn}__item #{"#{bn}__item--current" if beatmap.id == @props.currentBeatmap.id}",
-            key: beatmap.id
-            onClick: => @selectBeatmap beatmap.id
-            el BeatmapDiscussions.BeatmapListItem, beatmap: beatmap
+        _.chain(@props.beatmapset.beatmaps.data)
+        .groupBy 'mode'
+        .map (beatmaps) =>
+          menuId = "beatmap-list-#{beatmaps[0].mode}"
+          menuLinkClasses = "js-menu #{bn}__item #{bn}__item--large"
+          menuLinkClasses += " #{bn}__item--current" if beatmaps[0].mode == @props.currentBeatmap.mode
+
+          div key: beatmaps[0].mode,
+            div
+              className: menuLinkClasses
+              'data-menu-target': menuId
+              ref: "noGlobalHide-#{menuId}"
+              el BeatmapDiscussions.BeatmapListItem, beatmap: beatmaps[0], large: true, mode: 'mode', withButton: 'right'
+
+            div
+              className: "js-menu #{bn}__selector #{bn}__selector--submenu"
+              'data-menu-id': menuId
+              'data-visibility': 'hidden'
+              beatmaps.map (beatmap) =>
+                menuItemClasses = "#{bn}__item"
+                menuItemClasses += " #{bn}__item--current" if beatmap.id == @props.currentBeatmap.id
+
+                button
+                  className: menuItemClasses
+                  key: beatmap.id
+                  onClick: => @selectBeatmap id: beatmap.id
+                  el BeatmapDiscussions.BeatmapListItem, beatmap: beatmap, mode: 'version'
+        .value()
 
 
   hideSelector: (e) ->
-    if @refs.openSelectorButton.contains(e.target)
+    for own refName, ref of @refs
+      continue if !refName.startsWith('noGlobalHide-') || !ref.contains(e.target)
+
       e.stopPropagation()
       return
 
@@ -75,5 +99,5 @@ BeatmapDiscussions.BeatmapList = React.createClass
     @setState showingSelector: state
 
 
-  selectBeatmap: (id) ->
+  selectBeatmap: ({id}) ->
     $.publish 'beatmap:select', id: id
