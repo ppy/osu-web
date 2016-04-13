@@ -17,27 +17,26 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models\Chat;
+namespace App\Transformers\API\Chat;
 
-use App\Models\User;
-use App\Models\Chat\Channel;
+use App\Models\Event;
+use League\Fractal;
+use App\Models\Chat\PrivateMessage;
 
-class PrivateMessage extends Model
+class PrivateMessageTransformer extends Fractal\TransformerAbstract
 {
-    protected $table = 'messages_private';
-    protected $primaryKey = 'message_id';
-    protected $dates = [
-        'timestamp',
-    ];
-    public $timestamps = false;
-
-    public function sender()
+    public function transform(PrivateMessage $message)
     {
-        return $this->belongsTo(User::class, 'user_id', 'user_id');
-    }
-
-    public function receiver()
-    {
-        return $this->belongsTo(User::class, 'target_id', 'user_id');
+        return [
+            'message_id' => $message->message_id,
+            'user_id' => $message->user_id,
+            'target_id' => $message->target_id,
+            'timestamp' => $message->timestamp->toDateTimeString(),
+            'content' => $message->content,
+            'sender' => $message->sender ? [
+                'username' => $message->sender->username,
+                'colour' => $message->sender->user_colour,
+            ] : []
+        ];
     }
 }

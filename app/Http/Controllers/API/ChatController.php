@@ -25,8 +25,10 @@ use Redirect;
 use Carbon\Carbon;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
+use App\Models\Chat\PrivateMessage;
 use DB;
 use App\Transformers\API\Chat\MessageTransformer;
+use App\Transformers\API\Chat\PrivateMessageTransformer;
 use App\Transformers\API\Chat\ChannelTransformer;
 use Authorizer;
 use App\Models\User;
@@ -68,6 +70,28 @@ class ChatController extends Controller
         return fractal_api_serialize_collection(
             $messages,
             new MessageTransformer()
+        );
+    }
+
+    public function privateMessages()
+    {
+        $current_user = User::find(Authorizer::getResourceOwnerId());
+
+        $since = intval(Request::input('since'));
+        $limit = intval(Request::input('limit', 50));
+
+        $messages = PrivateMessage::where('user_id', $current_user->user_id)
+            ->orWhere('target_id', $current_user->user_id)
+            ->where('message_id', '>', $since)
+            ->with('sender')
+            ->with('receiver')
+            ->orderBy('message_id', 'asc')
+            ->limit(min(abs($limit), 50))
+            ->get();
+
+        return fractal_api_serialize_collection(
+            $messages,
+            new PrivateMessageTransformer()
         );
     }
 
