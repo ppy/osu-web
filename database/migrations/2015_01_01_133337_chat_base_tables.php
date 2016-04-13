@@ -39,7 +39,7 @@ class ChatBaseTables extends Migration
             $column->charset = 'utf8';
             $table->string('description', 256);
             $table->timestamp('creation_time')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->enum('type', ['PUBLIC','PRIVATE','MULTIPLAYER','SPECTATOR','TEMPORARY'])->default('TEMPORARY');
+            $table->enum('type', ['PUBLIC', 'PRIVATE', 'MULTIPLAYER', 'SPECTATOR', 'TEMPORARY'])->default('TEMPORARY');
             $table->string('allowed_groups', 256)->nullable();
 
             $table->index('name', 'name');

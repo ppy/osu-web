@@ -19,7 +19,6 @@
  */
 namespace App\Transformers\API\Chat;
 
-use App\Models\Event;
 use League\Fractal;
 use App\Models\Chat\Message;
 
@@ -36,7 +35,7 @@ class MessageTransformer extends Fractal\TransformerAbstract
             'sender' => [
                 'username' => $message->user->username,
                 'colour' => $message->user->user_colour,
-            ]
+            ],
         ];
     }
 }

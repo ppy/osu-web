@@ -161,10 +161,10 @@ Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountControlle
 Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'oauth'], function () {
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['prefix' => 'chat'], function () {
-            Route::get('channels', ['uses' => 'ChatController@channels']);                #  GET /api/v2/chat/channels
-            Route::get('messages', ['uses' => 'ChatController@messages']);                #  GET /api/v2/chat/messages
-            Route::get('messages/private', ['uses' => 'ChatController@privateMessages']); #  GET /api/v2/chat/messages/private
-            Route::post('messages/new', ['uses' => 'ChatController@postMessage']);        # POST /api/v2/chat/messages/new
+            Route::get('channels', ['uses' => 'ChatController@channels']);                //  GET /api/v2/chat/channels
+            Route::get('messages', ['uses' => 'ChatController@messages']);                //  GET /api/v2/chat/messages
+            Route::get('messages/private', ['uses' => 'ChatController@privateMessages']); //  GET /api/v2/chat/messages/private
+            Route::post('messages/new', ['uses' => 'ChatController@postMessage']);        // POST /api/v2/chat/messages/new
         });
     });
     // legacy api routes

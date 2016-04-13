@@ -20,8 +20,6 @@
 namespace App\Models\Chat;
 
 use App\Models\User;
-use App\Models\Chat\Channel;
-
 class PrivateMessage extends Model
 {
     protected $table = 'messages_private';

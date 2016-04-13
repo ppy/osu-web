@@ -992,7 +992,7 @@ class User extends Model implements AuthenticatableContract, Messageable
             return false;
         }
 
-        # TODO: blocklist/ignore, etc
+        // TODO: blocklist/ignore, etc
         return true;
     }
 

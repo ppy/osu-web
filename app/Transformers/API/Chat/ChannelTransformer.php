@@ -19,7 +19,6 @@
  */
 namespace App\Transformers\API\Chat;
 
-use App\Models\Event;
 use League\Fractal;
 use App\Models\Chat\Channel;
 

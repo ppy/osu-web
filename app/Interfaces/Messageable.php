@@ -24,5 +24,6 @@ use App\Models\User;
 interface Messageable
 {
     public function canBeMessagedBy(User $user);
+
     public function sendMessage(User $sender, $message);
 }

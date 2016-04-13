@@ -31,10 +31,11 @@ class OAuthController extends Controller
 
     public function __construct()
     {
-        # TODO: uh yeah, there's gotta be a better way to do this :v
+        // TODO: uh yeah, there's gotta be a better way to do this :v
         if (current_action() !== 'getAccessToken') {
             $this->middleware('auth');
         }
+
         return parent::__construct();
     }
 
@@ -60,6 +61,7 @@ class OAuthController extends Controller
 
         if ($sessions) {
             $formParams['user_id'] = $user->user_id;
+
             return redirect(Authorizer::issueAuthCode('user', $user->user_id, $formParams));
         } else {
             return view('oauth.authorization-form', ['params' => $formParams, 'client' => $authParams['client']]);
