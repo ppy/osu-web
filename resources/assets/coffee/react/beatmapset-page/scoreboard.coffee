@@ -24,12 +24,16 @@ class BeatmapSetPage.Scoreboard extends React.Component
 
     @state =
       currentScoreboard: 'global'
+      scores: @props.scores
 
   componentDidMount: ->
     $.subscribe 'beatmapset:scoreboard:set.beatmapSetPageScoreboard', @_scoreboardSwitch
 
   componentWillUnmount: ->
     $.unsubscribe '.beatmapSetPageScoreboard'
+
+  componentWillReceiveProps: (props) ->
+    @setState scores: props.scores
 
   _scoreboardSwitch: (_e, scoreboard) =>
     @setState currentScoreboard: scoreboard
@@ -52,7 +56,7 @@ class BeatmapSetPage.Scoreboard extends React.Component
       div className: 'beatmapset-scoreboard__line'
 
       el BeatmapSetPage.ScoreboardFirst,
-        score: @props.scores[0]
+        score: @state.scores[0]
 
       div className: 'beatmapset-scoreboard__row',
         header.map (m) =>
@@ -62,5 +66,5 @@ class BeatmapSetPage.Scoreboard extends React.Component
           span className: className, key: m, Lang.get "beatmaps.beatmapset.show.extra.scoreboard.list.#{m}"
 
 
-      @props.scores[1..].map (s, i) =>
+      @state.scores[1..].map (s, i) =>
         el BeatmapSetPage.ScoreboardItem, score: s, position: i + 2, key: i
