@@ -92,22 +92,21 @@
   &__message {
     word-wrap: break-word;
 
-    &--discussion {
+    .@{_top}--discussion & {
       font-size: @_discussion-text-size;
     }
 
-    &--new-reply {
+    .@{_top}--reply & {
+      font-size: @_reply-text-size;
+    }
+
+    &--editor {
       .reset-input();
       .default-border-radius();
       .inset-box-shadow();
-      font-size: @_reply-text-size;
       width: 100%;
       padding: @spacing;
       resize: vertical;
-    }
-
-    &--reply {
-      font-size: @_reply-text-size;
     }
   }
 

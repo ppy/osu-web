@@ -52,51 +52,8 @@ BeatmapDiscussions.Post = React.createClass
       div className: "#{bn}__avatar",
         el UserAvatar, user: @props.user, modifiers: ['full-rounded']
 
-      div className: "#{bn}__message-container",
-        div
-          className: "#{bn}__message #{bn}__message--#{@props.type} #{'hidden' if @state.editing}"
-          dangerouslySetInnerHTML:
-            __html: @addEditorLink @props.post.message
-
-        if @props.canBeEdited
-          textarea
-            ref: 'textarea'
-            className: "#{bn}__message #{bn}__message--#{@props.type} #{'hidden' if !@state.editing}"
-            onChange: @messageInput
-            onKeyDown: @submitIfEnter
-            value: @state.message
-
-        div
-          className: "#{bn}__info"
-          dangerouslySetInnerHTML:
-            __html: "#{osu.link Url.user(@props.user.id), @props.user.username}, #{osu.timeago @props.post.created_at}"
-
-        if @props.post.updated_at != @props.post.created_at
-          div
-            className: "#{bn}__info #{bn}__info--edited"
-            dangerouslySetInnerHTML:
-              __html: Lang.get 'beatmaps.discussions.edited',
-                editor: osu.link Url.user(@props.lastEditor.id), @props.lastEditor.username
-                update_time: osu.timeago @props.post.updated_at
-
-        div className: "#{bn}__hover-actions",
-          if @props.canBeEdited
-            if @state.editing
-              div null,
-                button
-                  className: "btn-osu-lite btn-osu-lite--default #{bn}__hover-action"
-                  onClick: @throttledUpdatePost
-                  Lang.get 'common.buttons.save'
-
-                button
-                  className: "btn-osu-lite btn-osu-lite--default #{bn}__hover-action"
-                  onClick: => @setState editing: false
-                  Lang.get 'common.buttons.cancel'
-            else
-              button
-                className: "btn-osu-lite btn-osu-lite--default #{bn}__hover-action"
-                onClick: @startEditing
-                el Icon, name: 'edit'
+      @messageViewer()
+      @messageEditor()
 
 
   addEditorLink: (message) ->
@@ -141,3 +98,57 @@ BeatmapDiscussions.Post = React.createClass
   startEditing: ->
     @setState editing: true, =>
       @refs.textarea.focus()
+
+
+  messageViewer: ->
+    div className: "#{bn}__message-container #{'hidden' if @state.editing}",
+      div
+        className: "#{bn}__message"
+        dangerouslySetInnerHTML:
+          __html: @addEditorLink @props.post.message
+
+      div
+        className: "#{bn}__info"
+        dangerouslySetInnerHTML:
+          __html: "#{osu.link Url.user(@props.user.id), @props.user.username}, #{osu.timeago @props.post.created_at}"
+
+      if @props.post.updated_at != @props.post.created_at
+        div
+          className: "#{bn}__info #{bn}__info--edited"
+          dangerouslySetInnerHTML:
+            __html: Lang.get 'beatmaps.discussions.edited',
+              editor: osu.link Url.user(@props.lastEditor.id), @props.lastEditor.username
+              update_time: osu.timeago @props.post.updated_at
+
+      div className: "#{bn}__hover-actions",
+        if @props.canBeEdited
+          button
+            className: "btn-osu-lite btn-osu-lite--default #{bn}__hover-action"
+            onClick: @startEditing
+            el Icon, name: 'edit'
+
+
+  messageEditor: ->
+    return if !@props.canBeEdited
+
+    div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
+      textarea
+        ref: 'textarea'
+        className: "#{bn}__message #{bn}__message--editor"
+        onChange: @messageInput
+        onKeyDown: @submitIfEnter
+        value: @state.message
+
+      div className: "#{bn}__actions",
+        div className: "#{bn}__actions-group"
+
+        div className: "#{bn}__actions-group",
+          button
+            className: "btn-osu-lite btn-osu-lite--default #{bn}__hover-action"
+            onClick: => @setState editing: false
+            Lang.get 'common.buttons.cancel'
+
+          button
+            className: "btn-osu-lite btn-osu-lite--default #{bn}__hover-action"
+            onClick: @throttledUpdatePost
+            Lang.get 'common.buttons.save'
