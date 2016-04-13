@@ -18,7 +18,7 @@
 {button, div, span} = React.DOM
 el = React.createElement
 
-bn = 'beatmap-discussion'
+bn = 'beatmap-discussion-system-post'
 
 BeatmapDiscussions.SystemPost = React.createClass
   mixins: [React.addons.PureRenderMixin]
@@ -32,5 +32,6 @@ BeatmapDiscussions.SystemPost = React.createClass
             user: osu.link Url.user(@props.user.id), @props.user.username
 
     div
+      className: bn
       dangerouslySetInnerHTML:
         __html: message

@@ -23,7 +23,6 @@
 
   @_discussion-text-size: 15px;
   @_reply-text-size: 12px;
-  @_reply-padding-left: (@beatmap-discussion--avatar-size + (@spacing * 2));
 
 
   display: flex;
@@ -33,7 +32,7 @@
   min-width: 0;
 
   &--reply {
-    padding-left: @_reply-padding-left;
+    padding-left: @beatmap-discussion--reply-padding;
   }
 
   &--unread {
