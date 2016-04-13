@@ -17,13 +17,18 @@
  *
  */
 .beatmap-list-item {
-  padding: @spacing;
-
   display: flex;
   align-items: center;
 
   width: 100%;
   text-align: left;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  &--large {
+    font-size: 15px;
+  }
 
   &__col {
     flex: none;
@@ -34,17 +39,8 @@
     }
   }
 
-  &__mode {
+  &__small {
     font-size: 11px;
-  }
-
-  &__switch-button {
-    font-size: 15px;
-    font-weight: 700;
-  }
-
-  &__version {
-    font-size: 15px;
-    font-weight: 700;
+    font-weight: 500;
   }
 }
