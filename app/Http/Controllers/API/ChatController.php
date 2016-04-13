@@ -45,22 +45,30 @@ class ChatController extends Controller
 
     public function messages()
     {
-        $channels = array_map('intval', explode(',', Request::input('channels')));
+        $current_user = User::find(Authorizer::getResourceOwnerId());
+
+        $channel_ids = array_map('intval', explode(',', Request::input('channels')));
         $since = intval(Request::input('since'));
         $limit = intval(Request::input('limit', 50));
 
-        # TODO: permissions check
-        $messages = Message::whereIn('channel_id', $channels)
+        $channels = Channel::whereIn('channel_id', $channel_ids)->get();
+        foreach ($channels as $channel) {
+            if (!$channel->canBeMessagedBy($current_user)) {
+                array_splice($channel_ids, array_search($channel->channel_id, $channel_ids), 1);
+            }
+        }
+
+        $messages = Message::whereIn('channel_id', $channel_ids)
             ->with('user')
             ->where('message_id', '>', $since)
-            ->orderBy('message_id', 'desc')
+            ->orderBy('message_id', 'asc')
             ->limit(min(abs($limit), 50))
             ->get();
 
-        return array_reverse(fractal_api_serialize_collection(
+        return fractal_api_serialize_collection(
             $messages,
             new MessageTransformer()
-        ));
+        );
     }
 
     public function postMessage()
