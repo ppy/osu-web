@@ -19,7 +19,6 @@
  */
 namespace App\Transformers\API\Chat;
 
-use App\Models\Event;
 use League\Fractal;
 use App\Models\Chat\PrivateMessage;
 
@@ -36,7 +35,7 @@ class PrivateMessageTransformer extends Fractal\TransformerAbstract
             'sender' => $message->sender ? [
                 'username' => $message->sender->username,
                 'colour' => $message->sender->user_colour,
-            ] : []
+            ] : [],
         ];
     }
 }

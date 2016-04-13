@@ -21,9 +21,7 @@ namespace App\Http\Controllers\API;
 
 use Request;
 use Response;
-use Redirect;
 use Carbon\Carbon;
-use App\Models\ApiKey;
 use App\Models\Multiplayer\Match;
 use App\Models\Beatmap;
 use App\Models\BeatmapPack;

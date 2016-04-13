@@ -71,6 +71,7 @@ class Channel extends Model implements Messageable
                     array_pluck($user->userGroups()->get(['group_id'])->toArray(), 'group_id'),
                     $this->allowedGroups()
                 );
+
                 return count($common_groups) > 0;
                 break;
 
@@ -82,8 +83,10 @@ class Channel extends Model implements Messageable
                 }
                 if (substr($this->name, 0, 4) === '#mp_') {
                     $match_id = intval(str_replace('#mp_', '', $this->name));
-                    return in_array($user->user_id, Match::find($match_id)->currentPlayers());
+
+                    return in_array($user->user_id, Match::find($match_id)->currentPlayers(), true);
                 }
+
                 return false;
                 break;
 

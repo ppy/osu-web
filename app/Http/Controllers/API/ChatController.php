@@ -20,13 +20,9 @@
 namespace App\Http\Controllers\API;
 
 use Request;
-use Response;
-use Redirect;
-use Carbon\Carbon;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\PrivateMessage;
-use DB;
 use App\Transformers\API\Chat\MessageTransformer;
 use App\Transformers\API\Chat\PrivateMessageTransformer;
 use App\Transformers\API\Chat\ChannelTransformer;
@@ -56,7 +52,7 @@ class ChatController extends Controller
         $channels = Channel::whereIn('channel_id', $channel_ids)->get();
         foreach ($channels as $channel) {
             if (!$channel->canBeMessagedBy($current_user)) {
-                array_splice($channel_ids, array_search($channel->channel_id, $channel_ids), 1);
+                array_splice($channel_ids, array_search($channel->channel_id, $channel_ids, true), 1);
             }
         }
 
