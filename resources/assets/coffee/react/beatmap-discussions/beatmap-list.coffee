@@ -54,6 +54,9 @@ BeatmapDiscussions.BeatmapList = React.createClass
           menuLinkClasses = "js-menu #{bn}__item #{bn}__item--large"
           menuLinkClasses += " #{bn}__item--current" if beatmaps[0].mode == @props.currentBeatmap.mode
 
+          if beatmaps[0].mode == 'mania'
+            beatmaps = _.sortBy beatmaps, ['difficulty_size', 'difficulty_rating']
+
           div key: beatmaps[0].mode,
             div
               className: menuLinkClasses
