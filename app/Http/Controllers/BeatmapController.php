@@ -150,7 +150,13 @@ class BeatmapController extends Controller
                     });
                 break;
             case 'friend':
-                // TODO: add querying by friends list
+                $tableName = $scores->getModel()->getTable();
+
+                $scores = $scores
+                    ->join('phpbb_zebra', $tableName.'.user_id', '=', 'phpbb_zebra.zebra_id')
+                    ->where('phpbb_zebra.user_id', $user->user_id)
+                    ->where('phpbb_zebra.friend', true)
+                    ->select($tableName.'.*');
                 break;
         }
 
