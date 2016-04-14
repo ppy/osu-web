@@ -33,7 +33,7 @@ class BeatmapSetPage.Main extends SwitchableModePage
       currentPlaymode: props.beatmaps[currentMode].mode
 
   setHash: ->
-    History.setHash BeatmapSetPageHash.generate page: @state.currentPage, mode: @state.currentMode
+    osu.setHash BeatmapSetPageHash.generate page: @state.currentPage, mode: @state.currentMode
 
   setCurrentPlaymode: (_e, playmode) =>
     return if @state.currentPlaymode == playmode

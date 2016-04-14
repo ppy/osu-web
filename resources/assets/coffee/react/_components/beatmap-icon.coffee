@@ -23,15 +23,13 @@ el = React.createElement
 @BeatmapIcon = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
-  @defaultProps: ->
+  getDefaultProps: ->
     showTitle: true
 
   render: ->
     beatmap = @props.beatmap
 
-    difficultyRating = if @props.overrideVersion?
-       then @props.overrideVersion
-       else DifficultyRating.get difficulty.rating
+    difficultyRating = if @props.overrideVersion? then @props.overrideVersion else DifficultyRating.get beatmap.difficulty_rating
 
     showTitle = @props.showTitle and !@props.overrideVersion?
 
