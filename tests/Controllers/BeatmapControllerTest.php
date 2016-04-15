@@ -16,7 +16,6 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 use App\Models\User;
 use App\Models\Beatmap;
 
@@ -26,8 +25,8 @@ class BeatmapControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory (User::class)->create();
-        $this->beatmap = factory (Beatmap::class)->create();
+        $this->user = factory(User::class)->create();
+        $this->beatmap = factory(Beatmap::class)->create();
     }
 
     /**
@@ -37,9 +36,9 @@ class BeatmapControllerTest extends TestCase
      */
     public function testNonGeneralScoreboardLoggedOut()
     {
-        $this->json ('GET', route ('beatmap.scores', ['id' => $this->beatmap->beatmap_id]), [
-            'type' => 'country'
-        ])->seeStatusCode (403);
+        $this->json('GET', route('beatmap.scores', ['id' => $this->beatmap->beatmap_id]), [
+            'type' => 'country',
+        ])->seeStatusCode(403);
     }
 
     /**
@@ -49,18 +48,18 @@ class BeatmapControllerTest extends TestCase
     public function testNonGeneralScoreboardSupporter()
     {
         $this->actingAs($this->user)
-            ->json ('GET', route ('beatmap.scores', ['id' => $this->beatmap->beatmap_id]), [
-                'type' => 'country'
-            ])->seeStatusCode (422)
+            ->json('GET', route('beatmap.scores', ['id' => $this->beatmap->beatmap_id]), [
+                'type' => 'country',
+            ])->seeStatusCode(422)
             ->seeJson(['error' => trans('errors.supporter_only')]);
 
         $this->user->osu_subscriber = true;
         $this->user->save();
 
         $this->actingAs($this->user)
-            ->json ('GET', route ('beatmap.scores', ['id' => $this->beatmap->beatmap_id]), [
-                'type' => 'country'
-            ])->seeStatusCode (200);
+            ->json('GET', route('beatmap.scores', ['id' => $this->beatmap->beatmap_id]), [
+                'type' => 'country',
+            ])->seeStatusCode(200);
     }
 }
 

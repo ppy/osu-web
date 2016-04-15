@@ -111,7 +111,7 @@ return [
                 'length' => 'Length',
                 'bpm' => 'BPM',
 
-                'chart' =>  [
+                'chart' => [
                     'cs' => 'CS',
                     'hp' => 'HP',
                     'od' => 'OD',

@@ -65,10 +65,10 @@ class BeatmapsetsController extends Controller
         $set = fractal_item_array(
             $beatmapSet,
             new BeatmapSetTransformer(),
-            implode (',', ['beatmaps.scoresBest.user', 'beatmaps.failtimes'])
+            implode(',', ['beatmaps.scoresBest.user', 'beatmaps.failtimes'])
         );
 
-        $title = trans('layout.menu.beatmaps._')." / ".$beatmapSet->artist." - ".$beatmapSet->title;
+        $title = trans('layout.menu.beatmaps._').' / '.$beatmapSet->artist.' - '.$beatmapSet->title;
 
         return view('beatmapsets.show', compact('set', 'title'));
     }

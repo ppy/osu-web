@@ -687,12 +687,12 @@ class BeatmapSet extends Model
         return $this->belongsTo("App\Models\User", 'user_id', 'approvedby_id');
     }
 
-    public function description ()
+    public function description()
     {
         $topic = Topic::find($this->thread_id);
         $post = Post::find($topic->topic_first_post_id);
 
-        $split = preg_split("[-{15}]", $post->bodyRaw);
+        $split = preg_split('[-{15}]', $post->bodyRaw);
 
         return bbcode($split[1], $post->bbcode_uid, true);
     }
