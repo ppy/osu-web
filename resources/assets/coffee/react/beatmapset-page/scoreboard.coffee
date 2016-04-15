@@ -23,30 +23,29 @@ class BeatmapSetPage.Scoreboard extends React.Component
     super props
 
     @state =
-      currentScoreboard: 'global'
-      scores: @props.scores
+      loading: false
 
   componentDidMount: ->
-    $.subscribe 'beatmapset:scoreboard:set.beatmapSetPageScoreboard', @_scoreboardSwitch
+    $.subscribe 'beatmapset:scoreboard:loading.beatmapSetPageScoreboard', @_setLoading
 
   componentWillUnmount: ->
     $.unsubscribe '.beatmapSetPageScoreboard'
 
-  componentWillReceiveProps: (props) ->
-    @setState scores: props.scores
-
-  _scoreboardSwitch: (_e, scoreboard) =>
-    @setState currentScoreboard: scoreboard
-
   scoreboards = ['global', 'country', 'friend']
   header = ['rank-header', 'player', 'score', 'accuracy']
 
+  _setLoading: (_e, isLoading) =>
+    @setState loading: isLoading
+
   render: ->
+    className = 'beatmapset-scoreboard__main'
+    className += ' beatmapset-scoreboard__main--loading' if @state.loading
+
     div
       className: 'page-extra beatmapset-scoreboard'
       el BeatmapSetPage.ExtraHeader, name: 'scoreboard'
 
-      if @state.scores.length == 0
+      if @props.scores.length == 0
         p
           className: 'beatmapset-scoreboard__no-scores'
           Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.no-scores'
@@ -57,20 +56,20 @@ class BeatmapSetPage.Scoreboard extends React.Component
               el BeatmapSetPage.ScoreboardTab,
                 key: m
                 scoreboard: m
-                currentScoreboard: @state.currentScoreboard
+                currentScoreboard: @props.currentScoreboard
 
           div className: 'beatmapset-scoreboard__line'
 
-          el BeatmapSetPage.ScoreboardFirst,
-            score: @state.scores[0]
+          div className: className,
+            el BeatmapSetPage.ScoreboardFirst,
+              score: @props.scores[0]
 
-          div className: 'beatmapset-scoreboard__row',
-            header.map (m) =>
-              className = 'beatmapset-scoreboard__row-item beatmapset-scoreboard__row-item--header'
-              className += " beatmapset-scoreboard__row-item--#{m}"
+            div className: 'beatmapset-scoreboard__row',
+              header.map (m) =>
+                className = 'beatmapset-scoreboard__row-item beatmapset-scoreboard__row-item--header'
+                className += " beatmapset-scoreboard__row-item--#{m}"
 
-              span className: className, key: m, Lang.get "beatmaps.beatmapset.show.extra.scoreboard.list.#{m}"
+                span className: className, key: m, Lang.get "beatmaps.beatmapset.show.extra.scoreboard.list.#{m}"
 
-
-          @state.scores[1..].map (s, i) =>
-            el BeatmapSetPage.ScoreboardItem, score: s, position: i + 2, key: i
+            @props.scores[1..].map (s, i) =>
+              el BeatmapSetPage.ScoreboardItem, score: s, position: i + 2, key: i

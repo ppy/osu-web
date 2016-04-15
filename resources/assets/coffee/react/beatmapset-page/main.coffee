@@ -31,6 +31,9 @@ class BeatmapSetPage.Main extends SwitchableModePage
     @state =
       currentMode: currentMode
       currentPlaymode: props.beatmaps[currentMode].mode
+      currentScoreboard: 'global'
+      scores: props.beatmaps[currentMode].scoresBest.data
+      loading: false
 
   setHash: ->
     osu.setHash BeatmapSetPageHash.generate page: @state.currentPage, mode: @state.currentMode
@@ -39,12 +42,46 @@ class BeatmapSetPage.Main extends SwitchableModePage
     return if @state.currentPlaymode == playmode
     @setState currentPlaymode: playmode, @setHash
 
+  setCurrentScoreboard: (_e, scoreboard) =>
+    return if @state.loading
+
+    if scoreboard == 'global'
+      @setState scores: @props.beatmaps[@state.currentMode].scoresBest.data
+      @setState currentScoreboard: scoreboard
+    else
+      $.publish 'beatmapset:scoreboard:loading', true
+      @setState loading: true
+
+      $.ajax Url.beatmapScores(@state.currentMode),
+        method: 'GET'
+        dataType: 'JSON'
+        data:
+          type: scoreboard
+
+      .done (data) =>
+        @setState scores: data.data
+        @setState currentScoreboard: scoreboard
+      .fail (xhr) =>
+        osu.ajaxError xhr
+      .always =>
+        $.publish 'beatmapset:scoreboard:loading', false
+        @setState loading: false
+
+
+  setCurrentMode: (_e, mode) =>
+    super _e, mode
+
+    @setState
+      currentScoreboard: 'global'
+      scores: @props.beatmaps[mode].scoresBest.data
+
   componentDidMount: ->
     @removeListeners()
 
     $.subscribe 'beatmapset:mode:set.beatmapSetPage', @setCurrentMode
     $.subscribe 'beatmapset:playmode:set.beatmapSetPage', @setCurrentPlaymode
     $.subscribe 'beatmapset:page:jump.beatmapSetPage', @pageJump
+    $.subscribe 'beatmapset:scoreboard:set.beatmapSetPage', @setCurrentScoreboard
     $(window).on 'throttled-scroll.beatmapSetPage', @pageScan
 
     @pageJump null, @initialPage
@@ -81,6 +118,9 @@ class BeatmapSetPage.Main extends SwitchableModePage
 
       el BeatmapSetPage.Extra,
         set: @props.set
+        beatmaps: @props.beatmaps
         beatmap: @props.beatmaps[@state.currentMode]
         currentPage: @state.currentPage
         currentMode: @state.currentMode
+        currentScoreboard: @state.currentScoreboard
+        scores: @state.scores

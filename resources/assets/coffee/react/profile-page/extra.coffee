@@ -67,11 +67,6 @@ class ProfilePage.Extra extends StickyTabsPage
     $(window).off '.profileContentsExtra'
 
 
-  # _tabsStick: (_e, target) =>
-  #   newState = (target == 'page-extra-tabs')
-  #   @setState(tabsSticky: newState) if newState != @state.tabsSticky
-
-
   updateOrder: (event) =>
     $elems = $(event.target)
 
