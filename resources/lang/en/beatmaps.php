@@ -135,6 +135,8 @@ return [
                 'scoreboard' => [
                     'title' => 'Scoreboard',
                     'no-scores' => 'No scores yet. Maybe you should try setting some?',
+                    'supporter-only' => 'You need to be a supporter to access the friend and country rankings!',
+                    'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
                     'global' => 'Global Ranking',
                     'country' => 'Country Ranking',
                     'friend' => 'Friend Ranking',

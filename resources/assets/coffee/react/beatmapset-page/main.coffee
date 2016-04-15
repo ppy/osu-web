@@ -49,6 +49,10 @@ class BeatmapSetPage.Main extends SwitchableModePage
       @setState scores: @props.beatmaps[@state.currentMode].scoresBest.data
       @setState currentScoreboard: scoreboard
     else
+      if not currentUser.isSupporter
+        @setState currentScoreboard: scoreboard
+        return
+        
       $.publish 'beatmapset:scoreboard:loading', true
       @setState loading: true
 
