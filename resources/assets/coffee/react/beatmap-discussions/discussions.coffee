@@ -58,8 +58,10 @@ BeatmapDiscussions.Discussions = React.createClass
         div className: "#{bn}__discussions",
           @currentDiscussions.map @discussionPage
 
-          if !@hasVisibleDiscussion
-            div className: "#{bn}__discussion #{bn}__discussion--empty", Lang.get 'beatmaps.discussions.empty'
+          if !@hasDiscussion?
+            div className: "#{bn}__discussion #{bn}__discussion--empty", Lang.get 'beatmaps.discussions.empty.empty'
+          else if @hasDiscussion == 'filtered'
+            div className: "#{bn}__discussion #{bn}__discussion--empty", Lang.get 'beatmaps.discussions.empty.filtered'
 
       if @props.mode == 'timeline'
         div className: "#{bn}__mode-circle #{bn}__mode-circle--active hidden-xs"
@@ -82,10 +84,17 @@ BeatmapDiscussions.Discussions = React.createClass
 
   discussionPage: (discussion) ->
     className = "#{bn}__discussion"
-    if !@visible(discussion)
-      className += ' hidden'
-    else
-      @hasVisibleDiscussion = true
+    hidden =
+      if !@currentBeatmap(discussion)
+        true
+      else if @filtered(discussion)
+        @hasDiscussion ?= 'filtered'
+        true
+      else
+        @hasDiscussion = 'visible'
+        false
+
+    className += ' hidden' if hidden
 
     div
       key: discussion.id
@@ -102,15 +111,16 @@ BeatmapDiscussions.Discussions = React.createClass
         collapsed: _.includes @props.collapsedBeatmapDiscussionIds, discussion.id
 
 
-  visible: (discussion) ->
-    visible =
-      switch @props.currentFilter
-        when 'resolved' then discussion.message_type != 'praise' && discussion.resolved
-        when 'pending' then discussion.message_type != 'praise' && !discussion.resolved
-        when 'praises' then discussion.message_type == 'praise'
-        else true
+  currentBeatmap: (discussion) ->
+    discussion.beatmap_id == @currentBeatmapId
 
-    visible && (discussion.beatmap_id == @currentBeatmapId)
+
+  filtered: (discussion) ->
+    switch @props.currentFilter
+      when 'resolved' then discussion.message_type == 'praise' || !discussion.resolved
+      when 'pending' then discussion.message_type == 'praise' || discussion.resolved
+      when 'praises' then discussion.message_type != 'praise'
+      else false
 
 
   reboot: ->
@@ -120,4 +130,4 @@ BeatmapDiscussions.Discussions = React.createClass
 
     @currentBeatmapId = if @props.mode == 'general' then null else @props.currentBeatmap.id
 
-    @hasVisibleDiscussion = false
+    @hasDiscussion = null

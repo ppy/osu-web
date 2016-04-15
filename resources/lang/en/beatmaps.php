@@ -39,7 +39,10 @@ return [
 
         'edit' => 'edit',
         'edited' => 'Last edited by :editor :update_time',
-        'empty' => 'No discussions yet!',
+        'empty' => [
+            'empty' => 'No discussions yet!',
+            'filtered' => 'No discussion matches selected filter.',
+        ],
 
         'message_hint' => [
             'in_general' => 'This post will go to general beatmapset discussion. To mod this beatmap, start message with timestamp (e.g. 00:12:345).',
