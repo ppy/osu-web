@@ -20,11 +20,11 @@ beatmaps = []
 beatmaps[beatmap.id] = beatmap for beatmap in set.beatmaps.data
 
 beatmapsByMode = []
-beatmapsByMode[mode] = [] for mode in Mode.modes
+beatmapsByMode[mode] = [] for mode in osu.modes
 beatmapsByMode[beatmap.mode].push beatmap for beatmap in set.beatmaps.data
 
 beatmapCount = []
-beatmapCount[mode] = 0 for mode in Mode.modes
+beatmapCount[mode] = 0 for mode in osu.modes
 beatmapCount[beatmap.mode]++ for beatmap in set.beatmaps.data
 
 displayedBeatmap = _.last(set.beatmaps.data).id

@@ -35,7 +35,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
     public function transform(Score $score)
     {
         return [
-            'score_id' => $score->score_id,
+            'id' => $score->score_id,
             'user_id' => $score->user_id,
             'created_at' => $score->date->toIso8601String(),
             'pp' => $score->pp,

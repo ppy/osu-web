@@ -29,7 +29,7 @@ class BeatmapSetPage.Contents extends React.Component
       className: 'osu-layout__row osu-layout__row--page-beatmapset js-switchable-mode-page--scrollspy js-switchable-mode-page--page',
       'data-page-id': 'main'
       div className: 'page-tabs',
-        Mode.modes.map (mode) =>
+        osu.modes.map (mode) =>
           newBeatmap = _.last @props.beatmapsByMode[mode]
 
           el BeatmapSetPage.ContentsTab,

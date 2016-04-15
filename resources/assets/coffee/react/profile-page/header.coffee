@@ -104,10 +104,10 @@ class ProfilePage.Header extends React.Component
           el 'div', className: 'spinner__cube spinner__cube--2'
 
       el 'div', className: 'profile-header__userbar-container',
-        el 'div', className: 'user-profile-header__bar user-profile-header__bar--left',
+        el 'div', className: 'user-profile-header user-profile-header--left',
           el ProfilePage.HeaderFlags, user: @props.user
           el ProfilePage.HeaderInfo, user: @props.user
-        el 'div', className: 'user-profile-header__bar user-profile-header__bar--right',
+        el 'div', className: 'user-profile-header user-profile-header--right',
           el ProfilePage.Rank,
             rank: @props.stats.rank
             countryName: @props.user.country.name
