@@ -25,6 +25,7 @@ use App\Models\Genre;
 use App\Models\Language;
 use League\Fractal\Manager;
 use App\Transformers\ScoreTransformer;
+use App\Transformers\BeatmapSetTransformer;
 use Request;
 use Auth;
 
