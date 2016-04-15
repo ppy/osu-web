@@ -51,14 +51,16 @@ class BeatmapSetPage.Scoreboard extends React.Component
           Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.no-scores'
       else
         div {},
-          div className: 'beatmapset-scoreboard__tabs',
-            scoreboards.map (m) =>
-              el BeatmapSetPage.ScoreboardTab,
-                key: m
-                scoreboard: m
-                currentScoreboard: @props.currentScoreboard
+          if !_.isEmpty currentUser
+            div {},
+              div className: 'beatmapset-scoreboard__tabs',
+                scoreboards.map (m) =>
+                  el BeatmapSetPage.ScoreboardTab,
+                    key: m
+                    scoreboard: m
+                    currentScoreboard: @props.currentScoreboard
 
-          div className: 'beatmapset-scoreboard__line'
+              div className: 'beatmapset-scoreboard__line'
 
           div className: className,
             el BeatmapSetPage.ScoreboardFirst,
