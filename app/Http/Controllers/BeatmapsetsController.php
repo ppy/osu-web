@@ -60,13 +60,16 @@ class BeatmapsetsController extends Controller
 
     public function getBeatmapset($id)
     {
-        $set = BeatmapSet::find($id);
+        $beatmapSet = BeatmapSet::find($id);
+
         $set = fractal_item_array(
-            $set,
+            $beatmapSet,
             new BeatmapSetTransformer(),
             implode (',', ['beatmaps.scoresBest.user', 'beatmaps.failtimes'])
         );
 
-        return view('beatmapsets.show', compact('set'));
+        $title = trans('layout.menu.beatmaps._')." / ".$beatmapSet->artist." - ".$beatmapSet->title;
+
+        return view('beatmapsets.show', compact('set', 'title'));
     }
 }
