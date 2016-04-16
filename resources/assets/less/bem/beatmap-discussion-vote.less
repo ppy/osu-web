@@ -18,31 +18,45 @@
  */
 .beatmap-discussion-vote {
   @_top: beatmap-discussion-action;
-  font-size: 12px;
-  font-weight: bold;
 
-  min-width: 60px;
+  .reset-input();
+  .default-box-shadow();
+  .default-border-radius();
+
+  font-size: 12px;
+
+  min-width: 35px;
+  padding: @spacing;
+  padding-top: (@spacing / 2);
+
   display: flex;
+  flex-direction: column;
   align-items: center;
   margin-right: @spacing;
 
+  .fade-element(100ms);
+
+  &:hover {
+    .thick-box-shadow();
+  }
+
   &--up {
-    color: @green;
+    &, &:hover {
+      color: @green;
+    }
   }
 
   &--down {
-    color: @yellow-dark;
+    &, &:hover {
+      color: @yellow-dark;
+    }
   }
 
-  &__button {
-    .reset-input();
+  &--inactive {
+    color: @grey-9;
   }
 
   &__count {
-    margin-left: (@spacing / 2);
-
-    &--inactive {
-      color: @grey-9;
-    }
+    color: @grey-9;
   }
 }

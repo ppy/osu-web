@@ -32,5 +32,3 @@ class BeatmapFailtimesTransformer extends Fractal\TransformerAbstract
         ];
     }
 }
-
-?>

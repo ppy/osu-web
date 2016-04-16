@@ -62,5 +62,3 @@ class BeatmapControllerTest extends TestCase
             ])->seeStatusCode(200);
     }
 }
-
-?>
