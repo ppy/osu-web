@@ -74,5 +74,3 @@ class UserTest extends TestCase
         $this->assertTrue($this->user->isSlackEligible());
     }
 }
-
-?>
