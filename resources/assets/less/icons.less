@@ -23,6 +23,11 @@
 @fa-osu-prefix: ~"@{fa-css-prefix}-osu";
 @fa-osumode-prefix: ~"@{fa-css-prefix}-osumode";
 
+.fa {
+  // ensure correct sizing even inside flex boxes
+  flex: none;
+}
+
 // osu modifier to change the font used
 [class^="@{fa-osu-prefix}-"], [class*=" @{fa-osu-prefix}-"] {
   font-family: "osu!";

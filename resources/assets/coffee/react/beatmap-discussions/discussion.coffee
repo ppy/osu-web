@@ -120,16 +120,16 @@ BeatmapDiscussions.Discussion = React.createClass
 
     currentVote = @props.discussion.current_user_attributes?.data?.vote_score
 
-    classes = "#{vbn} #{vbn}--#{type}"
-
     score = if currentVote == baseScore then 0 else baseScore
 
-    div className: classes,
-      button
-        className: "#{vbn}__button"
-        onClick: => @doVote score
-        el Icon, name: icon
-      span className: "#{vbn}__count #{"#{vbn}__count--inactive" if score != 0}",
+    topClasses = "#{vbn} #{vbn}--#{type}"
+    topClasses += " #{vbn}--#{'inactive' if score != 0}"
+
+    button
+      className: topClasses
+      onClick: => @doVote score
+      el Icon, name: icon
+      span className: "#{vbn}__count",
         @props.discussion.votes[type]
 
 
