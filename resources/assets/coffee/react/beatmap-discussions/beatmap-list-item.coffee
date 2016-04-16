@@ -28,6 +28,11 @@ BeatmapDiscussions.BeatmapListItem = React.createClass
     topClasses = bn
     topClasses += " #{bn}--large" if @props.large
 
+    version = if @props.beatmap.mode == 'mania'
+      "[#{@props.beatmap.difficulty_size}k] #{@props.beatmap.version}"
+    else
+      @props.beatmap.version
+
     div
       className: topClasses
 
@@ -41,7 +46,7 @@ BeatmapDiscussions.BeatmapListItem = React.createClass
         if @props.mode == 'complete'
           [
             div key: 'version',
-              @props.beatmap.version
+              version
             div
               key: 'mode'
               className: "#{bn}__small"
@@ -52,7 +57,7 @@ BeatmapDiscussions.BeatmapListItem = React.createClass
           Lang.get("beatmaps.mode.#{@props.beatmap.mode}")
 
         else if @props.mode == 'version'
-          @props.beatmap.version
+          version
 
       if @props.withButton?
         div className: "#{bn}__col",
