@@ -10,4 +10,6 @@ class NotificationRequest extends Model
     protected $table = 'notification_requests';
 
     public $timestamps = false;
+
+    protected $fillable = ['user_id', 'product_id'];
 }

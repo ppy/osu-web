@@ -43,6 +43,7 @@ class StoreController extends Controller
             'postNewAddress',
             'postUpdateAddress',
             'postUpdateCart',
+            'postRequestNotification',
         ]]);
 
         $this->middleware('App\Http\Middleware\CheckUserRestricted', ['only' => [
@@ -53,6 +54,7 @@ class StoreController extends Controller
             'postNewAddress',
             'postUpdateAddress',
             'postUpdateCart',
+            'postRequestNotification',
         ]]);
 
         return parent::__construct();
@@ -240,6 +242,30 @@ class StoreController extends Controller
         }
 
         return js_view('store.order-create');
+    }
+
+    public function postRequestNotification($product_id)
+    {
+        $user = Auth::user();
+
+        $request = Store\NotificationRequest::where('user_id', $user->user_id)
+            ->where('product_id', $product_id)
+            ->first();
+
+        if ($request) {
+            return error_popup(trans('store.product.notification-already-requested'));
+        }
+
+        $request = Store\NotificationRequest::create([
+            'user_id' => $user->user_id,
+            'product_id' => $product_id,
+        ]);
+
+        if ($request) {
+            return ['ok' => true];
+        } else {
+            return error_popup(trans('erorrs.unknown'));
+        }
     }
 
     private function userCart()
