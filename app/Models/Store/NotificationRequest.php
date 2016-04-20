@@ -12,4 +12,11 @@ class NotificationRequest extends Model
     public $timestamps = false;
 
     protected $fillable = ['user_id', 'product_id'];
+
+    public static function get($user_id, $product_id)
+    {
+        return self::where('user_id', $user_id)
+            ->where('product_id', $product_id)
+            ->first();
+    }
 }

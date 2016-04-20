@@ -42,6 +42,10 @@ return [
             'out_with_alternative' => 'This type is currently out of stock :(. Try other type or check back soon.',
         ],
 
+        'add-to-cart' => 'Add to Cart',
+        'notify' => 'Notify me when available!',
+
+        'notification-success' => 'you will be notified when we have new stock',
         'notification-already-requested' => 'You have already requested a notification for this product!',
     ],
 ];

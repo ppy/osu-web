@@ -98,12 +98,13 @@ class StoreController extends Controller
     {
         $cart = $this->userCart();
         $product = Store\Product::with('masterProduct')->findOrFail($id);
+        $requestedNotification = Auth::check() ? Store\NotificationRequest::get(Auth::user()->user_id, $id) : false;
 
         if (!$product->enabled) {
             abort(404);
         }
 
-        return view('store.product', compact('cart', 'product'));
+        return view('store.product', compact('cart', 'product', 'requestedNotification'));
     }
 
     public function getCart($id = null)
@@ -248,9 +249,7 @@ class StoreController extends Controller
     {
         $user = Auth::user();
 
-        $request = Store\NotificationRequest::where('user_id', $user->user_id)
-            ->where('product_id', $product_id)
-            ->first();
+        $request = Store\NotificationRequest::get($user->user_id, $product_id);
 
         if ($request) {
             return error_popup(trans('store.product.notification-already-requested'));

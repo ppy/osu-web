@@ -131,13 +131,16 @@
             @endif
         </div>
 
-        @if($product->inStock())
-        <div class="osu-layout__sub-row osu-layout__sub-row--with-separator" id="add-to-cart">
-            <div class="big-button">
-                <button type="submit" class="js-store-add-to-cart btn-osu btn-osu-default">Add to Cart</button>
-            </div>
-        </div>
-        @endif
+        <div class="js-react--add-to-cart"></div>
 
     {!! Form::close() !!}
+@endsection
+
+@section("script")
+    <script data-turbolinks-eval="always">
+        var product = {!! json_encode($product) !!};
+        var requestedNotification = {!! json_encode($requestedNotification) !!};
+    </script>
+
+    <script src="{{ elixir("js/react/store/product.js") }}" data-turbolinks-track></script>
 @endsection
