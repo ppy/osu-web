@@ -15,15 +15,32 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, button} = React.DOM
+{div, p, button} = React.DOM
+el = React.createElement
 
 class ProductPage.AddToCart extends React.Component
   constructor: (props) ->
     super props
 
     @state =
-      stock: @props.stock
+      stock: @props.product.stock
       requestedNotification: @props.requestedNotification
+
+  requestNotification: =>
+    LoadingOverlay.show()
+
+    $.ajax Url.requestProductNotification(@props.product.product_id),
+      method: 'POST'
+      dataType: 'JSON'
+
+    .done (data) =>
+      @setState requestedNotification: data.ok
+
+    .fail (xhr) =>
+      osu.ajaxError xhr
+
+    .always LoadingOverlay.hide()
+
 
   render: ->
     div
@@ -36,3 +53,15 @@ class ProductPage.AddToCart extends React.Component
             type: 'submit'
             className: 'js-store-add-to-cart btn-osu btn-osu-default'
             Lang.get 'store.product.add-to-cart'
+      else
+        if @state.requestedNotification
+          div className: 'store-notification-requested-alert',
+            el Icon, name: 'check-circle-o', modifier: 'store-notification-requested-alert__icon'
+            p className: 'store-notification-requested-alert__text', Lang.get 'store.product.notification-success'
+        else
+          div className: 'big-button',
+            button
+              type: 'button'
+              className: 'btn-osu btn-osu-default'
+              onClick: @requestNotification
+              Lang.get 'store.product.notify'

@@ -17,7 +17,7 @@
 ###
 
 propsFunction = =>
-  stock: product.stock
+  product: product
   requestedNotification: requestedNotification
 
 reactTurbolinks.register 'add-to-cart', ProductPage.AddToCart, propsFunction
