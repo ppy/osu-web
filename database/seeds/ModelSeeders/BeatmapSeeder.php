@@ -122,6 +122,13 @@ class BeatmapSeeder extends Seeder
                 $new_bm->playcount = $bm->playcount;
                 $new_bm->passcount = $bm->passcount;
                 $new_bm->user_id = array_rand_val($users)['user_id'];
+
+                // Generating the beatmap failtimes
+                $new_bm->failtimes()->saveMany([
+                    factory(App\Models\BeatmapFailtimes::class, 'fail')->make(),
+                    factory(App\Models\BeatmapFailtimes::class, 'retry')->make(),
+                ]);
+
                 $new_bm->save();
 
                 $beatmaps_array[] = $new_bm;
