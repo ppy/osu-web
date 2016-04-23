@@ -120,7 +120,7 @@ class Event extends Model
 
     public function parseFailure()
     {
-        return [];
+        return ['parse_error' => true];
     }
 
     public function parseMatchesAchievement($matches)
