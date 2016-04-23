@@ -51,7 +51,6 @@ ProfilePage.Medals = React.createClass
         additionalClasses: 'badge-achievement--listing'
         achievement: achievement
         isLocked: !@_isAchieved(achievement.id)
-        bigIcon: true
 
 
   render: ->
