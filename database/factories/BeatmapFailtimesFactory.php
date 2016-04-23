@@ -17,13 +17,12 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 $factory->define(App\Models\BeatmapFailtimes::class, function (Faker\Generator $faker) {
     $array = [];
 
     for ($i = 1; $i <= 100; $i++) {
-      $field = 'p'.strval($i);
-      $array = array_merge($array, [$field => rand(1, 10000)]);
+        $field = 'p'.strval($i);
+        $array = array_merge($array, [$field => rand(1, 10000)]);
     }
 
     return $array;
@@ -31,10 +30,12 @@ $factory->define(App\Models\BeatmapFailtimes::class, function (Faker\Generator $
 
 $factory->defineAs(App\Models\BeatmapFailtimes::class, 'fail', function (Faker\Generator $faker) use ($factory) {
     $array = $factory->raw(App\Models\BeatmapFailtimes::class);
-    return array_merge ($array, ['type' => 'FAIL']);
+
+    return array_merge($array, ['type' => 'FAIL']);
 });
 
 $factory->defineAs(App\Models\BeatmapFailtimes::class, 'retry', function (Faker\Generator $faker) use ($factory) {
     $array = $factory->raw(App\Models\BeatmapFailtimes::class);
-    return array_merge ($array, ['type' => 'EXIT']);
+
+    return array_merge($array, ['type' => 'EXIT']);
 });

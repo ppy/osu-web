@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  *    Copyright 2015 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
