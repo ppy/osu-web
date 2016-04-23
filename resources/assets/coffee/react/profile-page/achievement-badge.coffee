@@ -50,12 +50,8 @@ class ProfilePage.AchievementBadge extends React.Component
     $(event.target).qtip options, event
 
 
-  iconUrl: (big = false) =>
-    filename = "/images/badges/user-achievements/#{@props.achievement.slug}"
-    filename += '-big' if big
-
-    "#{filename}.png"
-
+  iconUrl: =>
+    "/images/badges/user-achievements/#{@props.achievement.slug}.png"
 
   render: =>
     tooltipId = "#{@props.achievement.slug}-#{Math.floor(Math.random() * 1000000)}"
@@ -70,7 +66,7 @@ class ProfilePage.AchievementBadge extends React.Component
         className: 'badge-achievement__image'
         'data-tooltip-target': tooltipId
         onMouseOver: @onMouseOver
-        osu.src2x @iconUrl(@props.bigIcon)
+        osu.src2x @iconUrl()
 
       div
         className: 'hidden'
@@ -87,7 +83,7 @@ class ProfilePage.AchievementBadge extends React.Component
               div className: 'badge-achievement__locked-bg badge-achievement__locked-bg--big'
               img _.extend
                 alt: @props.achievement.name
-                osu.src2x @iconUrl(true)
+                osu.src2x @iconUrl()
                 className: 'badge-achievement__image'
           div
             className: 'tooltip-achievement__content'
