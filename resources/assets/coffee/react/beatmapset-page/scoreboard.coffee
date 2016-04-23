@@ -37,6 +37,22 @@ class BeatmapSetPage.Scoreboard extends React.Component
   _setLoading: (_e, isLoading) =>
     @setState loading: isLoading
 
+  _scores: ->
+    div {},
+      el BeatmapSetPage.ScoreboardFirst,
+        score: @props.scores[0]
+
+      div className: 'beatmapset-scoreboard__row',
+        header.map (m) =>
+          className = 'beatmapset-scoreboard__row-item beatmapset-scoreboard__row-item--header'
+          className += " beatmapset-scoreboard__row-item--#{m}"
+
+          span className: className, key: m, Lang.get "beatmaps.beatmapset.show.extra.scoreboard.list.#{m}"
+
+      @props.scores[1..].map (s, i) =>
+        el BeatmapSetPage.ScoreboardItem, score: s, position: i + 2, key: i
+
+
   render: ->
     className = 'beatmapset-scoreboard__main'
     className += ' beatmapset-scoreboard__main--loading' if @state.loading
@@ -45,13 +61,13 @@ class BeatmapSetPage.Scoreboard extends React.Component
       className: 'page-extra beatmapset-scoreboard'
       el BeatmapSetPage.ExtraHeader, name: 'scoreboard'
 
-      if @props.scores.length == 0
+      if @props.scores.length == 0 and @props.currentScoreboard == 'global'
         p
           className: 'beatmapset-scoreboard__no-scores'
-          Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.no-scores'
+          Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.no-scores.global'
       else
         div {},
-          if !_.isEmpty currentUser
+          if not _.isEmpty currentUser
             div {},
               div className: 'beatmapset-scoreboard__tabs',
                 scoreboards.map (m) =>
@@ -62,27 +78,21 @@ class BeatmapSetPage.Scoreboard extends React.Component
 
               div className: 'beatmapset-scoreboard__line'
 
-          if @props.currentScoreboard != 'global' and currentUser.isSupporter == false
-            div className: 'beatmapset-scoreboard__supporter-only',
-              p
-                className: 'beatmapset-scoreboard__supporter-text'
-                Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.supporter-only'
-              p
-                className: 'beatmapset-scoreboard__supporter-text beatmapset-scoreboard__supporter-text--small'
-                dangerouslySetInnerHTML:
-                  __html: Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.supporter-link', link: Url.support
-          else
-            div {},
-              div className: className,
-                el BeatmapSetPage.ScoreboardFirst,
-                  score: @props.scores[0]
-
-                div className: 'beatmapset-scoreboard__row',
-                  header.map (m) =>
-                    className = 'beatmapset-scoreboard__row-item beatmapset-scoreboard__row-item--header'
-                    className += " beatmapset-scoreboard__row-item--#{m}"
-
-                    span className: className, key: m, Lang.get "beatmaps.beatmapset.show.extra.scoreboard.list.#{m}"
-
-                @props.scores[1..].map (s, i) =>
-                  el BeatmapSetPage.ScoreboardItem, score: s, position: i + 2, key: i
+          div className: className,
+            if @props.currentScoreboard != 'global'
+              if currentUser.isSupporter == false
+                div className: 'beatmapset-scoreboard__notice',
+                  p
+                    className: 'beatmapset-scoreboard__supporter-text'
+                    Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.supporter-only'
+                  p
+                    className: 'beatmapset-scoreboard__supporter-text beatmapset-scoreboard__supporter-text--small'
+                    dangerouslySetInnerHTML:
+                      __html: Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.supporter-link', link: Url.support
+              else if @props.scores.length == 0
+                div className: 'beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores',
+                  Lang.get "beatmaps.beatmapset.show.extra.scoreboard.no-scores.#{@props.currentScoreboard}"
+              else
+                @_scores()
+            else
+              @_scores()

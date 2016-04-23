@@ -137,7 +137,11 @@ return [
                 ],
                 'scoreboard' => [
                     'title' => 'Scoreboard',
-                    'no-scores' => 'No scores yet. Maybe you should try setting some?',
+                    'no-scores' => [
+                        'global' => 'No scores yet. Maybe you should try setting some?',
+                        'country' => 'No one from your country has set a score on this map yet!',
+                        'friend' => 'No one of your friends has set a score on this map yet!',
+                    ],
                     'supporter-only' => 'You need to be a supporter to access the friend and country rankings!',
                     'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
                     'global' => 'Global Ranking',
