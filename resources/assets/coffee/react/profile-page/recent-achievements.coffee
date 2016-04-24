@@ -51,6 +51,7 @@ class ProfilePage.RecentAchievements extends React.Component
           el ProfilePage.AchievementBadge,
             key: "profile-achievement-#{i}"
             achievement: userAchievement.achievement.data
+            dateAchieved: userAchievement.achieved_at
             additionalClasses: 'badge-achievement--recent'
 
       if moreCount > 0

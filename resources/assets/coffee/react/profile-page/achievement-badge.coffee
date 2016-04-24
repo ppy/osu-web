@@ -94,3 +94,6 @@ class ProfilePage.AchievementBadge extends React.Component
               className: 'tooltip-achievement__description'
               dangerouslySetInnerHTML:
                 __html: @props.achievement.description
+            div
+              className: 'tooltip-achievement__date'
+              Lang.get 'users.show.extra.achievements.achieved-on', date: moment(@props.dateAchieved).format 'do MMM YYYY'
