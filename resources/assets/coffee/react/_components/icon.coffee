@@ -17,4 +17,4 @@
 ###
 class @Icon extends React.Component
   render: =>
-    React.DOM.span className: "fa fa-#{@props.name} #{@props.modifier}"
+    React.DOM.span className: "fa fa-#{@props.name}"

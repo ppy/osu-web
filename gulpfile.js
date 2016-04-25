@@ -99,10 +99,6 @@ elixir(function(mix) {
     'react/beatmap-discussions/*.coffee',
     'react/beatmap-discussions.coffee'
   ], 'public/js/react/beatmap-discussions.js')
-  .coffee([
-    'react/store/product/*.coffee',
-    'react/store/product.coffee',
-  ], 'public/js/react/store/product.js')
   .version([
     'css/app.css',
     'js/app.js',
@@ -111,6 +107,5 @@ elixir(function(mix) {
     'js/react/slack-page.js',
     'js/react/status-page.js',
     'js/react/beatmap-discussions.js',
-    'js/react/store/product.js',
   ]);
 });

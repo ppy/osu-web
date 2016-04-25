@@ -30,6 +30,23 @@ $(document).on 'click', '#new-address-switch a', (e) ->
     $target.show()
   $form.slideToggle()
 
+$(document).on 'click', '.js-store-notify', (e) ->
+  e.preventDefault()
+
+  LoadingOverlay.show()
+
+  $.ajax Url.requestProductNotification(productId),
+    method: 'POST'
+    dataType: 'JSON'
+
+  .done (data) =>
+    $('.js-store-notify').hide()
+    $('.js-store-notification-alert').show()
+
+  .fail (xhr) =>
+    osu.ajaxError xhr
+
+  .always LoadingOverlay.hide()
 
 preventUsernameSubmission = ->
   $('.js-store-add-to-cart').attr 'disabled', true

@@ -131,16 +131,39 @@
             @endif
         </div>
 
-        <div class="js-react--add-to-cart"></div>
+        <div class="osu-layout__sub-row osu-layout__sub-row--with-separator" id="add-to-cart">
+            <div class="big-button">
+                <button type="submit" class="js-store-add-to-cart btn-osu btn-osu-default"
+                    @if(!$product->inStock())
+                        style="display: none;"
+                    @endif
+                >
+                {{ trans('store.product.add-to-cart') }}</button>
+            </div>
+
+            <div class="big-button">
+                <button type="button" class="js-store-notify btn-osu btn-osu-default"
+                    @if($product->inStock() || $requestedNotification)
+                        style="display: none;"
+                    @endif
+                >{{ trans('store.product.notify') }}</button>
+            </div>
+
+            <div class="store-notification-requested-alert js-store-notification-alert"
+                @if(!$requestedNotification || $product->inStock())
+                    style="display: none;"
+                @endif
+            >
+                <span class="fa fa-check-circle-o store-notification-requested-alert__icon"></span>
+                <p class="store-notification-requested-alert__text">{{ trans('store.product.notification-success') }}</p>
+            </div>
+        </div>
 
     {!! Form::close() !!}
 @endsection
 
 @section("script")
     <script data-turbolinks-eval="always">
-        var product = {!! json_encode($product) !!};
-        var requestedNotification = {!! json_encode($requestedNotification) !!};
+        var productId = {!! json_encode($product->product_id) !!};
     </script>
-
-    <script src="{{ elixir("js/react/store/product.js") }}" data-turbolinks-track></script>
 @endsection
