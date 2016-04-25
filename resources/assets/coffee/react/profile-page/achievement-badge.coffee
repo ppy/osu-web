@@ -57,7 +57,7 @@ class ProfilePage.AchievementBadge extends React.Component
     tooltipId = "#{@props.achievement.slug}-#{Math.floor(Math.random() * 1000000)}"
 
     badgeClasses = 'badge-achievement'
-    badgeClasses += ' badge-achievement--locked' if not @props.userAchievement?
+    badgeClasses += ' badge-achievement--locked' if !@props.userAchievement?
 
     div
       className: "js-tooltip-achievement #{badgeClasses} #{@props.additionalClasses}",
@@ -94,7 +94,7 @@ class ProfilePage.AchievementBadge extends React.Component
               className: 'tooltip-achievement__description'
               dangerouslySetInnerHTML:
                 __html: @props.achievement.description
-            if @props.userAchievement
+            if @props.userAchievement?
               div
                 className: 'tooltip-achievement__date'
                 Lang.get 'users.show.extra.achievements.achieved-on', date: moment(@props.userAchievement.achieved_at).format 'do MMM YYYY'

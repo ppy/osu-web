@@ -27,11 +27,7 @@ ProfilePage.Medals = React.createClass
 
 
   _userAchievement: (id) ->
-    if not @_userAchievements?
-      @_userAchievements = []
-
-      for achieved in @props.allAchievements
-        @_userAchievements[achieved.achievement.data.id] = achieved
+    @_userAchievements ?= _.keyBy @props.allAchievements, (o) -> o.achievement.data.id
 
     @_userAchievements[id]
 
