@@ -1,0 +1,81 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+.store-header {
+  &__float {
+    position: absolute;
+    height: 100%;
+
+    display: flex;
+    padding: (@spacing * 2);
+
+    align-items: flex-end;
+
+    @media @desktop {
+      align-items: center;
+    }
+
+    &--left {
+      left: 0;
+    }
+
+    &--right {
+      right: 0;
+    }
+  }
+
+  &__float-link {
+    .default-box-shadow();
+    .default-border-radius();
+    .pink-link();
+
+    padding: @spacing (@spacing / 2);
+    background-color: @grey-f;
+
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__float-link-text {
+    margin: 0 (@spacing / 2);
+    font-size: 12px;
+
+    &--icon {
+      font-size: 18px;
+    }
+  }
+
+  &__main {
+    .at2x-simple("/images/headers/store.png");
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__notice {
+    background-color: @yellow;
+  }
+}
