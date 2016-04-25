@@ -21,7 +21,7 @@
 
   @_info-text-size: 10px;
 
-  @_discussion-text-size: 15px;
+  @_discussion-text-size: 13px;
   @_reply-text-size: 12px;
 
 
@@ -70,7 +70,6 @@
 
   &__edit-button {
     .reset-input();
-    margin-left: @spacing;
     color: @link-color;
 
     &:hover {
@@ -81,6 +80,9 @@
 
   &__info {
     font-size: @_info-text-size;
+    color: @grey-9;
+
+    margin-right: @spacing;
 
     &--edited {
       color: @gray-light;
@@ -88,9 +90,14 @@
     }
   }
 
+  &__info-container {
+    display: flex;
+  }
+
   &__message {
+    .content-font();
+    color: @grey-4;
     word-wrap: break-word;
-    margin-bottom: (@spacing / 2);
 
     .@{_top}--discussion & {
       font-size: @_discussion-text-size;
