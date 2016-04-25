@@ -34,6 +34,7 @@ return [
     'store' => [
         'delayed_shipping_order_threshold' => env('DELAYED_SHIPPING_ORDER_THRESHOLD', 100),
         'delayed_shipping_order_message' => env('DELAYED_SHIPPING_ORDER_MESSAGE'),
+        'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE'))),
     ],
     'urls' => [
         'legal' => [

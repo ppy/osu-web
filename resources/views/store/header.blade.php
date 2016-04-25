@@ -54,5 +54,17 @@
                 </div>
             @endif
         </div>
+
+        @if (config('osu.store.notice') !== null)
+            <div class="store-header__notice">
+                <h2 class="store-header__notice-text store-header__notice-text--title">
+                    {{ trans('common.title.notice') }}
+                </h2>
+
+                <div class="store-header__notice-text">
+                    {!! Markdown::convertToHtml(config('osu.store.notice')) !!}
+                </div>
+            </div>
+        @endif
     </div>
 </div>
