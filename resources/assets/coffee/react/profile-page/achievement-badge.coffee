@@ -54,7 +54,6 @@ class ProfilePage.AchievementBadge extends React.Component
     "/images/badges/user-achievements/#{@props.achievement.slug}.png"
 
   render: =>
-    console.log @props.dateAchieved
     tooltipId = "#{@props.achievement.slug}-#{Math.floor(Math.random() * 1000000)}"
 
     badgeClasses = 'badge-achievement'
