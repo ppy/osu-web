@@ -126,6 +126,14 @@ class BeatmapSeeder extends Seeder
                 $new_bm->passcount = $bm->passcount;
                 $new_bm->user_id = array_rand_val($users)['user_id'];
 
+                $failtimes = App\Models\BeatmapFailtimes::where('beatmap_id', $new_bm->beatmap_id)->get();
+
+                if (!$failtimes->isEmpty()) {
+                    foreach ($failtimes as $ft) {
+                        $ft->delete();
+                    }
+                }
+
                 // Generating the beatmap failtimes
                 $new_bm->failtimes()->saveMany([
                     factory(App\Models\BeatmapFailtimes::class, 'fail')->make(),
