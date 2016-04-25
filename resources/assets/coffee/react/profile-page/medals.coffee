@@ -38,7 +38,7 @@ ProfilePage.Medals = React.createClass
       @_dateAchieved = []
 
       for achieved in @props.allAchievements
-        @_dateAchieved[achieved.achievement.data.id] = achieved.achieved_at 
+        @_dateAchieved[achieved.achievement.data.id] = achieved.achieved_at
 
     @_dateAchieved[id]
 
@@ -60,7 +60,7 @@ ProfilePage.Medals = React.createClass
       el ProfilePage.AchievementBadge,
         additionalClasses: 'badge-achievement--listing'
         achievement: achievement
-        dateAchieved: @_getDateAchieved achievement.id if @_isAchieved achievement.id
+        dateAchieved: @_getDateAchieved achievement.id
         isLocked: !@_isAchieved(achievement.id)
 
 
