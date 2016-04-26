@@ -52,7 +52,7 @@ class BeatmapSetPage.Main extends SwitchableModePage
       if not currentUser.isSupporter
         @setState currentScoreboard: scoreboard
         return
-        
+
       $.publish 'beatmapset:scoreboard:loading', true
       @setState loading: true
 
@@ -128,3 +128,4 @@ class BeatmapSetPage.Main extends SwitchableModePage
         currentMode: @state.currentMode
         currentScoreboard: @state.currentScoreboard
         scores: @state.scores
+        countries: @props.countries

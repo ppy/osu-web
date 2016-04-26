@@ -28,11 +28,12 @@ class BeatmapSetPage.ScoreboardFirst extends React.Component
           span className: 'beatmapset-scoreboard-first__label beatmapset-scoreboard-first__label--rank', "#1"
           span className: 'beatmapset-scoreboard-first__label beatmapset-scoreboard-first__label--username',
             @props.score.user.data.username
-          el FlagCountry,
-            country:
-              code: @props.score.user.data.country
-              name: ''
-            classModifiers: ['scoreboard']
+          if @props.score.user.data.country
+            el FlagCountry,
+              country:
+                code: @props.score.user.data.country
+                name: @props.countries[@props.score.user.data.country].name
+              classModifiers: ['scoreboard']
         div className: 'beatmapset-scoreboard-first__avatar-container',
           div
             className: 'beatmapset-scoreboard-first__avatar avatar avatar--beatmapset-scoreboard',

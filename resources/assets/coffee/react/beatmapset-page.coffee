@@ -35,5 +35,6 @@ propsFunction = =>
   beatmapsByMode: beatmapsByMode
   beatmapCount: beatmapCount
   displayedBeatmap: displayedBeatmap
+  countries: _.keyBy countries, (o) -> o.code
 
 reactTurbolinks.register 'beatmapset-page', BeatmapSetPage.Main, propsFunction

@@ -20,7 +20,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\BeatmapSet;
+use App\Models\Country;
 use App\Transformers\BeatmapSetTransformer;
+use App\Transformers\CountryTransformer;
 use Auth;
 use Request;
 
@@ -68,8 +70,10 @@ class BeatmapsetsController extends Controller
             implode(',', ['beatmaps.scoresBest.user', 'beatmaps.failtimes'])
         );
 
+        $countries = fractal_collection_array(Country::all(), new CountryTransformer);
+
         $title = trans('layout.menu.beatmaps._').' / '.$beatmapSet->artist.' - '.$beatmapSet->title;
 
-        return view('beatmapsets.show', compact('set', 'title'));
+        return view('beatmapsets.show', compact('set', 'title', 'countries'));
     }
 }

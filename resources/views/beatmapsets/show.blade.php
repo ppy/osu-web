@@ -33,6 +33,7 @@
 
     <script data-turbolinks-eval="always">
         var set = {!! json_encode($set['data']) !!};
+        var countries = {!! json_encode($countries['data']) !!};
     </script>
 
     <script src="{{ elixir("js/react/beatmapset-page.js") }}" data-turbolinks-track></script>

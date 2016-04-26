@@ -76,6 +76,7 @@ class BeatmapSetPage.Extra extends StickyTabsPage
                 props =
                   currentScoreboard: @props.currentScoreboard
                   scores: @props.scores
+                  countries: @props.countries
                 BeatmapSetPage.Scoreboard
 
           div

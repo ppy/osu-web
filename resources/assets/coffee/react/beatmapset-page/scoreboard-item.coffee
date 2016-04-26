@@ -30,11 +30,12 @@ class BeatmapSetPage.ScoreboardItem extends React.Component
             when 'rank'
               "##{@props.position}"
             when 'flag'
-              el FlagCountry,
-                country:
-                  code: @props.score.user.data.country
-                  name: ''
-                classModifiers: ['scoreboard']
+              if @props.score.user.data.country
+                el FlagCountry,
+                  country:
+                    code: @props.score.user.data.country
+                    name: @props.countries[@props.score.user.data.country].name
+                  classModifiers: ['scoreboard']
             when 'player'
               @props.score.user.data.username
             when 'icons'
