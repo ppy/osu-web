@@ -5,6 +5,9 @@ class ProfilePage.RecentActivities extends React.Component
     # default, empty badge
     badge = el 'div', className: 'profile-extra-entries__icon'
 
+    if event.parse_error
+      return
+
     switch event.type
       when 'rank'
         badge = el 'div',

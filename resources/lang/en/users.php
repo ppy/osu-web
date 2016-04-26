@@ -64,6 +64,7 @@ return [
         'extra' => [
             'achievements' => [
                 'title' => 'Achievements',
+                'achieved-on' => 'Achieved on :date',
             ],
             'beatmaps' => [
                 'title' => 'Beatmaps',
