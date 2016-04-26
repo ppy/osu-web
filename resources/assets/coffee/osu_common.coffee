@@ -84,14 +84,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
   reloadPage: (fallback, forceReload) ->
     $(document).off '.ujsHideLoadingOverlay'
-
-    $.get document.location.href
-    .done osu.replacePage
-    .fail ->
-      return osu.navigate fallback if fallback
-      return document.location.reload() if forceReload
-      osu.popup 'Failed loading page', 'danger'
-    .always LoadingOverlay.hide
+    Turbolinks.visit document.location.href, action: 'replace'
 
 
   navigate: (url, keepScroll) ->

@@ -18,8 +18,8 @@
 
 # loading animation overlay
 # fired from turbolinks
-$(document).on 'page:fetch', LoadingOverlay.show
-$(document).on 'page:receive', LoadingOverlay.hide
+$(document).on 'turbolinks:request-start', LoadingOverlay.show
+$(document).on 'turbolinks:request-end', LoadingOverlay.hide
 # form submission is not covered by turbolinks
 $(document).on 'submit', 'form', LoadingOverlay.show
 

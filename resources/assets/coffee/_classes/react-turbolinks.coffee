@@ -17,7 +17,7 @@
 ###
 class @ReactTurbolinks
   constructor: (@components = {}) ->
-    $(document).on 'ready page:change turbolinks:load reactTurbolinks:try', =>
+    $(document).on 'ready turbolinks:render turbolinks:load reactTurbolinks:try', =>
       for own _name, component of @components
         continue if component.loaded
 
@@ -27,7 +27,7 @@ class @ReactTurbolinks
         ReactDOM.render React.createElement(component.element, component.propsFunction()), component.target[0]
 
 
-    $(document).on 'page:before-unload', =>
+    $(document).on 'turbolinks:before-cache', =>
       for own _name, component of @components
         continue unless component.loaded
 
