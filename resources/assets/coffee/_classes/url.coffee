@@ -28,7 +28,7 @@ class @Url
 
   @requestSlackInvite: '/community/slack/agree'
 
-  @beatmapset: (id) => "/s/#{id}"
+  @beatmapset: (id) => "/beatmapsets/#{id}"
 
   @beatmapScores: (id) -> "/beatmaps/map/#{id}/scores"
 
