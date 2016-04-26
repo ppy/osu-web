@@ -10,7 +10,7 @@
   },
   "require": {
     "laravel/framework": "5.1.*",
-    "laravelcollective/html": "5.0.*",
+    "laravelcollective/html": "5.1.*",
     "predis/predis": "~1.0",
     "doctrine/dbal": "*",
     "raven/raven": "*",
