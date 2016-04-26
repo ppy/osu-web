@@ -16,17 +16,17 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <svg
-    version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
     x="0px" y="0px"
     width="190px" height="125px"
     viewBox="0 0 432 256" style="enable-background:new 0 0 432 256;"
     xml:space="preserve"
 >
-    <g class="correct">
-        <path id="LogoFill" class="sh1" d="M127.8,47.7c-44.4,0-80.3,36-80.3,80.3c0,44.4,36,80.3,80.3,80.3c44.4,0,80.3-36,80.3-80.3
+    <g class="store-logo-text">
+        <path class="store-logo-text__content store-logo-text__content--circle" d="M127.8,47.7c-44.4,0-80.3,36-80.3,80.3c0,44.4,36,80.3,80.3,80.3c44.4,0,80.3-36,80.3-80.3
         C208.2,83.6,172.2,47.7,127.8,47.7z"/>
 
-        <path id="Logo" class="sh0" d="M85.4,145.8c-2.7,0-5-0.4-7-1.3s-3.6-2.1-4.9-3.6c-1.3-1.5-2.3-3.4-2.9-5.4c-0.7-2.1-1-4.3-1-6.7
+        <path class="store-logo-text__content store-logo-text__content--text" d="M85.4,145.8c-2.7,0-5-0.4-7-1.3s-3.6-2.1-4.9-3.6c-1.3-1.5-2.3-3.4-2.9-5.4c-0.7-2.1-1-4.3-1-6.7
         c0-2.4,0.3-4.7,1-6.8c0.7-2.1,1.6-4,2.9-5.5c1.3-1.5,2.9-2.8,4.9-3.7c2-0.9,4.3-1.3,7-1.3s5,0.4,7,1.3c2,0.9,3.6,2.1,5,3.7
         c1.3,1.5,2.3,3.4,2.9,5.5c0.6,2.1,1,4.4,1,6.8c0,2.4-0.3,4.7-1,6.7c-0.6,2.1-1.6,3.9-2.9,5.4c-1.3,1.5-3,2.8-5,3.6
         S88.1,145.8,85.4,145.8z M85.4,138.9c2.4,0,4.1-0.9,5.1-2.6c1-1.8,1.6-4.3,1.6-7.6c0-3.3-0.5-5.8-1.6-7.6c-1-1.8-2.7-2.6-5.1-2.6

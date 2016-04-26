@@ -23,14 +23,13 @@ ProfilePage.Medals = React.createClass
 
 
   componentWillReceiveProps: ->
-    @_achieved = null
+    @_userAchievements = null
 
 
-  _isAchieved: (id) ->
-    @_achieved ||= @props.allAchievements.map (achieved) ->
-      achieved.achievement.data.id
+  _userAchievement: (id) ->
+    @_userAchievements ?= _.keyBy @props.allAchievements, (o) -> o.achievement.data.id
 
-    _.includes @_achieved, id
+    @_userAchievements[id]
 
 
   _groupedAchievements: ->
@@ -50,7 +49,7 @@ ProfilePage.Medals = React.createClass
       el ProfilePage.AchievementBadge,
         additionalClasses: 'badge-achievement--listing'
         achievement: achievement
-        isLocked: !@_isAchieved(achievement.id)
+        userAchievement: @_userAchievement achievement.id
 
 
   render: ->
