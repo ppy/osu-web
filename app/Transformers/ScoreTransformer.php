@@ -75,17 +75,6 @@ class ScoreTransformer extends Fractal\TransformerAbstract
 
     public function includeUser(Score $score)
     {
-        return $this->item($score, function ($score) {
-            $user = $score->user;
-
-            return [
-                'username' => $user->username,
-                'avatarUrl' => $user->user_avatar,
-                'country' => [
-                    'code' => $user->country_acronym,
-                    'name' => $user->countryName(),
-                ],
-            ];
-        });
+        return $this->item($score->user, new UserCompactTransformer);
     }
 }
