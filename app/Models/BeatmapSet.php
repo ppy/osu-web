@@ -696,7 +696,7 @@ class BeatmapSet extends Model
 
         // Return empty description if the pattern was not found
         // (mostly older beatmapsets)
-        $description = count($split) > 1 ? $split[1] : "";
+        $description = count($split) > 1 ? $split[1] : '';
 
         return bbcode($description, $post->bbcode_uid, true);
     }
