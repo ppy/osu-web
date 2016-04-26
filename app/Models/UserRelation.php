@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserZebra extends Model
+class UserRelation extends Model
 {
     protected $table = 'phpbb_zebra';
     public $timestamps = false;

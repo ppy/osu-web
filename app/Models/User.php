@@ -732,19 +732,19 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(UsernameChangeHistory::class, 'user_id', 'user_id');
     }
 
-    public function zebras()
+    public function relations()
     {
-        return $this->hasMany(UserZebra::class, 'user_id', 'user_id');
+        return $this->hasMany(UserRelation::class, 'user_id', 'user_id');
     }
 
     public function friends()
     {
-        return $this->zebras()->where('friend', true);
+        return $this->relations()->where('friend', true);
     }
 
     public function foes()
     {
-        return $this->zebras()->where('foe', true);
+        return $this->relations()->where('foe', true);
     }
 
     public function events()
