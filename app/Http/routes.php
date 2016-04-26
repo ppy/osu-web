@@ -62,6 +62,7 @@ Route::get('/beatmapsets/{id}', ['as' => 'set', 'uses' => 'BeatmapsetsController
 
 Route::get('/b/{id}', ['as' => 'beatmaps.show', function ($id) {
     $setId = App\Models\Beatmap::find($id)->beatmapSet->beatmapset_id;
+    
     return Redirect::to(route('set', ['id' => $setId]).'#'.$id);
 }]);
 
