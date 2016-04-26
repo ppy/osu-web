@@ -1,5 +1,5 @@
 {
-  "name": "osu!web",
+  "name": "osu-web",
   "version": "1.0.0",
   "dependencies": {
     "ResponsiveSlides.js": "latest",
