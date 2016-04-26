@@ -46,6 +46,7 @@ return [
         'notify' => 'Notify me when available!',
 
         'notification-success' => 'you will be notified when we have new stock',
+        'notification-in-stock' => 'This product is already in stock!',
         'notification-already-requested' => 'You have already requested a notification for this product!',
     ],
 ];

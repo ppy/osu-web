@@ -248,6 +248,11 @@ class StoreController extends Controller
     public function postRequestNotification($product_id)
     {
         $user = Auth::user();
+        $product = Store\Product::findOrFail($product_id);
+
+        if ($product->inStock()) {
+            return error_popup(trans('store.product.notification-in-stock'));
+        }
 
         $request = Store\NotificationRequest::get($user->user_id, $product_id);
 
