@@ -37,7 +37,7 @@ class CreateBeatmapFailtimesTable extends Migration
 
         Schema::create('osu_beatmap_failtimes', function (Blueprint $table) {
             $table->mediumInteger('beatmap_id');
-            $table->enum('type', ['FAIL', 'EXIT']);
+            $table->enum('type', ['fail', 'exit']);
             for ($i = 1; $i <= 100; $i++) {
                 $table->mediumInteger("p{$i}")->unsigned()->default(0);
             }
