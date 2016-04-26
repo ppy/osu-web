@@ -52,12 +52,13 @@ Route::get('/beatmaps', ['as' => 'beatmaps', 'uses' => 'BeatmapController@index'
 Route::get('/beatmaps/search/{filters?}', ['as' => 'beatmaps.search', 'uses' => 'BeatmapController@search']);
 
 // maps
-Route::get('/beatmaps/set/{id}', ['as' => 'set', 'uses' => 'BeatmapsetsController@getBeatmapset']);
 Route::get('/beatmaps/map/{id}', ['as' => 'beatmap', 'uses' => 'BeatmapController@getMap']);
 Route::get('/beatmaps/map/{id}/scores', ['as' => 'beatmap.scores', 'uses' => 'BeatmapController@getScores']);
 Route::get('/beatmaps/modding/{id?}', ['as' => 'modding', 'uses' => 'ModdingController@getModding']);
 Route::get('/beatmaps/packs', ['as' => 'packs', 'uses' => 'BeatmapController@getPacks']);
 Route::get('/beatmaps/charts/{id?}', ['as' => 'charts', 'uses' => 'BeatmapController@getCharts']);
+
+Route::get('/beatmapsets/{id}', ['as' => 'set', 'uses' => 'BeatmapsetsController@getBeatmapset']);
 
 Route::get('/b/{id}', ['as' => 'beatmaps.show', function ($id) {
     return Redirect::to('https://osu.ppy.sh/b/'.$id);
