@@ -16,7 +16,7 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-class @BeatmapSetPageHash
+class @BeatmapsetPageHash
   @noMode: (page) ->
     ['description'].indexOf(page) != -1
 

@@ -17,7 +17,7 @@
 ###
 {a} = React.DOM
 
-class BeatmapSetPage.ContentsTab extends React.Component
+class BeatmapsetPage.ContentsTab extends React.Component
   onClick: (e) =>
     return if @props.disabled
     e.preventDefault()
@@ -31,7 +31,7 @@ class BeatmapSetPage.ContentsTab extends React.Component
     className += ' page-tabs__tab--active' if active
     className += ' page-tabs__tab--disabled' if @props.disabled
 
-    url = BeatmapSetPageHash.generate
+    url = BeatmapsetPageHash.generate
       mode: if active then @props.currentMode else @props.newMode
       page: @props.currentPage
 

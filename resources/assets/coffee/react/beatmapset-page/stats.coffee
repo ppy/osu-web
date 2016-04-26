@@ -18,7 +18,7 @@
 {div, hr} = React.DOM
 el = React.createElement
 
-class BeatmapSetPage.Stats extends React.Component
+class BeatmapsetPage.Stats extends React.Component
   datas = ['cs', 'hp', 'od', 'ar', 'stars', 'length', 'bpm']
 
   render: ->

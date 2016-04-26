@@ -19,7 +19,7 @@
 {div, p, span, hr, a} = React.DOM
 el = React.createElement
 
-class BeatmapSetPage.Details extends React.Component
+class BeatmapsetPage.Details extends React.Component
   DATE_FORMAT = 'MMM D YYYY'
 
   constructor: (props) ->
@@ -80,5 +80,5 @@ class BeatmapSetPage.Details extends React.Component
 
             if @props.set.video
               div onClick: @toggleVideo,
-                el BeatmapSetPage.NoVideoCheckbox,
+                el BeatmapsetPage.NoVideoCheckbox,
                   enabled: @state.video

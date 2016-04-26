@@ -1,1 +1,1 @@
-@BeatmapSetPage = {}
+@BeatmapsetPage = {}

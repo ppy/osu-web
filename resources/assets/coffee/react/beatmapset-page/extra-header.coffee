@@ -17,7 +17,7 @@
 ###
 {div, h2, span} = React.DOM
 
-class BeatmapSetPage.ExtraHeader extends React.Component
+class BeatmapsetPage.ExtraHeader extends React.Component
   render: ->
     div
       key: 'header'

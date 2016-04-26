@@ -18,11 +18,11 @@
 {div} = React.DOM
 el = React.createElement
 
-class BeatmapSetPage.Main extends SwitchableModePage
+class BeatmapsetPage.Main extends SwitchableModePage
   constructor: (props) ->
     super props
 
-    optionsHash = BeatmapSetPageHash.parse location.hash
+    optionsHash = BeatmapsetPageHash.parse location.hash
     @initialPage = optionsHash.page
     @timeouts = {}
 
@@ -36,7 +36,7 @@ class BeatmapSetPage.Main extends SwitchableModePage
       loading: false
 
   setHash: ->
-    osu.setHash BeatmapSetPageHash.generate page: @state.currentPage, mode: @state.currentMode
+    osu.setHash BeatmapsetPageHash.generate page: @state.currentPage, mode: @state.currentMode
 
   setCurrentPlaymode: (_e, playmode) =>
     return if @state.currentPlaymode == playmode
@@ -104,14 +104,14 @@ class BeatmapSetPage.Main extends SwitchableModePage
 
   render: ->
     div className: 'osu-layout__section',
-      el BeatmapSetPage.Header,
+      el BeatmapsetPage.Header,
         title: @props.set.title
         artist: @props.set.artist
         playcount: @props.set.play_count
         favcount: @props.set.favourite_count
         cover: @props.set.covers.cover
 
-      el BeatmapSetPage.Contents,
+      el BeatmapsetPage.Contents,
         set: @props.set
         beatmaps: @props.beatmaps
         beatmapsByMode: @props.beatmapsByMode
@@ -120,7 +120,7 @@ class BeatmapSetPage.Main extends SwitchableModePage
         currentMode: @state.currentMode
         currentPage: @state.currentPage
 
-      el BeatmapSetPage.Extra,
+      el BeatmapsetPage.Extra,
         set: @props.set
         beatmaps: @props.beatmaps
         beatmap: @props.beatmaps[@state.currentMode]

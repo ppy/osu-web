@@ -18,7 +18,7 @@
 {div, p} = React.DOM
 el = React.createElement
 
-class BeatmapSetPage.Contents extends React.Component
+class BeatmapsetPage.Contents extends React.Component
   @modeSwitch: (e) =>
     e.preventDefault()
 
@@ -32,7 +32,7 @@ class BeatmapSetPage.Contents extends React.Component
         osu.modes.map (mode) =>
           newBeatmap = _.last @props.beatmapsByMode[mode]
 
-          el BeatmapSetPage.ContentsTab,
+          el BeatmapsetPage.ContentsTab,
             key: mode
             playmode: mode
             disabled: @props.beatmapCount[mode] == 0
@@ -44,7 +44,7 @@ class BeatmapSetPage.Contents extends React.Component
       div className: 'beatmapset-difficulties',
         div className: 'beatmapset-difficulties__list',
           @props.beatmapsByMode[@props.currentPlaymode].map (beatmap) =>
-            el BeatmapSetPage.ContentsBeatmapIcon,
+            el BeatmapsetPage.ContentsBeatmapIcon,
               key: beatmap.id
               beatmap: beatmap
               currentPage: @props.currentPage
@@ -54,10 +54,10 @@ class BeatmapSetPage.Contents extends React.Component
           Lang.get("beatmaps.mode.#{@props.currentPlaymode}") + " #{beatmap.version}"
 
       div className: 'page-contents',
-        el BeatmapSetPage.Details,
+        el BeatmapsetPage.Details,
           set: @props.set
-        el BeatmapSetPage.DifficultyChart,
+        el BeatmapsetPage.DifficultyChart,
           beatmap: beatmap
-        el BeatmapSetPage.Stats,
+        el BeatmapsetPage.Stats,
           set: @props.set
           beatmap: beatmap

@@ -17,7 +17,7 @@
 ###
 {span} = React.DOM
 
-class BeatmapSetPage.ScoreboardTab extends React.Component
+class BeatmapsetPage.ScoreboardTab extends React.Component
   _scoreboardSwitch: =>
     $.publish 'beatmapset:scoreboard:set', @props.scoreboard
 

@@ -18,7 +18,7 @@
 {div, span} = React.DOM
 el = React.createElement
 
-class BeatmapSetPage.ScoreboardFirst extends React.Component
+class BeatmapsetPage.ScoreboardFirst extends React.Component
   stats = ['score', 'accuracy', '300', '100', '50']
 
   render: ->

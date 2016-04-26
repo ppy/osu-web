@@ -18,7 +18,7 @@
 {div} = React.DOM
 el = React.createElement
 
-class BeatmapSetPage.Extra extends StickyTabsPage
+class BeatmapsetPage.Extra extends StickyTabsPage
   constructor: (props) ->
     super props
 
@@ -47,7 +47,7 @@ class BeatmapSetPage.Extra extends StickyTabsPage
       div className: 'osu-layout__row',
         div className: 'page-extra-tabs__items',
           elements.map (m) =>
-            el BeatmapSetPage.ExtraTab, key: m, page: m, currentPage: @props.currentPage, currentMode: @props.currentMode
+            el BeatmapsetPage.ExtraTab, key: m, page: m, currentPage: @props.currentPage, currentMode: @props.currentMode
 
     div className: 'osu-layout__section osu-layout__section--extra',
       div
@@ -66,18 +66,18 @@ class BeatmapSetPage.Extra extends StickyTabsPage
             switch m
               when 'description'
                 props = description: @props.set.description
-                BeatmapSetPage.Description
+                BeatmapsetPage.Description
               when 'success-rate'
                 props =
                   beatmap: @props.beatmap
                   failtimes: @props.beatmap.failtimes.data
-                BeatmapSetPage.SuccessRate
+                BeatmapsetPage.SuccessRate
               when 'scoreboard'
                 props =
                   currentScoreboard: @props.currentScoreboard
                   scores: @props.scores
                   countries: @props.countries
-                BeatmapSetPage.Scoreboard
+                BeatmapsetPage.Scoreboard
 
           div
             className: 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'

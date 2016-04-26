@@ -18,7 +18,7 @@
 {div, p, span} = React.DOM
 el = React.createElement
 
-class BeatmapSetPage.SuccessRate extends React.Component
+class BeatmapsetPage.SuccessRate extends React.Component
   componentDidMount: ->
     @_renderChart()
 
@@ -56,7 +56,7 @@ class BeatmapSetPage.SuccessRate extends React.Component
   render: ->
     div
       className: 'page-extra'
-      el BeatmapSetPage.ExtraHeader, name: 'success-rate'
+      el BeatmapsetPage.ExtraHeader, name: 'success-rate'
 
       div className: 'beatmapset-success-rate',
         p

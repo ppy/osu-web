@@ -17,7 +17,7 @@
 ###
 {div} = React.DOM
 
-class BeatmapSetPage.DifficultyChart extends React.Component
+class BeatmapsetPage.DifficultyChart extends React.Component
   componentDidMount: ->
     @_renderChart()
 

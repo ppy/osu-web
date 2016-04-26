@@ -37,4 +37,4 @@ propsFunction = =>
   displayedBeatmap: displayedBeatmap
   countries: _.keyBy countries, (o) -> o.code
 
-reactTurbolinks.register 'beatmapset-page', BeatmapSetPage.Main, propsFunction
+reactTurbolinks.register 'beatmapset-page', BeatmapsetPage.Main, propsFunction

@@ -18,7 +18,7 @@
 {a} = React.DOM
 el = React.createElement
 
-class BeatmapSetPage.ContentsBeatmapIcon extends React.Component
+class BeatmapsetPage.ContentsBeatmapIcon extends React.Component
   modeSwitch: (e) =>
     e.preventDefault()
     $.publish 'beatmapset:mode:set', @props.beatmap.id
@@ -32,7 +32,7 @@ class BeatmapSetPage.ContentsBeatmapIcon extends React.Component
     a
       className: className
       onClick: @modeSwitch
-      href: BeatmapSetPageHash.generate mode: @props.beatmap.id, page: @props.currentPage
+      href: BeatmapsetPageHash.generate mode: @props.beatmap.id, page: @props.currentPage
       el BeatmapIcon,
         beatmap: @props.beatmap
         showTitle: false

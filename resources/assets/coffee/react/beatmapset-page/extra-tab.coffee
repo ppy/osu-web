@@ -18,7 +18,7 @@
 {a} = React.DOM
 el = React.createElement
 
-class BeatmapSetPage.ExtraTab extends React.Component
+class BeatmapsetPage.ExtraTab extends React.Component
   pageSwitch: (e) =>
     e.preventDefault()
 
@@ -29,7 +29,7 @@ class BeatmapSetPage.ExtraTab extends React.Component
     className += ' page-extra-tabs__item--active' if @props.page is @props.currentPage
 
     a
-      href: BeatmapSetPageHash.generate page: @props.page, mode: @props.currentMode
+      href: BeatmapsetPageHash.generate page: @props.page, mode: @props.currentMode
       className: className,
       onClick: @pageSwitch,
       'data-page-id': @props.page,

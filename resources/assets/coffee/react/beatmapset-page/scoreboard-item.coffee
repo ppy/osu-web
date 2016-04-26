@@ -18,7 +18,7 @@
 {div, span} = React.DOM
 el = React.createElement
 
-class BeatmapSetPage.ScoreboardItem extends React.Component
+class BeatmapsetPage.ScoreboardItem extends React.Component
   items = ['rank', 'flag', 'player', 'icons', 'score', 'accuracy']
 
   render: ->

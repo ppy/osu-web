@@ -18,7 +18,7 @@
 ###
 {div, span} = React.DOM
 
-class BeatmapSetPage.NoVideoToggle extends React.Component
+class BeatmapsetPage.NoVideoToggle extends React.Component
   render: ->
     className = 'beatmapset-details__novideo-tick'
     className += ' beatmapset-details__novideo-tick--enabled' if not @props.enabled

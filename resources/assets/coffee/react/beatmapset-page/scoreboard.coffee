@@ -18,7 +18,7 @@
 {div, span, p} = React.DOM
 el = React.createElement
 
-class BeatmapSetPage.Scoreboard extends React.Component
+class BeatmapsetPage.Scoreboard extends React.Component
   constructor: (props) ->
     super props
 
@@ -39,7 +39,7 @@ class BeatmapSetPage.Scoreboard extends React.Component
 
   _scores: ->
     div {},
-      el BeatmapSetPage.ScoreboardFirst,
+      el BeatmapsetPage.ScoreboardFirst,
         score: @props.scores[0]
         countries: @props.countries
 
@@ -52,7 +52,7 @@ class BeatmapSetPage.Scoreboard extends React.Component
             span className: className, key: m, Lang.get "beatmaps.beatmapset.show.extra.scoreboard.list.#{m}"
 
       @props.scores[1..].map (s, i) =>
-        el BeatmapSetPage.ScoreboardItem, score: s, position: i + 2, countries: @props.countries, key: i
+        el BeatmapsetPage.ScoreboardItem, score: s, position: i + 2, countries: @props.countries, key: i
 
 
   render: ->
@@ -61,7 +61,7 @@ class BeatmapSetPage.Scoreboard extends React.Component
 
     div
       className: 'page-extra beatmapset-scoreboard'
-      el BeatmapSetPage.ExtraHeader, name: 'scoreboard'
+      el BeatmapsetPage.ExtraHeader, name: 'scoreboard'
 
       if @props.scores.length == 0 and @props.currentScoreboard == 'global'
         p
@@ -73,7 +73,7 @@ class BeatmapSetPage.Scoreboard extends React.Component
             div {},
               div className: 'beatmapset-scoreboard__tabs',
                 scoreboards.map (m) =>
-                  el BeatmapSetPage.ScoreboardTab,
+                  el BeatmapsetPage.ScoreboardTab,
                     key: m
                     scoreboard: m
                     currentScoreboard: @props.currentScoreboard

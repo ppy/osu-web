@@ -18,11 +18,11 @@
 {div} = React.DOM
 el = React.createElement
 
-class BeatmapSetPage.Description extends React.Component
+class BeatmapsetPage.Description extends React.Component
   render: ->
     div
       className: 'page-extra'
-      el BeatmapSetPage.ExtraHeader, name: 'description'
+      el BeatmapsetPage.ExtraHeader, name: 'description'
 
       div className: 'beatmapset-description', dangerouslySetInnerHTML:
         __html: @props.description

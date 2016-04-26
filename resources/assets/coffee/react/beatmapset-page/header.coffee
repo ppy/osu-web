@@ -18,7 +18,7 @@
 {div, h1, h2, span} = React.DOM
 el = React.createElement
 
-class BeatmapSetPage.Header extends React.Component
+class BeatmapsetPage.Header extends React.Component
   render: ->
     div className: 'osu-layout__row osu-layout__row--page-compact',
       div
