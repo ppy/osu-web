@@ -100,7 +100,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
         window.pageXOffset
         window.pageYOffset
       ]
-      $(document).one 'page:load', ->
+      $(document).one 'turbolinks:load', ->
         window.scrollTo position[0], position[1]
     Turbolinks.visit url
 

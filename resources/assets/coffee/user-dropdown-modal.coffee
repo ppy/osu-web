@@ -111,7 +111,7 @@ window.userDropdownModal = new UserDropdownModal
 
 # for pages which require authentication
 # and being visited directly from outside
-$(document).on 'ready page:load', ->
+$(document).on 'ready turbolinks:load', ->
   return unless window.showLoginModal
 
   window.showLoginModal = null

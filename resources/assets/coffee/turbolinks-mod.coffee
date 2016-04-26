@@ -41,4 +41,4 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     parentNode.removeChild script
     parentNode.insertBefore copy, nextSibling
 
-  $(document).trigger 'page:load'
+  $(document).trigger 'turbolinks:load'
