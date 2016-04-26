@@ -107,26 +107,27 @@ BeatmapDiscussions.Post = React.createClass
         dangerouslySetInnerHTML:
           __html: @addEditorLink @props.post.message
 
-      div
-        className: "#{bn}__info"
+      div className: "#{bn}__info-container",
         span
+          className: "#{bn}__info"
           dangerouslySetInnerHTML:
             __html: "#{osu.link Url.user(@props.user.id), @props.user.username}, #{osu.timeago @props.post.created_at}"
 
+        if @props.post.updated_at != @props.post.created_at
+          span
+            className: "#{bn}__info #{bn}__info--edited"
+            dangerouslySetInnerHTML:
+              __html: Lang.get 'beatmaps.discussions.edited',
+                editor: osu.link Url.user(@props.lastEditor.id), @props.lastEditor.username
+                update_time: osu.timeago @props.post.updated_at
+
         if @props.canBeEdited
-          button
-            className: "#{bn}__edit-button"
-            onClick: @startEditing
-            Lang.get('beatmaps.discussions.edit')
-
-      if @props.post.updated_at != @props.post.created_at
-        div
-          className: "#{bn}__info #{bn}__info--edited"
-          dangerouslySetInnerHTML:
-            __html: Lang.get 'beatmaps.discussions.edited',
-              editor: osu.link Url.user(@props.lastEditor.id), @props.lastEditor.username
-              update_time: osu.timeago @props.post.updated_at
-
+          span
+            className: "#{bn}__info"
+            button
+              className: "#{bn}__edit-button"
+              onClick: @startEditing
+              Lang.get('beatmaps.discussions.edit')
 
 
   messageEditor: ->
