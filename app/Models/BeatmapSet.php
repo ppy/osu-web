@@ -694,6 +694,10 @@ class BeatmapSet extends Model
 
         $split = preg_split('[-{15}]', $post->bodyRaw);
 
-        return bbcode($split[1], $post->bbcode_uid, true);
+        // Return empty description if the pattern was not found
+        // (mostly older beatmapsets)
+        $description = count($split) > 1 ? $split[1] : "";
+
+        return bbcode($description, $post->bbcode_uid, true);
     }
 }
