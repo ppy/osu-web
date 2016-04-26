@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ff3b2f4f024022e8b852ef0e82cf2bc3",
-    "content-hash": "7b2c3cd14e8fda3488fe0d041b3a70bf",
+    "hash": "f8d2c2d707e423abe27aa9fbd215e9d2",
+    "content-hash": "ff17913eb1be968e563250513aa0bf1f",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.18.9",
+            "version": "3.18.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "965caffc3f6712cdc5ba88dadaad055b125dd95b"
+                "reference": "9398db378231fe723583fb8d7a919c1806f02be3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/965caffc3f6712cdc5ba88dadaad055b125dd95b",
-                "reference": "965caffc3f6712cdc5ba88dadaad055b125dd95b",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/9398db378231fe723583fb8d7a919c1806f02be3",
+                "reference": "9398db378231fe723583fb8d7a919c1806f02be3",
                 "shasum": ""
             },
             "require": {
@@ -85,7 +85,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2016-05-17 22:39:16"
+            "time": "2016-05-26 20:43:24"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -1019,16 +1019,16 @@
         },
         {
             "name": "guzzlehttp/promises",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "bb9024c526b22f3fe6ae55a561fd70653d470aa8"
+                "reference": "c10d860e2a9595f8883527fa0021c7da9e65f579"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/bb9024c526b22f3fe6ae55a561fd70653d470aa8",
-                "reference": "bb9024c526b22f3fe6ae55a561fd70653d470aa8",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/c10d860e2a9595f8883527fa0021c7da9e65f579",
+                "reference": "c10d860e2a9595f8883527fa0021c7da9e65f579",
                 "shasum": ""
             },
             "require": {
@@ -1066,7 +1066,7 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2016-03-08 01:15:46"
+            "time": "2016-05-18 16:56:05"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -1127,70 +1127,17 @@
             "time": "2016-04-13 19:56:01"
         },
         {
-            "name": "helthe/turbolinks",
-            "version": "1.4.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/helthe/Turbolinks.git",
-                "reference": "aea314ebb3116074ddcdd948ca349fc6deef269e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/helthe/Turbolinks/zipball/aea314ebb3116074ddcdd948ca349fc6deef269e",
-                "reference": "aea314ebb3116074ddcdd948ca349fc6deef269e",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "symfony/http-foundation": "~2.3"
-            },
-            "require-dev": {
-                "symfony/http-kernel": "~2.3"
-            },
-            "suggest": {
-                "symfony/http-kernel": "Required for usage with the Symfony HttpKernel Component"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.4.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Helthe\\Component\\Turbolinks\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Carl Alexander",
-                    "email": "carlalexander@helthe.co"
-                }
-            ],
-            "description": "Helthe Turbolinks Component",
-            "homepage": "https://helthe.co",
-            "keywords": [
-                "jquery.turbolinks",
-                "turbolinks"
-            ],
-            "time": "2014-12-10 14:32:54"
-        },
-        {
             "name": "itsgoingd/clockwork",
-            "version": "v1.11.1",
+            "version": "v1.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itsgoingd/clockwork.git",
-                "reference": "08f56e4445c45b21ba3a5ebb01f11dc5c7dde5d9"
+                "reference": "6327d3228d45f7c7389e57a20a7ca5df4cd4571a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/08f56e4445c45b21ba3a5ebb01f11dc5c7dde5d9",
-                "reference": "08f56e4445c45b21ba3a5ebb01f11dc5c7dde5d9",
+                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/6327d3228d45f7c7389e57a20a7ca5df4cd4571a",
+                "reference": "6327d3228d45f7c7389e57a20a7ca5df4cd4571a",
                 "shasum": ""
             },
             "require": {
@@ -1199,8 +1146,8 @@
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Clockwork": ""
+                "psr-4": {
+                    "Clockwork\\": "Clockwork/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1222,7 +1169,7 @@
                 "logging",
                 "profiling"
             ],
-            "time": "2016-03-16 23:33:19"
+            "time": "2016-05-19 19:20:57"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -1371,16 +1318,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.1.35",
+            "version": "v5.1.36",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "50c7e026db1da8a265482fef4417c92f46cc5b78"
+                "reference": "5945837bc61227f21530c8c4455de0842dc18c9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/50c7e026db1da8a265482fef4417c92f46cc5b78",
-                "reference": "50c7e026db1da8a265482fef4417c92f46cc5b78",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/5945837bc61227f21530c8c4455de0842dc18c9a",
+                "reference": "5945837bc61227f21530c8c4455de0842dc18c9a",
                 "shasum": ""
             },
             "require": {
@@ -1496,7 +1443,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-04-27 13:07:50"
+            "time": "2016-05-26 14:23:48"
         },
         {
             "name": "laravelcollective/html",
@@ -1555,16 +1502,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "0.13.2",
+            "version": "0.13.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "35ac362082ca983a8123df2ee2cdfcf456ab6295"
+                "reference": "35816f39eb2498484fbb7b1495633a976ee1a8de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/35ac362082ca983a8123df2ee2cdfcf456ab6295",
-                "reference": "35ac362082ca983a8123df2ee2cdfcf456ab6295",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/35816f39eb2498484fbb7b1495633a976ee1a8de",
+                "reference": "35816f39eb2498484fbb7b1495633a976ee1a8de",
                 "shasum": ""
             },
             "require": {
@@ -1575,6 +1522,7 @@
                 "colinodell/commonmark-php": "*"
             },
             "require-dev": {
+                "cebe/markdown": "~1.0",
                 "erusev/parsedown": "~1.0",
                 "jgm/commonmark": "0.25",
                 "michelf/php-markdown": "~1.4",
@@ -1619,7 +1567,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2016-03-27 19:10:13"
+            "time": "2016-05-21 18:41:30"
         },
         {
             "name": "league/event",
@@ -1938,7 +1886,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/statsd/zipball/92f34c882a6c4a553aa76d73169d4c1ed185f836",
+                "url": "https://api.github.com/repos/thephpleague/statsd/zipball/3dafde1b6c5e3896073cc947130cf9536b335975",
                 "reference": "3dafde1b6c5e3896073cc947130cf9536b335975",
                 "shasum": ""
             },
@@ -2582,23 +2530,23 @@
         },
         {
             "name": "predis/predis",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nrk/predis.git",
-                "reference": "84060b9034d756b4d79641667d7f9efe1aeb8e04"
+                "reference": "9ead747663bb1b1ae017dfa0d152aca87792b42f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/84060b9034d756b4d79641667d7f9efe1aeb8e04",
-                "reference": "84060b9034d756b4d79641667d7f9efe1aeb8e04",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/9ead747663bb1b1ae017dfa0d152aca87792b42f",
+                "reference": "9ead747663bb1b1ae017dfa0d152aca87792b42f",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.0"
+                "phpunit/phpunit": "~4.8"
             },
             "suggest": {
                 "ext-curl": "Allows access to Webdis when paired with phpiredis",
@@ -2621,14 +2569,14 @@
                     "homepage": "http://clorophilla.net"
                 }
             ],
-            "description": "Flexible and feature-complete PHP client library for Redis",
+            "description": "Flexible and feature-complete Redis client for PHP and HHVM",
             "homepage": "http://github.com/nrk/predis",
             "keywords": [
                 "nosql",
                 "predis",
                 "redis"
             ],
-            "time": "2015-07-30 18:34:15"
+            "time": "2016-05-30 15:25:52"
         },
         {
             "name": "psr/http-message",
@@ -3408,16 +3356,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.1.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "1289d16209491b584839022f29257ad859b8532d"
+                "reference": "dff51f72b0706335131b00a7f49606168c582594"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/1289d16209491b584839022f29257ad859b8532d",
-                "reference": "1289d16209491b584839022f29257ad859b8532d",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/dff51f72b0706335131b00a7f49606168c582594",
+                "reference": "dff51f72b0706335131b00a7f49606168c582594",
                 "shasum": ""
             },
             "require": {
@@ -3429,7 +3377,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "1.2-dev"
                 }
             },
             "autoload": {
@@ -3463,20 +3411,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-01-20 09:13:37"
+            "time": "2016-05-18 14:26:46"
         },
         {
             "name": "symfony/polyfill-php56",
-            "version": "v1.1.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php56.git",
-                "reference": "4d891fff050101a53a4caabb03277284942d1ad9"
+                "reference": "3edf57a8fbf9a927533344cef65ad7e1cf31030a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php56/zipball/4d891fff050101a53a4caabb03277284942d1ad9",
-                "reference": "4d891fff050101a53a4caabb03277284942d1ad9",
+                "url": "https://api.github.com/repos/symfony/polyfill-php56/zipball/3edf57a8fbf9a927533344cef65ad7e1cf31030a",
+                "reference": "3edf57a8fbf9a927533344cef65ad7e1cf31030a",
                 "shasum": ""
             },
             "require": {
@@ -3486,7 +3434,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "1.2-dev"
                 }
             },
             "autoload": {
@@ -3519,20 +3467,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-01-20 09:13:37"
+            "time": "2016-05-18 14:26:46"
         },
         {
             "name": "symfony/polyfill-util",
-            "version": "v1.1.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-util.git",
-                "reference": "8de62801aa12bc4dfcf85eef5d21981ae7bb3cc4"
+                "reference": "ef830ce3d218e622b221d6bfad42c751d974bf99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-util/zipball/8de62801aa12bc4dfcf85eef5d21981ae7bb3cc4",
-                "reference": "8de62801aa12bc4dfcf85eef5d21981ae7bb3cc4",
+                "url": "https://api.github.com/repos/symfony/polyfill-util/zipball/ef830ce3d218e622b221d6bfad42c751d974bf99",
+                "reference": "ef830ce3d218e622b221d6bfad42c751d974bf99",
                 "shasum": ""
             },
             "require": {
@@ -3541,7 +3489,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "1.2-dev"
                 }
             },
             "autoload": {
@@ -3571,7 +3519,7 @@
                 "polyfill",
                 "shim"
             ],
-            "time": "2016-01-20 09:13:37"
+            "time": "2016-05-18 14:26:46"
         },
         {
             "name": "symfony/process",
@@ -4061,16 +4009,16 @@
         },
         {
             "name": "mockery/mockery",
-            "version": "0.9.4",
+            "version": "0.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/padraic/mockery.git",
-                "reference": "70bba85e4aabc9449626651f48b9018ede04f86b"
+                "reference": "4db079511a283e5aba1b3c2fb19037c645e70fc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/70bba85e4aabc9449626651f48b9018ede04f86b",
-                "reference": "70bba85e4aabc9449626651f48b9018ede04f86b",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/4db079511a283e5aba1b3c2fb19037c645e70fc2",
+                "reference": "4db079511a283e5aba1b3c2fb19037c645e70fc2",
                 "shasum": ""
             },
             "require": {
@@ -4122,7 +4070,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2015-04-02 19:54:00"
+            "time": "2016-05-22 21:52:33"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -5091,16 +5039,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.0.6",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "0047c8366744a16de7516622c5b7355336afae96"
+                "reference": "eca51b7b65eb9be6af88ad7cc91685f1556f5c9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/0047c8366744a16de7516622c5b7355336afae96",
-                "reference": "0047c8366744a16de7516622c5b7355336afae96",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/eca51b7b65eb9be6af88ad7cc91685f1556f5c9a",
+                "reference": "eca51b7b65eb9be6af88ad7cc91685f1556f5c9a",
                 "shasum": ""
             },
             "require": {
@@ -5109,7 +5057,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "3.1-dev"
                 }
             },
             "autoload": {
@@ -5136,7 +5084,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-04 07:55:57"
+            "time": "2016-05-26 21:46:24"
         }
     ],
     "aliases": [],

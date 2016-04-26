@@ -17,7 +17,6 @@
     "graham-campbell/markdown": "*",
     "itsgoingd/clockwork": "~1.9",
     "maknz/slack": "*",
-    "helthe/turbolinks": "~1.4",
     "ezyang/htmlpurifier": "^4.7",
     "mariuzzo/laravel-js-localization": "^1.2.1",
     "league/fractal": "^0.13.0",

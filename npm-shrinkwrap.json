@@ -4799,7 +4799,7 @@
     },
     "jquery-ui": {
       "version": "1.10.5",
-      "from": "jquery-ui@latest",
+      "from": "https://registry.npmjs.org/jquery-ui/-/jquery-ui-1.10.5.tgz",
       "resolved": "https://registry.npmjs.org/jquery-ui/-/jquery-ui-1.10.5.tgz"
     },
     "jquery.scrollto": {
@@ -21381,6 +21381,11 @@
       "version": "1.5.0",
       "from": "https://registry.npmjs.org/timeago/-/timeago-1.5.0.tgz",
       "resolved": "https://registry.npmjs.org/timeago/-/timeago-1.5.0.tgz"
+    },
+    "turbolinks": {
+      "version": "5.0.0-beta4",
+      "from": "turbolinks@latest",
+      "resolved": "https://registry.npmjs.org/turbolinks/-/turbolinks-5.0.0-beta4.tgz"
     }
   }
 }
