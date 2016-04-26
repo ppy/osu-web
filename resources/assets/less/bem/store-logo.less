@@ -16,32 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+.store-logo {
+  background-image: url("/images/layout/store-logo-bg.svg");
+  background-repeat: no-repeat;
 
-.forum-post-content {
-    .content-font();
-    font-size: 13px;
-
-    &--edit {
-      .reset-input();
-      resize: vertical;
-      width: 100%;
-
-      @media @desktop {
-        min-height: 300px;
-      }
-    }
-
-    &--editor {
-      font-family: @font-family-monospace;
-    }
-
-    &--reply {
-      .reset-input();
-      resize: none;
-      width: 100%;
-
-      @media @desktop {
-        min-height: 150px;
-      }
-    }
+  display: block;
 }
