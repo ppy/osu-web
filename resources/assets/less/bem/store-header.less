@@ -96,10 +96,14 @@
 
     &--title {
       text-transform: uppercase;
-      font-size: @font-size--store-notice-title;
       font-weight: 900;
       color: @grey-0;
       letter-spacing: 3px;
+
+      // FIXME: there's a stronger setter in store/base.less
+      && {
+        font-size: @font-size--store-notice-title;
+      }
     }
   }
 }
