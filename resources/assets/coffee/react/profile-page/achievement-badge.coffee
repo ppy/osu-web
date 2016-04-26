@@ -23,7 +23,7 @@ class ProfilePage.AchievementBadge extends React.Component
     name = event.target.getAttribute 'data-tooltip-target'
 
     classes = 'qtip tooltip-achievement'
-    classes += ' tooltip-achievement--locked' if @props.isLocked
+    classes += ' tooltip-achievement--locked' if !@props.userAchievement?
 
     options =
       overwrite: false
