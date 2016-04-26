@@ -58,7 +58,6 @@ elixir(function(mix) {
     'jquery-pubsub.coffee',
     'osu!live.coffee',
     'osu_common.coffee',
-    'turbolinks-mod.coffee',
 
     'navbar-mobile.coffee',
     'spoilerbox.coffee',
