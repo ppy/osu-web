@@ -61,11 +61,12 @@ Route::get('/beatmaps/charts/{id?}', ['as' => 'charts', 'uses' => 'BeatmapContro
 Route::get('/beatmapsets/{id}', ['as' => 'set', 'uses' => 'BeatmapsetsController@getBeatmapset']);
 
 Route::get('/b/{id}', ['as' => 'beatmaps.show', function ($id) {
-    return Redirect::to('https://osu.ppy.sh/b/'.$id);
+    $setId = App\Models\Beatmap::find($id)->beatmapSet->beatmapset_id;
+    return Redirect::to(route('set', ['id' => $setId]).'#'.$id);
 }]);
 
 Route::get('/s/{id}', ['as' => 'beatmap-sets.show', function ($id) {
-    return Redirect::to('https://osu.ppy.sh/s/'.$id);
+    return Redirect::to(route('set', ['id' => $id]));
 }]);
 
 // ranking section
