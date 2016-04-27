@@ -34,7 +34,7 @@ class BeatmapController extends Controller
     {
         $set = Beatmap::find($id)->beatmapSet;
 
-        return Redirect::to(route('beatmapsets.show', ['id' => $set->beatmapset_id]).'#'.$id);
+        return ujs_redirect(route('beatmapsets.show', ['id' => $set->beatmapset_id]).'#'.$id);
     }
 
     public function getScores($id)
