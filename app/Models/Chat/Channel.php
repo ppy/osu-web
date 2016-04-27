@@ -48,7 +48,7 @@ class Channel extends Model implements Messageable
             return true;
         }
 
-        if ($user->isBanned() || $user->isRestricted() || $user->isSilenced() || $this->moderated) {
+        if ($this->moderated) {
             return false;
         }
 
@@ -57,10 +57,6 @@ class Channel extends Model implements Messageable
 
     public function canBeReadBy(User $user)
     {
-        if ($user->isBanned() || $user->isRestricted() || $user->isSilenced()) {
-            return false;
-        }
-
         switch (strtolower($this->type)) {
             case 'public':
                 return true;
@@ -106,5 +102,7 @@ class Channel extends Model implements Messageable
         $message->content = $body;
         $message->channel()->associate($this);
         $message->save();
+
+        return true;
     }
 }

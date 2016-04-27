@@ -95,6 +95,10 @@ class ChatController extends Controller
     {
         $current_user = User::find(Authorizer::getResourceOwnerId());
 
+        if ($current_user->isBanned() || $current_user->isRestricted() || $current_user->isSilenced()) {
+            return $this->error('not authorized', 401);
+        }
+
         $target_type = Request::input('target_type');
         switch ($target_type) {
             case 'channel':
@@ -106,7 +110,8 @@ class ChatController extends Controller
         }
 
         if (!$target || !$target->sendMessage($current_user, Request::input('message'))) {
-            abort(401);
+            return $this->error('not authorized', 401);
         }
+        return json_encode('ok');
     }
 }

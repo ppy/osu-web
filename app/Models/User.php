@@ -988,10 +988,6 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function canBeMessagedBy(User $sender)
     {
-        if ($sender->isBanned() || $sender->isRestricted() || $sender->isSilenced()) {
-            return false;
-        }
-
         // TODO: blocklist/ignore, etc
         return true;
     }
