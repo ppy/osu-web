@@ -225,10 +225,9 @@ function nav_links()
         ];
 
         $links['beatmaps'] = [
-            'getListing' => route('beatmaps'),
-            'getPacks' => route('packs'),
-            'getCharts' => route('charts'),
-            'getModding' => route('modding'),
+            'getListing' => route('beatmapsets.index'),
+            // 'getPacks' => route('packs.index'),
+            // 'getCharts' => route('charts.index'),
         ];
 
         $links['ranking'] = [

@@ -47,27 +47,19 @@ Route::get('/home/support', ['as' => 'support-the-game', 'uses' => 'HomeControll
 
 Route::get('/icons', 'HomeController@getIcons');
 
-// beatmaps section
-Route::get('/beatmaps', ['as' => 'beatmaps', 'uses' => 'BeatmapController@index']);
-Route::get('/beatmaps/search/{filters?}', ['as' => 'beatmaps.search', 'uses' => 'BeatmapController@search']);
+// Route::get('/beatmaps/packs', ['as' => 'packs', 'uses' => 'BeatmapController@getPacks']);
+// Route::get('/beatmaps/charts/{id?}', ['as' => 'charts', 'uses' => 'BeatmapController@getCharts']);
 
-// maps
-Route::get('/beatmaps/map/{id}', ['as' => 'beatmap', 'uses' => 'BeatmapController@getMap']);
-Route::get('/beatmaps/map/{id}/scores', ['as' => 'beatmap.scores', 'uses' => 'BeatmapController@getScores']);
-Route::get('/beatmaps/modding/{id?}', ['as' => 'modding', 'uses' => 'ModdingController@getModding']);
-Route::get('/beatmaps/packs', ['as' => 'packs', 'uses' => 'BeatmapController@getPacks']);
-Route::get('/beatmaps/charts/{id?}', ['as' => 'charts', 'uses' => 'BeatmapController@getCharts']);
+Route::resource('/beatmaps', 'BeatmapController', ['only' => ['show']]);
+Route::get('/beatmaps/{id}/scores', ['as' => 'beatmap.scores', 'uses' => 'BeatmapController@getScores']);
 
-Route::get('/beatmapsets/{id}', ['as' => 'set', 'uses' => 'BeatmapsetsController@getBeatmapset']);
+Route::resource('/beatmapsets', 'BeatmapsetsController', ['only' => ['index', 'show']]);
+Route::get('/beatmapset-search/{filters?}', ['as' => 'beatmaps.search', 'uses' => 'BeatmapsetsController@search']);
 
-Route::get('/b/{id}', ['as' => 'beatmaps.show', function ($id) {
-    $setId = App\Models\Beatmap::find($id)->beatmapSet->beatmapset_id;
-
-    return Redirect::to(route('set', ['id' => $setId]).'#'.$id);
-}]);
+Route::get('/b/{id}', 'BeatmapController@show');
 
 Route::get('/s/{id}', ['as' => 'beatmap-sets.show', function ($id) {
-    return Redirect::to(route('set', ['id' => $id]));
+    return Redirect::to(route('beatmapsets.show', ['id' => $id]));
 }]);
 
 // ranking section

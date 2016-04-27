@@ -29,7 +29,7 @@ class Beatmaps.Main extends React.Component
       query: null
       paging:
         page: 1
-        url: '/beatmaps/search'
+        url: '/beatmapset-search'
         loading: false
         more: beatmaps.length > 0
       filters: @filterDefaults

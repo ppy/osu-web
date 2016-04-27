@@ -23,7 +23,7 @@ el = React.createElement
 class Beatmaps.SearchPanel extends React.Component
   keyDelay: null
   prevText: null
-  search_url: '/beatmaps/search'
+  search_url: '/beatmapset-search'
 
   constructor: (props) ->
     super props

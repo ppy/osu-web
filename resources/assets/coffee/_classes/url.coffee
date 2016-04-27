@@ -30,7 +30,8 @@ class @Url
 
   @beatmapset: (id) => "/beatmapsets/#{id}"
 
-  @beatmapScores: (id) -> "/beatmaps/map/#{id}/scores"
+  @beatmap: (id) -> "/beatmaps/#{id}"
+  @beatmapScores: (id) -> "/beatmaps/#{id}/scores"
 
   @beatmapDiscussionVote: (discussionId) => "/beatmap-discussions/#{discussionId}/vote"
   @beatmapDiscussionPost: (id) => "/beatmap-discussion-posts/#{id}"

@@ -50,7 +50,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             'ar' => $beatmap->diff_approach,
             'playcount' => $beatmap->playcount,
             'passcount' => $beatmap->passcount,
-            'url' => route('beatmaps.show', ['id' => $beatmap->beatmap_id, 'm' => $beatmap->playmode]),
+            'url' => route('beatmaps.show', ['id' => $beatmap->beatmap_id]),
         ];
     }
 

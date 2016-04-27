@@ -40,13 +40,10 @@ return [
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'getListing' => 'listing',
-            'getBeatmapset' => 'info',
-            'getPacks' => 'packs',
-            'getCharts' => 'charts',
-            'getModding' => 'modding',
-            'moddingreact' => 'modding',
+            'show' => 'info',
             'index' => 'listing',
+            // 'getPacks' => 'packs',
+            // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [
             '_' => 'beatmapsets',
