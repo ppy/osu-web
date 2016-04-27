@@ -25,8 +25,8 @@ return [
     'forum' => [
         'admin_forum_id' => intval(env('ADMIN_FORUM_ID', 28)),
         'help_forum_ids' => array_map('intval', explode(' ', env('HELP_FORUM_IDS', '4 5 29 30 101'))),
-        'hours_before_doublepost' => 72,
-        'hours_before_topic_author_doublepost' => 24,
+        'doublePostTime' => 72,
+        'authorDoublePostTime' => 24,
         'slack_watch' => [
             'forum_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_FORUM_IDS', '5 29 101 4 30 2'))),
             'topic_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_TOPIC_IDS', '259747'))),
