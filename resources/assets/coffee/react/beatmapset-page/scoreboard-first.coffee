@@ -30,9 +30,7 @@ class BeatmapsetPage.ScoreboardFirst extends React.Component
             @props.score.user.data.username
           if @props.score.user.data.country
             el FlagCountry,
-              country:
-                code: @props.score.user.data.country
-                name: @props.countries[@props.score.user.data.country].name
+              country: @props.countries[@props.score.user.data.country]
               classModifiers: ['scoreboard']
         div className: 'beatmapset-scoreboard-first__avatar-container',
           div
