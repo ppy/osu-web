@@ -41,14 +41,14 @@ class BeatmapController extends Controller
     {
         $type = Request::input('type', 'global');
 
-        if (!Auth::check() && $type !== 'global') {
-            abort(403);
-        }
-
         $user = Auth::user();
 
-        if ($type !== 'global' && !$user->isSupporter()) {
-            return error_popup(trans('errors.supporter_only'));
+        if ($type !== 'global') {
+            if (!$user) {
+                abort(403);
+            } else if (!$user->isSupporter()) {
+                return error_popup(trans('errors.supporter_only'));
+            }
         }
 
         $beatmap = Beatmap::findOrFail($id);
