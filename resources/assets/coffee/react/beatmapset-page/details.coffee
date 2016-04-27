@@ -38,7 +38,7 @@ class BeatmapsetPage.Details extends React.Component
         div
           className: 'beatmapset-details__avatar avatar avatar--beatmapset'
           style:
-            backgroundImage: "url(#{@props.set.avatarUrl})"
+            backgroundImage: "url(#{@props.set.author.data.avatarUrl})"
 
       div className: 'beatmapset-details__mapper',
         Lang.get 'beatmaps.beatmapset.show.details.made-by'
