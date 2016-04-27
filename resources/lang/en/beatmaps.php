@@ -150,9 +150,9 @@ return [
                     'first' => [
                         'accuracy' => 'Accuracy:',
                         'score' => 'Score:',
-                        '300' => '300:',
-                        '100' => '100:',
-                        '50' => '50:',
+                        'count300' => '300:',
+                        'count100' => '100:',
+                        'count50' => '50:',
                     ],
                     'list' => [
                         'rank-header' => 'Rank',

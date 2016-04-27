@@ -19,7 +19,7 @@
 el = React.createElement
 
 class BeatmapsetPage.ScoreboardFirst extends React.Component
-  stats = ['score', 'accuracy', '300', '100', '50']
+  stats = ['score', 'accuracy', 'count300', 'count100', 'count50']
 
   render: ->
     div className: 'beatmapset-scoreboard-first',
@@ -42,17 +42,13 @@ class BeatmapsetPage.ScoreboardFirst extends React.Component
       div className: 'beatmapset-scoreboard-first__item beatmapset-scoreboard-first__item--right',
         stats.map (m) =>
           dt = Lang.get "beatmaps.beatmapset.show.extra.scoreboard.first.#{m}"
-          switch m
-            when 'score'
-              dd = @props.score.score.toLocaleString()
-            when 'accuracy'
-              dd = "#{_.round @props.score.accuracy * 100, 2}%"
-            when '300'
-              dd = @props.score.count300
-            when '100'
-              dd = @props.score.count100
-            when '50'
-              dd = @props.score.count50
+          dd = @props.score[m]
+
+          dd =
+            if m == 'accuracy'
+              "#{_.round @props.score.accuracy * 100, 2}%"
+            else
+              dd.toLocaleString()
 
           el 'dl', className: 'beatmapset-scoreboard-first__stat-row', key: m,
             el 'dt', className: 'beatmapset-scoreboard-first__stat', dt
