@@ -31,7 +31,9 @@ class BeatmapsetPage.Header extends React.Component
         div className: 'beatmapset-header__title-box beatmapset-header__title-box--right',
           div className: 'beatmapset-header__title beatmapset-header__title--stat',
             span className: 'beatmapset-header__stat-number', @props.playcount.toLocaleString()
-            el Icon, name: 'play-circle', className: 'beatmapset-header__icon beatmapset-header__icon--playcount'
+            span className: 'beatmapset-header__icon beatmapset-header__icon--playcount',
+              el Icon, name: 'play-circle'
           div className: 'beatmapset-header__title beatmapset-header__title--stat',
             span className: 'beatmapset-header__stat-number', @props.favcount.toLocaleString()
-            el Icon, name: 'heart', className: 'beatmapset-header__icon beatmapset-header__icon--playcount'
+            span className: 'beatmapset-header__icon beatmapset-header__icon--playcount',
+              el Icon, name: 'heart', className: 'beatmapset-header__icon beatmapset-header__icon--playcount'

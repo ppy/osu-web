@@ -46,7 +46,7 @@ class BeatmapController extends Controller
         if ($type !== 'global') {
             if (!$user) {
                 abort(403);
-            } else if (!$user->isSupporter()) {
+            } elseif (!$user->isSupporter()) {
                 return error_popup(trans('errors.supporter_only'));
             }
         }
