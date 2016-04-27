@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, p, span, hr, a} = React.DOM
+{div, p, span, hr, a, label, input} = React.DOM
 el = React.createElement
 
 class BeatmapsetPage.Details extends React.Component
@@ -26,11 +26,7 @@ class BeatmapsetPage.Details extends React.Component
     super props
 
     @state =
-      video: true
-
-  toggleVideo: =>
-    @setState (state, props) =>
-      video: !state.video
+      noVideo: false
 
   render: ->
     div className: 'page-contents__content beatmapset-details',
@@ -74,11 +70,21 @@ class BeatmapsetPage.Details extends React.Component
               className: 'beatmapset-details__button'
               Lang.get 'beatmaps.beatmapset.show.details.download.direct'
             a
-              href: Url.beatmapDownload @props.set.beatmapset_id, @state.video
+              href: Url.beatmapDownload @props.set.beatmapset_id, !@state.noVideo
               className: 'beatmapset-details__button'
               Lang.get 'beatmaps.beatmapset.show.details.download.normal'
 
             if @props.set.video
-              div onClick: @toggleVideo,
-                el BeatmapsetPage.NoVideoCheckbox,
-                  enabled: @state.video
+              div className: 'beatmapset-details__novideo',
+                label className: 'osu-checkbox',
+                  input
+                    className: 'osu-checkbox__input'
+                    type: 'checkbox'
+                    checked: @state.noVideo
+                    onChange: (e) => @setState noVideo: e.target.checked
+
+                  span className: 'osu-checkbox__tick',
+                    el Icon, name: 'check'
+
+                div className: 'beatmapset-details__text',
+                  Lang.get 'beatmaps.beatmapset.show.details.download.no-video'
