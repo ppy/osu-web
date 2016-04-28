@@ -16,25 +16,12 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-beatmaps = []
-beatmaps[beatmap.id] = beatmap for beatmap in set.beatmaps.data
-
-beatmapsByMode = []
-beatmapsByMode[mode] = [] for mode in osu.modes
-beatmapsByMode[beatmap.mode].push beatmap for beatmap in set.beatmaps.data
-
-beatmapCount = []
-beatmapCount[mode] = 0 for mode in osu.modes
-beatmapCount[beatmap.mode]++ for beatmap in set.beatmaps.data
-
-displayedBeatmap = _.last(set.beatmaps.data).id
-
 propsFunction = =>
   set: set
-  beatmaps: beatmaps
-  beatmapsByMode: beatmapsByMode
-  beatmapCount: beatmapCount
-  displayedBeatmap: displayedBeatmap
+  beatmaps: _.keyBy set.beatmaps.data, (o) -> o.id
+  beatmapsByMode: _.groupBy set.beatmaps.data, (o) -> o.mode
+  beatmapCount: _.countBy set.beatmaps.data, (o) -> o.mode
+  displayedBeatmap: _.last(set.beatmaps.data).id
   countries: _.keyBy countries, (o) -> o.code
 
 reactTurbolinks.register 'beatmapset-page', BeatmapsetPage.Main, propsFunction
