@@ -18,16 +18,15 @@
 {div, h2, span} = React.DOM
 el = React.createElement
 
-class ProfilePage.Extra extends StickyTabsPage
-  constructor: (props) ->
-    super props
+ProfilePage.Extra = React.createClass
+  mixins: [StickyTabsMixin]
 
-    @state =
-      tabsSticky: false
-      profileOrder: @props.user.profileOrder
+  getInitialState: ->
+    tabsSticky: false
+    profileOrder: @props.user.profileOrder
 
 
-  componentDidMount: =>
+  componentDidMount: ->
     @_removeListeners()
     $.subscribe 'stickyHeader.profileContentsExtra', @_tabsStick
     osu.pageChange()
@@ -50,14 +49,14 @@ class ProfilePage.Extra extends StickyTabsPage
         update: @updateOrder
 
 
-  componentWillUnmount: =>
+  componentWillUnmount: ->
     @_removeListeners()
 
     for sortable in ['pages', 'tabs', 'fixedTabs']
       $(@refs[sortable]).sortable 'destroy'
 
 
-  componentWillReceiveProps: (newProps) =>
+  componentWillReceiveProps: (newProps) ->
     @setState profileOrder: newProps.user.profileOrder
     osu.pageChange()
 
@@ -67,7 +66,7 @@ class ProfilePage.Extra extends StickyTabsPage
     $(window).off '.profileContentsExtra'
 
 
-  updateOrder: (event) =>
+  updateOrder: (event) ->
     $elems = $(event.target)
 
     newOrder = $elems.sortable('toArray', attribute: 'data-page-id')
@@ -94,7 +93,7 @@ class ProfilePage.Extra extends StickyTabsPage
       .always LoadingOverlay.hide
 
 
-  render: =>
+  render: ->
     withMePage = @props.userPage.html != '' || @props.withEdit
 
     tabs = div

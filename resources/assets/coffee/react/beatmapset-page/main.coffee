@@ -18,31 +18,30 @@
 {div} = React.DOM
 el = React.createElement
 
-class BeatmapsetPage.Main extends SwitchableModePage
-  constructor: (props) ->
-    super props
+BeatmapsetPage.Main = React.createClass
+  mixins: [SwitchableModeMixin]
 
+  getInitialState: ->
     optionsHash = BeatmapsetPageHash.parse location.hash
     @initialPage = optionsHash.page
     @timeouts = {}
 
-    currentMode = if optionsHash.mode then parseInt optionsHash.mode, 10 else props.displayedBeatmap
+    currentMode = if optionsHash.mode then parseInt optionsHash.mode, 10 else @props.displayedBeatmap
 
-    @state =
-      currentMode: currentMode
-      currentPlaymode: props.beatmaps[currentMode].mode
-      currentScoreboard: 'global'
-      scores: props.beatmaps[currentMode].scoresBest.data
-      loading: false
+    currentMode: currentMode
+    currentPlaymode: @props.beatmaps[currentMode].mode
+    currentScoreboard: 'global'
+    scores: @props.beatmaps[currentMode].scoresBest.data
+    loading: false
 
   setHash: ->
     osu.setHash BeatmapsetPageHash.generate page: @state.currentPage, mode: @state.currentMode
 
-  setCurrentPlaymode: (_e, playmode) =>
+  setCurrentPlaymode: (_e, playmode) ->
     return if @state.currentPlaymode == playmode
     @setState currentPlaymode: playmode, @setHash
 
-  setCurrentScoreboard: (_e, scoreboard) =>
+  setCurrentScoreboard: (_e, scoreboard) ->
     return if @state.loading
 
     if scoreboard == 'global'
@@ -71,9 +70,8 @@ class BeatmapsetPage.Main extends SwitchableModePage
         $.publish 'beatmapset:scoreboard:loading', false
         @setState loading: false
 
-
-  setCurrentMode: (_e, mode) =>
-    super _e, mode
+  _setCurrentMode: (_e, mode) ->
+    @setCurrentMode _e, mode
 
     @setState
       currentScoreboard: 'global'
@@ -82,7 +80,7 @@ class BeatmapsetPage.Main extends SwitchableModePage
   componentDidMount: ->
     @removeListeners()
 
-    $.subscribe 'beatmapset:mode:set.beatmapSetPage', @setCurrentMode
+    $.subscribe 'beatmapset:mode:set.beatmapSetPage', @_setCurrentMode
     $.subscribe 'beatmapset:playmode:set.beatmapSetPage', @setCurrentPlaymode
     $.subscribe 'beatmapset:page:jump.beatmapSetPage', @pageJump
     $.subscribe 'beatmapset:scoreboard:set.beatmapSetPage', @setCurrentScoreboard

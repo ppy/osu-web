@@ -18,12 +18,13 @@
 {div} = React.DOM
 el = React.createElement
 
-class BeatmapsetPage.Extra extends StickyTabsPage
-  constructor: (props) ->
-    super props
+elements = ['description', 'success-rate', 'scoreboard']
 
-    @state =
-      tabsSticky: false
+BeatmapsetPage.Extra = React.createClass
+  mixins: [StickyTabsMixin]
+
+  getInitialState: ->
+    tabsSticky: false
 
 
   componentDidMount: ->
@@ -38,9 +39,6 @@ class BeatmapsetPage.Extra extends StickyTabsPage
   _removeListeners: ->
     $.unsubscribe '.beatmapSetPageExtra'
     $(window).off '.beatmapSetPageExtra'
-
-
-  elements = ['description', 'success-rate', 'scoreboard']
 
   render: ->
     tabs = div className: 'hidden-xs page-extra-tabs__container',

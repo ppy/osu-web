@@ -15,31 +15,32 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class @SwitchableModePage extends React.Component
-  setCurrentMode: (_e, mode) =>
+
+pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
+pagesOffset = document.getElementsByClassName("js-switchable-mode-page--scrollspy-offset")
+
+@SwitchableModeMixin =
+  setCurrentMode: (_e, mode) ->
     return if @state.currentMode == mode
     @setState currentMode: mode, @setHash
 
-  setCurrentPage: (_e, page, callback) =>
+  setCurrentPage: (_e, page, callback) ->
     return if @state.currentPage == page
     @setState currentPage: page, =>
       callback() if callback
       @setHash()
 
-  pages: document.getElementsByClassName("js-switchable-mode-page--scrollspy")
-  pagesOffset: document.getElementsByClassName("js-switchable-mode-page--scrollspy-offset")
-
-  pageScan: =>
+  pageScan: ->
     return if @scrolling
-    return if @pages.length == 0
+    return if pages.length == 0
 
-    anchorHeight = @pagesOffset[0].getBoundingClientRect().height
+    anchorHeight = pagesOffset[0].getBoundingClientRect().height
 
     if osu.bottomPage()
-      @setCurrentPage null, _.last(@pages).dataset.pageId
+      @setCurrentPage null, _.last(pages).dataset.pageId
       return
 
-    for page in @pages
+    for page in pages
       pageDims = page.getBoundingClientRect()
       pageBottom = pageDims.bottom - Math.min(pageDims.height * 0.75, 200)
       continue unless pageBottom > anchorHeight
@@ -50,7 +51,7 @@ class @SwitchableModePage extends React.Component
     @setCurrentPage null, page.dataset.pageId
 
 
-  pageJump: (_e, page) =>
+  pageJump: (_e, page) ->
     if page == 'main'
       @setCurrentPage null, page
       return
@@ -75,4 +76,4 @@ class @SwitchableModePage extends React.Component
           # Both still change the switch too soon.
           @timeouts.scrolling = setTimeout (=> @scrolling = false), 100
       # count for the tabs height
-      offset: @pagesOffset[0].getBoundingClientRect().height * -1
+      offset: pagesOffset[0].getBoundingClientRect().height * -1

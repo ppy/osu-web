@@ -53,6 +53,7 @@ elixir(function(mix) {
   .coffee([
     '_classes/*.coffee',
     'react/_components/*.coffee',
+    'react/_mixins/*.coffee',
 
     'jquery-pubsub.coffee',
     'osu!live.coffee',

@@ -18,45 +18,43 @@
 {div} = React.DOM
 el = React.createElement
 
-class ProfilePage.Main extends SwitchableModePage
-  constructor: (props) ->
-    super props
+ProfilePage.Main = React.createClass
+  mixins: [SwitchableModeMixin]
 
+  getInitialState: ->
     optionsHash = ProfilePageHash.parse location.hash
     @initialPage = optionsHash.page
     @timeouts = {}
 
-    @state =
-      currentMode: optionsHash.mode || props.user.playmode
-      user: props.user
-      userPage:
-        html: props.userPage.html
-        initialRaw: props.userPage.raw
-        raw: props.userPage.raw
-        editing: false
-        selection: [0, 0]
-      isCoverUpdating: false
+    currentMode: optionsHash.mode || @props.user.playmode
+    user: @props.user
+    userPage:
+      html: @props.userPage.html
+      initialRaw: @props.userPage.raw
+      raw: @props.userPage.raw
+      editing: false
+      selection: [0, 0]
+    isCoverUpdating: false
 
-
-  coverUploadState: (_e, state) =>
+  coverUploadState: (_e, state) ->
     @setState isCoverUpdating: state
 
 
-  setHash: =>
+  setHash: ->
     osu.setHash ProfilePageHash.generate(page: @state.currentPage, mode: @state.currentMode)
 
 
-  userUpdate: (_e, user) =>
+  userUpdate: (_e, user) ->
     return if !user?
     @setState user: user
 
 
-  userPageUpdate: (_e, newUserPage) =>
+  userPageUpdate: (_e, newUserPage) ->
     currentUserPage = _.cloneDeep @state.userPage
     @setState userPage: _.extend(currentUserPage, newUserPage)
 
 
-  componentDidMount: =>
+  componentDidMount: ->
     @removeListeners()
     $.subscribe 'user:update.profilePage', @userUpdate
     $.subscribe 'user:cover:upload:state.profilePage', @coverUploadState
@@ -68,18 +66,18 @@ class ProfilePage.Main extends SwitchableModePage
     @pageJump null, @initialPage
 
 
-  componentWillUnmount: =>
+  componentWillUnmount: ->
     for own _name, timeout of @timeouts
       clearTimeout timeout
 
     @removeListeners()
 
 
-  removeListeners: =>
+  removeListeners: ->
     $.unsubscribe '.profilePage'
     $(window).off '.profilePage'
 
-  render: =>
+  render: ->
     rankHistories = @props.allRankHistories[@state.currentMode]?.data
     stats = @props.allStats[@state.currentMode].data
     scores = @props.allScores[@state.currentMode].data
