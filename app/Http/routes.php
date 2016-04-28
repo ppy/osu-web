@@ -53,8 +53,8 @@ Route::get('/icons', 'HomeController@getIcons');
 Route::resource('/beatmaps', 'BeatmapController', ['only' => ['show']]);
 Route::get('/beatmaps/{id}/scores', ['as' => 'beatmap.scores', 'uses' => 'BeatmapController@getScores']);
 
+Route::get('/beatmapsets/search/{filters?}', ['as' => 'beatmapsets.search', 'uses' => 'BeatmapsetsController@search']);
 Route::resource('/beatmapsets', 'BeatmapsetsController', ['only' => ['index', 'show']]);
-Route::get('/beatmapset-search/{filters?}', ['as' => 'beatmaps.search', 'uses' => 'BeatmapsetsController@search']);
 
 Route::get('/b/{id}', 'BeatmapController@show');
 
