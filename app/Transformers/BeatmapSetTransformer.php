@@ -25,6 +25,7 @@ use League\Fractal;
 class BeatmapSetTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
+        'description',
         'author',
         'beatmaps',
         'user',
@@ -40,7 +41,6 @@ class BeatmapSetTransformer extends Fractal\TransformerAbstract
             'beatmapset_id' => $beatmap->beatmapset_id,
             'title' => $beatmap->title,
             'artist' => $beatmap->artist,
-            'description' => $beatmap->description(),
             'play_count' => $beatmap->play_count,
             'favourite_count' => $beatmap->favourite_count,
             'submitted' => $beatmap->submit_date->toIso8601String(),
@@ -53,6 +53,15 @@ class BeatmapSetTransformer extends Fractal\TransformerAbstract
             'tags' => $beatmap->tags,
             'video' => $beatmap->video,
         ];
+    }
+
+    public function includeDescription(BeatmapSet $beatmapSet)
+    {
+        return $this->item($beatmapSet, function ($beatmapSet) {
+            return [
+                'description' => $beatmapSet->description(),
+            ];
+        });
     }
 
     public function includeAuthor(BeatmapSet $beatmapSet)
