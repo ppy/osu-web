@@ -24,7 +24,6 @@ use App\Models\BeatmapSet;
 use App\Transformers\ScoreTransformer;
 use Request;
 use Auth;
-use Redirect;
 
 class BeatmapController extends Controller
 {
