@@ -64,13 +64,12 @@ class BeatmapController extends Controller
                     });
                 break;
             case 'friend':
-                $tableName = $scores->getModel()->getTable();
+                $friends = array_map(function ($relation) {
+                    return $relation->zebra_id;
+                }, $user->friends->all());
 
                 $scores = $scores
-                    ->join('phpbb_zebra', $tableName.'.user_id', '=', 'phpbb_zebra.zebra_id')
-                    ->where('phpbb_zebra.user_id', $user->user_id)
-                    ->where('phpbb_zebra.friend', true)
-                    ->select($tableName.'.*');
+                    ->whereIn('user_id', $friends);
                 break;
         }
 
