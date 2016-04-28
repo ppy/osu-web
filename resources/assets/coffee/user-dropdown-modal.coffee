@@ -99,7 +99,7 @@ class UserDropdownModal
     else if window.reloadUrl
       url = window.reloadUrl
       window.reloadUrl = null
-      Turbolinks.visit url
+      Turbolinks.visit url, action: 'replace'
     else
       osu.reloadPage(null, true)
 
