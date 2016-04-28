@@ -21,7 +21,7 @@ class @Url
 
   @beatmapDownload: (id, video = true) ->
     url = "https://osu.ppy.sh/d/#{id}"
-    url += 'n' if not video
+    url += 'n' if !video
     url
 
   @beatmapDownloadDirect: (id) -> "osu://dl/#{id}"

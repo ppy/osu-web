@@ -20,7 +20,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use DB;
 
 class BeatmapFailtimes extends Model
 {
@@ -54,15 +53,14 @@ class BeatmapFailtimes extends Model
     public function delete()
     {
         // only because laravel can't seem to support composite primary keys
-        DB::table($this->table)
-            ->where('beatmap_id', $this->beatmap_id)
+        static::where('beatmap_id', $this->beatmap_id)
             ->where('type', $this->type)
             ->delete();
     }
 
     public static function find($beatmap_id, $type)
     {
-        return self::where('beatmap_id', '=', $beatmap_id)
+        return static::where('beatmap_id', '=', $beatmap_id)
             ->where('type', '=', $type)
             ->first();
     }

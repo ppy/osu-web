@@ -692,11 +692,11 @@ class BeatmapSet extends Model
         $topic = Topic::find($this->thread_id);
         $post = Post::find($topic->topic_first_post_id);
 
-        $split = preg_split('[-{15}]', $post->bodyRaw);
+        $split = preg_split('[-{15}]', $post->post_text);
 
         // Return empty description if the pattern was not found
         // (mostly older beatmapsets)
-        $description = count($split) > 1 ? $split[1] : '';
+        $description = $split[1] ?? '';
 
         return bbcode($description, $post->bbcode_uid, true);
     }

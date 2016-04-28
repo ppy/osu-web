@@ -29,10 +29,10 @@ class @BeatmapsetPageHash
       mode: split[0]
       page: split[1] || 'main'
 
-  @generate: (options) ->
-    if @noMode(options.page)
-      "##{options.page}"
+  @generate: ({page, mode}) ->
+    if @noMode(page)
+      "##{page}"
     else
-      hash = "##{options.mode}"
-      hash += "/#{options.page}" if options.page != 'main'
+      hash = "##{mode}"
+      hash += "/#{page}" if page != 'main'
       hash
