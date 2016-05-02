@@ -31,9 +31,12 @@
 @section("script")
     @parent
 
-    <script data-turbolinks-eval="always">
-        var set = {!! json_encode($set['data']) !!};
-        var countries = {!! json_encode($countries['data']) !!};
+    <script id="json-beatmapset" type="application/json">
+        {!! json_encode($set) !!}
+    </script>
+
+    <script id="json-countries" type="application/json">
+        {!! json_encode($countries) !!}
     </script>
 
     <script src="{{ elixir("js/react/beatmapset-page.js") }}" data-turbolinks-track></script>
