@@ -139,14 +139,12 @@
                     @endif
                 >
                 {{ trans('store.product.add-to-cart') }}</button>
-            </div>
 
-            <div class="big-button">
-                <button type="submit" class="js-store-notify btn-osu btn-osu-default" formaction="{{ route('store.request-notification', ['product_id' => $product->product_id]) }}" data-remote="true"
+                <a class="js-store-notify btn-osu btn-osu-default" href="{{ route('store.request-notification', ['product_id' => $product->product_id]) }}" data-remote="true" data-method="post"
                     @if($product->inStock() || $requestedNotification)
                         style="display: none;"
                     @endif
-                >{{ trans('store.product.notify') }}</button>
+                >{{ trans('store.product.notify') }}</a>
             </div>
 
             <div class="store-notification-requested-alert js-store-notification-alert"
@@ -160,10 +158,4 @@
         </div>
 
     {!! Form::close() !!}
-@endsection
-
-@section("script")
-    <script data-turbolinks-eval="always">
-        var productId = {!! json_encode($product->product_id) !!};
-    </script>
 @endsection
