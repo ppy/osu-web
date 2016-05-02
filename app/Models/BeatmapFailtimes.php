@@ -29,7 +29,6 @@ class BeatmapFailtimes extends Model
 
     protected $casts = [
         'beatmap_id' => 'integer',
-        'type' => 'string',
     ];
 
     public function getDataAttribute()
