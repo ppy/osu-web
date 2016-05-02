@@ -142,7 +142,7 @@
             </div>
 
             <div class="big-button">
-                <button type="button" class="js-store-notify btn-osu btn-osu-default"
+                <button type="submit" class="js-store-notify btn-osu btn-osu-default" formaction="{{ route('store.request-notification', ['product_id' => $product->product_id]) }}" data-remote="true"
                     @if($product->inStock() || $requestedNotification)
                         style="display: none;"
                     @endif

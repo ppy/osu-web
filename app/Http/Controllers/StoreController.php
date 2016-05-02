@@ -266,7 +266,7 @@ class StoreController extends Controller
         ]);
 
         if ($request) {
-            return ['ok' => true];
+            return ujs_redirect(route('store.product', ['id' => $product_id]));
         } else {
             return error_popup(trans('erorrs.unknown'));
         }

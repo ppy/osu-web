@@ -98,7 +98,10 @@ Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);
 
 // catchall controllers
 Route::controller('/notifications', 'NotificationController');
-Route::controller('/store', 'StoreController');
+Route::controller('/store', 'StoreController', [
+    'getProduct' => 'store.product',
+    'postRequestNotification' => 'store.request-notification',
+]);
 
 Route::post('/users/check-username-availability', ['as' => 'users.check-username-availability', 'uses' => 'UsersController@checkUsernameAvailability']);
 Route::post('/users/login', ['as' => 'users.login', 'uses' => 'UsersController@login']);

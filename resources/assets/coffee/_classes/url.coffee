@@ -21,8 +21,6 @@ class @Url
 
   @requestSlackInvite: '/community/slack/agree'
 
-  @requestProductNotification: (id) -> "/store/request-notification/#{id}"
-
   @beatmapset: (id) => "/s/#{id}"
 
   @beatmapDiscussionVote: (discussionId) => "/beatmap-discussions/#{discussionId}/vote"
