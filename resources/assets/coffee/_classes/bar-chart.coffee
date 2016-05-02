@@ -25,9 +25,13 @@ class @BarChart
     bottom: 0
     left: 0
 
-  constructor: (area, @options = {}) ->
-    @options.scales.x ||= d3.scale.linear()
-    @options.scales.y ||= d3.scale.linear()
+  options:
+    scales:
+      x: d3.scale.linear()
+      y: d3.scale.linear()
+
+  constructor: (area, options = {}) ->
+    _.merge(@options, options)
 
     @area = d3.select area
     @svg = @area.append 'svg'
