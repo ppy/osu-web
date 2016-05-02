@@ -18,8 +18,6 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 @osu =
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
 
-  modes: ['osu', 'taiko', 'fruits', 'mania']
-
   setHash: (newHash) ->
     newState = _.cloneDeep history.state
     newState.url = location.href.replace /#.*/, ''

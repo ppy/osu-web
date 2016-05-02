@@ -16,8 +16,10 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-class @DifficultyRating
-  @get: (rating) ->
+class @BeatmapHelper
+  @modes: ['osu', 'taiko', 'fruits', 'mania']
+
+  @getDiffRating: (rating) ->
     if rating < 1.5
       'easy'
     else if rating < 2.25

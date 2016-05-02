@@ -29,9 +29,13 @@ el = React.createElement
   render: ->
     beatmap = @props.beatmap
 
-    difficultyRating = if @props.overrideVersion? then @props.overrideVersion else DifficultyRating.get beatmap.difficulty_rating
+    difficultyRating =
+      if @props.overrideVersion?
+        @props.overrideVersion
+      else
+        BeatmapHelper.getDiffRating beatmap.difficulty_rating
 
-    showTitle = @props.showTitle and !@props.overrideVersion?
+    showTitle = @props.showTitle && !@props.overrideVersion?
 
     div
       className: "beatmap-icon beatmap-icon--#{difficultyRating} beatmap-icon--#{@props.modifier}"
