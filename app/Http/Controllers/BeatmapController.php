@@ -64,12 +64,8 @@ class BeatmapController extends Controller
                     });
                 break;
             case 'friend':
-                $friends = array_map(function ($relation) {
-                    return $relation->zebra_id;
-                }, $user->friends->all());
-
                 $scores = $scores
-                    ->whereIn('user_id', $friends);
+                    ->whereIn('user_id', $user->friends()->lists('zebra_id')->all());
                 break;
         }
 
