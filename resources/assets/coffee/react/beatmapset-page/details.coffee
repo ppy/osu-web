@@ -42,11 +42,12 @@ class BeatmapsetPage.Details extends React.Component
 
       div className: 'beatmapset-details__date',
         Lang.get 'beatmaps.beatmapset.show.details.submitted'
-        moment(@props.set.submitted).format DATE_FORMAT
+        moment(@props.set.submitted_date).format DATE_FORMAT
 
-      div className: 'beatmapset-details__date',
-        Lang.get 'beatmaps.beatmapset.show.details.ranked'
-        moment(@props.set.ranked).format DATE_FORMAT
+      if @props.set.ranked_date
+        div className: 'beatmapset-details__date',
+          Lang.get 'beatmaps.beatmapset.show.details.ranked'
+          moment(@props.set.ranked_date).format DATE_FORMAT
 
       hr className: 'beatmapset-details__line'
 
