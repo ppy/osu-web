@@ -87,7 +87,6 @@ class BeatmapSeeder extends Seeder
                     $set->play_count = $set_playcount;
                     $set->favourite_count = $the_beatmap->favourite_count;
                     $set->user_id = array_rand_val($users)['user_id'];
-                    $set->approved_date = Carbon::now();
                     $set->submit_date = Carbon::now();
                     $set->save();
 
