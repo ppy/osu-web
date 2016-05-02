@@ -18,6 +18,8 @@
 {div, p, span} = React.DOM
 el = React.createElement
 
+legend = ['retry', 'fail']
+
 class BeatmapsetPage.SuccessRate extends React.Component
   componentDidMount: ->
     @_renderChart()
@@ -50,8 +52,6 @@ class BeatmapsetPage.SuccessRate extends React.Component
       $(window).on 'throttled-resize.beatmapSetPageSuccessRate', @_successRateChart.resize
 
     @_successRateChart.loadData data
-
-  legend = ['retry', 'fail']
 
   render: ->
     div
