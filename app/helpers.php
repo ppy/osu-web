@@ -238,7 +238,7 @@ function nav_links()
         ];
     } else {
         $links['beatmaps'] = [
-            'getListing' => route('beatmaps'),
+            'index' => route('beatmapsets.index'),
         ];
     }
 
