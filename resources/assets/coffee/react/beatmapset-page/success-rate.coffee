@@ -33,9 +33,10 @@ class BeatmapsetPage.SuccessRate extends React.Component
   _renderChart: ->
     return unless @props.failtimes.length > 0
 
-    data = @props.failtimes.map (m) -> m.data
+    failtimes = _.map @props.failtimes, (m) -> m.data
+    data = _.zip failtimes[0], failtimes[1]
 
-    max = Math.max d3.max(data[0]), d3.max(data[1])
+    max = d3.max _.map data, (m) -> m[0] + m[1]
 
     unless @_successRateChart
       scales =

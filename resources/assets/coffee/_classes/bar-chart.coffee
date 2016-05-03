@@ -39,7 +39,11 @@ class @BarChart
     @svgWrapper = @svg.append 'g'
 
   loadData: (data) ->
-    @data = data
+    @data = _.map data, (m) ->
+      for d, i in m
+        d =
+          value: d
+          height: if i > 0 then m[i - 1] else 0
 
     @resize()
 
@@ -52,7 +56,7 @@ class @BarChart
   setScalesRange: ->
     @options.scales.x
       .range [0, @width]
-      .domain [0, @data[0].length - 1] # for now we assume that datasets have equal lengths
+      .domain [0, @data.length]
 
     @options.scales.y
       .range [0, @height]
@@ -68,26 +72,37 @@ class @BarChart
       .attr 'transform', "translate(#{@margins.left}, #{@margins.top})"
 
   drawBars: ->
-    for data, i in @data
-      bars = @svgWrapper
-        .selectAll ".#{@options.className}__bar--#{i}"
-        .data data
+    groups = @svgWrapper
+      .selectAll 'g'
+      .data @data
 
-      bars
-        .enter()
-        .append 'rect'
-        .classed "#{@options.className}__bar #{@options.className}__bar--#{i}", true
+    groups
+      .enter()
+      .append 'g'
+      .attr 'transform', (d, i) => "translate(#{@options.scales.x i}, 0)"
 
-      bars
-        .transition @transition
-        .attr 'x', (d, i) => @options.scales.x i
-        .attr 'y', (d) => @options.scales.y d
-        .attr 'height', (d) => @height - @options.scales.y d
-        .attr 'width', @options.scales.x 1
+    bars = groups
+      .selectAll ".#{@options.className}__bar"
+      .data (d) => d
 
-      bars
-        .exit()
-        .remove()
+    bars
+      .enter()
+      .append 'rect'
+      .attr 'class', (d, i) => "#{@options.className}__bar #{@options.className}__bar--#{i}"
+
+    bars
+      .transition @transition
+      .attr 'y', (d) => @height - @options.scales.y (d.value + d.height)
+      .attr 'height', (d) => @options.scales.y d.value
+      .attr 'width', @options.scales.x 1
+
+    bars
+      .exit()
+      .remove()
+
+    groups
+      .exit()
+      .remove()
 
   resize: =>
     @setDimensions()
