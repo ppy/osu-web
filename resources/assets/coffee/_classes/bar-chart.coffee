@@ -17,20 +17,20 @@
 ###
 
 class @BarChart
-  transition: 1000
-
-  margins:
-    top: 0
-    right: 0
-    bottom: 0
-    left: 0
-
-  options:
-    scales:
-      x: d3.scale.linear()
-      y: d3.scale.linear()
-
   constructor: (area, options = {}) ->
+    @transition = 1000
+
+    @margins =
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+
+    @options =
+      scales:
+        x: d3.scale.linear()
+        y: d3.scale.linear()
+
     _.merge(@options, options)
 
     @area = d3.select area

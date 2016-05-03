@@ -17,15 +17,15 @@
 ###
 
 class @RadarChart
-  margins:
-    top: 30
-    right: 30
-    bottom: 0
-    left: 30
-
-  transition: 1000
-
   constructor: (area, @options = {}) ->
+    @transition = 1000
+
+    @margins =
+      top: 30
+      right: 30
+      bottom: 0
+      left: 30
+
     @options.scale ||= d3.scale.linear()
 
     @area = d3.select area
