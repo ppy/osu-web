@@ -82,13 +82,13 @@ class @BarChart
       .attr 'transform', (d, i) => "translate(#{@options.scales.x i}, 0)"
 
     bars = groups
-      .selectAll ".#{@options.className}__bar"
+      .selectAll ".#{@options.className}__chart-bar"
       .data (d) => d
 
     bars
       .enter()
       .append 'rect'
-      .attr 'class', (d, i) => "#{@options.className}__bar #{@options.className}__bar--#{i}"
+      .attr 'class', (d, i) => "#{@options.className}__chart-bar #{@options.className}__chart-bar--#{i}"
 
     bars
       .transition @transition

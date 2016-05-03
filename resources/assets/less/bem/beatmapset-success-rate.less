@@ -22,12 +22,24 @@
   @colour-fail: @yellow-darker;
 
 
-  display: flex;
-  flex-wrap: wrap;
-
   &__label {
     font-size: 15px;
     font-style: italic;
+  }
+
+  &__bar {
+    height: 30px;
+    background: @grey-d;
+    margin-bottom: @spacing * 2;
+
+    &--fill {
+      background: @green;
+    }
+  }
+
+  &__chart-area {
+    display: flex;
+    flex-wrap: wrap;
   }
 
   &__chart {
@@ -67,7 +79,7 @@
     }
   }
 
-  &__bar {
+  &__chart-bar {
     shape-rendering: crispEdges;
 
     &--0 {

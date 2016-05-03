@@ -131,7 +131,8 @@ return [
                 ],
                 'success-rate' => [
                     'title' => 'Success Rate',
-                    'points' => 'Points of Failure: :percentage% (:failed of :all)',
+                    'rate' => 'Success Rate: :percentage%',
+                    'points' => 'Points of Failure',
                     'retry' => 'Retry',
                     'fail' => 'Fail',
                 ],
