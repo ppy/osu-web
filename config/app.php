@@ -160,6 +160,7 @@ return [
         'Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider',
         'Shift31\LaravelElasticsearch\ElasticsearchServiceProvider',
         'League\StatsD\Laravel5\Provider\StatsdServiceProvider',
+        'Lord\Laroute\LarouteServiceProvider',
     ],
 
     /*

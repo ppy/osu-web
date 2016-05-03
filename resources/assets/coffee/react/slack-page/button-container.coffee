@@ -29,7 +29,7 @@ class SlackPage.ButtonContainer extends React.Component
 
     LoadingOverlay.show()
 
-    $.ajax Url.requestSlackInvite,
+    $.ajax laroute.route('slack.agree'),
       method: 'POST',
       dataType: 'JSON'
 

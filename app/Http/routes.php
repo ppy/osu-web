@@ -54,15 +54,14 @@ Route::get('/beatmaps/search/{filters?}', ['as' => 'beatmaps.search', 'uses' => 
 // maps
 Route::get('/beatmaps/set/{id}', ['as' => 'set', 'uses' => 'BeatmapController@getMapSet']);
 Route::get('/beatmaps/map/{id}', ['as' => 'beatmap', 'uses' => 'BeatmapController@getMap']);
-Route::get('/beatmaps/modding/{id?}', ['as' => 'modding', 'uses' => 'ModdingController@getModding']);
 Route::get('/beatmaps/packs', ['as' => 'packs', 'uses' => 'BeatmapController@getPacks']);
 Route::get('/beatmaps/charts/{id?}', ['as' => 'charts', 'uses' => 'BeatmapController@getCharts']);
 
-Route::get('b/{id}', ['as' => 'beatmaps.show', function ($id) {
+Route::get('b/{beatmaps}', ['as' => 'beatmaps.show', function ($id) {
     return Redirect::to('https://osu.ppy.sh/b/'.$id);
 }]);
 
-Route::get('s/{id}', ['as' => 'beatmapsets.show', function ($id) {
+Route::get('s/{beatmapsets}', ['as' => 'beatmapsets.show', function ($id) {
     return Redirect::to('https://osu.ppy.sh/s/'.$id);
 }]);
 
@@ -175,9 +174,6 @@ Route::get('/api/get_user_recent', ['uses' => 'APIController@getUserRecent']);
 Route::get('/api/get_replay', ['uses' => 'APIController@getReplay']);
 Route::get('/api/get_scores', ['uses' => 'APIController@getScores']);
 Route::get('/api/get_beatmaps', ['uses' => 'APIController@getBeatmaps']);
-
-Route::resource('post', 'PostController');
-Route::resource('modding', 'ModdingPostController');
 
 // status
 if (Config::get('app.debug')) {
