@@ -52,9 +52,9 @@ class TopicsController extends Controller
         ]]);
     }
 
-    public function create($forum_id)
+    public function create()
     {
-        $forum = Forum::findOrFail($forum_id);
+        $forum = Forum::findOrFail(Request::input('forum_id'));
 
         $this->authorizePost($forum, null);
 
@@ -66,9 +66,9 @@ class TopicsController extends Controller
         return view('forum.topics.create', compact('forum', 'cover'));
     }
 
-    public function preview($forumId)
+    public function preview()
     {
-        $forum = Forum::findOrFail($forumId);
+        $forum = Forum::findOrFail(Request::input('forum_id'));
 
         $this->authorizePost($forum, null);
 

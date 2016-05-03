@@ -19,7 +19,7 @@
     @if ($withNewTopicLink)
         <li class="clickable-row new-topic">
             <div class="read-and-type-icon">
-                <a href="{{ route("forum.topics.create", $forum) }}" class="js-login-required--click">
+                <a href="{{ route("forum.topics.create", ['forum_id' => $forum]) }}" class="js-login-required--click">
                     <i class="fa fa-plus"></i>
                 </a>
             </div>
@@ -27,7 +27,7 @@
             <div class="main flex-row">
                 <div class="left">
                     <div class="topic-link">
-                        <a href="{{ route("forum.topics.create", $forum) }}" class="title clickable-row-link js-login-required--click">
+                        <a href="{{ route("forum.topics.create", ['forum_id' => $forum]) }}" class="title clickable-row-link js-login-required--click">
                             {{ trans("forum.topic.new_topic") }}
                         </a>
                     </div>
@@ -35,7 +35,7 @@
             </div>
 
             <div class="go-to-last">
-                <a href="{{ route("forum.topics.create", $forum) }}" title="{{ trans("forum.topic.new_topic") }}" class="js-login-required--click">
+                <a href="{{ route("forum.topics.create", ['forum_id' => $forum]) }}" title="{{ trans("forum.topic.new_topic") }}" class="js-login-required--click">
                     <i class="fa fa-angle-right"></i>
                 </a>
             </div>
