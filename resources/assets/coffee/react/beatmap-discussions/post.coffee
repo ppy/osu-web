@@ -60,7 +60,7 @@ BeatmapDiscussions.Post = React.createClass
     _.chain message
       .escape()
       .replace /(^|\s)((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\))?(?=\s))/g, (_, prefix, text, m, s, ms, range) =>
-        "#{prefix}#{laroute.link_to(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text)}"
+        "#{prefix}#{osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text)}"
       .value()
 
 
