@@ -79,6 +79,8 @@ class @BarChart
     groups
       .enter()
       .append 'g'
+
+    groups
       .attr 'transform', (d, i) => "translate(#{@options.scales.x i}, 0)"
 
     bars = groups
