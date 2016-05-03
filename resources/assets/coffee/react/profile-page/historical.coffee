@@ -41,7 +41,7 @@ ProfilePage.Historical = React.createClass
       div
         className: 'beatmapset-row__cover'
         style:
-          backgroundImage: "url('#{bmset.coverUrl}')"
+          backgroundImage: "url('#{bmset.covers.list}')"
       div
         className: 'beatmapset-row__detail'
         div
