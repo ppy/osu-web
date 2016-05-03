@@ -67,6 +67,6 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
 
     public function includeFailtimes(Beatmap $beatmap)
     {
-        return $this->collection($beatmap->failtimes, new BeatmapFailtimesTransformer);
+        return $this->collection($beatmap->failtimes()->orderBy('type', 'asc')->get(), new BeatmapFailtimesTransformer);
     }
 }
