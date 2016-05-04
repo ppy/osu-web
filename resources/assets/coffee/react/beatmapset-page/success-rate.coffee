@@ -36,15 +36,12 @@ class BeatmapsetPage.SuccessRate extends React.Component
     failtimes = _.map @props.failtimes, (m) -> m.data
     data = _.zip failtimes[0], failtimes[1]
 
-    max = d3.max _.map data, (m) -> m[0] + m[1]
-
     unless @_successRateChart
       scales =
         x: d3.scale.linear()
         y: d3.scale.linear()
 
       options =
-        domain: [0, max]
         scales: scales
         className: 'beatmapset-success-rate'
 

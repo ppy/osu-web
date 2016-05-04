@@ -43,6 +43,8 @@ class @BarChart
           value: d
           height: if i > 0 then m[i - 1] else 0
 
+    @max = d3.max _.map @data, (m) -> m[0].value + m[1].value
+
     @resize()
 
   setDimensions: ->
@@ -58,7 +60,7 @@ class @BarChart
 
     @options.scales.y
       .range [0, @height]
-      .domain @options.domain
+      .domain [0, @max]
 
   setSvgSize: ->
     @svg
