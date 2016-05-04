@@ -16,9 +16,9 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @LineChart
-  transition: 1000
-
   constructor: (area, @options = {}) ->
+    @duration = 1000
+
     @options.scales ||= {}
     @options.scales.x ||= d3.time.scale()
     @options.scales.y ||= d3.scale.linear()
@@ -167,12 +167,14 @@ class @LineChart
 
   drawAxes: =>
     @svgXAxis
-      .transition @transition
+      .transition()
+      .duration @duration
       .attr 'transform', "translate(0, #{@height})"
       .call @xAxis
 
     @svgYAxis
-      .transition @transition
+      .transition()
+      .duration @duration
       .call @yAxis
 
     @svgXAxis.selectAll '.tick line'
@@ -199,7 +201,8 @@ class @LineChart
 
   drawLine: =>
     @svgLine
-      .transition @transition
+      .transition()
+      .duration @duration
       .attr 'd', @line
 
 

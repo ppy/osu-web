@@ -18,6 +18,8 @@
 
 class @RadarChart
   constructor: (area, @options = {}) ->
+    @duration = 1000
+
     @margins =
       top: 30
       right: 30
@@ -159,7 +161,9 @@ class @RadarChart
     area = @selectedArea
 
     if animateArea
-      area = area.transition()
+      area = area
+        .transition()
+        .duration @duration
 
     area.attr 'd', line @data
 
