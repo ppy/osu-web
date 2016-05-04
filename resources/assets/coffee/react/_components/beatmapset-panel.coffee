@@ -40,7 +40,7 @@ class @BeatmapsetPanel extends React.Component
     div className: 'beatmapset-panel shadow-hover', objectid: beatmap.beatmapset_id,
       div className: 'beatmapset-panel__header',
         a
-          href: Url.beatmapset beatmap.beatmapset_id
+          href: laroute.route 'beatmapsets.show', beatmapsets: beatmap.beatmapset_id
           target: '_blank', className: 'beatmapset-panel__thumb'
           style: {backgroundImage: "url(#{beatmap.covers.card})"}
           div className: 'beatmapset-panel__title-artist-box',

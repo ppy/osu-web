@@ -67,7 +67,7 @@ class BeatmapsetPage.Details extends React.Component
         else
           div {},
             a
-              href: if currentUser.isSupporter then Url.beatmapDownloadDirect @props.set.beatmapset_id else Url.support
+              href: if currentUser.isSupporter then Url.beatmapDownloadDirect @props.set.beatmapset_id else laroute.route 'support-the-game'
               className: 'beatmapset-details__button'
               Lang.get 'beatmaps.beatmapset.show.details.download.direct'
             a

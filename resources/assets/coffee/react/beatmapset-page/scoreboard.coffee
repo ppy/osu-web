@@ -90,7 +90,7 @@ class BeatmapsetPage.Scoreboard extends React.Component
                   p
                     className: 'beatmapset-scoreboard__supporter-text beatmapset-scoreboard__supporter-text--small'
                     dangerouslySetInnerHTML:
-                      __html: Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.supporter-link', link: Url.support
+                      __html: Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.supporter-link', link: laroute.route 'support-the-game'
               else if @props.scores.length == 0
                 div className: 'beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores',
                   Lang.get "beatmaps.beatmapset.show.extra.scoreboard.no-scores.#{@props.currentScoreboard}"
