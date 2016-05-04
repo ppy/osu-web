@@ -31,7 +31,7 @@ class ProfilePage.CoverUploader extends React.Component
     $(@refs.uploadButtonContainer).append($uploadButton)
 
     $uploadButton.fileupload
-      url: Url.updateProfileAccount
+      url: laroute.route('account.update-profile')
       dataType: 'json'
       dropZone: $dropzone
       submit: ->

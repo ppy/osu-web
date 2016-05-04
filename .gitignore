@@ -76,6 +76,7 @@ sftp-settings.json
 /bootstrap/cache/
 
 /resources/assets/js/messages.js
+/resources/assets/js/laroute.js
 /resources/assets/js/build/
 
 composer-installer

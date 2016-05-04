@@ -228,7 +228,6 @@ function nav_links()
             'getListing' => route('beatmaps'),
             'getPacks' => route('packs'),
             'getCharts' => route('charts'),
-            'getModding' => route('modding'),
         ];
 
         $links['ranking'] = [
