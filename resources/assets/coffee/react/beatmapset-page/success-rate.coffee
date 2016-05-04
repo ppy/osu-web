@@ -23,17 +23,12 @@ legend = ['retry', 'fail']
 class BeatmapsetPage.SuccessRate extends React.Component
   componentDidMount: ->
     @_renderChart()
-    @_renderBar()
 
   componentDidUpdate: ->
     @_renderChart()
-    @_renderBar()
 
   componentWillUnmount: ->
     $(window).off '.beatmapSetPageSuccessRate'
-
-  percentage: (passcount, playcount) ->
-    _.round ((playcount - passcount) / playcount) * 100
 
   _renderChart: ->
     return unless @props.failtimes.length > 0
@@ -59,32 +54,22 @@ class BeatmapsetPage.SuccessRate extends React.Component
 
     @_successRateChart.loadData data
 
-  _renderBar: ->
-    percentage = @percentage @props.beatmap.passcount, @props.beatmap.playcount
-
-    unless @_successRateBar
-      options =
-        className: 'beatmapset-success-rate__bar'
-
-      @_successRateBar = new Bar @refs.rateBar, options
-
-      $(window).on 'throttled-resize.beatmapSetPageSuccessRate', @_successRateBar.resize
-
-    @_successRateBar.loadData percentage
-
-
   render: ->
+    percentage = _.round ((@props.beatmap.playcount - @props.beatmap.passcount) / @props.beatmap.playcount) * 100
+
     div
       className: 'page-extra'
       el BeatmapsetPage.ExtraHeader, name: 'success-rate'
 
       p className: 'beatmapset-success-rate__label',
         Lang.get 'beatmaps.beatmapset.show.extra.success-rate.rate',
-          percentage: @percentage @props.beatmap.passcount, @props.beatmap.playcount
+          percentage: percentage
 
-      div
-        className: 'beatmapset-success-rate__bar'
-        ref: 'rateBar'
+      div className: 'beatmapset-success-rate__bar',
+        div
+          className: 'beatmapset-success-rate__bar beatmapset-success-rate__bar--fill'
+          style:
+            width: "#{percentage}%"
 
 
       div className: 'beatmapset-success-rate__chart-area',

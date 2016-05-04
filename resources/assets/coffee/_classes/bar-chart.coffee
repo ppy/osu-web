@@ -18,8 +18,6 @@
 
 class @BarChart
   constructor: (area, options = {}) ->
-    @transition = 1000
-
     @margins =
       top: 0
       right: 0
@@ -92,8 +90,9 @@ class @BarChart
       .append 'rect'
       .attr 'class', (d, i) => "#{@options.className}__chart-bar #{@options.className}__chart-bar--#{i}"
 
+
     bars
-      .transition @transition
+      .transition()
       .attr 'y', (d) => @height - @options.scales.y (d.value + d.height)
       .attr 'height', (d) => @options.scales.y d.value
       .attr 'width', @options.scales.x 1
