@@ -77,6 +77,7 @@ elixir(function(mix) {
     'build/vendor-modules.js',
     'ga.js',
     'messages.js',
+    'laroute.js',
     'build/app-main.js',
   ], 'public/js/app.js')
   .coffee([

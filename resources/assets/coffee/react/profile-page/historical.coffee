@@ -41,7 +41,7 @@ ProfilePage.Historical = React.createClass
       div
         className: 'beatmapset-row__cover'
         style:
-          backgroundImage: "url('#{bmset.coverUrl}')"
+          backgroundImage: "url('#{bmset.covers.list}')"
       div
         className: 'beatmapset-row__detail'
         div
@@ -65,8 +65,10 @@ ProfilePage.Historical = React.createClass
             className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
             span dangerouslySetInnerHTML:
                 __html: Lang.get 'beatmaps.listing.mapped-by',
-                  mapper: osu.link(Url.user(bmset.user_id), bmset.creator,
-                    classNames: ['beatmapset-row__title-small'])
+                  mapper: laroute.link_to_route 'users.show',
+                    bmset.creator
+                    { users: bmset.user_id }
+                    class: 'beatmapset-row__title-small'
           div
             className: 'beatmapset-row__detail-column'
             details[1]

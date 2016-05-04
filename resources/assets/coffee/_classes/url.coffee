@@ -16,18 +16,5 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @Url
-  @updateProfileAccount: '/account/update-profile'
-  @pageAccount: '/account/page'
-
-  @requestSlackInvite: '/community/slack/agree'
-
-  @beatmapset: (id) => "/s/#{id}"
-
-  @beatmapDiscussionVote: (discussionId) => "/beatmap-discussions/#{discussionId}/vote"
-  @beatmapDiscussionPost: (id) => "/beatmap-discussion-posts/#{id}"
-  @beatmapDiscussionPosts: '/beatmap-discussion-posts'
-
-  @user: (id) => "/u/#{id}"
-
   # external link
   @openBeatmapEditor: (timestampWithRange) => "osu://edit/#{timestampWithRange}"

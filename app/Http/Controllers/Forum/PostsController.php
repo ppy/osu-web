@@ -119,6 +119,6 @@ class PostsController extends Controller
 
         $this->authorizeView($post->forum);
 
-        return redirect(post_url($post->topic_id, $post->post_id));
+        return ujs_redirect(post_url($post->topic_id, $post->post_id));
     }
 }

@@ -114,6 +114,10 @@ class UsersController extends Controller
             abort(404);
         }
 
+        if ((string) $user->user_id !== $id) {
+            return ujs_redirect(route('users.show', $user));
+        }
+
         $achievements = fractal_collection_array(
             Achievement::achievable()->orderBy('grouping')->orderBy('ordering')->orderBy('progression')->get(),
             new AchievementTransformer()
