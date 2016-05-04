@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d056a636dacb2c7da344e9e99d80ed62",
-    "content-hash": "25e9788db789709dcd0569edffc1919c",
+    "hash": "76ecd13400ea47d28c735bc2f8afd909",
+    "content-hash": "25c7ebec99d36b38b287cb0d7753b60c",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1858,6 +1858,57 @@
                 "statsd"
             ],
             "time": "2016-03-14 17:43:42"
+        },
+        {
+            "name": "lord/laroute",
+            "version": "v2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aaronlord/laroute.git",
+                "reference": "2c091b33c5195463f2230f99fc85f587c81b7456"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aaronlord/laroute/zipball/2c091b33c5195463f2230f99fc85f587c81b7456",
+                "reference": "2c091b33c5195463f2230f99fc85f587c81b7456",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "5.0.*|5.1.*|5.2.*",
+                "illuminate/console": "5.0.*|5.1.*|5.2.*",
+                "illuminate/filesystem": "5.0.*|5.1.*|5.2.*",
+                "illuminate/routing": "5.0.*|5.1.*|5.2.*",
+                "illuminate/support": "5.0.*|5.1.*|5.2.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lord\\Laroute\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aaron Lord",
+                    "email": "hello@aaronlord.is"
+                }
+            ],
+            "description": "Access Laravels URL/Route helper functions, from JavaScript.",
+            "keywords": [
+                "javascript",
+                "laravel",
+                "routes",
+                "routing"
+            ],
+            "time": "2015-12-24 15:33:05"
         },
         {
             "name": "maknz/slack",

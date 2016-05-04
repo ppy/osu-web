@@ -16,30 +16,12 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @Url
-  @updateProfileAccount: '/account/update-profile'
-  @pageAccount: '/account/page'
-
   @beatmapDownload: (id, video = true) ->
     url = "https://osu.ppy.sh/d/#{id}"
     url += 'n' if !video
     url
 
   @beatmapDownloadDirect: (id) -> "osu://dl/#{id}"
-
-  @requestSlackInvite: '/community/slack/agree'
-
-  @beatmapset: (id) => "/beatmapsets/#{id}"
-
-  @beatmap: (id) -> "/beatmaps/#{id}"
-  @beatmapScores: (id) -> "/beatmaps/#{id}/scores"
-
-  @beatmapDiscussionVote: (discussionId) => "/beatmap-discussions/#{discussionId}/vote"
-  @beatmapDiscussionPost: (id) => "/beatmap-discussion-posts/#{id}"
-  @beatmapDiscussionPosts: '/beatmap-discussion-posts'
-
-  @support: '/home/support'
-
-  @user: (id) => "/u/#{id}"
 
   # external link
   @openBeatmapEditor: (timestampWithRange) => "osu://edit/#{timestampWithRange}"

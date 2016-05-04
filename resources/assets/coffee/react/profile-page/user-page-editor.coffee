@@ -46,7 +46,7 @@ class ProfilePage.UserPageEditor extends React.Component
     body = @props.userPage.raw
     LoadingOverlay.show()
 
-    $.ajax Url.pageAccount,
+    $.ajax laroute.route('account.page'),
       method: 'PUT'
       dataType: 'json'
       data:

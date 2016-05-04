@@ -22,7 +22,7 @@ class ProfilePage.RecentAchievements extends React.Component
   _showAllMedals: (e) =>
     e.preventDefault()
 
-    $.publish 'profilePageExtra:tab', 'medals'
+    $.publish 'profile:page:jump', 'medals'
 
 
   render: =>
