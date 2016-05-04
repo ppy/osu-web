@@ -28,7 +28,6 @@ class BeatmapSetTransformer extends Fractal\TransformerAbstract
         'description',
         'author',
         'beatmaps',
-        'user',
     ];
 
     public function transform(BeatmapSet $beatmap = null)
@@ -77,14 +76,6 @@ class BeatmapSetTransformer extends Fractal\TransformerAbstract
         return $this->collection(
             $beatmapSet->beatmaps()->default()->get(),
             new BeatmapTransformer()
-        );
-    }
-
-    public function includeUser(BeatmapSet $beatmapset)
-    {
-        return $this->item(
-            $beatmapset->user,
-            new UserTransformer()
         );
     }
 }

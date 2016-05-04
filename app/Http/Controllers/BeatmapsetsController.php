@@ -160,7 +160,7 @@ class BeatmapsetsController extends Controller
             'beatmapset' => fractal_item_array(
                 $beatmapset,
                 new BeatmapSetTransformer,
-                'user,beatmaps'
+                'beatmaps'
             ),
 
             'beatmapsetDiscussion' => $discussion->defaultJson(Auth::user()),
