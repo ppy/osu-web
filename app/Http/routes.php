@@ -50,17 +50,12 @@ Route::get('/icons', 'HomeController@getIcons');
 // Route::get('/beatmaps/packs', ['as' => 'packs', 'uses' => 'BeatmapController@getPacks']);
 // Route::get('/beatmaps/charts/{id?}', ['as' => 'charts', 'uses' => 'BeatmapController@getCharts']);
 
-Route::resource('/beatmaps', 'BeatmapController', ['only' => ['show']]);
 Route::get('/beatmaps/{id}/scores', ['as' => 'beatmap.scores', 'uses' => 'BeatmapController@scores']);
+Route::get('/b/{id}', ['as' => 'beatmaps.show', 'uses' => 'BeatmapController@show']);
 
 Route::get('/beatmapsets/search/{filters?}', ['as' => 'beatmapsets.search', 'uses' => 'BeatmapsetsController@search']);
-Route::resource('/beatmapsets', 'BeatmapsetsController', ['only' => ['index', 'show']]);
-
-Route::get('/b/{id}', 'BeatmapController@show');
-
-Route::get('/s/{id}', ['as' => 'beatmap-sets.show', function ($id) {
-    return Redirect::to(route('beatmapsets.show', ['id' => $id]));
-}]);
+Route::resource('/beatmapsets', 'BeatmapsetsController', ['only' => ['index']]);
+Route::get('/s/{id}', ['as' => 'beatmapsets.show', 'uses' => 'BeatmapsetsController@show']);
 
 // ranking section
 Route::get('/ranking/overall', ['as' => 'ranking-overall', 'uses' => 'RankingController@getOverall']);
