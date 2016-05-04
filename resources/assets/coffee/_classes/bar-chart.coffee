@@ -18,8 +18,6 @@
 
 class @BarChart
   constructor: (area, options = {}) ->
-    @duration = 1000
-
     @margins =
       top: 0
       right: 0
@@ -97,7 +95,6 @@ class @BarChart
 
     bars
       .transition()
-      .duration @duration
       .attr 'y', (d) => @height - @options.scales.y (d.value + d.height)
       .attr 'height', (d) => @options.scales.y d.value
       .attr 'width', @options.scales.x 1

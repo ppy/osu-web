@@ -17,8 +17,6 @@
 ###
 class @LineChart
   constructor: (area, @options = {}) ->
-    @duration = 1000
-
     @options.scales ||= {}
     @options.scales.x ||= d3.time.scale()
     @options.scales.y ||= d3.scale.linear()
@@ -168,13 +166,11 @@ class @LineChart
   drawAxes: =>
     @svgXAxis
       .transition()
-      .duration @duration
       .attr 'transform', "translate(0, #{@height})"
       .call @xAxis
 
     @svgYAxis
       .transition()
-      .duration @duration
       .call @yAxis
 
     @svgXAxis.selectAll '.tick line'
@@ -202,7 +198,6 @@ class @LineChart
   drawLine: =>
     @svgLine
       .transition()
-      .duration @duration
       .attr 'd', @line
 
 
