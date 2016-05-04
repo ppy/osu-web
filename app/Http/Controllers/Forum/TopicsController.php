@@ -86,14 +86,14 @@ class TopicsController extends Controller
         return view('forum.topics._post', compact('post', 'options'));
     }
 
-    public function store(HttpRequest $request, $forum_id)
+    public function store(HttpRequest $request)
     {
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
         ]);
 
-        $forum = Forum::findOrFail($forum_id);
+        $forum = Forum::findOrFail(Request::input('forum_id'));
 
         $this->authorizePost($forum, null);
 
