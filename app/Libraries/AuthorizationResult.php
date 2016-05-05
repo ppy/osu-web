@@ -17,18 +17,48 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Http\Controllers\Forum;
+namespace App\Libraries;
 
-use App\Http\Controllers\Controller as BaseController;
-use App\Models\Forum\Authorize;
-use Auth;
+use App\Exceptions\AuthorizationException;
 
-abstract class Controller extends BaseController
+class AuthorizationResult
 {
-    public function authorizePost($forum, $topic)
+    private $rawMessage;
+
+    public function __construct($rawMessage)
     {
-        if (Authorize::canPost(Auth::user(), $forum, $topic) === false) {
-            abort(403);
+        $this->rawMessage = $rawMessage;
+    }
+
+    public function can()
+    {
+        return $this->rawMessage === null;
+    }
+
+    public function rawMessage()
+    {
+        if ($this->can()) {
+            return;
         }
+
+        return $this->rawMessage;
+    }
+
+    public function message()
+    {
+        if ($this->can()) {
+            return;
+        }
+
+        return trans('authorization.'.$this->rawMessage());
+    }
+
+    public function ensureCan()
+    {
+        if ($this->can()) {
+            return;
+        }
+
+        throw new AuthorizationException($this->message());
     }
 }

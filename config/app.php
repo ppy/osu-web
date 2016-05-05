@@ -161,6 +161,8 @@ return [
         'Shift31\LaravelElasticsearch\ElasticsearchServiceProvider',
         'League\StatsD\Laravel5\Provider\StatsdServiceProvider',
         'Lord\Laroute\LarouteServiceProvider',
+
+        'App\Providers\OsuAuthorizeServiceProvider',
     ],
 
     /*
@@ -217,6 +219,7 @@ return [
         'Slack' => 'Maknz\Slack\Facades\Slack',
         'Statsd' => 'League\StatsD\Laravel5\Facade\StatsdFacade',
 
+        'Authorize' => 'App\Facades\OsuAuthorizeFacade',
     ],
 
 ];

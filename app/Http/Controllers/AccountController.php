@@ -102,8 +102,8 @@ class AccountController extends Controller
             abort(403);
         }
 
-        if ($user->userPage !== null && !$user->userPage->canBeEditedBy($user)) {
-            abort(403);
+        if ($user->userPage !== null) {
+            authz('ForumPostEdit', $user->userPage)->ensureCan();
         }
 
         $user = $user->updatePage(Request::input('body'));

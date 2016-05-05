@@ -3,8 +3,8 @@
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
+ *    This file is part of osu!web. osu!web is distributed in the hopes of
+ *    attracting more community contributions to the core ecosystem of osu!
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -17,18 +17,19 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Http\Controllers\Forum;
 
-use App\Http\Controllers\Controller as BaseController;
-use App\Models\Forum\Authorize;
-use Auth;
+return [
+    'forum' => [
+        'post' => [
+            'delete' => [
+                'require_login' => 'Please login first to delete post.',
+                'not_post_owner' => 'Only poster can delete the post.',
+                'can_only_delete_last_post' => 'Only last post can be deleted',
+            ],
+        ],
 
-abstract class Controller extends BaseController
-{
-    public function authorizePost($forum, $topic)
-    {
-        if (Authorize::canPost(Auth::user(), $forum, $topic) === false) {
-            abort(403);
-        }
-    }
-}
+        'view' => [
+            'admin_only' => 'Only admin can view this forum',
+        ],
+    ],
+];

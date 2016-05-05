@@ -544,3 +544,13 @@ function model_pluck($builder, $key)
         ->pluck($key)
         ->all();
 }
+
+function authz($ability, $args)
+{
+    return authzUser(Auth::user(), $ability, $args);
+}
+
+function authzUser($user, $ability, $args)
+{
+    return Authorize::doCheckUser($user, $ability, $args);
+}

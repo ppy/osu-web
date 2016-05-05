@@ -19,10 +19,10 @@
     @include('forum.topics._post', [
         'post' => $post,
         'options' => [
-            'deleteLink' => $post->canBeDeletedBy(Auth::user(), null, null, false),
-            'editLink' => $post->canBeEditedBy(Auth::user()),
+            'deleteLink' => authz('ForumPostDelete', [$post, false])->can(),
+            'editLink' => authz('ForumPostEdit', $post)->can(),
             'postPosition' => $postsPosition[$post->post_id],
-            'replyLink' => $topic->canBeRepliedBy(Auth::user()),
+            'replyLink' => authz('ForumTopicReply', $topic)->can(),
         ],
     ])
 @endforeach

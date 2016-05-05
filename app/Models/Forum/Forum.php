@@ -150,20 +150,6 @@ class Forum extends Model
         }
     }
 
-    public function canBeViewedBy($user)
-    {
-        if ($this->categoryId() !== config('osu.forum.admin_forum_id')) {
-            return true;
-        }
-
-        return $user !== null && $user->isAdmin() === true;
-    }
-
-    public function canHavePost()
-    {
-        return $this->forum_type === 1;
-    }
-
     public function refreshCache()
     {
         DB::transaction(function () {

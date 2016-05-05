@@ -43,9 +43,7 @@ class PostsController extends Controller
         $post = Post::findOrFail($id);
 
         $this->authorizePost($post->forum, $post->topic);
-        if (!$post->canBeDeletedBy(Auth::user())) {
-            abort(403);
-        }
+        authz('ForumPostDelete', $post)->ensureCan();
 
         $deletedPostPosition = $post->topic->postPosition($post->post_id);
 
@@ -70,9 +68,7 @@ class PostsController extends Controller
         $post = Post::findOrFail($id);
 
         $this->authorizePost($post->forum, $post->topic);
-        if (!$post->canBeEditedBy(Auth::user())) {
-            abort(403);
-        }
+        authz('ForumPostEdit', $post)->ensureCan();
 
         return view('forum.topics._post_edit', compact('post'));
     }
@@ -82,9 +78,7 @@ class PostsController extends Controller
         $post = Post::findOrFail($id);
 
         $this->authorizePost($post->forum, $post->topic);
-        if (!$post->canBeEditedBy(Auth::user())) {
-            abort(403);
-        }
+        authz('ForumPostEdit', $post)->ensureCan();
 
         $body = Request::input('body');
         if ($body !== '') {
@@ -102,7 +96,7 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        $this->authorizeView($post->forum);
+        authz('ForumView', $post->forum)->ensureCan();
 
         $text = $post->bodyRaw;
 
@@ -117,7 +111,7 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        $this->authorizeView($post->forum);
+        authz('ForumView', $post->forum)->ensureCan();
 
         return ujs_redirect(post_url($post->topic_id, $post->post_id));
     }

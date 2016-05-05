@@ -121,7 +121,7 @@ class TopicsController extends Controller
 
         $topic = Topic::with('forum.cover')->findOrFail($id);
 
-        $this->authorizeView($topic->forum);
+        authz('ForumView', $topic->forum)->ensureCan();
 
         $posts = $topic->posts();
 
