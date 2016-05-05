@@ -35,5 +35,5 @@ class BeatmapsetPage.Header extends React.Component
               el Icon, name: 'play-circle'
           div className: 'beatmapset-header__title beatmapset-header__title--stat',
             span className: 'beatmapset-header__stat-number', @props.favcount.toLocaleString()
-            span className: 'beatmapset-header__icon beatmapset-header__icon--playcount',
-              el Icon, name: 'heart', className: 'beatmapset-header__icon beatmapset-header__icon--playcount'
+            span className: 'beatmapset-header__icon beatmapset-header__icon--favcount',
+              el Icon, name: 'heart'
