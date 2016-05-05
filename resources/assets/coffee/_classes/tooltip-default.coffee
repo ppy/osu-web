@@ -22,11 +22,14 @@ class @TooltipDefault
   onMouseOver: (event) =>
     el = event.currentTarget
 
-    return if el._tooltip
+    title = el.getAttribute 'title'
+    el.removeAttribute 'title'
+
+    if el._tooltip
+      $(el).qtip 'set', 'content.text': title
+      return
 
     el._tooltip = true
-
-    title = el.getAttribute 'title'
 
     at = el.getAttribute('data-tooltip-position') || 'top center'
 
@@ -58,6 +61,5 @@ class @TooltipDefault
           height: 8
 
     el.setAttribute 'data-orig-title', title
-    el.removeAttribute 'title'
 
     $(el).qtip options, event
