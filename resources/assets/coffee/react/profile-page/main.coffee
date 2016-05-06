@@ -19,12 +19,11 @@
 el = React.createElement
 
 ProfilePage.Main = React.createClass
-  mixins: [SwitchableModeMixin]
+  mixins: [ScrollingPageMixin]
 
   getInitialState: ->
     optionsHash = ProfilePageHash.parse location.hash
     @initialPage = optionsHash.page
-    @timeouts = {}
 
     currentMode: optionsHash.mode || @props.user.playmode
     user: @props.user
@@ -67,9 +66,6 @@ ProfilePage.Main = React.createClass
 
 
   componentWillUnmount: ->
-    for own _name, timeout of @timeouts
-      clearTimeout timeout
-
     @removeListeners()
 
 

@@ -19,7 +19,10 @@
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
 pagesOffset = document.getElementsByClassName("js-switchable-mode-page--scrollspy-offset")
 
-@SwitchableModeMixin =
+@ScrollingPageMixin =
+  componentWillUnmount: ->
+    clearTimeout @modeScrollTimeout
+
   setCurrentMode: (_e, mode) ->
     return if @state.currentMode == mode
     @setState currentMode: mode, @setHash
@@ -62,7 +65,7 @@ pagesOffset = document.getElementsByClassName("js-switchable-mode-page--scrollsp
     # Don't bother scanning the current position.
     # The result will be wrong when target page is too short anyway.
     @scrolling = true
-    clearTimeout @timeouts.scrolling
+    clearTimeout @modeScrollTimeout
 
     $(window).stop().scrollTo target, 500,
       onAfter: =>
@@ -74,6 +77,6 @@ pagesOffset = document.getElementsByClassName("js-switchable-mode-page--scrollsp
           # - part of state (callback, part of mode setting)
           # - simple variable in callback
           # Both still change the switch too soon.
-          @timeouts.scrolling = setTimeout (=> @scrolling = false), 100
+          @modeScrollTimeout = setTimeout (=> @scrolling = false), 100
       # count for the tabs height
       offset: pagesOffset[0].getBoundingClientRect().height * -1

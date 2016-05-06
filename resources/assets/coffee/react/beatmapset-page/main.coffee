@@ -19,12 +19,11 @@
 el = React.createElement
 
 BeatmapsetPage.Main = React.createClass
-  mixins: [SwitchableModeMixin]
+  mixins: [ScrollingPageMixin]
 
   getInitialState: ->
     optionsHash = BeatmapsetPageHash.parse location.hash
     @initialPage = optionsHash.page
-    @timeouts = {}
 
     currentMode = if optionsHash.mode then parseInt optionsHash.mode, 10 else @props.displayedBeatmap
 
@@ -90,9 +89,6 @@ BeatmapsetPage.Main = React.createClass
 
 
   componentWillUnmount: ->
-    for own _name, timeout of @timeouts
-      clearTimeout timeout
-
     @removeListeners()
 
 
