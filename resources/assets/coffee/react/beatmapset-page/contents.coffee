@@ -19,9 +19,6 @@
 el = React.createElement
 
 class BeatmapsetPage.Contents extends React.Component
-  @modeSwitch: (e) =>
-    e.preventDefault()
-
   render: ->
     beatmap = @props.beatmaps[@props.currentMode]
 
