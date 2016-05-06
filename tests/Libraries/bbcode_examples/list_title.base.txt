@@ -1,0 +1,11 @@
+[list]The title
+[*]Here
+[*]be
+[*]basic list
+[/list]
+
+[list=1]The title
+[*]Here
+[*]be
+[*]numbered list
+[/list]
