@@ -70,21 +70,18 @@ class ProfilePage.Info extends React.Component
         dangerouslySetInnerHTML: { __html: Lang.get 'users.show.lastvisit', date: osu.timeago(@props.user.lastvisit) }
 
       elements.map (m) =>
+        return if !@props.user[m]
         switch m
           when 'twitter'
-            return unless @props.user.twitter
             dt = 'Twitter'
             dd = el 'a', href: "https://twitter.com/#{@props.user.twitter}", "@#{@props.user.twitter}"
           when 'skype'
-            return unless @props.user.skype
             dt = 'Skype'
             dd = el 'a', href: "skype:#{@props.user.skype}?chat", @props.user.skype
           when 'lastfm'
-            return unless @props.user.lastfm
             dt = 'Last.fm'
             dd = el 'a', href: "https://last.fm/user/#{@props.user.lastfm}", @props.user.lastfm
           when 'playstyles'
-            return unless @props.user.playstyle.length
             dt = Lang.get 'users.show.plays_with._'
             dd = @props.user.playstyle.map (s) ->
                   Lang.get "users.show.plays_with.#{s}"
