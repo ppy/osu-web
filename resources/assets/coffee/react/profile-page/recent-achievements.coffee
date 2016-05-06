@@ -38,7 +38,7 @@ class ProfilePage.RecentAchievements extends React.Component
 
         div className: 'profile-exp-bar',
           div
-            className: 'profile-exp-bar--fill'
+            className: 'profile-exp-bar__fill'
             style:
               width: "#{achievementsProgress}%"
 
