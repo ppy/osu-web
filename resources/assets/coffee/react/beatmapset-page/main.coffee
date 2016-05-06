@@ -36,10 +36,6 @@ BeatmapsetPage.Main = React.createClass
   setHash: ->
     osu.setHash BeatmapsetPageHash.generate page: @state.currentPage, mode: @state.currentMode
 
-  setCurrentPlaymode: (_e, playmode) ->
-    return if @state.currentPlaymode == playmode
-    @setState currentPlaymode: playmode, @setHash
-
   setCurrentScoreboard: (_e, scoreboard) ->
     return if @state.loading
 
@@ -69,28 +65,26 @@ BeatmapsetPage.Main = React.createClass
         $.publish 'beatmapset:scoreboard:loading', false
         @setState loading: false
 
-  _setCurrentMode: (_e, mode) ->
-    @setCurrentMode _e, mode
+  _setCurrentMode: (_e, beatmapId) ->
+    @setCurrentMode _e, beatmapId
 
     @setState
+      currentPlaymode: @props.beatmaps[beatmapId].mode
       currentScoreboard: 'global'
-      scores: @props.beatmaps[mode].scoresBest.data
+      scores: @props.beatmaps[beatmapId].scoresBest.data
 
   componentDidMount: ->
     @removeListeners()
 
-    $.subscribe 'beatmapset:mode:set.beatmapSetPage', @_setCurrentMode
-    $.subscribe 'beatmapset:playmode:set.beatmapSetPage', @setCurrentPlaymode
+    $.subscribe 'beatmapset:beatmap:set.beatmapSetPage', @_setCurrentMode
     $.subscribe 'beatmapset:page:jump.beatmapSetPage', @pageJump
     $.subscribe 'beatmapset:scoreboard:set.beatmapSetPage', @setCurrentScoreboard
     $(window).on 'throttled-scroll.beatmapSetPage', @pageScan
 
     @pageJump null, @initialPage
 
-
   componentWillUnmount: ->
     @removeListeners()
-
 
   removeListeners: ->
     $.unsubscribe '.beatmapSetPage'

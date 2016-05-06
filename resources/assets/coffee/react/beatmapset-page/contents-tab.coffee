@@ -21,8 +21,7 @@ class BeatmapsetPage.ContentsTab extends React.Component
   onClick: (e) =>
     return if @props.disabled
     e.preventDefault()
-    $.publish 'beatmapset:playmode:set', @props.playmode
-    $.publish 'beatmapset:mode:set', @props.newMode
+    $.publish 'beatmapset:beatmap:set', @props.newBeatmapId
 
   render: ->
     active = @props.playmode == @props.currentPlaymode
@@ -32,7 +31,7 @@ class BeatmapsetPage.ContentsTab extends React.Component
     className += ' page-tabs__tab--disabled' if @props.disabled
 
     url = BeatmapsetPageHash.generate
-      mode: if active then @props.currentMode else @props.newMode
+      mode: if active then @props.currentMode else @props.newBeatmapId
       page: @props.currentPage
 
     a

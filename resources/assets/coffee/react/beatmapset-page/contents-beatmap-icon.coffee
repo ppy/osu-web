@@ -21,7 +21,7 @@ el = React.createElement
 class BeatmapsetPage.ContentsBeatmapIcon extends React.Component
   modeSwitch: (e) =>
     e.preventDefault()
-    $.publish 'beatmapset:mode:set', @props.beatmap.id
+    $.publish 'beatmapset:beatmap:set', @props.beatmap.id
 
   render: ->
     className = 'beatmapset-difficulties__icon'

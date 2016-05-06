@@ -34,7 +34,7 @@ class BeatmapsetPage.Contents extends React.Component
             playmode: mode
             disabled: !@props.beatmapCount[mode]?
             currentMode: @props.currentMode
-            newMode: newBeatmap.id if newBeatmap
+            newBeatmapId: newBeatmap.id if newBeatmap
             currentPage: @props.currentPage
             currentPlaymode: @props.currentPlaymode
 
