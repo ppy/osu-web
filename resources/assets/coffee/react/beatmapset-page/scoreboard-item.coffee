@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, span} = React.DOM
+{div, span, a} = React.DOM
 el = React.createElement
 
 class BeatmapsetPage.ScoreboardItem extends React.Component
@@ -35,7 +35,9 @@ class BeatmapsetPage.ScoreboardItem extends React.Component
                   country: @props.countries[@props.score.user.data.country]
                   classModifiers: ['scoreboard']
             when 'player'
-              @props.score.user.data.username
+              a
+                href: laroute.route 'users.show', users: @props.score.user.data.id
+                @props.score.user.data.username
             when 'icons'
               div className: "badge-rank badge-rank--#{@props.score.rank}"
             when 'score'

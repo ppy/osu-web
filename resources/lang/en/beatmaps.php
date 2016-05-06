@@ -157,7 +157,7 @@ return [
                     ],
                     'list' => [
                         'rank-header' => 'Rank',
-                        'player' => 'Player',
+                        'player-header' => 'Player',
                         'score' => 'Score',
                         'accuracy' => 'Accuracy',
                     ],

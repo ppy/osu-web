@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, span} = React.DOM
+{div, span, a} = React.DOM
 el = React.createElement
 
 class BeatmapsetPage.ScoreboardFirst extends React.Component
@@ -27,7 +27,9 @@ class BeatmapsetPage.ScoreboardFirst extends React.Component
         div className: 'beatmapset-scoreboard-first__meta',
           span className: 'beatmapset-scoreboard-first__label beatmapset-scoreboard-first__label--rank', "#1"
           span className: 'beatmapset-scoreboard-first__label beatmapset-scoreboard-first__label--username',
-            @props.score.user.data.username
+            a
+              href: laroute.route 'users.show', users: @props.score.user.data.id
+              @props.score.user.data.username
           if @props.score.user.data.country
             el FlagCountry,
               country: @props.countries[@props.score.user.data.country]
