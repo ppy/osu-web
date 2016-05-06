@@ -42,9 +42,6 @@ class ProfilePage.RecentAchievements extends React.Component
             style:
               width: "#{achievementsProgress}%"
 
-        # dl className: 'profile-stats profile-stats--light',
-        #   dt()
-        #   dd {}, "#{achievementsProgress}%"
         span className: 'profile-achievements__percentage',
           "#{achievementsProgress}%"
 

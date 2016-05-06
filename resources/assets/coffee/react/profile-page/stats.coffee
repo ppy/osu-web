@@ -18,9 +18,9 @@
 el = React.createElement
 
 class ProfilePage.Stats extends React.Component
-  datas = ['ranked-score', 'accuracy', 'playcount', 'total-score', 'hits', 'maxcombo', 'replays-watched']
-
   render: =>
+    elements = ['ranked-score', 'accuracy', 'playcount', 'total-score', 'hits', 'maxcombo', 'replays-watched']
+
     el 'div', className: 'page-contents__content profile-stats',
       el 'div', className: 'page-contents__row page-contents__row--top',
         el 'div', className: 'profile-badge profile-badge--level',
@@ -39,7 +39,7 @@ class ProfilePage.Stats extends React.Component
             "#{@props.stats.level.progress.toFixed()}"
 
       el 'div', className: 'page-contents__row',
-        datas.map (m) =>
+        elements.map (m) =>
           switch m
             when 'ranked-score'
               dt = Lang.get 'users.show.stats.ranked_score'

@@ -18,8 +18,6 @@
 {div} = React.DOM
 el = React.createElement
 
-elements = ['description', 'success-rate', 'scoreboard']
-
 BeatmapsetPage.Extra = React.createClass
   mixins: [StickyTabsMixin]
 
@@ -41,10 +39,12 @@ BeatmapsetPage.Extra = React.createClass
     $(window).off '.beatmapSetPageExtra'
 
   render: ->
+    sections = ['description', 'success-rate', 'scoreboard']
+
     tabs = div className: 'hidden-xs page-extra-tabs__container',
       div className: 'osu-layout__row',
         div className: 'page-extra-tabs__items',
-          elements.map (m) =>
+          sections.map (m) =>
             el BeatmapsetPage.ExtraTab, key: m, page: m, currentPage: @props.currentPage, currentMode: @props.currentMode
 
     div className: 'osu-layout__section osu-layout__section--extra',
@@ -59,7 +59,7 @@ BeatmapsetPage.Extra = React.createClass
         tabs
 
       div className: 'osu-layout__row',
-        elements.map (m) =>
+        sections.map (m) =>
           elem =
             switch m
               when 'description'

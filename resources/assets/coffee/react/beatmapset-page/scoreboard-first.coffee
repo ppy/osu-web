@@ -19,9 +19,9 @@
 el = React.createElement
 
 class BeatmapsetPage.ScoreboardFirst extends React.Component
-  stats = ['score', 'accuracy', 'count300', 'count100', 'count50']
-
   render: ->
+    elements = ['score', 'accuracy', 'count300', 'count100', 'count50']
+
     div className: 'beatmapset-scoreboard-first',
       div className: 'beatmapset-scoreboard-first__item beatmapset-scoreboard-first__item--left',
         div className: 'beatmapset-scoreboard-first__meta',
@@ -38,7 +38,7 @@ class BeatmapsetPage.ScoreboardFirst extends React.Component
             style:
               backgroundImage: "url(#{@props.score.user.data.avatarUrl})"
       div className: 'beatmapset-scoreboard-first__item beatmapset-scoreboard-first__item--right',
-        stats.map (m) =>
+        elements.map (m) =>
           dt = Lang.get "beatmaps.beatmapset.show.extra.scoreboard.first.#{m}"
           dd = @props.score[m]
 

@@ -19,11 +19,11 @@
 el = React.createElement
 
 class BeatmapsetPage.ScoreboardItem extends React.Component
-  items = ['rank', 'flag', 'player', 'icons', 'score', 'accuracy']
-
   render: ->
+    elements = ['rank', 'flag', 'player', 'icons', 'score', 'accuracy']
+
     div className: 'beatmapset-scoreboard__row beatmapset-scoreboard__row--score',
-      items.map (m) =>
+      elements.map (m) =>
         className = "beatmapset-scoreboard__row-item beatmapset-scoreboard__row-item--#{m}"
         contents =
           switch m

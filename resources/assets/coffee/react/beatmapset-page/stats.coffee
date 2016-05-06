@@ -19,12 +19,12 @@
 el = React.createElement
 
 class BeatmapsetPage.Stats extends React.Component
-  datas = ['cs', 'hp', 'od', 'ar', 'stars', 'length', 'bpm']
-
   render: ->
+    elements = ['cs', 'hp', 'od', 'ar', 'stars', 'length', 'bpm']
+
     div className: 'page-contents__content',
       div className: 'page-contents__row',
-        datas.map (m) =>
+        elements.map (m) =>
           dt = Lang.get "beatmaps.beatmapset.show.stats.#{m}"
 
           switch m

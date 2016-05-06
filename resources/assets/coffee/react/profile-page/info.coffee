@@ -35,9 +35,9 @@ class ProfilePage.Info extends React.Component
 
     return keys
 
-  datas = ['twitter', 'skype', 'lastfm', 'playstyles']
-
   render: =>
+    elements = ['twitter', 'skype', 'lastfm', 'playstyles']
+
     el 'div', className: 'page-contents__content profile-info',
       el 'div', className: 'profile-info__icons page-contents__row',
         if @props.user.isSupporter
@@ -69,7 +69,7 @@ class ProfilePage.Info extends React.Component
         className: 'page-contents__row'
         dangerouslySetInnerHTML: { __html: Lang.get 'users.show.lastvisit', date: osu.timeago(@props.user.lastvisit) }
 
-      datas.map (m) =>
+      elements.map (m) =>
         switch m
           when 'twitter'
             return unless @props.user.twitter

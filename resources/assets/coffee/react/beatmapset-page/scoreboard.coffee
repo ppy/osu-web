@@ -31,13 +31,12 @@ class BeatmapsetPage.Scoreboard extends React.Component
   componentWillUnmount: ->
     $.unsubscribe '.beatmapSetPageScoreboard'
 
-  scoreboards = ['global', 'country', 'friend']
-  header = ['rank-header', 'player', 'score', 'accuracy']
-
   _setLoading: (_e, isLoading) =>
     @setState loading: isLoading
 
   _scores: ->
+    header = ['rank-header', 'player', 'score', 'accuracy']
+
     div {},
       el BeatmapsetPage.ScoreboardFirst,
         score: @props.scores[0]
@@ -56,6 +55,8 @@ class BeatmapsetPage.Scoreboard extends React.Component
 
 
   render: ->
+    scoreboards = ['global', 'country', 'friend']
+
     className = 'beatmapset-scoreboard__main'
     className += ' beatmapset-scoreboard__main--loading' if @state.loading
 
