@@ -79,7 +79,7 @@ class BeatmapsetsController extends Controller
 
     public function show($id)
     {
-        $beatmapSet = BeatmapSet::find($id);
+        $beatmapSet = BeatmapSet::findOrFail($id);
 
         $set = fractal_item_array(
             $beatmapSet,
