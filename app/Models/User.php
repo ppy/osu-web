@@ -321,7 +321,7 @@ class User extends Model implements AuthenticatableContract
             }
         }
 
-        if (empty($array)) {
+        if (empty($styles)) {
             return;
         }
 
