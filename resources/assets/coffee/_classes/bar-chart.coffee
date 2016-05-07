@@ -39,9 +39,8 @@ class @BarChart
   loadData: (data) ->
     @data = _.map data, (m) ->
       for d, i in m
-        d =
-          value: d
-          height: if i > 0 then m[i - 1] else 0
+        d.height = if i > 0 then m[i - 1].value else 0
+        d
 
     @max = d3.max _.map @data, (m) -> m[0].value + m[1].value
 
@@ -90,7 +89,7 @@ class @BarChart
     bars
       .enter()
       .append 'rect'
-      .attr 'class', (d, i) => "#{@options.className}__chart-bar #{@options.className}__chart-bar--#{i}"
+      .attr 'class', (d) => "#{@options.className}__chart-bar #{@options.className}__chart-bar--#{d.type}"
 
 
     bars

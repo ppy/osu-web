@@ -33,8 +33,19 @@ class BeatmapsetPage.SuccessRate extends React.Component
   _renderChart: ->
     return unless @props.failtimes.length > 0
 
-    failtimes = _.map @props.failtimes, (m) -> m.data
-    data = _.zip failtimes[0], failtimes[1]
+    # sorting the failtimes array
+    # so that fail always comes before exit (database values)
+    failtimes = _.sortBy @props.failtimes, (m) -> m.type
+
+    fail = _.map failtimes[0].data, (m) ->
+      type: 'fail'
+      value: m
+
+    retry = _.map failtimes[1].data, (m) ->
+      type: 'retry'
+      value: m
+
+    data = _.zip fail, retry
 
     unless @_successRateChart
       scales =
