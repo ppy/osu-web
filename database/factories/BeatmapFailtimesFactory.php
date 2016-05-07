@@ -31,11 +31,11 @@ $factory->define(App\Models\BeatmapFailtimes::class, function (Faker\Generator $
 $factory->defineAs(App\Models\BeatmapFailtimes::class, 'fail', function (Faker\Generator $faker) use ($factory) {
     $array = $factory->raw(App\Models\BeatmapFailtimes::class);
 
-    return array_merge($array, ['type' => 'FAIL']);
+    return array_merge($array, ['type' => 'fail']);
 });
 
 $factory->defineAs(App\Models\BeatmapFailtimes::class, 'retry', function (Faker\Generator $faker) use ($factory) {
     $array = $factory->raw(App\Models\BeatmapFailtimes::class);
 
-    return array_merge($array, ['type' => 'EXIT']);
+    return array_merge($array, ['type' => 'exit']);
 });
