@@ -20,6 +20,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Exceptions\AuthorizationException;
 
 class BeatmapDiscussionPost extends Model
 {
@@ -31,6 +32,8 @@ class BeatmapDiscussionPost extends Model
         'id' => 'integer',
         'beatmap_discussion_id' => 'integer',
         'user_id' => 'integer',
+        'last_editor_id' => 'integer',
+        'system' => 'boolean',
     ];
 
     public function beatmapDiscussion()
@@ -60,5 +63,55 @@ class BeatmapDiscussionPost extends Model
     public function isValid()
     {
         return $this->hasValidMessage();
+    }
+
+    public function authorizeUpdate($user)
+    {
+        if ($this->system) {
+            throw new AuthorizationException(trans('beatmap_discussions.authorizations.update.system_generated'));
+        }
+
+        if ($user === null) {
+            throw new AuthorizationException(trans('beatmap_discussions.authorizations.update.null_user'));
+        }
+
+        if ($user->isAdmin()) {
+            return;
+        }
+
+        if ($user->user_id !== $this->user_id) {
+            throw new AuthorizationException(trans('beatmap_discussions.authorizations.update.wrong_user'));
+        }
+    }
+
+    public function getMessageAttribute($value)
+    {
+        if ($this->system) {
+            return json_decode($value);
+        } else {
+            return $value;
+        }
+    }
+
+    public function setMessageAttribute($value)
+    {
+        // don't shoot me ;_;
+        if ($this->system || is_array($value)) {
+            $value = json_encode($value);
+        }
+
+        $this->attributes['message'] = $value;
+    }
+
+    public static function generateLogResolveChange($user, $resolved)
+    {
+        return new static([
+            'user_id' => $user->user_id,
+            'system' => true,
+            'message' => [
+                'type' => 'resolved',
+                'value' => $resolved,
+            ],
+        ]);
     }
 }

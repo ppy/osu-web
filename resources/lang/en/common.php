@@ -46,4 +46,8 @@ return [
             'hours_ago' => ':count hour ago|:count hours ago',
             'now' => 'now',
         ],
+
+        'title' => [
+            'notice' => 'Notice',
+        ],
 ];

@@ -32,7 +32,17 @@ return [
     ],
 
     'discussions' => [
-        'empty' => 'No discussions yet!',
+        'collapse' => [
+            'all-collapse' => 'Collapse all',
+            'all-expand' => 'Expand all',
+        ],
+
+        'edit' => 'edit',
+        'edited' => 'Last edited by :editor :update_time',
+        'empty' => [
+            'empty' => 'No discussions yet!',
+            'filtered' => 'No discussion matches selected filter.',
+        ],
 
         'message_hint' => [
             'in_general' => 'This post will go to general beatmapset discussion. To mod this beatmap, start message with timestamp (e.g. 00:12:345).',
@@ -63,6 +73,7 @@ return [
 
         'stats' => [
             'pending' => 'Pending',
+            'praises' => 'Praises',
             'resolved' => 'Resolved',
             'total' => 'Total',
         ],

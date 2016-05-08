@@ -31,7 +31,24 @@ BeatmapDiscussions.Discussions = React.createClass
     div
       className: bn
 
-      ['general', 'timeline'].map @modeSwitchButton
+      div className: "#{bn}__toolbar",
+        div null,
+          ['general', 'timeline'].map @modeSwitchButton
+
+        div null,
+          button
+            className: "btn-osu-lite btn-osu-lite--default #{bn}__collapse-button"
+            onClick: => $.publish 'beatmapDiscussion:collapse', all: 'collapse'
+            el Icon, name: 'minus-circle'
+            span className: "#{bn}__collapse-button-text",
+              Lang.get('beatmaps.discussions.collapse.all-collapse')
+
+          button
+            className: "btn-osu-lite btn-osu-lite--default #{bn}__collapse-button"
+            onClick: => $.publish 'beatmapDiscussion:collapse', all: 'expand'
+            el Icon, name: 'plus-circle'
+            span className: "#{bn}__collapse-button-text",
+              Lang.get('beatmaps.discussions.collapse.all-expand')
 
       div
         className: "#{bn}__discussions"
@@ -41,8 +58,10 @@ BeatmapDiscussions.Discussions = React.createClass
         div className: "#{bn}__discussions",
           @currentDiscussions.map @discussionPage
 
-          if !@hasVisibleDiscussion
-            div className: "#{bn}__discussion #{bn}__discussion--empty", Lang.get 'beatmaps.discussions.empty'
+          if !@hasDiscussion?
+            div className: "#{bn}__discussion #{bn}__discussion--empty", Lang.get 'beatmaps.discussions.empty.empty'
+          else if @hasDiscussion == 'filtered'
+            div className: "#{bn}__discussion #{bn}__discussion--empty", Lang.get 'beatmaps.discussions.empty.filtered'
 
       if @props.mode == 'timeline'
         div className: "#{bn}__mode-circle #{bn}__mode-circle--active hidden-xs"
@@ -65,10 +84,17 @@ BeatmapDiscussions.Discussions = React.createClass
 
   discussionPage: (discussion) ->
     className = "#{bn}__discussion"
-    if discussion.beatmap_id != @currentBeatmapId
-      className += ' hidden'
-    else
-      @hasVisibleDiscussion = true
+    hidden =
+      if !@currentBeatmap(discussion)
+        true
+      else if @filtered(discussion)
+        @hasDiscussion ?= 'filtered'
+        true
+      else
+        @hasDiscussion = 'visible'
+        false
+
+    className += ' hidden' if hidden
 
     div
       key: discussion.id
@@ -82,6 +108,19 @@ BeatmapDiscussions.Discussions = React.createClass
         userPermissions: @props.userPermissions
         highlighted: discussion.id == @props.highlightedDiscussionId
         readPostIds: @props.readPostIds
+        collapsed: _.includes @props.collapsedBeatmapDiscussionIds, discussion.id
+
+
+  currentBeatmap: (discussion) ->
+    discussion.beatmap_id == @currentBeatmapId
+
+
+  filtered: (discussion) ->
+    switch @props.currentFilter
+      when 'resolved' then discussion.message_type == 'praise' || !discussion.resolved
+      when 'pending' then discussion.message_type == 'praise' || discussion.resolved
+      when 'praises' then discussion.message_type != 'praise'
+      else false
 
 
   reboot: ->
@@ -91,4 +130,4 @@ BeatmapDiscussions.Discussions = React.createClass
 
     @currentBeatmapId = if @props.mode == 'general' then null else @props.currentBeatmap.id
 
-    @hasVisibleDiscussion = false
+    @hasDiscussion = null

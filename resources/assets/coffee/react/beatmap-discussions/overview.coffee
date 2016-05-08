@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{a, div, h1, p} = React.DOM
+{a, button, div, h1, p} = React.DOM
 el = React.createElement
 
 bn = 'beatmap-discussions-overview'
@@ -70,7 +70,7 @@ BeatmapDiscussions.Overview = React.createClass
             className: "#{bn}__meta-text"
             dangerouslySetInnerHTML:
               __html: Lang.get 'beatmaps.listing.mapped-by',
-                mapper: "<strong>#{osu.link Url.user(user.id), user.username}</strong>"
+                mapper: "<strong>#{laroute.link_to_route('users.show', user.username, users: user.id)}</strong>"
 
         div className: 'text-right',
           @stats()
@@ -91,25 +91,29 @@ BeatmapDiscussions.Overview = React.createClass
   stats: ->
     sbn = 'beatmap-discussions-stats'
 
-    discussions = @currentDiscussions().filter (discussion) =>
+    issues = @currentDiscussions().filter (discussion) =>
       discussion.timestamp? &&
       discussion.message_type != 'praise'
 
-    count =
-      resolved:
-        discussions
-          .filter (discussion) => discussion.resolved
-          .length
-      total: discussions.length
+    count = {}
+    count.resolved = issues
+        .filter (discussion) => discussion.resolved
+        .length
+    count.pending = issues.length - count.resolved
+    count.praises = @currentDiscussions().length - issues.length
+    count.total = @currentDiscussions().length
 
-    count.pending = count.total - count.resolved
+    ['resolved', 'pending', 'praises', 'total'].map (type) =>
+      topClasses = "#{sbn} #{sbn}--#{type}"
+      topClasses += " #{sbn}--inactive" if @props.currentFilter != type
 
-    ['resolved', 'pending', 'total'].map (type) =>
-      div
+      button
         key: type
-        className: "#{sbn} #{sbn}--#{type}"
+        className: topClasses
+        onClick: @setFilter.bind(@, type)
         p className: "#{sbn}__text #{sbn}__text--type", Lang.get("beatmaps.discussions.stats.#{type}")
         p className: "#{sbn}__text #{sbn}__text--count", count[type]
+        div className: "#{sbn}__line"
 
 
   updateChart: ->
@@ -122,3 +126,7 @@ BeatmapDiscussions.Overview = React.createClass
       $(window).on 'throttled-resize.beatmapDiscussionsOverview', @_chart.resize
 
     @_chart.loadData @currentDiscussions()
+
+
+  setFilter: (filter) ->
+    $.publish 'beatmapDiscussion:filter', filter: filter

@@ -22,7 +22,7 @@ class ProfilePage.RecentAchievements extends React.Component
   _showAllMedals: (e) =>
     e.preventDefault()
 
-    $.publish 'profilePageExtra:tab', 'medals'
+    $.publish 'profile:page:jump', 'medals'
 
 
   render: =>
@@ -51,6 +51,7 @@ class ProfilePage.RecentAchievements extends React.Component
           el ProfilePage.AchievementBadge,
             key: "profile-achievement-#{i}"
             achievement: userAchievement.achievement.data
+            userAchievement: userAchievement
             additionalClasses: 'badge-achievement--recent'
 
       if moreCount > 0

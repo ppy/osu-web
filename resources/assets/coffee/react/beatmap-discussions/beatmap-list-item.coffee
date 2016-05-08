@@ -25,19 +25,40 @@ BeatmapDiscussions.BeatmapListItem = React.createClass
 
 
   render: ->
+    topClasses = bn
+    topClasses += " #{bn}--large" if @props.large
+
+    version = if @props.beatmap.mode == 'mania'
+      "[#{@props.beatmap.difficulty_size}k] #{@props.beatmap.version}"
+    else
+      @props.beatmap.version
+
     div
-      className: bn
+      className: topClasses
 
       div className: "#{bn}__col",
-        el BeatmapIcon, beatmap: @props.beatmap, modifier: 'large'
+        el BeatmapIcon,
+          beatmap: @props.beatmap
+          modifier: "#{'large' if @props.large}"
+          overrideVersion: 'hard' if @props.mode == 'mode'
 
       div className: "#{bn}__col #{bn}__col--main",
-        div className: "#{bn}__mode",
-          Lang.get("beatmaps.mode.#{@props.beatmap.mode}")
-        div className: "#{bn}__version",
-          @props.beatmap.version
+        if @props.mode == 'complete'
+          [
+            div key: 'version',
+              version
+            div
+              key: 'mode'
+              className: "#{bn}__small"
+              Lang.get("beatmaps.mode.#{@props.beatmap.mode}")
+          ]
 
-      if @props.withSwitchButton
+        else if @props.mode == 'mode'
+          Lang.get("beatmaps.mode.#{@props.beatmap.mode}")
+
+        else if @props.mode == 'version'
+          version
+
+      if @props.withButton?
         div className: "#{bn}__col",
-          div className: 'beatmap-list-item__switch-button',
-            el Icon, name: 'chevron-down'
+          el Icon, name: "chevron-#{@props.withButton}"

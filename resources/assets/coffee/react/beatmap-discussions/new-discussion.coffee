@@ -84,7 +84,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
             @messageTypeSelection type
 
         button
-          className: "btn-osu-lite btn-osu-lite--default"
+          className: 'btn-osu-lite btn-osu-lite--default btn-osu-lite--fat'
           disabled: !@validPost()
           onClick: @throttledPost
           Lang.get('common.buttons.post')
@@ -114,7 +114,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
         timestamp: @state.timestamp
         beatmap_id: @props.currentBeatmap.id
 
-    $.ajax Url.beatmapDiscussionPosts,
+    $.ajax laroute.route('beatmap-discussion-posts.store'),
       method: 'POST'
       data: data
 

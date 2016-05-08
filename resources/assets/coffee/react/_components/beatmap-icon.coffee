@@ -28,6 +28,7 @@ el = React.createElement
     beatmap = @props.beatmap
 
     difficultyRating = switch
+      when @props.overrideVersion? then @props.overrideVersion
       when beatmap.difficulty_rating < 1.5 then 'easy'
       when beatmap.difficulty_rating < 2.25 then 'normal'
       when beatmap.difficulty_rating < 3.75 then 'hard'
@@ -36,5 +37,5 @@ el = React.createElement
 
     div
       className: "beatmap-icon beatmap-icon--#{difficultyRating} beatmap-icon--#{@props.modifier}"
-      title: beatmap.version
+      title: beatmap.version if !@props.overrideVersion?
       el Icon, name: "osumode-#{beatmap.mode}"

@@ -19,8 +19,8 @@
 
 @section("content")
     {!! Form::open([
-        "url" => route("forum.topics.store", $forum),
-        "data-preview-url" => route("forum.topics.preview", $forum),
+        "url" => route("forum.topics.store", ['forum_id' => $forum]),
+        "data-preview-url" => route("forum.topics.preview", ['forum_id' => $forum]),
     ]) !!}
         <input type="hidden" name="cover_id" value="{{ Request::old("cover_id") }}" class="js-forum-cover--input">
 

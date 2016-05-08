@@ -10,6 +10,8 @@
 
 @navbar-mobile--content-height: @navbar-height - (@navbar-padding-vertical * 2);
 
+
+// here be z-indexes
 @z-index--visibility-hidden: 0;
 @z-index--body-background: 0;
 @z-index--user-profile-avatar: 2;
@@ -21,6 +23,14 @@
 @z-index--blackout: 8000;
 @z-index--blackout-visible: 8001;
 @z-index--editor-zoom: 9999;
+
+
+// here be font-sizes
+@font-size--store-header-link-icon: 18px;
+@font-size--store-header-link-text: 12px;
+@font-size--store-notice-text: 15px;
+@font-size--store-notice-title: 13px;
+
 
 @forum-category-colour--osu-bg: @pink;
 @forum-category-colour--osu-link: @pink-text;
@@ -47,6 +57,7 @@
 @forum-category-colour--management-link-hover: @gray;
 
 @beatmap-discussion--avatar-size: 40px;
+@beatmap-discussion--reply-padding: (@spacing * 2 + @beatmap-discussion--avatar-size);
 @beatmap-discussion--timestamp-width: 110px;
 
 @beatmap-discussion--color-praise: @blue-dark;

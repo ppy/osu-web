@@ -23,6 +23,15 @@ var
   composer_root = '../../../vendor/',
   node_root = '../../../node_modules/';
 
+/*
+ * The merge rules plugin is kind of buggy and broke safari.
+ * Noticeably in loading overlay circles having wrong animation.
+ *
+ * Reference: https://github.com/ben-eb/cssnano/issues/154
+ */
+elixir.config.css.cssnano.pluginOptions = {
+  mergeRules: false,
+}
 
 /*
  |--------------------------------------------------------------------------
@@ -68,6 +77,7 @@ elixir(function(mix) {
     'build/vendor-modules.js',
     'ga.js',
     'messages.js',
+    'laroute.js',
     'build/app-main.js',
   ], 'public/js/app.js')
   .coffee([

@@ -56,6 +56,7 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
 
             foreach ($beatmapDiscussion->beatmapDiscussionPosts as $post) {
                 $userIds[] = $post->user_id;
+                $userIds[] = $post->last_editor_id;
             }
         }
 

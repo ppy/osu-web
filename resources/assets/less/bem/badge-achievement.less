@@ -28,6 +28,7 @@
   &--recent {
     width: 25%;
     display: inline-block;
+    line-height: 60px;
   }
 
   &__locked-bg {
@@ -45,6 +46,9 @@
   &__image {
     max-width: 100%;
 
+    .@{_top}--recent & {
+      max-width: 75%;
+    }
     .@{_top}--locked & {
       opacity: 0.25;
       filter: saturate(0);
