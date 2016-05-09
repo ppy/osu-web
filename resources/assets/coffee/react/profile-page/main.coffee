@@ -105,7 +105,11 @@ class ProfilePage.Main extends React.Component
 
     target = $(".js-profile-page--page[data-page-id='#{page}']")
 
-    return unless target.length
+    # if invalid page is specified, scan current position
+    if target.length == 0
+      @pageScan()
+      return
+
     # Don't bother scanning the current position.
     # The result will be wrong when target page is too short anyway.
     @scrolling = true
