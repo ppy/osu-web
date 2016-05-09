@@ -49,11 +49,15 @@ class ProfilePage.Main extends React.Component
     @setState currentMode: @validMode(mode), @setHash
 
 
-  setCurrentPage: (_e, page, callback) =>
-    return if @state.currentPage == page
-    @setState currentPage: page, =>
-      callback() if callback
+  setCurrentPage: (_e, page, extraCallback) =>
+    callback = =>
+      extraCallback?()
       @setHash()
+
+    if @state.currentPage == page
+      callback()
+
+    @setState currentPage: page, callback
 
 
   setHash: =>
