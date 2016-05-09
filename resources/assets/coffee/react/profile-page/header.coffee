@@ -39,7 +39,7 @@ class ProfilePage.Header extends React.Component
 
 
   componentWillUnmount: =>
-    @coverSet.cancel
+    @coverSet.cancel()
 
     @_removeListeners()
 

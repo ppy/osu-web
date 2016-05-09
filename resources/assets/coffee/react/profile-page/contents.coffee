@@ -28,13 +28,11 @@ class ProfilePage.Contents extends React.Component
 
 
   render: =>
-    tabs = ['osu', 'taiko', 'fruits', 'mania']
-
     div
       className: 'osu-layout__row osu-layout__row--page-profile js-profile-page--scrollspy js-profile-page--page'
       'data-page-id': 'main'
       el 'div', className: 'profile-tabs',
-        tabs.map (t) =>
+        @props.modes.map (t) =>
           el ProfilePage.ContentsTab,
             key: t
             currentMode: @props.currentMode
