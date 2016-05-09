@@ -138,6 +138,7 @@ class ProfilePage.Main extends React.Component
     for own _name, timeout of @timeouts
       clearTimeout timeout
 
+    $(window).stop()
     @removeListeners()
 
 
