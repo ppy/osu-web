@@ -16,15 +16,8 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-set = JSON.parse(document.getElementById('json-beatmapset').text).data
-countries = JSON.parse(document.getElementById('json-countries').text).data
-
 propsFunction = =>
-  set: set
-  beatmaps: _.keyBy set.beatmaps.data, (o) -> o.id
-  beatmapsByMode: _.groupBy set.beatmaps.data, (o) -> o.mode
-  beatmapCount: _.countBy set.beatmaps.data, (o) -> o.mode
-  displayedBeatmap: _.last(set.beatmaps.data).id
-  countries: _.keyBy countries, (o) -> o.code
+  set: JSON.parse(document.getElementById('json-beatmapset').text).data
+  countries: _.keyBy JSON.parse(document.getElementById('json-countries').text).data, (o) -> o.code
 
 reactTurbolinks.register 'beatmapset-page', BeatmapsetPage.Main, propsFunction

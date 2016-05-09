@@ -25,12 +25,20 @@ BeatmapsetPage.Main = React.createClass
     optionsHash = BeatmapsetPageHash.parse location.hash
     @initialPage = optionsHash.page
 
-    currentMode = if optionsHash.mode then parseInt optionsHash.mode, 10 else @props.displayedBeatmap
+    beatmaps = _.keyBy @props.set.beatmaps.data, (o) -> o.id
 
+    currentMode =
+      if optionsHash.mode? && beatmaps[optionsHash.mode]?
+        optionsHash.mode
+      else
+        _.last(@props.set.beatmaps.data).id
+
+    beatmaps: beatmaps
+    beatmapsByMode: _.groupBy @props.set.beatmaps.data, (o) -> o.mode
     currentMode: currentMode
-    currentPlaymode: @props.beatmaps[currentMode].mode
+    currentPlaymode: beatmaps[currentMode].mode
     currentScoreboard: 'global'
-    scores: @props.beatmaps[currentMode].scoresBest.data
+    scores: beatmaps[currentMode].scoresBest.data
     loading: false
 
   setHash: ->
@@ -40,7 +48,7 @@ BeatmapsetPage.Main = React.createClass
     return if @state.loading
 
     if scoreboard == 'global'
-      @setState scores: @props.beatmaps[@state.currentMode].scoresBest.data
+      @setState scores: @state.beatmaps[@state.currentMode].scoresBest.data
       @setState currentScoreboard: scoreboard
     else
       if not currentUser.isSupporter
@@ -69,9 +77,9 @@ BeatmapsetPage.Main = React.createClass
     @setCurrentMode _e, beatmapId
 
     @setState
-      currentPlaymode: @props.beatmaps[beatmapId].mode
+      currentPlaymode: @state.beatmaps[beatmapId].mode
       currentScoreboard: 'global'
-      scores: @props.beatmaps[beatmapId].scoresBest.data
+      scores: @state.beatmaps[beatmapId].scoresBest.data
 
   componentDidMount: ->
     @removeListeners()
@@ -101,17 +109,16 @@ BeatmapsetPage.Main = React.createClass
 
       el BeatmapsetPage.Contents,
         set: @props.set
-        beatmaps: @props.beatmaps
-        beatmapsByMode: @props.beatmapsByMode
-        beatmapCount: @props.beatmapCount
+        beatmaps: @state.beatmaps
+        beatmapsByMode: @state.beatmapsByMode
         currentPlaymode: @state.currentPlaymode
         currentMode: @state.currentMode
         currentPage: @state.currentPage
 
       el BeatmapsetPage.Extra,
         set: @props.set
-        beatmaps: @props.beatmaps
-        beatmap: @props.beatmaps[@state.currentMode]
+        beatmaps: @state.beatmaps
+        beatmap: @state.beatmaps[@state.currentMode]
         currentPage: @state.currentPage
         currentMode: @state.currentMode
         currentScoreboard: @state.currentScoreboard

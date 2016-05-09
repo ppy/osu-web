@@ -26,7 +26,7 @@ class @BeatmapsetPageHash
       page: hash
     else
       split = hash.split '/'
-      mode: split[0]
+      mode: parseInt split[0], 10
       page: split[1] || 'main'
 
   @generate: ({page, mode}) ->
