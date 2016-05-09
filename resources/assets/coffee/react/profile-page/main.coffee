@@ -23,11 +23,13 @@ class ProfilePage.Main extends React.Component
     super props
 
     optionsHash = ProfilePageHash.parse location.hash
+    @modes = ['osu', 'taiko', 'fruits', 'mania']
+
     @initialPage = optionsHash.page
     @timeouts = {}
 
     @state =
-      currentMode: optionsHash.mode || props.user.playmode
+      currentMode: @validMode(optionsHash.mode ? props.user.playmode)
       user: props.user
       userPage:
         html: props.userPage.html
@@ -44,7 +46,7 @@ class ProfilePage.Main extends React.Component
 
   setCurrentMode: (_e, mode) =>
     return if @state.currentMode == mode
-    @setState currentMode: mode, @setHash
+    @setState currentMode: @validMode(mode), @setHash
 
 
   setCurrentPage: (_e, page, callback) =>
@@ -164,6 +166,7 @@ class ProfilePage.Main extends React.Component
         currentMode: @state.currentMode
         currentPage: @state.currentPage
         allAchievements: @props.allAchievements
+        modes: @modes
 
       el ProfilePage.Extra,
         achievements: @props.achievements
@@ -184,3 +187,10 @@ class ProfilePage.Main extends React.Component
         userPage: @state.userPage
         currentPage: @state.currentPage
         currentMode: @state.currentMode
+
+
+  validMode: (mode) =>
+    if _.includes(@modes, mode)
+      mode
+    else
+      @modes[0]
