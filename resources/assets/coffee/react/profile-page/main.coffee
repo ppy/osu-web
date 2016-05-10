@@ -155,11 +155,11 @@ class ProfilePage.Main extends React.Component
     $(window).off '.profilePage'
 
   render: =>
-    rankHistories = @props.userRankHistories[@state.currentMode]?.data
-    stats = @props.userStats[@state.currentMode].data
-    scores = @props.userScores[@state.currentMode].data
-    scoresBest = @props.userScoresBest[@state.currentMode].data
-    scoresFirst = @props.userScoresFirst[@state.currentMode].data
+    rankHistories = @props.allRankHistories[@state.currentMode]?.data
+    stats = @props.allStats[@state.currentMode].data
+    scores = @props.allScores[@state.currentMode].data
+    scoresBest = @props.allScoresBest[@state.currentMode].data
+    scoresFirst = @props.allScoresFirst[@state.currentMode].data
 
     div className: 'osu-layout__section',
       el ProfilePage.Header,

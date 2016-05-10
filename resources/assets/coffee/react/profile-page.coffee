@@ -20,12 +20,12 @@ propsFunction = =>
 
   user: user
   userPage: user.page.data
-  userAchievements: user.allAchievements.data
-  userRankHistories: user.allRankHistories.data
-  userStats: user.allStatistics.data
-  userScores: user.allScores.data
-  userScoresBest: user.allScoresBest.data
-  userScoresFirst: user.allScoresFirst.data
+  userAchievements: user.userAchievements.data
+  allRankHistories: user.allRankHistories.data
+  allStats: user.allStatistics.data
+  allScores: user.allScores.data
+  allScoresBest: user.allScoresBest.data
+  allScoresFirst: user.allScoresFirst.data
   favouriteBeatmapSets: user.favouriteBeatmapSets.data
   rankedAndApprovedBeatmapSets: user.rankedAndApprovedBeatmapSets.data
   beatmapPlaycounts: user.beatmapPlaycounts.data
