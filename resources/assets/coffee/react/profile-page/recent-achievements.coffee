@@ -33,7 +33,7 @@ class ProfilePage.RecentAchievements extends React.Component
     maxDisplayed = 8
     achievementsProgress = (100 * counts.current / counts.total).toFixed()
 
-    currentAchievements = _.chain(@props.userAchievements)
+    currentUserAchievements = _.chain(@props.userAchievements)
       .map (ua) =>
         userAchievement: ua
         achievement: @props.achievements[ua.achievement_id]
@@ -58,14 +58,14 @@ class ProfilePage.RecentAchievements extends React.Component
           dd {}, "#{achievementsProgress}%"
 
       div className: 'profile-row profile-recent-achievements',
-        currentAchievements.slice(0, maxDisplayed).map (a, i) =>
+        currentUserAchievements.slice(0, maxDisplayed).map (a, i) =>
           el ProfilePage.AchievementBadge,
             key: "profile-achievement-#{i}"
             achievement: a.achievement
             userAchievement: a.userAchievement
             additionalClasses: 'badge-achievement--recent'
 
-      if currentAchievements.length > maxDisplayed
+      if currentUserAchievements.length > maxDisplayed
         a
           href: '#'
           onClick: @_showAllMedals
