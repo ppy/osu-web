@@ -26,15 +26,26 @@ class ProfilePage.RecentAchievements extends React.Component
 
 
   render: =>
+    counts =
+      current: @props.userAchievements.length
+      total: _.size @props.achievements
+
     maxDisplayed = 8
-    achievementsProgress = (100 * @props.achievementsCounts.current / @props.achievementsCounts.total).toFixed()
-    moreCount = @props.achievementsCounts.current - Math.min(@props.allAchievements.length, maxDisplayed)
+    achievementsProgress = (100 * counts.current / counts.total).toFixed()
+
+    currentUserAchievements = _.chain(@props.userAchievements)
+      .map (ua) =>
+        userAchievement: ua
+        achievement: @props.achievements[ua.achievement_id]
+      .filter (a) =>
+        !a.achievement.mode? || a.achievement.mode == @props.currentMode
+      .value()
 
     div className: 'profile-content flex-col-33 text-center',
       div className: 'profile-row profile-row--top',
         div className: 'profile-achievements-badge profile-top-badge',
           span className: 'profile-badge-number',
-            @props.achievementsCounts.current
+            counts.current
 
         div className: 'profile-exp-bar',
           div
@@ -47,16 +58,16 @@ class ProfilePage.RecentAchievements extends React.Component
           dd {}, "#{achievementsProgress}%"
 
       div className: 'profile-row profile-recent-achievements',
-        @props.allAchievements.slice(0, maxDisplayed).map (userAchievement, i) =>
+        currentUserAchievements[...maxDisplayed].map (a, i) =>
           el ProfilePage.AchievementBadge,
             key: "profile-achievement-#{i}"
-            achievement: userAchievement.achievement.data
-            userAchievement: userAchievement
+            achievement: a.achievement
+            userAchievement: a.userAchievement
             additionalClasses: 'badge-achievement--recent'
 
-      if moreCount > 0
+      if currentUserAchievements.length > maxDisplayed
         a
           href: '#'
           onClick: @_showAllMedals
           small {},
-            Lang.get('users.show.more_achievements', count: moreCount)
+            Lang.get('users.show.more_achievements')
