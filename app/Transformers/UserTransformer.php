@@ -19,7 +19,6 @@
  */
 namespace App\Transformers;
 
-use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\User;
 use App\Models\Score\Best\Model as ScoreBestModel;
