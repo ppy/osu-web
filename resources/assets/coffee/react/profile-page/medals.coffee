@@ -33,14 +33,13 @@ ProfilePage.Medals = React.createClass
 
 
   _groupedAchievements: ->
-    achievements = _.chain(@props.achievements)
+    _.chain(@props.achievements)
       .values()
       .filter (a) =>
         !a.mode? || a.mode == @props.currentMode
+      .groupBy (a) =>
+        a.grouping
       .value()
-
-    _.groupBy achievements, (achievement) =>
-      achievement.grouping
 
 
   _orderedAchievements: (achievements) ->
