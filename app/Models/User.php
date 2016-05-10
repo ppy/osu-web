@@ -908,7 +908,7 @@ class User extends Model implements AuthenticatableContract
         return fractal_item_array(
             $this,
             new UserTransformer(),
-            'defaultStatistics'
+            'allAchievements,defaultStatistics'
         );
     }
 

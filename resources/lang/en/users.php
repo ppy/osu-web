@@ -133,7 +133,7 @@ return [
         'is_developer' => 'osu!developer',
         'lastvisit' => 'Last seen :date.',
         'joined_at' => 'joined :date',
-        'more_achievements' => 'and :count more',
+        'more_achievements' => 'and more',
         'origin' => [
             'age' => ':age years old.',
             'country' => 'From :country.',

@@ -70,7 +70,7 @@ class @UserCard extends React.Component
             stats.level.current
           el 'span',
             className: 'badges__badge badges__badge--small badges__badge--achievements'
-            user.achievements.current
+            user.allAchievements.data.length
 
         el 'div', className: 'modal-header__userinfo userinfo-small',
           h1

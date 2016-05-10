@@ -155,7 +155,10 @@ class ProfilePage.Extra extends React.Component
                 ProfilePage.Beatmaps
 
               when 'medals'
-                props = achievements: @props.achievements, allAchievements: @props.allAchievements
+                props =
+                  achievementData: @props.achievementData
+                  achievements: @props.achievements
+                  currentMode: @props.currentMode
                 ProfilePage.Medals
 
               when 'historical'

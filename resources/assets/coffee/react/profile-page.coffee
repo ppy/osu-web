@@ -16,15 +16,17 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 propsFunction = =>
+  user = osu.parseJson('json-user')
+
   user: user
   userPage: user.page.data
-  achievements: achievements
-  allAchievements: user.allAchievements.data
-  allRankHistories: user.allRankHistories.data
-  allStats: user.allStatistics.data
-  allScores: user.allScores.data
-  allScoresBest: user.allScoresBest.data
-  allScoresFirst: user.allScoresFirst.data
+  achievementData: _.keyBy osu.parseJson('json-achievement-data'), 'id'
+  userAchievements: user.allAchievements.data
+  userRankHistories: user.allRankHistories.data
+  userStats: user.allStatistics.data
+  userScores: user.allScores.data
+  userScoresBest: user.allScoresBest.data
+  userScoresFirst: user.allScoresFirst.data
   favouriteBeatmapSets: user.favouriteBeatmapSets.data
   rankedAndApprovedBeatmapSets: user.rankedAndApprovedBeatmapSets.data
   beatmapPlaycounts: user.beatmapPlaycounts.data
