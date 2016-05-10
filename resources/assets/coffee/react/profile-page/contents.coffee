@@ -42,5 +42,6 @@ class ProfilePage.Contents extends React.Component
         el ProfilePage.Info, user: @props.user
         el ProfilePage.Stats, stats: @props.stats
         el ProfilePage.RecentAchievements,
-          achievementsCounts: @props.user.achievements
-          allAchievements: @props.allAchievements
+          userAchievements: @props.userAchievements
+          achievements: @props.achievements
+          currentMode: @props.currentMode

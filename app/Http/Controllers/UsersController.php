@@ -126,7 +126,7 @@ class UsersController extends Controller
         $userArray = fractal_item_array(
             $user,
             new UserTransformer(), implode(',', [
-                'allAchievements',
+                'userAchievements',
                 'allRankHistories',
                 'allScores',
                 'allScoresBest',
