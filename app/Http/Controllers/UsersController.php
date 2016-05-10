@@ -118,7 +118,7 @@ class UsersController extends Controller
             return ujs_redirect(route('users.show', $user));
         }
 
-        $achievementData = fractal_collection_array(
+        $achievements = fractal_collection_array(
             Achievement::achievable()->orderBy('grouping')->orderBy('ordering')->orderBy('progression')->get(),
             new AchievementTransformer()
         );
@@ -141,6 +141,6 @@ class UsersController extends Controller
             ])
         );
 
-        return view('users.show', compact('user', 'userArray', 'achievementData'));
+        return view('users.show', compact('user', 'userArray', 'achievements'));
     }
 }

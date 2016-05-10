@@ -156,8 +156,8 @@ class ProfilePage.Extra extends React.Component
 
               when 'medals'
                 props =
-                  achievementData: @props.achievementData
                   achievements: @props.achievements
+                  userAchievements: @props.userAchievements
                   currentMode: @props.currentMode
                 ProfilePage.Medals
 

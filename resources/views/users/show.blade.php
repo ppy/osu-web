@@ -42,8 +42,8 @@
         {!! json_encode($userArray['data']) !!}
     </script>
 
-    <script id="json-achievement-data" type="application/json">
-        {!! json_encode($achievementData['data']) !!}
+    <script id="json-achievements" type="application/json">
+        {!! json_encode($achievements['data']) !!}
     </script>
 
     <script src="{{ elixir("js/react/profile-page.js") }}" data-turbolinks-track></script>

@@ -174,13 +174,13 @@ class ProfilePage.Main extends React.Component
         stats: stats
         currentMode: @state.currentMode
         currentPage: @state.currentPage
-        achievements: @props.userAchievements
-        achievementData: @props.achievementData
+        userAchievements: @props.userAchievements
+        achievements: @props.achievements
         modes: @modes
 
       el ProfilePage.Extra,
-        achievements: @props.userAchievements
-        achievementData: @props.achievementData
+        userAchievements: @props.userAchievements
+        achievements: @props.achievements
         beatmapPlaycounts: @props.beatmapPlaycounts
         favouriteBeatmapSets: @props.favouriteBeatmapSets
         rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets

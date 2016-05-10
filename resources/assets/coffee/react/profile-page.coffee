@@ -20,7 +20,6 @@ propsFunction = =>
 
   user: user
   userPage: user.page.data
-  achievementData: _.keyBy osu.parseJson('json-achievement-data'), 'id'
   userAchievements: user.allAchievements.data
   userRankHistories: user.allRankHistories.data
   userStats: user.allStatistics.data
@@ -33,5 +32,6 @@ propsFunction = =>
   withEdit: user.id == window.currentUser.id
   recentActivities: user.recentActivities.data
   recentlyReceivedKudosu: user.recentlyReceivedKudosu.data
+  achievements: _.keyBy osu.parseJson('json-achievements'), 'id'
 
 reactTurbolinks.register 'profile-page', ProfilePage.Main, propsFunction

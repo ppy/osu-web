@@ -27,16 +27,16 @@ class ProfilePage.RecentAchievements extends React.Component
 
   render: =>
     counts =
-      current: @props.achievements.length
-      total: _.size @props.achievementData
+      current: @props.userAchievements.length
+      total: _.size @props.achievements
 
     maxDisplayed = 8
     achievementsProgress = (100 * counts.current / counts.total).toFixed()
 
-    currentAchievements = _.chain(@props.achievements)
+    currentAchievements = _.chain(@props.userAchievements)
       .map (ua) =>
         userAchievement: ua
-        achievement: @props.achievementData[ua.achievement_id]
+        achievement: @props.achievements[ua.achievement_id]
       .filter (a) =>
         !a.achievement.mode? || a.achievement.mode == @props.currentMode
       .value()
