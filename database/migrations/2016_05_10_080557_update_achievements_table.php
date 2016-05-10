@@ -27,7 +27,7 @@ class UpdateAchievementsTable extends Migration
             $table->string('image', 50)->nullable()->change();
         });
 
-        // DBAL which is used to execute `change()` doesn't support mediumInteger.
+        // DBAL, which is used to execute `change()`, doesn't support `mediumInteger`.
         DB::statement('ALTER TABLE osu_achievements MODIFY achievement_id MEDIUMINT UNSIGNED NOT NULL');
     }
 
