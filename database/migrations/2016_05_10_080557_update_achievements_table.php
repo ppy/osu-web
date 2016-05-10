@@ -44,7 +44,7 @@ class UpdateAchievementsTable extends Migration
             $table->string('image', 50)->change();
         });
 
-        // There isn't even option for `mediumIncrements`.
+        // `mediumIncrements` requires unsupported `mediumInteger`.
         DB::statement('ALTER TABLE osu_achievements MODIFY achievement_id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT');
     }
 }
