@@ -58,7 +58,7 @@ class ProfilePage.RecentAchievements extends React.Component
           dd {}, "#{achievementsProgress}%"
 
       div className: 'profile-row profile-recent-achievements',
-        currentUserAchievements.slice(0, maxDisplayed).map (a, i) =>
+        currentUserAchievements[...maxDisplayed].map (a, i) =>
           el ProfilePage.AchievementBadge,
             key: "profile-achievement-#{i}"
             achievement: a.achievement
