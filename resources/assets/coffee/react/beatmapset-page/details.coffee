@@ -36,9 +36,12 @@ class BeatmapsetPage.Details extends React.Component
           style:
             backgroundImage: "url(#{@props.set.author.data.avatarUrl})"
 
-      div className: 'beatmapset-details__mapper',
-        Lang.get 'beatmaps.beatmapset.show.details.made-by'
-        span className: 'beatmapset-details__mapper beatmapset-details__mapper--username', @props.set.creator
+      div
+        className: 'beatmapset-details__mapper'
+        dangerouslySetInnerHTML:
+          __html: Lang.get 'beatmaps.beatmapset.show.details.made-by',
+          user: laroute.link_to_route 'users.show', @props.set.author.data.username, users: @props.set.author.data.id,
+            class: 'beatmapset-details__mapper beatmapset-details__mapper--username'
 
       div className: 'beatmapset-details__date',
         Lang.get 'beatmaps.beatmapset.show.details.submitted'

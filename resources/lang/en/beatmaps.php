@@ -95,7 +95,7 @@ return [
     'beatmapset' => [
         'show' => [
             'details' => [
-                'made-by' => 'made by ',
+                'made-by' => 'made by :user',
                 'submitted' => 'submitted on ',
                 'ranked' => 'ranked on ',
                 'logged-out' => 'You need to log in before downloading any beatmaps!',
