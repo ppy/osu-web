@@ -43,7 +43,7 @@ class BeatmapsetPage.Stats extends React.Component
                 .seconds @props.beatmap.total_length
                 .format 'm:ss'
             when 'bpm'
-              dd = @props.set.bpm
+              dd = @props.beatmapset.bpm
 
           el 'dl', className: 'beatmapset-stats__stat', key: m,
             el 'dt', className: 'beatmapset-stats__stat-key', dt
@@ -52,12 +52,12 @@ class BeatmapsetPage.Stats extends React.Component
       hr className: 'beatmapset-stats__line'
 
       div className: 'page-contents__row',
-        if @props.set.source
+        if @props.beatmapset.source
           el 'dl', className: 'beatmapset-stats__stat beatmapset-stats__stat--full',
             el 'dt', className: 'beatmapset-stats__stat-key', Lang.get 'beatmaps.beatmapset.show.stats.source'
-            el 'dd', className: 'beatmapset-stats__stat-value beatmapset-stats__stat-value--light', @props.set.source
+            el 'dd', className: 'beatmapset-stats__stat-value beatmapset-stats__stat-value--light', @props.beatmapset.source
 
-        if @props.set.tags
+        if @props.beatmapset.tags
           el 'dl', className: 'beatmapset-stats__stat beatmapset-stats__stat--full',
             el 'dt', className: 'beatmapset-stats__stat-key', Lang.get 'beatmaps.beatmapset.show.stats.tags'
-            el 'dd', className: 'beatmapset-stats__stat-value beatmapset-stats__stat-value--light', @props.set.tags
+            el 'dd', className: 'beatmapset-stats__stat-value beatmapset-stats__stat-value--light', @props.beatmapset.tags

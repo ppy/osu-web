@@ -52,9 +52,9 @@ class BeatmapsetPage.Contents extends React.Component
 
       div className: 'page-contents',
         el BeatmapsetPage.Details,
-          set: @props.set
+          beatmapset: @props.beatmapset
         el BeatmapsetPage.DifficultyChart,
           beatmap: beatmap
         el BeatmapsetPage.Stats,
-          set: @props.set
+          beatmapset: @props.beatmapset
           beatmap: beatmap

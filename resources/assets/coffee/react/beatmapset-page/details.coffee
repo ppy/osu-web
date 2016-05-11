@@ -34,23 +34,23 @@ class BeatmapsetPage.Details extends React.Component
         div
           className: 'beatmapset-details__avatar avatar avatar--beatmapset'
           style:
-            backgroundImage: "url(#{@props.set.user.data.avatarUrl})"
+            backgroundImage: "url(#{@props.beatmapset.user.data.avatarUrl})"
 
       div
         className: 'beatmapset-details__mapper'
         dangerouslySetInnerHTML:
           __html: Lang.get 'beatmaps.beatmapset.show.details.made-by',
-          user: laroute.link_to_route 'users.show', @props.set.user.data.username, users: @props.set.user.data.id,
+          user: laroute.link_to_route 'users.show', @props.beatmapset.user.data.username, users: @props.beatmapset.user.data.id,
             class: 'beatmapset-details__mapper beatmapset-details__mapper--username'
 
       div className: 'beatmapset-details__date',
         Lang.get 'beatmaps.beatmapset.show.details.submitted'
-        moment(@props.set.submitted_date).format DATE_FORMAT
+        moment(@props.beatmapset.submitted_date).format DATE_FORMAT
 
-      if @props.set.ranked_date
+      if @props.beatmapset.ranked_date
         div className: 'beatmapset-details__date',
           Lang.get 'beatmaps.beatmapset.show.details.ranked'
-          moment(@props.set.ranked_date).format DATE_FORMAT
+          moment(@props.beatmapset.ranked_date).format DATE_FORMAT
 
       hr className: 'beatmapset-details__line'
 
@@ -70,15 +70,15 @@ class BeatmapsetPage.Details extends React.Component
         else
           div {},
             a
-              href: if currentUser.isSupporter then Url.beatmapDownloadDirect @props.set.beatmapset_id else laroute.route 'support-the-game'
+              href: if currentUser.isSupporter then Url.beatmapDownloadDirect @props.beatmapset.beatmapset_id else laroute.route 'support-the-game'
               className: 'beatmapset-details__button'
               Lang.get 'beatmaps.beatmapset.show.details.download.direct'
             a
-              href: Url.beatmapDownload @props.set.beatmapset_id, !@state.noVideo
+              href: Url.beatmapDownload @props.beatmapset.beatmapset_id, !@state.noVideo
               className: 'beatmapset-details__button'
               Lang.get 'beatmaps.beatmapset.show.details.download.normal'
 
-            if @props.set.video
+            if @props.beatmapset.video
               div className: 'beatmapset-details__novideo',
                 label className: 'osu-checkbox',
                   input

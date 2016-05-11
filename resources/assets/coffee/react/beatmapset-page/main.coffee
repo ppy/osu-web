@@ -25,16 +25,16 @@ BeatmapsetPage.Main = React.createClass
     optionsHash = BeatmapsetPageHash.parse location.hash
     @initialPage = optionsHash.page
 
-    beatmaps = _.keyBy @props.set.beatmaps.data, (o) -> o.id
+    beatmaps = _.keyBy @props.beatmapset.beatmaps.data, (o) -> o.id
 
     currentBeatmapId =
       if optionsHash.beatmapId? && beatmaps[optionsHash.beatmapId]?
         optionsHash.beatmapId
       else
-        _.last(@props.set.beatmaps.data).id
+        _.last(@props.beatmapset.beatmaps.data).id
 
     beatmaps: beatmaps
-    beatmapsByMode: _.groupBy @props.set.beatmaps.data, (o) -> o.mode
+    beatmapsByMode: _.groupBy @props.beatmapset.beatmaps.data, (o) -> o.mode
     currentBeatmapId: currentBeatmapId
     currentPlaymode: beatmaps[currentBeatmapId].mode
     currentScoreboard: 'global'
@@ -102,14 +102,14 @@ BeatmapsetPage.Main = React.createClass
   render: ->
     div className: 'osu-layout__section',
       el BeatmapsetPage.Header,
-        title: @props.set.title
-        artist: @props.set.artist
-        playcount: @props.set.play_count
-        favcount: @props.set.favourite_count
-        cover: @props.set.covers.cover
+        title: @props.beatmapset.title
+        artist: @props.beatmapset.artist
+        playcount: @props.beatmapset.play_count
+        favcount: @props.beatmapset.favourite_count
+        cover: @props.beatmapset.covers.cover
 
       el BeatmapsetPage.Contents,
-        set: @props.set
+        beatmapset: @props.beatmapset
         beatmaps: @state.beatmaps
         beatmapsByMode: @state.beatmapsByMode
         currentPlaymode: @state.currentPlaymode
@@ -117,7 +117,7 @@ BeatmapsetPage.Main = React.createClass
         currentPage: @state.currentPage
 
       el BeatmapsetPage.Extra,
-        set: @props.set
+        beatmapset: @props.beatmapset
         beatmaps: @state.beatmaps
         beatmap: @state.beatmaps[@state.currentBeatmapId]
         currentPage: @state.currentPage
