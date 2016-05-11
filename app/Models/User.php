@@ -726,7 +726,7 @@ class User extends Model implements AuthenticatableContract
         return $this->belongsTo("App\Models\Forum\Post", 'userpage_post_id', 'post_id');
     }
 
-    public function achievements()
+    public function userAchievements()
     {
         return $this->hasMany("App\Models\UserAchievement", 'user_id', 'user_id');
     }
@@ -927,7 +927,7 @@ class User extends Model implements AuthenticatableContract
         return fractal_item_array(
             $this,
             new UserTransformer(),
-            'defaultStatistics'
+            'userAchievements,defaultStatistics'
         );
     }
 

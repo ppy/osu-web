@@ -25,7 +25,7 @@ ProfilePage.Main = React.createClass
     optionsHash = ProfilePageHash.parse location.hash
     @initialPage = optionsHash.page
 
-    currentMode: optionsHash.mode || @props.user.playmode
+    currentMode: @validMode(optionsHash.mode ? props.user.playmode)
     user: @props.user
     userPage:
       html: @props.userPage.html
@@ -35,8 +35,14 @@ ProfilePage.Main = React.createClass
       selection: [0, 0]
     isCoverUpdating: false
 
+
   coverUploadState: (_e, state) ->
     @setState isCoverUpdating: state
+
+
+  setCurrentMode: (_e, mode) ->
+    return if @state.currentMode == mode
+    @setState currentMode: @validMode(mode), @setHash
 
 
   setHash: ->
@@ -66,6 +72,7 @@ ProfilePage.Main = React.createClass
 
 
   componentWillUnmount: ->
+    $(window).stop()
     @removeListeners()
 
 
@@ -93,11 +100,12 @@ ProfilePage.Main = React.createClass
         stats: stats
         currentMode: @state.currentMode
         currentPage: @state.currentPage
-        allAchievements: @props.allAchievements
+        userAchievements: @props.userAchievements
+        achievements: @props.achievements
 
       el ProfilePage.Extra,
+        userAchievements: @props.userAchievements
         achievements: @props.achievements
-        allAchievements: @props.allAchievements
         beatmapPlaycounts: @props.beatmapPlaycounts
         favouriteBeatmapSets: @props.favouriteBeatmapSets
         rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
@@ -114,3 +122,12 @@ ProfilePage.Main = React.createClass
         userPage: @state.userPage
         currentPage: @state.currentPage
         currentMode: @state.currentMode
+
+
+  validMode: (mode) ->
+    modes = BeatmapHelper.modes
+
+    if _.includes(modes, mode)
+      mode
+    else
+      modes[0]

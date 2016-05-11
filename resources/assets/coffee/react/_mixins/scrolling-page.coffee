@@ -23,15 +23,15 @@ pagesOffset = document.getElementsByClassName("js-switchable-mode-page--scrollsp
   componentWillUnmount: ->
     clearTimeout @modeScrollTimeout
 
-  setCurrentMode: (_e, mode) ->
-    return if @state.currentMode == mode
-    @setState currentMode: mode, @setHash
-
-  setCurrentPage: (_e, page, callback) ->
-    return if @state.currentPage == page
-    @setState currentPage: page, =>
-      callback() if callback
+  setCurrentPage: (_e, page, extraCallback) ->
+    callback = =>
+      extraCallback?()
       @setHash()
+
+    if @state.currentPage == page
+      callback()
+
+    @setState currentPage: page, callback
 
   pageScan: ->
     return if @scrolling
@@ -53,7 +53,6 @@ pagesOffset = document.getElementsByClassName("js-switchable-mode-page--scrollsp
 
     @setCurrentPage null, page.dataset.pageId
 
-
   pageJump: (_e, page) ->
     if page == 'main'
       @setCurrentPage null, page
@@ -61,7 +60,11 @@ pagesOffset = document.getElementsByClassName("js-switchable-mode-page--scrollsp
 
     target = $(".js-switchable-mode-page--page[data-page-id='#{page}']")
 
-    return unless target.length
+    # if invalid page is specified, scan current position
+    if target.length == 0
+      @pageScan()
+      return
+
     # Don't bother scanning the current position.
     # The result will be wrong when target page is too short anyway.
     @scrolling = true

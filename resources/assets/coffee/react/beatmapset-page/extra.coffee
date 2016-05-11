@@ -45,7 +45,7 @@ BeatmapsetPage.Extra = React.createClass
       div className: 'osu-layout__row',
         div className: 'page-extra-tabs__items',
           sections.map (m) =>
-            el BeatmapsetPage.ExtraTab, key: m, page: m, currentPage: @props.currentPage, currentMode: @props.currentMode
+            el BeatmapsetPage.ExtraTab, key: m, page: m, currentPage: @props.currentPage, currentBeatmapId: @props.currentBeatmapId
 
     div className: 'osu-layout__section osu-layout__section--extra',
       div

@@ -28,13 +28,11 @@ class ProfilePage.Contents extends React.Component
 
 
   render: =>
-    tabs = ['osu', 'taiko', 'fruits', 'mania']
-
     div
       className: 'osu-layout__row osu-layout__row--page-profile js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
       'data-page-id': 'main'
       el 'div', className: 'page-tabs',
-        tabs.map (t) =>
+        BeatmapHelper.modes.map (t) =>
           el ProfilePage.ContentsTab,
             key: t
             currentMode: @props.currentMode
@@ -44,5 +42,6 @@ class ProfilePage.Contents extends React.Component
         el ProfilePage.Info, user: @props.user
         el ProfilePage.Stats, stats: @props.stats
         el ProfilePage.RecentAchievements,
-          achievementsCounts: @props.user.achievements
-          allAchievements: @props.allAchievements
+          userAchievements: @props.userAchievements
+          achievements: @props.achievements
+          currentMode: @props.currentMode

@@ -27,14 +27,19 @@ ProfilePage.Medals = React.createClass
 
 
   _userAchievement: (id) ->
-    @_userAchievements ?= _.keyBy @props.allAchievements, (o) -> o.achievement.data.id
+    @_userAchievements ?= _.keyBy @props.userAchievements, 'achievement_id'
 
     @_userAchievements[id]
 
 
   _groupedAchievements: ->
-    _.groupBy @props.achievements, (achievement) =>
-      achievement.grouping
+    _.chain(@props.achievements)
+      .values()
+      .filter (a) =>
+        !a.mode? || a.mode == @props.currentMode
+      .groupBy (a) =>
+        a.grouping
+      .value()
 
 
   _orderedAchievements: (achievements) ->

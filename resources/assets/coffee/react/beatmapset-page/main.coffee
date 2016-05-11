@@ -27,28 +27,28 @@ BeatmapsetPage.Main = React.createClass
 
     beatmaps = _.keyBy @props.set.beatmaps.data, (o) -> o.id
 
-    currentMode =
-      if optionsHash.mode? && beatmaps[optionsHash.mode]?
-        optionsHash.mode
+    currentBeatmapId =
+      if optionsHash.beatmapId? && beatmaps[optionsHash.beatmapId]?
+        optionsHash.beatmapId
       else
         _.last(@props.set.beatmaps.data).id
 
     beatmaps: beatmaps
     beatmapsByMode: _.groupBy @props.set.beatmaps.data, (o) -> o.mode
-    currentMode: currentMode
-    currentPlaymode: beatmaps[currentMode].mode
+    currentBeatmapId: currentBeatmapId
+    currentPlaymode: beatmaps[currentBeatmapId].mode
     currentScoreboard: 'global'
-    scores: beatmaps[currentMode].scoresBest.data
+    scores: beatmaps[currentBeatmapId].scoresBest.data
     loading: false
 
   setHash: ->
-    osu.setHash BeatmapsetPageHash.generate page: @state.currentPage, mode: @state.currentMode
+    osu.setHash BeatmapsetPageHash.generate page: @state.currentPage, beatmapId: @state.currentBeatmapId
 
   setCurrentScoreboard: (_e, scoreboard) ->
     return if @state.loading
 
     if scoreboard == 'global'
-      @setState scores: @state.beatmaps[@state.currentMode].scoresBest.data
+      @setState scores: @state.beatmaps[@state.currentBeatmapId].scoresBest.data
       @setState currentScoreboard: scoreboard
     else
       if not currentUser.isSupporter
@@ -58,7 +58,7 @@ BeatmapsetPage.Main = React.createClass
       $.publish 'beatmapset:scoreboard:loading', true
       @setState loading: true
 
-      $.ajax Url.beatmapScores(@state.currentMode),
+      $.ajax Url.beatmapScores(@state.currentBeatmapId),
         method: 'GET'
         dataType: 'JSON'
         data:
@@ -73,10 +73,11 @@ BeatmapsetPage.Main = React.createClass
         $.publish 'beatmapset:scoreboard:loading', false
         @setState loading: false
 
-  _setCurrentMode: (_e, beatmapId) ->
-    @setCurrentMode _e, beatmapId
+  setCurrentBeatmapId: (_e, beatmapId) ->
+    return if @state.currentBeatmapId == beatmapId
 
     @setState
+      currentBeatmapId: beatmapId
       currentPlaymode: @state.beatmaps[beatmapId].mode
       currentScoreboard: 'global'
       scores: @state.beatmaps[beatmapId].scoresBest.data
@@ -84,7 +85,7 @@ BeatmapsetPage.Main = React.createClass
   componentDidMount: ->
     @removeListeners()
 
-    $.subscribe 'beatmapset:beatmap:set.beatmapSetPage', @_setCurrentMode
+    $.subscribe 'beatmapset:beatmap:set.beatmapSetPage', @setCurrentBeatmapId
     $.subscribe 'beatmapset:page:jump.beatmapSetPage', @pageJump
     $.subscribe 'beatmapset:scoreboard:set.beatmapSetPage', @setCurrentScoreboard
     $(window).on 'throttled-scroll.beatmapSetPage', @pageScan
@@ -112,15 +113,15 @@ BeatmapsetPage.Main = React.createClass
         beatmaps: @state.beatmaps
         beatmapsByMode: @state.beatmapsByMode
         currentPlaymode: @state.currentPlaymode
-        currentMode: @state.currentMode
+        currentBeatmapId: @state.currentBeatmapId
         currentPage: @state.currentPage
 
       el BeatmapsetPage.Extra,
         set: @props.set
         beatmaps: @state.beatmaps
-        beatmap: @state.beatmaps[@state.currentMode]
+        beatmap: @state.beatmaps[@state.currentBeatmapId]
         currentPage: @state.currentPage
-        currentMode: @state.currentMode
+        currentBeatmapId: @state.currentBeatmapId
         currentScoreboard: @state.currentScoreboard
         scores: @state.scores
         countries: @props.countries

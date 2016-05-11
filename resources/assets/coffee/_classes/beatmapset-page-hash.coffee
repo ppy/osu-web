@@ -26,13 +26,13 @@ class @BeatmapsetPageHash
       page: hash
     else
       split = hash.split '/'
-      mode: parseInt split[0], 10
+      beatmapId: parseInt split[0], 10
       page: split[1] || 'main'
 
-  @generate: ({page, mode}) ->
+  @generate: ({page, beatmapId}) ->
     if @noMode(page)
       "##{page}"
     else
-      hash = "##{mode}"
+      hash = "##{beatmapId}"
       hash += "/#{page}" if page != 'main'
       hash

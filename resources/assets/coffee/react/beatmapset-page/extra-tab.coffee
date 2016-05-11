@@ -29,7 +29,7 @@ class BeatmapsetPage.ExtraTab extends React.Component
     className += ' page-extra-tabs__item--active' if @props.page is @props.currentPage
 
     a
-      href: BeatmapsetPageHash.generate page: @props.page, mode: @props.currentMode
+      href: BeatmapsetPageHash.generate page: @props.page, mode: @props.currentBeatmapId
       className: className,
       onClick: @pageSwitch,
       'data-page-id': @props.page,
