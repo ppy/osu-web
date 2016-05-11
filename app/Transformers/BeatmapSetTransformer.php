@@ -26,7 +26,7 @@ class BeatmapSetTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'description',
-        'author',
+        'user',
         'beatmaps',
     ];
 
@@ -63,7 +63,7 @@ class BeatmapSetTransformer extends Fractal\TransformerAbstract
         });
     }
 
-    public function includeAuthor(BeatmapSet $beatmapSet)
+    public function includeUser(BeatmapSet $beatmapSet)
     {
         return $this->item(
             $beatmapSet->user,
