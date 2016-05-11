@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{a, button, div, p} = React.DOM
+{button, div, p} = React.DOM
 el = React.createElement
 
 class ProfilePage.UserPage extends React.Component
@@ -26,9 +26,8 @@ class ProfilePage.UserPage extends React.Component
       if !@props.userPage.editing && @props.withEdit && @props.userPage.html != ''
         div className: 'profile-extra__actions',
           div className: 'forum-post-actions',
-            a
+            button
               className: 'forum-post-actions__action'
-              href: '#'
               onClick: @editStart
               el Icon, name: 'edit'
 
