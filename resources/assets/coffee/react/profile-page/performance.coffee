@@ -20,6 +20,7 @@ el = React.createElement
 
 class ProfilePage.Performance extends React.Component
   componentDidMount: ->
+    @minimumRankTick = -24
     @_rankHistory()
 
   componentDidUpdate: ->
@@ -32,6 +33,7 @@ class ProfilePage.Performance extends React.Component
     return [] unless data.length
 
     rankRange = d3.extent data, (d) => d.y
+    rankRange[0] = Math.min rankRange[0], @minimumRankTick
 
     @_allTicks ||= [-1, -2.5, -5]
 
