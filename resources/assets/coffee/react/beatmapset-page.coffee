@@ -17,7 +17,7 @@
 ###
 
 propsFunction = =>
-  set: JSON.parse(document.getElementById('json-beatmapset').text).data
-  countries: _.keyBy JSON.parse(document.getElementById('json-countries').text).data, (o) -> o.code
+  set: osu.parseJson('json-beatmapset').data
+  countries: _.keyBy osu.parseJson('json-countries').data, (o) -> o.code
 
 reactTurbolinks.register 'beatmapset-page', BeatmapsetPage.Main, propsFunction
