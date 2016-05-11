@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{a, button, div, i, p} = React.DOM
+{a, button, div, p} = React.DOM
 el = React.createElement
 
 class ProfilePage.UserPage extends React.Component
@@ -30,7 +30,7 @@ class ProfilePage.UserPage extends React.Component
               className: 'forum-post-actions__action'
               href: '#'
               onClick: @editStart
-              i className: 'fa fa-edit'
+              el Icon, name: 'edit'
 
       if @props.userPage.editing
         el ProfilePage.UserPageEditor, userPage: @props.userPage
@@ -54,7 +54,7 @@ class ProfilePage.UserPage extends React.Component
         Lang.get('users.show.page.edit_big')
 
       p className: 'profile-page-new-content profile-page-new-icon',
-        i className: 'fa fa-pencil-square-o'
+        el Icon, name: 'pencil-square-o'
 
       p
         className: 'profile-page-new-content'
