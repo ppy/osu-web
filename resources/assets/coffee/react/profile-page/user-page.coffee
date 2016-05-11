@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+{a, button, div, i, p} = React.DOM
 el = React.createElement
 
 class ProfilePage.UserPage extends React.Component
@@ -26,43 +27,44 @@ class ProfilePage.UserPage extends React.Component
   pageNew: =>
     canCreate = @props.withEdit and @props.user.isSupporter
 
-    el 'div', className: 'text-center',
-      el 'button',
+    div className: 'text-center',
+      button
         className: 'profile-page-new-content btn-osu btn-osu--lite btn-osu--profile-page-edit'
         onClick: @editStart
         disabled: !canCreate
         Lang.get('users.show.page.edit_big')
 
-      el 'p', className: 'profile-page-new-content profile-page-new-icon',
-        el 'i', className: 'fa fa-pencil-square-o'
+      p className: 'profile-page-new-content profile-page-new-icon',
+        i className: 'fa fa-pencil-square-o'
 
-      el 'p',
+      p
         className: 'profile-page-new-content'
         dangerouslySetInnerHTML:
           __html: Lang.get('users.show.page.description')
 
       if !@props.user.isSupporter
-        el 'p',
+        p
           className: 'profile-page-new-content'
           dangerouslySetInnerHTML:
             __html: Lang.get('users.show.page.restriction_info')
 
   pageShow: =>
-    el 'div', dangerouslySetInnerHTML:
+    div dangerouslySetInnerHTML:
       __html: @props.userPage.html
 
   render: =>
-    el 'div', className: 'profile-extra',
+    div className: 'profile-extra',
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       if !@props.userPage.editing && @props.withEdit && @props.userPage.html != ''
-        el 'div', className: 'profile-extra__actions',
-          el 'div', className: 'forum-post-actions',
-            el 'a',
+        div className: 'profile-extra__actions',
+          div className: 'forum-post-actions',
+            a
               className: 'forum-post-actions__action'
               href: '#'
               onClick: @editStart
-              el 'i', className: 'fa fa-edit'
+              i className: 'fa fa-edit'
+
       if @props.userPage.editing
         el ProfilePage.UserPageEditor, userPage: @props.userPage
       else if @props.withEdit && @props.userPage.html == ''
