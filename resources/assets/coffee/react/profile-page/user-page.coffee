@@ -46,13 +46,11 @@ class ProfilePage.UserPage extends React.Component
 
 
   pageNew: =>
-    canCreate = @props.withEdit and @props.user.isSupporter
-
     div className: 'text-center',
       button
         className: 'profile-page-new-content btn-osu btn-osu--lite btn-osu--profile-page-edit'
         onClick: @editStart
-        disabled: !canCreate
+        disabled: !@props.user.isSupporter
         Lang.get('users.show.page.edit_big')
 
       p className: 'profile-page-new-content profile-page-new-icon',
