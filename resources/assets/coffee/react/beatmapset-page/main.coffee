@@ -58,7 +58,7 @@ BeatmapsetPage.Main = React.createClass
       $.publish 'beatmapset:scoreboard:loading', true
       @setState loading: true
 
-      $.ajax Url.beatmapScores(@state.currentBeatmapId),
+      $.ajax (laroute.route 'beatmaps.scores', beatmaps: @state.currentBeatmapId),
         method: 'GET'
         dataType: 'JSON'
         data:

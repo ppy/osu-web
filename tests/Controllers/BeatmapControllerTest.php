@@ -36,7 +36,7 @@ class BeatmapControllerTest extends TestCase
      */
     public function testNonGeneralScoreboardLoggedOut()
     {
-        $this->json('GET', route('beatmap.scores', ['id' => $this->beatmap->beatmap_id]), [
+        $this->json('GET', route('beatmaps.scores', ['id' => $this->beatmap->beatmap_id]), [
             'type' => 'country',
         ])->seeStatusCode(403);
     }
@@ -48,7 +48,7 @@ class BeatmapControllerTest extends TestCase
     public function testNonGeneralScoreboardSupporter()
     {
         $this->actingAs($this->user)
-            ->json('GET', route('beatmap.scores', ['id' => $this->beatmap->beatmap_id]), [
+            ->json('GET', route('beatmaps.scores', ['id' => $this->beatmap->beatmap_id]), [
                 'type' => 'country',
             ])->seeStatusCode(422)
             ->seeJson(['error' => trans('errors.supporter_only')]);
@@ -57,7 +57,7 @@ class BeatmapControllerTest extends TestCase
         $this->user->save();
 
         $this->actingAs($this->user)
-            ->json('GET', route('beatmap.scores', ['id' => $this->beatmap->beatmap_id]), [
+            ->json('GET', route('beatmaps.scores', ['id' => $this->beatmap->beatmap_id]), [
                 'type' => 'country',
             ])->seeStatusCode(200);
     }

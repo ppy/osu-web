@@ -50,7 +50,7 @@ Route::get('/icons', 'HomeController@getIcons');
 // Route::get('/beatmaps/packs', ['as' => 'packs', 'uses' => 'BeatmapController@getPacks']);
 // Route::get('/beatmaps/charts/{id?}', ['as' => 'charts', 'uses' => 'BeatmapController@getCharts']);
 
-Route::get('/beatmaps/{id}/scores', ['as' => 'beatmap.scores', 'uses' => 'BeatmapController@scores']);
+Route::get('/beatmaps/{beatmaps}/scores', ['as' => 'beatmaps.scores', 'uses' => 'BeatmapController@scores']);
 Route::get('/b/{beatmaps}', ['as' => 'beatmaps.show', 'uses' => 'BeatmapController@show']);
 
 Route::get('/beatmapsets/search/{filters?}', ['as' => 'beatmapsets.search', 'uses' => 'BeatmapsetsController@search']);
