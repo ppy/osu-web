@@ -886,13 +886,13 @@ class User extends Model implements AuthenticatableContract
     {
         if ($this->userPage === null) {
             DB::transaction(function () use ($text) {
-                $topic = Forum\Topic::createNew(
-                    Forum\Forum::find(config('osu.user.user_page_forum_id')),
-                    "{$this->username}'s user page",
-                    $this,
-                    $text,
-                    false
-                );
+                $topic = Forum\Topic::createNew([
+                    'forum' => Forum\Forum::find(config('osu.user.user_page_forum_id')),
+                    'title' => "{$this->username}'s user page",
+                    'poster' => $this,
+                    'body' => $text,
+                    'notifyReplies' => false,
+                ]);
 
                 $this->update(['userpage_post_id' => $topic->topic_first_post_id]);
             });
