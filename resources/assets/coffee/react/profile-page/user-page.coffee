@@ -19,6 +19,27 @@
 el = React.createElement
 
 class ProfilePage.UserPage extends React.Component
+  render: =>
+    div className: 'profile-extra',
+      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
+
+      if !@props.userPage.editing && @props.withEdit && @props.userPage.html != ''
+        div className: 'profile-extra__actions',
+          div className: 'forum-post-actions',
+            a
+              className: 'forum-post-actions__action'
+              href: '#'
+              onClick: @editStart
+              i className: 'fa fa-edit'
+
+      if @props.userPage.editing
+        el ProfilePage.UserPageEditor, userPage: @props.userPage
+      else if @props.withEdit && @props.userPage.html == ''
+        @pageNew()
+      else
+        @pageShow()
+
+
   editStart: (e) ->
     e.preventDefault()
     $.publish 'user:page:update', editing: true
@@ -48,26 +69,7 @@ class ProfilePage.UserPage extends React.Component
           dangerouslySetInnerHTML:
             __html: Lang.get('users.show.page.restriction_info')
 
+
   pageShow: =>
     div dangerouslySetInnerHTML:
       __html: @props.userPage.html
-
-  render: =>
-    div className: 'profile-extra',
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
-
-      if !@props.userPage.editing && @props.withEdit && @props.userPage.html != ''
-        div className: 'profile-extra__actions',
-          div className: 'forum-post-actions',
-            a
-              className: 'forum-post-actions__action'
-              href: '#'
-              onClick: @editStart
-              i className: 'fa fa-edit'
-
-      if @props.userPage.editing
-        el ProfilePage.UserPageEditor, userPage: @props.userPage
-      else if @props.withEdit && @props.userPage.html == ''
-        @pageNew()
-      else
-        @pageShow()
