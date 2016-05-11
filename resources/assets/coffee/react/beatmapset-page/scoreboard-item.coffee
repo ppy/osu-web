@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, span, a} = React.DOM
+{div, a} = React.DOM
 el = React.createElement
 
 class BeatmapsetPage.ScoreboardItem extends React.Component
@@ -45,4 +45,4 @@ class BeatmapsetPage.ScoreboardItem extends React.Component
             when 'accuracy'
               "#{_.round @props.score.accuracy * 100, 2}%"
 
-        span className: className, key: m, contents
+        div className: className, key: m, contents
