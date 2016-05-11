@@ -21,6 +21,7 @@ pagesOffset = document.getElementsByClassName("js-switchable-mode-page--scrollsp
 
 @ScrollingPageMixin =
   componentWillUnmount: ->
+    $(window).stop()
     clearTimeout @modeScrollTimeout
 
   setCurrentPage: (_e, page, extraCallback) ->

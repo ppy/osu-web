@@ -72,7 +72,6 @@ ProfilePage.Main = React.createClass
 
 
   componentWillUnmount: ->
-    $(window).stop()
     @removeListeners()
 
 
