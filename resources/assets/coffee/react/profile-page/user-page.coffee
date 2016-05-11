@@ -52,20 +52,10 @@ class ProfilePage.UserPage extends React.Component
       __html: @props.userPage.html
 
   render: =>
-    withEditButton = @props.withEdit
-
-    if withEditButton && @props.userPage.html == ''
-      withEditButton = false
-      page = @pageNew()
-    else if @props.userPage.editing
-      page = el ProfilePage.UserPageEditor, userPage: @props.userPage
-    else
-      page = @pageShow()
-
     el 'div', className: 'profile-extra',
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
-      if withEditButton && !@props.userPage.editing
+      if !@props.userPage.editing && @props.withEdit && @props.userPage.html != ''
         el 'div', className: 'profile-extra__actions',
           el 'div', className: 'forum-post-actions',
             el 'a',
@@ -73,4 +63,9 @@ class ProfilePage.UserPage extends React.Component
               href: '#'
               onClick: @editStart
               el 'i', className: 'fa fa-edit'
-      page
+      if @props.userPage.editing
+        el ProfilePage.UserPageEditor, userPage: @props.userPage
+      else if @props.withEdit && @props.userPage.html == ''
+        @pageNew()
+      else
+        @pageShow()
