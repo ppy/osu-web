@@ -891,7 +891,7 @@ class User extends Model implements AuthenticatableContract
                     'title' => "{$this->username}'s user page",
                     'poster' => $this,
                     'body' => $text,
-                    'notifyReplies' => false
+                    'notifyReplies' => false,
                 ]);
 
                 $this->update(['userpage_post_id' => $topic->topic_first_post_id]);
