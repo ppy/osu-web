@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -16,23 +14,28 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-namespace App\Http\Controllers;
+.store-logo-text {
+  @_top: store-logo-text;
 
-use App\Models\BeatmapSet;
+  &__content {
+    transition: fill 0.3s ease-in-out;
 
-class ModdingController extends Controller
-{
-    protected $section = 'beatmaps';
+    &--text {
+      fill: @pink;
 
-    public function getModding($id = null)
-    {
-        if ($id === null) {
-            return redirect('/user/login');
-        } else {
-            $beatmapSet = BeatmapSet::findOrFail($id);
-
-            return view('beatmaps.modding_react')->with('beatmapSet', $beatmapSet);
-        }
+      .@{_top}:hover & {
+        fill: @grey-f;
+      }
     }
+
+    &--circle {
+      fill: @grey-f;
+
+      .@{_top}:hover & {
+        fill: @pink;
+      }
+    }
+  }
 }

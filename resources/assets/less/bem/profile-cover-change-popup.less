@@ -1,0 +1,98 @@
+/**
+ *    Copyright 2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+.profile-cover-change-popup {
+  &:extend(.default-border-radius);
+  &:extend(.default-box-shadow);
+
+  position: absolute;
+  top: @profile-header-height - @profile-user-bar-height + @grid-gutter-width/4;
+  right: @grid-gutter-width/4;
+  width: @profile-cover-thumb-size*3 + @grid-gutter-width/8*2 + @grid-gutter-width/4*2;
+
+  background: #fff;
+
+  font-size: 10px;
+  text-align: center;
+
+  &__defaults {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-right: -@grid-gutter-width/8;
+    margin-bottom: -@grid-gutter-width/8;
+    padding: @grid-gutter-width/4;
+  }
+
+  &__selection {
+    flex: 0 0 @profile-cover-thumb-size;
+    height: @profile-cover-thumb-size;
+    margin-right: @grid-gutter-width/8;
+    margin-bottom: @grid-gutter-width/8;
+
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+  }
+
+  &__selected-mark {
+    &:extend(.default-text-shadow);
+    color: #fff;
+    font-size: 24px;
+
+    position: absolute;
+    bottom: @grid-gutter-width/4;
+    left: @grid-gutter-width/4;
+  }
+
+  &__selections-info {
+    padding: @grid-gutter-width/4;
+    margin-bottom: 0px;
+    width: 100%;
+  }
+
+  &__uploader {
+
+  }
+
+  &__drop-overlay {
+    &:extend(.default-border-radius);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #fff;
+    font-size: 24px;
+    padding: @grid-gutter-width/2;
+
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+
+    background-color: fade(#000, 50%);
+
+    &--hover {
+      background-color: fade(#000, 70%);
+    }
+  }
+}

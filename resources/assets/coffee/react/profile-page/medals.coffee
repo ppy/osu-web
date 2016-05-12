@@ -23,19 +23,23 @@ ProfilePage.Medals = React.createClass
 
 
   componentWillReceiveProps: ->
-    @_achieved = null
+    @_userAchievements = null
 
 
-  _isAchieved: (id) ->
-    @_achieved ||= @props.allAchievements.map (achieved) ->
-      achieved.achievement.data.id
+  _userAchievement: (id) ->
+    @_userAchievements ?= _.keyBy @props.userAchievements, 'achievement_id'
 
-    _.includes @_achieved, id
+    @_userAchievements[id]
 
 
   _groupedAchievements: ->
-    _.groupBy @props.achievements, (achievement) =>
-      achievement.grouping
+    _.chain(@props.achievements)
+      .values()
+      .filter (a) =>
+        !a.mode? || a.mode == @props.currentMode
+      .groupBy (a) =>
+        a.grouping
+      .value()
 
 
   _orderedAchievements: (achievements) ->
@@ -50,12 +54,12 @@ ProfilePage.Medals = React.createClass
       el ProfilePage.AchievementBadge,
         additionalClasses: 'badge-achievement--listing'
         achievement: achievement
-        isLocked: !@_isAchieved(achievement.id)
+        userAchievement: @_userAchievement achievement.id
 
 
   render: ->
     div
-      className: 'profile-extra'
+      className: 'page-extra'
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
       div className: 'medals-group',
         _.map @_groupedAchievements(), (groupedAchievements, grouping) =>

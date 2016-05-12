@@ -70,14 +70,14 @@ class @UserCard extends React.Component
             stats.level.current
           el 'span',
             className: 'badges__badge badges__badge--small badges__badge--achievements'
-            user.achievements.current
+            user.userAchievements.data.length
 
         el 'div', className: 'modal-header__userinfo userinfo-small',
           h1
             className: 'userinfo-small__username'
             a
               className: 'link link--white link--no-underline'
-              href: Url.user(user.id)
+              href: laroute.route('users.show', users: user.id)
               user.username
 
           el FlagCountry, country: user.country, classModifiers: ['userinfo-small']

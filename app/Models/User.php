@@ -321,6 +321,10 @@ class User extends Model implements AuthenticatableContract
             }
         }
 
+        if (empty($styles)) {
+            return;
+        }
+
         return $styles;
     }
 
@@ -722,7 +726,7 @@ class User extends Model implements AuthenticatableContract
         return $this->belongsTo("App\Models\Forum\Post", 'userpage_post_id', 'post_id');
     }
 
-    public function achievements()
+    public function userAchievements()
     {
         return $this->hasMany("App\Models\UserAchievement", 'user_id', 'user_id');
     }
@@ -730,6 +734,21 @@ class User extends Model implements AuthenticatableContract
     public function usernameChangeHistory()
     {
         return $this->hasMany(UsernameChangeHistory::class, 'user_id', 'user_id');
+    }
+
+    public function relations()
+    {
+        return $this->hasMany(UserRelation::class, 'user_id', 'user_id');
+    }
+
+    public function friends()
+    {
+        return $this->relations()->where('friend', true);
+    }
+
+    public function foes()
+    {
+        return $this->relations()->where('foe', true);
     }
 
     public function events()
@@ -886,13 +905,13 @@ class User extends Model implements AuthenticatableContract
     {
         if ($this->userPage === null) {
             DB::transaction(function () use ($text) {
-                $topic = Forum\Topic::createNew(
-                    Forum\Forum::find(config('osu.user.user_page_forum_id')),
-                    "{$this->username}'s user page",
-                    $this,
-                    $text,
-                    false
-                );
+                $topic = Forum\Topic::createNew([
+                    'forum' => Forum\Forum::find(config('osu.user.user_page_forum_id')),
+                    'title' => "{$this->username}'s user page",
+                    'poster' => $this,
+                    'body' => $text,
+                    'notifyReplies' => false,
+                ]);
 
                 $this->update(['userpage_post_id' => $topic->topic_first_post_id]);
             });
@@ -908,7 +927,7 @@ class User extends Model implements AuthenticatableContract
         return fractal_item_array(
             $this,
             new UserTransformer(),
-            'defaultStatistics'
+            'userAchievements,defaultStatistics'
         );
     }
 

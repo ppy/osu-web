@@ -60,6 +60,14 @@
   text-shadow: 0px 1px 3px fade(#000, 75%);
 }
 
+.default-line() {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid @grey-c;
+  padding: 0;
+}
+
 .compact-list-inline {
   display: flex;
   list-style: none;
@@ -136,4 +144,10 @@
   border: none;
   padding: 0;
   background: none;
+}
+
+.content-font() {
+  font-family: 'Noto Sans', sans-serif;
+  line-height: 1.35;
+  color: @grey-4;
 }

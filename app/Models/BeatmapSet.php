@@ -26,6 +26,8 @@ use DB;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\ImageProcessorService;
 use App\Exceptions\BeatmapProcessorException;
+use App\Models\Forum\Topic;
+use App\Models\Forum\Post;
 
 class BeatmapSet extends Model
 {
@@ -683,5 +685,22 @@ class BeatmapSet extends Model
     public function approver()
     {
         return $this->belongsTo("App\Models\User", 'user_id', 'approvedby_id');
+    }
+
+    public function description()
+    {
+        $topic = Topic::find($this->thread_id);
+        $post = Post::find($topic->topic_first_post_id);
+
+        // Any description (after the first match) that matches
+        // '[-{15}]' within its body doesn't get split anymore,
+        // and gets stored in $split[1] anyways
+        $split = preg_split('[-{15}]', $post->post_text, 2);
+
+        // Return empty description if the pattern was not found
+        // (mostly older beatmapsets)
+        $description = $split[1] ?? '';
+
+        return bbcode($description, $post->bbcode_uid, true);
     }
 }

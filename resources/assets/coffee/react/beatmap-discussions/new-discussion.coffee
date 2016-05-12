@@ -114,7 +114,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
         timestamp: @state.timestamp
         beatmap_id: @props.currentBeatmap.id
 
-    $.ajax Url.beatmapDiscussionPosts,
+    $.ajax laroute.route('beatmap-discussion-posts.store'),
       method: 'POST'
       data: data
 

@@ -17,19 +17,25 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Transformers;
+$factory->define(App\Models\BeatmapFailtimes::class, function (Faker\Generator $faker) {
+    $array = [];
 
-use App\Models\Beatmap;
-use League\Fractal;
-
-class BeatmapDifficultyTransformer extends Fractal\TransformerAbstract
-{
-    public function transform(Beatmap $b)
-    {
-        return [
-            'mode' => $b->playmode,
-            'rating' => $b->difficultyrating,
-            'name' => $b->version,
-        ];
+    for ($i = 1; $i <= 100; $i++) {
+        $field = 'p'.strval($i);
+        $array = array_merge($array, [$field => rand(1, 10000)]);
     }
-}
+
+    return $array;
+});
+
+$factory->defineAs(App\Models\BeatmapFailtimes::class, 'fail', function (Faker\Generator $faker) use ($factory) {
+    $array = $factory->raw(App\Models\BeatmapFailtimes::class);
+
+    return array_merge($array, ['type' => 'fail']);
+});
+
+$factory->defineAs(App\Models\BeatmapFailtimes::class, 'retry', function (Faker\Generator $faker) use ($factory) {
+    $array = $factory->raw(App\Models\BeatmapFailtimes::class);
+
+    return array_merge($array, ['type' => 'exit']);
+});

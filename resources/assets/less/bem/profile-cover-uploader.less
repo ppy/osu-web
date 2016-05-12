@@ -1,7 +1,5 @@
-<?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,4 +14,30 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
+
+.profile-cover-uploader {
+  padding: @grid-gutter-width/4;
+  padding-right: @grid-gutter-width/8;
+  border-top: 1px solid #ccc;
+
+  &__button {
+    text-transform: none;
+    height: 30px;
+    margin-right: @grid-gutter-width/8;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__info {
+    padding: @grid-gutter-width/4;
+    margin-bottom: -@grid-gutter-width/4;
+  }
+
+  &__info-entry {
+    margin-bottom: @grid-gutter-width/8;
+  }
+}
