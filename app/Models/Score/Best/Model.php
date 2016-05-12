@@ -105,6 +105,17 @@ abstract class Model extends BaseModel
 
     public function scopeDefault($query)
     {
-        return $query->orderBy('pp', 'desc');
+        return $query
+            ->whereHas('user', function ($userQuery) {
+                $userQuery->default();
+            });
+    }
+
+    public function scopeDefaultListing($query)
+    {
+        return $query
+            ->default()
+            ->orderBy('score', 'DESC')
+            ->limit(config('osu.beatmaps.max-scores'));
     }
 }

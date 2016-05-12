@@ -141,6 +141,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                 $scores = $user
                     ->scoresBest($mode, true)
                     ->default()
+                    ->orderBy('pp', 'DESC')
                     ->with('beatmapSet', 'beatmap')
                     ->limit(100)
                     ->get();

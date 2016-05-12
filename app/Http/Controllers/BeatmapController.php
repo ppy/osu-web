@@ -53,8 +53,8 @@ class BeatmapController extends Controller
         $beatmap = Beatmap::findOrFail($id);
 
         $scores = $beatmap
-            ->scoresBest()->orderBy('score', 'desc')
-            ->limit(config('osu.beatmaps.max-scores'));
+            ->scoresBest()
+            ->defaultListing();
 
         switch ($type) {
             case 'country':
