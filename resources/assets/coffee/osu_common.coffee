@@ -19,13 +19,9 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
 
   setHash: (newHash) ->
-    newState = _.cloneDeep history.state
-    newState.url = location.href.replace /#.*/, ''
-    newState.url += newHash
+    return if newHash == location.hash
 
-    return if newState.url == location.href
-
-    history.replaceState newState, null, newState.url
+    location.replace newHash
 
 
   bottomPage: ->
