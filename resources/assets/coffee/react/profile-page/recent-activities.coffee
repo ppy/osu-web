@@ -122,7 +122,7 @@ class ProfilePage.RecentActivities extends React.Component
 
   render: =>
     el 'div',
-      className: 'profile-extra'
+      className: 'page-extra'
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       if @props.recentActivities.length

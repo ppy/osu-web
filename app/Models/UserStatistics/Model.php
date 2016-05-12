@@ -25,6 +25,8 @@ abstract class Model extends BaseModel
 {
     protected $primaryKey = 'user_id';
 
+    public $timestamps = false;
+
     protected $casts = [
         'accuracy_new' => 'float',
         'count100' => 'integer',

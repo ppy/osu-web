@@ -18,143 +18,66 @@
 {div} = React.DOM
 el = React.createElement
 
-class ProfilePage.Main extends React.Component
-  constructor: (props) ->
-    super props
+ProfilePage.Main = React.createClass
+  mixins: [ScrollingPageMixin]
 
+  getInitialState: ->
     optionsHash = ProfilePageHash.parse location.hash
-    @modes = ['osu', 'taiko', 'fruits', 'mania']
-
     @initialPage = optionsHash.page
-    @timeouts = {}
 
-    @state =
-      currentMode: @validMode(optionsHash.mode ? props.user.playmode)
-      user: props.user
-      userPage:
-        html: props.userPage.html
-        initialRaw: props.userPage.raw
-        raw: props.userPage.raw
-        editing: false
-        selection: [0, 0]
-      isCoverUpdating: false
+    currentMode: @validMode(optionsHash.mode ? @props.user.playmode)
+    user: @props.user
+    userPage:
+      html: @props.userPage.html
+      initialRaw: @props.userPage.raw
+      raw: @props.userPage.raw
+      editing: false
+      selection: [0, 0]
+    isCoverUpdating: false
 
 
-  coverUploadState: (_e, state) =>
+  coverUploadState: (_e, state) ->
     @setState isCoverUpdating: state
 
 
-  setCurrentMode: (_e, mode) =>
+  setCurrentMode: (_e, mode) ->
     return if @state.currentMode == mode
     @setState currentMode: @validMode(mode), @setHash
 
 
-  setCurrentPage: (_e, page, extraCallback) =>
-    callback = =>
-      extraCallback?()
-      @setHash()
-
-    if @state.currentPage == page
-      callback()
-
-    @setState currentPage: page, callback
-
-
-  setHash: =>
+  setHash: ->
     osu.setHash ProfilePageHash.generate(page: @state.currentPage, mode: @state.currentMode)
 
 
-  userUpdate: (_e, user) =>
+  userUpdate: (_e, user) ->
     return if !user?
     @setState user: user
 
 
-  userPageUpdate: (_e, newUserPage) =>
+  userPageUpdate: (_e, newUserPage) ->
     currentUserPage = _.cloneDeep @state.userPage
     @setState userPage: _.extend(currentUserPage, newUserPage)
 
 
-  pages: document.getElementsByClassName('js-profile-page--scrollspy')
-  pagesOffset: document.getElementsByClassName('js-profile-page--scrollspy-offset')
-
-  pageScan: =>
-    return if @scrolling
-    return if @pages.length == 0
-
-    anchorHeight = @pagesOffset[0].getBoundingClientRect().height
-
-    if osu.bottomPage()
-      @setCurrentPage null, _.last(@pages).dataset.pageId
-      return
-
-    for page in @pages
-      pageDims = page.getBoundingClientRect()
-      pageBottom = pageDims.bottom - Math.min(pageDims.height * 0.75, 200)
-      continue unless pageBottom > anchorHeight
-
-      @setCurrentPage null, page.dataset.pageId
-      return
-
-    @setCurrentPage null, page.dataset.pageId
-
-
-  pageJump: (_e, page) =>
-    if page == 'main'
-      @setCurrentPage null, page
-      return
-
-    target = $(".js-profile-page--page[data-page-id='#{page}']")
-
-    # if invalid page is specified, scan current position
-    if target.length == 0
-      @pageScan()
-      return
-
-    # Don't bother scanning the current position.
-    # The result will be wrong when target page is too short anyway.
-    @scrolling = true
-    clearTimeout @timeouts.scrolling
-
-    $(window).stop().scrollTo target, 500,
-      onAfter: =>
-        # Manually set the mode to avoid confusion (wrong highlight).
-        # Scrolling will obviously break it but that's unfortunate result
-        # from having the scrollspy marker at middle of page.
-        @setCurrentPage null, page, =>
-          # Doesn't work:
-          # - part of state (callback, part of mode setting)
-          # - simple variable in callback
-          # Both still change the switch too soon.
-          @timeouts.scrolling = setTimeout (=> @scrolling = false), 100
-      # count for the tabs height
-      offset: @pagesOffset[0].getBoundingClientRect().height * -1
-
-
-  componentDidMount: =>
+  componentDidMount: ->
     @removeListeners()
     $.subscribe 'user:update.profilePage', @userUpdate
     $.subscribe 'user:cover:upload:state.profilePage', @coverUploadState
     $.subscribe 'user:page:update.profilePage', @userPageUpdate
     $.subscribe 'profile:mode:set.profilePage', @setCurrentMode
     $.subscribe 'profile:page:jump.profilePage', @pageJump
-    $(window).on 'throttled-scroll.profilePage', @pageScan
 
     @pageJump null, @initialPage
 
 
-  componentWillUnmount: =>
-    for own _name, timeout of @timeouts
-      clearTimeout timeout
-
-    $(window).stop()
+  componentWillUnmount: ->
     @removeListeners()
 
 
-  removeListeners: =>
+  removeListeners: ->
     $.unsubscribe '.profilePage'
-    $(window).off '.profilePage'
 
-  render: =>
+  render: ->
     rankHistories = @props.allRankHistories[@state.currentMode]?.data
     stats = @props.allStats[@state.currentMode].data
     scores = @props.allScores[@state.currentMode].data
@@ -176,7 +99,6 @@ class ProfilePage.Main extends React.Component
         currentPage: @state.currentPage
         userAchievements: @props.userAchievements
         achievements: @props.achievements
-        modes: @modes
 
       el ProfilePage.Extra,
         userAchievements: @props.userAchievements
@@ -199,8 +121,10 @@ class ProfilePage.Main extends React.Component
         currentMode: @state.currentMode
 
 
-  validMode: (mode) =>
-    if _.includes(@modes, mode)
+  validMode: (mode) ->
+    modes = BeatmapHelper.modes
+
+    if _.includes(modes, mode)
       mode
     else
-      @modes[0]
+      modes[0]

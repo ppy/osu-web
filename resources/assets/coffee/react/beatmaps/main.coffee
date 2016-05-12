@@ -29,7 +29,7 @@ class Beatmaps.Main extends React.Component
       query: null
       paging:
         page: 1
-        url: '/beatmaps/search'
+        url: '/beatmapsets/search'
         loading: false
         more: beatmaps.length > 0
       filters: @filterDefaults
@@ -99,7 +99,7 @@ class Beatmaps.Main extends React.Component
 
     if @state.just_restored or location.search.substr(1) != params.join('&')
       if !@state.just_restored
-        history.pushState(@state, "¯\_(ツ)_/¯", "/beatmaps/?#{params.join('&')}")
+        history.pushState(@state, "¯\_(ツ)_/¯", "/beatmapsets/?#{params.join('&')}")
 
       @showLoader()
       $.ajax @state.paging.url,

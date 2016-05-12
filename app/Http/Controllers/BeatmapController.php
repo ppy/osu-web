@@ -21,10 +21,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\BeatmapSet;
-use App\Models\Genre;
-use App\Models\Language;
-use League\Fractal\Manager;
-use App\Transformers\BeatmapSetTransformer;
+use App\Transformers\ScoreTransformer;
 use Request;
 use Auth;
 
@@ -32,95 +29,46 @@ class BeatmapController extends Controller
 {
     protected $section = 'beatmaps';
 
-    public function index()
+    public function show($id)
     {
-        $fractal = new Manager();
-        $languages = Language::listing();
-        $genres = Genre::listing();
-        $beatmaps = fractal_collection_array(
-            BeatmapSet::listing(),
-            new BeatmapSetTransformer,
-            'beatmaps'
-        );
+        $set = Beatmap::findOrFail($id)->beatmapSet;
 
-        // temporarily put filters here
-        $modes = [['id' => null, 'name' => trans('beatmaps.mode.any')]];
-        foreach (Beatmap::MODES as $name => $id) {
-            $modes[] = ['id' => (string) $id, 'name' => trans("beatmaps.mode.{$name}")];
-        }
-
-        $statuses = [
-            ['id' => null, 'name' => trans('beatmaps.status.any')],
-            ['id' => '0', 'name' => trans('beatmaps.status.ranked-approved')],
-            ['id' => '1', 'name' => trans('beatmaps.status.approved')],
-            ['id' => '2', 'name' => trans('beatmaps.status.faves')],
-            ['id' => '3', 'name' => trans('beatmaps.status.modreqs')],
-            ['id' => '4', 'name' => trans('beatmaps.status.pending')],
-            ['id' => '5', 'name' => trans('beatmaps.status.graveyard')],
-            ['id' => '6', 'name' => trans('beatmaps.status.my-maps')],
-        ];
-
-        $extras = [
-            ['id' => '0', 'name' => trans('beatmaps.extra.video')],
-            ['id' => '1', 'name' => trans('beatmaps.extra.storyboard')],
-        ];
-
-        $ranks = [];
-        foreach (['XH', 'X', 'SH', 'S', 'A', 'B', 'C', 'D'] as $rank) {
-            $ranks[] = ['id' => $rank, 'name' => trans("beatmaps.rank.{$rank}")];
-        }
-
-        $filters = ['data' => compact('modes', 'statuses', 'genres', 'languages', 'extras', 'ranks')];
-
-        return view('beatmaps.index', compact('filters', 'beatmaps'));
+        return ujs_redirect(route('beatmapsets.show', ['id' => $set->beatmapset_id]).'#'.$id);
     }
 
-    public function search()
+    public function scores($id)
     {
-        $current_user = Auth::user();
+        $type = Request::input('type', 'global');
 
-        $params = [];
+        $user = Auth::user();
 
-        if (is_null($current_user)) {
-            $params = [
-                'page' => Request::input('page'),
-            ];
-        } else {
-            $params = [
-                'query' => Request::input('q'),
-                'mode' => Request::input('m'),
-                'status' => Request::input('s'),
-                'genre' => Request::input('g'),
-                'language' => Request::input('l'),
-                'extra' => array_filter(explode('-', Request::input('e')), 'strlen'),
-                'rank' => array_filter(explode('-', Request::input('r')), 'strlen'),
-                'page' => Request::input('page'),
-                'sort' => explode('_', Request::input('sort')),
-            ];
-
-            if (!$current_user->isSupporter()) {
-                unset($params['rank']);
+        if ($type !== 'global') {
+            if (!$user) {
+                abort(403);
+            } elseif (!$user->isSupporter()) {
+                return error_popup(trans('errors.supporter_only'));
             }
         }
 
-        $params = array_filter(
-            $params,
-            function ($v, $k) {
-                if (is_array($v)) {
-                    return !empty($v);
-                } else {
-                    return presence($v) !== null;
-                }
-            },
-            ARRAY_FILTER_USE_BOTH
-        );
+        $beatmap = Beatmap::findOrFail($id);
 
-        $beatmaps = BeatmapSet::search($params);
+        $scores = $beatmap
+            ->scoresBest()->orderBy('score', 'desc')
+            ->limit(config('osu.beatmaps.max-scores'));
 
-        return fractal_collection_array(
-            $beatmaps,
-            new BeatmapSetTransformer,
-            'beatmaps'
-        );
+        switch ($type) {
+            case 'country':
+                $scores = $scores
+                    ->whereHas('user', function ($query) use (&$user) {
+                        $query->where('country_acronym', $user->country_acronym);
+                    });
+                break;
+            case 'friend':
+                $scores = $scores
+                    ->whereIn('user_id', $user->friends()->lists('zebra_id')->all());
+                break;
+        }
+
+        return fractal_collection_array($scores->get(), new ScoreTransformer, 'user');
     }
 }

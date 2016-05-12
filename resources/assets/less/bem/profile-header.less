@@ -1,0 +1,123 @@
+/**
+ *    Copyright 2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+.profile-header {
+  background-color: transparent;
+  height: @profile-header-height;
+  padding: 0px;
+
+  &__cover {
+    background-size: cover;
+    background-position: 50% 50%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+
+    transition: background-image 0.2s ease-in-out;
+
+    @media @desktop {
+      opacity: 1;
+    }
+  }
+
+  &__avatar-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    padding-bottom: @profile-user-bar-height;
+
+    @media @desktop {
+      height: @profile-user-bar-height;
+      padding-bottom: 0px;
+      bottom: 0px;
+      top: auto;
+
+      width: @profile-avatar-size;
+      margin-left: @grid-gutter-width * 3 / 4;
+    }
+
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__uploading-spinner-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: @profile-user-bar-height;
+
+    font-size: 80px;
+    color: #fff;
+    background: fade(#000, 70%);
+    transition: opacity 120ms;
+
+    opacity: 0;
+    pointer-events: none;
+
+    &[data-state="enabled"] {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  &__userbar-container {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background: fade(#fff, 80%);
+    height: @profile-user-bar-height;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px;
+  }
+
+  &__change-cover-button {
+    &:extend(.default-border-radius);
+    &:extend(.default-text-shadow);
+
+    position: absolute;
+    bottom: @grid-gutter-width/4 + @profile-user-bar-height;
+    right: @grid-gutter-width/4;
+    padding: @grid-gutter-width/8 @grid-gutter-width/4;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    background-color: fade(#000, 50%);
+    color: #fff;
+
+    cursor: pointer;
+
+    display: none;
+    @media @desktop {
+      display: block;
+    }
+  }
+}

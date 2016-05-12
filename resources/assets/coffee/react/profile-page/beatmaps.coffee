@@ -29,12 +29,12 @@ ProfilePage.Beatmaps = React.createClass
       ranked_and_approved: @props.rankedAndApprovedBeatmapSets
 
     div
-      className: 'profile-extra'
+      className: 'page-extra'
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
       _.map allBeatmapSets, (beatmapSets, section) =>
         div
           key: section
-          h3 className: 'profile-extra__title--small', Lang.get("users.show.extra.beatmaps.#{section}.title", count: beatmapSets.length)
+          h3 className: 'page-extra__title--small', Lang.get("users.show.extra.beatmaps.#{section}.title", count: beatmapSets.length)
           if beatmapSets.length
             div className: 'beatmap-container',
               div className: 'listing osu-layout__col-container osu-layout__col-container--with-gutter',
@@ -44,4 +44,4 @@ ProfilePage.Beatmaps = React.createClass
                     className: 'osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-4'
                     el BeatmapsetPanel, beatmap: beatmapSet
           else
-            p className: 'profile-extra-entries', Lang.get('users.show.extra.beatmaps.none')
+            p className: 'page-extra-entries', Lang.get('users.show.extra.beatmaps.none')

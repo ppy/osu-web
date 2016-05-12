@@ -18,16 +18,15 @@
 {div, h2, span} = React.DOM
 el = React.createElement
 
-class ProfilePage.Extra extends React.Component
-  constructor: (props) ->
-    super props
+ProfilePage.Extra = React.createClass
+  mixins: [StickyTabsMixin]
 
-    @state =
-      tabsSticky: false
-      profileOrder: @props.user.profileOrder
+  getInitialState: ->
+    tabsSticky: false
+    profileOrder: @props.user.profileOrder
 
 
-  componentDidMount: =>
+  componentDidMount: ->
     @_removeListeners()
     $.subscribe 'stickyHeader.profileContentsExtra', @_tabsStick
     osu.pageChange()
@@ -50,14 +49,14 @@ class ProfilePage.Extra extends React.Component
         update: @updateOrder
 
 
-  componentWillUnmount: =>
+  componentWillUnmount: ->
     @_removeListeners()
 
     for sortable in ['pages', 'tabs', 'fixedTabs']
       $(@refs[sortable]).sortable 'destroy'
 
 
-  componentWillReceiveProps: (newProps) =>
+  componentWillReceiveProps: (newProps) ->
     @setState profileOrder: newProps.user.profileOrder
     osu.pageChange()
 
@@ -67,12 +66,7 @@ class ProfilePage.Extra extends React.Component
     $(window).off '.profileContentsExtra'
 
 
-  _tabsStick: (_e, target) =>
-    newState = (target == 'profile-extra-tabs')
-    @setState(tabsSticky: newState) if newState != @state.tabsSticky
-
-
-  updateOrder: (event) =>
+  updateOrder: (event) ->
     $elems = $(event.target)
 
     newOrder = $elems.sortable('toArray', attribute: 'data-page-id')
@@ -99,14 +93,14 @@ class ProfilePage.Extra extends React.Component
       .always LoadingOverlay.hide
 
 
-  render: =>
+  render: ->
     withMePage = @props.userPage.html != '' || @props.withEdit
 
     tabs = div
-      className: 'hidden-xs profile-extra-tabs__container'
+      className: 'hidden-xs page-extra-tabs__container'
       div className: 'osu-layout__row',
         div
-          className: 'profile-extra-tabs__items'
+          className: 'page-extra-tabs__items'
           @state.profileOrder.map (m) =>
             return if m == 'me' && !withMePage
 
@@ -114,20 +108,20 @@ class ProfilePage.Extra extends React.Component
 
     div className: 'osu-layout__section osu-layout__section--extra',
       div
-        className: 'profile-extra-tabs js-sticky-header js-profile-page--scrollspy-offset'
-        'data-sticky-header-target': 'profile-extra-tabs'
+        className: 'page-extra-tabs js-sticky-header js-switchable-mode-page--scrollspy-offset'
+        'data-sticky-header-target': 'page-extra-tabs'
         ref: 'tabs'
         tabs
 
       div
-        className: 'profile-extra-tabs profile-extra-tabs--fixed'
+        className: 'page-extra-tabs page-extra-tabs--fixed'
         'data-visibility': if @state.tabsSticky then '' else 'hidden'
         ref: 'fixedTabs'
         tabs
 
       div className: 'osu-layout__row', ref: 'pages',
         @state.profileOrder.map (m) =>
-          topClassName = 'js-profile-page--scrollspy js-profile-page--page'
+          topClassName = 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
 
           elem =
             switch m
