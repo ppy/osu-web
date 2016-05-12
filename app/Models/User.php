@@ -1002,4 +1002,12 @@ class User extends Model implements AuthenticatableContract
 
         return $canInvite;
     }
+
+    public function scopeDefault($query)
+    {
+        return $query->where([
+            'user_warnings' => 0,
+            'user_type' => 0,
+        ]);
+    }
 }
