@@ -72,6 +72,8 @@ return [
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
             'forum-forums-show' => 'forum',
+            'team' => 'team',
+            'teams' => 'teams',
         ],
         'error' => [
             '_' => 'error',

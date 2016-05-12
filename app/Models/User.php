@@ -989,7 +989,10 @@ class User extends Model implements AuthenticatableContract, Messageable
         $message->content = $body;
         $message->save();
     }
-
+    public function teams()
+    {
+        return $this->belongsToMany('App\Models\Team', 'team_members')->withPivot('is_admin');
+    }
     public function scopeDefault($query)
     {
         return $query->where([
