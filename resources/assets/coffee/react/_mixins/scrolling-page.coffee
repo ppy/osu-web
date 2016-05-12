@@ -19,8 +19,13 @@
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
 pagesOffset = document.getElementsByClassName("js-switchable-mode-page--scrollspy-offset")
 
+currentLocation = =>
+  "#{document.location.pathname}#{document.location.search}"
+
 @ScrollingPageMixin =
   componentDidMount: ->
+    @modeScrollUrl = currentLocation()
+
     $(window).on 'throttled-scroll.scrollingPage', @pageScan
 
   componentWillUnmount: ->
@@ -39,6 +44,8 @@ pagesOffset = document.getElementsByClassName("js-switchable-mode-page--scrollsp
     @setState currentPage: page, callback
 
   pageScan: ->
+    return if @modeScrollUrl != currentLocation()
+
     return if @scrolling
     return if pages.length == 0
 
