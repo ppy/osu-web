@@ -692,7 +692,10 @@ class BeatmapSet extends Model
         $topic = Topic::find($this->thread_id);
         $post = Post::find($topic->topic_first_post_id);
 
-        $split = preg_split('[-{15}]', $post->post_text);
+        // Any description (after the first match) that matches
+        // '[-{15}]' within its body doesn't get split anymore,
+        // and gets stored in $split[1] anyways
+        $split = preg_split('[-{15}]', $post->post_text, 2);
 
         // Return empty description if the pattern was not found
         // (mostly older beatmapsets)
