@@ -58,6 +58,10 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
     {
         $scores = $beatmap
             ->scoresBest()
+            ->whereHas('user', function ($query) {
+                $query->where('user_warnings', '=', 0);
+                $query->where('user_type', '!=', 1);
+            })
             ->orderBy('score', 'desc')
             ->limit(config('osu.beatmaps.max-scores'))
             ->get();
