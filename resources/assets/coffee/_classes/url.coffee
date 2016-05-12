@@ -16,5 +16,12 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @Url
+  @beatmapDownload: (id, video = true) ->
+    url = "https://osu.ppy.sh/d/#{id}"
+    url += 'n' if !video
+    url
+
+  @beatmapDownloadDirect: (id) -> "osu://dl/#{id}"
+
   # external link
   @openBeatmapEditor: (timestampWithRange) => "osu://edit/#{timestampWithRange}"

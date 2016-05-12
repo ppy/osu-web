@@ -9,6 +9,7 @@ return [
     ],
     'beatmaps' => [
         'max' => 50,
+        'max-scores' => 50,
     ],
     'beatmap_processor' => [
         'mirrors_to_use' => array_map('intval', explode(' ', env('BM_PROCESSOR_MIRRORS', '1'))),

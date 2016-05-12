@@ -1,0 +1,146 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+.beatmapset-scoreboard {
+  &__no-scores {
+    font-size: 15px;
+    font-style: italic;
+  }
+
+  &__tabs {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__tab {
+    font-size: 16px;
+    font-weight: 600;
+    color: @grey-5;
+    cursor: pointer;
+
+    margin: 0 @spacing;
+
+    &--active {
+      font-weight: 900;
+      color: @pink-darker;
+    }
+  }
+
+  &__main {
+    &--loading {
+      opacity: 0.2;
+    }
+  }
+
+  &__line {
+    padding-top: @spacing * 2;
+
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-image: linear-gradient(to left, transparent 5%, @grey-5, transparent 95%) 1;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+
+    height: 30px;
+
+    padding: 0 @spacing;
+
+    &--score {
+      &:hover {
+        background-color: @grey-d;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  &__row-item {
+    font-size: 15px;
+    font-style: italic;
+
+    &--header {
+      font-weight: 600;
+      color: @gray-text;
+    }
+
+    &--rank-header {
+      width: 90px;
+    }
+
+    &--rank {
+      width: 50px;
+    }
+
+    &--flag {
+      height: 20px;
+      width: 40px;
+    }
+
+    &--player {
+      flex-grow: 1;
+      font-weight: 600;
+      color: @blue-text;
+    }
+
+    &--player-header {
+      flex-grow: 1;
+    }
+
+    &--icons {
+      text-align: right;
+      width: 20px;
+      height: 20px;
+    }
+
+    &--score {
+      width: 120px;
+      text-align: right;
+    }
+
+    &--accuracy {
+      width: 90px;
+      text-align: right;
+    }
+  }
+
+  &__notice {
+    text-align: center;
+    padding-top: @spacing;
+
+    &--no-scores {
+      font-size: 15px;
+    }
+  }
+
+  &__supporter-text {
+    font-size: 24px;
+    font-weight: 600;
+
+    padding-bottom: @spacing;
+
+    &--small {
+      font-size: 18px;
+      font-weight: normal;
+
+      padding: 0;
+    }
+  }
+}

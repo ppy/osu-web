@@ -47,23 +47,15 @@ Route::get('/home/support', ['as' => 'support-the-game', 'uses' => 'HomeControll
 
 Route::get('/icons', 'HomeController@getIcons');
 
-// beatmaps section
-Route::get('/beatmaps', ['as' => 'beatmaps', 'uses' => 'BeatmapController@index']);
-Route::get('/beatmaps/search/{filters?}', ['as' => 'beatmaps.search', 'uses' => 'BeatmapController@search']);
+// Route::get('/beatmaps/packs', ['as' => 'packs', 'uses' => 'BeatmapController@getPacks']);
+// Route::get('/beatmaps/charts/{id?}', ['as' => 'charts', 'uses' => 'BeatmapController@getCharts']);
 
-// maps
-Route::get('/beatmaps/set/{id}', ['as' => 'set', 'uses' => 'BeatmapController@getMapSet']);
-Route::get('/beatmaps/map/{id}', ['as' => 'beatmap', 'uses' => 'BeatmapController@getMap']);
-Route::get('/beatmaps/packs', ['as' => 'packs', 'uses' => 'BeatmapController@getPacks']);
-Route::get('/beatmaps/charts/{id?}', ['as' => 'charts', 'uses' => 'BeatmapController@getCharts']);
+Route::get('/beatmaps/{beatmaps}/scores', ['as' => 'beatmaps.scores', 'uses' => 'BeatmapController@scores']);
+Route::get('/b/{beatmaps}', ['as' => 'beatmaps.show', 'uses' => 'BeatmapController@show']);
 
-Route::get('b/{beatmaps}', ['as' => 'beatmaps.show', function ($id) {
-    return Redirect::to('https://osu.ppy.sh/b/'.$id);
-}]);
-
-Route::get('s/{beatmapsets}', ['as' => 'beatmapsets.show', function ($id) {
-    return Redirect::to('https://osu.ppy.sh/s/'.$id);
-}]);
+Route::get('/beatmapsets/search/{filters?}', ['as' => 'beatmapsets.search', 'uses' => 'BeatmapsetsController@search']);
+Route::resource('/beatmapsets', 'BeatmapsetsController', ['only' => ['index']]);
+Route::get('/s/{beatmapsets}', ['as' => 'beatmapsets.show', 'uses' => 'BeatmapsetsController@show']);
 
 // ranking section
 Route::get('/ranking/overall', ['as' => 'ranking-overall', 'uses' => 'RankingController@getOverall']);

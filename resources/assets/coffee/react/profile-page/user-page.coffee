@@ -20,11 +20,11 @@ el = React.createElement
 
 class ProfilePage.UserPage extends React.Component
   render: =>
-    div className: 'profile-extra',
+    div className: 'page-extra',
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       if !@props.userPage.editing && @props.withEdit && @props.userPage.html != ''
-        div className: 'profile-extra__actions',
+        div className: 'page-extra__actions',
           div className: 'forum-post-actions',
             button
               className: 'forum-post-actions__action'
@@ -47,24 +47,24 @@ class ProfilePage.UserPage extends React.Component
   pageNew: =>
     div className: 'text-center',
       button
-        className: 'profile-page-new-content btn-osu btn-osu--lite btn-osu--profile-page-edit'
+        className: 'profile-extra-user-page__new-content   btn-osu btn-osu--lite btn-osu--profile-page-edit'
         onClick: @editStart
         disabled: !@props.user.isSupporter
-        Lang.get('users.show.page.edit_big')
+        Lang.get 'users.show.page.edit_big'
 
-      p className: 'profile-page-new-content profile-page-new-icon',
+      p className: 'profile-extra-user-page__new-content profile-extra-user-page__new-content--icon',
         el Icon, name: 'pencil-square-o'
 
       p
-        className: 'profile-page-new-content'
+        className: 'profile-extra-user-page__new-content'
         dangerouslySetInnerHTML:
-          __html: Lang.get('users.show.page.description')
+          __html: Lang.get 'users.show.page.description'
 
       if !@props.user.isSupporter
         p
-          className: 'profile-page-new-content'
+          className: 'profile-extra-user-page__new-content'
           dangerouslySetInnerHTML:
-            __html: Lang.get('users.show.page.restriction_info')
+            __html: Lang.get 'users.show.page.restriction_info'
 
 
   pageShow: =>

@@ -50,7 +50,7 @@ ProfilePage.Historical = React.createClass
             className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
             a
               className: 'beatmapset-row__title'
-              href: "/s/#{bmset.beatmapset_id}"
+              href: laroute.route 'beatmaps.show', beatmaps: bm.id
               title: "#{bmset.artist} - #{bmset.title} [#{bm.version}] "
               "#{bmset.title} [#{bm.version}] "
               span
@@ -75,12 +75,12 @@ ProfilePage.Historical = React.createClass
 
   render: ->
     div
-      className: 'profile-extra'
+      className: 'page-extra'
 
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       h3
-        className: 'profile-extra__title profile-extra__title--small'
+        className: 'page-extra__title page-extra__title--small'
         Lang.get('users.show.extra.historical.most_played.title')
 
       if @props.beatmapPlaycounts.length
@@ -112,7 +112,7 @@ ProfilePage.Historical = React.createClass
         p null, Lang.get('users.show.extra.historical.empty')
 
       h3
-        className: 'profile-extra__title profile-extra__title--small'
+        className: 'page-extra__title page-extra__title--small'
         Lang.get('users.show.extra.historical.recent_plays.title')
 
       if @props.scores.length

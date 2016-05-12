@@ -321,6 +321,10 @@ class User extends Model implements AuthenticatableContract
             }
         }
 
+        if (empty($styles)) {
+            return;
+        }
+
         return $styles;
     }
 
@@ -730,6 +734,21 @@ class User extends Model implements AuthenticatableContract
     public function usernameChangeHistory()
     {
         return $this->hasMany(UsernameChangeHistory::class, 'user_id', 'user_id');
+    }
+
+    public function relations()
+    {
+        return $this->hasMany(UserRelation::class, 'user_id', 'user_id');
+    }
+
+    public function friends()
+    {
+        return $this->relations()->where('friend', true);
+    }
+
+    public function foes()
+    {
+        return $this->relations()->where('foe', true);
     }
 
     public function events()
