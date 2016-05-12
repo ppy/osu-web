@@ -20,8 +20,12 @@ pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
 pagesOffset = document.getElementsByClassName("js-switchable-mode-page--scrollspy-offset")
 
 @ScrollingPageMixin =
+  componentDidMount: ->
+    $(window).on 'throttled-scroll.scrollingPage', @pageScan
+
   componentWillUnmount: ->
     $(window).stop()
+    $(window).off '.scrollingPage'
     clearTimeout @modeScrollTimeout
 
   setCurrentPage: (_e, page, extraCallback) ->

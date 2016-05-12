@@ -81,6 +81,7 @@ BeatmapsetPage.Main = React.createClass
       currentPlaymode: @state.beatmaps[beatmapId].mode
       currentScoreboard: 'global'
       scores: @state.beatmaps[beatmapId].scoresBest.data
+      @setHash
 
   componentDidMount: ->
     @removeListeners()
@@ -88,7 +89,6 @@ BeatmapsetPage.Main = React.createClass
     $.subscribe 'beatmapset:beatmap:set.beatmapSetPage', @setCurrentBeatmapId
     $.subscribe 'beatmapset:page:jump.beatmapSetPage', @pageJump
     $.subscribe 'beatmapset:scoreboard:set.beatmapSetPage', @setCurrentScoreboard
-    $(window).on 'throttled-scroll.beatmapSetPage', @pageScan
 
     @pageJump null, @initialPage
 
@@ -97,7 +97,6 @@ BeatmapsetPage.Main = React.createClass
 
   removeListeners: ->
     $.unsubscribe '.beatmapSetPage'
-    $(window).off '.beatmapSetPage'
 
   render: ->
     div className: 'osu-layout__section',

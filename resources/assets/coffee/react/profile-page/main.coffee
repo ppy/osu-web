@@ -25,7 +25,7 @@ ProfilePage.Main = React.createClass
     optionsHash = ProfilePageHash.parse location.hash
     @initialPage = optionsHash.page
 
-    currentMode: @validMode(optionsHash.mode ? props.user.playmode)
+    currentMode: @validMode(optionsHash.mode ? @props.user.playmode)
     user: @props.user
     userPage:
       html: @props.userPage.html
@@ -66,7 +66,6 @@ ProfilePage.Main = React.createClass
     $.subscribe 'user:page:update.profilePage', @userPageUpdate
     $.subscribe 'profile:mode:set.profilePage', @setCurrentMode
     $.subscribe 'profile:page:jump.profilePage', @pageJump
-    $(window).on 'throttled-scroll.profilePage', @pageScan
 
     @pageJump null, @initialPage
 
@@ -77,7 +76,6 @@ ProfilePage.Main = React.createClass
 
   removeListeners: ->
     $.unsubscribe '.profilePage'
-    $(window).off '.profilePage'
 
   render: ->
     rankHistories = @props.allRankHistories[@state.currentMode]?.data
