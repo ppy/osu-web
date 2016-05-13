@@ -54,7 +54,8 @@ class BeatmapsController extends Controller
 
         $scores = $beatmap
             ->scoresBest()
-            ->defaultListing();
+            ->defaultListing()
+            ->with('user');
 
         switch ($type) {
             case 'country':
