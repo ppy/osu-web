@@ -79,7 +79,9 @@ class BeatmapsetsController extends Controller
 
     public function show($id)
     {
-        $beatmapSet = BeatmapSet::findOrFail($id);
+        $beatmapSet = BeatmapSet
+            ::with('defaultBeatmaps.failtimes', 'user')
+            ->findOrFail($id);
 
         $set = fractal_item_array(
             $beatmapSet,
