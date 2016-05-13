@@ -74,7 +74,7 @@ class BeatmapSetTransformer extends Fractal\TransformerAbstract
     public function includeBeatmaps(BeatmapSet $beatmapSet)
     {
         return $this->collection(
-            $beatmapSet->beatmaps()->default()->get(),
+            $beatmapSet->defaultBeatmaps,
             new BeatmapTransformer()
         );
     }

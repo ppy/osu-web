@@ -20,8 +20,6 @@
 el = React.createElement
 
 class BeatmapsetPage.Details extends React.Component
-  DATE_FORMAT = 'MMM D YYYY'
-
   constructor: (props) ->
     super props
 
@@ -29,6 +27,8 @@ class BeatmapsetPage.Details extends React.Component
       noVideo: false
 
   render: ->
+    dateFormat = 'MMM D, YYYY'
+
     div className: 'page-contents__content beatmapset-details',
       div className: 'beatmapset-details__avatar-container',
         div
@@ -45,12 +45,12 @@ class BeatmapsetPage.Details extends React.Component
 
       div className: 'beatmapset-details__date',
         Lang.get 'beatmaps.beatmapset.show.details.submitted'
-        moment(@props.beatmapset.submitted_date).format DATE_FORMAT
+        moment(@props.beatmapset.submitted_date).format dateFormat
 
       if @props.beatmapset.ranked_date
         div className: 'beatmapset-details__date',
           Lang.get 'beatmaps.beatmapset.show.details.ranked'
-          moment(@props.beatmapset.ranked_date).format DATE_FORMAT
+          moment(@props.beatmapset.ranked_date).format dateFormat
 
       hr className: 'beatmapset-details__line'
 
