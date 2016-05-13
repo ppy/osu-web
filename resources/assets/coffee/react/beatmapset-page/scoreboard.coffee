@@ -35,7 +35,7 @@ BeatmapsetPage.Scoreboard = React.createClass
 
   render: ->
     scoreboards = ['global', 'country', 'friend']
-    hasScores = (@props.scores ? []).length > 0
+    hasScores = @props.scores.length > 0
 
     className = "#{bn}__main"
     className += " #{bn}__main--loading" if @state.loading

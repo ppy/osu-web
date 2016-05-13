@@ -38,6 +38,8 @@ BeatmapsetPage.Main = React.createClass
     currentBeatmapId: currentBeatmapId
     currentPlaymode: beatmaps[currentBeatmapId].mode
     loading: false
+    currentScoreboard: 'global'
+    scores: []
 
   setHash: ->
     osu.setHash BeatmapsetPageHash.generate page: @state.currentPage, beatmapId: @state.currentBeatmapId
@@ -47,7 +49,7 @@ BeatmapsetPage.Main = React.createClass
 
     @setState
       currentScoreboard: scoreboard
-      scores: null
+      scores: []
 
     return if scoreboard != 'global' && !currentUser.isSupporter
 
