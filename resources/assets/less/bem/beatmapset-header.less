@@ -35,12 +35,19 @@
     font-size: 30px;
     font-style: italic;
     font-weight: 600;
-    color: #ffffff;
+    color: @grey-f;
     .default-text-shadow();
 
     margin: 0;
 
+    &:hover, &:visited, &:link, &:active {
+      color: @grey-f;
+      text-decoration: none;
+    }
+
     &--small {
+      display: block;
+
       padding-top: 5px;
       font-size: 20px;
     }

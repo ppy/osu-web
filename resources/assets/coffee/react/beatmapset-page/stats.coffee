@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, hr} = React.DOM
+{div, hr, a} = React.DOM
 el = React.createElement
 
 class BeatmapsetPage.Stats extends React.Component
@@ -60,4 +60,6 @@ class BeatmapsetPage.Stats extends React.Component
         if @props.beatmapset.tags
           el 'dl', className: 'beatmapset-stats__stat beatmapset-stats__stat--full',
             el 'dt', className: 'beatmapset-stats__stat-key', Lang.get 'beatmaps.beatmapset.show.stats.tags'
-            el 'dd', className: 'beatmapset-stats__stat-value beatmapset-stats__stat-value--light', @props.beatmapset.tags
+            el 'dd', className: 'beatmapset-stats__stat-value beatmapset-stats__stat-value--light',
+              @props.beatmapset.tags.map (tag) =>
+                a key: tag, href: Url.beatmapsetSearch(tag), "#{tag} "

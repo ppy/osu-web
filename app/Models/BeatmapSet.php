@@ -657,6 +657,11 @@ class BeatmapSet extends Model
         return $imageFilename;
     }
 
+    public function tagsSplit()
+    {
+        return preg_split('/ /', $this->tags, null, PREG_SPLIT_NO_EMPTY);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Relationships
