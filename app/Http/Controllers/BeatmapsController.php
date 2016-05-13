@@ -25,7 +25,7 @@ use App\Transformers\ScoreTransformer;
 use Request;
 use Auth;
 
-class BeatmapController extends Controller
+class BeatmapsController extends Controller
 {
     protected $section = 'beatmaps';
 
