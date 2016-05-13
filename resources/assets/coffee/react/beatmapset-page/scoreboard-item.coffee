@@ -43,6 +43,7 @@ class BeatmapsetPage.ScoreboardItem extends React.Component
             when 'score'
               @props.score.score.toLocaleString()
             when 'accuracy'
+              className += ' hidden-xs'
               "#{_.round @props.score.accuracy * 100, 2}%"
 
         div className: className, key: m, contents

@@ -25,7 +25,7 @@ use App\Transformers\ScoreTransformer;
 use Request;
 use Auth;
 
-class BeatmapController extends Controller
+class BeatmapsController extends Controller
 {
     protected $section = 'beatmaps';
 
@@ -54,7 +54,8 @@ class BeatmapController extends Controller
 
         $scores = $beatmap
             ->scoresBest()
-            ->defaultListing();
+            ->defaultListing()
+            ->with('user');
 
         switch ($type) {
             case 'country':
