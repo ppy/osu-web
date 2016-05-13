@@ -60,7 +60,7 @@ BeatmapsetPage.Scoreboard = React.createClass
 
         else if currentUser.isSupporter || @props.currentScoreboard == 'global'
           p
-            className: "#{bn}__notice #{bn}__notice--no-scores"
+            className: "#{bn}__notice #{bn}__notice--no-scores #{bn}__notice--#{'guest' if !currentUser.id?}"
             Lang.get "beatmaps.beatmapset.show.extra.scoreboard.no-scores.#{@props.currentScoreboard}"
 
         else
