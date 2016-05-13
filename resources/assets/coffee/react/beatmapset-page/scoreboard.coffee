@@ -104,5 +104,7 @@ BeatmapsetPage.Scoreboard = React.createClass
               key: m
               Lang.get "beatmaps.beatmapset.show.extra.scoreboard.list.#{m}"
 
-      @props.scores[1..].map (score, i) =>
-        @scoreItem score, i + 2
+      @props.scores.map (score, i) =>
+        return if i == 0
+
+        @scoreItem score, i + 1
