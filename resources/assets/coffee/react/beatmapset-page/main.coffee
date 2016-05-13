@@ -91,7 +91,7 @@ BeatmapsetPage.Main = React.createClass
       currentPlaymode: @state.beatmaps[beatmapId].mode
       =>
         @setHash()
-        @setCurrentScoreboard scoreboard: 'global'
+        @setCurrentScoreboard null, scoreboard: 'global'
 
 
   componentDidMount: ->
