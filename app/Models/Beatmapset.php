@@ -536,6 +536,11 @@ class Beatmapset extends Model
         $this->storage()->put($this->coverPath().$target_filename, file_get_contents($source_path));
     }
 
+    public function previewURL()
+    {
+        return 'http://b.ppy.sh/preview/'.$this->beatmapset_id.'.mp3';
+    }
+
     public function storage()
     {
         if ($this->_storage === null) {

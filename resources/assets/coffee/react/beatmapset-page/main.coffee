@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div} = React.DOM
+{div, audio} = React.DOM
 el = React.createElement
 
 BeatmapsetPage.Main = React.createClass
@@ -38,6 +38,7 @@ BeatmapsetPage.Main = React.createClass
     currentBeatmapId: currentBeatmapId
     currentPlaymode: beatmaps[currentBeatmapId].mode
     loading: false
+    isPreviewPlaying: false
     currentScoreboard: 'global'
     scores: []
 
@@ -93,6 +94,16 @@ BeatmapsetPage.Main = React.createClass
         @setHash()
         @setCurrentScoreboard null, scoreboard: 'global'
 
+  togglePreviewPlayingState: (_e, isPreviewPlaying) ->
+    @setState isPreviewPlaying: isPreviewPlaying
+
+    if isPreviewPlaying
+      @state.audioPreview.play()
+    else
+      @state.audioPreview.pause()
+
+  onPreviewEnded: ->
+    @setState isPreviewPlaying: false
 
   componentDidMount: ->
     @removeListeners()
@@ -100,10 +111,12 @@ BeatmapsetPage.Main = React.createClass
     $.subscribe 'beatmapset:beatmap:set.beatmapsetPage', @setCurrentBeatmapId
     $.subscribe 'beatmapset:page:jump.beatmapsetPage', @pageJump
     $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
+    $.subscribe 'beatmapset:preview:toggle.beatmapsetPage', @togglePreviewPlayingState
 
     @pageJump null, @initialPage
     @setCurrentScoreboard null, scoreboard: 'global'
 
+    @setState audioPreview: document.getElementsByClassName('js-beatmapset-page--audio-preview')[0]
 
   componentWillUnmount: ->
     @removeListeners()
@@ -114,12 +127,19 @@ BeatmapsetPage.Main = React.createClass
 
   render: ->
     div className: 'osu-layout__section',
+      audio
+        className: 'js-beatmapset-page--audio-preview'
+        src: @props.beatmapset.previewUrl
+        preload: 'auto'
+        onEnded: @onPreviewEnded
+
       el BeatmapsetPage.Header,
         title: @props.beatmapset.title
         artist: @props.beatmapset.artist
         playcount: @props.beatmapset.play_count
         favcount: @props.beatmapset.favourite_count
         cover: @props.beatmapset.covers.cover
+        isPreviewPlaying: @state.isPreviewPlaying
 
       el BeatmapsetPage.Contents,
         beatmapset: @props.beatmapset
