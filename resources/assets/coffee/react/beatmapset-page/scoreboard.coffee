@@ -35,8 +35,6 @@ BeatmapsetPage.Scoreboard = React.createClass
 
   render: ->
     scoreboards = ['global', 'country', 'friend']
-    hasScores = @props.scores.length > 0
-
     className = "#{bn}__main"
     className += " #{bn}__main--loading" if @state.loading
 
@@ -44,7 +42,7 @@ BeatmapsetPage.Scoreboard = React.createClass
       className: "page-extra #{bn}"
       el BeatmapsetPage.ExtraHeader, name: 'scoreboard'
 
-      if currentUser.id? && (hasScores || @props.currentScoreboard != 'global')
+      if currentUser.id?
         div null,
           div
             className: "#{bn}__tabs"
@@ -57,16 +55,14 @@ BeatmapsetPage.Scoreboard = React.createClass
           div className: "#{bn}__line"
 
       div className: className,
-        if hasScores
+        if @props.scores.length > 0
           @scores()
-        else if @props.currentScoreboard == 'global'
-          p
-            className: "#{bn}__no-scores"
-            Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.no-scores.global'
-        else if currentUser.isSupporter
+
+        else if currentUser.isSupporter || @props.currentScoreboard == 'global'
           p
             className: "#{bn}__notice #{bn}__notice--no-scores"
             Lang.get "beatmaps.beatmapset.show.extra.scoreboard.no-scores.#{@props.currentScoreboard}"
+
         else
           div className: "#{bn}__notice",
             p
