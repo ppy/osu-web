@@ -59,9 +59,10 @@ BeatmapsetPage.Scoreboard = React.createClass
           @scores()
 
         else if currentUser.isSupporter || @props.currentScoreboard == 'global'
+          translationKey = if @state.loading then 'loading' else @props.currentScoreboard
           p
             className: "#{bn}__notice #{bn}__notice--no-scores #{bn}__notice--#{'guest' if !currentUser.id?}"
-            Lang.get "beatmaps.beatmapset.show.extra.scoreboard.no-scores.#{@props.currentScoreboard}"
+            Lang.get "beatmaps.beatmapset.show.extra.scoreboard.no-scores.#{translationKey}"
 
         else
           div className: "#{bn}__notice",
