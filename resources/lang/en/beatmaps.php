@@ -150,11 +150,11 @@ return [
                     'country' => 'Country Ranking',
                     'friend' => 'Friend Ranking',
                     'first' => [
-                        'accuracy' => 'Accuracy:',
-                        'score' => 'Score:',
-                        'count300' => '300:',
-                        'count100' => '100:',
-                        'count50' => '50:',
+                        'accuracy' => 'Accuracy',
+                        'score' => 'Score',
+                        'count300' => '300',
+                        'count100' => '100',
+                        'count50' => '50',
                     ],
                     'list' => [
                         'rank-header' => 'Rank',
