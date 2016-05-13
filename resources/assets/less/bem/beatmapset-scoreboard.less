@@ -90,13 +90,18 @@
     }
 
     &--player {
-      flex-grow: 1;
+      flex: 1;
       font-weight: 600;
       color: @blue-text;
+      overflow: hidden;
+      min-width: 0;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     &--player-header {
-      flex-grow: 1;
+      flex: 1;
+      min-width: 0;
     }
 
     &--icons {

@@ -100,6 +100,9 @@ BeatmapsetPage.Scoreboard = React.createClass
           className: "#{bn}__row"
           key: 'header'
           ['rank-header', 'player-header', 'score', 'accuracy'].map (m) =>
+            className = "#{bn}__row-item #{bn}__row-item--#{m} #{bn}__row-item--header"
+            className += ' hidden-xs' if m == 'accuracy'
+
             span
               className: "#{bn}__row-item #{bn}__row-item--#{m} #{bn}__row-item--header"
               key: m
