@@ -672,6 +672,11 @@ class BeatmapSet extends Model
         return $this->hasMany(Beatmap::class, 'beatmapset_id');
     }
 
+    public function defaultBeatmaps()
+    {
+        return $this->hasMany(Beatmap::class, 'beatmapset_id')->default();
+    }
+
     public function mods()
     {
         return $this->hasMany("App\Models\Mod", 'beatmapset_id', 'beatmapset_id');
