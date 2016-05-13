@@ -19,7 +19,7 @@
 
 class BeatmapsetPage.ScoreboardTab extends React.Component
   _scoreboardSwitch: =>
-    $.publish 'beatmapset:scoreboard:set', @props.scoreboard
+    $.publish 'beatmapset:scoreboard:set', scoreboard: @props.scoreboard
 
   render: ->
     className = 'beatmapset-scoreboard__tab'
