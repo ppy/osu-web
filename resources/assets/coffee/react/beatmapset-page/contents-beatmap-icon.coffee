@@ -32,7 +32,7 @@ class BeatmapsetPage.ContentsBeatmapIcon extends React.Component
     a
       className: className
       onClick: @modeSwitch
-      href: BeatmapsetPageHash.generate mode: @props.beatmap.id, page: @props.currentPage
+      href: BeatmapsetPageHash.generate beatmapId: @props.beatmap.id, page: @props.currentPage
       el BeatmapIcon,
         beatmap: @props.beatmap
         showTitle: false

@@ -31,7 +31,7 @@ class BeatmapsetPage.ContentsTab extends React.Component
     className += ' page-tabs__tab--disabled' if @props.disabled
 
     url = BeatmapsetPageHash.generate
-      mode: if active then @props.currentBeatmapId else @props.newBeatmapId
+      beatmapId: if active then @props.currentBeatmapId else @props.newBeatmapId
       page: @props.currentPage
 
     a
