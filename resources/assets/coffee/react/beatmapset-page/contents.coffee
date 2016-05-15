@@ -20,41 +20,41 @@ el = React.createElement
 
 class BeatmapsetPage.Contents extends React.Component
   render: ->
-    beatmap = @props.beatmaps[@props.currentBeatmapId]
-
     div
       className: 'osu-layout__row osu-layout__row--page-beatmapset js-switchable-mode-page--scrollspy js-switchable-mode-page--page',
       'data-page-id': 'main'
       div className: 'page-tabs',
         BeatmapHelper.modes.map (mode) =>
-          newBeatmap = _.last @props.beatmapsByMode[mode]
+          newBeatmapId = _.last(@props.beatmapList[mode])
 
           el BeatmapsetPage.ContentsTab,
             key: mode
             playmode: mode
-            disabled: !@props.beatmapsByMode[mode]?
-            currentBeatmapId: @props.currentBeatmapId
-            newBeatmapId: newBeatmap.id if newBeatmap
+            disabled: !@props.beatmaps[mode]?
+            currentBeatmapId: @props.currentBeatmap.id
+            newBeatmapId: newBeatmapId if newBeatmapId?
             currentPage: @props.currentPage
-            currentPlaymode: @props.currentPlaymode
+            currentPlaymode: @props.currentBeatmap.mode
 
       div className: 'beatmapset-difficulties',
         div className: 'beatmapset-difficulties__list',
-          @props.beatmapsByMode[@props.currentPlaymode].map (beatmap) =>
+          @props.beatmapList[@props.currentBeatmap.mode].map (beatmapId) =>
+            beatmap = @props.beatmaps[@props.currentBeatmap.mode][beatmapId]
+
             el BeatmapsetPage.ContentsBeatmapIcon,
               key: beatmap.id
               beatmap: beatmap
               currentPage: @props.currentPage
-              currentBeatmapId: @props.currentBeatmapId
+              currentBeatmapId: @props.currentBeatmap.id
 
         div className: 'beatmapset-difficulties__name',
-          Lang.get("beatmaps.mode.#{@props.currentPlaymode}") + " #{beatmap.version}"
+          Lang.get("beatmaps.mode.#{@props.currentBeatmap.mode}") + " #{@props.currentBeatmap.version}"
 
       div className: 'page-contents',
         el BeatmapsetPage.Details,
           beatmapset: @props.beatmapset
         el BeatmapsetPage.DifficultyChart,
-          beatmap: beatmap
+          currentBeatmap: @props.currentBeatmap
         el BeatmapsetPage.Stats,
           beatmapset: @props.beatmapset
-          beatmap: beatmap
+          currentBeatmap: @props.currentBeatmap

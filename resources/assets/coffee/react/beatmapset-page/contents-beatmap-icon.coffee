@@ -21,7 +21,7 @@ el = React.createElement
 class BeatmapsetPage.ContentsBeatmapIcon extends React.Component
   modeSwitch: (e) =>
     e.preventDefault()
-    $.publish 'beatmapset:beatmap:set', @props.beatmap.id
+    $.publish 'beatmapset:beatmap:set', beatmapId: @props.beatmap.id, playmode: @props.beatmap.mode
 
   render: ->
     className = 'beatmapset-difficulties__icon'
@@ -32,7 +32,7 @@ class BeatmapsetPage.ContentsBeatmapIcon extends React.Component
     a
       className: className
       onClick: @modeSwitch
-      href: BeatmapsetPageHash.generate beatmapId: @props.beatmap.id, page: @props.currentPage
+      href: BeatmapsetPageHash.generate beatmapId: @props.beatmap.id, page: @props.currentPage, playmode: @props.beatmap.mode
       el BeatmapIcon,
         beatmap: @props.beatmap
         showTitle: false

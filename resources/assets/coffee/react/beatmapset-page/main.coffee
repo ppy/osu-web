@@ -25,25 +25,35 @@ BeatmapsetPage.Main = React.createClass
     optionsHash = BeatmapsetPageHash.parse location.hash
     @initialPage = optionsHash.page
 
-    beatmaps = _.keyBy @props.beatmapset.beatmaps.data, (o) -> o.id
+    # group beatmaps by playmode and then by beatmap id
+    beatmaps = _.groupBy @props.beatmapset.beatmaps.data, (o) -> o.mode
+    # contains the beatmap ids in their appropriate order
+    beatmapList = {}
+    _.map beatmaps, (val, key) ->
+      beatmaps[key] = _.keyBy val, (o) -> o.id
+      beatmapList[key] = _.map val, (o) -> o.id
 
-    currentBeatmapId =
-      if optionsHash.beatmapId? && beatmaps[optionsHash.beatmapId]?
-        optionsHash.beatmapId
+    [currentBeatmapId, currentPlaymode] =
+      if beatmaps[optionsHash.playmode]? && beatmaps[optionsHash.playmode][optionsHash.beatmapId]?
+        [optionsHash.beatmapId, optionsHash.playmode]
       else
-        _.last(@props.beatmapset.beatmaps.data).id
+        # falling back to standard for now
+        [_.last(beatmapList.osu), 'osu']
 
     beatmaps: beatmaps
-    beatmapsByMode: _.groupBy @props.beatmapset.beatmaps.data, (o) -> o.mode
+    beatmapList: beatmapList
     currentBeatmapId: currentBeatmapId
-    currentPlaymode: beatmaps[currentBeatmapId].mode
+    currentPlaymode: currentPlaymode
     loading: false
     isPreviewPlaying: false
     currentScoreboard: 'global'
     scores: []
 
   setHash: ->
-    osu.setHash BeatmapsetPageHash.generate page: @state.currentPage, beatmapId: @state.currentBeatmapId
+    osu.setHash BeatmapsetPageHash.generate
+      page: @state.currentPage
+      beatmapId: @state.currentBeatmapId
+      playmode: @state.currentPlaymode
 
   setCurrentScoreboard: (_e, {scoreboard, forceReload = false}) ->
     return if @state.loading
@@ -55,7 +65,7 @@ BeatmapsetPage.Main = React.createClass
     return if scoreboard != 'global' && !currentUser.isSupporter
 
     @scoresCache ?= {}
-    cacheKey = "#{@state.currentBeatmapId}-#{scoreboard}"
+    cacheKey = "#{@state.currentBeatmapId}-#{@state.currentPlaymode}-#{scoreboard}"
 
     loadScore = =>
       @setState scores: @scoresCache[cacheKey]
@@ -84,12 +94,12 @@ BeatmapsetPage.Main = React.createClass
       @setState loading: false
 
 
-  setCurrentBeatmapId: (_e, beatmapId) ->
-    return if @state.currentBeatmapId == beatmapId
+  setCurrentBeatmapId: (_e, {beatmapId, playmode}) ->
+    return if @state.currentBeatmapId == beatmapId && @state.currentPlaymode == playmode
 
     @setState
       currentBeatmapId: beatmapId
-      currentPlaymode: @state.beatmaps[beatmapId].mode
+      currentPlaymode: playmode
       =>
         @setHash()
         @setCurrentScoreboard null, scoreboard: 'global'
@@ -127,6 +137,8 @@ BeatmapsetPage.Main = React.createClass
     $.unsubscribe '.beatmapsetPage'
 
   render: ->
+    currentBeatmap = @state.beatmaps[@state.currentPlaymode][@state.currentBeatmapId]
+
     div className: 'osu-layout__section',
       audio
         className: 'js-beatmapset-page--audio-preview'
@@ -144,18 +156,16 @@ BeatmapsetPage.Main = React.createClass
 
       el BeatmapsetPage.Contents,
         beatmapset: @props.beatmapset
+        currentBeatmap: currentBeatmap
         beatmaps: @state.beatmaps
-        beatmapsByMode: @state.beatmapsByMode
-        currentPlaymode: @state.currentPlaymode
-        currentBeatmapId: @state.currentBeatmapId
+        beatmapList: @state.beatmapList
         currentPage: @state.currentPage
 
       el BeatmapsetPage.Extra,
         beatmapset: @props.beatmapset
         beatmaps: @state.beatmaps
-        beatmap: @state.beatmaps[@state.currentBeatmapId]
+        currentBeatmap: currentBeatmap
         currentPage: @state.currentPage
-        currentBeatmapId: @state.currentBeatmapId
         currentScoreboard: @state.currentScoreboard
         scores: @state.scores
         countries: @props.countries

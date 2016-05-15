@@ -45,7 +45,7 @@ BeatmapsetPage.Extra = React.createClass
       div className: 'osu-layout__row',
         div className: 'page-extra-tabs__items',
           sections.map (m) =>
-            el BeatmapsetPage.ExtraTab, key: m, page: m, currentPage: @props.currentPage, currentBeatmapId: @props.currentBeatmapId
+            el BeatmapsetPage.ExtraTab, key: m, page: m, currentPage: @props.currentPage, currentBeatmapId: @props.currentBeatmap.id
 
     div className: 'osu-layout__section osu-layout__section--extra',
       div
@@ -67,8 +67,8 @@ BeatmapsetPage.Extra = React.createClass
                 BeatmapsetPage.Description
               when 'success-rate'
                 props =
-                  beatmap: @props.beatmap
-                  failtimes: @props.beatmap.failtimes.data
+                  currentBeatmap: @props.currentBeatmap
+                  failtimes: @props.currentBeatmap.failtimes.data
                 BeatmapsetPage.SuccessRate
               when 'scoreboard'
                 props =
