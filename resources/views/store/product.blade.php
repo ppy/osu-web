@@ -133,28 +133,24 @@
 
         <div class="osu-layout__sub-row osu-layout__sub-row--with-separator" id="add-to-cart">
             <div class="big-button">
-                <button type="submit" class="js-store-add-to-cart btn-osu btn-osu-default"
-                    @if(!$product->inStock())
-                        style="display: none;"
-                    @endif
-                >
-                {{ trans('store.product.add-to-cart') }}</button>
+                @if($product->inStock())
+                    <button type="submit" class="js-store-add-to-cart btn-osu btn-osu-default">
+                        {{ trans('store.product.add-to-cart') }}
+                    </button>
 
-                <a class="js-store-notify btn-osu btn-osu-default" href="{{ route('store.request-notification', ['product_id' => $product->product_id]) }}" data-remote="true" data-method="post"
-                    @if($product->inStock() || $requestedNotification)
-                        style="display: none;"
-                    @endif
-                >{{ trans('store.product.notify') }}</a>
-            </div>
-
-            <div class="store-notification-requested-alert js-store-notification-alert"
-                @if(!$requestedNotification || $product->inStock())
-                    style="display: none;"
+                @elseif(!$product->inStock() && !$requestedNotification)
+                    <a class="btn-osu btn-osu-default" href="{{ route('store.request-notification', ['product_id' => $product->product_id]) }}" data-remote="true" data-method="post">
+                        {{ trans('store.product.notify') }}
+                    </a>
                 @endif
-            >
-                <span class="fa fa-check-circle-o store-notification-requested-alert__icon"></span>
-                <p class="store-notification-requested-alert__text">{{ trans('store.product.notification-success') }}</p>
             </div>
+
+            @if($requestedNotification && !$product->inStock())
+                <div class="store-notification-requested-alert">
+                    <span class="fa fa-check-circle-o store-notification-requested-alert__icon"></span>
+                    <p class="store-notification-requested-alert__text">{{ trans('store.product.notification-success') }}</p>
+                </div>
+            @endif
         </div>
 
     {!! Form::close() !!}
