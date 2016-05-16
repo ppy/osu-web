@@ -27,12 +27,12 @@ class BeatmapsetPage.Header extends React.Component
           backgroundImage: "url(#{@props.cover})",
         div className: 'beatmapset-header__title-box beatmapset-header__title-box--left',
           a
-            href: Url.beatmapsetSearch @props.title
+            href: laroute.route 'beatmapsets.index', q: @props.title
             className: 'beatmapset-header__title'
             @props.title
 
           a
-            href: Url.beatmapsetSearch @props.artist
+            href: laroute.route 'beatmapsets.index', q: @props.artist
             className: 'beatmapset-header__title beatmapset-header__title--small'
             @props.artist
 
