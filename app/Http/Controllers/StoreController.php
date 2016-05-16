@@ -265,11 +265,7 @@ class StoreController extends Controller
             'product_id' => $product_id,
         ]);
 
-        if ($request) {
-            return ujs_redirect(route('store.product', ['id' => $product_id]));
-        } else {
-            return error_popup(trans('erorrs.unknown'));
-        }
+        return ujs_redirect(route('store.product', ['id' => $product_id]));
     }
 
     private function userCart()
