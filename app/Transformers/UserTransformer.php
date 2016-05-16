@@ -19,7 +19,6 @@
  */
 namespace App\Transformers;
 
-use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\User;
 use App\Models\Score\Best\Model as ScoreBestModel;
@@ -28,7 +27,7 @@ use League\Fractal;
 class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'allAchievements',
+        'userAchievements',
         'allRankHistories',
         'allScores',
         'allScoresBest',
@@ -73,10 +72,6 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'customUrl' => $profileCustomization->cover->fileUrl(),
                 'url' => $profileCustomization->cover->url(),
                 'id' => $profileCustomization->cover->id(),
-            ],
-            'achievements' => [
-                'total' => Achievement::achievable()->count(),
-                'current' => $user->achievements()->count(),
             ],
             'kudosu' => [
                 'total' => $user->osu_kudostotal,
@@ -146,6 +141,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                 $scores = $user
                     ->scoresBest($mode, true)
                     ->default()
+                    ->orderBy('pp', 'DESC')
                     ->with('beatmapSet', 'beatmap')
                     ->limit(100)
                     ->get();
@@ -188,10 +184,10 @@ class UserTransformer extends Fractal\TransformerAbstract
         });
     }
 
-    public function includeAllAchievements(User $user)
+    public function includeUserAchievements(User $user)
     {
         return $this->collection(
-            $user->achievements()->with('achievement')->orderBy('date', 'desc')->get(),
+            $user->userAchievements()->orderBy('date', 'desc')->get(),
             new UserAchievementTransformer()
         );
     }

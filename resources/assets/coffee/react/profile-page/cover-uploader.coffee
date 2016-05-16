@@ -31,7 +31,7 @@ class ProfilePage.CoverUploader extends React.Component
     $(@refs.uploadButtonContainer).append($uploadButton)
 
     $uploadButton.fileupload
-      url: Url.updateProfileAccount
+      url: laroute.route('account.update-profile')
       dataType: 'json'
       dropZone: $dropzone
       submit: ->
@@ -51,10 +51,10 @@ class ProfilePage.CoverUploader extends React.Component
       .remove()
 
   render: =>
-    labelClass = 'btn-osu btn-osu--small btn-osu-default fileupload profile-cover-upload__button'
+    labelClass = 'btn-osu btn-osu--small btn-osu-default fileupload profile-cover-uploader__button'
     labelClass += ' disabled' unless @props.canUpload
 
-    el 'div', className: 'profile-cover-upload',
+    el 'div', className: 'profile-cover-uploader',
       el ProfilePage.CoverSelection,
         url: @props.cover.customUrl
         thumbUrl: @props.cover.customUrl
@@ -64,14 +64,14 @@ class ProfilePage.CoverUploader extends React.Component
       el 'label', className: labelClass, ref: 'uploadButtonContainer',
         Lang.get 'users.show.edit.cover.upload.button'
 
-      el 'div', className: 'profile-cover-upload-info',
-        el 'p', className: 'profile-cover-upload-info-entry',
+      el 'div', className: 'profile-cover-uploader__info',
+        el 'p', className: 'profile-cover-uploader__info-entry',
           el 'strong',
             dangerouslySetInnerHTML:
               __html: Lang.get 'users.show.edit.cover.upload.restriction_info'
 
-        el 'p', className: 'profile-cover-upload-info-entry',
+        el 'p', className: 'profile-cover-uploader__info-entry',
           Lang.get 'users.show.edit.cover.upload.dropzone_info'
 
-        el 'p', className: 'profile-cover-upload-info-entry',
+        el 'p', className: 'profile-cover-uploader__info-entry',
           Lang.get 'users.show.edit.cover.upload.size_info'

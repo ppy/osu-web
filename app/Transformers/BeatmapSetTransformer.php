@@ -25,8 +25,9 @@ use League\Fractal;
 class BeatmapSetTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'beatmaps',
+        'description',
         'user',
+        'beatmaps',
     ];
 
     public function transform(BeatmapSet $beatmap = null)
@@ -41,26 +42,40 @@ class BeatmapSetTransformer extends Fractal\TransformerAbstract
             'artist' => $beatmap->artist,
             'play_count' => $beatmap->play_count,
             'favourite_count' => $beatmap->favourite_count,
+            'submitted_date' => $beatmap->submit_date->toIso8601String(),
+            'ranked_date' => $beatmap->approved_date ? $beatmap->approved_date->toIso8601String() : null,
             'creator' => $beatmap->creator,
             'user_id' => $beatmap->user_id,
+            'bpm' => $beatmap->bpm,
             'source' => $beatmap->source,
             'covers' => $beatmap->allCoverURLs(),
+            'tags' => $beatmap->tags,
+            'video' => $beatmap->video,
         ];
+    }
+
+    public function includeDescription(BeatmapSet $beatmapSet)
+    {
+        return $this->item($beatmapSet, function ($beatmapSet) {
+            return [
+                'description' => $beatmapSet->description(),
+            ];
+        });
+    }
+
+    public function includeUser(BeatmapSet $beatmapSet)
+    {
+        return $this->item(
+            $beatmapSet->user,
+            new UserCompactTransformer
+        );
     }
 
     public function includeBeatmaps(BeatmapSet $beatmapSet)
     {
         return $this->collection(
-            $beatmapSet->beatmaps()->default()->get(),
+            $beatmapSet->defaultBeatmaps,
             new BeatmapTransformer()
-        );
-    }
-
-    public function includeUser(BeatmapSet $beatmapset)
-    {
-        return $this->item(
-            $beatmapset->user,
-            new UserTransformer()
         );
     }
 }

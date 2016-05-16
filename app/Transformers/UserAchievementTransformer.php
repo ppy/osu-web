@@ -24,22 +24,11 @@ use League\Fractal;
 
 class UserAchievementTransformer extends Fractal\TransformerAbstract
 {
-    protected $defaultIncludes = [
-        'achievement',
-    ];
-
     public function transform(UserAchievement $userAchievement)
     {
         return [
             'achieved_at' => $userAchievement->date->toIso8601String(),
+            'achievement_id' => $userAchievement->achievement_id,
         ];
-    }
-
-    public function includeAchievement(UserAchievement $userAchievement)
-    {
-        return $this->item(
-            $userAchievement->achievement,
-            new AchievementTransformer
-        );
     }
 }

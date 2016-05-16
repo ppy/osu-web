@@ -26,10 +26,10 @@ class ProfilePage.ExtraTab extends React.Component
 
 
   render: =>
-    className = 'link link--white link--no-underline profile-extra-tabs__item'
+    className = 'link link--white link--no-underline page-extra-tabs__item'
 
     if @props.page == @props.currentPage
-      className += ' profile-extra-tabs__item--active'
+      className += ' page-extra-tabs__item--active'
 
     a
       href: ProfilePageHash.generate page: @props.page, mode: @props.currentMode

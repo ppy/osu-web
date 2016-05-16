@@ -102,7 +102,7 @@ class AccountController extends Controller
             abort(403);
         }
 
-        if (!$user->userPage->canBeEditedBy($user)) {
+        if ($user->userPage !== null && !$user->userPage->canBeEditedBy($user)) {
             abort(403);
         }
 

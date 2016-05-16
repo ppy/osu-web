@@ -97,4 +97,5 @@ class ProfilePage.AchievementBadge extends React.Component
             if @props.userAchievement?
               div
                 className: 'tooltip-achievement__date'
-                Lang.get 'users.show.extra.achievements.achieved-on', date: moment(@props.userAchievement.achieved_at).format 'do MMM YYYY'
+                Lang.get 'users.show.extra.achievements.achieved-on',
+                  date: moment(@props.userAchievement.achieved_at).format 'Do MMM YYYY'

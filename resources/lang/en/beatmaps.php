@@ -92,6 +92,80 @@ return [
         'source' => 'from :source',
         'load-more' => 'Load more...',
     ],
+    'beatmapset' => [
+        'show' => [
+            'details' => [
+                'made-by' => 'made by :user',
+                'submitted' => 'submitted on ',
+                'ranked' => 'ranked on ',
+                'logged-out' => 'You need to log in before downloading any beatmaps!',
+                'download' => [
+                    'normal' => 'download',
+                    'direct' => 'osu!direct',
+                    'no-video' => 'without video version',
+                ],
+            ],
+            'stats' => [
+                'cs' => 'Circle Size',
+                'hp' => 'HP Drain',
+                'od' => 'Accuracy',
+                'ar' => 'Approach Rate',
+                'stars' => 'Star Difficulty',
+                'length' => 'Length',
+                'bpm' => 'BPM',
+
+                'chart' => [
+                    'cs' => 'CS',
+                    'hp' => 'HP',
+                    'od' => 'OD',
+                    'ar' => 'AR',
+                    'sd' => 'SD',
+                ],
+
+                'source' => 'Source',
+                'tags' => 'Tags',
+            ],
+            'extra' => [
+                'description' => [
+                    'title' => 'Description',
+                ],
+                'success-rate' => [
+                    'title' => 'Success Rate',
+                    'rate' => 'Success Rate: :percentage%',
+                    'points' => 'Points of Failure',
+                    'retry' => 'Retry',
+                    'fail' => 'Fail',
+                ],
+                'scoreboard' => [
+                    'title' => 'Scoreboard',
+                    'no-scores' => [
+                        'global' => 'No scores yet. Maybe you should try setting some?',
+                        'loading' => 'Loading scores...',
+                        'country' => 'No one from your country has set a score on this map yet!',
+                        'friend' => 'No one of your friends has set a score on this map yet!',
+                    ],
+                    'supporter-only' => 'You need to be a supporter to access the friend and country rankings!',
+                    'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
+                    'global' => 'Global Ranking',
+                    'country' => 'Country Ranking',
+                    'friend' => 'Friend Ranking',
+                    'first' => [
+                        'accuracy' => 'Accuracy',
+                        'score' => 'Score',
+                        'count300' => '300',
+                        'count100' => '100',
+                        'count50' => '50',
+                    ],
+                    'list' => [
+                        'rank-header' => 'Rank',
+                        'player-header' => 'Player',
+                        'score' => 'Score',
+                        'accuracy' => 'Accuracy',
+                    ],
+                ],
+            ],
+        ],
+    ],
     'mode' => [
         'any' => 'Any',
         'osu' => 'osu!',

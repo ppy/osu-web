@@ -169,12 +169,21 @@ class BBCodeFromDB
 
     public function parseList($text)
     {
-        $text = preg_replace("#\[list=\d+:{$this->uid}\]#", '<ol>', $text);
-        $text = preg_replace("#\[list(=.?)?:{$this->uid}\]#", "<ol class='unordered'>", $text);
+        // basic list.
+        $text = preg_replace("#\[list=\d+:{$this->uid}\]\s*\[\*:{$this->uid}\]#", '<ol><li>', $text);
+        $text = preg_replace("#\[list(=.?)?:{$this->uid}\]\s*\[\*:{$this->uid}\]#", '<ol class="unordered"><li>', $text);
+
+        // convert list items.
         $text = preg_replace("#\[/\*(:m)?:{$this->uid}\]\n?#", '</li>', $text);
         $text = str_replace("[*:{$this->uid}]", '<li>', $text);
+
+        // close list tags.
         $text = str_replace("[/list:o:{$this->uid}]", '</ol>', $text);
         $text = str_replace("[/list:u:{$this->uid}]", '</ol>', $text);
+
+        // list with "title", with it being just a list without style.
+        $text = preg_replace("#\[list=\d+:{$this->uid}\](.+?)(<li>|</ol>)#s", '<ul class="bbcode__list-title"><li>$1</li></ul><ol>$2', $text);
+        $text = preg_replace("#\[list(=.?)?:{$this->uid}\](.+?)(<li>|</ol>)#s", '<ul class="bbcode__list-title"><li>$2</li></ul><ol class="unordered">$3', $text);
 
         return $text;
     }

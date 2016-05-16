@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,22 +17,18 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Http\Controllers;
+namespace App\Transformers;
 
-use App\Models\BeatmapSet;
+use App\Models\Country;
+use League\Fractal;
 
-class ModdingController extends Controller
+class CountryTransformer extends Fractal\TransformerAbstract
 {
-    protected $section = 'beatmaps';
-
-    public function getModding($id = null)
+    public function transform(Country $country)
     {
-        if ($id === null) {
-            return redirect('/user/login');
-        } else {
-            $beatmapSet = BeatmapSet::findOrFail($id);
-
-            return view('beatmaps.modding_react')->with('beatmapSet', $beatmapSet);
-        }
+        return [
+            'code' => $country->acronym,
+            'name' => $country->name,
+        ];
     }
 }

@@ -76,7 +76,7 @@ BeatmapDiscussions.NewReply = React.createClass
     return if !@validPost()
     LoadingOverlay.show()
 
-    $.ajax Url.beatmapDiscussionPosts,
+    $.ajax laroute.route('beatmap-discussion-posts.store'),
       method: 'POST'
       data:
         beatmap_discussion_id: @props.discussion.id

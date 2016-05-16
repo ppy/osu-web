@@ -28,5 +28,7 @@ $factory->define(App\Models\BeatmapSet::class, function (Faker\Generator $faker)
         'approved_date' => $isApproved ? Carbon\Carbon::now() : null,
         'play_count' => rand(0, 50000),
         'favourite_count' => rand(0, 500),
+        'approved_date' => $faker->dateTime(),
+        'submit_date' => $faker->dateTime(),
     ];
 });
