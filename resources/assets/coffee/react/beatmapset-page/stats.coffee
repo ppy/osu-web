@@ -64,8 +64,9 @@ class BeatmapsetPage.Stats extends React.Component
             el 'dt', className: 'beatmapset-stats__stat-key', Lang.get 'beatmaps.beatmapset.show.stats.tags'
             el 'dd', className: 'beatmapset-stats__stat-value beatmapset-stats__stat-value--light',
               tags.map (tag) =>
-                span key: tag,
+                span
+                  key: tag
+                  className: 'beatmapset-stats__tag',
                   a
                     href: laroute.route 'beatmapsets.index', q: tag
                     "#{tag}"
-                  ' '
