@@ -98,7 +98,8 @@ class StoreController extends Controller
     {
         $cart = $this->userCart();
         $product = Store\Product::with('masterProduct')->findOrFail($id);
-        $requestedNotification = Auth::check() ? Store\NotificationRequest::get(Auth::user()->user_id, $id) : false;
+        $requestedNotification = Auth::check() ?
+            Store\NotificationRequest::where('user_id', Auth::user()->user_id)->where('product_id', $id)->exists() : false;
 
         if (!$product->enabled) {
             abort(404);
