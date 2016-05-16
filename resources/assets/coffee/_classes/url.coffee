@@ -23,7 +23,7 @@ class @Url
 
   @beatmapDownloadDirect: (id) -> "osu://dl/#{id}"
 
-  @beatmapsetSearch: (query) -> laroute.route('beatmapsets.index') + "/?q=#{query}"
+  @beatmapsetSearch: (query) -> laroute.route 'beatmapsets.index', q: query
 
   # external link
   @openBeatmapEditor: (timestampWithRange) => "osu://edit/#{timestampWithRange}"
