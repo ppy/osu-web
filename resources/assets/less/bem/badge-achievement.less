@@ -18,6 +18,8 @@
 */
 .badge-achievement {
   @_top: ~"badge-achievement";
+  @_recent-width: 55px;
+
   overflow: hidden;
   text-align: center;
 
@@ -27,9 +29,9 @@
   }
 
   &--recent {
+    min-width: (@_recent-width + @spacing);
     width: 25%;
-    display: inline-block;
-    line-height: 60px;
+    margin-bottom: @spacing;
   }
 
   &__locked-bg {
@@ -48,8 +50,9 @@
     max-width: 100%;
 
     .@{_top}--recent & {
-      max-width: 75%;
+      max-width: @_recent-width;
     }
+
     .@{_top}--locked & {
       opacity: 0.25;
       filter: saturate(0);
