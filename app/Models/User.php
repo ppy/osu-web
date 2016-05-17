@@ -230,7 +230,7 @@ class User extends Model implements AuthenticatableContract
 
     public function getUserAvatarAttribute($value)
     {
-        if ($value === null || $value === '') {
+        if (!present($value)) {
             return 'https://s.ppy.sh/images/blank.jpg';
         } else {
             $value = str_replace('_', '?', $value);
