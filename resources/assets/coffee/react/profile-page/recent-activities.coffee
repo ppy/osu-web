@@ -68,6 +68,9 @@ class ProfilePage.RecentActivities extends React.Component
       when 'achievement'
         badge = el ProfilePage.AchievementBadge,
           achievement: event.achievement
+          userAchievement:
+            achieved_at: event.createdAt
+            achievement_id: event.achievement.id
           additionalClasses: 'profile-extra-entries__icon'
 
         text = el 'div',
