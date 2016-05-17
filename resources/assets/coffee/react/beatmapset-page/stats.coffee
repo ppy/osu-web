@@ -58,14 +58,13 @@ class BeatmapsetPage.Stats extends React.Component
             el 'dd', className: 'beatmapset-stats__stat-value beatmapset-stats__stat-value--light', @props.beatmapset.source
 
         if @props.beatmapset.tags
-          tags = _.filter @props.beatmapset.tags.split(' '), (o) -> o.length != 0
-
           el 'dl', className: 'beatmapset-stats__stat beatmapset-stats__stat--full',
             el 'dt', className: 'beatmapset-stats__stat-key', Lang.get 'beatmaps.beatmapset.show.stats.tags'
             el 'dd', className: 'beatmapset-stats__stat-value beatmapset-stats__stat-value--light',
-              tags.map (tag) =>
+              @props.beatmapset.tags.split(' ').map (tag) =>
+                return if tag.length == 0
                 a
                   key: tag
                   className: 'beatmapset-stats__tag',
                   href: laroute.route 'beatmapsets.index', q: tag
-                  "#{tag}"
+                  tag
