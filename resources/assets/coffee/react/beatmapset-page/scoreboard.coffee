@@ -104,7 +104,7 @@ BeatmapsetPage.Scoreboard = React.createClass
             className += ' hidden-xs' if m == 'accuracy'
 
             span
-              className: "#{bn}__row-item #{bn}__row-item--#{m} #{bn}__row-item--header"
+              className: className
               key: m
               Lang.get "beatmaps.beatmapset.show.extra.scoreboard.list.#{m}"
 
