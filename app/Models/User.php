@@ -39,9 +39,7 @@ class User extends Model implements AuthenticatableContract
     protected $dateFormat = 'U';
     public $timestamps = false;
 
-    protected $visible = ['user_id', 'username', 'username_clean', 'user_rank', 'osu_playstyle', 'user_colour', 'is_admin'];
-
-    protected $appends = ['is_admin'];
+    protected $visible = ['user_id', 'username', 'username_clean', 'user_rank', 'osu_playstyle', 'user_colour'];
 
     protected $casts = [
         'group_id' => 'integer',
@@ -249,11 +247,6 @@ class User extends Model implements AuthenticatableContract
     public function getUserFromAttribute($value)
     {
         return presence($value);
-    }
-
-    public function getIsAdminAttribute()
-    {
-        return $this->isAdmin();
     }
 
     public function getIsSpecialAttribute()
