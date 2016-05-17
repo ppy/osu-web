@@ -138,7 +138,7 @@
                         {{ trans('store.product.add-to-cart') }}
                     </button>
 
-                @elseif(!$product->inStock() && !$requestedNotification)
+                @elseif(!$requestedNotification)
                     <a class="btn-osu btn-osu-default" href="{{ route('store.request-notification', ['product_id' => $product->product_id]) }}" data-remote="true" data-method="post">
                         {{ trans('store.product.notify') }}
                     </a>

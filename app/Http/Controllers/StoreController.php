@@ -99,7 +99,7 @@ class StoreController extends Controller
         $cart = $this->userCart();
         $product = Store\Product::with('masterProduct')->findOrFail($id);
         $requestedNotification = Auth::check() ?
-            Store\NotificationRequest::where('user_id', Auth::user()->user_id)->where('product_id', $id)->exists() : false;
+            $product->notificationRequests()->where('user_id', Auth::user()->user_id)->exists() : false;
 
         if (!$product->enabled) {
             abort(404);
@@ -255,7 +255,7 @@ class StoreController extends Controller
             return error_popup(trans('store.product.notification-in-stock'));
         }
 
-        $request = Store\NotificationRequest::get($user->user_id, $product_id);
+        $request = $product->notificationRequests()->where('user_id', $user->user_id)->exists();
 
         if ($request) {
             return error_popup(trans('store.product.notification-already-requested'));
