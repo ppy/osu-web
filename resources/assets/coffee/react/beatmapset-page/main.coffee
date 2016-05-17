@@ -98,9 +98,9 @@ BeatmapsetPage.Main = React.createClass
     @setState isPreviewPlaying: isPreviewPlaying
 
     if isPreviewPlaying
-      @state.audioPreview.play()
+      @audioPreview.play()
     else
-      @state.audioPreview.pause()
+      @audioPreview.pause()
 
   onPreviewEnded: ->
     @setState isPreviewPlaying: false
@@ -116,7 +116,7 @@ BeatmapsetPage.Main = React.createClass
     @pageJump null, @initialPage
     @setCurrentScoreboard null, scoreboard: 'global'
 
-    @setState audioPreview: document.getElementsByClassName('js-beatmapset-page--audio-preview')[0]
+    @audioPreview = document.getElementsByClassName('js-beatmapset-page--audio-preview')[0]
 
   componentWillUnmount: ->
     @removeListeners()

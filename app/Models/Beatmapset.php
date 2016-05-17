@@ -538,7 +538,7 @@ class Beatmapset extends Model
 
     public function previewURL()
     {
-        return 'http://b.ppy.sh/preview/'.$this->beatmapset_id.'.mp3';
+        return '//b.ppy.sh/preview/'.$this->beatmapset_id.'.mp3';
     }
 
     public function storage()
