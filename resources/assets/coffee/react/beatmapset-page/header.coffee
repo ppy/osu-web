@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, h1, h2, span} = React.DOM
+{div, span, a} = React.DOM
 el = React.createElement
 
 class BeatmapsetPage.Header extends React.Component
@@ -26,8 +26,16 @@ class BeatmapsetPage.Header extends React.Component
         style:
           backgroundImage: "url(#{@props.cover})",
         div className: 'beatmapset-header__title-box beatmapset-header__title-box--left',
-          h1 className: 'beatmapset-header__title beatmapset-header__title', @props.title
-          h2 className: 'beatmapset-header__title beatmapset-header__title--small', @props.artist
+          a
+            href: laroute.route 'beatmapsets.index', q: @props.title
+            className: 'beatmapset-header__title'
+            @props.title
+
+          a
+            href: laroute.route 'beatmapsets.index', q: @props.artist
+            className: 'beatmapset-header__title beatmapset-header__title--small'
+            @props.artist
+
         div className: 'beatmapset-header__title-box beatmapset-header__title-box--right',
           div className: 'beatmapset-header__title beatmapset-header__title--stat',
             span className: 'beatmapset-header__stat-number', @props.playcount.toLocaleString()
