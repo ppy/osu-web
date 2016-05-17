@@ -19,6 +19,8 @@
 .badge-achievement {
   @_top: ~"badge-achievement";
   @_recent-width: 55px;
+  @_big-width: 110px;
+  @_big-height: 118px;
 
   overflow: hidden;
   text-align: center;
@@ -43,6 +45,7 @@
 
     &--big {
       .at2x-simple("/images/badges/user-achievements/blank-big.png");
+      background-size: @_big-width @_big-height;
     }
   }
 
@@ -56,6 +59,11 @@
     .@{_top}--locked & {
       opacity: 0.25;
       filter: saturate(0);
+    }
+
+    &--big {
+      width: @_big-width;
+      height: @_big-height;
     }
   }
 }
