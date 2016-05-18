@@ -113,7 +113,7 @@ class User extends Model implements AuthenticatableContract, Messageable
             return Carbon::now()->addYears(10);
         }
 
-        $playCount = array_reduce(array_keys(Beatmap::modes()), function ($result, $mode) use ($user) {
+        $playCount = array_reduce(array_keys(Beatmap::MODES), function ($result, $mode) use ($user) {
                 return $result + $user->statistics($mode, true)->value('playcount');
             }, 0);
 
@@ -321,6 +321,10 @@ class User extends Model implements AuthenticatableContract, Messageable
             if (($value & $bit) !== 0) {
                 $styles[] = $type;
             }
+        }
+
+        if (empty($styles)) {
+            return;
         }
 
         return $styles;
@@ -581,7 +585,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function statistics($mode, $returnQuery = false)
     {
-        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+        if (!in_array($mode, array_keys(Beatmap::MODES), true)) {
             return;
         }
 
@@ -618,7 +622,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function scores($mode, $returnQuery = false)
     {
-        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+        if (!in_array($mode, array_keys(Beatmap::MODES), true)) {
             return;
         }
 
@@ -655,7 +659,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function scoresFirst($mode, $returnQuery = false)
     {
-        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+        if (!in_array($mode, array_keys(Beatmap::MODES), true)) {
             return;
         }
 
@@ -694,7 +698,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function scoresBest($mode, $returnQuery = false)
     {
-        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+        if (!in_array($mode, array_keys(Beatmap::MODES), true)) {
             return;
         }
 
@@ -724,7 +728,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->belongsTo("App\Models\Forum\Post", 'userpage_post_id', 'post_id');
     }
 
-    public function achievements()
+    public function userAchievements()
     {
         return $this->hasMany("App\Models\UserAchievement", 'user_id', 'user_id');
     }
@@ -732,6 +736,21 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function usernameChangeHistory()
     {
         return $this->hasMany(UsernameChangeHistory::class, 'user_id', 'user_id');
+    }
+
+    public function relations()
+    {
+        return $this->hasMany(UserRelation::class, 'user_id', 'user_id');
+    }
+
+    public function friends()
+    {
+        return $this->relations()->where('friend', true);
+    }
+
+    public function foes()
+    {
+        return $this->relations()->where('foe', true);
     }
 
     public function events()
@@ -888,13 +907,13 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         if ($this->userPage === null) {
             DB::transaction(function () use ($text) {
-                $topic = Forum\Topic::createNew(
-                    Forum\Forum::find(config('osu.user.user_page_forum_id')),
-                    "{$this->username}'s user page",
-                    $this,
-                    $text,
-                    false
-                );
+                $topic = Forum\Topic::createNew([
+                    'forum' => Forum\Forum::find(config('osu.user.user_page_forum_id')),
+                    'title' => "{$this->username}'s user page",
+                    'poster' => $this,
+                    'body' => $text,
+                    'notifyReplies' => false,
+                ]);
 
                 $this->update(['userpage_post_id' => $topic->topic_first_post_id]);
             });
@@ -910,7 +929,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         return fractal_item_array(
             $this,
             new UserTransformer(),
-            'defaultStatistics'
+            'userAchievements,defaultStatistics'
         );
     }
 
@@ -1003,5 +1022,13 @@ class User extends Model implements AuthenticatableContract, Messageable
         $message->target_id = $this->user_id;
         $message->content = $body;
         $message->save();
+    }
+
+    public function scopeDefault($query)
+    {
+        return $query->where([
+            'user_warnings' => 0,
+            'user_type' => 0,
+        ]);
     }
 }

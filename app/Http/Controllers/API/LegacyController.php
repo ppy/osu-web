@@ -283,7 +283,7 @@ class LegacyController extends Controller
             $beatmaps = $beatmaps->where('osu_beatmaps.user_id', $user->user_id);
         }
 
-        if ($mode !== null && in_array($mode, array_values(Beatmap::modes()), true) === false) {
+        if ($mode !== null && in_array($mode, array_values(Beatmap::MODES), true) === false) {
             return Response::json([]);
         }
 

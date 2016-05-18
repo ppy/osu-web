@@ -40,12 +40,14 @@ return [
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'getListing' => 'listing',
-            'getPacks' => 'packs',
-            'getCharts' => 'charts',
-            'getModding' => 'modding',
-            'moddingreact' => 'modding',
+            'show' => 'info',
             'index' => 'listing',
+            // 'getPacks' => 'packs',
+            // 'getCharts' => 'charts',
+        ],
+        'beatmapsets' => [
+            '_' => 'beatmapsets',
+            'discussion' => 'modding',
         ],
         'ranking' => [
             '_' => 'ranking',
@@ -66,7 +68,6 @@ return [
             'tournaments' => 'tournaments',
             'tournaments-index' => 'tournaments',
             'tournaments-show' => 'tournament info',
-            'forum-admin-forum-covers-index' => 'admin: forum covers',
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
@@ -109,9 +110,23 @@ return [
             'index' => 'home',
             'thanks' => 'thanks',
         ],
-        'storeAdmin' => [
-            '_' => 'store',
-            'index' => 'admin',
+        'admin-forum' => [
+            '_' => 'admin::forum',
+            'forum-covers-index' => 'forum covers',
+        ],
+        'admin-store' => [
+            '_' => 'admin::store',
+            'orders-index' => 'orders',
+            'orders-show' => 'order',
+        ],
+        'admin' => [
+            '_' => 'admin',
+            'logs-index' => 'log',
+            'beatmapsets' => [
+                '_' => 'beatmapsets',
+                'covers' => 'covers',
+                'show' => 'detail',
+            ],
         ],
     ],
     'errors' => [

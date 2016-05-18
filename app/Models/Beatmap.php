@@ -58,35 +58,36 @@ class Beatmap extends Model
         return $this->hasMany(Mod::class, 'beatmap_id', 'beatmap_id');
     }
 
-    public static function modes()
-    {
-        return [
-            'osu' => 0,
-            'taiko' => 1,
-            'fruits' => 2,
-            'mania' => 3,
-        ];
-    }
+    const MODES = [
+        'osu' => 0,
+        'taiko' => 1,
+        'fruits' => 2,
+        'mania' => 3,
+    ];
 
     public static function modeInt($str)
     {
-        if (isset(static::modes()[$str]) === true) {
-            return static::modes()[$str];
-        }
+        return static::MODES[$str] ?? null;
     }
 
     public static function modeStr($int)
     {
-        $str = array_search($int, static::modes(), true);
-
-        if ($str !== false) {
-            return $str;
-        }
+        return array_search_null($int, static::MODES);
     }
 
     public function set()
     {
+        return $this->beatmapset();
+    }
+
+    public function beatmapset()
+    {
         return $this->belongsTo(BeatmapSet::class, 'beatmapset_id');
+    }
+
+    public function beatmapDiscussions()
+    {
+        return $this->hasMany(BeatmapDiscussion::class);
     }
 
     public function creator()
@@ -102,5 +103,36 @@ class Beatmap extends Model
     public function difficultyAttribs()
     {
         return $this->hasMany(BeatmapDifficultyAttrib::class);
+    }
+
+    public function getModeAttribute()
+    {
+        return static::modeStr($this->playmode);
+    }
+
+    public function scopeDefault($query)
+    {
+        return $query
+            ->orderBy('playmode', 'ASC')
+            ->orderBy('difficultyrating', 'ASC');
+    }
+
+    public function failtimes()
+    {
+        return $this->hasMany(BeatmapFailtimes::class);
+    }
+
+    public function scores()
+    {
+        $mode = studly_case($this->modeStr($this->playmode));
+
+        return $this->hasMany("App\Models\Score\\{$mode}");
+    }
+
+    public function scoresBest()
+    {
+        $mode = studly_case($this->modeStr($this->playmode));
+
+        return $this->hasMany("App\Models\Score\Best\\{$mode}");
     }
 }

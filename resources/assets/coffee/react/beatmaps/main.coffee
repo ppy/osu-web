@@ -29,7 +29,7 @@ class Beatmaps.Main extends React.Component
       query: null
       paging:
         page: 1
-        url: '/beatmaps/search'
+        url: '/beatmapsets/search'
         loading: false
         more: beatmaps.length > 0
       filters: @filterDefaults
@@ -79,7 +79,6 @@ class Beatmaps.Main extends React.Component
 
   search: =>
     searchText = $('#searchbox').val()?.trim()
-    @showLoader()
 
     # update url
     filterState = @getFilterState()
@@ -100,8 +99,9 @@ class Beatmaps.Main extends React.Component
 
     if @state.just_restored or location.search.substr(1) != params.join('&')
       if !@state.just_restored
-        history.pushState(@state, "¯\_(ツ)_/¯", "/beatmaps/?#{params.join('&')}")
+        history.pushState(@state, "¯\_(ツ)_/¯", "/beatmapsets/?#{params.join('&')}")
 
+      @showLoader()
       $.ajax @state.paging.url,
         method: 'get'
         dataType: 'json'
@@ -236,14 +236,14 @@ class Beatmaps.Main extends React.Component
 
   render: ->
     if @state.beatmaps.length > 0
-      searchBackground = '//b.ppy.sh/thumb/' + @state.beatmaps[0].beatmapset_id + 'l.jpg'
+      searchBackground = @state.beatmaps[0].covers.cover
     else
       searchBackground = ''
 
     div className: 'osu-layout__section',
       el(Beatmaps.SearchPanel, background: searchBackground, filters: @state.filters)
       div id: 'beatmaps-listing', className: 'osu-layout__row osu-layout__row--page',
-        if (currentUser.id != undefined)
+        if currentUser.id?
           el(Beatmaps.SearchSort, sorting: @state.sorting)
         el(Beatmaps.BeatmapsListing, beatmaps: @state.beatmaps, loading: @state.loading)
         el(Beatmaps.Paginator, paging: @state.paging)

@@ -5,6 +5,9 @@ class ProfilePage.RecentActivities extends React.Component
     # default, empty badge
     badge = el 'div', className: 'profile-extra-entries__icon'
 
+    if event.parse_error
+      return
+
     switch event.type
       when 'rank'
         badge = el 'div',
@@ -65,6 +68,9 @@ class ProfilePage.RecentActivities extends React.Component
       when 'achievement'
         badge = el ProfilePage.AchievementBadge,
           achievement: event.achievement
+          userAchievement:
+            achieved_at: event.createdAt
+            achievement_id: event.achievement.id
           additionalClasses: 'profile-extra-entries__icon'
 
         text = el 'div',
@@ -119,7 +125,7 @@ class ProfilePage.RecentActivities extends React.Component
 
   render: =>
     el 'div',
-      className: 'profile-extra'
+      className: 'page-extra'
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       if @props.recentActivities.length

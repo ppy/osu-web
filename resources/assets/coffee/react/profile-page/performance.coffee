@@ -103,7 +103,7 @@ class ProfilePage.Performance extends React.Component
     @_rankHistoryChart.loadData(data)
 
   render: ->
-    div className: 'profile-extra',
+    div className: 'page-extra',
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       div ref: 'chartArea', className: 'chart'

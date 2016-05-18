@@ -34,6 +34,8 @@ class Kernel extends HttpKernel
         'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
         'Illuminate\Session\Middleware\StartSession',
         'Illuminate\View\Middleware\ShareErrorsFromSession',
+        'App\Http\Middleware\VerifyCsrfToken',
+        'App\Http\Middleware\AutologinFromLegacyCookie',
         'App\Http\Middleware\CheckUserBanStatus',
         'App\Http\Middleware\UpdateUserLastvisit',
         'Clockwork\Support\Laravel\ClockworkMiddleware',

@@ -28,10 +28,13 @@ class RecordCostAndShippingInOrder extends Migration
      */
     public function up()
     {
-        Schema::table('osu_store.order_items', function ($table) {
+        $builder = Schema::connection('mysql-store');
+
+        $builder->table('order_items', function ($table) {
             $table->float('cost')->nullable();
         });
-        Schema::table('osu_store.orders', function ($table) {
+
+        $builder->table('orders', function ($table) {
             $table->float('shipping')->nullable();
         });
     }
@@ -43,10 +46,13 @@ class RecordCostAndShippingInOrder extends Migration
      */
     public function down()
     {
-        Schema::table('osu_store.order_items', function ($table) {
+        $builder = Schema::connection('mysql-store');
+
+        $builder->table('order_items', function ($table) {
             $table->dropColumn('cost');
         });
-        Schema::table('osu_store.orders', function ($table) {
+
+        $builder->table('orders', function ($table) {
             $table->dropColumn('shipping');
         });
     }

@@ -30,11 +30,23 @@ class Achievement extends Model
         'achievement_id' => 'integer',
         'ordering' => 'integer',
         'quest_ordering' => 'integer',
+        'enabled' => 'boolean',
     ];
     public $timestamps = false;
 
+    public function getModeAttribute($value)
+    {
+        if (!present($value)) {
+            return;
+        }
+
+        return Beatmap::modeStr((int) $value);
+    }
+
     public function scopeAchievable($query)
     {
-        return $query->where('slug', '<>', '');
+        return $query
+            ->where('enabled', true)
+            ->where('slug', '<>', '');
     }
 }

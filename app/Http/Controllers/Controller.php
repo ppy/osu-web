@@ -35,6 +35,6 @@ abstract class Controller extends BaseController
     public function __construct()
     {
         view()->share('current_section', $this->section);
-        view()->share('current_action', current_action());
+        view()->share('current_action', ($this->actionPrefix ?? '').current_action());
     }
 }

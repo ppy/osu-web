@@ -95,6 +95,12 @@ class UsersController extends Controller
     {
         if (Auth::check()) {
             Auth::logout();
+
+            // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
+            unset($_COOKIE['phpbb3_2cjk5_sid']);
+            unset($_COOKIE['phpbb3_2cjk5_sid_check']);
+            setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.ppy.sh');
+            setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.ppy.sh');
         }
 
         return [];
@@ -108,6 +114,10 @@ class UsersController extends Controller
             abort(404);
         }
 
+        if ((string) $user->user_id !== $id) {
+            return ujs_redirect(route('users.show', $user));
+        }
+
         $achievements = fractal_collection_array(
             Achievement::achievable()->orderBy('grouping')->orderBy('ordering')->orderBy('progression')->get(),
             new AchievementTransformer()
@@ -116,7 +126,7 @@ class UsersController extends Controller
         $userArray = fractal_item_array(
             $user,
             new UserTransformer(), implode(',', [
-                'allAchievements',
+                'userAchievements',
                 'allRankHistories',
                 'allScores',
                 'allScoresBest',
@@ -126,8 +136,8 @@ class UsersController extends Controller
                 'page',
                 'recentActivities',
                 'recentlyReceivedKudosu',
-                'rankedAndApprovedBeatmapSets.difficulties',
-                'favouriteBeatmapSets.difficulties',
+                'rankedAndApprovedBeatmapSets.beatmaps',
+                'favouriteBeatmapSets.beatmaps',
             ])
         );
 

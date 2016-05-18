@@ -1,0 +1,71 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+.page-extra {
+  .default-box-shadow;
+  background-color: @grey-f;
+  padding: (@spacing * 2) @spacing;
+  margin-bottom: @spacing;
+
+  font-size: 14px;
+
+  @media @desktop {
+    padding-left: (@spacing * 3);
+    padding-right: (@spacing * 3);
+  }
+
+  &:hover &__actions {
+    opacity: 1;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: absolute;
+
+    right: (@spacing * 3);
+    top: (@spacing * 2);
+    @media @desktop {
+      right: 0;
+      top: (@spacing * 2);
+      width: 0;
+      opacity: 0;
+    }
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 0 (@spacing * 2);
+
+    &--small {
+      font-size: 15px;
+      margin-top: (@spacing * 3);
+    }
+  }
+
+  &__dragdrop-toggle {
+    font-size: 18px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: move;
+  }
+}

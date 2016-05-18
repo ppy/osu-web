@@ -19,7 +19,6 @@
  */
 namespace App\Transformers;
 
-use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\User;
 use App\Models\Score\Best\Model as ScoreBestModel;
@@ -28,7 +27,7 @@ use League\Fractal;
 class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'allAchievements',
+        'userAchievements',
         'allRankHistories',
         'allScores',
         'allScoresBest',
@@ -74,10 +73,6 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'url' => $profileCustomization->cover->url(),
                 'id' => $profileCustomization->cover->id(),
             ],
-            'achievements' => [
-                'total' => Achievement::achievable()->count(),
-                'current' => $user->achievements()->count(),
-            ],
             'kudosu' => [
                 'total' => $user->osu_kudostotal,
                 'available' => $user->osu_kudosavailable,
@@ -96,7 +91,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($user, function ($user) {
             $all = [];
-            foreach (array_keys(Beatmap::modes()) as $mode) {
+            foreach (array_keys(Beatmap::MODES) as $mode) {
                 $all[$mode] = fractal_item_array($user->statistics($mode), new UserStatisticsTransformer());
             }
 
@@ -123,7 +118,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($user, function ($user) {
             $all = [];
-            foreach (array_keys(Beatmap::modes()) as $mode) {
+            foreach (array_keys(Beatmap::MODES) as $mode) {
                 $scores = $user
                     ->scoresFirst($mode, true)
                     ->default()
@@ -142,10 +137,11 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($user, function ($user) {
             $all = [];
-            foreach (array_keys(Beatmap::modes()) as $mode) {
+            foreach (array_keys(Beatmap::MODES) as $mode) {
                 $scores = $user
                     ->scoresBest($mode, true)
                     ->default()
+                    ->orderBy('pp', 'DESC')
                     ->with('beatmapSet', 'beatmap')
                     ->limit(100)
                     ->get();
@@ -164,7 +160,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->item($user, function ($user) {
             $all = [];
 
-            foreach (array_keys(Beatmap::modes()) as $mode) {
+            foreach (array_keys(Beatmap::MODES) as $mode) {
                 $scores = $user->scores($mode, true)->default()->with('beatmapSet', 'beatmap')->get();
 
                 $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapSet');
@@ -188,10 +184,10 @@ class UserTransformer extends Fractal\TransformerAbstract
         });
     }
 
-    public function includeAllAchievements(User $user)
+    public function includeUserAchievements(User $user)
     {
         return $this->collection(
-            $user->achievements()->with('achievement')->orderBy('date', 'desc')->get(),
+            $user->userAchievements()->orderBy('date', 'desc')->get(),
             new UserAchievementTransformer()
         );
     }

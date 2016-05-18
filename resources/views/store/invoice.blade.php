@@ -165,15 +165,15 @@ window.onload = function() {
             <p>
                 If you didn't request a cancellation please contact <a href='mailto:osustore@ppy.sh'>osu!store support</a> quoting your order number (#{{$order->order_id}}).
             </p>
-        @elseif (($order->status == 'shipped' && ($order->last_tracking_state || !$order->tracking_code)) || $order->status == 'delivered')
+        @elseif (($order->status == 'shipped' && ($order->last_tracking_state || count($order->trackingCodes()) == 0)) || $order->status == 'delivered')
             <p><strong>Your order has been shipped!</strong></p>
-            @if($order->tracking_code)
+            @if(count($order->trackingCodes()))
                 <p>
                     Tracking details follow:
                 </p>
             @else
                 <p>
-                    We don't have tracking details as it was sent in a small envelope, but you can expect to receive it within 1-2 weeks at the most. If you have any concerns, please reply to the order confirmation email you received (or <a href='mailto:osustore@ppy.sh'>send us an email</a>).
+                    We don't have tracking details as we sent your package via Air Mail, but you can expect to receive it within 1-3 weeks. For Europe, sometimes customs can delay the order out of our control. If you have any concerns, please reply to the order confirmation email you received (or <a href='mailto:osustore@ppy.sh'>send us an email</a>).
                 </p>
             @endif
         @else
@@ -183,13 +183,13 @@ window.onload = function() {
             </p>
 
             <p>
-                We send all orders from Japan using EMS. This is the most efficient service available to us, and it should reach you in a very short time (3~14 days after we send it). For Europe, sometimes customs can delay the order out of our control.
+                We send all orders from Japan using a variety of shipping services depending on the weight and value. This area will update with specifics once we have shipped the order.
             </p>
         @endif
     </div>
 
-    @if ($order->status == 'shipped' && $order->tracking_code)
-    @foreach(explode(',', $order->tracking_code) as $code)
+    @if ($order->status == 'shipped')
+    @foreach($order->trackingCodes() as $code)
     <div class='osu-layout__sub-row osu-layout__sub-row--with-separator'>
         <h4>Tracking for {{ $code }}</h4>
 

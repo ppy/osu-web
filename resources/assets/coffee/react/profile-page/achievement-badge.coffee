@@ -23,7 +23,7 @@ class ProfilePage.AchievementBadge extends React.Component
     name = event.target.getAttribute 'data-tooltip-target'
 
     classes = 'qtip tooltip-achievement'
-    classes += ' tooltip-achievement--locked' if @props.isLocked
+    classes += ' tooltip-achievement--locked' if !@props.userAchievement?
 
     options =
       overwrite: false
@@ -50,18 +50,14 @@ class ProfilePage.AchievementBadge extends React.Component
     $(event.target).qtip options, event
 
 
-  iconUrl: (big = false) =>
-    filename = "/images/badges/user-achievements/#{@props.achievement.slug}"
-    filename += '-big' if big
-
-    "#{filename}.png"
-
+  iconUrl: =>
+    "/images/badges/user-achievements/#{@props.achievement.slug}.png"
 
   render: =>
     tooltipId = "#{@props.achievement.slug}-#{Math.floor(Math.random() * 1000000)}"
 
     badgeClasses = 'badge-achievement'
-    badgeClasses += ' badge-achievement--locked' if @props.isLocked
+    badgeClasses += ' badge-achievement--locked' if !@props.userAchievement?
 
     div
       className: "js-tooltip-achievement #{badgeClasses} #{@props.additionalClasses}",
@@ -70,7 +66,7 @@ class ProfilePage.AchievementBadge extends React.Component
         className: 'badge-achievement__image'
         'data-tooltip-target': tooltipId
         onMouseOver: @onMouseOver
-        osu.src2x @iconUrl(@props.bigIcon)
+        osu.src2x @iconUrl()
 
       div
         className: 'hidden'
@@ -87,8 +83,8 @@ class ProfilePage.AchievementBadge extends React.Component
               div className: 'badge-achievement__locked-bg badge-achievement__locked-bg--big'
               img _.extend
                 alt: @props.achievement.name
-                osu.src2x @iconUrl(true)
-                className: 'badge-achievement__image'
+                className: 'badge-achievement__image badge-achievement__image--big'
+                osu.src2x @iconUrl()
           div
             className: 'tooltip-achievement__content'
             div
@@ -98,3 +94,8 @@ class ProfilePage.AchievementBadge extends React.Component
               className: 'tooltip-achievement__description'
               dangerouslySetInnerHTML:
                 __html: @props.achievement.description
+            if @props.userAchievement?
+              div
+                className: 'tooltip-achievement__date'
+                Lang.get 'users.show.extra.achievements.achieved-on',
+                  date: moment(@props.userAchievement.achieved_at).format 'Do MMM YYYY'

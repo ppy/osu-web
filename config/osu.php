@@ -9,6 +9,12 @@ return [
     ],
     'beatmaps' => [
         'max' => 50,
+        'max-scores' => 50,
+    ],
+    'beatmap_processor' => [
+        'mirrors_to_use' => array_map('intval', explode(' ', env('BM_PROCESSOR_MIRRORS', '1'))),
+        'thumbnailer' => env('BM_PROCESSOR_THUMBNAILER', 'http://localhost:4001'),
+        'sentry' => env('BM_PROCESSOR_SENTRY'),
     ],
     'camo' => [
         'key' => env('CAMO_KEY'),
@@ -29,6 +35,7 @@ return [
     'store' => [
         'delayed_shipping_order_threshold' => env('DELAYED_SHIPPING_ORDER_THRESHOLD', 100),
         'delayed_shipping_order_message' => env('DELAYED_SHIPPING_ORDER_MESSAGE'),
+        'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE'))),
     ],
     'urls' => [
         'legal' => [

@@ -19,9 +19,9 @@ el = React.createElement
 
 class ProfilePage.CoverSelection extends React.Component
   onClick: =>
-    return if @props.url == null
+    return if !@props.url?
 
-    $.ajax Url.updateProfileAccount,
+    $.ajax laroute.route('account.update-profile'),
       method: 'post'
       data:
         cover_id: @props.name
@@ -32,7 +32,7 @@ class ProfilePage.CoverSelection extends React.Component
 
 
   onMouseEnter: =>
-    return if @props.url == null
+    return if !@props.url?
     $.publish 'user:cover:set', @props.url
 
 
@@ -42,7 +42,7 @@ class ProfilePage.CoverSelection extends React.Component
 
   render: =>
     el 'div',
-      className: 'profile-cover-selection'
+      className: 'profile-cover-change-popup__selection'
       style:
         backgroundImage: "url('#{@props.thumbUrl}')"
       onClick: @onClick
@@ -50,4 +50,4 @@ class ProfilePage.CoverSelection extends React.Component
       onMouseLeave: @onMouseLeave
       if @props.isSelected
         el 'i',
-          className: 'fa fa-check-circle profile-cover-selection__selected-mark'
+          className: 'fa fa-check-circle profile-cover-change-popup__selected-mark'

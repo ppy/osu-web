@@ -21,6 +21,8 @@
 return [
         'buttons' => [
             'cancel' => 'Cancel',
+            'post' => 'Post',
+            'reply' => 'Reply',
             'reset' => 'Reset',
             'save' => 'Save',
             'show_more' => 'show more',
@@ -43,5 +45,9 @@ return [
             'days_ago' => ':count day ago|:count days ago',
             'hours_ago' => ':count hour ago|:count hours ago',
             'now' => 'now',
+        ],
+
+        'title' => [
+            'notice' => 'Notice',
         ],
 ];

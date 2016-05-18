@@ -20,6 +20,6 @@ el = React.createElement
 class ProfilePage.HeaderInfo extends React.Component
   render: =>
     el 'div', className: 'user-profile-header__basic',
-        el 'h1', className: 'profile-basic--large profile-basic',
+        el 'h1', className: 'user-profile-header__text user-profile-header__text--large',
           @props.user.username
-        el 'p', className: 'profile-basic', @props.user.joinDate
+        el 'p', className: 'user-profile-header__text', @props.user.joinDate

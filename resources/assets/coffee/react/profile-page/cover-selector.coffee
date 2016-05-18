@@ -55,10 +55,10 @@ class ProfilePage.CoverSelector extends React.Component
 
 
   render: =>
-    dropOverlayClass = 'profile-change-cover-popup__drop-overlay'
+    dropOverlayClass = 'profile-cover-change-popup__drop-overlay'
 
-    el 'div', className: 'profile-change-cover-popup js-profile-cover-upload--dropzone',
-      el 'div', className: 'profile-change-cover-defaults',
+    el 'div', className: 'profile-cover-change-popup js-profile-cover-upload--dropzone',
+      el 'div', className: 'profile-cover-change-popup__defaults',
         for i in [1..8]
           i = i.toString()
           el ProfilePage.CoverSelection,
@@ -67,7 +67,7 @@ class ProfilePage.CoverSelector extends React.Component
             isSelected: @props.cover.id == i
             url: "/images/headers/profile-covers/c#{i}.jpg"
             thumbUrl: "/images/headers/profile-covers/c#{i}t.jpg"
-        el 'p', className: 'profile-cover-selections-info',
+        el 'p', className: 'profile-cover-change-popup__selections-info',
           Lang.get 'users.show.edit.cover.defaults_info'
       el ProfilePage.CoverUploader, cover: @props.cover, canUpload: @props.canUpload
       if @props.canUpload

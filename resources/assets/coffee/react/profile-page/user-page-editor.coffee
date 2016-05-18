@@ -44,9 +44,9 @@ class ProfilePage.UserPageEditor extends React.Component
 
   _save: (e) =>
     body = @props.userPage.raw
-    osu.showLoadingOverlay()
+    LoadingOverlay.show()
 
-    $.ajax Url.pageAccount,
+    $.ajax laroute.route('account.page'),
       method: 'PUT'
       dataType: 'json'
       data:
@@ -57,7 +57,7 @@ class ProfilePage.UserPageEditor extends React.Component
         editing: false
         raw: body
         initialRaw: body
-    .always osu.hideLoadingOverlay
+    .always LoadingOverlay.hide
 
 
   _change: (e) =>
@@ -68,7 +68,7 @@ class ProfilePage.UserPageEditor extends React.Component
   render: =>
     el 'form', null,
       el 'textarea',
-        className: 'flex-full profile-page-editor-body'
+        className: 'flex-full profile-extra-user-page-editor'
         name: 'body'
         value: @props.userPage.raw
         onChange: @_change

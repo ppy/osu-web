@@ -162,6 +162,7 @@ return [
         'League\StatsD\Laravel5\Provider\StatsdServiceProvider',
         'LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider',
         'LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider',
+        'Lord\Laroute\LarouteServiceProvider',
     ],
 
     /*

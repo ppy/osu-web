@@ -27,9 +27,9 @@ class SlackPage.ButtonContainer extends React.Component
   sendInviteRequest: =>
     return unless @props.isEligible
 
-    osu.showLoadingOverlay()
+    LoadingOverlay.show()
 
-    $.ajax Url.requestSlackInvite,
+    $.ajax laroute.route('slack.agree'),
       method: 'POST',
       dataType: 'JSON'
 
@@ -39,7 +39,7 @@ class SlackPage.ButtonContainer extends React.Component
     .fail (xhr) =>
       osu.ajaxError xhr
 
-    .always osu.hideLoadingOverlay
+    .always LoadingOverlay.hide
 
   render: ->
     issuesClasses = 'slack-button-container__issues'
@@ -59,7 +59,7 @@ class SlackPage.ButtonContainer extends React.Component
             href: '#'
             'data-target': '#user-dropdown-modal',
             'data-toggle': 'modal',
-            title: Lang.get 'users.anonymous.login-link'
+            title: Lang.get 'users.anonymous.login_link'
             Lang.get 'community.slack.guest-middle'
           Lang.get 'community.slack.guest-end'
 

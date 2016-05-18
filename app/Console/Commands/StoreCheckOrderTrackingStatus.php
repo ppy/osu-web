@@ -72,7 +72,9 @@ class StoreCheckOrderTrackingStatus extends Command
             ++$i;
 
             try {
-                if (!strlen(trim($o->tracking_code)) || (strpos($o->tracking_code, 'EJ') !== 0 && strpos($o->tracking_code, 'RR') !== 0)) {
+                $trackingCodes = $o->trackingCodes();
+
+                if (!count($trackingCodes)) {
                     continue;
                 }
 
@@ -84,7 +86,6 @@ class StoreCheckOrderTrackingStatus extends Command
                 $orderStatuses = [];
                 $retainedCodes = [];
                 $deliveredCodes = [];
-                $trackingCodes = explode(',', $o->tracking_code);
 
                 //a single order may have multiple tracking numbers
                 foreach ($trackingCodes as $code) {
@@ -98,7 +99,7 @@ class StoreCheckOrderTrackingStatus extends Command
                         if (!$o->last_tracking_state) {
                             $days_until_warning = 4;
                             if (time() - $o->shipped_at->timestamp > 3600 * 24 * $days_until_warning) {
-                                Slack::send("WARNING: <https://store.ppy.sh/store/admin/orders/{$o->order_id}|Order #{$o->order_id}> has no tracking after {$days_until_warning} days!");
+                                Slack::send("WARNING: <https://store.ppy.sh/admin/store/orders/{$o->order_id}|Order #{$o->order_id}> has no tracking after {$days_until_warning} days!");
                             }
                         }
                         continue;

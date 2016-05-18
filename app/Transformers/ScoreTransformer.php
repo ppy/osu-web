@@ -29,18 +29,23 @@ class ScoreTransformer extends Fractal\TransformerAbstract
         'beatmap',
         'beatmapSet',
         'weight',
+        'user',
     ];
 
     public function transform(Score $score)
     {
         return [
             'id' => $score->score_id,
+            'user_id' => $score->user_id,
             'created_at' => $score->date->toIso8601String(),
             'pp' => $score->pp,
             'accuracy' => $score->accuracy(),
             'rank' => $score->rank,
             'mods' => $score->enabled_mods,
             'score' => $score->score,
+            'count50' => $score->count50,
+            'count100' => $score->count100,
+            'count300' => $score->count300,
         ];
     }
 
@@ -66,5 +71,10 @@ class ScoreTransformer extends Fractal\TransformerAbstract
                 'pp' => $score->weightedPp(),
             ];
         });
+    }
+
+    public function includeUser(Score $score)
+    {
+        return $this->item($score->user, new UserCompactTransformer);
     }
 }
