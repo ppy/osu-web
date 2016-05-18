@@ -380,47 +380,47 @@ class User extends Model implements AuthenticatableContract
 
     public function isBAT()
     {
-        return $this->isGroup(UserGroup::BAT);
+        return $this->isGroup(UserGroup::GROUPS['bat']);
     }
 
     public function isAdmin()
     {
-        return $this->isGroup(UserGroup::ADMIN);
+        return $this->isGroup(UserGroup::GROUPS['admin']);
     }
 
     public function isGMT()
     {
-        return $this->isGroup(UserGroup::GMT);
+        return $this->isGroup(UserGroup::GROUPS['gmt']);
     }
 
     public function isMAT()
     {
-        return $this->isGroup(UserGroup::MAT);
+        return $this->isGroup(UserGroup::GROUPS['mat']);
     }
 
     public function isHax()
     {
-        return $this->isGroup(UserGroup::HAX);
+        return $this->isGroup(UserGroup::GROUPS['hax']);
     }
 
     public function isDev()
     {
-        return $this->isGroup(UserGroup::DEV);
+        return $this->isGroup(UserGroup::GROUPS['dev']);
     }
 
     public function isMod()
     {
-        return $this->isGroup(UserGroup::MOD);
+        return $this->isGroup(UserGroup::GROUPS['mod']);
     }
 
     public function isAlumni()
     {
-        return $this->isGroup(UserGroup::ALUMNI);
+        return $this->isGroup(UserGroup::GROUPS['alumni']);
     }
 
     public function isRegistered()
     {
-        return $this->isGroup(UserGroup::REGULAR);
+        return $this->isGroup(UserGroup::GROUPS['default']);
     }
 
     public function hasSupported()

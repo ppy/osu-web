@@ -19,15 +19,12 @@
  */
 namespace App\Models\Forum;
 
+use App\Models\UserGroup;
 use Illuminate\Database\Eloquent\Model;
 
 // temporary class until simpler acl is implemented
 class Authorize extends Model
 {
-    // taken from current forums
-    private static $groups = [
-        'default' => 2,
-    ];
     private static $options = [
         // acl_options where auth_option = 'f_post'
         'post' => 17,
@@ -79,7 +76,7 @@ class Authorize extends Model
             return false;
         }
 
-        $permissions = static::where('group_id', static::$groups['default'])
+        $permissions = static::where('group_id', UserGroup::GROUPS['default'])
             ->where('forum_id', $forum->forum_id)
             ->get();
 
@@ -96,7 +93,7 @@ class Authorize extends Model
 
     public static function increasesPostsCount($forum)
     {
-        return static::where('group_id', static::$groups['default'])
+        return static::where('group_id', UserGroup::GROUPS['default'])
             ->where('forum_id', $forum->forum_id)
             ->where('auth_option_id', static::$options['postsCount'])
             ->exists();
@@ -104,7 +101,7 @@ class Authorize extends Model
 
     public static function postsCountedForums()
     {
-        return static::where('group_id', static::$groups['default'])
+        return static::where('group_id', UserGroup::GROUPS['default'])
             ->where('auth_option_id', static::$options['postsCount'])
             ->select('forum_id')
             ->get()

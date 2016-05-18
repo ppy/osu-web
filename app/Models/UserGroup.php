@@ -30,15 +30,18 @@ class UserGroup extends Model
         'group_id' => 'integer',
     ];
 
-    const REGULAR = 2;
-    const GMT = 4;
-    const ADMIN = 5;
-    const BAT = 7;
-    const DEV = 11;
-    const MAT = 14;
-    const ALUMNI = 16;
-    const HAX = 17;
-    const MOD = 18;
+    // taken from current forum
+    const GROUPS = [
+        'default' => 2,
+        'gmt' => 4,
+        'admin' => 5,
+        'bat' => 7,
+        'dev' => 11,
+        'mat' => 14,
+        'alumni' => 16,
+        'hax' => 17,
+        'mod' => 18,
+    ];
 
     public function user()
     {
