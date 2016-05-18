@@ -26,11 +26,6 @@ class BeatmapsetDiscussion extends Model
 {
     protected $guarded = [];
 
-    protected $casts = [
-        'id' => 'integer',
-        'beatmapset_id' => 'integer',
-    ];
-
     public function beatmapset()
     {
         return $this->belongsTo(BeatmapSet::class);

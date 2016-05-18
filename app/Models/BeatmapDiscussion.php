@@ -28,12 +28,6 @@ class BeatmapDiscussion extends Model
     protected $touches = ['beatmapsetDiscussion'];
 
     protected $casts = [
-        'id' => 'integer',
-        'beatmapset_discussion_id' => 'integer',
-        'beatmap_id' => 'integer',
-        'user_id' => 'integer',
-
-        'timestamp' => 'integer',
         'resolved' => 'boolean',
     ];
 

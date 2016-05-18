@@ -37,9 +37,6 @@ class Post extends Model
     public $timestamps = false;
 
     protected $casts = [
-        'post_id' => 'integer',
-        'poster_id' => 'integer',
-
         'post_edit_locked' => 'boolean',
         'post_approved' => 'boolean',
     ];

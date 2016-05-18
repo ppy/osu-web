@@ -27,9 +27,6 @@ class Achievement extends Model
     protected $primaryKey = 'achievement_id';
 
     protected $casts = [
-        'achievement_id' => 'integer',
-        'ordering' => 'integer',
-        'quest_ordering' => 'integer',
         'enabled' => 'boolean',
     ];
     public $timestamps = false;

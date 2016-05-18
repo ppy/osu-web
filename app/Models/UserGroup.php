@@ -26,10 +26,6 @@ class UserGroup extends Model
     protected $table = 'phpbb_user_group';
     public $timestamps = false;
 
-    protected $casts = [
-        'group_id' => 'integer',
-    ];
-
     // taken from current forum
     const GROUPS = [
         'default' => 2,

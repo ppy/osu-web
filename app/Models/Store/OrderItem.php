@@ -27,15 +27,6 @@ class OrderItem extends Model
     protected $table = 'order_items';
     protected $primaryKey = 'id';
 
-    protected $casts = [
-        'id' => 'integer',
-        'order_id' => 'integer',
-        'product_id' => 'integer',
-
-        'cost' => 'float',
-        'quantity' => 'integer',
-    ];
-
     public function subtotal()
     {
         return $this->cost * $this->quantity;

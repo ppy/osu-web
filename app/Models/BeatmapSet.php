@@ -37,25 +37,9 @@ class BeatmapSet extends Model
 
     protected $casts = [
         'active' => 'boolean',
-        'approved' => 'integer',
-        'approvedby_id' => 'integer',
-        'beatmapset_id' => 'integer',
-        'bpm' => 'float',
         'download_disabled' => 'boolean',
         'epilepsy' => 'boolean',
-        'favourite_count' => 'integer',
-        'filesize' => 'integer',
-        'filesize_novideo' => 'integer',
-        'genre_id' => 'integer',
-        'language_id' => 'integer',
-        'offset' => 'integer',
-        'play_count' => 'integer',
-        'rating' => 'float',
-        'star_priority' => 'integer',
         'storyboard' => 'boolean',
-        'thread_id' => 'integer',
-        'user_id' => 'integer',
-        'versions_available' => 'integer',
         'video' => 'boolean',
     ];
 

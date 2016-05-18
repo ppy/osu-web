@@ -33,12 +33,6 @@ class TopicCover extends Model
 
     protected $table = 'forum_topic_covers';
 
-    protected $casts = [
-        'id' => 'integer',
-        'topic_id' => 'integer',
-        'user_id' => 'integer',
-    ];
-
     private $_owner = [false, null];
 
     public function getMaxDimensions()

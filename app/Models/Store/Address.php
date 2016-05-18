@@ -30,10 +30,6 @@ class Address extends Model
     protected $primaryKey = 'address_id';
     protected $guarded = ['id', 'user_id'];
 
-    protected $casts = [
-        'user_id' => 'integer',
-    ];
-
     public function user()
     {
         return $this->belongsTo('App\Models\User');

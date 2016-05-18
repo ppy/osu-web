@@ -42,14 +42,8 @@ class User extends Model implements AuthenticatableContract
     protected $visible = ['user_id', 'username', 'username_clean', 'user_rank', 'osu_playstyle', 'user_colour'];
 
     protected $casts = [
-        'group_id' => 'integer',
-        'osu_kudosavailable' => 'integer',
-        'osu_kudostotal' => 'integer',
         'osu_subscriber' => 'boolean',
-        'user_id' => 'integer',
-        'user_type' => 'integer',
-        'user_warnings' => 'integer',
-        'osu_playmode' => 'integer',
+        'user_timezone', 'float',
     ];
 
     public $flags;

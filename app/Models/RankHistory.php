@@ -27,13 +27,6 @@ class RankHistory extends Model
 
     public $timestamps = false;
 
-    protected $casts = [
-        'user_id' => 'integer',
-        'mode' => 'integer',
-        // supposedly r0..r89 are also integer
-        // but I'm not going to write them here <_<
-    ];
-
     public function getDataAttribute()
     {
         $data = [];

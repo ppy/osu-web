@@ -25,10 +25,6 @@ class UserAchievement extends Model
 {
     protected $table = 'osu_user_achievements';
 
-    protected $casts = [
-        'achievement_id' => 'integer',
-        'user_id' => 'integer',
-    ];
     protected $dates = ['date'];
     public $timestamps = false;
 

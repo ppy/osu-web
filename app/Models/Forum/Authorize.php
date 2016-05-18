@@ -38,13 +38,6 @@ class Authorize extends Model
     ];
 
     protected $table = 'phpbb_acl_groups';
-    protected $casts = [
-        'auth_option_id' => 'integer',
-        'auth_role_id' => 'integer',
-        'auth_setting' => 'integer',
-        'forum_id' => 'integer',
-        'group_id' => 'integer',
-    ];
 
     public static function canPost($user, $forum, $topic)
     {

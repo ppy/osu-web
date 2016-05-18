@@ -36,10 +36,6 @@ class Forum extends Model
 
     protected $casts = [
         'enable_sigs' => 'boolean',
-        'forum_id' => 'integer',
-        'forum_last_post_id' => 'integer',
-        'forum_type' => 'integer',
-        'parent_id' => 'integer',
     ];
 
     public function categorySlug()

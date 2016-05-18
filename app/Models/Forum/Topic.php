@@ -43,14 +43,6 @@ class Topic extends Model
     private $issueTypes = 'resolved|invalid|duplicate|confirmed';
 
     protected $casts = [
-        'forum_id' => 'integer',
-        'topic_first_post_id' => 'integer',
-        'topic_id' => 'integer',
-        'topic_last_post_id' => 'integer',
-        'topic_poster' => 'integer',
-        'topic_status' => 'integer',
-        'topic_type' => 'integer',
-
         'topic_approved' => 'boolean',
     ];
 

@@ -34,9 +34,6 @@ class ForumCover extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'id' => 'integer',
-        'forum_id' => 'integer',
-        'user_id' => 'integer',
         'default_topic_cover_json' => 'array',
     ];
 
