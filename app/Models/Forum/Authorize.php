@@ -25,14 +25,14 @@ use Illuminate\Database\Eloquent\Model;
 // temporary class until simpler acl is implemented
 class Authorize extends Model
 {
-    private static $options = [
+    const OPTIONS = [
         // acl_options where auth_option = 'f_post'
         'post' => 17,
         // acl_options where auth_option = 'f_postcount'
         'postsCount' => 18,
     ];
 
-    private static $roles = [
+    const ROLES = [
         // acl_roles_data where auth_option_id = 17
         'canPost' => [14, 21],
     ];
@@ -74,9 +74,9 @@ class Authorize extends Model
             ->get();
 
         foreach ($permissions as $permission) {
-            if ($permission->auth_setting === 1 && $permission->auth_option_id === static::$options['post']) {
+            if ($permission->auth_setting === 1 && $permission->auth_option_id === static::OPTIONS['post']) {
                 return true;
-            } elseif (in_array($permission->auth_role_id, static::$roles['canPost'], true)) {
+            } elseif (in_array($permission->auth_role_id, static::ROLES['canPost'], true)) {
                 return true;
             }
         }
@@ -88,7 +88,7 @@ class Authorize extends Model
     {
         return static::where('group_id', UserGroup::GROUPS['default'])
             ->where('forum_id', $forum->forum_id)
-            ->where('auth_option_id', static::$options['postsCount'])
+            ->where('auth_option_id', static::OPTIONS['postsCount'])
             ->exists();
     }
 
@@ -96,7 +96,7 @@ class Authorize extends Model
     {
         return model_pluck(
             static::where('group_id', UserGroup::GROUPS['default'])
-                ->where('auth_option_id', static::$options['postsCount']),
+                ->where('auth_option_id', static::OPTIONS['postsCount']),
             'forum_id');
     }
 }
