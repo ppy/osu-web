@@ -507,11 +507,6 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(BeatmapPlaycount::class);
     }
 
-    public function posts()
-    {
-        return $this->hasMany("App\Models\Post", 'user_id', 'user_id');
-    }
-
     public function apiKey()
     {
         return $this->hasOne("App\Models\ApiKey", 'user_id');
