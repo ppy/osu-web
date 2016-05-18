@@ -40,11 +40,6 @@ class UserGroup extends Model
     const HAX = 17;
     const MOD = 18;
 
-    public function notifications()
-    {
-        return $this->hasMany("App\Models\Notification");
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -487,11 +487,6 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(UserGroup::class);
     }
 
-    public function notifications()
-    {
-        return $this->hasMany("App\Models\Notification", 'user_id', 'user_id');
-    }
-
     public function beatmapSets()
     {
         return $this->hasMany(BeatmapSet::class);
