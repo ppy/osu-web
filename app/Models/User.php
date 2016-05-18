@@ -464,7 +464,7 @@ class User extends Model implements AuthenticatableContract
     public function isGroup($group)
     {
         if ($this->group_ids === null) {
-            $this->group_ids = array_pluck($this->userGroups()->get(['group_id'])->toArray(), 'group_id');
+            $this->group_ids = model_pluck($this->userGroups(), 'group_id');
         }
 
         return in_array($group, $this->group_ids, true);

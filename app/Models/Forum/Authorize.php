@@ -101,11 +101,9 @@ class Authorize extends Model
 
     public static function postsCountedForums()
     {
-        return static::where('group_id', UserGroup::GROUPS['default'])
-            ->where('auth_option_id', static::$options['postsCount'])
-            ->select('forum_id')
-            ->get()
-            ->pluck('forum_id')
-            ->all();
+        return model_pluck(
+            static::where('group_id', UserGroup::GROUPS['default'])
+                ->where('auth_option_id', static::$options['postsCount']),
+            'forum_id');
     }
 }

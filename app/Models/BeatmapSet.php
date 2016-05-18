@@ -317,7 +317,7 @@ class BeatmapSet extends Model
 
         if (!empty($rank)) {
             $klass = presence($mode) !== null ? Score\Best\Model::getClass(intval($mode)) : Score\Best\Combined::class;
-            $scores = $klass::forUser($current_user)->whereIn('rank', $rank)->get()->lists('beatmapset_id');
+            $scores = model_pluck($klass::forUser($current_user)->whereIn('rank', $rank), 'beatmapset_id');
             $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $scores]];
         }
 
@@ -334,11 +334,11 @@ class BeatmapSet extends Model
                     $matchParams[] = ['match' => ['approved' => self::APPROVED]];
                     break;
                 case 2: // Favourites
-                    $favs = $current_user->favouriteBeatmapSets()->get()->lists('beatmapset_id');
+                    $favs = model_pluck($current_user->favouriteBeatmapSets(), 'beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $favs]];
                     break;
                 case 3: // Mod Requests
-                    $maps = ModQueue::all()->lists('beatmapset_id');
+                    $maps = model_pluck(ModQueue::select(), 'beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
                     $matchParams[] = ['match' => ['approved' => self::PENDING]];
                     break;
@@ -352,7 +352,7 @@ class BeatmapSet extends Model
                     $matchParams[] = ['match' => ['approved' => self::GRAVEYARD]];
                     break;
                 case 6: // My Maps
-                    $maps = $current_user->beatmapSets()->get()->lists('beatmapset_id');
+                    $maps = model_pluck($current_user->beatmapSets(), 'beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
                     break;
                 default: // null, etc
