@@ -50,7 +50,6 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth' => 'App\Http\Middleware\Authenticate',
         'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
-        'csrf' => 'App\Http\Middleware\VerifyCsrfToken',
         'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
         'oauth' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware',
         'oauth-user' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthUserOwnerMiddleware',
