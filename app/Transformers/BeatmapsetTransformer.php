@@ -20,6 +20,7 @@
 namespace App\Transformers;
 
 use App\Models\Beatmapset;
+use App\Models\Beatmap;
 use League\Fractal;
 
 class BeatmapsetTransformer extends Fractal\TransformerAbstract
@@ -28,6 +29,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         'description',
         'user',
         'beatmaps',
+        'converts',
     ];
 
     public function transform(Beatmapset $beatmap = null)
@@ -75,8 +77,32 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
     public function includeBeatmaps(Beatmapset $beatmapset)
     {
         return $this->collection(
-            $beatmapset->defaultBeatmaps,
+            $beatmapset->beatmaps,
             new BeatmapTransformer()
         );
+    }
+
+    public function includeConverts(BeatmapSet $beatmapSet)
+    {
+        $standardBeatmaps = $beatmapSet->beatmaps()->where('playmode', 0)->get();
+
+        $converts = [];
+
+        foreach (Beatmap::MODES as $modeStr => $modeInt) {
+            if ($modeStr === 'osu') {
+                continue;
+            }
+
+            foreach ($standardBeatmaps as $beatmap) {
+                $beatmap = clone $beatmap;
+
+                $beatmap->playmode = $modeInt;
+                $beatmap->convert = true;
+
+                array_push($converts, $beatmap);
+            }
+        }
+
+        return $this->collection($converts, new BeatmapTransformer);
     }
 }

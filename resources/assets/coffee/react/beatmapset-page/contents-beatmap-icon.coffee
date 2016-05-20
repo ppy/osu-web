@@ -25,9 +25,13 @@ class BeatmapsetPage.ContentsBeatmapIcon extends React.Component
 
   render: ->
     className = 'beatmapset-difficulties__icon'
+
     if @props.currentBeatmapId == @props.beatmap.id
       className += " beatmapset-difficulties__icon--active"
       className += " beatmapset-difficulties__icon--active-#{BeatmapHelper.getDiffRating @props.beatmap.difficulty_rating}"
+
+    if @props.beatmap.convert
+      className += ' beatmapset-difficulties__icon--convert'
 
     a
       className: className

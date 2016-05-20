@@ -99,17 +99,28 @@ class Beatmap extends Model
         return $this->hasMany(BeatmapFailtimes::class);
     }
 
-    public function scores()
+    public function scores($mode = null)
     {
-        $mode = studly_case($this->modeStr($this->playmode));
+        $mode = static::getStudlyMode($mode);
 
         return $this->hasMany("App\Models\Score\\{$mode}");
     }
 
-    public function scoresBest()
+    public function scoresBest($mode = null)
     {
-        $mode = studly_case($this->modeStr($this->playmode));
+        $mode = static::getStudlyMode($mode);
 
         return $this->hasMany("App\Models\Score\Best\\{$mode}");
+    }
+
+    private function getStudlyMode($mode)
+    {
+        $mode = $mode ?? static::modeStr($this->playmode);
+
+        if (static::modeStr($this->playmode) !== 'osu' && $mode !== static::modeStr($this->playmode)) {
+            throw new \InvalidArgumentException(trans('errors.beatmaps.standard-converts-only'));
+        }
+
+        return studly_case($mode);
     }
 }

@@ -80,13 +80,13 @@ class BeatmapsetsController extends Controller
     public function show($id)
     {
         $beatmapset = Beatmapset
-            ::with('defaultBeatmaps.failtimes', 'user')
+            ::with('beatmaps.failtimes', 'user')
             ->findOrFail($id);
 
         $set = fractal_item_array(
             $beatmapset,
             new BeatmapsetTransformer(),
-            implode(',', ['beatmaps', 'beatmaps.failtimes', 'user', 'description'])
+            implode(',', ['beatmaps', 'beatmaps.failtimes', 'converts', 'converts.failtimes', 'user', 'description'])
         );
 
         $countries = fractal_collection_array(Country::all(), new CountryTransformer);

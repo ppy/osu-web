@@ -37,7 +37,9 @@ el = React.createElement
 
     showTitle = @props.showTitle && !@props.overrideVersion?
 
+    mode = if beatmap.convert then 'osu' else beatmap.mode
+
     div
       className: "beatmap-icon beatmap-icon--#{difficultyRating} beatmap-icon--#{@props.modifier}"
       title: beatmap.version if showTitle
-      el Icon, name: "osumode-#{beatmap.mode}"
+      el Icon, name: "osumode-#{mode}"

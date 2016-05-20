@@ -20,12 +20,14 @@ el = React.createElement
 
 class BeatmapsetPage.Contents extends React.Component
   render: ->
+    currentMode = if @props.currentBeatmap.convert then 'osu' else @props.currentBeatmap.mode
+
     div
       className: 'osu-layout__row osu-layout__row--page-beatmapset js-switchable-mode-page--scrollspy js-switchable-mode-page--page',
       'data-page-id': 'main'
       div className: 'page-tabs',
         BeatmapHelper.modes.map (mode) =>
-          newBeatmapId = _.last(@props.beatmapList[mode])
+          newBeatmapId = _.last @props.beatmapList[mode]
 
           el BeatmapsetPage.ContentsTab,
             key: mode
@@ -48,7 +50,7 @@ class BeatmapsetPage.Contents extends React.Component
               currentBeatmapId: @props.currentBeatmap.id
 
         div className: 'beatmapset-difficulties__name',
-          Lang.get("beatmaps.mode.#{@props.currentBeatmap.mode}") + " #{@props.currentBeatmap.version}"
+          Lang.get("beatmaps.mode.#{currentMode}") + " #{@props.currentBeatmap.version}"
 
       div className: 'page-contents',
         el BeatmapsetPage.Details,

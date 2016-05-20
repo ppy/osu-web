@@ -25,8 +25,11 @@ BeatmapsetPage.Main = React.createClass
     optionsHash = BeatmapsetPageHash.parse location.hash
     @initialPage = optionsHash.page
 
+    beatmaps = _.concat @props.beatmapset.beatmaps.data, @props.beatmapset.converts.data
+    beatmaps = _.sortBy beatmaps, ['convert', 'difficulty_rating']
+
     # group beatmaps by playmode and then by beatmap id
-    beatmaps = _.groupBy @props.beatmapset.beatmaps.data, (o) -> o.mode
+    beatmaps = _.groupBy beatmaps, (o) -> o.mode
     # contains the beatmap ids in their appropriate order
     beatmapList = {}
     _.map beatmaps, (val, key) ->
@@ -82,6 +85,7 @@ BeatmapsetPage.Main = React.createClass
       dataType: 'JSON'
       data:
         type: scoreboard
+        mode: @state.currentPlaymode
 
     .done (data) =>
       @scoresCache[cacheKey] = data.data
