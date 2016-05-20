@@ -142,6 +142,14 @@ class Order extends Model
         }
     }
 
+    public function checkout()
+    {
+        DB::transaction(function () {
+            $this->status = 'checkout';
+            $this->refreshCost(true);
+        });
+    }
+
     public function updateItem($item_form, $add_new = false)
     {
         $quantity = intval(array_get($item_form, 'quantity'));
