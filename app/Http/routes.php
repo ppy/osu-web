@@ -76,8 +76,8 @@ Route::get('/community/profile/{id}', function ($id) {
     return Redirect::route('users.show', $id);
 });
 
-Route::get('/community/slack', ['as' => 'slack', 'uses' => 'CommunityController@getSlack']);
-Route::post('/community/slack/agree', ['as' => 'slack.agree', 'uses' => 'CommunityController@postSlackAgree']);
+// Route::get('/community/slack', ['as' => 'slack', 'uses' => 'CommunityController@getSlack']);
+// Route::post('/community/slack/agree', ['as' => 'slack.agree', 'uses' => 'CommunityController@postSlackAgree']);
 
 Route::post('users/check-username-availability', ['as' => 'users.check-username-availability', 'uses' => 'UsersController@checkUsernameAvailability']);
 Route::post('users/login', ['as' => 'users.login', 'uses' => 'UsersController@login']);
