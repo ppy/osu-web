@@ -1,6 +1,8 @@
 osu!web
 =======
 
+[![Join the chat at https://gitter.im/ppy/osu-web](https://badges.gitter.im/ppy/osu-web.svg)](https://gitter.im/ppy/osu-web?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/ppy/osu-web.svg?branch=master)](https://travis-ci.org/ppy/osu-web)
 
 The future face of osu!.
