@@ -33,9 +33,13 @@ class Authorize
 
         $function = "check{$ability}";
 
-        $message = call_user_func_array(
-            [$this, $function], array_merge([$user], $args)
-        );
+        if ($user !== null && $user->isAdmin()) {
+            $message = null;
+        } else {
+            $message = call_user_func_array(
+                [$this, $function], array_merge([$user], $args)
+            );
+        }
 
         return new AuthorizationResult($message);
     }
@@ -60,10 +64,6 @@ class Authorize
             return $prefix.'general_discussion';
         }
 
-        if ($user->isAdmin()) {
-            return;
-        }
-
         if ($user->user_id === $this->user_id) {
             return;
         }
@@ -84,7 +84,7 @@ class Authorize
 
     public function checkForumView($user, $forum)
     {
-        if ($user !== null && ($user->isAdmin() || $user->isGMT())) {
+        if ($user !== null && $user->isGMT()) {
             return;
         }
 
@@ -101,7 +101,7 @@ class Authorize
             return 'require_login';
         }
 
-        if ($user->isAdmin() || $user->isGMT()) {
+        if ($user->isGMT()) {
             return;
         }
 
@@ -130,7 +130,7 @@ class Authorize
     {
         $prefix = 'forum.post.edit.';
 
-        if ($user->isAdmin() || $user->isGMT()) {
+        if ($user->isGMT()) {
             return;
         }
 
@@ -180,7 +180,7 @@ class Authorize
             return 'require_login';
         }
 
-        if ($user->isAdmin() || $user->isGMT()) {
+        if ($user->isGMT()) {
             return;
         }
 
