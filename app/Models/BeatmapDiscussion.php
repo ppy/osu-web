@@ -98,42 +98,6 @@ class BeatmapDiscussion extends Model
             ($this->beatmap_id !== null && $this->timestamp >= 0 && $this->timestamp < ($this->beatmap->total_length * 1000));
     }
 
-    public function canBeVotedBy($user)
-    {
-        return $user !== null;
-    }
-
-    public function canBeResolvedBy($user)
-    {
-        // no point resolving general discussion?
-        if ($this->timestamp === null) {
-            return false;
-        }
-
-        if ($user === null) {
-            return false;
-        }
-
-        if ($user->isAdmin()) {
-            return true;
-        }
-
-        if ($user->user_id === $this->user_id) {
-            return true;
-        }
-
-        if ($user->user_id === $this->beatmapset->user_id) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public function canBePostedBy($user)
-    {
-        return $user !== null;
-    }
-
     public function getVotesSummaryAttribute()
     {
         $votes = ['up' => 0, 'down' => 0];

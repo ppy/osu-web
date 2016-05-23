@@ -56,12 +56,10 @@ class BeatmapDiscussionPostsController extends Controller
         $previousDiscussionResolved = $discussion->resolved;
         $discussion->fill($this->discussionParams($isNewDiscussion));
 
-        if (!$discussion->canBePostedBy(Auth::user())) {
-            abort(403);
-        }
+        authz('BeatmapDiscussionPost', $discussion)->ensureCan();
 
-        if ($discussion->resolved === true && !$discussion->canBeResolvedBy(Auth::user())) {
-            abort(403);
+        if ($discussion->resolved === true) {
+            authz('BeatmapDiscussionResolve', $discussion)->ensureCan();
         }
 
         if (!$isNewDiscussion && ($discussion->resolved !== $previousDiscussionResolved)) {

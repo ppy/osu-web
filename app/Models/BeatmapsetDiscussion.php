@@ -58,10 +58,4 @@ class BeatmapsetDiscussion extends Model
             implode(',', $includes)
         );
     }
-
-    public function canBePostedBy($user)
-    {
-        // FIXME: check for beatmapset status?
-        return true;
-    }
 }

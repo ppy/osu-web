@@ -40,6 +40,48 @@ class Authorize
         return new AuthorizationResult($message);
     }
 
+    public function cheackBeatmapDiscussionPost($user, $discussion)
+    {
+        if ($user === null) {
+            return 'require_login';
+        }
+    }
+
+    public function cheackBeatmapDiscussionResolve($user, $discussion)
+    {
+        $prefix = 'beatmap_discussion.resolve.';
+
+        if ($user === null) {
+            return 'require_login';
+        }
+
+        // no point resolving general discussion?
+        if ($this->timestamp === null) {
+            return $prefix.'general_discussion';
+        }
+
+        if ($user->isAdmin()) {
+            return;
+        }
+
+        if ($user->user_id === $this->user_id) {
+            return;
+        }
+
+        if ($user->user_id === $this->beatmapset->user_id) {
+            return;
+        }
+
+        return $prefix.'not_owner';
+    }
+
+    public function cheackBeatmapDiscussionVote($user, $discussion)
+    {
+        if ($user === null) {
+            return 'require_login';
+        }
+    }
+
     public function checkForumView($user, $forum)
     {
         if ($user !== null && $user->isAdmin()) {
@@ -56,7 +98,7 @@ class Authorize
         $prefix = 'forum.post.delete.';
 
         if ($user === null) {
-            return $prefix.'require_login';
+            return 'require_login';
         }
 
         if ($user->isAdmin()) {
@@ -135,7 +177,7 @@ class Authorize
         }
 
         if ($user === null) {
-            return $prefix.'require_login';
+            return 'require_login';
         }
 
         if ($user->isAdmin()) {

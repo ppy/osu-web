@@ -39,9 +39,7 @@ class BeatmapDiscussionsController extends Controller
     {
         $discussion = BeatmapDiscussion::findOrFail($id);
 
-        if (!$discussion->canBeVotedBy(Auth::user())) {
-            abort(403);
-        }
+        authz('BeatmapDiscussionVote', $discussion)->ensureCan();
 
         $params = get_params(Request::all(), 'beatmap_discussion_vote',
             ['score:int'],
