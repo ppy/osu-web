@@ -84,7 +84,7 @@ class Authorize
 
     public function checkForumView($user, $forum)
     {
-        if ($user !== null && $user->isAdmin()) {
+        if ($user !== null && ($user->isAdmin() || $user->isGMT())) {
             return;
         }
 
@@ -101,7 +101,7 @@ class Authorize
             return 'require_login';
         }
 
-        if ($user->isAdmin()) {
+        if ($user->isAdmin() || $user->isGMT()) {
             return;
         }
 
@@ -130,7 +130,7 @@ class Authorize
     {
         $prefix = 'forum.post.edit.';
 
-        if ($user->isAdmin()) {
+        if ($user->isAdmin() || $user->isGMT()) {
             return;
         }
 
@@ -180,7 +180,7 @@ class Authorize
             return 'require_login';
         }
 
-        if ($user->isAdmin()) {
+        if ($user->isAdmin() || $user->isGMT()) {
             return;
         }
 
