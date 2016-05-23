@@ -32,7 +32,7 @@ class AuthorizationResult
 
     public function can()
     {
-        return $this->rawMessage === null;
+        return $this->rawMessage === 'ok';
     }
 
     public function rawMessage()

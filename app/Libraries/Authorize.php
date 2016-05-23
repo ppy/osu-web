@@ -34,7 +34,7 @@ class Authorize
         $function = "check{$ability}";
 
         if ($user !== null && $user->isAdmin()) {
-            $message = null;
+            $message = 'ok';
         } else {
             $message = call_user_func_array(
                 [$this, $function], array_merge([$user], $args)
@@ -49,6 +49,8 @@ class Authorize
         if ($user === null) {
             return 'require_login';
         }
+
+        return 'ok';
     }
 
     public function cheackBeatmapDiscussionResolve($user, $discussion)
@@ -65,11 +67,11 @@ class Authorize
         }
 
         if ($user->user_id === $this->user_id) {
-            return;
+            return 'ok';
         }
 
         if ($user->user_id === $this->beatmapset->user_id) {
-            return;
+            return 'ok';
         }
 
         return $prefix.'not_owner';
@@ -85,12 +87,14 @@ class Authorize
     public function checkForumView($user, $forum)
     {
         if ($user !== null && $user->isGMT()) {
-            return;
+            return 'ok';
         }
 
-        if ($forum->categoryId() === config('osu.forum.admin_forum_id')) {
-            return 'forum.view.admin_only';
+        if ($forum->categoryId() !== config('osu.forum.admin_forum_id')) {
+            return 'ok';
         }
+
+        return 'forum.view.admin_only';
     }
 
     public function checkForumPostDelete($user, $post, $positionCheck = true, $position = null, $topicPostsCount = null)
@@ -102,7 +106,7 @@ class Authorize
         }
 
         if ($user->isGMT()) {
-            return;
+            return 'ok';
         }
 
         if ($post->poster_id !== $user->user_id) {
@@ -110,7 +114,7 @@ class Authorize
         }
 
         if ($positionCheck === false) {
-            return;
+            return 'ok';
         }
 
         if ($position === null) {
@@ -124,6 +128,8 @@ class Authorize
         if ($position !== $topicPostsCount) {
             return $prefix.'can_only_delete_last_post';
         }
+
+        return 'ok';
     }
 
     public function checkForumPostEdit($user, $post)
@@ -131,7 +137,7 @@ class Authorize
         $prefix = 'forum.post.edit.';
 
         if ($user->isGMT()) {
-            return;
+            return 'ok';
         }
 
         if ($post->poster_id !== $user->user_id) {
@@ -141,6 +147,8 @@ class Authorize
         if ($post->post_edit_locked) {
             return $prefix.'locked';
         }
+
+        return 'ok';
     }
 
     public function checkForumTopicEdit($user, $topic)
@@ -155,6 +163,8 @@ class Authorize
         if (!ForumAuthorize::canPost($user, $topic->forum, $topic)) {
             return $prefix.'can_not_post';
         }
+
+        return 'ok';
     }
 
     public function checkForumTopicStore($user, $forum)
@@ -162,7 +172,7 @@ class Authorize
         $prefix = 'forum.topic.store';
 
         if ($forum->forum_type === 1) {
-            return;
+            return 'ok';
         }
 
         return $prefix.'closed';
@@ -181,7 +191,7 @@ class Authorize
         }
 
         if ($user->isGMT()) {
-            return;
+            return 'ok';
         }
 
         if ($cover->owner() === null) {
@@ -191,5 +201,7 @@ class Authorize
         if ($cover->owner()->user_id !== $user->user_id) {
             return $prefix.'owner_only';
         }
+
+        return 'ok';
     }
 }
