@@ -20,7 +20,7 @@ el = React.createElement
 
 class BeatmapsetPage.ScoreboardItem extends React.Component
   render: ->
-    elements = ['rank', 'flag', 'player', 'icons', 'score', 'accuracy']
+    elements = ['rank', 'flag', 'player', 'mods', 'icons', 'score', 'accuracy']
 
     div className: 'beatmapset-scoreboard__row beatmapset-scoreboard__row--score',
       elements.map (m) =>
@@ -38,6 +38,8 @@ class BeatmapsetPage.ScoreboardItem extends React.Component
               a
                 href: laroute.route 'users.show', users: @props.score.user.data.id
                 @props.score.user.data.username
+            when 'mods'
+              el Mods, mods: @props.score.mods
             when 'icons'
               div className: "badge-rank badge-rank--#{@props.score.rank}"
             when 'score'
