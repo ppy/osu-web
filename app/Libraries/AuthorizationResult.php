@@ -41,7 +41,7 @@ class AuthorizationResult
             return;
         }
 
-        return $this->rawMessage;
+        return presence($this->rawMessage, 'unauthorized');
     }
 
     public function message()
