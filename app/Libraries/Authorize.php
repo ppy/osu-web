@@ -23,8 +23,6 @@ use App\Models\Forum\Authorize as ForumAuthorize;
 
 class Authorize
 {
-    private $cache = [];
-
     public function doCheckUser($user, $ability, $args)
     {
         if (!is_array($args)) {
