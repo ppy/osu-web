@@ -17,10 +17,13 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Http\Controllers\Forum;
+namespace App\Models\Forum;
 
-use App\Http\Controllers\Controller as BaseController;
+use Illuminate\Database\Eloquent\Model;
 
-abstract class Controller extends BaseController
+class AuthOption extends Model
 {
+    protected $table = 'phpbb_acl_options';
+
+    protected $primaryKey = 'auth_option_id';
 }

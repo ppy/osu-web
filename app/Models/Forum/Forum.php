@@ -195,4 +195,9 @@ class Forum extends Model
             $this->forum_last_poster_colour = $lastTopic->topic_last_poster_colour;
         }
     }
+
+    public function isOpen()
+    {
+        return $this->forum_type === 1;
+    }
 }

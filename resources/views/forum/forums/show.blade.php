@@ -61,13 +61,13 @@
             </div>
         @endif
 
-        @if (count($topics) > 0 || authz('ForumTopicStore', $forum)->can())
+        @if (count($topics) > 0 || $forum->isOpen())
             <div class="topics-container" id="topics">
                 <h2>{{ trans("forum.topics._") }}</h2>
 
                 @include('forum.forums._topics', [
                     'topics' => $topics,
-                    'withNewTopicLink' => authz('ForumTopicStore', $forum)->can(),
+                    'withNewTopicLink' => $forum->isOpen(),
                 ])
             </div>
 

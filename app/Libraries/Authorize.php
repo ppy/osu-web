@@ -99,6 +99,10 @@ class Authorize
     {
         $prefix = 'forum.post.delete.';
 
+        if ($this->checkForumTopicReply($user, $post->topic) !== 'ok') {
+            return $prefix.'can_not_post';
+        }
+
         if ($user === null) {
             return 'require_login';
         }
@@ -134,6 +138,14 @@ class Authorize
     {
         $prefix = 'forum.post.edit.';
 
+        if ($this->checkForumTopicReply($user, $post->topic) !== 'ok') {
+            return $prefix.'can_not_post';
+        }
+
+        if ($user === null) {
+            return 'require_login';
+        }
+
         if ($user->isGMT()) {
             return 'ok';
         }
@@ -158,8 +170,16 @@ class Authorize
     {
         $prefix = 'forum.topic.reply.';
 
-        if (!ForumAuthorize::canPost($user, $topic->forum, $topic)) {
+        if ($this->checkForumTopicStore($user, $topic->forum) !== 'ok') {
             return $prefix.'can_not_post';
+        }
+
+        if ($user === null) {
+            return 'require_login';
+        }
+
+        if ($topic->isLocked()) {
+            return $prefix.'locked';
         }
 
         return 'ok';
@@ -167,13 +187,37 @@ class Authorize
 
     public function checkForumTopicStore($user, $forum)
     {
-        $prefix = 'forum.topic.store';
+        $prefix = 'forum.topic.store.';
 
-        if ($forum->forum_type === 1) {
+        if ($this->checkForumView($user, $forum) !== 'ok') {
+            return $prefix.'can_not_view_forum';
+        }
+
+        if ($user === null) {
+            return 'require_login';
+        }
+
+        if (!$forum->isOpen()) {
+            return 'forum.topic.store.forum_closed';
+        }
+
+        if ($user->isGMT()) {
             return 'ok';
         }
 
-        return $prefix.'closed';
+        if ($user->isSilenced()) {
+            return $prefix.'user.silenced';
+        }
+
+        if ($user->isRestricted()) {
+            return $prefix.'user.restricted';
+        }
+
+        if (!ForumAuthorize::aclCheck($user, 'f_post', $forum)) {
+            return $prefix.'can_not_post';
+        }
+
+        return 'ok';
     }
 
     public function checkForumTopicCoverEdit($user, $cover)

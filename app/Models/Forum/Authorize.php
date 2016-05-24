@@ -39,49 +39,43 @@ class Authorize extends Model
 
     protected $table = 'phpbb_acl_groups';
 
-    public static function canPost($user, $forum, $topic)
+    public static function aclCheck($user, $authOption, $forum)
     {
-        if (!authzUser($user, 'ForumTopicStore', $forum)->can()) {
-            return false;
+        $groupIds = $user->groupIds();
+        $authOptionId = AuthOption::where('auth_option', $authOption)->value('auth_option_id');
+
+        // the group may contain direct acl entry
+        $isAuthorized = static::where([
+            'forum_id' => $forum->forum_id,
+            // auth_setting means the actual acl
+            // ...or so I think.
+            'auth_setting' => 1,
+            'auth_option_id' => $authOptionId,
+        ])
+        ->whereIn('group_id', $groupIds)
+        ->exists();
+
+        // the group may also be part of role which may have matching
+        // acl entry
+        if (!$isAuthorized) {
+            // first get all role_id which matches requested auth option
+            $roleIds = model_pluck(AuthRole::where([
+                'auth_setting' => 1,
+                'auth_option_id' => $authOptionId,
+            ]), 'role_id');
+
+            $isAuthorized = static::where([
+                'forum_id' => $forum->forum_id,
+                'auth_setting' => 0,
+            ])
+            ->whereIn('auth_role_id', $roleIds)
+            ->whereIn('group_id', $groupIds)
+            ->exists();
         }
 
-        if ($user === null) {
-            return false;
-        }
-
-        if ($user->isAdmin()) {
-            return true;
-        }
-
-        if ($user->isRestricted()) {
-            return false;
-        }
-
-        if ($user->isSilenced()) {
-            return false;
-        }
-
-        if (!authzUser($user, 'ForumView', $forum)->can()) {
-            return false;
-        }
-
-        if ($topic !== null && $topic->isLocked()) {
-            return false;
-        }
-
-        $permissions = static::where('group_id', UserGroup::GROUPS['default'])
-            ->where('forum_id', $forum->forum_id)
-            ->get();
-
-        foreach ($permissions as $permission) {
-            if ($permission->auth_setting === 1 && $permission->auth_option_id === static::OPTIONS['post']) {
-                return true;
-            } elseif (in_array($permission->auth_role_id, static::ROLES['canPost'], true)) {
-                return true;
-            }
-        }
-
-        return false;
+        // there's actually another one (phpbb_acl_users) but doesn't seem
+        // to contain anything but old-ish banlist?
+        return $isAuthorized;
     }
 
     public static function increasesPostsCount($forum)

@@ -42,7 +42,6 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        $this->authorizePost($post->forum, $post->topic);
         authz('ForumPostDelete', $post)->ensureCan();
 
         $deletedPostPosition = $post->topic->postPosition($post->post_id);
@@ -67,7 +66,6 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        $this->authorizePost($post->forum, $post->topic);
         authz('ForumPostEdit', $post)->ensureCan();
 
         return view('forum.topics._post_edit', compact('post'));
@@ -77,7 +75,6 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        $this->authorizePost($post->forum, $post->topic);
         authz('ForumPostEdit', $post)->ensureCan();
 
         $body = Request::input('body');

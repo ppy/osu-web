@@ -47,7 +47,7 @@ class User extends Model implements AuthenticatableContract
     ];
 
     public $flags;
-    private $group_ids;
+    private $groupIds;
     private $_supportLength = null;
 
     const ANONYMOUS = 1; // Anonymous (guest)
@@ -453,15 +453,19 @@ class User extends Model implements AuthenticatableContract
             $lastBan->endTime()->isFuture();
     }
 
-    // check if a user is in a specific group, by ID
-
-    public function isGroup($group)
+    public function groupIds()
     {
-        if ($this->group_ids === null) {
-            $this->group_ids = model_pluck($this->userGroups(), 'group_id');
+        if ($this->groupIds === null) {
+            $this->groupIds = model_pluck($this->userGroups(), 'group_id');
         }
 
-        return in_array($group, $this->group_ids, true);
+        return $this->groupIds;
+    }
+
+    // check if a user is in a specific group, by ID
+    public function isGroup($group)
+    {
+        return in_array($group, $this->groupIds(), true);
     }
 
     /*
