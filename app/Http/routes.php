@@ -96,7 +96,7 @@ Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);
 Route::controller('/notifications', 'NotificationController');
 Route::controller('/store', 'StoreController', [
     'getProduct' => 'store.product',
-    'postRequestNotification' => 'store.request-notification',
+    'putRequestNotification' => 'store.request-notification',
 ]);
 
 Route::resource('tournaments', 'TournamentsController');

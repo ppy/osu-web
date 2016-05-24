@@ -139,7 +139,7 @@
                     </button>
 
                 @elseif(!$requestedNotification)
-                    <a class="btn-osu btn-osu-default" href="{{ route('store.request-notification', ['product_id' => $product->product_id]) }}" data-remote="true" data-method="post">
+                    <a class="btn-osu btn-osu-default" href="{{ route('store.request-notification', ['product_id' => $product->product_id]) }}" data-remote="true" data-method="put">
                         {{ trans('store.product.notify') }}
                     </a>
                 @endif
@@ -148,7 +148,7 @@
             @if($requestedNotification && !$product->inStock())
                 <div class="store-notification-requested-alert">
                     <span class="fa fa-check-circle-o store-notification-requested-alert__icon"></span>
-                    <p class="store-notification-requested-alert__text">{{ trans('store.product.notification-success') }}</p>
+                    <p class="store-notification-requested-alert__text">{!! trans('store.product.notification-success', ['url' => route('store.request-notification', ['product_id' => $product->product_id])]) !!}</p>
                 </div>
             @endif
         </div>

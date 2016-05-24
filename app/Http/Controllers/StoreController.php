@@ -246,7 +246,7 @@ class StoreController extends Controller
         return js_view('store.order-create');
     }
 
-    public function postRequestNotification($product_id)
+    public function putRequestNotification($product_id)
     {
         $user = Auth::user();
         $product = Store\Product::findOrFail($product_id);
@@ -255,16 +255,16 @@ class StoreController extends Controller
             return error_popup(trans('store.product.notification-in-stock'));
         }
 
-        $request = $product->notificationRequests()->where('user_id', $user->user_id)->exists();
+        $request = $product->notificationRequests()->where('user_id', $user->user_id)->first();
 
         if ($request) {
-            return error_popup(trans('store.product.notification-already-requested'));
+            $request->delete();
+        } else {
+            $request = Store\NotificationRequest::create([
+                'user_id' => $user->user_id,
+                'product_id' => $product_id,
+            ]);
         }
-
-        $request = Store\NotificationRequest::create([
-            'user_id' => $user->user_id,
-            'product_id' => $product_id,
-        ]);
 
         return ujs_redirect(route('store.product', ['id' => $product_id]));
     }
