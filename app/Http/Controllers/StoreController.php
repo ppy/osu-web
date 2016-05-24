@@ -43,7 +43,7 @@ class StoreController extends Controller
             'postNewAddress',
             'postUpdateAddress',
             'postUpdateCart',
-            'postRequestNotification',
+            'putRequestNotification',
         ]]);
 
         $this->middleware('App\Http\Middleware\CheckUserRestricted', ['only' => [
@@ -54,7 +54,7 @@ class StoreController extends Controller
             'postNewAddress',
             'postUpdateAddress',
             'postUpdateCart',
-            'postRequestNotification',
+            'putRequestNotification',
         ]]);
 
         return parent::__construct();

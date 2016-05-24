@@ -148,7 +148,7 @@
             @if($requestedNotification && !$product->inStock())
                 <div class="store-notification-requested-alert">
                     <span class="fa fa-check-circle-o store-notification-requested-alert__icon"></span>
-                    <p class="store-notification-requested-alert__text">{!! trans('store.product.notification_success', ['url' => route('store.request-notification', ['product_id' => $product->product_id])]) !!}</p>
+                    <p class="store-notification-requested-alert__text">{!! trans('store.product.notification_success', ['link' => link_to_route('store.request-notification', trans('store.product.notification_remove_text'), ['product_id' => $product->product_id], ['data-remote' => 'true', 'data-method' => 'put'])]) !!}</p>
                 </div>
             @endif
         </div>

@@ -45,7 +45,9 @@ return [
         'add_to_cart' => 'Add to Cart',
         'notify' => 'Notify me when available!',
 
-        'notification_success' => 'you will be notified when we have new stock. click <a href=":url" data-remote="true" data-method="put">here</a> to cancel',
+        'notification_success' => 'you will be notified when we have new stock. click :link to cancel',
+        'notification_remove_text' => 'here',
+
         'notification_in_stock' => 'This product is already in stock!',
     ],
 ];
