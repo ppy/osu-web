@@ -246,7 +246,7 @@ class StoreController extends Controller
         return js_view('store.order-create');
     }
 
-    public function putRequestNotification($product_id)
+    public function putRequestNotification($product_id, $action)
     {
         $user = Auth::user();
         $product = Store\Product::findOrFail($product_id);
@@ -257,9 +257,15 @@ class StoreController extends Controller
 
         $request = $product->notificationRequests()->where('user_id', $user->user_id)->first();
 
-        if ($request) {
+        if ($request && $action === 'create') {
+            return error_popup(trans('store.product.notification_exists'));
+        } elseif ($request) {
             $request->delete();
-        } else {
+        }
+
+        if (!$request && $action === 'delete') {
+            return error_popup(trans('store.product.notification_doesnt_exist'));
+        } elseif (!$request) {
             $request = Store\NotificationRequest::create([
                 'user_id' => $user->user_id,
                 'product_id' => $product_id,

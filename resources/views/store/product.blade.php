@@ -139,7 +139,7 @@
                     </button>
 
                 @elseif(!$requestedNotification)
-                    <a class="btn-osu btn-osu-default" href="{{ route('store.request-notification', ['product_id' => $product->product_id]) }}" data-remote="true" data-method="put">
+                    <a class="btn-osu btn-osu-default" href="{{ route('store.request-notification', ['product_id' => $product->product_id, 'create']) }}" data-remote="true" data-method="put">
                         {{ trans('store.product.notify') }}
                     </a>
                 @endif
@@ -148,7 +148,7 @@
             @if($requestedNotification && !$product->inStock())
                 <div class="store-notification-requested-alert">
                     <span class="fa fa-check-circle-o store-notification-requested-alert__icon"></span>
-                    <p class="store-notification-requested-alert__text">{!! trans('store.product.notification_success', ['link' => link_to_route('store.request-notification', trans('store.product.notification_remove_text'), ['product_id' => $product->product_id], ['data-remote' => 'true', 'data-method' => 'put'])]) !!}</p>
+                    <p class="store-notification-requested-alert__text">{!! trans('store.product.notification_success', ['link' => link_to_route('store.request-notification', trans('store.product.notification_remove_text'), ['product_id' => $product->product_id, 'delete'], ['data-remote' => 'true', 'data-method' => 'put'])]) !!}</p>
                 </div>
             @endif
         </div>
