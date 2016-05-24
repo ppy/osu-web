@@ -135,7 +135,7 @@
             <div class="big-button">
                 @if($product->inStock())
                     <button type="submit" class="js-store-add-to-cart btn-osu btn-osu-default">
-                        {{ trans('store.product.add-to-cart') }}
+                        {{ trans('store.product.add_to_cart') }}
                     </button>
 
                 @elseif(!$requestedNotification)
@@ -148,7 +148,7 @@
             @if($requestedNotification && !$product->inStock())
                 <div class="store-notification-requested-alert">
                     <span class="fa fa-check-circle-o store-notification-requested-alert__icon"></span>
-                    <p class="store-notification-requested-alert__text">{!! trans('store.product.notification-success', ['url' => route('store.request-notification', ['product_id' => $product->product_id])]) !!}</p>
+                    <p class="store-notification-requested-alert__text">{!! trans('store.product.notification_success', ['url' => route('store.request-notification', ['product_id' => $product->product_id])]) !!}</p>
                 </div>
             @endif
         </div>

@@ -252,7 +252,7 @@ class StoreController extends Controller
         $product = Store\Product::findOrFail($product_id);
 
         if ($product->inStock()) {
-            return error_popup(trans('store.product.notification-in-stock'));
+            return error_popup(trans('store.product.notification_in_stock'));
         }
 
         $request = $product->notificationRequests()->where('user_id', $user->user_id)->first();

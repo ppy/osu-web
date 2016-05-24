@@ -42,11 +42,10 @@ return [
             'out_with_alternative' => 'This type is currently out of stock :(. Try other type or check back soon.',
         ],
 
-        'add-to-cart' => 'Add to Cart',
+        'add_to_cart' => 'Add to Cart',
         'notify' => 'Notify me when available!',
 
-        'notification-success' => 'you will be notified when we have new stock. click <a href=":url" data-remote="true" data-method="put">here</a> to cancel',
-        'notification-in-stock' => 'This product is already in stock!',
-        'notification-already-requested' => 'You have already requested a notification for this product!',
+        'notification_success' => 'you will be notified when we have new stock. click <a href=":url" data-remote="true" data-method="put">here</a> to cancel',
+        'notification_in_stock' => 'This product is already in stock!',
     ],
 ];
