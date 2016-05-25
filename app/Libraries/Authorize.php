@@ -240,7 +240,38 @@ class Authorize
         }
 
         if ($cover->owner()->user_id !== $user->user_id) {
-            return $prefix.'owner_only';
+            return $prefix.'not_owner';
+        }
+
+        return 'ok';
+    }
+
+    public function checkUserPageEdit($user, $pageOwner)
+    {
+        $prefix = 'user.page.edit.';
+
+        $page = $pageOwner->userPage;
+
+        if ($page === null) {
+            if (!$user->osu_subscriber) {
+                return $prefix.'require_support_to_create';
+            }
+        } else {
+            if ($user->getKey() !== $page->poster_id) {
+                return $prefix.'not_owner';
+            }
+
+            if ($user->isSilenced()) {
+                return $prefix.'silenced';
+            }
+
+            if ($user->isRestricted()) {
+                return $prefix.'restricted';
+            }
+
+            if ($page->post_edit_locked || $page->topic->isLocked()) {
+                return $prefix.'locked';
+            }
         }
 
         return 'ok';
