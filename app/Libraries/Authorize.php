@@ -88,6 +88,8 @@ class Authorize
         if ($user === null) {
             return 'require_login';
         }
+
+        return 'ok';
     }
 
     public function checkForumView($user, $forum)
