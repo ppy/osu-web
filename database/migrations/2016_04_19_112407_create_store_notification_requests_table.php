@@ -14,6 +14,7 @@ class CreateStoreNotificationRequestsTable extends Migration
     {
         Schema::connection('mysql-store')->create('notification_requests', function (Blueprint $table) {
             $table->increments('id');
+            $table->timestamps();
             $table->mediumInteger('user_id');
             $table->integer('product_id');
 

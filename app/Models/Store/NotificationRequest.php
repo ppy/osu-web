@@ -9,7 +9,5 @@ class NotificationRequest extends Model
     protected $connection = 'mysql-store';
     protected $table = 'notification_requests';
 
-    public $timestamps = false;
-
     protected $fillable = ['user_id', 'product_id'];
 }
