@@ -27,12 +27,11 @@ class Authorize
 
     public function doCheckUser($user, $ability, $object)
     {
-        $cacheKey = sprintf(
-            '%s:%s:%s',
+        $cacheKey = serialize([
             $ability,
-            $user === null ? '' : $user->getKey(),
-            $object->getKey()
-        );
+            $user === null ? null : $user->getKey(),
+            $object->getKey(),
+        ]);
 
         if (!isset($this->cache[$cacheKey])) {
             if ($user !== null && $user->isAdmin()) {
