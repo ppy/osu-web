@@ -92,6 +92,25 @@ class Authorize
         return 'ok';
     }
 
+    public function checkBeatmapDiscussionPostEdit($user, $post)
+    {
+        $prefix = 'beatmap_discussion_post.edit.';
+
+        if ($user === null) {
+            return 'require_login';
+        }
+
+        if ($post->system) {
+            return $prefix.'system_generated';
+        }
+
+        if ($user->user_id !== $post->user_id) {
+            return $prefix.'not_owner';
+        }
+
+        return 'ok';
+    }
+
     public function checkForumView($user, $forum)
     {
         if ($user !== null && $user->isGMT()) {
@@ -122,7 +141,7 @@ class Authorize
         }
 
         if ($post->poster_id !== $user->user_id) {
-            return $prefix.'not_post_owner';
+            return $prefix.'not_owner';
         }
 
         $position = $post->postPosition;

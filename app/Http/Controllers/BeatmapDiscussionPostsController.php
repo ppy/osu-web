@@ -20,7 +20,6 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\Exceptions\AuthorizationException;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapsetDiscussion;
@@ -106,11 +105,7 @@ class BeatmapDiscussionPostsController extends Controller
     {
         $post = BeatmapDiscussionPost::findOrFail($id);
 
-        try {
-            $post->authorizeUpdate(Auth::user());
-        } catch (AuthorizationException $e) {
-            return error_popup($e->getMessage(), 403);
-        }
+        authz('BeatmapDiscussionPostEdit', $post)->ensureCan();
 
         $post->update($this->postParams($post->beatmapDiscussion, false));
 
