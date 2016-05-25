@@ -15,9 +15,6 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<?php
-    $withReplyLink = authz('ForumTopicReply', $topic)->can();
-?>
 @foreach($posts as $post)
     <?php
         if (Auth::check()) {
@@ -34,7 +31,7 @@
             'deleteLink' => $withDeleteLink,
             'editLink' => authz('ForumPostEdit', $post)->can(),
             'postPosition' => $postsPosition[$post->post_id],
-            'replyLink' => $withReplyLink,
+            'replyLink' => authz('ForumTopicReply', $topic)->can(),
         ],
     ])
 @endforeach
