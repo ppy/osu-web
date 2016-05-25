@@ -99,7 +99,7 @@ class Authorize
     {
         $prefix = 'forum.post.delete.';
 
-        if ($this->checkForumTopicReply($user, $post->topic) !== 'ok') {
+        if (!$this->doCheckUser($user, 'ForumTopicReply', $post->topic)->can()) {
             return $prefix.'can_not_post';
         }
 
@@ -138,7 +138,7 @@ class Authorize
     {
         $prefix = 'forum.post.edit.';
 
-        if ($this->checkForumTopicReply($user, $post->topic) !== 'ok') {
+        if (!$this->doCheckUser($user, 'ForumTopicReply', $post->topic)->can()) {
             return $prefix.'can_not_post';
         }
 
@@ -170,7 +170,7 @@ class Authorize
     {
         $prefix = 'forum.topic.reply.';
 
-        if ($this->checkForumTopicStore($user, $topic->forum) !== 'ok') {
+        if (!$this->doCheckUser($user, 'ForumTopicStore', $topic->forum)->can()) {
             return $prefix.'can_not_post';
         }
 
@@ -189,7 +189,7 @@ class Authorize
     {
         $prefix = 'forum.topic.store.';
 
-        if ($this->checkForumView($user, $forum) !== 'ok') {
+        if (!$this->doCheckUser($user, 'ForumView', $forum)->can()) {
             return $prefix.'can_not_view_forum';
         }
 
