@@ -119,17 +119,8 @@ class Authorize
             return $prefix.'not_post_owner';
         }
 
-        if ($positionCheck === false) {
-            return 'ok';
-        }
-
-        if ($position === null) {
-            $position = $post->postPosition;
-        }
-
-        if ($topicPostsCount === null) {
-            $topicPostsCount = $post->topic->postsCount();
-        }
+        $position = $post->postPosition;
+        $topicPostsCount = $post->topic->postsCount();
 
         if ($position !== $topicPostsCount) {
             return $prefix.'can_only_delete_last_post';
