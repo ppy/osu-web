@@ -168,6 +168,7 @@ class TopicsController extends Controller
 
         $posts = $posts
             ->take(20)
+            ->with('topic')
             ->with('user.rank')
             ->with('user.country')
             ->with('user.supports')

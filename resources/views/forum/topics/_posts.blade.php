@@ -22,7 +22,7 @@
     @include('forum.topics._post', [
         'post' => $post,
         'options' => [
-            'deleteLink' => authz('ForumPostDelete', [$post, false])->can(),
+            'deleteLink' => authz('ForumPostDelete', $post)->can(),
             'editLink' => authz('ForumPostEdit', $post)->can(),
             'postPosition' => $postsPosition[$post->post_id],
             'replyLink' => $withReplyLink,

@@ -23,23 +23,27 @@ use App\Models\Forum\Authorize as ForumAuthorize;
 
 class Authorize
 {
-    public function doCheckUser($user, $ability, $args)
+    private $cache = [];
+
+    public function doCheckUser($user, $ability, $object)
     {
-        if (!is_array($args)) {
-            $args = [$args];
+        $cacheKey = sprintf('%s:%s:%s', $ability, $user->getKey(), $object->getKey());
+
+        if (!isset($this->cache[$cacheKey])) {
+            if ($user !== null && $user->isAdmin()) {
+                $message = 'ok';
+            } else {
+                $function = "check{$ability}";
+
+                $message = call_user_func_array(
+                    [$this, $function], [$user, $object]
+                );
+            }
+
+            $this->cache[$cacheKey] = new AuthorizationResult($message);
         }
 
-        $function = "check{$ability}";
-
-        if ($user !== null && $user->isAdmin()) {
-            $message = 'ok';
-        } else {
-            $message = call_user_func_array(
-                [$this, $function], array_merge([$user], $args)
-            );
-        }
-
-        return new AuthorizationResult($message);
+        return $this->cache[$cacheKey];
     }
 
     public function cheackBeatmapDiscussionPost($user, $discussion)
@@ -95,7 +99,7 @@ class Authorize
         return 'forum.view.admin_only';
     }
 
-    public function checkForumPostDelete($user, $post, $positionCheck = true, $position = null, $topicPostsCount = null)
+    public function checkForumPostDelete($user, $post)
     {
         $prefix = 'forum.post.delete.';
 
