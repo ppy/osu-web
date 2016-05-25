@@ -19,10 +19,19 @@
     $withReplyLink = authz('ForumTopicReply', $topic)->can();
 ?>
 @foreach($posts as $post)
+    <?php
+        if (Auth::check()) {
+            $withDeleteLink = $post->poster_id === Auth::user()->user_id;
+        }
+
+        if (!isset($withDeleteLink) || !$withDeleteLink) {
+            $withDeleteLink = authz('ForumPostDelete', $post)->can();
+        }
+    ?>
     @include('forum.topics._post', [
         'post' => $post,
         'options' => [
-            'deleteLink' => authz('ForumPostDelete', $post)->can(),
+            'deleteLink' => $withDeleteLink,
             'editLink' => authz('ForumPostEdit', $post)->can(),
             'postPosition' => $postsPosition[$post->post_id],
             'replyLink' => $withReplyLink,
