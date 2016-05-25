@@ -166,6 +166,10 @@ Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'oauth'],
             Route::get('messages/private', ['uses' => 'ChatController@privateMessages']); //  GET /api/v2/chat/messages/private
             Route::post('messages/new', ['uses' => 'ChatController@postMessage']);        // POST /api/v2/chat/messages/new
         });
+
+        Route::group(['prefix' => 'beatmapsets'], function () {
+            Route::get('favourites', ['uses' => 'BeatmapsetsController@favourites']);     //  GET /api/v2/beatmapsets/favourites
+        });
     });
     // legacy api routes
     Route::group(['prefix' => 'v1'], function () {
