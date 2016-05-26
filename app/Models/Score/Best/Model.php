@@ -111,18 +111,11 @@ abstract class Model extends BaseModel
             });
     }
 
-    public function scopeDefaultScope($query)
+    public function scopeDefaultListing($query)
     {
         return $query
             ->default()
             ->orderBy('score', 'DESC')
             ->orderBy('date', 'ASC');
-    }
-
-    public function scopeDefaultListing($query)
-    {
-        return $query
-            ->defaultScope()
-            ->limit(config('osu.beatmaps.max-scores'));
     }
 }

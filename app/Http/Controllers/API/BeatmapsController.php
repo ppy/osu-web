@@ -46,7 +46,7 @@ class BeatmapsController extends Controller
             new BeatmapTransformer()
         );
 
-        $scores = $beatmap->scoresBest()->defaultScope()->forPage($page, $per_page);
+        $scores = $beatmap->scoresBest()->defaultListing()->forPage($page, $per_page);
 
         if ($beatmap->approved >= 1) {
             $beatmap_scores = fractal_api_serialize_collection(
