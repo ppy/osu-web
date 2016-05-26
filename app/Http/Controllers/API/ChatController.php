@@ -31,6 +31,11 @@ use App\Models\User;
 
 class ChatController extends Controller
 {
+    public function __construct()
+    {
+        $this->current_user = $this->currentUser();
+    }
+
     public function channels()
     {
         $channels = Channel::where('type', 'Public')->get();
@@ -43,15 +48,13 @@ class ChatController extends Controller
 
     public function messages()
     {
-        $current_user = User::find(Authorizer::getResourceOwnerId());
-
         $channel_ids = array_map('intval', explode(',', Request::input('channels')));
         $since = intval(Request::input('since'));
         $limit = intval(Request::input('limit', 50));
 
         $channels = Channel::whereIn('channel_id', $channel_ids)->get();
         foreach ($channels as $channel) {
-            if (!$channel->canBeMessagedBy($current_user)) {
+            if (!$channel->canBeMessagedBy($this->current_user)) {
                 array_splice($channel_ids, array_search($channel->channel_id, $channel_ids, true), 1);
             }
         }
@@ -71,13 +74,11 @@ class ChatController extends Controller
 
     public function privateMessages()
     {
-        $current_user = User::find(Authorizer::getResourceOwnerId());
-
         $since = intval(Request::input('since'));
         $limit = intval(Request::input('limit', 50));
 
-        $messages = PrivateMessage::where('user_id', $current_user->user_id)
-            ->orWhere('target_id', $current_user->user_id)
+        $messages = PrivateMessage::where('user_id', $this->current_user->user_id)
+            ->orWhere('target_id', $this->current_user->user_id)
             ->where('message_id', '>', $since)
             ->with('sender')
             ->with('receiver')
@@ -93,7 +94,9 @@ class ChatController extends Controller
 
     public function postMessage()
     {
-        $current_user = User::find(Authorizer::getResourceOwnerId());
+        if ($this->current_user->isBanned() || $this->current_user->isRestricted() || $this->current_user->isSilenced()) {
+            return $this->error('not authorized', 403);
+        }
 
         if ($current_user->isBanned() || $current_user->isRestricted() || $current_user->isSilenced()) {
             return $this->error('not authorized', 401);
@@ -109,10 +112,16 @@ class ChatController extends Controller
                 break;
         }
 
-        if (!$target || !$target->sendMessage($current_user, Request::input('message'))) {
+        if (!$target || !$target->sendMessage($this->current_user, Request::input('message'))) {
             return $this->error('not authorized', 401);
         }
 
         return json_encode('ok');
+    }
+
+    private function currentUser()
+    {
+        $this->current_user = $this->current_user ?? User::find(Authorizer::getResourceOwnerId());
+        return $this->current_user;
     }
 }
