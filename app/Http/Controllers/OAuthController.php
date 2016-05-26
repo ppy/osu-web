@@ -31,10 +31,7 @@ class OAuthController extends Controller
 
     public function __construct()
     {
-        // TODO: uh yeah, there's gotta be a better way to do this :v
-        if (current_action() !== 'getAccessToken') {
-            $this->middleware('auth');
-        }
+        $this->middleware('auth', ['except' => ['getAccessToken']]);
 
         return parent::__construct();
     }
