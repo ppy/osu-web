@@ -170,6 +170,10 @@ Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'oauth'],
         Route::group(['prefix' => 'beatmapsets'], function () {
             Route::get('favourites', ['uses' => 'BeatmapsetsController@favourites']);     //  GET /api/v2/beatmapsets/favourites
         });
+        Route::group(['prefix' => 'beatmaps'], function () {
+            Route::get('scores', ['uses' => 'BeatmapsController@scores']);          //  GET /api/v2/beatmaps/scores
+            // Route::get('/{id}/scores', ['uses' => 'BeatmapsController@scores']);          //  GET /api/v2/beatmaps/:beatmap_id/scores
+        });
     });
     // legacy api routes
     Route::group(['prefix' => 'v1'], function () {
