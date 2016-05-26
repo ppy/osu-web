@@ -98,10 +98,6 @@ class ChatController extends Controller
             return $this->error('not authorized', 403);
         }
 
-        if ($current_user->isBanned() || $current_user->isRestricted() || $current_user->isSilenced()) {
-            return $this->error('not authorized', 401);
-        }
-
         $target_type = Request::input('target_type');
         switch ($target_type) {
             case 'channel':
