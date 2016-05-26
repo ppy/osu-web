@@ -25,7 +25,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 
 class VerifyCsrfToken extends BaseVerifier
 {
-    protected $bypassed_urls = [
+    protected $except = [
         'oauth/authorize',
         'oauth/access_token',
     ];
@@ -44,11 +44,6 @@ class VerifyCsrfToken extends BaseVerifier
         if (App::environment() === 'testing') {
             return $next($request);
         } else {
-            $regex = '#'.implode('|', $this->bypassed_urls).'#';
-            if (preg_match($regex, $request->path())) {
-                return $next($request);
-            }
-
             return parent::handle($request, $next);
         }
     }
