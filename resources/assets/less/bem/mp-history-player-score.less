@@ -1,0 +1,178 @@
+/**
+*    Copyright 2016 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License version 3
+*    as published by the Free Software Foundation.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
+.mp-history-player-score {
+  display: flex;
+
+  &__trapezoid-rectangle {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 35px;
+    height: 100%;
+
+    background-color: @blue-darker;
+
+    border-top-left-radius: @border-radius-base;
+    border-bottom-left-radius: @border-radius-base;
+  }
+
+  &__trapezoid-triangle {
+    position: absolute;
+    left: 35px;
+    top: 0;
+
+    width: 35px;
+    height: 0;
+
+    border-bottom: 60px solid @blue-darker;
+    border-right: 35px solid transparent;
+  }
+
+  &__triangle {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 0;
+    height: 0;
+
+    &--small {
+      .equilateral-triangle(17px, @blue);
+    }
+
+    &--large {
+      left: @spacing * 5;
+      top: @spacing * 3;
+
+      .equilateral-triangle(25px, @blue-dark);
+    }
+  }
+
+  &__rank {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 70px;
+    height: 100%;
+
+    padding-right: 20px;
+  }
+
+  &__rank-number {
+    font-weight: 700;
+    font-style: italic;
+    font-size: 24px;
+
+    color: #ffffff;
+
+    .default-text-shadow;
+  }
+
+  &__main {
+    flex-grow: 1;
+
+    padding: @spacing * 0.5 @spacing * 2 0 @spacing * 1.5;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__info-box {
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+
+    &--user {
+      align-items: flex-start;
+    }
+
+    &--stats {
+      align-items: flex-end;
+    }
+  }
+
+  &__username {
+    font-weight: 700;
+    font-style: italic;
+    font-size: 18px;
+    color: @blue-text;
+
+    padding-bottom: @spacing * 0.5;
+  }
+
+  &__stat-row {
+    display: flex;
+    align-items: baseline;
+  }
+
+  &__stat {
+    display: flex;
+    align-items: baseline;
+
+    padding-right: @spacing * 2;
+
+    &--small {
+      padding-right: @spacing;
+    }
+
+    &:last-child {
+      padding: 0;
+    }
+  }
+
+  &__stat-label {
+    font-style: italic;
+    font-weight: 600;
+
+    padding-right: 3px;
+
+    &--small {
+      color: @grey-5;
+      font-size: 10px;
+    }
+
+    &--large {
+      color: @grey-9;
+      font-size: 12px;
+    }
+  }
+
+  &__stat-number {
+    font-style: italic;
+    font-weight: 700;
+    color: @purple-dark;
+
+    &--small {
+      font-size: 12px;
+    }
+
+    &--medium {
+      font-size: 14px;
+    }
+
+    &--large {
+      font-size: 25px;
+      color: @pink-darker;
+    }
+  }
+}

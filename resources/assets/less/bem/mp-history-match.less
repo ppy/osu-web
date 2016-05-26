@@ -1,0 +1,183 @@
+/**
+*    Copyright 2016 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License version 3
+*    as published by the Free Software Foundation.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
+.mp-history-match {
+  width: 100%;
+  background-color: @grey-d;
+  .default-border-radius;
+
+  margin-bottom: @spacing * 4;
+
+  &__header {
+    width: 100%;
+    height: 100px;
+    .at2x-simple('/images/layout/beatmaps/default-bg.png');
+
+    border-radius: @border-radius-base @border-radius-base 0 0;
+  }
+
+  &__thumb {
+    background-position: center;
+    display: block;
+    height: 100px;
+  }
+
+  &__stats-box {
+    display: flex;
+
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
+
+  &__stat {
+    font-size: 12px;
+    font-style: italic;
+
+    padding-right: @spacing * 1.5;
+
+    color: #ffffff;
+
+    .default-text-shadow;
+  }
+
+  &__metadata-box {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+  }
+
+  &__metadata {
+    font-style: italic;
+    color: #ffffff;
+    .default-text-shadow;
+
+    margin: 0;
+
+    &--title {
+      font-size: 18px;
+    }
+
+    &--artist {
+      font-size: 12px;
+    }
+  }
+
+  &__mods-box {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
+  &__player-scores {
+    padding: 10px;
+    background-color: @grey-e;
+  }
+
+  &__player-score {
+    width: 100%;
+    height: 60px;
+
+    background-color: #ffffff;
+
+    margin-bottom: @spacing * 0.5;
+
+    .default-border-radius;
+    .default-box-shadow;
+  }
+
+  &__team-scores {
+    display: flex;
+
+    width: 100%;
+    background-color: @grey-e;
+
+    @media @desktop {
+      justify-content: space-between;
+      height: 90px;
+    }
+
+    @media @mobile {
+      flex-direction: column;
+    }
+
+    border-radius: 0 0 @border-radius-base @border-radius-base;
+  }
+
+  &__team-score {
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+
+    @media @mobile {
+      align-items: center;
+    }
+
+    @media @desktop {
+      &--left {
+        align-items: flex-start;
+      }
+
+      &--right {
+        align-items: flex-end;
+      }
+    }
+  }
+
+  &__team-score-text {
+    @media @mobile {
+      text-align: center;
+    }
+
+    &--name {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    &--score {
+      font-size: 30px;
+      font-style: italic;
+      color: @pink-text;
+    }
+  }
+
+  &__results {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 45px;
+    padding: 0 20px;
+
+    border-radius: 0 0 @border-radius-base @border-radius-base;
+  }
+
+  &__results-text {
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 600;
+
+    text-align: center;
+
+    &--score {
+      font-weight: 400;
+    }
+  }
+}

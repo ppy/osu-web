@@ -25,6 +25,15 @@
   height: @diameter;
 }
 
+.equilateral-triangle(@length, @color) {
+  width: 0;
+  height: 0;
+
+  border-bottom: (@length * sqrt(3)) / 2 solid @color;
+  border-left: @length / 2 solid transparent;
+  border-right: @length / 2 solid transparent;
+}
+
 .fade-element(@duration, @type: ease-in-out, @target: all) {
   -webkit-transition: @target @duration @type;
        -moz-transition: @target @duration @type;
