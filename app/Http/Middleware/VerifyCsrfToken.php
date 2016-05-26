@@ -44,7 +44,7 @@ class VerifyCsrfToken extends BaseVerifier
         if (App::environment() === 'testing') {
             return $next($request);
         } else {
-            $regex = '#' . implode('|', $this->bypassed_urls) . '#';
+            $regex = '#'.implode('|', $this->bypassed_urls).'#';
             if (preg_match($regex, $request->path())) {
                 return $next($request);
             }

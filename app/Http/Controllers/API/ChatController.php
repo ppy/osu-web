@@ -112,6 +112,7 @@ class ChatController extends Controller
         if (!$target || !$target->sendMessage($current_user, Request::input('message'))) {
             return $this->error('not authorized', 401);
         }
+
         return json_encode('ok');
     }
 }

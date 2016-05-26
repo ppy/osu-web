@@ -37,7 +37,7 @@ class BeatmapsController extends Controller
         $filename = Request::input('f');
         $checksum = Request::input('c');
         $per_page = min(Request::input('n', 50), 50);
-        $page     = max(Request::input('p', 1), 1);
+        $page = max(Request::input('p', 1), 1);
 
         $beatmap = Beatmap::where('filename', $filename)->where('checksum', $checksum)->first();
 
@@ -50,7 +50,7 @@ class BeatmapsController extends Controller
             new BeatmapTransformer()
         );
 
-        $scores = $beatmap->scoresBest()->defaultScope()->offset(($page-1) * $per_page)->limit($per_page);
+        $scores = $beatmap->scoresBest()->defaultScope()->offset(($page - 1) * $per_page)->limit($per_page);
 
         if ($beatmap->approved >= 1) {
             $beatmap_scores = fractal_api_serialize_collection(
@@ -60,6 +60,7 @@ class BeatmapsController extends Controller
         } else {
             $beatmap_scores = [];
         }
+
         return Response::json(['beatmap' => $beatmap_meta, 'scores' => $beatmap_scores]);
     }
 }
