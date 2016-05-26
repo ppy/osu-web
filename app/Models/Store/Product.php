@@ -59,6 +59,11 @@ class Product extends Model
         return $this->hasOne('Category');
     }
 
+    public function notificationRequests()
+    {
+        return $this->hasMany(NotificationRequest::class);
+    }
+
     public function inStock($quantity = 1, $includeVariations = false)
     {
         $inStock = $this->stock === null || $this->stock >= $quantity;

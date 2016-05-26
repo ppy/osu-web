@@ -43,6 +43,7 @@ class StoreController extends Controller
             'postNewAddress',
             'postUpdateAddress',
             'postUpdateCart',
+            'putRequestNotification',
         ]]);
 
         $this->middleware('App\Http\Middleware\CheckUserRestricted', ['only' => [
@@ -53,6 +54,7 @@ class StoreController extends Controller
             'postNewAddress',
             'postUpdateAddress',
             'postUpdateCart',
+            'putRequestNotification',
         ]]);
 
         return parent::__construct();
@@ -96,12 +98,14 @@ class StoreController extends Controller
     {
         $cart = $this->userCart();
         $product = Store\Product::with('masterProduct')->findOrFail($id);
+        $requestedNotification = Auth::check() ?
+            $product->notificationRequests()->where('user_id', Auth::user()->user_id)->exists() : false;
 
         if (!$product->enabled) {
             abort(404);
         }
 
-        return view('store.product', compact('cart', 'product'));
+        return view('store.product', compact('cart', 'product', 'requestedNotification'));
     }
 
     public function getCart($id = null)
@@ -240,6 +244,35 @@ class StoreController extends Controller
         }
 
         return js_view('store.order-create');
+    }
+
+    public function putRequestNotification($product_id, $action)
+    {
+        $user = Auth::user();
+        $product = Store\Product::findOrFail($product_id);
+
+        if ($product->inStock()) {
+            return error_popup(trans('store.product.notification_in_stock'));
+        }
+
+        $request = $product->notificationRequests()->where('user_id', $user->user_id)->first();
+
+        if ($request && $action === 'create') {
+            return error_popup(trans('store.product.notification_exists'));
+        } elseif ($request) {
+            $request->delete();
+        }
+
+        if (!$request && $action === 'delete') {
+            return error_popup(trans('store.product.notification_doesnt_exist'));
+        } elseif (!$request) {
+            $request = Store\NotificationRequest::create([
+                'user_id' => $user->user_id,
+                'product_id' => $product_id,
+            ]);
+        }
+
+        return js_view('layout.ujs-reload');
     }
 
     private function userCart()
