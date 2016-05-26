@@ -94,7 +94,10 @@ Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);
 
 // catchall controllers
 Route::controller('/notifications', 'NotificationController');
-Route::controller('/store', 'StoreController');
+Route::controller('/store', 'StoreController', [
+    'getProduct' => 'store.product',
+    'putRequestNotification' => 'store.request-notification',
+]);
 
 Route::resource('tournaments', 'TournamentsController');
 Route::post('/tournaments/{tournament}/unregister', ['as' => 'tournaments.unregister', 'uses' => 'TournamentsController@unregister']);
