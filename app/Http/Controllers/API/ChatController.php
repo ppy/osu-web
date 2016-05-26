@@ -122,6 +122,7 @@ class ChatController extends Controller
     private function currentUser()
     {
         $this->current_user = $this->current_user ?? User::find(Authorizer::getResourceOwnerId());
+
         return $this->current_user;
     }
 }
