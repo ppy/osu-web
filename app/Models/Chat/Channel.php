@@ -37,9 +37,9 @@ class Channel extends Model implements Messageable
         $this->hasMany(Message::class, 'channel_id', 'channel_id');
     }
 
-    public function allowedGroups()
+    public function getAllowedGroupsAttribute($allowed_groups)
     {
-        return array_map('intval', explode(',', $this->allowed_groups));
+        return array_map('intval', explode(',', $allowed_groups));
     }
 
     public function canBeMessagedBy(User $user)
@@ -65,7 +65,7 @@ class Channel extends Model implements Messageable
             case 'private':
                 $common_groups = array_intersect(
                     array_pluck($user->userGroups()->get(['group_id'])->toArray(), 'group_id'),
-                    $this->allowedGroups()
+                    $this->allowed_groups()
                 );
 
                 return count($common_groups) > 0;
