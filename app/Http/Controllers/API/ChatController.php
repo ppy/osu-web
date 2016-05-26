@@ -33,7 +33,7 @@ class ChatController extends Controller
 {
     public function __construct()
     {
-        $this->current_user = $this->currentUser();
+        $this->current_user = User::find(Authorizer::getResourceOwnerId());
     }
 
     public function channels()
@@ -77,9 +77,8 @@ class ChatController extends Controller
         $since = intval(Request::input('since'));
         $limit = intval(Request::input('limit', 50));
 
-        $messages = PrivateMessage::where('user_id', $this->current_user->user_id)
-            ->orWhere('target_id', $this->current_user->user_id)
-            ->where('message_id', '>', $since)
+        $messages = PrivateMessage::where('message_id', '>', $since)
+            ->toOrFrom($this->current_user->user_id)
             ->with('sender')
             ->with('receiver')
             ->orderBy('message_id', 'asc')
@@ -113,12 +112,5 @@ class ChatController extends Controller
         }
 
         return json_encode('ok');
-    }
-
-    private function currentUser()
-    {
-        $this->current_user = $this->current_user ?? User::find(Authorizer::getResourceOwnerId());
-
-        return $this->current_user;
     }
 }

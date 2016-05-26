@@ -39,4 +39,14 @@ class PrivateMessage extends Model
     {
         return $this->belongsTo(User::class, 'target_id', 'user_id');
     }
+
+    public function scopeToOrFrom($query, $user_id)
+    {
+        return $query->where(
+            function ($q) use ($user_id) {
+                $q->where('user_id', $user_id)
+                ->orWhere('target_id', $user_id);
+            }
+        );
+    }
 }
