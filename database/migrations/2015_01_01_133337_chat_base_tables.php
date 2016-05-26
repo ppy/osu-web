@@ -30,25 +30,26 @@ class ChatBaseTables extends Migration
     public function up()
     {
         $builder = Schema::connection('mysql-chat');
+        $connection = DB::connection('mysql-chat');
 
         $builder->create('channels', function (Blueprint $table) {
-            $table->charset = 'latin1';
+            $table->charset = 'utf8mb4';
 
             $table->increments('channel_id');
             $column = $table->string('name', 50);
-            $column->charset = 'utf8';
+            $column->charset = 'utf8mb4';
             $table->string('description', 256);
             $table->timestamp('creation_time')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->enum('type', ['PUBLIC', 'PRIVATE', 'MULTIPLAYER', 'SPECTATOR', 'TEMPORARY'])->default('TEMPORARY');
+            $table->enum('type', ['Public', 'Private', 'Multiplayer', 'Spectator', 'Temporary'])->default('Temporary');
             $table->string('allowed_groups', 256)->nullable();
 
             $table->index('name', 'name');
             $table->index('creation_time', 'creation_time');
         });
-        $this->setRowFormat('channels', 'DYNAMIC');
+        $this->setRowFormat($connection, 'channels', 'DYNAMIC');
 
         $builder->create('messages', function (Blueprint $table) {
-            $table->charset = 'utf8';
+            $table->charset = 'utf8mb4';
 
             $table->increments('message_id');
             $table->integer('user_id')->unsigned();
@@ -59,10 +60,11 @@ class ChatBaseTables extends Migration
             $table->index(['channel_id', 'message_id'], 'channel_id');
             $table->index(['user_id', 'timestamp'], 'user_history');
         });
-        $this->setRowFormat('messages', 'COMPRESSED');
+        $connection->statement('ALTER TABLE `messages` DROP PRIMARY KEY, ADD PRIMARY KEY (`message_id`, `timestamp`)');
+        $this->setRowFormat($connection, 'messages', 'COMPRESSED');
 
         $builder->create('messages_private', function (Blueprint $table) {
-            $table->charset = 'utf8';
+            $table->charset = 'utf8mb4';
 
             $table->increments('message_id');
             $table->integer('user_id')->unsigned();
@@ -70,10 +72,10 @@ class ChatBaseTables extends Migration
             $table->string('content', 1024)->default('');
             $table->timestamp('timestamp')->default(DB::raw('CURRENT_TIMESTAMP'));
 
-            $table->index('user_id', 'user_id');
+            $table->index(['user_id', 'timestamp'], 'user_id');
         });
-        DB::statement('ALTER TABLE `messages_private` DROP PRIMARY KEY, ADD PRIMARY KEY (`message_id`, `timestamp`)');
-        $this->setRowFormat('messages_private', 'COMPRESSED');
+        $connection->statement('ALTER TABLE `messages_private` DROP PRIMARY KEY, ADD PRIMARY KEY (`message_id`, `timestamp`)');
+        $this->setRowFormat($connection, 'messages_private', 'COMPRESSED');
     }
 
     /**
@@ -88,5 +90,10 @@ class ChatBaseTables extends Migration
         $builder->drop('channels');
         $builder->drop('messages');
         $builder->drop('messages_private');
+    }
+
+    private function setRowFormat($connection, $table, $format)
+    {
+        $connection->statement("ALTER TABLE `{$table}` ROW_FORMAT={$format};");
     }
 }
