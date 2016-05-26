@@ -39,11 +39,7 @@ class BeatmapsController extends Controller
         $per_page = min(Request::input('n', 50), 50);
         $page = max(Request::input('p', 1), 1);
 
-        $beatmap = Beatmap::where('filename', $filename)->where('checksum', $checksum)->first();
-
-        if (!$beatmap) {
-            return Response::json(['error' => 'not_found']);
-        }
+        $beatmap = Beatmap::where('filename', $filename)->where('checksum', $checksum)->firstorFail();
 
         $beatmap_meta = fractal_api_serialize_item(
             $beatmap,

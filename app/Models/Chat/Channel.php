@@ -80,7 +80,7 @@ class Channel extends Model implements Messageable
                 if (substr($this->name, 0, 4) === '#mp_') {
                     $match_id = intval(str_replace('#mp_', '', $this->name));
 
-                    return in_array($user->user_id, Match::find($match_id)->currentPlayers(), true);
+                    return in_array($user->user_id, Match::findOrFail($match_id)->currentPlayers(), true);
                 }
 
                 return false;
