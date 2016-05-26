@@ -32,10 +32,10 @@ class PrivateMessageTransformer extends Fractal\TransformerAbstract
             'target_id' => $message->target_id,
             'timestamp' => $message->timestamp->toDateTimeString(),
             'content' => $message->content,
-            'sender' => $message->sender ? [
+            'sender' => [
                 'username' => $message->sender->username,
                 'colour' => $message->sender->user_colour,
-            ] : [],
+            ],
         ];
     }
 }
