@@ -74,12 +74,12 @@ class OAuthController extends Controller
         $params['user_id'] = Auth::user()->user_id;
         $redirectUri = '/';
 
-        // If the user has allowed the client to access its data, redirect back to the client with an auth code.
+        // If the user has allowed the client to access their data, redirect back to the client with an auth code.
         if (Request::has('approve')) {
             $redirectUri = Authorizer::issueAuthCode('user', $params['user_id'], $params);
         }
 
-        // If the user has denied the client to access its data, redirect back to the client with an error message.
+        // If the user has denied the client to access their data, redirect back to the client with an error message.
         if (Request::has('deny')) {
             $redirectUri = Authorizer::authCodeRequestDeniedRedirectUri();
         }
