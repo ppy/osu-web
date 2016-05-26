@@ -72,7 +72,8 @@ class ChatBaseTables extends Migration
             $table->string('content', 1024)->default('');
             $table->timestamp('timestamp')->default(DB::raw('CURRENT_TIMESTAMP'));
 
-            $table->index(['user_id', 'timestamp'], 'user_id');
+            $table->index('user_id', 'user_id');
+            $table->index('target_id', 'target_id');
         });
         $connection->statement('ALTER TABLE `messages_private` DROP PRIMARY KEY, ADD PRIMARY KEY (`message_id`, `timestamp`)');
         $this->setRowFormat($connection, 'messages_private', 'COMPRESSED');
