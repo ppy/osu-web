@@ -272,7 +272,7 @@ class StoreController extends Controller
             ]);
         }
 
-        return ujs_redirect(route('store.product', ['id' => $product_id]));
+        return js_view('layout.ujs-reload');
     }
 
     private function userCart()
