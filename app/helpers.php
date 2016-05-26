@@ -552,5 +552,5 @@ function authz($ability, $args)
 
 function authzUser($user, $ability, $args)
 {
-    return Authorize::doCheckUser($user, $ability, $args);
+    return OsuAuthorize::doCheckUser($user, $ability, $args);
 }

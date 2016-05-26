@@ -219,7 +219,7 @@ return [
         'Slack' => 'Maknz\Slack\Facades\Slack',
         'Statsd' => 'League\StatsD\Laravel5\Facade\StatsdFacade',
 
-        'Authorize' => 'App\Facades\OsuAuthorizeFacade',
+        'OsuAuthorize' => App\Facades\OsuAuthorizeFacade::class,
     ],
 
 ];

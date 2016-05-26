@@ -21,7 +21,7 @@ namespace App\Libraries;
 
 use App\Models\Forum\Authorize as ForumAuthorize;
 
-class Authorize
+class OsuAuthorize
 {
     private $cache = [];
 
