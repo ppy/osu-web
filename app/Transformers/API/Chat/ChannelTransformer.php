@@ -17,34 +17,20 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Http\Middleware;
+namespace App\Transformers\API\Chat;
 
-use App;
-use Closure;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
+use League\Fractal;
+use App\Models\Chat\Channel;
 
-class VerifyCsrfToken extends BaseVerifier
+class ChannelTransformer extends Fractal\TransformerAbstract
 {
-    protected $except = [
-        'oauth/authorize',
-        'oauth/access_token',
-    ];
-
-    /**
-     * Handle an incoming request.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
-     *
-     * @return mixed
-     */
-    public function handle($request, Closure $next)
+    public function transform(Channel $channel)
     {
-        // FIXME: this is fixed in 5.2
-        if (App::environment() === 'testing') {
-            return $next($request);
-        } else {
-            return parent::handle($request, $next);
-        }
+        return [
+            'channel_id' => $channel->channel_id,
+            'name' => $channel->name,
+            'description' => $channel->description,
+            'type' => $channel->type,
+        ];
     }
 }

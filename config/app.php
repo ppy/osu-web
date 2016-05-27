@@ -160,6 +160,8 @@ return [
         'Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider',
         'Shift31\LaravelElasticsearch\ElasticsearchServiceProvider',
         'League\StatsD\Laravel5\Provider\StatsdServiceProvider',
+        'LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider',
+        'LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider',
         'Lord\Laroute\LarouteServiceProvider',
     ],
 
@@ -216,7 +218,7 @@ return [
 
         'Slack' => 'Maknz\Slack\Facades\Slack',
         'Statsd' => 'League\StatsD\Laravel5\Facade\StatsdFacade',
-
+        'Authorizer' => 'LucaDegasperi\OAuth2Server\Facades\Authorizer',
     ],
 
 ];

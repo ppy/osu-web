@@ -17,34 +17,24 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Http\Middleware;
+namespace App\Models\Multiplayer;
 
-use App;
-use Closure;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
-
-class VerifyCsrfToken extends BaseVerifier
+class Event extends Model
 {
-    protected $except = [
-        'oauth/authorize',
-        'oauth/access_token',
+    protected $table = 'events';
+    protected $primaryKey = 'event_id';
+    protected $dates = [
+        'timestamp',
     ];
+    public $timestamps = false;
 
-    /**
-     * Handle an incoming request.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
-     *
-     * @return mixed
-     */
-    public function handle($request, Closure $next)
+    public function match()
     {
-        // FIXME: this is fixed in 5.2
-        if (App::environment() === 'testing') {
-            return $next($request);
-        } else {
-            return parent::handle($request, $next);
-        }
+        return $this->belongsTo(Match::class);
+    }
+
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
     }
 }

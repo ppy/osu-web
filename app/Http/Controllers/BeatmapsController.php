@@ -55,6 +55,7 @@ class BeatmapsController extends Controller
         $scores = $beatmap
             ->scoresBest()
             ->defaultListing()
+            ->limit(config('osu.beatmaps.max-scores'))
             ->with('user');
 
         switch ($type) {
