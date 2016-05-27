@@ -352,7 +352,7 @@ class Beatmapset extends Model
                     $matchParams[] = ['match' => ['approved' => self::GRAVEYARD]];
                     break;
                 case 6: // My Maps
-                    $maps = $current_user->beatmapSets()->get()->lists('beatmapset_id');
+                    $maps = $current_user->beatmapsets()->get()->lists('beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
                     break;
                 default: // null, etc

@@ -27,7 +27,7 @@ BeatmapsetPage.Extra = React.createClass
 
   componentDidMount: ->
     @_removeListeners()
-    $.subscribe 'stickyHeader.beatmapSetPageExtra', @_tabsStick
+    $.subscribe 'stickyHeader.beatmapsetPageExtra', @_tabsStick
 
 
   componentWillUnmount: ->
@@ -35,8 +35,8 @@ BeatmapsetPage.Extra = React.createClass
 
 
   _removeListeners: ->
-    $.unsubscribe '.beatmapSetPageExtra'
-    $(window).off '.beatmapSetPageExtra'
+    $.unsubscribe '.beatmapsetPageExtra'
+    $(window).off '.beatmapsetPageExtra'
 
   render: ->
     sections = ['description', 'success-rate', 'scoreboard']

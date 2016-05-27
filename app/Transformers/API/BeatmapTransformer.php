@@ -46,18 +46,18 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
           'playcount' => $beatmap->playcount,
           'passcount' => $beatmap->passcount,
 
-          //beatmapset set
-          'approved_date' => $beatmap->set->approved_date ? $beatmap->set->approved_date->toDateTimeString() : null,
-          'last_update' => $beatmap->set->last_update->tz('Australia/Perth')->toDateTimeString(),
-          'artist' => $beatmap->set->artist,
-          'title' => $beatmap->set->title,
-          'creator' => $beatmap->set->creator,
-          'bpm' => $beatmap->set->bpm,
-          'source' => $beatmap->set->source,
-          'tags' => $beatmap->set->tags,
-          'genre_id' => $beatmap->set->genre_id,
-          'language_id' => $beatmap->set->language_id,
-          'favourite_count' => $beatmap->set->favourite_count,
+          //beatmapset
+          'approved_date' => $beatmap->beatmapset->approved_date ? $beatmap->beatmapset->approved_date->toDateTimeString() : null,
+          'last_update' => $beatmap->beatmapset->last_update->tz('Australia/Perth')->toDateTimeString(),
+          'artist' => $beatmap->beatmapset->artist,
+          'title' => $beatmap->beatmapset->title,
+          'creator' => $beatmap->beatmapset->creator,
+          'bpm' => $beatmap->beatmapset->bpm,
+          'source' => $beatmap->beatmapset->source,
+          'tags' => $beatmap->beatmapset->tags,
+          'genre_id' => $beatmap->beatmapset->genre_id,
+          'language_id' => $beatmap->beatmapset->language_id,
+          'favourite_count' => $beatmap->beatmapset->favourite_count,
 
           // beatmap difficulty/difficultyattribs
           'max_combo' => $difficulty ? $difficulty->value : null,
