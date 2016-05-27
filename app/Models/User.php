@@ -26,8 +26,10 @@ use DB;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
+use App\Interfaces\Messageable;
+use App\Models\Chat\PrivateMessage;
 
-class User extends Model implements AuthenticatableContract
+class User extends Model implements AuthenticatableContract, Messageable
 {
     use Authenticatable;
 
@@ -1001,6 +1003,25 @@ class User extends Model implements AuthenticatableContract
                 ->where('ban_status', '=', 2)->count() === 0;
 
         return $canInvite;
+    }
+
+    public function canBeMessagedBy(User $sender)
+    {
+        // TODO: blocklist/ignore, etc
+        return true;
+    }
+
+    public function sendMessage(User $sender, $body)
+    {
+        if (!$this->canBeMessagedBy($sender)) {
+            return false;
+        }
+
+        $message = new PrivateMessage();
+        $message->user_id = $sender->user_id;
+        $message->target_id = $this->user_id;
+        $message->content = $body;
+        $message->save();
     }
 
     public function scopeDefault($query)

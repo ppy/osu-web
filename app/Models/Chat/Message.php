@@ -17,34 +17,25 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Http\Middleware;
+namespace App\Models\Chat;
 
-use App;
-use Closure;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
+use App\Models\User;
 
-class VerifyCsrfToken extends BaseVerifier
+class Message extends Model
 {
-    protected $except = [
-        'oauth/authorize',
-        'oauth/access_token',
+    protected $table = 'messages';
+    protected $primaryKey = 'message_id';
+    protected $dates = [
+        'timestamp',
     ];
 
-    /**
-     * Handle an incoming request.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
-     *
-     * @return mixed
-     */
-    public function handle($request, Closure $next)
+    public function channel()
     {
-        // FIXME: this is fixed in 5.2
-        if (App::environment() === 'testing') {
-            return $next($request);
-        } else {
-            return parent::handle($request, $next);
-        }
+        return $this->belongsTo(Channel::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 }
