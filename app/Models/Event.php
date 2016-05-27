@@ -68,7 +68,7 @@ class Event extends Model
 
     public function beatmapSet()
     {
-        return $this->belongsTo(BeatmapSet::class, 'beatmapset_id', 'beatmapset_id');
+        return $this->belongsTo(Beatmapset::class, 'beatmapset_id', 'beatmapset_id');
     }
 
     public function arrayBeatmap($matches)
@@ -81,7 +81,7 @@ class Event extends Model
         ];
     }
 
-    public function arrayBeatmapSet($matches)
+    public function arrayBeatmapset($matches)
     {
         $beatmapSetTitle = presence($matches['beatmapSetTitle'], '(no title)');
 
@@ -149,7 +149,7 @@ class Event extends Model
         ];
     }
 
-    public function parseMatchesBeatmapSetApprove($matches)
+    public function parseMatchesBeatmapsetApprove($matches)
     {
         $approval = $matches['approval'];
         if ($approval === 'ranked') {
@@ -158,38 +158,38 @@ class Event extends Model
 
         return [
             'approval' => $approval,
-            'beatmapSet' => $this->arrayBeatmapSet($matches),
+            'beatmapSet' => $this->arrayBeatmapset($matches),
             'user' => $this->arrayUser($matches),
         ];
     }
 
-    public function parseMatchesBeatmapSetDelete($matches)
+    public function parseMatchesBeatmapsetDelete($matches)
     {
         return [
-            'beatmapSet' => $this->arrayBeatmapSet($matches),
+            'beatmapSet' => $this->arrayBeatmapset($matches),
         ];
     }
 
-    public function parseMatchesBeatmapSetRevive($matches)
+    public function parseMatchesBeatmapsetRevive($matches)
     {
         return [
-            'beatmapSet' => $this->arrayBeatmapSet($matches),
+            'beatmapSet' => $this->arrayBeatmapset($matches),
             'user' => $this->arrayUser($matches),
         ];
     }
 
-    public function parseMatchesBeatmapSetUpdate($matches)
+    public function parseMatchesBeatmapsetUpdate($matches)
     {
         return [
-            'beatmapSet' => $this->arrayBeatmapSet($matches),
+            'beatmapSet' => $this->arrayBeatmapset($matches),
             'user' => $this->arrayUser($matches),
         ];
     }
 
-    public function parseMatchesBeatmapSetUpload($matches)
+    public function parseMatchesBeatmapsetUpload($matches)
     {
         return [
-            'beatmapSet' => $this->arrayBeatmapSet($matches),
+            'beatmapSet' => $this->arrayBeatmapset($matches),
             'user' => $this->arrayUser($matches),
         ];
     }

@@ -29,7 +29,7 @@ use App\Exceptions\BeatmapProcessorException;
 use App\Models\Forum\Topic;
 use App\Models\Forum\Post;
 
-class BeatmapSet extends Model
+class Beatmapset extends Model
 {
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
@@ -137,7 +137,7 @@ class BeatmapSet extends Model
         $this->save();
     }
 
-    // BeatmapSet::rankable();
+    // Beatmapset::rankable();
 
     public function scopeRankable($query)
     {
@@ -152,7 +152,7 @@ class BeatmapSet extends Model
     |--------------------------------------------------------------------------
     |
     | Checks the approval column, but allows a global filter for
-    | use with the query builder. BeatmapSet::all()->unranked()
+    | use with the query builder. Beatmapset::all()->unranked()
     |
     */
 
@@ -334,7 +334,7 @@ class BeatmapSet extends Model
                     $matchParams[] = ['match' => ['approved' => self::APPROVED]];
                     break;
                 case 2: // Favourites
-                    $favs = $current_user->favouriteBeatmapSets()->get()->lists('beatmapset_id');
+                    $favs = $current_user->favouriteBeatmapsets()->get()->lists('beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $favs]];
                     break;
                 case 3: // Mod Requests

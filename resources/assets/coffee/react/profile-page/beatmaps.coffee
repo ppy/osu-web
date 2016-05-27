@@ -24,14 +24,14 @@ ProfilePage.Beatmaps = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
   render: ->
-    allBeatmapSets =
-      favourite: @props.favouriteBeatmapSets
-      ranked_and_approved: @props.rankedAndApprovedBeatmapSets
+    allBeatmapsets =
+      favourite: @props.favouriteBeatmapsets
+      ranked_and_approved: @props.rankedAndApprovedBeatmapsets
 
     div
       className: 'page-extra'
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
-      _.map allBeatmapSets, (beatmapSets, section) =>
+      _.map allBeatmapsets, (beatmapSets, section) =>
         div
           key: section
           h3 className: 'page-extra__title--small', Lang.get("users.show.extra.beatmaps.#{section}.title", count: beatmapSets.length)
