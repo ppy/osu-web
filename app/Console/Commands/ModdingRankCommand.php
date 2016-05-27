@@ -54,7 +54,7 @@ class ModdingRankCommand extends Command
      */
     public function fire()
     {
-        $rankable = BeatmapSet::rankable();
+        $rankable = Beatmapset::rankable();
 
         if ($rankable) {
             foreach ($rankable as $rank) {

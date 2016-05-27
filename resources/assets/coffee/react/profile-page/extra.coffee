@@ -144,8 +144,8 @@ ProfilePage.Extra = React.createClass
 
               when 'beatmaps'
                 props =
-                  favouriteBeatmapSets: @props.favouriteBeatmapSets
-                  rankedAndApprovedBeatmapSets: @props.rankedAndApprovedBeatmapSets
+                  favouriteBeatmapsets: @props.favouriteBeatmapsets
+                  rankedAndApprovedBeatmapsets: @props.rankedAndApprovedBeatmapsets
                 ProfilePage.Beatmaps
 
               when 'medals'

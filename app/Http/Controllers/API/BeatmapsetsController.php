@@ -28,7 +28,7 @@ class BeatmapsetsController extends Controller
     public function favourites()
     {
         $current_user = User::find(Authorizer::getResourceOwnerId());
-        $favourites = $current_user->favouriteBeatmapSets();
+        $favourites = $current_user->favouriteBeatmapsets();
 
         return fractal_api_serialize_collection(
             $favourites->get(),

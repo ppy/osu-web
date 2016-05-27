@@ -19,7 +19,7 @@
  */
 namespace App\Http\Controllers\Admin;
 
-use App\Models\BeatmapSet as Beatmapset;
+use App\Models\Beatmapset;
 use Request;
 
 class BeatmapsetDiscussionsController extends Controller

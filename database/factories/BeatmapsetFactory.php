@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(App\Models\BeatmapSet::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Beatmapset::class, function (Faker\Generator $faker) {
     $artist = $faker->name;
     $title = $faker->sentence(rand(0, 5));
     $isApproved = (rand(0, 2) > 0);

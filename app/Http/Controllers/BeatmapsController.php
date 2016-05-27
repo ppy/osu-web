@@ -20,7 +20,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
-use App\Models\BeatmapSet;
+use App\Models\Beatmapset;
 use App\Transformers\ScoreTransformer;
 use Request;
 use Auth;
