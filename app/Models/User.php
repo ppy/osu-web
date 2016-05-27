@@ -981,18 +981,8 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $canInvite;
     }
 
-    public function canBeMessagedBy(User $sender)
-    {
-        // TODO: blocklist/ignore, etc
-        return true;
-    }
-
     public function sendMessage(User $sender, $body)
     {
-        if (!$this->canBeMessagedBy($sender)) {
-            return false;
-        }
-
         $message = new PrivateMessage();
         $message->user_id = $sender->user_id;
         $message->target_id = $this->user_id;

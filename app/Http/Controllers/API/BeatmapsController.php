@@ -21,18 +21,14 @@ namespace App\Http\Controllers\API;
 
 use Response;
 use Request;
-use Authorizer;
 use App\Transformers\API\ScoreTransformer;
 use App\Transformers\API\BeatmapTransformer;
-use App\Models\User;
 use App\Models\Beatmap;
 
 class BeatmapsController extends Controller
 {
     public function scores()
     {
-        $current_user = User::find(Authorizer::getResourceOwnerId());
-
         // FIXME: scores are obtained via filename/checksum lookup for legacy reason (temporarily)
         $filename = Request::input('f');
         $checksum = Request::input('c');

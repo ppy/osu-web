@@ -19,16 +19,14 @@
  */
 namespace App\Http\Controllers\API;
 
-use Authorizer;
+use Auth;
 use App\Transformers\BeatmapsetTransformer;
-use App\Models\User;
 
 class BeatmapsetsController extends Controller
 {
     public function favourites()
     {
-        $current_user = User::find(Authorizer::getResourceOwnerId());
-        $favourites = $current_user->favouriteBeatmapsets();
+        $favourites = Auth::user()->favouriteBeatmapsets();
 
         return fractal_api_serialize_collection(
             $favourites->get(),

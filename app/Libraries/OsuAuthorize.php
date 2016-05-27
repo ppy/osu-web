@@ -19,7 +19,9 @@
  */
 namespace App\Libraries;
 
+use App\Models\Chat\Channel as ChatChannel;
 use App\Models\Forum\Authorize as ForumAuthorize;
+use App\Models\Multiplayer\Match as MultiplayerMatch;
 
 class OsuAuthorize
 {
@@ -109,6 +111,68 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkChatMessageSend($user, $target)
+    {
+        $prefix = 'chat.message.send.';
+
+        if ($target instanceof ChatChannel) {
+            if (!$this->doCheckUser($user, 'ChatChannelRead', $channel)->can()) {
+                return $prefix.'channel.no_access';
+            }
+
+            if ($target->moderated) {
+                return $prefix.'channel.moderated';
+            }
+        } elseif ($target instanceof User) {
+            // TODO: blocklist/ignore, etc
+        }
+
+        if ($user->isBanned() || $user->isRestricted() || $user->isSilenced()) {
+            return $prefix.'not_allowed';
+        }
+
+        return 'ok';
+    }
+
+    public function checkChatChannelRead($user, $channel)
+    {
+        $prefix = 'chat.channel.read.';
+
+        switch (strtolower($channel->type)) {
+            case 'public':
+                return 'ok';
+
+            case 'private':
+                $commonGroupIds = array_intersect(
+                    $user->groupIds(),
+                    $channel->allowed_groups
+                );
+
+                if (count($commonGroupIds) > 0) {
+                    return 'ok';
+                }
+                break;
+
+            case 'spectator':
+            case 'multiplayer':
+            case 'temporary': // this and the comparisons below are needed until bancho is updated to use the new channel types
+                if (starts_with($channel->name, '#spect_')) {
+                    return 'ok';
+                }
+
+                if (starts_with($channel->name, '#mp_')) {
+                    $matchId = intval(str_replace('#mp_', '', $channel->name));
+
+                    if (in_array($user->user_id, MultiplayerMatch::findOrFail($matchId)->currentPlayers(), true)) {
+                        return 'ok';
+                    }
+                }
+                break;
+        }
+
+        return $prefix.'no_access';
     }
 
     public function checkForumView($user, $forum)
