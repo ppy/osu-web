@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\BeatmapSet;
+use App\Models\Beatmapset;
 use App\Models\Beatmap;
 use App\Models\User;
 use App\Models\BeatmapsetDiscussion;
@@ -17,7 +17,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         parent::setUp();
 
         $this->user = factory(User::class)->create();
-        $this->beatmapset = factory(BeatmapSet::class)->create();
+        $this->beatmapset = factory(Beatmapset::class)->create();
         $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
         $this->beatmapsetDiscussion = BeatmapsetDiscussion::create(['beatmapset_id' => $this->beatmap->beatmapset_id]);
         $this->beatmapDiscussion = BeatmapDiscussion::create([
@@ -27,7 +27,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
             'beatmap_id' => $this->beatmap->beatmap_id,
         ]);
 
-        $this->otherBeatmapset = factory(BeatmapSet::class)->create();
+        $this->otherBeatmapset = factory(Beatmapset::class)->create();
         $this->otherBeatmap = $this->otherBeatmapset->beatmaps()->save(factory(Beatmap::class)->make());
     }
 

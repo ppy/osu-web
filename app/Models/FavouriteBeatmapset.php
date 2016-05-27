@@ -21,7 +21,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FavouriteBeatmapSet extends Model
+class FavouriteBeatmapset extends Model
 {
     protected $table = 'osu_favouritemaps';
     public $timestamps = false;

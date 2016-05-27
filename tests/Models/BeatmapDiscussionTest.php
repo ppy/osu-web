@@ -19,7 +19,7 @@
  */
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
-use App\Models\BeatmapSet;
+use App\Models\Beatmapset;
 use App\Models\BeatmapsetDiscussion;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
@@ -29,10 +29,10 @@ class BeatmapDiscussionTest extends TestCase
 
     public function testIsValid()
     {
-        $beatmapset = factory(BeatmapSet::class)->create();
+        $beatmapset = factory(Beatmapset::class)->create();
         $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
 
-        $otherBeatmapset = factory(BeatmapSet::class)->create();
+        $otherBeatmapset = factory(Beatmapset::class)->create();
         $otherBeatmap = $otherBeatmapset->beatmaps()->save(factory(Beatmap::class)->make());
 
         $beatmapsetDiscussion = BeatmapsetDiscussion::create(['beatmapset_id' => $beatmap->beatmapset_id]);

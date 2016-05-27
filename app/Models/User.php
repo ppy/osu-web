@@ -372,7 +372,7 @@ class User extends Model implements AuthenticatableContract, Messageable
             or $this->ownsMod($mod);
     }
 
-    public function ownsSet(BeatmapSet $set)
+    public function ownsSet(Beatmapset $set)
     {
         return $set->user_id === $this->user_id;
     }
@@ -503,17 +503,17 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function beatmapSets()
     {
-        return $this->hasMany(BeatmapSet::class);
+        return $this->hasMany(Beatmapset::class);
     }
 
     public function beatmaps()
     {
-        return $this->hasManyThrough(Beatmap::class, BeatmapSet::class, 'user_id', 'beatmapset_id');
+        return $this->hasManyThrough(Beatmap::class, Beatmapset::class, 'user_id', 'beatmapset_id');
     }
 
-    public function favouriteBeatmapSets()
+    public function favouriteBeatmapsets()
     {
-        return BeatmapSet::whereIn('beatmapset_id', FavouriteBeatmapSet::where('user_id', '=', $this->user_id)->select('beatmapset_id')->get());
+        return Beatmapset::whereIn('beatmapset_id', FavouriteBeatmapset::where('user_id', '=', $this->user_id)->select('beatmapset_id')->get());
     }
 
     public function beatmapPlaycounts()

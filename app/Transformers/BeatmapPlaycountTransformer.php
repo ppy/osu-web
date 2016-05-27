@@ -53,7 +53,7 @@ class BeatmapPlaycountTransformer extends Fractal\TransformerAbstract
         );
     }
 
-    public function includeBeatmapSet(BeatmapPlaycount $playcount)
+    public function includeBeatmapset(BeatmapPlaycount $playcount)
     {
         if ($playcount->beatmap === null) {
             return;
@@ -61,7 +61,7 @@ class BeatmapPlaycountTransformer extends Fractal\TransformerAbstract
 
         return $this->item(
             $playcount->beatmap->set,
-            new BeatmapSetTransformer()
+            new BeatmapsetTransformer()
         );
     }
 }

@@ -33,7 +33,7 @@ class BeatmapsetDiscussion extends Model
 
     public function beatmapset()
     {
-        return $this->belongsTo(BeatmapSet::class);
+        return $this->belongsTo(Beatmapset::class);
     }
 
     public function beatmapDiscussions()
