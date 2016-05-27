@@ -28,7 +28,6 @@ class PrivateMessage extends Model
     protected $dates = [
         'timestamp',
     ];
-    public $timestamps = false;
 
     public function sender()
     {

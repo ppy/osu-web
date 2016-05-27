@@ -30,7 +30,6 @@ class Channel extends Model implements Messageable
     protected $dates = [
         'creation_time',
     ];
-    public $timestamps = false;
 
     public function messages()
     {
