@@ -20,7 +20,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
-use App\Models\BeatmapSet;
+use App\Models\Beatmapset;
 use App\Transformers\ScoreTransformer;
 use Request;
 use Auth;
@@ -31,7 +31,7 @@ class BeatmapsController extends Controller
 
     public function show($id)
     {
-        $set = Beatmap::findOrFail($id)->beatmapSet;
+        $set = Beatmap::findOrFail($id)->beatmapset;
 
         return ujs_redirect(route('beatmapsets.show', ['id' => $set->beatmapset_id]).'#'.$id);
     }
@@ -55,6 +55,7 @@ class BeatmapsController extends Controller
         $scores = $beatmap
             ->scoresBest()
             ->defaultListing()
+            ->limit(config('osu.beatmaps.max-scores'))
             ->with('user');
 
         switch ($type) {

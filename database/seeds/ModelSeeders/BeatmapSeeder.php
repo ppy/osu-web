@@ -63,13 +63,13 @@ class BeatmapSeeder extends Seeder
                         $the_beatmap = $previous_beatmap;
                     }
                     // Create new beatmapset
-                    $set = \App\Models\BeatmapSet::where('beatmapset_id', $the_beatmap->beatmapset_id)->first();
+                    $set = \App\Models\Beatmapset::where('beatmapset_id', $the_beatmap->beatmapset_id)->first();
                     if ($set) {
                         $set->delete();
                         $overbeatmapsets[] = $the_beatmap->beatmapset_id;
                     }
                     $beatmap_diff_names = implode(',', $beatmap_diff_names);
-                    $set = new \App\Models\BeatmapSet;
+                    $set = new \App\Models\Beatmapset;
                     $set->beatmapset_id = $the_beatmap->beatmapset_id;
                     $set->creator = $the_beatmap->creator;
                     $set->artist = $the_beatmap->artist;

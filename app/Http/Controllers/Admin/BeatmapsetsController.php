@@ -19,8 +19,8 @@
  */
 namespace App\Http\Controllers\Admin;
 
-use App\Models\BeatmapSet;
-use App\Jobs\RegenerateBeatmapSetCover;
+use App\Models\Beatmapset;
+use App\Jobs\RegenerateBeatmapsetCover;
 
 class BeatmapsetsController extends Controller
 {
@@ -28,16 +28,16 @@ class BeatmapsetsController extends Controller
 
     public function covers($id)
     {
-        $beatmapSet = BeatmapSet::findOrFail($id);
+        $beatmapset = Beatmapset::findOrFail($id);
 
-        return view('admin.beatmapsets.cover', compact('beatmapSet'));
+        return view('admin.beatmapsets.cover', compact('beatmapset'));
     }
 
     public function regenerateCovers($id)
     {
-        $beatmapSet = BeatmapSet::findOrFail($id);
+        $beatmapset = Beatmapset::findOrFail($id);
 
-        $job = (new RegenerateBeatmapSetCover($beatmapSet))->onQueue('beatmap_processor');
+        $job = (new RegenerateBeatmapsetCover($beatmapset))->onQueue('beatmap_processor');
         $this->dispatch($job);
 
         return back();
@@ -45,7 +45,7 @@ class BeatmapsetsController extends Controller
 
     public function show($id)
     {
-        $beatmapset = BeatmapSet::findOrFail($id);
+        $beatmapset = Beatmapset::findOrFail($id);
 
         return view('admin.beatmapsets.show', compact('beatmapset'));
     }

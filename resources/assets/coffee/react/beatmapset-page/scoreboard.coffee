@@ -26,11 +26,11 @@ BeatmapsetPage.Scoreboard = React.createClass
 
 
   componentDidMount: ->
-    $.subscribe 'beatmapset:scoreboard:loading.beatmapSetPageScoreboard', @setLoading
+    $.subscribe 'beatmapset:scoreboard:loading.beatmapsetPageScoreboard', @setLoading
 
 
   componentWillUnmount: ->
-    $.unsubscribe '.beatmapSetPageScoreboard'
+    $.unsubscribe '.beatmapsetPageScoreboard'
 
 
   render: ->

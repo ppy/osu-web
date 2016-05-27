@@ -94,7 +94,10 @@ Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);
 
 // catchall controllers
 Route::controller('/notifications', 'NotificationController');
-Route::controller('/store', 'StoreController');
+Route::controller('/store', 'StoreController', [
+    'getProduct' => 'store.product',
+    'putRequestNotification' => 'store.request-notification',
+]);
 
 Route::resource('tournaments', 'TournamentsController');
 Route::post('/tournaments/{tournament}/unregister', ['as' => 'tournaments.unregister', 'uses' => 'TournamentsController@unregister']);
@@ -158,14 +161,35 @@ Route::post('/account/update-profile', ['as' => 'account.update-profile', 'uses'
 Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
 
 // API
-Route::get('/api/get_match', ['uses' => 'APIController@getMatch']);
-Route::get('/api/get_packs', ['uses' => 'APIController@getPacks']);
-Route::get('/api/get_user', ['uses' => 'APIController@getUser']);
-Route::get('/api/get_user_best', ['uses' => 'APIController@getUserBest']);
-Route::get('/api/get_user_recent', ['uses' => 'APIController@getUserRecent']);
-Route::get('/api/get_replay', ['uses' => 'APIController@getReplay']);
-Route::get('/api/get_scores', ['uses' => 'APIController@getScores']);
-Route::get('/api/get_beatmaps', ['uses' => 'APIController@getBeatmaps']);
+Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'oauth'], function () {
+    Route::group(['prefix' => 'v2'], function () {
+        Route::group(['prefix' => 'chat'], function () {
+            Route::get('channels', ['uses' => 'ChatController@channels']);                //  GET /api/v2/chat/channels
+            Route::get('messages', ['uses' => 'ChatController@messages']);                //  GET /api/v2/chat/messages
+            Route::get('messages/private', ['uses' => 'ChatController@privateMessages']); //  GET /api/v2/chat/messages/private
+            // Route::post('messages/new', ['uses' => 'ChatController@postMessage']);        // POST /api/v2/chat/messages/new
+        });
+
+        Route::group(['prefix' => 'beatmapsets'], function () {
+            Route::get('favourites', ['uses' => 'BeatmapsetsController@favourites']);     //  GET /api/v2/beatmapsets/favourites
+        });
+        Route::group(['prefix' => 'beatmaps'], function () {
+            Route::get('scores', ['uses' => 'BeatmapsController@scores']);          //  GET /api/v2/beatmaps/scores
+            // Route::get('/{id}/scores', ['uses' => 'BeatmapsController@scores']);          //  GET /api/v2/beatmaps/:beatmap_id/scores
+        });
+    });
+    // legacy api routes
+    Route::group(['prefix' => 'v1'], function () {
+        Route::get('get_match', ['uses' => 'LegacyController@getMatch']);
+        Route::get('get_packs', ['uses' => 'LegacyController@getPacks']);
+        Route::get('get_user', ['uses' => 'LegacyController@getUser']);
+        Route::get('get_user_best', ['uses' => 'LegacyController@getUserBest']);
+        Route::get('get_user_recent', ['uses' => 'LegacyController@getUserRecent']);
+        Route::get('get_replay', ['uses' => 'LegacyController@getReplay']);
+        Route::get('get_scores', ['uses' => 'LegacyController@getScores']);
+        Route::get('get_beatmaps', ['uses' => 'LegacyController@getBeatmaps']);
+    });
+});
 
 // status
 if (Config::get('app.debug')) {
@@ -175,3 +199,8 @@ if (Config::get('app.debug')) {
         Route::get('/', ['uses' => 'StatusController@getMain']);
     });
 }
+
+// OAuth2 (for API)
+Route::get('oauth/authorize', ['as' => 'oauth.authorize.get', 'middleware' => ['check-authorization-params'], 'uses' => 'OAuthController@authorizeForm']);
+Route::post('oauth/authorize', ['as' => 'oauth.authorize.post', 'middleware' => ['check-authorization-params'], 'uses' => 'OAuthController@authorizePost']);
+Route::post('oauth/access_token', ['uses' => 'OAuthController@getAccessToken']);

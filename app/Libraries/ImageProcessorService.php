@@ -19,7 +19,7 @@
  */
 namespace App\Libraries;
 
-use App\Models\BeatmapSet;
+use App\Models\Beatmapset;
 use App\Exceptions\BeatmapProcessorException;
 
 class ImageProcessorService
@@ -32,7 +32,7 @@ class ImageProcessorService
 
     private static function isValidFormat($size)
     {
-        return in_array($size, BeatmapSet::coverSizes(), true);
+        return in_array($size, Beatmapset::coverSizes(), true);
     }
 
     public function optimize($src)

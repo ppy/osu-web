@@ -26,8 +26,10 @@ use DB;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
+use App\Interfaces\Messageable;
+use App\Models\Chat\PrivateMessage;
 
-class User extends Model implements AuthenticatableContract
+class User extends Model implements AuthenticatableContract, Messageable
 {
     use Authenticatable;
 
@@ -357,7 +359,7 @@ class User extends Model implements AuthenticatableContract
             or $this->ownsMod($mod);
     }
 
-    public function ownsSet(BeatmapSet $set)
+    public function ownsSet(Beatmapset $set)
     {
         return $set->user_id === $this->user_id;
     }
@@ -485,19 +487,19 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(UserGroup::class);
     }
 
-    public function beatmapSets()
+    public function beatmapsets()
     {
-        return $this->hasMany(BeatmapSet::class);
+        return $this->hasMany(Beatmapset::class);
     }
 
     public function beatmaps()
     {
-        return $this->hasManyThrough(Beatmap::class, BeatmapSet::class, 'user_id', 'beatmapset_id');
+        return $this->hasManyThrough(Beatmap::class, Beatmapset::class, 'user_id', 'beatmapset_id');
     }
 
-    public function favouriteBeatmapSets()
+    public function favouriteBeatmapsets()
     {
-        return BeatmapSet::whereIn('beatmapset_id', FavouriteBeatmapSet::where('user_id', '=', $this->user_id)->select('beatmapset_id')->get());
+        return Beatmapset::whereIn('beatmapset_id', FavouriteBeatmapset::where('user_id', '=', $this->user_id)->select('beatmapset_id')->get());
     }
 
     public function beatmapPlaycounts()
@@ -977,6 +979,25 @@ class User extends Model implements AuthenticatableContract
                 ->where('ban_status', '=', 2)->count() === 0;
 
         return $canInvite;
+    }
+
+    public function canBeMessagedBy(User $sender)
+    {
+        // TODO: blocklist/ignore, etc
+        return true;
+    }
+
+    public function sendMessage(User $sender, $body)
+    {
+        if (!$this->canBeMessagedBy($sender)) {
+            return false;
+        }
+
+        $message = new PrivateMessage();
+        $message->user_id = $sender->user_id;
+        $message->target_id = $this->user_id;
+        $message->content = $body;
+        $message->save();
     }
 
     public function scopeDefault($query)

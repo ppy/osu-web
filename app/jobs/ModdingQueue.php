@@ -96,7 +96,7 @@ class ModdingQueue
     protected function set($job, $data, $ident, $callback)
     {
         $id = @$data['id'];
-        $set = BeatmapSet::find($id);
+        $set = Beatmapset::find($id);
 
         if (!$set) {
             sentry_log("[$ident] Set not found while trying to $ident: $id", 'queue', Raven_Client::FATAL);

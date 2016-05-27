@@ -19,10 +19,10 @@
  */
 namespace App\Transformers;
 
-use App\Models\BeatmapSet;
+use App\Models\Beatmapset;
 use League\Fractal;
 
-class BeatmapSetTransformer extends Fractal\TransformerAbstract
+class BeatmapsetTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'description',
@@ -30,7 +30,7 @@ class BeatmapSetTransformer extends Fractal\TransformerAbstract
         'beatmaps',
     ];
 
-    public function transform(BeatmapSet $beatmap = null)
+    public function transform(Beatmapset $beatmap = null)
     {
         if ($beatmap === null) {
             return [];
@@ -54,27 +54,27 @@ class BeatmapSetTransformer extends Fractal\TransformerAbstract
         ];
     }
 
-    public function includeDescription(BeatmapSet $beatmapSet)
+    public function includeDescription(Beatmapset $beatmapset)
     {
-        return $this->item($beatmapSet, function ($beatmapSet) {
+        return $this->item($beatmapset, function ($beatmapset) {
             return [
-                'description' => $beatmapSet->description(),
+                'description' => $beatmapset->description(),
             ];
         });
     }
 
-    public function includeUser(BeatmapSet $beatmapSet)
+    public function includeUser(Beatmapset $beatmapset)
     {
         return $this->item(
-            $beatmapSet->user,
+            $beatmapset->user,
             new UserCompactTransformer
         );
     }
 
-    public function includeBeatmaps(BeatmapSet $beatmapSet)
+    public function includeBeatmaps(Beatmapset $beatmapset)
     {
         return $this->collection(
-            $beatmapSet->defaultBeatmaps,
+            $beatmapset->defaultBeatmaps,
             new BeatmapTransformer()
         );
     }

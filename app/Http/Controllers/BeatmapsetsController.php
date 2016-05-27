@@ -20,11 +20,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
-use App\Models\BeatmapSet;
+use App\Models\Beatmapset;
 use App\Models\Country;
 use App\Models\Language;
 use App\Models\Genre;
-use App\Transformers\BeatmapSetTransformer;
+use App\Transformers\BeatmapsetTransformer;
 use App\Transformers\CountryTransformer;
 use League\Fractal\Manager;
 use Auth;
@@ -40,8 +40,8 @@ class BeatmapsetsController extends Controller
         $languages = Language::listing();
         $genres = Genre::listing();
         $beatmaps = fractal_collection_array(
-            BeatmapSet::listing(),
-            new BeatmapSetTransformer,
+            Beatmapset::listing(),
+            new BeatmapsetTransformer,
             'beatmaps'
         );
 
@@ -79,19 +79,19 @@ class BeatmapsetsController extends Controller
 
     public function show($id)
     {
-        $beatmapSet = BeatmapSet
+        $beatmapset = Beatmapset
             ::with('defaultBeatmaps.failtimes', 'user')
             ->findOrFail($id);
 
         $set = fractal_item_array(
-            $beatmapSet,
-            new BeatmapSetTransformer(),
+            $beatmapset,
+            new BeatmapsetTransformer(),
             implode(',', ['beatmaps', 'beatmaps.failtimes', 'user', 'description'])
         );
 
         $countries = fractal_collection_array(Country::all(), new CountryTransformer);
 
-        $title = trans('layout.menu.beatmaps._').' / '.$beatmapSet->artist.' - '.$beatmapSet->title;
+        $title = trans('layout.menu.beatmaps._').' / '.$beatmapset->artist.' - '.$beatmapset->title;
 
         return view('beatmapsets.show', compact('set', 'title', 'countries'));
     }
@@ -136,11 +136,11 @@ class BeatmapsetsController extends Controller
             ARRAY_FILTER_USE_BOTH
         );
 
-        $beatmaps = BeatmapSet::search($params);
+        $beatmaps = Beatmapset::search($params);
 
         return fractal_collection_array(
             $beatmaps,
-            new BeatmapSetTransformer,
+            new BeatmapsetTransformer,
             'beatmaps'
         );
     }
@@ -150,7 +150,7 @@ class BeatmapsetsController extends Controller
         $returnJson = Request::input('format') === 'json';
         $lastUpdated = get_int(Request::input('last_updated'));
 
-        $beatmapset = BeatmapSet::findOrFail($id);
+        $beatmapset = Beatmapset::findOrFail($id);
 
         $discussion = $beatmapset->beatmapsetDiscussion()->firstOrFail();
 
@@ -161,7 +161,7 @@ class BeatmapsetsController extends Controller
         $initialData = [
             'beatmapset' => fractal_item_array(
                 $beatmapset,
-                new BeatmapSetTransformer,
+                new BeatmapsetTransformer,
                 'beatmaps'
             ),
 

@@ -57,14 +57,9 @@ class Beatmap extends Model
         return array_search_null($int, static::MODES);
     }
 
-    public function set()
-    {
-        return $this->beatmapset();
-    }
-
     public function beatmapset()
     {
-        return $this->belongsTo(BeatmapSet::class, 'beatmapset_id');
+        return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
     }
 
     public function beatmapDiscussions()

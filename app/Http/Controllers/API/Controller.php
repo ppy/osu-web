@@ -17,12 +17,13 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models;
+namespace App\Http\Controllers\API;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Bus\DispatchesCommands;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
 
-class FavouriteBeatmapSet extends Model
+class Controller extends BaseController
 {
-    protected $table = 'osu_favouritemaps';
-    public $timestamps = false;
+    use DispatchesCommands, ValidatesRequests;
 }

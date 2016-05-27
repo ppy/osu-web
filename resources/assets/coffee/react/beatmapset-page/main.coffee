@@ -97,9 +97,9 @@ BeatmapsetPage.Main = React.createClass
   componentDidMount: ->
     @removeListeners()
 
-    $.subscribe 'beatmapset:beatmap:set.beatmapSetPage', @setCurrentBeatmapId
-    $.subscribe 'beatmapset:page:jump.beatmapSetPage', @pageJump
-    $.subscribe 'beatmapset:scoreboard:set.beatmapSetPage', @setCurrentScoreboard
+    $.subscribe 'beatmapset:beatmap:set.beatmapsetPage', @setCurrentBeatmapId
+    $.subscribe 'beatmapset:page:jump.beatmapsetPage', @pageJump
+    $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
 
     @pageJump null, @initialPage
     @setCurrentScoreboard null, scoreboard: 'global'
@@ -110,7 +110,7 @@ BeatmapsetPage.Main = React.createClass
 
 
   removeListeners: ->
-    $.unsubscribe '.beatmapSetPage'
+    $.unsubscribe '.beatmapsetPage'
 
   render: ->
     div className: 'osu-layout__section',

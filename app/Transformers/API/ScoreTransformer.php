@@ -30,6 +30,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'score_id' => $score->score_id,
             'score' => $score->score,
             'username' => $score->user->username,
+            'user_id' => $score->user_id,
             'maxcombo' => $score->maxcombo,
             'count50' => $score->count50,
             'count100' => $score->count100,
@@ -43,6 +44,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'user_id' => $score->user_id,
             'rank' => $score->rank,
             'pp' => round($score->pp, 4),
+            'replay' => $score->replay,
         ];
     }
 }

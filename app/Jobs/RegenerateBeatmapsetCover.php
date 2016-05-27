@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Models\BeatmapSet;
+use App\Models\Beatmapset;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Bus\SelfHandling;
@@ -11,7 +11,7 @@ use Raven_Client;
 use App\Exceptions\SilencedException;
 use Statsd;
 
-class RegenerateBeatmapSetCover extends Job implements SelfHandling, ShouldQueue
+class RegenerateBeatmapsetCover extends Job implements SelfHandling, ShouldQueue
 {
     use InteractsWithQueue, SerializesModels;
     protected $beatmapset;
@@ -21,7 +21,7 @@ class RegenerateBeatmapSetCover extends Job implements SelfHandling, ShouldQueue
      *
      * @return void
      */
-    public function __construct(BeatmapSet $beatmapset)
+    public function __construct(Beatmapset $beatmapset)
     {
         $this->beatmapset = $beatmapset;
     }

@@ -25,7 +25,7 @@ class BeatmapsetPage.DifficultyChart extends React.Component
     @_renderChart()
 
   componentWillUnmount: ->
-    $(window).off '.beatmapSetPageDifficultyChart'
+    $(window).off '.beatmapsetPageDifficultyChart'
 
   _renderChart: ->
     data = [
@@ -48,7 +48,7 @@ class BeatmapsetPage.DifficultyChart extends React.Component
 
       @_difficultyChart = new RadarChart @refs.chartArea, options
 
-      $(window).on 'throttled-resize.beatmapSetPageDifficultyChart', () => @_difficultyChart.resize false
+      $(window).on 'throttled-resize.beatmapsetPageDifficultyChart', () => @_difficultyChart.resize false
 
     @_difficultyChart.loadData data
 
