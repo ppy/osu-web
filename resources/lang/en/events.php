@@ -20,10 +20,10 @@
 
 return [
     'achievement' => '<strong><em>:user</em></strong> unlocked the "<strong>:achievement</strong>" achievement!',
-    'beatmap_set_delete' => ':beatmapSet has been deleted.',
-    'beatmap_set_revive' => ':beatmapSet has been revived from eternal slumber by <strong>:user</strong>.',
-    'beatmap_set_update' => '<strong><em>:user</em></strong> has updated the beatmap "<em>:beatmapSet</em>"',
-    'beatmap_set_upload' => '<strong><em>:user</em></strong> has submitted a new beatmap ":beatmapSet"',
+    'beatmapset_delete' => ':beatmapset has been deleted.',
+    'beatmapset_revive' => ':beatmapset has been revived from eternal slumber by <strong>:user</strong>.',
+    'beatmapset_update' => '<strong><em>:user</em></strong> has updated the beatmap "<em>:beatmapset</em>"',
+    'beatmapset_upload' => '<strong><em>:user</em></strong> has submitted a new beatmap ":beatmapset"',
     'empty' => "This user hasn't done anything notable recently!",
     'rank' => '<strong><em>:user</em></strong> achieved rank #:rank on <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> has lost first place on <em>:beatmap</em> (:mode)',

@@ -122,11 +122,11 @@ class UserTransformer extends Fractal\TransformerAbstract
                 $scores = $user
                     ->scoresFirst($mode, true)
                     ->default()
-                    ->with('beatmapSet', 'beatmap')
+                    ->with('beatmapset', 'beatmap')
                     ->limit(100)
                     ->get();
 
-                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapSet');
+                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapset');
             }
 
             return $all;
@@ -142,13 +142,13 @@ class UserTransformer extends Fractal\TransformerAbstract
                     ->scoresBest($mode, true)
                     ->default()
                     ->orderBy('pp', 'DESC')
-                    ->with('beatmapSet', 'beatmap')
+                    ->with('beatmapset', 'beatmap')
                     ->limit(100)
                     ->get();
 
                 ScoreBestModel::fillInPosition($scores);
 
-                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapSet,weight');
+                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapset,weight');
             }
 
             return $all;
@@ -161,9 +161,9 @@ class UserTransformer extends Fractal\TransformerAbstract
             $all = [];
 
             foreach (array_keys(Beatmap::MODES) as $mode) {
-                $scores = $user->scores($mode, true)->default()->with('beatmapSet', 'beatmap')->get();
+                $scores = $user->scores($mode, true)->default()->with('beatmapset', 'beatmap')->get();
 
-                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapSet');
+                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapset');
             }
 
             return $all;
@@ -231,7 +231,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     public function includeRankedAndApprovedBeatmapsets(User $user)
     {
         return $this->collection(
-            $user->beatmapSets()->rankedOrApproved()->active()->get(),
+            $user->beatmapsets()->rankedOrApproved()->active()->get(),
             new BeatmapsetTransformer()
         );
     }

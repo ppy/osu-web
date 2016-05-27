@@ -47,12 +47,12 @@ el = React.createElement
             a
               href: score.beatmap.data.url
               className: 'detail-row__text-score detail-row__text-score--title'
-              title: "#{score.beatmapSet.data.artist} - #{score.beatmapSet.data.title} "
-              "#{score.beatmapSet.data.title} [#{score.beatmap.data.version}]"
+              title: "#{score.beatmapset.data.artist} - #{score.beatmapset.data.title} "
+              "#{score.beatmapset.data.title} [#{score.beatmap.data.version}]"
               ' '
               small
                 className: 'detail-row__text-score detail-row__text-score--artist'
-                score.beatmapSet.data.artist
+                score.beatmapset.data.artist
           div
             className: 'detail-row__detail-row detail-row__detail-row--bottom'
             span

@@ -27,7 +27,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmap',
-        'beatmapSet',
+        'beatmapset',
         'weight',
         'user',
     ];
@@ -56,7 +56,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
 
     public function includeBeatmapset(Score $score)
     {
-        return $this->item($score->beatmapSet, new BeatmapsetTransformer);
+        return $this->item($score->beatmapset, new BeatmapsetTransformer);
     }
 
     public function includeWeight(Score $score)

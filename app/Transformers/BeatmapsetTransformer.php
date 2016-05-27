@@ -54,27 +54,27 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         ];
     }
 
-    public function includeDescription(Beatmapset $beatmapSet)
+    public function includeDescription(Beatmapset $beatmapset)
     {
-        return $this->item($beatmapSet, function ($beatmapSet) {
+        return $this->item($beatmapset, function ($beatmapset) {
             return [
-                'description' => $beatmapSet->description(),
+                'description' => $beatmapset->description(),
             ];
         });
     }
 
-    public function includeUser(Beatmapset $beatmapSet)
+    public function includeUser(Beatmapset $beatmapset)
     {
         return $this->item(
-            $beatmapSet->user,
+            $beatmapset->user,
             new UserCompactTransformer
         );
     }
 
-    public function includeBeatmaps(Beatmapset $beatmapSet)
+    public function includeBeatmaps(Beatmapset $beatmapset)
     {
         return $this->collection(
-            $beatmapSet->defaultBeatmaps,
+            $beatmapset->defaultBeatmaps,
             new BeatmapTransformer()
         );
     }

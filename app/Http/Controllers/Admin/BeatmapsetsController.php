@@ -28,16 +28,16 @@ class BeatmapsetsController extends Controller
 
     public function covers($id)
     {
-        $beatmapSet = Beatmapset::findOrFail($id);
+        $beatmapset = Beatmapset::findOrFail($id);
 
-        return view('admin.beatmapsets.cover', compact('beatmapSet'));
+        return view('admin.beatmapsets.cover', compact('beatmapset'));
     }
 
     public function regenerateCovers($id)
     {
-        $beatmapSet = Beatmapset::findOrFail($id);
+        $beatmapset = Beatmapset::findOrFail($id);
 
-        $job = (new RegenerateBeatmapsetCover($beatmapSet))->onQueue('beatmap_processor');
+        $job = (new RegenerateBeatmapsetCover($beatmapset))->onQueue('beatmap_processor');
         $this->dispatch($job);
 
         return back();
