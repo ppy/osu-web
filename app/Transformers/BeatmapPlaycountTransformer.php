@@ -26,12 +26,12 @@ class BeatmapPlaycountTransformer extends Fractal\TransformerAbstract
 {
     protected $defaultIncludes = [
         'beatmap',
-        'beatmapSet',
+        'beatmapset',
     ];
 
     protected $availableIncludes = [
         'beatmap',
-        'beatmapSet',
+        'beatmapset',
     ];
 
     public function transform(BeatmapPlaycount $playcount)
@@ -60,7 +60,7 @@ class BeatmapPlaycountTransformer extends Fractal\TransformerAbstract
         }
 
         return $this->item(
-            $playcount->beatmap->set,
+            $playcount->beatmap->beatmapset,
             new BeatmapsetTransformer()
         );
     }
