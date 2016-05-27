@@ -60,7 +60,7 @@ class BeatmapPlaycountTransformer extends Fractal\TransformerAbstract
         }
 
         return $this->item(
-            $playcount->beatmap->set,
+            $playcount->beatmap->beatmapset,
             new BeatmapsetTransformer()
         );
     }

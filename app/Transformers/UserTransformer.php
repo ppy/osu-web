@@ -203,12 +203,12 @@ class UserTransformer extends Fractal\TransformerAbstract
     public function includeBeatmapPlaycounts(User $user)
     {
         $beatmapPlaycounts = $user->beatmapPlaycounts()
-            ->with('beatmap', 'beatmap.set')
+            ->with('beatmap', 'beatmap.beatmapset')
             ->orderBy('playcount', 'desc')
             ->limit(100)
             ->get()
             ->filter(function ($pc) {
-                return $pc->beatmap !== null && $pc->beatmap->set !== null;
+                return $pc->beatmap !== null && $pc->beatmap->beatmapset !== null;
             });
 
         return $this->collection($beatmapPlaycounts, new BeatmapPlaycountTransformer());
