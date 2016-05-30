@@ -235,7 +235,7 @@ class OsuAuthorize
         }
 
         if ($post->poster_id !== $user->user_id) {
-            return $prefix.'not_post_owner';
+            return $prefix.'not_owner';
         }
 
         if ($post->post_edit_locked) {
@@ -282,7 +282,7 @@ class OsuAuthorize
         }
 
         if (!$forum->isOpen()) {
-            return 'forum.topic.store.forum_closed';
+            return $prefix.'forum_closed';
         }
 
         if ($user->isGMT()) {
@@ -347,11 +347,11 @@ class OsuAuthorize
             }
 
             if ($user->isSilenced()) {
-                return $prefix.'silenced';
+                return $prefix.'user.silenced';
             }
 
             if ($user->isRestricted()) {
-                return $prefix.'restricted';
+                return $prefix.'user.restricted';
             }
 
             if ($page->post_edit_locked || $page->topic->isLocked()) {
