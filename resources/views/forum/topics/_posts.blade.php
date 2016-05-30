@@ -17,11 +17,11 @@
 --}}
 @foreach($posts as $post)
     <?php
-        if (Auth::check()) {
-            $withDeleteLink = $post->poster_id === Auth::user()->user_id;
-        }
+        $withDeleteLink = Auth::check()
+            ? $post->poster_id === Auth::user()->user_id
+            : false;
 
-        if (!isset($withDeleteLink) || !$withDeleteLink) {
+        if (!$withDeleteLink) {
             $withDeleteLink = authz('ForumPostDelete', $post)->can();
         }
     ?>
