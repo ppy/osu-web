@@ -64,13 +64,17 @@ Route::get('/ranking/country', ['as' => 'ranking-country', 'uses' => 'RankingCon
 Route::get('/ranking/mapper', ['as' => 'ranking-mapper', 'uses' => 'RankingController@getMapper']);
 
 // community section (forum will end up being a section of its own)
-Route::get('/community/forum', function () { return Redirect::to('/forum'); });
+Route::get('/community/forum', function () {
+    return Redirect::to('/forum');
+});
 
 Route::get('/community/live', ['as' => 'live', 'uses' => 'CommunityController@getLive']);
 Route::post('/community/live', ['as' => 'live', 'uses' => 'CommunityController@postLive']);
 
 Route::get('/community/chat', ['as' => 'chat', 'uses' => 'CommunityController@getChat']);
-Route::get('/community/profile/{id}', function ($id) { return Redirect::route('users.show', $id); });
+Route::get('/community/profile/{id}', function ($id) {
+    return Redirect::route('users.show', $id);
+});
 
 Route::get('/community/slack', ['as' => 'slack', 'uses' => 'CommunityController@getSlack']);
 Route::post('/community/slack/agree', ['as' => 'slack.agree', 'uses' => 'CommunityController@postSlackAgree']);
@@ -81,13 +85,19 @@ Route::delete('users/logout', ['as' => 'users.logout', 'uses' => 'UsersControlle
 Route::get('users/disabled', ['as' => 'users.disabled', 'uses' => 'UsersController@disabled']);
 
 // Authentication section (Temporarily set up as replacement/improvement of config("osu.urls.*"))
-Route::get('users/forgot-password', ['as' => 'users.forgot-password', function () { return Redirect::to('https://osu.ppy.sh/p/forgot'); }]);
-Route::get('users/register', ['as' => 'users.register', function () { return Redirect::to('https://osu.ppy.sh/p/register'); }]);
+Route::get('users/forgot-password', ['as' => 'users.forgot-password', function () {
+    return Redirect::to('https://osu.ppy.sh/p/forgot');
+}]);
+Route::get('users/register', ['as' => 'users.register', function () {
+    return Redirect::to('https://osu.ppy.sh/p/register');
+}]);
 
 Route::get('u/{users}', ['as' => 'users.show', 'uses' => 'UsersController@show']);
 
 // help section
-Route::get('/wiki', ['as' => 'wiki', function () { return Redirect::to('https://osu.ppy.sh/wiki'); }]);
+Route::get('/wiki', ['as' => 'wiki', function () {
+    return Redirect::to('https://osu.ppy.sh/wiki');
+}]);
 
 Route::get('/help/support', ['as' => 'support', 'uses' => 'HelpController@getSupport']);
 Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);
@@ -141,7 +151,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::resource('addresses', 'AddressesController', ['only' => ['update']]);
 
-        Route::get('/', function () { return Redirect::route('admin.store.orders.index'); });
+        Route::get('/', function () {
+            return Redirect::route('admin.store.orders.index');
+        });
     });
 
     Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
