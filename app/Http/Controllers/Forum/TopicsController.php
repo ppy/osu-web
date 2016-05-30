@@ -173,7 +173,7 @@ class TopicsController extends Controller
             ->with('user.country')
             ->with('user.supports')
             ->get()
-            ->sortBy(function ($p) { return $p->post_id; });
+            ->sortBy('post_id');
 
         if ($posts->count() === 0) {
             abort($skipLayout ? 204 : 404);
