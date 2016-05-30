@@ -45,7 +45,7 @@ class ChatController extends Controller
     {
         $channel_ids = array_map('intval', explode(',', Request::input('channels')));
         $since = intval(Request::input('since'));
-        $limit = intval(Request::input('limit', 50));
+        $limit = min(50, intval(Request::input('limit', 50)));
 
         $channels = Channel::whereIn('channel_id', $channel_ids)
             ->get()
@@ -53,36 +53,43 @@ class ChatController extends Controller
                 return authz('ChatChannelRead', $channel)->can();
             });
 
-        $messages = Message::whereIn('channel_id', $channel_ids)
-            ->with('user')
-            ->where('message_id', '>', $since)
-            ->orderBy('message_id', 'asc')
-            ->limit(min(abs($limit), 50))
-            ->get();
+        $messages = Message::whereIn('channel_id', $channel_ids)->with('user');
 
-        return fractal_api_serialize_collection(
-            $messages,
+        if ($since) {
+            $messages = $messages->where('message_id', '>', $since);
+        }
+
+        $collection = fractal_api_serialize_collection(
+            $messages->orderBy('message_id', $since ? 'asc' : 'desc')
+                ->limit($limit)
+                ->get(),
             new MessageTransformer()
         );
+
+        return $since ? $collection : array_reverse($collection);
     }
 
     public function privateMessages()
     {
         $since = intval(Request::input('since'));
-        $limit = intval(Request::input('limit', 50));
+        $limit = min(50, intval(Request::input('limit', 50)));
 
-        $messages = PrivateMessage::where('message_id', '>', $since)
-            ->toOrFrom(Auth::user()->user_id)
+        $messages = PrivateMessage::toOrFrom($this->current_user->user_id)
             ->with('sender')
-            ->with('receiver')
-            ->orderBy('message_id', 'asc')
-            ->limit(min(abs($limit), 50))
-            ->get();
+            ->with('receiver');
 
-        return fractal_api_serialize_collection(
-            $messages,
+        if ($since) {
+            $messages = $messages->where('message_id', '>', $since);
+        }
+
+        $collection = fractal_api_serialize_collection(
+            $messages->orderBy('message_id', $since ? 'asc' : 'desc')
+                ->limit($limit)
+                ->get(),
             new PrivateMessageTransformer()
         );
+
+        return $since ? $collection : array_reverse($collection);
     }
 
     public function postMessage()
