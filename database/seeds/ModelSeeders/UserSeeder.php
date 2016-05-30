@@ -95,7 +95,6 @@ class UserSeeder extends Seeder
                 $u->rankHistories()->save($hist);
             }
             // END RANK HISTORY
-
         }); // end each user
     }
 }
