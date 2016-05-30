@@ -205,7 +205,7 @@ class Topic extends Model
 
         preg_match_all("/\[({$this->issueTypes})\]/i", $this->topic_title, $issues);
 
-        return array_map(function ($value) { return strtolower($value); }, $issues[1]);
+        return array_map('strtolower', $issues[1]);
     }
 
     public function scopePinned($query)
@@ -240,7 +240,9 @@ class Topic extends Model
         }
 
         $firstPostPosition = $this->postPosition($sortedPosts->first()->post_id);
-        $postIds = $sortedPosts->map(function ($p) { return $p->post_id; });
+        $postIds = $sortedPosts->map(function ($p) {
+            return $p->post_id;
+        });
 
         $buf = [];
         $currentPostPosition = $firstPostPosition;

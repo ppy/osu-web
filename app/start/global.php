@@ -52,7 +52,6 @@ ClassLoader::addDirectories([
 |
 */
 Response::macro('route', function ($url, $ids = [], $params = null) {
-
     try {
         $url = URL::route($url, $ids, $absolute = false);
     } catch (Exception $e) {

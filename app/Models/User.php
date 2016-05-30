@@ -114,8 +114,8 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         $playCount = array_reduce(array_keys(Beatmap::MODES), function ($result, $mode) use ($user) {
-                return $result + $user->statistics($mode, true)->value('playcount');
-            }, 0);
+            return $result + $user->statistics($mode, true)->value('playcount');
+        }, 0);
 
         return $user->user_lastvisit
             ->addMonths(6)                 //base inactivity period for all accounts
