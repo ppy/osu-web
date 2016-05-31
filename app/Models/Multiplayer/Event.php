@@ -37,4 +37,9 @@ class Event extends Model
     {
         return $this->belongsTo(Game::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(App\Models\User::class);
+    }
 }

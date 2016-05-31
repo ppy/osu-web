@@ -35,8 +35,18 @@ class Game extends Model
         return $this->hasMany(Score::class);
     }
 
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
     public function match()
     {
         return $this->belongsTo(Match::class);
+    }
+
+    public function beatmap()
+    {
+        return $this->belongsTo(App\Models\Beatmap::class);
     }
 }
