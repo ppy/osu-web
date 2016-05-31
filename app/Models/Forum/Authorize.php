@@ -26,15 +26,8 @@ use Illuminate\Database\Eloquent\Model;
 class Authorize extends Model
 {
     const OPTIONS = [
-        // acl_options where auth_option = 'f_post'
-        'post' => 17,
         // acl_options where auth_option = 'f_postcount'
         'postsCount' => 18,
-    ];
-
-    const ROLES = [
-        // acl_roles_data where auth_option_id = 17
-        'canPost' => [14, 21],
     ];
 
     protected $table = 'phpbb_acl_groups';
