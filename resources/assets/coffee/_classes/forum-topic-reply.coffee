@@ -50,7 +50,8 @@ class @ForumTopicReply
     @deleteState 'sticking'
     @input[0].value = @getState('text') || ''
     @activate() if @getState('active') == '1'
-
+    @CheckForDoublePost()
+    
 
   available: => @box.length
 
@@ -74,7 +75,6 @@ class @ForumTopicReply
 
     @stickyFooter.markerEnable @marker()
     $.publish 'stickyFooter:check'
-    @checkForDoublePost()
 
   activateWithReply: (e, data) =>
     data += '\n'
@@ -167,5 +167,6 @@ class @ForumTopicReply
       dataType: 'json',
     .success (data) ->
       $('.forum-post__warning-overlay.forum-post__warning-overlay--hidden').attr('class', 'forum-post__warning-overlay') if data.doublepost == true 
-      return
+      @deactivate() if data.doublepost == true && @getstate('active') == '1'
+      return 
     return

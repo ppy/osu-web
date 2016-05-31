@@ -232,6 +232,6 @@ class TopicsController extends Controller
         $topic = Topic::FindOrFail($topic_id);
         $user = Auth::user();
 
-        return ['doublepost' => $topic->isadoublepost($user) === true];
+        return ['doublepost' => $topic->isDoublePostBy($user) === true];
     }
 }
