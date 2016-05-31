@@ -55,7 +55,7 @@ class TopicCoversController extends Controller
             $topic = Topic::findOrFail(Request::input('topic_id'));
 
             $this->authorizePost($topic->forum, $topic);
-            auth_check('ForumTopicEdit', $topic)->ensureCan();
+            priv_check('ForumTopicEdit', $topic)->ensureCan();
             if ($topic->cover !== null) {
                 abort(422);
             }
@@ -82,7 +82,7 @@ class TopicCoversController extends Controller
             return $return;
         }
 
-        auth_check('ForumTopicCoverEdit', $cover)->ensureCan();
+        priv_check('ForumTopicCoverEdit', $cover)->ensureCan();
 
         $cover->deleteWithFile();
 
@@ -93,7 +93,7 @@ class TopicCoversController extends Controller
     {
         $cover = TopicCover::findOrFail($id);
 
-        auth_check('ForumTopicCoverEdit', $cover)->ensureCan();
+        priv_check('ForumTopicCoverEdit', $cover)->ensureCan();
 
         if (Request::hasFile('cover_file') === true) {
             try {

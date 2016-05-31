@@ -39,7 +39,7 @@ class BeatmapDiscussionsController extends Controller
     {
         $discussion = BeatmapDiscussion::findOrFail($id);
 
-        auth_check('BeatmapDiscussionVote', $discussion)->ensureCan();
+        priv_check('BeatmapDiscussionVote', $discussion)->ensureCan();
 
         $params = get_params(Request::all(), 'beatmap_discussion_vote',
             ['score:int'],

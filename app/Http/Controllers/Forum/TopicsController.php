@@ -56,7 +56,7 @@ class TopicsController extends Controller
     {
         $forum = Forum::findOrFail(Request::input('forum_id'));
 
-        auth_check('ForumTopicStore', $forum)->ensureCan();
+        priv_check('ForumTopicStore', $forum)->ensureCan();
 
         $cover = fractal_item_array(
             TopicCover::findForUse(Request::old('cover_id'), Auth::user()),
@@ -70,7 +70,7 @@ class TopicsController extends Controller
     {
         $forum = Forum::findOrFail(Request::input('forum_id'));
 
-        auth_check('ForumTopicStore', $forum)->ensureCan();
+        priv_check('ForumTopicStore', $forum)->ensureCan();
 
         $post = new Post([
             'post_text' => Request::input('body'),
@@ -95,7 +95,7 @@ class TopicsController extends Controller
 
         $forum = Forum::findOrFail(Request::input('forum_id'));
 
-        auth_check('ForumTopicStore', $forum)->ensureCan();
+        priv_check('ForumTopicStore', $forum)->ensureCan();
 
         $topic = Topic::createNew([
             'forum' => $forum,
@@ -121,7 +121,7 @@ class TopicsController extends Controller
 
         $topic = Topic::with('forum.cover')->findOrFail($id);
 
-        auth_check('ForumView', $topic->forum)->ensureCan();
+        priv_check('ForumView', $topic->forum)->ensureCan();
 
         $posts = $topic->posts();
 
@@ -197,7 +197,7 @@ class TopicsController extends Controller
     {
         $topic = Topic::findOrFail($id);
 
-        auth_check('ForumTopicReply', $topic)->ensureCan();
+        priv_check('ForumTopicReply', $topic)->ensureCan();
 
         $this->validate($request, [
             'body' => 'required',

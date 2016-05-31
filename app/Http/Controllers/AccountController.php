@@ -98,7 +98,7 @@ class AccountController extends Controller
     {
         $user = Auth::user();
 
-        auth_check('UserPageEdit', $user)->ensureCan();
+        priv_check('UserPageEdit', $user)->ensureCan();
 
         $user = $user->updatePage(Request::input('body'));
 

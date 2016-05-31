@@ -22,16 +22,16 @@
             : false;
 
         if (!$withDeleteLink) {
-            $withDeleteLink = auth_check('ForumPostDelete', $post)->can();
+            $withDeleteLink = priv_check('ForumPostDelete', $post)->can();
         }
     ?>
     @include('forum.topics._post', [
         'post' => $post,
         'options' => [
             'deleteLink' => $withDeleteLink,
-            'editLink' => auth_check('ForumPostEdit', $post)->can(),
+            'editLink' => priv_check('ForumPostEdit', $post)->can(),
             'postPosition' => $postsPosition[$post->post_id],
-            'replyLink' => auth_check('ForumTopicReply', $topic)->can(),
+            'replyLink' => priv_check('ForumTopicReply', $topic)->can(),
         ],
     ])
 @endforeach
