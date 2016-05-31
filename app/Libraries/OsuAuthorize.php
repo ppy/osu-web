@@ -52,7 +52,7 @@ class OsuAuthorize
         return $this->cache[$cacheKey];
     }
 
-    public function cheackBeatmapDiscussionPost($user, $discussion)
+    public function checkBeatmapDiscussionPost($user, $discussion)
     {
         if ($user === null) {
             return 'require_login';
@@ -61,7 +61,7 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function cheackBeatmapDiscussionResolve($user, $discussion)
+    public function checkBeatmapDiscussionResolve($user, $discussion)
     {
         $prefix = 'beatmap_discussion.resolve.';
 
@@ -70,22 +70,22 @@ class OsuAuthorize
         }
 
         // no point resolving general discussion?
-        if ($this->timestamp === null) {
+        if ($discussion->timestamp === null) {
             return $prefix.'general_discussion';
         }
 
-        if ($user->user_id === $this->user_id) {
+        if ($user->user_id === $discussion->user_id) {
             return 'ok';
         }
 
-        if ($user->user_id === $this->beatmapset->user_id) {
+        if ($user->user_id === $discussion->beatmapset->user_id) {
             return 'ok';
         }
 
         return $prefix.'not_owner';
     }
 
-    public function cheackBeatmapDiscussionVote($user, $discussion)
+    public function checkBeatmapDiscussionVote($user, $discussion)
     {
         if ($user === null) {
             return 'require_login';
