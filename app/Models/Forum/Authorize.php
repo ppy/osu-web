@@ -19,17 +19,11 @@
  */
 namespace App\Models\Forum;
 
-use App\Models\UserGroup;
 use Illuminate\Database\Eloquent\Model;
 
 // temporary class until simpler acl is implemented
 class Authorize extends Model
 {
-    const OPTIONS = [
-        // acl_options where auth_option = 'f_postcount'
-        'postsCount' => 18,
-    ];
-
     protected $table = 'phpbb_acl_groups';
 
     public static function aclCheck($user, $authOption, $forum)
@@ -64,7 +58,6 @@ class Authorize extends Model
         $roleAclForumIds = model_pluck(static::roleAcl($groupIds, $authOptionId), 'forum_id');
 
         return array_unique(array_merge($directAclForumIds, $roleAclForumIds));
-
     }
 
     public static function increasesPostsCount($user, $forum)
