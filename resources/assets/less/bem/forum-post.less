@@ -164,10 +164,6 @@
         .default-border-radius;
       }
     }
-    &--hidden
-    {
-        display: none;
-    }
   }
 
   &__card {
@@ -349,12 +345,14 @@
       color: @grey-3;
     }
   }
+
   &__reply-container {
     background-color: fade(@grey-3, 90%);
     width: 100%;
     height: 100%;
     padding-bottom: @spacing;
     padding-top: @_reply-xs-top-margin;
+   
     @media @desktop {
       padding-top: @spacing;
     }

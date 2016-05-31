@@ -114,29 +114,6 @@ Route::post('/tournaments/{tournament}/unregister', ['as' => 'tournaments.unregi
 Route::post('/tournaments/{tournament}/register', ['as' => 'tournaments.register', 'uses' => 'TournamentsController@register']);
 
 // Forum controllers
-<<<<<<< HEAD
-Route::group(['prefix' => 'forum'], function () {
-    Route::get('/', ['as' => 'forum.forums.index', 'uses' => "Forum\ForumsController@index"]);
-    Route::get('{forums}', ['as' => 'forum.forums.show', 'uses' => "Forum\ForumsController@show"]);
-
-    Route::get('{forums}/topics/create', ['as' => 'forum.topics.create', 'uses' => "Forum\TopicsController@create"]);
-    Route::post('{forums}/topics/preview', ['as' => 'forum.topics.preview', 'uses' => "Forum\TopicsController@preview"]);
-    Route::post('{forums}/topics', ['as' => 'forum.topics.store', 'uses' => "Forum\TopicsController@store"]);
-
-    Route::get('t/{topics}', ['as' => 'forum.topics.show', 'uses' => "Forum\TopicsController@show"]);
-    Route::post('t/{topics}/reply', ['as' => 'forum.topics.reply', 'uses' => "Forum\TopicsController@reply"]);
-    Route::post('t/{topics}/lock', ['as' => 'forum.topics.lock', 'uses' => "Forum\TopicsController@lock"]);
-    Route::get('t/{topics}/doublepost', "Forum\TopicsController@checkForDoublePost");
-
-    Route::resource('forum-covers', 'Forum\ForumCoversController', ['only' => ['store', 'update', 'destroy']]);
-    Route::resource('topic-covers', 'Forum\TopicCoversController', ['only' => ['store', 'update', 'destroy']]);
-
-    Route::get('p/{posts}', ['as' => 'forum.posts.show', 'uses' => "Forum\PostsController@show"]);
-    Route::delete('p/{posts}', ['as' => 'forum.posts.destroy', 'uses' => "Forum\PostsController@destroy"]);
-    Route::patch('p/{posts}', ['as' => 'forum.posts.update', 'uses' => "Forum\PostsController@update"]);
-    Route::get('p/{posts}/edit', ['as' => 'forum.posts.edit', 'uses' => "Forum\PostsController@edit"]);
-    Route::get('p/{posts}/raw', ['as' => 'forum.posts.raw', 'uses' => "Forum\PostsController@raw"]);
-=======
 Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
     Route::get('/', ['as' => 'forum.forums.index', 'uses' => 'ForumsController@index']);
     Route::get('{forums}', ['as' => 'forum.forums.show', 'uses' => 'ForumsController@show']);
@@ -145,6 +122,7 @@ Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
     Route::post('topics/preview', ['as' => 'forum.topics.preview', 'uses' => 'TopicsController@preview']);
     Route::post('topics/{topics}/reply', ['as' => 'forum.topics.reply', 'uses' => 'TopicsController@reply']);
     Route::post('topics/{topics}/lock', ['as' => 'forum.topics.lock', 'uses' => 'TopicsController@lock']);
+    Route::get('t/{topics}/doublepost', "Forum\TopicsController@checkForDoublePost");
     Route::resource('topics', 'TopicsController', ['only' => ['create', 'store']]);
 
     Route::resource('forum-covers', 'ForumCoversController', ['only' => ['store', 'update', 'destroy']]);
@@ -153,7 +131,6 @@ Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
     Route::get('p/{posts}', ['as' => 'forum.posts.show', 'uses' => 'PostsController@show']);
     Route::get('posts/{posts}/raw', ['as' => 'forum.posts.raw', 'uses' => 'PostsController@raw']);
     Route::resource('posts', 'PostsController', ['only' => ['destroy', 'update', 'edit']]);
->>>>>>> upstream/master
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {

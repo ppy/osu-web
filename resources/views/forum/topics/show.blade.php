@@ -120,6 +120,7 @@
                 </div>
             </div>
         {!! Form::close() !!}
+
     </div>
     <div class="js-sticky-footer" data-sticky-footer-disabled="1" data-sticky-footer-target="forum-topic-reply"></div>
 @endsection

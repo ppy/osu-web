@@ -440,11 +440,15 @@ class Topic extends Model
         if ($user->user_id === $this->topic_poster) {
             if (Carbon::now()->subhours(config('osu.forum.authorDoublePostTime')) > $this->topic_last_post_time) {
                 return false;
-            } else return true;
+            } else {
+                return true;
+            }
         } else {
             if (Carbon::now()->subhours(config('osu.forum.doublePostTime')) > $this->topic_last_post_time) {
                 return false;
-            } else return true;
+            } else {
+                return true;
+            }
         }
     }
 }
