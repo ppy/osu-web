@@ -99,6 +99,8 @@ return [
 
     'require_login' => 'Please login to proceed.',
 
+    'unauthorized' => 'Access denied.',
+
     'user' => [
         'page' => [
             'edit' => [
