@@ -38,32 +38,16 @@ class Authorize extends Model
         $authOptionId = AuthOption::where('auth_option', $authOption)->value('auth_option_id');
 
         // the group may contain direct acl entry
-        $isAuthorized = static::where([
-            'forum_id' => $forum->forum_id,
-            // auth_setting means the actual acl
-            // ...or so I think.
-            'auth_setting' => 1,
-            'auth_option_id' => $authOptionId,
-        ])
-        ->whereIn('group_id', $groupIds)
-        ->exists();
+        $isAuthorized = static::directAcl($groupIds, $authOptionId)
+            ->where('forum_id', $forum->forum_id)
+            ->exists();
 
         // the group may also be part of role which may have matching
         // acl entry
         if (!$isAuthorized) {
-            // first get all role_id which matches requested auth option
-            $roleIds = model_pluck(AuthRole::where([
-                'auth_setting' => 1,
-                'auth_option_id' => $authOptionId,
-            ]), 'role_id');
-
-            $isAuthorized = static::where([
-                'forum_id' => $forum->forum_id,
-                'auth_setting' => 0,
-            ])
-            ->whereIn('auth_role_id', $roleIds)
-            ->whereIn('group_id', $groupIds)
-            ->exists();
+            $isAuthorized = static::roleAcl($groupIds, $authOptionId)
+                ->where('forum_id', $forum->forum_id)
+                ->exists();
         }
 
         // there's actually another one (phpbb_acl_users) but doesn't seem
@@ -76,23 +60,8 @@ class Authorize extends Model
         $groupIds = $user->groupIds();
         $authOptionId = AuthOption::where('auth_option', $authOption)->value('auth_option_id');
 
-        // direct acl entry
-        $directAclForumIds = model_pluck(static::where([
-            'auth_setting' => 1,
-            'auth_option_id' => $authOptionId,
-        ])
-        ->whereIn('group_id', $groupIds), 'forum_id');
-
-        $roleIds = model_pluck(AuthRole::where([
-            'auth_setting' => 1,
-            'auth_option_id' => $authOptionId,
-        ]), 'role_id');
-
-        $roleAclForumIds = model_pluck(static::where([
-            'auth_setting' => 0,
-        ])
-        ->whereIn('auth_role_id', $roleIds)
-        ->whereIn('group_id', $groupIds), 'forum_id');
+        $directAclForumIds = model_pluck(static::directAcl($groupIds, $authOptionId), 'forum_id');
+        $roleAclForumIds = model_pluck(static::roleAcl($groupIds, $authOptionId), 'forum_id');
 
         return array_unique(array_merge($directAclForumIds, $roleAclForumIds));
 
@@ -106,5 +75,30 @@ class Authorize extends Model
     public static function postsCountedForums($user)
     {
         return static::aclGetAllowedForums($user, 'f_postcount');
+    }
+
+    public function scopeDirectAcl($query, $groupIds, $authOptionId)
+    {
+        return $query
+            ->where([
+                'auth_setting' => 1,
+                'auth_option_id' => $authOptionId,
+            ])
+            ->whereIn('group_id', $groupIds);
+    }
+
+    public function scopeRoleAcl($query, $groupIds, $authOptionId)
+    {
+        $roleIds = model_pluck(AuthRole::where([
+            'auth_setting' => 1,
+            'auth_option_id' => $authOptionId,
+        ]), 'role_id');
+
+        return $query
+            ->where([
+                'auth_setting' => 0,
+            ])
+            ->whereIn('auth_role_id', $roleIds)
+            ->whereIn('group_id', $groupIds);
     }
 }
