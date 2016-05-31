@@ -948,13 +948,13 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function refreshForumCache($forum = null, $postsChangeCount = 0)
     {
         if ($forum !== null) {
-            if (Forum\Authorize::increasesPostsCount($forum) !== true) {
+            if (Forum\Authorize::increasesPostsCount($this, $forum) !== true) {
                 $postsChangeCount = 0;
             }
 
             $newPostsCount = DB::raw("user_posts + {$postsChangeCount}");
         } else {
-            $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums())->count();
+            $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums($this))->count();
         }
 
         $lastPost = $this->forumPosts()->last()->select('post_time')->first();

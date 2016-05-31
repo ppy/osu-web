@@ -71,19 +71,40 @@ class Authorize extends Model
         return $isAuthorized;
     }
 
-    public static function increasesPostsCount($forum)
+    public static function aclGetAllowedForums($user, $authOption)
     {
-        return static::where('group_id', UserGroup::GROUPS['default'])
-            ->where('forum_id', $forum->forum_id)
-            ->where('auth_option_id', static::OPTIONS['postsCount'])
-            ->exists();
+        $groupIds = $user->groupIds();
+        $authOptionId = AuthOption::where('auth_option', $authOption)->value('auth_option_id');
+
+        // direct acl entry
+        $directAclForumIds = model_pluck(static::where([
+            'auth_setting' => 1,
+            'auth_option_id' => $authOptionId,
+        ])
+        ->whereIn('group_id', $groupIds), 'forum_id');
+
+        $roleIds = model_pluck(AuthRole::where([
+            'auth_setting' => 1,
+            'auth_option_id' => $authOptionId,
+        ]), 'role_id');
+
+        $roleAclForumIds = model_pluck(static::where([
+            'auth_setting' => 0,
+        ])
+        ->whereIn('auth_role_id', $roleIds)
+        ->whereIn('group_id', $groupIds), 'forum_id');
+
+        return array_unique(array_merge($directAclForumIds, $roleAclForumIds));
+
     }
 
-    public static function postsCountedForums()
+    public static function increasesPostsCount($user, $forum)
     {
-        return model_pluck(
-            static::where('group_id', UserGroup::GROUPS['default'])
-                ->where('auth_option_id', static::OPTIONS['postsCount']),
-            'forum_id');
+        return static::aclCheck($user, 'f_postcount', $forum);
+    }
+
+    public static function postsCountedForums($user)
+    {
+        return static::aclGetAllowedForums($user, 'f_postcount');
     }
 }
