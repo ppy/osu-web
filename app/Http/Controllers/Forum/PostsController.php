@@ -42,7 +42,7 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        authz('ForumPostDelete', $post)->ensureCan();
+        auth_check('ForumPostDelete', $post)->ensureCan();
 
         $deletedPostPosition = $post->topic->postPosition($post->post_id);
 
@@ -66,7 +66,7 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        authz('ForumPostEdit', $post)->ensureCan();
+        auth_check('ForumPostEdit', $post)->ensureCan();
 
         return view('forum.topics._post_edit', compact('post'));
     }
@@ -75,7 +75,7 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        authz('ForumPostEdit', $post)->ensureCan();
+        auth_check('ForumPostEdit', $post)->ensureCan();
 
         $body = Request::input('body');
         if ($body !== '') {
@@ -93,7 +93,7 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        authz('ForumView', $post->forum)->ensureCan();
+        auth_check('ForumView', $post->forum)->ensureCan();
 
         $text = $post->bodyRaw;
 
@@ -108,7 +108,7 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        authz('ForumView', $post->forum)->ensureCan();
+        auth_check('ForumView', $post->forum)->ensureCan();
 
         return ujs_redirect(post_url($post->topic_id, $post->post_id));
     }

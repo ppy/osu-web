@@ -50,7 +50,7 @@ class ChatController extends Controller
         $channels = Channel::whereIn('channel_id', $channel_ids)
             ->get()
             ->filter(function ($channel) {
-                return authz('ChatChannelRead', $channel)->can();
+                return auth_check('ChatChannelRead', $channel)->can();
             });
 
         $messages = Message::whereIn('channel_id', $channel_ids)->with('user');
@@ -105,7 +105,7 @@ class ChatController extends Controller
                 abort(422);
         }
 
-        authz('ChatMessageSend', $target)->ensureCan();
+        auth_check('ChatMessageSend', $target)->ensureCan();
 
         $target->sendMessage(Auth::user(), Request::input('message'));
 

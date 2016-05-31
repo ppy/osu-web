@@ -545,12 +545,12 @@ function model_pluck($builder, $key)
         ->all();
 }
 
-function authz($ability, $args)
+function auth_check($ability, $args)
 {
-    return authzUser(Auth::user(), $ability, $args);
+    return auth_check_user(Auth::user(), $ability, $args);
 }
 
-function authzUser($user, $ability, $args)
+function auth_check_user($user, $ability, $args)
 {
     return OsuAuthorize::doCheckUser($user, $ability, $args);
 }

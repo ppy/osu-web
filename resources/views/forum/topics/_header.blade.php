@@ -56,7 +56,7 @@
             @endif
         </div>
 
-        @if (!isset($topic) || authz('ForumTopicEdit', $topic)->can())
+        @if (!isset($topic) || auth_check('ForumTopicEdit', $topic)->can())
             @include('forum._cover')
         @endif
     </div>

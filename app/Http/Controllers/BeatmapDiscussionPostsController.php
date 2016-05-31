@@ -55,10 +55,10 @@ class BeatmapDiscussionPostsController extends Controller
         $previousDiscussionResolved = $discussion->resolved;
         $discussion->fill($this->discussionParams($isNewDiscussion));
 
-        authz('BeatmapDiscussionPost', $discussion)->ensureCan();
+        auth_check('BeatmapDiscussionPost', $discussion)->ensureCan();
 
         if ($discussion->resolved === true) {
-            authz('BeatmapDiscussionResolve', $discussion)->ensureCan();
+            auth_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
         }
 
         if (!$isNewDiscussion && ($discussion->resolved !== $previousDiscussionResolved)) {
@@ -105,7 +105,7 @@ class BeatmapDiscussionPostsController extends Controller
     {
         $post = BeatmapDiscussionPost::findOrFail($id);
 
-        authz('BeatmapDiscussionPostEdit', $post)->ensureCan();
+        auth_check('BeatmapDiscussionPostEdit', $post)->ensureCan();
 
         $post->update($this->postParams($post->beatmapDiscussion, false));
 
