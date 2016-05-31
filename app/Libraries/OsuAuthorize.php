@@ -250,6 +250,17 @@ class OsuAuthorize
         return $this->checkForumPostEdit($user, $topic->posts()->first());
     }
 
+    public function checkForumTopicLock($user, $topic)
+    {
+        if ($user === null) {
+            return 'require_login';
+        }
+
+        if ($user->isGMT()) {
+            return 'ok';
+        }
+    }
+
     public function checkForumTopicReply($user, $topic)
     {
         $prefix = 'forum.topic.reply.';

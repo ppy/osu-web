@@ -215,11 +215,7 @@ class TopicsController extends Controller
 
     public function lock($id)
     {
-        // FIXME: should be moderator check?
-        // And maybe even its own controller or something.
-        if (Auth::user()->isAdmin() !== true) {
-            abort(403);
-        }
+        priv_check('ForumTopicLock', $topic)->ensure();
 
         $topic = Topic::findOrFail($id);
         $lock = Request::input('lock') !== '0';
