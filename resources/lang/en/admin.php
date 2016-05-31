@@ -20,6 +20,18 @@
 
 return [
 
+    'beatmapsets' => [
+        'show' => [
+            'discussion' => [
+                '_' => 'Modding v2',
+                'activate' => 'activate',
+                'activate_confirm' => 'activate modding v2 for this beatmap?',
+                'active' => 'active',
+                'inactive' => 'inactive',
+            ],
+        ],
+    ],
+
     'forum' => [
         'forum-covers' => [
             'index' => [

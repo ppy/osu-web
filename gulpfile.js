@@ -23,6 +23,15 @@ var
   composer_root = '../../../vendor/',
   node_root = '../../../node_modules/';
 
+/*
+ * The merge rules plugin is kind of buggy and broke safari.
+ * Noticeably in loading overlay circles having wrong animation.
+ *
+ * Reference: https://github.com/ben-eb/cssnano/issues/154
+ */
+elixir.config.css.cssnano.pluginOptions = {
+  mergeRules: false,
+}
 
 /*
  |--------------------------------------------------------------------------
@@ -44,6 +53,7 @@ elixir(function(mix) {
   .coffee([
     '_classes/*.coffee',
     'react/_components/*.coffee',
+    'react/_mixins/*.coffee',
 
     'jquery-pubsub.coffee',
     'osu!live.coffee',
@@ -68,6 +78,7 @@ elixir(function(mix) {
     'build/vendor-modules.js',
     'ga.js',
     'messages.js',
+    'laroute.js',
     'build/app-main.js',
   ], 'public/js/app.js')
   .coffee([
@@ -86,12 +97,22 @@ elixir(function(mix) {
     'react/status-page/*.coffee',
     'react/status-page.coffee'
   ], 'public/js/react/status-page.js')
+  .coffee([
+    'react/beatmap-discussions/*.coffee',
+    'react/beatmap-discussions.coffee'
+  ], 'public/js/react/beatmap-discussions.js')
+  .coffee([
+    'react/beatmapset-page/*.coffee',
+    'react/beatmapset-page.coffee'
+  ], 'public/js/react/beatmapset-page.js')
   .version([
     'css/app.css',
     'js/app.js',
     'js/react/profile-page.js',
     'js/react/beatmaps.js',
     'js/react/slack-page.js',
-    'js/react/status-page.js'
+    'js/react/status-page.js',
+    'js/react/beatmap-discussions.js',
+    'js/react/beatmapset-page.js',
   ]);
 });

@@ -30,7 +30,6 @@ $(document).on 'click', '#new-address-switch a', (e) ->
     $target.show()
   $form.slideToggle()
 
-
 preventUsernameSubmission = ->
   $('.js-store-add-to-cart').attr 'disabled', true
   $('#product-form').data('disabled', true)

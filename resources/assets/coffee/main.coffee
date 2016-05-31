@@ -18,10 +18,10 @@
 
 # loading animation overlay
 # fired from turbolinks
-$(document).on 'page:fetch', osu.showLoadingOverlay
-$(document).on 'page:receive', osu.hideLoadingOverlay
+$(document).on 'page:fetch', LoadingOverlay.show
+$(document).on 'page:receive', LoadingOverlay.hide
 # form submission is not covered by turbolinks
-$(document).on 'submit', 'form', osu.showLoadingOverlay
+$(document).on 'submit', 'form', LoadingOverlay.show
 
 
 @reactTurbolinks ||= new ReactTurbolinks
@@ -70,8 +70,7 @@ $(document).on 'osu:page:change', _.debounce(initPage, 500)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->
-  $target = $(e.target)
-  osu.navigate $target.val(), $target.attr('data-keep-scroll') == '1'
+  osu.navigate e.target.value, (e.target.dataset.keepScroll == '1')
 
 
 $(document).on 'keydown', (e) ->

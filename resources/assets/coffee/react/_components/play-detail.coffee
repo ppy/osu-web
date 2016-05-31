@@ -47,12 +47,12 @@ el = React.createElement
             a
               href: score.beatmap.data.url
               className: 'detail-row__text-score detail-row__text-score--title'
-              title: "#{score.beatmapSet.data.artist} - #{score.beatmapSet.data.title} "
-              "#{score.beatmapSet.data.title} [#{score.beatmap.data.version}]"
+              title: "#{score.beatmapset.data.artist} - #{score.beatmapset.data.title} "
+              "#{score.beatmapset.data.title} [#{score.beatmap.data.version}]"
               ' '
               small
                 className: 'detail-row__text-score detail-row__text-score--artist'
-                score.beatmapSet.data.artist
+                score.beatmapset.data.artist
           div
             className: 'detail-row__detail-row detail-row__detail-row--bottom'
             span
@@ -63,16 +63,7 @@ el = React.createElement
           className: 'detail-row__detail-column detail-row__detail-column--score-data'
           div
             className: 'detail-row__score-data detail-row__score-data--mods'
-            div
-              className: 'mods'
-              for mod in score.mods
-                div
-                  key: mod.shortName
-                  className: 'mods__mod'
-                  img _.extend
-                    className: 'mods__mod-image'
-                    title: mod.name
-                    osu.src2x("/images/badges/mods/#{_.kebabCase(mod.name)}.png")
+            el Mods, mods: score.mods
           div
             className: 'detail-row__score-data detail-row__score-data--main'
             div

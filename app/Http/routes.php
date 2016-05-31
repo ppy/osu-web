@@ -47,24 +47,15 @@ Route::get('/home/support', ['as' => 'support-the-game', 'uses' => 'HomeControll
 
 Route::get('/icons', 'HomeController@getIcons');
 
-// beatmaps section
-Route::get('/beatmaps', ['as' => 'beatmaps', 'uses' => 'BeatmapController@index']);
-Route::get('/beatmaps/search/{filters?}', ['as' => 'beatmaps.search', 'uses' => 'BeatmapController@search']);
+// Route::get('/beatmaps/packs', ['as' => 'packs', 'uses' => 'BeatmapsController@getPacks']);
+// Route::get('/beatmaps/charts/{id?}', ['as' => 'charts', 'uses' => 'BeatmapsController@getCharts']);
 
-// maps
-Route::get('/beatmaps/set/{id}', ['as' => 'set', 'uses' => 'BeatmapController@getMapSet']);
-Route::get('/beatmaps/map/{id}', ['as' => 'beatmap', 'uses' => 'BeatmapController@getMap']);
-Route::get('/beatmaps/modding/{id?}', ['as' => 'modding', 'uses' => 'ModdingController@getModding']);
-Route::get('/beatmaps/packs', ['as' => 'packs', 'uses' => 'BeatmapController@getPacks']);
-Route::get('/beatmaps/charts/{id?}', ['as' => 'charts', 'uses' => 'BeatmapController@getCharts']);
+Route::get('/beatmaps/{beatmaps}/scores', ['as' => 'beatmaps.scores', 'uses' => 'BeatmapsController@scores']);
+Route::get('/b/{beatmaps}', ['as' => 'beatmaps.show', 'uses' => 'BeatmapsController@show']);
 
-Route::get('/b/{id}', ['as' => 'beatmaps.show', function ($id) {
-    return Redirect::to('https://osu.ppy.sh/b/'.$id);
-}]);
-
-Route::get('/s/{id}', ['as' => 'beatmap-sets.show', function ($id) {
-    return Redirect::to('https://osu.ppy.sh/s/'.$id);
-}]);
+Route::get('/beatmapsets/search/{filters?}', ['as' => 'beatmapsets.search', 'uses' => 'BeatmapsetsController@search']);
+Route::resource('/beatmapsets', 'BeatmapsetsController', ['only' => ['index']]);
+Route::get('/s/{beatmapsets}', ['as' => 'beatmapsets.show', 'uses' => 'BeatmapsetsController@show']);
 
 // ranking section
 Route::get('/ranking/overall', ['as' => 'ranking-overall', 'uses' => 'RankingController@getOverall']);
@@ -73,43 +64,57 @@ Route::get('/ranking/country', ['as' => 'ranking-country', 'uses' => 'RankingCon
 Route::get('/ranking/mapper', ['as' => 'ranking-mapper', 'uses' => 'RankingController@getMapper']);
 
 // community section (forum will end up being a section of its own)
-Route::get('/community/forum', function () { return Redirect::to('/forum'); });
+Route::get('/community/forum', function () {
+    return Redirect::to('/forum');
+});
 
 Route::get('/community/live', ['as' => 'live', 'uses' => 'CommunityController@getLive']);
 Route::post('/community/live', ['as' => 'live', 'uses' => 'CommunityController@postLive']);
 
 Route::get('/community/chat', ['as' => 'chat', 'uses' => 'CommunityController@getChat']);
-Route::get('/community/profile/{id}', function ($id) { return Redirect::route('users.show', $id); });
+Route::get('/community/profile/{id}', function ($id) {
+    return Redirect::route('users.show', $id);
+});
 
 Route::get('/community/slack', ['as' => 'slack', 'uses' => 'CommunityController@getSlack']);
 Route::post('/community/slack/agree', ['as' => 'slack.agree', 'uses' => 'CommunityController@postSlackAgree']);
 
-Route::get('/u/{id}', ['as' => 'users.show', 'uses' => 'UsersController@show']);
+Route::post('users/check-username-availability', ['as' => 'users.check-username-availability', 'uses' => 'UsersController@checkUsernameAvailability']);
+Route::post('users/login', ['as' => 'users.login', 'uses' => 'UsersController@login']);
+Route::delete('users/logout', ['as' => 'users.logout', 'uses' => 'UsersController@logout']);
+Route::get('users/disabled', ['as' => 'users.disabled', 'uses' => 'UsersController@disabled']);
 
 // Authentication section (Temporarily set up as replacement/improvement of config("osu.urls.*"))
-Route::get('/users/forgot-password', ['as' => 'users.forgot-password', function () { return Redirect::to('https://osu.ppy.sh/p/forgot'); }]);
-Route::get('/users/register', ['as' => 'users.register', function () { return Redirect::to('https://osu.ppy.sh/p/register'); }]);
+Route::get('users/forgot-password', ['as' => 'users.forgot-password', function () {
+    return Redirect::to('https://osu.ppy.sh/p/forgot');
+}]);
+Route::get('users/register', ['as' => 'users.register', function () {
+    return Redirect::to('https://osu.ppy.sh/p/register');
+}]);
+
+Route::get('u/{users}', ['as' => 'users.show', 'uses' => 'UsersController@show']);
 
 // help section
-Route::get('/wiki', ['as' => 'wiki', function () { return Redirect::to('https://osu.ppy.sh/wiki'); }]);
+Route::get('/wiki', ['as' => 'wiki', function () {
+    return Redirect::to('https://osu.ppy.sh/wiki');
+}]);
 
 Route::get('/help/support', ['as' => 'support', 'uses' => 'HelpController@getSupport']);
 Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);
 
 // catchall controllers
 Route::controller('/notifications', 'NotificationController');
-Route::controller('/store', 'StoreController');
-
-Route::post('/users/check-username-availability', ['as' => 'users.check-username-availability', 'uses' => 'UsersController@checkUsernameAvailability']);
-Route::post('/users/login', ['as' => 'users.login', 'uses' => 'UsersController@login']);
-Route::delete('/users/logout', ['as' => 'users.logout', 'uses' => 'UsersController@logout']);
-Route::get('/users/disabled', ['as' => 'users.disabled', 'uses' => 'UsersController@disabled']);
+Route::controller('/store', 'StoreController', [
+    'getProduct' => 'store.product',
+    'putRequestNotification' => 'store.request-notification',
+]);
 
 Route::resource('tournaments', 'TournamentsController');
 Route::post('/tournaments/{tournament}/unregister', ['as' => 'tournaments.unregister', 'uses' => 'TournamentsController@unregister']);
 Route::post('/tournaments/{tournament}/register', ['as' => 'tournaments.register', 'uses' => 'TournamentsController@register']);
 
 // Forum controllers
+<<<<<<< HEAD
 Route::group(['prefix' => 'forum'], function () {
     Route::get('/', ['as' => 'forum.forums.index', 'uses' => "Forum\ForumsController@index"]);
     Route::get('{forums}', ['as' => 'forum.forums.show', 'uses' => "Forum\ForumsController@show"]);
@@ -131,6 +136,24 @@ Route::group(['prefix' => 'forum'], function () {
     Route::patch('p/{posts}', ['as' => 'forum.posts.update', 'uses' => "Forum\PostsController@update"]);
     Route::get('p/{posts}/edit', ['as' => 'forum.posts.edit', 'uses' => "Forum\PostsController@edit"]);
     Route::get('p/{posts}/raw', ['as' => 'forum.posts.raw', 'uses' => "Forum\PostsController@raw"]);
+=======
+Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
+    Route::get('/', ['as' => 'forum.forums.index', 'uses' => 'ForumsController@index']);
+    Route::get('{forums}', ['as' => 'forum.forums.show', 'uses' => 'ForumsController@show']);
+
+    Route::get('t/{topics}', ['as' => 'forum.topics.show', 'uses' => 'TopicsController@show']);
+    Route::post('topics/preview', ['as' => 'forum.topics.preview', 'uses' => 'TopicsController@preview']);
+    Route::post('topics/{topics}/reply', ['as' => 'forum.topics.reply', 'uses' => 'TopicsController@reply']);
+    Route::post('topics/{topics}/lock', ['as' => 'forum.topics.lock', 'uses' => 'TopicsController@lock']);
+    Route::resource('topics', 'TopicsController', ['only' => ['create', 'store']]);
+
+    Route::resource('forum-covers', 'ForumCoversController', ['only' => ['store', 'update', 'destroy']]);
+    Route::resource('topic-covers', 'TopicCoversController', ['only' => ['store', 'update', 'destroy']]);
+
+    Route::get('p/{posts}', ['as' => 'forum.posts.show', 'uses' => 'PostsController@show']);
+    Route::get('posts/{posts}/raw', ['as' => 'forum.posts.raw', 'uses' => 'PostsController@raw']);
+    Route::resource('posts', 'PostsController', ['only' => ['destroy', 'update', 'edit']]);
+>>>>>>> upstream/master
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
@@ -138,24 +161,34 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     Route::resource('logs', 'LogsController', ['only' => ['index']]);
 
+    Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['show']]);
     Route::get('/beatmapsets/{id}/covers', ['as' => 'admin.beatmapsets.covers', 'uses' => 'BeatmapsetsController@covers']);
     Route::post('/beatmapsets/{id}/covers/regenerate', ['as' => 'admin.beatmapsets.covers.regenerate', 'uses' => 'BeatmapsetsController@regenerateCovers']);
 
+    Route::resource('beatmapset-discussions', 'BeatmapsetDiscussionsController', ['only' => ['store']]);
+
     // store admin
     Route::group(['prefix' => 'store', 'namespace' => 'Store'], function () {
-        Route::post('orders/ship', ['as' => 'admin.store.orders.ship', 'uses' => 'OrderController@ship']);
+        Route::post('orders/ship', ['as' => 'admin.store.orders.ship', 'uses' => 'OrdersController@ship']);
         Route::resource('orders', 'OrdersController', ['only' => ['index', 'show', 'update']]);
         Route::resource('orders.items', 'OrderItemsController', ['only' => ['update']]);
 
         Route::resource('addresses', 'AddressesController', ['only' => ['update']]);
 
-        Route::get('/', function () { return Redirect::route('admin.store.orders.index'); });
+        Route::get('/', function () {
+            return Redirect::route('admin.store.orders.index');
+        });
     });
 
     Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
         Route::resource('forum-covers', 'ForumCoversController', ['only' => ['index', 'store', 'update']]);
     });
 });
+
+Route::get('beatmapsets/{beatmapsets}/discussion', ['as' => 'beatmapsets.discussion', 'uses' => 'BeatmapsetsController@discussion']);
+
+Route::put('beatmap-discussions/{beatmap_discussions}/vote', ['uses' => 'BeatmapDiscussionsController@vote', 'as' => 'beatmap-discussions.vote']);
+Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['store', 'update']]);
 
 // Uploading file doesn't quite work with PUT/PATCH.
 // Reference: https://bugs.php.net/bug.php?id=55815
@@ -164,17 +197,35 @@ Route::post('/account/update-profile', ['as' => 'account.update-profile', 'uses'
 Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
 
 // API
-Route::get('/api/get_match', ['uses' => 'APIController@getMatch']);
-Route::get('/api/get_packs', ['uses' => 'APIController@getPacks']);
-Route::get('/api/get_user', ['uses' => 'APIController@getUser']);
-Route::get('/api/get_user_best', ['uses' => 'APIController@getUserBest']);
-Route::get('/api/get_user_recent', ['uses' => 'APIController@getUserRecent']);
-Route::get('/api/get_replay', ['uses' => 'APIController@getReplay']);
-Route::get('/api/get_scores', ['uses' => 'APIController@getScores']);
-Route::get('/api/get_beatmaps', ['uses' => 'APIController@getBeatmaps']);
+Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'oauth'], function () {
+    Route::group(['prefix' => 'v2'], function () {
+        Route::group(['prefix' => 'chat'], function () {
+            Route::get('channels', ['uses' => 'ChatController@channels']);                //  GET /api/v2/chat/channels
+            Route::get('messages', ['uses' => 'ChatController@messages']);                //  GET /api/v2/chat/messages
+            Route::get('messages/private', ['uses' => 'ChatController@privateMessages']); //  GET /api/v2/chat/messages/private
+            // Route::post('messages/new', ['uses' => 'ChatController@postMessage']);        // POST /api/v2/chat/messages/new
+        });
 
-Route::resource('post', 'PostController');
-Route::resource('modding', 'ModdingPostController');
+        Route::group(['prefix' => 'beatmapsets'], function () {
+            Route::get('favourites', ['uses' => 'BeatmapsetsController@favourites']);     //  GET /api/v2/beatmapsets/favourites
+        });
+        Route::group(['prefix' => 'beatmaps'], function () {
+            Route::get('scores', ['uses' => 'BeatmapsController@scores']);          //  GET /api/v2/beatmaps/scores
+            // Route::get('/{id}/scores', ['uses' => 'BeatmapsController@scores']);          //  GET /api/v2/beatmaps/:beatmap_id/scores
+        });
+    });
+    // legacy api routes
+    Route::group(['prefix' => 'v1'], function () {
+        Route::get('get_match', ['uses' => 'LegacyController@getMatch']);
+        Route::get('get_packs', ['uses' => 'LegacyController@getPacks']);
+        Route::get('get_user', ['uses' => 'LegacyController@getUser']);
+        Route::get('get_user_best', ['uses' => 'LegacyController@getUserBest']);
+        Route::get('get_user_recent', ['uses' => 'LegacyController@getUserRecent']);
+        Route::get('get_replay', ['uses' => 'LegacyController@getReplay']);
+        Route::get('get_scores', ['uses' => 'LegacyController@getScores']);
+        Route::get('get_beatmaps', ['uses' => 'LegacyController@getBeatmaps']);
+    });
+});
 
 // status
 if (Config::get('app.debug')) {
@@ -184,3 +235,8 @@ if (Config::get('app.debug')) {
         Route::get('/', ['uses' => 'StatusController@getMain']);
     });
 }
+
+// OAuth2 (for API)
+Route::get('oauth/authorize', ['as' => 'oauth.authorize.get', 'middleware' => ['check-authorization-params'], 'uses' => 'OAuthController@authorizeForm']);
+Route::post('oauth/authorize', ['as' => 'oauth.authorize.post', 'middleware' => ['check-authorization-params'], 'uses' => 'OAuthController@authorizePost']);
+Route::post('oauth/access_token', ['uses' => 'OAuthController@getAccessToken']);

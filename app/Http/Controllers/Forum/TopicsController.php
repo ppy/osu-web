@@ -52,9 +52,9 @@ class TopicsController extends Controller
         ]]);
     }
 
-    public function create($forum_id)
+    public function create()
     {
-        $forum = Forum::findOrFail($forum_id);
+        $forum = Forum::findOrFail(Request::input('forum_id'));
 
         $this->authorizePost($forum, null);
 
@@ -66,9 +66,9 @@ class TopicsController extends Controller
         return view('forum.topics.create', compact('forum', 'cover'));
     }
 
-    public function preview($forumId)
+    public function preview()
     {
-        $forum = Forum::findOrFail($forumId);
+        $forum = Forum::findOrFail(Request::input('forum_id'));
 
         $this->authorizePost($forum, null);
 
@@ -86,14 +86,14 @@ class TopicsController extends Controller
         return view('forum.topics._post', compact('post', 'options'));
     }
 
-    public function store(HttpRequest $request, $forum_id)
+    public function store(HttpRequest $request)
     {
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
         ]);
 
-        $forum = Forum::findOrFail($forum_id);
+        $forum = Forum::findOrFail(Request::input('forum_id'));
 
         $this->authorizePost($forum, null);
 
@@ -172,7 +172,7 @@ class TopicsController extends Controller
             ->with('user.country')
             ->with('user.supports')
             ->get()
-            ->sortBy(function ($p) { return $p->post_id; });
+            ->sortBy('post_id');
 
         if ($posts->count() === 0) {
             abort($skipLayout ? 204 : 404);

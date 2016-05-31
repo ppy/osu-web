@@ -23,8 +23,8 @@ class ProfilePage.ContentsTab extends React.Component
     $.publish 'profile:mode:set', @props.mode
 
   render: =>
-    className = 'profile-tab'
-    className += ' profile-tab--active' if @props.mode == @props.currentMode
+    className = 'page-tabs__tab'
+    className += ' page-tabs__tab--active' if @props.mode == @props.currentMode
 
     el 'a',
       href: ProfilePageHash.generate page: @props.currentPage, mode: @props.mode

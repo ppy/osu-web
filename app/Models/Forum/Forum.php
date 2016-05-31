@@ -67,7 +67,7 @@ class Forum extends Model
         }
         $new_forum_ids = static::whereIn('parent_id', $new_forum_ids)->lists('forum_id')->all();
 
-        $new_forum_ids = array_map(function ($value) { return intval($value); }, $new_forum_ids);
+        $new_forum_ids = array_map('intval', $new_forum_ids);
         $forum_ids = array_merge($forum_ids, $new_forum_ids);
 
         if (count($new_forum_ids) === 0) {

@@ -10,16 +10,37 @@
 
 @navbar-mobile--content-height: @navbar-height - (@navbar-padding-vertical * 2);
 
+
+// here be z-indexes
 @z-index--visibility-hidden: 0;
 @z-index--body-background: 0;
+@z-index--user-profile-avatar: 2;
 @z-index--beatmaps-panel: 4;
-@z-index--profile-extra-tabs: 5;
+@z-index--page-extra-tabs: 5;
 // navbar-static-top: 1000 (bootstrap nav for mobile)
 @z-index--forum-topic-headernav: 1001;
 @z-index--fixed-bar: 1001;
 @z-index--blackout: 8000;
 @z-index--blackout-visible: 8001;
 @z-index--editor-zoom: 9999;
+
+@profile-badge-size: 50px;
+@profile-header-height: 250px;
+@profile-user-bar-height: 60px;
+@profile-avatar-size: 110px;
+@profile-cover-thumb-size: 85px;
+
+@beatmapset-avatar-size: 84px;
+@beatmapset-avatar-container-size: 90px;
+
+@beatmapset-scoreboard-avatar-size: 76px;
+@beatmapset-scoreboard-avatar-container-size: 80px;
+
+// here be font-sizes
+@font-size--store-header-link-icon: 18px;
+@font-size--store-header-link-text: 12px;
+@font-size--store-notice-text: 15px;
+@font-size--store-notice-title: 13px;
 
 @forum-category-colour--osu-bg: @pink;
 @forum-category-colour--osu-link: @pink-text;
@@ -44,3 +65,18 @@
 @forum-category-colour--management-bg: @gray;
 @forum-category-colour--management-link: @gray-text;
 @forum-category-colour--management-link-hover: @gray;
+
+@beatmap-discussion--avatar-size: 40px;
+@beatmap-discussion--reply-padding: (@spacing * 2 + @beatmap-discussion--avatar-size);
+@beatmap-discussion--timestamp-width: 110px;
+
+@beatmap-discussion--color-praise: @blue-dark;
+@beatmap-discussion--color-problem: @pink-dark;
+@beatmap-discussion--color-suggestion: @yellow-dark;
+
+// difficulty colours
+@diff-easy: @green;
+@diff-normal: @yellow;
+@diff-hard: @pink;
+@diff-insane: @purple;
+@diff-expert: #000000;

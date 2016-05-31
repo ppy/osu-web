@@ -29,7 +29,7 @@ class Beatmaps.Main extends React.Component
       query: null
       paging:
         page: 1
-        url: '/beatmaps/search'
+        url: '/beatmapsets/search'
         loading: false
         more: beatmaps.length > 0
       filters: @filterDefaults
@@ -99,7 +99,7 @@ class Beatmaps.Main extends React.Component
 
     if @state.just_restored or location.search.substr(1) != params.join('&')
       if !@state.just_restored
-        history.pushState(@state, "¯\_(ツ)_/¯", "/beatmaps/?#{params.join('&')}")
+        history.pushState(@state, "¯\_(ツ)_/¯", "/beatmapsets/?#{params.join('&')}")
 
       @showLoader()
       $.ajax @state.paging.url,
@@ -243,7 +243,7 @@ class Beatmaps.Main extends React.Component
     div className: 'osu-layout__section',
       el(Beatmaps.SearchPanel, background: searchBackground, filters: @state.filters)
       div id: 'beatmaps-listing', className: 'osu-layout__row osu-layout__row--page',
-        if (currentUser.id != undefined)
+        if currentUser.id?
           el(Beatmaps.SearchSort, sorting: @state.sorting)
         el(Beatmaps.BeatmapsListing, beatmaps: @state.beatmaps, loading: @state.loading)
         el(Beatmaps.Paginator, paging: @state.paging)

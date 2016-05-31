@@ -1,0 +1,60 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+.btn-osu-lite {
+  .reset-input();
+  .default-border-radius();
+  .default-box-shadow();
+  .default-text-shadow();
+
+  text-align: center;
+  vertical-align: middle;
+
+  font-size: 12px;
+  padding: (@spacing / 2) @spacing;
+
+  &--default {
+    @__bgcolor: @blue-dark;
+    background-color: @__bgcolor;
+    color: @grey-f;
+
+    &:focus {
+      background-color: darken(@__bgcolor, 5%);
+    }
+
+    &:hover {
+      background-color: darken(@__bgcolor, 10%);
+    }
+
+    &:active {
+      background-color: darken(@__bgcolor, 15%);
+    }
+  }
+
+  &--fat {
+    padding: (@spacing * 2) (@spacing * 5 / 2);
+  }
+
+  // this must be the last modifier
+  &[disabled], &.disabled, &--disabled {
+    &, &:active, &:focus, &:hover {
+      background-color: @grey-9;
+      color: @grey-f;
+    }
+  }
+}

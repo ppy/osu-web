@@ -18,12 +18,10 @@
 */
 
 .user-profile-header {
-  &__bar {
-    display: flex;
+  display: flex;
 
-    &--right {
-      margin-right: @grid-gutter-width/4;
-    }
+  &--right {
+    margin-right: @grid-gutter-width/4;
   }
 
   &__basic {
@@ -45,5 +43,24 @@
     &--right {
       text-align: right;
     }
+  }
+
+  &__text {
+    margin: 0px;
+    padding: 0px;
+
+    color: @gray;
+    font-size: 12px;
+    font-style: normal;
+    line-height: 1.1;
+
+    &--large {
+      font-size: 24px;
+    }
+  }
+
+  &__rank-icon {
+    margin-right: @grid-gutter-width/4;
+    top: -1px;
   }
 }

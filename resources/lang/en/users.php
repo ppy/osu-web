@@ -39,6 +39,7 @@ return [
     'anonymous' => [
         'login_link' => 'click to login',
         'username' => 'Guest',
+        'error' => 'You need to be logged in to do this.',
     ],
     'logout_confirm' => 'Are you sure you want to log out? :(',
     'show' => [
@@ -63,6 +64,7 @@ return [
         'extra' => [
             'achievements' => [
                 'title' => 'Achievements',
+                'achieved-on' => 'Achieved on :date',
             ],
             'beatmaps' => [
                 'title' => 'Beatmaps',
@@ -132,7 +134,7 @@ return [
         'is_developer' => 'osu!developer',
         'lastvisit' => 'Last seen :date.',
         'joined_at' => 'joined :date',
-        'more_achievements' => 'and :count more',
+        'more_achievements' => 'and more',
         'origin' => [
             'age' => ':age years old.',
             'country' => 'From :country.',

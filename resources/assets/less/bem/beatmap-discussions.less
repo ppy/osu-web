@@ -1,0 +1,93 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+.beatmap-discussions {
+  @_mode-text-size: 10px;
+  @_empty-text-size: 12px;
+  @_mode-circle-diameter: (@spacing * 3 / 2);
+  @_timeline-line-width: 3px;
+
+  .inner-shadow-top();
+  padding: (@spacing * 2);
+
+  &__collapse-button {
+    margin-left: @spacing;
+  }
+
+  &__collapse-button-text {
+    margin-left: (@spacing / 2);
+  }
+
+  &__discussion {
+    &--empty {
+      padding-left: @beatmap-discussion--timestamp-width;
+      font-size: @_empty-text-size;
+    }
+  }
+
+  &__mode {
+    .reset-input();
+    display: block;
+  }
+
+  &__mode-container {
+    display: flex;
+    align-items: center;
+    padding: (@spacing / 2) 0;
+  }
+
+  &__mode-circle {
+    .circle(@_mode-circle-diameter);
+    border: 3px solid @grey-5;
+    margin-right: @spacing;
+
+    &--active {
+      background-color: @grey-5;
+    }
+  }
+
+  &__mode-text {
+    font-size: @_mode-text-size;
+  }
+
+  &__timeline-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: @_timeline-line-width;
+    height: 100%;
+
+    margin: 0 ((@_mode-circle-diameter - @_timeline-line-width) / 2);
+
+    background-color: @grey-5;
+
+    &--half {
+      height: 50%;
+    }
+
+    &--bottom {
+      top: 50%;
+    }
+  }
+
+  &__toolbar {
+    display: flex;
+    justify-content: space-between;
+  }
+}

@@ -40,12 +40,14 @@ return [
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'getListing' => 'listing',
-            'getPacks' => 'packs',
-            'getCharts' => 'charts',
-            'getModding' => 'modding',
-            'moddingreact' => 'modding',
+            'show' => 'info',
             'index' => 'listing',
+            // 'getPacks' => 'packs',
+            // 'getCharts' => 'charts',
+        ],
+        'beatmapsets' => [
+            '_' => 'beatmapsets',
+            'discussion' => 'modding',
         ],
         'ranking' => [
             '_' => 'ranking',
@@ -123,6 +125,7 @@ return [
             'beatmapsets' => [
                 '_' => 'beatmapsets',
                 'covers' => 'covers',
+                'show' => 'detail',
             ],
         ],
     ],

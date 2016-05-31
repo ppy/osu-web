@@ -26,8 +26,10 @@ use DB;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
+use App\Interfaces\Messageable;
+use App\Models\Chat\PrivateMessage;
 
-class User extends Model implements AuthenticatableContract
+class User extends Model implements AuthenticatableContract, Messageable
 {
     use Authenticatable;
 
@@ -111,9 +113,9 @@ class User extends Model implements AuthenticatableContract
             return Carbon::now()->addYears(10);
         }
 
-        $playCount = array_reduce(array_keys(Beatmap::modes()), function ($result, $mode) use ($user) {
-                return $result + $user->statistics($mode, true)->value('playcount');
-            }, 0);
+        $playCount = array_reduce(array_keys(Beatmap::MODES), function ($result, $mode) use ($user) {
+            return $result + $user->statistics($mode, true)->value('playcount');
+        }, 0);
 
         return $user->user_lastvisit
             ->addMonths(6)                 //base inactivity period for all accounts
@@ -321,6 +323,10 @@ class User extends Model implements AuthenticatableContract
             }
         }
 
+        if (empty($styles)) {
+            return;
+        }
+
         return $styles;
     }
 
@@ -366,7 +372,7 @@ class User extends Model implements AuthenticatableContract
             or $this->ownsMod($mod);
     }
 
-    public function ownsSet(BeatmapSet $set)
+    public function ownsSet(Beatmapset $set)
     {
         return $set->user_id === $this->user_id;
     }
@@ -495,19 +501,19 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany("App\Models\Notification", 'user_id', 'user_id');
     }
 
-    public function beatmapSets()
+    public function beatmapsets()
     {
-        return $this->hasMany(BeatmapSet::class);
+        return $this->hasMany(Beatmapset::class);
     }
 
     public function beatmaps()
     {
-        return $this->hasManyThrough(Beatmap::class, BeatmapSet::class, 'user_id', 'beatmapset_id');
+        return $this->hasManyThrough(Beatmap::class, Beatmapset::class, 'user_id', 'beatmapset_id');
     }
 
-    public function favouriteBeatmapSets()
+    public function favouriteBeatmapsets()
     {
-        return BeatmapSet::whereIn('beatmapset_id', FavouriteBeatmapSet::where('user_id', '=', $this->user_id)->select('beatmapset_id')->get());
+        return Beatmapset::whereIn('beatmapset_id', FavouriteBeatmapset::where('user_id', '=', $this->user_id)->select('beatmapset_id')->get());
     }
 
     public function beatmapPlaycounts()
@@ -579,7 +585,7 @@ class User extends Model implements AuthenticatableContract
 
     public function statistics($mode, $returnQuery = false)
     {
-        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+        if (!in_array($mode, array_keys(Beatmap::MODES), true)) {
             return;
         }
 
@@ -616,7 +622,7 @@ class User extends Model implements AuthenticatableContract
 
     public function scores($mode, $returnQuery = false)
     {
-        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+        if (!in_array($mode, array_keys(Beatmap::MODES), true)) {
             return;
         }
 
@@ -653,7 +659,7 @@ class User extends Model implements AuthenticatableContract
 
     public function scoresFirst($mode, $returnQuery = false)
     {
-        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+        if (!in_array($mode, array_keys(Beatmap::MODES), true)) {
             return;
         }
 
@@ -692,7 +698,7 @@ class User extends Model implements AuthenticatableContract
 
     public function scoresBest($mode, $returnQuery = false)
     {
-        if (!in_array($mode, array_keys(Beatmap::modes()), true)) {
+        if (!in_array($mode, array_keys(Beatmap::MODES), true)) {
             return;
         }
 
@@ -722,7 +728,7 @@ class User extends Model implements AuthenticatableContract
         return $this->belongsTo("App\Models\Forum\Post", 'userpage_post_id', 'post_id');
     }
 
-    public function achievements()
+    public function userAchievements()
     {
         return $this->hasMany("App\Models\UserAchievement", 'user_id', 'user_id');
     }
@@ -730,6 +736,21 @@ class User extends Model implements AuthenticatableContract
     public function usernameChangeHistory()
     {
         return $this->hasMany(UsernameChangeHistory::class, 'user_id', 'user_id');
+    }
+
+    public function relations()
+    {
+        return $this->hasMany(UserRelation::class, 'user_id', 'user_id');
+    }
+
+    public function friends()
+    {
+        return $this->relations()->where('friend', true);
+    }
+
+    public function foes()
+    {
+        return $this->relations()->where('foe', true);
     }
 
     public function events()
@@ -886,13 +907,13 @@ class User extends Model implements AuthenticatableContract
     {
         if ($this->userPage === null) {
             DB::transaction(function () use ($text) {
-                $topic = Forum\Topic::createNew(
-                    Forum\Forum::find(config('osu.user.user_page_forum_id')),
-                    "{$this->username}'s user page",
-                    $this,
-                    $text,
-                    false
-                );
+                $topic = Forum\Topic::createNew([
+                    'forum' => Forum\Forum::find(config('osu.user.user_page_forum_id')),
+                    'title' => "{$this->username}'s user page",
+                    'poster' => $this,
+                    'body' => $text,
+                    'notifyReplies' => false,
+                ]);
 
                 $this->update(['userpage_post_id' => $topic->topic_first_post_id]);
             });
@@ -908,7 +929,7 @@ class User extends Model implements AuthenticatableContract
         return fractal_item_array(
             $this,
             new UserTransformer(),
-            'defaultStatistics'
+            'userAchievements,defaultStatistics'
         );
     }
 
@@ -982,5 +1003,32 @@ class User extends Model implements AuthenticatableContract
                 ->where('ban_status', '=', 2)->count() === 0;
 
         return $canInvite;
+    }
+
+    public function canBeMessagedBy(User $sender)
+    {
+        // TODO: blocklist/ignore, etc
+        return true;
+    }
+
+    public function sendMessage(User $sender, $body)
+    {
+        if (!$this->canBeMessagedBy($sender)) {
+            return false;
+        }
+
+        $message = new PrivateMessage();
+        $message->user_id = $sender->user_id;
+        $message->target_id = $this->user_id;
+        $message->content = $body;
+        $message->save();
+    }
+
+    public function scopeDefault($query)
+    {
+        return $query->where([
+            'user_warnings' => 0,
+            'user_type' => 0,
+        ]);
     }
 }

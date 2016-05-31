@@ -29,7 +29,8 @@
     <meta name="ga-tracking-id" content="{{ config("services.ga.tracking_id") }}">
 @endif
 
-<link href='//fonts.googleapis.com/css?family=Exo+2:300,300italic,200,400,400italic,500,500italic,700,700italic,900' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Exo+2:300,300italic,200,400,400italic,500,500italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 
 <link rel="stylesheet" media="all" href="{{ elixir("css/app.css") }}" data-turbolinks-track>
 <link rel="stylesheet" media="all" href="/vendor/_photoswipe-default-skin/default-skin.css">

@@ -28,71 +28,65 @@ class ProfilePage.Info extends React.Component
 
   originKeys: =>
     keys = []
-    if @props.user.country.name != null
+    if @props.user.country.name?
       keys.push 'country'
-    if @props.user.age != null
+    if @props.user.age?
       keys.push 'age'
 
     return keys
 
-
   render: =>
-    el 'div', className: 'profile-content flex-col-33',
-      el 'div', className: 'profile-icons profile-row',
+    elements = ['twitter', 'skype', 'lastfm', 'playstyles']
+
+    el 'div', className: 'page-contents__content profile-info',
+      el 'div', className: 'profile-info__icons page-contents__row',
         if @props.user.isSupporter
           el 'div',
-            className: 'user-icon forum__user-icon--supporter profile-icon'
+            className: 'user-icon forum__user-icon--supporter profile-info__icon'
             title: Lang.get 'users.show.is_supporter'
             el 'i', className: 'fa fa-heart'
 
-      el 'div', className: 'compact profile-row',
+      el 'div', className: 'page-contents__row',
         if @props.user.isSupporter
-          el 'p', className: 'profile-title profile-title--supporter',
+          el 'p', className: 'profile-info__title profile-info__title--supporter',
             Lang.get('users.show.is_supporter')
 
-        if @props.user.title != null
-          el 'p', className: 'profile-title', @props.user.title
+        if @props.user.title?
+          el 'p', className: 'profile-info__title', @props.user.title
 
-      el 'div', className: 'compact profile-row',
+      el 'div', className: 'page-contents__row',
         if @originKeys().length
-          el 'p', null,
+          el 'p', className: 'profile-info__location', null,
             Lang.get "users.show.origin.#{@originKeys().join('_')}",
               country: @props.user.country.name
               age: @props.user.age
 
         if @props.user.location
-          el 'p', null,
+          el 'p', className: 'profile-info__location', null,
             Lang.get 'users.show.current_location', location: @props.user.location
 
       el 'p',
-        className: 'profile-row'
-        dangerouslySetInnerHTML:
-          __html: Lang.get 'users.show.lastvisit', date: osu.timeago(@props.user.lastvisit)
+        className: 'page-contents__row'
+        dangerouslySetInnerHTML: { __html: Lang.get 'users.show.lastvisit', date: osu.timeago(@props.user.lastvisit) }
 
-      if @props.user.twitter
-        el 'dl', className: 'profile-data profile-row',
-          el 'dt', null, 'Twitter'
-          el 'dd', null,
-            el 'a', href: "https://twitter.com/#{@props.user.twitter}",
-              "@#{@props.user.twitter}"
+      elements.map (m) =>
+        return if !@props.user[m]
+        switch m
+          when 'twitter'
+            dt = 'Twitter'
+            dd = el 'a', href: "https://twitter.com/#{@props.user.twitter}", "@#{@props.user.twitter}"
+          when 'skype'
+            dt = 'Skype'
+            dd = el 'a', href: "skype:#{@props.user.skype}?chat", @props.user.skype
+          when 'lastfm'
+            dt = 'Last.fm'
+            dd = el 'a', href: "https://last.fm/user/#{@props.user.lastfm}", @props.user.lastfm
+          when 'playstyles'
+            dt = Lang.get 'users.show.plays_with._'
+            dd = @props.user.playstyle.map (s) ->
+                  Lang.get "users.show.plays_with.#{s}"
+                 .join ', '
 
-      if @props.user.skype
-        el 'dl', className: 'profile-data profile-row',
-          el 'dt', null, 'Skype'
-          el 'dd', null,
-            el 'a', href: "skype:#{@props.user.skype}?chat", @props.user.skype
-
-      if @props.user.lastfm
-        el 'dl', className: 'profile-data profile-row',
-          el 'dt', null, 'Last.fm'
-          el 'dd', null,
-            el 'a', href: "https://last.fm/user/#{@props.user.lastfm}",
-              @props.user.lastfm
-
-      if @props.user.playstyle.length
-        el 'dl', className: 'profile-data profile-row',
-          el 'dt', null, Lang.get('users.show.plays_with._')
-          el 'dd', null,
-            @props.user.playstyle.map (s) ->
-              Lang.get "users.show.plays_with.#{s}"
-            .join ', '
+        el 'dl', key: m, className: 'page-contents__row',
+          el 'dt', className: 'profile-info__data-key', dt
+          el 'dd', className: 'profile-info__data-value', dd

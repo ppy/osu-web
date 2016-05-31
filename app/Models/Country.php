@@ -26,6 +26,8 @@ class Country extends Model
     protected $table = 'osu_countries';
     protected $primaryKey = 'acronym';
 
+    public $timestamps = false;
+
     public function scopeForStore($query)
     {
         return $query->select('acronym', 'name', 'display')

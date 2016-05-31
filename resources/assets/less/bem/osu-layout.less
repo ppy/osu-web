@@ -44,6 +44,12 @@
     }
   }
 
+  &--body-ddd {
+    &::before {
+      .at2x("/images/backgrounds/page-ddd.png", 500px, 500px);
+    }
+  }
+
   &__col {
     width: calc(100% ~'-' @spacing);
     margin: (@spacing / 2);
@@ -132,6 +138,18 @@
       padding: 0;
       padding-top: (@spacing * 2);
       margin-bottom: @spacing;
+    }
+
+    &--page-beatmapset {
+      ._page;
+      padding: @spacing * 2;
+      padding-bottom: 0;
+      margin-bottom: @spacing;
+
+      @media @mobile {
+        padding: 0;
+        padding-top: @spacing * 2;
+      }
     }
 
     &--sm1 {

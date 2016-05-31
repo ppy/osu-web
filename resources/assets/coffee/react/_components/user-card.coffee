@@ -70,14 +70,14 @@ class @UserCard extends React.Component
             stats.level.current
           el 'span',
             className: 'badges__badge badges__badge--small badges__badge--achievements'
-            user.achievements.current
+            user.userAchievements.data.length
 
         el 'div', className: 'modal-header__userinfo userinfo-small',
           h1
             className: 'userinfo-small__username'
             a
               className: 'link link--white link--no-underline'
-              href: Url.user(user.id)
+              href: laroute.route('users.show', users: user.id)
               user.username
 
           el FlagCountry, country: user.country, classModifiers: ['userinfo-small']
@@ -95,8 +95,9 @@ class @UserCard extends React.Component
               el 'i', className: "fa osu fa-#{user.playmode}-o rankinginfo-small__mode-icon"
               " ##{stats.rank.global.toLocaleString()}"
 
-            el 'span', className: 'rankinginfo-small__country',
-              "#{user.country.name} ##{stats.rank.country.toLocaleString()}"
+            if user.country.name?
+              el 'span', className: 'rankinginfo-small__country',
+                "#{user.country.name} ##{stats.rank.country.toLocaleString()}"
 
       el 'div',
         className: 'modal-body modal-body--user-dropdown modal-body--compartimentalized'

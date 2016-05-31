@@ -25,6 +25,8 @@ abstract class Model extends BaseModel
 {
     protected $primaryKey = 'user_id';
 
+    public $timestamps = false;
+
     protected $casts = [
         'accuracy_new' => 'float',
         'count100' => 'integer',
@@ -47,6 +49,18 @@ abstract class Model extends BaseModel
     ];
 
     protected $guarded = [];
+
+    const UPDATED_AT = 'last_update';
+
+    public function setCreatedAt($value)
+    {
+        // Do nothing.
+    }
+
+    public function getCreatedAtColumn()
+    {
+        // Do nothing.
+    }
 
     public function getCountryAcronymAttribute($value)
     {

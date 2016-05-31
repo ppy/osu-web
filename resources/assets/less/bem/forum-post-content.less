@@ -18,16 +18,13 @@
  */
 
 .forum-post-content {
-    font-size: 12px;
-    font-family: sans-serif;
-    color: #444;
+    .content-font();
+    font-size: 13px;
 
     &--edit {
-      outline: none;
-      border: none;
+      .reset-input();
       resize: vertical;
       width: 100%;
-      padding: 0;
 
       @media @desktop {
         min-height: 300px;
@@ -39,11 +36,9 @@
     }
 
     &--reply {
-      outline: none;
-      border: none;
+      .reset-input();
       resize: none;
       width: 100%;
-      padding: 0;
 
       @media @desktop {
         min-height: 150px;

@@ -18,6 +18,11 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 @osu =
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
 
+  setHash: (newHash) ->
+    return if newHash == location.hash
+
+    location.replace newHash
+
 
   bottomPage: ->
     document.body.clientHeight == (document.body.scrollHeight - document.body.scrollTop)
@@ -38,8 +43,10 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     callback = -> $(document).trigger('osu:page:change')
     setTimeout callback, 0
 
+
   parseJson: (id) ->
     JSON.parse document.getElementById(id).text
+
 
   isMobile: -> ! window.matchMedia('(min-width: 920px)').matches
 
@@ -62,20 +69,6 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     el.textContent = time
     el.outerHTML
 
-  showLoadingOverlay: ->
-    $overlay = $('.loading-overlay')
-    return if $overlay.hasClass('loading-overlay--visible')
-
-    $overlay.addClass 'loading-overlay--visible'
-    $('button, .btn').prop 'disabled', true
-    $('a.btn').addClass 'disabled'
-
-
-  hideLoadingOverlay: ->
-    $('.loading-overlay').removeClass 'loading-overlay--visible'
-    $('button, .btn').prop 'disabled', false
-    $('a.btn').removeClass 'disabled'
-
 
   initTimeago: ->
     $('.timeago-raw').timeago().removeClass 'timeago-raw'
@@ -90,7 +83,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
 
   reloadPage: (fallback, forceReload) ->
-    $(document).off 'ajax:complete', osu.hideLoadingOverlay
+    $(document).off '.ujsHideLoadingOverlay'
 
     $.get document.location.href
     .done osu.replacePage
@@ -98,7 +91,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
       return osu.navigate fallback if fallback
       return document.location.reload() if forceReload
       osu.popup 'Failed loading page', 'danger'
-    .always osu.hideLoadingOverlay
+    .always LoadingOverlay.hide
 
 
   navigate: (url, keepScroll) ->

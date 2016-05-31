@@ -17,6 +17,20 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+/*
+ * Like array_search but returns null if not found instead of false.
+ * Strict mode only.
+ */
+function array_search_null($value, $array)
+{
+    $key = array_search($value, $array, true);
+
+    if ($key !== false) {
+        return $key;
+    }
+}
+
 function item_count($count)
 {
     return Lang::choice('common.count.item', $count, ['count' => $count]);
@@ -62,9 +76,9 @@ function currency($price)
     return sprintf('US$%.2f', $price);
 }
 
-function error_popup($message)
+function error_popup($message, $statusCode = 422)
 {
-    return response(['error' => $message], 422);
+    return response(['error' => $message], $statusCode);
 }
 
 function i18n_view($view)
@@ -211,10 +225,9 @@ function nav_links()
         ];
 
         $links['beatmaps'] = [
-            'getListing' => route('beatmaps'),
-            'getPacks' => route('packs'),
-            'getCharts' => route('charts'),
-            'getModding' => route('modding'),
+            'index' => route('beatmapsets.index'),
+            // 'getPacks' => route('packs.index'),
+            // 'getCharts' => route('charts.index'),
         ];
 
         $links['ranking'] = [
@@ -225,7 +238,7 @@ function nav_links()
         ];
     } else {
         $links['beatmaps'] = [
-            'getListing' => route('beatmaps'),
+            'index' => route('beatmapsets.index'),
         ];
     }
 
@@ -246,16 +259,12 @@ function nav_links()
 
 function presence($string, $valueIfBlank = null)
 {
-    if ($string === '' || $string === null) {
-        $string = $valueIfBlank;
-    }
-
-    return $string;
+    return present($string) === true ? $string : $valueIfBlank;
 }
 
 function present($string)
 {
-    return presence($string) !== null;
+    return $string !== null && $string !== '';
 }
 
 function user_colour_style($colour, $style)
@@ -305,22 +314,29 @@ function open_image($path, $dimensions = null)
     }
 
     if (!isset($dimensions[2]) || !is_int($dimensions[2])) {
-        return false;
+        return;
     }
 
     try {
+        $image = null;
+
         switch ($dimensions[2]) {
             case IMAGETYPE_GIF:
-                return imagecreatefromgif($path);
+                $image = imagecreatefromgif($path);
+                break;
             case IMAGETYPE_JPEG:
-                return imagecreatefromjpeg($path);
+                $image = imagecreatefromjpeg($path);
+                break;
             case IMAGETYPE_PNG:
-                return imagecreatefrompng($path);
+                $image = imagecreatefrompng($path);
+                break;
         }
 
-        return false;
+        if ($image !== false) {
+            return $image;
+        }
     } catch (ErrorException $_e) {
-        return false;
+        // do nothing
     }
 }
 
@@ -387,16 +403,15 @@ function fast_imagesize($url)
     });
 }
 
-// parses a string, if it's not an empty string or null,
-// return parsed integer value of it, otherwise return null
+/*
+ * Parses a string. If it's not an empty string or null,
+ * return parsed integer value of it, otherwise return null.
+ */
 function get_int($string)
 {
-    $val = presence($string);
-    if ($val !== null) {
-        $val = intval($val);
+    if (present($string) === true) {
+        return (int) $string;
     }
-
-    return $val;
 }
 
 // should it be used?
@@ -458,7 +473,15 @@ function deltree($dir)
 function get_param_value($input, $type)
 {
     if ($type === 'bool') {
-        return $input === '1' || $input === 'true';
+        if (is_bool($input)) {
+            return $input;
+        } elseif ($input === '1' || $input === 'true') {
+            return true;
+        } elseif ($input === '0' || $input === 'false') {
+            return false;
+        } else {
+            return;
+        }
     }
 
     if ($type === 'int') {
@@ -476,13 +499,13 @@ function get_param_value($input, $type)
     return (string) $input;
 }
 
-function get_params($input, $namespace, $keys)
+function get_params($input, $namespace, $keys, $defaults = [], $overrides = [])
 {
     if ($namespace !== null) {
         $input = array_get($input, $namespace);
     }
 
-    $params = [];
+    $params = $defaults;
 
     foreach ($keys as $keyAndType) {
         $keyAndType = explode(':', $keyAndType);
@@ -497,5 +520,10 @@ function get_params($input, $namespace, $keys)
         }
     }
 
-    return $params;
+    return array_merge($params, $overrides);
+}
+
+function array_rand_val($array)
+{
+    return $array[array_rand($array)];
 }
