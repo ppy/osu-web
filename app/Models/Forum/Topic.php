@@ -179,6 +179,11 @@ class Topic extends Model
         return $this->hasMany(Log::class);
     }
 
+    public function featureVotes()
+    {
+        return $this->hasMany(FeatureVote::class);
+    }
+
     public function titleNormalized()
     {
         if ($this->isIssue() === false) {
@@ -402,5 +407,10 @@ class Topic extends Model
         }
 
         $this->delete();
+    }
+
+    public function isFeatureTopic()
+    {
+        return $this->forum->isFeatureForum();
     }
 }
