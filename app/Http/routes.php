@@ -122,7 +122,7 @@ Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
     Route::post('topics/preview', ['as' => 'forum.topics.preview', 'uses' => 'TopicsController@preview']);
     Route::post('topics/{topics}/reply', ['as' => 'forum.topics.reply', 'uses' => 'TopicsController@reply']);
     Route::post('topics/{topics}/lock', ['as' => 'forum.topics.lock', 'uses' => 'TopicsController@lock']);
-    Route::get('t/{topics}/doublepost', "TopicsController@checkForDoublePost");
+    Route::get('t/{topics}/doublepost', 'TopicsController@checkForDoublePost');
     Route::resource('topics', 'TopicsController', ['only' => ['create', 'store']]);
 
     Route::resource('forum-covers', 'ForumCoversController', ['only' => ['store', 'update', 'destroy']]);

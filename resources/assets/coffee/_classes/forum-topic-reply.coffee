@@ -121,7 +121,7 @@ class @ForumTopicReply
     @deactivate()
     @$input().val ''
     @setState 'text', ''
-
+    $('.forum-post__warning-overlay.forum-post__warning-overlay--hidden').attr('class', 'forum-post__warning-overlay')
     if !@forum.lastPostLoaded() || e.target.getAttribute('data-force-reload') == '1'
       osu.navigate $(data).find('.js-post-url').attr('href')
     else
