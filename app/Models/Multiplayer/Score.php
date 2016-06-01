@@ -19,14 +19,24 @@
  */
 namespace App\Models\Multiplayer;
 
-class Score extends Model
+use App\Models\Score\Model as BaseModel;
+use App\Models\Beatmap;
+
+class Score extends BaseModel
 {
     protected $table = 'game_scores';
+    protected $connection = 'mysql-mp';
     protected $primaryKey = null;
     protected $hidden = ['frame', 'game_id'];
+    public $timestamps = false;
 
     public function game()
     {
         return $this->belongsTo(Game::class);
+    }
+
+    public function gamemodeString()
+    {
+        return Beatmap::modeStr($this->game->playmode);
     }
 }
