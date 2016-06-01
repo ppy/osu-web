@@ -101,6 +101,7 @@ BeatmapsetPage.Main = React.createClass
       @audioPreview.play()
     else
       @audioPreview.pause()
+      @audioPreview.currentTime = 0;
 
   onPreviewEnded: ->
     @setState isPreviewPlaying: false
