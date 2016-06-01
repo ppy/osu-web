@@ -19,16 +19,27 @@
  */
 namespace App\Models\Multiplayer;
 
+use App\Libraries\ModsFromDB;
+
 class Game extends Model
 {
     protected $table = 'games';
     protected $primaryKey = 'game_id';
+
     protected $hidden = ['match_id'];
+
     protected $dates = [
         'start_time',
         'end_time',
     ];
+
     public $timestamps = false;
+
+    protected $casts = [
+        'mods' => 'integer',
+    ];
+
+    protected $_mods = null;
 
     public function scores()
     {
@@ -48,5 +59,14 @@ class Game extends Model
     public function beatmap()
     {
         return $this->belongsTo(App\Models\Beatmap::class);
+    }
+
+    public function getModsAttribute($value)
+    {
+        if (!$this->_mods) {
+            $this->_mods = (new ModsFromDB($value))->getEnabledMods();
+        }
+
+        return $this->_mods;
     }
 }
