@@ -19,8 +19,16 @@
 el = React.createElement
 
 class BeatmapsetPage.Header extends React.Component
+  onClick: (e) =>
+    $.publish 'beatmapset:preview:toggle', !@props.isPreviewPlaying
+
   render: ->
     div className: 'osu-layout__row osu-layout__row--page-compact',
+      div className: 'beatmapset-header__preview-overlay',
+        div
+          className: 'beatmapset-header__preview-button'
+          onClick: @onClick
+          el Icon, name: if @props.isPreviewPlaying then 'pause' else 'play'
       div
         className: 'beatmapset-header',
         style:
