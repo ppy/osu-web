@@ -95,7 +95,7 @@ BeatmapDiscussions.Discussion = React.createClass
   doVote: (score) ->
     LoadingOverlay.show()
 
-    $.ajax laroute.route('beatmapset-discussions.vote', discussions: @props.discussion.id),
+    $.ajax laroute.route('beatmap-discussions.vote', beatmap_discussions: @props.discussion.id),
       method: 'PUT',
       data:
         beatmap_discussion_vote:
