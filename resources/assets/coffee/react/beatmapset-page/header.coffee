@@ -22,7 +22,8 @@ class BeatmapsetPage.Header extends React.Component
   onClick: (e) =>
     $.publish 'beatmapset:preview:toggle', !@props.isPreviewPlaying
 
-  doNothing: (e) =>
+  preventPropagation: (e) =>
+    # stops the audio from playing before we navigate away
     e.stopPropagation()
     return true
 
@@ -40,13 +41,13 @@ class BeatmapsetPage.Header extends React.Component
           div className: 'beatmapset-header__title',
             a
               href: laroute.route 'beatmapsets.index', q: @props.title
-              onClick: @doNothing
+              onClick: @preventPropagation
               @props.title
 
           div className: 'beatmapset-header__title beatmapset-header__title--small',
             a
               href: laroute.route 'beatmapsets.index', q: @props.artist
-              onClick: @doNothing
+              onClick: @preventPropagation
               @props.artist
 
         div className: 'beatmapset-header__title-box beatmapset-header__title-box--right',
