@@ -23,11 +23,30 @@ class ValidationErrors
 {
     private $errors = [];
 
-    public function add($column, $messageKey)
+    public function __construct($prefix)
+    {
+        $this->prefix = $prefix;
+    }
+
+    public function add($column, $rawMessage)
     {
         $this->errors[$column] ?? ($this->errors[$column] = []);
 
-        $this->errors[$column][] = $messageKey;
+        if (is_array($rawMessage)) {
+            $params = $rawMessage[1] ?? null;
+            $rawMessage = $rawMessage[0];
+        }
+
+        $params ?? ($params = []);
+
+        if ($rawMessage[0] === '.') {
+            $rawMessage = $this->prefix.$rawMessage;
+        }
+        $rawMessage = 'model_validation.'.$rawMessage;
+
+        $params['attribute'] = $column;
+
+        $this->errors[$column][] = trans($rawMessage, $params);
     }
 
     public function reset()

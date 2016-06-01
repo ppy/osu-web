@@ -74,7 +74,7 @@ class FeatureVote extends Model
         }
 
         if (!$this->topic->isFeatureTopic()) {
-            $this->validationErrors()->add('topic_id', 'not_feature_topic');
+            $this->validationErrors()->add('topic_id', '.not_feature_topic');
         }
     }
 
@@ -87,7 +87,7 @@ class FeatureVote extends Model
         }
 
         if ($this->user->osu_featurevotes < static::COST) {
-            $this->validationErrors()->add('user_id', 'not_enough_feature_votes');
+            $this->validationErrors()->add('user_id', '.not_enough_feature_votes');
         }
     }
 
@@ -126,5 +126,10 @@ class FeatureVote extends Model
         }
 
         return $star;
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'forum.feature_vote';
     }
 }

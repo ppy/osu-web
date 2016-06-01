@@ -25,10 +25,12 @@ trait Validatable
 {
     protected $_validationErrors = null;
 
+    abstract public function validationErrorsTranslationPrefix();
+
     public function validationErrors()
     {
         if ($this->_validationErrors === null) {
-            $this->_validationErrors = new ValidationErrors;
+            $this->_validationErrors = new ValidationErrors($this->validationErrorsTranslationPrefix());
         }
 
         return $this->_validationErrors;
