@@ -66,7 +66,7 @@ class @BeatmapsetPanel extends React.Component
       div className: 'beatmapset-panel__icons-box',
         a href: Url.beatmapDownload(beatmap.beatmapset_id), className: 'beatmapset-panel__icon',
           i className: 'fa fa-download'
-        a href: '#', className: 'beatmapset-panel__icon',
-          i className:'fa fa-heart'
+        # a href: '#', className: 'beatmapset-panel__icon',
+        #   i className:'fa fa-heart'
 
       div className: 'beatmapset-panel__difficulties', difficulties
