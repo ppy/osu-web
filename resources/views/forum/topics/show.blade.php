@@ -164,7 +164,7 @@
                     </span>
                 @endif
 
-                @if (Auth::check() === true && Auth::user()->isAdmin())
+                @if (priv_check('ForumTopicLock', $topic)->can())
                     <a
                         class="forum-topic-nav__button-circle"
                         href="{{ route('forum.topics.lock', [

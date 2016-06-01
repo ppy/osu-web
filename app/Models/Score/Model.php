@@ -29,20 +29,6 @@ abstract class Model extends BaseModel
     protected $primaryKey = 'score_id';
 
     protected $casts = [
-        'score_id' => 'integer',
-        'beatmap_id' => 'integer',
-        'beatmapset_id' => 'integer',
-        'score' => 'integer',
-        'maxcombo' => 'integer',
-        'count50' => 'integer',
-        'count100' => 'integer',
-        'count300' => 'integer',
-        'countmiss' => 'integer',
-        'countkatu' => 'integer',
-        'countgeki' => 'integer',
-        'user_id' => 'integer',
-        'rank' => 'string',
-        'pp' => 'float',
         'perfect' => 'boolean',
         'replay' => 'boolean',
     ];

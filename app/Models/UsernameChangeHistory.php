@@ -28,9 +28,4 @@ class UsernameChangeHistory extends Model
 
     protected $dates = ['timestamp'];
     public $timestamps = false;
-
-    protected $casts = [
-        'change_id' => 'integer',
-        'user_id' => 'integer',
-    ];
 }

@@ -26,4 +26,9 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use DispatchesCommands, ValidatesRequests;
+
+    public function __construct()
+    {
+        Auth::onceUsingId(Authorizer::getResourceOwnerId());
+    }
 }

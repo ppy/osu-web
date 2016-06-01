@@ -17,24 +17,48 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models;
+namespace App\Libraries;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Exceptions\AuthorizationException;
 
-class UserAchievement extends Model
+class AuthorizationResult
 {
-    protected $table = 'osu_user_achievements';
+    private $rawMessage;
 
-    protected $dates = ['date'];
-    public $timestamps = false;
-
-    public function user()
+    public function __construct($rawMessage)
     {
-        return $this->belongsTo(User::class);
+        $this->rawMessage = $rawMessage;
     }
 
-    public function achievement()
+    public function can()
     {
-        return $this->belongsTo(Achievement::class);
+        return $this->rawMessage === 'ok';
+    }
+
+    public function rawMessage()
+    {
+        if ($this->can()) {
+            return;
+        }
+
+        return presence($this->rawMessage, 'unauthorized');
+    }
+
+    public function message()
+    {
+        if ($this->can()) {
+            return;
+        }
+
+        return trans('authorization.'.$this->rawMessage());
+    }
+
+    public function ensureCan()
+    {
+        if ($this->can()) {
+            return;
+        }
+
+        throw new AuthorizationException($this->message());
     }
 }

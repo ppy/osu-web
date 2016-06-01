@@ -527,3 +527,30 @@ function array_rand_val($array)
 {
     return $array[array_rand($array)];
 }
+
+/**
+ * Just like original builder's "pluck" but with actual casting.
+ * I mean "lists" in 5.1 which then replaced by replaced "pluck"
+ * function. I mean, they deprecated the "pluck" function in 5.1
+ * and then goes on changing what the function does.
+ *
+ * If need to pluck for all rows, just call `select()` on the class.
+ */
+function model_pluck($builder, $key)
+{
+    return $builder
+        ->select($key)
+        ->get()
+        ->pluck($key)
+        ->all();
+}
+
+function priv_check($ability, $args)
+{
+    return priv_check_user(Auth::user(), $ability, $args);
+}
+
+function priv_check_user($user, $ability, $args)
+{
+    return OsuAuthorize::doCheckUser($user, $ability, $args);
+}

@@ -25,14 +25,6 @@ class BeatmapDiscussionVote extends Model
 {
     protected $guarded = [];
 
-    protected $casts = [
-        'id' => 'integer',
-        'beatmap_discussion_id' => 'integer',
-        'user_id' => 'integer',
-
-        'score' => 'integer',
-    ];
-
     public function beatmapDiscussion()
     {
         return $this->belongsTo(BeatmapDiscussion::class);

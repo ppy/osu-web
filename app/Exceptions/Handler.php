@@ -37,6 +37,7 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
+        AuthorizationException::class,
         HttpException::class,
         ModelNotFoundException::class,
         TokenMisMatchException::class,
@@ -78,6 +79,8 @@ class Handler extends ExceptionHandler
         } elseif ($e instanceof NotFoundHttpException) {
             return 404;
         } elseif ($e instanceof TokenMismatchException) {
+            return 403;
+        } elseif ($e instanceof AuthorizationException) {
             return 403;
         } else {
             return 500;
@@ -122,7 +125,7 @@ class Handler extends ExceptionHandler
         } else {
             if ($request->ajax()) {
                 // turbolinks always reload on page error.
-                $response = response([]);
+                $response = response(['error' => $e->getMessage()]);
             } else {
                 $response = response()->view('layout.error');
             }

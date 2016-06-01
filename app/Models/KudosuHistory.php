@@ -30,14 +30,6 @@ class KudosuHistory extends Model
     protected $dates = ['date'];
     public $timestamps = false;
 
-    protected $casts = [
-        'exchange_id' => 'integer',
-        'giver_id' => 'integer',
-        'receiver_id' => 'integer',
-        'post_id' => 'integer',
-        'amount' => 'integer',
-    ];
-
     public function giver()
     {
         return $this->belongsTo(User::class, 'giver_id', 'user_id');
