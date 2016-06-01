@@ -26,8 +26,4 @@ class ApiKey extends Model
     protected $table = 'osu_apikeys';
     protected $primaryKey = 'key';
     public $timestamps = false;
-
-    protected $casts = [
-        'user_id' => 'integer',
-    ];
 }

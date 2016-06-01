@@ -26,11 +26,6 @@ class BeatmapsetDiscussion extends Model
 {
     protected $guarded = [];
 
-    protected $casts = [
-        'id' => 'integer',
-        'beatmapset_id' => 'integer',
-    ];
-
     public function beatmapset()
     {
         return $this->belongsTo(Beatmapset::class);
@@ -62,11 +57,5 @@ class BeatmapsetDiscussion extends Model
             new BeatmapsetDiscussionTransformer(),
             implode(',', $includes)
         );
-    }
-
-    public function canBePostedBy($user)
-    {
-        // FIXME: check for beatmapset status?
-        return true;
     }
 }

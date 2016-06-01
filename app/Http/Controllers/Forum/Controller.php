@@ -20,22 +20,7 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Http\Controllers\Controller as BaseController;
-use App\Models\Forum\Authorize;
-use Auth;
 
 abstract class Controller extends BaseController
 {
-    public function authorizeView($forum)
-    {
-        if ($forum->canBeViewedBy(Auth::user()) === false) {
-            abort(403);
-        }
-    }
-
-    public function authorizePost($forum, $topic)
-    {
-        if (Authorize::canPost(Auth::user(), $forum, $topic) === false) {
-            abort(403);
-        }
-    }
 }

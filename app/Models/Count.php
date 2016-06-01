@@ -28,10 +28,6 @@ class Count extends Model
 
     public $timestamps = false;
 
-    protected $casts = [
-        'count' => 'integer',
-    ];
-
     public static function currentRankStart()
     {
         return static::find('pp_rank_column')->count;

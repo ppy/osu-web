@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * All the automated casting in model requires mysqlnd.
+ * This function check is inspired by
+ * https://stackoverflow.com/a/22499259 .
+ */
+if (!function_exists('mysqli_get_client_stats')) {
+    die('Required mysqlnd driver is missing.');
+}
+
 return [
 
     /*

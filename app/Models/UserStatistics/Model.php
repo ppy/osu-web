@@ -27,27 +27,6 @@ abstract class Model extends BaseModel
 
     public $timestamps = false;
 
-    protected $casts = [
-        'accuracy_new' => 'float',
-        'count100' => 'integer',
-        'count300' => 'integer',
-        'count50' => 'integer',
-        'countMiss' => 'integer',
-        'level' => 'float',
-        'max_combo' => 'integer',
-        'playcount' => 'integer',
-        'rank_score' => 'float',
-        'rank_score_index' => 'integer',
-        'ranked_score' => 'integer',
-        'replay_popularity' => 'integer',
-        'total_score' => 'integer',
-        'user_id' => 'integer',
-
-        'x_rank_count' => 'integer',
-        's_rank_count' => 'integer',
-        'a_rank_count' => 'integer',
-    ];
-
     protected $guarded = [];
 
     const UPDATED_AT = 'last_update';

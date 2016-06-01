@@ -28,10 +28,6 @@ class Tournament extends Model
 
     protected $dates = ['signup_open', 'signup_close', 'start_date', 'end_date'];
 
-    protected $casts = [
-        'play_mode' => 'integer',
-    ];
-
     public function isRegistrationOpen()
     {
         $now = Carbon::now();

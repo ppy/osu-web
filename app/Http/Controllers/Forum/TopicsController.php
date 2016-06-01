@@ -56,7 +56,7 @@ class TopicsController extends Controller
     {
         $forum = Forum::findOrFail(Request::input('forum_id'));
 
-        $this->authorizePost($forum, null);
+        priv_check('ForumTopicStore', $forum)->ensureCan();
 
         $cover = fractal_item_array(
             TopicCover::findForUse(Request::old('cover_id'), Auth::user()),
@@ -70,7 +70,7 @@ class TopicsController extends Controller
     {
         $forum = Forum::findOrFail(Request::input('forum_id'));
 
-        $this->authorizePost($forum, null);
+        priv_check('ForumTopicStore', $forum)->ensureCan();
 
         $post = new Post([
             'post_text' => Request::input('body'),
@@ -95,7 +95,7 @@ class TopicsController extends Controller
 
         $forum = Forum::findOrFail(Request::input('forum_id'));
 
-        $this->authorizePost($forum, null);
+        priv_check('ForumTopicStore', $forum)->ensureCan();
 
         $topic = Topic::createNew([
             'forum' => $forum,
@@ -121,7 +121,7 @@ class TopicsController extends Controller
 
         $topic = Topic::with('forum.cover')->findOrFail($id);
 
-        $this->authorizeView($topic->forum);
+        priv_check('ForumView', $topic->forum)->ensureCan();
 
         $posts = $topic->posts();
 
@@ -168,6 +168,7 @@ class TopicsController extends Controller
 
         $posts = $posts
             ->take(20)
+            ->with('topic')
             ->with('user.rank')
             ->with('user.country')
             ->with('user.supports')
@@ -196,7 +197,7 @@ class TopicsController extends Controller
     {
         $topic = Topic::findOrFail($id);
 
-        $this->authorizePost($topic->forum, $topic);
+        priv_check('ForumTopicReply', $topic)->ensureCan();
 
         $this->validate($request, [
             'body' => 'required',
@@ -214,11 +215,7 @@ class TopicsController extends Controller
 
     public function lock($id)
     {
-        // FIXME: should be moderator check?
-        // And maybe even its own controller or something.
-        if (Auth::user()->isAdmin() !== true) {
-            abort(403);
-        }
+        priv_check('ForumTopicLock', $topic)->ensure();
 
         $topic = Topic::findOrFail($id);
         $lock = Request::input('lock') !== '0';

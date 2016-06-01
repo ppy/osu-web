@@ -38,19 +38,10 @@ class Topic extends Model
     protected $dateFormat = 'U';
 
     private $postsCount;
-    private $_canBeRepliedBy = [];
 
     private $issueTypes = 'resolved|invalid|duplicate|confirmed';
 
     protected $casts = [
-        'forum_id' => 'integer',
-        'topic_first_post_id' => 'integer',
-        'topic_id' => 'integer',
-        'topic_last_post_id' => 'integer',
-        'topic_poster' => 'integer',
-        'topic_status' => 'integer',
-        'topic_type' => 'integer',
-
         'topic_approved' => 'boolean',
     ];
 
@@ -268,21 +259,6 @@ class Topic extends Model
         // not checking STATUS_LOCK because there's another
         // state (STATUS_MOVED) which isn't handled yet.
         return $this->topic_status !== static::STATUS_UNLOCKED;
-    }
-
-    public function canBeEditedBy($user)
-    {
-        return $this->posts()->first()->canBeEditedBy($user);
-    }
-
-    public function canBeRepliedBy($user)
-    {
-        $key = $user === null ? '-1' : "{$user->user_id}";
-        if (!isset($this->_canBeRepliedBy[$key])) {
-            $this->_canBeRepliedBy[$key] = Authorize::canPost($user, $this->forum, $this);
-        }
-
-        return $this->_canBeRepliedBy[$key];
     }
 
     public function markRead($user, $markTime)

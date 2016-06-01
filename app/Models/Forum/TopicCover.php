@@ -33,12 +33,6 @@ class TopicCover extends Model
 
     protected $table = 'forum_topic_covers';
 
-    protected $casts = [
-        'id' => 'integer',
-        'topic_id' => 'integer',
-        'user_id' => 'integer',
-    ];
-
     private $_owner = [false, null];
 
     public function getMaxDimensions()
@@ -115,27 +109,6 @@ class TopicCover extends Model
         $this->save();
 
         return $this->fresh();
-    }
-
-    public function canBeEditedBy($user)
-    {
-        if ($this->topic !== null) {
-            return $this->topic->canBeEditedBy($user);
-        }
-
-        if ($user === null) {
-            return false;
-        }
-
-        if ($user->isAdmin()) {
-            return true;
-        }
-
-        if ($this->owner() === null) {
-            return false;
-        }
-
-        return $this->owner()->user_id === $user->user_id;
     }
 
     public function defaultFileUrl()

@@ -36,17 +36,6 @@ class Log extends Model
     protected $dates = ['log_time'];
     protected $dateFormat = 'U';
 
-    protected $casts = [
-        'log_id' => 'integer',
-        'log_type' => 'integer',
-
-        'forum_id' => 'integer',
-        'topic_id' => 'integer',
-
-        'user_id' => 'integer',
-        'reportee_id' => 'integer',
-    ];
-
     public function getLogDataAttribute($value)
     {
         if (presence($value) === null) {
