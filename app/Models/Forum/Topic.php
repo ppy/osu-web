@@ -28,6 +28,7 @@ class Topic extends Model
 {
     const STATUS_LOCKED = 1;
     const STATUS_UNLOCKED = 0;
+    const DEFAULT_ORDER_COLUMN = 'topic_last_post_time';
 
     protected $table = 'phpbb_topics';
     protected $primaryKey = 'topic_id';
@@ -214,9 +215,29 @@ class Topic extends Model
         return $query->where('topic_type', 0);
     }
 
-    public function scopeRecent($query)
+    public function scopeRecent($query, $order = null)
     {
-        return $query->orderBy('topic_last_post_time', 'desc');
+        switch ($order[0] ?? null) {
+            case 'feature_votes':
+                $orderColumn = 'osu_starpriority';
+                break;
+        }
+
+        $orderColumn ?? ($orderColumn = static::DEFAULT_ORDER_COLUMN);
+
+        switch ($order[1] ?? null) {
+            case 'asc':
+                $orderSort = $order[1];
+                break;
+        }
+
+        $orderSort ?? ($orderSort = 'desc');
+
+        $query->orderBy($orderColumn, $orderSort);
+
+        if ($orderColumn !== static::DEFAULT_ORDER_COLUMN) {
+            $query->orderBy(static::DEFAULT_ORDER_COLUMN, 'desc');
+        }
     }
 
     public function nthPost($n)
