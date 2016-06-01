@@ -22,27 +22,32 @@ class BeatmapsetPage.Header extends React.Component
   onClick: (e) =>
     $.publish 'beatmapset:preview:toggle', !@props.isPreviewPlaying
 
+  doNothing: (e) =>
+    e.stopPropagation()
+    return true
+
   render: ->
     div className: 'osu-layout__row osu-layout__row--page-compact',
-      div className: 'beatmapset-header__preview-overlay',
-        div
-          className: 'beatmapset-header__preview-button'
-          onClick: @onClick
-          el Icon, name: if @props.isPreviewPlaying then 'pause' else 'play'
       div
         className: 'beatmapset-header',
+        onClick: @onClick,
         style:
           backgroundImage: "url(#{@props.cover})",
+        div
+          className: 'beatmapset-header__preview-button'
+          el Icon, name: if @props.isPreviewPlaying then 'pause' else 'play'
         div className: 'beatmapset-header__title-box beatmapset-header__title-box--left',
-          a
-            href: laroute.route 'beatmapsets.index', q: @props.title
-            className: 'beatmapset-header__title'
-            @props.title
+          div className: 'beatmapset-header__title',
+            a
+              href: laroute.route 'beatmapsets.index', q: @props.title
+              onClick: @doNothing
+              @props.title
 
-          a
-            href: laroute.route 'beatmapsets.index', q: @props.artist
-            className: 'beatmapset-header__title beatmapset-header__title--small'
-            @props.artist
+          div className: 'beatmapset-header__title beatmapset-header__title--small',
+            a
+              href: laroute.route 'beatmapsets.index', q: @props.artist
+              onClick: @doNothing
+              @props.artist
 
         div className: 'beatmapset-header__title-box beatmapset-header__title-box--right',
           div className: 'beatmapset-header__title beatmapset-header__title--stat',
