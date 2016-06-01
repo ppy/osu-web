@@ -235,8 +235,7 @@ class TopicsController extends Controller
         if ($star->getKey() !== null) {
             return ujs_redirect(route('forum.topics.show', $topicId));
         } else {
-            // No idea what to show yet.
-            return error_popup($star->validationErrors()->all());
+            return error_popup(implode(' ', $star->validationErrors()->allMessages()));
         }
     }
 }

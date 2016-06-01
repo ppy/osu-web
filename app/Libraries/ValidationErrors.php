@@ -63,4 +63,15 @@ class ValidationErrors
     {
         return $this->errors;
     }
+
+    public function allMessages()
+    {
+        $result = [];
+
+        foreach ($this->errors as $_column => $messages) {
+            $result = array_merge($result, $messages);
+        }
+
+        return $result;
+    }
 }
