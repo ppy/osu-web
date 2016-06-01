@@ -19,6 +19,8 @@
  */
 namespace App\Http\Controllers\API;
 
+use Auth;
+use Authorizer;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -26,4 +28,9 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use DispatchesCommands, ValidatesRequests;
+
+    public function __construct()
+    {
+        Auth::onceUsingId(Authorizer::getResourceOwnerId());
+    }
 }

@@ -24,93 +24,74 @@ use Illuminate\Database\Eloquent\Model;
 // temporary class until simpler acl is implemented
 class Authorize extends Model
 {
-    // taken from current forums
-    private static $groups = [
-        'default' => 2,
-    ];
-    private static $options = [
-        // acl_options where auth_option = 'f_post'
-        'post' => 17,
-        // acl_options where auth_option = 'f_postcount'
-        'postsCount' => 18,
-    ];
-
-    private static $roles = [
-        // acl_roles_data where auth_option_id = 17
-        'canPost' => [14, 21],
-    ];
-
     protected $table = 'phpbb_acl_groups';
-    protected $casts = [
-        'auth_option_id' => 'integer',
-        'auth_role_id' => 'integer',
-        'auth_setting' => 'integer',
-        'forum_id' => 'integer',
-        'group_id' => 'integer',
-    ];
 
-    public static function canPost($user, $forum, $topic)
+    public static function aclCheck($user, $authOption, $forum)
     {
-        if (!$forum->canHavePost()) {
-            return false;
-        }
+        $groupIds = $user->groupIds();
+        $authOptionId = AuthOption::where('auth_option', $authOption)->value('auth_option_id');
 
-        if ($user === null) {
-            return false;
-        }
-
-        if ($user->isAdmin()) {
-            return true;
-        }
-
-        if ($user->isRestricted()) {
-            return false;
-        }
-
-        if ($user->isSilenced()) {
-            return false;
-        }
-
-        if (!$forum->canBeViewedBy($user)) {
-            return false;
-        }
-
-        if ($topic !== null && $topic->isLocked()) {
-            return false;
-        }
-        if ($topic->isDoublePostBy($user) === true) {
-            return false;
-        }
-        $permissions = static::where('group_id', static::$groups['default'])
+        // the group may contain direct acl entry
+        $isAuthorized = static::directAcl($groupIds, $authOptionId)
             ->where('forum_id', $forum->forum_id)
-            ->get();
-
-        foreach ($permissions as $permission) {
-            if ($permission->auth_setting === 1 && $permission->auth_option_id === static::$options['post']) {
-                return true;
-            } elseif (in_array($permission->auth_role_id, static::$roles['canPost'], true)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public static function increasesPostsCount($forum)
-    {
-        return static::where('group_id', static::$groups['default'])
-            ->where('forum_id', $forum->forum_id)
-            ->where('auth_option_id', static::$options['postsCount'])
             ->exists();
+
+        // the group may also be part of role which may have matching
+        // acl entry
+        if (!$isAuthorized) {
+            $isAuthorized = static::roleAcl($groupIds, $authOptionId)
+                ->where('forum_id', $forum->forum_id)
+                ->exists();
+        }
+
+        // there's actually another one (phpbb_acl_users) but doesn't seem
+        // to contain anything but old-ish banlist?
+        return $isAuthorized;
     }
 
-    public static function postsCountedForums()
+    public static function aclGetAllowedForums($user, $authOption)
     {
-        return static::where('group_id', static::$groups['default'])
-            ->where('auth_option_id', static::$options['postsCount'])
-            ->select('forum_id')
-            ->get()
-            ->pluck('forum_id')
-            ->all();
+        $groupIds = $user->groupIds();
+        $authOptionId = AuthOption::where('auth_option', $authOption)->value('auth_option_id');
+
+        $directAclForumIds = model_pluck(static::directAcl($groupIds, $authOptionId), 'forum_id');
+        $roleAclForumIds = model_pluck(static::roleAcl($groupIds, $authOptionId), 'forum_id');
+
+        return array_unique(array_merge($directAclForumIds, $roleAclForumIds));
+    }
+
+    public static function increasesPostsCount($user, $forum)
+    {
+        return static::aclCheck($user, 'f_postcount', $forum);
+    }
+
+    public static function postsCountedForums($user)
+    {
+        return static::aclGetAllowedForums($user, 'f_postcount');
+    }
+
+    public function scopeDirectAcl($query, $groupIds, $authOptionId)
+    {
+        return $query
+            ->where([
+                'auth_setting' => 1,
+                'auth_option_id' => $authOptionId,
+            ])
+            ->whereIn('group_id', $groupIds);
+    }
+
+    public function scopeRoleAcl($query, $groupIds, $authOptionId)
+    {
+        $roleIds = model_pluck(AuthRole::where([
+            'auth_setting' => 1,
+            'auth_option_id' => $authOptionId,
+        ]), 'role_id');
+
+        return $query
+            ->where([
+                'auth_setting' => 0,
+            ])
+            ->whereIn('auth_role_id', $roleIds)
+            ->whereIn('group_id', $groupIds);
     }
 }

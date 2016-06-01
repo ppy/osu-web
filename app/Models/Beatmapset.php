@@ -37,25 +37,9 @@ class Beatmapset extends Model
 
     protected $casts = [
         'active' => 'boolean',
-        'approved' => 'integer',
-        'approvedby_id' => 'integer',
-        'beatmapset_id' => 'integer',
-        'bpm' => 'float',
         'download_disabled' => 'boolean',
         'epilepsy' => 'boolean',
-        'favourite_count' => 'integer',
-        'filesize' => 'integer',
-        'filesize_novideo' => 'integer',
-        'genre_id' => 'integer',
-        'language_id' => 'integer',
-        'offset' => 'integer',
-        'play_count' => 'integer',
-        'rating' => 'float',
-        'star_priority' => 'integer',
         'storyboard' => 'boolean',
-        'thread_id' => 'integer',
-        'user_id' => 'integer',
-        'versions_available' => 'integer',
         'video' => 'boolean',
     ];
 
@@ -317,7 +301,7 @@ class Beatmapset extends Model
 
         if (!empty($rank)) {
             $klass = presence($mode) !== null ? Score\Best\Model::getClass(intval($mode)) : Score\Best\Combined::class;
-            $scores = $klass::forUser($current_user)->whereIn('rank', $rank)->get()->lists('beatmapset_id');
+            $scores = model_pluck($klass::forUser($current_user)->whereIn('rank', $rank), 'beatmapset_id');
             $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $scores]];
         }
 
@@ -334,11 +318,11 @@ class Beatmapset extends Model
                     $matchParams[] = ['match' => ['approved' => self::APPROVED]];
                     break;
                 case 2: // Favourites
-                    $favs = $current_user->favouriteBeatmapsets()->get()->lists('beatmapset_id');
+                    $favs = model_pluck($current_user->favouriteBeatmapsets(), 'beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $favs]];
                     break;
                 case 3: // Mod Requests
-                    $maps = ModQueue::all()->lists('beatmapset_id');
+                    $maps = model_pluck(ModQueue::select(), 'beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
                     $matchParams[] = ['match' => ['approved' => self::PENDING]];
                     break;
@@ -352,7 +336,7 @@ class Beatmapset extends Model
                     $matchParams[] = ['match' => ['approved' => self::GRAVEYARD]];
                     break;
                 case 6: // My Maps
-                    $maps = $current_user->beatmapsets()->get()->lists('beatmapset_id');
+                    $maps = model_pluck($current_user->beatmapsets(), 'beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
                     break;
                 default: // null, etc
@@ -534,6 +518,11 @@ class Beatmapset extends Model
     public function storeCover($target_filename, $source_path)
     {
         $this->storage()->put($this->coverPath().$target_filename, file_get_contents($source_path));
+    }
+
+    public function previewURL()
+    {
+        return '//b.ppy.sh/preview/'.$this->beatmapset_id.'.mp3';
     }
 
     public function storage()

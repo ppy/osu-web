@@ -91,7 +91,7 @@ class @Forum
       .closest('div')
       .toggleClass 'hidden', lastPostLoaded
 
-    if !window.currentUser.isAdmin
+    if !(currentUser.isAdmin || currentUser.isGMT)
       $('.delete-post-link').hide()
 
     if lastPostLoaded

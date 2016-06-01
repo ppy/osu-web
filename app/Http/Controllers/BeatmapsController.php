@@ -67,7 +67,7 @@ class BeatmapsController extends Controller
                 break;
             case 'friend':
                 $scores = $scores
-                    ->whereIn('user_id', $user->friends()->lists('zebra_id')->all());
+                    ->whereIn('user_id', model_pluck($user->friends(), 'zebra_id'));
                 break;
         }
 

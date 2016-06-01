@@ -17,24 +17,13 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models;
+namespace App\Models\Forum;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserAchievement extends Model
+class AuthOption extends Model
 {
-    protected $table = 'osu_user_achievements';
+    protected $table = 'phpbb_acl_options';
 
-    protected $dates = ['date'];
-    public $timestamps = false;
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function achievement()
-    {
-        return $this->belongsTo(Achievement::class);
-    }
+    protected $primaryKey = 'auth_option_id';
 }

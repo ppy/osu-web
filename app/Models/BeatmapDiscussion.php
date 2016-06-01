@@ -28,12 +28,6 @@ class BeatmapDiscussion extends Model
     protected $touches = ['beatmapsetDiscussion'];
 
     protected $casts = [
-        'id' => 'integer',
-        'beatmapset_discussion_id' => 'integer',
-        'beatmap_id' => 'integer',
-        'user_id' => 'integer',
-
-        'timestamp' => 'integer',
         'resolved' => 'boolean',
     ];
 
@@ -102,42 +96,6 @@ class BeatmapDiscussion extends Model
         return
             ($this->timestamp === null) ||
             ($this->beatmap_id !== null && $this->timestamp >= 0 && $this->timestamp < ($this->beatmap->total_length * 1000));
-    }
-
-    public function canBeVotedBy($user)
-    {
-        return $user !== null;
-    }
-
-    public function canBeResolvedBy($user)
-    {
-        // no point resolving general discussion?
-        if ($this->timestamp === null) {
-            return false;
-        }
-
-        if ($user === null) {
-            return false;
-        }
-
-        if ($user->isAdmin()) {
-            return true;
-        }
-
-        if ($user->user_id === $this->user_id) {
-            return true;
-        }
-
-        if ($user->user_id === $this->beatmapset->user_id) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public function canBePostedBy($user)
-    {
-        return $user !== null;
     }
 
     public function getVotesSummaryAttribute()

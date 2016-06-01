@@ -47,15 +47,6 @@ class Event extends Model
     protected $dates = ['date'];
     public $timestamps = false;
 
-    protected $casts = [
-        'event_id' => 'integer',
-        'beatmap_id' => 'integer',
-        'beatmapset_id' => 'integer',
-        'user_id' => 'integer',
-        'epicfactor' => 'integer',
-        'private' => 'integer',
-    ];
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'user_id');

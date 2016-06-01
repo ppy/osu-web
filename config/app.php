@@ -163,6 +163,8 @@ return [
         'LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider',
         'LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider',
         'Lord\Laroute\LarouteServiceProvider',
+
+        'App\Providers\OsuAuthorizeServiceProvider',
     ],
 
     /*
@@ -219,6 +221,8 @@ return [
         'Slack' => 'Maknz\Slack\Facades\Slack',
         'Statsd' => 'League\StatsD\Laravel5\Facade\StatsdFacade',
         'Authorizer' => 'LucaDegasperi\OAuth2Server\Facades\Authorizer',
+
+        'OsuAuthorize' => App\Facades\OsuAuthorizeFacade::class,
     ],
 
 ];

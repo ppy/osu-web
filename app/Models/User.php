@@ -41,23 +41,15 @@ class User extends Model implements AuthenticatableContract, Messageable
     protected $dateFormat = 'U';
     public $timestamps = false;
 
-    protected $visible = ['user_id', 'username', 'username_clean', 'user_rank', 'osu_playstyle', 'user_colour', 'is_admin'];
-
-    protected $appends = ['is_admin'];
+    protected $visible = ['user_id', 'username', 'username_clean', 'user_rank', 'osu_playstyle', 'user_colour'];
 
     protected $casts = [
-        'group_id' => 'integer',
-        'osu_kudosavailable' => 'integer',
-        'osu_kudostotal' => 'integer',
         'osu_subscriber' => 'boolean',
-        'user_id' => 'integer',
-        'user_type' => 'integer',
-        'user_warnings' => 'integer',
-        'osu_playmode' => 'integer',
+        'user_timezone', 'float',
     ];
 
     public $flags;
-    private $group_ids;
+    private $groupIds;
     private $_supportLength = null;
 
     const ANONYMOUS = 1; // Anonymous (guest)
@@ -234,7 +226,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function getUserAvatarAttribute($value)
     {
-        if ($value === null || $value === '') {
+        if (!present($value)) {
             return 'https://s.ppy.sh/images/blank.jpg';
         } else {
             $value = str_replace('_', '?', $value);
@@ -251,11 +243,6 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function getUserFromAttribute($value)
     {
         return presence($value);
-    }
-
-    public function getIsAdminAttribute()
-    {
-        return $this->isAdmin();
     }
 
     public function getIsSpecialAttribute()
@@ -389,47 +376,47 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function isBAT()
     {
-        return $this->isGroup(UserGroup::BAT);
+        return $this->isGroup(UserGroup::GROUPS['bat']);
     }
 
     public function isAdmin()
     {
-        return $this->isGroup(UserGroup::ADMIN);
+        return $this->isGroup(UserGroup::GROUPS['admin']);
     }
 
     public function isGMT()
     {
-        return $this->isGroup(UserGroup::GMT);
+        return $this->isGroup(UserGroup::GROUPS['gmt']);
     }
 
     public function isMAT()
     {
-        return $this->isGroup(UserGroup::MAT);
+        return $this->isGroup(UserGroup::GROUPS['mat']);
     }
 
     public function isHax()
     {
-        return $this->isGroup(UserGroup::HAX);
+        return $this->isGroup(UserGroup::GROUPS['hax']);
     }
 
     public function isDev()
     {
-        return $this->isGroup(UserGroup::DEV);
+        return $this->isGroup(UserGroup::GROUPS['dev']);
     }
 
     public function isMod()
     {
-        return $this->isGroup(UserGroup::MOD);
+        return $this->isGroup(UserGroup::GROUPS['mod']);
     }
 
     public function isAlumni()
     {
-        return $this->isGroup(UserGroup::ALUMNI);
+        return $this->isGroup(UserGroup::GROUPS['alumni']);
     }
 
     public function isRegistered()
     {
-        return $this->isGroup(UserGroup::REGULAR);
+        return $this->isGroup(UserGroup::GROUPS['default']);
     }
 
     public function hasSupported()
@@ -468,15 +455,19 @@ class User extends Model implements AuthenticatableContract, Messageable
             $lastBan->endTime()->isFuture();
     }
 
-    // check if a user is in a specific group, by ID
-
-    public function isGroup($group)
+    public function groupIds()
     {
-        if ($this->group_ids === null) {
-            $this->group_ids = array_pluck($this->userGroups()->get(['group_id'])->toArray(), 'group_id');
+        if ($this->groupIds === null) {
+            $this->groupIds = model_pluck($this->userGroups(), 'group_id');
         }
 
-        return in_array($group, $this->group_ids, true);
+        return $this->groupIds;
+    }
+
+    // check if a user is in a specific group, by ID
+    public function isGroup($group)
+    {
+        return in_array($group, $this->groupIds(), true);
     }
 
     /*
@@ -494,11 +485,6 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function userGroups()
     {
         return $this->hasMany(UserGroup::class);
-    }
-
-    public function notifications()
-    {
-        return $this->hasMany("App\Models\Notification", 'user_id', 'user_id');
     }
 
     public function beatmapsets()
@@ -519,16 +505,6 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function beatmapPlaycounts()
     {
         return $this->hasMany(BeatmapPlaycount::class);
-    }
-
-    public function posts()
-    {
-        return $this->hasMany("App\Models\Post", 'user_id', 'user_id');
-    }
-
-    public function mods()
-    {
-        return $this->hasMany("App\Models\Mod", 'user_id', 'user_id');
     }
 
     public function apiKey()
@@ -972,13 +948,13 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function refreshForumCache($forum = null, $postsChangeCount = 0)
     {
         if ($forum !== null) {
-            if (Forum\Authorize::increasesPostsCount($forum) !== true) {
+            if (Forum\Authorize::increasesPostsCount($this, $forum) !== true) {
                 $postsChangeCount = 0;
             }
 
             $newPostsCount = DB::raw("user_posts + {$postsChangeCount}");
         } else {
-            $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums())->count();
+            $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums($this))->count();
         }
 
         $lastPost = $this->forumPosts()->last()->select('post_time')->first();
@@ -1005,18 +981,8 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $canInvite;
     }
 
-    public function canBeMessagedBy(User $sender)
-    {
-        // TODO: blocklist/ignore, etc
-        return true;
-    }
-
     public function sendMessage(User $sender, $body)
     {
-        if (!$this->canBeMessagedBy($sender)) {
-            return false;
-        }
-
         $message = new PrivateMessage();
         $message->user_id = $sender->user_id;
         $message->target_id = $this->user_id;

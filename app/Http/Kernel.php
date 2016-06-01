@@ -40,6 +40,7 @@ class Kernel extends HttpKernel
         'App\Http\Middleware\UpdateUserLastvisit',
         'Clockwork\Support\Laravel\ClockworkMiddleware',
         'LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware',
+        Middleware\TurbolinksSupport::class,
     ];
 
     /**

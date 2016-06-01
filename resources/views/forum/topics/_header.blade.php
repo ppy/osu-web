@@ -56,7 +56,7 @@
             @endif
         </div>
 
-        @if (isset($topic) === false || $topic->canBeEditedBy(Auth::user()))
+        @if (!isset($topic) || priv_check('ForumTopicEdit', $topic)->can())
             @include('forum._cover')
         @endif
     </div>

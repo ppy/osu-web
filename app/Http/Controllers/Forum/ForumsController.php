@@ -40,7 +40,7 @@ class ForumsController extends Controller
         $forums = Forum::where('parent_id', 0)->with('subForums')->orderBy('left_id')->get();
 
         $forums = array_where($forums, function ($_i, $forum) {
-            return $forum->canBeViewedBy(Auth::user());
+            return priv_check('ForumView', $forum)->can();
         });
 
         return view('forum.forums.index', compact('forums'));
@@ -50,7 +50,7 @@ class ForumsController extends Controller
     {
         $forum = Forum::with('subForums')->findOrFail($id);
 
-        $this->authorizeView($forum);
+        priv_check('ForumView', $forum)->ensureCan();
 
         $cover = fractal_item_array(
             $forum->cover()->firstOrNew([]),

@@ -19,6 +19,7 @@
  */
 namespace App\Http\Controllers\API;
 
+use Auth;
 use Request;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
@@ -26,16 +27,10 @@ use App\Models\Chat\PrivateMessage;
 use App\Transformers\API\Chat\MessageTransformer;
 use App\Transformers\API\Chat\PrivateMessageTransformer;
 use App\Transformers\API\Chat\ChannelTransformer;
-use Authorizer;
 use App\Models\User;
 
 class ChatController extends Controller
 {
-    public function __construct()
-    {
-        $this->current_user = User::find(Authorizer::getResourceOwnerId());
-    }
-
     public function channels()
     {
         $channels = Channel::where('type', 'Public')->get();
@@ -52,12 +47,11 @@ class ChatController extends Controller
         $since = intval(Request::input('since'));
         $limit = min(50, intval(Request::input('limit', 50)));
 
-        $channels = Channel::whereIn('channel_id', $channel_ids)->get();
-        foreach ($channels as $channel) {
-            if (!$channel->canBeMessagedBy($this->current_user)) {
-                array_splice($channel_ids, array_search($channel->channel_id, $channel_ids, true), 1);
-            }
-        }
+        $channels = Channel::whereIn('channel_id', $channel_ids)
+            ->get()
+            ->filter(function ($channel) {
+                return priv_check('ChatChannelRead', $channel)->can();
+            });
 
         $messages = Message::whereIn('channel_id', $channel_ids)->with('user');
 
@@ -100,23 +94,20 @@ class ChatController extends Controller
 
     public function postMessage()
     {
-        if ($this->current_user->isBanned() || $this->current_user->isRestricted() || $this->current_user->isSilenced()) {
-            return $this->error('not authorized', 403);
-        }
-
-        $target_type = Request::input('target_type');
-        switch ($target_type) {
+        switch (Request::input('target_type')) {
             case 'channel':
                 $target = Channel::findOrFail(Request::input('channel_id'));
                 break;
             case 'user':
                 $target = User::findOrFail(Request::input('user_id'));
                 break;
+            default:
+                abort(422);
         }
 
-        if (!$target || !$target->sendMessage($this->current_user, Request::input('message'))) {
-            return $this->error('not authorized', 401);
-        }
+        priv_check('ChatMessageSend', $target)->ensureCan();
+
+        $target->sendMessage(Auth::user(), Request::input('message'));
 
         return json_encode('ok');
     }

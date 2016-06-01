@@ -27,14 +27,6 @@ class Order extends Model
     protected $connection = 'mysql-store';
     protected $primaryKey = 'order_id';
 
-    protected $casts = [
-        'order_id' => 'integer',
-        'user_id' => 'integer',
-        'address_id' => 'integer',
-
-        'shipping' => 'float',
-    ];
-
     protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
 
     public function items()

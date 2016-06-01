@@ -26,13 +26,6 @@ class BeatmapDifficulty extends Model
     protected $table = 'osu_beatmap_difficulty';
     protected $primaryKey = null;
 
-    protected $casts = [
-        'beatmap_id' => 'integer',
-        'mode' => 'integer',
-        'mods' => 'integer',
-        'diff_unified' => 'float',
-    ];
-
     public $dates = ['last_updated'];
     public $timestamps = false;
 }
