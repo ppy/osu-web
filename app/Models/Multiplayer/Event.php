@@ -19,6 +19,8 @@
  */
 namespace App\Models\Multiplayer;
 
+use App\Models\User;
+
 class Event extends Model
 {
     protected $table = 'events';
@@ -40,6 +42,11 @@ class Event extends Model
 
     public function user()
     {
-        return $this->belongsTo(App\Models\User::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function scopeDefault($query)
+    {
+        return $query->orderBy('event_id', 'asc');
     }
 }

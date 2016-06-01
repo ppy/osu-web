@@ -37,7 +37,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
         return [
             'id' => $score->score_id,
             'user_id' => $score->user_id,
-            'created_at' => $score->date->toIso8601String(),
+            'created_at' => $score->date ? $score->date->toIso8601String() : null,
             'pp' => $score->pp,
             'accuracy' => $score->accuracy(),
             'rank' => $score->rank,
@@ -46,6 +46,9 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'count50' => $score->count50,
             'count100' => $score->count100,
             'count300' => $score->count300,
+            'countgeki' => $score->countgeki,
+            'countkatu' => $score->countkatu,
+            'countmiss' => $score->countmiss,
         ];
     }
 

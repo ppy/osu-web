@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,31 +17,29 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models\Multiplayer;
+namespace App\Transformers\Multiplayer;
 
-use App\Models\Score\Model as BaseModel;
-use App\Models\Beatmap;
+use League\Fractal;
+use App\Models\Multiplayer\Match;
 
-class Score extends BaseModel
+class MatchTransformer extends Fractal\TransformerAbstract
 {
-    protected $table = 'game_scores';
-    protected $connection = 'mysql-mp';
-    protected $primaryKey = null;
-    protected $hidden = ['frame', 'game_id'];
-    public $timestamps = false;
+    protected $availableIncludes = [
+        'events',
+    ];
 
-    public function game()
+    public function transform(Match $match)
     {
-        return $this->belongsTo(Game::class);
+        return [
+            'id' => $match->match_id,
+            'start_time' => $match->start_time->toIso8601String(),
+            'end_time' => $match->end_time ? $match->end_time->toIso8601String() : null,
+            'name' => $match->name,
+        ];
     }
 
-    public function gamemodeString()
+    public function includeEvents(Match $match)
     {
-        return Beatmap::modeStr($this->game->play_mode);
-    }
-
-    public function scopeDefault($query)
-    {
-        return $query->orderBy('score', 'desc');
+        return $this->collection($match->events()->default()->get(), new EventTransformer);
     }
 }

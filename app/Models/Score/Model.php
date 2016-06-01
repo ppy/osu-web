@@ -113,7 +113,16 @@ abstract class Model extends BaseModel
 
     public function accuracy()
     {
-        return $this->hits() / $this->totalHits();
+        $hits = $this->hits();
+        $totalHits = $this->totalHits();
+
+        // in a rare case when the score row has zero hits
+        // (found it occuring in multiplayer scores)
+        if ($totalHits === 0) {
+            return 0;
+        } else {
+            return $hits / $totalHits;
+        }
     }
 
     public function scopeDefault($query)
