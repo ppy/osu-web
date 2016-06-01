@@ -29,7 +29,7 @@ class MultiplayerBaseTables extends Migration
             $table->unsignedInteger('game_id');
             $table->unsignedTinyInteger('slot');
             $table->unsignedTinyInteger('team')->default(0);
-            $table->mediumInteger('user_id')->default(0);
+            $table->unsignedMediumInteger('user_id')->default(0);
             $table->integer('score')->default(0);
             $table->unsignedSmallInteger('maxcombo')->default(0);
 
