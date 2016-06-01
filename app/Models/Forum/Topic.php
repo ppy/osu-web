@@ -215,7 +215,19 @@ class Topic extends Model
         return $query->where('topic_type', 0);
     }
 
-    public function scopeRecent($query, $order = null)
+    public function scopeWithReplies($query, $withReplies)
+    {
+        switch ($withReplies) {
+            case 'only':
+                $query->where('topic_replies_real', '<>', 0);
+                break;
+            case 'none':
+                $query->where('topic_replies_real', 0);
+                break;
+        }
+    }
+
+    public function scopePredefinedOrder($query, $order)
     {
         switch ($order[0] ?? null) {
             case 'feature_votes':
@@ -238,6 +250,15 @@ class Topic extends Model
         if ($orderColumn !== static::DEFAULT_ORDER_COLUMN) {
             $query->orderBy(static::DEFAULT_ORDER_COLUMN, 'desc');
         }
+    }
+
+    public function scopeRecent($query, $params = null)
+    {
+        $order = $params['order'] ?? null;
+        $withReplies = $params['withReplies'] ?? null;
+
+        $query->withReplies($withReplies);
+        $query->predefinedOrder($order);
     }
 
     public function nthPost($n)
