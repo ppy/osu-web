@@ -19,6 +19,8 @@
  */
 namespace App\Http\Controllers\API;
 
+use Auth;
+use Authorizer;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
