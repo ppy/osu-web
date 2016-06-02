@@ -22,9 +22,11 @@ namespace App\Exceptions;
 use App;
 use Auth;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException as LaravelAuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
+use Illuminate\Validation\ValidationException;
 use Sentry;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -39,9 +41,11 @@ class Handler extends ExceptionHandler
     protected $dontReport = [
         AuthorizationException::class,
         HttpException::class,
+        LaravelAuthorizationException::class,
         ModelNotFoundException::class,
-        TokenMisMatchException::class,
         SilencedException::class,
+        TokenMisMatchException::class,
+        ValidationException::class,
     ];
 
     /**

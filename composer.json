@@ -9,15 +9,15 @@
     "issues": "https://github.com/ppy/osu-web/issues"
   },
   "require": {
-    "laravel/framework": "5.1.*",
-    "laravelcollective/html": "5.1.*",
+    "laravel/framework": "5.2.*",
+    "laravelcollective/html": "5.2.*",
     "predis/predis": "~1.0",
     "doctrine/dbal": "*",
     "graham-campbell/markdown": "*",
     "itsgoingd/clockwork": "~1.9",
     "maknz/slack": "*",
     "ezyang/htmlpurifier": "^4.7",
-    "mariuzzo/laravel-js-localization": "^1.2.1",
+    "mariuzzo/laravel-js-localization": "dev-master",
     "league/fractal": "^0.13.0",
     "shift31/laravel-elasticsearch": "~1.0",
     "league/statsd": "dev-master#3dafde1b6c5e3896073cc947130cf9536b335975",
