@@ -2035,12 +2035,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nanaya/Laravel-JS-Localization.git",
-                "reference": "55e6246abb6dd1bf41f6c9eda9a3d2d5408fdeb9"
+                "reference": "104e27504cb2bf379a52b5bf3f787bf502c77742"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nanaya/Laravel-JS-Localization/zipball/55e6246abb6dd1bf41f6c9eda9a3d2d5408fdeb9",
-                "reference": "55e6246abb6dd1bf41f6c9eda9a3d2d5408fdeb9",
+                "url": "https://api.github.com/repos/nanaya/Laravel-JS-Localization/zipball/104e27504cb2bf379a52b5bf3f787bf502c77742",
+                "reference": "104e27504cb2bf379a52b5bf3f787bf502c77742",
                 "shasum": ""
             },
             "require": {
@@ -2106,7 +2106,7 @@
                 "issues": "https://github.com/rmariuzzo/laravel-js-localization/issues",
                 "source": "https://github.com/rmariuzzo/laravel-js-localization"
             },
-            "time": "2016-06-02 10:39:56"
+            "time": "2016-06-02 12:38:36"
         },
         {
             "name": "monolog/monolog",
