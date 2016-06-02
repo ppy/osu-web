@@ -40,6 +40,9 @@ class MatchTransformer extends Fractal\TransformerAbstract
 
     public function includeEvents(Match $match)
     {
-        return $this->collection($match->events()->default()->get(), new EventTransformer);
+        return $this->collection(
+            $match->events()->default()->get(),
+            new EventTransformer
+        );
     }
 }
