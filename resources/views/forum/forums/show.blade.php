@@ -71,7 +71,13 @@
                 ])
             </div>
 
-            @include("forum._pagination", ["object" => $topics->fragment('topics')])
+            @include("forum._pagination", ["object" => $topics
+                ->fragment('topics')
+                ->appends([
+                    'sort' => Request::input('sort'),
+                    'with_replies' => Request::input('with_replies'),
+                ])
+            ])
         @endif
     </div>
 @endsection
