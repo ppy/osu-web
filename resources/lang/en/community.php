@@ -132,6 +132,8 @@ return [
             'large' => 'osu!public Slack Access',
         ],
 
+        'disabled' => 'The public slack community has been disabled due to the continous abuse.<br />We apologize for any inconvenience.',
+
         'guest-begin' => 'You need to be ',
         'guest-middle' => 'logged in',
         'guest-end' => ' to receive a slack invite!',
