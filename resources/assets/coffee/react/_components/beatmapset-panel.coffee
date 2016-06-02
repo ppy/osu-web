@@ -41,7 +41,7 @@ class @BeatmapsetPanel extends React.Component
       div className: 'beatmapset-panel__header',
         a
           href: laroute.route 'beatmapsets.show', beatmapsets: beatmap.beatmapset_id
-          target: '_blank', className: 'beatmapset-panel__thumb'
+          className: 'beatmapset-panel__thumb'
           style: {backgroundImage: "url(#{beatmap.covers.card})"}
           div className: 'beatmapset-panel__title-artist-box',
             div className: 'beatmapset-panel__header-text beatmapset-panel__header-text--title',
