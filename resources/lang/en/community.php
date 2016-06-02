@@ -132,7 +132,7 @@ return [
             'large' => 'osu!public Slack Access',
         ],
 
-        'disabled' => 'The public slack community has been disabled due to the continous abuse.<br />We apologize for any inconvenience.',
+        'disabled' => 'The public slack community has been disabled due to the continuous abuse.<br />We apologize for any inconvenience.',
 
         'guest-begin' => 'You need to be ',
         'guest-middle' => 'logged in',
