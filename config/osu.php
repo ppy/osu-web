@@ -32,6 +32,9 @@ return [
             'topic_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_TOPIC_IDS', '259747'))),
         ],
     ],
+    'legacy' => [
+        'shared_cookie_secret' => env('SHARED_COOKIE_SECRET', ''),
+    ],
     'store' => [
         'delayed_shipping_order_threshold' => env('DELAYED_SHIPPING_ORDER_THRESHOLD', 100),
         'delayed_shipping_order_message' => env('DELAYED_SHIPPING_ORDER_MESSAGE'),
