@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "38cdef0647664f34389af4aa0f319b5c",
-    "content-hash": "c0c2f9f5f5bddeb45b2e9009910d34a1",
+    "hash": "45b7ff07773c22baa0e83aa8586f8d2a",
+    "content-hash": "3bc897ecdd7d684cea7069168a2f0756",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -2733,34 +2733,38 @@
             "time": "2016-03-09 05:03:14"
         },
         {
-            "name": "raven/raven",
-            "version": "0.15.0",
+            "name": "sentry/sentry",
+            "version": "0.19.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/getsentry/raven-php.git",
-                "reference": "d544c531a34a1b0f69271a11a887b775be12b3d2"
+                "url": "https://github.com/getsentry/sentry-php.git",
+                "reference": "a0537d73ff1417cc33bd3402db13cec3f834bcd8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/raven-php/zipball/d544c531a34a1b0f69271a11a887b775be12b3d2",
-                "reference": "d544c531a34a1b0f69271a11a887b775be12b3d2",
+                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/a0537d73ff1417cc33bd3402db13cec3f834bcd8",
+                "reference": "a0537d73ff1417cc33bd3402db13cec3f834bcd8",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
+                "monolog/monolog": "*",
                 "php": ">=5.2.4"
+            },
+            "conflict": {
+                "raven/raven": "*"
             },
             "require-dev": {
                 "fabpot/php-cs-fixer": "^1.8.0",
                 "phpunit/phpunit": "^4.6.6"
             },
             "bin": [
-                "bin/raven"
+                "bin/sentry"
             ],
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.14.x-dev"
+                    "dev-master": "0.19.x-dev"
                 }
             },
             "autoload": {
@@ -2784,8 +2788,61 @@
                 "log",
                 "logging"
             ],
-            "abandoned": "sentry/sentry",
-            "time": "2016-04-29 11:50:04"
+            "time": "2016-05-27 02:13:17"
+        },
+        {
+            "name": "sentry/sentry-laravel",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/getsentry/sentry-laravel.git",
+                "reference": "1f85bfb27cc84babf7d59d5f1f555040f707f4ec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/getsentry/sentry-laravel/zipball/1f85bfb27cc84babf7d59d5f1f555040f707f4ec",
+                "reference": "1f85bfb27cc84babf7d59d5f1f555040f707f4ec",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.*|5.*",
+                "php": ">=5.2.4",
+                "sentry/sentry": ">=0.16.0"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "^1.8.0",
+                "phpunit/phpunit": "^4.6.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Sentry\\SentryLaravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "David Cramer",
+                    "email": "dcramer@gmail.com"
+                }
+            ],
+            "description": "Laravel integration for Sentry (http://getsentry.com)",
+            "homepage": "http://getsentry.com",
+            "keywords": [
+                "errors",
+                "laravel",
+                "logging",
+                "sentry"
+            ],
+            "time": "2016-05-06 09:26:08"
         },
         {
             "name": "shift31/laravel-elasticsearch",

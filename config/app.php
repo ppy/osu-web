@@ -43,15 +43,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Sentry URL Configuration
-    |--------------------------------------------------------------------------
-    |
-    | Sends error log etc to sentry.
-    |
-    */
-    'sentry' => env('APP_SENTRY'),
-    /*
-    |--------------------------------------------------------------------------
     | Application Locale Configuration
     |--------------------------------------------------------------------------
     |
@@ -163,6 +154,7 @@ return [
         'LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider',
         'LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider',
         'Lord\Laroute\LarouteServiceProvider',
+        Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
 
         'App\Providers\OsuAuthorizeServiceProvider',
     ],
@@ -221,6 +213,7 @@ return [
         'Slack' => 'Maknz\Slack\Facades\Slack',
         'Statsd' => 'League\StatsD\Laravel5\Facade\StatsdFacade',
         'Authorizer' => 'LucaDegasperi\OAuth2Server\Facades\Authorizer',
+        'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
 
         'OsuAuthorize' => App\Facades\OsuAuthorizeFacade::class,
     ],

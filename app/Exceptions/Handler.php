@@ -25,7 +25,7 @@ use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
-use Raven_Client;
+use Sentry;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -63,7 +63,7 @@ class Handler extends ExceptionHandler
             return;
         }
 
-        if (config('app.sentry')) {
+        if (config('sentry.dsn')) {
             $this->reportWithSentry($e);
         } else {
             return parent::report($e);
@@ -94,14 +94,19 @@ class Handler extends ExceptionHandler
         ];
 
         if (Auth::check()) {
-            $tags['user'] = Auth::user()->user_id;
-            $tags['username'] = Auth::user()->username_clean;
+            $userContext = [
+                'id' => Auth::user()->user_id,
+                'username' => Auth::user()->username_clean,
+            ];
+        } else {
+            $userContext = [
+                'id' => null,
+            ];
         }
 
-        $client = new Raven_Client(config('app.sentry'), ['tags' => $tags]);
+        Sentry::user_context($userContext);
 
-        $ref = $client->getIdent(
-            $client->captureException($e));
+        $ref = Sentry::getIdent(Sentry::captureException($e, $tags));
 
         view()->share('ref', $ref);
     }
