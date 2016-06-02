@@ -84,6 +84,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
   reloadPage: (fallback, forceReload) ->
     $(document).off '.ujsHideLoadingOverlay'
+    Turbolinks.clearCache()
     Turbolinks.visit document.location.href, action: 'replace'
 
 
