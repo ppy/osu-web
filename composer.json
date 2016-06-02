@@ -8,6 +8,12 @@
     "email": "jizz@ppy.sh",
     "issues": "https://github.com/ppy/osu-web/issues"
   },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/nanaya/Laravel-JS-Localization"
+    }
+  ],
   "require": {
     "laravel/framework": "5.2.*",
     "laravelcollective/html": "5.2.*",
@@ -17,7 +23,7 @@
     "itsgoingd/clockwork": "~1.9",
     "maknz/slack": "*",
     "ezyang/htmlpurifier": "^4.7",
-    "mariuzzo/laravel-js-localization": "dev-master",
+    "mariuzzo/laravel-js-localization": "dev-nosubmodule",
     "league/fractal": "^0.13.0",
     "shift31/laravel-elasticsearch": "~1.0",
     "league/statsd": "dev-master#3dafde1b6c5e3896073cc947130cf9536b335975",

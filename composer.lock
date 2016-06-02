@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "80bb98ee38386465eb01476be3479fbc",
-    "content-hash": "ec20c2816916b18e937bb5272a2b8d2c",
+    "hash": "166d387cc7b2b69881bb32c80b9c0331",
+    "content-hash": "5c410e030f286215f0d3c1c6b3171b1b",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -2031,16 +2031,16 @@
         },
         {
             "name": "mariuzzo/laravel-js-localization",
-            "version": "dev-master",
+            "version": "dev-nosubmodule",
             "source": {
                 "type": "git",
-                "url": "https://github.com/rmariuzzo/Laravel-JS-Localization.git",
-                "reference": "a38b7daa7ea88d3b7037fd8f77d1a9debbd4cd72"
+                "url": "https://github.com/nanaya/Laravel-JS-Localization.git",
+                "reference": "55e6246abb6dd1bf41f6c9eda9a3d2d5408fdeb9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rmariuzzo/Laravel-JS-Localization/zipball/a38b7daa7ea88d3b7037fd8f77d1a9debbd4cd72",
-                "reference": "a38b7daa7ea88d3b7037fd8f77d1a9debbd4cd72",
+                "url": "https://api.github.com/repos/nanaya/Laravel-JS-Localization/zipball/55e6246abb6dd1bf41f6c9eda9a3d2d5408fdeb9",
+                "reference": "55e6246abb6dd1bf41f6c9eda9a3d2d5408fdeb9",
                 "shasum": ""
             },
             "require": {
@@ -2059,7 +2059,11 @@
                     "Mariuzzo\\LaravelJsLocalization\\": "src/Mariuzzo/LaravelJsLocalization/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Mariuzzo\\LaravelJsLocalization\\": "tests/"
+                }
+            },
             "license": [
                 "MIT"
             ],
@@ -2090,15 +2094,19 @@
             "description": "Laravel Localization in JavaScript",
             "homepage": "https://github.com/rmariuzzo/laravel-js-localization",
             "keywords": [
-                "JS",
                 "i18n",
                 "javascript",
+                "js",
                 "lang",
                 "laravel",
                 "laravel 5",
                 "localization"
             ],
-            "time": "2016-01-16 00:30:54"
+            "support": {
+                "issues": "https://github.com/rmariuzzo/laravel-js-localization/issues",
+                "source": "https://github.com/rmariuzzo/laravel-js-localization"
+            },
+            "time": "2016-06-02 10:39:56"
         },
         {
             "name": "monolog/monolog",
