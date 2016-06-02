@@ -19,9 +19,12 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
 
   setHash: (newHash) ->
-    return if newHash == location.hash
+    newUrl = location.href.replace /#.*/, ''
+    newUrl += newHash
 
-    location.replace newHash
+    return if newUrl == location.href
+
+    history.replaceState history.state, null, newUrl
 
 
   bottomPage: ->
