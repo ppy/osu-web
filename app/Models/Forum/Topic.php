@@ -227,38 +227,38 @@ class Topic extends Model
         }
     }
 
-    public function scopePredefinedOrder($query, $order)
+    public function scopePresetSort($query, $sort)
     {
-        switch ($order[0] ?? null) {
-            case 'feature_votes':
-                $orderColumn = 'osu_starpriority';
+        switch ($sort[0] ?? null) {
+            case 'feature-votes':
+                $sortField = 'osu_starpriority';
                 break;
         }
 
-        $orderColumn ?? ($orderColumn = static::DEFAULT_ORDER_COLUMN);
+        $sortField ?? ($sortField = static::DEFAULT_ORDER_COLUMN);
 
-        switch ($order[1] ?? null) {
+        switch ($sort[1] ?? null) {
             case 'asc':
-                $orderSort = $order[1];
+                $sortOrder = $sort[1];
                 break;
         }
 
-        $orderSort ?? ($orderSort = 'desc');
+        $sortOrder ?? ($sortOrder = 'desc');
 
-        $query->orderBy($orderColumn, $orderSort);
+        $query->orderBy($sortField, $sortOrder);
 
-        if ($orderColumn !== static::DEFAULT_ORDER_COLUMN) {
+        if ($sortField !== static::DEFAULT_ORDER_COLUMN) {
             $query->orderBy(static::DEFAULT_ORDER_COLUMN, 'desc');
         }
     }
 
     public function scopeRecent($query, $params = null)
     {
-        $order = $params['order'] ?? null;
+        $sort = $params['sort'] ?? null;
         $withReplies = $params['withReplies'] ?? null;
 
         $query->withReplies($withReplies);
-        $query->predefinedOrder($order);
+        $query->presetSort($sort);
     }
 
     public function nthPost($n)

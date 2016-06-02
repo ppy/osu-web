@@ -51,7 +51,7 @@ class ForumsController extends Controller
     {
         $forum = Forum::with('subForums')->findOrFail($id);
 
-        $order = explode(':', Request::input('order'));
+        $sort = explode('_', Request::input('sort'));
         $withReplies = Request::input('with_replies', '');
 
         priv_check('ForumView', $forum)->ensureCan();
@@ -62,7 +62,7 @@ class ForumsController extends Controller
         );
 
         $pinnedTopics = $forum->topics()->pinned()->orderBy('topic_type', 'desc')->recent()->get();
-        $topics = $forum->topics()->normal()->recent(compact('order', 'withReplies'))->paginate(15);
+        $topics = $forum->topics()->normal()->recent(compact('sort', 'withReplies'))->paginate(15);
         $topicReadStatus = TopicTrack::readStatus(Auth::user(), $pinnedTopics, $topics);
 
         return view('forum.forums.show', compact('forum', 'topics', 'pinnedTopics', 'topicReadStatus', 'cover'));
