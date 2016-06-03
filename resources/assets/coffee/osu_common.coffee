@@ -85,7 +85,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     el.outerHTML
 
 
-  reloadPage: ->
+  reloadPage: (keepScroll = true) ->
     $(document).off '.ujsHideLoadingOverlay'
     Turbolinks.clearCache()
 
@@ -97,13 +97,12 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
     window.reloadUrl = null
 
-    osu.keepScrollOnLoad()
-    Turbolinks.visit url, action: 'replace'
+    osu.navigate url, keepScroll, action: 'replace'
 
 
-  navigate: (url, keepScroll) ->
-    osu.keepScrollOnLoad() if keepScroll == true
-    Turbolinks.visit url
+  navigate: (url, keepScroll, {action = 'advance'}) ->
+    osu.keepScrollOnLoad() if keepScroll
+    Turbolinks.visit url, action: action
 
 
   keepScrollOnLoad: ->
