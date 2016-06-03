@@ -37,36 +37,38 @@ class @BeatmapsetPanel extends React.Component
     if beatmap.beatmaps.data.length > maxDisplayedDifficulty
       difficulties.push span key: 'over', "+#{(beatmap.beatmaps.data.length - maxDisplayedDifficulty)}"
 
-    div className: 'beatmapset-panel shadow-hover', objectid: beatmap.beatmapset_id,
-      div className: 'beatmapset-panel__header',
-        a
-          href: laroute.route 'beatmapsets.show', beatmapsets: beatmap.beatmapset_id
-          target: '_blank', className: 'beatmapset-panel__thumb'
-          style: {backgroundImage: "url(#{beatmap.covers.card})"}
-          div className: 'beatmapset-panel__title-artist-box',
-            div className: 'beatmapset-panel__header-text beatmapset-panel__header-text--title',
-              beatmap.title
-            div className: 'beatmapset-panel__header-text',
-              beatmap.artist
+    div className: 'beatmapset-panel', '',
+      div className: 'beatmapset-panel__panel', objectid: beatmap.beatmapset_id,
+        div className: 'beatmapset-panel__header',
+          a
+            href: laroute.route 'beatmapsets.show', beatmapsets: beatmap.beatmapset_id
+            target: '_blank', className: 'beatmapset-panel__thumb'
+            style: {backgroundImage: "url(#{beatmap.covers.card})"}
+            div className: 'beatmapset-panel__title-artist-box',
+              div className: 'beatmapset-panel__header-text beatmapset-panel__header-text--title',
+                beatmap.title
+              div className: 'beatmapset-panel__header-text',
+                beatmap.artist
 
-          div className: 'beatmapset-panel__counts-box',
-            div className: 'beatmapset-panel__count',
-              span className: 'beatmapset-panel__count-number', beatmap.play_count
-              i className: 'fa fa-play-circle'
+            div className: 'beatmapset-panel__counts-box',
+              div className: 'beatmapset-panel__count',
+                span className: 'beatmapset-panel__count-number', beatmap.play_count
+                i className: 'fa fa-play-circle'
 
-            div className: 'beatmapset-panel__count',
-              span className: 'beatmapset-panel__count-number', beatmap.favourite_count
-              i className: 'fa fa-heart'
+              div className: 'beatmapset-panel__count',
+                span className: 'beatmapset-panel__count-number', beatmap.favourite_count
+                i className: 'fa fa-heart'
 
-      div className: 'beatmapset-panel__mapper-source-box',
-        span className: 'hidden', ref: beatmap.beatmapset_id, beatmap.beatmapset_id
-        div className: 'creator', dangerouslySetInnerHTML: { __html: Lang.get('beatmaps.listing.mapped-by', mapper: laroute.link_to_route('users.show', beatmap.creator, users: beatmap.user_id)) }
-        div className: 'source', beatmap.source
+        div className: 'beatmapset-panel__mapper-source-box',
+          span className: 'hidden', ref: beatmap.beatmapset_id, beatmap.beatmapset_id
+          div className: 'creator', dangerouslySetInnerHTML: { __html: Lang.get('beatmaps.listing.mapped-by', mapper: laroute.link_to_route('users.show', beatmap.creator, users: beatmap.user_id)) }
+          div className: 'source', beatmap.source
 
-      div className: 'beatmapset-panel__icons-box',
-        a href: Url.beatmapDownload(beatmap.beatmapset_id), className: 'beatmapset-panel__icon',
-          i className: 'fa fa-download'
-        # a href: '#', className: 'beatmapset-panel__icon',
-        #   i className:'fa fa-heart'
+        div className: 'beatmapset-panel__icons-box',
+          a href: Url.beatmapDownload(beatmap.beatmapset_id), className: 'beatmapset-panel__icon',
+            i className: 'fa fa-download'
+          # a href: '#', className: 'beatmapset-panel__icon',
+          #   i className:'fa fa-heart'
 
-      div className: 'beatmapset-panel__difficulties', difficulties
+        div className: 'beatmapset-panel__difficulties', difficulties
+      div className: 'beatmapset-panel__shadow', ''
