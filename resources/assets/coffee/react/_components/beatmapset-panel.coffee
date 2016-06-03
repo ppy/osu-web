@@ -21,11 +21,6 @@
 el = React.createElement
 
 class @BeatmapsetPanel extends React.Component
-  mixins: [React.addons.PureRenderMixin]
-
-  shouldComponentUpdate: (_nextProps, _nextState) ->
-    return false
-
   render: ->
     # this is actually "beatmapset"
     beatmap = @props.beatmap
