@@ -225,7 +225,7 @@ class Beatmaps.Main extends React.Component
     $(document).on 'beatmap:search:done.beatmaps', @hideLoader
     $(document).on 'beatmap:search:filtered.beatmaps', @updateFilters
     $(document).on 'beatmap:search:sorted.beatmaps', @updateSort
-    $(document).on 'ready.beatmaps page:load.beatmaps osu:page:change.beatmaps', (e) =>
+    $(document).on 'ready.beatmaps turbolinks:load.beatmaps osu:page:change.beatmaps', (e) =>
       @restoreState()
     $(window).on 'popstate.beatmaps', (e) =>
       @restoreState()

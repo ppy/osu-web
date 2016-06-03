@@ -19,9 +19,12 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
 
   setHash: (newHash) ->
-    return if newHash == location.hash
+    newUrl = location.href.replace /#.*/, ''
+    newUrl += newHash
 
-    location.replace newHash
+    return if newUrl == location.href
+
+    history.replaceState history.state, null, newUrl
 
 
   bottomPage: ->
@@ -84,14 +87,8 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
   reloadPage: (fallback, forceReload) ->
     $(document).off '.ujsHideLoadingOverlay'
-
-    $.get document.location.href
-    .done osu.replacePage
-    .fail ->
-      return osu.navigate fallback if fallback
-      return document.location.reload() if forceReload
-      osu.popup 'Failed loading page', 'danger'
-    .always LoadingOverlay.hide
+    Turbolinks.clearCache()
+    Turbolinks.visit document.location.href, action: 'replace'
 
 
   navigate: (url, keepScroll) ->
@@ -100,7 +97,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
         window.pageXOffset
         window.pageYOffset
       ]
-      $(document).one 'page:load', ->
+      $(document).one 'turbolinks:load', ->
         window.scrollTo position[0], position[1]
     Turbolinks.visit url
 

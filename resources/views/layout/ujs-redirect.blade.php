@@ -17,5 +17,5 @@
 --}}
 ;(function() {
     $(document).off(".ujsHideLoadingOverlay")
-    Turbolinks.visit("{{ $url }}")
+    Turbolinks.visit({!! json_encode($url) !!})
 }).call(this);

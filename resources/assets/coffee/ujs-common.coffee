@@ -26,7 +26,7 @@ $(document).on 'ajax:success', (event, data) ->
   showPopup = -> osu.popup data.message, 'success'
 
   if event.target.getAttribute('data-reload-on-success') == '1'
-    $(document).one 'page:load', showPopup
+    $(document).one 'turbolinks:load', showPopup
     osu.reloadPage()
   else
     showPopup()

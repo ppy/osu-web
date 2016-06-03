@@ -99,7 +99,7 @@ class UserDropdownModal
     else if window.reloadUrl
       url = window.reloadUrl
       window.reloadUrl = null
-      Turbolinks.visit url
+      Turbolinks.visit url, action: 'replace'
     else
       osu.reloadPage(null, true)
 
@@ -111,7 +111,7 @@ window.userDropdownModal = new UserDropdownModal
 
 # for pages which require authentication
 # and being visited directly from outside
-$(document).on 'ready page:load', ->
+$(document).on 'ready turbolinks:load', ->
   return unless window.showLoginModal
 
   window.showLoginModal = null

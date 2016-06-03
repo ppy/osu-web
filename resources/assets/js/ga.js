@@ -28,7 +28,7 @@ if (trackingId !== undefined) {
   ga('send', 'pageview');
 
   // turbolinks
-  $(document).on('page:load', function() {
+  $(document).on('turbolinks:load', function() {
     ga('set', 'location', document.location.href);
     ga('send', 'pageview');
   });
