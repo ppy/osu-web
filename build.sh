@@ -18,6 +18,8 @@ php composer-installer
 # dummy user, no privilege github token to avoid github api limit
 php composer.phar config -g github-oauth.github.com 98cbc568911ef1e060a3a31623f2c80c1786d5ff
 
+rm -f bootstrap/cache/*.php bootstrap/cache/*.json
+
 php composer.phar install
 
 php artisan migrate --force
