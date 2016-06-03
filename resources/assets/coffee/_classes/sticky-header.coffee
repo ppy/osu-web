@@ -28,7 +28,7 @@ class @StickyHeader
 
   constructor: ->
     $(window).on 'throttled-scroll throttled-resize', @stickOrUnstick
-    $(document).on 'ready page:load osu:page:change', @stickOrUnstick
+    $(document).on 'ready turbolinks:load osu:page:change', @stickOrUnstick
 
   stickOrUnstick: =>
     return if @stickMarker.length == 0

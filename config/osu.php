@@ -20,6 +20,9 @@ return [
         'key' => env('CAMO_KEY'),
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
     ],
+    'elasticsearch' => [
+        'index' => env('ES_INDEX', 'osu'),
+    ],
     'emails' => [
         'account' => 'accounts@ppy.sh',
     ],
@@ -31,6 +34,9 @@ return [
             'forum_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_FORUM_IDS', '5 29 101 4 30 2'))),
             'topic_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_TOPIC_IDS', '259747'))),
         ],
+    ],
+    'legacy' => [
+        'shared_cookie_secret' => env('SHARED_COOKIE_SECRET', ''),
     ],
     'store' => [
         'delayed_shipping_order_threshold' => env('DELAYED_SHIPPING_ORDER_THRESHOLD', 100),

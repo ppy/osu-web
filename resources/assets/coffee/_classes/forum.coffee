@@ -38,7 +38,7 @@ class @Forum
 
     $(window).on 'throttled-scroll', @refreshCounter
 
-    $(document).on 'ready page:load osu:page:change', @boot
+    $(document).on 'ready turbolinks:load osu:page:change', @boot
 
     $(document).on 'click', '.js-forum-posts-show-more', @showMore
     $(document).on 'click', '.js-post-url', @postUrlClick
