@@ -27,5 +27,13 @@ return [
             'team-vs' => 'Team VS',
             'tag-team-vs' => 'Tag Team VS',
         ],
+        'events' => [
+            'PART' => 'left the match',
+            'JOIN' => 'joined the match',
+            'KICK' => 'has been kicked from the match',
+            'CREATE' => 'created the match',
+            'DISBAND' => 'The match was disbanded',
+            'HOST' => 'became the host',
+        ],
     ],
 ];
