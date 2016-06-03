@@ -29,6 +29,7 @@ class MPHistory.Main extends React.Component
       name: name
       events: []
       since: 0
+      teamType: ''
 
     @loadHistory @state.since
 
@@ -40,17 +41,27 @@ class MPHistory.Main extends React.Component
         since: @state.since
 
     .done (data) =>
+      return if _.isEmpty data.data
+
       newEvents = _.concat @state.events, data.data
 
       @setState
         events: newEvents
         since: _.last(newEvents).id
+        teamType: @getTeamType _.findLast(newEvents, (o) -> o.game?).game.data.team_type
         => _.delay @loadHistory, timeBetweenRefresh
 
-  printEvents: =>
-    console.log @state.events
+  getTeamType: (typeInt) ->
+    types =
+      0: 'head-to-head'
+      1: 'tag-coop'
+      2: 'team-vs'
+      3: 'tag-team-vs'
+
+    types[typeInt]
 
   render: ->
     div className: 'osu-layout__section',
       el MPHistory.Header,
         name: @props.match.name
+        teamType: @state.teamType

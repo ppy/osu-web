@@ -21,5 +21,11 @@
 return [
     'match' => [
         'header' => 'Multiplayer Matches',
+        'team-types' => [
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
+        ],
     ],
 ];
