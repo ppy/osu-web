@@ -21,13 +21,15 @@ $(document).on 'ajax:before', ->
 
 
 $(document).on 'ajax:success', (event, data) ->
-  return unless data.message
-
-  showPopup = -> osu.popup data.message, 'success'
+  showPopup = ->
+    return if _.isEmpty data?.message
+    osu.popup data.message, 'success'
 
   if event.target.getAttribute('data-reload-on-success') == '1'
+    resetScroll = event.target.getAttribute('data-reload-reset-scroll') == '1'
+
     $(document).one 'turbolinks:load', showPopup
-    osu.reloadPage()
+    osu.reloadPage(!resetScroll)
   else
     showPopup()
 

@@ -85,21 +85,34 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     el.outerHTML
 
 
-  reloadPage: (fallback, forceReload) ->
+  reloadPage: (keepScroll = true) ->
     $(document).off '.ujsHideLoadingOverlay'
     Turbolinks.clearCache()
-    Turbolinks.visit document.location.href, action: 'replace'
+
+    url =
+      if !_.isEmpty window.reloadUrl
+        window.reloadUrl
+      else
+        location.href
+
+    window.reloadUrl = null
+
+    osu.navigate url, keepScroll, action: 'replace'
 
 
-  navigate: (url, keepScroll) ->
-    if keepScroll == true
-      position = [
-        window.pageXOffset
-        window.pageYOffset
-      ]
-      $(document).one 'turbolinks:load', ->
-        window.scrollTo position[0], position[1]
-    Turbolinks.visit url
+  navigate: (url, keepScroll, {action = 'advance'}) ->
+    osu.keepScrollOnLoad() if keepScroll
+    Turbolinks.visit url, action: action
+
+
+  keepScrollOnLoad: ->
+    position = [
+      window.pageXOffset
+      window.pageYOffset
+    ]
+
+    $(document).one 'turbolinks:load', ->
+      window.scrollTo position[0], position[1]
 
 
   popup: (message, type = 'info') ->

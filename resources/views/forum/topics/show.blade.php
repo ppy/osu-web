@@ -174,6 +174,7 @@
                         data-remote="1"
                         data-method="post"
                         data-reload-on-success="1"
+                        data-reload-reset-scroll="1"
                     >
                         @if ($topic->isLocked())
                             <i class="fa fa-unlock"></i>
