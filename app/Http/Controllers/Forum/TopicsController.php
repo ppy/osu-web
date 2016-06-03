@@ -215,9 +215,10 @@ class TopicsController extends Controller
 
     public function lock($id)
     {
-        priv_check('ForumTopicLock', $topic)->ensure();
-
         $topic = Topic::findOrFail($id);
+
+        priv_check('ForumTopicLock', $topic)->ensureCan();
+
         $lock = Request::input('lock') !== '0';
         $topic->lock($lock);
 
