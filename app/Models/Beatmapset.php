@@ -265,7 +265,7 @@ class Beatmapset extends Model
         $offset = (max(0, $page - 1)) * $count;
         $current_user = Auth::user();
 
-        $searchParams['index'] = config('elasticsearch.index');
+        $searchParams['index'] = config('osu.elasticsearch.index');
         $searchParams['type'] = 'beatmaps';
         $searchParams['size'] = $count;
         $searchParams['from'] = $offset;

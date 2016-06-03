@@ -20,6 +20,9 @@ return [
         'key' => env('CAMO_KEY'),
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
     ],
+    'elasticsearch' => [
+        'index' => env('ES_INDEX', 'osu'),
+    ],
     'emails' => [
         'account' => 'accounts@ppy.sh',
     ],
