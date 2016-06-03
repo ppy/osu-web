@@ -5,13 +5,14 @@
   "homepage": "https://new.ppy.sh",
   "license": "AGPL-3.0+",
   "support": {
-    "email": "jizz@ppy.sh",
+    "email": "support@ppy.sh",
     "issues": "https://github.com/ppy/osu-web/issues"
   },
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/nanaya/Laravel-JS-Localization"
+      "url": "https://github.com/nanaya/Laravel-JS-Localization",
+      "_explanation": "Because the current master doesn't work (submodule not loaded)"
     }
   ],
   "require": {

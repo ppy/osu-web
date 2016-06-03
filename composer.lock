@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bc9f3493a6bcb4edbb521eb7f8bea86c",
-    "content-hash": "85cd94ae262170eb8863fcef9740f269",
+    "hash": "6ff423b63e26e4127236dc3396198d73",
+    "content-hash": "d328654df3f64c25017b38fb8e940384",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.18.14",
+            "version": "3.18.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "9398db378231fe723583fb8d7a919c1806f02be3"
+                "reference": "a50c0971d42867ac8184c52c5f35b27255a695b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/9398db378231fe723583fb8d7a919c1806f02be3",
-                "reference": "9398db378231fe723583fb8d7a919c1806f02be3",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/a50c0971d42867ac8184c52c5f35b27255a695b2",
+                "reference": "a50c0971d42867ac8184c52c5f35b27255a695b2",
                 "shasum": ""
             },
             "require": {
@@ -85,7 +85,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2016-05-26 20:43:24"
+            "time": "2016-06-02 20:13:40"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -2688,16 +2688,16 @@
         },
         {
             "name": "sentry/sentry",
-            "version": "0.19.0",
+            "version": "0.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-php.git",
-                "reference": "a0537d73ff1417cc33bd3402db13cec3f834bcd8"
+                "reference": "75df38fd491cc11faad35740b46c375a4cf38116"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/a0537d73ff1417cc33bd3402db13cec3f834bcd8",
-                "reference": "a0537d73ff1417cc33bd3402db13cec3f834bcd8",
+                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/75df38fd491cc11faad35740b46c375a4cf38116",
+                "reference": "75df38fd491cc11faad35740b46c375a4cf38116",
                 "shasum": ""
             },
             "require": {
@@ -2718,7 +2718,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.19.x-dev"
+                    "dev-master": "0.20.x-dev"
                 }
             },
             "autoload": {
@@ -2742,7 +2742,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2016-05-27 02:13:17"
+            "time": "2016-06-02 19:34:18"
         },
         {
             "name": "sentry/sentry-laravel",
