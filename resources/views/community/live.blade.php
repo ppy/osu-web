@@ -34,15 +34,14 @@
     @if ($featuredStream !== null)
         <h2 class="livestream-page__header">{{ trans('livestreams.headers.featured') }}</h2>
         <div class="livestream-featured">
-            <a class="livestream-page__anchor-twitch" href="{{$featuredStream->channel->url}}" target="_blank"> 
-                <div class="col-sm-12 livestream-featured__container" style="background-image: url('{{$featuredStream->preview->large}}');">
+                <div class="col-sm-12 livestream-featured__container">
+                    <iframe class="livestream-featured__player" src="http://player.twitch.tv/?channel={{$featuredStream->channel->name}}" allowfullscreen="true"></iframe>
                     <div class="livestream-featured__info">
                         <h3>{{$featuredStream->channel->name}}</h3>
                         <p>{{$featuredStream->channel->status}}</p>
                         <p>{{$featuredStream->viewers}} <i class="fa fa-eye"></i></p>
                     </div>
                 </div>
-            </a>
             @if (Auth::user() != null && Auth::user()->isGmt())
                 <div class="livestream-featured__actions">
                     <div class="forum-post-actions">
