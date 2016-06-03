@@ -17,40 +17,40 @@
 *
 */
 
-.beatmapset-panel-overlay {
-  transform: translateZ(0);
-  width: 100%;
-  height: 175px;
-  margin-top: -175px;
-
-  border-radius: 3px;
-  box-shadow: 0px 10px 20px fade(#000, 25%);
-  opacity: 0;
-  pointer-events: none;
-}
-
-.beatmapset-panel-wrapper {
-  transform: translateZ(0);
-  &:hover {
-    .beatmapset-panel-overlay {
-      opacity: 1;
-    }
-  }
-}
-
 .beatmapset-panel {
   transform: translateZ(0);
-  display: inline-block;
 
-  width: 100%;
-  height: 175px;
+  &__panel {
+    transform: translateZ(0);
+    display: inline-block;
 
-  border-radius: 3px;
-  background: #ffffff;
-  box-shadow: 0px 1px 3px fade(#000, 25%);
+    width: 100%;
+    height: 175px;
 
-  cursor: pointer;
-  text-align: left;
+    border-radius: 3px;
+    background: #ffffff;
+    box-shadow: 0px 1px 3px fade(#000, 25%);
+
+    cursor: pointer;
+    text-align: left;
+  }
+
+  &__shadow {
+    .beatmapset-panel:hover & {
+      opacity: 1;
+    }
+
+    transform: translateZ(0);
+    width: 100%;
+    height: 175px;
+    margin-top: -175px;
+
+    border-radius: 3px;
+    box-shadow: 0px 10px 20px fade(#000, 25%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
   &__header {
     position: absolute;
     left: 0px;
