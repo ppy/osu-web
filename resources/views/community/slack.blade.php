@@ -32,7 +32,7 @@
             <div class="slack-content__image-container slack-content__image-container--logo"><img class="slack-content__item slack-content__item--image" src="/images/layout/slack/slack-logo.png"/></div>
             <div class="slack-content__image-container slack-content__image-container--devices"><img class="slack-content__item slack-content__item--image" src="/images/layout/slack/slack-devices.png"/></div>
             <div class="slack-content__item slack-content__item--text">
-                <p class="slack-content__invite-info">{!! trans('community.slack.disabled') !!}</p>
+                <p class="slack-content__invite-info">{!! trans('community.slack.disabled', ['mail' => config('osu.emails.account')]) !!}</p>
                 <!-- <p>{!! trans('community.slack.bullet-points', ['link' => config('slack.link')]) !!}</p> -->
             </div>
         </div>
