@@ -25,6 +25,7 @@ class Country extends Model
 {
     protected $table = 'osu_countries';
     protected $primaryKey = 'acronym';
+    public $incrementing = false;
 
     public $timestamps = false;
 

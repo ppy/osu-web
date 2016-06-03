@@ -18,8 +18,8 @@
 
 # loading animation overlay
 # fired from turbolinks
-$(document).on 'page:fetch', LoadingOverlay.show
-$(document).on 'page:receive', LoadingOverlay.hide
+$(document).on 'turbolinks:request-start', LoadingOverlay.show
+$(document).on 'turbolinks:request-end', LoadingOverlay.hide
 # form submission is not covered by turbolinks
 $(document).on 'submit', 'form', LoadingOverlay.show
 
@@ -29,7 +29,7 @@ $(document).on 'submit', 'form', LoadingOverlay.show
 reactTurbolinks.register 'user-card', UserCard
 
 
-$(document).on 'ready page:load', =>
+$(document).on 'ready turbolinks:load', =>
   LocalStoragePolyfill.fillIn()
 
   @editorZoom ||= new EditorZoom
@@ -65,7 +65,7 @@ initPage = =>
 # Don't bother moving initPage to osu junk drawer and removing the
 # osu:page:change. It's intended to allow other scripts to attach
 # callbacks to osu:page:change.
-$(document).on 'ready page:load', initPage
+$(document).on 'ready turbolinks:load', initPage
 $(document).on 'osu:page:change', _.debounce(initPage, 500)
 
 

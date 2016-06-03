@@ -17,19 +17,19 @@
 ###
 class @ReactTurbolinks
   constructor: (@components = {}) ->
-    $(document).on 'ready page:change page:load reactTurbolinks:try', =>
+    $(document).on 'ready turbolinks:load reactTurbolinks:try', =>
       for own _name, component of @components
         continue if component.loaded
 
-        continue unless component.target.length
+        continue if component.target.length == 0
 
         component.loaded = true
         ReactDOM.render React.createElement(component.element, component.propsFunction()), component.target[0]
 
 
-    $(document).on 'page:before-unload', =>
+    $(document).on 'turbolinks:before-cache', =>
       for own _name, component of @components
-        continue unless component.loaded
+        continue if !component.loaded
 
         component.loaded = false
         ReactDOM.unmountComponentAtNode component.target[0]

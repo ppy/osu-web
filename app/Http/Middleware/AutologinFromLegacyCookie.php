@@ -26,7 +26,7 @@ class AutologinFromLegacyCookie
     public function __construct(Guard $auth)
     {
         $this->auth = $auth;
-        $this->shared_secret = env('SHARED_COOKIE_SECRET', '');
+        $this->shared_secret = config('osu.legacy.shared_cookie_secret');
     }
 
     /**

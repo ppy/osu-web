@@ -40,7 +40,7 @@ class @ForumTopicReply
 
     $.subscribe 'stickyFooter', @stickOrUnstick
 
-    $(document).on 'ready page:load', @initialise
+    $(document).on 'ready turbolinks:load', @initialise
     @initialise()
 
 

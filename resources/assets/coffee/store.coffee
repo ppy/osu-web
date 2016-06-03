@@ -82,22 +82,22 @@ checkCheckoutConfirmations = ->
   $checkboxesChecked = $checkboxes.filter(':checked')
   $('#checkout-with-paypal').toggleClass('disabled', $checkboxesChecked.length < $checkboxes.length)
 
-$(document).on 'ready page:load', checkCheckoutConfirmations
+$(document).on 'ready turbolinks:load', checkCheckoutConfirmations
 $(document).on 'change', '.js-checkout-confirmation-step', checkCheckoutConfirmations
 
-$(document).on 'ready page:load', ->
+$(document).on 'ready turbolinks:load', ->
   quantity = parseInt $('.js-store-item-quantity').val(), 10
 
   return if quantity > 0
 
   $('.js-store-add-to-cart').hide()
 
-$(document).on 'ready page:load', ->
+$(document).on 'ready turbolinks:load', ->
   return if $('#username.form-control').length == 0
 
   preventUsernameSubmission()
 
-$(document).on 'ready page:load', ->
+$(document).on 'ready turbolinks:load', ->
   # delegating doesn't work because of timing.
   $('#product-form').submit (e) ->
     !$(e.target).data('disabled')

@@ -35,7 +35,7 @@ class @ForumCover
 
     $.subscribe 'key:esc', @closeModal
 
-    $(document).on 'ready page:load', @refresh
+    $(document).on 'ready turbolinks:load', @refresh
     @refresh()
 
 

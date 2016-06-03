@@ -51,8 +51,7 @@ class Beatmaps.SearchPanel extends React.Component
   componentWillUnmount: ->
     $('#searchbox').off 'keyup'
 
-  show_more: (i, e) ->
-    e.preventDefault
+  show_more: ->
     $('#search').addClass 'expanded'
 
   render: ->

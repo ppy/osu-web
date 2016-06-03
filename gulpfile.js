@@ -58,7 +58,6 @@ elixir(function(mix) {
     'jquery-pubsub.coffee',
     'osu!live.coffee',
     'osu_common.coffee',
-    'turbolinks-mod.coffee',
 
     'navbar-mobile.coffee',
     'spoilerbox.coffee',
@@ -74,7 +73,7 @@ elixir(function(mix) {
     'main.coffee',
   ], 'resources/assets/js/build/app-main.js')
   .scripts([
-    path.join(composer_root, 'helthe/turbolinks/Resources/public/js/turbolinks.js'),
+    path.join(node_root, 'turbolinks/dist/turbolinks.js'),
     'build/vendor-modules.js',
     'ga.js',
     'messages.js',
