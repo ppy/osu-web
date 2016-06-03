@@ -28,6 +28,7 @@ class Topic extends Model
 {
     const STATUS_LOCKED = 1;
     const STATUS_UNLOCKED = 0;
+    const DEFAULT_ORDER_COLUMN = 'topic_last_post_time';
 
     protected $table = 'phpbb_topics';
     protected $primaryKey = 'topic_id';
@@ -179,6 +180,11 @@ class Topic extends Model
         return $this->hasMany(Log::class);
     }
 
+    public function featureVotes()
+    {
+        return $this->hasMany(FeatureVote::class);
+    }
+
     public function titleNormalized()
     {
         if ($this->isIssue() === false) {
@@ -209,9 +215,50 @@ class Topic extends Model
         return $query->where('topic_type', 0);
     }
 
-    public function scopeRecent($query)
+    public function scopeWithReplies($query, $withReplies)
     {
-        return $query->orderBy('topic_last_post_time', 'desc');
+        switch ($withReplies) {
+            case 'only':
+                $query->where('topic_replies_real', '<>', 0);
+                break;
+            case 'none':
+                $query->where('topic_replies_real', 0);
+                break;
+        }
+    }
+
+    public function scopePresetSort($query, $sort)
+    {
+        switch ($sort[0] ?? null) {
+            case 'feature-votes':
+                $sortField = 'osu_starpriority';
+                break;
+        }
+
+        $sortField ?? ($sortField = static::DEFAULT_ORDER_COLUMN);
+
+        switch ($sort[1] ?? null) {
+            case 'asc':
+                $sortOrder = $sort[1];
+                break;
+        }
+
+        $sortOrder ?? ($sortOrder = 'desc');
+
+        $query->orderBy($sortField, $sortOrder);
+
+        if ($sortField !== static::DEFAULT_ORDER_COLUMN) {
+            $query->orderBy(static::DEFAULT_ORDER_COLUMN, 'desc');
+        }
+    }
+
+    public function scopeRecent($query, $params = null)
+    {
+        $sort = $params['sort'] ?? null;
+        $withReplies = $params['withReplies'] ?? null;
+
+        $query->withReplies($withReplies);
+        $query->presetSort($sort);
     }
 
     public function nthPost($n)
@@ -402,5 +449,10 @@ class Topic extends Model
         }
 
         $this->delete();
+    }
+
+    public function isFeatureTopic()
+    {
+        return $this->forum->isFeatureForum();
     }
 }

@@ -96,12 +96,8 @@ class UserDropdownModal
         # inversely, using jquery here won't actually click the thing
         # reference: https://github.com/jquery/jquery/blob/f5aa89af7029ae6b9203c2d3e551a8554a0b4b89/src/event.js#L586
         @clickAfterLogin.click()
-    else if window.reloadUrl
-      url = window.reloadUrl
-      window.reloadUrl = null
-      Turbolinks.visit url, action: 'replace'
     else
-      osu.reloadPage(null, true)
+      osu.reloadPage()
 
     @hide
 

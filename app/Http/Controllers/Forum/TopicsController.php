@@ -26,6 +26,7 @@ use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
+use App\Models\Forum\FeatureVote;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use Carbon\Carbon;
@@ -223,5 +224,19 @@ class TopicsController extends Controller
         $topic->lock($lock);
 
         return ['message' => trans('forum.topics.lock.locked-'.($lock === true ? '1' : '0'))];
+    }
+
+    public function voteFeature($topicId)
+    {
+        $star = FeatureVote::createNew([
+            'user_id' => Auth::user()->user_id,
+            'topic_id' => $topicId,
+        ]);
+
+        if ($star->getKey() !== null) {
+            return ujs_redirect(route('forum.topics.show', $topicId));
+        } else {
+            return error_popup(implode(' ', $star->validationErrors()->allMessages()));
+        }
     }
 }

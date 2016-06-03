@@ -150,6 +150,12 @@ class Forum extends Model
         }
     }
 
+    // feature forum shall have extra features like sorting and voting
+    public function isFeatureForum()
+    {
+        return $this->forum_id === config('osu.forum.feature_forum_id');
+    }
+
     public function refreshCache()
     {
         DB::transaction(function () {
