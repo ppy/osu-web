@@ -85,10 +85,14 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     el.outerHTML
 
 
-  reloadPage: (fallback, forceReload) ->
+  reloadPage: ->
     $(document).off '.ujsHideLoadingOverlay'
     Turbolinks.clearCache()
-    Turbolinks.visit document.location.href, action: 'replace'
+
+    url = window.reloadUrl ? location.href
+    window.reloadUrl = null
+
+    Turbolinks.visit url, action: 'replace'
 
 
   navigate: (url, keepScroll) ->
