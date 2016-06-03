@@ -77,8 +77,15 @@
     bottom: (@spacing * 2 - 10px);
 
     &--mp-history {
-      left: 150px;
-      bottom: @spacing * 3;
+      @media @desktop {
+        left: 150px;
+        bottom: @spacing * 3;
+      }
+
+      @media @mobile {
+        position: relative;
+        padding: 0 20px;
+      }
     }
   }
 }

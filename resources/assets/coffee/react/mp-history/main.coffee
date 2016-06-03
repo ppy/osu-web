@@ -16,6 +16,7 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 {div} = React.DOM
+el = React.createElement
 
 class MPHistory.Main extends React.Component
   timeBetweenRefresh = 10000
@@ -51,4 +52,5 @@ class MPHistory.Main extends React.Component
 
   render: ->
     div className: 'osu-layout__section',
-      div className: 'osu-layout__row osu-layout__row--page-mp-history'
+      el MPHistory.Header,
+        name: @props.match.name
