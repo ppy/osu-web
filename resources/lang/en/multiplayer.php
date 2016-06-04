@@ -35,5 +35,6 @@ return [
             'DISBAND' => 'The match was disbanded',
             'HOST' => 'became the host',
         ],
+        'in-progress' => '(match in progress)',
     ],
 ];
