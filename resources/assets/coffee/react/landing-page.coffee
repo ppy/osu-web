@@ -15,12 +15,4 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div} = React.DOM
-el = React.createElement
-
-@Landing = {}
-Landing.Page = React.createClass
-  render: ->
-    el 'p', "hi"
-
 reactTurbolinks.register 'landing-page', Landing.Page
