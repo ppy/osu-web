@@ -25,6 +25,11 @@ class HomeController extends Controller
 {
     protected $section = 'home';
 
+    public function getLanding()
+    {
+        return view('home.landing');
+    }
+
     public function getNews()
     {
         return view('home.news');

@@ -15,21 +15,12 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
-    'blank' => 'true'
-])
+@extends("master")
 
 @section("content")
-    <div class="js-react--landing-page"></div>
-    {{--
-        this should content a server side react.js render which doesn't exist in hhvm
-        because the only library for it, which is experimental, requires PHP extension
-        which isn't supported by hhvm (v8js).
-    --}}
-@endsection
+    <div class="osu-layout__row osu-layout__row--page">
+        <h3>We're not quite ready yet!</h3>
 
-@section ("script")
-    @parent
-
-    <script src="{{ elixir("js/react/landing-page.js") }}" data-turbolinks-track></script>
-@endsection
+        <div>Welcome to the future home of osu!. This site isn't complete yet, but is being used for some new services we are offering in the meantime. Please look forward to the full release in the coming months!</div>
+    </div>
+@stop
