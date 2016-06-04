@@ -54,7 +54,6 @@ class TopicCoversController extends Controller
         if (presence(Request::input('topic_id')) !== null) {
             $topic = Topic::findOrFail(Request::input('topic_id'));
 
-            $this->authorizePost($topic->forum, $topic);
             priv_check('ForumTopicEdit', $topic)->ensureCan();
             if ($topic->cover !== null) {
                 abort(422);
