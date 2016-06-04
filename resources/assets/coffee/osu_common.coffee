@@ -100,7 +100,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     osu.navigate url, keepScroll, action: 'replace'
 
 
-  navigate: (url, keepScroll, {action = 'advance'}) ->
+  navigate: (url, keepScroll, {action = 'advance'} = {}) ->
     osu.keepScrollOnLoad() if keepScroll
     Turbolinks.visit url, action: action
 
