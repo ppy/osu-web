@@ -21,6 +21,7 @@
     "react-addons-pure-render-mixin": "^15.1.0",
     "react-dom": "^15.1.0",
     "retina.js": "^1.1.0",
+    "slick-carousel": "^1.6.0",
     "timeago": "^1.5.0",
     "turbolinks": "^5.0.0-beta4"
   }

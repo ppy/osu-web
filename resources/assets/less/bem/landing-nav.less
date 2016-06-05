@@ -17,42 +17,53 @@
  *
  */
 
+ @landing-logo-size: 200px;
+
 .landing-nav {
-	display: table;
-	table-layout: fixed;
-	padding: 60px 0 40px 0;
+    position: relative;
+    display: flex;
+	padding: 60px 0 40px 0; 
+
+    &.osu-layout__row {
+        max-width: 1880px;
+        width: ~"calc(100% - 60px)";
+    }
 
 	&__section {
-		display: table-cell;
-
-		&__link {
-			color: #fff;
-			font-size: 24px;
-			padding-right: 40px;
-
-			&--bold {
-				font-weight: bold;
-			}
-
-			&:last-child {
-				padding-right: 0;
-			}
-		}
+        &--left {
+            align-self: flex-start;
+        }
 
 		&--right {
+            margin-left: auto;
 			text-align: right;
 		}
+
+        &__link {
+            color: #fff;
+            font-size: 24px;
+            margin-right: 40px;
+
+            &--bold {
+                font-weight: bold;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
 	}
 
-	&__logo-wrapper {
-		display: table-cell;
-
-		&__logo {
-			position: absolute;
-			left: 0;
-			right: 0;
-			top: -30px;
-			margin: auto;
-		}
+    &__logo {
+        display: flex;
+        position: absolute;
+        width: @landing-logo-size;
+        height: @landing-logo-size;
+        left: 0;
+        right: 0;
+        top: 30px;
+        margin: auto;
+        background: url('/images/layout/osu-logo@2x.png') no-repeat center center; // at2x makes 4 of them why
+        z-index: @nav-float-z-index;
 	}
 }
