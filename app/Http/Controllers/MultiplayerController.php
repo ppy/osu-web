@@ -47,6 +47,14 @@ class MultiplayerController extends Controller
         $match = Match::findOrFail($match_id);
 
         $events = $match->events()
+            ->with([
+                'game.beatmap.beatmapset',
+                'game.scores' => function ($query) {
+                    $query->with('game')->default();
+                },
+                'game.scores.user',
+                'user',
+            ])
             ->where('event_id', '>', $since)
             ->default()
             ->get();
@@ -54,7 +62,7 @@ class MultiplayerController extends Controller
         return fractal_collection_array(
             $events,
             new EventTransformer,
-            implode(',', ['game.beatmap', 'game.scores', 'user'])
+            implode(',', ['game.beatmap.beatmapset', 'game.scores.user', 'user'])
         );
     }
 }

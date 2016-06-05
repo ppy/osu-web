@@ -42,6 +42,6 @@ class Score extends BaseModel
 
     public function scopeDefault($query)
     {
-        return $query->orderBy('score', 'desc');
+        return $query->orderBy('slot', 'asc');
     }
 }
