@@ -21,10 +21,28 @@
 ])
 
 @section("content")
-    <div class="js-react--landing-page">
-    </div>
+    <nav class="osu-layout__section osu-layout__section--minimum">
+        <div class="osu-layout__row landing-nav">
+            <div class="landing-nav__section">
+                @foreach (landing_nav_links() as $section => $links)
+                <a href="{{ array_values($links)[0] }}" class="landing-nav__section__link {{ ($section == "home") ? "landing-nav__section__link--bold" : "" }}">{{ trans("layout.menu.$section._") }}</a>
+                @endforeach
+            </div>
+            <div class="landing-nav__center">
+                <img class="landing-nav__logo-wrapper__logo" src="/images/layout/osu-logo@2x.png" alt="osu!">
+            </div>
+            <div class="landing-nav__section landing-nav__section--right">
+                <a href="#" class="landing-nav__section__link" data-toggle="modal" data-target="#user-dropdown-modal">{{ trans("users.login._") }}</a>
+                <a href="{{ route("users.register") }}" class="landing-nav__section__link">{{ trans("users.signup._") }}</a>
+            </div>
+        </div>
+    </nav>
     <div class="osu-layout__section osu-layout__section--full">
 
+    </div>
+
+    <div class="flex-none nav-user-bar-container">
+        @include("objects.user-dropdown")
     </div>
 @endsection
 

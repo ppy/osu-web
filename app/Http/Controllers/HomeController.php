@@ -19,6 +19,7 @@
  */
 namespace App\Http\Controllers;
 
+use Auth;
 use View;
 
 class HomeController extends Controller
@@ -27,7 +28,9 @@ class HomeController extends Controller
 
     public function getLanding()
     {
-        return view('home.landing');
+        if(!Auth::check())
+            return view('home.landing');
+        return $this->getNews();
     }
 
     public function getNews()

@@ -209,20 +209,19 @@ function lazy_load_image($url, $class = '', $alt = '')
 
 function nav_links()
 {
-    $links = [];
+    $links = landing_nav_links();
 
-    if (config('app.debug')) {
-        $links['home'] = [
-            'getNews' => route('news'),
+    if(config('app.debug'))
+    {
+        $links['home'] = array_merge($links['home'], [
             'getChangelog' => route('changelog'),
             'getDownload' => route('download'),
-        ];
+        ]);
 
-        $links['help'] = [
-            'getWiki' => route('wiki'),
+        $links['help'] = array_merge($links['help'], [
             'getFaq' => route('faq'),
             'getSupport' => route('support'),
-        ];
+        ]);
 
         $links['beatmaps'] = [
             'index' => route('beatmapsets.index'),
@@ -242,16 +241,40 @@ function nav_links()
         ];
     }
 
-    $links['community'] = [
-        'forum-forums-index' => route('forum.forums.index'),
+    $links['community'] = array_merge($links['community'], [
         'tournaments' => route('tournaments.index'),
         'getLive' => route('live'),
         'getSlack' => route('slack'),
+    ]);
+
+    $links['store'] = array_merge($links['store'], [
+        'getCart' => action('StoreController@getCart'),
+    ]);
+
+    return $links;
+}
+
+function landing_nav_links()
+{
+    $links = [];
+
+    if (config('app.debug')) {
+        //TODO: Re-route if the user is not logged in, to the landing
+        $links['home'] = [
+            'getNews' => route('news'),            
+        ];
+
+        $links['help'] = [
+            'getWiki' => route('wiki'),
+        ];       
+    }
+
+    $links['community'] = [
+        'forum-forums-index' => route('forum.forums.index'),
     ];
 
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),
-        'getCart' => action('StoreController@getCart'),
     ];
 
     return $links;
