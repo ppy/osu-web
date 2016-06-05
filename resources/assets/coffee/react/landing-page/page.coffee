@@ -18,5 +18,3 @@
 el = React.createElement
 
 class @Landing.Page extends React.Component
-  render: =>
-    el 'p'
