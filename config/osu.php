@@ -63,7 +63,7 @@ return [
             'kudosu' => 'https://osu.ppy.sh/wiki/Kudosu',
             'rules' => 'https://osu.ppy.sh/wiki/Osu!:Rules',
         ],
-        'twitch_livestreams_api' => 'https://api.twitch.tv/kraken/streams?on_site=1&limit=40&offset=0&game=Osu!',
+        'twitch_livestreams_api' => 'https://api.twitch.tv/kraken/streams?game=Osu!&limit=40&stream_type=live',
     ],
     'user' => [
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
