@@ -22,4 +22,22 @@ return [
     'news' => [
         'slogan' => 'Rhythm is just a *click* away!',
     ],
+    'landing' => [
+        'slogan' => 'free-to-win circle simulator',
+
+        'download' =>  [
+            '_' => 'Download now',
+            'forMac' => 'for Mac OS X',
+            'forWindows' => 'for Windows',
+            'forLinux' => 'for Linux',
+
+            'otherMac' => 'click here for Windows or Linux',
+            'otherWindows' => 'click here for Mac or Linux',
+            'otherLinux' => 'click here for Windows or Mac',
+        ],
+
+        'players' => 'registered players',
+        'online' => 'online players now',
+        'peak' => 'Peak, :count online users'
+    ],
 ];

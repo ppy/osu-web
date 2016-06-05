@@ -23,23 +23,6 @@
 @section("content")
     <div class="js-react--landing-page">
     </div>
-    <nav class="osu-layout__section osu-layout__section--minimum">
-        <div class="osu-layout__row landing-nav">
-            <div class="landing-nav__section">
-                <a href="#" class="landing-nav__section__link landing-nav__section__link--bold">home</a>
-                <a href="#" class="landing-nav__section__link">community</a>
-                <a href="#" class="landing-nav__section__link">help</a>
-                <a href="#" class="landing-nav__section__link">store</a>
-            </div>
-            <div class="landing-nav__center">
-                <img class="landing-nav__logo-wrapper__logo" src="/images/layout/osu-logo@2x.png" alt="osu!">
-            </div>
-            <div class="landing-nav__section landing-nav__section--right">
-                <a href="#" class="landing-nav__section__link">login</a>
-                <a href="#" class="landing-nav__section__link">sign up</a>
-            </div>
-        </div>
-    </nav>
     <div class="osu-layout__section osu-layout__section--full">
 
     </div>
