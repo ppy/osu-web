@@ -19,7 +19,7 @@
  */
 namespace App\Http\Controllers;
 
-use Cache;
+use App\Models\LivestreamCollection;
 use Request;
 
 class LivestreamsController extends Controller
@@ -30,32 +30,9 @@ class LivestreamsController extends Controller
     {
         view()->share('current_action', 'getLive');
 
-        $streams = Cache::remember('livestreams', 5, function () {
-            $twitchApiUrl = config('osu.urls.twitch_livestreams_api');
-            $data = json_decode(file_get_contents($twitchApiUrl));
-
-            return $data->streams;
-        });
-
-        // dirty hack to add https urls to images
-        // with allowance from nanaya
-        foreach ($streams as &$stream) {
-            foreach ($stream->preview as &$preview) {
-                $preview = str_replace('http://', 'https://', $preview);
-            }
-        }
-
-        $featuredStreamId = Cache::get('featuredStream');
-        if ($featuredStreamId !== null) {
-            $featuredStreamId = (string) $featuredStreamId;
-            foreach ($streams as $stream) {
-                if ((string) $stream->_id !== $featuredStreamId) {
-                    continue;
-                }
-                $featuredStream = $stream;
-                break;
-            }
-        }
+        $livestream = new LivestreamCollection();
+        $streams = $livestream->all();
+        $featuredStream = $livestream->featured();
 
         return view('community.live', compact('streams', 'featuredStream'));
     }
@@ -64,7 +41,7 @@ class LivestreamsController extends Controller
     {
         priv_check('LivestreamPromote')->ensureCan();
 
-        Cache::forever('featuredStream', (string) Request::input('id'));
+        LivestreamCollection::promote(Request::input('id'));
 
         return js_view('layout.ujs-reload');
     }
@@ -73,7 +50,7 @@ class LivestreamsController extends Controller
     {
         priv_check('LivestreamPromote')->ensureCan();
 
-        Cache::forget('featuredStream');
+        LivestreamCollection::demote();
 
         return js_view('layout.ujs-reload');
     }
