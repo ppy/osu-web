@@ -25,13 +25,15 @@ class @TooltipDefault
     title = el.getAttribute 'title'
     el.removeAttribute 'title'
 
+    $content = $('<span>').text(title)
+
     if el._tooltip
-      $(el).qtip 'set', 'content.text': title
+      $(el).qtip 'set', 'content.text': $content
       return
 
     el._tooltip = true
 
-    at = el.getAttribute('data-tooltip-position') || 'top center'
+    at = el.getAttribute('data-tooltip-position') ? 'top center'
 
     my = switch at
       when 'top center' then 'bottom center'
@@ -44,7 +46,7 @@ class @TooltipDefault
 
     options =
       overwrite: false
-      content: title
+      content: $content
       position:
         my: my
         at: at
