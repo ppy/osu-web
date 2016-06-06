@@ -53,55 +53,6 @@ class CommunityController extends Controller
         return view('community.chat');
     }
 
-    public function getLive()
-    {
-        $featuredStream = null;
-        $streams = Cache::remember('livestreams', 5, function () {
-            $twitchApiUrl = config('osu.urls.twitch_livestreams_api');
-            $data = json_decode(file_get_contents($twitchApiUrl));
-
-            return $data->streams;
-        });
-
-        //dirty hack to add https urls to images
-        //with allowance from nanaya
-        foreach ($streams as &$stream) {
-            foreach ($stream->preview as &$preview) {
-                $preview = str_replace('http:', 'https:', $preview);
-            }
-        }
-
-        $featuredStreamId = Cache::get('featuredStream');
-        if ($featuredStreamId !== null) {
-            $featuredStreamId = (string) $featuredStreamId;
-            foreach ($streams as $stream) {
-                if ((string) $stream->_id !== $featuredStreamId) {
-                    continue;
-                }
-                $featuredStream = $stream;
-                break;
-            }
-        }
-
-        return view('community.live', compact('streams', 'featuredStream'));
-    }
-
-    public function postLive()
-    {
-        priv_check('LivestreamPromote')->ensureCan();
-
-        switch (Request::input('mode')) {
-            case 'promote':
-                Cache::forever('featuredStream', (string) Request::input('id'));
-                break;
-            case 'demote':
-                Cache::forget('featuredStream');
-                break;
-        }
-
-        return js_view('layout.ujs-reload');
-    }
-
     public function getSlack()
     {
         $isEligible = false;

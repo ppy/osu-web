@@ -68,9 +68,9 @@
                     <div class="forum-post-actions">
                         <a
                             data-remote="1"
-                            data-method="POST"
+                            data-method="DELETE"
                             class="forum-post-actions__action"
-                            href="{{route('live', ['mode' => 'demote'])}}"
+                            href="{{ route('livestreams.promote') }}"
                         >
                             <i class="fa fa-thumbs-down"></i>
                         </a>
@@ -112,7 +112,7 @@
                                     data-remote="1"
                                     data-method="POST"
                                     class="forum-post-actions__action"
-                                    href="{{route('live', ['mode' => 'promote', 'id' => $stream->_id])}}"
+                                    href="{{route('livestreams.promote', ['id' => $stream->_id])}}"
                                 >
                                     <i class="fa fa-thumbs-up"></i>
                                 </a>
