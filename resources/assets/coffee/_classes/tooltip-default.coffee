@@ -31,7 +31,7 @@ class @TooltipDefault
 
     el._tooltip = true
 
-    at = el.getAttribute('data-tooltip-position') || 'top center'
+    at = el.getAttribute('data-tooltip-position') ? 'top center'
 
     my = switch at
       when 'top center' then 'bottom center'
