@@ -17,16 +17,13 @@
  *
  */
 
- @landing-logo-size: 200px;
+@landing-logo-size: 200px;
+@landing-mobile: ~"(max-width: 1145px)";
 
 .landing-nav {
     position: relative;
     display: flex;
-	padding: 60px 0 40px 0; 
-
-    &.osu-layout__row {
-        max-width: 1880px;
-    }
+	padding: 60px 0 40px 0;
 
 	&__section {
         &--left {
@@ -56,6 +53,10 @@
 
             &:last-child {
                 margin-right: 0;
+            }
+
+            @media @landing-mobile {
+                font-size: 12px; 
             }
         }
 	}
