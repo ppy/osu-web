@@ -24,7 +24,7 @@ class ProfilePage.AchievementBadge extends React.Component
 
     return if el._loadedTooltipId == @tooltipId
 
-    content = $(@refs[@tooltipId]).clone()
+    content = $(@refs.tooltip).clone()
 
     if el._loadedTooltipId?
       el._loadedTooltipId = @tooltipId
@@ -81,7 +81,7 @@ class ProfilePage.AchievementBadge extends React.Component
         className: 'hidden'
         div
           className: 'js-tooltip-achievement--content tooltip-achievement__main'
-          ref: @tooltipId
+          ref: 'tooltip'
           div
             className: 'tooltip-achievement__title'
             @props.achievement.grouping
