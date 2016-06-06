@@ -25,8 +25,10 @@ class @TooltipDefault
     title = el.getAttribute 'title'
     el.removeAttribute 'title'
 
+    $content = $('<span>').text(title)
+
     if el._tooltip
-      $(el).qtip 'set', 'content.text': title
+      $(el).qtip 'set', 'content.text': $content
       return
 
     el._tooltip = true
@@ -44,7 +46,7 @@ class @TooltipDefault
 
     options =
       overwrite: false
-      content: title
+      content: $content
       position:
         my: my
         at: at
