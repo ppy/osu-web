@@ -1,21 +1,38 @@
+/**
+ *    Copyright 2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 .livestream-page {
-  padding: 20px;
+  padding: (@spacing * 2);
+
   @media @desktop {
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: @padding-big;
+    padding-right: @padding-big;
   }
+
   &__header {
-    color: @grey-5;
-    padding-bottom: 15px;
+    font-size: @font-size--livestream-header;
+    margin: 0;
   }
-  &__anchor-twitch {
-    &:link, 
-    &:visited, 
-    &:hover, 
-    &:active {
-      color: inherit;
-      text-decoration: inherit;
-      font-weight: inherit;
-    }
+
+  &__items {
+    margin-left: (-@spacing);
+    margin-right: (-@spacing);
+    display: flex;
+    flex-wrap: wrap;
   }
 }

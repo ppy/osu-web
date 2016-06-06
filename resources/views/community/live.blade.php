@@ -19,31 +19,51 @@
 
 @section('content')
 
-<div class="osu-layout__section osu-layout__section--full livestreams">
-    <div class="osu-layout__row osu-layout__row--with-gutter">
-        <div class="osu-layout__row--page header-row livestream-header">
-            <div class="col-sm-12 livestream-header__container">
-                <div>
-                    <h1 class="livestream-header__headline">{{ trans('livestreams.top-headers.headline') }}</h1>
-                    <p class="livestream-header__description">{{ trans('livestreams.top-headers.description') }}</p>
-                </div>
-            </div>
-        </div>
+<div class="osu-layout__row osu-layout__row--page-compact">
+    <div class="osu-page-header osu-page-header--live">
+            <h1 class="osu-page-header__title">{{ trans('livestreams.top-headers.headline') }}</h1>
+
+            <p class="osu-page-header__title osu-page-header__title--smaller">
+                {{ trans('livestreams.top-headers.description') }}
+            </p>
     </div>
-    <div class="osu-layout__row osu-layout__row--with-gutter osu-layout__row--page-compact livestream-page">
-    @if ($featuredStream !== null)
-        <h2 class="livestream-page__header">{{ trans('livestreams.headers.featured') }}</h2>
+</div>
+
+@if ($featuredStream !== null)
+    <div class="osu-layout__row osu-layout__row--page-compact">
         <div class="livestream-featured">
-            <a class="livestream-page__anchor-twitch" href="{{$featuredStream->channel->url}}" target="_blank"> 
-                <div class="col-sm-12 livestream-featured__container" style="background-image: url('{{$featuredStream->preview->large}}');">
-                    <div class="livestream-featured__info">
-                        <h3>{{$featuredStream->channel->name}}</h3>
-                        <p>{{$featuredStream->channel->status}}</p>
-                        <p>{{$featuredStream->viewers}} <i class="fa fa-eye"></i></p>
-                    </div>
+            <iframe
+                class="livestream-featured__content"
+                src="//player.twitch.tv/?channel={{ $featuredStream->channel->name }}&muted=true"
+                frameborder="0"
+                scrolling="no"
+                allowfullscreen="false"
+            ></iframe>
+
+            <a
+                href="{{ $featuredStream->channel->url }}"
+                class="livestream-featured__content livestream-featured__content--overlay"
+            >
+                <h2 class="livestream-featured__text livestream-featured__text--header">
+                    {{ trans('livestreams.headers.featured') }}
+                </h2>
+
+                <div class="livestream-featured__info">
+                    <h3 class="livestream-featured__text livestream-featured__text--name">
+                        {{ $featuredStream->channel->name }}
+                    </h3>
+
+                    <p class="livestream-featured__text livestream-featured__text--detail">
+                        {{ $featuredStream->channel->status }}
+                    </p>
+
+                    <p class="livestream-featured__text livestream-featured__text--detail">
+                        {{ $featuredStream->viewers }} <i class="fa fa-eye"></i>
+                    </p>
                 </div>
             </a>
-            @if (Auth::user() != null && Auth::user()->isGmt())
+
+            @if (Auth::check() && Auth::user()->isGMT())
                 <div class="livestream-featured__actions">
                     <div class="forum-post-actions">
                         <a data-method="POST" class="forum-post-actions__action" href="{{route('live', ['demote' => true])}}">
@@ -53,26 +73,35 @@
                 </div>
             @endif
         </div>
-    @endif
-        <h2 class="livestream-page__header">{{ trans('livestreams.headers.regular') }}</h2>
-        @foreach ($streams as $stream)
-            <div class="col-sm-4 livestream-regular">
-                <div class="livestream-regular__container">
-                    <a class="livestream-page__anchor-twitch" href="{{$stream->channel->url}}" target="_blank"> 
-                        <div class="livestream-regular__top-background" style="background-image: url('{{$stream->preview->medium}}');">
-                            <div class="livestream-regular__streamer-info">
-                                {{$stream->channel->name}}
-                            </div>
-                            <div class="livestream-regular__watchers-info">
-                                <p>{{$stream->viewers}} <i class="fa fa-eye"></i></p>
-                            </div>
-                        </div>
-                        <div class="livestream-regular__bottom-info">
-                            {{$stream->channel->status}}
-                        </div>
+    </div>
+@endif
+
+<div class="osu-layout__row osu-layout__row--page-compact">
+    <div class="livestream-page">
+        <h2 class="livestream-page__header">
+            {{ trans('livestreams.headers.regular') }}
+        </h2>
+
+        <div class="livestream-page__items">
+            @foreach ($streams as $stream)
+                <div class="livestream-item">
+                    <a class="livestream-item__content" href="{{$stream->channel->url}}">
+                        <div
+                            class="livestream-item__image"
+                            style="background-image: url('{{$stream->preview->medium}}');"
+                        ></div>
+
+                        <p class="livestream-item__text livestream-item__text--name">
+                            {{$stream->channel->name}}
+                        </p>
+
+                        <p class="livestream-item__text livestream-item__text--detail">
+                            {{$stream->viewers}} <i class="fa fa-eye"></i>
+                        </p>
                     </a>
-                    @if (Auth::user() != null && Auth::user()->isGmt())
-                        <div class="livestream-regular__actions">
+
+                    @if (Auth::check() && Auth::user()->isGMT())
+                        <div class="livestream-item__actions">
                             <div class="forum-post-actions">
                                 <a data-method="POST" class="forum-post-actions__action" href="{{route('live', ['promote' => $stream->_id])}}">
                                     <i class="fa fa-thumbs-up"></i>
@@ -81,8 +110,8 @@
                         </div>
                     @endif
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     </div>
 </div>
 @endsection
