@@ -19,10 +19,7 @@
  */
 namespace App\Http\Controllers;
 
-use Cache;
 use Auth;
-use Redirect;
-use Request;
 use App\Models\SlackUser;
 
 class CommunityController extends Controller
