@@ -70,7 +70,6 @@ Route::get('/community/forum', function () {
 
 Route::resource('livestreams', 'LivestreamsController', ['only' => ['index']]);
 Route::post('livestreams/promote', ['as' => 'livestreams.promote', 'uses' => 'LivestreamsController@promote']);
-Route::delete('livestreams/promote', ['uses' => 'LivestreamsController@demote']);
 
 Route::get('/community/chat', ['as' => 'chat', 'uses' => 'CommunityController@getChat']);
 Route::get('/community/profile/{id}', function ($id) {

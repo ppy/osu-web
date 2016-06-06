@@ -45,13 +45,4 @@ class LivestreamsController extends Controller
 
         return js_view('layout.ujs-reload');
     }
-
-    public function demote()
-    {
-        priv_check('LivestreamPromote')->ensureCan();
-
-        LivestreamCollection::demote();
-
-        return js_view('layout.ujs-reload');
-    }
 }

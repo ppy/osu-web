@@ -32,11 +32,6 @@ class LivestreamCollection
         Cache::forever(static::FEATURED_CACHE_KEY, (string) $id);
     }
 
-    public static function demote()
-    {
-        Cache::forget(static::FEATURED_CACHE_KEY);
-    }
-
     public function all()
     {
         if ($this->streams === null) {
@@ -63,7 +58,7 @@ class LivestreamCollection
 
     public function featured()
     {
-        $featuredStreamId = presence((string) Cache::get('featuredStream'));
+        $featuredStreamId = presence((string) Cache::get(static::FEATURED_CACHE_KEY));
 
         if ($featuredStreamId !== null) {
             foreach ($this->all() as $stream) {

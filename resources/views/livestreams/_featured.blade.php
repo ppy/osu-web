@@ -52,7 +52,7 @@
             <div class="forum-post-actions">
                 <a
                     data-remote="1"
-                    data-method="DELETE"
+                    data-method="POST"
                     class="forum-post-actions__action"
                     href="{{ route('livestreams.promote') }}"
                 >
