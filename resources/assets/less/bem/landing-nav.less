@@ -17,7 +17,7 @@
  *
  */
 
- @landing-logo-size: 100px;
+ @landing-logo-size: 200px;
 
 .landing-nav {
     position: relative;
@@ -67,9 +67,9 @@
         height: @landing-logo-size;
         left: 0;
         right: 0;
-        top: 60px;
+        top: 30px;
         margin: auto;
-        .at2x("/images/layout/osu-logo.png", @landing-logo-size, @landing-logo-size);
+        background: url('/images/layout/osu-logo@2x.png') no-repeat center center; // at2x makes 4 of them why
         z-index: @nav-float-z-index;
 
         h1 {

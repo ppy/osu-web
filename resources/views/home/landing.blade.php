@@ -59,7 +59,7 @@
             <div class="landing-hero-download">
                 <div class="landing-hero-download__inner">
                     <a href="#" class="landing-download-button shadow-hover">
-                        <span class="fa fa-cloud-download landing-download-button__icon"></span>
+                        <span class="fa fa-2x fa-cloud-download landing-download-button__icon"></span>
                         <span class="landing-download-button__content">
                             <span class="landing-download-button__content--top">Download now</span>
                             <span class="landing-download-button__content--bottom">for Mac OS X</span>
