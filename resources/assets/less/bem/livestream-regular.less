@@ -1,55 +1,50 @@
 .livestream-regular {
+  margin-bottom: 10px;
   padding-left: 10px;
   padding-right: 10px;
   &:hover &__actions {
     opacity: 1;
   }
+  &:hover &__thumbnail {
+    box-shadow: 0 20px 50px 10px rgba(0,0,0,.65);
+  }
+  &__header {
+    padding-bottom: 20px;
+    padding-left: 10px;
+  }
   & &__actions {
     color: white;
     z-index: 9000;
   }
-  word-break: break-all;
   &__container {
     transition: all 120ms ease-in-out;
     border-radius: 10px;
-    .default-box-shadow;
     &:hover {
       cursor: pointer;
-      .thicker-box-shadow;
     }
   }
-  &__top-background {
-    border-radius: 10px 10px 0 0 ;
+  &__thumbnail {
     width: 100%;
-    padding-bottom: 75%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+    border-radius: 4px;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.8);
+    transition: box-shadow 0.15s ease-in-out;
   }
-  &__streamer-info {
-    .default-text-shadow;
-    color: white;
-    line-height: 1.3em;
-    font-size: 30px;
-    right: 0;
-    overflow: hidden;
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    color: white;
-  }
-  &__watchers-info {
-    .default-text-shadow;
-    font-size: 1.5em;
-    color: white;
-    position: absolute;
-    right: 10px;
-    top: 10px;
-  }
-  &__bottom-info {
+  &__info {
     color: @grey-5;
+    text-align: center;
     margin: 10px;
     height: 80px;
+  }
+  &__name {
+    font-size: 30px;
+    overflow: hidden;
+    font-style: italic;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  &__viewers {
+    font-size: 18px;
+    font-weight: 600;
   }
   &__actions {
     @media @desktop {

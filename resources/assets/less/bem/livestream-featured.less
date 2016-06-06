@@ -1,28 +1,54 @@
 .livestream-featured {
-  padding-left: 10px;
-  padding-right: 10px;
+  position: relative;
+  margin-bottom: 15px !important;
+
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: 56.25%;
+  }
+  & iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  &__header {
+    color: #fff;
+    padding-top: 10px;
+    padding-left: 40px;
+  }
+  &__container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,0) 30%, rgba(0,0,0,0) 60%, rgba(0,0,0,1));
+  }
+  &__container a {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-decoration: none;
+    height: 100%;
+  }
   &__info {
     & * {
       .default-text-shadow;
       color: white;
     }
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
+    font-size: 22px;
+    padding-left: 40px;
+    padding-bottom: 20px;
   }
-  &__container {
-    transition: all 120ms ease-in-out;
-    float: none !important;
-    .default-box-shadow;
-    &:hover {
-      .thicker-box-shadow;
-    }
-    border-radius: 10px;
-    width: 100%;
-    padding-bottom: 75%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+  &__name {
+    font-size: 44px;
+    margin-bottom: 15px;
+    font-style: italic;
   }
   &:hover &__actions {
     opacity: 1;

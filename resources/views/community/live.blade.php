@@ -30,19 +30,24 @@
             </div>
         </div>
     </div>
-    <div class="osu-layout__row osu-layout__row--with-gutter osu-layout__row--page-compact livestream-page">
     @if ($featuredStream !== null)
-        <h2 class="livestream-page__header">{{ trans('livestreams.headers.featured') }}</h2>
-        <div class="livestream-featured">
-            <a class="livestream-page__anchor-twitch" href="{{$featuredStream->channel->url}}" target="_blank"> 
-                <div class="col-sm-12 livestream-featured__container" style="background-image: url('{{$featuredStream->preview->large}}');">
+        <div class="osu-layout__row osu-layout__row--with-gutter livestream-featured">
+            <iframe
+                src="//player.twitch.tv/?channel={{ $featuredStream->channel->name }}"
+                frameborder="0"
+                scrolling="no"
+                allowfullscreen="false">
+            </iframe>
+            <div class="livestream-featured__container">
+                <a href="{{ $featuredStream->channel->url }}">
+                    <h3 class="livestream-featured__header">{{ trans('livestreams.headers.featured') }}</h3>
                     <div class="livestream-featured__info">
-                        <h3>{{$featuredStream->channel->name}}</h3>
-                        <p>{{$featuredStream->channel->status}}</p>
-                        <p>{{$featuredStream->viewers}} <i class="fa fa-eye"></i></p>
+                        <p class="livestream-featured__name">{{ $featuredStream->channel->name }}</p>
+                        <p>{{ $featuredStream->channel->status }}</p>
+                        <p>{{ $featuredStream->viewers }} <i class="fa fa-eye"></i></p>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
             @if (Auth::user() != null && Auth::user()->isGmt())
                 <div class="livestream-featured__actions">
                     <div class="forum-post-actions">
@@ -54,21 +59,16 @@
             @endif
         </div>
     @endif
-        <h2 class="livestream-page__header">{{ trans('livestreams.headers.regular') }}</h2>
+    <div class="osu-layout__row osu-layout__row--with-gutter osu-layout__row--page-compact livestream-page">
+        <h3 class="livestream-regular__header">{{ trans('livestreams.headers.regular') }}</h3>
         @foreach ($streams as $stream)
             <div class="col-sm-4 livestream-regular">
                 <div class="livestream-regular__container">
-                    <a class="livestream-page__anchor-twitch" href="{{$stream->channel->url}}" target="_blank"> 
-                        <div class="livestream-regular__top-background" style="background-image: url('{{$stream->preview->medium}}');">
-                            <div class="livestream-regular__streamer-info">
-                                {{$stream->channel->name}}
-                            </div>
-                            <div class="livestream-regular__watchers-info">
-                                <p>{{$stream->viewers}} <i class="fa fa-eye"></i></p>
-                            </div>
-                        </div>
-                        <div class="livestream-regular__bottom-info">
-                            {{$stream->channel->status}}
+                    <a class="livestream-page__anchor-twitch" href="{{ $stream->channel->url }}" target="_blank">
+                        <img class="livestream-regular__thumbnail" src="{{ $stream->preview->large }}" alt="{{ $stream->channel->name }}">
+                        <div class="livestream-regular__info">
+                            <p class="livestream-regular__name">{{ $stream->channel->name }}</p>
+                            <p class="livestream-regular__viewers">{{ $stream->viewers }} <i class="fa fa-eye"></i></p>
                         </div>
                     </a>
                     @if (Auth::user() != null && Auth::user()->isGmt())
