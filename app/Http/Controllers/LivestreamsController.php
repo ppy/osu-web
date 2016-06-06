@@ -34,7 +34,7 @@ class LivestreamsController extends Controller
         $streams = $livestream->all();
         $featuredStream = $livestream->featured();
 
-        return view('community.live', compact('streams', 'featuredStream'));
+        return view('livestreams.index', compact('streams', 'featuredStream'));
     }
 
     public function promote()

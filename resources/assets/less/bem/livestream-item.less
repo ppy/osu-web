@@ -18,17 +18,6 @@
  */
 .livestream-item {
   @_top: livestream-item;
-  margin: @spacing;
-
-  width: calc(100% ~'-' (@spacing * 2));
-
-  @media @desktop {
-    width: calc((100% / 2) ~'-' (@spacing * 2));
-  }
-
-  @media @screen-large {
-    width: calc((100% / 3) ~'-' (@spacing * 2));
-  }
 
   &__actions {
     position: absolute;
