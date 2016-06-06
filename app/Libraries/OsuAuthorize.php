@@ -32,7 +32,7 @@ class OsuAuthorize
         $cacheKey = serialize([
             $ability,
             $user === null ? null : $user->getKey(),
-            $object->getKey(),
+            $object === null ? null : $object->getKey(),
         ]);
 
         if (!isset($this->cache[$cacheKey])) {
@@ -340,6 +340,13 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkLivestreamPromote($user)
+    {
+        if ($user->isGMT()) {
+            return 'ok';
+        }
     }
 
     public function checkUserPageEdit($user, $pageOwner)

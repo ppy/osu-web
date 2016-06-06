@@ -545,12 +545,12 @@ function model_pluck($builder, $key)
         ->all();
 }
 
-function priv_check($ability, $args)
+function priv_check($ability, $args = null)
 {
     return priv_check_user(Auth::user(), $ability, $args);
 }
 
-function priv_check_user($user, $ability, $args)
+function priv_check_user($user, $ability, $args = null)
 {
     return OsuAuthorize::doCheckUser($user, $ability, $args);
 }

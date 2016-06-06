@@ -22,7 +22,7 @@ namespace App\Http\Controllers;
 use Cache;
 use Auth;
 use Redirect;
-use Illuminate\Http\Request as HttpRequest;
+use Request;
 use App\Models\SlackUser;
 
 class CommunityController extends Controller
@@ -53,7 +53,7 @@ class CommunityController extends Controller
         return view('community.chat');
     }
 
-    public function getLive(HttpRequest $request)
+    public function getLive()
     {
         $featuredStream = null;
         $streams = Cache::remember('livestreams', 5, function () {
@@ -86,21 +86,20 @@ class CommunityController extends Controller
         return view('community.live', compact('streams', 'featuredStream'));
     }
 
-    public function postLive(HttpRequest $request)
+    public function postLive()
     {
-        if (Auth::check() !== true || Auth::user()->isGmt() !== true) {
-            abort(403);
+        priv_check('LivestreamPromote')->ensureCan();
+
+        switch (Request::input('mode')) {
+            case 'promote':
+                Cache::forever('featuredStream', (string) Request::input('id'));
+                break;
+            case 'demote':
+                Cache::forget('featuredStream');
+                break;
         }
 
-        if ($request->has('promote')) {
-            Cache::forever('featuredStream', (string) $request->promote);
-        }
-
-        if ($request->has('demote')) {
-            Cache::forget('featuredStream');
-        }
-
-        return Redirect::back();
+        return js_view('layout.ujs-reload');
     }
 
     public function getSlack()

@@ -63,10 +63,15 @@
                 </div>
             </a>
 
-            @if (Auth::check() && Auth::user()->isGMT())
+            @if (priv_check('LivestreamPromote')->can())
                 <div class="livestream-featured__actions">
                     <div class="forum-post-actions">
-                        <a data-method="POST" class="forum-post-actions__action" href="{{route('live', ['demote' => true])}}">
+                        <a
+                            data-remote="1"
+                            data-method="POST"
+                            class="forum-post-actions__action"
+                            href="{{route('live', ['mode' => 'demote'])}}"
+                        >
                             <i class="fa fa-thumbs-down"></i>
                         </a>
                     </div>
@@ -100,10 +105,15 @@
                         </p>
                     </a>
 
-                    @if (Auth::check() && Auth::user()->isGMT())
+                    @if (priv_check('LivestreamPromote')->can())
                         <div class="livestream-item__actions">
                             <div class="forum-post-actions">
-                                <a data-method="POST" class="forum-post-actions__action" href="{{route('live', ['promote' => $stream->_id])}}">
+                                <a
+                                    data-remote="1"
+                                    data-method="POST"
+                                    class="forum-post-actions__action"
+                                    href="{{route('live', ['mode' => 'promote', 'id' => $stream->_id])}}"
+                                >
                                     <i class="fa fa-thumbs-up"></i>
                                 </a>
                             </div>
