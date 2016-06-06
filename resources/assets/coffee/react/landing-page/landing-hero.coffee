@@ -16,4 +16,13 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-$(".landing-hero").slick()
+$('.landing-hero-slider').slick
+  fade: true
+  arrows: false
+
+
+$('.landing-slide__bg').each ->
+  $this = $(this)
+  $slideSrc = $this.find('.landing-slide__bg--image').attr('src')
+  $this.css 'background', 'url(\'' + $slideSrc + '\') no-repeat center center / cover'
+  return

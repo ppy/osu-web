@@ -17,7 +17,7 @@
  *
  */
 
- @landing-logo-size: 200px;
+ @landing-logo-size: 100px;
 
 .landing-nav {
     position: relative;
@@ -26,7 +26,6 @@
 
     &.osu-layout__row {
         max-width: 1880px;
-        width: ~"calc(100% - 60px)";
     }
 
 	&__section {
@@ -43,9 +42,16 @@
             color: #fff;
             font-size: 24px;
             margin-right: 40px;
+            text-transform: lowercase;
 
             &--bold {
                 font-weight: bold;
+            }
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+                color: @pink;
             }
 
             &:last-child {
@@ -61,9 +67,21 @@
         height: @landing-logo-size;
         left: 0;
         right: 0;
-        top: 30px;
+        top: 60px;
         margin: auto;
-        background: url('/images/layout/osu-logo@2x.png') no-repeat center center; // at2x makes 4 of them why
+        .at2x("/images/layout/osu-logo.png", @landing-logo-size, @landing-logo-size);
         z-index: @nav-float-z-index;
+
+        h1 {
+            // Visually hidden h1 for SEO purposes
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
 	}
 }
