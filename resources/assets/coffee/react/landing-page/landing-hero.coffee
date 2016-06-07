@@ -28,3 +28,16 @@ $('.landing-slide__bg').each ->
   $slideSrc = $this.find('.landing-slide__bg--image').attr('src')
   $this.css 'background', 'url(\'' + $slideSrc + '\') no-repeat center center / cover'
   return
+
+getOS = ->
+  if navigator.appVersion.indexOf('Win') != -1
+    return 'Windows'
+  if navigator.appVersion.indexOf('Mac') != -1
+    return 'Mac'
+  if navigator.appVersion.indexOf('Linux') != -1
+    return 'Linux'
+  'Windows'
+
+os = getOS()
+$('.js-download-platform').text Lang.get('home.landing.download.for' + os)
+$('.js-download-other').text Lang.get('home.landing.download.other' + os)

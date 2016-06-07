@@ -28,9 +28,10 @@ class HomeController extends Controller
 
     public function getLanding()
     {
-        if(!Auth::check())
-            return view('home.landing');
-        return $this->getNews();
+        if(Auth::check())
+            return $this->getNews();
+
+        return view('home.landing');
     }
 
     public function getNews()

@@ -59,11 +59,11 @@
                     <a href="#" class="landing-download-button shadow-hover">
                         <span class="fa fa-2x fa-cloud-download landing-download-button__icon"></span>
                         <span class="landing-download-button__content">
-                            <span class="landing-download-button__content--top">Download now</span>
-                            <span class="landing-download-button__content--bottom">for Mac OS X</span>
+                            <span class="landing-download-button__content--top">{{ trans("home.landing.download._") }}</span>
+                            <span class="landing-download-button__content--bottom js-download-platform"></span>
                         </span>
                     </a>
-                    <a href="#" class="landing-download-other">click here for Windows or Linux</a>
+                    <a href="#" class="landing-download-other js-download-other"></a>
                 </div>
             </div>
         </div>
