@@ -45,7 +45,7 @@ class LivestreamCollection
 
     public function download()
     {
-        $streamsApi = 'https://api.twitch.tv/kraken/streams?on_site=1&limit=40&offset=0&game=Osu!';
+        $streamsApi = 'https://api.twitch.tv/kraken/streams?limit=40&offset=0&game=Osu!';
         $clientId = config('osu.twitch_client_id');
         $ch = curl_init();
 
