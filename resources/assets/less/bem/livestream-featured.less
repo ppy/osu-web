@@ -44,17 +44,21 @@
 
   &__content {
     .full-size();
+    background-size: cover;
+    transition: opacity 1000ms;
 
-    &--overlay {
-      padding: (@spacing * 3) (@spacing * 4);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-
-      &:link {
-        text-decoration: none;
-      }
+    &:link {
+      text-decoration: none;
     }
+  }
+
+  &__info {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    padding: (@spacing * 3) (@spacing * 4);
+    background-image: linear-gradient(transparent, @grey-0);
   }
 
   &__text {
@@ -64,10 +68,6 @@
     &--detail {
       margin-top: @spacing;
       font-size: @font-size--livestream-featured-detail;
-    }
-
-    &--header {
-      font-size: @font-size--livestream-header;
     }
 
     &--name {

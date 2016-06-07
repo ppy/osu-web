@@ -25,6 +25,7 @@ $(document).on 'submit', 'form', LoadingOverlay.show
 
 
 @reactTurbolinks ||= new ReactTurbolinks
+@twitchPlayer ?= new TwitchPlayer
 
 reactTurbolinks.register 'user-card', UserCard
 

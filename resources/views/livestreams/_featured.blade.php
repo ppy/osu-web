@@ -15,23 +15,23 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+<?php
+    $playerId = 'livestream-'.time().'-'.rand();
+?>
 <div class="livestream-featured">
-    <iframe
-        class="livestream-featured__content"
-        src="//player.twitch.tv/?channel={{ $featuredStream->channel->name }}&amp;muted=true"
-        frameborder="0"
-        scrolling="no"
-        allowfullscreen="false"
-    ></iframe>
+    <div
+        id="{{ $playerId }}"
+        class="js-twitch-player livestream-featured__content hidden"
+        data-channel="{{ $featuredStream->channel->name }}"
+    ></div>
 
     <a
         href="{{ $featuredStream->channel->url }}"
-        class="livestream-featured__content livestream-featured__content--overlay"
+        class="js-twitch-player--no-cookie livestream-featured__content livestream-featured__content--no-cookie"
+        style="background-image: url('{{ $featuredStream->preview->large }}');"
+        data-visibility="visible"
+        data-player-id="{{ $playerId }}"
     >
-        <h2 class="livestream-featured__text livestream-featured__text--header">
-            {{ trans('livestreams.headers.featured') }}
-        </h2>
-
         <div class="livestream-featured__info">
             <h3 class="livestream-featured__text livestream-featured__text--name">
                 {{ $featuredStream->channel->name }}
@@ -62,3 +62,9 @@
         </div>
     @endif
 </div>
+
+@section('script')
+    @parent
+
+    <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+@endsection
