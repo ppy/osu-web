@@ -16,18 +16,18 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="livestream-item">
-    <a class="livestream-item__content" href="{{$stream->channel->url}}">
+    <a class="livestream-item__content" href="{{ $stream->channel->url }}">
         <div
             class="livestream-item__image"
-            style="background-image: url('{{$stream->preview->medium}}');"
+            style="background-image: url('{{ $stream->preview->medium }}');"
         ></div>
 
         <p class="livestream-item__text livestream-item__text--name">
-            {{$stream->channel->name}}
+            {{ $stream->channel->name }}
         </p>
 
         <p class="livestream-item__text livestream-item__text--detail">
-            {{$stream->viewers}} <i class="fa fa-eye"></i>
+            {{ $stream->viewers }} <i class="fa fa-eye"></i>
         </p>
     </a>
 
@@ -38,7 +38,7 @@
                     data-remote="1"
                     data-method="POST"
                     class="forum-post-actions__action"
-                    href="{{route('livestreams.promote', ['id' => $stream->_id])}}"
+                    href="{{ route('livestreams.promote', ['id' => $stream->_id]) }}"
                 >
                     <i class="fa fa-thumbs-up"></i>
                 </a>
