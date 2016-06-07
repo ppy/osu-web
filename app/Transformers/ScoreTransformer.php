@@ -43,6 +43,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'rank' => $score->rank,
             'mods' => $score->enabled_mods,
             'score' => $score->score,
+            'combo' => $score->maxcombo,
             'count50' => $score->count50,
             'count100' => $score->count100,
             'count300' => $score->count300,
@@ -51,6 +52,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'countmiss' => $score->countmiss,
             'slot' => $score->slot,
             'team' => $score->team,
+            'pass' => $score->pass,
         ];
     }
 

@@ -18,5 +18,6 @@
 
 propsFunction = =>
   match: osu.parseJson('json-match').data
+  countries: _.keyBy osu.parseJson('json-countries').data, (o) -> o.code
 
 reactTurbolinks.register 'mp-history', MPHistory.Main, propsFunction

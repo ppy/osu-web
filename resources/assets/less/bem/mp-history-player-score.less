@@ -20,53 +20,20 @@
 .mp-history-player-score {
   display: flex;
 
-  &__trapezoid-rectangle {
+  &__shapes {
     position: absolute;
     left: 0;
     top: 0;
 
-    width: 35px;
-    height: 100%;
+    width: 75px;
+    height: 60px;
 
-    background-color: @blue-darker;
+    background-size: 75px 60px;
 
-    border-top-left-radius: @border-radius-base;
-    border-bottom-left-radius: @border-radius-base;
+    border-radius: @border-radius-base 0 0 @border-radius-base;
   }
 
-  &__trapezoid-triangle {
-    position: absolute;
-    left: 35px;
-    top: 0;
-
-    width: 35px;
-    height: 0;
-
-    border-bottom: 60px solid @blue-darker;
-    border-right: 35px solid transparent;
-  }
-
-  &__triangle {
-    position: absolute;
-    left: 0;
-    top: 0;
-
-    width: 0;
-    height: 0;
-
-    &--small {
-      .equilateral-triangle(17px, @blue);
-    }
-
-    &--large {
-      left: @spacing * 5;
-      top: @spacing * 3;
-
-      .equilateral-triangle(25px, @blue-dark);
-    }
-  }
-
-  &__rank {
+  &__slot {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -77,7 +44,7 @@
     padding-right: 20px;
   }
 
-  &__rank-number {
+  &__slot-number {
     font-weight: 700;
     font-style: italic;
     font-size: 24px;
@@ -106,9 +73,27 @@
       align-items: flex-start;
     }
 
+    &--mods {
+      align-items: flex-end;
+      margin-left: auto;
+      justify-content: center;
+
+      padding-right: @spacing * 4;
+    }
+
     &--stats {
+      max-width: 370px;
+
+      flex-grow: 1;
       align-items: flex-end;
     }
+  }
+
+  &__username-box {
+    display: flex;
+    align-items: baseline;
+
+    padding-bottom: @spacing * 0.5;
   }
 
   &__username {
@@ -117,22 +102,53 @@
     font-size: 18px;
     color: @blue-text;
 
-    padding-bottom: @spacing * 0.5;
+    padding-right: @spacing * 2;
   }
 
   &__stat-row {
+    width: 100%;
+
     display: flex;
+    justify-content: flex-end;
     align-items: baseline;
+  }
+
+  &__failed {
+    font-size: 15px;
+    color: @red;
+    font-weight: 700;
+
+    padding-right: @spacing * 2;
   }
 
   &__stat {
     display: flex;
     align-items: baseline;
+    justify-content: flex-end;
+
+    flex-shrink: 1;
 
     padding-right: @spacing * 2;
 
     &--small {
+      flex-basis: 70px;
       padding-right: @spacing;
+    }
+
+    &--combo {
+      flex-basis: 100px;
+    }
+
+    &--accuracy {
+      flex-basis: 130px;
+    }
+
+    &--score {
+      flex-basis: 140px;
+    }
+
+    &:first-child {
+      justify-content: flex-start;
     }
 
     &:last-child {

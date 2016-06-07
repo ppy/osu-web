@@ -15,13 +15,43 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div} = React.DOM
+{div, span} = React.DOM
 el = React.createElement
 
 class MPHistory.Game extends React.Component
   render: ->
+    game = @props.event.game.data
+
+    showTeams = game.team_type >= 2
+
+    className = 'mp-history-game__player-scores'
+    className += ' mp-history-game__player-scores--no-teams' if !showTeams
+
+    winningTeam = if @props.teamScores.left > @props.teamScores.right then 'left' else 'right'
+    difference = Math.abs @props.teamScores.left - @props.teamScores.right
+
     div className: 'mp-history-game',
       el MPHistory.BeatmapHeader,
-        beatmap: @props.event.game.data.beatmap.data
-        beatmapset: @props.event.game.data.beatmap.data.beatmapset.data
-        game: @props.event.game.data
+        beatmap: game.beatmap.data
+        beatmapset: game.beatmap.data.beatmapset.data
+        game: game
+
+      div className: className,
+        game.scores.data.map (m) =>
+          el MPHistory.Score,
+            score: m
+            mode: game.mode
+            countries: @props.countries
+            key: m.slot
+
+      if showTeams
+        div {},
+          div className: 'mp-history-game__team-scores',
+            ['left', 'right'].map (m) =>
+              div className: "mp-history-game__team-score mp-history-game__team-score--#{m}", key: m,
+                span className: 'mp-history-game__team-score-text mp-history-game__team-score-text--name', Lang.get "multiplayer.match.teams.#{m}"
+                span className: 'mp-history-game__team-score-text mp-history-game__team-score-text--score', @props.teamScores[m].toLocaleString()
+
+          div className: 'mp-history-game__results',
+            span className: 'mp-history-game__results-text', Lang.get 'multiplayer.match.winner', team: Lang.get "multiplayer.match.teams.#{winningTeam}"
+            span className: 'mp-history-game__results-text mp-history-game__results-text--score', Lang.get 'multiplayer.match.difference', difference: difference.toLocaleString()

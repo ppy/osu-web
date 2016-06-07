@@ -19,7 +19,7 @@
 el = React.createElement
 
 class MPHistory.Main extends React.Component
-  timeBetweenRefresh = 10000
+  timeBetweenRefresh: 10000
 
   constructor: (props) ->
     super props
@@ -49,7 +49,17 @@ class MPHistory.Main extends React.Component
         events: newEvents
         since: _.last(newEvents).id
         teamType: @getTeamType _.findLast(newEvents, (o) -> o.game?).game.data.team_type
-        => _.delay @loadHistory, timeBetweenRefresh
+        => _.delay @loadHistory, @timeBetweenRefresh
+
+  render: ->
+    div className: 'osu-layout__section',
+      el MPHistory.Header,
+        name: @props.match.name
+        teamType: @state.teamType
+
+      el MPHistory.Content,
+        events: @state.events
+        countries: @props.countries
 
   getTeamType: (typeInt) ->
     types =
@@ -59,9 +69,3 @@ class MPHistory.Main extends React.Component
       3: 'tag-team-vs'
 
     types[typeInt]
-
-  render: ->
-    div className: 'osu-layout__section',
-      el MPHistory.Header,
-        name: @props.match.name
-        teamType: @state.teamType

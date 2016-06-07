@@ -20,8 +20,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Multiplayer\Match;
+use App\Models\Country;
 use App\Transformers\Multiplayer\MatchTransformer;
 use App\Transformers\Multiplayer\EventTransformer;
+use App\Transformers\CountryTransformer;
 use Request;
 
 class MultiplayerController extends Controller
@@ -37,7 +39,9 @@ class MultiplayerController extends Controller
             new MatchTransformer
         );
 
-        return view('multiplayer.match', compact('match'));
+        $countries = fractal_collection_array(Country::all(), new CountryTransformer);
+
+        return view('multiplayer.match', compact('match', 'countries'));
     }
 
     public function getMatchHistory($match_id)

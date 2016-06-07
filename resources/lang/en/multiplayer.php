@@ -36,5 +36,25 @@ return [
             'HOST' => 'became the host',
         ],
         'in-progress' => '(match in progress)',
+        'score' => [
+            'stats' => [
+                'combo' => 'Combo',
+                'accuracy' => 'Accuracy',
+                'score' => 'Score',
+                'countgeki' => 'MAX',
+                'count300' => '300s',
+                'countkatu' => '200s',
+                'count100' => '100s',
+                'count50' => '50s',
+                'countmiss' => 'Miss',
+            ],
+        ],
+        'failed' => 'FAILED',
+        'teams' => [
+            'left' => 'Team Blue',
+            'right' => 'Team Red',
+        ],
+        'winner' => ':team wins',
+        'difference' => 'by :difference',
     ],
 ];

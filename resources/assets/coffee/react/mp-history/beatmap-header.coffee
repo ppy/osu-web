@@ -19,11 +19,11 @@
 el = React.createElement
 
 class MPHistory.BeatmapHeader extends React.Component
-  timeFormat = 'HH:mm:ss'
+  timeFormat: 'HH:mm:ss'
 
   render: ->
-    timeStart = moment(@props.game.start_time).format timeFormat
-    timeEnd = moment(@props.game.end_time).format timeFormat
+    timeStart = moment(@props.game.start_time).format @timeFormat
+    timeEnd = moment(@props.game.end_time).format @timeFormat
 
     timeString = "#{timeStart} "
 
@@ -38,6 +38,8 @@ class MPHistory.BeatmapHeader extends React.Component
         href: laroute.route 'beatmaps.show', beatmaps: @props.beatmap.id
         style:
           backgroundImage: "url(#{@props.beatmapset.covers.card})"
+
+        div className: 'mp-history-game__header-overlay'
 
         div className: 'mp-history-game__stats-box',
           span className: 'mp-history-game__stat', "##{@props.game.id.toLocaleString()}"

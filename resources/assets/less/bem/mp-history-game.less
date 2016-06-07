@@ -32,6 +32,14 @@
     border-radius: @border-radius-base @border-radius-base 0 0;
   }
 
+  &__header-overlay {
+    width: 100%;
+    height: 100%;
+
+    background-color: #000000;
+    opacity: 0.5;
+  }
+
   &__thumb {
     background-position: center;
     display: block;
@@ -49,7 +57,7 @@
   }
 
   &__stat {
-    font-size: 12px;
+    font-size: 14px;
     font-style: italic;
 
     padding-right: @spacing * 1.5;
@@ -73,11 +81,11 @@
     margin: 0;
 
     &--title {
-      font-size: 18px;
+      font-size: 20px;
     }
 
     &--artist {
-      font-size: 12px;
+      font-size: 14px;
     }
   }
 
@@ -90,6 +98,10 @@
   &__player-scores {
     padding: 10px;
     background-color: @grey-e;
+
+    &--no-teams {
+      border-radius: 0 0 @border-radius-base @border-radius-base;
+    }
   }
 
   &__player-score {
@@ -178,8 +190,11 @@
 
     text-align: center;
 
+    padding-right: 5px;
+
     &--score {
       font-weight: 400;
+      padding: 0;
     }
   }
 }

@@ -25,11 +25,11 @@
   height: @diameter;
 }
 
-.equilateral-triangle(@length, @color) {
+.triangle(@length) {
   width: 0;
   height: 0;
 
-  border-bottom: (@length * sqrt(3)) / 2 solid @color;
+  border-bottom: (@length * sqrt(3)) / 2 solid;
   border-left: @length / 2 solid transparent;
   border-right: @length / 2 solid transparent;
 }
