@@ -36,16 +36,7 @@ class LivestreamCollection
     {
         if ($this->streams === null) {
             $this->streams = Cache::remember('livestreams', 5, function () {
-                $streams = $this->download()->streams;
-
-                // dirty hack to add https urls to images
-                foreach ($streams as &$stream) {
-                    foreach ($stream->preview as &$preview) {
-                        $preview = str_replace('http://', 'https://', $preview);
-                    }
-                }
-
-                return $streams;
+                return $this->download()->streams;
             });
         }
 
