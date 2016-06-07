@@ -36,11 +36,7 @@ class LivestreamCollection
     {
         if ($this->streams === null) {
             $this->streams = Cache::remember('livestreams', 5, function () {
-                $twitchApiUrl = config('osu.urls.twitch_livestreams_api');
-                // TODO: error handling
-                $data = json_decode(file_get_contents($twitchApiUrl));
-
-                $streams = $data->streams;
+                $streams = $this->download()->streams;
 
                 // dirty hack to add https urls to images
                 foreach ($streams as &$stream) {
@@ -54,6 +50,27 @@ class LivestreamCollection
         }
 
         return $this->streams;
+    }
+
+    public function download()
+    {
+        $streamsApi = 'https://api.twitch.tv/kraken/streams?on_site=1&limit=40&offset=0&game=Osu!';
+        $clientId = config('osu.twitch_client_id');
+        $ch = curl_init();
+
+        curl_setopt_array($ch, [
+            CURLOPT_HTTPHEADER => [
+                "Client-ID: {$clientId}",
+            ],
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_URL => $streamsApi,
+        ]);
+
+        // TODO: error handling
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        return json_decode($response);
     }
 
     public function featured()
