@@ -56,14 +56,14 @@
             </div>
             <div class="landing-hero-download">
                 <div class="landing-hero-download__inner">
-                    <a href="#" class="landing-download-button shadow-hover">
+                    <a href="http://m1.ppy.sh/r/osu!install.exe" class="landing-download-button shadow-hover">
                         <span class="fa fa-2x fa-cloud-download landing-download-button__icon"></span>
                         <span class="landing-download-button__content">
                             <span class="landing-download-button__content--top">{{ trans("home.landing.download._") }}</span>
                             <span class="landing-download-button__content--bottom js-download-platform"></span>
                         </span>
                     </a>
-                    <a href="#" class="landing-download-other js-download-other"></a>
+                    <a href="{{ route('download') }}" class="landing-download-other js-download-other"></a>
                 </div>
             </div>
         </div>
