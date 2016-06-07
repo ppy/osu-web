@@ -39,22 +39,16 @@
     <header class="osu-layout__section osu-layout__section--full">
         <div class="osu-layout__row osu-layout__row--page-compact landing-hero">
             <div class="landing-hero-slider">
+                @for($i = 1; $i <= 2; $i++)
                 <a href="#" class="landing-slide">
                     <span class="landing-slide__bg">
-                        <img class="landing-slide__bg--image" src="/images/layout/landing-page/home-slider-1.jpg" alt="pippi">
+                        <img class="landing-slide__bg--image" src="/images/layout/landing-page/home-slider-{{$i}}.jpg" alt="pippi">
                     </span>
                     <span class="landing-slide__cta">
-                        <span class="landing-slide__cta__content">free-to-win<br>productivity killer</span>
+                        <span class="landing-slide__cta__content">{!! trans("home.landing.slogans.$i") !!}</span>
                     </span>
                 </a>
-                <a href="#" class="landing-slide">
-                    <span class="landing-slide__bg">
-                        <img class="landing-slide__bg--image" src="/images/layout/landing-page/home-slider-2.jpg" alt="blue">
-                    </span>
-                    <span class="landing-slide__cta">
-                        <span class="landing-slide__cta__content">join us now<br>with benefits ;)</span>
-                    </span>
-                </a>
+                @endfor
             </div>
             <div class="landing-hero-download">
                 <div class="landing-hero-download__inner">

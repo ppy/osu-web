@@ -23,7 +23,10 @@ return [
         'slogan' => 'Rhythm is just a *click* away!',
     ],
     'landing' => [
-        'slogan' => 'free-to-win circle simulator',
+        'slogans' => [
+            '1' => 'free-to-win<br/>circle simulator',
+            '2' => 'rhythm is just<br/> a click away'
+        ],
 
         'download' =>  [
             '_' => 'Download now',
