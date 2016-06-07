@@ -344,7 +344,7 @@ class OsuAuthorize
 
     public function checkLivestreamPromote($user)
     {
-        if ($user->isGMT()) {
+        if ($user !== null && $user->isGMT()) {
             return 'ok';
         }
     }
