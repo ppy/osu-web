@@ -18,7 +18,7 @@
 <div class="livestream-featured">
     <iframe
         class="livestream-featured__content"
-        src="//player.twitch.tv/?channel={{ $featuredStream->channel->name }}&muted=true"
+        src="//player.twitch.tv/?channel={{ $featuredStream->channel->name }}&amp;muted=true"
         frameborder="0"
         scrolling="no"
         allowfullscreen="false"
