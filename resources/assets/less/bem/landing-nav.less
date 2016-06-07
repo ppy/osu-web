@@ -17,23 +17,28 @@
  *
  */
 
-@landing-logo-size: 200px;
-@landing-md: ~"(max-width: 1145px)";
+ @landing-logo-size: 200px;
+ @landing-md: ~"(max-width: 1145px)";
 
-.landing-nav {
+ .landing-nav {
     position: relative;
     display: flex;
-	padding: 60px 0 40px 0;
+    padding: 60px 0 40px 0;
 
-	&__section {
+    &__section {
         &--left {
             align-self: flex-start;
         }
 
-		&--right {
+        &--right {
             margin-left: auto;
-			text-align: right;
-		}
+            text-align: right;
+
+            #nav-user-bar,
+            .avatar--nav {
+                display: none;
+            }
+        }
 
         &__link {
             color: #fff;
@@ -44,7 +49,6 @@
             &--bold {
                 font-weight: bold;
             }
-
             &:hover,
             &:focus {
                 text-decoration: none;
@@ -59,7 +63,7 @@
                 font-size: 12px; 
             }
         }
-	}
+    }
 
     &__logo {
         display: flex;
@@ -84,5 +88,5 @@
             position: absolute;
             width: 1px;
         }
-	}
+    }
 }

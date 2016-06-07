@@ -32,9 +32,9 @@
     }
 
     .landing-hero-slider {
-        background: #000;
-
         .landing-slide {
+            background: #000;
+
             &__bg {
                 position: absolute;
                 width: 100%;
@@ -140,6 +140,15 @@
                         font-size: 18px;
                         display: block;
                     }
+
+                    @media @mobile {
+                        width: 100%;
+                    }
+                }
+
+                @media @mobile {
+                    width: auto;
+                    padding: 15px 20px 20px;
                 }
             }
 
@@ -162,6 +171,10 @@
             height: auto;
             max-width: none;
             margin: auto;
+        }
+
+        @media @mobile {
+            padding: 0 10px;
         }
     }
 }
