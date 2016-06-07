@@ -30,11 +30,16 @@ $('.landing-slide__bg').each ->
   return
 
 getOS = ->
-  if navigator.appVersion.indexOf('Win') != -1
+  nAgnt = navigator.userAgent
+  os = undefined
+  if /Windows (.*)/.test(nAgnt)
     return 'Windows'
-  if navigator.appVersion.indexOf('Mac') != -1
+  # Test for mobile first
+  if /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(navigator.appVersion)
+    return 'Windows'
+  if /(Mac OS X|MacPPC|MacIntel|Mac_PowerPC|Macintosh)/.test(nAgnt)
     return 'Mac'
-  if navigator.appVersion.indexOf('Linux') != -1
+  if /(Linux|X11)/.test(nAgnt)
     return 'Linux'
   'Windows'
 
