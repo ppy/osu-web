@@ -256,22 +256,25 @@ function nav_links()
 
 function landing_nav_links()
 {
+    //The order that links are added will be consistent with their
+    //order on the landing page
     $links = [];
 
     if (config('app.debug')) {
-        //TODO: Re-route if the user is not logged in, to the landing
         $links['home'] = [
             'getNews' => route('news'),            
         ];
-
-        $links['help'] = [
-            'getWiki' => route('wiki'),
-        ];       
     }
 
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
     ];
+
+    if (config('app.debug')) {
+        $links['help'] = [
+            'getWiki' => route('wiki'),
+        ];
+    }
 
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),
