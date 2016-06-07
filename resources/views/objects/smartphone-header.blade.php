@@ -93,6 +93,14 @@
                 @endif
             </li>
             @foreach ((isset($navLinks) ? $navLinks : nav_links()) as $section => $links)
+            @if(isset($subLinks) && !$subLinks)
+            <li class="dropdown">
+                <a role="button" class="navbar-mobile__menu-item" href="{{ array_values($links)[0] }}">
+                    <i class="fa fa-chevron-right navbar-mobile__menu-item-icon navbar-mobile__menu-item-icon--closed"></i>
+                    {{ trans("layout.menu.$section._") }}
+                </a>
+            </li>
+            @else
             <li class="dropdown">
                 <a data-toggle="dropdown" role="button" data-target="#" id="expand-{{ $section }}" class="navbar-mobile__menu-item dropdown-toggle" href="{{ array_values($links)[0] }}">
                     <i class="fa fa-chevron-right navbar-mobile__menu-item-icon navbar-mobile__menu-item-icon--closed"></i>
@@ -110,6 +118,7 @@
                     @endforeach
                 </ul>
             </li>
+            @endif
             @endforeach
         </ul>
     </div>
