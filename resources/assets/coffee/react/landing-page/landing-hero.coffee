@@ -20,6 +20,7 @@ $('.landing-hero-slider').slick
   fade: true
   arrows: false
   autoplay: true
+  adaptiveHeight: true
 
 
 $('.landing-slide__bg').each ->

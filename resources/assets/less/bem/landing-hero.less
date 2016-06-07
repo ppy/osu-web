@@ -17,13 +17,18 @@
  *
  */
 
-.landing-hero {
+ .landing-hero {
     position: relative;
     display: flex;
 
     &.osu-layout__row {
         height: 450px; 
         box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.5);
+
+        @media @mobile {
+            width: calc(100% ~'-' (@spacing * 2));
+            margin-top: 15px;
+        }
     }
 
     .landing-hero-slider {
@@ -56,6 +61,22 @@
                     line-height: 65px;
                     display: table-cell;
                     vertical-align: middle;
+
+                    @media @mobile {
+                        font-size: 36px;
+                    }
+                }
+
+                @media @landing-md {
+                    width: auto;
+                    height: auto;
+                    right: 0;
+                    margin: auto;
+                    top: 100px;
+                }
+
+                @media @mobile {
+                    top: 5px;
                 }
             }
         }
@@ -131,6 +152,16 @@
                 color: #fff;
                 letter-spacing: 1px;
             }
+        }
+
+        @media @landing-md {
+            right: 0;
+            left: 0;
+            bottom: 50px;
+            width: auto;
+            height: auto;
+            max-width: none;
+            margin: auto;
         }
     }
 }
