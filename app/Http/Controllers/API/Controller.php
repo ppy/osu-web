@@ -24,6 +24,7 @@ use Authorizer;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use LucaDegasperi\OAuth2Server\Exceptions\NoActiveAccessTokenException;
 
 class Controller extends BaseController
 {
@@ -31,6 +32,10 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        Auth::onceUsingId(Authorizer::getResourceOwnerId());
+        try {
+            Auth::onceUsingId(Authorizer::getResourceOwnerId());
+        } catch (NoActiveAccessTokenException $_e) {
+            //
+        }
     }
 }
