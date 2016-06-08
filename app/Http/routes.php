@@ -79,8 +79,8 @@ Route::get('/community/profile/{id}', function ($id) {
 Route::get('/community/slack', ['as' => 'slack', 'uses' => 'CommunityController@getSlack']);
 Route::post('/community/slack/agree', ['as' => 'slack.agree', 'uses' => 'CommunityController@postSlackAgree']);
 
-Route::get('/mp/{match_id}', ['as' => 'multiplayer.match', 'uses' => 'MultiplayerController@getMatch']);
-Route::get('/mp/{match_id}/history', ['as' => 'multiplayer.match.history', 'uses' => 'MultiplayerController@getMatchHistory']);
+Route::get('/mp/{match_id}', ['as' => 'multiplayer.match', 'uses' => 'MultiplayerController@match']);
+Route::get('/mp/{match_id}/history', ['as' => 'multiplayer.match.history', 'uses' => 'MultiplayerController@matchHistory']);
 
 Route::post('users/check-username-availability', ['as' => 'users.check-username-availability', 'uses' => 'UsersController@checkUsernameAvailability']);
 Route::post('users/login', ['as' => 'users.login', 'uses' => 'UsersController@login']);

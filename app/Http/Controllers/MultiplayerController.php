@@ -30,7 +30,7 @@ class MultiplayerController extends Controller
 {
     protected $section = 'multiplayer';
 
-    public function getMatch($match_id)
+    public function match($match_id)
     {
         $match = Match::findOrFail($match_id);
 
@@ -44,7 +44,7 @@ class MultiplayerController extends Controller
         return view('multiplayer.match', compact('match', 'countries'));
     }
 
-    public function getMatchHistory($match_id)
+    public function matchHistory($match_id)
     {
         $since = Request::input('since', 0);
 

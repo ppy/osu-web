@@ -75,7 +75,7 @@ return [
         ],
         'multiplayer' => [
             '_' => 'multiplayer',
-            'getMatch' => 'match',
+            'match' => 'match',
         ],
         'error' => [
             '_' => 'error',
