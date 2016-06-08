@@ -24,7 +24,7 @@ show = ->
   overlay[0].classList.add 'loading-overlay--visible'
 
 
-show = _.debounce show, 300, maxWait: 300
+show = _.debounce show, 5000, maxWait: 5000
 
 
 hide = ->
