@@ -32,6 +32,8 @@ class Controller extends BaseController
 
     public function __construct()
     {
+        // allow route:list to work instead of failing from exception
+        // thrown by Authorizer.
         try {
             Auth::onceUsingId(Authorizer::getResourceOwnerId());
         } catch (NoActiveAccessTokenException $_e) {
