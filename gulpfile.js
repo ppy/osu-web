@@ -52,6 +52,8 @@ elixir(function(mix) {
   .browserify(['vendor-modules.js'], 'resources/assets/js/build/vendor-modules.js')
   .coffee([
     '_classes/*.coffee',
+
+    'react-namespaces.coffee',
     'react/_components/*.coffee',
     'react/_mixins/*.coffee',
 
