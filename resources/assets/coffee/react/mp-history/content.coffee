@@ -39,12 +39,38 @@ class MPHistory.Content extends React.Component
     return @scoresCache[eventIndex]
 
   render: ->
-    # TODO: write proper displaying logic
-    div className: 'osu-layout__row osu-layout__row--page-mp-history',
-      if !_.isEmpty @props.events
-        event = _.find @props.events, (o) -> o.game? && !_.isEmpty o.game.data.mods
+    if _.isEmpty @props.events
+      div className: 'osu-layout__row osu-layout__row--page-mp-history',
+        Lang.get 'multiplayer.match.loading-events'
+    else
+      gameIds = _(@props.events)
+        .map (m, i) ->
+          return if !m.game?
+          i
+        .filter (m) -> m?
+        .value()
 
-        el MPHistory.Game,
-          event: event
-          countries: @props.countries
-          teamScores: @teamScores @props.events.indexOf event
+        gameIds = [-1, gameIds...]
+
+        # grabbing events that are past the last game
+        lastEvents = @props.events[_.last(gameIds) + 1..@props.events.length]
+
+      div className: 'osu-layout__row osu-layout__row--page-mp-history',
+        for id, i in gameIds
+          prevId = gameIds[i - 1]
+
+          div key: id,
+            if (id - prevId > 0)
+              events = @props.events[prevId + 1..id - 1]
+
+              if !_.isEmpty events
+                el MPHistory.EventsList, events: events
+
+            if id >= 0
+              el MPHistory.Game,
+                event: @props.events[id]
+                countries: @props.countries
+                teamScores: @teamScores id
+
+        if !_.isEmpty lastEvents
+          el MPHistory.EventsList, events: lastEvents

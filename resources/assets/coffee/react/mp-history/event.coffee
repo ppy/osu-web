@@ -28,7 +28,6 @@ class MPHistory.Event extends React.Component
     'HOST': ['exchange']
 
   render: ->
-    console.log @props.event.text
     div className: 'mp-history-events__event mp-history-event',
       div className: 'mp-history-event__time-box',
         span className: 'mp-history-event__time',
@@ -37,10 +36,11 @@ class MPHistory.Event extends React.Component
         @icons[@props.event.text].map (m) ->
           el Icon, name: m, key: m
       div className: 'mp-history-event__info-box',
-        a
-          className: 'mp-history-event__text mp-history-event__text--username'
-          href: laroute.route 'users.show', users: @props.event.user.data.id
-          @props.event.user.data.username
+        if @props.event.text != 'DISBAND'
+          a
+            className: 'mp-history-event__text mp-history-event__text--username'
+            href: laroute.route 'users.show', users: @props.event.user.data.id
+            @props.event.user.data.username
 
         span className: 'mp-history-event__text',
           Lang.get "multiplayer.match.events.#{@props.event.text}"

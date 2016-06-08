@@ -20,6 +20,7 @@ el = React.createElement
 
 class MPHistory.Main extends React.Component
   timeBetweenRefresh: 10000
+  eventsIncrement: 100
 
   constructor: (props) ->
     super props
@@ -30,6 +31,7 @@ class MPHistory.Main extends React.Component
       events: []
       since: 0
       teamType: ''
+      eventsShown: 100
 
     @loadHistory @state.since
 
@@ -44,12 +46,16 @@ class MPHistory.Main extends React.Component
       return if _.isEmpty data.data
 
       newEvents = _.concat @state.events, data.data
+      eventsShown = @state.eventsShown + data.data.length
 
       @setState
         events: newEvents
         since: _.last(newEvents).id
         teamType: @getTeamType _.findLast(newEvents, (o) -> o.game?).game.data.team_type
-        => _.delay @loadHistory, @timeBetweenRefresh
+        # TODO: /shrug actually allow users to increment that variable
+        eventsShown: eventsShown
+
+    .always => setTimeout @loadHistory, 10000
 
   render: ->
     div className: 'osu-layout__section',
@@ -58,7 +64,7 @@ class MPHistory.Main extends React.Component
         teamType: @state.teamType
 
       el MPHistory.Content,
-        events: @state.events
+        events: @state.events[@state.events.length - @state.eventShown..]
         countries: @props.countries
 
   getTeamType: (typeInt) ->

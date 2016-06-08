@@ -32,7 +32,7 @@ return [
             'JOIN' => 'joined the match',
             'KICK' => 'has been kicked from the match',
             'CREATE' => 'created the match',
-            'DISBAND' => 'The match was disbanded',
+            'DISBAND' => 'the match was disbanded',
             'HOST' => 'became the host',
         ],
         'in-progress' => '(match in progress)',
@@ -56,5 +56,6 @@ return [
         ],
         'winner' => ':team wins',
         'difference' => 'by :difference',
+        'loading-events' => 'Loading events...',
     ],
 ];
