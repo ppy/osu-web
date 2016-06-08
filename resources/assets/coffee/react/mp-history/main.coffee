@@ -46,16 +46,27 @@ class MPHistory.Main extends React.Component
       return if _.isEmpty data.data
 
       newEvents = _.concat @state.events, data.data
-      eventsShown = @state.eventsShown + data.data.length
+
+      eventsShown = @state.eventsShown
+      eventsShown += data.data.length if !_.isEmpty @state.events
 
       @setState
         events: newEvents
         since: _.last(newEvents).id
         teamType: @getTeamType _.findLast(newEvents, (o) -> o.game?).game.data.team_type
-        # TODO: /shrug actually allow users to increment that variable
         eventsShown: eventsShown
 
     .always => setTimeout @loadHistory, 10000
+
+  _showMore: =>
+    @setState (state, props) =>
+      eventsShown: state.eventsShown + Math.min @eventsIncrement, @state.events.length - state.eventsShown
+
+  componentDidMount: ->
+    $.subscribe 'events:show-more.mpHistoryPage', @_showMore
+
+  componentWillUnmount: ->
+    $.unsubscribe '.mpHistoryPage'
 
   render: ->
     div className: 'osu-layout__section',
@@ -64,7 +75,9 @@ class MPHistory.Main extends React.Component
         teamType: @state.teamType
 
       el MPHistory.Content,
-        events: @state.events[@state.events.length - @state.eventShown..]
+        events: @state.events[@state.events.length - @state.eventsShown..]
+        eventsCount: @state.events.length
+        eventsShown: @state.eventsShown
         countries: @props.countries
 
   getTeamType: (typeInt) ->

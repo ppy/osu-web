@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div} = React.DOM
+{div, a} = React.DOM
 el = React.createElement
 
 class MPHistory.Content extends React.Component
@@ -38,6 +38,10 @@ class MPHistory.Content extends React.Component
 
     return @scoresCache[eventIndex]
 
+  showMore: (e) ->
+    e.preventDefault()
+    $.publish 'events:show-more'
+
   render: ->
     if _.isEmpty @props.events
       div className: 'osu-layout__row osu-layout__row--page-mp-history',
@@ -56,21 +60,28 @@ class MPHistory.Content extends React.Component
         lastEvents = @props.events[_.last(gameIds) + 1..@props.events.length]
 
       div className: 'osu-layout__row osu-layout__row--page-mp-history',
+        div className: 'mp-history-content__show-more-box',
+          a
+            className: 'mp-history-content__show-more'
+            onClick: @showMore
+            Lang.get 'multiplayer.match.more-events', count: @props.eventsCount - @props.eventsShown
+
         for id, i in gameIds
+          continue if id == -1
+
           prevId = gameIds[i - 1]
 
           div key: id,
-            if (id - prevId > 0)
+            if (id - prevId > 1)
               events = @props.events[prevId + 1..id - 1]
 
               if !_.isEmpty events
                 el MPHistory.EventsList, events: events
 
-            if id >= 0
-              el MPHistory.Game,
-                event: @props.events[id]
-                countries: @props.countries
-                teamScores: @teamScores id
+            el MPHistory.Game,
+              event: @props.events[id]
+              countries: @props.countries
+              teamScores: @teamScores id
 
         if !_.isEmpty lastEvents
           el MPHistory.EventsList, events: lastEvents

@@ -57,5 +57,6 @@ return [
         'winner' => ':team wins',
         'difference' => 'by :difference',
         'loading-events' => 'Loading events...',
+        'more-events' => ':count more...'
     ],
 ];
