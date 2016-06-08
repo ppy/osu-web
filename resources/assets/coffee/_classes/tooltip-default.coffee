@@ -25,6 +25,8 @@ class @TooltipDefault
     title = el.getAttribute 'title'
     el.removeAttribute 'title'
 
+    return if _.size(title) == 0
+
     $content = $('<span>').text(title)
 
     if el._tooltip

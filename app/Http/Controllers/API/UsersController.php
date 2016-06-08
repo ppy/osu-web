@@ -20,24 +20,16 @@
 namespace App\Http\Controllers\API;
 
 use Auth;
-use Authorizer;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
-use LucaDegasperi\OAuth2Server\Exceptions\NoActiveAccessTokenException;
+use App\Transformers\UserTransformer;
 
-class Controller extends BaseController
+class UsersController extends Controller
 {
-    use DispatchesJobs, ValidatesRequests;
-
-    public function __construct()
+    public function me()
     {
-        // allow route:list to work instead of failing from exception
-        // thrown by Authorizer.
-        try {
-            Auth::onceUsingId(Authorizer::getResourceOwnerId());
-        } catch (NoActiveAccessTokenException $_e) {
-            //
-        }
+        return fractal_api_serialize_item(
+            Auth::user(),
+            new UserTransformer(),
+            'defaultStatistics'
+        );
     }
 }

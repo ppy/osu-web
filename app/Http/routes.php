@@ -68,8 +68,8 @@ Route::get('/community/forum', function () {
     return Redirect::to('/forum');
 });
 
-Route::get('/community/live', ['as' => 'live', 'uses' => 'CommunityController@getLive']);
-Route::post('/community/live', ['as' => 'live', 'uses' => 'CommunityController@postLive']);
+Route::resource('livestreams', 'LivestreamsController', ['only' => ['index']]);
+Route::post('livestreams/promote', ['as' => 'livestreams.promote', 'uses' => 'LivestreamsController@promote']);
 
 Route::get('/community/chat', ['as' => 'chat', 'uses' => 'CommunityController@getChat']);
 Route::get('/community/profile/{id}', function ($id) {
@@ -187,9 +187,10 @@ Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'oauth'],
             Route::get('favourites', ['uses' => 'BeatmapsetsController@favourites']);     //  GET /api/v2/beatmapsets/favourites
         });
         Route::group(['prefix' => 'beatmaps'], function () {
-            Route::get('scores', ['uses' => 'BeatmapsController@scores']);          //  GET /api/v2/beatmaps/scores
+            Route::get('scores', ['uses' => 'BeatmapsController@scores']);                //  GET /api/v2/beatmaps/scores
             // Route::get('/{id}/scores', ['uses' => 'BeatmapsController@scores']);          //  GET /api/v2/beatmaps/:beatmap_id/scores
         });
+        Route::get('me', ['uses' => 'UsersController@me']);                               //  GET /api/v2/me
     });
     // legacy api routes
     Route::group(['prefix' => 'v1'], function () {
