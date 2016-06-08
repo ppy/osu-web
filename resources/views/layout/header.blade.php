@@ -188,20 +188,3 @@
         <span class="popup-text"></span>
     </div>
 </div>
-<div class="loading-overlay js-loading-overlay">
-    <div class="loading-overlay__container">
-        @foreach (range(1, 4) as $n)
-            <div class="loading-overlay__follow-point
-                    loading-overlay__follow-point--{{ $n }}">
-                ›
-            </div>
-
-            @foreach (['approach', 'hit'] as $type)
-                <div class="loading-overlay__circle
-                        loading-overlay__circle--{{ $n }}
-                        loading-overlay__circle--{{ $type }}"
-                ></div>
-            @endforeach
-        @endforeach
-    </div>
-</div>
