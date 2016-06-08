@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2016 ppy Pty. Ltd.
  *
@@ -14,39 +16,33 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
-.livestream-page {
-  padding: (@spacing * 2);
+namespace App\Http\Controllers;
 
-  @media @desktop {
-    padding-left: @padding-big;
-    padding-right: @padding-big;
-  }
+use App\Models\LivestreamCollection;
+use Request;
 
-  &__header {
-    font-size: @font-size--livestream-header;
-    margin: 0;
-  }
+class LivestreamsController extends Controller
+{
+    protected $section = 'community';
 
-  &__item {
-    margin: @spacing;
+    public function index()
+    {
+        view()->share('current_action', 'getLive');
 
-    width: calc(100% ~'-' (@spacing * 2));
+        $livestream = new LivestreamCollection();
+        $streams = $livestream->all();
+        $featuredStream = $livestream->featured();
 
-    @media @desktop {
-      width: calc((100% / 2) ~'-' (@spacing * 2));
+        return view('livestreams.index', compact('streams', 'featuredStream'));
     }
 
-    @media @screen-large {
-      width: calc((100% / 3) ~'-' (@spacing * 2));
-    }
-  }
+    public function promote()
+    {
+        priv_check('LivestreamPromote')->ensureCan();
 
-  &__items {
-    margin-left: (-@spacing);
-    margin-right: (-@spacing);
-    display: flex;
-    flex-wrap: wrap;
-  }
+        LivestreamCollection::promote(Request::input('id'));
+
+        return js_view('layout.ujs-reload');
+    }
 }

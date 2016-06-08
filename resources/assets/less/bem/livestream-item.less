@@ -16,21 +16,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.livestream-featured {
-  @_top: livestream-featured;
-
-  &::before {
-    content: '';
-    display: block;
-    width: 100%;
-    // ensuring fixed aspect ratio
-    padding-bottom: (100% * 9 / 16);
-  }
+.livestream-item {
+  @_top: livestream-item;
 
   &__actions {
     position: absolute;
     right: 0;
-    bottom: (@spacing * 3);
+    top: @spacing;
     width: 0;
     display: flex;
     justify-content: center;
@@ -43,36 +35,40 @@
   }
 
   &__content {
-    .full-size();
-    background-size: cover;
-    transition: opacity 1000ms;
-
     &:link {
       text-decoration: none;
     }
   }
 
-  &__info {
-    position: absolute;
+  &__image {
+    .default-border-radius();
+    .default-box-shadow();
     width: 100%;
-    bottom: 0;
-    left: 0;
-    padding: (@spacing * 3) (@spacing * 4);
-    background-image: linear-gradient(transparent, @grey-0);
+    padding-top: (100% * 9 / 16);
+    background-size: cover;
+
+    .@{_top}:hover & {
+      .thicker-box-shadow();
+    }
   }
 
   &__text {
-    margin: 0;
-    color: @grey-f;
+    color: @grey-5;
+    margin: (@spacing / 2) 0 0;
+    text-align: center;
+    font-weight: 600;
 
     &--detail {
-      margin-top: @spacing;
-      font-size: @font-size--livestream-featured-detail;
+      font-size: @font-size--livestream-item-detail;
     }
 
     &--name {
-      .default-text-shadow();
-      font-size: @font-size--livestream-featured-name;
+      font-size: @font-size--livestream-item-name;
+      font-style: italic;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 }
