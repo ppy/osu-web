@@ -183,22 +183,6 @@ Route::group(['domain' => $main_domain], function () {
     });
     Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['store', 'update']]);
 
-    // Users section
-    Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
-        Route::post('/check-username-availability', ['as' => 'check-username-availability', 'uses' => 'UsersController@checkUsernameAvailability']);
-        Route::post('/login', ['as' => 'login', 'uses' => 'UsersController@login']);
-        Route::delete('/logout', ['as' => 'logout', 'uses' => 'UsersController@logout']);
-        Route::get('/disabled', ['as' => 'disabled', 'uses' => 'UsersController@disabled']);
-
-        // Authentication section (Temporarily set up as replacement/improvement of config("osu.urls.*"))
-        Route::get('/forgot-password', ['as' => 'forgot-password', function () {
-            return Redirect::to('https://osu.ppy.sh/p/forgot');
-        }]);
-        Route::get('/register', ['as' => 'register', function () {
-            return Redirect::to('https://osu.ppy.sh/p/register');
-        }]);
-    });
-
     // Account section
 
     // Uploading file doesn't quite work with PUT/PATCH.
@@ -215,6 +199,22 @@ Route::group(['domain' => $main_domain], function () {
     }
 
     Route::get('/icons', 'HomeController@getIcons');
+});
+
+// Users section
+Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
+    Route::post('/check-username-availability', ['as' => 'check-username-availability', 'uses' => 'UsersController@checkUsernameAvailability']);
+    Route::post('/login', ['as' => 'login', 'uses' => 'UsersController@login']);
+    Route::delete('/logout', ['as' => 'logout', 'uses' => 'UsersController@logout']);
+    Route::get('/disabled', ['as' => 'disabled', 'uses' => 'UsersController@disabled']);
+
+    // Authentication section (Temporarily set up as replacement/improvement of config("osu.urls.*"))
+    Route::get('/forgot-password', ['as' => 'forgot-password', function () {
+        return Redirect::to('https://osu.ppy.sh/p/forgot');
+    }]);
+    Route::get('/register', ['as' => 'register', function () {
+        return Redirect::to('https://osu.ppy.sh/p/register');
+    }]);
 });
 
 // Admin section
