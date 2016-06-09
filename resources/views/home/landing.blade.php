@@ -123,6 +123,9 @@
     width = parseInt(d3.select(".js-landing-graph").style("width")) - margin.left - margin.right,
     height = parseInt(d3.select(".js-landing-graph").style("height")) - margin.top - margin.bottom;
 
+    // Define peak circle
+    var peakR = 5;
+
     // Define date parser
     var parseDate = d3.time.format("%Y-%m-%d %H:%M:%S").parse;
 
@@ -162,6 +165,28 @@
             .datum(data)
             .attr("class", "landing-graph__area")
             .attr("d", area);
+
+        // Append peak text
+        var maxElem = null;
+        //Find the date for the max
+        for(var i = data.length - 1; i >= 0; i--)
+        {
+            if(maxElem === null || data[i].users_osu > maxElem.users_osu)
+                maxElem = data[i];
+        }
+
+        //Append text at 45 degrees to circle
+        var text = svg.append("text")
+            .attr('class', 'landing-graph__peak-text')
+            .text(Lang.get('home.landing.peak', {"count": maxElem.users_osu.toLocaleString()}))
+            .attr('y', -peakR)
+            .attr('x', xScale(maxElem.date) + peakR);
+
+        var peak = svg.append("circle")
+            .attr('class', 'landing-graph__peak-circle')
+            .attr('cy', 0)
+            .attr('cx', xScale(maxElem.date))
+            .attr('r', peakR);
     });
 </script>
 @endsection
