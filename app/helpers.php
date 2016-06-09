@@ -213,15 +213,15 @@ function nav_links()
 
     if (config('app.debug')) {
         $links['home'] = [
-            'getNews' => route('news'),
-            'getChangelog' => route('changelog'),
-            'getDownload' => route('download'),
+            'getNews' => route('home.news'),
+            'getChangelog' => route('home.changelog'),
+            'getDownload' => route('home.download'),
         ];
 
         $links['help'] = [
-            'getWiki' => route('wiki'),
-            'getFaq' => route('faq'),
-            'getSupport' => route('support'),
+            'getWiki' => route('help.wiki'),
+            'getFaq' => route('help.faq'),
+            'getSupport' => route('help.support'),
         ];
 
         $links['beatmaps'] = [
@@ -231,10 +231,10 @@ function nav_links()
         ];
 
         $links['ranking'] = [
-            'getOverall' => route('ranking-overall'),
-            'getCharts' => route('ranking-charts'),
-            'getCountry' => route('ranking-country'),
-            'getMapper' => route('ranking-mapper'),
+            'getOverall' => route('ranking.overall'),
+            'getCharts' => route('ranking.charts'),
+            'getCountry' => route('ranking.country'),
+            'getMapper' => route('ranking.mapper'),
         ];
     } else {
         $links['beatmaps'] = [
@@ -246,7 +246,7 @@ function nav_links()
         'forum-forums-index' => route('forum.forums.index'),
         'tournaments' => route('tournaments.index'),
         'getLive' => route('livestreams.index'),
-        'getSlack' => route('slack'),
+        'getSlack' => route('community.slack'),
     ];
 
     $links['store'] = [

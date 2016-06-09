@@ -21,7 +21,7 @@
     var section = "{{ $current_section }}";
     var page = "{{ $current_action }}";
     var logoutUrl = "{{ route("users.logout") }}";
-    var helpUrl = "{{ route("wiki") }}";
+    var helpUrl = "{{ route("help.wiki") }}";
     var canonicalUrl = "{{ $canonicalUrl or '' }}";
     var reloadUrl = "{{ $reloadUrl or '' }}";
 </script>

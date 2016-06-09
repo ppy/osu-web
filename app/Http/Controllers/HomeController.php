@@ -54,9 +54,9 @@ class HomeController extends Controller
         ]);
     }
 
-    public function supportTheGame()
+    public function getSupporter()
     {
-        return view('home.support-the-game')
+        return view('home.supporter')
         ->with('data', [
             // why support's blocks
             'blocks' => [
