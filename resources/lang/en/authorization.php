@@ -101,6 +101,10 @@ return [
 
     'unauthorized' => 'Access denied.',
 
+    'silenced'     => "Can't do that while silenced.",
+
+    'restricted'   => "Can't do that while restricted.",
+
     'user' => [
         'page' => [
             'edit' => [

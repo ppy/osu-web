@@ -58,6 +58,14 @@ class OsuAuthorize
             return 'require_login';
         }
 
+        if ($user->isSilenced()) {
+            return 'silenced';
+        }
+
+        if ($user->isRestricted()) {
+            return 'restricted';
+        }
+
         return 'ok';
     }
 
@@ -91,6 +99,14 @@ class OsuAuthorize
             return 'require_login';
         }
 
+        if ($user->isSilenced()) {
+            return 'silenced';
+        }
+
+        if ($user->isRestricted()) {
+            return 'restricted';
+        }
+
         return 'ok';
     }
 
@@ -100,6 +116,14 @@ class OsuAuthorize
 
         if ($user === null) {
             return 'require_login';
+        }
+
+        if ($user->isSilenced()) {
+            return 'silenced';
+        }
+
+        if ($user->isRestricted()) {
+            return 'restricted';
         }
 
         if ($post->system) {
