@@ -126,7 +126,7 @@ class Topic extends Model
                 $post->user->refreshForumCache($this->forum, -1);
             }
 
-            if ($user !== null && $user->user_id !== $post->poster_id && $user->isAdmin() === true) {
+            if ($user !== null && $user->user_id !== $post->poster_id) {
                 Log::logModerateForumPost('LOG_DELETE_POST', $post);
             }
         });
