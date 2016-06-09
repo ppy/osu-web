@@ -37,7 +37,7 @@ class MPHistory.BeatmapHeader extends React.Component
         className: 'mp-history-game__thumb'
         href: laroute.route 'beatmaps.show', beatmaps: @props.beatmap.id
         style:
-          backgroundImage: "url(#{@props.beatmapset.covers.card})"
+          backgroundImage: "url(#{@props.beatmapset.covers.cover})"
 
         div className: 'mp-history-game__header-overlay'
 
