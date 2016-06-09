@@ -61,7 +61,7 @@ class PollVote extends Model
         return $this->validationErrors()->isAny();
     }
 
-    public static function do($topic, $optionIds, $user, $ip)
+    public static function createNew($topic, $optionIds, $user, $ip)
     {
         // some kind of validation
         if (count($optionIds) > $topic->poll_max_options) {

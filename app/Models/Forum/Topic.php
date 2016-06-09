@@ -312,7 +312,8 @@ class Topic extends Model
         return get_time_or_null($value);
     }
 
-    public function pollEnd() {
+    public function pollEnd()
+    {
         if ($this->poll_start !== null && $this->poll_length !== 0) {
             return $this->poll_start->copy()->addSeconds($this->poll_length);
         }
