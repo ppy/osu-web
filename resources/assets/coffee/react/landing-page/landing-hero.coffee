@@ -27,7 +27,7 @@ $('.landing-slide__bg').each ->
   $this = $(this)
   $slideSrc = $this.find('.landing-slide__bg--image').attr('src')
   $this.css 'background', 'url(\'' + $slideSrc + '\') no-repeat center center / cover'
-  return
+  return 
 
 getOS = ->
   nAgnt = navigator.userAgent

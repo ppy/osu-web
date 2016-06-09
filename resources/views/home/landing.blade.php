@@ -99,10 +99,14 @@
                 <a href="{{ route('download') }}" class="landing-download-other js-download-other"></a>
             </div>
         </div>
+        <div class="js-landing-graph landing-graph">
+            <div class="landing-graph__info">
+                <b>6,249,738</b> registered players, <b>2,845</b> online players now
+            </div>
+        </div>        
     </div>
 </header>
 <main>
-
 </main>
 <footer>
 
@@ -113,4 +117,51 @@
 @parent
 
 <script src="{{ elixir("js/react/landing-page.js") }}" data-turbolinks-track></script>
+<script>
+    // Define margins
+    var margin = {top: 40, right: 0, bottom: 0, left: 0},
+    width = parseInt(d3.select(".js-landing-graph").style("width")) - margin.left - margin.right,
+    height = parseInt(d3.select(".js-landing-graph").style("height")) - margin.top - margin.bottom;
+
+    // Define date parser
+    var parseDate = d3.time.format("%Y-%m-%d %H:%M:%S").parse;
+
+    var xScale = d3.time.scale().range([0, width]);
+    var yScale = d3.scale.linear().range([height, 0]);
+
+    // Define area
+    var area = d3.svg.area().interpolate("basis")
+        .x(function(d) { return xScale(d.date); })
+        .y0(height)
+        .y1(function(d) { return yScale(d.users_osu); });
+
+    // Define svg canvas
+    var svg = d3.select(".js-landing-graph")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Read in data
+    d3.csv("/landing-csv.csv", function(error, data){
+        if (error) throw error;
+
+        // Parsing data
+        data.forEach(function (d) {
+            d.date = parseDate(d.date);
+            d.users_osu = +d.users_osu;
+        });
+
+        // Establishing domain for x/y axes
+        xScale.domain(d3.extent(data, function(d) { return d.date }));
+        yScale.domain(d3.extent(data, function(d) { return d.users_osu }));
+
+        // Appending groups
+        svg.append("path")
+            .datum(data)
+            .attr("class", "landing-graph__area")
+            .attr("d", area);
+    });
+</script>
 @endsection
