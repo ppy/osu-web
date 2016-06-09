@@ -19,11 +19,13 @@
  */
 namespace App\Models\Forum;
 
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class PollOption extends Model
 {
     protected $table = 'phpbb_poll_options';
+    public $timestamps = false;
 
     public function topic()
     {
@@ -60,5 +62,21 @@ class PollOption extends Model
         }
 
         return $summary;
+    }
+
+    public static function updateTotals($filters)
+    {
+        $staticTable = (new static)->table;
+        $countQuery = PollVote::where([
+                'topic_id' => DB::raw($staticTable.'.topic_id'),
+                'poll_option_id' => DB::raw($staticTable.'.poll_option_id'),
+            ])
+            // raw because ->count() immediately executes the query.
+            // DISTINCT because lack of unique index causing duplicated votes.
+            ->select(DB::raw('COUNT(DISTINCT vote_user_id)'))
+            ->toSql();
+
+        return static::where($filters)
+            ->update(['poll_option_total' => DB::raw("({$countQuery})")]);
     }
 }

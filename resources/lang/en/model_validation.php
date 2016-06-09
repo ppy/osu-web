@@ -24,6 +24,10 @@ return [
             'not_feature_topic' => 'Can only vote a feature request.',
             'not_enough_feature_votes' => 'Not enough vote.',
         ],
+
+        'poll_vote' => [
+            'invalid' => 'Invalid option specificied.',
+        ],
     ],
 
     'required' => ':attribute is required.',
