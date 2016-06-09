@@ -32,6 +32,7 @@ class MPHistory.Main extends React.Component
       since: 0
       teamType: ''
       eventsShown: 100
+      disbanded: false
 
     @loadHistory @state.since
 
@@ -47,6 +48,8 @@ class MPHistory.Main extends React.Component
 
       newEvents = _.concat @state.events, data.data
 
+      lastEvent = _.last(newEvents)
+
       eventsShown = @state.eventsShown
       eventsShown += data.data.length if !_.isEmpty @state.events
 
@@ -55,8 +58,11 @@ class MPHistory.Main extends React.Component
         since: _.last(newEvents).id
         teamType: @getTeamType _.findLast(newEvents, (o) -> o.game?).game.data.team_type
         eventsShown: eventsShown
+        disbanded: lastEvent.text == 'DISBAND'
 
-    .always => setTimeout @loadHistory, 10000
+    .always =>
+      if !@state.disbanded
+        setTimeout @loadHistory, 10000
 
   _showMore: =>
     @setState (state, props) =>
