@@ -43,6 +43,7 @@ class Topic extends Model
     private $issueTypes = 'resolved|invalid|duplicate|confirmed';
 
     protected $casts = [
+        'poll_vote_change' => 'boolean',
         'topic_approved' => 'boolean',
     ];
 
@@ -185,6 +186,16 @@ class Topic extends Model
         return $this->hasMany(FeatureVote::class);
     }
 
+    public function pollOptions()
+    {
+        return $this->hasMany(PollOption::class);
+    }
+
+    public function pollVotes()
+    {
+        return $this->hasMany(PollVote::class);
+    }
+
     public function titleNormalized()
     {
         if ($this->isIssue() === false) {
@@ -290,6 +301,22 @@ class Topic extends Model
         }
 
         return $buf;
+    }
+
+    public function getPollStartAttribute($value)
+    {
+        return get_time_or_null($value);
+    }
+
+    public function pollEnd() {
+        if ($this->poll_start !== null && $this->poll_length !== 0) {
+            return $this->poll_start->copy()->addSeconds($this->poll_length);
+        }
+    }
+
+    public function hasPoll()
+    {
+        return $this->poll_start !== null;
     }
 
     public function postsCount()

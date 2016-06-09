@@ -24,6 +24,7 @@ use App\Events\Forum\TopicWasReplied;
 use App\Events\Forum\TopicWasViewed;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
+use App\Models\Forum\PollOption;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Forum\FeatureVote;
@@ -182,6 +183,8 @@ class TopicsController extends Controller
 
         $postsPosition = $topic->postsPosition($posts);
 
+        $pollSummary = PollOption::summary($topic, Auth::user());
+
         Event::fire(new TopicWasViewed($topic, $posts->last(), Auth::user()));
 
         $template = $skipLayout ? '_posts' : 'show';
@@ -191,7 +194,10 @@ class TopicsController extends Controller
             new TopicCoverTransformer()
         );
 
-        return view("forum.topics.{$template}", compact('topic', 'posts', 'postsPosition', 'jumpTo', 'cover'));
+        return view(
+            "forum.topics.{$template}",
+            compact('topic', 'posts', 'postsPosition', 'jumpTo', 'cover', 'pollSummary')
+        );
     }
 
     public function reply(HttpRequest $request, $id)

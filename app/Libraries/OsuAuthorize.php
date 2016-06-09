@@ -342,6 +342,29 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkForumTopicVote($user, $topic)
+    {
+        $prefix = 'forum.topic.vote.';
+
+        if ($user === null) {
+            return 'require_login';
+        }
+
+        if ($topic->pollEnd() !== null && $topic->pollEnd()->isPast()) {
+            return $prefix.'over';
+        }
+
+        if (!$topic->poll_vote_change) {
+            $userHasVoted = $topic->pollVotes()->where('vote_user_id', $user->getKey())->exists();
+
+            if ($userHasVoted) {
+                return $prefix.'voted';
+            }
+        }
+
+        return 'ok';
+    }
+
     public function checkLivestreamPromote($user)
     {
         if ($user !== null && $user->isGMT()) {

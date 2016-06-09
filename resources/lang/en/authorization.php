@@ -83,6 +83,11 @@ return [
                     'restricted' => 'Can not post when restricted.',
                 ],
             ],
+
+            'vote' => [
+                'over' => 'Polling is over and can not be voted on anymore',
+                'voted' => 'Changing vote is not allowed',
+            ],
         ],
 
         'topic_cover' => [

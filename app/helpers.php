@@ -545,6 +545,17 @@ function model_pluck($builder, $key)
         ->all();
 }
 
+// Returns null if timestamp is null or 0.
+// Technically it's not null if 0 but some tables have not null constraints
+// despite null being a valid value. Instead it's filled in with 0 so this
+// helper returns null if it's 0 and parses the timestamp otherwise.
+function get_time_or_null($timestamp)
+{
+    if ($timestamp !== null && $timestamp !== 0) {
+        return Carbon\Carbon::createFromTimestamp($timestamp);
+    }
+}
+
 function priv_check($ability, $args = null)
 {
     return priv_check_user(Auth::user(), $ability, $args);
