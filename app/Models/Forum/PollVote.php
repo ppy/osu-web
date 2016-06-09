@@ -21,6 +21,7 @@ namespace App\Models\Forum;
 
 use App\Models\User;
 use App\Traits\Validatable;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
@@ -68,6 +69,10 @@ class PollVote extends Model
         }
 
         return DB::transaction(function () use ($topic, $optionIds, $user, $ip) {
+            $topic->update([
+                'poll_last_vote' => Carbon::now(),
+            ]);
+
             $topic
                 ->pollVotes()
                 ->where('vote_user_id', $user->getKey())

@@ -35,7 +35,11 @@ class Topic extends Model
     protected $guarded = [];
 
     public $timestamps = false;
-    protected $dates = ['topic_last_view_time', 'topic_last_post_time'];
+    protected $dates = [
+        'poll_last_vote',
+        'topic_last_post_time',
+        'topic_last_view_time',
+    ];
     protected $dateFormat = 'U';
 
     private $postsCount;
