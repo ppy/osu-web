@@ -552,5 +552,5 @@ function priv_check($ability, $args = null)
 
 function priv_check_user($user, $ability, $args = null)
 {
-    return OsuAuthorize::doCheckUser($user, $ability, $args);
+    return app()->make('OsuAuthorize')->doCheckUser($user, $ability, $args);
 }
