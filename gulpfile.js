@@ -71,6 +71,7 @@ elixir(function(mix) {
     'user-dropdown-modal.coffee',
     'logout.coffee',
     'shared.coffee',
+    'turbolinks-overrides.coffee',
 
     'main.coffee',
   ], 'resources/assets/js/build/app-main.js')
