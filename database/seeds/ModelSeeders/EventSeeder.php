@@ -43,7 +43,7 @@ class EventSeeder extends Seeder
                 for ($c = 0; $c < 4; $c++) {
                     if ($all_beatmaps[$c]) {
                         $bm = $all_beatmaps[$c];
-                        $bms = App\Models\BeatmapSet::find($bm->beatmapset_id);
+                        $bms = App\Models\Beatmapset::find($bm->beatmapset_id);
                         if (isset($bms)) {
                             $is_rank_1 = $faker->boolean(20);
                             if ($is_rank_1 === true) {

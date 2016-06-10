@@ -131,13 +131,27 @@
             @endif
         </div>
 
-        @if($product->inStock())
         <div class="osu-layout__sub-row osu-layout__sub-row--with-separator" id="add-to-cart">
             <div class="big-button">
-                <button type="submit" class="js-store-add-to-cart btn-osu btn-osu-default">Add to Cart</button>
+                @if($product->inStock())
+                    <button type="submit" class="js-store-add-to-cart btn-osu btn-osu-default">
+                        {{ trans('store.product.add_to_cart') }}
+                    </button>
+
+                @elseif(!$requestedNotification)
+                    <a class="btn-osu btn-osu-default" href="{{ route('store.request-notification', ['product_id' => $product->product_id, 'create']) }}" data-remote="true" data-method="put">
+                        {{ trans('store.product.notify') }}
+                    </a>
+                @endif
             </div>
+
+            @if($requestedNotification && !$product->inStock())
+                <div class="store-notification-requested-alert">
+                    <span class="fa fa-check-circle-o store-notification-requested-alert__icon"></span>
+                    <p class="store-notification-requested-alert__text">{!! trans('store.product.notification_success', ['link' => link_to_route('store.request-notification', trans('store.product.notification_remove_text'), ['product_id' => $product->product_id, 'delete'], ['data-remote' => 'true', 'data-method' => 'put'])]) !!}</p>
+                </div>
+            @endif
         </div>
-        @endif
 
     {!! Form::close() !!}
 @endsection

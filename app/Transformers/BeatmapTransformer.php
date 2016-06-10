@@ -58,7 +58,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
     {
         $scores = $beatmap
             ->scoresBest()
-            ->orderBy('score', 'desc')
+            ->defaultListing()
             ->limit(config('osu.beatmaps.max-scores'))
             ->get();
 

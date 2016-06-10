@@ -27,12 +27,6 @@ abstract class Model extends BaseModel
 {
     protected $primaryKey = 'beatmap_id';
 
-    protected $casts = [
-        'beatmap_id' => 'integer',
-        'user_id' => 'integer',
-        'score_id' => 'integer',
-    ];
-
     public $timestamps = false;
 
     public function beatmap()

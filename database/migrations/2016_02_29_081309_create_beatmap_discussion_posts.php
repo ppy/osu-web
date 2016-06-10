@@ -39,6 +39,6 @@ class CreateBeatmapDiscussionPosts extends Migration
      */
     public function down()
     {
-        Schema::drop('beatmap_discussion_replies');
+        Schema::drop('beatmap_discussion_posts');
     }
 }

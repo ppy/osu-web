@@ -25,12 +25,6 @@ class BeatmapPlaycount extends Model
 {
     protected $table = 'osu_user_beatmap_playcount';
 
-    protected $casts = [
-        'user_id' => 'integer',
-        'beatmap_id' => 'integer',
-        'playcount' => 'integer',
-    ];
-
     public $timestamps = false;
 
     public function beatmap()

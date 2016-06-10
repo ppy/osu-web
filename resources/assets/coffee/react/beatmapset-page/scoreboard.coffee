@@ -18,84 +18,97 @@
 {div, span, p} = React.DOM
 el = React.createElement
 
-class BeatmapsetPage.Scoreboard extends React.Component
-  constructor: (props) ->
-    super props
+bn = 'beatmapset-scoreboard'
 
-    @state =
-      loading: false
+BeatmapsetPage.Scoreboard = React.createClass
+  getInitialState: ->
+    loading: false
+
 
   componentDidMount: ->
-    $.subscribe 'beatmapset:scoreboard:loading.beatmapSetPageScoreboard', @_setLoading
+    $.subscribe 'beatmapset:scoreboard:loading.beatmapsetPageScoreboard', @setLoading
+
 
   componentWillUnmount: ->
-    $.unsubscribe '.beatmapSetPageScoreboard'
-
-  _setLoading: (_e, isLoading) =>
-    @setState loading: isLoading
-
-  _scores: ->
-    elements = ['rank-header', 'player-header', 'score', 'accuracy']
-
-    div {},
-      el BeatmapsetPage.ScoreboardFirst,
-        score: @props.scores[0]
-        countries: @props.countries
-
-      if @props.scores.length > 1
-        div className: 'beatmapset-scoreboard__row',
-          elements.map (m) =>
-            span
-              className: "beatmapset-scoreboard__row-item beatmapset-scoreboard__row-item--#{m} beatmapset-scoreboard__row-item--header"
-              key: m
-              Lang.get "beatmaps.beatmapset.show.extra.scoreboard.list.#{m}"
-
-      @props.scores[1..].map (s, i) =>
-        el BeatmapsetPage.ScoreboardItem, score: s, position: i + 2, countries: @props.countries, key: i
+    $.unsubscribe '.beatmapsetPageScoreboard'
 
 
   render: ->
     scoreboards = ['global', 'country', 'friend']
-
-    className = 'beatmapset-scoreboard__main'
-    className += ' beatmapset-scoreboard__main--loading' if @state.loading
+    className = "#{bn}__main"
+    className += " #{bn}__main--loading" if @state.loading
 
     div
-      className: 'page-extra beatmapset-scoreboard'
+      className: "page-extra #{bn}"
       el BeatmapsetPage.ExtraHeader, name: 'scoreboard'
 
-      if @props.scores.length == 0 and @props.currentScoreboard == 'global'
-        p
-          className: 'beatmapset-scoreboard__no-scores'
-          Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.no-scores.global'
-      else
-        div {},
-          if not _.isEmpty currentUser
-            div {},
-              div className: 'beatmapset-scoreboard__tabs',
-                scoreboards.map (m) =>
-                  el BeatmapsetPage.ScoreboardTab,
-                    key: m
-                    scoreboard: m
-                    currentScoreboard: @props.currentScoreboard
+      if currentUser.id?
+        div null,
+          div
+            className: "#{bn}__tabs"
+            scoreboards.map (m) =>
+              el BeatmapsetPage.ScoreboardTab,
+                key: m
+                scoreboard: m
+                currentScoreboard: @props.currentScoreboard
 
-              div className: 'beatmapset-scoreboard__line'
+          div className: "#{bn}__line"
 
-          div className: className,
-            if @props.currentScoreboard != 'global'
-              if currentUser.isSupporter == false
-                div className: 'beatmapset-scoreboard__notice',
-                  p
-                    className: 'beatmapset-scoreboard__supporter-text'
-                    Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.supporter-only'
-                  p
-                    className: 'beatmapset-scoreboard__supporter-text beatmapset-scoreboard__supporter-text--small'
-                    dangerouslySetInnerHTML:
-                      __html: Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.supporter-link', link: laroute.route 'support-the-game'
-              else if @props.scores.length == 0
-                div className: 'beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores',
-                  Lang.get "beatmaps.beatmapset.show.extra.scoreboard.no-scores.#{@props.currentScoreboard}"
-              else
-                @_scores()
-            else
-              @_scores()
+      div className: className,
+        if @props.scores.length > 0
+          @scores()
+
+        else if currentUser.isSupporter || @props.currentScoreboard == 'global'
+          translationKey = if @state.loading then 'loading' else @props.currentScoreboard
+          p
+            className: "#{bn}__notice #{bn}__notice--no-scores #{bn}__notice--#{'guest' if !currentUser.id?}"
+            Lang.get "beatmaps.beatmapset.show.extra.scoreboard.no-scores.#{translationKey}"
+
+        else
+          div className: "#{bn}__notice",
+            p
+              className: "#{bn}__supporter-text"
+              Lang.get "beatmaps.beatmapset.show.extra.scoreboard.supporter-only"
+            p
+              className: "#{bn}__supporter-text #{bn}__supporter-text--small"
+              dangerouslySetInnerHTML:
+                __html: Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.supporter-link', link: laroute.route 'support-the-game'
+
+
+  setLoading: (_e, isLoading) ->
+    @setState loading: isLoading
+
+
+  scoreItem: (score, rank) ->
+    componentName = if rank == 1 then 'ScoreboardFirst' else 'ScoreboardItem'
+
+    el BeatmapsetPage[componentName],
+      key: rank
+      position: rank
+      score: score
+      countries: @props.countries
+
+
+  scores: ->
+    return if @props.scores.length == 0
+
+    div null,
+      @scoreItem @props.scores[0], 1
+
+      if @props.scores.length > 1
+        div
+          className: "#{bn}__row"
+          key: 'header'
+          ['rank-header', 'player-header', 'score', 'accuracy'].map (m) =>
+            className = "#{bn}__row-item #{bn}__row-item--#{m} #{bn}__row-item--header"
+            className += ' hidden-xs' if m == 'accuracy'
+
+            span
+              className: className
+              key: m
+              Lang.get "beatmaps.beatmapset.show.extra.scoreboard.list.#{m}"
+
+      @props.scores.map (score, i) =>
+        return if i == 0
+
+        @scoreItem score, i + 1

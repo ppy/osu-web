@@ -29,16 +29,6 @@ class UserBanHistory extends Model
     protected $dates = ['timestamp'];
     public $timestamps = false;
 
-    protected $casts = [
-        'ban_id' => 'integer',
-        'ban_status' => 'integer',
-        'banner_id' => 'integer',
-        'period' => 'integer',
-        'reason' => 'string',
-        'supporting_url' => 'string',
-        'user_id' => 'integer',
-    ];
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'user_id');

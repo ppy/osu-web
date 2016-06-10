@@ -19,9 +19,12 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
 
   setHash: (newHash) ->
-    return if newHash == location.hash
+    newUrl = location.href.replace /#.*/, ''
+    newUrl += newHash
 
-    location.replace newHash
+    return if newUrl == location.href
+
+    history.replaceState history.state, null, newUrl
 
 
   bottomPage: ->
@@ -62,6 +65,10 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     el.textContent = text
     el.outerHTML
 
+  linkify: (text) ->
+    regex = /(https?:\/\/(?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?)/ig
+    return text.replace(regex, '<a href="$1" rel="nofollow" target="_blank">$1</a>')
+
   timeago: (time) ->
     el = document.createElement('time')
     el.classList.add 'timeago-raw', 'timeago'
@@ -82,27 +89,34 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     el.outerHTML
 
 
-  reloadPage: (fallback, forceReload) ->
+  reloadPage: (keepScroll = true) ->
     $(document).off '.ujsHideLoadingOverlay'
+    Turbolinks.clearCache()
 
-    $.get document.location.href
-    .done osu.replacePage
-    .fail ->
-      return osu.navigate fallback if fallback
-      return document.location.reload() if forceReload
-      osu.popup 'Failed loading page', 'danger'
-    .always LoadingOverlay.hide
+    url =
+      if !_.isEmpty window.reloadUrl
+        window.reloadUrl
+      else
+        location.href
+
+    window.reloadUrl = null
+
+    osu.navigate url, keepScroll, action: 'replace'
 
 
-  navigate: (url, keepScroll) ->
-    if keepScroll == true
-      position = [
-        window.pageXOffset
-        window.pageYOffset
-      ]
-      $(document).one 'page:load', ->
-        window.scrollTo position[0], position[1]
-    Turbolinks.visit url
+  navigate: (url, keepScroll, {action = 'advance'} = {}) ->
+    osu.keepScrollOnLoad() if keepScroll
+    Turbolinks.visit url, action: action
+
+
+  keepScrollOnLoad: ->
+    position = [
+      window.pageXOffset
+      window.pageYOffset
+    ]
+
+    $(document).one 'turbolinks:load', ->
+      window.scrollTo position[0], position[1]
 
 
   popup: (message, type = 'info') ->

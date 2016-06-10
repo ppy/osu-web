@@ -20,7 +20,7 @@ class @SyncHeight
   references: document.getElementsByClassName('js-sync-height--reference')
 
   constructor: ->
-    $(document).on 'ready page:load', @sync
+    $(document).on 'ready turbolinks:load', @sync
     $(window).on 'throttled-resize', @sync
 
     @sync()

@@ -52,13 +52,14 @@ elixir(function(mix) {
   .browserify(['vendor-modules.js'], 'resources/assets/js/build/vendor-modules.js')
   .coffee([
     '_classes/*.coffee',
+
+    'react-namespaces.coffee',
     'react/_components/*.coffee',
     'react/_mixins/*.coffee',
 
     'jquery-pubsub.coffee',
     'osu!live.coffee',
     'osu_common.coffee',
-    'turbolinks-mod.coffee',
 
     'navbar-mobile.coffee',
     'spoilerbox.coffee',
@@ -70,11 +71,12 @@ elixir(function(mix) {
     'user-dropdown-modal.coffee',
     'logout.coffee',
     'shared.coffee',
+    'turbolinks-overrides.coffee',
 
     'main.coffee',
   ], 'resources/assets/js/build/app-main.js')
   .scripts([
-    path.join(composer_root, 'helthe/turbolinks/Resources/public/js/turbolinks.js'),
+    path.join(node_root, 'turbolinks/dist/turbolinks.js'),
     'build/vendor-modules.js',
     'ga.js',
     'messages.js',

@@ -57,7 +57,7 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized', 401);
             } else {
-                return response()->view('users.login')->setStatusCode(401);
+                return response()->view('users.login');
             }
         }
 

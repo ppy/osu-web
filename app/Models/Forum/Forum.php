@@ -36,10 +36,6 @@ class Forum extends Model
 
     protected $casts = [
         'enable_sigs' => 'boolean',
-        'forum_id' => 'integer',
-        'forum_last_post_id' => 'integer',
-        'forum_type' => 'integer',
-        'parent_id' => 'integer',
     ];
 
     public function categorySlug()
@@ -65,9 +61,9 @@ class Forum extends Model
         if ($forum_ids === null) {
             $forum_ids = $new_forum_ids = [$this->forum_id];
         }
-        $new_forum_ids = static::whereIn('parent_id', $new_forum_ids)->lists('forum_id')->all();
+        $new_forum_ids = model_pluck(static::whereIn('parent_id', $new_forum_ids), 'forum_id');
 
-        $new_forum_ids = array_map(function ($value) { return intval($value); }, $new_forum_ids);
+        $new_forum_ids = array_map('intval', $new_forum_ids);
         $forum_ids = array_merge($forum_ids, $new_forum_ids);
 
         if (count($new_forum_ids) === 0) {
@@ -154,18 +150,10 @@ class Forum extends Model
         }
     }
 
-    public function canBeViewedBy($user)
+    // feature forum shall have extra features like sorting and voting
+    public function isFeatureForum()
     {
-        if ($this->categoryId() !== config('osu.forum.admin_forum_id')) {
-            return true;
-        }
-
-        return $user !== null && $user->isAdmin() === true;
-    }
-
-    public function canHavePost()
-    {
-        return $this->forum_type === 1;
+        return $this->forum_id === config('osu.forum.feature_forum_id');
     }
 
     public function refreshCache()
@@ -212,5 +200,10 @@ class Forum extends Model
             $this->forum_last_poster_name = $lastTopic->topic_last_poster_name;
             $this->forum_last_poster_colour = $lastTopic->topic_last_poster_colour;
         }
+    }
+
+    public function isOpen()
+    {
+        return $this->forum_type === 1;
     }
 }

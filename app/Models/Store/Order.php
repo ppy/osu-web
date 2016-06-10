@@ -27,14 +27,6 @@ class Order extends Model
     protected $connection = 'mysql-store';
     protected $primaryKey = 'order_id';
 
-    protected $casts = [
-        'order_id' => 'integer',
-        'user_id' => 'integer',
-        'address_id' => 'integer',
-
-        'shipping' => 'float',
-    ];
-
     protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
 
     public function items()
@@ -140,6 +132,14 @@ class Order extends Model
         if ($save) {
             $this->save();
         }
+    }
+
+    public function checkout()
+    {
+        DB::transaction(function () {
+            $this->status = 'checkout';
+            $this->refreshCost(true);
+        });
     }
 
     public function updateItem($item_form, $add_new = false)

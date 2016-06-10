@@ -18,11 +18,6 @@
  */
 
 .beatmapset-scoreboard {
-  &__no-scores {
-    font-size: 15px;
-    font-style: italic;
-  }
-
   &__tabs {
     display: flex;
     justify-content: center;
@@ -95,13 +90,22 @@
     }
 
     &--player {
-      flex-grow: 1;
+      flex: 1;
       font-weight: 600;
       color: @blue-text;
+      overflow: hidden;
+      min-width: 0;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     &--player-header {
-      flex-grow: 1;
+      flex: 1;
+      min-width: 0;
+    }
+
+    &--mods {
+      padding-right: @spacing * 2;
     }
 
     &--icons {
@@ -127,6 +131,11 @@
 
     &--no-scores {
       font-size: 15px;
+    }
+
+    &--guest {
+      text-align: left;
+      font-style: italic;
     }
   }
 

@@ -86,7 +86,7 @@ ProfilePage.Historical = React.createClass
       if @props.beatmapPlaycounts.length
         [
           @props.beatmapPlaycounts.map (pc, i) =>
-            @_beatmapRow pc.beatmap.data, pc.beatmapSet.data, i, i < @state.showingPlaycounts, [
+            @_beatmapRow pc.beatmap.data, pc.beatmapset.data, i, i < @state.showingPlaycounts, [
               [
                 span
                   key: 'name'

@@ -31,7 +31,7 @@ class ScoreSeeder extends Seeder
         $users = App\Models\User::all();
         App\Models\Score\Model::unguard();
 
-        $allBeatmapSets = App\Models\BeatmapSet::all();
+        $allBeatmapsets = App\Models\Beatmapset::all();
 
         $possible_ranks = ['A', 'S', 'B', 'SH', 'XH', 'X'];
 
@@ -43,7 +43,7 @@ class ScoreSeeder extends Seeder
 
             //add 20 osu! Standard scores
             foreach ($osuBeatmaps as $bm) {
-                $bms = $allBeatmapSets->find($bm->beatmapset_id);
+                $bms = $allBeatmapsets->find($bm->beatmapset_id);
                 $maxcombo = rand(1, $bm->countTotal);
                 $possible_mods = [0, 16, 24, 64, 72]; // hr, hd/hr, dt, hd/dt
                 $sc = App\Models\Score\Osu::create([
@@ -85,7 +85,7 @@ class ScoreSeeder extends Seeder
 
             //Taiko scores
             foreach ($taikoBeatmaps as $bm) {
-                $bms = $allBeatmapSets->find($bm->beatmapset_id);
+                $bms = $allBeatmapsets->find($bm->beatmapset_id);
                 $maxcombo = rand(1, $bm->countTotal);
                 $possible_mods = [0, 16, 24, 64, 72];
                 $sc3 = App\Models\Score\Taiko::create([
@@ -127,7 +127,7 @@ class ScoreSeeder extends Seeder
 
             //Fruits scores
             foreach ($fruitsBeatmaps as $bm) {
-                $bms = $allBeatmapSets->find($bm->beatmapset_id);
+                $bms = $allBeatmapsets->find($bm->beatmapset_id);
                 $maxcombo = rand(1, $bm->countTotal);
                 $possible_mods = [0, 16, 24, 64, 72];
                 $sc5 = App\Models\Score\Fruits::create([
@@ -169,7 +169,7 @@ class ScoreSeeder extends Seeder
 
             //Mania scores
             foreach ($maniaBeatmaps as $bm) {
-                $bms = $allBeatmapSets->find($bm->beatmapset_id);
+                $bms = $allBeatmapsets->find($bm->beatmapset_id);
                 $maxcombo = rand(1, $bm->countTotal);
                 $possible_mods = [0, 16, 24, 64, 72]; // hr, hd/hr, dt, hd/dt
                 $sc7 = App\Models\Score\Mania::create([

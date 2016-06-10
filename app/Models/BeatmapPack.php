@@ -26,14 +26,6 @@ class BeatmapPack extends Model
     protected $table = 'osu_beatmappacks';
     protected $primaryKey = 'pack_id';
 
-    protected $casts = [
-        'pack_id' => 'integer',
-        'url' => 'string',
-        'name' => 'string',
-        'author' => 'string',
-        'tag' => 'string',
-    ];
-
     protected $dates = ['date'];
     public $timestamps = false;
 }

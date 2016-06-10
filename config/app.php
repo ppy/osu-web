@@ -2,6 +2,7 @@
 
 return [
 
+    'env' => env('APP_ENV', 'production'),
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
@@ -41,15 +42,6 @@ return [
 
     'timezone' => 'UTC',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Sentry URL Configuration
-    |--------------------------------------------------------------------------
-    |
-    | Sends error log etc to sentry.
-    |
-    */
-    'sentry' => env('APP_SENTRY'),
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
@@ -122,12 +114,10 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
-        'Illuminate\Foundation\Providers\ArtisanServiceProvider',
         'Illuminate\Auth\AuthServiceProvider',
         'Illuminate\Bus\BusServiceProvider',
         'Illuminate\Cache\CacheServiceProvider',
         'Illuminate\Foundation\Providers\ConsoleSupportServiceProvider',
-        'Illuminate\Routing\ControllerServiceProvider',
         'Illuminate\Cookie\CookieServiceProvider',
         'Illuminate\Database\DatabaseServiceProvider',
         'Illuminate\Encryption\EncryptionServiceProvider',
@@ -150,8 +140,6 @@ return [
          * Application Service Providers...
          */
         'App\Providers\AppServiceProvider',
-        'App\Providers\BusServiceProvider',
-        'App\Providers\ConfigServiceProvider',
         'App\Providers\EventServiceProvider',
         'App\Providers\RouteServiceProvider',
         'Clockwork\Support\Laravel\ClockworkServiceProvider',
@@ -160,7 +148,10 @@ return [
         'Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider',
         'Shift31\LaravelElasticsearch\ElasticsearchServiceProvider',
         'League\StatsD\Laravel5\Provider\StatsdServiceProvider',
+        'LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider',
+        'LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider',
         'Lord\Laroute\LarouteServiceProvider',
+        Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
     ],
 
     /*
@@ -216,7 +207,8 @@ return [
 
         'Slack' => 'Maknz\Slack\Facades\Slack',
         'Statsd' => 'League\StatsD\Laravel5\Facade\StatsdFacade',
-
+        'Authorizer' => 'LucaDegasperi\OAuth2Server\Facades\Authorizer',
+        'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
     ],
 
 ];

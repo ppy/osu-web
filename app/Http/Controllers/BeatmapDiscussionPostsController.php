@@ -20,7 +20,6 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\Exceptions\AuthorizationException;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapsetDiscussion;
@@ -56,12 +55,10 @@ class BeatmapDiscussionPostsController extends Controller
         $previousDiscussionResolved = $discussion->resolved;
         $discussion->fill($this->discussionParams($isNewDiscussion));
 
-        if (!$discussion->canBePostedBy(Auth::user())) {
-            abort(403);
-        }
+        priv_check('BeatmapDiscussionPost', $discussion)->ensureCan();
 
-        if ($discussion->resolved === true && !$discussion->canBeResolvedBy(Auth::user())) {
-            abort(403);
+        if ($discussion->resolved === true) {
+            priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
         }
 
         if (!$isNewDiscussion && ($discussion->resolved !== $previousDiscussionResolved)) {
@@ -108,11 +105,7 @@ class BeatmapDiscussionPostsController extends Controller
     {
         $post = BeatmapDiscussionPost::findOrFail($id);
 
-        try {
-            $post->authorizeUpdate(Auth::user());
-        } catch (AuthorizationException $e) {
-            return error_popup($e->getMessage(), 403);
-        }
+        priv_check('BeatmapDiscussionPostEdit', $post)->ensureCan();
 
         $post->update($this->postParams($post->beatmapDiscussion, false));
 

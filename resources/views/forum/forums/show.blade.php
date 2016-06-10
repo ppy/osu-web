@@ -61,13 +61,23 @@
             </div>
         @endif
 
-        @if (count($topics) > 0 || $forum->canHavePost() === true)
+        @if (count($topics) > 0 || $forum->isOpen())
             <div class="topics-container" id="topics">
                 <h2>{{ trans("forum.topics._") }}</h2>
-                @include("forum.forums._topics", ["topics" => $topics, "withNewTopicLink" => $forum->canHavePost()])
+
+                @include('forum.forums._topics', [
+                    'topics' => $topics,
+                    'withNewTopicLink' => $forum->isOpen(),
+                ])
             </div>
 
-            @include("forum._pagination", ["object" => $topics->fragment('topics')])
+            @include("forum._pagination", ["object" => $topics
+                ->fragment('topics')
+                ->appends([
+                    'sort' => Request::input('sort'),
+                    'with_replies' => Request::input('with_replies'),
+                ])
+            ])
         @endif
     </div>
 @endsection

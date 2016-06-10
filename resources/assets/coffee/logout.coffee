@@ -18,9 +18,4 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 $(document).on 'ajax:success', '.js-logout-link', ->
   localStorage.clear()
 
-  if window.reloadUrl
-    url = window.reloadUrl
-    window.reloadUrl = null
-    Turbolinks.visit url
-  else
-    osu.reloadPage("/")
+  osu.reloadPage()

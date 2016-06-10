@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div} = React.DOM
+{div, audio} = React.DOM
 el = React.createElement
 
 BeatmapsetPage.Main = React.createClass
@@ -37,41 +37,52 @@ BeatmapsetPage.Main = React.createClass
     beatmapsByMode: _.groupBy @props.beatmapset.beatmaps.data, (o) -> o.mode
     currentBeatmapId: currentBeatmapId
     currentPlaymode: beatmaps[currentBeatmapId].mode
-    currentScoreboard: 'global'
-    scores: beatmaps[currentBeatmapId].scoresBest.data
     loading: false
+    isPreviewPlaying: false
+    currentScoreboard: 'global'
+    scores: []
 
   setHash: ->
     osu.setHash BeatmapsetPageHash.generate page: @state.currentPage, beatmapId: @state.currentBeatmapId
 
-  setCurrentScoreboard: (_e, scoreboard) ->
+  setCurrentScoreboard: (_e, {scoreboard, forceReload = false}) ->
     return if @state.loading
 
-    if scoreboard == 'global'
-      @setState scores: @state.beatmaps[@state.currentBeatmapId].scoresBest.data
-      @setState currentScoreboard: scoreboard
-    else
-      if not currentUser.isSupporter
-        @setState currentScoreboard: scoreboard
-        return
+    @setState
+      currentScoreboard: scoreboard
+      scores: []
 
-      $.publish 'beatmapset:scoreboard:loading', true
-      @setState loading: true
+    return if scoreboard != 'global' && !currentUser.isSupporter
 
-      $.ajax (laroute.route 'beatmaps.scores', beatmaps: @state.currentBeatmapId),
-        method: 'GET'
-        dataType: 'JSON'
-        data:
-          type: scoreboard
+    @scoresCache ?= {}
+    cacheKey = "#{@state.currentBeatmapId}-#{scoreboard}"
 
-      .done (data) =>
-        @setState scores: data.data
-        @setState currentScoreboard: scoreboard
-      .fail (xhr) =>
-        osu.ajaxError xhr
-      .always =>
-        $.publish 'beatmapset:scoreboard:loading', false
-        @setState loading: false
+    loadScore = =>
+      @setState scores: @scoresCache[cacheKey]
+
+    if !forceReload && @scoresCache[cacheKey]?
+      loadScore()
+      return
+
+    $.publish 'beatmapset:scoreboard:loading', true
+    @setState loading: true
+
+    $.ajax (laroute.route 'beatmaps.scores', beatmaps: @state.currentBeatmapId),
+      method: 'GET'
+      dataType: 'JSON'
+      data:
+        type: scoreboard
+
+    .done (data) =>
+      @scoresCache[cacheKey] = data.data
+      loadScore()
+
+    .fail osu.ajaxError
+
+    .always =>
+      $.publish 'beatmapset:scoreboard:loading', false
+      @setState loading: false
+
 
   setCurrentBeatmapId: (_e, beatmapId) ->
     return if @state.currentBeatmapId == beatmapId
@@ -79,33 +90,57 @@ BeatmapsetPage.Main = React.createClass
     @setState
       currentBeatmapId: beatmapId
       currentPlaymode: @state.beatmaps[beatmapId].mode
-      currentScoreboard: 'global'
-      scores: @state.beatmaps[beatmapId].scoresBest.data
-      @setHash
+      =>
+        @setHash()
+        @setCurrentScoreboard null, scoreboard: 'global'
+
+  togglePreviewPlayingState: (_e, isPreviewPlaying) ->
+    @setState isPreviewPlaying: isPreviewPlaying
+
+    if isPreviewPlaying
+      @audioPreview.play()
+    else
+      @audioPreview.pause()
+      @audioPreview.currentTime = 0;
+
+  onPreviewEnded: ->
+    @setState isPreviewPlaying: false
 
   componentDidMount: ->
     @removeListeners()
 
-    $.subscribe 'beatmapset:beatmap:set.beatmapSetPage', @setCurrentBeatmapId
-    $.subscribe 'beatmapset:page:jump.beatmapSetPage', @pageJump
-    $.subscribe 'beatmapset:scoreboard:set.beatmapSetPage', @setCurrentScoreboard
+    $.subscribe 'beatmapset:beatmap:set.beatmapsetPage', @setCurrentBeatmapId
+    $.subscribe 'beatmapset:page:jump.beatmapsetPage', @pageJump
+    $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
+    $.subscribe 'beatmapset:preview:toggle.beatmapsetPage', @togglePreviewPlayingState
 
     @pageJump null, @initialPage
+    @setCurrentScoreboard null, scoreboard: 'global'
+
+    @audioPreview = document.getElementsByClassName('js-beatmapset-page--audio-preview')[0]
 
   componentWillUnmount: ->
     @removeListeners()
 
+
   removeListeners: ->
-    $.unsubscribe '.beatmapSetPage'
+    $.unsubscribe '.beatmapsetPage'
 
   render: ->
     div className: 'osu-layout__section',
+      audio
+        className: 'js-beatmapset-page--audio-preview'
+        src: @props.beatmapset.previewUrl
+        preload: 'auto'
+        onEnded: @onPreviewEnded
+
       el BeatmapsetPage.Header,
         title: @props.beatmapset.title
         artist: @props.beatmapset.artist
         playcount: @props.beatmapset.play_count
         favcount: @props.beatmapset.favourite_count
         cover: @props.beatmapset.covers.cover
+        isPreviewPlaying: @state.isPreviewPlaying
 
       el BeatmapsetPage.Contents,
         beatmapset: @props.beatmapset

@@ -28,7 +28,7 @@ class BeatmapsetPage.SuccessRate extends React.Component
     @_renderChart()
 
   componentWillUnmount: ->
-    $(window).off '.beatmapSetPageSuccessRate'
+    $(window).off '.beatmapsetPageSuccessRate'
 
   _renderChart: ->
     return unless @props.failtimes.length > 0
@@ -56,7 +56,7 @@ class BeatmapsetPage.SuccessRate extends React.Component
 
       @_successRateChart = new BarChart @refs.chart, options
 
-      $(window).on 'throttled-resize.beatmapSetPageSuccessRate', @_successRateChart.resize
+      $(window).on 'throttled-resize.beatmapsetPageSuccessRate', @_successRateChart.resize
 
     @_successRateChart.loadData data
 

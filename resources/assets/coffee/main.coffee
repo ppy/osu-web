@@ -18,18 +18,19 @@
 
 # loading animation overlay
 # fired from turbolinks
-$(document).on 'page:fetch', LoadingOverlay.show
-$(document).on 'page:receive', LoadingOverlay.hide
+$(document).on 'turbolinks:request-start', LoadingOverlay.show
+$(document).on 'turbolinks:request-end', LoadingOverlay.hide
 # form submission is not covered by turbolinks
 $(document).on 'submit', 'form', LoadingOverlay.show
 
 
 @reactTurbolinks ||= new ReactTurbolinks
+@twitchPlayer ?= new TwitchPlayer
 
 reactTurbolinks.register 'user-card', UserCard
 
 
-$(document).on 'ready page:load', =>
+$(document).on 'ready turbolinks:load', =>
   LocalStoragePolyfill.fillIn()
 
   @editorZoom ||= new EditorZoom
@@ -65,7 +66,7 @@ initPage = =>
 # Don't bother moving initPage to osu junk drawer and removing the
 # osu:page:change. It's intended to allow other scripts to attach
 # callbacks to osu:page:change.
-$(document).on 'ready page:load', initPage
+$(document).on 'ready turbolinks:load', initPage
 $(document).on 'osu:page:change', _.debounce(initPage, 500)
 
 
@@ -87,15 +88,3 @@ $.expr[':'].internal = (obj, index, meta, stack) ->
   $this = $(obj)
   url = $this.attr('href') or ''
   url.substring(0, rootUrl.length) == rootUrl or url.indexOf(':') == -1
-
-$.fn.moddify = ->
-  regex = /(\d\d:\d\d:\d\d\d(?: \([0-9,#&;\|]+\))*)/ig
-  $(this).each ->
-    $(this).html $(this).html().replace(regex, '<code><a class="osu-modtime" href="osu://edit/$1" rel="nofollow">$1</a></code>')
-  $ this
-
-$.fn.linkify = ->
-  regex = /(https?:\/\/(?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?)/ig
-  $(this).each ->
-    $(this).html $(this).html().replace(regex, '<a href="$1" rel="nofollow" target="_blank">$1</a>')
-  $ this
