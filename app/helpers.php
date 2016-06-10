@@ -414,6 +414,36 @@ function get_int($string)
     }
 }
 
+function get_bool($string)
+{
+    if ($string === '1') {
+        return true;
+    } elseif ($string === '0') {
+        return false;
+    }
+}
+
+function get_file($input)
+{
+    if ($input instanceof Symfony\Component\HttpFoundation\File\UploadedFile) {
+        return $input->getRealPath();
+    }
+}
+
+function get_string_arr($input)
+{
+    if (is_array($input)) {
+        return array_map('strval', $input);
+    }
+}
+
+function get_int_arr($input)
+{
+    if (is_array($input)) {
+        return array_map('get_int', $input);
+    }
+}
+
 // should it be used?
 function bem($block, $element = null, $modifiers = [])
 {
@@ -472,34 +502,28 @@ function deltree($dir)
 
 function get_param_value($input, $type)
 {
-    if ($type === 'bool') {
-        if (is_bool($input)) {
-            return $input;
-        } elseif ($input === '1' || $input === 'true') {
-            return true;
-        } elseif ($input === '0' || $input === 'false') {
-            return false;
-        } else {
-            return;
-        }
+    switch ($type) {
+        case 'bool':
+            return get_bool($input);
+            break;
+        case 'int':
+            return get_int($input);
+            break;
+        case 'file':
+            return get_file($input);
+            break;
+        case 'string[]':
+            return get_string_arr($input);
+            break;
+        case 'int[]':
+            return get_int_arr($input);
+            break;
+        default:
+            return (string) $input;
     }
-
-    if ($type === 'int') {
-        return get_int($input);
-    }
-
-    if ($type === 'file') {
-        if ($input instanceof Symfony\Component\HttpFoundation\File\UploadedFile) {
-            return $input->getRealPath();
-        } else {
-            return;
-        }
-    }
-
-    return (string) $input;
 }
 
-function get_params($input, $namespace, $keys, $defaults = [], $overrides = [])
+function get_params($input, $namespace, $keys)
 {
     if ($namespace !== null) {
         $input = array_get($input, $namespace);
