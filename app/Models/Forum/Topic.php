@@ -141,6 +141,10 @@ class Topic extends Model
             return true;
         }
 
+        if (!$this->forum->isOpen()) {
+            return false;
+        }
+
         return DB::transaction(function () use ($destinationForum) {
             $originForum = $this->forum;
             $this->forum()->associate($destinationForum);
