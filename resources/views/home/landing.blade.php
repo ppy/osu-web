@@ -161,7 +161,7 @@
 
         // Establishing domain for x/y axes
         xScale.domain(d3.extent(data, function(d) { return d.date }));
-        yScale.domain(d3.extent(data, function(d) { return d.users_osu }));
+        yScale.domain([0, d3.max(data, function(d) { return d.users_osu })]);
 
         // Appending groups
         svg.append("path")

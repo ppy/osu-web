@@ -36,7 +36,7 @@ class HomeController extends Controller
 
         $timeAgo = Carbon::now()->subHours(24);
         $stats = BanchoStats::where('date', '>=', $timeAgo)
-            ->whereRaw('banchostats_id mod 30 = 0')
+            ->whereRaw('banchostats_id mod 10 = 0')
             ->get();
         $totalUsers = User::count();
 
