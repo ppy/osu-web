@@ -177,7 +177,7 @@ return [
         'other' => 'Otro',
         'novelty' => 'Novedoso',
         'hip-hop' => 'Hip Hop',
-        'electronic' => 'Electronic',
+        'electronic' => 'Electrónica',
     ],
     'language' => [
     'any' => 'Cualquiera',
