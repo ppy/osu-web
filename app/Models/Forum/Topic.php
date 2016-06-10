@@ -20,6 +20,7 @@
 namespace App\Models\Forum;
 
 use App\Models\Log;
+use App\Models\User;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
@@ -136,7 +137,11 @@ class Topic extends Model
 
     public function move($targetForum)
     {
-        DB::transaction(function () use ($targetForum) {
+        if ($this->forum_id === $targetForum->forum_id) {
+            return true;
+        }
+
+        return DB::transaction(function () use ($targetForum) {
             $originForum = $this->forum;
             $this->forum()->associate($targetForum);
             $this->save();
@@ -151,6 +156,12 @@ class Topic extends Model
 
             if ($this->forum !== null) {
                 $this->forum->refreshCache();
+            }
+
+            $users = User::whereIn('user_id', model_pluck($this->posts(), 'poster_id'))->get();
+
+            foreach ($users as $user) {
+                $user->refreshForumCache();
             }
         });
     }
