@@ -135,20 +135,20 @@ class Topic extends Model
         return true;
     }
 
-    public function move($targetForum)
+    public function moveTo($destinationForum)
     {
-        if ($this->forum_id === $targetForum->forum_id) {
+        if ($this->forum_id === $destinationForum->forum_id) {
             return true;
         }
 
-        return DB::transaction(function () use ($targetForum) {
+        return DB::transaction(function () use ($destinationForum) {
             $originForum = $this->forum;
-            $this->forum()->associate($targetForum);
+            $this->forum()->associate($destinationForum);
             $this->save();
 
-            $this->posts()->update(['forum_id' => $targetForum->forum_id]);
-            $this->logs()->update(['forum_id' => $targetForum->forum_id]);
-            $this->userTracks()->update(['forum_id' => $targetForum->forum_id]);
+            $this->posts()->update(['forum_id' => $destinationForum->forum_id]);
+            $this->logs()->update(['forum_id' => $destinationForum->forum_id]);
+            $this->userTracks()->update(['forum_id' => $destinationForum->forum_id]);
 
             if ($originForum !== null) {
                 $originForum->refreshCache();
@@ -163,6 +163,10 @@ class Topic extends Model
             foreach ($users as $user) {
                 $user->refreshForumCache();
             }
+
+            Log::logModerateForumTopicMove($this, $originForum);
+
+            return true;
         });
     }
 

@@ -111,6 +111,11 @@ class Forum extends Model
         return $this->hasOne(ForumCover::class);
     }
 
+    public function scopeMoveDestination($query)
+    {
+        $query->where('forum_type', 1);
+    }
+
     public function setForumParentsAttribute($value)
     {
         $this->attributes['forum_parents'] = presence($value) === null ? '' : serialize($value);
