@@ -191,6 +191,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'oauth'],
             // Route::get('/{id}/scores', ['uses' => 'BeatmapsController@scores']);          //  GET /api/v2/beatmaps/:beatmap_id/scores
         });
         Route::get('me', ['uses' => 'UsersController@me']);                               //  GET /api/v2/me
+        Route::get('users/{id}', ['uses' => 'UsersController@show']);                     //  GET /api/v2/users/:user_id
     });
     // legacy api routes
     Route::group(['prefix' => 'v1'], function () {

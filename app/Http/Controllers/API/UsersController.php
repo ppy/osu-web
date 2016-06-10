@@ -20,14 +20,25 @@
 namespace App\Http\Controllers\API;
 
 use Auth;
+use App\Models\User;
 use App\Transformers\UserTransformer;
 
 class UsersController extends Controller
 {
+    public function show($user_id)
+    {
+        return $this->showUser(User::findOrFail($user_id));
+    }
+
     public function me()
     {
+        return $this->showUser(Auth::user());
+    }
+
+    private function showUser($user)
+    {
         return fractal_api_serialize_item(
-            Auth::user(),
+            $user,
             new UserTransformer(),
             'defaultStatistics'
         );
