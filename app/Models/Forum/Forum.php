@@ -113,7 +113,7 @@ class Forum extends Model
 
     public function scopeMoveDestination($query)
     {
-        $query->where('forum_type', 1)->orderBy('left_id');
+        $query->orderBy('left_id');
     }
 
     public function setForumParentsAttribute($value)
@@ -170,6 +170,11 @@ class Forum extends Model
 
             $this->save();
         });
+    }
+
+    public function currentDepth()
+    {
+        return count($this->forum_parents);
     }
 
     public function setTopicsCountCache()

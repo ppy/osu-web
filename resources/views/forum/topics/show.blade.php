@@ -355,7 +355,12 @@
                         {!! Form::open(['url' => route('forum.topics.move', $topic->topic_id), 'data-remote' => true]) !!}
                             <select name="destination_forum_id">
                                 @foreach (App\Models\Forum\Forum::moveDestination()->get() as $forum)
-                                    <option value="{{ $forum->getKey() }}">
+                                    <option value="{{ $forum->getKey() }}"
+                                        {{ $forum->isOpen() ? '' : 'disabled' }}
+                                    >
+                                        @for ($i = 0; $i < $forum->currentDepth(); $i++)
+                                            -
+                                        @endfor
                                         {{ $forum->forum_name }}
                                     </option>
                                 @endforeach
