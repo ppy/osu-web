@@ -101,7 +101,7 @@
             </div>
             <div class="js-landing-graph landing-graph">
                 <div class="landing-graph__info">
-                    <b>6,249,738</b> registered players, <b>2,845</b> online players now
+                    <b>{{ number_format($totalUsers, 0) }}</b> registered players, <b>{{ number_format($currentOnline, 0) }}</b> online players now
                 </div>
             </div>        
         </div>
@@ -116,7 +116,12 @@
 @section ("script")
 @parent
 
+    <script id="json-stats" type="application/json">
+        {!! json_encode($stats) !!}
+    </script>
+
 <script src="{{ elixir("js/react/landing-page.js") }}" data-turbolinks-track></script>
+
 <script>
     // Define margins
     var margin = {top: 40, right: 0, bottom: 0, left: 0},
@@ -147,9 +152,7 @@
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     // Read in data
-    d3.csv("/landing-csv.csv", function(error, data) {
-        if (error) throw error;
-
+    function modelStats(data) {
         // Parsing data
         data.forEach(function (d) {
             d.date = parseDate(d.date);
@@ -188,6 +191,10 @@
         .attr('cy', 0)
         .attr('cx', xScale(maxElem.date))
         .attr('r', peakR);
-    });
+    };
+
+    // Load the data
+    var stats = osu.parseJson('json-stats');
+    modelStats(stats);
 </script>
 @endsection
