@@ -216,6 +216,18 @@
                         @endif
                     </a>
                 @endif
+
+                @if (priv_check('ForumTopicLock', $topic)->can())
+                    <button
+                        class="forum-topic-nav__button-circle"
+                        data-target="#forum-topic-move-modal"
+                        data-toggle="modal"
+                        type="button"
+                        title="{{ trans('forum.topic.move') }}"
+                    >
+                        <i class="fa fa-internet-explorer"></i>
+                    </button>
+                @endif
             </div>
 
             <div class="forum-topic-nav__group forum-topic-nav__group--main">
@@ -334,4 +346,33 @@
     <script data-turbolinks-eval="always">
         window.postJumpTo = {{ $jumpTo }};
     </script>
+
+    @if (priv_check('ForumTopicMove', $topic)->can())
+        <div id="forum-topic-move-modal" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body modal-body--page">
+                        {!! Form::open(['url' => route('forum.topics.move', $topic->topic_id), 'data-remote' => true]) !!}
+                            <select name="destination_forum_id">
+                                @foreach (App\Models\Forum\Forum::moveDestination()->get() as $forum)
+                                    <option value="{{ $forum->getKey() }}"
+                                        {{ $forum->isOpen() ? '' : 'disabled' }}
+                                    >
+                                        @for ($i = 0; $i < $forum->currentDepth(); $i++)
+                                            -
+                                        @endfor
+                                        {{ $forum->forum_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            <p>
+                                <button>{{ trans('common.buttons.save') }}</button>
+                            </p>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 @endsection
