@@ -113,7 +113,7 @@ class Forum extends Model
 
     public function scopeMoveDestination($query)
     {
-        $query->where('forum_type', 1);
+        $query->where('forum_type', 1)->orderBy('left_id');
     }
 
     public function setForumParentsAttribute($value)
