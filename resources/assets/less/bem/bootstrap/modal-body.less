@@ -21,6 +21,25 @@
   padding: 10px;
   border-radius: 0 0 5px 5px;
 
+  // Modifiers
+  &--no-rounding {
+    border-radius: 0;
+  }
+
+  &--compartimentalized {
+    display: flex;
+    padding: 0;
+  }
+
+  &--user-dropdown {
+    background-color: #FFF;
+  }
+
+  &--page {
+    .default-border-radius();
+    background-color: @grey-f;
+  }
+
   // Elements
   &__compartment {
     display: flex;
@@ -63,19 +82,5 @@
     font-size: 18px;
     font-style: normal;
     margin: 0;
-  }
-
-  // Modifiers
-  &--no-rounding {
-    border-radius: 0;
-  }
-
-  &--compartimentalized {
-    display: flex;
-    padding: 0;
-  }
-
-  &--user-dropdown {
-    background-color: #FFF;
   }
 }
