@@ -117,6 +117,7 @@ BeatmapDiscussions.Discussions = React.createClass
 
   filtered: (discussion) ->
     switch @props.currentFilter
+      when 'mine' then discussion.user_id != @props.currentUser.id
       when 'resolved' then discussion.message_type == 'praise' || !discussion.resolved
       when 'pending' then discussion.message_type == 'praise' || discussion.resolved
       when 'praises' then discussion.message_type != 'praise'
