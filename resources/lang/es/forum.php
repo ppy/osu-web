@@ -1,4 +1,5 @@
 <?php
+
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -16,23 +17,26 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
+
     'covers' => [
         'create' => [
             '_' => 'Definir imagen de portada',
             'button' => 'Subir imagen',
             'info' => 'El tamaño debe ser :dimensions. También puedes soltar tu imagen aquí para subirla.',
         ],
+
         'destroy' => [
             '_' => 'Remover imagen de portada',
             'confirm' => '¿Estás seguro de que quieres remover la imagen de portada?',
         ],
     ],
-    'pinned_topics' => 'Temas Fijos,
+    'pinned_topics' => 'Temas Fijos',
     'post' => [
         'confirm_delete' => '¿Eliminar post?',
         'edited' => 'Última edición por :user el :when, editado :count veces en total.',
-        'posted_at' => 'posteado :when',
+        'posted_at' => 'publicado :when',
         'actions' => [
             'delete' => 'Eliminar post',
             'edit' => 'Editar post',
@@ -48,15 +52,15 @@ return [
     'topic' => [
         'create' => [
             'placeholder' => [
-                'body' => 'Escribe el contenido aquí',
-                'title' => 'Clic aquí para definir el título',
+                'body' => 'Escribir el contenido del post aquí',
+                'title' => 'Clic aquí para definir un título',
             ],
-            'preview' => 'Vista Previa',
+            'preview' => 'Previsualizar',
             'submit' => 'Enviar',
         ],
-        'go_to_latest' => 'ver último post',
+        'go_to_latest' => 'ver el último post',
         'jump' => [
-            'enter' => 'clic para ingresar un número de post específico',
+            'enter' => 'clic para ingresar un número de post específico ',
             'first' => 'ir al primer post',
             'last' => 'ir al último post',
             'next' => 'saltarse los siguientes 10 posts',
@@ -64,7 +68,7 @@ return [
         ],
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última respuesta por :user',
-        'move' => 'Moverse a otro foro',
+        'move' => 'Mover a otro foro',
         'new_topic' => 'Escribir nuevo tema',
         'post_edit' => [
             'cancel' => 'Cancelar',
@@ -74,35 +78,41 @@ return [
                 'end' => 'Salir de Pantalla Completa',
             ],
         ],
-        'post_reply' => 'Responder',
+        'post_reply' => 'Enviar',
         'reply_box_placeholder' => 'Escribe aquí para responder',
         'started_by' => 'por :user',
     ],
     'topics' => [
-        '_' => 'Topics',
+        '_' => 'Temas',
+
         'actions' => [
             'reply' => 'Mostrar caja de respuesta',
-            'reply_with_quote' => 'Cita el post para responder',
+            'reply_with_quote' => 'Citar post para responder',
         ],
+
         'index' => [
             'views' => 'vistas',
             'replies' => 'respuestas',
         ],
+
         'lock' => [
             'locked-0' => 'El tema ha sido desbloqueado',
             'locked-1' => 'El tema ha sido bloqueado',
             'is_locked' => 'Este tema está bloqueado y no se puede responder',
         ],
+
         'show' => [
             'feature_vote' => [
-                'current' => 'Prioridad Actual: +:count',
+                'current' => 'Prioridad actual: +:count',
                 'do' => 'Promover esta solicitud',
+
                 'user' => [
                     'current' => 'Tienes :votes restantes.',
-                    'count' => '{0} sin votos|{1} :count voto|[2,Inf] :count votos',
+                    'count' => '{0} cero votos|{1} :count voto|[2,Inf] :count votos',
                     'not_enough' => "No te quedan más votos",
                 ],
             ],
         ],
     ],
+
 ];
