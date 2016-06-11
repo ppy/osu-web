@@ -285,6 +285,17 @@ class OsuAuthorize
         }
     }
 
+    public function checkForumTopicMove($user, $topic)
+    {
+        if ($user === null) {
+            return 'require_login';
+        }
+
+        if ($user->isGMT()) {
+            return 'ok';
+        }
+    }
+
     public function checkForumTopicReply($user, $topic)
     {
         $prefix = 'forum.topic.reply.';

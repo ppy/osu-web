@@ -68,6 +68,7 @@ return [
         ],
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'latest reply by :user',
+        'move' => 'Move to another forum',
         'new_topic' => 'Post new topic',
         'post_edit' => [
             'cancel' => 'Cancel',
