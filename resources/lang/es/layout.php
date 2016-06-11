@@ -105,7 +105,7 @@ return [
         ],
         'admin-forum' => [
             '_' => 'admin::forum',
-            'forum-covers-index' => 'covers del foro',
+            'forum-covers-index' => 'portadas del foro',
         ],
         'admin-store' => [
             '_' => 'admin::store',
@@ -117,7 +117,7 @@ return [
             'logs-index' => 'registro',
             'beatmapsets' => [
                 '_' => 'beatmapsets',
-                'covers' => 'covers',
+                'covers' => 'portadas',
                 'show' => 'detalles',
             ],
         ],
@@ -162,6 +162,6 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "Por si acaso, aquí tienes un código que puedes dar a soporte técnico!",
+        'reference' => "¡Por si acaso, aquí tienes un código que puedes dar a soporte técnico!",
     ],
 ];
