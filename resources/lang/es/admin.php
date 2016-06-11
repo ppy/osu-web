@@ -39,7 +39,7 @@ return [
 
                 'forum-name' => 'Foro #:id: :name',
 
-                'no-cover' => 'Fondo no definido',
+                'no-cover' => 'Portada no definida',
 
                 'submit' => [
                     'save' => 'Guardar',
