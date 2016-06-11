@@ -46,11 +46,11 @@ return [
                     'update' => 'Actualizar',
                 ],
 
-                'title' => 'Lista de fondos de foro',
+                'title' => 'Lista de portadas de foro',
 
                 'type-title' => [
-                    'default-topic' => 'Fondo del tema por defecto',
-                    'main' => 'Fondo de foro',
+                    'default-topic' => 'Portada del tema por defecto',
+                    'main' => 'Portada de foro',
                 ],
             ],
         ],
