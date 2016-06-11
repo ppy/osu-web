@@ -77,8 +77,8 @@ return [
         ],
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Invalid cover specified.',
-                'not_owner' => 'Only owner can edit cover.',
+                'uneditable' => 'Fondo inválido especificado.',
+                'not_owner' => 'Solo el dueño puede cambiar el fondo.',
             ],
         ],
         'view' => [
@@ -92,11 +92,11 @@ return [
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'El user page está bloqueado.',
+                'locked' => 'La página de usuario está bloqueada.',
                 'require_support_to_create' => 'Necesitas ser supporter.',
                 'user' => [
-                    'silenced' => 'No puedes editar tu user page mientras estás silenciado.',
-                    'restricted' => 'No puedes editar tu user page mientras estás restringido.',
+                    'silenced' => 'No puedes editar tu página de usuario mientras estás silenciado.',
+                    'restricted' => 'No puedes editar tu página de usuario mientras estás restringido.',
                 ],
             ],
         ],
