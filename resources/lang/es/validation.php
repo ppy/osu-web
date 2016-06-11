@@ -17,6 +17,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 return [
-    'mixture' => ':attribute falta de un número o letra',
+    'mixture' => ':attribute carece de un número o letra',
     'required' => ':attribute es requerido',
 ];
