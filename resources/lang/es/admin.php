@@ -39,18 +39,18 @@ return [
 
                 'forum-name' => 'Foro #:id: :name',
 
-                'no-cover' => 'Cover no definido',
+                'no-cover' => 'Fondo no definido',
 
                 'submit' => [
                     'save' => 'Guardar',
                     'update' => 'Actualizar',
                 ],
 
-                'title' => 'Forum Covers List',
+                'title' => 'Lista de fondos de foro',
 
                 'type-title' => [
-                    'default-topic' => 'Default Topic Cover',
-                    'main' => 'Forum Cover',
+                    'default-topic' => 'Fondo del tema por defecto',
+                    'main' => 'Fondo de foro',
                 ],
             ],
         ],
