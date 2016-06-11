@@ -39,8 +39,8 @@ return [
             'filtered' => 'Ninguna discusión coincide con el filtro seleccionado.',
         ],
         'message_hint' => [
-            'in_general' => 'Este post irá a la discusión general de beatmapset. Para moddear este beatmap, empieza un mensaje con marca de tiempo (ejem: 00:12:345).',
-            'in_timeline' => 'Para moddear multiples marcas de tiempo, escríbelas múltiples veces (un post por marca de tiempo).',
+            'in_general' => 'Este post irá a la discusión general de beatmapset. Para moddear este beatmap, empieza un mensaje con linea de tiempo (ejem: 00:12:345).',
+            'in_timeline' => 'Para moddear multiples lineas de tiempo, escríbelas múltiples veces (un post por linea de tiempo).',
         ],
         'message_placeholder' => 'Escribe aquí para postear',
         'message_type' => [
@@ -51,7 +51,7 @@ return [
         'message_type_select' => 'Selecciona un tipo de comentario',
         'mode' => [
             'general' => 'General',
-            'timeline' => 'Timeline',
+            'timeline' => 'Línea de tiempo',
         ],
         'require-login' => 'Inicia sesión para postear o responder',
         'resolved' => 'Resuelto',
