@@ -19,7 +19,7 @@
 return [
         'buttons' => [
             'cancel' => 'Cancelar',
-            'post' => 'Postear',
+            'post' => 'Enviar',
             'reply' => 'Responder',
             'reset' => 'Resetear',
             'save' => 'Guardar',
@@ -29,7 +29,7 @@ return [
             'item' => ':count unidad|:count unidades',
         ],
         'dropzone' => [
-            'target' => 'soltar aquí para cargar',
+            'target' => 'suelta aquí para cargar',
         ],
         'pagination' => [
             'previous' => 'anterior',
