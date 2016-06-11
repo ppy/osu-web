@@ -84,6 +84,7 @@ BeatmapDiscussions.Main = React.createClass
         el BeatmapDiscussions.Overview,
           beatmapset: @state.beatmapset
           currentBeatmap: @state.currentBeatmap
+          currentUser: @state.currentUser
           currentFilter: @state.currentFilter
           beatmapsetDiscussion: @state.beatmapsetDiscussion
           lookupUser: @lookupUser
