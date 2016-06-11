@@ -19,13 +19,13 @@
 return [
     'covers' => [
         'create' => [
-            '_' => 'Definir imagen de cover',
+            '_' => 'Definir imagen de portada',
             'button' => 'Subir imagen',
             'info' => 'El tamaño debe ser :dimensions. También puedes soltar tu imagen aquí para subirla.',
         ],
         'destroy' => [
-            '_' => 'Remover imagen de cover',
-            'confirm' => '¿Estás seguro de que quieres remover la imagen?',
+            '_' => 'Remover imagen de portada',
+            'confirm' => '¿Estás seguro de que quieres remover la imagen de portada?',
         ],
     ],
     'pinned_topics' => 'Temas Fijos,
