@@ -42,7 +42,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
                 'beatmap_discussion_vote' => ['score' => '1'],
             ])
-            ->seeJson([]);
+            ->assertResponseOk();
 
         $this->assertEquals($currentVotes + 1, BeatmapDiscussionVote::count());
         $this->assertEquals($currentScore + 1, $this->currentScore($this->beatmapDiscussion));
@@ -56,7 +56,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
-            ->seeJson([]);
+            ->assertResponseOk();
 
         $this->assertEquals($currentVotes, BeatmapDiscussionVote::count());
         $this->assertEquals($currentScore - 2, $this->currentScore($this->beatmapDiscussion));
@@ -70,7 +70,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
                 'beatmap_discussion_vote' => ['score' => '0'],
             ])
-            ->seeJson([]);
+            ->assertResponseOk();
 
         $this->assertEquals($currentVotes - 1, BeatmapDiscussionVote::count());
         $this->assertEquals($currentScore + 1, $this->currentScore($this->beatmapDiscussion));
