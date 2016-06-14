@@ -39,12 +39,13 @@
 
                         <p>
                             <select name="destination_forum_id" class="form-control">
-                                @foreach (App\Models\Forum\Forum::moveDestination()->get() as $forum)
-                                    <option value="{{ $forum->getKey() }}"
-                                        {{ $forum->isOpen() ? '' : 'disabled' }}
+                                @foreach (App\Models\Forum\Forum::moveDestination()->get() as $dstForum)
+                                    <option value="{{ $dstForum->getKey() }}"
+                                        {{ $dstForum->isOpen() ? '' : 'disabled' }}
+                                        {{ $dstForum->getKey() === $topic->forum_id ? 'selected' : '' }}
                                     >
-                                        {{ str_repeat('&ndash;', $forum->currentDepth()) }}
-                                        {{ $forum->forum_name }}
+                                        {{ str_repeat('&ndash;', $dstForum->currentDepth()) }}
+                                        {{ $dstForum->forum_name }}
                                     </option>
                                 @endforeach
                             </select>
