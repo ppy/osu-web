@@ -66,9 +66,21 @@
       }
     }
 
+    &--sm-4 {
+      @media @desktop {
+        width: calc((4 / 12 * 100%) ~'-' @spacing);
+      }
+    }
+
     &--lg-4 {
       @media @screen-large {
         width: calc((4 / 12 * 100%) ~'-' @spacing);
+      }
+    }
+
+    &--lg-3 {
+      @media @screen-large {
+        width: calc((3 / 12 * 100%) ~'-' @spacing);
       }
     }
   }

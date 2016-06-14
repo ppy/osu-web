@@ -73,8 +73,8 @@
             <span class="popup-text"></span>
         </div>
     </div>
-    <header class="osu-layout__section osu-layout__section--full">
-        <div class="osu-layout__row osu-layout__row--page-compact landing-hero">
+    <header class="osu-layout__section osu-layout__section--minimum">
+        <div class="osu-layout__row landing-hero">
             <div class="landing-hero-slider">
                 @for($i = 1; $i <= 2; $i++)
                 <a href="#" class="landing-slide">
@@ -106,10 +106,69 @@
             </div>        
         </div>
     </header>
-    <main>
+    <main class="osu-layout__section osu-layout__section--minimum">
+        <div class="osu-layout__row landing-middle-buttons">
+            <div class="osu-layout__col-container">
+                <a href="#" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
+                    <img class="middle-button-image" src="/images/layout/landing-page/middle-button-1.jpg" alt="Placeholder text!">
+                </a>
+                <a href="#" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
+                    <img class="middle-button-image" src="/images/layout/landing-page/middle-button-2.jpg" alt="Placeholder text!">
+                </a>
+                <a href="#" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
+                    <img class="middle-button-image" src="/images/layout/landing-page/middle-button-3.jpg" alt="Placeholder text!">
+                </a>
+            </div>
+        </div>
     </main>
-    <footer>
-
+    <footer class="osu-layout__section osu-layout__section--minimum">
+        <div class="osu-layout__row landing-sitemap">
+            <div class="osu-layout__col-container landing-sitemap__container">
+                <div class="osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-3">
+                    <ul class="landing-sitemap-list">
+                        <li class="landing-sitemap-list__item">
+                            <div class="landing-sitemap-list__item--bold">General</div>
+                        </li>
+                        <li class="landing-sitemap-list__item--link">Home</li>
+                        <li class="landing-sitemap-list__item--link">Changelog</li>
+                        <li class="landing-sitemap-list__item--link">Beatmap Listing</li>
+                        <li class="landing-sitemap-list__item--link">Download osu!</li>
+                        <li class="landing-sitemap-list__item--link">Wiki</li>
+                    </ul>
+                </div>
+                <div class="osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-3">
+                    <ul class="landing-sitemap-list">
+                        <li class="landing-sitemap-list__item">
+                            <div class="landing-sitemap-list__item--bold">Help & Community</div>
+                        </li>
+                        <li class="landing-sitemap-list__item--link">Frequently Asked Questions</li>
+                        <li class="landing-sitemap-list__item--link">Community Forums</li>
+                        <li class="landing-sitemap-list__item--link">Live Streams</li>
+                        <li class="landing-sitemap-list__item--link">Report an Issue</li>
+                    </ul>
+                </div>
+                <div class="osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-3">
+                    <ul class="landing-sitemap-list">
+                        <li class="landing-sitemap-list__item">
+                            <div class="landing-sitemap-list__item--bold">Support osu!</div>
+                        </li>
+                        <li class="landing-sitemap-list__item--link">Supporter Tags</li>
+                        <li class="landing-sitemap-list__item--link">Merchandise</li>
+                    </ul>
+                </div>
+                <div class="osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-3">
+                    <ul class="landing-sitemap-list">
+                        <li class="landing-sitemap-list__item">
+                            <div class="landing-sitemap-list__item--bold">Legal & Status</div>
+                        </li>
+                        <li class="landing-sitemap-list__item--link">Terms of Service</li>
+                        <li class="landing-sitemap-list__item--link">Copyright (DMCA)</li>
+                        <li class="landing-sitemap-list__item--link">Server Status</li>
+                        <li class="landing-sitemap-list__item--link">@osustatus</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </footer>
 @endsection
 
