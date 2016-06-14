@@ -129,11 +129,11 @@
                         <li class="landing-sitemap-list__item">
                             <div class="landing-sitemap-list__item--bold">General</div>
                         </li>
-                        <li class="landing-sitemap-list__item--link">Home</li>
-                        <li class="landing-sitemap-list__item--link">Changelog</li>
-                        <li class="landing-sitemap-list__item--link">Beatmap Listing</li>
-                        <li class="landing-sitemap-list__item--link">Download osu!</li>
-                        <li class="landing-sitemap-list__item--link">Wiki</li>
+                        <li class="landing-sitemap-list__item"><a href="#" class="landing-sitemap-list__item--link">Home</a></li>
+                        <li class="landing-sitemap-list__item"><a href="#" class="landing-sitemap-list__item--link">Changelog</a></li>
+                        <li class="landing-sitemap-list__item"><a href="#" class="landing-sitemap-list__item--link">Beatmap Listing</a></li>
+                        <li class="landing-sitemap-list__item"><a href="#" class="landing-sitemap-list__item--link">Download osu!</a></li>
+                        <li class="landing-sitemap-list__item"><a href="#" class="landing-sitemap-list__item--link">Wiki</a></li>
                     </ul>
                 </div>
                 <div class="osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-3">
@@ -141,10 +141,10 @@
                         <li class="landing-sitemap-list__item">
                             <div class="landing-sitemap-list__item--bold">Help & Community</div>
                         </li>
-                        <li class="landing-sitemap-list__item--link">Frequently Asked Questions</li>
-                        <li class="landing-sitemap-list__item--link">Community Forums</li>
-                        <li class="landing-sitemap-list__item--link">Live Streams</li>
-                        <li class="landing-sitemap-list__item--link">Report an Issue</li>
+                        <li class="landing-sitemap-list__item"><a href="#" class="landing-sitemap-list__item--link">Frequently Asked Questions</a></li>
+                        <li class="landing-sitemap-list__item"><a href="#" class="landing-sitemap-list__item--link">Community Forums</a></li>
+                        <li class="landing-sitemap-list__item"><a href="#" class="landing-sitemap-list__item--link">Live Streams</a></li>
+                        <li class="landing-sitemap-list__item"><a href="#" class="landing-sitemap-list__item--link">Report an Issue</a></li>
                     </ul>
                 </div>
                 <div class="osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-3">
@@ -152,8 +152,8 @@
                         <li class="landing-sitemap-list__item">
                             <div class="landing-sitemap-list__item--bold">Support osu!</div>
                         </li>
-                        <li class="landing-sitemap-list__item--link">Supporter Tags</li>
-                        <li class="landing-sitemap-list__item--link">Merchandise</li>
+                        <li class="landing-sitemap-list__item"><a href="#" class="landing-sitemap-list__item--link">Supporter Tags</a></li>
+                        <li class="landing-sitemap-list__item"><a href="#" class="landing-sitemap-list__item--link">Merchandise</a></li>
                     </ul>
                 </div>
                 <div class="osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-3">
@@ -161,10 +161,10 @@
                         <li class="landing-sitemap-list__item">
                             <div class="landing-sitemap-list__item--bold">Legal & Status</div>
                         </li>
-                        <li class="landing-sitemap-list__item--link">Terms of Service</li>
-                        <li class="landing-sitemap-list__item--link">Copyright (DMCA)</li>
-                        <li class="landing-sitemap-list__item--link">Server Status</li>
-                        <li class="landing-sitemap-list__item--link">@osustatus</li>
+                        <li class="landing-sitemap-list__item"><a href="#" class="landing-sitemap-list__item--link">Terms of Service</a></li>
+                        <li class="landing-sitemap-list__item"><a href="#" class="landing-sitemap-list__item--link">Copyright (DMCA)</a></li>
+                        <li class="landing-sitemap-list__item"><a href="#" class="landing-sitemap-list__item--link">Server Status</a></li>
+                        <li class="landing-sitemap-list__item"><a href="#" class="landing-sitemap-list__item--link">@osustatus</a></li>
                     </ul>
                 </div>
             </div>
