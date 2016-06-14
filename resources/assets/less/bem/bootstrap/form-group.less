@@ -20,13 +20,13 @@
 .form-group {
   // Modifiers
   &--compact {
-    margin: -@grid-gutter-width/8 0 0 0;
+    margin: (-@spacing / 2) 0 0;
   }
 
   // Elements
   &__control {
-    &--compact {
-      margin: @grid-gutter-width/8 0 0 0;
+    .form-group--compact & {
+      margin: (@spacing / 2) 0 0;
     }
   }
 }
