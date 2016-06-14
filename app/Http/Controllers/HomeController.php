@@ -39,11 +39,12 @@ class HomeController extends Controller
             ->whereRaw('banchostats_id mod 10 = 0')
             ->get();
         $totalUsers = User::count();
+        $currentOnline = (is_null($stats) ? $stats->last()->users_osu : 0);
 
         return view('home.landing')
             ->with('stats', $stats)
             ->with('totalUsers', $totalUsers)
-            ->with('currentOnline', $stats->last()->users_osu);
+            ->with('currentOnline', $currentOnline);
     }
 
     public function getNews()

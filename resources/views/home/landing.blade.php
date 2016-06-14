@@ -254,6 +254,7 @@
 
     // Load the data
     var stats = osu.parseJson('json-stats');
-    modelStats(stats);
+    if(stats.length != 0)
+        modelStats(stats);
 </script>
 @endsection
