@@ -68,7 +68,6 @@ return [
         ],
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'latest reply by :user',
-        'move' => 'Move to another forum',
         'new_topic' => 'Post new topic',
         'post_edit' => [
             'cancel' => 'Cancel',
@@ -99,6 +98,10 @@ return [
             'locked-0' => 'Topic has been unlocked',
             'locked-1' => 'Topic has been locked',
             'is_locked' => 'This topic is locked and can not be replied to',
+        ],
+
+        'moderate_move' => [
+            'title' => 'Move to another forum',
         ],
 
         'show' => [

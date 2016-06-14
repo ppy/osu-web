@@ -20,7 +20,7 @@
     data-target="#forum-topic-move-modal"
     data-toggle="modal"
     type="button"
-    title="{{ trans('forum.topic.move') }}"
+    title="{{ trans('forum.topics.moderate_move.title') }}"
 >
     <i class="fa fa-ellipsis-h"></i>
 </button>
@@ -29,23 +29,29 @@
     @parent
 
     <div id="forum-topic-move-modal" class="modal fade" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog@sm">
             <div class="modal-content">
                 <div class="modal-body modal-body--page">
                     {!! Form::open(['url' => route('forum.topics.move', $topic->topic_id), 'data-remote' => true]) !!}
-                        <select name="destination_forum_id">
-                            @foreach (App\Models\Forum\Forum::moveDestination()->get() as $forum)
-                                <option value="{{ $forum->getKey() }}"
-                                    {{ $forum->isOpen() ? '' : 'disabled' }}
-                                >
-                                    {{ str_repeat('&ndash;', $forum->currentDepth()) }}
-                                    {{ $forum->forum_name }}
-                                </option>
-                            @endforeach
-                        </select>
+                        <h1>
+                            {{ trans('forum.topics.moderate_move.title') }}
+                        </h1>
 
                         <p>
-                            <button>{{ trans('common.buttons.save') }}</button>
+                            <select name="destination_forum_id" class="form-control">
+                                @foreach (App\Models\Forum\Forum::moveDestination()->get() as $forum)
+                                    <option value="{{ $forum->getKey() }}"
+                                        {{ $forum->isOpen() ? '' : 'disabled' }}
+                                    >
+                                        {{ str_repeat('&ndash;', $forum->currentDepth()) }}
+                                        {{ $forum->forum_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </p>
+
+                        <p class="text-right">
+                            <button class="btn-osu-lite btn-osu-lite--default">{{ trans('common.buttons.save') }}</button>
                         </p>
                     {!! Form::close() !!}
                 </div>
