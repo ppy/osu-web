@@ -50,21 +50,7 @@ class BeatmapDiscussionsController extends Controller
             ]
         );
 
-        $vote = $discussion->beatmapDiscussionVotes()->where(['user_id' => Auth::user()->user_id])->firstOrNew([]);
-        $vote->fill($params);
-
-        if (($params['score'] ?? null) === 0) {
-            if ($vote->id === null) {
-                // no existing vote and setting to 0 is noop
-                $result = true;
-            } else {
-                $result = $vote->delete();
-            }
-        } else {
-            $result = $vote->save();
-        }
-
-        if ($result === true) {
+        if ($discussion->vote($params)) {
             return $discussion->beatmapsetDiscussion->defaultJson(Auth::user());
         } else {
             return error_popup(trans('beatmaps.discussion-votes.update.error'));

@@ -124,4 +124,22 @@ class BeatmapDiscussion extends Model
             $this->hasValidMessageType() &&
             $this->hasValidTimestamp();
     }
+
+    public function vote($params)
+    {
+        $vote = $this->beatmapDiscussionVotes()->where(['user_id' => $params['user_id']])->firstOrNew([]);
+
+        $vote->fill($params);
+
+        if (($params['score'] ?? null) === 0) {
+            if ($vote->id === null) {
+                // no existing vote and setting to 0 is noop
+                return true;
+            } else {
+                return $vote->delete();
+            }
+        } else {
+            return $vote->save();
+        }
+    }
 }
