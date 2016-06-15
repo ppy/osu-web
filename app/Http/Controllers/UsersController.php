@@ -143,6 +143,7 @@ class UsersController extends Controller
 
         return view('users.show', compact('user', 'userArray', 'achievements'));
     }
+
     public function search()
     {
         $query = Request::input('query');
