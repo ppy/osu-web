@@ -48,7 +48,7 @@
         &__link {
             color: #fff;
             font-size: 12px;
-            margin-right: 40px;
+            margin-right: 20px;
             text-transform: lowercase;
 
             &--bold {
@@ -75,7 +75,6 @@
         right: 0;
         top: 30px;
         margin: auto;
-        .at2x("/images/layout/osu-logo.png");
         z-index: @nav-float-z-index;
 
         h1 {
@@ -88,6 +87,20 @@
             padding: 0;
             position: absolute;
             width: 1px;
+        }
+
+        &--overlay,
+        &--glow,
+        &--timinmg,
+        &--bounce,
+
+        &--overlay {
+            .at2x("/images/layout/osu-logo.png", 100px 100px);
+            position: relative;
+            z-index: 10;
+            // opacity: 0.15;
+            width: 100%;
+            height: 100%;
         }
     }
 }

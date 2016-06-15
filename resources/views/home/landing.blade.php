@@ -34,7 +34,13 @@
                 <a href="{{ array_values($links)[0] }}" class="landing-nav__section__link {{ ($section == "home") ? "landing-nav__section__link--bold" : "" }}">{{ trans("layout.menu.$section._") }}</a>
                 @endforeach
             </div>
-            <a href="#" class="landing-nav__logo"><h1>osu!</h1></a>
+            <a href="#" class="landing-nav__logo">
+                <h1>osu!</h1>
+              <div class="landing-nav__logo--overlay"></div>
+              <div class="landing-nav__logo--glow"></div>
+              <div class="landing-nav__logo--timing"></div>
+              <div class="landing-nav__logo--bounce"></div>
+            </a>
             <div class="landing-nav__section landing-nav__section--right js-nav-avatar">
                 <a href="#" class="landing-nav__section__link" title="{{ trans("users.anonymous.login_link") }}" data-toggle="modal" data-target="#user-dropdown-modal">{{ trans("users.login._") }}</a>
                 <a href="{{ route("users.register") }}" class="landing-nav__section__link">{{ trans("users.signup._") }}</a>
@@ -110,18 +116,18 @@
         <div class="osu-layout__row landing-middle-buttons">
             <div class="osu-layout__col-container">
                 <a href="#" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
-                    <img class="middle-button-image" src="/images/layout/landing-page/middle-button-1.jpg" alt="Placeholder text!">
+                    <img class="middle-button-image shadow-hover" src="/images/layout/landing-page/middle-button-1.jpg" alt="Placeholder text!">
                 </a>
                 <a href="#" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
-                    <img class="middle-button-image" src="/images/layout/landing-page/middle-button-2.jpg" alt="Placeholder text!">
+                    <img class="middle-button-image shadow-hover" src="/images/layout/landing-page/middle-button-2.jpg" alt="Placeholder text!">
                 </a>
                 <a href="#" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
-                    <img class="middle-button-image" src="/images/layout/landing-page/middle-button-3.jpg" alt="Placeholder text!">
+                    <img class="middle-button-image shadow-hover" src="/images/layout/landing-page/middle-button-3.jpg" alt="Placeholder text!">
                 </a>
             </div>
         </div>
     </main>
-    <footer class="osu-layout__section osu-layout__section--minimum">
+    <footer class="osu-layout__section landing-footer">
         <div class="osu-layout__row landing-sitemap">
             <div class="osu-layout__col-container landing-sitemap__container">
                 <div class="osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-3">
@@ -168,6 +174,20 @@
                     </ul>
                 </div>
             </div>
+        </div>
+        <div class="landing-footer-bottom">
+            <div class="landing-footer-bottom__social">
+                <a href="#" class="fa fa-heart landing-footer-bottom__social--icon"></a>
+                <a href="#" class="fa fa-twitter landing-footer-bottom__social--icon"></a>
+                <a href="#" class="fa fa-facebook-official landing-footer-bottom__social--icon"></a>
+            </div>
+            <div class="landing-footer-bottom__links">
+                <a href="#" class="landing-footer-bottom__links--link">terms of service</a>
+                <a href="#" class="landing-footer-bottom__links--link">copyright (DMCA)</a>
+                <a href="#" class="landing-footer-bottom__links--link">server status</a>
+                <a href="#" class="landing-footer-bottom__links--link">@osustatus</a>
+            </div>
+            <div class="landing-footer-bottom__copyright">ppy powered 2007-2016</div>
         </div>
     </footer>
 @endsection
