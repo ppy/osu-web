@@ -36,10 +36,10 @@
             </div>
             <a href="#" class="landing-nav__logo">
                 <h1>osu!</h1>
-              <div class="landing-nav__logo--overlay"></div>
-              <div class="landing-nav__logo--glow"></div>
-              <div class="landing-nav__logo--timing"></div>
-              <div class="landing-nav__logo--bounce"></div>
+                <span class="landing-nav__logo--overlay"></span>
+                <span class="landing-nav__logo--glow"></span>
+                <span class="landing-nav__logo--timing"></span>
+                <span class="landing-nav__logo--bounce"></span>
             </a>
             <div class="landing-nav__section landing-nav__section--right js-nav-avatar">
                 <a href="#" class="landing-nav__section__link" title="{{ trans("users.anonymous.login_link") }}" data-toggle="modal" data-target="#user-dropdown-modal">{{ trans("users.login._") }}</a>
