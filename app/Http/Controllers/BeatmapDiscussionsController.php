@@ -45,7 +45,6 @@ class BeatmapDiscussionsController extends Controller
             ['score:int'],
             [],
             [
-                'beatmap_discussion_id' => $discussion->id,
                 'user_id' => Auth::user()->user_id,
             ]
         );
