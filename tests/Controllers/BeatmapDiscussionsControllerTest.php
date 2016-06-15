@@ -38,9 +38,9 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->otherBeatmap = $this->otherBeatmapset->beatmaps()->save(factory(Beatmap::class)->make());
     }
 
-    public function testPutVote()
+    // normal vote
+    public function testPutVoteInitial()
     {
-        // normal vote
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore($this->beatmapDiscussion);
 
@@ -53,8 +53,13 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this->assertEquals($currentVotes + 1, BeatmapDiscussionVote::count());
         $this->assertEquals($currentScore + 1, $this->currentScore($this->beatmapDiscussion));
+    }
 
-        // voting again only changes the score
+    // voting again only changes the score
+    public function testPutVoteChange()
+    {
+        $this->beatmapDiscussion->vote(['score' => 1, 'user_id' => $this->user->user_id]);
+
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore($this->beatmapDiscussion);
 
@@ -67,8 +72,13 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this->assertEquals($currentVotes, BeatmapDiscussionVote::count());
         $this->assertEquals($currentScore - 2, $this->currentScore($this->beatmapDiscussion));
+    }
 
-        // but voting 0 will remove the vote
+    // voting 0 will remove the vote
+    public function testPutVoteRemove()
+    {
+        $this->beatmapDiscussion->vote(['score' => 1, 'user_id' => $this->user->user_id]);
+
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore($this->beatmapDiscussion);
 
@@ -80,7 +90,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->assertResponseOk();
 
         $this->assertEquals($currentVotes - 1, BeatmapDiscussionVote::count());
-        $this->assertEquals($currentScore + 1, $this->currentScore($this->beatmapDiscussion));
+        $this->assertEquals($currentScore - 1, $this->currentScore($this->beatmapDiscussion));
     }
 
     private function currentScore($discussion)
