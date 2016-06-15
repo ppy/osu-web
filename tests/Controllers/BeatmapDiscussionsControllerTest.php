@@ -17,14 +17,21 @@ class BeatmapDiscussionsControllerTest extends TestCase
         parent::setUp();
 
         $this->user = factory(User::class)->create();
-        $this->beatmapset = factory(Beatmapset::class)->create();
-        $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        $this->beatmapsetDiscussion = BeatmapsetDiscussion::create(['beatmapset_id' => $this->beatmap->beatmapset_id]);
+        $this->beatmapset = factory(Beatmapset::class)->create([
+            'user_id' => $this->user->user_id,
+        ]);
+        $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make([
+            'user_id' => $this->user->user_id,
+        ]));
+        $this->beatmapsetDiscussion = BeatmapsetDiscussion::create([
+            'beatmapset_id' => $this->beatmapset->beatmapset_id,
+        ]);
         $this->beatmapDiscussion = BeatmapDiscussion::create([
             'beatmapset_discussion_id' => $this->beatmapsetDiscussion->id,
             'timestamp' => 0,
             'message_type' => 'praise',
             'beatmap_id' => $this->beatmap->beatmap_id,
+            'user_id' => $this->user->user_id,
         ]);
 
         $this->otherBeatmapset = factory(Beatmapset::class)->create();
