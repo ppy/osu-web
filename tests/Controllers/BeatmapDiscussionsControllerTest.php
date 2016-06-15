@@ -33,9 +33,6 @@ class BeatmapDiscussionsControllerTest extends TestCase
             'beatmap_id' => $this->beatmap->beatmap_id,
             'user_id' => $this->user->user_id,
         ]);
-
-        $this->otherBeatmapset = factory(Beatmapset::class)->create();
-        $this->otherBeatmap = $this->otherBeatmapset->beatmaps()->save(factory(Beatmap::class)->make());
     }
 
     // normal vote
