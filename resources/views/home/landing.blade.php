@@ -216,6 +216,9 @@
     var xScale = d3.time.scale().range([0, width]);
     var yScale = d3.scale.linear().range([height, 0]);
 
+    // Peak text indicator point
+    var maxElem = null;
+
     // Define area
     var area = d3.svg.area().interpolate("basis")
     .x(function(d) { return xScale(d.date); })
@@ -248,10 +251,7 @@
         .attr("class", "landing-graph__area")
         .attr("d", area);
 
-        // Append peak text
-        var maxElem = null;
-
-        //Find the date for the max
+        //Find the date for the max, from the end backward
         for(var i = data.length - 1; i >= 0; i--)
         {
             if(maxElem === null || data[i].users_osu > maxElem.users_osu)
@@ -272,9 +272,34 @@
         .attr('r', peakR);
     };
 
+    function resize() {
+        var width = parseInt(d3.select(".js-landing-graph").style("width")) - margin.left - margin.right,
+        height = parseInt(d3.select(".js-landing-graph").style("height")) - margin.top - margin.bottom;
+
+        svg
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom);
+
+        // Update the range of the scale with new width/height
+        xScale.range([0, width]);
+        yScale.range([height, 0]);
+
+        // Force D3 to recalculate and update the line
+        svg.selectAll("path")
+        .attr("d", area);
+
+        svg.select(".landing-graph__peak--text")
+        .attr('x', xScale(maxElem.date) + peakR * 2);
+
+        svg.select(".landing-graph__peak--circle")
+        .attr('cx', xScale(maxElem.date));        
+    };
+
     // Load the data
     var stats = osu.parseJson('json-stats');
     if(stats.length != 0)
         modelStats(stats);
+
+    d3.select(window).on('resize', resize);
 </script>
 @endsection
