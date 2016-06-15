@@ -177,15 +177,15 @@
         </div>
         <div class="landing-footer-bottom">
             <div class="landing-footer-bottom__social">
-                <a href="#" class="fa fa-heart landing-footer-bottom__social--icon"></a>
-                <a href="#" class="fa fa-twitter landing-footer-bottom__social--icon"></a>
-                <a href="#" class="fa fa-facebook-official landing-footer-bottom__social--icon"></a>
+                <a href="{{ route('support-the-game') }}" class="fa fa-heart landing-footer-bottom__social--icon"></a>
+                <a href="{{ config("osu.urls.social.twitter") }}" class="fa fa-twitter landing-footer-bottom__social--icon"></a>
+                <a href="{{ config("osu.urls.social.facebook") }}" class="fa fa-facebook-official landing-footer-bottom__social--icon"></a>
             </div>
             <div class="landing-footer-bottom__links">
-                <a href="#" class="landing-footer-bottom__links--link">terms of service</a>
-                <a href="#" class="landing-footer-bottom__links--link">copyright (DMCA)</a>
-                <a href="#" class="landing-footer-bottom__links--link">server status</a>
-                <a href="#" class="landing-footer-bottom__links--link">@osustatus</a>
+                <a href="{{ config("osu.urls.legal.tos") }}" class="landing-footer-bottom__links--link">terms of service</a>
+                <a href="{{ config("osu.urls.legal.dmca") }}" class="landing-footer-bottom__links--link">copyright (DMCA)</a>
+                <a href="{{ config("osu.urls.legal.server") }}" class="landing-footer-bottom__links--link">server status</a>
+                <a href="{{ config("osu.urls.legal.osustatus") }}" class="landing-footer-bottom__links--link">@osustatus</a>
             </div>
             <div class="landing-footer-bottom__copyright">ppy powered 2007-2016</div>
         </div>
