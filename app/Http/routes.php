@@ -93,6 +93,7 @@ Route::get('users/register', ['as' => 'users.register', function () {
 }]);
 
 Route::get('u/{users}', ['as' => 'users.show', 'uses' => 'UsersController@show']);
+Route::get('userinfo/{users}', ['as' => 'users.showinfo', 'uses' => 'UsersController@showinfo']);
 
 // help section
 Route::get('/wiki', ['as' => 'wiki', function () {

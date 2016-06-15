@@ -19,6 +19,7 @@
  */
 namespace App\Http\Controllers;
 
+use Response;
 use App\Models\Achievement;
 use App\Models\LoginAttempt;
 use App\Models\User;
@@ -142,5 +143,53 @@ class UsersController extends Controller
         );
 
         return view('users.show', compact('user', 'userArray', 'achievements'));
+    }
+
+    public function showinfo($id)
+    {
+        $user = User::lookup($id);
+
+        if ($user === null || !$user->hasProfile()) {
+            abort(404);
+        }
+
+        $type = Request::input('t');
+        $offset = Request::input('o');
+        $limit = Request::input('l');
+
+
+        if (!in_array($type, [ //check for
+                'userAchievements',
+                'allRankHistories',
+                'allScores',
+                'allScoresBest',
+                'allScoresFirst',
+                'allStatistics',
+                'beatmapPlaycounts',
+                'page',
+                'recentActivities',
+                'recentlyReceivedKudosu',
+                'rankedAndApprovedBeatmapsets.beatmaps',
+                'favouriteBeatmapsets.beatmaps',
+            ])) return abort(400);
+
+
+        $userTransformer = new UserTransformer();
+
+        if (present($offset)){
+            $userTransformer->offset = intval($offset);
+        }
+        
+        
+        if (present($limit)){
+            $userTransformer->limit = intval($limit);
+        }
+
+        $userArray = fractal_item_array(
+            $user,
+            $userTransformer, implode(',', [$type])
+        );
+
+        return Response::json([$type=> $userArray['data'][$type]]);
     }
 }
