@@ -24,7 +24,10 @@ class TeamPage.Main extends React.Component
     @timeouts = {}
     
     @state =
-      team: props.team
+      team: $.ajax laroute.route('team.get'),
+        method: 'get'
+      .done (data) =>
+        return data
       isCoverUpdating: false
       currentMode: 'team_members'
   componentDidMount: =>

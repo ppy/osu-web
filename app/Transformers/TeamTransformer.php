@@ -25,7 +25,7 @@ use App\Models\User;
 
 class TeamTransformer extends Fractal\TransformerAbstract
 {
-    protected $defaultIncludes = [
+    protected $availableIncludes = [
     'members',
     'admins',
     ];

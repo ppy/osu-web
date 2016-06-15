@@ -46,13 +46,28 @@ class TeamsController extends Controller
         if ($team === null) {
             abort(404);
         }
+        /*
         $teamArray = fractal_item_array(
             $team,
             new TeamTransformer($team)
         );
-        return view('teams.show', compact('team', 'teamArray'));
+        */
+        return view('teams.show')->with('id', $id);
     }
 
+    public function get($id)
+    {
+        $team = Team::lookup($id);
+        if ($team === null) {
+            abort(404);
+        }
+        $teamArray = fractal_item_array(
+            $team,
+            new TeamTransformer($team),
+            Request::input('includes')
+        );
+        return $teamArray;
+    }
 
     public function addMember($id)
     {
