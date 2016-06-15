@@ -132,12 +132,9 @@ class BeatmapDiscussion extends Model
         $vote->fill($params);
 
         if ($vote->score === null) {
-            if ($vote->id === null) {
-                // no existing vote and setting to 0 is noop
-                return true;
-            } else {
-                return $vote->delete();
-            }
+            $vote->delete();
+
+            return true;
         } else {
             return $vote->save();
         }
