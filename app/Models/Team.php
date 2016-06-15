@@ -68,6 +68,6 @@ class Team extends Model
     }
     public function teamAchievments()
     {
-        return $this->hasMany("App\Models\UserAchievement");
+        return $this->hasMany("App\Models\TeamsAchievement");
     }
 }
