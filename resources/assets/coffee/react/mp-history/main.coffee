@@ -75,15 +75,16 @@ class MPHistory.Main extends React.Component
     $.unsubscribe '.mpHistoryPage'
 
   render: ->
+    remainingEventsCount = @state.events.length - @state.eventsShown
+
     div className: 'osu-layout__section',
       el MPHistory.Header,
         name: @props.match.name
         teamType: @state.teamType
 
       el MPHistory.Content,
-        events: @state.events[@state.events.length - @state.eventsShown..]
-        eventsCount: @state.events.length
-        eventsShown: @state.eventsShown
+        events: @state.events[remainingEventsCount..]
+        remainingEventsCount: remainingEventsCount
         countries: @props.countries
 
   getTeamType: (typeInt) ->

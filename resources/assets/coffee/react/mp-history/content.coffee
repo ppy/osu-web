@@ -60,11 +60,12 @@ class MPHistory.Content extends React.Component
         lastEvents = @props.events[_.last(gameIds) + 1..@props.events.length]
 
       div className: 'osu-layout__row osu-layout__row--page-mp-history',
-        div className: 'mp-history-content__show-more-box',
-          a
-            className: 'mp-history-content__show-more'
-            onClick: @showMore
-            Lang.get 'multiplayer.match.more-events', count: @props.eventsCount - @props.eventsShown
+        if @props.remainingEventsCount > 0
+          div className: 'mp-history-content__show-more-box',
+            a
+              className: 'mp-history-content__show-more'
+              onClick: @showMore
+              Lang.get 'multiplayer.match.more-events', count: @props.remainingEventsCount
 
         for id, i in gameIds
           continue if id == -1
