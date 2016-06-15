@@ -85,7 +85,7 @@ Route::delete('users/logout', ['as' => 'users.logout', 'uses' => 'UsersControlle
 Route::get('users/disabled', ['as' => 'users.disabled', 'uses' => 'UsersController@disabled']);
 
 Route::get('/t/{id}', ['as' => 'teams.show', 'uses' => 'TeamsController@show']);
-Route::get('/community/teams', ['as' => 'teams', 'uses' => 'TeamsController@index']);
+Route::get('/community/teams', ['as' => 'teams.index', 'uses' => 'TeamsController@index']);
 Route::get('/t/{id}/addmember', ['as' => 'team.addmember', 'uses' => 'TeamsController@addMember']);
 // Authentication section (Temporarily set up as replacement/improvement of config("osu.urls.*"))
 Route::get('users/forgot-password', ['as' => 'users.forgot-password', function () {

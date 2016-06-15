@@ -246,7 +246,7 @@ function nav_links()
         'forum-forums-index' => route('forum.forums.index'),
         'tournaments' => route('tournaments.index'),
         'getLive' => route('livestreams.index'),
-        'teams-index' => route('teams'),
+        'teams' => route('teams.index'),
         'getSlack' => route('slack'),
     ];
 
