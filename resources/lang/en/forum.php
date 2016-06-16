@@ -68,6 +68,7 @@ return [
         ],
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'latest reply by :user',
+        'move' => 'Move to another forum',
         'new_topic' => 'Post new topic',
         'post_edit' => [
             'cancel' => 'Cancel',
@@ -98,6 +99,19 @@ return [
             'locked-0' => 'Topic has been unlocked',
             'locked-1' => 'Topic has been locked',
             'is_locked' => 'This topic is locked and can not be replied to',
+        ],
+
+        'show' => [
+            'feature_vote' => [
+                'current' => 'Current Priority: +:count',
+                'do' => 'Promote this request',
+
+                'user' => [
+                    'current' => 'You have :votes remaining.',
+                    'count' => '{0} no vote|{1} :count vote|[2,Inf] :count votes',
+                    'not_enough' => "You don't have any more votes remaining",
+                ],
+            ],
         ],
     ],
 

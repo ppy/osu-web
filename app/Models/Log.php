@@ -36,17 +36,6 @@ class Log extends Model
     protected $dates = ['log_time'];
     protected $dateFormat = 'U';
 
-    protected $casts = [
-        'log_id' => 'integer',
-        'log_type' => 'integer',
-
-        'forum_id' => 'integer',
-        'topic_id' => 'integer',
-
-        'user_id' => 'integer',
-        'reportee_id' => 'integer',
-    ];
-
     public function getLogDataAttribute($value)
     {
         if (presence($value) === null) {
@@ -89,6 +78,19 @@ class Log extends Model
             'log_data' => [$topic->topic_title],
 
             'user_id' => ($user === null ? null : $user->user_id),
+            'forum_id' => $topic->forum_id,
+            'topic_id' => $topic->topic_id,
+        ]);
+    }
+
+    public static function logModerateForumTopicMove($topic, $originForum, $user = null)
+    {
+        return static::log([
+            'log_type' => static::LOG_FORUM_MOD,
+            'log_operation' => 'LOG_MOVE',
+            'log_data' => [$originForum->forum_name],
+
+            'user_id' => ($user->user_id ?? null),
             'forum_id' => $topic->forum_id,
             'topic_id' => $topic->topic_id,
         ]);

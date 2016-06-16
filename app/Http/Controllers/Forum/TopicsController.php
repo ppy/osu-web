@@ -26,6 +26,7 @@ use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
+use App\Models\Forum\FeatureVote;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use Carbon\Carbon;
@@ -56,7 +57,7 @@ class TopicsController extends Controller
     {
         $forum = Forum::findOrFail(Request::input('forum_id'));
 
-        $this->authorizePost($forum, null);
+        priv_check('ForumTopicStore', $forum)->ensureCan();
 
         $cover = fractal_item_array(
             TopicCover::findForUse(Request::old('cover_id'), Auth::user()),
@@ -70,7 +71,7 @@ class TopicsController extends Controller
     {
         $forum = Forum::findOrFail(Request::input('forum_id'));
 
-        $this->authorizePost($forum, null);
+        priv_check('ForumTopicStore', $forum)->ensureCan();
 
         $post = new Post([
             'post_text' => Request::input('body'),
@@ -95,7 +96,7 @@ class TopicsController extends Controller
 
         $forum = Forum::findOrFail(Request::input('forum_id'));
 
-        $this->authorizePost($forum, null);
+        priv_check('ForumTopicStore', $forum)->ensureCan();
 
         $topic = Topic::createNew([
             'forum' => $forum,
@@ -121,7 +122,7 @@ class TopicsController extends Controller
 
         $topic = Topic::with('forum.cover')->findOrFail($id);
 
-        $this->authorizeView($topic->forum);
+        priv_check('ForumView', $topic->forum)->ensureCan();
 
         $posts = $topic->posts();
 
@@ -168,11 +169,12 @@ class TopicsController extends Controller
 
         $posts = $posts
             ->take(20)
+            ->with('topic')
             ->with('user.rank')
             ->with('user.country')
             ->with('user.supports')
             ->get()
-            ->sortBy(function ($p) { return $p->post_id; });
+            ->sortBy('post_id');
 
         if ($posts->count() === 0) {
             abort($skipLayout ? 204 : 404);
@@ -196,7 +198,7 @@ class TopicsController extends Controller
     {
         $topic = Topic::findOrFail($id);
 
-        $this->authorizePost($topic->forum, $topic);
+        priv_check('ForumTopicReply', $topic)->ensureCan();
 
         $this->validate($request, [
             'body' => 'required',
@@ -214,16 +216,41 @@ class TopicsController extends Controller
 
     public function lock($id)
     {
-        // FIXME: should be moderator check?
-        // And maybe even its own controller or something.
-        if (Auth::user()->isAdmin() !== true) {
-            abort(403);
-        }
-
         $topic = Topic::findOrFail($id);
+
+        priv_check('ForumTopicLock', $topic)->ensureCan();
+
         $lock = Request::input('lock') !== '0';
         $topic->lock($lock);
 
         return ['message' => trans('forum.topics.lock.locked-'.($lock === true ? '1' : '0'))];
+    }
+
+    public function voteFeature($topicId)
+    {
+        $star = FeatureVote::createNew([
+            'user_id' => Auth::user()->user_id,
+            'topic_id' => $topicId,
+        ]);
+
+        if ($star->getKey() !== null) {
+            return ujs_redirect(route('forum.topics.show', $topicId));
+        } else {
+            return error_popup(implode(' ', $star->validationErrors()->allMessages()));
+        }
+    }
+
+    public function move($id)
+    {
+        $topic = Topic::findOrFail($id);
+        $destinationForum = Forum::findOrFail(Request::input('destination_forum_id'));
+
+        priv_check('ForumTopicMove', $topic)->ensureCan();
+
+        if ($topic->moveTo($destinationForum)) {
+            return js_view('layout.ujs-reload');
+        } else {
+            abort(422);
+        }
     }
 }

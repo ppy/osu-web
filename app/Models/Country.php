@@ -25,7 +25,9 @@ class Country extends Model
 {
     protected $table = 'osu_countries';
     protected $primaryKey = 'acronym';
-    public $timestamps = null;
+    public $incrementing = false;
+
+    public $timestamps = false;
 
     public function scopeForStore($query)
     {

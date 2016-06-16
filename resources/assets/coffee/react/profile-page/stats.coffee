@@ -19,58 +19,61 @@ el = React.createElement
 
 class ProfilePage.Stats extends React.Component
   render: =>
-    el 'div', className: 'profile-content flex-col-33',
-      el 'div', className: 'profile-row profile-row--top',
-        el 'div', className: 'profile-top-badge profile-level-badge',
-          el 'span', className: 'profile-badge-number', @props.stats.level.current
+    elements = ['ranked-score', 'accuracy', 'playcount', 'total-score', 'hits', 'maxcombo', 'replays-watched']
+
+    el 'div', className: 'page-contents__content profile-stats',
+      el 'div', className: 'page-contents__row page-contents__row--top',
+        el 'div', className: 'profile-badge profile-badge--level',
+          el 'span', className: 'profile-badge__number', @props.stats.level.current
 
         el 'div', className: 'profile-exp-bar',
           el 'div',
-            className: 'profile-exp-bar-fill'
+            className: 'profile-exp-bar--fill'
             style:
               width: "#{@props.stats.level.progress.toFixed()}%"
 
-        el 'dl', className: 'profile-stats profile-stats--light',
-          el 'dt', null,
-            Lang.get('users.show.stats.level', level: @props.stats.level.current)
-          el 'dd', null, "#{@props.stats.level.progress.toFixed()}%"
+        el 'dl', className: 'profile-stats__stat',
+          el 'dt', className: 'profile-stats__stat-key',
+            Lang.get 'users.show.stats.level', level: @props.stats.level.current
+          el 'dd', className: 'profile-stats__stat-value, profile-stats__stat-value--light',
+            "#{@props.stats.level.progress.toFixed()}"
 
-      el 'div', className: 'profile-row',
-        el 'dl', className: 'profile-stats',
-          el 'dt', null, Lang.get('users.show.stats.ranked_score')
-          el 'dd', null, @props.stats.rankedScore.toLocaleString()
+      el 'div', className: 'page-contents__row',
+        elements.map (m) =>
+          switch m
+            when 'ranked-score'
+              dt = Lang.get 'users.show.stats.ranked_score'
+              dd = @props.stats.rankedScore.toLocaleString()
+            when 'accuracy'
+              dt = Lang.get 'users.show.stats.hit_accuracy'
+              dd = "#{@props.stats.hitAccuracy.toFixed(2)}%"
+            when 'playcount'
+              dt = Lang.get 'users.show.stats.play_count'
+              dd = @props.stats.playCount.toLocaleString()
+            when 'total-score'
+              dt = Lang.get 'users.show.stats.total_score'
+              dd = @props.stats.totalScore.toLocaleString()
+            when 'hits'
+              dt = Lang.get 'users.show.stats.total_hits'
+              dd = @props.stats.totalHits.toLocaleString()
+            when 'maxcombo'
+              dt = Lang.get 'users.show.stats.maximum_combo'
+              dd = @props.stats.maximumCombo.toLocaleString()
+            when 'replays-watched'
+              dt = Lang.get 'users.show.stats.replays_watched_by_others'
+              dd = @props.stats.replaysWatchedByOthers.toLocaleString()
 
-        el 'dl', className: 'profile-stats',
-          el 'dt', null, Lang.get('users.show.stats.hit_accuracy')
-          el 'dd', null, "#{@props.stats.hitAccuracy.toFixed(2)}%"
+          el 'dl', key: m, className: 'profile-stats__stat',
+            el 'dt', className: 'profile-stats__stat-key', dt
+            el 'dd', className: 'profile-stats__stat-value', dd
 
-        el 'dl', className: 'profile-stats',
-          el 'dt', null, Lang.get('users.show.stats.play_count')
-          el 'dd', null, @props.stats.playCount.toLocaleString()
-
-        el 'dl', className: 'profile-stats',
-          el 'dt', null, Lang.get('users.show.stats.total_score')
-          el 'dd', null, @props.stats.totalScore.toLocaleString()
-
-        el 'dl', className: 'profile-stats',
-          el 'dt', null, Lang.get('users.show.stats.total_hits')
-          el 'dd', null, @props.stats.totalHits.toLocaleString()
-
-        el 'dl', className: 'profile-stats',
-          el 'dt', null, Lang.get('users.show.stats.maximum_combo')
-          el 'dd', null, @props.stats.maximumCombo.toLocaleString()
-
-        el 'dl', className: 'profile-stats',
-          el 'dt', null, Lang.get('users.show.stats.replays_watched_by_others')
-          el 'dd', null, @props.stats.replaysWatchedByOthers.toLocaleString()
-
-        el 'dl', className: 'profile-stats profile-stats--full',
-          el 'dt', null, Lang.get('users.show.stats.score_ranks')
-          el 'dd', className: 'profile-score-ranks',
+        el 'dl', className: 'profile-stats__stat profile-stats__stat--full',
+          el 'dt', className: 'profile-stats__stat-key', Lang.get 'users.show.stats.score_ranks'
+          el 'dd', className: 'profile-stats__stat-value profile-stats__ranks',
             for own rankName, rankCount of @props.stats.scoreRanks
               el 'div',
                 key: "rank-#{rankName}"
-                className: 'profile-score-rank'
+                className: 'profile-stats__rank'
                 el 'div',
                   className: "badge-rank badge-rank--medium badge-rank--#{rankName}"
                 el 'div', null, rankCount.toLocaleString()

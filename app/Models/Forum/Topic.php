@@ -20,6 +20,7 @@
 namespace App\Models\Forum;
 
 use App\Models\Log;
+use App\Models\User;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
@@ -28,6 +29,7 @@ class Topic extends Model
 {
     const STATUS_LOCKED = 1;
     const STATUS_UNLOCKED = 0;
+    const DEFAULT_ORDER_COLUMN = 'topic_last_post_time';
 
     protected $table = 'phpbb_topics';
     protected $primaryKey = 'topic_id';
@@ -38,19 +40,10 @@ class Topic extends Model
     protected $dateFormat = 'U';
 
     private $postsCount;
-    private $_canBeRepliedBy = [];
 
     private $issueTypes = 'resolved|invalid|duplicate|confirmed';
 
     protected $casts = [
-        'forum_id' => 'integer',
-        'topic_first_post_id' => 'integer',
-        'topic_id' => 'integer',
-        'topic_last_post_id' => 'integer',
-        'topic_poster' => 'integer',
-        'topic_status' => 'integer',
-        'topic_type' => 'integer',
-
         'topic_approved' => 'boolean',
     ];
 
@@ -134,7 +127,7 @@ class Topic extends Model
                 $post->user->refreshForumCache($this->forum, -1);
             }
 
-            if ($user !== null && $user->user_id !== $post->poster_id && $user->isAdmin() === true) {
+            if ($user !== null && $user->user_id !== $post->poster_id) {
                 Log::logModerateForumPost('LOG_DELETE_POST', $post);
             }
         });
@@ -142,16 +135,24 @@ class Topic extends Model
         return true;
     }
 
-    public function move($targetForum)
+    public function moveTo($destinationForum)
     {
-        DB::transaction(function () use ($targetForum) {
+        if ($this->forum_id === $destinationForum->forum_id) {
+            return true;
+        }
+
+        if (!$this->forum->isOpen()) {
+            return false;
+        }
+
+        return DB::transaction(function () use ($destinationForum) {
             $originForum = $this->forum;
-            $this->forum()->associate($targetForum);
+            $this->forum()->associate($destinationForum);
             $this->save();
 
-            $this->posts()->update(['forum_id' => $targetForum->forum_id]);
-            $this->logs()->update(['forum_id' => $targetForum->forum_id]);
-            $this->userTracks()->update(['forum_id' => $targetForum->forum_id]);
+            $this->posts()->update(['forum_id' => $destinationForum->forum_id]);
+            $this->logs()->update(['forum_id' => $destinationForum->forum_id]);
+            $this->userTracks()->update(['forum_id' => $destinationForum->forum_id]);
 
             if ($originForum !== null) {
                 $originForum->refreshCache();
@@ -160,6 +161,16 @@ class Topic extends Model
             if ($this->forum !== null) {
                 $this->forum->refreshCache();
             }
+
+            $users = User::whereIn('user_id', model_pluck($this->posts(), 'poster_id'))->get();
+
+            foreach ($users as $user) {
+                $user->refreshForumCache();
+            }
+
+            Log::logModerateForumTopicMove($this, $originForum);
+
+            return true;
         });
     }
 
@@ -188,6 +199,11 @@ class Topic extends Model
         return $this->hasMany(Log::class);
     }
 
+    public function featureVotes()
+    {
+        return $this->hasMany(FeatureVote::class);
+    }
+
     public function titleNormalized()
     {
         if ($this->isIssue() === false) {
@@ -205,7 +221,7 @@ class Topic extends Model
 
         preg_match_all("/\[({$this->issueTypes})\]/i", $this->topic_title, $issues);
 
-        return array_map(function ($value) { return strtolower($value); }, $issues[1]);
+        return array_map('strtolower', $issues[1]);
     }
 
     public function scopePinned($query)
@@ -218,9 +234,50 @@ class Topic extends Model
         return $query->where('topic_type', 0);
     }
 
-    public function scopeRecent($query)
+    public function scopeWithReplies($query, $withReplies)
     {
-        return $query->orderBy('topic_last_post_time', 'desc');
+        switch ($withReplies) {
+            case 'only':
+                $query->where('topic_replies_real', '<>', 0);
+                break;
+            case 'none':
+                $query->where('topic_replies_real', 0);
+                break;
+        }
+    }
+
+    public function scopePresetSort($query, $sort)
+    {
+        switch ($sort[0] ?? null) {
+            case 'feature-votes':
+                $sortField = 'osu_starpriority';
+                break;
+        }
+
+        $sortField ?? ($sortField = static::DEFAULT_ORDER_COLUMN);
+
+        switch ($sort[1] ?? null) {
+            case 'asc':
+                $sortOrder = $sort[1];
+                break;
+        }
+
+        $sortOrder ?? ($sortOrder = 'desc');
+
+        $query->orderBy($sortField, $sortOrder);
+
+        if ($sortField !== static::DEFAULT_ORDER_COLUMN) {
+            $query->orderBy(static::DEFAULT_ORDER_COLUMN, 'desc');
+        }
+    }
+
+    public function scopeRecent($query, $params = null)
+    {
+        $sort = $params['sort'] ?? null;
+        $withReplies = $params['withReplies'] ?? null;
+
+        $query->withReplies($withReplies);
+        $query->presetSort($sort);
     }
 
     public function nthPost($n)
@@ -240,7 +297,9 @@ class Topic extends Model
         }
 
         $firstPostPosition = $this->postPosition($sortedPosts->first()->post_id);
-        $postIds = $sortedPosts->map(function ($p) { return $p->post_id; });
+        $postIds = $sortedPosts->map(function ($p) {
+            return $p->post_id;
+        });
 
         $buf = [];
         $currentPostPosition = $firstPostPosition;
@@ -266,21 +325,6 @@ class Topic extends Model
         // not checking STATUS_LOCK because there's another
         // state (STATUS_MOVED) which isn't handled yet.
         return $this->topic_status !== static::STATUS_UNLOCKED;
-    }
-
-    public function canBeEditedBy($user)
-    {
-        return $this->posts()->first()->canBeEditedBy($user);
-    }
-
-    public function canBeRepliedBy($user)
-    {
-        $key = $user === null ? '-1' : "{$user->user_id}";
-        if (!isset($this->_canBeRepliedBy[$key])) {
-            $this->_canBeRepliedBy[$key] = Authorize::canPost($user, $this->forum, $this);
-        }
-
-        return $this->_canBeRepliedBy[$key];
     }
 
     public function markRead($user, $markTime)
@@ -424,5 +468,10 @@ class Topic extends Model
         }
 
         $this->delete();
+    }
+
+    public function isFeatureTopic()
+    {
+        return $this->forum->isFeatureForum();
     }
 }

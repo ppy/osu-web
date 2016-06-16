@@ -21,7 +21,7 @@ namespace App\Models\Score;
 
 use Illuminate\Database\Eloquent\Model as BaseModel;
 use App\Models\Beatmap;
-use App\Models\BeatmapSet;
+use App\Models\Beatmapset;
 use App\Models\User;
 
 abstract class Model extends BaseModel
@@ -29,20 +29,6 @@ abstract class Model extends BaseModel
     protected $primaryKey = 'score_id';
 
     protected $casts = [
-        'score_id' => 'integer',
-        'beatmap_id' => 'integer',
-        'beatmapset_id' => 'integer',
-        'score' => 'integer',
-        'maxcombo' => 'integer',
-        'count50' => 'integer',
-        'count100' => 'integer',
-        'count300' => 'integer',
-        'countmiss' => 'integer',
-        'countkatu' => 'integer',
-        'countgeki' => 'integer',
-        'user_id' => 'integer',
-        'rank' => 'string',
-        'pp' => 'float',
         'perfect' => 'boolean',
         'replay' => 'boolean',
     ];
@@ -66,9 +52,9 @@ abstract class Model extends BaseModel
         return $this->belongsTo(Beatmap::class);
     }
 
-    public function beatmapSet()
+    public function beatmapset()
     {
-        return $this->belongsTo(BeatmapSet::class, 'beatmapset_id');
+        return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
     }
 
     public static function getClass($modeInt)
@@ -179,6 +165,11 @@ abstract class Model extends BaseModel
 
     public function scopeDefault($query)
     {
-        return $query->where('rank', '<>', 'F')->orderBy('score_id', 'desc');
+        return $query
+            ->where('rank', '<>', 'F')
+            ->whereHas('user', function ($userQuery) {
+                $userQuery->default();
+            })
+            ->orderBy('score_id', 'desc');
     }
 }

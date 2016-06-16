@@ -105,7 +105,7 @@ BeatmapDiscussions.Post = React.createClass
       div
         className: "#{bn}__message"
         dangerouslySetInnerHTML:
-          __html: @addEditorLink @props.post.message
+          __html: osu.linkify(@addEditorLink @props.post.message)
 
       div className: "#{bn}__info-container",
         span

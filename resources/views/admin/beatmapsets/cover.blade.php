@@ -19,18 +19,18 @@
 
 @section('content')
     <div class="osu-layout__row osu-layout__row--page">
-        <h2>{{$beatmapSet->title}} - {{$beatmapSet->artist}}</h2>
+        <h2>{{$beatmapset->title}} - {{$beatmapset->artist}}</h2>
         <br>
         {!! Form::open([
-            'route' => ['admin.beatmapsets.covers.regenerate', $beatmapSet->beatmapset_id],
+            'route' => ['admin.beatmapsets.covers.regenerate', $beatmapset->beatmapset_id],
             'method' => 'POST'
         ]) !!}
             <button>regenerate</button>
         {!! Form::close() !!}
-        @foreach ($beatmapSet->coverSizes() as $size)
+        @foreach ($beatmapset->coverSizes() as $size)
             <h3>{{$size}}</h3>
-            <p>{{$beatmapSet->coverURL($size)}}</p>
-            <img src="{{$beatmapSet->coverURL($size)}}">
+            <p>{{$beatmapset->coverURL($size)}}</p>
+            <img src="{{$beatmapset->coverURL($size)}}">
             <br>
         @endforeach
     </div>

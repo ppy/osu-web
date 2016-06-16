@@ -26,14 +26,6 @@ class BeatmapDifficultyAttrib extends Model
     protected $table = 'osu_beatmap_difficulty_attribs';
     protected $primaryKey = null;
 
-    protected $casts = [
-        'beatmap_id' => 'integer',
-        'mode' => 'integer',
-        'mods' => 'integer',
-        'attrib_id' => 'integer',
-        'value' => 'float',
-    ];
-
     public $timestamps = false;
 
     public function scopeMode($query, $mode)

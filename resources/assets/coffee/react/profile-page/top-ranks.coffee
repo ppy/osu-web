@@ -36,11 +36,11 @@ ProfilePage.TopRanks = React.createClass
 
   render: ->
     div
-      className: 'profile-extra'
+      className: 'page-extra'
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       div null,
-        h3 className: 'profile-extra__title profile-extra__title--small', Lang.get('users.show.extra.top_ranks.best.title')
+        h3 className: 'page-extra__title page-extra__title--small', Lang.get('users.show.extra.top_ranks.best.title')
         if @props.scoresBest && @props.scoresBest.length
           div className: 'profile-extra-entries',
             @props.scoresBest.map (score, i) =>
@@ -52,7 +52,7 @@ ProfilePage.TopRanks = React.createClass
           p className: 'profile-extra-entries', Lang.get('users.show.extra.top_ranks.empty')
 
       div null,
-        h3 className: 'profile-extra__title profile-extra__title--small', Lang.get('users.show.extra.top_ranks.first.title')
+        h3 className: 'page-extra__title page-extra__title--small', Lang.get('users.show.extra.top_ranks.first.title')
         if @props.scoresFirst && @props.scoresFirst.length
           div className: 'profile-extra-entries',
             @props.scoresFirst.map (score, i) =>

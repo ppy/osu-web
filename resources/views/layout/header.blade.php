@@ -53,9 +53,9 @@
                             data-toggle="collapse" data-target="#xs-navbar"
                         >
                             <span class="sr-only">Toggle navigation</span>
-                            <div class="navbar-mobile__toggle-icon">
+                            <span class="navbar-mobile__toggle-icon">
                                 <i class="fa fa-bars"></i>
-                            </div>
+                            </span>
                         </button>
                     </div>
                 </div>
@@ -186,22 +186,5 @@
     <div class="alert alert-dismissable popup-clone col-md-6 col-md-offset-3 text-center" style="display: none">
         <button type="button" data-dismiss="alert" class="close"><i class="fa fa-close"></i></button>
         <span class="popup-text"></span>
-    </div>
-</div>
-<div class="loading-overlay js-loading-overlay">
-    <div class="loading-overlay__container">
-        @foreach (range(1, 4) as $n)
-            <div class="loading-overlay__follow-point
-                    loading-overlay__follow-point--{{ $n }}">
-                ›
-            </div>
-
-            @foreach (['approach', 'hit'] as $type)
-                <div class="loading-overlay__circle
-                        loading-overlay__circle--{{ $n }}
-                        loading-overlay__circle--{{ $type }}"
-                ></div>
-            @endforeach
-        @endforeach
     </div>
 </div>

@@ -25,6 +25,11 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 
 class VerifyCsrfToken extends BaseVerifier
 {
+    protected $except = [
+        'oauth/authorize',
+        'oauth/access_token',
+    ];
+
     /**
      * Handle an incoming request.
      *

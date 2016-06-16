@@ -108,7 +108,7 @@ function ujs_redirect($url)
     if (Request::ajax()) {
         return js_view('layout.ujs-redirect', ['url' => $url]);
     } else {
-        return redirect($url);
+        return redirect($url)->with('_turbolinks-location', $url);
     }
 }
 
@@ -225,9 +225,9 @@ function nav_links()
         ];
 
         $links['beatmaps'] = [
-            'getListing' => route('beatmaps'),
-            'getPacks' => route('packs'),
-            'getCharts' => route('charts'),
+            'index' => route('beatmapsets.index'),
+            // 'getPacks' => route('packs.index'),
+            // 'getCharts' => route('charts.index'),
         ];
 
         $links['ranking'] = [
@@ -238,14 +238,14 @@ function nav_links()
         ];
     } else {
         $links['beatmaps'] = [
-            'getListing' => route('beatmaps'),
+            'index' => route('beatmapsets.index'),
         ];
     }
 
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
         'tournaments' => route('tournaments.index'),
-        'getLive' => route('live'),
+        'getLive' => route('livestreams.index'),
         'getSlack' => route('slack'),
     ];
 
@@ -526,4 +526,31 @@ function get_params($input, $namespace, $keys, $defaults = [], $overrides = [])
 function array_rand_val($array)
 {
     return $array[array_rand($array)];
+}
+
+/**
+ * Just like original builder's "pluck" but with actual casting.
+ * I mean "lists" in 5.1 which then replaced by replaced "pluck"
+ * function. I mean, they deprecated the "pluck" function in 5.1
+ * and then goes on changing what the function does.
+ *
+ * If need to pluck for all rows, just call `select()` on the class.
+ */
+function model_pluck($builder, $key)
+{
+    return $builder
+        ->select($key)
+        ->get()
+        ->pluck($key)
+        ->all();
+}
+
+function priv_check($ability, $args = null)
+{
+    return priv_check_user(Auth::user(), $ability, $args);
+}
+
+function priv_check_user($user, $ability, $args = null)
+{
+    return app()->make('OsuAuthorize')->doCheckUser($user, $ability, $args);
 }

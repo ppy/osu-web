@@ -57,6 +57,7 @@ class ProfilePage.UserPageEditor extends React.Component
         editing: false
         raw: body
         initialRaw: body
+    .fail osu.ajaxError
     .always LoadingOverlay.hide
 
 
@@ -68,7 +69,7 @@ class ProfilePage.UserPageEditor extends React.Component
   render: =>
     el 'form', null,
       el 'textarea',
-        className: 'flex-full profile-page-editor-body'
+        className: 'flex-full profile-extra-user-page-editor'
         name: 'body'
         value: @props.userPage.raw
         onChange: @_change

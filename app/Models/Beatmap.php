@@ -27,24 +27,6 @@ class Beatmap extends Model
     protected $primaryKey = 'beatmap_id';
 
     protected $casts = [
-        'beatmap_id' => 'integer',
-        'beatmapset_id' => 'integer',
-        'user_id' => 'integer',
-        'total_length' => 'integer',
-        'hit_length' => 'integer',
-        'countTotal' => 'integer',
-        'countNormal' => 'integer',
-        'countSlider' => 'integer',
-        'countSpinner' => 'integer',
-        'diff_drain' => 'float',
-        'diff_size' => 'float',
-        'diff_overall' => 'float',
-        'diff_approach' => 'float',
-        'playmode' => 'integer',
-        'approved' => 'integer',
-        'difficultyrating' => 'float',
-        'playcount' => 'integer',
-        'passcount' => 'integer',
         'orphaned' => 'boolean',
     ];
 
@@ -75,14 +57,9 @@ class Beatmap extends Model
         return array_search_null($int, static::MODES);
     }
 
-    public function set()
-    {
-        return $this->beatmapset();
-    }
-
     public function beatmapset()
     {
-        return $this->belongsTo(BeatmapSet::class, 'beatmapset_id');
+        return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
     }
 
     public function beatmapDiscussions()
@@ -115,5 +92,24 @@ class Beatmap extends Model
         return $query
             ->orderBy('playmode', 'ASC')
             ->orderBy('difficultyrating', 'ASC');
+    }
+
+    public function failtimes()
+    {
+        return $this->hasMany(BeatmapFailtimes::class);
+    }
+
+    public function scores()
+    {
+        $mode = studly_case($this->modeStr($this->playmode));
+
+        return $this->hasMany("App\Models\Score\\{$mode}");
+    }
+
+    public function scoresBest()
+    {
+        $mode = studly_case($this->modeStr($this->playmode));
+
+        return $this->hasMany("App\Models\Score\Best\\{$mode}");
     }
 }

@@ -53,6 +53,39 @@
 
     <div class="js-header--alt js-sync-height--target" data-sync-height-id="forum-topic-headernav"></div>
 
+    @if (false && $topic->isFeatureTopic())
+        <div class="forum-topic-feature-vote">
+            <p>
+                @foreach ($topic->featureVotes as $vote)
+                    <span>+{{ $vote->voteIncrement() }} by {{ $vote->user->username }}</span>
+                @endforeach
+            </p>
+            <p>
+                {{ trans('forum.topics.show.feature_vote.current', [
+                    'count' => $topic->osu_starpriority,
+                ]) }}
+            </p>
+
+            @if (Auth::check())
+                @if (Auth::user()->osu_featurevotes >= App\Models\Forum\FeatureVote::COST)
+                    <a href="{{ route('forum.topics.vote-feature', $topic->getKey()) }}" data-method="POST" data-remote=1>
+                        {{ trans('forum.topics.show.feature_vote.do') }}
+                    </a>
+                @else
+                    <p>
+                        {{ trans('forum.topics.show.feature_vote.user.not_enough') }}
+                    </p>
+                @endif
+
+                <p>
+                    {{ trans('forum.topics.show.feature_vote.user.current', [
+                        'votes' => trans_choice('forum.topics.show.feature_vote.user.count', Auth::user()->osu_featurevotes),
+                    ]) }}
+                </p>
+            @endif
+        </div>
+    @endif
+
     <div class="forum-posts-load-link js-header--alt">
         <a href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => ($posts->first()->post_id - 1)]) }}" class="js-forum-posts-show-more js-forum__posts-show-more--previous" data-mode="previous">Load more</a>
         <span><i class="fa fa-refresh fa-spin"></i></span>
@@ -164,7 +197,7 @@
                     </span>
                 @endif
 
-                @if (Auth::check() === true && Auth::user()->isAdmin())
+                @if (priv_check('ForumTopicLock', $topic)->can())
                     <a
                         class="forum-topic-nav__button-circle"
                         href="{{ route('forum.topics.lock', [
@@ -174,6 +207,7 @@
                         data-remote="1"
                         data-method="post"
                         data-reload-on-success="1"
+                        data-reload-reset-scroll="1"
                     >
                         @if ($topic->isLocked())
                             <i class="fa fa-unlock"></i>
@@ -181,6 +215,18 @@
                             <i class="fa fa-lock"></i>
                         @endif
                     </a>
+                @endif
+
+                @if (priv_check('ForumTopicLock', $topic)->can())
+                    <button
+                        class="forum-topic-nav__button-circle"
+                        data-target="#forum-topic-move-modal"
+                        data-toggle="modal"
+                        type="button"
+                        title="{{ trans('forum.topic.move') }}"
+                    >
+                        <i class="fa fa-internet-explorer"></i>
+                    </button>
                 @endif
             </div>
 
@@ -300,4 +346,33 @@
     <script data-turbolinks-eval="always">
         window.postJumpTo = {{ $jumpTo }};
     </script>
+
+    @if (priv_check('ForumTopicMove', $topic)->can())
+        <div id="forum-topic-move-modal" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body modal-body--page">
+                        {!! Form::open(['url' => route('forum.topics.move', $topic->topic_id), 'data-remote' => true]) !!}
+                            <select name="destination_forum_id">
+                                @foreach (App\Models\Forum\Forum::moveDestination()->get() as $forum)
+                                    <option value="{{ $forum->getKey() }}"
+                                        {{ $forum->isOpen() ? '' : 'disabled' }}
+                                    >
+                                        @for ($i = 0; $i < $forum->currentDepth(); $i++)
+                                            -
+                                        @endfor
+                                        {{ $forum->forum_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            <p>
+                                <button>{{ trans('common.buttons.save') }}</button>
+                            </p>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 @endsection

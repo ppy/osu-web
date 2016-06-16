@@ -26,8 +26,10 @@ use DB;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
+use App\Interfaces\Messageable;
+use App\Models\Chat\PrivateMessage;
 
-class User extends Model implements AuthenticatableContract
+class User extends Model implements AuthenticatableContract, Messageable
 {
     use Authenticatable;
 
@@ -39,23 +41,15 @@ class User extends Model implements AuthenticatableContract
     protected $dateFormat = 'U';
     public $timestamps = false;
 
-    protected $visible = ['user_id', 'username', 'username_clean', 'user_rank', 'osu_playstyle', 'user_colour', 'is_admin'];
-
-    protected $appends = ['is_admin'];
+    protected $visible = ['user_id', 'username', 'username_clean', 'user_rank', 'osu_playstyle', 'user_colour'];
 
     protected $casts = [
-        'group_id' => 'integer',
-        'osu_kudosavailable' => 'integer',
-        'osu_kudostotal' => 'integer',
         'osu_subscriber' => 'boolean',
-        'user_id' => 'integer',
-        'user_type' => 'integer',
-        'user_warnings' => 'integer',
-        'osu_playmode' => 'integer',
+        'user_timezone', 'float',
     ];
 
     public $flags;
-    private $group_ids;
+    private $groupIds;
     private $_supportLength = null;
 
     const ANONYMOUS = 1; // Anonymous (guest)
@@ -112,8 +106,8 @@ class User extends Model implements AuthenticatableContract
         }
 
         $playCount = array_reduce(array_keys(Beatmap::MODES), function ($result, $mode) use ($user) {
-                return $result + $user->statistics($mode, true)->value('playcount');
-            }, 0);
+            return $result + $user->statistics($mode, true)->value('playcount');
+        }, 0);
 
         return $user->user_lastvisit
             ->addMonths(6)                 //base inactivity period for all accounts
@@ -232,7 +226,7 @@ class User extends Model implements AuthenticatableContract
 
     public function getUserAvatarAttribute($value)
     {
-        if ($value === null || $value === '') {
+        if (!present($value)) {
             return 'https://s.ppy.sh/images/blank.jpg';
         } else {
             $value = str_replace('_', '?', $value);
@@ -249,11 +243,6 @@ class User extends Model implements AuthenticatableContract
     public function getUserFromAttribute($value)
     {
         return presence($value);
-    }
-
-    public function getIsAdminAttribute()
-    {
-        return $this->isAdmin();
     }
 
     public function getIsSpecialAttribute()
@@ -321,6 +310,10 @@ class User extends Model implements AuthenticatableContract
             }
         }
 
+        if (empty($styles)) {
+            return;
+        }
+
         return $styles;
     }
 
@@ -366,7 +359,7 @@ class User extends Model implements AuthenticatableContract
             or $this->ownsMod($mod);
     }
 
-    public function ownsSet(BeatmapSet $set)
+    public function ownsSet(Beatmapset $set)
     {
         return $set->user_id === $this->user_id;
     }
@@ -383,47 +376,47 @@ class User extends Model implements AuthenticatableContract
 
     public function isBAT()
     {
-        return $this->isGroup(UserGroup::BAT);
+        return $this->isGroup(UserGroup::GROUPS['bat']);
     }
 
     public function isAdmin()
     {
-        return $this->isGroup(UserGroup::ADMIN);
+        return $this->isGroup(UserGroup::GROUPS['admin']);
     }
 
     public function isGMT()
     {
-        return $this->isGroup(UserGroup::GMT);
+        return $this->isGroup(UserGroup::GROUPS['gmt']);
     }
 
     public function isMAT()
     {
-        return $this->isGroup(UserGroup::MAT);
+        return $this->isGroup(UserGroup::GROUPS['mat']);
     }
 
     public function isHax()
     {
-        return $this->isGroup(UserGroup::HAX);
+        return $this->isGroup(UserGroup::GROUPS['hax']);
     }
 
     public function isDev()
     {
-        return $this->isGroup(UserGroup::DEV);
+        return $this->isGroup(UserGroup::GROUPS['dev']);
     }
 
     public function isMod()
     {
-        return $this->isGroup(UserGroup::MOD);
+        return $this->isGroup(UserGroup::GROUPS['mod']);
     }
 
     public function isAlumni()
     {
-        return $this->isGroup(UserGroup::ALUMNI);
+        return $this->isGroup(UserGroup::GROUPS['alumni']);
     }
 
     public function isRegistered()
     {
-        return $this->isGroup(UserGroup::REGULAR);
+        return $this->isGroup(UserGroup::GROUPS['default']);
     }
 
     public function hasSupported()
@@ -462,15 +455,19 @@ class User extends Model implements AuthenticatableContract
             $lastBan->endTime()->isFuture();
     }
 
-    // check if a user is in a specific group, by ID
-
-    public function isGroup($group)
+    public function groupIds()
     {
-        if ($this->group_ids === null) {
-            $this->group_ids = array_pluck($this->userGroups()->get(['group_id'])->toArray(), 'group_id');
+        if ($this->groupIds === null) {
+            $this->groupIds = model_pluck($this->userGroups(), 'group_id');
         }
 
-        return in_array($group, $this->group_ids, true);
+        return $this->groupIds;
+    }
+
+    // check if a user is in a specific group, by ID
+    public function isGroup($group)
+    {
+        return in_array($group, $this->groupIds(), true);
     }
 
     /*
@@ -490,39 +487,24 @@ class User extends Model implements AuthenticatableContract
         return $this->hasMany(UserGroup::class);
     }
 
-    public function notifications()
+    public function beatmapsets()
     {
-        return $this->hasMany("App\Models\Notification", 'user_id', 'user_id');
-    }
-
-    public function beatmapSets()
-    {
-        return $this->hasMany(BeatmapSet::class);
+        return $this->hasMany(Beatmapset::class);
     }
 
     public function beatmaps()
     {
-        return $this->hasManyThrough(Beatmap::class, BeatmapSet::class, 'user_id', 'beatmapset_id');
+        return $this->hasManyThrough(Beatmap::class, Beatmapset::class, 'user_id', 'beatmapset_id');
     }
 
-    public function favouriteBeatmapSets()
+    public function favouriteBeatmapsets()
     {
-        return BeatmapSet::whereIn('beatmapset_id', FavouriteBeatmapSet::where('user_id', '=', $this->user_id)->select('beatmapset_id')->get());
+        return Beatmapset::whereIn('beatmapset_id', FavouriteBeatmapset::where('user_id', '=', $this->user_id)->select('beatmapset_id')->get());
     }
 
     public function beatmapPlaycounts()
     {
         return $this->hasMany(BeatmapPlaycount::class);
-    }
-
-    public function posts()
-    {
-        return $this->hasMany("App\Models\Post", 'user_id', 'user_id');
-    }
-
-    public function mods()
-    {
-        return $this->hasMany("App\Models\Mod", 'user_id', 'user_id');
     }
 
     public function apiKey()
@@ -722,7 +704,7 @@ class User extends Model implements AuthenticatableContract
         return $this->belongsTo("App\Models\Forum\Post", 'userpage_post_id', 'post_id');
     }
 
-    public function achievements()
+    public function userAchievements()
     {
         return $this->hasMany("App\Models\UserAchievement", 'user_id', 'user_id');
     }
@@ -730,6 +712,21 @@ class User extends Model implements AuthenticatableContract
     public function usernameChangeHistory()
     {
         return $this->hasMany(UsernameChangeHistory::class, 'user_id', 'user_id');
+    }
+
+    public function relations()
+    {
+        return $this->hasMany(UserRelation::class, 'user_id', 'user_id');
+    }
+
+    public function friends()
+    {
+        return $this->relations()->where('friend', true);
+    }
+
+    public function foes()
+    {
+        return $this->relations()->where('foe', true);
     }
 
     public function events()
@@ -886,13 +883,13 @@ class User extends Model implements AuthenticatableContract
     {
         if ($this->userPage === null) {
             DB::transaction(function () use ($text) {
-                $topic = Forum\Topic::createNew(
-                    Forum\Forum::find(config('osu.user.user_page_forum_id')),
-                    "{$this->username}'s user page",
-                    $this,
-                    $text,
-                    false
-                );
+                $topic = Forum\Topic::createNew([
+                    'forum' => Forum\Forum::find(config('osu.user.user_page_forum_id')),
+                    'title' => "{$this->username}'s user page",
+                    'poster' => $this,
+                    'body' => $text,
+                    'notifyReplies' => false,
+                ]);
 
                 $this->update(['userpage_post_id' => $topic->topic_first_post_id]);
             });
@@ -908,7 +905,7 @@ class User extends Model implements AuthenticatableContract
         return fractal_item_array(
             $this,
             new UserTransformer(),
-            'defaultStatistics'
+            'userAchievements,defaultStatistics'
         );
     }
 
@@ -951,13 +948,13 @@ class User extends Model implements AuthenticatableContract
     public function refreshForumCache($forum = null, $postsChangeCount = 0)
     {
         if ($forum !== null) {
-            if (Forum\Authorize::increasesPostsCount($forum) !== true) {
+            if (Forum\Authorize::increasesPostsCount($this, $forum) !== true) {
                 $postsChangeCount = 0;
             }
 
             $newPostsCount = DB::raw("user_posts + {$postsChangeCount}");
         } else {
-            $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums())->count();
+            $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums($this))->count();
         }
 
         $lastPost = $this->forumPosts()->last()->select('post_time')->first();
@@ -982,5 +979,22 @@ class User extends Model implements AuthenticatableContract
                 ->where('ban_status', '=', 2)->count() === 0;
 
         return $canInvite;
+    }
+
+    public function sendMessage(User $sender, $body)
+    {
+        $message = new PrivateMessage();
+        $message->user_id = $sender->user_id;
+        $message->target_id = $this->user_id;
+        $message->content = $body;
+        $message->save();
+    }
+
+    public function scopeDefault($query)
+    {
+        return $query->where([
+            'user_warnings' => 0,
+            'user_type' => 0,
+        ]);
     }
 }

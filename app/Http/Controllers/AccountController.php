@@ -98,13 +98,7 @@ class AccountController extends Controller
     {
         $user = Auth::user();
 
-        if (!$user->osu_subscriber && $user->userPage === null) {
-            abort(403);
-        }
-
-        if (!$user->userPage->canBeEditedBy($user)) {
-            abort(403);
-        }
+        priv_check('UserPageEdit', $user)->ensureCan();
 
         $user = $user->updatePage(Request::input('body'));
 

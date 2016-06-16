@@ -42,7 +42,7 @@ class ProfilePage.CoverSelection extends React.Component
 
   render: =>
     el 'div',
-      className: 'profile-cover-selection'
+      className: 'profile-cover-change-popup__selection'
       style:
         backgroundImage: "url('#{@props.thumbUrl}')"
       onClick: @onClick
@@ -50,4 +50,4 @@ class ProfilePage.CoverSelection extends React.Component
       onMouseLeave: @onMouseLeave
       if @props.isSelected
         el 'i',
-          className: 'fa fa-check-circle profile-cover-selection__selected-mark'
+          className: 'fa fa-check-circle profile-cover-change-popup__selected-mark'

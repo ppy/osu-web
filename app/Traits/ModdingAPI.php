@@ -183,7 +183,7 @@ trait ModdingAPI
             return $this->error('missing', 'beatmaps.modding');
         }
         try {
-            $set = BeatmapSet::findOrFail($id);
+            $set = Beatmapset::findOrFail($id);
         } catch (Exception $e) {
             return $this->error('missing', 'beatmaps.modding');
         }
@@ -216,7 +216,7 @@ trait ModdingAPI
 
     protected function getModChanges($id)
     {
-        $set = BeatmapSet::find($id);
+        $set = Beatmapset::find($id);
 
         $new = [
             'replies' => [
@@ -270,7 +270,7 @@ trait ModdingAPI
 
     public function postModBss($id)
     {
-        $set = BeatmapSet::find($id);
+        $set = Beatmapset::find($id);
         $user = $this->user();
         $username = Input::get('username');
         $password = Input::get('password');
@@ -288,7 +288,7 @@ trait ModdingAPI
                 return $this->error('beatmaps.bss', 'ranked');
             }
 
-            $type = Input::get('complete') ? BeatmapSet::PENDING : BeatmapSet::WIP;
+            $type = Input::get('complete') ? Beatmapset::PENDING : Beatmapset::WIP;
             $message = Input::get('message');
             $filesize = Input::get('filesize');
             $marathon = Input::get('marathon') ? true : false;

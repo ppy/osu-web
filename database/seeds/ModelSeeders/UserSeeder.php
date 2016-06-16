@@ -95,13 +95,6 @@ class UserSeeder extends Seeder
                 $u->rankHistories()->save($hist);
             }
             // END RANK HISTORY
-
-            // Make each user an admin
-            DB::table('phpbb_user_group')->insert([
-                'user_id' => $u->user_id,
-                'group_id' => 5,
-            ]);
-
         }); // end each user
     }
 }

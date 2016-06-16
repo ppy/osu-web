@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * All the automated casting in model requires mysqlnd.
+ * This function check is inspired by
+ * https://stackoverflow.com/a/22499259 .
+ */
+if (!function_exists('mysqli_get_client_stats')) {
+    die('Required mysqlnd driver is missing.');
+}
+
 return [
 
     /*
@@ -66,6 +75,22 @@ return [
             'driver' => 'mysql',
             'host' => env('DB_HOST', 'localhost'),
             'database' => env('DB_DATABASE_MP', 'osu_mp'),
+            'username' => env('DB_USERNAME', 'osuweb'),
+            'password' => env('DB_PASSWORD', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_general_ci',
+            'prefix' => '',
+            'strict' => false,
+            'options' => [
+                PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
+                PDO::ATTR_PERSISTENT => true,
+            ],
+        ],
+
+        'mysql-chat' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST', 'localhost'),
+            'database' => env('DB_DATABASE_CHAT', 'osu_chat'),
             'username' => env('DB_USERNAME', 'osuweb'),
             'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8mb4',

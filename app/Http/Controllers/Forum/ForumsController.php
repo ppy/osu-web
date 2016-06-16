@@ -23,6 +23,7 @@ use App\Models\Forum\Forum;
 use App\Models\Forum\TopicTrack;
 use App\Transformers\Forum\ForumCoverTransformer;
 use Auth;
+use Request;
 
 class ForumsController extends Controller
 {
@@ -40,7 +41,7 @@ class ForumsController extends Controller
         $forums = Forum::where('parent_id', 0)->with('subForums')->orderBy('left_id')->get();
 
         $forums = array_where($forums, function ($_i, $forum) {
-            return $forum->canBeViewedBy(Auth::user());
+            return priv_check('ForumView', $forum)->can();
         });
 
         return view('forum.forums.index', compact('forums'));
@@ -50,7 +51,10 @@ class ForumsController extends Controller
     {
         $forum = Forum::with('subForums')->findOrFail($id);
 
-        $this->authorizeView($forum);
+        $sort = explode('_', Request::input('sort'));
+        $withReplies = Request::input('with_replies', '');
+
+        priv_check('ForumView', $forum)->ensureCan();
 
         $cover = fractal_item_array(
             $forum->cover()->firstOrNew([]),
@@ -58,7 +62,7 @@ class ForumsController extends Controller
         );
 
         $pinnedTopics = $forum->topics()->pinned()->orderBy('topic_type', 'desc')->recent()->get();
-        $topics = $forum->topics()->normal()->recent()->paginate(15);
+        $topics = $forum->topics()->normal()->recent(compact('sort', 'withReplies'))->paginate(15);
         $topicReadStatus = TopicTrack::readStatus(Auth::user(), $pinnedTopics, $topics);
 
         return view('forum.forums.show', compact('forum', 'topics', 'pinnedTopics', 'topicReadStatus', 'cover'));

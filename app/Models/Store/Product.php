@@ -28,16 +28,10 @@ class Product extends Model
     protected $primaryKey = 'product_id';
 
     protected $casts = [
-        'base_shipping' => 'real',
-        'cost' => 'real',
-        'display_order' => 'integer',
-        'master_product_id' => 'integer',
-        'max_quantity' => 'integer',
-        'next_shipping' => 'real',
-        'product_id' => 'integer',
+        'cost' => 'float',
+        'base_shipping' => 'float',
+        'next_shipping' => 'float',
         'promoted' => 'boolean',
-        'stock' => 'integer',
-        'weight' => 'integer',
         'enabled' => 'boolean',
     ];
 
@@ -57,6 +51,11 @@ class Product extends Model
     public function category()
     {
         return $this->hasOne('Category');
+    }
+
+    public function notificationRequests()
+    {
+        return $this->hasMany(NotificationRequest::class);
     }
 
     public function inStock($quantity = 1, $includeVariations = false)

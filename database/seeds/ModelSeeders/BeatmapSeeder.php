@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class BeatmapSeeder extends Seeder
 {
@@ -62,13 +63,13 @@ class BeatmapSeeder extends Seeder
                         $the_beatmap = $previous_beatmap;
                     }
                     // Create new beatmapset
-                    $set = \App\Models\BeatmapSet::where('beatmapset_id', $the_beatmap->beatmapset_id)->first();
+                    $set = \App\Models\Beatmapset::where('beatmapset_id', $the_beatmap->beatmapset_id)->first();
                     if ($set) {
                         $set->delete();
                         $overbeatmapsets[] = $the_beatmap->beatmapset_id;
                     }
                     $beatmap_diff_names = implode(',', $beatmap_diff_names);
-                    $set = new \App\Models\BeatmapSet;
+                    $set = new \App\Models\Beatmapset;
                     $set->beatmapset_id = $the_beatmap->beatmapset_id;
                     $set->creator = $the_beatmap->creator;
                     $set->artist = $the_beatmap->artist;
@@ -86,6 +87,7 @@ class BeatmapSeeder extends Seeder
                     $set->play_count = $set_playcount;
                     $set->favourite_count = $the_beatmap->favourite_count;
                     $set->user_id = array_rand_val($users)['user_id'];
+                    $set->submit_date = Carbon::now();
                     $set->save();
 
                     $set->difficulty_names = $beatmap_diff_names;
@@ -122,6 +124,21 @@ class BeatmapSeeder extends Seeder
                 $new_bm->playcount = $bm->playcount;
                 $new_bm->passcount = $bm->passcount;
                 $new_bm->user_id = array_rand_val($users)['user_id'];
+
+                $failtimes = App\Models\BeatmapFailtimes::where('beatmap_id', $new_bm->beatmap_id)->get();
+
+                if (!$failtimes->isEmpty()) {
+                    foreach ($failtimes as $ft) {
+                        $ft->delete();
+                    }
+                }
+
+                // Generating the beatmap failtimes
+                $new_bm->failtimes()->saveMany([
+                    factory(App\Models\BeatmapFailtimes::class, 'fail')->make(),
+                    factory(App\Models\BeatmapFailtimes::class, 'retry')->make(),
+                ]);
+
                 $new_bm->save();
 
                 $beatmaps_array[] = $new_bm;

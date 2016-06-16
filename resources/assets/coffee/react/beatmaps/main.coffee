@@ -29,7 +29,7 @@ class Beatmaps.Main extends React.Component
       query: null
       paging:
         page: 1
-        url: '/beatmaps/search'
+        url: '/beatmapsets/search'
         loading: false
         more: beatmaps.length > 0
       filters: @filterDefaults
@@ -99,7 +99,7 @@ class Beatmaps.Main extends React.Component
 
     if @state.just_restored or location.search.substr(1) != params.join('&')
       if !@state.just_restored
-        history.pushState(@state, "¯\_(ツ)_/¯", "/beatmaps/?#{params.join('&')}")
+        history.pushState(@state, "¯\_(ツ)_/¯", "/beatmapsets/?#{params.join('&')}")
 
       @showLoader()
       $.ajax @state.paging.url,
@@ -225,7 +225,7 @@ class Beatmaps.Main extends React.Component
     $(document).on 'beatmap:search:done.beatmaps', @hideLoader
     $(document).on 'beatmap:search:filtered.beatmaps', @updateFilters
     $(document).on 'beatmap:search:sorted.beatmaps', @updateSort
-    $(document).on 'ready.beatmaps page:load.beatmaps osu:page:change.beatmaps', (e) =>
+    $(document).on 'ready.beatmaps turbolinks:load.beatmaps osu:page:change.beatmaps', (e) =>
       @restoreState()
     $(window).on 'popstate.beatmaps', (e) =>
       @restoreState()

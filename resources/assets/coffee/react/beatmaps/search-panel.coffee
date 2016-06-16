@@ -23,7 +23,7 @@ el = React.createElement
 class Beatmaps.SearchPanel extends React.Component
   keyDelay: null
   prevText: null
-  search_url: '/beatmaps/search'
+  search_url: '/beatmapsets/search'
 
   constructor: (props) ->
     super props
@@ -51,8 +51,7 @@ class Beatmaps.SearchPanel extends React.Component
   componentWillUnmount: ->
     $('#searchbox').off 'keyup'
 
-  show_more: (i, e) ->
-    e.preventDefault
+  show_more: ->
     $('#search').addClass 'expanded'
 
   render: ->

@@ -34,40 +34,43 @@ class ProfilePage.RecentActivities extends React.Component
               beatmap: osu.link(event.beatmap.url, event.beatmap.title)
               mode: Lang.get "beatmaps.mode.#{event.mode}"
 
-      when 'beatmapSetDelete'
+      when 'beatmapsetDelete'
         text = el 'div',
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'events.beatmap_set_delete',
-              beatmapSet: osu.link(event.beatmapSet.url, event.beatmapSet.title)
+            __html: Lang.get 'events.beatmapset_delete',
+              beatmapset: osu.link(event.beatmapset.url, event.beatmapset.title)
 
-      when 'beatmapSetRevive'
+      when 'beatmapsetRevive'
         text = el 'div',
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'events.beatmap_set_revive',
-              beatmapSet: osu.link(event.beatmapSet.url, event.beatmapSet.title)
+            __html: Lang.get 'events.beatmapset_revive',
+              beatmapset: osu.link(event.beatmapset.url, event.beatmapset.title)
               user: osu.link(event.user.url, event.user.username)
 
-      when 'beatmapSetUpdate'
+      when 'beatmapsetUpdate'
         text = el 'div',
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'events.beatmap_set_update',
+            __html: Lang.get 'events.beatmapset_update',
               user: osu.link(event.user.url, event.user.username)
-              beatmapSet: osu.link(event.beatmapSet.url, event.beatmapSet.title)
+              beatmapset: osu.link(event.beatmapset.url, event.beatmapset.title)
 
-      when 'beatmapSetUpload'
+      when 'beatmapsetUpload'
         text = el 'div',
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'events.beatmap_set_upload',
-              beatmapSet: osu.link(event.beatmapSet.url, event.beatmapSet.title)
+            __html: Lang.get 'events.beatmapset_upload',
+              beatmapset: osu.link(event.beatmapset.url, event.beatmapset.title)
               user: osu.link(event.user.url, event.user.username)
 
       when 'achievement'
         badge = el ProfilePage.AchievementBadge,
           achievement: event.achievement
+          userAchievement:
+            achieved_at: event.createdAt
+            achievement_id: event.achievement.id
           additionalClasses: 'profile-extra-entries__icon'
 
         text = el 'div',
@@ -122,7 +125,7 @@ class ProfilePage.RecentActivities extends React.Component
 
   render: =>
     el 'div',
-      className: 'profile-extra'
+      className: 'page-extra'
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       if @props.recentActivities.length

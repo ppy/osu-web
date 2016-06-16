@@ -30,10 +30,6 @@ class UserDonation extends Model
     public $timestamps = false;
 
     protected $casts = [
-        'user_id' => 'integer',
-        'target_user_id' => 'integer',
-        'length' => 'integer',
-        'amount' => 'integer',
         'cancel' => 'boolean',
     ];
 

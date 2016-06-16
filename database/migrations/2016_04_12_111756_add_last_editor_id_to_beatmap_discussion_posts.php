@@ -29,6 +29,8 @@ class AddLastEditorIdToBeatmapDiscussionPosts extends Migration
     public function down()
     {
         Schema::table('beatmap_discussion_posts', function ($table) {
+            $table->dropForeign(['last_editor_id']);
+
             $table->dropColumn('last_editor_id');
         });
     }

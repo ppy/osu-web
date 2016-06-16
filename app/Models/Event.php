@@ -28,11 +28,11 @@ class Event extends Model
     public $patterns = [
         'achievement' => "!^(?:<b>)+<a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>(?:</b>)+ unlocked the \"<b>(?<achievementName>.+?)</b>\" achievement\!$!",
         'beatmapPlaycount' => "!^<a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> has been played (?<count>[\d,]+) times\!$!",
-        'beatmapSetApprove' => "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified)\!$!",
-        'beatmapSetDelete' => "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.*?)</a> has been deleted.$!",
-        'beatmapSetRevive' => "!^<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.*?)</a> has been revived from eternal slumber(?: by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b>)?\.$!",
-        'beatmapSetUpdate' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.*?)</a>\"$!",
-        'beatmapSetUpload' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has submitted a new beatmap \"<a href='(?<beatmapSetUrl>.+?)'>(?<beatmapSetTitle>.*?)</a>\"$!",
+        'beatmapsetApprove' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.+?)</a> by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has just been (?<approval>ranked|approved|qualified)\!$!",
+        'beatmapsetDelete' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a> has been deleted.$!",
+        'beatmapsetRevive' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a> has been revived from eternal slumber(?: by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b>)?\.$!",
+        'beatmapsetUpdate' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a>\"$!",
+        'beatmapsetUpload' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has submitted a new beatmap \"<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a>\"$!",
         'rank' => "!^<img src='/images/(?<scoreRank>.+?)_small\.png'/> <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> achieved (?:<b>)?rank #(?<rank>\d+?)(?:</b>)? on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!",
         'rankLost' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has lost first place on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!",
         'userSupportAgain' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has once again chosen to support osu\! - thanks for your generosity\!$!",
@@ -47,15 +47,6 @@ class Event extends Model
     protected $dates = ['date'];
     public $timestamps = false;
 
-    protected $casts = [
-        'event_id' => 'integer',
-        'beatmap_id' => 'integer',
-        'beatmapset_id' => 'integer',
-        'user_id' => 'integer',
-        'epicfactor' => 'integer',
-        'private' => 'integer',
-    ];
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'user_id');
@@ -66,9 +57,9 @@ class Event extends Model
         return $this->belongsTo(Beatmap::class, 'beatmap_id', 'beatmap_id');
     }
 
-    public function beatmapSet()
+    public function beatmapset()
     {
-        return $this->belongsTo(BeatmapSet::class, 'beatmapset_id', 'beatmapset_id');
+        return $this->belongsTo(Beatmapset::class, 'beatmapset_id', 'beatmapset_id');
     }
 
     public function arrayBeatmap($matches)
@@ -81,13 +72,13 @@ class Event extends Model
         ];
     }
 
-    public function arrayBeatmapSet($matches)
+    public function arrayBeatmapset($matches)
     {
-        $beatmapSetTitle = presence($matches['beatmapSetTitle'], '(no title)');
+        $beatmapsetTitle = presence($matches['beatmapsetTitle'], '(no title)');
 
         return [
-            'title' => html_entity_decode($beatmapSetTitle),
-            'url' => html_entity_decode($matches['beatmapSetUrl']),
+            'title' => html_entity_decode($beatmapsetTitle),
+            'url' => html_entity_decode($matches['beatmapsetUrl']),
         ];
     }
 
@@ -149,7 +140,7 @@ class Event extends Model
         ];
     }
 
-    public function parseMatchesBeatmapSetApprove($matches)
+    public function parseMatchesBeatmapsetApprove($matches)
     {
         $approval = $matches['approval'];
         if ($approval === 'ranked') {
@@ -158,38 +149,38 @@ class Event extends Model
 
         return [
             'approval' => $approval,
-            'beatmapSet' => $this->arrayBeatmapSet($matches),
+            'beatmapset' => $this->arrayBeatmapset($matches),
             'user' => $this->arrayUser($matches),
         ];
     }
 
-    public function parseMatchesBeatmapSetDelete($matches)
+    public function parseMatchesBeatmapsetDelete($matches)
     {
         return [
-            'beatmapSet' => $this->arrayBeatmapSet($matches),
+            'beatmapset' => $this->arrayBeatmapset($matches),
         ];
     }
 
-    public function parseMatchesBeatmapSetRevive($matches)
+    public function parseMatchesBeatmapsetRevive($matches)
     {
         return [
-            'beatmapSet' => $this->arrayBeatmapSet($matches),
+            'beatmapset' => $this->arrayBeatmapset($matches),
             'user' => $this->arrayUser($matches),
         ];
     }
 
-    public function parseMatchesBeatmapSetUpdate($matches)
+    public function parseMatchesBeatmapsetUpdate($matches)
     {
         return [
-            'beatmapSet' => $this->arrayBeatmapSet($matches),
+            'beatmapset' => $this->arrayBeatmapset($matches),
             'user' => $this->arrayUser($matches),
         ];
     }
 
-    public function parseMatchesBeatmapSetUpload($matches)
+    public function parseMatchesBeatmapsetUpload($matches)
     {
         return [
-            'beatmapSet' => $this->arrayBeatmapSet($matches),
+            'beatmapset' => $this->arrayBeatmapset($matches),
             'user' => $this->arrayUser($matches),
         ];
     }
