@@ -19,12 +19,11 @@
  */
 
 return [
-    'forum' => [
-        'feature_vote' => [
-            'not_feature_topic' => 'Can only vote a feature request.',
-            'not_enough_feature_votes' => 'Not enough votes.',
-        ],
+    'top-headers' => [
+        'headline' => 'Streamy na żywo',
+        'description' => 'Dane są pobierane z twitcha co 5 minut. Nie bój się zacząć streamować i pojawić się na tej liście! Na wiki możesz znaleźć poradnik nt. streamowania.',
     ],
-
-    'required' => ':attribute is required.',
+    'headers' => [
+        'regular' => 'Obecnie streamują',
+    ],
 ];

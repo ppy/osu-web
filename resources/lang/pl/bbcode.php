@@ -19,12 +19,20 @@
  */
 
 return [
-    'forum' => [
-        'feature_vote' => [
-            'not_feature_topic' => 'Can only vote a feature request.',
-            'not_enough_feature_votes' => 'Not enough votes.',
-        ],
+    'bold' => 'Pogrubienie',
+    'heading' => 'Nagłówek',
+    'image' => 'Obrazek',
+    'italic' => 'Pochylenie',
+    'link' => 'Link',
+    'list' => 'Lista',
+    'list_numbered' => 'Numerowana lista',
+    'size' => [
+        '_' => 'Rozmiar czcionki',
+        'tiny' => 'Malutki',
+        'small' => 'Mały',
+        'normal' => 'Normalny',
+        'large' => 'Duży',
     ],
-
-    'required' => ':attribute is required.',
+    'spoilerbox' => 'Spoiler',
+    'strikethrough' => 'Przekreślenie',
 ];

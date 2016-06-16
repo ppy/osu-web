@@ -19,12 +19,8 @@
  */
 
 return [
-    'forum' => [
-        'feature_vote' => [
-            'not_feature_topic' => 'Can only vote a feature request.',
-            'not_enough_feature_votes' => 'Not enough votes.',
-        ],
+    'errors' => [
+        'csrf' => 'Brak dostępu',
+        'missing' => 'Nie znaleziono',
     ],
-
-    'required' => ':attribute is required.',
 ];

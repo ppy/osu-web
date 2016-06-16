@@ -19,12 +19,17 @@
  */
 
 return [
-    'forum' => [
-        'feature_vote' => [
-            'not_feature_topic' => 'Can only vote a feature request.',
-            'not_enough_feature_votes' => 'Not enough votes.',
+    'codes' => [
+        'http-403' => 'Odmowa dostępu.',
+        'http-401' => 'Zaloguj się, aby kontynuować.',
+    ],
+    'account' => [
+        'profile-order' => [
+            'generic' => 'Wystąpił błąd. Spróbuj odświeżyć stronę.',
         ],
     ],
-
-    'required' => ':attribute is required.',
+    'logged_out' => 'Zostałeś wylogowany. Zaloguj się i spróbuj ponownie.',
+    'supporter_only' => 'Musisz być supporterem, aby używać tej funkcji.',
+    'no_restricted_access' => 'Nie możesz wykonać tej operacji, jeśli twoje konto jest zbanowane.',
+    'unknown' => 'Wystąpił nieznany błąd.',
 ];

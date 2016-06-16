@@ -19,12 +19,18 @@
  */
 
 return [
-    'forum' => [
-        'feature_vote' => [
-            'not_feature_topic' => 'Can only vote a feature request.',
-            'not_enough_feature_votes' => 'Not enough votes.',
+    'authorizations' => [
+        'update' => [
+            'null_user' => 'Musisz być zalogowany, aby edytować post.',
+            'system_generated' => 'Automatycznie generowane posty nie mogą być edytowane.',
+            'wrong_user' => 'Musisz być autorem posta, aby go edytować.',
         ],
     ],
 
-    'required' => ':attribute is required.',
+    'system' => [
+        'resolved' => [
+            'true' => 'Oznaczone jako gotowe przez :user',
+            'false' => 'Otworzone ponownie przez :user',
+        ],
+    ],
 ];
