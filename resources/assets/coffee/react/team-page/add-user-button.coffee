@@ -54,12 +54,11 @@ class TeamPage.AddUserButton extends React.Component
   addUser: =>
     console.log 'adding user'
     if @state.addingUser and @state.userToAdd
-      @setState showmodal: false
       $.ajax laroute.route('team.addmember', user: @state.userToAdd.id, admin: + @props.admin, id: @props.team.id),
         method: 'get'
       .done (data) =>
         @props.refresh()
-        @setState addingUser: false, userToAdd: {}
+        @setState addingUser: false, userToAdd: {}, showmodal: false
 
 
   render: =>
