@@ -706,7 +706,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function userAchievements()
     {
-        return $this->hasMany("App\Models\UserAchievement", 'user_id', 'user_id');
+        return $this->belongsToMany("App\Models\Achievement", 'osu_user_achievements')->withPivot('date');
     }
 
     public function usernameChangeHistory()

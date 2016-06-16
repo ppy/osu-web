@@ -46,4 +46,9 @@ class Achievement extends Model
             ->where('enabled', true)
             ->where('slug', '<>', '');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany("App\Models\User", 'osu_user_achievements')->withPivot('date');
+    }
 }
