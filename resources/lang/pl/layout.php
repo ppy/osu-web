@@ -132,43 +132,43 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Nie znaleziono strony',
-            'description' => "Przepraszamy, ale strona, jaką chciałeś ujrzeć, nie istnieje!",
+            'description' => 'Przepraszamy, ale strona, jaką chciałeś ujrzeć, nie istnieje!',
             'link' => false,
         ],
         '403' => [
-            'error' => "Nie powinieneś tu być.",
+            'error' => 'Nie powinieneś tu być.',
             'description' => 'Jednakże, możesz spróbować się wrócić.',
             'link' => false,
         ],
         '401' => [
-            'error' => "Nie powinieneś tu być.",
+            'error' => 'Nie powinieneś tu być.',
             'description' => 'Jednakże, możesz spróbować się wrócić. Albo się zalogować',
             'link' => false,
         ],
         '405' => [
             'error' => 'Nie znaleziono strony',
-            'description' => "Przepraszamy, ale strona, jaką chciałeś ujrzeć, nie istnieje!",
+            'description' => 'Przepraszamy, ale strona, jaką chciałeś ujrzeć, nie istnieje!',
             'link' => false,
         ],
         '500' => [
             'error' => 'O nie! Coś się popsuło! ;_;',
-            'description' => "Jesteśmy automatycznie powiadamieni o tym problemie.",
+            'description' => 'Jesteśmy automatycznie powiadamieni o tym problemie.',
             'link' => false,
         ],
         'fatal' => [
             'error' => 'O nie! Coś się popsuło (bardzo)! ;_;',
-            'description' => "Jesteśmy automatycznie powiadamieni o tym problemie.",
+            'description' => 'Jesteśmy automatycznie powiadamieni o tym problemie.',
             'link' => false,
         ],
         '503' => [
             'error' => 'Konserwacja!',
-            'description' => "Konserwacja zajmuje od 5 sekund do 10 minut. Jeżeli jesteśmy niedostępni na dłużej, spojrzyj <a>:link tutaj</a>, aby dowiedzieć się więcej.",
+            'description' => 'Konserwacja zajmuje od 5 sekund do 10 minut. Jeżeli jesteśmy niedostępni na dłużej, spojrzyj <a>:link tutaj</a>, aby dowiedzieć się więcej.',
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "Na wszelki wypadek, tutaj jest kod który możesz dać osobom z pomocy technicznej!",
+        'reference' => 'Na wszelki wypadek, tutaj jest kod który możesz dać osobom z pomocy technicznej!',
     ],
 ];

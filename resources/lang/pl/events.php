@@ -24,7 +24,7 @@ return [
     'beatmapset_revive' => ':beatmapset zostało ożywione z wiecznego snu przez <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> zaktualizował "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> dodał nową mapę ":beatmapset"',
-    'empty' => "Ten gracz nie zrobił w ostatnim czasie nic godnego uwagi!",
+    'empty' => 'Ten gracz nie zrobił w ostatnim czasie nic godnego uwagi!',
     'rank' => '<strong><em>:user</em></strong> zdobył #:rank miejsce na <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> stracił pierwsze miejsce na <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> zdecydował się wspomóc osu! ponownie - dziękujemy za szczodrość!',

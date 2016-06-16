@@ -101,9 +101,9 @@ return [
 
     'unauthorized' => 'Odmowa dostępu.',
 
-    'silenced' => "Nie możesz tego zrobić, kiedy jesteś uciszony.",
+    'silenced' => 'Nie możesz tego zrobić, kiedy jesteś uciszony.',
 
-    'restricted' => "Nie możesz tego zrobić, jeśli jesteś zbanowany.",
+    'restricted' => 'Nie możesz tego zrobić, jeśli jesteś zbanowany.',
 
     'user' => [
         'page' => [

@@ -125,5 +125,5 @@ return [
             'instructions' => 'kliknij ikonę serca, aby przejść do sklepu osu!',
         ],
     ],
-    
+
 ];

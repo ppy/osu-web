@@ -27,7 +27,7 @@ return [
         'remember' => 'Zapamiętaj ten komputer',
         'title' => 'Zaloguj się, aby kontynuować',
         'failed' => 'Niepoprawny login/hasło',
-        'register' => "Nie posiadasz konta osu! ? Stwórz nowe",
+        'register' => 'Nie posiadasz konta osu! ? Stwórz nowe',
         'forgot' => 'Zapomniałeś hasła?',
         'beta' => [
             'main' => 'Dostęp do bety jest obecnie ograniczony do wybranych użytkowników.',
@@ -86,9 +86,9 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Dostępne kudosu',
-                'available_info' => "Kudosu może być wymienione na gwiazdki kudosu, które pomogą twojej mapie zyskać więcej uwagi. To jest liczba kudosu, którego nie wymieniłeś.",
+                'available_info' => 'Kudosu może być wymienione na gwiazdki kudosu, które pomogą twojej mapie zyskać więcej uwagi. To jest liczba kudosu, którego nie wymieniłeś.',
                 'entry' => [
-                    'empty' => "Ten gracz nie otrzymał żadnego kudosu!",
+                    'empty' => 'Ten gracz nie otrzymał żadnego kudosu!',
                     'give' => 'Otrzymano <strong class="kudosu-entries__amount">:amount kudosu</strong> od :giver za post na :post',
                     'revoke' => 'Odebrano kudosu przezDenied kudosu by :giver for the post :post',
                 ],
