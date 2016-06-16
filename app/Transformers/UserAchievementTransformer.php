@@ -19,15 +19,16 @@
  */
 namespace App\Transformers;
 
-use App\Models\UserAchievement;
+use App\Models\Achievement;
 use League\Fractal;
+use Carbon\Carbon;
 
 class UserAchievementTransformer extends Fractal\TransformerAbstract
 {
-    public function transform(UserAchievement $userAchievement)
+    public function transform(Achievement $userAchievement)
     {
         return [
-            'achieved_at' => $userAchievement->date->toIso8601String(),
+            'achieved_at' => new Carbon($userAchievement->pivot->date),
             'achievement_id' => $userAchievement->achievement_id,
         ];
     }
