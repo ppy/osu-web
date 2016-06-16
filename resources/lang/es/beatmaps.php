@@ -81,7 +81,7 @@ return [
     'beatmapset' => [
         'show' => [
             'details' => [
-                'made-by' => 'hecho por :user',
+                'made-by' => 'creado por :user',
                 'submitted' => 'enviado el ',
                 'ranked' => 'rankeado el ',
                 'logged-out' => 'Necesitas iniciar sesión para descargar beatmaps!',
@@ -125,11 +125,11 @@ return [
                     'no-scores' => [
                         'global' => 'Sin puntuaciones aún. ¿Tal vez deberías intentar marcar alguna?',
                         'loading' => 'Cargando puntuaciones...',
-                        'country' => 'Nadie de tu país ha marcado una puntuación en este mapa aún!',
-                        'friend' => 'Ninguno de tus amigos ha marcado una puntuación en este mapa aún!',
+                        'country' => '¡Nadie de tu país ha marcado una puntuación en este mapa aún!',
+                        'friend' => '¡Ninguno de tus amigos ha marcado una puntuación en este mapa aún!',
                     ],
-                    'supporter-only' => 'Necesitas ser supporter para acceder a los rankings entre amigos y de tu país!',
-                    'supporter-link' => 'Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
+                    'supporter-only' => '¡Necesitas ser supporter para acceder a los rankings entre amigos y de tu país!',
+                    'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
                     'global' => 'Ranking Global',
                     'country' => 'Ranking Nacional',
                     'friend' => 'Ranking de Amigos',

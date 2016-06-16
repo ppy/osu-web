@@ -77,8 +77,8 @@ return [
         ],
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Fondo inválido especificado.',
-                'not_owner' => 'Solo el dueño puede cambiar el fondo.',
+                'uneditable' => 'Portada inválida especificada.',
+                'not_owner' => 'Solo el dueño puede cambiar la portada.',
             ],
         ],
         'view' => [

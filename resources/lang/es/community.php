@@ -23,7 +23,7 @@ return [
             'big_description' => '¿¡Amas osu!?<br/>
                                 Ayuda a su desarrollo :D',
             'small_description' => '',
-            'support_button' => '¡Quiero ayudar a Osu!',
+            'support_button' => '¡Quiero ayudar a osu!',
         ],
         'dev_quote' => 'osu! es un juego completamente Free To Play, pero mantenerlo definitivamente no es gratis. Entre el costo de comisionar servidores y banda ancha internacional de alta calidad, el tiempo invertido manteniendo el sistema y la comunidad, proveyendo premios para las competiciones, respondiendo preguntas de soporte y generalmente manteniendo a las personas felices, osu! consume una cantidad de dinero bastante considerable! Oh, y no olvides el hecho de que lo hacemos sin ningún tipo de anuncio o asociándonos con tontas barras de herramientas.
             <br/><br/>osu! es al final del día en gran parte dirigido por mí, a quien puedes conocer mejor como "peppy".
