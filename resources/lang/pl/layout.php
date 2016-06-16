@@ -132,7 +132,7 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Nie znaleziono strony',
-            'description' => "Przepraszamy, ale strona, jaką chciałeś ujrzeć, nie istnieje!",
+            'description' => 'Przepraszamy, ale strona, jaką chciałeś ujrzeć, nie istnieje!',
             'link' => false,
         ],
         '403' => [
