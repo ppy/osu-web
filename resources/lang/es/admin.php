@@ -25,7 +25,7 @@ return [
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'activar',
-                'activate_confirm' => 'activar modding v2 para este beatmap?',
+                'activate_confirm' => '¿activar modding v2 para este beatmap?',
                 'active' => 'activo',
                 'inactive' => 'inactivo',
             ],
