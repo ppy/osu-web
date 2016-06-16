@@ -109,7 +109,7 @@ return [
                 'user' => [
                     'current' => 'Pozostało ci :votes głosów.',
                     'count' => '{0} brak głosów|{1} :count głos|[2,4] :count głosy|[5,Inf] :count głosów',
-                    'not_enough' => "Wykorzystałeś już wszystkie głosy.",
+                    'not_enough' => 'Wykorzystałeś już wszystkie głosy.',
                 ],
             ],
         ],
