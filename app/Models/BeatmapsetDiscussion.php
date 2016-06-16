@@ -53,7 +53,10 @@ class BeatmapsetDiscussion extends Model
         }
 
         return fractal_item_array(
-            static::with('beatmapDiscussions.beatmapDiscussionPosts', 'beatmapDiscussions.beatmapDiscussionVotes')->find($this->id),
+            static::with([
+                'beatmapDiscussions.beatmapDiscussionPosts',
+                'beatmapDiscussions.beatmapDiscussionVotes',
+            ])->find($this->id),
             new BeatmapsetDiscussionTransformer(),
             implode(',', $includes)
         );

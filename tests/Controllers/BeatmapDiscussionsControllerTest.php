@@ -17,23 +17,27 @@ class BeatmapDiscussionsControllerTest extends TestCase
         parent::setUp();
 
         $this->user = factory(User::class)->create();
-        $this->beatmapset = factory(Beatmapset::class)->create();
-        $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        $this->beatmapsetDiscussion = BeatmapsetDiscussion::create(['beatmapset_id' => $this->beatmap->beatmapset_id]);
+        $this->beatmapset = factory(Beatmapset::class)->create([
+            'user_id' => $this->user->user_id,
+        ]);
+        $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make([
+            'user_id' => $this->user->user_id,
+        ]));
+        $this->beatmapsetDiscussion = BeatmapsetDiscussion::create([
+            'beatmapset_id' => $this->beatmapset->beatmapset_id,
+        ]);
         $this->beatmapDiscussion = BeatmapDiscussion::create([
             'beatmapset_discussion_id' => $this->beatmapsetDiscussion->id,
             'timestamp' => 0,
             'message_type' => 'praise',
             'beatmap_id' => $this->beatmap->beatmap_id,
+            'user_id' => $this->user->user_id,
         ]);
-
-        $this->otherBeatmapset = factory(Beatmapset::class)->create();
-        $this->otherBeatmap = $this->otherBeatmapset->beatmaps()->save(factory(Beatmap::class)->make());
     }
 
-    public function testPutVote()
+    // normal vote
+    public function testPutVoteInitial()
     {
-        // normal vote
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore($this->beatmapDiscussion);
 
@@ -42,12 +46,17 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
                 'beatmap_discussion_vote' => ['score' => '1'],
             ])
-            ->seeJson([]);
+            ->assertResponseOk();
 
         $this->assertEquals($currentVotes + 1, BeatmapDiscussionVote::count());
         $this->assertEquals($currentScore + 1, $this->currentScore($this->beatmapDiscussion));
+    }
 
-        // voting again only changes the score
+    // voting again only changes the score
+    public function testPutVoteChange()
+    {
+        $this->beatmapDiscussion->vote(['score' => 1, 'user_id' => $this->user->user_id]);
+
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore($this->beatmapDiscussion);
 
@@ -56,12 +65,17 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
-            ->seeJson([]);
+            ->assertResponseOk();
 
         $this->assertEquals($currentVotes, BeatmapDiscussionVote::count());
         $this->assertEquals($currentScore - 2, $this->currentScore($this->beatmapDiscussion));
+    }
 
-        // but voting 0 will remove the vote
+    // voting 0 will remove the vote
+    public function testPutVoteRemove()
+    {
+        $this->beatmapDiscussion->vote(['score' => 1, 'user_id' => $this->user->user_id]);
+
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore($this->beatmapDiscussion);
 
@@ -70,10 +84,10 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
                 'beatmap_discussion_vote' => ['score' => '0'],
             ])
-            ->seeJson([]);
+            ->assertResponseOk();
 
         $this->assertEquals($currentVotes - 1, BeatmapDiscussionVote::count());
-        $this->assertEquals($currentScore + 1, $this->currentScore($this->beatmapDiscussion));
+        $this->assertEquals($currentScore - 1, $this->currentScore($this->beatmapDiscussion));
     }
 
     private function currentScore($discussion)

@@ -28,7 +28,7 @@ class ProfilePage.Stats extends React.Component
 
         el 'div', className: 'profile-exp-bar',
           el 'div',
-            className: 'profile-exp-bar--fill'
+            className: 'profile-exp-bar__fill'
             style:
               width: "#{@props.stats.level.progress.toFixed()}%"
 
@@ -36,7 +36,7 @@ class ProfilePage.Stats extends React.Component
           el 'dt', className: 'profile-stats__stat-key',
             Lang.get 'users.show.stats.level', level: @props.stats.level.current
           el 'dd', className: 'profile-stats__stat-value, profile-stats__stat-value--light',
-            "#{@props.stats.level.progress.toFixed()}"
+            "#{@props.stats.level.progress.toFixed()}%"
 
       el 'div', className: 'page-contents__row',
         elements.map (m) =>
