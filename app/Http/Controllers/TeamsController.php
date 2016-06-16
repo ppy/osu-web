@@ -51,6 +51,7 @@ class TeamsController extends Controller
             new TeamTransformer($team),
             'admins,members'
         );
+
         return view('teams.show', compact('team', 'teamArray'));
     }
 
@@ -67,10 +68,8 @@ class TeamsController extends Controller
         );
         return $teamArray;
     }
-
     public function addMember($id)
     {
-
         $team = Team::lookup($id);
         if ($team === null) {
             abort(404);
@@ -81,6 +80,7 @@ class TeamsController extends Controller
         if ($team->teamMembers()->wherePivot('is_admin', 1)->get()->contains($admin)) {
             $team->teamMembers()->attach($user, ['is_admin' => Request::input('admin', 0)]);
         }
+
         return $team->teamMembers()->get()->all();
     }
 }

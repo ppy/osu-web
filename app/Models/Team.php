@@ -62,6 +62,7 @@ class Team extends Model
 
         return $team->first();
     }
+
     public function teamMembers()
     {
         return $this->belongsToMany('App\Models\User', 'team_members')->withPivot('is_admin');
