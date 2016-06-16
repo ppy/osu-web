@@ -78,6 +78,19 @@ class ForumSeeder extends Seeder
                     $f2->refreshCache();
                 }
             });
+
+            // Create user page forums
+            $f = App\Models\Forum\Forum::create([
+                'forum_id' => 70,
+                'forum_name' => 'User Pages',
+                'forum_desc' => 'User Profile Pages',
+                'forum_type' => 0,
+            ]);
+            $f2 = $f->subforums()->save(factory(App\Models\Forum\Forum::class, 'child')->make([
+                'parent_id' => 70,
+                'forum_name' => 'User Profile Pages',
+                'forum_desc' => 'User Profile custom page',
+            ]));
         } catch (\Illuminate\Database\QueryException $e) {
             echo $e->getMessage()."\r\n";
         } catch (Exception $ex) {
