@@ -27,7 +27,7 @@
 @section("script")
     @parent
     <script data-turbolinks-eval="always">
-        var team = {!! $id !!};
+        var team = {!! json_encode($teamArray['data']) !!};
         console.log(team);
     </script>
 

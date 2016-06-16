@@ -46,13 +46,12 @@ class TeamsController extends Controller
         if ($team === null) {
             abort(404);
         }
-        /*
         $teamArray = fractal_item_array(
             $team,
-            new TeamTransformer($team)
+            new TeamTransformer($team),
+            'admins,members'
         );
-        */
-        return view('teams.show')->with('id', $id);
+        return view('teams.show', compact('team', 'teamArray'));
     }
 
     public function get($id)

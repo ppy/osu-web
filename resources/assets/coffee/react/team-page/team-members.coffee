@@ -38,12 +38,12 @@ class TeamPage.TeamMembers extends React.Component
         @props.team.admins.data.map (m) ->
           el TeamMemberAvatar, user: m, key: m.id, modifiers: ['members'], locked: m.id == window.currentUser.id
         if @props.withEdit
-          el TeamPage.AddUserButton, team: @props.team, admin: true
+          el TeamPage.AddUserButton, team: @props.team, admin: true, refresh: @props.refresh
       el 'p', className: 'team-members__title', Lang.get "teams.show.members"
       el 'div', className: 'team-members__list', id: 'members',
         @props.team.members.data.map (m) ->
           el TeamMemberAvatar, user: m, key: m.id, modifiers: ['members']
         if @props.withEdit
-          el TeamPage.AddUserButton, team: @props.team, admin: false
+          el TeamPage.AddUserButton, team: @props.team, admin: false, refresh: @props.refresh
 
 

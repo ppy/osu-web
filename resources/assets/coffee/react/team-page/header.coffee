@@ -22,7 +22,7 @@ class TeamPage.Header extends React.Component
     super props
     @state =
       editing: false
-      coverUrl: 'https://i.ytimg.com/vi/qWv89hC073c/maxresdefault.jpg'
+      coverUrl: ''
 
     @coverSet = _.debounce @coverSet, 300
 
@@ -90,7 +90,7 @@ class TeamPage.Header extends React.Component
       el 'div',
         className: 'profile-header__cover',
         style:
-          backgroundImage: "url('#{@state.coverUrl}')"
+          backgroundImage: "url('https://i.ytimg.com/vi/qWv89hC073c/maxresdefault.jpg')"
 
       el 'div', className: 'profile-header__avatar-container',
         el TeamAvatar, team: @props.team, modifiers: ['profile']

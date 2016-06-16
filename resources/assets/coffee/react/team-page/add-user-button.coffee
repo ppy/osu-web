@@ -32,6 +32,7 @@ class TeamPage.AddUserButton extends React.Component
   open: =>
     @setState showmodal: true
   close: =>
+    console.log 'closing'
     @setState
       showmodal: false
       searchResults: []
@@ -40,7 +41,7 @@ class TeamPage.AddUserButton extends React.Component
       addingUser: false
       userToAdd: {}
   search: (ev) =>
-    @setState searching: true, searchQuery: ev.target.value
+    @setState searching: true, searchQuery: ev.target.value, addingUser: false, userToAdd: {}
     @debounceSearchRequest()
   searchRequest: =>
     $.ajax laroute.route('users.search', query: @state.searchQuery),
@@ -53,10 +54,13 @@ class TeamPage.AddUserButton extends React.Component
   addUser: =>
     console.log 'adding user'
     if @state.addingUser and @state.userToAdd
+      @setState showmodal: false
       $.ajax laroute.route('team.addmember', user: @state.userToAdd.id, admin: + @props.admin, id: @props.team.id),
         method: 'get'
-      .then =>
-        @close
+      .done (data) =>
+        @props.refresh()
+        @setState addingUser: false, userToAdd: {}
+
 
   render: =>
     div className: 'team-members__add', onClick: @open,
