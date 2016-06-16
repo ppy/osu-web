@@ -56,13 +56,13 @@ return [
             'delete' => [
                 // how to english
                 // Returned when TopicReply check fails.
-                'can_not_post' => 'Can not delete post which thread can not be replied to.',
+                'can_not_post' => 'You cannot delete a post in a thread that you can not reply to.',
                 'can_only_delete_last_post' => 'Only last post can be deleted.',
                 'not_owner' => 'Only poster can delete the post.',
             ],
 
             'edit' => [
-                'can_not_post' => 'Can not edit post which thread can not be replied to.',
+                'can_not_post' => 'You cannot edit a post in a thread that you can not reply to.',
                 'locked' => 'The post is locked from editing.',
                 'not_owner' => 'Only poster can edit the post.',
             ],
