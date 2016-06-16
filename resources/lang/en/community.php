@@ -60,7 +60,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Upload More',
-                'description' => 'Increased beatmap submission limits. (10 pending beatmaps total).',
+                'description' => 'Additional pending beatmap slots (per ranked beatmap) up to a max of 10.',
             ],
 
             'early_access' => [
@@ -75,7 +75,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => 'Beatmap Filters',
-                'description' => 'Filter beatmap searches by played and unplayed maps.',
+                'description' => 'Filter beatmap searches by played and unplayed maps and rank achieved (if any).',
             ],
 
             'yellow_fellow' => [
@@ -90,7 +90,7 @@ return [
 
             'change_username' => [
                 'title' => 'Change Username',
-                'description' => 'The ability to change your username. (once max)',
+                'description' => 'The ability to change your username without additional costs. (once max)',
             ],
 
             'skinnables' => [
@@ -126,25 +126,4 @@ return [
             'instructions' => 'click the heart button to proceed to the osu!store',
         ],
     ],
-    'slack' => [
-        'header' => [
-            'small' => 'osu!dev',
-            'large' => 'osu!public Slack Access',
-        ],
-
-        'disabled' => 'The public slack community is temporarily unavailable. If you wish to reach out, please create an issue on the appropriate <a href="https://github.com/ppy">github repository</a> or contact us at <a href="mailto::mail">:mail</a>.',
-
-        'guest-begin' => 'You need to be ',
-        'guest-middle' => 'logged in',
-        'guest-end' => ' to receive a slack invite!',
-
-        'receive-invite' => 'You can receive an invite for the public osu! slack network here.',
-        'bullet-points' => 'Please read thoroughly through the conditions on <a href=":link">this post.</a><br />Please note that any offences on your account will not be tolerated.',
-
-        'recent-issues' => 'Your account has recent issues. Please <a href="mailto::mail">contact support</a> for more details.',
-        'agree-button' => 'Agree',
-
-        'accepted' => 'Your request has been accepted. You should receive an email soon.',
-        'invite-already-accepted' => 'You already have a slack account! If you have issues, <a href="mailto::mail">contact support.</a>',
-    ],
-];
+    ];
