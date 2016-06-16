@@ -24,10 +24,7 @@ class TeamPage.Main extends React.Component
     @timeouts = {}
     
     @state =
-      team: $.ajax laroute.route('team.get'),
-        method: 'get'
-      .done (data) =>
-        return data
+      team: @props.team
       isCoverUpdating: false
       currentMode: 'team_members'
   componentDidMount: =>
@@ -37,6 +34,10 @@ class TeamPage.Main extends React.Component
   setCurrentMode: (_e, mode) =>
     return if @state.currentMode == mode
     @setState currentMode: mode
+  refresh: =>
+    $.ajax(laroute.route('team.get', id: @props.team.id, includes: 'admins,members'), method: 'get').done (data) => 
+      console.log data.data
+      @setState team: data.data
   render: ->
     div className: 'osu-layout__section',
       el TeamPage.Header,
@@ -47,3 +48,4 @@ class TeamPage.Main extends React.Component
         team: @state.team
         currentMode: @state.currentMode
         allAchievements: @props.allAchievements
+        refresh: @refresh
