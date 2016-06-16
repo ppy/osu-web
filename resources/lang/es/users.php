@@ -17,7 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 return [
     'login' => [
         '_' => 'Iniciar sesión',
@@ -27,7 +27,7 @@ return [
         'remember' => 'Recordarme',
         'title' => 'Inicia sesión para continuar',
         'failed' => 'Nombre de usuario o contraseña incorrectos',
-        'register' => "¿No tienes una cuenta de osu!? Crear una",
+        'register' => '¿No tienes una cuenta de osu!? Crear una',
         'forgot' => '¿Olvidaste tu contraseña?',
         'beta' => [
             'main' => 'Acceso a la beta es actualmente restringido a usuarios privilegiados.',
@@ -85,9 +85,9 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu disponible',
-                'available_info' => "Kudosu puede ser intercambiado por estrellas kudosu, que ayudarán a tu beatmap a obtener más atención. Este es el número de kudosu que no has intercambiado aún.",
+                'available_info' => 'Kudosu puede ser intercambiado por estrellas kudosu, que ayudarán a tu beatmap a obtener más atención. Este es el número de kudosu que no has intercambiado aún.',
                 'entry' => [
-                    'empty' => "¡Este usuario no ha recibido ningún kudosu!",
+                    'empty' => '¡Este usuario no ha recibido ningún kudosu!',
                     'give' => 'Recibido <strong class="kudosu-entries__amount">:amount kudosu</strong> de :giver por un post en :post',
                     'revoke' => 'Kudosu denegado por :giver por el post :post',
                 ],

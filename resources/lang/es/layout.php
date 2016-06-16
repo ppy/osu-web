@@ -126,43 +126,43 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Página no encontrada',
-            'description' => "¡Lo sentimos, la página que has solicitado no está aquí!",
+            'description' => '¡Lo sentimos, la página que has solicitado no está aquí!',
             'link' => false,
         ],
         '403' => [
-            'error' => "No deberías estar aquí.",
+            'error' => 'No deberías estar aquí.',
             'description' => 'Aunque, podrás intentar volver atrás.',
             'link' => false,
         ],
         '401' => [
-            'error' => "No deberías estar aquí.",
+            'error' => 'No deberías estar aquí.',
             'description' => 'Aunque, podrías intentar volver atrás. O tal vez iniciar sesión.',
             'link' => false,
         ],
         '405' => [
             'error' => 'Página no encontrada',
-            'description' => "¡Lo sentimos, la página que has solicitado no está aquí!",
+            'description' => '¡Lo sentimos, la página que has solicitado no está aquí!',
             'link' => false,
         ],
         '500' => [
             'error' => '¡Oh no! ¡Algo se ha roto! ;_;',
-            'description' => "Somos automáticamente notificados de cada error.",
+            'description' => 'Somos automáticamente notificados de cada error.',
             'link' => false,
         ],
         'fatal' => [
             'error' => '¡Oh no! ¡Algo se ha roto (gravemente)! ;_;',
-            'description' => "Somos automáticamente notificados de cada error.",
+            'description' => 'Somos automáticamente notificados de cada error.',
             'link' => false,
         ],
         '503' => [
             'error' => '¡En mantenimiento!',
-            'description' => "El mantenimiento normalmente toma de 5 segundos a 10 minutos. Si excedemos el tiempo, mira :link para más información.",
+            'description' => 'El mantenimiento normalmente toma de 5 segundos a 10 minutos. Si excedemos el tiempo, mira :link para más información.',
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "¡Por si acaso, aquí tienes un código que puedes dar a soporte técnico!",
+        'reference' => '¡Por si acaso, aquí tienes un código que puedes dar a soporte técnico!',
     ],
 ];

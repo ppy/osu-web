@@ -17,7 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 return [
     'admin' => [
         'warehouse' => 'Almacén',
@@ -43,6 +43,6 @@ return [
         'notification_remove_text' => 'aquí',
         'notification_in_stock' => '¡Este producto ya tiene existencias!',
         'notification_exists' => '¡Ya has solicitado una notificación para este producto!',
-        'notification_doesnt_exist' => "¡Ni siquiera has solicitado una notificación para este producto!",
+        'notification_doesnt_exist' => '¡Ni siquiera has solicitado una notificación para este producto!',
     ],
 ];
