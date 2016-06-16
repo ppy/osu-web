@@ -87,8 +87,8 @@ return [
     ],
     'require_login' => 'Inicia sesión para continuar.',
     'unauthorized' => 'Acceso denegado.',
-    'silenced' => "No puedes hacer eso mientras estés silenciado.",
-    'restricted' => "No puedes hacer eso mientras estés restringido.",
+    'silenced' => 'No puedes hacer eso mientras estés silenciado.',
+    'restricted' => 'No puedes hacer eso mientras estés restringido.',
     'user' => [
         'page' => [
             'edit' => [

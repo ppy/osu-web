@@ -25,5 +25,5 @@ return [
         ],
     ],
     'required' => ':attribute es requerido.',
-	
+
 ];
