@@ -20,7 +20,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BanchoStats;
-use App\Models\User;
+use App\Models\Count;
 use Carbon\Carbon;
 use Auth;
 use View;
@@ -38,8 +38,8 @@ class HomeController extends Controller
         $stats = BanchoStats::where('date', '>=', $timeAgo)
             ->whereRaw('banchostats_id mod 10 = 0')
             ->get();
-        $totalUsers = User::count();
-        $currentOnline = (is_null($stats) ? $stats->last()->users_osu : 0);
+        $totalUsers = Count::totalUsers();
+        $currentOnline = (is_null($stats) ? 0: $stats->last()->users_osu);
 
         return view('home.landing')
             ->with('stats', $stats)
