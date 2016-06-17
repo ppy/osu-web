@@ -31,8 +31,9 @@ class HomeController extends Controller
 
     public function getLanding()
     {
-        if(Auth::check())
+        if (Auth::check()) {
             return $this->getNews();
+        }
 
         $timeAgo = Carbon::now()->subHours(24);
         $stats = BanchoStats::where('date', '>=', $timeAgo)

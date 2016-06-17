@@ -211,8 +211,7 @@ function nav_links()
 {
     $links = landing_nav_links();
 
-    if(config('app.debug'))
-    {
+    if (config('app.debug')) {
         $links['home'] = array_merge($links['home'], [
             'getChangelog' => route('changelog'),
             'getDownload' => route('download'),
@@ -262,7 +261,7 @@ function landing_nav_links()
 
     if (config('app.debug')) {
         $links['home'] = [
-            'getLanding' => route('home'),            
+            'getLanding' => route('home'),     
         ];
     }
 
