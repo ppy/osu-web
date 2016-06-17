@@ -80,8 +80,8 @@
         </div>
     </div>
     <header class="osu-layout__section osu-layout__section--minimum">
-        <div class="osu-layout__row js-landing-hero">
-            <div class="landing-hero-slider">
+        <div class="osu-layout__row landing-hero">
+            <div class="js-landing-hero-slider landing-hero-slider">
                 @for($i = 1; $i <= 2; $i++)
                 <a href="#" class="landing-slide">
                     <span class="landing-slide__bg">
