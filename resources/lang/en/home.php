@@ -30,13 +30,8 @@ return [
 
         'download' =>  [
             '_' => 'Download now',
-            'forMac' => 'for Mac OS X',
-            'forWindows' => 'for Windows',
-            'forLinux' => 'for Linux',
-
-            'otherMac' => 'click here for Windows or Linux',
-            'otherWindows' => 'click here for Mac or Linux',
-            'otherLinux' => 'click here for Windows or Mac',
+            'for' => 'for :os',
+            'other' => 'click here for :os1 or :os2',
         ],
 
         'players' => 'registered players',
