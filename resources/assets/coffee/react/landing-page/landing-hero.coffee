@@ -46,7 +46,8 @@ getOS = ->
 otherOS = (os) ->
   choices = ['macOS', 'Linux', 'Windows']
   index = choices.indexOf os
-  return choices.splice choices, 1
+  choices.splice index, 1
+  choices
 
 os = getOS()
 others = otherOS os
