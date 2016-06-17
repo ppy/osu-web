@@ -21,4 +21,4 @@ class BeatmapsetPage.ExtraHeader extends React.Component
   render: ->
     div
       key: 'header'
-      h2 className: 'page-extra__title', Lang.get "beatmaps.beatmapset.show.extra.#{@props.name}.title"
+      h2 className: 'page-extra__title', osu.trans "beatmaps.beatmapset.show.extra.#{@props.name}.title"

@@ -43,13 +43,13 @@ class ProfilePage.Info extends React.Component
         if @props.user.isSupporter
           el 'div',
             className: 'user-icon forum__user-icon--supporter profile-info__icon'
-            title: Lang.get 'users.show.is_supporter'
+            title: osu.trans 'users.show.is_supporter'
             el 'i', className: 'fa fa-heart'
 
       el 'div', className: 'page-contents__row',
         if @props.user.isSupporter
           el 'p', className: 'profile-info__title profile-info__title--supporter',
-            Lang.get('users.show.is_supporter')
+            osu.trans('users.show.is_supporter')
 
         if @props.user.title?
           el 'p', className: 'profile-info__title', @props.user.title
@@ -57,17 +57,17 @@ class ProfilePage.Info extends React.Component
       el 'div', className: 'page-contents__row',
         if @originKeys().length
           el 'p', className: 'profile-info__location', null,
-            Lang.get "users.show.origin.#{@originKeys().join('_')}",
+            osu.trans "users.show.origin.#{@originKeys().join('_')}",
               country: @props.user.country.name
               age: @props.user.age
 
         if @props.user.location
           el 'p', className: 'profile-info__location', null,
-            Lang.get 'users.show.current_location', location: @props.user.location
+            osu.trans 'users.show.current_location', location: @props.user.location
 
       el 'p',
         className: 'page-contents__row'
-        dangerouslySetInnerHTML: { __html: Lang.get 'users.show.lastvisit', date: osu.timeago(@props.user.lastvisit) }
+        dangerouslySetInnerHTML: { __html: osu.trans 'users.show.lastvisit', date: osu.timeago(@props.user.lastvisit) }
 
       elements.map (m) =>
         return if !@props.user[m]
@@ -82,9 +82,9 @@ class ProfilePage.Info extends React.Component
             dt = 'Last.fm'
             dd = el 'a', href: "https://last.fm/user/#{@props.user.lastfm}", @props.user.lastfm
           when 'playstyles'
-            dt = Lang.get 'users.show.plays_with._'
+            dt = osu.trans 'users.show.plays_with._'
             dd = @props.user.playstyle.map (s) ->
-                  Lang.get "users.show.plays_with.#{s}"
+                  osu.trans "users.show.plays_with.#{s}"
                  .join ', '
 
         el 'dl', key: m, className: 'page-contents__row',

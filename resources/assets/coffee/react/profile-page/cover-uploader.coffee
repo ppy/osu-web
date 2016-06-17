@@ -62,16 +62,16 @@ class ProfilePage.CoverUploader extends React.Component
         name: -1
 
       el 'label', className: labelClass, ref: 'uploadButtonContainer',
-        Lang.get 'users.show.edit.cover.upload.button'
+        osu.trans 'users.show.edit.cover.upload.button'
 
       el 'div', className: 'profile-cover-uploader__info',
         el 'p', className: 'profile-cover-uploader__info-entry',
           el 'strong',
             dangerouslySetInnerHTML:
-              __html: Lang.get 'users.show.edit.cover.upload.restriction_info'
+              __html: osu.trans 'users.show.edit.cover.upload.restriction_info'
 
         el 'p', className: 'profile-cover-uploader__info-entry',
-          Lang.get 'users.show.edit.cover.upload.dropzone_info'
+          osu.trans 'users.show.edit.cover.upload.dropzone_info'
 
         el 'p', className: 'profile-cover-uploader__info-entry',
-          Lang.get 'users.show.edit.cover.upload.size_info'
+          osu.trans 'users.show.edit.cover.upload.size_info'
