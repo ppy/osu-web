@@ -16,7 +16,7 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-$('.landing-hero-slider').slick
+$('.js-landing-hero-slider').slick
   fade: true
   arrows: false
   autoplay: true
