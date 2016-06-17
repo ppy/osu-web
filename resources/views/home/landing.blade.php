@@ -118,11 +118,11 @@
                 <a href="#" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
                     <img class="middle-button-image shadow-hover" src="/images/layout/landing-page/middle-button-1.jpg" alt="Placeholder text!">
                 </a>
-                <a href="#" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
-                    <img class="middle-button-image shadow-hover" src="/images/layout/landing-page/middle-button-2.jpg" alt="Placeholder text!">
+                <a href="{{ action('StoreController@getCart') }}" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
+                    <img class="middle-button-image shadow-hover" src="/images/layout/landing-page/middle-button-2.jpg" alt="osu!store">
                 </a>
-                <a href="#" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
-                    <img class="middle-button-image shadow-hover" src="/images/layout/landing-page/middle-button-3.jpg" alt="Placeholder text!">
+                <a href="//next.ppy.sh/" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
+                    <img class="middle-button-image shadow-hover" src="/images/layout/landing-page/middle-button-3.jpg" alt="osu!next">
                 </a>
             </div>
         </div>
@@ -200,106 +200,4 @@
     </script>
 
 <script src="{{ elixir("js/react/landing-page.js") }}" data-turbolinks-track></script>
-
-<script>
-    // Define margins
-    var margin = {top: 40, right: 0, bottom: 0, left: 0},
-    width = parseInt(d3.select(".js-landing-graph").style("width")) - margin.left - margin.right,
-    height = parseInt(d3.select(".js-landing-graph").style("height")) - margin.top - margin.bottom;
-
-    // Define peak circle
-    var peakR = 5;
-
-    // Define date parser
-    var parseDate = d3.time.format("%Y-%m-%d %H:%M:%S").parse;
-
-    var xScale = d3.time.scale().range([0, width]);
-    var yScale = d3.scale.linear().range([height, 0]);
-
-    // Peak text indicator point
-    var maxElem = null;
-
-    // Define area
-    var area = d3.svg.area().interpolate("basis")
-    .x(function(d) { return xScale(d.date); })
-    .y0(height)
-    .y1(function(d) { return yScale(d.users_osu); });
-
-    // Define svg canvas
-    var svg = d3.select(".js-landing-graph")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    // Read in data
-    function modelStats(data) {
-        // Parsing data
-        data.forEach(function (d) {
-            d.date = parseDate(d.date);
-            d.users_osu = +d.users_osu;
-        });
-
-        // Establishing domain for x/y axes
-        xScale.domain(d3.extent(data, function(d) { return d.date }));
-        yScale.domain([0, d3.max(data, function(d) { return d.users_osu })]);
-
-        // Appending groups
-        svg.append("path")
-        .datum(data)
-        .attr("class", "landing-graph__area")
-        .attr("d", area);
-
-        //Find the date for the max, from the end backward
-        for(var i = data.length - 1; i >= 0; i--)
-        {
-            if(maxElem === null || data[i].users_osu > maxElem.users_osu)
-                maxElem = data[i];
-        }
-
-        //Append text at 45 degrees to circle
-        var text = svg.append("text")
-        .attr('class', 'landing-graph__peak--text')
-        .text(Lang.get('home.landing.peak', {"count": maxElem.users_osu.toLocaleString()}))
-        .attr('y', -peakR * 2)
-        .attr('x', xScale(maxElem.date) + peakR * 2);
-
-        var peak = svg.append("circle")
-        .attr('class', 'landing-graph__peak--circle')
-        .attr('cy', 0)
-        .attr('cx', xScale(maxElem.date))
-        .attr('r', peakR);
-    };
-
-    function resize() {
-        var width = parseInt(d3.select(".js-landing-graph").style("width")) - margin.left - margin.right,
-        height = parseInt(d3.select(".js-landing-graph").style("height")) - margin.top - margin.bottom;
-
-        svg
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom);
-
-        // Update the range of the scale with new width/height
-        xScale.range([0, width]);
-        yScale.range([height, 0]);
-
-        // Force D3 to recalculate and update the line
-        svg.selectAll("path")
-        .attr("d", area);
-
-        svg.select(".landing-graph__peak--text")
-        .attr('x', xScale(maxElem.date) + peakR * 2);
-
-        svg.select(".landing-graph__peak--circle")
-        .attr('cx', xScale(maxElem.date));        
-    };
-
-    // Load the data
-    var stats = osu.parseJson('json-stats');
-    if(stats.length != 0)
-        modelStats(stats);
-
-    d3.select(window).on('resize', resize);
-</script>
 @endsection
