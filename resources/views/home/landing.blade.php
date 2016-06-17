@@ -80,7 +80,7 @@
         </div>
     </div>
     <header class="osu-layout__section osu-layout__section--minimum">
-        <div class="osu-layout__row landing-hero">
+        <div class="osu-layout__row js-landing-hero">
             <div class="landing-hero-slider">
                 @for($i = 1; $i <= 2; $i++)
                 <a href="#" class="landing-slide">
@@ -118,7 +118,7 @@
                 <a href="#" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
                     <img class="middle-button-image shadow-hover" src="/images/layout/landing-page/middle-button-1.jpg" alt="Placeholder text!">
                 </a>
-                <a href="{{ action('StoreController@getCart') }}" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
+                <a href="{{ action('StoreController@getListing') }}" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
                     <img class="middle-button-image shadow-hover" src="/images/layout/landing-page/middle-button-2.jpg" alt="osu!store">
                 </a>
                 <a href="//next.ppy.sh/" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
