@@ -1,0 +1,184 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+
+
+ .landing-hero {
+    position: relative;
+    display: flex;
+
+    &.osu-layout__row {
+        height: 450px; 
+        box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.5);
+        max-width: @landing-width;
+
+        @media @mobile {
+            width: calc(100% ~'-' (@spacing * 2));
+            margin-top: 15px;
+        }
+    }
+
+    .landing-hero-slider {
+        .landing-slide {
+            background: #000;
+
+            &__bg {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                opacity: .5;
+            }
+
+            &__cta {
+                position: absolute;
+                width: 50%;
+                height: 100%;
+                left: 0;
+                text-align: center;
+                padding: 0 60px;
+                display: table;
+
+                &__content {
+                    text-align: center;
+                    color: #fff;
+                    font-size: 24px;
+                    font-style: italic;
+                    font-weight: 600;
+                    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+                    line-height: 35px;
+                    display: table-cell;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+
+    .landing-hero-download {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        max-width: 180px;
+        right: 50px;
+        display: table;
+
+        &__inner {
+            display: table-cell;
+            vertical-align: middle;
+
+            .landing-download-button {
+                color: #fff;
+                width: 180px;
+                background: url("/images/layout/landing-page/download-button.jpg") no-repeat center center / cover;
+                border-radius: 2px;
+                display: block;
+                padding: 7px 0 10px;
+                margin-bottom: 13px;
+                .clearfix;
+                transition: all 80ms linear;
+
+                &__icon {
+                    position: relative;
+                    float: left;
+                    display: block;
+                    margin: 0 20px 0 10px;
+                    width: 30px;
+                    height: 30px;
+
+                    &::before {
+                        position: absolute;
+                        top: 2px;
+                        left: 0;
+                        border: 2px solid #fff;
+                        border-radius: 100%;
+                        padding: 5px;
+                        box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.3);
+                        text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+                    }
+                }
+
+                &__content {
+                    display: block;
+                    float: left;
+                    font-weight: 600;
+                    font-style: italic;
+                    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+
+                    &--top {
+                        font-size: 15px;
+                    }
+
+                    &--bottom {
+                        font-size: 9px;
+                        display: block;
+                    }
+                }
+            }
+
+            .landing-download-other {
+                display: block;
+                text-align: center;
+                font-size: 9px;
+                font-weight: 600;
+                font-style: italic;
+                color: #fff;
+                letter-spacing: 1px;
+            }
+        }
+    }
+
+    .landing-graph {
+        width: 100%;
+        height: 70px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        &__area {
+            fill: #bb1177;
+        }
+
+        &__info {
+            font-size: 12px;
+            color: #fff;
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+            position: absolute;
+            right: 30px;
+            top: -0.9em;
+        }
+
+        &__peak {
+            &--text {
+                font-size: 10px;
+                fill: #fff;
+                text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+
+                pointer-events: none;
+                user-select: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+            }
+
+            &--circle {
+                fill: none;
+                stroke-width: 2;
+                stroke: #fff;
+            }
+        }
+    }
+}

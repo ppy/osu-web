@@ -1,0 +1,159 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+ .landing-footer {
+    height: 100%;
+    flex-grow: 1;
+    .at2x("/images/backgrounds/page-000.png", 500px, 500px);
+}
+
+.landing-sitemap {
+    position: relative;
+    display: flex;
+
+    &.osu-layout__row {
+        max-width: 800px;
+        margin: 35px 0 40px;
+
+        @media @mobile {
+            width: calc(100% ~'-' (@spacing * 2));
+        }
+    }
+
+    &__container {
+        width: 100%;
+    }
+}
+
+.middle-button-image {
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.75);
+}
+
+.landing-sitemap-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    &__item {
+        &--bold {
+            color: #fff;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        &--link {
+            color: #ffddee;
+            font-size: 12px;
+
+            &:hover,
+            &:focus {
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+    }
+
+    @media @mobile {
+        text-align: center;
+    }
+}
+
+.landing-footer-bottom {
+    text-align: center;
+    color: #fff;
+
+    & a {
+        color: #fff;
+
+        &:hover,
+        &:focus {
+            color: #ff66aa;
+            text-decoration: none;
+        }
+    }
+    
+    &__social {
+        .clearfix;
+
+        &--icon {
+            position: relative;
+            margin: 0 5px;
+            width: 30px;
+            height: 30px;
+
+            &::before {
+                border: 2px solid #fff;
+                border-radius: 100%;
+                padding: 8px;
+                box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.3);
+                text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+                font-size: 18px;
+            }
+
+            &.fa-heart {
+                &:hover,
+                &:focus {
+                    color: #ff66aa;
+                }            
+            }
+
+            &.fa-twitter {
+                &:hover,
+                &:focus {
+                    color: #55acee;
+                }            
+            }
+
+            &.fa-facebook-official {
+                &:hover,
+                &:focus {
+                    color: #3b5998;
+                }            
+            }
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+            }
+        }
+    }
+
+    &__links {
+        padding-top: 20px;
+
+        &--link {            
+            font-size: 12px;
+            padding-right: 12px;
+            font-weight: 600;
+            font-style: italic;
+
+            &:last-child {
+                padding: 0;
+            }
+        }
+    }
+
+    &__copyright {
+        font-size: 12px;
+        font-weight: 600;
+        font-style: italic;
+        padding-bottom: 1em;
+    }
+}

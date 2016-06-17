@@ -44,6 +44,12 @@
     }
   }
 
+  &--body-landing {
+    &::before {
+      .at2x("/images/backgrounds/page-dark.png", 500px, 500px);
+    }
+  }
+
   &--body-ddd {
     &::before {
       .at2x("/images/backgrounds/page-ddd.png", 500px, 500px);
@@ -60,9 +66,21 @@
       }
     }
 
+    &--sm-4 {
+      @media @desktop {
+        width: calc((4 / 12 * 100%) ~'-' @spacing);
+      }
+    }
+
     &--lg-4 {
       @media @screen-large {
         width: calc((4 / 12 * 100%) ~'-' @spacing);
+      }
+    }
+
+    &--lg-3 {
+      @media @screen-large {
+        width: calc((3 / 12 * 100%) ~'-' @spacing);
       }
     }
   }

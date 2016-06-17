@@ -29,7 +29,7 @@
 
 // home section
 if (Config::get('app.debug')) {
-    Route::get('/', ['as' => 'home', 'uses' => 'HomeController@getNews']);
+    Route::get('/', ['as' => 'home', 'uses' => 'HomeController@getLanding']);
 } else {
     Route::get('/', ['as' => 'home', function () {
         $host = Request::getHttpHost();
@@ -40,6 +40,7 @@ if (Config::get('app.debug')) {
     }]);
 }
 
+Route::get('/home/landing', ['as' => 'landing', 'uses' => 'HomeController@getLanding']);
 Route::get('/home/news', ['as' => 'news', 'uses' => 'HomeController@getNews']);
 Route::get('/home/download', ['as' => 'download', 'uses' => 'HomeController@getDownload']);
 Route::get('/home/changelog', ['as' => 'changelog', 'uses' => 'HomeController@getChangelog']);

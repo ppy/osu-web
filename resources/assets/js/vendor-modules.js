@@ -7,6 +7,7 @@ require('jquery-ui/sortable');
 require('timeago');
 require('blueimp-file-upload');
 require('bootstrap');
+require('slick-carousel');
 
 window._ = require('lodash');
 window.Layzr = require('layzr.js');
@@ -22,3 +23,5 @@ window.PhotoSwipeUI_Default = require('photoswipe/dist/photoswipe-ui-default');
 
 window.d3 = require('d3');
 window.moment = require('moment');
+
+window.slick = require('slick-carousel');

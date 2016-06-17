@@ -19,11 +19,33 @@
  */
 namespace App\Http\Controllers;
 
+use App\Models\BanchoStats;
+use App\Models\User;
+use Carbon\Carbon;
+use Auth;
 use View;
 
 class HomeController extends Controller
 {
     protected $section = 'home';
+
+    public function getLanding()
+    {
+        if(Auth::check())
+            return $this->getNews();
+
+        $timeAgo = Carbon::now()->subHours(24);
+        $stats = BanchoStats::where('date', '>=', $timeAgo)
+            ->whereRaw('banchostats_id mod 10 = 0')
+            ->get();
+        $totalUsers = User::count();
+        $currentOnline = (is_null($stats) ? $stats->last()->users_osu : 0);
+
+        return view('home.landing')
+            ->with('stats', $stats)
+            ->with('totalUsers', $totalUsers)
+            ->with('currentOnline', $currentOnline);
+    }
 
     public function getNews()
     {
