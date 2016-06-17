@@ -17,22 +17,46 @@
  *
  */
 
- .landing-middle-buttons {
-    position: relative;
-    display: flex;
 
-    &.osu-layout__row {
-        max-width: 770px;
-        margin: 20px 0 25px;
+// Variables
+@landing-width: 980px;
+@landing-logo-size: 100px;
+@landing-md: ~"(max-width: 1145px)";
 
-        @media @mobile {
-            width: calc(100% ~'-' (@spacing * 2));
-        }
-    } 
+
+// Keyframes
+@keyframes logo-bounce {
+	0% { width: 100%; height: 100%; }
+	90% { transform: scale(1.05,1.05); }
 }
 
-.middle-button-image {
-    display: block;
-    max-width: 100%;
-    margin: 0 auto;
+@keyframes logo-glow {
+	0% { width: 100%; height: 100%; }
+	5% { opacity: 1; }
+	100% { transform: scale(1.63,1.63); opacity: 0; }
+}
+
+
+// Slick Overrides
+.landing-hero {
+	.slick-slider {
+		width: 100%;
+		height: 100%;
+	}
+
+	.slick-list {
+		height: 100%;
+	}
+
+	.slick-track {
+		height: 100%;
+	}
+
+	.slick-slide img {
+		display: none;
+	}
+
+	.slick-loading .slick-list {
+		background: #fff url('/images/layout/ajax-loader.gif') center center no-repeat;
+	}
 }
