@@ -261,7 +261,7 @@ function landing_nav_links()
 
     if (config('app.debug')) {
         $links['home'] = [
-            'getLanding' => route('home'),     
+            'getLanding' => route('home'),
         ];
     }
 
