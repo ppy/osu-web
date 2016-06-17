@@ -18,9 +18,10 @@ class ChangeTeamMembersFormat extends Migration
             $table->mediumInteger('user_id');
             $table->boolean('is_admin')->default(false);
             $table->primary(['team_id', 'user_id']);
+            /*
             $table->foreign('user_id')->references('user_id')->on('phpbb_users');
             $table->foreign('team_id')->references('team_id')->on('teams');
-            //
+            */
         });
     }
 
