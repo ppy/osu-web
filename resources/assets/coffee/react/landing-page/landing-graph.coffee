@@ -45,16 +45,16 @@ area = d3.svg.area().interpolate('basis')
   ).y0(height).y1((d) ->
     yScale d.users_osu
   )
-# Define svg canvas
-svg = d3.select '.js-landing-graph'
-  .append 'svg'
-  .attr 'width', width + margin.left + margin.right
-  .attr 'height', height + margin.top + margin.bottom
-  .append 'g'
-  .attr 'transform', 'translate(' + margin.left + ',' + margin.top + ')'
-
 
 modelStats = (data) ->
+  # Define svg canvas
+  svg = d3.select '.js-landing-graph'
+    .append 'svg'
+    .attr 'width', width + margin.left + margin.right
+    .attr 'height', height + margin.top + margin.bottom
+    .append 'g'
+    .attr 'transform', 'translate(' + margin.left + ',' + margin.top + ')'
+
   # Parsing data
   data.forEach (d) ->
     d.date = parseDate(d.date)
@@ -70,6 +70,10 @@ modelStats = (data) ->
       d.users_osu
     )
   ]
+  # Remove any existing paths
+  svg.selectAll 'path'
+    .remove
+
   # Appending groups
   svg.append 'path'
     .datum data
@@ -122,6 +126,6 @@ resize = ->
 # Load the data
 stats = osu.parseJson('json-stats')
 #Prevent redrawing on page back/foward
-if stats.length != 0
+if stats.length != 0 and d3.select('.js-landing-graph svg').empty()
   modelStats stats
 d3.select(window).on 'resize', resize
