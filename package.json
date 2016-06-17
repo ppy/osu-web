@@ -1,4 +1,6 @@
 {
+  "name": "osu!web",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "babel-preset-es2015": "^6.3.13",

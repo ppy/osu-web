@@ -16,6 +16,7 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 propsFunction = =>
+  team = osu.parseJson('json-team')
   team: team
 
 reactTurbolinks.register 'team-page', TeamPage.Main, propsFunction

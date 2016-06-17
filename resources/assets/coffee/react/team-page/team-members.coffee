@@ -21,12 +21,12 @@ class TeamPage.TeamMembers extends React.Component
   componentDidMount: ->
     if @props.withEdit
       $('#admins, #members').sortable(
-        connectWith: '.team-members__list', 
+        connectWith: '.team-members__list',
         cancel: ".ui-state-disabled"
         items: "div:not(.team-members__add)"
         tolerance: 'pointer' # make it easier to drop
         over: (event,ui) ->
-          ui.placeholder.insertBefore $(@).children 'div.team-members__add:first' 
+          ui.placeholder.insertBefore $(@).children 'div.team-members__add:first'
         update: (event, ui) ->
           console.log event
           console.log ui

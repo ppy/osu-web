@@ -26,9 +26,8 @@
 
 @section("script")
     @parent
-    <script data-turbolinks-eval="always">
-        var team = {!! json_encode($teamArray['data']) !!};
-        console.log(team);
+    <script id="json-team" type="application/json">
+        {!! json_encode($teamArray['data']) !!}
     </script>
 
     <script src="{{ elixir("js/react/team-page.js") }}" data-turbolinks-track></script>

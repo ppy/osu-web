@@ -35,6 +35,7 @@ class TeamTransformer extends Fractal\TransformerAbstract
       'id' => $team->id,
       'name' => $team->name,
       'created' => display_regdate($team),
+      'avatarUrl' => $team->avatarUrl,
     ];
     }
 
