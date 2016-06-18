@@ -45,6 +45,8 @@ area = d3.svg.area().interpolate('basis')
   ).y0(height).y1((d) ->
     yScale d.users_osu
   )
+# Define the graph
+svg = null
 
 modelStats = (data) ->
   # Define svg canvas

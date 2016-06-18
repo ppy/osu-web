@@ -37,12 +37,19 @@ getOS = ->
   # Test for mobile first
   if /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(navigator.appVersion)
     return 'Windows'
-  if /(Mac OS X|MacPPC|MacIntel|Mac_PowerPC|Macintosh)/.test(nAgnt)
-    return 'Mac'
+  if /(macOS|Mac OS X|MacPPC|MacIntel|Mac_PowerPC|Macintosh)/.test(nAgnt)
+    return 'macOS'
   if /(Linux|X11)/.test(nAgnt)
     return 'Linux'
   'Windows'
 
+otherOS = (os) ->
+  choices = ['macOS', 'Linux', 'Windows']
+  index = choices.indexOf os
+  choices.splice index, 1
+  choices
+
 os = getOS()
-$('.js-download-platform').text Lang.get('home.landing.download.for' + os)
-$('.js-download-other').text Lang.get('home.landing.download.other' + os)
+others = otherOS os
+$('.js-download-platform').text Lang.get('home.landing.download.for', {'os': os})
+$('.js-download-other').text Lang.get('home.landing.download.other', {'os1': others[0], 'os2': others[1]})

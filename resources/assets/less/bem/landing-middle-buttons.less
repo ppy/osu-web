@@ -20,15 +20,12 @@
  .landing-middle-buttons {
     position: relative;
     display: flex;
+    max-width: 770px;
+    margin: 20px auto 25px;
 
-    &.osu-layout__row {
-        max-width: 770px;
-        margin: 20px 0 25px;
-
-        @media @mobile {
-            width: calc(100% ~'-' (@spacing * 2));
-        }
-    } 
+    @media @mobile {
+        width: calc(100% ~'-' (@spacing * 2));
+    }
 }
 
 .middle-button-image {

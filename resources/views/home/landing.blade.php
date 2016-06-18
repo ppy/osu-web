@@ -14,21 +14,21 @@
 
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
---}}
+    --}}
 
-@extends("master", [
+    @extends("master", [
     'title' => 'osu!',
     'blank' => 'true',
     'body_additional_classes' => 'osu-layout--body-landing'
     ])
 
     @section("content")
-    <nav class="osu-layout__section osu-layout__section--minimum">
+    <nav class="osu-layout__row osu-layout__row--landing">
         <!-- Mobile Navigation -->
         @include('objects.smartphone-header', ['navLinks' => landing_nav_links(), 'subLinks' => false])
 
         <!-- Desktop Navigation -->
-        <div class="osu-layout__row landing-nav hidden-xs">
+        <div class="landing-nav hidden-xs">
             <div class="landing-nav__section landing-nav__section--left">
                 @foreach (landing_nav_links() as $section => $links)
                 <a href="{{ array_values($links)[0] }}" class="landing-nav__section__link {{ ($section == "home") ? "landing-nav__section__link--bold" : "" }}">{{ trans("layout.menu.$section._") }}</a>
@@ -79,9 +79,9 @@
             <span class="popup-text"></span>
         </div>
     </div>
-    <header class="osu-layout__section osu-layout__section--minimum">
-        <div class="osu-layout__row js-landing-hero">
-            <div class="landing-hero-slider">
+    <header class="osu-layout__row osu-layout__row--landing">
+        <div class="landing-hero">
+            <div class="js-landing-hero-slider landing-hero-slider">
                 @for($i = 1; $i <= 2; $i++)
                 <a href="#" class="landing-slide">
                     <span class="landing-slide__bg">
@@ -112,9 +112,9 @@
             </div>        
         </div>
     </header>
-    <main class="osu-layout__section osu-layout__section--minimum">
-        <div class="osu-layout__row landing-middle-buttons">
-            <div class="osu-layout__col-container">
+    <main class="osu-layout__row osu-layout__row--landing">
+        <div class="osu-layout__col-container">
+            <div class="landing-middle-buttons">
                 <a href="#" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
                     <img class="middle-button-image shadow-hover" src="/images/layout/landing-page/middle-button-1.jpg" alt="Placeholder text!">
                 </a>
@@ -190,14 +190,14 @@
             <div class="landing-footer-bottom__copyright">ppy powered 2007-2016</div>
         </div>
     </footer>
-@endsection
+    @endsection
 
-@section ("script")
-@parent
+    @section ("script")
+    @parent
 
     <script id="json-stats" type="application/json">
         {!! json_encode($stats) !!}
     </script>
 
-<script src="{{ elixir("js/react/landing-page.js") }}" data-turbolinks-track></script>
-@endsection
+    <script src="{{ elixir("js/react/landing-page.js") }}" data-turbolinks-track></script>
+    @endsection

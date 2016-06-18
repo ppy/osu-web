@@ -7,7 +7,6 @@ require('jquery-ui/sortable');
 require('timeago');
 require('blueimp-file-upload');
 require('bootstrap');
-require('slick-carousel');
 
 window._ = require('lodash');
 window.Layzr = require('layzr.js');
