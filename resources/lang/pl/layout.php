@@ -43,7 +43,7 @@ return [
             'show' => 'info',
             'index' => 'lista',
             // 'getPacks' => 'paczki',
-            // 'getCharts' => 'charty', //not so sure if that's the right translation
+            // 'getCharts' => 'charty',
         ],
         'beatmapsets' => [
             '_' => 'mapsety',

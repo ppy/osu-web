@@ -107,7 +107,7 @@ return [
                 ],
             ],
             'stats' => [
-              //this is left intentionally in english, you can't translate these so it sounds normal
+                //this is left intentionally in english, you can't translate these so it sounds normal
                 'cs' => 'Circle Size',
                 'hp' => 'HP Drain',
                 'od' => 'Accuracy',

@@ -29,8 +29,7 @@ return [
         ],
 
         'count' => [
-          //requesting context for that
-            'item' => ':count unit |:count units',
+            'item' => '{1} sztuka|[2,4] :count sztuki|[5,Inf] :count sztuk',
         ],
 
         'dropzone' => [
@@ -44,7 +43,7 @@ return [
 
         'time' => [
             'days_ago' => '{1} dzień temu|:count dni temu',
-            'hours_ago' => '{0} godzin temu | {1} godzinę temu|[2,4] :count godziny temu|[5,Inf] :count godzin temu',
+            'hours_ago' => '{0} godzin temu|{1} godzinę temu|[2,4] :count godziny temu|[5,Inf] :count godzin temu',
             'now' => 'teraz',
         ],
 
