@@ -17,21 +17,15 @@
  *
  */
 
-
-
  .landing-hero {
     position: relative;
     display: flex;
+    height: 450px; 
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.5);
 
-    &.osu-layout__row {
-        height: 450px; 
-        box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.5);
-        max-width: @landing-width;
-
-        @media @mobile {
-            width: calc(100% ~'-' (@spacing * 2));
-            margin-top: 15px;
-        }
+    @media @mobile {
+        width: calc(100% ~'-' (@spacing * 2));
+        margin-top: 15px;
     }
 
     .landing-hero-slider {
