@@ -50,7 +50,7 @@
                 <a href="#" class="pswp__button pswp__button--zoom" title="Zoom in/out"></a>
 
                 <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <!-- element will get modifier active when preloader is running -->
                 <div class="pswp__preloader">
                     <div class="pswp__preloader__icn">
                       <div class="pswp__preloader__cut">

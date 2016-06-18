@@ -260,6 +260,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                 ->beatmapsets()
                 ->rankedOrApproved()
                 ->active()
+                ->with('defaultBeatmaps')
                 ->skip($this->offset)
                 ->limit($this->limit)
                 ->get(),
@@ -272,6 +273,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->collection(
             $user
                 ->favouriteBeatmapsets()
+                ->with('defaultBeatmaps')
                 ->skip($this->offset)
                 ->limit($this->limit)
                 ->get(),

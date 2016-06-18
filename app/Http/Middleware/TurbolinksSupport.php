@@ -21,7 +21,7 @@ class TurbolinksSupport
         if (present($turbolinksLocation)) {
             $response = $next($request);
 
-            return $response->header('X-XHR-Redirected-To', $turbolinksLocation);
+            return $response->header('Turbolinks-Location', $turbolinksLocation);
         } else {
             return $next($request);
         }

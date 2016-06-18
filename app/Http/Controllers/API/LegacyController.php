@@ -35,9 +35,9 @@ use App\Transformers\API\StatisticsTransformer;
 use App\Transformers\API\EventTransformer;
 use App\Transformers\API\BeatmapTransformer;
 use App\Transformers\API\BeatmapPackTransformer;
-use Illuminate\Routing\Controller as Controller;
+use Illuminate\Routing\Controller as BaseController;
 
-class LegacyController extends Controller
+class LegacyController extends BaseController
 {
     public function getMatch()
     {
