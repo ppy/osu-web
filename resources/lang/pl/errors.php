@@ -28,7 +28,7 @@ return [
             'generic' => 'Wystąpił błąd. Spróbuj odświeżyć stronę.',
         ],
     ],
-    +      'community' => [
+    'community' => [
         'slack' => [
             'not-eligible' => 'Twoje konto nie może otrzymać zaproszenia do Slacka.',
             'slack-error' => 'Na serwerach Slacka wystąpił błąd. Spróbuj ponownie za kilka minut.',
