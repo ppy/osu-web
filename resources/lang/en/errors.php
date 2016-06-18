@@ -28,7 +28,7 @@ return [
             'generic' => 'An error occured. Try refreshing the page.',
         ],
     ],
-      'community' => [
+    'community' => [
         'slack' => [
             'not-eligible' => 'Your account is not eligible for the Slack invite.',
             'slack-error' => 'An error has occured on the Slack servers. Please try again in a few minutes.',
