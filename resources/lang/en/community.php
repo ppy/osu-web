@@ -127,7 +127,7 @@ return [
         ],
     ],
     'slack' => [
-       'header' => [
+        'header' => [
             'small' => 'osu!dev',
             'large' => 'osu!public Slack Access',
         ],
@@ -146,5 +146,5 @@ return [
 
         'accepted' => 'Your request has been accepted. You should receive an email soon.',
         'invite-already-accepted' => 'You already have a slack account! If you have issues, <a href="mailto::mail">contact support.</a>',
-     ],
-    ];
+    ],
+];
