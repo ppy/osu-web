@@ -28,6 +28,12 @@ return [
             'generic' => 'Wystąpił błąd. Spróbuj odświeżyć stronę.',
         ],
     ],
+    +      'community' => [
+        'slack' => [
+            'not-eligible' => 'Twoje konto nie może otrzymać zaproszenia do Slacka.',
+            'slack-error' => 'Na serwerach Slacka wystąpił błąd. Spróbuj ponownie za kilka minut.',
+        ],
+      ],
     'logged_out' => 'Zostałeś wylogowany. Zaloguj się i spróbuj ponownie.',
     'supporter_only' => 'Musisz być supporterem, aby używać tej funkcji.',
     'no_restricted_access' => 'Nie możesz wykonać tej operacji, jeśli twoje konto jest zbanowane.',
