@@ -20,7 +20,7 @@ class MiscSeeder extends Seeder
             //COUNTS
             if (!DB::table('osu_counts')->where('name', 'pp_rank_column')->get()) {
                 DB::table('osu_counts')->insert([
-                    ['name' => 'pp_rank_column', 'count' => 90,],
+                    ['name' => 'pp_rank_column', 'count' => 90],
                     ['name' => 'usercount', 'count' => 500000],
                 ]);
             }

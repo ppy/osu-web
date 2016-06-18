@@ -15,8 +15,7 @@ class BanchoStatsSeeder extends Seeder
         $faker = Faker\Factory::create();
         $date = new Carbon();
 
-        for($i = 0; $i < 500; $i++)
-        {
+        for ($i = 0; $i < 500; $i++) {
             $stat = new \App\Models\BanchoStats;
             $stat->users_irc = (100 + $faker->randomNumber(2));
             $stat->users_osu = (10000 + $faker->randomNumber(4));
