@@ -1,5 +1,5 @@
 ###
-# Copyright 2015 ppy Pty. Ltd.
+# Copyright 2016 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -15,25 +15,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-overlay = document.getElementsByClassName 'js-loading-overlay'
 
-
-show = ->
-  return if overlay.length == 0
-
-  overlay[0].classList.add 'loading-overlay--visible'
-
-
-show = _.debounce show, 5000, maxWait: 5000
-
-
-hide = ->
-  return if overlay.length == 0
-
-  show.cancel()
-  overlay[0].classList.remove 'loading-overlay--visible'
-
-
-@LoadingOverlay =
-  show: show
-  hide: hide
+Turbolinks.BrowserAdapter::showProgressBarAfterDelay = ->
+  @progressBarTimeout = setTimeout @showProgressBar, 0

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,27 +17,32 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
-use Auth;
-use Authorizer;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
-use LucaDegasperi\OAuth2Server\Exceptions\NoActiveAccessTokenException;
+use App\Models\LivestreamCollection;
+use Request;
 
-class Controller extends BaseController
+class LivestreamsController extends Controller
 {
-    use DispatchesJobs, ValidatesRequests;
+    protected $section = 'community';
 
-    public function __construct()
+    public function index()
     {
-        // allow route:list to work instead of failing from exception
-        // thrown by Authorizer.
-        try {
-            Auth::onceUsingId(Authorizer::getResourceOwnerId());
-        } catch (NoActiveAccessTokenException $_e) {
-            //
-        }
+        view()->share('current_action', 'getLive');
+
+        $livestream = new LivestreamCollection();
+        $streams = $livestream->all();
+        $featuredStream = $livestream->featured();
+
+        return view('livestreams.index', compact('streams', 'featuredStream'));
+    }
+
+    public function promote()
+    {
+        priv_check('LivestreamPromote')->ensureCan();
+
+        LivestreamCollection::promote(Request::input('id'));
+
+        return js_view('layout.ujs-reload');
     }
 }

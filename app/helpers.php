@@ -211,8 +211,7 @@ function nav_links()
 {
     $links = landing_nav_links();
 
-    if(config('app.debug'))
-    {
+    if (config('app.debug')) {
         $links['home'] = array_merge($links['home'], [
             'getChangelog' => route('changelog'),
             'getDownload' => route('download'),
@@ -243,7 +242,7 @@ function nav_links()
 
     $links['community'] = array_merge($links['community'], [
         'tournaments' => route('tournaments.index'),
-        'getLive' => route('live'),
+        'getLive' => route('livestreams.index'),
         'getSlack' => route('slack'),
     ]);
 
@@ -262,7 +261,7 @@ function landing_nav_links()
 
     if (config('app.debug')) {
         $links['home'] = [
-            'getLanding' => route('home'),            
+            'getLanding' => route('home'),
         ];
     }
 
@@ -571,12 +570,12 @@ function model_pluck($builder, $key)
         ->all();
 }
 
-function priv_check($ability, $args)
+function priv_check($ability, $args = null)
 {
     return priv_check_user(Auth::user(), $ability, $args);
 }
 
-function priv_check_user($user, $ability, $args)
+function priv_check_user($user, $ability, $args = null)
 {
-    return OsuAuthorize::doCheckUser($user, $ability, $args);
+    return app()->make('OsuAuthorize')->doCheckUser($user, $ability, $args);
 }

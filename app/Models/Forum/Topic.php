@@ -20,6 +20,7 @@
 namespace App\Models\Forum;
 
 use App\Models\Log;
+use App\Models\User;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
@@ -126,7 +127,7 @@ class Topic extends Model
                 $post->user->refreshForumCache($this->forum, -1);
             }
 
-            if ($user !== null && $user->user_id !== $post->poster_id && $user->isAdmin() === true) {
+            if ($user !== null && $user->user_id !== $post->poster_id) {
                 Log::logModerateForumPost('LOG_DELETE_POST', $post);
             }
         });
@@ -134,16 +135,24 @@ class Topic extends Model
         return true;
     }
 
-    public function move($targetForum)
+    public function moveTo($destinationForum)
     {
-        DB::transaction(function () use ($targetForum) {
+        if ($this->forum_id === $destinationForum->forum_id) {
+            return true;
+        }
+
+        if (!$this->forum->isOpen()) {
+            return false;
+        }
+
+        return DB::transaction(function () use ($destinationForum) {
             $originForum = $this->forum;
-            $this->forum()->associate($targetForum);
+            $this->forum()->associate($destinationForum);
             $this->save();
 
-            $this->posts()->update(['forum_id' => $targetForum->forum_id]);
-            $this->logs()->update(['forum_id' => $targetForum->forum_id]);
-            $this->userTracks()->update(['forum_id' => $targetForum->forum_id]);
+            $this->posts()->update(['forum_id' => $destinationForum->forum_id]);
+            $this->logs()->update(['forum_id' => $destinationForum->forum_id]);
+            $this->userTracks()->update(['forum_id' => $destinationForum->forum_id]);
 
             if ($originForum !== null) {
                 $originForum->refreshCache();
@@ -152,6 +161,16 @@ class Topic extends Model
             if ($this->forum !== null) {
                 $this->forum->refreshCache();
             }
+
+            $users = User::whereIn('user_id', model_pluck($this->posts(), 'poster_id'))->get();
+
+            foreach ($users as $user) {
+                $user->refreshForumCache();
+            }
+
+            Log::logModerateForumTopicMove($this, $originForum);
+
+            return true;
         });
     }
 

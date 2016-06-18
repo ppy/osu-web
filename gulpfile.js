@@ -52,6 +52,8 @@ elixir(function(mix) {
   .browserify(['vendor-modules.js'], 'resources/assets/js/build/vendor-modules.js')
   .coffee([
     '_classes/*.coffee',
+
+    'react-namespaces.coffee',
     'react/_components/*.coffee',
     'react/_mixins/*.coffee',
 
@@ -69,6 +71,7 @@ elixir(function(mix) {
     'user-dropdown-modal.coffee',
     'logout.coffee',
     'shared.coffee',
+    'turbolinks-overrides.coffee',
 
     'main.coffee',
   ], 'resources/assets/js/build/app-main.js')

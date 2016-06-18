@@ -44,6 +44,7 @@ return [
         'delayed_shipping_order_message' => env('DELAYED_SHIPPING_ORDER_MESSAGE'),
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE'))),
     ],
+    'twitch_client_id' => env('TWITCH_CLIENT_ID'),
     'urls' => [
         'legal' => [
             'dmca' => 'https://osu.ppy.sh/p/copyright',
@@ -63,7 +64,6 @@ return [
             'kudosu' => 'https://osu.ppy.sh/wiki/Kudosu',
             'rules' => 'https://osu.ppy.sh/wiki/Osu!:Rules',
         ],
-        'twitch_livestreams_api' => 'https://api.twitch.tv/kraken/streams?on_site=1&limit=40&offset=0&game=Osu!',
     ],
     'user' => [
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),

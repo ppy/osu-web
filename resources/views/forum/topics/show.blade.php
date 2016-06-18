@@ -216,6 +216,10 @@
                         @endif
                     </a>
                 @endif
+
+                @if (priv_check('ForumTopicLock', $topic)->can())
+                    @include('forum.topics._moderate_move')
+                @endif
             </div>
 
             <div class="forum-topic-nav__group forum-topic-nav__group--main">

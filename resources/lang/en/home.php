@@ -25,10 +25,10 @@ return [
     'landing' => [
         'slogans' => [
             '1' => 'free-to-win<br/>circle simulator',
-            '2' => 'rhythm is just<br/> a click away'
+            '2' => 'rhythm is just<br/> a click away',
         ],
 
-        'download' =>  [
+        'download' => [
             '_' => 'Download now',
             'for' => 'for :os',
             'other' => 'click here for :os1 or :os2',
@@ -36,6 +36,6 @@ return [
 
         'players' => 'registered players',
         'online' => 'online players now',
-        'peak' => 'Peak, :count online users'
+        'peak' => 'Peak, :count online users',
     ],
 ];
