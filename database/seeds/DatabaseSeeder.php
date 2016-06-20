@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        try {
+        try {           
             // Users, Stats, Ranks
             $this->command->info('Seeding Users and Stats/Rank History...');
             $this->call(UserSeeder::class);
@@ -27,6 +27,10 @@ class DatabaseSeeder extends Seeder
             // Scores
             $this->command->info('Seeding Scores...');
             $this->call(ScoreSeeder::class);
+
+            // BanchoStats
+            $this->command->info('Seeding BanchoStats...');
+            $this->call(BanchoStatsSeeder::class);
 
             // Forums, topics, posts etc
             $this->command->info('Seeding Forum Data...');
