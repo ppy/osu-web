@@ -80,7 +80,6 @@ return [
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Type here to reply',
         'started_by' => 'by :user',
-        'doublepost_message' => 'You just posted. Wait a bit or edit your last post.',
     ],
     'topics' => [
         '_' => 'Topics',
@@ -99,6 +98,23 @@ return [
             'locked-0' => 'Topic has been unlocked',
             'locked-1' => 'Topic has been locked',
             'is_locked' => 'This topic is locked and can not be replied to',
+        ],
+
+        'moderate_move' => [
+            'title' => 'Move to another forum',
+        ],
+
+        'show' => [
+            'feature_vote' => [
+                'current' => 'Current Priority: +:count',
+                'do' => 'Promote this request',
+
+                'user' => [
+                    'current' => 'You have :votes remaining.',
+                    'count' => '{0} no vote|{1} :count vote|[2,Inf] :count votes',
+                    'not_enough' => "You don't have any more votes remaining",
+                ],
+            ],
         ],
     ],
 

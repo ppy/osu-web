@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,25 +17,32 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Providers;
+namespace App\Http\Controllers;
 
-use Illuminate\Support\ServiceProvider;
+use App\Models\LivestreamCollection;
+use Request;
 
-class ConfigServiceProvider extends ServiceProvider
+class LivestreamsController extends Controller
 {
-    /**
-     * Overwrite any vendor / package configuration.
-     *
-     * This service provider is intended to provide a convenient location for you
-     * to overwrite any "vendor" or package configuration that you may want to
-     * modify before the application handles the incoming request / command.
-     *
-     * @return void
-     */
-    public function register()
+    protected $section = 'community';
+
+    public function index()
     {
-        config([
-            //
-        ]);
+        view()->share('current_action', 'getLive');
+
+        $livestream = new LivestreamCollection();
+        $streams = $livestream->all();
+        $featuredStream = $livestream->featured();
+
+        return view('livestreams.index', compact('streams', 'featuredStream'));
+    }
+
+    public function promote()
+    {
+        priv_check('LivestreamPromote')->ensureCan();
+
+        LivestreamCollection::promote(Request::input('id'));
+
+        return js_view('layout.ujs-reload');
     }
 }

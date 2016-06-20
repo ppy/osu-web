@@ -111,6 +111,11 @@ class Forum extends Model
         return $this->hasOne(ForumCover::class);
     }
 
+    public function scopeMoveDestination($query)
+    {
+        $query->orderBy('left_id');
+    }
+
     public function setForumParentsAttribute($value)
     {
         $this->attributes['forum_parents'] = presence($value) === null ? '' : serialize($value);
@@ -150,6 +155,12 @@ class Forum extends Model
         }
     }
 
+    // feature forum shall have extra features like sorting and voting
+    public function isFeatureForum()
+    {
+        return $this->forum_id === config('osu.forum.feature_forum_id');
+    }
+
     public function refreshCache()
     {
         DB::transaction(function () {
@@ -159,6 +170,11 @@ class Forum extends Model
 
             $this->save();
         });
+    }
+
+    public function currentDepth()
+    {
+        return count($this->forum_parents);
     }
 
     public function setTopicsCountCache()

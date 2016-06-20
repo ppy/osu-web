@@ -32,7 +32,7 @@ class OsuAuthorize
         $cacheKey = serialize([
             $ability,
             $user === null ? null : $user->getKey(),
-            $object->getKey(),
+            $object === null ? null : $object->getKey(),
         ]);
 
         if (!isset($this->cache[$cacheKey])) {
@@ -56,6 +56,14 @@ class OsuAuthorize
     {
         if ($user === null) {
             return 'require_login';
+        }
+
+        if ($user->isSilenced()) {
+            return 'silenced';
+        }
+
+        if ($user->isRestricted()) {
+            return 'restricted';
         }
 
         return 'ok';
@@ -91,6 +99,14 @@ class OsuAuthorize
             return 'require_login';
         }
 
+        if ($user->isSilenced()) {
+            return 'silenced';
+        }
+
+        if ($user->isRestricted()) {
+            return 'restricted';
+        }
+
         return 'ok';
     }
 
@@ -100,6 +116,14 @@ class OsuAuthorize
 
         if ($user === null) {
             return 'require_login';
+        }
+
+        if ($user->isSilenced()) {
+            return 'silenced';
+        }
+
+        if ($user->isRestricted()) {
+            return 'restricted';
         }
 
         if ($post->system) {
@@ -261,6 +285,17 @@ class OsuAuthorize
         }
     }
 
+    public function checkForumTopicMove($user, $topic)
+    {
+        if ($user === null) {
+            return 'require_login';
+        }
+
+        if ($user->isGMT()) {
+            return 'ok';
+        }
+    }
+
     public function checkForumTopicReply($user, $topic)
     {
         $prefix = 'forum.topic.reply.';
@@ -275,6 +310,9 @@ class OsuAuthorize
 
         if ($topic->isLocked()) {
             return $prefix.'locked';
+        }
+        if ($topic->isDoublePostBy($user)) {
+            return $prefix.'doublepost_message';
         }
 
         return 'ok';
@@ -340,6 +378,13 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkLivestreamPromote($user)
+    {
+        if ($user !== null && $user->isGMT()) {
+            return 'ok';
+        }
     }
 
     public function checkUserPageEdit($user, $pageOwner)

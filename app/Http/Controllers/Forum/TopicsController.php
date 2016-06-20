@@ -26,6 +26,7 @@ use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
+use App\Models\Forum\FeatureVote;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use Carbon\Carbon;
@@ -215,20 +216,41 @@ class TopicsController extends Controller
 
     public function lock($id)
     {
-        priv_check('ForumTopicLock', $topic)->ensure();
-
         $topic = Topic::findOrFail($id);
+
+        priv_check('ForumTopicLock', $topic)->ensureCan();
+
         $lock = Request::input('lock') !== '0';
         $topic->lock($lock);
 
         return ['message' => trans('forum.topics.lock.locked-'.($lock === true ? '1' : '0'))];
     }
-
-    public function checkForDoublePost($topic_id)
+    
+    public function voteFeature($topicId)
     {
-        $topic = Topic::FindOrFail($topic_id);
-        $user = Auth::user();
+        $star = FeatureVote::createNew([
+            'user_id' => Auth::user()->user_id,
+            'topic_id' => $topicId,
+        ]);
 
-        return ['doublepost' => $topic->isDoublePostBy($user) === true];
+        if ($star->getKey() !== null) {
+            return ujs_redirect(route('forum.topics.show', $topicId));
+        } else {
+            return error_popup(implode(' ', $star->validationErrors()->allMessages()));
+        }
+    }
+
+    public function move($id)
+    {
+        $topic = Topic::findOrFail($id);
+        $destinationForum = Forum::findOrFail(Request::input('destination_forum_id'));
+
+        priv_check('ForumTopicMove', $topic)->ensureCan();
+
+        if ($topic->moveTo($destinationForum)) {
+            return js_view('layout.ujs-reload');
+        } else {
+            abort(422);
+        }
     }
 }

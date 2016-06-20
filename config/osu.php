@@ -20,24 +20,34 @@ return [
         'key' => env('CAMO_KEY'),
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
     ],
+    'elasticsearch' => [
+        'index' => env('ES_INDEX', 'osu'),
+    ],
     'emails' => [
         'account' => 'accounts@ppy.sh',
     ],
     'forum' => [
         'admin_forum_id' => intval(env('ADMIN_FORUM_ID', 28)),
         'help_forum_ids' => array_map('intval', explode(' ', env('HELP_FORUM_IDS', '4 5 29 30 101'))),
-        'doublePostTime' => 72,
-        'authorDoublePostTime' => 24,
+        'doublePostTime' => [
+            'normal' => 72,
+            'author' => 24,
+        ],
+        'feature_forum_id' => get_int(env('FEATURE_FORUM_ID')),
         'slack_watch' => [
             'forum_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_FORUM_IDS', '5 29 101 4 30 2'))),
             'topic_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_TOPIC_IDS', '259747'))),
         ],
+    ],
+    'legacy' => [
+        'shared_cookie_secret' => env('SHARED_COOKIE_SECRET', ''),
     ],
     'store' => [
         'delayed_shipping_order_threshold' => env('DELAYED_SHIPPING_ORDER_THRESHOLD', 100),
         'delayed_shipping_order_message' => env('DELAYED_SHIPPING_ORDER_MESSAGE'),
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE'))),
     ],
+    'twitch_client_id' => env('TWITCH_CLIENT_ID'),
     'urls' => [
         'legal' => [
             'dmca' => 'https://osu.ppy.sh/p/copyright',
@@ -57,7 +67,6 @@ return [
             'kudosu' => 'https://osu.ppy.sh/wiki/Kudosu',
             'rules' => 'https://osu.ppy.sh/wiki/Osu!:Rules',
         ],
-        'twitch_livestreams_api' => 'https://api.twitch.tv/kraken/streams?on_site=1&limit=40&offset=0&game=Osu!',
     ],
     'user' => [
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),

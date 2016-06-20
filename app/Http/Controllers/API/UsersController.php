@@ -17,36 +17,30 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Providers;
+namespace App\Http\Controllers\API;
 
-use Illuminate\Bus\Dispatcher;
-use Illuminate\Support\ServiceProvider;
+use Auth;
+use App\Models\User;
+use App\Transformers\UserTransformer;
 
-class BusServiceProvider extends ServiceProvider
+class UsersController extends Controller
 {
-    /**
-     * Bootstrap any application services.
-     *
-     * @param \Illuminate\Bus\Dispatcher $dispatcher
-     *
-     * @return void
-     */
-    public function boot(Dispatcher $dispatcher)
+    public function show($user_id)
     {
-        $dispatcher->mapUsing(function ($command) {
-            return Dispatcher::simpleMapping(
-                $command, 'App\Commands', 'App\Handlers\Commands'
-            );
-        });
+        return $this->showUser(User::findOrFail($user_id));
     }
 
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
+    public function me()
     {
-        //
+        return $this->showUser(Auth::user());
+    }
+
+    private function showUser($user)
+    {
+        return fractal_api_serialize_item(
+            $user,
+            new UserTransformer(),
+            'defaultStatistics'
+        );
     }
 }

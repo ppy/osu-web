@@ -83,6 +83,19 @@ class Log extends Model
         ]);
     }
 
+    public static function logModerateForumTopicMove($topic, $originForum, $user = null)
+    {
+        return static::log([
+            'log_type' => static::LOG_FORUM_MOD,
+            'log_operation' => 'LOG_MOVE',
+            'log_data' => [$originForum->forum_name],
+
+            'user_id' => ($user->user_id ?? null),
+            'forum_id' => $topic->forum_id,
+            'topic_id' => $topic->topic_id,
+        ]);
+    }
+
     public static function logModerateForumPost($operation, $post, $user = null)
     {
         // ideally should log post_id as well but current phpbb logging doesn't

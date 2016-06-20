@@ -68,8 +68,8 @@ Route::get('/community/forum', function () {
     return Redirect::to('/forum');
 });
 
-Route::get('/community/live', ['as' => 'live', 'uses' => 'CommunityController@getLive']);
-Route::post('/community/live', ['as' => 'live', 'uses' => 'CommunityController@postLive']);
+Route::resource('livestreams', 'LivestreamsController', ['only' => ['index']]);
+Route::post('livestreams/promote', ['as' => 'livestreams.promote', 'uses' => 'LivestreamsController@promote']);
 
 Route::get('/community/chat', ['as' => 'chat', 'uses' => 'CommunityController@getChat']);
 Route::get('/community/profile/{id}', function ($id) {
@@ -122,7 +122,8 @@ Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
     Route::post('topics/preview', ['as' => 'forum.topics.preview', 'uses' => 'TopicsController@preview']);
     Route::post('topics/{topics}/reply', ['as' => 'forum.topics.reply', 'uses' => 'TopicsController@reply']);
     Route::post('topics/{topics}/lock', ['as' => 'forum.topics.lock', 'uses' => 'TopicsController@lock']);
-    Route::get('t/{topics}/doublepost', 'TopicsController@checkForDoublePost');
+    Route::post('topics/{topics}/move', ['as' => 'forum.topics.move', 'uses' => 'TopicsController@move']);
+    Route::post('topics/{topics}/vote-feature', ['as' => 'forum.topics.vote-feature', 'uses' => 'TopicsController@voteFeature']);
     Route::resource('topics', 'TopicsController', ['only' => ['create', 'store']]);
 
     Route::resource('forum-covers', 'ForumCoversController', ['only' => ['store', 'update', 'destroy']]);
@@ -187,9 +188,11 @@ Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'oauth'],
             Route::get('favourites', ['uses' => 'BeatmapsetsController@favourites']);     //  GET /api/v2/beatmapsets/favourites
         });
         Route::group(['prefix' => 'beatmaps'], function () {
-            Route::get('scores', ['uses' => 'BeatmapsController@scores']);          //  GET /api/v2/beatmaps/scores
+            Route::get('scores', ['uses' => 'BeatmapsController@scores']);                //  GET /api/v2/beatmaps/scores
             // Route::get('/{id}/scores', ['uses' => 'BeatmapsController@scores']);          //  GET /api/v2/beatmaps/:beatmap_id/scores
         });
+        Route::get('me', ['uses' => 'UsersController@me']);                               //  GET /api/v2/me
+        Route::get('users/{id}', ['uses' => 'UsersController@show']);                     //  GET /api/v2/users/:user_id
     });
     // legacy api routes
     Route::group(['prefix' => 'v1'], function () {

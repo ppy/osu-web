@@ -17,7 +17,7 @@
 ###
 class @LogoMenu
   constructor: ->
-    $(document).on 'ready page:load', @updateCover
+    $(document).on 'ready turbolinks:load', @updateCover
     @updateCover()
 
     # this class shall subscribe to 'user:update' event and update user

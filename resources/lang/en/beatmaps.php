@@ -72,6 +72,7 @@ return [
         ],
 
         'stats' => [
+            'mine' => 'Mine',
             'pending' => 'Pending',
             'praises' => 'Praises',
             'resolved' => 'Resolved',
@@ -83,7 +84,7 @@ return [
         'search' => [
             'prompt' => 'type in keywords...',
             'options' => 'More Search Options',
-            'not-found' => 'not results',
+            'not-found' => 'no results',
             'not-found-quote' => '... nope, nothing found.',
         ],
         'mode' => 'Mode',

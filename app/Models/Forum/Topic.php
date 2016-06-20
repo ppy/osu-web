@@ -20,15 +20,16 @@
 namespace App\Models\Forum;
 
 use App\Models\Log;
+use App\Models\User;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 
 class Topic extends Model
 {
     const STATUS_LOCKED = 1;
     const STATUS_UNLOCKED = 0;
+    const DEFAULT_ORDER_COLUMN = 'topic_last_post_time';
 
     protected $table = 'phpbb_topics';
     protected $primaryKey = 'topic_id';
@@ -126,7 +127,7 @@ class Topic extends Model
                 $post->user->refreshForumCache($this->forum, -1);
             }
 
-            if ($user !== null && $user->user_id !== $post->poster_id && $user->isAdmin() === true) {
+            if ($user !== null && $user->user_id !== $post->poster_id) {
                 Log::logModerateForumPost('LOG_DELETE_POST', $post);
             }
         });
@@ -134,16 +135,24 @@ class Topic extends Model
         return true;
     }
 
-    public function move($targetForum)
+    public function moveTo($destinationForum)
     {
-        DB::transaction(function () use ($targetForum) {
+        if ($this->forum_id === $destinationForum->forum_id) {
+            return true;
+        }
+
+        if (!$this->forum->isOpen()) {
+            return false;
+        }
+
+        return DB::transaction(function () use ($destinationForum) {
             $originForum = $this->forum;
-            $this->forum()->associate($targetForum);
+            $this->forum()->associate($destinationForum);
             $this->save();
 
-            $this->posts()->update(['forum_id' => $targetForum->forum_id]);
-            $this->logs()->update(['forum_id' => $targetForum->forum_id]);
-            $this->userTracks()->update(['forum_id' => $targetForum->forum_id]);
+            $this->posts()->update(['forum_id' => $destinationForum->forum_id]);
+            $this->logs()->update(['forum_id' => $destinationForum->forum_id]);
+            $this->userTracks()->update(['forum_id' => $destinationForum->forum_id]);
 
             if ($originForum !== null) {
                 $originForum->refreshCache();
@@ -152,6 +161,16 @@ class Topic extends Model
             if ($this->forum !== null) {
                 $this->forum->refreshCache();
             }
+
+            $users = User::whereIn('user_id', model_pluck($this->posts(), 'poster_id'))->get();
+
+            foreach ($users as $user) {
+                $user->refreshForumCache();
+            }
+
+            Log::logModerateForumTopicMove($this, $originForum);
+
+            return true;
         });
     }
 
@@ -178,6 +197,11 @@ class Topic extends Model
     public function logs()
     {
         return $this->hasMany(Log::class);
+    }
+
+    public function featureVotes()
+    {
+        return $this->hasMany(FeatureVote::class);
     }
 
     public function titleNormalized()
@@ -210,9 +234,50 @@ class Topic extends Model
         return $query->where('topic_type', 0);
     }
 
-    public function scopeRecent($query)
+    public function scopeWithReplies($query, $withReplies)
     {
-        return $query->orderBy('topic_last_post_time', 'desc');
+        switch ($withReplies) {
+            case 'only':
+                $query->where('topic_replies_real', '<>', 0);
+                break;
+            case 'none':
+                $query->where('topic_replies_real', 0);
+                break;
+        }
+    }
+
+    public function scopePresetSort($query, $sort)
+    {
+        switch ($sort[0] ?? null) {
+            case 'feature-votes':
+                $sortField = 'osu_starpriority';
+                break;
+        }
+
+        $sortField ?? ($sortField = static::DEFAULT_ORDER_COLUMN);
+
+        switch ($sort[1] ?? null) {
+            case 'asc':
+                $sortOrder = $sort[1];
+                break;
+        }
+
+        $sortOrder ?? ($sortOrder = 'desc');
+
+        $query->orderBy($sortField, $sortOrder);
+
+        if ($sortField !== static::DEFAULT_ORDER_COLUMN) {
+            $query->orderBy(static::DEFAULT_ORDER_COLUMN, 'desc');
+        }
+    }
+
+    public function scopeRecent($query, $params = null)
+    {
+        $sort = $params['sort'] ?? null;
+        $withReplies = $params['withReplies'] ?? null;
+
+        $query->withReplies($withReplies);
+        $query->presetSort($sort);
     }
 
     public function nthPost($n)
@@ -414,17 +479,14 @@ class Topic extends Model
             return false;
         }
         if ($user->user_id === $this->topic_poster) {
-            if (Carbon::now()->subhours(config('osu.forum.authorDoublePostTime')) > $this->topic_last_post_time) {
-                return false;
-            } else {
-                return true;
-            }
+            $minTime = config('osu.forum.doublePostTime.author');
         } else {
-            if (Carbon::now()->subhours(config('osu.forum.doublePostTime')) > $this->topic_last_post_time) {
-                return false;
-            } else {
-                return true;
-            }
+            $minTime = config('osu.forum.doublePostTime.normal');
         }
+        return (Carbon::now()->subhours($minTime) <= $this->topic_last_post_time);
+    }
+    public function isFeatureTopic()
+    {
+        return $this->forum->isFeatureForum();
     }
 }

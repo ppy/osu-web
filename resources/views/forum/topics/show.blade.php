@@ -53,6 +53,39 @@
 
     <div class="js-header--alt js-sync-height--target" data-sync-height-id="forum-topic-headernav"></div>
 
+    @if (false && $topic->isFeatureTopic())
+        <div class="forum-topic-feature-vote">
+            <p>
+                @foreach ($topic->featureVotes as $vote)
+                    <span>+{{ $vote->voteIncrement() }} by {{ $vote->user->username }}</span>
+                @endforeach
+            </p>
+            <p>
+                {{ trans('forum.topics.show.feature_vote.current', [
+                    'count' => $topic->osu_starpriority,
+                ]) }}
+            </p>
+
+            @if (Auth::check())
+                @if (Auth::user()->osu_featurevotes >= App\Models\Forum\FeatureVote::COST)
+                    <a href="{{ route('forum.topics.vote-feature', $topic->getKey()) }}" data-method="POST" data-remote=1>
+                        {{ trans('forum.topics.show.feature_vote.do') }}
+                    </a>
+                @else
+                    <p>
+                        {{ trans('forum.topics.show.feature_vote.user.not_enough') }}
+                    </p>
+                @endif
+
+                <p>
+                    {{ trans('forum.topics.show.feature_vote.user.current', [
+                        'votes' => trans_choice('forum.topics.show.feature_vote.user.count', Auth::user()->osu_featurevotes),
+                    ]) }}
+                </p>
+            @endif
+        </div>
+    @endif
+
     <div class="forum-posts-load-link js-header--alt">
         <a href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => ($posts->first()->post_id - 1)]) }}" class="js-forum-posts-show-more js-forum__posts-show-more--previous" data-mode="previous">Load more</a>
         <span><i class="fa fa-refresh fa-spin"></i></span>
@@ -102,7 +135,14 @@
                             </div>
 
                             <div class="forum-post__content forum-post__content forum-post__content--edit-bar">
-                                @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
+                                @if (priv_check('ForumTopicReply', $topic)->can())
+                                    @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
+                                @else
+                                    <span>
+                                        <i class="fa fa-warning"></i>
+                                        {{ priv_check('ForumTopicReply', $topic)->message() }}
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -114,9 +154,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class='forum-post__warning-overlay forum-post__warning-overlay--hidden'>
-                    {{trans("forum.topic.doublepost_message")}}
                 </div>
             </div>
         {!! Form::close() !!}
@@ -177,6 +214,7 @@
                         data-remote="1"
                         data-method="post"
                         data-reload-on-success="1"
+                        data-reload-reset-scroll="1"
                     >
                         @if ($topic->isLocked())
                             <i class="fa fa-unlock"></i>
@@ -184,6 +222,10 @@
                             <i class="fa fa-lock"></i>
                         @endif
                     </a>
+                @endif
+
+                @if (priv_check('ForumTopicLock', $topic)->can())
+                    @include('forum.topics._moderate_move')
                 @endif
             </div>
 

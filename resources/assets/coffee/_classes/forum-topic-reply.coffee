@@ -40,7 +40,7 @@ class @ForumTopicReply
 
     $.subscribe 'stickyFooter', @stickOrUnstick
 
-    $(document).on 'ready page:load', @initialise
+    $(document).on 'ready turbolinks:load', @initialise
     @initialise()
 
 
@@ -121,7 +121,6 @@ class @ForumTopicReply
     @deactivate()
     @$input().val ''
     @setState 'text', ''
-    $('.forum-post__warning-overlay.forum-post__warning-overlay--hidden').attr('class', 'forum-post__warning-overlay')
     if !@forum.lastPostLoaded() || e.target.getAttribute('data-force-reload') == '1'
       osu.navigate $(data).find('.js-post-url').attr('href')
     else
@@ -160,14 +159,3 @@ class @ForumTopicReply
       @stick()
     else
       @unstick()
-
-  checkForDoublePost:  =>
-    $.ajax
-      url: location.href+'/doublepost',
-      method: 'get',
-      dataType: 'json',
-    .success (data) ->
-      $('.forum-post__warning-overlay.forum-post__warning-overlay--hidden').attr('class', 'forum-post__warning-overlay') if data.doublepost == true
-      @deactivate() if data.doublepost == true && @getstate('active') == '1'
-      return
-    return

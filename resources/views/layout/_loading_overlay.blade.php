@@ -15,6 +15,20 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-(function() {
-    osu.replacePage({!! json_encode(view()->make("layout.error")->render()) !!})
-}).call(this)
+<div class="loading-overlay js-loading-overlay">
+    <div class="loading-overlay__container">
+        @foreach (range(1, 4) as $n)
+            <div class="loading-overlay__follow-point
+                    loading-overlay__follow-point--{{ $n }}">
+                ›
+            </div>
+
+            @foreach (['approach', 'hit'] as $type)
+                <div class="loading-overlay__circle
+                        loading-overlay__circle--{{ $n }}
+                        loading-overlay__circle--{{ $type }}"
+                ></div>
+            @endforeach
+        @endforeach
+    </div>
+</div>

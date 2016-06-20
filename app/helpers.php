@@ -245,7 +245,7 @@ function nav_links()
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
         'tournaments' => route('tournaments.index'),
-        'getLive' => route('live'),
+        'getLive' => route('livestreams.index'),
         'getSlack' => route('slack'),
     ];
 
@@ -545,12 +545,12 @@ function model_pluck($builder, $key)
         ->all();
 }
 
-function priv_check($ability, $args)
+function priv_check($ability, $args = null)
 {
     return priv_check_user(Auth::user(), $ability, $args);
 }
 
-function priv_check_user($user, $ability, $args)
+function priv_check_user($user, $ability, $args = null)
 {
-    return OsuAuthorize::doCheckUser($user, $ability, $args);
+    return app()->make('OsuAuthorize')->doCheckUser($user, $ability, $args);
 }
