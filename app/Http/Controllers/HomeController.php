@@ -40,7 +40,7 @@ class HomeController extends Controller
             ->whereRaw('banchostats_id mod 10 = 0')
             ->get();
         $totalUsers = Count::totalUsers();
-        $currentOnline = (is_null($stats) ? 0 : $stats->last()->users_osu);
+        $currentOnline = ($stats->isEmpty() ? 0 : $stats->last()->users_osu);
 
         return view('home.landing')
             ->with('stats', $stats)

@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <nav class="osu-layout__section osu-layout__section--minimum no-print js-header--main">
-    @include("objects.smartphone-header")
+    @include("objects.mobile-header")
 
     <!-- Main style -->
     <div id="nav-background" class="hidden-xs">

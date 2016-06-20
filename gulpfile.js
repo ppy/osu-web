@@ -108,8 +108,7 @@ elixir(function(mix) {
     'react/beatmapset-page.coffee'
   ], 'public/js/react/beatmapset-page.js')
   .coffee([
-    'react/landing-page/*.coffee',
-    'react/landing-page.coffee'
+    'react/landing-page/*.coffee'
   ], 'public/js/react/landing-page.js')
   .version([
     'css/app.css',

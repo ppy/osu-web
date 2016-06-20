@@ -25,7 +25,7 @@
     @section("content")
     <nav class="osu-layout__row osu-layout__row--landing">
         <!-- Mobile Navigation -->
-        @include('objects.smartphone-header', ['navLinks' => landing_nav_links(), 'subLinks' => false])
+        @include('objects.mobile-header', ['navLinks' => landing_nav_links(), 'subLinks' => false])
 
         <!-- Desktop Navigation -->
         <div class="landing-nav hidden-xs">
