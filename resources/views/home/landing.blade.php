@@ -25,12 +25,12 @@
     @section("content")
     <nav class="osu-layout__row osu-layout__row--landing">
         <!-- Mobile Navigation -->
-        @include('objects.mobile-header', ['navLinks' => landing_nav_links(), 'subLinks' => false])
+        @include('objects.mobile-header', ['subLinks' => false])
 
         <!-- Desktop Navigation -->
         <div class="landing-nav hidden-xs">
             <div class="landing-nav__section landing-nav__section--left">
-                @foreach (landing_nav_links() as $section => $links)
+                @foreach (nav_links() as $section => $links)
                 <a href="{{ array_values($links)[0] }}" class="landing-nav__section__link {{ ($section == "home") ? "landing-nav__section__link--bold" : "" }}">{{ trans("layout.menu.$section._") }}</a>
                 @endforeach
             </div>

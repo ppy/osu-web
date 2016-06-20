@@ -92,7 +92,7 @@
                     </a>
                 @endif
             </li>
-            @foreach ((isset($navLinks) ? $navLinks : nav_links()) as $section => $links)
+            @foreach (nav_links() as $section => $links)
             @if(isset($subLinks) && !$subLinks)
             <li class="dropdown">
                 <a role="button" class="navbar-mobile__menu-item" href="{{ array_values($links)[0] }}">

@@ -47,6 +47,7 @@ area = d3.svg.area().interpolate('basis')
   )
 # Define the graph
 svg = null
+textLength = 0
 
 modelStats = (data) ->
   # Define svg canvas
@@ -89,12 +90,18 @@ modelStats = (data) ->
       maxElem = data[i]
     i--
 
-  #Append text at 45 degrees to circle
   text = svg.append 'text' 
     .attr 'class', 'landing-graph__peak--text'
     .text Lang.get('home.landing.peak', 'count': maxElem.users_osu.toLocaleString())
     .attr 'y', -peakR * 2
-    .attr 'x', xScale(maxElem.date) + peakR * 2
+
+  # Get the width of the element to determine angle offset
+  rightX = xScale(maxElem.date) + peakR * 2
+  textLength = text.node().getComputedTextLength()
+  if (textLength + rightX) > width
+    text.attr 'x', xScale(maxElem.date) - textLength - peakR * 2
+  else
+    text.attr 'x', rightX
 
   peak = svg.append 'circle'
     .attr 'class', 'landing-graph__peak--circle'
@@ -105,11 +112,11 @@ modelStats = (data) ->
   return
 
 resize = ->
-  `var width`
-  `var height`
   width = parseInt(d3.select('.js-landing-graph').style('width')) - (margin.left) - (margin.right)
   height = parseInt(d3.select('.js-landing-graph').style('height')) - (margin.top) - (margin.bottom)
-  svg.attr('width', width + margin.left + margin.right).attr 'height', height + margin.top + margin.bottom
+  d3.select '.js-landing-graph svg'
+    .attr 'width', width + margin.left + margin.right
+    .attr 'height', height + margin.top + margin.bottom
   # Update the range of the scale with new width/height
   xScale.range [
     0
@@ -121,7 +128,13 @@ resize = ->
   ]
   # Force D3 to recalculate and update the line
   svg.selectAll('path').attr 'd', area
-  svg.select('.landing-graph__peak--text').attr 'x', xScale(maxElem.date) + peakR * 2
+
+  rightX = xScale(maxElem.date) + peakR * 2
+  if (textLength + rightX) > width
+    svg.select('.landing-graph__peak--text').attr 'x', xScale(maxElem.date) - textLength - peakR * 2
+  else
+    svg.select('.landing-graph__peak--text').attr 'x', rightX
+    
   svg.select('.landing-graph__peak--circle').attr 'cx', xScale(maxElem.date)
   return
 
