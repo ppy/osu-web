@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        try {           
+        try {
             // Users, Stats, Ranks
             $this->command->info('Seeding Users and Stats/Rank History...');
             $this->call(UserSeeder::class);
