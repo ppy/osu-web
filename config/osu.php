@@ -34,6 +34,7 @@ return [
             'author' => 24,
         ],
         'feature_forum_id' => get_int(env('FEATURE_FORUM_ID')),
+
         'slack_watch' => [
             'forum_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_FORUM_IDS', '5 29 101 4 30 2'))),
             'topic_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_TOPIC_IDS', '259747'))),

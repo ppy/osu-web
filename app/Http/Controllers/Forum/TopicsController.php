@@ -225,7 +225,7 @@ class TopicsController extends Controller
 
         return ['message' => trans('forum.topics.lock.locked-'.($lock === true ? '1' : '0'))];
     }
-    
+
     public function voteFeature($topicId)
     {
         $star = FeatureVote::createNew([

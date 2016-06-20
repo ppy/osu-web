@@ -50,7 +50,6 @@ class @ForumTopicReply
     @deleteState 'sticking'
     @input[0].value = @getState('text') || ''
     @activate() if @getState('active') == '1'
-    @checkForDoublePost()
 
 
   available: => @box.length
@@ -121,6 +120,7 @@ class @ForumTopicReply
     @deactivate()
     @$input().val ''
     @setState 'text', ''
+
     if !@forum.lastPostLoaded() || e.target.getAttribute('data-force-reload') == '1'
       osu.navigate $(data).find('.js-post-url').attr('href')
     else
