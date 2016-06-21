@@ -237,7 +237,7 @@ class @Forum
 
   jumpToSubmit: (e) =>
     e.preventDefault()
-    osu.hideLoadingOverlay()
+    LoadingOverlay.hide()
 
     if @jumpTo $(e.target).find('[name="n"]').val()
       $.publish 'forum:topic:jumpTo'
