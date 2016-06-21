@@ -220,12 +220,12 @@ class OsuAuthorize
             return 'require_login';
         }
 
-        if (!$this->doCheckUser($user, 'ForumTopicReply', $post->topic)->can()) {
-            return $prefix.'can_not_post';
-        }
-
         if ($user->isGMT()) {
             return 'ok';
+        }
+
+        if (!$this->doCheckUser($user, 'ForumTopicReply', $post->topic)->can()) {
+            return $prefix.'no_permission';
         }
 
         if ($post->poster_id !== $user->user_id) {
@@ -250,12 +250,12 @@ class OsuAuthorize
             return 'require_login';
         }
 
-        if (!$this->doCheckUser($user, 'ForumTopicReply', $post->topic)->can()) {
-            return $prefix.'can_not_post';
-        }
-
         if ($user->isGMT()) {
             return 'ok';
+        }
+
+        if (!$this->doCheckUser($user, 'ForumTopicReply', $post->topic)->can()) {
+            return $prefix.'no_permission';
         }
 
         if ($post->poster_id !== $user->user_id) {
@@ -304,8 +304,20 @@ class OsuAuthorize
             return 'require_login';
         }
 
-        if (!$this->doCheckUser($user, 'ForumTopicStore', $topic->forum)->can()) {
-            return $prefix.'can_not_post';
+        if ($user->isGMT()) {
+            return 'ok';
+        }
+
+        if ($user->isSilenced()) {
+            return $prefix.'user.silenced';
+        }
+
+        if ($user->isRestricted()) {
+            return $prefix.'user.restricted';
+        }
+
+        if (!ForumAuthorize::aclCheck($user, 'f_reply', $forum)) {
+            return $prefix.'can_not_reply';
         }
 
         if ($topic->isLocked()) {
