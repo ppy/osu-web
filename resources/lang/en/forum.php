@@ -111,6 +111,10 @@ return [
                     'not_enough' => "You don't have any more votes remaining",
                 ],
             ],
+
+            'poll' => [
+                'vote' => 'Vote',
+            ],
         ],
     ],
 

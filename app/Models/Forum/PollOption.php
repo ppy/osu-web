@@ -25,11 +25,17 @@ use Illuminate\Database\Eloquent\Model;
 class PollOption extends Model
 {
     protected $table = 'phpbb_poll_options';
+    protected $primaryKey = false;
     public $timestamps = false;
 
     public function topic()
     {
         return $this->belongsTo(Topic::class);
+    }
+
+    public function votes()
+    {
+        return $this->hasMany(PollVote::class, 'poll_option_id', 'poll_option_id')->where('topic_id', $this->topic_id);
     }
 
     public static function summary($topic, $user)
@@ -78,5 +84,14 @@ class PollOption extends Model
 
         return static::where($filters)
             ->update(['poll_option_total' => DB::raw("({$countQuery})")]);
+    }
+
+    public function userHasVoted($user)
+    {
+        if ($user === null) {
+            return false;
+        }
+
+        return $this->votes()->where('vote_user_id', $user->user_id)->exists();
     }
 }

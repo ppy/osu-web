@@ -85,8 +85,9 @@ return [
             ],
 
             'vote' => [
-                'over' => 'Polling is over and can not be voted on anymore',
-                'voted' => 'Changing vote is not allowed',
+                'require_login' => 'Please login to vote.',
+                'over' => 'Polling is over and can not be voted on anymore.',
+                'voted' => 'Changing vote is not allowed.',
             ],
         ],
 

@@ -346,12 +346,12 @@ class OsuAuthorize
     {
         $prefix = 'forum.topic.vote.';
 
-        if ($user === null) {
-            return 'require_login';
-        }
-
         if ($topic->pollEnd() !== null && $topic->pollEnd()->isPast()) {
             return $prefix.'over';
+        }
+
+        if ($user === null) {
+            return $prefix.'require_login';
         }
 
         if (!$topic->poll_vote_change) {

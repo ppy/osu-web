@@ -22,12 +22,12 @@ namespace App\Http\Controllers\Forum;
 use App\Events\Forum\TopicWasCreated;
 use App\Events\Forum\TopicWasReplied;
 use App\Events\Forum\TopicWasViewed;
+use App\Models\Forum\FeatureVote;
 use App\Models\Forum\Forum;
-use App\Models\Forum\Post;
 use App\Models\Forum\PollOption;
+use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
-use App\Models\Forum\FeatureVote;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use Carbon\Carbon;
@@ -121,7 +121,12 @@ class TopicsController extends Controller
         $skipLayout = Request::input('skip_layout') === '1';
         $jumpTo = null;
 
-        $topic = Topic::with('forum.cover')->findOrFail($id);
+        $topic = Topic
+            ::with([
+                'forum.cover',
+                'pollOptions.votes',
+            ])
+            ->findOrFail($id);
 
         priv_check('ForumView', $topic->forum)->ensureCan();
 
