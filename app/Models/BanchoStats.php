@@ -21,20 +21,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Count extends Model
+class BanchoStats extends Model
 {
-    protected $table = 'osu_counts';
-    protected $primaryKey = 'name';
+    protected $table = 'osu_banchostats';
+    protected $primaryKey = 'banchostats_id';
 
     public $timestamps = false;
-
-    public static function currentRankStart()
-    {
-        return static::find('pp_rank_column')->count;
-    }
-
-    public static function totalUsers()
-    {
-        return static::find('usercount')->count;
-    }
 }
