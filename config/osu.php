@@ -29,7 +29,7 @@ return [
     'forum' => [
         'admin_forum_id' => intval(env('ADMIN_FORUM_ID', 28)),
         'help_forum_ids' => array_map('intval', explode(' ', env('HELP_FORUM_IDS', '4 5 29 30 101'))),
-        'doublePostTime' => [
+        'double_post_time' => [
             'normal' => 72,
             'author' => 24,
         ],

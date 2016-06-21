@@ -479,9 +479,9 @@ class Topic extends Model
             return false;
         }
         if ($user->user_id === $this->topic_poster) {
-            $minTime = config('osu.forum.doublePostTime.author');
+            $minTime = config('osu.forum.double_post_time.author');
         } else {
-            $minTime = config('osu.forum.doublePostTime.normal');
+            $minTime = config('osu.forum.double_post_time.normal');
         }
 
         return Carbon::now()->subhours($minTime) > $this->topic_last_post_time;
