@@ -216,12 +216,12 @@ class OsuAuthorize
     {
         $prefix = 'forum.post.delete.';
 
-        if (!$this->doCheckUser($user, 'ForumTopicReply', $post->topic)->can()) {
-            return $prefix.'can_not_post';
-        }
-
         if ($user === null) {
             return 'require_login';
+        }
+
+        if (!$this->doCheckUser($user, 'ForumTopicReply', $post->topic)->can()) {
+            return $prefix.'can_not_post';
         }
 
         if ($user->isGMT()) {
@@ -246,12 +246,12 @@ class OsuAuthorize
     {
         $prefix = 'forum.post.edit.';
 
-        if (!$this->doCheckUser($user, 'ForumTopicReply', $post->topic)->can()) {
-            return $prefix.'can_not_post';
-        }
-
         if ($user === null) {
             return 'require_login';
+        }
+
+        if (!$this->doCheckUser($user, 'ForumTopicReply', $post->topic)->can()) {
+            return $prefix.'can_not_post';
         }
 
         if ($user->isGMT()) {
@@ -300,12 +300,12 @@ class OsuAuthorize
     {
         $prefix = 'forum.topic.reply.';
 
-        if (!$this->doCheckUser($user, 'ForumTopicStore', $topic->forum)->can()) {
-            return $prefix.'can_not_post';
-        }
-
         if ($user === null) {
             return 'require_login';
+        }
+
+        if (!$this->doCheckUser($user, 'ForumTopicStore', $topic->forum)->can()) {
+            return $prefix.'can_not_post';
         }
 
         if ($topic->isLocked()) {
@@ -322,12 +322,12 @@ class OsuAuthorize
     {
         $prefix = 'forum.topic.store.';
 
-        if (!$this->doCheckUser($user, 'ForumView', $forum)->can()) {
-            return $prefix.'can_not_view_forum';
-        }
-
         if ($user === null) {
             return 'require_login';
+        }
+
+        if (!$this->doCheckUser($user, 'ForumView', $forum)->can()) {
+            return $prefix.'can_not_view_forum';
         }
 
         if (!$forum->isOpen()) {
@@ -357,12 +357,12 @@ class OsuAuthorize
     {
         $prefix = 'forum.topic_cover.edit.';
 
-        if ($cover->topic !== null) {
-            return $this->checkForumTopicEdit($user, $cover->topic);
-        }
-
         if ($user === null) {
             return 'require_login';
+        }
+
+        if ($cover->topic !== null) {
+            return $this->checkForumTopicEdit($user, $cover->topic);
         }
 
         if ($user->isGMT()) {
