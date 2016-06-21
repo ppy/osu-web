@@ -484,7 +484,7 @@ class Topic extends Model
             $minTime = config('osu.forum.double_post_time.normal');
         }
 
-        return Carbon::now()->subhours($minTime) > $this->topic_last_post_time;
+        return Carbon::now()->subHours($minTime) > $this->topic_last_post_time;
     }
 
     public function isFeatureTopic()

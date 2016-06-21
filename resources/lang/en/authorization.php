@@ -72,7 +72,7 @@ return [
             'reply' => [
                 'can_not_post' => 'Access to requested forum is required.',
                 'locked' => 'Can not reply to a locked thread.',
-                'doublepost_message' => 'You just posted. Wait a bit or edit your last post.',
+                'double_post' => 'You just posted. Wait a bit or edit your last post.',
             ],
 
             'store' => [
