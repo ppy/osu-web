@@ -68,6 +68,18 @@ class TopicsController extends Controller
         return view('forum.topics.create', compact('forum', 'cover'));
     }
 
+    public function lock($id)
+    {
+        $topic = Topic::findOrFail($id);
+
+        priv_check('ForumTopicLock', $topic)->ensureCan();
+
+        $lock = Request::input('lock') !== '0';
+        $topic->lock($lock);
+
+        return ['message' => trans('forum.topics.lock.locked-'.($lock === true ? '1' : '0'))];
+    }
+
     public function preview()
     {
         $forum = Forum::findOrFail(Request::input('forum_id'));
@@ -88,29 +100,24 @@ class TopicsController extends Controller
         return view('forum.topics._post', compact('post', 'options'));
     }
 
-    public function store(HttpRequest $request)
+    public function reply(HttpRequest $request, $id)
     {
+        $topic = Topic::findOrFail($id);
+
+        priv_check('ForumTopicReply', $topic)->ensureCan();
+
         $this->validate($request, [
-            'title' => 'required',
             'body' => 'required',
         ]);
 
-        $forum = Forum::findOrFail(Request::input('forum_id'));
+        if ($topic->addPost(Auth::user(), Request::input('body'), false)) {
+            $posts = Post::where('post_id', $topic->topic_last_post_id)->get();
+            $postsPosition = $topic->postsPosition($posts);
 
-        priv_check('ForumTopicStore', $forum)->ensureCan();
+            Event::fire(new TopicWasReplied($topic, $posts->last(), Auth::user()));
 
-        $topic = Topic::createNew([
-            'forum' => $forum,
-            'title' => $request->input('title'),
-            'poster' => Auth::user(),
-            'body' => $request->input('body'),
-            'notifyReplies' => false,
-            'cover' => TopicCover::findForUse(presence($request->input('cover_id')), Auth::user()),
-        ]);
-
-        Event::fire(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
-
-        return ujs_redirect(route('forum.topics.show', $topic));
+            return view('forum.topics._posts', compact('posts', 'postsPosition', 'topic'));
+        }
     }
 
     public function show($id)
@@ -205,36 +212,29 @@ class TopicsController extends Controller
         );
     }
 
-    public function reply(HttpRequest $request, $id)
+    public function store(HttpRequest $request)
     {
-        $topic = Topic::findOrFail($id);
-
-        priv_check('ForumTopicReply', $topic)->ensureCan();
-
         $this->validate($request, [
+            'title' => 'required',
             'body' => 'required',
         ]);
 
-        if ($topic->addPost(Auth::user(), Request::input('body'), false)) {
-            $posts = Post::where('post_id', $topic->topic_last_post_id)->get();
-            $postsPosition = $topic->postsPosition($posts);
+        $forum = Forum::findOrFail(Request::input('forum_id'));
 
-            Event::fire(new TopicWasReplied($topic, $posts->last(), Auth::user()));
+        priv_check('ForumTopicStore', $forum)->ensureCan();
 
-            return view('forum.topics._posts', compact('posts', 'postsPosition', 'topic'));
-        }
-    }
+        $topic = Topic::createNew([
+            'forum' => $forum,
+            'title' => $request->input('title'),
+            'poster' => Auth::user(),
+            'body' => $request->input('body'),
+            'notifyReplies' => false,
+            'cover' => TopicCover::findForUse(presence($request->input('cover_id')), Auth::user()),
+        ]);
 
-    public function lock($id)
-    {
-        $topic = Topic::findOrFail($id);
+        Event::fire(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
 
-        priv_check('ForumTopicLock', $topic)->ensureCan();
-
-        $lock = Request::input('lock') !== '0';
-        $topic->lock($lock);
-
-        return ['message' => trans('forum.topics.lock.locked-'.($lock === true ? '1' : '0'))];
+        return ujs_redirect(route('forum.topics.show', $topic));
     }
 
     public function vote($topicId)
