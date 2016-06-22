@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 {!! Form::open([
-    'route' => ['forum.topic-polls.vote', 'topic_id' => $topic->topic_id],
+    'route' => ['forum.topics.vote', $topic->topic_id],
     'method' => 'POST',
 ]) !!}
     <ul>
