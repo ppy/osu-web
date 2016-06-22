@@ -251,7 +251,7 @@ class TopicsController extends Controller
 
         $params = get_params(Request::input(), 'forum_topic_vote', ['option_ids:int[]']);
 
-        if (PollVote::vote($topic, $params['option_ids'], Auth::user(), Request::ip())) {
+        if (PollVote::vote($topic, $params['option_ids'] ?? null, Auth::user(), Request::ip())) {
             return ujs_redirect(route('forum.topics.show', $topic->topic_id));
         } else {
             abort(422);

@@ -64,6 +64,10 @@ class PollVote extends Model
     public static function vote($topic, $optionIds, $user, $ip)
     {
         // some kind of validation
+        if ($optionIds === null) {
+            return false;
+        }
+
         if (count($optionIds) > $topic->poll_max_options) {
             return false;
         }
