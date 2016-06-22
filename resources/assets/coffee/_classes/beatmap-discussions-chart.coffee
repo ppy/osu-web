@@ -110,7 +110,7 @@ class @BeatmapDiscussionsChart
       .range [0, @width]
 
 
-  setAxesSize: =>
+  setAxisSize: =>
     @xAxis
       .scale @scaleX
 
@@ -142,7 +142,7 @@ class @BeatmapDiscussionsChart
     @setScales()
     @setSvgSize()
     @setWrapperSize()
-    @setAxesSize()
+    @setAxisSize()
 
     @drawXAxis()
     @positionPoints()
