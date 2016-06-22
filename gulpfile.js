@@ -108,17 +108,17 @@ elixir(function(mix) {
     'react/beatmapset-page.coffee'
   ], 'public/js/react/beatmapset-page.js')
   .coffee([
-    'react/landing-page/*.coffee'
-  ], 'public/js/react/landing-page.js')
+    'landing-page/*.coffee'
+  ], 'public/js/landing-page.js')
   .version([
     'css/app.css',
     'js/app.js',
+    'js/landing-page.js',
     'js/react/profile-page.js',
     'js/react/beatmaps.js',
     'js/react/slack-page.js',
     'js/react/status-page.js',
     'js/react/beatmap-discussions.js',
     'js/react/beatmapset-page.js',
-    'js/react/landing-page.js',
   ]);
 });

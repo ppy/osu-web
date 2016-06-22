@@ -36,10 +36,6 @@ class DatabaseSeeder extends Seeder
             $this->command->info('Seeding Users Profile Data (e.g. favourite maps, first place ranks, playcounts)');
             $this->call(UserProfileSeeder::class);
 
-            // BanchoStats Data
-            $this->command->info('Seeding BanchoStats...');
-            $this->call(BanchoStatsSeeder::class);
-
             // Miscellaneous Data (e.g. counts)
             $this->command->info('Seeding Miscellaneous Data');
             $this->call(MiscSeeder::class);
