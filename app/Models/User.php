@@ -355,7 +355,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->isDev()
             or $this->isAdmin()
             or $this->isGMT()
-            or $this->isBAT()
+            or $this->isQAT()
             or $this->ownsMod($mod);
     }
 
@@ -374,9 +374,9 @@ class User extends Model implements AuthenticatableContract, Messageable
     |
     */
 
-    public function isBAT()
+    public function isQAT()
     {
-        return $this->isGroup(UserGroup::GROUPS['bat']);
+        return $this->isGroup(UserGroup::GROUPS['qat']);
     }
 
     public function isAdmin()

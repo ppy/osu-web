@@ -31,7 +31,7 @@ class UserGroup extends Model
         'default' => 2,
         'gmt' => 4,
         'admin' => 5,
-        'bat' => 7,
+        'qat' => 7,
         'dev' => 11,
         'mat' => 14,
         'alumni' => 16,
