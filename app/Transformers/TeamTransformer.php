@@ -31,11 +31,17 @@ class TeamTransformer extends Fractal\TransformerAbstract
 
     public function transform(Team $team)
     {
+        $profileCustomization = $team->profileCustomization()->firstOrNew([]);
         return [
-      'id' => $team->id,
-      'name' => $team->name,
-      'created' => display_regdate($team),
-      'avatarUrl' => $team->avatarUrl,
+            'id' => $team->id,
+            'name' => $team->name,
+            'created' => display_regdate($team),
+            'avatarUrl' => $team->avatarUrl,
+            'cover' => [
+                'customUrl' => $profileCustomization->cover->fileUrl(),
+                'url' => $profileCustomization->cover->url(),
+                'id' => $profileCustomization->cover->id(),
+        ],
     ];
     }
 

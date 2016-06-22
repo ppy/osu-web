@@ -21,22 +21,23 @@ el = React.createElement
 class TeamPage.Main extends React.Component
   constructor: (props) ->
     super props
-    @timeouts = {}
     
     @state =
       team: @props.team
       isCoverUpdating: false
       currentMode: 'team_members'
   componentDidMount: =>
+    #@refresh
     $.unsubscribe '.teamPage'
     $.subscribe 'team:mode:set.teamPage', @setCurrentMode
-
+    $.subscribe 'team:update.profilePage', @refresh
   setCurrentMode: (_e, mode) =>
     return if @state.currentMode == mode
     @setState currentMode: mode
   refresh: =>
-    $.ajax(laroute.route('team.get', id: @props.team.id, includes: 'admins,members'), method: 'get').done (data) => 
+    $.ajax(laroute.route('team.get', id: @props.team.id, includes: 'admins,members')).done (data) =>
       console.log data.data
+      LoadingOverlay.hide()
       @setState team: data.data
   render: ->
     div className: 'osu-layout__section',
@@ -44,6 +45,7 @@ class TeamPage.Main extends React.Component
         team: @state.team
         currentMode: @state.currentMode
         isCoverUpdating: @state.isCoverUpdating
+        withEdit: @state.team.admins.data.some (e) -> e.id == window.currentUser.id
       el TeamPage.Contents,
         team: @state.team
         currentMode: @state.currentMode

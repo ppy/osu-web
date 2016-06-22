@@ -22,6 +22,7 @@ use App\Models\Team;
 use App\Transformers\TeamTransformer;
 use App\Models\TeamMembers;
 use App\Models\User;
+use App\Models\TeamProfileCustomization;
 use Auth;
 use Request;
 
@@ -71,16 +72,80 @@ class TeamsController extends Controller
     public function addMember($id)
     {
         $team = Team::lookup($id);
-        if ($team === null) {
+        $admin = Auth::user();
+        $user = User::lookup(Request::input('user'));
+        if ($team === null || $user === null) {
             abort(404);
         }
 
-        $admin = Auth::user();
-        $user = User::lookup(Request::input('user'));
-        if ($team->teamMembers()->wherePivot('is_admin', 1)->get()->contains($admin)) {
-            $team->teamMembers()->attach($user, ['is_admin' => Request::input('admin', 0)]);
+
+        if ($team->teamMembers()->wherePivot('is_admin', 1)->get()->contains($admin)) { 
+            // we are allowed to add users.
+            if ($team->teamMembers()->get()->contains($user)) {
+                // the user already exists, but we are updating admin rights.
+                $team->teamMembers()->updateExistingPivot($user->user_id, ['is_admin' => Request::input('admin', 0)]);
+            } else {
+                // the user doesn't exist so we are adding it.
+                $team->teamMembers()->attach($user->user_id, ['is_admin' => Request::input('admin', 0)]);
+            }
         }
 
         return $team->teamMembers()->get()->all();
+    }
+    public function updateProfile($id)
+    {
+        $team = Team::lookup($id);
+        if ($team === null) {
+            abort(404);
+        }
+        if (Request::hasFile('cover_file') || Request::has('cover_id')) {
+            try {
+                $team
+                    ->profileCustomization()
+                    ->firstOrCreate([])
+                    ->setCover(Request::input('cover_id'), Request::file('cover_file'));
+            } catch (ImageProcessorException $e) {
+                return error_popup($e->getMessage());
+            }
+        }
+
+        if (Request::has('order')) {
+            $order = Request::input('order');
+
+            $error = 'errors.account.profile-order.generic';
+
+            // Checking whether the input has the same amount of elements
+            // as the master sections array.
+            if (count($order) !== count(TeamProfileCustomization::$sections)) {
+                return error_popup(trans($error));
+            }
+
+            // Checking if any section that was sent in input
+            // also appears in the master sections arrray.
+            foreach ($order as $i) {
+                if (!in_array($i, TeamProfileCustomization::$sections, true)) {
+                    return error_popup(trans($error));
+                }
+            }
+
+            // Checking whether the elements sent in input do not repeat.
+            $occurences = array_count_values($order);
+
+            foreach ($occurences as $i) {
+                if ($i > 1) {
+                    return error_popup(trans($error));
+                }
+            }
+
+            $team
+                ->profileCustomization()
+                ->firstOrCreate([])
+                ->setExtrasOrder($order);
+        }
+
+        return fractal_item_array(
+            $team,
+            new TeamTransformer()
+        );
     }
 }
