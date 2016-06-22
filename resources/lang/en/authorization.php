@@ -79,10 +79,6 @@ return [
                 'can_not_view_forum' => 'Access to requested forum is required.',
                 'can_not_post' => 'Not allowed to post.',
                 'forum_closed' => 'Forum is closed and can not be posted to.',
-                'user' => [
-                    'silenced' => 'Can not post when silenced.',
-                    'restricted' => 'Can not post when restricted.',
-                ],
             ],
         ],
 
@@ -111,11 +107,6 @@ return [
             'edit' => [
                 'locked' => 'User page is locked.',
                 'require_support_to_create' => 'Supporter tag is required.',
-
-                'user' => [
-                    'silenced' => 'Can not edit user page when silenced.',
-                    'restricted' => 'Can not edit user page when restricted.',
-                ],
             ],
         ],
     ],

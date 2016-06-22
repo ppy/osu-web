@@ -19,6 +19,7 @@
  */
 namespace App\Libraries;
 
+use App\Exceptions\UnauthorizedException;
 use App\Models\Chat\Channel as ChatChannel;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
@@ -41,9 +42,13 @@ class OsuAuthorize
             } else {
                 $function = "check{$ability}";
 
-                $message = call_user_func_array(
-                    [$this, $function], [$user, $object]
-                );
+                try {
+                    $message = call_user_func_array(
+                        [$this, $function], [$user, $object]
+                    );
+                } catch (UnauthorizedException $e) {
+                    $message = $e->getMessage();
+                }
             }
 
             $this->cache[$cacheKey] = new AuthorizationResult($message);
@@ -54,17 +59,8 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionPost($user, $discussion)
     {
-        if ($user === null) {
-            return 'require_login';
-        }
-
-        if ($user->isSilenced()) {
-            return 'silenced';
-        }
-
-        if ($user->isRestricted()) {
-            return 'restricted';
-        }
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         return 'ok';
     }
@@ -73,9 +69,7 @@ class OsuAuthorize
     {
         $prefix = 'beatmap_discussion.resolve.';
 
-        if ($user === null) {
-            return 'require_login';
-        }
+        $this->ensureLoggedIn($user);
 
         // no point resolving general discussion?
         if ($discussion->timestamp === null) {
@@ -95,17 +89,8 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionVote($user, $discussion)
     {
-        if ($user === null) {
-            return 'require_login';
-        }
-
-        if ($user->isSilenced()) {
-            return 'silenced';
-        }
-
-        if ($user->isRestricted()) {
-            return 'restricted';
-        }
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         return 'ok';
     }
@@ -114,17 +99,8 @@ class OsuAuthorize
     {
         $prefix = 'beatmap_discussion_post.edit.';
 
-        if ($user === null) {
-            return 'require_login';
-        }
-
-        if ($user->isSilenced()) {
-            return 'silenced';
-        }
-
-        if ($user->isRestricted()) {
-            return 'restricted';
-        }
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ($post->system) {
             return $prefix.'system_generated';
@@ -153,9 +129,7 @@ class OsuAuthorize
             // TODO: blocklist/ignore, etc
         }
 
-        if ($user->isBanned() || $user->isRestricted() || $user->isSilenced()) {
-            return $prefix.'not_allowed';
-        }
+        $this->ensureCleanRecord($user);
 
         return 'ok';
     }
@@ -216,9 +190,7 @@ class OsuAuthorize
     {
         $prefix = 'forum.post.delete.';
 
-        if ($user === null) {
-            return 'require_login';
-        }
+        $this->ensureLoggedIn($user);
 
         if ($user->isGMT()) {
             return 'ok';
@@ -246,9 +218,7 @@ class OsuAuthorize
     {
         $prefix = 'forum.post.edit.';
 
-        if ($user === null) {
-            return 'require_login';
-        }
+        $this->ensureLoggedIn($user);
 
         if ($user->isGMT()) {
             return 'ok';
@@ -276,9 +246,7 @@ class OsuAuthorize
 
     public function checkForumTopicLock($user, $topic)
     {
-        if ($user === null) {
-            return 'require_login';
-        }
+        $this->ensureLoggedIn($user);
 
         if ($user->isGMT()) {
             return 'ok';
@@ -287,9 +255,7 @@ class OsuAuthorize
 
     public function checkForumTopicMove($user, $topic)
     {
-        if ($user === null) {
-            return 'require_login';
-        }
+        $this->ensureLoggedIn($user);
 
         if ($user->isGMT()) {
             return 'ok';
@@ -300,20 +266,11 @@ class OsuAuthorize
     {
         $prefix = 'forum.topic.reply.';
 
-        if ($user === null) {
-            return 'require_login';
-        }
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ($user->isGMT()) {
             return 'ok';
-        }
-
-        if ($user->isSilenced()) {
-            return $prefix.'user.silenced';
-        }
-
-        if ($user->isRestricted()) {
-            return $prefix.'user.restricted';
         }
 
         if (!ForumAuthorize::aclCheck($user, 'f_reply', $forum)) {
@@ -335,9 +292,8 @@ class OsuAuthorize
     {
         $prefix = 'forum.topic.store.';
 
-        if ($user === null) {
-            return 'require_login';
-        }
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if (!$this->doCheckUser($user, 'ForumView', $forum)->can()) {
             return $prefix.'can_not_view_forum';
@@ -351,14 +307,6 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->isSilenced()) {
-            return $prefix.'user.silenced';
-        }
-
-        if ($user->isRestricted()) {
-            return $prefix.'user.restricted';
-        }
-
         if (!ForumAuthorize::aclCheck($user, 'f_post', $forum)) {
             return $prefix.'can_not_post';
         }
@@ -370,9 +318,7 @@ class OsuAuthorize
     {
         $prefix = 'forum.topic_cover.edit.';
 
-        if ($user === null) {
-            return 'require_login';
-        }
+        $this->ensureLoggedIn($user);
 
         if ($cover->topic !== null) {
             return $this->checkForumTopicEdit($user, $cover->topic);
@@ -404,6 +350,9 @@ class OsuAuthorize
     {
         $prefix = 'user.page.edit.';
 
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
         $page = $pageOwner->userPage;
 
         if ($page === null) {
@@ -415,19 +364,33 @@ class OsuAuthorize
                 return $prefix.'not_owner';
             }
 
-            if ($user->isSilenced()) {
-                return $prefix.'user.silenced';
-            }
-
-            if ($user->isRestricted()) {
-                return $prefix.'user.restricted';
-            }
-
             if ($page->post_edit_locked || $page->topic->isLocked()) {
                 return $prefix.'locked';
             }
         }
 
         return 'ok';
+    }
+
+    public function ensureLoggedIn($user, $prefix = '')
+    {
+        if ($user === null) {
+            throw new UnauthorizedException($prefix.'require_login');
+        }
+    }
+
+    public function ensureCleanRecord($user, $prefix = '')
+    {
+        if ($user === null) {
+            return;
+        }
+
+        if ($user->isRestricted()) {
+            throw new UnauthorizedException($prefix.'restricted');
+        }
+
+        if ($user->isSilenced()) {
+            throw new UnauthorizedException($prefix.'silenced');
+        }
     }
 }
