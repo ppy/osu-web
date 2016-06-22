@@ -21,8 +21,6 @@ namespace App\Models\Forum;
 
 use App\Models\User;
 use App\Traits\Validatable;
-use Carbon\Carbon;
-use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class PollVote extends Model
