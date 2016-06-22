@@ -470,6 +470,23 @@ class Topic extends Model
         $this->delete();
     }
 
+    public function isDoublePostBy(User $user)
+    {
+        if ($user === null) {
+            return false;
+        }
+        if ($user->user_id !== $this->topic_last_poster_id) {
+            return false;
+        }
+        if ($user->user_id === $this->topic_poster) {
+            $minTime = config('osu.forum.double_post_time.author');
+        } else {
+            $minTime = config('osu.forum.double_post_time.normal');
+        }
+
+        return Carbon::now()->subhours($minTime) > $this->topic_last_post_time;
+    }
+
     public function isFeatureTopic()
     {
         return $this->forum->isFeatureForum();
