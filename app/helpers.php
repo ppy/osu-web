@@ -247,6 +247,7 @@ function nav_links()
         'getListing' => action('StoreController@getListing'),
         'getCart' => action('StoreController@getCart'),
     ];
+
     return $links;
 }
 
