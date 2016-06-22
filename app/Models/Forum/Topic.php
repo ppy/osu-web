@@ -321,7 +321,7 @@ class Topic extends Model
 
     public function hasPoll()
     {
-        return $this->poll_start !== null;
+        return present($this->poll_title);
     }
 
     public function postsCount()
