@@ -22,7 +22,7 @@ class TeamPage.Header extends React.Component
     super props
     @state =
       editing: false
-      coverUrl: ''
+      coverUrl: props.team.cover.url
 
     @coverSet = _.debounce @coverSet, 300
 
@@ -35,11 +35,11 @@ class TeamPage.Header extends React.Component
 
 
   componentWillReceiveProps: (newProps) =>
-    @coverSet null, newProps.team.coverUrl
+    @coverSet null, newProps.team.cover.url
 
 
   componentWillUnmount: =>
-    @coverSet.cancel
+    @coverSet.cancel()
 
     @_removeListeners()
 
@@ -73,12 +73,12 @@ class TeamPage.Header extends React.Component
 
 
   coverReset: =>
-
     @coverSet null, @props.team.cover.url
 
 
   coverSet: (_e, url) =>
     return if @props.isCoverUpdating
+    
     @setState coverUrl: url
 
 
@@ -90,7 +90,7 @@ class TeamPage.Header extends React.Component
       el 'div',
         className: 'profile-header__cover',
         style:
-          backgroundImage: "url('https://i.ytimg.com/vi/qWv89hC073c/maxresdefault.jpg')"
+          backgroundImage: "url('#{@state.coverUrl}')"
 
       el 'div', className: 'profile-header__avatar-container',
         el TeamAvatar, team: @props.team, modifiers: ['profile']
@@ -104,13 +104,12 @@ class TeamPage.Header extends React.Component
           el 'div', className: 'spinner__cube spinner__cube--2'
 
       el 'div', className: 'profile-header__userbar-container',
-        el 'div', className: 'user-profile-header user-profile-header--left', 
+        el 'div', className: 'user-profile-header user-profile-header--left',
           el TeamPage.HeaderFlags, team: @props.team
           el TeamPage.HeaderInfo, team: @props.team
         el 'div', className: 'user-profile-header user-profile-header--right',
-          el TeamPage.Rank, 
+          el TeamPage.Rank,
             rank: 1
-###
       if @props.withEdit
         el 'div',
           className: 'profile-header__change-cover-button js-profile-header__change-cover-button',
@@ -118,5 +117,4 @@ class TeamPage.Header extends React.Component
           Lang.get 'users.show.edit.cover.button'
 
       if @state.editing
-        el TeamPage.CoverSelector, canUpload: true, cover: @props.user.cover
-###
+        el TeamPage.CoverSelector, canUpload: true, cover: @props.team.cover, team: @props.team

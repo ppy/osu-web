@@ -35,6 +35,7 @@ class AddTeamCustomizationTable extends Migration
             $table->text('cover_json');
             $table->timestamps();
             $table->index(['team_id']);
+            $table->string('extras_order')->nullable();
         });
     }
 
