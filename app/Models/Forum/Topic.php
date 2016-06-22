@@ -488,34 +488,34 @@ class Topic extends Model
         return $this->forum->isFeatureForum();
     }
 
-    public function vote($optionIds, $user, $ip)
+    public function vote($params)
     {
         // some kind of validation
-        if ($optionIds === null || count($optionIds) < 1) {
+        if (!isset($params['option_ids']) || count($params['option_ids']) < 1) {
             return false;
         }
 
-        if (count($optionIds) > $this->poll_max_options) {
+        if (count($params['option_ids']) > $this->poll_max_options) {
             return false;
         }
 
-        return DB::transaction(function () use ($optionIds, $user, $ip) {
+        return DB::transaction(function () use ($params) {
             $this->update([
                 'poll_last_vote' => Carbon::now(),
             ]);
 
             $this
                 ->pollVotes()
-                ->where('vote_user_id', $user->getKey())
+                ->where('vote_user_id', $params['user_id'])
                 ->delete();
 
-            foreach (array_unique($optionIds) as $optionId) {
+            foreach (array_unique($params['option_ids']) as $optionId) {
                 $this
                     ->pollVotes()
                     ->create([
                         'poll_option_id' => $optionId,
-                        'vote_user_id' => $user->getKey(),
-                        'vote_user_ip' => $ip,
+                        'vote_user_id' => $params['user_id'],
+                        'vote_user_ip' => $params['ip'],
                     ]);
             }
 

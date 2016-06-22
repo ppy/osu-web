@@ -249,8 +249,10 @@ class TopicsController extends Controller
         priv_check('ForumTopicVote', $topic)->ensureCan();
 
         $params = get_params(Request::input(), 'forum_topic_vote', ['option_ids:int[]']);
+        $params['user_id'] = Auth::user()->user_id;
+        $params['ip'] = Request::ip();
 
-        if ($topic->vote($params['option_ids'] ?? null, Auth::user(), Request::ip())) {
+        if ($topic->vote($params)) {
             return ujs_redirect(route('forum.topics.show', $topic->topic_id));
         } else {
             abort(422);
