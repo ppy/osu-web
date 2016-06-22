@@ -237,6 +237,21 @@ class TopicsController extends Controller
         return ['message' => trans('forum.topics.lock.locked-'.($lock === true ? '1' : '0'))];
     }
 
+    public function vote($topicId)
+    {
+        $topic = Topic::findOrFail($topicId);
+
+        priv_check('ForumTopicVote', $topic)->ensureCan();
+
+        $params = get_params(Request::input(), 'forum_topic_vote', ['option_ids:int[]']);
+
+        if (PollVote::vote($topic, $params['option_ids'], Auth::user(), Request::ip())) {
+            return ujs_redirect(route('forum.topics.show', $topic->topic_id));
+        } else {
+            abort(422);
+        }
+    }
+
     public function voteFeature($topicId)
     {
         $star = FeatureVote::createNew([
