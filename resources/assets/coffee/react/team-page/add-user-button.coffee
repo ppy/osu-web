@@ -59,6 +59,7 @@ class TeamPage.AddUserButton extends React.Component
       .done (data) =>
         @props.refresh()
         @setState addingUser: false, userToAdd: {}, showmodal: false
+      .always @close
 
 
   render: =>
@@ -67,7 +68,7 @@ class TeamPage.AddUserButton extends React.Component
       el Modal, show: @state.showmodal, onHide: @close,
         el Modal.Header, bsClass: 'team-add-user-dialog__header modal', closebutton: true,
           div className: 'form-group has-feedback',
-              input 
+              input
                 type: 'textbox'
                 className: 'form-control team-add-user-dialog__search'
                 placeholder: Lang.get("beatmaps.listing.search.prompt")
@@ -81,9 +82,9 @@ class TeamPage.AddUserButton extends React.Component
             p {}, 'No results found :(' if not @state.searching and @state.searchResults.length is 0 and @state.searchQuery isnt ''
             el ProfileCard, user: user, click: @addUserPrompt, key: user.username  for user in @state.searchResults unless @state.searching
           else div {},
-            p {}, 'Add this player to your group?' 
-            el ProfileCard, user: @state.userToAdd 
-            div className: 'big-button', 
+            p {}, 'Add this player to your group?'
+            el ProfileCard, user: @state.userToAdd
+            div className: 'big-button',
               button className: 'btn-osu team-add-user-dialog__confirm', onClick: @addUser,
                 "Yes"
 

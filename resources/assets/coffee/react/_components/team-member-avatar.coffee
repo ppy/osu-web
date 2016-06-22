@@ -35,6 +35,7 @@ bn = 'avatar'
     if @props.user.id?
       div
         className: className
+        id: @props.user.id
         style:
           backgroundImage: "url('#{@props.user.avatarUrl}')"
     else

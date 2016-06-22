@@ -27,10 +27,29 @@ class TeamPage.TeamMembers extends React.Component
         tolerance: 'pointer' # make it easier to drop
         over: (event,ui) ->
           ui.placeholder.insertBefore $(@).children 'div.team-members__add:first'
-        update: (event, ui) ->
-          console.log event
-          console.log ui
+        receive: @updateRights
+        stop: @updateCancel
         ).disableSelection()
+
+  updateCancel: (event, ui) ->
+    $(event.target).sortable('cancel')
+
+  updateRights: (event, ui) =>
+    userid = $(ui.item).attr 'id'
+    LoadingOverlay.show()
+    
+    if @props.team.members.data.some((e) -> e.id == parseInt userid)
+      newRights = 1
+    else
+      newRights = 0
+    $.ajax laroute.route('team.addmember', user: userid, id: @props.team.id, admin: newRights),
+        method: 'GET'
+      .done (data) =>
+        @props.refresh()
+        console.log 'done'
+      .fail (xhr) ->
+        osu.ajaxError xhr
+    
   render: =>
     el 'div', className: 'team-members',
       el 'p', className: 'team-members__title', Lang.get "teams.show.admins"
