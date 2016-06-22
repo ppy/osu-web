@@ -237,6 +237,11 @@ class TopicsController extends Controller
         return ujs_redirect(route('forum.topics.show', $topic));
     }
 
+    public function update($id)
+    {
+        //
+    }
+
     public function vote($topicId)
     {
         $topic = Topic::findOrFail($topicId);
