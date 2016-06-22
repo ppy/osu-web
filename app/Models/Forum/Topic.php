@@ -85,6 +85,43 @@ class Topic extends Model
         return $topic->fresh();
     }
 
+    public static function vote($optionIds, $user, $ip)
+    {
+        // some kind of validation
+        if ($optionIds === null || count($optionIds) < 1) {
+            return false;
+        }
+
+        if (count($optionIds) > $this->poll_max_options) {
+            return false;
+        }
+
+        return DB::transaction(function () use ($optionIds, $user, $ip) {
+            $this->update([
+                'poll_last_vote' => Carbon::now(),
+            ]);
+
+            $this
+                ->pollVotes()
+                ->where('vote_user_id', $user->getKey())
+                ->delete();
+
+            foreach (array_unique($optionIds) as $optionId) {
+                $this
+                    ->pollVotes()
+                    ->create([
+                        'poll_option_id' => $optionId,
+                        'vote_user_id' => $user->getKey(),
+                        'vote_user_ip' => $ip,
+                    ]);
+            }
+
+            PollOption::updateTotals(['topic_id' => $this->getKey()]);
+
+            return true;
+        });
+    }
+
     public function addPost($poster, $body, $notifyReplies)
     {
         DB::transaction(function () use ($poster, $body, $notifyReplies) {

@@ -25,7 +25,6 @@ use App\Events\Forum\TopicWasViewed;
 use App\Models\Forum\FeatureVote;
 use App\Models\Forum\Forum;
 use App\Models\Forum\PollOption;
-use App\Models\Forum\PollVote;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
@@ -251,7 +250,7 @@ class TopicsController extends Controller
 
         $params = get_params(Request::input(), 'forum_topic_vote', ['option_ids:int[]']);
 
-        if (PollVote::vote($topic, $params['option_ids'] ?? null, Auth::user(), Request::ip())) {
+        if ($topic->vote($params['option_ids'] ?? null, Auth::user(), Request::ip())) {
             return ujs_redirect(route('forum.topics.show', $topic->topic_id));
         } else {
             abort(422);

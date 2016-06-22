@@ -60,41 +60,4 @@ class PollVote extends Model
 
         return $this->validationErrors()->isAny();
     }
-
-    public static function vote($topic, $optionIds, $user, $ip)
-    {
-        // some kind of validation
-        if ($optionIds === null) {
-            return false;
-        }
-
-        if (count($optionIds) > $topic->poll_max_options) {
-            return false;
-        }
-
-        return DB::transaction(function () use ($topic, $optionIds, $user, $ip) {
-            $topic->update([
-                'poll_last_vote' => Carbon::now(),
-            ]);
-
-            $topic
-                ->pollVotes()
-                ->where('vote_user_id', $user->getKey())
-                ->delete();
-
-            foreach (array_unique($optionIds) as $optionId) {
-                $topic
-                    ->pollVotes()
-                    ->create([
-                        'poll_option_id' => $optionId,
-                        'vote_user_id' => $user->getKey(),
-                        'vote_user_ip' => $ip,
-                    ]);
-            }
-
-            PollOption::updateTotals(['topic_id' => $topic->getKey()]);
-
-            return true;
-        });
-    }
 }
