@@ -69,6 +69,10 @@ class Team extends Model
     }
     public function teamAchievments()
     {
-        return $this->hasMany("App\Models\TeamsAchievement");
+        return $this->hasMany("App\Models\TeamAchievement");
+    }
+    public function profileCustomization()
+    {
+        return $this->hasOne("App\Models\TeamProfileCustomization");
     }
 }
