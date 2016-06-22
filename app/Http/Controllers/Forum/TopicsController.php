@@ -25,6 +25,7 @@ use App\Events\Forum\TopicWasViewed;
 use App\Models\Forum\FeatureVote;
 use App\Models\Forum\Forum;
 use App\Models\Forum\PollOption;
+use App\Models\Forum\PollVote;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
