@@ -18,6 +18,7 @@
 {!! Form::open([
     'route' => ['forum.topics.vote', $topic->topic_id],
     'method' => 'POST',
+    'data-remote' => true,
 ]) !!}
     <ul>
         @foreach ($topic->pollOptions as $pollOption)
