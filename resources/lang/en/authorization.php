@@ -54,30 +54,31 @@ return [
     'forum' => [
         'post' => [
             'delete' => [
-                // how to english
-                // Returned when TopicReply check fails.
-                'can_not_post' => 'You cannot delete a post in a thread that you can not reply to.',
-                'can_only_delete_last_post' => 'Only last post can be deleted.',
+                'only_last_post' => 'Only last post can be deleted.',
+                'locked' => 'Can not delete post of a locked topic.',
+                'no_forum_access' => 'Access to requested forum is required.',
                 'not_owner' => 'Only poster can delete the post.',
             ],
 
             'edit' => [
-                'can_not_post' => 'You cannot edit a post in a thread that you can not reply to.',
                 'locked' => 'The post is locked from editing.',
+                'no_forum_access' => 'Access to requested forum is required.',
                 'not_owner' => 'Only poster can edit the post.',
+                'topic_locked' => 'Can not edit post of a locked topic.',
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'can_not_post' => 'Access to requested forum is required.',
-                'locked' => 'Can not reply to a locked thread.',
                 'double_post' => 'You just posted. Wait a bit or edit your last post.',
+                'locked' => 'Can not reply to a locked thread.',
+                'no_forum_access' => 'Access to requested forum is required.',
+                'no_permission' => 'No permission to reply.',
             ],
 
             'store' => [
-                'can_not_view_forum' => 'Access to requested forum is required.',
-                'can_not_post' => 'Not allowed to post.',
+                'no_forum_access' => 'Access to requested forum is required.',
+                'no_permission' => 'No permission to create new topic.',
                 'forum_closed' => 'Forum is closed and can not be posted to.',
             ],
         ],
@@ -106,7 +107,8 @@ return [
         'page' => [
             'edit' => [
                 'locked' => 'User page is locked.',
-                'require_support_to_create' => 'Supporter tag is required.',
+                'not_owner' => 'Can only edit own user page.',
+                'require_supporter_tag' => 'Supporter tag is required.',
             ],
         ],
     ],

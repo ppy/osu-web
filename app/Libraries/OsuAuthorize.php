@@ -196,19 +196,23 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (!$this->doCheckUser($user, 'ForumTopicReply', $post->topic)->can()) {
-            return $prefix.'no_permission';
+        if (!$this->doCheckUser($user, 'ForumView', $forum)->can()) {
+            return $prefix.'no_forum_access';
         }
 
         if ($post->poster_id !== $user->user_id) {
             return $prefix.'not_owner';
         }
 
+        if ($post->topic->isLocked()) {
+            return $prefix.'locked';
+        }
+
         $position = $post->postPosition;
         $topicPostsCount = $post->topic->postsCount();
 
         if ($position !== $topicPostsCount) {
-            return $prefix.'can_only_delete_last_post';
+            return $prefix.'only_last_post';
         }
 
         return 'ok';
@@ -224,12 +228,16 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (!$this->doCheckUser($user, 'ForumTopicReply', $post->topic)->can()) {
-            return $prefix.'no_permission';
+        if (!$this->doCheckUser($user, 'ForumView', $forum)->can()) {
+            return $prefix.'no_forum_access';
         }
 
         if ($post->poster_id !== $user->user_id) {
             return $prefix.'not_owner';
+        }
+
+        if ($post->topic->isLocked()) {
+            return $prefix.'topic_locked';
         }
 
         if ($post->post_edit_locked) {
@@ -246,18 +254,14 @@ class OsuAuthorize
 
     public function checkForumTopicLock($user, $topic)
     {
-        $this->ensureLoggedIn($user);
-
-        if ($user->isGMT()) {
+        if ($user !== null && $user->isGMT()) {
             return 'ok';
         }
     }
 
     public function checkForumTopicMove($user, $topic)
     {
-        $this->ensureLoggedIn($user);
-
-        if ($user->isGMT()) {
+        if ($user !== null && $user->isGMT()) {
             return 'ok';
         }
     }
@@ -273,8 +277,12 @@ class OsuAuthorize
             return 'ok';
         }
 
+        if (!$this->doCheckUser($user, 'ForumView', $forum)->can()) {
+            return $prefix.'no_forum_access';
+        }
+
         if (!ForumAuthorize::aclCheck($user, 'f_reply', $forum)) {
-            return $prefix.'can_not_reply';
+            return $prefix.'no_permission';
         }
 
         if ($topic->isLocked()) {
@@ -296,7 +304,7 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
 
         if (!$this->doCheckUser($user, 'ForumView', $forum)->can()) {
-            return $prefix.'can_not_view_forum';
+            return $prefix.'no_forum_access';
         }
 
         if (!$forum->isOpen()) {
@@ -308,7 +316,7 @@ class OsuAuthorize
         }
 
         if (!ForumAuthorize::aclCheck($user, 'f_post', $forum)) {
-            return $prefix.'can_not_post';
+            return $prefix.'no_permission';
         }
 
         return 'ok';
@@ -357,7 +365,7 @@ class OsuAuthorize
 
         if ($page === null) {
             if (!$user->osu_subscriber) {
-                return $prefix.'require_support_to_create';
+                return $prefix.'require_supporter_tag';
             }
         } else {
             if ($user->getKey() !== $page->poster_id) {
