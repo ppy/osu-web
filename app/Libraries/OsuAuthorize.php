@@ -19,7 +19,7 @@
  */
 namespace App\Libraries;
 
-use App\Exceptions\UnauthorizedException;
+use App\Exceptions\AuthorizationException;
 use App\Models\Chat\Channel as ChatChannel;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
@@ -46,7 +46,7 @@ class OsuAuthorize
                     $message = call_user_func_array(
                         [$this, $function], [$user, $object]
                     );
-                } catch (UnauthorizedException $e) {
+                } catch (AuthorizationException $e) {
                     $message = $e->getMessage();
                 }
             }
@@ -384,7 +384,7 @@ class OsuAuthorize
     public function ensureLoggedIn($user, $prefix = '')
     {
         if ($user === null) {
-            throw new UnauthorizedException($prefix.'require_login');
+            throw new AuthorizationException($prefix.'require_login');
         }
     }
 
@@ -395,11 +395,11 @@ class OsuAuthorize
         }
 
         if ($user->isRestricted()) {
-            throw new UnauthorizedException($prefix.'restricted');
+            throw new AuthorizationException($prefix.'restricted');
         }
 
         if ($user->isSilenced()) {
-            throw new UnauthorizedException($prefix.'silenced');
+            throw new AuthorizationException($prefix.'silenced');
         }
     }
 }
