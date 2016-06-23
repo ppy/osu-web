@@ -103,7 +103,12 @@ BeatmapDiscussions.Overview = React.createClass
     count.praises = @currentDiscussions().length - issues.length
     count.total = @currentDiscussions().length
 
-    ['resolved', 'pending', 'praises', 'total'].map (type) =>
+    count.mine = @currentDiscussions()
+      .filter (discussion) =>
+        discussion.user_id == @props.currentUser.id
+      .length
+
+    ['mine', 'resolved', 'pending', 'praises', 'total'].map (type) =>
       topClasses = "#{sbn} #{sbn}--#{type}"
       topClasses += " #{sbn}--inactive" if @props.currentFilter != type
 

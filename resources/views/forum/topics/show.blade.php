@@ -139,7 +139,14 @@
                             </div>
 
                             <div class="forum-post__content forum-post__content forum-post__content--edit-bar">
-                                @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
+                                @if (priv_check('ForumTopicReply', $topic)->can())
+                                    @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
+                                @else
+                                    <span>
+                                        <i class="fa fa-warning"></i>
+                                        {{ priv_check('ForumTopicReply', $topic)->message() }}
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -219,6 +226,10 @@
                             <i class="fa fa-lock"></i>
                         @endif
                     </a>
+                @endif
+
+                @if (priv_check('ForumTopicLock', $topic)->can())
+                    @include('forum.topics._moderate_move')
                 @endif
             </div>
 

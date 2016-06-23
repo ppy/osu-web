@@ -272,4 +272,18 @@ class TopicsController extends Controller
             return error_popup(implode(' ', $star->validationErrors()->allMessages()));
         }
     }
+
+    public function move($id)
+    {
+        $topic = Topic::findOrFail($id);
+        $destinationForum = Forum::findOrFail(Request::input('destination_forum_id'));
+
+        priv_check('ForumTopicMove', $topic)->ensureCan();
+
+        if ($topic->moveTo($destinationForum)) {
+            return js_view('layout.ujs-reload');
+        } else {
+            abort(422);
+        }
+    }
 }

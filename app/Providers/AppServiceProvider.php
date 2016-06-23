@@ -19,6 +19,7 @@
  */
 namespace App\Providers;
 
+use App\Libraries\OsuAuthorize;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Forum\PollVote as ForumPollVote;
@@ -69,5 +70,9 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind('hash', 'App\Hashing\OsuHasher');
+
+        $this->app->singleton('OsuAuthorize', function () {
+            return new OsuAuthorize();
+        });
     }
 }

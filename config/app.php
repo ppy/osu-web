@@ -152,8 +152,6 @@ return [
         'LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider',
         'Lord\Laroute\LarouteServiceProvider',
         Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
-
-        'App\Providers\OsuAuthorizeServiceProvider',
     ],
 
     /*
@@ -211,8 +209,6 @@ return [
         'Statsd' => 'League\StatsD\Laravel5\Facade\StatsdFacade',
         'Authorizer' => 'LucaDegasperi\OAuth2Server\Facades\Authorizer',
         'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
-
-        'OsuAuthorize' => App\Facades\OsuAuthorizeFacade::class,
     ],
 
 ];

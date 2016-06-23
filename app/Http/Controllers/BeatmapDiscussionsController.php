@@ -42,24 +42,9 @@ class BeatmapDiscussionsController extends Controller
         priv_check('BeatmapDiscussionVote', $discussion)->ensureCan();
 
         $params = get_params(Request::all(), 'beatmap_discussion_vote', ['score:int']);
-        $params['beatmap_discussion_id'] = $discussion->id;
         $params['user_id'] = Auth::user()->user_id;
 
-        $vote = $discussion->beatmapDiscussionVotes()->where(['user_id' => Auth::user()->user_id])->firstOrNew([]);
-        $vote->fill($params);
-
-        if (($params['score'] ?? null) === 0) {
-            if ($vote->id === null) {
-                // no existing vote and setting to 0 is noop
-                $result = true;
-            } else {
-                $result = $vote->delete();
-            }
-        } else {
-            $result = $vote->save();
-        }
-
-        if ($result === true) {
+        if ($discussion->vote($params)) {
             return $discussion->beatmapsetDiscussion->defaultJson(Auth::user());
         } else {
             return error_popup(trans('beatmaps.discussion-votes.update.error'));

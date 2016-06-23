@@ -22,7 +22,7 @@ return [
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Can only vote a feature request.',
-            'not_enough_feature_votes' => 'Not enough vote.',
+            'not_enough_feature_votes' => 'Not enough votes.',
         ],
 
         'poll_vote' => [

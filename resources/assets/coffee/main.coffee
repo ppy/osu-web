@@ -88,15 +88,3 @@ $.expr[':'].internal = (obj, index, meta, stack) ->
   $this = $(obj)
   url = $this.attr('href') or ''
   url.substring(0, rootUrl.length) == rootUrl or url.indexOf(':') == -1
-
-$.fn.moddify = ->
-  regex = /(\d\d:\d\d:\d\d\d(?: \([0-9,#&;\|]+\))*)/ig
-  $(this).each ->
-    $(this).html $(this).html().replace(regex, '<code><a class="osu-modtime" href="osu://edit/$1" rel="nofollow">$1</a></code>')
-  $ this
-
-$.fn.linkify = ->
-  regex = /(https?:\/\/(?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?)/ig
-  $(this).each ->
-    $(this).html $(this).html().replace(regex, '<a href="$1" rel="nofollow" target="_blank">$1</a>')
-  $ this

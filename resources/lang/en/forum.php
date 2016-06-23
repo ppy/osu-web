@@ -100,6 +100,10 @@ return [
             'is_locked' => 'This topic is locked and can not be replied to',
         ],
 
+        'moderate_move' => [
+            'title' => 'Move to another forum',
+        ],
+
         'show' => [
             'feature_vote' => [
                 'current' => 'Current Priority: +:count',
