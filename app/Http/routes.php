@@ -113,7 +113,7 @@ Route::group(['domain' => $main_domain], function () {
     // Livestreams section
     Route::resource('livestreams', 'LivestreamsController', ['only' => ['index']]);
     Route::group(['prefix' => 'livestreams', 'as' => 'livestreams.'], function () {
-        Route::post('livestreams/promote', ['as' => 'livestreams.promote', 'uses' => 'LivestreamsController@promote']);
+        Route::post('promote', ['as' => 'livestreams.promote', 'uses' => 'LivestreamsController@promote']);
     });
 
     // Community section
@@ -193,6 +193,44 @@ Route::group(['domain' => $main_domain], function () {
         Route::put('/page', ['as' => 'page', 'uses' => 'AccountController@updatePage']);
     });
 
+    // Admin section
+    Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+        Route::get('/', ['as' => 'admin.root', 'uses' => 'PagesController@root']);
+
+        Route::resource('logs', 'LogsController', ['only' => ['index']]);
+
+        Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['show']]);
+        Route::get('/beatmapsets/{id}/covers', ['as' => 'admin.beatmapsets.covers', 'uses' => 'BeatmapsetsController@covers']);
+        Route::post('/beatmapsets/{id}/covers/regenerate', ['as' => 'admin.beatmapsets.covers.regenerate', 'uses' => 'BeatmapsetsController@regenerateCovers']);
+
+        Route::resource('beatmapset-discussions', 'BeatmapsetDiscussionsController', ['only' => ['store']]);
+
+        // store admin
+        Route::group(['prefix' => 'store', 'namespace' => 'Store'], function () {
+            Route::post('orders/ship', ['as' => 'admin.store.orders.ship', 'uses' => 'OrdersController@ship']);
+            Route::resource('orders', 'OrdersController', ['only' => ['index', 'show', 'update']]);
+            Route::resource('orders.items', 'OrderItemsController', ['only' => ['update']]);
+
+            Route::resource('addresses', 'AddressesController', ['only' => ['update']]);
+
+            Route::get('/', function () {
+                return Redirect::route('admin.store.orders.index');
+            });
+        });
+
+        Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
+            Route::resource('forum-covers', 'ForumCoversController', ['only' => ['index', 'store', 'update']]);
+        });
+    });
+
+    // OAuth2 (for API)
+    Route::group(['prefix' => 'oauth', 'as' => 'oauth.'], function () {
+        Route::get('/authorize', ['as' => 'authorize.get', 'middleware' => ['check-authorization-params'], 'uses' => 'OAuthController@authorizeForm']);
+        Route::post('/authorize', ['as' => 'authorize.post', 'middleware' => ['check-authorization-params'], 'uses' => 'OAuthController@authorizePost']);
+        Route::post('/access_token', ['uses' => 'OAuthController@getAccessToken']);
+    });
+
+
     // Status debug section
     if (Config::get('app.debug')) {
         Route::get('/status', ['uses' => 'StatusController@getMain']);
@@ -215,36 +253,6 @@ Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
     Route::get('/register', ['as' => 'register', function () {
         return Redirect::to('https://osu.ppy.sh/p/register');
     }]);
-});
-
-// Admin section
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
-    Route::get('/', ['as' => 'admin.root', 'uses' => 'PagesController@root']);
-
-    Route::resource('logs', 'LogsController', ['only' => ['index']]);
-
-    Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['show']]);
-    Route::get('/beatmapsets/{id}/covers', ['as' => 'admin.beatmapsets.covers', 'uses' => 'BeatmapsetsController@covers']);
-    Route::post('/beatmapsets/{id}/covers/regenerate', ['as' => 'admin.beatmapsets.covers.regenerate', 'uses' => 'BeatmapsetsController@regenerateCovers']);
-
-    Route::resource('beatmapset-discussions', 'BeatmapsetDiscussionsController', ['only' => ['store']]);
-
-    // store admin
-    Route::group(['prefix' => 'store', 'namespace' => 'Store'], function () {
-        Route::post('orders/ship', ['as' => 'admin.store.orders.ship', 'uses' => 'OrdersController@ship']);
-        Route::resource('orders', 'OrdersController', ['only' => ['index', 'show', 'update']]);
-        Route::resource('orders.items', 'OrderItemsController', ['only' => ['update']]);
-
-        Route::resource('addresses', 'AddressesController', ['only' => ['update']]);
-
-        Route::get('/', function () {
-            return Redirect::route('admin.store.orders.index');
-        });
-    });
-
-    Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
-        Route::resource('forum-covers', 'ForumCoversController', ['only' => ['index', 'store', 'update']]);
-    });
 });
 
 // API
@@ -278,11 +286,4 @@ Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'oauth'],
         Route::get('get_scores', ['uses' => 'LegacyController@getScores']);
         Route::get('get_beatmaps', ['uses' => 'LegacyController@getBeatmaps']);
     });
-});
-
-// OAuth2 (for API)
-Route::group(['prefix' => 'oauth', 'as' => 'oauth.'], function () {
-    Route::get('/authorize', ['as' => 'authorize.get', 'middleware' => ['check-authorization-params'], 'uses' => 'OAuthController@authorizeForm']);
-    Route::post('/authorize', ['as' => 'authorize.post', 'middleware' => ['check-authorization-params'], 'uses' => 'OAuthController@authorizePost']);
-    Route::post('/access_token', ['uses' => 'OAuthController@getAccessToken']);
 });
