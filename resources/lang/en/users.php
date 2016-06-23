@@ -170,7 +170,7 @@ return [
             'total_hits' => 'Total Hits',
             'total_score' => 'Total Score',
         ],
-        'title' => 'profile / :username',
+        'title' => ":username's profile",
     ],
 
 ];
