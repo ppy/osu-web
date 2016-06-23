@@ -303,16 +303,16 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
+        if ($user->isGMT()) {
+            return 'ok';
+        }
+
         if (!$this->doCheckUser($user, 'ForumView', $forum)->can()) {
             return $prefix.'no_forum_access';
         }
 
         if (!$forum->isOpen()) {
             return $prefix.'forum_closed';
-        }
-
-        if ($user->isGMT()) {
-            return 'ok';
         }
 
         if (!ForumAuthorize::aclCheck($user, 'f_post', $forum)) {
@@ -328,12 +328,12 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
 
-        if ($cover->topic !== null) {
-            return $this->checkForumTopicEdit($user, $cover->topic);
-        }
-
         if ($user->isGMT()) {
             return 'ok';
+        }
+
+        if ($cover->topic !== null) {
+            return $this->checkForumTopicEdit($user, $cover->topic);
         }
 
         if ($cover->owner() === null) {
