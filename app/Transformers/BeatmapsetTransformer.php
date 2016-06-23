@@ -30,28 +30,28 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         'beatmaps',
     ];
 
-    public function transform(Beatmapset $beatmap = null)
+    public function transform(Beatmapset $beatmapset = null)
     {
-        if ($beatmap === null) {
+        if ($beatmapset === null) {
             return [];
         }
 
         return [
-            'beatmapset_id' => $beatmap->beatmapset_id,
-            'title' => $beatmap->title,
-            'artist' => $beatmap->artist,
-            'play_count' => $beatmap->play_count,
-            'favourite_count' => $beatmap->favourite_count,
-            'submitted_date' => $beatmap->submit_date->toIso8601String(),
-            'ranked_date' => $beatmap->approved_date ? $beatmap->approved_date->toIso8601String() : null,
-            'creator' => $beatmap->creator,
-            'user_id' => $beatmap->user_id,
-            'bpm' => $beatmap->bpm,
-            'source' => $beatmap->source,
-            'covers' => $beatmap->allCoverURLs(),
-            'previewUrl' => $beatmap->previewURL(),
-            'tags' => $beatmap->tags,
-            'video' => $beatmap->video,
+            'beatmapset_id' => $beatmapset->beatmapset_id,
+            'title' => $beatmapset->title,
+            'artist' => $beatmapset->artist,
+            'play_count' => $beatmapset->play_count,
+            'favourite_count' => $beatmapset->favourite_count,
+            'submitted_date' => $beatmapset->submit_date->toIso8601String(),
+            'ranked_date' => $beatmapset->approved_date ? $beatmapset->approved_date->toIso8601String() : null,
+            'creator' => $beatmapset->creator,
+            'user_id' => $beatmapset->user_id,
+            'bpm' => $beatmapset->bpm,
+            'source' => $beatmapset->source,
+            'covers' => $beatmapset->allCoverURLs(),
+            'previewUrl' => $beatmapset->previewURL(),
+            'tags' => $beatmapset->tags,
+            'video' => $beatmapset->video,
         ];
     }
 
