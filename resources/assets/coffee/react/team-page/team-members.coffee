@@ -46,7 +46,6 @@ class TeamPage.TeamMembers extends React.Component
         method: 'GET'
       .done (data) =>
         @props.refresh()
-        console.log 'done'
       .fail (xhr) ->
         osu.ajaxError xhr
     

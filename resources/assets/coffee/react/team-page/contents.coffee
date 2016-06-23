@@ -27,7 +27,9 @@ class TeamPage.Contents extends React.Component
     osu.pageChange()
 
   render: =>
-    tabs = ['info', 'team_members', 'administration']
+    tabs = ['info', 'team_members']
+    if @props.team.admins.data.some((e) -> e.id == window.currentUser.id)
+      tabs.push 'administration'
 
     div
       className: 'osu-layout__row osu-layout__row--page-profile js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
@@ -39,20 +41,22 @@ class TeamPage.Contents extends React.Component
             currentMode: @props.currentMode
             mode: t
       el 'div', className: 'page-contents',
-        #if @props.currentMode == 'info'
+        if @props.currentMode == 'info'
+          el TeamPage.Info,
+            team: @props.team
+            withEdit: @props.withEdit
+            refresh: @props.refresh
+          ###
+          el TeamPage.Stats, stats: @props.stats
+          el TeamPage.RecentAchievements,
+            achievementsCounts: @props.user.achievements
+            allAchievements: @props.allAchievements
+          ###
         if @props.currentMode == 'team_members'
           el TeamPage.TeamMembers,
             team: @props.team
-            withEdit: @props.team.admins.data.some((e) -> e.id == window.currentUser.id)
+            withEdit: @props.withEdit
             refresh: @props.refresh
-        if @props.currentMode == 'administration'
-          el 'div', className: 'page-contents-different',
+        #if @props.currentMode == 'administration'
 
-###
-          el TeamPage.Info, team: @props.team
-          el TeamPage.Stats, stats: @props.stats
-          el TeamPage.RecentAchievements,
-          achievementsCounts: @props.user.achievements
-          allAchievements: @props.allAchievements
-###
 

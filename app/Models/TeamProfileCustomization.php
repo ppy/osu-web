@@ -50,7 +50,7 @@ class TeamProfileCustomization extends Model
     /**
      * An array of all possible profile sections, also in their default order.
      */
-    public static $sections = ['me', 'performance', 'recent_activities', 'top_ranks', 'medals', 'historical', 'beatmaps', 'kudosu'];
+    public static $sections = ['about', 'performance', 'recent_activities'];
 
     public function setExtrasOrder($order)
     {
@@ -74,5 +74,15 @@ class TeamProfileCustomization extends Model
         $this->extras_order = null;
 
         return parent::__construct($attributes);
+    }
+    public function setInfo($info)
+    {
+        $this->info = $info;
+        $this->save();
+    }
+    public function setWebsite($website)
+    {
+        $this->website = $website;
+        $this->save();
     }
 }

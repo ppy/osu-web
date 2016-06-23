@@ -142,6 +142,18 @@ class TeamsController extends Controller
                 ->firstOrCreate([])
                 ->setExtrasOrder($order);
         }
+        if (Request::has('info')) {
+            $team
+                ->profileCustomization()
+                ->firstOrCreate([])
+                ->setInfo(Request::input('info'));
+        }
+        if (Request::has('website')) {
+            $team
+                ->profileCustomization()
+                ->firstOrCreate([])
+                ->setWebsite(Request::input('website'));
+        }
 
         return fractal_item_array(
             $team,

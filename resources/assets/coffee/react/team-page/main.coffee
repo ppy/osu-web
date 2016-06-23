@@ -30,7 +30,7 @@ class TeamPage.Main extends React.Component
     #@refresh
     $.unsubscribe '.teamPage'
     $.subscribe 'team:mode:set.teamPage', @setCurrentMode
-    $.subscribe 'team:update.profilePage', @refresh
+    $.subscribe 'team:update.teamPage', @refresh
   setCurrentMode: (_e, mode) =>
     return if @state.currentMode == mode
     @setState currentMode: mode
@@ -51,3 +51,4 @@ class TeamPage.Main extends React.Component
         currentMode: @state.currentMode
         allAchievements: @props.allAchievements
         refresh: @refresh
+        withEdit: @state.team.admins.data.some (e) -> e.id == window.currentUser.id

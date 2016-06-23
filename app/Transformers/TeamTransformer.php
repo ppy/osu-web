@@ -35,7 +35,11 @@ class TeamTransformer extends Fractal\TransformerAbstract
         return [
             'id' => $team->id,
             'name' => $team->name,
-            'created' => display_regdate($team),
+            // probably going to drop this one, seems useless and makes us need to extend the function.
+            'created' => display_regdate($team), // established since...
+            'created_at' => $team->created_at->formatLocalized('%B %Y'), //December 2009
+            'info' => $profileCustomization->info,
+            'website' => $profileCustomization->website,
             'avatarUrl' => $team->avatarUrl,
             'cover' => [
                 'customUrl' => $profileCustomization->cover->fileUrl(),
