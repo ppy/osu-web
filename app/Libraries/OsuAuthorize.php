@@ -117,6 +117,9 @@ class OsuAuthorize
     {
         $prefix = 'chat.message.send.';
 
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
         if ($target instanceof ChatChannel) {
             if (!$this->doCheckUser($user, 'ChatChannelRead', $channel)->can()) {
                 return $prefix.'channel.no_access';
@@ -128,8 +131,6 @@ class OsuAuthorize
         } elseif ($target instanceof User) {
             // TODO: blocklist/ignore, etc
         }
-
-        $this->ensureCleanRecord($user);
 
         return 'ok';
     }
