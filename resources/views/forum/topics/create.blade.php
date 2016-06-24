@@ -21,6 +21,7 @@
     {!! Form::open([
         "url" => route("forum.topics.store", ['forum_id' => $forum]),
         "data-preview-url" => route("forum.topics.preview", ['forum_id' => $forum]),
+        'data-remote' => true,
     ]) !!}
         <input type="hidden" name="cover_id" value="{{ Request::old("cover_id") }}" class="js-forum-cover--input">
 
