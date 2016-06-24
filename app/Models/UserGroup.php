@@ -33,7 +33,6 @@ class UserGroup extends Model
         'admin' => 5,
         'qat' => 7,
         'dev' => 11,
-        'mat' => 14,
         'alumni' => 16,
         'hax' => 17,
         'mod' => 18,

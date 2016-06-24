@@ -389,11 +389,6 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->isGroup(UserGroup::GROUPS['gmt']);
     }
 
-    public function isMAT()
-    {
-        return $this->isGroup(UserGroup::GROUPS['mat']);
-    }
-
     public function isHax()
     {
         return $this->isGroup(UserGroup::GROUPS['hax']);
