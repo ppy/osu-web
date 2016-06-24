@@ -36,6 +36,7 @@ class UserGroup extends Model
         'alumni' => 16,
         'hax' => 17,
         'mod' => 18,
+        'bng' => 28,
     ];
 
     public function user()
