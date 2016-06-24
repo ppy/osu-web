@@ -82,45 +82,6 @@ class Beatmapset extends Model
         return $this->hasOne(BeatmapsetDiscussion::class, 'beatmapset_id', 'beatmapset_id');
     }
 
-    public function rank(User $user = null)
-    {
-        $this->setRank(static::RANKED, $user);
-    }
-
-    public function pending(User $user = null)
-    {
-        $this->setRank(static::PENDING, $user);
-    }
-
-    public function wip(User $user = null)
-    {
-        $this->setRank(static::WIP, $user);
-    }
-
-    public function approve(User $user = null)
-    {
-        $this->setRank(static::APPROVED, $user);
-    }
-
-    public function qualify(User $user = null)
-    {
-        $this->setRank(static::QUALIFIED, $user);
-    }
-
-    public function graveyard(User $user = null)
-    {
-        $this->setRank(static::GRAVEYARD, $user);
-    }
-
-    protected function setRank($rank, User $user = null)
-    {
-        $user = $user ?: new User(User::SYSTEM_USER);
-
-        $this->approved_by = $user->user_id;
-        $this->approved = $rank;
-        $this->save();
-    }
-
     // Beatmapset::rankable();
 
     public function scopeRankable($query)
