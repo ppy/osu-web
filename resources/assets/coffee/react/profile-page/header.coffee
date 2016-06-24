@@ -28,10 +28,11 @@ class ProfilePage.Header extends React.Component
 
 
   componentDidMount: =>
-    @_removeListeners()
     $.subscribe 'user:cover:set.profilePageHeader', @coverSet
     $.subscribe 'user:cover:reset.profilePageHeader', @coverReset
+
     $.subscribe 'key:esc.profilePageHeader', @closeEdit
+    $(document).on 'click.profilePageHeader', @closeEdit
 
 
   componentWillReceiveProps: (newProps) =>
@@ -39,37 +40,39 @@ class ProfilePage.Header extends React.Component
 
 
   componentWillUnmount: =>
-    @coverSet.cancel()
-
-    @_removeListeners()
-
-
-  _removeListeners: =>
     $.unsubscribe '.profilePageHeader'
     $(document).off '.profilePageHeader'
 
+    @closeEdit()
+    @coverSet.cancel()
 
-  closeEdit: =>
+
+  closeEdit: (e) =>
     return unless @state.editing
 
-    @toggleEdit()
+    if e?
+      return if $(e.target).closest('.profile-cover-change-popup').length
+      return if $(e.target).closest('.js-profile-header__change-cover-button').length
 
+    return if $('#overlay').is(':visible')
 
-  toggleEdit: =>
-    if @state.editing
+    Fade.out $('.blackout')[0]
+    @setState editing: false, =>
       @coverReset()
-      Fade.out $('.blackout')[0]
-      $(document).off 'click.profilePageHeader.toggleHeaderEdit'
+
+
+  openEdit: =>
+    Fade.in $('.blackout')[0]
+    @setState editing: true
+
+
+  toggleEdit: (e) =>
+    e.preventDefault()
+
+    if @state.editing
+      @closeEdit()
     else
-      Fade.in $('.blackout')[0]
-
-      $(document).on 'click.profilePageHeader.toggleHeaderEdit', (e) =>
-        return if $(e.target).closest('.profile-cover-change-popup').length
-        return if $(e.target).closest('.js-profile-header__change-cover-button').length
-        return if $('#overlay').is(':visible')
-        @toggleEdit()
-
-    @setState editing: !@state.editing
+      @openEdit()
 
 
   coverReset: =>

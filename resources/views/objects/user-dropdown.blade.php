@@ -50,8 +50,8 @@
 
                         {!! Form::open(["url" => route("users.login"), "id" => "login-form", "class" => "modal-body__form form", "data-remote" => true]) !!}
                             <div class="form__input-group form-group form-group--compact">
-                                <input class="modal-af form-group__control form-control form-group__control--compact" name="username" type="text" placeholder="{{ trans("users.login.username") }}" required>
-                                <input class="form-group__control form-control form-group__control--compact" name="password" type="password" placeholder="{{ trans("users.login.password") }}" required>
+                                <input class="modal-af form-group__control form-control" name="username" type="text" placeholder="{{ trans("users.login.username") }}" required>
+                                <input class="form-group__control form-control" name="password" type="password" placeholder="{{ trans("users.login.password") }}" required>
                             </div>
 
                             <button class="btn-osu btn-osu-default form__button" type="submit"><i class="fa fa-sign-in"></i></button>
