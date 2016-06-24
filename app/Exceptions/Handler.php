@@ -137,7 +137,6 @@ class Handler extends ExceptionHandler
             }
         } else {
             if ($request->ajax()) {
-                // turbolinks always reload on page error.
                 $response = response(['error' => $e->getMessage()]);
             } else {
                 $response = response()->view('layout.error');
