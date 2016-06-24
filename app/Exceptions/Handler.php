@@ -125,6 +125,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if (method_exists($e, 'getResponse')) {
+            return $e->getResponse();
+        }
+
         if (config('app.debug')) {
             if ($this->isHttpException($e)) {
                 $response = $this->renderHttpException($e);

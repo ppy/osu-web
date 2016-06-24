@@ -32,9 +32,18 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
 
   ajaxError: (xhr) ->
-    message = xhr?.responseJSON?.error
+    validationMessage = xhr?.responseJSON?.validation_error
 
-    unless message
+    if validationMessage?
+      allErrors = []
+      for own _field, errors of validationMessage
+        allErrors = allErrors.concat(errors)
+
+      message = "#{allErrors.join(', ')}."
+
+    message ?= xhr?.responseJSON?.error
+
+    if !message?
       errorKey = "errors.codes.http-#{xhr?.status}"
       message = Lang.get errorKey
       message = Lang.get 'errors.unknown' if message == errorKey
