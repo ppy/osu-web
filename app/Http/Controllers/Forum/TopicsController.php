@@ -252,10 +252,10 @@ class TopicsController extends Controller
         $params['user_id'] = Auth::user()->user_id;
         $params['ip'] = Request::ip();
 
-        if ($topic->vote($params)) {
+        if ($topic->vote()->fill($params)->save()) {
             return ujs_redirect(route('forum.topics.show', $topic->topic_id));
         } else {
-            abort(422);
+            return error_popup(implode(' ', $topic->vote()->validationErrors()->allMessages()));
         }
     }
 

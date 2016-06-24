@@ -44,6 +44,7 @@ class Topic extends Model
     protected $dateFormat = 'U';
 
     private $postsCount;
+    private $_vote;
 
     private $issueTypes = 'resolved|invalid|duplicate|confirmed';
 
@@ -524,40 +525,12 @@ class Topic extends Model
         return $this->forum->isFeatureForum();
     }
 
-    public function vote($params)
+    public function vote()
     {
-        // some kind of validation
-        if (!isset($params['option_ids']) || count($params['option_ids']) < 1) {
-            return false;
+        if ($this->_vote === null) {
+            $this->_vote = new TopicVote($this);
         }
 
-        if (count($params['option_ids']) > $this->poll_max_options) {
-            return false;
-        }
-
-        return DB::transaction(function () use ($params) {
-            $this->update([
-                'poll_last_vote' => Carbon::now(),
-            ]);
-
-            $this
-                ->pollVotes()
-                ->where('vote_user_id', $params['user_id'])
-                ->delete();
-
-            foreach (array_unique($params['option_ids']) as $optionId) {
-                $this
-                    ->pollVotes()
-                    ->create([
-                        'poll_option_id' => $optionId,
-                        'vote_user_id' => $params['user_id'],
-                        'vote_user_ip' => $params['ip'],
-                    ]);
-            }
-
-            PollOption::updateTotals(['topic_id' => $this->getKey()]);
-
-            return true;
-        });
+        return $this->_vote;
     }
 }
