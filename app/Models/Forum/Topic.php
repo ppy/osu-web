@@ -479,12 +479,16 @@ class Topic extends Model
             return false;
         }
         if ($user->user_id === $this->topic_poster) {
-            $minTime = config('osu.forum.double_post_time.author');
+            $minHours = config('osu.forum.double_post_time.author');
         } else {
-            $minTime = config('osu.forum.double_post_time.normal');
+            $minHours = config('osu.forum.double_post_time.normal');
         }
 
-        return Carbon::now()->subHours($minTime) > $this->topic_last_post_time;
+        return $this
+            ->topic_last_post_time
+            ->copy()
+            ->addHours($minHours)
+            ->isFuture();
     }
 
     public function isFeatureTopic()
