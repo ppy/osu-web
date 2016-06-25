@@ -105,7 +105,7 @@
                         <li class="landing-sitemap-list__item">
                             <div class="landing-sitemap-list__item--bold">General</div>
                         </li>
-                        <li class="landing-sitemap-list__item"><a href="{{ route('landing') }}" class="landing-sitemap-list__item--link">Home</a></li>
+                        <li class="landing-sitemap-list__item"><a href="{{ route('home') }}" class="landing-sitemap-list__item--link">Home</a></li>
                         <li class="landing-sitemap-list__item"><a href="{{ route('changelog') }}" class="landing-sitemap-list__item--link">Changelog</a></li>
                         <li class="landing-sitemap-list__item"><a href="{{ action('BeatmapsetsController@index') }}" class="landing-sitemap-list__item--link">Beatmap Listing</a></li>
                         <li class="landing-sitemap-list__item"><a href="{{ route('download') }}" class="landing-sitemap-list__item--link">Download osu!</a></li>
