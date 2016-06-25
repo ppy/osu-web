@@ -197,7 +197,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (!$this->doCheckUser($user, 'ForumView', $forum)->can()) {
+        if (!$this->doCheckUser($user, 'ForumView', $post->topic->forum)->can()) {
             return $prefix.'no_forum_access';
         }
 
@@ -229,7 +229,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (!$this->doCheckUser($user, 'ForumView', $forum)->can()) {
+        if (!$this->doCheckUser($user, 'ForumView', $post->topic->forum)->can()) {
             return $prefix.'no_forum_access';
         }
 
@@ -278,11 +278,11 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (!$this->doCheckUser($user, 'ForumView', $forum)->can()) {
+        if (!$this->doCheckUser($user, 'ForumView', $topic->forum)->can()) {
             return $prefix.'no_forum_access';
         }
 
-        if (!ForumAuthorize::aclCheck($user, 'f_reply', $forum)) {
+        if (!ForumAuthorize::aclCheck($user, 'f_reply', $topic->forum)) {
             return $prefix.'no_permission';
         }
 
