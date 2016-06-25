@@ -29,11 +29,18 @@ use Request;
 class TeamsController extends Controller
 {
     protected $section = 'community';
-
+    
     public function __construct()
     {
-        $this->middleware('auth');
-        parent::__construct();
+        $this->middleware('guest', ['only' => [
+            'login',
+        ]]);
+
+        $this->middleware('auth', ['only' => [
+            'checkUsernameAvailability',
+        ]]);
+
+        return parent::__construct();
     }
 
     public function index()
@@ -94,9 +101,14 @@ class TeamsController extends Controller
     }
     public function updateProfile($id)
     {
+        $admin = Auth::user();
         $team = Team::lookup($id);
         if ($team === null) {
             abort(404);
+        }
+        if (!$team->teamMembers()->wherePivot('is_admin', 1)->get()->contains($admin)) {
+            // We aren't authorized.
+            abort(401);
         }
         if (Request::hasFile('cover_file') || Request::has('cover_id')) {
             try {

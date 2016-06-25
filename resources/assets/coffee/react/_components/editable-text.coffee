@@ -57,9 +57,9 @@ class @EditableText extends React.Component
           onMouseLeave: @hoveroff
           onClick: @navigate
           @props.text
-          if @state.hovering
+          if @state.hovering and @props.withEdit
             el 'i', className: 'fa fa-pencil', onClick: @change, id: 'edit'
-      if @state.editing
+      if @state.editing and @props.withEdit
         el 'textarea',
           onBlur: @saveChanges
           value: @state.text
