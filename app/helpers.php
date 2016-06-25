@@ -210,43 +210,51 @@ function lazy_load_image($url, $class = '', $alt = '')
 function nav_links()
 {
     $links = [];
+
     if (config('app.debug')) {
         $links['home'] = [
             'getNews' => route('news'),
             'getChangelog' => route('changelog'),
             'getDownload' => route('download'),
         ];
+
         $links['help'] = [
             'getWiki' => route('wiki'),
             'getFaq' => route('faq'),
             'getSupport' => route('support'),
         ];
+
         $links['beatmaps'] = [
             'index' => route('beatmapsets.index'),
             // 'getPacks' => route('packs.index'),
             // 'getCharts' => route('charts.index'),
         ];
+
         $links['ranking'] = [
             'getOverall' => route('ranking-overall'),
             'getCharts' => route('ranking-charts'),
             'getCountry' => route('ranking-country'),
             'getMapper' => route('ranking-mapper'),
         ];
+
     } else {
         $links['beatmaps'] = [
             'index' => route('beatmapsets.index'),
         ];
     }
+
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
         'tournaments' => route('tournaments.index'),
         'getLive' => route('livestreams.index'),
         'getSlack' => route('slack'),
     ];
+
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),
         'getCart' => action('StoreController@getCart'),
     ];
+    
     return $links;
 }
 
