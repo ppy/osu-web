@@ -25,8 +25,10 @@ use Illuminate\Database\Eloquent\Model;
 class PollOption extends Model
 {
     protected $table = 'phpbb_poll_options';
-    protected $primaryKey = false;
+    protected $primaryKey = null;
+    public $incrementing = false;
     public $timestamps = false;
+    protected $guarded = [];
 
     public function topic()
     {

@@ -214,32 +214,46 @@ class TopicsController extends Controller
 
     public function store(HttpRequest $request)
     {
+        $forum = Forum::findOrFail($request->get('forum_id'));
+
+        priv_check('ForumTopicStore', $forum)->ensureCan();
+
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
         ]);
 
-        $forum = Forum::findOrFail(Request::input('forum_id'));
+        if (get_bool($request->get('with_poll'))) {
+            $pollParams = get_params($request, 'forum_topic_poll', [
+                'length_days:int',
+                'max_options:int',
+                'options:string[]',
+                'title',
+                'vote_change:bool',
+            ]);
+        }
 
-        priv_check('ForumTopicStore', $forum)->ensureCan();
-
-        $topic = Topic::createNew([
-            'forum' => $forum,
-            'title' => $request->input('title'),
-            'poster' => Auth::user(),
-            'body' => $request->input('body'),
+        $params = [
+            'title' => $request->get('title'),
+            'user' => Auth::user(),
+            'body' => $request->get('body'),
             'notifyReplies' => false,
             'cover' => TopicCover::findForUse(presence($request->input('cover_id')), Auth::user()),
-        ]);
+        ];
 
-        Event::fire(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
+        $topic = Topic::createNew($forum, $params, $pollParams ?? null);
 
-        return ujs_redirect(route('forum.topics.show', $topic));
-    }
+        if ($topic->topic_id !== null) {
+            Event::fire(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
 
-    public function update($id)
-    {
-        //
+            return ujs_redirect(route('forum.topics.show', $topic));
+        } else {
+            if (($pollParams ?? null) !== null && !$topic->poll()->isValid()) {
+                return error_popup(implode(' ', $topic->poll()->validationErrors()->allMessages()));
+            } else {
+                abort(422);
+            }
+        }
     }
 
     public function vote($topicId)

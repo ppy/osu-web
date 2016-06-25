@@ -23,7 +23,7 @@ use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
 
-class TopicVote
+class TopicPoll
 {
     use Validatable;
 
@@ -49,12 +49,24 @@ class TopicVote
             $this->validated = true;
             $this->validationErrors()->reset();
 
-            if (!isset($this->params['option_ids']) || count($this->params['option_ids']) < 1) {
-                $this->validationErrors()->add('option_ids', '.required');
+            if (!isset($this->params['title']) || !present($this->params['title'])) {
+                $this->validationErrors()->add('title', '.required');
             }
 
-            if (count($this->params['option_ids']) > $this->topic->poll_max_options) {
-                $this->validationErrors()->add('option_ids', '.too_many');
+            if (count($this->params['options']) < 2) {
+                $this->validationErrors()->add('options', '.minimum_two');
+            }
+
+            if (count($this->params['options']) > 10) {
+                $this->validationErrors()->add('options', '.too_many');
+            }
+
+            if ($this->params['max_options'] < 1) {
+                $this->validationErrors()->add('max_options', '.minimum_one');
+            }
+
+            if ($this->params['max_options'] > count($this->params['options'])) {
+                $this->validationErrors()->add('max_options', '.minimum_one');
             }
         }
 
@@ -69,27 +81,30 @@ class TopicVote
 
         return DB::transaction(function () {
             $this->topic->update([
-                'poll_last_vote' => Carbon::now(),
+                'poll_title' => $this->params['title'],
+                'poll_start' => Carbon::now(),
+                'poll_length' => ($this->params['length_days'] ?? 0) * 3600,
+                'poll_max_options' => $this->params['max_options'],
+                'poll_vote_change' => $this->params['vote_change'] ?? false,
             ]);
 
             $this
                 ->topic
                 ->pollVotes()
-                ->where('vote_user_id', $this->params['user_id'])
                 ->delete();
 
-            foreach (array_unique($this->params['option_ids']) as $optionId) {
-                $this
-                    ->topic
-                    ->pollVotes()
-                    ->create([
-                        'poll_option_id' => $optionId,
-                        'vote_user_id' => $this->params['user_id'],
-                        'vote_user_ip' => $this->params['ip'],
-                    ]);
-            }
+            $this
+                ->topic
+                ->pollOptions()
+                ->delete();
 
-            PollOption::updateTotals(['topic_id' => $this->topic->topic_id]);
+            for ($i = 0; $i < count($this->params['options']); $i++) {
+                PollOption::create([
+                    'topic_id' => $this->topic->topic_id,
+                    'poll_option_id' => $i,
+                    'poll_option_text' => $this->params['options'][$i],
+                ]);
+            }
 
             return true;
         });

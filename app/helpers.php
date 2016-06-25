@@ -430,18 +430,32 @@ function get_file($input)
     }
 }
 
+function get_arr($input, $callback)
+{
+    if (!is_array($input)) {
+        return;
+    }
+
+    $result = [];
+    foreach ($input as $value) {
+        $casted = call_user_func($callback, $value);
+
+        if ($casted !== null) {
+            $result[] = $casted;
+        }
+    }
+
+    return $result;
+}
+
 function get_string_arr($input)
 {
-    if (is_array($input)) {
-        return array_map('strval', $input);
-    }
+    return get_arr($input, 'presence');
 }
 
 function get_int_arr($input)
 {
-    if (is_array($input)) {
-        return array_map('get_int', $input);
-    }
+    return get_arr($input, 'get_int');
 }
 
 // should it be used?

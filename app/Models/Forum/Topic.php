@@ -37,14 +37,17 @@ class Topic extends Model
 
     public $timestamps = false;
     protected $dates = [
+        'poll_start',
         'poll_last_vote',
         'topic_last_post_time',
         'topic_last_view_time',
+        'topic_time',
     ];
     protected $dateFormat = 'U';
 
     private $postsCount;
     private $_vote;
+    private $_poll;
 
     private $issueTypes = 'resolved|invalid|duplicate|confirmed';
 
@@ -53,32 +56,26 @@ class Topic extends Model
         'topic_approved' => 'boolean',
     ];
 
-    public static function createNew($params)
+    public static function createNew($forum, $params, $pollParams)
     {
-        $params += [
-            'forum' => null,
-            'title' => null,
-            'poster' => null,
-            'body' => null,
-            'notifyReplies' => null,
-            'cover' => null,
-        ];
-        extract($params);
-
         $topic = new static([
             'forum_id' => $forum->forum_id,
-            'topic_time' => time(),
-            'topic_title' => $title,
-            'topic_poster' => $poster->user_id,
-            'topic_first_poster_name' => $poster->username,
-            'topic_first_poster_colour' => $poster->user_colour,
+            'topic_time' => Carbon::now(),
+            'topic_title' => $params['title'] ?? null,
+            'topic_poster' => $params['user']->user_id,
+            'topic_first_poster_name' => $params['user']->username,
+            'topic_first_poster_colour' => $params['user']->user_colour,
         ]);
 
-        DB::transaction(function () use ($topic, $forum, $title, $poster, $body, $notifyReplies, $cover) {
+        DB::transaction(function () use ($forum, $topic, $params, $pollParams) {
             $topic->save();
-            $topic->addPost($poster, $body, $notifyReplies);
+            $topic->addPost($params['user'], $params['body'], $params['notifyReplies']);
 
-            if ($cover !== null) {
+            if ($pollParams !== null) {
+                $topic->poll()->fill($pollParams)->save();
+            }
+
+            if ($params['cover'] !== null) {
                 $cover->topic()->associate($topic);
                 $cover->save();
             }
@@ -122,7 +119,7 @@ class Topic extends Model
             if ($this->posts()->exists() === true) {
                 $this->refreshCache();
             } else {
-                $this->deleteWithCover();
+                $this->deleteWithDependencies();
             }
 
             if ($this->forum !== null) {
@@ -494,11 +491,18 @@ class Topic extends Model
         });
     }
 
-    public function deleteWithCover()
+    public function deleteWithDependencies()
     {
         if ($this->cover !== null) {
             $this->cover->deleteWithFile();
         }
+
+        $this->pollOptions()->delete();
+        $this->pollVotes()->delete();
+        $this->userTracks()->delete();
+
+        // FIXME: returning used stars?
+        $this->featureVotes()->delete();
 
         $this->delete();
     }
@@ -523,6 +527,15 @@ class Topic extends Model
     public function isFeatureTopic()
     {
         return $this->forum->isFeatureForum();
+    }
+
+    public function poll()
+    {
+        if ($this->_poll === null) {
+            $this->_poll = new TopicPoll($this);
+        }
+
+        return $this->_poll;
     }
 
     public function vote()
