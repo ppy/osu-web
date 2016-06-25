@@ -34,21 +34,22 @@ class TeamPage.Info extends React.Component
       method: 'post'
       data: data
       dataType: 'json'
-    .done (userData) ->
-      @props.refresh
+    .done (userData) =>
+      @props.refresh()
     .fail (_e, data) ->
       osu.ajaxError data.jqXHR
 
   render: =>
 
     el 'div', className: 'page-contents__content profile-info',
-      
+
       if @props.team.info?
         el 'div', className: 'page-contents__row',
           el EditableText,
             text: @props.team.info
             tag: 'p'
-            css: ''  #deny css styling
+            css: ' '  #deny css styling
+            withEdit: @props.withEdit
             callBack: (text) => @update 'info', text
 
       if @props.team.created_at?
@@ -62,5 +63,6 @@ class TeamPage.Info extends React.Component
           el EditableText,
             text: @props.team.website
             tag: 'a'
+            withEdit: @props.withEdit
             href: @props.team.website
             callBack: (website) => @update 'website', website
