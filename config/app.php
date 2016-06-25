@@ -27,7 +27,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => (env('USE_SSL', false)
+                ? 'https'
+                : 'http').'://'.env('BASE_DOMAIN', 'localhost').':'.env('APP_PORT', 8080),
 
     /*
     |--------------------------------------------------------------------------
