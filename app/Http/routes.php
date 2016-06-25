@@ -27,12 +27,12 @@
 |
 */
 
-$main_domain = $store_domain = $stat_domain = Config::get('osu.domains.base_domain');
+$main_domain = $store_domain = $stat_domain = config('osu.domains.base_domain');
 
-if (Config::get('osu.domains.use_subdomains')) {
-    $main_domain = Config::get('osu.domains.main_prefix').'.'.$main_domain;
-    $store_domain = Config::get('osu.domains.store_prefix').'.'.$store_domain;
-    $stat_domain = Config::get('osu.domains.stat_prefix').'.'.$stat_domain;
+if (config('osu.domains.use_subdomains')) {
+    $main_domain = config('osu.domains.main_prefix').'.'.$main_domain;
+    $store_domain = config('osu.domains.store_prefix').'.'.$store_domain;
+    $stat_domain = config('osu.domains.stat_prefix').'.'.$stat_domain;
 }
 
 /*
@@ -69,7 +69,7 @@ Route::group(['domain' => $stat_domain], function () {
 */
 
 Route::group(['domain' => $main_domain], function () {
-    if (Config::get('app.debug')) {
+    if (config('app.debug')) {
         Route::get('/', ['as' => 'home', 'uses' => 'HomeController@getNews']);
     } else {
         Route::get('/', ['as' => 'home', function () {
@@ -266,7 +266,7 @@ Route::group(['domain' => $main_domain], function () {
 
 
     // Status debug section
-    if (Config::get('app.debug')) {
+    if (config('app.debug')) {
         Route::get('/status', ['uses' => 'StatusController@getMain']);
     }
 
