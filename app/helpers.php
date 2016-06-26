@@ -533,7 +533,7 @@ function get_param_value($input, $type)
             return get_int_arr($input);
             break;
         default:
-            return (string) $input;
+            return presence((string) $input);
     }
 }
 
