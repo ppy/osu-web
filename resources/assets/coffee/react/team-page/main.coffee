@@ -21,11 +21,11 @@ el = React.createElement
 class TeamPage.Main extends React.Component
   constructor: (props) ->
     super props
-    
+    hash = if ['info', 'team_members', 'administration'].indexOf(location.hash.slice(1)) != -1 then location.hash.slice(1) else null
     @state =
       team: @props.team
       isCoverUpdating: false
-      currentMode: 'team_members'
+      currentMode:  if hash? then hash else 'info'
   componentDidMount: =>
     #@refresh
     $.unsubscribe '.teamPage'
@@ -33,7 +33,9 @@ class TeamPage.Main extends React.Component
     $.subscribe 'team:update.teamPage', @refresh
   setCurrentMode: (_e, mode) =>
     return if @state.currentMode == mode
-    @setState currentMode: mode
+    @setState currentMode: mode, @setHash
+  setHash: =>
+    osu.setHash "##{@state.currentMode}"
   refresh: =>
     $.ajax(laroute.route('team.get', id: @props.team.id, includes: 'admins,members')).done (data) =>
       console.log data.data
