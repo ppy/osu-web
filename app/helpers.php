@@ -448,16 +448,6 @@ function get_arr($input, $callback)
     return $result;
 }
 
-function get_string_arr($input)
-{
-    return get_arr($input, 'presence');
-}
-
-function get_int_arr($input)
-{
-    return get_arr($input, 'get_int');
-}
-
 // should it be used?
 function bem($block, $element = null, $modifiers = [])
 {
@@ -527,10 +517,10 @@ function get_param_value($input, $type)
             return get_file($input);
             break;
         case 'string[]':
-            return get_string_arr($input);
+            return get_arr($input, 'presence');
             break;
         case 'int[]':
-            return get_int_arr($input);
+            return get_arr($input, 'get_int');
             break;
         default:
             return presence((string) $input);
