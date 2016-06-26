@@ -68,6 +68,13 @@ class TopicPoll
             if ($this->params['max_options'] > count($this->params['options'])) {
                 $this->validationErrors()->add('max_options', '.minimum_one');
             }
+
+            foreach ($this->params['options'] as $option) {
+                if (!present($option)) {
+                    $this->validationErrors()->add('options', '.blank_value');
+                    break;
+                }
+            }
         }
 
         return $this->validationErrors()->isAny();
