@@ -37,8 +37,8 @@ class Topic extends Model
 
     public $timestamps = false;
     protected $dates = [
-        'poll_start',
         'poll_last_vote',
+        'poll_start',
         'topic_last_post_time',
         'topic_last_view_time',
         'topic_time',
