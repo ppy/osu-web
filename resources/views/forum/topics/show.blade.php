@@ -53,7 +53,7 @@
 
     <div class="js-header--alt js-sync-height--target" data-sync-height-id="forum-topic-headernav"></div>
 
-    @if (false && $topic->hasPoll())
+    @if (false && $topic->poll()->exists())
         @include('forum.topics._poll')
     @endif
 

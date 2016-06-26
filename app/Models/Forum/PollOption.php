@@ -48,7 +48,7 @@ class PollOption extends Model
             'user_votes' => 0,
         ];
 
-        if ($topic->hasPoll()) {
+        if ($topic->poll()->exists()) {
             $userVotes = [];
 
             if ($user !== null) {

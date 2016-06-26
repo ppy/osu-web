@@ -35,6 +35,11 @@ class TopicPoll
         $this->topic = $topic;
     }
 
+    public function exists()
+    {
+        return present($this->topic->poll_title);
+    }
+
     public function fill($params)
     {
         $this->params = $params;
