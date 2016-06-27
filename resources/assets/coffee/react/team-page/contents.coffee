@@ -57,6 +57,8 @@ class TeamPage.Contents extends React.Component
             team: @props.team
             withEdit: @props.withEdit
             refresh: @props.refresh
-        #if @props.currentMode == 'administration'
+        if @props.currentMode == 'administration' and @props.withEdit
+          el 'div', {},
+            'Not yet implemented, please wait'
 
 

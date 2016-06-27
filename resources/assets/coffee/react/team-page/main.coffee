@@ -21,13 +21,14 @@ el = React.createElement
 class TeamPage.Main extends React.Component
   constructor: (props) ->
     super props
-    hash = if ['info', 'team_members', 'administration'].indexOf(location.hash.slice(1)) != -1 then location.hash.slice(1) else null
+    #simple hash check
+    tabs = ['info', 'team_members']
+    hash = if location.hash.slice(1) in tabs then location.hash.slice(1) else null
     @state =
       team: @props.team
       isCoverUpdating: false
       currentMode:  if hash? then hash else 'info'
   componentDidMount: =>
-    #@refresh
     $.unsubscribe '.teamPage'
     $.subscribe 'team:mode:set.teamPage', @setCurrentMode
     $.subscribe 'team:update.teamPage', @refresh
