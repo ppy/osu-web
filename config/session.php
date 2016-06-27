@@ -122,7 +122,7 @@ return [
     |
     */
 
-    'domain' => null,
+    'domain' => env('USE_SUBDOMAINS', false) ? null : '.'.env('BASE_DOMAIN', 'localhost'),
 
     /*
     |--------------------------------------------------------------------------
