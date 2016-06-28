@@ -23,16 +23,12 @@
     .at2x("/images/backgrounds/page-000.png", 500px, 500px);
 
     &__sitemap {
-        position: relative;
         display: flex;
 
         &.osu-layout__row {
             max-width: 800px;
             margin: 35px 0 40px;
-
-            @media @mobile {
-                width: calc(100% ~'-' (@spacing * 2));
-            }
+            width: calc(100% ~'-' (@spacing * 2));
         }
     }
 

@@ -83,15 +83,15 @@
         </div>
     </header>
     <main class="osu-layout__row osu-layout__row--landing">
-        <div class="osu-layout__col-container">
-            <div class="landing-middle-buttons">
-                <a href="#" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
+        <div class="landing-middle-buttons">
+            <div class="osu-layout__col-container">
+                <a href="#" class="osu-layout__col osu-layout__col--link osu-layout__col--sm-4 osu-layout__col--lg-4">
                     <img class="landing-middle-buttons__image shadow-hover" src="/images/layout/landing-page/middle-button-1.jpg" alt="Placeholder text!">
                 </a>
-                <a href="{{ action('StoreController@getListing') }}" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
+                <a href="{{ action('StoreController@getListing') }}" class="osu-layout__col osu-layout__col--link osu-layout__col--sm-4 osu-layout__col--lg-4">
                     <img class="landing-middle-buttons__image shadow-hover" src="/images/layout/landing-page/middle-button-2.jpg" alt="osu!store">
                 </a>
-                <a href="//next.ppy.sh/" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
+                <a href="//next.ppy.sh/" class="osu-layout__col osu-layout__col--link osu-layout__col--sm-4 osu-layout__col--lg-4">
                     <img class="landing-middle-buttons__image shadow-hover" src="/images/layout/landing-page/middle-button-3.jpg" alt="osu!next">
                 </a>
             </div>
