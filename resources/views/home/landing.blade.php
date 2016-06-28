@@ -54,9 +54,7 @@
             <div class="js-landing-hero-slider landing-hero-slider">
                 @for($i = 1; $i <= 2; $i++)
                 <span class="landing-slide">
-                    <span class="landing-slide__bg" style="background: url('/images/layout/landing-page/home-slider-{{$i}}.jpg') no-repeat center center / cover">
-                        <img class="landing-slide__bg--image" alt="pippi">
-                    </span>
+                    <span class="landing-slide__bg" style="background: url('/images/layout/landing-page/home-slider-{{$i}}.jpg') no-repeat center center / cover"></span>
                     <span class="landing-slide__cta">
                         <span class="landing-slide__cta__content">{!! trans("home.landing.slogans.$i") !!}</span>
                     </span>
