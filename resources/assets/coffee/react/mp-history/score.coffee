@@ -59,7 +59,7 @@ class MPHistory.Score extends React.Component
                   modifier = 'large'
                   @props.score.score.toLocaleString()
 
-              div className: "mp-history-player-score__stat mp-history-player-score__stat--#{m}", key: m,
+              div className: "mp-history-player-score__stat mp-history-player-score__stat", key: m,
                 span className: 'mp-history-player-score__stat-label mp-history-player-score__stat-label--small', Lang.get "multiplayer.match.score.stats.#{m}"
                 span className: "mp-history-player-score__stat-number mp-history-player-score__stat-number--#{modifier}", value
 

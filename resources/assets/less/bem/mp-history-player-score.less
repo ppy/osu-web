@@ -57,9 +57,6 @@
     }
 
     &--stats {
-      max-width: 370px;
-
-      flex-grow: 1;
       align-items: flex-end;
     }
   }
@@ -81,8 +78,6 @@
   }
 
   &__stat-row {
-    width: 100%;
-
     display: flex;
     justify-content: flex-end;
     align-items: baseline;
@@ -101,31 +96,12 @@
     align-items: baseline;
     justify-content: flex-end;
 
-    flex-shrink: 1;
-
-    padding-right: @spacing * 2;
+    padding-right: @spacing * 4;
 
     &--small {
-      flex-basis: 95px;
-      padding-right: @spacing;
+      padding-right: @spacing * 2;
     }
-
-    &--combo {
-      flex-basis: 100px;
-    }
-
-    &--accuracy {
-      flex-basis: 130px;
-    }
-
-    &--score {
-      flex-basis: 140px;
-    }
-
-    &:first-child {
-      justify-content: flex-start;
-    }
-
+    
     &:last-child {
       padding: 0;
     }
