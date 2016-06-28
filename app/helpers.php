@@ -236,7 +236,6 @@ function nav_links()
             'getCountry' => route('ranking-country'),
             'getMapper' => route('ranking-mapper'),
         ];
-
     } else {
         $links['beatmaps'] = [
             'index' => route('beatmapsets.index'),
@@ -254,7 +253,7 @@ function nav_links()
         'getListing' => action('StoreController@getListing'),
         'getCart' => action('StoreController@getCart'),
     ];
-    
+
     return $links;
 }
 
