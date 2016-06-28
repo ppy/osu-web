@@ -29,9 +29,6 @@ class MPHistory.Score extends React.Component
         style:
           backgroundImage: "url(/images/layout/mp-history/shapes-team-#{@props.score.team}.svg)"
 
-      div className: 'mp-history-player-score__slot',
-        span className: 'mp-history-player-score__slot-number', @props.score.slot + 1
-
       div className: 'mp-history-player-score__main',
         div className: 'mp-history-player-score__info-box mp-history-player-score__info-box--user',
           div className: 'mp-history-player-score__username-box',

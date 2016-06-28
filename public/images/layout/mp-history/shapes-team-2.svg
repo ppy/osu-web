@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="shapes-team-1.svg">
+   sodipodi:docname="shapes-team-2.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -55,14 +55,14 @@
      id="layer1"
      transform="translate(0,-992.36216)">
     <path
-       style="fill:#2299bb;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.99181634px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="fill:#bb1177;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.99181634px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 0,992.36218 0,0 35,60.00002 -35,0 z"
        id="rect4136"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccc" />
     <path
        sodipodi:type="star"
-       style="fill:#44aadd;fill-opacity:1;stroke:none"
+       style="fill:#cc5288;fill-opacity:1;stroke:none"
        id="path4166"
        sodipodi:sides="3"
        sodipodi:cx="17.875017"
