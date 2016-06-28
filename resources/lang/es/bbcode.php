@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -17,14 +16,21 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 return [
-    'forum' => [
-        'feature_vote' => [
-            'not_feature_topic' => 'Can only vote a feature request.',
-            'not_enough_feature_votes' => 'Not enough votes.',
-        ],
+    'bold' => 'Negritas',
+    'heading' => 'Cabecera',
+    'image' => 'Imagen',
+    'italic' => 'Cursiva',
+    'link' => 'Enlace',
+    'list' => 'Lista',
+    'list_numbered' => 'Lista enumerada',
+    'size' => [
+        '_' => 'Tamaño de fuente',
+        'tiny' => 'Diminuto',
+        'small' => 'Pequeño',
+        'normal' => 'Normal',
+        'large' => 'Grande',
     ],
-
-    'required' => ':attribute is required.',
+    'spoilerbox' => 'Caja de Spoiler',
+    'strikethrough' => 'Tachar',
 ];

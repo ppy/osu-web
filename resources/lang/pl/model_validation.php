@@ -21,10 +21,10 @@
 return [
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Can only vote a feature request.',
-            'not_enough_feature_votes' => 'Not enough votes.',
+            'not_feature_topic' => 'Możesz zagłosować tylko na prośby o funkcje.',
+            'not_enough_feature_votes' => 'Nie uzyskano wystarczającej ilości głosów.',
         ],
     ],
 
-    'required' => ':attribute is required.',
+    'required' => ':attribute jest wymagany.',
 ];

@@ -19,12 +19,5 @@
  */
 
 return [
-    'forum' => [
-        'feature_vote' => [
-            'not_feature_topic' => 'Can only vote a feature request.',
-            'not_enough_feature_votes' => 'Not enough votes.',
-        ],
-    ],
 
-    'required' => ':attribute is required.',
 ];

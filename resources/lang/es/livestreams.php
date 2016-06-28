@@ -17,14 +17,12 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 return [
-    'forum' => [
-        'feature_vote' => [
-            'not_feature_topic' => 'Can only vote a feature request.',
-            'not_enough_feature_votes' => 'Not enough votes.',
-        ],
+    'top-headers' => [
+        'headline' => 'Transmisiones en vivo',
+        'description' => 'Los datos son recolectados de twitch.tv cada cinco minutos basándose en el listado del directorio. ¡Siéntete libre de empezar a transmitir y ser listado! Para más información en cómo ponerte en marca, revisa la página de la wiki de transmisiones en vivo.',
     ],
-
-    'required' => ':attribute is required.',
+    'headers' => [
+        'regular' => 'Transmitiendo actualmente',
+    ],
 ];

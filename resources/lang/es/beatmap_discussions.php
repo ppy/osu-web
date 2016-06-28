@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -17,14 +16,18 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 return [
-    'forum' => [
-        'feature_vote' => [
-            'not_feature_topic' => 'Can only vote a feature request.',
-            'not_enough_feature_votes' => 'Not enough votes.',
+    'authorizations' => [
+        'update' => [
+            'null_user' => 'Debes iniciar sesión para editar.',
+            'system_generated' => 'No se puede editar un post generado por el sistema.',
+            'wrong_user' => 'Debes ser dueño del post para editarlo.',
         ],
     ],
-
-    'required' => ':attribute is required.',
+    'system' => [
+        'resolved' => [
+            'true' => 'Marcado como resuelto por :user',
+            'false' => 'Reabierto por :user',
+        ],
+    ],
 ];
