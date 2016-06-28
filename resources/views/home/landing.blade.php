@@ -86,20 +86,20 @@
         <div class="osu-layout__col-container">
             <div class="landing-middle-buttons">
                 <a href="#" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
-                    <img class="middle-button-image shadow-hover" src="/images/layout/landing-page/middle-button-1.jpg" alt="Placeholder text!">
+                    <img class="landing-middle-buttons__image shadow-hover" src="/images/layout/landing-page/middle-button-1.jpg" alt="Placeholder text!">
                 </a>
                 <a href="{{ action('StoreController@getListing') }}" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
-                    <img class="middle-button-image shadow-hover" src="/images/layout/landing-page/middle-button-2.jpg" alt="osu!store">
+                    <img class="landing-middle-buttons__image shadow-hover" src="/images/layout/landing-page/middle-button-2.jpg" alt="osu!store">
                 </a>
                 <a href="//next.ppy.sh/" class="osu-layout__col osu-layout__col--sm-4 osu-layout__col--lg-4">
-                    <img class="middle-button-image shadow-hover" src="/images/layout/landing-page/middle-button-3.jpg" alt="osu!next">
+                    <img class="landing-middle-buttons__image shadow-hover" src="/images/layout/landing-page/middle-button-3.jpg" alt="osu!next">
                 </a>
             </div>
         </div>
     </main>
     <footer class="osu-layout__section landing-footer">
-        <div class="osu-layout__row landing-sitemap">
-            <div class="osu-layout__col-container landing-sitemap__container">
+        <div class="osu-layout__row landing-footer__sitemap">
+            <div class="osu-layout__col-container osu-layout__col-container--landing-sitemap">
                 <div class="osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-3">
                     <ul class="landing-sitemap-list">
                         <li class="landing-sitemap-list__item">
@@ -145,20 +145,18 @@
                 </div>
             </div>
         </div>
-        <div class="landing-footer-bottom">
-            <div class="landing-footer-bottom__social">
-                <a href="{{ route('support-the-game') }}" class="fa fa-heart landing-footer-bottom__social--icon"></a>
-                <a href="{{ config("osu.urls.social.twitter") }}" class="fa fa-twitter landing-footer-bottom__social--icon"></a>
-                <a href="{{ config("osu.urls.social.facebook") }}" class="fa fa-facebook-official landing-footer-bottom__social--icon"></a>
-            </div>
-            <div class="landing-footer-bottom__links">
-                <a href="{{ config("osu.urls.legal.tos") }}" class="landing-footer-bottom__links--link">terms of service</a>
-                <a href="{{ config("osu.urls.legal.dmca") }}" class="landing-footer-bottom__links--link">copyright (DMCA)</a>
-                <a href="{{ config("osu.urls.legal.server") }}" class="landing-footer-bottom__links--link">server status</a>
-                <a href="{{ config("osu.urls.legal.osustatus") }}" class="landing-footer-bottom__links--link">@osustatus</a>
-            </div>
-            <div class="landing-footer-bottom__copyright">ppy powered 2007-2016</div>
+        <div class="landing-footer__social">
+            <a href="{{ route('support-the-game') }}" class="fa fa-heart landing-footer-social__icon"></a>
+            <a href="{{ config("osu.urls.social.twitter") }}" class="fa fa-twitter landing-footer-social__icon"></a>
+            <a href="{{ config("osu.urls.social.facebook") }}" class="fa fa-facebook-official landing-footer-social__icon"></a>
         </div>
+        <div class="landing-footer__links landing-footer-bottom">
+            <a href="{{ config("osu.urls.legal.tos") }}" class="landing-footer-bottom__link">terms of service</a>
+            <a href="{{ config("osu.urls.legal.dmca") }}" class="landing-footer-bottom__link">copyright (DMCA)</a>
+            <a href="{{ config("osu.urls.legal.server") }}" class="landing-footer-bottom__link">server status</a>
+            <a href="{{ config("osu.urls.legal.osustatus") }}" class="landing-footer-bottom__link">@osustatus</a>
+        </div>
+        <div class="landing-footer__copyright">ppy powered 2007-2016</div>
     </footer>
     @endsection
 
