@@ -73,7 +73,7 @@ class BeatmapsController extends Controller
             }
 
             return fractal_collection_array($scores->get(), new ScoreTransformer, 'user');
-        } catch (\Exception $ex) {
+        } catch (\InvalidArgumentException $ex) {
             return error_popup($ex->getMessage());
         }
     }
