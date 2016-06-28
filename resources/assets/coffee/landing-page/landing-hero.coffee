@@ -22,6 +22,8 @@ if (!$('.js-landing-hero-slider').hasClass('slick-initialized'))
     arrows: false
     autoplay: true
     adaptiveHeight: true
+    dots: true
+    appendDots: $('.js-landing-graph')
 
 os = osu.getOS()
 others = osu.otherOS os

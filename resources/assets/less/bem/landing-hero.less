@@ -153,7 +153,7 @@
             text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
             position: absolute;
             right: 30px;
-            top: -0.9em;
+            top: 0;
         }
 
         &__peak {
@@ -196,5 +196,31 @@
 
     .slick-loading .slick-list {
         background: @grey-f url('/images/layout/ajax-loader.gif') center center no-repeat;
+    }
+    
+    .slick-dots {
+        left: 30px;
+        top: 0;
+        bottom: auto;
+        width: auto;
+    }
+
+    .slick-dots li {
+        float: left;
+        width: @landing-dot-size;
+        height: @landing-dot-size;
+    }
+
+    .slick-dots li button {
+        width: @landing-dot-size;
+        height: @landing-dot-size;
+    }
+
+    .slick-dots li button::before {
+        content: "";
+        background-color: @pink-lighter;
+        border-radius: 100%;
+        width: @landing-dot-size;
+        height: @landing-dot-size;
     }
 }
