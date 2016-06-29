@@ -22,7 +22,7 @@
             <div class="container">
                 <div class="navbar-header navbar-mobile__header">
                     <div class="navbar-mobile__header-section">
-                        <a class="navbar-mobile__logo" href="/"></a>
+                        <a class="navbar-mobile__logo" href="{{ route('home') }}"></a>
                         <span class="navbar-mobile__brand navbar-brand">
                             {{ trans("layout.menu.$current_section.$current_action") }}
                         </span>
@@ -124,7 +124,7 @@
     </div>
 
     <div class="hidden-xs osu-layout__row" id="nav-sm">
-        <a class="flex-none nav-logo" href="/"></a>
+        <a class="flex-none nav-logo" href="{{ route('home') }}"></a>
 
         <div id="nav-links">
             <div id="nav-menu" class="js-menu osu-nav__menu">
@@ -138,7 +138,7 @@
                     </a>
                 @endforeach
 
-                <a class="osu-nav__link yellow-normal" href="{{ route("support-the-game") }}">support the game</a>
+                <a class="osu-nav__link yellow-normal" href="{{ route("home.supporter") }}">support the game</a>
 
                 <a class="osu-nav__link" href="{{ config("osu.urls.social.facebook") }}" target="_blank"><i class="fa fa-facebook-f"></i></a>
 

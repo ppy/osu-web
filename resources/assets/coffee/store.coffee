@@ -39,7 +39,7 @@ checkUsernameValidity = ->
   $status = $('#username-check-status')
   requestedUsername = $('#username.form-control').val()
 
-  $.post '/users/check-username-availability', username: requestedUsername
+  $.post laroute.route('users.check-username-availability'), username: requestedUsername
   .done (data) ->
     return unless data.username == requestedUsername
 

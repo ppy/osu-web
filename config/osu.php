@@ -2,6 +2,17 @@
 
 // osu config~
 return [
+    'domains' => [
+        // these are used for generating separate URLs
+        // for store and main page in the routes file
+        'base_domain' => env('BASE_DOMAIN', 'localhost'),
+        'main_prefix' => env('MAIN_PREFIX', 'osu'),
+        'store_prefix' => env('STORE_PREFIX', 'store'),
+        'stat_prefix' => env('STAT_PREFIX', 'stat'),
+        // whether should we generate separate URLS, or serve
+        // everything under one domain
+        'use_subdomains' => env('USE_SUBDOMAINS', false),
+    ],
     'bbcode' => [
         // this should be random or a config variable.
         // ...who am I kidding, this shouldn't even exist at all.
@@ -63,7 +74,7 @@ return [
             'osustatus' => 'https://twitter.com/osustatus',
             'server' => 'http://stat.ppy.sh/',
         ],
-        'support-the-game' => 'https://osu.ppy.sh/p/support#transactionarea',
+        'supporter' => 'https://osu.ppy.sh/p/support#transactionarea',
         'user' => [
             'kudosu' => 'https://osu.ppy.sh/wiki/Kudosu',
             'rules' => 'https://osu.ppy.sh/wiki/Osu!:Rules',

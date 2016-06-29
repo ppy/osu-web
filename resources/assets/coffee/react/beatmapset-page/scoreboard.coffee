@@ -72,7 +72,7 @@ BeatmapsetPage.Scoreboard = React.createClass
             p
               className: "#{bn}__supporter-text #{bn}__supporter-text--small"
               dangerouslySetInnerHTML:
-                __html: Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.supporter-link', link: laroute.route 'support-the-game'
+                __html: Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.supporter-link', link: laroute.route 'home.supporter'
 
 
   setLoading: (_e, isLoading) ->

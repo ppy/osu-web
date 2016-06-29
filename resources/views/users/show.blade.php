@@ -46,5 +46,5 @@
         {!! json_encode($achievements['data']) !!}
     </script>
 
-    <script src="{{ elixir("js/react/profile-page.js") }}" data-turbolinks-track></script>
+    <script src="{{ absolute_url(elixir("js/react/profile-page.js")) }}" data-turbolinks-track></script>
 @endsection

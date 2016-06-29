@@ -30,7 +30,7 @@ return [
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
-            'supportTheGame' => 'support the game',
+            'getSupporter' => 'support the game',
         ],
         'help' => [
             '_' => 'help',

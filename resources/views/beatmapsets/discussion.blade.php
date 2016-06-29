@@ -36,5 +36,5 @@
         {!! json_encode($initialData) !!}
     </script>
 
-    <script src="{{ elixir("js/react/beatmap-discussions.js") }}" data-turbolinks-track></script>
+    <script src="{{ absolute_url(elixir("js/react/beatmap-discussions.js")) }}" data-turbolinks-track></script>
 @endsection

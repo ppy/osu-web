@@ -1,5 +1,10 @@
 <?php
 
+$protocol = (env('USE_SSL', false) ? 'https' : 'http');
+$prefix = env('USE_SUBDOMAINS', false) ? env('MAIN_PREFIX', 'osu').'.' : '';
+$domain = env('BASE_DOMAIN', 'localhost');
+$port = env('APP_ENV', 'local') ? ':'.env('LOCAL_PORT', '8080') : '';
+
 return [
 
     'env' => env('APP_ENV', 'production'),
@@ -27,7 +32,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => $protocol.'://'.$prefix.$domain.$port,
 
     /*
     |--------------------------------------------------------------------------
