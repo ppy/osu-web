@@ -91,7 +91,7 @@ modelStats = (data) ->
     i--
 
   text = svg.append 'text' 
-    .attr 'class', 'landing-graph__peak--text'
+    .attr 'class', 'landing-graph__text'
     .text Lang.get('home.landing.peak', 'count': maxElem.users_osu.toLocaleString())
     .attr 'y', -peakR * 2
 
@@ -104,7 +104,7 @@ modelStats = (data) ->
     text.attr 'x', rightX
 
   peak = svg.append 'circle'
-    .attr 'class', 'landing-graph__peak--circle'
+    .attr 'class', 'landing-graph__circle'
     .attr 'cy', 0
     .attr 'cx', xScale(maxElem.date)
     .attr 'r', peakR
@@ -131,11 +131,11 @@ resize = ->
 
   rightX = xScale(maxElem.date) + peakR * 2
   if (textLength + rightX) > width
-    svg.select('.landing-graph__peak--text').attr 'x', xScale(maxElem.date) - textLength - peakR * 2
+    svg.select('.landing-graph__text').attr 'x', xScale(maxElem.date) - textLength - peakR * 2
   else
-    svg.select('.landing-graph__peak--text').attr 'x', rightX
+    svg.select('.landing-graph__text').attr 'x', rightX
     
-  svg.select('.landing-graph__peak--circle').attr 'cx', xScale(maxElem.date)
+  svg.select('.landing-graph__circle').attr 'cx', xScale(maxElem.date)
   return
 
 # Load the data

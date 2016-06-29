@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.osu-layout {
+ .osu-layout {
   ._page {
     .default-box-shadow;
     background-color: @grey-f;
@@ -200,6 +200,12 @@
     &--landing {
       max-width: @landing-width;
     }
+
+    &--landing-sitemap {
+      max-width: 800px;
+      margin: 35px 0 40px;
+      width: calc(100% ~'-' (@spacing * 2));
+    }
   }
 
   &__section {
@@ -228,6 +234,12 @@
 
     &--minimum {
       flex: none;
+    }
+
+    &--landing-footer {
+      height: 100%;
+      flex-grow: 1;
+      .at2x("/images/backgrounds/page-000.png", 500px, 500px);
     }
   }
 

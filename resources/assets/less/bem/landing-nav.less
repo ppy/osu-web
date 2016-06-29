@@ -35,25 +35,25 @@
                 display: none;
             }
         }
+    }
+    
+    &__link {
+        color: @grey-f;
+        font-size: 12px;
+        margin-right: 20px;
+        text-transform: lowercase;
 
-        &__link {
-            color: @grey-f;
-            font-size: 12px;
-            margin-right: 20px;
-            text-transform: lowercase;
+        &--bold {
+            font-weight: bold;
+        }
+        &:hover,
+        &:focus {
+            text-decoration: none;
+            color: @pink;
+        }
 
-            &--bold {
-                font-weight: bold;
-            }
-            &:hover,
-            &:focus {
-                text-decoration: none;
-                color: @pink;
-            }
-
-            &:last-child {
-                margin-right: 0;
-            }
+        &:last-child {
+            margin-right: 0;
         }
     }
 
