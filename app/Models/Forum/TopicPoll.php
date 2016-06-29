@@ -55,30 +55,27 @@ class TopicPoll
             $this->validationErrors()->reset();
 
             if (!isset($this->params['title']) || !present($this->params['title'])) {
-                $this->validationErrors()->add('title', '.required');
+                $this->validationErrors()->add('title', 'required');
+            }
+
+            if (count($this->params['options']) < count(array_unique($this->params['options']))) {
+                $this->validationErrors()->add('options', '.duplicate_options');
             }
 
             if (count($this->params['options']) < 2) {
-                $this->validationErrors()->add('options', '.minimum_two');
+                $this->validationErrors()->add('options', '.minimum_two_options');
             }
 
             if (count($this->params['options']) > 10) {
-                $this->validationErrors()->add('options', '.too_many');
+                $this->validationErrors()->add('options', '.too_many_options');
             }
 
             if ($this->params['max_options'] < 1) {
-                $this->validationErrors()->add('max_options', '.minimum_one');
+                $this->validationErrors()->add('max_options', '.minimum_one_selection');
             }
 
             if ($this->params['max_options'] > count($this->params['options'])) {
-                $this->validationErrors()->add('max_options', '.minimum_one');
-            }
-
-            foreach ($this->params['options'] as $option) {
-                if (!present($option)) {
-                    $this->validationErrors()->add('options', '.blank_value');
-                    break;
-                }
+                $this->validationErrors()->add('max_options', '.invalid_selection');
             }
         }
 
