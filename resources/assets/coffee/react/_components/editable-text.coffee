@@ -39,7 +39,7 @@ class @EditableText extends React.Component
     if @props.callBack?
       @props.callBack @state.text
 
-    @setState editing: false
+    @setState editing: false, hovering: false
   navigate: =>
     if @props.href?
       window.location = @props.href
