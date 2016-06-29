@@ -151,7 +151,7 @@
             <a href="{{ config("osu.urls.legal.tos") }}" class="landing-footer-bottom__link">terms of service</a>
             <a href="{{ config("osu.urls.legal.dmca") }}" class="landing-footer-bottom__link">copyright (DMCA)</a>
             <a href="{{ config("osu.urls.legal.server") }}" class="landing-footer-bottom__link">server status</a>
-            <a href="{{ config("osu.urls.legal.osustatus") }}" class="landing-footer-bottom__link">@osustatus</a>
+            <a href="{{ config("osu.urls.legal.osustatus") }}" class="landing-footer-bottom__link landing-footer-bottom__link--no-pad">@osustatus</a>
             <div class="landing-footer-bottom__copyright">ppy powered 2007-2016</div>
         </div>
     </footer>
