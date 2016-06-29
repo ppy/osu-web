@@ -40,11 +40,10 @@ yScale = d3.scale.linear().range([
 maxElem = null
 # Define area
 area = d3.svg.area().interpolate('basis')
-  .x((d) ->
+  .x (d) ->
     xScale d.date
-  ).y0(height).y1((d) ->
+  .y0(height).y1 (d) ->
     yScale d.users_osu
-  )
 # Define the graph
 svg = null
 textLength = 0
@@ -62,7 +61,7 @@ modelStats = (data) ->
   data.forEach (d) ->
     d.date = parseDate(d.date)
     d.users_osu = +d.users_osu
-    return
+
   # Establishing domain for x/y axes
   xScale.domain d3.extent(data, (d) ->
     d.date
@@ -91,7 +90,7 @@ modelStats = (data) ->
     i--
 
   text = svg.append 'text' 
-    .attr 'class', 'landing-graph__peak--text'
+    .attr 'class', 'landing-graph__text'
     .text Lang.get('home.landing.peak', 'count': maxElem.users_osu.toLocaleString())
     .attr 'y', -peakR * 2
 
@@ -104,12 +103,10 @@ modelStats = (data) ->
     text.attr 'x', rightX
 
   peak = svg.append 'circle'
-    .attr 'class', 'landing-graph__peak--circle'
+    .attr 'class', 'landing-graph__circle'
     .attr 'cy', 0
     .attr 'cx', xScale(maxElem.date)
     .attr 'r', peakR
-
-  return
 
 resize = ->
   width = parseInt(d3.select('.js-landing-graph').style('width')) - (margin.left) - (margin.right)
@@ -131,12 +128,11 @@ resize = ->
 
   rightX = xScale(maxElem.date) + peakR * 2
   if (textLength + rightX) > width
-    svg.select('.landing-graph__peak--text').attr 'x', xScale(maxElem.date) - textLength - peakR * 2
+    svg.select('.landing-graph__text').attr 'x', xScale(maxElem.date) - textLength - peakR * 2
   else
-    svg.select('.landing-graph__peak--text').attr 'x', rightX
+    svg.select('.landing-graph__text').attr 'x', rightX
     
-  svg.select('.landing-graph__peak--circle').attr 'cx', xScale(maxElem.date)
-  return
+  svg.select('.landing-graph__circle').attr 'cx', xScale(maxElem.date)
 
 # Load the data
 stats = osu.parseJson('json-stats')
