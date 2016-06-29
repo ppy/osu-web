@@ -40,25 +40,27 @@ class TeamPage.Contents extends React.Component
             key: t
             currentMode: @props.currentMode
             mode: t
-      el 'div', className: 'page-contents',
-        if @props.currentMode == 'info'
+
+      if @props.currentMode == 'info'
+        el 'div', className: 'page-contents',
           el TeamPage.Info,
             team: @props.team
             withEdit: @props.withEdit
             refresh: @props.refresh
-          ###
-          el TeamPage.Stats, stats: @props.stats
-          el TeamPage.RecentAchievements,
-            achievementsCounts: @props.user.achievements
-            allAchievements: @props.allAchievements
-          ###
-        if @props.currentMode == 'team_members'
+          el TeamPage.Stats, stats: window.currentUser.defaultStatistics.data
+        ###
+        el TeamPage.RecentAchievements,
+          achievementsCounts: @props.user.achievements
+          allAchievements: @props.allAchievements
+        ###
+      if @props.currentMode == 'team_members'
+        el 'div', className: 'page-contents',
           el TeamPage.TeamMembers,
             team: @props.team
             withEdit: @props.withEdit
             refresh: @props.refresh
-        if @props.currentMode == 'administration' and @props.withEdit
-          el 'div', {},
-            'Not yet implemented, please wait'
+      if @props.currentMode == 'administration' and @props.withEdit
+        el 'div', className: 'page-contents',
+          'Not yet implemented, please wait'
 
 
