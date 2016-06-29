@@ -1,7 +1,7 @@
 <?php
 
 $protocol = (env('USE_SSL', false) ? 'https' : 'http');
-$prefix = env('USE_SUBDOMAINS', false) ? '.'.env('MAIN_PREFIX', 'osu') : '';
+$prefix = env('USE_SUBDOMAINS', false) ? env('MAIN_PREFIX', 'osu').'.' : '';
 $domain = env('BASE_DOMAIN', 'localhost');
 
 return [
