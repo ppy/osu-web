@@ -83,9 +83,15 @@ return [
             ],
 
             'vote' => [
-                'require_login' => 'Please login to vote.',
+                'no_forum_access' => 'Access to requested forum is required.',
                 'over' => 'Polling is over and can not be voted on anymore.',
                 'voted' => 'Changing vote is not allowed.',
+
+                'user' => [
+                    'require_login' => 'Please login to vote.',
+                    'restricted' => "Can't vote while restricted.",
+                    'silenced' => "Can't vote while silenced.",
+                ],
             ],
         ],
 
