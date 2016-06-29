@@ -66,6 +66,6 @@ class @EditableText extends React.Component
           className: 'form-control editable-text__input'
           style:
             height: @state.textHeight or 'inherit'
-          onChange: (ev) => @setState text: ev.target.value or @props.text, textHeight: ev.target.scrollHeight
+          onChange: (ev) => @setState text: ev.target.value, textHeight: ev.target.scrollHeight
 
 
