@@ -48,5 +48,5 @@
         var supportMail = {!! json_encode($supportMail) !!};
     </script> -->
 
-    <!-- <script src="{{ elixir("js/react/slack-page.js") }}" data-turbolinks-track></script> -->
+    <!-- <script src="{{ absolute_url(elixir("js/react/slack-page.js")) }}" data-turbolinks-track></script> -->
 @endsection

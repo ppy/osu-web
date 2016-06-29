@@ -554,3 +554,8 @@ function priv_check_user($user, $ability, $args = null)
 {
     return app()->make('OsuAuthorize')->doCheckUser($user, $ability, $args);
 }
+
+function absolute_url($url)
+{
+    return config('app.url').$url;
+}
