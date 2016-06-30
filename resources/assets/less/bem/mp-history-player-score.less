@@ -18,6 +18,9 @@
 */
 
 .mp-history-player-score {
+  @wide: ~"(min-width: 1200px)";
+  @narrow: ~"(max-width: 1200px)";
+
   display: flex;
 
   &__shapes {
@@ -27,6 +30,10 @@
     background-size: 40px 60px;
 
     border-radius: @border-radius-base 0 0 @border-radius-base;
+
+    @media @narrow {
+      display: none;
+    }
   }
 
   &__main {
@@ -46,14 +53,6 @@
 
     &--user {
       align-items: flex-start;
-    }
-
-    &--mods {
-      align-items: flex-end;
-      margin-left: auto;
-      justify-content: center;
-
-      padding-right: @spacing * 4;
     }
 
     &--stats {
@@ -78,6 +77,12 @@
   }
 
   &__stat-row {
+    &--first {
+      @media @wide {
+        width: 530px;
+      }
+    }
+
     display: flex;
     justify-content: flex-end;
     align-items: baseline;
@@ -89,6 +94,18 @@
     font-weight: 700;
 
     padding-right: @spacing * 2;
+
+    @media @narrow {
+      display: none;
+    }
+  }
+
+  &__mods-box {
+    padding-right: @spacing * 2;
+
+    @media @narrow {
+      display: none;
+    }
   }
 
   &__stat {
@@ -101,7 +118,11 @@
     &--small {
       padding-right: @spacing * 2;
     }
-    
+
+    &--combo {
+      margin-right: auto;
+    }
+
     &:last-child {
       padding: 0;
     }

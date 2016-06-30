@@ -19,7 +19,10 @@
 
 class @Mods extends React.Component
   render: ->
-    div className: 'mods',
+    className = 'mods'
+    className += ' mods--reversed' if @props.reversed
+
+    div className: className,
       for mod in @props.mods
         div
           key: mod.shortName

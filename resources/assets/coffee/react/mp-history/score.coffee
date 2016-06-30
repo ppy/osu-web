@@ -42,11 +42,11 @@ class MPHistory.Score extends React.Component
 
           el FlagCountry, country: @props.countries[@props.score.user.data.country]
 
-        div className: 'mp-history-player-score__info-box mp-history-player-score__info-box--mods hidden-xs',
-          el Mods, mods: @props.score.mods
-
         div className: 'mp-history-player-score__info-box mp-history-player-score__info-box--stats',
-          div className: 'mp-history-player-score__stat-row',
+          div className: 'mp-history-player-score__stat-row mp-history-player-score__stat-row--first',
+            div className: 'mp-history-player-score__mods-box',
+              el Mods, mods: @props.score.mods, reversed: true
+
             @firstRow.map (m) =>
               modifier = 'medium'
 
@@ -59,7 +59,7 @@ class MPHistory.Score extends React.Component
                   modifier = 'large'
                   @props.score.score.toLocaleString()
 
-              div className: "mp-history-player-score__stat mp-history-player-score__stat", key: m,
+              div className: "mp-history-player-score__stat mp-history-player-score__stat--#{m}", key: m,
                 span className: 'mp-history-player-score__stat-label mp-history-player-score__stat-label--small', Lang.get "multiplayer.match.score.stats.#{m}"
                 span className: "mp-history-player-score__stat-number mp-history-player-score__stat-number--#{modifier}", value
 
