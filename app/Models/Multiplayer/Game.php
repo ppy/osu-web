@@ -40,6 +40,13 @@ class Game extends Model
         'mods' => 'integer',
     ];
 
+    const SCORING_TYPES = [
+        0 => 'score',
+        1 => 'accuracy',
+        2 => 'combo',
+        3 => 'scorev2',
+    ];
+
     protected $_mods = null;
 
     public function scores()
@@ -69,5 +76,10 @@ class Game extends Model
         }
 
         return $this->_mods;
+    }
+
+    public function getScoringTypeAttribute($value)
+    {
+        return self::SCORING_TYPES[$value];
     }
 }

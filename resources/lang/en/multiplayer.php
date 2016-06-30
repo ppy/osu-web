@@ -59,4 +59,12 @@ return [
         'loading-events' => 'Loading events...',
         'more-events' => ':count more...',
     ],
+    'game' => [
+        'scoring-type' => [
+            'score' => 'Highest Score',
+            'accuracy' => 'Highest Accuracy',
+            'combo' => 'Highest Combo',
+            'scorev2' => 'Score V2',
+        ],
+    ],
 ];

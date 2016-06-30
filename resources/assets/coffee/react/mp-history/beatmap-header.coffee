@@ -44,10 +44,13 @@ class MPHistory.BeatmapHeader extends React.Component
         div className: 'mp-history-game__stats-box',
           span className: 'mp-history-game__stat', "##{@props.game.id.toLocaleString()}"
           span className: 'mp-history-game__stat', timeString
+          span className: 'mp-history-game__stat', Lang.get "beatmaps.mode.#{@props.game.mode}"
+          span className: 'mp-history-game__stat', Lang.get "multiplayer.game.scoring-type.#{@props.game.scoring_type}"
 
         div className: 'mp-history-game__metadata-box',
-          h1 className: 'mp-history-game__metadata mp-history-game__metadata--title', @props.beatmapset.title
+          h1 className: 'mp-history-game__metadata mp-history-game__metadata--title',
+            "#{@props.beatmapset.title} [#{@props.beatmap.version}]"
           h2 className: 'mp-history-game__metadata mp-history-game__metadata--artist', @props.beatmapset.artist
 
         div className: 'mp-history-game__mods-box',
-          el Mods, mods: @props.game.mods
+          el Mods, mods: @props.game.mods, large: true, reversed: true

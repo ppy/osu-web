@@ -26,9 +26,3 @@ class MPHistory.Header extends React.Component
             Lang.get 'multiplayer.match.header'
           h1 className: 'osu-page-header__title osu-page-header__title--mp-history',
             @props.name
-
-        div
-          className: "mp-history-team-type"
-          title: Lang.get "multiplayer.match.team-types.#{@props.teamType}"
-          style:
-            backgroundImage: "url(/images/badges/team-types/#{@props.teamType}.svg)"

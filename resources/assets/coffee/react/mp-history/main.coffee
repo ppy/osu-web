@@ -56,7 +56,6 @@ class MPHistory.Main extends React.Component
       @setState
         events: newEvents
         since: _.last(newEvents).id
-        teamType: @getTeamType _.findLast(newEvents, (o) -> o.game?).game.data.team_type
         eventsShown: eventsShown
         disbanded: lastEvent.text == 'DISBAND'
 
@@ -80,7 +79,6 @@ class MPHistory.Main extends React.Component
     div className: 'osu-layout__section',
       el MPHistory.Header,
         name: @props.match.name
-        teamType: @state.teamType
 
       el MPHistory.Content,
         events: @state.events[remainingEventsCount..]
