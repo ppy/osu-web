@@ -51,11 +51,19 @@ Route::get('/icons', 'HomeController@getIcons');
 // Route::get('/beatmaps/charts/{id?}', ['as' => 'charts', 'uses' => 'BeatmapsController@getCharts']);
 
 Route::get('/beatmaps/{beatmaps}/scores', ['as' => 'beatmaps.scores', 'uses' => 'BeatmapsController@scores']);
-Route::get('/b/{beatmaps}', ['as' => 'beatmaps.show', 'uses' => 'BeatmapsController@show']);
+Route::get('/beatmaps/{beatmaps}', ['as' => 'beatmaps.show', 'uses' => 'BeatmapsController@show']);
+
+// redirects to beatmapset anyways so there's no point
+// in having an another redirect on top of that
+Route::get('/b/{beatmaps}', ['uses' => 'BeatmapsController@show']);
 
 Route::get('/beatmapsets/search/{filters?}', ['as' => 'beatmapsets.search', 'uses' => 'BeatmapsetsController@search']);
 Route::resource('/beatmapsets', 'BeatmapsetsController', ['only' => ['index']]);
-Route::get('/s/{beatmapsets}', ['as' => 'beatmapsets.show', 'uses' => 'BeatmapsetsController@show']);
+Route::get('/beatmapsets/{beatmapsets}', ['as' => 'beatmapsets.show', 'uses' => 'BeatmapsetsController@show']);
+
+Route::get('/s/{beatmapsets}', function ($beatmapsets) {
+    return ujs_redirect(route('beatmapsets.show', ['beatmapsets' => $beatmapsets]));
+});
 
 // ranking section
 Route::get('/ranking/overall', ['as' => 'ranking-overall', 'uses' => 'RankingController@getOverall']);
@@ -79,8 +87,12 @@ Route::get('/community/profile/{id}', function ($id) {
 Route::get('/community/slack', ['as' => 'slack', 'uses' => 'CommunityController@getSlack']);
 Route::post('/community/slack/agree', ['as' => 'slack.agree', 'uses' => 'CommunityController@postSlackAgree']);
 
-Route::get('/mp/{match_id}', ['as' => 'multiplayer.match', 'uses' => 'MultiplayerController@match']);
-Route::get('/mp/{match_id}/history', ['as' => 'multiplayer.match.history', 'uses' => 'MultiplayerController@matchHistory']);
+Route::get('/matches/{matches}', ['as' => 'multiplayer.match', 'uses' => 'MultiplayerController@match']);
+Route::get('/matches/{matches}/history', ['as' => 'multiplayer.match.history', 'uses' => 'MultiplayerController@matchHistory']);
+
+Route::get('/mp/{matches}', function ($matches) {
+    return ujs_redirect(route('multiplayer.match', ['matches' => $matches]));
+});
 
 Route::post('users/check-username-availability', ['as' => 'users.check-username-availability', 'uses' => 'UsersController@checkUsernameAvailability']);
 Route::post('users/login', ['as' => 'users.login', 'uses' => 'UsersController@login']);
