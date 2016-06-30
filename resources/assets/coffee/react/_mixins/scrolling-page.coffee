@@ -92,6 +92,6 @@ currentLocation = =>
           # - part of state (callback, part of mode setting)
           # - simple variable in callback
           # Both still change the switch too soon.
-          @modeScrollTimeout = setTimeout (=> @scrolling = false), 100
+          @modeScrollTimeout = osu.timeout 100, => @scrolling = false
       # count for the tabs height
       offset: pagesOffset[0].getBoundingClientRect().height * -1

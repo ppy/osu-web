@@ -39,9 +39,9 @@ class Beatmaps.SearchPanel extends React.Component
     @prevText = text
     if @keyDelay?
       clearTimeout @keyDelay
-    @keyDelay = setTimeout(@submit.bind(this), 500)
+    @keyDelay = osu.timeout 500, @submit
 
-  submit: ->
+  submit: =>
     searchText = @prevText
     $(document).trigger 'beatmap:search:start'
 

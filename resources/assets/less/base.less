@@ -349,4 +349,8 @@ a[disabled] { &:extend(.btn[disabled]); }
     pointer-events: none;
     z-index: @z-index--visibility-hidden;
   }
+
+  &[data-visibility-animation="none"] {
+    transition: opacity 0ms;
+  }
 }

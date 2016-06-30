@@ -24,10 +24,14 @@ $(document).on 'turbolinks:request-end', LoadingOverlay.hide
 $(document).on 'submit', 'form', LoadingOverlay.show
 
 
+@currentUserObserver ?= new CurrentUserObserver
 @reactTurbolinks ||= new ReactTurbolinks
 @twitchPlayer ?= new TwitchPlayer
 @timeago ?= new Timeago
 @osuLayzr ?= new OsuLayzr
+@nav ?= new Nav
+@userLogin ?= new UserLogin(@nav)
+
 
 reactTurbolinks.register 'user-card', UserCard
 
@@ -41,7 +45,6 @@ $(document).on 'ready turbolinks:load', =>
   @globalDrag ||= new GlobalDrag
   @gallery ||= new Gallery
   @formPlaceholderHide ||= new FormPlaceholderHide
-  @headerMenu ||= new HeaderMenu
   @tooltipDefault ||= new TooltipDefault
   @throttledEvents ||= new ThrottledEvents
 
@@ -56,7 +59,6 @@ $(document).on 'ready turbolinks:load', =>
   @forumCover ||= new ForumCover(@forum)
 
   @menu ||= new Menu
-  @logoMenu ||= new LogoMenu
 
 
 $(document).on 'change', '.js-url-selector', (e) ->

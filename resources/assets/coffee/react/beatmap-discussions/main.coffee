@@ -54,7 +54,7 @@ BeatmapDiscussions.Main = React.createClass
 
     @jumpByHash()
 
-    @checkNewTimeout = setTimeout @checkNew, @checkNewTimeoutDefault
+    @checkNewTimeout = osu.timeout @checkNewTimeoutDefault, @checkNew
 
 
   componentWillUnmount: ->
@@ -203,7 +203,7 @@ BeatmapDiscussions.Main = React.createClass
     .always =>
       @nextTimeout = Math.min @nextTimeout, @checkNewTimeoutMax
 
-      @checkNewTimeout = setTimeout @checkNew, @nextTimeout
+      @checkNewTimeout = osu.timeout @nextTimeout, @checkNew
 
 
   setHighlight: (_e, {id}) ->
