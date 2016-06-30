@@ -24,7 +24,7 @@ return [
     'beatmapset_revive' => ':beatmapset foi revivido do cemitério por <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> atualizou o beatmap "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> publicou um novo beatmap ":beatmapset"',
-    'empty' => "Este jogador não fez nada de especial recentemente!",
+    'empty' => 'Este jogador não fez nada de especial recentemente!',
     'rank' => '<strong><em>:user</em></strong> alcançou rank #:rank em <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> perdeu primeiro lugar em <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> escolheu mais uma vez ajudar o osu! - obrigado por sua generosidade!',

@@ -27,7 +27,7 @@ return [
         'remember' => 'Lembrar este computador',
         'title' => 'Faça login para continuar',
         'failed' => 'Login incorreto',
-        'register' => "Não tem uma conta de osu!? Crie uma",
+        'register' => 'Não tem uma conta de osu!? Crie uma',
         'forgot' => 'Esqueceu sua senha?',
         'beta' => [
             'main' => 'Acesso Beta atualmente restrito para usuários privilegiados.',
@@ -54,7 +54,7 @@ return [
                     'button' => 'Enviar imagem',
                     'dropzone' => 'Arraste aqui para enviar',
                     'dropzone_info' => 'Você também pode arrastar sua imagem aqui para enviar',
-                    'restriction_info' => "Envio disponível apenas para <a href='".config('osu.urls.support-the-game')."' target='_blank'>osu!supporters</a>",
+                    'restriction_info' => 'Envio disponível apenas para  <a href='".config('osu.urls.support-the-game')."' target='_blank'>osu!supporters</a>',
                     'size_info' => 'Tamanho da capa deve ser 2700x500',
                     'too_large' => 'O arquivo enviado é muito grande.',
                     'unsupported_format' => 'Formato não suportado.',
@@ -86,9 +86,9 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu Disponível',
-                'available_info' => "Kudosu pode ser trocado por estrelas de kudosu, que podem ajudar seu beatmap a conseguir mais atenção. Este é o número de kudosu que você ainda não usou.",
+                'available_info' => 'Kudosu pode ser trocado por estrelas de kudosu, que podem ajudar seu beatmap a conseguir mais atenção. Este é o número de kudosu que você ainda não usou.',
                 'entry' => [
-                    'empty' => "Este jogador ainda não recebeu nenhum kudosu!",
+                    'empty' => 'Este jogador ainda não recebeu nenhum kudosu!',
                     'give' => 'Recebeu <strong class="kudosu-entries__amount">:amount kudosu</strong> de :giver por um post em :post',
                     'revoke' => 'Kudosu negado por :giver pelo post :post',
                 ],
@@ -144,7 +144,7 @@ return [
             'description' => '<strong>eu!</strong> é uma área pessoal customizável na sua página de perfil.',
             'edit_big' => 'Edite-me!',
             'placeholder' => 'Digite conteúdo da página aqui',
-            'restriction_info' => "Você precisa ser um <a href='".config('osu.urls.support-the-game')."' target='_blank'>osu!supporter</a> para desbloquear esta função.",
+            'restriction_info' => 'Você precisa ser um <a href='".config('osu.urls.support-the-game')."' target='_blank'>osu!supporter</a> para desbloquear esta função.',
         ],
         'plays_with' => [
             '_' => 'Joga com',
@@ -170,7 +170,7 @@ return [
             'total_hits' => 'Hits Totais',
             'total_score' => 'Pontuação Total',
         ],
-        'title' => "perfil de :username",
+        'title' => 'perfil de :username',
     ],
 
 ];

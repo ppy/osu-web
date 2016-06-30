@@ -99,9 +99,9 @@ return [
 
     'unauthorized' => 'Acesso negado.',
 
-    'silenced' => "Não é possível fazer isto enquanto silenciado.",
+    'silenced' => 'Não é possível fazer isto enquanto silenciado.',
 
-    'restricted' => "Não é possível fazer isto enquanto restrito.",
+    'restricted' => 'Não é possível fazer isto enquanto restrito.',
 
     'user' => [
         'page' => [

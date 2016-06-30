@@ -112,7 +112,7 @@ return [
                 'user' => [
                     'current' => 'Você tem :votes restantes.',
                     'count' => '{0} sem votos|{1} :count voto|[2,Inf] :count votos',
-                    'not_enough' => "Você não tem mais votos sobrando",
+                    'not_enough' => 'Você não tem mais votos sobrando',
                 ],
             ],
         ],
