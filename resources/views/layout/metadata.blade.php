@@ -35,6 +35,11 @@
 <link rel="stylesheet" media="all" href="{{ elixir("css/app.css") }}" data-turbolinks-track>
 <link rel="stylesheet" media="all" href="/vendor/_photoswipe-default-skin/default-skin.css">
 
+<script>
+    var currentLocale = {!! json_encode(App::getLocale()) !!};
+    var fallbackLocale = {!! json_encode(config('app.fallback_locale')) !!};
+</script>
+
 <script src="{{ elixir("js/app.js") }}" data-turbolinks-track></script>
 
 @if (isset($rss))

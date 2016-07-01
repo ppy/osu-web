@@ -71,7 +71,7 @@ el = React.createElement
               span
                 className: 'detail-row__text-score detail-row__text-score--pp'
                 if score.pp
-                  Lang.get('users.show.extra.top_ranks.pp', amount: Math.round(score.pp))
+                  osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(score.pp))
                 else
                   score.score.toLocaleString()
             div
@@ -79,9 +79,9 @@ el = React.createElement
               span
                 className: 'detail-row__text-score'
                 if score.weight
-                  Lang.get 'users.show.extra.top_ranks.weighted_pp',
+                  osu.trans 'users.show.extra.top_ranks.weighted_pp',
                     percentage: "#{Math.round(score.weight.data.percentage)}%"
-                    pp: Lang.get('users.show.extra.top_ranks.pp', amount: Math.round(score.weight.data.pp))
+                    pp: osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(score.weight.data.pp))
                 else if !score.pp
-                  Lang.get 'users.show.extra.historical.recent_plays.accuracy',
+                  osu.trans 'users.show.extra.historical.recent_plays.accuracy',
                     percentage: "#{(score.accuracy * 100).toFixed(2)}%"

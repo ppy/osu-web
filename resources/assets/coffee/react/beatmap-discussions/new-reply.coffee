@@ -63,13 +63,13 @@ BeatmapDiscussions.NewReply = React.createClass
                 span className: 'osu-checkbox__tick',
                   el Icon, name: 'check'
 
-                Lang.get('beatmaps.discussions.resolved')
+                osu.trans('beatmaps.discussions.resolved')
           div className: "#{bn}__actions-group",
             button
               className: 'btn-osu-lite btn-osu-lite--default'
               disabled: !@validPost()
               onClick: @throttledPost
-              Lang.get('common.buttons.reply')
+              osu.trans('common.buttons.reply')
 
 
   post: ->
