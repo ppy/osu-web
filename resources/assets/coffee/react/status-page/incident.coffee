@@ -43,11 +43,11 @@ class Status.Incident extends React.Component
           span className: 'status-incident__info-date',
             "#{fromNow}, " 
           span className: 'status-incident__info-by',
-            if _.isEmpty(@props.by) then Lang.get('status_page.incidents.automated') else "by #{@props.by}"
+            if _.isEmpty(@props.by) then osu.trans('status_page.incidents.automated') else "by #{@props.by}"
         div 
           className: 'status-incident__desc'
           span 
             className: 'status-incident__desc--resolved' unless !@props.active
             @props.description
           span
-            " #{Lang.get('status_page.recent.incidents.state.' + @props.status)}!"
+            " #{osu.trans('status_page.recent.incidents.state.' + @props.status)}!"

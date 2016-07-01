@@ -50,11 +50,11 @@ BeatmapDiscussions.BeatmapListItem = React.createClass
             div
               key: 'mode'
               className: "#{bn}__small"
-              Lang.get("beatmaps.mode.#{@props.beatmap.mode}")
+              osu.trans("beatmaps.mode.#{@props.beatmap.mode}")
           ]
 
         else if @props.mode == 'mode'
-          Lang.get("beatmaps.mode.#{@props.beatmap.mode}")
+          osu.trans("beatmaps.mode.#{@props.beatmap.mode}")
 
         else if @props.mode == 'version'
           version

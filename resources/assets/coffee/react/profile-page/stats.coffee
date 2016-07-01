@@ -34,7 +34,7 @@ class ProfilePage.Stats extends React.Component
 
         el 'dl', className: 'profile-stats__stat',
           el 'dt', className: 'profile-stats__stat-key',
-            Lang.get 'users.show.stats.level', level: @props.stats.level.current
+            osu.trans 'users.show.stats.level', level: @props.stats.level.current
           el 'dd', className: 'profile-stats__stat-value, profile-stats__stat-value--light',
             "#{@props.stats.level.progress.toFixed()}%"
 
@@ -42,25 +42,25 @@ class ProfilePage.Stats extends React.Component
         elements.map (m) =>
           switch m
             when 'ranked-score'
-              dt = Lang.get 'users.show.stats.ranked_score'
+              dt = osu.trans 'users.show.stats.ranked_score'
               dd = @props.stats.rankedScore.toLocaleString()
             when 'accuracy'
-              dt = Lang.get 'users.show.stats.hit_accuracy'
+              dt = osu.trans 'users.show.stats.hit_accuracy'
               dd = "#{@props.stats.hitAccuracy.toFixed(2)}%"
             when 'playcount'
-              dt = Lang.get 'users.show.stats.play_count'
+              dt = osu.trans 'users.show.stats.play_count'
               dd = @props.stats.playCount.toLocaleString()
             when 'total-score'
-              dt = Lang.get 'users.show.stats.total_score'
+              dt = osu.trans 'users.show.stats.total_score'
               dd = @props.stats.totalScore.toLocaleString()
             when 'hits'
-              dt = Lang.get 'users.show.stats.total_hits'
+              dt = osu.trans 'users.show.stats.total_hits'
               dd = @props.stats.totalHits.toLocaleString()
             when 'maxcombo'
-              dt = Lang.get 'users.show.stats.maximum_combo'
+              dt = osu.trans 'users.show.stats.maximum_combo'
               dd = @props.stats.maximumCombo.toLocaleString()
             when 'replays-watched'
-              dt = Lang.get 'users.show.stats.replays_watched_by_others'
+              dt = osu.trans 'users.show.stats.replays_watched_by_others'
               dd = @props.stats.replaysWatchedByOthers.toLocaleString()
 
           el 'dl', key: m, className: 'profile-stats__stat',
@@ -68,7 +68,7 @@ class ProfilePage.Stats extends React.Component
             el 'dd', className: 'profile-stats__stat-value', dd
 
         el 'dl', className: 'profile-stats__stat profile-stats__stat--full',
-          el 'dt', className: 'profile-stats__stat-key', Lang.get 'users.show.stats.score_ranks'
+          el 'dt', className: 'profile-stats__stat-key', osu.trans 'users.show.stats.score_ranks'
           el 'dd', className: 'profile-stats__stat-value profile-stats__ranks',
             for own rankName, rankCount of @props.stats.scoreRanks
               el 'div',

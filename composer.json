@@ -24,7 +24,7 @@
     "itsgoingd/clockwork": "~1.9",
     "maknz/slack": "*",
     "ezyang/htmlpurifier": "^4.7",
-    "mariuzzo/laravel-js-localization": "dev-nosubmodule",
+    "mariuzzo/laravel-js-localization": "dev-nosubmodulewithlocale",
     "league/fractal": "^0.13.0",
     "shift31/laravel-elasticsearch": "~1.0",
     "league/statsd": "dev-master#3dafde1b6c5e3896073cc947130cf9536b335975",

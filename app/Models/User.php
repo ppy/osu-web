@@ -450,9 +450,11 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         $lastBan = $this->banHistories()->bans()->first();
 
-        return $lastBan !== null &&
+        $isSilenced = $lastBan !== null &&
             $lastBan->period !== 0 &&
             $lastBan->endTime()->isFuture();
+
+        return $this->isRestricted() || $isSilenced;
     }
 
     public function groupIds()

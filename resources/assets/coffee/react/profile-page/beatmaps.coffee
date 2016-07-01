@@ -34,7 +34,7 @@ ProfilePage.Beatmaps = React.createClass
       _.map allBeatmapsets, (beatmapsets, section) =>
         div
           key: section
-          h3 className: 'page-extra__title--small', Lang.get("users.show.extra.beatmaps.#{section}.title", count: beatmapsets.length)
+          h3 className: 'page-extra__title--small', osu.trans("users.show.extra.beatmaps.#{section}.title", count: beatmapsets.length)
           if beatmapsets.length
             div className: 'beatmap-container',
               div className: 'listing osu-layout__col-container osu-layout__col-container--with-gutter',
@@ -44,4 +44,4 @@ ProfilePage.Beatmaps = React.createClass
                     className: 'osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-4'
                     el BeatmapsetPanel, beatmap: beatmapset
           else
-            p className: 'page-extra-entries', Lang.get('users.show.extra.beatmaps.none')
+            p className: 'page-extra-entries', osu.trans('users.show.extra.beatmaps.none')
