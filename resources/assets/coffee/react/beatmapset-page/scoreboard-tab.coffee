@@ -28,4 +28,4 @@ class BeatmapsetPage.ScoreboardTab extends React.Component
     span
       className: className
       onClick: @_scoreboardSwitch
-      Lang.get "beatmaps.beatmapset.show.extra.scoreboard.#{@props.scoreboard}"
+      osu.trans "beatmaps.beatmapset.show.extra.scoreboard.#{@props.scoreboard}"
