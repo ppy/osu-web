@@ -169,4 +169,26 @@ class BeatmapsetsController extends Controller
             return view('beatmapsets.discussion', compact('initialData'));
         }
     }
+
+    public function nominate($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        if ($beatmapset->approved != Beatmapset::PENDING) {
+            return error_popup(trans('beatmaps.nominations.incorrect-state'));
+        }
+
+        priv_check('BeatmapsetNominate', $beatmapset)->ensureCan();
+
+        if (Auth::user()->beatmapsetNominationsToday() >= Beatmapset::NOMINATIONS_PER_DAY) {
+            return error_popup(trans('beatmaps.nominations.nominations-exhausted'));
+        }
+
+        $beatmapset->nominate(Auth::user());
+
+        return [
+            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
+        ];
+    }
+
 }

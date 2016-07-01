@@ -502,6 +502,16 @@ class User extends Model implements AuthenticatableContract, Messageable
         return Beatmapset::whereIn('beatmapset_id', FavouriteBeatmapset::where('user_id', '=', $this->user_id)->select('beatmapset_id')->get());
     }
 
+    public function beatmapsetNominations()
+    {
+        return $this->hasMany(BeatmapsetEvent::class)->where('type', BeatmapsetEvent::NOMINATE);
+    }
+
+    public function beatmapsetNominationsToday()
+    {
+        return $this->beatmapsetNominations()->where('created_at', '>', DB::raw('DATE_ADD(NOW(), INTERVAL -1 DAY)'))->count();
+    }
+
     public function beatmapPlaycounts()
     {
         return $this->hasMany(BeatmapPlaycount::class);

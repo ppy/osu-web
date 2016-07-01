@@ -87,6 +87,8 @@ return [
         'disqualifed-at' => 'disqualified :time_ago',
         'qualified' => 'Estimated to become ranked :date, if no issues are found.',
         'soon' => 'soon',
+        'incorrect-state' => 'Error performing that action, try refreshing the page.',
+        'nominations-exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
     ],
 
     'listing' => [

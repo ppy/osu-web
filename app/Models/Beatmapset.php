@@ -86,6 +86,7 @@ class Beatmapset extends Model
         3  => 'qualified'
     ];
 
+    const NOMINATIONS_PER_DAY = 1;
     const QUALIFICATIONS_PER_DAY = 6;
 
     // ranking functions for the set
@@ -618,6 +619,32 @@ class Beatmapset extends Model
         $imageFilename = str_replace('\\', '/', $imageFilename);
 
         return $imageFilename;
+    }
+
+    public function qualify()
+    {
+        if (!$this->isPending()) {
+            return false;
+        }
+        $this->events()->create(['type' => 'qualify']);
+        $this->approved = 3;
+        $this->approved_date = Carbon::now();
+        $this->save();
+    }
+
+    public function nominate(User $user)
+    {
+        if (!$this->isPending()) {
+            return false;
+        }
+
+        $nomination = $this->recentEvents()->nominations()->where('user_id', $user->user_id)->firstOrCreate(['user_id' => $user->user_id]);
+
+        if ($nomination->wasRecentlyCreated) {
+            if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
+                $this->qualify();
+            }
+        }
     }
 
     /*
