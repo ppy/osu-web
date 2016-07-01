@@ -47,6 +47,13 @@ class Game extends Model
         3 => 'scorev2',
     ];
 
+    const TEAM_TYPES = [
+        0 => 'head-to-head',
+        1 => 'tag-coop',
+        2 => 'team-vs',
+        3 => 'tag-team-vs',
+    ];
+
     protected $_mods = null;
 
     public function scores()
@@ -81,5 +88,10 @@ class Game extends Model
     public function getScoringTypeAttribute($value)
     {
         return self::SCORING_TYPES[$value];
+    }
+
+    public function getTeamTypeAttribute($value)
+    {
+        return self::TEAM_TYPES[$value];
     }
 }

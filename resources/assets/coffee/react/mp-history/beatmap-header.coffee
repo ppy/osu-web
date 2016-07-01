@@ -54,3 +54,9 @@ class MPHistory.BeatmapHeader extends React.Component
 
         div className: 'mp-history-game__mods-box',
           el Mods, mods: @props.game.mods, large: true, reversed: true
+
+        div
+          className: 'mp-history-game__team-type'
+          title: Lang.get "multiplayer.match.team-types.#{@props.game.team_type}"
+          style:
+            backgroundImage: "url(/images/badges/team-types/#{@props.game.team_type}.svg)"
