@@ -80,10 +80,10 @@ class Beatmapset extends Model
     const STATES = [
         -2 => 'graveyard',
         -1 => 'wip',
-        0  => 'pending',
-        1  => 'ranked',
-        2  => 'approved',
-        3  => 'qualified'
+        0 => 'pending',
+        1 => 'ranked',
+        2 => 'approved',
+        3 => 'qualified',
     ];
 
     const NOMINATIONS_PER_DAY = 1;
@@ -680,6 +680,7 @@ class Beatmapset extends Model
     public function requiredNominationCount()
     {
         $longest_map_duration = $this->beatmaps->max('total_length');
+
         return $longest_map_duration > 315 ? 3 : 2;
     }
 
@@ -705,8 +706,8 @@ class Beatmapset extends Model
         // relevant events differ depending on state of beatmapset
         $events = [];
         switch ($this->approved) {
-            case Beatmapset::PENDING:
-            case Beatmapset::QUALIFIED:
+            case self::PENDING:
+            case self::QUALIFIED:
                 // last 'disqualify' event plus nomination events since the last 'disqualify' event (if any)
                 $disqualifyEvent = $this->events()->disqualifications()->orderBy('created_at', 'desc');
                 $events = $this->events()->nominations();
@@ -716,8 +717,8 @@ class Beatmapset extends Model
                     );
                 }
                 break;
-            case Beatmapset::RANKED:
-            case Beatmapset::APPROVED:
+            case self::RANKED:
+            case self::APPROVED:
                 // all events(?) doesn't matter until a history display is created anyway.
                 $events = $this->events();
                 break;
@@ -735,7 +736,7 @@ class Beatmapset extends Model
     {
         $includes = ['beatmaps'];
 
-        if ($currentUser != null) {
+        if ($currentUser !== null) {
             $includes[] = "nominations:user_id({$currentUser->user_id})";
         } else {
             $includes[] = 'nominations';
@@ -744,7 +745,7 @@ class Beatmapset extends Model
         return fractal_item_array(
             $this,
             new BeatmapsetTransformer,
-            join($includes, ',')
+            implode($includes, ',')
         );
     }
 

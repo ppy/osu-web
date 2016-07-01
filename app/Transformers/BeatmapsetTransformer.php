@@ -62,18 +62,18 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
     public function includeNominations(Beatmapset $beatmapset, ParamBag $params = null)
     {
         if ($beatmapset->isPending()) {
-            if ($params != null) {
+            if ($params !== null) {
                 $userId = $params->get('user_id')[0];
             }
 
             $nominations = $beatmapset->recentEvents()->get();
             $disqualified = false;
             foreach ($nominations as $nomination) {
-                if ($nomination->type == BeatmapsetEvent::DISQUALIFY) {
+                if ($nomination->type === BeatmapsetEvent::DISQUALIFY) {
                     $disqualified = true;
                     $disqualifyEvent = $nomination;
                 }
-                if (isset($userId) && $nomination->user_id == $userId && $nomination->type == BeatmapsetEvent::NOMINATE) {
+                if (isset($userId) && $nomination->user_id === $userId && $nomination->type === BeatmapsetEvent::NOMINATE) {
                     $alreadyNominated = true;
                 }
             }
@@ -92,7 +92,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
                 $result['nominated'] = $alreadyNominated ?? false;
             }
 
-            return $this->item($beatmapset, function($beatmapset) use ($result) {
+            return $this->item($beatmapset, function ($beatmapset) use ($result) {
                 return $result;
             });
         } elseif ($beatmapset->qualified()) {
@@ -100,11 +100,12 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             $result = [
                 'ranking_eta' => $eta ? $eta->toIso8601String() : null,
             ];
-            return $this->item($beatmapset, function($beatmapset) use ($result) {
+
+            return $this->item($beatmapset, function ($beatmapset) use ($result) {
                 return $result;
             });
         } else {
-            return null;
+            return;
         }
     }
 
