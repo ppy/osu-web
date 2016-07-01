@@ -25,7 +25,7 @@ return [
 
     'checkout' => [
         'pay' => 'Afrekenen met Paypal',
-        'delayed_shipping' => 'We zijn momenteel overstelpt met bestellingen! Je kunt nog steeds bestellingen maken maar verwacht **een vertagen van 1-2 weken** terwijl we de bestaande bestellingen verwerken.',
+        'delayed_shipping' => 'We zijn momenteel overweldigd met bestellingen! Je kunt nog steeds bestellingen plaatsen maar verwacht dan **een vertraging van 1-2 weken** terwijl wij de bestaande bestellingen verwerken.',
     ],
 
     'order' => [
@@ -38,19 +38,19 @@ return [
         'name' => 'Naam',
 
         'stock' => [
-            'out' => 'Momenteel niet op voorraad :(. Probeer later opnieuw.',
-            'out_with_alternative' => 'Dit type is momenteel niet op voorraad :(. Probeer een ander type of probeer later opnieuw.',
+            'out' => 'Momenteel niet op voorraad :(. Probeer het later opnieuw.',
+            'out_with_alternative' => 'Dit type is momenteel niet op voorraad :(. Probeer een ander type of probeer het later opnieuw.',
         ],
 
-        'add_to_cart' => 'Voeg toe aan winkelmand',
+        'add_to_cart' => 'Voeg toe aan winkelwagen',
         'notify' => 'Laat me weten wanneer het beschikbaar is!',
 
-        'notification_success' => 'we zullen het je laten weten wanneer dit weer op voorraad is. klik :link om te annuleren',
+        'notification_success' => 'we zullen het je laten weten wanneer het weer op voorraad is. klik :link om te annuleren',
         'notification_remove_text' => 'hier',
 
         'notification_in_stock' => 'Dit product is al op voorraad!',
 
-        'notification_exists' => 'Je hebt een notificatie aangevraagd voor wanneer dit beschikbaar is!',
-        'notification_doesnt_exist' => 'Je hebt niet eens notificatie aangevraagd voor wanneer dit beschikbaar is!',
+        'notification_exists' => 'Je hebt al om een notificatie gevraagd wanneer het product weer beschikbaar is!',
+        'notification_doesnt_exist' => 'Je hebt niet eens notificatie aangevraagd voor dit product!',
     ],
 ];
