@@ -23,18 +23,15 @@ class MPHistory.Content extends React.Component
     @scoresCache ?= {}
 
     if !@scoresCache[eventIndex]?
-      left = 0
-      right = 0
+      scores =
+        blue: 0
+        red: 0
 
       for score in @props.events[eventIndex].game.data.scores.data
-        if score.team == 0
-          left += score.score
-        else
-          right += score.score
+        continue if !score.pass
+        scores[score.team] += score.score
 
-      @scoresCache[eventIndex] =
-        left: left
-        right: right
+      @scoresCache[eventIndex] = scores
 
     return @scoresCache[eventIndex]
 

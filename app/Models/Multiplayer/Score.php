@@ -30,6 +30,12 @@ class Score extends BaseModel
     protected $hidden = ['frame', 'game_id'];
     public $timestamps = false;
 
+    const TEAMS = [
+        0 => 'none',
+        1 => 'blue',
+        2 => 'red',
+    ];
+
     public function game()
     {
         return $this->belongsTo(Game::class);
@@ -38,6 +44,11 @@ class Score extends BaseModel
     public function gamemodeString()
     {
         return Beatmap::modeStr($this->game->play_mode);
+    }
+
+    public function getTeamAttribute($value)
+    {
+        return self::TEAMS[$value];
     }
 
     public function scopeDefault($query)

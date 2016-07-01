@@ -51,8 +51,8 @@ return [
         ],
         'failed' => 'FAILED',
         'teams' => [
-            'left' => 'Team Blue',
-            'right' => 'Team Red',
+            'blue' => 'Team Blue',
+            'red' => 'Team Red',
         ],
         'winner' => ':team wins',
         'difference' => 'by :difference',

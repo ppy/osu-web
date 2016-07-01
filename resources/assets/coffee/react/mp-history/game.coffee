@@ -22,13 +22,13 @@ class MPHistory.Game extends React.Component
   render: ->
     game = @props.event.game.data
 
-    showTeams = game.team_type >= 2
+    showTeams = game.team_type == 'team-vs' || game.team_type == 'tag-team-vs'
 
     className = 'mp-history-game__player-scores'
     className += ' mp-history-game__player-scores--no-teams' if !showTeams
 
-    winningTeam = if @props.teamScores.left > @props.teamScores.right then 'left' else 'right'
-    difference = Math.abs @props.teamScores.left - @props.teamScores.right
+    winningTeam = if @props.teamScores.blue > @props.teamScores.red then 'blue' else 'red'
+    difference = Math.abs @props.teamScores.blue - @props.teamScores.red
 
     div className: 'mp-history-game',
       el MPHistory.BeatmapHeader,
@@ -45,9 +45,10 @@ class MPHistory.Game extends React.Component
             key: m.slot
 
       if showTeams
+        console.log @props.teamScores
         div {},
           div className: 'mp-history-game__team-scores',
-            ['left', 'right'].map (m) =>
+            ['blue', 'red'].map (m) =>
               div className: "mp-history-game__team-score mp-history-game__team-score--#{m}", key: m,
                 span className: 'mp-history-game__team-score-text mp-history-game__team-score-text--name', Lang.get "multiplayer.match.teams.#{m}"
                 span className: 'mp-history-game__team-score-text mp-history-game__team-score-text--score', @props.teamScores[m].toLocaleString()

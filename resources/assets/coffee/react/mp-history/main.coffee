@@ -84,12 +84,3 @@ class MPHistory.Main extends React.Component
         events: @state.events[remainingEventsCount..]
         remainingEventsCount: remainingEventsCount
         countries: @props.countries
-
-  getTeamType: (typeInt) ->
-    types =
-      0: 'head-to-head'
-      1: 'tag-coop'
-      2: 'team-vs'
-      3: 'tag-team-vs'
-
-    types[typeInt]
