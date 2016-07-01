@@ -159,12 +159,7 @@ class BeatmapsetsController extends Controller
         }
 
         $initialData = [
-            'beatmapset' => fractal_item_array(
-                $beatmapset,
-                new BeatmapsetTransformer,
-                'beatmaps'
-            ),
-
+            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
             'beatmapsetDiscussion' => $discussion->defaultJson(Auth::user()),
         ];
 

@@ -28,6 +28,8 @@ use App\Libraries\ImageProcessorService;
 use App\Exceptions\BeatmapProcessorException;
 use App\Models\Forum\Topic;
 use App\Models\Forum\Post;
+use App\Transformers\BeatmapsetTransformer;
+use Carbon\Carbon;
 
 class Beatmapset extends Model
 {
@@ -74,6 +76,17 @@ class Beatmapset extends Model
     const RANKED = 1;
     const APPROVED = 2;
     const QUALIFIED = 3;
+
+    const STATES = [
+        -2 => 'graveyard',
+        -1 => 'wip',
+        0  => 'pending',
+        1  => 'ranked',
+        2  => 'approved',
+        3  => 'qualified'
+    ];
+
+    const QUALIFICATIONS_PER_DAY = 6;
 
     // ranking functions for the set
 
@@ -620,6 +633,82 @@ class Beatmapset extends Model
     public function beatmaps()
     {
         return $this->hasMany(Beatmap::class, 'beatmapset_id');
+    }
+
+    public function events()
+    {
+        return $this->hasMany(BeatmapsetEvent::class);
+    }
+
+    public function requiredNominationCount()
+    {
+        $longest_map_duration = $this->beatmaps->max('total_length');
+        return $longest_map_duration > 315 ? 3 : 2;
+    }
+
+    public function currentNominationCount()
+    {
+        return count($this->recentEvents()->nominations()->get());
+    }
+
+    public function rankingETA()
+    {
+        if (!$this->isQualified()) {
+            return false;
+        }
+
+        $queueSize = static::qualified()->where('approved_date', '<=', $this->approved_date)->count();
+        $days = ceil($queueSize / static::QUALIFICATIONS_PER_DAY);
+
+        return $days > 0 ? Carbon::now()->addDays($days)->startOfDay() : null;
+    }
+
+    public function recentEvents()
+    {
+        // relevant events differ depending on state of beatmapset
+        $events = [];
+        switch ($this->approved) {
+            case Beatmapset::PENDING:
+            case Beatmapset::QUALIFIED:
+                // last 'disqualify' event plus nomination events since the last 'disqualify' event (if any)
+                $disqualifyEvent = $this->events()->disqualifications()->orderBy('created_at', 'desc');
+                $events = $this->events()->nominations();
+                if ($disqualifyEvent->exists()) {
+                    $events = $disqualifyEvent->union(
+                        $events->where('id', '>', $disqualifyEvent->first()->id)
+                    );
+                }
+                break;
+            case Beatmapset::RANKED:
+            case Beatmapset::APPROVED:
+                // all events(?) doesn't matter until a history display is created anyway.
+                $events = $this->events();
+                break;
+        }
+
+        return $events;
+    }
+
+    public function status()
+    {
+        return static::STATES[$this->approved];
+    }
+
+    public function defaultJson($currentUser = null)
+    {
+        $includes = ['beatmaps'];
+
+        if ($currentUser != null) {
+            $includes[] = "nominations:user_id({$currentUser->user_id})";
+        } else {
+            $includes[] = 'nominations';
+        }
+
+        return fractal_item_array(
+            $this,
+            new BeatmapsetTransformer,
+            join($includes, ',')
+        );
     }
 
     public function defaultBeatmaps()

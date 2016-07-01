@@ -20,7 +20,9 @@
 namespace App\Transformers;
 
 use App\Models\Beatmapset;
+use App\Models\BeatmapsetEvent;
 use League\Fractal;
+use League\Fractal\ParamBag;
 
 class BeatmapsetTransformer extends Fractal\TransformerAbstract
 {
@@ -28,6 +30,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         'description',
         'user',
         'beatmaps',
+        'nominations',
     ];
 
     public function transform(Beatmapset $beatmapset = null)
@@ -52,7 +55,57 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'previewUrl' => $beatmapset->previewURL(),
             'tags' => $beatmapset->tags,
             'video' => $beatmapset->video,
+            'status' => $beatmapset->status(),
         ];
+    }
+
+    public function includeNominations(Beatmapset $beatmapset, ParamBag $params = null)
+    {
+        if ($beatmapset->isPending()) {
+            if ($params != null) {
+                $userId = $params->get('user_id')[0];
+            }
+
+            $nominations = $beatmapset->recentEvents()->get();
+            $disqualified = false;
+            foreach ($nominations as $nomination) {
+                if ($nomination->type == BeatmapsetEvent::DISQUALIFY) {
+                    $disqualified = true;
+                    $disqualifyEvent = $nomination;
+                }
+                if (isset($userId) && $nomination->user_id == $userId && $nomination->type == BeatmapsetEvent::NOMINATE) {
+                    $alreadyNominated = true;
+                }
+            }
+
+            $result = [
+                'required' => $beatmapset->requiredNominationCount(),
+                'current' => $beatmapset->currentNominationCount(),
+            ];
+            if ($disqualified) {
+                $result['disqualification'] = [
+                    'reason' => $disqualifyEvent->comment,
+                    'created_at' => $disqualifyEvent->created_at->toIso8601String(),
+                ];
+            }
+            if (isset($userId)) {
+                $result['nominated'] = $alreadyNominated ?? false;
+            }
+
+            return $this->item($beatmapset, function($beatmapset) use ($result) {
+                return $result;
+            });
+        } elseif ($beatmapset->qualified()) {
+            $eta = $beatmapset->rankingETA();
+            $result = [
+                'ranking_eta' => $eta ? $eta->toIso8601String() : null,
+            ];
+            return $this->item($beatmapset, function($beatmapset) use ($result) {
+                return $result;
+            });
+        } else {
+            return null;
+        }
     }
 
     public function includeDescription(Beatmapset $beatmapset)

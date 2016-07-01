@@ -80,6 +80,15 @@ return [
         ],
     ],
 
+    'nominations' => [
+        'disqualify' => 'Disqualify',
+        'nominate' => 'Nominate',
+        'required-text' => 'Nominations: :current/:required',
+        'disqualifed-at' => 'disqualified :time_ago',
+        'qualified' => 'Estimated to become ranked :date, if no issues are found.',
+        'soon' => 'soon',
+    ],
+
     'listing' => [
         'search' => [
             'prompt' => 'type in keywords...',
