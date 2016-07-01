@@ -25,7 +25,7 @@ use League\Fractal;
 class BeatmapCompactTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'beatmapset'
+        'beatmapset',
     ];
 
     public function transform(Beatmap $beatmap)

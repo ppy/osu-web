@@ -23,7 +23,6 @@ use App\Models\Multiplayer\Match;
 use App\Models\Country;
 use App\Transformers\Multiplayer\MatchTransformer;
 use App\Transformers\Multiplayer\EventTransformer;
-use App\Transformers\CountryTransformer;
 use Request;
 
 class MatchesController extends Controller

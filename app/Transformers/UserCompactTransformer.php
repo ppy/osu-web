@@ -25,7 +25,7 @@ use League\Fractal;
 class UserCompactTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'country'
+        'country',
     ];
 
     public function transform(User $user)
