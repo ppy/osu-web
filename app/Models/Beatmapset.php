@@ -621,6 +621,16 @@ class Beatmapset extends Model
         return $imageFilename;
     }
 
+    public function disqualify(User $user, $comment)
+    {
+        if (!$this->isQualified()) {
+            return false;
+        }
+        $this->events()->create(['type' => 'disqualify', 'user_id' => $user->user_id, 'comment' => $comment]);
+        $this->approved = 0;
+        $this->save();
+    }
+
     public function qualify()
     {
         if (!$this->isPending()) {

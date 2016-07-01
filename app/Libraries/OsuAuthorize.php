@@ -150,6 +150,19 @@ class OsuAuthorize
         }
     }
 
+    public function checkBeatmapsetDisqualify($user, $beatmapset)
+    {
+        if ($user === null) {
+            return 'require_login';
+        }
+
+        if ($user->isQAT()) {
+            return 'ok';
+        } else {
+            return 'unauthorized';
+        }
+    }
+
     public function checkChatMessageSend($user, $target)
     {
         $prefix = 'chat.message.send.';
