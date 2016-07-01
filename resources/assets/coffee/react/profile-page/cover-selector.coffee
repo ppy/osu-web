@@ -68,7 +68,7 @@ class ProfilePage.CoverSelector extends React.Component
             url: "/images/headers/profile-covers/c#{i}.jpg"
             thumbUrl: "/images/headers/profile-covers/c#{i}t.jpg"
         el 'p', className: 'profile-cover-change-popup__selections-info',
-          Lang.get 'users.show.edit.cover.defaults_info'
+          osu.trans 'users.show.edit.cover.defaults_info'
       el ProfilePage.CoverUploader, cover: @props.cover, canUpload: @props.canUpload
       if @props.canUpload
         el 'div',
@@ -77,4 +77,4 @@ class ProfilePage.CoverSelector extends React.Component
           onDragEnter: @_dropOverlayEnter
           onDragLeave: @_dropOverlayLeave
           ref: 'dropOverlay'
-          Lang.get 'users.show.edit.cover.upload.dropzone'
+          osu.trans 'users.show.edit.cover.upload.dropzone'

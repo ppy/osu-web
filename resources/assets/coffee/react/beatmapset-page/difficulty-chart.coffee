@@ -29,11 +29,11 @@ class BeatmapsetPage.DifficultyChart extends React.Component
 
   _renderChart: ->
     data = [
-      {value: @props.beatmap.cs, label: Lang.get 'beatmaps.beatmapset.show.stats.chart.cs'},
-      {value: @props.beatmap.drain, label: Lang.get 'beatmaps.beatmapset.show.stats.chart.hp'}
-      {value: @props.beatmap.accuracy, label: Lang.get 'beatmaps.beatmapset.show.stats.chart.od'},
-      {value: @props.beatmap.ar, label: Lang.get 'beatmaps.beatmapset.show.stats.chart.ar'},
-      {value: @props.beatmap.difficulty_rating, label: Lang.get 'beatmaps.beatmapset.show.stats.chart.sd'},
+      {value: @props.beatmap.cs, label: osu.trans 'beatmaps.beatmapset.show.stats.chart.cs'},
+      {value: @props.beatmap.drain, label: osu.trans 'beatmaps.beatmapset.show.stats.chart.hp'}
+      {value: @props.beatmap.accuracy, label: osu.trans 'beatmaps.beatmapset.show.stats.chart.od'},
+      {value: @props.beatmap.ar, label: osu.trans 'beatmaps.beatmapset.show.stats.chart.ar'},
+      {value: @props.beatmap.difficulty_rating, label: osu.trans 'beatmaps.beatmapset.show.stats.chart.sd'},
     ]
 
     unless @_difficultyChart

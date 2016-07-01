@@ -48,7 +48,7 @@ class BeatmapsetPage.Contents extends React.Component
               currentBeatmapId: @props.currentBeatmapId
 
         div className: 'beatmapset-difficulties__name',
-          Lang.get("beatmaps.mode.#{@props.currentPlaymode}") + " #{beatmap.version}"
+          osu.trans("beatmaps.mode.#{@props.currentPlaymode}") + " #{beatmap.version}"
 
       div className: 'page-contents',
         el BeatmapsetPage.Details,

@@ -39,17 +39,17 @@ class BeatmapsetPage.Details extends React.Component
       div
         className: 'beatmapset-details__mapper'
         dangerouslySetInnerHTML:
-          __html: Lang.get 'beatmaps.beatmapset.show.details.made-by',
+          __html: osu.trans 'beatmaps.beatmapset.show.details.made-by',
           user: laroute.link_to_route 'users.show', @props.beatmapset.user.data.username, users: @props.beatmapset.user.data.id,
             class: 'beatmapset-details__mapper beatmapset-details__mapper--username'
 
       div className: 'beatmapset-details__date',
-        Lang.get 'beatmaps.beatmapset.show.details.submitted'
+        osu.trans 'beatmaps.beatmapset.show.details.submitted'
         moment(@props.beatmapset.submitted_date).format dateFormat
 
       if @props.beatmapset.ranked_date
         div className: 'beatmapset-details__date',
-          Lang.get 'beatmaps.beatmapset.show.details.ranked'
+          osu.trans 'beatmaps.beatmapset.show.details.ranked'
           moment(@props.beatmapset.ranked_date).format dateFormat
 
       hr className: 'beatmapset-details__line'
@@ -66,17 +66,17 @@ class BeatmapsetPage.Details extends React.Component
               className: 'beatmapset-details__button'
               'data-target': '#user-dropdown-modal'
               'data-toggle': 'modal'
-              Lang.get 'users.anonymous.login_link'
+              osu.trans 'users.anonymous.login_link'
         else
           div {},
             a
               href: if currentUser.isSupporter then Url.beatmapDownloadDirect @props.beatmapset.beatmapset_id else laroute.route 'support-the-game'
               className: 'beatmapset-details__button'
-              Lang.get 'beatmaps.beatmapset.show.details.download.direct'
+              osu.trans 'beatmaps.beatmapset.show.details.download.direct'
             a
               href: Url.beatmapDownload @props.beatmapset.beatmapset_id, !@state.noVideo
               className: 'beatmapset-details__button'
-              Lang.get 'beatmaps.beatmapset.show.details.download.normal'
+              osu.trans 'beatmaps.beatmapset.show.details.download.normal'
 
             if @props.beatmapset.video
               div className: 'beatmapset-details__novideo',
@@ -91,4 +91,4 @@ class BeatmapsetPage.Details extends React.Component
                     el Icon, name: 'check'
 
                 div className: 'beatmapset-details__text',
-                  Lang.get 'beatmaps.beatmapset.show.details.download.no-video'
+                  osu.trans 'beatmaps.beatmapset.show.details.download.no-video'
