@@ -43,11 +43,11 @@ class BeatmapsetEvent extends Model
 
     public function scopeNominations($query)
     {
-        return $query->where('type', BeatmapsetEvent::NOMINATE);
+        return $query->where('type', self::NOMINATE);
     }
 
     public function scopeDisqualifications($query)
     {
-        return $query->where('type', BeatmapsetEvent::DISQUALIFY);
+        return $query->where('type', self::DISQUALIFY);
     }
 }

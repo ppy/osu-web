@@ -174,7 +174,7 @@ class BeatmapsetsController extends Controller
     {
         $beatmapset = Beatmapset::findOrFail($id);
 
-        if ($beatmapset->approved != Beatmapset::PENDING) {
+        if ($beatmapset->approved !== Beatmapset::PENDING) {
             return error_popup(trans('beatmaps.nominations.incorrect-state'));
         }
 
@@ -195,7 +195,7 @@ class BeatmapsetsController extends Controller
     {
         $beatmapset = Beatmapset::findOrFail($id);
 
-        if ($beatmapset->approved != Beatmapset::QUALIFIED) {
+        if ($beatmapset->approved !== Beatmapset::QUALIFIED) {
             return error_popup(trans('beatmaps.nominations.incorrect-state'));
         }
 
