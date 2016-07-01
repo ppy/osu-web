@@ -26,7 +26,7 @@ use App\Transformers\Multiplayer\EventTransformer;
 use App\Transformers\CountryTransformer;
 use Request;
 
-class MultiplayerController extends Controller
+class MatchesController extends Controller
 {
     protected $section = 'multiplayer';
 

@@ -87,8 +87,8 @@ Route::get('/community/profile/{id}', function ($id) {
 Route::get('/community/slack', ['as' => 'slack', 'uses' => 'CommunityController@getSlack']);
 Route::post('/community/slack/agree', ['as' => 'slack.agree', 'uses' => 'CommunityController@postSlackAgree']);
 
-Route::get('/matches/{matches}', ['as' => 'multiplayer.match', 'uses' => 'MultiplayerController@match']);
-Route::get('/matches/{matches}/history', ['as' => 'multiplayer.match.history', 'uses' => 'MultiplayerController@matchHistory']);
+Route::get('/matches/{matches}', ['as' => 'multiplayer.match', 'uses' => 'MatchesController@match']);
+Route::get('/matches/{matches}/history', ['as' => 'multiplayer.match.history', 'uses' => 'MatchesController@matchHistory']);
 
 Route::get('/mp/{matches}', function ($matches) {
     return ujs_redirect(route('multiplayer.match', ['matches' => $matches]));
