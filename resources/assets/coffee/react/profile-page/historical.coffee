@@ -22,19 +22,38 @@ ProfilePage.Historical = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
   getInitialState: ->
-    showingPlaycounts: 5
-    showingRecent: 5
+    defaultAmount: 5
+    beatmapPlaycounts: []
+    allScores: []
+
+  componentDidMount: ->
+    #download data for the first time
+    return @state.beatmapPlaycounts.push -1 if @state.beatmapPlaycounts.length != 0 || @state.allScores.length != 0  
+    @_showMore "beatmapPlaycounts"
+    @_showMore "allScores"
+
 
   _showMore: (key, e) ->
     e.preventDefault() if e
+    @_downloadMoreOf key
 
-    @setState "#{key}": (@state[key] + 5)
 
+  _downloadMoreOf: (key) ->
+    url = laroute.route 'users.showinfo', users: @props.user.id
+    $.get url, {t: key, o: @state[key].length, l: @state[key].length + @state.defaultAmount}, (data) =>
+      if key == "allScores"
+        data.allScores = data.allScores.data[@props.currentMode]
+     
+        @setState "#{key}": (@state[key].concat(data.allScores.data))
 
-  _beatmapRow: (bm, bmset, key, shown, details = []) ->
+  
+      
+     console.log "state setted"
+        
+
+  _beatmapRow: (bm, bmset, key, details = []) ->
     topClasses = 'beatmapset-row'
-    topClasses += ' hidden' unless shown
-
+  
     div
       key: key
       className: topClasses
@@ -74,6 +93,7 @@ ProfilePage.Historical = React.createClass
             details[1]
 
   render: ->
+    console.log(@state)
     div
       className: 'page-extra'
 
@@ -83,10 +103,10 @@ ProfilePage.Historical = React.createClass
         className: 'page-extra__title page-extra__title--small'
         osu.trans('users.show.extra.historical.most_played.title')
 
-      if @props.beatmapPlaycounts.length
+      if @state.beatmapPlaycounts.length
         [
-          @props.beatmapPlaycounts.map (pc, i) =>
-            @_beatmapRow pc.beatmap.data, pc.beatmapset.data, i, i < @state.showingPlaycounts, [
+          @state.beatmapPlaycounts.map (pc, i) =>
+            @_beatmapRow pc.beatmap.data, pc.beatmapset.data, i, [
               [
                 span
                   key: 'name'
@@ -99,12 +119,12 @@ ProfilePage.Historical = React.createClass
               ]
             ]
 
-          if @props.beatmapPlaycounts.length > @state.showingPlaycounts
+          if true #todo
             a
               key: 'more'
               href: '#'
               className: 'beatmapset-row beatmapset-row--more'
-              onClick: @_showMore.bind(@, 'showingPlaycounts')
+              onClick: @_showMore.bind(@, 'beatmapPlaycounts')
               osu.trans('common.buttons.show_more')
         ]
 
@@ -115,17 +135,17 @@ ProfilePage.Historical = React.createClass
         className: 'page-extra__title page-extra__title--small'
         osu.trans('users.show.extra.historical.recent_plays.title')
 
-      if @props.scores.length
+      if @state.allScores.length
         [
-          @props.scores.map (score, i) =>
-            el PlayDetail, key: i, score: score, shown: i < @state.showingRecent
+          @state.allScores.map (score, i) =>
+            el PlayDetail, key: i, score: score
 
-          if @props.scores.length > @state.showingRecent
+          if true #todo
             a
               key: 'more'
               href: '#'
               className: 'beatmapset-row beatmapset-row--more'
-              onClick: @_showMore.bind(@, 'showingRecent')
+              onClick: @_showMore.bind(@, 'allScores')
               osu.trans('common.buttons.show_more')
         ]
 

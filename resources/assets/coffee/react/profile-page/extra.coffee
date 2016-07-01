@@ -157,9 +157,9 @@ ProfilePage.Extra = React.createClass
 
               when 'historical'
                 props =
-                  beatmapPlaycounts: @props.beatmapPlaycounts
-                  rankHistories: @props.rankHistories
                   scores: @props.scores
+                  user: @props.user
+                  currentMode: @props.currentMode
                 ProfilePage.Historical
 
               when 'performance'
