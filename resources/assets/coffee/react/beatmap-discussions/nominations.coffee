@@ -66,21 +66,21 @@ BeatmapDiscussions.Nominations = React.createClass
         span null,
           "#{@disqualificationEvent.reason}"
         span className: "#{bdn}__disqualification-time", dangerouslySetInnerHTML:
-          __html: Lang.get 'beatmaps.nominations.disqualifed-at', time_ago: osu.timeago(@disqualificationEvent.created_at)
+          __html: osu.trans 'beatmaps.nominations.disqualifed-at', time_ago: osu.timeago(@disqualificationEvent.created_at)
 
     nominationsRequiredText =
       if @mapCanBeNominated
-        Lang.get 'beatmaps.nominations.required-text',
+        osu.trans 'beatmaps.nominations.required-text',
           current: @currentNominations,
           required: @nominationsRequired
       else if @mapIsQualified
         if @rankingETA
           date = osu.timeago(@rankingETA)
         else
-          date = Lang.get 'beatmaps.nominations.soon'
+          date = osu.trans 'beatmaps.nominations.soon'
 
         span dangerouslySetInnerHTML:
-          __html: Lang.get 'beatmaps.nominations.qualified', date: date
+          __html: osu.trans 'beatmaps.nominations.qualified', date: date
 
     div className: bdn,
       div className: 'osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact',
@@ -99,7 +99,7 @@ BeatmapDiscussions.Nominations = React.createClass
                   onClick: => $.publish 'beatmapset:disqualify', all: 'disqualify'
                   el Icon, name: 'thumbs-down'
                   span className: "#{bd}s__collapse-button-text",
-                    Lang.get 'beatmaps.nominations.disqualify'
+                    osu.trans 'beatmaps.nominations.disqualify'
               else if @mapCanBeNominated
                 button
                   className: "btn-osu-lite btn-osu-lite--green"
@@ -107,7 +107,7 @@ BeatmapDiscussions.Nominations = React.createClass
                   onClick: => $.publish 'beatmapset:nominate', all: 'nominate'
                   el Icon, name: 'thumbs-up'
                   span className: "#{bd}s__collapse-button-text",
-                    Lang.get 'beatmaps.nominations.nominate'
+                    osu.trans 'beatmaps.nominations.nominate'
 
   reboot: ->
     osu.pageChange()
