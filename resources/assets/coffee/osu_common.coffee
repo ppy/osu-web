@@ -45,8 +45,8 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
     if !message?
       errorKey = "errors.codes.http-#{xhr?.status}"
-      message = Lang.get errorKey
-      message = Lang.get 'errors.unknown' if message == errorKey
+      message = osu.trans errorKey
+      message = osu.trans 'errors.unknown' if message == errorKey
 
     osu.popup message, 'danger'
 
@@ -145,6 +145,24 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
       setTimeout closeAlert, 5000
 
     $alert.appendTo($popup).fadeIn()
+
+
+  trans: (key, replacements) ->
+    message = Lang.get key, replacements, currentLocale
+
+    if message == key
+      message = Lang.get key, replacements, fallbackLocale
+
+    message
+
+
+  transChoice: (key, count, replacements) ->
+    message = Lang.choice key, count, replacements, currentLocale
+
+    if message == key
+      message = Lang.choice key, count, replacements, fallbackLocale
+
+    message
 
 
   api: (method, route, params, args = {}, callback = console.log) ->

@@ -33,4 +33,4 @@ class BeatmapsetPage.ExtraTab extends React.Component
       className: className,
       onClick: @pageSwitch,
       'data-page-id': @props.page,
-      Lang.get "beatmaps.beatmapset.show.extra.#{@props.page}.title"
+      osu.trans "beatmaps.beatmapset.show.extra.#{@props.page}.title"

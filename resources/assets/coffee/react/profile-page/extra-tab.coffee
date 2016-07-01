@@ -36,4 +36,4 @@ class ProfilePage.ExtraTab extends React.Component
       className: className
       onClick: @pageSwitch
       'data-page-id': @props.page
-      Lang.get("users.show.extra.#{@props.page}.title")
+      osu.trans("users.show.extra.#{@props.page}.title")

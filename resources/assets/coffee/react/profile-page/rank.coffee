@@ -24,12 +24,12 @@ class ProfilePage.Rank extends React.Component
     el 'div', className: 'user-profile-header__basic user-profile-header__basic--right',
         el 'p',
           className: 'user-profile-header__text user-profile-header__text--large'
-          title: Lang.get('users.show.rank.global', mode: Lang.get("beatmaps.mode.#{@props.currentMode}"))
+          title: osu.trans('users.show.rank.global', mode: osu.trans("beatmaps.mode.#{@props.currentMode}"))
           el 'span', className: 'user-profile-header__rank-icon',
             el Icon, name: "osu-#{@props.currentMode}-o"
           "##{@props.rank.global.toLocaleString()}"
         if @props.countryName?
           el 'p',
             className: 'user-profile-header__text'
-            title: Lang.get('users.show.rank.country', mode: Lang.get("beatmaps.mode.#{@props.currentMode}"))
+            title: osu.trans('users.show.rank.country', mode: osu.trans("beatmaps.mode.#{@props.currentMode}"))
             "#{@props.countryName} ##{@props.rank.country.toLocaleString()}"
