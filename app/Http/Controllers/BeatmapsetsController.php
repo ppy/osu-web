@@ -174,11 +174,11 @@ class BeatmapsetsController extends Controller
     {
         $beatmapset = Beatmapset::findOrFail($id);
 
+        priv_check('BeatmapsetNominate', $beatmapset)->ensureCan();
+
         if ($beatmapset->approved !== Beatmapset::PENDING) {
             return error_popup(trans('beatmaps.nominations.incorrect-state'));
         }
-
-        priv_check('BeatmapsetNominate', $beatmapset)->ensureCan();
 
         if (Auth::user()->beatmapsetNominationsToday() >= Beatmapset::NOMINATIONS_PER_DAY) {
             return error_popup(trans('beatmaps.nominations.nominations-exhausted'));
@@ -195,11 +195,11 @@ class BeatmapsetsController extends Controller
     {
         $beatmapset = Beatmapset::findOrFail($id);
 
+        priv_check('BeatmapsetDisqualify', $beatmapset)->ensureCan();
+
         if ($beatmapset->approved !== Beatmapset::QUALIFIED) {
             return error_popup(trans('beatmaps.nominations.incorrect-state'));
         }
-
-        priv_check('BeatmapsetDisqualify', $beatmapset)->ensureCan();
 
         $beatmapset->disqualify(Auth::user(), Request::input('comment'));
 
