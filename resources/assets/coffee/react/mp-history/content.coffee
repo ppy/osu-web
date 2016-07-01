@@ -78,7 +78,6 @@ class MPHistory.Content extends React.Component
 
             el MPHistory.Game,
               event: @props.events[id]
-              countries: @props.countries
               teamScores: @teamScores id
 
         if !_.isEmpty lastEvents

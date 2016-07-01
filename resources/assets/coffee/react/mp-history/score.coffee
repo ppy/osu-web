@@ -40,7 +40,7 @@ class MPHistory.Score extends React.Component
             if !@props.score.pass
               span className: 'mp-history-player-score__failed', Lang.get 'multiplayer.match.failed'
 
-          el FlagCountry, country: @props.countries[@props.score.user.data.country]
+          el FlagCountry, country: @props.score.user.data.country.data
 
         div className: 'mp-history-player-score__info-box mp-history-player-score__info-box--stats',
           div className: 'mp-history-player-score__stat-row mp-history-player-score__stat-row--first',

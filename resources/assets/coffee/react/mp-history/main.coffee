@@ -83,4 +83,3 @@ class MPHistory.Main extends React.Component
       el MPHistory.Content,
         events: @state.events[remainingEventsCount..]
         remainingEventsCount: remainingEventsCount
-        countries: @props.countries

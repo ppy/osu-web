@@ -39,9 +39,7 @@ class MatchesController extends Controller
             new MatchTransformer
         );
 
-        $countries = fractal_collection_array(Country::all(), new CountryTransformer);
-
-        return view('multiplayer.match', compact('match', 'countries'));
+        return view('multiplayer.match', compact('match'));
     }
 
     public function matchHistory($match_id)
@@ -56,7 +54,9 @@ class MatchesController extends Controller
                 'game.scores' => function ($query) {
                     $query->with('game')->default();
                 },
-                'game.scores.user',
+                'game.scores.user' => function ($query) {
+                    $query->with('country');
+                },
                 'user',
             ])
             ->where('event_id', '>', $since)
@@ -66,7 +66,7 @@ class MatchesController extends Controller
         return fractal_collection_array(
             $events,
             new EventTransformer,
-            implode(',', ['game.beatmap.beatmapset', 'game.scores.user', 'user'])
+            implode(',', ['game.beatmap.beatmapset', 'game.scores.user.country', 'user'])
         );
     }
 }

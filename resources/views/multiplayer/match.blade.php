@@ -32,9 +32,5 @@
         {!! json_encode($match) !!}
     </script>
 
-    <script id="json-countries" type="application/json">
-        {!! json_encode($countries) !!}
-    </script>
-
     <script src="{{ elixir("js/react/mp-history.js") }}" data-turbolinks-track></script>
 @endsection

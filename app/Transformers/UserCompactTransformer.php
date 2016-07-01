@@ -24,6 +24,10 @@ use League\Fractal;
 
 class UserCompactTransformer extends Fractal\TransformerAbstract
 {
+    protected $availableIncludes = [
+        'country'
+    ];
+
     public function transform(User $user)
     {
         return [
@@ -32,5 +36,10 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
             'avatarUrl' => $user->user_avatar,
             'country' => $user->country_acronym,
         ];
+    }
+
+    public function includeCountry(User $user)
+    {
+        return $this->item($user->country, new CountryTransformer);
     }
 }

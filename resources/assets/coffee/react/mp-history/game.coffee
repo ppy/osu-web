@@ -48,7 +48,6 @@ class MPHistory.Game extends React.Component
           el MPHistory.Score,
             score: m
             mode: game.mode
-            countries: @props.countries
             key: m.slot
 
       if showTeams
