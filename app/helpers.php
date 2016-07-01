@@ -416,7 +416,9 @@ function get_int($string)
 
 function get_bool($string)
 {
-    if ($string === '1') {
+    if (is_bool($string)) {
+        return $string;
+    } elseif ($string === '1') {
         return true;
     } elseif ($string === '0') {
         return false;
