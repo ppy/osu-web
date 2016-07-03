@@ -36,10 +36,6 @@ class Game extends Model
 
     public $timestamps = false;
 
-    protected $casts = [
-        'mods' => 'integer',
-    ];
-
     const SCORING_TYPES = [
         0 => 'score',
         1 => 'accuracy',
