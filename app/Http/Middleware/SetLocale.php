@@ -40,15 +40,7 @@ class SetLocale
             presence($request->cookie('locale')) ??
             locale_accept_from_http($request->server('HTTP_ACCEPT_LANGUAGE'));
 
-        if (!in_array($locale, config('app.available_locales'), true)) {
-            $locale = array_first(
-                config('app.available_locales'),
-                function ($_key, $value) use ($locale) {
-                    return starts_with($locale, $value);
-                },
-                config('app.fallback_locale')
-            );
-        }
+        $locale = get_valid_locale($locale);
 
         App::setLocale($locale);
 
