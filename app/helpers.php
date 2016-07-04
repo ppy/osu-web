@@ -31,9 +31,19 @@ function array_search_null($value, $array)
     }
 }
 
-function item_count($count)
+function get_valid_locale($requestedLocale)
 {
-    return Lang::choice('common.count.item', $count, ['count' => $count]);
+    if (in_array($requestedLocale, config('app.available_locales'), true)) {
+        return $requestedLocale;
+    }
+
+    return array_first(
+        config('app.available_locales'),
+        function ($_key, $value) use ($requestedLocale) {
+            return starts_with($requestedLocale, $value);
+        },
+        config('app.fallback_locale')
+    );
 }
 
 function product_quantity_options($product)
@@ -45,7 +55,7 @@ function product_quantity_options($product)
     }
     $opts = [];
     for ($i = 1; $i <= $max; $i++) {
-        $opts[$i] = item_count($i);
+        $opts[$i] = trans_choice('common.count.item', $i);
     }
 
     return $opts;
