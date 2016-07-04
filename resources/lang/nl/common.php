@@ -29,15 +29,15 @@ return [
     ],
 
     'count' => [
-        'item' => ':count eenheid|:count eenheden',
+        'item' => ':count stuk|:count stuks',
     ],
 
     'dropzone' => [
-        'target' => 'drop hier om te uploaden',
+        'target' => 'laat hier los om te uploaden',
     ],
 
     'pagination' => [
-        'previous' => 'terug',
+        'previous' => 'vorige',
         'next' => 'volgende',
     ],
 

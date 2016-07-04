@@ -19,8 +19,8 @@
  */
 
 return [
-    'bold' => 'Breed',
-    'heading' => 'Hoofd',
+    'bold' => 'Dikgedrukt',
+    'heading' => 'Kop',
     'image' => 'Afbeelding',
     'italic' => 'Cursief',
     'link' => 'Link',
@@ -28,11 +28,11 @@ return [
     'list_numbered' => 'Genummerde Lijst',
     'size' => [
         '_' => 'Lettertypegrootte',
-        'tiny' => 'Heel Klein',
+        'tiny' => 'Minuscuul',
         'small' => 'Klein',
         'normal' => 'Normaal',
         'large' => 'Groot',
     ],
-    'spoilerbox' => 'Spoiler Box',
+    'spoilerbox' => 'Spoilerbox',
     'strikethrough' => 'Doorhalen',
 ];
