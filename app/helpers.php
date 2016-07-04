@@ -46,11 +46,6 @@ function get_valid_locale($requestedLocale)
     );
 }
 
-function item_count($count)
-{
-    return Lang::choice('common.count.item', $count, ['count' => $count]);
-}
-
 function product_quantity_options($product)
 {
     if ($product->stock === null) {
@@ -60,7 +55,7 @@ function product_quantity_options($product)
     }
     $opts = [];
     for ($i = 1; $i <= $max; $i++) {
-        $opts[$i] = item_count($i);
+        $opts[$i] = trans_choice('common.count.item', $i);
     }
 
     return $opts;
