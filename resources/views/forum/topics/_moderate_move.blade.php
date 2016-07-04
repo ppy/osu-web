@@ -1,5 +1,5 @@
 {{--
-    Copyright 2016 ppy Pty. Ltd.
+    Copyright 2015-2016 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -32,7 +32,7 @@
         <div class="modal-dialog modal-dialog@sm">
             <div class="modal-content">
                 <div class="modal-body modal-body--page">
-                    {!! Form::open(['url' => route('forum.topics.move', $topic->topic_id), 'data-remote' => true]) !!}
+                    {!! Form::open(['url' => route('forum.topics.move', $_topic->topic_id), 'data-remote' => true]) !!}
                         <h1>
                             {{ trans('forum.topics.moderate_move.title') }}
                         </h1>
@@ -42,7 +42,7 @@
                                 @foreach (App\Models\Forum\Forum::moveDestination()->get() as $dstForum)
                                     <option value="{{ $dstForum->getKey() }}"
                                         {{ $dstForum->isOpen() ? '' : 'disabled' }}
-                                        {{ $dstForum->getKey() === $topic->forum_id ? 'selected' : '' }}
+                                        {{ $dstForum->getKey() === $_topic->forum_id ? 'selected' : '' }}
                                     >
                                         {{ str_repeat('&ndash;', $dstForum->currentDepth()) }}
                                         {{ $dstForum->forum_name }}
