@@ -21,12 +21,69 @@
     {!! Form::open([
         "url" => route("forum.topics.store", ['forum_id' => $forum]),
         "data-preview-url" => route("forum.topics.preview", ['forum_id' => $forum]),
+        'data-remote' => true,
     ]) !!}
         <input type="hidden" name="cover_id" value="{{ Request::old("cover_id") }}" class="js-forum-cover--input">
 
         @include('forum.topics._header')
 
         <div class="js-post-preview"></div>
+
+        @if (false)
+            <div class="osu-layout__row">
+                <label>
+                    With poll?
+                    <input type="hidden" name="with_poll" value="0">
+                    <input type="checkbox" name="with_poll" value="1">
+                </label>
+
+                <label>
+                    Length days
+                    <input name="forum_topic_poll[length_days]">
+                </label>
+
+                <label>
+                    Max options
+                    <input name="forum_topic_poll[max_options]">
+                </label>
+
+                <label>
+                    Option 1
+                    <input name="forum_topic_poll[options][]">
+                </label>
+
+                <label>
+                    Option 2
+                    <input name="forum_topic_poll[options][]">
+                </label>
+
+                <label>
+                    Option 3
+                    <input name="forum_topic_poll[options][]">
+                </label>
+
+                <label>
+                    Option 4
+                    <input name="forum_topic_poll[options][]">
+                </label>
+
+                <label>
+                    Option 5
+                    <input name="forum_topic_poll[options][]">
+                </label>
+
+                <label>
+                    Title
+                    <input name="forum_topic_poll[title]">
+                </label>
+
+                <label>
+                    Vote change
+                    <input type="hidden" name="forum_topic_poll[vote_change]" value="0">
+                    <input type="checkbox" name="forum_topic_poll[vote_change]" value="1">
+                </label>
+            </div>
+        @endif
 
         <div id="topic-post-form" class="osu-layout__row">
             <div class="forum-post forum-post--create {{ Auth::user()->is_special ? 'forum-post--special' : '' }}">

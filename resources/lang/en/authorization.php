@@ -81,6 +81,18 @@ return [
                 'no_permission' => 'No permission to create new topic.',
                 'forum_closed' => 'Forum is closed and can not be posted to.',
             ],
+
+            'vote' => [
+                'no_forum_access' => 'Access to requested forum is required.',
+                'over' => 'Polling is over and can not be voted on anymore.',
+                'voted' => 'Changing vote is not allowed.',
+
+                'user' => [
+                    'require_login' => 'Please login to vote.',
+                    'restricted' => "Can't vote while restricted.",
+                    'silenced' => "Can't vote while silenced.",
+                ],
+            ],
         ],
 
         'topic_cover' => [

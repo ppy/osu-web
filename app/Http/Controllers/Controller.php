@@ -21,6 +21,7 @@ namespace App\Http\Controllers;
 
 // use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 // use Illuminate\Foundation\Auth\Access\AuthorizesResources;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -38,5 +39,10 @@ abstract class Controller extends BaseController
     {
         view()->share('current_section', $this->section);
         view()->share('current_action', ($this->actionPrefix ?? '').current_action());
+    }
+
+    protected function formatValidationErrors(Validator $validator)
+    {
+        return ['validation_error' => $validator->errors()->getMessages()];
     }
 }

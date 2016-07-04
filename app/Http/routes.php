@@ -125,7 +125,8 @@ Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
     Route::post('topics/{topics}/pin', ['as' => 'forum.topics.pin', 'uses' => 'TopicsController@pin']);
     Route::post('topics/{topics}/reply', ['as' => 'forum.topics.reply', 'uses' => 'TopicsController@reply']);
     Route::post('topics/{topics}/vote-feature', ['as' => 'forum.topics.vote-feature', 'uses' => 'TopicsController@voteFeature']);
-    Route::resource('topics', 'TopicsController', ['only' => ['create', 'store']]);
+    Route::post('topics/{topics}/vote', ['as' => 'forum.topics.vote', 'uses' => 'TopicsController@vote']);
+    Route::resource('topics', 'TopicsController', ['only' => ['create', 'store', 'update']]);
 
     Route::resource('forum-covers', 'ForumCoversController', ['only' => ['store', 'update', 'destroy']]);
     Route::resource('topic-covers', 'TopicCoversController', ['only' => ['store', 'update', 'destroy']]);
