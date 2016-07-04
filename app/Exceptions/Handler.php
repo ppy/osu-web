@@ -125,6 +125,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if (method_exists($e, 'getResponse')) {
+            return $e->getResponse();
+        }
+
         if (config('app.debug')) {
             if ($this->isHttpException($e)) {
                 $response = $this->renderHttpException($e);
@@ -133,7 +137,6 @@ class Handler extends ExceptionHandler
             }
         } else {
             if ($request->ajax()) {
-                // turbolinks always reload on page error.
                 $response = response(['error' => $e->getMessage()]);
             } else {
                 $response = response()->view('layout.error');

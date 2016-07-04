@@ -41,13 +41,8 @@ class BeatmapDiscussionsController extends Controller
 
         priv_check('BeatmapDiscussionVote', $discussion)->ensureCan();
 
-        $params = get_params(Request::all(), 'beatmap_discussion_vote',
-            ['score:int'],
-            [],
-            [
-                'user_id' => Auth::user()->user_id,
-            ]
-        );
+        $params = get_params(Request::all(), 'beatmap_discussion_vote', ['score:int']);
+        $params['user_id'] = Auth::user()->user_id;
 
         if ($discussion->vote($params)) {
             return $discussion->beatmapsetDiscussion->defaultJson(Auth::user());
