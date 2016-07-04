@@ -205,48 +205,15 @@
                 @endif
 
                 @if (priv_check('ForumTopicModerate', $topic)->can())
-                    <a
-                        class="forum-topic-nav__button-circle"
-                        href="{{ route('forum.topics.lock', [
-                            $topic,
-                            'lock' => ($topic->isLocked() === true ? '0' : null),
-                        ]) }}"
-                        data-remote="1"
-                        data-method="post"
-                        data-reload-on-success="1"
-                        data-reload-reset-scroll="1"
-                    >
-                        @if ($topic->isLocked())
-                            <i class="fa fa-unlock"></i>
-                        @else
-                            <i class="fa fa-lock"></i>
-                        @endif
-                    </a>
+                    @include('forum.topics._moderate_lock', ['_topic' => $topic])
                 @endif
 
                 @if (priv_check('ForumTopicModerate', $topic)->can())
-                    <a
-                        class="forum-topic-nav__button-circle"
-                        href="{{ route('forum.topics.pin', [
-                            $topic,
-                            'pin' => !$topic->isPinned(),
-                        ]) }}"
-                        data-remote="1"
-                        data-method="post"
-                        data-reload-on-success="1"
-                        data-reload-reset-scroll="1"
-                        title="{{ trans('forum.topics.pin.pin-'.(int) !$topic->isPinned()) }}"
-                    >
-                        @if ($topic->isPinned())
-                            <i class="fa fa-toggle-off"></i>
-                        @else
-                            <i class="fa fa-toggle-on"></i>
-                        @endif
-                    </a>
+                    @include('forum.topics._moderate_pin', ['_topic' => $topic])
                 @endif
 
                 @if (priv_check('ForumTopicModerate', $topic)->can())
-                    @include('forum.topics._moderate_move')
+                    @include('forum.topics._moderate_move', ['_topic' => $topic])
                 @endif
             </div>
 

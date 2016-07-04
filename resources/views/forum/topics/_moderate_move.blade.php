@@ -32,7 +32,7 @@
         <div class="modal-dialog modal-dialog@sm">
             <div class="modal-content">
                 <div class="modal-body modal-body--page">
-                    {!! Form::open(['url' => route('forum.topics.move', $topic->topic_id), 'data-remote' => true]) !!}
+                    {!! Form::open(['url' => route('forum.topics.move', $_topic->topic_id), 'data-remote' => true]) !!}
                         <h1>
                             {{ trans('forum.topics.moderate_move.title') }}
                         </h1>
@@ -42,7 +42,7 @@
                                 @foreach (App\Models\Forum\Forum::moveDestination()->get() as $dstForum)
                                     <option value="{{ $dstForum->getKey() }}"
                                         {{ $dstForum->isOpen() ? '' : 'disabled' }}
-                                        {{ $dstForum->getKey() === $topic->forum_id ? 'selected' : '' }}
+                                        {{ $dstForum->getKey() === $_topic->forum_id ? 'selected' : '' }}
                                     >
                                         {{ str_repeat('&ndash;', $dstForum->currentDepth()) }}
                                         {{ $dstForum->forum_name }}
