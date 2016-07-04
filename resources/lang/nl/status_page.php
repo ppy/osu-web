@@ -21,7 +21,7 @@
 return [
     'header' => [
         'title' => 'status',
-        'description' => 'wat is er aan de hand?',
+        'description' => 'jo man, wat is er allemaal aan de hand?',
     ],
 
     'incidents' => [
@@ -31,11 +31,11 @@ return [
 
     'online' => [
         'title' => [
-            'users' => 'Online Gebruikers in de laatste 24 uur',
-            'score' => 'Score Submissies in de laatste 24 uur',
+            'users' => 'Online Gebruikers in de afgelopen 24 uur',
+            'score' => 'Score Inzendingen in de afgelopen 24 uur',
         ],
-        'current' => 'Huidige Online Gebruikers',
-        'score' => 'Score Submissies per Seconde',
+        'current' => 'Momenteel Online Gebruikers',
+        'score' => 'Score Inzendingen per Seconde',
     ],
 
     'recent' => [

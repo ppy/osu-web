@@ -20,12 +20,12 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Ritme is slechts een *klik* weg!  Met Ouendan/EBA, Taiko en originals gameplay modi, en zelfs een volledig werkend level bewerker.',
+        'page_description' => 'osu! - Ritme is slechts een *klik* verwijderd!  Met Ouendan/EBA, Taiko en originele spelmodi, en zelfs een volledig functionele level editor.',
     ],
 
     'menu' => [
         'home' => [
-            '_' => 'thuis',
+            '_' => 'start',
             'getNews' => 'nieuws',
             'getChangelog' => 'changelog',
             'getDownload' => 'downloaden',
@@ -47,12 +47,12 @@ return [
         ],
         'beatmapsets' => [
             '_' => 'beatmapsets',
-            'discussion' => 'modden',
+            'discussion' => 'modding',
         ],
         'ranking' => [
             '_' => 'ranking',
             'getOverall' => 'globaal',
-            'getCountry' => 'land',
+            'getCountry' => 'landelijke',
             'getCharts' => 'grafieken',
             'getMapper' => 'mapper',
             'index' => 'globaal',
@@ -94,20 +94,20 @@ return [
             'messages' => 'Berichten',
             'settings' => 'Instellingen',
             'logout' => 'Uitloggen',
-            'help' => 'Hulp',
+            'help' => 'Help',
         ],
         'store' => [
             '_' => 'winkel',
             'getListing' => 'index',
-            'getCart' => 'winkelmand',
+            'getCart' => 'winkelwagen',
 
             'getCheckout' => 'afrekenen',
             'getInvoice' => 'factuur',
             'getProduct' => 'artikel',
 
             'new' => 'nieuw',
-            'home' => 'thuis',
-            'index' => 'thuis',
+            'home' => 'start',
+            'index' => 'start',
             'thanks' => 'bedankt',
         ],
         'admin-forum' => [
@@ -132,22 +132,22 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Pagina Mist',
-            'description' => 'Sorry, de pagina die je opvroeg is hier niet!',
+            'description' => 'Sorry, de pagina die je hebt opgevraagd is er niet!',
             'link' => false,
         ],
         '403' => [
-            'error' => 'Jij hoort hier niet.',
-            'description' => 'Je zou terug kunnen gaan.',
+            'error' => 'Jij hoort hier niet te zijn.',
+            'description' => 'Je zou kunnen proberen terug te gaan.',
             'link' => false,
         ],
         '401' => [
             'error' => 'Jij hoort hier niet.',
-            'description' => 'Je zou terug kunnen gaan. Of misschien zou je kunnen inloggen.',
+            'description' => 'Je zou kunnen proberen terug te gaan. Of misschien zou je kunnen inloggen.',
             'link' => false,
         ],
         '405' => [
             'error' => 'Pagina Mist',
-            'description' => 'Sorry, de pagina die je opvroeg is hier niet!',
+            'description' => 'Sorry, de pagina die je hebt opgevraagd is er niet!',
             'link' => false,
         ],
         '500' => [
@@ -162,13 +162,13 @@ return [
         ],
         '503' => [
             'error' => 'Offline voor onderhoud!',
-            'description' => 'Onderhoud duurt meestal van ongeveer 5 seconden tot 10 minuten. Als we langer offline zijn, check :link voor meer informatie.',
+            'description' => 'Onderhoud duurt meestal ongeveer 5 seconden tot 10 minuten. Als we langer offline zijn, check :link voor meer informatie.',
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Hier is een code die je aan de helpdesk kan geven, voor de zekerheid!',
+        'reference' => 'Voor de zekerheid is hier een code die je aan het ondersteuningsteam kan geven!',
     ],
 ];
