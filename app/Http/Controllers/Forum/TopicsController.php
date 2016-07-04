@@ -260,7 +260,7 @@ class TopicsController extends Controller
     {
         $topic = Topic::findOrFail($topicId);
 
-        priv_check('ForumTopicVote', $topic)->ensureCan();
+        priv_check('ForumTopicModerate', $topic)->ensureCan();
 
         $params = get_params(Request::input(), 'forum_topic_vote', ['option_ids:int[]']);
         $params['user_id'] = Auth::user()->user_id;
@@ -271,6 +271,18 @@ class TopicsController extends Controller
         } else {
             return error_popup(implode(' ', $topic->vote()->validationErrors()->allMessages()));
         }
+    }
+
+    public function pin($id)
+    {
+        $topic = Topic::findOrFail($id);
+
+        priv_check('ForumTopicModerate', $topic)->ensureCan();
+
+        $pin = Request::input('pin') !== '0';
+        $topic->pin($pin);
+
+        return ['message' => trans('forum.topics.pin.pinned-'.(int) $pin)];
     }
 
     public function voteFeature($topicId)
@@ -292,7 +304,7 @@ class TopicsController extends Controller
         $topic = Topic::findOrFail($id);
         $destinationForum = Forum::findOrFail(Request::input('destination_forum_id'));
 
-        priv_check('ForumTopicMove', $topic)->ensureCan();
+        priv_check('ForumTopicModerate', $topic)->ensureCan();
 
         if ($topic->moveTo($destinationForum)) {
             return js_view('layout.ujs-reload');

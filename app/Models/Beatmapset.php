@@ -684,6 +684,11 @@ class Beatmapset extends Model
     public function description()
     {
         $topic = Topic::find($this->thread_id);
+
+        if ($topic === null) {
+            return;
+        }
+
         $post = Post::find($topic->topic_first_post_id);
 
         // Any description (after the first match) that matches

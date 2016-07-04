@@ -208,28 +208,16 @@
                     </span>
                 @endif
 
-                @if (priv_check('ForumTopicLock', $topic)->can())
-                    <a
-                        class="forum-topic-nav__button-circle"
-                        href="{{ route('forum.topics.lock', [
-                            $topic,
-                            'lock' => ($topic->isLocked() === true ? '0' : null),
-                        ]) }}"
-                        data-remote="1"
-                        data-method="post"
-                        data-reload-on-success="1"
-                        data-reload-reset-scroll="1"
-                    >
-                        @if ($topic->isLocked())
-                            <i class="fa fa-unlock"></i>
-                        @else
-                            <i class="fa fa-lock"></i>
-                        @endif
-                    </a>
+                @if (priv_check('ForumTopicModerate', $topic)->can())
+                    @include('forum.topics._moderate_lock', ['_topic' => $topic])
                 @endif
 
-                @if (priv_check('ForumTopicLock', $topic)->can())
-                    @include('forum.topics._moderate_move')
+                @if (priv_check('ForumTopicModerate', $topic)->can())
+                    @include('forum.topics._moderate_pin', ['_topic' => $topic])
+                @endif
+
+                @if (priv_check('ForumTopicModerate', $topic)->can())
+                    @include('forum.topics._moderate_move', ['_topic' => $topic])
                 @endif
             </div>
 
