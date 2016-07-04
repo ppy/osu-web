@@ -204,7 +204,7 @@
                     </span>
                 @endif
 
-                @if (priv_check('ForumTopicLock', $topic)->can())
+                @if (priv_check('ForumTopicModerate', $topic)->can())
                     <a
                         class="forum-topic-nav__button-circle"
                         href="{{ route('forum.topics.lock', [
@@ -245,7 +245,7 @@
                     </a>
                 @endif
 
-                @if (priv_check('ForumTopicLock', $topic)->can())
+                @if (priv_check('ForumTopicModerate', $topic)->can())
                     @include('forum.topics._moderate_move')
                 @endif
             </div>

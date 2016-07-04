@@ -218,7 +218,7 @@ class TopicsController extends Controller
     {
         $topic = Topic::findOrFail($id);
 
-        priv_check('ForumTopicLock', $topic)->ensureCan();
+        priv_check('ForumTopicModerate', $topic)->ensureCan();
 
         $lock = Request::input('lock') !== '0';
         $topic->lock($lock);
@@ -257,7 +257,7 @@ class TopicsController extends Controller
         $topic = Topic::findOrFail($id);
         $destinationForum = Forum::findOrFail(Request::input('destination_forum_id'));
 
-        priv_check('ForumTopicMove', $topic)->ensureCan();
+        priv_check('ForumTopicModerate', $topic)->ensureCan();
 
         if ($topic->moveTo($destinationForum)) {
             return js_view('layout.ujs-reload');

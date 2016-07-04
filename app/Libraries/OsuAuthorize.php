@@ -253,21 +253,7 @@ class OsuAuthorize
         return $this->checkForumPostEdit($user, $topic->posts()->first());
     }
 
-    public function checkForumTopicLock($user, $topic)
-    {
-        if ($user !== null && $user->isGMT()) {
-            return 'ok';
-        }
-    }
-
     public function checkForumTopicModerate($user, $topic)
-    {
-        if ($user !== null && $user->isGMT()) {
-            return 'ok';
-        }
-    }
-
-    public function checkForumTopicMove($user, $topic)
     {
         if ($user !== null && $user->isGMT()) {
             return 'ok';
