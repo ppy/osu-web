@@ -104,48 +104,48 @@ class @UserCard extends React.Component
         el 'div',
           className: 'modal-body__compartment modal-body__compartment--left quick-info'
           el 'span', className: 'quick-info__level',
-            Lang.get 'users.show.stats.level', level: stats.level.current
+            osu.trans 'users.show.stats.level', level: stats.level.current
           el 'ul', className: 'quick-info__roles user-roles',
             if user.isSupporter
               el 'li', className: 'user-roles__role user-roles__role--supporter',
-                Lang.get 'users.show.is_supporter'
+                osu.trans 'users.show.is_supporter'
 
             if false
               el 'li', className: 'user-roles__role user-roles__role--developer',
-                Lang.get 'users.show.is_developer'
+                osu.trans 'users.show.is_developer'
 
           el 'ul', className: 'quick-info__statistics',
             el 'li', className: 'quick-info-statistics__statistic',
-              el 'span', null, Lang.get('users.show.stats.ranked_score')
+              el 'span', null, osu.trans('users.show.stats.ranked_score')
               el 'span', className: 'text-right', stats.rankedScore.toLocaleString()
             el 'li', className: 'quick-info-statistics__statistic',
-              el 'span', null, Lang.get('users.show.stats.hit_accuracy')
+              el 'span', null, osu.trans('users.show.stats.hit_accuracy')
               el 'span', className: 'text-right', "#{stats.hitAccuracy.toFixed(2)}%"
             el 'li', className: 'quick-info-statistics__statistic',
-              el 'span', null, Lang.get('users.show.stats.play_count')
+              el 'span', null, osu.trans('users.show.stats.play_count')
               el 'span', className: 'text-right', stats.playCount.toLocaleString()
 
         el 'div',
           className: 'modal-body__compartment modal-body__compartment--right'
           el 'div', className: 'user-dropdown-modal-menu',
             if false
-              el 'a', href: '#', title: Lang.get('layout.menu.user.messages'), className: 'user-dropdown-modal-menu__item',
-                Lang.get 'layout.menu.user.messages'
+              el 'a', href: '#', title: osu.trans('layout.menu.user.messages'), className: 'user-dropdown-modal-menu__item',
+                osu.trans 'layout.menu.user.messages'
                 el 'i', className: 'fa fa-envelope user-dropdown-modal-menu__icon'
             if false
-              el 'a', href: '#', title: Lang.get('layout.menu.user.settings'), className: 'user-dropdown-modal-menu__item',
-                Lang.get 'layout.menu.user.settings'
+              el 'a', href: '#', title: osu.trans('layout.menu.user.settings'), className: 'user-dropdown-modal-menu__item',
+                osu.trans 'layout.menu.user.settings'
                 el 'i', className: 'fa fa-cog user-dropdown-modal-menu__icon'
             el 'a',
               href: window.logoutUrl
               className: 'user-dropdown-modal-menu__item js-logout-link'
               'data-method': 'delete'
-              'data-confirm': Lang.get 'users.logout_confirm'
+              'data-confirm': osu.trans 'users.logout_confirm'
               'data-remote': 1
-              Lang.get 'layout.menu.user.logout'
+              osu.trans 'layout.menu.user.logout'
               el 'i', className: 'fa fa-sign-out user-dropdown-modal-menu__icon'
             el 'a',
               href: window.helpUrl
               className: 'user-dropdown-modal-menu__item'
-              Lang.get 'layout.menu.user.help'
+              osu.trans 'layout.menu.user.help'
               el 'i', className: 'fa fa-question-circle user-dropdown-modal-menu__icon'

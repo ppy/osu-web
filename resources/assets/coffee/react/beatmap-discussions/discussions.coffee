@@ -41,14 +41,14 @@ BeatmapDiscussions.Discussions = React.createClass
             onClick: => $.publish 'beatmapDiscussion:collapse', all: 'collapse'
             el Icon, name: 'minus-circle'
             span className: "#{bn}__collapse-button-text",
-              Lang.get('beatmaps.discussions.collapse.all-collapse')
+              osu.trans('beatmaps.discussions.collapse.all-collapse')
 
           button
             className: "btn-osu-lite btn-osu-lite--default #{bn}__collapse-button"
             onClick: => $.publish 'beatmapDiscussion:collapse', all: 'expand'
             el Icon, name: 'plus-circle'
             span className: "#{bn}__collapse-button-text",
-              Lang.get('beatmaps.discussions.collapse.all-expand')
+              osu.trans('beatmaps.discussions.collapse.all-expand')
 
       div
         className: "#{bn}__discussions"
@@ -59,9 +59,9 @@ BeatmapDiscussions.Discussions = React.createClass
           @currentDiscussions.map @discussionPage
 
           if !@hasDiscussion?
-            div className: "#{bn}__discussion #{bn}__discussion--empty", Lang.get 'beatmaps.discussions.empty.empty'
+            div className: "#{bn}__discussion #{bn}__discussion--empty", osu.trans 'beatmaps.discussions.empty.empty'
           else if @hasDiscussion == 'filtered'
-            div className: "#{bn}__discussion #{bn}__discussion--empty", Lang.get 'beatmaps.discussions.empty.filtered'
+            div className: "#{bn}__discussion #{bn}__discussion--empty", osu.trans 'beatmaps.discussions.empty.filtered'
 
       if @props.mode == 'timeline'
         div className: "#{bn}__mode-circle #{bn}__mode-circle--active hidden-xs"
@@ -80,7 +80,7 @@ BeatmapDiscussions.Discussions = React.createClass
         if mode == 'timeline' && mode == @props.mode
           div className: "#{bn}__timeline-line #{bn}__timeline-line--bottom #{bn}__timeline-line--half hidden-xs"
         span className: "#{bn}__mode-text",
-          Lang.get("#{lp}.mode.#{mode}")
+          osu.trans("#{lp}.mode.#{mode}")
 
   discussionPage: (discussion) ->
     className = "#{bn}__discussion"

@@ -69,7 +69,7 @@ BeatmapDiscussions.Discussion = React.createClass
 
         div
           className: "#{bn}__resolved #{'hidden' if @props.collapsed || !@props.discussion.resolved}"
-          Lang.get 'beatmaps.discussions.resolved'
+          osu.trans 'beatmaps.discussions.resolved'
 
 
   timestamp: ->
