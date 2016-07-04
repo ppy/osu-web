@@ -41,6 +41,7 @@
 </script>
 
 <script src="{{ elixir("js/app.js") }}" data-turbolinks-track></script>
+<script src="/vendor/js/timeago-locales/jquery.timeago.{{ Lang::getLocale() }}.js" data-turbolinks-track></script>
 
 @if (isset($rss))
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{ $rss }}">
