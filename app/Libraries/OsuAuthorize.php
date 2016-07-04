@@ -260,6 +260,13 @@ class OsuAuthorize
         }
     }
 
+    public function checkForumTopicModerate($user, $topic)
+    {
+        if ($user !== null && $user->isGMT()) {
+            return 'ok';
+        }
+    }
+
     public function checkForumTopicMove($user, $topic)
     {
         if ($user !== null && $user->isGMT()) {

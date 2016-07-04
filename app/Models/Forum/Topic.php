@@ -27,9 +27,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
 {
+    const DEFAULT_ORDER_COLUMN = 'topic_last_post_time';
+
     const STATUS_LOCKED = 1;
     const STATUS_UNLOCKED = 0;
-    const DEFAULT_ORDER_COLUMN = 'topic_last_post_time';
+
+    const TYPE_NORMAL = 0;
+    const TYPE_PINNED = 1;
 
     protected $table = 'phpbb_topics';
     protected $primaryKey = 'topic_id';
@@ -327,6 +331,11 @@ class Topic extends Model
         return $this->topic_status !== static::STATUS_UNLOCKED;
     }
 
+    public function isPinned()
+    {
+        return $this->topic_type !== static::TYPE_NORMAL;
+    }
+
     public function markRead($user, $markTime)
     {
         if ($user === null) {
@@ -456,6 +465,23 @@ class Topic extends Model
             }
 
             $this->update(['topic_status' => $newStatus]);
+
+            Log::logModerateForumTopic($logOperation, $this);
+        });
+    }
+
+    public function pin($pin)
+    {
+        DB::transaction(function () use ($pin) {
+            if ($pin === true) {
+                $newStatus = static::TYPE_PINNED;
+                $logOperation = 'LOG_PIN';
+            } else {
+                $newStatus = static::TYPE_NORMAL;
+                $logOperation = 'LOG_UNPIN';
+            }
+
+            $this->update(['topic_type' => $newStatus]);
 
             Log::logModerateForumTopic($logOperation, $this);
         });

@@ -224,6 +224,27 @@
                     </a>
                 @endif
 
+                @if (priv_check('ForumTopicModerate', $topic)->can())
+                    <a
+                        class="forum-topic-nav__button-circle"
+                        href="{{ route('forum.topics.pin', [
+                            $topic,
+                            'pin' => !$topic->isPinned(),
+                        ]) }}"
+                        data-remote="1"
+                        data-method="post"
+                        data-reload-on-success="1"
+                        data-reload-reset-scroll="1"
+                        title="{{ trans('forum.topics.pin.pin-'.(int) !$topic->isPinned()) }}"
+                    >
+                        @if ($topic->isPinned())
+                            <i class="fa fa-toggle-off"></i>
+                        @else
+                            <i class="fa fa-toggle-on"></i>
+                        @endif
+                    </a>
+                @endif
+
                 @if (priv_check('ForumTopicLock', $topic)->can())
                     @include('forum.topics._moderate_move')
                 @endif

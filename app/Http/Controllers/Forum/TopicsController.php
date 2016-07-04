@@ -226,6 +226,18 @@ class TopicsController extends Controller
         return ['message' => trans('forum.topics.lock.locked-'.($lock === true ? '1' : '0'))];
     }
 
+    public function pin($id)
+    {
+        $topic = Topic::findOrFail($id);
+
+        priv_check('ForumTopicModerate', $topic)->ensureCan();
+
+        $pin = Request::input('pin') !== '0';
+        $topic->pin($pin);
+
+        return ['message' => trans('forum.topics.pin.pinned-'.(int) $pin)];
+    }
+
     public function voteFeature($topicId)
     {
         $star = FeatureVote::createNew([

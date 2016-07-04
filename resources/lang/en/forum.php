@@ -104,6 +104,13 @@ return [
             'title' => 'Move to another forum',
         ],
 
+        'pin' => [
+            'pin-0' => 'Unpin topic',
+            'pin-1' => 'Pin topic',
+            'pinned-0' => 'Topic has been unpinned',
+            'pinned-1' => 'Topic has been pinned',
+        ],
+
         'show' => [
             'feature_vote' => [
                 'current' => 'Current Priority: +:count',
