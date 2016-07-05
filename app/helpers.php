@@ -213,7 +213,7 @@ function nav_links()
 
     if (config('app.debug')) {
         $links['home'] = [
-            'getNews' => route('news'),
+            'getNews' => route('home'),
             'getChangelog' => route('changelog'),
             'getDownload' => route('download'),
         ];
