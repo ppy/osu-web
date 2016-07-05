@@ -36,7 +36,7 @@ class LandingUserStats
     # Define the graph
     @svg = d3.select '.js-landing-graph'
 
-    @stats = osu.parseJson('json-stats')  
+    @stats = osu.parseJson('json-stats')
 
   modelStats: (data) ->
     # Define svg canvas
@@ -55,12 +55,12 @@ class LandingUserStats
       d.date = parseDate(d.date)
       d.users_osu = +d.users_osu
 
-    xScale = d3.time.scale().range([
+    @xScale = d3.scale.linear().range([
       0
       @width
     ])
 
-    yScale = d3.scale.linear().range([
+    @yScale = d3.time.scale().range([
       @height
       0
     ])
@@ -70,16 +70,16 @@ class LandingUserStats
     
     # Define area
     @area = d3.svg.area().interpolate('basis')
-      .x (d) ->
-        xScale d.date
-      .y0(@height).y1 (d) ->
-        yScale d.users_osu
+      .x (d) =>
+        @xScale d.date
+      .y0(@height).y1 (d) =>
+        @yScale d.users_osu
 
     # Establishing domain for x/y axes
-    xScale.domain d3.extent(data, (d) ->
+    @xScale.domain d3.extent(data, (d) ->
       d.date
     )
-    yScale.domain [
+    @yScale.domain [
       0
       d3.max(data, (d) ->
         d.users_osu
@@ -107,20 +107,19 @@ class LandingUserStats
       .attr 'class', 'landing-graph__text'
       .text Lang.get('home.landing.peak', 'count': @maxElem.users_osu.toLocaleString())
       .attr 'y', -@peakR * 2
+      .attr 'x', () =>
+        @textLength = this.getComputedTextLength
+        rightX = @xScale(@maxElem.date) + @peakR * 2
 
-    # Get the width of the element to determine angle offset
-    textLength = 0
-    rightX = xScale(@maxElem.date) + @peakR * 2
-    textLength = text.node().getComputedTextLength()
-    if (textLength + rightX) > width
-      text.attr 'x', xScale(@maxElem.date) - textLength - @peakR * 2
-    else
-      text.attr 'x', rightX
+        # Get the width of the element to determine angle offset
+        if (@textLength + rightX) > @width
+          return @xScale(@maxElem.date) - @textLength - @peakR * 2
+        rightX
 
     peak = @svg.append 'circle'
       .attr 'class', 'landing-graph__circle'
       .attr 'cy', 0
-      .attr 'cx', xScale(@maxElem.date)
+      .attr 'cx', @xScale(@maxElem.date)
       .attr 'r', @peakR
 
   init: ->
@@ -128,30 +127,30 @@ class LandingUserStats
     @modelStats @stats
 
   resize: =>
-    width = parseInt(d3.select('.js-landing-graph').style('width')) - (@margin.left) - (@margin.right)
-    height = parseInt(d3.select('.js-landing-graph').style('height')) - (@margin.top) - (@margin.bottom)
+    @width = parseInt(d3.select('.js-landing-graph').style('width')) - (@margin.left) - (@margin.right)
+    @height = parseInt(d3.select('.js-landing-graph').style('height')) - (@margin.top) - (@margin.bottom)
     d3.select '.js-landing-graph svg'
-      .attr 'width', width + @margin.left + @margin.right
-      .attr 'height', height + @margin.top + @margin.bottom
+      .attr 'width', @width + @margin.left + @margin.right
+      .attr 'height', @height + @margin.top + @margin.bottom
     # Update the range of the scale with new width/height
-    xScale.range [
+    @xScale.range [
       0
       width
     ]
-    yScale.range [
+    @yScale.range [
       height
       0
     ]
     # Force D3 to recalculate and update the line
     svg.selectAll('path').attr 'd', area
 
-    rightX = xScale(@maxElem.date) + peakR * 2
-    if (textLength + rightX) > width
-      svg.select('.landing-graph__text').attr 'x', xScale(@maxElem.date) - textLength - peakR * 2
+    rightX = @xScale(@maxElem.date) + peakR * 2
+    if (@textLength + rightX) > width
+      svg.select('.landing-graph__text').attr 'x', @xScale(@maxElem.date) - @textLength - peakR * 2
     else
       svg.select('.landing-graph__text').attr 'x', rightX
       
-    svg.select('.landing-graph__circle').attr 'cx', xScale(@maxElem.date)
+    svg.select('.landing-graph__circle').attr 'cx', @xScale(@maxElem.date)
 
 landingUserStatsInitialize = =>
   return if !landingUserStatsElements[0]?
@@ -166,6 +165,3 @@ landingUserStatsResize = =>
 
 $(window).on 'throttled-resize', landingUserStatsResize
 $(document).on 'turbolinks:load', landingUserStatsInitialize
-
-
-resize = ->
