@@ -60,7 +60,7 @@ class Topic extends Model
         'topic_approved' => 'boolean',
     ];
 
-    public static function createNew($forum, $params, $pollParams)
+    public static function createNew($forum, $params, $pollParams = null)
     {
         $topic = new static([
             'forum_id' => $forum->forum_id,
@@ -79,7 +79,7 @@ class Topic extends Model
                 $topic->poll()->fill($pollParams)->save();
             }
 
-            if ($params['cover'] !== null) {
+            if (($params['cover'] ?? null) !== null) {
                 $cover->topic()->associate($topic);
                 $cover->save();
             }
