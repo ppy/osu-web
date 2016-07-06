@@ -38,9 +38,16 @@ class LandingUserStats
 
     @stats = osu.parseJson('json-stats')
 
+    # Define area
+    @area = d3.svg.area().interpolate('basis')
+      .x (d) =>
+        @xScale d.date
+      .y0(@height).y1 (d) =>
+        @yScale d.users_osu
+
   modelStats: (data) ->
     # Define svg canvas
-    @svg
+    @svg = @svg
       .append 'svg'
       .attr 'width', @width + @margin.left + @margin.right
       .attr 'height', @height + @margin.top + @margin.bottom
@@ -66,14 +73,7 @@ class LandingUserStats
     ])
 
     # Peak text indicator point
-    @maxElem = null
-    
-    # Define area
-    @area = d3.svg.area().interpolate('basis')
-      .x (d) =>
-        @xScale d.date
-      .y0(@height).y1 (d) =>
-        @yScale d.users_osu
+    @maxElem = null    
 
     # Establishing domain for x/y axes
     @xScale.domain d3.extent(data, (d) ->
@@ -98,6 +98,7 @@ class LandingUserStats
 
     #Find the date for the max, from the end backward
     i = data.length - 1
+    # console.log i, @maxElem
     while i >= 0
       if @maxElem == null or data[i].users_osu > @maxElem.users_osu
         @maxElem = data[i]
@@ -123,8 +124,8 @@ class LandingUserStats
       .attr 'r', @peakR
 
   init: ->
-    console.log 'HeyGuys'
     @modelStats @stats
+    console.log 'initialized!'
 
   resize: =>
     @width = parseInt(d3.select('.js-landing-graph').style('width')) - (@margin.left) - (@margin.right)
@@ -135,30 +136,32 @@ class LandingUserStats
     # Update the range of the scale with new width/height
     @xScale.range [
       0
-      width
+      @width
     ]
     @yScale.range [
-      height
+      @height
       0
     ]
     # Force D3 to recalculate and update the line
-    svg.selectAll('path').attr 'd', area
+    @svg.selectAll('path').attr 'd', @area
 
-    rightX = @xScale(@maxElem.date) + peakR * 2
-    if (@textLength + rightX) > width
-      svg.select('.landing-graph__text').attr 'x', @xScale(@maxElem.date) - @textLength - peakR * 2
+    rightX = @xScale(@maxElem.date) + @peakR * 2
+    if (@textLength + rightX) > @width
+      @svg.select('.landing-graph__text').attr 'x', @xScale(@maxElem.date) - @textLength - @peakR * 2
     else
-      svg.select('.landing-graph__text').attr 'x', rightX
+      @svg.select('.landing-graph__text').attr 'x', rightX
       
-    svg.select('.landing-graph__circle').attr 'cx', @xScale(@maxElem.date)
+    @svg.select('.landing-graph__circle').attr 'cx', @xScale(@maxElem.date)
 
 landingUserStatsInitialize = =>
+  console.log 'landingUserStatsInitialize called'
   return if !landingUserStatsElements[0]?
 
   landingUserStatsElements[0].chart ?= new LandingUserStats
   landingUserStatsElements[0].chart?.init()
 
 landingUserStatsResize = =>
+  console.log 'landingUserStatsResize called'
   return if !landingUserStatsElements[0]?
 
   landingUserStatsElements[0].chart?.resize()
