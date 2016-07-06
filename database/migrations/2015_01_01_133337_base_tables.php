@@ -911,6 +911,37 @@ class BaseTables extends Migration
         });
         $this->setRowFormat('phpbb_acl_groups', 'DYNAMIC');
 
+        Schema::create('phpbb_acl_options', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
+
+            $table->mediumIncrements('auth_option_id', true);
+
+            $column = $table->string('auth_option', 50)->default('');
+            $column->collation = 'utf8_bin';
+
+            $table->unsignedTinyInteger('is_global')->default(0);
+            $table->unsignedTinyInteger('is_local')->default(0);
+            $table->unsignedTinyInteger('founder_only')->default(0);
+
+            $table->index('auth_option', 'auth_option');
+        });
+        $this->setRowFormat('phpbb_acl_options', 'DYNAMIC');
+
+        Schema::create('phpbb_acl_roles_data', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
+
+            $table->unsignedMediumInteger('role_id')->default('0');
+            $table->unsignedMediumInteger('auth_option_id')->default(0);
+            $table->tinyInteger('auth_setting')->default(0);
+
+            $table->primary(['role_id', 'auth_option_id']);
+
+            $table->index('auth_option_id', 'ath_op_id');
+        });
+        $this->setRowFormat('phpbb_acl_roles_data', 'DYNAMIC');
+
         Schema::create('phpbb_disallow', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_bin';
@@ -1281,6 +1312,8 @@ class BaseTables extends Migration
         Schema::drop('osu_user_stats');
         Schema::drop('osu_user_stats_taiko');
         Schema::drop('phpbb_acl_groups');
+        Schema::drop('phpbb_acl_options');
+        Schema::drop('phpbb_acl_roles_data');
         Schema::drop('phpbb_disallow');
         Schema::drop('phpbb_forums');
         Schema::drop('phpbb_posts');
