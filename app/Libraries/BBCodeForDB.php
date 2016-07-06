@@ -46,11 +46,19 @@ class BBCodeForDB
         $this->uid = config('osu.bbcode.uid');
     }
 
-    /*
-    * Handles:
-    * - Centre (centre)
-    */
+    public function parseAudio($text)
+    {
+        return preg_replace(
+            ",\[(audio)\](.+?\.mp3)\[(/audio)\],",
+            "[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
+            $text
+        );
+    }
 
+    /**
+     * Handles:
+     * - Centre (centre)
+     */
     public function parseBlockSimple($text)
     {
         foreach (['centre'] as $tag) {
@@ -296,6 +304,7 @@ class BBCodeForDB
 
         $text = $this->parseBlockSimple($text);
         $text = $this->parseInlineSimple($text);
+        $text = $this->parseAudio($text);
         $text = $this->parseEmail($text);
         $text = $this->parseUrl($text);
         $text = $this->parseSize($text);
