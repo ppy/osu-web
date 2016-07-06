@@ -21,9 +21,9 @@ namespace App\Models\Score;
 
 use Illuminate\Database\Eloquent\Model as BaseModel;
 use App\Models\Beatmap;
+use App\Models\Mod;
 use App\Models\Beatmapset;
 use App\Models\User;
-use App\Libraries\ModsFromDB;
 
 abstract class Model extends BaseModel
 {
@@ -78,7 +78,7 @@ abstract class Model extends BaseModel
     public function getEnabledModsAttribute($value)
     {
         if ($this->_enabledMods === null) {
-            $this->_enabledMods = (new ModsFromDB($value))->getEnabledMods();
+            $this->_enabledMods = Mod::getEnabledMods($value);
         }
 
         return $this->_enabledMods;
