@@ -27,7 +27,7 @@ return [
 
     'discussion-votes' => [
         'update' => [
-            'error' => 'Stem bijwerking mislukt',
+            'error' => 'Stem bijwerken mislukt',
         ],
     ],
 
@@ -40,41 +40,41 @@ return [
         'edit' => 'bewerk',
         'edited' => 'Laatst bewerkt door :editor :update_time',
         'empty' => [
-            'empty' => 'Nog geen discussie!',
-            'filtered' => 'Geen discussies passen bij de geselecteerde filter.',
+            'empty' => 'Nog geen bestaande discussie!',
+            'filtered' => 'Geen discussies matcht het geselecteerde filter.',
         ],
 
         'message_hint' => [
-            'in_general' => 'Deze post gaat naar de algemene beatmapset discussie. Om deze map te modden moet je beginning met een tijdstip (bijv. 00:12:345).',
-            'in_timeline' => 'Om meerdere tijden te modden moet je meerdere keren posten (een post per tijdstip).',
+            'in_general' => 'Deze post gaat naar de algemene beatmapset discussie. Om deze map te modden moet je beginnen met een tijdstip (bijv. 00:12:345).',
+            'in_timeline' => 'Om meerdere tijdstippen te modden moet je meerdere keren posten (een post per tijdstip).',
         ],
 
         'message_placeholder' => 'Typ hier om te posten',
 
         'message_type' => [
-            'praise' => 'Prijs',
+            'praise' => 'Lof',
             'problem' => 'Probleem',
             'suggestion' => 'Suggestie',
         ],
 
-        'message_type_select' => 'Selecteer Commentaar Type',
+        'message_type_select' => 'Selecteer Commentaartype',
 
         'mode' => [
             'general' => 'Algemeen',
             'timeline' => 'Tijdlijn',
         ],
 
-        'require-login' => 'Log alsjeblieft in om de posten of om te beantwoorden',
+        'require-login' => 'Log in om te posten of te antwoorden',
         'resolved' => 'Opgelost',
 
         'show' => [
-            'title' => 'Beatmap Discussie',
+            'title' => 'Beatmapdiscussie',
         ],
 
         'stats' => [
             'mine' => 'Van Mij',
             'pending' => 'Afwachtend',
-            'praises' => 'Geprezen',
+            'praises' => 'Aangeprezen',
             'resolved' => 'Opgelost',
             'total' => 'Totaal',
         ],
@@ -82,14 +82,14 @@ return [
 
     'listing' => [
         'search' => [
-            'prompt' => 'typ sleutelwoorden...',
-            'options' => 'Meer Zoek Opties',
+            'prompt' => 'typ sleutelwoorden in...',
+            'options' => 'Meer Zoekopties',
             'not-found' => 'geen resultaten',
-            'not-found-quote' => '... nope, niks gevonden.',
+            'not-found-quote' => '... nope, niets gevonden.',
         ],
         'mode' => 'Modus',
         'status' => 'Rank Status',
-        'mapped-by' => 'gemapt door :mapper',
+        'mapped-by' => 'gemapped door :mapper',
         'source' => 'van :source',
         'load-more' => 'Laad meer...',
     ],
@@ -97,9 +97,9 @@ return [
         'show' => [
             'details' => [
                 'made-by' => 'gemaakt door :user',
-                'submitted' => 'ingestuurd op ',
+                'submitted' => 'ingezonden op ',
                 'ranked' => 'gerankt op ',
-                'logged-out' => 'Je moet inlogged voordat je beatmaps kan downloaden!',
+                'logged-out' => 'Je moet ingelogd zijn voordat je beatmaps kan downloaden!',
                 'download' => [
                     'normal' => 'downloaden',
                     'direct' => 'osu!direct',
@@ -107,7 +107,7 @@ return [
                 ],
             ],
             'stats' => [
-                'cs' => 'Circel Grootte',
+                'cs' => 'Cirkelgrootte',
                 'hp' => 'HP Drain',
                 'od' => 'Precisie',
                 'ar' => 'Benaderingssnelheid',
@@ -128,7 +128,7 @@ return [
             ],
             'extra' => [
                 'description' => [
-                    'title' => 'Bescrijving',
+                    'title' => 'Beschrijving',
                 ],
                 'success-rate' => [
                     'title' => 'Slagingspercentage',
@@ -140,16 +140,16 @@ return [
                 'scoreboard' => [
                     'title' => 'Scorebord',
                     'no-scores' => [
-                        'global' => 'Nog geen scores. Miscchien moet je proberen er een paar te halen?',
+                        'global' => 'Nog geen scores. Probeer er een paar te halen?',
                         'loading' => 'Scoren aan het laden...',
                         'country' => 'Niemand uit jouw land heeft nog een score behaald op deze map!',
                         'friend' => 'Niemand van jouw vrienden heeft nog een score behaald op deze map!',
                     ],
-                    'supporter-only' => 'Je moet supporter zijn om land en vrienden rankings te zien!',
+                    'supporter-only' => 'Je moet supporter zijn om land- en vriendenrankings te zien!',
                     'supporter-link' => 'Klik <a href=":link">hier</a> om alle chique functies die je krijgt te zien!',
                     'global' => 'Globale Ranking',
-                    'country' => 'Land Ranking',
-                    'friend' => 'Vrienden Ranking',
+                    'country' => 'Landranking',
+                    'friend' => 'Vriendenranking',
                     'first' => [
                         'accuracy' => 'Precisie',
                         'score' => 'Score',
@@ -158,7 +158,7 @@ return [
                         'count50' => '50',
                     ],
                     'list' => [
-                        'rank-header' => 'Positie',
+                        'rank-header' => 'Rank',
                         'player-header' => 'Speler',
                         'score' => 'Score',
                         'accuracy' => 'Precisie',
@@ -216,9 +216,9 @@ return [
     ],
     'rank' => [
         'any' => 'Alles',
-        'XH' => 'Zilvere SS',
+        'XH' => 'Zilveren SS',
         'X' => 'SS',
-        'SH' => 'Zilvere S',
+        'SH' => 'Zilveren S',
         'S' => 'S',
         'A' => 'A',
         'B' => 'B',

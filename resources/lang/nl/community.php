@@ -28,18 +28,18 @@ return [
             'support_button' => 'Ik wil osu! supporten!',
         ],
 
-        'dev_quote' => 'osu! is een compleet vrij-om-te-spelen spelen, maar het runnen ervan is echt niet gratis. Tussen de kosten van het werkend stellen van server en de hoge kwaliteit internationale bandbreete, de tijd die gebruikt wordt de systemen en de community bij te houden, het regelen van prijzen voor competities, het beantwoorden van ondersteunings vragen en mensen over het algemeen blij houden gebruikt osu! een hoop geld. Oh en vergeet natuurlijk niet dat we dat allemaal doen zonder advertenties of het partneren met onzinnige toolbars enzo!
-<br/><br/>osu! is aan het einde van de dag voor het grootste gedeelte gemanaged door mezelf, degene die je waarschijnlijk het beste kent als "peppy".
-Ik ben gestopt met m\'n oude baan om osu! bij te kunnen houden en zelfs dan heb ik nog steeds moeite met het nakomen van m\'n eisen.
+        'dev_quote' => 'osu! is een compleet vrij-om-te-spelen spel, maar het draaien ervan is echter niet gratis. Tussen de kosten van de servers en de hoge kwaliteit internationale bandbreedte, de tijd die gebruikt wordt de systemen en de community bij te houden, het regelen van prijzen voor competities, het beantwoorden van ondersteuningsvragen en mensen over het algemeen blij houden gebruikt osu! een hoop geld. Oh en vergeet natuurlijk niet dat we dat allemaal doen zonder het tonen van advertenties of het partneren met onzinnige toolbars enzo!
+<br/><br/>osu! wordt aan het einde van de dag voor het grootste gedeelte onderhouden door mezelf; degene die je waarschijnlijk het beste kent als "peppy".
+Ik ben gestopt met m\'n oude baan om osu! bij te kunnen houden en zelfs dan heb ik nog steeds moeite met het ophouden van mijn standaarden.
 Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar net zoveel degenen die dit geweldige spel en community ondersteunen in de toekomst :).',
 
         'why_support' => [
             'title' => 'Waarom zou ik osu! supporten?',
             'blocks' => [
-                'dev' => 'Voor het grootste gedeelte ontwikkelt door een kerel in Australië.',
+                'dev' => 'Voor het grootste gedeelte ontwikkelt door één kerel in Australië.',
                 'time' => 'Neemt zoveel tijd in beslag dat je het geen "hobby" meer kunt noemen.',
                 'ads' => 'Geen advertenties. <br/><br/>
-                        Anders dan 99.95% van het internet verdienen wij geen geld door onzin in je gezicht te drukken.',
+                        Anders dan 99.95% van het internet verdienen wij geen geld door onzin in je gezicht te duwen.',
                 'goodies' => 'Je krijgt wat extra goodies!',
             ],
         ],
@@ -58,12 +58,12 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
 
             'upload_more' => [
                 'title' => 'Upload Meer',
-                'description' => 'Meer afwachtende beatmap slots (per gerankte beatmap) tot een max van 10.',
+                'description' => 'Meer afwachtende beatmap slots (per gerankte beatmap) tot een maximum van 10.',
             ],
 
             'early_access' => [
-                'title' => 'Early Access',
-                'description' => 'Toegang tot vervroegde releases om dingen te testen voordat ze publiek worden!',
+                'title' => 'Vroege Toegang',
+                'description' => 'Toegang tot vervroegde releases om dingen te testen voordat ze publiekelijk zijn!',
             ],
 
             'customisation' => [
@@ -77,18 +77,18 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
             ],
 
             'yellow_fellow' => [
-                'title' => 'Yellow Fellow',
+                'title' => 'Gele Gabber',
                 'description' => 'Word in-game herkend met een gele gebruikersnaam.',
             ],
 
             'speedy_downloads' => [
                 'title' => 'Snellere Downloads',
-                'description' => 'Mildere download beperkingen, al helemaal wanneer je osu!direct gebruikt.',
+                'description' => 'Mildere downloadbeperkingen, al helemaal wanneer je osu!direct gebruikt.',
             ],
 
             'change_username' => [
                 'title' => 'Gebruikersnaam Veranderen',
-                'description' => 'De mogelijkheid om je gebruikersnaam te veranderen zonder extra kosten. (maximaal een keer)',
+                'description' => 'De mogelijkheid om je gebruikersnaam te veranderen zonder extra kosten. (maximaal één keer)',
             ],
 
             'skinnables' => [
@@ -102,7 +102,7 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
             ],
 
             'sort_options' => [
-                'title' => 'Sorteer Opties',
+                'title' => 'Sorteeropties',
                 'description' => 'NIEUW: De mogelijkheid om beatmaps scores per land / vrienden / mod-specifiek in-game te zien.',
             ],
 
@@ -120,7 +120,7 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
         'convinced' => [
             'title' => 'Ik ben overgehaald! :D',
             'support' => 'support osu!',
-            'gift' => 'of geeft het aan iemand anders',
+            'gift' => 'of gun het iemand anders',
             'instructions' => 'klik op het hartje om naar de osu!store te gaan',
         ],
     ],
@@ -130,11 +130,11 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
             'large' => 'osu!public Slack Toegang',
         ],
 
-        'disabled' => 'De publieke Slack community is momenteel niet beschikbaar. Als je iets wilt laten weten doe dat dan via een issue op de correcte <a href="https://github.com/ppy">github repository</a> of stuur ons een e-mail via <a href="mailto::mail">:mail</a>.',
+        'disabled' => 'De publieke Slack community is momenteel niet beschikbaar. Als je iets wilt laten weten doe dat dan via een issue op de correcte <a href="https://github.com/ppy">GitHub repository</a> of stuur ons een e-mail via <a href="mailto::mail">:mail</a>.',
 
         'guest-begin' => 'Je moet ',
         'guest-middle' => 'ingelogd',
-        'guest-end' => ' zijn om een Slack uitnodiging te krijgen!',
+        'guest-end' => ' zijn om een Slack uitnodiging te ontvangen!',
 
         'receive-invite' => 'Je kan hier een uitnodiging krijgen voor de publieke Slack community van osu!.',
         'bullet-points' => 'Lees de voorwaarden <a href=":link">in deze post</a> grondig door.<br />Houdt er rekening mee dat eventuele misdrijven op jou account niet getolereerd worden.',

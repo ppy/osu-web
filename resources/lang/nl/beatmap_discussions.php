@@ -22,8 +22,8 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => 'Moet ingelogd zijn om te bewerken.',
-            'system_generated' => 'Systeemgegenereerde posts kunnen niet bewerkt worden.',
-            'wrong_user' => 'Moet de eigenaar zijn om te bewerken.',
+            'system_generated' => 'Systeemgegenereerde posts kunnen niet worden bewerkt.',
+            'wrong_user' => 'Je moet de eigenaar zijn om te kunnen bewerken.',
         ],
     ],
 

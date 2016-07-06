@@ -46,10 +46,10 @@ return [
                     'update' => 'Bijwerken',
                 ],
 
-                'title' => 'Forum Cover Lijst',
+                'title' => 'Forumcovers Lijst',
 
                 'type-title' => [
-                    'default-topic' => 'Standaard Onderwerp Cover',
+                    'default-topic' => 'Standaardonderwerp Cover',
                     'main' => 'Forum Cover',
                 ],
             ],
@@ -64,7 +64,7 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Admin Paneel Geval',
+            'title' => 'Adminpaneel Geval',
 
             'sections' => [
                 'forum' => 'Forum',
@@ -77,7 +77,7 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Bestelling Lijst',
+                'title' => 'Lijst van Bestellingen',
             ],
         ],
     ],

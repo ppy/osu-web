@@ -21,7 +21,7 @@
 return [
     'top-headers' => [
         'headline' => 'Live Streams',
-        'description' => 'Data wordt gedownload van twitch.tv elke vijf minuten gebaseerd op de index. Start gerust zelf een stream en wordt gelist! Voor meer informatie check de wiki pagina over live streaming.',
+        'description' => 'Op basis van de index wordt de data elke vijf minuten van twitch.tv afgehaald. Start gerust zelf een stream en kom in de lijst te staan! Check voor meer informatie de wiki pagina over livestreamen.',
     ],
     'headers' => [
         'regular' => 'Momenteel aan het streamen',

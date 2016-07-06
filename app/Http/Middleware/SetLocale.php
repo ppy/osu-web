@@ -40,9 +40,7 @@ class SetLocale
             presence($request->cookie('locale')) ??
             locale_accept_from_http($request->server('HTTP_ACCEPT_LANGUAGE'));
 
-        // FIXME: check actually available locales instead of this
-        // simplest possible cleanup
-        $locale = substr($locale, 0, 10);
+        $locale = get_valid_locale($locale);
 
         App::setLocale($locale);
 

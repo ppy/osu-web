@@ -20,5 +20,5 @@
 
 return [
     'mixture' => ':attribute mist een nummer of letter',
-    'required' => ':attribute is nodig',
+    'required' => ':attribute is vereist',
 ];
