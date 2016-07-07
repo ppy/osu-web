@@ -629,6 +629,8 @@ class Beatmapset extends Model
         $this->events()->create(['type' => 'disqualify', 'user_id' => $user->user_id, 'comment' => $comment]);
         $this->approved = 0;
         $this->save();
+
+        return true;
     }
 
     public function qualify()
@@ -640,6 +642,8 @@ class Beatmapset extends Model
         $this->approved = 3;
         $this->approved_date = Carbon::now();
         $this->save();
+
+        return true;
     }
 
     public function nominate(User $user)
@@ -655,6 +659,8 @@ class Beatmapset extends Model
                 $this->qualify();
             }
         }
+
+        return true;
     }
 
     /*

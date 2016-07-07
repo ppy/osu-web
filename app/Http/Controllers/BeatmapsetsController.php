@@ -176,7 +176,9 @@ class BeatmapsetsController extends Controller
 
         priv_check('BeatmapsetNominate', $beatmapset)->ensureCan();
 
-        $beatmapset->nominate(Auth::user());
+        if (!$beatmapset->nominate(Auth::user())) {
+            return error_popup(trans('beatmaps.nominations.incorrect-state'));
+        }
 
         return [
             'beatmapset' => $beatmapset->defaultJson(Auth::user()),
@@ -189,7 +191,9 @@ class BeatmapsetsController extends Controller
 
         priv_check('BeatmapsetDisqualify', $beatmapset)->ensureCan();
 
-        $beatmapset->disqualify(Auth::user(), Request::input('comment'));
+        if (!$beatmapset->disqualify(Auth::user(), Request::input('comment'))) {
+            return error_popup(trans('beatmaps.nominations.incorrect-state'));
+        }
 
         return [
             'beatmapset' => $beatmapset->defaultJson(Auth::user()),
