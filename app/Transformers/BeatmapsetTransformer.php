@@ -63,7 +63,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
     {
         if ($beatmapset->isPending()) {
             if ($params !== null) {
-                $userId = $params->get('user_id')[0];
+                $userId = get_int($params->get('user_id')[0] ?? null);
             }
 
             $nominations = $beatmapset->recentEvents()->get();
