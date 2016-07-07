@@ -61,7 +61,7 @@ class MPHistory.Main extends React.Component
         events: newEvents
         since: _.last(newEvents).id
         eventsShown: eventsShown
-        disbanded: lastEvent.text == 'DISBAND'
+        disbanded: lastEvent.event_type == 'match-disbanded'
 
     .always =>
       if !@state.disbanded

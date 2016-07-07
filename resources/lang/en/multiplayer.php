@@ -28,12 +28,12 @@ return [
             'tag-team-vs' => 'Tag Team VS',
         ],
         'events' => [
-            'PART' => 'left the match',
-            'JOIN' => 'joined the match',
-            'KICK' => 'has been kicked from the match',
-            'CREATE' => 'created the match',
-            'DISBAND' => 'the match was disbanded',
-            'HOST' => 'became the host',
+            'player-left' => 'left the match',
+            'player-joined' => 'joined the match',
+            'played-kicked' => 'has been kicked from the match',
+            'match-created' => 'created the match',
+            'match-disbanded' => 'the match was disbanded',
+            'host-changed' => 'became the host',
         ],
         'in-progress' => '(match in progress)',
         'score' => [

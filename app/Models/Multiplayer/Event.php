@@ -30,6 +30,15 @@ class Event extends Model
     ];
     public $timestamps = false;
 
+    const EVENT_TYPES = [
+        'PART' => 'player-left',
+        'JOIN' => 'player-joined',
+        'KICK' => 'player-kicked',
+        'CREATE' => 'match-created',
+        'DISBAND' => 'match-disbanded',
+        'HOST' => 'host-changed',
+    ];
+
     public function match()
     {
         return $this->belongsTo(Match::class);
@@ -48,5 +57,14 @@ class Event extends Model
     public function scopeDefault($query)
     {
         return $query->orderBy('event_id', 'asc');
+    }
+
+    public function getTextAttribute($value)
+    {
+        if (array_key_exists($value, self::EVENT_TYPES)) {
+            return self::EVENT_TYPES[$value];
+        }
+
+        return $value;
     }
 }

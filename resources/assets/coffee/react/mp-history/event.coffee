@@ -20,27 +20,27 @@ el = React.createElement
 
 class MPHistory.Event extends React.Component
   icons:
-    'PART': ['arrow-left', 'circle-o']
-    'JOIN': ['arrow-right', 'circle-o']
-    'KICK': ['arrow-left', 'ban']
-    'CREATE': ['plus']
-    'DISBAND': ['times']
-    'HOST': ['exchange']
+    'player-left': ['arrow-left', 'circle-o']
+    'player-joined': ['arrow-right', 'circle-o']
+    'player-kicked': ['arrow-left', 'ban']
+    'match-created': ['plus']
+    'match-disbanded': ['times']
+    'host-changed': ['exchange']
 
   render: ->
     div className: 'mp-history-events__event mp-history-event',
       div className: 'mp-history-event__time-box',
         span className: 'mp-history-event__time',
           moment(@props.event.timestamp).format 'HH:mm:ss'
-      div className: "mp-history-event__type mp-history-event__type--#{@props.event.text}",
-        @icons[@props.event.text].map (m) ->
+      div className: "mp-history-event__type mp-history-event__type--#{@props.event.event_type}",
+        @icons[@props.event.event_type].map (m) ->
           el Icon, name: m, key: m
       div className: 'mp-history-event__info-box',
-        if @props.event.text != 'DISBAND'
+        if @props.event.event_type != 'match-disbanded'
           a
             className: 'mp-history-event__text mp-history-event__text--username'
             href: laroute.route 'users.show', users: @props.event.user.data.id
             @props.event.user.data.username
 
         span className: 'mp-history-event__text',
-          Lang.get "multiplayer.match.events.#{@props.event.text}"
+          Lang.get "multiplayer.match.events.#{@props.event.event_type}"
