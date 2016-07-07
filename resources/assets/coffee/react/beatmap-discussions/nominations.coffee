@@ -29,7 +29,6 @@ BeatmapDiscussions.Nominations = React.createClass
 
   disqualify: ->
     reason = prompt('Reason for disqualification?')
-
     return unless reason
 
     @doAjax 'disqualify', reason
@@ -61,53 +60,55 @@ BeatmapDiscussions.Nominations = React.createClass
   render: ->
     @reboot()
 
-    if @disqualificationEvent
-      disqualificationNotice = div className: "#{bdn}__disqualification-notice",
-        span null,
-          "#{@disqualificationEvent.reason}"
-        span className: "#{bdn}__disqualification-time", dangerouslySetInnerHTML:
-          __html: osu.trans 'beatmaps.nominations.disqualifed-at', time_ago: osu.timeago(@disqualificationEvent.created_at)
+    disqualificationBanner =
+      if @disqualification
+        div className: 'osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact',
+          div className: "#{bdn}__disqualification-notice",
+            span null,
+              "#{@disqualification.reason}"
+            span className: "#{bdn}__disqualification-time", dangerouslySetInnerHTML:
+              __html: osu.trans 'beatmaps.nominations.disqualifed-at', time_ago: osu.timeago(@disqualification.created_at)
 
-    nominationsRequiredText =
-      if @mapCanBeNominated
-        osu.trans 'beatmaps.nominations.required-text',
-          current: @currentNominations,
-          required: @nominationsRequired
-      else if @mapIsQualified
-        if @rankingETA
-          date = osu.timeago(@rankingETA)
-        else
-          date = osu.trans 'beatmaps.nominations.soon'
+    nominationBanner =
+      if @mapCanBeNominated or @mapIsQualified
+        div className: bdn,
+          disqualificationBanner
 
-        span dangerouslySetInnerHTML:
-          __html: osu.trans 'beatmaps.nominations.qualified', date: date
+          div className: 'osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact',
+            div className: "#{bdn}__count-area#{(if @mapIsQualified then '-qualified' else '')}",
+              span className: "#{bdn}__count-text",
+                if @mapCanBeNominated
+                  osu.trans 'beatmaps.nominations.required-text',
+                    current: @currentNominations,
+                    required: @nominationsRequired
+                else if @mapIsQualified
+                  if @rankingETA
+                    date = osu.timeago(@rankingETA)
+                  else
+                    date = osu.trans 'beatmaps.nominations.soon'
 
-    div className: bdn,
-      div className: 'osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact',
-        disqualificationNotice
+                  span dangerouslySetInnerHTML:
+                    __html: osu.trans 'beatmaps.nominations.qualified', date: date
 
-      div className: 'osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact',
-        div className: "#{bdn}__count-area#{(if @mapIsQualified then '-qualified' else '')}",
-          span className: "#{bdn}__count-text",
-            nominationsRequiredText
+              if @userCanPerformNominations
+                span className: "#{bdn}__button-area",
+                  if @mapIsQualified
+                    button
+                      className: "btn-osu-lite btn-osu-lite--pink"
+                      onClick: => $.publish 'beatmapset:disqualify', all: 'disqualify'
+                      el Icon, name: 'thumbs-down'
+                      span className: "#{bd}s__collapse-button-text",
+                        osu.trans 'beatmaps.nominations.disqualify'
+                  else if @mapCanBeNominated
+                    button
+                      className: "btn-osu-lite btn-osu-lite--green"
+                      disabled: @alreadyNominated
+                      onClick: => $.publish 'beatmapset:nominate', all: 'nominate'
+                      el Icon, name: 'thumbs-up'
+                      span className: "#{bd}s__collapse-button-text",
+                        osu.trans 'beatmaps.nominations.nominate'
 
-          if @userCanPerformNominations
-            span className: "#{bdn}__button-area",
-              if @mapIsQualified
-                button
-                  className: "btn-osu-lite btn-osu-lite--pink"
-                  onClick: => $.publish 'beatmapset:disqualify', all: 'disqualify'
-                  el Icon, name: 'thumbs-down'
-                  span className: "#{bd}s__collapse-button-text",
-                    osu.trans 'beatmaps.nominations.disqualify'
-              else if @mapCanBeNominated
-                button
-                  className: "btn-osu-lite btn-osu-lite--green"
-                  disabled: @alreadyNominated
-                  onClick: => $.publish 'beatmapset:nominate', all: 'nominate'
-                  el Icon, name: 'thumbs-up'
-                  span className: "#{bd}s__collapse-button-text",
-                    osu.trans 'beatmaps.nominations.nominate'
+    return nominationBanner or null
 
   reboot: ->
     osu.pageChange()
@@ -122,6 +123,6 @@ BeatmapDiscussions.Nominations = React.createClass
       nominations = @props.beatmapset.nominations.data
       @nominationsRequired = nominations.required
       @currentNominations = nominations.current
-      @disqualificationEvent = nominations.disqualification
-      if @canPerformNominations
+      @disqualification = nominations.disqualification
+      if @userCanPerformNominations
         @alreadyNominated = nominations.nominated
