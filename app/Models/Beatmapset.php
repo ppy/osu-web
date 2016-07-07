@@ -718,17 +718,16 @@ class Beatmapset extends Model
     public function recentEvents()
     {
         // relevant events differ depending on state of beatmapset
-        $events = [];
+        $events = null;
         switch ($this->approved) {
             case self::PENDING:
             case self::QUALIFIED:
-                // last 'disqualify' event plus nomination events since the last 'disqualify' event (if any)
-                $disqualifyEvent = $this->events()->disqualifications()->orderBy('created_at', 'desc');
-                $events = $this->events()->nominations();
-                if ($disqualifyEvent->exists()) {
-                    $events = $disqualifyEvent->union(
-                        $events->where('id', '>', $disqualifyEvent->first()->id)
-                    );
+                // last 'disqualify' event (if any) and all events since
+                $disqualifyEvent = $this->events()->disqualifications()->orderBy('created_at', 'desc')->first();
+                if ($disqualifyEvent) {
+                    $events = $this->events()->where('id', '>=', $disqualifyEvent->id);
+                } else {
+                    $events = $this->events();
                 }
                 break;
             case self::RANKED:
