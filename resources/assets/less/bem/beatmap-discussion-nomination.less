@@ -19,7 +19,7 @@
 .beatmap-discussion-nomination {
   margin-top: 10px;
 
-  &__disqualification-notice {
+  &__disqualification-banner {
     width: 100%;
     min-height: 50px;
     padding: 10px;
@@ -35,31 +35,47 @@
     margin-top: 5px;
   }
 
-  &__count-area, &__count-area-qualified {
+  &__message-area, &__message-area-qualified {
     width: 100%;
     min-height: 50px;
     padding: 10px;
     font-size: 12px;
     text-align: center;
     background-color: @yellow-lighter;
+
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    @media @desktop {
+      flex-direction: row;
+    }
   }
 
-  &__count-area-qualified {
+  &__message-area-qualified {
     background-color: @green;
     color: white;
   }
 
-  &__count-text {
+  &__message-text {
     top: 6px;
     font-size: 14px;
+    padding-bottom: 15px;
+    @media @desktop {
+      padding-bottom: 15px;
+      flex-basis: 85%;
+      max-width: 85%;
+    }
   }
 
   &__button-area {
     margin-top: 2px;
-    float: right;
+    @media @desktop {
+      flex-basis: 15%;
+      max-width: 15%;
+    }
   }
 
-  &__collapse-button-text {
+  &__button-text {
     margin-left: (@spacing / 2);
   }
 }

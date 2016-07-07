@@ -62,7 +62,7 @@ BeatmapDiscussions.Nominations = React.createClass
     disqualificationBanner =
       if @disqualification
         div className: 'osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact',
-          div className: "#{bdn}__disqualification-notice",
+          div className: "#{bdn}__disqualification-banner",
             span null,
               "#{@disqualification.reason}"
             span className: "#{bdn}__disqualification-time", dangerouslySetInnerHTML:
@@ -73,9 +73,9 @@ BeatmapDiscussions.Nominations = React.createClass
         div className: bdn,
           disqualificationBanner
 
-          div className: 'osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact',
-            div className: "#{bdn}__count-area#{(if @mapIsQualified then '-qualified' else '')}",
-              span className: "#{bdn}__count-text",
+          div className: "osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact",
+            div className: "#{bdn}__message-area#{(if @mapIsQualified then '-qualified' else '')}",
+              span className: "#{bdn}__message-text",
                 if @mapCanBeNominated
                   osu.trans 'beatmaps.nominations.required-text',
                     current: @currentNominations,
@@ -92,18 +92,18 @@ BeatmapDiscussions.Nominations = React.createClass
                 span className: "#{bdn}__button-area",
                   if @mapIsQualified
                     button
-                      className: "btn-osu-lite btn-osu-lite--pink"
+                      className: 'btn-osu-lite btn-osu-lite--pink'
                       onClick: => $.publish 'beatmapset:disqualify', all: 'disqualify'
                       el Icon, name: 'thumbs-down'
-                      span className: "#{bdn}__collapse-button-text",
+                      span className: "#{bdn}__button-text",
                         osu.trans 'beatmaps.nominations.disqualify'
                   else if @mapCanBeNominated
                     button
-                      className: "btn-osu-lite btn-osu-lite--green"
+                      className: 'btn-osu-lite btn-osu-lite--green'
                       disabled: @alreadyNominated
                       onClick: => $.publish 'beatmapset:nominate', all: 'nominate'
                       el Icon, name: 'thumbs-up'
-                      span className: "#{bdn}__collapse-button-text",
+                      span className: "#{bdn}__button-text",
                         osu.trans 'beatmaps.nominations.nominate'
 
     return nominationBanner or null
