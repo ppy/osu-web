@@ -20,6 +20,13 @@
 
 return [
     'beatmap_discussion' => [
+        'disqualify' => [
+            'incorrect-state' => 'Error performing that action, try refreshing the page.',
+        ],
+        'nominate' => [
+            'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
+            'incorrect-state' => 'Error performing that action, try refreshing the page.',
+        ],
         'resolve' => [
             'general_discussion' => 'General discussion can not be resolved.',
             'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
