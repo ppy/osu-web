@@ -35,10 +35,6 @@ class MPHistory.Content extends React.Component
 
     return @scoresCache[eventIndex]
 
-  showMore: (e) ->
-    e.preventDefault()
-    $.publish 'events:show-more'
-
   render: ->
     if _.isEmpty @props.events
       div className: 'osu-layout__row osu-layout__row--page-mp-history',
@@ -56,13 +52,13 @@ class MPHistory.Content extends React.Component
         # grabbing events that are past the last game
         lastEvents = @props.events[_.last(gameIds) + 1..@props.events.length]
 
-      div className: 'osu-layout__row osu-layout__row--page-mp-history',
-        if @props.remainingEventsCount > 0
+      div className: 'osu-layout__row osu-layout__row--page-mp-history js-mp-history--event-box',
+        if !@props.full
           div className: 'mp-history-content__show-more-box',
             a
               className: 'mp-history-content__show-more'
-              onClick: @showMore
-              Lang.get 'multiplayer.match.more-events', count: @props.remainingEventsCount
+              href: laroute.route 'multiplayer.match', matches: @props.id, full: true
+              Lang.get 'multiplayer.match.more-events'
 
         for id, i in gameIds
           continue if id == -1

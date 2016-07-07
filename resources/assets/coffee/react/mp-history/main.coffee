@@ -20,24 +20,28 @@ el = React.createElement
 
 class MPHistory.Main extends React.Component
   timeBetweenRefresh: 10000
-  eventsIncrement: 100
 
   constructor: (props) ->
     super props
 
     @state =
-      endTime: props.end_time
-      name: name
       events: []
       since: 0
       teamType: ''
-      eventsShown: 100
       disbanded: false
+      initialLoaded: false
 
     @loadHistory @state.since
 
+  componentDidUpdate: (props, state) ->
+    if !@state.initialLoaded
+      target = $('.js-mp-history--event-box')[0]
+      $(window).stop().scrollTo target.scrollHeight, 500
+
+      @setState initialLoaded: true
+
   loadHistory: =>
-    $.ajax laroute.route('multiplayer.match.history', matches: @props.match.id),
+    $.ajax laroute.route('multiplayer.match.history', matches: @props.match.id, full: @props.full),
       method: 'GET'
       dataType: 'JSON'
       data:
@@ -63,23 +67,12 @@ class MPHistory.Main extends React.Component
       if !@state.disbanded
         setTimeout @loadHistory, 10000
 
-  _showMore: =>
-    @setState (state, props) =>
-      eventsShown: state.eventsShown + Math.min @eventsIncrement, @state.events.length - state.eventsShown
-
-  componentDidMount: ->
-    $.subscribe 'events:show-more.mpHistoryPage', @_showMore
-
-  componentWillUnmount: ->
-    $.unsubscribe '.mpHistoryPage'
-
   render: ->
-    remainingEventsCount = @state.events.length - @state.eventsShown
-
     div className: 'osu-layout__section',
       el MPHistory.Header,
         name: @props.match.name
 
       el MPHistory.Content,
-        events: @state.events[remainingEventsCount..]
-        remainingEventsCount: remainingEventsCount
+        id: @props.match.id
+        events: @state.events
+        full: @props.full

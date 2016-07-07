@@ -18,5 +18,6 @@
 
 propsFunction = =>
   match: osu.parseJson('json-match').data
+  full: full
 
 reactTurbolinks.register 'mp-history', MPHistory.Main, propsFunction

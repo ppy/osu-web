@@ -27,5 +27,9 @@
         {!! json_encode($match) !!}
     </script>
 
+    <script>
+        var full = {!! json_encode($full) !!};
+    </script>
+
     <script src="{{ elixir("js/react/mp-history.js") }}" data-turbolinks-track></script>
 @endsection

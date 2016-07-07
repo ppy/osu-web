@@ -38,12 +38,15 @@ class MatchesController extends Controller
             new MatchTransformer
         );
 
-        return view('multiplayer.match', compact('match'));
+        $full = Request::input('full', false);
+
+        return view('multiplayer.match', compact('match', 'full'));
     }
 
     public function matchHistory($match_id)
     {
         $since = Request::input('since', 0);
+        $full = Request::input('full', false) === 'true';
 
         $match = Match::findOrFail($match_id);
 
@@ -58,9 +61,21 @@ class MatchesController extends Controller
                 },
                 'user',
             ])
-            ->where('event_id', '>', $since)
-            ->default()
-            ->get();
+            ->where('event_id', '>', $since);
+
+        if ($full) {
+            $events = $events->default();
+        } else {
+            $events = $events
+                ->orderBy('event_id', 'desc')
+                ->take(config('osu.mp-history.event-count'));
+        }
+
+        $events = $events->get();
+
+        if (!$full) {
+            $events = $events->reverse();
+        }
 
         return fractal_collection_array(
             $events,
