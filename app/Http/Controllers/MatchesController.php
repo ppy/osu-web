@@ -21,8 +21,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Multiplayer\Match;
 use App\Models\Country;
+use App\Models\User;
 use App\Transformers\Multiplayer\MatchTransformer;
 use App\Transformers\Multiplayer\EventTransformer;
+use App\Transformers\UserCompactTransformer;
 use Request;
 
 class MatchesController extends Controller
@@ -56,10 +58,6 @@ class MatchesController extends Controller
                 'game.scores' => function ($query) {
                     $query->with('game')->default();
                 },
-                'game.scores.user' => function ($query) {
-                    $query->with('country');
-                },
-                'user',
             ])
             ->where('event_id', '>', $since);
 
@@ -77,10 +75,37 @@ class MatchesController extends Controller
             $events = $events->reverse();
         }
 
-        return fractal_collection_array(
+        $userIds = [];
+
+        foreach ($events as $event) {
+            if ($event->user_id) {
+                $userIds[] = $event->user_id;
+            }
+
+            if ($event->game) {
+                foreach ($event->game->scores as $score) {
+                    $userIds[] = $score->user_id;
+                }
+            }
+        }
+
+        $users = User::with('country')->whereIn('user_id', array_unique($userIds))->get();
+
+        $users = fractal_collection_array(
+            $users,
+            new UserCompactTransformer,
+            'country'
+        );
+
+        $events = fractal_collection_array(
             $events,
             new EventTransformer,
-            implode(',', ['game.beatmap.beatmapset', 'game.scores.user.country', 'user'])
+            implode(',', ['game.beatmap.beatmapset', 'game.scores'])
         );
+
+        return [
+            'events' => $events,
+            'users' => $users,
+        ];
     }
 }

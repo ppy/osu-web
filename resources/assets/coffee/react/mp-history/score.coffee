@@ -23,6 +23,8 @@ class MPHistory.Score extends React.Component
   secondRow: ['countgeki', 'count300', 'countkatu', 'count100', 'count50', 'countmiss']
 
   render: ->
+    user = @props.lookupUser @props.score.user_id
+
     div className: 'mp-history-game__player-score mp-history-player-score',
       div
         className: 'mp-history-player-score__shapes'
@@ -34,13 +36,13 @@ class MPHistory.Score extends React.Component
           div className: 'mp-history-player-score__username-box',
             a
               className: 'mp-history-player-score__username',
-              href: laroute.route 'users.show', users: @props.score.user_id
-              @props.score.user.data.username
+              href: laroute.route 'users.show', users: user.id
+              user.username
 
             if !@props.score.pass
               span className: 'mp-history-player-score__failed', Lang.get 'multiplayer.match.failed'
 
-          el FlagCountry, country: @props.score.user.data.country.data
+          el FlagCountry, country: user.country.data
 
         div className: 'mp-history-player-score__info-box mp-history-player-score__info-box--stats',
           div className: 'mp-history-player-score__stat-row mp-history-player-score__stat-row--first',

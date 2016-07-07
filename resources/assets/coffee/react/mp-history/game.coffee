@@ -48,6 +48,7 @@ class MPHistory.Game extends React.Component
           el MPHistory.Score,
             score: m
             mode: game.mode
+            lookupUser: @props.lookupUser
             key: m.slot
 
       if showTeams

@@ -24,4 +24,5 @@ class MPHistory.EventsList extends React.Component
       for event in @props.events
         el MPHistory.Event,
           event: event
+          lookupUser: @props.lookupUser
           key: event.id

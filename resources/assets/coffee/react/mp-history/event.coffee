@@ -28,6 +28,8 @@ class MPHistory.Event extends React.Component
     'host-changed': ['exchange']
 
   render: ->
+    user = @props.lookupUser @props.event.user_id
+
     div className: 'mp-history-events__event mp-history-event',
       div className: 'mp-history-event__time-box',
         span className: 'mp-history-event__time',
@@ -39,8 +41,8 @@ class MPHistory.Event extends React.Component
         if @props.event.event_type != 'match-disbanded'
           a
             className: 'mp-history-event__text mp-history-event__text--username'
-            href: laroute.route 'users.show', users: @props.event.user.data.id
-            @props.event.user.data.username
+            href: laroute.route 'users.show', users: user.id
+            user.username
 
         span className: 'mp-history-event__text',
           Lang.get "multiplayer.match.events.#{@props.event.event_type}"

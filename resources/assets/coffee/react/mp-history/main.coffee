@@ -26,6 +26,7 @@ class MPHistory.Main extends React.Component
 
     @state =
       events: []
+      users: {}
       since: 0
       teamType: ''
       disbanded: false
@@ -48,24 +49,28 @@ class MPHistory.Main extends React.Component
         since: @state.since
 
     .done (data) =>
-      return if _.isEmpty data.data
+      return if _.isEmpty data.events.data
 
-      newEvents = _.concat @state.events, data.data
-
+      newEvents = _.concat @state.events, data.events.data
       lastEvent = _.last(newEvents)
 
-      eventsShown = @state.eventsShown
-      eventsShown += data.data.length if !_.isEmpty @state.events
+      newUsers = _(data.users.data)
+        .keyBy (o) -> o.id
+        .assign @state.users
+        .value()
 
       @setState
         events: newEvents
+        users: newUsers
         since: _.last(newEvents).id
-        eventsShown: eventsShown
         disbanded: lastEvent.event_type == 'match-disbanded'
 
     .always =>
       if !@state.disbanded
         setTimeout @loadHistory, 10000
+
+  lookupUser: (id) =>
+    @state.users[id]
 
   render: ->
     div className: 'osu-layout__section',
@@ -76,3 +81,4 @@ class MPHistory.Main extends React.Component
         id: @props.match.id
         events: @state.events
         full: @props.full
+        lookupUser: @lookupUser

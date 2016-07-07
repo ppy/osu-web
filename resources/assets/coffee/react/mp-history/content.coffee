@@ -70,11 +70,12 @@ class MPHistory.Content extends React.Component
               events = @props.events[prevId + 1..id - 1]
 
               if !_.isEmpty events
-                el MPHistory.EventsList, events: events
+                el MPHistory.EventsList, events: events, lookupUser: @props.lookupUser
 
             el MPHistory.Game,
               event: @props.events[id]
               teamScores: @teamScores id
+              lookupUser: @props.lookupUser
 
         if !_.isEmpty lastEvents
-          el MPHistory.EventsList, events: lastEvents
+          el MPHistory.EventsList, events: lastEvents, lookupUser: @props.lookupUser
