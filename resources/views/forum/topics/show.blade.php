@@ -103,11 +103,10 @@
     </div>
 
     @if (priv_check('ForumTopicReply', $topic)->can())
-        <div class="js-forum-topic-reply--container js-sync-height--target" data-sync-height-id="forum-topic-reply">
+        <div class="js-forum-topic-reply--container js-sync-height--target forum-topic-reply" data-sync-height-id="forum-topic-reply">
             {!! Form::open([
                 "url" => route("forum.topics.reply", $topic->topic_id),
                 "class" => "forum-post forum-post--reply js-forum-topic-reply js-sync-height--reference js-fixed-element js-editor-zoom",
-                "id" => "forum-topic-reply-box",
                 "data-remote" => true,
                 "data-sync-height-target" => "forum-topic-reply",
                 'data-force-reload' => Auth::check() === false ? '1' : '0',
