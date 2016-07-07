@@ -18,7 +18,6 @@
 {a, button, div, p, span} = React.DOM
 el = React.createElement
 
-bd = 'beatmap-discussion'
 bdn = 'beatmap-discussion-nomination'
 
 BeatmapDiscussions.Nominations = React.createClass
@@ -96,7 +95,7 @@ BeatmapDiscussions.Nominations = React.createClass
                       className: "btn-osu-lite btn-osu-lite--pink"
                       onClick: => $.publish 'beatmapset:disqualify', all: 'disqualify'
                       el Icon, name: 'thumbs-down'
-                      span className: "#{bd}s__collapse-button-text",
+                      span className: "#{bdn}__collapse-button-text",
                         osu.trans 'beatmaps.nominations.disqualify'
                   else if @mapCanBeNominated
                     button
@@ -104,7 +103,7 @@ BeatmapDiscussions.Nominations = React.createClass
                       disabled: @alreadyNominated
                       onClick: => $.publish 'beatmapset:nominate', all: 'nominate'
                       el Icon, name: 'thumbs-up'
-                      span className: "#{bd}s__collapse-button-text",
+                      span className: "#{bdn}__collapse-button-text",
                         osu.trans 'beatmaps.nominations.nominate'
 
     return nominationBanner or null
