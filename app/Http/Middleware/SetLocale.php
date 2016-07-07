@@ -44,6 +44,12 @@ class SetLocale
 
         App::setLocale($locale);
 
-        return $next($request)->withCookie(cookie()->forever('locale', $locale));
+        $response = $next($request);
+
+        if (method_exists($response, 'withCookie')) {
+            return $response->withCookie(cookie()->forever('locale', $locale));
+        } else {
+            return $response;
+        }
     }
 }
