@@ -22,6 +22,7 @@ namespace App\Providers;
 use App\Libraries\OsuAuthorize;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
+use App\Models\Forum\PollVote as ForumPollVote;
 use Illuminate\Support\ServiceProvider;
 use Validator;
 
@@ -45,6 +46,10 @@ class AppServiceProvider extends ServiceProvider
 
         BeatmapDiscussionPost::saving(function ($post) {
             return $post->isValid();
+        });
+
+        ForumPollVote::saving(function ($vote) {
+            return $vote->isValid();
         });
     }
 

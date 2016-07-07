@@ -253,14 +253,7 @@ class OsuAuthorize
         return $this->checkForumPostEdit($user, $topic->posts()->first());
     }
 
-    public function checkForumTopicLock($user, $topic)
-    {
-        if ($user !== null && $user->isGMT()) {
-            return 'ok';
-        }
-    }
-
-    public function checkForumTopicMove($user, $topic)
+    public function checkForumTopicModerate($user, $topic)
     {
         if ($user !== null && $user->isGMT()) {
             return 'ok';
@@ -343,6 +336,32 @@ class OsuAuthorize
 
         if ($cover->owner()->user_id !== $user->user_id) {
             return $prefix.'not_owner';
+        }
+
+        return 'ok';
+    }
+
+    public function checkForumTopicVote($user, $topic)
+    {
+        $prefix = 'forum.topic.vote.';
+
+        $this->ensureLoggedIn($user, $prefix.'user.');
+        $this->ensureCleanRecord($user, $prefix.'user.');
+
+        if (!$this->doCheckUser($user, 'ForumView', $post->topic->forum)->can()) {
+            return $prefix.'no_forum_access';
+        }
+
+        if ($topic->pollEnd() !== null && $topic->pollEnd()->isPast()) {
+            return $prefix.'over';
+        }
+
+        if (!$topic->poll_vote_change) {
+            $userHasVoted = $topic->pollVotes()->where('vote_user_id', $user->getKey())->exists();
+
+            if ($userHasVoted) {
+                return $prefix.'voted';
+            }
         }
 
         return 'ok';
