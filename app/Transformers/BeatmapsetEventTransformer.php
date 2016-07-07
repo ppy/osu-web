@@ -29,7 +29,7 @@ class BeatmapsetEventTransformer extends Fractal\TransformerAbstract
         return [
             'type' => $event->type,
             'comment' => $event->comment,
-            'created_at' => $event->created_at ? $event->created_at->toIso8601String() : null
+            'created_at' => $event->created_at ? $event->created_at->toIso8601String() : null,
         ];
     }
 }
