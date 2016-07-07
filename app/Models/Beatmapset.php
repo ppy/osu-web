@@ -626,9 +626,12 @@ class Beatmapset extends Model
         if (!$this->isQualified()) {
             return false;
         }
-        $this->events()->create(['type' => 'disqualify', 'user_id' => $user->user_id, 'comment' => $comment]);
-        $this->approved = 0;
-        $this->save();
+
+        DB::transaction(function () use ($user, $comment) {
+            $this->events()->create(['type' => BeatmapsetEvent::DISQUALIFY, 'user_id' => $user->user_id, 'comment' => $comment]);
+            $this->approved = 0;
+            $this->save();
+        });
 
         return true;
     }
@@ -638,10 +641,13 @@ class Beatmapset extends Model
         if (!$this->isPending()) {
             return false;
         }
-        $this->events()->create(['type' => 'qualify']);
-        $this->approved = 3;
-        $this->approved_date = Carbon::now();
-        $this->save();
+
+        DB::transaction(function () {
+            $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
+            $this->approved = 3;
+            $this->approved_date = Carbon::now();
+            $this->save();
+        });
 
         return true;
     }
@@ -652,13 +658,15 @@ class Beatmapset extends Model
             return false;
         }
 
-        $nomination = $this->recentEvents()->nominations()->where('user_id', $user->user_id)->firstOrCreate(['user_id' => $user->user_id]);
-
-        if ($nomination->wasRecentlyCreated) {
-            if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
-                $this->qualify();
+        DB::transaction(function () use ($user) {
+            $nomination = $this->recentEvents()->nominations()->where('user_id', $user->user_id);
+            if (!$nomination->exists()) {
+                $this->events()->create(['type' => BeatmapsetEvent::NOMINATE, 'user_id' => $user->user_id]);
+                if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
+                    $this->qualify();
+                }
             }
-        }
+        });
 
         return true;
     }
