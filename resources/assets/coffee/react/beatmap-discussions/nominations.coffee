@@ -83,12 +83,11 @@ BeatmapDiscussions.Nominations = React.createClass
                     required: @nominationsRequired
                 else if @mapIsQualified
                   if @rankingETA
-                    date = osu.timeago(@rankingETA)
+                    span dangerouslySetInnerHTML:
+                      __html: osu.trans 'beatmaps.nominations.qualified', date: osu.timeago(@rankingETA)
                   else
-                    date = osu.trans 'beatmaps.nominations.soon'
-
-                  span dangerouslySetInnerHTML:
-                    __html: osu.trans 'beatmaps.nominations.qualified', date: date
+                    span dangerouslySetInnerHTML:
+                      __html: osu.trans 'beatmaps.nominations.qualified-soon'
 
               if @userCanPerformNominations
                 span className: "#{bdn}__button-area",
