@@ -102,68 +102,72 @@
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>
 
-    <div class="js-forum-topic-reply--container js-sync-height--target" data-sync-height-id="forum-topic-reply">
-        {!! Form::open([
-            "url" => route("forum.topics.reply", $topic->topic_id),
-            "class" => "forum-post forum-post--reply js-forum-topic-reply js-sync-height--reference js-fixed-element js-editor-zoom",
-            "id" => "forum-topic-reply-box",
-            "data-remote" => true,
-            "data-sync-height-target" => "forum-topic-reply",
-            'data-force-reload' => Auth::check() === false ? '1' : '0',
-        ]) !!}
-            <div class="forum-post__reply-container">
-                <div class="osu-layout__row osu-layout__row--sm2-desktop osu-layout__row--full-height">
-                    <div class="forum-post__reply-content">
-                        <div class="forum-post__info-panel forum-post__info-panel--reply hidden-xs">
-                            <div class="forum-post__avatar-container forum-post__avatar-container--reply">
-                                @if (Auth::check() === true)
-                                    <div
-                                        class="avatar avatar--full"
-                                        style="background-image: url('{{ Auth::user()->user_avatar }}');"
-                                    ></div>
-                                @else
-                                    <div class="avatar avatar--full avatar--guest"></div>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="forum-post__body forum-post__body--reply">
-                            <div class="forum-post__content forum-post__content--edit-body">
-                                @include('forum.posts._form_body', ['postBody' => [
-                                    'focus' => false,
-                                    'extraClasses' => 'forum-post-content--reply js-forum-topic-reply--input',
-                                ]])
+    @if (priv_check('ForumTopicReply', $topic)->can())
+        <div class="js-forum-topic-reply--container js-sync-height--target forum-topic-reply" data-sync-height-id="forum-topic-reply">
+            {!! Form::open([
+                "url" => route("forum.topics.reply", $topic->topic_id),
+                "class" => "forum-post forum-post--reply js-forum-topic-reply js-sync-height--reference js-fixed-element js-editor-zoom",
+                "data-remote" => true,
+                "data-sync-height-target" => "forum-topic-reply",
+                'data-force-reload' => Auth::check() === false ? '1' : '0',
+            ]) !!}
+                <div class="forum-post__reply-container">
+                    <div class="osu-layout__row osu-layout__row--sm2-desktop osu-layout__row--full-height">
+                        <div class="forum-post__reply-content">
+                            <div class="forum-post__info-panel forum-post__info-panel--reply hidden-xs">
+                                <div class="forum-post__avatar-container forum-post__avatar-container--reply">
+                                    @if (Auth::check() === true)
+                                        <div
+                                            class="avatar avatar--full"
+                                            style="background-image: url('{{ Auth::user()->user_avatar }}');"
+                                        ></div>
+                                    @else
+                                        <div class="avatar avatar--full avatar--guest"></div>
+                                    @endif
+                                </div>
                             </div>
 
-                            <div class="forum-post__content forum-post__content forum-post__content--edit-bar hidden">
-                            </div>
+                            <div class="forum-post__body forum-post__body--reply">
+                                <div class="forum-post__content forum-post__content--edit-body">
+                                    @include('forum.posts._form_body', ['postBody' => [
+                                        'focus' => false,
+                                        'extraClasses' => 'forum-post-content--reply js-forum-topic-reply--input',
+                                    ]])
+                                </div>
 
-                            <div class="forum-post__content forum-post__content forum-post__content--edit-bar">
-                                @if (priv_check('ForumTopicReply', $topic)->can())
+                                <div class="forum-post__content forum-post__content forum-post__content--edit-bar hidden">
+                                </div>
+
+                                <div class="forum-post__content forum-post__content forum-post__content--edit-bar">
                                     @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
-                                @else
-                                    <span>
-                                        <i class="fa fa-warning"></i>
-                                        {{ priv_check('ForumTopicReply', $topic)->message() }}
-                                    </span>
-                                @endif
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="forum-post__actions forum-post__actions--reply js-editor-zoom--hidden">
-                            <div class="forum-post-actions">
-                                <a href="#" class="js-forum-topic-reply--close forum-post-actions__action hidden">
-                                    <i class="fa fa-close"></i>
-                                </a>
+                            <div class="forum-post__actions forum-post__actions--reply js-editor-zoom--hidden">
+                                <div class="forum-post-actions">
+                                    <a href="#" class="js-forum-topic-reply--close forum-post-actions__action hidden">
+                                        <i class="fa fa-close"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        {!! Form::close() !!}
+            {!! Form::close() !!}
+        </div>
 
-    </div>
-    <div class="js-sticky-footer" data-sticky-footer-disabled="1" data-sticky-footer-target="forum-topic-reply"></div>
+        <div class="js-sticky-footer" data-sticky-footer-disabled="1" data-sticky-footer-target="forum-topic-reply"></div>
+    @else
+        <div class="osu-layout__row osu-layout__row--sm2-desktop">
+            <div class="forum-post forum-post--warning">
+                <div class="forum-post__warning-icon">
+                    <i class="fa fa-warning"></i>
+                </div>
+
+                {{ priv_check('ForumTopicReply', $topic)->message() }}
+            </div>
+        </div>
+    @endif
 @endsection
 
 @section('permanent-fixed-footer')
@@ -318,14 +322,16 @@
             </div>
 
             <div class="forum-topic-nav__group forum-topic-nav__group--right">
-                <a
-                    href="#"
-                    class="forum-topic-nav__button-circle forum-topic-nav__button-circle--reply js-forum-topic-reply--new"
-                    data-tooltip-float="fixed"
-                    title="{{ trans('forum.topics.actions.reply') }}"
-                >
-                    <i class="fa fa-plus"></i>
-                </a>
+                @if (priv_check('ForumTopicReply', $topic)->can())
+                    <a
+                        href="#"
+                        class="forum-topic-nav__button-circle forum-topic-nav__button-circle--reply js-forum-topic-reply--new"
+                        data-tooltip-float="fixed"
+                        title="{{ trans('forum.topics.actions.reply') }}"
+                    >
+                        <i class="fa fa-plus"></i>
+                    </a>
+                @endif
             </div>
         </div>
     </div>
