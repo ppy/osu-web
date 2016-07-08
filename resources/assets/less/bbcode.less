@@ -20,13 +20,22 @@
 
 .bbcode {
   line-height: 1.5;
+
+  h2,
   h4 {
-    font-size: inherit;
+    font-family: @font-family-sans-serif;
     font-style: normal;
+    font-weight: bold;
   }
 
+  // heading tag
   h2 {
-    padding-bottom: @grid-gutter-width/2;
+    font-size: @font-size--forum-post-heading;
+  }
+
+  // quote tag
+  h4 {
+    font-size: @font-size--forum-quote-heading;
   }
 
   blockquote {
