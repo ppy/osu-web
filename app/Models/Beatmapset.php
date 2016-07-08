@@ -706,10 +706,10 @@ class Beatmapset extends Model
     public function rankingETA()
     {
         if (!$this->isQualified()) {
-            return false;
+            return;
         }
 
-        $queueSize = static::qualified()->where('approved_date', '<=', $this->approved_date)->count();
+        $queueSize = static::qualified()->where('approved_date', '<', $this->approved_date)->count();
         $days = ceil($queueSize / static::QUALIFICATIONS_PER_DAY);
 
         return $days > 0 ? Carbon::now()->addDays($days)->startOfDay() : null;

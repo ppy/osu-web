@@ -98,7 +98,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         } elseif ($beatmapset->qualified()) {
             $eta = $beatmapset->rankingETA();
             $result = [
-                'ranking_eta' => $eta !== false ? $eta->toIso8601String() : null,
+                'ranking_eta' => $eta ? $eta->toIso8601String() : null,
             ];
 
             return $this->item($beatmapset, function ($beatmapset) use ($result) {
