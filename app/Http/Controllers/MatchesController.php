@@ -106,6 +106,7 @@ class MatchesController extends Controller
         return [
             'events' => $events,
             'users' => $users,
+            'all_events_count' => $match->events()->count(),
         ];
     }
 }

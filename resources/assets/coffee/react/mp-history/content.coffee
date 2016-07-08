@@ -53,7 +53,7 @@ class MPHistory.Content extends React.Component
         lastEvents = @props.events[_.last(gameIds) + 1..@props.events.length]
 
       div className: 'osu-layout__row osu-layout__row--page-mp-history js-mp-history--event-box',
-        if !@props.full
+        if !@props.full && @props.allEventsCount > 500
           div className: 'mp-history-content__show-more-box',
             a
               className: 'mp-history-content__show-more'
