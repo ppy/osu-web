@@ -511,7 +511,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function beatmapsetNominationsToday()
     {
-        return $this->beatmapsetNominations()->where('created_at', '>', DB::raw('DATE_ADD(NOW(), INTERVAL -1 DAY)'))->count();
+        return $this->beatmapsetNominations()->where('created_at', '>', Carbon::now()->subDay())->count();
     }
 
     public function beatmapPlaycounts()
