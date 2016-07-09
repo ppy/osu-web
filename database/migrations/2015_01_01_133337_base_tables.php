@@ -1254,6 +1254,50 @@ class BaseTables extends Migration
         });
         $this->setRowFormat('phpbb_users', 'DYNAMIC');
 
+        Schema::create('phpbb_groups', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
+
+            $table->mediumIncrements('group_id');
+            $table->tinyInteger('group_type')->default(1);
+            $table->unsignedTinyInteger('group_founder_manage')->default(0);
+
+            $column = $table->string('group_name', 255)->default('');
+            $column->collation = 'utf8_bin';
+
+            $column = $table->text('group_desc');
+            $column->collation = 'utf8_bin';
+
+            $column = $table->string('group_desc_bitfield', 255)->default('');
+            $column->collation = 'utf8_bin';
+
+            $table->unsignedInteger('group_desc_options')->default(7);
+
+            $column = $table->string('group_desc_uid', 5)->default('');
+            $column->collation = 'utf8_bin';
+
+            $table->unsignedTinyInteger('group_display')->default(0);
+
+            $column = $table->string('group_avatar', 255)->default('');
+            $column->collation = 'utf8_bin';
+
+            $table->tinyInteger('group_avatar_type')->default(0);
+            $table->unsignedSmallInteger('group_avatar_width')->default(0);
+            $table->unsignedSmallInteger('group_avatar_height')->default(0);
+            $table->unsignedMediumInteger('group_rank')->default(0);
+
+            $column = $table->string('group_colour', 6)->default('');
+            $column->collation = 'utf8_bin';
+
+            $table->unsignedMediumInteger('group_sig_chars')->default(0);
+            $table->unsignedTinyInteger('group_receive_pm')->default(0);
+            $table->unsignedMediumInteger('group_message_limit')->default(0);
+            $table->unsignedTinyInteger('group_legend')->default(0);
+
+            $table->index('group_legend', 'group_legend');
+        });
+        $this->setRowFormat('phpbb_groups', 'DYNAMIC');
+
         Schema::create('osu_mod_queue', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_bin';
@@ -1323,6 +1367,7 @@ class BaseTables extends Migration
         Schema::drop('phpbb_topics_track');
         Schema::drop('phpbb_user_group');
         Schema::drop('phpbb_users');
+        Schema::drop('phpbb_groups');
         Schema::drop('osu_mod_queue');
     }
 
