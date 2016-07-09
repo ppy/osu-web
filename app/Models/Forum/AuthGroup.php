@@ -17,31 +17,12 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models;
+namespace App\Models\Forum;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserGroup extends Model
+class AuthGroup extends Model
 {
-    protected $table = 'phpbb_user_group';
-    protected $primaryKey = 'group_id';
+    protected $table = 'phpbb_acl_groups';
     public $timestamps = false;
-
-    // taken from current forum
-    const GROUPS = [
-        'default' => 2,
-        'gmt' => 4,
-        'admin' => 5,
-        'bat' => 7,
-        'dev' => 11,
-        'mat' => 14,
-        'alumni' => 16,
-        'hax' => 17,
-        'mod' => 18,
-    ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }
