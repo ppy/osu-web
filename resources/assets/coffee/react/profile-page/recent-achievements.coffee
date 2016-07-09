@@ -69,4 +69,4 @@ class ProfilePage.RecentAchievements extends React.Component
           href: '#'
           onClick: @_showAllMedals
           small {},
-            Lang.get('users.show.more_achievements')
+            osu.trans('users.show.more_achievements')

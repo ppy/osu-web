@@ -61,7 +61,7 @@ class @BeatmapsetPanel extends React.Component
 
         div className: 'beatmapset-panel__mapper-source-box',
           span className: 'hidden', ref: beatmap.beatmapset_id, beatmap.beatmapset_id
-          div className: 'creator', dangerouslySetInnerHTML: { __html: Lang.get('beatmaps.listing.mapped-by', mapper: laroute.link_to_route('users.show', beatmap.creator, users: beatmap.user_id)) }
+          div className: 'creator', dangerouslySetInnerHTML: { __html: osu.trans('beatmaps.listing.mapped-by', mapper: laroute.link_to_route('users.show', beatmap.creator, users: beatmap.user_id)) }
           div className: 'source', beatmap.source
 
         div className: 'beatmapset-panel__icons-box',

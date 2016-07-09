@@ -70,9 +70,9 @@ class ProfilePage.Performance extends React.Component
       formats =
         x: (d) =>
           if d == 0
-            Lang.get('common.time.now')
+            osu.trans('common.time.now')
           else
-            Lang.choice('common.time.days_ago', -d)
+            osu.transChoice('common.time.days_ago', -d)
         y: (d) => "##{(-d).toLocaleString()}"
 
       tooltipFormats =

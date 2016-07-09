@@ -30,4 +30,4 @@ class ProfilePage.ContentsTab extends React.Component
       href: ProfilePageHash.generate page: @props.currentPage, mode: @props.mode
       onClick: @onClick
       className: className
-      Lang.get "beatmaps.mode.#{@props.mode}"
+      osu.trans "beatmaps.mode.#{@props.mode}"

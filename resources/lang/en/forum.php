@@ -68,7 +68,6 @@ return [
         ],
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'latest reply by :user',
-        'move' => 'Move to another forum',
         'new_topic' => 'Post new topic',
         'post_edit' => [
             'cancel' => 'Cancel',
@@ -101,6 +100,17 @@ return [
             'is_locked' => 'This topic is locked and can not be replied to',
         ],
 
+        'moderate_move' => [
+            'title' => 'Move to another forum',
+        ],
+
+        'pin' => [
+            'pin-0' => 'Unpin topic',
+            'pin-1' => 'Pin topic',
+            'pinned-0' => 'Topic has been unpinned',
+            'pinned-1' => 'Topic has been pinned',
+        ],
+
         'show' => [
             'feature_vote' => [
                 'current' => 'Current Priority: +:count',
@@ -111,6 +121,10 @@ return [
                     'count' => '{0} no vote|{1} :count vote|[2,Inf] :count votes',
                     'not_enough' => "You don't have any more votes remaining",
                 ],
+            ],
+
+            'poll' => [
+                'vote' => 'Vote',
             ],
         ],
     ],

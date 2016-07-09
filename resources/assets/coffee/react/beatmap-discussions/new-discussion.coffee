@@ -65,20 +65,20 @@ BeatmapDiscussions.NewDiscussion = React.createClass
                   className: "#{bn}__message-area"
                   value: @state.message
                   onChange: @setMessage
-                  placeholder: Lang.get 'beatmaps.discussions.message_placeholder'
+                  placeholder: osu.trans 'beatmaps.discussions.message_placeholder'
                 p
                   key: 'hint'
                   className: "#{bn}__message-hint"
-                  Lang.get "beatmaps.discussions.message_hint.in_#{@currentType()}"
+                  osu.trans "beatmaps.discussions.message_hint.in_#{@currentType()}"
               ]
             else
-              Lang.get('beatmaps.discussions.require-login')
+              osu.trans('beatmaps.discussions.require-login')
 
       div className: "#{bn}__col #{bn}__col--right",
         div
           className: "#{bn}__message-types #{bn}__message-types--#{'disabled' if @currentType() != 'timeline'}"
           span className: "#{bn}__message-type",
-            Lang.get('beatmaps.discussions.message_type_select')
+            osu.trans('beatmaps.discussions.message_type_select')
 
           ['praise', 'suggestion', 'problem'].map (type) =>
             @messageTypeSelection type
@@ -87,7 +87,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
           className: 'btn-osu-lite btn-osu-lite--default btn-osu-lite--fat'
           disabled: !@validPost()
           onClick: @throttledPost
-          Lang.get('common.buttons.post')
+          osu.trans('common.buttons.post')
 
 
   setTimestamp: (e) ->
@@ -149,7 +149,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
       div className: iconClasses,
         el Icon, name: BeatmapDiscussionHelper.messageType.icon[type]
         span className: "#{bn}__message-type-text",
-          Lang.get("beatmaps.discussions.message_type.#{type}")
+          osu.trans("beatmaps.discussions.message_type.#{type}")
 
 
   validPost: ->

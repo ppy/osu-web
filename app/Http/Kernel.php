@@ -30,6 +30,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         'Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode',
+        Middleware\SetLocale::class,
         'Illuminate\Cookie\Middleware\EncryptCookies',
         'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
         'Illuminate\Session\Middleware\StartSession',

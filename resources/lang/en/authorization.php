@@ -54,33 +54,49 @@ return [
     'forum' => [
         'post' => [
             'delete' => [
-                // how to english
-                // Returned when TopicReply check fails.
-                'can_not_post' => 'Can not delete post which thread can not be replied to.',
-                'can_only_delete_last_post' => 'Only last post can be deleted.',
+                'only_last_post' => 'Only last post can be deleted.',
+                'locked' => 'Can not delete post of a locked topic.',
+                'no_forum_access' => 'Access to requested forum is required.',
                 'not_owner' => 'Only poster can delete the post.',
             ],
 
             'edit' => [
-                'can_not_post' => 'Can not edit post which thread can not be replied to.',
                 'locked' => 'The post is locked from editing.',
+                'no_forum_access' => 'Access to requested forum is required.',
                 'not_owner' => 'Only poster can edit the post.',
+                'topic_locked' => 'Can not edit post of a locked topic.',
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'can_not_post' => 'Access to requested forum is required.',
+                'double_post' => 'You just posted. Wait a bit or edit your last post.',
                 'locked' => 'Can not reply to a locked thread.',
+                'no_forum_access' => 'Access to requested forum is required.',
+                'no_permission' => 'No permission to reply.',
+
+                'user' => [
+                    'require_login' => 'Please login to reply.',
+                    'restricted' => "Can't reply while restricted.",
+                    'silenced' => "Can't reply while silenced.",
+                ],
             ],
 
             'store' => [
-                'can_not_view_forum' => 'Access to requested forum is required.',
-                'can_not_post' => 'Not allowed to post.',
+                'no_forum_access' => 'Access to requested forum is required.',
+                'no_permission' => 'No permission to create new topic.',
                 'forum_closed' => 'Forum is closed and can not be posted to.',
+            ],
+
+            'vote' => [
+                'no_forum_access' => 'Access to requested forum is required.',
+                'over' => 'Polling is over and can not be voted on anymore.',
+                'voted' => 'Changing vote is not allowed.',
+
                 'user' => [
-                    'silenced' => 'Can not post when silenced.',
-                    'restricted' => 'Can not post when restricted.',
+                    'require_login' => 'Please login to vote.',
+                    'restricted' => "Can't vote while restricted.",
+                    'silenced' => "Can't vote while silenced.",
                 ],
             ],
         ],
@@ -109,12 +125,8 @@ return [
         'page' => [
             'edit' => [
                 'locked' => 'User page is locked.',
-                'require_support_to_create' => 'Supporter tag is required.',
-
-                'user' => [
-                    'silenced' => 'Can not edit user page when silenced.',
-                    'restricted' => 'Can not edit user page when restricted.',
-                ],
+                'not_owner' => 'Can only edit own user page.',
+                'require_supporter_tag' => 'Supporter tag is required.',
             ],
         ],
     ],

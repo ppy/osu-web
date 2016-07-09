@@ -60,7 +60,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Upload More',
-                'description' => 'Increased beatmap submission limits. (10 pending beatmaps total).',
+                'description' => 'Additional pending beatmap slots (per ranked beatmap) up to a max of 10.',
             ],
 
             'early_access' => [
@@ -75,7 +75,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => 'Beatmap Filters',
-                'description' => 'Filter beatmap searches by played and unplayed maps.',
+                'description' => 'Filter beatmap searches by played and unplayed maps and rank achieved (if any).',
             ],
 
             'yellow_fellow' => [
@@ -90,7 +90,7 @@ return [
 
             'change_username' => [
                 'title' => 'Change Username',
-                'description' => 'The ability to change your username. (once max)',
+                'description' => 'The ability to change your username without additional costs. (once max)',
             ],
 
             'skinnables' => [

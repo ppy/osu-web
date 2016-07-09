@@ -119,17 +119,13 @@ class BeatmapDiscussionPostsController extends Controller
         $filters = ['resolved:bool'];
 
         if ($isNew) {
-            $filters = array_merge($filters, [
-                'beatmap_id:int',
-                'message_type',
-                'timestamp:int',
-            ]);
+            $filters[] = 'beatmap_id:int';
+            $filters[] = 'message_type';
+            $filters[] = 'timestamp:int';
         }
 
-        $params = get_params(Request::all(), 'beatmap_discussion',
-            $filters,
-            ['resolved' => false]
-        );
+        $params = get_params(Request::all(), 'beatmap_discussion', $filters);
+        $params['resolved'] = $params['resolved'] ?? false;
 
         if ($isNew) {
             $params['user_id'] = Auth::user()->user_id;
@@ -140,14 +136,9 @@ class BeatmapDiscussionPostsController extends Controller
 
     private function postParams($discussion, $isNew = true)
     {
-        $params = get_params(Request::all(), 'beatmap_discussion_post',
-            ['message'],
-            [],
-            [
-                'beatmap_discussion_id' => $discussion->id,
-                'last_editor_id' => Auth::user()->user_id,
-            ]
-        );
+        $params = get_params(Request::all(), 'beatmap_discussion_post', ['message']);
+        $params['beatmap_discussion_id'] = $discussion->id;
+        $params['last_editor_id'] = Auth::user()->user_id;
 
         if ($isNew) {
             $params['user_id'] = Auth::user()->user_id;

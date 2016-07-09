@@ -27,52 +27,59 @@ use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
 {
+    const DEFAULT_ORDER_COLUMN = 'topic_last_post_time';
+
     const STATUS_LOCKED = 1;
     const STATUS_UNLOCKED = 0;
-    const DEFAULT_ORDER_COLUMN = 'topic_last_post_time';
+
+    const TYPE_NORMAL = 0;
+    const TYPE_PINNED = 1;
 
     protected $table = 'phpbb_topics';
     protected $primaryKey = 'topic_id';
     protected $guarded = [];
 
     public $timestamps = false;
-    protected $dates = ['topic_last_view_time', 'topic_last_post_time'];
+    protected $dates = [
+        'poll_last_vote',
+        'poll_start',
+        'topic_last_post_time',
+        'topic_last_view_time',
+        'topic_time',
+    ];
     protected $dateFormat = 'U';
 
     private $postsCount;
+    private $_vote;
+    private $_poll;
 
     private $issueTypes = 'resolved|invalid|duplicate|confirmed';
 
     protected $casts = [
+        'poll_vote_change' => 'boolean',
         'topic_approved' => 'boolean',
     ];
 
-    public static function createNew($params)
+    public static function createNew($forum, $params, $pollParams = null)
     {
-        $params += [
-            'forum' => null,
-            'title' => null,
-            'poster' => null,
-            'body' => null,
-            'notifyReplies' => null,
-            'cover' => null,
-        ];
-        extract($params);
-
         $topic = new static([
             'forum_id' => $forum->forum_id,
-            'topic_time' => time(),
-            'topic_title' => $title,
-            'topic_poster' => $poster->user_id,
-            'topic_first_poster_name' => $poster->username,
-            'topic_first_poster_colour' => $poster->user_colour,
+            'topic_time' => Carbon::now(),
+            'topic_title' => $params['title'] ?? null,
+            'topic_poster' => $params['user']->user_id,
+            'topic_first_poster_name' => $params['user']->username,
+            'topic_first_poster_colour' => $params['user']->user_colour,
         ]);
 
-        DB::transaction(function () use ($topic, $forum, $title, $poster, $body, $notifyReplies, $cover) {
+        DB::transaction(function () use ($forum, $topic, $params, $pollParams) {
             $topic->save();
-            $topic->addPost($poster, $body, $notifyReplies);
+            $topic->addPost($params['user'], $params['body'], $params['notifyReplies']);
 
-            if ($cover !== null) {
+            if ($pollParams !== null) {
+                $topic->poll()->fill($pollParams)->save();
+            }
+
+            if (($params['cover'] ?? null) !== null) {
                 $cover->topic()->associate($topic);
                 $cover->save();
             }
@@ -116,7 +123,7 @@ class Topic extends Model
             if ($this->posts()->exists() === true) {
                 $this->refreshCache();
             } else {
-                $this->deleteWithCover();
+                $this->deleteWithDependencies();
             }
 
             if ($this->forum !== null) {
@@ -202,6 +209,16 @@ class Topic extends Model
     public function featureVotes()
     {
         return $this->hasMany(FeatureVote::class);
+    }
+
+    public function pollOptions()
+    {
+        return $this->hasMany(PollOption::class);
+    }
+
+    public function pollVotes()
+    {
+        return $this->hasMany(PollVote::class);
     }
 
     public function titleNormalized()
@@ -311,6 +328,18 @@ class Topic extends Model
         return $buf;
     }
 
+    public function getPollStartAttribute($value)
+    {
+        return get_time_or_null($value);
+    }
+
+    public function pollEnd()
+    {
+        if ($this->poll_start !== null && $this->poll_length !== 0) {
+            return $this->poll_start->copy()->addSeconds($this->poll_length);
+        }
+    }
+
     public function postsCount()
     {
         if ($this->postsCount === null) {
@@ -325,6 +354,11 @@ class Topic extends Model
         // not checking STATUS_LOCK because there's another
         // state (STATUS_MOVED) which isn't handled yet.
         return $this->topic_status !== static::STATUS_UNLOCKED;
+    }
+
+    public function isPinned()
+    {
+        return $this->topic_type !== static::TYPE_NORMAL;
     }
 
     public function markRead($user, $markTime)
@@ -461,17 +495,80 @@ class Topic extends Model
         });
     }
 
-    public function deleteWithCover()
+    public function pin($pin)
+    {
+        DB::transaction(function () use ($pin) {
+            if ($pin === true) {
+                $newStatus = static::TYPE_PINNED;
+                $logOperation = 'LOG_PIN';
+            } else {
+                $newStatus = static::TYPE_NORMAL;
+                $logOperation = 'LOG_UNPIN';
+            }
+
+            $this->update(['topic_type' => $newStatus]);
+
+            Log::logModerateForumTopic($logOperation, $this);
+        });
+    }
+
+    public function deleteWithDependencies()
     {
         if ($this->cover !== null) {
             $this->cover->deleteWithFile();
         }
 
+        $this->pollOptions()->delete();
+        $this->pollVotes()->delete();
+        $this->userTracks()->delete();
+
+        // FIXME: returning used stars?
+        $this->featureVotes()->delete();
+
         $this->delete();
+    }
+
+    public function isDoublePostBy(User $user)
+    {
+        if ($user === null) {
+            return false;
+        }
+        if ($user->user_id !== $this->topic_last_poster_id) {
+            return false;
+        }
+        if ($user->user_id === $this->topic_poster) {
+            $minHours = config('osu.forum.double_post_time.author');
+        } else {
+            $minHours = config('osu.forum.double_post_time.normal');
+        }
+
+        return $this
+            ->topic_last_post_time
+            ->copy()
+            ->addHours($minHours)
+            ->isFuture();
     }
 
     public function isFeatureTopic()
     {
         return $this->forum->isFeatureForum();
+    }
+
+    public function poll()
+    {
+        if ($this->_poll === null) {
+            $this->_poll = new TopicPoll($this);
+        }
+
+        return $this->_poll;
+    }
+
+    public function vote()
+    {
+        if ($this->_vote === null) {
+            $this->_vote = new TopicVote($this);
+        }
+
+        return $this->_vote;
     }
 }

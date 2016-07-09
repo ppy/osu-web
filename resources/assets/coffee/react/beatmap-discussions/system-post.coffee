@@ -28,7 +28,7 @@ BeatmapDiscussions.SystemPost = React.createClass
     message =
       switch @props.post.message.type
         when 'resolved'
-          Lang.get "beatmap_discussions.system.resolved.#{@props.post.message.value}",
+          osu.trans "beatmap_discussions.system.resolved.#{@props.post.message.value}",
             user: laroute.link_to_route('users.show', @props.user.username, users: @props.user.id)
 
     div

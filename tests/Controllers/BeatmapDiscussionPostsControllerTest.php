@@ -43,7 +43,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                     'message' => 'Hello',
                 ],
             ])
-            ->seeJson([]);
+            ->assertResponseOk();
 
         $this->assertEquals($currentDiscussions + 1, BeatmapDiscussion::count());
         $this->assertEquals($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
@@ -62,7 +62,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                     'message' => 'Hello',
                 ],
             ])
-            ->seeJson([]);
+            ->assertResponseOk();
 
         $this->assertEquals($currentDiscussions, BeatmapDiscussion::count());
         $this->assertEquals($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
@@ -81,7 +81,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                     'message' => 'Hello',
                 ],
             ])
-            ->seeJson([]);
+            ->assertResponseOk();
 
         $this->assertEquals($currentDiscussionPosts + 2, BeatmapDiscussionPost::count());
     }
@@ -139,7 +139,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                     'message' => $editedMessage,
                 ],
             ])
-            ->assertResponseStatus(200);
+            ->assertResponseOk();
 
         $beatmapDiscussionPost = $beatmapDiscussionPost->fresh();
 
