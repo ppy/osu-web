@@ -55,7 +55,7 @@ return [
                 'not_owner' => 'Solo el creador del post puede eliminarlo.',
             ],
             'edit' => [
-                'can_not_post' => 'No se puede editar un post a cuyo hilo no se puede responder.',
+                'can_not_post' => 'No se puede editar un post cuyo hilo no se puede responder.',
                 'locked' => 'La edición del post está bloqueada.',
                 'not_owner' => 'Solo el creador del post puede editarlo.',
             ],

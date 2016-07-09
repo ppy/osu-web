@@ -104,7 +104,7 @@ return [
             'title' => '¡Estoy convencido! :D',
             'support' => '¡apoyar osu!',
             'gift' => 'o regalar supporter a otros jugadores',
-            'instructions' => 'clic al botón del corazón para preceder a la osu!store',
+            'instructions' => 'clic al botón del corazón para proceder a la osu!store',
         ],
     ],
 ];

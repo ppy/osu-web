@@ -27,7 +27,7 @@ return [
         'remember' => 'Recordarme',
         'title' => 'Inicia sesión para continuar',
         'failed' => 'Nombre de usuario o contraseña incorrectos',
-        'register' => '¿No tienes una cuenta de osu!? Crear una',
+        'register' => '¿No tienes una cuenta de osu!? Crea una',
         'forgot' => '¿Olvidaste tu contraseña?',
         'beta' => [
             'main' => 'Acceso a la beta es actualmente restringido a usuarios privilegiados.',
@@ -97,10 +97,10 @@ return [
                 'total_info' => 'Basado en qué tanto ha colaborado el usuario a la moderación del beatmap. Ve <a href="'.config('osu.urls.user.kudosu').'">esta página</a> para más información.',
             ],
             'me' => [
-                'title' => 'me!', // translating this is a little tricky
+                'title' => 'me!', // translating this is a little tricky (maybe "sobre mi"?)
             ],
             'medals' => [
-                'title' => 'Medallss',
+                'title' => 'Medallas',
             ],
             'recent_activities' => [
                 'title' => 'Reciente',
