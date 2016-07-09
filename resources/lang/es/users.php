@@ -131,7 +131,7 @@ return [
         'first_members' => 'desde el comienzo',
         'is_supporter' => 'osu!supporter',
         'is_developer' => 'osu!developer',
-        'lastvisit' => 'Visto por última vez el :date.',
+        'lastvisit' => 'Visto por última vez :date.',
         'joined_at' => 'se unió el :date',
         'more_achievements' => 'y más',
         'origin' => [
