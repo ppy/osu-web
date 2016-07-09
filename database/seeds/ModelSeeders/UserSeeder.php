@@ -31,8 +31,8 @@ class UserSeeder extends Seeder
 
         // Create 10 users and their stats
         factory(App\Models\User::class, 10)->create([
-                'osu_subscriber' => 1
-            ])->each(function ($u) {
+            'osu_subscriber' => 1,
+        ])->each(function ($u) {
 
             // USER STATS
             $country_code = array_rand_val($this->common_countries);
