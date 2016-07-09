@@ -30,7 +30,9 @@ class UserSeeder extends Seeder
         $this->common_countries = ['US', 'JP', 'CN', 'DE', 'TW', 'RU', 'KR', 'PL', 'CA', 'FR', 'BR', 'GB', 'AU'];
 
         // Create 10 users and their stats
-        factory(App\Models\User::class, 10)->create()->each(function ($u) {
+        factory(App\Models\User::class, 10)->create([
+                'osu_subscriber' => 1
+            ])->each(function ($u) {
 
             // USER STATS
             $country_code = array_rand_val($this->common_countries);

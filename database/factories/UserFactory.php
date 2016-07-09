@@ -50,7 +50,6 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'user_posts' => rand(1, 500),
         'user_warnings' => 0,
         'user_type' => 0,
-        'osu_subscriber' => 1,
         'osu_kudosavailable' => rand(1, 500),
         'osu_kudosdenied' => rand(1, 500),
         'osu_kudostotal' => rand(1, 500),
