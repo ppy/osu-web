@@ -109,7 +109,7 @@ return [
                 'best' => [
                     'title' => 'Mejor rendimiento',
                 ],
-                'empty' => 'No hay récords de rendimiento increíbles aún. :(',
+                'empty' => 'No hay récords increíbles aún. :(',
                 'first' => [
                     'title' => 'Primeros Lugares',
                 ],
@@ -128,7 +128,7 @@ return [
                 'none' => 'Ninguno... aún.',
             ],
         ],
-        'first_members' => 'aquí desde el principio',
+        'first_members' => 'desde el comienzo',
         'is_supporter' => 'osu!supporter',
         'is_developer' => 'osu!developer',
         'lastvisit' => 'Visto por última vez el :date.',
@@ -164,8 +164,8 @@ return [
             'maximum_combo' => 'Combo máximo',
             'play_count' => 'Conteo de jugadas',
             'ranked_score' => 'Puntuación rankeada',
-            'replays_watched_by_others' => 'Replays Observadas por Otros',
-            'score_ranks' => 'Score Ranks',
+            'replays_watched_by_others' => 'Replays observadas por otros',
+            'score_ranks' => 'Score Ranks', //?
             'total_hits' => 'Aciertos totales',
             'total_score' => 'Puntuación total',
         ],

@@ -20,14 +20,14 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => '¿¡Amas osu!?<br/>
+            'big_description' => '¿Amas osu!?<br/>
                                 Ayuda a su desarrollo :D',
             'small_description' => '',
             'support_button' => '¡Quiero ayudar a osu!',
         ],
         'dev_quote' => 'osu! es un juego completamente Free To Play, pero mantenerlo definitivamente no es gratis. Entre el costo de comisionar servidores y banda ancha internacional de alta calidad, el tiempo invertido manteniendo el sistema y la comunidad, proveyendo premios para las competiciones, respondiendo preguntas de soporte y generalmente manteniendo a las personas felices, osu! consume una cantidad de dinero bastante considerable! Oh, y no olvides el hecho de que lo hacemos sin ningún tipo de anuncio o asociándonos con tontas barras de herramientas.
             <br/><br/>osu! es al final del día en gran parte dirigido por mí, a quien puedes conocer mejor como "peppy".
-            ¡He tenido que dejar mi trabajo con el fin de mantenerme al día con osu!,
+            He tenido que dejar mi trabajo con el fin de mantenerme al día con osu!,
             y en ocasiones lucho para mantener los estándares por los que me esfuerzo.
             Me gustaría ofrecer mi agradecimiento personal a aquellos que han apoyado osu! hasta ahora,
             y también a aquellos que continúen apoyando este increíble juego y a la comunidad en el futuro :).',
@@ -45,11 +45,11 @@ return [
             'title' => '¿Oh? ¡¿Qué obtengo?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'acceso rápido y sencillo para buscar beatmaps sin salir del juego.',
+                'description' => 'Acceso rápido y sencillo para buscar beatmaps sin salir del juego.',
             ],
             'auto_downloads' => [
                 'title' => 'Descargas Automáticas',
-                'description' => 'Descargas automáticas cuando juegas multijugador, espectas a otros, or al dar clic a enlaces en el chat!',
+                'description' => 'Descargas automáticas cuando juegas multijugador, espectas a otros, o al dar clic a enlaces en el chat!',
             ],
             'upload_more' => [
                 'title' => 'Sube más',
@@ -85,7 +85,7 @@ return [
             ],
             'feature_votes' => [
                 'title' => 'Votos de Características',
-                'description' => 'Votos para solicited de características. (2 por mes)',
+                'description' => 'Votos para solicitudes de características. (2 por mes)',
             ],
             'sort_options' => [
                 'title' => 'Opciones de Orden',
@@ -93,7 +93,7 @@ return [
             ],
             'feel_special' => [
                 'title' => 'Siéntete Especial',
-                'description' => 'La calidad y el sentimiento de hacer tu parte para mantener osu! funcionando sin problemas!',
+                'description' => 'La calidad y el sentimiento de hacer tu parte para mantener osu! funcionando sin problemas.',
             ],
             'more_to_come' => [
                 'title' => 'Más por venir',
@@ -102,7 +102,7 @@ return [
         ],
         'convinced' => [
             'title' => '¡Estoy convencido! :D',
-            'support' => '¡apoyar osu!',
+            'support' => 'Apoyar osu!',
             'gift' => 'o regalar supporter a otros jugadores',
             'instructions' => 'clic al botón del corazón para proceder a la osu!store',
         ],
