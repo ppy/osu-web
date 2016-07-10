@@ -18,7 +18,7 @@ class ForumSeeder extends Seeder
             // Create appropriate forum permissions
             $authOptionIds = [];
 
-            foreach(['f_post', 'f_reply'] as $authOption) {
+            foreach (['f_post', 'f_reply'] as $authOption) {
                 $option = new App\Models\Forum\AuthOption;
                 $option->auth_option = $authOption;
                 $option->save();
@@ -92,7 +92,7 @@ class ForumSeeder extends Seeder
                     $group->forum_id = $forum->forum_id;
                     $group->auth_option_id = $optionId;
                     $group->auth_setting = 1;
-                    
+
                     $group->save();
                 }
             }
