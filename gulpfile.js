@@ -74,6 +74,7 @@ elixir(function(mix) {
     'turbolinks-overrides.coffee',
 
     'main.coffee',
+    'landing-page/*.coffee'
   ], 'resources/assets/js/build/app-main.js')
   .scripts([
     path.join(node_root, 'turbolinks/dist/turbolinks.js'),
@@ -107,9 +108,6 @@ elixir(function(mix) {
     'react/beatmapset-page/*.coffee',
     'react/beatmapset-page.coffee'
   ], 'public/js/react/beatmapset-page.js')
-  .coffee([
-    'landing-page/*.coffee'
-  ], 'public/js/landing-page.js')
   .version([
     'css/app.css',
     'js/app.js',
