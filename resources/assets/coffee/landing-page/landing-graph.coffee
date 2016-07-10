@@ -100,7 +100,6 @@ class LandingUserStats
 
     #Find the date for the max, from the end backward
     i = data.length - 1
-    # console.log i, @maxElem
     while i >= 0
       if @maxElem == null or data[i].users_osu > @maxElem.users_osu
         @maxElem = data[i]
@@ -129,7 +128,6 @@ class LandingUserStats
 
   init: ->
     @modelStats @stats
-    console.log 'initialized!'
 
   resize: =>
     @width = parseInt(d3.select('.js-landing-graph').style('width')) - (@margin.left) - (@margin.right)
@@ -158,7 +156,6 @@ class LandingUserStats
     @svg.select('.landing-graph__circle').attr 'cx', @xScale(@maxElem.date)
 
 landingUserStatsInitialize = =>
-  console.log 'landingUserStatsInitialize called'
   landingUserStatsElements = document.getElementsByClassName('js-landing-graph')
   return if !landingUserStatsElements[0]?
 
@@ -166,7 +163,6 @@ landingUserStatsInitialize = =>
   landingUserStatsElements[0].chart?.init()
 
 landingUserStatsResize = =>
-  console.log 'landingUserStatsResize called'
   return if !landingUserStatsElements[0]?
 
   landingUserStatsElements[0].chart?.resize()

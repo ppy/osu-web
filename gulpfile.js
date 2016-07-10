@@ -111,7 +111,6 @@ elixir(function(mix) {
   .version([
     'css/app.css',
     'js/app.js',
-    'js/landing-page.js',
     'js/react/profile-page.js',
     'js/react/beatmaps.js',
     'js/react/slack-page.js',
