@@ -38,6 +38,14 @@ class LandingUserStats
 
     @stats = osu.parseJson('json-stats')
 
+    # Define date parser
+    parseDate = d3.time.format('%Y-%m-%d %H:%M:%S').parse
+
+    # Parsing data
+    @stats.forEach (d) ->
+      d.date = parseDate(d.date)
+      d.users_osu = +d.users_osu
+
     # Define area
     @area = d3.svg.area().interpolate('basis')
       .x (d) =>
@@ -46,6 +54,8 @@ class LandingUserStats
         @yScale d.users_osu
 
   modelStats: (data) ->
+    @svg = d3.select '.js-landing-graph'
+    @svg.select('svg').remove()
     # Define svg canvas
     @svg = @svg
       .append 'svg'
@@ -53,14 +63,6 @@ class LandingUserStats
       .attr 'height', @height + @margin.top + @margin.bottom
       .append 'g'
       .attr 'transform', 'translate(' + @margin.left + ',' + @margin.top + ')'
-
-    # Define date parser
-    parseDate = d3.time.format('%Y-%m-%d %H:%M:%S').parse
-
-    # Parsing data
-    data.forEach (d) ->
-      d.date = parseDate(d.date)
-      d.users_osu = +d.users_osu
 
     @xScale = d3.scale.linear().range([
       0
@@ -107,9 +109,11 @@ class LandingUserStats
     text = @svg.append 'text' 
       .attr 'class', 'landing-graph__text'
       .text Lang.get('home.landing.peak', 'count': @maxElem.users_osu.toLocaleString())
+    
+    text
       .attr 'y', -@peakR * 2
       .attr 'x', () =>
-        @textLength = this.getComputedTextLength
+        @textLength = text.node().getComputedTextLength()
         rightX = @xScale(@maxElem.date) + @peakR * 2
 
         # Get the width of the element to determine angle offset
@@ -155,6 +159,7 @@ class LandingUserStats
 
 landingUserStatsInitialize = =>
   console.log 'landingUserStatsInitialize called'
+  landingUserStatsElements = document.getElementsByClassName('js-landing-graph')
   return if !landingUserStatsElements[0]?
 
   landingUserStatsElements[0].chart ?= new LandingUserStats
