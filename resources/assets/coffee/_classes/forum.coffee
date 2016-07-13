@@ -140,7 +140,7 @@ class @Forum
     true
 
   keyboardNavigation: (e) =>
-    return if $(e.target).is('input') or not @_postsCounter.length
+    return if $(e.target).is('input, select, textarea') or e.target.isContentEditable or not @_postsCounter.length
 
     e.preventDefault()
 
@@ -149,7 +149,6 @@ class @Forum
       when 39 then @currentPostPosition + 1
 
     try @jumpTo n
-
 
   scrollTo: (postId) =>
     post = document.querySelector(".js-forum-post[data-post-id='#{postId}']")
