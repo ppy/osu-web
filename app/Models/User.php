@@ -956,7 +956,8 @@ class User extends Model implements AuthenticatableContract, Messageable
                 $postsChangeCount = 0;
             }
 
-            $newPostsCount = DB::raw("user_posts + {$postsChangeCount}");
+            // In case user_posts is 0 and $postsChangeCount is -1.
+            $newPostsCount = DB::raw("GREATEST(CAST(user_posts AS SIGNED) + {$postsChangeCount}, 0)");
         } else {
             $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums($this))->count();
         }
