@@ -71,8 +71,7 @@ class @ForumPostsSeek
     e.preventDefault()
 
     currentPost = @forum.currentPostPosition
-    totalPosts = @forum.totalPosts()
-
+    
     n = switch e.which
       when 37 then currentPost - 1
       when 39 then currentPost + 1
