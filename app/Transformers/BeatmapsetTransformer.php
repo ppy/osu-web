@@ -67,10 +67,8 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             }
 
             $nominations = $beatmapset->recentEvents()->get();
-            $disqualified = false;
             foreach ($nominations as $nomination) {
                 if ($nomination->type === BeatmapsetEvent::DISQUALIFY) {
-                    $disqualified = true;
                     $disqualifyEvent = $nomination;
                 }
                 if (isset($userId) && $nomination->user_id === $userId && $nomination->type === BeatmapsetEvent::NOMINATE) {
@@ -82,7 +80,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
                 'required' => $beatmapset->requiredNominationCount(),
                 'current' => $beatmapset->currentNominationCount(),
             ];
-            if ($disqualified) {
+            if (isset($disqualifyEvent)) {
                 $result['disqualification'] = [
                     'reason' => $disqualifyEvent->comment,
                     'created_at' => $disqualifyEvent->created_at->toIso8601String(),
