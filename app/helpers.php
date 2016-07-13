@@ -257,7 +257,8 @@ function nav_links()
     return $links;
 }
 
-function footer_links() {
+function footer_links()
+{
     $links = [];
 
     $links['general'] = [
@@ -281,10 +282,10 @@ function footer_links() {
     ];
 
     $links['legal'] = [
-        'tos' => config("osu.urls.legal.tos"),
-        'copyright' => config("osu.urls.legal.dmca"),
-        'serverStatus' => config("osu.urls.legal.server"),
-        'osuStatus' => config("osu.urls.legal.osustatus"),
+        'tos' => config('osu.urls.legal.tos'),
+        'copyright' => config('osu.urls.legal.dmca'),
+        'serverStatus' => config('osu.urls.legal.server'),
+        'osuStatus' => config('osu.urls.legal.osustatus'),
     ];
 
     return $links;
