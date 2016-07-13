@@ -60,7 +60,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     JSON.parse document.getElementById(id).text
 
   isInputElement: (el) ->
-    el.tagName == 'INPUT' or el.tagName == 'SELECT' or el.tagName == 'TEXTAREA' or el.isContentEditable
+    el.tagName in ['INPUT', 'SELECT', 'TEXTAREA'] or el.isContentEditable
 
   isMobile: -> ! window.matchMedia('(min-width: 920px)').matches
 
