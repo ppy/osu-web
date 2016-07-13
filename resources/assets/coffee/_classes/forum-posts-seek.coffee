@@ -28,6 +28,7 @@ class @ForumPostsSeek
     $(document).on 'click', '.js-forum__posts-seek', @click
 
     $(document).on 'click', '.js-forum-posts-seek--jump', @jump
+    $(document).on 'keyup', '.action-forum-topics-show', @keyup
 
 
   hideTooltip: =>
@@ -66,6 +67,17 @@ class @ForumPostsSeek
     $target.blur()
     @forum.jumpTo n
 
+  keyup: (e) =>
+    e.preventDefault()
+
+    currentPost = @forum.currentPostPosition
+    totalPosts = @forum.totalPosts()
+
+    n = switch e.which
+      when 37 then currentPost - 1
+      when 39 then currentPost + 1
+
+    @forum.jumpTo n
 
   setPostPosition: (x) =>
 
