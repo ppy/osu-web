@@ -56,7 +56,7 @@ return [
             'index' => 'global',
         ],
         'community' => [
-            '_' => 'communidad',
+            '_' => 'comunidad',
             'getForum' => 'foro',
             'getChat' => 'chat',
             'getSupport' => 'support',
