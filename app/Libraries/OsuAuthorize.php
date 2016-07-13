@@ -116,9 +116,7 @@ class OsuAuthorize
 
     public function checkBeatmapsetNominate($user, $beatmapset)
     {
-        if ($user === null) {
-            return 'require_login';
-        }
+        $this->ensureLoggedIn($user);
 
         if (!$user->isBNG() && !$user->isQAT()) {
             return 'unauthorized';
@@ -137,9 +135,7 @@ class OsuAuthorize
 
     public function checkBeatmapsetDisqualify($user, $beatmapset)
     {
-        if ($user === null) {
-            return 'require_login';
-        }
+        $this->ensureLoggedIn($user);
 
         if (!$user->isQAT()) {
             return 'unauthorized';
