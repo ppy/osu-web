@@ -44,6 +44,8 @@ class @Forum
     $(document).on 'click', '.js-post-url', @postUrlClick
     $(document).on 'submit', '.js-forum-posts-jump-to', @jumpToSubmit
 
+    $(document).on 'keyup', @keyboardNavigation
+
     $.subscribe 'stickyHeader', @stickHeader
 
 
@@ -136,6 +138,17 @@ class @Forum
       Turbolinks.visit @postUrlN(postN)
 
     true
+
+  keyboardNavigation: (e) =>
+    return if $(e.target).is('input') or not @_postsCounter.length
+
+    e.preventDefault()
+
+    n = switch e.which
+      when 37 then @currentPostPosition - 1
+      when 39 then @currentPostPosition + 1
+
+    try @jumpTo n
 
 
   scrollTo: (postId) =>
