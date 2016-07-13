@@ -140,7 +140,7 @@ class @Forum
     true
 
   keyboardNavigation: (e) =>
-    return if $(e.target).is('input, select, textarea') or e.target.isContentEditable or not @_postsCounter.length
+    return if osu.isInputElement(e.target) or not @_postsCounter.length
 
     e.preventDefault()
 

@@ -59,6 +59,8 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
   parseJson: (id) ->
     JSON.parse document.getElementById(id).text
 
+  isInputElement: (el) ->
+    el.tagName == 'INPUT' or el.tagName == 'SELECT' or el.tagName == 'TEXTAREA' or el.isContentEditable;
 
   isMobile: -> ! window.matchMedia('(min-width: 920px)').matches
 
@@ -223,3 +225,4 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
                 o.find("[ref=#{k}]").html v
 
             area.append o
+    
