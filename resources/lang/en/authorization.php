@@ -74,6 +74,12 @@ return [
                 'locked' => 'Can not reply to a locked thread.',
                 'no_forum_access' => 'Access to requested forum is required.',
                 'no_permission' => 'No permission to reply.',
+
+                'user' => [
+                    'require_login' => 'Please login to reply.',
+                    'restricted' => "Can't reply while restricted.",
+                    'silenced' => "Can't reply while silenced.",
+                ],
             ],
 
             'store' => [
