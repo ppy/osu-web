@@ -629,7 +629,7 @@ class Beatmapset extends Model
 
         DB::transaction(function () use ($user, $comment) {
             $this->events()->create(['type' => BeatmapsetEvent::DISQUALIFY, 'user_id' => $user->user_id, 'comment' => $comment]);
-            $this->approved = 0;
+            $this->approved = static::PENDING;
             $this->save();
         });
 
@@ -644,7 +644,7 @@ class Beatmapset extends Model
 
         DB::transaction(function () {
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
-            $this->approved = 3;
+            $this->approved = static::QUALIFIED;
             $this->approved_date = Carbon::now();
             $this->save();
         });
