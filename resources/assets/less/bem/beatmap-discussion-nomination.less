@@ -35,7 +35,7 @@
     margin-top: 5px;
   }
 
-  &__message-area, &__message-area-qualified {
+  &__message-area {
     width: 100%;
     min-height: 50px;
     padding: 10px;
@@ -49,11 +49,11 @@
     @media @desktop {
       flex-direction: row;
     }
-  }
 
-  &__message-area-qualified {
-    background-color: @green;
-    color: white;
+    &--qualified {
+      background-color: @green;
+      color: white;
+    }
   }
 
   &__message-text {

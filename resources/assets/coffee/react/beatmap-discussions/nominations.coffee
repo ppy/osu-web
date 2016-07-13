@@ -86,7 +86,7 @@ BeatmapDiscussions.Nominations = React.createClass
               __html: osu.trans 'beatmaps.nominations.disqualifed-at', time_ago: osu.timeago(disqualification.created_at)
 
       div className: "osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact",
-        div className: "#{bdn}__message-area#{(if mapIsQualified then '-qualified' else '')}",
+        div className: "#{bdn}__message-area #{(if mapIsQualified then "#{bdn}__message-area--qualified" else '')}",
           span className: "#{bdn}__message-text",
             if mapCanBeNominated
               osu.trans 'beatmaps.nominations.required-text',
