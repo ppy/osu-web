@@ -87,7 +87,6 @@ return [
         'disqualifed-at' => 'disqualified :time_ago',
         'qualified' => 'Estimated to be ranked :date, if no issues are found.',
         'qualified-soon' => 'Estimated to be ranked soon, if no issues are found.',
-        'soon' => 'soon',
         'incorrect-state' => 'Error performing that action, try refreshing the page.',
     ],
 
