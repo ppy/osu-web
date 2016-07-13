@@ -35,17 +35,14 @@ class HomeController extends Controller
             return $this->getNews();
         }
 
-        $timeAgo = Carbon::now()->subHours(24);
+        $timeAgo = Carbon::now()->subDay();
         $stats = BanchoStats::where('date', '>=', $timeAgo)
             ->whereRaw('banchostats_id mod 10 = 0')
             ->get();
         $totalUsers = Count::totalUsers();
         $currentOnline = ($stats->isEmpty() ? 0 : $stats->last()->users_osu);
 
-        return view('home.landing')
-            ->with('stats', $stats)
-            ->with('totalUsers', $totalUsers)
-            ->with('currentOnline', $currentOnline);
+        return view('home.landing', compact('stats', 'totalUsers', 'currentOnline'));
     }
 
     public function getNews()

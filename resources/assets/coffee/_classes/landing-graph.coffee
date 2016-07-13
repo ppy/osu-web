@@ -16,16 +16,21 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-if (!$('.js-landing-hero-slider').hasClass('slick-initialized'))
-  $('.js-landing-hero-slider').slick
-    fade: true
-    arrows: false
-    autoplay: true
-    adaptiveHeight: true
-    dots: true
-    appendDots: $('.js-landing-graph')
+class @LandingGraph
+  landingUserStatsElements: document.getElementsByClassName('js-landing-graph')
 
-os = osu.getOS()
-others = osu.otherOS os
-$('.js-download-platform').text Lang.get('home.landing.download.for', {'os': os})
-$('.js-download-other').text Lang.get('home.landing.download.other', {'os1': others[0], 'os2': others[1]})
+  constructor: ->
+    $(window).on 'throttled-resize', @landingUserStatsResize
+    $(document).on 'turbolinks:load', @landingUserStatsInitialize
+
+  landingUserStatsInitialize: =>
+    @landingUserStatsElements = document.getElementsByClassName('js-landing-graph')
+    return if !@landingUserStatsElements[0]?
+
+    @landingUserStatsElements[0].chart ?= new LandingUserStats
+    @landingUserStatsElements[0].chart?.init()
+
+  landingUserStatsResize: =>
+    return if !@landingUserStatsElements[0]?
+
+    @landingUserStatsElements[0].chart?.resize()

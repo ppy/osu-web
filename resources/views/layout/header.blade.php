@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <nav class="osu-layout__section osu-layout__section--minimum no-print js-header--main">
-    @include("objects.mobile-header")
+    @include("layout.mobile-header")
 
     <!-- Main style -->
     <div id="nav-background" class="hidden-xs">
@@ -85,4 +85,4 @@
     </div>
 </nav>
 
-@include('layout.popup-container');
+@include('layout.popup-container')

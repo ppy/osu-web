@@ -16,9 +16,7 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-landingUserStatsElements = document.getElementsByClassName('js-landing-graph')
-
-class LandingUserStats
+class @LandingUserStats
   constructor: ->
     # Define margins
     @margin = 
@@ -27,24 +25,15 @@ class LandingUserStats
       bottom: 0
       left: 0
 
-    @width = parseInt(d3.select('.js-landing-graph').style('width')) - (@margin.left) - (@margin.right)
-    @height = parseInt(d3.select('.js-landing-graph').style('height')) - (@margin.top) - (@margin.bottom)
+    # Define the graph
+    @svg = d3.select '.js-landing-graph'
+
+    @getGraphDimensions()
 
     # Define peak circle
     @peakR = 5
 
-    # Define the graph
-    @svg = d3.select '.js-landing-graph'
-
-    @stats = osu.parseJson('json-stats')
-
-    # Define date parser
-    parseDate = d3.time.format('%Y-%m-%d %H:%M:%S').parse
-
-    # Parsing data
-    @stats.forEach (d) ->
-      d.date = parseDate(d.date)
-      d.users_osu = +d.users_osu
+    @loadStats()
 
     # Define area
     @area = d3.svg.area().interpolate('basis')
@@ -54,7 +43,6 @@ class LandingUserStats
         @yScale d.users_osu
 
   modelStats: (data) ->
-    @svg = d3.select '.js-landing-graph'
     @svg.select('svg').remove()
     # Define svg canvas
     @svg = @svg
@@ -90,7 +78,7 @@ class LandingUserStats
 
     # Remove any existing paths
     @svg.selectAll 'path'
-      .remove
+      .remove()
 
     # Appending groups
     @svg.append 'path'
@@ -99,11 +87,8 @@ class LandingUserStats
       .attr 'd', @area
 
     #Find the date for the max, from the end backward
-    i = data.length - 1
-    while i >= 0
-      if @maxElem == null or data[i].users_osu > @maxElem.users_osu
-        @maxElem = data[i]
-      i--
+    for d in data by -1
+      @maxElem = d if !@maxElem? || d.users_osu > @maxElem.users_osu
 
     text = @svg.append 'text' 
       .attr 'class', 'landing-graph__text'
@@ -120,7 +105,7 @@ class LandingUserStats
           return @xScale(@maxElem.date) - @textLength - @peakR * 2
         rightX
 
-    peak = @svg.append 'circle'
+    @svg.append 'circle'
       .attr 'class', 'landing-graph__circle'
       .attr 'cy', 0
       .attr 'cx', @xScale(@maxElem.date)
@@ -129,9 +114,35 @@ class LandingUserStats
   init: ->
     @modelStats @stats
 
+  loadStats: ->
+    @stats = osu.parseJson('json-stats')
+
+    # Define date parser
+    parseDate = d3.time.format('%Y-%m-%d %H:%M:%S').parse
+
+    # Parsing data
+    @stats.forEach (d) ->
+      d.date = parseDate(d.date)
+      d.users_osu = +d.users_osu
+
+    return if @stats.length != 0
+
+    yesterday = new Date()
+    yesterday.setDate yesterday.getDate() - 1
+
+    @stats = [
+      {
+        'date': yesterday,
+        'users_osu': 9000
+      },
+      {
+        'date': new Date(),
+        'users_osu': 9001
+      }
+    ]
+
   resize: =>
-    @width = parseInt(d3.select('.js-landing-graph').style('width')) - (@margin.left) - (@margin.right)
-    @height = parseInt(d3.select('.js-landing-graph').style('height')) - (@margin.top) - (@margin.bottom)
+    @getGraphDimensions()
     d3.select '.js-landing-graph svg'
       .attr 'width', @width + @margin.left + @margin.right
       .attr 'height', @height + @margin.top + @margin.bottom
@@ -155,17 +166,6 @@ class LandingUserStats
       
     @svg.select('.landing-graph__circle').attr 'cx', @xScale(@maxElem.date)
 
-landingUserStatsInitialize = =>
-  landingUserStatsElements = document.getElementsByClassName('js-landing-graph')
-  return if !landingUserStatsElements[0]?
-
-  landingUserStatsElements[0].chart ?= new LandingUserStats
-  landingUserStatsElements[0].chart?.init()
-
-landingUserStatsResize = =>
-  return if !landingUserStatsElements[0]?
-
-  landingUserStatsElements[0].chart?.resize()
-
-$(window).on 'throttled-resize', landingUserStatsResize
-$(document).on 'turbolinks:load', landingUserStatsInitialize
+  getGraphDimensions: ->
+    @width = parseInt(@svg.style('width')) - @margin.left - @margin.right
+    @height = parseInt(@svg.style('height')) - @margin.top - @margin.bottom

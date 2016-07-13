@@ -16,7 +16,6 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-<!-- Specific style for smaller displays (smartphone) -->
 <div class="visible-xs">
     <div class="navbar-mobile navbar navbar-default navbar-static-top bg--{{ $current_section }}" role="navigation">
         <div class="container">

@@ -25,7 +25,7 @@
     @section("content")
     <nav class="osu-layout__row osu-layout__row--landing">
         <!-- Mobile Navigation -->
-        @include('objects.mobile-header', ['subLinks' => false])
+        @include('layout.mobile-header', ['subLinks' => false])
 
         <!-- Desktop Navigation -->
         <div class="landing-nav hidden-xs">
@@ -50,7 +50,7 @@
     </nav>
     <header class="osu-layout__row osu-layout__row--landing">
         <div class="landing-hero">
-            <div class="js-landing-hero-slider landing-hero__slider">
+            <div class="js-landing-hero-slider--new js-landing-hero-slider landing-hero__slider">
                 @for($i = 1; $i <= 2; $i++)
                 <span class="landing-hero__slide">
                     <span class="landing-hero__slide-bg" style="background: url('/images/layout/landing-page/home-slider-{{$i}}.jpg') no-repeat center center / cover"></span>
@@ -97,49 +97,18 @@
     <footer class="osu-layout__section osu-layout__section--landing-footer">
         <div class="osu-layout__row osu-layout__row--landing-sitemap landing-sitemap">
             <div class="osu-layout__col-container osu-layout__col-container--landing-sitemap">
+                @foreach (footer_links() as $section => $links)
                 <div class="osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-3">
                     <ul class="landing-sitemap__list">
                         <li class="landing-sitemap__item">
-                            <div class="landing-sitemap__header">General</div>
+                            <div class="landing-sitemap__header">{{ trans("layout.footer.$section._") }}</div>
                         </li>
-                        <li class="landing-sitemap__item"><a href="{{ route('home') }}" class="landing-sitemap__link">Home</a></li>
-                        <li class="landing-sitemap__item"><a href="{{ route('changelog') }}" class="landing-sitemap__link">Changelog</a></li>
-                        <li class="landing-sitemap__item"><a href="{{ action('BeatmapsetsController@index') }}" class="landing-sitemap__link">Beatmap Listing</a></li>
-                        <li class="landing-sitemap__item"><a href="{{ route('download') }}" class="landing-sitemap__link">Download osu!</a></li>
-                        <li class="landing-sitemap__item"><a href="{{ route('wiki') }}" class="landing-sitemap__link">Wiki</a></li>
+                        @foreach ($links as $action => $link)
+                        <li class="landing-sitemap__item"><a href="{{ $link }}" class="landing-sitemap__link">{{ trans("layout.footer.$section.$action") }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
-                <div class="osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-3">
-                    <ul class="landing-sitemap__list">
-                        <li class="landing-sitemap__item">
-                            <div class="landing-sitemap__header">Help &amp; Community</div>
-                        </li>
-                        <li class="landing-sitemap__item"><a href="{{ route('faq') }}" class="landing-sitemap__link">Frequently Asked Questions</a></li>
-                        <li class="landing-sitemap__item"><a href="{{ route('forum.forums.index') }}" class="landing-sitemap__link">Community Forums</a></li>
-                        <li class="landing-sitemap__item"><a href="#" class="landing-sitemap__link">Live Streams</a></li>
-                        <li class="landing-sitemap__item"><a href="#" class="landing-sitemap__link">Report an Issue</a></li>
-                    </ul>
-                </div>
-                <div class="osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-3">
-                    <ul class="landing-sitemap__list">
-                        <li class="landing-sitemap__item">
-                            <div class="landing-sitemap__header">Support osu!</div>
-                        </li>
-                        <li class="landing-sitemap__item"><a href="{{ route('support-the-game') }}" class="landing-sitemap__link">Supporter Tags</a></li>
-                        <li class="landing-sitemap__item"><a href="{{ action('StoreController@getListing') }}" class="landing-sitemap__link">Merchandise</a></li>
-                    </ul>
-                </div>
-                <div class="osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-3">
-                    <ul class="landing-sitemap__list">
-                        <li class="landing-sitemap__item">
-                            <div class="landing-sitemap__header">Legal &amp; Status</div>
-                        </li>
-                        <li class="landing-sitemap__item"><a href="{{ config("osu.urls.legal.tos") }}" class="landing-sitemap__link">Terms of Service</a></li>
-                        <li class="landing-sitemap-list__item"><a href="{{ config("osu.urls.legal.dmca") }}" class="landing-sitemap__link">Copyright (DMCA)</a></li>
-                        <li class="landing-sitemap-list__item"><a href="{{ config("osu.urls.legal.server") }}" class="landing-sitemap__link">Server Status</a></li>
-                        <li class="landing-sitemap-list__item"><a href="{{ config("osu.urls.legal.osustatus") }}" class="landing-sitemap__link">@osustatus</a></li>
-                    </ul>
-                </div>
+                @endforeach
             </div>
         </div>
         <div class="landing-footer-social">
@@ -160,10 +129,7 @@
 
     @section ("script")
     @parent
-
-    <script id="json-stats" type="application/json">
-        {!! json_encode($stats) !!}
-    </script>
-
-    <script src="{{ elixir("js/landing-page.js") }}" data-turbolinks-track></script>
+        <script id="json-stats" type="application/json">
+            {!! json_encode($stats) !!}
+        </script>
     @endsection

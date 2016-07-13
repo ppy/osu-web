@@ -130,6 +130,35 @@ return [
             ],
         ],
     ],
+    'footer' => [
+        'general' => [
+            '_' => 'General',
+            'home' => 'Home',
+            'changelog' => 'Changelog',
+            'beatmaps' => 'Beatmap Listings',
+            'download' => 'Download osu!',
+            'wiki' => 'Wiki',
+        ],
+        'help' => [
+            '_' => 'Help & Community',
+            'faq' => 'Frequently Asked Questions',
+            'forum' => 'CommunityForums',
+            'livestreams' => 'Live Streams',
+            'report' => 'Report an Issue',
+        ],
+        'support' => [
+            '_' => 'Support osu!',
+            'tags' => 'Supporter Tags',
+            'merchandise' => 'Merchandise',
+        ],
+        'legal' => [
+            '_' => 'Legal & Status',
+            'tos' => 'Terms of Service',
+            'copyright' => 'Copyright (DMCA)',
+            'serverStatus' => 'Server Status',
+            'osuStatus' => '@osustatus',
+        ],
+    ],
     'errors' => [
         '404' => [
             'error' => 'Page Missing',

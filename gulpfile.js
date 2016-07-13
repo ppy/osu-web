@@ -73,8 +73,7 @@ elixir(function(mix) {
     'shared.coffee',
     'turbolinks-overrides.coffee',
 
-    'main.coffee',
-    'landing-page/*.coffee'
+    'main.coffee'
   ], 'resources/assets/js/build/app-main.js')
   .scripts([
     path.join(node_root, 'turbolinks/dist/turbolinks.js'),
