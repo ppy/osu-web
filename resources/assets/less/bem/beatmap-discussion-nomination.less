@@ -37,10 +37,10 @@
 
   &__message-area {
     width: 100%;
-    min-height: 50px;
     padding: 10px;
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
+    align-items: center;
     background-color: @yellow-lighter;
 
     display: flex;
@@ -57,21 +57,17 @@
   }
 
   &__message-text {
-    top: 6px;
-    font-size: 14px;
-    padding-bottom: 15px;
+    align-items: center;
     @media @desktop {
-      padding-bottom: 15px;
-      flex-basis: 85%;
-      max-width: 85%;
+      flex: 1;
     }
   }
 
   &__button-area {
-    margin-top: 2px;
+    margin-top: 5px;
     @media @desktop {
-      flex-basis: 15%;
-      max-width: 15%;
+      flex: none;
+      margin-top: 0px;
     }
   }
 
