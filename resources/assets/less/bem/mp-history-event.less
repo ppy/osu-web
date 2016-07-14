@@ -20,7 +20,26 @@
 .mp-history-event {
   display: flex;
   align-items: baseline;
-  width: 100%;
+
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+
+  background-color: @grey-e;
+
+  padding-bottom: @spacing * 0.5;
+
+  .mp-history-content__show-more-box + &, .mp-history-game + & {
+    padding-top: @spacing * 2;
+    border-radius: @border-radius-base @border-radius-base 0 0;
+  }
+
+  &--last, &:last-child {
+    padding-bottom: @spacing * 2;
+    border-radius: 0 0 @border-radius-base @border-radius-base;
+
+    margin-bottom: @spacing * 2;
+  }
 
   &__time-box {
     display: flex;

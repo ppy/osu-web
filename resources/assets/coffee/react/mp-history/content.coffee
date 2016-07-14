@@ -40,18 +40,6 @@ class MPHistory.Content extends React.Component
       div className: 'osu-layout__row osu-layout__row--page-mp-history',
         Lang.get 'multiplayer.match.loading-events'
     else
-      gameIds = _(@props.events)
-        .map (m, i) ->
-          return if !m.game?
-          i
-        .filter (m) -> m?
-        .value()
-
-        gameIds = [-1, gameIds...]
-
-        # grabbing events that are past the last game
-        lastEvents = @props.events[_.last(gameIds) + 1..@props.events.length]
-
       div className: 'osu-layout__row osu-layout__row--page-mp-history js-mp-history--event-box',
         if !@props.full && @props.allEventsCount > 500
           div className: 'mp-history-content__show-more-box',
@@ -60,22 +48,16 @@ class MPHistory.Content extends React.Component
               href: laroute.route 'multiplayer.match', matches: @props.id, full: true
               Lang.get 'multiplayer.match.more-events'
 
-        for id, i in gameIds
-          continue if id == -1
-
-          prevId = gameIds[i - 1]
-
-          div key: id,
-            if (id - prevId > 1)
-              events = @props.events[prevId + 1..id - 1]
-
-              if !_.isEmpty events
-                el MPHistory.EventsList, events: events, lookupUser: @props.lookupUser
-
+        for event, i in @props.events
+          if event.game?
             el MPHistory.Game,
-              event: @props.events[id]
-              teamScores: @teamScores id
+              event: event
+              teamScores: @teamScores i
               lookupUser: @props.lookupUser
-
-        if !_.isEmpty lastEvents
-          el MPHistory.EventsList, events: lastEvents, lookupUser: @props.lookupUser
+              key: event.id
+          else
+            el MPHistory.Event,
+              event: event
+              lookupUser: @props.lookupUser
+              key: event.id
+              last: @props.events[i + 1]? && @props.events[i + 1].game?

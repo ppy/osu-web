@@ -30,7 +30,10 @@ class MPHistory.Event extends React.Component
   render: ->
     user = @props.lookupUser @props.event.user_id
 
-    div className: 'mp-history-events__event mp-history-event',
+    className = 'mp-history-events__event mp-history-event'
+    className += ' mp-history-event--last' if @props.last
+
+    div className: className,
       div className: 'mp-history-event__time-box',
         span className: 'mp-history-event__time',
           moment(@props.event.timestamp).format 'HH:mm:ss'
