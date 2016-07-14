@@ -735,7 +735,7 @@ class Beatmapset extends Model
 
     public function status()
     {
-        return array_search($this->approved, self::STATES);
+        return array_search($this->approved, self::STATES, true);
     }
 
     public function defaultJson($currentUser = null)
