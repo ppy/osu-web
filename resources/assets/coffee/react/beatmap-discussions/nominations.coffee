@@ -27,7 +27,7 @@ BeatmapDiscussions.Nominations = React.createClass
     @doAjax 'nominate'
 
   disqualify: ->
-    reason = osu.trans('beatmaps.nominations.disqualification-prompt')
+    reason = prompt osu.trans('beatmaps.nominations.disqualification-prompt')
     return unless reason
 
     @doAjax 'disqualify', reason
