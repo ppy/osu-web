@@ -70,20 +70,13 @@ class Beatmapset extends Model
         'cover_updated_at',
     ];
 
-    const GRAVEYARD = -2;
-    const WIP = -1;
-    const PENDING = 0;
-    const RANKED = 1;
-    const APPROVED = 2;
-    const QUALIFIED = 3;
-
     const STATES = [
-        -2 => 'graveyard',
-        -1 => 'wip',
-        0 => 'pending',
-        1 => 'ranked',
-        2 => 'approved',
-        3 => 'qualified',
+        'graveyard' => -2,
+        'wip' => -1,
+        'pending' => 0,
+        'ranked' => 1,
+        'approved' => 2,
+        'qualified' => 3,
     ];
 
     const NOMINATIONS_PER_DAY = 1;
@@ -117,37 +110,37 @@ class Beatmapset extends Model
 
     public function scopeGraveyard($query)
     {
-        return $query->where('approved', '=', static::GRAVEYARD);
+        return $query->where('approved', '=', self::STATES['graveyard']);
     }
 
     public function scopeWip($query)
     {
-        return $query->where('approved', '=', static::WIP);
+        return $query->where('approved', '=', self::STATES['wip']);
     }
 
     public function scopeUnranked($query)
     {
-        return $query->where('approved', '=', static::PENDING);
+        return $query->where('approved', '=', self::STATES['pending']);
     }
 
     public function scopeRanked($query)
     {
-        return $query->where('approved', '=', static::RANKED);
+        return $query->where('approved', '=', self::STATES['ranked']);
     }
 
     public function scopeApproved($query)
     {
-        return $query->where('approved', '=', static::APPROVED);
+        return $query->where('approved', '=', self::STATES['approved']);
     }
 
     public function scopeQualified($query)
     {
-        return $query->where('approved', '=', static::QUALIFIED);
+        return $query->where('approved', '=', self::STATES['qualified']);
     }
 
     public function scopeRankedOrApproved($query)
     {
-        return $query->whereIn('approved', [static::RANKED, static::APPROVED]);
+        return $query->whereIn('approved', [self::STATES['ranked'], self::STATES['approved']]);
     }
 
     public function scopeActive($query)
@@ -159,32 +152,32 @@ class Beatmapset extends Model
 
     public function isGraveyard()
     {
-        return $this->approved === static::GRAVEYARD;
+        return $this->approved === self::STATES['graveyard'];
     }
 
     public function isWIP()
     {
-        return $this->approved === static::WIP;
+        return $this->approved === self::STATES['wip'];
     }
 
     public function isPending()
     {
-        return $this->approved === static::PENDING;
+        return $this->approved === self::STATES['pending'];
     }
 
     public function isRanked()
     {
-        return $this->approved === static::RANKED;
+        return $this->approved === self::STATES['ranked'];
     }
 
     public function isApproved()
     {
-        return $this->approved === static::APPROVED;
+        return $this->approved === self::STATES['approved'];
     }
 
     public function isQualified()
     {
-        return $this->approved === static::QUALIFIED;
+        return $this->approved === self::STATES['qualified'];
     }
 
     private static function sanitizeSearchParams(array &$params = [])
@@ -285,12 +278,12 @@ class Beatmapset extends Model
             switch ((int) $status) {
                 case 0: // Ranked & Approved
                     $shouldParams[] = [
-                        ['match' => ['approved' => self::RANKED]],
-                        ['match' => ['approved' => self::APPROVED]],
+                        ['match' => ['approved' => self::STATES['ranked']]],
+                        ['match' => ['approved' => self::STATES['approved']]],
                     ];
                     break;
                 case 1: // Approved
-                    $matchParams[] = ['match' => ['approved' => self::APPROVED]];
+                    $matchParams[] = ['match' => ['approved' => self::STATES['approved']]];
                     break;
                 case 2: // Favourites
                     $favs = model_pluck($current_user->favouriteBeatmapsets(), 'beatmapset_id');
@@ -299,16 +292,16 @@ class Beatmapset extends Model
                 case 3: // Mod Requests
                     $maps = model_pluck(ModQueue::select(), 'beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
-                    $matchParams[] = ['match' => ['approved' => self::PENDING]];
+                    $matchParams[] = ['match' => ['approved' => self::STATES['pending']]];
                     break;
                 case 4: // Pending
                     $shouldParams[] = [
-                        ['match' => ['approved' => self::WIP]],
-                        ['match' => ['approved' => self::PENDING]],
+                        ['match' => ['approved' => self::STATES['wip']]],
+                        ['match' => ['approved' => self::STATES['pending']]],
                     ];
                     break;
                 case 5: // Graveyard
-                    $matchParams[] = ['match' => ['approved' => self::GRAVEYARD]];
+                    $matchParams[] = ['match' => ['approved' => self::STATES['graveyard']]];
                     break;
                 case 6: // My Maps
                     $maps = model_pluck($current_user->beatmapsets(), 'beatmapset_id');
@@ -318,7 +311,7 @@ class Beatmapset extends Model
                     break;
             }
         } else {
-            $matchParams[] = ['range' => ['approved' => ['gte' => self::PENDING]]];
+            $matchParams[] = ['range' => ['approved' => ['gte' => self::STATES['pending']]]];
         }
 
         if (presence($mode) !== null) {
@@ -629,7 +622,7 @@ class Beatmapset extends Model
 
         DB::transaction(function () use ($user, $comment) {
             $this->events()->create(['type' => BeatmapsetEvent::DISQUALIFY, 'user_id' => $user->user_id, 'comment' => $comment]);
-            $this->approved = static::PENDING;
+            $this->approved = self::STATES['pending'];
             $this->save();
         });
 
@@ -644,7 +637,7 @@ class Beatmapset extends Model
 
         DB::transaction(function () {
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
-            $this->approved = static::QUALIFIED;
+            $this->approved = self::STATES['qualified'];
             $this->approved_date = Carbon::now();
             $this->save();
         });
@@ -720,8 +713,8 @@ class Beatmapset extends Model
         // relevant events differ depending on state of beatmapset
         $events = null;
         switch ($this->approved) {
-            case self::PENDING:
-            case self::QUALIFIED:
+            case self::STATES['pending']:
+            case self::STATES['qualified']:
                 // last 'disqualify' event (if any) and all events since
                 $disqualifyEvent = $this->events()->disqualifications()->orderBy('created_at', 'desc')->first();
                 if ($disqualifyEvent) {
@@ -730,8 +723,8 @@ class Beatmapset extends Model
                     $events = $this->events();
                 }
                 break;
-            case self::RANKED:
-            case self::APPROVED:
+            case self::STATES['ranked']:
+            case self::STATES['approved']:
                 // all events(?) doesn't matter until a history display is created anyway.
                 $events = $this->events();
                 break;
@@ -742,7 +735,7 @@ class Beatmapset extends Model
 
     public function status()
     {
-        return static::STATES[$this->approved];
+        return array_search($this->approved, self::STATES);
     }
 
     public function defaultJson($currentUser = null)

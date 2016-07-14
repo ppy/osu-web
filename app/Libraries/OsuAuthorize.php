@@ -122,7 +122,7 @@ class OsuAuthorize
             return 'unauthorized';
         }
 
-        if ($beatmapset->approved !== Beatmapset::PENDING) {
+        if ($beatmapset->approved !== Beatmapset::STATES['pending']) {
             return 'beatmap_discussion.nominate.incorrect-state';
         }
 
@@ -141,7 +141,7 @@ class OsuAuthorize
             return 'unauthorized';
         }
 
-        if ($beatmapset->approved !== Beatmapset::QUALIFIED) {
+        if ($beatmapset->approved !== Beatmapset::STATES['qualified']) {
             return 'beatmap_discussion.disqualify.incorrect-state';
         }
 
