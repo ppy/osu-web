@@ -264,8 +264,8 @@ class OsuAuthorize
     {
         $prefix = 'forum.topic.reply.';
 
-        $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user);
+        $this->ensureLoggedIn($user, $prefix.'user.');
+        $this->ensureCleanRecord($user, $prefix.'user.');
 
         if ($user->isGMT()) {
             return 'ok';

@@ -27,7 +27,7 @@ return [
         'remember' => 'Recordarme',
         'title' => 'Inicia sesión para continuar',
         'failed' => 'Nombre de usuario o contraseña incorrectos',
-        'register' => '¿No tienes una cuenta de osu!? Crear una',
+        'register' => '¿No tienes una cuenta de osu!? Crea una',
         'forgot' => '¿Olvidaste tu contraseña?',
         'beta' => [
             'main' => 'Acceso a la beta es actualmente restringido a usuarios privilegiados.',
@@ -97,10 +97,10 @@ return [
                 'total_info' => 'Basado en qué tanto ha colaborado el usuario a la moderación del beatmap. Ve <a href="'.config('osu.urls.user.kudosu').'">esta página</a> para más información.',
             ],
             'me' => [
-                'title' => 'me!', // translating this is a little tricky
+                'title' => 'me!', // translating this is a little tricky (maybe "sobre mi"?)
             ],
             'medals' => [
-                'title' => 'Medallss',
+                'title' => 'Medallas',
             ],
             'recent_activities' => [
                 'title' => 'Reciente',
@@ -109,7 +109,7 @@ return [
                 'best' => [
                     'title' => 'Mejor rendimiento',
                 ],
-                'empty' => 'No hay récords de rendimiento increíbles aún. :(',
+                'empty' => 'No hay récords increíbles aún. :(',
                 'first' => [
                     'title' => 'Primeros Lugares',
                 ],
@@ -128,10 +128,10 @@ return [
                 'none' => 'Ninguno... aún.',
             ],
         ],
-        'first_members' => 'aquí desde el principio',
+        'first_members' => 'desde el comienzo',
         'is_supporter' => 'osu!supporter',
         'is_developer' => 'osu!developer',
-        'lastvisit' => 'Visto por última vez el :date.',
+        'lastvisit' => 'Visto por última vez :date.',
         'joined_at' => 'se unió el :date',
         'more_achievements' => 'y más',
         'origin' => [
@@ -164,8 +164,8 @@ return [
             'maximum_combo' => 'Combo máximo',
             'play_count' => 'Conteo de jugadas',
             'ranked_score' => 'Puntuación rankeada',
-            'replays_watched_by_others' => 'Replays Observadas por Otros',
-            'score_ranks' => 'Score Ranks',
+            'replays_watched_by_others' => 'Replays observadas por otros',
+            'score_ranks' => 'Score Ranks', //?
             'total_hits' => 'Aciertos totales',
             'total_score' => 'Puntuación total',
         ],

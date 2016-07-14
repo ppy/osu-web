@@ -72,7 +72,7 @@ class TopicsController extends Controller
     {
         $topic = Topic::findOrFail($id);
 
-        priv_check('ForumTopicLock', $topic)->ensureCan();
+        priv_check('ForumTopicModerate', $topic)->ensureCan();
 
         $lock = Request::input('lock') !== '0';
         $topic->lock($lock);
@@ -260,7 +260,7 @@ class TopicsController extends Controller
     {
         $topic = Topic::findOrFail($topicId);
 
-        priv_check('ForumTopicModerate', $topic)->ensureCan();
+        priv_check('ForumTopicVote', $topic)->ensureCan();
 
         $params = get_params(Request::input(), 'forum_topic_vote', ['option_ids:int[]']);
         $params['user_id'] = Auth::user()->user_id;

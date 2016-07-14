@@ -20,6 +20,7 @@
 namespace App\Transformers;
 
 use App\Models\Beatmapset;
+use App\Models\DeletedUser;
 use League\Fractal;
 
 class BeatmapsetTransformer extends Fractal\TransformerAbstract
@@ -67,7 +68,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
     public function includeUser(Beatmapset $beatmapset)
     {
         return $this->item(
-            $beatmapset->user,
+            $beatmapset->user ?? (new DeletedUser),
             new UserCompactTransformer
         );
     }
