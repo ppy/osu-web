@@ -17,30 +17,19 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models;
+namespace App\Transformers;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BeatmapsetEvent;
+use League\Fractal;
 
-class UserGroup extends Model
+class BeatmapsetEventTransformer extends Fractal\TransformerAbstract
 {
-    protected $table = 'phpbb_user_group';
-    public $timestamps = false;
-
-    // taken from current forum
-    const GROUPS = [
-        'default' => 2,
-        'gmt' => 4,
-        'admin' => 5,
-        'qat' => 7,
-        'dev' => 11,
-        'alumni' => 16,
-        'hax' => 17,
-        'mod' => 18,
-        'bng' => 28,
-    ];
-
-    public function user()
+    public function transform(BeatmapsetEvent $event = null)
     {
-        return $this->belongsTo(User::class);
+        return [
+            'type' => $event->type,
+            'comment' => $event->comment,
+            'created_at' => $event->created_at ? $event->created_at->toIso8601String() : null,
+        ];
     }
 }

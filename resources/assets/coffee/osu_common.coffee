@@ -92,14 +92,6 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     $('.timeago-raw').timeago().removeClass 'timeago-raw'
 
 
-  timeago: (time) ->
-    el = document.createElement('time')
-    el.classList.add 'timeago-raw', 'timeago'
-    el.setAttribute 'datetime', time
-    el.textContent = time
-    el.outerHTML
-
-
   reloadPage: (keepScroll = true) ->
     $(document).off '.ujsHideLoadingOverlay'
     Turbolinks.clearCache()

@@ -355,7 +355,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->isDev()
             or $this->isAdmin()
             or $this->isGMT()
-            or $this->isBAT()
+            or $this->isQAT()
             or $this->ownsMod($mod);
     }
 
@@ -374,9 +374,9 @@ class User extends Model implements AuthenticatableContract, Messageable
     |
     */
 
-    public function isBAT()
+    public function isQAT()
     {
-        return $this->isGroup(UserGroup::GROUPS['bat']);
+        return $this->isGroup(UserGroup::GROUPS['qat']);
     }
 
     public function isAdmin()
@@ -389,9 +389,9 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->isGroup(UserGroup::GROUPS['gmt']);
     }
 
-    public function isMAT()
+    public function isBNG()
     {
-        return $this->isGroup(UserGroup::GROUPS['mat']);
+        return $this->isGroup(UserGroup::GROUPS['bng']);
     }
 
     public function isHax()
@@ -502,6 +502,16 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function favouriteBeatmapsets()
     {
         return Beatmapset::whereIn('beatmapset_id', FavouriteBeatmapset::where('user_id', '=', $this->user_id)->select('beatmapset_id')->get());
+    }
+
+    public function beatmapsetNominations()
+    {
+        return $this->hasMany(BeatmapsetEvent::class)->where('type', BeatmapsetEvent::NOMINATE);
+    }
+
+    public function beatmapsetNominationsToday()
+    {
+        return $this->beatmapsetNominations()->where('created_at', '>', Carbon::now()->subDay())->count();
     }
 
     public function beatmapPlaycounts()

@@ -82,6 +82,8 @@ rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port
 rootUrl += '/'
 
+jQuery.timeago.settings.allowFuture = true
+
 # Internal Helper
 $.expr[':'].internal = (obj, index, meta, stack) ->
   # Prepare
