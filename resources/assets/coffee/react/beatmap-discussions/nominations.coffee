@@ -50,13 +50,6 @@ BeatmapDiscussions.Nominations = React.createClass
     .always LoadingOverlay.hide
 
   componentDidMount: ->
-    $.subscribe 'beatmapset:nominate.beatmapset-nominations', @nominate
-    $.subscribe 'beatmapset:disqualify.beatmapset-nominations', @disqualify
-
-  componentWillUnmount: ->
-    $.unsubscribe '.beatmapset-nominations'
-
-  componentDidMount: ->
     osu.pageChange()
 
   componentDidUpdate: ->
@@ -67,14 +60,14 @@ BeatmapDiscussions.Nominations = React.createClass
     mapCanBeNominated = (@props.beatmapset.status == 'pending')
     mapIsQualified = (@props.beatmapset.status == 'qualified')
 
+    return unless mapCanBeNominated or mapIsQualified
+
     if mapIsQualified
       rankingETA = @props.beatmapset.nominations.data.ranking_eta
 
     if mapCanBeNominated
       nominations = @props.beatmapset.nominations.data
       disqualification = nominations.disqualification
-
-    return unless mapCanBeNominated or mapIsQualified
 
     div className: bdn,
       if disqualification
