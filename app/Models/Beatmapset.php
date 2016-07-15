@@ -718,7 +718,7 @@ class Beatmapset extends Model
                 // last 'disqualify' event (if any) and all events since
                 $disqualifyEvent = $this->events()->disqualifications()->orderBy('created_at', 'desc')->first();
                 if ($disqualifyEvent) {
-                    $events = $events->where('id', '>=', $disqualifyEvent->id);
+                    $events->where('id', '>=', $disqualifyEvent->id);
                 }
         }
 
