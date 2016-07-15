@@ -711,23 +711,15 @@ class Beatmapset extends Model
     public function recentEvents()
     {
         // relevant events differ depending on state of beatmapset
-        $events = null;
+        $events = $this->events();
         switch ($this->approved) {
             case self::STATES['pending']:
             case self::STATES['qualified']:
                 // last 'disqualify' event (if any) and all events since
                 $disqualifyEvent = $this->events()->disqualifications()->orderBy('created_at', 'desc')->first();
                 if ($disqualifyEvent) {
-                    $events = $this->events()->where('id', '>=', $disqualifyEvent->id);
-                } else {
-                    $events = $this->events();
+                    $events = $events->where('id', '>=', $disqualifyEvent->id);
                 }
-                break;
-            case self::STATES['ranked']:
-            case self::STATES['approved']:
-                // all events(?) doesn't matter until a history display is created anyway.
-                $events = $this->events();
-                break;
         }
 
         return $events;
