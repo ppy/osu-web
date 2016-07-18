@@ -86,7 +86,7 @@ class ForumSeeder extends Seeder
 
             foreach (App\Models\Forum\Forum::all() as $forum) {
                 foreach ($authOptionIds as $optionId) {
-                    $group = new App\Models\Forum\AuthGroup;
+                    $group = new App\Models\Forum\Authorize;
 
                     $group->group_id = App\Models\UserGroup::GROUPS['default'];
                     $group->forum_id = $forum->forum_id;
