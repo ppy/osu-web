@@ -1,0 +1,67 @@
+
+/**
+*    Copyright 2016 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License version 3
+*    as published by the Free Software Foundation.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
+.team-members {
+    width: 100%;
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    padding-top: @grid-gutter-width/2;
+    padding-bottom: @grid-gutter-width/4;
+    padding-left: @grid-gutter-width/2;
+    padding-right: @grid-gutter-width/2;
+    &__list {
+        min-height: @profile-avatar-size;
+        width: 100%;
+        flex-direction: row;
+        display: flex;
+        flex-flow: row wrap;
+    }
+    &__title {
+        font-size: 18px;
+        font-weight: 500;
+        margin-top: (@spacing * 2);
+        margin-bottom: (@spacing * 2);
+
+        &--small {
+            font-size: 15px;
+            margin-top: (@spacing * 3);
+        }
+    }
+    &__add {
+        .default-border-radius();
+        .default-box-shadow();
+        width: @profile-avatar-size;
+        height: @profile-avatar-size;
+        margin: 5px;
+        background-color: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.25s ease;
+        &:hover {
+            background-color: #ccc;
+        }
+    }
+    &__icon {
+        font-size: 24px;
+        color: #fff;
+    }
+}

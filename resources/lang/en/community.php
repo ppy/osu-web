@@ -132,7 +132,8 @@ return [
             'large' => 'osu!public Slack Access',
         ],
 
-        'disabled' => 'The public slack community is temporarily unavailable. If you wish to reach out, please create an issue on the appropriate <a href="https://github.com/ppy">github repository</a> or contact us at <a href="mailto::mail">:mail</a>.',
+
+        'disabled' => 'The public slack community has been disabled due to the continous abuse.<br />We apologize for any inconvenience.',
 
         'guest-begin' => 'You need to be ',
         'guest-middle' => 'logged in',

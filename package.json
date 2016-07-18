@@ -1,4 +1,6 @@
 {
+  "name": "osu!web",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "babel-preset-es2015": "^6.3.13",
@@ -20,6 +22,7 @@
     "react": "^15.1.0",
     "react-addons-pure-render-mixin": "^15.1.0",
     "react-dom": "^15.1.0",
+    "react-bootstrap": "^0.29.4",
     "retina.js": "^1.1.0",
     "timeago": "^1.5.0",
     "turbolinks": "^5.0.0-beta4"

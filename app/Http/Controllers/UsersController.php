@@ -143,4 +143,11 @@ class UsersController extends Controller
 
         return view('users.show', compact('user', 'userArray', 'achievements'));
     }
+
+    public function search()
+    {
+        $query = Request::input('query');
+        //return User::where('username', 'LIKE', "%$query%")->paginate(5);
+        return fractal_collection_array(User::where('username', 'LIKE', "%$query%")->paginate(5), new UserTransformer());
+    }
 }
