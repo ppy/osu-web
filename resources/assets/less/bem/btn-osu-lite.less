@@ -46,6 +46,42 @@
     }
   }
 
+  &--pink {
+    @__bgcolor: @pink;
+    background-color: @__bgcolor;
+    color: @grey-f;
+
+    &:focus {
+      background-color: darken(@__bgcolor, 5%);
+    }
+
+    &:hover {
+      background-color: darken(@__bgcolor, 10%);
+    }
+
+    &:active {
+      background-color: darken(@__bgcolor, 15%);
+    }
+  }
+
+  &--green {
+    @__bgcolor: @green;
+    background-color: @__bgcolor;
+    color: @grey-f;
+
+    &:focus {
+      background-color: darken(@__bgcolor, 5%);
+    }
+
+    &:hover {
+      background-color: darken(@__bgcolor, 10%);
+    }
+
+    &:active {
+      background-color: darken(@__bgcolor, 15%);
+    }
+  }
+
   &--fat {
     padding: (@spacing * 2) (@spacing * 5 / 2);
   }

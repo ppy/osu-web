@@ -80,8 +80,8 @@ class Topic extends Model
             }
 
             if (($params['cover'] ?? null) !== null) {
-                $cover->topic()->associate($topic);
-                $cover->save();
+                $params['cover']->topic()->associate($topic);
+                $params['cover']->save();
             }
         });
 

@@ -21,27 +21,33 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserGroup extends Model
+class BeatmapsetEvent extends Model
 {
-    protected $table = 'phpbb_user_group';
-    protected $primaryKey = 'group_id';
-    public $timestamps = false;
+    protected $guarded = [];
 
-    // taken from current forum
-    const GROUPS = [
-        'default' => 2,
-        'gmt' => 4,
-        'admin' => 5,
-        'qat' => 7,
-        'dev' => 11,
-        'alumni' => 16,
-        'hax' => 17,
-        'mod' => 18,
-        'bng' => 28,
-    ];
+    const NOMINATE = 'nominate';
+    const QUALIFY = 'qualify';
+    const DISQUALIFY = 'disqualify';
+    const APPROVE = 'approve';
+    const RANK = 'rank';
+
+    public function beatmapset()
+    {
+        return $this->belongsTo(Beatmapset::class);
+    }
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopeNominations($query)
+    {
+        return $query->where('type', self::NOMINATE);
+    }
+
+    public function scopeDisqualifications($query)
+    {
+        return $query->where('type', self::DISQUALIFY);
     }
 }
