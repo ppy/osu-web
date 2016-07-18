@@ -32,13 +32,13 @@ return [
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'El acceso al canal solicitado no se te está permitido.',
+                'no_access' => 'No tienes permiso para acceder al canal solicitado.',
             ],
         ],
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'Se requiere acceso al canal objetivo.',
+                    'no_access' => 'Se requiere acceso al canal.',
                     'moderated' => 'El canal está actualmente moderado.',
                 ],
                 'not_allowed' => 'No se puede enviar un mensaje mientras se esté baneado/restringido/silenciado.',

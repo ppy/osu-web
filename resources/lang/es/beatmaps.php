@@ -35,11 +35,11 @@ return [
         'edit' => 'editar',
         'edited' => 'Última edición por :editor :update_time',
         'empty' => [
-            'empty' => 'Aún no hay discusiones!',
+            'empty' => '¡Aún no hay discusiones!',
             'filtered' => 'Ninguna discusión coincide con el filtro seleccionado.',
         ],
         'message_hint' => [
-            'in_general' => 'Este post irá a la discusión general de beatmapset. Para moddear este beatmap, empieza un mensaje con linea de tiempo (ejem: 00:12:345).',
+            'in_general' => 'Este post irá a la discusión general de beatmapset. Para moddear este beatmap, empieza un mensaje con linea de tiempo (ejemplo: 00:12:345).',
             'in_timeline' => 'Para moddear multiples lineas de tiempo, escríbelas múltiples veces (un post por linea de tiempo).',
         ],
         'message_placeholder' => 'Escribe aquí para postear',
@@ -84,7 +84,7 @@ return [
                 'made-by' => 'creado por :user',
                 'submitted' => 'enviado el ',
                 'ranked' => 'rankeado el ',
-                'logged-out' => 'Necesitas iniciar sesión para descargar beatmaps!',
+                'logged-out' => '¡Necesitas iniciar sesión para descargar beatmaps!',
                 'download' => [
                     'normal' => 'descargar',
                     'direct' => 'osu!direct',
@@ -92,10 +92,10 @@ return [
                 ],
             ],
             'stats' => [
-                'cs' => 'Circle Size',
-                'hp' => 'HP Drain',
-                'od' => 'Accuracy',
-                'ar' => 'Approach Rate',
+                'cs' => 'Tamaño de círculo',
+                'hp' => 'Disminución de HP',
+                'od' => 'Precisión',
+                'ar' => 'Velocidad de aproximación',
                 'stars' => 'Estrellas de Dificultad',
                 'length' => 'Duración',
                 'bpm' => 'BPM',
@@ -159,7 +159,7 @@ return [
     ],
     'status' => [
         'any' => 'Cualquiera',
-        'ranked-approved' => 'Rankeados & Aprobados',
+        'ranked-approved' => 'Rankeados y Aprobados',
         'approved' => 'Aprobados',
         'faves' => 'Favoritos',
         'modreqs' => 'Solicitan Mod',
