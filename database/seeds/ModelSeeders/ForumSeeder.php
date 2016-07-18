@@ -15,11 +15,16 @@ class ForumSeeder extends Seeder
         $faker = Faker\Factory::create();
 
         try {
-            // DB::table('phpbb_forums')->delete();
-            // DB::table('phpbb_topics')->delete();
-            // DB::table('phpbb_posts')->delete();
+            // Create appropriate forum permissions
+            $authOptionIds = [];
 
-            $forums = [];
+            foreach (['f_post', 'f_reply'] as $authOption) {
+                $option = new App\Models\Forum\AuthOption;
+                $option->auth_option = $authOption;
+                $option->save();
+
+                $authOptionIds[] = $option->auth_option_id;
+            }
 
             $beatmapCount = App\Models\Beatmapset::count();
             if ($beatmapCount > 0) {
@@ -79,18 +84,18 @@ class ForumSeeder extends Seeder
                 }
             });
 
-            // Create user page forums
-            $f = App\Models\Forum\Forum::create([
-                'forum_id' => 70,
-                'forum_name' => 'User Pages',
-                'forum_desc' => 'User Profile Pages',
-                'forum_type' => 0,
-            ]);
-            $f2 = $f->subforums()->save(factory(App\Models\Forum\Forum::class, 'child')->make([
-                'parent_id' => 70,
-                'forum_name' => 'User Profile Pages',
-                'forum_desc' => 'User Profile custom page',
-            ]));
+            foreach (App\Models\Forum\Forum::all() as $forum) {
+                foreach ($authOptionIds as $optionId) {
+                    $group = new App\Models\Forum\AuthGroup;
+
+                    $group->group_id = App\Models\UserGroup::GROUPS['default'];
+                    $group->forum_id = $forum->forum_id;
+                    $group->auth_option_id = $optionId;
+                    $group->auth_setting = 1;
+
+                    $group->save();
+                }
+            }
         } catch (\Illuminate\Database\QueryException $e) {
             echo $e->getMessage()."\r\n";
         } catch (Exception $ex) {

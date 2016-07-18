@@ -59,6 +59,8 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
   parseJson: (id) ->
     JSON.parse document.getElementById(id).text
 
+  isInputElement: (el) ->
+    el.tagName in ['INPUT', 'SELECT', 'TEXTAREA'] or el.isContentEditable
 
   isMobile: -> ! window.matchMedia('(min-width: 920px)').matches
 
@@ -78,21 +80,10 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     regex = /(https?:\/\/(?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?)/ig
     return text.replace(regex, '<a href="$1" rel="nofollow">$1</a>')
 
-  timeago: (time) ->
-    el = document.createElement('time')
-    el.classList.add 'timeago-raw', 'timeago'
-    el.setAttribute 'datetime', time
-    el.textContent = time
-    el.outerHTML
-
-
-  initTimeago: ->
-    $('.timeago-raw').timeago().removeClass 'timeago-raw'
-
 
   timeago: (time) ->
     el = document.createElement('time')
-    el.classList.add 'timeago-raw', 'timeago'
+    el.classList.add 'timeago'
     el.setAttribute 'datetime', time
     el.textContent = time
     el.outerHTML

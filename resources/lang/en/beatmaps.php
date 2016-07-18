@@ -80,6 +80,17 @@ return [
         ],
     ],
 
+    'nominations' => [
+        'disqualify' => 'Disqualify',
+        'nominate' => 'Nominate',
+        'required-text' => 'Nominations: :current/:required',
+        'disqualifed-at' => 'disqualified :time_ago',
+        'disqualification-prompt' => 'Reason for disqualification?',
+        'qualified' => 'Estimated to be ranked :date, if no issues are found.',
+        'qualified-soon' => 'Estimated to be ranked soon, if no issues are found.',
+        'incorrect-state' => 'Error performing that action, try refreshing the page.',
+    ],
+
     'listing' => [
         'search' => [
             'prompt' => 'type in keywords...',

@@ -97,6 +97,9 @@ class UserSeeder extends Seeder
                 $u->rankHistories()->save($hist);
             }
             // END RANK HISTORY
+
+            // USER GROUP
+            $u->userGroups()->save(new App\Models\UserGroup(['group_id' => App\Models\UserGroup::GROUPS['default']]));
         }); // end each user
     }
 }

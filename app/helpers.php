@@ -127,7 +127,7 @@ function timeago($date)
     $display_date = $date->toRfc850String();
     $attribute_date = $date->toIso8601String();
 
-    return "<time class='timeago-raw timeago' datetime='{$attribute_date}'>{$display_date}</time>";
+    return "<time class='timeago' datetime='{$attribute_date}'>{$display_date}</time>";
 }
 
 function current_action()

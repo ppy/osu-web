@@ -26,4 +26,5 @@ class AuthOption extends Model
     protected $table = 'phpbb_acl_options';
 
     protected $primaryKey = 'auth_option_id';
+    public $timestamps = false;
 }
