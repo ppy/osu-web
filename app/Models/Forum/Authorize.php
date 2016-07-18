@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
 class Authorize extends Model
 {
     protected $table = 'phpbb_acl_groups';
+    public $timestamps = false;
 
     public static function aclCheck($user, $authOption, $forum)
     {

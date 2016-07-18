@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserGroup extends Model
 {
     protected $table = 'phpbb_user_group';
+    protected $primaryKey = 'group_id';
     public $timestamps = false;
 
     // taken from current forum
@@ -31,12 +32,12 @@ class UserGroup extends Model
         'default' => 2,
         'gmt' => 4,
         'admin' => 5,
-        'bat' => 7,
+        'qat' => 7,
         'dev' => 11,
-        'mat' => 14,
         'alumni' => 16,
         'hax' => 17,
         'mod' => 18,
+        'bng' => 28,
     ];
 
     public function user()

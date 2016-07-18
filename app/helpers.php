@@ -31,9 +31,19 @@ function array_search_null($value, $array)
     }
 }
 
-function item_count($count)
+function get_valid_locale($requestedLocale)
 {
-    return Lang::choice('common.count.item', $count, ['count' => $count]);
+    if (in_array($requestedLocale, config('app.available_locales'), true)) {
+        return $requestedLocale;
+    }
+
+    return array_first(
+        config('app.available_locales'),
+        function ($_key, $value) use ($requestedLocale) {
+            return starts_with($requestedLocale, $value);
+        },
+        config('app.fallback_locale')
+    );
 }
 
 function product_quantity_options($product)
@@ -45,7 +55,7 @@ function product_quantity_options($product)
     }
     $opts = [];
     for ($i = 1; $i <= $max; $i++) {
-        $opts[$i] = item_count($i);
+        $opts[$i] = trans_choice('common.count.item', $i);
     }
 
     return $opts;
@@ -117,7 +127,7 @@ function timeago($date)
     $display_date = $date->toRfc850String();
     $attribute_date = $date->toIso8601String();
 
-    return "<time class='timeago-raw timeago' datetime='{$attribute_date}'>{$display_date}</time>";
+    return "<time class='timeago' datetime='{$attribute_date}'>{$display_date}</time>";
 }
 
 function current_action()
@@ -414,6 +424,42 @@ function get_int($string)
     }
 }
 
+function get_bool($string)
+{
+    if (is_bool($string)) {
+        return $string;
+    } elseif ($string === '1') {
+        return true;
+    } elseif ($string === '0') {
+        return false;
+    }
+}
+
+function get_file($input)
+{
+    if ($input instanceof Symfony\Component\HttpFoundation\File\UploadedFile) {
+        return $input->getRealPath();
+    }
+}
+
+function get_arr($input, $callback)
+{
+    if (!is_array($input)) {
+        return;
+    }
+
+    $result = [];
+    foreach ($input as $value) {
+        $casted = call_user_func($callback, $value);
+
+        if ($casted !== null) {
+            $result[] = $casted;
+        }
+    }
+
+    return $result;
+}
+
 // should it be used?
 function bem($block, $element = null, $modifiers = [])
 {
@@ -472,40 +518,34 @@ function deltree($dir)
 
 function get_param_value($input, $type)
 {
-    if ($type === 'bool') {
-        if (is_bool($input)) {
-            return $input;
-        } elseif ($input === '1' || $input === 'true') {
-            return true;
-        } elseif ($input === '0' || $input === 'false') {
-            return false;
-        } else {
-            return;
-        }
+    switch ($type) {
+        case 'bool':
+            return get_bool($input);
+            break;
+        case 'int':
+            return get_int($input);
+            break;
+        case 'file':
+            return get_file($input);
+            break;
+        case 'string[]':
+            return get_arr($input, 'presence');
+            break;
+        case 'int[]':
+            return get_arr($input, 'get_int');
+            break;
+        default:
+            return presence((string) $input);
     }
-
-    if ($type === 'int') {
-        return get_int($input);
-    }
-
-    if ($type === 'file') {
-        if ($input instanceof Symfony\Component\HttpFoundation\File\UploadedFile) {
-            return $input->getRealPath();
-        } else {
-            return;
-        }
-    }
-
-    return (string) $input;
 }
 
-function get_params($input, $namespace, $keys, $defaults = [], $overrides = [])
+function get_params($input, $namespace, $keys)
 {
     if ($namespace !== null) {
         $input = array_get($input, $namespace);
     }
 
-    $params = $defaults;
+    $params = [];
 
     foreach ($keys as $keyAndType) {
         $keyAndType = explode(':', $keyAndType);
@@ -520,7 +560,7 @@ function get_params($input, $namespace, $keys, $defaults = [], $overrides = [])
         }
     }
 
-    return array_merge($params, $overrides);
+    return $params;
 }
 
 function array_rand_val($array)
@@ -543,6 +583,17 @@ function model_pluck($builder, $key)
         ->get()
         ->pluck($key)
         ->all();
+}
+
+// Returns null if timestamp is null or 0.
+// Technically it's not null if 0 but some tables have not null constraints
+// despite null being a valid value. Instead it's filled in with 0 so this
+// helper returns null if it's 0 and parses the timestamp otherwise.
+function get_time_or_null($timestamp)
+{
+    if ($timestamp !== null && $timestamp !== 0) {
+        return Carbon\Carbon::createFromTimestamp($timestamp);
+    }
 }
 
 function priv_check($ability, $args = null)

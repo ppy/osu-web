@@ -20,6 +20,9 @@
 
 return [
     'beatmap_discussion' => [
+        'nominate' => [
+            'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
+        ],
         'resolve' => [
             'general_discussion' => 'General discussion can not be resolved.',
             'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
@@ -74,12 +77,30 @@ return [
                 'locked' => 'Can not reply to a locked thread.',
                 'no_forum_access' => 'Access to requested forum is required.',
                 'no_permission' => 'No permission to reply.',
+
+                'user' => [
+                    'require_login' => 'Please login to reply.',
+                    'restricted' => "Can't reply while restricted.",
+                    'silenced' => "Can't reply while silenced.",
+                ],
             ],
 
             'store' => [
                 'no_forum_access' => 'Access to requested forum is required.',
                 'no_permission' => 'No permission to create new topic.',
                 'forum_closed' => 'Forum is closed and can not be posted to.',
+            ],
+
+            'vote' => [
+                'no_forum_access' => 'Access to requested forum is required.',
+                'over' => 'Polling is over and can not be voted on anymore.',
+                'voted' => 'Changing vote is not allowed.',
+
+                'user' => [
+                    'require_login' => 'Please login to vote.',
+                    'restricted' => "Can't vote while restricted.",
+                    'silenced' => "Can't vote while silenced.",
+                ],
             ],
         ],
 
