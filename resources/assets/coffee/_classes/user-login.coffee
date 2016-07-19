@@ -23,34 +23,11 @@ class @UserLogin
     $(document).on 'ajax:success', '.js-login-form', @loginSuccess
     $(document).on 'ajax:error', '.js-login-form', @loginError
 
-    $(document).on 'click', '.js-user-link', (event) =>
-      event.preventDefault()
-      osu.timeout 0, @show
+    $(document).on 'click', '.js-user-link', @showOnClick
+    $(document).on 'click', '.js-login-required--click', @showToContinue
 
-    $(document).on 'click', '.js-login-required--click', (event) =>
-      return if currentUser.id?
-      event.preventDefault()
-      osu.timeout 0, => @show event.target
-
-    $(document).on 'ajax:error', (event, xhr) =>
-      return unless xhr.status == 401
-      @show event.target
-
-    # for pages which require authentication
-    # and being visited directly from outside
-    $(document).on 'ready turbolinks:load', ->
-      return unless window.showLoginModal
-
-      window.showLoginModal = null
-      @show()
-
-
-  show: (target) =>
-    @clickAfterLogin = target
-
-    $.scrollTo 0, 500
-    @nav.currentMode('user')
-    @nav.showPopup()
+    $(document).on 'ajax:error', @showOnError
+    $(document).on 'ready turbolinks:load', @showOnLoad
 
 
   hide: =>
@@ -80,3 +57,36 @@ class @UserLogin
         @clickAfterLogin.click()
     else
       osu.reloadPage()
+
+
+  show: (target) =>
+    @clickAfterLogin = target
+
+    $.scrollTo 0, 500
+    @nav.currentMode('user')
+    @nav.showPopup()
+
+
+  showOnClick: (event) =>
+    event.preventDefault()
+    osu.timeout 0, @show
+
+
+  showOnError: (event, xhr) =>
+    return unless xhr.status == 401
+    @show event.target
+
+
+  # for pages which require authentication
+  # and being visited directly from outside
+  showOnLoad: =>
+      return unless window.showLoginModal
+
+      window.showLoginModal = null
+      @show()
+
+
+  showToContinue: (event) =>
+    return if currentUser.id?
+    event.preventDefault()
+    osu.timeout 0, => @show event.target
