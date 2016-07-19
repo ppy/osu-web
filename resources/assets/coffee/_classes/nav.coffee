@@ -90,3 +90,6 @@ class @Nav
         link.classList.add activeClass
       else
         link.classList.remove activeClass
+
+    # Somehow broken using no delay when there's animation
+    osu.timeout 100, => $('.js-nav-autofocus').focus()
