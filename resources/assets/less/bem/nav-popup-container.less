@@ -19,30 +19,4 @@
 .nav-popup-container {
   z-index: @z-index--nav-popup;
   width: 100%;
-
-  &__box-container {
-    position: absolute;
-    overflow: hidden;
-    width: 100%;
-
-    &.js-nav-switch--active {
-      pointer-events: inherit;
-    }
-
-    &--extra {
-      pointer-events: none;
-    }
-  }
-
-  &__box {
-    transition: transform 120ms;
-
-    .js-nav-switch--active && {
-      transform: translateX(0%);
-    }
-
-    .nav-popup-container__box-container--extra & {
-      transform: translateX(100%);
-    }
-  }
 }
