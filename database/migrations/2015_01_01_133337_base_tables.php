@@ -1320,6 +1320,7 @@ class BaseTables extends Migration
             $column = $table->mediumText('log_data');
             $column->collation = 'utf8_bin';
 
+            $table->index('log_type', 'log_type');
             $table->index('forum_id', 'forum_id');
             $table->index('topid_id', 'topic_id');
             $table->index('reportee_id', 'reportee_id');
