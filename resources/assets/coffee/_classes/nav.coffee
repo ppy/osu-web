@@ -22,9 +22,17 @@ class @Nav
     $(document).on 'click', '.js-nav-switch', @switchMode
     $(document).on 'click', @hidePopup
 
+    # Focusing before the animation ends breaks stuff.
+    # Test page: https://codepen.io/nanaya/pen/JKpaGr
+    $(document).on 'transitionend', '.js-nav-switch--active', @autoFocus
+
     @popup = document.getElementsByClassName('js-nav-popup--popup')
     @menus = document.getElementsByClassName('js-nav-switch--menu')
     @switches = document.getElementsByClassName('js-nav-switch')
+
+
+  autoFocus: =>
+    $('.js-nav-auto-focus').focus()
 
 
   available: => @popup[0]?
@@ -90,6 +98,3 @@ class @Nav
         link.classList.add activeClass
       else
         link.classList.remove activeClass
-
-    # Somehow broken using no delay when there's animation
-    osu.timeout 100, => $('.js-nav-autofocus').focus()

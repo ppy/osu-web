@@ -53,7 +53,7 @@
 
         <div class="nav-popup__row nav-popup__row--with-gutter">
             <input
-                class="nav-popup__form-input js-nav-autofocus"
+                class="nav-popup__form-input js-nav-auto-focus"
                 name="username"
                 placeholder="{{ trans('layout.popup_login.login.email') }}"
             />
