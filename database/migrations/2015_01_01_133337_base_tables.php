@@ -1322,7 +1322,7 @@ class BaseTables extends Migration
 
             $table->index('log_type', 'log_type');
             $table->index('forum_id', 'forum_id');
-            $table->index('topid_id', 'topic_id');
+            $table->index('topic_id', 'topic_id');
             $table->index('reportee_id', 'reportee_id');
             $table->index('user_id', 'user_id');
         });
