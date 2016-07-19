@@ -15,11 +15,11 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<nav class="osu-layout__section osu-layout__section--minimum no-print js-header--main js-nav-popup">
-    <div class="visible-xs">
-        @include('layout._header_mobile')
-    </div>
+<nav class="visible-xs">
+    @include('layout._header_mobile')
+</nav>
 
+<nav class="osu-layout__section osu-layout__section--minimum no-print js-header--main js-nav-popup">
     <!-- Main style -->
     <div class="hidden-xs osu-nav">
         <div class="bg u-section-bg">

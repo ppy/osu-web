@@ -53,12 +53,12 @@
 
         <div class="nav-popup__row nav-popup__row--with-gutter">
             <input
-                class="nav-popup__form-input nav-popup__form-input--horizontal"
+                class="nav-popup__form-input"
                 name="username"
                 placeholder="{{ trans('layout.popup_login.login.email') }}"
             />
             <input
-                class="nav-popup__form-input nav-popup__form-input--horizontal"
+                class="nav-popup__form-input"
                 name="password"
                 type="password"
                 placeholder="{{ trans('layout.popup_login.login.password') }}"
