@@ -23,6 +23,10 @@ class @UserLogin
     $(document).on 'ajax:success', '.js-login-form', @loginSuccess
     $(document).on 'ajax:error', '.js-login-form', @loginError
 
+    $(document).on 'click', '.js-user-link', (event) =>
+      event.preventDefault()
+      osu.timeout 0, @show
+
     $(document).on 'click', '.js-login-required--click', (event) =>
       return if currentUser.id?
       event.preventDefault()

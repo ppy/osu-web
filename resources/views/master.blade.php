@@ -72,7 +72,6 @@
             </div>
         </div>
 
-        @yield('user-dropdown-modal')
         @include("layout._global_variables")
         @include('layout._loading_overlay')
 

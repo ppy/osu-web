@@ -33,9 +33,6 @@ $(document).on 'submit', 'form', LoadingOverlay.show
 @userLogin ?= new UserLogin(@nav)
 
 
-reactTurbolinks.register 'user-card', UserCard
-
-
 $(document).on 'ready turbolinks:load', =>
   LocalStoragePolyfill.fillIn()
 

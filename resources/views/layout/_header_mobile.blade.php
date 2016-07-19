@@ -37,10 +37,8 @@
                 @else
                     <a
                         href="#"
-                        data-toggle="modal"
-                        data-target="#user-dropdown-modal"
                         title="{{ trans('users.anonymous.login_link') }}"
-                        class="avatar avatar--navbar-mobile avatar--guest js-navbar-mobile--top-icon"
+                        class="avatar avatar--navbar-mobile avatar--guest js-navbar-mobile--top-icon js-user-link"
                     >
                     </a>
                 @endif
@@ -83,7 +81,11 @@
                     <i class="fa fa-sign-out"></i>
                 </a>
             @else
-                <a class="navbar-mobile__menu-item navbar-mobile__menu-item--user" href="#" title="{{ trans('users.anonymous.login_link') }}" data-toggle="modal" data-target="#user-dropdown-modal">
+                <a
+                    class="js-user-link navbar-mobile__menu-item navbar-mobile__menu-item--user"
+                    href="#"
+                    title="{{ trans('users.anonymous.login_link') }}"
+                >
                     <span class="avatar avatar--guest avatar--navbar-mobile"></span>
 
                     {{ trans('users.anonymous.username') }}

@@ -49,10 +49,8 @@
             @else
                 <a
                     href="#"
-                    data-toggle="modal"
-                    data-target="#user-dropdown-modal"
                     title="{{ trans('users.anonymous.login_link') }}"
-                    class="logo-menu__user logo-menu__user--full"
+                    class="logo-menu__user logo-menu__user--full js-user-link"
                 >
                     <div class="logo-menu__user-slice logo-menu__user-slice--avatar">
                         <div class="avatar avatar--guest avatar--full-rounded"></div>
