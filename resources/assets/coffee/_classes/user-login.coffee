@@ -62,9 +62,15 @@ class @UserLogin
   show: (target) =>
     @clickAfterLogin = target
 
+    clearTimeout @skipAnimationTimeout
+    $('.js-nav-switch--menu').removeClass('js-nav-switch--animated')
+
     $.scrollTo 0, 500
     @nav.currentMode('user')
     @nav.showPopup()
+
+    @skipAnimationTimeout = osu.timeout 100, =>
+      $('.js-nav-switch--menu').addClass('js-nav-switch--animated')
 
 
   showOnClick: (event) =>

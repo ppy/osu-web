@@ -101,7 +101,7 @@
             </div>
 
             <div
-                class="nav-popup-box nav-popup-box--extra js-nav-switch--menu"
+                class="nav-popup-box nav-popup-box--extra js-nav-switch--animated js-nav-switch--menu"
                 data-nav-mode="user"
             >
                 <div class="nav-popup-box__content">

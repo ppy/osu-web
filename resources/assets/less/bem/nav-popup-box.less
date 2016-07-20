@@ -17,27 +17,26 @@
  *
  */
 .nav-popup-box {
+  @_top: nav-popup-box;
   position: absolute;
   overflow: hidden;
   width: 100%;
-
-  &.js-nav-switch--active {
-    pointer-events: inherit;
-  }
-
-  &--extra {
-    pointer-events: none;
-  }
+  pointer-events: none;
 
   &__content {
-    transition: transform 120ms;
+    pointer-events: auto;
+    will-change: transform;
 
-    .js-nav-switch--active && {
-      transform: translateX(0%);
+    .@{_top}.js-nav-switch--animated & {
+      transition: transform 120ms;
     }
 
-    .nav-popup-box--extra & {
+    .@{_top}--extra & {
       transform: translateX(100%);
+    }
+
+    .@{_top}--extra.js-nav-switch--active & {
+      transform: translateX(0%);
     }
   }
 }
