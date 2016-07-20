@@ -120,11 +120,13 @@ Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
 
     Route::get('t/{topics}', ['as' => 'forum.topics.show', 'uses' => 'TopicsController@show']);
     Route::post('topics/preview', ['as' => 'forum.topics.preview', 'uses' => 'TopicsController@preview']);
-    Route::post('topics/{topics}/reply', ['as' => 'forum.topics.reply', 'uses' => 'TopicsController@reply']);
     Route::post('topics/{topics}/lock', ['as' => 'forum.topics.lock', 'uses' => 'TopicsController@lock']);
     Route::post('topics/{topics}/move', ['as' => 'forum.topics.move', 'uses' => 'TopicsController@move']);
+    Route::post('topics/{topics}/pin', ['as' => 'forum.topics.pin', 'uses' => 'TopicsController@pin']);
+    Route::post('topics/{topics}/reply', ['as' => 'forum.topics.reply', 'uses' => 'TopicsController@reply']);
     Route::post('topics/{topics}/vote-feature', ['as' => 'forum.topics.vote-feature', 'uses' => 'TopicsController@voteFeature']);
-    Route::resource('topics', 'TopicsController', ['only' => ['create', 'store']]);
+    Route::post('topics/{topics}/vote', ['as' => 'forum.topics.vote', 'uses' => 'TopicsController@vote']);
+    Route::resource('topics', 'TopicsController', ['only' => ['create', 'store', 'update']]);
 
     Route::resource('forum-covers', 'ForumCoversController', ['only' => ['store', 'update', 'destroy']]);
     Route::resource('topic-covers', 'TopicCoversController', ['only' => ['store', 'update', 'destroy']]);
@@ -164,7 +166,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 });
 
 Route::get('beatmapsets/{beatmapsets}/discussion', ['as' => 'beatmapsets.discussion', 'uses' => 'BeatmapsetsController@discussion']);
-
+Route::put('beatmapsets/{beatmapsets}/nominate', ['as' => 'beatmapsets.nominate', 'uses' => 'BeatmapsetsController@nominate']);
+Route::put('beatmapsets/{beatmapsets}/disqualify', ['as' => 'beatmapsets.disqualify', 'uses' => 'BeatmapsetsController@disqualify']);
 Route::put('beatmap-discussions/{beatmap_discussions}/vote', ['uses' => 'BeatmapDiscussionsController@vote', 'as' => 'beatmap-discussions.vote']);
 Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['store', 'update']]);
 

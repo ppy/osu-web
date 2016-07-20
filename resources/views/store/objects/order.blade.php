@@ -27,7 +27,7 @@
                     <td></td>
                 @endif
             @endif
-            <td>{{{item_count($i->quantity)}}}</td>
+            <td>{{ trans_choice('common.count.item', $i->quantity) }}</td>
             <td class="text-right">{{{currency($i->subtotal())}}}</td>
         </tr>
         @endforeach

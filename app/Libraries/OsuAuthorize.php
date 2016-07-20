@@ -23,6 +23,7 @@ use App\Exceptions\AuthorizationException;
 use App\Models\Chat\Channel as ChatChannel;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
+use App\Models\Beatmapset;
 
 class OsuAuthorize
 {
@@ -108,6 +109,40 @@ class OsuAuthorize
 
         if ($user->user_id !== $post->user_id) {
             return $prefix.'not_owner';
+        }
+
+        return 'ok';
+    }
+
+    public function checkBeatmapsetNominate($user, $beatmapset)
+    {
+        $this->ensureLoggedIn($user);
+
+        if (!$user->isBNG() && !$user->isQAT()) {
+            return 'unauthorized';
+        }
+
+        if ($beatmapset->approved !== Beatmapset::STATES['pending']) {
+            return 'beatmap_discussion.nominate.incorrect-state';
+        }
+
+        if ($user->beatmapsetNominationsToday() >= Beatmapset::NOMINATIONS_PER_DAY) {
+            return 'beatmap_discussion.nominate.exhausted';
+        }
+
+        return 'ok';
+    }
+
+    public function checkBeatmapsetDisqualify($user, $beatmapset)
+    {
+        $this->ensureLoggedIn($user);
+
+        if (!$user->isQAT()) {
+            return 'unauthorized';
+        }
+
+        if ($beatmapset->approved !== Beatmapset::STATES['qualified']) {
+            return 'beatmap_discussion.disqualify.incorrect-state';
         }
 
         return 'ok';
@@ -253,14 +288,7 @@ class OsuAuthorize
         return $this->checkForumPostEdit($user, $topic->posts()->first());
     }
 
-    public function checkForumTopicLock($user, $topic)
-    {
-        if ($user !== null && $user->isGMT()) {
-            return 'ok';
-        }
-    }
-
-    public function checkForumTopicMove($user, $topic)
+    public function checkForumTopicModerate($user, $topic)
     {
         if ($user !== null && $user->isGMT()) {
             return 'ok';
@@ -271,8 +299,8 @@ class OsuAuthorize
     {
         $prefix = 'forum.topic.reply.';
 
-        $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user);
+        $this->ensureLoggedIn($user, $prefix.'user.');
+        $this->ensureCleanRecord($user, $prefix.'user.');
 
         if ($user->isGMT()) {
             return 'ok';
@@ -343,6 +371,32 @@ class OsuAuthorize
 
         if ($cover->owner()->user_id !== $user->user_id) {
             return $prefix.'not_owner';
+        }
+
+        return 'ok';
+    }
+
+    public function checkForumTopicVote($user, $topic)
+    {
+        $prefix = 'forum.topic.vote.';
+
+        $this->ensureLoggedIn($user, $prefix.'user.');
+        $this->ensureCleanRecord($user, $prefix.'user.');
+
+        if (!$this->doCheckUser($user, 'ForumView', $post->topic->forum)->can()) {
+            return $prefix.'no_forum_access';
+        }
+
+        if ($topic->pollEnd() !== null && $topic->pollEnd()->isPast()) {
+            return $prefix.'over';
+        }
+
+        if (!$topic->poll_vote_change) {
+            $userHasVoted = $topic->pollVotes()->where('vote_user_id', $user->getKey())->exists();
+
+            if ($userHasVoted) {
+                return $prefix.'voted';
+            }
         }
 
         return 'ok';

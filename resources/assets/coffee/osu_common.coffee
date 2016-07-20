@@ -32,12 +32,21 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
 
   ajaxError: (xhr) ->
-    message = xhr?.responseJSON?.error
+    validationMessage = xhr?.responseJSON?.validation_error
 
-    unless message
+    if validationMessage?
+      allErrors = []
+      for own _field, errors of validationMessage
+        allErrors = allErrors.concat(errors)
+
+      message = "#{allErrors.join(', ')}."
+
+    message ?= xhr?.responseJSON?.error
+
+    if !message?
       errorKey = "errors.codes.http-#{xhr?.status}"
-      message = Lang.get errorKey
-      message = Lang.get 'errors.unknown' if message == errorKey
+      message = osu.trans errorKey
+      message = osu.trans 'errors.unknown' if message == errorKey
 
     osu.popup message, 'danger'
 
@@ -50,6 +59,8 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
   parseJson: (id) ->
     JSON.parse document.getElementById(id).text
 
+  isInputElement: (el) ->
+    el.tagName in ['INPUT', 'SELECT', 'TEXTAREA'] or el.isContentEditable
 
   isMobile: -> ! window.matchMedia('(min-width: 920px)').matches
 
@@ -69,21 +80,10 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     regex = /(https?:\/\/(?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?)/ig
     return text.replace(regex, '<a href="$1" rel="nofollow">$1</a>')
 
-  timeago: (time) ->
-    el = document.createElement('time')
-    el.classList.add 'timeago-raw', 'timeago'
-    el.setAttribute 'datetime', time
-    el.textContent = time
-    el.outerHTML
-
-
-  initTimeago: ->
-    $('.timeago-raw').timeago().removeClass 'timeago-raw'
-
 
   timeago: (time) ->
     el = document.createElement('time')
-    el.classList.add 'timeago-raw', 'timeago'
+    el.classList.add 'timeago'
     el.setAttribute 'datetime', time
     el.textContent = time
     el.outerHTML
@@ -155,6 +155,24 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
       setTimeout closeAlert, 5000
 
     $alert.appendTo($popup).fadeIn()
+
+
+  trans: (key, replacements) ->
+    message = Lang.get key, replacements, currentLocale
+
+    if message == key
+      message = Lang.get key, replacements, fallbackLocale
+
+    message
+
+
+  transChoice: (key, count, replacements) ->
+    message = Lang.choice key, count, replacements, currentLocale
+
+    if message == key
+      message = Lang.choice key, count, replacements, fallbackLocale
+
+    message
 
 
   api: (method, route, params, args = {}, callback = console.log) ->
