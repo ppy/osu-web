@@ -153,14 +153,6 @@
     margin: 0 0 @spacing;
     display: flex;
 
-    flex-wrap: wrap;
-    flex-direction: column;
-
-    @media @desktop {
-      flex-wrap: nowrap;
-      flex-direction: row;
-    }
-
     &--actions {
       justify-content: space-between;
       align-items: flex-end;
@@ -191,6 +183,12 @@
     &--with-gutter {
       margin-left: (-@spacing / 2);
       margin-right: (-@spacing / 2);
+    }
+
+    &--xs-vertical {
+      @media @mobile {
+        flex-direction: column;
+      }
     }
   }
 

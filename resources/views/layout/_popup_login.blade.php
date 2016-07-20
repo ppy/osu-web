@@ -51,7 +51,7 @@
 
         <div class="nav-popup__row nav-popup__row--full nav-popup__row--error js-login-form--error"></div>
 
-        <div class="nav-popup__row nav-popup__row--with-gutter">
+        <div class="nav-popup__row nav-popup__row--with-gutter nav-popup__row--xs-vertical">
             <input
                 class="nav-popup__form-input js-nav-auto-focus"
                 name="username"
