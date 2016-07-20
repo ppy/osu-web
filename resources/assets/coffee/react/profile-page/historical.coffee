@@ -28,7 +28,7 @@ ProfilePage.Historical = React.createClass
 
   componentDidMount: ->
     #download data for the first time
-    return @state.beatmapPlaycounts.push -1 if @state.beatmapPlaycounts.length != 0 || @state.allScores.length != 0  
+    return null if @state.beatmapPlaycounts.length != 0 || @state.allScores.length != 0  
     @_showMore "beatmapPlaycounts"
     @_showMore "allScores"
 
@@ -43,17 +43,18 @@ ProfilePage.Historical = React.createClass
     $.get url, {t: key, o: @state[key].length, l: @state[key].length + @state.defaultAmount}, (data) =>
       if key == "allScores"
         data.allScores = data.allScores.data[@props.currentMode]
-     
-        @setState "#{key}": (@state[key].concat(data.allScores.data))
+      console.log data
+      @setState "#{key}": (@state[key].concat(data[key].data))
+
 
   
       
-     console.log "state setted"
         
+
 
   _beatmapRow: (bm, bmset, key, details = []) ->
     topClasses = 'beatmapset-row'
-  
+
     div
       key: key
       className: topClasses
@@ -92,8 +93,10 @@ ProfilePage.Historical = React.createClass
             className: 'beatmapset-row__detail-column'
             details[1]
 
+
+
   render: ->
-    console.log(@state)
+    #console.log(JSON.stringify @state)
     div
       className: 'page-extra'
 
@@ -119,13 +122,13 @@ ProfilePage.Historical = React.createClass
               ]
             ]
 
-          if true #todo
-            a
-              key: 'more'
-              href: '#'
-              className: 'beatmapset-row beatmapset-row--more'
-              onClick: @_showMore.bind(@, 'beatmapPlaycounts')
-              osu.trans('common.buttons.show_more')
+          
+          a
+            key: 'more'
+            href: '#'
+            className: 'beatmapset-row beatmapset-row--more'
+            onClick: @_showMore.bind(@, 'showingPlaycounts')
+            osu.trans('common.buttons.show_more')
         ]
 
       else
@@ -138,15 +141,14 @@ ProfilePage.Historical = React.createClass
       if @state.allScores.length
         [
           @state.allScores.map (score, i) =>
-            el PlayDetail, key: i, score: score
+            el PlayDetail, key: i, score: score, shown: true
 
-          if true #todo
-            a
-              key: 'more'
-              href: '#'
-              className: 'beatmapset-row beatmapset-row--more'
-              onClick: @_showMore.bind(@, 'allScores')
-              osu.trans('common.buttons.show_more')
+          a
+            key: 'more'
+            href: '#'
+            className: 'beatmapset-row beatmapset-row--more'
+            onClick: @_showMore.bind(@, 'allScores')
+            osu.trans('common.buttons.show_more')
         ]
 
       else
