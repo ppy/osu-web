@@ -42,8 +42,8 @@ class UserTransformer extends Fractal\TransformerAbstract
         'favouriteBeatmapsets',
     ];
 
-    public $limit = 100; 
-    public $offset = 0; 
+    public $limit = 100;
+    public $offset = 0;
 
     public function transform(User $user)
     {

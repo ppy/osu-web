@@ -171,17 +171,19 @@ class UsersController extends Controller
                 'recentlyReceivedKudosu',
                 'rankedAndApprovedBeatmapsets.beatmaps',
                 'favouriteBeatmapsets.beatmaps',
-            ])) return abort(400);
+                ], true)) {
+            return abort(400);
+        }
 
 
         $userTransformer = new UserTransformer();
 
-        if (present($offset)){
+        if (present($offset)) {
             $userTransformer->offset = intval($offset);
         }
-        
-        
-        if (present($limit)){
+
+
+        if (present($limit)) {
             $userTransformer->limit = intval($limit);
         }
 
@@ -190,6 +192,6 @@ class UsersController extends Controller
             $userTransformer, implode(',', [$type])
         );
 
-        return Response::json([$type=> $userArray['data'][$type]]);
+        return Response::json([$type => $userArray['data'][$type]]);
     }
 }
