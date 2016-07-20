@@ -26,9 +26,21 @@
   padding: @spacing;
 
   background-color: @blue-darker;
+  background-image: url('/images/backgrounds/buttonblue@2x.png');
+  background-size: cover;
+  background-position: 50% 50%;
   outline: none;
 
   color: @grey-f;
+  font-weight: 600;
+  transition: background-position 120ms;
+
+  &:hover,
+  &:focus {
+    color: @grey-f;
+    text-decoration: none;
+    background-position: calc(50% ~'-' (@spacing * 4)) 50%;
+  }
 
   &__content {
     display: flex;
