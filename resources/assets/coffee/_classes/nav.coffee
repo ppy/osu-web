@@ -27,6 +27,13 @@ class @Nav
     @switches = document.getElementsByClassName('js-nav-switch')
 
 
+  autoFocus: (event, target) =>
+    if event?
+      target = event.currentTarget
+
+    target.getElementsByClassName('js-nav-auto-focus')[0]?.focus?()
+
+
   available: => @popup[0]?
 
 
@@ -82,6 +89,11 @@ class @Nav
     for menu in @menus
       if menu.dataset.navMode == @currentMode()
         menu.classList.add activeClass
+
+        if menu.classList.contains 'js-nav-switch--animated'
+          $(menu).one 'transitionend', @autoFocus
+        else
+          @autoFocus null, menu
       else
         menu.classList.remove activeClass
 
