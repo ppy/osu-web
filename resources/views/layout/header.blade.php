@@ -32,7 +32,7 @@
         <div class="osu-nav__content">
             <div class="osu-nav__top">
                 <a class="osu-nav__top-col osu-nav__top-col--logo osu-nav__top-col--float" href="/">
-                    <span class="logo logo--size-default u-nav-float"></span>
+                    @include('objects._logo')
                 </a>
 
                 <div class="osu-nav__top-col osu-nav__top-col--title">

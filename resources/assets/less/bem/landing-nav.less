@@ -16,44 +16,47 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+.landing-nav {
+  display: flex;
+  padding: (@spacing * 3) (@spacing * 2) (@spacing * 2);
 
- .landing-nav {
-    display: flex;
-    padding: 30px 20px 20px;
-
-    &__section {
-        &--left {
-            align-self: flex-start;
-        }
-
-        &--right {
-            margin-left: auto;
-            text-align: right;
-
-            #nav-user-bar,
-            .avatar--nav {
-                display: none;
-            }
-        }
+  &__section {
+    &--center {
+      position: absolute;
+      margin: auto;
+      left: 0;
+      right: 0;
+      width: @logo-size;
     }
 
-    &__link {
-        color: @grey-f;
-        font-size: 12px;
-        margin-right: 20px;
-        text-transform: lowercase;
-
-        &--bold {
-            font-weight: bold;
-        }
-        &:hover,
-        &:focus {
-            text-decoration: none;
-            color: @pink;
-        }
-
-        &:last-child {
-            margin-right: 0;
-        }
+    &--left {
+      align-self: flex-start;
     }
+
+    &--right {
+      margin-left: auto;
+      text-align: right;
+    }
+  }
+
+  &__link {
+    color: @grey-f;
+    font-size: 12px;
+    margin-right: 20px;
+    text-transform: lowercase;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      color: @pink;
+    }
+
+    &--bold {
+      font-weight: bold;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }
