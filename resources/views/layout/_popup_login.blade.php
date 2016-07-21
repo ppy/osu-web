@@ -28,7 +28,7 @@
                 <a href="#" class="btn-osu-big">
                     <div class="btn-osu-big__content">
                         <span class="btn-osu-big__left">
-                            {{ trans('layout.popup_login.register.do') }}
+                            {{ trans('users.signup._') }}
                         </span>
 
                         <span class="fa fa-pencil-square-o"></span>
@@ -74,7 +74,7 @@
                 <button class="btn-osu-big">
                     <div class="btn-osu-big__content">
                         <span class="btn-osu-big__left">
-                            {{ trans('layout.popup_login.login.do') }}
+                            {{ trans('users.login._') }}
                         </span>
 
                         <span class="fa fa-sign-in"></span>

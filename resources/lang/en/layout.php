@@ -206,7 +206,6 @@ return [
 
     'popup_login' => [
         'login' => [
-            'do' => 'sign in',
             'email' => 'email address',
             'forgot' => "I've forgotten my details",
             'password' => 'password',
@@ -219,7 +218,6 @@ return [
         ],
 
         'register' => [
-            'do' => 'Register',
             'info' => "You need an account, sir. Why don't you have one already?",
             'title' => "Don't have an account?",
         ],
