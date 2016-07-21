@@ -27,11 +27,11 @@ class @Nav
     @switches = document.getElementsByClassName('js-nav-switch')
 
 
-  autoFocus: (event, target) =>
-    if event?
-      target = event.currentTarget
+  autoFocus: (e, popup) =>
+    if e?
+      popup = e.currentTarget
 
-    target.getElementsByClassName('js-nav-auto-focus')[0]?.focus?()
+    popup.getElementsByClassName('js-nav-auto-focus')[0]?.focus?()
 
 
   available: => @popup[0]?
