@@ -62,17 +62,17 @@ BeatmapsetPage.Scoreboard = React.createClass
           translationKey = if @state.loading then 'loading' else @props.currentScoreboard
           p
             className: "#{bn}__notice #{bn}__notice--no-scores #{bn}__notice--#{'guest' if !currentUser.id?}"
-            Lang.get "beatmaps.beatmapset.show.extra.scoreboard.no-scores.#{translationKey}"
+            osu.trans "beatmaps.beatmapset.show.extra.scoreboard.no-scores.#{translationKey}"
 
         else
           div className: "#{bn}__notice",
             p
               className: "#{bn}__supporter-text"
-              Lang.get "beatmaps.beatmapset.show.extra.scoreboard.supporter-only"
+              osu.trans "beatmaps.beatmapset.show.extra.scoreboard.supporter-only"
             p
               className: "#{bn}__supporter-text #{bn}__supporter-text--small"
               dangerouslySetInnerHTML:
-                __html: Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.supporter-link', link: laroute.route 'support-the-game'
+                __html: osu.trans 'beatmaps.beatmapset.show.extra.scoreboard.supporter-link', link: laroute.route 'support-the-game'
 
 
   setLoading: (_e, isLoading) ->
@@ -106,7 +106,7 @@ BeatmapsetPage.Scoreboard = React.createClass
             span
               className: className
               key: m
-              Lang.get "beatmaps.beatmapset.show.extra.scoreboard.list.#{m}"
+              osu.trans "beatmaps.beatmapset.show.extra.scoreboard.list.#{m}"
 
       @props.scores.map (score, i) =>
         return if i == 0

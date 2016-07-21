@@ -48,6 +48,14 @@ class BBCodeFromDB
         return preg_replace("/>\s*</", '><', $text);
     }
 
+    public function parseAudio($text)
+    {
+        $text = str_replace("[audio:{$this->uid}]", '<audio controls="controls" src="', $text);
+        $text = str_replace("[/audio:{$this->uid}]", '"></audio>', $text);
+
+        return $text;
+    }
+
     public function parseBold($text)
     {
         $text = str_replace("[b:{$this->uid}]", '<strong>', $text);
@@ -286,6 +294,7 @@ class BBCodeFromDB
         $text = $this->clearSpacesBetweenTags($text);
 
         // inline
+        $text = $this->parseAudio($text);
         $text = $this->parseBold($text);
         $text = $this->parseCentre($text);
         $text = $this->parseColour($text);

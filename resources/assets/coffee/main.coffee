@@ -26,6 +26,10 @@ $(document).on 'submit', 'form', LoadingOverlay.show
 
 @reactTurbolinks ||= new ReactTurbolinks
 @twitchPlayer ?= new TwitchPlayer
+@landingGraph ?= new LandingGraph
+@landingHero ?= new LandingHero
+@timeago ?= new Timeago
+@osuLayzr ?= new OsuLayzr
 
 reactTurbolinks.register 'user-card', UserCard
 
@@ -56,19 +60,6 @@ $(document).on 'ready turbolinks:load', =>
   @menu ||= new Menu
   @logoMenu ||= new LogoMenu
 
-  @layzr ||= Layzr()
-
-
-initPage = =>
-  osu.initTimeago()
-  @layzr.update().check().handlers(true)
-
-# Don't bother moving initPage to osu junk drawer and removing the
-# osu:page:change. It's intended to allow other scripts to attach
-# callbacks to osu:page:change.
-$(document).on 'ready turbolinks:load', initPage
-$(document).on 'osu:page:change', _.debounce(initPage, 500)
-
 
 $(document).on 'change', '.js-url-selector', (e) ->
   osu.navigate e.target.value, (e.target.dataset.keepScroll == '1')
@@ -81,6 +72,8 @@ $(document).on 'keydown', (e) ->
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port
 rootUrl += '/'
+
+jQuery.timeago.settings.allowFuture = true
 
 # Internal Helper
 $.expr[':'].internal = (obj, index, meta, stack) ->

@@ -18,6 +18,10 @@
 class @TooltipDefault
   constructor: ->
     $(document).on 'mouseover', '[title]', @onMouseOver
+    $(document).on 'turbolinks:before-cache', @rollback
+
+    @tooltips = document.getElementsByClassName 'qtip'
+
 
   onMouseOver: (event) =>
     el = event.currentTarget
@@ -67,3 +71,11 @@ class @TooltipDefault
     el.setAttribute 'data-orig-title', title
 
     $(el).qtip options, event
+
+
+  rollback: =>
+    while @tooltips.length > 0
+      @tooltips[0].remove()
+
+    for el in document.querySelectorAll('[data-orig-title]')
+      el.setAttribute 'title', el.getAttribute('data-orig-title')

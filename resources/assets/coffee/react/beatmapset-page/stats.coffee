@@ -25,7 +25,7 @@ class BeatmapsetPage.Stats extends React.Component
     div className: 'page-contents__content',
       div null,
         elements.map (m) =>
-          dt = Lang.get "beatmaps.beatmapset.show.stats.#{m}"
+          dt = osu.trans "beatmaps.beatmapset.show.stats.#{m}"
 
           switch m
             when 'cs'
@@ -54,12 +54,12 @@ class BeatmapsetPage.Stats extends React.Component
       div null,
         if @props.beatmapset.source
           el 'dl', className: 'beatmapset-stats__stat beatmapset-stats__stat--full',
-            el 'dt', className: 'beatmapset-stats__stat-key', Lang.get 'beatmaps.beatmapset.show.stats.source'
+            el 'dt', className: 'beatmapset-stats__stat-key', osu.trans 'beatmaps.beatmapset.show.stats.source'
             el 'dd', className: 'beatmapset-stats__stat-value beatmapset-stats__stat-value--light', @props.beatmapset.source
 
         if @props.beatmapset.tags
           el 'dl', className: 'beatmapset-stats__stat beatmapset-stats__stat--full',
-            el 'dt', className: 'beatmapset-stats__stat-key', Lang.get 'beatmaps.beatmapset.show.stats.tags'
+            el 'dt', className: 'beatmapset-stats__stat-key', osu.trans 'beatmaps.beatmapset.show.stats.tags'
             el 'dd', className: 'beatmapset-stats__stat-value beatmapset-stats__stat-value--light',
               @props.beatmapset.tags.split(' ').map (tag) =>
                 return if tag.length == 0

@@ -68,7 +68,7 @@ class BeatmapsetPage.SuccessRate extends React.Component
       el BeatmapsetPage.ExtraHeader, name: 'success-rate'
 
       p className: 'beatmapset-success-rate__label',
-        Lang.get 'beatmaps.beatmapset.show.extra.success-rate.rate',
+        osu.trans 'beatmaps.beatmapset.show.extra.success-rate.rate',
           percentage: percentage
 
       div className: 'beatmapset-success-rate__bar',
@@ -81,13 +81,13 @@ class BeatmapsetPage.SuccessRate extends React.Component
       div className: 'beatmapset-success-rate__chart-area',
         p
           className: 'beatmapset-success-rate__label'
-          Lang.get 'beatmaps.beatmapset.show.extra.success-rate.points'
+          osu.trans 'beatmaps.beatmapset.show.extra.success-rate.points'
 
 
         div className: 'beatmapset-success-rate__legend',
           legend.map (m) ->
             div className: 'beatmapset-success-rate__legend-item', key: m,
-              span className: 'beatmapset-success-rate__legend-label', Lang.get "beatmaps.beatmapset.show.extra.success-rate.#{m}"
+              span className: 'beatmapset-success-rate__legend-label', osu.trans "beatmaps.beatmapset.show.extra.success-rate.#{m}"
               div className: "beatmapset-success-rate__legend-color beatmapset-success-rate__legend-color--#{m}"
 
         div

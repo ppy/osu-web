@@ -40,25 +40,25 @@ ProfilePage.TopRanks = React.createClass
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       div null,
-        h3 className: 'page-extra__title page-extra__title--small', Lang.get('users.show.extra.top_ranks.best.title')
+        h3 className: 'page-extra__title page-extra__title--small', osu.trans('users.show.extra.top_ranks.best.title')
         if @props.scoresBest && @props.scoresBest.length
           div className: 'profile-extra-entries',
             @props.scoresBest.map (score, i) =>
               el PlayDetail, key: i, score: score, shown: i <  @state.showingBest
             if @state.showingBest < @props.scoresBest.length
               li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
-                a href: '#', onClick: @_showMore.bind(@, 'showingBest'), Lang.get('common.buttons.show_more')
+                a href: '#', onClick: @_showMore.bind(@, 'showingBest'), osu.trans('common.buttons.show_more')
         else
-          p className: 'profile-extra-entries', Lang.get('users.show.extra.top_ranks.empty')
+          p className: 'profile-extra-entries', osu.trans('users.show.extra.top_ranks.empty')
 
       div null,
-        h3 className: 'page-extra__title page-extra__title--small', Lang.get('users.show.extra.top_ranks.first.title')
+        h3 className: 'page-extra__title page-extra__title--small', osu.trans('users.show.extra.top_ranks.first.title')
         if @props.scoresFirst && @props.scoresFirst.length
           div className: 'profile-extra-entries',
             @props.scoresFirst.map (score, i) =>
               el PlayDetail, key: i, score: score, shown: i < @state.showingFirst
             if @state.showingFirst < @props.scoresFirst.length
               li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
-                a href: '#', onClick: @_showMore.bind(@, 'showingFirst'), Lang.get('common.buttons.show_more')
+                a href: '#', onClick: @_showMore.bind(@, 'showingFirst'), osu.trans('common.buttons.show_more')
         else
-          p className: 'profile-extra-entries', Lang.get('users.show.extra.top_ranks.empty')
+          p className: 'profile-extra-entries', osu.trans('users.show.extra.top_ranks.empty')

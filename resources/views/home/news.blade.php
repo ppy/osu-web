@@ -24,4 +24,3 @@
         <div>Welcome to the future home of osu!. This site isn't complete yet, but is being used for some new services we are offering in the meantime. Please look forward to the full release in the coming months!</div>
     </div>
 @stop
-

@@ -33,6 +33,17 @@ class CleanHTML
 
         $def = $config->getHTMLDefinition(true);
 
+        $def->addElement(
+            'audio',
+            'Inline',
+            'Inline',
+            'Common',
+            [
+                'src' => 'URI',
+                'controls' => 'Text',
+            ]
+        );
+
         $def->addAttribute('img', 'data-normal', 'Text');
         $def->addAttribute('img', 'src', 'Text');
 

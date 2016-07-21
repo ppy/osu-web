@@ -22,11 +22,12 @@ namespace App\Http\Controllers\Forum;
 use App\Events\Forum\TopicWasCreated;
 use App\Events\Forum\TopicWasReplied;
 use App\Events\Forum\TopicWasViewed;
+use App\Models\Forum\FeatureVote;
 use App\Models\Forum\Forum;
+use App\Models\Forum\PollOption;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
-use App\Models\Forum\FeatureVote;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use Carbon\Carbon;
@@ -67,6 +68,18 @@ class TopicsController extends Controller
         return view('forum.topics.create', compact('forum', 'cover'));
     }
 
+    public function lock($id)
+    {
+        $topic = Topic::findOrFail($id);
+
+        priv_check('ForumTopicModerate', $topic)->ensureCan();
+
+        $lock = Request::input('lock') !== '0';
+        $topic->lock($lock);
+
+        return ['message' => trans('forum.topics.lock.locked-'.($lock === true ? '1' : '0'))];
+    }
+
     public function preview()
     {
         $forum = Forum::findOrFail(Request::input('forum_id'));
@@ -87,29 +100,24 @@ class TopicsController extends Controller
         return view('forum.topics._post', compact('post', 'options'));
     }
 
-    public function store(HttpRequest $request)
+    public function reply(HttpRequest $request, $id)
     {
+        $topic = Topic::findOrFail($id);
+
+        priv_check('ForumTopicReply', $topic)->ensureCan();
+
         $this->validate($request, [
-            'title' => 'required',
             'body' => 'required',
         ]);
 
-        $forum = Forum::findOrFail(Request::input('forum_id'));
+        if ($topic->addPost(Auth::user(), Request::input('body'), false)) {
+            $posts = Post::where('post_id', $topic->topic_last_post_id)->get();
+            $postsPosition = $topic->postsPosition($posts);
 
-        priv_check('ForumTopicStore', $forum)->ensureCan();
+            Event::fire(new TopicWasReplied($topic, $posts->last(), Auth::user()));
 
-        $topic = Topic::createNew([
-            'forum' => $forum,
-            'title' => $request->input('title'),
-            'poster' => Auth::user(),
-            'body' => $request->input('body'),
-            'notifyReplies' => false,
-            'cover' => TopicCover::findForUse(presence($request->input('cover_id')), Auth::user()),
-        ]);
-
-        Event::fire(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
-
-        return ujs_redirect(route('forum.topics.show', $topic));
+            return view('forum.topics._posts', compact('posts', 'postsPosition', 'topic'));
+        }
     }
 
     public function show($id)
@@ -120,7 +128,12 @@ class TopicsController extends Controller
         $skipLayout = Request::input('skip_layout') === '1';
         $jumpTo = null;
 
-        $topic = Topic::with('forum.cover')->findOrFail($id);
+        $topic = Topic
+            ::with([
+                'forum.cover',
+                'pollOptions.votes',
+            ])
+            ->findOrFail($id);
 
         priv_check('ForumView', $topic->forum)->ensureCan();
 
@@ -182,6 +195,8 @@ class TopicsController extends Controller
 
         $postsPosition = $topic->postsPosition($posts);
 
+        $pollSummary = PollOption::summary($topic, Auth::user());
+
         Event::fire(new TopicWasViewed($topic, $posts->last(), Auth::user()));
 
         $template = $skipLayout ? '_posts' : 'show';
@@ -191,39 +206,83 @@ class TopicsController extends Controller
             new TopicCoverTransformer()
         );
 
-        return view("forum.topics.{$template}", compact('topic', 'posts', 'postsPosition', 'jumpTo', 'cover'));
+        return view(
+            "forum.topics.{$template}",
+            compact('topic', 'posts', 'postsPosition', 'jumpTo', 'cover', 'pollSummary')
+        );
     }
 
-    public function reply(HttpRequest $request, $id)
+    public function store(HttpRequest $request)
     {
-        $topic = Topic::findOrFail($id);
+        $forum = Forum::findOrFail($request->get('forum_id'));
 
-        priv_check('ForumTopicReply', $topic)->ensureCan();
+        priv_check('ForumTopicStore', $forum)->ensureCan();
 
         $this->validate($request, [
+            'title' => 'required',
             'body' => 'required',
         ]);
 
-        if ($topic->addPost(Auth::user(), Request::input('body'), false)) {
-            $posts = Post::where('post_id', $topic->topic_last_post_id)->get();
-            $postsPosition = $topic->postsPosition($posts);
+        if (get_bool($request->get('with_poll'))) {
+            $pollParams = get_params($request, 'forum_topic_poll', [
+                'length_days:int',
+                'max_options:int',
+                'options:string[]',
+                'title',
+                'vote_change:bool',
+            ]);
+        }
 
-            Event::fire(new TopicWasReplied($topic, $posts->last(), Auth::user()));
+        $params = [
+            'title' => $request->get('title'),
+            'user' => Auth::user(),
+            'body' => $request->get('body'),
+            'notifyReplies' => false,
+            'cover' => TopicCover::findForUse(presence($request->input('cover_id')), Auth::user()),
+        ];
 
-            return view('forum.topics._posts', compact('posts', 'postsPosition', 'topic'));
+        $topic = Topic::createNew($forum, $params, $pollParams ?? null);
+
+        if ($topic->topic_id !== null) {
+            Event::fire(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
+
+            return ujs_redirect(route('forum.topics.show', $topic));
+        } else {
+            if (($pollParams ?? null) !== null && !$topic->poll()->isValid()) {
+                return error_popup(implode(' ', $topic->poll()->validationErrors()->allMessages()));
+            } else {
+                abort(422);
+            }
         }
     }
 
-    public function lock($id)
+    public function vote($topicId)
+    {
+        $topic = Topic::findOrFail($topicId);
+
+        priv_check('ForumTopicVote', $topic)->ensureCan();
+
+        $params = get_params(Request::input(), 'forum_topic_vote', ['option_ids:int[]']);
+        $params['user_id'] = Auth::user()->user_id;
+        $params['ip'] = Request::ip();
+
+        if ($topic->vote()->fill($params)->save()) {
+            return ujs_redirect(route('forum.topics.show', $topic->topic_id));
+        } else {
+            return error_popup(implode(' ', $topic->vote()->validationErrors()->allMessages()));
+        }
+    }
+
+    public function pin($id)
     {
         $topic = Topic::findOrFail($id);
 
-        priv_check('ForumTopicLock', $topic)->ensureCan();
+        priv_check('ForumTopicModerate', $topic)->ensureCan();
 
-        $lock = Request::input('lock') !== '0';
-        $topic->lock($lock);
+        $pin = Request::input('pin') !== '0';
+        $topic->pin($pin);
 
-        return ['message' => trans('forum.topics.lock.locked-'.($lock === true ? '1' : '0'))];
+        return ['message' => trans('forum.topics.pin.pinned-'.(int) $pin)];
     }
 
     public function voteFeature($topicId)
@@ -245,7 +304,7 @@ class TopicsController extends Controller
         $topic = Topic::findOrFail($id);
         $destinationForum = Forum::findOrFail(Request::input('destination_forum_id'));
 
-        priv_check('ForumTopicMove', $topic)->ensureCan();
+        priv_check('ForumTopicModerate', $topic)->ensureCan();
 
         if ($topic->moveTo($destinationForum)) {
             return js_view('layout.ujs-reload');

@@ -41,7 +41,7 @@ class BeatmapsetPage.ScoreboardFirst extends React.Component
               backgroundImage: "url(#{@props.score.user.data.avatarUrl})"
       div className: 'beatmapset-scoreboard-first__item beatmapset-scoreboard-first__item--right',
         elements.map (m) =>
-          dt = Lang.get "beatmaps.beatmapset.show.extra.scoreboard.first.#{m}"
+          dt = osu.trans "beatmaps.beatmapset.show.extra.scoreboard.first.#{m}"
           dd = @props.score[m]
 
           dd =

@@ -159,12 +159,7 @@ class BeatmapsetsController extends Controller
         }
 
         $initialData = [
-            'beatmapset' => fractal_item_array(
-                $beatmapset,
-                new BeatmapsetTransformer,
-                'beatmaps'
-            ),
-
+            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
             'beatmapsetDiscussion' => $discussion->defaultJson(Auth::user()),
         ];
 
@@ -173,5 +168,35 @@ class BeatmapsetsController extends Controller
         } else {
             return view('beatmapsets.discussion', compact('initialData'));
         }
+    }
+
+    public function nominate($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        priv_check('BeatmapsetNominate', $beatmapset)->ensureCan();
+
+        if (!$beatmapset->nominate(Auth::user())) {
+            return error_popup(trans('beatmaps.nominations.incorrect-state'));
+        }
+
+        return [
+            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
+        ];
+    }
+
+    public function disqualify($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        priv_check('BeatmapsetDisqualify', $beatmapset)->ensureCan();
+
+        if (!$beatmapset->disqualify(Auth::user(), Request::input('comment'))) {
+            return error_popup(trans('beatmaps.nominations.incorrect-state'));
+        }
+
+        return [
+            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
+        ];
     }
 }

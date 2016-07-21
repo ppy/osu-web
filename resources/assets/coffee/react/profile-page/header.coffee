@@ -120,7 +120,7 @@ class ProfilePage.Header extends React.Component
         el 'div',
           className: 'profile-header__change-cover-button js-profile-header__change-cover-button',
           onClick: @toggleEdit,
-          Lang.get 'users.show.edit.cover.button'
+          osu.trans 'users.show.edit.cover.button'
 
       if @state.editing
         el ProfilePage.CoverSelector, canUpload: @props.user.isSupporter, cover: @props.user.cover

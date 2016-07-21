@@ -62,7 +62,7 @@ class Beatmaps.SearchPanel extends React.Component
       div id: 'search', className: 'osu-layout__row osu-layout__row--page',
         div className: 'background', style: background
         div className: 'box',
-          input id: 'searchbox', type: 'textbox', name: 'search', placeholder: Lang.get("beatmaps.listing.search.prompt")
+          input id: 'searchbox', type: 'textbox', name: 'search', placeholder: osu.trans("beatmaps.listing.search.prompt")
           i className:'fa fa-search'
 
         el(Beatmaps.SearchFilter, name: 'mode', title: 'Mode', options: filters.modes, default: '0', selected: @props.filters.mode)
@@ -70,7 +70,7 @@ class Beatmaps.SearchPanel extends React.Component
 
         div className: 'more',
           a className: 'toggle', href:'#', onMouseDown: @show_more,
-            div {}, Lang.get('beatmaps.listing.search.options')
+            div {}, osu.trans('beatmaps.listing.search.options')
             div {}, i className:'fa fa-angle-down'
 
           el(Beatmaps.SearchFilter, name: 'genre', title: 'Genre', options: filters.genres, default: filters.genres[0]['id'], selected: @props.filters.genre)

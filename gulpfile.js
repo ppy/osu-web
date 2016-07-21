@@ -48,6 +48,7 @@ elixir(function(mix) {
   mix
   .copy('node_modules/font-awesome/fonts', 'public/vendor/fonts/font-awesome')
   .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
+  .copy('node_modules/timeago/locales', 'public/vendor/js/timeago-locales')
   .less('app.less')
   .browserify(['vendor-modules.js'], 'resources/assets/js/build/vendor-modules.js')
   .coffee([
@@ -73,7 +74,7 @@ elixir(function(mix) {
     'shared.coffee',
     'turbolinks-overrides.coffee',
 
-    'main.coffee',
+    'main.coffee'
   ], 'resources/assets/js/build/app-main.js')
   .scripts([
     path.join(node_root, 'turbolinks/dist/turbolinks.js'),

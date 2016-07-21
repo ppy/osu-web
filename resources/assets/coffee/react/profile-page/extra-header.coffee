@@ -25,7 +25,7 @@ ProfilePage.ExtraHeader = React.createClass
   render: ->
     div
       key: 'header'
-      h2 className: 'page-extra__title', Lang.get("users.show.extra.#{@props.name}.title")
+      h2 className: 'page-extra__title', osu.trans("users.show.extra.#{@props.name}.title")
       if @props.withEdit
         span className: 'page-extra__dragdrop-toggle js-profile-page-extra--sortable-handle',
           el Icon, name: 'bars'
