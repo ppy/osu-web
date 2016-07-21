@@ -86,7 +86,7 @@ class @UserLogin
   # for pages which require authentication
   # and being visited directly from outside
   showOnLoad: =>
-      return unless window.showLoginModal
+      return unless window.showLoginModal?
 
       window.showLoginModal = null
       @show()
