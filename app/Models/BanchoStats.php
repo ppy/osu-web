@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -14,30 +16,15 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+namespace App\Models;
 
-@keyframes spinner-sk-cubemove {
-  25% {
-    transform: translateX(42px) rotate(-90deg) scale(0.5);
-  } 50% {
-    transform: translateX(42px) translateY(42px) rotate(-179deg);
-  } 50.1% {
-    transform: translateX(42px) translateY(42px) rotate(-180deg);
-  } 75% {
-    transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
-  } 100% {
-    transform: rotate(-360deg);
-  }
-}
+use Illuminate\Database\Eloquent\Model;
 
-@keyframes logo-bounce {
-  0% { width: 100%; height: 100%; }
-  90% { transform: scale(1.05,1.05); }
-}
+class BanchoStats extends Model
+{
+    protected $table = 'osu_banchostats';
+    protected $primaryKey = 'banchostats_id';
 
-@keyframes logo-glow {
-  0% { width: 100%; height: 100%; }
-  5% { opacity: 1; }
-  100% { transform: scale(1.63,1.63); opacity: 0; }
+    public $timestamps = false;
 }

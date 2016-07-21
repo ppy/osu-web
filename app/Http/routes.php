@@ -29,7 +29,7 @@
 
 // home section
 if (Config::get('app.debug')) {
-    Route::get('/', ['as' => 'home', 'uses' => 'HomeController@getNews']);
+    Route::get('/', ['as' => 'home', 'uses' => 'HomeController@getLanding']);
 } else {
     Route::get('/', ['as' => 'home', function () {
         $host = Request::getHttpHost();
