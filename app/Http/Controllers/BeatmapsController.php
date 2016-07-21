@@ -58,23 +58,23 @@ class BeatmapsController extends Controller
                 ->scoresBest($mode)
                 ->defaultListing()
                 ->with('user');
-
-            switch ($type) {
-                case 'country':
-                    $scores = $scores
-                        ->whereHas('user', function ($query) use (&$user) {
-                            $query->where('country_acronym', $user->country_acronym);
-                        });
-                    break;
-                case 'friend':
-                    $scores = $scores
-                        ->whereIn('user_id', model_pluck($user->friends(), 'zebra_id'));
-                    break;
-            }
-
-            return fractal_collection_array($scores->get(), new ScoreTransformer, 'user');
         } catch (\InvalidArgumentException $ex) {
             return error_popup($ex->getMessage());
         }
+
+        switch ($type) {
+            case 'country':
+                $scores = $scores
+                    ->whereHas('user', function ($query) use (&$user) {
+                        $query->where('country_acronym', $user->country_acronym);
+                    });
+                break;
+            case 'friend':
+                $scores = $scores
+                    ->whereIn('user_id', model_pluck($user->friends(), 'zebra_id'));
+                break;
+        }
+
+        return fractal_collection_array($scores->get(), new ScoreTransformer, 'user');
     }
 }
