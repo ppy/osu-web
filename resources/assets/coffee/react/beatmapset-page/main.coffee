@@ -29,12 +29,13 @@ BeatmapsetPage.Main = React.createClass
     beatmaps = _.sortBy beatmaps, ['convert', 'difficulty_rating']
 
     # group beatmaps by playmode and then by beatmap id
-    beatmaps = _.groupBy beatmaps, (o) -> o.mode
+    beatmaps = _.groupBy beatmaps, 'mode'
     # contains the beatmap ids in their appropriate order
     beatmapList = {}
-    _.map beatmaps, (val, key) ->
-      beatmaps[key] = _.keyBy val, (o) -> o.id
-      beatmapList[key] = _.map val, (o) -> o.id
+
+    for key, val of beatmaps
+      beatmaps[key] = _.keyBy val, 'id'
+      beatmapList[key] = _.map val, 'id'
 
     [currentBeatmapId, currentPlaymode] =
       if beatmaps[optionsHash.playmode]? && beatmaps[optionsHash.playmode][optionsHash.beatmapId]?
