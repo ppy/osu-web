@@ -36,7 +36,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
 
   pageChange: ->
-    osu.timeout 0, -> $(document).trigger('osu:page:change')
+    Timeout.set 0, -> $(document).trigger('osu:page:change')
 
 
   parseJson: (id) ->
@@ -70,11 +70,6 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     el.setAttribute 'datetime', time
     el.textContent = time
     el.outerHTML
-
-
-  # nicer setTimeout with coffeescript. Or anything, really.
-  timeout: (time, callback) ->
-    setTimeout callback, time
 
 
   reloadPage: (keepScroll = true) ->
@@ -140,7 +135,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     if type == 'warning' or type == 'danger'
       $('#overlay').off('click.close-alert').one('click.close-alert', closeAlert).fadeIn()
     else
-      osu.timeout 5000, closeAlert
+      Timeout.set 5000, closeAlert
 
     $alert.appendTo($popup).fadeIn()
 

@@ -41,8 +41,8 @@ class @ForumPostsSeek
 
     Fade.in @tooltip[0]
 
-    clearTimeout @_autohide
-    @_autohide = osu.timeout 1000, @hideTooltip
+    Timeout.clear @_autohide
+    @_autohide = Timeout.set 1000, @hideTooltip
 
 
   click: =>

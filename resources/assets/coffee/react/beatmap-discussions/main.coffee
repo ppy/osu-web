@@ -54,13 +54,13 @@ BeatmapDiscussions.Main = React.createClass
 
     @jumpByHash()
 
-    @checkNewTimeout = osu.timeout @checkNewTimeoutDefault, @checkNew
+    @checkNewTimeout = Timeout.set @checkNewTimeoutDefault, @checkNew
 
 
   componentWillUnmount: ->
     $.unsubscribe '.beatmapDiscussions'
 
-    clearTimeout @checkNewTimeout
+    Timeout.clear @checkNewTimeout
     @checkNewAjax?.abort?()
 
 
@@ -184,7 +184,7 @@ BeatmapDiscussions.Main = React.createClass
   checkNew: ->
     @nextTimeout ?= @checkNewTimeoutDefault
 
-    clearTimeout @checkNewTimeout
+    Timeout.clear @checkNewTimeout
 
     @checkNewAjax = $.ajax document.location.pathname,
       data:
@@ -203,7 +203,7 @@ BeatmapDiscussions.Main = React.createClass
     .always =>
       @nextTimeout = Math.min @nextTimeout, @checkNewTimeoutMax
 
-      @checkNewTimeout = osu.timeout @nextTimeout, @checkNew
+      @checkNewTimeout = Timeout.set @nextTimeout, @checkNew
 
 
   setHighlight: (_e, {id}) ->

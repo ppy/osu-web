@@ -42,7 +42,7 @@ class @EditorZoom
     else
       $box.blur()
 
-      osu.timeout 500, -> $.publish 'stickyFooter:check'
+      Timeout.set 500, -> $.publish 'stickyFooter:check'
 
 
   end: (e) =>

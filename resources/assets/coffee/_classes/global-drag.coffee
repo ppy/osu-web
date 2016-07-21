@@ -42,5 +42,5 @@ class @GlobalDrag
       @dragging = false
       $.publish 'dragendGlobal'
 
-    clearTimeout @dragendTimer
-    @dragendTimer = osu.timeout 100, trigger
+    Timeout.clear @dragendTimer
+    @dragendTimer = Timeout.set 100, trigger

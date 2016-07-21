@@ -31,7 +31,7 @@ currentLocation = =>
   componentWillUnmount: ->
     $(window).stop()
     $(window).off '.scrollingPage'
-    clearTimeout @modeScrollTimeout
+    Timeout.clear @modeScrollTimeout
 
   setCurrentPage: (_e, page, extraCallback) ->
     callback = =>
@@ -80,7 +80,7 @@ currentLocation = =>
     # Don't bother scanning the current position.
     # The result will be wrong when target page is too short anyway.
     @scrolling = true
-    clearTimeout @modeScrollTimeout
+    Timeout.clear @modeScrollTimeout
 
     $(window).stop().scrollTo target, 500,
       onAfter: =>
@@ -92,6 +92,6 @@ currentLocation = =>
           # - part of state (callback, part of mode setting)
           # - simple variable in callback
           # Both still change the switch too soon.
-          @modeScrollTimeout = osu.timeout 100, => @scrolling = false
+          @modeScrollTimeout = Timeout.set 100, => @scrolling = false
       # count for the tabs height
       offset: pagesOffset[0].getBoundingClientRect().height * -1
