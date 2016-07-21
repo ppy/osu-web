@@ -103,7 +103,7 @@ class Beatmap extends Model
     {
         $mode = $mode ?? static::modeStr($this->playmode);
 
-        if (static::modeStr($this->playmode) !== 'osu' && $mode !== static::modeStr($this->playmode)) {
+        if ($this->mode !== 'osu' && $this->mode !== $mode) {
             throw new \InvalidArgumentException(trans('errors.beatmaps.standard-converts-only'));
         }
 
