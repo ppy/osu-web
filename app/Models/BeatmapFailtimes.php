@@ -27,11 +27,7 @@ class BeatmapFailtimes extends Model
 
     public $timestamps = false;
 
-    protected $casts = [
-        'beatmap_id' => 'integer',
-    ];
-
-    protected $fillable = ['type'];
+    protected $guarded = [];
 
     public function getDataAttribute()
     {
