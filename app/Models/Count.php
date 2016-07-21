@@ -32,4 +32,9 @@ class Count extends Model
     {
         return static::find('pp_rank_column')->count;
     }
+
+    public static function totalUsers()
+    {
+        return static::find('usercount')->count;
+    }
 }

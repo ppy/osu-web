@@ -15801,6 +15801,11 @@
       "from": "retina.js@>=1.1.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/retina.js/-/retina.js-1.1.0.tgz"
     },
+    "slick-carousel": {
+      "version": "1.6.0",
+      "from": "slick-carousel@latest",
+      "resolved": "https://registry.npmjs.org/slick-carousel/-/slick-carousel-1.6.0.tgz"
+    },
     "timeago": {
       "version": "1.5.2",
       "from": "timeago@>=1.5.0 <2.0.0",

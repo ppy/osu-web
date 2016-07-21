@@ -28,6 +28,10 @@ class DatabaseSeeder extends Seeder
             $this->command->info('Seeding Scores...');
             $this->call(ScoreSeeder::class);
 
+            // BanchoStats
+            $this->command->info('Seeding BanchoStats...');
+            $this->call(BanchoStatsSeeder::class);
+
             // Forums, topics, posts etc
             $this->command->info('Seeding Forum Data...');
             $this->call(ForumSeeder::class);
