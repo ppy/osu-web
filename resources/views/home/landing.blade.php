@@ -46,10 +46,8 @@
             <div class="landing-nav__section landing-nav__section--right js-nav-avatar">
                 <a
                     href="#"
-                    class="landing-nav__link"
+                    class="landing-nav__link js-user-link"
                     title="{{ trans("users.anonymous.login_link") }}"
-                    data-toggle="modal"
-                    data-target="#user-dropdown-modal"
                 >
                     {{ trans("users.login._") }}
                 </a>
