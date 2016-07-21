@@ -26,4 +26,3 @@
         <a href="#" class="js-user-link">Try logging in!</a>
     </div>
 @stop
-

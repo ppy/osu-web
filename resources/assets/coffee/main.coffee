@@ -27,6 +27,8 @@ $(document).on 'submit', 'form', LoadingOverlay.show
 @currentUserObserver ?= new CurrentUserObserver
 @reactTurbolinks ||= new ReactTurbolinks
 @twitchPlayer ?= new TwitchPlayer
+@landingGraph ?= new LandingGraph
+@landingHero ?= new LandingHero
 @timeago ?= new Timeago
 @osuLayzr ?= new OsuLayzr
 @nav ?= new Nav

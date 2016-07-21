@@ -106,6 +106,25 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     $(document).one 'turbolinks:load', ->
       window.scrollTo position[0], position[1]
 
+  getOS: (fallback='Windows') ->
+    nAgnt = navigator.userAgent
+    os = undefined
+    if /Windows (.*)/.test(nAgnt)
+      return 'Windows'
+    # Test for mobile first
+    if /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(navigator.appVersion)
+      return fallback
+    if /(macOS|Mac OS X|MacPPC|MacIntel|Mac_PowerPC|Macintosh)/.test(nAgnt)
+      return 'macOS'
+    if /(Linux|X11)/.test(nAgnt)
+      return 'Linux'
+    fallback
+
+  otherOS: (os) ->
+    choices = ['macOS', 'Linux', 'Windows']
+    index = choices.indexOf os
+    choices.splice index, 1
+    choices
 
   popup: (message, type = 'info') ->
     $popup = $('#popup-container')

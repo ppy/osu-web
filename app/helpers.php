@@ -223,7 +223,7 @@ function nav_links()
 
     if (config('app.debug')) {
         $links['home'] = [
-            'getNews' => route('news'),
+            'getNews' => route('home'),
             'getChangelog' => route('changelog'),
             'getDownload' => route('download'),
         ];
@@ -262,6 +262,40 @@ function nav_links()
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),
         'getCart' => action('StoreController@getCart'),
+    ];
+
+    return $links;
+}
+
+function footer_links()
+{
+    $links = [];
+
+    $links['general'] = [
+        'home' => route('home'),
+        'changelog' => route('changelog'),
+        'beatmaps' => action('BeatmapsetsController@index'),
+        'download' => route('download'),
+        'wiki' => route('wiki'),
+    ];
+
+    $links['help'] = [
+        'faq' => route('faq'),
+        'forum' => route('forum.forums.index'),
+        'livestreams' => route('home'),
+        'report' => route('home'),
+    ];
+
+    $links['support'] = [
+        'tags' => route('support-the-game'),
+        'merchandise' => action('StoreController@getListing'),
+    ];
+
+    $links['legal'] = [
+        'tos' => config('osu.urls.legal.tos'),
+        'copyright' => config('osu.urls.legal.dmca'),
+        'serverStatus' => config('osu.urls.legal.server'),
+        'osuStatus' => config('osu.urls.legal.osustatus'),
     ];
 
     return $links;
