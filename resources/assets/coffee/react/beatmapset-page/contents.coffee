@@ -56,7 +56,7 @@ class BeatmapsetPage.Contents extends React.Component
         el BeatmapsetPage.Details,
           beatmapset: @props.beatmapset
         el BeatmapsetPage.DifficultyChart,
-          currentBeatmap: @props.currentBeatmap
+          beatmap: @props.currentBeatmap
         el BeatmapsetPage.Stats,
           beatmapset: @props.beatmapset
-          currentBeatmap: @props.currentBeatmap
+          beatmap: @props.currentBeatmap

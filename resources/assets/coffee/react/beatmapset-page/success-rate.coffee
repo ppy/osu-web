@@ -61,7 +61,7 @@ class BeatmapsetPage.SuccessRate extends React.Component
     @_successRateChart.loadData data
 
   render: ->
-    percentage = _.round (@props.currentBeatmap.passcount / @props.currentBeatmap.playcount) * 100
+    percentage = _.round (@props.beatmap.passcount / @props.beatmap.playcount) * 100
 
     div
       className: 'page-extra'

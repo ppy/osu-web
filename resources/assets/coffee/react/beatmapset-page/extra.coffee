@@ -63,11 +63,12 @@ BeatmapsetPage.Extra = React.createClass
           elem =
             switch m
               when 'description'
-                props = description: @props.beatmapset.description.data.description
+                props =
+                  description: @props.beatmapset.description.data.description
                 BeatmapsetPage.Description
               when 'success-rate'
                 props =
-                  currentBeatmap: @props.currentBeatmap
+                  beatmap: @props.currentBeatmap
                   failtimes: @props.currentBeatmap.failtimes.data
                 BeatmapsetPage.SuccessRate
               when 'scoreboard'

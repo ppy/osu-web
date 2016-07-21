@@ -29,18 +29,18 @@ class BeatmapsetPage.Stats extends React.Component
 
           switch m
             when 'cs'
-              dd = "#{@props.currentBeatmap.cs.toLocaleString()}"
+              dd = "#{@props.beatmap.cs.toLocaleString()}"
             when 'hp'
-              dd = "#{@props.currentBeatmap.drain.toLocaleString()}"
+              dd = "#{@props.beatmap.drain.toLocaleString()}"
             when 'od'
-              dd = "#{@props.currentBeatmap.accuracy.toLocaleString()}"
+              dd = "#{@props.beatmap.accuracy.toLocaleString()}"
             when 'ar'
-              dd = "#{@props.currentBeatmap.ar.toLocaleString()}"
+              dd = "#{@props.beatmap.ar.toLocaleString()}"
             when 'stars'
-              dd = "#{@props.currentBeatmap.difficulty_rating.toFixed 2}"
+              dd = "#{@props.beatmap.difficulty_rating.toFixed 2}"
             when 'length'
               dd = moment 0
-                .seconds @props.currentBeatmap.total_length
+                .seconds @props.beatmap.total_length
                 .format 'm:ss'
             when 'bpm'
               dd = @props.beatmapset.bpm
