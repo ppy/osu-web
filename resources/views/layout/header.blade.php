@@ -89,30 +89,7 @@
     <div
         class="osu-layout__row"
     >
-        <div
-            class="nav-popup-container js-nav-popup--popup"
-            data-visibility="hidden"
-            data-visibility-animation="none"
-        >
-            <div class="nav-popup-box">
-                <div class="nav-popup-box__content">
-                    @include('layout._popup_menu')
-                </div>
-            </div>
-
-            <div
-                class="nav-popup-box nav-popup-box--extra js-nav-switch--animated js-nav-switch--menu"
-                data-nav-mode="user"
-            >
-                <div class="nav-popup-box__content">
-                    @if (Auth::check())
-                        @include('layout._popup_user', ['_user' => Auth::user()])
-                    @else
-                        @include('layout._popup_login')
-                    @endif
-                </div>
-            </div>
-        </div>
+        @include('layout._popup')
     </div>
 </nav>
 
