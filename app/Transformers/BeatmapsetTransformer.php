@@ -135,10 +135,8 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         );
     }
 
-    public function includeConverts(BeatmapSet $beatmapSet)
+    public function includeConverts(Beatmapset $beatmapset)
     {
-        $standardBeatmaps = $beatmapSet->beatmaps()->where('playmode', 0)->get();
-
         $converts = [];
 
         foreach (Beatmap::MODES as $modeStr => $modeInt) {
@@ -146,7 +144,11 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
                 continue;
             }
 
-            foreach ($standardBeatmaps as $beatmap) {
+            foreach ($beatmapset->beatmaps as $beatmap) {
+                if ($beatmap->mode !== 'osu') {
+                    continue;
+                }
+
                 $beatmap = clone $beatmap;
 
                 $beatmap->playmode = $modeInt;
