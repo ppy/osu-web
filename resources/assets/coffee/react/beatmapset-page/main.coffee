@@ -37,12 +37,18 @@ BeatmapsetPage.Main = React.createClass
       beatmaps[key] = _.keyBy val, 'id'
       beatmapList[key] = _.map val, 'id'
 
-    [currentBeatmapId, currentPlaymode] =
-      if beatmaps[optionsHash.playmode]? && beatmaps[optionsHash.playmode][optionsHash.beatmapId]?
-        [optionsHash.beatmapId, optionsHash.playmode]
-      else
-        # falling back to standard for now
-        [_.last(beatmapList.osu), 'osu']
+    if beatmaps[optionsHash.playmode]? && beatmaps[optionsHash.playmode][optionsHash.beatmapId]?
+      currentBeatmapId = optionsHash.beatmapId
+      currentPlaymode = optionsHash.playmode
+
+    # fall back to the first mode that has beatmaps in this mapset
+    if !currentBeatmapId?
+      for mode in BeatmapHelper.modes
+        if beatmapList[mode]?
+          currentBeatmapId = _.last beatmapList[mode]
+          currentPlaymode = mode
+          break
+
 
     beatmaps: beatmaps
     beatmapList: beatmapList
