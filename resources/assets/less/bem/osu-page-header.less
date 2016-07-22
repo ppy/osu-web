@@ -28,6 +28,10 @@
   @media @desktop {
     padding-left: @padding-big;
     padding-right: @padding-big;
+
+    &--artist {
+      padding-left: 40px;
+    }
   }
 
   &--tournaments {
@@ -43,6 +47,26 @@
   &--live {
     .at2x-simple("/images/headers/live-top.png");
     height: 165px;
+  }
+
+  &--artist {
+    .at2x-simple("/images/headers/artist.png");
+    height: 200px;
+    justify-content: flex-start;
+
+    font-weight: 100;
+    color: white;
+
+    &__subtitle {
+      font-size: 14px;
+      margin-top: 40px;
+      margin-bottom: 10px;
+    }
+
+    &__title {
+      font-size: 30px;
+      margin-top: -5px;
+    }
   }
 
   &__title {

@@ -84,6 +84,9 @@ Route::post('users/login', ['as' => 'users.login', 'uses' => 'UsersController@lo
 Route::delete('users/logout', ['as' => 'users.logout', 'uses' => 'UsersController@logout']);
 Route::get('users/disabled', ['as' => 'users.disabled', 'uses' => 'UsersController@disabled']);
 
+// Artist stuff
+Route::get('/artists/{artist_id}', ['as' => 'artist.show', 'uses' => 'ArtistsController@show']);
+
 // Authentication section (Temporarily set up as replacement/improvement of config("osu.urls.*"))
 Route::get('users/forgot-password', ['as' => 'users.forgot-password', function () {
     return Redirect::to('https://osu.ppy.sh/p/forgot');
