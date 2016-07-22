@@ -123,11 +123,13 @@ class TopicsController extends Controller
             'body' => 'required',
         ]);
 
-        if ($topic->addPost(Auth::user(), Request::input('body'), false)) {
-            $posts = Post::where('post_id', $topic->topic_last_post_id)->get();
+        $post = $topic->addPost(Auth::user(), Request::input('body'));
+
+        if ($post->post_id !== null) {
+            $posts = collect([$post]);
             $postsPosition = $topic->postsPosition($posts);
 
-            Event::fire(new TopicWasReplied($topic, $posts->last(), Auth::user()));
+            Event::fire(new TopicWasReplied($topic, $post, Auth::user()));
 
             return view('forum.topics._posts', compact('posts', 'postsPosition', 'topic'));
         }
@@ -256,7 +258,6 @@ class TopicsController extends Controller
             'title' => $request->get('title'),
             'user' => Auth::user(),
             'body' => $request->get('body'),
-            'notifyReplies' => false,
             'cover' => TopicCover::findForUse(presence($request->input('cover_id')), Auth::user()),
         ];
 
