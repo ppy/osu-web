@@ -31,11 +31,9 @@ $(document).on 'hidden.bs.modal', '.modal', ->
 
 $(document).on 'show.bs.modal', '.modal', ->
   # trigger modal display immediately instead of waiting for backdrop animation to finish
-  triggerModal = ->
-    $('.modal-backdrop').trigger 'bsTransitionEnd'
-
   # have to wait a bit until the backdrop is created
-  setTimeout triggerModal, 10
+  Timeout.set 10,  ->
+    $('.modal-backdrop').trigger 'bsTransitionEnd'
 
   alignments = []
 

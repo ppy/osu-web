@@ -15,73 +15,81 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<nav class="osu-layout__section osu-layout__section--minimum no-print js-header--main">
-    @include("layout.mobile-header")
+<nav class="visible-xs no-print js-header--main">
+    @include('layout._header_mobile')
+</nav>
 
+<nav class="osu-layout__section osu-layout__section--minimum no-print js-header--main js-nav-popup">
     <!-- Main style -->
-    <div id="nav-background" class="hidden-xs">
-        <div id="nav-triangles-1" class="nav-triangles"></div>
-        <div id="nav-triangles-2" class="nav-triangles"></div>
-        <div id="nav-triangles-3" class="nav-triangles"></div>
-        <div id="nav-gradient-overlay"></div>
-    </div>
+    <div class="hidden-xs osu-nav">
+        <div class="bg u-section-bg">
+            <div class="bg__triangles bg__triangles--1"></div>
+            <div class="bg__triangles bg__triangles--2"></div>
+            <div class="bg__triangles bg__triangles--3"></div>
+            <div class="bg__gradient-overlay u-section-gradient-down"></div>
+        </div>
 
-    <div class="hidden-xs osu-layout__row" id="nav-sm">
-        <a class="flex-none nav-logo" href="/"></a>
+        <div class="osu-nav__content">
+            <div class="osu-nav__top">
+                <a class="osu-nav__top-col osu-nav__top-col--logo osu-nav__top-col--float" href="/">
+                    @include('objects._logo')
+                </a>
 
-        <div id="nav-links">
-            <div id="nav-menu" class="js-menu osu-nav__menu">
-                @foreach (nav_links() as $section => $links)
-                    <a
-                        class="js-menu osu-nav__link {{ $current_section === $section ? "osu-nav__link--active" : ""}}"
-                        data-menu-target="header--{{ $section }}"
-                        href="{{ array_values($links)[0] }}"
-                    >
-                            {{ trans("layout.menu.$section._") }}
-                    </a>
-                @endforeach
+                <div class="osu-nav__top-col osu-nav__top-col--title">
+                    <div class="js-nav-switch js-nav-switch--active" data-nav-mode="default">
+                        <div class="osu-nav__title">
+                            {{ trans("layout.menu.{$current_section}._") }}
 
-                <a class="osu-nav__link yellow-normal" href="{{ route("support-the-game") }}">support the game</a>
+                            <span class="osu-nav__title-separator">
+                                <i class="fa fa-angle-right"></i>
+                            </span>
 
-                <a class="osu-nav__link" href="{{ config("osu.urls.social.facebook") }}" target="_blank"><i class="fa fa-facebook-f"></i></a>
+                            {{ trans("layout.menu.{$current_section}.{$current_action}") }}
+                        </div>
 
-                <a class="osu-nav__link" href="{{ config("osu.urls.social.twitter") }}" target="_blank"><i class="fa fa-twitter"></i></a>
-            </div>
-
-            <div id="nav-page-title">
-                <div class="osu-nav__title-menu js-header-menu--page-title">
-                    <span class="osu-nav__link osu-nav__link--large">
-                        <span class="sub1">{{ trans("layout.menu.$current_section._") }}</span>
-                    </span>
-
-                    <span class="osu-nav__link osu-nav__link--large">
-                        <span class="sub2">{{ trans("layout.menu.$current_section.$current_action") }}</span>
-                    </span>
+                        <div class="osu-nav__highlight-bar">
+                            <span class="bar"></span>
+                        </div>
+                    </div>
                 </div>
 
-                @foreach (nav_links() as $section => $links)
-                    <div
-                        class="osu-nav__title-menu js-menu"
-                        data-menu-id="header--{{ $section }}"
-                        data-visibility="hidden"
-                    >
-                        <span class="osu-nav__link osu-nav__link--large osu-nav__link--title">
-                            {{ trans("layout.menu.$section._") }}
-                        </span>
+                <a class="osu-nav__top-col osu-nav__top-col--float js-nav-switch" href="#" data-nav-mode="user">
+                    <div>
+                        <div class="osu-nav__title">
+                            @if (Auth::check())
+                                {{ Auth::user()->username }}
+                            @else
+                                {{ trans("users.anonymous.username") }}
+                            @endif
+                        </div>
 
-                        @foreach ($links as $action => $link)
-                            <a class="osu-nav__link osu-nav__link--large" href="{{ $link }}">
-                                {{ trans("layout.menu.$section.$action") }}
-                            </a>
-                        @endforeach
+                        <div class="osu-nav__highlight-bar">
+                            <span class="bar"></span>
+                        </div>
                     </div>
-                @endforeach
+
+                    <div class="osu-nav__avatar">
+                        <div
+                            class="
+                                avatar
+                                avatar--full-rounded
+                                {{ Auth::check() ? '' : 'avatar--guest' }}
+                                js-nav-avatar
+                            "
+                            @if (Auth::check())
+                                style="background-image: url('{{ Auth::user()->user_avatar }}');"
+                            @endif
+                        ></div>
+                    </div>
+                </a>
             </div>
         </div>
+    </div>
 
-        <div class="flex-none nav-user-bar-container">
-            @include("objects.user-dropdown")
-        </div>
+    <div
+        class="osu-layout__row"
+    >
+        @include('layout._popup')
     </div>
 </nav>
 

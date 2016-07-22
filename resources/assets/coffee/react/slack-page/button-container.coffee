@@ -56,9 +56,8 @@ class SlackPage.ButtonContainer extends React.Component
         p className: 'slack-button-container__notice',
           osu.trans 'community.slack.guest-begin'
           a
+            className: 'js-user-link'
             href: '#'
-            'data-target': '#user-dropdown-modal',
-            'data-toggle': 'modal',
             title: osu.trans 'users.anonymous.login_link'
             osu.trans 'community.slack.guest-middle'
           osu.trans 'community.slack.guest-end'
