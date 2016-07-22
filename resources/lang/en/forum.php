@@ -156,6 +156,13 @@ return [
                 ],
             ],
         ],
+
+        'watch' => [
+            'watch-0' => 'Unsubscribe topic',
+            'watch-1' => 'Subscribe topic',
+            'watched-0' => 'Unsubscribed from topic',
+            'watched-1' => 'Subscribed to topic',
+        ],
     ],
 
 ];

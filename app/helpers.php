@@ -128,6 +128,14 @@ function i18n_view($view)
     }
 }
 
+function is_sql_unique_exception($ex)
+{
+    return starts_with(
+        $ex->getMessage(),
+        'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry'
+    );
+}
+
 function js_view($view, $vars = [])
 {
     return response()

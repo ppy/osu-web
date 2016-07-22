@@ -29,6 +29,7 @@ use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Forum\TopicPoll;
+use App\Models\Forum\TopicWatch;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use Carbon\Carbon;
@@ -48,10 +49,10 @@ class TopicsController extends Controller
 
         $this->middleware('auth', ['only' => [
             'create',
+            'lock',
             'preview',
             'reply',
             'store',
-            'lock',
         ]]);
     }
 
@@ -236,9 +237,19 @@ class TopicsController extends Controller
             new TopicCoverTransformer()
         );
 
+        $isWatching = TopicWatch::check($topic, Auth::user());
+
         return view(
             "forum.topics.{$template}",
-            compact('topic', 'posts', 'postsPosition', 'jumpTo', 'cover', 'pollSummary')
+            compact(
+                'cover',
+                'isWatching',
+                'jumpTo',
+                'pollSummary',
+                'posts',
+                'postsPosition',
+                'topic'
+            )
         );
     }
 
@@ -316,5 +327,17 @@ class TopicsController extends Controller
         } else {
             return error_popup(implode(' ', $star->validationErrors()->allMessages()));
         }
+    }
+
+    public function watch($id)
+    {
+        $topic = Topic::findOrFail($id);
+        $watch = Request::input('watch') === '1';
+
+        priv_check('ForumTopicWatch'.(int) $watch, $topic->forum)->ensureCan();
+
+        TopicWatch::toggle($topic, Auth::user(), $watch);
+
+        return ['message' => trans('forum.topics.watch.watched-'.(int) $watch)];
     }
 }

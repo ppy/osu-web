@@ -106,6 +106,10 @@ return [
                     'silenced' => "Can't vote while silenced.",
                 ],
             ],
+
+            'watch' => [
+                'no_forum_access' => 'Access to requested forum is required.',
+            ],
         ],
 
         'topic_cover' => [
