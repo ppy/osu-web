@@ -18,14 +18,14 @@
 {div, audio} = React.DOM
 el = React.createElement
 
-BeatmapsetPage.Main = React.createClass
-  mixins: [ScrollingPageMixin]
+class BeatmapsetPage.Main extends React.Component
+  constructor: (props) ->
+    super props
 
-  getInitialState: ->
     optionsHash = BeatmapsetPageHash.parse location.hash
     @initialPage = optionsHash.page
 
-    beatmaps = _.concat @props.beatmapset.beatmaps.data, @props.beatmapset.converts.data
+    beatmaps = _.concat props.beatmapset.beatmaps.data, props.beatmapset.converts.data
     beatmaps = _.sortBy beatmaps, ['convert', 'difficulty_rating']
 
     # group beatmaps by playmode and then by beatmap id
@@ -49,23 +49,22 @@ BeatmapsetPage.Main = React.createClass
           currentPlaymode = mode
           break
 
+    @state =
+      beatmaps: beatmaps
+      beatmapList: beatmapList
+      currentBeatmapId: currentBeatmapId
+      currentPlaymode: currentPlaymode
+      loading: false
+      isPreviewPlaying: false
+      currentScoreboard: 'global'
+      scores: []
 
-    beatmaps: beatmaps
-    beatmapList: beatmapList
-    currentBeatmapId: currentBeatmapId
-    currentPlaymode: currentPlaymode
-    loading: false
-    isPreviewPlaying: false
-    currentScoreboard: 'global'
-    scores: []
-
-  setHash: ->
+  setHash: =>
     osu.setHash BeatmapsetPageHash.generate
-      page: @state.currentPage
       beatmapId: @state.currentBeatmapId
       playmode: @state.currentPlaymode
 
-  setCurrentScoreboard: (_e, {scoreboard, forceReload = false}) ->
+  setCurrentScoreboard: (_e, {scoreboard, forceReload = false}) =>
     return if @state.loading
 
     @setState
@@ -105,7 +104,7 @@ BeatmapsetPage.Main = React.createClass
       @setState loading: false
 
 
-  setCurrentBeatmapId: (_e, {beatmapId, playmode}) ->
+  setCurrentBeatmapId: (_e, {beatmapId, playmode}) =>
     return if @state.currentBeatmapId == beatmapId && @state.currentPlaymode == playmode
 
     @setState
@@ -115,7 +114,7 @@ BeatmapsetPage.Main = React.createClass
         @setHash()
         @setCurrentScoreboard null, scoreboard: 'global'
 
-  togglePreviewPlayingState: (_e, isPreviewPlaying) ->
+  togglePreviewPlayingState: (_e, isPreviewPlaying) =>
     @setState isPreviewPlaying: isPreviewPlaying
 
     if isPreviewPlaying
@@ -124,18 +123,17 @@ BeatmapsetPage.Main = React.createClass
       @audioPreview.pause()
       @audioPreview.currentTime = 0;
 
-  onPreviewEnded: ->
+  onPreviewEnded: =>
     @setState isPreviewPlaying: false
 
   componentDidMount: ->
     @removeListeners()
 
     $.subscribe 'beatmapset:beatmap:set.beatmapsetPage', @setCurrentBeatmapId
-    $.subscribe 'beatmapset:page:jump.beatmapsetPage', @pageJump
     $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
     $.subscribe 'beatmapset:preview:toggle.beatmapsetPage', @togglePreviewPlayingState
 
-    @pageJump null, @initialPage
+    @setHash()
     @setCurrentScoreboard null, scoreboard: 'global'
 
     @audioPreview = document.getElementsByClassName('js-beatmapset-page--audio-preview')[0]
@@ -156,27 +154,3 @@ BeatmapsetPage.Main = React.createClass
         src: @props.beatmapset.previewUrl
         preload: 'auto'
         onEnded: @onPreviewEnded
-
-      el BeatmapsetPage.Header,
-        title: @props.beatmapset.title
-        artist: @props.beatmapset.artist
-        playcount: @props.beatmapset.play_count
-        favcount: @props.beatmapset.favourite_count
-        cover: @props.beatmapset.covers.cover
-        isPreviewPlaying: @state.isPreviewPlaying
-
-      el BeatmapsetPage.Contents,
-        beatmapset: @props.beatmapset
-        currentBeatmap: currentBeatmap
-        beatmaps: @state.beatmaps
-        beatmapList: @state.beatmapList
-        currentPage: @state.currentPage
-
-      el BeatmapsetPage.Extra,
-        beatmapset: @props.beatmapset
-        beatmaps: @state.beatmaps
-        currentBeatmap: currentBeatmap
-        currentPage: @state.currentPage
-        currentScoreboard: @state.currentScoreboard
-        scores: @state.scores
-        countries: @props.countries
