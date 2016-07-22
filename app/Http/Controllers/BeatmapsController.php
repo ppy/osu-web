@@ -51,12 +51,16 @@ class BeatmapsController extends Controller
         }
 
         $beatmap = Beatmap::findOrFail($id);
+        $mode = Request::input('mode', Beatmap::modeStr($beatmap->playmode));
 
-        $scores = $beatmap
-            ->scoresBest()
-            ->defaultListing()
-            ->limit(config('osu.beatmaps.max-scores'))
-            ->with('user');
+        try {
+            $scores = $beatmap
+                ->scoresBest($mode)
+                ->defaultListing()
+                ->with('user');
+        } catch (\InvalidArgumentException $ex) {
+            return error_popup($ex->getMessage());
+        }
 
         switch ($type) {
             case 'country':

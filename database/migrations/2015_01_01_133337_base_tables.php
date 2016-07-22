@@ -1298,6 +1298,36 @@ class BaseTables extends Migration
         });
         $this->setRowFormat('phpbb_groups', 'DYNAMIC');
 
+        Schema::create('phpbb_log', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
+
+            $table->mediumIncrements('log_id');
+            $table->tinyInteger('log_type')->default(0);
+            $table->unsignedMediumInteger('user_id')->default(0);
+            $table->unsignedMediumInteger('forum_id')->default(0);
+            $table->unsignedMediumInteger('topic_id')->default(0);
+            $table->unsignedMediumInteger('reportee_id')->default(0);
+
+            $column = $table->string('log_ip', 40)->default('');
+            $column->collation = 'utf8_bin';
+
+            $table->unsignedInteger('log_time')->default(0);
+
+            $column = $table->text('log_operation');
+            $column->collation = 'utf8_bin';
+
+            $column = $table->mediumText('log_data');
+            $column->collation = 'utf8_bin';
+
+            $table->index('log_type', 'log_type');
+            $table->index('forum_id', 'forum_id');
+            $table->index('topic_id', 'topic_id');
+            $table->index('reportee_id', 'reportee_id');
+            $table->index('user_id', 'user_id');
+        });
+        $this->setRowFormat('phpbb_log', 'COMPRESSED');
+
         Schema::create('osu_mod_queue', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_bin';
@@ -1368,6 +1398,7 @@ class BaseTables extends Migration
         Schema::drop('phpbb_user_group');
         Schema::drop('phpbb_users');
         Schema::drop('phpbb_groups');
+        Schema::drop('phpbb_log');
         Schema::drop('osu_mod_queue');
     }
 
