@@ -17,39 +17,35 @@
 ###
 class @CurrentUserObserver
   constructor: ->
-    @currentUserCovers = document.getElementsByClassName('js-current-user-cover')
+    @covers = document.getElementsByClassName('js-current-user-cover')
 
     @observer = new MutationObserver (mutations) =>
       for mutation in mutations
         for nodes in mutation.addedNodes
           for node in nodes
             if node.classList.has 'js-current-user-cover'
-              @setCover node
+              @setCovers [node]
             else
               @setCovers node.getElementsByClassName('js-current-user-cover')
 
     $.subscribe 'user:update', @setData
-    $(document).on 'turbolinks:load', @initCovers
+    $(document).on 'turbolinks:load', @reinit
 
 
-  initCovers: =>
+  reinit: =>
     @setCovers()
-
-
-  setCover: (el) =>
-    url = if currentUser.id? then "url('#{currentUser.cover.url}')"
-
-    el.style.backgroundImage = url
 
 
   setCovers: (elements) =>
     if !elements?
-      elements = @currentUserCovers
+      elements = @covers
 
-    @setCover(el) for el in elements
+    for el in elements
+      url = if currentUser.id? then "url('#{currentUser.cover.url}')"
+      el.style.backgroundImage = url
 
 
   setData: (_e, data) =>
     window.currentUser = data
 
-    @setCovers()
+    @reinit()
