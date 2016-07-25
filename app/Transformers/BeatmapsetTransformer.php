@@ -20,6 +20,7 @@
 namespace App\Transformers;
 
 use App\Models\Beatmapset;
+use App\Models\Beatmap;
 use App\Models\BeatmapsetEvent;
 use App\Models\DeletedUser;
 use League\Fractal;
@@ -31,6 +32,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         'description',
         'user',
         'beatmaps',
+        'converts',
         'nominations',
     ];
 
@@ -128,8 +130,34 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
     public function includeBeatmaps(Beatmapset $beatmapset)
     {
         return $this->collection(
-            $beatmapset->defaultBeatmaps,
+            $beatmapset->beatmaps,
             new BeatmapTransformer()
         );
+    }
+
+    public function includeConverts(Beatmapset $beatmapset)
+    {
+        $converts = [];
+
+        foreach (Beatmap::MODES as $modeStr => $modeInt) {
+            if ($modeStr === 'osu') {
+                continue;
+            }
+
+            foreach ($beatmapset->beatmaps as $beatmap) {
+                if ($beatmap->mode !== 'osu') {
+                    continue;
+                }
+
+                $beatmap = clone $beatmap;
+
+                $beatmap->playmode = $modeInt;
+                $beatmap->convert = true;
+
+                array_push($converts, $beatmap);
+            }
+        }
+
+        return $this->collection($converts, new BeatmapTransformer);
     }
 }
