@@ -29,7 +29,7 @@
 
     <!-- Main style -->
     <div class="osu-nav">
-        <a class="osu-nav__col osu-nav__col--logo osu-nav__col--float" href="/">
+        <a class="osu-nav__col osu-nav__col--logo u-nav-float" href="/">
             @include('objects._logo')
         </a>
 
@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <a class="osu-nav__col osu-nav__col--float js-nav-switch" href="#" data-nav-mode="user">
+        <a class="osu-nav__col u-nav-float js-nav-switch" href="#" data-nav-mode="user">
             <div>
                 <div class="osu-nav__title">
                     @if (Auth::check())
