@@ -19,15 +19,6 @@ class @CurrentUserObserver
   constructor: ->
     @covers = document.getElementsByClassName('js-current-user-cover')
 
-    @observer = new MutationObserver (mutations) =>
-      for mutation in mutations
-        for nodes in mutation.addedNodes
-          for node in nodes
-            if node.classList.has 'js-current-user-cover'
-              @setCovers [node]
-            else
-              @setCovers node.getElementsByClassName('js-current-user-cover')
-
     $.subscribe 'user:update', @setData
     $(document).on 'turbolinks:load', @reinit
 
