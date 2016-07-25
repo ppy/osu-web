@@ -27,6 +27,7 @@ class @Nav
     @popupContainer = document.getElementsByClassName('js-nav-popup--container')
     @menus = document.getElementsByClassName('js-nav-switch--menu')
     @switches = document.getElementsByClassName('js-nav-switch')
+    @floatBeacon = document.getElementsByClassName('js-nav-popup--beacon')
 
 
   autoFocus: (e, popup) =>
@@ -78,9 +79,9 @@ class @Nav
     return if !@available()
     return if !Fade.isVisible(@popup[0])
 
-    switchPosition = @switches[0].getBoundingClientRect()
+    beaconPosition = @floatBeacon[0].getBoundingClientRect()
 
-    if switchPosition.left == 0 || switchPosition.bottom < 0
+    if beaconPosition.bottom < 0
       @floatPopup()
     else
       @resetPopup()
@@ -116,19 +117,34 @@ class @Nav
   syncMode: =>
     activeClass = 'js-nav-switch--active'
 
+    [currentMode, currentSubMode] = @currentMode().split '/'
+
     for menu in @menus
-      if menu.dataset.navMode == @currentMode()
+      isCurrent = menu.dataset.navMode == currentMode
+
+      if isCurrent
         menu.classList.add activeClass
+
+        for submenu in menu.getElementsByClassName('js-nav-popup--submenu')
+          if !currentSubMode? || submenu.dataset.navSubMode == currentSubMode
+            submenu.classList.remove 'hidden'
+          else
+            submenu.classList.add 'hidden'
 
         if menu.classList.contains 'js-nav-switch--animated'
           $(menu).one 'transitionend', @autoFocus
         else
           Timeout.set 0, => @autoFocus null, menu
+
       else
         menu.classList.remove activeClass
 
     for link in @switches
-      if link.dataset.navMode == @currentMode()
+      isCurrent =
+        link.dataset.navMode == currentMode &&
+        (!currentSubMode? || link.dataset.navSubMode == currentSubMode)
+
+      if isCurrent
         link.classList.add activeClass
       else
         link.classList.remove activeClass

@@ -43,21 +43,27 @@
                 @include('objects._logo')
             </a>
 
-            <div class="landing-nav__section landing-nav__section--right js-nav-avatar">
+            <div class="landing-nav__section landing-nav__section--right">
                 <a
                     href="#"
                     class="landing-nav__link js-user-link"
+                    data-nav-mode="user/login"
                     title="{{ trans("users.anonymous.login_link") }}"
                 >
                     {{ trans("users.login._") }}
                 </a>
 
-                <a href="{{ route("users.register") }}" class="landing-nav__link">
+                <a
+                    href="{{ route("users.register") }}" class="landing-nav__link js-user-link"
+                    data-nav-mode="user/signup"
+                >
                     {{ trans("users.signup._") }}
                 </a>
             </div>
         </div>
+
     </nav>
+    @include('layout._popup')
 
     <header class="osu-layout__row osu-layout__row--landing">
         <div class="landing-hero">

@@ -59,22 +59,24 @@ class @UserLogin
       osu.reloadPage()
 
 
-  show: (target) =>
+  show: (target, mode = 'user') =>
     @clickAfterLogin = target
 
     Timeout.clear @skipAnimationTimeout
     $('.js-nav-switch--menu').removeClass('js-nav-switch--animated')
 
-    @nav.currentMode('user')
+    @nav.currentMode(mode)
     @nav.showPopup()
 
     @skipAnimationTimeout = Timeout.set 100, =>
       $('.js-nav-switch--menu').addClass('js-nav-switch--animated')
 
 
-  showOnClick: (event) =>
-    event.preventDefault()
-    Timeout.set 0, @show
+  showOnClick: (e) =>
+    e.preventDefault()
+    mode = e.currentTarget.dataset.navMode
+    Timeout.set 0, =>
+      @show null, mode
 
 
   showOnError: (event, xhr) =>

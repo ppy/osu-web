@@ -16,7 +16,11 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="nav-popup nav-popup--sections">
-    <div class="nav-popup__section nav-popup__section--register">
+    <div
+        class="nav-popup__section nav-popup__section--register js-nav-popup--submenu"
+        data-visibility-animation="none"
+        data-nav-sub-mode="signup"
+    >
         <h2 class="nav-popup__row nav-popup__row--title">{{ trans('layout.popup_login.register.title') }}</h2>
 
         <div class="nav-popup__row nav-popup__row--full">{{ trans('layout.popup_login.register.info') }}</div>
@@ -44,8 +48,11 @@
             nav-popup__section
             nav-popup__section--login
             js-login-form
+            js-nav-popup--submenu
         ',
         'data-remote' => true,
+        'data-visibility-animation' => 'none',
+        'data-nav-sub-mode' => 'login',
     ]) !!}
         <h2 class="nav-popup__row nav-popup__row--title">{{ trans('layout.popup_login.login.title') }}</h2>
 
