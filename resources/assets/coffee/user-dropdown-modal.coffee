@@ -47,7 +47,7 @@ class UserDropdownModal
     $('#user-dropdown-modal').modal 'show'
     @clickAfterLogin = target
 
-  hide: => 
+  hide: =>
     $('#user-dropdown-modal').modal 'hide'
 
 

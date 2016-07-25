@@ -76,7 +76,7 @@
                 <div class="landing-graph__info">
                     <b>{{ number_format($totalUsers, 0) }}</b> {{ trans("home.landing.players") }}, <b>{{ number_format($currentOnline, 0) }}</b> {{ trans("home.landing.online") }}
                 </div>
-            </div>        
+            </div>
         </div>
     </header>
     <main class="osu-layout__row osu-layout__row--landing">

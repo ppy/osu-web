@@ -51,15 +51,15 @@ class Status.Uptime extends React.Component
           onClick: @_changeViewMode.bind(@, 'today')
           className: 'status-recent__when' + (if @state.when == 'today' then ' status-recent__when--active' else '')
           osu.trans('status_page.recent.when.today')
-        h5 
+        h5
           onClick: @_changeViewMode.bind(@, 'week')
           className: 'status-recent__when' + (if @state.when == 'week' then ' status-recent__when--active' else '')
           osu.trans('status_page.recent.when.week')
-        h5 
+        h5
           onClick: @_changeViewMode.bind(@, 'month')
           className: 'status-recent__when' + (if @state.when == 'month' then ' status-recent__when--active' else '')
           osu.trans('status_page.recent.when.month')
-        h5 
+        h5
           onClick: @_changeViewMode.bind(@, 'all_time')
           className: 'status-recent__when' + (if @state.when == 'all_time' then ' status-recent__when--active' else '')
           osu.trans('status_page.recent.when.all_time')
