@@ -37,8 +37,8 @@ class Beatmaps.SearchPanel extends React.Component
       return
 
     @prevText = text
-    if @keyDelay?
-      Timeout.clear @keyDelay
+
+    Timeout.clear @keyDelay
     @keyDelay = Timeout.set 500, @submit
 
   submit: =>
