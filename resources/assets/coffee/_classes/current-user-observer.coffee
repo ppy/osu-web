@@ -29,8 +29,7 @@ class @CurrentUserObserver
 
 
   setCovers: (elements) =>
-    if !elements?
-      elements = @covers
+    elements ?= @covers
 
     for el in elements
       url = if currentUser.id? then "url('#{currentUser.cover.url}')"
