@@ -21,8 +21,10 @@ class @Nav
     $(document).on 'mouseleave', '.js-nav-popup', @gracefulHidePopup
     $(document).on 'click', '.js-nav-switch', @switchMode
     $(document).on 'click', @hidePopup
+    $(window).on 'throttled-scroll throttled-resize', @repositionPopup
 
     @popup = document.getElementsByClassName('js-nav-popup--popup')
+    @popupContainer = document.getElementsByClassName('js-nav-popup--container')
     @menus = document.getElementsByClassName('js-nav-switch--menu')
     @switches = document.getElementsByClassName('js-nav-switch')
 
@@ -47,6 +49,11 @@ class @Nav
     @popup[0].dataset.currentMode ?= 'default'
 
 
+  floatPopup: =>
+    @popupContainer[0].style.position = 'fixed'
+    @popupContainer[0].classList.add 'u-nav-float'
+
+
   gracefulHidePopup: =>
     return if @currentMode() != 'default'
     @hidePopup()
@@ -63,7 +70,25 @@ class @Nav
 
     @hideTimeout = Timeout.set 10, =>
       Fade.out @popup[0]
+      @resetPopup()
       @switchMode()
+
+
+  repositionPopup: =>
+    return if !@available()
+    return if !Fade.isVisible(@popup[0])
+
+    switchPosition = @switches[0].getBoundingClientRect()
+
+    if switchPosition.left == 0 || switchPosition.bottom < 0
+      @floatPopup()
+    else
+      @resetPopup()
+
+
+  resetPopup: =>
+      @popupContainer[0].style.position = ''
+      @popupContainer[0].classList.remove 'u-nav-float'
 
 
   showPopup: =>
@@ -71,6 +96,7 @@ class @Nav
 
     Timeout.clear @hideTimeout
     Fade.in @popup[0]
+    @repositionPopup()
 
 
   switchMode: (e) =>
@@ -97,7 +123,7 @@ class @Nav
         if menu.classList.contains 'js-nav-switch--animated'
           $(menu).one 'transitionend', @autoFocus
         else
-          @autoFocus null, menu
+          Timeout.set 0, => @autoFocus null, menu
       else
         menu.classList.remove activeClass
 

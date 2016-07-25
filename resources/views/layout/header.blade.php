@@ -83,7 +83,7 @@
     </div>
 </nav>
 
-<div class="osu-layout__row no-print">
+<div class="osu-layout__row js-nav-popup--container no-print">
     @include('layout._popup')
 </div>
 

@@ -65,7 +65,6 @@ class @UserLogin
     Timeout.clear @skipAnimationTimeout
     $('.js-nav-switch--menu').removeClass('js-nav-switch--animated')
 
-    $.scrollTo 0, 500
     @nav.currentMode('user')
     @nav.showPopup()
 
