@@ -19,4 +19,11 @@
 .nav-popup-container {
   z-index: @z-index--nav-popup;
   width: 100%;
+
+  // overrides visibility
+  &:hover {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: @z-index--nav-popup;
+  }
 }

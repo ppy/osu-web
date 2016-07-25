@@ -17,7 +17,15 @@
  *
  */
 .osu-nav {
-  @_top: osu-nav;
+  margin: auto;
+  width: 100%;
+  max-width: @container-sm;
+  display: flex;
+  padding: (@spacing * 2) (@spacing * 2) 0;
+
+  @media @desktop {
+    width: calc(100% ~'-' (@spacing * 8));
+  }
 
   &__avatar {
     .default-border-radius();
@@ -35,46 +43,7 @@
     }
   }
 
-  &__content {
-    margin: auto;
-    width: 100%;
-    max-width: @container-sm;
-
-    @media @desktop {
-      width: calc(100% ~'-' (@spacing * 8));
-    }
-  }
-
-  &__highlight-bar {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    opacity: 0;
-
-    .js-nav-switch--active & {
-      opacity: 1;
-    }
-  }
-
-  &__title {
-    padding-bottom: (@spacing / 2);
-    display: flex;
-    align-items: flex-end;
-  }
-
-  &__title-separator {
-    display: inline-block;
-    margin: 0 @spacing;
-    opacity: 0.5;
-  }
-
-  &__top {
-    display: flex;
-    align-items: flex-end;
-    padding: (@spacing * 2) (@spacing * 2) 0;
-  }
-
-  &__top-col {
+  &__col {
     flex: none;
     display: flex;
     align-items: flex-end;
@@ -104,5 +73,28 @@
       padding: 0 @spacing;
       flex: 1 0 auto;
     }
+  }
+
+  &__highlight-bar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    opacity: 0;
+
+    .js-nav-switch--active & {
+      opacity: 1;
+    }
+  }
+
+  &__title {
+    padding-bottom: (@spacing / 2);
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &__title-separator {
+    display: inline-block;
+    margin: 0 @spacing;
+    opacity: 0.5;
   }
 }

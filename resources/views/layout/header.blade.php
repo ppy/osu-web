@@ -19,78 +19,72 @@
     @include('layout._header_mobile')
 </nav>
 
-<nav class="osu-layout__section osu-layout__section--minimum no-print js-header--main js-nav-popup">
+<nav class="osu-layout__section osu-layout__section--minimum no-print js-header--main js-nav-popup hidden-xs">
+    <div class="bg u-section-bg">
+        <div class="bg__triangles bg__triangles--1"></div>
+        <div class="bg__triangles bg__triangles--2"></div>
+        <div class="bg__triangles bg__triangles--3"></div>
+        <div class="bg__gradient-overlay u-section-gradient-down"></div>
+    </div>
+
     <!-- Main style -->
-    <div class="hidden-xs osu-nav">
-        <div class="bg u-section-bg">
-            <div class="bg__triangles bg__triangles--1"></div>
-            <div class="bg__triangles bg__triangles--2"></div>
-            <div class="bg__triangles bg__triangles--3"></div>
-            <div class="bg__gradient-overlay u-section-gradient-down"></div>
-        </div>
+    <div class="osu-nav">
+        <a class="osu-nav__col osu-nav__col--logo osu-nav__col--float" href="/">
+            @include('objects._logo')
+        </a>
 
-        <div class="osu-nav__content">
-            <div class="osu-nav__top">
-                <a class="osu-nav__top-col osu-nav__top-col--logo osu-nav__top-col--float" href="/">
-                    @include('objects._logo')
-                </a>
+        <div class="osu-nav__col osu-nav__col--title">
+            <div class="js-nav-switch js-nav-switch--active" data-nav-mode="default">
+                <div class="osu-nav__title">
+                    {{ trans("layout.menu.{$current_section}._") }}
 
-                <div class="osu-nav__top-col osu-nav__top-col--title">
-                    <div class="js-nav-switch js-nav-switch--active" data-nav-mode="default">
-                        <div class="osu-nav__title">
-                            {{ trans("layout.menu.{$current_section}._") }}
+                    <span class="osu-nav__title-separator">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
 
-                            <span class="osu-nav__title-separator">
-                                <i class="fa fa-angle-right"></i>
-                            </span>
-
-                            {{ trans("layout.menu.{$current_section}.{$current_action}") }}
-                        </div>
-
-                        <div class="osu-nav__highlight-bar">
-                            <span class="bar"></span>
-                        </div>
-                    </div>
+                    {{ trans("layout.menu.{$current_section}.{$current_action}") }}
                 </div>
 
-                <a class="osu-nav__top-col osu-nav__top-col--float js-nav-switch" href="#" data-nav-mode="user">
-                    <div>
-                        <div class="osu-nav__title">
-                            @if (Auth::check())
-                                {{ Auth::user()->username }}
-                            @else
-                                {{ trans("users.anonymous.username") }}
-                            @endif
-                        </div>
-
-                        <div class="osu-nav__highlight-bar">
-                            <span class="bar"></span>
-                        </div>
-                    </div>
-
-                    <div class="osu-nav__avatar">
-                        <div
-                            class="
-                                avatar
-                                avatar--full-rounded
-                                {{ Auth::check() ? '' : 'avatar--guest' }}
-                                js-nav-avatar
-                            "
-                            @if (Auth::check())
-                                style="background-image: url('{{ Auth::user()->user_avatar }}');"
-                            @endif
-                        ></div>
-                    </div>
-                </a>
+                <div class="osu-nav__highlight-bar">
+                    <span class="bar"></span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div
-        class="osu-layout__row"
-    >
-        @include('layout._popup')
+        <a class="osu-nav__col osu-nav__col--float js-nav-switch" href="#" data-nav-mode="user">
+            <div>
+                <div class="osu-nav__title">
+                    @if (Auth::check())
+                        {{ Auth::user()->username }}
+                    @else
+                        {{ trans("users.anonymous.username") }}
+                    @endif
+                </div>
+
+                <div class="osu-nav__highlight-bar">
+                    <span class="bar"></span>
+                </div>
+            </div>
+
+            <div class="osu-nav__avatar">
+                <div
+                    class="
+                        avatar
+                        avatar--full-rounded
+                        {{ Auth::check() ? '' : 'avatar--guest' }}
+                        js-nav-avatar
+                    "
+                    @if (Auth::check())
+                        style="background-image: url('{{ Auth::user()->user_avatar }}');"
+                    @endif
+                ></div>
+            </div>
+        </a>
     </div>
 </nav>
+
+<div class="osu-layout__row">
+    @include('layout._popup')
+</div>
 
 @include('layout.popup-container')

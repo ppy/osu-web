@@ -59,13 +59,17 @@ class @Nav
     if e?
       return if $(e.target).closest('.js-nav-popup').length != 0
 
-    Fade.out @popup[0]
-    @switchMode()
+    Timeout.clear @hideTimeout
+
+    @hideTimeout = Timeout.set 10, =>
+      Fade.out @popup[0]
+      @switchMode()
 
 
   showPopup: =>
     return if !@available()
 
+    Timeout.clear @hideTimeout
     Fade.in @popup[0]
 
 
