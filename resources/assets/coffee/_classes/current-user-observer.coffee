@@ -21,6 +21,7 @@ class @CurrentUserObserver
 
     $.subscribe 'user:update', @setData
     $(document).on 'turbolinks:load', @reinit
+    $.subscribe 'osu:page:change', @reinit
 
 
   reinit: =>
