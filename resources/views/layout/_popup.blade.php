@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div
-    class="nav-popup-container js-nav-popup--popup"
+    class="nav-popup-container js-nav-popup js-nav-popup--popup"
     data-visibility="hidden"
     data-visibility-animation="none"
 >
