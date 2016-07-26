@@ -33,6 +33,8 @@ class @Nav
 
 
   autoFocus: (e, popup) =>
+    return if !@visible
+
     if e?
       popup = e.currentTarget
 
@@ -79,7 +81,7 @@ class @Nav
       @visible = false
       @showAllMenu false
       @floatPopup false
-      @currentMode('default')
+      $.publish 'nav:popup:hidden'
 
 
   repositionPopup: =>

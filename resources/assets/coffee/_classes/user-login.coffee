@@ -23,15 +23,11 @@ class @UserLogin
     $(document).on 'ajax:success', '.js-login-form', @loginSuccess
     $(document).on 'ajax:error', '.js-login-form', @loginError
 
-    # $(document).on 'click', '.js-user-link', @showOnClick
     $(document).on 'click', '.js-login-required--click', @showToContinue
 
     $(document).on 'ajax:error', @showOnError
     $(document).on 'ready turbolinks:load', @showOnLoad
-
-
-  hide: =>
-    @nav.hidePopup()
+    $.subscribe 'nav:popup:hidden', @reset
 
 
   loginError: (e, xhr) =>
@@ -59,26 +55,15 @@ class @UserLogin
       osu.reloadPage()
 
 
+  reset: =>
+    @clickAfterLogin = null
+
+
   show: (target, mode = 'user') =>
     @clickAfterLogin = target
 
-    Timeout.clear @skipAnimationTimeout
-    $('.js-nav-switch--menu').removeClass('js-nav-switch--animated')
-
     @nav.currentMode(mode)
     @nav.showPopup()
-
-    @skipAnimationTimeout = Timeout.set 100, =>
-      $('.js-nav-switch--menu').addClass('js-nav-switch--animated')
-
-
-  showOnClick: (e) =>
-    e.preventDefault()
-    mode = e.currentTarget.dataset.navMode
-
-    return if @nav.currentMode() == mode
-
-    Timeout.set 0, => @show null, mode
 
 
   showOnError: (e, xhr) =>
