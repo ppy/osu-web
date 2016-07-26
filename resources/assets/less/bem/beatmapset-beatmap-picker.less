@@ -17,33 +17,24 @@
  *
  */
 
-.header-tabs {
-  width: 100%;
-  height: 50px;
-
+.beatmapset-beatmap-picker {
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  flex-wrap: wrap;
 
-  background-color: @grey-2;
+  width: 250px;
 
-  &__tab {
-    margin: 0 @grid-gutter-width / 4;
-    padding-bottom: @grid-gutter-width / 8;
-    border-bottom: @grid-gutter-width / 8 solid transparent;
+  &__beatmap {
+    width: 25px;
+    height: 25px;
 
-    color: @grey-c;
+    padding: 3px;
 
-    font-size: 14px;
+    .default-border-radius;
+
+    cursor: pointer;
 
     &--active {
-      font-weight: 700;
-      border-bottom-color: @yellow;
-    }
-
-    &:hover, &:active, &:focus, &--active {
-      color: #ffffff;
-      text-decoration: none;
+      background-color: rgba(0, 0, 0, 0.5);
     }
   }
 }

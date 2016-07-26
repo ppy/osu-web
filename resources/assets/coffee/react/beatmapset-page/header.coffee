@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div} = React.DOM
+{div, span} = React.DOM
 el = React.createElement
 
 class BeatmapsetPage.Header extends React.Component
@@ -24,7 +24,7 @@ class BeatmapsetPage.Header extends React.Component
       div
         className: 'beatmapset-header'
         style:
-          backgroundImage: "url(#{@props.covers.cover})"
+          backgroundImage: "url(#{@props.beatmapset.covers.cover})"
 
         div className: 'header-tabs',
           for mode in BeatmapHelper.modes
@@ -38,3 +38,26 @@ class BeatmapsetPage.Header extends React.Component
               currentPlaymode: @props.currentBeatmap.mode
 
         div className: 'beatmapset-header__overlay'
+
+        div className: 'beatmapset-header__beatmap-picker-box',
+          el BeatmapsetPage.BeatmapPicker,
+            beatmaps: @props.beatmaps
+            beatmapList: @props.beatmapList
+            currentMode: @props.currentBeatmap.mode
+            currentBeatmapId: @props.currentBeatmap.id
+
+          span className: 'beatmapset-header__diff-name',
+            if @props.hoveredBeatmap? then @props.hoveredBeatmap.version else @props.currentBeatmap.version
+
+          div {},
+            span className: 'beatmapset-header__value',
+              span className: 'beatmapset-header__value-icon', el Icon, name: 'play-circle'
+              span className: 'beatmapset-header__value-name', @props.playcount.toLocaleString()
+
+            span className: 'beatmapset-header__value',
+              span className: 'beatmapset-header__value-icon', el Icon, name: 'heart'
+              span className: 'beatmapset-header__value-name', @props.favcount.toLocaleString()
+
+          if @props.hoveredBeatmap
+            span className: 'beatmapset-header__star-difficulty',
+              "#{osu.trans 'beatmaps.beatmapset.show.stats.stars'} #{@props.hoveredBeatmap.difficulty_rating}"

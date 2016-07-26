@@ -15,27 +15,16 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{a} = React.DOM
+{div} = React.DOM
+el = React.createElement
 
-class BeatmapsetPage.HeaderTab extends React.Component
-  onClick: (e) =>
-    e.preventDefault()
-
-    return if @props.currentPlaymode == @props.playmode
-    $.publish 'beatmapset:beatmap:set', beatmapId: @props.newBeatmapId, playmode: @props.playmode
-
+class BeatmapsetPage.BeatmapPicker extends React.Component
   render: ->
-    active = @props.playmode == @props.currentPlaymode
+    div className: 'beatmapset-header__beatmap-picker beatmapset-beatmap-picker',
+      for beatmapId in @props.beatmapList[@props.currentMode]
+        beatmap = @props.beatmaps[@props.currentMode][beatmapId]
 
-    className = 'header-tabs__tab'
-    className += ' header-tabs__tab--active' if active
-
-    url = BeatmapsetPageHash.generate
-      beatmapId: if active then @props.currentBeatmapId else @props.newBeatmapId
-      playmode: @props.playmode
-
-    a
-      className: className
-      onClick: @onClick
-      href: url
-      osu.trans "beatmaps.mode.#{@props.playmode}"
+        el BeatmapsetPage.BeatmapSelection,
+          key: beatmap.id
+          beatmap: beatmap
+          active: @props.currentBeatmapId == beatmap.id

@@ -1,5 +1,5 @@
 ###
-# Copyright 2016 ppy Pty. Ltd.
+# Copyright 2015-2016 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -18,26 +18,27 @@
 {a} = React.DOM
 el = React.createElement
 
-class BeatmapsetPage.ContentsBeatmapIcon extends React.Component
-  modeSwitch: (e) =>
+class BeatmapsetPage.BeatmapSelection extends React.Component
+  onClick: (e) =>
     e.preventDefault()
+
+    return if @props.active
     $.publish 'beatmapset:beatmap:set', beatmapId: @props.beatmap.id, playmode: @props.beatmap.mode
 
+  onMouseEnter: (e) =>
+    $.publish 'beatmapset:hoveredbeatmap:set', @props.beatmap.id
+
+  onMouseLeave: (e) =>
+    $.publish 'beatmapset:hoveredbeatmap:set', null
+
   render: ->
-    className = 'beatmapset-difficulties__icon'
-
-    if @props.currentBeatmapId == @props.beatmap.id
-      className += " beatmapset-difficulties__icon--active"
-      className += " beatmapset-difficulties__icon--active-#{BeatmapHelper.getDiffRating @props.beatmap.difficulty_rating}"
-
-    if @props.beatmap.convert
-      className += ' beatmapset-difficulties__icon--convert'
+    className = 'beatmapset-beatmap-picker__beatmap'
+    className += ' beatmapset-beatmap-picker__beatmap--active' if @props.active
 
     a
       className: className
-      onClick: @modeSwitch
-      href: BeatmapsetPageHash.generate beatmapId: @props.beatmap.id, page: @props.currentPage, playmode: @props.beatmap.mode
-      el BeatmapIcon,
-        beatmap: @props.beatmap
-        showTitle: false
-        modifier: 'beatmapset'
+      onClick: @onClick
+      onMouseEnter: @onMouseEnter
+      onMouseLeave: @onMouseLeave
+      href: BeatmapsetPageHash.generate beatmapId: @props.beatmap.id, playmode: @props.beatmap.mode
+      el BeatmapIcon, beatmap: @props.beatmap, modifier: 'beatmapset', showTitle: false

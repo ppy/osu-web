@@ -26,4 +26,50 @@
     height: 350px;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
   }
+
+  &__beatmap-picker-box {
+    position: absolute;
+
+    top: 70px;
+    left: 40px;
+  }
+
+  &__beatmap-picker {
+    margin-bottom: @spacing;
+  }
+
+  &__diff-name {
+    font-size: 15px;
+    font-weight: 600;
+
+    color: #ffffff;
+
+    .default-text-shadow;
+  }
+
+  &__value {
+    font-size: 12px;
+    font-weight: 500;
+    padding-right: @spacing;
+
+    color: #ffffff;
+
+    .default-text-shadow;
+  }
+
+  &__value-icon {
+    padding-right: 2px;
+  }
+
+  &__value-name {
+    font-style: italic;
+  }
+
+  &__star-difficulty {
+    font-size: 11px;
+    font-weight: 600;
+    color: @yellow;
+
+    .default-text-shadow;
+  }
 }

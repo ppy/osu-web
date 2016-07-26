@@ -123,6 +123,9 @@ class BeatmapsetPage.Main extends React.Component
       @audioPreview.pause()
       @audioPreview.currentTime = 0;
 
+  setHoveredBeatmapId: (_e, hoveredBeatmapId) =>
+    @setState hoveredBeatmapId: hoveredBeatmapId
+
   onPreviewEnded: =>
     @setState isPreviewPlaying: false
 
@@ -132,6 +135,7 @@ class BeatmapsetPage.Main extends React.Component
     $.subscribe 'beatmapset:beatmap:set.beatmapsetPage', @setCurrentBeatmapId
     $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
     $.subscribe 'beatmapset:preview:toggle.beatmapsetPage', @togglePreviewPlayingState
+    $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmapId
 
     @setHash()
     @setCurrentScoreboard null, scoreboard: 'global'
@@ -156,6 +160,10 @@ class BeatmapsetPage.Main extends React.Component
         onEnded: @onPreviewEnded
 
       el BeatmapsetPage.Header,
-        covers: @props.beatmapset.covers
+        beatmapset: @props.beatmapset
+        beatmaps: @state.beatmaps
         beatmapList: @state.beatmapList
         currentBeatmap: currentBeatmap
+        hoveredBeatmap: @state.beatmaps[@state.currentPlaymode][@state.hoveredBeatmapId]
+        playcount: @props.beatmapset.play_count
+        favcount: @props.beatmapset.favourite_count
