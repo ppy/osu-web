@@ -15,16 +15,19 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="osu-layout__row js-nav-popup--beacon"></div>
-<div class="osu-layout__row js-nav-popup--container no-print">
+<div class="js-nav-popup--beacon"></div>
+<div class="js-nav-popup--container no-print">
     <div
-        class="nav-popup-container js-nav-popup js-nav-popup--popup"
-        data-visibility="hidden"
-        data-visibility-animation="none"
+        class="u-nav-popup osu-layout__row {{ $navPopupExtraClasses ?? '' }} js-nav-popup js-nav-popup--popup"
     >
-        <div class="nav-popup-box">
-            <div class="nav-popup-box__content">
-                @include('layout._popup_menu')
+        <div
+            class="nav-popup-box js-nav-switch--menu"
+            data-nav-mode="default"
+        >
+            <div class="nav-popup-box__slide-y">
+                <div class="nav-popup-box__content">
+                    @include('layout._popup_menu')
+                </div>
             </div>
         </div>
 
@@ -32,12 +35,14 @@
             class="nav-popup-box nav-popup-box--extra js-nav-switch--animated js-nav-switch--menu"
             data-nav-mode="user"
         >
-            <div class="nav-popup-box__content">
-                @if (Auth::check())
-                    @include('layout._popup_user', ['_user' => Auth::user()])
-                @else
-                    @include('layout._popup_login')
-                @endif
+            <div class="nav-popup-box__slide-y">
+                <div class="nav-popup-box__content">
+                    @if (Auth::check())
+                        @include('layout._popup_user', ['_user' => Auth::user()])
+                    @else
+                        @include('layout._popup_login')
+                    @endif
+                </div>
             </div>
         </div>
     </div>

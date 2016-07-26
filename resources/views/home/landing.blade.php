@@ -46,7 +46,7 @@
             <div class="landing-nav__section landing-nav__section--right">
                 <a
                     href="#"
-                    class="landing-nav__link js-user-link"
+                    class="landing-nav__link js-nav-toggle"
                     data-nav-mode="user/login"
                     title="{{ trans("users.anonymous.login_link") }}"
                 >
@@ -54,7 +54,8 @@
                 </a>
 
                 <a
-                    href="{{ route("users.register") }}" class="landing-nav__link js-user-link"
+                    href="{{ route("users.register") }}"
+                    class="landing-nav__link js-nav-toggle"
                     data-nav-mode="user/signup"
                 >
                     {{ trans("users.signup._") }}
@@ -63,8 +64,8 @@
         </div>
 
     </nav>
-    @include('layout._popup')
 
+    @include('layout._popup', ['navPopupExtraClasses' => 'osu-layout__row--landing'])
     <header class="osu-layout__row osu-layout__row--landing">
         <div class="landing-hero">
             <div class="js-landing-hero-slider--new js-landing-hero-slider landing-hero__slider">

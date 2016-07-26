@@ -17,10 +17,12 @@
 ###
 class @Nav
   constructor: ->
-    $(document).on 'click mouseenter', '.js-nav-popup', @showPopup
+    $(document).on 'mouseenter', '.js-nav-popup', @showPopup
     $(document).on 'mouseleave', '.js-nav-popup', @gracefulHidePopup
-    $(document).on 'click', '.js-nav-switch', @switchMode
     $(document).on 'click', @hidePopup
+
+    $(document).on 'click', '.js-nav-toggle', @toggleMenu
+    $(document).on 'click', '.js-nav-switch', @switchMode
     $(window).on 'throttled-scroll throttled-resize', @repositionPopup
 
     @popup = document.getElementsByClassName('js-nav-popup--popup')
@@ -50,9 +52,14 @@ class @Nav
     @popup[0].dataset.currentMode ?= 'default'
 
 
-  floatPopup: =>
-    @popupContainer[0].style.position = 'fixed'
-    @popupContainer[0].classList.add 'u-nav-float'
+  floatPopup: (float) =>
+    if float
+      @popupContainer[0].style.position = 'fixed'
+      @popupContainer[0].style.width = '100%'
+      @popupContainer[0].classList.add 'u-nav-float'
+    else
+      @popupContainer[0].style.position = ''
+      @popupContainer[0].classList.remove 'u-nav-float'
 
 
   gracefulHidePopup: =>
@@ -62,67 +69,83 @@ class @Nav
 
   hidePopup: (e) =>
     return if !@available()
-    return if !Fade.isVisible(@popup[0])
+    return if !@visible
 
     if e?
       return if $(e.target).closest('.js-nav-popup').length != 0
 
     Timeout.clear @hideTimeout
-
     @hideTimeout = Timeout.set 10, =>
-      Fade.out @popup[0]
-      @resetPopup()
-      @switchMode()
+      @visible = false
+      @showAllMenu false
+      @floatPopup false
+      @currentMode('default')
 
 
   repositionPopup: =>
     return if !@available()
-    return if !Fade.isVisible(@popup[0])
+    return if !@visible
 
     beaconPosition = @floatBeacon[0].getBoundingClientRect()
 
-    if beaconPosition.bottom < 0
-      @floatPopup()
+    float = beaconPosition.bottom < 0
+    @floatPopup float
+
+
+  showAllMenu: (enable) =>
+    for menu in @menus
+      if enable
+        menu.classList.add 'js-nav-switch--visible'
+      else
+        menu.classList.remove 'js-nav-switch--visible'
+
+
+  toggleMenu: (e) =>
+    e.preventDefault()
+    e.stopPropagation()
+
+    mode = e.currentTarget.dataset.navMode
+
+    if @currentMode() == mode
+      @hidePopup()
     else
-      @resetPopup()
-
-
-  resetPopup: =>
-      @popupContainer[0].style.position = ''
-      @popupContainer[0].classList.remove 'u-nav-float'
+      @currentMode mode
+      @showPopup() unless @visible
 
 
   showPopup: =>
     return if !@available()
 
     Timeout.clear @hideTimeout
-    Fade.in @popup[0]
+    @visible = true
+    @showAllMenu true
     @repositionPopup()
 
 
   switchMode: (e) =>
     if e?
       e.preventDefault()
-      e.stopPropagation()
 
       mode = e.currentTarget.dataset.navMode
-
       mode = null if @currentMode() == mode
 
     mode ?= 'default'
-
     @currentMode(mode)
 
 
   syncMode: =>
+    animateClass = 'js-nav-switch--animated'
     activeClass = 'js-nav-switch--active'
 
     [currentMode, currentSubMode] = @currentMode().split '/'
 
     for menu in @menus
-      isCurrent = menu.dataset.navMode == currentMode
+      if @visible
+        menu.classList.add animateClass
+      else
+        menu.classList.remove animateClass
 
-      if isCurrent
+      if menu.dataset.navMode == currentMode
         menu.classList.add activeClass
 
         for submenu in menu.getElementsByClassName('js-nav-popup--submenu')

@@ -23,7 +23,7 @@ class @UserLogin
     $(document).on 'ajax:success', '.js-login-form', @loginSuccess
     $(document).on 'ajax:error', '.js-login-form', @loginError
 
-    $(document).on 'click', '.js-user-link', @showOnClick
+    # $(document).on 'click', '.js-user-link', @showOnClick
     $(document).on 'click', '.js-login-required--click', @showToContinue
 
     $(document).on 'ajax:error', @showOnError
@@ -75,13 +75,15 @@ class @UserLogin
   showOnClick: (e) =>
     e.preventDefault()
     mode = e.currentTarget.dataset.navMode
-    Timeout.set 0, =>
-      @show null, mode
+
+    return if @nav.currentMode() == mode
+
+    Timeout.set 0, => @show null, mode
 
 
-  showOnError: (event, xhr) =>
+  showOnError: (e, xhr) =>
     return unless xhr.status == 401
-    @show event.target
+    @show e.target
 
 
   # for pages which require authentication
@@ -93,7 +95,7 @@ class @UserLogin
       @show()
 
 
-  showToContinue: (event) =>
+  showToContinue: (e) =>
     return if currentUser.id?
-    event.preventDefault()
-    Timeout.set 0, => @show event.target
+    e.preventDefault()
+    Timeout.set 0, => @show e.target

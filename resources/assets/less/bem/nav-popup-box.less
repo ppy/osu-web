@@ -28,7 +28,7 @@
     will-change: transform;
 
     .@{_top}.js-nav-switch--animated & {
-      transition: transform 120ms;
+      transition-duration: 120ms;
     }
 
     .@{_top}--extra & {
@@ -37,6 +37,16 @@
 
     .@{_top}--extra.js-nav-switch--active & {
       transform: translateX(0%);
+    }
+  }
+
+  &__slide-y {
+    transform: translateY(-100%);
+    transition-duration: 120ms;
+
+    &:hover,
+    .@{_top}.js-nav-switch--visible & {
+      transform: translateY(0%);
     }
   }
 }
