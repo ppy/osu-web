@@ -1,5 +1,5 @@
 ###
-# Copyright 2016 ppy Pty. Ltd.
+# Copyright 2015-2016 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -17,26 +17,23 @@
 ###
 {a} = React.DOM
 
-class BeatmapsetPage.ContentsTab extends React.Component
+class BeatmapsetPage.HeaderTab extends React.Component
   onClick: (e) =>
-    return if @props.disabled
     e.preventDefault()
     $.publish 'beatmapset:beatmap:set', beatmapId: @props.newBeatmapId, playmode: @props.playmode
 
   render: ->
     active = @props.playmode == @props.currentPlaymode
 
-    className = 'page-tabs__tab'
-    className += ' page-tabs__tab--active' if active
-    className += ' page-tabs__tab--disabled' if @props.disabled
+    className = 'header-tabs__tab'
+    className += ' header-tabs__tab--active' if active
 
     url = BeatmapsetPageHash.generate
       beatmapId: if active then @props.currentBeatmapId else @props.newBeatmapId
-      page: @props.currentPage
       playmode: @props.playmode
 
     a
       className: className
-      onClick: @onClick if not active
-      href: url if not @props.disabled
+      onClick: @onClick
+      href: url
       osu.trans "beatmaps.mode.#{@props.playmode}"

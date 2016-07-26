@@ -1,5 +1,5 @@
 ###
-# Copyright 2016 ppy Pty. Ltd.
+# Copyright 2016-2016 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -154,3 +154,8 @@ class BeatmapsetPage.Main extends React.Component
         src: @props.beatmapset.previewUrl
         preload: 'auto'
         onEnded: @onPreviewEnded
+
+      el BeatmapsetPage.Header,
+        covers: @props.beatmapset.covers
+        beatmapList: @state.beatmapList
+        currentBeatmap: currentBeatmap
