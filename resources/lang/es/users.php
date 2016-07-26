@@ -152,7 +152,7 @@ return [
             'tablet' => 'Tableta',
             'touch' => 'Pantalla Táctil',
         ],
-        'missingtext' => '¡Debiste haber cometido un error! (o el usuario pudo haber sido baneado)',
+        'missingtext' => '¡Has cometido un error! (o el usuario pudo haber sido baneado)',
         'page_description' => 'osu! - Todo lo que siempre quisiste saber acerca de :username!',
         'rank' => [
             'country' => 'Rank nacional para :mode',
