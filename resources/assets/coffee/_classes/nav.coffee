@@ -34,10 +34,12 @@ class @Nav
 
 
   autoFocus: (e, popup) =>
-    return if !@visible
+    return if !@data().visible
 
     if e?
       popup = e.currentTarget
+
+    return if popup.dataset.navMode != @currentMode()
 
     popup.getElementsByClassName('js-nav-auto-focus')[0]?.focus?()
 
@@ -45,12 +47,16 @@ class @Nav
   available: => @popup[0]?
 
 
-  currentMode: (newMode) =>
-    @popup[0].dataset.currentMode ?= 'default'
+  currentMode: =>
+    @data().currentMode ?= 'default'
 
 
   currentSubMode: =>
-    @popup[0].dataset.currentSubMode
+    @data().currentSubMode
+
+
+  data: =>
+    @popup[0]?.dataset
 
 
   floatPopup: (float) =>
@@ -70,21 +76,21 @@ class @Nav
 
   hidePopup: (e) =>
     return if !@available()
-    return if !@visible
+    return if !@data().visible
 
     if e?
       return if $(e.target).closest('.js-nav-popup').length != 0
 
     Timeout.clear @hideTimeout
     @hideTimeout = Timeout.set 10, =>
-      @visible = false
+      @data().visible = ''
       @showAllMenu false
       $.publish 'nav:popup:hidden'
 
 
   repositionPopup: =>
     return if !@available()
-    return if !@visible
+    return if !@data().visible
 
     beaconPosition = @floatBeacon[0].getBoundingClientRect()
 
@@ -93,7 +99,7 @@ class @Nav
 
 
   reset: =>
-    return if @visible
+    return if @data().visible
 
     @setMode()
     @floatPopup false
@@ -107,11 +113,11 @@ class @Nav
 
     updated = true
 
-    if newMode != @popup[0].dataset.currentMode
-      @popup[0].dataset.currentMode = newMode
-      @popup[0].dataset.currentSubMode = newSubMode
-    else if newSubMode != @popup[0].dataset.currentSubMode
-      @popup[0].dataset.currentSubMode = newSubMode
+    if newMode != @data().currentMode
+      @data().currentMode = newMode
+      @data().currentSubMode = newSubMode
+    else if newSubMode != @data().currentSubMode
+      @data().currentSubMode = newSubMode
     else
       updated = false
 
@@ -131,7 +137,7 @@ class @Nav
     return if !@available()
 
     Timeout.clear @hideTimeout
-    @visible = true
+    @data().visible = '1'
     @showAllMenu true
     @repositionPopup()
 
@@ -151,7 +157,7 @@ class @Nav
     activeClass = 'js-nav-switch--active'
 
     for menu in @menus
-      if @visible
+      if @data().visible
         menu.classList.add animateClass
       else
         menu.classList.remove animateClass
@@ -166,7 +172,9 @@ class @Nav
             submenu.classList.add 'hidden'
 
         if menu.classList.contains 'js-nav-switch--animated'
-          $(menu).one 'transitionend', @autoFocus
+          $(menu)
+            .off 'transitionend', @autoFocus
+            .one 'transitionend', @autoFocus
         else
           Timeout.set 0, => @autoFocus null, menu
 
@@ -189,6 +197,6 @@ class @Nav
     e.stopPropagation()
 
     if @setMode e.currentTarget.dataset
-      @showPopup() unless @visible
+      @showPopup() unless @data().visible
     else
       @hidePopup()
