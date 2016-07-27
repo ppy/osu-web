@@ -164,7 +164,9 @@ class @Nav
             submenu.classList.add 'hidden'
 
         if menu.classList.contains 'js-nav-switch--animated'
-          $(menu).one 'transitionend', @autoFocus
+          $(menu)
+            .off 'transitionend', @autoFocus
+            .one 'transitionend', @autoFocus
         else
           Timeout.set 0, => @autoFocus null, menu
 
