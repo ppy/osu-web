@@ -31,8 +31,8 @@ class @CurrentUserObserver
   setCovers: (elements) =>
     elements ?= @covers
 
+    url = if currentUser.id? then "url('#{currentUser.cover.url}')"
     for el in elements
-      url = if currentUser.id? then "url('#{currentUser.cover.url}')"
       el.style.backgroundImage = url
 
 
