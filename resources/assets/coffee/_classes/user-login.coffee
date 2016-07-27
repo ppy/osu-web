@@ -60,10 +60,10 @@ class @UserLogin
     @clickAfterLogin = null
 
 
-  show: (target, mode = 'user') =>
+  show: (target) =>
     @clickAfterLogin = target
 
-    @nav.currentMode(mode)
+    @nav.setMode mode: 'user'
     @nav.showPopup()
 
 

@@ -46,13 +46,11 @@ class @Nav
 
 
   currentMode: (newMode) =>
-    return if !@available()
-
-    if newMode? && newMode != @popup[0].dataset.currentMode
-      @popup[0].dataset.currentMode = newMode
-      @syncMode()
-
     @popup[0].dataset.currentMode ?= 'default'
+
+
+  currentSubMode: =>
+    @popup[0].dataset.currentSubMode
 
 
   floatPopup: (float) =>
@@ -97,8 +95,28 @@ class @Nav
   reset: =>
     return if @visible
 
-    @currentMode 'default'
+    @setMode()
     @floatPopup false
+
+
+  setMode: (modeHash = {}) =>
+    return if !@available()
+
+    newMode = modeHash.navMode ? modeHash.mode ? 'default'
+    newSubMode = modeHash.navSubMode ? modeHash.subMode ? ''
+
+    updated = true
+
+    if newMode != @popup[0].dataset.currentMode
+      @popup[0].dataset.currentMode = newMode
+      @popup[0].dataset.currentSubMode = newSubMode
+    else if newSubMode != @popup[0].dataset.currentSubMode
+      @popup[0].dataset.currentSubMode = newSubMode
+    else
+      updated = false
+
+    @syncMode() if updated
+    updated
 
 
   showAllMenu: (enable) =>
@@ -107,19 +125,6 @@ class @Nav
         menu.classList.add 'js-nav-switch--visible'
       else
         menu.classList.remove 'js-nav-switch--visible'
-
-
-  toggleMenu: (e) =>
-    e.preventDefault()
-    e.stopPropagation()
-
-    mode = e.currentTarget.dataset.navMode
-
-    if @currentMode() == mode
-      @hidePopup()
-    else
-      @currentMode mode
-      @showPopup() unless @visible
 
 
   showPopup: =>
@@ -135,18 +140,15 @@ class @Nav
     if e?
       e.preventDefault()
 
-      mode = e.currentTarget.dataset.navMode
-      mode = null if @currentMode() == mode
+      modeHash = e.currentTarget.dataset
+      modeHash = null if @currentMode() == modeHash.navMode
 
-    mode ?= 'default'
-    @currentMode(mode)
+    @setMode modeHash
 
 
   syncMode: =>
     animateClass = 'js-nav-switch--animated'
     activeClass = 'js-nav-switch--active'
-
-    [currentMode, currentSubMode] = @currentMode().split '/'
 
     for menu in @menus
       if @visible
@@ -154,19 +156,17 @@ class @Nav
       else
         menu.classList.remove animateClass
 
-      if menu.dataset.navMode == currentMode
+      if menu.dataset.navMode == @currentMode()
         menu.classList.add activeClass
 
         for submenu in menu.getElementsByClassName('js-nav-popup--submenu')
-          if !currentSubMode? || submenu.dataset.navSubMode == currentSubMode
+          if !@currentSubMode() || submenu.dataset.navSubMode == @currentSubMode()
             submenu.classList.remove 'hidden'
           else
             submenu.classList.add 'hidden'
 
         if menu.classList.contains 'js-nav-switch--animated'
-          $(menu)
-            .off 'transitionend', @autoFocus
-            .one 'transitionend', @autoFocus
+          $(menu).one 'transitionend', @autoFocus
         else
           Timeout.set 0, => @autoFocus null, menu
 
@@ -175,10 +175,20 @@ class @Nav
 
     for link in @switches
       isCurrent =
-        link.dataset.navMode == currentMode &&
-        (!currentSubMode? || link.dataset.navSubMode == currentSubMode)
+        link.dataset.navMode == @currentMode() &&
+        (!@currentSubMode() || link.dataset.navSubMode == @currentSubMode())
 
       if isCurrent
         link.classList.add activeClass
       else
         link.classList.remove activeClass
+
+
+  toggleMenu: (e) =>
+    e.preventDefault()
+    e.stopPropagation()
+
+    if @setMode e.currentTarget.dataset
+      @showPopup() unless @visible
+    else
+      @hidePopup()

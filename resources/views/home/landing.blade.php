@@ -47,7 +47,8 @@
                 <a
                     href="#"
                     class="landing-nav__link js-nav-toggle"
-                    data-nav-mode="user/login"
+                    data-nav-mode="user"
+                    data-nav-sub-mode="login"
                     title="{{ trans("users.anonymous.login_link") }}"
                 >
                     {{ trans("users.login._") }}
@@ -56,7 +57,8 @@
                 <a
                     href="{{ route("users.register") }}"
                     class="landing-nav__link js-nav-toggle"
-                    data-nav-mode="user/signup"
+                    data-nav-mode="user"
+                    data-nav-sub-mode="signup"
                 >
                     {{ trans("users.signup._") }}
                 </a>
