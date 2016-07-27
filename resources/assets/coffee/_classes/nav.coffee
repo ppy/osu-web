@@ -25,6 +25,7 @@ class @Nav
     $(document).on 'click', '.js-nav-switch', @switchMode
     $(window).on 'throttled-scroll throttled-resize', @repositionPopup
     $(document).on 'transitionend', '.js-nav-popup--container', @reset
+    $(document).on 'turblinks:load', @syncAll
 
     @popup = document.getElementsByClassName('js-nav-popup--popup')
     @popupContainer = document.getElementsByClassName('js-nav-popup--container')
@@ -83,7 +84,6 @@ class @Nav
 
     Timeout.clear @hideTimeout
     @hideTimeout = Timeout.set 10, =>
-      @data().visible = ''
       @showAllMenu false
       $.publish 'nav:popup:hidden'
 
@@ -126,18 +126,15 @@ class @Nav
 
 
   showAllMenu: (enable) =>
-    for menu in @menus
-      if enable
-        menu.classList.add 'js-nav-switch--visible'
-      else
-        menu.classList.remove 'js-nav-switch--visible'
+    @data().visible = if enable then '1' else ''
+
+    @syncMenu()
 
 
   showPopup: =>
     return if !@available()
 
     Timeout.clear @hideTimeout
-    @data().visible = '1'
     @showAllMenu true
     @repositionPopup()
 
@@ -150,6 +147,19 @@ class @Nav
       modeHash = null if @currentMode() == modeHash.navMode
 
     @setMode modeHash
+
+
+  syncAll: =>
+    @syncMenu()
+    @syncMode()
+
+
+  syncMenu: =>
+    for menu in @menus
+      if @data().visible
+        menu.classList.add 'js-nav-switch--visible'
+      else
+        menu.classList.remove 'js-nav-switch--visible'
 
 
   syncMode: =>
