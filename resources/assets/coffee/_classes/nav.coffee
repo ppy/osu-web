@@ -24,6 +24,7 @@ class @Nav
     $(document).on 'click', '.js-nav-toggle', @toggleMenu
     $(document).on 'click', '.js-nav-switch', @switchMode
     $(window).on 'throttled-scroll throttled-resize', @repositionPopup
+    $(document).on 'transitionend', '.js-nav-popup--container', @reset
 
     @popup = document.getElementsByClassName('js-nav-popup--popup')
     @popupContainer = document.getElementsByClassName('js-nav-popup--container')
@@ -80,7 +81,6 @@ class @Nav
     @hideTimeout = Timeout.set 10, =>
       @visible = false
       @showAllMenu false
-      @floatPopup false
       $.publish 'nav:popup:hidden'
 
 
@@ -92,6 +92,13 @@ class @Nav
 
     float = beaconPosition.bottom < 0
     @floatPopup float
+
+
+  reset: =>
+    return if @visible
+
+    @currentMode 'default'
+    @floatPopup false
 
 
   showAllMenu: (enable) =>
