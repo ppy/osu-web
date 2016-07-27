@@ -47,8 +47,7 @@
                         <a
                             href="#"
                             title="{{ trans('users.anonymous.login_link') }}"
-                            class="avatar avatar--navbar-mobile avatar--guest js-navbar-mobile--top-icon js-nav-toggle"
-                            data-nav-mode="user"
+                            class="avatar avatar--navbar-mobile avatar--guest js-navbar-mobile--top-icon js-user-link"
                         >
                         </a>
                     @endif
@@ -92,10 +91,9 @@
                     </a>
                 @else
                     <a
-                        class="js-nav-toggle navbar-mobile__menu-item navbar-mobile__menu-item--user"
+                        class="js-user-link navbar-mobile__menu-item navbar-mobile__menu-item--user"
                         href="#"
                         title="{{ trans('users.anonymous.login_link') }}"
-                        data-nav-mode="user"
                     >
                         <span class="avatar avatar--guest avatar--navbar-mobile"></span>
 

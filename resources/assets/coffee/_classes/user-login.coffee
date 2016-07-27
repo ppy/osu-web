@@ -23,6 +23,7 @@ class @UserLogin
     $(document).on 'ajax:success', '.js-login-form', @loginSuccess
     $(document).on 'ajax:error', '.js-login-form', @loginError
 
+    $(document).on 'click', '.js-user-link', @showOnClick
     $(document).on 'click', '.js-login-required--click', @showToContinue
 
     $(document).on 'ajax:error', @showOnError
@@ -64,6 +65,11 @@ class @UserLogin
 
     @nav.currentMode(mode)
     @nav.showPopup()
+
+
+  showOnClick: (e) =>
+    e.currentTarget.dataset.navMode ?= 'user'
+    @nav.toggleMenu e
 
 
   showOnError: (e, xhr) =>
