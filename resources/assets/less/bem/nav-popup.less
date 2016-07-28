@@ -18,6 +18,7 @@
  */
 .nav-popup {
   @_top: nav-popup;
+  @_menu-spacing: (@spacing * 3);
 
   width: 100%;
   background-color: @grey-2;
@@ -25,7 +26,7 @@
   display: flex;
 
   @media @desktop {
-    padding-left: @padding-big;
+    padding-left: (@padding-big - (@_menu-spacing / 2));
     height: @height--nav-popup;
   }
 
@@ -126,8 +127,7 @@
   &__menu-head {
     color: @grey-9;
     display: flex;
-    padding: (@spacing / 2) 0 @spacing;
-    margin-right: (@spacing * 3);
+    padding: (@spacing / 2) (@_menu-spacing / 2) @spacing;
     flex: none;
 
     &--active,
@@ -143,7 +143,7 @@
   &__menu-head-bar {
     position: absolute;
     top: 0;
-    width: 100%;
+    width: calc(100% ~'-' @_menu-spacing);
     transition-duration: 80ms;
     transform: translateY(-100%);
 
@@ -246,6 +246,7 @@
     width: 0;
     flex: 1;
     display: flex;
+    padding-left: (@_menu-spacing / 2);
   }
 
   &__submenu {
