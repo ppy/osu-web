@@ -119,12 +119,14 @@ return [
             ],
             'stats' => [
                 'cs' => 'Circle Size',
-                'hp' => 'HP Drain',
-                'od' => 'Accuracy',
-                'ar' => 'Approach Rate',
+                'drain' => 'HP Drain',
+                'accuracy' => 'Accuracy',
+                'ar' => 'Limit Break',
                 'stars' => 'Star Difficulty',
-                'length' => 'Length',
+                'total_length' => 'Length',
                 'bpm' => 'BPM',
+                'count_circles' => 'Circle Count',
+                'count_sliders' => 'Slider Count',
 
                 'chart' => [
                     'cs' => 'CS',
