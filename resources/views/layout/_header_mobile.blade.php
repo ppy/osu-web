@@ -22,7 +22,7 @@
             navbar
             navbar-default
             navbar-static-top
-            bg--{{ $current_section }}
+            u-section-bg
         "
         role="navigation"
     >
