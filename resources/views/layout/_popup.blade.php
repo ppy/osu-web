@@ -16,9 +16,9 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="js-nav-popup--beacon"></div>
-<div class="js-nav-popup--container no-print">
+<div class="js-nav-popup--container u-nav-popup no-print">
     <div
-        class="u-nav-popup osu-layout__row {{ $navPopupExtraClasses ?? '' }} js-nav-popup js-nav-popup--popup"
+        class="osu-layout__row {{ $navPopupExtraClasses ?? '' }} js-nav-popup js-nav-popup--popup"
     >
         <div
             class="nav-popup-box js-nav-switch--menu"

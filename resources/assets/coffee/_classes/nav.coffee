@@ -64,10 +64,8 @@ class @Nav
     if float
       @popupContainer[0].style.position = 'fixed'
       @popupContainer[0].style.width = '100%'
-      @popupContainer[0].classList.add 'u-nav-float'
     else
       @popupContainer[0].style.position = ''
-      @popupContainer[0].classList.remove 'u-nav-float'
 
 
   gracefulHidePopup: =>
