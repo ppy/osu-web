@@ -29,16 +29,16 @@
     background-color: @color !important;
   }
 
-  background-color: @section-color--default;
+  ._bg(@section-color--default);
 
-  .beatmaps & { background-color: @section-color--beatmaps; }
-  .community & { background-color: @section-color--community; }
-  .error & { background-color: @section-color--error; }
-  .help & { background-color: @section-color--help; }
-  .home & { background-color: @section-color--home; }
-  .ranking & { background-color: @section-color--ranking; }
-  .store & { background-color: @section-color--store; }
-  .user & { background-color: @section-color--user; }
+  .beatmaps & { ._bg(@section-color--beatmaps); }
+  .community & { ._bg(@section-color--community); }
+  .error & { ._bg(@section-color--error); }
+  .help & { ._bg(@section-color--help); }
+  .home & { ._bg(@section-color--home); }
+  .ranking & { ._bg(@section-color--ranking); }
+  .store & { ._bg(@section-color--store); }
+  .user & { ._bg(@section-color--user); }
 }
 
 .u-section-gradient-down {
