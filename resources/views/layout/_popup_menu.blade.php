@@ -21,10 +21,10 @@
             <a
                 class="
                     js-menu
+                    js-nav-section-link
                     nav-popup__menu-head
-                    {{ $current_section === $section ? 'nav-popup__menu-head--active' : '' }}
                 "
-                {{ $current_section === $section ? 'data-menu-default' : '' }}
+                data-nav-section="{{ $section }}"
                 data-menu-target="header--{{ $section }}"
                 href="{{ array_values($links)[0] }}"
             >
@@ -40,7 +40,7 @@
                 </div>
             </a>
 
-            <div class="js-menu nav-popup__submenu-container">
+            <div class="nav-popup__submenu-container">
                 <div
                     class="js-menu nav-popup__submenu"
                     data-menu-id="header--{{ $section }}"

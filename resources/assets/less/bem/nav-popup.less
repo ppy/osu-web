@@ -130,7 +130,7 @@
     padding: (@spacing / 2) (@_menu-spacing / 2) @spacing;
     flex: none;
 
-    &--active,
+    &.js-nav-section-link--active,
     &.js-menu--active,
     &:focus,
     &:hover {
@@ -147,7 +147,7 @@
     transition-duration: 80ms;
     transform: translateY(-100%);
 
-    .@{_top}__menu-head--active &,
+    .@{_top}__menu-head.js-nav-section-link--active &,
     .@{_top}__menu-head.js-menu--active &,
     .@{_top}__menu-head:focus &,
     .@{_top}__menu-head:hover & {

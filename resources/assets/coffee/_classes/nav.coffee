@@ -25,11 +25,12 @@ class @Nav
     $(document).on 'click', '.js-nav-switch', @switchMode
     $(window).on 'throttled-scroll throttled-resize', @repositionPopup
     $(document).on 'transitionend', '.js-nav-popup--container', @reset
-    $(document).on 'turblinks:load', @syncAll
+    $(document).on 'turbolinks:load', @syncAll
 
     @popup = document.getElementsByClassName('js-nav-popup--popup')
     @popupContainer = document.getElementsByClassName('js-nav-popup--container')
     @menus = document.getElementsByClassName('js-nav-switch--menu')
+    @sectionLinks = document.getElementsByClassName('js-nav-section-link')
     @switches = document.getElementsByClassName('js-nav-switch')
     @floatBeacon = document.getElementsByClassName('js-nav-popup--beacon')
 
@@ -57,7 +58,7 @@ class @Nav
 
 
   data: =>
-    @popup[0]?.dataset
+    @popup[0].dataset
 
 
   floatPopup: (float) =>
@@ -144,6 +145,7 @@ class @Nav
   syncAll: =>
     @syncMenu()
     @syncMode()
+    @syncSection()
 
 
   syncMenu: =>
@@ -192,6 +194,18 @@ class @Nav
         link.classList.add activeClass
       else
         link.classList.remove activeClass
+
+
+  syncSection: =>
+    currentSection = document.body.dataset.section
+
+    for link in @sectionLinks
+      if link.dataset.navSection == currentSection
+        link.classList.add 'js-nav-section-link--active'
+        link.dataset.menuDefault = '1'
+      else
+        link.classList.remove 'js-nav-section-link--active'
+        link.dataset.menuDefault = ''
 
 
   toggleMenu: (e) =>
