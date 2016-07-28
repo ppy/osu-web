@@ -28,8 +28,8 @@ return [
         ],
 
         'destroy' => [
-            '_' => 'Remover imagen de portada',
-            'confirm' => '¿Estás seguro de que quieres remover la imagen de portada?',
+            '_' => 'Eliminar imagen de portada',
+            'confirm' => '¿Estás seguro de que quieres eliminar la imagen de portada?',
         ],
     ],
     'pinned_topics' => 'Temas Fijos',
@@ -44,7 +44,7 @@ return [
     ],
     'search' => [
         'go_to_post' => 'Ir al post',
-        'post_number_input' => 'ingresar número de post',
+        'post_number_input' => 'introducir número de post',
         'total_posts' => ':posts_count posts totales',
     ],
     'subforums' => 'Subforos',
@@ -60,7 +60,7 @@ return [
         ],
         'go_to_latest' => 'ver el último post',
         'jump' => [
-            'enter' => 'clic para ingresar un número de post específico ',
+            'enter' => 'clic para introducir un número de post específico ',
             'first' => 'ir al primer post',
             'last' => 'ir al último post',
             'next' => 'saltarse los siguientes 10 posts',
@@ -104,7 +104,7 @@ return [
         'show' => [
             'feature_vote' => [
                 'current' => 'Prioridad actual: +:count',
-                'do' => 'Promover esta solicitud',
+                'do' => 'Apoyar esta solicitud',
 
                 'user' => [
                     'current' => 'Tienes :votes restantes.',

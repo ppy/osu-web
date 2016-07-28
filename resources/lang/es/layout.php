@@ -26,15 +26,15 @@ return [
             '_' => 'inicio',
             'getNews' => 'novedades',
             'getChangelog' => 'listado de cambios',
-            'getDownload' => 'desargar',
+            'getDownload' => 'descargar',
             'getIcons' => 'iconos',
             'supportTheGame' => 'apoya el juego',
         ],
         'help' => [
             '_' => 'ayuda',
             'getWiki' => 'wiki',
-            'getFaq' => 'preguntas frequentes',
-            'getSupport' => 'support',
+            'getFaq' => 'preguntas frecuentes',
+            'getSupport' => 'soporte',
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
@@ -59,7 +59,7 @@ return [
             '_' => 'comunidad',
             'getForum' => 'foro',
             'getChat' => 'chat',
-            'getSupport' => 'support',
+            'getSupport' => 'soporte',
             'getLive' => 'live',
             'getSlack' => 'osu!dev',
             'profile' => 'perfil',
@@ -131,12 +131,12 @@ return [
         ],
         '403' => [
             'error' => 'No deberías estar aquí.',
-            'description' => 'Aunque, podrás intentar volver atrás.',
+            'description' => 'Aunque podrías intentar volver atrás.',
             'link' => false,
         ],
         '401' => [
             'error' => 'No deberías estar aquí.',
-            'description' => 'Aunque, podrías intentar volver atrás. O tal vez iniciar sesión.',
+            'description' => 'Aunque podrías intentar volver atrás, o iniciar sesión.',
             'link' => false,
         ],
         '405' => [
@@ -146,17 +146,17 @@ return [
         ],
         '500' => [
             'error' => '¡Oh no! ¡Algo se ha roto! ;_;',
-            'description' => 'Somos automáticamente notificados de cada error.',
+            'description' => 'Hemos sido notificados automáticamente del error.',
             'link' => false,
         ],
         'fatal' => [
             'error' => '¡Oh no! ¡Algo se ha roto (gravemente)! ;_;',
-            'description' => 'Somos automáticamente notificados de cada error.',
+            'description' => 'Hemos sido notificados automáticamente del error.',
             'link' => false,
         ],
         '503' => [
             'error' => '¡En mantenimiento!',
-            'description' => 'El mantenimiento normalmente toma de 5 segundos a 10 minutos. Si excedemos el tiempo, mira :link para más información.',
+            'description' => 'El mantenimiento normalmente tarda entre 5 segundos y 10 minutos. Si sigue pasado ese tiempo, haz clic en :link para más información.',
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
