@@ -109,18 +109,12 @@ class @Nav
     newMode = modeHash.navMode ? modeHash.mode ? 'default'
     newSubMode = modeHash.navSubMode ? modeHash.subMode ? ''
 
-    updated = true
+    return false if newMode == @data().currentMode && newSubMode == @data().currentSubMode
 
-    if newMode != @data().currentMode
-      @data().currentMode = newMode
-      @data().currentSubMode = newSubMode
-    else if newSubMode != @data().currentSubMode
-      @data().currentSubMode = newSubMode
-    else
-      updated = false
-
-    @syncMode() if updated
-    updated
+    @data().currentMode = newMode
+    @data().currentSubMode = newSubMode
+    @syncMode()
+    true
 
 
   showAllMenu: (enable) =>
