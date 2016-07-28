@@ -81,7 +81,7 @@ class @Nav
       return if $(e.target).closest('.js-nav-popup').length != 0
 
     Timeout.clear @hideTimeout
-    @hideTimeout = Timeout.set 10, =>
+    @hideTimeout = Timeout.set 250, =>
       @showAllMenu false
       $.publish 'nav:popup:hidden'
 

@@ -129,7 +129,7 @@
     &:focus,
     &:hover {
       color: @grey-f;
-      font-weight: bold;
+      font-weight: 500;
       text-decoration: none;
     }
   }
@@ -138,13 +138,14 @@
     position: absolute;
     top: 0;
     width: 100%;
-    opacity: 0;
+    transition-duration: 80ms;
+    transform: translateY(-100%);
 
     .@{_top}__menu-head--active &,
     .@{_top}__menu-head.js-menu--active &,
     .@{_top}__menu-head:focus &,
     .@{_top}__menu-head:hover & {
-      opacity: 1;
+      transform: translateY(0%);
     }
   }
 
@@ -237,5 +238,7 @@
 
   &__submenu {
     position: absolute;
+    // will overflow but hopefully hidden by another element
+    height: 100%;
   }
 }
