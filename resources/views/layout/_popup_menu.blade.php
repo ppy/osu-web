@@ -24,6 +24,7 @@
                     nav-popup__menu-head
                     {{ $current_section === $section ? 'nav-popup__menu-head--active' : '' }}
                 "
+                {{ $current_section === $section ? 'data-menu-default' : '' }}
                 data-menu-target="header--{{ $section }}"
                 href="{{ array_values($links)[0] }}"
             >

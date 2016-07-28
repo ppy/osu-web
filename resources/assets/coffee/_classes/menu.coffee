@@ -24,10 +24,15 @@ class @Menu
     $(document).on 'mouseenter', '.js-menu', @onMouseEnter
     $(document).on 'mouseleave', '.js-menu', @onMouseLeave
     $(document).on 'touchstart', @onGlobalTouchstart
+    $(document).on 'turbolinks:load', @refresh
 
 
   closestMenuId: ($child) ->
     $child.closest('[data-menu-id]').attr('data-menu-id')
+
+  defaultMenu: =>
+    document.querySelector('.js-menu[data-menu-default]')?.dataset?.menuTarget
+
 
   parentsMenuId: ($child) ->
     $child.parents('[data-menu-id]').attr('data-menu-id')
@@ -81,7 +86,7 @@ class @Menu
     e.stopPropagation()
     $link = $(e.currentTarget)
     @currentMenu = $link.attr('data-menu-target')
-    @currentMenu ||= @closestMenuId $link
+    @currentMenu ?= @closestMenuId $link
 
     @debouncedRefresh()
 
@@ -97,6 +102,7 @@ class @Menu
 
 
   refresh: =>
+    @currentMenu ?= @defaultMenu()
     menus = document.querySelectorAll('.js-menu[data-menu-id]')
 
     currentTree = @currentTree()
