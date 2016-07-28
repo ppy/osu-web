@@ -107,14 +107,15 @@ $(document).on 'ready turbolinks:load', ->
 * May contain caveats.
 ###
 $(document).on 'click', '.clickable-row', (e) ->
-  $target = $(e.target)
-  isTargetClickable =
-    $target.closest('a').length != 0 ||
-    $target.closest('button').length != 0 ||
-    $target.closest('input').length != 0
+  target = e.target
 
-  return if isTargetClickable
-  $target.closest('.clickable-row').find('.clickable-row-link')[0].click()
+  return if osu.isClickable target
+
+  row = e.currentTarget
+  if row.classList.contains 'clickable-row-link'
+    row.click()
+  else
+    row.getElementsByClassName('clickable-row-link')[0]?.click()
 
 
 # submit form on ctrl-enter.

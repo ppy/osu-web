@@ -45,6 +45,14 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
   isInputElement: (el) ->
     el.tagName in ['INPUT', 'SELECT', 'TEXTAREA'] or el.isContentEditable
 
+  isClickable: (el) ->
+    if osu.isInputElement(el) || el.tagName in ['A', 'BUTTON']
+      true
+    else if el.parentNode
+      osu.isClickable el.parentNode
+    else
+      false
+
   isMobile: -> ! window.matchMedia('(min-width: 920px)').matches
 
   src2x: (mainUrl) ->
