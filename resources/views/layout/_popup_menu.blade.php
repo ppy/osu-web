@@ -39,21 +39,23 @@
                 </div>
             </a>
 
-            <div
-                class="js-menu nav-popup__submenu"
-                data-menu-id="header--{{ $section }}"
-                data-visibility="hidden"
-                data-visibility-animation="none"
-            >
-                @foreach ($links as $action => $link)
-                    <a class="nav-popup__link" href="{{ $link }}">
-                        {{ trans("layout.menu.$section.$action") }}
+            <div class="js-menu nav-popup__submenu-container">
+                <div
+                    class="js-menu nav-popup__submenu"
+                    data-menu-id="header--{{ $section }}"
+                    data-visibility="hidden"
+                    data-visibility-animation="none"
+                >
+                    @foreach ($links as $action => $link)
+                        <a class="nav-popup__link" href="{{ $link }}">
+                            {{ trans("layout.menu.$section.$action") }}
 
-                        <div class="nav-popup__link-marker">
-                            <i class="fa fa-angle-right"></i>
-                        </div>
-                    </a>
-                @endforeach
+                            <div class="nav-popup__link-marker">
+                                <i class="fa fa-angle-right"></i>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
             </div>
         </div>
     @endforeach

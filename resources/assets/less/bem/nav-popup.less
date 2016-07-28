@@ -118,11 +118,17 @@
     }
   }
 
+  &__menu {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__menu-head {
     color: @grey-9;
     display: flex;
     padding: (@spacing / 2) 0 @spacing;
     margin-right: (@spacing * 3);
+    flex: none;
 
     &--active,
     &.js-menu--active,
@@ -236,9 +242,13 @@
     }
   }
 
+  &__submenu-container {
+    width: 0;
+    flex: 1;
+    display: flex;
+  }
+
   &__submenu {
-    position: absolute;
-    // will overflow but hopefully hidden by another element
-    height: 100%;
+    padding-right: (@spacing * 2);
   }
 }
