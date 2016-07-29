@@ -65,6 +65,7 @@ class @Nav
   floatPopup: (float) =>
     if float
       @popupContainer[0].style.position = 'fixed'
+      @popupContainer[0].style.top = '0'
       @popupContainer[0].style.width = '100%'
     else
       @popupContainer[0].style.position = ''
