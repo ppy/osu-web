@@ -28,7 +28,7 @@ class BeatmapsetPage.Header extends React.Component
         style:
           backgroundImage: "url(#{@props.beatmapset.covers.cover})"
 
-        div className: 'header-tabs',
+        div className: 'beatmapset-header__tabs header-tabs',
           for mode in BeatmapHelper.modes
             continue if _.isEmpty @props.beatmapList[mode]
 
@@ -63,10 +63,6 @@ class BeatmapsetPage.Header extends React.Component
           if @props.hoveredBeatmap
             span className: 'beatmapset-header__star-difficulty',
               "#{osu.trans 'beatmaps.beatmapset.show.stats.stars'} #{@props.hoveredBeatmap.difficulty_rating.toFixed 2}"
-
-        el BeatmapsetPage.Stats,
-          beatmapset: @props.beatmapset
-          beatmap: @props.currentBeatmap
 
         div className: 'beatmapset-header__details-box',
           div className: 'beatmapset-header__details-text beatmapset-header__details-text--title',
@@ -104,3 +100,7 @@ class BeatmapsetPage.Header extends React.Component
                   span
                     className: 'beatmapset-header__user-text beatmapset-header__user-text--date'
                     moment(@props.beatmapset.ranked_date).format dateFormat
+
+        el BeatmapsetPage.Stats,
+          beatmapset: @props.beatmapset
+          beatmap: @props.currentBeatmap
