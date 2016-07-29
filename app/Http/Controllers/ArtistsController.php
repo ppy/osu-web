@@ -20,7 +20,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artist;
-use Request;
 
 class ArtistsController extends Controller
 {
@@ -38,7 +37,7 @@ class ArtistsController extends Controller
         $tracks = $artist->tracks()->get();
         $images = [
             'header_url' => $artist->header_url ?? '/images/headers/artist.png',
-            'cover_url'  => $artist->cover_url ?? 'https://placekitten.com/g/250/250',
+            'cover_url' => $artist->cover_url ?? 'https://placekitten.com/g/250/250',
         ];
 
         $links = [];
