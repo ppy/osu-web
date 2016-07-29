@@ -34,7 +34,7 @@ class ArtistsController extends Controller
 
     public function show($id)
     {
-        $artist = Artist::findOrFail($id);
+        $artist = Artist::with('label')->findOrFail($id);
         $tracks = $artist->tracks()->get();
 
         return view('artists.show')
