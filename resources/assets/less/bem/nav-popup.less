@@ -16,14 +16,20 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
+/**
+ * container of this component should have its own stacking context otherwise
+ * fun things will happen
+ */
 .nav-popup {
   @_top: nav-popup;
   @_menu-spacing: (@spacing * 3);
 
   width: 100%;
-  background-color: fade(@grey-2, 95%);
+  background-color: @grey-2;
   background-size: cover;
   display: flex;
+  z-index: 0; // component top level z-index
 
   @media @desktop {
     padding-left: (@padding-big - (@_menu-spacing / 2));
@@ -36,6 +42,10 @@
       .full-size();
       background-color: fade(@grey-0, 75%);
     }
+  }
+
+  &--main {
+    background-color: fade(@grey-2, 95%);
   }
 
   &--sections {
@@ -251,5 +261,7 @@
 
   &__submenu {
     padding-right: (@spacing * 2);
+    z-index: 1; // local context
+    white-space: nowrap;
   }
 }
