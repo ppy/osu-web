@@ -16,9 +16,9 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends("master", [
-    'current_section' => 'community',
+    'current_section' => 'beatmaps',
     'current_action' => 'artists',
-    'title' => 'page title here',
+    'title' => "Featured Artist: $artist->name",
     'pageDescription' => 'page description here',
     'body_additional_classes' => 'osu-layout--body-darker'
 ])
