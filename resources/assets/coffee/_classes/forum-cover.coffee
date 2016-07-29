@@ -118,7 +118,7 @@ class @ForumCover
 
 
   setOverlay: (targetState) =>
-    return unless @header.length
+    return unless @hasCoverEditor()
 
     return if targetState == @overlay[0].getAttribute('data-state')
 
