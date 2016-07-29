@@ -131,6 +131,7 @@ return [
             ],
         ],
     ],
+
     'footer' => [
         'general' => [
             '_' => 'General',
@@ -160,6 +161,7 @@ return [
             'osuStatus' => '@osustatus',
         ],
     ],
+
     'errors' => [
         '404' => [
             'error' => 'Page Missing',
@@ -201,5 +203,31 @@ return [
         ],
         // used by sentry if it returns an error
         'reference' => "Just in case, here's a code you can give to support!",
+    ],
+
+    'popup_login' => [
+        'login' => [
+            'email' => 'email address',
+            'forgot' => "I've forgotten my details",
+            'password' => 'password',
+            'title' => 'Sign In To Proceed',
+
+            'error' => [
+                'email' => "Username or email address doesn't exist",
+                'password' => 'Incorrect password',
+            ],
+        ],
+
+        'register' => [
+            'info' => "You need an account, sir. Why don't you have one already?",
+            'title' => "Don't have an account?",
+        ],
+    ],
+
+    'popup_user' => [
+        'links' => [
+            'profile' => 'My Profile',
+            'logout' => 'Log Out',
+        ],
     ],
 ];

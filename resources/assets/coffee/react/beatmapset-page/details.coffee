@@ -63,9 +63,7 @@ class BeatmapsetPage.Details extends React.Component
 
             a
               href: '#'
-              className: 'beatmapset-details__button'
-              'data-target': '#user-dropdown-modal'
-              'data-toggle': 'modal'
+              className: 'beatmapset-details__button js-user-link'
               osu.trans 'users.anonymous.login_link'
         else
           div {},

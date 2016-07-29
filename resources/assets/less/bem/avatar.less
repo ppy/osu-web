@@ -43,10 +43,13 @@
 
   &--full {
     width: 100%;
-    height: 0px;
+    height: 0;
     padding-bottom: 100%;
     box-shadow: none;
-    border-radius: 0px;
+    border-radius: 0;
+
+    // otherwise white border when zoomed in.
+    background-position: 0 0;
   }
 
   &--full-rounded {
@@ -67,15 +70,9 @@
     width: @beatmapset-scoreboard-avatar-size;
     height: @beatmapset-scoreboard-avatar-size;
     box-shadow: none;
-    border-radius: none;
+    border-radius: 0;
   }
 
-
-  &--nav {
-    width: @nav-avatar-size;
-    height: @nav-avatar-size;
-    display: block;
-  }
 
   &--navbar-mobile {
     width: @navbar-mobile--content-height;

@@ -42,5 +42,5 @@ class @GlobalDrag
       @dragging = false
       $.publish 'dragendGlobal'
 
-    clearTimeout @dragendTimer
-    @dragendTimer = setTimeout trigger, 100
+    Timeout.clear @dragendTimer
+    @dragendTimer = Timeout.set 100, trigger

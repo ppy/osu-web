@@ -116,6 +116,7 @@ abstract class Model extends BaseModel
         return $query
             ->default()
             ->orderBy('score', 'DESC')
-            ->orderBy('date', 'ASC');
+            ->orderBy('date', 'ASC')
+            ->limit(config('osu.beatmaps.max-scores'));
     }
 }

@@ -19,7 +19,7 @@
 class @LandingUserStats
   constructor: ->
     # Define margins
-    @margin = 
+    @margin =
       top: 40
       right: 0
       bottom: 0
@@ -63,7 +63,7 @@ class @LandingUserStats
     ])
 
     # Peak text indicator point
-    @maxElem = null    
+    @maxElem = null
 
     # Establishing domain for x/y axes
     @xScale.domain d3.extent(data, (d) ->
@@ -90,10 +90,10 @@ class @LandingUserStats
     for d in data by -1
       @maxElem = d if !@maxElem? || d.users_osu > @maxElem.users_osu
 
-    text = @svg.append 'text' 
+    text = @svg.append 'text'
       .attr 'class', 'landing-graph__text'
       .text Lang.get('home.landing.peak', 'count': @maxElem.users_osu.toLocaleString())
-    
+
     text
       .attr 'y', -@peakR * 2
       .attr 'x', () =>
@@ -163,7 +163,7 @@ class @LandingUserStats
       @svg.select('.landing-graph__text').attr 'x', @xScale(@maxElem.date) - @textLength - @peakR * 2
     else
       @svg.select('.landing-graph__text').attr 'x', rightX
-      
+
     @svg.select('.landing-graph__circle').attr 'cx', @xScale(@maxElem.date)
 
   getGraphDimensions: ->

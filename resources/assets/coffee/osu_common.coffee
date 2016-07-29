@@ -32,28 +32,11 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
 
   ajaxError: (xhr) ->
-    validationMessage = xhr?.responseJSON?.validation_error
-
-    if validationMessage?
-      allErrors = []
-      for own _field, errors of validationMessage
-        allErrors = allErrors.concat(errors)
-
-      message = "#{allErrors.join(', ')}."
-
-    message ?= xhr?.responseJSON?.error
-
-    if !message?
-      errorKey = "errors.codes.http-#{xhr?.status}"
-      message = osu.trans errorKey
-      message = osu.trans 'errors.unknown' if message == errorKey
-
-    osu.popup message, 'danger'
+    osu.popup osu.xhrErrorMessage(xhr), 'danger'
 
 
   pageChange: ->
-    callback = -> $(document).trigger('osu:page:change')
-    setTimeout callback, 0
+    Timeout.set 0, -> $(document).trigger('osu:page:change')
 
 
   parseJson: (id) ->
@@ -61,6 +44,14 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
   isInputElement: (el) ->
     el.tagName in ['INPUT', 'SELECT', 'TEXTAREA'] or el.isContentEditable
+
+  isClickable: (el) ->
+    if osu.isInputElement(el) || el.tagName in ['A', 'BUTTON']
+      true
+    else if el.parentNode
+      osu.isClickable el.parentNode
+    else
+      false
 
   isMobile: -> ! window.matchMedia('(min-width: 920px)').matches
 
@@ -152,7 +143,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     if type == 'warning' or type == 'danger'
       $('#overlay').off('click.close-alert').one('click.close-alert', closeAlert).fadeIn()
     else
-      setTimeout closeAlert, 5000
+      Timeout.set 5000, closeAlert
 
     $alert.appendTo($popup).fadeIn()
 
@@ -233,3 +224,23 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
                 o.find("[ref=#{k}]").html v
 
             area.append o
+
+
+  xhrErrorMessage: (xhr) ->
+    validationMessage = xhr?.responseJSON?.validation_error
+
+    if validationMessage?
+      allErrors = []
+      for own _field, errors of validationMessage
+        allErrors = allErrors.concat(errors)
+
+      message = "#{allErrors.join(', ')}."
+
+    message ?= xhr?.responseJSON?.error
+
+    if !message?
+      errorKey = "errors.codes.http-#{xhr?.status}"
+      message = osu.trans errorKey
+      message = osu.trans 'errors.unknown' if message == errorKey
+
+    message

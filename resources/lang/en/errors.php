@@ -34,6 +34,9 @@ return [
             'slack-error' => 'An error has occured on the Slack servers. Please try again in a few minutes.',
         ],
     ],
+    'beatmaps' => [
+        'standard-converts-only' => 'Only the osu! mode can have scores in other modes.',
+    ],
     'logged_out' => 'You have been logged out. Please login and retry.',
     'supporter_only' => 'You must be a supporter to use this feature.',
     'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',

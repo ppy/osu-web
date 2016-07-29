@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2016 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -14,61 +14,92 @@
 
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-    --}}
-
-    @extends("master", [
+--}}
+@extends("master", [
     'title' => 'osu!',
     'blank' => 'true',
     'body_additional_classes' => 'osu-layout--body-dark'
-    ])
+])
 
-    @section("content")
+@section("content")
     <nav class="osu-layout__row osu-layout__row--landing">
         <!-- Mobile Navigation -->
-        @include('layout.mobile-header', ['subLinks' => false])
+        @include('layout._header_mobile')
 
         <!-- Desktop Navigation -->
         <div class="landing-nav hidden-xs">
             <div class="landing-nav__section landing-nav__section--left">
                 @foreach (nav_links() as $section => $links)
-                <a href="{{ array_values($links)[0] }}" class="landing-nav__link {{ ($section == "home") ? "landing-nav__link--bold" : "" }}">{{ trans("layout.menu.$section._") }}</a>
+                    <a
+                        href="{{ array_values($links)[0] }}"
+                        class="landing-nav__link {{ ($section == "home") ? "landing-nav__link--bold" : "" }}"
+                    >
+                        {{ trans("layout.menu.$section._") }}
+                    </a>
                 @endforeach
             </div>
-            <a href="#" class="landing-logo">
-                <h1 class="landing-logo__header">osu!</h1>
-                <span class="landing-logo__overlay"></span>
-                <span class="landing-logo__glow"></span>
-                <span class="landing-logo__timing"></span>
-                <span class="landing-logo__bounce"></span>
+
+            <a class="landing-nav__section landing-nav__section--center u-nav-float" href="#">
+                @include('objects._logo')
             </a>
-            <div class="landing-nav__section landing-nav__section--right js-nav-avatar">
-                <a href="#" class="landing-nav__link" title="{{ trans("users.anonymous.login_link") }}" data-toggle="modal" data-target="#user-dropdown-modal">{{ trans("users.login._") }}</a>
-                <a href="{{ route("users.register") }}" class="landing-nav__link">{{ trans("users.signup._") }}</a>
+
+            <div class="landing-nav__section landing-nav__section--right">
+                <a
+                    href="#"
+                    class="landing-nav__link js-nav-toggle"
+                    data-nav-mode="user"
+                    data-nav-sub-mode="login"
+                    title="{{ trans("users.anonymous.login_link") }}"
+                >
+                    {{ trans("users.login._") }}
+                </a>
+
+                <a
+                    href="{{ route("users.register") }}"
+                    class="landing-nav__link js-nav-toggle"
+                    data-nav-mode="user"
+                    data-nav-sub-mode="signup"
+                >
+                    {{ trans("users.signup._") }}
+                </a>
             </div>
         </div>
-        @include('objects.user-dropdown-modal')
+
     </nav>
+
+    @include('layout._popup', ['navPopupExtraClasses' => 'osu-layout__row--landing'])
     <header class="osu-layout__row osu-layout__row--landing">
         <div class="landing-hero">
             <div class="js-landing-hero-slider--new js-landing-hero-slider landing-hero__slider">
                 @for($i = 1; $i <= 2; $i++)
-                <span class="landing-hero__slide">
-                    <span class="landing-hero__slide-bg" style="background: url('/images/layout/landing-page/home-slider-{{$i}}.jpg') no-repeat center center / cover"></span>
-                    <span class="landing-hero__cta">
-                        <span class="landing-hero__content">{!! trans("home.landing.slogans.$i") !!}</span>
+                    <span class="landing-hero__slide">
+                        <span
+                            class="landing-hero__slide-bg"
+                            style="background: url('/images/layout/landing-page/home-slider-{{$i}}.jpg') no-repeat center center / cover">
+                        </span>
+
+                        <span class="landing-hero__cta">
+
+                            <span class="landing-hero__content">
+                                {!! trans("home.landing.slogans.$i") !!}
+                            </span>
+                        </span>
                     </span>
-                </span>
                 @endfor
             </div>
+
             <div class="landing-download">
                 <div class="landing-download__inner">
                     <a href="http://m1.ppy.sh/r/osu!install.exe" class="landing-download__button shadow-hover">
                         <span class="fa fa-cloud-download landing-download__icon"></span>
                         <span class="landing-download__content-wrapper">
-                            <span class="landing-download__content landing-download__content--top">{{ trans("home.landing.download._") }}</span>
+                            <span class="landing-download__content landing-download__content--top">
+                                {{ trans("home.landing.download._") }}
+                            </span>
                             <span class="landing-download__content landing-download__content--bottom js-download-platform"></span>
                         </span>
                     </a>
+
                     <a href="{{ route('download') }}" class="landing-download__other js-download-other"></a>
                 </div>
             </div>
@@ -79,6 +110,7 @@
             </div>
         </div>
     </header>
+
     <main class="osu-layout__row osu-layout__row--landing">
         <div class="landing-middle-buttons">
             <div class="osu-layout__col-container">
@@ -94,42 +126,48 @@
             </div>
         </div>
     </main>
+
     <footer class="osu-layout__section osu-layout__section--landing-footer">
         <div class="osu-layout__row osu-layout__row--landing-sitemap landing-sitemap">
             <div class="osu-layout__col-container osu-layout__col-container--landing-sitemap">
                 @foreach (footer_links() as $section => $links)
-                <div class="osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-3">
-                    <ul class="landing-sitemap__list">
-                        <li class="landing-sitemap__item">
-                            <div class="landing-sitemap__header">{{ trans("layout.footer.$section._") }}</div>
-                        </li>
-                        @foreach ($links as $action => $link)
-                        <li class="landing-sitemap__item"><a href="{{ $link }}" class="landing-sitemap__link">{{ trans("layout.footer.$section.$action") }}</a></li>
-                        @endforeach
-                    </ul>
-                </div>
+                    <div class="osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-3">
+                        <ul class="landing-sitemap__list">
+                            <li class="landing-sitemap__item">
+                                <div class="landing-sitemap__header">{{ trans("layout.footer.$section._") }}</div>
+                            </li>
+                            @foreach ($links as $action => $link)
+                                <li class="landing-sitemap__item"><a href="{{ $link }}" class="landing-sitemap__link">{{ trans("layout.footer.$section.$action") }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
                 @endforeach
             </div>
         </div>
+
         <div class="landing-footer-social">
             <a href="{{ route('support-the-game') }}" class="fa fa-heart landing-footer-social__icon"></a>
             <a href="{{ config("osu.urls.social.twitter") }}" class="fa fa-twitter landing-footer-social__icon"></a>
             <a href="{{ config("osu.urls.social.facebook") }}" class="fa fa-facebook-official landing-footer-social__icon"></a>
         </div>
+
         <div class="landing-footer-bottom">
             <a href="{{ config("osu.urls.legal.tos") }}" class="landing-footer-bottom__link">terms of service</a>
             <a href="{{ config("osu.urls.legal.dmca") }}" class="landing-footer-bottom__link">copyright (DMCA)</a>
             <a href="{{ config("osu.urls.legal.server") }}" class="landing-footer-bottom__link">server status</a>
             <a href="{{ config("osu.urls.legal.osustatus") }}" class="landing-footer-bottom__link landing-footer-bottom__link--no-pad">@osustatus</a>
+
             <div class="landing-footer-bottom__copyright">ppy powered 2007-2016</div>
         </div>
     </footer>
-    @include('layout.popup-container')
-    @endsection
 
-    @section ("script")
+    @include('layout.popup-container')
+@endsection
+
+@section ("script")
     @parent
-        <script id="json-stats" type="application/json">
-            {!! json_encode($stats) !!}
-        </script>
-    @endsection
+
+    <script id="json-stats" type="application/json">
+        {!! json_encode($stats) !!}
+    </script>
+@endsection
