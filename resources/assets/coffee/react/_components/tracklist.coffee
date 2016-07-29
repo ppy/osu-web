@@ -71,7 +71,7 @@ class @Tracklist extends React.Component
     $.unsubscribe '.tracklist'
 
   render: ->
-    return null unless @props.tracks
+    return null unless @props.tracks.length > 0
 
     tracks = @props.tracks.map (track) =>
       el Track, key: track.id, track: track, playing: track.id == @state.currently_playing
