@@ -22,9 +22,10 @@
                 class="
                     js-menu
                     js-nav-section-link
+                    {{ $current_section === $section ? 'nav-popup__menu-head--active' : '' }}
                     nav-popup__menu-head
                 "
-                data-nav-section="{{ $section }}"
+                data-menu-default="{{ $current_section === $section }}"
                 data-menu-target="header--{{ $section }}"
                 href="{{ array_values($links)[0] }}"
             >

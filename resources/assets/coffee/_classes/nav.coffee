@@ -27,6 +27,7 @@ class @Nav
     $(document).on 'transitionend', '.js-nav-popup--container', @reset
     $(document).on 'turbolinks:load', @syncAll
 
+    @_data = document.getElementsByClassName('js-nav-data')
     @popup = document.getElementsByClassName('js-nav-popup--popup')
     @popupContainer = document.getElementsByClassName('js-nav-popup--container')
     @menus = document.getElementsByClassName('js-nav-switch--menu')
@@ -58,7 +59,7 @@ class @Nav
 
 
   data: =>
-    @popup[0].dataset
+    @_data[0].dataset
 
 
   floatPopup: (float) =>
@@ -147,7 +148,6 @@ class @Nav
   syncAll: =>
     @syncMenu()
     @syncMode()
-    @syncSection()
 
 
   syncMenu: =>
@@ -196,18 +196,6 @@ class @Nav
         link.classList.add activeClass
       else
         link.classList.remove activeClass
-
-
-  syncSection: =>
-    currentSection = document.body.dataset.section
-
-    for link in @sectionLinks
-      if link.dataset.navSection == currentSection
-        link.classList.add 'js-nav-section-link--active'
-        link.dataset.menuDefault = '1'
-      else
-        link.classList.remove 'js-nav-section-link--active'
-        link.dataset.menuDefault = ''
 
 
   toggleMenu: (e) =>
