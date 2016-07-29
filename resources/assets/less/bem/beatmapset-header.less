@@ -153,11 +153,76 @@
     }
 
     &--cs, &--drain, &--accuracy, &--ar {
-      background-color: #ffffff;
+      background-color: @grey-f;
     }
 
     &--stars {
       background-color: @yellow;
+    }
+  }
+
+  &__details-box {
+    position: absolute;
+    left: 40px;
+    bottom: 25px;
+  }
+
+  &__details-text {
+    a {
+      color: @grey-f;
+      font-style: italic;
+      .default-text-shadow;
+
+      &:hover, &:visited, &:link, &:active {
+        color: @grey-f;
+        text-decoration: none;
+      }
+    }
+
+    &--title a {
+      font-size: 30px;
+      font-weight: 600;
+    }
+
+    &--artist a {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    &--artist {
+      padding-bottom: @spacing * 2;
+    }
+  }
+
+  &__avatar-box {
+    display: flex;
+  }
+
+  &__avatar {
+    margin-right: @spacing * 0.5;
+  }
+
+  &__user-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__user-text {
+    font-size: 11px;
+    color: @grey-f;
+    .default-text-shadow;
+
+    &--mapper {
+      font-style: italic;
+    }
+
+    &--date {
+      font-weight: 700;
+    }
+
+    &:first-of-type {
+      padding-bottom: @spacing * 0.5;
     }
   }
 }

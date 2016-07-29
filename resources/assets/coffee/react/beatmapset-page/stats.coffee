@@ -45,7 +45,7 @@ class BeatmapsetPage.Stats extends React.Component
           else
             @props.beatmap[stat]
 
-          div className: 'beatmapset-header__stat-advanced',
+          div className: 'beatmapset-header__stat-advanced', key: stat,
             span className: 'beatmapset-header__stats-text beatmapset-header__stats-text--advanced-label', osu.trans "beatmaps.beatmapset.show.stats.#{stat}"
             div className: 'beatmapset-header__stat-advanced-bar',
               div

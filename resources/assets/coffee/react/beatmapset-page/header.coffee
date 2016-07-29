@@ -15,11 +15,13 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, span} = React.DOM
+{div, span, a} = React.DOM
 el = React.createElement
 
 class BeatmapsetPage.Header extends React.Component
   render: ->
+    dateFormat = 'MMM D, YYYY'
+
     div className: 'osu-layout__row osu-layout__row--page-compact',
       div
         className: 'beatmapset-header'
@@ -65,3 +67,40 @@ class BeatmapsetPage.Header extends React.Component
         el BeatmapsetPage.Stats,
           beatmapset: @props.beatmapset
           beatmap: @props.currentBeatmap
+
+        div className: 'beatmapset-header__details-box',
+          div className: 'beatmapset-header__details-text beatmapset-header__details-text--title',
+            a
+              href: laroute.route 'beatmapsets.index', q: @props.beatmapset.title
+              @props.beatmapset.title
+          div className: 'beatmapset-header__details-text beatmapset-header__details-text--artist',
+            a
+              href: laroute.route 'beatmapsets.index', q: @props.beatmapset.artist
+              @props.beatmapset.artist
+
+          div className: 'beatmapset-header__avatar-box',
+            div
+              className: 'beatmapset-header__avatar avatar avatar--beatmapset'
+              style:
+                backgroundImage: "url(#{@props.beatmapset.user.data.avatarUrl})"
+
+            div className: 'beatmapset-header__user-box',
+              div className: 'beatmapset-header__user-text',
+                osu.trans 'beatmaps.beatmapset.show.details.made-by'
+                a
+                  className: 'beatmapset-header__user-text beatmapset-header__user-text--mapper'
+                  href: laroute.route 'users.show', users: @props.beatmapset.user.data.id
+                  @props.beatmapset.user.data.username
+
+              div className: 'beatmapset-header__user-text',
+                osu.trans 'beatmaps.beatmapset.show.details.submitted'
+                span
+                  className: 'beatmapset-header__user-text beatmapset-header__user-text--date'
+                  moment(@props.beatmapset.submitted_date).format dateFormat
+
+              if @props.beatmapset.ranked_date
+                div className: 'beatmapset-header__user-text',
+                  osu.trans 'beatmaps.beatmapset.show.details.ranked'
+                  span
+                    className: 'beatmapset-header__user-text beatmapset-header__user-text--date'
+                    moment(@props.beatmapset.ranked_date).format dateFormat
