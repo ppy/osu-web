@@ -25,6 +25,8 @@
 <meta name="csrf-param" content="_token">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
+<meta name="turbolinks-cache-control" content="no-preview">
+
 @if(config("services.ga.tracking_id") !== '')
     <meta name="ga-tracking-id" content="{{ config("services.ga.tracking_id") }}">
 @endif

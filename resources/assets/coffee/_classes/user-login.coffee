@@ -40,6 +40,7 @@ class @UserLogin
   loginSuccess: (_event, data) =>
     $.publish 'user:update', data.data
 
+    Turbolinks.clearCache()
     $(document).off '.ujsHideLoadingOverlay'
     LoadingOverlay.show()
     if @clickAfterLogin?
