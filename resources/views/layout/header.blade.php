@@ -81,8 +81,7 @@
     </div>
 </nav>
 
-<div id="layout-header-popup" data-turbolinks-permanent>
-    @include('layout._popup')
-</div>
+<div class="js-nav-data" id="nav-data-master" data-turbolinks-permanent></div>
+@include('layout._popup')
 
 @include('layout.popup-container')

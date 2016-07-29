@@ -1,5 +1,5 @@
 ###
-# Copyright 2015 ppy Pty. Ltd.
+# Copyright 2015-2016 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -15,22 +15,22 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-
 class @LandingGraph
-  landingUserStatsElements: document.getElementsByClassName('js-landing-graph')
+  container: document.getElementsByClassName('js-landing-graph')
+
 
   constructor: ->
-    $(window).on 'throttled-resize', @landingUserStatsResize
-    $(document).on 'turbolinks:load', @landingUserStatsInitialize
+    $(window).on 'throttled-resize', @resize
+    $(document).on 'turbolinks:load', @initialize
 
-  landingUserStatsInitialize: =>
-    @landingUserStatsElements = document.getElementsByClassName('js-landing-graph')
-    return if !@landingUserStatsElements[0]?
 
-    @landingUserStatsElements[0].chart ?= new LandingUserStats
-    @landingUserStatsElements[0].chart?.init()
+  initialize: =>
+    return if !@container[0]?
 
-  landingUserStatsResize: =>
-    return if !@landingUserStatsElements[0]?
+    @container[0]._chart ?= new LandingUserStats
 
-    @landingUserStatsElements[0].chart?.resize()
+
+  resize: =>
+    return if !@container[0]?
+
+    @container[0]._chart?.resize()
