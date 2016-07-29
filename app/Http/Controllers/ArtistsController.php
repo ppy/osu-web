@@ -36,9 +36,36 @@ class ArtistsController extends Controller
     {
         $artist = Artist::with('label')->findOrFail($id);
         $tracks = $artist->tracks()->get();
+        $images = [
+            'header_url' => $artist->header_url ?? '/images/headers/artist.png',
+            'cover_url'  => $artist->cover_url ?? 'https://placekitten.com/g/250/250',
+        ];
+
+        $links = [];
+        foreach (['twitter', 'facebook', 'soundcloud'] as $service) {
+            if ($artist->$service) {
+                $links[] = [
+                    'title' => ucwords($service),
+                    'url' => $artist->$service,
+                    'icon' => $service,
+                    'class' => $service,
+                ];
+            }
+        }
+
+        if ($artist->website) {
+            $links[] = [
+                'title' => 'Official Website',
+                'url' => $artist->website,
+                'icon' => 'globe',
+                'class' => '',
+            ];
+        }
 
         return view('artists.show')
             ->with('artist', $artist)
-            ->with('tracks', $tracks);
+            ->with('links', $links)
+            ->with('tracks', $tracks)
+            ->with('images', $images);
     }
 }

@@ -29,6 +29,15 @@
     flex-direction: row;
   }
 
+  &--artist {
+    flex-direction: column-reverse;
+    background-color: #293336;
+    @media @desktop {
+      flex-direction: row;
+      background: none;
+    }
+  }
+
   &__content {
     padding-top: @grid-gutter-width/2;
     padding-bottom: @grid-gutter-width/4;
@@ -39,23 +48,20 @@
       flex-basis: 100% / 3;
       max-width: 100% / 3;
 
-      &--artist-left {
-        flex-basis: 100%;
-      }
-      &--sidebar {
-        flex-basis: 270px;
-        max-width: 270px;
-        background-color: #2A3336;
-      }
-    }
-
-    @media @desktop {
       border-width: 0px 1px 0px 0px;
       border-style: solid;
       border-image: linear-gradient(to top, #ccc, transparent 80%) 1;
 
       &:last-child {
         border: none;
+      }
+
+      &--sidebar {
+        background-color: #2A3336;
+        .default-box-shadow();
+        @media @desktop {
+          height: 100%;
+        }
       }
     }
   }

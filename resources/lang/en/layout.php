@@ -73,6 +73,7 @@ return [
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
             'forum-forums-show' => 'forum',
+            'artists' => 'featured artists',
         ],
         'error' => [
             '_' => 'error',

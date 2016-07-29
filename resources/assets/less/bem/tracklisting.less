@@ -1,0 +1,59 @@
+.tracklisting {
+  &__table {
+    width: 100%
+  }
+
+  &__row {
+    background-color: #293336;
+    color: #8dacb6;
+    font-weight: 100;
+    font-size: 12px;
+    border-bottom: 2px solid #1A2223;
+  }
+
+  &__row--header {
+    text-transform: uppercase;
+    color: #8dacb6;
+    font-size: 10px;
+    line-height: 32px;
+  }
+
+  &__cover {
+    width: 32px;
+    height: 32px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  &__preview {
+    background-color: rgba(0,0,0,0.5);
+    color: rgba(255,255,255,0.33);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      text-decoration: none;
+      color: white;
+    }
+  }
+
+  &__title {
+    color: white;
+    padding-left: 10px;
+  }
+
+  &__version {
+    color: #8dacb6;
+    font-size: 10px;
+  }
+
+  &__dl {
+    font-size: 16px;
+  }
+
+  &__link {
+    .white-link();
+  }
+}
