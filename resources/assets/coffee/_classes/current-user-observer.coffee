@@ -1,5 +1,5 @@
 ###
-# Copyright 2015 ppy Pty. Ltd.
+# Copyright 2015-2016 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -15,10 +15,28 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class @HeaderMenu
+class @CurrentUserObserver
   constructor: ->
-    $.subscribe 'menu:current', @toggleTitle
+    @covers = document.getElementsByClassName('js-current-user-cover')
+
+    $.subscribe 'user:update', @setData
+    $(document).on 'turbolinks:load', @reinit
+    $.subscribe 'osu:page:change', @reinit
 
 
-  toggleTitle: (_e, currentMenu) =>
-    Fade.toggle document.getElementsByClassName('js-header-menu--page-title')[0], !_.startsWith(currentMenu, 'header--')
+  reinit: =>
+    @setCovers()
+
+
+  setCovers: (elements) =>
+    elements ?= @covers
+
+    bgImage = if currentUser.id? then "url('#{currentUser.cover.url}')" else ''
+    for el in elements
+      el.style.backgroundImage = bgImage
+
+
+  setData: (_e, data) =>
+    window.currentUser = data
+
+    @reinit()

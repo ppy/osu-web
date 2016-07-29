@@ -30,7 +30,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
 
-    <body class="osu-layout osu-layout--body {{ $current_section or "error" }} section action-{{ $current_action }} {{ $body_additional_classes or "" }}">
+    <body
+        class="osu-layout osu-layout--body {{ $current_section or "error" }} section action-{{ $current_action }} {{ $body_additional_classes or "" }}"
+        data-section="{{ $current_section }}"
+    >
         <div id="overlay" style="display: none;"></div>
         <div class="blackout" data-visibility="hidden"></div>
 
@@ -72,7 +75,6 @@
             </div>
         </div>
 
-        @yield('user-dropdown-modal')
         @include("layout._global_variables")
         @include('layout._loading_overlay')
 

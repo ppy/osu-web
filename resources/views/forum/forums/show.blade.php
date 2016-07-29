@@ -48,22 +48,22 @@
         </div>
     </div>
 
-    <div class="osu-layout__row osu-layout__row--page">
+    <div class="osu-layout__row osu-layout__row--page page">
         @if ($forum->subforums()->exists())
-            <h2>{{ trans("forum.subforums") }}</h2>
+            <h2 class="page__title">{{ trans("forum.subforums") }}</h2>
             @include("forum.forums._forums", ["forums" => $forum->subforums])
         @endif
 
         @if (count($pinnedTopics) > 0)
             <div class="topics-container">
-                <h2>{{ trans("forum.pinned_topics") }}</h2>
+                <h2 class="page__title">{{ trans("forum.pinned_topics") }}</h2>
                 @include("forum.forums._topics", ["topics" => $pinnedTopics, "withNewTopicLink" => false])
             </div>
         @endif
 
         @if (count($topics) > 0 || $forum->isOpen())
             <div class="topics-container" id="topics">
-                <h2>{{ trans("forum.topics._") }}</h2>
+                <h2 class="page__title">{{ trans("forum.topics._") }}</h2>
 
                 @include('forum.forums._topics', [
                     'topics' => $topics,

@@ -342,11 +342,15 @@ a[disabled] { &:extend(.btn[disabled]); }
 
 [data-visibility] {
   will-change: opacity;
-  transition: opacity 120ms;
+  transition-duration: 120ms;
 
   &[data-visibility="hidden"] {
     opacity: 0;
     pointer-events: none;
     z-index: @z-index--visibility-hidden;
+  }
+
+  &[data-visibility-animation="none"] {
+    transition-duration: 0s;
   }
 }

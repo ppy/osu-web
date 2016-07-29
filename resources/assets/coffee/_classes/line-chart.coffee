@@ -218,8 +218,8 @@ class @LineChart
     return unless i
 
     @showTooltip()
-    clearTimeout @_autoHideTooltip
-    @_autoHideTooltip = setTimeout @hideTooltip, 3000
+    Timeout.clear @_autoHideTooltip
+    @_autoHideTooltip = Timeout.set 3000, @hideTooltip
 
     d = if x - @data[i - 1].x <= @data[i].x - x then @data[i - 1] else @data[i]
     coords = ['x', 'y'].map (axis) => @options.scales[axis] d[axis]

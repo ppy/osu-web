@@ -1,5 +1,5 @@
 ###
-# Copyright 2015 ppy Pty. Ltd.
+# Copyright 2015-2016 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -15,18 +15,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class @LogoMenu
-  constructor: ->
-    $(document).on 'ready turbolinks:load', @updateCover
-    @updateCover()
-
-    # this class shall subscribe to 'user:update' event and update user
-    # cover in the menu accordingly.
+class @Timeout
+  @clear: (id) ->
+    clearTimeout id
 
 
-  updateCover: ->
-    $userEntry = $('.js-logo-menu-user')
-    return unless $userEntry.length
-
-    $userEntry.css
-      backgroundImage: "url('#{currentUser.cover.url}')"
+  @set: (delay, func) ->
+    setTimeout func, delay

@@ -24,7 +24,7 @@ class @ForumAutoClick
     $(window).on 'throttled-scroll', _.throttle(@onScroll, 1000)
 
     $(document).on 'ready turbolinks:load osu:page:change', =>
-      setTimeout @onScroll, 1000
+      Timeout.set 1000, @onScroll
 
 
   commonClick: (link) ->

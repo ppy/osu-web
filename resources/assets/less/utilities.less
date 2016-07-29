@@ -1,0 +1,57 @@
+/**
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+.u-nav-float {
+  z-index: @z-index--nav-float;
+}
+
+.u-nav-popup {
+  z-index: @z-index--nav-popup;
+}
+
+.u-section-bg {
+  ._bg(@color) {
+    background-color: @color !important;
+  }
+
+  ._bg(@section-color--default);
+
+  .beatmaps & { ._bg(@section-color--beatmaps); }
+  .community & { ._bg(@section-color--community); }
+  .error & { ._bg(@section-color--error); }
+  .help & { ._bg(@section-color--help); }
+  .home & { ._bg(@section-color--home); }
+  .ranking & { ._bg(@section-color--ranking); }
+  .store & { ._bg(@section-color--store); }
+  .user & { ._bg(@section-color--user); }
+}
+
+.u-section-gradient-down {
+  ._gradient(@color) {
+    background-image: linear-gradient(fadeout(@color, 10%) 0%, @color 75%, @color 100%) !important;
+  }
+
+  .beatmaps & { ._gradient(@section-color--beatmaps); }
+  .community & { ._gradient(@section-color--community); }
+  .error & { ._gradient(@section-color--error); }
+  .help & { ._gradient(@section-color--help); }
+  .home & { ._gradient(@section-color--home); }
+  .ranking & { ._gradient(@section-color--ranking); }
+  .store & { ._gradient(@section-color--store); }
+  .user & { ._gradient(@section-color--user); }
+}

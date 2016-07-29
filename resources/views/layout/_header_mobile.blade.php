@@ -15,9 +15,17 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-
-<div class="visible-xs">
-    <div class="navbar-mobile navbar navbar-default navbar-static-top bg--{{ $current_section }}" role="navigation">
+<div class="visible-xs no-print js-header--main">
+    <div
+        class="
+            navbar-mobile
+            navbar
+            navbar-default
+            navbar-static-top
+            u-section-bg
+        "
+        role="navigation"
+    >
         <div class="container">
             <div class="navbar-header navbar-mobile__header">
                 <div class="navbar-mobile__header-section">
@@ -38,10 +46,8 @@
                     @else
                         <a
                             href="#"
-                            data-toggle="modal"
-                            data-target="#user-dropdown-modal"
                             title="{{ trans('users.anonymous.login_link') }}"
-                            class="avatar avatar--navbar-mobile avatar--guest js-navbar-mobile--top-icon"
+                            class="avatar avatar--navbar-mobile avatar--guest js-navbar-mobile--top-icon js-user-link"
                         >
                         </a>
                     @endif
@@ -52,9 +58,9 @@
                         data-toggle="collapse" data-target="#xs-navbar"
                     >
                         <span class="sr-only">Toggle navigation</span>
-                        <div class="navbar-mobile__toggle-icon">
+                        <span class="navbar-mobile__toggle-icon">
                             <i class="fa fa-bars"></i>
-                        </div>
+                        </span>
                     </button>
                 </div>
             </div>
@@ -84,7 +90,11 @@
                         <i class="fa fa-sign-out"></i>
                     </a>
                 @else
-                    <a class="navbar-mobile__menu-item navbar-mobile__menu-item--user" href="#" title="{{ trans('users.anonymous.login_link') }}" data-toggle="modal" data-target="#user-dropdown-modal">
+                    <a
+                        class="js-user-link navbar-mobile__menu-item navbar-mobile__menu-item--user"
+                        href="#"
+                        title="{{ trans('users.anonymous.login_link') }}"
+                    >
                         <span class="avatar avatar--guest avatar--navbar-mobile"></span>
 
                         {{ trans('users.anonymous.username') }}
@@ -92,14 +102,6 @@
                 @endif
             </li>
             @foreach (nav_links() as $section => $links)
-            @if(isset($subLinks) && !$subLinks)
-            <li class="dropdown">
-                <a role="button" class="navbar-mobile__menu-item" href="{{ array_values($links)[0] }}">
-                    <i class="fa fa-chevron-right navbar-mobile__menu-item-icon navbar-mobile__menu-item-icon--closed"></i>
-                    {{ trans("layout.menu.$section._") }}
-                </a>
-            </li>
-            @else
             <li class="dropdown">
                 <a data-toggle="dropdown" role="button" data-target="#" id="expand-{{ $section }}" class="navbar-mobile__menu-item dropdown-toggle" href="{{ array_values($links)[0] }}">
                     <i class="fa fa-chevron-right navbar-mobile__menu-item-icon navbar-mobile__menu-item-icon--closed"></i>
@@ -117,7 +119,6 @@
                     @endforeach
                 </ul>
             </li>
-            @endif
             @endforeach
         </ul>
     </div>
