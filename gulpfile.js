@@ -69,7 +69,6 @@ elixir(function(mix) {
     'forum/topic-ajax.coffee',
     'ujs-common.coffee',
     'bootstrap-modal.coffee',
-    'user-dropdown-modal.coffee',
     'logout.coffee',
     'shared.coffee',
     'turbolinks-overrides.coffee',

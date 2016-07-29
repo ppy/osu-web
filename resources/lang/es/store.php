@@ -24,7 +24,7 @@ return [
     ],
     'checkout' => [
         'pay' => 'Facturar con Paypal',
-        'delayed_shipping' => '¡Estamos actualmente sobresaturados con órdenes! Eres bienvenido a solicitar tu orden, pero considera un **retraso adicional de 1-2 semanas** mientras nos ponemos al día con órdenes ya existentes.',
+        'delayed_shipping' => '¡Ahora mismo estamos sobresaturados de pedidos! Eres bienvenido a solicitar tu orden, pero considera un **retraso adicional de 1-2 semanas** mientras nos ponemos al día con órdenes ya existentes.',
     ],
     'order' => [
         'item' => [
@@ -34,12 +34,12 @@ return [
     'product' => [
         'name' => 'Nombre',
         'stock' => [
-            'out' => 'Actualmente sin existencias :(. Vuelve a revisar pronto.',
+            'out' => 'en este momento sin existencias :(. Vuelve a revisar pronto.',
             'out_with_alternative' => 'Este tipo no tiene existencias  :(. Intenta otro tipo o vuelve a revisar pronto.',
         ],
         'add_to_cart' => 'Añadir al carrito',
         'notify' => '¡Notificarme cuando esté disponible!',
-        'notification_success' => 'serás notificado cuando tengamos más existencias. clic :link para cancelar',
+        'notification_success' => 'serás notificado cuando tengamos más existencias. Haz clic :link para cancelar',
         'notification_remove_text' => 'aquí',
         'notification_in_stock' => '¡Este producto ya tiene existencias!',
         'notification_exists' => '¡Ya has solicitado una notificación para este producto!',

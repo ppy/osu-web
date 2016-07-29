@@ -57,15 +57,15 @@ class Status.Incidents extends React.Component
           onClick: @_changeViewMode.bind(@, 'today')
           className: 'status-recent__when' + (if @state.when == 'today' then ' status-recent__when--active' else '')
           osu.trans('status_page.recent.when.today')
-        h5 
+        h5
           onClick: @_changeViewMode.bind(@, 'last_week')
           className: 'status-recent__when' + (if @state.when == 'last_week' then ' status-recent__when--active' else '')
           osu.trans('status_page.recent.when.last_week')
-        h5 
+        h5
           onClick: @_changeViewMode.bind(@, '2_weeks')
           className: 'status-recent__when' + (if @state.when == '2_weeks' then ' status-recent__when--active' else '')
           osu.transChoice('status_page.recent.when.weeks_ago', 2)
-        h5 
+        h5
           onClick: @_changeViewMode.bind(@, '3_weeks')
           className: 'status-recent__when' + (if @state.when == '3_weeks' then ' status-recent__when--active' else '')
           osu.transChoice('status_page.recent.when.weeks_ago', 3)

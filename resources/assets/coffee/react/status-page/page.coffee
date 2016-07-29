@@ -22,7 +22,7 @@ class @Status.Page extends React.Component
   constructor: (props) ->
     super props
 
-    @state = 
+    @state =
       status: window.osuStatus
       charts: window.osuStatus.uptime.graphs
       # mode
@@ -85,7 +85,7 @@ class @Status.Page extends React.Component
             osu.trans('common.time.now')
           else
             osu.transChoice('common.time.hours_ago', -d)
-        y: (d) => 
+        y: (d) =>
           (d).toLocaleString()
 
       tooltipFormats =
@@ -122,7 +122,7 @@ class @Status.Page extends React.Component
       if incident.active
         activeIncidents = true
 
-    div 
+    div
       className: 'osu-layout__row osu-layout__row--page--compact'
       div null,
         div className: 'status-header',
@@ -159,7 +159,7 @@ class @Status.Page extends React.Component
           div className: 'status-info__container',
             div className: 'status-info__border',
               null
-            div 
+            div
               className: "status-info__data #{(if @state.graph == 'users' then 'status-info__data--active' else '')}"
               onClick: @_changeViewMode.bind(@, 'graph', 'users')
               h4 className: 'status-info__data-title',
@@ -168,7 +168,7 @@ class @Status.Page extends React.Component
                 @state.status.online.current.toLocaleString()
             div className: 'status-info__separator',
               null
-            div 
+            div
               className: "status-info__data #{(if @state.graph == 'score' then 'status-info__data--active' else '')}"
               onClick: @_changeViewMode.bind(@, 'graph', 'score')
               h4 className: 'status-info__data-title',
