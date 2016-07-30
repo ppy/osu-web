@@ -812,6 +812,22 @@ class Beatmapset extends Model
         return $this->belongsTo("App\Models\User", 'user_id', 'approvedby_id');
     }
 
+    public function userRatings()
+    {
+        return $this->hasMany(UserBeatmapsetRating::class);
+    }
+    
+    public function ratingsCount()
+    {
+        $ratings = $this->userRatings->groupBy('rating');
+
+        foreach ($ratings as $key => $value) {
+            $ratings[$key] = $value->count();
+        }
+
+        return $ratings;
+    }
+
     public function description()
     {
         $topic = Topic::find($this->thread_id);
