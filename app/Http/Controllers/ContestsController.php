@@ -78,7 +78,7 @@ class ContestsController extends Controller
             $track['title'] = $entry->masked_name;
             $track['preview'] = $entry->entry_url;
             $track['cover_url'] = '/images/tmp/blah.png';
-            $track['selected'] = in_array($entry->id, $votes);
+            $track['selected'] = in_array($entry->id, $votes, true);
             $tracks[] = $track;
         }
 
