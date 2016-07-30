@@ -816,16 +816,20 @@ class Beatmapset extends Model
     {
         return $this->hasMany(UserBeatmapsetRating::class);
     }
-    
+
     public function ratingsCount()
     {
-        $ratings = $this->userRatings->groupBy('rating');
+        $counts = [];
 
-        foreach ($ratings as $key => $value) {
-            $ratings[$key] = $value->count();
+        for ($i = 0; $i <= 10; $i++) {
+            $counts[$i] = 0;
         }
 
-        return $ratings;
+        foreach ($this->userRatings as $rating) {
+            $counts[$rating->rating]++;
+        }
+
+        return $counts;
     }
 
     public function description()
