@@ -64,6 +64,10 @@ Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', 
 // featured artists
 Route::get('/beatmaps/artists/{artist_id}', ['as' => 'artist.show', 'uses' => 'ArtistsController@show']);
 
+// contests
+Route::get('/community/contests/{contest_id}', ['as' => 'contest.show', 'uses' => 'ContestsController@show']);
+Route::put('/community/contests/{contest_id}/vote', ['as' => 'contest.vote', 'uses' => 'ContestsController@vote']);
+
 // ranking section
 Route::get('/ranking/overall', ['as' => 'ranking-overall', 'uses' => 'RankingController@getOverall']);
 Route::get('/ranking/charts', ['as' => 'ranking-charts', 'uses' => 'RankingController@getCharts']);

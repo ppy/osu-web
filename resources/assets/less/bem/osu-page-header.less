@@ -32,10 +32,37 @@
     &--artist {
       padding-left: 40px;
     }
+
+    &--contests {
+      padding-left: 40px;
+    }
   }
 
   &--tournaments {
     .at2x-simple("/images/headers/tournament.jpg");
+  }
+
+  &--contests {
+    .at2x-simple("/images/headers/contest.jpg");
+    background-position: center center;
+    justify-content: flex-start;
+    font-weight: 100;
+    color: white;
+    height: 200px;
+
+    &__subtitle {
+      font-size: @font-size--new-header-subtitle;
+      margin-bottom: 10px;
+      margin-top: 40px;
+      @media @mobile {
+        margin-top: 65px;
+      }
+    }
+
+    &__title {
+      font-size: @font-size--new-header-title;
+      margin-top: -5px;
+    }
   }
 
   &--slack {
@@ -59,13 +86,13 @@
     color: white;
 
     &__subtitle {
-      font-size: 14px;
+      font-size: @font-size--new-header-subtitle;
       margin-top: 40px;
       margin-bottom: 10px;
     }
 
     &__title {
-      font-size: 30px;
+      font-size: @font-size--new-header-title;
       margin-top: -5px;
     }
   }
