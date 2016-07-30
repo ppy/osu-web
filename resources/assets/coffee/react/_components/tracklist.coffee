@@ -31,7 +31,7 @@ class @TrackVoter extends React.Component
       data:
         entry_id: @props.track.id
 
-    $.ajax laroute.route("contest.vote", contest_id: 1), params
+    $.ajax laroute.route("contest.vote", contest_id: @props.contest.id), params
 
     .done (response) =>
       $.publish 'tracklist:vote:done', tracks: response.tracks
@@ -97,10 +97,9 @@ class @Track extends React.Component
             i className: 'fa fa-fw fa-cloud-download'
       if @props.options.showVote
         td className:'tracklisting__vote',
-          el TrackVoter, key: @props.track.id, track: @props.track, waitingForResponse: @props.waitingForResponse, voteCount: @props.voteCount, maxVotes: @props.options.maxVotes
+          el TrackVoter, key: @props.track.id, track: @props.track, waitingForResponse: @props.waitingForResponse, voteCount: @props.voteCount, maxVotes: @props.options.maxVotes, contest: @props.contest
 
 class @Tracklist extends React.Component
-
   constructor: (props) ->
     super props
     @state =
@@ -108,6 +107,7 @@ class @Tracklist extends React.Component
       currently_playing: null
       tracks: @props.tracks
       voteCount: _.filter(@props.tracks, _.iteratee({selected: true})).length
+      contest: @props.contest
       options:
         hideBPM: @props.options.hideBPM ? false
         hideGenre: @props.options.hideGenre ? false
@@ -174,7 +174,8 @@ class @Tracklist extends React.Component
         playing: track.id == @state.currently_playing,
         waitingForResponse: @state.waitingForResponse,
         voteCount: @state.voteCount,
-        options: @state.options
+        options: @state.options,
+        contest: @state.contest
 
     div className: 'tracklisting',
       table className: "tracklisting__table#{ if @state.options.smaller then ' tracklisting__table--smaller' else ''}",

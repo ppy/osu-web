@@ -36,6 +36,7 @@ class ContestsController extends Controller
 
         return view('contests.show')
             ->with('contest', $contest)
+            ->with('contest_id', ['contest_id' => $contest->id])
             ->with('tracks', $tracks);
     }
 
