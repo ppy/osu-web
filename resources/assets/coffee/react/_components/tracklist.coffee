@@ -20,30 +20,102 @@
 {div,a,i,span,table,thead,tbody,tr,th,td,audio} = React.DOM
 el = React.createElement
 
-class @Track extends React.Component
-  playPreview: =>
-    $.publish 'tracklist:click', id: @props.track.id
+class @TrackVoter extends React.Component
+  constructor: (props) ->
+    super props
+    # @sendVote = _.debounce @sendVote, 500
+
+  sendVote: =>
+    params =
+      method: 'PUT'
+      data:
+        entry_id: @props.track.id
+
+    $.ajax laroute.route("contest.vote", contest_id: 1), params
+
+    .done (response) =>
+      $.publish 'tracklist:vote:done', tracks: response.tracks
+
+    .fail osu.ajaxError
+    .always LoadingOverlay.hide
+
+  handleClick: (e) =>
+    e.preventDefault()
+    return unless @props.track.selected || @props.voteCount < @props.maxVotes
+
+    if !@props.waitingForResponse
+      $.publish 'tracklist:vote:click', track_id: @props.track.id
+      @sendVote()
 
   render: ->
-    tr className: 'tracklisting__row',
+    if @props.voteCount >= @props.maxVotes && !@props.track.selected
+      null
+    else
+      if @props.waitingForResponse && !@props.track.selected
+        div className: "tracklisting__float-right tracklisting__voting-star#{if @props.track.selected then ' tracklisting__voting-star--selected' else ''}", href: '#', onClick: @handleClick,
+          i className: "fa fa-fw fa-refresh"
+      else
+        a className: "tracklisting__float-right tracklisting__voting-star#{if @props.track.selected then ' tracklisting__voting-star--selected' else ''}", href: '#', onClick: @handleClick,
+          i className: "fa fa-fw fa-star"
+
+class @TrackVoteSummary extends React.Component
+  render: ->
+    voteSummary = []
+    voteSummary.push _.times Math.max(0, @props.maxVotes - @props.voteCount), ->
+      div className: "tracklisting__float-right tracklisting__voting-star tracklisting__voting-star--smaller",
+        i className: "fa fa-fw fa-star"
+    voteSummary.push _.times @props.voteCount, ->
+      div className: "tracklisting__float-right tracklisting__voting-star tracklisting__voting-star--smaller tracklisting__voting-star--selected",
+        i className: "fa fa-fw fa-star"
+
+    div {},
+      voteSummary
+
+class @Track extends React.Component
+  playPreview: (e) =>
+    e.preventDefault()
+    $.publish 'tracklist:preview', id: @props.track.id
+
+  playDone: (e) =>
+    $.publish 'tracklist:previewDone', id: @props.track.id
+
+  render: ->
+    tr className: "tracklisting__row#{if @props.track.selected then ' tracklisting__row--selected' else ''}",
       td className: 'tracklisting__cover', style: { backgroundImage: "url('#{@props.track.cover_url}')" },
-        a className: 'tracklisting__preview', onClick: @playPreview,
+        a className: 'tracklisting__preview', href: '#', onClick: @playPreview,
           i className: "fa fa-fw #{if @props.playing then 'fa-pause' else 'fa-play'}"
-          audio id: "track-#{@props.track.id}-audio", src: @props.track.preview, preload: 'none'
+          audio id: "track-#{@props.track.id}-audio", src: @props.track.preview, preload: 'none', onEnded: @playDone
       td className:'tracklisting__title',
         "#{@props.track.title} "
         span className: 'tracklisting__version', @props.track.version
-      td className:'tracklisting__bpm', "#{@props.track.bpm}bpm"
-      td className:'tracklisting__genre', @props.track.genre
-      td className:'tracklisting__dl',
-        a className: 'tracklisting__link', href: @props.track.osz,
-          i className: 'fa fa-fw fa-cloud-download'
+      unless @props.options.hideBPM
+        td className:'tracklisting__bpm', "#{@props.track.bpm}bpm"
+      unless @props.options.hideGenre
+        td className:'tracklisting__genre', @props.track.genre
+      unless @props.options.hideDL
+        td className:'tracklisting__dl',
+          a className: 'tracklisting__link', href: @props.track.osz,
+            i className: 'fa fa-fw fa-cloud-download'
+      if @props.options.showVote
+        td className:'tracklisting__vote',
+          el TrackVoter, key: @props.track.id, track: @props.track, waitingForResponse: @props.waitingForResponse, voteCount: @props.voteCount, maxVotes: @props.options.maxVotes
 
 class @Tracklist extends React.Component
 
   constructor: (props) ->
     super props
-    @state = currently_playing: null
+    @state =
+      waitingForResponse: false
+      currently_playing: null
+      tracks: @props.tracks
+      voteCount: _.filter(@props.tracks, _.iteratee({selected: true})).length
+      options:
+        hideBPM: @props.options.hideBPM ?= false
+        hideGenre: @props.options.hideGenre ?= false
+        hideDL: @props.options.hideDL ?= false
+        showVote: @props.options.showVote ?= false
+        smaller: @props.options.smaller ?= false
+        maxVotes: @props.options.maxVotes ?= 3
 
   stopTrack: (id) ->
     $("#track-#{id}-audio")[0].pause()
@@ -53,7 +125,10 @@ class @Tracklist extends React.Component
     ele.currentTime = 0
     ele.play()
 
-  handleClick: (_e, {id}) =>
+  handlePreviewDone: (_e, {id}) =>
+    @setState currently_playing: null
+
+  handlePreview: (_e, {id}) =>
     if @state.currently_playing != null
       @stopTrack @state.currently_playing
       if @state.currently_playing == id
@@ -64,25 +139,58 @@ class @Tracklist extends React.Component
       @setState currently_playing: id, ->
         @playTrack id
 
+  handleVoteClick: (_e, {track_id, callback}) =>
+    tracks = @state.tracks
+    track = _.findIndex(@state.tracks, { id: track_id });
+    tracks[track].selected = !tracks[track].selected
+    @setState
+      tracks: tracks
+      waitingForResponse: true
+      voteCount: _.filter(tracks, _.iteratee({selected: true})).length
+      callback
+
+  handleUpdate: (_e, {tracks, callback}) =>
+    @setState
+      tracks: tracks
+      waitingForResponse: false
+      voteCount: _.filter(tracks, _.iteratee({selected: true})).length
+      callback
+
   componentDidMount: ->
-    $.subscribe 'tracklist:click.tracklist', @handleClick
+    $.subscribe 'tracklist:preview.tracklist', @handlePreview
+    $.subscribe 'tracklist:previewDone.tracklist', @handlePreviewDone
+    $.subscribe 'tracklist:vote:click.tracklist', @handleVoteClick
+    $.subscribe 'tracklist:vote:done.tracklist', @handleUpdate
 
   componentWillUnmount: ->
     $.unsubscribe '.tracklist'
 
   render: ->
-    return null unless @props.tracks.length > 0
+    return null unless @state.tracks.length > 0
 
-    tracks = @props.tracks.map (track) =>
-      el Track, key: track.id, track: track, playing: track.id == @state.currently_playing
+    tracks = @state.tracks.map (track) =>
+      el Track,
+        key: track.id,
+        track: track,
+        playing: track.id == @state.currently_playing,
+        waitingForResponse: @state.waitingForResponse,
+        voteCount: @state.voteCount,
+        options: @state.options
 
-    div className: 'artist__tracklisting',
-      table className: 'tracklisting__table',
+    div className: 'tracklisting',
+      table className: "tracklisting__table#{ if @state.options.smaller then ' tracklisting__table--smaller' else ''}",
         thead {},
             tr className: 'tracklisting__row--header',
                 th {}, ''
                 th {}, 'title'
-                th {}, 'bpm'
-                th {}, 'genre'
-                th style: { width: '32px' }
+                unless @state.options.hideBPM
+                  th {}, 'bpm'
+                unless @state.options.hideGenre
+                  th {}, 'genre'
+                unless @state.options.hideDL
+                  th style: { width: '32px' }
+                if @state.options.showVote
+                  th className: 'tracklisting__vote-summary',
+                    el TrackVoteSummary, voteCount: @state.voteCount, maxVotes: @state.options.maxVotes
+                    div className: 'tracklisting__float-right tracklisting__vote-text', 'votes'
         tbody {}, tracks

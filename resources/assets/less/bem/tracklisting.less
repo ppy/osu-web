@@ -1,6 +1,18 @@
 .tracklisting {
+  background-color: #1A2223;
+  color: white;
+  padding-left: @spacing * 2;
+  padding-right: @spacing * 2;
+  padding-bottom: @spacing *2;
+  display: flex;
+
   &__table {
-    width: 100%
+    width: 100%;
+
+    &--smaller {
+      max-width: 600px;
+      margin: 0 auto;
+    }
   }
 
   &__row {
@@ -9,6 +21,9 @@
     font-weight: 100;
     font-size: 12px;
     border-bottom: 2px solid #1A2223;
+    &--selected {
+      background-color: rgba(141, 172, 182, 0.25);
+    }
   }
 
   &__row--header {
@@ -33,7 +48,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    &:hover {
+    &:hover, &:focus {
       text-decoration: none;
       color: white;
     }
@@ -55,5 +70,50 @@
 
   &__link {
     .white-link();
+    &:hover, &:focus {
+      text-decoration: none;
+      color: white;
+    }
+  }
+
+  &__float-right {
+    float: right;
+  }
+
+  &__vote-text {
+    height: 16px;
+    display: flex;
+    align-items: center;
+    width: 32px;
+  }
+
+  &__voting-star {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: smaller;
+    color: rgba(1, 1, 1, 0.5);
+
+    &:hover, &:focus {
+      color: rgba(1, 1, 1, 0.75);
+      font-size: inherit;
+      text-decoration: none;
+    }
+
+    &--selected {
+      font-size: inherit;
+      color: #ffa500;
+      &:hover, &:focus {
+        color: rgba(255, 165, 0, 0.75);
+      }
+    }
+
+    &--smaller {
+      width: 16px;
+      height: 16px;
+    }
   }
 }
