@@ -110,12 +110,12 @@ class @Tracklist extends React.Component
       tracks: @props.tracks
       voteCount: _.filter(@props.tracks, _.iteratee({selected: true})).length
       options:
-        hideBPM: @props.options.hideBPM ?= false
-        hideGenre: @props.options.hideGenre ?= false
-        hideDL: @props.options.hideDL ?= false
-        showVote: @props.options.showVote ?= false
-        smaller: @props.options.smaller ?= false
-        maxVotes: @props.options.maxVotes ?= 3
+        hideBPM: @props.options.hideBPM ? false
+        hideGenre: @props.options.hideGenre ? false
+        hideDL: @props.options.hideDL ? false
+        showVote: @props.options.showVote ? false
+        smaller: @props.options.smaller ? false
+        maxVotes: @props.options.maxVotes ? 3
 
   stopTrack: (id) ->
     $("#track-#{id}-audio")[0].pause()
