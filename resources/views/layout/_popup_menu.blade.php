@@ -15,16 +15,17 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="nav-popup">
+<div class="nav-popup nav-popup--main">
     @foreach (nav_links() as $section => $links)
         <div class="nav-popup__menu">
             <a
                 class="
                     js-menu
                     js-nav-section-link
+                    {{ $current_section === $section ? 'nav-popup__menu-head--active' : '' }}
                     nav-popup__menu-head
                 "
-                data-nav-section="{{ $section }}"
+                data-menu-default="{{ $current_section === $section }}"
                 data-menu-target="header--{{ $section }}"
                 href="{{ array_values($links)[0] }}"
             >
