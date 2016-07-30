@@ -18,7 +18,6 @@
 ###
 propsFunction = ->
   tracks: osu.parseJson('json-tracks')
-  contest: osu.parseJson('json-contest')
   options:
     hideGenre: true
     hideBPM: true

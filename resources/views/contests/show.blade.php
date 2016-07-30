@@ -46,9 +46,5 @@
     {!! json_encode($tracks) !!}
   </script>
 
-  <script id="json-contest" type="application/json">
-    {!! json_encode($contest) !!}
-  </script>
-
   <script src="{{ elixir("js/react/contest-page.js") }}" data-turbolinks-track></script>
 @stop
