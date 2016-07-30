@@ -50,11 +50,8 @@ class ContestsController extends Controller
 
         $contest->vote($user, $entry);
 
-        // get updated votes before we return the track data
-        $contest->fresh(['votes']);
-
         return [
-            'tracks' => $this->prepareTracks($contest),
+            'tracks' => $this->prepareTracks($contest->fresh(['votes'])),
         ];
     }
 
@@ -65,7 +62,7 @@ class ContestsController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
             $seed = Auth::user()->user_id;
-            $votes = $contest->fresh(['votes'])->votes->where('user_id', $user->user_id);
+            $votes = $contest->votes->where('user_id', $user->user_id);
             $votes = $votes->map(function ($v) {
                 return $v->contest_entry_id;
             })->toArray();
