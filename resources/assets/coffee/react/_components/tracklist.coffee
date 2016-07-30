@@ -37,7 +37,6 @@ class @TrackVoter extends React.Component
       $.publish 'tracklist:vote:done', tracks: response.tracks
 
     .fail osu.ajaxError
-    .always LoadingOverlay.hide
 
   handleClick: (e) =>
     e.preventDefault()
