@@ -36,7 +36,7 @@
             data-nav-mode="user"
         >
             <div class="nav-popup-box__slide-y">
-                <div class="nav-popup-box__content">
+                <div class="nav-popup-box__content js-user-header-popup">
                     @if (Auth::check())
                         @include('layout._popup_user', ['_user' => Auth::user()])
                     @else

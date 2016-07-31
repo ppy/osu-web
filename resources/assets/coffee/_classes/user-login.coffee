@@ -38,7 +38,11 @@ class @UserLogin
 
 
   loginSuccess: (_event, data) =>
-    $.publish 'user:update', data.data
+    $('.js-user-header').html data.header
+    $('.js-user-header-popup').html data.header_popup
+    $.publish 'user:update', data.user.data
+    @nav.hidePopup()
+    osu.pageChange()
 
     Turbolinks.clearCache()
     $(document).off '.ujsHideLoadingOverlay'
