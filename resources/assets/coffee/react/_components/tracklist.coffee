@@ -23,7 +23,6 @@ el = React.createElement
 class @TrackVoter extends React.Component
   constructor: (props) ->
     super props
-    # @sendVote = _.debounce @sendVote, 500
 
   sendVote: =>
     params =

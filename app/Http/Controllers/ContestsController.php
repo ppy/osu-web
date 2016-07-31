@@ -36,7 +36,6 @@ class ContestsController extends Controller
 
         return view('contests.show')
             ->with('contest', $contest)
-            ->with('contest_id', ['contest_id' => $contest->id])
             ->with('tracks', $tracks);
     }
 
@@ -75,7 +74,7 @@ class ContestsController extends Controller
             $track['id'] = $entry->id;
             $track['title'] = $entry->masked_name;
             $track['preview'] = $entry->entry_url;
-            $track['cover_url'] = '/images/tmp/blah.png';
+            $track['cover_url'] = '/images/tmp/contest-cover-placeholder.png';
             $track['selected'] = in_array($entry->id, $votes, true);
             $tracks[] = $track;
         }
