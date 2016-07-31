@@ -23,7 +23,6 @@ el = React.createElement
 class @TrackVoter extends React.Component
   constructor: (props) ->
     super props
-    # @sendVote = _.debounce @sendVote, 500
 
   sendVote: =>
     params =
@@ -83,7 +82,8 @@ class @Track extends React.Component
       td className: 'tracklisting__cover', style: { backgroundImage: "url('#{@props.track.cover_url}')" },
         a className: 'tracklisting__preview', href: '#', onClick: @playPreview,
           i className: "fa fa-fw #{if @props.playing then 'fa-pause' else 'fa-play'}"
-          audio id: "track-#{@props.track.id}-audio", src: @props.track.preview, preload: 'none', onEnded: @playDone
+          if @props.playing
+            audio id: "track-#{@props.track.id}-audio", src: @props.track.preview, preload: 'none', onEnded: @playDone
       td className:'tracklisting__title',
         "#{@props.track.title} "
         span className: 'tracklisting__version', @props.track.version
