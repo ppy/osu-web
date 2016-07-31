@@ -25,6 +25,9 @@ class @TrackVoter extends React.Component
     super props
 
   sendVote: =>
+    # in case called from loginSuccess or other possible show loading overlay thing.
+    LoadingOverlay.hide()
+
     params =
       method: 'PUT'
       data:
@@ -41,7 +44,9 @@ class @TrackVoter extends React.Component
     e.preventDefault()
     return unless @props.track.selected || @props.voteCount < @props.maxVotes
 
-    if !@props.waitingForResponse
+    if !currentUser.id?
+      userLogin.show e.target
+    else if !@props.waitingForResponse
       $.publish 'tracklist:vote:click', track_id: @props.track.id
       @sendVote()
 
