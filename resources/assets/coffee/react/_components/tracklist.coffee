@@ -82,8 +82,7 @@ class @Track extends React.Component
       td className: 'tracklisting__cover', style: { backgroundImage: "url('#{@props.track.cover_url}')" },
         a className: 'tracklisting__preview', href: '#', onClick: @playPreview,
           i className: "fa fa-fw #{if @props.playing then 'fa-pause' else 'fa-play'}"
-          if @props.playing
-            audio id: "track-#{@props.track.id}-audio", src: @props.track.preview, preload: 'none', onEnded: @playDone
+          audio id: "track-#{@props.track.id}-audio", src: (if @props.playing then @props.track.preview else ''), preload: 'none', onEnded: @playDone
       td className:'tracklisting__title',
         "#{@props.track.title} "
         span className: 'tracklisting__version', @props.track.version
