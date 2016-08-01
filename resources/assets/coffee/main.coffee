@@ -16,6 +16,9 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+LocalStoragePolyfill.fillIn()
+CustomEventPolyfill.fillIn()
+
 # loading animation overlay
 # fired from turbolinks
 $(document).on 'turbolinks:request-start', LoadingOverlay.show
@@ -37,7 +40,6 @@ $(document).on 'submit', 'form', LoadingOverlay.show
 
 
 $(document).on 'ready turbolinks:load', =>
-  LocalStoragePolyfill.fillIn()
 
   @editorZoom ||= new EditorZoom
   @stickyFooter ||= new StickyFooter
