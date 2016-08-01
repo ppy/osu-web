@@ -231,7 +231,7 @@ class StoreController extends Controller
     {
         $order = $this->userCart();
 
-        if (!$order) {
+        if ($order->items()->count() === 0) {
             return response(['message' => 'cart is empty'], 422);
         }
 
