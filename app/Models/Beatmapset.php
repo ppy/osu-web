@@ -343,6 +343,42 @@ class Beatmapset extends Model
         return $beatmap_ids;
     }
 
+    public static function searchDB(array $params = [])
+    {
+        extract($params);
+
+        $query = self::where('title', 'like', '%'.$query.'%');
+
+        if ($mode) {
+            $query = $query->whereHas('beatmaps', function ($query) use (&$mode) {
+                $query->where('playmode', '=', $mode);
+            });
+        }
+
+        if ($genre) {
+            $query = $query->where('genre_id', '=', $genre);
+        }
+
+        if ($language) {
+            $query = $query->where('language_id', '=', $language);
+        }
+
+        if ($extra) {
+            foreach ($extra as $val) {
+                if ($val === '0') {
+                    $query = $query->where('video', '=', 1);
+                }
+
+                if ($val === '1') {
+                    $query = $query->where('storyboard', '=', 1);
+                }
+            }
+        }
+
+        return $query->orderBy($sort_field, $sort_order)
+            ->get()->pluck('beatmapset_id')->toArray();
+    }
+
     public static function search(array $params = [])
     {
         // default search params
@@ -360,41 +396,10 @@ class Beatmapset extends Model
 
         self::sanitizeSearchParams($params);
 
-        $beatmap_ids = self::searchES($params);
-
         if (App::environment('local')) {
-            extract($params);
-
-            $query = self::where('title', 'like', '%'.$query.'%');
-
-            if ($mode) {
-                $query = $query->whereHas('beatmaps', function ($query) use (&$mode) {
-                    $query->where('playmode', '=', $mode);
-                });
-            }
-
-            if ($genre) {
-                $query = $query->where('genre_id', '=', $genre);
-            }
-
-            if ($language) {
-                $query = $query->where('language_id', '=', $language);
-            }
-
-            if ($extra) {
-                foreach ($extra as $val) {
-                    if ($val === '0') {
-                        $query = $query->where('video', '=', 1);
-                    }
-
-                    if ($val === '1') {
-                        $query = $query->where('storyboard', '=', 1);
-                    }
-                }
-            }
-
-            $beatmap_ids = $query->orderBy($sort_field, $sort_order)
-                ->get()->pluck('beatmapset_id')->toArray();
+            $beatmap_ids = self::searchDB($params);
+        } else {
+            $beatmap_ids = self::searchES($params);
         }
 
         $beatmaps = [];
