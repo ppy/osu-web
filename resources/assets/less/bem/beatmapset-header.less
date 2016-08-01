@@ -107,6 +107,10 @@
     &--advanced {
       padding: 15px 15px 0 15px;
     }
+
+    &:last-child {
+      margin: 0;
+    }
   }
 
   &__stats-text {
@@ -121,6 +125,11 @@
     &--advanced-value {
       text-align: center;
       width: 25px;
+    }
+
+    &--rating {
+      text-align: center;
+      padding-bottom: @spacing * 0.5;
     }
   }
 
@@ -170,6 +179,31 @@
 
     &--stars {
       background-color: @yellow;
+    }
+  }
+
+  &__user-rating-bar {
+    width: 245px;
+    height: 5px;
+    background-color: @green;
+
+    &--fill {
+      background-color: @yellow-dark;
+    }
+  }
+
+  &__user-rating-values {
+    display: flex;
+
+    padding-bottom: @spacing;
+  }
+
+  &__user-rating-value {
+    font-size: 12px;
+    color: #ffffff;
+
+    &--positive {
+      margin-left: auto;
     }
   }
 
@@ -235,5 +269,9 @@
     &:first-of-type {
       padding-bottom: @spacing * 0.5;
     }
+  }
+
+  &__rating-chart {
+    height: 25px;
   }
 }

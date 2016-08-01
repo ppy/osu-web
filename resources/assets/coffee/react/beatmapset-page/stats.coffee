@@ -20,13 +20,22 @@ el = React.createElement
 
 class BeatmapsetPage.Stats extends React.Component
   render: ->
+    ratingsPositive = 0
+    ratingsNegative = 0
+
+    for rating, count of @props.beatmapset.ratings
+      ratingsNegative += count if rating >= 1 && rating <= 5
+      ratingsPositive += count if rating >= 6 && rating <= 10
+
+    ratingsAll = ratingsPositive + ratingsNegative
+
     div className: 'beatmapset-header__stats-box',
       div className: 'beatmapset-header__stats-row beatmapset-header__stats-row--basic',
         for stat in ['total_length', 'bpm', 'count_circles', 'count_sliders']
           value = if stat == 'bpm' then @props.beatmapset.bpm else @props.beatmap[stat]
 
           if stat == 'total_length'
-            value = moment(0).seconds(value).format('m:ss')
+            value = moment(0).seconds(value).format 'm:ss'
 
           div
             className: 'beatmapset-header__stat-basic'
@@ -53,3 +62,18 @@ class BeatmapsetPage.Stats extends React.Component
                 style:
                   width: "#{value * 10}%"
             span className: 'beatmapset-header__stats-text beatmapset-header__stats-text--advanced-value', value.toLocaleString()
+
+      div className: 'beatmapset-header__stats-row beatmapset-header__stats-row--advanced',
+        div className: 'beatmapset-header__stats-text beatmapset-header__stats-text--rating', osu.trans 'beatmaps.beatmapset.show.user-rating'
+        div className: 'beatmapset-header__user-rating-bar',
+          div
+            className: 'beatmapset-header__user-rating-bar beatmapset-header__user-rating-bar--fill'
+            style:
+              width: "#{(ratingsNegative / ratingsAll) * 100}%"
+
+        div className: 'beatmapset-header__user-rating-values',
+          span className: 'beatmapset-header__user-rating-value beatmapset-header__user-rating-value--negative', ratingsNegative.toLocaleString()
+          span className: 'beatmapset-header__user-rating-value beatmapset-header__user-rating-value--positive', ratingsPositive.toLocaleString()
+
+        div className: 'beatmapset-header__stats-text beatmapset-header__stats-text--rating', osu.trans 'beatmaps.beatmapset.show.rating-spread'
+        el BeatmapsetPage.RatingChart, ratings: @props.beatmapset.ratings

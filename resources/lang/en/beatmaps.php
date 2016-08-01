@@ -139,6 +139,8 @@ return [
                 'source' => 'Source',
                 'tags' => 'Tags',
             ],
+            'user-rating' => 'User Rating',
+            'rating-spread' => 'Rating Spread',
             'extra' => [
                 'description' => [
                     'title' => 'Description',
