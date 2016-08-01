@@ -16,6 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="nav-popup nav-popup--sections">
+    <div class="nav-popup__section nav-popup__section--blank"></div>
     <div
         class="nav-popup__section nav-popup__section--register js-nav-popup--submenu"
         data-visibility-animation="none"
