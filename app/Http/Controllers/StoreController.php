@@ -232,7 +232,7 @@ class StoreController extends Controller
         $order = $this->userCart();
 
         if ($order->items()->count() === 0) {
-            return response(['message' => 'cart is empty'], 422);
+            return error_popup('cart is empty');
         }
 
         $order->checkout();
