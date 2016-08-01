@@ -44,9 +44,15 @@
     }
   }
 
-  &--body-landing {
+  &--body-dark {
     &::before {
       .at2x("/images/backgrounds/page-dark.png", 500px, 500px);
+    }
+  }
+
+  &--body-darker {
+    &::before {
+      .at2x("/images/backgrounds/page-darker.png", 500px, 500px);
     }
   }
 
@@ -148,6 +154,15 @@
       ._page;
       padding: (@spacing * 2);
       margin-bottom: @spacing;
+    }
+
+    &--page-artist {
+      margin-top: -@spacing * 2;
+      margin-bottom: @spacing;
+      @media @desktop {
+        padding-left: @spacing * 2;
+        padding-right: @spacing * 2;
+      }
     }
 
     &--page-compact {

@@ -15,20 +15,24 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class @ThrottledEvents
-  throttle: (eventName) ->
-    running = false
-    func = ->
-      return if running
 
-      running = true
+# For IE9.
+# Reference: https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
+class @CustomEventPolyfill
+  @fillIn: ->
+    return if typeof CustomEvent == 'function'
 
-      requestAnimationFrame ->
-        window.dispatchEvent(new CustomEvent("throttled-#{eventName}"))
-        running = false
+    customEvent = (event, params) ->
+      params ?=
+        bubbles: false
+        cancelable: false
+        detail: undefined
 
-    window.addEventListener eventName, func
+      evt = document.createEvent 'CustomEvent'
+      evt.initCustomEvent event, params.bubbles, params.cancelable, params.detail
 
-  constructor: ->
-    @throttle('resize')
-    @throttle('scroll')
+      evt
+
+    customEvent.prototype = window.Event.prototype
+
+    window.CustomEvent = customEvent

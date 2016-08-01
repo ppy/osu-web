@@ -17,14 +17,19 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Http\Middleware;
+namespace App\Models;
 
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
+use Illuminate\Database\Eloquent\Model;
 
-class VerifyCsrfToken extends BaseVerifier
+class Artist extends Model
 {
-    protected $except = [
-        'oauth/authorize',
-        'oauth/access_token',
-    ];
+    public function label()
+    {
+        return $this->belongsTo(Label::class);
+    }
+
+    public function tracks()
+    {
+        return $this->hasMany(ArtistTrack::class);
+    }
 }

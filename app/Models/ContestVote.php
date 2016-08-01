@@ -17,14 +17,26 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Http\Middleware;
+namespace App\Models;
 
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
+use Illuminate\Database\Eloquent\Model;
 
-class VerifyCsrfToken extends BaseVerifier
+class ContestVote extends Model
 {
-    protected $except = [
-        'oauth/authorize',
-        'oauth/access_token',
-    ];
+    protected $guarded = [];
+
+    public function entry()
+    {
+        return $this->belongsTo(ContestEntry::class);
+    }
+
+    public function contest()
+    {
+        return $this->belongsTo(Contest::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
