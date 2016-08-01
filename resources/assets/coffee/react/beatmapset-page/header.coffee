@@ -101,6 +101,34 @@ class BeatmapsetPage.Header extends React.Component
                     className: 'beatmapset-header__user-text beatmapset-header__user-text--date'
                     moment(@props.beatmapset.ranked_date).format dateFormat
 
+          div className: 'beatmapset-header__buttons-box',
+            if @props.beatmapset.video
+              a
+                className: 'beatmapset-header__button btn-osu-big'
+                href: Url.beatmapDownload @props.beatmapset.beatmapset_id, true
+                div className: 'btn-osu-big__content',
+                  div className: 'btn-osu-big__left',
+                    span className: 'beatmapset-header__button-text', osu.trans 'beatmaps.beatmapset.show.details.download._'
+                    span className: 'beatmapset-header__button-text beatmapset-header__button-text--small', osu.trans 'beatmaps.beatmapset.show.details.download.video'
+                  el Icon, name: 'download'
+
+            a
+              className: 'beatmapset-header__button btn-osu-big'
+              href: Url.beatmapDownload @props.beatmapset.beatmapset_id, false
+              div className: 'btn-osu-big__content',
+                div className: 'btn-osu-big__left',
+                  span className: 'beatmapset-header__button-text', osu.trans 'beatmaps.beatmapset.show.details.download._'
+                  span className: 'beatmapset-header__button-text beatmapset-header__button-text--small', osu.trans 'beatmaps.beatmapset.show.details.download.no-video'
+                el Icon, name: 'download'
+
+            a
+              className: 'beatmapset-header__button btn-osu-big'
+              href: if currentUser.isSupporter then Url.beatmapDownloadDirect @props.beatmapset.beatmapset_id else laroute.route 'support-the-game'
+              div className: 'btn-osu-big__content',
+                div className: 'btn-osu-big__left',
+                  span className: 'beatmapset-header__button-text', osu.trans 'beatmaps.beatmapset.show.details.download.direct'
+                el Icon, name: 'angle-double-down'
+
         el BeatmapsetPage.Stats,
           beatmapset: @props.beatmapset
           beatmap: @props.currentBeatmap

@@ -112,9 +112,10 @@ return [
                 'ranked' => 'ranked on ',
                 'logged-out' => 'You need to log in before downloading any beatmaps!',
                 'download' => [
-                    'normal' => 'download',
+                    '_' => 'Download',
+                    'video' => 'with Video',
+                    'no-video' => 'without Video',
                     'direct' => 'osu!direct',
-                    'no-video' => 'without video version',
                 ],
             ],
             'stats' => [

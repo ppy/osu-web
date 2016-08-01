@@ -241,6 +241,8 @@
 
   &__avatar-box {
     display: flex;
+
+    padding-bottom: @spacing;
   }
 
   &__avatar {
@@ -273,5 +275,28 @@
 
   &__rating-chart {
     height: 25px;
+  }
+
+  &__buttons-box {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__button {
+    width: 160px;
+    height: 45px;
+
+    margin-right: @spacing * 0.5;
+    margin-bottom: @spacing * 0.5;
+  }
+
+  &__button-text {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+
+    &--small {
+      font-size: 10px;
+    }
   }
 }
