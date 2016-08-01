@@ -356,21 +356,21 @@ class Beatmapset extends Model
         }
 
         if ($genre) {
-            $query = $query->where('genre_id', '=', $genre);
+            $query->where('genre_id', '=', $genre);
         }
 
         if ($language) {
-            $query = $query->where('language_id', '=', $language);
+            $query->where('language_id', '=', $language);
         }
 
         if ($extra) {
             foreach ($extra as $val) {
                 if ($val === '0') {
-                    $query = $query->where('video', '=', 1);
+                    $query->where('video', '=', 1);
                 }
 
                 if ($val === '1') {
-                    $query = $query->where('storyboard', '=', 1);
+                    $query->where('storyboard', '=', 1);
                 }
             }
         }
