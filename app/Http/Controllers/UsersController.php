@@ -75,18 +75,21 @@ class UsersController extends Controller
         if (LoginAttempt::isLocked($ip)) {
             return error_popup('your IP address is locked. Please wait a few minutes.');
         } else {
-            $username = Request::input('username');
+            $usernameOrEmail = Request::input('username');
             $password = Request::input('password');
             $remember = Request::input('remember') === 'yes';
 
-            Auth::attempt(['username' => $username, 'password' => $password], $remember);
+            Auth::attempt(['user_email' => $usernameOrEmail, 'password' => $password], $remember);
+            if (!Auth::check()) {
+                Auth::attempt(['username' => $usernameOrEmail, 'password' => $password], $remember);
+            }
 
             if (Auth::check()) {
                 return Auth::user()->defaultJson();
             } else {
-                LoginAttempt::failedAttempt($ip, $username);
+                LoginAttempt::failedAttempt($ip, $usernameOrEmail);
 
-                return error_popup('wrong password or username');
+                return error_popup('wrong password or email');
             }
         }
     }
