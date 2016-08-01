@@ -18,7 +18,7 @@
 @extends("master", [
     'title' => 'osu!',
     'blank' => 'true',
-    'body_additional_classes' => 'osu-layout--body-landing'
+    'body_additional_classes' => 'osu-layout--body-dark'
 ])
 
 @section("content")

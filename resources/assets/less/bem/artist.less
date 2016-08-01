@@ -1,0 +1,76 @@
+.artist {
+  &__description {
+    background-color: #293336;
+    color: white;
+    font-size: 12px;
+    // font-weight: 100;
+    padding: 0px 20px 20px 20px;
+    @media @desktop {
+      padding: 20px;
+    }
+    .default-box-shadow;
+  }
+
+  &__portrait {
+    width: 250px;
+    height: 250px;
+    .default-box-shadow();
+    .default-border-radius();
+    background-size: cover;
+    background-position: center;
+
+    margin: 0 auto;
+    margin-top: -50px;
+    @media @desktop {
+      margin-top: -150px;
+      margin-left: @spacing;
+    }
+  }
+
+  &__label-overlay {
+    width: 64px;
+    height: 64px;
+    background-size: cover;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    border-radius: 5px 0 5px 0;
+  }
+
+  &__links-area {
+    margin: 0 auto;
+    width: 270px;
+    padding: @spacing;
+  }
+
+  &__link {
+    display: inline-block;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    .white-link();
+  }
+
+  &__link-text {
+    font-weight: 200;
+    flex-basis: 100%;
+    text-align: left;
+    padding-left: 20px;
+  }
+
+  &__chevron {
+    right: 0;
+  }
+
+  &__chevron--twitter {
+    color: #00aced;
+  }
+
+  &__chevron--facebook {
+    color: #3b5998;
+  }
+
+  &__chevron--soundcloud {
+    color: #f50;
+  }
+}

@@ -49,34 +49,8 @@
             </div>
         </div>
 
-        <a class="osu-nav__col u-nav-float js-nav-switch" href="#" data-nav-mode="user">
-            <div>
-                <div class="osu-nav__title">
-                    @if (Auth::check())
-                        {{ Auth::user()->username }}
-                    @else
-                        {{ trans("users.anonymous.username") }}
-                    @endif
-                </div>
-
-                <div class="osu-nav__highlight-bar">
-                    <span class="bar"></span>
-                </div>
-            </div>
-
-            <div class="osu-nav__avatar">
-                <div
-                    class="
-                        avatar
-                        avatar--full-rounded
-                        {{ Auth::check() ? '' : 'avatar--guest' }}
-                        js-nav-avatar
-                    "
-                    @if (Auth::check())
-                        style="background-image: url('{{ Auth::user()->user_avatar }}');"
-                    @endif
-                ></div>
-            </div>
+        <a class="osu-nav__col u-nav-float js-nav-switch js-user-header" href="#" data-nav-mode="user">
+            @include('layout._header_user', ['_user' => Auth::user()])
         </a>
     </div>
 </nav>

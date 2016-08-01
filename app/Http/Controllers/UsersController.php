@@ -85,7 +85,11 @@ class UsersController extends Controller
             }
 
             if (Auth::check()) {
-                return Auth::user()->defaultJson();
+                return [
+                    'header' => view('layout._header_user', ['_user' => Auth::user()])->render(),
+                    'header_popup' => view('layout._popup_user', ['_user' => Auth::user()])->render(),
+                    'user' => Auth::user()->defaultJson(),
+                ];
             } else {
                 LoginAttempt::failedAttempt($ip, $usernameOrEmail);
 

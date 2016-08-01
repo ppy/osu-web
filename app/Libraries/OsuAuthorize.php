@@ -209,6 +209,18 @@ class OsuAuthorize
         return $prefix.'no_access';
     }
 
+    public function checkContestVote($user, $contest)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($contest->ends_at->isPast()) {
+            return 'contest.voting_over';
+        }
+
+        return 'ok';
+    }
+
     public function checkForumView($user, $forum)
     {
         if ($user !== null && $user->isGMT()) {
