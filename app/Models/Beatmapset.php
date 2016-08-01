@@ -19,6 +19,7 @@
  */
 namespace App\Models;
 
+use App;
 use Es;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
@@ -360,6 +361,42 @@ class Beatmapset extends Model
         self::sanitizeSearchParams($params);
 
         $beatmap_ids = self::searchES($params);
+
+        if (App::environment('local')) {
+            extract($params);
+
+            $query = self::where('title', 'like', '%'.$query.'%');
+
+            if ($mode) {
+                $query = $query->whereHas('beatmaps', function ($query) use (&$mode) {
+                    $query->where('playmode', '=', $mode);
+                });
+            }
+
+            if ($genre) {
+                $query = $query->where('genre_id', '=', $genre);
+            }
+
+            if ($language) {
+                $query = $query->where('language_id', '=', $language);
+            }
+
+            if ($extra) {
+                foreach ($extra as $val) {
+                    if ($val === '0') {
+                        $query = $query->where('video', '=', 1);
+                    }
+
+                    if ($val === '1') {
+                        $query = $query->where('storyboard', '=', 1);
+                    }
+                }
+            }
+
+            $beatmap_ids = $query->orderBy($sort_field, $sort_order)
+                ->get()->pluck('beatmapset_id')->toArray();
+        }
+
         $beatmaps = [];
 
         if (count($beatmap_ids) > 0) {
