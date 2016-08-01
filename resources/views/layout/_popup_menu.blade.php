@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="nav-popup nav-popup--main">
+<div class="hidden-xs nav-popup nav-popup--main">
     @foreach (nav_links() as $section => $links)
         <div class="nav-popup__menu">
             <a

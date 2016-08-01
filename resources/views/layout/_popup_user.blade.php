@@ -16,8 +16,10 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div
-    class="nav-popup nav-popup--sections nav-popup--dim js-current-user-cover"
+    class="nav-popup nav-popup--sections js-current-user-cover"
 >
+    <div class="nav-popup__overlay"></div>
+    <div class="nav-popup__section nav-popup__section--blank"></div>
     <div class="nav-popup__section nav-popup__section--user nav-popup__section--user-overview">
         <div class="nav-popup__row nav-popup__row--username">
             {{ $_user->username }}
