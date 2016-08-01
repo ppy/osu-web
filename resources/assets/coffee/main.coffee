@@ -33,6 +33,7 @@ $(document).on 'submit', 'form', LoadingOverlay.show
 @osuLayzr ?= new OsuLayzr
 @nav ?= new Nav
 @userLogin ?= new UserLogin(@nav)
+@throttledWindowEvents ?= new ThrottledWindowEvents
 
 
 $(document).on 'ready turbolinks:load', =>
@@ -45,7 +46,6 @@ $(document).on 'ready turbolinks:load', =>
   @gallery ||= new Gallery
   @formPlaceholderHide ||= new FormPlaceholderHide
   @tooltipDefault ||= new TooltipDefault
-  @throttledEvents ||= new ThrottledEvents
 
   @syncHeight ||= new SyncHeight
 
