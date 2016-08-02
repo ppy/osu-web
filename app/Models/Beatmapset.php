@@ -396,7 +396,7 @@ class Beatmapset extends Model
 
         self::sanitizeSearchParams($params);
 
-        if (!config('elasticsearch.hosts')[0]) {
+        if (empty(config('elasticsearch.hosts'))) {
             $beatmap_ids = self::searchDB($params);
         } else {
             $beatmap_ids = self::searchES($params);
