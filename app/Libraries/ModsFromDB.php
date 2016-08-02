@@ -17,10 +17,14 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models;
+namespace App\Libraries;
 
-class Mod
+class ModsFromDB
 {
+    private $mods = null;
+
+    private $enabledMods = null;
+
     const AVAILABLE_MODS = [
         [0, 'No Fail', 'NF'],
         [1, 'Easy Mode', 'EZ'],
@@ -44,28 +48,37 @@ class Mod
         [24, '9K', '9K'],
     ];
 
-    public static function getEnabledMods($mods)
+    public function __construct($mods)
     {
-        $enabledMods = [];
-        $impliedIds = [];
+        $this->mods = $mods;
+    }
 
-        foreach (self::AVAILABLE_MODS as $availableMod) {
-            if (($mods & (1 << $availableMod[0])) === 0) {
-                continue;
+    public function getEnabledMods()
+    {
+        if (!$this->enabledMods) {
+            $enabledMods = [];
+            $impliedIds = [];
+
+            foreach (self::AVAILABLE_MODS as $availableMod) {
+                if (($this->mods & (1 << $availableMod[0])) === 0) {
+                    continue;
+                }
+
+                $currentImpliedIds = array_get($availableMod, 3);
+                if ($currentImpliedIds !== null) {
+                    $impliedIds = array_merge($impliedIds, $currentImpliedIds);
+                }
+
+                $enabledMods[$availableMod[0]] = ['name' => $availableMod[1], 'shortName' => $availableMod[2]];
             }
 
-            $currentImpliedIds = array_get($availableMod, 3);
-            if ($currentImpliedIds !== null) {
-                $impliedIds = array_merge($impliedIds, $currentImpliedIds);
-            }
+            $enabledMods = array_filter($enabledMods, function ($modId) use ($impliedIds) {
+                return in_array($modId, $impliedIds, true) === false;
+            }, ARRAY_FILTER_USE_KEY);
 
-            $enabledMods[$availableMod[0]] = ['name' => $availableMod[1], 'shortName' => $availableMod[2]];
+            $this->enabledMods = array_values($enabledMods);
         }
 
-        $enabledMods = array_filter($enabledMods, function ($modId) use ($impliedIds) {
-            return in_array($modId, $impliedIds, true) === false;
-        }, ARRAY_FILTER_USE_KEY);
-
-        return array_values($enabledMods);
+        return $this->enabledMods;
     }
 }

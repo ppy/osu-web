@@ -19,8 +19,8 @@
  */
 namespace App\Models\Multiplayer;
 
+use App\Libraries\ModsFromDB;
 use App\Models\Beatmap;
-use App\Models\Mod;
 
 class Game extends Model
 {
@@ -75,7 +75,7 @@ class Game extends Model
     public function getModsAttribute($value)
     {
         if (!$this->_mods) {
-            $this->_mods = Mod::getEnabledMods($value);
+            $this->_mods = (new ModsFromDB($value))->getEnabledMods();
         }
 
         return $this->_mods;
