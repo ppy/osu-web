@@ -19,7 +19,7 @@
 el = React.createElement
 
 class MPHistory.Main extends React.Component
-  timeBetweenRefresh: 10000
+  refreshTimeout: 10000
 
   constructor: (props) ->
     super props
@@ -69,7 +69,7 @@ class MPHistory.Main extends React.Component
 
     .always =>
       if !@state.disbanded
-        setTimeout @loadHistory, 10000
+        setTimeout @loadHistory, @refreshTimeout
 
   lookupUser: (id) =>
     @state.users[id]
