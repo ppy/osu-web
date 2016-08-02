@@ -26,57 +26,57 @@ trait Scoreable
     protected $_enabledMods = null;
 
     public function gamemodeString()
-      {
-          return snake_case(get_class_basename(static::class));
-      }
+    {
+        return snake_case(get_class_basename(static::class));
+    }
 
-      public function getEnabledModsAttribute($value)
-      {
-          if ($this->_enabledMods === null) {
-              $this->_enabledMods = ModsFromDB::getEnabledMods($value);
-          }
+    public function getEnabledModsAttribute($value)
+    {
+        if ($this->_enabledMods === null) {
+            $this->_enabledMods = ModsFromDB::getEnabledMods($value);
+        }
 
-          return $this->_enabledMods;
-      }
+        return $this->_enabledMods;
+    }
 
-      public function totalHits()
-      {
-          if (static::gamemodeString() === 'osu') {
-              return ($this->count50 + $this->count100 + $this->count300 + $this->countmiss) * 300;
-          } elseif (static::gamemodeString() === 'fruits') {
-              return $this->count50 + $this->count100 + $this->count300 +
-                  $this->countmiss + $this->countkatu;
-          } elseif (static::gamemodeString() === 'mania') {
-              return ($this->count50 + $this->count100 + $this->count300 + $this->countmiss + $this->countkatu + $this->countgeki) * 300;
-          } elseif (static::gamemodeString() === 'taiko') {
-              return ($this->count100 + $this->count300 + $this->countmiss) * 300;
-          }
-      }
+    public function totalHits()
+    {
+        if (static::gamemodeString() === 'osu') {
+            return ($this->count50 + $this->count100 + $this->count300 + $this->countmiss) * 300;
+        } elseif (static::gamemodeString() === 'fruits') {
+            return $this->count50 + $this->count100 + $this->count300 +
+                $this->countmiss + $this->countkatu;
+        } elseif (static::gamemodeString() === 'mania') {
+            return ($this->count50 + $this->count100 + $this->count300 + $this->countmiss + $this->countkatu + $this->countgeki) * 300;
+        } elseif (static::gamemodeString() === 'taiko') {
+            return ($this->count100 + $this->count300 + $this->countmiss) * 300;
+        }
+    }
 
-      public function hits()
-      {
-          if (static::gamemodeString() === 'osu') {
-              return $this->count50 * 50 + $this->count100 * 100 + $this->count300 * 300;
-          } elseif (static::gamemodeString() === 'fruits') {
-              return $this->count50 + $this->count100 + $this->count300;
-          } elseif (static::gamemodeString() === 'mania') {
-              return $this->count50 * 50 + $this->count100 * 100 + $this->countkatu * 200 + ($this->count300 + $this->countgeki) * 300;
-          } elseif (static::gamemodeString() === 'taiko') {
-              return $this->count100 * 150 + $this->count300 * 300;
-          }
-      }
+    public function hits()
+    {
+        if (static::gamemodeString() === 'osu') {
+            return $this->count50 * 50 + $this->count100 * 100 + $this->count300 * 300;
+        } elseif (static::gamemodeString() === 'fruits') {
+            return $this->count50 + $this->count100 + $this->count300;
+        } elseif (static::gamemodeString() === 'mania') {
+            return $this->count50 * 50 + $this->count100 * 100 + $this->countkatu * 200 + ($this->count300 + $this->countgeki) * 300;
+        } elseif (static::gamemodeString() === 'taiko') {
+            return $this->count100 * 150 + $this->count300 * 300;
+        }
+    }
 
-      public function accuracy()
-      {
-          $hits = $this->hits();
-          $totalHits = $this->totalHits();
+    public function accuracy()
+    {
+        $hits = $this->hits();
+        $totalHits = $this->totalHits();
 
-          // in a rare case when the score row has zero hits
-          // (found it occuring in multiplayer scores)
-          if ($totalHits === 0) {
-              return 0;
-          } else {
-              return $hits / $totalHits;
-          }
-      }
+        // in a rare case when the score row has zero hits
+        // (found it occuring in multiplayer scores)
+        if ($totalHits === 0) {
+            return 0;
+        } else {
+            return $hits / $totalHits;
+        }
+    }
 }

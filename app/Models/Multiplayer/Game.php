@@ -88,11 +88,11 @@ class Game extends Model
 
     public function getScoringTypeAttribute($value)
     {
-        return array_search($value, self::SCORING_TYPES);
+        return array_search($value, self::SCORING_TYPES, true);
     }
 
     public function getTeamTypeAttribute($value)
     {
-        return array_search($value, self::TEAM_TYPES);
+        return array_search($value, self::TEAM_TYPES, true);
     }
 }

@@ -87,7 +87,7 @@ Route::get('/community/profile/{id}', function ($id) {
 Route::get('/community/slack', ['as' => 'slack', 'uses' => 'CommunityController@getSlack']);
 Route::post('/community/slack/agree', ['as' => 'slack.agree', 'uses' => 'CommunityController@postSlackAgree']);
 
-Route::resource('matches', 'MatchesController', ['only' => ['show',]]);
+Route::resource('matches', 'MatchesController', ['only' => ['show']]);
 Route::get('/matches/{matches}/history', ['as' => 'matches.history', 'uses' => 'MatchesController@matchHistory']);
 
 Route::get('/mp/{matches}', function ($matches) {

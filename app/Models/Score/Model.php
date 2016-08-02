@@ -23,7 +23,6 @@ use Illuminate\Database\Eloquent\Model as BaseModel;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\User;
-use App\Libraries\ModsFromDB;
 use App\Traits\Scoreable;
 
 abstract class Model extends BaseModel

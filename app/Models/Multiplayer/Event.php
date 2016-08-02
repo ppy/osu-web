@@ -63,8 +63,8 @@ class Event extends Model
     {
         $value = $this->text;
 
-        if (in_array($value, self::EVENT_TYPES)) {
-            return ['type' => array_search($value, self::EVENT_TYPES)];
+        if (in_array($value, self::EVENT_TYPES, true)) {
+            return ['type' => array_search($value, self::EVENT_TYPES, true)];
         } else {
             return ['type' => 'other', 'text' => $value];
         }

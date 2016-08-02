@@ -26,7 +26,6 @@ class MatchTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'events',
-        'users'
     ];
 
     public function transform(Match $match)
