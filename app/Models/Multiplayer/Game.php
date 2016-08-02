@@ -81,6 +81,11 @@ class Game extends Model
         return $this->_mods;
     }
 
+    public function getModeAttribute()
+    {
+        return Beatmap::modeStr($this->play_mode);
+    }
+
     public function getScoringTypeAttribute($value)
     {
         return self::SCORING_TYPES[$value];

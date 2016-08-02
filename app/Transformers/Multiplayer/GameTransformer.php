@@ -37,7 +37,7 @@ class GameTransformer extends Fractal\TransformerAbstract
             'id' => $game->game_id,
             'start_time' => $game->start_time->toIso8601String(),
             'end_time' => $game->end_time ? $game->end_time->toIso8601String() : null,
-            'mode' => Beatmap::modeStr($game->play_mode),
+            'mode' => $game->mode,
             'mode_int' => $game->play_mode,
             'scoring_type' => $game->scoring_type,
             'team_type' => $game->team_type,
