@@ -347,6 +347,9 @@ class Beatmapset extends Model
     {
         extract($params);
 
+        $count = config('osu.beatmaps.max', 50);
+        $offset = max(0, $page - 1) * $count;
+
         $query = self::where('title', 'like', '%'.$query.'%');
 
         if ($mode) {
@@ -375,7 +378,8 @@ class Beatmapset extends Model
             }
         }
 
-        return $query->orderBy($sort_field, $sort_order)
+        return $query->take($count)->skip($offset)
+            ->orderBy($sort_field, $sort_order)
             ->get()->pluck('beatmapset_id')->toArray();
     }
 
