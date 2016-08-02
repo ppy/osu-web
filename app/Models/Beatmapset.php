@@ -342,6 +342,46 @@ class Beatmapset extends Model
         return $beatmap_ids;
     }
 
+    public static function searchDB(array $params = [])
+    {
+        extract($params);
+
+        $count = config('osu.beatmaps.max', 50);
+        $offset = max(0, $page - 1) * $count;
+
+        $query = self::where('title', 'like', '%'.$query.'%');
+
+        if ($mode) {
+            $query = $query->whereHas('beatmaps', function ($query) use (&$mode) {
+                $query->where('playmode', '=', $mode);
+            });
+        }
+
+        if ($genre) {
+            $query->where('genre_id', '=', $genre);
+        }
+
+        if ($language) {
+            $query->where('language_id', '=', $language);
+        }
+
+        if ($extra) {
+            foreach ($extra as $val) {
+                if ($val === '0') {
+                    $query->where('video', '=', 1);
+                }
+
+                if ($val === '1') {
+                    $query->where('storyboard', '=', 1);
+                }
+            }
+        }
+
+        return $query->take($count)->skip($offset)
+            ->orderBy($sort_field, $sort_order)
+            ->get()->pluck('beatmapset_id')->toArray();
+    }
+
     public static function search(array $params = [])
     {
         // default search params
@@ -359,7 +399,12 @@ class Beatmapset extends Model
 
         self::sanitizeSearchParams($params);
 
-        $beatmap_ids = self::searchES($params);
+        if (empty(config('elasticsearch.hosts'))) {
+            $beatmap_ids = self::searchDB($params);
+        } else {
+            $beatmap_ids = self::searchES($params);
+        }
+
         $beatmaps = [];
 
         if (count($beatmap_ids) > 0) {
