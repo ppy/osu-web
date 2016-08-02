@@ -19,11 +19,13 @@
  */
 namespace App\Models\Multiplayer;
 
-use App\Models\Score\Model as BaseModel;
 use App\Models\Beatmap;
+use App\Traits\Scoreable;
 
-class Score extends BaseModel
+class Score extends Model
 {
+    use Scoreable;
+
     protected $table = 'game_scores';
     protected $connection = 'mysql-mp';
     protected $primaryKey = null;
