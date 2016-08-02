@@ -87,11 +87,12 @@ Route::get('/community/profile/{id}', function ($id) {
 Route::get('/community/slack', ['as' => 'slack', 'uses' => 'CommunityController@getSlack']);
 Route::post('/community/slack/agree', ['as' => 'slack.agree', 'uses' => 'CommunityController@postSlackAgree']);
 
-Route::get('/matches/{matches}', ['as' => 'multiplayer.match', 'uses' => 'MatchesController@match']);
-Route::get('/matches/{matches}/history', ['as' => 'multiplayer.match.history', 'uses' => 'MatchesController@matchHistory']);
+// Route::get('/matches/{matches}', ['as' => 'multiplayer.match', 'uses' => 'MatchesController@match']);
+Route::resource('matches', 'MatchesController', ['only' => ['show',]]);
+Route::get('/matches/{matches}/history', ['as' => 'matches.history', 'uses' => 'MatchesController@matchHistory']);
 
 Route::get('/mp/{matches}', function ($matches) {
-    return ujs_redirect(route('multiplayer.match', ['matches' => $matches]));
+    return ujs_redirect(route('matches.show', ['matches' => $matches]));
 });
 
 Route::post('users/check-username-availability', ['as' => 'users.check-username-availability', 'uses' => 'UsersController@checkUsernameAvailability']);

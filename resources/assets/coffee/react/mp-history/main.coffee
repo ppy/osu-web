@@ -43,7 +43,7 @@ class MPHistory.Main extends React.Component
       @setState initialLoaded: true
 
   loadHistory: =>
-    $.ajax laroute.route('multiplayer.match.history', matches: @props.match.id, full: @props.full),
+    $.ajax laroute.route('matches.history', matches: @props.match.id, full: @props.full),
       method: 'GET'
       dataType: 'JSON'
       data:

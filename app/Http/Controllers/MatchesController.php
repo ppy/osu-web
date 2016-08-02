@@ -31,7 +31,7 @@ class MatchesController extends Controller
 {
     protected $section = 'multiplayer';
 
-    public function match($match_id)
+    public function show($match_id)
     {
         $match = Match::findOrFail($match_id);
 
