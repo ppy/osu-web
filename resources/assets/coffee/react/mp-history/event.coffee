@@ -30,7 +30,7 @@ class MPHistory.Event extends React.Component
   render: ->
     user = @props.lookupUser @props.event.user_id
 
-    event_type = @props.event.event_type
+    event_type = @props.event.detail.type
     event_type += '-no-user' if !user?
 
     className = 'mp-history-events__event mp-history-event'
@@ -39,11 +39,11 @@ class MPHistory.Event extends React.Component
       div className: 'mp-history-event__time-box',
         span className: 'mp-history-event__time',
           moment(@props.event.timestamp).format 'HH:mm:ss'
-      div className: "mp-history-event__type mp-history-event__type--#{@props.event.event_type}",
-        @icons[@props.event.event_type].map (m) ->
+      div className: "mp-history-event__type mp-history-event__type--#{event_type}",
+        @icons[event_type].map (m) ->
           el Icon, name: m, key: m
       div className: 'mp-history-event__info-box',
-        if @props.event.event_type != 'match-disbanded'
+        if event_type != 'match-disbanded'
           if user?
             a
               className: 'mp-history-event__text mp-history-event__text--username'

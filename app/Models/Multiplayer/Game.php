@@ -37,17 +37,17 @@ class Game extends Model
     public $timestamps = false;
 
     const SCORING_TYPES = [
-        0 => 'score',
-        1 => 'accuracy',
-        2 => 'combo',
-        3 => 'scorev2',
+        'score' => 0,
+        'accuracy' => 1,
+        'combo' => 2,
+        'scorev2' => 3,
     ];
 
     const TEAM_TYPES = [
-        0 => 'head-to-head',
-        1 => 'tag-coop',
-        2 => 'team-vs',
-        3 => 'tag-team-vs',
+        'head-to-head' => 0,
+        'tag-coop' => 1,
+        'team-vs' => 2,
+        'tag-team-vs' => 3,
     ];
 
     protected $_mods = null;
@@ -88,11 +88,11 @@ class Game extends Model
 
     public function getScoringTypeAttribute($value)
     {
-        return self::SCORING_TYPES[$value];
+        return array_search($value, self::SCORING_TYPES);
     }
 
     public function getTeamTypeAttribute($value)
     {
-        return self::TEAM_TYPES[$value];
+        return array_search($value, self::TEAM_TYPES);
     }
 }
