@@ -28,6 +28,8 @@ class MPHistory.Event extends React.Component
     'host-changed': ['exchange']
 
   render: ->
+    console.log @props.event.user_id
+
     user = @props.lookupUser @props.event.user_id
 
     event_type = @props.event.event_type
@@ -45,7 +47,7 @@ class MPHistory.Event extends React.Component
           el Icon, name: m, key: m
       div className: 'mp-history-event__info-box',
         if @props.event.event_type != 'match-disbanded'
-          if !user?
+          if user?
             a
               className: 'mp-history-event__text mp-history-event__text--username'
               href: laroute.route 'users.show', users: user.id
