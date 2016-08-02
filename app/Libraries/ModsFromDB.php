@@ -21,10 +21,6 @@ namespace App\Libraries;
 
 class ModsFromDB
 {
-    private $mods = null;
-
-    private $enabledMods = null;
-
     const AVAILABLE_MODS = [
         [0, 'No Fail', 'NF'],
         [1, 'Easy Mode', 'EZ'],
@@ -48,37 +44,28 @@ class ModsFromDB
         [24, '9K', '9K'],
     ];
 
-    public function __construct($mods)
+    public static function getEnabledMods($mods)
     {
-        $this->mods = $mods;
-    }
+        $enabledMods = [];
+        $impliedIds = [];
 
-    public function getEnabledMods()
-    {
-        if (!$this->enabledMods) {
-            $enabledMods = [];
-            $impliedIds = [];
-
-            foreach (self::AVAILABLE_MODS as $availableMod) {
-                if (($this->mods & (1 << $availableMod[0])) === 0) {
-                    continue;
-                }
-
-                $currentImpliedIds = array_get($availableMod, 3);
-                if ($currentImpliedIds !== null) {
-                    $impliedIds = array_merge($impliedIds, $currentImpliedIds);
-                }
-
-                $enabledMods[$availableMod[0]] = ['name' => $availableMod[1], 'shortName' => $availableMod[2]];
+        foreach (self::AVAILABLE_MODS as $availableMod) {
+            if (($mods & (1 << $availableMod[0])) === 0) {
+                continue;
             }
 
-            $enabledMods = array_filter($enabledMods, function ($modId) use ($impliedIds) {
-                return in_array($modId, $impliedIds, true) === false;
-            }, ARRAY_FILTER_USE_KEY);
+            $currentImpliedIds = array_get($availableMod, 3);
+            if ($currentImpliedIds !== null) {
+                $impliedIds = array_merge($impliedIds, $currentImpliedIds);
+            }
 
-            $this->enabledMods = array_values($enabledMods);
+            $enabledMods[$availableMod[0]] = ['name' => $availableMod[1], 'shortName' => $availableMod[2]];
         }
 
-        return $this->enabledMods;
+        $enabledMods = array_filter($enabledMods, function ($modId) use ($impliedIds) {
+            return in_array($modId, $impliedIds, true) === false;
+        }, ARRAY_FILTER_USE_KEY);
+
+        return array_values($enabledMods);
     }
 }

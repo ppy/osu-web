@@ -28,8 +28,6 @@ class MPHistory.Event extends React.Component
     'host-changed': ['exchange']
 
   render: ->
-    console.log @props.event.user_id
-
     user = @props.lookupUser @props.event.user_id
 
     event_type = @props.event.event_type

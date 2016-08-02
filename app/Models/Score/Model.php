@@ -78,7 +78,7 @@ abstract class Model extends BaseModel
     public function getEnabledModsAttribute($value)
     {
         if ($this->_enabledMods === null) {
-            $this->_enabledMods = (new ModsFromDB($value))->getEnabledMods();
+            $this->_enabledMods = ModsFromDB::getEnabledMods($value);
         }
 
         return $this->_enabledMods;
