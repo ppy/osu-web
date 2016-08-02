@@ -48,16 +48,16 @@ class MPHistory.Content extends React.Component
               href: laroute.route 'multiplayer.match', matches: @props.id, full: true
               Lang.get 'multiplayer.match.more-events'
 
-        for event, i in @props.events
-          if event.game?
-            el MPHistory.Game,
-              event: event
-              teamScores: @teamScores i
-              lookupUser: @props.lookupUser
-              key: event.id
-          else
-            el MPHistory.Event,
-              event: event
-              lookupUser: @props.lookupUser
-              key: event.id
-              last: @props.events[i + 1]? && @props.events[i + 1].game?
+        div className: 'mp-history-events',
+          for event, i in @props.events
+            if event.game?
+              el MPHistory.Game,
+                event: event
+                teamScores: @teamScores i
+                lookupUser: @props.lookupUser
+                key: event.id
+            else
+              el MPHistory.Event,
+                event: event
+                lookupUser: @props.lookupUser
+                key: event.id

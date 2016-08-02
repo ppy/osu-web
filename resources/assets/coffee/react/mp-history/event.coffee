@@ -36,7 +36,6 @@ class MPHistory.Event extends React.Component
     event_type += '-no-user' if !user?
 
     className = 'mp-history-events__event mp-history-event'
-    className += ' mp-history-event--last' if @props.last
 
     div className: className,
       div className: 'mp-history-event__time-box',
