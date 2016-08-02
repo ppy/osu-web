@@ -30,6 +30,9 @@ class MPHistory.Event extends React.Component
   render: ->
     user = @props.lookupUser @props.event.user_id
 
+    event_type = @props.event.event_type
+    event_type += '-no-user' if !user?
+
     className = 'mp-history-events__event mp-history-event'
     className += ' mp-history-event--last' if @props.last
 
@@ -42,10 +45,11 @@ class MPHistory.Event extends React.Component
           el Icon, name: m, key: m
       div className: 'mp-history-event__info-box',
         if @props.event.event_type != 'match-disbanded'
-          a
-            className: 'mp-history-event__text mp-history-event__text--username'
-            href: laroute.route 'users.show', users: user.id
-            user.username
+          if !user?
+            a
+              className: 'mp-history-event__text mp-history-event__text--username'
+              href: laroute.route 'users.show', users: user.id
+              user.username
 
         span className: 'mp-history-event__text',
-          Lang.get "multiplayer.match.events.#{@props.event.event_type}"
+          Lang.get "multiplayer.match.events.#{event_type}"

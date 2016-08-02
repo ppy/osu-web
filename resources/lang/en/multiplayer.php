@@ -34,6 +34,13 @@ return [
             'match-created' => 'created the match',
             'match-disbanded' => 'the match was disbanded',
             'host-changed' => 'became the host',
+
+            'player-left-no-user' => 'a player left the match',
+            'player-joined-no-user' => 'a player joined the match',
+            'played-kicked-no-user' => 'a player has been kicked from the match',
+            'match-created-no-user' => 'the match was created',
+            'match-disbanded-no-user' => 'the match was disbanded',
+            'host-changed-no-user' => 'the host was changed',
         ],
         'in-progress' => '(match in progress)',
         'score' => [
