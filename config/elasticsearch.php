@@ -2,5 +2,5 @@
 
 
 return [
-    'hosts' => [env('ES_HOST', 'localhost:9200')],
+    'hosts' => (array) env('ES_HOST'),
 ];
