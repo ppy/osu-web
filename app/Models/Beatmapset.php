@@ -19,7 +19,6 @@
  */
 namespace App\Models;
 
-use App;
 use Es;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
