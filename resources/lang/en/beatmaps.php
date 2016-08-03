@@ -137,21 +137,19 @@ return [
                     'sd' => 'SD',
                 ],
 
+                'user-rating' => 'User Rating',
+                'rating-spread' => 'Rating Spread',
+            ],
+            'info' => [
                 'source' => 'Source',
                 'tags' => 'Tags',
+
+                'success-rate' => 'Success Rate',
+                'points-of-failure' => 'Points of Failure',
             ],
-            'user-rating' => 'User Rating',
-            'rating-spread' => 'Rating Spread',
             'extra' => [
                 'description' => [
                     'title' => 'Description',
-                ],
-                'success-rate' => [
-                    'title' => 'Success Rate',
-                    'rate' => 'Success Rate: :percentage%',
-                    'points' => 'Points of Failure',
-                    'retry' => 'Retry',
-                    'fail' => 'Fail',
                 ],
                 'scoreboard' => [
                     'title' => 'Scoreboard',

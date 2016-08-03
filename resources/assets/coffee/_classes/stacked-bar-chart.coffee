@@ -42,12 +42,7 @@ class @StackedBarChart
         type: d.type
         value: v
 
-    zipped = _()
-
-    for dataset in data
-      zipped = zipped.zip(dataset)
-
-    data = zipped.value()
+    data = _.zip.apply _, data
 
     @data = _.map data, (m) ->
       for d, i in m

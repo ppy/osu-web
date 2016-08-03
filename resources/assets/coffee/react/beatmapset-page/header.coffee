@@ -22,7 +22,7 @@ class BeatmapsetPage.Header extends React.Component
   render: ->
     dateFormat = 'MMM D, YYYY'
 
-    div className: 'osu-layout__row osu-layout__row--page-compact',
+    div className: 'osu-layout__row osu-layout__row--beatmapset-header',
       div className: 'header-tabs',
         for mode in BeatmapHelper.modes
           continue if _.isEmpty @props.beatmapList[mode]

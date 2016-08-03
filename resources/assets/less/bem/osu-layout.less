@@ -177,15 +177,18 @@
       margin-bottom: @spacing;
     }
 
+    &--beatmapset-header {
+      ._page;
+    }
+
     &--page-beatmapset {
       ._page;
-      padding: @spacing * 2;
-      padding-bottom: 0;
-      margin-bottom: @spacing;
+      box-shadow: none;
 
-      @media @mobile {
-        padding: 0;
-        padding-top: @spacing * 2;
+      ._width(@spacing);
+
+      @media @desktop {
+        ._width-desktop(@spacing);
       }
     }
 

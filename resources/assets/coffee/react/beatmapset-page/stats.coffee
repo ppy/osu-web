@@ -64,7 +64,7 @@ class BeatmapsetPage.Stats extends React.Component
             span className: 'beatmapset-header__stats-text beatmapset-header__stats-text--advanced-value', value.toLocaleString()
 
       div className: 'beatmapset-header__stats-row beatmapset-header__stats-row--advanced',
-        div className: 'beatmapset-header__stats-text beatmapset-header__stats-text--rating', osu.trans 'beatmaps.beatmapset.show.user-rating'
+        div className: 'beatmapset-header__stats-text beatmapset-header__stats-text--rating', osu.trans 'beatmaps.beatmapset.show.stats.user-rating'
         div className: 'beatmapset-header__user-rating-bar',
           div
             className: 'beatmapset-header__user-rating-bar beatmapset-header__user-rating-bar--fill'
@@ -75,5 +75,5 @@ class BeatmapsetPage.Stats extends React.Component
           span className: 'beatmapset-header__user-rating-value beatmapset-header__user-rating-value--negative', ratingsNegative.toLocaleString()
           span className: 'beatmapset-header__user-rating-value beatmapset-header__user-rating-value--positive', ratingsPositive.toLocaleString()
 
-        div className: 'beatmapset-header__stats-text beatmapset-header__stats-text--rating', osu.trans 'beatmaps.beatmapset.show.rating-spread'
+        div className: 'beatmapset-header__stats-text beatmapset-header__stats-text--rating', osu.trans 'beatmaps.beatmapset.show.stats.rating-spread'
         el BeatmapsetPage.RatingChart, ratings: @props.beatmapset.ratings

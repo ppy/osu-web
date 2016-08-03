@@ -28,7 +28,7 @@ class BeatmapsetPage.RatingChart extends React.Component
     data = [
       {values: @props.ratings[1..]}
     ]
-    
+
     unless @_ratingChart
       options =
         scales:
