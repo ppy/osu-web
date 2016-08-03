@@ -69,12 +69,11 @@ elixir(function(mix) {
     'forum/topic-ajax.coffee',
     'ujs-common.coffee',
     'bootstrap-modal.coffee',
-    'user-dropdown-modal.coffee',
     'logout.coffee',
     'shared.coffee',
     'turbolinks-overrides.coffee',
 
-    'main.coffee',
+    'main.coffee'
   ], 'resources/assets/js/build/app-main.js')
   .scripts([
     path.join(node_root, 'turbolinks/dist/turbolinks.js'),
@@ -112,6 +111,12 @@ elixir(function(mix) {
     'react/mp-history/*.coffee',
     'react/mp-history.coffee'
   ], 'public/js/react/mp-history.js')
+  .coffee([
+    'react/artist-page.coffee',
+  ], 'public/js/react/artist-page.js')
+  .coffee([
+    'react/contest-page.coffee',
+  ], 'public/js/react/contest-page.js')
   .version([
     'css/app.css',
     'js/app.js',
@@ -122,5 +127,7 @@ elixir(function(mix) {
     'js/react/beatmap-discussions.js',
     'js/react/beatmapset-page.js',
     'js/react/mp-history.js',
+    'js/react/artist-page.js',
+    'js/react/contest-page.js',
   ]);
 });

@@ -40,7 +40,7 @@ class @ForumCover
 
 
   closeModal: (e) =>
-    return unless @hasCoverEditor() && @header[0]._open
+    return unless @hasCoverEditor() && @isModalOpen()
 
     if e
       return if $(e.target).closest('.js-forum-cover--open-modal').length
@@ -51,7 +51,7 @@ class @ForumCover
     Fade.out $('.blackout')[0]
     @header[0].classList.remove 'forum-category-header--cover-modal'
 
-    @header[0]._open = false
+    @isModalOpen(false)
 
 
   hasCover: =>
@@ -62,23 +62,22 @@ class @ForumCover
     @uploadButton.length > 0
 
 
-  toggleModal: (e) =>
-    e.preventDefault()
+  isModalOpen: (isModalOpen) =>
+    return false if !@hasCoverEditor()
 
-    if @header[0]._open
-      @closeModal()
-    else
-      @openModal()
+    if isModalOpen?
+      @header[0].dataset.isModalOpen = if isModalOpen then '1' else ''
+
+    @header[0].dataset.isModalOpen == '1'
 
 
-  openModal: =>
-    Fade.in $('.blackout')[0]
-    @header[0]._open = true
-    @header[0].classList.add 'forum-category-header--cover-modal'
+  initFileupload: =>
+    return unless @isModalOpen()
+    return if @uploadButton[0]._initialized
+
+    @uploadButton[0]._initialized = true
 
     $dropZone = $('.js-forum-cover--modal')
-
-    return if @uploadButton[0]._initialized
 
     @$uploadButton().fileupload
       method: 'POST'
@@ -100,11 +99,26 @@ class @ForumCover
 
     @updateOptions()
 
-    @uploadButton[0]._initialized = true
+
+  toggleModal: (e) =>
+    e.preventDefault()
+
+    if @isModalOpen()
+      @closeModal()
+    else
+      @openModal()
+
+
+  openModal: =>
+    Fade.in $('.blackout')[0]
+    @isModalOpen(true)
+    @header[0].classList.add 'forum-category-header--cover-modal'
+
+    @initFileupload()
 
 
   setOverlay: (targetState) =>
-    return unless @header.length
+    return unless @hasCoverEditor()
 
     return if targetState == @overlay[0].getAttribute('data-state')
 
@@ -158,3 +172,5 @@ class @ForumCover
     @header[0].style.backgroundImage = backgroundImage
 
     $('.js-forum-cover--remove').toggleClass('forum-post-actions__action--disabled', !@hasCover())
+
+    @initFileupload()

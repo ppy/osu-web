@@ -20,7 +20,7 @@
 return [
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Solo puedes votar por solicitudes de características.',
+            'not_feature_topic' => 'Solo puedes votar en solicitudes de características.',
             'not_enough_feature_votes' => 'Votos insuficientes.',
         ],
     ],

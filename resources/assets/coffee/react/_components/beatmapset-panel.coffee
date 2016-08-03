@@ -38,7 +38,7 @@ class @BeatmapsetPanel extends React.Component
       difficulties.push span key: 'over', "+#{(beatmap.beatmaps.data.length - maxDisplayedDifficulty)}"
 
     div className: 'beatmapset-panel', '',
-      div className: 'beatmapset-panel__panel', objectid: beatmap.beatmapset_id,
+      div className: 'beatmapset-panel__panel',
         div className: 'beatmapset-panel__header',
           a
             href: laroute.route 'beatmapsets.show', beatmapsets: beatmap.beatmapset_id

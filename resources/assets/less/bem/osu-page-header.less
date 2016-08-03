@@ -28,6 +28,14 @@
   @media @desktop {
     padding-left: @padding-big;
     padding-right: @padding-big;
+
+    &--artist {
+      padding-left: 40px;
+    }
+
+    &--contests {
+      padding-left: 40px;
+    }
   }
 
   &--tournaments {
@@ -38,6 +46,30 @@
     .at2x-simple("/images/headers/mp-history.png");
     background-position: center;
     height: 125px;
+
+  }
+
+  &--contests {
+    .at2x-simple("/images/headers/contest.jpg");
+    background-position: center center;
+    justify-content: flex-start;
+    // font-weight: 100;
+    color: white;
+    height: 200px;
+
+    &__subtitle {
+      font-size: @font-size--new-header-subtitle;
+      margin-bottom: 10px;
+      margin-top: 40px;
+      @media @mobile {
+        margin-top: 65px;
+      }
+    }
+
+    &__title {
+      font-size: @font-size--new-header-title;
+      margin-top: -5px;
+    }
   }
 
   &--slack {
@@ -49,6 +81,27 @@
   &--live {
     .at2x-simple("/images/headers/live-top.png");
     height: 165px;
+  }
+
+  &--artist {
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    justify-content: flex-start;
+
+    // font-weight: 100;
+    color: white;
+
+    &__subtitle {
+      font-size: @font-size--new-header-subtitle;
+      margin-top: 40px;
+      margin-bottom: 10px;
+    }
+
+    &__title {
+      font-size: @font-size--new-header-title;
+      margin-top: -5px;
+    }
   }
 
   &__title {

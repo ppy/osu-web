@@ -25,17 +25,17 @@ return [
             'small_description' => '',
             'support_button' => '¡Quiero ayudar a osu!',
         ],
-        'dev_quote' => 'osu! es un juego completamente Free To Play, pero mantenerlo definitivamente no es gratis. Entre el costo de comisionar servidores y banda ancha internacional de alta calidad, el tiempo invertido manteniendo el sistema y la comunidad, proveyendo premios para las competiciones, respondiendo preguntas de soporte y generalmente manteniendo a las personas felices, osu! consume una cantidad de dinero bastante considerable! Oh, y no olvides el hecho de que lo hacemos sin ningún tipo de anuncio o asociándonos con tontas barras de herramientas.
-            <br/><br/>osu! es al final del día en gran parte dirigido por mí, a quien puedes conocer mejor como "peppy".
+        'dev_quote' => 'osu! es un juego completamente Free To Play, pero mantenerlo definitivamente no es gratis. Entre el coste de alquilar servidores y banda ancha de alta calidad, el tiempo invertido manteniendo el sistema y la comunidad, dando premios para las competiciones, respondiendo preguntas de soporte y generalmente manteniendo a las personas felices, ¡osu! consume una cantidad de dinero bastante considerable! Oh, y no olvides el hecho de que lo hacemos sin ningún tipo de anuncio o asociándonos con tontas barras de herramientas.
+            <br/><br/>Al final osu! es en gran parte dirigido por mí, a quien puedes conocer mejor como "peppy".
             He tenido que dejar mi trabajo con el fin de mantenerme al día con osu!,
             y en ocasiones lucho para mantener los estándares por los que me esfuerzo.
             Me gustaría ofrecer mi agradecimiento personal a aquellos que han apoyado osu! hasta ahora,
             y también a aquellos que continúen apoyando este increíble juego y a la comunidad en el futuro :).',
         'why_support' => [
-            'title' => '¿¡Por qué debo apoyar osu!?',
+            'title' => '¿Por qué debo apoyar osu!?',
             'blocks' => [
-                'dev' => 'Desarollado y mantenido principalmente por un chico en Australia',
-                'time' => 'Toma demasiado tiempo mantenerlo funcionando que ya no es posible llamarlo un "hobby".',
+                'dev' => 'Desarollado y mantenido principalmente por un hombre en Australia',
+                'time' => 'Toma demasiado tiempo mantenerlo funcionando al punto de no poder llamarlo un "hobby".',
                 'ads' => 'Sin anuncios en ningún lado. <br/><br/>
                         Al contrario que el 99.95% de la web, no obtenemos ingresos poniéndote cosas en tu cara.',
                 'goodies' => '¡Obtienes algunos beneficios!',
@@ -49,7 +49,7 @@ return [
             ],
             'auto_downloads' => [
                 'title' => 'Descargas Automáticas',
-                'description' => 'Descargas automáticas cuando juegas multijugador, espectas a otros, o al dar clic a enlaces en el chat!',
+                'description' => '¡Descargas automáticas cuando juegas multijugador, espectas a otros, o al dar clic a enlaces en el chat!',
             ],
             'upload_more' => [
                 'title' => 'Sube más',
@@ -57,18 +57,18 @@ return [
             ],
             'early_access' => [
                 'title' => 'Acceso Temprano',
-                'description' => 'Acceso a lanzamientos tempranos, donde puedes probar nuevas características antes de que sean públicas!',
+                'description' => '¡Acceso a lanzamientos tempranos, donde puedes probar nuevas características antes de que sean públicas!',
             ],
             'customisation' => [
                 'title' => 'Personalización',
-                'description' => 'Personaliza tu perfil añadiendo un user page totalmente personalizable.',
+                'description' => 'Personaliza tu perfil añadiendo una página de usuario totalmente personalizable.',
             ],
             'beatmap_filters' => [
                 'title' => 'Filtros de Beatmap',
                 'description' => 'Filtra búsquedas de beatmaps por mapas jugados y no jugados.',
             ],
             'yellow_fellow' => [
-                'title' => 'Yellow Fellow',
+                'title' => 'Amigo Amarillo',
                 'description' => 'Sé reconocido dentro del juego con tu nuevo color de usuario amarillo brillante en el chat.',
             ],
             'speedy_downloads' => [
@@ -81,7 +81,7 @@ return [
             ],
             'skinnables' => [
                 'title' => 'Skinnables',
-                'description' => 'Mayor posibilidad para las skins, como cambiar el fondo del menú.',
+                'description' => 'Más posibilidades para las skins, como cambiar el fondo del menú.',
             ],
             'feature_votes' => [
                 'title' => 'Votos de Características',

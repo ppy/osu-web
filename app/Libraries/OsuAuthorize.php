@@ -23,6 +23,7 @@ use App\Exceptions\AuthorizationException;
 use App\Models\Chat\Channel as ChatChannel;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
+use App\Models\Beatmapset;
 
 class OsuAuthorize
 {
@@ -113,6 +114,40 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkBeatmapsetNominate($user, $beatmapset)
+    {
+        $this->ensureLoggedIn($user);
+
+        if (!$user->isBNG() && !$user->isQAT()) {
+            return 'unauthorized';
+        }
+
+        if ($beatmapset->approved !== Beatmapset::STATES['pending']) {
+            return 'beatmap_discussion.nominate.incorrect-state';
+        }
+
+        if ($user->beatmapsetNominationsToday() >= Beatmapset::NOMINATIONS_PER_DAY) {
+            return 'beatmap_discussion.nominate.exhausted';
+        }
+
+        return 'ok';
+    }
+
+    public function checkBeatmapsetDisqualify($user, $beatmapset)
+    {
+        $this->ensureLoggedIn($user);
+
+        if (!$user->isQAT()) {
+            return 'unauthorized';
+        }
+
+        if ($beatmapset->approved !== Beatmapset::STATES['qualified']) {
+            return 'beatmap_discussion.disqualify.incorrect-state';
+        }
+
+        return 'ok';
+    }
+
     public function checkChatMessageSend($user, $target)
     {
         $prefix = 'chat.message.send.';
@@ -172,6 +207,18 @@ class OsuAuthorize
         }
 
         return $prefix.'no_access';
+    }
+
+    public function checkContestVote($user, $contest)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($contest->ends_at->isPast()) {
+            return 'contest.voting_over';
+        }
+
+        return 'ok';
     }
 
     public function checkForumView($user, $forum)

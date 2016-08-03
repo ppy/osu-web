@@ -6,11 +6,17 @@
 
 @spacing: 10px;
 
+@bar-size: 3px;
+@logo-size: 100px;
 // header left margin (20) + logo (100) + menu left margin (10)
-@padding-big: 130px;
+@padding-big: ((@grid-gutter-width / 2) + @logo-size + @spacing);
+
+@height--nav-popup: 170px;
 
 @navbar-mobile--content-height: @navbar-height - (@navbar-padding-vertical * 2);
 
+
+@border-radius--nav-avatar: 10px;
 
 // here be z-indexes
 @z-index--visibility-hidden: 0;
@@ -23,10 +29,14 @@
 @z-index--fixed-bar: 1001;
 @z-index--blackout: 8000;
 @z-index--blackout-visible: 8001;
+@z-index--nav-popup: 8998;
 @z-index--nav-float: 8999;
 @z-index--editor-zoom: 9999;
 
 @z-index--beatmapset-header: 1;
+
+@landing-width: 980px;
+@landing-dot-size: 15px;
 
 @profile-badge-size: 50px;
 @profile-header-height: 250px;
@@ -47,9 +57,14 @@
 @nav-menu-height: 20px;
 
 // here be font-sizes
+@font-size--large: 20px;
+
 @font-size--header-title: 32px;
 @font-size--header-subtitle: 16px;
 @font-size--header-description: 12px;
+
+@font-size--new-header-title: 30px;
+@font-size--new-header-subtitle: 14px;
 
 @font-size--forum-post-heading: 20px;
 @font-size--forum-post-warning-icon: 20px;
@@ -66,6 +81,11 @@
 @font-size--livestream-featured-detail: 15px;
 @font-size--livestream-item-name: 15px;
 @font-size--livestream-item-detail: 10px;
+
+@font-size--nav-popup-link: 14px;
+@font-size--nav-popup-section: 12px;
+@font-size--nav-popup-title-large: 20px;
+@font-size--nav-popup-title: 15px;
 
 @forum-category-colour--osu-bg: @pink;
 @forum-category-colour--osu-link: @pink-text;
@@ -98,6 +118,18 @@
 @beatmap-discussion--color-praise: @blue-dark;
 @beatmap-discussion--color-problem: @pink-dark;
 @beatmap-discussion--color-suggestion: @yellow-dark;
+
+@section-color--default: @pink-darker;
+
+@section-color--beatmaps: @pink-darker;
+@section-color--community: @pink-darker;
+@section-color--multiplayer: @pink-darker;
+@section-color--error: @pink-darker;
+@section-color--help: @yellow-darker;
+@section-color--home: @purple-darker;
+@section-color--ranking: @green-darker;
+@section-color--store: @pink-darker;
+@section-color--user: @blue-darker;
 
 // difficulty colours
 @diff-easy: @green;

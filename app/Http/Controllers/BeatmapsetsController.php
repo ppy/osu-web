@@ -80,13 +80,13 @@ class BeatmapsetsController extends Controller
     public function show($id)
     {
         $beatmapset = Beatmapset
-            ::with('defaultBeatmaps.failtimes', 'user')
+            ::with('beatmaps.failtimes', 'user')
             ->findOrFail($id);
 
         $set = fractal_item_array(
             $beatmapset,
             new BeatmapsetTransformer(),
-            implode(',', ['beatmaps', 'beatmaps.failtimes', 'user', 'description'])
+            implode(',', ['beatmaps', 'beatmaps.failtimes', 'converts', 'converts.failtimes', 'user', 'description'])
         );
 
         $countries = fractal_collection_array(Country::all(), new CountryTransformer);
@@ -159,12 +159,7 @@ class BeatmapsetsController extends Controller
         }
 
         $initialData = [
-            'beatmapset' => fractal_item_array(
-                $beatmapset,
-                new BeatmapsetTransformer,
-                'beatmaps'
-            ),
-
+            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
             'beatmapsetDiscussion' => $discussion->defaultJson(Auth::user()),
         ];
 
@@ -173,5 +168,35 @@ class BeatmapsetsController extends Controller
         } else {
             return view('beatmapsets.discussion', compact('initialData'));
         }
+    }
+
+    public function nominate($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        priv_check('BeatmapsetNominate', $beatmapset)->ensureCan();
+
+        if (!$beatmapset->nominate(Auth::user())) {
+            return error_popup(trans('beatmaps.nominations.incorrect-state'));
+        }
+
+        return [
+            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
+        ];
+    }
+
+    public function disqualify($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        priv_check('BeatmapsetDisqualify', $beatmapset)->ensureCan();
+
+        if (!$beatmapset->disqualify(Auth::user(), Request::input('comment'))) {
+            return error_popup(trans('beatmaps.nominations.incorrect-state'));
+        }
+
+        return [
+            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
+        ];
     }
 }

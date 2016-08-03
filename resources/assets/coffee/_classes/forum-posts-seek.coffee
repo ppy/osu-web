@@ -41,8 +41,8 @@ class @ForumPostsSeek
 
     Fade.in @tooltip[0]
 
-    clearTimeout @_autohide
-    @_autohide = setTimeout @hideTooltip, 1000
+    Timeout.clear @_autohide
+    @_autohide = Timeout.set 1000, @hideTooltip
 
 
   click: =>

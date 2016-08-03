@@ -20,9 +20,9 @@
 return [
     'top-headers' => [
         'headline' => 'Transmisiones en vivo',
-        'description' => 'Los datos son recolectados de twitch.tv cada cinco minutos basándose en el listado del directorio. ¡Siéntete libre de empezar a transmitir y ser listado! Para más información en cómo ponerte en marca, revisa la página de la wiki de transmisiones en vivo.',
+        'description' => 'Los datos son recogidos de twitch.tv cada cinco minutos basándose en el listado del directorio. ¡Siéntete libre de empezar a transmitir y ser incluido! Para más información sobre cómo empezar a transmitir, revisa la página de la wiki de transmisiones en vivo.',
     ],
     'headers' => [
-        'regular' => 'Transmitiendo actualmente',
+        'regular' => 'Transmitiendo ahora',
     ],
 ];

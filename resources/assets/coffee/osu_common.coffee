@@ -32,28 +32,11 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
 
   ajaxError: (xhr) ->
-    validationMessage = xhr?.responseJSON?.validation_error
-
-    if validationMessage?
-      allErrors = []
-      for own _field, errors of validationMessage
-        allErrors = allErrors.concat(errors)
-
-      message = "#{allErrors.join(', ')}."
-
-    message ?= xhr?.responseJSON?.error
-
-    if !message?
-      errorKey = "errors.codes.http-#{xhr?.status}"
-      message = osu.trans errorKey
-      message = osu.trans 'errors.unknown' if message == errorKey
-
-    osu.popup message, 'danger'
+    osu.popup osu.xhrErrorMessage(xhr), 'danger'
 
 
   pageChange: ->
-    callback = -> $(document).trigger('osu:page:change')
-    setTimeout callback, 0
+    Timeout.set 0, -> $(document).trigger('osu:page:change')
 
 
   parseJson: (id) ->
@@ -61,6 +44,14 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
   isInputElement: (el) ->
     el.tagName in ['INPUT', 'SELECT', 'TEXTAREA'] or el.isContentEditable
+
+  isClickable: (el) ->
+    if osu.isInputElement(el) || el.tagName in ['A', 'BUTTON']
+      true
+    else if el.parentNode
+      osu.isClickable el.parentNode
+    else
+      false
 
   isMobile: -> ! window.matchMedia('(min-width: 920px)').matches
 
@@ -80,21 +71,10 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     regex = /(https?:\/\/(?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?)/ig
     return text.replace(regex, '<a href="$1" rel="nofollow">$1</a>')
 
-  timeago: (time) ->
-    el = document.createElement('time')
-    el.classList.add 'timeago-raw', 'timeago'
-    el.setAttribute 'datetime', time
-    el.textContent = time
-    el.outerHTML
-
-
-  initTimeago: ->
-    $('.timeago-raw').timeago().removeClass 'timeago-raw'
-
 
   timeago: (time) ->
     el = document.createElement('time')
-    el.classList.add 'timeago-raw', 'timeago'
+    el.classList.add 'timeago'
     el.setAttribute 'datetime', time
     el.textContent = time
     el.outerHTML
@@ -129,6 +109,25 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     $(document).one 'turbolinks:load', ->
       window.scrollTo position[0], position[1]
 
+  getOS: (fallback='Windows') ->
+    nAgnt = navigator.userAgent
+    os = undefined
+    if /Windows (.*)/.test(nAgnt)
+      return 'Windows'
+    # Test for mobile first
+    if /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(navigator.appVersion)
+      return fallback
+    if /(macOS|Mac OS X|MacPPC|MacIntel|Mac_PowerPC|Macintosh)/.test(nAgnt)
+      return 'macOS'
+    if /(Linux|X11)/.test(nAgnt)
+      return 'Linux'
+    fallback
+
+  otherOS: (os) ->
+    choices = ['macOS', 'Linux', 'Windows']
+    index = choices.indexOf os
+    choices.splice index, 1
+    choices
 
   popup: (message, type = 'info') ->
     $popup = $('#popup-container')
@@ -144,7 +143,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     if type == 'warning' or type == 'danger'
       $('#overlay').off('click.close-alert').one('click.close-alert', closeAlert).fadeIn()
     else
-      setTimeout closeAlert, 5000
+      Timeout.set 5000, closeAlert
 
     $alert.appendTo($popup).fadeIn()
 
@@ -225,3 +224,23 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
                 o.find("[ref=#{k}]").html v
 
             area.append o
+
+
+  xhrErrorMessage: (xhr) ->
+    validationMessage = xhr?.responseJSON?.validation_error
+
+    if validationMessage?
+      allErrors = []
+      for own _field, errors of validationMessage
+        allErrors = allErrors.concat(errors)
+
+      message = "#{allErrors.join(', ')}."
+
+    message ?= xhr?.responseJSON?.error
+
+    if !message?
+      errorKey = "errors.codes.http-#{xhr?.status}"
+      message = osu.trans errorKey
+      message = osu.trans 'errors.unknown' if message == errorKey
+
+    message

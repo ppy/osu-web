@@ -20,7 +20,7 @@
 
 return [
     'login' => [
-        '_' => 'Login',
+        '_' => 'Sign in',
         'username' => 'Username',
         'password' => 'Password',
         'button' => 'Login',
@@ -35,6 +35,9 @@ return [
         ],
 
         'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
+    ],
+    'signup' => [
+        '_' => 'Register',
     ],
     'anonymous' => [
         'login_link' => 'click to login',

@@ -127,7 +127,7 @@ function timeago($date)
     $display_date = $date->toRfc850String();
     $attribute_date = $date->toIso8601String();
 
-    return "<time class='timeago-raw timeago' datetime='{$attribute_date}'>{$display_date}</time>";
+    return "<time class='timeago' datetime='{$attribute_date}'>{$display_date}</time>";
 }
 
 function current_action()
@@ -223,7 +223,7 @@ function nav_links()
 
     if (config('app.debug')) {
         $links['home'] = [
-            'getNews' => route('news'),
+            'getNews' => route('home'),
             'getChangelog' => route('changelog'),
             'getDownload' => route('download'),
         ];
@@ -262,6 +262,40 @@ function nav_links()
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),
         'getCart' => action('StoreController@getCart'),
+    ];
+
+    return $links;
+}
+
+function footer_links()
+{
+    $links = [];
+
+    $links['general'] = [
+        'home' => route('home'),
+        'changelog' => route('changelog'),
+        'beatmaps' => action('BeatmapsetsController@index'),
+        'download' => route('download'),
+        'wiki' => route('wiki'),
+    ];
+
+    $links['help'] = [
+        'faq' => route('faq'),
+        'forum' => route('forum.forums.index'),
+        'livestreams' => route('home'),
+        'report' => route('home'),
+    ];
+
+    $links['support'] = [
+        'tags' => route('support-the-game'),
+        'merchandise' => action('StoreController@getListing'),
+    ];
+
+    $links['legal'] = [
+        'tos' => config('osu.urls.legal.tos'),
+        'copyright' => config('osu.urls.legal.dmca'),
+        'serverStatus' => config('osu.urls.legal.server'),
+        'osuStatus' => config('osu.urls.legal.osustatus'),
     ];
 
     return $links;
@@ -604,4 +638,16 @@ function priv_check($ability, $args = null)
 function priv_check_user($user, $ability, $args = null)
 {
     return app()->make('OsuAuthorize')->doCheckUser($user, $ability, $args);
+}
+
+// Fisher-Yates
+function seeded_shuffle(array &$items, int $seed)
+{
+    @mt_srand($seed);
+    for ($i = count($items) - 1; $i > 0; $i--) {
+        $j = @mt_rand(0, $i);
+        $tmp = $items[$i];
+        $items[$i] = $items[$j];
+        $items[$j] = $tmp;
+    }
 }

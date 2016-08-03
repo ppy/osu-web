@@ -29,7 +29,7 @@
 
 // home section
 if (Config::get('app.debug')) {
-    Route::get('/', ['as' => 'home', 'uses' => 'HomeController@getNews']);
+    Route::get('/', ['as' => 'home', 'uses' => 'HomeController@getLanding']);
 } else {
     Route::get('/', ['as' => 'home', function () {
         $host = Request::getHttpHost();
@@ -47,9 +47,7 @@ Route::get('/home/support', ['as' => 'support-the-game', 'uses' => 'HomeControll
 
 Route::get('/icons', 'HomeController@getIcons');
 
-// Route::get('/beatmaps/packs', ['as' => 'packs', 'uses' => 'BeatmapsController@getPacks']);
-// Route::get('/beatmaps/charts/{id?}', ['as' => 'charts', 'uses' => 'BeatmapsController@getCharts']);
-
+// beatmapsets
 Route::get('/beatmaps/{beatmaps}/scores', ['as' => 'beatmaps.scores', 'uses' => 'BeatmapsController@scores']);
 Route::get('/beatmaps/{beatmaps}', ['as' => 'beatmaps.show', 'uses' => 'BeatmapsController@show']);
 
@@ -64,6 +62,20 @@ Route::get('/beatmapsets/{beatmapsets}', ['as' => 'beatmapsets.show', 'uses' => 
 Route::get('/s/{beatmapsets}', function ($beatmapsets) {
     return ujs_redirect(route('beatmapsets.show', ['beatmapsets' => $beatmapsets]));
 });
+
+// beatmapset discussions
+Route::get('beatmapsets/{beatmapsets}/discussion', ['as' => 'beatmapsets.discussion', 'uses' => 'BeatmapsetsController@discussion']);
+Route::put('beatmapsets/{beatmapsets}/nominate', ['as' => 'beatmapsets.nominate', 'uses' => 'BeatmapsetsController@nominate']);
+Route::put('beatmapsets/{beatmapsets}/disqualify', ['as' => 'beatmapsets.disqualify', 'uses' => 'BeatmapsetsController@disqualify']);
+Route::put('beatmap-discussions/{beatmap_discussions}/vote', ['uses' => 'BeatmapDiscussionsController@vote', 'as' => 'beatmap-discussions.vote']);
+Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['store', 'update']]);
+
+// featured artists
+Route::get('/beatmaps/artists/{artist_id}', ['as' => 'artist.show', 'uses' => 'ArtistsController@show']);
+
+// contests
+Route::get('/community/contests/{contest_id}', ['as' => 'contest.show', 'uses' => 'ContestsController@show']);
+Route::put('/community/contests/{contest_id}/vote', ['as' => 'contest.vote', 'uses' => 'ContestsController@vote']);
 
 // ranking section
 Route::get('/ranking/overall', ['as' => 'ranking-overall', 'uses' => 'RankingController@getOverall']);
@@ -179,11 +191,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::resource('forum-covers', 'ForumCoversController', ['only' => ['index', 'store', 'update']]);
     });
 });
-
-Route::get('beatmapsets/{beatmapsets}/discussion', ['as' => 'beatmapsets.discussion', 'uses' => 'BeatmapsetsController@discussion']);
-
-Route::put('beatmap-discussions/{beatmap_discussions}/vote', ['uses' => 'BeatmapDiscussionsController@vote', 'as' => 'beatmap-discussions.vote']);
-Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['store', 'update']]);
 
 // Uploading file doesn't quite work with PUT/PATCH.
 // Reference: https://bugs.php.net/bug.php?id=55815

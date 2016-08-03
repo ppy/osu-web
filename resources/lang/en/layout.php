@@ -26,6 +26,7 @@ return [
     'menu' => [
         'home' => [
             '_' => 'home',
+            'getLanding' => 'home',
             'getNews' => 'news',
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
@@ -42,6 +43,7 @@ return [
             '_' => 'beatmaps',
             'show' => 'info',
             'index' => 'listing',
+            'artists' => 'featured artists',
             // 'getPacks' => 'packs',
             // 'getCharts' => 'charts',
         ],
@@ -64,6 +66,7 @@ return [
             'getSupport' => 'support',
             'getLive' => 'live',
             'getSlack' => 'osu!dev',
+            'contests' => 'contests',
             'profile' => 'profile',
             'tournaments' => 'tournaments',
             'tournaments-index' => 'tournaments',
@@ -133,6 +136,37 @@ return [
             ],
         ],
     ],
+
+    'footer' => [
+        'general' => [
+            '_' => 'General',
+            'home' => 'Home',
+            'changelog' => 'Changelog',
+            'beatmaps' => 'Beatmap Listings',
+            'download' => 'Download osu!',
+            'wiki' => 'Wiki',
+        ],
+        'help' => [
+            '_' => 'Help & Community',
+            'faq' => 'Frequently Asked Questions',
+            'forum' => 'CommunityForums',
+            'livestreams' => 'Live Streams',
+            'report' => 'Report an Issue',
+        ],
+        'support' => [
+            '_' => 'Support osu!',
+            'tags' => 'Supporter Tags',
+            'merchandise' => 'Merchandise',
+        ],
+        'legal' => [
+            '_' => 'Legal & Status',
+            'tos' => 'Terms of Service',
+            'copyright' => 'Copyright (DMCA)',
+            'serverStatus' => 'Server Status',
+            'osuStatus' => '@osustatus',
+        ],
+    ],
+
     'errors' => [
         '404' => [
             'error' => 'Page Missing',
@@ -174,5 +208,31 @@ return [
         ],
         // used by sentry if it returns an error
         'reference' => "Just in case, here's a code you can give to support!",
+    ],
+
+    'popup_login' => [
+        'login' => [
+            'email' => 'email address',
+            'forgot' => "I've forgotten my details",
+            'password' => 'password',
+            'title' => 'Sign In To Proceed',
+
+            'error' => [
+                'email' => "Username or email address doesn't exist",
+                'password' => 'Incorrect password',
+            ],
+        ],
+
+        'register' => [
+            'info' => "You need an account, sir. Why don't you have one already?",
+            'title' => "Don't have an account?",
+        ],
+    ],
+
+    'popup_user' => [
+        'links' => [
+            'profile' => 'My Profile',
+            'logout' => 'Log Out',
+        ],
     ],
 ];

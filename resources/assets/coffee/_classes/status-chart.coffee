@@ -44,7 +44,7 @@ class @StatusChart
               .text(name)
               .attr('dy', -8)
               .classed('status-chart__text', true)
-    
+
     @percentage = @svg.append('text')
                     .attr('dy', 20)
                     .classed('status-chart__text status-chart__text--percentage', true)

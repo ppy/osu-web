@@ -44,6 +44,7 @@ BeatmapDiscussions.Main = React.createClass
   componentDidMount: ->
     $.subscribe 'beatmap:select.beatmapDiscussions', @setCurrentBeatmapId
     $.subscribe 'beatmapsetDiscussion:update.beatmapDiscussions', @setBeatmapsetDiscussion
+    $.subscribe 'beatmapset:update.beatmapDiscussions', @setBeatmapset
     $.subscribe 'beatmapDiscussion:collapse.beatmapDiscussions', @collapseBeatmapDiscussion
     $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
     $.subscribe 'beatmapDiscussion:setMode.beatmapDiscussions', @setMode
@@ -53,13 +54,13 @@ BeatmapDiscussions.Main = React.createClass
 
     @jumpByHash()
 
-    @checkNewTimeout = setTimeout @checkNew, @checkNewTimeoutDefault
+    @checkNewTimeout = Timeout.set @checkNewTimeoutDefault, @checkNew
 
 
   componentWillUnmount: ->
     $.unsubscribe '.beatmapDiscussions'
 
-    clearTimeout @checkNewTimeout
+    Timeout.clear @checkNewTimeout
     @checkNewAjax?.abort?()
 
 
@@ -89,6 +90,10 @@ BeatmapDiscussions.Main = React.createClass
           beatmapsetDiscussion: @state.beatmapsetDiscussion
           lookupUser: @lookupUser
 
+      el BeatmapDiscussions.Nominations,
+        beatmapset: @state.beatmapset
+        currentUser: @state.currentUser
+
       div
         className: 'osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact'
         el BeatmapDiscussions.NewDiscussion, currentUser: @state.currentUser, currentBeatmap: @state.currentBeatmap
@@ -113,6 +118,10 @@ BeatmapDiscussions.Main = React.createClass
       users: @indexUsers beatmapsetDiscussion.users.data
       callback
 
+  setBeatmapset: (_e, {beatmapset, callback}) ->
+    @setState
+      beatmapset: beatmapset
+      callback
 
   setCurrentBeatmapId: (_e, {id, callback}) ->
     osu.setHash "#:#{id}"
@@ -175,7 +184,7 @@ BeatmapDiscussions.Main = React.createClass
   checkNew: ->
     @nextTimeout ?= @checkNewTimeoutDefault
 
-    clearTimeout @checkNewTimeout
+    Timeout.clear @checkNewTimeout
 
     @checkNewAjax = $.ajax document.location.pathname,
       data:
@@ -194,7 +203,7 @@ BeatmapDiscussions.Main = React.createClass
     .always =>
       @nextTimeout = Math.min @nextTimeout, @checkNewTimeoutMax
 
-      @checkNewTimeout = setTimeout @checkNew, @nextTimeout
+      @checkNewTimeout = Timeout.set @nextTimeout, @checkNew
 
 
   setHighlight: (_e, {id}) ->

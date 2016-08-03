@@ -16,6 +16,9 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+LocalStoragePolyfill.fillIn()
+CustomEventPolyfill.fillIn()
+
 # loading animation overlay
 # fired from turbolinks
 $(document).on 'turbolinks:request-start', LoadingOverlay.show
@@ -24,14 +27,19 @@ $(document).on 'turbolinks:request-end', LoadingOverlay.hide
 $(document).on 'submit', 'form', LoadingOverlay.show
 
 
+@currentUserObserver ?= new CurrentUserObserver
 @reactTurbolinks ||= new ReactTurbolinks
 @twitchPlayer ?= new TwitchPlayer
-
-reactTurbolinks.register 'user-card', UserCard
+@landingGraph ?= new LandingGraph
+@landingHero ?= new LandingHero
+@timeago ?= new Timeago
+@osuLayzr ?= new OsuLayzr
+@nav ?= new Nav
+@userLogin ?= new UserLogin(@nav)
+@throttledWindowEvents ?= new ThrottledWindowEvents
 
 
 $(document).on 'ready turbolinks:load', =>
-  LocalStoragePolyfill.fillIn()
 
   @editorZoom ||= new EditorZoom
   @stickyFooter ||= new StickyFooter
@@ -39,9 +47,7 @@ $(document).on 'ready turbolinks:load', =>
   @globalDrag ||= new GlobalDrag
   @gallery ||= new Gallery
   @formPlaceholderHide ||= new FormPlaceholderHide
-  @headerMenu ||= new HeaderMenu
   @tooltipDefault ||= new TooltipDefault
-  @throttledEvents ||= new ThrottledEvents
 
   @syncHeight ||= new SyncHeight
 
@@ -54,20 +60,6 @@ $(document).on 'ready turbolinks:load', =>
   @forumCover ||= new ForumCover(@forum)
 
   @menu ||= new Menu
-  @logoMenu ||= new LogoMenu
-
-  @layzr ||= Layzr()
-
-
-initPage = =>
-  osu.initTimeago()
-  @layzr.update().check().handlers(true)
-
-# Don't bother moving initPage to osu junk drawer and removing the
-# osu:page:change. It's intended to allow other scripts to attach
-# callbacks to osu:page:change.
-$(document).on 'ready turbolinks:load', initPage
-$(document).on 'osu:page:change', _.debounce(initPage, 500)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->
@@ -81,6 +73,8 @@ $(document).on 'keydown', (e) ->
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port
 rootUrl += '/'
+
+jQuery.timeago.settings.allowFuture = true
 
 # Internal Helper
 $.expr[':'].internal = (obj, index, meta, stack) ->

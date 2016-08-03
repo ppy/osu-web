@@ -27,7 +27,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 # 				something.start();
 
 Live = (feed, settings) ->
-  liveSettings = 
+  liveSettings =
     update: 'PUT'
     token: null
     crud:
@@ -84,7 +84,7 @@ Array::remove = ->
 Live::start = ->
   defer = $.Deferred()
   self = this
-  data = 
+  data =
     _method: self.settings.update
     _token: self.settings.token
     time: self.time
@@ -121,7 +121,7 @@ Live::live = ->
   )(this), @settings.interval * 1000)
   return
 
-# handles the async promise and enables the rest of this 
+# handles the async promise and enables the rest of this
 # to be synchronous code with no dodgy callbacks.
 
 Live::fetch = ->
