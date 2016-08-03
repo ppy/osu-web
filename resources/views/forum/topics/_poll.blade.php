@@ -19,32 +19,51 @@
     'route' => ['forum.topics.vote', $topic->topic_id],
     'method' => 'POST',
     'data-remote' => true,
+    'data-checkbox-validation' => json_encode([
+        'forum_topic_vote[option_ids][]' => [
+            'min' => 1,
+            'max' => $topic->poll_max_options,
+        ],
+    ]),
+    'class' => 'forum-poll js-checkbox-validation',
 ]) !!}
-    <ul>
-        @foreach ($topic->pollOptions as $pollOption)
-            <li>
-                <label>
-                    @if (priv_check('ForumTopicVote', $topic)->can())
-                        <input
-                            type="{{ $topic->poll_max_options == 1 ? 'radio' : 'checkbox' }}"
-                            value="{{ $pollOption->poll_option_id }}"
-                            name="forum_topic_vote[option_ids][]"
-                            {{ $pollOption->userHasVoted(Auth::user()) ? 'checked' : '' }}
-                        >
-                    @endif
+    <h2 class="forum-poll__row forum-poll__row--title">
+        {{ $topic->poll_title }}
+    </h2>
 
-                    {{ $pollOption->poll_option_text }}
-                    [{{ $pollOption->poll_option_total }}]
-                </label>
-            </li>
-        @endforeach
+    <table class="forum-poll__row forum-poll__row--options">
+        <tbody>
+            @foreach ($topic->pollOptions as $pollOption)
+                @include('forum.topics._poll_row', compact($pollOption))
+            @endforeach
+        </tbody>
+    </table>
 
+    <div class="forum-poll__row">
+        <div class="forum-poll__detail">
+            {{ trans('forum.topics.show.poll.detail.total', ['count' => $topic->poll()->totalVotes()]) }}
+        </div>
+    </div>
+
+    @if ($topic->pollEnd() !== null)
+        <div class="forum-poll__row">
+            <div class="forum-poll__detail">
+                @if ($topic->pollEnd()->isFuture())
+                    {{ trans('forum.topics.show.poll.detail.end_time', ['time' => $topic->pollEnd()]) }}
+                @else
+                    {{ trans('forum.topics.show.poll.detail.ended', ['time' => $topic->pollEnd()]) }}
+                @endif
+            </div>
+        </div>
+    @endif
+
+    <div class="forum-poll__row">
         @if (!priv_check('ForumTopicVote', $topic)->can())
             {{ priv_check('ForumTopicVote', $topic)->message() }}
         @else
-            <button>
+            <button class="btn-osu-lite btn-osu-lite--default js-checkbox-validation--submit">
                 {{ trans('forum.topics.show.poll.vote') }}
             </button>
         @endif
-    </ul>
+    </div>
 {!! Form::close() !!}

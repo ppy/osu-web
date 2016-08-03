@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,44 +16,43 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+.forum-poll {
+  @_top: forum-poll;
 
-// block can be anything
-.osu-checkbox {
-  @_top: osu-checkbox;
+  .default-box-shadow();
+  background-color: @grey-f;
 
-  text-transform: initial;
-  flex: none;
+  margin-bottom: (@spacing / 2);
+  padding: (@spacing * 2) (@spacing * 6) 0;
+  font-size: @font-size--normal;
 
-  // the input is hidden
-  &__input {
-    position: absolute;
-    width: 0;
-    height: 0;
-    overflow: hidden;
-  }
+  display: flex;
+  flex-direction: column;
 
-  &__tick {
-    visibility: hidden;
-    padding: 3px;
-    color: @grey-f;
-    margin-right: (@spacing / 2);
+  &__row {
+    margin: 0 0 (@spacing * 2);
+    text-align: center;
 
-    .@{_top}__input:checked ~ & {
-      visibility: visible;
-
-      &::before {
-        background-color: @green;
-      }
+    &--options {
+      width: calc(100% ~'+' @spacing);
+      margin-left: (-@spacing / 2);
+      margin-right: (-@spacing / 2);
     }
 
-    // tick box
-    &::before {
-      .full-size();
-      .default-border-radius();
-      .default-box-shadow();
-      border: 2px solid @grey-f;
-      visibility: visible;
-      background-color: @grey-c;
+    &--title {
+      color: inherit;
+      font-style: normal;
+      font-size: @font-size--title-small;
+    }
+  }
+
+  &__detail {
+    font-weight: bold;
+    margin: 0 0 (@spacing / 2);
+
+    &--sub {
+      font-size: @font-size--small;
+      color: @grey-7;
     }
   }
 }

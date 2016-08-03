@@ -29,6 +29,7 @@ class TopicPoll
 
     private $topic;
     private $validated = false;
+    private $_totalVotes;
 
     public function __construct($topic)
     {
@@ -117,6 +118,15 @@ class TopicPoll
 
             return true;
         });
+    }
+
+    public function totalVotes()
+    {
+        if ($this->_totalVotes === null) {
+            $this->_totalVotes = $this->topic->pollOptions->sum('poll_option_total');
+        }
+
+        return $this->_totalVotes;
     }
 
     public function validationErrorsTranslationPrefix()

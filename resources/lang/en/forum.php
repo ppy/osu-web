@@ -125,6 +125,12 @@ return [
 
             'poll' => [
                 'vote' => 'Vote',
+
+                'detail' => [
+                    'total' => 'Total votes: :count',
+                    'ended' => 'Polling ended :time',
+                    'end_time' => 'Polling will end at :time',
+                ],
             ],
         ],
     ],
