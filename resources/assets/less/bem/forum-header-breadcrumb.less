@@ -17,7 +17,8 @@
  *
  */
 .forum-header-breadcrumb {
-  .default-border-radius;
+  @_top: forum-header-breadcrumb;
+  .default-border-radius();
   list-style: none;
   display: inline-flex;
   flex-wrap: wrap;
@@ -32,18 +33,60 @@
 
   &--large {
     font-size: 15px;
-    padding: (@spacing * 0.6);
+    padding: 0;
+    background: none;
   }
 
   &__item {
     display: flex;
     line-height: 1;
 
-    margin: 0 (@spacing / 4);
+    margin: 0 (@spacing / 2);
 
-    &::after {
-      content: '»';
-      margin-left: (@spacing / 2);
+    & + & {
+      &::before {
+        content: '»';
+        margin-right: (@spacing);
+      }
+    }
+  }
+
+  &__link {
+    color: @grey-f;
+    font-weight: 300;
+
+    &:focus,
+    &:hover {
+      color: @grey-f;
+    }
+
+    .@{_top}--large &:focus,
+    .@{_top}--large &:hover {
+      text-decoration: none;
+    }
+
+    &--is-active {
+      font-weight: 600;
+    }
+  }
+
+  &__link-stripe {
+    position: absolute;
+    width: 100%;
+    display: none;
+    top: 100%;
+    margin-top: (@spacing / 2);
+    height: (@spacing / 2);
+    transform: translateY(@spacing / 2) scaleY(0);
+    transition: transform 120ms ease-in-out;
+
+    .@{_top}--large & {
+      display: block;
+    }
+
+    .@{_top}--large .@{_top}__link--is-active &,
+    .@{_top}--large .@{_top}__link:hover & {
+      transform: translateY(0) scaleY(1);
     }
   }
 }

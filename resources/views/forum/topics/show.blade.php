@@ -34,7 +34,7 @@
 
             <div class="forum-topic-headernav__titles">
                 <div class="forum-topic-headernav__title">
-                    @include('forum.topics._header_breadcrumb')
+                    @include('forum.topics._header_breadcrumb', ['forum' => $topic->forum])
                 </div>
 
                 <h1 class="forum-topic-headernav__title">
@@ -159,8 +159,8 @@
         <div class="js-sticky-footer" data-sticky-footer-disabled="1" data-sticky-footer-target="forum-topic-reply"></div>
     @else
         <div class="osu-layout__row osu-layout__row--sm2-desktop">
-            <div class="forum-post forum-post--warning">
-                <div class="forum-post__warning-icon">
+            <div class="warning-box">
+                <div class="warning-box__icon">
                     <i class="fa fa-warning"></i>
                 </div>
 
