@@ -18,17 +18,14 @@
  */
 
 .beatmapset-header {
+  @header-height: 350px;
+
   display: flex;
   align-items: flex-end;
 
   background-size: cover;
-  height: 400px;
-
-  &__tabs {
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
+  height: auto;
+  min-height: @header-height;
 
   &__overlay {
     position: absolute;
@@ -41,10 +38,7 @@
   }
 
   &__beatmap-picker-box {
-    position: absolute;
-
-    top: 70px;
-    left: 40px;
+    margin-bottom: auto;
   }
 
   &__beatmap-picker {
@@ -84,6 +78,102 @@
     color: @yellow;
 
     .default-text-shadow;
+  }
+
+  &__details-box {
+    min-height: @header-height;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    padding-left: 40px;
+    padding-top: 20px;
+    padding-bottom: 25px;
+  }
+
+  &__details-text {
+    a {
+      color: @grey-f;
+      font-style: italic;
+      .default-text-shadow;
+
+      &:hover, &:visited, &:link, &:active {
+        color: @grey-f;
+        text-decoration: none;
+      }
+    }
+
+    &--title a {
+      font-size: 30px;
+      font-weight: 600;
+    }
+
+    &--artist a {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    &--artist {
+      padding-bottom: @spacing * 2;
+    }
+  }
+
+  &__avatar-box {
+    display: flex;
+
+    padding-bottom: @spacing;
+  }
+
+  &__avatar {
+    margin-right: @spacing * 0.5;
+  }
+
+  &__user-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__user-text {
+    font-size: 11px;
+    color: @grey-f;
+    .default-text-shadow;
+
+    &--mapper {
+      font-style: italic;
+    }
+
+    &--date {
+      font-weight: 700;
+    }
+
+    &:first-of-type {
+      padding-bottom: @spacing * 0.5;
+    }
+  }
+
+  &__buttons-box {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__button {
+    width: 160px;
+    height: 45px;
+
+    margin-right: @spacing * 0.5;
+    margin-bottom: @spacing * 0.5;
+  }
+
+  &__button-text {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+
+    &--small {
+      font-size: 10px;
+    }
   }
 
   &__stats-box {
@@ -207,96 +297,7 @@
     }
   }
 
-  &__details-box {
-    margin-left: 40px;
-    margin-bottom: 25px;
-  }
-
-  &__details-text {
-    a {
-      color: @grey-f;
-      font-style: italic;
-      .default-text-shadow;
-
-      &:hover, &:visited, &:link, &:active {
-        color: @grey-f;
-        text-decoration: none;
-      }
-    }
-
-    &--title a {
-      font-size: 30px;
-      font-weight: 600;
-    }
-
-    &--artist a {
-      font-size: 20px;
-      font-weight: 500;
-    }
-
-    &--artist {
-      padding-bottom: @spacing * 2;
-    }
-  }
-
-  &__avatar-box {
-    display: flex;
-
-    padding-bottom: @spacing;
-  }
-
-  &__avatar {
-    margin-right: @spacing * 0.5;
-  }
-
-  &__user-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  &__user-text {
-    font-size: 11px;
-    color: @grey-f;
-    .default-text-shadow;
-
-    &--mapper {
-      font-style: italic;
-    }
-
-    &--date {
-      font-weight: 700;
-    }
-
-    &:first-of-type {
-      padding-bottom: @spacing * 0.5;
-    }
-  }
-
   &__rating-chart {
     height: 25px;
-  }
-
-  &__buttons-box {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  &__button {
-    width: 160px;
-    height: 45px;
-
-    margin-right: @spacing * 0.5;
-    margin-bottom: @spacing * 0.5;
-  }
-
-  &__button-text {
-    font-size: 14px;
-    font-weight: 700;
-    color: #ffffff;
-
-    &--small {
-      font-size: 10px;
-    }
   }
 }

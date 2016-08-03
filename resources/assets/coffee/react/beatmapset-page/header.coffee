@@ -23,48 +23,48 @@ class BeatmapsetPage.Header extends React.Component
     dateFormat = 'MMM D, YYYY'
 
     div className: 'osu-layout__row osu-layout__row--page-compact',
+      div className: 'header-tabs',
+        for mode in BeatmapHelper.modes
+          continue if _.isEmpty @props.beatmapList[mode]
+
+          el BeatmapsetPage.HeaderTab,
+            key: mode
+            playmode: mode
+            currentBeatmapId: @props.currentBeatmap.id
+            newBeatmapId: _.last @props.beatmapList[mode]
+            currentPlaymode: @props.currentBeatmap.mode
+
       div
         className: 'beatmapset-header'
         style:
           backgroundImage: "url(#{@props.beatmapset.covers.cover})"
 
-        div className: 'beatmapset-header__tabs header-tabs',
-          for mode in BeatmapHelper.modes
-            continue if _.isEmpty @props.beatmapList[mode]
-
-            el BeatmapsetPage.HeaderTab,
-              key: mode
-              playmode: mode
-              currentBeatmapId: @props.currentBeatmap.id
-              newBeatmapId: _.last @props.beatmapList[mode]
-              currentPlaymode: @props.currentBeatmap.mode
-
         div className: 'beatmapset-header__overlay'
 
-        div className: 'beatmapset-header__beatmap-picker-box',
-          el BeatmapsetPage.BeatmapPicker,
-            beatmaps: @props.beatmaps
-            beatmapList: @props.beatmapList
-            currentMode: @props.currentBeatmap.mode
-            currentBeatmapId: @props.currentBeatmap.id
-
-          span className: 'beatmapset-header__diff-name',
-            if @props.hoveredBeatmap? then @props.hoveredBeatmap.version else @props.currentBeatmap.version
-
-          div {},
-            span className: 'beatmapset-header__value',
-              span className: 'beatmapset-header__value-icon', el Icon, name: 'play-circle'
-              span className: 'beatmapset-header__value-name', @props.playcount.toLocaleString()
-
-            span className: 'beatmapset-header__value',
-              span className: 'beatmapset-header__value-icon', el Icon, name: 'heart'
-              span className: 'beatmapset-header__value-name', @props.favcount.toLocaleString()
-
-          if @props.hoveredBeatmap
-            span className: 'beatmapset-header__star-difficulty',
-              "#{osu.trans 'beatmaps.beatmapset.show.stats.stars'} #{@props.hoveredBeatmap.difficulty_rating.toFixed 2}"
-
         div className: 'beatmapset-header__details-box',
+          div className: 'beatmapset-header__beatmap-picker-box',
+            el BeatmapsetPage.BeatmapPicker,
+              beatmaps: @props.beatmaps
+              beatmapList: @props.beatmapList
+              currentMode: @props.currentBeatmap.mode
+              currentBeatmapId: @props.currentBeatmap.id
+
+            span className: 'beatmapset-header__diff-name',
+              if @props.hoveredBeatmap? then @props.hoveredBeatmap.version else @props.currentBeatmap.version
+
+            div {},
+              span className: 'beatmapset-header__value',
+                span className: 'beatmapset-header__value-icon', el Icon, name: 'play-circle'
+                span className: 'beatmapset-header__value-name', @props.playcount.toLocaleString()
+
+              span className: 'beatmapset-header__value',
+                span className: 'beatmapset-header__value-icon', el Icon, name: 'heart'
+                span className: 'beatmapset-header__value-name', @props.favcount.toLocaleString()
+
+            if @props.hoveredBeatmap
+              span className: 'beatmapset-header__star-difficulty',
+                "#{osu.trans 'beatmaps.beatmapset.show.stats.stars'} #{@props.hoveredBeatmap.difficulty_rating.toFixed 2}"
+
           div className: 'beatmapset-header__details-text beatmapset-header__details-text--title',
             a
               href: laroute.route 'beatmapsets.index', q: @props.beatmapset.title
