@@ -32,7 +32,7 @@
                         {{ $pollOption->userHasVoted(Auth::user()) ? 'checked' : '' }}
                     >
                     <span class="osu-checkbox__tick">
-                        <i class="fa fa-{{ $topic->poll_max_options == 1 ? 'circle' : 'check' }}"></i>
+                        <i class="fa fa-fw fa-{{ $topic->poll_max_options == 1 ? 'circle' : 'check' }}"></i>
                     </span>
                 @endif
             </div>
