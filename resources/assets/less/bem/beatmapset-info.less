@@ -21,11 +21,66 @@
   display: flex;
   height: 175px;
 
+  &__details {
+    display: flex;
+
+    height: 100%;
+
+    align-self: flex-start;
+    padding: 30px;
+
+    flex-grow: 1;
+  }
+
+  &__text {
+    font-size: 12px;
+
+    &--header {
+      font-weight: 700;
+    }
+
+    &--source {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &--tag {
+      padding-right: 3px;
+      display: inline-block;
+    }
+  }
+
+  &__description {
+    margin-right: @spacing * 2;
+    flex-grow: 1;
+
+    overflow-y: auto;
+
+    text-align: justify;
+  }
+
+  &__text-box {
+    width: 250px;
+    padding-bottom: @spacing * 0.5;
+
+    &--source {
+      height: 35px;
+    }
+
+    &--tags {
+      height: 80px;
+      overflow-y: hidden;
+    }
+  }
+
+
   &__success-rate {
     align-self: flex-end;
 
     height: 160px;
     width: 275px;
+    min-width: 275px;
 
     background-color: @grey-e;
 

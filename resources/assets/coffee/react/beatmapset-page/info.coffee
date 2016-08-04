@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div} = React.DOM
+{div, a} = React.DOM
 el = React.createElement
 
 class BeatmapsetPage.Info extends React.Component
@@ -48,6 +48,35 @@ class BeatmapsetPage.Info extends React.Component
     percentage = (_.round @props.beatmap.passcount / (@props.beatmap.playcount + @props.beatmap.passcount), 2) * 100
 
     div className: 'osu-layout__row osu-layout__row--page-beatmapset beatmapset-info',
+      div className: 'beatmapset-info__details',
+        div className: 'beatmapset-info__description',
+          div className: 'beatmapset-info__text beatmapset-info__text--header', osu.trans 'beatmaps.beatmapset.show.info.description'
+          div
+            className: 'beatmapset-info__text'
+            dangerouslySetInnerHTML:
+              __html: @props.beatmapset.description.data.description
+
+        div {},
+          div className: 'beatmapset-info__text-box beatmapset-info__text-box--source',
+            div className: 'beatmapset-info__text beatmapset-info__text--header', osu.trans 'beatmaps.beatmapset.show.info.source'
+            div
+              className: 'beatmapset-info__text beatmapset-info__text--source'
+              title: @props.beatmapset.source
+              @props.beatmapset.source
+
+          div className: 'beatmapset-info__text-box beatmapset-info__text-box--tags',
+            div className: 'beatmapset-info__text beatmapset-info__text--header', osu.trans 'beatmaps.beatmapset.show.info.tags'
+            div
+              className: 'beatmapset-info__text'
+              @props.beatmapset.tags.split(' ').map (tag) =>
+                return if tag.length == 0
+
+                a
+                  key: tag
+                  className: 'beatmapset-info__text beatmapset-info__text--tag'
+                  href: laroute.route 'beatmapsets.index', q: tag
+                  tag
+
       div className: 'beatmapset-info__success-rate beatmapset-success-rate',
         div className: 'beatmapset-success-rate__label beatmapset-success-rate__label--main', osu.trans 'beatmaps.beatmapset.show.info.success-rate'
 

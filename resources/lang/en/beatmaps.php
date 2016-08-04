@@ -141,16 +141,15 @@ return [
                 'rating-spread' => 'Rating Spread',
             ],
             'info' => [
-                'source' => 'Source',
-                'tags' => 'Tags',
-
                 'success-rate' => 'Success Rate',
                 'points-of-failure' => 'Points of Failure',
+
+                'description' => 'Description',
+
+                'source' => 'Source',
+                'tags' => 'Tags',
             ],
             'extra' => [
-                'description' => [
-                    'title' => 'Description',
-                ],
                 'scoreboard' => [
                     'title' => 'Scoreboard',
                     'no-scores' => [
