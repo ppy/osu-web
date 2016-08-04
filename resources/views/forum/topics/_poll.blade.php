@@ -39,23 +39,21 @@
         </tbody>
     </table>
 
-    <div class="forum-poll__row">
+    <div class="forum-poll__row forum-poll__row--details">
         <div class="forum-poll__detail">
             {{ trans('forum.topics.show.poll.detail.total', ['count' => $topic->poll()->totalVotes()]) }}
         </div>
-    </div>
 
-    @if ($topic->pollEnd() !== null)
-        <div class="forum-poll__row">
-            <div class="forum-poll__detail">
+        @if ($topic->pollEnd() !== null)
+            <div class="forum-poll__detail forum-poll__detail--sub">
                 @if ($topic->pollEnd()->isFuture())
                     {{ trans('forum.topics.show.poll.detail.end_time', ['time' => $topic->pollEnd()]) }}
                 @else
                     {{ trans('forum.topics.show.poll.detail.ended', ['time' => $topic->pollEnd()]) }}
                 @endif
             </div>
-        </div>
-    @endif
+        @endif
+    </div>
 
     <div class="forum-poll__row">
         @if (!priv_check('ForumTopicVote', $topic)->can())
