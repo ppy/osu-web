@@ -395,7 +395,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user, $prefix.'user.');
         $this->ensureCleanRecord($user, $prefix.'user.');
 
-        if (!$this->doCheckUser($user, 'ForumView', $post->topic->forum)->can()) {
+        if (!$this->doCheckUser($user, 'ForumView', $topic->forum)->can()) {
             return $prefix.'no_forum_access';
         }
 
