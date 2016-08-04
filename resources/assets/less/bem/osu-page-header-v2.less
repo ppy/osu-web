@@ -17,13 +17,19 @@
 *
 */
 
-.osu-page-header {
+.osu-page-header-v2 {
+  background: transparent;
   background-size: cover;
+  background-position: center center;
 
   padding: (@spacing * 2);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
+
+  font-weight: 300;
+  color: white;
+  height: 200px;
 
   @media @desktop {
     padding-left: @padding-big;
@@ -38,35 +44,34 @@
     }
   }
 
-  &--tournaments {
-    .at2x-simple("/images/headers/tournament.jpg");
-  }
-
-  &--slack {
-    .at2x-simple("/images/headers/slack.jpg");
-    background-position: center;
-    height: 200px;
-  }
-
-  &--live {
-    .at2x-simple("/images/headers/live-top.png");
-    height: 165px;
+  &__subtitle {
+    font-size: @font-size--new-header-subtitle;
+    margin-bottom: 10px;
+    margin-top: 40px;
+    @media @mobile {
+      margin-top: 65px;
+    }
   }
 
   &__title {
-    font-size: @font-size--header-title;
-    margin: 0 0 @spacing;
-    .default-text-shadow();
-    color: #fff;
+    font-size: @font-size--new-header-title;
+    margin-top: -5px;
+  }
 
-    font-style: italic;
+  &--contests {
+    .at2x-simple("/images/headers/contest.jpg");
+  }
 
-    &--small {
-      font-size: @font-size--header-subtitle;
-    }
+  &--artist {
+    .at2x-simple("/images/headers/artist.png");
+  }
 
-    &--smaller {
-      font-size: @font-size--header-description;
-    }
+  &__overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background: linear-gradient(to right, fade(#000, 60%), transparent);
   }
 }

@@ -25,10 +25,10 @@
 
 @section("content")
     <div class="osu-layout__row">
-        <div class="osu-page-header osu-page-header--contests">
-            <div class="contest__header-overlay"></div>
-            <div class="osu-page-header--contests__subtitle">Contest &raquo;</div>
-            <div class="osu-page-header--contests__title">{{$contest->name}}</div>
+        <div class="osu-page-header-v2 osu-page-header-v2--contests">
+            <div class="osu-page-header-v2__overlay"></div>
+            <div class="osu-page-header-v2__subtitle">Contest &raquo;</div>
+            <div class="osu-page-header-v2__title">{{$contest->name}}</div>
         </div>
     </div>
     <div class="osu-layout__row osu-layout__row--page-contests">

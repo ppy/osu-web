@@ -25,9 +25,10 @@
 
 @section("content")
     <div class="osu-layout__row">
-        <div class="osu-page-header osu-page-header--artist" style="background-image: url('{{$images['header_url']}}');">
-            <div class="osu-page-header--artist__subtitle">Artist &raquo;</div>
-            <div class="osu-page-header--artist__title">{{$artist->name}}</div>
+        <div class="osu-page-header-v2 osu-page-header-v2--artist" style="background-image: url('{{$images['header_url']}}');">
+            <div class="osu-page-header-v2__overlay"></div>
+            <div class="osu-page-header-v2__subtitle">Artist &raquo;</div>
+            <div class="osu-page-header-v2__title">{{$artist->name}}</div>
         </div>
     </div>
     <div class="osu-layout__row osu-layout__row--page-artist">
