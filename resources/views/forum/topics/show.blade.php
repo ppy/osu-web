@@ -53,9 +53,11 @@
 
     <div class="js-header--alt js-sync-height--target" data-sync-height-id="forum-topic-headernav"></div>
 
-    <div class="osu-layout__row">
-        @include('forum.topics._poll')
-    </div>
+    @if ($topic->poll()->exists())
+        <div class="osu-layout__row">
+            @include('forum.topics._poll')
+        </div>
+    @endif
 
     @if (false && $topic->isFeatureTopic())
         <div class="forum-topic-feature-vote">
