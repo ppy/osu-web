@@ -97,8 +97,13 @@ class @Track extends React.Component
         td className:'tracklisting__genre', @props.track.genre
       unless @props.options.hideDL
         td className:'tracklisting__dl',
-          a className: 'tracklisting__link', href: @props.track.osz,
-            i className: 'fa fa-fw fa-cloud-download'
+          if @props.track.osz
+            a className: 'tracklisting__link', href: @props.track.osz, title: 'Download Beatmap Template',
+              i className: 'fa fa-fw fa-cloud-download'
+          else
+            span className: 'tracklisting__link--disabled', title: 'Beatmap Template not yet available',
+              i className: 'fa fa-fw fa-cloud-download'
+
       if @props.options.showVote
         td className:'tracklisting__vote',
           el TrackVoter, key: @props.track.id, track: @props.track, waitingForResponse: @props.waitingForResponse, voteCount: @props.voteCount, maxVotes: @props.options.maxVotes, contest: @props.contest
