@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div} = React.DOM
+{div, p} = React.DOM
 el = React.createElement
 
 class BeatmapsetPage.Scoreboard extends React.Component
@@ -25,7 +25,7 @@ class BeatmapsetPage.Scoreboard extends React.Component
     @state =
       loading: false
 
-  setLoading: (_e, isLoading) ->
+  setLoading: (_e, isLoading) =>
     @setState loading: isLoading
 
   componentDidMount: ->
@@ -42,3 +42,22 @@ class BeatmapsetPage.Scoreboard extends React.Component
             key: type
             type: type
             active: @props.currentType == type
+
+      div className: 'beatmapset-scoreboard__main',
+        if @props.scores.length > 0
+
+        else if currentUser.isSupporter || @props.currentType == 'global'
+          translationKey = if @state.loading then 'loading' else @props.currentType
+
+          p
+            className: "beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores beatmapset-scoreboard__notice--#{'guest' if !currentUser.id?}"
+            osu.trans "beatmaps.beatmapset.show.scoreboard.no-scores.#{translationKey}"
+
+        else
+          div className: 'beatmapset-scoreboard__notice',
+            p className: 'beatmapset-scoreboard__supporter-text', osu.trans 'beatmaps.beatmapset.show.scoreboard.supporter-only'
+
+            p
+              className: 'beatmapset-scoreboard__supporter-text beatmapset-scoreboard__supporter-text--small'
+              dangerouslySetInnerHTML:
+                __html: osu.trans 'beatmaps.beatmapset.show.scoreboard.supporter-link', link: laroute.route 'support-the-game'

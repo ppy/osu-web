@@ -175,3 +175,4 @@ class BeatmapsetPage.Main extends React.Component
       div className: 'osu-layout__section osu-layout__section--extra',
         el BeatmapsetPage.Scoreboard,
           currentType: @state.currentScoreboardType
+          scores: @state.scores
