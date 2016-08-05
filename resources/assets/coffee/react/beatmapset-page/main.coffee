@@ -1,5 +1,5 @@
 ###
-# Copyright 2016-2016 ppy Pty. Ltd.
+# Copyright 2015-2016 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -56,7 +56,7 @@ class BeatmapsetPage.Main extends React.Component
       currentPlaymode: currentPlaymode
       loading: false
       isPreviewPlaying: false
-      currentScoreboard: 'global'
+      currentScoreboardType: 'global'
       scores: []
 
   setHash: =>
@@ -64,17 +64,17 @@ class BeatmapsetPage.Main extends React.Component
       beatmapId: @state.currentBeatmapId
       playmode: @state.currentPlaymode
 
-  setCurrentScoreboard: (_e, {scoreboard, forceReload = false}) =>
+  setCurrentScoreboardType: (_e, {scoreboardType, forceReload = false}) =>
     return if @state.loading
 
     @setState
-      currentScoreboard: scoreboard
+      currentScoreboardType: scoreboardType
       scores: []
 
-    return if scoreboard != 'global' && !currentUser.isSupporter
+    return if scoreboardType != 'global' && !currentUser.isSupporter
 
     @scoresCache ?= {}
-    cacheKey = "#{@state.currentBeatmapId}-#{@state.currentPlaymode}-#{scoreboard}"
+    cacheKey = "#{@state.currentBeatmapId}-#{@state.currentPlaymode}-#{scoreboardType}"
 
     loadScore = =>
       @setState scores: @scoresCache[cacheKey]
@@ -90,7 +90,7 @@ class BeatmapsetPage.Main extends React.Component
       method: 'GET'
       dataType: 'JSON'
       data:
-        type: scoreboard
+        type: scoreboardType
         mode: @state.currentPlaymode
 
     .done (data) =>
@@ -112,7 +112,7 @@ class BeatmapsetPage.Main extends React.Component
       currentPlaymode: playmode
       =>
         @setHash()
-        @setCurrentScoreboard null, scoreboard: 'global'
+        @setCurrentScoreboardType null, scoreboardType: 'global'
 
   togglePreviewPlayingState: (_e, isPreviewPlaying) =>
     @setState isPreviewPlaying: isPreviewPlaying
@@ -133,12 +133,12 @@ class BeatmapsetPage.Main extends React.Component
     @removeListeners()
 
     $.subscribe 'beatmapset:beatmap:set.beatmapsetPage', @setCurrentBeatmapId
-    $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
+    $.subscribe 'beatmapset:scoreboard-type:set.beatmapsetPage', @setCurrentScoreboardType
     $.subscribe 'beatmapset:preview:toggle.beatmapsetPage', @togglePreviewPlayingState
     $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmapId
 
     @setHash()
-    @setCurrentScoreboard null, scoreboard: 'global'
+    @setCurrentScoreboardType null, scoreboardType: 'global'
 
     @audioPreview = document.getElementsByClassName('js-beatmapset-page--audio-preview')[0]
 
@@ -171,3 +171,7 @@ class BeatmapsetPage.Main extends React.Component
       el BeatmapsetPage.Info,
         beatmapset: @props.beatmapset
         beatmap: currentBeatmap
+
+      div className: 'osu-layout__section osu-layout__section--extra',
+        el BeatmapsetPage.Scoreboard,
+          currentType: @state.currentScoreboardType
