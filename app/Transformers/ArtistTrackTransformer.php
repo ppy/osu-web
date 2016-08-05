@@ -29,6 +29,7 @@ class ArtistTrackTransformer extends Fractal\TransformerAbstract
         return [
             'id' => $track->id,
             'title' => $track->title,
+            'version' => $track->version,
             'length' => format_duration_for_display($track->length),
             'bpm' => $track->bpm,
             'genre' => $track->genre,
