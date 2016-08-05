@@ -25,7 +25,7 @@
 
 @section("content")
     <div class="osu-layout__row">
-        <div class="osu-page-header-v2 osu-page-header-v2--artist" style="background-image: url('{{$images['header_url']}}');">
+        <div class="osu-page-header-v2 osu-page-header-v2--artist" style="{{ $images['header_url'] != '' ? "background-image: url('{$images['header_url']}');" : ''}}">
             <div class="osu-page-header-v2__overlay"></div>
             <div class="osu-page-header-v2__subtitle">Artist &raquo;</div>
             <div class="osu-page-header-v2__title">{{$artist->name}}</div>
@@ -38,7 +38,7 @@
                 <div class="js-react--artistTracklist"></div>
             </div>
             <div class="page-contents__content--sidebar">
-                <div class="artist__portrait" style="background-image: url('{{$images['cover_url']}}');">
+                <div class="artist__portrait" style="{{ $images['cover_url'] != '' ? "background-image: url('{$images['cover_url']}');" : ''}}"">
                     @if($artist->label !== null)
                         <a class="artist__label-overlay" style="background-image: url('{{$artist->label->icon_url}}');" href="{{$artist->label->website}}"></a>
                     @endif

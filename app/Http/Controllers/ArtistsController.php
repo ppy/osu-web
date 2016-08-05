@@ -37,8 +37,8 @@ class ArtistsController extends Controller
         $artist = Artist::with('label')->findOrFail($id);
         $tracks = $artist->tracks()->get();
         $images = [
-            'header_url' => $artist->header_url ?? '/images/headers/artist.png',
-            'cover_url' => $artist->cover_url ?? 'https://placekitten.com/g/250/250',
+            'header_url' => $artist->header_url,
+            'cover_url' => $artist->cover_url,
         ];
 
         $links = [];
