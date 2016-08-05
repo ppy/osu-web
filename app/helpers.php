@@ -462,7 +462,7 @@ function get_bool($string)
 {
     if (is_bool($string)) {
         return $string;
-    } elseif ($string === '1') {
+    } elseif ($string === '1' || $string === 'on') {
         return true;
     } elseif ($string === '0') {
         return false;
