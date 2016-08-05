@@ -562,6 +562,9 @@ function get_param_value($input, $type)
         case 'file':
             return get_file($input);
             break;
+        case 'string_split':
+            return get_arr(explode("\r\n", $input), 'presence');
+            break;
         case 'string[]':
             return get_arr($input, 'presence');
             break;

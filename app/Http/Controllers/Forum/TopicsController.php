@@ -239,7 +239,7 @@ class TopicsController extends Controller
             $pollParams = get_params($request, 'forum_topic_poll', [
                 'length_days:int',
                 'max_options:int',
-                'options:string[]',
+                'options:string_split',
                 'title',
                 'vote_change:bool',
             ]);

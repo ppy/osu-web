@@ -108,7 +108,11 @@
                         ]])
                     </div>
 
-                    <div class="forum-post__content forum-post__content--edit-bar">
+                    <div class="forum-post__content forum-post__content--poll-create">
+                        @include('forum.topics._create_poll')
+                    </div>
+
+                    <div class="forum-post__content forum-post__content--edit-bar forum-post__content--edit-bar-create">
                         @include("forum._post_toolbar")
 
                         <div class="post-box__actions">

@@ -16,14 +16,19 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <?php
-    $_percentage = sprintf('%.2f%%', 100.0 * $pollOption->poll_option_total / $topic->poll()->totalVotes());
+    $totalVotes = $topic->poll()->totalVotes();
+    if ($totalVotes === 0) {
+        $totalVotes = 1;
+    }
+
+    $percentage = sprintf('%.2f%%', 100.0 * $pollOption->poll_option_total / $totalVotes);
 ?>
 
 <tr class="forum-poll-row {{ $pollOption->userHasVoted(Auth::user()) ? 'forum-poll-row--voted' : '' }}">
     <td class="forum-poll-row__column forum-poll-row__column--option-text">
         <label class="forum-poll-row__option-text-container">
-            <div class="osu-checkbox">
-                @if (priv_check('ForumTopicVote', $topic)->can())
+            @if (priv_check('ForumTopicVote', $topic)->can())
+                <div class="osu-checkbox">
                     <input
                         class="osu-checkbox__input"
                         type="{{ $topic->poll_max_options == 1 ? 'radio' : 'checkbox' }}"
@@ -34,8 +39,8 @@
                     <span class="osu-checkbox__tick">
                         <i class="fa fa-fw fa-{{ $topic->poll_max_options == 1 ? 'circle' : 'check' }}"></i>
                     </span>
-                @endif
-            </div>
+                </div>
+            @endif
 
             <span class="forum-poll-row__option-text">
                 {{ $pollOption->poll_option_text }}
@@ -45,13 +50,13 @@
 
     <td class="forum-poll-row__column forum-poll-row__column--bar">
         <div class="forum-poll-row__bar-container">
-            <div class="forum-poll-row__bar" style="width: {{ $_percentage }}">
+            <div class="forum-poll-row__bar" style="width: {{ $percentage }}">
             </div>
         </div>
     </td>
 
     <td class="forum-poll-row__column forum-poll-row__column--percentage">
-        {{ $_percentage }}
+        {{ $percentage }}
     </td>
 
     <td class="forum-poll-row__column">

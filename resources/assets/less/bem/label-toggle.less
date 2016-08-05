@@ -1,0 +1,25 @@
+.label-toggle {
+  @_top: label-toggle;
+
+  &__checkbox {
+    display: none;
+  }
+
+  &__label {
+    &--check {
+      display: block;
+
+      .@{_top}__checkbox:checked ~ & {
+        display: none;
+      }
+    }
+
+    &--uncheck {
+      display: none;
+
+      .@{_top}__checkbox:checked ~ & {
+        display: block;
+      }
+    }
+  }
+}

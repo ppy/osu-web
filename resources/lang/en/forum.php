@@ -89,6 +89,29 @@ return [
             'reply_with_quote' => 'Quote post for reply',
         ],
 
+        'create' => [
+            'create_poll' => 'Poll Creation',
+
+            'create_poll_button' => [
+                'add' => 'Create a poll',
+                'remove' => 'Cancel creating a poll',
+            ],
+
+            'poll' => [
+                'length' => 'Run poll for',
+                'length_days_prefix' => '',
+                'length_days_suffix' => 'days',
+                'length_info' => 'Leave blank for a never ending poll',
+                'max_options' => 'Options per user',
+                'max_options_info' => 'This is the number of options each user may select when voting.',
+                'options' => 'Options',
+                'options_info' => 'Place each options on a new line. You may enter up to 10 options.',
+                'title' => 'Question',
+                'vote_change' => 'Allow re-voting.',
+                'vote_change_info' => 'If enabled, users are able to change their vote.',
+            ],
+        ],
+
         'index' => [
             'views' => 'views',
             'replies' => 'replies',
