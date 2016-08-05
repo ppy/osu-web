@@ -20,6 +20,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artist;
+use App\Transformers\ArtistTrackTransformer;
 
 class ArtistsController extends Controller
 {
@@ -36,8 +37,8 @@ class ArtistsController extends Controller
         $artist = Artist::with('label')->findOrFail($id);
         $tracks = $artist->tracks()->get();
         $images = [
-            'header_url' => $artist->header_url ?? '/images/headers/artist.png',
-            'cover_url' => $artist->cover_url ?? 'https://placekitten.com/g/250/250',
+            'header_url' => $artist->header_url,
+            'cover_url' => $artist->cover_url,
         ];
 
         $links = [];
@@ -64,7 +65,8 @@ class ArtistsController extends Controller
         return view('artists.show')
             ->with('artist', $artist)
             ->with('links', $links)
-            ->with('tracks', $tracks)
+            // using the api serializer to get rid of data root node, we should probably nuke that root node globally...
+            ->with('tracks', fractal_api_serialize_collection($tracks, new ArtistTrackTransformer()))
             ->with('images', $images);
     }
 }

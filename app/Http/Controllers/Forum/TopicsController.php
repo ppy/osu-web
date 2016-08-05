@@ -28,6 +28,7 @@ use App\Models\Forum\PollOption;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
+use App\Models\Forum\TopicPoll;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use Carbon\Carbon;
@@ -78,6 +79,18 @@ class TopicsController extends Controller
         $topic->lock($lock);
 
         return ['message' => trans('forum.topics.lock.locked-'.($lock === true ? '1' : '0'))];
+    }
+
+    public function pin($id)
+    {
+        $topic = Topic::findOrFail($id);
+
+        priv_check('ForumTopicModerate', $topic)->ensureCan();
+
+        $pin = Request::input('pin') !== '0';
+        $topic->pin($pin);
+
+        return ['message' => trans('forum.topics.pin.pinned-'.(int) $pin)];
     }
 
     public function preview()
@@ -227,10 +240,16 @@ class TopicsController extends Controller
             $pollParams = get_params($request, 'forum_topic_poll', [
                 'length_days:int',
                 'max_options:int',
-                'options:string[]',
+                'options:string_split',
                 'title',
                 'vote_change:bool',
             ]);
+
+            $poll = (new TopicPoll())->fill($pollParams);
+
+            if (!$poll->isValid()) {
+                return error_popup(implode(' ', $poll->validationErrors()->allMessages()));
+            }
         }
 
         $params = [
@@ -241,18 +260,14 @@ class TopicsController extends Controller
             'cover' => TopicCover::findForUse(presence($request->input('cover_id')), Auth::user()),
         ];
 
-        $topic = Topic::createNew($forum, $params, $pollParams ?? null);
+        $topic = Topic::createNew($forum, $params, $poll ?? null);
 
         if ($topic->topic_id !== null) {
             Event::fire(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
 
             return ujs_redirect(route('forum.topics.show', $topic));
         } else {
-            if (($pollParams ?? null) !== null && !$topic->poll()->isValid()) {
-                return error_popup(implode(' ', $topic->poll()->validationErrors()->allMessages()));
-            } else {
-                abort(422);
-            }
+            abort(422);
         }
     }
 
@@ -271,18 +286,6 @@ class TopicsController extends Controller
         } else {
             return error_popup(implode(' ', $topic->vote()->validationErrors()->allMessages()));
         }
-    }
-
-    public function pin($id)
-    {
-        $topic = Topic::findOrFail($id);
-
-        priv_check('ForumTopicModerate', $topic)->ensureCan();
-
-        $pin = Request::input('pin') !== '0';
-        $topic->pin($pin);
-
-        return ['message' => trans('forum.topics.pin.pinned-'.(int) $pin)];
     }
 
     public function voteFeature($topicId)

@@ -29,11 +29,7 @@ class TopicPoll
 
     private $topic;
     private $validated = false;
-
-    public function __construct($topic)
-    {
-        $this->topic = $topic;
-    }
+    private $_totalVotes;
 
     public function exists()
     {
@@ -75,7 +71,7 @@ class TopicPoll
             }
 
             if ($this->params['max_options'] > count($this->params['options'])) {
-                $this->validationErrors()->add('max_options', '.invalid_selection');
+                $this->validationErrors()->add('max_options', '.invalid_max_options');
             }
         }
 
@@ -119,8 +115,24 @@ class TopicPoll
         });
     }
 
+    public function setTopic($topic)
+    {
+        $this->topic = $topic;
+
+        return $this;
+    }
+
+    public function totalVotes()
+    {
+        if ($this->_totalVotes === null) {
+            $this->_totalVotes = $this->topic->pollOptions->sum('poll_option_total');
+        }
+
+        return $this->_totalVotes;
+    }
+
     public function validationErrorsTranslationPrefix()
     {
-        return 'forum.topic_vote';
+        return 'forum.topic_poll';
     }
 }

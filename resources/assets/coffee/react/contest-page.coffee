@@ -20,10 +20,11 @@ propsFunction = ->
   tracks: osu.parseJson('json-tracks')
   contest: osu.parseJson('json-contest')
   options:
+    hideLength: true
     hideGenre: true
     hideBPM: true
     hideDL: true
     showVote: true
     smaller: true
 
-reactTurbolinks.register 'tracklist', Tracklist, propsFunction
+reactTurbolinks.register 'contestTrackplayer', Trackplayer, propsFunction

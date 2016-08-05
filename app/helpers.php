@@ -462,7 +462,7 @@ function get_bool($string)
 {
     if (is_bool($string)) {
         return $string;
-    } elseif ($string === '1') {
+    } elseif ($string === '1' || $string === 'on') {
         return true;
     } elseif ($string === '0') {
         return false;
@@ -562,6 +562,9 @@ function get_param_value($input, $type)
         case 'file':
             return get_file($input);
             break;
+        case 'string_split':
+            return get_arr(explode("\r\n", $input), 'presence');
+            break;
         case 'string[]':
             return get_arr($input, 'presence');
             break;
@@ -628,6 +631,18 @@ function get_time_or_null($timestamp)
     if ($timestamp !== null && $timestamp !== 0) {
         return Carbon\Carbon::createFromTimestamp($timestamp);
     }
+}
+
+function format_duration_for_display($seconds)
+{
+    return floor($seconds / 60).':'.str_pad(($seconds % 60), 2, '0', STR_PAD_LEFT);
+}
+
+// Converts a standard image url to a retina one
+// e.g. https://local.host/test.jpg -> https://local.host/test@2x.jpg
+function retinaify($url)
+{
+    return preg_replace('/(\.[^.]+)$/', '@2x\1', $url);
 }
 
 function priv_check($ability, $args = null)

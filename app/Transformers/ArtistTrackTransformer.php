@@ -1,5 +1,7 @@
+<?php
+
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,35 +16,25 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+namespace App\Transformers;
 
-.forum-post-content {
-    .content-font();
-    font-size: 13px;
-    word-wrap: break-word;
+use App\Models\ArtistTrack;
+use League\Fractal;
 
-    &--edit {
-      .reset-input();
-      resize: vertical;
-      width: 100%;
-
-      @media @desktop {
-        min-height: 300px;
-      }
-    }
-
-    &--editor {
-      font-family: @font-family-monospace;
-    }
-
-    &--reply {
-      .reset-input();
-      resize: none;
-      width: 100%;
-
-      @media @desktop {
-        min-height: 150px;
-      }
+class ArtistTrackTransformer extends Fractal\TransformerAbstract
+{
+    public function transform(ArtistTrack $track)
+    {
+        return [
+            'id' => $track->id,
+            'title' => $track->title,
+            'length' => format_duration_for_display($track->length),
+            'bpm' => $track->bpm,
+            'genre' => $track->genre,
+            'preview' => $track->preview,
+            'cover_url' => $track->cover_url,
+            'osz' => $track->osz,
+        ];
     }
 }
