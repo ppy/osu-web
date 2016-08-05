@@ -633,6 +633,18 @@ function get_time_or_null($timestamp)
     }
 }
 
+function format_duration_for_display($seconds)
+{
+    return floor($seconds / 60).':'.str_pad(($seconds % 60), 2, '0', STR_PAD_LEFT);
+}
+
+// Converts a standard image url to a retina one
+// e.g. https://local.host/test.jpg -> https://local.host/test@2x.jpg
+function retinaify($url)
+{
+    return preg_replace('/(\.[^.]+)$/', '@2x\1', $url);
+}
+
 function priv_check($ability, $args = null)
 {
     return priv_check_user(Auth::user(), $ability, $args);
