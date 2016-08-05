@@ -35,7 +35,7 @@
         <div class="page-contents page-contents--artist">
             <div class="page-contents__content--artist-left">
                 <div class="artist__description">{!! $artist->description !!}</div>
-                <div class="js-react--artistTracklist"></div>
+                <div class="js-react--artistTrackplayer"></div>
             </div>
             <div class="page-contents__content--sidebar">
                 <div class="artist__portrait" style="{{ $images['cover_url'] != '' ? "background-image: url('{$images['cover_url']}');" : ''}}"">

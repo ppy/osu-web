@@ -27,4 +27,4 @@ propsFunction = ->
     showVote: true
     smaller: true
 
-reactTurbolinks.register 'contestTracklist', Tracklist, propsFunction
+reactTurbolinks.register 'contestTrackplayer', Trackplayer, propsFunction

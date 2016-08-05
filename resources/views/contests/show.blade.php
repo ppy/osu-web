@@ -34,7 +34,7 @@
     <div class="osu-layout__row osu-layout__row--page-contests">
         <div class="page-contents__content--contests">
             <div class="contest__description">{!! $contest->description !!}</div>
-            <div class="js-react--contestTracklist"></div>
+            <div class="js-react--contestTrackplayer"></div>
         </div>
     </div>
 @endsection
