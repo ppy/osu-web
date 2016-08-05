@@ -92,11 +92,11 @@ class @Track extends React.Component
         "#{@props.track.title} "
         span className: 'tracklisting__version', @props.track.version
       unless @props.options.hideBPM
-        td className:'tracklisting__bpm', "#{@props.track.bpm}bpm"
+        td className: 'tracklisting__bpm', "#{@props.track.bpm}bpm"
       unless @props.options.hideGenre
-        td className:'tracklisting__genre', @props.track.genre
+        td className: 'tracklisting__genre', @props.track.genre
       unless @props.options.hideDL
-        td className:'tracklisting__dl',
+        td className: 'tracklisting__dl',
           if @props.track.osz
             a className: 'tracklisting__link', href: @props.track.osz, title: 'Download Beatmap Template',
               i className: 'fa fa-fw fa-cloud-download'
@@ -191,16 +191,16 @@ class @Tracklist extends React.Component
       table className: "tracklisting__table#{ if @state.options.smaller then ' tracklisting__table--smaller' else ''}",
         thead {},
             tr className: 'tracklisting__row--header',
-                th {}, ''
-                th {}, 'title'
+                th className: 'tracklisting__col', ''
+                th className: 'tracklisting__col tracklisting__col--fill', 'title'
                 unless @state.options.hideBPM
-                  th {}, 'bpm'
+                  th className: 'tracklisting__col', 'bpm'
                 unless @state.options.hideGenre
-                  th {}, 'genre'
+                  th className: 'tracklisting__col', 'genre'
                 unless @state.options.hideDL
-                  th style: { width: '32px' }
+                  th className: 'tracklisting__col tracklisting__col--dl',
                 if @state.options.showVote
-                  th className: 'tracklisting__vote-summary',
+                  th className: 'tracklisting__col tracklisting__col--vote',
                     el TrackVoteSummary, voteCount: @state.voteCount, maxVotes: @state.options.maxVotes
                     div className: 'tracklisting__float-right tracklisting__vote-text', 'votes'
         tbody {}, tracks

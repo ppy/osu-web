@@ -27,7 +27,7 @@
     <div class="osu-layout__row">
         <div class="osu-page-header-v2 osu-page-header-v2--artist" style="{{ $images['header_url'] != '' ? "background-image: url('{$images['header_url']}');" : ''}}">
             <div class="osu-page-header-v2__overlay"></div>
-            <div class="osu-page-header-v2__subtitle">Artist &raquo;</div>
+            <div class="osu-page-header-v2__subtitle osu-page-header-v2__subtitle--artist">Artist &raquo;</div>
             <div class="osu-page-header-v2__title">{{$artist->name}}</div>
         </div>
     </div>

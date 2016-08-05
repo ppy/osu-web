@@ -56,27 +56,26 @@
         border: none;
       }
 
-      &--artist-left {
-        flex-basis: 100%;
-
-        @media @desktop {
-          margin-right: @spacing;
-        }
-      }
-
       &--contests {
-        @media @desktop {
-          margin-left: @spacing * 2;
-          margin-right: @spacing * 2;
-        }
+        margin-left: @spacing * 2;
+        margin-right: @spacing * 2;
       }
+    }
 
-      &--sidebar {
+    &--artist-left {
+      flex-basis: 100%;
+      @media @desktop {
+        margin-right: @spacing;
+      }
+    }
+
+    &--sidebar {
+      margin-top: -30px;
+      @media @desktop {
+        height: 100%;
+        margin-top: 0px;
         background-color: #2A3336;
         .default-box-shadow();
-        @media @desktop {
-          height: 100%;
-        }
       }
     }
   }
