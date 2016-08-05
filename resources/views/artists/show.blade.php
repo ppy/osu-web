@@ -63,7 +63,7 @@
   @parent
 
   <script id="json-tracks" type="application/json">
-    {!! json_encode($artist->tracks) !!}
+    {!! json_encode($tracks) !!}
   </script>
 
   <script src="{{ elixir("js/react/artist-page.js") }}" data-turbolinks-track></script>
