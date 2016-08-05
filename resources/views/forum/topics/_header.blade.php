@@ -19,6 +19,13 @@
     $headerCover = $cover['data']['fileUrl'] ?? $cover['data']['defaultFileUrl'] ?? null;
 ?>
 <div class="osu-layout__row">
+    <div class="page-header-nav">
+        @include('forum.topics._header_breadcrumb', [
+            'headerBreadcrumbExtraClasses' => 'forum-header-breadcrumb--large',
+            'forum' => $forum ?? $topic->forum,
+        ])
+    </div>
+
     <div
         class="forum-category-header
             forum-category-header--topic
@@ -35,8 +42,6 @@
         </div>
 
         <div class="forum-category-header__titles">
-            @include('forum.topics._header_breadcrumb', ['headerBreadcrumbExtraClasses' => 'forum-header-breadcrumb--large'])
-
             @if (isset($topic) === true)
                 <h1 class="forum-category-header__title">
                     <a href="{{ route("forum.topics.show", $topic->topic_id) }}" class="link--white link--no-underline">

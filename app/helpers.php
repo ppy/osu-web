@@ -462,7 +462,7 @@ function get_bool($string)
 {
     if (is_bool($string)) {
         return $string;
-    } elseif ($string === '1') {
+    } elseif ($string === '1' || $string === 'on') {
         return true;
     } elseif ($string === '0') {
         return false;
@@ -561,6 +561,9 @@ function get_param_value($input, $type)
             break;
         case 'file':
             return get_file($input);
+            break;
+        case 'string_split':
+            return get_arr(explode("\r\n", $input), 'presence');
             break;
         case 'string[]':
             return get_arr($input, 'presence');
