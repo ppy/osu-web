@@ -632,7 +632,7 @@ function get_time_or_null($timestamp)
 
 function format_duration_for_display($seconds)
 {
-    return floor($seconds / 60) . ':' . str_pad(($seconds % 60), 2, '0', STR_PAD_LEFT);
+    return floor($seconds / 60).':'.str_pad(($seconds % 60), 2, '0', STR_PAD_LEFT);
 }
 
 // Converts a standard image url to a retina one
