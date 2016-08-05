@@ -195,7 +195,7 @@ class @Tracklist extends React.Component
         thead {},
             tr className: 'tracklisting__row--header',
                 th className: 'tracklisting__col', ''
-                th className: 'tracklisting__col tracklisting__col--fill', 'title'
+                th className: 'tracklisting__col tracklisting__col--title', 'title'
                 unless @state.options.hideLength
                   th className: 'tracklisting__col', 'length'
                 unless @state.options.hideBPM
