@@ -16,12 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
-// block should be a label
 .osu-checkbox {
   @_top: osu-checkbox;
 
   text-transform: initial;
+  flex: none;
+  display: inline-flex;
 
   // the input is hidden
   &__input {
@@ -36,6 +36,10 @@
     padding: 3px;
     color: @grey-f;
     margin-right: (@spacing / 2);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .@{_top}__input:checked ~ & {
       visibility: visible;

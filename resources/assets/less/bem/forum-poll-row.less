@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,33 +16,55 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+.forum-poll-row {
+  @_top: forum-poll-row;
 
-.forum-post-content {
-    .content-font();
-    font-size: 13px;
-    word-wrap: break-word;
+  &--voted {
+    font-weight: bold;
+  }
 
-    &--edit {
-      .reset-input();
-      resize: vertical;
+  &__bar {
+    height: 100%;
+    background-color: @pink-darker;
+
+    .@{_top}--voted & {
+      background-color: @purple-darker;
+    }
+  }
+
+  &__bar-container {
+    width: 100%;
+    height: @spacing;
+    background-color: @grey-e;
+  }
+
+  &__column {
+    padding: (@spacing / 2);
+    white-space: nowrap;
+
+    &--bar {
       width: 100%;
+    }
 
-      @media @desktop {
-        min-height: 300px;
+    &--percentage {
+      color: @pink-darker;
+
+      .@{_top}--voted & {
+        color: @purple-darker;
       }
     }
+  }
 
-    &--editor {
-      font-family: @font-family-monospace;
-    }
+  &__option-text {
+    margin-left: (@spacing / 2);
+  }
 
-    &--reply {
-      .reset-input();
-      resize: none;
-      width: 100%;
-
-      @media @desktop {
-        min-height: 150px;
-      }
-    }
+  &__option-text-container {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    text-transform: none;
+  }
 }
