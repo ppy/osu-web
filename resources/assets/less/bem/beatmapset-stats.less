@@ -1,0 +1,138 @@
+/**
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+.beatmapset-stats {
+  width: 275px;
+
+  &__row {
+    background-color: rgba(0, 0, 0, 0.5);
+
+    margin-bottom: 1px;
+
+    &--basic {
+      display: flex;
+      padding-left: 24px;
+      height: 35px;
+    }
+
+    &--advanced {
+      padding: 15px 15px 0 15px;
+    }
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+  &__text {
+    font-size: 12px;
+    color: #ffffff;
+    line-height: 1;
+
+    &--label {
+      width: 90px;
+    }
+
+    &--value-advanced {
+      text-align: center;
+      width: 25px;
+    }
+
+    &--value-basic {
+      font-weight: 700;
+      color: @yellow-light;
+
+      height: 17px;
+    }
+
+    &--rating {
+      text-align: center;
+      padding-bottom: @spacing * 0.5;
+    }
+  }
+
+  &__basic {
+    display: flex;
+    width: 120px;
+    align-items: center;
+  }
+
+  &__icon {
+    width: 15px;
+    height: 15px;
+
+    background-size: 15px 15px;
+
+    margin-right: @spacing * 0.5;
+  }
+
+  &__advanced {
+    display: flex;
+    align-items: center;
+    padding-bottom: @spacing;
+  }
+
+  &__bar-advanced {
+    width: 130px;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+
+    margin-right: 5px;
+
+    &--fill {
+      .default-bar-transition;
+    }
+
+    &--cs, &--drain, &--accuracy, &--ar {
+      background-color: @grey-f;
+    }
+
+    &--stars {
+      background-color: @yellow;
+    }
+  }
+
+  &__bar-rating {
+    width: 245px;
+    height: 5px;
+    background-color: @green;
+
+    &--fill {
+      background-color: @yellow-dark;
+    }
+  }
+
+  &__rating-values {
+    display: flex;
+    padding-bottom: @spacing;
+  }
+
+  &__rating-value {
+    font-size: 12px;
+    color: #ffffff;
+
+    &--positive {
+      margin-left: auto;
+    }
+  }
+
+  &__rating-chart {
+    height: 25px;
+  }
+}
