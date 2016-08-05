@@ -28,6 +28,7 @@ use App\Models\Forum\PollOption;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
+use App\Models\Forum\TopicPoll;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use Carbon\Carbon;
@@ -243,6 +244,12 @@ class TopicsController extends Controller
                 'title',
                 'vote_change:bool',
             ]);
+
+            $poll = (new TopicPoll())->fill($pollParams);
+
+            if (!$poll->isValid()) {
+                return error_popup(implode(' ', $poll->validationErrors()->allMessages()));
+            }
         }
 
         $params = [
@@ -253,18 +260,14 @@ class TopicsController extends Controller
             'cover' => TopicCover::findForUse(presence($request->input('cover_id')), Auth::user()),
         ];
 
-        $topic = Topic::createNew($forum, $params, $pollParams ?? null);
+        $topic = Topic::createNew($forum, $params, $poll ?? null);
 
         if ($topic->topic_id !== null) {
             Event::fire(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
 
             return ujs_redirect(route('forum.topics.show', $topic));
         } else {
-            if (($pollParams ?? null) !== null && !$topic->poll()->isValid()) {
-                return error_popup(implode(' ', $topic->poll()->validationErrors()->allMessages()));
-            } else {
-                abort(422);
-            }
+            abort(422);
         }
     }
 
