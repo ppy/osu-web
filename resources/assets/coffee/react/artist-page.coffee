@@ -19,6 +19,7 @@
 propsFunction = ->
   tracks: osu.parseJson('json-tracks')
   options:
+    hideLength: false
     hideBPM: false
     hideGenre: false
     hideDL: false

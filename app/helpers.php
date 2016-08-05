@@ -630,6 +630,11 @@ function get_time_or_null($timestamp)
     }
 }
 
+function format_duration_for_display($seconds)
+{
+    return floor($seconds / 60) . ':' . str_pad(($seconds % 60), 2, '0', STR_PAD_LEFT);
+}
+
 function priv_check($ability, $args = null)
 {
     return priv_check_user(Auth::user(), $ability, $args);

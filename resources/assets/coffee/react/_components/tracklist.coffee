@@ -91,6 +91,8 @@ class @Track extends React.Component
       td className:'tracklisting__title',
         "#{@props.track.title} "
         span className: 'tracklisting__version', @props.track.version
+      unless @props.options.hideLength
+        td className: 'tracklisting__length', @props.track.length
       unless @props.options.hideBPM
         td className: 'tracklisting__bpm', "#{@props.track.bpm}bpm"
       unless @props.options.hideGenre
@@ -118,6 +120,7 @@ class @Tracklist extends React.Component
       voteCount: _.filter(@props.tracks, _.iteratee({selected: true})).length
       contest: @props.contest
       options:
+        hideLength: @props.options.hideLength ? false
         hideBPM: @props.options.hideBPM ? false
         hideGenre: @props.options.hideGenre ? false
         hideDL: @props.options.hideDL ? false
@@ -193,6 +196,8 @@ class @Tracklist extends React.Component
             tr className: 'tracklisting__row--header',
                 th className: 'tracklisting__col', ''
                 th className: 'tracklisting__col tracklisting__col--fill', 'title'
+                unless @state.options.hideLength
+                  th className: 'tracklisting__col', 'length'
                 unless @state.options.hideBPM
                   th className: 'tracklisting__col', 'bpm'
                 unless @state.options.hideGenre
