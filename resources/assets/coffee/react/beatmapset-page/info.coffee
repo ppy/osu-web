@@ -57,25 +57,27 @@ class BeatmapsetPage.Info extends React.Component
               __html: @props.beatmapset.description.data.description
 
         div {},
-          div className: 'beatmapset-info__text-box beatmapset-info__text-box--source',
-            div className: 'beatmapset-info__text beatmapset-info__text--header', osu.trans 'beatmaps.beatmapset.show.info.source'
-            div
-              className: 'beatmapset-info__text beatmapset-info__text--source'
-              title: @props.beatmapset.source
-              @props.beatmapset.source
+          if @props.beatmapset.source
+            div className: 'beatmapset-info__text-box beatmapset-info__text-box--source',
+              div className: 'beatmapset-info__text beatmapset-info__text--header', osu.trans 'beatmaps.beatmapset.show.info.source'
+              div
+                className: 'beatmapset-info__text beatmapset-info__text--source'
+                title: @props.beatmapset.source
+                @props.beatmapset.source
 
-          div className: 'beatmapset-info__text-box beatmapset-info__text-box--tags',
-            div className: 'beatmapset-info__text beatmapset-info__text--header', osu.trans 'beatmaps.beatmapset.show.info.tags'
-            div
-              className: 'beatmapset-info__text'
-              @props.beatmapset.tags.split(' ').map (tag) =>
-                return if tag.length == 0
+          if @props.beatmapset.tags
+            div className: 'beatmapset-info__text-box beatmapset-info__text-box--tags',
+              div className: 'beatmapset-info__text beatmapset-info__text--header', osu.trans 'beatmaps.beatmapset.show.info.tags'
+              div
+                className: 'beatmapset-info__text'
+                @props.beatmapset.tags.split(' ').map (tag) =>
+                  return if tag.length == 0
 
-                a
-                  key: tag
-                  className: 'beatmapset-info__text beatmapset-info__text--tag'
-                  href: laroute.route 'beatmapsets.index', q: tag
-                  tag
+                  a
+                    key: tag
+                    className: 'beatmapset-info__text beatmapset-info__text--tag'
+                    href: laroute.route 'beatmapsets.index', q: tag
+                    tag
 
       div className: 'beatmapset-info__success-rate beatmapset-success-rate',
         div className: 'beatmapset-success-rate__label beatmapset-success-rate__label--main', osu.trans 'beatmaps.beatmapset.show.info.success-rate'
