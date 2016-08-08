@@ -1,5 +1,5 @@
 ###
-# Copyright 2016 ppy Pty. Ltd.
+# Copyright 2015-2016 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -15,25 +15,23 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, img} = React.DOM
 
-class @Mods extends React.Component
-  render: ->
-    modsClassName = 'mods'
-    imageClassName = 'mods__mod-image'
+class @Hits
+  @generate: ({score, playmode}) ->
+    elements = ['count300', 'count100', 'count50']
+    if playmode == 'mania'
+      elements = ['countgeki', 'count300',  'countkatu', 'count100', 'count50']
 
-    classModifiers = @props.classModifiers || []
+    header = ''
+    values = ''
 
-    for mod in classModifiers
-      modsClassName += " mods--#{mod}"
-      imageClassName += " mods__mod-image--#{mod}"
+    for elem, i in elements
+      header += osu.trans "beatmaps.beatmapset.show.scoreboard.stats.#{elem}"
+      values += "#{score[elem]}"
 
-    div className: modsClassName,
-      for mod in @props.mods
-        div
-          key: mod.shortName
-          className: 'mods__mod'
-          img _.extend
-            className: imageClassName
-            title: mod.name
-            osu.src2x("/images/badges/mods/#{_.kebabCase(mod.name)}.png")
+      if i < elements.length - 1
+        header += '/'
+        values += '/'
+
+    header: header
+    values: values

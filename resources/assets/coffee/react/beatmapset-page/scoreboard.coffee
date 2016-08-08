@@ -35,19 +35,30 @@ class BeatmapsetPage.Scoreboard extends React.Component
     $.unsubscribe '.beatmapsetPageScoreboard'
 
   render: ->
+    userScoreFound = false
+
     div className: 'osu-layout__row osu-layout__row--page-beatmapset beatmapset-scoreboard',
       div className: 'page-tabs',
         for type in ['global', 'country', 'friend']
           el BeatmapsetPage.ScoreboardTab,
             key: type
             type: type
-            active: @props.currentType == type
+            active: @props.type == type
 
       div className: 'beatmapset-scoreboard__main',
         if @props.scores.length > 0
+          div {},
+            for score, i in @props.scores
+              if score.user.data.id == currentUser.id
+                userScoreFound = true
 
-        else if currentUser.isSupporter || @props.currentType == 'global'
-          translationKey = if @state.loading then 'loading' else @props.currentType
+              @scoreItem score, i + 1
+
+            if !userScoreFound && @props.userScore?
+              @scoreItem @props.userScore, @props.userScorePosition
+
+        else if currentUser.isSupporter || @props.type == 'global'
+          translationKey = if @state.loading then 'loading' else @props.type
 
           p
             className: "beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores beatmapset-scoreboard__notice--#{'guest' if !currentUser.id?}"
@@ -61,3 +72,13 @@ class BeatmapsetPage.Scoreboard extends React.Component
               className: 'beatmapset-scoreboard__supporter-text beatmapset-scoreboard__supporter-text--small'
               dangerouslySetInnerHTML:
                 __html: osu.trans 'beatmaps.beatmapset.show.scoreboard.supporter-link', link: laroute.route 'support-the-game'
+
+  scoreItem: (score, rank) ->
+    componentName = if rank == 1 || currentUser.id == score.user.data.id then 'ScoreBig' else 'Score'
+
+    el BeatmapsetPage[componentName],
+      score: score
+      position: rank
+      key: rank
+      playmode: @props.playmode
+      countries: @props.countries

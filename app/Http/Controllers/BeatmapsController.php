@@ -31,9 +31,10 @@ class BeatmapsController extends Controller
 
     public function show($id)
     {
-        $set = Beatmap::findOrFail($id)->beatmapset;
+        $beatmap = Beatmap::findOrFail($id);
+        $set = $beatmap->beatmapset;
 
-        return ujs_redirect(route('beatmapsets.show', ['id' => $set->beatmapset_id]).'#'.$id);
+        return ujs_redirect(route('beatmapsets.show', ['id' => $set->beatmapset_id]).'#'.$beatmap->mode.'/'.$id);
     }
 
     public function scores($id)
@@ -75,6 +76,24 @@ class BeatmapsController extends Controller
                 break;
         }
 
-        return fractal_collection_array($scores->get(), new ScoreTransformer, 'user');
+        $scores = fractal_collection_array($scores->get(), new ScoreTransformer, 'user');
+        $userScore = null;
+        $userScorePosition = -1;
+
+        if ($user) {
+            $score = $beatmap->scoresBest()->where('user_id', $user->user_id)->with('user')->first();
+
+            if ($score) {
+                $userScore = fractal_item_array($score, new ScoreTransformer, 'user');
+                $userScorePosition = $beatmap->scoresBest()->where('score', '>', $score->score)
+                    ->orderBy('score', 'desc')->count() + 1;
+            }
+        }
+
+        return [
+            'scoresList' => $scores,
+            'userScore' => $userScore,
+            'userScorePosition' => $userScorePosition
+        ];
     }
 }

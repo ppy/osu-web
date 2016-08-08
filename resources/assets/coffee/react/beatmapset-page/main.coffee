@@ -58,6 +58,8 @@ class BeatmapsetPage.Main extends React.Component
       isPreviewPlaying: false
       currentScoreboardType: 'global'
       scores: []
+      userScore: null
+      userScorePosition: -1
 
   setHash: =>
     osu.setHash BeatmapsetPageHash.generate
@@ -70,6 +72,7 @@ class BeatmapsetPage.Main extends React.Component
     @setState
       currentScoreboardType: scoreboardType
       scores: []
+      userScore: null
 
     return if scoreboardType != 'global' && !currentUser.isSupporter
 
@@ -77,7 +80,10 @@ class BeatmapsetPage.Main extends React.Component
     cacheKey = "#{@state.currentBeatmapId}-#{@state.currentPlaymode}-#{scoreboardType}"
 
     loadScore = =>
-      @setState scores: @scoresCache[cacheKey]
+      @setState
+        scores: @scoresCache[cacheKey].scoresList.data
+        userScore: @scoresCache[cacheKey].userScore.data if @scoresCache[cacheKey].userScore?
+        userScorePosition: @scoresCache[cacheKey].userScorePosition
 
     if !forceReload && @scoresCache[cacheKey]?
       loadScore()
@@ -94,7 +100,7 @@ class BeatmapsetPage.Main extends React.Component
         mode: @state.currentPlaymode
 
     .done (data) =>
-      @scoresCache[cacheKey] = data.data
+      @scoresCache[cacheKey] = data
       loadScore()
 
     .fail osu.ajaxError
@@ -174,5 +180,9 @@ class BeatmapsetPage.Main extends React.Component
 
       div className: 'osu-layout__section osu-layout__section--extra',
         el BeatmapsetPage.Scoreboard,
-          currentType: @state.currentScoreboardType
+          type: @state.currentScoreboardType
+          playmode: currentBeatmap.mode
           scores: @state.scores
+          userScore: @state.userScore
+          userScorePosition: @state.userScorePosition
+          countries: @props.countries

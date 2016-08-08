@@ -162,10 +162,13 @@ return [
                 'global' => 'Global Ranking',
                 'country' => 'Country Ranking',
                 'friend' => 'Friend Ranking',
-                'first' => [
-                    'accuracy' => 'Accuracy',
+                'achieved' => 'achieved :when',
+                'stats' => [
                     'score' => 'Score',
+                    'accuracy' => 'Accuracy',
+                    'countgeki' => 'MAX',
                     'count300' => '300',
+                    'countkatu' => '200',
                     'count100' => '100',
                     'count50' => '50',
                 ],

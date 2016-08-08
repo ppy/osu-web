@@ -46,6 +46,8 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'count50' => $score->count50,
             'count100' => $score->count100,
             'count300' => $score->count300,
+            'countgeki' => $score->countgeki,
+            'countkatu' => $score->countkatu,
         ];
     }
 
