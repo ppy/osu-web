@@ -19,6 +19,14 @@
 el = React.createElement
 
 class BeatmapsetPage.Header extends React.Component
+  togglePreview: (e) =>
+    $.publish 'beatmapset:preview:toggle', !@props.isPreviewPlaying
+
+  preventPropagation: (e) =>
+    # stops the audio from playing before we navigate away
+    e.stopPropagation()
+    return true
+
   render: ->
     dateFormat = 'MMM D, YYYY'
 
@@ -36,13 +44,16 @@ class BeatmapsetPage.Header extends React.Component
 
       div
         className: 'beatmapset-header'
+        onClick: @togglePreview
         style:
           backgroundImage: "url(#{@props.beatmapset.covers.cover})"
 
-        div className: 'beatmapset-header__overlay'
+        div className: 'beatmapset-header__overlay',
+          div className: 'beatmapset-header__preview-button',
+            el Icon, name: if @props.isPreviewPlaying then 'pause' else 'play'
 
         div className: 'beatmapset-header__details-box',
-          div className: 'beatmapset-header__beatmap-picker-box',
+          div className: 'beatmapset-header__beatmap-picker-box', onClick: @preventPropagation,
             el BeatmapsetPage.BeatmapPicker,
               beatmaps: @props.beatmaps
               beatmapList: @props.beatmapList
@@ -55,11 +66,11 @@ class BeatmapsetPage.Header extends React.Component
             div {},
               span className: 'beatmapset-header__value',
                 span className: 'beatmapset-header__value-icon', el Icon, name: 'play-circle'
-                span className: 'beatmapset-header__value-name', @props.playcount.toLocaleString()
+                span className: 'beatmapset-header__value-name', @props.beatmapset.play_count.toLocaleString()
 
               span className: 'beatmapset-header__value',
                 span className: 'beatmapset-header__value-icon', el Icon, name: 'heart'
-                span className: 'beatmapset-header__value-name', @props.favcount.toLocaleString()
+                span className: 'beatmapset-header__value-name', @props.beatmapset.favourite_count.toLocaleString()
 
             span
               className: 'beatmapset-header__star-difficulty'
@@ -70,10 +81,12 @@ class BeatmapsetPage.Header extends React.Component
           div className: 'beatmapset-header__details-text beatmapset-header__details-text--title',
             a
               href: laroute.route 'beatmapsets.index', q: @props.beatmapset.title
+              onClick: @preventPropagation
               @props.beatmapset.title
           div className: 'beatmapset-header__details-text beatmapset-header__details-text--artist',
             a
               href: laroute.route 'beatmapsets.index', q: @props.beatmapset.artist
+              onClick: @preventPropagation
               @props.beatmapset.artist
 
           div className: 'beatmapset-header__avatar-box',
@@ -124,6 +137,7 @@ class BeatmapsetPage.Header extends React.Component
                 key: elem
                 className: 'beatmapset-header__button btn-osu-big'
                 href: link
+                onClick: @preventPropagation
                 div className: 'btn-osu-big__content',
                   div className: 'btn-osu-big__left',
                     span className: 'beatmapset-header__button-text', osu.trans "beatmaps.beatmapset.show.details.download.#{firstRow}"

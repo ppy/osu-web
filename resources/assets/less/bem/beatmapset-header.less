@@ -28,7 +28,26 @@
   height: auto;
   min-height: @header-height;
 
+  cursor: pointer;
+
+  &:hover {
+    .beatmapset-header__preview-button {
+      opacity: 1;
+    }
+  }
+
+  &__preview-button {
+    color: @grey-f;
+    font-size: 80px;
+    opacity: 0.5;
+    cursor: pointer;
+  }
+
   &__overlay {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
     position: absolute;
     left: 0;
     top: 0;

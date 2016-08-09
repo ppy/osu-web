@@ -171,8 +171,7 @@ class BeatmapsetPage.Main extends React.Component
         beatmapList: @state.beatmapList
         currentBeatmap: currentBeatmap
         hoveredBeatmap: @state.beatmaps[@state.currentPlaymode][@state.hoveredBeatmapId]
-        playcount: @props.beatmapset.play_count
-        favcount: @props.beatmapset.favourite_count
+        isPreviewPlaying: @state.isPreviewPlaying
 
       el BeatmapsetPage.Info,
         beatmapset: @props.beatmapset
