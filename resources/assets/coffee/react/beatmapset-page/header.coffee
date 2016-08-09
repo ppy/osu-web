@@ -104,32 +104,32 @@ class BeatmapsetPage.Header extends React.Component
                     moment(@props.beatmapset.ranked_date).format dateFormat
 
           div className: 'beatmapset-header__buttons-box',
-            if @props.beatmapset.video
+            for elem in ['video', 'no-video', 'direct']
+              firstRow = '_'
+              secondRow = elem
+              icon = 'download'
+
+              switch elem
+                when 'video'
+                  continue if !@props.beatmapset.video
+                  link = Url.beatmapDownload @props.beatmapset.beatmapset_id, true
+                when 'no-video'
+                  link = Url.beatmapDownload @props.beatmapset.beatmapset_id, false
+                when 'direct'
+                  firstRow = elem
+                  icon = 'angle-double-down'
+                  link = if currentUser.isSupporter then Url.beatmapDownloadDirect @props.beatmapset.beatmapset_id else laroute.route 'support-the-game'
+
               a
+                key: elem
                 className: 'beatmapset-header__button btn-osu-big'
-                href: Url.beatmapDownload @props.beatmapset.beatmapset_id, true
+                href: link
                 div className: 'btn-osu-big__content',
                   div className: 'btn-osu-big__left',
-                    span className: 'beatmapset-header__button-text', osu.trans 'beatmaps.beatmapset.show.details.download._'
-                    span className: 'beatmapset-header__button-text beatmapset-header__button-text--small', osu.trans 'beatmaps.beatmapset.show.details.download.video'
-                  el Icon, name: 'download'
-
-            a
-              className: 'beatmapset-header__button btn-osu-big'
-              href: Url.beatmapDownload @props.beatmapset.beatmapset_id, false
-              div className: 'btn-osu-big__content',
-                div className: 'btn-osu-big__left',
-                  span className: 'beatmapset-header__button-text', osu.trans 'beatmaps.beatmapset.show.details.download._'
-                  span className: 'beatmapset-header__button-text beatmapset-header__button-text--small', osu.trans 'beatmaps.beatmapset.show.details.download.no-video'
-                el Icon, name: 'download'
-
-            a
-              className: 'beatmapset-header__button btn-osu-big'
-              href: if currentUser.isSupporter then Url.beatmapDownloadDirect @props.beatmapset.beatmapset_id else laroute.route 'support-the-game'
-              div className: 'btn-osu-big__content',
-                div className: 'btn-osu-big__left',
-                  span className: 'beatmapset-header__button-text', osu.trans 'beatmaps.beatmapset.show.details.download.direct'
-                el Icon, name: 'angle-double-down'
+                    span className: 'beatmapset-header__button-text', osu.trans "beatmaps.beatmapset.show.details.download.#{firstRow}"
+                    if elem != 'direct'
+                      span className: 'beatmapset-header__button-text beatmapset-header__button-text--small', osu.trans "beatmaps.beatmapset.show.details.download.#{secondRow}"
+                  el Icon, name: icon
 
         el BeatmapsetPage.Stats,
           beatmapset: @props.beatmapset
