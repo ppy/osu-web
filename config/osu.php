@@ -71,7 +71,7 @@ return [
             'rules' => '/wiki/Osu!:Rules',
         ],
         'ranking' => [
-            'overall' => '/p/pp',  
+            'overall' => '/p/pp',
             'charts' => '/p/chart',
             'country' => '/p/countryranking',
             'mapper' => '/p/kudosu',
@@ -81,7 +81,7 @@ return [
             'download' => '/p/download',
         ],
         'help' => [
-            'wiki' => '/wiki/Main_Page',    
+            'wiki' => '/wiki/Main_Page',
             'faq' => '/wiki/FAQ',
             'support' => 'http://help.ppy.sh/',
         ],
