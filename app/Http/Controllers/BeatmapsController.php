@@ -93,7 +93,7 @@ class BeatmapsController extends Controller
         return [
             'scoresList' => $scores,
             'userScore' => $userScore,
-            'userScorePosition' => $userScorePosition
+            'userScorePosition' => $userScorePosition,
         ];
     }
 }
