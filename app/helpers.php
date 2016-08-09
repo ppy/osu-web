@@ -292,10 +292,10 @@ function footer_links()
     ];
 
     $links['legal'] = [
-        'tos' => config('osu.urls.legal.tos'),
-        'copyright' => config('osu.urls.legal.dmca'),
-        'serverStatus' => config('osu.urls.legal.server'),
-        'osuStatus' => config('osu.urls.legal.osustatus'),
+        'tos' => config('osu.urls.base').config('osu.urls.legal.tos'),
+        'copyright' => config('osu.urls.base').config('osu.urls.legal.dmca'),
+        'serverStatus' => config('osu.urls.status.server'),
+        'osuStatus' => config('osu.urls.status.osustatus'),
     ];
 
     return $links;
