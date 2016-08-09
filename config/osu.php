@@ -51,6 +51,7 @@ return [
     'twitch_client_id' => env('TWITCH_CLIENT_ID'),
     'urls' => [
         'base' => 'https://osu.ppy.sh',
+        'new' => 'https://new.ppy.sh',
         'legal' => [
             'dmca' => '/p/copyright',
             'tos' => '/p/terms',
