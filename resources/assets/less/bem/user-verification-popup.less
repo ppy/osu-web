@@ -1,0 +1,49 @@
+/**
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+.user-verification-popup {
+  &__box {
+    @media @desktop {
+      width: 50%;
+    }
+  }
+
+  &__modal {
+    .default-box-shadow();
+    .at2x-simple('/images/backgrounds/user-verification.jpg');
+    background-size: cover;
+    background-position: center 0;
+    position: absolute;
+    width: 100%;
+
+    padding: 0 (@spacing * 2);
+    z-index: @z-index--nav-float;
+  }
+
+  &__overlay {
+    .full-size();
+    position: fixed;
+    background-color: fade(@grey-0, 75%);
+    z-index: @z-index--nav-popup;
+
+    &--2 {
+      background-color: transparent;
+      z-index: @z-index--nav-float;
+    }
+  }
+}

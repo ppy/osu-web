@@ -78,7 +78,8 @@ class @UserLogin
 
 
   showOnError: (e, xhr) =>
-    return unless xhr.status == 401
+    return unless xhr.status == 401 && xhr.responseJSON?.authentication == 'basic'
+
     @show e.target
 
 
