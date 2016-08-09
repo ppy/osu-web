@@ -223,15 +223,15 @@ function nav_links()
 
     if (config('app.debug')) {
         $links['home'] = [
-            'getNews' => route('home'),
-            'getChangelog' => route('changelog'),
-            'getDownload' => route('download'),
+            'getNews' => config('osu.urls.base'),
+            'getChangelog' => config('osu.urls.base').config('osu.urls.home.changelog'),
+            'getDownload' => config('osu.urls.base').config('osu.urls.home.download'),
         ];
 
         $links['help'] = [
-            'getWiki' => route('wiki'),
-            'getFaq' => route('faq'),
-            'getSupport' => route('support'),
+            'getWiki' => config('osu.urls.base').config('osu.urls.help.wiki'),
+            'getFaq' => config('osu.urls.base').config('osu.urls.help.faq'),
+            'getSupport' => config('osu.urls.base').config('osu.urls.help.support'),
         ];
 
         $links['beatmaps'] = [
@@ -241,10 +241,10 @@ function nav_links()
         ];
 
         $links['ranking'] = [
-            'getOverall' => route('ranking-overall'),
-            'getCharts' => route('ranking-charts'),
-            'getCountry' => route('ranking-country'),
-            'getMapper' => route('ranking-mapper'),
+            'getOverall' => config('osu.urls.base').config('osu.urls.ranking.overall'),
+            'getCharts' => config('osu.urls.base').config('osu.urls.ranking.charts'),
+            'getCountry' => config('osu.urls.base').config('osu.urls.ranking.country'),
+            'getMapper' => config('osu.urls.base').config('osu.urls.ranking.mapper'),
         ];
     } else {
         $links['beatmaps'] = [
