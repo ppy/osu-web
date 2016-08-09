@@ -60,7 +60,7 @@ class Topic extends Model
         'topic_approved' => 'boolean',
     ];
 
-    public static function createNew($forum, $params, $pollParams = null)
+    public static function createNew($forum, $params, $poll = null)
     {
         $topic = new static([
             'forum_id' => $forum->forum_id,
@@ -71,12 +71,12 @@ class Topic extends Model
             'topic_first_poster_colour' => $params['user']->user_colour,
         ]);
 
-        DB::transaction(function () use ($forum, $topic, $params, $pollParams) {
+        DB::transaction(function () use ($forum, $topic, $params, $poll) {
             $topic->save();
             $topic->addPost($params['user'], $params['body'], $params['notifyReplies']);
 
-            if ($pollParams !== null) {
-                $topic->poll()->fill($pollParams)->save();
+            if ($poll !== null) {
+                $topic->poll($poll)->save();
             }
 
             if (($params['cover'] ?? null) !== null) {
@@ -554,10 +554,13 @@ class Topic extends Model
         return $this->forum->isFeatureForum();
     }
 
-    public function poll()
+    public function poll($poll = null)
     {
         if ($this->_poll === null) {
-            $this->_poll = new TopicPoll($this);
+            if ($poll === null) {
+                $poll = new TopicPoll();
+            }
+            $this->_poll = $poll->setTopic($this);
         }
 
         return $this->_poll;

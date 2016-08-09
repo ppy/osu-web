@@ -37,6 +37,8 @@ $(document).on 'submit', 'form', LoadingOverlay.show
 @nav ?= new Nav
 @userLogin ?= new UserLogin(@nav)
 @throttledWindowEvents ?= new ThrottledWindowEvents
+@checkboxValidation ?= new CheckboxValidation
+@formToggle ?= new FormToggle
 
 
 $(document).on 'ready turbolinks:load', =>

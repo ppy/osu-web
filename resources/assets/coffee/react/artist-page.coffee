@@ -19,10 +19,11 @@
 propsFunction = ->
   tracks: osu.parseJson('json-tracks')
   options:
-    hideGenre: false
+    hideLength: false
     hideBPM: false
+    hideGenre: false
     hideDL: false
     showVote: false
     smaller: false
 
-reactTurbolinks.register 'tracklist', Tracklist, propsFunction
+reactTurbolinks.register 'artistTrackplayer', Trackplayer, propsFunction

@@ -24,22 +24,57 @@
 ])
 
 @section("content")
+    <style type="text/css">
+        @if($images['header_url'] != '')
+        .osu-page-header-v2--artist {
+          background-image: url('{{$images['header_url']}}');
+        }
+        @endif
+        @if($images['cover_url'] != '')
+        .artist__portrait {
+            background-image: url('{{$images['cover_url']}}');
+        }
+        @endif
+        @if($artist->label !== null)
+        .artist__label-overlay {
+            background-image: url('{{$artist->label->icon_url}}');
+        }
+        @endif
+        @media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
+            @if($images['header_url'] != '')
+            .osu-page-header-v2--artist {
+                background-image: url('{{retinaify($images['header_url'])}}');
+            }
+            @endif
+            @if($images['cover_url'] != '')
+            .artist__portrait {
+                background-image: url('{{retinaify($images['cover_url'])}}');
+            }
+            @endif
+            @if($artist->label !== null)
+            .artist__label-overlay {
+                background-image: url('{{retinaify($artist->label->icon_url)}}');
+            }
+            @endif
+        }
+    </style>
     <div class="osu-layout__row">
-        <div class="osu-page-header osu-page-header--artist" style="background-image: url('{{$images['header_url']}}');">
-            <div class="osu-page-header--artist__subtitle">Artist &raquo;</div>
-            <div class="osu-page-header--artist__title">{{$artist->name}}</div>
+        <div class="osu-page-header-v2 osu-page-header-v2--artist">
+            <div class="osu-page-header-v2__overlay"></div>
+            <div class="osu-page-header-v2__subtitle osu-page-header-v2__subtitle--artist">Artist &raquo;</div>
+            <div class="osu-page-header-v2__title">{{$artist->name}}</div>
         </div>
     </div>
     <div class="osu-layout__row osu-layout__row--page-artist">
         <div class="page-contents page-contents--artist">
             <div class="page-contents__content--artist-left">
                 <div class="artist__description">{!! $artist->description !!}</div>
-                <div class="js-react--tracklist"></div>
+                <div class="js-react--artistTrackplayer"></div>
             </div>
             <div class="page-contents__content--sidebar">
-                <div class="artist__portrait" style="background-image: url('{{$images['cover_url']}}');">
+                <div class="artist__portrait">
                     @if($artist->label !== null)
-                        <a class="artist__label-overlay" style="background-image: url('{{$artist->label->icon_url}}');" href="{{$artist->label->website}}"></a>
+                        <a class="artist__label-overlay" href="{{$artist->label->website}}"></a>
                     @endif
                 </div>
                 <div class="artist__links-area">
@@ -62,7 +97,7 @@
   @parent
 
   <script id="json-tracks" type="application/json">
-    {!! json_encode($artist->tracks) !!}
+    {!! json_encode($tracks) !!}
   </script>
 
   <script src="{{ elixir("js/react/artist-page.js") }}" data-turbolinks-track></script>

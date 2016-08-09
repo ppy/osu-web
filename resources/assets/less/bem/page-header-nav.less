@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,33 +16,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+.page-header-nav {
+  background-color: @grey-3;
 
-.forum-post-content {
-    .content-font();
-    font-size: 13px;
-    word-wrap: break-word;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 
-    &--edit {
-      .reset-input();
-      resize: vertical;
-      width: 100%;
-
-      @media @desktop {
-        min-height: 300px;
-      }
-    }
-
-    &--editor {
-      font-family: @font-family-monospace;
-    }
-
-    &--reply {
-      .reset-input();
-      resize: none;
-      width: 100%;
-
-      @media @desktop {
-        min-height: 150px;
-      }
-    }
+  min-height: @height--page-header-nav;
+  padding: @spacing;
 }

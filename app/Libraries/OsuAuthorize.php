@@ -392,15 +392,15 @@ class OsuAuthorize
     {
         $prefix = 'forum.topic.vote.';
 
+        if ($topic->pollEnd() !== null && $topic->pollEnd()->isPast()) {
+            return $prefix.'over';
+        }
+
         $this->ensureLoggedIn($user, $prefix.'user.');
         $this->ensureCleanRecord($user, $prefix.'user.');
 
-        if (!$this->doCheckUser($user, 'ForumView', $post->topic->forum)->can()) {
+        if (!$this->doCheckUser($user, 'ForumView', $topic->forum)->can()) {
             return $prefix.'no_forum_access';
-        }
-
-        if ($topic->pollEnd() !== null && $topic->pollEnd()->isPast()) {
-            return $prefix.'over';
         }
 
         if (!$topic->poll_vote_change) {

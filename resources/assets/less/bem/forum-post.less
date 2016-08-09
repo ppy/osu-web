@@ -19,16 +19,17 @@
 .forum-post {
   @_reply-xs-top-margin: 4px;
 
+  .default-box-shadow();
+  background-color: @grey-f;
+
   margin-bottom: (@spacing / 2);
   padding: 0;
 
-  // To make default-border-radius and overflow:hidden work in webkit.
-  // Kind of weird because the animation happens on another relatively unrelated div
-  // reference: https://code.google.com/p/chromium/issues/detail?id=157218
-  .own-layer();
+  display: flex;
+  flex-direction: column;
 
-  &--create {
-    margin-top: (@spacing / 2);
+  @media @desktop {
+    flex-direction: row;
   }
 
   &--reply {
@@ -37,23 +38,6 @@
     box-shadow: none;
     width: 100%;
     margin-bottom: 0;
-  }
-
-  &--special {
-    @media @desktop {
-      margin-left: (-@spacing / 2);
-    }
-  }
-
-  &--warning {
-    .default-border-radius();
-    .default-box-shadow();
-    background-color: @grey-5;
-    color: @grey-f;
-    display: flex;
-    align-items: center;
-    font-size: @font-size--forum-post-warning-text;
-    overflow: hidden;
   }
 
   &__avatar-container {
@@ -166,40 +150,9 @@
     min-width: 0;
 
     &--reply {
-      .default-box-shadow;
-      overflow: hidden;
+      .default-box-shadow();
       background-color: @grey-f;
       flex: 1;
-
-      @media @desktop {
-        .default-border-radius;
-      }
-    }
-  }
-
-  &__card {
-    background-color: @grey-f;
-    .default-box-shadow;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-
-    @media @desktop {
-      flex-direction: row;
-      .default-border-radius;
-    }
-
-    &--large {
-      @media @desktop {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-      }
-    }
-
-    &--large-special {
-      @media @desktop {
-        border-top-right-radius: 0;
-      }
     }
   }
 
@@ -218,6 +171,10 @@
       justify-content: space-between;
       padding-top: @spacing;
       padding-bottom: @spacing;
+    }
+
+    &--edit-bar-create {
+      background-color: @grey-4;
     }
 
     &--edit-body {
@@ -261,6 +218,11 @@
         padding-top: (@spacing * 4);
         padding-bottom: (@spacing * 4);
       }
+    }
+
+    &--poll-create {
+      background-color: @grey-5;
+      color: @grey-f;
     }
 
     &--signature {
@@ -357,6 +319,10 @@
     }
   }
 
+  &__overlay {
+    .full-size();
+  }
+
   &__reply-container {
     background-color: fade(@grey-3, 90%);
     width: 100%;
@@ -375,7 +341,17 @@
   }
 
   &__stripe {
-    width: (@spacing / 2);
+    position: absolute;
+    height: 100%;
+    right: 100%;
+    top: 0;
+    width: @spacing;
+
+    display: none;
+
+    @media @desktop {
+      display: block;
+    }
   }
 
   &__username {
@@ -393,16 +369,5 @@
       color: @grey-f;
       text-decoration: none;
     }
-  }
-
-  &__warning-icon {
-    align-self: stretch;
-    padding: (@spacing * 3 / 2);
-    background-color: @yellow-darker;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: @font-size--forum-post-warning-icon;
-    margin-right: @spacing;
   }
 }

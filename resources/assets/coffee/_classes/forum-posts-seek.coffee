@@ -78,5 +78,5 @@ class @ForumPostsSeek
     postPosition = Math.min(postPosition, totalPosts)
     @postPosition = Math.max(postPosition, 1)
 
-    @tooltip[0].style.left = "#{x}px"
+    @tooltip[0].style.transform = "translateX(#{x}px)"
     @tooltipNumber[0].textContent = @postPosition
