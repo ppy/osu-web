@@ -36,11 +36,13 @@
                 <div class="osu-nav__title">
                     {{ trans("layout.menu.{$current_section}._") }}
 
-                    <span class="osu-nav__title-separator">
-                        <i class="fa fa-angle-right"></i>
-                    </span>
+                    @if(!isset($hideAction))
+                        <span class="osu-nav__title-separator">
+                            <i class="fa fa-angle-right"></i>
+                        </span>
 
-                    {{ trans("layout.menu.{$current_section}.{$current_action}") }}
+                        {{ trans("layout.menu.{$current_section}.{$current_action}") }}
+                    @endif
                 </div>
 
                 <div class="osu-nav__highlight-bar">
