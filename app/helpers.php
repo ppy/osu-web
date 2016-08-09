@@ -223,7 +223,7 @@ function nav_links()
 
     if (config('app.debug')) {
         $links['home'] = [
-            'getNews' => config('osu.urls.base'),
+            'getNews' => config('osu.urls.new'),
             'getChangelog' => config('osu.urls.base').config('osu.urls.home.changelog'),
             'getDownload' => config('osu.urls.base').config('osu.urls.home.download'),
         ];
