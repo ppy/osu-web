@@ -33,7 +33,7 @@ return [
         'subject' => 'osu! account verification',
     ],
 
-    'error' => [
+    'errors' => [
         'expired' => 'Verification code expired, new verification email sent.',
         'incorrect_key' => 'Incorrect verification code.',
         'retries_exceeded' => 'Incorrect verification code. Retry limit exceeded, new verification email sent.',

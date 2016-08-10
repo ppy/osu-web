@@ -131,15 +131,15 @@ class VerifyUser
         if (!present($expireDate) || !present($tries) || !present($key)) {
             $this->issue($request);
 
-            return error_popup('user_verification.errors.expired');
+            return error_popup(trans('user_verification.errors.expired'));
         } elseif ($expireDate->isPast()) {
             $this->issue($request);
 
-            return error_popup('user_verification.errors.expired');
+            return error_popup(trans('user_verification.errors.expired'));
         } elseif ($tries > config('osu.user.verification_key_tries_limit')) {
             $this->issue($request);
 
-            return error_popup('user_verification.errors.retries_exceeded');
+            return error_popup(trans('user_verification.errors.retries_exceeded'));
         } elseif (str_replace(' ', '', $request->input('verification_key')) === $key) {
             $request->session()->forget('verification_expire_date');
             $request->session()->forget('verification_tries');
@@ -150,7 +150,7 @@ class VerifyUser
         } else {
             $request->session()->put('verification_tries', $tries + 1);
 
-            return error_popup('user_verification.errors.incorrect_key');
+            return error_popup(trans('user_verification.errors.incorrect_key'));
         }
     }
 }
