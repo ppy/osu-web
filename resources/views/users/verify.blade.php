@@ -27,6 +27,8 @@
 @endsection
 
 @section('script')
+    @parent
+
     <script>
         window.showVerificationModal = true;
     </script>

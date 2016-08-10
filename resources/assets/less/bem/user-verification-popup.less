@@ -17,6 +17,12 @@
  *
  */
 .user-verification-popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
   &__box {
     @media @desktop {
       width: 50%;
@@ -28,22 +34,8 @@
     .at2x-simple('/images/backgrounds/user-verification.jpg');
     background-size: cover;
     background-position: center 0;
-    position: absolute;
     width: 100%;
 
     padding: 0 (@spacing * 2);
-    z-index: @z-index--nav-float;
-  }
-
-  &__overlay {
-    .full-size();
-    position: fixed;
-    background-color: fade(@grey-0, 75%);
-    z-index: @z-index--nav-popup;
-
-    &--2 {
-      background-color: transparent;
-      z-index: @z-index--nav-float;
-    }
   }
 }

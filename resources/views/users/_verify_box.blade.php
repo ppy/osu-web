@@ -29,7 +29,7 @@
             data-verification-key-length="{{ config('osu.user.verification_key_length_hex') }}"
             class="user-verification__key js-user-verification--input"
         />
-        <div class="user-verification__errors js-user-verification--error"></div>
+        <div class="user-verification__errors js-user-verification--error" data-visibility="hidden"></div>
     </div>
 
     <p class="user-verification__row user-verification__row--info">

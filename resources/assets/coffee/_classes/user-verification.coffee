@@ -24,6 +24,9 @@ class @UserVerification
     $(document).on 'ready turbolinks:load', @showOnLoad
     $(document).on 'keyup', '.js-user-verification--input', @autoSubmit
 
+    @inputBox = document.getElementsByClassName('js-user-verification--input')
+    @errorMessage = document.getElementsByClassName('js-user-verification--error')
+
 
   autoSubmit: (e) =>
     inputKey = e.currentTarget.value.replace /\s/g, ''
@@ -43,14 +46,19 @@ class @UserVerification
 
 
   error: (xhr) =>
-    $('.js-user-verification--error').text(osu.xhrErrorMessage(xhr))
+    box = @errorMessage[0]
+    Fade.in box
+    box.textContent = osu.xhrErrorMessage xhr
 
 
   success: =>
-    $('.js-user-verification').addClass('hidden')
+    $('.js-user-verification').modal 'hide'
 
     toClick = @clickAfterVerification
     @clickAfterVerification = null
+    Fade.out @errorMessage[0]
+    @inputBox[0].value = 0
+    @inputBox[0].dataset.lastKey = ''
 
     if toClick?
       if toClick.submit
@@ -72,7 +80,9 @@ class @UserVerification
     if html?
       $('.js-user-verification--box').html html
 
-    $('.js-user-verification').removeClass('hidden')
+    $('.js-user-verification')
+    .modal static: true
+    .modal 'show'
 
 
   showOnError: (e, xhr) =>
