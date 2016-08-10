@@ -95,9 +95,13 @@ class @Nav
     return if !@available()
     return if !@data().visible
 
-    beaconPosition = @floatBeacon[0].getBoundingClientRect()
+    if @currentMode() == 'user' && !currentUser.id?
+      beaconPosition = @floatBeacon[0].getBoundingClientRect()
 
-    float = beaconPosition.bottom < 0
+      float = beaconPosition.bottom < 0
+    else
+      float = false
+
     @floatPopup float
 
 
