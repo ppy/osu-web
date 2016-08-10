@@ -41,6 +41,7 @@ if (Config::get('app.debug')) {
 }
 
 Route::get('/home/news', ['as' => 'news', 'uses' => 'HomeController@getNews']);
+Route::get('/home/account', ['as' => 'home.account', 'uses' => 'HomeController@getAccount']);
 Route::get('/home/download', ['as' => 'download', 'uses' => 'HomeController@getDownload']);
 Route::get('/home/changelog', ['as' => 'changelog', 'uses' => 'HomeController@getChangelog']);
 Route::get('/home/support', ['as' => 'support-the-game', 'uses' => 'HomeController@supportTheGame']);

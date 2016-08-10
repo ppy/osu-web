@@ -28,6 +28,7 @@ return [
             '_' => 'home',
             'getLanding' => 'home',
             'getNews' => 'news',
+            'getAccount' => 'account',
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',

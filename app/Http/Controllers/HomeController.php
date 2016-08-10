@@ -29,6 +29,15 @@ class HomeController extends Controller
 {
     protected $section = 'home';
 
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('auth', ['only' => [
+            'getAccount'
+        ]]);
+    }
+
     public function getLanding()
     {
         if (Auth::check()) {
@@ -48,6 +57,13 @@ class HomeController extends Controller
     public function getNews()
     {
         return view('home.news');
+    }
+
+    public function getAccount()
+    {
+        $user = Auth::user();
+
+        return view('home.account', compact('user'));
     }
 
     public function getChangelog()

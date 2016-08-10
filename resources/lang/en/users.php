@@ -175,5 +175,11 @@ return [
         ],
         'title' => ":username's profile",
     ],
+    'settings' => [
+        'account' => 'Account',
+        'settings' => 'Settings',
+        'messages' => 'You have :count new message|You have :count new messages',
+        'notifications' => 'You have :count new notification|You have :count new notifications'
+    ],
 
 ];
