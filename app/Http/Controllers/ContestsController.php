@@ -31,12 +31,16 @@ class ContestsController extends Controller
     {
         $contest = Contest::with('entries')->findOrFail($id);
 
-        // TODO: make this logic not music-contest specific
-        $tracks = $this->prepareTracks($contest);
-
-        return view('contests.show')
-            ->with('contest', $contest)
-            ->with('tracks', $tracks);
+        switch ($contest->type) {
+            case 'music':
+                return view('contests.music')
+                    ->with('contest', $contest)
+                    ->with('tracks', $this->prepareTracks($contest));
+                break;
+            default:
+                // error
+                break;
+        }
     }
 
     public function vote($id)
