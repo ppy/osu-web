@@ -61,8 +61,10 @@
         display: table-cell;
         vertical-align: middle;
     }
+}
 
-    // Slick overrides
+// Slick overrides
+.js-landing-header {
     .slick-slider {
         width: 100%;
         height: 100%;
@@ -85,14 +87,11 @@
     }
 
     .slick-dots {
-        left: 30px;
-        top: 0;
-        bottom: auto;
-        width: auto;
+        position: static;
+        padding-top: 10px;
     }
 
     .slick-dots li {
-        float: left;
         width: @landing-dot-size;
         height: @landing-dot-size;
     }
@@ -104,9 +103,21 @@
 
     .slick-dots li button::before {
         content: "";
-        background-color: @pink-lighter;
+        border: 3px solid @grey-f;
         border-radius: 100%;
         width: @landing-dot-size;
         height: @landing-dot-size;
+        opacity: 0.5;
+        transition: all 120ms ease-in-out;
+    }
+
+    .slick-dots li button:hover::before,
+    .slick-dots li button:focus::before {
+        opacity: 1;
+    }
+
+    .slick-dots li.slick-active button::before {
+        border-width: 5px;
+        opacity: 1;
     }
 }

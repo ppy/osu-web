@@ -28,7 +28,7 @@ class @LandingHero
         autoplay: true
         adaptiveHeight: true
         dots: true
-        appendDots: $('.js-landing-graph')
+        appendDots: $('.js-landing-header')
       .removeClass 'js-landing-hero-slider--new'
 
     os = osu.getOS()
