@@ -179,7 +179,22 @@ return [
         'account' => 'Account',
         'settings' => 'Settings',
         'messages' => 'You have :count new message|You have :count new messages',
-        'notifications' => 'You have :count new notification|You have :count new notifications'
+        'notifications' => 'You have :count new notification|You have :count new notifications',
+        'profile' => 'Edit Profile',
+        'avatar' => 'Edit Avatar',
+        'upload' => 'upload image',
+        'fluffs' => 'Edit Fluffs',
+        'prefs' => [
+            'skype' => 'skype',
+            'twitter' => 'twitter',
+            'website' => 'website',
+            'location' => 'current location',
+            'occupation' => 'occupation',
+            'interest' => 'interest',
+            'brand' => 'brand',
+            'model' => 'model',
+            'surface' => 'surface',
+        ]
     ],
 
 ];

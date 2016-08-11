@@ -1,0 +1,118 @@
+/**
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+.user-prefs-section {
+  display: flex;
+  background-color: @grey-4;
+
+  margin-bottom: @spacing * 0.5;
+
+  &__left {
+    width: 260px;
+
+    padding-left: @spacing * 4;
+    padding-top: @spacing * 2;
+  }
+
+  &__text {
+    font-size: 20px;
+    font-style: italic;
+    color: @grey-f;
+
+    &:first-of-type {
+      padding-bottom: @spacing * 2;
+    }
+
+    &--small {
+      font-size: 12px;
+    }
+  }
+
+  &__right {
+    flex-grow: 1;
+  }
+
+  &__right-section {
+    background-color: @grey-5;
+
+    padding: @spacing * 2 0;
+    margin-bottom: @spacing * 0.1;
+
+    &--avatar {
+      padding-left: 170px;
+    }
+  }
+
+  &__right-row {
+    display: flex;
+    height: 25px;
+
+    margin-bottom: @spacing;
+
+    &:last-of-type {
+      margin: 0;
+    }
+  }
+
+  &__label {
+    width: 170px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    padding-right: @spacing;
+
+    font-size: 12px;
+    font-weight: 700;
+    color: @grey-f;
+  }
+
+  &__textbox {
+    height: 25px;
+    width: 250px;
+
+    font-size: 12px;
+    font-weight: 500;
+    color: @grey-f;
+
+    padding: 0 @spacing * 0.8;
+
+    background-color: @grey-3;
+    border: none;
+    .default-border-radius;
+
+    &:active, &:focus {
+      border: 2px solid @yellow;
+      padding: 0 6px;
+    }
+  }
+
+  &__button {
+    width: 200px;
+    height: 40px;
+
+    margin-top: @spacing;
+  }
+
+  &__button-text {
+    font-size: 12px;
+    font-weight: 700;
+  }
+}

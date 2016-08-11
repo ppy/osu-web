@@ -21,7 +21,7 @@
 
 @section('content')
     <div class="osu-layout__section">
-        <div class="osu-layout__row osu-layout__row--page-compact">
+        <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--marginless">
             @include('layout.user-subnav')
             <div
                 class="user-header"
@@ -37,6 +37,54 @@
                 </span>
 
                 @include('layout.user-notifications')
+            </div>
+        </div>
+
+        <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 user-prefs-section">
+            <div class="user-prefs-section__left">
+                <div class="user-prefs-section__text">{{ trans('users.settings.profile') }}</div>
+                <div class="user-prefs-section__text user-prefs-section__text--small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
+            </div>
+            <div class="user-prefs-section__right">
+                @each('layout._user-prefs-section', [
+                    ['skype', 'twitter', 'website'],
+                    ['location', 'occupation'],
+                    ['interest'],
+                ], 'elements')
+            </div>
+        </div>
+
+        <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 user-prefs-section">
+            <div class="user-prefs-section__left">
+                <div class="user-prefs-section__text">{{ trans('users.settings.avatar') }}</div>
+                <div class="user-prefs-section__text user-prefs-section__text--small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
+            </div>
+
+            <div class="user-prefs-section__right">
+                <div class="user-prefs-section__right-section user-prefs-section__right-section--avatar">
+                    <div
+                        class="avatar avatar--user-prefs"
+                        style="background-image: url({{ $user->user_avatar }});"
+                    ></div>
+
+                    <a href="#" class="btn-osu-big user-prefs-section__button">
+                        <div class="btn-osu-big__content">
+                            <span class="user-prefs-section__button-text">{{ trans('users.settings.upload') }}</span>
+                            <span class="fa fa-angle-double-up"></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 user-prefs-section">
+            <div class="user-prefs-section__left">
+                <div class="user-prefs-section__text">{{ trans('users.settings.fluffs') }}</div>
+                <div class="user-prefs-section__text user-prefs-section__text--small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
+            </div>
+
+            <div class="user-prefs-section__right">
+                @include('layout._user-prefs-section', ['elements' => ['brand', 'model', 'surface']])
             </div>
         </div>
     </div>
