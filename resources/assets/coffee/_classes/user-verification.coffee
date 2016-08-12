@@ -49,7 +49,7 @@ class @UserVerification
 
     target.dataset.lastKey = inputKey
 
-    $.post '/_verify',
+    $.post laroute.route('account.verify'),
       verification_key: inputKey
     .done @success
     .error @error

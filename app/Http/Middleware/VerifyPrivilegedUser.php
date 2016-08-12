@@ -21,7 +21,7 @@ namespace App\Http\Middleware;
 
 class VerifyPrivilegedUser extends VerifyUser
 {
-    public function requiresAdditionalVerification($request)
+    public function requiresVerification($request)
     {
         return $this->auth->user()->isPrivileged();
     }

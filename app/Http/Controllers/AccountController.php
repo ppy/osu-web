@@ -20,11 +20,13 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ImageProcessorException;
-use Auth;
-use Request;
 use App\Http\Middleware;
+use App\Libraries\UserVerification;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
+use Auth;
+use Illuminate\Http\Request as HttpRequest;
+use Request;
 
 class AccountController extends Controller
 {
@@ -106,5 +108,16 @@ class AccountController extends Controller
         $user = $user->updatePage(Request::input('body'));
 
         return ['html' => $user->userPage->bodyHTML];
+    }
+
+    public function verify(HttpRequest $request)
+    {
+        $verification = new UserVerification(Auth::user(), $request);
+
+        if ($verification->isDone()) {
+            return [];
+        }
+
+        return $verification->verify();
     }
 }
