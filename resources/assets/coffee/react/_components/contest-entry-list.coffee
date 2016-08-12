@@ -16,79 +16,8 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 ###
-
 {div,a,i,span,table,thead,tbody,tr,th,td} = React.DOM
 el = React.createElement
-
-class @ContestVoter extends React.Component
-  constructor: (props) ->
-    super props
-
-  sendVote: =>
-    # in case called from loginSuccess or other possible show loading overlay thing.
-    LoadingOverlay.hide()
-
-    params =
-      method: 'PUT'
-      data:
-        entry_id: @props.track.id
-
-    $.ajax laroute.route("contest.vote", contest_id: @props.contest.id), params
-
-    .done (response) =>
-      $.publish 'trackplayer:vote:done', tracks: response.tracks
-
-    .fail osu.ajaxError
-
-  handleClick: (e) =>
-    e.preventDefault()
-    return unless @props.track.selected || @props.voteCount < @props.maxVotes
-
-    if !currentUser.id?
-      userLogin.show e.target
-    else if !@props.waitingForResponse
-      $.publish 'trackplayer:vote:click', track_id: @props.track.id
-      @sendVote()
-
-  render: ->
-    if @props.voteCount >= @props.maxVotes && !@props.track.selected
-      null
-    else
-      if @props.waitingForResponse && !@props.track.selected
-        div className: "trackplayer__float-right trackplayer__voting-star#{if @props.track.selected then ' trackplayer__voting-star--selected' else ''}", href: '#', onClick: @handleClick,
-          i className: "fa fa-fw fa-refresh"
-      else
-        a className: "trackplayer__float-right trackplayer__voting-star#{if @props.track.selected then ' trackplayer__voting-star--selected' else ''}", href: '#', onClick: @handleClick,
-          i className: "fa fa-fw fa-star"
-
-class @ContestVoteSummary extends React.Component
-  render: ->
-    voteSummary = []
-    voteSummary.push _.times Math.max(0, @props.maxVotes - @props.voteCount), ->
-      div className: "trackplayer__float-right trackplayer__voting-star trackplayer__voting-star--smaller",
-        i className: "fa fa-fw fa-star"
-    voteSummary.push _.times @props.voteCount, ->
-      div className: "trackplayer__float-right trackplayer__voting-star trackplayer__voting-star--smaller trackplayer__voting-star--selected",
-        i className: "fa fa-fw fa-star"
-
-    div {},
-      voteSummary
-
-class @ContestEntry extends React.Component
-  render: ->
-    tr className: "trackplayer__row#{if @props.track.selected then ' trackplayer__row--selected' else ''}",
-      if @props.options.showPreview
-        td {},
-          el TrackPreview, track: @props.track
-      if @props.options.showDL
-        td className: 'trackplayer__dl trackplayer__dl--contest',
-          a className: 'trackplayer__link trackplayer__link--contest-dl', href: '#', title: 'Download Beatmap Template',
-            i className: 'fa fa-fw fa-cloud-download'
-      td className:'trackplayer__title',
-        "#{@props.track.title} "
-
-      td className:'trackplayer__vote',
-        el ContestVoter, key: @props.track.id, track: @props.track, waitingForResponse: @props.waitingForResponse, voteCount: @props.voteCount, maxVotes: @props.options.maxVotes, contest: @props.contest
 
 class @ContestEntryList extends React.Component
   constructor: (props) ->
@@ -121,11 +50,11 @@ class @ContestEntryList extends React.Component
       callback
 
   componentDidMount: ->
-    $.subscribe 'trackplayer:vote:click.trackplayer', @handleVoteClick
-    $.subscribe 'trackplayer:vote:done.trackplayer', @handleUpdate
+    $.subscribe 'contest:vote:click.contest', @handleVoteClick
+    $.subscribe 'contest:vote:done.contest', @handleUpdate
 
   componentWillUnmount: ->
-    $.unsubscribe '.trackplayer'
+    $.unsubscribe '.contest'
 
   render: ->
     return null unless @state.tracks.length > 0
