@@ -23,7 +23,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 apt-get install \
     git \
-    mysql-server-5.7 \
+    mysql-community-server \
     nginx \
     nodejs \
     php7.0-curl \

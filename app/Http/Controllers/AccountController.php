@@ -39,6 +39,7 @@ class AccountController extends Controller
 
         return parent::__construct();
     }
+    $allowed = array ('user_msnm' , 'user_twitter' , 'user_website' , 'user_from' , 'user_occ');
 
     public function updateProfile()
     {
@@ -89,6 +90,50 @@ class AccountController extends Controller
                 ->profileCustomization()
                 ->firstOrCreate([])
                 ->setExtrasOrder($order);
+        }
+
+        $req = Request::all();
+
+        Auth::user()
+            ->profileCustomization()
+            ->firstOrCreate([]);
+
+        $user = Auth::user();
+
+        foreach ($req as $key => $value )
+        {
+            if($key != 'cover_file' && $key != 'cover_id' && $key != 'order' && $key != 'signature')
+            {
+                if(in_array ( $key, $allowed)==TRUE)
+                {
+                    $user->{$key} = $value;
+                    $user->save;
+                }
+            }
+            if(Schema::hasColumn($user->profileCustomization->getTable(), $key))
+            {
+                $user->profileCustomization->{$key} = $value;
+                $user->profileCustomization->save();
+            }
+        }
+
+
+        if (Request::has('signature')) {
+            Auth::user()
+                ->profileCustomization()
+                ->firstOrCreate([])
+                ->setSignature(Request::input('signature'));
+        }
+        
+        if (Request::hasFile('avatar_file')) {
+            try {
+                Auth::user()
+                    ->profileCustomization()
+                    ->firstOrCreate([])
+                    ->setAvatar(Request::file('avatar_file'));
+            } catch (ImageProcessorException $e) {
+                return error_popup($e->getMessage());
+            }
         }
 
         return Auth::user()->defaultJson();

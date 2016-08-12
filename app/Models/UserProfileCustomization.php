@@ -21,6 +21,7 @@ namespace App\Models;
 
 use App\Libraries\ProfileCover;
 use Illuminate\Database\Eloquent\Model;
+use App\Libraries\BBCodeForDB;
 
 class UserProfileCustomization extends Model
 {
@@ -47,6 +48,19 @@ class UserProfileCustomization extends Model
         $this->save();
     }
 
+    public function setAvatar($file)
+    {
+
+    }
+
+    public function setSignature($value)
+    {
+        $bbcode = new BBCodeForDB($value);
+        $this->user_sig = $bbcode->generate();
+        $this->user_sig_bbcode_uid = $bbcode->uid;
+        $this->user_sig_bbcode_bitfield = $bblode->bitfield;
+        $this->save();
+    }
     /**
      * An array of all possible profile sections, also in their default order.
      */
