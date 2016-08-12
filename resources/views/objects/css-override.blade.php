@@ -15,6 +15,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+
+{{-- below check skips this whole thing if there are no images given --}}
+@if (collect($mapping)->first(function ($val) { return present($val); }) !== null)
 <style type='text/css'>
     @foreach ($mapping as $class => $image)
         @if (present($image))
@@ -29,3 +32,4 @@
         @endforeach
     }
 </style>
+@endif
