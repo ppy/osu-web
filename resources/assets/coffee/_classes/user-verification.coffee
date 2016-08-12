@@ -16,6 +16,9 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @UserVerification
+  $modal: => $('.js-user-verification')
+
+
   clickAfterVerification: null # Used as callback on original action (where verification was required)
 
 
@@ -24,19 +27,27 @@ class @UserVerification
     $(document).on 'ready turbolinks:load', @showOnLoad
     $(document).on 'keyup', '.js-user-verification--input', @autoSubmit
 
+    $(document).on 'throttled-resize throttled-scroll', @reposition
+
     @inputBox = document.getElementsByClassName('js-user-verification--input')
     @errorMessage = document.getElementsByClassName('js-user-verification--error')
+    @modal = document.getElementsByClassName('js-user-verification')
+    @reference = document.getElementsByClassName('js-user-verification--reference')
 
 
   autoSubmit: (e) =>
-    inputKey = e.currentTarget.value.replace /\s/g, ''
-    lastKey = e.currentTarget.dataset.lastKey
-    keyLength = parseInt(e.currentTarget.dataset.verificationKeyLength, 10)
+    target = @inputBox[0]
+    inputKey = target.value.replace /\s/g, ''
+    lastKey = target.dataset.lastKey
+    keyLength = parseInt(target.dataset.verificationKeyLength, 10)
+
+    if keyLength == 0
+      Fade.out target
 
     return if keyLength != inputKey.length
     return if inputKey == lastKey
 
-    e.currentTarget.dataset.lastKey = inputKey
+    target.dataset.lastKey = inputKey
 
     $.post document.location.href,
       verification_key: inputKey
@@ -51,13 +62,36 @@ class @UserVerification
     box.textContent = osu.xhrErrorMessage xhr
 
 
+  float: (float, modal = @modal[0], referenceBottom) =>
+    if float
+      modal.classList.add 'js-user-verification--center'
+      modal.style.paddingTop = null
+    else
+      modal.classList.remove 'js-user-verification--center'
+      modal.style.paddingTop = "#{referenceBottom}px"
+
+
+  reposition: =>
+    modal = @modal[0]
+
+    return unless modal?.classList.contains('js-user-verification--active')
+
+    if osu.isMobile()
+      @float(true, modal)
+    else
+      referenceBottom = @reference[0]?.getBoundingClientRect().bottom
+
+      @float(referenceBottom < 0, modal, referenceBottom)
+
+
   success: =>
-    $('.js-user-verification').modal 'hide'
+    @$modal().modal 'hide'
+    @modal[0].classList.remove('js-user-verification--active')
 
     toClick = @clickAfterVerification
     @clickAfterVerification = null
     Fade.out @errorMessage[0]
-    @inputBox[0].value = 0
+    @inputBox[0].value = ''
     @inputBox[0].dataset.lastKey = ''
 
     if toClick?
@@ -80,9 +114,12 @@ class @UserVerification
     if html?
       $('.js-user-verification--box').html html
 
-    $('.js-user-verification')
+    @$modal()
     .modal static: true
     .modal 'show'
+    .addClass 'js-user-verification--active'
+
+    @reposition()
 
 
   showOnError: (e, xhr) =>
@@ -94,7 +131,7 @@ class @UserVerification
   # for pages which require authentication
   # and being visited directly from outside
   showOnLoad: =>
-      return unless window.showVerificationModal
+    return unless window.showVerificationModal
 
-      window.showVerificationModal = null
-      @show()
+    window.showVerificationModal = null
+    @show()

@@ -19,9 +19,13 @@
 .user-verification-popup {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   width: 100%;
   height: 100%;
+  justify-content: flex-start;
+
+  .js-user-verification--center & {
+    justify-content: center;
+  }
 
   &__box {
     @media @desktop {

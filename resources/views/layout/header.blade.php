@@ -55,8 +55,10 @@
     </div>
 </nav>
 
+<div class="js-user-verification--reference"></div>
+@include('layout._user_verification_popup')
+
 <div class="js-nav-data" id="nav-data-master" data-turbolinks-permanent></div>
 @include('layout._popup')
-@include('layout._user_verification_popup')
 
 @include('layout.popup-container')
