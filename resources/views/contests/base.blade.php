@@ -24,6 +24,10 @@
 ])
 
 @section('content')
+    @include('objects.css-override', ['mapping' => [
+        '.osu-page-header-v2--contests' => $contest->cover_url,
+    ]])
+
     <div class="osu-layout__row">
         <div class="osu-page-header-v2 osu-page-header-v2--contests">
             <div class="osu-page-header-v2__overlay"></div>
@@ -42,7 +46,7 @@
 @section('script')
   @parent
   <script id="json-contest" type="application/json">
-    {!! json_encode(['id' => $contest->id]) !!}
+    {!! json_encode(fractal_api_serialize_item($contest, new App\Transformers\ContestTransformer())) !!}
   </script>
   @yield('contest-javascript')
   <script src="{{ elixir("js/react/contest-page.js") }}" data-turbolinks-track></script>

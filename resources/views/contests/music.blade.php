@@ -18,7 +18,7 @@
 @extends('contests.base')
 
 @section('contest-entries')
-  <div class="js-react--contestTrackplayer"></div>
+  <div class="js-react--contestList"></div>
 @endsection
 
 @section('contest-javascript')

@@ -20,6 +20,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contest;
+use App\Transformers\ContestTransformer;
 use Auth;
 use Request;
 
@@ -37,6 +38,13 @@ class ContestsController extends Controller
                     ->with('contest', $contest)
                     ->with('tracks', $this->prepareTracks($contest));
                 break;
+
+            case 'beatmap':
+                return view('contests.beatmap')
+                    ->with('contest', $contest)
+                    ->with('entries', $this->prepareTracks($contest));
+                break;
+
             default:
                 // error
                 break;

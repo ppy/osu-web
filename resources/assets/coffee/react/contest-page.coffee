@@ -16,15 +16,13 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 ###
+contest = osu.parseJson('json-contest')
 propsFunction = ->
   tracks: osu.parseJson('json-tracks')
-  contest: osu.parseJson('json-contest')
+  contest: contest
   options:
-    hideLength: true
-    hideGenre: true
-    hideBPM: true
-    hideDL: true
-    showVote: true
-    smaller: true
+    showDL: contest['type'] == 'beatmap'
+    showPreview: contest['type'] == 'music'
 
-reactTurbolinks.register 'contestTrackplayer', Trackplayer, propsFunction
+if contest['type'] == 'beatmap' or contest['type'] == 'music'
+  reactTurbolinks.register 'contestList', ContestList, propsFunction

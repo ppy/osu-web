@@ -33,7 +33,7 @@ class @Tracklist extends React.Component
       table className: 'trackplayer__table trackplayer__table--smaller',
         thead {},
             tr className: 'trackplayer__row--header',
-                th className: 'trackplayer__col', ''
+                th className: 'trackplayer__col trackplayer__col--preview', ''
                 th className: 'trackplayer__col trackplayer__col--title', 'title'
                 th className: 'trackplayer__col', 'length'
                 th className: 'trackplayer__col', 'bpm'
