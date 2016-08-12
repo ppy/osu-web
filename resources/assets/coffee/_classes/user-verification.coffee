@@ -27,7 +27,7 @@ class @UserVerification
     $(document).on 'ready turbolinks:load', @showOnLoad
     $(document).on 'keyup', '.js-user-verification--input', @autoSubmit
 
-    $(document).on 'throttled-resize throttled-scroll', @reposition
+    $(window).on 'throttled-resize throttled-scroll', @reposition
 
     @inputBox = document.getElementsByClassName('js-user-verification--input')
     @errorMessage = document.getElementsByClassName('js-user-verification--error')
