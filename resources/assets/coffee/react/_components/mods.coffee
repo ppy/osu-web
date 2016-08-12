@@ -30,10 +30,12 @@ class @Mods extends React.Component
 
     div className: modsClassName,
       for mod in @props.mods
+        modName = osu.trans "beatmaps.mods.#{mod}"
+
         div
-          key: mod.shortName
+          key: mod
           className: 'mods__mod'
           img _.extend
             className: imageClassName
-            title: mod.name
-            osu.src2x("/images/badges/mods/#{_.kebabCase(mod.name)}.png")
+            title: modName
+            osu.src2x("/images/badges/mods/#{_.kebabCase(modName)}.png")

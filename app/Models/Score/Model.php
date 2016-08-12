@@ -83,26 +83,26 @@ abstract class Model extends BaseModel
             // move to its own class when needed.
             // id, name, short name, implied ids
             $availableMods = [
-                [0, 'No Fail', 'NF'],
-                [1, 'Easy Mode', 'EZ'],
-                [3, 'Hidden', 'HD'],
-                [4, 'Hard Rock', 'HR'],
-                [5, 'Sudden Death', 'SD', [14]],
-                [6, 'Double Time', 'DT'],
-                [7, 'Relax', 'Relax'],
-                [8, 'Half Time', 'HT'],
-                [9, 'Nightcore', 'NC', [6]],
-                [10, 'Flashlight', 'FL'],
-                [12, 'Spun Out', 'SO'],
-                [13, 'Auto Pilot', 'AP'],
-                [14, 'Perfect', 'PF'],
-                [15, '4K', '4K'],
-                [16, '5K', '5K'],
-                [17, '6K', '6K'],
-                [18, '7K', '7K'],
-                [19, '8K', '8K'],
-                [20, 'Fade In', 'FI'],
-                [24, '9K', '9K'],
+                [0, 'NF'],
+                [1, 'EZ'],
+                [3, 'HD'],
+                [4, 'HR'],
+                [5, 'SD', [14]],
+                [6, 'DT'],
+                [7, 'Relax'],
+                [8, 'HT'],
+                [9, 'NC', [6]],
+                [10, 'FL'],
+                [12, 'SO'],
+                [13, 'AP'],
+                [14, 'PF'],
+                [15, '4K'],
+                [16, '5K'],
+                [17, '6K'],
+                [18, '7K'],
+                [19, '8K'],
+                [20, 'FI'],
+                [24, '9K'],
             ];
 
             $enabledMods = [];
@@ -113,12 +113,12 @@ abstract class Model extends BaseModel
                     continue;
                 }
 
-                $currentImpliedIds = array_get($availableMod, 3);
+                $currentImpliedIds = array_get($availableMod, 2);
                 if ($currentImpliedIds !== null) {
                     $impliedIds = array_merge($impliedIds, $currentImpliedIds);
                 }
 
-                $enabledMods[$availableMod[0]] = ['name' => $availableMod[1], 'shortName' => $availableMod[2]];
+                $enabledMods[$availableMod[0]] = $availableMod[1];
             }
 
             $enabledMods = array_filter($enabledMods, function ($modId) use ($impliedIds) {
