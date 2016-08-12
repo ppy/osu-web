@@ -54,7 +54,7 @@ class @ContestVoter extends React.Component
       null
     else
       if @props.waitingForResponse && !@props.track.selected
-        div className: "trackplayer__float-right trackplayer__voting-star"
+        div className: "trackplayer__float-right trackplayer__voting-star",
           i className: "fa fa-fw fa-refresh"
       else
         a className: "trackplayer__float-right trackplayer__voting-star#{if @props.track.selected then ' trackplayer__voting-star--selected' else ''}", href: '#', onClick: @handleClick,

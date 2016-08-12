@@ -111,6 +111,7 @@ elixir(function(mix) {
     'react/artist-page.coffee',
   ], 'public/js/react/artist-page.js')
   .coffee([
+    'react/contest-page/*.coffee',
     'react/contest-page.coffee',
   ], 'public/js/react/contest-page.js')
   .version([
