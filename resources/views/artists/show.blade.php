@@ -19,7 +19,7 @@
     'current_section' => 'beatmaps',
     'current_action' => 'artists',
     'title' => "Featured Artist: $artist->name",
-    'pageDescription' => 'page description here',
+    'pageDescription' => $artist->description,
     'body_additional_classes' => 'osu-layout--body-darker'
 ])
 
