@@ -45,6 +45,8 @@ class VerifyUser
             } else {
                 return $this->initiate($request);
             }
+        } elseif ($request->is('_verify')) {
+            return response([], 200);
         }
 
         return $next($request);

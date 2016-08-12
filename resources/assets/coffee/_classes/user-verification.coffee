@@ -49,7 +49,7 @@ class @UserVerification
 
     target.dataset.lastKey = inputKey
 
-    $.post document.location.href,
+    $.post '/_verify',
       verification_key: inputKey
     .done @success
     .error @error
