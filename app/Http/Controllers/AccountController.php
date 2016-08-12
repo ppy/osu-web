@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\ImageProcessorException;
 use Auth;
 use Request;
+use App\Http\Middleware;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
 
@@ -36,6 +37,8 @@ class AccountController extends Controller
         if (Auth::check() && Auth::user()->isSilenced()) {
             abort(403);
         }
+
+        $this->middleware(Middleware\VerifyUser::class);
 
         return parent::__construct();
     }
