@@ -23,15 +23,15 @@
     margin: 15px auto 25px;
     width: calc(100% ~'-' (@spacing * 2));
 
+    @media @desktop {
+        width: 100%;
+    }
+
     &__image {
         display: block;
         max-width: 100%;
         margin: 0 auto;
         border-radius: 5px;
         box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.75);
-    }
-
-    @media @desktop {
-        width: 100%;
     }
 }
