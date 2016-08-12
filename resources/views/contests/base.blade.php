@@ -49,5 +49,5 @@
     {!! json_encode(fractal_api_serialize_item($contest, new App\Transformers\ContestTransformer())) !!}
   </script>
   @yield('contest-javascript')
-  <script src="{{ elixir("js/react/contest-page.js") }}" data-turbolinks-track></script>
+  <script src="{{ elixir("js/react/contest.js") }}" data-turbolinks-track></script>
 @stop
