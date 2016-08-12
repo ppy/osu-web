@@ -19,7 +19,7 @@
 {div,a,i,span,table,thead,tbody,tr,th,td} = React.DOM
 el = React.createElement
 
-class @ContestEntryList extends React.Component
+class Contest.EntryList extends React.Component
   constructor: (props) ->
     super props
     @state =
@@ -60,7 +60,7 @@ class @ContestEntryList extends React.Component
     return null unless @state.tracks.length > 0
 
     tracks = @state.tracks.map (track) =>
-      el ContestEntry,
+      el Contest.Entry,
         key: track.id,
         track: track,
         playing: track.id == @state.currently_playing,
@@ -79,6 +79,6 @@ class @ContestEntryList extends React.Component
                 th className: 'trackplayer__col trackplayer__col--dl',
               th className: 'trackplayer__col trackplayer__col--title', 'entry'
               th className: 'trackplayer__col trackplayer__col--vote',
-                el ContestVoteSummary, voteCount: @state.voteCount, maxVotes: @state.options.maxVotes
+                el Contest.VoteSummary, voteCount: @state.voteCount, maxVotes: @state.options.maxVotes
                 div className: 'trackplayer__float-right trackplayer__vote-text', 'votes'
         tbody {}, tracks

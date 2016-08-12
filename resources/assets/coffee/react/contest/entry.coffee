@@ -19,7 +19,7 @@
 {a,i,tr,td} = React.DOM
 el = React.createElement
 
-class @ContestEntry extends React.Component
+class Contest.Entry extends React.Component
   render: ->
     tr className: "trackplayer__row#{if @props.track.selected then ' trackplayer__row--selected' else ''}",
       if @props.options.showPreview
@@ -33,4 +33,4 @@ class @ContestEntry extends React.Component
         "#{@props.track.title} "
 
       td className:'trackplayer__vote',
-        el ContestVoter, key: @props.track.id, track: @props.track, waitingForResponse: @props.waitingForResponse, voteCount: @props.voteCount, maxVotes: @props.options.maxVotes, contest: @props.contest
+        el Contest.Voter, key: @props.track.id, track: @props.track, waitingForResponse: @props.waitingForResponse, voteCount: @props.voteCount, maxVotes: @props.options.maxVotes, contest: @props.contest

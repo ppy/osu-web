@@ -19,7 +19,7 @@
 {div,i} = React.DOM
 el = React.createElement
 
-class @ContestVoteSummary extends React.Component
+class Contest.VoteSummary extends React.Component
   render: ->
     voteSummary = []
     voteSummary.push _.times Math.max(0, @props.maxVotes - @props.voteCount), ->

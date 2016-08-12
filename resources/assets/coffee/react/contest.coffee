@@ -25,4 +25,4 @@ propsFunction = ->
     showPreview: contest['type'] == 'music'
 
 if contest['type'] == 'beatmap' or contest['type'] == 'music'
-  reactTurbolinks.register 'contestList', ContestEntryList, propsFunction
+  reactTurbolinks.register 'contestList', Contest.EntryList, propsFunction

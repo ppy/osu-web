@@ -3,3 +3,4 @@
 @BeatmapsetPage = {}
 @ProfilePage = {}
 @Status = {}
+@Contest = {}
