@@ -122,10 +122,10 @@ class @UserVerification
     @reposition()
 
 
-  showOnError: (e, xhr) =>
+  showOnError: ({target}, xhr) =>
     return unless xhr.status == 401 && xhr.responseJSON?.authentication == 'verify'
 
-    @show e.target, xhr.responseJSON.box
+    @show target, xhr.responseJSON.box
 
 
   # for pages which require authentication
