@@ -114,10 +114,6 @@ class AccountController extends Controller
     {
         $verification = new UserVerification(Auth::user(), $request);
 
-        if ($verification->isDone()) {
-            return [];
-        }
-
         return $verification->verify();
     }
 }

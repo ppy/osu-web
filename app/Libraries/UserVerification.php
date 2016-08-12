@@ -98,6 +98,10 @@ class UserVerification
 
     public function verify()
     {
+        if ($this->isDone()) {
+            return response([], 200);
+        }
+
         $expireDate = $this->request->session()->get('verification_expire_date');
         $tries = $this->request->session()->get('verification_tries');
         $key = $this->request->session()->get('verification_key');
