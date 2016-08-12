@@ -27,7 +27,7 @@
     @include('objects.css-override', ['mapping' => [
         '.osu-page-header-v2--artist' => $images['header_url'],
         '.artist__portrait' => $images['cover_url'],
-        '.artist__label-overlay' => $artist->label->icon_url,
+        '.artist__label-overlay' => $artist->label ? $artist->label->icon_url : '',
     ]])
 
     <div class="osu-layout__row">
