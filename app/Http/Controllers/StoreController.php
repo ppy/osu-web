@@ -19,6 +19,7 @@
  */
 namespace App\Http\Controllers;
 
+use App\Http\Middleware;
 use App\Models\Country;
 use App\Models\Store;
 use Auth;
@@ -55,6 +56,13 @@ class StoreController extends Controller
             'postUpdateAddress',
             'postUpdateCart',
             'putRequestNotification',
+        ]]);
+
+        $this->middleware(Middleware\VerifyUser::class, ['only' => [
+            'getInvoice',
+            'getCheckout',
+            'postCheckout',
+            'postUpdateAddress',
         ]]);
 
         return parent::__construct();
