@@ -32,11 +32,6 @@ class VerifyUser
 
     protected $auth;
 
-    protected $except = [
-        'oauth/authorize',
-        'oauth/access_token',
-    ];
-
     public function __construct(AuthGuard $auth)
     {
         $this->auth = $auth;
@@ -105,21 +100,22 @@ class VerifyUser
         return $key;
     }
 
+    public function requiresAdditionalVerification($request)
+    {
+        return true;
+    }
+
     public function requiresVerification($request)
     {
-        if ($request->session()->get('verified') === static::VERIFIED) {
-            return false;
-        }
-
         if ($this->auth->guest()) {
             return false;
         }
 
-        if ($this->auth->user()->isPrivileged()) {
-            return true;
+        if ($request->session()->get('verified') === static::VERIFIED) {
+            return false;
         }
 
-        return false;
+        return $this->requiresAdditionalVerification($request);
     }
 
     public function verify($request)

@@ -34,7 +34,7 @@ class Kernel extends HttpKernel
         'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
         'Illuminate\Session\Middleware\StartSession',
         Middleware\SetLocale::class,
-        Middleware\VerifyUser::class,
+        Middleware\VerifyPrivilegedUser::class,
         'Illuminate\View\Middleware\ShareErrorsFromSession',
         'App\Http\Middleware\VerifyCsrfToken',
         'App\Http\Middleware\AutologinFromLegacyCookie',
