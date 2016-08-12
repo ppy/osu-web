@@ -90,7 +90,7 @@ class @ContestEntry extends React.Component
       td className:'trackplayer__vote',
         el ContestVoter, key: @props.track.id, track: @props.track, waitingForResponse: @props.waitingForResponse, voteCount: @props.voteCount, maxVotes: @props.options.maxVotes, contest: @props.contest
 
-class @ContestList extends React.Component
+class @ContestEntryList extends React.Component
   constructor: (props) ->
     super props
     @state =
