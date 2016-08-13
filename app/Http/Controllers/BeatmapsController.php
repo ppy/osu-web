@@ -53,9 +53,10 @@ class BeatmapsController extends Controller
 
         $beatmap = Beatmap::findOrFail($id);
         $mode = Request::input('mode', Beatmap::modeStr($beatmap->playmode));
+        $enabled_mods = Request::input('enabledMods');
 
         try {
-            $scores = $beatmap
+            $query = $beatmap
                 ->scoresBest($mode)
                 ->defaultListing()
                 ->with('user');
@@ -63,30 +64,37 @@ class BeatmapsController extends Controller
             return error_popup($ex->getMessage());
         }
 
+        if ($enabled_mods) {
+            if (!$user->isSupporter()) {
+                return error_popup(trans('errors.supporter_only'));
+            }
+
+            $query->whereIn('enabled_mods', [$enabled_mods, 0]);
+        }
+
         switch ($type) {
             case 'country':
-                $scores = $scores
+                $query
                     ->whereHas('user', function ($query) use (&$user) {
                         $query->where('country_acronym', $user->country_acronym);
                     });
                 break;
             case 'friend':
-                $scores = $scores
+                $query
                     ->whereIn('user_id', model_pluck($user->friends(), 'zebra_id'));
                 break;
         }
 
-        $scores = fractal_collection_array($scores->get(), new ScoreTransformer, 'user');
+        $scores = fractal_collection_array($query->get(), new ScoreTransformer, 'user');
         $userScore = null;
         $userScorePosition = -1;
 
         if ($user) {
             $score = $beatmap->scoresBest()->where('user_id', $user->user_id)->with('user')->first();
 
-            if ($score) {
+            if ($score && ($score->enabled_mods === $enabled_mods || $score->enabled_mods === 0)) {
                 $userScore = fractal_item_array($score, new ScoreTransformer, 'user');
-                $userScorePosition = $beatmap->scoresBest()->where('score', '>', $score->score)
-                    ->orderBy('score', 'desc')->count() + 1;
+                $userScorePosition = $query->limit(null)->count() + 1;
             }
         }
 

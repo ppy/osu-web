@@ -25,8 +25,34 @@
     cursor: pointer;
   }
 
-  &__main {
+
+  &__mods {
+    display: flex;
+    justify-content: center;
     padding-top: @spacing * 2;
+  }
+
+  &__mod {
+    width: 36px;
+    height: 25px;
+
+    opacity: 0.5;
+
+    margin-right: @spacing * 0.4;
+
+    cursor: pointer;
+
+    &--enabled {
+      opacity: 1;
+    }
+
+    &:last-of-type {
+      margin: 0;
+    }
+  }
+
+  &__main {
+    padding-top: @spacing * 4;
   }
 
   &__notice {

@@ -37,6 +37,10 @@ class BeatmapsetPage.Scoreboard extends React.Component
   render: ->
     userScoreFound = false
 
+    mods = ['EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL']
+    if @props.playmode == 'mania' && @props.convert == true
+      mods = ['EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL']
+
     div className: 'osu-layout__row osu-layout__row--page-beatmapset beatmapset-scoreboard',
       div className: 'page-tabs',
         for type in ['global', 'country', 'friend']
@@ -44,6 +48,13 @@ class BeatmapsetPage.Scoreboard extends React.Component
             key: type
             type: type
             active: @props.type == type
+
+      if currentUser.isSupporter
+        div className: 'beatmapset-scoreboard__mods',
+          for mod in mods
+            el BeatmapsetPage.ScoreboardMod,
+              key: mod
+              mod: mod
 
       div className: 'beatmapset-scoreboard__main',
         if @props.scores.length > 0

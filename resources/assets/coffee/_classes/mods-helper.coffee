@@ -15,14 +15,29 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div} = React.DOM
+class @ModsHelper
+  @ids:
+    NF: 0
+    EZ: 1
+    HD: 3
+    HR: 4
+    SD: 5
+    DT: 6
+    Relax: 7
+    HT: 8
+    NC: 9
+    FL: 10
+    SO: 12
+    AP: 13
+    PF: 14
+    '4K': 15
+    '5K': 16
+    '6K': 17
+    '7K': 18
+    '8K': 19
+    FI: 20
+    '9K': 24
 
-BeatmapsetPage.ScoreboardTab = (props) ->
-  className = 'beatmapset-scoreboard__tab page-tabs__tab'
-  className += ' page-tabs__tab--active' if props.active
+  @getId: (mod) -> @ids[mod]
 
-  div
-    className: className
-    onClick: ->
-      $.publish 'beatmapset:scoreboard:set', scoreboardType: props.type
-    osu.trans "beatmaps.beatmapset.show.scoreboard.#{props.type}"
+  @getBit: (mod) -> 1 << @ids[mod]

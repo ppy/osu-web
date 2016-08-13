@@ -57,6 +57,7 @@ class BeatmapsetPage.Main extends React.Component
       loading: false
       isPreviewPlaying: false
       currentScoreboardType: 'global'
+      enabledMods: 0
       scores: []
       userScore: null
       userScorePosition: -1
@@ -66,7 +67,7 @@ class BeatmapsetPage.Main extends React.Component
       beatmapId: @state.currentBeatmapId
       playmode: @state.currentPlaymode
 
-  setCurrentScoreboardType: (_e, {scoreboardType, forceReload = false}) =>
+  setCurrentScoreboard: (_e, {scoreboardType = @state.currentScoreboardType, enabledMod, forceReload = false}) =>
     return if @state.loading
 
     @setState
@@ -76,14 +77,19 @@ class BeatmapsetPage.Main extends React.Component
 
     return if scoreboardType != 'global' && !currentUser.isSupporter
 
+    enabledMods = @state.enabledMods ^ enabledMod
+
     @scoresCache ?= {}
-    cacheKey = "#{@state.currentBeatmapId}-#{@state.currentPlaymode}-#{scoreboardType}"
+    cacheKey = "#{@state.currentBeatmapId}-#{@state.currentPlaymode}-#{enabledMods}-#{scoreboardType}"
 
     loadScore = =>
       @setState
         scores: @scoresCache[cacheKey].scoresList.data
         userScore: @scoresCache[cacheKey].userScore.data if @scoresCache[cacheKey].userScore?
         userScorePosition: @scoresCache[cacheKey].userScorePosition
+        enabledMods: enabledMods
+        =>
+          $.publish 'scoreboard-mod:enabled:set', true
 
     if !forceReload && @scoresCache[cacheKey]?
       loadScore()
@@ -97,13 +103,16 @@ class BeatmapsetPage.Main extends React.Component
       dataType: 'JSON'
       data:
         type: scoreboardType
+        enabledMods: enabledMods
         mode: @state.currentPlaymode
 
     .done (data) =>
       @scoresCache[cacheKey] = data
       loadScore()
 
-    .fail osu.ajaxError
+    .fail (xhr) =>
+      $.publish 'scoreboard-mod:enabled:set', false
+      osu.ajaxError xhr
 
     .always =>
       $.publish 'beatmapset:scoreboard:loading', false
@@ -118,7 +127,8 @@ class BeatmapsetPage.Main extends React.Component
       currentPlaymode: playmode
       =>
         @setHash()
-        @setCurrentScoreboardType null, scoreboardType: 'global'
+        @setCurrentScoreboard null, scoreboardType: 'global', enabledMod: @state.enabledMods
+        $.publish 'scoreboard-mod:status:set', 'disabled'
 
   togglePreviewPlayingState: (_e, isPreviewPlaying) =>
     @setState isPreviewPlaying: isPreviewPlaying
@@ -139,12 +149,12 @@ class BeatmapsetPage.Main extends React.Component
     @removeListeners()
 
     $.subscribe 'beatmapset:beatmap:set.beatmapsetPage', @setCurrentBeatmapId
-    $.subscribe 'beatmapset:scoreboard-type:set.beatmapsetPage', @setCurrentScoreboardType
+    $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
     $.subscribe 'beatmapset:preview:toggle.beatmapsetPage', @togglePreviewPlayingState
     $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmapId
 
     @setHash()
-    @setCurrentScoreboardType null, scoreboardType: 'global'
+    @setCurrentScoreboard null, scoreboardType: 'global'
 
     @audioPreview = document.getElementsByClassName('js-beatmapset-page--audio-preview')[0]
 
@@ -180,6 +190,7 @@ class BeatmapsetPage.Main extends React.Component
       div className: 'osu-layout__section osu-layout__section--extra',
         el BeatmapsetPage.Scoreboard,
           type: @state.currentScoreboardType
+          convert: currentBeatmap.convert
           playmode: currentBeatmap.mode
           scores: @state.scores
           userScore: @state.userScore
