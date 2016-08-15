@@ -92,13 +92,6 @@ class AccountController extends Controller
                 ->setExtrasOrder($order);
         }
 
-        if (Request::has('signature')) {
-            Auth::user()
-                ->profileCustomization()
-                ->firstOrCreate([])
-                ->setSignature(Request::input('signature'));
-        }
-
         if (Request::hasFile('avatar_file')) {
             try {
                 Auth::user()
@@ -110,7 +103,7 @@ class AccountController extends Controller
             }
         }
 
-        $inputs = array_diff_key(Request::all(), ['cover_file', 'cover_id', 'order', 'signature']);
+        $inputs = array_diff_key(Request::all(), ['cover_file', 'cover_id', 'order']);
 
         Auth::user()
             ->profileCustomization()
