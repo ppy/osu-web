@@ -59,7 +59,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     const GITHUB = 2382019; // github callback user
 
     // fields that can be edited in a request
-    const EDITABLE = ['user_msnm' , 'user_twitter' , 'user_website' , 'user_from' , 'user_occ', 'user_interests'];
+    const EDITABLE = ['user_msnm', 'user_twitter', 'user_website', 'user_from', 'user_occ', 'user_interests'];
 
     public function getAuthPassword()
     {

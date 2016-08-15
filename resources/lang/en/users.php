@@ -195,7 +195,7 @@ return [
             'tablet_brand' => 'brand',
             'tablet_model' => 'model',
             'tablet_surface' => 'surface',
-        ]
+        ],
     ],
 
 ];

@@ -103,22 +103,7 @@ class AccountController extends Controller
                 ->setExtrasOrder($order);
         }
 
-        if (Request::hasFile('avatar_file')) {
-            try {
-                Auth::user()
-                    ->profileCustomization()
-                    ->firstOrCreate([])
-                    ->setAvatar(Request::file('avatar_file'));
-            } catch (ImageProcessorException $e) {
-                return error_popup($e->getMessage());
-            }
-        }
-
         $inputs = array_diff_key(Request::all(), ['cover_file', 'cover_id', 'avatar_file', 'order']);
-
-        Auth::user()
-            ->profileCustomization()
-            ->firstOrCreate([]);
 
         $user = Auth::user();
 
@@ -130,8 +115,7 @@ class AccountController extends Controller
             if (in_array($key, User::EDITABLE, true)) {
                 $user->{$key} = $value;
                 $user->save();
-            }
-            else if (Schema::hasColumn($user->profileCustomization->getTable(), $key)) {
+            } elseif (Schema::hasColumn($user->profileCustomization->getTable(), $key)) {
                 $profileCustomization->{$key} = $value;
                 $profileCustomization->save();
             }

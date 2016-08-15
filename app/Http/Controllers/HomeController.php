@@ -34,7 +34,7 @@ class HomeController extends Controller
         parent::__construct();
 
         $this->middleware('auth', ['only' => [
-            'getAccount'
+            'getAccount',
         ]]);
     }
 
