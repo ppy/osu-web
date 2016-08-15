@@ -26,5 +26,6 @@ class EncryptCookies extends EncryptCookiesBase
     protected $except = [
         'phpbb3_2cjk5_sid',
         'phpbb3_2cjk5_sid_check',
+        'locale',
     ];
 }
