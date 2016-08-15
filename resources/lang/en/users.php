@@ -191,7 +191,7 @@ return [
             'user_website' => 'website',
             'user_from' => 'current location',
             'user_occ' => 'occupation',
-            'user_interests' => 'interest',
+            'user_interests' => 'interests',
             'tablet_brand' => 'brand',
             'tablet_model' => 'model',
             'tablet_surface' => 'surface',

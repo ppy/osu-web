@@ -114,7 +114,7 @@ class AccountController extends Controller
             }
         }
 
-        $inputs = array_diff_key(Request::all(), ['cover_file', 'cover_id', 'order']);
+        $inputs = array_diff_key(Request::all(), ['cover_file', 'cover_id', 'avatar_file', 'order']);
 
         Auth::user()
             ->profileCustomization()

@@ -35,15 +35,12 @@
                     </span>
                     {{ trans('users.settings.settings') }}
                 </span>
-
-                @include('layout.user-notifications')
             </div>
         </div>
 
         <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 user-prefs-section">
             <div class="user-prefs-section__left">
                 <div class="user-prefs-section__text">{{ trans('users.settings.profile') }}</div>
-                <div class="user-prefs-section__text user-prefs-section__text--small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
             </div>
             <div class="user-prefs-section__right">
                 @include('layout._user-prefs-section', ['elements' => ['user_msnm', 'user_twitter', 'user_website']])
@@ -55,7 +52,6 @@
         <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 user-prefs-section">
             <div class="user-prefs-section__left">
                 <div class="user-prefs-section__text">{{ trans('users.settings.avatar') }}</div>
-                <div class="user-prefs-section__text user-prefs-section__text--small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
             </div>
 
             <div class="user-prefs-section__right">
@@ -66,7 +62,6 @@
         <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 user-prefs-section">
             <div class="user-prefs-section__left">
                 <div class="user-prefs-section__text">{{ trans('users.settings.fluffs') }}</div>
-                <div class="user-prefs-section__text user-prefs-section__text--small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
             </div>
 
             <div class="user-prefs-section__right">
