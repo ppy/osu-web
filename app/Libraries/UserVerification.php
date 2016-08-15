@@ -30,7 +30,7 @@ class UserVerification
 
     protected $user;
 
-    private $legacySession = false;
+    private $_legacySession = false;
 
     public function __construct($user, $request)
     {
@@ -96,7 +96,7 @@ class UserVerification
             return true;
         }
 
-        return false;
+        return $this->isDoneLegacy();
     }
 
     public function isDoneLegacy()
@@ -108,11 +108,15 @@ class UserVerification
 
     public function legacySession()
     {
-        if ($this->legacySession === false) {
-            $this->legacySession = LegacySession::loadFromRequest($this->request);
+        if ($this->_legacySession === false) {
+            $this->_legacySession = LegacySession::loadFromRequest($this->request);
+
+            if ($this->_legacySession->session_user_id !== $this->user->user_id) {
+                $this->_legacySession = null;
+            }
         }
 
-        return $this->legacySession;
+        return $this->_legacySession;
     }
 
     public function verify()
@@ -142,7 +146,10 @@ class UserVerification
             $this->request->session()->forget('verification_tries');
             $this->request->session()->forget('verification_key');
             $this->request->session()->put('verified', static::VERIFIED);
-            $this->legacySession()->update(['verified' => true]);
+
+            if ($this->legacySession() !== null) {
+                $this->legacySession()->update(['verified' => true]);
+            }
 
             return response([], 200);
         } else {
