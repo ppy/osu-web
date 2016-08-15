@@ -42,20 +42,23 @@ class LegacySession extends Model
     public static function loadFromRequest($request)
     {
         $sessionId = $request->cookie('phpbb3_2cjk5_sid');
-        $sessionIdHash = $request->cookie('phpbb3_2cjk5_sid_check');
+        $sessionIdSign = $request->cookie('phpbb3_2cjk5_sid_check');
 
         if ($sessionId === null || $sessionIdHash === null) {
             return;
         }
 
-        $computedSessionIdHash = hash_hmac('sha1', $sessionId, config('osu.legacy.shared_cookie_secret'));
-
-        if ($sessionIdHash !== $computedSessionIdHash) {
+        if ($sessionIdSign !== static::signId($sessionId)) {
             return;
         }
 
         return static
             ::where('session_ip', $request->getClientIp())
             ->find($sessionId);
+    }
+
+    public static function signId($id)
+    {
+        return hash_hmac('sha1', $id, config('osu.legacy.shared_cookie_secret'));
     }
 }
