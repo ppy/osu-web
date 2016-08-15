@@ -121,7 +121,7 @@
                                     @if (Auth::check() === true)
                                         <div
                                             class="avatar avatar--full"
-                                            style="background-image: url('{{ Auth::user()->user_avatar }}');"
+                                            style="background-image: url('{{ Auth::user()->avatarUrl() }}');"
                                         ></div>
                                     @else
                                         <div class="avatar avatar--full avatar--guest"></div>

@@ -113,6 +113,9 @@ elixir(function(mix) {
   .coffee([
     'react/contest-page.coffee',
   ], 'public/js/react/contest-page.js')
+  .coffee([
+    'react/misc/avatar-upload.coffee'
+  ], 'public/js/react/misc/avatar-upload.js')
   .version([
     'css/app.css',
     'js/app.js',
@@ -124,5 +127,6 @@ elixir(function(mix) {
     'js/react/beatmapset-page.js',
     'js/react/artist-page.js',
     'js/react/contest-page.js',
+    'js/react/misc/avatar-upload.js',
   ]);
 });

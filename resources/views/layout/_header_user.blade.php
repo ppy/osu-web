@@ -38,7 +38,7 @@
             js-nav-avatar
         "
         @if ($_user !== null)
-            style="background-image: url('{{ $_user->user_avatar }}');"
+            style="background-image: url('{{ $_user->avatarUrl() }}');"
         @endif
     ></div>
 </div>

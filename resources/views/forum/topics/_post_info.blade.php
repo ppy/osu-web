@@ -18,12 +18,12 @@
 <div class="hidden-xs forum-post__info-panel" style="{{ user_colour_style($user->user_colour, "background-color") }}">
     <div class="forum-post__info-panel-main">
         @if ($user->hasProfile() === true)
-            @if ($user->user_avatar)
+            @if ($user->profileCustomization && $user->profileCustomization->avatar_json)
                 <div class="forum-post__avatar-ribbon forum-post__avatar-ribbon--level-{{ $user->supportLevel() }}">
                     <a href="{{ route("users.show", $user) }}" class="forum-post__avatar-container">
                         <div
                             class="avatar avatar--full"
-                            style="background-image: url('{{ $user->user_avatar }}');"
+                            style="background-image: url('{{ $user->avatarUrl() }}');"
                         ></div>
                     </a>
                 </div>
@@ -73,14 +73,14 @@
 
 <div class="visible-xs">
     <div class="forum-post__info-panel-xs" style="{{ user_colour_style($user->user_colour, "background-color") }}">
-        @if ($user->user_avatar)
+        @if ($user->profileCustomization && $user->profileCustomization->avatar_json)
             <div class="forum-post__avatar-ribbon
                 forum-post__avatar-ribbon--xs
                 forum-post__avatar-ribbon--level-{{ $user->supportLevel() }}"
             >
                 <div
                     class="avatar avatar--forum-small"
-                    style="background-image: url('{{ $user->user_avatar }}');"
+                    style="background-image: url('{{ $user->avatarUrl() }}');"
                 ></div>
             </div>
         @endif

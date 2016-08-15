@@ -99,7 +99,7 @@ class ProfilePage.Header extends React.Component
         el UserAvatar, user: @props.user, modifiers: ['profile']
 
       el 'div',
-        className: 'profile-header__uploading-spinner-container'
+        className: 'profile-header__uploading-spinner-container spinner-container'
         'data-state': 'enabled' if @props.isCoverUpdating
 
         el 'div', className: 'spinner',

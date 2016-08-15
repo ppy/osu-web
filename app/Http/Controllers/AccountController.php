@@ -58,6 +58,17 @@ class AccountController extends Controller
             }
         }
 
+        if (Request::hasFile('avatar_file')) {
+            try {
+                Auth::user()
+                    ->profileCustomization()
+                    ->firstOrCreate([])
+                    ->setAvatar(Request::file('avatar_file'));
+            } catch (ImageProcessorException $e) {
+                return error_popup($e->getMessage());
+            }
+        }
+
         if (Request::has('order')) {
             $order = Request::input('order');
 

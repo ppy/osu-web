@@ -40,7 +40,7 @@
                         <a
                             href="{{ route('users.show', Auth::user()->user_id) }}"
                             class="avatar avatar--navbar-mobile js-navbar-mobile--top-icon"
-                            style="background-image: url('{{ Auth::user()->user_avatar }}');"
+                            style="background-image: url('{{ Auth::user()->avatarUrl() }}');"
                         >
                         </a>
                     @else
@@ -74,7 +74,7 @@
                     <a class="navbar-mobile__menu-item navbar-mobile__menu-item--user" href="{{ route('users.show', Auth::user()) }}">
                         <span
                             class="avatar avatar--navbar-mobile"
-                            style="background-image: url('{{ Auth::user()->user_avatar }}');">
+                            style="background-image: url('{{ Auth::user()->avatarUrl() }}');">
                         </span>
 
                         {{ Auth::user()->username }}

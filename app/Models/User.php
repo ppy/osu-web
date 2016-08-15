@@ -238,6 +238,13 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
     }
 
+    public function avatarUrl()
+    {
+        return $this->profileCustomization()
+            ->firstOrNew([])
+            ->avatar->url();
+    }
+
     public function getCountryAcronymAttribute($value)
     {
         return presence($value);

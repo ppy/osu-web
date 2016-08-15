@@ -59,19 +59,7 @@
             </div>
 
             <div class="user-prefs-section__right">
-                <div class="user-prefs-section__right-section user-prefs-section__right-section--avatar">
-                    <div
-                        class="avatar avatar--user-prefs"
-                        style="background-image: url({{ $user->user_avatar }});"
-                    ></div>
-
-                    <a href="#" class="btn-osu-big user-prefs-section__button">
-                        <div class="btn-osu-big__content">
-                            <span class="user-prefs-section__button-text">{{ trans('users.settings.upload') }}</span>
-                            <span class="fa fa-angle-double-up"></span>
-                        </div>
-                    </a>
-                </div>
+                <div class="js-react--avatar-upload"></div>
             </div>
         </div>
 
@@ -86,4 +74,14 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    @parent
+
+    <script id="json-avatar" type="application/json">
+        {"avatarUrl": {!! json_encode($user->profileCustomization->avatar->url()) !!}}
+    </script>
+
+    <script src="{{ elixir('js/react/misc/avatar-upload.js') }}" data-turbolinks-track></script>
 @endsection
