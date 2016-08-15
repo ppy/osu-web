@@ -20,6 +20,7 @@
 namespace App\Libraries;
 
 use App\Models\Country;
+use App\Models\LegacySession;
 use Carbon\Carbon;
 use Mail;
 
@@ -28,6 +29,8 @@ class UserVerification
     const VERIFIED = 10;
 
     protected $user;
+
+    private $legacySession = false;
 
     public function __construct($user, $request)
     {
@@ -96,6 +99,22 @@ class UserVerification
         return false;
     }
 
+    public function isDoneLegacy()
+    {
+        return $this->legacySession() !== null
+            && $this->legacySession()->session_user_id === $this->user->user_id
+            && $this->legacySession()->verified;
+    }
+
+    public function legacySession()
+    {
+        if ($this->legacySession === false) {
+            $this->legacySession = LegacySession::loadFromRequest($this->request);
+        }
+
+        return $this->legacySession;
+    }
+
     public function verify()
     {
         if ($this->isDone()) {
@@ -123,6 +142,7 @@ class UserVerification
             $this->request->session()->forget('verification_tries');
             $this->request->session()->forget('verification_key');
             $this->request->session()->put('verified', static::VERIFIED);
+            $this->legacySession()->update(['verified' => true]);
 
             return response([], 200);
         } else {
