@@ -16,6 +16,7 @@ class AddVotesToUserProfileCustomizationsTable extends Migration
             $table->text('tablet_brand');
             $table->text('tablet_model');
             $table->text('tablet_surface');
+            $table->text('avatar_json');
         });
     }
 
@@ -27,9 +28,7 @@ class AddVotesToUserProfileCustomizationsTable extends Migration
     public function down()
     {
         Schema::table('user_profile_customizations', function (Blueprint $table) {
-            $table->dropColumn('tablet_model');
-            $table->dropColumn('tablet_brand');
-            $table->dropColumn('tablet_surface');
+            $table->dropColumn(['tablet_model', 'tablet_brand', 'tablet_surface', 'avatar_json']);
         });
     }
 }
