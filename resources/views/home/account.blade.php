@@ -46,11 +46,9 @@
                 <div class="user-prefs-section__text user-prefs-section__text--small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
             </div>
             <div class="user-prefs-section__right">
-                @each('layout._user-prefs-section', [
-                    ['skype', 'twitter', 'website'],
-                    ['location', 'occupation'],
-                    ['interest'],
-                ], 'elements')
+                @include('layout._user-prefs-section', ['elements' => ['user_msnm', 'user_twitter', 'user_website']])
+                @include('layout._user-prefs-section', ['elements' => ['user_from', 'user_occ']])
+                @include('layout._user-prefs-section', ['elements' => ['user_interests']])
             </div>
         </div>
 
@@ -84,7 +82,7 @@
             </div>
 
             <div class="user-prefs-section__right">
-                @include('layout._user-prefs-section', ['elements' => ['brand', 'model', 'surface']])
+                @include('layout._user-prefs-section', ['elements' => ['tablet_brand', 'tablet_model', 'tablet_surface']])
             </div>
         </div>
     </div>

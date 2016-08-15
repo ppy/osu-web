@@ -24,6 +24,7 @@ use Auth;
 use Request;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
+use Schema;
 
 class AccountController extends Controller
 {
@@ -39,7 +40,6 @@ class AccountController extends Controller
 
         return parent::__construct();
     }
-    $allowed = array ('user_msnm' , 'user_twitter' , 'user_website' , 'user_from' , 'user_occ');
 
     public function updateProfile()
     {
@@ -92,39 +92,13 @@ class AccountController extends Controller
                 ->setExtrasOrder($order);
         }
 
-        $req = Request::all();
-
-        Auth::user()
-            ->profileCustomization()
-            ->firstOrCreate([]);
-
-        $user = Auth::user();
-
-        foreach ($req as $key => $value )
-        {
-            if($key != 'cover_file' && $key != 'cover_id' && $key != 'order' && $key != 'signature')
-            {
-                if(in_array ( $key, $allowed)==TRUE)
-                {
-                    $user->{$key} = $value;
-                    $user->save;
-                }
-            }
-            if(Schema::hasColumn($user->profileCustomization->getTable(), $key))
-            {
-                $user->profileCustomization->{$key} = $value;
-                $user->profileCustomization->save();
-            }
-        }
-
-
         if (Request::has('signature')) {
             Auth::user()
                 ->profileCustomization()
                 ->firstOrCreate([])
                 ->setSignature(Request::input('signature'));
         }
-        
+
         if (Request::hasFile('avatar_file')) {
             try {
                 Auth::user()
@@ -133,6 +107,29 @@ class AccountController extends Controller
                     ->setAvatar(Request::file('avatar_file'));
             } catch (ImageProcessorException $e) {
                 return error_popup($e->getMessage());
+            }
+        }
+
+        $inputs = array_diff_key(Request::all(), ['cover_file', 'cover_id', 'order', 'signature']);
+
+        Auth::user()
+            ->profileCustomization()
+            ->firstOrCreate([]);
+
+        $user = Auth::user();
+
+        $profileCustomization = $user
+            ->profileCustomization()
+            ->firstOrCreate([]);
+
+        foreach ($inputs as $key => $value) {
+            if (in_array($key, User::EDITABLE, true)) {
+                $user->{$key} = $value;
+                $user->save();
+            }
+            else if (Schema::hasColumn($user->profileCustomization->getTable(), $key)) {
+                $profileCustomization->{$key} = $value;
+                $profileCustomization->save();
             }
         }
 

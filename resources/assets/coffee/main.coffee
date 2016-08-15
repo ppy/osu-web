@@ -61,6 +61,8 @@ $(document).on 'ready turbolinks:load', =>
   @forumTopicReply ||= new ForumTopicReply(@forum, @stickyFooter)
   @forumCover ||= new ForumCover(@forum)
 
+  @userPrefs ||= new UserPrefs
+
   @menu ||= new Menu
 
 

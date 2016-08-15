@@ -21,7 +21,13 @@
             <div class="user-prefs-section__label">
                  <span>{{ trans("users.settings.prefs.$elem") }}</span>
             </div>
-            <input type="text" class="user-prefs-section__textbox" />
+            <input
+                type="text"
+                id="{{ $elem }}"
+                class="user-prefs-section__textbox js-user-prefs--field"
+                value="{{ in_array($elem, $user::EDITABLE, true) ? $user->{$elem} : $user->profileCustomization->{$elem} }}"
+            />
+            <div id="{{ $elem }}" class="user-prefs-section__saved js-user-prefs--saved">{{ trans('users.settings.saved') }}</div>
         </div>
     @endforeach
 </div>
