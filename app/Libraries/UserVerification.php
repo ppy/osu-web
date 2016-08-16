@@ -121,10 +121,24 @@ class UserVerification
         return $this->_legacySession;
     }
 
+    public function verified()
+    {
+        $this->request->session()->forget('verification_expire_date');
+        $this->request->session()->forget('verification_tries');
+        $this->request->session()->forget('verification_key');
+        $this->request->session()->put('verified', static::VERIFIED);
+
+        if ($this->legacySession() !== null) {
+            $this->legacySession()->update(['verified' => true]);
+        }
+
+        return response([], 200);
+    }
+
     public function verify()
     {
         if ($this->isDone()) {
-            return response([], 200);
+            return $this->verified();
         }
 
         $expireDate = $this->request->session()->get('verification_expire_date');
@@ -144,16 +158,7 @@ class UserVerification
 
             return error_popup(trans('user_verification.errors.retries_exceeded'));
         } elseif (str_replace(' ', '', $this->request->input('verification_key')) === $key) {
-            $this->request->session()->forget('verification_expire_date');
-            $this->request->session()->forget('verification_tries');
-            $this->request->session()->forget('verification_key');
-            $this->request->session()->put('verified', static::VERIFIED);
-
-            if ($this->legacySession() !== null) {
-                $this->legacySession()->update(['verified' => true]);
-            }
-
-            return response([], 200);
+            return $this->verified();
         } else {
             $this->request->session()->put('verification_tries', $tries + 1);
 
