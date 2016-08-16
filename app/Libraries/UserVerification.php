@@ -102,7 +102,6 @@ class UserVerification
     public function isDoneLegacy()
     {
         return $this->legacySession() !== null
-            && $this->legacySession()->session_user_id === $this->user->user_id
             && $this->legacySession()->verified;
     }
 
