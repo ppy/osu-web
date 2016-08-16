@@ -44,7 +44,7 @@
     <p class="user-verification__row user-verification__row--info">
         {!! trans('user_verification.box.info.recover', [
             'link' => link_to(
-                'mailto:'.config('osu.emails.account'),
+                config('osu.urls.user.recover'),
                 trans('user_verification.box.info.recover_link'),
                 ['class' => 'user-verification__link']
             ),

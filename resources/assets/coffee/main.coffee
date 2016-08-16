@@ -36,7 +36,7 @@ $(document).on 'submit', 'form', LoadingOverlay.show
 @osuLayzr ?= new OsuLayzr
 @nav ?= new Nav
 @userLogin ?= new UserLogin(@nav)
-@userVerification ?= new UserVerification
+@userVerification ?= new UserVerification(@nav)
 @throttledWindowEvents ?= new ThrottledWindowEvents
 @checkboxValidation ?= new CheckboxValidation
 @formToggle ?= new FormToggle

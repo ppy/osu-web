@@ -50,11 +50,13 @@ return [
     ],
     'twitch_client_id' => env('TWITCH_CLIENT_ID'),
     'urls' => [
+        'smilies' => 'https://osu.ppy.sh/forum/images/smilies',
+        'support-the-game' => 'https://osu.ppy.sh/p/support#transactionarea',
+
         'legal' => [
             'dmca' => 'https://osu.ppy.sh/p/copyright',
             'tos' => 'https://osu.ppy.sh/p/terms',
         ],
-        'smilies' => 'https://osu.ppy.sh/forum/images/smilies',
         'social' => [
             'facebook' => 'https://facebook.com/osugame',
             'twitter' => 'https://osu.ppy.sh/p/twitter',
@@ -63,9 +65,9 @@ return [
             'osustatus' => 'https://twitter.com/osustatus',
             'server' => 'http://stat.ppy.sh/',
         ],
-        'support-the-game' => 'https://osu.ppy.sh/p/support#transactionarea',
         'user' => [
             'kudosu' => 'https://osu.ppy.sh/wiki/Kudosu',
+            'recover' => 'https://osu.ppy.sh/p/forgot-email',
             'rules' => 'https://osu.ppy.sh/wiki/Osu!:Rules',
         ],
     ],
