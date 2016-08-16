@@ -149,20 +149,26 @@ class UserVerification
             $this->issue();
 
             return error_popup(trans('user_verification.errors.expired'));
-        } elseif ($expireDate->isPast()) {
+        }
+
+        if ($expireDate->isPast()) {
             $this->issue();
 
             return error_popup(trans('user_verification.errors.expired'));
-        } elseif ($tries > config('osu.user.verification_key_tries_limit')) {
+        }
+
+        if ($tries > config('osu.user.verification_key_tries_limit')) {
             $this->issue();
 
             return error_popup(trans('user_verification.errors.retries_exceeded'));
-        } elseif (str_replace(' ', '', $this->request->input('verification_key')) !== $key) {
+        }
+
+        if (str_replace(' ', '', $this->request->input('verification_key')) !== $key) {
             $this->request->session()->put('verification_tries', $tries + 1);
 
             return error_popup(trans('user_verification.errors.incorrect_key'));
-        } else {
-            return $this->verified();
         }
+
+        return $this->verified();
     }
 }
