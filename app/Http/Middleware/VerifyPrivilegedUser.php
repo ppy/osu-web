@@ -1,5 +1,7 @@
+<?php
+
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,18 +16,13 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+namespace App\Http\Middleware;
 
-.modal-dialog {
-  &\@sm {
-    @media @desktop {
-      margin-top: (@nav-sm-height + @spacing);
+class VerifyPrivilegedUser extends VerifyUser
+{
+    public function requiresVerification($request)
+    {
+        return $this->auth->user() === null || $this->auth->user()->isPrivileged();
     }
-  }
-
-  &--full {
-    width: 100%;
-    margin: 0;
-  }
 }

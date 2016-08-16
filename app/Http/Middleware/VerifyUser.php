@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,48 +19,35 @@
  */
 namespace App\Http\Middleware;
 
+use App\Libraries\UserVerification;
 use Closure;
-use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\Guard as AuthGuard;
+use Illuminate\Http\Request;
 
-class Authenticate
+class VerifyUser
 {
-    /**
-     * The Guard implementation.
-     *
-     * @var Guard
-     */
     protected $auth;
 
-    /**
-     * Create a new filter instance.
-     *
-     * @param Guard $auth
-     *
-     * @return void
-     */
-    public function __construct(Guard $auth)
+    public function __construct(AuthGuard $auth)
     {
         $this->auth = $auth;
     }
 
-    /**
-     * Handle an incoming request.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
-     *
-     * @return mixed
-     */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
-        if ($this->auth->guest()) {
-            if ($request->ajax()) {
-                return response(['authentication' => 'basic'], 401);
-            } else {
-                return response()->view('users.login');
+        if (!$request->is(trim(route('account.verify', [], false), '/')) && $this->requiresVerification($request)) {
+            $verification = new UserVerification($this->auth->user(), $request);
+
+            if (!$verification->isDone()) {
+                return $verification->initiate();
             }
         }
 
         return $next($request);
+    }
+
+    public function requiresVerification($request)
+    {
+        return true;
     }
 }
