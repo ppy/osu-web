@@ -63,7 +63,6 @@ class UserVerification
         // 1 byte = 2^8 bits = 16^2 bits = 2 hex characters
         $key = bin2hex(random_bytes(config('osu.user.verification_key_length_hex') / 2));
         $email = $this->user->user_email;
-        $from = config('osu.emails.account');
         $to = $this->user->user_email;
 
         $this->request->session()->put('verification_key', $key);
@@ -78,8 +77,7 @@ class UserVerification
         Mail::queue(
             ['text' => i18n_view('emails.user_verification')],
             ['key' => $key, 'user' => $this->user],
-            function ($message) use ($from, $to) {
-                $message->from($from);
+            function ($message) use ($to) {
                 $message->to($to);
                 $message->subject(trans('user_verification.email.subject'));
             }
