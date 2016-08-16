@@ -70,6 +70,7 @@ return [
             'kudosu' => '/wiki/Kudosu',
             'recover' => '/p/forgot-email',
             'rules' => '/wiki/Osu!:Rules',
+        ],
         'ranking' => [
             'overall' => '/p/pp',  
              'charts' => '/p/chart',
