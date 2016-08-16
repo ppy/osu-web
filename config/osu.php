@@ -71,19 +71,19 @@ return [
             'recover' => '/p/forgot-email',
             'rules' => '/wiki/Osu!:Rules',
         'ranking' => [
- +            'overall' => '/p/pp',  
- +            'charts' => '/p/chart',
- +            'country' => '/p/countryranking',
- +            'mapper' => '/p/kudosu',
- +        ],
- +        'home' => [
- +            'changelog' => '/p/changelog',
- +            'download' => '/p/download',
- +        ],
- +        'help' => [
- +            'wiki' => '/wiki/Main_Page',    
- +            'faq' => '/wiki/FAQ',
- +            'support' => 'http://help.ppy.sh/',
+            'overall' => '/p/pp',  
+             'charts' => '/p/chart',
+            'country' => '/p/countryranking',
+            'mapper' => '/p/kudosu',
+        ],
+        'home' => [
+            'changelog' => '/p/changelog',
+            'download' => '/p/download',
+        ],
+        'help' => [
+            'wiki' => '/wiki/Main_Page',    
+            'faq' => '/wiki/FAQ',
+            'support' => 'http://help.ppy.sh/',
         ],
     ],
     'user' => [
