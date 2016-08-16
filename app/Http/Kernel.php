@@ -58,5 +58,7 @@ class Kernel extends HttpKernel
         'oauth-user' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthUserOwnerMiddleware',
         'oauth-client' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthClientOwnerMiddleware',
         'check-authorization-params' => 'LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware',
+        'check-user-restricted' => Middleware\CheckUserRestricted::class,
+        'verify-user' => Middleware\VerifyUser::class,
     ];
 }

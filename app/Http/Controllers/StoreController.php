@@ -19,7 +19,6 @@
  */
 namespace App\Http\Controllers;
 
-use App\Http\Middleware;
 use App\Models\Country;
 use App\Models\Store;
 use Auth;
@@ -47,7 +46,7 @@ class StoreController extends Controller
             'putRequestNotification',
         ]]);
 
-        $this->middleware('App\Http\Middleware\CheckUserRestricted', ['only' => [
+        $this->middleware('check-user-restricted', ['only' => [
             'getInvoice',
             'postUpdateCart',
             'postAddToCart',
@@ -58,7 +57,7 @@ class StoreController extends Controller
             'putRequestNotification',
         ]]);
 
-        $this->middleware(Middleware\VerifyUser::class, ['only' => [
+        $this->middleware('verify-user', ['only' => [
             'getInvoice',
             'getCheckout',
             'postCheckout',

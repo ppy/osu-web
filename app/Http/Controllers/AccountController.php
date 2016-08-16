@@ -20,7 +20,6 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ImageProcessorException;
-use App\Http\Middleware;
 use App\Libraries\UserVerification;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
@@ -40,7 +39,7 @@ class AccountController extends Controller
             abort(403);
         }
 
-        $this->middleware(Middleware\VerifyUser::class);
+        $this->middleware('verify-user');
 
         return parent::__construct();
     }
