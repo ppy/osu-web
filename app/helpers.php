@@ -235,14 +235,14 @@ function nav_links()
     if (config('app.debug')) {
         $links['home'] = [
             'getNews' => route('home'),
-            'getChangelog' => route('changelog'),
-            'getDownload' => route('download'),
+            'getChangelog' => config('osu.urls.base').config('osu.urls.home.changelog'),
+            'getDownload' => config('osu.urls.base').config('osu.urls.home.download'),
         ];
 
         $links['help'] = [
-            'getWiki' => route('wiki'),
-            'getFaq' => route('faq'),
-            'getSupport' => route('support'),
+            'getWiki' => config('osu.urls.base').config('osu.urls.help.wiki'),
+            'getFaq' => config('osu.urls.base').config('osu.urls.help.faq'),
+            'getSupport' => config('osu.urls.base').config('osu.urls.help.support'),
         ];
 
         $links['beatmaps'] = [
@@ -252,10 +252,10 @@ function nav_links()
         ];
 
         $links['ranking'] = [
-            'getOverall' => route('ranking-overall'),
-            'getCharts' => route('ranking-charts'),
-            'getCountry' => route('ranking-country'),
-            'getMapper' => route('ranking-mapper'),
+            'getOverall' => config('osu.urls.base').config('osu.urls.ranking.overall'),
+            'getCharts' => config('osu.urls.base').config('osu.urls.ranking.charts'),
+            'getCountry' => config('osu.urls.base').config('osu.urls.ranking.country'),
+            'getMapper' => config('osu.urls.base').config('osu.urls.ranking.mapper'),
         ];
     } else {
         $links['beatmaps'] = [
@@ -284,17 +284,17 @@ function footer_links()
 
     $links['general'] = [
         'home' => route('home'),
-        'changelog' => route('changelog'),
+        'changelog' => config('osu.urls.base').config('osu.urls.home.changelog'),
         'beatmaps' => action('BeatmapsetsController@index'),
-        'download' => route('download'),
-        'wiki' => route('wiki'),
+        'download' => config('osu.urls.base').config('osu.urls.home.download'),
+        'wiki' => config('osu.urls.base').config('osu.urls.help.wiki'),
     ];
 
     $links['help'] = [
-        'faq' => route('faq'),
+        'faq' => config('osu.urls.base').config('osu.urls.help.faq'),
         'forum' => route('forum.forums.index'),
-        'livestreams' => route('home'),
-        'report' => route('home'),
+        'livestreams' => route('livestreams.index'),
+        'report' => action('TopicsController@create', ['forum_id' => 5]),
     ];
 
     $links['support'] = [
@@ -303,10 +303,10 @@ function footer_links()
     ];
 
     $links['legal'] = [
-        'tos' => config('osu.urls.legal.tos'),
-        'copyright' => config('osu.urls.legal.dmca'),
-        'serverStatus' => config('osu.urls.legal.server'),
-        'osuStatus' => config('osu.urls.legal.osustatus'),
+        'tos' => config('osu.urls.base').config('osu.urls.legal.tos'),
+        'copyright' => config('osu.urls.base').config('osu.urls.legal.dmca'),
+        'serverStatus' => config('osu.urls.status.server'),
+        'osuStatus' => config('osu.urls.status.osustatus'),
     ];
 
     return $links;
