@@ -22,7 +22,7 @@ class @UserVerification
   clickAfterVerification: null # Used as callback on original action (where verification was required)
 
 
-  constructor: ->
+  constructor: (@nav) ->
     $(document).on 'ajax:error', @showOnError
     $(document).on 'ready turbolinks:load', @showOnLoad
     $(document).on 'keyup', '.js-user-verification--input', @autoSubmit
@@ -116,6 +116,8 @@ class @UserVerification
 
 
   show: (target, html) =>
+    Timeout.set 0, => @nav.hidePopup()
+
     @clickAfterVerification = target
 
     if html?
