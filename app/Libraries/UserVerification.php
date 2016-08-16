@@ -157,12 +157,12 @@ class UserVerification
             $this->issue();
 
             return error_popup(trans('user_verification.errors.retries_exceeded'));
-        } elseif (str_replace(' ', '', $this->request->input('verification_key')) === $key) {
-            return $this->verified();
-        } else {
+        } elseif (str_replace(' ', '', $this->request->input('verification_key')) !== $key) {
             $this->request->session()->put('verification_tries', $tries + 1);
 
             return error_popup(trans('user_verification.errors.incorrect_key'));
+        } else {
+            return $this->verified();
         }
     }
 }
