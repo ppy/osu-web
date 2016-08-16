@@ -70,6 +70,8 @@ class UsersController extends Controller
 
     public function login()
     {
+        Request::session()->flush();
+
         $ip = Request::getClientIp();
 
         if (LoginAttempt::isLocked($ip)) {
@@ -109,6 +111,8 @@ class UsersController extends Controller
             setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.ppy.sh');
             setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.ppy.sh');
         }
+
+        Request::session()->flush();
 
         return [];
     }
