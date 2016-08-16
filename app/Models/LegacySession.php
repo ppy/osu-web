@@ -44,7 +44,7 @@ class LegacySession extends Model
         $sessionId = $request->cookie('phpbb3_2cjk5_sid');
         $sessionIdSign = $request->cookie('phpbb3_2cjk5_sid_check');
 
-        if ($sessionId === null || $sessionIdHash === null) {
+        if ($sessionId === null || $sessionIdSign === null) {
             return;
         }
 
