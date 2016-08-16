@@ -53,12 +53,12 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth' => 'App\Http\Middleware\Authenticate',
         'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
-        'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
-        'oauth' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware',
-        'oauth-user' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthUserOwnerMiddleware',
-        'oauth-client' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthClientOwnerMiddleware',
         'check-authorization-params' => 'LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware',
         'check-user-restricted' => Middleware\CheckUserRestricted::class,
+        'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
+        'oauth' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware',
+        'oauth-client' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthClientOwnerMiddleware',
+        'oauth-user' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthUserOwnerMiddleware',
         'verify-user' => Middleware\VerifyUser::class,
     ];
 }
