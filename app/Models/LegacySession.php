@@ -26,10 +26,11 @@ class LegacySession extends Model
     protected $table = 'phpbb_sessions';
     protected $primaryKey = 'session_id';
     public $incrementing = false;
-    public $timestamps = false;
 
     protected $dateFormat = 'U';
     protected $dates = ['session_last_visit', 'session_start', 'session_time'];
+    public $timestamps = false;
+
     protected $guarded = [];
 
     protected $casts = [
