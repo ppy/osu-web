@@ -176,4 +176,7 @@ return [
         'title' => ":username's profile",
     ],
 
+    'verify' => [
+        'title' => 'Account Verification',
+    ],
 ];

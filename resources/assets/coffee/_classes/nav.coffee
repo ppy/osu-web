@@ -47,7 +47,8 @@ class @Nav
     popup.getElementsByClassName('js-nav-auto-focus')[0]?.focus?()
 
 
-  available: => @popup[0]?
+  available: (force = false) =>
+    (force || !document.body.classList.contains('modal-open')) && @popup[0]?
 
 
   currentMode: =>
@@ -79,7 +80,7 @@ class @Nav
 
 
   hidePopup: (e) =>
-    return if !@available()
+    return if !@available(true)
     return if !@data().visible
 
     if e?
