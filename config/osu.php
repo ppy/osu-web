@@ -50,25 +50,40 @@ return [
     ],
     'twitch_client_id' => env('TWITCH_CLIENT_ID'),
     'urls' => [
-        'smilies' => 'https://osu.ppy.sh/forum/images/smilies',
-        'support-the-game' => 'https://osu.ppy.sh/p/support#transactionarea',
+        'base' => 'https://osu.ppy.sh',
+        'smilies' => '/forum/images/smilies',
+        'support-the-game' => '/p/support#transactionarea',
 
         'legal' => [
-            'dmca' => 'https://osu.ppy.sh/p/copyright',
-            'tos' => 'https://osu.ppy.sh/p/terms',
+            'dmca' => '/p/copyright',
+            'tos' => '/p/terms',
         ],
         'social' => [
             'facebook' => 'https://facebook.com/osugame',
-            'twitter' => 'https://osu.ppy.sh/p/twitter',
+            'twitter' => '/p/twitter',
         ],
         'status' => [
             'osustatus' => 'https://twitter.com/osustatus',
             'server' => 'http://stat.ppy.sh/',
         ],
         'user' => [
-            'kudosu' => 'https://osu.ppy.sh/wiki/Kudosu',
-            'recover' => 'https://osu.ppy.sh/p/forgot-email',
-            'rules' => 'https://osu.ppy.sh/wiki/Osu!:Rules',
+            'kudosu' => '/wiki/Kudosu',
+            'recover' => '/p/forgot-email',
+            'rules' => '/wiki/Osu!:Rules',
+        'ranking' => [
+ +            'overall' => '/p/pp',  
+ +            'charts' => '/p/chart',
+ +            'country' => '/p/countryranking',
+ +            'mapper' => '/p/kudosu',
+ +        ],
+ +        'home' => [
+ +            'changelog' => '/p/changelog',
+ +            'download' => '/p/download',
+ +        ],
+ +        'help' => [
+ +            'wiki' => '/wiki/Main_Page',    
+ +            'faq' => '/wiki/FAQ',
+ +            'support' => 'http://help.ppy.sh/',
         ],
     ],
     'user' => [
