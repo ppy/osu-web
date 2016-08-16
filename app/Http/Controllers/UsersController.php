@@ -70,6 +70,8 @@ class UsersController extends Controller
 
     public function login()
     {
+        Request::session()->flush();
+
         $ip = Request::getClientIp();
 
         if (LoginAttempt::isLocked($ip)) {
