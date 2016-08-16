@@ -36,6 +36,7 @@ class @UserVerification
 
 
   autoSubmit: (e) =>
+    verifying = document.getElementsByClassName('js-user-verification--verifying')[0]
     target = @inputBox[0]
     inputKey = target.value.replace /\s/g, ''
     lastKey = target.dataset.lastKey
@@ -49,11 +50,17 @@ class @UserVerification
 
     target.dataset.lastKey = inputKey
 
-    $.post laroute.route('account.verify'),
-      verification_key: inputKey
-    .done @success
-    .error @error
+    @request?.abort()
+    Fade.in verifying
+    Fade.out @errorMessage[0]
 
+    @request =
+      $.post laroute.route('account.verify'),
+        verification_key: inputKey
+      .done @success
+      .error @error
+      .always =>
+        Fade.out verifying
 
 
   error: (xhr) =>

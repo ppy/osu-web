@@ -27,9 +27,14 @@
     <div class="user-verification__row user-verification__row--key">
         <input
             data-verification-key-length="{{ config('osu.user.verification_key_length_hex') }}"
-            class="user-verification__key js-user-verification--input"
+            class="user-verification__key js-user-verification--input modal-af"
         />
         <div class="user-verification__errors js-user-verification--error" data-visibility="hidden"></div>
+
+        <div class="user-verification__errors js-user-verification--verifying" data-visibility="hidden">
+            <i class="fa fa-spinner fa-pulse fa-fw"></i>
+            {{ trans('user_verification.box.verifying') }}
+        </div>
     </div>
 
     <p class="user-verification__row user-verification__row--info">

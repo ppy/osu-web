@@ -21,6 +21,7 @@ return [
     'box' => [
         'sent' => 'An email has been sent to :mail with a verification code. Enter the code.',
         'title' => 'Account Verification',
+        'verifying' => 'Verifying...',
 
         'info' => [
             'check_spam' => "Make sure to check your spam folder if you can't find the email.",
