@@ -287,7 +287,7 @@ function footer_links()
         'faq' => config('osu.urls.base').config('osu.urls.help.faq'),
         'forum' => route('forum.forums.index'),
         'livestreams' => route('livestreams.index'),
-        'report' => action('TopicsController@create', ['forum_id' => 5]),
+        'report' => route('forum.topics.create', ['forum_id' => 5]),
     ];
     $links['support'] = [
         'tags' => route('support-the-game'),
