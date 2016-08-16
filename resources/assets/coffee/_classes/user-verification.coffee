@@ -124,7 +124,7 @@ class @UserVerification
       $('.js-user-verification--box').html html
 
     @$modal()
-    .modal static: true
+    .modal backdrop: 'static'
     .modal 'show'
     .addClass 'js-user-verification--active'
 
