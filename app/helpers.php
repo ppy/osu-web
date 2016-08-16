@@ -269,7 +269,6 @@ function nav_links()
         'getListing' => action('StoreController@getListing'),
         'getCart' => action('StoreController@getCart'),
     ];
-    
     return $links;
 }
 
@@ -299,7 +298,6 @@ function footer_links()
         'serverStatus' => config('osu.urls.status.server'),
         'osuStatus' => config('osu.urls.status.osustatus'),
     ];
-    
     return $links;
 }
 
