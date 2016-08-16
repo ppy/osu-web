@@ -110,6 +110,8 @@ class UsersController extends Controller
             setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.ppy.sh');
         }
 
+        Request::session()->flush();
+
         return [];
     }
 
