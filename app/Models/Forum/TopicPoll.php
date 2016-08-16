@@ -30,6 +30,7 @@ class TopicPoll
     private $topic;
     private $validated = false;
     private $_totalVotes;
+    private $params;
 
     public function exists()
     {
@@ -38,7 +39,9 @@ class TopicPoll
 
     public function fill($params)
     {
-        $this->params = $params;
+        $this->params = array_merge([
+            'max_options' => 1,
+        ], $params);
         $this->validated = false;
 
         return $this;
