@@ -181,6 +181,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 // Note that hhvm behaves differently (the same as POST).
 Route::post('/account/update-profile', ['as' => 'account.update-profile', 'uses' => 'AccountController@updateProfile']);
 Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
+Route::post('/account/verify', ['as' => 'account.verify', 'uses' => 'AccountController@verify']);
 
 // API
 Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'oauth'], function () {

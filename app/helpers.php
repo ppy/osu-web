@@ -61,6 +61,17 @@ function product_quantity_options($product)
     return $opts;
 }
 
+function obscure_email($email)
+{
+    $email = explode('@', $email);
+
+    if (!present($email[0]) || !present($email[1] ?? null)) {
+        return '<unknown>';
+    }
+
+    return $email[0][0].'***'.'@'.$email[1];
+}
+
 function countries_array_for_select()
 {
     $out = [];

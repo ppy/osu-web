@@ -1,5 +1,7 @@
+<?php
+
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,18 +16,16 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+namespace App\Http\Middleware;
 
-.modal-dialog {
-  &\@sm {
-    @media @desktop {
-      margin-top: (@nav-sm-height + @spacing);
-    }
-  }
+use Illuminate\Cookie\Middleware\EncryptCookies as EncryptCookiesBase;
 
-  &--full {
-    width: 100%;
-    margin: 0;
-  }
+class EncryptCookies extends EncryptCookiesBase
+{
+    protected $except = [
+        'phpbb3_2cjk5_sid',
+        'phpbb3_2cjk5_sid_check',
+        'locale',
+    ];
 }
