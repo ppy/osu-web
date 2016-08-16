@@ -33,7 +33,7 @@ class AccountController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'logout']);
 
         if (Auth::check() && Auth::user()->isSilenced()) {
             abort(403);

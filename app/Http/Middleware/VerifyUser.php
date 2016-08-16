@@ -35,7 +35,9 @@ class VerifyUser
 
     public function handle(Request $request, Closure $next)
     {
-        if (!$request->is(trim(route('account.verify', [], false), '/')) && $this->requiresVerification($request)) {
+        if (!$request->is('account/verify')
+            && !$request->is('users/logout')
+            && $this->requiresVerification($request)) {
             $verification = new UserVerification($this->auth->user(), $request);
 
             if (!$verification->isDone()) {
