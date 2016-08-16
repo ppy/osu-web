@@ -108,11 +108,14 @@ class UserVerification
     public function legacySession()
     {
         if ($this->_legacySession === false) {
-            $this->_legacySession = LegacySession::loadFromRequest($this->request);
+            $session = LegacySession::loadFromRequest($this->request);
 
-            if ($this->_legacySession !== null && $this->_legacySession->session_user_id !== $this->user->user_id) {
-                $this->_legacySession = null;
+            if ($session !== null
+                && $session->session_user_id !== $this->user->user_id) {
+                $session = null;
             }
+
+            $this->_legacySession = $session;
         }
 
         return $this->_legacySession;
