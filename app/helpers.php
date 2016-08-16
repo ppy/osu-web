@@ -273,17 +273,17 @@ function footer_links()
 
     $links['general'] = [
         'home' => route('home'),
-        'changelog' => route('changelog'),
+        'changelog' => config('osu.urls.base').config('osu.urls.home.changelog'),
         'beatmaps' => action('BeatmapsetsController@index'),
-        'download' => route('download'),
-        'wiki' => route('wiki'),
+        'download' => config('osu.urls.base').config('osu.urls.home.download'),
+        'wiki' => config('osu.urls.base').config('osu.urls.help.wiki'),
     ];
 
     $links['help'] = [
-        'faq' => route('faq'),
+        'faq' => config('osu.urls.base').config('osu.urls.help.faq'),
         'forum' => route('forum.forums.index'),
-        'livestreams' => route('home'),
-        'report' => route('home'),
+        'livestreams' => route('livestreams.index'),
+        'report' => action('TopicsController@create', ['forum_id' => 5]),
     ];
 
     $links['support'] = [
