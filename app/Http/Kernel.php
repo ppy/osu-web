@@ -30,13 +30,14 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         'Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode',
-        Middleware\SetLocale::class,
-        'Illuminate\Cookie\Middleware\EncryptCookies',
+        Middleware\EncryptCookies::class,
         'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
         'Illuminate\Session\Middleware\StartSession',
+        Middleware\SetLocale::class,
         'Illuminate\View\Middleware\ShareErrorsFromSession',
         'App\Http\Middleware\VerifyCsrfToken',
         'App\Http\Middleware\AutologinFromLegacyCookie',
+        Middleware\VerifyPrivilegedUser::class,
         'App\Http\Middleware\CheckUserBanStatus',
         'App\Http\Middleware\UpdateUserLastvisit',
         'Clockwork\Support\Laravel\ClockworkMiddleware',
@@ -52,10 +53,12 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth' => 'App\Http\Middleware\Authenticate',
         'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
+        'check-authorization-params' => 'LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware',
+        'check-user-restricted' => Middleware\CheckUserRestricted::class,
         'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
         'oauth' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware',
-        'oauth-user' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthUserOwnerMiddleware',
         'oauth-client' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthClientOwnerMiddleware',
-        'check-authorization-params' => 'LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware',
+        'oauth-user' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthUserOwnerMiddleware',
+        'verify-user' => Middleware\VerifyUser::class,
     ];
 }

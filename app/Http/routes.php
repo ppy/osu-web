@@ -28,17 +28,7 @@
 */
 
 // home section
-if (Config::get('app.debug')) {
-    Route::get('/', ['as' => 'home', 'uses' => 'HomeController@getLanding']);
-} else {
-    Route::get('/', ['as' => 'home', function () {
-        $host = Request::getHttpHost();
-        $subdomain = substr($host, 0, strpos($host, '.'));
-        $redirect_path = $subdomain === 'store' ? '/store' : '/forum';
-
-        return Redirect::to($redirect_path);
-    }]);
-}
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 Route::get('/home/news', ['as' => 'news', 'uses' => 'HomeController@getNews']);
 Route::get('/home/account', ['as' => 'home.account', 'uses' => 'HomeController@getAccount']);
@@ -117,6 +107,7 @@ Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);
 // catchall controllers
 Route::controller('/notifications', 'NotificationController');
 Route::controller('/store', 'StoreController', [
+    'getListing' => 'store.products.index',
     'getProduct' => 'store.product',
     'putRequestNotification' => 'store.request-notification',
 ]);
@@ -182,6 +173,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 // Note that hhvm behaves differently (the same as POST).
 Route::post('/account/update-profile', ['as' => 'account.update-profile', 'uses' => 'AccountController@updateProfile']);
 Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
+Route::post('/account/verify', ['as' => 'account.verify', 'uses' => 'AccountController@verify']);
 
 // API
 Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'oauth'], function () {

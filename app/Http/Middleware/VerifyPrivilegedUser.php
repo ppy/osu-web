@@ -1,5 +1,7 @@
+<?php
+
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,36 +16,13 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+namespace App\Http\Middleware;
 
- .landing-sitemap {
-    @media @screen-large {
-        text-align: left;
+class VerifyPrivilegedUser extends VerifyUser
+{
+    public function requiresVerification($request)
+    {
+        return $this->auth->user() === null || $this->auth->user()->isPrivileged();
     }
-
-    text-align: center;
-
-    &__list {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    &__header {
-        color: @grey-f;
-        font-weight: bold;
-        font-size: 13px;
-    }
-
-    &__link {
-        color: @pink-lighter;
-        font-size: 12px;
-
-        &:hover,
-        &:focus {
-            color: @grey-f;
-            text-decoration: none;
-        }
-    }
- }
+}

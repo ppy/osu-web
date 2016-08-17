@@ -19,7 +19,7 @@
     $headerCover = $cover['data']['fileUrl'] ?? $cover['data']['defaultFileUrl'] ?? null;
 ?>
 <div class="osu-layout__row">
-    <div class="page-header-nav">
+    <div class="page-header-nav js-header--main">
         @include('forum.topics._header_breadcrumb', [
             'headerBreadcrumbExtraClasses' => 'forum-header-breadcrumb--large',
             'forum' => $forum ?? $topic->forum,

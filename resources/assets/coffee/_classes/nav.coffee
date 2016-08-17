@@ -47,7 +47,8 @@ class @Nav
     popup.getElementsByClassName('js-nav-auto-focus')[0]?.focus?()
 
 
-  available: => @popup[0]?
+  available: (force = false) =>
+    (force || !document.body.classList.contains('modal-open')) && @popup[0]?
 
 
   currentMode: =>
@@ -79,7 +80,7 @@ class @Nav
 
 
   hidePopup: (e) =>
-    return if !@available()
+    return if !@available(true)
     return if !@data().visible
 
     if e?
@@ -95,9 +96,13 @@ class @Nav
     return if !@available()
     return if !@data().visible
 
-    beaconPosition = @floatBeacon[0].getBoundingClientRect()
+    if @currentMode() == 'user' && !currentUser.id?
+      beaconPosition = @floatBeacon[0].getBoundingClientRect()
 
-    float = beaconPosition.bottom < 0
+      float = beaconPosition.bottom < 0
+    else
+      float = false
+
     @floatPopup float
 
 

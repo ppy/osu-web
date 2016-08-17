@@ -198,4 +198,7 @@ return [
         ],
     ],
 
+    'verify' => [
+        'title' => 'Account Verification',
+    ],
 ];

@@ -32,6 +32,7 @@ return [
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
+            'index' => 'news',
             'supportTheGame' => 'support the game',
         ],
         'help' => [
