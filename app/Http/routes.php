@@ -28,17 +28,17 @@
 */
 
 // home section
-if (Config::get('app.debug')) {
-    Route::get('/', ['as' => 'home', 'uses' => 'HomeController@getLanding']);
-} else {
-    Route::get('/', ['as' => 'home', function () {
-        $host = Request::getHttpHost();
-        $subdomain = substr($host, 0, strpos($host, '.'));
-        $redirect_path = $subdomain === 'store' ? '/store' : '/forum';
+Route::get('/', ['as' => 'home', function () {
+    $host = Request::getHttpHost();
+    $subdomain = substr($host, 0, strpos($host, '.'));
+    if ($subdomain === 'store')
+        return Redirect::to('/store');
+    else
+        //not sure if there's a better way to do this.
+        return Redirect::route('hello');
+}]);
 
-        return Redirect::to($redirect_path);
-    }]);
-}
+Route::get('/hello', ['as' => 'hello', 'uses' => 'HomeController@getLanding']);
 
 Route::get('/home/news', ['as' => 'news', 'uses' => 'HomeController@getNews']);
 Route::get('/home/download', ['as' => 'download', 'uses' => 'HomeController@getDownload']);
