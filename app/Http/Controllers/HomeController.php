@@ -23,32 +23,12 @@ use App\Models\BanchoStats;
 use App\Models\Count;
 use Carbon\Carbon;
 use Auth;
+use Request;
 use View;
 
 class HomeController extends Controller
 {
     protected $section = 'home';
-
-    public function getLanding()
-    {
-        if (Auth::check()) {
-            return $this->getNews();
-        }
-
-        $timeAgo = Carbon::now()->subDay();
-        $stats = BanchoStats::where('date', '>=', $timeAgo)
-            ->whereRaw('banchostats_id mod 10 = 0')
-            ->get();
-        $totalUsers = Count::totalUsers();
-        $currentOnline = ($stats->isEmpty() ? 0 : $stats->last()->users_osu);
-
-        return view('home.landing', compact('stats', 'totalUsers', 'currentOnline'));
-    }
-
-    public function getNews()
-    {
-        return view('home.news');
-    }
 
     public function getChangelog()
     {
@@ -72,6 +52,29 @@ class HomeController extends Controller
             'easy-fruits', 'normal-fruits', 'hard-fruits', 'insane-fruits', 'expert-fruits',
             'easy-mania', 'normal-mania', 'hard-mania', 'insane-mania', 'expert-mania',
         ]);
+    }
+
+    public function index()
+    {
+        $host = Request::getHttpHost();
+        $subdomain = substr($host, 0, strpos($host, '.'));
+
+        if ($subdomain === 'store') {
+            return ujs_redirect(route('store.products.index'));
+        }
+
+        if (Auth::check()) {
+            return ujs_redirect(route('forum.forums.index'));
+        }
+
+        $timeAgo = Carbon::now()->subDay();
+        $stats = BanchoStats::where('date', '>=', $timeAgo)
+            ->whereRaw('banchostats_id mod 10 = 0')
+            ->get();
+        $totalUsers = Count::totalUsers();
+        $currentOnline = ($stats->isEmpty() ? 0 : $stats->last()->users_osu);
+
+        return view('home.landing', compact('stats', 'totalUsers', 'currentOnline'));
     }
 
     public function supportTheGame()
