@@ -22,7 +22,7 @@
         <a class="footer__link" href="{{ osu_url('status.server') }}" target="_blank">Server Status</a>
         <a class="footer__link" href="{{ osu_url('status.osustatus') }}" target="_blank">@osustatus</a>
     </div>
-    <div class="footer__row">ppy powered 2007-{{ date("Y") }}</div>
+    <div class="footer__row">ppy powered 2007-{{ date('Y') }}</div>
 
     <div class="js-sync-height--target" data-sync-height-id="permanent-fixed-footer"></div>
 </footer>
