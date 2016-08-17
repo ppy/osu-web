@@ -245,7 +245,7 @@ function nav_links()
 
     if (config('app.debug')) {
         $links['home'] = [
-            'getNews' => route('home'),
+            'index' => route('home'),
             'getChangelog' => osu_url('home.changelog'),
             'getDownload' => osu_url('home.download'),
         ];
