@@ -28,19 +28,8 @@
 */
 
 // home section
-if (Config::get('app.debug')) {
-    Route::get('/', ['as' => 'home', 'uses' => 'HomeController@getLanding']);
-} else {
-    Route::get('/', ['as' => 'home', function () {
-        $host = Request::getHttpHost();
-        $subdomain = substr($host, 0, strpos($host, '.'));
-        $redirect_path = $subdomain === 'store' ? '/store' : '/forum';
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
-        return Redirect::to($redirect_path);
-    }]);
-}
-
-Route::get('/home/news', ['as' => 'news', 'uses' => 'HomeController@getNews']);
 Route::get('/home/download', ['as' => 'download', 'uses' => 'HomeController@getDownload']);
 Route::get('/home/changelog', ['as' => 'changelog', 'uses' => 'HomeController@getChangelog']);
 Route::get('/home/support', ['as' => 'support-the-game', 'uses' => 'HomeController@supportTheGame']);
@@ -116,6 +105,7 @@ Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);
 // catchall controllers
 Route::controller('/notifications', 'NotificationController');
 Route::controller('/store', 'StoreController', [
+    'getListing' => 'store.products.index',
     'getProduct' => 'store.product',
     'putRequestNotification' => 'store.request-notification',
 ]);
