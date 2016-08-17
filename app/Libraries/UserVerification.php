@@ -62,21 +62,22 @@ class UserVerification
     {
         // 1 byte = 2^8 bits = 16^2 bits = 2 hex characters
         $key = bin2hex(random_bytes(config('osu.user.verification_key_length_hex') / 2));
-        $email = $this->user->user_email;
-        $to = $this->user->user_email;
+        $user = $this->user;
+        $email = $user->user_email;
+        $to = $user->user_email;
 
         $this->request->session()->put('verification_key', $key);
         $this->request->session()->put('verification_expire_date', Carbon::now()->addHours(5));
         $this->request->session()->put('verification_tries', 0);
 
-        $countryName = Country
+        $requestCountry = Country
             ::where('acronym', $this->request->header('CF_IPCOUNTRY'))
             ->pluck('name')
             ->first();
 
         Mail::queue(
             ['text' => i18n_view('emails.user_verification')],
-            ['key' => $key, 'user' => $this->user],
+            compact('key', 'user', 'requestCountry'),
             function ($message) use ($to) {
                 $message->to($to);
                 $message->subject(trans('user_verification.email.subject'));

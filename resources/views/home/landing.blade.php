@@ -69,7 +69,7 @@
 
     <div class="js-nav-data" id="nav-data-landing" data-turbolinks-permanent></div>
     @include('layout._popup', ['navPopupExtraClasses' => 'osu-layout__row--landing'])
-    <header class="osu-layout__row osu-layout__row--landing">
+    <header class="osu-layout__row osu-layout__row--landing js-landing-header">
         <div class="landing-hero">
             <div class="js-landing-hero-slider--new js-landing-hero-slider landing-hero__slider">
                 @for($i = 1; $i <= 2; $i++)
