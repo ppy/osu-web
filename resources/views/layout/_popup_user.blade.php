@@ -48,6 +48,16 @@
             {{ trans('layout.popup_user.links.profile') }}
         </a>
 
+        <a
+            class="nav-popup__link"
+            href="{{ route('home.account') }}"
+        >
+            <div class="nav-popup__link-marker">
+                <i class="fa fa-angle-right"></i>
+            </div>
+
+            {{ trans('layout.popup_user.links.account') }}
+        </a>
 
         <a
             class="js-logout-link nav-popup__link"

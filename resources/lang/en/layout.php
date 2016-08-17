@@ -230,6 +230,7 @@ return [
     'popup_user' => [
         'links' => [
             'profile' => 'My Profile',
+            'account' => 'My Account',
             'logout' => 'Log Out',
         ],
     ],
