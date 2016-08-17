@@ -30,11 +30,11 @@ class Count extends Model
 
     public static function currentRankStart()
     {
-        return static::find('pp_rank_column')->count;
+        return static::find('pp_rank_column')->count ?? 0;
     }
 
     public static function totalUsers()
     {
-        return static::find('usercount')->count;
+        return static::find('usercount')->count ?? 0;
     }
 }
