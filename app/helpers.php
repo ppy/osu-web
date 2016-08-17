@@ -46,6 +46,17 @@ function get_valid_locale($requestedLocale)
     );
 }
 
+function osu_url($key)
+{
+    $url = config("osu.urls.{$key}");
+
+    if (($url[0] ?? null) === '/') {
+        $url = config('osu.urls.base').$url;
+    }
+
+    return $url;
+}
+
 function product_quantity_options($product)
 {
     if ($product->stock === null) {
@@ -235,13 +246,13 @@ function nav_links()
     if (config('app.debug')) {
         $links['home'] = [
             'getNews' => route('home'),
-            'getChangelog' => config('osu.urls.base').config('osu.urls.home.changelog'),
-            'getDownload' => config('osu.urls.base').config('osu.urls.home.download'),
+            'getChangelog' => osu_url('home.changelog'),
+            'getDownload' => osu_url('home.download'),
         ];
         $links['help'] = [
-            'getWiki' => config('osu.urls.base').config('osu.urls.help.wiki'),
-            'getFaq' => config('osu.urls.base').config('osu.urls.help.faq'),
-            'getSupport' => config('osu.urls.base').config('osu.urls.help.support'),
+            'getWiki' => osu_url('help.wiki'),
+            'getFaq' => osu_url('help.faq'),
+            'getSupport' => osu_url('help.support'),
         ];
         $links['beatmaps'] = [
             'index' => route('beatmapsets.index'),
@@ -249,10 +260,10 @@ function nav_links()
             // 'getCharts' => route('charts.index'),
         ];
         $links['ranking'] = [
-            'getOverall' => config('osu.urls.base').config('osu.urls.ranking.overall'),
-            'getCharts' => config('osu.urls.base').config('osu.urls.ranking.charts'),
-            'getCountry' => config('osu.urls.base').config('osu.urls.ranking.country'),
-            'getMapper' => config('osu.urls.base').config('osu.urls.ranking.mapper'),
+            'getOverall' => osu_url('ranking.overall'),
+            'getCharts' => osu_url('ranking.charts'),
+            'getCountry' => osu_url('ranking.country'),
+            'getMapper' => osu_url('ranking.mapper'),
         ];
     } else {
         $links['beatmaps'] = [
@@ -278,13 +289,13 @@ function footer_links()
     $links = [];
     $links['general'] = [
         'home' => route('home'),
-        'changelog' => config('osu.urls.base').config('osu.urls.home.changelog'),
+        'changelog' => osu_url('home.changelog'),
         'beatmaps' => action('BeatmapsetsController@index'),
-        'download' => config('osu.urls.base').config('osu.urls.home.download'),
-        'wiki' => config('osu.urls.base').config('osu.urls.help.wiki'),
+        'download' => osu_url('home.download'),
+        'wiki' => osu_url('help.wiki'),
     ];
     $links['help'] = [
-        'faq' => config('osu.urls.base').config('osu.urls.help.faq'),
+        'faq' => osu_url('help.faq'),
         'forum' => route('forum.forums.index'),
         'livestreams' => route('livestreams.index'),
         'report' => route('forum.topics.create', ['forum_id' => 5]),
@@ -294,10 +305,10 @@ function footer_links()
         'merchandise' => action('StoreController@getListing'),
     ];
     $links['legal'] = [
-        'tos' => config('osu.urls.base').config('osu.urls.legal.tos'),
-        'copyright' => config('osu.urls.base').config('osu.urls.legal.dmca'),
-        'serverStatus' => config('osu.urls.status.server'),
-        'osuStatus' => config('osu.urls.status.osustatus'),
+        'tos' => osu_url('legal.tos'),
+        'copyright' => osu_url('legal.dmca'),
+        'serverStatus' => osu_url('status.server'),
+        'osuStatus' => osu_url('status.osustatus'),
     ];
 
     return $links;
