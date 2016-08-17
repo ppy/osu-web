@@ -18,9 +18,13 @@
  */
 
  .landing-middle-buttons {
+    @media @desktop {
+        width: 100%;
+    }
+
     display: flex;
     max-width: 770px;
-    margin: 20px auto 25px;
+    margin: 15px auto 25px;
     width: calc(100% ~'-' (@spacing * 2));
 
     &__image {
@@ -29,9 +33,5 @@
         margin: 0 auto;
         border-radius: 5px;
         box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.75);
-    }
-
-    @media @desktop {
-        width: 100%;
     }
 }
