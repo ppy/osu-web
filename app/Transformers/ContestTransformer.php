@@ -33,6 +33,7 @@ class ContestTransformer extends Fractal\TransformerAbstract
             'type' => $contest->type,
             'cover_url' => $contest->cover_url,
             'max_votes' => $contest->max_votes,
+            'ends_at' => $contest->ends_at->toIso8601String(),
         ];
     }
 }

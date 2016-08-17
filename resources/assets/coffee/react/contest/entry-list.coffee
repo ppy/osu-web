@@ -69,7 +69,11 @@ class Contest.EntryList extends React.Component
         options: @state.options,
         contest: @state.contest
 
+    votingOver = moment(@state.contest.ends_at).diff() <= 0
+
     div className: 'trackplayer',
+      if votingOver
+        div className: 'trackplayer__voting-ended', osu.trans('contest.over')
       table className: 'trackplayer__table trackplayer__table--smaller',
         thead {},
             tr className: 'trackplayer__row--header',

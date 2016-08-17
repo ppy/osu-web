@@ -50,12 +50,18 @@ class Contest.Voter extends React.Component
       @sendVote()
 
   render: ->
-    if @props.voteCount >= @props.maxVotes && !@props.track.selected
+    votingOver = moment(@props.contest.ends_at).diff() <= 0
+
+    if (@props.voteCount >= @props.maxVotes || votingOver) && !@props.track.selected
       null
     else
-      if @props.waitingForResponse && !@props.track.selected
-        div className: "trackplayer__float-right trackplayer__voting-star",
-          i className: "fa fa-fw fa-refresh"
-      else
-        a className: "trackplayer__float-right trackplayer__voting-star#{if @props.track.selected then ' trackplayer__voting-star--selected' else ''}", href: '#', onClick: @handleClick,
+      if votingOver
+        div className: "trackplayer__float-right trackplayer__voting-star#{if @props.track.selected then ' trackplayer__voting-star--selected' else ''}",
           i className: "fa fa-fw fa-star"
+      else
+        if @props.waitingForResponse && !@props.track.selected
+          div className: "trackplayer__float-right trackplayer__voting-star",
+            i className: "fa fa-fw fa-refresh"
+        else
+          a className: "trackplayer__float-right trackplayer__voting-star#{if @props.track.selected then ' trackplayer__voting-star--selected' else ''}", href: '#', onClick: @handleClick,
+            i className: "fa fa-fw fa-star"
