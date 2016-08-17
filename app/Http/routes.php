@@ -31,11 +31,12 @@
 Route::get('/', ['as' => 'home', function () {
     $host = Request::getHttpHost();
     $subdomain = substr($host, 0, strpos($host, '.'));
-    if ($subdomain === 'store')
+    if ($subdomain === 'store') {
         return Redirect::to('/store');
-    else
+    } else {
         //not sure if there's a better way to do this.
         return Redirect::route('hello');
+    }
 }]);
 
 Route::get('/hello', ['as' => 'hello', 'uses' => 'HomeController@getLanding']);
