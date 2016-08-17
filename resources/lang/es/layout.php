@@ -24,10 +24,10 @@ return [
     'menu' => [
         'home' => [
             '_' => 'inicio',
-            'getNews' => 'novedades',
             'getChangelog' => 'listado de cambios',
             'getDownload' => 'descargar',
             'getIcons' => 'iconos',
+            'index' => 'novedades',
             'supportTheGame' => 'apoya el juego',
         ],
         'help' => [
