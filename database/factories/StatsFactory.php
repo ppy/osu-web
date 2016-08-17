@@ -27,7 +27,7 @@ if (!function_exists('generateStats')) {
           'x_rank_count' => round($playcount * 0.001),
 		  'xh_rank_count' => round($playcount * 0.0005),
           's_rank_count' => round($playcount * 0.05),
-		  'sh_rank_count' => round($playcount * 0,02);
+		  'sh_rank_count' => round($playcount * 0,02),
           'a_rank_count' => round($playcount * 0.2),
           'rank_score' => $score,
           'rank_score_index' => rand(1, 500000),
