@@ -34,7 +34,6 @@ abstract class Model extends BaseModel
     protected $casts = [
         'perfect' => 'boolean',
         'replay' => 'boolean',
-        'enabled_mods' => 'integer',
     ];
     protected $dates = ['date'];
     public $timestamps = false;
