@@ -27,7 +27,6 @@ class Score extends Model
     use Scoreable;
 
     protected $table = 'game_scores';
-    protected $connection = 'mysql-mp';
     protected $primaryKey = null;
     protected $hidden = ['frame', 'game_id'];
     public $timestamps = false;
