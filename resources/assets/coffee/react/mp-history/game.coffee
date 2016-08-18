@@ -31,11 +31,10 @@ class MPHistory.Game extends React.Component
     difference = Math.abs @props.teamScores.blue - @props.teamScores.red
 
     scores = game.scores.data.map (m) ->
-      if m.team == winningTeam
-        m.winning = true
+      m.teamRank = if m.team == winningTeam then 1 else 2
       m
 
-    scores = _.orderBy scores, ['winning', 'score'], ['asc', 'desc']
+    scores = _.orderBy scores, ['teamRank', 'score'], ['desc', 'desc']
 
     div className: 'mp-history-events__game mp-history-game',
       el MPHistory.BeatmapHeader,
