@@ -45,7 +45,7 @@ class MatchesController extends Controller
         return view('multiplayer.match', compact('match', 'full'));
     }
 
-    public function matchHistory($match_id)
+    public function history($match_id)
     {
         $since = Request::input('since', 0);
         $full = Request::input('full', false) === 'true';
@@ -62,9 +62,9 @@ class MatchesController extends Controller
             ->where('event_id', '>', $since);
 
         if ($full) {
-            $events = $events->default();
+            $events->default();
         } else {
-            $events = $events
+            $events
                 ->orderBy('event_id', 'desc')
                 ->take(config('osu.mp-history.event-count'));
         }

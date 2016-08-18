@@ -89,7 +89,7 @@ Route::get('/community/slack', ['as' => 'slack', 'uses' => 'CommunityController@
 Route::post('/community/slack/agree', ['as' => 'slack.agree', 'uses' => 'CommunityController@postSlackAgree']);
 
 Route::resource('matches', 'MatchesController', ['only' => ['show']]);
-Route::get('/matches/{matches}/history', ['as' => 'matches.history', 'uses' => 'MatchesController@matchHistory']);
+Route::get('/matches/{matches}/history', ['as' => 'matches.history', 'uses' => 'MatchesController@history']);
 
 Route::get('/mp/{matches}', function ($matches) {
     return ujs_redirect(route('matches.show', ['matches' => $matches]));
