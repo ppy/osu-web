@@ -18,9 +18,6 @@
  */
 
 .mp-history-player-score {
-  @wide: ~"(min-width: 1200px)";
-  @narrow: ~"(max-width: 1200px)";
-
   display: flex;
 
   &__shapes {
@@ -31,8 +28,10 @@
 
     border-radius: @border-radius-base 0 0 @border-radius-base;
 
-    @media @narrow {
-      display: none;
+    display: none;
+
+    @media (min-width: @screen-lg-min) {
+      display: initial;
     }
   }
 
@@ -97,16 +96,20 @@
 
     padding-right: @spacing * 2;
 
+    display: none;
+
     @media (min-width: @screen-lg-min) {
-      display: none;
+      display: initial;
     }
   }
 
   &__mods-box {
     padding-right: @spacing * 2;
 
+    display: none;
+
     @media (min-width: @screen-lg-min) {
-      display: none;
+      display: initial;
     }
   }
 
