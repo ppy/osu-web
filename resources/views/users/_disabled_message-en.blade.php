@@ -23,7 +23,7 @@
 
 <ul>
     <li>
-        You have broken one or more of our <a href="{{ config("osu.urls.user.rules") }}">community rules</a> or <a href="{{ config("osu.urls.legal.tos") }}">terms of service</a>.
+        You have broken one or more of our <a href="{{ osu_url('user.rules') }}">community rules</a> or <a href="{{ osu_url('legal.tos') }}">terms of service</a>.
     </li>
     <li>
         Your account has deemed to be compromised. It may be disabled temporarily while its identity is confirmed.

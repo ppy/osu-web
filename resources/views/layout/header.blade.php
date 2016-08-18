@@ -17,7 +17,7 @@
 --}}
 @include('layout._header_mobile')
 
-<nav class="osu-layout__section osu-layout__section--minimum no-print js-header--main js-nav-popup hidden-xs">
+<nav class="osu-layout__section osu-layout__section--minimum no-print js-header--main hidden-xs">
     <div class="bg u-section-bg">
         <div class="bg__triangles bg__triangles--1"></div>
         <div class="bg__triangles bg__triangles--2"></div>
@@ -26,7 +26,7 @@
     </div>
 
     <!-- Main style -->
-    <div class="osu-nav">
+    <div class="osu-nav js-nav-popup">
         <a class="osu-nav__col osu-nav__col--logo u-nav-float" href="/">
             @include('objects._logo')
         </a>
@@ -54,6 +54,9 @@
         </a>
     </div>
 </nav>
+
+<div class="js-user-verification--reference"></div>
+@include('layout._user_verification_popup')
 
 <div class="js-nav-data" id="nav-data-master" data-turbolinks-permanent></div>
 @include('layout._popup')

@@ -22,13 +22,13 @@ use App\Models\User;
 class RouteTest extends TestCase
 {
     /**
-     * Test the homepage (and aliases) don't error.
+     * Test the homepage don't error.
      *
      * @return void
      */
     public function testHomeRoutes()
     {
-        $this->assertGetRoutes(['/', '/home/news']);
+        $this->assertGetRoutes(['/']);
     }
 
     /**

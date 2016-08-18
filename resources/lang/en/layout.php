@@ -26,11 +26,10 @@ return [
     'menu' => [
         'home' => [
             '_' => 'home',
-            'getLanding' => 'home',
-            'getNews' => 'news',
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
+            'index' => 'news',
             'supportTheGame' => 'support the game',
         ],
         'help' => [

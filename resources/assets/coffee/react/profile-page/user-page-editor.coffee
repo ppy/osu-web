@@ -57,7 +57,7 @@ class ProfilePage.UserPageEditor extends React.Component
         editing: false
         raw: body
         initialRaw: body
-    .fail osu.ajaxError
+    .fail osu.emitAjaxError(e.target)
     .always LoadingOverlay.hide
 
 
