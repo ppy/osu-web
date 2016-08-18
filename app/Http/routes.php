@@ -38,7 +38,7 @@ Route::get('/icons', 'HomeController@getIcons');
 
 // beatmapsets
 Route::get('/beatmaps/{beatmaps}/scores', ['as' => 'beatmaps.scores', 'uses' => 'BeatmapsController@scores']);
-Route::get('/beatmaps/{beatmaps}', ['as' => 'beatmaps.show', 'uses' => 'BeatmapsController@show']);
+Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
 
 // redirects to beatmapset anyways so there's no point
 // in having an another redirect on top of that
