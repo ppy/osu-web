@@ -46,7 +46,6 @@
     .at2x-simple("/images/headers/mp-history.png");
     background-position: center;
     height: 125px;
-
   }
 
   &--contests {
@@ -98,26 +97,26 @@
     &--smaller {
       font-size: @font-size--header-description;
     }
+  }
 
-    &--mp-history {
-      font-style: italic;
-    }
+  &--mp-history &__title {
+    font-style: italic;
   }
 
   &__title-box {
     position: absolute;
     bottom: @spacing;
+  }
 
-    &--mp-history {
-      @media @desktop {
-        left: 150px;
-        bottom: @spacing * 3;
-      }
+  &--mp-history &__title-box {
+    @media @desktop {
+      left: 150px;
+      bottom: @spacing * 3;
+    }
 
-      @media @mobile {
-        position: relative;
-        padding: 0 20px;
-      }
+    @media @mobile {
+      position: relative;
+      padding: 0 20px;
     }
   }
 }

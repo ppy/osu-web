@@ -20,8 +20,8 @@
 MPHistory.Header = (props) ->
   div className: 'osu-layout__row osu-layout__row--page-compact',
     div className: 'osu-page-header osu-page-header--mp-history',
-      div className: 'osu-page-header__title-box osu-page-header__title-box--mp-history',
-        h2 className: 'osu-page-header__title osu-page-header__title--mp-history osu-page-header__title--small',
+      div className: 'osu-page-header__title-box',
+        h2 className: 'osu-page-header__title osu-page-header__title--small',
           Lang.get 'multiplayer.match.header'
-        h1 className: 'osu-page-header__title osu-page-header__title--mp-history',
+        h1 className: 'osu-page-header__title',
           props.name
