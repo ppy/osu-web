@@ -45,7 +45,7 @@ Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
 Route::get('/b/{beatmaps}', ['uses' => 'BeatmapsController@show']);
 
 Route::get('/beatmapsets/search/{filters?}', ['as' => 'beatmapsets.search', 'uses' => 'BeatmapsetsController@search']);
-Route::resource('/beatmapsets', 'BeatmapsetsController', ['only' => ['index']]);
+Route::resource('/beatmapsets', 'BeatmapsetsController', ['only' => ['index', 'show']]);
 Route::get('/beatmapsets/{beatmapsets}', ['as' => 'beatmapsets.show', 'uses' => 'BeatmapsetsController@show']);
 
 Route::get('/s/{beatmapsets}', function ($beatmapsets) {
