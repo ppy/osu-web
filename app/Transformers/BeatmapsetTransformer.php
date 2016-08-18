@@ -43,7 +43,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         }
 
         return [
-            'beatmapset_id' => $beatmapset->beatmapset_id,
+            'id' => $beatmapset->beatmapset_id,
             'title' => $beatmapset->title,
             'artist' => $beatmapset->artist,
             'play_count' => $beatmapset->play_count,
