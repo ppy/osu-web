@@ -27,7 +27,7 @@ class BeatmapsetCompactTransformer extends Fractal\TransformerAbstract
     public function transform(Beatmapset $beatmapset)
     {
         return [
-            'beatmapset_id' => $beatmapset->beatmapset_id,
+            'id' => $beatmapset->beatmapset_id,
             'title' => $beatmapset->title,
             'artist' => $beatmapset->artist,
             'covers' => $beatmapset->allCoverURLs(),
