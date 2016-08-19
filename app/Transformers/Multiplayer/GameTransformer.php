@@ -47,7 +47,9 @@ class GameTransformer extends Fractal\TransformerAbstract
 
     public function includeBeatmap(Game $game)
     {
-        return $this->item($game->beatmap, new Transformers\BeatmapCompactTransformer);
+        if ($game->beatmap) {
+            return $this->item($game->beatmap, new Transformers\BeatmapCompactTransformer);
+        }
     }
 
     public function includeScores(Game $game)

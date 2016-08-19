@@ -38,8 +38,8 @@ class MPHistory.Game extends React.Component
 
     div className: 'mp-history-events__game mp-history-game',
       el MPHistory.BeatmapHeader,
-        beatmap: game.beatmap.data
-        beatmapset: game.beatmap.data.beatmapset.data
+        beatmap: if game.beatmap? then game.beatmap.data else @deletedBeatmap
+        beatmapset: if game.beatmap? then game.beatmap.data.beatmapset.data else @deletedBeatmapset
         game: game
 
       div className: className,
@@ -61,3 +61,14 @@ class MPHistory.Game extends React.Component
           div className: 'mp-history-game__results',
             span className: 'mp-history-game__results-text', Lang.get 'multiplayer.match.winner', team: Lang.get "multiplayer.match.teams.#{winningTeam}"
             span className: 'mp-history-game__results-text mp-history-game__results-text--score', Lang.get 'multiplayer.match.difference', difference: difference.toLocaleString()
+
+  deletedBeatmap:
+    id: null
+    version: null
+
+  deletedBeatmapset:
+    id: null
+    title: osu.trans 'multiplayer.match.beatmap-deleted'
+    artist: ''
+    covers:
+      cover: ''

@@ -27,6 +27,9 @@ class MPHistory.BeatmapHeader extends React.Component
 
     timeString = "#{timeStart} "
 
+    title = @props.beatmapset.title
+    title += " [#{@props.beatmap.version}]" if @props.beatmap.version
+
     if @props.game.end_time
       timeString += "- #{timeEnd}"
     else
@@ -35,7 +38,7 @@ class MPHistory.BeatmapHeader extends React.Component
     div className: 'mp-history-game__header',
       a
         className: 'mp-history-game__thumb'
-        href: laroute.route 'beatmaps.show', beatmaps: @props.beatmap.id
+        href: (laroute.route 'beatmaps.show', beatmaps: @props.beatmap.id) if @props.beatmap.id
         style:
           backgroundImage: "url(#{@props.beatmapset.covers.cover})"
 
@@ -49,7 +52,7 @@ class MPHistory.BeatmapHeader extends React.Component
 
         div className: 'mp-history-game__metadata-box',
           h1 className: 'mp-history-game__metadata mp-history-game__metadata--title',
-            "#{@props.beatmapset.title} [#{@props.beatmap.version}]"
+            title
           h2 className: 'mp-history-game__metadata mp-history-game__metadata--artist', @props.beatmapset.artist
 
         div className: 'mp-history-game__mods-box',
