@@ -1,0 +1,74 @@
+/**
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+.user-verification {
+  background-color: fade(@grey-0, 75%);
+  color: @grey-f;
+
+  padding: (@spacing * 7) (@spacing * 4);
+  text-align: center;
+  font-size: @font-size--normal;
+  font-weight: 300;
+
+  &__errors {
+    position: absolute;
+    width: 100%;
+    margin-top: @spacing;
+    color: @yellow-light;
+    font-weight: bold;
+  }
+
+  &__key {
+    .default-border-radius();
+    background-color: fade(@grey-0, 50%);
+    padding: @spacing;
+    text-align: center;
+    width: 75%;
+    font-family: @font-family-monospace;
+
+    &,
+    &:focus {
+      outline: none;
+      border: 2px solid @yellow;
+    }
+  }
+
+  &__link {
+    color: @yellow-light;
+
+    &:focus,
+    &:hover {
+      color: @yellow;
+    }
+  }
+
+  &__row {
+    margin: @spacing 0;
+
+    &--key {
+      margin-top: (@spacing * 4);
+      margin-bottom: (@spacing * 6);
+    }
+
+    &--title {
+      color: @yellow-light;
+      font-size: @font-size--large;
+      margin-bottom: (@spacing * 2);
+    }
+  }
+}

@@ -46,6 +46,17 @@ function get_valid_locale($requestedLocale)
     );
 }
 
+function osu_url($key)
+{
+    $url = config("osu.urls.{$key}");
+
+    if (($url[0] ?? null) === '/') {
+        $url = config('osu.urls.base').$url;
+    }
+
+    return $url;
+}
+
 function product_quantity_options($product)
 {
     if ($product->stock === null) {
@@ -59,6 +70,17 @@ function product_quantity_options($product)
     }
 
     return $opts;
+}
+
+function obscure_email($email)
+{
+    $email = explode('@', $email);
+
+    if (!present($email[0]) || !present($email[1] ?? null)) {
+        return '<unknown>';
+    }
+
+    return $email[0][0].'***'.'@'.$email[1];
 }
 
 function countries_array_for_select()
@@ -223,42 +245,37 @@ function nav_links()
 
     if (config('app.debug')) {
         $links['home'] = [
-            'getNews' => route('home'),
-            'getChangelog' => route('changelog'),
-            'getDownload' => route('download'),
+            'index' => route('home'),
+            'getChangelog' => osu_url('home.changelog'),
+            'getDownload' => osu_url('home.download'),
         ];
-
         $links['help'] = [
-            'getWiki' => route('wiki'),
-            'getFaq' => route('faq'),
-            'getSupport' => route('support'),
+            'getWiki' => osu_url('help.wiki'),
+            'getFaq' => osu_url('help.faq'),
+            'getSupport' => osu_url('help.support'),
         ];
-
         $links['beatmaps'] = [
             'index' => route('beatmapsets.index'),
             // 'getPacks' => route('packs.index'),
             // 'getCharts' => route('charts.index'),
         ];
-
         $links['ranking'] = [
-            'getOverall' => route('ranking-overall'),
-            'getCharts' => route('ranking-charts'),
-            'getCountry' => route('ranking-country'),
-            'getMapper' => route('ranking-mapper'),
+            'getOverall' => osu_url('ranking.overall'),
+            'getCharts' => osu_url('ranking.charts'),
+            'getCountry' => osu_url('ranking.country'),
+            'getMapper' => osu_url('ranking.mapper'),
         ];
     } else {
         $links['beatmaps'] = [
             'index' => route('beatmapsets.index'),
         ];
     }
-
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
         'tournaments' => route('tournaments.index'),
         'getLive' => route('livestreams.index'),
         'getSlack' => route('slack'),
     ];
-
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),
         'getCart' => action('StoreController@getCart'),
@@ -270,32 +287,28 @@ function nav_links()
 function footer_links()
 {
     $links = [];
-
     $links['general'] = [
         'home' => route('home'),
-        'changelog' => route('changelog'),
+        'changelog' => osu_url('home.changelog'),
         'beatmaps' => action('BeatmapsetsController@index'),
-        'download' => route('download'),
-        'wiki' => route('wiki'),
+        'download' => osu_url('home.download'),
+        'wiki' => osu_url('help.wiki'),
     ];
-
     $links['help'] = [
-        'faq' => route('faq'),
+        'faq' => osu_url('help.faq'),
         'forum' => route('forum.forums.index'),
-        'livestreams' => route('home'),
-        'report' => route('home'),
+        'livestreams' => route('livestreams.index'),
+        'report' => route('forum.topics.create', ['forum_id' => 5]),
     ];
-
     $links['support'] = [
         'tags' => route('support-the-game'),
         'merchandise' => action('StoreController@getListing'),
     ];
-
     $links['legal'] = [
-        'tos' => config('osu.urls.legal.tos'),
-        'copyright' => config('osu.urls.legal.dmca'),
-        'serverStatus' => config('osu.urls.legal.server'),
-        'osuStatus' => config('osu.urls.legal.osustatus'),
+        'tos' => osu_url('legal.tos'),
+        'copyright' => osu_url('legal.dmca'),
+        'serverStatus' => osu_url('status.server'),
+        'osuStatus' => osu_url('status.osustatus'),
     ];
 
     return $links;
