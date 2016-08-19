@@ -71,6 +71,7 @@ class UsersController extends Controller
     public function login()
     {
         Request::session()->flush();
+        Request::session()->regenerateToken();
 
         $ip = Request::getClientIp();
 
