@@ -24,7 +24,7 @@ class Contest.VoteSummary extends React.Component
     classes = [
       'trackplayer__voting-star',
       'trackplayer__voting-star--smaller',
-      if @props.floatRight then 'trackplayer__float-right',
+      'trackplayer__float-right',
     ]
     selectedClass = [
       'trackplayer__voting-star--selected',

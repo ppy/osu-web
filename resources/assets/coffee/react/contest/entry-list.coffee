@@ -83,6 +83,6 @@ class Contest.EntryList extends React.Component
                 th className: 'trackplayer__col trackplayer__col--dl',
               th className: 'trackplayer__col trackplayer__col--title', 'entry'
               th className: 'trackplayer__col trackplayer__col--vote',
-                el Contest.VoteSummary, voteCount: @state.voteCount, maxVotes: @state.options.maxVotes, floatRight: true
+                el Contest.VoteSummary, voteCount: @state.voteCount, maxVotes: @state.options.maxVotes
                 div className: 'trackplayer__float-right trackplayer__vote-summary-text', 'votes'
         tbody {}, tracks
