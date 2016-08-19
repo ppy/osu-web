@@ -31,7 +31,6 @@ class MPHistory.Event extends React.Component
     user = @props.lookupUser @props.event.user_id
 
     event_type = @props.event.detail.type
-    event_type += '-no-user' if !user?
 
     className = 'mp-history-events__event mp-history-event'
 
@@ -51,4 +50,4 @@ class MPHistory.Event extends React.Component
               user.username
 
         span className: 'mp-history-event__text',
-          Lang.get "multiplayer.match.events.#{event_type}"
+          Lang.get "multiplayer.match.events.#{event_type}#{if !user? then '-no-user' else ''}"
