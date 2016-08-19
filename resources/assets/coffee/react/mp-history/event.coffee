@@ -32,6 +32,10 @@ class MPHistory.Event extends React.Component
 
     event_type = @props.event.detail.type
 
+    if user? && event_type != 'match-disbanded'
+      userLink = osu.link (laroute.route 'users.show', users: user.id), user.username,
+        classNames: ['mp-history-event__text', 'mp-history-event__text--username']
+
     className = 'mp-history-events__event mp-history-event'
 
     div className: className,
@@ -42,12 +46,8 @@ class MPHistory.Event extends React.Component
         @icons[event_type].map (m) ->
           el Icon, name: m, key: m
       div className: 'mp-history-event__info-box',
-        if event_type != 'match-disbanded'
-          if user?
-            a
-              className: 'mp-history-event__text mp-history-event__text--username'
-              href: laroute.route 'users.show', users: user.id
-              user.username
-
-        span className: 'mp-history-event__text',
-          Lang.get "multiplayer.match.events.#{event_type}#{['-no-user' unless user]}"
+        span
+          className: 'mp-history-event__text'
+          dangerouslySetInnerHTML:
+            __html: osu.trans "multiplayer.match.events.#{event_type}#{['-no-user' unless user]}",
+              user: userLink if userLink
