@@ -74,7 +74,7 @@ class Contest.Voter extends React.Component
       else
         if @props.waitingForResponse && !@props.track.selected
           div className: classes.join(' '),
-            i className: "fa fa-fw fa-refresh"
+            i className: "fa fa-fw fa-refresh trackplayer__voting-star--spin"
         else
           a className: classes.concat(selected_class).join(' '), href: '#', onClick: @handleClick,
             i className: "fa fa-fw fa-star"
