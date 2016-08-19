@@ -20,7 +20,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contest;
-use App\Transformers\ContestTransformer;
 use Auth;
 use Request;
 
@@ -103,7 +102,7 @@ class ContestsController extends Controller
         seeded_shuffle($tracks, $seed);
 
         // done after the shuffle otherwise the gallery_index is incorrect and breaks photoswipe
-        if ($contest->type == 'art') {
+        if ($contest->type === 'art') {
             foreach ($tracks as $i => $entry) {
                 $size = fast_imagesize($entry['preview']);
                 $tracks[$i]['width'] = $size[0];
