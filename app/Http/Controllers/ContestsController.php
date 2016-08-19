@@ -33,8 +33,8 @@ class ContestsController extends Controller
         $contest = Contest::with('entries')->findOrFail($id);
 
         switch ($contest->type) {
-            case 'music':
-                return view('contests.music')
+            case 'art':
+                return view('contests.art')
                     ->with('contest', $contest)
                     ->with('tracks', $this->prepareTracks($contest));
                 break;
@@ -43,6 +43,12 @@ class ContestsController extends Controller
                 return view('contests.beatmap')
                     ->with('contest', $contest)
                     ->with('entries', $this->prepareTracks($contest));
+                break;
+
+            case 'music':
+                return view('contests.music')
+                    ->with('contest', $contest)
+                    ->with('tracks', $this->prepareTracks($contest));
                 break;
 
             default:
@@ -95,6 +101,17 @@ class ContestsController extends Controller
         // deterministic (i.e. we don't want the rows shuffling each time
         // the user votes), so we seed based on user_id
         seeded_shuffle($tracks, $seed);
+
+        // done after the shuffle otherwise the gallery_index is incorrect and breaks photoswipe
+        if ($contest->type == 'art') {
+            foreach ($tracks as $i => $entry) {
+                $size = fast_imagesize($entry['preview']);
+                $tracks[$i]['width'] = $size[0];
+                $tracks[$i]['height'] = $size[1];
+                $tracks[$i]['gallery_index'] = $i;
+            }
+        }
+
 
         return $tracks;
     }

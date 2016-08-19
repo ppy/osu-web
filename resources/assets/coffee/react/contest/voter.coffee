@@ -55,13 +55,26 @@ class Contest.Voter extends React.Component
     if (@props.voteCount >= @props.maxVotes || votingOver) && !@props.track.selected
       null
     else
+      classes = [
+        'trackplayer__float-right',
+        'trackplayer__voting-star',
+        if @props.theme then "trackplayer__voting-star--#{@props.theme}",
+      ]
+
+      if @props.track.selected
+        selected_class =  [
+          if @props.theme then "trackplayer__voting-star--selected-#{@props.theme}" else 'trackplayer__voting-star--selected'
+        ]
+      else
+        selected_class = []
+
       if votingOver
-        div className: "trackplayer__float-right trackplayer__voting-star#{if @props.track.selected then ' trackplayer__voting-star--selected' else ''}",
+        div className: classes.concat(selected_class).join(' '),
           i className: "fa fa-fw fa-star"
       else
         if @props.waitingForResponse && !@props.track.selected
-          div className: "trackplayer__float-right trackplayer__voting-star",
+          div className: classes.join(' '),
             i className: "fa fa-fw fa-refresh"
         else
-          a className: "trackplayer__float-right trackplayer__voting-star#{if @props.track.selected then ' trackplayer__voting-star--selected' else ''}", href: '#', onClick: @handleClick,
+          a className: classes.concat(selected_class).join(' '), href: '#', onClick: @handleClick,
             i className: "fa fa-fw fa-star"

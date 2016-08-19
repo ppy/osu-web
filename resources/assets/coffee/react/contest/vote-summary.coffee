@@ -21,13 +21,22 @@ el = React.createElement
 
 class Contest.VoteSummary extends React.Component
   render: ->
+    classes = [
+      'trackplayer__voting-star',
+      'trackplayer__voting-star--smaller',
+      if @props.floatRight then 'trackplayer__float-right',
+    ]
+    selectedClass = [
+      'trackplayer__voting-star--selected',
+    ]
+
     voteSummary = []
     voteSummary.push _.times Math.max(0, @props.maxVotes - @props.voteCount), ->
-      div className: "trackplayer__float-right trackplayer__voting-star trackplayer__voting-star--smaller",
-        i className: "fa fa-fw fa-star"
+      div className: classes.join(' '),
+        i className: 'fa fa-fw fa-star'
     voteSummary.push _.times @props.voteCount, ->
-      div className: "trackplayer__float-right trackplayer__voting-star trackplayer__voting-star--smaller trackplayer__voting-star--selected",
-        i className: "fa fa-fw fa-star"
+      div className: classes.concat(selectedClass).join(' '),
+        i className: 'fa fa-fw fa-star'
 
     div {},
       voteSummary

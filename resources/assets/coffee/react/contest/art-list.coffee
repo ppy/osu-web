@@ -16,35 +16,34 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 ###
+
 {div,a,i,span,table,thead,tbody,tr,th,td} = React.DOM
 el = React.createElement
 
-class Contest.EntryList extends React.Component
+class Contest.ArtList extends React.Component
   constructor: (props) ->
     super props
     @state =
       waitingForResponse: false
-      tracks: @props.tracks
+      entries: @props.tracks
       voteCount: _.filter(@props.tracks, _.iteratee({selected: true})).length
       contest: @props.contest
       options:
-        showDL: @props.options.showDL ? false
-        showPreview: @props.options.showPreview ? false
         maxVotes: @props.contest.max_votes ? 3
 
   handleVoteClick: (_e, {track_id, callback}) =>
-    tracks = @state.tracks
-    track = _.findIndex(@state.tracks, { id: track_id });
-    tracks[track].selected = !tracks[track].selected
+    entries = @state.entries
+    entry = _.findIndex(@state.entries, { id: track_id });
+    entries[entry].selected = !entries[entry].selected
     @setState
-      tracks: tracks
+      entries: entries
       waitingForResponse: true
-      voteCount: _.filter(tracks, _.iteratee({selected: true})).length
+      voteCount: _.filter(entries, _.iteratee({selected: true})).length
       callback
 
   handleUpdate: (_e, {tracks, callback}) =>
     @setState
-      tracks: tracks
+      entries: tracks
       waitingForResponse: false
       voteCount: _.filter(tracks, _.iteratee({selected: true})).length
       callback
@@ -57,32 +56,19 @@ class Contest.EntryList extends React.Component
     $.unsubscribe '.contest'
 
   render: ->
-    return null unless @state.tracks.length > 0
+    return null unless @state.entries.length > 0
 
-    tracks = @state.tracks.map (track) =>
-      el Contest.Entry,
-        key: track.id,
-        track: track,
-        playing: track.id == @state.currently_playing,
+    entries = @state.entries.map (entry) =>
+      el Contest.ArtEntry,
+        key: entry.id,
+        entry: entry,
         waitingForResponse: @state.waitingForResponse,
         voteCount: @state.voteCount,
         options: @state.options,
         contest: @state.contest
 
-    votingOver = moment(@state.contest.ends_at).diff() <= 0
-
     div className: 'trackplayer',
-      if votingOver
-        div className: 'trackplayer__voting-ended', osu.trans('contest.over')
-      table className: 'trackplayer__table trackplayer__table--smaller',
-        thead {},
-            tr className: 'trackplayer__row--header',
-              if @state.options.showPreview
-                th className: 'trackplayer__col trackplayer__col--preview', ''
-              if @state.options.showDL
-                th className: 'trackplayer__col trackplayer__col--dl',
-              th className: 'trackplayer__col trackplayer__col--title', 'entry'
-              th className: 'trackplayer__col trackplayer__col--vote',
-                el Contest.VoteSummary, voteCount: @state.voteCount, maxVotes: @state.options.maxVotes, floatRight: true
-                div className: 'trackplayer__float-right trackplayer__vote-summary-text', 'votes'
-        tbody {}, tracks
+      div className: 'trackplayer__vote-summary--art',
+        span className: 'trackplayer__vote-summary-text--art', 'votes'
+        el Contest.VoteSummary, voteCount: @state.voteCount, maxVotes: @state.options.maxVotes, float: true
+      div style: { display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap', justifyContent: 'space-around' }, entries
