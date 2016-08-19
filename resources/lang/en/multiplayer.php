@@ -65,7 +65,7 @@ return [
         'difference' => 'by :difference',
         'loading-events' => 'Loading events...',
         'more-events' => 'view all...',
-        'beatmap-deleted' => 'deleted beatmap'
+        'beatmap-deleted' => 'deleted beatmap',
     ],
     'game' => [
         'scoring-type' => [
