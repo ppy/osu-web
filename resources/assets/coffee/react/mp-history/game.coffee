@@ -37,7 +37,7 @@ class MPHistory.Game extends React.Component
     scores = _.orderBy scores, ['teamRank', 'score'], ['asc', 'desc']
 
     div className: 'mp-history-events__game mp-history-game',
-      el MPHistory.BeatmapHeader,
+      el MPHistory.GameHeader,
         beatmap: game.beatmap?.data ? @deletedBeatmap
         beatmapset: game.beatmap?.data.beatmapset.data ? @deletedBeatmapset
         game: game

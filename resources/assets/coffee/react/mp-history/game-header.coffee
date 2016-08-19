@@ -18,7 +18,7 @@
 {div, a, span, h1, h2} = React.DOM
 el = React.createElement
 
-class MPHistory.BeatmapHeader extends React.Component
+class MPHistory.GameHeader extends React.Component
   timeFormat: 'HH:mm:ss'
 
   render: ->
