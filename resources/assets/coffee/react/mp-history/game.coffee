@@ -38,8 +38,8 @@ class MPHistory.Game extends React.Component
 
     div className: 'mp-history-events__game mp-history-game',
       el MPHistory.BeatmapHeader,
-        beatmap: if game.beatmap? then game.beatmap.data else @deletedBeatmap
-        beatmapset: if game.beatmap? then game.beatmap.data.beatmapset.data else @deletedBeatmapset
+        beatmap: game.beatmap?.data ? @deletedBeatmap
+        beatmapset: game.beatmap?.data.beatmapset.data ? @deletedBeatmapset
         game: game
 
       div className: className,

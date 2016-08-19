@@ -18,6 +18,8 @@
  */
 
 .mp-history-player-score {
+  @width: 1000px;
+
   display: flex;
 
   &__shapes {
@@ -27,12 +29,6 @@
     background-size: contain;
 
     border-radius: @border-radius-base 0 0 @border-radius-base;
-
-    display: none;
-
-    @media (min-width: @screen-lg-min) {
-      display: initial;
-    }
   }
 
   &__main {
@@ -79,7 +75,7 @@
 
   &__stat-row {
     &--first {
-      @media (min-width: @screen-lg-min) {
+      @media (min-width: @width) {
         width: 530px;
       }
     }
@@ -98,7 +94,7 @@
 
     display: none;
 
-    @media (min-width: @screen-lg-min) {
+    @media (min-width: @width) {
       display: initial;
     }
   }
@@ -108,7 +104,7 @@
 
     display: none;
 
-    @media (min-width: @screen-lg-min) {
+    @media (min-width: @width) {
       display: initial;
     }
   }
