@@ -108,6 +108,10 @@ elixir(function(mix) {
     'react/beatmapset-page.coffee'
   ], 'public/js/react/beatmapset-page.js')
   .coffee([
+    'react/mp-history/*.coffee',
+    'react/mp-history.coffee'
+  ], 'public/js/react/mp-history.js')
+  .coffee([
     'react/artist-page.coffee',
   ], 'public/js/react/artist-page.js')
   .coffee([
@@ -122,6 +126,7 @@ elixir(function(mix) {
     'js/react/status-page.js',
     'js/react/beatmap-discussions.js',
     'js/react/beatmapset-page.js',
+    'js/react/mp-history.js',
     'js/react/artist-page.js',
     'js/react/contest-page.js',
   ]);

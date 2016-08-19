@@ -27,7 +27,7 @@ class Beatmaps.BeatmapsListing extends React.Component
     for beatmap in @props.beatmaps
       panel = div
         className: 'osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-4'
-        key: beatmap.beatmapset_id
+        key: beatmap.id
         el BeatmapsetPanel, beatmap: beatmap
 
       beatmaps.push panel
