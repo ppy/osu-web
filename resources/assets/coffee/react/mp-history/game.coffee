@@ -34,7 +34,7 @@ class MPHistory.Game extends React.Component
       m.teamRank = if m.team == winningTeam then 1 else 2
       m
 
-    scores = _.orderBy scores, ['teamRank', 'score'], ['desc', 'desc']
+    scores = _.orderBy scores, ['teamRank', 'score'], ['asc', 'desc']
 
     div className: 'mp-history-events__game mp-history-game',
       el MPHistory.BeatmapHeader,
