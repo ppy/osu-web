@@ -75,6 +75,10 @@ return [
             'forum-forums-index' => 'forum',
             'forum-forums-show' => 'forum',
         ],
+        'multiplayer' => [
+            '_' => 'multiplayer',
+            'show' => 'match',
+        ],
         'error' => [
             '_' => 'error',
             '404' => 'missing',

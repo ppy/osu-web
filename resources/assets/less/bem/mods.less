@@ -19,7 +19,13 @@
 .mods {
   @_mod-width: 30px;
   @_mod-height: 22px;
+
   @_width: (@_mod-width * 3);
+
+  @_mod-width-large: 40px;
+  @_mod-height-large: 30px;
+
+  @_width-large: (@_mod-width-large * 3);
 
   width: @_width;
   min-width: @_width;
@@ -28,6 +34,18 @@
   display: flex;
   justify-content: space-between;
   padding: 0 (@_mod-width / 2);
+
+  &--large {
+    width: @_width-large;
+    min-width: @_width-large;
+    max-width: @_width-large;
+
+    padding: 0 (@_mod-width-large / 2);
+  }
+
+  &--reversed {
+    flex-direction: row-reverse;
+  }
 
   &__mod {
     width: 0;
@@ -39,5 +57,10 @@
     flex: none;
     width: @_mod-width;
     height: @_mod-height;
+
+    &--large {
+      width: @_mod-width-large;
+      height: @_mod-height-large;
+    }
   }
 }

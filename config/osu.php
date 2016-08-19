@@ -40,6 +40,9 @@ return [
             'topic_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_TOPIC_IDS', '259747'))),
         ],
     ],
+    'mp-history' => [
+        'event-count' => 500,
+    ],
     'legacy' => [
         'shared_cookie_secret' => env('SHARED_COOKIE_SECRET', ''),
     ],

@@ -78,7 +78,7 @@ BeatmapDiscussions.Main = React.createClass
             h1
               className: 'forum-category-header__title'
               a
-                href: laroute.route('beatmapsets.show', beatmapsets: @state.beatmapset.beatmapset_id)
+                href: laroute.route('beatmapsets.show', beatmapsets: @state.beatmapset.id)
                 className: 'link link--white link--no-underline'
                 @state.beatmapset.title
 
