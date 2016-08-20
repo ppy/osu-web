@@ -19,7 +19,6 @@
 
 @section('contest-entries')
   <div class="js-react--contestArtList"></div>
-  @include("layout.gallery_window")
 @endsection
 
 @section('contest-javascript')
