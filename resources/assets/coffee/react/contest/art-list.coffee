@@ -71,4 +71,4 @@ class Contest.ArtList extends React.Component
       div className: 'trackplayer__vote-summary--art',
         span className: 'trackplayer__vote-summary-text trackplayer__vote-summary-text--art', 'votes'
         el Contest.VoteSummary, voteCount: @state.voteCount, maxVotes: @state.options.maxVotes
-      div style: { display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap', justifyContent: 'space-around' }, entries
+      div className: 'trackplayer__entries--art', entries
