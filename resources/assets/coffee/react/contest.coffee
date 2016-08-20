@@ -16,16 +16,15 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 ###
-contest = osu.parseJson('json-contest')
 propsFunction = ->
-  tracks: osu.parseJson('json-tracks')
-  contest: contest
-  options:
-    showDL: contest['type'] == 'beatmap'
-    showPreview: contest['type'] == 'music'
+  contest = osu.parseJson('json-contest')
+  return {
+    tracks: osu.parseJson('json-tracks')
+    contest: contest
+    options:
+      showDL: contest['type'] == 'beatmap'
+      showPreview: contest['type'] == 'music'
+  }
 
-if contest['type'] == 'art'
-  reactTurbolinks.register 'contestArtList', Contest.ArtList, propsFunction
-
-if contest['type'] == 'beatmap' or contest['type'] == 'music'
-  reactTurbolinks.register 'contestList', Contest.EntryList, propsFunction
+reactTurbolinks.register 'contestArtList', Contest.ArtList, propsFunction
+reactTurbolinks.register 'contestList', Contest.EntryList, propsFunction
