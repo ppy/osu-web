@@ -19,14 +19,41 @@
  */
 namespace App\Models\Multiplayer;
 
+use App\Models\Beatmap;
+use App\Traits\Scoreable;
+
 class Score extends Model
 {
+    use Scoreable;
+
     protected $table = 'game_scores';
     protected $primaryKey = null;
     protected $hidden = ['frame', 'game_id'];
+    public $timestamps = false;
+
+    const TEAMS = [
+        0 => 'none',
+        1 => 'blue',
+        2 => 'red',
+    ];
 
     public function game()
     {
-        return $this->belongsTo('Game');
+        return $this->belongsTo(Game::class);
+    }
+
+    public function gamemodeString()
+    {
+        return Beatmap::modeStr($this->game->play_mode);
+    }
+
+    public function getTeamAttribute($value)
+    {
+        return self::TEAMS[$value];
+    }
+
+    public function scopeDefault($query)
+    {
+        return $query->orderBy('slot', 'asc');
     }
 }

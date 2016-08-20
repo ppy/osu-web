@@ -19,6 +19,8 @@
  */
 namespace App\Models\Multiplayer;
 
+use App\Models\User;
+
 class Event extends Model
 {
     protected $table = 'events';
@@ -28,6 +30,15 @@ class Event extends Model
     ];
     public $timestamps = false;
 
+    const EVENT_TYPES = [
+        'player-left' => 'PART',
+        'player-joined' => 'JOIN',
+        'player-kicked' => 'KICK',
+        'match-created' => 'CREATE',
+        'match-disbanded' => 'DISBAND',
+        'host-changed' => 'HOST',
+    ];
+
     public function match()
     {
         return $this->belongsTo(Match::class);
@@ -36,5 +47,26 @@ class Event extends Model
     public function game()
     {
         return $this->belongsTo(Game::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function scopeDefault($query)
+    {
+        return $query->orderBy('event_id', 'asc');
+    }
+
+    public function getDetailAttribute()
+    {
+        $value = $this->text;
+
+        if (in_array($value, self::EVENT_TYPES, true)) {
+            return ['type' => array_search_null($value, self::EVENT_TYPES)];
+        } else {
+            return ['type' => 'other', 'text' => $value];
+        }
     }
 }
