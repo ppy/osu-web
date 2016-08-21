@@ -103,10 +103,10 @@ abstract class Model extends BaseModel
 
             $this->replay_popularity = 0;
 
-            $this->x_rank_count = 0;
             $this->xh_rank_count = 0;
-            $this->s_rank_count = 0;
+            $this->x_rank_count = 0;
             $this->sh_rank_count = 0;
+            $this->s_rank_count = 0;
             $this->a_rank_count = 0;
         }
 

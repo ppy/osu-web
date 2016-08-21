@@ -42,10 +42,10 @@ class StatisticsTransformer extends Fractal\TransformerAbstract
             'level' => $stats->level,
             'pp_raw' => $stats->rank_score,
             'accuracy' => $stats->accuracy_new,
-            'count_rank_ss' => $stats->x_rank_count,
             'count_rank_xh' => $stats->xh_rank_count,
-            'count_rank_s' => $stats->s_rank_count,
+            'count_rank_ss' => $stats->x_rank_count,
             'count_rank_sh' => $stats->sh_rank_count,
+            'count_rank_s' => $stats->s_rank_count,
             'count_rank_a' => $stats->a_rank_count,
             'pp_country_rank' => $stats->countryRank(),
         ];
