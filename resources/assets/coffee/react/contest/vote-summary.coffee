@@ -16,15 +16,27 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 ###
-propsFunction = ->
-  tracks: osu.parseJson('json-tracks')
-  contest: osu.parseJson('json-contest')
-  options:
-    hideLength: true
-    hideGenre: true
-    hideBPM: true
-    hideDL: true
-    showVote: true
-    smaller: true
+{div,i} = React.DOM
+el = React.createElement
 
-reactTurbolinks.register 'contestTrackplayer', Trackplayer, propsFunction
+class Contest.VoteSummary extends React.Component
+  render: ->
+    classes = [
+      'trackplayer__voting-star',
+      'trackplayer__voting-star--smaller',
+      'trackplayer__float-right',
+    ]
+    selectedClass = [
+      'trackplayer__voting-star--selected',
+    ]
+
+    voteSummary = []
+    voteSummary.push _.times Math.max(0, @props.maxVotes - @props.voteCount), ->
+      div className: classes.join(' '),
+        i className: 'fa fa-fw fa-star'
+    voteSummary.push _.times @props.voteCount, ->
+      div className: classes.concat(selectedClass).join(' '),
+        i className: 'fa fa-fw fa-star'
+
+    div {},
+      voteSummary

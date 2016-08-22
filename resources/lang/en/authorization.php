@@ -54,6 +54,10 @@ return [
         ],
     ],
 
+    'contest' => [
+        'voting_over' => 'You cannot change your vote after the voting period for this contest has ended.',
+    ],
+
     'forum' => [
         'post' => [
             'delete' => [

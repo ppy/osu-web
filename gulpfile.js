@@ -115,8 +115,9 @@ elixir(function(mix) {
     'react/artist-page.coffee',
   ], 'public/js/react/artist-page.js')
   .coffee([
-    'react/contest-page.coffee',
-  ], 'public/js/react/contest-page.js')
+    'react/contest/*.coffee',
+    'react/contest.coffee',
+  ], 'public/js/react/contest.js')
   .version([
     'css/app.css',
     'js/app.js',
@@ -128,6 +129,6 @@ elixir(function(mix) {
     'js/react/beatmapset-page.js',
     'js/react/mp-history.js',
     'js/react/artist-page.js',
-    'js/react/contest-page.js',
+    'js/react/contest.js',
   ]);
 });
