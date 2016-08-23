@@ -25,7 +25,7 @@
 
 @section('content')
     @include('objects.css-override', ['mapping' => [
-        '.osu-page-header-v2--contests' => $contest->cover_url,
+        '.osu-page-header-v2--contests' => $contest->header_url,
     ]])
 
     <div class="osu-layout__row">
