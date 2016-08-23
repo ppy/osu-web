@@ -70,9 +70,6 @@ class UsersController extends Controller
 
     public function login()
     {
-        Request::session()->flush();
-        Request::session()->regenerateToken();
-
         $ip = Request::getClientIp();
 
         if (LoginAttempt::isLocked($ip)) {
@@ -88,6 +85,9 @@ class UsersController extends Controller
             }
 
             if (Auth::check()) {
+                Request::session()->flush();
+                Request::session()->regenerateToken();
+
                 return [
                     'header' => view('layout._header_user', ['_user' => Auth::user()])->render(),
                     'header_popup' => view('layout._popup_user', ['_user' => Auth::user()])->render(),
