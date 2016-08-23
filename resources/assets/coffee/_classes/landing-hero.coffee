@@ -18,10 +18,12 @@
 
 class @LandingHero
   constructor: ->
-    $(document).on 'turbolinks:load', @landingHeroInitialize
+    $(document).on 'turbolinks:load', @initialize
+    $(document).on 'turbolinks:before-cache', @remove
 
-  landingHeroInitialize: ->
-    $('.js-landing-hero-slider--new.js-landing-hero-slider')
+
+  initialize: =>
+    $('.js-landing-hero-slider')
       .slick
         fade: true
         arrows: false
@@ -29,9 +31,12 @@ class @LandingHero
         adaptiveHeight: true
         dots: true
         appendDots: $('.js-landing-header')
-      .removeClass 'js-landing-hero-slider--new'
 
     os = osu.getOS()
     others = osu.otherOS os
-    $('.js-download-platform').text Lang.get('home.landing.download.for', {'os': os})
-    $('.js-download-other').text Lang.get('home.landing.download.other', {'os1': others[0], 'os2': others[1]})
+    $('.js-download-platform').text Lang.get('home.landing.download.for', os: os)
+    $('.js-download-other').text Lang.get('home.landing.download.other', os1: others[0], os2: others[1])
+
+
+  remove: =>
+    $('.js-landing-hero-slider').slick('unslick')
