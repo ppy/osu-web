@@ -63,7 +63,7 @@ BeatmapDiscussions.Main = React.createClass
     @checkNewAjax?.abort?()
 
 
-  componentWillReceiveProps: ->
+  componentWillUpdate: ->
     @indexedUsers = null
 
 
