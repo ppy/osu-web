@@ -38,12 +38,10 @@ class NotifySlack implements ShouldQueue
             return;
         }
 
-        $this->init($event, [
+        return $this->notify($event, [
             'message' => 'A new topic has been created at watched forum',
             'prefix' => 'New topic',
         ]);
-
-        return $this->notify();
     }
 
     public function notifyReply($event)
@@ -53,16 +51,20 @@ class NotifySlack implements ShouldQueue
             return;
         }
 
-        $this->init($event, [
+        return $this->notify($event, [
             'message' => 'A watched topic has been replied to',
             'prefix' => 'Reply',
         ]);
-
-        return $this->notify();
     }
 
-    public function notify()
+    public function notify($event, $options)
     {
+        $this->post = $event->post;
+        $this->topic = $event->topic;
+        $this->user = $event->user;
+        $this->prefix = $options['prefix'];
+        $this->message = html_entity_decode($options['message'], ENT_QUOTES | ENT_XML1, 'UTF-8');
+
         return Slack::to('dev')
             ->attach([
                 'color' => $this->notifyColour(),
@@ -83,16 +85,6 @@ class NotifySlack implements ShouldQueue
             TopicWasReplied::class,
             static::class.'@notifyReply'
         );
-    }
-
-    private function init($event, $options)
-    {
-        $this->post = $event->post;
-        $this->topic = $event->topic;
-        $this->user = $event->user;
-
-        $this->prefix = $options['prefix'];
-        $this->message = html_entity_decode($options['message'], ENT_QUOTES | ENT_XML1, 'UTF-8');
     }
 
     private function replyCommand()
