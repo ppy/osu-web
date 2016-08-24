@@ -37,10 +37,5 @@ class MarkTopicRead
             TopicWasViewed::class,
             static::class.'@markTopicRead'
         );
-
-        $events->listen(
-            TopicWasReplied::class,
-            static::class.'@markTopicRead'
-        );
     }
 }

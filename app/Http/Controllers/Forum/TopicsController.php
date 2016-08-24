@@ -144,6 +144,7 @@ class TopicsController extends Controller
             $postsPosition = $topic->postsPosition($posts);
 
             Event::fire(new TopicWasReplied($topic, $post, Auth::user()));
+            Event::fire(new TopicWasViewed($topic, $post, Auth::user()));
 
             return view('forum.topics._posts', compact('posts', 'postsPosition', 'topic'));
         }
