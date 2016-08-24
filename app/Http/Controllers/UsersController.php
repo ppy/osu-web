@@ -79,14 +79,17 @@ class UsersController extends Controller
             $password = Request::input('password');
             $remember = Request::input('remember') === 'yes';
 
-            Auth::attempt(['user_email' => $usernameOrEmail, 'password' => $password], $remember);
+            Auth::attempt(['user_email' => $usernameOrEmail, 'password' => $password]);
             if (!Auth::check()) {
-                Auth::attempt(['username' => $usernameOrEmail, 'password' => $password], $remember);
+                Auth::attempt(['username' => $usernameOrEmail, 'password' => $password]);
             }
 
             if (Auth::check()) {
+                $userId = Auth::user()->user_id;
+
                 Request::session()->flush();
                 Request::session()->regenerateToken();
+                Auth::loginUsingId($userId, $remember);
 
                 return [
                     'header' => view('layout._header_user', ['_user' => Auth::user()])->render(),
