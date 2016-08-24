@@ -32,6 +32,59 @@ class NotifySlack implements ShouldQueue
     public $prefix;
     public $message;
 
+    public function notifyNew($event)
+    {
+        if (!in_array($event->topic->forum_id, config('osu.forum.slack_watch.forum_ids'), true)) {
+            return;
+        }
+
+        $this->init($event, [
+            'message' => 'A new topic has been created at watched forum',
+            'prefix' => 'New topic',
+        ]);
+
+        return $this->notify();
+    }
+
+    public function notifyReply($event)
+    {
+        if (!in_array($event->topic->topic_id, config('osu.forum.slack_watch.topic_ids'), true) &&
+            !in_array($event->topic->forum_id, config('osu.forum.slack_watch.forum_ids'), true)) {
+            return;
+        }
+
+        $this->init($event, [
+            'message' => 'A watched topic has been replied to',
+            'prefix' => 'Reply',
+        ]);
+
+        return $this->notify();
+    }
+
+    public function notify()
+    {
+        return Slack::to('dev')
+            ->attach([
+                'color' => $this->notifyColour(),
+                'fallback' => $this->message,
+                'text' => $this->post->post_text,
+            ])
+            ->send($this->mainMessage());
+    }
+
+    public function subscribe($events)
+    {
+        $events->listen(
+            TopicWasCreated::class,
+            static::class.'@notifyNew'
+        );
+
+        $events->listen(
+            TopicWasReplied::class,
+            static::class.'@notifyReply'
+        );
+    }
+
     private function init($event, $options)
     {
         $this->post = $event->post;
@@ -87,58 +140,5 @@ class NotifySlack implements ShouldQueue
         }
 
         return $this->user->username.$suffix;
-    }
-
-    public function notifyNew($event)
-    {
-        if (!in_array($event->topic->forum_id, config('osu.forum.slack_watch.forum_ids'), true)) {
-            return;
-        }
-
-        $this->init($event, [
-            'message' => 'A new topic has been created at watched forum',
-            'prefix' => 'New topic',
-        ]);
-
-        return $this->notify();
-    }
-
-    public function notifyReply($event)
-    {
-        if (!in_array($event->topic->topic_id, config('osu.forum.slack_watch.topic_ids'), true) &&
-            !in_array($event->topic->forum_id, config('osu.forum.slack_watch.forum_ids'), true)) {
-            return;
-        }
-
-        $this->init($event, [
-            'message' => 'A watched topic has been replied to',
-            'prefix' => 'Reply',
-        ]);
-
-        return $this->notify();
-    }
-
-    public function notify()
-    {
-        return Slack::to('dev')
-            ->attach([
-                'color' => $this->notifyColour(),
-                'fallback' => $this->message,
-                'text' => $this->post->post_text,
-            ])
-            ->send($this->mainMessage());
-    }
-
-    public function subscribe($events)
-    {
-        $events->listen(
-            TopicWasCreated::class,
-            static::class.'@notifyNew'
-        );
-
-        $events->listen(
-            TopicWasReplied::class,
-            static::class.'@notifyReply'
-        );
     }
 }
