@@ -140,7 +140,7 @@ function ujs_redirect($url)
     if (Request::ajax()) {
         return js_view('layout.ujs-redirect', ['url' => $url]);
     } else {
-        return redirect($url)->with('_turbolinks-location', $url);
+        return redirect($url);
     }
 }
 
