@@ -86,9 +86,7 @@ class BeatmapDiscussionPostsController extends Controller
             $saved = false;
         }
 
-        $postIds = array_map(function ($post) {
-            return $post->id;
-        }, $posts);
+        $postIds = array_pluck($posts, 'id');
 
         if ($saved === true) {
             return [

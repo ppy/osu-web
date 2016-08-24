@@ -227,16 +227,20 @@ class @Forum
 
         $linkDiv.after data
 
-        # restore scroll position after prepending the page
-        x = window.pageXffset
-        currentScrollReferenceTop = scrollReference.getBoundingClientRect().top
-        currentDocumentScrollTop = window.pageYOffset
-        targetDocumentScrollTop = currentDocumentScrollTop + currentScrollReferenceTop - scrollReferenceTop
-        window.scrollTo x, targetDocumentScrollTop
+        # Restore scroll position after prepending the page.
+        # Called after refreshLoadMoreLinks to allow header changes
+        # to be included in calculation.
+        restoreScrollPosition = =>
+          x = window.pageXOffset
+          currentScrollReferenceTop = scrollReference.getBoundingClientRect().top
+          currentDocumentScrollTop = window.pageYOffset
+          targetDocumentScrollTop = currentDocumentScrollTop + currentScrollReferenceTop - scrollReferenceTop
+          window.scrollTo x, targetDocumentScrollTop
       else
         $linkDiv.before data
 
       @refreshLoadMoreLinks()
+      restoreScrollPosition?()
 
       osu.pageChange()
       $link.attr 'data-failed', '0'

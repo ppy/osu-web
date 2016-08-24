@@ -507,24 +507,6 @@ function get_arr($input, $callback)
     return $result;
 }
 
-// should it be used?
-function bem($block, $element = null, $modifiers = [])
-{
-    $baseClass = $block;
-
-    if ($element !== null) {
-        $baseClass .= "__{$element}";
-    }
-
-    $ret = $baseClass;
-
-    foreach ($modifiers as $modifier) {
-        $ret .= " {$baseClass}--{$modifier}";
-    }
-
-    return " {$ret} ";
-}
-
 function get_class_basename($className)
 {
     return substr($className, strrpos($className, '\\') + 1);

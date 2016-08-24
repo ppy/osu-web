@@ -30,3 +30,4 @@ window.d3 = require('d3');
 window.moment = require('moment');
 
 window.slick = require('slick-carousel');
+window.Cookie = require('js-cookie');

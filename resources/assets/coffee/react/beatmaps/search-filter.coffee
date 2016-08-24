@@ -36,7 +36,7 @@ class Beatmaps.SearchFilter extends React.Component
   @defaultProps: ->
     multiselect: false
     selected: []
-    default: []
+    default: ''
 
   @propTypes:
     title: React.PropTypes.string.isRequired

@@ -92,7 +92,7 @@ class @ForumCover
         @update(data.result.data)
 
       fail: (_e, data) ->
-        osu.ajaxError data.jqXHR
+        osu.emitAjaxError(@uploadButton[0]) data.jqXHR
 
       complete: (_e, data) =>
         @loading[0].dataset.state = ''
