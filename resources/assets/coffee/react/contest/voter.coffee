@@ -30,29 +30,29 @@ class Contest.Voter extends React.Component
     params =
       method: 'PUT'
       data:
-        entry_id: @props.track.id
+        entry_id: @props.entry.id
 
     $.ajax laroute.route("contest.vote", contest_id: @props.contest.id), params
 
     .done (response) =>
-      $.publish 'contest:vote:done', tracks: response.tracks
+      $.publish 'contest:vote:done', entries: response.entries
 
     .fail osu.ajaxError
 
   handleClick: (e) =>
     e.preventDefault()
-    return unless @props.track.selected || @props.voteCount < @props.maxVotes
+    return unless @props.entry.selected || @props.voteCount < @props.maxVotes
 
     if !currentUser.id?
       userLogin.show e.target
     else if !@props.waitingForResponse
-      $.publish 'contest:vote:click', track_id: @props.track.id
+      $.publish 'contest:vote:click', entry_id: @props.entry.id
       @sendVote()
 
   render: ->
     votingOver = moment(@props.contest.ends_at).diff() <= 0
 
-    if (@props.voteCount >= @props.maxVotes || votingOver) && !@props.track.selected
+    if (@props.voteCount >= @props.maxVotes || votingOver) && !@props.entry.selected
       null
     else
       classes = [
@@ -61,7 +61,7 @@ class Contest.Voter extends React.Component
         if @props.theme then "contest__voting-star--#{@props.theme}",
       ]
 
-      if @props.track.selected
+      if @props.entry.selected
         selected_class =  [
           if @props.theme then "contest__voting-star--selected-#{@props.theme}" else 'contest__voting-star--selected'
         ]
@@ -72,7 +72,7 @@ class Contest.Voter extends React.Component
         div className: classes.concat(selected_class).join(' '),
           i className: "fa fa-fw fa-star"
       else
-        if @props.waitingForResponse && !@props.track.selected
+        if @props.waitingForResponse && !@props.entry.selected
           div className: classes.join(' '),
             i className: "fa fa-fw fa-refresh contest__voting-star--spin"
         else

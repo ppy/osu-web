@@ -16,7 +16,6 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 ###
-
 {div, a} = React.DOM
 el = React.createElement
 
@@ -36,4 +35,4 @@ class Contest.ArtEntry extends React.Component
         null
       else
         div className: "contest__vote-link-banner#{if @props.entry.selected then ' contest__vote-link-banner--selected' else ''}",
-          el Contest.Voter, key: @props.entry.id, track: @props.entry, waitingForResponse: @props.waitingForResponse, voteCount: @props.voteCount, maxVotes: @props.options.maxVotes, contest: @props.contest, theme: 'art'
+          el Contest.Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, voteCount: @props.voteCount, maxVotes: @props.options.maxVotes, contest: @props.contest, theme: 'art'

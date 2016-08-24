@@ -16,24 +16,25 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 ###
-
 {div,a,i,span,table,thead,tbody,tr,th,td} = React.DOM
 el = React.createElement
 
-class Contest.ArtList extends React.Component
+class Contest.BaseEntryList extends React.Component
   constructor: (props) ->
     super props
     @state =
       waitingForResponse: false
-      entries: @props.tracks
-      voteCount: _.filter(@props.tracks, _.iteratee({selected: true})).length
+      entries: @props.entries
+      voteCount: _.filter(@props.entries, _.iteratee({selected: true})).length
       contest: @props.contest
       options:
+        showDL: @props.options.showDL ? false
+        showPreview: @props.options.showPreview ? false
         maxVotes: @props.contest.max_votes ? 3
 
-  handleVoteClick: (_e, {track_id, callback}) =>
+  handleVoteClick: (_e, {entry_id, callback}) =>
     entries = @state.entries
-    entry = _.findIndex(@state.entries, { id: track_id });
+    entry = _.findIndex(@state.entries, { id: entry_id });
     entries[entry].selected = !entries[entry].selected
     @setState
       entries: entries
@@ -41,11 +42,11 @@ class Contest.ArtList extends React.Component
       voteCount: _.filter(entries, _.iteratee({selected: true})).length
       callback
 
-  handleUpdate: (_e, {tracks, callback}) =>
+  handleUpdate: (_e, {entries, callback}) =>
     @setState
-      entries: tracks
+      entries: entries
       waitingForResponse: false
-      voteCount: _.filter(tracks, _.iteratee({selected: true})).length
+      voteCount: _.filter(entries, _.iteratee({selected: true})).length
       callback
 
   componentDidMount: ->
@@ -54,21 +55,3 @@ class Contest.ArtList extends React.Component
 
   componentWillUnmount: ->
     $.unsubscribe '.contest'
-
-  render: ->
-    return null unless @state.entries.length > 0
-
-    entries = @state.entries.map (entry) =>
-      el Contest.ArtEntry,
-        key: entry.id,
-        entry: entry,
-        waitingForResponse: @state.waitingForResponse,
-        voteCount: @state.voteCount,
-        options: @state.options,
-        contest: @state.contest
-
-    div className: 'contest',
-      div className: 'contest__vote-summary--art',
-        span className: 'contest__vote-summary-text contest__vote-summary-text--art', 'votes'
-        el Contest.VoteSummary, voteCount: @state.voteCount, maxVotes: @state.options.maxVotes
-      div className: 'contest__entries--art', entries
