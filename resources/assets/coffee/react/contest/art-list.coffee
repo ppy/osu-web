@@ -67,8 +67,8 @@ class Contest.ArtList extends React.Component
         options: @state.options,
         contest: @state.contest
 
-    div className: 'trackplayer',
-      div className: 'trackplayer__vote-summary--art',
-        span className: 'trackplayer__vote-summary-text trackplayer__vote-summary-text--art', 'votes'
+    div className: 'contest',
+      div className: 'contest__vote-summary--art',
+        span className: 'contest__vote-summary-text contest__vote-summary-text--art', 'votes'
         el Contest.VoteSummary, voteCount: @state.voteCount, maxVotes: @state.options.maxVotes
-      div className: 'trackplayer__entries--art', entries
+      div className: 'contest__entries--art', entries

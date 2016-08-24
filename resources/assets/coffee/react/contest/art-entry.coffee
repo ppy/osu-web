@@ -23,9 +23,9 @@ el = React.createElement
 class Contest.ArtEntry extends React.Component
   render: ->
     votingOver = moment(@props.contest.ends_at).diff() <= 0
-    div className: 'trackplayer__entry--art', style: { backgroundImage: "url('#{@props.entry.preview}')" },
+    div className: 'contest__entry--art', style: { backgroundImage: "url('#{@props.entry.preview}')" },
       a {
-        className: "js-gallery trackplayer__art-preview#{if @props.entry.selected then ' trackplayer__entry--selected' else ''}",
+        className: "js-gallery contest__art-preview#{if @props.entry.selected then ' contest__entry--selected' else ''}",
         href: @props.entry.preview,
         'data-width': @props.entry.width,
         'data-height': @props.entry.height,
@@ -35,5 +35,5 @@ class Contest.ArtEntry extends React.Component
       if (@props.voteCount >= @props.options.maxVotes || votingOver) && !@props.entry.selected
         null
       else
-        div className: "trackplayer__vote-link-banner#{if @props.entry.selected then ' trackplayer__vote-link-banner--selected' else ''}",
+        div className: "contest__vote-link-banner#{if @props.entry.selected then ' contest__vote-link-banner--selected' else ''}",
           el Contest.Voter, key: @props.entry.id, track: @props.entry, waitingForResponse: @props.waitingForResponse, voteCount: @props.voteCount, maxVotes: @props.options.maxVotes, contest: @props.contest, theme: 'art'

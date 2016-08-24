@@ -22,19 +22,19 @@ el = React.createElement
 
 class @TracklistTrack extends React.Component
   render: ->
-    tr className: "trackplayer__row#{if @props.track.selected then ' trackplayer__row--selected' else ''}",
+    tr className: "tracklist__row#{if @props.track.selected then ' tracklist__row--selected' else ''}",
       td {},
         el TrackPreview, track: @props.track
-      td className:'trackplayer__title',
+      td className:'tracklist__title',
         "#{@props.track.title} "
-        span className: 'trackplayer__version', @props.track.version
-      td className: 'trackplayer__length', @props.track.length
-      td className: 'trackplayer__bpm', "#{@props.track.bpm}bpm"
-      td className: 'trackplayer__genre', @props.track.genre
-      td className: 'trackplayer__dl',
+        span className: 'tracklist__version', @props.track.version
+      td className: 'tracklist__length', @props.track.length
+      td className: 'tracklist__bpm', "#{@props.track.bpm}bpm"
+      td className: 'tracklist__genre', @props.track.genre
+      td className: 'tracklist__dl',
         if @props.track.osz
-          a className: 'trackplayer__link', href: @props.track.osz, title: 'Download Beatmap Template',
+          a className: 'tracklist__link', href: @props.track.osz, title: 'Download Beatmap Template',
             i className: 'fa fa-fw fa-cloud-download'
         else
-          span className: 'trackplayer__link--disabled', title: 'Beatmap Template not yet available',
+          span className: 'tracklist__link--disabled', title: 'Beatmap Template not yet available',
             i className: 'fa fa-fw fa-cloud-download'

@@ -22,12 +22,12 @@ el = React.createElement
 class Contest.VoteSummary extends React.Component
   render: ->
     classes = [
-      'trackplayer__voting-star',
-      'trackplayer__voting-star--smaller',
-      'trackplayer__float-right',
+      'contest__voting-star',
+      'contest__voting-star--smaller',
+      'contest__voting-star--float-right',
     ]
     selectedClass = [
-      'trackplayer__voting-star--selected',
+      'contest__voting-star--selected',
     ]
 
     voteSummary = []

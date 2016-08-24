@@ -21,16 +21,16 @@ el = React.createElement
 
 class Contest.Entry extends React.Component
   render: ->
-    tr className: "trackplayer__row#{if @props.track.selected then ' trackplayer__row--selected' else ''}",
+    tr className: "tracklist__row#{if @props.track.selected then ' tracklist__row--selected' else ''}",
       if @props.options.showPreview
         td {},
           el TrackPreview, track: @props.track
       if @props.options.showDL
-        td className: 'trackplayer__dl trackplayer__dl--contest',
-          a className: 'trackplayer__link trackplayer__link--contest-dl', href: '#', title: 'Download Beatmap Template',
+        td className: 'tracklist__dl tracklist__dl--contest',
+          a className: 'tracklist__link tracklist__link--contest-dl', href: '#', title: 'Download Beatmap Template',
             i className: 'fa fa-fw fa-cloud-download'
-      td className:'trackplayer__title',
+      td className:'tracklist__title',
         "#{@props.track.title} "
 
-      td className:'trackplayer__vote',
+      td className:'tracklist__vote',
         el Contest.Voter, key: @props.track.id, track: @props.track, waitingForResponse: @props.waitingForResponse, voteCount: @props.voteCount, maxVotes: @props.options.maxVotes, contest: @props.contest

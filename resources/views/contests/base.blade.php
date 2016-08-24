@@ -38,6 +38,9 @@
     <div class="osu-layout__row osu-layout__row--page-contests">
         <div class="page-contents__content--contests">
             <div class="contest__description">{!! $contest->description !!}</div>
+            @if ($contest->ends_at->isPast())
+                <div class='contest__voting-ended'>{{trans('contest.over')}}</div>
+            @endif
             @yield('contest-entries')
         </div>
     </div>

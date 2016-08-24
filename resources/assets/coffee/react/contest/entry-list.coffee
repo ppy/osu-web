@@ -69,20 +69,16 @@ class Contest.EntryList extends React.Component
         options: @state.options,
         contest: @state.contest
 
-    votingOver = moment(@state.contest.ends_at).diff() <= 0
-
-    div className: 'trackplayer',
-      if votingOver
-        div className: 'trackplayer__voting-ended', osu.trans('contest.over')
-      table className: 'trackplayer__table trackplayer__table--smaller',
+    div className: 'contest',
+      table className: 'tracklist__table tracklist__table--smaller',
         thead {},
-            tr className: 'trackplayer__row--header',
+            tr className: 'tracklist__row--header',
               if @state.options.showPreview
-                th className: 'trackplayer__col trackplayer__col--preview', ''
+                th className: 'tracklist__col tracklist__col--preview', ''
               if @state.options.showDL
-                th className: 'trackplayer__col trackplayer__col--dl',
-              th className: 'trackplayer__col trackplayer__col--title', 'entry'
-              th className: 'trackplayer__col trackplayer__col--vote',
+                th className: 'tracklist__col tracklist__col--dl',
+              th className: 'tracklist__col tracklist__col--title', 'entry'
+              th className: 'tracklist__col tracklist__col--vote',
                 el Contest.VoteSummary, voteCount: @state.voteCount, maxVotes: @state.options.maxVotes
-                div className: 'trackplayer__float-right trackplayer__vote-summary-text', 'votes'
+                div className: 'contest__vote-summary-text', 'votes'
         tbody {}, tracks

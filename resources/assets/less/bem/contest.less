@@ -1,4 +1,16 @@
 .contest {
+  background-color: #1A2223;
+  color: white;
+  padding-left: @spacing * 2;
+  padding-right: @spacing * 2;
+  padding-bottom: @spacing * 2;
+
+  &__art-preview {
+    width: 256px;
+    height: 256px;
+    display: block;
+  }
+
   &__description {
     background-color: #293336;
     color: white;
@@ -8,4 +20,133 @@
     margin-top: -20px;
     .default-box-shadow;
   }
+
+  &__voting-ended {
+    background-color: #1A2223;
+    color: white;
+    padding-top: @spacing * 2;
+    padding-bottom: @spacing;
+    text-align: center;
+  }
+
+  &__entry {
+    &--art {
+      margin: 10px;
+      width: 256px;
+      height: 256px;
+      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+      background-size: cover;
+      background-position: top;
+      transform: translateZ(0);
+    }
+    &--selected {
+        border: 4px solid #ffa500;
+    }
+  }
+
+  &__entries {
+    &--art {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+  }
+
+  &__vote-summary {
+    &--art {
+      font-size: 10px;
+      padding-top: 10px;
+      margin-bottom: 5px;
+      text-align: right;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+
+  &__vote-summary-text {
+    float: right;
+    text-transform: uppercase;
+    color: #8dacb6;
+    font-weight: bold;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    width: 32px;
+    &--art {
+      width: inherit;
+      margin-right: 10px
+    }
+  }
+
+  &__vote-link-banner {
+    width: 32px;
+    height: 32px;
+    border-style: solid;
+    border-width: 0 0 64px 64px;
+    margin-top: -64px;
+    float: right;
+    border-color: transparent transparent white transparent;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--selected {
+      border-color: transparent transparent #ffa500 transparent;
+    }
+  }
+
+  &__voting-star {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: smaller;
+    color: rgba(1, 1, 1, 0.5);
+
+    &:hover, &:focus {
+      color: rgba(1, 1, 1, 0.75);
+      font-size: inherit;
+      text-decoration: none;
+    }
+
+    &--spin {
+      animation: spin-w-easing 1s ease-in-out infinite;
+    }
+
+    &--art {
+      margin-top: 90px;
+      margin-left: -35px;
+    }
+
+    &--selected {
+      font-size: inherit;
+      color: #ffa500;
+      &:hover, &:focus {
+        color: rgba(255, 165, 0, 0.75);
+      }
+    }
+
+    &--selected-art {
+      font-size: inherit;
+      color: white;
+      &:hover, &:focus {
+        color: rgba(255, 255, 255, 0.50);
+      }
+    }
+
+    &--smaller {
+      width: 16px;
+      height: 16px;
+    }
+
+    &--float-right {
+      float: right;
+    }
+  }
+
 }
