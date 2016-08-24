@@ -19,6 +19,8 @@
  */
 namespace App\Listeners\Forum;
 
+use App\Events\Forum\TopicWasCreated;
+use App\Events\Forum\TopicWasReplied;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Slack;
 
@@ -130,13 +132,13 @@ class NotifySlack implements ShouldQueue
     public function subscribe($events)
     {
         $events->listen(
-            "App\Events\Forum\TopicWasCreated",
-            "App\Listeners\Forum\NotifySlack@notifyNew"
+            TopicWasCreated::class,
+            static::class.'@notifyNew'
         );
 
         $events->listen(
-            "App\Events\Forum\TopicWasReplied",
-            "App\Listeners\Forum\NotifySlack@notifyReply"
+            TopicWasReplied::class,
+            static::class.'@notifyReply'
         );
     }
 }
