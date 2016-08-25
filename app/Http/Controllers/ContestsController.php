@@ -20,6 +20,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contest;
+use App\Models\ContestVote;
+use App\Models\ContestVoteAggregate;
 use Auth;
 use Request;
 
@@ -29,7 +31,7 @@ class ContestsController extends Controller
 
     public function show($id)
     {
-        $contest = Contest::with('entries')->findOrFail($id);
+        $contest = Contest::findOrFail($id);
 
         switch ($contest->type) {
             case 'art':
@@ -59,7 +61,7 @@ class ContestsController extends Controller
     public function vote($id)
     {
         $user = Auth::user();
-        $contest = Contest::with('entries')->findOrFail($id);
+        $contest = Contest::findOrFail($id);
         $entry = $contest->entries()->findOrFail(Request::input('entry_id'));
 
         priv_check('ContestVote', $contest)->ensureCan();
@@ -78,7 +80,7 @@ class ContestsController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
             $seed = Auth::user()->user_id;
-            $votes = $contest->votes->where('user_id', $user->user_id);
+            $votes = ContestVote::where('contest_id', $contest->id)->where('user_id', $user->user_id)->get();
             $userVotes = $votes->map(function ($v) {
                 return $v->contest_entry_id;
             })->toArray();
@@ -97,7 +99,7 @@ class ContestsController extends Controller
             if ($contest->show_votes) {
                 // add extra info for contests that are showing votes
                 $entry['actual_name'] = $contestEntry->name;
-                $entry['votes'] = $contestEntry->votes->count();
+                $entry['votes'] = $contest->voteAggregates->where('contest_entry_id', $contestEntry->id)->first()->votes;
             }
 
             $entries[] = $entry;

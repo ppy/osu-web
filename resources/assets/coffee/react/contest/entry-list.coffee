@@ -23,6 +23,9 @@ class Contest.EntryList extends Contest.BaseEntryList
   render: ->
     return null unless @state.entries.length > 0
 
+    if @state.contest.show_votes
+      totalVotes = _.sumBy @state.entries, (i) -> i.votes
+
     entries = @state.entries.map (entry) =>
       el Contest.Entry,
         key: entry.id,
@@ -30,7 +33,9 @@ class Contest.EntryList extends Contest.BaseEntryList
         waitingForResponse: @state.waitingForResponse,
         voteCount: @state.voteCount,
         options: @state.options,
-        contest: @state.contest
+        contest: @state.contest,
+        winnerVotes: if @state.contest.show_votes then @state.entries[0].votes else null
+        totalVotes: if @state.contest.show_votes then totalVotes else null
 
     div className: 'contest',
       table className: 'tracklist__table tracklist__table--smaller',
