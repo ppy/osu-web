@@ -94,8 +94,8 @@ class ContestsController extends Controller
             $entry['cover_url'] = '/images/tmp/contest-cover-placeholder.png';
             $entry['selected'] = in_array($contestEntry->id, $userVotes, true);
 
-            if ($contest->showVotes()) {
-                // add vote count for contests that are over
+            if ($contest->show_votes) {
+                // add extra info for contests that are showing votes
                 $entry['actual_name'] = $contestEntry->name;
                 $entry['votes'] = $contestEntry->votes->count();
             }
@@ -103,8 +103,8 @@ class ContestsController extends Controller
             $entries[] = $entry;
         }
 
-        if ($contest->showVotes()) {
-            // Sort results by votes desc
+        if ($contest->show_votes) {
+            // Sort results by number of votes desc
             usort($entries, function ($a, $b) {
                 if ($a['votes'] == $b['votes']) {
                     return 0;
