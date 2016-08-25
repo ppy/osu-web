@@ -32,6 +32,11 @@ return [
             'confirm' => 'Are you sure you want to remove the cover image?',
         ],
     ],
+
+    'email' => [
+        'new_reply' => '[osu!] :title',
+    ],
+
     'pinned_topics' => 'Pinned Topics',
     'post' => [
         'confirm_delete' => 'Really delete post?',

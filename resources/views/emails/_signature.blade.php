@@ -15,13 +15,5 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-Hi {{ $user->username }},
-
-An action performed on your account from {{ $requestCountry ?? 'unknown country' }} requires verification.
-
-Your verification code is: {{ $key }}
-You can enter the code with or without spaces.
-
-If you did not request this, please REPLY IMMEDIATELY as your account may be in danger.
-
-@include('emails._signature')
+--
+osu! | {{ config('app.url') }}

@@ -19,6 +19,7 @@
  */
 namespace App\Providers;
 
+use App\Listeners;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -35,6 +36,7 @@ class EventServiceProvider extends ServiceProvider
     protected $subscribe = [
         "App\Listeners\Forum\MarkTopicRead",
         "App\Listeners\Forum\NotifySlack",
+        Listeners\Forum\NotifyEmail::class,
     ];
 
     /**
