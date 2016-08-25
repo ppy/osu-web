@@ -85,6 +85,9 @@ class UsersController extends Controller
             }
 
             if (Auth::check()) {
+                Request::session()->flush();
+                Request::session()->regenerateToken();
+
                 return [
                     'header' => view('layout._header_user', ['_user' => Auth::user()])->render(),
                     'header_popup' => view('layout._popup_user', ['_user' => Auth::user()])->render(),
@@ -109,6 +112,8 @@ class UsersController extends Controller
             setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.ppy.sh');
             setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.ppy.sh');
         }
+
+        Request::session()->flush();
 
         return [];
     }

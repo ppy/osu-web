@@ -226,7 +226,7 @@ class BBCodeFromDB
 
     public function parseSmilies($text)
     {
-        return preg_replace('#<!\-\- s(.*?) \-\-><img src="\{SMILIES_PATH\}\/(.*?) \/><!\-\- s\1 \-\->#', '<img class="smiley" src="'.config('osu.urls.smilies').'/\2 />', $text);
+        return preg_replace('#<!\-\- s(.*?) \-\-><img src="\{SMILIES_PATH\}\/(.*?) \/><!\-\- s\1 \-\->#', '<img class="smiley" src="'.osu_url('smilies').'/\2 />', $text);
     }
 
     public function parseStrike($text)

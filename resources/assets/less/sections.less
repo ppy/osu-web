@@ -48,7 +48,7 @@
   }
 }
 
-body.beatmaps, body.store  { .section(@pink-lighter, @pink-light, @pink, @pink-dark, @pink-darker); }
+body.beatmaps, body.store, body.multiplayer  { .section(@pink-lighter, @pink-light, @pink, @pink-dark, @pink-darker); }
 body.ranking   { .section(@green-lighter, @green-light, @green, @green-dark, @green-darker); }
 body.community { .section(@blue-lighter, @blue-light, @blue, @blue-dark, @pink-darker); }
 body.help      { .section(@yellow-lighter, @yellow-light, @yellow, @yellow-dark, @yellow-darker); }
@@ -58,6 +58,7 @@ body.user      { .section(@blue-lighter, @blue-light, @blue, @blue-dark, @blue-d
 
 ._section(~'beatmaps', @pink-darker, @pink-text);
 ._section(~'store', @pink-darker, @pink-text);
+._section(~'multiplayer', @pink-darker, @pink-text);
 ._section(~'ranking', @green-darker, @green-text);
 ._section(~'community', @pink-darker, @pink-text);
 ._section(~'help', @yellow-darker, @yellow-text);

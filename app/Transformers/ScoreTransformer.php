@@ -19,7 +19,6 @@
  */
 namespace App\Transformers;
 
-use App\Models\Score\Model as Score;
 use App\Models\Score\Best\Model as ScoreBest;
 use League\Fractal;
 
@@ -32,36 +31,41 @@ class ScoreTransformer extends Fractal\TransformerAbstract
         'user',
     ];
 
-    public function transform(Score $score)
+    public function transform($score)
     {
         return [
             'id' => $score->score_id,
             'user_id' => $score->user_id,
-            'created_at' => $score->date->toIso8601String(),
+            'created_at' => $score->date ? $score->date->toIso8601String() : null,
             'pp' => $score->pp,
             'accuracy' => $score->accuracy(),
             'rank' => $score->rank,
             'mods' => $score->enabled_mods,
             'score' => $score->score,
+            'combo' => $score->maxcombo,
             'count50' => $score->count50,
             'count100' => $score->count100,
             'count300' => $score->count300,
             'countgeki' => $score->countgeki,
             'countkatu' => $score->countkatu,
+            'countmiss' => $score->countmiss,
+            'slot' => $score->slot,
+            'team' => $score->team,
+            'pass' => $score->pass,
         ];
     }
 
-    public function includeBeatmap(Score $score)
+    public function includeBeatmap($score)
     {
         return $this->item($score->beatmap, new BeatmapTransformer);
     }
 
-    public function includeBeatmapset(Score $score)
+    public function includeBeatmapset($score)
     {
         return $this->item($score->beatmapset, new BeatmapsetTransformer);
     }
 
-    public function includeWeight(Score $score)
+    public function includeWeight($score)
     {
         if (($score instanceof ScoreBest) === false) {
             return;
@@ -75,7 +79,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
         });
     }
 
-    public function includeUser(Score $score)
+    public function includeUser($score)
     {
         return $this->item($score->user, new UserCompactTransformer);
     }

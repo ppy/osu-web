@@ -53,7 +53,7 @@ return [
                     'button' => 'Subir imagen',
                     'dropzone' => 'Suelta aquí para subir',
                     'dropzone_info' => 'También puedes soltar la imagen aquí para subirla',
-                    'restriction_info' => "Subida solo disponible para <a href='".config('osu.urls.support-the-game')."' target='_blank'>osu!supporters</a>",
+                    'restriction_info' => "Subida solo disponible para <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a>",
                     'size_info' => 'El tamaño de la portada debe ser de 2700x500',
                     'too_large' => 'El archivo es demasiado grande.',
                     'unsupported_format' => 'Formato no soportado.',
@@ -94,7 +94,7 @@ return [
                 'recent_entries' => 'Historial de Kudosu Reciente',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu Total Obtenido',
-                'total_info' => 'Basado en qué tanto ha colaborado el usuario a la moderación del beatmap. Ve <a href="'.config('osu.urls.user.kudosu').'">esta página</a> para más información.',
+                'total_info' => 'Basado en qué tanto ha colaborado el usuario a la moderación del beatmap. Ve <a href="'.osu_url('user.kudosu').'">esta página</a> para más información.',
             ],
             'me' => [
                 'title' => 'me!', // translating this is a little tricky (maybe "sobre mi"?)
@@ -143,7 +143,7 @@ return [
             'description' => '<strong>me!</strong> es una área personalizable en tu perfil.',
             'edit_big' => 'Editar me!',
             'placeholder' => 'Escribe el contenido aquí',
-            'restriction_info' => "Necesitas ser un <a href='".config('osu.urls.support-the-game')."' target='_blank'>osu!supporter</a> para desbloquear esta característica.",
+            'restriction_info' => "Necesitas ser un <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> para desbloquear esta característica.",
         ],
         'plays_with' => [
             '_' => 'Juega con',

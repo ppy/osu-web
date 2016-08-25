@@ -35,9 +35,12 @@ class LoginAttempt extends Model
             ->exists();
     }
 
-    public static function failedAttempt($ip, $username)
+    public static function failedAttempt($ip, $usernameOrEmail)
     {
-        $userId = User::where('username', $username)->value('user_id');
+        $userId = User::where(function ($q) use ($usernameOrEmail) {
+            $q->where('username', $usernameOrEmail)
+                ->orWhere('user_email', $usernameOrEmail);
+        })->value('user_id');
 
         $userId = $userId ?? 0;
 

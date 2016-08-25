@@ -30,7 +30,7 @@
             <div class="nav-popup__action"></div>
 
             <div class="nav-popup__action">
-                <a href="#" class="nav-popup__button btn-osu-big">
+                <a href="{{ osu_url('user.signup') }}" class="nav-popup__button btn-osu-big">
                     <div class="btn-osu-big__content">
                         <span class="btn-osu-big__left">
                             {{ trans('users.signup._') }}

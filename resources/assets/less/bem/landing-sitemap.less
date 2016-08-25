@@ -18,30 +18,32 @@
  */
 
  .landing-sitemap {
- 	&__list {
- 		list-style-type: none;
- 		padding: 0;
- 		margin: 0;
- 	}
+    @media @screen-large {
+        text-align: left;
+    }
 
- 	&__header {
- 		color: @grey-f;
- 		font-weight: bold;
- 		font-size: 13px;
- 	}
+    text-align: center;
 
- 	&__link {
- 		color: @pink-lighter;
- 		font-size: 12px;
+    &__list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
 
- 		&:hover,
- 		&:focus {
- 			color: @grey-f;
- 			text-decoration: none;
- 		}
- 	}
+    &__header {
+        color: @grey-f;
+        font-weight: bold;
+        font-size: 13px;
+    }
 
- 	@media @mobile {
- 		text-align: center;
- 	}
+    &__link {
+        color: @pink-lighter;
+        font-size: 12px;
+
+        &:hover,
+        &:focus {
+            color: @grey-f;
+            text-decoration: none;
+        }
+    }
  }

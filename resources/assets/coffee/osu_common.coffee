@@ -35,6 +35,11 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     osu.popup osu.xhrErrorMessage(xhr), 'danger'
 
 
+  emitAjaxError: (element) =>
+    (xhr, status, error) =>
+      $(element).trigger 'ajax:error', [xhr, status, error]
+
+
   pageChange: ->
     Timeout.set 0, -> $(document).trigger('osu:page:change')
 

@@ -24,7 +24,13 @@
 
   @_mod-width: 30px;
   @_mod-height: 22px;
+
   @_width: (@_mod-width * 3);
+
+  @_mod-width-large: 40px;
+  @_mod-height-large: 30px;
+
+  @_width-large: (@_mod-width-large * 3);
 
   width: @_width;
   min-width: @_width;
@@ -40,6 +46,14 @@
     max-width: @_width-small;
 
     padding: 0 (@_mod-width-small / 2);
+  }
+
+  &--large {
+    width: @_width-large;
+    min-width: @_width-large;
+    max-width: @_width-large;
+
+    padding: 0 (@_mod-width-large / 2);
   }
 
   &--reversed {
@@ -60,6 +74,11 @@
     &--small {
       width: @_mod-width-small;
       height: @_mod-height-small;
+    }
+
+    &--large {
+      width: @_mod-width-large;
+      height: @_mod-height-large;
     }
   }
 }

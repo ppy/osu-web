@@ -40,6 +40,9 @@ return [
             'topic_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_TOPIC_IDS', '259747'))),
         ],
     ],
+    'mp-history' => [
+        'event-count' => 500,
+    ],
     'legacy' => [
         'shared_cookie_secret' => env('SHARED_COOKIE_SECRET', ''),
     ],
@@ -50,26 +53,47 @@ return [
     ],
     'twitch_client_id' => env('TWITCH_CLIENT_ID'),
     'urls' => [
+        'base' => 'https://osu.ppy.sh',
+        'smilies' => '/forum/images/smilies',
+        'support-the-game' => '/p/support#transactionarea',
+
         'legal' => [
-            'dmca' => 'https://osu.ppy.sh/p/copyright',
-            'tos' => 'https://osu.ppy.sh/p/terms',
+            'dmca' => '/p/copyright',
+            'tos' => '/p/terms',
         ],
-        'smilies' => 'https://osu.ppy.sh/forum/images/smilies',
         'social' => [
             'facebook' => 'https://facebook.com/osugame',
-            'twitter' => 'https://osu.ppy.sh/p/twitter',
+            'twitter' => '/p/twitter',
         ],
         'status' => [
             'osustatus' => 'https://twitter.com/osustatus',
             'server' => 'http://stat.ppy.sh/',
         ],
-        'support-the-game' => 'https://osu.ppy.sh/p/support#transactionarea',
         'user' => [
-            'kudosu' => 'https://osu.ppy.sh/wiki/Kudosu',
-            'rules' => 'https://osu.ppy.sh/wiki/Osu!:Rules',
+            'kudosu' => '/wiki/Kudosu',
+            'recover' => '/p/forgot-email',
+            'rules' => '/wiki/Osu!:Rules',
+            'signup' => '/p/register',
+        ],
+        'ranking' => [
+            'overall' => '/p/pp',
+             'charts' => '/p/chart',
+            'country' => '/p/countryranking',
+            'mapper' => '/p/kudosu',
+        ],
+        'home' => [
+            'changelog' => '/p/changelog',
+            'download' => '/p/download',
+        ],
+        'help' => [
+            'wiki' => '/wiki/Main_Page',
+            'faq' => '/wiki/FAQ',
+            'support' => 'http://help.ppy.sh/',
         ],
     ],
     'user' => [
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
+        'verification_key_length_hex' => 8,
+        'verification_key_tries_limit' => 8,
     ],
 ];

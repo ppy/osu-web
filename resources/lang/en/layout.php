@@ -26,11 +26,10 @@ return [
     'menu' => [
         'home' => [
             '_' => 'home',
-            'getLanding' => 'home',
-            'getNews' => 'news',
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
+            'index' => 'news',
             'supportTheGame' => 'support the game',
         ],
         'help' => [
@@ -75,6 +74,10 @@ return [
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
             'forum-forums-show' => 'forum',
+        ],
+        'multiplayer' => [
+            '_' => 'multiplayer',
+            'show' => 'match',
         ],
         'error' => [
             '_' => 'error',

@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
- .osu-layout {
+.osu-layout {
   ._page {
     .default-box-shadow;
     background-color: @grey-f;
@@ -191,6 +191,15 @@
 
       @media @desktop {
         ._width-desktop(@spacing);
+      }
+    }
+
+    &--page-mp-history {
+      ._page;
+      padding: @spacing * 2;
+
+      @media (min-width: @screen-lg-min) {
+        padding: (@spacing * 2) @padding-big;
       }
     }
 

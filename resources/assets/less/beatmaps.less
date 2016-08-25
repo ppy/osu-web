@@ -1,184 +1,182 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 // main: compiled.less
 @import "app";
 
 #beatmaps-listing {
-	text-align: center;
+  text-align: center;
 
-	.beatmap-container {
-		opacity: 1;
+  .beatmap-container {
+    opacity: 1;
 
-		&.dimmed {
-			opacity: 0.2;
-		}
-	}
+    &.dimmed {
+      opacity: 0.2;
+    }
+  }
 
-	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-	background: #eee;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  background: #eee;
 
-	.sorting {
-		text-align: left;
-		margin-bottom: @spacing;
-		font-size: 12px;
-		a {
-			margin-right: 15px;
-			color: #555555;
+  .sorting {
+    text-align: left;
+    margin-bottom: @spacing;
+    font-size: 12px;
+    a {
+      margin-right: 15px;
+      color: #555555;
 
-			&.active {
-				color: #DC62A5;
-				font-weight: bold;
-			}
+      &.active {
+        color: #DC62A5;
+        font-weight: bold;
+      }
 
-			&.asc::after {
-				content: ' \25b2'
-			}
+      &.asc::after {
+        content: ' \25b2'
+      }
 
-			&.desc::after {
-				content: ' \25bc'
-			}
+      &.desc::after {
+        content: ' \25bc'
+      }
 
-		}
-	}
+    }
+  }
 
-	.beatmaps-load-more {
-		padding-top: 10px;
-		i {
-			display: none;
-		}
+  .beatmaps-load-more {
+    padding-top: 10px;
+    i {
+      display: none;
+    }
 
-		&.no_more {
-			display: none;
-		}
+    &.no_more {
+      display: none;
+    }
 
-		&.loading {
-			a {
-				display: none;
-			}
-			i {
-				display: inline-block;
-			}
-		}
-	}
+    &.loading {
+      a {
+        display: none;
+      }
+      i {
+        display: inline-block;
+      }
+    }
+  }
 }
 
 #search {
-	padding: 10px 50px 10px 50px;
-	background: black;
-	height: 250px;
-	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-	margin-left: -20px;
-	margin-right: -20px;
+  padding: 10px 50px 10px 50px;
+  background: black;
+  height: 250px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  margin-left: -20px;
+  margin-right: -20px;
 
-	.background {
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: cover;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		opacity: 0.3;
-	}
+  .background {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0.3;
+  }
 
-	.box
-	{
-		font-size: 100%;
-		margin: 100px 0 20px 0;
+  .box {
+    font-size: 100%;
+    margin: 100px 0 20px 0;
 
-		input:focus {
-			outline: 0;
-			border: solid 1px @pink-light;
-			box-shadow: 0 0 10px @pink-lighter;
-		}
+    input:focus {
+      outline: 0;
+      border: solid 1px @pink-light;
+      box-shadow: 0 0 10px @pink-lighter;
+    }
 
-		input {
-			color: @beatmaps_colour;
-			border: solid 1px #cccccc;
-			padding: 10px 40px 10px 10px;
-			margin: -10px;
-			width: 100%;
-			font-size: 125%;
-			font-style: italic;
-			font-weight: lighter;
-		}
+    input {
+      color: @beatmaps_colour;
+      border: solid 1px #cccccc;
+      padding: 10px 40px 10px 10px;
+      margin: -10px;
+      width: 100%;
+      font-size: 125%;
+      font-style: italic;
+      font-weight: lighter;
+    }
 
-		i {
-			font-size: 120%;
-			position: absolute;
-			right: 0;
-			top: 0;
-			padding: 5px 25px 5px 5px;
+    i {
+      font-size: 120%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 5px 25px 5px 5px;
 
-			color: #DC62A5;
-		}
-	}
+      color: #DC62A5;
+    }
+  }
 
-	.selector {
-		margin-top: 5px;
-		.header {
-			color: white;
-			text-transform: uppercase;
-			font-weight: normal;
-			font-size: 10px;
-			width: inherit;
-			width: 95px;
-		}
-		>a {
-			color: @pink !important;
-			margin-right: 12px;
-			font-size: 13px;
-			font-weight: normal;
-			&.active {
-				color: white !important;
-			}
-		}
-	}
+  .selector {
+    margin-top: 5px;
+    .header {
+      color: white;
+      text-transform: uppercase;
+      font-weight: normal;
+      font-size: 10px;
+      width: inherit;
+      width: 95px;
+    }
+    >a {
+      color: @pink !important;
+      margin-right: 12px;
+      font-size: 13px;
+      font-weight: normal;
+      &.active {
+        color: white !important;
+      }
+    }
+  }
 
-	.more {
-		margin-top: 20px;
-		a {
-			color: white;
-			font-size: 10px;
-		}
+  .more {
+    margin-top: 20px;
+    a {
+      color: white;
+      font-size: 10px;
+    }
 
-		.toggle {
-			.text-center;
-		}
+    .toggle {
+      .text-center;
+    }
 
-		.selector {
-			opacity: 0;
-		}
-	}
+    .selector {
+      opacity: 0;
+    }
+  }
 
-	&.expanded {
-		height: 300px;
-		.more {
-			margin-top: 0px;
-			.toggle {
-				display: none;
-			}
-			.selector {
-				opacity: 1;
-			}
-		}
-	}
-
+  &.expanded {
+    height: 300px;
+    .more {
+      margin-top: 0px;
+      .toggle {
+        display: none;
+      }
+      .selector {
+        opacity: 1;
+      }
+    }
+  }
 }

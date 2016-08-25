@@ -26,10 +26,10 @@ return [
     'menu' => [
         'home' => [
             '_' => 'strona główna',
-            'getNews' => 'aktualności',
             'getChangelog' => 'zmiany',
             'getDownload' => 'pobieranie',
             'getIcons' => 'ikony',
+            'index' => 'aktualności',
             'supportTheGame' => 'wspomóż grę',
         ],
         'help' => [

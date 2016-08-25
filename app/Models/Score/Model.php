@@ -23,9 +23,12 @@ use Illuminate\Database\Eloquent\Model as BaseModel;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\User;
+use App\Traits\Scoreable;
 
 abstract class Model extends BaseModel
 {
+    use Scoreable;
+
     protected $primaryKey = 'score_id';
 
     protected $casts = [
@@ -34,8 +37,6 @@ abstract class Model extends BaseModel
     ];
     protected $dates = ['date'];
     public $timestamps = false;
-
-    protected $_enabledMods = null;
 
     public function scopeForUser($query, User $user)
     {
@@ -66,101 +67,6 @@ abstract class Model extends BaseModel
 
             return new $klass;
         }
-    }
-
-    public static function gamemodeString()
-    {
-        return snake_case(get_class_basename(static::class));
-    }
-
-    public function getEnabledModsAttribute($value)
-    {
-        if ($this->_enabledMods === null) {
-            $value = intval($value);
-
-            $this->_enabledMods = [];
-
-            // move to its own class when needed.
-            // id, name, short name, implied ids
-            $availableMods = [
-                [0, 'NF'],
-                [1, 'EZ'],
-                [3, 'HD'],
-                [4, 'HR'],
-                [5, 'SD', [14]],
-                [6, 'DT'],
-                [7, 'Relax'],
-                [8, 'HT'],
-                [9, 'NC', [6]],
-                [10, 'FL'],
-                [12, 'SO'],
-                [13, 'AP'],
-                [14, 'PF'],
-                [15, '4K'],
-                [16, '5K'],
-                [17, '6K'],
-                [18, '7K'],
-                [19, '8K'],
-                [20, 'FI'],
-                [24, '9K'],
-            ];
-
-            $enabledMods = [];
-            $impliedIds = [];
-
-            foreach ($availableMods as $availableMod) {
-                if (($value & (1 << $availableMod[0])) === 0) {
-                    continue;
-                }
-
-                $currentImpliedIds = array_get($availableMod, 2);
-                if ($currentImpliedIds !== null) {
-                    $impliedIds = array_merge($impliedIds, $currentImpliedIds);
-                }
-
-                $enabledMods[$availableMod[0]] = $availableMod[1];
-            }
-
-            $enabledMods = array_filter($enabledMods, function ($modId) use ($impliedIds) {
-                return in_array($modId, $impliedIds, true) === false;
-            }, ARRAY_FILTER_USE_KEY);
-
-            $this->_enabledMods = array_values($enabledMods);
-        }
-
-        return $this->_enabledMods;
-    }
-
-    public function totalHits()
-    {
-        if (static::gamemodeString() === 'osu') {
-            return ($this->count50 + $this->count100 + $this->count300 + $this->countmiss) * 300;
-        } elseif (static::gamemodeString() === 'fruits') {
-            return $this->count50 + $this->count100 + $this->count300 +
-                $this->countmiss + $this->countkatu;
-        } elseif (static::gamemodeString() === 'mania') {
-            return ($this->count50 + $this->count100 + $this->count300 + $this->countmiss + $this->countkatu + $this->countgeki) * 300;
-        } elseif (static::gamemodeString() === 'taiko') {
-            return ($this->count100 + $this->count300 + $this->countmiss) * 300;
-        }
-    }
-
-    public function hits()
-    {
-        if (static::gamemodeString() === 'osu') {
-            return $this->count50 * 50 + $this->count100 * 100 + $this->count300 * 300;
-        } elseif (static::gamemodeString() === 'fruits') {
-            return $this->count50 + $this->count100 + $this->count300;
-        } elseif (static::gamemodeString() === 'mania') {
-            return $this->count50 * 50 + $this->count100 * 100 + $this->countkatu * 200 + ($this->count300 + $this->countgeki) * 300;
-        } elseif (static::gamemodeString() === 'taiko') {
-            return $this->count100 * 150 + $this->count300 * 300;
-        }
-    }
-
-    public function accuracy()
-    {
-        return $this->hits() / $this->totalHits();
     }
 
     public function scopeDefault($query)

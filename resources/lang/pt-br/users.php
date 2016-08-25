@@ -54,7 +54,7 @@ return [
                     'button' => 'Enviar imagem',
                     'dropzone' => 'Arraste aqui para enviar',
                     'dropzone_info' => 'Você também pode arrastar sua imagem aqui para enviar',
-                    'restriction_info' => 'Envio disponível apenas para <a href="'.config('osu.urls.support-the-game').'" target="_blank">osu!supporters</a>',
+                    'restriction_info' => 'Envio disponível apenas para <a href="'.osu_url('support-the-game').'" target="_blank">osu!supporters</a>',
                     'size_info' => 'Tamanho da capa deve ser 2700x500',
                     'too_large' => 'O arquivo enviado é muito grande.',
                     'unsupported_format' => 'Formato não suportado.',
@@ -95,7 +95,7 @@ return [
                 'recent_entries' => 'Histórico Recente de Kudosu',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu Total Recebido',
-                'total_info' => 'Baseado na contribuição de um jogador para a moderação de beatmaps. Veja <a href="'.config('osu.urls.user.kudosu').'">esta página</a> para mais informações.',
+                'total_info' => 'Baseado na contribuição de um jogador para a moderação de beatmaps. Veja <a href="'.osu_url('user.kudosu').'">esta página</a> para mais informações.',
             ],
             'me' => [
                 'title' => 'eu!',
@@ -144,7 +144,7 @@ return [
             'description' => '<strong>eu!</strong> é uma área pessoal customizável na sua página de perfil.',
             'edit_big' => 'Edite-me!',
             'placeholder' => 'Digite conteúdo da página aqui',
-            'restriction_info' => 'Você precisa ser um <a href="'.config('osu.urls.support-the-game').'" target="_blank">osu!supporter</a> para desbloquear esta função.',
+            'restriction_info' => 'Você precisa ser um <a href="'.osu_url('support-the-game').'" target="_blank">osu!supporter</a> para desbloquear esta função.',
         ],
         'plays_with' => [
             '_' => 'Joga com',

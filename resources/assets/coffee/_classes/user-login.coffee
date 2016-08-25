@@ -40,12 +40,15 @@ class @UserLogin
   loginSuccess: (_event, data) =>
     $('.js-user-header').html data.header
     $('.js-user-header-popup').html data.header_popup
+
     $.publish 'user:update', data.user.data
     @nav.hidePopup()
     osu.pageChange()
 
+    @refreshToken()
     Turbolinks.clearCache()
     $(document).off '.ujsHideLoadingOverlay'
+
     LoadingOverlay.show()
     if @clickAfterLogin?
       if @clickAfterLogin.submit
@@ -59,6 +62,12 @@ class @UserLogin
         @clickAfterLogin.click()
     else
       osu.reloadPage()
+
+
+  refreshToken: =>
+    token = Cookie.get('XSRF-TOKEN')
+    $('[name="_token"]').attr 'value', token
+    $('[name="csrf-token"]').attr 'content', token
 
 
   reset: =>
@@ -78,7 +87,8 @@ class @UserLogin
 
 
   showOnError: (e, xhr) =>
-    return unless xhr.status == 401
+    return unless xhr.status == 401 && xhr.responseJSON?.authentication == 'basic'
+
     @show e.target
 
 

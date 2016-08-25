@@ -1,5 +1,6 @@
 <?php
 
+use App\Libraries\UserVerification;
 use App\Models\User;
 
 class AccountControllerTest extends TestCase
@@ -18,6 +19,7 @@ class AccountControllerTest extends TestCase
     public function testValidProfileOrderChangeRequest()
     {
         $this->actingAs($this->user)
+            ->withSession(['verified' => UserVerification::VERIFIED])
             ->json('POST', route('account.update-profile'), [
                 'order' => ['historical', 'medals', 'beatmaps', 'top_ranks', 'kudosu', 'recent_activities', 'me', 'performance'],
                 ])
@@ -29,6 +31,7 @@ class AccountControllerTest extends TestCase
     public function testDuplicatesInProfileOrder()
     {
         $this->actingAs($this->user)
+            ->withSession(['verified' => UserVerification::VERIFIED])
             ->json('POST', route('account.update-profile'), [
                 'order' => ['me', 'recent_activities', 'kudosu', 'top_ranks', 'beatmaps', 'medals', 'historical', 'performance', 'me'],
             ])
@@ -40,6 +43,7 @@ class AccountControllerTest extends TestCase
     public function testInvalidIdsInProfileOrder()
     {
         $this->actingAs($this->user)
+            ->withSession(['verified' => UserVerification::VERIFIED])
             ->json('POST', route('account.update-profile'), [
                 'order' => ['me', 'recent_activities', 'kudosu', 'top_ranks', 'beatmaps', 'medals', 'historical', 'performance', 'test'],
             ])
