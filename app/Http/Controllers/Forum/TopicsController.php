@@ -298,6 +298,23 @@ class TopicsController extends Controller
         }
     }
 
+    public function unwatchMulti()
+    {
+        $topicIds = explode(',', Request::input('topic_ids'));
+        $topics = Topic::whereIn('topic_id', $topicIds);
+
+        $unwatchTopics = [];
+        foreach ($topics->get() as $topic) {
+            if (priv_check('ForumTopicWatch0', $topic->forum)->can()) {
+                $unwatchTopics[] = $topic;
+            }
+        }
+
+        TopicWatch::remove($unwatchTopics, Auth::user());
+
+        return ['message' => trans('forum.topics.watch.watched-0')];
+    }
+
     public function vote($topicId)
     {
         $topic = Topic::findOrFail($topicId);

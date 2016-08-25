@@ -56,12 +56,11 @@ class TopicWatch extends Model
         ])->exists();
     }
 
-    public static function remove($topic, $user)
+    public static function remove($topics, $user)
     {
-        return static::where([
-            'topic_id' => $topic->topic_id,
-            'user_id' => $user->user_id,
-        ])->delete();
+        return static::where('user_id', $user->user_id)
+            ->whereIn('topic_id', array_pluck((array) $topics, 'topic_id'))
+            ->delete();
     }
 
     public static function toggle($topic, $user, $isAdd)
