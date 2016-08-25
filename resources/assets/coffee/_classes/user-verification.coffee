@@ -101,18 +101,7 @@ class @UserVerification
     @inputBox[0].value = ''
     @inputBox[0].dataset.lastKey = ''
 
-    if toClick?
-      if toClick.submit
-        # plain javascript here doesn't trigger submit events
-        # which means jquery-ujs handler won't be triggered
-        # reference: https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit
-        $(toClick).submit()
-      else if toClick.click
-        # inversely, using jquery here won't actually click the thing
-        # reference: https://github.com/jquery/jquery/blob/f5aa89af7029ae6b9203c2d3e551a8554a0b4b89/src/event.js#L586
-        toClick.click()
-    else
-      osu.reloadPage()
+    osu.executeAction toClick
 
 
   show: (target, html) =>
