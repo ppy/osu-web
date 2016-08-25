@@ -35,6 +35,11 @@ class Contest extends Model
         return $this->hasMany(ContestVote::class);
     }
 
+    public function showVotes()
+    {
+        return $this->ends_at->isPast(); // todo: replace with field
+    }
+
     public function vote(User $user, ContestEntry $entry)
     {
         $vote = $this->votes()->where('user_id', $user->user_id)->where('contest_entry_id', $entry->id);

@@ -73,13 +73,13 @@ class ContestsController extends Controller
 
     private function prepareEntries($contest)
     {
-        $votes = [];
+        $userVotes = [];
         $seed = time();
         if (Auth::check()) {
             $user = Auth::user();
             $seed = Auth::user()->user_id;
             $votes = $contest->votes->where('user_id', $user->user_id);
-            $votes = $votes->map(function ($v) {
+            $userVotes = $votes->map(function ($v) {
                 return $v->contest_entry_id;
             })->toArray();
         }
@@ -92,14 +92,31 @@ class ContestsController extends Controller
             $entry['title'] = $contestEntry->masked_name;
             $entry['preview'] = $contestEntry->entry_url;
             $entry['cover_url'] = '/images/tmp/contest-cover-placeholder.png';
-            $entry['selected'] = in_array($contestEntry->id, $votes, true);
+            $entry['selected'] = in_array($contestEntry->id, $userVotes, true);
+
+            if ($contest->showVotes()) {
+                // add vote count for contests that are over
+                $entry['actual_name'] = $contestEntry->name;
+                $entry['votes'] = $contestEntry->votes->count();
+            }
+
             $entries[] = $entry;
         }
 
-        // We want the results to appear randomized to the user but be
-        // deterministic (i.e. we don't want the rows shuffling each time
-        // the user votes), so we seed based on user_id
-        seeded_shuffle($entries, $seed);
+        if ($contest->showVotes()) {
+            // Sort results by votes desc
+            usort($entries, function ($a, $b) {
+                if ($a['votes'] == $b['votes']) {
+                    return 0;
+                }
+                return ($a['votes'] > $b['votes']) ? -1 : 1;
+            });
+        } else {
+            // We want the results to appear randomized to the user but be
+            // deterministic (i.e. we don't want the rows shuffling each time
+            // the user votes), so we seed based on user_id
+            seeded_shuffle($entries, $seed);
+        }
 
         // done after the shuffle otherwise the gallery_index is incorrect and breaks photoswipe
         if ($contest->type === 'art') {

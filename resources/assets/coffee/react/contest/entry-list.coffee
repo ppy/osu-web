@@ -41,7 +41,7 @@ class Contest.EntryList extends Contest.BaseEntryList
               if @state.options.showDL
                 th className: 'tracklist__col tracklist__col--dl',
               th className: 'tracklist__col tracklist__col--title', 'entry'
-              th className: 'tracklist__col tracklist__col--vote',
+              th className: 'tracklist__col tracklist__col--vote', colSpan: (if @props.contest.show_votes then 2 else 1),
                 el Contest.VoteSummary, voteCount: @state.voteCount, maxVotes: @state.options.maxVotes
                 div className: 'contest__vote-summary-text', 'votes'
         tbody {}, entries

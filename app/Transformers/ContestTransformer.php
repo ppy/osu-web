@@ -21,6 +21,7 @@ namespace App\Transformers;
 
 use App\Models\Contest;
 use League\Fractal;
+use DB;
 
 class ContestTransformer extends Fractal\TransformerAbstract
 {
@@ -34,6 +35,9 @@ class ContestTransformer extends Fractal\TransformerAbstract
             'header_url' => $contest->header_url,
             'max_votes' => $contest->max_votes,
             'ends_at' => $contest->ends_at->toIso8601String(),
+            'show_votes' => $contest->showVotes(),
+            'winner_votes' => $contest->votes()->select(DB::raw('count(*) as votes'))->groupBy('contest_entry_id')->orderBy('votes', 'desc')->limit(1)->first()->votes, //todo: cleanup
+            'total_votes' => $contest->votes->count(),
         ];
     }
 }
