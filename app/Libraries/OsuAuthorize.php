@@ -363,21 +363,21 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkForumTopicWatch0($user, $forum)
-    {
-        $this->ensureLoggedIn($user);
-
-        return 'ok';
-    }
-
-    public function checkForumTopicWatch1($user, $forum)
+    public function checkForumTopicWatchAdd($user, $topic)
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if (!$this->doCheckUser($user, 'ForumView', $forum)->can()) {
+        if (!$this->doCheckUser($user, 'ForumView', $topic->forum)->can()) {
             return 'forum.topic.watch.no_forum_access';
         }
+
+        return 'ok';
+    }
+
+    public function checkForumTopicWatchRemove($user, $topic)
+    {
+        $this->ensureLoggedIn($user);
 
         return 'ok';
     }

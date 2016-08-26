@@ -42,7 +42,6 @@ class NotifyEmail implements ShouldQueue
     public function notifyReply($event)
     {
         $topic = $event->topic->fresh();
-        $forum = $topic->forum;
 
         $userIds = model_pluck(TopicWatch::where([
             'topic_id' => $topic->topic_id,
@@ -58,7 +57,7 @@ class NotifyEmail implements ShouldQueue
                 continue;
             }
 
-            if (!priv_check_user($user, 'ForumTopicWatch1', $forum)->can()) {
+            if (!priv_check_user($user, 'ForumTopicWatchAdd', $topic->forum)->can()) {
                 continue;
             }
 
