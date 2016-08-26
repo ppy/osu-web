@@ -34,8 +34,8 @@ class Contest.EntryList extends Contest.BaseEntryList
         voteCount: @state.voteCount,
         options: @state.options,
         contest: @state.contest,
-        winnerVotes: if @state.contest.show_votes then @state.entries[0].votes else null
-        totalVotes: if @state.contest.show_votes then totalVotes else null
+        winnerVotes: if @state.contest.show_votes then _.maxBy(@state.entries, (i) -> i.votes).votes
+        totalVotes: if @state.contest.show_votes then totalVotes
 
     div className: 'contest',
       table className: 'tracklist__table tracklist__table--smaller',
