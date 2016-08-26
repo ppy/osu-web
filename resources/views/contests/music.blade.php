@@ -22,7 +22,7 @@
 @endsection
 
 @section('contest-javascript')
-  <script id="json-tracks" type="application/json">
-    {!! json_encode($tracks) !!}
+  <script id="json-entries" type="application/json">
+    {!! json_encode($entries) !!}
   </script>
 @stop

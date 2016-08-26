@@ -44,13 +44,13 @@ class @TrackPreview extends React.Component
     @setState playing: false
 
   componentDidMount: ->
-    $.subscribe "trackpreview:stop.trackplayer-#{@props.track.id}", @previewStop
+    $.subscribe "trackpreview:stop.trackpreview-#{@props.track.id}", @previewStop
 
   componentWillUnmount: ->
-    $.unsubscribe ".trackplayer-#{@props.track.id}"
+    $.unsubscribe ".trackpreview-#{@props.track.id}"
 
   render: ->
-    div className: 'trackplayer__cover', style: { backgroundImage: "url('#{@props.track.cover_url}')" },
-      a className: 'trackplayer__preview', href: '#', onClick: @previewPlay,
+    div className: 'tracklist__cover', style: { backgroundImage: "url('#{@props.track.cover_url}')" },
+      a className: 'tracklist__preview', href: '#', onClick: @previewPlay,
         i className: "fa fa-fw #{if @state.playing then 'fa-pause' else 'fa-play'}"
       audio id: "track-#{@props.track.id}-audio", src: (if @state.playing then @props.track.preview else ''), preload: 'none', onEnded: @previewDone
