@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContestVotesAggregateView extends Migration
+class CreateContestVoteAggregatesView extends Migration
 {
     /**
      * Run the migrations.
