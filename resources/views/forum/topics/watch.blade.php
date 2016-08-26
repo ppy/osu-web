@@ -15,20 +15,12 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<a
-    class="forum-topic-nav__button-circle js-forum-topic-watch"
-    href="{{ route('forum.topics.watch', [
-        $_topic,
-        'watch' => !$_isWatching,
-    ]) }}"
-    data-remote="1"
-    data-method="post"
-    data-topic-id="{{ $_topic->topic_id }}"
-    title="{{ trans('forum.topics.watch.watch-'.(int) !$_isWatching) }}"
->
-    @if ($_isWatching)
-        <i class="fa fa-eye-slash"></i>
-    @else
-        <i class="fa fa-eye"></i>
-    @endif
-</a>
+Timeout.set(0, function() {
+    $('.js-forum-topic-watch[data-topic-id={{ $topic->topic_id }}]')
+        .replaceWith({!! json_encode(view()->make('forum.topics._watch', [
+            '_topic' => $topic,
+            '_isWatching' => $watch,
+        ])->render()) !!});
+
+    osu.popup({!! json_encode(trans('forum.topics.watch.watched-'.(int) $watch)) !!}, 'success');
+});

@@ -355,6 +355,6 @@ class TopicsController extends Controller
 
         TopicWatch::toggle($topic, Auth::user(), $watch);
 
-        return ['message' => trans('forum.topics.watch.watched-'.(int) $watch)];
+        return js_view('forum.topics.watch', compact('topic', 'watch'));
     }
 }
