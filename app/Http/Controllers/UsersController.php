@@ -76,20 +76,21 @@ class UsersController extends Controller
             return error_popup('your IP address is locked. Please wait a few minutes.');
         } else {
             $usernameOrEmail = Request::input('username');
+            $user = User::where('username', $usernameOrEmail)
+                ->orWhere('user_email', $usernameOrEmail)
+                ->first();
+
             $password = Request::input('password');
             $remember = Request::input('remember') === 'yes';
 
-            Auth::attempt(['user_email' => $usernameOrEmail, 'password' => $password]);
-            if (!Auth::check()) {
-                Auth::attempt(['username' => $usernameOrEmail, 'password' => $password]);
-            }
+            $validAuth = $user === null
+                ? false
+                : Auth::getProvider()->validateCredentials($user, compact('password'));
 
-            if (Auth::check()) {
-                $userId = Auth::user()->user_id;
-
+            if ($validAuth) {
                 Request::session()->flush();
                 Request::session()->regenerateToken();
-                Auth::loginUsingId($userId, $remember);
+                Auth::login($user, $remember);
 
                 return [
                     'header' => view('layout._header_user', ['_user' => Auth::user()])->render(),
@@ -97,7 +98,7 @@ class UsersController extends Controller
                     'user' => Auth::user()->defaultJson(),
                 ];
             } else {
-                LoginAttempt::failedAttempt($ip, $usernameOrEmail);
+                LoginAttempt::failedAttempt($ip, $user);
 
                 return error_popup('wrong password or email');
             }
