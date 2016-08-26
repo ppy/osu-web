@@ -21,7 +21,6 @@ namespace App\Transformers;
 
 use App\Models\Contest;
 use League\Fractal;
-use DB;
 
 class ContestTransformer extends Fractal\TransformerAbstract
 {

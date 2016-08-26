@@ -21,7 +21,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Contest;
 use App\Models\ContestVote;
-use App\Models\ContestVoteAggregate;
 use Auth;
 use Request;
 use Cache;
@@ -115,9 +114,10 @@ class ContestsController extends Controller
         if ($contest->show_votes) {
             // Sort results by number of votes desc
             usort($entries, function ($a, $b) {
-                if ($a['votes'] == $b['votes']) {
+                if ($a['votes'] === $b['votes']) {
                     return 0;
                 }
+
                 return ($a['votes'] > $b['votes']) ? -1 : 1;
             });
         } else {
