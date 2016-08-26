@@ -69,4 +69,9 @@ class TopicWatch extends Model
 
         return forward_static_call_array([static::class, $function], [$topic, $user]);
     }
+
+    public function topic()
+    {
+        return $this->belongsTo(Topic::class);
+    }
 }

@@ -303,12 +303,9 @@ class TopicsController extends Controller
         $topicIds = explode(',', Request::input('topic_ids'));
         $topics = Topic::whereIn('topic_id', $topicIds);
 
-        $unwatchTopics = [];
-        foreach ($topics->get() as $topic) {
-            if (priv_check('ForumTopicWatch0', $topic->forum)->can()) {
-                $unwatchTopics[] = $topic;
-            }
-        }
+        $unwatchTopics = $topics->get()->filter(function ($t) {
+            return priv_check('ForumTopicWatchRemove', $t)->can();
+        });
 
         TopicWatch::remove($unwatchTopics, Auth::user());
 

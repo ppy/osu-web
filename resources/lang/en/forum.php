@@ -86,6 +86,13 @@ return [
         'reply_box_placeholder' => 'Type here to reply',
         'started_by' => 'by :user',
     ],
+
+    'topic_watches' => [
+        'index' => [
+            'title' => 'Topic Subscriptions',
+        ],
+    ],
+
     'topics' => [
         '_' => 'Topics',
 
