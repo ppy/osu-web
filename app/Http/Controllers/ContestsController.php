@@ -24,6 +24,7 @@ use App\Models\ContestVote;
 use App\Models\ContestVoteAggregate;
 use Auth;
 use Request;
+use Cache;
 
 class ContestsController extends Controller
 {
@@ -86,6 +87,12 @@ class ContestsController extends Controller
             })->toArray();
         }
 
+        if ($contest->show_votes) {
+            $voteAggregates = Cache::remember("contest_votes_{$contest->id}", 5, function () use ($contest) {
+                return $contest->voteAggregates;
+            });
+        }
+
         // This mess should probably be moved into a transformer/helper...
         $entries = [];
         foreach ($contest->entries as $contestEntry) {
@@ -99,7 +106,7 @@ class ContestsController extends Controller
             if ($contest->show_votes) {
                 // add extra info for contests that are showing votes
                 $entry['actual_name'] = $contestEntry->name;
-                $entry['votes'] = $contest->voteAggregates->where('contest_entry_id', $contestEntry->id)->first()->votes;
+                $entry['votes'] = $voteAggregates->where('contest_entry_id', $contestEntry->id)->first()->votes;
             }
 
             $entries[] = $entry;
