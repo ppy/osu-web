@@ -29,6 +29,7 @@ class MPHistory.Main extends React.Component
       allEventsCount: 0 # amount of all events in the database (including ones that aren't currently shown)
       users: {}
       since: 0
+      lastGameId: 0
       teamType: ''
       disbanded: false
       initialLoaded: false
@@ -74,6 +75,7 @@ class MPHistory.Main extends React.Component
         allEventsCount: data.all_events_count
         users: newUsers
         since: if !lastGameEvent? || lastGameEvent.game.data.end_time then lastEvent.id else lastGameEvent.id - 1
+        lastGameId: if lastGameEvent? then lastGameEvent.id else 0
         disbanded: lastEvent.event_type == 'match-disbanded'
 
     .always =>
@@ -91,6 +93,7 @@ class MPHistory.Main extends React.Component
       el MPHistory.Content,
         id: @props.match.id
         events: @state.events
+        lastGameId: @state.lastGameId
         allEventsCount: @state.allEventsCount
         full: @props.full
         lookupUser: @lookupUser
