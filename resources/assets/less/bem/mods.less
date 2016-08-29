@@ -17,6 +17,8 @@
  *
  */
 .mods {
+  @_top: mods;
+
   @_mod-width-small: 25px;
   @_mod-height-small: 18px;
   @_width-small: (@_mod-width-small * 3);
@@ -71,12 +73,12 @@
     width: @_mod-width;
     height: @_mod-height;
 
-    &--small {
+    .@{_top}--small & {
       width: @_mod-width-small;
       height: @_mod-height-small;
     }
 
-    &--large {
+    .@{_top}--large {
       width: @_mod-width-large;
       height: @_mod-height-large;
     }

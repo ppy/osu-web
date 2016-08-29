@@ -19,14 +19,12 @@
 
 class @Mods extends React.Component
   render: ->
-    modsClassName = 'mods'
-    imageClassName = 'mods__mod-image'
-
+    modsClassName = 'mods '
     classModifiers = @props.classModifiers || []
 
-    for mod in classModifiers
-      modsClassName += " mods--#{mod}"
-      imageClassName += " mods__mod-image--#{mod}"
+    modsClassName += _(classModifiers)
+      .map (mod) -> "mods--#{mod}"
+      .join ' '
 
     div className: modsClassName,
       for mod in @props.mods
@@ -36,6 +34,6 @@ class @Mods extends React.Component
           key: mod
           className: 'mods__mod'
           img _.extend
-            className: imageClassName
+            className: 'mods__mod-image'
             title: modName
             osu.src2x("/images/badges/mods/#{_.kebabCase(modName)}.png")
