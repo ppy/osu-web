@@ -26,7 +26,7 @@ BeatmapsetPage.ScoreBig = (props) ->
     className += ' beatmapset-score-big--first-score'
     classNamePosition += ' beatmapset-score-big__position--first-score'
 
-  classNamePosition += ' beatmapset-score-big__position--not-top-score' if props.position > 99
+  classNamePosition += ' beatmapset-score-big__position--not-top-score' if props.position > 50
 
   div className: className,
     div className: 'beatmapset-score-big__section beatmapset-score-big__section--top',

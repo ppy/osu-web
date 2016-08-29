@@ -117,28 +117,26 @@
   }
 
   &__details-text {
-    a {
-      color: @grey-f;
-      font-style: italic;
-      .default-text-shadow;
+    color: @grey-f;
+    font-style: italic;
+    .default-text-shadow;
 
-      &:hover, &:visited, &:link, &:active {
-        color: @grey-f;
-        text-decoration: none;
-      }
+    &:hover, &:visited, &:link, &:active {
+      color: @grey-f;
+      text-decoration: none;
     }
 
-    &--title a {
+    &--title {
       font-size: 30px;
       font-weight: 600;
     }
 
-    &--artist a {
+    &--artist {
       font-size: 20px;
       font-weight: 500;
     }
 
-    &--artist {
+    &:last-of-type {
       padding-bottom: @spacing * 2;
     }
   }

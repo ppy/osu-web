@@ -27,8 +27,7 @@
 
     &--basic {
       display: flex;
-      padding-left: 24px;
-      height: 35px;
+      padding: 10px 0;
     }
 
     &--advanced {
@@ -57,8 +56,6 @@
     &--value-basic {
       font-weight: 700;
       color: @yellow-light;
-
-      height: 17px;
     }
 
     &--rating {
@@ -71,13 +68,14 @@
     display: flex;
     width: 120px;
     align-items: center;
+    justify-content: center;
   }
 
   &__icon {
     width: 15px;
     height: 15px;
 
-    background-size: 15px 15px;
+    background-size: contain;
 
     margin-right: @spacing * 0.5;
   }

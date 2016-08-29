@@ -78,14 +78,15 @@ class BeatmapsetPage.Header extends React.Component
                 visibility: 'hidden' if !@props.hoveredBeatmap
               "#{osu.trans 'beatmaps.beatmapset.show.stats.stars'} #{if @props.hoveredBeatmap then @props.hoveredBeatmap.difficulty_rating.toFixed 2 else ''}"
 
-          div className: 'beatmapset-header__details-text beatmapset-header__details-text--title',
-            a
-              href: laroute.route 'beatmapsets.index', q: @props.beatmapset.title
-              @props.beatmapset.title
-          div className: 'beatmapset-header__details-text beatmapset-header__details-text--artist',
-            a
-              href: laroute.route 'beatmapsets.index', q: @props.beatmapset.artist
-              @props.beatmapset.artist
+          a
+            className: 'beatmapset-header__details-text beatmapset-header__details-text--title'
+            href: laroute.route 'beatmapsets.index', q: @props.beatmapset.title
+            @props.beatmapset.title
+            
+          a
+            className: 'beatmapset-header__details-text beatmapset-header__details-text--artist'
+            href: laroute.route 'beatmapsets.index', q: @props.beatmapset.artist
+            @props.beatmapset.artist
 
           div className: 'beatmapset-header__avatar-box',
             div
