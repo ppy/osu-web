@@ -22,11 +22,6 @@ class BeatmapsetPage.Header extends React.Component
   togglePreview: (e) =>
     $.publish 'beatmapset:preview:toggle', !@props.isPreviewPlaying
 
-  preventPropagation: (e) =>
-    # stops the audio from playing before we navigate away
-    e.stopPropagation()
-    return true
-
   render: ->
     dateFormat = 'MMM D, YYYY'
 
@@ -43,17 +38,22 @@ class BeatmapsetPage.Header extends React.Component
             currentPlaymode: @props.currentBeatmap.mode
 
       div
-        className: 'beatmapset-header'
-        onClick: @togglePreview
+        className: 'beatmapset-header clickable-row'
         style:
           backgroundImage: "url(#{@props.beatmapset.covers.cover})"
 
+        a
+          className: 'beatmapset-header__preview-button clickable-row-link'
+          onClick: @togglePreview
+
         div className: 'beatmapset-header__overlay',
-          div className: 'beatmapset-header__preview-button',
+          div
+            className: 'beatmapset-header__preview-icon'
+            onClick: @togglePreview
             el Icon, name: if @props.isPreviewPlaying then 'pause' else 'play'
 
         div className: 'beatmapset-header__details-box',
-          div className: 'beatmapset-header__beatmap-picker-box', onClick: @preventPropagation,
+          div className: 'beatmapset-header__beatmap-picker-box',
             el BeatmapsetPage.BeatmapPicker,
               beatmaps: @props.beatmaps
               beatmapList: @props.beatmapList
@@ -81,12 +81,10 @@ class BeatmapsetPage.Header extends React.Component
           div className: 'beatmapset-header__details-text beatmapset-header__details-text--title',
             a
               href: laroute.route 'beatmapsets.index', q: @props.beatmapset.title
-              onClick: @preventPropagation
               @props.beatmapset.title
           div className: 'beatmapset-header__details-text beatmapset-header__details-text--artist',
             a
               href: laroute.route 'beatmapsets.index', q: @props.beatmapset.artist
-              onClick: @preventPropagation
               @props.beatmapset.artist
 
           div className: 'beatmapset-header__avatar-box',
@@ -125,19 +123,18 @@ class BeatmapsetPage.Header extends React.Component
               switch elem
                 when 'video'
                   continue if !@props.beatmapset.video
-                  link = Url.beatmapDownload @props.beatmapset.beatmapset_id, true
+                  link = Url.beatmapDownload @props.beatmapset.id, true
                 when 'no-video'
-                  link = Url.beatmapDownload @props.beatmapset.beatmapset_id, false
+                  link = Url.beatmapDownload @props.beatmapset.id, false
                 when 'direct'
                   firstRow = elem
                   icon = 'angle-double-down'
-                  link = if currentUser.isSupporter then Url.beatmapDownloadDirect @props.beatmapset.beatmapset_id else laroute.route 'support-the-game'
+                  link = if currentUser.isSupporter then Url.beatmapDownloadDirect @props.beatmapset.id else laroute.route 'support-the-game'
 
               a
                 key: elem
                 className: 'beatmapset-header__button btn-osu-big'
                 href: link
-                onClick: @preventPropagation
                 div className: 'btn-osu-big__content',
                   div className: 'btn-osu-big__left',
                     span className: 'beatmapset-header__button-text', osu.trans "beatmaps.beatmapset.show.details.download.#{firstRow}"
