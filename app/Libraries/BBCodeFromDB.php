@@ -280,7 +280,7 @@ class BBCodeFromDB
         return $text;
     }
 
-    public function toText()
+    public function toHTML($wrap = true)
     {
         $text = $this->text;
 
@@ -313,12 +313,11 @@ class BBCodeFromDB
         $text = str_replace("\n", '<br />', $text);
         $text = CleanHTML::purify($text);
 
-        return $text;
-    }
-
-    public function toHTML()
-    {
-        return "<div class='bbcode'>{$this->toText()}</div>";
+        if ($wrap) {
+            return "<div class='bbcode'>{$text}</div>";
+        } else {
+            return $text;
+        }
     }
 
     public function toEditor()

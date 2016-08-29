@@ -851,6 +851,6 @@ class Beatmapset extends Model
         // (mostly older beatmapsets)
         $description = $split[1] ?? '';
 
-        return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, true))->toText();
+        return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, true))->toHTML(false);
     }
 }
