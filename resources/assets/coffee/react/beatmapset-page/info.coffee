@@ -56,7 +56,7 @@ class BeatmapsetPage.Info extends React.Component
             dangerouslySetInnerHTML:
               __html: @props.beatmapset.description.data.description
 
-        div {},
+        div className: 'beatmapset-info__tags-source-box',
           if @props.beatmapset.source
             div className: 'beatmapset-info__text-box beatmapset-info__text-box--source',
               div className: 'beatmapset-info__text beatmapset-info__text--header', osu.trans 'beatmaps.beatmapset.show.info.source'
