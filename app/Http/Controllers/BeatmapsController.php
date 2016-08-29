@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Transformers\ScoreTransformer;
+use App\Libraries\ModsHelper;
 use Request;
 use Auth;
 
@@ -69,7 +70,8 @@ class BeatmapsController extends Controller
                 return error_popup(trans('errors.supporter_only'));
             }
 
-            $query->whereIn('enabled_mods', [$enabled_mods, 0]);
+            $mods_bitset = ModsHelper::getModsValue($enabled_mods);
+            $query->whereIn('enabled_mods', [$mods_bitset, 0]);
         }
 
         switch ($type) {
@@ -87,14 +89,18 @@ class BeatmapsController extends Controller
 
         $scores = fractal_collection_array($query->get(), new ScoreTransformer, 'user');
         $userScore = null;
-        $userScorePosition = -1;
+        $userScorePosition = null;
 
         if ($user) {
             $score = $beatmap->scoresBest()->where('user_id', $user->user_id)->with('user')->first();
 
-            if ($score && ($score->enabled_mods === $enabled_mods || $score->enabled_mods === 0)) {
+            if (!$enabled_mods) {
+                $enabled_mods = [];
+            }
+
+            if ($score && (empty(array_diff($enabled_mods, $score->enabled_mods)) || empty($score->enabled_mods))) {
                 $userScore = fractal_item_array($score, new ScoreTransformer, 'user');
-                $userScorePosition = $query->limit(null)->count() + 1;
+                $userScorePosition = $query->limit(null)->where('score', '>', $score->score)->count() + 1;
             }
         }
 

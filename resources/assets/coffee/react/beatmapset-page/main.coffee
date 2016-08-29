@@ -57,7 +57,7 @@ class BeatmapsetPage.Main extends React.Component
       loading: false
       isPreviewPlaying: false
       currentScoreboardType: 'global'
-      enabledMods: 0
+      enabledMods: []
       scores: []
       userScore: null
       userScorePosition: -1
@@ -67,7 +67,7 @@ class BeatmapsetPage.Main extends React.Component
       beatmapId: @state.currentBeatmapId
       playmode: @state.currentPlaymode
 
-  setCurrentScoreboard: (_e, {scoreboardType = @state.currentScoreboardType, enabledMod, forceReload = false}) =>
+  setCurrentScoreboard: (_e, {scoreboardType = @state.currentScoreboardType, enabledMod, forceReload = false, resetMods = false}) =>
     return if @state.loading
 
     @setState
@@ -77,10 +77,15 @@ class BeatmapsetPage.Main extends React.Component
 
     return if scoreboardType != 'global' && !currentUser.isSupporter
 
-    enabledMods = @state.enabledMods ^ enabledMod
+    enabledMods = if resetMods
+      []
+    else if _.includes @state.enabledMods, enabledMod
+      _.without @state.enabledMods, enabledMod
+    else
+      _.concat @state.enabledMods, enabledMod
 
     @scoresCache ?= {}
-    cacheKey = "#{@state.currentBeatmapId}-#{@state.currentPlaymode}-#{enabledMods}-#{scoreboardType}"
+    cacheKey = "#{@state.currentBeatmapId}-#{@state.currentPlaymode}-#{_.sortBy enabledMods}-#{scoreboardType}"
 
     loadScore = =>
       @setState
@@ -88,8 +93,6 @@ class BeatmapsetPage.Main extends React.Component
         userScore: @scoresCache[cacheKey].userScore.data if @scoresCache[cacheKey].userScore?
         userScorePosition: @scoresCache[cacheKey].userScorePosition
         enabledMods: enabledMods
-        =>
-          $.publish 'scoreboard-mod:enabled:set', true
 
     if !forceReload && @scoresCache[cacheKey]?
       loadScore()
@@ -110,9 +113,7 @@ class BeatmapsetPage.Main extends React.Component
       @scoresCache[cacheKey] = data
       loadScore()
 
-    .fail (xhr) =>
-      $.publish 'scoreboard-mod:enabled:set', false
-      osu.ajaxError xhr
+    .fail osu.ajaxError
 
     .always =>
       $.publish 'beatmapset:scoreboard:loading', false
@@ -127,8 +128,7 @@ class BeatmapsetPage.Main extends React.Component
       currentPlaymode: playmode
       =>
         @setHash()
-        @setCurrentScoreboard null, scoreboardType: 'global', enabledMod: @state.enabledMods
-        $.publish 'scoreboard-mod:status:set', 'disabled'
+        @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
 
   togglePreviewPlayingState: (_e, isPreviewPlaying) =>
     @setState isPreviewPlaying: isPreviewPlaying
@@ -154,7 +154,7 @@ class BeatmapsetPage.Main extends React.Component
     $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmapId
 
     @setHash()
-    @setCurrentScoreboard null, scoreboardType: 'global'
+    @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
 
     @audioPreview = document.getElementsByClassName('js-beatmapset-page--audio-preview')[0]
 
@@ -195,4 +195,5 @@ class BeatmapsetPage.Main extends React.Component
           scores: @state.scores
           userScore: @state.userScore
           userScorePosition: @state.userScorePosition
+          enabledMods: @state.enabledMods
           countries: @props.countries

@@ -55,6 +55,7 @@ class BeatmapsetPage.Scoreboard extends React.Component
             el BeatmapsetPage.ScoreboardMod,
               key: mod
               mod: mod
+              enabled: _.includes @props.enabledMods, mod
 
       div className: 'beatmapset-scoreboard__main',
         if @props.scores.length > 0

@@ -18,37 +18,16 @@
 {img} = React.DOM
 
 class BeatmapsetPage.ScoreboardMod extends React.Component
-  constructor: (props) ->
-    super props
-
-    @state =
-      status: 'disabled'
-
-  componentDidMount: ->
-    $.subscribe 'scoreboard-mod:enabled:set.scoreboardMod', @setEnabled
-    $.subscribe 'scoreboard-mod:status:set.scoreboardMod', @setStatus
-
-  componentWillUnmount: ->
-    $.unsubscribe '.scoreboardMod'
-
   onClick: =>
-    return if @state.status == 'loading'
-
-    @setState status: if @state.status == 'disabled' then 'loading' else 'disabled'
-    $.publish 'beatmapset:scoreboard:set', enabledMod: ModsHelper.getBit @props.mod
-
-  setEnabled: (_e, enabled) =>
-    if @state.status == 'loading'
-      @setState status: if enabled then 'enabled' else 'disabled'
-
-  setStatus: (_e, status) =>
-    @setState status: status
+    $.publish 'beatmapset:scoreboard:set', enabledMod: @props.mod
 
   render: ->
     modName = osu.trans "beatmaps.mods.#{@props.mod}"
+    className = 'beatmapset-scoreboard__mod'
+    className += ' beatmapset-scoreboard__mod--enabled' if @props.enabled
 
     img _.extend
-      className: "beatmapset-scoreboard__mod beatmapset-scoreboard__mod--#{@state.status}"
+      className: className
       title: modName
       onClick: @onClick
       osu.src2x "/images/badges/mods/#{_.kebabCase modName}.png"

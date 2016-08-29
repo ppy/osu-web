@@ -19,7 +19,7 @@
  */
 namespace App\Traits;
 
-use App\Libraries\ModsFromDB;
+use App\Libraries\ModsHelper;
 
 trait Scoreable
 {
@@ -33,7 +33,7 @@ trait Scoreable
     public function getEnabledModsAttribute($value)
     {
         if ($this->_enabledMods === null) {
-            $this->_enabledMods = ModsFromDB::getEnabledMods($value);
+            $this->_enabledMods = ModsHelper::getEnabledMods($value);
         }
 
         return $this->_enabledMods;
