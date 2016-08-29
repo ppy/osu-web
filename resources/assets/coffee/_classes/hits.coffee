@@ -18,20 +18,21 @@
 
 class @Hits
   @generate: ({score, playmode}) ->
-    elements = ['count300', 'count100', 'count50']
-    if playmode == 'mania'
-      elements = ['countgeki', 'count300',  'countkatu', 'count100', 'count50']
+    elements = if playmode == 'mania'
+      ['countgeki', 'count300',  'countkatu', 'count100', 'count50']
+    else
+      ['count300', 'count100', 'count50']
 
     header = ''
     values = ''
 
-    for elem, i in elements
-      header += osu.trans "beatmaps.beatmapset.show.scoreboard.stats.#{elem}"
-      values += "#{score[elem]}"
+    header = _(elements)
+        .map (elem) -> osu.trans "beatmaps.beatmapset.show.scoreboard.stats.#{elem}"
+        .join '/'
 
-      if i < elements.length - 1
-        header += '/'
-        values += '/'
+    values = _(elements)
+        .map (elem) -> osu.trans "#{score[elem]}"
+        .join '/'
 
     header: header
     values: values
