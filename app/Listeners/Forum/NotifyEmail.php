@@ -30,6 +30,10 @@ class NotifyEmail implements ShouldQueue
 {
     public function markViewed($event)
     {
+        if ($event->user === null) {
+            return;
+        }
+
         $user = $event->user->fresh();
         $topic = $event->topic->fresh();
 
