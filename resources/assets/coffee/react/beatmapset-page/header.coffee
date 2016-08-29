@@ -131,16 +131,14 @@ class BeatmapsetPage.Header extends React.Component
                   icon = 'angle-double-down'
                   link = if currentUser.isSupporter then Url.beatmapDownloadDirect @props.beatmapset.id else laroute.route 'support-the-game'
 
-              a
+              el BigButton,
                 key: elem
-                className: 'beatmapset-header__button btn-osu-big'
+                className: 'beatmapset-header__button'
                 href: link
-                div className: 'btn-osu-big__content',
-                  div className: 'btn-osu-big__left',
-                    span className: 'beatmapset-header__button-text', osu.trans "beatmaps.beatmapset.show.details.download.#{firstRow}"
-                    if elem != 'direct'
-                      span className: 'beatmapset-header__button-text beatmapset-header__button-text--small', osu.trans "beatmaps.beatmapset.show.details.download.#{secondRow}"
-                  el Icon, name: icon
+                icon: icon
+                text:
+                  top: osu.trans "beatmaps.beatmapset.show.details.download.#{firstRow}"
+                  bottom: if elem != 'direct' then osu.trans "beatmaps.beatmapset.show.details.download.#{secondRow}" else null
 
         el BeatmapsetPage.Stats,
           beatmapset: @props.beatmapset
