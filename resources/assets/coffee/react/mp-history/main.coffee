@@ -52,8 +52,17 @@ class MPHistory.Main extends React.Component
     .done (data) =>
       return if _.isEmpty data.events.data
 
-      newEvents = _.concat @state.events, data.events.data
-      lastEvent = _.last(newEvents)
+      lastIndex = _.findLastIndex @state.events, (o) => o.id == @state.since + 1
+
+      lastIndex =
+        if lastIndex == -1
+          @state.events.length - 1
+        else
+          lastIndex - 1
+
+      newEvents = _.concat @state.events[..lastIndex], data.events.data
+      lastEvent = _.last newEvents
+      lastGameEvent = _.findLast newEvents, (o) -> o.game?
 
       newUsers = _(data.users.data)
         .keyBy (o) -> o.id
@@ -64,7 +73,7 @@ class MPHistory.Main extends React.Component
         events: newEvents
         allEventsCount: data.all_events_count
         users: newUsers
-        since: _.last(newEvents).id
+        since: if !lastGameEvent? || lastGameEvent.game.data.end_time then lastEvent.id else lastGameEvent.id - 1
         disbanded: lastEvent.event_type == 'match-disbanded'
 
     .always =>
