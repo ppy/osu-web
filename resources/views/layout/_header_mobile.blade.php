@@ -22,7 +22,7 @@
             navbar
             navbar-default
             navbar-static-top
-            u-section-bg
+            u-section--bg
         "
         role="navigation"
     >
@@ -54,7 +54,7 @@
 
                     <button
                         type="button"
-                        class="navbar-toggle navbar-mobile__toggle colour-hover--{{ $current_section }}"
+                        class="navbar-toggle navbar-mobile__toggle u-section--color-hover"
                         data-toggle="collapse" data-target="#xs-navbar"
                     >
                         <span class="sr-only">Toggle navigation</span>

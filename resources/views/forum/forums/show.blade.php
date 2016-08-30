@@ -15,7 +15,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", ["body_additional_classes" => "forum-colour " . $forum->categorySlug()])
+@extends('master', [
+    'body_additional_classes' => 't-forum-'.$forum->categorySlug(),
+])
 
 @section("content")
     <div class="osu-layout__row osu-layout__row--page-compact">
@@ -26,7 +28,7 @@
         </div>
         <div
             class="forum-category-header
-                forum-colour__bg--{{ $forum->categorySlug() }}
+                u-forum--bg
                 forum-category-header--forum
                 js-forum-cover--header"
             style="{{ isset($cover['data']['fileUrl']) === true ? "background-image: url('{$cover['data']['fileUrl']}');" : '' }}"
@@ -44,35 +46,37 @@
             </div>
 
             @if (Auth::check() === true && Auth::user()->isAdmin() === true)
-                @include('forum._cover')
+                <div class="forum-category-header__actions">
+                    @include('forum._cover_editor')
+                </div>
             @endif
         </div>
     </div>
 
-    <div class="osu-layout__row osu-layout__row--page page">
+    <div class="osu-layout__row osu-layout__row--page-compact">
         @if ($forum->subforums()->exists())
-            <h2 class="page__title">{{ trans("forum.subforums") }}</h2>
-            @include("forum.forums._forums", ["forums" => $forum->subforums])
+            <div class="forum-topics forum-topics--subforums">
+                <h2 class="forum-topics__title">{{ trans("forum.subforums") }}</h2>
+
+                @include("forum.forums._forums", ["forums" => $forum->subforums])
+            </div>
         @endif
 
         @if (count($pinnedTopics) > 0)
-            <div class="topics-container">
-                <h2 class="page__title">{{ trans("forum.pinned_topics") }}</h2>
-                @include("forum.forums._topics", ["topics" => $pinnedTopics, "withNewTopicLink" => false])
-            </div>
+            @include('forum.forums._topics', [
+                'title' => trans('forum.pinned_topics'),
+                'topics' => $pinnedTopics,
+            ])
         @endif
 
         @if (count($topics) > 0 || $forum->isOpen())
-            <div class="topics-container" id="topics">
-                <h2 class="page__title">{{ trans("forum.topics._") }}</h2>
+            @include('forum.forums._topics', [
+                'title' => trans('forum.topics._'),
+                'topics' => $topics,
+                'withNewTopicLink' => $forum->isOpen(),
+            ])
 
-                @include('forum.forums._topics', [
-                    'topics' => $topics,
-                    'withNewTopicLink' => $forum->isOpen(),
-                ])
-            </div>
-
-            @include("forum._pagination", ["object" => $topics
+            @include('forum._pagination', ['object' => $topics
                 ->fragment('topics')
                 ->appends([
                     'sort' => Request::input('sort'),

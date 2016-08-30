@@ -30,7 +30,7 @@
         class="forum-category-header
             forum-category-header--topic
             {{ isset($topic) === true ?
-                'forum-category-header--topic-'.$topic->forum->categorySlug()
+                'u-forum--topic-cover'
                 : 'forum-category-header--topic-create'
             }}
             js-forum-cover--header
@@ -62,7 +62,9 @@
         </div>
 
         @if (!isset($topic) || priv_check('ForumTopicEdit', $topic)->can())
-            @include('forum._cover')
+            <div class="forum-category-header__actions">
+                @include('forum._cover_editor')
+            </div>
         @endif
     </div>
 

@@ -17,7 +17,7 @@
 --}}
 <a
     id="forum-search"
-    class="forum-search-logo js-forum-search-button forum-colour__bg-link--{{ $category }}"
+    class="forum-search-logo js-forum-search-button u-forum--bg-link"
     href="#"
     data-toggle="modal"
     data-target="#forum-search-modal"

@@ -1,0 +1,135 @@
+/**
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+.forum-topic-entry {
+  @_top: forum-topic-entry;
+  @main-margin: (@spacing * 4);
+
+  list-style: none;
+  font-size: @font-size--normal;
+  display: flex;
+  border-bottom: 1px solid @grey-c;
+  margin: 0 @main-margin;
+
+  &__bg {
+    .full-size();
+    margin: 0 (-@main-margin);
+    width: calc(100% ~'+' (@main-margin * 2));
+    background-color: @gray-lighter;
+    opacity: 0;
+    will-change: opacity;
+    transition: all 250ms ease;
+
+    .@{_top}:hover & {
+      opacity: 1;
+      transition: none;
+    }
+  }
+
+  &__col {
+    .center-content();
+    flex: none;
+    margin: @spacing 0;
+
+    &--icon {
+      .circle(32px);
+      align-self: center;
+      font-size: @font-size--forum-topic-entry-icon;
+
+      background-color: @gray-light;
+      background-image: url("/images/backgrounds/button.svg");
+      background-size: 50px;
+      background-position: center;
+
+      color: @grey-f;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: @grey-f;
+        text-decoration: none;
+      }
+    }
+
+    &--icon-plus {
+      background-color: @blue-darker;
+    }
+
+    &--last-link {
+      font-size: @font-size--forum-topic-entry-icon-small;
+      color: @gray;
+      width: 30px;
+      font-weight: bold;
+
+      &:hover,
+      &:active,
+      &:focus {
+        text-decoration: none;
+      }
+    }
+
+    &--lock {
+      margin: 0;
+      height: 100%;
+      width: 20px;
+      position: absolute;
+      right: 100%;
+
+      font-size: @font-size--forum-topic-entry-icon;
+    }
+
+    &--main {
+      flex: 1;
+      margin: (@spacing * 3 / 4) (@spacing / 2);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      @media @desktop {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+  }
+
+  &__content {
+    margin: (@spacing / 4) (@spacing / 2);
+    flex: none;
+
+    &--middle {
+      text-align: right;
+      width: 70px;
+    }
+
+    &--left {
+      flex: 1;
+    }
+
+    &--right {
+      @media @desktop {
+        width: 200px;
+        text-align: right;
+      }
+    }
+  }
+
+  &__title {
+    font-size: @font-size--title-small;
+    font-weight: 500;
+  }
+}

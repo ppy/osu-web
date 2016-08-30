@@ -18,13 +18,14 @@
 <ol class="
     forum-header-breadcrumb
     {{ $headerBreadcrumbExtraClasses or '' }}
-    forum-colour__bg-link--{{ $forum->categorySlug() }}
 ">
+    <li class="forum-header-breadcrumb__bg u-forum--bg-link"></li>
+
     <li class="forum-header-breadcrumb__item">
         <a href="{{ route('forum.forums.index') }}" class="forum-header-breadcrumb__link">
             {{ trans('forum.title') }}
 
-            <span class="forum-header-breadcrumb__link-stripe u-current-forum-bg">
+            <span class="forum-header-breadcrumb__link-stripe u-forum--bg">
             </span>
         </a>
     </li>
@@ -40,7 +41,7 @@
             >
                 {{ $forumData[0] }}
 
-                <span class="forum-header-breadcrumb__link-stripe u-current-forum-bg">
+                <span class="forum-header-breadcrumb__link-stripe u-forum--bg">
                 </span>
             </a>
         </li>
@@ -53,7 +54,7 @@
         >
             {{ $forum->forum_name }}
 
-            <span class="forum-header-breadcrumb__link-stripe u-current-forum-bg">
+            <span class="forum-header-breadcrumb__link-stripe u-forum--bg">
             </span>
         </a>
     </li>

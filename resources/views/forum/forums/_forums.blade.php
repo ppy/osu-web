@@ -17,21 +17,21 @@
 --}}
 <ul class="forums">
     @foreach($forums as $forum)
-        <li class="forums__forum clickable-row">
+        <li class="forums__forum clickable-row u-forum--hover-area">
             @if ($forum->forum_type === 1)
                 <div class="forums__hover-bar hidden-xs">
-                    <div class="forums__colour-stripe u-current-forum-bg"></div>
+                    <div class="forums__colour-stripe u-forum--bg"></div>
                     <div class="forums__hover-bar-icon">
                         <i class="fa fa-angle-right"></i>
                     </div>
                 </div>
                 <div class="left">
-                    {!! link_to(route("forum.forums.show", $forum->forum_id), $forum->forum_name, ["class" => "name clickable-row-link"]) !!}
+                    {!! link_to(route("forum.forums.show", $forum->forum_id), $forum->forum_name, ["class" => "name clickable-row-link u-forum--hover-target u-forum--link"]) !!}
                     <div class="description">{{ $forum->forum_desc }}</div>
                     <ul class="subforums">
                         @foreach($forum->subforums as $subforum)
                             <li>
-                                <a class="name" href="{{ route("forum.forums.show", $subforum->forum_id) }}" title="{{ $subforum->forum_desc }}">
+                                <a class="name u-forum--link" href="{{ route("forum.forums.show", $subforum->forum_id) }}" title="{{ $subforum->forum_desc }}">
                                     <i class="fa fa-bars"></i>{{ $subforum->forum_name }}
                                 </a>
                             </li>
@@ -44,7 +44,7 @@
                         @if ($forum->lastTopic())
                         <div class="last-post">
                             <a
-                                class="title"
+                                class="u-forum--link title"
                                 href="{{ post_url($forum->lastTopic()->topic_id, "unread", false) }}"
                                 title="{{ $forum->lastTopic()->topic_title }}"
                             >
@@ -59,7 +59,7 @@
                 </div>
             @elseif ($forum->forum_type === 2)
                 <div class="forums__hover-bar hidden-xs">
-                    <div class="forums__colour-stripe u-current-forum-bg"></div>
+                    <div class="forums__colour-stripe u-forum--bg"></div>
                     <div class="forums__hover-bar-icon">
                         <i class="fa fa-link"></i>
                     </div>

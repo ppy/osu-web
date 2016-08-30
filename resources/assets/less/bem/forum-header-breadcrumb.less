@@ -18,14 +18,14 @@
  */
 .forum-header-breadcrumb {
   @_top: forum-header-breadcrumb;
-  .default-border-radius();
+
+  .default-text-shadow();
   list-style: none;
   display: inline-flex;
   flex-wrap: wrap;
   margin: 0;
   font-size: 12px;
   color: @grey-f;
-  .default-text-shadow;
 
   // Less padding top because the font used has too much space
   // on the upper side
@@ -35,6 +35,15 @@
     font-size: 15px;
     padding: 0;
     background: none;
+  }
+
+  &__bg {
+    .full-size();
+    .default-border-radius();
+
+    .@{_top}--large & {
+      display: none;
+    }
   }
 
   &__item {

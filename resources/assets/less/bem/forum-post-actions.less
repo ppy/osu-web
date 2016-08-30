@@ -28,37 +28,10 @@
   }
 
   &__action {
-    .reset-input();
-    flex: none;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-
-    .circle(30px);
-    .default-box-shadow;
-
-    background-color: @blue-darker;
-    color: @grey-f;
-    transition: all 120ms ease-in-out;
-    font-size: 14px;
-
-    &:focus,
-    &:hover,
-    &:active {
-      color: @grey-f;
-      text-decoration: none;
-      box-shadow: 0 5px 15px fade(@grey-0, 40%);
-    }
-
     margin: 0 (@spacing / 2);
 
     @media @desktop {
       margin: (@spacing / 2) 0;
-    }
-
-    &--disabled {
-      background-color: @grey-3;
-      cursor: not-allowed;
     }
   }
 }
