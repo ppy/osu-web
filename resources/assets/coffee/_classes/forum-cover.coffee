@@ -48,7 +48,7 @@ class @ForumCover
 
     return if $('#overlay').is(':visible')
 
-    Fade.out $('.js-blackout')[0]
+    Blackout.hide()
     @header[0].classList.remove 'js-forum-cover--is-open'
 
     @isModalOpen(false)
@@ -109,7 +109,7 @@ class @ForumCover
 
 
   openModal: =>
-    Fade.in $('.js-blackout')[0]
+    Blackout.show()
     @isModalOpen(true)
     @header[0].classList.add 'js-forum-cover--is-open'
 
