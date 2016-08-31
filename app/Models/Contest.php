@@ -35,6 +35,11 @@ class Contest extends Model
         return $this->hasMany(ContestVote::class);
     }
 
+    public function voteAggregates()
+    {
+        return $this->hasMany(ContestVoteAggregate::class);
+    }
+
     public function vote(User $user, ContestEntry $entry)
     {
         $vote = $this->votes()->where('user_id', $user->user_id)->where('contest_entry_id', $entry->id);

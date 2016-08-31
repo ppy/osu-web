@@ -16,21 +16,32 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 ###
-{a,i,tr,td} = React.DOM
+{a,i,tr,td,span,div} = React.DOM
 el = React.createElement
 
 class Contest.Entry extends React.Component
   render: ->
-    tr className: "trackplayer__row#{if @props.track.selected then ' trackplayer__row--selected' else ''}",
+    if @props.contest.show_votes
+      votePercentage = _.round((@props.entry.votes / @props.totalVotes)*100, 2)
+      relativeVotePercentage = _.round((@props.entry.votes / @props.winnerVotes)*100, 2)
+
+    tr className: "tracklist__row#{if @props.entry.selected && !@props.contest.show_votes then ' tracklist__row--selected' else ''}",
       if @props.options.showPreview
         td {},
-          el TrackPreview, track: @props.track
+          el TrackPreview, track: @props.entry
       if @props.options.showDL
-        td className: 'trackplayer__dl trackplayer__dl--contest',
-          a className: 'trackplayer__link trackplayer__link--contest-dl', href: '#', title: 'Download Beatmap Template',
+        td className: 'tracklist__dl tracklist__dl--contest',
+          a className: 'tracklist__link tracklist__link--contest-dl', href: '#', title: 'Download Beatmap Template',
             i className: 'fa fa-fw fa-cloud-download'
-      td className:'trackplayer__title',
-        "#{@props.track.title} "
+      if @props.entry.actual_name
+        td className: "tracklist__title#{if @props.contest.show_votes then ' tracklist__row--show-votes' else ''}", style: { backgroundSize: "#{relativeVotePercentage}%, 100%" },
+          div {}, "#{@props.entry.title} "
+          div className: 'tracklist__version', "#{@props.entry.actual_name}"
+      else
+        td className: 'tracklist__title', @props.entry.title
 
-      td className:'trackplayer__vote',
-        el Contest.Voter, key: @props.track.id, track: @props.track, waitingForResponse: @props.waitingForResponse, voteCount: @props.voteCount, maxVotes: @props.options.maxVotes, contest: @props.contest
+      td className: "contest__vote-star#{if @props.contest.show_votes then ' contest__vote-star--fixed' else ''}",
+        el Contest.Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, voteCount: @props.voteCount, maxVotes: @props.options.maxVotes, contest: @props.contest
+
+      if @props.contest.show_votes
+        td className:'contest__vote-count', "#{@props.entry.votes} votes (#{votePercentage}%)"

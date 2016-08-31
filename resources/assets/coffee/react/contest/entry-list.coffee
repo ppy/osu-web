@@ -19,70 +19,34 @@
 {div,a,i,span,table,thead,tbody,tr,th,td} = React.DOM
 el = React.createElement
 
-class Contest.EntryList extends React.Component
-  constructor: (props) ->
-    super props
-    @state =
-      waitingForResponse: false
-      tracks: @props.tracks
-      voteCount: _.filter(@props.tracks, _.iteratee({selected: true})).length
-      contest: @props.contest
-      options:
-        showDL: @props.options.showDL ? false
-        showPreview: @props.options.showPreview ? false
-        maxVotes: @props.contest.max_votes ? 3
-
-  handleVoteClick: (_e, {track_id, callback}) =>
-    tracks = @state.tracks
-    track = _.findIndex(@state.tracks, { id: track_id });
-    tracks[track].selected = !tracks[track].selected
-    @setState
-      tracks: tracks
-      waitingForResponse: true
-      voteCount: _.filter(tracks, _.iteratee({selected: true})).length
-      callback
-
-  handleUpdate: (_e, {tracks, callback}) =>
-    @setState
-      tracks: tracks
-      waitingForResponse: false
-      voteCount: _.filter(tracks, _.iteratee({selected: true})).length
-      callback
-
-  componentDidMount: ->
-    $.subscribe 'contest:vote:click.contest', @handleVoteClick
-    $.subscribe 'contest:vote:done.contest', @handleUpdate
-
-  componentWillUnmount: ->
-    $.unsubscribe '.contest'
-
+class Contest.EntryList extends Contest.BaseEntryList
   render: ->
-    return null unless @state.tracks.length > 0
+    return null unless @state.entries.length > 0
 
-    tracks = @state.tracks.map (track) =>
+    if @state.contest.show_votes
+      totalVotes = _.sumBy @state.entries, (i) -> i.votes
+
+    entries = @state.entries.map (entry) =>
       el Contest.Entry,
-        key: track.id,
-        track: track,
-        playing: track.id == @state.currently_playing,
+        key: entry.id,
+        entry: entry,
         waitingForResponse: @state.waitingForResponse,
         voteCount: @state.voteCount,
         options: @state.options,
-        contest: @state.contest
+        contest: @state.contest,
+        winnerVotes: if @state.contest.show_votes then _.maxBy(@state.entries, (i) -> i.votes).votes
+        totalVotes: if @state.contest.show_votes then totalVotes
 
-    votingOver = moment(@state.contest.ends_at).diff() <= 0
-
-    div className: 'trackplayer',
-      if votingOver
-        div className: 'trackplayer__voting-ended', osu.trans('contest.over')
-      table className: 'trackplayer__table trackplayer__table--smaller',
+    div className: 'contest',
+      table className: 'tracklist__table tracklist__table--smaller',
         thead {},
-            tr className: 'trackplayer__row--header',
+            tr className: 'tracklist__row--header',
               if @state.options.showPreview
-                th className: 'trackplayer__col trackplayer__col--preview', ''
+                th className: 'tracklist__col tracklist__col--preview', ''
               if @state.options.showDL
-                th className: 'trackplayer__col trackplayer__col--dl',
-              th className: 'trackplayer__col trackplayer__col--title', 'entry'
-              th className: 'trackplayer__col trackplayer__col--vote',
+                th className: 'tracklist__col tracklist__col--dl',
+              th className: 'tracklist__col tracklist__col--title', 'entry'
+              th className: 'tracklist__col tracklist__col--vote', colSpan: (if @props.contest.show_votes then 2 else 1),
                 el Contest.VoteSummary, voteCount: @state.voteCount, maxVotes: @state.options.maxVotes
-                div className: 'trackplayer__float-right trackplayer__vote-summary-text', 'votes'
-        tbody {}, tracks
+                div className: 'contest__vote-summary-text', 'votes'
+        tbody {}, entries

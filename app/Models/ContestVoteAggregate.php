@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,24 +17,21 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Transformers;
+namespace App\Models;
 
-use App\Models\Contest;
-use League\Fractal;
+use Illuminate\Database\Eloquent\Model;
 
-class ContestTransformer extends Fractal\TransformerAbstract
+class ContestVoteAggregate extends Model
 {
-    public function transform(Contest $contest)
+    protected $guarded = [];
+
+    public function contest()
     {
-        return [
-            'id' => $contest->id,
-            'name' => $contest->name,
-            'description' => $contest->description,
-            'type' => $contest->type,
-            'header_url' => $contest->header_url,
-            'max_votes' => $contest->max_votes,
-            'ends_at' => $contest->ends_at->toIso8601String(),
-            'show_votes' => $contest->show_votes,
-        ];
+        return $this->belongsTo(Contest::class);
+    }
+
+    public function contestEntry()
+    {
+        return $this->belongsTo(ContestEntry::class);
     }
 }

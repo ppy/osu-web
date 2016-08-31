@@ -16,27 +16,24 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 ###
-{div,i} = React.DOM
+{div,a,i,span,table,thead,tbody,tr,th,td} = React.DOM
 el = React.createElement
 
-class Contest.VoteSummary extends React.Component
+class Contest.ArtEntryList extends Contest.BaseEntryList
   render: ->
-    classes = [
-      'contest__voting-star',
-      'contest__voting-star--smaller',
-      'contest__voting-star--float-right',
-    ]
-    selectedClass = [
-      'contest__voting-star--selected',
-    ]
+    return null unless @state.entries.length > 0
 
-    voteSummary = []
-    voteSummary.push _.times Math.max(0, @props.maxVotes - @props.voteCount), ->
-      div className: classes.join(' '),
-        i className: 'fa fa-fw fa-star'
-    voteSummary.push _.times @props.voteCount, ->
-      div className: classes.concat(selectedClass).join(' '),
-        i className: 'fa fa-fw fa-star'
+    entries = @state.entries.map (entry) =>
+      el Contest.ArtEntry,
+        key: entry.id,
+        entry: entry,
+        waitingForResponse: @state.waitingForResponse,
+        voteCount: @state.voteCount,
+        options: @state.options,
+        contest: @state.contest
 
-    div {},
-      voteSummary
+    div className: 'contest',
+      div className: 'contest__vote-summary--art',
+        span className: 'contest__vote-summary-text contest__vote-summary-text--art', 'votes'
+        el Contest.VoteSummary, voteCount: @state.voteCount, maxVotes: @state.options.maxVotes
+      div className: 'contest__entries--art', entries
