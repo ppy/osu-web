@@ -55,15 +55,13 @@ insert = (event, tagOpen, tagClose = '') ->
   ['spoilerbox', '[box=]', '[/box]']
 ].forEach (tagOptions) ->
   [buttonClass, openTag, closeTag] = tagOptions
-  $(document).on 'click', ".bbcode-btn--#{buttonClass}", (e) ->
+  $(document).on 'click', ".js-bbcode-btn--#{buttonClass}", (e) ->
     insert e, openTag, closeTag
 
 
-$(document).on 'change', '.bbcode-size', (e) ->
+$(document).on 'change', '.js-bbcode-btn--size', (e) ->
   $select = $(e.target)
   val = parseInt $select.val(), 10
-
-  return if val == 100
 
   insert e, "[size=#{val}]", '[/size]'
 

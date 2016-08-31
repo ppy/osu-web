@@ -17,55 +17,28 @@
  *
  */
 
-.btn-circle {
-  .reset-input();
-  .center-content();
-  .circle(30px);
+.bbcode-size-select {
   .default-box-shadow();
-  text-shadow: inherit;
+  .default-border-radius();
+  .center-content();
 
-  flex: none;
-  background-color: @blue-darker;
-  color: @grey-f;
-  transition: all 120ms ease-in-out;
-  font-size: 14px;
+  background-color: @grey-f;
+  text-transform: none;
+  text-shadow: none;
+  font-size: @font-size--normal;
+  padding: (@spacing / 2) @spacing;
+  margin: 0 (@spacing / 2) (@spacing / 2);
 
-  &:focus,
-  &:hover,
-  &:active {
-    color: @grey-f;
-    text-decoration: none;
-    box-shadow: 0 5px 15px fade(@grey-0, 40%);
+  &__label {
+    margin-right: @spacing;
   }
 
-  &--blank {
-    background-color: transparent;
-    box-shadow: none;
-    opacity: 0.7;
-
-    &:focus,
-    &:hover,
-    &:active {
-      box-shadow: none;
-    }
-  }
-
-  &.js-disabled,
-  &--disabled {
-    background-color: @grey-3;
-    cursor: not-allowed;
-  }
-
-  &--bbcode {
-    .default-text-shadow();
-    margin: 0 (@spacing / 2) (@spacing / 2) 0;
-    font-size: 13px;
-    box-shadow: none;
-
-    &:focus,
-    &:hover,
-    &:active {
-      .default-box-shadow();
-    }
+  &__select {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left:0px;
+    opacity: 0;
   }
 }
