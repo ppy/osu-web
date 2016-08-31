@@ -36,6 +36,10 @@ Route::get('/home/support', ['as' => 'support-the-game', 'uses' => 'HomeControll
 
 Route::get('/icons', 'HomeController@getIcons');
 
+// featured artists
+Route::get('/beatmaps/artists', ['as' => 'artist.index', 'uses' => 'ArtistsController@index']);
+Route::get('/beatmaps/artists/{artist_id}', ['as' => 'artist.show', 'uses' => 'ArtistsController@show']);
+
 // beatmapsets
 Route::get('/beatmaps/{beatmaps}/scores', ['as' => 'beatmaps.scores', 'uses' => 'BeatmapsController@scores']);
 Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
@@ -57,9 +61,6 @@ Route::put('beatmapsets/{beatmapsets}/nominate', ['as' => 'beatmapsets.nominate'
 Route::put('beatmapsets/{beatmapsets}/disqualify', ['as' => 'beatmapsets.disqualify', 'uses' => 'BeatmapsetsController@disqualify']);
 Route::put('beatmap-discussions/{beatmap_discussions}/vote', ['uses' => 'BeatmapDiscussionsController@vote', 'as' => 'beatmap-discussions.vote']);
 Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['store', 'update']]);
-
-// featured artists
-Route::get('/beatmaps/artists/{artist_id}', ['as' => 'artist.show', 'uses' => 'ArtistsController@show']);
 
 // contests
 Route::get('/community/contests/{contest_id}', ['as' => 'contest.show', 'uses' => 'ContestsController@show']);

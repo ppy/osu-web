@@ -29,7 +29,7 @@ class ArtistsController extends Controller
     public function index()
     {
         return view('artists.index')
-            ->with('artists', Artist::all());
+            ->with('artists', Artist::with('label')->withCount('tracks')->where('visible', true)->get());
     }
 
     public function show($id)

@@ -254,22 +254,17 @@ function nav_links()
             'getFaq' => osu_url('help.faq'),
             'getSupport' => osu_url('help.support'),
         ];
-        $links['beatmaps'] = [
-            'index' => route('beatmapsets.index'),
-            // 'getPacks' => route('packs.index'),
-            // 'getCharts' => route('charts.index'),
-        ];
         $links['ranking'] = [
             'getOverall' => osu_url('ranking.overall'),
             'getCharts' => osu_url('ranking.charts'),
             'getCountry' => osu_url('ranking.country'),
             'getMapper' => osu_url('ranking.mapper'),
         ];
-    } else {
-        $links['beatmaps'] = [
-            'index' => route('beatmapsets.index'),
-        ];
     }
+    $links['beatmaps'] = [
+        'index' => route('beatmapsets.index'),
+        'artists' => route('artist.index'),
+    ];
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
         'tournaments' => route('tournaments.index'),

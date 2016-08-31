@@ -1,4 +1,43 @@
 .artist {
+  &__index {
+    background-color: #293336;
+    padding: 20px;
+    font-weight: 300;
+    .default-box-shadow;
+
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+
+    @media @mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__box {
+    @media @mobile {
+      margin: 0 auto;
+      margin-top: @spacing * 2;
+    }
+  }
+
+  &__name {
+    text-align: center;
+    color: #FFCD23;
+    font-size: 14px;
+    margin-top: @spacing / 2;
+    display: block;
+    &:hover {
+      color: #FFCD23;
+    }
+  }
+
+  &__track-count {
+    color: #777777;
+    font-size: 12px;
+    text-align: center;
+  }
+
   &__description {
     background-color: #293336;
     color: white;
@@ -19,12 +58,22 @@
     .default-border-radius();
     background-size: cover;
     background-position: center;
+    display: block;
 
     margin: 0 auto;
     margin-top: -50px;
     @media @desktop {
       margin-top: -150px;
       margin-left: @spacing;
+    }
+
+    &--index {
+      width: 200px;
+      height: 200px;
+      margin: 0;
+      @media @desktop {
+        margin: 0;
+      }
     }
   }
 
@@ -35,7 +84,11 @@
     bottom: 0;
     right: 0;
     position: absolute;
-    border-radius: 5px 0 5px 0;
+    border-radius: 3px 0 3px 0;
+
+    &--index {
+      bottom: 37px;
+    }
   }
 
   &__links-area {
