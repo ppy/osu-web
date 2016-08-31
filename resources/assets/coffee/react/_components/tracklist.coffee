@@ -30,7 +30,7 @@ class @Tracklist extends React.Component
         track: track,
 
     div className: 'tracklist',
-      table className: 'tracklist__table tracklist__table--smaller',
+      table className: 'tracklist__table',
         thead {},
             tr className: 'tracklist__row--header',
                 th className: 'tracklist__col tracklist__col--preview', ''
