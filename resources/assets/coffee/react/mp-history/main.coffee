@@ -70,7 +70,7 @@ class MPHistory.Main extends React.Component
         events: newEvents
         allEventsCount: data.all_events_count
         users: newUsers
-        lastGameId: _.findLast(newEvents, (e) -> e.game?)?.id ? 0
+        lastGameId: _.findLast(newEvents, (e) -> e.game?)?.id
 
     .always =>
       @timeout = setTimeout @loadHistory, @refreshTimeout

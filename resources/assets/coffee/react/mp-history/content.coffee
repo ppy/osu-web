@@ -51,7 +51,7 @@ class MPHistory.Content extends React.Component
         div className: 'mp-history-events',
           for event, i in @props.events
             if event.detail.type == 'other'
-              continue if !event.game? || (!event.game.data.end_time && event.id != @props.lastGameId)
+              continue if !event.game? || (!event.game.data.end_time? && event.id != @props.lastGameId)
 
               el MPHistory.Game,
                 event: event
