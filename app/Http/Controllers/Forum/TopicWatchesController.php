@@ -19,6 +19,7 @@
  */
 namespace App\Http\Controllers\Forum;
 
+use App\Models\Forum\TopicTrack;
 use App\Models\Forum\TopicWatch;
 use Auth;
 
@@ -39,10 +40,17 @@ class TopicWatchesController extends Controller
             ->get()
             ->pluck('topic')
             ->filter(function ($topic) {
-                return $topic !== null && priv_check('ForumTopicWatchAdd', $topic)->can();
+                return
+                    $topic !== null &&
+                    priv_check('ForumTopicWatchAdd', $topic)->can();
             })
             ->all();
 
-        return view('forum.topic_watches.index', compact('topics'));
+        $topicReadStatus = TopicTrack::readStatus(Auth::user(), $topics);
+
+        return view(
+            'forum.topic_watches.index',
+            compact('topics', 'topicReadStatus')
+        );
     }
 }

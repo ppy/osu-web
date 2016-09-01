@@ -18,7 +18,7 @@
 @extends('master')
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 osu-layout__row--full">
+    <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1 osu-layout__row--full t-forum-category-osu">
         <div class="osu-layout__sub-row osu-layout__sub-row--lg1-compact ">
             @include('home._user_header_nav')
 
