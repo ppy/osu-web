@@ -30,7 +30,6 @@ class MPHistory.Main extends React.Component
       events: []
       allEventsCount: 0 # amount of all events in the database (including ones that aren't currently shown)
       users: {}
-      since: 0
       lastGameId: 0
       teamType: ''
       initialLoaded: false
@@ -54,7 +53,7 @@ class MPHistory.Main extends React.Component
       method: 'GET'
       dataType: 'JSON'
       data:
-        since: @state.since
+        since: @minNextEventId()
 
     .done (data) =>
       return if _.isEmpty data.events.data
@@ -71,7 +70,6 @@ class MPHistory.Main extends React.Component
         events: newEvents
         allEventsCount: data.all_events_count
         users: newUsers
-        since: @minNextEventId
         lastGameId: _.findLast(newEvents, (e) -> e.game?)?.id ? 0
 
     .always =>
