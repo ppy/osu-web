@@ -24,13 +24,14 @@ class MPHistory.Main extends React.Component
   constructor: (props) ->
     super props
 
+    @timeout = null
+
     @state =
       events: []
       allEventsCount: 0 # amount of all events in the database (including ones that aren't currently shown)
       users: {}
-      since: 0
+      lastGameId: 0
       teamType: ''
-      disbanded: false
       initialLoaded: false
 
     @loadHistory @state.since
@@ -42,18 +43,23 @@ class MPHistory.Main extends React.Component
 
       @setState initialLoaded: true
 
+  componentWillUnmount: ->
+    clearTimeout @timeout
+
   loadHistory: =>
+    return if _.last(@state.events)?.detail.type == 'match-disbanded'
+
     $.ajax laroute.route('matches.history', matches: @props.match.id, full: @props.full),
       method: 'GET'
       dataType: 'JSON'
       data:
-        since: @state.since
+        since: @minNextEventId()
 
     .done (data) =>
       return if _.isEmpty data.events.data
 
-      newEvents = _.concat @state.events, data.events.data
-      lastEvent = _.last(newEvents)
+      lastIndex = _.findLastIndex @state.events, (e) -> e.id < data.events.data[0].id
+      newEvents = _.concat @state.events[..lastIndex], data.events.data
 
       newUsers = _(data.users.data)
         .keyBy (o) -> o.id
@@ -64,12 +70,18 @@ class MPHistory.Main extends React.Component
         events: newEvents
         allEventsCount: data.all_events_count
         users: newUsers
-        since: _.last(newEvents).id
-        disbanded: lastEvent.event_type == 'match-disbanded'
+        lastGameId: _.findLast(newEvents, (e) -> e.game?)?.id
 
     .always =>
-      if !@state.disbanded
-        setTimeout @loadHistory, @refreshTimeout
+      @timeout = setTimeout @loadHistory, @refreshTimeout
+
+  minNextEventId: =>
+    lastGame = _.findLast @state.events, (o) -> o.game?
+
+    if lastGame? && !lastGame.game.data.end_time?
+      lastGame.id - 1
+    else
+      _.last(@state.events)?.id ? 0
 
   lookupUser: (id) =>
     @state.users[id]
@@ -82,6 +94,7 @@ class MPHistory.Main extends React.Component
       el MPHistory.Content,
         id: @props.match.id
         events: @state.events
+        lastGameId: @state.lastGameId
         allEventsCount: @state.allEventsCount
         full: @props.full
         lookupUser: @lookupUser
