@@ -50,6 +50,15 @@
     .default-box-shadow;
   }
 
+  &__portrait-wrapper {
+    width: 250px;
+    height: 250px;
+    &--index {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
   &__portrait {
     .at2x-simple("/images/layout/artist-noavatar.jpg");
     width: 250px;
@@ -84,11 +93,7 @@
     bottom: 0;
     right: 0;
     position: absolute;
-    border-radius: 3px 0 3px 0;
-
-    &--index {
-      bottom: 37px;
-    }
+    border-radius: 4px 0 3px 0;
   }
 
   &__links-area {
@@ -97,12 +102,27 @@
     padding: @spacing;
   }
 
+  &__white-link {
+    .white-link();
+    text-decoration: none;
+    &:hover, &:focus {
+      .white-link();
+      text-decoration: none;
+    }
+  }
+
   &__link {
     display: inline-block;
     width: 100%;
     display: flex;
     align-items: center;
+
     .white-link();
+    text-decoration: none;
+    &:hover, &:focus {
+      .white-link();
+      text-decoration: none;
+    }
   }
 
   &__link-text {

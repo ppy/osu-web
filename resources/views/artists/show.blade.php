@@ -52,7 +52,7 @@
                 <div class="artist__links-area">
                     @foreach ($links as $link)
                         <div class='btn-osu btn-osu--artist'>
-                            <a class="white-link artist__link" href="{{$link['url']}}">
+                            <a class="artist__link" href="{{$link['url']}}">
                                 <i class='fa fa-fw fa-{{$link['icon']}}'></i>
                                 <span class="artist__link-text">{{$link['title']}}</span>
                                 <i class='fa fa-fw fa-chevron-right artist__chevron artist__chevron--{{$link['class']}}'></i>
