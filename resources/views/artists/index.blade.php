@@ -18,8 +18,8 @@
 @extends("master", [
     'current_section' => 'beatmaps',
     'current_action' => 'artists',
-    'title' => "Featured Artists",
-    'pageDescription' => "Something, something, artists!",
+    'title' => trans('artist.title'),
+    'pageDescription' => trans('artist.page_description'),
     'body_additional_classes' => 'osu-layout--body-darker'
 ])
 
@@ -27,8 +27,8 @@
     <div class="osu-layout__row">
         <div class="osu-page-header-v2 osu-page-header-v2--featured-artists">
             <div class="osu-page-header-v2__overlay"></div>
-            <div class="osu-page-header-v2__subtitle osu-page-header-v2__subtitle--artist">Beatmaps &raquo;</div>
-            <div class="osu-page-header-v2__title">Featured Artists</div>
+            <div class="osu-page-header-v2__subtitle osu-page-header-v2__subtitle--artist">{{trans('artist.beatmaps._')}} &raquo;</div>
+            <div class="osu-page-header-v2__title">{{trans('artist.title')}}</div>
         </div>
     </div>
     <div class="osu-layout__row osu-layout__row--page-artist">

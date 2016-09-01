@@ -55,7 +55,7 @@ class ArtistsController extends Controller
 
         if ($artist->website) {
             $links[] = [
-                'title' => 'Official Website',
+                'title' => trans('artist.links.site'),
                 'url' => $artist->website,
                 'icon' => 'globe',
                 'class' => '',
