@@ -15,22 +15,30 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="forum-topics">
-    <h2 class="forum-topics__title">
-        {{ $title }}
-    </h2>
+{{--
+<a
+    class="btn-circle btn-circle--topic-entry"
+    href="#"
+    data-remote="1"
+    data-method="POST"
+    data-confirm="{{ trans('forum.topic_watches.topic_buttons.mark_read.confirmation') }}"
+    title="{{ trans('forum.topic_watches.topic_buttons.mark_read.title') }}"
+>
+    <i class="fa fa-check"></i>
+</a>
+--}}
 
-    <ul class="forum-topics__entries js-forum-topic-entries">
-        @if ($withNewTopicLink ?? false)
-            @include('forum.forums._new_topic')
-        @endif
-
-        @if (count($topics) === 0)
-            @include('forum.forums._topic_empty')
-        @else
-            @foreach($topics as $topic)
-                @include($row ?? 'forum.forums._topic')
-            @endforeach
-        @endif
-    </ul>
-</div>
+<a
+    class="btn-circle btn-circle--topic-entry"
+    href="{{ route('forum.topics.watch', [
+        $topic,
+        'watch' => false,
+        'page' => 'manage'
+    ]) }}"
+    data-remote="1"
+    data-method="POST"
+    data-confirm="{{ trans('forum.topic_watches.topic_buttons.remove.confirmation') }}"
+    title="{{ trans('forum.topic_watches.topic_buttons.remove.title') }}"
+>
+    <i class="fa fa-trash"></i>
+</a>

@@ -37,6 +37,12 @@ return [
         'new_reply' => '[osu!] :title',
     ],
 
+    'forums' => [
+        'topics' => [
+            'empty' => 'No topics!',
+        ],
+    ],
+
     'pinned_topics' => 'Pinned Topics',
     'post' => [
         'confirm_delete' => 'Really delete post?',
@@ -90,6 +96,13 @@ return [
     'topic_watches' => [
         'index' => [
             'title' => 'Topic Subscriptions',
+        ],
+
+        'topic_buttons' => [
+            'remove' => [
+                'confirmation' => 'Unsubscribe from topic?',
+                'title' => 'Unsubscribe',
+            ],
         ],
     ],
 

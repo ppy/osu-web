@@ -38,6 +38,19 @@
     box-shadow: 0 5px 15px fade(@grey-0, 40%);
   }
 
+  &--bbcode {
+    .default-text-shadow();
+    margin: 0 (@spacing / 2) (@spacing / 2) 0;
+    font-size: 13px;
+    box-shadow: none;
+
+    &:focus,
+    &:hover,
+    &:active {
+      .default-box-shadow();
+    }
+  }
+
   &--blank {
     background-color: transparent;
     box-shadow: none;
@@ -56,11 +69,11 @@
     cursor: not-allowed;
   }
 
-  &--bbcode {
-    .default-text-shadow();
-    margin: 0 (@spacing / 2) (@spacing / 2) 0;
-    font-size: 13px;
+  &--topic-entry {
+    .circle(20px);
     box-shadow: none;
+    margin: (@spacing / 4);
+    font-size: 10px;
 
     &:focus,
     &:hover,

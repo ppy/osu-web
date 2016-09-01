@@ -72,6 +72,11 @@ function product_quantity_options($product)
     return $opts;
 }
 
+function render_to_string($view, $variables = [])
+{
+    return view()->make($view, $variables)->render();
+}
+
 function obscure_email($email)
 {
     $email = explode('@', $email);

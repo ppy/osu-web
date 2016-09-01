@@ -15,7 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<li class="u-forum--hover-area forum-topic-entry clickable-row">
+<li
+    class="u-forum--hover-area forum-topic-entry clickable-row js-forum-topic-entry"
+    data-topic-id="{{ $topic->topic_id }}"
+>
     <div class="forum-topic-entry__bg"></div>
 
     @if ($topic->isLocked())
@@ -118,4 +121,10 @@
     >
         <i class="fa fa-chevron-right"></i>
     </a>
+
+    @if (($buttons ?? null) !== null)
+        <div class="forum-topic-entry__col forum-topic-entry__col--buttons">
+            @include($buttons)
+        </div>
+    @endif
 </li>

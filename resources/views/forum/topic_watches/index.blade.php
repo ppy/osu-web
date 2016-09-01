@@ -29,6 +29,7 @@
 
         @include('forum.forums._topics', [
             'title' => trans('forum.topic_watches.index.title'),
+            'row' => 'forum.topic_watches._topic',
         ])
     </div>
 @endsection

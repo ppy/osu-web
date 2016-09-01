@@ -39,7 +39,7 @@ class TopicWatchesController extends Controller
             ->get()
             ->pluck('topic')
             ->filter(function ($topic) {
-                return priv_check('ForumTopicWatchAdd', $topic)->can();
+                return $topic !== null && priv_check('ForumTopicWatchAdd', $topic)->can();
             })
             ->all();
 

@@ -26,6 +26,10 @@
   border-bottom: 1px solid @grey-c;
   margin: 0 @main-margin;
 
+  &--empty {
+    padding: @spacing 0 (@spacing /2);
+  }
+
   &__bg {
     .full-size();
     margin: 0 (-@main-margin);
@@ -45,6 +49,10 @@
     .center-content();
     flex: none;
     margin: @spacing 0;
+
+    &--buttons {
+      margin: (-@spacing / 4);
+    }
 
     &--icon {
       .circle(32px);

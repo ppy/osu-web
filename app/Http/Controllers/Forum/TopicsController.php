@@ -353,6 +353,12 @@ class TopicsController extends Controller
 
         TopicWatch::toggle($topic, Auth::user(), $watch);
 
-        return js_view('forum.topics.watch', compact('topic', 'watch'));
+        switch (Request::input('page')) {
+            case 'manage':
+                // there's currently only destroy action from watch index
+                return js_view('forum.topic_watches.destroy', compact('topic'));
+            default:
+                return js_view('forum.topics.watch', compact('topic', 'watch'));
+        }
     }
 }
