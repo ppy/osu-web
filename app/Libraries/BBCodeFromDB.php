@@ -313,11 +313,13 @@ class BBCodeFromDB
         $text = str_replace("\n", '<br />', $text);
         $text = CleanHTML::purify($text);
 
-        if ($wrap) {
-            return "<div class='bbcode'>{$text}</div>";
-        } else {
-            return $text;
+        $className = 'bbcode';
+
+        if (!$wrap) {
+            $className .= ' bbcode--normal-line-height';
         }
+
+        return "<div class='{$className}'>{$text}</div>";
     }
 
     public function toEditor()
