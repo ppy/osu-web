@@ -19,34 +19,19 @@
  */
 namespace App\Models;
 
-use DB;
 use Illuminate\Database\Eloquent\Model;
 
-class LoginAttempt extends Model
+class ContestVoteAggregate extends Model
 {
-    protected $table = 'osu_login_attempts';
-    protected $primaryKey = 'ip';
-    public $timestamps = false;
+    protected $guarded = [];
 
-    public static function isLocked($ip)
+    public function contest()
     {
-        return self::where('ip', $ip)
-            ->where('failed_attempts', '>', 5)
-            ->exists();
+        return $this->belongsTo(Contest::class);
     }
 
-    public static function failedAttempt($ip, $user)
+    public function contestEntry()
     {
-        $userId = $user->user_id ?? 0;
-
-        DB::insert(
-            "INSERT INTO osu_login_attempts (ip, failed_ids)
-                VALUES (?, ?)
-                ON DUPLICATE KEY UPDATE
-                    failed_attempts = failed_attempts + 1,
-                    total_attempts = total_attempts + 1,
-                    failed_ids = CONCAT(failed_ids, ',', ?),
-                    last_attempt = CURRENT_TIMESTAMP",
-            [$ip, $userId, $userId]);
+        return $this->belongsTo(ContestEntry::class);
     }
 }

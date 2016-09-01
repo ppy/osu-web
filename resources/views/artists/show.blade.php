@@ -33,7 +33,7 @@
     <div class="osu-layout__row">
         <div class="osu-page-header-v2 osu-page-header-v2--artist">
             <div class="osu-page-header-v2__overlay"></div>
-            <div class="osu-page-header-v2__subtitle osu-page-header-v2__subtitle--artist">Artist &raquo;</div>
+            <div class="osu-page-header-v2__subtitle osu-page-header-v2__subtitle--artist"><a class="artist__white-link" href="{{route('artist.index')}}">{{trans('artist.title')}} &raquo;</a></div>
             <div class="osu-page-header-v2__title">{{$artist->name}}</div>
         </div>
     </div>
@@ -52,7 +52,7 @@
                 <div class="artist__links-area">
                     @foreach ($links as $link)
                         <div class='btn-osu btn-osu--artist'>
-                            <a class="white-link artist__link" href="{{$link['url']}}">
+                            <a class="artist__link" href="{{$link['url']}}">
                                 <i class='fa fa-fw fa-{{$link['icon']}}'></i>
                                 <span class="artist__link-text">{{$link['title']}}</span>
                                 <i class='fa fa-fw fa-chevron-right artist__chevron artist__chevron--{{$link['class']}}'></i>

@@ -19,12 +19,12 @@
 propsFunction = ->
   contest = osu.parseJson('json-contest')
   return {
-    tracks: osu.parseJson('json-tracks')
+    entries: osu.parseJson('json-entries')
     contest: contest
     options:
       showDL: contest['type'] == 'beatmap'
       showPreview: contest['type'] == 'music'
   }
 
-reactTurbolinks.register 'contestArtList', Contest.ArtList, propsFunction
+reactTurbolinks.register 'contestArtList', Contest.ArtEntryList, propsFunction
 reactTurbolinks.register 'contestList', Contest.EntryList, propsFunction

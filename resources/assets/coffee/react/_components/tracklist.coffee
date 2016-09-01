@@ -29,14 +29,14 @@ class @Tracklist extends React.Component
         key: track.id,
         track: track,
 
-    div className: 'trackplayer',
-      table className: 'trackplayer__table trackplayer__table--smaller',
+    div className: 'tracklist',
+      table className: 'tracklist__table',
         thead {},
-            tr className: 'trackplayer__row--header',
-                th className: 'trackplayer__col trackplayer__col--preview', ''
-                th className: 'trackplayer__col trackplayer__col--title', 'title'
-                th className: 'trackplayer__col', 'length'
-                th className: 'trackplayer__col', 'bpm'
-                th className: 'trackplayer__col', 'genre'
-                th className: 'trackplayer__col trackplayer__col--dl',
+            tr className: 'tracklist__row--header',
+                th className: 'tracklist__col tracklist__col--preview', ''
+                th className: 'tracklist__col tracklist__col--title', 'title'
+                th className: 'tracklist__col', 'length'
+                th className: 'tracklist__col', 'bpm'
+                th className: 'tracklist__col', 'genre'
+                th className: 'tracklist__col tracklist__col--dl',
         tbody {}, tracks

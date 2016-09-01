@@ -34,13 +34,16 @@ class ProfilePage.CoverUploader extends React.Component
       url: laroute.route('account.update-profile')
       dataType: 'json'
       dropZone: $dropzone
+
       submit: ->
         $.publish 'user:cover:upload:state', true
         $.publish 'dragendGlobal'
+
       done: (_e, data) ->
         $.publish 'user:update', data.result.data
-      fail: (_e, data) ->
-        osu.ajaxError data.jqXHR
+
+      fail: osu.fileuploadFailCallback($uploadButton)
+
       complete: ->
         $.publish 'user:cover:upload:state', false
 
