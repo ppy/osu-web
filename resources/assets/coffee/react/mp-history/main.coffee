@@ -24,6 +24,8 @@ class MPHistory.Main extends React.Component
   constructor: (props) ->
     super props
 
+    @timeout = null
+
     @state =
       events: []
       allEventsCount: 0 # amount of all events in the database (including ones that aren't currently shown)
@@ -31,7 +33,6 @@ class MPHistory.Main extends React.Component
       since: 0
       lastGameId: 0
       teamType: ''
-      disbanded: false
       initialLoaded: false
 
     @loadHistory @state.since
@@ -43,7 +44,12 @@ class MPHistory.Main extends React.Component
 
       @setState initialLoaded: true
 
+  componentWillUnmount: ->
+    clearTimeout @timeout
+
   loadHistory: =>
+    return if _.last(@state.events)?.detail.type == 'match-disbanded'
+
     $.ajax laroute.route('matches.history', matches: @props.match.id, full: @props.full),
       method: 'GET'
       dataType: 'JSON'
@@ -53,17 +59,8 @@ class MPHistory.Main extends React.Component
     .done (data) =>
       return if _.isEmpty data.events.data
 
-      lastIndex = _.findLastIndex @state.events, (o) => o.id == @state.since + 1
-
-      lastIndex =
-        if lastIndex == -1
-          @state.events.length - 1
-        else
-          lastIndex - 1
-
+      lastIndex = _.findLastIndex @state.events, (e) -> e.id < data.events.data[0].id
       newEvents = _.concat @state.events[..lastIndex], data.events.data
-      lastEvent = _.last newEvents
-      lastGameEvent = _.findLast newEvents, (o) -> o.game?
 
       newUsers = _(data.users.data)
         .keyBy (o) -> o.id
@@ -74,13 +71,19 @@ class MPHistory.Main extends React.Component
         events: newEvents
         allEventsCount: data.all_events_count
         users: newUsers
-        since: if !lastGameEvent? || lastGameEvent.game.data.end_time then lastEvent.id else lastGameEvent.id - 1
-        lastGameId: if lastGameEvent? then lastGameEvent.id else 0
-        disbanded: lastEvent.event_type == 'match-disbanded'
+        since: @minNextEventId
+        lastGameId: _.findLast(newEvents, (e) -> e.game?)?.id ? 0
 
     .always =>
-      if !@state.disbanded
-        setTimeout @loadHistory, @refreshTimeout
+      @timeout = setTimeout @loadHistory, @refreshTimeout
+
+  minNextEventId: =>
+    lastGame = _.findLast @state.events, (o) -> o.game?
+
+    if lastGame? && !lastGame.game.data.end_time?
+      lastGame.id - 1
+    else
+      _.last(@state.events)?.id ? 0
 
   lookupUser: (id) =>
     @state.users[id]
