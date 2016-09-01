@@ -16,12 +16,10 @@ class TurbolinksSupport
      */
     public function handle($request, Closure $next)
     {
-        $turbolinksLocation = session('_turbolinks-location');
+        $isTurbolinksRedirect = presence($request->header('Turbolinks-Referrer'));
 
-        if (present($turbolinksLocation)) {
-            $response = $next($request);
-
-            return $response->header('Turbolinks-Location', $turbolinksLocation);
+        if ($isTurbolinksRedirect) {
+            return $next($request)->header('Turbolinks-Location', $request->fullUrl());
         } else {
             return $next($request);
         }
