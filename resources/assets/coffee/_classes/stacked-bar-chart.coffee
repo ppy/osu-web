@@ -37,17 +37,14 @@ class @StackedBarChart
     @svgWrapper = @svg.append 'g'
 
   loadData: (data) ->
-    data = _.map data, (d) ->
-      _.map d.values, (v) ->
-        type: d.type
-        value: v
-
-    data = _.zip.apply _, data
-
-    @data = _.map data, (m) ->
-      for d, i in m
-        d.height = if i > 0 then m[i - 1].value + m[i - 1].height else 0
-        d
+    @data = []
+    for d, i in data
+      for v, j in d.values
+        @data[j] ?= []
+        @data[j].push
+          type: d.type
+          value: v
+          height: if i == 0 then 0 else @data[j][i - 1].value + @data[j][i - 1].height
 
     @max = d3.max _.map @data, (m) -> _.sumBy m, 'value'
 
