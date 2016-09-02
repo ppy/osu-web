@@ -30,7 +30,6 @@ BeatmapDiscussions.Main = React.createClass
     currentBeatmap: initial.beatmapset.data.beatmaps.data[0]
     currentUser: currentUser
     userPermissions: initial.userPermissions
-    users: @indexUsers initial.beatmapsetDiscussion.data.users.data
     mode: 'timeline'
     readPostIds: _.chain(initial.beatmapsetDiscussion.data.beatmap_discussions.data)
       .map (d) => d.beatmap_discussion_posts.data.map (r) => r.id
@@ -64,6 +63,10 @@ BeatmapDiscussions.Main = React.createClass
     @checkNewAjax?.abort?()
 
 
+  componentWillUpdate: ->
+    @indexedUsers = null
+
+
   render: ->
     div null,
       div
@@ -78,7 +81,7 @@ BeatmapDiscussions.Main = React.createClass
             h1
               className: 'forum-category-header__title'
               a
-                href: laroute.route('beatmapsets.show', beatmapsets: @state.beatmapset.beatmapset_id)
+                href: laroute.route('beatmapsets.show', beatmapsets: @state.beatmapset.id)
                 className: 'link link--white link--no-underline'
                 @state.beatmapset.title
 
@@ -115,7 +118,6 @@ BeatmapDiscussions.Main = React.createClass
   setBeatmapsetDiscussion: (_e, {beatmapsetDiscussion, callback}) ->
     @setState
       beatmapsetDiscussion: beatmapsetDiscussion
-      users: @indexUsers beatmapsetDiscussion.users.data
       callback
 
   setBeatmapset: (_e, {beatmapset, callback}) ->
@@ -136,12 +138,10 @@ BeatmapDiscussions.Main = React.createClass
     @setState currentBeatmap: beatmap, callback
 
 
-  indexUsers: (usersArray) ->
-    _.keyBy usersArray, (u) => u.id
-
-
   lookupUser: (id) ->
-    @state.users[id]
+    @indexedUsers ?= _.keyBy @state.beatmapsetDiscussion.users.data, 'id'
+
+    @indexedUsers[id]
 
 
   jumpTo: (_e, {id}) ->

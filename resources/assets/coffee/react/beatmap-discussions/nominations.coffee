@@ -41,7 +41,7 @@ BeatmapDiscussions.Nominations = React.createClass
     if comment
       params['data'] = {'comment': comment}
 
-    $.ajax laroute.route("beatmapsets.#{action}", beatmapsets: @props.beatmapset.beatmapset_id), params
+    $.ajax laroute.route("beatmapsets.#{action}", beatmapsets: @props.beatmapset.id), params
 
     .done (response) =>
       $.publish 'beatmapset:update', beatmapset: response.beatmapset.data
@@ -110,4 +110,3 @@ BeatmapDiscussions.Nominations = React.createClass
                   el Icon, name: 'thumbs-up'
                   span className: "#{bdn}__button-text",
                     osu.trans 'beatmaps.nominations.nominate'
-

@@ -29,7 +29,7 @@ class ArtistsController extends Controller
     public function index()
     {
         return view('artists.index')
-            ->with('artists', Artist::all());
+            ->with('artists', Artist::with('label')->withCount('tracks')->where('visible', true)->get());
     }
 
     public function show($id)
@@ -55,7 +55,7 @@ class ArtistsController extends Controller
 
         if ($artist->website) {
             $links[] = [
-                'title' => 'Official Website',
+                'title' => trans('artist.links.site'),
                 'url' => $artist->website,
                 'icon' => 'globe',
                 'class' => '',

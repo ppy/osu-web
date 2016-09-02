@@ -22,7 +22,6 @@ namespace App\Http\Controllers;
 use App\Models\BanchoStats;
 use App\Models\Count;
 use Auth;
-use Carbon\Carbon;
 use Request;
 use View;
 
@@ -104,9 +103,10 @@ class HomeController extends Controller
             return ujs_redirect(route('forum.forums.index'));
         }
 
-        $timeAgo = Carbon::now()->subDay();
-        $stats = BanchoStats::where('date', '>=', $timeAgo)
-            ->whereRaw('banchostats_id mod 10 = 0')
+        $stats = BanchoStats
+            ::whereRaw('banchostats_id mod 10 = 0')
+            ->orderBy('banchostats_id', 'DESC')
+            ->limit(24 * 60 / 10)
             ->get();
         $totalUsers = Count::totalUsers();
         $currentOnline = ($stats->isEmpty() ? 0 : $stats->last()->users_osu);

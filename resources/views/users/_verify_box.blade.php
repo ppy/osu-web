@@ -44,7 +44,7 @@
     <p class="user-verification__row user-verification__row--info">
         {!! trans('user_verification.box.info.recover', [
             'link' => link_to(
-                config('osu.urls.user.recover'),
+                osu_url('user.recover'),
                 trans('user_verification.box.info.recover_link'),
                 ['class' => 'user-verification__link']
             ),

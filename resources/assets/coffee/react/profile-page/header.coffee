@@ -55,6 +55,7 @@ class ProfilePage.Header extends React.Component
       return if $(e.target).closest('.js-profile-header__change-cover-button').length
 
     return if $('#overlay').is(':visible')
+    return if document.body.classList.contains('modal-open')
 
     Fade.out $('.blackout')[0]
     @setState editing: false, =>

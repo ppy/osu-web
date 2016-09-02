@@ -63,6 +63,6 @@ service mysql restart
 service php7.0-fpm restart
 service nginx restart
 
-./bin/db_setup
+./bin/db_setup.sh
 
 echo "Finished setup of daemons and servers"
