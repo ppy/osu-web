@@ -75,4 +75,10 @@ class Team extends Model
     {
         return $this->hasOne("App\Models\TeamProfileCustomization");
     }
+    public function UpdateTeamStats()
+    {
+        foreach ($this->teamMembers() as $user) {
+            
+        }
+    }
 }

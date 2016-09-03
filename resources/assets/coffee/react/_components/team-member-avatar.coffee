@@ -15,18 +15,27 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div} = React.DOM
+{div, i} = React.DOM
 
 bn = 'avatar'
 
-@TeamMemberAvatar = React.createClass
-  mixins: [React.addons.PureRenderMixin]
-
-
+class @TeamMemberAvatar extends React.Component
+  constructor: (props) ->
+    super props
+    
+    @state =
+      hovering: false
+  hoveron: =>
+    @setState hovering: true
+  hoveroff: =>
+    @setState hovering: false
+  click: =>
+    if @props.callback? and @props.canRemove
+      @props.callback()
   render: ->
     modifiers = @props
       .modifiers
-      .map (m) => "#{bn}--#{m}"
+      .map (m) -> "#{bn}--#{m}"
       .join ' '
 
     className = "#{bn} #{modifiers}"
@@ -36,7 +45,16 @@ bn = 'avatar'
       div
         className: className
         id: @props.user.id
+        onMouseEnter: @hoveron
+        onMouseLeave: @hoveroff
         style:
           backgroundImage: "url('#{@props.user.avatarUrl}')"
+        if @state.hovering and @props.canRemove
+          i
+            className: 'fa fa-remove'
+            style:
+              position: 'absolute'
+              right: '0px'
+            onClick: @click
     else
       div className: "#{className} #{bn}--guest"

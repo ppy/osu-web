@@ -99,6 +99,23 @@ class TeamsController extends Controller
 
         return $team->teamMembers()->get()->all();
     }
+    public function removeMember($id)
+    {
+        $team = Team::lookup($id);
+        $admin = Auth::user();
+        $user = User::lookup(Request::input('user'));
+        if ($team === null || $user === null) {
+            abort(404);
+        }
+
+
+        if ($team->teamMembers()->wherePivot('is_admin', 1)->get()->contains($admin)) { 
+            // we are allowed to remove users.
+            $team->teamMembers()->detach($user->user_id);
+        }
+
+        return $team->teamMembers()->get()->all();
+    }
     public function updateProfile($id)
     {
         $admin = Auth::user();

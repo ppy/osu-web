@@ -48,19 +48,37 @@ class TeamPage.TeamMembers extends React.Component
         @props.refresh()
       .fail (xhr) ->
         osu.ajaxError xhr
-    
+  
+  removeUser: (id) =>
+    console.log 'removing user'
+    LoadingOverlay.show()
+
+    if id?
+      $.ajax laroute.route('team.removemember', user: id, id: @props.team.id),
+        method: 'get'
+      .done (data) =>
+        @props.refresh()
   render: =>
     el 'div', className: 'team-members',
       el 'p', className: 'team-members__title', Lang.get "teams.show.admins"
       el 'div', className: 'team-members__list', id: 'admins',
         @props.team.admins.data.map (m) ->
-          el TeamMemberAvatar, user: m, key: m.id, modifiers: ['members'], locked: m.id == window.currentUser.id
+          el TeamMemberAvatar,
+            user: m
+            key: m.id
+            modifiers: ['members']
+            locked: m.id == window.currentUser.id
         if @props.withEdit
           el TeamPage.AddUserButton, team: @props.team, admin: true, refresh: @props.refresh
       el 'p', className: 'team-members__title', Lang.get "teams.show.members"
       el 'div', className: 'team-members__list', id: 'members',
-        @props.team.members.data.map (m) ->
-          el TeamMemberAvatar, user: m, key: m.id, modifiers: ['members']
+        @props.team.members.data.map (m) =>
+          el TeamMemberAvatar,
+            user: m
+            key: m.id
+            modifiers: ['members']
+            canRemove: true
+            callback: => @removeUser m.id
         if @props.withEdit
           el TeamPage.AddUserButton, team: @props.team, admin: false, refresh: @props.refresh
 
