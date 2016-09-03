@@ -54,7 +54,7 @@ return [
                     'button' => 'Upload afbeelding',
                     'dropzone' => 'Drop hier om te uploaden',
                     'dropzone_info' => 'Je kunt je afbeelding ook hier droppen om te uploaden',
-                    'restriction_info' => "Uploaden alleen beschikbaar voor <a href='".config('osu.urls.support-the-game')."' target='_blank'>osu!supporters</a>",
+                    'restriction_info' => "Uploaden alleen beschikbaar voor <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a>",
                     'size_info' => 'Cover grootte moet 2700x500 zijn',
                     'too_large' => 'Het geüploade bestand is te groot.',
                     'unsupported_format' => 'Niet ondersteund formaat.',
@@ -95,7 +95,7 @@ return [
                 'recent_entries' => 'Recente Kudosu Geschiedenis',
                 'title' => 'Kudosu!',
                 'total' => 'Totaal Aantal Kudosu Verdiend',
-                'total_info' => 'Gebaseerd op hoeveel contributie de gebruiker heeft geleverd aan beatmap moderatie. Zie <a href="'.config('osu.urls.user.kudosu').'">deze pagina</a> voor meer informatie.',
+                'total_info' => 'Gebaseerd op hoeveel contributie de gebruiker heeft geleverd aan beatmap moderatie. Zie <a href="'.osu_url('user.kudosu').'">deze pagina</a> voor meer informatie.',
             ],
             'me' => [
                 'title' => 'ik!',
@@ -144,7 +144,7 @@ return [
             'description' => '<strong>ik!</strong> is een persoonlijk bewerkbaar gedeelte van je profiel.',
             'edit_big' => 'Bewerk me!',
             'placeholder' => 'Typ pagina inhoud hier',
-            'restriction_info' => "Je moet een <a href='".config('osu.urls.support-the-game')."' target='_blank'>osu!supporter</a> zijn om dit te gebruiken.",
+            'restriction_info' => "Je moet een <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> zijn om dit te gebruiken.",
         ],
         'plays_with' => [
             '_' => 'Speelt met',

@@ -68,11 +68,11 @@ class BeatmapsetPage.Details extends React.Component
         else
           div {},
             a
-              href: if currentUser.isSupporter then Url.beatmapDownloadDirect @props.beatmapset.beatmapset_id else laroute.route 'support-the-game'
+              href: if currentUser.isSupporter then Url.beatmapDownloadDirect @props.beatmapset.id else laroute.route 'support-the-game'
               className: 'beatmapset-details__button'
               osu.trans 'beatmaps.beatmapset.show.details.download.direct'
             a
-              href: Url.beatmapDownload @props.beatmapset.beatmapset_id, !@state.noVideo
+              href: Url.beatmapDownload @props.beatmapset.id, !@state.noVideo
               className: 'beatmapset-details__button'
               osu.trans 'beatmaps.beatmapset.show.details.download.normal'
 

@@ -35,11 +35,9 @@ class LoginAttempt extends Model
             ->exists();
     }
 
-    public static function failedAttempt($ip, $username)
+    public static function failedAttempt($ip, $user)
     {
-        $userId = User::where('username', $username)->value('user_id');
-
-        $userId = $userId ?? 0;
+        $userId = $user->user_id ?? 0;
 
         DB::insert(
             "INSERT INTO osu_login_attempts (ip, failed_ids)

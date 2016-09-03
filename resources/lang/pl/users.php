@@ -54,7 +54,7 @@ return [
                     'button' => 'Dodaj tło',
                     'dropzone' => 'Upuść tutaj, aby dodać',
                     'dropzone_info' => 'Możesz także upuścić swoje tło tutaj, aby je dodać',
-                    'restriction_info' => "Dodawanie jest dostępne tylko dla <a href='".config('osu.urls.support-the-game')."' target='_blank'>supporterów</a> ",
+                    'restriction_info' => "Dodawanie jest dostępne tylko dla <a href='".osu_url('support-the-game')."' target='_blank'>supporterów</a> ",
                     'size_info' => 'Rozmiary nagłówka powinny być przynajmniej 2700x500',
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
@@ -95,7 +95,7 @@ return [
                 'recent_entries' => 'Ostatnio zdobyte kudosu',
                 'title' => 'Kudosu!',
                 'total' => 'Ilość zdobytego kudosu',
-                'total_info' => 'Bazowane na tym, ile użytkownik zrobił dla modowania map. Spojrzyj <a href="'.config('osu.urls.user.kudosu').'">tutaj</a>, aby dowiedzieć się więcej.',
+                'total_info' => 'Bazowane na tym, ile użytkownik zrobił dla modowania map. Spojrzyj <a href="'.osu_url('user.kudosu').'">tutaj</a>, aby dowiedzieć się więcej.',
             ],
             'me' => [
                 'title' => 'me!',
@@ -144,7 +144,7 @@ return [
             'description' => '<strong>ja!</strong> to twoje osobiste, personalizowalne miejsce na twoim profilu.',
             'edit_big' => 'Edytuj mnie!',
             'placeholder' => 'Pisz tutaj',
-            'restriction_info' => "Musisz być <a href='".config('osu.urls.support-the-game')."' target='_blank'>supporterem</a>, aby odblokować tę funkcję.",
+            'restriction_info' => "Musisz być <a href='".osu_url('support-the-game')."' target='_blank'>supporterem</a>, aby odblokować tę funkcję.",
         ],
         'plays_with' => [
             '_' => 'Gra używając',

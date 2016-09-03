@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
+@extends('master', [
     'current_section' => 'community',
     'current_action' => 'contests',
     'title' => "Contest: {$contest->name}",
@@ -23,7 +23,11 @@
     'body_additional_classes' => 'osu-layout--body-darker'
 ])
 
-@section("content")
+@section('content')
+    @include('objects.css-override', ['mapping' => [
+        '.osu-page-header-v2--contests' => $contest->header_url,
+    ]])
+
     <div class="osu-layout__row">
         <div class="osu-page-header-v2 osu-page-header-v2--contests">
             <div class="osu-page-header-v2__overlay"></div>
@@ -34,21 +38,19 @@
     <div class="osu-layout__row osu-layout__row--page-contests">
         <div class="page-contents__content--contests">
             <div class="contest__description">{!! $contest->description !!}</div>
-            <div class="js-react--contestTrackplayer"></div>
+            @if ($contest->ends_at->isPast())
+                <div class='contest__voting-ended'>{{trans('contest.over')}}</div>
+            @endif
+            @yield('contest-entries')
         </div>
     </div>
 @endsection
 
-@section("script")
+@section('script')
   @parent
-
-  <script id="json-tracks" type="application/json">
-    {!! json_encode($tracks) !!}
-  </script>
-
   <script id="json-contest" type="application/json">
-    {!! json_encode(['id' => $contest->id]) !!}
+    {!! json_encode(fractal_api_serialize_item($contest, new App\Transformers\ContestTransformer())) !!}
   </script>
-
-  <script src="{{ elixir("js/react/contest-page.js") }}" data-turbolinks-track></script>
+  @yield('contest-javascript')
+  <script src="{{ elixir("js/react/contest.js") }}" data-turbolinks-track></script>
 @stop

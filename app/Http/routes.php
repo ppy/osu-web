@@ -28,31 +28,32 @@
 */
 
 // home section
-if (Config::get('app.debug')) {
-    Route::get('/', ['as' => 'home', 'uses' => 'HomeController@getLanding']);
-} else {
-    Route::get('/', ['as' => 'home', function () {
-        $host = Request::getHttpHost();
-        $subdomain = substr($host, 0, strpos($host, '.'));
-        $redirect_path = $subdomain === 'store' ? '/store' : '/forum';
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
-        return Redirect::to($redirect_path);
-    }]);
-}
-
-Route::get('/home/news', ['as' => 'news', 'uses' => 'HomeController@getNews']);
 Route::get('/home/download', ['as' => 'download', 'uses' => 'HomeController@getDownload']);
 Route::get('/home/changelog', ['as' => 'changelog', 'uses' => 'HomeController@getChangelog']);
 Route::get('/home/support', ['as' => 'support-the-game', 'uses' => 'HomeController@supportTheGame']);
 
 Route::get('/icons', 'HomeController@getIcons');
 
+// featured artists
+Route::get('/beatmaps/artists', ['as' => 'artist.index', 'uses' => 'ArtistsController@index']);
+Route::get('/beatmaps/artists/{artist_id}', ['as' => 'artist.show', 'uses' => 'ArtistsController@show']);
+
 // beatmapsets
 Route::get('/beatmaps/{beatmaps}/scores', ['as' => 'beatmaps.scores', 'uses' => 'BeatmapsController@scores']);
-Route::get('/b/{beatmaps}', ['as' => 'beatmaps.show', 'uses' => 'BeatmapsController@show']);
+Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
+
+// redirects to beatmapset anyways so there's no point
+// in having an another redirect on top of that
+Route::get('/b/{beatmaps}', ['uses' => 'BeatmapsController@show']);
+
 Route::get('/beatmapsets/search/{filters?}', ['as' => 'beatmapsets.search', 'uses' => 'BeatmapsetsController@search']);
-Route::resource('/beatmapsets', 'BeatmapsetsController', ['only' => ['index']]);
-Route::get('/s/{beatmapsets}', ['as' => 'beatmapsets.show', 'uses' => 'BeatmapsetsController@show']);
+Route::resource('/beatmapsets', 'BeatmapsetsController', ['only' => ['index', 'show']]);
+
+Route::get('/s/{beatmapsets}', function ($beatmapsets) {
+    return ujs_redirect(route('beatmapsets.show', ['beatmapsets' => $beatmapsets]));
+});
 
 // beatmapset discussions
 Route::get('beatmapsets/{beatmapsets}/discussion', ['as' => 'beatmapsets.discussion', 'uses' => 'BeatmapsetsController@discussion']);
@@ -60,9 +61,6 @@ Route::put('beatmapsets/{beatmapsets}/nominate', ['as' => 'beatmapsets.nominate'
 Route::put('beatmapsets/{beatmapsets}/disqualify', ['as' => 'beatmapsets.disqualify', 'uses' => 'BeatmapsetsController@disqualify']);
 Route::put('beatmap-discussions/{beatmap_discussions}/vote', ['uses' => 'BeatmapDiscussionsController@vote', 'as' => 'beatmap-discussions.vote']);
 Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['store', 'update']]);
-
-// featured artists
-Route::get('/beatmaps/artists/{artist_id}', ['as' => 'artist.show', 'uses' => 'ArtistsController@show']);
 
 // contests
 Route::get('/community/contests/{contest_id}', ['as' => 'contest.show', 'uses' => 'ContestsController@show']);
@@ -90,6 +88,13 @@ Route::get('/community/profile/{id}', function ($id) {
 Route::get('/community/slack', ['as' => 'slack', 'uses' => 'CommunityController@getSlack']);
 Route::post('/community/slack/agree', ['as' => 'slack.agree', 'uses' => 'CommunityController@postSlackAgree']);
 
+Route::resource('matches', 'MatchesController', ['only' => ['show']]);
+Route::get('/matches/{matches}/history', ['as' => 'matches.history', 'uses' => 'MatchesController@history']);
+
+Route::get('/mp/{matches}', function ($matches) {
+    return ujs_redirect(route('matches.show', ['matches' => $matches]));
+});
+
 Route::post('users/check-username-availability', ['as' => 'users.check-username-availability', 'uses' => 'UsersController@checkUsernameAvailability']);
 Route::post('users/login', ['as' => 'users.login', 'uses' => 'UsersController@login']);
 Route::delete('users/logout', ['as' => 'users.logout', 'uses' => 'UsersController@logout']);
@@ -116,6 +121,7 @@ Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);
 // catchall controllers
 Route::controller('/notifications', 'NotificationController');
 Route::controller('/store', 'StoreController', [
+    'getListing' => 'store.products.index',
     'getProduct' => 'store.product',
     'putRequestNotification' => 'store.request-notification',
 ]);

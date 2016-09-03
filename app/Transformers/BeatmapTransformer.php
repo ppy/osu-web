@@ -28,6 +28,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
     protected $availableIncludes = [
         'scoresBest',
         'failtimes',
+        'beatmapset',
     ];
 
     public function transform(Beatmap $beatmap = null)
@@ -81,5 +82,10 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
         }
 
         return $this->collection($failtimes, new BeatmapFailtimesTransformer);
+    }
+
+    public function includeBeatmapset(Beatmap $beatmap)
+    {
+        return $this->item($beatmap->beatmapset, new BeatmapsetTransformer);
     }
 }
