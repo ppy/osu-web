@@ -20,12 +20,16 @@ el = React.createElement
 
 class MPHistory.Content extends React.Component
   teamScores: (eventIndex) ->
+    return if !@props.events[eventIndex].game?
+
     @scoresCache ?= {}
 
     if !@scoresCache[eventIndex]?
       scores =
         blue: 0
         red: 0
+
+      return scores if !@props.events[eventIndex].game.data.end_time?
 
       for score in @props.events[eventIndex].game.data.scores.data
         continue if !score.pass
