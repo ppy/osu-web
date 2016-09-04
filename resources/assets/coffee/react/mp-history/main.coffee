@@ -37,11 +37,8 @@ class MPHistory.Main extends React.Component
     @loadHistory @state.since
 
   componentDidUpdate: (props, state) ->
-    if !@state.initialLoaded
-      target = $('.js-mp-history--event-box')[0]
-      $(window).stop().scrollTo target.scrollHeight, 500
-
-      @setState initialLoaded: true
+    target = $('.js-mp-history--event-box')[0]
+    $(window).stop().scrollTo target.scrollHeight, 500
 
   componentWillUnmount: ->
     clearTimeout @timeout
