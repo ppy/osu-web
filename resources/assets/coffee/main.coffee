@@ -32,6 +32,7 @@ $(document).on 'submit', 'form', LoadingOverlay.show
 @twitchPlayer ?= new TwitchPlayer
 @landingGraph ?= new LandingGraph
 @landingHero ?= new LandingHero
+@userPageChart ?= new UserPageChart
 @timeago ?= new Timeago
 @osuLayzr ?= new OsuLayzr
 @nav ?= new Nav

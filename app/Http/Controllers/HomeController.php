@@ -21,6 +21,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BanchoStats;
 use App\Models\Count;
+use Carbon\Carbon;
 use Auth;
 use Request;
 use View;
@@ -63,7 +64,13 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 
-        return view('home.account', compact('user'));
+        $timeAgo = Carbon::now()->subDay();
+        $stats = BanchoStats::where('date', '>=', $timeAgo)
+            ->whereRaw('banchostats_id mod 10 = 0')
+            ->get();
+        $currentOnline = ($stats->isEmpty() ? 0 : $stats->last()->users_osu);
+
+        return view('home.account', compact('user', 'currentOnline', 'stats'));
     }
 
     public function getChangelog()

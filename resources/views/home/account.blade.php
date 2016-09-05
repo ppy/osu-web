@@ -29,12 +29,18 @@
             >
                 <div class="user-header__overlay"></div>
 
-                <span class="user-header__text user-header__text--large">
-                    <span class="user-header__text user-header__text--large user-header__text--bold">
-                        {{ trans('users.settings.account') }}
+                <div class="user-header__text-box">
+                    <span class="user-header__text user-header__text--large">
+                        <span class="user-header__text user-header__text--large user-header__text--bold">
+                            {{ trans('users.settings.account') }}
+                        </span>
+                        {{ trans('users.settings.settings') }}
                     </span>
-                    {{ trans('users.settings.settings') }}
-                </span>
+
+                    @include('layout._user-notifications')
+                </div>
+
+                @include('layout._users-active-chart')
             </div>
         </div>
 
@@ -76,6 +82,10 @@
 
     <script id="json-avatar" type="application/json">
         {"avatarUrl": {!! json_encode($user->profileCustomization->avatar->url()) !!}}
+    </script>
+
+    <script id="json-stats" type="application/json">
+        {!! json_encode($stats) !!}
     </script>
 
     <script src="{{ elixir('js/react/misc/avatar-upload.js') }}" data-turbolinks-track></script>

@@ -19,8 +19,7 @@
 
 .user-header {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  align-items: flex-end;
 
   height: 150px;
   width: 100%;
@@ -43,6 +42,14 @@
     height: 100%;
   }
 
+  &__text-box {
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+
+    padding-bottom: @spacing * 2;
+  }
+
   &__text {
     font-size: 12px;
     color: @grey-f;
@@ -59,9 +66,69 @@
     &--bold {
       font-weight: 600;
     }
+  }
+
+  &__chart-box {
+    margin-left: auto;
+    margin-right: @spacing * 5;
+
+    height: 100px;
+    width: 350px;
+
+    background-color: fade(@grey-0, 50%);
+  }
+
+  &__chart-area {
+    height: 60px;
+  }
+
+  &__chart-line {
+    stroke: @yellow;
+    stroke-width: 1px;
+    fill: transparent;
+  }
+
+  &__chart-dot {
+    fill: @grey-3;
+
+    &--outer {
+      fill: @yellow;
+    }
+  }
+
+  &__stats-box {
+    height: 40px;
+    display: flex;
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    flex-grow: 1;
+
+    padding-left: @spacing;
+
+    border-width: 0 1px 0 0;
+    border-style: solid;
+    border-image: linear-gradient(to bottom, @grey-0, transparent) 1 100%;
 
     &:last-of-type {
-      padding-bottom: @spacing * 2;
+      border: none;
+    }
+  }
+
+  &__stat-text {
+    &--label {
+      font-size: 10px;
+      font-weight: 700;
+      color: @grey-f;
+    }
+
+    &--number {
+      font-size: 15px;
+      color: @yellow;
     }
   }
 }
