@@ -414,6 +414,16 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkHiddenForumPostView($user)
+    {
+        $this->ensureLoggedIn($user);
+
+        // not sure if this is enough :/
+        if ($user->isGMT()) {
+            return 'ok';
+        }
+    }
+
     public function checkLivestreamPromote($user)
     {
         if ($user !== null && $user->isGMT()) {

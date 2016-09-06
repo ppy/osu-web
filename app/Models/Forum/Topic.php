@@ -118,7 +118,7 @@ class Topic extends Model
     public function removePost($post, $user = null)
     {
         DB::transaction(function () use ($post, $user) {
-            $post->delete();
+            $post->forceDelete();
 
             if ($this->posts()->exists() === true) {
                 $this->refreshCache();
@@ -343,7 +343,13 @@ class Topic extends Model
     public function postsCount()
     {
         if ($this->postsCount === null) {
-            $this->postsCount = $this->posts()->count();
+            $query = $this->posts();
+
+            if (priv_check('HiddenForumPostView')->can()) {
+                $query->withTrashed();
+            }
+
+            $this->postsCount = $query->count();
         }
 
         return $this->postsCount;

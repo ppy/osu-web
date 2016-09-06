@@ -193,6 +193,10 @@ class TopicsController extends Controller
                 ->orderBy('post_id', 'desc');
         }
 
+        if (priv_check('HiddenForumPostView')->can()) {
+            $posts = $posts->withTrashed();
+        }
+
         $posts = $posts
             ->take(20)
             ->with('topic')

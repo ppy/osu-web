@@ -25,9 +25,12 @@ use App\Models\Log;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'phpbb_posts';
     protected $primaryKey = 'post_id';
     protected $guarded = [];
