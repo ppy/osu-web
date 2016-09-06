@@ -194,7 +194,7 @@ function issue_icon($issue)
 function post_url($topicId, $postId, $jumpHash = true, $tail = false)
 {
     $postIdParamKey = 'start';
-    if ($tail === true) {
+    if ($tail) {
         $postIdParamKey = 'end';
     }
 
@@ -311,7 +311,7 @@ function footer_links()
 
 function presence($string, $valueIfBlank = null)
 {
-    return present($string) === true ? $string : $valueIfBlank;
+    return present($string)? $string : $valueIfBlank;
 }
 
 function present($string)
@@ -461,7 +461,7 @@ function fast_imagesize($url)
  */
 function get_int($string)
 {
-    if (present($string) === true) {
+    if (present($string)) {
         return (int) $string;
     }
 }
