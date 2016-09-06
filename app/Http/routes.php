@@ -151,6 +151,7 @@ Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
     Route::get('p/{posts}', ['as' => 'forum.posts.show', 'uses' => 'PostsController@show']);
     Route::get('posts/{posts}/raw', ['as' => 'forum.posts.raw', 'uses' => 'PostsController@raw']);
     Route::resource('posts', 'PostsController', ['only' => ['destroy', 'update', 'edit']]);
+    Route::post('posts/{posts}/hide', ['as' => 'forum.posts.hide', 'uses' => 'PostsController@hide']);
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {

@@ -17,6 +17,7 @@
 --}}
 <?php
     if (!isset($options['deleteLink'])) { $options['deleteLink'] = false; }
+    if (!isset($options['softDeleteLink'])) { $options['softDeleteLink'] = false; }
     if (!isset($options['editLink'])) { $options['editLink'] = false; }
     if (!isset($options['overlay'])) { $options['overlay'] = false; }
     if (!isset($options['signature'])) { $options['signature'] = true; }
@@ -29,7 +30,7 @@
     data-post-id="{{ $post->post_id }}"
     data-post-position="{{ $options["postPosition"] }}"
 >
-    <div class="forum-post">
+    <div class="forum-post {{ $post->deleted_at ? 'forum-post--hidden' : '' }}">
         @if ($post->userNormalized()->is_special)
             <div
                 class="forum-post__stripe"
@@ -95,6 +96,23 @@
                         data-remote="1"
                     >
                         <i class="fa fa-trash"></i>
+                    </a>
+                @endif
+                @if ($options["softDeleteLink"] === true)
+                    @php
+                        $softDeleteString = $post->deleted_at ? 'unhide' : 'hide'
+                    @endphp
+                    <a
+                        title="{{ trans('forum.post.actions.'.$softDeleteString) }}"
+                        data-tooltip-position="left center"
+                        href="{{ route("forum.posts.hide", $post) }}"
+                        class="forum-post-actions__action soft-delete-post-link"
+                        id="{{ $softDeleteString }}"
+                        data-method="post"
+                        data-confirm="{{ trans("forum.post.confirm_".$softDeleteString) }}"
+                        data-remote="1"
+                    >
+                        <i class="fa fa-{{ $post->deleted_at ? 'eye' : 'eye-slash' }}"></i>
                     </a>
                 @endif
                 @if ($options["replyLink"] === true)

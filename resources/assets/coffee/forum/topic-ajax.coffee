@@ -38,6 +38,28 @@ $(document).on 'ajax:success', '.delete-post-link', (_event, data) ->
       osu.pageChange()
 
 
+$(document).on 'ajax:success', '.soft-delete-post-link', (_event, data) ->
+  $post = $(".js-forum-post[data-post-id=#{data.postId}]>.forum-post")
+  toggle = _event.target
+
+  switch toggle.id
+    when 'hide'
+      $post.addClass 'forum-post--hidden'
+      toggle.id = 'unhide'
+      $(toggle).children()
+        .removeClass 'fa-eye-slash'
+        .addClass 'fa-eye'
+    when 'unhide'
+      $post.removeClass 'forum-post--hidden'
+      toggle.id = 'hide'
+      $(toggle).children()
+        .removeClass 'fa-eye'
+        .addClass 'fa-eye-slash'
+
+  $(toggle).prop 'title', osu.trans "forum.post.actions.#{toggle.id}"
+  $(toggle).data 'confirm', osu.trans "forum.post.confirm_#{toggle.id}"
+
+
 $(document).on 'ajax:success', '.edit-post-link', (e, data, status, xhr) ->
   # ajax:complete needs to be triggered early because the link (target) is
   # removed in this callback.

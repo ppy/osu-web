@@ -29,6 +29,7 @@
         'post' => $post,
         'options' => [
             'deleteLink' => $withDeleteLink,
+            'softDeleteLink' => priv_check('ForumPostDelete', $post)->can(), 
             'editLink' => priv_check('ForumPostEdit', $post)->can(),
             'postPosition' => $postsPosition[$post->post_id],
             'replyLink' => priv_check('ForumTopicReply', $topic)->can(),
