@@ -34,6 +34,9 @@ return [
             'slack-error' => 'Um erro ocorreu nos servidores do Slack. Tente novamente em alguns minutos.',
         ],
     ],
+    'beatmaps' => [ 
+        'standard-converts-only' => 'Apenas o modo OSU! pode ter marcado em outros modos.', 
+    ], 
     'logged_out' => 'Você foi deslogado. Faça login e tente novamente.',
     'supporter_only' => 'Você precisa ter uma supporter tag para usar esta função.',
     'no_restricted_access' => 'Você não pode executar esta ação enquanto sua conta estiver em modo restrito.',
