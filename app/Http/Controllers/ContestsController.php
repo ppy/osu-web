@@ -33,29 +33,14 @@ class ContestsController extends Controller
     {
         $contest = Contest::findOrFail($id);
 
-        switch ($contest->type) {
-            case 'art':
-                return view('contests.art')
-                    ->with('contest', $contest)
-                    ->with('entries', $this->prepareEntries($contest));
-                break;
-
-            case 'beatmap':
-                return view('contests.beatmap')
-                    ->with('contest', $contest)
-                    ->with('entries', $this->prepareEntries($contest));
-                break;
-
-            case 'music':
-                return view('contests.music')
-                    ->with('contest', $contest)
-                    ->with('entries', $this->prepareEntries($contest));
-                break;
-
-            default:
-                // error
-                break;
+        $user = Auth::user();
+        if (!$contest->visible && !$user || !$user->isAdmin()) {
+            abort(404);
         }
+
+        return view("contests.{$contest->type}")
+                ->with('contest', $contest)
+                ->with('entries', $this->prepareEntries($contest));
     }
 
     public function vote($id)
