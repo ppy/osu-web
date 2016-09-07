@@ -42,6 +42,7 @@ return [
             '_' => 'beatmaps',
             'show' => 'info',
             'index' => 'lista',
+            'artists' => 'artistas em destaque',
             // 'getPacks' => 'packs',
             // 'getCharts' => 'charts',
         ],
@@ -64,14 +65,19 @@ return [
             'getSupport' => 'suporte',
             'getLive' => 'ao vivo',
             'getSlack' => 'osu!dev',
+            'contests' => 'disputas',
             'profile' => 'perfil',
             'tournaments' => 'torneios',
             'tournaments-index' => 'torneios',
-            'tournaments-show' => 'info de torneios',
+            'tournaments-show' => 'informações de torneios',
             'forum-topics-create' => 'fórum',
             'forum-topics-show' => 'fórum',
             'forum-forums-index' => 'fórum',
             'forum-forums-show' => 'fórum',
+        ],
+         'multiplayer' => [ 
+             '_' => 'multiplayer', 
+             'show' => 'partida',
         ],
         'error' => [
             '_' => 'error',
@@ -129,6 +135,37 @@ return [
             ],
         ],
     ],
+    
+    'footer' => [
+        'general' => [
+            '_' => 'Geral',
+            'home' => 'Home',
+            'changelog' => 'Changelog',
+            'beatmaps' => 'Listas de beatmaps',
+            'download' => 'Download osu!',
+            'wiki' => 'Wiki',
+        ],
+        'help' => [
+            '_' => 'Ajuda & Comunidade',
+            'faq' => 'FAQ',
+            'forum' => 'Forum da comunidade',
+            'livestreams' => 'Live Streams',
+            'report' => 'Informe um problema',
+        ],
+        'support' => [
+            '_' => 'Support osu!',
+            'tags' => 'Supporter Tags',
+            'merchandise' => 'Mercadoria',
+        ],
+        'legal' => [
+            '_' => 'Legal & Status',
+            'tos' => 'Termos de serviço',
+            'copyright' => 'Copyright (DMCA)',
+            'serverStatus' => 'Status do servidor',
+            'osuStatus' => '@osustatus',
+        ],
+    ],
+
     'errors' => [
         '404' => [
             'error' => 'Página não Encontrada',
@@ -170,5 +207,32 @@ return [
         ],
         // used by sentry if it returns an error
         'reference' => 'Se precisar, aqui está um código que você pode dar para o suporte!',
+    ],
+];
+
+'popup_login' => [
+        'login' => [
+            'email' => 'endereço de e-mail',
+            'forgot' => "Esqueci meus dados",
+            'password' => 'senha',
+            'title' => 'Entre para continuar',
+
+            'error' => [
+                'email' => "Usuario ou endereço de email não existem",
+                'password' => 'Senha incorreta',
+            ],
+        ],
+
+        'register' => [
+            'info' => "Você precisa de uma conta, senhor. Por que você não tem uma?",
+            'title' => "Não tem uma conta?",
+        ],
+    ],
+
+    'popup_user' => [
+        'links' => [
+            'profile' => 'Meu Perfil',
+            'logout' => 'Log Out',
+        ],
     ],
 ];
