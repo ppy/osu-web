@@ -31,7 +31,7 @@ class Contest.Entry extends React.Component
           el TrackPreview, track: @props.entry
       if @props.options.showDL
         td className: 'tracklist__dl tracklist__dl--contest',
-          a className: 'tracklist__link tracklist__link--contest-dl', href: '#', title: 'Download Beatmap Template',
+          a className: 'tracklist__link tracklist__link--contest-dl', href: @props.entry.preview, title: osu.trans('contest.beatmaps.download'),
             i className: 'fa fa-fw fa-cloud-download'
       if @props.entry.actual_name
         td className: "tracklist__title#{if @props.contest.show_votes then ' tracklist__row--show-votes' else ''}", style: { backgroundSize: "#{relativeVotePercentage}%, 100%" },
