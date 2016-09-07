@@ -90,7 +90,8 @@ class ContestsController extends Controller
             if ($contest->show_votes) {
                 // add extra info for contests that are showing votes
                 $entry['actual_name'] = $contestEntry->name;
-                $entry['votes'] = $voteAggregates->where('contest_entry_id', $contestEntry->id)->first()->votes;
+                $aggregate = $voteAggregates->where('contest_entry_id', $contestEntry->id)->first();
+                $entry['votes'] = $aggregate ? $aggregate->votes : 0;
             }
 
             $entries[] = $entry;

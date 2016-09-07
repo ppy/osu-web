@@ -44,4 +44,7 @@ class Contest.Entry extends React.Component
         el Contest.Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, voteCount: @props.voteCount, maxVotes: @props.options.maxVotes, contest: @props.contest
 
       if @props.contest.show_votes
-        td className:'contest__vote-count', "#{@props.entry.votes} votes (#{votePercentage}%)"
+        td className:'contest__vote-count',
+          "#{@props.entry.votes} votes"
+          if not isNaN(votePercentage)
+            " (#{votePercentage}%)"
