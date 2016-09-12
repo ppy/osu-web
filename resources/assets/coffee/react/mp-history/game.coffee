@@ -50,7 +50,7 @@ class MPHistory.Game extends React.Component
             lookupUser: @props.lookupUser
             key: m.slot
 
-      if showTeams
+      if showTeams && @props.event.game.data.end_time
         div {},
           div className: 'mp-history-game__team-scores',
             ['blue', 'red'].map (m) =>
