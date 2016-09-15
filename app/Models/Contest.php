@@ -66,7 +66,7 @@ class Contest extends Model
     {
         $includes = ['entries'];
 
-        if ($this->type == 'art') {
+        if ($this->type === 'art') {
             $includes[] = 'entries.artMeta';
         }
 

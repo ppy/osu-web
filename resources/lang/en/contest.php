@@ -21,6 +21,6 @@
 return [
     'over' => 'Voting for this contest has ended',
     'beatmaps' => [
-      'download' => 'Download Entry'
+      'download' => 'Download Entry',
     ],
 ];

@@ -42,6 +42,7 @@ class ContestEntryTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($entry, function ($entry) {
             $voteCounts = $entry->contest->cachedVoteAggregates()->where('contest_entry_id', $entry->id)->first();
+
             return [
                 'actual_name' => $entry->name,
                 'votes' => $voteCounts ? $voteCounts->votes : 0,
@@ -59,6 +60,7 @@ class ContestEntryTransformer extends Fractal\TransformerAbstract
 
         return $this->item($entry, function ($entry) {
             $size = fast_imagesize($entry->entry_url);
+
             return [
                 'width' => $size[0],
                 'height' => $size[1],

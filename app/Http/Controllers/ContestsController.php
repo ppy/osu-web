@@ -21,11 +21,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Contest;
 use App\Models\ContestVote;
-use App\Transformers\ContestTransformer;
-use App\Transformers\ContestEntryTransformer;
 use Auth;
 use Request;
-use Cache;
 
 class ContestsController extends Controller
 {
