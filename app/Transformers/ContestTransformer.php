@@ -21,9 +21,14 @@ namespace App\Transformers;
 
 use App\Models\Contest;
 use League\Fractal;
+use League\Fractal\ParamBag;
 
 class ContestTransformer extends Fractal\TransformerAbstract
 {
+    protected $availableIncludes = [
+        'entries',
+    ];
+
     public function transform(Contest $contest)
     {
         return [
@@ -36,5 +41,10 @@ class ContestTransformer extends Fractal\TransformerAbstract
             'ends_at' => $contest->ends_at->toIso8601String(),
             'show_votes' => $contest->show_votes,
         ];
+    }
+
+    public function includeEntries(Contest $contest)
+    {
+        return $this->collection($contest->entries, new ContestEntryTransformer);
     }
 }

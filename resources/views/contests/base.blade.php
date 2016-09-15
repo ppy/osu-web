@@ -19,7 +19,7 @@
     'current_section' => 'community',
     'current_action' => 'contests',
     'title' => "Contest: {$contest->name}",
-    'pageDescription' => strip_tags($contest->description),
+    'pageDescription' => strip_tags(Markdown::convertToHtml($contest->description)),
     'body_additional_classes' => 'osu-layout--body-darker'
 ])
 
@@ -49,8 +49,7 @@
 @section('script')
   @parent
   <script id="json-contest" type="application/json">
-    {!! json_encode(fractal_api_serialize_item($contest, new App\Transformers\ContestTransformer())) !!}
+    {!! $contestJson !!}
   </script>
-  @yield('contest-javascript')
   <script src="{{ elixir("js/react/contest.js") }}" data-turbolinks-track></script>
 @stop
