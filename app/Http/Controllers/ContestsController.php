@@ -37,9 +37,13 @@ class ContestsController extends Controller
             abort(404);
         }
 
-        return view("contests.{$contest->type}")
-                ->with('contest', $contest)
-                ->with('contestJson', $contest->defaultJson($user));
+        if ($contest->isShowingEntries()) {
+            return view("contests.voting.{$contest->type}")
+                    ->with('contest', $contest)
+                    ->with('contestJson', $contest->defaultJson($user));
+        } else {
+            return view('contests.enter')->with('contest', $contest);
+        }
     }
 
     public function vote($id)
@@ -53,5 +57,16 @@ class ContestsController extends Controller
         $contest->vote($user, $entry);
 
         return $contest->defaultJson($user);
+    }
+
+    public function submit($id)
+    {
+        $user = Auth::user();
+        $contest = Contest::findOrFail($id);
+
+        priv_check('ContestEnter', $contest)->ensureCan();
+
+        //todo: upload accept logic
+        abort(501);
     }
 }

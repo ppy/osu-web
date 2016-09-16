@@ -37,19 +37,7 @@
     </div>
     <div class="osu-layout__row osu-layout__row--page-contests">
         <div class="page-contents__content--contests">
-            <div class="contest__description">{!! Markdown::convertToHtml($contest->description) !!}</div>
-            @if ($contest->ends_at->isPast())
-                <div class='contest__voting-ended'>{{trans('contest.over')}}</div>
-            @endif
-            @yield('contest-entries')
+            @yield('contest-content')
         </div>
     </div>
 @endsection
-
-@section('script')
-  @parent
-  <script id="json-contest" type="application/json">
-    {!! $contestJson !!}
-  </script>
-  <script src="{{ elixir("js/react/contest.js") }}" data-turbolinks-track></script>
-@stop

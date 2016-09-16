@@ -17,6 +17,16 @@
 --}}
 @extends('contests.base')
 
-@section('contest-entries')
-  <div class="js-react--contestArtList"></div>
+@section('contest-content')
+  <div class="contest__description">{!! Markdown::convertToHtml($contest->description_enter) !!}</div>
+
+  @if (!$contest->isSubmissionOpen())
+      @if ($contest->entry_starts_at->isPast())
+          <div class='contest__voting-ended'>{{trans('contest.entry.over')}}</div>
+      @else
+          <div class='contest__voting-ended'>{{trans('contest.entry.preparation')}}</div>
+      @endif
+  @else
+      {{-- upload logic --}}
+  @endif
 @endsection
