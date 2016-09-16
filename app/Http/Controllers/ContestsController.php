@@ -51,7 +51,6 @@ class ContestsController extends Controller
         priv_check('ContestVote', $contest)->ensureCan();
 
         $contest->vote($user, $entry);
-        $contest->fresh(['votes']);
 
         return $contest->defaultJson($user);
     }

@@ -56,7 +56,7 @@ class Contest extends Model
             $vote->delete();
         } else {
             // there's probably a race-condition here, but abusing this just results in the user diluting their vote... so *shrug*
-            if ($this->votes->where('user_id', $user->user_id)->count() < $this->max_votes) {
+            if ($this->votes()->where('user_id', $user->user_id)->count() < $this->max_votes) {
                 $this->votes()->create(['user_id' => $user->user_id, 'contest_entry_id' => $entry->id]);
             }
         }
