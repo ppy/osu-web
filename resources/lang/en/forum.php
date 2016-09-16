@@ -35,14 +35,12 @@ return [
     'pinned_topics' => 'Pinned Topics',
     'post' => [
         'confirm_delete' => 'Really delete post?',
-        'confirm_hide' => 'Really hide post?',
-        'confirm_unhide' => 'Really unhide post?',
+        'confirm_undelete' => 'Really undelete post?',
         'edited' => 'Last edited by :user on :when, edited :count times in total.',
         'posted_at' => 'posted :when',
         'actions' => [
             'delete' => 'Delete post',
-            'hide' => 'Hide post',
-            'unhide' => 'Unhide post',
+            'undelete' => 'Undelete post',
             'edit' => 'Edit post',
         ],
     ],

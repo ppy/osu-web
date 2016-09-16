@@ -26,6 +26,7 @@ use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class Post extends Model
 {
@@ -45,6 +46,17 @@ class Post extends Model
     ];
 
     private $normalizedUsers = [];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        if (!priv_check('ForumTopicModerate')->can()) {
+            static::addGlobalScope(new SoftDeletingScope);
+        }
+    }
+
+    public static function bootSoftDeletes() { }
 
     public function forum()
     {

@@ -94,7 +94,10 @@ class @Forum
       .toggleClass 'hidden', lastPostLoaded
 
     if !(currentUser.isAdmin || currentUser.isGMT)
-      $('.soft-delete-post-link').hide()
+      $('.delete-post-link').hide()
+
+    if lastPostLoaded
+      $(@endPost()).find('.delete-post-link').css(display: '')
 
 
   refreshCounter: =>

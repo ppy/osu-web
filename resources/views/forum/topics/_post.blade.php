@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <?php
-    if (!isset($options['softDeleteLink'])) { $options['softDeleteLink'] = false; }
+    if (!isset($options['deleteLink'])) { $options['deleteLink'] = false; }
     if (!isset($options['editLink'])) { $options['editLink'] = false; }
     if (!isset($options['overlay'])) { $options['overlay'] = false; }
     if (!isset($options['signature'])) { $options['signature'] = true; }
@@ -84,21 +84,21 @@
                         <i class="fa fa-edit"></i>
                     </a>
                 @endif
-                @if ($options["softDeleteLink"] === true)
+                @if ($options["deleteLink"] === true)
                     @php
-                        $softDeleteString = $post->deleted_at ? 'unhide' : 'hide'
+                        $deleteString = $post->deleted_at ? 'undelete' : 'delete'
                     @endphp
                     <a
-                        title="{{ trans('forum.post.actions.'.$softDeleteString) }}"
+                        title="{{ trans('forum.post.actions.'.$deleteString) }}"
                         data-tooltip-position="left center"
-                        href="{{ route("forum.posts.hide", $post) }}"
-                        class="forum-post-actions__action soft-delete-post-link"
-                        id="{{ $softDeleteString }}"
-                        data-method="post"
-                        data-confirm="{{ trans("forum.post.confirm_".$softDeleteString) }}"
+                        href="{{ route("forum.posts.destroy", $post) }}"
+                        class="forum-post-actions__action delete-post-link"
+                        id="{{ $deleteString }}"
+                        data-method="delete"
+                        data-confirm="{{ trans("forum.post.confirm_".$deleteString) }}"
                         data-remote="1"
                     >
-                        <i class="fa fa-{{ $post->deleted_at ? 'eye' : 'eye-slash' }}"></i>
+                        <i class="fa fa-{{ $post->deleted_at ? 'undo' : 'trash' }}"></i>
                     </a>
                 @endif
                 @if ($options["replyLink"] === true)

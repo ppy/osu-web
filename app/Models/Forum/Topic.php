@@ -24,9 +24,13 @@ use App\Models\User;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class Topic extends Model
 {
+    use SoftDeletes;
+
     const DEFAULT_ORDER_COLUMN = 'topic_last_post_time';
 
     const STATUS_LOCKED = 1;
@@ -59,6 +63,17 @@ class Topic extends Model
         'poll_vote_change' => 'boolean',
         'topic_approved' => 'boolean',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        if (!priv_check('ForumTopicModerate')->can()) {
+            static::addGlobalScope(new SoftDeletingScope);
+        }
+    }
+
+    public static function bootSoftDeletes() { }
 
     public static function createNew($forum, $params, $poll = null)
     {
@@ -118,12 +133,12 @@ class Topic extends Model
     public function removePost($post, $user = null)
     {
         DB::transaction(function () use ($post, $user) {
-            $post->forceDelete();
+            $post->delete();
 
-            if ($this->posts()->exists() === true) {
+            if ($this->posts()->whereNull('deleted_at')->exists() === true) {
                 $this->refreshCache();
             } else {
-                $this->deleteWithDependencies();
+                $this->delete();
             }
 
             if ($this->forum !== null) {
@@ -136,6 +151,31 @@ class Topic extends Model
 
             if ($user !== null && $user->user_id !== $post->poster_id) {
                 Log::logModerateForumPost('LOG_DELETE_POST', $post);
+            }
+        });
+
+        return true;
+    }
+
+    public function restorePost($post, $user = null)
+    {
+        DB::transaction (function () use ($post, $user) {
+            $post->restore();
+
+            if ($this->trashed()) {
+                $this->restore();
+            }
+
+            if ($this->posts()->exists() === true) {
+                $this->refreshCache();
+            }
+
+            if ($this->forum !== null) {
+                $this->forum->refreshCache();
+            }
+
+            if ($post->user !== null) {
+                $post->user->refreshForumCache($this->forum, -1);
             }
         });
 
@@ -343,13 +383,7 @@ class Topic extends Model
     public function postsCount()
     {
         if ($this->postsCount === null) {
-            $query = $this->posts();
-
-            if (priv_check('ForumTopicModerate')->can()) {
-                $query->withTrashed();
-            }
-
-            $this->postsCount = $query->count();
+            $this->postsCount = $this->posts()->count();
         }
 
         return $this->postsCount;
@@ -416,13 +450,13 @@ class Topic extends Model
 
     public function setPostsCountCache()
     {
-        $this->topic_replies = -1 + $this->posts()->where('post_approved', true)->count();
-        $this->topic_replies_real = -1 + $this->posts()->count();
+        $this->topic_replies = -1 + $this->posts()->whereNull('deleted_at')->where('post_approved', true)->count();
+        $this->topic_replies_real = -1 + $this->posts()->whereNull('deleted_at')->count();
     }
 
     public function setFirstPostCache()
     {
-        $firstPost = $this->posts()->first();
+        $firstPost = $this->posts()->whereNull('deleted_at')->first();
 
         if ($firstPost === null) {
             $this->topic_first_post_id = null;
@@ -446,7 +480,7 @@ class Topic extends Model
 
     public function setLastPostCache()
     {
-        $lastPost = $this->posts()->last()->first();
+        $lastPost = $this->posts()->whereNull('deleted_at')->last()->first();
 
         if ($lastPost === null) {
             $this->topic_last_post_id = null;

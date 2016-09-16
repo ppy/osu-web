@@ -19,45 +19,44 @@ $(document).on 'ajax:success', '.delete-post-link', (_event, data) ->
   $el = $(".js-forum-post[data-post-id=#{data.postId}]")
   currentHeight = $el.css 'height'
 
-  $el
-    .css
-      minHeight: '0px'
-      height: currentHeight
-    .slideUp null, ->
-      $el.remove()
+  if currentUser.isAdmin || currentUser.isGMT
+    $post = $el.find '.forum-post'
+    toggle = _event.target
 
-      window.forum.setTotalPosts(window.forum.totalPosts() - 1)
+    switch toggle.id
+      when 'delete'
+        $post.addClass 'forum-post--hidden'
+        toggle.id = 'undelete'
+        $(toggle).children()
+          .removeClass 'fa-trash'
+          .addClass 'fa-undo'
+      when 'undelete'
+        $post.removeClass 'forum-post--hidden'
+        toggle.id = 'delete'
+        $(toggle).children()
+          .removeClass 'fa-undo'
+          .addClass 'fa-trash'
 
-      for post in window.forum.posts by -1
-        originalPosition = parseInt post.getAttribute('data-post-position'), 10
+    $(toggle).prop 'title', osu.trans "forum.post.actions.#{toggle.id}"
+    $(toggle).data 'confirm', osu.trans "forum.post.confirm_#{toggle.id}"
+  else
+    $el
+      .css
+        minHeight: '0px'
+        height: currentHeight
+      .slideUp null, ->
+        $el.remove()
 
-        break if originalPosition < data.postPosition
+        window.forum.setTotalPosts(window.forum.totalPosts() - 1)
 
-        post.setAttribute 'data-post-position', originalPosition - 1
+        for post in window.forum.posts by -1
+          originalPosition = parseInt post.getAttribute('data-post-position'), 10
 
-      osu.pageChange()
+          break if originalPosition < data.postPosition
 
+          post.setAttribute 'data-post-position', originalPosition - 1
 
-$(document).on 'ajax:success', '.soft-delete-post-link', (_event, data) ->
-  $post = $(".js-forum-post[data-post-id=#{data.postId}]>.forum-post")
-  toggle = _event.target
-
-  switch toggle.id
-    when 'hide'
-      $post.addClass 'forum-post--hidden'
-      toggle.id = 'unhide'
-      $(toggle).children()
-        .removeClass 'fa-eye-slash'
-        .addClass 'fa-eye'
-    when 'unhide'
-      $post.removeClass 'forum-post--hidden'
-      toggle.id = 'hide'
-      $(toggle).children()
-        .removeClass 'fa-eye'
-        .addClass 'fa-eye-slash'
-
-  $(toggle).prop 'title', osu.trans "forum.post.actions.#{toggle.id}"
-  $(toggle).data 'confirm', osu.trans "forum.post.confirm_#{toggle.id}"
+        osu.pageChange()
 
 
 $(document).on 'ajax:success', '.edit-post-link', (e, data, status, xhr) ->

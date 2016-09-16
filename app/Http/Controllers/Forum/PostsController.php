@@ -47,7 +47,11 @@ class PostsController extends Controller
 
         $deletedPostPosition = $post->topic->postPosition($post->post_id);
 
-        $post->topic->removePost($post, Auth::user());
+        if ($post->trashed()) {
+            $post->topic->restorePost($post, Auth::user());
+        } else {
+            $post->topic->removePost($post, Auth::user());
+        }
 
         $topic = Topic::find($post->topic_id);
 
@@ -60,26 +64,6 @@ class PostsController extends Controller
         return [
             'postId' => $post->post_id,
             'postPosition' => $deletedPostPosition,
-        ];
-    }
-
-    public function hide($id)
-    {
-        $post = Post::withTrashed()->findOrFail($id);
-
-        // For the regular user, hiding is pretty much
-        // the same as deleting, so both share a single permission
-        priv_check('ForumPostDelete', $post)->ensureCan();
-
-        // Using Laravel's builtin soft delete functionality
-        if ($post->trashed()) {
-            $post->restore();
-        } else {
-            $post->delete();
-        }
-
-        return [
-            'postId' => $id,
         ];
     }
 
