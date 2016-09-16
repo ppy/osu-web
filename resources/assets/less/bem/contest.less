@@ -4,13 +4,6 @@
   padding-left: @spacing * 2;
   padding-right: @spacing * 2;
   padding-bottom: @spacing * 2;
-
-  &__art-preview {
-    width: 256px;
-    height: 256px;
-    display: block;
-  }
-
   &__description {
     background-color: #293336;
     color: white;
@@ -33,6 +26,20 @@
     text-align: center;
   }
 
+  &__art-preview {
+    width: 256px;
+    height: 256px;
+    display: block;
+    &--smaller {
+      width: 128px;
+      height: 128px;
+    }
+    &--placed-2 {
+      width: 192px;
+      height: 192px;
+    }
+  }
+
   &__entry {
     &--art {
       margin: 10px;
@@ -42,6 +49,26 @@
       background-size: cover;
       background-position: top;
       transform: translateZ(0);
+    }
+    &--result {
+      margin-bottom: 48px;
+    }
+    &--placed-1 {
+      margin-bottom: 68px;
+    }
+    &--placed-2 {
+      width: 192px;
+      height: 192px;
+      margin-bottom: 68px;
+    }
+    &--placed-3 {
+      width: 128px;
+      height: 128px;
+      margin-bottom: 68px;
+    }
+    &--smaller-art {
+      width: 128px;
+      height: 128px;
     }
     &--selected {
         border: 4px solid #ffa500;
@@ -54,6 +81,10 @@
       align-items: flex-start;
       flex-wrap: wrap;
       justify-content: space-around;
+    }
+
+    &--top3 {
+      align-items: baseline;
     }
   }
 
@@ -97,6 +128,13 @@
     align-items: center;
     justify-content: center;
 
+    &--smaller {
+      width: 16px;
+      height: 16px;
+      border-width: 0 0 32px 32px;
+      margin-top: -32px;
+      font-size: 10px;
+    }
     &--selected {
       border-color: transparent transparent #ffa500 transparent;
     }
@@ -137,6 +175,10 @@
       margin-top: 90px;
       margin-left: -35px;
     }
+    &--art-smaller {
+      margin-top: 42px;
+      margin-left: -19px;
+    }
 
     &--selected {
       font-size: inherit;
@@ -146,7 +188,7 @@
       }
     }
 
-    &--selected-art {
+    &--selected-art, &--selected-art-smaller {
       font-size: inherit;
       color: white;
       &:hover, &:focus {
@@ -164,4 +206,41 @@
     }
   }
 
+  &__result {
+    &--art {
+      margin-top: 5px;
+      text-align: center;
+    }
+  }
+
+  &__result-place {
+    &--art {
+
+    }
+    &--top-three {
+      font-size: 20px;
+    }
+  }
+  &__result-votes {
+    &--art {
+      font-size: 10px;
+      color: #8dacb6;
+    }
+    &--art-darker {
+      font-size: 10px;
+      color: #60757b;
+    }
+  }
+
+  &__tropy {
+    &--1 {
+      color: gold;
+    }
+    &--2 {
+      color: silver;
+    }
+    &--3 {
+      color: chocolate;
+    }
+  }
 }

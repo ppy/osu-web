@@ -16,25 +16,39 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 ###
-{div,a,i,span,table,thead,tbody,tr,th,td} = React.DOM
+{div,span} = React.DOM
 el = React.createElement
 
 class Contest.ArtEntryList extends Contest.BaseEntryList
   render: ->
     return null unless @state.contest.entries.length > 0
 
+    if @state.contest.show_votes
+      totalVotes = _.sumBy @state.contest.entries, (i) -> i.results.votes
+
     entries = @state.contest.entries.map (entry, index) =>
       el Contest.ArtEntry,
         key: index,
-        galleryIndex: index,
+        displayIndex: index,
         entry: entry,
         waitingForResponse: @state.waitingForResponse,
         options: @state.options,
         contest: @state.contest,
-        selected: @state.selected
+        selected: @state.selected,
+        totalVotes: if @state.contest.show_votes then totalVotes
+
+    if @state.contest.show_votes
+      partitions = _.partition entries, (i) ->
+        i.props.displayIndex < 3
 
     div className: 'contest',
       div className: 'contest__vote-summary--art',
         span className: 'contest__vote-summary-text contest__vote-summary-text--art', 'votes'
         el Contest.VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
-      div className: 'contest__entries--art', entries
+
+      if @state.contest.show_votes
+        div {},
+          div className: 'contest__entries--art contest__entries--top3', partitions[0]
+          div className: 'contest__entries--art', partitions[1]
+      else
+        div className: 'contest__entries--art', entries
