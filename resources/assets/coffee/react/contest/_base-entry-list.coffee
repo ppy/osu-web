@@ -22,31 +22,33 @@ el = React.createElement
 class Contest.BaseEntryList extends React.Component
   constructor: (props) ->
     super props
+
     @state =
       waitingForResponse: false
-      entries: @props.entries
-      voteCount: _.filter(@props.entries, _.iteratee({selected: true})).length
       contest: @props.contest
+      selected: @props.selected
       options:
         showDL: @props.options.showDL ? false
         showPreview: @props.options.showPreview ? false
-        maxVotes: @props.contest.max_votes ? 3
 
   handleVoteClick: (_e, {entry_id, callback}) =>
-    entries = @state.entries
-    entry = _.findIndex(@state.entries, { id: entry_id });
-    entries[entry].selected = !entries[entry].selected
+    selected = _.clone @state.selected
+
+    if _.includes(selected, entry_id)
+      _.pull selected, entry_id
+    else
+      selected.push entry_id
+
     @setState
-      entries: entries
+      selected: selected
       waitingForResponse: true
-      voteCount: _.filter(entries, _.iteratee({selected: true})).length
       callback
 
-  handleUpdate: (_e, {entries, callback}) =>
+  handleUpdate: (_e, {response, callback}) =>
     @setState
-      entries: entries
+      contest: response.contest
+      selected: response.userVotes
       waitingForResponse: false
-      voteCount: _.filter(entries, _.iteratee({selected: true})).length
       callback
 
   componentDidMount: ->

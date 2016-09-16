@@ -20,9 +20,3 @@
 @section('contest-entries')
   <div class="js-react--contestList"></div>
 @endsection
-
-@section('contest-javascript')
-  <script id="json-entries" type="application/json">
-    {!! json_encode($entries) !!}
-  </script>
-@stop

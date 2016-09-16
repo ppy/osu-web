@@ -19,8 +19,8 @@
 propsFunction = ->
   contest = osu.parseJson('json-contest')
   return {
-    entries: osu.parseJson('json-entries')
-    contest: contest
+    contest: contest.contest
+    selected: contest.userVotes
     options:
       showDL: contest['type'] == 'beatmap'
       showPreview: contest['type'] == 'music'
