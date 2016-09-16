@@ -73,7 +73,9 @@ class Topic extends Model
         }
     }
 
-    public static function bootSoftDeletes() { }
+    public static function bootSoftDeletes()
+    {
+    }
 
     public static function createNew($forum, $params, $poll = null)
     {
@@ -159,7 +161,7 @@ class Topic extends Model
 
     public function restorePost($post, $user = null)
     {
-        DB::transaction (function () use ($post, $user) {
+        DB::transaction(function () use ($post, $user) {
             $post->restore();
 
             if ($this->trashed()) {

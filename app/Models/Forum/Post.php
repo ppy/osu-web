@@ -56,7 +56,9 @@ class Post extends Model
         }
     }
 
-    public static function bootSoftDeletes() { }
+    public static function bootSoftDeletes()
+    {
+    }
 
     public function forum()
     {
