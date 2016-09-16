@@ -16,20 +16,10 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @foreach($posts as $post)
-    <?php
-        $withDeleteLink = Auth::check()
-            ? $post->poster_id === Auth::user()->user_id
-            : false;
-
-        if (!$withDeleteLink) {
-            $withDeleteLink = priv_check('ForumPostDelete', $post)->can();
-        }
-    ?>
     @include('forum.topics._post', [
         'post' => $post,
         'options' => [
-            'deleteLink' => $withDeleteLink,
-            'softDeleteLink' => priv_check('ForumPostDelete', $post)->can(), 
+            'softDeleteLink' => priv_check('ForumPostDelete', $post)->can(),
             'editLink' => priv_check('ForumPostEdit', $post)->can(),
             'postPosition' => $postsPosition[$post->post_id],
             'replyLink' => priv_check('ForumTopicReply', $topic)->can(),

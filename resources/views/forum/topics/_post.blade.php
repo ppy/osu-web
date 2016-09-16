@@ -16,7 +16,6 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <?php
-    if (!isset($options['deleteLink'])) { $options['deleteLink'] = false; }
     if (!isset($options['softDeleteLink'])) { $options['softDeleteLink'] = false; }
     if (!isset($options['editLink'])) { $options['editLink'] = false; }
     if (!isset($options['overlay'])) { $options['overlay'] = false; }
@@ -83,19 +82,6 @@
                         data-remote="1"
                     >
                         <i class="fa fa-edit"></i>
-                    </a>
-                @endif
-                @if ($options["deleteLink"] === true)
-                    <a
-                        title="{{ trans('forum.post.actions.delete') }}"
-                        data-tooltip-position="left center"
-                        href="{{ route("forum.posts.destroy", $post) }}"
-                        class="forum-post-actions__action delete-post-link"
-                        data-method="delete"
-                        data-confirm="{{ trans("forum.post.confirm_delete") }}"
-                        data-remote="1"
-                    >
-                        <i class="fa fa-trash"></i>
                     </a>
                 @endif
                 @if ($options["softDeleteLink"] === true)
