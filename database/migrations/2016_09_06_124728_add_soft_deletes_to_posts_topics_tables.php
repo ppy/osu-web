@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSoftDeletesToPostsTable extends Migration
+class AddSoftDeletesToPostsTopicsTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,6 +13,10 @@ class AddSoftDeletesToPostsTable extends Migration
     public function up()
     {
         Schema::table('phpbb_posts', function (Blueprint $table) {
+            $table->softDeletes();
+        });
+
+        Schema::table('phpbb_topics', function (Blueprint $table) {
             $table->softDeletes();
         });
     }
@@ -25,6 +29,10 @@ class AddSoftDeletesToPostsTable extends Migration
     public function down()
     {
         Schema::table('phpbb_posts', function (Blueprint $table) {
+            $table->dropColumn('deleted_at');
+        });
+
+        Schema::table('phpbb_topics', function (Blueprint $table) {
             $table->dropColumn('deleted_at');
         });
     }
