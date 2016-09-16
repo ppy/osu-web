@@ -89,6 +89,29 @@ return [
             'reply_with_quote' => 'Citar post para resposta',
         ],
 
+    'create' => [
+        'create_poll' => 'Criação de votação',
+
+        'create_poll_button' => [
+            'add' => 'Criar uma votação',
+            'remove' => 'Cancelar criação de votação',
+            ],
+
+            'poll' => [
+                'length' => 'Ir para a votação',
+                'length_days_prefix' => '',
+                'length_days_suffix' => 'dias',
+                'length_info' => 'Deixe em branco para uma votação sem fim',
+                'max_options' => 'Opções por usuário',
+                'max_options_info' => 'Este é o número de opções de cada usuário pode selecionar ao votar.',
+                'options' => 'Opções',
+                'options_info' => 'Coloque cada uma das opções em uma nova linha. Você pode inserir até 10 opções.',
+                'title' => 'Questão',
+                'vote_change' => 'Permitir re-votação.',
+                'vote_change_info' => 'Se ativado, os usuários são capazes de mudar o seu voto.',
+            ],
+        ],
+
         'index' => [
             'views' => 'visualizações',
             'replies' => 'respostas',
@@ -116,6 +139,15 @@ return [
                 ],
             ],
         ],
+        'poll' => [
+                'vote' => 'Voto',
+
+                'detail' => [
+                    'total' => 'Total de votos: :count',
+                    'ended' => 'Votação encerrada :time',
+                    'end_time' => 'A votação encerrará às :time',
+                ],
+            ],
     ],
 
 ];
