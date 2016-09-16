@@ -345,7 +345,7 @@ class Topic extends Model
         if ($this->postsCount === null) {
             $query = $this->posts();
 
-            if (priv_check('HiddenForumPostView')->can()) {
+            if (priv_check('ForumTopicModerate')->can()) {
                 $query->withTrashed();
             }
 
