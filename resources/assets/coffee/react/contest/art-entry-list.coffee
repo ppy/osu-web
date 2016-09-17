@@ -21,19 +21,20 @@ el = React.createElement
 
 class Contest.ArtEntryList extends Contest.BaseEntryList
   render: ->
-    return null unless @state.entries.length > 0
+    return null unless @state.contest.entries.length > 0
 
-    entries = @state.entries.map (entry) =>
+    entries = @state.contest.entries.map (entry, index) =>
       el Contest.ArtEntry,
-        key: entry.id,
+        key: index,
+        galleryIndex: index,
         entry: entry,
         waitingForResponse: @state.waitingForResponse,
-        voteCount: @state.voteCount,
         options: @state.options,
-        contest: @state.contest
+        contest: @state.contest,
+        selected: @state.selected
 
     div className: 'contest',
       div className: 'contest__vote-summary--art',
         span className: 'contest__vote-summary-text contest__vote-summary-text--art', 'votes'
-        el Contest.VoteSummary, voteCount: @state.voteCount, maxVotes: @state.options.maxVotes
+        el Contest.VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
       div className: 'contest__entries--art', entries

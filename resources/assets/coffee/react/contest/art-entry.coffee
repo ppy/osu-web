@@ -22,17 +22,18 @@ el = React.createElement
 class Contest.ArtEntry extends React.Component
   render: ->
     votingOver = moment(@props.contest.ends_at).diff() <= 0
+    selected = _.includes @props.selected, @props.entry.id
     div className: 'contest__entry--art', style: { backgroundImage: "url('#{@props.entry.preview}')" },
       a {
-        className: "js-gallery contest__art-preview#{if @props.entry.selected then ' contest__entry--selected' else ''}",
+        className: "js-gallery contest__art-preview#{if selected then ' contest__entry--selected' else ''}",
         href: @props.entry.preview,
-        'data-width': @props.entry.width,
-        'data-height': @props.entry.height,
+        'data-width': @props.entry.artMeta.width,
+        'data-height': @props.entry.artMeta.height,
         'data-gallery-id': "contest-#{@props.contest.id}",
-        'data-index': @props.entry.gallery_index,
+        'data-index': @props.galleryIndex,
       }
-      if (@props.voteCount >= @props.options.maxVotes || votingOver) && !@props.entry.selected
+      if (@props.voteCount >= @props.contest.max_votes || votingOver) && !selected
         null
       else
-        div className: "contest__vote-link-banner#{if @props.entry.selected then ' contest__vote-link-banner--selected' else ''}",
-          el Contest.Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, voteCount: @props.voteCount, maxVotes: @props.options.maxVotes, contest: @props.contest, theme: 'art'
+        div className: "contest__vote-link-banner#{if selected then ' contest__vote-link-banner--selected' else ''}",
+          el Contest.Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, voteCount: @props.voteCount, contest: @props.contest, selected: @props.selected, theme: 'art'
