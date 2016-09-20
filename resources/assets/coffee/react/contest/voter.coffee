@@ -54,7 +54,7 @@ class Contest.Voter extends React.Component
     _.includes @props.selected, @props.entry.id
 
   render: ->
-    votingOver = moment(@props.contest.ends_at).diff() <= 0
+    votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
 
     if (@props.selected.length >= @props.contest.max_votes || votingOver) && !@isSelected()
       null
