@@ -215,7 +215,7 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
 
         if (!$contest->isSubmissionOpen()) {
-            return 'contest.voting_over';
+            return 'contest.voting.over';
         }
 
         return 'ok';
@@ -227,7 +227,7 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
 
         if (!$contest->isVotingOpen()) {
-            return 'contest.voting_over';
+            return 'contest.voting.over';
         }
 
         return 'ok';
