@@ -4,6 +4,7 @@
   padding-left: @spacing * 2;
   padding-right: @spacing * 2;
   padding-bottom: @spacing * 2;
+
   &__description {
     background-color: #293336;
     color: white;
@@ -24,68 +25,6 @@
     padding-top: @spacing * 2;
     padding-bottom: @spacing;
     text-align: center;
-  }
-
-  &__art-preview {
-    width: 256px;
-    height: 256px;
-    display: block;
-    &--smaller {
-      width: 128px;
-      height: 128px;
-    }
-    &--placed-2 {
-      width: 192px;
-      height: 192px;
-    }
-  }
-
-  &__entry {
-    &--art {
-      margin: 10px;
-      width: 256px;
-      height: 256px;
-      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-      background-size: cover;
-      background-position: top;
-      transform: translateZ(0);
-    }
-    &--result {
-      margin-bottom: 48px;
-    }
-    &--placed-1 {
-      margin-bottom: 68px;
-    }
-    &--placed-2 {
-      width: 192px;
-      height: 192px;
-      margin-bottom: 68px;
-    }
-    &--placed-3 {
-      width: 128px;
-      height: 128px;
-      margin-bottom: 68px;
-    }
-    &--smaller-art {
-      width: 128px;
-      height: 128px;
-    }
-    &--selected {
-        border: 4px solid #ffa500;
-    }
-  }
-
-  &__entries {
-    &--art {
-      display: flex;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      justify-content: space-around;
-    }
-
-    &--top3 {
-      align-items: baseline;
-    }
   }
 
   &__vote-summary {
@@ -203,44 +142,6 @@
 
     &--float-right {
       float: right;
-    }
-  }
-
-  &__result {
-    &--art {
-      margin-top: 5px;
-      text-align: center;
-    }
-  }
-
-  &__result-place {
-    &--art {
-
-    }
-    &--top-three {
-      font-size: 20px;
-    }
-  }
-  &__result-votes {
-    &--art {
-      font-size: 10px;
-      color: #8dacb6;
-    }
-    &--art-darker {
-      font-size: 10px;
-      color: #60757b;
-    }
-  }
-
-  &__tropy {
-    &--1 {
-      color: gold;
-    }
-    &--2 {
-      color: silver;
-    }
-    &--3 {
-      color: chocolate;
     }
   }
 }

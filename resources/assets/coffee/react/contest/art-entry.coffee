@@ -23,34 +23,60 @@ class Contest.ArtEntry extends React.Component
   render: ->
     votingOver = moment(@props.contest.ends_at).diff() <= 0
     selected = _.includes @props.selected, @props.entry.id
+    showVotes = @props.contest.show_votes
 
-    if @props.contest.show_votes
+    if showVotes
       votePercentage = _.round((@props.entry.results.votes / @props.totalVotes)*100, 2)
 
       place = @props.displayIndex + 1
       top3 = place <= 3
 
-    div className: "contest__entry--art#{if top3 then ' contest__entry--placed-' + place else ' contest__entry--smaller-art'}#{if @props.contest.show_votes then ' contest__entry--result' else ''}", style: { backgroundImage: "url('#{@props.entry.preview}')" },
+    div style: { backgroundImage: "url('#{@props.entry.preview}')" }, className: [
+      'contest-art-list__entry',
+      'contest-art-list__entry--result' if showVotes
+      if showVotes && top3 then "contest-art-list__entry--placed-#{place}" else 'contest-art-list__entry--smaller',
+    ].join(' '),
       a {
-        className: "js-gallery contest__art-preview#{if selected then ' contest__entry--selected' else ''}#{if place == 2 then ' contest__art-preview--placed-2' else ''}#{if place > 2 then ' contest__entry--smaller-art' else ''}",
+        className: [
+          'js-gallery contest-art-list__thumbnail',
+          'contest-art-list__entry--selected' if selected,
+          'contest-art-list__thumbnail--placed-2' if showVotes && place == 2,
+          'contest-art-list__thumbnail--smaller' if showVotes && place > 2
+        ].join(' '),
         href: @props.entry.preview,
         'data-width': @props.entry.artMeta.width,
         'data-height': @props.entry.artMeta.height,
         'data-gallery-id': "contest-#{@props.contest.id}",
         'data-index': @props.displayIndex,
       }
+
       if (@props.selected.length >= @props.contest.max_votes || votingOver) && !selected
         null
       else
-        div className: "contest__vote-link-banner#{if selected then ' contest__vote-link-banner--selected' else ''}#{if place > 2 then ' contest__vote-link-banner--smaller' else ''}",
-          el Contest.Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, voteCount: @props.selected.length, contest: @props.contest, selected: @props.selected, theme: (if place > 2 then 'art-smaller' else 'art')
+        div className: [
+          'contest__vote-link-banner'
+          'contest__vote-link-banner--selected' if selected,
+          'contest__vote-link-banner--smaller' if showVotes && place > 2
+        ].join(' '),
+          el Contest.Voter,
+            key: @props.entry.id,
+            entry: @props.entry,
+            waitingForResponse: @props.waitingForResponse,
+            voteCount: @props.selected.length,
+            contest: @props.contest,
+            selected: @props.selected,
+            theme: if showVotes && place > 2 then 'art-smaller' else 'art'
 
-      if @props.contest.show_votes
-        div className: "contest__result contest__result--art",
-          div {className: "contest__result-place contest__result-place--art#{if top3 then ' contest__result-place--top-three' else ''}"},
+      if showVotes
+        div className: 'contest-art-list__result',
+          div className: [
+            'contest-art-list__result-place',
+            'contest-art-list__result-place--top-three' if showVotes && top3
+          ].join(' '),
             if top3
-              i className: "fa fa-fw fa-trophy contest__tropy--#{place}"
+              i className: "fa fa-fw fa-trophy contest-art-list__tropy--#{place}"
             "##{place}"
-          div {className: 'contest__result-votes contest__result-votes--art'}, "#{@props.entry.results.votes} votes"
+          div className: 'contest-art-list__result-votes',
+            osu.transChoice 'contest.votes', @props.entry.results.votes
           if not isNaN(votePercentage)
-            div {className: 'contest__result-votes contest__result-votes--art-darker'}, "#{votePercentage}%"
+            div className: 'contest-art-list__result-votes contest-art-list__result-votes--percentage', "#{votePercentage}%"
