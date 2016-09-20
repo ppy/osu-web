@@ -188,6 +188,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 Route::post('/account/update-profile', ['as' => 'account.update-profile', 'uses' => 'AccountController@updateProfile']);
 Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
 Route::post('/account/verify', ['as' => 'account.verify', 'uses' => 'AccountController@verify']);
+Route::post('/account/reissue-code', ['as' => 'account.reissue-code', 'uses' => 'AccountController@reissueCode']);
 
 // API
 Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'oauth'], function () {
