@@ -140,8 +140,8 @@ class UserVerification
             return $this->verified();
         }
 
-        $email = $this->user->user_email;
         $this->issue();
+
         return error_popup(trans('user_verification.errors.reissued'));
     }
 

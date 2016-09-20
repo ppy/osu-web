@@ -30,7 +30,7 @@ return [
             'recover_link' => 'email recovery process here',
             'reissue' => 'You can also :reissue_link or :logout_link.',
             'reissue_link' => 'request another code',
-            'logout_link' => 'logout'
+            'logout_link' => 'logout',
         ],
     ],
 
