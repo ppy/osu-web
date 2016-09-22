@@ -71,7 +71,22 @@ class BeatmapsController extends Controller
             }
 
             $mods_bitset = ModsHelper::getModsValue($enabled_mods);
-            $query->whereRaw("((enabled_mods & {$mods_bitset}) = {$mods_bitset} or enabled_mods = 0)");
+
+            $queryString = '((enabled_mods';
+
+            if ($enabled_mods === ['NM']) {
+                $queryString .= ' = 0))';
+            }
+
+            if (in_array('NM', $enabled_mods, true) && count($enabled_mods) > 1) {
+                $queryString .= " & {$mods_bitset} = {$mods_bitset}) or enabled_mods = 0)";
+            }
+
+            if (!in_array('NM', $enabled_mods, true)) {
+                $queryString .= " & {$mods_bitset} = {$mods_bitset}))";
+            }
+
+            $query->whereRaw($queryString);
         }
 
         switch ($type) {

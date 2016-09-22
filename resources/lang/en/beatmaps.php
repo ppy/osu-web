@@ -231,7 +231,7 @@ return [
         '8K' => '8K',
         'FI' => 'Fade In',
         '9K' => '9K',
-        'NM' => 'No mods'
+        'NM' => 'No mods',
     ],
     'language' => [
     'any' => 'Any',
