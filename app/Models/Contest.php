@@ -25,7 +25,7 @@ use Cache;
 
 class Contest extends Model
 {
-    protected $dates = ['ends_at'];
+    protected $dates = ['entry_starts_at', 'entry_ends_at', 'voting_starts_at', 'voting_ends_at'];
 
     public function entries()
     {
@@ -47,6 +47,33 @@ class Contest extends Model
         return Cache::remember("contest_votes_{$this->id}", 5, function () {
             return $this->voteAggregates;
         });
+    }
+
+    public function isSubmissionOpen()
+    {
+        return $this->entry_starts_at !== null && $this->entry_starts_at->isPast() &&
+            $this->entry_ends_at !== null && $this->entry_ends_at->isFuture();
+    }
+
+    public function isVotingOpen()
+    {
+        return $this->isVotingStarted() &&
+            $this->voting_ends_at !== null && $this->voting_ends_at->isFuture();
+    }
+
+    public function isVotingStarted()
+    {
+        //the react page handles both voting and results display.
+        return $this->voting_starts_at !== null && $this->voting_starts_at->isPast();
+    }
+
+    public function currentDescription()
+    {
+        if ($this->isVotingStarted()) {
+            return $this->description_voting;
+        } else {
+            return $this->description_enter;
+        }
     }
 
     public function vote(User $user, ContestEntry $entry)

@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('contests.base')
+@extends('contests.voting')
 
 @section('contest-entries')
   <div class="js-react--contestArtList"></div>

@@ -33,11 +33,11 @@ class ContestTransformer extends Fractal\TransformerAbstract
         return [
             'id' => $contest->id,
             'name' => $contest->name,
-            'description' => $contest->description,
+            'description' => $contest->description_voting,
             'type' => $contest->type,
             'header_url' => $contest->header_url,
             'max_votes' => $contest->max_votes,
-            'ends_at' => $contest->ends_at->toIso8601String(),
+            'voting_ends_at' => $contest->voting_ends_at !== null ? $contest->voting_ends_at->toIso8601String() : null,
             'show_votes' => $contest->show_votes,
         ];
     }
