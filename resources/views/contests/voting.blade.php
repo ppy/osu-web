@@ -20,7 +20,7 @@
 @section('contest-content')
     <div class="contest__description">{!! Markdown::convertToHtml($contest->description_voting) !!}</div>
 
-    @if ($contest->voting_ends_at->isPast())
+    @if ($contest->voting_ends_at !== null && $contest->voting_ends_at->isPast())
         <div class='contest__voting-ended'>{{trans('contest.voting.over')}}</div>
     @endif
 

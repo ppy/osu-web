@@ -21,7 +21,7 @@
   <div class="contest__description">{!! Markdown::convertToHtml($contest->description_enter) !!}</div>
 
   @if (!$contest->isSubmissionOpen())
-      @if ($contest->entry_starts_at->isPast())
+      @if ($contest->entry_starts_at !== null && $contest->entry_starts_at->isPast())
           <div class='contest__voting-ended'>{{trans('contest.entry.over')}}</div>
       @else
           <div class='contest__voting-ended'>{{trans('contest.entry.preparation')}}</div>
