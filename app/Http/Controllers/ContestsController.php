@@ -37,7 +37,7 @@ class ContestsController extends Controller
             abort(404);
         }
 
-        if ($contest->isShowingEntries()) {
+        if ($contest->isVotingStarted()) {
             return view("contests.voting.{$contest->type}")
                     ->with('contest', $contest)
                     ->with('contestJson', $contest->defaultJson($user));

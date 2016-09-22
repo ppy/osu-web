@@ -57,11 +57,11 @@ class Contest extends Model
 
     public function isVotingOpen()
     {
-        return $this->voting_starts_at !== null && $this->voting_starts_at->isPast() &&
+        return $this->isVotingStarted() &&
             $this->voting_ends_at !== null && $this->voting_ends_at->isFuture();
     }
 
-    public function isShowingEntries()
+    public function isVotingStarted()
     {
         //the react page handles both voting and results display.
         return $this->voting_starts_at !== null && $this->voting_starts_at->isPast();
