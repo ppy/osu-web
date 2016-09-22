@@ -33,8 +33,9 @@ class Contest.ArtEntry extends React.Component
 
     div style: { backgroundImage: "url('#{@props.entry.preview}')" }, className: [
       'contest-art-list__entry',
-      'contest-art-list__entry--result' if showVotes
-      if showVotes && top3 then "contest-art-list__entry--placed-#{place}" else 'contest-art-list__entry--smaller',
+      'contest-art-list__entry--result' if showVotes,
+      "contest-art-list__entry--placed-#{place}" if showVotes && top3,
+      'contest-art-list__entry--smaller' if showVotes && !top3
     ].join(' '),
       a {
         className: [
