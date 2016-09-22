@@ -29,4 +29,5 @@ return [
     'beatmaps' => [
       'download' => 'Download Entry',
     ],
+    'votes' => '1 vote|:count votes',
 ];
