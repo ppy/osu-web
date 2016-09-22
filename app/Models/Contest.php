@@ -71,8 +71,7 @@ class Contest extends Model
     {
         if ($this->isVotingStarted()) {
             return $this->description_voting;
-        }
-        else {
+        } else {
             return $this->description_enter;
         }
     }
