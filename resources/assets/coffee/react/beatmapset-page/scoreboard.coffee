@@ -38,9 +38,9 @@ class BeatmapsetPage.Scoreboard extends React.Component
     userScoreFound = false
 
     mods = if @props.playmode == 'mania'
-      ['EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL']
+      ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL']
     else
-      ['EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL']
+      ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL']
 
     div className: 'osu-layout__row osu-layout__row--page-beatmapset beatmapset-scoreboard',
       div className: 'page-tabs',
@@ -56,7 +56,8 @@ class BeatmapsetPage.Scoreboard extends React.Component
             el BeatmapsetPage.ScoreboardMod,
               key: mod
               mod: mod
-              enabled: _.includes @props.enabledMods, mod
+              hoveredMod: @props.hoveredMod
+              enabledMods: @props.enabledMods
 
       div className: 'beatmapset-scoreboard__main',
         if @props.scores.length > 0

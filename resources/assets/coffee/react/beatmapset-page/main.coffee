@@ -58,6 +58,7 @@ class BeatmapsetPage.Main extends React.Component
       isPreviewPlaying: false
       currentScoreboardType: 'global'
       enabledMods: []
+      hoveredMod: null
       scores: []
       userScore: null
       userScorePosition: -1
@@ -142,6 +143,9 @@ class BeatmapsetPage.Main extends React.Component
   setHoveredBeatmapId: (_e, hoveredBeatmapId) =>
     @setState hoveredBeatmapId: hoveredBeatmapId
 
+  setHoveredMod: (_e, hoveredMod) =>
+    @setState hoveredMod: hoveredMod
+
   onPreviewEnded: =>
     @setState isPreviewPlaying: false
 
@@ -152,6 +156,7 @@ class BeatmapsetPage.Main extends React.Component
     $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
     $.subscribe 'beatmapset:preview:toggle.beatmapsetPage', @togglePreviewPlayingState
     $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmapId
+    $.subscribe 'beatmapset:mod:hover', @setHoveredMod
 
     @setHash()
     @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
@@ -197,3 +202,4 @@ class BeatmapsetPage.Main extends React.Component
           userScorePosition: @state.userScorePosition
           enabledMods: @state.enabledMods
           countries: @props.countries
+          hoveredMod: @state.hoveredMod
