@@ -65,6 +65,7 @@ Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', 
 // contests
 Route::get('/community/contests/{contest_id}', ['as' => 'contest.show', 'uses' => 'ContestsController@show']);
 Route::put('/community/contests/{contest_id}/vote', ['as' => 'contest.vote', 'uses' => 'ContestsController@vote']);
+Route::put('/community/contests/{contest_id}/submit', ['as' => 'contest.submit', 'uses' => 'ContestsController@submit']);
 
 // ranking section
 Route::get('/ranking/overall', ['as' => 'ranking-overall', 'uses' => 'RankingController@getOverall']);

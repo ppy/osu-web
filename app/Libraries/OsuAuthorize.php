@@ -209,13 +209,25 @@ class OsuAuthorize
         return $prefix.'no_access';
     }
 
+    public function checkContestEnter($user, $contest)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if (!$contest->isSubmissionOpen()) {
+            return 'contest.entry.over';
+        }
+
+        return 'ok';
+    }
+
     public function checkContestVote($user, $contest)
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($contest->ends_at->isPast()) {
-            return 'contest.voting_over';
+        if (!$contest->isVotingOpen()) {
+            return 'contest.voting.over';
         }
 
         return 'ok';

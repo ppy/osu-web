@@ -21,7 +21,7 @@ el = React.createElement
 
 class Contest.ArtEntry extends React.Component
   render: ->
-    votingOver = moment(@props.contest.ends_at).diff() <= 0
+    votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
     selected = _.includes @props.selected, @props.entry.id
     showVotes = @props.contest.show_votes
 
