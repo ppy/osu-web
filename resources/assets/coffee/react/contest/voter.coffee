@@ -29,19 +29,20 @@ class Contest.Voter extends React.Component
 
     params =
       method: 'PUT'
+      dataType: 'json'
       data:
         entry_id: @props.entry.id
 
-    $.ajax laroute.route("contest.vote", contest_id: @props.contest.id), params
+    $.ajax laroute.route('contest.vote', contest_id: @props.contest.id), params
 
     .done (response) =>
-      $.publish 'contest:vote:done', entries: response.entries
+      $.publish 'contest:vote:done', response: response
 
     .fail osu.ajaxError
 
   handleClick: (e) =>
     e.preventDefault()
-    return unless @props.entry.selected || @props.voteCount < @props.maxVotes
+    return unless @isSelected() || @props.selected.length < @props.contest.max_votes
 
     if !currentUser.id?
       userLogin.show e.target
@@ -49,10 +50,13 @@ class Contest.Voter extends React.Component
       $.publish 'contest:vote:click', entry_id: @props.entry.id
       @sendVote()
 
-  render: ->
-    votingOver = moment(@props.contest.ends_at).diff() <= 0
+  isSelected: =>
+    _.includes @props.selected, @props.entry.id
 
-    if (@props.voteCount >= @props.maxVotes || votingOver) && !@props.entry.selected
+  render: ->
+    votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
+
+    if (@props.selected.length >= @props.contest.max_votes || votingOver) && !@isSelected()
       null
     else
       classes = [
@@ -61,7 +65,7 @@ class Contest.Voter extends React.Component
         if @props.theme then "contest__voting-star--#{@props.theme}",
       ]
 
-      if @props.entry.selected
+      if @isSelected()
         selected_class =  [
           if @props.theme then "contest__voting-star--selected-#{@props.theme}" else 'contest__voting-star--selected'
         ]
@@ -72,7 +76,7 @@ class Contest.Voter extends React.Component
         div className: classes.concat(selected_class).join(' '),
           i className: "fa fa-fw fa-star"
       else
-        if @props.waitingForResponse && !@props.entry.selected
+        if @props.waitingForResponse && !@isSelected()
           div className: classes.join(' '),
             i className: "fa fa-fw fa-refresh contest__voting-star--spin"
         else

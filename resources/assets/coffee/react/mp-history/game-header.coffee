@@ -45,7 +45,6 @@ class MPHistory.GameHeader extends React.Component
         className: 'mp-history-game__header-overlay'
 
       div className: 'mp-history-game__stats-box',
-        span className: 'mp-history-game__stat', "##{@props.game.id.toLocaleString()}"
         span className: 'mp-history-game__stat', timeString
         span className: 'mp-history-game__stat', Lang.get "beatmaps.mode.#{@props.game.mode}"
         span className: 'mp-history-game__stat', Lang.get "multiplayer.game.scoring-type.#{@props.game.scoring_type}"

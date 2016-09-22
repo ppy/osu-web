@@ -10,19 +10,27 @@
 
     osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
     warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-    See the GNU Affero General Public License for more details.
+    See the GNU Affero General P;ublic License for more details.
 
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('contests.base')
 
-@section('contest-entries')
-  <div class="js-react--contestList"></div>
+@section('contest-content')
+    <div class="contest__description">{!! Markdown::convertToHtml($contest->description_voting) !!}</div>
+
+    @if ($contest->voting_ends_at !== null && $contest->voting_ends_at->isPast())
+        <div class='contest__voting-ended'>{{trans('contest.voting.over')}}</div>
+    @endif
+
+    @yield('contest-entries')
 @endsection
 
-@section('contest-javascript')
-  <script id="json-entries" type="application/json">
-    {!! json_encode($entries) !!}
+@section('script')
+  @parent
+  <script id="json-contest" type="application/json">
+    {!! $contestJson !!}
   </script>
+  <script src="{{ elixir("js/react/contest.js") }}" data-turbolinks-track></script>
 @stop

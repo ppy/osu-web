@@ -26,6 +26,7 @@ return [
     ],
     'page_description' => 'Featured artists on osu!',
     'title' => 'Featured Artists',
+    'songs' => '1 song|:count songs',
     'links' => [
         'site' => 'Official Website',
     ],

@@ -15,14 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('contests.base')
+@extends('contests.voting')
 
 @section('contest-entries')
-  <div class="js-react--contestArtList"></div>
+    <div class="contest__entries-list">
+        <div class="js-react--contestList"></div>
+    </div>
 @endsection
-
-@section('contest-javascript')
-  <script id="json-entries" type="application/json">
-    {!! json_encode($entries) !!}
-  </script>
-@stop
