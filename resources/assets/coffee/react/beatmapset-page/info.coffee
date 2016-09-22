@@ -45,7 +45,7 @@ class BeatmapsetPage.Info extends React.Component
     @_failurePointsChart.loadData data
 
   render: ->
-    percentage = (_.round @props.beatmap.passcount / (@props.beatmap.playcount + @props.beatmap.passcount), 2) * 100
+    percentage = _.round (@props.beatmap.passcount / (@props.beatmap.playcount + @props.beatmap.passcount)) * 100
 
     div className: 'osu-layout__row osu-layout__row--page-beatmapset beatmapset-info',
       div className: 'beatmapset-info__details',
