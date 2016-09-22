@@ -67,6 +67,16 @@ class Contest extends Model
         return $this->voting_starts_at !== null && $this->voting_starts_at->isPast();
     }
 
+    public function currentDescription()
+    {
+        if ($this->isVotingStarted()) {
+            return $this->description_voting;
+        }
+        else {
+            return $this->description_enter;
+        }
+    }
+
     public function vote(User $user, ContestEntry $entry)
     {
         $vote = $this->votes()->where('user_id', $user->user_id)->where('contest_entry_id', $entry->id);
