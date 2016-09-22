@@ -18,6 +18,24 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 @osu =
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
 
+  executeAction: (element) =>
+    if !element?
+      osu.reloadPage()
+      return
+
+    if element.dataset.isFileupload == '1'
+      $(element).trigger 'fileuploadRetry'
+    else if element.submit
+      # plain javascript here doesn't trigger submit events
+      # which means jquery-ujs handler won't be triggered
+      # reference: https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit
+      $(element).submit()
+    else if element.click
+      # inversely, using jquery here won't actually click the thing
+      # reference: https://github.com/jquery/jquery/blob/f5aa89af7029ae6b9203c2d3e551a8554a0b4b89/src/event.js#L586
+      element.click()
+
+
   setHash: (newHash) ->
     newUrl = location.href.replace /#.*/, ''
     newUrl += newHash
@@ -33,6 +51,23 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
   ajaxError: (xhr) ->
     osu.popup osu.xhrErrorMessage(xhr), 'danger'
+
+
+  emitAjaxError: (element) =>
+    (xhr, status, error) =>
+      $(element).trigger 'ajax:error', [xhr, status, error]
+
+
+  fileuploadFailCallback: ($el) =>
+    (_e, data) =>
+      $el[0].dataset.isFileupload ?= '1'
+
+      $el
+      .off 'fileuploadRetry'
+      .one 'fileuploadRetry', =>
+        data.submit()
+
+      osu.emitAjaxError($el[0]) data.jqXHR
 
 
   pageChange: ->

@@ -38,27 +38,25 @@ class @UserLogin
 
 
   loginSuccess: (_event, data) =>
+    toClick = @clickAfterLogin
+    @clickAfterLogin = null
+
+    @refreshToken()
+
     $('.js-user-header').html data.header
     $('.js-user-header-popup').html data.header_popup
-    $.publish 'user:update', data.user.data
-    @nav.hidePopup()
-    osu.pageChange()
 
-    Turbolinks.clearCache()
-    $(document).off '.ujsHideLoadingOverlay'
-    LoadingOverlay.show()
-    if @clickAfterLogin?
-      if @clickAfterLogin.submit
-        # plain javascript here doesn't trigger submit events
-        # which means jquery-ujs handler won't be triggered
-        # reference: https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit
-        $(@clickAfterLogin).submit()
-      else if @clickAfterLogin.click
-        # inversely, using jquery here won't actually click the thing
-        # reference: https://github.com/jquery/jquery/blob/f5aa89af7029ae6b9203c2d3e551a8554a0b4b89/src/event.js#L586
-        @clickAfterLogin.click()
-    else
-      osu.reloadPage()
+    $.publish 'user:update', data.user.data
+
+    @nav.hidePopup()
+
+    osu.executeAction toClick
+
+
+  refreshToken: =>
+    token = Cookie.get('XSRF-TOKEN')
+    $('[name="_token"]').attr 'value', token
+    $('[name="csrf-token"]').attr 'content', token
 
 
   reset: =>
@@ -78,7 +76,8 @@ class @UserLogin
 
 
   showOnError: (e, xhr) =>
-    return unless xhr.status == 401
+    return unless xhr.status == 401 && xhr.responseJSON?.authentication == 'basic'
+
     @show e.target
 
 

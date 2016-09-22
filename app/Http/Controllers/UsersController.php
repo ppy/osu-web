@@ -76,22 +76,29 @@ class UsersController extends Controller
             return error_popup('your IP address is locked. Please wait a few minutes.');
         } else {
             $usernameOrEmail = Request::input('username');
+            $user = User::where('username', $usernameOrEmail)
+                ->orWhere('user_email', $usernameOrEmail)
+                ->first();
+
             $password = Request::input('password');
             $remember = Request::input('remember') === 'yes';
 
-            Auth::attempt(['user_email' => $usernameOrEmail, 'password' => $password], $remember);
-            if (!Auth::check()) {
-                Auth::attempt(['username' => $usernameOrEmail, 'password' => $password], $remember);
-            }
+            $validAuth = $user === null
+                ? false
+                : Auth::getProvider()->validateCredentials($user, compact('password'));
 
-            if (Auth::check()) {
+            if ($validAuth) {
+                Request::session()->flush();
+                Request::session()->regenerateToken();
+                Auth::login($user, $remember);
+
                 return [
                     'header' => view('layout._header_user', ['_user' => Auth::user()])->render(),
                     'header_popup' => view('layout._popup_user', ['_user' => Auth::user()])->render(),
                     'user' => Auth::user()->defaultJson(),
                 ];
             } else {
-                LoginAttempt::failedAttempt($ip, $usernameOrEmail);
+                LoginAttempt::failedAttempt($ip, $user);
 
                 return error_popup('wrong password or email');
             }
@@ -109,6 +116,8 @@ class UsersController extends Controller
             setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.ppy.sh');
             setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.ppy.sh');
         }
+
+        Request::session()->flush();
 
         return [];
     }

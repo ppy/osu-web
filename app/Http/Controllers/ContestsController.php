@@ -20,6 +20,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contest;
+use App\Models\ContestVote;
 use Auth;
 use Request;
 
@@ -29,61 +30,43 @@ class ContestsController extends Controller
 
     public function show($id)
     {
-        $contest = Contest::with('entries')->findOrFail($id);
+        $contest = Contest::with('entries')->with('entries.contest')->findOrFail($id);
 
-        // TODO: make this logic not music-contest specific
-        $tracks = $this->prepareTracks($contest);
+        $user = Auth::user();
+        if (!$contest->visible && (!$user || !$user->isAdmin())) {
+            abort(404);
+        }
 
-        return view('contests.show')
-            ->with('contest', $contest)
-            ->with('tracks', $tracks);
+        if ($contest->isVotingStarted()) {
+            return view("contests.voting.{$contest->type}")
+                    ->with('contest', $contest)
+                    ->with('contestJson', $contest->defaultJson($user));
+        } else {
+            return view('contests.enter')->with('contest', $contest);
+        }
     }
 
     public function vote($id)
     {
         $user = Auth::user();
-        $contest = Contest::with('entries')->findOrFail($id);
+        $contest = Contest::with('entries')->with('entries.contest')->findOrFail($id);
         $entry = $contest->entries()->findOrFail(Request::input('entry_id'));
 
         priv_check('ContestVote', $contest)->ensureCan();
 
         $contest->vote($user, $entry);
 
-        return [
-            'tracks' => $this->prepareTracks($contest->fresh(['votes'])),
-        ];
+        return $contest->defaultJson($user);
     }
 
-    private function prepareTracks($contest)
+    public function submit($id)
     {
-        $votes = [];
-        $seed = time();
-        if (Auth::check()) {
-            $user = Auth::user();
-            $seed = Auth::user()->user_id;
-            $votes = $contest->votes->where('user_id', $user->user_id);
-            $votes = $votes->map(function ($v) {
-                return $v->contest_entry_id;
-            })->toArray();
-        }
+        $user = Auth::user();
+        $contest = Contest::findOrFail($id);
 
-        // This mess should probably be moved into a transformer/helper...
-        $tracks = [];
-        foreach ($contest->entries as $entry) {
-            $track = [];
-            $track['id'] = $entry->id;
-            $track['title'] = $entry->masked_name;
-            $track['preview'] = $entry->entry_url;
-            $track['cover_url'] = '/images/tmp/contest-cover-placeholder.png';
-            $track['selected'] = in_array($entry->id, $votes, true);
-            $tracks[] = $track;
-        }
+        priv_check('ContestEnter', $contest)->ensureCan();
 
-        // We want the results to appear randomized to the user but be
-        // deterministic (i.e. we don't want the rows shuffling each time
-        // the user votes), so we seed based on user_id
-        seeded_shuffle($tracks, $seed);
-
-        return $tracks;
+        //todo: upload accept logic
+        abort(501);
     }
 }

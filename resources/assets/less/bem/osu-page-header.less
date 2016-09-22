@@ -18,6 +18,8 @@
 */
 
 .osu-page-header {
+  @_top: 'osu-page-header';
+
   background-size: cover;
 
   padding: (@spacing * 2);
@@ -40,6 +42,35 @@
 
   &--tournaments {
     .at2x-simple("/images/headers/tournament.jpg");
+  }
+
+  &--mp-history {
+    .at2x-simple("/images/headers/mp-history.jpg");
+    background-position: center;
+    height: 125px;
+  }
+
+  &--contests {
+    .at2x-simple("/images/headers/contest.jpg");
+    background-position: center center;
+    justify-content: flex-start;
+    // font-weight: 100;
+    color: white;
+    height: 200px;
+
+    &__subtitle {
+      font-size: @font-size--new-header-subtitle;
+      margin-bottom: 10px;
+      margin-top: 40px;
+      @media @mobile {
+        margin-top: 65px;
+      }
+    }
+
+    &__title {
+      font-size: @font-size--new-header-title;
+      margin-top: -5px;
+    }
   }
 
   &--slack {
@@ -67,6 +98,27 @@
 
     &--smaller {
       font-size: @font-size--header-description;
+    }
+
+    .@{_top}--mp-history & {
+      font-style: italic;
+    }
+  }
+
+  &__title-box {
+    position: absolute;
+    bottom: @spacing;
+
+    .@{_top}--mp-history & {
+      @media @desktop {
+        left: 150px;
+        bottom: @spacing * 3;
+      }
+
+      @media @mobile {
+        position: relative;
+        padding: 0 20px;
+      }
     }
   }
 }

@@ -19,24 +19,80 @@
  */
 namespace App\Models\Multiplayer;
 
+use App\Libraries\ModsFromDB;
+use App\Models\Beatmap;
+
 class Game extends Model
 {
     protected $table = 'games';
     protected $primaryKey = 'game_id';
+
     protected $hidden = ['match_id'];
+
     protected $dates = [
         'start_time',
         'end_time',
     ];
+
     public $timestamps = false;
+
+    const SCORING_TYPES = [
+        'score' => 0,
+        'accuracy' => 1,
+        'combo' => 2,
+        'scorev2' => 3,
+    ];
+
+    const TEAM_TYPES = [
+        'head-to-head' => 0,
+        'tag-coop' => 1,
+        'team-vs' => 2,
+        'tag-team-vs' => 3,
+    ];
+
+    protected $_mods = null;
 
     public function scores()
     {
         return $this->hasMany(Score::class);
     }
 
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
     public function match()
     {
         return $this->belongsTo(Match::class);
+    }
+
+    public function beatmap()
+    {
+        return $this->belongsTo(Beatmap::class);
+    }
+
+    public function getModsAttribute($value)
+    {
+        if (empty($this->_mods)) {
+            $this->_mods = ModsFromDB::getEnabledMods($value);
+        }
+
+        return $this->_mods;
+    }
+
+    public function getModeAttribute()
+    {
+        return Beatmap::modeStr($this->play_mode);
+    }
+
+    public function getScoringTypeAttribute($value)
+    {
+        return array_search_null($value, self::SCORING_TYPES);
+    }
+
+    public function getTeamTypeAttribute($value)
+    {
+        return array_search_null($value, self::TEAM_TYPES);
     }
 }

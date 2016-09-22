@@ -432,8 +432,11 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function isPrivileged()
     {
         return $this->isAdmin()
-            or $this->isDev();
-            //or $this->isSupporter()
+            || $this->isDev()
+            || $this->isMod()
+            || $this->isGMT()
+            || $this->isBNG()
+            || $this->isQAT();
     }
 
     public function isBanned()

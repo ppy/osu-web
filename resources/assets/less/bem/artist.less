@@ -1,4 +1,43 @@
 .artist {
+  &__index {
+    background-color: #293336;
+    padding: 20px;
+    font-weight: 300;
+    .default-box-shadow;
+
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+
+    @media @mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__box {
+    @media @mobile {
+      margin: 0 auto;
+      margin-top: @spacing * 2;
+    }
+  }
+
+  &__name {
+    text-align: center;
+    color: #FFCD23;
+    font-size: 14px;
+    margin-top: @spacing / 2;
+    display: block;
+    &:hover {
+      color: #FFCD23;
+    }
+  }
+
+  &__track-count {
+    color: #777777;
+    font-size: 12px;
+    text-align: center;
+  }
+
   &__description {
     background-color: #293336;
     color: white;
@@ -9,6 +48,19 @@
       padding: 20px;
     }
     .default-box-shadow;
+
+    > h1, h2, h3, h4, h5, h6 {
+      color: white;
+    }
+  }
+
+  &__portrait-wrapper {
+    width: 250px;
+    height: 250px;
+    &--index {
+      width: 200px;
+      height: 200px;
+    }
   }
 
   &__portrait {
@@ -19,12 +71,22 @@
     .default-border-radius();
     background-size: cover;
     background-position: center;
+    display: block;
 
     margin: 0 auto;
     margin-top: -50px;
     @media @desktop {
       margin-top: -150px;
       margin-left: @spacing;
+    }
+
+    &--index {
+      width: 200px;
+      height: 200px;
+      margin: 0;
+      @media @desktop {
+        margin: 0;
+      }
     }
   }
 
@@ -35,7 +97,7 @@
     bottom: 0;
     right: 0;
     position: absolute;
-    border-radius: 5px 0 5px 0;
+    border-radius: 4px 0 3px 0;
   }
 
   &__links-area {
@@ -44,12 +106,27 @@
     padding: @spacing;
   }
 
+  &__white-link {
+    .white-link();
+    text-decoration: none;
+    &:hover, &:focus {
+      .white-link();
+      text-decoration: none;
+    }
+  }
+
   &__link {
     display: inline-block;
     width: 100%;
     display: flex;
     align-items: center;
+
     .white-link();
+    text-decoration: none;
+    &:hover, &:focus {
+      .white-link();
+      text-decoration: none;
+    }
   }
 
   &__link-text {
@@ -64,14 +141,14 @@
   }
 
   &__chevron--twitter {
-    color: #00aced;
+    color: @twitter-colour;
   }
 
   &__chevron--facebook {
-    color: #3b5998;
+    color: @facebook-colour;
   }
 
   &__chevron--soundcloud {
-    color: #f50;
+    color: @soundcloud-colour;
   }
 }
