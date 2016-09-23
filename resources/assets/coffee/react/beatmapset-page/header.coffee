@@ -38,12 +38,12 @@ class BeatmapsetPage.Header extends React.Component
             currentPlaymode: @props.currentBeatmap.mode
 
       div
-        className: 'beatmapset-header clickable-row'
+        className: 'beatmapset-header'
         style:
           backgroundImage: "url(#{@props.beatmapset.covers.cover})"
 
         a
-          className: 'beatmapset-header__preview-button clickable-row-link'
+          className: 'beatmapset-header__preview-button'
           onClick: @togglePreview
 
         div className: 'beatmapset-header__overlay',
