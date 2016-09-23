@@ -37,8 +37,11 @@ class BeatmapsetPage.Scoreboard extends React.Component
   render: ->
     userScoreFound = false
 
-    className = 'beatmapset-scoreboard__mods'
-    className += ' beatmapset-scoreboard__mods--initial' if _.isEmpty @props.enabledMods
+    className = 'beatmapset-scoreboard__main'
+    className += ' beatmapset-scoreboard__main--loading' if @props.loading
+
+    modsClassName = 'beatmapset-scoreboard__mods'
+    modsClassName += ' beatmapset-scoreboard__mods--initial' if _.isEmpty @props.enabledMods
 
     mods = if @props.playmode == 'mania'
       ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL']
@@ -54,14 +57,15 @@ class BeatmapsetPage.Scoreboard extends React.Component
             active: @props.type == type
 
       if currentUser.isSupporter
-        div className: className,
-          for mod in mods
-            el BeatmapsetPage.ScoreboardMod,
-              key: mod
-              mod: mod
-              enabled: _.includes @props.enabledMods, mod
+        div className: 'beatmapset-scoreboard__mods-wrapper',
+          div className: modsClassName,
+            for mod in mods
+              el BeatmapsetPage.ScoreboardMod,
+                key: mod
+                mod: mod
+                enabled: _.includes @props.enabledMods, mod
 
-      div className: 'beatmapset-scoreboard__main',
+      div className: className,
         if @props.scores.length > 0
           div {},
             for score, i in @props.scores

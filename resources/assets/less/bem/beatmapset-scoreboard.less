@@ -27,11 +27,14 @@
     cursor: pointer;
   }
 
+  &__mods-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: @spacing * 2;
+  }
 
   &__mods {
     display: flex;
-    justify-content: center;
-    padding-top: @spacing * 2;
 
     &--initial {
       .@{_top}__mod-box {
@@ -71,6 +74,10 @@
 
   &__main {
     padding-top: @spacing * 4;
+
+    &--loading {
+      opacity: 0.5;
+    }
   }
 
   &__notice {

@@ -67,21 +67,21 @@ class BeatmapsetPage.Main extends React.Component
       beatmapId: @state.currentBeatmapId
       playmode: @state.currentPlaymode
 
-  setCurrentScoreboard: (_e, {scoreboardType = @state.currentScoreboardType, enabledMod, forceReload = false, resetMods = false}) =>
+  setCurrentScoreboard: (_e, {scoreboardType = @state.currentScoreboardType, enabledMod = null, forceReload = false, resetMods = false}) =>
     return if @state.loading
 
     @setState
       currentScoreboardType: scoreboardType
-      scores: []
-      userScore: null
+    #   scores: []
+    #   userScore: null
 
     return if scoreboardType != 'global' && !currentUser.isSupporter
 
     enabledMods = if resetMods
       []
-    else if _.includes @state.enabledMods, enabledMod
+    else if enabledMod != null && _.includes @state.enabledMods, enabledMod
       _.without @state.enabledMods, enabledMod
-    else
+    else if enabledMod != null
       _.concat @state.enabledMods, enabledMod
 
     @scoresCache ?= {}
@@ -197,3 +197,4 @@ class BeatmapsetPage.Main extends React.Component
           userScorePosition: @state.userScorePosition
           enabledMods: @state.enabledMods
           countries: @props.countries
+          loading: @state.loading
