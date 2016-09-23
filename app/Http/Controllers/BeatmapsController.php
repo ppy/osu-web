@@ -79,11 +79,11 @@ class BeatmapsController extends Controller
             }
 
             if (in_array('NM', $enabled_mods, true) && count($enabled_mods) > 1) {
-                $queryString .= " & {$mods_bitset} = {$mods_bitset}) or enabled_mods = 0)";
+                $queryString .= " & {$mods_bitset} != 0) or enabled_mods = 0)";
             }
 
             if (!in_array('NM', $enabled_mods, true)) {
-                $queryString .= " & {$mods_bitset} = {$mods_bitset}))";
+                $queryString .= " & {$mods_bitset} != 0))";
             }
 
             $query->whereRaw($queryString);
