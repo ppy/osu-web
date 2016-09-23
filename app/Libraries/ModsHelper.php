@@ -76,7 +76,7 @@ class ModsHelper
         foreach ($enabledMods as $mod) {
             $modIndex = array_search_null($mod, array_column(self::AVAILABLE_MODS, 1));
 
-            if ($modIndex) {
+            if ($modIndex !== null) {
                 $value ^= (1 << self::AVAILABLE_MODS[$modIndex][0]);
             }
         }
