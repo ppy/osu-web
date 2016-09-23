@@ -307,6 +307,8 @@ class Beatmapset extends Model
                     $maps = model_pluck($current_user->beatmapsets(), 'beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
                     break;
+                case 7: // Explicit Any
+                    break;
                 default: // null, etc
                     break;
             }
