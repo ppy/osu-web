@@ -18,6 +18,8 @@
  */
 
 .beatmapset-scoreboard {
+  @_top: beatmapset-scoreboard;
+
   margin-top: @spacing;
   padding: 30px 20px;
 
@@ -30,25 +32,41 @@
     display: flex;
     justify-content: center;
     padding-top: @spacing * 2;
+
+    &--initial {
+      .@{_top}__mod-box {
+        opacity: 1;
+      }
+
+      &:hover .@{_top}__mod-box {
+        opacity: 0.5;
+      }
+
+      & .@{_top}__mod-box:hover {
+        opacity: 1;
+      }
+    }
   }
 
-  &__mod {
-    width: 36px;
-    height: 25px;
+  &__mod-box {
+    display: flex;
+    align-items: center;
 
     opacity: 0.5;
-
-    margin-right: @spacing * 0.4;
-
-    cursor: pointer;
 
     &--enabled {
       opacity: 1;
     }
 
-    &:last-of-type {
-      margin: 0;
-    }
+    width: 40px;
+    height: 25px;
+
+    cursor: pointer;
+  }
+
+  &__mod {
+    width: 36px;
+    height: 25px;
   }
 
   &__main {

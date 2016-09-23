@@ -15,33 +15,21 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{img} = React.DOM
+{img, div} = React.DOM
 
 class BeatmapsetPage.ScoreboardMod extends React.Component
   onClick: =>
     $.publish 'beatmapset:scoreboard:set', enabledMod: @props.mod
 
-  onMouseEnter: =>
-    $.publish 'beatmapset:mod:hover', @props.mod
-
-  onMouseLeave: ->
-    $.publish 'beatmapset:mod:hover', null
-
   render: ->
-    enabled = _.isEmpty(@props.enabledMods) ||
-      _.includes(@props.enabledMods, @props.mod)
-
-    if @props.hoveredMod && @props.mod != @props.hoveredMod && _.isEmpty @props.enabledMods
-      enabled = false
-
     modName = osu.trans "beatmaps.mods.#{@props.mod}"
-    className = 'beatmapset-scoreboard__mod'
-    className += ' beatmapset-scoreboard__mod--enabled' if enabled
+    className = 'beatmapset-scoreboard__mod-box'
+    className += ' beatmapset-scoreboard__mod-box--enabled' if @props.enabled
 
-    img _.extend
+    div
       className: className
-      title: modName
       onClick: @onClick
-      onMouseEnter: @onMouseEnter
-      onMouseLeave: @onMouseLeave
-      osu.src2x "/images/badges/mods/#{_.kebabCase modName}.png"
+      img _.extend
+        className: 'beatmapset-scoreboard__mod'
+        title: modName
+        osu.src2x "/images/badges/mods/#{_.kebabCase modName}.png"
