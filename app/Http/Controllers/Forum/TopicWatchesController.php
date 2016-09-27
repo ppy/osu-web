@@ -44,6 +44,7 @@ class TopicWatchesController extends Controller
                     $topic !== null &&
                     priv_check('ForumTopicWatchAdd', $topic)->can();
             })
+            ->sortByDesc('topic_last_post_time')
             ->all();
 
         $topicReadStatus = TopicTrack::readStatus(Auth::user(), $topics);
