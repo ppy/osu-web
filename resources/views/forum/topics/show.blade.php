@@ -34,7 +34,7 @@
 
             <div class="forum-topic-headernav__titles">
                 <div class="forum-topic-headernav__title">
-                    @include('forum.topics._header_breadcrumb', [
+                    @include('forum.topics._header_breadcrumb_small', [
                         'forum' => $topic->forum,
                     ])
                 </div>

@@ -21,13 +21,13 @@
             <a
                 href="{{ route('forum.topic-watches.index') }}"
                 class="
-                    forum-header-breadcrumb__link
-                    {{ $current_action === 'forum-topic-watches-index' ? 'forum-header-breadcrumb__link--is-active' : '' }}
+                    forum-header-breadcrumb-link
+                    {{ $current_action === 'forum-topic-watches-index' ? 'forum-header-breadcrumb-link--is-active' : '' }}
                 "
             >
                 {{ trans('forum.topic_watches.index.title_compact') }}
 
-                <span class="forum-header-breadcrumb__link-stripe"></span>
+                <span class="forum-header-breadcrumb-link__stripe"></span>
             </a>
         </li>
     </ul>

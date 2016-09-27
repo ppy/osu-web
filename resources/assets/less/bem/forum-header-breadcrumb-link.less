@@ -16,30 +16,35 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.forum-header-breadcrumb {
-  @_top: forum-header-breadcrumb;
-
-  .default-text-shadow();
-  list-style: none;
-  display: inline-flex;
-  flex-wrap: wrap;
-  margin: 0;
+.forum-header-breadcrumb-link {
+  @_top: forum-header-breadcrumb-link;
   color: @grey-f;
-  font-size: 15px;
-  padding: 0;
-  background: none;
+  font-weight: 300;
 
-  &__item {
-    display: flex;
-    line-height: 1;
+  &:focus,
+  &:hover {
+    text-decoration: none;
+    color: @grey-f;
+  }
 
-    margin: 0 (@spacing / 2);
+  &--is-active {
+    font-weight: 600;
+  }
 
-    & + & {
-      &::before {
-        content: '»';
-        margin-right: (@spacing);
-      }
+  &__stripe {
+    position: absolute;
+    width: 100%;
+    display: block;
+    top: 100%;
+    margin-top: (@spacing / 2);
+    height: (@spacing / 2);
+    transform: translateY(@spacing / 2) scaleY(0);
+    transition: transform 120ms ease-in-out;
+    background-color: @yellow;
+
+    .@{_top}--is-active &,
+    .@{_top}:hover & {
+      transform: translateY(0) scaleY(1);
     }
   }
 }
