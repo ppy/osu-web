@@ -52,6 +52,11 @@
 
     &--buttons {
       margin: (-@spacing / 4);
+      opacity: 0;
+
+      .@{_top}:hover & {
+        opacity: 1;
+      }
     }
 
     &--icon {
