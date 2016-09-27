@@ -251,6 +251,20 @@ class Topic extends Model
         return $query->where('topic_type', 0);
     }
 
+    public function scopeWatchedByUser($query, $user)
+    {
+        return $query
+            ->with('forum')
+            ->whereIn(
+                'topic_id',
+                model_pluck(
+                    TopicWatch::where('user_id', $user->user_id),
+                    'topic_id'
+                )
+            )
+            ->orderBy('topic_last_post_time', 'DESC');
+    }
+
     public function scopeWithReplies($query, $withReplies)
     {
         switch ($withReplies) {

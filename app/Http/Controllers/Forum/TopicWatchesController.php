@@ -20,12 +20,13 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Models\Forum\TopicTrack;
-use App\Models\Forum\TopicWatch;
+use App\Models\Forum\Topic;
 use Auth;
 
 class TopicWatchesController extends Controller
 {
     protected $section = 'community';
+    protected $actionPrefix = 'forum-topic-watches-';
 
     public function __construct()
     {
@@ -34,19 +35,7 @@ class TopicWatchesController extends Controller
 
     public function index()
     {
-        $topics = TopicWatch::with('topic')
-            ->with('topic.forum')
-            ->where('user_id', Auth::user()->user_id)
-            ->get()
-            ->pluck('topic')
-            ->filter(function ($topic) {
-                return
-                    $topic !== null &&
-                    priv_check('ForumTopicWatchAdd', $topic)->can();
-            })
-            ->sortByDesc('topic_last_post_time')
-            ->all();
-
+        $topics = Topic::watchedByUser(Auth::user())->get();
         $topicReadStatus = TopicTrack::readStatus(Auth::user(), $topics);
 
         return view(

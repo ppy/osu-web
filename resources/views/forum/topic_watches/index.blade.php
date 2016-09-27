@@ -23,7 +23,49 @@
             @include('home._user_header_nav')
 
             <div class="osu-page-header osu-page-header--home-user js-current-user-cover">
-                <h1>{{ trans('forum.topic_watches.index.title') }}</h1>
+                <div class="osu-page-header__box">
+                    <h1 class="osu-page-header__title osu-page-header__title--slightly-small">
+                        {{ trans('forum.topic_watches.index.title') }}
+                    </h1>
+
+                    <p class="osu-page-header__detail">
+                        {!! trans('forum.topic_watches.index.info.total', [
+                            'total' =>
+                                '<span class="js-forum-topic-watch--total">'.
+                                count($topics).
+                                '</span>',
+                        ]) !!}
+                    </p>
+
+                    <p class="osu-page-header__detail">
+                        {!! trans('forum.topic_watches.index.info.unread', [
+                            'unread' =>
+                                '<span class="js-forum-topic-watch--unread">'.
+                                (count($topics) - count($topicReadStatus)).
+                                '</span>',
+                        ]) !!}
+                    </p>
+                </div>
+
+                <div class="osu-page-header__box osu-page-header__box--status">
+                    <div class="osu-page-header__status">
+                        <div class="osu-page-header__status-label">
+                            {{ trans('forum.topic_watches.index.box.total') }}
+                        </div>
+                        <div class="js-forum-topic-watch--total osu-page-header__status-text">
+                            {{ count($topics) }}
+                        </div>
+                    </div>
+
+                    <div class="osu-page-header__status">
+                        <div class="osu-page-header__status-label">
+                            {{ trans('forum.topic_watches.index.box.unread') }}
+                        </div>
+                        <div class="js-forum-topic-watch--unread osu-page-header__status-text">
+                            {{ count($topics) - count($topicReadStatus) }}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

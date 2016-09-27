@@ -38,7 +38,7 @@ class NotifyEmail implements ShouldQueue
         $topic = $event->topic->fresh();
         $post = $event->post->fresh();
 
-        if ($topic->topic_last_post_time != $post->post_time) {
+        if ($topic->topic_last_post_time > $post->post_time) {
             return;
         }
 

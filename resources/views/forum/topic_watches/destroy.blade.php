@@ -21,6 +21,9 @@ Timeout.set(0, function() {
     $el.slideUp(null, function() {
         $el.remove();
 
+        $('.js-forum-topic-watch--total').text({{ count($topics) }});
+        $('.js-forum-topic-watch--unread').text({{ count($topics) - count($topicReadStatus) }});
+
         if ($('.js-forum-topic-entry').length === 0) {
             $('.js-forum-topic-entries').append(
                 {!! json_encode(render_to_string('forum.forums._topic_empty')) !!}

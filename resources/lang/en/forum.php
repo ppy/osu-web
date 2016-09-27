@@ -96,6 +96,16 @@ return [
     'topic_watches' => [
         'index' => [
             'title' => 'Topic Subscriptions',
+            'title_compact' => 'subscriptions',
+
+            'box' => [
+                'total' => 'Topics subscribed',
+                'unread' => 'Topics with new replies',
+            ],
+            'info' => [
+                'total' => 'You subscribed to :total topics.',
+                'unread' => 'You have :unread unread replies to subscribed topics.',
+            ],
         ],
 
         'topic_buttons' => [

@@ -1,21 +1,21 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 .osu-page-header {
   @_top: 'osu-page-header';
@@ -42,6 +42,19 @@
 
   &--home-user {
     height: 150px;
+    color: @grey-f;
+    flex-direction: row;
+    align-items: flex-end;
+    padding: 0 @spacing;
+
+    @media @desktop {
+      padding: 0 (@spacing * 5 - @spacing);
+    }
+
+    &::before {
+      .full-size();
+      background-image: linear-gradient(to bottom, fade(@grey-0, 0%), fade(@grey-0, 75%));
+    }
   }
 
   &--tournaments {
@@ -88,6 +101,38 @@
     height: 165px;
   }
 
+  &__box {
+    margin: 0 @spacing;
+    flex: 1;
+    padding: (@spacing * 2) 0;
+
+    &--status {
+      display: flex;
+      background-color: fade(@grey-0, 50%);
+    }
+  }
+
+  &__detail {
+    font-size: @font-size--normal;
+    .default-text-shadow();
+    padding: 0;
+    margin: 0;
+  }
+
+  &__status {
+    padding: 0 @spacing;
+  }
+
+  &__status-label {
+    font-size: @font-size--small;
+    font-weight: 400;
+  }
+
+  &__status-text {
+    color: @yellow;
+    font-size: @font-size--title-small-2;
+  }
+
   &__title {
     font-size: @font-size--header-title;
     margin: 0 0 @spacing;
@@ -95,6 +140,10 @@
     color: #fff;
 
     font-style: italic;
+
+    &--slightly-small {
+      font-size: @font-size--new-header-title;
+    }
 
     &--small {
       font-size: @font-size--header-subtitle;

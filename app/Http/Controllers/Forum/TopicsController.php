@@ -29,6 +29,7 @@ use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Forum\TopicPoll;
+use App\Models\Forum\TopicTrack;
 use App\Models\Forum\TopicWatch;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
@@ -355,8 +356,14 @@ class TopicsController extends Controller
 
         switch (Request::input('page')) {
             case 'manage':
+                $topics = Topic::watchedByUser(Auth::user())->get();
+                $topicReadStatus = TopicTrack::readStatus(Auth::user(), $topics);
+
                 // there's currently only destroy action from watch index
-                return js_view('forum.topic_watches.destroy', compact('topic'));
+                return js_view(
+                    'forum.topic_watches.destroy',
+                    compact('topic', 'topics', 'topicReadStatus')
+                );
             default:
                 return js_view('forum.topics.watch', compact('topic', 'watch'));
         }
