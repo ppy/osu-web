@@ -36,6 +36,11 @@ class NotifyEmail implements ShouldQueue
 
         $user = $event->user->fresh();
         $topic = $event->topic->fresh();
+        $post = $event->post->fresh();
+
+        if ($topic->topic_last_post_time != $post->post_time) {
+            return;
+        }
 
         TopicWatch::where([
             'topic_id' => $topic->topic_id,
