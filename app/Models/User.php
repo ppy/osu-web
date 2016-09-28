@@ -751,7 +751,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function beatmapsetRatings()
     {
-        return $this->hasMany(UserBeatmapsetRating::class);
+        return $this->hasMany(BeatmapsetUserRating::class);
     }
 
     public function givenKudosu()

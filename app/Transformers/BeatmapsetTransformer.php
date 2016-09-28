@@ -34,6 +34,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         'beatmaps',
         'converts',
         'nominations',
+        'ratings',
     ];
 
     public function transform(Beatmapset $beatmapset = null)
@@ -59,7 +60,6 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'tags' => $beatmapset->tags,
             'video' => $beatmapset->video,
             'status' => $beatmapset->status(),
-            'ratings' => $beatmapset->ratingsCount(),
         ];
     }
 
@@ -160,5 +160,12 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         }
 
         return $this->collection($converts, new BeatmapTransformer);
+    }
+
+    public function includeRatings(Beatmapset $beatmapset)
+    {
+        // need to pass through pointless transformer
+        // because fractal doesn't seem to accept plain arrays ;_;
+        return $this->item($beatmapset->ratingsCount(), new BeatmapsetRatingsTransformer);
     }
 }
