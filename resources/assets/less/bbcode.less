@@ -71,4 +71,26 @@
     list-style: none;
     margin: 0;
   }
+
+  &__video {
+    @max-video-width: 1170px;
+
+    @media (max-width: @max-video-width) {
+      position: relative;
+      padding-bottom: 75%;
+    }
+
+    @media (min-width: @max-video-width) {
+      width: 425px;
+      height: 320px;
+    }
+
+    & iframe {
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
 }

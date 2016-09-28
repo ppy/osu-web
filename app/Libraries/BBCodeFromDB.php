@@ -274,8 +274,8 @@ class BBCodeFromDB
 
     public function parseYoutube($text)
     {
-        $text = str_replace("[youtube:{$this->uid}]", "<iframe width='425' height='344' src='https://www.youtube.com/embed/", $text);
-        $text = str_replace("[/youtube:{$this->uid}]", "?rel=0' frameborder='0' allowfullscreen></iframe>", $text);
+        $text = str_replace("[youtube:{$this->uid}]", "<div class='bbcode__video'><iframe src='https://www.youtube.com/embed/", $text);
+        $text = str_replace("[/youtube:{$this->uid}]", "?rel=0' frameborder='0' allowfullscreen></iframe></div>", $text);
 
         return $text;
     }
