@@ -19,13 +19,21 @@
  */
 namespace App\Http\Controllers;
 
+use App\Models\Country;
+use App\Transformers\CountryTransformer;
+use App\Transformers\UserStatisticsTransformer;
+use League\Fractal\Manager;
+use Auth;
+use Request;
+
 class RankingController extends Controller
 {
     protected $section = 'ranking';
 
     public function getOverall()
     {
-        return view('ranking.overall');
+        $countries = fractal_collection_array(Country::all(), new CountryTransformer);
+        return view('ranking.overall', compact('countries'));
     }
 
     public function getCountry()
@@ -41,5 +49,39 @@ class RankingController extends Controller
     public function getMapper()
     {
         return view('ranking.mapper');
+    }
+
+    public function scores()
+    {
+        $user = Auth::User();
+
+        // TODO: Check if user is supporter when searching for friends.
+        /*
+        if ($type !== 'friends') {
+            if (!$user) {
+                abort(403);
+            } elseif (!$user->isSupporter()) {
+                return error_popup(trans('errors.supporter_only'));
+            }
+        }
+        */
+
+        $mode = studly_case(Request::input('mode', 'osu'));
+        $model = "\\App\\Models\\UserStatistics\\$mode";
+
+        try {
+            // TODO: Taking 5 scores ATM. Define variable of how many scores to take
+            $stats = $model::orderBy('rank', 'asc')->take(5)->with('user');
+        } catch (\InvalidArgumentException $ex) {
+            return error_popup($ex->getMessage());
+        }
+
+        // TODO: Friends query
+        /*
+        $scores = $scores
+            ->whereIn('user_id', model_pluck($user->friends(), 'zebra_id'));
+        */
+
+        return fractal_collection_array($stats->get(), new UserStatisticsTransformer, 'user');
     }
 }

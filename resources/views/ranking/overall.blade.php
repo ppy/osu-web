@@ -15,4 +15,25 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@extends("master", [
+    'current_section' => 'ranking',
+])
+
+@section("content")
+    <div class="js-react--ranking-page"></div>
+    {{--
+        this should content a server side react.js render which doesn't exist in hhvm
+        because the only library for it, which is experimental, requires PHP extension
+        which isn't supported by hhvm (v8js).
+    --}}
+@endsection
+
+@section("script")
+    @parent
+    
+    <script id="json-countries" type="application/json">
+        {!! json_encode($countries) !!}
+    </script>
+
+    <script src="{{ elixir("js/react/ranking-page.js") }}" data-turbolinks-track></script>
+@endsection

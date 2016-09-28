@@ -5,3 +5,4 @@
 @MPHistory = {}
 @ProfilePage = {}
 @Status = {}
+@RankingPage = {}

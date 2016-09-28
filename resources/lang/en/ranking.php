@@ -19,5 +19,22 @@
  */
 
 return [
-
+    'header' => [
+        'ranking' => 'Rankings',
+        'overall' => 'Overall',
+    ],
+    'overall' => [
+        'no-scores' => 'No scores!',
+        'loading' => 'Loading...',
+    ],
+    'list' => [
+        'rank-header' => 'Rank',
+        'player-header' => 'Player',
+        'accuracy' => 'Accuracy',
+        'play-count' => 'Play count',
+        'score' => 'Performance',
+        'x-count' => 'SS',
+        's-count' => 'S',
+        'a-count' => 'A',
+    ],
 ];

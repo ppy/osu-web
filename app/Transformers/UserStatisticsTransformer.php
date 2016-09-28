@@ -24,6 +24,10 @@ use League\Fractal;
 
 class UserStatisticsTransformer extends Fractal\TransformerAbstract
 {
+    protected $availableIncludes = [
+        'user',
+    ];
+
     public function transform(UserStatistics\Model $stats = null)
     {
         if ($stats === null) {
@@ -32,6 +36,7 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
 
         return [
             'rank' => [
+                'score' => $stats->rank_score,
                 'isRanked' => $stats->rank_score_index > 0,
                 'global' => $stats->rank_score_index,
                 'country' => $stats->countryRank(),
@@ -56,5 +61,10 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
                 'A' => $stats->a_rank_count,
             ],
         ];
+    }
+
+    public function includeUser($stats)
+    {
+        return $this->item($stats->user, new UserCompactTransformer);
     }
 }
