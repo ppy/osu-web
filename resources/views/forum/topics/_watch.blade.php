@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <a
-    class="btn-circle js-forum-topic-watch"
+    class="btn-circle btn-circle--topic-nav js-forum-topic-watch"
     href="{{ route('forum.topics.watch', [
         $_topic,
         'watch' => !$_isWatching,

@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <a
-    class="btn-circle"
+    class="btn-circle btn-circle--topic-nav"
     href="{{ route('forum.topics.lock', [
         $_topic,
         'lock' => ($_topic->isLocked() === true ? '0' : null),

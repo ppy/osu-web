@@ -205,38 +205,28 @@
         <div class="forum-topic-nav__content">
             <div class="forum-topic-nav__group">
                 @if ($topic->isLocked())
-                    <div class="forum-topic-nav__button-circle">
-                        <div
-                            class="btn-circle btn-circle--blank"
-                            data-tooltip-float="fixed"
-                            title="{{ trans('forum.topics.lock.is_locked') }}"
-                        >
-                            <i class="fa fa-lock"></i>
-                        </div>
+                    <div
+                        class="btn-circle btn-circle--topic-nav btn-circle--blank"
+                        data-tooltip-float="fixed"
+                        title="{{ trans('forum.topics.lock.is_locked') }}"
+                    >
+                        <i class="fa fa-lock"></i>
                     </div>
                 @endif
 
                 @if (priv_check('ForumTopicModerate', $topic)->can())
-                    <div class="forum-topic-nav__button-circle">
-                        @include('forum.topics._moderate_lock', ['_topic' => $topic])
-                    </div>
+                    @include('forum.topics._moderate_lock', ['_topic' => $topic])
                 @endif
 
                 @if (priv_check('ForumTopicModerate', $topic)->can())
-                    <div class="forum-topic-nav__button-circle">
-                        @include('forum.topics._moderate_pin', ['_topic' => $topic])
-                    </div>
+                    @include('forum.topics._moderate_pin', ['_topic' => $topic])
                 @endif
 
                 @if (priv_check('ForumTopicModerate', $topic)->can())
-                    <div class="forum-topic-nav__button-circle">
-                        @include('forum.topics._moderate_move', ['_topic' => $topic])
-                    </div>
+                    @include('forum.topics._moderate_move', ['_topic' => $topic])
                 @endif
 
-                <div class="forum-topic-nav__button-circle">
-                    @include('forum.topics._watch', ['_topic' => $topic, '_isWatching' => $isWatching])
-                </div>
+                @include('forum.topics._watch', ['_topic' => $topic, '_isWatching' => $isWatching])
             </div>
 
             <div class="forum-topic-nav__group forum-topic-nav__group--main">
@@ -337,16 +327,14 @@
 
             <div class="forum-topic-nav__group forum-topic-nav__group--right">
                 @if (priv_check('ForumTopicReply', $topic)->can())
-                    <div class="forum-topic-nav__button-circle">
-                        <a
-                            href="#"
-                            class="btn-circle js-forum-topic-reply--new"
-                            data-tooltip-float="fixed"
-                            title="{{ trans('forum.topics.actions.reply') }}"
-                        >
-                            <i class="fa fa-plus"></i>
-                        </a>
-                    </div>
+                    <a
+                        href="#"
+                        class="btn-circle btn-circle--topic-nav js-forum-topic-reply--new"
+                        data-tooltip-float="fixed"
+                        title="{{ trans('forum.topics.actions.reply') }}"
+                    >
+                        <i class="fa fa-plus"></i>
+                    </a>
                 @endif
             </div>
         </div>

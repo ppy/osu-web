@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <button
-    class="btn-circle"
+    class="btn-circle btn-circle--topic-nav"
     data-target="#forum-topic-move-modal"
     data-toggle="modal"
     type="button"
