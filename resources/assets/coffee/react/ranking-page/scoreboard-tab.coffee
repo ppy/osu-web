@@ -27,7 +27,7 @@ class RankingPage.ScoreboardTab extends React.Component
     className += ' ranking-scoreboard__tab--active' if @props.mode == @props.currentMode
 
     a
-      href: RankingPageHash.generate page: @props.currentPage, mode: @props.mode
+      href: RankingPageHash.generate(country: @props.currentCountry, mode: @props.mode)
       className: className
       onClick: @_scoreboardSwitch
       osu.trans "beatmaps.mode.#{@props.mode}"

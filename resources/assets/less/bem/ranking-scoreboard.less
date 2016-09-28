@@ -87,11 +87,11 @@
     }
 
     &--rank-header {
-      width: 90px;
+      width: 120px;
     }
 
     &--rank {
-      width: 50px;
+      width: 80px;
     }
 
     &--flag {
@@ -130,17 +130,17 @@
     }
 
     &--x-count {
-      width: 80px;
+      width: 60px;
       text-align: right;
     }
 
     &--s-count {
-      width: 80px;
+      width: 60px;
       text-align: right;
     }
 
     &--a-count {
-      width: 80px;
+      width: 60px;
       text-align: right;
     }
   }
@@ -172,4 +172,55 @@
       padding: 0;
     }
   }
+
+  &__pagination {
+    text-align: center;
+    padding-top: @spacing;
+
+    > ul {
+      list-style: none;
+      padding: 0px;
+      margin: 0px;
+
+      text-align: center;
+      > li {
+        display: inline-block;
+        span { font-weight: bold; }
+
+        &.active span {
+          background: none;
+          color: @gray;
+        }
+
+        a {
+          color: @pink-darker !important;
+          &, &:hover {
+            text-decoration: none;
+            color: @pink-text !important;
+          }
+        }
+
+        span {
+          color: @gray;
+        }
+
+        a, span {
+          display: block;
+          padding: @grid-gutter-width/8;
+          font-size: 12px;
+        }
+      }
+
+    }
+  }
+
+  &__prevnext {
+    font-weight: bold;
+
+    a, span {
+      font-size: 16px !important;
+      padding: 0px @grid-gutter-width/4;
+    }
+  }
+ 
 }

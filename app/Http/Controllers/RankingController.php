@@ -31,6 +31,8 @@ class RankingController extends Controller
 {
     protected $section = 'ranking';
 
+    protected $pageSize = 4;
+
     public function getOverall()
     {
         $countries = fractal_collection_array(Country::all(), new CountryTransformer);
@@ -69,11 +71,12 @@ class RankingController extends Controller
 
         $mode = studly_case(Request::input('mode', 'osu'));
         $country = Request::input('country', 'all');
+        $page = Request::input('page', 0);
         $model = "\\App\\Models\\UserStatistics\\$mode";
 
         try {
             // TODO: Taking 5 scores ATM. Define variable of how many scores to take
-            $stats = $model::orderBy('rank', 'asc')->take(5)->with('user');
+            $stats = $model::orderBy('rank', 'asc')->offset($page * $this->pageSize)->limit($this->pageSize)->with('user');
         } catch (\InvalidArgumentException $ex) {
             return error_popup($ex->getMessage());
         }

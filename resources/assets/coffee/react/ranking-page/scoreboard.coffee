@@ -49,6 +49,7 @@ RankingPage.Scoreboard = React.createClass
               el RankingPage.ScoreboardTab,
                 key: m
                 mode: m
+                currentCountry: @props.currentCountry
                 currentMode: @props.currentMode
 
           div className: "#{bn}__line"
@@ -68,9 +69,10 @@ RankingPage.Scoreboard = React.createClass
 
   scoreItem: (score, rank) ->
     componentName = 'ScoreboardItem'
+    isGlobal = @props.currentCountry == 'all'
     el RankingPage[componentName],
       key: rank
-      position: rank
+      position: if isGlobal then score.rank.global else score.rank.country
       score: score
       countries: @props.countries
       mode: @props.currentMode
@@ -96,3 +98,8 @@ RankingPage.Scoreboard = React.createClass
 
       @props.scores.map (score, i) =>
         @scoreItem score, i + 1
+      
+      el RankingPage['ScoreboardPagination'],
+        currentPage: @props.currentPage
+        currentMode: @props.currentMode
+        currentCountry: @props.currentCountry

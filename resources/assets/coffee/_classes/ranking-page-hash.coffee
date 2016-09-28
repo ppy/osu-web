@@ -21,7 +21,9 @@ class @RankingPageHash
     split = hash.split '/'
     country: split[0]
     mode: split[1]
+    page: if split[2]? then parseInt(split[2], 10) else 0
 
   @generate: (options) =>
     hash = "##{options.country}"
     hash += "/#{options.mode}"
+    hash += "/#{options.page}" if options.page?

@@ -22,7 +22,7 @@ RankingPage.Main = React.createClass
   mixins: [ScrollingPageMixin]
 
   setHash: ->
-    osu.setHash RankingPageHash.generate(country: @state.currentCountry, mode: @state.currentMode)
+    osu.setHash RankingPageHash.generate(country: @state.currentCountry, mode: @state.currentMode, page: @state.currentPage)
 
   getInitialState: ->
     optionsHash = RankingPageHash.parse location.hash
@@ -30,10 +30,11 @@ RankingPage.Main = React.createClass
     loading: false
     currentMode: @validMode(optionsHash.mode)
     currentCountry: @validCountry(optionsHash.country)
+    currentPage: optionsHash.page
     scores: []
 
 
-  setCurrentScoreboard: (_e, {mode, country = @state.currentCountry, forceReload = false}) ->
+  setCurrentScoreboard: (_e, {mode = @state.currentMode, country = @state.currentCountry, page = 0, forceReload = false}) ->
     return if @state.loading
 
     mode = @validMode(mode)
@@ -42,6 +43,7 @@ RankingPage.Main = React.createClass
     @setState
       currentMode: mode
       currentCountry: country
+      currentPage: page
       scores: []
       @setHash
 
@@ -57,6 +59,7 @@ RankingPage.Main = React.createClass
       data:
         mode: mode
         country: country
+        page: page
 
     .done (data) =>
       @scoresCache = data.data
@@ -74,7 +77,7 @@ RankingPage.Main = React.createClass
 
     $.subscribe 'ranking:scoreboard:set.rankingPage', @setCurrentScoreboard
 
-    @setCurrentScoreboard null, mode: @state.currentMode, country: @state.currentCountry
+    @setCurrentScoreboard null, mode: @state.currentMode, country: @state.currentCountry, page: @state.currentPage
 
 
   componentWillUnmount: ->
@@ -93,6 +96,7 @@ RankingPage.Main = React.createClass
         el RankingPage.Scoreboard,
           currentMode: @state.currentMode
           currentCountry: @state.currentCountry
+          currentPage: @state.currentPage
           scores: @state.scores
           countries: @props.countries
 
@@ -104,7 +108,6 @@ RankingPage.Main = React.createClass
     else
       modes[0]
 
-  # TODO
   validCountry: (country) ->
     if country of @props.countries
       country
