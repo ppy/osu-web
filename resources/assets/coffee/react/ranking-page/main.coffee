@@ -21,9 +21,14 @@ el = React.createElement
 RankingPage.Main = React.createClass
   mixins: [ScrollingPageMixin]
 
+  setHash: ->
+    osu.setHash RankingPageHash.generate(page: @state.currentPage, mode: @state.currentScoreboard)
+
   getInitialState: ->
+    optionsHash = RankingPageHash.parse location.hash
+    
     loading: false
-    currentScoreboard: 'osu'
+    currentScoreboard: @validMode(optionsHash.mode)
     scores: []
 
 
@@ -33,6 +38,7 @@ RankingPage.Main = React.createClass
     @setState
       currentScoreboard: scoreboard
       scores: []
+      @setHash
 
     loadScore = =>
       @setState scores: @scoresCache
@@ -62,7 +68,7 @@ RankingPage.Main = React.createClass
 
     $.subscribe 'ranking:scoreboard:set.rankingPage', @setCurrentScoreboard
 
-    @setCurrentScoreboard null, scoreboard: 'osu'
+    @setCurrentScoreboard null, scoreboard: @state.currentScoreboard
 
 
   componentWillUnmount: ->
@@ -83,8 +89,12 @@ RankingPage.Main = React.createClass
           scores: @state.scores
           countries: @props.countries
 
-#      el BeatmapsetPage.Contents,
-#        scores: @state.scores
-#        countries: @props.countries
-#        currentPage: @state.currentPage
+  validMode: (mode) ->
+    modes = BeatmapHelper.modes
+
+    if _.includes(modes, mode)
+      mode
+    else
+      modes[0]
+
 

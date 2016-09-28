@@ -67,6 +67,7 @@ class RankingController extends Controller
         */
 
         $mode = studly_case(Request::input('mode', 'osu'));
+        $country = Request::input('country', 'all');
         $model = "\\App\\Models\\UserStatistics\\$mode";
 
         try {
@@ -74,6 +75,10 @@ class RankingController extends Controller
             $stats = $model::orderBy('rank', 'asc')->take(5)->with('user');
         } catch (\InvalidArgumentException $ex) {
             return error_popup($ex->getMessage());
+        }
+
+        if ($country !== 'all') {
+            $stats = $stats->where('country_acronym', $country);
         }
 
         // TODO: Friends query

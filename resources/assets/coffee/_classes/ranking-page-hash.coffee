@@ -1,5 +1,5 @@
 ###
-# Copyright 2016 ppy Pty. Ltd.
+# Copyright 2015 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -15,19 +15,30 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{a} = React.DOM
+class @RankingPageHash
+  @parse: (hash) =>
+    hash = hash.slice 1
+    split = hash.split '/'
+    mode: split[0]
 
-class RankingPage.ScoreboardTab extends React.Component
-  _scoreboardSwitch: (e) =>
-    e.preventDefault()
-    $.publish 'ranking:scoreboard:set', scoreboard: @props.scoreboard
+  @generate: (options) =>
+    hash = "##{options.mode}"
+    hash
 
-  render: ->
-    className = 'ranking-scoreboard__tab'
-    className += ' ranking-scoreboard__tab--active' if @props.scoreboard == @props.currentScoreboard
-
-    a
-      href: RankingPageHash.generate page: @props.currentPage, mode: @props.scoreboard
-      className: className
-      onClick: @_scoreboardSwitch
-      osu.trans "beatmaps.mode.#{@props.scoreboard}"
+#  @noMode: (page) =>
+#    ['kudosu', 'me', 'medals'].indexOf(page) != -1
+#
+#  @parse: (hash) =>
+#    hash = hash.slice 1
+#    if @noMode(hash)
+#      page: hash
+#    else
+#      split = hash.split '/'
+#      mode: split[0]
+#
+#  @generate: (options) =>
+#    if @noMode(options.page)
+#      "##{options.page}"
+#    else
+#      hash = "##{options.mode}"
+#      hash

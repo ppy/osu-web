@@ -41,7 +41,7 @@ class RankingPage.ScoreboardItem extends React.Component
                   classModifiers: ['scoreboard']
             when 'player'
               a
-                href: laroute.route 'users.show', users: @props.score.user.data.id
+                href: (laroute.route 'users.show', users: @props.score.user.data.id) + ProfilePageHash.generate(page: 'main', mode: @props.mode) 
                 @props.score.user.data.username
             when 'accuracy'
               "#{_.round @props.score.hitAccuracy, 2}%"

@@ -34,7 +34,7 @@ RankingPage.Scoreboard = React.createClass
 
 
   render: ->
-    scoreboards = ['osu', 'taiko', 'fruits', 'mania']
+    scoreboards = BeatmapHelper.modes
     className = "#{bn}__main"
     className += " #{bn}__main--loading" if @state.loading
     translationKey = if @state.loading then 'loading' else 'no-scores'
@@ -73,6 +73,7 @@ RankingPage.Scoreboard = React.createClass
       position: rank
       score: score
       countries: @props.countries
+      mode: @props.currentScoreboard
 
 
   scores: ->
