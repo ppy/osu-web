@@ -18,7 +18,7 @@
 {div} = React.DOM
 
 BeatmapsetPage.ScoreboardTab = (props) ->
-  className = 'beatmapset-scoreboard__tab page-tabs__tab'
+  className = 'page-tabs__tab'
   className += ' page-tabs__tab--active' if props.active
 
   div
