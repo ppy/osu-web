@@ -19,26 +19,9 @@ class @RankingPageHash
   @parse: (hash) =>
     hash = hash.slice 1
     split = hash.split '/'
-    mode: split[0]
+    country: split[0]
+    mode: split[1]
 
   @generate: (options) =>
-    hash = "##{options.mode}"
-    hash
-
-#  @noMode: (page) =>
-#    ['kudosu', 'me', 'medals'].indexOf(page) != -1
-#
-#  @parse: (hash) =>
-#    hash = hash.slice 1
-#    if @noMode(hash)
-#      page: hash
-#    else
-#      split = hash.split '/'
-#      mode: split[0]
-#
-#  @generate: (options) =>
-#    if @noMode(options.page)
-#      "##{options.page}"
-#    else
-#      hash = "##{options.mode}"
-#      hash
+    hash = "##{options.country}"
+    hash += "/#{options.mode}"

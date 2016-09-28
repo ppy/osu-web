@@ -21,6 +21,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Country;
 use App\Transformers\CountryTransformer;
+use App\Transformers\CountryStatisticsTransformer;
 use App\Transformers\UserStatisticsTransformer;
 use League\Fractal\Manager;
 use Auth;
@@ -51,7 +52,7 @@ class RankingController extends Controller
         return view('ranking.mapper');
     }
 
-    public function scores()
+    public function scoresOverall()
     {
         $user = Auth::User();
 
@@ -88,5 +89,17 @@ class RankingController extends Controller
         */
 
         return fractal_collection_array($stats->get(), new UserStatisticsTransformer, 'user');
+    }
+
+    public function scoresCountry()
+    {
+        try {
+            // TODO: Taking 3 scores ATM. Define variable of how many scores to take
+            $stats = Country::orderBy('pp', 'desc')->take(3);
+        } catch (\InvalidArgumentException $ex) {
+            return error_popup($ex->getMessage());
+        }
+
+        return fractal_collection_array($stats->get(), new CountryStatisticsTransformer);
     }
 }

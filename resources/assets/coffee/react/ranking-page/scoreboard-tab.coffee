@@ -20,14 +20,14 @@
 class RankingPage.ScoreboardTab extends React.Component
   _scoreboardSwitch: (e) =>
     e.preventDefault()
-    $.publish 'ranking:scoreboard:set', scoreboard: @props.scoreboard
+    $.publish 'ranking:scoreboard:set', mode: @props.mode
 
   render: ->
     className = 'ranking-scoreboard__tab'
-    className += ' ranking-scoreboard__tab--active' if @props.scoreboard == @props.currentScoreboard
+    className += ' ranking-scoreboard__tab--active' if @props.mode == @props.currentMode
 
     a
-      href: RankingPageHash.generate page: @props.currentPage, mode: @props.scoreboard
+      href: RankingPageHash.generate page: @props.currentPage, mode: @props.mode
       className: className
       onClick: @_scoreboardSwitch
-      osu.trans "beatmaps.mode.#{@props.scoreboard}"
+      osu.trans "beatmaps.mode.#{@props.mode}"

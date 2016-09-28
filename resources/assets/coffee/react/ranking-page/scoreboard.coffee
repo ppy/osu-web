@@ -34,7 +34,7 @@ RankingPage.Scoreboard = React.createClass
 
 
   render: ->
-    scoreboards = BeatmapHelper.modes
+    modes = BeatmapHelper.modes
     className = "#{bn}__main"
     className += " #{bn}__main--loading" if @state.loading
     translationKey = if @state.loading then 'loading' else 'no-scores'
@@ -45,11 +45,11 @@ RankingPage.Scoreboard = React.createClass
         div null,
           div
             className: "#{bn}__tabs"
-            scoreboards.map (m) =>
+            modes.map (m) =>
               el RankingPage.ScoreboardTab,
                 key: m
-                scoreboard: m
-                currentScoreboard: @props.currentScoreboard
+                mode: m
+                currentMode: @props.currentMode
 
           div className: "#{bn}__line"
 
@@ -73,7 +73,7 @@ RankingPage.Scoreboard = React.createClass
       position: rank
       score: score
       countries: @props.countries
-      mode: @props.currentScoreboard
+      mode: @props.currentMode
 
 
   scores: ->

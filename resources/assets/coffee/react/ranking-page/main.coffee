@@ -22,21 +22,26 @@ RankingPage.Main = React.createClass
   mixins: [ScrollingPageMixin]
 
   setHash: ->
-    osu.setHash RankingPageHash.generate(page: @state.currentPage, mode: @state.currentScoreboard)
+    osu.setHash RankingPageHash.generate(country: @state.currentCountry, mode: @state.currentMode)
 
   getInitialState: ->
     optionsHash = RankingPageHash.parse location.hash
     
     loading: false
-    currentScoreboard: @validMode(optionsHash.mode)
+    currentMode: @validMode(optionsHash.mode)
+    currentCountry: @validCountry(optionsHash.country)
     scores: []
 
 
-  setCurrentScoreboard: (_e, {scoreboard, forceReload = false}) ->
+  setCurrentScoreboard: (_e, {mode, country = @state.currentCountry, forceReload = false}) ->
     return if @state.loading
 
+    mode = @validMode(mode)
+    country = @validCountry(country)
+
     @setState
-      currentScoreboard: scoreboard
+      currentMode: mode
+      currentCountry: country
       scores: []
       @setHash
 
@@ -46,11 +51,12 @@ RankingPage.Main = React.createClass
     $.publish 'ranking:scoreboard:loading', true
     @setState loading: true
 
-    $.ajax (laroute.route 'ranking.scores'),
+    $.ajax (laroute.route 'ranking.scores.overall'),
       method: 'GET'
       dataType: 'JSON'
       data:
-        mode: scoreboard
+        mode: mode
+        country: country
 
     .done (data) =>
       @scoresCache = data.data
@@ -68,7 +74,7 @@ RankingPage.Main = React.createClass
 
     $.subscribe 'ranking:scoreboard:set.rankingPage', @setCurrentScoreboard
 
-    @setCurrentScoreboard null, scoreboard: @state.currentScoreboard
+    @setCurrentScoreboard null, mode: @state.currentMode, country: @state.currentCountry
 
 
   componentWillUnmount: ->
@@ -85,7 +91,8 @@ RankingPage.Main = React.createClass
 
       div className: 'osu-layout__row',
         el RankingPage.Scoreboard,
-          currentScoreboard: @state.currentScoreboard
+          currentMode: @state.currentMode
+          currentCountry: @state.currentCountry
           scores: @state.scores
           countries: @props.countries
 
@@ -97,4 +104,9 @@ RankingPage.Main = React.createClass
     else
       modes[0]
 
-
+  # TODO
+  validCountry: (country) ->
+    if country of @props.countries
+      country
+    else
+      'all'

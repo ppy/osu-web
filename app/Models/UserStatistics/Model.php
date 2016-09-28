@@ -85,7 +85,8 @@ abstract class Model extends BaseModel
             ->count() + 1;
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
