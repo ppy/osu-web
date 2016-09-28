@@ -21,20 +21,20 @@ el = React.createElement
 
 class Contest.EntryList extends Contest.BaseEntryList
   render: ->
-    return null unless @state.entries.length > 0
+    return null unless @state.contest.entries.length > 0
 
     if @state.contest.show_votes
-      totalVotes = _.sumBy @state.entries, (i) -> i.votes
+      totalVotes = _.sumBy @state.contest.entries, (i) -> i.results.votes
 
-    entries = @state.entries.map (entry) =>
+    entries = @state.contest.entries.map (entry) =>
       el Contest.Entry,
         key: entry.id,
         entry: entry,
         waitingForResponse: @state.waitingForResponse,
-        voteCount: @state.voteCount,
         options: @state.options,
         contest: @state.contest,
-        winnerVotes: if @state.contest.show_votes then _.maxBy(@state.entries, (i) -> i.votes).votes
+        selected: @state.selected,
+        winnerVotes: if @state.contest.show_votes then _.maxBy(@state.contest.entries, (i) -> i.results.votes).results.votes
         totalVotes: if @state.contest.show_votes then totalVotes
 
     div className: 'contest',
@@ -47,6 +47,6 @@ class Contest.EntryList extends Contest.BaseEntryList
                 th className: 'tracklist__col tracklist__col--dl',
               th className: 'tracklist__col tracklist__col--title', 'entry'
               th className: 'tracklist__col tracklist__col--vote', colSpan: (if @props.contest.show_votes then 2 else 1),
-                el Contest.VoteSummary, voteCount: @state.voteCount, maxVotes: @state.options.maxVotes
+                el Contest.VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
                 div className: 'contest__vote-summary-text', 'votes'
         tbody {}, entries

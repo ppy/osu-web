@@ -135,6 +135,17 @@ class UserVerification
         return response([], 200);
     }
 
+    public function reissue()
+    {
+        if ($this->isDone()) {
+            return $this->verified();
+        }
+
+        $this->issue();
+
+        return error_popup(trans('user_verification.errors.reissued'));
+    }
+
     public function verify()
     {
         if ($this->isDone()) {

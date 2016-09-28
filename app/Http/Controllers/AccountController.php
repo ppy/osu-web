@@ -115,4 +115,11 @@ class AccountController extends Controller
 
         return $verification->verify();
     }
+
+    public function reissueCode(HttpRequest $request)
+    {
+        $verification = new UserVerification(Auth::user(), $request);
+
+        return $verification->reissue();
+    }
 }

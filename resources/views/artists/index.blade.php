@@ -44,7 +44,7 @@
                                 @endif
                             </div>
                             <a href="{{route('artist.show', ['id' => $artist->id])}}" class="artist__name">{{$artist->name}}</a>
-                            <div class="artist__track-count">{{$artist->tracks_count}} songs</div>
+                            <div class="artist__track-count">{{trans_choice('artist.songs', $artist->tracks_count)}}</div>
                         </div>
                     @endforeach
                 </div>

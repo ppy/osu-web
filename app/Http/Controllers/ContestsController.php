@@ -23,7 +23,6 @@ use App\Models\Contest;
 use App\Models\ContestVote;
 use Auth;
 use Request;
-use Cache;
 
 class ContestsController extends Controller
 {
@@ -31,112 +30,43 @@ class ContestsController extends Controller
 
     public function show($id)
     {
-        $contest = Contest::findOrFail($id);
+        $contest = Contest::with('entries')->with('entries.contest')->findOrFail($id);
 
-        switch ($contest->type) {
-            case 'art':
-                return view('contests.art')
+        $user = Auth::user();
+        if (!$contest->visible && (!$user || !$user->isAdmin())) {
+            abort(404);
+        }
+
+        if ($contest->isVotingStarted()) {
+            return view("contests.voting.{$contest->type}")
                     ->with('contest', $contest)
-                    ->with('entries', $this->prepareEntries($contest));
-                break;
-
-            case 'beatmap':
-                return view('contests.beatmap')
-                    ->with('contest', $contest)
-                    ->with('entries', $this->prepareEntries($contest));
-                break;
-
-            case 'music':
-                return view('contests.music')
-                    ->with('contest', $contest)
-                    ->with('entries', $this->prepareEntries($contest));
-                break;
-
-            default:
-                // error
-                break;
+                    ->with('contestJson', $contest->defaultJson($user));
+        } else {
+            return view('contests.enter')->with('contest', $contest);
         }
     }
 
     public function vote($id)
     {
         $user = Auth::user();
-        $contest = Contest::findOrFail($id);
+        $contest = Contest::with('entries')->with('entries.contest')->findOrFail($id);
         $entry = $contest->entries()->findOrFail(Request::input('entry_id'));
 
         priv_check('ContestVote', $contest)->ensureCan();
 
         $contest->vote($user, $entry);
 
-        return [
-            'entries' => $this->prepareEntries($contest->fresh(['votes'])),
-        ];
+        return $contest->defaultJson($user);
     }
 
-    private function prepareEntries($contest)
+    public function submit($id)
     {
-        $userVotes = [];
-        $seed = time();
-        if (Auth::check()) {
-            $user = Auth::user();
-            $seed = Auth::user()->user_id;
-            $votes = ContestVote::where('contest_id', $contest->id)->where('user_id', $user->user_id)->get();
-            $userVotes = $votes->map(function ($v) {
-                return $v->contest_entry_id;
-            })->toArray();
-        }
+        $user = Auth::user();
+        $contest = Contest::findOrFail($id);
 
-        if ($contest->show_votes) {
-            $voteAggregates = Cache::remember("contest_votes_{$contest->id}", 5, function () use ($contest) {
-                return $contest->voteAggregates;
-            });
-        }
+        priv_check('ContestEnter', $contest)->ensureCan();
 
-        // This mess should probably be moved into a transformer/helper...
-        $entries = [];
-        foreach ($contest->entries as $contestEntry) {
-            $entry = [];
-            $entry['id'] = $contestEntry->id;
-            $entry['title'] = $contestEntry->masked_name;
-            $entry['preview'] = $contestEntry->entry_url;
-            $entry['cover_url'] = '/images/tmp/contest-cover-placeholder.png';
-            $entry['selected'] = in_array($contestEntry->id, $userVotes, true);
-
-            if ($contest->show_votes) {
-                // add extra info for contests that are showing votes
-                $entry['actual_name'] = $contestEntry->name;
-                $entry['votes'] = $voteAggregates->where('contest_entry_id', $contestEntry->id)->first()->votes;
-            }
-
-            $entries[] = $entry;
-        }
-
-        if ($contest->show_votes) {
-            // Sort results by number of votes desc
-            usort($entries, function ($a, $b) {
-                if ($a['votes'] === $b['votes']) {
-                    return 0;
-                }
-
-                return ($a['votes'] > $b['votes']) ? -1 : 1;
-            });
-        } else {
-            // We want the results to appear randomized to the user but be
-            // deterministic (i.e. we don't want the rows shuffling each time
-            // the user votes), so we seed based on user_id
-            seeded_shuffle($entries, $seed);
-        }
-
-        // done after the shuffle otherwise the gallery_index is incorrect and breaks photoswipe
-        if ($contest->type === 'art') {
-            foreach ($entries as $i => $entry) {
-                $size = fast_imagesize($entry['preview']);
-                $entries[$i]['width'] = $size[0];
-                $entries[$i]['height'] = $size[1];
-                $entries[$i]['gallery_index'] = $i;
-            }
-        }
-
-        return $entries;
+        //todo: upload accept logic
+        abort(501);
     }
 }

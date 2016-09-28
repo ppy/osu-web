@@ -35,6 +35,11 @@
             <i class="fa fa-spinner fa-pulse fa-fw"></i>
             {{ trans('user_verification.box.verifying') }}
         </div>
+
+        <div class="user-verification__errors js-user-verification--issuing" data-visibility="hidden">
+            <i class="fa fa-spinner fa-pulse fa-fw"></i>
+            {{ trans('user_verification.box.issuing') }}
+        </div>
     </div>
 
     <p class="user-verification__row user-verification__row--info">
@@ -47,6 +52,24 @@
                 osu_url('user.recover'),
                 trans('user_verification.box.info.recover_link'),
                 ['class' => 'user-verification__link']
+            ),
+        ]) !!}
+        {!! trans('user_verification.box.info.reissue', [
+            'reissue_link' => link_to_route(
+                'account.reissue-code',
+                trans('user_verification.box.info.reissue_link'),
+                [],
+                ['class' => 'js-user-verification--reissue user-verification__link']
+            ),
+            'logout_link' => link_to_route(
+                'users.logout',
+                trans('user_verification.box.info.logout_link'),
+                [],
+                [
+                    'class' => 'js-logout-link user-verification__link',
+                    'data-method' => 'delete',
+                    'data-remote' => '1',
+                ]
             ),
         ]) !!}
     </p>
