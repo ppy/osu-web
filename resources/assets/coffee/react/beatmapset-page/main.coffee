@@ -72,8 +72,6 @@ class BeatmapsetPage.Main extends React.Component
 
     @setState
       currentScoreboardType: scoreboardType
-    #   scores: []
-    #   userScore: null
 
     return if scoreboardType != 'global' && !currentUser.isSupporter
 
@@ -83,6 +81,8 @@ class BeatmapsetPage.Main extends React.Component
       _.without @state.enabledMods, enabledMod
     else if enabledMod != null
       _.concat @state.enabledMods, enabledMod
+    else
+      @state.enabledMods
 
     @scoresCache ?= {}
     cacheKey = "#{@state.currentBeatmapId}-#{@state.currentPlaymode}-#{_.sortBy enabledMods}-#{scoreboardType}"
