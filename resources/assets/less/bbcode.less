@@ -72,18 +72,13 @@
     margin: 0;
   }
 
+  &__video-box {
+    max-width: 425px;
+  }
+
   &__video {
-    @max-video-width: 1170px;
-
-    @media (max-width: @max-video-width) {
-      position: relative;
-      padding-bottom: 75%;
-    }
-
-    @media (min-width: @max-video-width) {
-      width: 425px;
-      height: 320px;
-    }
+    position: relative;
+    padding-bottom: 75%;
 
     & iframe {
       position: absolute;
