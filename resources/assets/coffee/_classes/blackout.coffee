@@ -16,11 +16,7 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @Blackout
-  @_el: document.getElementsByClassName 'js-blackout'
-
-
-  @el: =>
-    @_el[0]
+  @el: document.getElementsByClassName 'js-blackout'
 
 
   @hide: =>
@@ -32,4 +28,4 @@ class @Blackout
 
 
   @toggle: (state) =>
-    Fade.toggle(@el(), state) if @el()?
+    Fade.toggle(@el[0], state) if @el[0]?
