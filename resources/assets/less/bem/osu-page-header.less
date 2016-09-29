@@ -41,11 +41,12 @@
   }
 
   &--home-user {
-    height: 150px;
     color: @grey-f;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: flex-end;
     padding: 0 @spacing;
+    min-height: 150px;
 
     @media @desktop {
       padding: 0 (@spacing * 5 - @spacing);
@@ -103,7 +104,7 @@
 
   &__box {
     margin: 0 @spacing;
-    flex: 1;
+    flex: 1 0 auto;
     padding: (@spacing * 2) 0;
 
     &--status {
