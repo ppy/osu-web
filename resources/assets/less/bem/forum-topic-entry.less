@@ -52,10 +52,15 @@
 
     &--buttons {
       margin: (-@spacing / 4);
-      opacity: 0;
+
+      @media @desktop {
+        opacity: 0;
+      }
 
       .@{_top}:hover & {
-        opacity: 1;
+        @media @desktop {
+          opacity: 1;
+        }
       }
     }
 
