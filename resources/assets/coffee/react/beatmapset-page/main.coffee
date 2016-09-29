@@ -175,17 +175,18 @@ class BeatmapsetPage.Main extends React.Component
         preload: 'auto'
         onEnded: @onPreviewEnded
 
-      el BeatmapsetPage.Header,
-        beatmapset: @props.beatmapset
-        beatmaps: @state.beatmaps
-        beatmapList: @state.beatmapList
-        currentBeatmap: currentBeatmap
-        hoveredBeatmap: @state.beatmaps[@state.currentPlaymode][@state.hoveredBeatmapId]
-        isPreviewPlaying: @state.isPreviewPlaying
+      div className: 'osu-layout__row osu-layout__row--page-beatmapset',
+        el BeatmapsetPage.Header,
+          beatmapset: @props.beatmapset
+          beatmaps: @state.beatmaps
+          beatmapList: @state.beatmapList
+          currentBeatmap: currentBeatmap
+          hoveredBeatmap: @state.beatmaps[@state.currentPlaymode][@state.hoveredBeatmapId]
+          isPreviewPlaying: @state.isPreviewPlaying
 
-      el BeatmapsetPage.Info,
-        beatmapset: @props.beatmapset
-        beatmap: currentBeatmap
+        el BeatmapsetPage.Info,
+          beatmapset: @props.beatmapset
+          beatmap: currentBeatmap
 
       div className: 'osu-layout__section osu-layout__section--extra',
         el BeatmapsetPage.Scoreboard,

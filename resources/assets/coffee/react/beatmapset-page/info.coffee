@@ -47,7 +47,7 @@ class BeatmapsetPage.Info extends React.Component
   render: ->
     percentage = _.round (@props.beatmap.passcount / (@props.beatmap.playcount + @props.beatmap.passcount)) * 100
 
-    div className: 'osu-layout__row osu-layout__row--page-beatmapset beatmapset-info',
+    div className: 'beatmapset-info',
       div className: 'beatmapset-info__details',
         div className: 'beatmapset-info__description',
           div className: 'beatmapset-info__text beatmapset-info__text--header', osu.trans 'beatmaps.beatmapset.show.info.description'
