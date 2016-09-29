@@ -30,11 +30,12 @@ RankingPage.Main = React.createClass
     loading: false
     currentMode: @validMode(optionsHash.mode)
     currentCountry: @validCountry(optionsHash.country)
-    currentPage: optionsHash.page
+    currentPage: @validPage(optionsHash.page)
+    friends: false
     scores: []
 
 
-  setCurrentScoreboard: (_e, {mode = @state.currentMode, country = @state.currentCountry, page = 0, forceReload = false}) ->
+  setCurrentScoreboard: (_e, {mode = @state.currentMode, country = @state.currentCountry, page = 0, friends = @state.friends, forceReload = false}) ->
     return if @state.loading
 
     mode = @validMode(mode)
@@ -44,6 +45,7 @@ RankingPage.Main = React.createClass
       currentMode: mode
       currentCountry: country
       currentPage: page
+      friends: friends
       scores: []
       @setHash
 
@@ -60,6 +62,7 @@ RankingPage.Main = React.createClass
         mode: mode
         country: country
         page: page
+        friends: if friends then 1 else 0
 
     .done (data) =>
       @scoresCache = data.data
@@ -87,6 +90,7 @@ RankingPage.Main = React.createClass
   removeListeners: ->
     $.unsubscribe '.rankingPage'
 
+
   render: ->
     div className: 'osu-layout__section',
 
@@ -99,6 +103,8 @@ RankingPage.Main = React.createClass
           currentPage: @state.currentPage
           scores: @state.scores
           countries: @props.countries
+          friends: @state.friends
+
 
   validMode: (mode) ->
     modes = BeatmapHelper.modes
@@ -108,8 +114,16 @@ RankingPage.Main = React.createClass
     else
       modes[0]
 
+
   validCountry: (country) ->
     if country of @props.countries
       country
     else
       'all'
+
+
+  validPage: (page) ->
+    if isNaN(page) || page < 0
+      page = 0
+    else
+      page

@@ -24,6 +24,8 @@ return [
         'overall' => 'Overall',
     ],
     'overall' => [
+        'global' => 'Global performance ranking',
+        'national' => 'Performance ranking for :country',
         'no-scores' => 'No scores!',
         'loading' => 'Loading...',
     ],
@@ -37,4 +39,5 @@ return [
         's-count' => 'S',
         'a-count' => 'A',
     ],
+    'friends' => 'Show friends only',
 ];

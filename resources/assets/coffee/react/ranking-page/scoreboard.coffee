@@ -41,6 +41,12 @@ RankingPage.Scoreboard = React.createClass
     div
       className: "page-extra #{bn}"
 
+      el RankingPage.Subheader,
+          currentCountry: @props.currentCountry
+          countries: @props.countries
+          friends: @props.friends
+          loading: @state.loading
+
       if currentUser.id?
         div null,
           div
@@ -76,6 +82,7 @@ RankingPage.Scoreboard = React.createClass
       score: score
       countries: @props.countries
       mode: @props.currentMode
+      friends: @props.friends
 
 
   scores: ->

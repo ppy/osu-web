@@ -34,11 +34,13 @@ class RankingPage.ScoreboardPagination extends React.Component
   contentPrev: ->
     span null,
       i className: 'fa fa-angle-left'
+      "\u00a0"
       osu.trans 'common.pagination.previous'
 
   contentNext: ->
     span null,
       osu.trans 'common.pagination.next'
+      "\u00a0"
       i className: 'fa fa-angle-right'
 
   render: ->

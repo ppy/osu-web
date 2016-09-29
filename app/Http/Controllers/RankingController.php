@@ -58,21 +58,19 @@ class RankingController extends Controller
     {
         $user = Auth::User();
 
-        // TODO: Check if user is supporter when searching for friends.
-        /*
-        if ($type !== 'friends') {
+        $mode = studly_case(Request::input('mode', 'osu'));
+        $country = Request::input('country', 'all');
+        $page = Request::input('page', 0);
+        $model = "\\App\\Models\\UserStatistics\\$mode";
+        $friends = Request::input('friends', 0);
+
+        if ($friends == 1) {
             if (!$user) {
                 abort(403);
             } elseif (!$user->isSupporter()) {
                 return error_popup(trans('errors.supporter_only'));
             }
         }
-        */
-
-        $mode = studly_case(Request::input('mode', 'osu'));
-        $country = Request::input('country', 'all');
-        $page = Request::input('page', 0);
-        $model = "\\App\\Models\\UserStatistics\\$mode";
 
         try {
             // TODO: Taking 5 scores ATM. Define variable of how many scores to take
@@ -85,11 +83,9 @@ class RankingController extends Controller
             $stats = $stats->where('country_acronym', $country);
         }
 
-        // TODO: Friends query
-        /*
-        $scores = $scores
-            ->whereIn('user_id', model_pluck($user->friends(), 'zebra_id'));
-        */
+        if ($friends == 1) {
+            $stats = $stats->whereIn('user_id', model_pluck($user->friends(), 'zebra_id'));
+        }
 
         return fractal_collection_array($stats->get(), new UserStatisticsTransformer, 'user');
     }

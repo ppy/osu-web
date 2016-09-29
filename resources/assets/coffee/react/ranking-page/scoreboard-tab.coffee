@@ -19,7 +19,6 @@
 
 class RankingPage.ScoreboardTab extends React.Component
   _scoreboardSwitch: (e) =>
-    e.preventDefault()
     $.publish 'ranking:scoreboard:set', mode: @props.mode
 
   render: ->
