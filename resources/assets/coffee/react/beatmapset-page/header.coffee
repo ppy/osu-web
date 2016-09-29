@@ -63,6 +63,12 @@ class BeatmapsetPage.Header extends React.Component
             span className: 'beatmapset-header__diff-name',
               if @props.hoveredBeatmap? then @props.hoveredBeatmap.version else @props.currentBeatmap.version
 
+            span
+              className: 'beatmapset-header__star-difficulty'
+              style:
+                visibility: 'hidden' if !@props.hoveredBeatmap
+              "#{osu.trans 'beatmaps.beatmapset.show.stats.stars'} #{if @props.hoveredBeatmap then @props.hoveredBeatmap.difficulty_rating.toFixed 2 else ''}"
+
             div {},
               span className: 'beatmapset-header__value',
                 span className: 'beatmapset-header__value-icon', el Icon, name: 'play-circle'
@@ -71,12 +77,6 @@ class BeatmapsetPage.Header extends React.Component
               span className: 'beatmapset-header__value',
                 span className: 'beatmapset-header__value-icon', el Icon, name: 'heart'
                 span className: 'beatmapset-header__value-name', @props.beatmapset.favourite_count.toLocaleString()
-
-            span
-              className: 'beatmapset-header__star-difficulty'
-              style:
-                visibility: 'hidden' if !@props.hoveredBeatmap
-              "#{osu.trans 'beatmaps.beatmapset.show.stats.stars'} #{if @props.hoveredBeatmap then @props.hoveredBeatmap.difficulty_rating.toFixed 2 else ''}"
 
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--title'
