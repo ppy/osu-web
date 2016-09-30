@@ -49,6 +49,8 @@ class BeatmapsetPage.Main extends React.Component
           currentPlaymode = mode
           break
 
+    @xhr = null
+
     @state =
       beatmaps: beatmaps
       beatmapList: beatmapList
@@ -68,7 +70,8 @@ class BeatmapsetPage.Main extends React.Component
       playmode: @state.currentPlaymode
 
   setCurrentScoreboard: (_e, {scoreboardType = @state.currentScoreboardType, enabledMod = null, forceReload = false, resetMods = false}) =>
-    return if @state.loading
+    if @xhr?
+      @xhr.abort()
 
     @setState
       currentScoreboardType: scoreboardType
@@ -101,7 +104,7 @@ class BeatmapsetPage.Main extends React.Component
     $.publish 'beatmapset:scoreboard:loading', true
     @setState loading: true
 
-    $.ajax (laroute.route 'beatmaps.scores', beatmaps: @state.currentBeatmapId),
+    @xhr = $.ajax (laroute.route 'beatmaps.scores', beatmaps: @state.currentBeatmapId),
       method: 'GET'
       dataType: 'JSON'
       data:
@@ -113,7 +116,11 @@ class BeatmapsetPage.Main extends React.Component
       @scoresCache[cacheKey] = data
       loadScore()
 
-    .fail osu.ajaxError
+    .fail (xhr, status) =>
+      if status == 'abort'
+        return
+
+      osu.ajaxError xhr
 
     .always =>
       $.publish 'beatmapset:scoreboard:loading', false
