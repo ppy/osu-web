@@ -120,6 +120,7 @@ return [
             ],
             'stats' => [
                 'cs' => 'Circle Size',
+                'cs-mania' => 'Key Amount',
                 'drain' => 'HP Drain',
                 'accuracy' => 'Accuracy',
                 'ar' => 'Limit Break',

@@ -76,6 +76,9 @@ class BeatmapsetPage.Stats extends React.Component
           else
             @props.beatmap[stat]
 
+          if @props.beatmap.mode == 'mania' && stat == 'cs'
+            stat += '-mania'
+
           div className: 'beatmapset-stats__advanced', key: stat,
             span className: 'beatmapset-stats__text beatmapset-stats__text--label', osu.trans "beatmaps.beatmapset.show.stats.#{stat}"
             div className: 'beatmapset-stats__bar-advanced',
