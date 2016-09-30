@@ -137,7 +137,7 @@ class BeatmapsetPage.Header extends React.Component
           beatmapset: @props.beatmapset
           beatmap: @props.currentBeatmap
 
-        div className: 'beatmapset-header__overlay',
+        div className: 'beatmapset-header__icon-box',
           div
             className: 'beatmapset-header__preview-icon'
             onClick: @togglePreview
