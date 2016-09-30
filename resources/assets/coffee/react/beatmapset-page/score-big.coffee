@@ -32,7 +32,7 @@ BeatmapsetPage.ScoreBig = (props) ->
     div className: 'beatmapset-score-big__section beatmapset-score-big__section--top',
       div className: classNamePosition, "##{props.position}"
       div
-        className: 'beatmapset-score-big__avatar avatar avatar--beatmapset-scoreboard'
+        className: 'beatmapset-score-big__avatar avatar avatar--beatmapset-scoreboard hidden-xs'
         style:
           backgroundImage: "url(#{props.score.user.data.avatarUrl})"
 
@@ -53,6 +53,7 @@ BeatmapsetPage.ScoreBig = (props) ->
 
         for elem in ['score', 'accuracy', 'hits']
           className = 'beatmapset-score-big__stat'
+          className += ' hidden-xs' if elem != 'score'
 
           switch elem
             when 'score'
@@ -63,8 +64,6 @@ BeatmapsetPage.ScoreBig = (props) ->
               value = "#{_.round props.score.accuracy * 100, 2}%"
             when 'hits'
               hits = Hits.generate score: props.score, playmode: props.playmode
-
-              className += ' hidden-xs'
 
               header = hits.header
               value = hits.values

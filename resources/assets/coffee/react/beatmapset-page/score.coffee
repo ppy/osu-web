@@ -21,6 +21,9 @@ el = React.createElement
 BeatmapsetPage.Score = (props) ->
   div className: 'beatmapset-score',
     for elem in ['position', 'flag', 'player', 'mods', 'rank', 'score', 'accuracy', 'hits']
+      className = "beatmapset-score__element beatmapset-score__element--#{elem}"
+      className += ' hidden-xs' if elem == 'hits' || elem == 'accuracy'
+
       contents =
         switch elem
           when 'position'
@@ -48,4 +51,4 @@ BeatmapsetPage.Score = (props) ->
             hits = Hits.generate score: props.score, playmode: props.playmode
             hits.values
 
-      div className: "beatmapset-score__element beatmapset-score__element--#{elem}", key: elem, contents
+      div className: className, key: elem, contents
