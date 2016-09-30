@@ -42,15 +42,7 @@ class BeatmapsetPage.Header extends React.Component
         style:
           backgroundImage: "url(#{@props.beatmapset.covers.cover})"
 
-        a
-          className: 'beatmapset-header__preview-button'
-          onClick: @togglePreview
-
-        div className: 'beatmapset-header__overlay',
-          div
-            className: 'beatmapset-header__preview-icon'
-            onClick: @togglePreview
-            el Icon, name: if @props.isPreviewPlaying then 'pause' else 'play'
+        div className: 'beatmapset-header__overlay beatmapset-header__overlay--gradient'
 
         div className: 'beatmapset-header__details-box',
           div className: 'beatmapset-header__beatmap-picker-box',
@@ -144,3 +136,9 @@ class BeatmapsetPage.Header extends React.Component
         el BeatmapsetPage.Stats,
           beatmapset: @props.beatmapset
           beatmap: @props.currentBeatmap
+
+        div className: 'beatmapset-header__overlay',
+          div
+            className: 'beatmapset-header__preview-icon'
+            onClick: @togglePreview
+            el Icon, name: if @props.isPreviewPlaying then 'pause' else 'play'
