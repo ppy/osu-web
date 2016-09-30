@@ -18,63 +18,66 @@
 {div, a} = React.DOM
 el = React.createElement
 
-BeatmapsetPage.ScoreBig = (props) ->
-  className = 'beatmapset-score-big'
-  classNamePosition = 'beatmapset-score-big__position'
+BeatmapsetPage.ScoreBig = React.createClass
+  mixins: [React.addons.PureRenderMixin]
 
-  if props.position == 1
-    className += ' beatmapset-score-big--first-score'
-    classNamePosition += ' beatmapset-score-big__position--first-score'
+  render: ->
+    className = 'beatmapset-score-big'
+    classNamePosition = 'beatmapset-score-big__position'
 
-  classNamePosition += ' beatmapset-score-big__position--not-top-score' if props.position > 50
+    if @props.position == 1
+      className += ' beatmapset-score-big--first-score'
+      classNamePosition += ' beatmapset-score-big__position--first-score'
 
-  div className: className,
-    div className: 'beatmapset-score-big__section beatmapset-score-big__section--top',
-      div className: classNamePosition, "##{props.position}"
-      div
-        className: 'beatmapset-score-big__avatar avatar avatar--beatmapset-scoreboard hidden-xs'
-        style:
-          backgroundImage: "url(#{props.score.user.data.avatarUrl})"
+    classNamePosition += ' beatmapset-score-big__position--not-top-score' if @props.position > 50
 
-      div className: 'beatmapset-score-big__user-box',
-        a
-          className: 'beatmapset-score-big__username'
-          href: laroute.route 'users.show', users: props.score.user.data.id
-          props.score.user.data.username
+    div className: className,
+      div className: 'beatmapset-score-big__section beatmapset-score-big__section--top',
+        div className: classNamePosition, "##{@props.position}"
+        div
+          className: 'beatmapset-score-big__avatar avatar avatar--beatmapset-scoreboard hidden-xs'
+          style:
+            backgroundImage: "url(#{@props.score.user.data.avatarUrl})"
 
-        el FlagCountry,
-          country: props.countries[props.score.user.data.country]
-          classModifiers: ['scoreboard']
+        div className: 'beatmapset-score-big__user-box',
+          a
+            className: 'beatmapset-score-big__username'
+            href: laroute.route 'users.show', users: @props.score.user.data.id
+            @props.score.user.data.username
 
-      div className: 'beatmapset-score-big__stats-box',
-        el Mods,
-          mods: props.score.mods
-          classModifiers: ['reversed']
+          el FlagCountry,
+            country: @props.countries[@props.score.user.data.country]
+            classModifiers: ['scoreboard']
 
-        for elem in ['score', 'accuracy', 'hits']
-          className = 'beatmapset-score-big__stat'
-          className += ' hidden-xs' if elem != 'score'
+        div className: 'beatmapset-score-big__stats-box',
+          el Mods,
+            mods: @props.score.mods
+            classModifiers: ['reversed']
 
-          switch elem
-            when 'score'
-              header = osu.trans 'beatmaps.beatmapset.show.scoreboard.stats.score'
-              value = props.score.score.toLocaleString()
-            when 'accuracy'
-              header = osu.trans 'beatmaps.beatmapset.show.scoreboard.stats.accuracy'
-              value = "#{_.round props.score.accuracy * 100, 2}%"
-            when 'hits'
-              hits = Hits.generate score: props.score, playmode: props.playmode
+          for elem in ['score', 'accuracy', 'hits']
+            className = 'beatmapset-score-big__stat'
+            className += ' hidden-xs' if elem != 'score'
 
-              header = hits.header
-              value = hits.values
+            switch elem
+              when 'score'
+                header = osu.trans 'beatmaps.beatmapset.show.scoreboard.stats.score'
+                value = @props.score.score.toLocaleString()
+              when 'accuracy'
+                header = osu.trans 'beatmaps.beatmapset.show.scoreboard.stats.accuracy'
+                value = "#{_.round @props.score.accuracy * 100, 2}%"
+              when 'hits'
+                hits = Hits.generate score: @props.score, playmode: @props.playmode
 
-          div className: className, key: elem,
-            div className: 'beatmapset-score-big__stat-header', header
-            div className: 'beatmapset-score-big__stat-value beatmapset-score-big__stat-value--score', value
+                header = hits.header
+                value = hits.values
 
-        div className: 'beatmapset-score-big__rank',
-          div className: "badge-rank badge-rank--#{props.score.rank}"
+            div className: className, key: elem,
+              div className: 'beatmapset-score-big__stat-header', header
+              div className: 'beatmapset-score-big__stat-value beatmapset-score-big__stat-value--score', value
 
-    div className: 'beatmapset-score-big__section beatmapset-score-big__section--bottom',
-      div className: 'beatmapset-score-big__achieved',
-        osu.trans 'beatmaps.beatmapset.show.scoreboard.achieved', when: moment(props.score.created_at).fromNow()
+          div className: 'beatmapset-score-big__rank',
+            div className: "badge-rank badge-rank--#{@props.score.rank}"
+
+      div className: 'beatmapset-score-big__section beatmapset-score-big__section--bottom',
+        div className: 'beatmapset-score-big__achieved',
+          osu.trans 'beatmaps.beatmapset.show.scoreboard.achieved', when: moment(@props.score.created_at).fromNow()

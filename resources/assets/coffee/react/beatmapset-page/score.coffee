@@ -18,37 +18,40 @@
 {div, a} = React.DOM
 el = React.createElement
 
-BeatmapsetPage.Score = (props) ->
-  div className: 'beatmapset-score',
-    for elem in ['position', 'flag', 'player', 'mods', 'rank', 'score', 'accuracy', 'hits']
-      className = "beatmapset-score__element beatmapset-score__element--#{elem}"
-      className += ' hidden-xs' if elem == 'hits' || elem == 'accuracy'
+BeatmapsetPage.Score = React.createClass
+  mixins: [React.addons.PureRenderMixin]
 
-      contents =
-        switch elem
-          when 'position'
-            "##{props.position}"
-          when 'flag'
-            if props.score.user.data.country
-              el FlagCountry,
-                country: props.countries[props.score.user.data.country]
-                classModifiers: ['scoreboard']
-          when 'player'
-            a
-              href: laroute.route 'users.show', users: props.score.user.data.id
-              props.score.user.data.username
-          when 'mods'
-            el Mods,
-              mods: props.score.mods
-              classModifiers: ['small', 'reversed']
-          when 'rank'
-            div className: "badge-rank badge-rank--#{props.score.rank}"
-          when 'score'
-            props.score.score.toLocaleString()
-          when 'accuracy'
-            "#{_.round props.score.accuracy * 100, 2}%"
-          when 'hits'
-            hits = Hits.generate score: props.score, playmode: props.playmode
-            hits.values
+  render: ->
+    div className: 'beatmapset-score',
+      for elem in ['position', 'flag', 'player', 'mods', 'rank', 'score', 'accuracy', 'hits']
+        className = "beatmapset-score__element beatmapset-score__element--#{elem}"
+        className += ' hidden-xs' if elem == 'hits' || elem == 'accuracy'
 
-      div className: className, key: elem, contents
+        contents =
+          switch elem
+            when 'position'
+              "##{@props.position}"
+            when 'flag'
+              if @props.score.user.data.country
+                el FlagCountry,
+                  country: @props.countries[@props.score.user.data.country]
+                  classModifiers: ['scoreboard']
+            when 'player'
+              a
+                href: laroute.route 'users.show', users: @props.score.user.data.id
+                @props.score.user.data.username
+            when 'mods'
+              el Mods,
+                mods: @props.score.mods
+                classModifiers: ['small', 'reversed']
+            when 'rank'
+              div className: "badge-rank badge-rank--#{@props.score.rank}"
+            when 'score'
+              @props.score.score.toLocaleString()
+            when 'accuracy'
+              "#{_.round @props.score.accuracy * 100, 2}%"
+            when 'hits'
+              hits = Hits.generate score: @props.score, playmode: @props.playmode
+              hits.values
+
+        div className: className, key: elem, contents
