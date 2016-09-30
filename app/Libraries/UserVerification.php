@@ -143,7 +143,7 @@ class UserVerification
 
         $this->issue();
 
-        return error_popup(trans('user_verification.errors.reissued'));
+        return response(['message' => trans('user_verification.errors.reissued')], 200);
     }
 
     public function verify()

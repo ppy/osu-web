@@ -25,14 +25,6 @@
   font-size: @font-size--normal;
   font-weight: 300;
 
-  &__errors {
-    position: absolute;
-    width: 100%;
-    margin-top: @spacing;
-    color: @yellow-light;
-    font-weight: bold;
-  }
-
   &__key {
     .default-border-radius();
     background-color: fade(@grey-0, 50%);
@@ -55,6 +47,18 @@
     &:hover {
       color: @yellow;
     }
+  }
+
+  &__message {
+    position: absolute;
+    width: 100%;
+    margin-top: @spacing;
+    color: @yellow-light;
+    font-weight: bold;
+  }
+
+  &__message-spinner {
+    margin-right: (@spacing / 2);
   }
 
   &__row {
