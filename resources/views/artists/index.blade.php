@@ -34,6 +34,7 @@
     <div class="osu-layout__row osu-layout__row--page-artist">
         <div class="page-contents page-contents--artist">
             <div class="page-contents__content--artist-left">
+                <div class="artist__description artist__description--index">{!! trans('artist.index.description') !!}</div>
                 <div class="artist__index">
                     @foreach ($artists as $artist)
                         <div class="artist__box">
