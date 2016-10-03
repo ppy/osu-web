@@ -48,16 +48,15 @@ class RankingPage.ScoreboardPagination extends React.Component
       className: "#{bn}__pagination",
 
       div null,
-        'Page ' + (@props.currentPage + 1)
+        'Page ' + @props.currentPage
 
       ul
         className: "#{bn}__prevnext"
 
         li null,
 
-          if @props.currentPage <= 0
-            span null,
-              @contentPrev()
+          if @props.currentPage <= 1
+            @contentPrev()
           else
             a
               href: RankingPageHash.generate(page: @props.currentPage - 1, mode: @props.currentMode, country: @props.currentCountry),
@@ -65,10 +64,12 @@ class RankingPage.ScoreboardPagination extends React.Component
               @contentPrev()
 
         li null,
-
-          a
-            href: RankingPageHash.generate(page: @props.currentPage + 1, mode: @props.currentMode, country: @props.currentCountry),
-            onClick: @_pageNext,
+          if @props.currentPage >= @props.lastPage
             @contentNext()
+          else
+            a
+              href: RankingPageHash.generate(page: @props.currentPage + 1, mode: @props.currentMode, country: @props.currentCountry),
+              onClick: @_pageNext,
+              @contentNext()
 
             

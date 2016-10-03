@@ -31,6 +31,7 @@ class RankingController extends Controller
 {
     protected $section = 'ranking';
 
+    // TODO: Adjust paginator page size
     protected $pageSize = 4;
 
     public function getOverall()
@@ -60,7 +61,6 @@ class RankingController extends Controller
 
         $mode = studly_case(Request::input('mode', 'osu'));
         $country = Request::input('country', 'all');
-        $page = Request::input('page', 0);
         $model = "\\App\\Models\\UserStatistics\\$mode";
         $friends = Request::input('friends', 0);
 
@@ -73,8 +73,7 @@ class RankingController extends Controller
         }
 
         try {
-            // TODO: Taking 5 scores ATM. Define variable of how many scores to take
-            $stats = $model::orderBy('rank', 'asc')->offset($page * $this->pageSize)->limit($this->pageSize)->with('user');
+            $stats = $model::orderBy('rank', 'asc')->with('user');
         } catch (\InvalidArgumentException $ex) {
             return error_popup($ex->getMessage());
         }
@@ -87,7 +86,7 @@ class RankingController extends Controller
             $stats = $stats->whereIn('user_id', model_pluck($user->friends(), 'zebra_id'));
         }
 
-        return fractal_collection_array($stats->get(), new UserStatisticsTransformer, 'user');
+        return fractal_paginator_array($stats->paginate($this->pageSize), new UserStatisticsTransformer, 'user');
     }
 
     public function scoresCountry()

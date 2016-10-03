@@ -108,5 +108,6 @@ RankingPage.Scoreboard = React.createClass
       
       el RankingPage['ScoreboardPagination'],
         currentPage: @props.currentPage
+        lastPage: @props.lastPage
         currentMode: @props.currentMode
         currentCountry: @props.currentCountry

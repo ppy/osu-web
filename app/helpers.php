@@ -404,6 +404,19 @@ function fractal_collection_array($models, $transformer, $includes = null)
     return $manager->createData($collection)->toArray();
 }
 
+function fractal_paginator_array($paginator, $transformer, $includes = null)
+{
+    $data = fractal_collection_array($paginator, $transformer, $includes);
+
+    $data['meta'] = array(
+        'perPage' => $paginator->perPage(),
+        'currentPage' => $paginator->currentPage(),
+        'lastPage' => $paginator->lastPage(),
+    );
+
+    return $data;
+}
+
 function fractal_item_array($model, $transformer, $includes = null)
 {
     $manager = new League\Fractal\Manager();

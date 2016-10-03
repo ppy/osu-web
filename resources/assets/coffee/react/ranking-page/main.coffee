@@ -31,11 +31,12 @@ RankingPage.Main = React.createClass
     currentMode: @validMode(optionsHash.mode)
     currentCountry: @validCountry(optionsHash.country)
     currentPage: @validPage(optionsHash.page)
+    lastPage: 1
     friends: false
     scores: []
 
 
-  setCurrentScoreboard: (_e, {mode = @state.currentMode, country = @state.currentCountry, page = 0, friends = @state.friends, forceReload = false}) ->
+  setCurrentScoreboard: (_e, {mode = @state.currentMode, country = @state.currentCountry, page = 1, friends = @state.friends, forceReload = false}) ->
     return if @state.loading
 
     mode = @validMode(mode)
@@ -66,6 +67,7 @@ RankingPage.Main = React.createClass
 
     .done (data) =>
       @scoresCache = data.data
+      @setState lastPage: data.meta.lastPage
       loadScore()
 
     .fail osu.ajaxError
@@ -101,6 +103,7 @@ RankingPage.Main = React.createClass
           currentMode: @state.currentMode
           currentCountry: @state.currentCountry
           currentPage: @state.currentPage
+          lastPage: @state.lastPage
           scores: @state.scores
           countries: @props.countries
           friends: @state.friends
@@ -123,7 +126,7 @@ RankingPage.Main = React.createClass
 
 
   validPage: (page) ->
-    if isNaN(page) || page < 0
-      page = 0
+    if isNaN(page) || page < 1
+      page = 1
     else
       page
