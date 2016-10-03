@@ -76,7 +76,9 @@ class BeatmapsetPage.Main extends React.Component
     @setState
       currentScoreboardType: scoreboardType
 
-    return if scoreboardType != 'global' && !currentUser.isSupporter
+    if scoreboardType != 'global' && !currentUser.isSupporter
+      @setState scores: []
+      return
 
     enabledMods = if resetMods
       []
