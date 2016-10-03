@@ -97,11 +97,24 @@ RankingPage.Scoreboard = React.createClass
           ['rank-header', 'player-header', 'accuracy', 'play-count', 'score', 'x-count', 's-count', 'a-count'].map (m) =>
             className = "#{bn}__row-item #{bn}__row-item--#{m} #{bn}__row-item--header"
             className += ' hidden-xs' if m == 'play-count' || m == 'x-count' || m == 's-count' || m == 'a-count'
+            contents = 
+              switch m
+                when 'x-count'
+                  el 'span',
+                    className: 'badge-rank badge-rank--X'
+                when 's-count'
+                  el 'span',
+                    className: 'badge-rank badge-rank--S'
+                when 'a-count'
+                  el 'span',
+                    className: 'badge-rank badge-rank--A'  
+                else
+                  osu.trans "ranking.list.#{m}"
 
             span
               className: className
               key: m
-              osu.trans "ranking.list.#{m}"
+              contents
 
       @props.scores.map (score, i) =>
         @scoreItem score, i + 1

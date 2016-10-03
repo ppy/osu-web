@@ -36,8 +36,38 @@ class RankingController extends Controller
 
     public function getOverall()
     {
+        $currentUser = Auth::User();
+
+        $currentMode = Request::input('mode', 'osu');
+        $currentCountry = Request::input('country', 'all');
+        $model = '\\App\\Models\\UserStatistics\\' . studly_case($currentMode);
+        $friends = Request::input('friends', 0);
+
+        if ($friends == 1) {
+            if (!$currentUser) {
+                abort(403);
+            } elseif (!$currentUser->isSupporter()) {
+                return error_popup(trans('errors.supporter_only'));
+            }
+        }
+
+        try {
+            $stats = $model::orderBy('rank', 'asc')->with('user');
+        } catch (\InvalidArgumentException $ex) {
+            return error_popup($ex->getMessage());
+        }
+
+        if ($currentCountry !== 'all') {
+            $stats = $stats->where('country_acronym', $currentCountry);
+        }
+
+        if ($friends == 1) {
+            $stats = $stats->whereIn('user_id', model_pluck($currentUser->friends(), 'zebra_id'));
+        }
+
+        $stats = $stats->paginate($this->pageSize);
         $countries = fractal_collection_array(Country::all(), new CountryTransformer);
-        return view('ranking.overall', compact('countries'));
+        return view('ranking.overall', compact('countries', 'stats', 'currentUser', 'currentMode', 'currentCountry'));
     }
 
     public function getCountry()
