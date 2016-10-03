@@ -41,6 +41,12 @@
                     @endif
                 </h3>
             </div>
+            @if ($currentUser->isSupporter() && false)
+                <div class="ranking-scoreboard__friends">
+                    <label class="osu-checkbox"><input type="checkbox" class="osu-checkbox__input" value="on"><span class="osu-checkbox__tick"><span class="fa fa-check"></span></span></label>
+                    {{ trans('ranking.friends') }}
+                </div>
+            @endif
             <div class="ranking-scoreboard__tabs">
                 @foreach (['osu', 'taiko', 'mania', 'fruits'] as $mode)
                     {{
@@ -112,6 +118,7 @@
                     </div>
                 @endforeach
             </div>
+            @include('ranking._pagination', ['object' => $stats])
         </div>
     </div>
 @endsection

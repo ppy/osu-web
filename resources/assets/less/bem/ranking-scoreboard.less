@@ -203,6 +203,14 @@
           color: @gray;
         }
 
+        a {
+          color: @pink-darker !important;
+          &, &:hover {
+            text-decoration: none;
+            color: @pink-text !important;
+          }
+        }
+
         a, span {
           display: block;
           padding: @grid-gutter-width/8;
@@ -215,14 +223,6 @@
 
   &__prevnext {
     font-weight: bold;
-
-    a {
-      color: @pink-darker !important;
-      &, &:hover {
-        text-decoration: none;
-        color: @pink-text !important;
-      }
-    }
 
     a, span {
       font-size: 16px !important;

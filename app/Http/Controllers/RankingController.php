@@ -66,6 +66,7 @@ class RankingController extends Controller
         }
 
         $stats = $stats->paginate($this->pageSize);
+        $stats->appends(['country' => $currentCountry, 'mode' => $currentMode])->links();
         $countries = fractal_collection_array(Country::all(), new CountryTransformer);
         return view('ranking.overall', compact('countries', 'stats', 'currentUser', 'currentMode', 'currentCountry'));
     }
