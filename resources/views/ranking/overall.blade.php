@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2016 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -105,6 +105,7 @@
                 <div class="ranking-scoreboard__row">
                     @foreach (['rank-header', 'player-header', 'accuracy', 'play-count', 'score', 'x-count', 's-count', 'a-count'] as $m)
                         <span class="ranking-scoreboard__row-item ranking-scoreboard__row-item--{{ $m }} ranking-scoreboard__row-item--header {{ $m == 'play-count' || $m == 'x-count' || $m == 's-count' || $m == 'a-count' ? 'hidden-xs' : '' }}">
+                            {{-- badges here --}}
                             {{ trans("ranking.list.$m") }}
                         </span>
                     @endforeach
