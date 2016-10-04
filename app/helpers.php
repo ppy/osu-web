@@ -408,11 +408,11 @@ function fractal_paginator_array($paginator, $transformer, $includes = null)
 {
     $data = fractal_collection_array($paginator, $transformer, $includes);
 
-    $data['meta'] = array(
+    $data['meta'] = [
         'perPage' => $paginator->perPage(),
         'currentPage' => $paginator->currentPage(),
         'lastPage' => $paginator->lastPage(),
-    );
+    ];
 
     return $data;
 }

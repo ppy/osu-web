@@ -38,7 +38,6 @@ class RankingController extends Controller
     public function getOverall()
     {
         $currentUser = Auth::User();
-
         $currentMode = Request::input('mode', 'osu');
         $currentCountry = Request::input('country', 'all');
         $model = '\\App\\Models\\UserStatistics\\' . studly_case($currentMode);
