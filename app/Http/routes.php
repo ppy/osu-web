@@ -72,8 +72,6 @@ Route::get('/ranking/overall', ['as' => 'ranking-overall', 'uses' => 'RankingCon
 Route::get('/ranking/charts', ['as' => 'ranking-charts', 'uses' => 'RankingController@getCharts']);
 Route::get('/ranking/country', ['as' => 'ranking-country', 'uses' => 'RankingController@getCountry']);
 Route::get('/ranking/mapper', ['as' => 'ranking-mapper', 'uses' => 'RankingController@getMapper']);
-Route::get('/ranking/scores/overall', ['as' => 'ranking.scores.overall', 'uses' => 'RankingController@scoresOverall']);
-Route::get('/ranking/scores/country', ['as' => 'ranking.scores.country', 'uses' => 'RankingController@scoresCountry']);
 
 // community section (forum will end up being a section of its own)
 Route::get('/community/forum', function () {

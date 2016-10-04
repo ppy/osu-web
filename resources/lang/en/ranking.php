@@ -22,6 +22,8 @@ return [
     'header' => [
         'ranking' => 'Rankings',
         'overall' => 'Overall',
+        'country' => 'Country',
+        'mapper' => 'Mapper',
     ],
     'overall' => [
         'global' => 'Global performance ranking',
@@ -32,12 +34,20 @@ return [
     'list' => [
         'rank-header' => 'Rank',
         'player-header' => 'Player',
+        'mapper-header' => 'Mapper',
+        'country-header' => 'Country',
         'accuracy' => 'Accuracy',
+        'user-count' => 'Active users',
         'play-count' => 'Play count',
         'score' => 'Performance',
+        'country-score' => 'Ranked score',
+        'country-performance' => 'Performance',
         'x-count' => 'SS',
         's-count' => 'S',
         'a-count' => 'A',
+        'kudosu-received' => 'Received',
+        'kudosu-given' => 'Given',
+        'kudosu-available' => 'Available',
     ],
     'friends' => 'Show friends only',
 ];

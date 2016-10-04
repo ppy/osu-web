@@ -41,29 +41,23 @@
                     @endif
                 </h3>
             </div>
+
             @if ($currentUser->isSupporter() && false)
                 <div class="ranking-scoreboard__friends">
                     <label class="osu-checkbox"><input type="checkbox" class="osu-checkbox__input" value="on"><span class="osu-checkbox__tick"><span class="fa fa-check"></span></span></label>
                     {{ trans('ranking.friends') }}
                 </div>
             @endif
-            <div class="ranking-scoreboard__tabs">
-                @foreach (['osu', 'taiko', 'mania', 'fruits'] as $mode)
-                    {{
-                        link_to_route(
-                            'ranking-overall',
-                            trans("beatmaps.mode.$mode"),
-                            [
-                                'country' => $currentCountry,
-                                'mode' => $mode,
-                            ],
-                            ['class' => 'ranking-scoreboard__tab' . ($mode === $currentMode ? ' ranking-scoreboard__tab--active' : '')]
-                        )
-                    }}
-                @endforeach
-            </div>
-            <div class="ranking-scoreboard__line">
-            </div>
+
+            @include(
+                'ranking._tabs',
+                [
+                    'type' => 'overall',
+                    'currentMode' => $currentMode,
+                    'currentCountry' => $currentCountry,
+                ]
+            )
+
             <div class="ranking-scoreboard__main">
                 <div class="ranking-scoreboard__row">
                     @foreach (['rank-header', 'player-header', 'accuracy', 'play-count', 'score', 'x-count', 's-count', 'a-count'] as $m)
@@ -72,52 +66,19 @@
                         </span>
                     @endforeach
                 </div>
+
                 @foreach($stats as $stat)
-                    <div class="ranking-scoreboard__row ranking-scoreboard__row--score {{ $stat->user->user_id == $currentUser->user_id ? 'ranking-scoreboard__row--myself' : '' }}">
-                        <div class="ranking-scoreboard__row-item ranking-scoreboard__row-item--rank">
-                            #{{ $stat->rank_score_index }}
-                        </div>
-                        <div class="ranking-scoreboard__row-item ranking-scoreboard__row-item--flag" id="id{{ $stat['rank']['global'] }}">
-                            @if (isset($stat->user->country_acronym) === true)
-                                <img
-                                    class="flag-country flag-country--scoreboard"
-                                    src="/images/flags/{{ $stat->user->country_acronym }}.png"
-                                    alt="{{ $stat->user->country_acronym }}"
-                                    title="{{ $stat->user->countryName() }}"
-                                />
-                            @endif    
-                        </div>                    
-                        <div class="ranking-scoreboard__row-item ranking-scoreboard__row-item--player">
-                            {{
-                                link_to_route(
-                                    'users.show',
-                                    $stat->user->username,
-                                    ['users' => $stat->user->user_id],
-                                    []
-                                )
-                            }}
-                        </div>
-                        <div class="ranking-scoreboard__row-item ranking-scoreboard__row-item--accuracy">
-                            {{ number_format($stat->accuracy_new, 2) }}%
-                        </div>
-                        <div class="ranking-scoreboard__row-item ranking-scoreboard__row-item--play-count">
-                            {{ number_format($stat->playcount) }}
-                        </div>
-                        <div class="ranking-scoreboard__row-item ranking-scoreboard__row-item--score">
-                            {{ number_format($stat->rank_score) }}pp
-                        </div>
-                        <div class="ranking-scoreboard__row-item ranking-scoreboard__row-item--x-count hidden-xs">
-                            {{ number_format($stat->x_rank_count) }}
-                        </div>
-                        <div class="ranking-scoreboard__row-item ranking-scoreboard__row-item--s-count hidden-xs">
-                            {{ number_format($stat->s_rank_count) }}
-                        </div>
-                        <div class="ranking-scoreboard__row-item ranking-scoreboard__row-item--a-count hidden-xs">
-                            {{ number_format($stat->a_rank_count) }}
-                        </div>
-                    </div>
+                    @include(
+                        'ranking._overall-item',
+                        [
+                            'stat' => $stat,
+                            'currentUser' => $currentUser,
+                            'currenCountry' => $currentCountry,
+                        ]
+                    )
                 @endforeach
             </div>
+
             @include('ranking._pagination', ['object' => $stats])
         </div>
     </div>

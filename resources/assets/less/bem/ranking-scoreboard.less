@@ -103,7 +103,7 @@
       width: 40px;
     }
 
-    &--player {
+    &--player, &--mapper, &--country {
       flex: 1;
       font-weight: 600;
       color: @blue-text;
@@ -113,7 +113,7 @@
       white-space: nowrap;
     }
 
-    &--player-header {
+    &--player-header, &--mapper-header, &--country-header {
       flex: 1;
       min-width: 0;
     }
@@ -124,6 +124,16 @@
     }
 
     &--score {
+      width: 120px;
+      text-align: right;
+    }
+
+    &--country-score {
+      width: 160px;
+      text-align: right;
+    }
+
+    &--country-performance {
       width: 120px;
       text-align: right;
     }
@@ -146,6 +156,16 @@
     &--a-count {
       width: 60px;
       text-align: right;
+    }
+
+    &--user-count {
+      text-align: right;
+      width: 100px;
+    }
+
+    &--kudosu-received, &--kudosu-given, &--kudosu-available {
+      text-align: right;
+      width: 90px;
     }
   }
 
