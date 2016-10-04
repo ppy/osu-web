@@ -15,46 +15,43 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<ol class="
-    forum-header-breadcrumb
-    {{ $headerBreadcrumbExtraClasses or '' }}
-">
-    <li class="forum-header-breadcrumb__bg u-forum--bg-link"></li>
+<ol class="page-mode page-mode--breadcrumb js-header--main">
+    <li class="page-mode__bg u-forum--bg-link"></li>
 
-    <li class="forum-header-breadcrumb__item">
-        <a href="{{ route('forum.forums.index') }}" class="forum-header-breadcrumb-link">
+    <li class="page-mode__item">
+        <a href="{{ route('forum.forums.index') }}" class="page-mode-link">
             {{ trans('forum.title') }}
 
-            <span class="forum-header-breadcrumb-link__stripe u-forum--bg">
+            <span class="page-mode-link__stripe u-forum--bg">
             </span>
         </a>
     </li>
 
     @foreach ($forum->forum_parents as $forumId => $forumData)
-        <li class="forum-header-breadcrumb__item">
+        <li class="page-mode__item">
             <a
                 href="{{ $forumData[1] === 0 ?
                     route('forum.forums.index')."#forum-{$forumId}"
                     : route('forum.forums.show', $forumId)
                 }}"
-                class="forum-header-breadcrumb-link"
+                class="page-mode-link"
             >
                 {{ $forumData[0] }}
 
-                <span class="forum-header-breadcrumb-link__stripe u-forum--bg">
+                <span class="page-mode-link__stripe u-forum--bg">
                 </span>
             </a>
         </li>
     @endforeach
 
-    <li class="forum-header-breadcrumb__item">
+    <li class="page-mode__item">
         <a
             href="{{ route("forum.forums.show", $forum->forum_id) }}"
-            class="forum-header-breadcrumb-link forum-header-breadcrumb-link--is-active"
+            class="page-mode-link page-mode-link--is-active"
         >
             {{ $forum->forum_name }}
 
-            <span class="forum-header-breadcrumb-link__stripe u-forum--bg">
+            <span class="page-mode-link__stripe u-forum--bg">
             </span>
         </a>
     </li>

@@ -22,7 +22,7 @@
 @section("content")
     <div class="osu-layout__row osu-layout__row--page-compact">
         <div class="page-header-nav">
-            @include('forum.topics._header_breadcrumb')
+            @include('forum._header_breadcrumb')
         </div>
         <div
             class="forum-category-header
