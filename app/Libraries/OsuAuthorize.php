@@ -71,6 +71,7 @@ class OsuAuthorize
         $prefix = 'beatmap_discussion.resolve.';
 
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         // no point resolving general discussion?
         if ($discussion->timestamp === null) {
@@ -251,6 +252,7 @@ class OsuAuthorize
         $prefix = 'forum.post.delete.';
 
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ($user->isGMT()) {
             return 'ok';
@@ -283,6 +285,7 @@ class OsuAuthorize
         $prefix = 'forum.post.edit.';
 
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ($user->isGMT()) {
             return 'ok';
@@ -399,6 +402,7 @@ class OsuAuthorize
         $prefix = 'forum.topic_cover.edit.';
 
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ($user->isGMT()) {
             return 'ok';
