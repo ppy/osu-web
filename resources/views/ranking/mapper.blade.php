@@ -52,6 +52,7 @@
                         [
                             'stat' => $stats[$i],
                             'position' => ($stats->firstItem() + $i),
+                            'currentUser' => $currentUser
                         ]
                     )
                 @endfor

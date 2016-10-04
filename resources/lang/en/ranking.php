@@ -28,6 +28,8 @@ return [
     'overall' => [
         'global' => 'Global performance ranking',
         'national' => 'Performance ranking for :country',
+        'reset' => 'Reset country filter',
+        'more' => 'more countries',
         'no-scores' => 'No scores!',
         'loading' => 'Loading...',
     ],

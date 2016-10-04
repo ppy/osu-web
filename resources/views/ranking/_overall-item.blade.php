@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="ranking-scoreboard__row ranking-scoreboard__row--score {{ $stat->user->user_id == $currentUser->user_id ? 'ranking-scoreboard__row--myself' : '' }}">
+<div class="ranking-scoreboard__row ranking-scoreboard__row--score {{ $currentUser && $stat->user->user_id == $currentUser->user_id ? 'ranking-scoreboard__row--myself' : '' }}">
     <div class="ranking-scoreboard__row-item ranking-scoreboard__row-item--rank">
         @if ($currentCountry === 'all')
             #{{ $stat->rank_score_index }}
@@ -25,14 +25,20 @@
     </div>
     <div class="ranking-scoreboard__row-item ranking-scoreboard__row-item--flag">
         @if (isset($stat->user->country_acronym) === true)
-            <img
-                class="flag-country flag-country--scoreboard"
-                src="/images/flags/{{ $stat->user->country_acronym }}.png"
-                alt="{{ $stat->user->country_acronym }}"
-                title="{{ $stat->user->countryName() }}"
-            />
-        @endif    
-    </div>                    
+            @if ($currentCountry === 'all')
+            <a href="{{ route('ranking-overall', ['country' => $stat->user->country_acronym]) }}">
+            @endif
+                <img
+                    class="flag-country flag-country--scoreboard"
+                    src="/images/flags/{{ $stat->user->country_acronym }}.png"
+                    alt="{{ $stat->user->country_acronym }}"
+                    title="{{ $stat->user->countryName() }}"
+                />
+            @if ($currentCountry === 'all')
+            </a>
+            @endif
+        @endif
+    </div>
     <div class="ranking-scoreboard__row-item ranking-scoreboard__row-item--player">
         {{
             link_to_route(
@@ -45,7 +51,7 @@
     <div class="ranking-scoreboard__row-item ranking-scoreboard__row-item--accuracy">
         {{ number_format($stat->accuracy_new, 2) }}%
     </div>
-    <div class="ranking-scoreboard__row-item ranking-scoreboard__row-item--play-count">
+    <div class="ranking-scoreboard__row-item ranking-scoreboard__row-item--play-count hidden-xs">
         {{ number_format($stat->playcount) }}
     </div>
     <div class="ranking-scoreboard__row-item ranking-scoreboard__row-item--score">

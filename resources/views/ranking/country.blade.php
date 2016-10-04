@@ -51,6 +51,7 @@
                         'ranking._country-item',
                         [
                             'stat' => $stats[$i],
+                            'userCountry' => $userCountry,
                             'position' => ($stats->firstItem() + $i),
                         ]
                     )

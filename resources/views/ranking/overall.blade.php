@@ -38,11 +38,54 @@
                     @else
                         {{ trans('ranking.overall.national',
                         ['country' => $countries['data'][array_search($currentCountry, array_column($countries['data'], 'code'))]['name']]) }}
+                        <img
+                            class="flag-country"
+                            src="/images/flags/{{ $currentCountry }}.png"
+                            alt="{{ $currentCountry }}"
+                        />
                     @endif
                 </h3>
             </div>
 
-            @if ($currentUser->isSupporter() && false)
+            <div class="ranking-scoreboard__countries-flags">
+                @if ($currentCountry !== 'all')
+                    <div>
+                        {{
+                            link_to_route(
+                                'ranking-overall',
+                                trans('ranking.overall.reset')
+                            )
+                        }}
+                    </div>
+                @endif
+                <div class="ranking-scoreboard__top-flags">
+                    @for ($i = 0; $i < count($topCountries); $i++)
+                        <a
+                            href="{{ route('ranking-overall', ['country' => $topCountries[$i]->acronym]) }}"
+                            @if ($i >= 5)
+                                class="hidden-xs"
+                            @endif
+                        >
+                            <img
+                                class="flag-country"
+                                src="/images/flags/{{ $topCountries[$i]->acronym }}.png"
+                                alt="{{ $topCountries[$i]->acronym }}"
+                                title="{{ $topCountries[$i]->name }}"
+                            />
+                        </a>
+                    @endfor
+                    {{
+                        link_to_route(
+                            'ranking-country',
+                            '...',
+                            [],
+                            ['title' => trans('ranking.overall.more')]
+                        )
+                    }}
+                </div>
+            </div>
+
+            @if ($currentUser && $currentUser->isSupporter() && false)
                 <div class="ranking-scoreboard__friends">
                     <label class="osu-checkbox"><input type="checkbox" class="osu-checkbox__input" value="on"><span class="osu-checkbox__tick"><span class="fa fa-check"></span></span></label>
                     {{ trans('ranking.friends') }}

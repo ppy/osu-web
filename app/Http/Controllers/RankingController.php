@@ -69,17 +69,17 @@ class RankingController extends Controller
         $stats = $stats->paginate($this->pageSize);
         $stats->appends(['country' => $currentCountry, 'mode' => $currentMode])->links();
         $countries = fractal_collection_array(Country::all(), new CountryTransformer);
-        return view('ranking.overall', compact('countries', 'stats', 'currentUser', 'currentMode', 'currentCountry'));
+        $topCountries = Country::where('display', '=', 1)->orderBy('pp', 'desc')->take(10)->get();
+        return view('ranking.overall', compact('countries', 'stats', 'currentUser', 'currentMode', 'currentCountry', 'topCountries'));
     }
 
     public function getCountry()
     {
-        try {
-            $stats = Country::where('display', '=', 1)->orderBy('pp', 'desc')->paginate($this->pageSize);
-        } catch (\InvalidArgumentException $ex) {
-            return error_popup($ex->getMessage());
-        }
-        return view('ranking.country', compact('stats'));
+        $stats = Country::where('display', '=', 1)->orderBy('pp', 'desc')->paginate($this->pageSize);
+        $currentUser = Auth::User();
+        $userCountry = $currentUser ? Auth::User()->country_acronym : '';
+
+        return view('ranking.country', compact('stats', 'userCountry'));
     }
 
     public function getCharts()
@@ -89,11 +89,9 @@ class RankingController extends Controller
 
     public function getMapper()
     {
-        try {
-            $stats = User::where([['osu_kudostotal', '>=', 1]])->orderBy('osu_kudostotal', 'desc')->paginate($this->pageSize);
-        } catch (\InvalidArgumentException $ex) {
-            return error_popup($ex->getMessage());
-        }
-        return view('ranking.mapper', compact('stats'));
+        $currentUser = Auth::User();
+        $stats = User::where([['osu_kudostotal', '>=', 1]])->orderBy('osu_kudostotal', 'desc')->paginate($this->pageSize);
+
+        return view('ranking.mapper', compact('stats', 'currentUser'));
     }
 }

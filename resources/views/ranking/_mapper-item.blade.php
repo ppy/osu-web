@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="ranking-scoreboard__row ranking-scoreboard__row--score">
+<div class="ranking-scoreboard__row ranking-scoreboard__row--score {{ $currentUser && $stat->user_id == $currentUser->user_id ? 'ranking-scoreboard__row--myself' : '' }}">
     <div class="ranking-scoreboard__row-item ranking-scoreboard__row-item--rank">
         #{{ $position }}
     </div>
