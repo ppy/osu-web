@@ -90,7 +90,7 @@ class Topic extends Model
 
         DB::transaction(function () use ($forum, $topic, $params, $poll) {
             $topic->save();
-            $topic->addPost($params['user'], $params['body'], $params['notifyReplies']);
+            $topic->addPost($params['user'], $params['body']);
 
             if ($poll !== null) {
                 $topic->poll($poll)->save();
@@ -105,17 +105,17 @@ class Topic extends Model
         return $topic->fresh();
     }
 
-    public function addPost($poster, $body, $notifyReplies)
+    public function addPost($poster, $body)
     {
-        DB::transaction(function () use ($poster, $body, $notifyReplies) {
-            $post = new Post([
-                'post_text' => $body,
-                'post_username' => $poster->username,
-                'poster_id' => $poster->user_id,
-                'forum_id' => $this->forum_id,
-                'post_time' => Carbon::now(),
-            ]);
+        $post = new Post([
+            'post_text' => $body,
+            'post_username' => $poster->username,
+            'poster_id' => $poster->user_id,
+            'forum_id' => $this->forum_id,
+            'post_time' => Carbon::now(),
+        ]);
 
+        DB::transaction(function () use ($post) {
             $this->posts()->save($post);
 
             $this->refreshCache();
@@ -129,7 +129,7 @@ class Topic extends Model
             }
         });
 
-        return true;
+        return $post;
     }
 
     public function removePost($post, $user = null)
@@ -291,6 +291,20 @@ class Topic extends Model
     public function scopeNormal($query)
     {
         return $query->where('topic_type', 0);
+    }
+
+    public function scopeWatchedByUser($query, $user)
+    {
+        return $query
+            ->with('forum')
+            ->whereIn(
+                'topic_id',
+                model_pluck(
+                    TopicWatch::where('user_id', $user->user_id),
+                    'topic_id'
+                )
+            )
+            ->orderBy('topic_last_post_time', 'DESC');
     }
 
     public function scopeWithReplies($query, $withReplies)

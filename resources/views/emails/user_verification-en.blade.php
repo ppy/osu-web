@@ -24,5 +24,4 @@ You can enter the code with or without spaces.
 
 If you did not request this, please REPLY IMMEDIATELY as your account may be in danger.
 
---
-osu! | {{ config('app.url') }}
+@include('emails._signature')

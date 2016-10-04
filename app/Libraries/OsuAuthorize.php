@@ -209,13 +209,25 @@ class OsuAuthorize
         return $prefix.'no_access';
     }
 
+    public function checkContestEnter($user, $contest)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if (!$contest->isSubmissionOpen()) {
+            return 'contest.entry.over';
+        }
+
+        return 'ok';
+    }
+
     public function checkContestVote($user, $contest)
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($contest->ends_at->isPast()) {
-            return 'contest.voting_over';
+        if (!$contest->isVotingOpen()) {
+            return 'contest.voting.over';
         }
 
         return 'ok';
@@ -359,6 +371,25 @@ class OsuAuthorize
         if (!ForumAuthorize::aclCheck($user, 'f_post', $forum)) {
             return $prefix.'no_permission';
         }
+
+        return 'ok';
+    }
+
+    public function checkForumTopicWatchAdd($user, $topic)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if (!$this->doCheckUser($user, 'ForumView', $topic->forum)->can()) {
+            return 'forum.topic.watch.no_forum_access';
+        }
+
+        return 'ok';
+    }
+
+    public function checkForumTopicWatchRemove($user, $topic)
+    {
+        $this->ensureLoggedIn($user);
 
         return 'ok';
     }

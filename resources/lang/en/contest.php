@@ -19,8 +19,15 @@
  */
 
 return [
-    'over' => 'Voting for this contest has ended',
+    'voting' => [
+        'over' => 'Voting for this contest has ended',
+    ],
+    'entry' => [
+        'preparation' => 'We are current preparing this contest. Please wait patiently!',
+        'over' => 'Thank you for your entries! Submissions have closed for this contest and voting will open soon.',
+    ],
     'beatmaps' => [
       'download' => 'Download Entry',
     ],
+    'votes' => '1 vote|:count votes',
 ];

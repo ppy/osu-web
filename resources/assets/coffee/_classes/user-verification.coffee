@@ -26,6 +26,7 @@ class @UserVerification
     $(document).on 'ajax:error', @showOnError
     $(document).on 'ready turbolinks:load', @showOnLoad
     $(document).on 'keyup', '.js-user-verification--input', @autoSubmit
+    $(document).on 'click', '.js-user-verification--reissue', @reissue
 
     $(window).on 'throttled-resize throttled-scroll', @reposition
 
@@ -61,6 +62,24 @@ class @UserVerification
       .error @error
       .always =>
         Fade.out verifying
+
+
+  reissue: (e) =>
+    e.preventDefault()
+
+    issuing = document.getElementsByClassName('js-user-verification--issuing')[0]
+    target = @inputBox[0]
+
+    @request?.abort()
+    Fade.in issuing
+    Fade.out @errorMessage[0]
+
+    @request =
+      $.post laroute.route('account.reissue-code')
+      .done @success
+      .error @error
+      .always =>
+        Fade.out issuing
 
 
   error: (xhr) =>

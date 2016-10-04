@@ -43,6 +43,7 @@ class Handler extends ExceptionHandler
         HttpException::class,
         LaravelAuthorizationException::class,
         ModelNotFoundException::class,
+        RequireLoginException::class,
         SilencedException::class,
         TokenMisMatchException::class,
         ValidationException::class,
@@ -84,6 +85,8 @@ class Handler extends ExceptionHandler
             return 404;
         } elseif ($e instanceof TokenMismatchException) {
             return 403;
+        } elseif ($e instanceof RequireLoginException) {
+            return 401;
         } elseif ($e instanceof AuthorizationException) {
             return 403;
         } else {
@@ -127,6 +130,14 @@ class Handler extends ExceptionHandler
     {
         if (method_exists($e, 'getResponse')) {
             return $e->getResponse();
+        }
+
+        if ($e instanceof RequireLoginException) {
+            if ($request->ajax()) {
+                return response(['authentication' => 'basic'], 401);
+            }
+
+            return response()->view('users.login');
         }
 
         if (config('app.debug')) {

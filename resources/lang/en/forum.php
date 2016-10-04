@@ -32,6 +32,17 @@ return [
             'confirm' => 'Are you sure you want to remove the cover image?',
         ],
     ],
+
+    'email' => [
+        'new_reply' => '[osu!] :title',
+    ],
+
+    'forums' => [
+        'topics' => [
+            'empty' => 'No topics!',
+        ],
+    ],
+
     'pinned_topics' => 'Pinned Topics',
     'post' => [
         'confirm_delete' => 'Really delete post?',
@@ -83,6 +94,30 @@ return [
         'reply_box_placeholder' => 'Type here to reply',
         'started_by' => 'by :user',
     ],
+
+    'topic_watches' => [
+        'index' => [
+            'title' => 'Topic Subscriptions',
+            'title_compact' => 'subscriptions',
+
+            'box' => [
+                'total' => 'Topics subscribed',
+                'unread' => 'Topics with new replies',
+            ],
+            'info' => [
+                'total' => 'You subscribed to :total topics.',
+                'unread' => 'You have :unread unread replies to subscribed topics.',
+            ],
+        ],
+
+        'topic_buttons' => [
+            'remove' => [
+                'confirmation' => 'Unsubscribe from topic?',
+                'title' => 'Unsubscribe',
+            ],
+        ],
+    ],
+
     'topics' => [
         '_' => 'Topics',
 
@@ -157,6 +192,13 @@ return [
                     'end_time' => 'Polling will end at :time',
                 ],
             ],
+        ],
+
+        'watch' => [
+            'watch-0' => 'Unsubscribe topic',
+            'watch-1' => 'Subscribe topic',
+            'watched-0' => 'Unsubscribed from topic',
+            'watched-1' => 'Subscribed to topic',
         ],
     ],
 

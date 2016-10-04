@@ -73,17 +73,20 @@
 
         <div class="forum-post__actions">
             <div class="forum-post-actions">
-                @if ($options["editLink"] === true)
-                    <a
-                        title="{{ trans('forum.post.actions.edit') }}"
-                        data-tooltip-position="left center"
-                        href="{{ route("forum.posts.edit", $post) }}"
-                        class="forum-post-actions__action edit-post-link"
-                        data-remote="1"
-                    >
-                        <i class="fa fa-edit"></i>
-                    </a>
+                @if ($options['editLink'] === true)
+                    <div class="forum-post-actions__action">
+                        <a
+                            title="{{ trans('forum.post.actions.edit') }}"
+                            data-tooltip-position="left center"
+                            href="{{ route('forum.posts.edit', $post) }}"
+                            class="btn-circle edit-post-link"
+                            data-remote="1"
+                        >
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </div>
                 @endif
+
                 @if ($options["deleteLink"] === true)
                     @php
                         $deleteString = $post->deleted_at ? 'undelete' : 'delete'
@@ -101,16 +104,19 @@
                         <i class="fa fa-{{ $post->deleted_at ? 'undo' : 'trash' }}"></i>
                     </a>
                 @endif
-                @if ($options["replyLink"] === true)
-                    <a
-                        title="{{ trans('forum.topics.actions.reply_with_quote') }}"
-                        data-tooltip-position="left center"
-                        href="{{ route("forum.posts.raw", ["id" => $post, "quote" => 1]) }}"
-                        class="forum-post-actions__action js-forum-topic-reply--quote"
-                        data-remote="1"
-                    >
-                        <i class="fa fa-reply"></i>
-                    </a>
+
+                @if ($options['replyLink'] === true)
+                    <div class="forum-post-actions__action">
+                        <a
+                            title="{{ trans('forum.topics.actions.reply_with_quote') }}"
+                            data-tooltip-position="left center"
+                            href="{{ route('forum.posts.raw', ['id' => $post, 'quote' => 1]) }}"
+                            class="btn-circle js-forum-topic-reply--quote"
+                            data-remote="1"
+                        >
+                            <i class="fa fa-reply"></i>
+                        </a>
+                    </div>
                 @endif
             </div>
         </div>

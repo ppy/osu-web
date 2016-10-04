@@ -18,13 +18,14 @@
 <ol class="
     forum-header-breadcrumb
     {{ $headerBreadcrumbExtraClasses or '' }}
-    forum-colour__bg-link--{{ $forum->categorySlug() }}
 ">
+    <li class="forum-header-breadcrumb__bg u-forum--bg-link"></li>
+
     <li class="forum-header-breadcrumb__item">
-        <a href="{{ route('forum.forums.index') }}" class="forum-header-breadcrumb__link">
+        <a href="{{ route('forum.forums.index') }}" class="forum-header-breadcrumb-link">
             {{ trans('forum.title') }}
 
-            <span class="forum-header-breadcrumb__link-stripe u-current-forum-bg">
+            <span class="forum-header-breadcrumb-link__stripe u-forum--bg">
             </span>
         </a>
     </li>
@@ -36,11 +37,11 @@
                     route('forum.forums.index')."#forum-{$forumId}"
                     : route('forum.forums.show', $forumId)
                 }}"
-                class="forum-header-breadcrumb__link"
+                class="forum-header-breadcrumb-link"
             >
                 {{ $forumData[0] }}
 
-                <span class="forum-header-breadcrumb__link-stripe u-current-forum-bg">
+                <span class="forum-header-breadcrumb-link__stripe u-forum--bg">
                 </span>
             </a>
         </li>
@@ -49,11 +50,11 @@
     <li class="forum-header-breadcrumb__item">
         <a
             href="{{ route("forum.forums.show", $forum->forum_id) }}"
-            class="forum-header-breadcrumb__link forum-header-breadcrumb__link--is-active"
+            class="forum-header-breadcrumb-link forum-header-breadcrumb-link--is-active"
         >
             {{ $forum->forum_name }}
 
-            <span class="forum-header-breadcrumb__link-stripe u-current-forum-bg">
+            <span class="forum-header-breadcrumb-link__stripe u-forum--bg">
             </span>
         </a>
     </li>

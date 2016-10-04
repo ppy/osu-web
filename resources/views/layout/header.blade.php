@@ -22,7 +22,7 @@
         <div class="bg__triangles bg__triangles--1"></div>
         <div class="bg__triangles bg__triangles--2"></div>
         <div class="bg__triangles bg__triangles--3"></div>
-        <div class="bg__gradient-overlay u-section-gradient-down"></div>
+        <div class="bg__gradient-overlay u-section--gradient-down"></div>
     </div>
 
     <!-- Main style -->
