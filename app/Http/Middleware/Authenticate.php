@@ -19,6 +19,7 @@
  */
 namespace App\Http\Middleware;
 
+use App\Exceptions\RequireLoginException;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
@@ -54,11 +55,7 @@ class Authenticate
     public function handle($request, Closure $next)
     {
         if ($this->auth->guest()) {
-            if ($request->ajax()) {
-                return response(['authentication' => 'basic'], 401);
-            } else {
-                return response()->view('users.login');
-            }
+            throw new RequireLoginException();
         }
 
         return $next($request);

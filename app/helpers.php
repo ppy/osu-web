@@ -72,6 +72,11 @@ function product_quantity_options($product)
     return $opts;
 }
 
+function render_to_string($view, $variables = [])
+{
+    return view()->make($view, $variables)->render();
+}
+
 function obscure_email($email)
 {
     $email = explode('@', $email);
@@ -126,6 +131,14 @@ function i18n_view($view)
     } else {
         return sprintf('%s-%s', $view, config('app.fallback_locale'));
     }
+}
+
+function is_sql_unique_exception($ex)
+{
+    return starts_with(
+        $ex->getMessage(),
+        'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry'
+    );
 }
 
 function js_view($view, $vars = [])

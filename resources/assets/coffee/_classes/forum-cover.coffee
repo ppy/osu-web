@@ -48,8 +48,8 @@ class @ForumCover
 
     return if $('#overlay').is(':visible')
 
-    Fade.out $('.blackout')[0]
-    @header[0].classList.remove 'forum-category-header--cover-modal'
+    Blackout.hide()
+    @header[0].classList.remove 'js-forum-cover--is-open'
 
     @isModalOpen(false)
 
@@ -109,9 +109,9 @@ class @ForumCover
 
 
   openModal: =>
-    Fade.in $('.blackout')[0]
+    Blackout.show()
     @isModalOpen(true)
-    @header[0].classList.add 'forum-category-header--cover-modal'
+    @header[0].classList.add 'js-forum-cover--is-open'
 
     @initFileupload()
 
@@ -170,6 +170,6 @@ class @ForumCover
     backgroundImage = if backgroundImageUrl? then "url('#{backgroundImageUrl}')" else ''
     @header[0].style.backgroundImage = backgroundImage
 
-    $('.js-forum-cover--remove').toggleClass('forum-post-actions__action--disabled', !@hasCover())
+    $('.js-forum-cover--remove').toggleClass('js-disabled', !@hasCover())
 
     @initFileupload()

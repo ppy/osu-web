@@ -31,7 +31,15 @@
     </head>
 
     <body
-        class="osu-layout osu-layout--body {{ $current_section or "error" }} section action-{{ $current_action }} {{ $body_additional_classes or "" }}"
+        class="
+            osu-layout
+            osu-layout--body
+            {{ $current_section or "error" }}
+            t-section-{{ $current_section or "error" }}
+            section
+            action-{{ $current_action }}
+            {{ $body_additional_classes or "" }}
+        "
         data-section="{{ $current_section }}"
     >
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>

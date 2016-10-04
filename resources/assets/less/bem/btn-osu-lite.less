@@ -30,6 +30,10 @@
   cursor: pointer;
   text-transform: inherit;
 
+  &--beatmap-discussion {
+    margin-left: @spacing;
+  }
+
   &--default {
     @__bgcolor: @blue-dark;
     background-color: @__bgcolor;
@@ -94,5 +98,9 @@
       background-color: @grey-9;
       color: @grey-f;
     }
+  }
+
+  &__right {
+    margin-left: (@spacing / 2);
   }
 }

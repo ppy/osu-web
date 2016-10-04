@@ -1,21 +1,21 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 // per-category header image
 .forum-category-header {
@@ -35,7 +35,7 @@
   flex-direction: column;
   justify-content: flex-end;
 
-  &--cover-modal {
+  &.js-forum-cover--is-open {
     z-index: @z-index--blackout-visible;
   }
 
@@ -80,31 +80,6 @@
     background-color: @grey-5;
   }
 
-  ._topic-category(@category) {
-    .at2x-simple('/images/headers/forum-topic-covers/forum-cover-@{category}.jpg');
-  }
-
-  &--topic-category-beatmaps { ._topic-category('beatmaps'); }
-  &--topic-category-language-specific { ._topic-category('language-specific'); }
-  &--topic-category-management { ._topic-category('management'); }
-  &--topic-category-osu { ._topic-category('osu'); }
-  &--topic-category-other { ._topic-category('other'); }
-
-  &__action {
-    @media @desktop {
-      opacity: 0;
-      will-change: opacity;
-
-      .@{_top}:hover & {
-        opacity: 1;
-      }
-    }
-
-    .@{_top}--cover-modal & {
-      opacity: 1;
-    }
-  }
-
   &__actions {
     position: absolute;
 
@@ -118,6 +93,17 @@
       right: 0;
       bottom: (@spacing * 2);
       width: 0;
+
+      opacity: 0;
+      will-change: opacity;
+
+      .@{_top}.js-forum-cover--is-open & {
+        opacity: 1;
+      }
+
+      .@{_top}:hover & {
+        opacity: 1;
+      }
     }
   }
 
@@ -140,7 +126,7 @@
     transition: opacity 120ms;
     will-change: opacity;
 
-    .@{_top}--cover-modal & {
+    .@{_top}.js-forum-cover--is-open & {
       opacity: 1;
       pointer-events: auto;
     }

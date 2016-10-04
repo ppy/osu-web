@@ -375,6 +375,25 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkForumTopicWatchAdd($user, $topic)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if (!$this->doCheckUser($user, 'ForumView', $topic->forum)->can()) {
+            return 'forum.topic.watch.no_forum_access';
+        }
+
+        return 'ok';
+    }
+
+    public function checkForumTopicWatchRemove($user, $topic)
+    {
+        $this->ensureLoggedIn($user);
+
+        return 'ok';
+    }
+
     public function checkForumTopicCoverEdit($user, $cover)
     {
         $prefix = 'forum.topic_cover.edit.';
