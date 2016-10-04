@@ -32,7 +32,7 @@ class CountryStatisticsTransformer extends Fractal\TransformerAbstract
             'rankScore' => $country->pp,
             'rankedScore' => $country->rankedscore,
             'playCount' => $country->playcount,
-            'userCount' => $country->usercount
+            'userCount' => $country->usercount,
         ];
     }
 }

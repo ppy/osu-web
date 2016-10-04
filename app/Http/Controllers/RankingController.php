@@ -22,9 +22,6 @@ namespace App\Http\Controllers;
 use App\Models\Country;
 use App\Models\User;
 use App\Transformers\CountryTransformer;
-use App\Transformers\CountryStatisticsTransformer;
-use App\Transformers\UserStatisticsTransformer;
-use League\Fractal\Manager;
 use Auth;
 use Request;
 
@@ -32,18 +29,17 @@ class RankingController extends Controller
 {
     protected $section = 'ranking';
 
-    // TODO: Adjust paginator page size
-    protected $pageSize = 4;
+    protected $pageSize = 50;
 
     public function getOverall()
     {
         $currentUser = Auth::User();
         $currentMode = Request::input('mode', 'osu');
         $currentCountry = Request::input('country', 'all');
-        $model = '\\App\\Models\\UserStatistics\\' . studly_case($currentMode);
+        $model = '\\App\\Models\\UserStatistics\\'.studly_case($currentMode);
         $friends = Request::input('friends', 0);
 
-        if ($friends == 1) {
+        if ($friends === 1) {
             if (!$currentUser) {
                 abort(403);
             } elseif (!$currentUser->isSupporter()) {
@@ -61,7 +57,7 @@ class RankingController extends Controller
             $stats = $stats->where('country_acronym', $currentCountry);
         }
 
-        if ($friends == 1) {
+        if ($friends === 1) {
             $stats = $stats->whereIn('user_id', model_pluck($currentUser->friends(), 'zebra_id'));
         }
 
