@@ -15,20 +15,18 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="page-header-nav">
-    <ul class="forum-header-breadcrumb forum-header-breadcrumb--large">
-        <li class="forum-header-breadcrumb__item">
-            <a
-                href="{{ route('forum.topic-watches.index') }}"
-                class="
-                    forum-header-breadcrumb-link
-                    {{ $current_action === 'forum-topic-watches-index' ? 'forum-header-breadcrumb-link--is-active' : '' }}
-                "
-            >
-                {{ trans('forum.topic_watches.index.title_compact') }}
+<ul class="page-mode">
+    <li class="page-mode__item">
+        <a
+            href="{{ route('forum.topic-watches.index') }}"
+            class="
+                page-mode-link
+                {{ $current_action === 'forum-topic-watches-index' ? 'page-mode-link--is-active' : '' }}
+            "
+        >
+            {{ trans('forum.topic_watches.index.title_compact') }}
 
-                <span class="forum-header-breadcrumb-link__stripe"></span>
-            </a>
-        </li>
-    </ul>
-</div>
+            <span class="page-mode-link__stripe"></span>
+        </a>
+    </li>
+</ul>
