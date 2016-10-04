@@ -133,9 +133,6 @@ Route::post('/tournaments/{tournament}/register', ['as' => 'tournaments.register
 
 // Forum controllers
 Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
-    Route::get('/', ['as' => 'forum.forums.index', 'uses' => 'ForumsController@index']);
-    Route::get('{forums}', ['as' => 'forum.forums.show', 'uses' => 'ForumsController@show']);
-
     Route::get('t/{topics}', ['as' => 'forum.topics.show', 'uses' => 'TopicsController@show']);
     Route::post('topics/preview', ['as' => 'forum.topics.preview', 'uses' => 'TopicsController@preview']);
     Route::post('topics/{topics}/lock', ['as' => 'forum.topics.lock', 'uses' => 'TopicsController@lock']);
@@ -144,7 +141,9 @@ Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
     Route::post('topics/{topics}/reply', ['as' => 'forum.topics.reply', 'uses' => 'TopicsController@reply']);
     Route::post('topics/{topics}/vote-feature', ['as' => 'forum.topics.vote-feature', 'uses' => 'TopicsController@voteFeature']);
     Route::post('topics/{topics}/vote', ['as' => 'forum.topics.vote', 'uses' => 'TopicsController@vote']);
+    Route::post('topics/{topics}/watch', ['as' => 'forum.topics.watch', 'uses' => 'TopicsController@watch']);
     Route::resource('topics', 'TopicsController', ['only' => ['create', 'store', 'update']]);
+    Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['index']]);
 
     Route::resource('forum-covers', 'ForumCoversController', ['only' => ['store', 'update', 'destroy']]);
     Route::resource('topic-covers', 'TopicCoversController', ['only' => ['store', 'update', 'destroy']]);
@@ -152,6 +151,9 @@ Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
     Route::get('p/{posts}', ['as' => 'forum.posts.show', 'uses' => 'PostsController@show']);
     Route::get('posts/{posts}/raw', ['as' => 'forum.posts.raw', 'uses' => 'PostsController@raw']);
     Route::resource('posts', 'PostsController', ['only' => ['destroy', 'update', 'edit']]);
+
+    Route::get('/', ['as' => 'forum.forums.index', 'uses' => 'ForumsController@index']);
+    Route::get('{forums}', ['as' => 'forum.forums.show', 'uses' => 'ForumsController@show']);
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {

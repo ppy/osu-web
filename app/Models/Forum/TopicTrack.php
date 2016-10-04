@@ -47,11 +47,13 @@ class TopicTrack extends Model
             ->select('topic_id', 'mark_time')
             ->get();
 
-        $buf = [];
+        $result = [];
         foreach ($readStatus as $r) {
-            $buf[$r->topic_id] = ($r->mark_time >= $topicData[$r->topic_id]);
+            if ($r->mark_time >= $topicData[$r->topic_id]) {
+                $result[$r->topic_id] = true;
+            }
         }
 
-        return $buf;
+        return $result;
     }
 }

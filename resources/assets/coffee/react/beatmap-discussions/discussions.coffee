@@ -37,17 +37,17 @@ BeatmapDiscussions.Discussions = React.createClass
 
         div null,
           button
-            className: "btn-osu-lite btn-osu-lite--default #{bn}__collapse-button"
+            className: "btn-osu-lite btn-osu-lite--default btn-osu-lite--beatmap-discussion"
             onClick: => $.publish 'beatmapDiscussion:collapse', all: 'collapse'
             el Icon, name: 'minus-circle'
-            span className: "#{bn}__collapse-button-text",
+            span className: 'btn-osu-lite__right',
               osu.trans('beatmaps.discussions.collapse.all-collapse')
 
           button
-            className: "btn-osu-lite btn-osu-lite--default #{bn}__collapse-button"
+            className: "btn-osu-lite btn-osu-lite--default btn-osu-lite--beatmap-discussion"
             onClick: => $.publish 'beatmapDiscussion:collapse', all: 'expand'
             el Icon, name: 'plus-circle'
-            span className: "#{bn}__collapse-button-text",
+            span className: 'btn-osu-lite__right',
               osu.trans('beatmaps.discussions.collapse.all-expand')
 
       div

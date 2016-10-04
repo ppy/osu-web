@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <a
-    class="forum-topic-nav__button-circle"
+    class="btn-circle btn-circle--topic-nav"
     href="{{ route('forum.topics.pin', [
         $_topic,
         'pin' => !$_topic->isPinned(),
