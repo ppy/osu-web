@@ -24,7 +24,6 @@
             class="flag-country flag-country--scoreboard"
             src="/images/flags/{{ $stat->acronym }}.png"
             alt="{{ $stat->acronym }}"
-            title="{{ $stat->name }}"
         />    
     </div> 
     <div class="ranking-scoreboard__row-item ranking-scoreboard__row-item--country">

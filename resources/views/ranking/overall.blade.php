@@ -105,8 +105,21 @@
                 <div class="ranking-scoreboard__row">
                     @foreach (['rank-header', 'player-header', 'accuracy', 'play-count', 'score', 'x-count', 's-count', 'a-count'] as $m)
                         <span class="ranking-scoreboard__row-item ranking-scoreboard__row-item--{{ $m }} ranking-scoreboard__row-item--header {{ $m == 'play-count' || $m == 'x-count' || $m == 's-count' || $m == 'a-count' ? 'hidden-xs' : '' }}">
-                            {{-- badges here --}}
-                            {{ trans("ranking.list.$m") }}
+                            @if ($m == 'x-count')
+                                <div class="ranking-scoreboard__badge">
+                                    <div class="badge-rank badge-rank--X"></div>
+                                </div>
+                            @elseif ($m == 's-count')
+                                <div class="ranking-scoreboard__badge">
+                                    <div class="badge-rank badge-rank--S"></div>
+                                </div>
+                            @elseif ($m == 'a-count')
+                                <div class="ranking-scoreboard__badge">
+                                    <div class="badge-rank badge-rank--A"></div>
+                                </div>
+                            @else
+                                {{ trans("ranking.list.$m") }}
+                            @endif
                         </span>
                     @endforeach
                 </div>

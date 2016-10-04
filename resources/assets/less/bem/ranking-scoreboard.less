@@ -60,6 +60,12 @@
     border-image: linear-gradient(to left, transparent 5%, @grey-5, transparent 95%) 1;
   }
 
+  &__badge {
+    width: 18px;
+    height: 18px;
+    margin-left: auto;
+  }
+
   &__row {
     display: flex;
     align-items: center;
@@ -209,6 +215,14 @@
     padding-top: @spacing;
     padding-bottom: @spacing;
     font-size: 14px;
+
+    a {
+      color: @pink-darker !important;
+      &, &:hover {
+        text-decoration: none;
+        color: @pink-text !important;
+      }
+    }
   }
 
   &__top-flags {
