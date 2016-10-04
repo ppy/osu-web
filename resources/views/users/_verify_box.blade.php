@@ -29,16 +29,16 @@
             data-verification-key-length="{{ config('osu.user.verification_key_length_hex') }}"
             class="user-verification__key js-user-verification--input modal-af"
         />
-        <div class="user-verification__errors js-user-verification--error" data-visibility="hidden"></div>
 
-        <div class="user-verification__errors js-user-verification--verifying" data-visibility="hidden">
-            <i class="fa fa-spinner fa-pulse fa-fw"></i>
-            {{ trans('user_verification.box.verifying') }}
-        </div>
+        <div class="user-verification__message js-user-verification--message" data-visibility="hidden">
+            <span class="
+                user-verification__message-spinner
+                js-user-verification--message-spinner
+            ">
+                <i class="fa fa-spinner fa-pulse"></i>
+            </span>
 
-        <div class="user-verification__errors js-user-verification--issuing" data-visibility="hidden">
-            <i class="fa fa-spinner fa-pulse fa-fw"></i>
-            {{ trans('user_verification.box.issuing') }}
+            <span class="js-user-verification--message-text"></span>
         </div>
     </div>
 
