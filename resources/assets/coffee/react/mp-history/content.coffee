@@ -49,7 +49,7 @@ class MPHistory.Content extends React.Component
           div className: 'mp-history-content__show-more-box',
             a
               className: 'mp-history-content__show-more'
-              href: laroute.route 'multiplayer.match', matches: @props.id, full: true
+              href: laroute.route('matches.show', matches: @props.id, full: true)
               Lang.get 'multiplayer.match.more-events'
 
         div className: 'mp-history-events',
