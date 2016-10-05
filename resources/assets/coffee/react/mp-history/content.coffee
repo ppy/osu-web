@@ -57,13 +57,18 @@ class MPHistory.Content extends React.Component
             if event.detail.type == 'other'
               continue if !event.game? || (!event.game.data.end_time? && event.id != @props.lastGameId)
 
-              el MPHistory.Game,
-                event: event
-                teamScores: @teamScores i
-                lookupUser: @props.lookupUser
+              div
+                className: 'mp-history-events__game'
                 key: event.id
+                el MPHistory.Game,
+                  event: event
+                  teamScores: @teamScores i
+                  lookupUser: @props.lookupUser
             else
-              el MPHistory.Event,
-                event: event
-                lookupUser: @props.lookupUser
+              div
+                className: 'mp-history-events__event'
                 key: event.id
+                el MPHistory.Event,
+                  event: event
+                  lookupUser: @props.lookupUser
+                  key: event.id
