@@ -45,9 +45,6 @@
                     </a>
                 </h1>
             </div>
-
-            <div class="forum-topic-headernav__actions">
-            </div>
         </div></div>
     </div>
 
