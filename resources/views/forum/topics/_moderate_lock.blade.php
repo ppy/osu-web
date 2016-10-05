@@ -18,15 +18,15 @@
 <a
     class="btn-circle btn-circle--topic-nav"
     href="{{ route('forum.topics.lock', [
-        $_topic,
-        'lock' => ($_topic->isLocked() === true ? '0' : null),
+        $topic,
+        'lock' => !$topic->isLocked(),
     ]) }}"
     data-remote="1"
     data-method="post"
     data-reload-on-success="1"
     data-reload-reset-scroll="1"
 >
-    @if ($_topic->isLocked())
+    @if ($topic->isLocked())
         <i class="fa fa-unlock"></i>
     @else
         <i class="fa fa-lock"></i>

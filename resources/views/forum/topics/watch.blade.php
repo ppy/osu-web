@@ -18,8 +18,8 @@
 Timeout.set(0, function() {
     $('.js-forum-topic-watch[data-topic-id={{ $topic->topic_id }}]')
         .replaceWith({!! json_encode(render_to_string('forum.topics._watch', [
-            '_topic' => $topic,
-            '_isWatching' => $watch,
+            'topic' => $topic,
+            'isWatching' => $watch,
         ])) !!});
 
     osu.popup({!! json_encode(trans('forum.topics.watch.watched-'.(int) $watch)) !!}, 'success');

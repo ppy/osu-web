@@ -80,7 +80,7 @@ class TopicsController extends Controller
         $lock = Request::input('lock') !== '0';
         $topic->lock($lock);
 
-        return ['message' => trans('forum.topics.lock.locked-'.($lock === true ? '1' : '0'))];
+        return ['message' => trans('forum.topics.lock.locked-'.(int) $lock)];
     }
 
     public function move($id)

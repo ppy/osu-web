@@ -212,18 +212,18 @@
                 @endif
 
                 @if (priv_check('ForumTopicModerate', $topic)->can())
-                    @include('forum.topics._moderate_lock', ['_topic' => $topic])
+                    @include('forum.topics._moderate_lock', ['topic' => $topic])
                 @endif
 
                 @if (priv_check('ForumTopicModerate', $topic)->can())
-                    @include('forum.topics._moderate_pin', ['_topic' => $topic])
+                    @include('forum.topics._moderate_pin', ['topic' => $topic])
                 @endif
 
                 @if (priv_check('ForumTopicModerate', $topic)->can())
-                    @include('forum.topics._moderate_move', ['_topic' => $topic])
+                    @include('forum.topics._moderate_move', ['topic' => $topic])
                 @endif
 
-                @include('forum.topics._watch', ['_topic' => $topic, '_isWatching' => $isWatching])
+                @include('forum.topics._watch', ['topic' => $topic, 'isWatching' => $isWatching])
             </div>
 
             <div class="forum-topic-nav__group forum-topic-nav__group--main">

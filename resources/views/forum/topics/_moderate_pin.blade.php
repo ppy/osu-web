@@ -18,16 +18,16 @@
 <a
     class="btn-circle btn-circle--topic-nav"
     href="{{ route('forum.topics.pin', [
-        $_topic,
-        'pin' => !$_topic->isPinned(),
+        $topic,
+        'pin' => !$topic->isPinned(),
     ]) }}"
     data-remote="1"
     data-method="post"
     data-reload-on-success="1"
     data-reload-reset-scroll="1"
-    title="{{ trans('forum.topics.pin.pin-'.(int) !$_topic->isPinned()) }}"
+    title="{{ trans('forum.topics.pin.pin-'.(int) !$topic->isPinned()) }}"
 >
-    @if ($_topic->isPinned())
+    @if ($topic->isPinned())
         <i class="fa fa-toggle-off"></i>
     @else
         <i class="fa fa-toggle-on"></i>
