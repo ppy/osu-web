@@ -38,9 +38,9 @@ return [
     ],
 
     'forums' => [
-        	'topics' => [
+        'topics' => [
             		'empty' => 'Sem tópicos!',
-        	],
+        ],
     ],
 
     'pinned_topics' => 'Tópicos Fixados',
@@ -51,7 +51,7 @@ return [
         'actions' => [
             'delete' => 'Deletar post',
             'edit' => 'Editar post',
-        ],
+    ],
     ],
     'search' => [
         'go_to_post' => 'Ir para post',
