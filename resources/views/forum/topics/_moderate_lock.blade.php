@@ -25,6 +25,7 @@
     data-method="post"
     data-reload-on-success="1"
     data-reload-reset-scroll="1"
+    title="{{ trans('forum.topics.lock.lock-'.(int) !$topic->isLocked()) }}"
 >
     @if ($topic->isLocked())
         <i class="fa fa-unlock"></i>

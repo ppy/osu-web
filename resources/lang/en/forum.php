@@ -153,6 +153,8 @@ return [
         ],
 
         'lock' => [
+            'lock-0' => 'Unlock topic',
+            'lock-1' => 'Lock topic',
             'locked-0' => 'Topic has been unlocked',
             'locked-1' => 'Topic has been locked',
             'is_locked' => 'This topic is locked and can not be replied to',
