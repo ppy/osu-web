@@ -26,8 +26,8 @@ return [
 
 
         'info' => [
-            'check_spam' => "Certifique-se de verificar a sua pasta de spam se você não conseguir encontrar o e-mail.",
-            'recover' => "Se você não consegue acessar seu e-mail ou ter esquecido qual você usou, siga o :link.",
+            'check_spam' => 'Certifique-se de verificar a sua pasta de spam se você não conseguir encontrar o e-mail.',
+            'recover' => 'Se você não consegue acessar seu e-mail ou ter esquecido qual você usou, siga o :link.',
             'recover_link' => 'processo de recuperação de e-mail aqui',
             'reissue' => 'You can also :reissue_link or :logout_link.',
             'reissue_link' => 'solicitar outro código',
