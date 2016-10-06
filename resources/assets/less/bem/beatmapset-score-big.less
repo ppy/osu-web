@@ -22,15 +22,21 @@
   flex-direction: column;
 
   height: 90px;
+  width: calc(~"100% - 6px");
 
   .default-border-radius;
   .default-box-shadow;
 
-  margin: @spacing * 2 0;
+  margin: @spacing * 2 auto;
 
   &--first-score {
     border: 3px solid @yellow;
-    height: 96px; // to account for the borders; not using box-sizing: content-box; here as I wanted to only the height to remain the same
+
+    // to account for the borders; not using `box-sizing: content-box;` here
+    // as I wanted to only the height to remain the same
+    height: 96px;
+
+    width: 100%;
   }
 
   &:hover {
@@ -63,11 +69,13 @@
   &__position {
     min-width: 60px;
     width: auto;
-    text-align: center;
 
     font-size: 25px;
     font-style: italic;
     font-weight: 700;
+
+    padding-left: @spacing * 1.7;
+    padding-right: @spacing;
 
     align-self: center;
 
@@ -117,7 +125,7 @@
     padding-top: @spacing * 2;
     padding-bottom: @spacing;
 
-    padding-right: @spacing * 2;
+    padding-right: @spacing * 1.7;
   }
 
   &__stat {
@@ -126,10 +134,6 @@
     align-items: flex-end;
 
     padding-left: @spacing * 2;
-
-    &:last-of-type {
-      padding: 0
-    }
   }
 
   &__stat-header {
@@ -153,8 +157,8 @@
   }
 
   &__rank {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
 
     margin-left: @spacing;
   }
@@ -163,7 +167,7 @@
     font-size: 12px;
     color: @grey-7;
 
-    padding-right: @spacing * 3;
+    padding-right: @spacing * 1.7;
 
     align-self: center;
   }

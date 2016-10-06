@@ -25,7 +25,7 @@ class BeatmapsetPage.Header extends React.Component
   render: ->
     dateFormat = 'MMM D, YYYY'
 
-    div className: 'page-header-wrapper',
+    div className: 'default-box-shadow',
       div className: 'header-tabs',
         for mode in BeatmapHelper.modes
           continue if _.isEmpty @props.beatmapList[mode]

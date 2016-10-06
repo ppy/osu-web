@@ -184,7 +184,7 @@ class BeatmapsetPage.Main extends React.Component
         preload: 'auto'
         onEnded: @onPreviewEnded
 
-      div className: 'osu-layout__row osu-layout__row--page-beatmapset',
+      div className: 'osu-layout__row osu-layout__row--page-compact',
         el BeatmapsetPage.Header,
           beatmapset: @props.beatmapset
           beatmaps: @state.beatmaps

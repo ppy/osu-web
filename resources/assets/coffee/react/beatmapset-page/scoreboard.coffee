@@ -48,7 +48,7 @@ class BeatmapsetPage.Scoreboard extends React.Component
     else
       ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL']
 
-    div className: 'osu-layout__row osu-layout__row--page-beatmapset beatmapset-scoreboard',
+    div className: 'osu-layout__row osu-layout__row--page-compact beatmapset-scoreboard',
       div className: 'page-tabs',
         for type in ['global', 'country', 'friend']
           el BeatmapsetPage.ScoreboardTab,

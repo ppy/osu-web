@@ -54,6 +54,9 @@ BeatmapsetPage.ScoreBig = React.createClass
             mods: @props.score.mods
             classModifiers: ['reversed']
 
+          div className: 'beatmapset-score-big__rank',
+            div className: "badge-rank badge-rank--#{@props.score.rank}"
+
           for elem in ['score', 'accuracy', 'hits']
             className = 'beatmapset-score-big__stat'
             className += ' hidden-xs' if elem != 'score'
@@ -74,9 +77,6 @@ BeatmapsetPage.ScoreBig = React.createClass
             div className: className, key: elem,
               div className: 'beatmapset-score-big__stat-header', header
               div className: 'beatmapset-score-big__stat-value beatmapset-score-big__stat-value--score', value
-
-          div className: 'beatmapset-score-big__rank',
-            div className: "badge-rank badge-rank--#{@props.score.rank}"
 
       div className: 'beatmapset-score-big__section beatmapset-score-big__section--bottom',
         div className: 'beatmapset-score-big__achieved',
