@@ -39,7 +39,7 @@ return [
 
     'forums' => [
         'topics' => [
-            		'empty' => 'Sem tópicos!',
+                   'empty' => 'Sem tópicos!',
         ],
     ],
 
@@ -190,7 +190,7 @@ return [
                     'end_time' => 'A votação encerrará às :time',
                 ],
             ],
-    	],
+       ],
 
     'watch' => [
             'watch-0' => 'Cancelar inscrição do tópico',
