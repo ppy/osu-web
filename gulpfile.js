@@ -115,6 +115,9 @@ elixir(function(mix) {
     'react/artist-page.coffee',
   ], 'public/js/react/artist-page.js')
   .coffee([
+    'react/misc/avatar-upload.coffee'
+  ], 'public/js/react/misc/avatar-upload.js')
+  .coffee([
     'react/contest/_base-entry-list.coffee',
     'react/contest/*.coffee',
     'react/contest.coffee',
@@ -130,6 +133,7 @@ elixir(function(mix) {
     'js/react/beatmapset-page.js',
     'js/react/mp-history.js',
     'js/react/artist-page.js',
+    'js/react/misc/avatar-upload.js',
     'js/react/contest.js',
   ]);
 });

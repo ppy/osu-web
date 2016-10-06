@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2016 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,30 +15,6 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div>
-    <div class="osu-nav__title">
-        @if ($_user === null)
-            {{ trans("users.anonymous.username") }}
-        @else
-            {{ $_user->username }}
-        @endif
-    </div>
 
-    <div class="osu-nav__highlight-bar">
-        <span class="bar"></span>
-    </div>
-</div>
-
-<div class="osu-nav__avatar">
-    <div
-        class="
-            avatar
-            avatar--full-rounded
-            {{ $_user === null ? 'avatar--guest' : '' }}
-            js-nav-avatar
-        "
-        @if ($_user !== null)
-            style="background-image: url('{{ $_user->avatarUrl() }}');"
-        @endif
-    ></div>
-</div>
+<span class="user-header__text">{{ trans_choice('users.settings.notifications', 3) }}</span>
+<span class="user-header__text">{{ trans_choice('users.settings.messages', 1) }}</span>

@@ -23,6 +23,7 @@ use App\Exceptions\ImageProcessorException;
 use App\Libraries\UserVerification;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
+use Schema;
 use Auth;
 use Illuminate\Http\Request as HttpRequest;
 use Request;
@@ -61,6 +62,17 @@ class AccountController extends Controller
             }
         }
 
+        if (Request::hasFile('avatar_file')) {
+            try {
+                Auth::user()
+                    ->profileCustomization()
+                    ->firstOrCreate([])
+                    ->setAvatar(Request::file('avatar_file'));
+            } catch (ImageProcessorException $e) {
+                return error_popup($e->getMessage());
+            }
+        }
+
         if (Request::has('order')) {
             $order = Request::input('order');
 
@@ -93,6 +105,24 @@ class AccountController extends Controller
                 ->profileCustomization()
                 ->firstOrCreate([])
                 ->setExtrasOrder($order);
+        }
+
+        $inputs = array_diff_key(Request::all(), ['cover_file', 'cover_id', 'avatar_file', 'order']);
+
+        $user = Auth::user();
+
+        $profileCustomization = $user
+            ->profileCustomization()
+            ->firstOrCreate([]);
+
+        foreach ($inputs as $key => $value) {
+            if (in_array($key, User::EDITABLE, true)) {
+                $user->{$key} = $value;
+                $user->save();
+            } elseif (Schema::hasColumn($user->profileCustomization->getTable(), $key)) {
+                $profileCustomization->{$key} = $value;
+                $profileCustomization->save();
+            }
         }
 
         return Auth::user()->defaultJson();

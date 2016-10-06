@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,37 +16,34 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.spinner {
-  width: 55px;
-  height: 55px;
-  position: relative;
 
-  &__cube {
-    background-color: @grey-f;
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    top: 0;
-    left: 0;
+.header-tabs {
+  width: 100%;
+  height: 50px;
 
-    animation: spinner-sk-cubemove 1.8s infinite ease-in-out;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 
-    &--2 {
-      animation-delay: -0.9s;
+  background-color: @grey-2;
+
+  &__tab {
+    margin: 0 @grid-gutter-width / 4;
+    padding-bottom: @grid-gutter-width / 8;
+    border-bottom: @grid-gutter-width / 8 solid transparent;
+
+    color: @grey-c;
+
+    font-size: 14px;
+
+    &--active {
+      font-weight: 700;
+      border-bottom-color: @yellow;
     }
-  }
-}
 
-@keyframes sk-cubemove {
-  25% {
-    transform: translateX(42px) rotate(-90deg) scale(0.5);
-  } 50% {
-    transform: translateX(42px) translateY(42px) rotate(-179deg);
-  } 50.1% {
-    transform: translateX(42px) translateY(42px) rotate(-180deg);
-  } 75% {
-    transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
-  } 100% {
-    transform: rotate(-360deg);
+    &:hover, &:active, &:focus, &--active {
+      color: #ffffff;
+      text-decoration: none;
+    }
   }
 }

@@ -26,6 +26,9 @@ return [
     'menu' => [
         'home' => [
             '_' => 'home',
+            'getLanding' => 'home',
+            'getNews' => 'news',
+            'getAccount' => 'account',
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
@@ -232,6 +235,7 @@ return [
     'popup_user' => [
         'links' => [
             'profile' => 'My Profile',
+            'account' => 'My Account',
             'logout' => 'Log Out',
         ],
     ],

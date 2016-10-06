@@ -175,6 +175,28 @@ return [
         ],
         'title' => ":username's profile",
     ],
+    'settings' => [
+        'account' => 'Account',
+        'settings' => 'Settings',
+        'messages' => 'You have :count new message|You have :count new messages',
+        'notifications' => 'You have :count new notification|You have :count new notifications',
+        'profile' => 'Edit Profile',
+        'avatar' => 'Edit Avatar',
+        'upload' => 'upload image',
+        'fluffs' => 'Edit Fluffs',
+        'saved' => 'saved!',
+        'prefs' => [
+            'user_msnm' => 'skype',
+            'user_twitter' => 'twitter',
+            'user_website' => 'website',
+            'user_from' => 'current location',
+            'user_occ' => 'occupation',
+            'user_interests' => 'interests',
+            'tablet_brand' => 'brand',
+            'tablet_model' => 'model',
+            'tablet_surface' => 'surface',
+        ],
+    ],
 
     'verify' => [
         'title' => 'Account Verification',

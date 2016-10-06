@@ -21,6 +21,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BanchoStats;
 use App\Models\Count;
+use Carbon\Carbon;
 use Auth;
 use Request;
 use View;
@@ -28,6 +29,49 @@ use View;
 class HomeController extends Controller
 {
     protected $section = 'home';
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('auth', ['only' => [
+            'getAccount',
+        ]]);
+    }
+
+    public function getLanding()
+    {
+        if (Auth::check()) {
+            return $this->getNews();
+        }
+
+        $timeAgo = Carbon::now()->subDay();
+        $stats = BanchoStats::where('date', '>=', $timeAgo)
+            ->whereRaw('banchostats_id mod 10 = 0')
+            ->get();
+        $totalUsers = Count::totalUsers();
+        $currentOnline = ($stats->isEmpty() ? 0 : $stats->last()->users_osu);
+
+        return view('home.landing', compact('stats', 'totalUsers', 'currentOnline'));
+    }
+
+    public function getNews()
+    {
+        return view('home.news');
+    }
+
+    public function getAccount()
+    {
+        $user = Auth::user();
+
+        $timeAgo = Carbon::now()->subDay();
+        $stats = BanchoStats::where('date', '>=', $timeAgo)
+            ->whereRaw('banchostats_id mod 10 = 0')
+            ->get();
+        $currentOnline = ($stats->isEmpty() ? 0 : $stats->last()->users_osu);
+
+        return view('home.account', compact('user', 'currentOnline', 'stats'));
+    }
 
     public function getChangelog()
     {

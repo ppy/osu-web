@@ -25,7 +25,7 @@
 <div class="row">
     <div class="col-sm-2">
         <center>
-            <div style="background-image: url('{{ Auth::user()->user_avatar }}');" class="avatar"></div>
+            <div style="background-image: url('{{ Auth::user()->avatarUrl() }}');" class="avatar"></div>
         </center>
     </div>
     <div class="col-sm-5">

@@ -32,6 +32,7 @@ $(document).on 'submit', 'form', LoadingOverlay.show
 @twitchPlayer ?= new TwitchPlayer
 @landingGraph ?= new LandingGraph
 @landingHero ?= new LandingHero
+@userPageChart ?= new UserPageChart
 @timeago ?= new Timeago
 @osuLayzr ?= new OsuLayzr
 @nav ?= new Nav
@@ -61,6 +62,8 @@ $(document).on 'ready turbolinks:load', =>
   @forumTopicPostJump ||= new ForumTopicPostJump(@forum)
   @forumTopicReply ||= new ForumTopicReply(@forum, @stickyFooter)
   @forumCover ||= new ForumCover(@forum)
+
+  @userPrefs ||= new UserPrefs
 
   @menu ||= new Menu
 

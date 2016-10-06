@@ -22,8 +22,7 @@
 
   display: inline-block;
 
-  margin: 0;
-  padding: @spacing;
+  padding: 0 @spacing;
 
   background-color: @blue-darker;
   background-image: url('/images/backgrounds/buttonblue@2x.png');
@@ -43,12 +42,17 @@
   }
 
   &__content {
+    width: 100%;
+    height: 100%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
   &__left {
-    margin-right: (@spacing * 4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }

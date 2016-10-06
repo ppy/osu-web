@@ -292,6 +292,13 @@ function nav_links()
     return $links;
 }
 
+function user_links()
+{
+    return [
+        'getAccount' => route('home.account'),
+    ];
+}
+
 function footer_links()
 {
     $links = [];

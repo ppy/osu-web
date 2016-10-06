@@ -20,16 +20,19 @@
 namespace App\Models;
 
 use App\Libraries\ProfileCover;
+use App\Libraries\UserAvatar;
 use Illuminate\Database\Eloquent\Model;
 
 class UserProfileCustomization extends Model
 {
     protected $casts = [
         'cover_json' => 'array',
+        'avatar_json' => 'array',
         'extras_order' => 'array',
     ];
 
     private $_cover;
+    private $_avatar;
 
     public function getCoverAttribute()
     {
@@ -44,6 +47,21 @@ class UserProfileCustomization extends Model
     {
         $this->cover_json = $this->cover->set($id, $file);
 
+        $this->save();
+    }
+
+    public function getAvatarAttribute()
+    {
+        if ($this->_avatar === null) {
+            $this->_avatar = new UserAvatar($this->user_id, $this->avatar_json);
+        }
+
+        return $this->_avatar;
+    }
+
+    public function setAvatar($file)
+    {
+        $this->avatar_json = $this->avatar->set($file);
         $this->save();
     }
 
@@ -71,6 +89,7 @@ class UserProfileCustomization extends Model
     public function __construct($attributes = [])
     {
         $this->cover_json = ['id' => null, 'file' => null];
+        $this->avatar_json = ['id' => null, 'file' => null];
         $this->extras_order = null;
 
         return parent::__construct($attributes);

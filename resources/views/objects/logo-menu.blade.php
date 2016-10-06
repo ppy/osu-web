@@ -32,7 +32,7 @@
                     >
                         <div
                             class="avatar avatar--full-rounded"
-                            style="background-image: url('{{ Auth::user()->user_avatar }}');"
+                            style="background-image: url('{{ Auth::user()->avatarUrl() }}');"
                         ></div>
                     </a>
 

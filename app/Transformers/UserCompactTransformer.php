@@ -30,10 +30,12 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
 
     public function transform(User $user)
     {
+        $profileCustomization = $user->profileCustomization()->firstOrNew([]);
+
         return [
             'id' => $user->user_id,
             'username' => $user->username,
-            'avatarUrl' => $user->user_avatar,
+            'avatarUrl' => $profileCustomization->avatar->url(),
             'country' => $user->country_acronym,
         ];
     }
