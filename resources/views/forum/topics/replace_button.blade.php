@@ -16,11 +16,11 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 Timeout.set(0, function() {
-    $('.js-forum-topic-watch[data-topic-id={{ $topic->topic_id }}]')
-        .replaceWith({!! json_encode(render_to_string('forum.topics._watch', [
+    $('.js-forum-topic-{{ $type }}[data-topic-id={{ $topic->topic_id }}]')
+        .replaceWith({!! json_encode(render_to_string('forum.topics._'.$type, [
             'topic' => $topic,
-            'isWatching' => $watch,
+            'state' => $state
         ])) !!});
 
-    osu.popup({!! json_encode(trans('forum.topics.watch.watched-'.(int) $watch)) !!}, 'success');
+    osu.popup({!! json_encode(trans('forum.topics.'.$type.'.state-'.(int) $state)) !!}, 'success');
 });

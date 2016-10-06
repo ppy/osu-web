@@ -17,6 +17,7 @@
 --}}
 <a
     class="
+        js-forum-topic-moderate_pin
         btn-circle
         btn-circle--topic-nav
         {{ $topic->isPinned() ? 'btn-circle--activated' : '' }}
@@ -27,9 +28,8 @@
     ]) }}"
     data-remote="1"
     data-method="post"
-    data-reload-on-success="1"
-    data-reload-reset-scroll="1"
-    title="{{ trans('forum.topics.pin.pin-'.(int) !$topic->isPinned()) }}"
+    data-topic-id="{{ $topic->topic_id }}"
+    title="{{ trans('forum.topics.moderate_pin.pin-'.(int) !$topic->isPinned()) }}"
 >
     <i class="fa fa-thumb-tack"></i>
 </a>

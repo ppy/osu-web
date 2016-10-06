@@ -15,7 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div>
+<div
+    class="js-forum-topic-lock"
+    data-topic-id="{{ $topic->topic_id }}"
+>
     @if ($topic->isLocked())
         <div
             class="btn-circle btn-circle--topic-nav btn-circle--blank"
@@ -35,8 +38,6 @@
             ]) }}"
             data-remote="1"
             data-method="post"
-            data-reload-on-success="1"
-            data-reload-reset-scroll="1"
             title="{{ trans('forum.topics.lock.lock-'.(int) !$topic->isLocked()) }}"
         >
             @if ($topic->isLocked())
