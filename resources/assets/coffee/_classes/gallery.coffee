@@ -16,9 +16,9 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @Gallery
-  pswp: document.getElementsByClassName('pswp')
-
   constructor: ->
+    @pswp = document.getElementsByClassName('pswp')
+
     $(document).on 'click', '.js-gallery', (e) =>
       $target = $(e.currentTarget)
       return if $target.parents('a').length
