@@ -77,7 +77,7 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
 
-        $lock = Request::input('lock') !== '0';
+        $lock = get_bool(Request::input('lock'));
         $topic->lock($lock);
 
         return ['message' => trans('forum.topics.lock.locked-'.(int) $lock)];
@@ -103,7 +103,7 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
 
-        $pin = Request::input('pin') !== '0';
+        $pin = get_bool(Request::input('pin'));
         $topic->pin($pin);
 
         return ['message' => trans('forum.topics.pin.pinned-'.(int) $pin)];
@@ -347,7 +347,7 @@ class TopicsController extends Controller
     public function watch($id)
     {
         $topic = Topic::findOrFail($id);
-        $watch = Request::input('watch') === '1';
+        $watch = get_bool(Request::input('watch'));
         $privName = 'ForumTopicWatch'.($watch ? 'Add' : 'Remove');
 
         priv_check($privName, $topic)->ensureCan();
