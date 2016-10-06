@@ -201,19 +201,7 @@
 
         <div class="forum-topic-nav__content">
             <div class="forum-topic-nav__group">
-                @if ($topic->isLocked())
-                    <div
-                        class="btn-circle btn-circle--topic-nav btn-circle--blank"
-                        data-tooltip-float="fixed"
-                        title="{{ trans('forum.topics.lock.is_locked') }}"
-                    >
-                        <i class="fa fa-lock"></i>
-                    </div>
-                @endif
-
-                @if (priv_check('ForumTopicModerate', $topic)->can())
-                    @include('forum.topics._moderate_lock', ['topic' => $topic])
-                @endif
+                @include('forum.topics._lock', ['topic' => $topic])
 
                 @if (priv_check('ForumTopicModerate', $topic)->can())
                     @include('forum.topics._moderate_pin', ['topic' => $topic])
