@@ -38,6 +38,17 @@
     box-shadow: 0 5px 15px fade(@grey-0, 40%);
   }
 
+  &--activated {
+    background-color: @blue;
+    color: @grey-0;
+
+    &:focus,
+    &:hover,
+    &:active {
+      color: @grey-0;
+    }
+  }
+
   &--bbcode {
     .default-text-shadow();
     margin: 0 (@spacing / 2) (@spacing / 2) 0;

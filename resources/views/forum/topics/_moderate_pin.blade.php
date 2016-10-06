@@ -16,7 +16,11 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <a
-    class="btn-circle btn-circle--topic-nav"
+    class="
+        btn-circle
+        btn-circle--topic-nav
+        {{ $topic->isPinned() ? 'btn-circle--activated' : '' }}
+    "
     href="{{ route('forum.topics.pin', [
         $topic,
         'pin' => !$topic->isPinned(),
@@ -27,9 +31,5 @@
     data-reload-reset-scroll="1"
     title="{{ trans('forum.topics.pin.pin-'.(int) !$topic->isPinned()) }}"
 >
-    @if ($topic->isPinned())
-        <i class="fa fa-toggle-off"></i>
-    @else
-        <i class="fa fa-toggle-on"></i>
-    @endif
+    <i class="fa fa-thumb-tack"></i>
 </a>
