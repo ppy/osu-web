@@ -16,44 +16,35 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 ###
-{div,a,i,span,table,thead,tbody,tr,th,td} = React.DOM
+{div} = React.DOM
 el = React.createElement
 
-class Contest.BaseEntryList extends React.Component
+class Contest.Entry.UserEntriesList extends React.Component
   constructor: (props) ->
     super props
 
     @state =
-      waitingForResponse: false
       contest: @props.contest
-      selected: @props.selected
-      options:
-        showDL: @props.options.showDL ? false
-        showPreview: @props.options.showPreview ? false
+      userEntries: @props.userEntries
 
-  handleVoteClick: (_e, {entry_id, callback}) =>
-    selected = _.clone @state.selected
-
-    if _.includes(selected, entry_id)
-      _.pull selected, entry_id
-    else
-      selected.push entry_id
-
+  handleUpdate: (_e, {data}) =>
     @setState
-      selected: selected
-      waitingForResponse: true
-      callback
-
-  handleUpdate: (_e, {response, callback}) =>
-    @setState
-      contest: response.contest
-      selected: response.userVotes
-      waitingForResponse: false
-      callback
+      userEntries: data
 
   componentDidMount: ->
-    $.subscribe 'contest:vote:click.contest', @handleVoteClick
-    $.subscribe 'contest:vote:done.contest', @handleUpdate
+    $.subscribe 'contest:entries:update.contest', @handleUpdate
 
   componentWillUnmount: ->
     $.unsubscribe '.contest'
+
+  render: ->
+    userEntries = if @state.userEntries then @state.userEntries else []
+    entries = userEntries.map (entry, index) =>
+      el Contest.Entry.UserEntry,
+        key: index,
+        entry: entry,
+        contest_id: @state.contest.id
+
+    div className: 'contest__user-entries',
+      entries
+      el Contest.Entry.Uploader, contest: @state.contest, disabled: @state.userEntries.length >= @state.contest.max_entries

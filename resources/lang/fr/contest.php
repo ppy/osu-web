@@ -20,22 +20,15 @@
 
 return [
     'voting' => [
-        'over' => 'Voting for this contest has ended',
+        'over' => 'Le vote pour ce concours est terminé',
     ],
     'entry' => [
-        'preparation' => 'We are current preparing this contest. Please wait patiently!',
-        'over' => 'Thank you for your entries! Submissions have closed for this contest and voting will open soon.',
+        'preparation' => 'Nous sommes en train de préparer le concours. Merci de patienter!',
+      //'over' => 'Merci pour vos inscriptions ! Submissions have closed for this contest and voting will open soon.',
+        'over' => 'Merci pour vos inscriptions ! Les soumissions sont fermées pour ce concours et le vote va bientôt ouvrir.',
     ],
     'beatmaps' => [
-        'download' => 'Download Entry',
+      'download' => 'Télécharger l\'inscription',
     ],
     'votes' => '1 vote|:count votes',
-    'entry' => [
-        'limit_reached' => 'You have reached the entry limit for this contest',
-        'drop_here' => 'Drop your entry here',
-        'wrong_type' => [
-            'beatmap' => 'Only .osu files are accepted for this contest.',
-        ],
-        'too_big' => 'Entries for this contest can only be up to 1 MB.',
-    ],
 ];

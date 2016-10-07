@@ -19,23 +19,23 @@
  */
 
 return [
-    'voting' => [
-        'over' => 'Voting for this contest has ended',
+    'news' => [
+        'slogan' => 'Le rythme est juste à un seul *clic*!',
     ],
-    'entry' => [
-        'preparation' => 'We are current preparing this contest. Please wait patiently!',
-        'over' => 'Thank you for your entries! Submissions have closed for this contest and voting will open soon.',
-    ],
-    'beatmaps' => [
-        'download' => 'Download Entry',
-    ],
-    'votes' => '1 vote|:count votes',
-    'entry' => [
-        'limit_reached' => 'You have reached the entry limit for this contest',
-        'drop_here' => 'Drop your entry here',
-        'wrong_type' => [
-            'beatmap' => 'Only .osu files are accepted for this contest.',
+    'landing' => [
+        'slogans' => [
+            '1' => 'simulateur de cercles<br/>free-to-win',
+            '2' => 'Le rythme est juste<br/> à un seul clic',
         ],
-        'too_big' => 'Entries for this contest can only be up to 1 MB.',
+
+        'download' => [
+            '_' => 'Télécharger maitenant',
+            'for' => 'pour :os',
+            'other' => 'cliquez ici pour :os1 ou :os2',
+        ],
+
+        'players' => 'joueurs inscrits',
+        'online' => 'joueurs en ligne en ce moment',
+        'peak' => 'Pic, :count joueurs en ligne',
     ],
 ];

@@ -19,23 +19,11 @@
  */
 
 return [
-    'voting' => [
-        'over' => 'Voting for this contest has ended',
+    'top-headers' => [
+        'headline' => 'Streams en direct',
+        'description' => 'Les données sont obtenues de twitch.tv toutes les minutes basés sur les listes et répertoires. Libre à vous de streamer et d\'apparaître ici! Pour plus d\'informations sur osu! en streaming, merci d\'aller voir la page wiki sur le live streaming.',
     ],
-    'entry' => [
-        'preparation' => 'We are current preparing this contest. Please wait patiently!',
-        'over' => 'Thank you for your entries! Submissions have closed for this contest and voting will open soon.',
-    ],
-    'beatmaps' => [
-        'download' => 'Download Entry',
-    ],
-    'votes' => '1 vote|:count votes',
-    'entry' => [
-        'limit_reached' => 'You have reached the entry limit for this contest',
-        'drop_here' => 'Drop your entry here',
-        'wrong_type' => [
-            'beatmap' => 'Only .osu files are accepted for this contest.',
-        ],
-        'too_big' => 'Entries for this contest can only be up to 1 MB.',
+    'headers' => [
+        'regular' => 'En cours de streaming',
     ],
 ];
