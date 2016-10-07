@@ -18,7 +18,7 @@
 class @UserVerification
   constructor: (@nav) ->
     $(document).on 'ajax:error', @showOnError
-    $(document).on 'ready turbolinks:load', @showOnLoad
+    $(document).on 'turbolinks:load', @showOnLoad
     $(document).on 'input', '.js-user-verification--input', @autoSubmit
     $(document).on 'click', '.js-user-verification--reissue', @reissue
 

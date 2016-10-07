@@ -19,7 +19,7 @@
 {div,a,i} = React.DOM
 el = React.createElement
 
-class Contest.Voter extends React.Component
+class Contest.Voting.Voter extends React.Component
   constructor: (props) ->
     super props
 

@@ -18,15 +18,15 @@
 <a
     class="btn-circle btn-circle--topic-nav js-forum-topic-watch"
     href="{{ route('forum.topics.watch', [
-        $_topic,
-        'watch' => !$_isWatching,
+        $topic,
+        'watch' => !$state,
     ]) }}"
     data-remote="1"
     data-method="post"
-    data-topic-id="{{ $_topic->topic_id }}"
-    title="{{ trans('forum.topics.watch.watch-'.(int) !$_isWatching) }}"
+    data-topic-id="{{ $topic->topic_id }}"
+    title="{{ trans('forum.topics.watch.watch-'.(int) !$state) }}"
 >
-    @if ($_isWatching)
+    @if ($state)
         <i class="fa fa-eye-slash"></i>
     @else
         <i class="fa fa-eye"></i>
