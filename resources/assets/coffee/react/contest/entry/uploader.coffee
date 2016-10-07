@@ -29,9 +29,9 @@ class Contest.Entry.Uploader extends React.Component
     @setState state: state
 
   componentDidMount: =>
-    $dropzone = $('.js-profile-cover-upload--dropzone')
+    $dropzone = $('.js-contest-entry-upload--dropzone')
     $uploadButton = $ '<input>',
-      class: 'js-profile-cover-upload fileupload__input'
+      class: 'js-contest-entry-upload fileupload__input'
       type: 'file'
       name: 'entry'
       accept: '.osu'
@@ -39,10 +39,10 @@ class Contest.Entry.Uploader extends React.Component
 
     $(@refs.uploadButtonContainer).append($uploadButton)
 
-    $.subscribe 'dragenterGlobal', => @setOverlay('active')
-    $.subscribe 'dragendGlobal', => @setOverlay('hidden')
-    $(document).on 'dragenter', '.contest__entry-uploader', => @setOverlay('hover')
-    $(document).on 'dragleave', '.contest__entry-uploader', => @setOverlay('active')
+    $.subscribe 'dragenterGlobal.contest', => @setOverlay('active')
+    $.subscribe 'dragendGlobal.contest', => @setOverlay('hidden')
+    $(document).on 'dragenter.contest', '.contest__entry-uploader', => @setOverlay('hover')
+    $(document).on 'dragleave.contest', '.contest__entry-uploader', => @setOverlay('active')
 
     $uploadButton.fileupload
       url: laroute.route 'contest.submit', contest_id: @props.contest.id
@@ -74,7 +74,8 @@ class Contest.Entry.Uploader extends React.Component
       fail: osu.fileuploadFailCallback($uploadButton)
 
   componentWillUnmount: =>
-    $('.js-profile-cover-upload')
+    $.unsubscribe '.contest'
+    $('.js-contest-entry-upload')
       .fileupload 'destroy'
       .remove()
 
@@ -87,7 +88,7 @@ class Contest.Entry.Uploader extends React.Component
     ]
 
     div className: "contest__user-entry contest__user-entry--new #{if @props.disabled then 'contest__user-entry--disabled' else ''} js-react--entryUploader",
-      div className: 'js-profile-cover-upload--dropzone',
+      div className: 'js-contest-entry-upload--dropzone',
         el 'label', className: labelClass.join(' '), ref: 'uploadButtonContainer',
           i className: 'fa fa-plus contest__entry-uploader-icon'
           div {}, osu.trans('contest.entry.drop_here')
