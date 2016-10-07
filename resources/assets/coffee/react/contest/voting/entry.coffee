@@ -19,7 +19,7 @@
 {a,i,tr,td,span,div} = React.DOM
 el = React.createElement
 
-class Contest.Entry extends React.Component
+class Contest.Voting.Entry extends React.Component
   render: ->
     if @props.contest.show_votes
       votePercentage = _.round((@props.entry.results.votes / @props.totalVotes)*100, 2)
@@ -43,7 +43,7 @@ class Contest.Entry extends React.Component
         td className: 'tracklist__title', @props.entry.title
 
       td className: "contest__vote-star#{if @props.contest.show_votes then ' contest__vote-star--fixed' else ''}",
-        el Contest.Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, selected: @props.selected, contest: @props.contest
+        el Contest.Voting.Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, selected: @props.selected, contest: @props.contest
 
       if @props.contest.show_votes
         td className:'contest__vote-count',

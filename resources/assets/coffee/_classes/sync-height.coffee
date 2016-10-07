@@ -16,14 +16,12 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @SyncHeight
-  targets: document.getElementsByClassName('js-sync-height--target')
-  references: document.getElementsByClassName('js-sync-height--reference')
-
   constructor: ->
-    $(document).on 'ready turbolinks:load', @sync
-    $(window).on 'throttled-resize', @sync
+    @targets = document.getElementsByClassName('js-sync-height--target')
+    @references = document.getElementsByClassName('js-sync-height--reference')
 
-    @sync()
+    $(document).on 'turbolinks:load', @sync
+    $(window).on 'throttled-resize', @sync
 
 
   sync: =>

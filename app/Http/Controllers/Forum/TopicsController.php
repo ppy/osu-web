@@ -77,10 +77,11 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
 
-        $lock = Request::input('lock') !== '0';
-        $topic->lock($lock);
+        $state = get_bool(Request::input('lock'));
+        $topic->lock($state);
+        $type = 'lock';
 
-        return ['message' => trans('forum.topics.lock.locked-'.($lock === true ? '1' : '0'))];
+        return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
     }
 
     public function move($id)
@@ -103,10 +104,11 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
 
-        $pin = Request::input('pin') !== '0';
-        $topic->pin($pin);
+        $state = get_bool(Request::input('pin'));
+        $topic->pin($state);
+        $type = 'moderate_pin';
 
-        return ['message' => trans('forum.topics.pin.pinned-'.(int) $pin)];
+        return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
     }
 
     public function preview()
@@ -347,12 +349,13 @@ class TopicsController extends Controller
     public function watch($id)
     {
         $topic = Topic::findOrFail($id);
-        $watch = Request::input('watch') === '1';
-        $privName = 'ForumTopicWatch'.($watch ? 'Add' : 'Remove');
+        $state = get_bool(Request::input('watch'));
+        $privName = 'ForumTopicWatch'.($state ? 'Add' : 'Remove');
+        $type = 'watch';
 
         priv_check($privName, $topic)->ensureCan();
 
-        TopicWatch::toggle($topic, Auth::user(), $watch);
+        TopicWatch::toggle($topic, Auth::user(), $state);
 
         switch (Request::input('page')) {
             case 'manage':
@@ -365,7 +368,8 @@ class TopicsController extends Controller
                     compact('topic', 'topics', 'topicReadStatus')
                 );
             default:
-                return js_view('forum.topics.watch', compact('topic', 'watch'));
+
+                return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
         }
     }
 }

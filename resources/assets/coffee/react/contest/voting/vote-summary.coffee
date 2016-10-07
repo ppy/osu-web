@@ -16,15 +16,27 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 ###
-propsFunction = ->
-  data = osu.parseJson('json-contest')
-  return {
-    contest: data.contest
-    selected: data.userVotes
-    options:
-      showDL: data.contest['type'] == 'beatmap'
-      showPreview: data.contest['type'] == 'music'
-  }
+{div,i} = React.DOM
+el = React.createElement
 
-reactTurbolinks.register 'contestArtList', Contest.ArtEntryList, propsFunction
-reactTurbolinks.register 'contestList', Contest.EntryList, propsFunction
+class Contest.Voting.VoteSummary extends React.Component
+  render: ->
+    classes = [
+      'contest__voting-star',
+      'contest__voting-star--smaller',
+      'contest__voting-star--float-right',
+    ]
+    selectedClass = [
+      'contest__voting-star--selected',
+    ]
+
+    voteSummary = []
+    voteSummary.push _.times Math.max(0, @props.maxVotes - @props.voteCount), ->
+      div className: classes.join(' '),
+        i className: 'fa fa-fw fa-star'
+    voteSummary.push _.times @props.voteCount, ->
+      div className: classes.concat(selectedClass).join(' '),
+        i className: 'fa fa-fw fa-star'
+
+    div {},
+      voteSummary

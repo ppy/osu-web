@@ -153,20 +153,22 @@ return [
         ],
 
         'lock' => [
-            'locked-0' => 'Topic has been unlocked',
-            'locked-1' => 'Topic has been locked',
             'is_locked' => 'This topic is locked and can not be replied to',
+            'lock-0' => 'Unlock topic',
+            'lock-1' => 'Lock topic',
+            'state-0' => 'Topic has been unlocked',
+            'state-1' => 'Topic has been locked',
         ],
 
         'moderate_move' => [
             'title' => 'Move to another forum',
         ],
 
-        'pin' => [
+        'moderate_pin' => [
             'pin-0' => 'Unpin topic',
             'pin-1' => 'Pin topic',
-            'pinned-0' => 'Topic has been unpinned',
-            'pinned-1' => 'Topic has been pinned',
+            'state-0' => 'Topic has been unpinned',
+            'state-1' => 'Topic has been pinned',
         ],
 
         'show' => [
@@ -193,10 +195,10 @@ return [
         ],
 
         'watch' => [
+            'state-0' => 'Unsubscribed from topic',
+            'state-1' => 'Subscribed to topic',
             'watch-0' => 'Unsubscribe topic',
             'watch-1' => 'Subscribe topic',
-            'watched-0' => 'Unsubscribed from topic',
-            'watched-1' => 'Subscribed to topic',
         ],
     ],
 
