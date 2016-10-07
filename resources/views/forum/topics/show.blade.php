@@ -15,26 +15,28 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
-    "title" => "community / {$topic->topic_title}",
-    "body_additional_classes" => "forum-colour " . $topic->forum->categorySlug(),
+@extends('master', [
+    'title' => "community / {$topic->topic_title}",
+    "body_additional_classes" => 't-forum-'.$topic->forum->categorySlug(),
     'canonicalUrl' => route('forum.topics.show', $topic->topic_id),
 ])
 
 @section("content")
     <div class="forum-topic-headernav js-forum-topic-headernav js-sync-height--reference" data-sync-height-target="forum-topic-headernav" data-visibility="hidden">
         <div class="forum-topic-headernav__stripe
-            forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
+            u-forum--bg-link
         "></div>
 
         <div class="osu-layout__row"><div class="forum-topic-headernav__content">
             <div class="forum-topic-headernav__logo">
-                @include('objects.logo-menu', ['logoMenuHoverBgClass' => 'forum-colour__bg-link--'.$topic->forum->categorySlug()])
+                @include('objects.logo-menu', ['logoMenuHoverBgClass' => 'u-forum--bg-link'])
             </div>
 
             <div class="forum-topic-headernav__titles">
                 <div class="forum-topic-headernav__title">
-                    @include('forum.topics._header_breadcrumb', ['forum' => $topic->forum])
+                    @include('forum.topics._header_breadcrumb_small', [
+                        'forum' => $topic->forum,
+                    ])
                 </div>
 
                 <h1 class="forum-topic-headernav__title">
@@ -42,9 +44,6 @@
                         {{ $topic->topic_title }}
                     </a>
                 </h1>
-            </div>
-
-            <div class="forum-topic-headernav__actions">
             </div>
         </div></div>
     </div>
@@ -146,11 +145,9 @@
                             </div>
 
                             <div class="forum-post__actions forum-post__actions--reply js-editor-zoom--hidden">
-                                <div class="forum-post-actions">
-                                    <a href="#" class="js-forum-topic-reply--close forum-post-actions__action hidden">
-                                        <i class="fa fa-close"></i>
-                                    </a>
-                                </div>
+                                <a href="#" class="js-forum-topic-reply--close btn-circle hidden">
+                                    <i class="fa fa-close"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -188,14 +185,14 @@
             <div class="
                 forum-topic-nav__seek-bar
                 forum-topic-nav__seek-bar--all
-                forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
+                u-forum--bg-link
             "></div>
 
             <div
                 class="
                     js-forum__posts-progress
                     forum-topic-nav__seek-bar
-                    forum-colour__bg-link--{{ $topic->forum->categorySlug() }}
+                    u-forum--bg-link
                 "
                 style="width: '{{ 100 * array_get($postsPosition, $jumpTo, 0) / $topic->postsCount() }}%';"
             >
@@ -205,13 +202,13 @@
         <div class="forum-topic-nav__content">
             <div class="forum-topic-nav__group">
                 @if ($topic->isLocked())
-                    <span
-                        class="forum-topic-nav__button-circle forum-topic-nav__button-circle--blank"
+                    <div
+                        class="btn-circle btn-circle--topic-nav btn-circle--blank"
                         data-tooltip-float="fixed"
                         title="{{ trans('forum.topics.lock.is_locked') }}"
                     >
                         <i class="fa fa-lock"></i>
-                    </span>
+                    </div>
                 @endif
 
                 @if (priv_check('ForumTopicModerate', $topic)->can())
@@ -225,6 +222,8 @@
                 @if (priv_check('ForumTopicModerate', $topic)->can())
                     @include('forum.topics._moderate_move', ['_topic' => $topic])
                 @endif
+
+                @include('forum.topics._watch', ['_topic' => $topic, '_isWatching' => $isWatching])
             </div>
 
             <div class="forum-topic-nav__group forum-topic-nav__group--main">
@@ -327,7 +326,7 @@
                 @if (priv_check('ForumTopicReply', $topic)->can())
                     <a
                         href="#"
-                        class="forum-topic-nav__button-circle forum-topic-nav__button-circle--reply js-forum-topic-reply--new"
+                        class="btn-circle btn-circle--topic-nav js-forum-topic-reply--new"
                         data-tooltip-float="fixed"
                         title="{{ trans('forum.topics.actions.reply') }}"
                     >

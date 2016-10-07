@@ -16,45 +16,38 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <ol class="
-    forum-header-breadcrumb
-    {{ $headerBreadcrumbExtraClasses or '' }}
-    forum-colour__bg-link--{{ $forum->categorySlug() }}
+    forum-header-breadcrumb-small
+    u-forum--bg-link
 ">
-    <li class="forum-header-breadcrumb__item">
-        <a href="{{ route('forum.forums.index') }}" class="forum-header-breadcrumb__link">
+    <li class="forum-header-breadcrumb-small__item">
+        <a href="{{ route('forum.forums.index') }}" class="forum-header-breadcrumb-small__link">
             {{ trans('forum.title') }}
-
-            <span class="forum-header-breadcrumb__link-stripe u-current-forum-bg">
-            </span>
         </a>
     </li>
 
     @foreach ($forum->forum_parents as $forumId => $forumData)
-        <li class="forum-header-breadcrumb__item">
+        <li class="forum-header-breadcrumb-small__item">
             <a
                 href="{{ $forumData[1] === 0 ?
                     route('forum.forums.index')."#forum-{$forumId}"
                     : route('forum.forums.show', $forumId)
                 }}"
-                class="forum-header-breadcrumb__link"
+                class="forum-header-breadcrumb-small__link"
             >
                 {{ $forumData[0] }}
-
-                <span class="forum-header-breadcrumb__link-stripe u-current-forum-bg">
-                </span>
             </a>
         </li>
     @endforeach
 
-    <li class="forum-header-breadcrumb__item">
+    <li class="forum-header-breadcrumb-small__item">
         <a
             href="{{ route("forum.forums.show", $forum->forum_id) }}"
-            class="forum-header-breadcrumb__link forum-header-breadcrumb__link--is-active"
+            class="
+                forum-header-breadcrumb-small__link
+                forum-header-breadcrumb-small__link--is-active
+            "
         >
             {{ $forum->forum_name }}
-
-            <span class="forum-header-breadcrumb__link-stripe u-current-forum-bg">
-            </span>
         </a>
     </li>
 </ol>

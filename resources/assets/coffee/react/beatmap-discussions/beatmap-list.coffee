@@ -97,7 +97,7 @@ BeatmapDiscussions.BeatmapList = React.createClass
   setSelector: (state) ->
     return if @state.showingSelector == state
 
-    Fade.toggle $('.blackout')[0], state
+    Blackout.toggle(state)
 
     @setState showingSelector: state
 

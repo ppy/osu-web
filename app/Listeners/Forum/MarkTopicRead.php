@@ -19,6 +19,8 @@
  */
 namespace App\Listeners\Forum;
 
+use App\Events\Forum\TopicWasViewed;
+
 class MarkTopicRead
 {
     public function markTopicRead($event)
@@ -32,13 +34,8 @@ class MarkTopicRead
     public function subscribe($events)
     {
         $events->listen(
-            "App\Events\Forum\TopicWasViewed",
-            "App\Listeners\Forum\MarkTopicRead@markTopicRead"
-        );
-
-        $events->listen(
-            "App\Events\Forum\TopicWasReplied",
-            "App\Listeners\Forum\MarkTopicRead@markTopicRead"
+            TopicWasViewed::class,
+            static::class.'@markTopicRead'
         );
     }
 }

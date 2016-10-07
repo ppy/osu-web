@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends("master", [
-    "body_additional_classes" => "forum-colour " . $forum->categorySlug(),
+    "body_additional_classes" => 't-forum-'.$forum->categorySlug(),
 ])
 
 @section("content")

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,25 +16,27 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.forum-colour {
-  ._set(@category) {
-    @colour-name: ~'forum-category-colour--@{category}';
-    @colour-name--link: ~'@{colour-name}-link';
-    @colour-name--bg: ~'@{colour-name}-bg';
+.forum-topics {
+  @_top: forum-topics;
 
-    &__bg--category-@{category} {
-      background-color: @@colour-name--bg;
-    }
-
-    &__bg-link--category-@{category} {
-      background-color: @@colour-name--link;
-    }
+  &--subforums {
+    margin: 0 (@spacing * 2);
   }
 
+  &__entries {
+    margin: 0 0 @spacing;
+    padding: 0;
+  }
 
-  ._set(~'osu');
-  ._set(~'language-specific');
-  ._set(~'other');
-  ._set(~'beatmaps');
-  ._set(~'management');
+  &__title {
+    color: @gray;
+    font-size: @font-size--title-small-3;
+    margin: 0;
+    padding: (@spacing * 3) (@spacing * 4) (@spacing / 2);
+
+    .@{_top}--subforums & {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
 }
