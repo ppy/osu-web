@@ -174,12 +174,12 @@ return [
             'link' => false,
         ],
         '403' => [
-            'error' => "Vous ne devriez pas être ici",
+            'error' => 'Vous ne devriez pas être ici',
             'description' => 'Vous pouvez essayer de revenir en arrière.',
             'link' => false,
         ],
         '401' => [
-            'error' => "Vous ne devriez pas être ici",
+            'error' => 'Vous ne devriez pas être ici',
             'description' => 'Vous pouvez essayer de revenir en arrière. Ou peut-être vous connecter.',
             'link' => false,
         ],
@@ -190,12 +190,12 @@ return [
         ],
         '500' => [
             'error' => 'Oh non! Quelquechose a cassé! ;_;',
-            'description' => "Nous avons été notifié automatiquement de cette erreur.",
+            'description' => 'Nous avons été notifié automatiquement de cette erreur.',
             'link' => false,
         ],
         'fatal' => [
             'error' => 'Oh non! Quelquechose a cassé! (gravement) ;_;',
-            'description' => "Nous avons été notifié automatiquement de cette erreur.",
+            'description' => 'Nous avons été notifié automatiquement de cette erreur.',
             'link' => false,
         ],
         '503' => [
@@ -207,7 +207,7 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "Juste au cas où, voici un code que vous pourrez retourner au support!",
+        'reference' => 'Juste au cas où, voici un code que vous pourrez retourner au support!',
     ],
 
     'popup_login' => [

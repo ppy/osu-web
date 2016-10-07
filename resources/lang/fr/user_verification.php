@@ -25,8 +25,8 @@ return [
         'issuing' => 'Envoi d\'un nouveau code...',
 
         'info' => [
-            'check_spam' => "Merci de vérifier votre dossier spam si vous voyez pas le mail.",
-            'recover' => "Si vous ne pouvez pas accéder au mail ou si vous avez oublié ce que vous avez mis, cliquez sur ce lien :link.",
+            'check_spam' => 'Merci de vérifier votre dossier spam si vous voyez pas le mail.',
+            'recover' => 'Si vous ne pouvez pas accéder au mail ou si vous avez oublié ce que vous avez mis, cliquez sur ce lien :link.',
             'recover_link' => 'processus de récupération de mail ici',
             'reissue' => 'Vous pouvez :reissue_link ou :logout_link.',
             'reissue_link' => 'demander un autre code',

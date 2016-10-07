@@ -174,7 +174,7 @@ return [
             'total_hits' => 'Nombre de clics',
             'total_score' => 'Score total',
         ],
-        'title' => "profil de :username",
+        'title' => 'profil de :username',
     ],
 
     'verify' => [

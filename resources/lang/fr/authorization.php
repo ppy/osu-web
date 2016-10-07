@@ -27,7 +27,6 @@ return [
             // resolved ?
             // i translated this to "watch"
             'general_discussion' => 'La discussion générale ne peut être lu.',
-            //
             'not_owner' => 'Uniquement le rédacteur du post et le créateur de la beatmap peut voir ce sujet.',
         ],
     ],
@@ -87,8 +86,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Merci de vous connecter pour répondre.',
-                    'restricted' => "Impossible de répondre : Vous êtes restreint.",
-                    'silenced' => "Impossible de répondre : Vous êtes réduit au silence.",
+                    'restricted' => 'Impossible de répondre : Vous êtes restreint.',
+                    'silenced' => 'Impossible de répondre : Vous êtes réduit au silence.',
                 ],
             ],
 
@@ -105,8 +104,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Connectez-vous pour voter.',
-                    'restricted' => "Impossible de voter : vous êtes restreint.",
-                    'silenced' => "Impossible de voter : vous êtes réduit au silence.",
+                    'restricted' => 'Impossible de voter : vous êtes restreint.',
+                    'silenced' => 'Impossible de voter : vous êtes réduit au silence.',
                 ],
             ],
 
@@ -131,9 +130,9 @@ return [
 
     'unauthorized' => 'Accès refusé.',
 
-    'silenced' => "Impossible : vous êtes restreint.",
+    'silenced' => 'Impossible : vous êtes restreint.',
 
-    'restricted' => "Impossible : vous êtes réduit au silence.",
+    'restricted' => 'Impossible : vous êtes réduit au silence.',
 
     'user' => [
         'page' => [
