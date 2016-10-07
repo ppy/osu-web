@@ -68,7 +68,7 @@ class ContestsController extends Controller
 
     public function submit($id)
     {
-        if (Request::hasFile('entry') !== true || Request::file('entry')->getClientOriginalExtension() !== 'osu') { # todo: unhardcode :|
+        if (Request::hasFile('entry') !== true || Request::file('entry')->getClientOriginalExtension() !== 'osu') { // todo: unhardcode :|
             abort(422);
         }
 
