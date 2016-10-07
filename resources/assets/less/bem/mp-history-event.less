@@ -19,30 +19,18 @@
 
 .mp-history-event {
   display: flex;
-  align-items: baseline;
+  align-items: center;
 
-  padding-bottom: @spacing * 0.5;
-
-  &__time-box {
-    display: flex;
-    justify-content: flex-end;
-
-    width: 85px;
-
-    margin-right: @spacing;
-  }
+  padding-bottom: (@spacing / 2);
 
   &__time {
+    width: 85px;
+    margin-right: @spacing;
+    text-align: right;
+
     font-weight: 700;
     font-size: 10px;
-
     color: @grey-9;
-  }
-
-  &__info-box {
-    display: flex;
-    justify-content: flex-start;
-    flex-grow: 1;
   }
 
   &__type {
@@ -66,13 +54,15 @@
   }
 
   &__text {
+    flex: 1;
     font-size: 12px;
+    padding-right: (@spacing * 2);
+  }
 
-    &--username {
-      font-weight: 700;
-      font-style: italic;
+  &__username {
+    font-weight: 700;
+    font-style: italic;
 
-      color: @blue-text;
-    }
+    color: @blue-text;
   }
 }

@@ -21,6 +21,7 @@ class @GlobalDrag
     $(document).on 'dragenter', @dragenter
     $(document).on 'dragover', @dragend
 
+
   dragenter: =>
     # The event bubbles, prevent retriggering the event unless
     # it really has just started.

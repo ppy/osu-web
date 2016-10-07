@@ -24,11 +24,11 @@ use League\Fractal;
 
 class CountryTransformer extends Fractal\TransformerAbstract
 {
-    public function transform(Country $country)
+    public function transform(Country $country = null)
     {
         return [
-            'code' => $country->acronym,
-            'name' => $country->name,
+            'code' => $country->acronym ?? null,
+            'name' => $country->name ?? null,
         ];
     }
 }
