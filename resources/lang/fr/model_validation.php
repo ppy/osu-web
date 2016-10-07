@@ -21,26 +21,26 @@
 return [
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Can only vote a feature request.',
-            'not_enough_feature_votes' => 'Not enough votes.',
+            'not_feature_topic' => 'Vous pouvez seulement voter pour une fonction.',
+            'not_enough_feature_votes' => 'Pas assez de votes.',
         ],
 
         'poll_vote' => [
-            'invalid' => 'Invalid option specificied.',
+            'invalid' => 'Option invalide spécifiée.',
         ],
 
         'topic_poll' => [
-            'duplicate_options' => 'Duplicated option is not allowed.',
-            'invalid_max_options' => 'Option per user may not exceed the number of available options.',
-            'minimum_one_selection' => 'A minimum of one option per user is required.',
-            'minimum_two' => 'Need at least two options.',
-            'too_many_options' => 'Exceeded maximum number of allowed options.',
+            'duplicate_options' => 'Les options dupliquées ne sont pas autorisées.',
+            'invalid_max_options' => 'Le nombre de réponses par utilisateur ne devrait pas dépasser le nombre de réponses.',
+            'minimum_one_selection' => 'Un minimum d\'une réponse par utilisateur est nécessaire.',
+            'minimum_two' => 'Au moins 2 réponses nécéssaires.',
+            'too_many_options' => 'Nombre maximal de réponses dépassés.',
         ],
 
         'topic_vote' => [
-            'too_many' => 'Selected more options than allowed.',
+            'too_many' => 'Vous avez choisi trop de réponses.',
         ],
     ],
 
-    'required' => ':attribute is required.',
+    'required' => ':attribute est requis.',
 ];

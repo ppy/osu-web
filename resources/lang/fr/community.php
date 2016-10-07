@@ -22,129 +22,132 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => 'Love osu!?<br/>
-                                Support the osu! dev :D',
+            'big_description' => 'Vous aimez osu!?<br/>
+                                Supportez le dévloppement d\'osu! :D',
             'small_description' => '',
-            'support_button' => 'I want to support osu!',
+            'support_button' => 'Je veux supporter osu!',
         ],
 
-        'dev_quote' => 'osu! is a completely free-to-play game, but running it is most definitely not so free. Between the cost of commissioning servers and high quality international bandwidth, the time spent maintaining the system and community, providing prizes for competitions, answering support questions and generally keeping people happy, osu! consumes quite a hefty amount of money! Oh, and don\'t forget the fact that we do it without any advertising or partnering with silly toolbars and the likes!
-            <br/><br/>osu! is at the end of the day largely run by myself, to which you may know best as "peppy".
-            I have had to quit my day job in order to keep up with osu!,
-            and do at times struggle to maintain the standards I strive for.
-            I would like to offer my personal thanks to those who have supported osu! thus far,
-            and just as much to those who continue to support this amazing game and community into the future :).',
+
+        'dev_quote' => 'osu! est un free-to-play complet, mais le maintenir n\'est pas gratuit. Entre le prix des serveurs et de la grande bande passante internationale, le temps passé à maitenir le système et la communauté, parvenir des prix pour les compétitions, répondre aux questions du support et généralement garder les gens heureux, osu! consommes une certaine somme d\'argent! Oh, et n\'oubliez pas le fait que nous le faisons sans pub ou partenariat avec des toolbars ou autres!
+            <br/><br/>osu! est à largement développé par moi-même, pour cela vous me connaisez sûrement avec le surnom "peppy".
+            J\'ai du quitté mon travail à temps plein pour garder le rythme avec osu!,
+            et à certaints temps je lutte pour garder mes standars que je m\'efforce à garder.
+            J\'aurais aimé d\'offrir mes remerciments personnels pour ce qui ont supportés osu! jusque là,
+            et aussi ceux qui continueront à supporter ce super jeu et la communauté dans le futur :).',
 
         'why_support' => [
-            'title' => 'Why should I support osu!?',
+            'title' => 'Pourquoi je supporterais osu!?',
             'blocks' => [
-                'dev' => 'Developed and maintained predominantly by one guy in Australia',
-                'time' => 'Takes so much time to keep running that it\'s no longer possible to call it a "hobby".',
-                'ads' => 'No ads anywhere. <br/><br/>
-                        Unlike 99.95% of the web, we don\'t profit off shoving stuff in your face.',
-                'goodies' => 'You get some extra goodies!',
+                'dev' => 'Développé et maitenu par une seule personne en Australie',
+                // 'time' => 'Takes so much time to keep running that it\'s no longer possible to call it a "hobby".',
+                'time' => 'Prend tellement de temps pour le maitenir que ce n\'est plus possible d\'appeler ça un "hobby".',
+                'ads' => 'Aucune pub, nullepart. <br/><br/>
+                        Pas comme 99,95% des sites, nous ne profitons pas de votre clic pour l\'argent.',
+                'goodies' => 'Vous obtiendrez des goodies!',
             ],
         ],
 
         'perks' => [
-            'title' => 'Oh? What do i get?!',
+            'title' => 'Ah? J\'aurais quoi?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'quick and easy access to search beatmaps without leaving the game.',
+                'description' => 'accès à la recherche et au téléchargement de beatmap sans quitter le jeu.',
             ],
 
             'auto_downloads' => [
-                'title' => 'Auto Downloads',
-                'description' => 'Automatic downloads when playing multiplayer, spectating others, or clicking links in chat!',
+                'title' => 'Téléchargements automatiques',
+                'description' => 'Téléchargements automatiques en multijoueur, lorsque vous observez ou dans le chat!',
             ],
 
             'upload_more' => [
-                'title' => 'Upload More',
-                'description' => 'Additional pending beatmap slots (per ranked beatmap) up to a max of 10.',
+                'title' => 'Plus de slots d\'upload',
+                'description' => 'Slots de beatmaps additionnels jusqu\'à 10.',
             ],
 
             'early_access' => [
-                'title' => 'Early Access',
-                'description' => 'Access to early releases, where you can try new features before they go public!',
+                'title' => 'Accès anticipé',
+                'description' => 'Accès aux versions anticipées, vous obtiendrez les nouvelles fonctions avant tout le monde!',
             ],
 
             'customisation' => [
-                'title' => 'Customisation',
-                'description' => 'Customise your profile by adding a fully customisable user page.',
+                'title' => 'Personnalisation',
+                'description' => 'Personnalisez votre profil avec une page utilisateur complètement changable.',
             ],
 
             'beatmap_filters' => [
-                'title' => 'Beatmap Filters',
-                'description' => 'Filter beatmap searches by played and unplayed maps and rank achieved (if any).',
+                'title' => 'Filtres de beatmaps',
+                'description' => 'Filtrez les recherches de beatmaps par les jouées et les non-jouées et les notes obtenus (si une).',
             ],
 
             'yellow_fellow' => [
-                'title' => 'Yellow Fellow',
-                'description' => 'Be recognised in-game with your new bright yellow chat username colour.',
+                'title' => 'Compagnon jaune',
+                'description' => 'Soyez reconnu en jeu avec un pseudo tout jaune.',
             ],
 
             'speedy_downloads' => [
-                'title' => 'Speedy Downloads',
-                'description' => 'More lenient download restrictions, especially when using osu!direct.',
+                'title' => 'Téléchargements rapides',
+                'description' => 'Moins de restrictions de téléchargements, surtout avec osu!direct.',
             ],
 
             'change_username' => [
-                'title' => 'Change Username',
-                'description' => 'The ability to change your username without additional costs. (once max)',
+                'title' => 'Changez de pseudo',
+                'description' => 'Vous pouvez changer votre pseudo sans coûts. (une fois seulement)',
             ],
 
             'skinnables' => [
-                'title' => 'Skinnables',
-                'description' => 'Extra in-game skinnables, like the main menu background.',
+                'title' => 'Skin',
+                'description' => 'Plus d\'options de skin, comme le fond du menu principal.',
             ],
 
             'feature_votes' => [
-                'title' => 'Feature Votes',
-                'description' => 'Votes for feature requests. (2 per month)',
+                'title' => 'Votes de fonctions',
+                'description' => 'Votez pour les demandes de fonctions. (2x par mois)',
             ],
 
             'sort_options' => [
-                'title' => 'Sort Options',
-                'description' => 'NEW: The ability to view beatmap country / friend / mod-specific rankings in-game.',
+                'title' => 'Options de filtrage',
+                'description' => 'NOUVEAU: La capacité de filtrer le classement par pays / amis / mods spécifiques.',
             ],
 
             'feel_special' => [
-                'title' => 'Feel Special',
-                'description' => 'The warm and fuzzy feeling of doing your part to keep osu! running smoothly!',
+                'title' => 'Sentiment spécial',
+                'description' => 'Le sentiment d\'aider osu! à fonctionner!',
             ],
 
             'more_to_come' => [
-                'title' => 'More to come',
+                'title' => 'Plus à venir',
                 'description' => '',
             ],
         ],
 
         'convinced' => [
-            'title' => 'I\'m convinced! :D',
-            'support' => 'support osu!',
-            'gift' => 'or gift support to other players',
-            'instructions' => 'click the heart button to proceed to the osu!store',
+            'title' => 'Je suis convaincu! :D',
+            'support' => 'supportez osu!',
+            'gift' => 'ou envoyez en cadeau à un utilisateur',
+            'instructions' => 'cliquez sur le coeur pour aller au osu!store',
         ],
     ],
     'slack' => [
         'header' => [
             'small' => 'osu!dev',
-            'large' => 'osu!public Slack Access',
+            'large' => 'Accès au slack public d\'osu!',
         ],
 
-        'disabled' => 'The public slack community is temporarily unavailable. If you wish to reach out, please create an issue on the appropriate <a href="https://github.com/ppy">github repository</a> or contact us at <a href="mailto::mail">:mail</a>.',
+        'disabled' => 'La communauté Slack publique est indisponible. Si vous souhaitez y aller, créez un ticket sur la <a href="https://github.com/ppy">repo GitHub</a> ou contactez-nous à <a href="mailto::mail">:mail</a>.',
 
-        'guest-begin' => 'You need to be ',
-        'guest-middle' => 'logged in',
-        'guest-end' => ' to receive a slack invite!',
+        'guest-begin' => 'Vous devez être ',
+        'guest-middle' => 'connecté',
+        'guest-end' => ' pour recevoir une invitation Slack!',
 
-        'receive-invite' => 'You can receive an invite for the public osu! slack network here.',
-        'bullet-points' => 'Please read thoroughly through the conditions on <a href=":link">this post.</a><br />Please note that any offences on your account will not be tolerated.',
+        'receive-invite' => 'Vous pouvez recevoir une invitation pour le réseau Slack public ici',
+        // 'bullet-points' => 'Please read thoroughly through the conditions on <a href=":link">this post.</a><br />Please note that any offences on your account will not be tolerated.',
+        'bullet-points' => 'Merci de bien lire les conditions sur <a href=":link">ce post.</a><br />Veuillez noter que les offences sur votre compte ne sera pas toléré.',
 
-        'recent-issues' => 'Your account has recent issues. Please <a href="mailto::mail">contact support</a> for more details.',
-        'agree-button' => 'Agree',
+        'recent-issues' => 'Votre compte à des problèmes récents. Merci de <a href="mailto::mail">contacter le support</a> pour plus de détails.',
+        'agree-button' => 'Accepter',
 
-        'accepted' => 'Your request has been accepted. You should receive an email soon.',
-        'invite-already-accepted' => 'You already have a slack account! If you have issues, <a href="mailto::mail">contact support.</a>',
+        'accepted' => 'Votre requête a été acceptée. Vous devriez recevoir un e-mail bientôt.',
+        'invite-already-accepted' => 'Vous avez déjà un compte Slack! Si vous avez un problème, <a href="mailto::mail">contactez le support.</a>',
     ],
 ];

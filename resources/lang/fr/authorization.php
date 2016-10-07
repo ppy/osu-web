@@ -21,123 +21,126 @@
 return [
     'beatmap_discussion' => [
         'nominate' => [
-            'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
+            'exhausted' => 'Vous avez atteint la limite quotidienne de nomination, veuillez réesayer demain.',
         ],
         'resolve' => [
-            'general_discussion' => 'General discussion can not be resolved.',
-            'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
+            // resolved ?
+            // i translated this to "watch"
+            'general_discussion' => 'La discussion générale ne peut être lu.',
+            //
+            'not_owner' => 'Uniquement le rédacteur du post et le créateur de la beatmap peut voir ce sujet.',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Automatically generated post can not be edited.',
-            'not_owner' => 'Only the poster can edit post.',
+            'system_generated' => 'Un sujet posté automatiquement ne peut être édité.',
+            'not_owner' => 'Uniquement le rédacteur du post peut éditer ce post.',
         ],
     ],
 
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'Access to requested channel is not permitted.',
+                'no_access' => 'Accès au canal demandé non permis.',
             ],
         ],
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'Access to target channel is required.',
-                    'moderated' => 'Channel is currently moderated.',
+                    'no_access' => 'L\'accès au canal cible est requis.',
+                    'moderated' => 'Ce canal est modéré.',
                 ],
 
-                'not_allowed' => 'Can not send message while banned/restricted/silenced.',
+                'not_allowed' => 'Vous ne pouvez pas envoyer de messages si vous êtes banni/restreint/réduit au silence.',
             ],
         ],
     ],
 
     'contest' => [
-        'voting_over' => 'You cannot change your vote after the voting period for this contest has ended.',
+        'voting_over' => 'Vous ne pouvez pas changer votre vote après la période de vote définie.',
     ],
 
     'forum' => [
         'post' => [
             'delete' => [
-                'only_last_post' => 'Only last post can be deleted.',
-                'locked' => 'Can not delete post of a locked topic.',
-                'no_forum_access' => 'Access to requested forum is required.',
-                'not_owner' => 'Only poster can delete the post.',
+                'only_last_post' => 'Uniquement le dernier post peut être supprimé.',
+                'locked' => 'Impossible de supprimer un message sur un sujet verouillé.',
+                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
+                'not_owner' => 'Uniquement le posteur peut supprimer.',
             ],
 
             'edit' => [
-                'locked' => 'The post is locked from editing.',
-                'no_forum_access' => 'Access to requested forum is required.',
-                'not_owner' => 'Only poster can edit the post.',
-                'topic_locked' => 'Can not edit post of a locked topic.',
+                'locked' => 'Ce post est verouillé à l\'édition.',
+                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
+                'not_owner' => 'Uniquement le posteur peut éditer le post.',
+                'topic_locked' => 'Impossible d\'éditer un post sur un sujet verouillé.',
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'You just posted. Wait a bit or edit your last post.',
-                'locked' => 'Can not reply to a locked thread.',
-                'no_forum_access' => 'Access to requested forum is required.',
-                'no_permission' => 'No permission to reply.',
+                'double_post' => 'Vous venez de poster, patientez un moment ou éditez votre dernier post.',
+                'locked' => 'Impossible de répondre à un sujet verouillé.',
+                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
+                'no_permission' => 'Pas de permission de répondre.',
 
                 'user' => [
-                    'require_login' => 'Please login to reply.',
-                    'restricted' => "Can't reply while restricted.",
-                    'silenced' => "Can't reply while silenced.",
+                    'require_login' => 'Merci de vous connecter pour répondre.',
+                    'restricted' => "Impossible de répondre : Vous êtes restreint.",
+                    'silenced' => "Impossible de répondre : Vous êtes réduit au silence.",
                 ],
             ],
 
             'store' => [
-                'no_forum_access' => 'Access to requested forum is required.',
-                'no_permission' => 'No permission to create new topic.',
-                'forum_closed' => 'Forum is closed and can not be posted to.',
+                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
+                'no_permission' => 'Vous ne pouvez pas créer un sujet.',
+                'forum_closed' => 'Ce forum est fermé et vous ne pouvez pas poster.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'Access to requested forum is required.',
-                'over' => 'Polling is over and can not be voted on anymore.',
-                'voted' => 'Changing vote is not allowed.',
+                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
+                'over' => 'Le vote est fini et vous ne pouvez pas voter',
+                'voted' => 'Le changement de vote n\'est pas permis.',
 
                 'user' => [
-                    'require_login' => 'Please login to vote.',
-                    'restricted' => "Can't vote while restricted.",
-                    'silenced' => "Can't vote while silenced.",
+                    'require_login' => 'Connectez-vous pour voter.',
+                    'restricted' => "Impossible de voter : vous êtes restreint.",
+                    'silenced' => "Impossible de voter : vous êtes réduit au silence.",
                 ],
             ],
 
             'watch' => [
-                'no_forum_access' => 'Access to requested forum is required.',
+                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
             ],
         ],
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Invalid cover specified.',
-                'not_owner' => 'Only owner can edit cover.',
+                'uneditable' => 'Bannière invalide spécifiée.',
+                'not_owner' => 'Uniquement le propriétaire peut éditer la bannière.',
             ],
         ],
 
         'view' => [
-            'admin_only' => 'Only admin can view this forum.',
+            'admin_only' => 'Uniquement un admin peut voir ce forum.',
         ],
     ],
 
-    'require_login' => 'Please login to proceed.',
+    'require_login' => 'Merci de vous connecter pour continuer.',
 
-    'unauthorized' => 'Access denied.',
+    'unauthorized' => 'Accès refusé.',
 
-    'silenced' => "Can't do that while silenced.",
+    'silenced' => "Impossible : vous êtes restreint.",
 
-    'restricted' => "Can't do that while restricted.",
+    'restricted' => "Impossible : vous êtes réduit au silence.",
 
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'User page is locked.',
-                'not_owner' => 'Can only edit own user page.',
-                'require_supporter_tag' => 'Supporter tag is required.',
+                'locked' => 'La page utilisateur est verouillé.',
+                'not_owner' => 'Vous pouvez seulement éditer votre page.',
+                'require_supporter_tag' => 'Cette fonction est reservée aux osu!supporter.',
             ],
         ],
     ],

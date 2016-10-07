@@ -19,30 +19,30 @@
  */
 return [
     'box' => [
-        'sent' => 'An email has been sent to :mail with a verification code. Enter the code.',
-        'title' => 'Account Verification',
-        'verifying' => 'Verifying...',
-        'issuing' => 'Issuing new code...',
+        'sent' => 'Un mail a été envoyé à :mail avec un code de vérification. Entrez le code.',
+        'title' => 'Vérification de compte',
+        'verifying' => 'Vérification...',
+        'issuing' => 'Envoi d\'un nouveau code...',
 
         'info' => [
-            'check_spam' => "Make sure to check your spam folder if you can't find the email.",
-            'recover' => "If you can't access your email or have forgotten what you used, please follow the :link.",
-            'recover_link' => 'email recovery process here',
-            'reissue' => 'You can also :reissue_link or :logout_link.',
-            'reissue_link' => 'request another code',
-            'logout_link' => 'logout',
+            'check_spam' => "Merci de vérifier votre dossier spam si vous voyez pas le mail.",
+            'recover' => "Si vous ne pouvez pas accéder au mail ou si vous avez oublié ce que vous avez mis, cliquez sur ce lien :link.",
+            'recover_link' => 'processus de récupération de mail ici',
+            'reissue' => 'Vous pouvez :reissue_link ou :logout_link.',
+            'reissue_link' => 'demander un autre code',
+            'logout_link' => 'vous déconnecter',
         ],
     ],
 
     'email' => [
-        'subject' => 'osu! account verification',
+        'subject' => 'vérification du compte osu!',
     ],
 
     'errors' => [
-        'expired' => 'Verification code expired, new verification email sent.',
-        'incorrect_key' => 'Incorrect verification code.',
-        'retries_exceeded' => 'Incorrect verification code. Retry limit exceeded, new verification email sent.',
-        'reissued' => 'Verification code reissued, new verification email sent.',
-        'unknown' => 'Unknown problem occurred, new verification email sent.',
+        'expired' => 'Le code de vérification a expiré, un nouvel e-mail de vérification a été envoyé.',
+        'incorrect_key' => 'Code de vérification incorrect.',
+        'retries_exceeded' => 'Code de vérification incorrect. Limite de tentavies dépassées, envoi d\'un nouveau mail de vérification.',
+        'reissued' => 'Code de vérification regénéré, nouveau mail de vérification envoyé.',
+        'unknown' => 'Un problème inconnu est survenu, nouveau mail de vérification envoyé.',
     ],
 ];

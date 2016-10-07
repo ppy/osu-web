@@ -20,10 +20,10 @@
 
 return [
     'top-headers' => [
-        'headline' => 'Live Streams',
-        'description' => 'Data is fetched from twitch.tv every five minutes based on the directory listing. Feel free to start streaming and get yourself listed! For more information on how to get setup, please check out the wiki page on live streaming.',
+        'headline' => 'Streams en direct',
+        'description' => 'Les données sont obtenues de twitch.tv toutes les minutes basés sur les listes et répertoires. Libre à vous de streamer et d\'apparaître ici! Pour plus d\'informations sur osu! en streaming, merci d\'aller voir la page wiki sur le live streaming.',
     ],
     'headers' => [
-        'regular' => 'Currently Streaming',
+        'regular' => 'En cours de streaming',
     ],
 ];

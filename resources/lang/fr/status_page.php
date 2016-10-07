@@ -20,49 +20,49 @@
 
 return [
     'header' => [
-        'title' => 'status',
-        'description' => 'whats going on mah dude?',
+        'title' => 'statut',
+        'description' => 'qu\'est ce qui se passe mec ?',
     ],
 
     'incidents' => [
-        'title' => 'Active Incidents',
-        'automated' => 'automated',
+        'title' => 'Incidents actifs',
+        'automated' => 'automatique',
     ],
 
     'online' => [
         'title' => [
-            'users' => 'Online Users in the last 24 Hours',
-            'score' => 'Score Submissions in the last 24 Hours',
+            'users' => 'Utilisateurs en ligne dans les dernières 24h',
+            'score' => 'Envois de score dans les dernières 24h',
         ],
-        'current' => 'Current Online Users',
-        'score' => 'Score Submissions per Second',
+        'current' => 'Utilisateurs en ligne',
+        'score' => 'Envois de score par secondes',
     ],
 
     'recent' => [
         'incidents' => [
-            'title' => 'Recent Incidents',
+            'title' => 'Incidents récents',
             'state' => [
-                'resolved' => 'Resolved',
-                'resolving' => 'Resolving',
-                'unknown' => 'Unknown',
+                'resolved' => 'Résolu',
+                'resolving' => 'Résolution',
+                'unknown' => 'Inconnu',
             ],
         ],
 
         'uptime' => [
-            'title' => 'Uptime',
+            'title' => 'Temps d\'up',
             'graphs' => [
-                'server' => 'server',
+                'server' => 'serveur',
                 'web' => 'web',
             ],
         ],
 
         'when' => [
-            'today' => 'today',
-            'week' => 'week',
-            'month' => 'month',
-            'all_time' => 'all time',
-            'last_week' => 'last week',
-            'weeks_ago' => ':count week ago|:count weeks ago',
+            'today' => 'aujourd\'hui',
+            'week' => 'semaine',
+            'month' => 'mois',
+            'all_time' => 'tout le temps',
+            'last_week' => 'dernière semaine',
+            'weeks_ago' => 'il y a :count semaine|il y a :count semaines',
         ],
     ],
 ];

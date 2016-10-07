@@ -22,14 +22,14 @@ return [
 
     'covers' => [
         'create' => [
-            '_' => 'Set cover image',
-            'button' => 'Upload image',
-            'info' => 'Cover size should be at :dimensions. You can also drop your image here to upload.',
+            '_' => 'Définir la bannière',
+            'button' => 'Uploader une image',
+            'info' => 'La bannière devrait avoir les résolutions :dimensions. Vous pouvez aussi "dropper" l\'image ici.',
         ],
 
         'destroy' => [
-            '_' => 'Remove cover image',
-            'confirm' => 'Are you sure you want to remove the cover image?',
+            '_' => 'Retirer la bannière',
+            'confirm' => 'Êtes-vous sûr de supprimer la bannière ?',
         ],
     ],
 
@@ -39,164 +39,164 @@ return [
 
     'forums' => [
         'topics' => [
-            'empty' => 'No topics!',
+            'empty' => 'Pas de sujets!',
         ],
     ],
 
-    'pinned_topics' => 'Pinned Topics',
+    'pinned_topics' => 'Sujets épinglés',
     'post' => [
-        'confirm_delete' => 'Really delete post?',
-        'edited' => 'Last edited by :user on :when, edited :count times in total.',
-        'posted_at' => 'posted :when',
+        'confirm_delete' => 'Vraiment supprimer le post?',
+        'edited' => 'Modifié par :user le :when, édité :count fois en tout.',
+        'posted_at' => 'posté :when',
         'actions' => [
-            'delete' => 'Delete post',
-            'edit' => 'Edit post',
+            'delete' => 'Supprimer le post',
+            'edit' => 'Modifier le post',
         ],
     ],
     'search' => [
-        'go_to_post' => 'Go to post',
-        'post_number_input' => 'enter post number',
-        'total_posts' => ':posts_count posts total',
+        'go_to_post' => 'Aller au post',
+        'post_number_input' => 'entrer le numéro du post',
+        'total_posts' => ':posts_count posts au total',
     ],
-    'subforums' => 'Subforums',
-    'title' => 'osu!community',
+    'subforums' => 'Sous-forums',
+    'title' => 'Communauté osu!',
     'topic' => [
         'create' => [
             'placeholder' => [
-                'body' => 'Type post content here',
-                'title' => 'Click here to set title',
+                'body' => 'Tapez le contenu du post ici',
+                'title' => 'Cliquez ici pour définir le titre du post',
             ],
-            'preview' => 'Preview',
-            'submit' => 'Post',
+            'preview' => 'Prévisualisation',
+            'submit' => 'Poster',
         ],
-        'go_to_latest' => 'view latest post',
+        'go_to_latest' => 'voir le dernier post',
         'jump' => [
-            'enter' => 'click to enter specific post number',
-            'first' => 'go to first post',
-            'last' => 'go to last post',
-            'next' => 'skip next 10 posts',
-            'previous' => 'go back 10 posts',
+            'enter' => 'cliquez pour entrer un numéro de post spécifique',
+            'first' => 'aller au premier post',
+            'last' => 'aller au dernier post',
+            'next' => 'passer de 10 posts suivants',
+            'previous' => 'passer à 10 posts précédents',
         ],
-        'latest_post' => ':when by :user',
-        'latest_reply_by' => 'latest reply by :user',
-        'new_topic' => 'Post new topic',
+        'latest_post' => ':when par :user',
+        'latest_reply_by' => 'dernière réponse par :user',
+        'new_topic' => 'Poster un nouveau sujet',
         'post_edit' => [
-            'cancel' => 'Cancel',
-            'post' => 'Save',
+            'cancel' => 'Annuler',
+            'post' => 'Sauvegarder',
             'zoom' => [
-                'start' => 'Full Screen',
-                'end' => 'Exit Full Screen',
+                'start' => 'Plein écran',
+                'end' => 'Sortir du plein écran',
             ],
         ],
-        'post_reply' => 'Post',
-        'reply_box_placeholder' => 'Type here to reply',
-        'started_by' => 'by :user',
+        'post_reply' => 'Poster',
+        'reply_box_placeholder' => 'Tapez ici pour répondre',
+        'started_by' => 'par :user',
     ],
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Topic Subscriptions',
-            'title_compact' => 'subscriptions',
+            'title' => 'Abonnements aux sujets',
+            'title_compact' => 'abonnements',
 
             'box' => [
-                'total' => 'Topics subscribed',
-                'unread' => 'Topics with new replies',
+                'total' => 'Sujets suivis',
+                'unread' => 'Sujets avec nouvelles réponses',
             ],
             'info' => [
-                'total' => 'You subscribed to :total topics.',
-                'unread' => 'You have :unread unread replies to subscribed topics.',
+                'total' => 'Vous suivez un total de :total sujets.',
+                'unread' => 'Vous avez :unread réponses non-lues aux sujets suivis.',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Unsubscribe from topic?',
-                'title' => 'Unsubscribe',
+                'confirmation' => 'Se désabonner du sujet?',
+                'title' => 'Désabonner',
             ],
         ],
     ],
 
     'topics' => [
-        '_' => 'Topics',
+        '_' => 'Sujets',
 
         'actions' => [
-            'reply' => 'Show reply box',
-            'reply_with_quote' => 'Quote post for reply',
+            'reply' => 'Afficher Répondre',
+            'reply_with_quote' => 'Citer un post et répondre',
         ],
 
         'create' => [
-            'create_poll' => 'Poll Creation',
+            'create_poll' => 'Créer un sondage',
 
             'create_poll_button' => [
-                'add' => 'Create a poll',
-                'remove' => 'Cancel creating a poll',
+                'add' => 'Créer un sondage',
+                'remove' => 'Annuler la création du sondage',
             ],
 
             'poll' => [
-                'length' => 'Run poll for',
+                'length' => 'Lancer le sujet pour',
                 'length_days_prefix' => '',
-                'length_days_suffix' => 'days',
-                'length_info' => 'Leave blank for a never ending poll',
-                'max_options' => 'Options per user',
-                'max_options_info' => 'This is the number of options each user may select when voting.',
-                'options' => 'Options',
-                'options_info' => 'Place each options on a new line. You may enter up to 10 options.',
+                'length_days_suffix' => 'jours',
+                'length_info' => 'Laissez blanc pour un sondage sans fin',
+                'max_options' => 'Réponses par utlisateur',
+                'max_options_info' => 'C\'est le nombre de réponses qu\'un utilisateur peut choisir.',
+                'options' => 'Réponses',
+                'options_info' => 'Placez chaque réponse sur une ligne.',
                 'title' => 'Question',
-                'vote_change' => 'Allow re-voting.',
-                'vote_change_info' => 'If enabled, users are able to change their vote.',
+                'vote_change' => 'Autoriser le changement de vote.',
+                'vote_change_info' => 'Si c\'est activé, vous permettez aux utilisateurs de changer leur vote.',
             ],
         ],
 
         'index' => [
-            'views' => 'views',
-            'replies' => 'replies',
+            'views' => 'vues',
+            'replies' => 'réponses',
         ],
 
         'lock' => [
-            'locked-0' => 'Topic has been unlocked',
-            'locked-1' => 'Topic has been locked',
-            'is_locked' => 'This topic is locked and can not be replied to',
+            'locked-0' => 'Ce sujet a été débloqué',
+            'locked-1' => 'Ce sujet a été verouillé',
+            'is_locked' => 'Ce sujet est verouillé et aucune réponse ne peut être ajoutée',
         ],
 
         'moderate_move' => [
-            'title' => 'Move to another forum',
+            'title' => 'Se déplacer dans un autre forum',
         ],
 
         'pin' => [
-            'pin-0' => 'Unpin topic',
-            'pin-1' => 'Pin topic',
-            'pinned-0' => 'Topic has been unpinned',
-            'pinned-1' => 'Topic has been pinned',
+            'pin-0' => 'Désépingler le sujet',
+            'pin-1' => 'Épingler le sujet',
+            'pinned-0' => 'Le sujet a été désépinglé',
+            'pinned-1' => 'Le sujet a été épinglé',
         ],
 
         'show' => [
             'feature_vote' => [
-                'current' => 'Current Priority: +:count',
-                'do' => 'Promote this request',
+                'current' => 'Priorité : +:count',
+                'do' => 'Promouvoir cette requête',
 
                 'user' => [
-                    'current' => 'You have :votes remaining.',
-                    'count' => '{0} no vote|{1} :count vote|[2,Inf] :count votes',
-                    'not_enough' => "You don't have any more votes remaining",
+                    'current' => 'Il vous reste :votes.',
+                    'count' => '{0} pas de vote|{1} :count vote|[2,Inf] :count votes',
+                    'not_enough' => "Vous n'avez plus de votes disponibles",
                 ],
             ],
 
             'poll' => [
-                'vote' => 'Vote',
+                'vote' => 'Voter',
 
                 'detail' => [
-                    'total' => 'Total votes: :count',
-                    'ended' => 'Polling ended :time',
-                    'end_time' => 'Polling will end at :time',
+                    'total' => 'Total de votes: :count',
+                    'ended' => 'Sondage terminé :time',
+                    'end_time' => 'Le sondage termine à :time',
                 ],
             ],
         ],
 
         'watch' => [
-            'watch-0' => 'Unsubscribe topic',
-            'watch-1' => 'Subscribe topic',
-            'watched-0' => 'Unsubscribed from topic',
-            'watched-1' => 'Subscribed to topic',
+            'watch-0' => 'Se désabonner du sujet',
+            'watch-1' => 'S\'abonner au sujet',
+            'watched-0' => 'Vous ne suivez pas ce sujet',
+            'watched-1' => 'Vous suivez ce sujet',
         ],
     ],
 

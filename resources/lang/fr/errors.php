@@ -20,25 +20,25 @@
 
 return [
     'codes' => [
-        'http-403' => 'Access denied.',
-        'http-401' => 'Please login to proceed.',
+        'http-403' => 'Accès refusé.',
+        'http-401' => 'Connectez-vous pour continuer.',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'An error occured. Try refreshing the page.',
+            'generic' => 'Une erreur a eue lieue. Essayez à nouveau.',
         ],
     ],
     'community' => [
         'slack' => [
-            'not-eligible' => 'Your account is not eligible for the Slack invite.',
-            'slack-error' => 'An error has occured on the Slack servers. Please try again in a few minutes.',
+            'not-eligible' => 'Votre compte n\'est pas éligible pour l\'invitation Slack.',
+            'slack-error' => 'Une erreur est survenue dans les serveurs de Slack. Merci de réesayer dans quelques minutes.',
         ],
     ],
     'beatmaps' => [
-        'standard-converts-only' => 'Only the osu! mode can have scores in other modes.',
+        'standard-converts-only' => 'Seulement le mode osu! peut avoir des scores dans d\'autres modes.',
     ],
-    'logged_out' => 'You have been logged out. Please login and retry.',
-    'supporter_only' => 'You must be a supporter to use this feature.',
-    'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',
-    'unknown' => 'Unknown error occurred.',
+    'logged_out' => 'Vous avez été déconnecté. Merci de vous connecter et de réesayer.',
+    'supporter_only' => 'Vous devez être un osu!supporter pour accéder à cela.',
+    'no_restricted_access' => 'Vous ne pouvez pas faire ça avec un compte avec un accès restreint.',
+    'unknown' => 'Erreur inconnue survenue.',
 ];

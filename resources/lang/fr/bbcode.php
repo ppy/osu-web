@@ -19,20 +19,20 @@
  */
 
 return [
-    'bold' => 'Bold',
-    'heading' => 'Header',
+    'bold' => 'Gras',
+    'heading' => 'Titre',
     'image' => 'Image',
-    'italic' => 'Italic',
-    'link' => 'Link',
-    'list' => 'List',
-    'list_numbered' => 'Numbered List',
+    'italic' => 'Italique',
+    'link' => 'Lien',
+    'list' => 'Liste',
+    'list_numbered' => 'Liste numérique',
     'size' => [
-        '_' => 'Font Size',
-        'tiny' => 'Tiny',
-        'small' => 'Small',
-        'normal' => 'Normal',
+        '_' => 'Taille de police',
+        'tiny' => 'Très petite',
+        'small' => 'Petite',
+        'normal' => 'Normale',
         'large' => 'Large',
     ],
-    'spoilerbox' => 'Spoiler Box',
-    'strikethrough' => 'Strike Out',
+    'spoilerbox' => 'Cache',
+    'strikethrough' => 'Barré',
 ];

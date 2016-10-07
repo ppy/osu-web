@@ -20,37 +20,37 @@
 
 return [
     'admin' => [
-        'warehouse' => 'Warehouse',
+        'warehouse' => 'Magasin',
     ],
 
     'checkout' => [
-        'pay' => 'Checkout with Paypal',
-        'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
+        'pay' => 'Payer avec PayPal',
+        'delayed_shipping' => 'Nous sommes blindés de commandes, si vous commandez, merci de patienter **une à deux semaines** le temps que nous traitons toutes ces commandes.',
     ],
 
     'order' => [
         'item' => [
-            'quantity' => 'Quantity',
+            'quantity' => 'Quantité',
         ],
     ],
 
     'product' => [
-        'name' => 'Name',
+        'name' => 'Nom',
 
         'stock' => [
-            'out' => 'Currently out of stock :(. Check back soon.',
-            'out_with_alternative' => 'This type is currently out of stock :(. Try other type or check back soon.',
+            'out' => 'Pas de stock en ce moment :(. Vérifiez plus tard.',
+            'out_with_alternative' => 'Pas de stock de ce type en ce moment :(. Essayez un autre type ou revérifiez plus tard.',
         ],
 
-        'add_to_cart' => 'Add to Cart',
-        'notify' => 'Notify me when available!',
+        'add_to_cart' => 'Ajouter au panier',
+        'notify' => 'Notifiez-moi quand c\'est disponible !',
 
-        'notification_success' => 'you will be notified when we have new stock. click :link to cancel',
-        'notification_remove_text' => 'here',
+        'notification_success' => 'vous serez notifié quand nous aurons du stock. cliquez :link pour annuler',
+        'notification_remove_text' => 'ici',
 
-        'notification_in_stock' => 'This product is already in stock!',
+        'notification_in_stock' => 'Ce produit est déjà en stock!',
 
-        'notification_exists' => 'You have already requested a notification for this product!',
-        'notification_doesnt_exist' => "You haven't even requested a notification for this product!",
+        'notification_exists' => 'Vous avez déjà demandé une notification pour ce produit!',
+        'notification_doesnt_exist' => "Vous n'avez pas demandé de notification pour ce produit!",
     ],
 ];

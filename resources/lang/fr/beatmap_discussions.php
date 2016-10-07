@@ -21,16 +21,16 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Must be logged in to edit.',
-            'system_generated' => 'System-generated post can not be edited.',
-            'wrong_user' => 'Must be owner of the post to edit.',
+            'null_user' => 'Vous devez être connecté pour éditer.',
+            'system_generated' => 'Un post système ne peut être édité.',
+            'wrong_user' => 'Vous devez être le créateur du post pour l\'éditer.',
         ],
     ],
 
     'system' => [
         'resolved' => [
-            'true' => 'Marked as resolved by :user',
-            'false' => 'Reopened by :user',
+            'true' => 'Marqué comme résolu par :user',
+            'false' => 'Réouvert par :user',
         ],
     ],
 ];

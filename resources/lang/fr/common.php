@@ -20,34 +20,34 @@
 
 return [
         'buttons' => [
-            'cancel' => 'Cancel',
-            'post' => 'Post',
-            'reply' => 'Reply',
-            'reset' => 'Reset',
-            'save' => 'Save',
-            'show_more' => 'show more',
+            'cancel' => 'Annuler',
+            'post' => 'Poster',
+            'reply' => 'Répondre',
+            'reset' => 'Réinitialiser',
+            'save' => 'Sauvegarder',
+            'show_more' => 'Plus de résultats',
         ],
 
         'count' => [
-            'item' => ':count unit|:count units',
+            'item' => ':count objet|:count objets',
         ],
 
         'dropzone' => [
-            'target' => 'drop here to upload',
+            'target' => 'déplacez ici pour uploader',
         ],
 
         'pagination' => [
-            'previous' => 'prev',
-            'next' => 'next',
+            'previous' => 'précédent',
+            'next' => 'suivant',
         ],
 
         'time' => [
-            'days_ago' => ':count day ago|:count days ago',
-            'hours_ago' => ':count hour ago|:count hours ago',
-            'now' => 'now',
+            'days_ago' => 'il y a :count|il y a:count',
+            'hours_ago' => 'il y a :count heure|il y a :count heures',
+            'now' => 'Maitenant',
         ],
 
         'title' => [
-            'notice' => 'Notice',
+            'notice' => 'Information',
         ],
 ];
