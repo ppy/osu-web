@@ -115,6 +115,14 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     el.outerHTML
 
 
+  formatBytes: (bytes, decimals=2) ->
+    return '0B' if (bytes == 0)
+    k = 1024;
+    sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(decimals)) + ' ' + sizes[i];
+
+
   reloadPage: (keepScroll = true) ->
     $(document).off '.ujsHideLoadingOverlay'
     Turbolinks.clearCache()
