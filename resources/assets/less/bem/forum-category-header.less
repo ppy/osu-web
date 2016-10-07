@@ -24,7 +24,7 @@
   .at2x-simple("/images/headers/forum-category.png");
   background-size: cover;
   background-position: center;
-  .default-box-shadow;
+  .default-box-shadow();
   .own-layer();
 
   padding: (@spacing * 2);
@@ -41,7 +41,7 @@
 
   &--forum {
     height: 200px;
-    .default-box-shadow;
+    .default-box-shadow();
 
     &::before {
       position: absolute;
@@ -63,7 +63,7 @@
   &--topic {
     height: 200px;
     margin-bottom: (@spacing / 2);
-    .default-box-shadow;
+    .default-box-shadow();
 
     &::before {
       position: absolute;
@@ -108,8 +108,8 @@
   }
 
   &__cover-uploader {
-    .default-box-shadow;
-    .default-border-radius;
+    .default-box-shadow();
+    .default-border-radius();
 
     position: absolute;
     top: 0;
