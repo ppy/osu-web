@@ -44,7 +44,7 @@ class Contest.Entry.UserEntry extends React.Component
 
   render: ->
     div className: 'contest__user-entry contest__user-entry--ok',
-      a className: 'btn-osu btn-osu--textlike btn-osu--stick-right', 'data-confirm': osu.trans('common.confirmation'), title: osu.trans('common.buttons.delete'), onClick: @nuke,
+      a className: 'btn-osu btn-osu--textlike btn-osu--stick-right', href: '#', 'data-confirm': osu.trans('common.confirmation'), title: osu.trans('common.buttons.delete'), onClick: @nuke,
         i className: 'fa fa-times'
       div className: 'contest__user-entry-filename', @props.entry.filename
       div className: 'contest__user-entry-date', dangerouslySetInnerHTML: {__html: osu.timeago(@props.entry.created_at)}
