@@ -25,12 +25,6 @@ return [
     'entry' => [
         'preparation' => 'We are current preparing this contest. Please wait patiently!',
         'over' => 'Thank you for your entries! Submissions have closed for this contest and voting will open soon.',
-    ],
-    'beatmaps' => [
-        'download' => 'Download Entry',
-    ],
-    'votes' => '1 vote|:count votes',
-    'entry' => [
         'limit_reached' => 'You have reached the entry limit for this contest',
         'drop_here' => 'Drop your entry here',
         'wrong_type' => [
@@ -38,4 +32,8 @@ return [
         ],
         'too_big' => 'Entries for this contest can only be up to 1 MB.',
     ],
+    'beatmaps' => [
+        'download' => 'Download Entry',
+    ],
+    'votes' => '1 vote|:count votes',
 ];
