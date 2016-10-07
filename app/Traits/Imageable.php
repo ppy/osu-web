@@ -20,15 +20,14 @@
 namespace App\Traits;
 
 use App\Libraries\ImageProcessor;
-use App\Libraries\StorageWithUrl;
 
-use App\Traits\Uploadable;
 
 trait Imageable
 {
     use Uploadable {
         storeFile as _storeFile; // rename storeFile in the Uploadable trait so we can override it
     }
+
     /**
      * Returns maximum dimensions of the image as an array of [width, height].
      */

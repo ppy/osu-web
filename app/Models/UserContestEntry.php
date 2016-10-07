@@ -21,8 +21,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
-use App\Models\User;
-use App\Models\Contest;
 use App\Traits\Uploadable;
 use DB;
 
