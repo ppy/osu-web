@@ -44,8 +44,6 @@ class ContestsController extends Controller
                     ->with('contest', $contest)
                     ->with('contestJson', $contest->defaultJson($user));
         } else {
-            $userEntries = UserContestEntry::where('contest_id', $contest->id)->where('user_id', $user->user_id)->get();
-
             return view('contests.enter')
                 ->with('contest', $contest)
                 ->with('contestJson', $contest->defaultJson($user))
