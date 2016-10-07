@@ -24,6 +24,7 @@ use App\Models\Chat\Channel as ChatChannel;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
 use App\Models\Beatmapset;
+use App\Models\UserContestEntry;
 
 class OsuAuthorize
 {
@@ -215,6 +216,27 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
 
         if (!$contest->isSubmissionOpen()) {
+            return 'contest.entry.over';
+        }
+
+        $currentEntries = UserContestEntry::where(['contest_id' => $contest->id, 'user_id' => $user->user_id])->count();
+        if ($currentEntries >= $contest->max_entries) {
+            return 'contest.entry.limit_reached';
+        }
+
+        return 'ok';
+    }
+
+    public function checkContestDeleteEntry($user, $contestEntry)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($contestEntry->user_id !== $user->user_id) {
+            return 'unauthorized';
+        }
+
+        if (!$contestEntry->contest->isSubmissionOpen()) {
             return 'contest.entry.over';
         }
 

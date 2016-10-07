@@ -119,6 +119,10 @@ elixir(function(mix) {
     'react/contest/voting/*.coffee',
     'react/contest-voting.coffee',
   ], 'public/js/react/contest-voting.js')
+  .coffee([
+    'react/contest/entry/*.coffee',
+    'react/contest-entry.coffee',
+  ], 'public/js/react/contest-entry.js')
   .version([
     'css/app.css',
     'js/app.js',
@@ -131,5 +135,6 @@ elixir(function(mix) {
     'js/react/mp-history.js',
     'js/react/artist-page.js',
     'js/react/contest-voting.js',
+    'js/react/contest-entry.js',
   ]);
 });

@@ -2,6 +2,7 @@
 @Beatmaps = {}
 @BeatmapsetPage = {}
 @Contest = {}
+@Contest.Entry = {}
 @Contest.Voting = {}
 @MPHistory = {}
 @ProfilePage = {}
