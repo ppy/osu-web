@@ -26,5 +26,5 @@ propsFunction = ->
       showPreview: data.contest['type'] == 'music'
   }
 
-reactTurbolinks.register 'contestArtList', Contest.ArtEntryList, propsFunction
-reactTurbolinks.register 'contestList', Contest.EntryList, propsFunction
+reactTurbolinks.register 'contestArtList', Contest.Voting.ArtEntryList, propsFunction
+reactTurbolinks.register 'contestList', Contest.Voting.EntryList, propsFunction

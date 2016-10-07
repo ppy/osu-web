@@ -19,7 +19,7 @@
 {div, span, a, i} = React.DOM
 el = React.createElement
 
-class Contest.ArtEntry extends React.Component
+class Contest.Voting.ArtEntry extends React.Component
   render: ->
     votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
     selected = _.includes @props.selected, @props.entry.id
@@ -59,7 +59,7 @@ class Contest.ArtEntry extends React.Component
           'contest__vote-link-banner--selected' if selected,
           'contest__vote-link-banner--smaller' if showVotes && place > 2
         ].join(' '),
-          el Contest.Voter,
+          el Contest.Voting.Voter,
             key: @props.entry.id,
             entry: @props.entry,
             waitingForResponse: @props.waitingForResponse,

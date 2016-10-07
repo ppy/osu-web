@@ -16,39 +16,37 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 ###
-{div,span} = React.DOM
+{div,a,i,span,table,thead,tbody,tr,th,td} = React.DOM
 el = React.createElement
 
-class Contest.ArtEntryList extends Contest.BaseEntryList
+class Contest.Voting.EntryList extends Contest.Voting.BaseEntryList
   render: ->
     return null unless @state.contest.entries.length > 0
 
     if @state.contest.show_votes
       totalVotes = _.sumBy @state.contest.entries, (i) -> i.results.votes
 
-    entries = @state.contest.entries.map (entry, index) =>
-      el Contest.ArtEntry,
-        key: index,
-        displayIndex: index,
+    entries = @state.contest.entries.map (entry) =>
+      el Contest.Voting.Entry,
+        key: entry.id,
         entry: entry,
         waitingForResponse: @state.waitingForResponse,
         options: @state.options,
         contest: @state.contest,
         selected: @state.selected,
+        winnerVotes: if @state.contest.show_votes then _.maxBy(@state.contest.entries, (i) -> i.results.votes).results.votes
         totalVotes: if @state.contest.show_votes then totalVotes
 
-    if @state.contest.show_votes
-      partitions = _.partition entries, (i) ->
-        i.props.displayIndex < 3
-
     div className: 'contest',
-      div className: 'contest__vote-summary--art',
-        span className: 'contest__vote-summary-text contest__vote-summary-text--art', 'votes'
-        el Contest.VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
-
-      if @state.contest.show_votes
-        div {},
-          div className: 'contest-art-list__panel contest-art-list__panel--top3', partitions[0]
-          div className: 'contest-art-list__panel', partitions[1]
-      else
-        div className: 'contest-art-list__panel', entries
+      table className: 'tracklist__table tracklist__table--smaller',
+        thead {},
+            tr className: 'tracklist__row--header',
+              if @state.options.showPreview
+                th className: 'tracklist__col tracklist__col--preview', ''
+              if @state.options.showDL
+                th className: 'tracklist__col tracklist__col--dl',
+              th className: 'tracklist__col tracklist__col--title', 'entry'
+              th className: 'tracklist__col tracklist__col--vote', colSpan: (if @props.contest.show_votes then 2 else 1),
+                el Contest.Voting.VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
+                div className: 'contest__vote-summary-text', 'votes'
+        tbody {}, entries

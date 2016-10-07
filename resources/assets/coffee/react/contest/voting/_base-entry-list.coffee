@@ -19,7 +19,7 @@
 {div,a,i,span,table,thead,tbody,tr,th,td} = React.DOM
 el = React.createElement
 
-class Contest.BaseEntryList extends React.Component
+class Contest.Voting.BaseEntryList extends React.Component
   constructor: (props) ->
     super props
 
