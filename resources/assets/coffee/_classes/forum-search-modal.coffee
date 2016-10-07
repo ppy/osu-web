@@ -16,12 +16,10 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @ForumSearchModal
-  box: document.getElementsByClassName('js-forum-search-box')
-  activeBox: document.getElementsByClassName('js-forum-search-box--active')
-  button: document.getElementsByClassName('js-forum-search-button')
-
-  constructor: (forum) ->
-    @forum = forum
+  constructor: (@forum) ->
+    @box = document.getElementsByClassName('js-forum-search-box')
+    @activeBox = document.getElementsByClassName('js-forum-search-box--active')
+    @button = document.getElementsByClassName('js-forum-search-button')
 
     $(window).on 'throttled-resize throttled-scroll', @reposition
     $(document).on 'show.bs.modal', '#forum-search-modal', @activate

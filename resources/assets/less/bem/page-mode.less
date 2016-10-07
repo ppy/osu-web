@@ -37,10 +37,11 @@
     display: flex;
     line-height: 1;
 
-    margin: 0 @spacing;
+    margin: (@spacing / 2) @spacing 0;
 
     .@{_top}--breadcrumb & {
-      margin: 0 (@spacing / 2);
+      margin-left: (@spacing / 2);
+      margin-right: (@spacing / 2);
     }
 
     // pls halp
