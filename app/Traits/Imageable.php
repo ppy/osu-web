@@ -21,7 +21,6 @@ namespace App\Traits;
 
 use App\Libraries\ImageProcessor;
 
-
 trait Imageable
 {
     use Uploadable {
