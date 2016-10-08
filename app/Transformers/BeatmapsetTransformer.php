@@ -164,8 +164,8 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
 
     public function includeRatings(Beatmapset $beatmapset)
     {
-        // need to pass through pointless transformer
-        // because fractal doesn't seem to accept plain arrays ;_;
-        return $this->item($beatmapset->ratingsCount(), new BeatmapsetRatingsTransformer);
+        return $this->item($beatmapset, function ($beatmapset) {
+            return $beatmapset->ratingsCount();
+        });
     }
 }
