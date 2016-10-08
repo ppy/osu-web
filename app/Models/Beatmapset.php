@@ -827,13 +827,13 @@ class Beatmapset extends Model
             $ratings[$i] = 0;
         }
 
-        $ratingsQuery = $this->userRatings()
+        $userRatings = $this->userRatings()
             ->select('rating', \DB::raw('count(*) as count'))
             ->groupBy('rating')
             ->lists('count', 'rating')
             ->all();
 
-        foreach ($ratingsQuery as $rating => $count) {
+        foreach ($userRatings as $rating => $count) {
             $ratings[$rating] = $count;
         }
 
@@ -859,6 +859,6 @@ class Beatmapset extends Model
         // (mostly older beatmapsets)
         $description = $split[1] ?? '';
 
-        return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, true))->toHTML(false);
+        return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, true))->toHTML(true);
     }
 }

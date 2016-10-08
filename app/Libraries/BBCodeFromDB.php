@@ -280,7 +280,7 @@ class BBCodeFromDB
         return $text;
     }
 
-    public function toHTML($wrap = true)
+    public function toHTML($ignoreLineHeight = false)
     {
         $text = $this->text;
 
@@ -315,7 +315,7 @@ class BBCodeFromDB
 
         $className = 'bbcode';
 
-        if (!$wrap) {
+        if ($ignoreLineHeight) {
             $className .= ' bbcode--normal-line-height';
         }
 
