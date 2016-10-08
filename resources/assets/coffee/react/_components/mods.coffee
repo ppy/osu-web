@@ -19,12 +19,10 @@
 
 class @Mods extends React.Component
   render: ->
-    modsClassName = 'mods '
+    modsClassName = 'mods'
+    
     classModifiers = @props.classModifiers || []
-
-    modsClassName += _(classModifiers)
-      .map (mod) -> "mods--#{mod}"
-      .join ' '
+    modsClassName += " mods--#{mod}" for mod in classModifiers
 
     div className: modsClassName,
       for mod in @props.mods
