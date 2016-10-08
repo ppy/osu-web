@@ -44,43 +44,48 @@ class ModsHelper
         [24, '9K'],
     ];
 
-    public static function getEnabledMods($mods)
+    public static function toArray($bitset)
     {
-        $enabledMods = [];
+        $mods = [];
         $impliedIds = [];
 
-        foreach (self::AVAILABLE_MODS as $availableMod) {
-            if (($mods & (1 << $availableMod[0])) === 0) {
+        foreach (static::AVAILABLE_MODS as $availableMod) {
+            if (($bitset & (1 << $availableMod[0])) === 0) {
                 continue;
             }
 
-            $currentImpliedIds = array_get($availableMod, 2);
+            $currentImpliedIds = $availableMod[2] ?? null;
             if ($currentImpliedIds !== null) {
                 $impliedIds = array_merge($impliedIds, $currentImpliedIds);
             }
 
-            $enabledMods[$availableMod[0]] = $availableMod[1];
+            $mods[$availableMod[0]] = $availableMod[1];
         }
 
-        $enabledMods = array_filter($enabledMods, function ($modId) use ($impliedIds) {
-            return in_array($modId, $impliedIds, true) === false;
+        $mods = array_filter($mods, function ($modId) use ($impliedIds) {
+            return !in_array($modId, $impliedIds, true);
         }, ARRAY_FILTER_USE_KEY);
 
-        return array_values($enabledMods);
+        $mods = array_values($mods);
+        sort($mods);
+
+        return $mods;
     }
 
-    public static function getModsValue($enabledMods)
+    public static function toBitset($mods)
     {
-        $value = 0;
+        if (!is_array($mods)) {
+            return 0;
+        }
 
-        foreach ($enabledMods as $mod) {
-            $modIndex = array_search_null($mod, array_column(self::AVAILABLE_MODS, 1));
+        $bitset = 0;
 
-            if ($modIndex !== null) {
-                $value ^= (1 << self::AVAILABLE_MODS[$modIndex][0]);
+        foreach (static::AVAILABLE_MODS as $availableMod) {
+            if (in_array($availableMod[1], $mods, true)) {
+                $bitset ^= (1 << $availableMod[0]);
             }
         }
 
-        return $value;
+        return $bitset;
     }
 }

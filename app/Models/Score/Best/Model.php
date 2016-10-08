@@ -19,6 +19,7 @@
  */
 namespace App\Models\Score\Best;
 
+use App\Libraries\ModsHelper;
 use App\Models\Score\Model as BaseModel;
 use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v2\AwsS3Adapter;
@@ -118,5 +119,34 @@ abstract class Model extends BaseModel
             ->orderBy('score', 'DESC')
             ->orderBy('date', 'ASC')
             ->limit(config('osu.beatmaps.max-scores'));
+    }
+
+    public function scopeWithMods($query, $modsArray)
+    {
+        return $query->where(function ($q) use ($modsArray) {
+            if (in_array('NM', $modsArray, true)) {
+                $q->orWhere('enabled_mods', 0);
+            }
+
+            $bitset = ModsHelper::toBitset($modsArray);
+            if ($bitset > 0) {
+                $q->orWhereRaw('enabled_mods & ? != 0', [$bitset]);
+            }
+        });
+    }
+
+    public function scopeFromCountry($query, $countryAcronym)
+    {
+        return $query->whereHas('user', function ($q) use ($countryAcronym) {
+            $q->where('country_acronym', $countryAcronym);
+        });
+    }
+
+    public function scopeFriendsOf($query, $user)
+    {
+        return $query->whereIn(
+            'user_id',
+            model_pluck($user->friends(), 'zebra_id')
+        );
     }
 }

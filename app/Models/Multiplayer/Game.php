@@ -75,7 +75,7 @@ class Game extends Model
     public function getModsAttribute($value)
     {
         if (empty($this->_mods)) {
-            $this->_mods = ModsHelper::getEnabledMods($value);
+            $this->_mods = ModsHelper::toArray($value);
         }
 
         return $this->_mods;

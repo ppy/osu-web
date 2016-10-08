@@ -33,7 +33,7 @@ trait Scoreable
     public function getEnabledModsAttribute($value)
     {
         if ($this->_enabledMods === null) {
-            $this->_enabledMods = ModsHelper::getEnabledMods($value);
+            $this->_enabledMods = ModsHelper::toArray($value);
         }
 
         return $this->_enabledMods;

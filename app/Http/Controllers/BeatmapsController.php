@@ -40,21 +40,21 @@ class BeatmapsController extends Controller
 
     public function scores($id)
     {
+        $beatmap = Beatmap::findOrFail($id);
+        $mode = Request::input('mode', Beatmap::modeStr($beatmap->playmode));
+        $mods = Request::input('enabledMods');
         $type = Request::input('type', 'global');
-
         $user = Auth::user();
 
-        if ($type !== 'global') {
-            if (!$user) {
-                abort(403);
-            } elseif (!$user->isSupporter()) {
+        if (!is_array($mods)) {
+            $mods = [];
+        }
+
+        if ($type !== 'global' || !empty($mods)) {
+            if ($user === null || !$user->isSupporter()) {
                 return error_popup(trans('errors.supporter_only'));
             }
         }
-
-        $beatmap = Beatmap::findOrFail($id);
-        $mode = Request::input('mode', Beatmap::modeStr($beatmap->playmode));
-        $enabled_mods = Request::input('enabledMods');
 
         try {
             $query = $beatmap
@@ -65,64 +65,35 @@ class BeatmapsController extends Controller
             return error_popup($ex->getMessage());
         }
 
-        if ($enabled_mods) {
-            if (!$user->isSupporter()) {
-                return error_popup(trans('errors.supporter_only'));
-            }
-
-            $mods_bitset = ModsHelper::getModsValue($enabled_mods);
-
-            $queryString = '((enabled_mods';
-
-            if ($enabled_mods === ['NM']) {
-                $queryString .= ' = 0))';
-            }
-
-            if (in_array('NM', $enabled_mods, true) && count($enabled_mods) > 1) {
-                $queryString .= " & {$mods_bitset} != 0) or enabled_mods = 0)";
-            }
-
-            if (!in_array('NM', $enabled_mods, true)) {
-                $queryString .= " & {$mods_bitset} != 0))";
-            }
-
-            $query->whereRaw($queryString);
-        }
+        $query->withMods($mods);
 
         switch ($type) {
             case 'country':
-                $query
-                    ->whereHas('user', function ($query) use (&$user) {
-                        $query->where('country_acronym', $user->country_acronym);
-                    });
+                $query->fromCountry($user->country_acronym);
                 break;
             case 'friend':
-                $query
-                    ->whereIn('user_id', model_pluck($user->friends(), 'zebra_id'));
+                $query->friendsOf($user);
                 break;
         }
 
-        $scores = fractal_collection_array($query->get(), new ScoreTransformer, 'user');
-        $userScore = null;
-        $userScorePosition = null;
+        $scoresList = fractal_collection_array($query->get(), new ScoreTransformer, 'user');
 
-        if ($user) {
-            $score = $beatmap->scoresBest()->where('user_id', $user->user_id)->with('user')->first();
+        if ($user !== null) {
+            $score = (clone $query)->where('user_id', $user->user_id)->first();
 
-            if (!$enabled_mods) {
-                $enabled_mods = [];
-            }
-
-            if ($score && (empty(array_diff($enabled_mods, $score->enabled_mods)) || empty($score->enabled_mods))) {
+            if ($score !== null) {
                 $userScore = fractal_item_array($score, new ScoreTransformer, 'user');
-                $userScorePosition = $query->limit(null)->where('score', '>', $score->score)->count() + 1;
+                $userScorePosition = 1 + (clone $query)
+                    ->limit(null)
+                    ->where('score', '>', $score->score)
+                    ->count();
             }
         }
 
         return [
-            'scoresList' => $scores,
-            'userScore' => $userScore,
-            'userScorePosition' => $userScorePosition,
+            'scoresList' => $scoresList,
+            'userScore' => $userScore ?? null,
+            'userScorePosition' => $userScorePosition ?? null,
         ];
     }
 }
