@@ -27,7 +27,11 @@
             <div class='contest__voting-ended'>{{trans('contest.entry.preparation')}}</div>
         @endif
     @else
-        <div class='js-react--userContestEntry'></div>
+        @if (!Auth::check())
+          <div class='contest__voting-ended'>{{trans('contest.entry.login_required')}}</div>
+        @else
+          <div class='js-react--userContestEntry'></div>
+        @endif
     @endif
 @endsection
 

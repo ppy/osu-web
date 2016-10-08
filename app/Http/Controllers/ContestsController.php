@@ -99,6 +99,10 @@ class ContestsController extends Controller
 
     private function userEntries($contest)
     {
+        if (!Auth::check()) {
+            return [];
+        }
+
         return fractal_api_serialize_collection(
             UserContestEntry::where(['contest_id' => $contest->id, 'user_id' => Auth::user()->user_id])->get(),
             new UserContestEntryTransformer
