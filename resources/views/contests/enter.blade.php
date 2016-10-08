@@ -30,7 +30,11 @@
         @if (!Auth::check())
           <div class='contest__voting-ended'>{{trans('contest.entry.login_required')}}</div>
         @else
-          <div class='js-react--userContestEntry'></div>
+          @if (Auth::user()->isSilenced() || Auth::user()->isRestricted())
+            <div class='contest__voting-ended'>{{trans('contest.entry.silenced_or_restricted')}}</div>
+          @else
+            <div class='js-react--userContestEntry'></div>
+          @endif
         @endif
     @endif
 @endsection

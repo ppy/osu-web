@@ -23,7 +23,8 @@ return [
         'over' => 'Voting for this contest has ended',
     ],
     'entry' => [
-        'login_required' => 'You need to be logged in to enter.',
+        'login_required' => 'Please login to enter the contest.',
+        'silenced_or_restricted' => 'You cannot enter contests while restricted or silenced.',
         'preparation' => 'We are current preparing this contest. Please wait patiently!',
         'over' => 'Thank you for your entries! Submissions have closed for this contest and voting will open soon.',
         'limit_reached' => 'You have reached the entry limit for this contest',
