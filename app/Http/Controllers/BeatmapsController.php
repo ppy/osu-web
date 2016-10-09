@@ -22,7 +22,6 @@ namespace App\Http\Controllers;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Transformers\ScoreTransformer;
-use App\Libraries\ModsHelper;
 use Request;
 use Auth;
 
