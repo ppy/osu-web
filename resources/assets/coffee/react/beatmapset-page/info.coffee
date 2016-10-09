@@ -92,7 +92,7 @@ class BeatmapsetPage.Info extends React.Component
           className: 'beatmapset-success-rate__percentage'
           style:
             paddingLeft: "#{percentage}%"
-          div className: 'beatmapset-success-rate__label beatmapset-success-rate__label--percentage', "#{percentage}%"
+          div className: 'beatmapset-success-rate__label', "#{percentage}%"
 
         div className: 'beatmapset-success-rate__label beatmapset-success-rate__label--main', osu.trans 'beatmaps.beatmapset.show.info.points-of-failure'
 

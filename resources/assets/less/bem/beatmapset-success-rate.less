@@ -34,10 +34,6 @@
     &--main {
       text-align: center;
     }
-
-    &--percentage {
-      margin-left: -50%;
-    }
   }
 
   &__bar {
@@ -55,10 +51,10 @@
   }
 
   &__percentage {
-    width: fit-content;
-
-    // IE/Edge workaround
-    display: table;
+    width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .default-bar-transition(@property: padding-left);
 
