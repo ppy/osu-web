@@ -41,7 +41,12 @@ class BeatmapsetPage.Stats extends React.Component
 
     @_ratingChart.loadData data
 
+  togglePreview: (e) =>
+    $.publish 'beatmapset:preview:toggle', !@props.isPreviewPlaying
+
   render: ->
+    audioPreview = document.getElementsByClassName('js-beatmapset-page--audio-preview')[0]
+
     ratingsPositive = 0
     ratingsNegative = 0
 
@@ -52,6 +57,21 @@ class BeatmapsetPage.Stats extends React.Component
     ratingsAll = ratingsPositive + ratingsNegative
 
     div className: 'beatmapset-header__stats beatmapset-stats',
+      div className: "beatmapset-stats__row beatmapsets-stats__row beatmapset-stats__row--preview",
+        div
+          className: 'beatmapset-stats__preview-icon'
+          onClick: @togglePreview
+          el Icon, name: if @props.isPreviewPlaying then 'stop' else 'play'
+
+        div
+          className: 'beatmapset-stats__elapsed-bar'
+          style: if @props.isPreviewPlaying
+            transitionDuration: "#{audioPreview.duration}s"
+            width: '100%'
+          else
+            transitionDuration: '0s'
+            width: '0%'
+
       div className: 'beatmapset-stats__row beatmapset-stats__row--basic',
         for stat in ['total_length', 'bpm', 'count_circles', 'count_sliders']
           value = if stat == 'bpm' then @props.beatmapset.bpm else @props.beatmap[stat]

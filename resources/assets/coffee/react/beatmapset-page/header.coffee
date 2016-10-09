@@ -136,9 +136,6 @@ class BeatmapsetPage.Header extends React.Component
         el BeatmapsetPage.Stats,
           beatmapset: @props.beatmapset
           beatmap: @props.currentBeatmap
-
-        div className: 'beatmapset-header__icon-box',
-          div
-            className: 'beatmapset-header__preview-icon'
-            onClick: @togglePreview
-            el Icon, name: if @props.isPreviewPlaying then 'pause' else 'play'
+          isPreviewPlaying: @props.isPreviewPlaying
+          timeElapsed: @props.timeElapsed
+          previewDuration: @props.previewDuration
