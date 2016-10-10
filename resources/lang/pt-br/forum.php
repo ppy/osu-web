@@ -34,12 +34,12 @@ return [
     ],
 
     'email' => [
-    'new_reply' => '[osu!] :title',
-    ],
+		'new_reply' => '[osu!] :title',
+	],
 
-    'forums' => [
+	'forums' => [
         'topics' => [
-                   'empty' => 'Sem tópicos!',
+            'empty' => 'Sem tópicos!',
         ],
     ],
 
@@ -51,7 +51,7 @@ return [
         'actions' => [
             'delete' => 'Deletar post',
             'edit' => 'Editar post',
-    ],
+        ],
     ],
     'search' => [
         'go_to_post' => 'Ir para post',
@@ -153,21 +153,23 @@ return [
         ],
 
         'lock' => [
-            'locked-0' => 'Tópico destrancado',
-            'locked-1' => 'Tópico trancado',
             'is_locked' => 'Este tópico está trancado e não pode mais ser respondido',
+            'lock-0' => 'Tópico destrancado',
+            'lock-1' => 'Tópico trancado',
+            'state-0' => 'Tópico foi destrancado',
+            'state-1' => 'Tópico foi trancado',
         ],
 
         'moderate_move' => [
             'title' => 'Mover para outro fórum',
         ],
 
-    'pin' => [
+		'pin' => [
             'pin-0' => 'Desprender tópico',
             'pin-1' => 'Prender tópico',
             'pinned-0' => 'Tópico foi desprendido',
             'pinned-1' => 'Tópico foi preso',
-    ],
+        ],
 
         'show' => [
             'feature_vote' => [
@@ -190,14 +192,14 @@ return [
                     'end_time' => 'A votação encerrará às :time',
                 ],
             ],
-       ],
+    	],
 
-    'watch' => [
-            'watch-0' => 'Cancelar inscrição do tópico',
-            'watch-1' => 'Inscrever no tópico',
-            'watched-0' => 'Inscrição cancelada no tópico',
-            'watched-1' => 'Inscrito no tópico',
-    ],
+    	'watch' => [
+            'state-0' => 'Cancelar inscrição do tópico',
+            'state-1' => 'Inscrever no tópico',
+            'watch-0' => 'Inscrição cancelada no tópico',
+            'watch-1' => 'Inscrito no tópico',
+        ],
     ],
 
 ];
