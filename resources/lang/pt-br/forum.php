@@ -34,10 +34,10 @@ return [
     ],
 
     'email' => [
-		'new_reply' => '[osu!] :title',
-	],
+        'new_reply' => '[osu!] :title',
+    ],
 
-	'forums' => [
+    'forums' => [
         'topics' => [
             'empty' => 'Sem tópicos!',
         ],
@@ -164,7 +164,7 @@ return [
             'title' => 'Mover para outro fórum',
         ],
 
-		'pin' => [
+        'pin' => [
             'pin-0' => 'Desprender tópico',
             'pin-1' => 'Prender tópico',
             'pinned-0' => 'Tópico foi desprendido',
@@ -192,9 +192,9 @@ return [
                     'end_time' => 'A votação encerrará às :time',
                 ],
             ],
-    	],
+    ],
 
-    	'watch' => [
+    'watch' => [
             'state-0' => 'Cancelar inscrição do tópico',
             'state-1' => 'Inscrever no tópico',
             'watch-0' => 'Inscrição cancelada no tópico',
