@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, span, a} = React.DOM
+{div, span, a, ol} = React.DOM
 el = React.createElement
 
 class BeatmapsetPage.Header extends React.Component
@@ -26,7 +26,7 @@ class BeatmapsetPage.Header extends React.Component
     dateFormat = 'MMM D, YYYY'
 
     div className: 'default-box-shadow',
-      div className: 'header-tabs',
+      ol className: 'page-mode',
         for mode in BeatmapHelper.modes
           continue if _.isEmpty @props.beatmapList[mode]
 
