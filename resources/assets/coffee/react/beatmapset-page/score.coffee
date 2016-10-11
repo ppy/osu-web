@@ -22,36 +22,36 @@ BeatmapsetPage.Score = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
   render: ->
+    hits = Hits.generate score: @props.score, playmode: @props.playmode
+
     div className: 'beatmapset-score',
-      for elem in ['position', 'flag', 'player', 'mods', 'rank', 'score', 'accuracy', 'hits']
-        className = "beatmapset-score__element beatmapset-score__element--#{elem}"
-        className += ' hidden-xs' if elem == 'hits' || elem == 'accuracy'
+      div className: 'beatmapset-score__element beatmapset-score__element--position',
+        "##{@props.position}"
 
-        contents =
-          switch elem
-            when 'position'
-              "##{@props.position}"
-            when 'flag'
-              if @props.score.user.data.country
-                el FlagCountry,
-                  country: @props.countries[@props.score.user.data.country]
-                  classModifiers: ['scoreboard']
-            when 'player'
-              a
-                href: laroute.route 'users.show', users: @props.score.user.data.id
-                @props.score.user.data.username
-            when 'mods'
-              el Mods,
-                mods: @props.score.mods
-                classModifiers: ['small', 'reversed']
-            when 'rank'
-              div className: "badge-rank badge-rank--#{@props.score.rank}"
-            when 'score'
-              @props.score.score.toLocaleString()
-            when 'accuracy'
-              "#{_.round @props.score.accuracy * 100, 2}%"
-            when 'hits'
-              hits = Hits.generate score: @props.score, playmode: @props.playmode
-              hits.values
+      div className: 'beatmapset-score__element beatmapset-score__element--flag',
+        if @props.score.user.data.country
+          el FlagCountry,
+            country: @props.countries[@props.score.user.data.country]
+            classModifiers: ['scoreboard']
 
-        div className: className, key: elem, contents
+      div className: 'beatmapset-score__element beatmapset-score__element--player',
+        a
+          href: laroute.route 'users.show', users: @props.score.user.data.id
+          @props.score.user.data.username
+
+      div className: 'beatmapset-score__element beatmapset-score__element--mods',
+        el Mods,
+          mods: @props.score.mods
+          classModifiers: ['small', 'reversed']
+
+      div className: 'beatmapset-score__element beatmapset-score__element--rank',
+        div className: "badge-rank badge-rank--#{@props.score.rank}"
+
+      div className: 'beatmapset-score__element beatmapset-score__element--score',
+        @props.score.score.toLocaleString()
+
+      div className: 'beatmapset-score__element beatmapset-score__element--accuracy hidden-xs',
+        "#{_.round @props.score.accuracy * 100, 2}%"
+
+      div className: 'beatmapset-score__element beatmapset-score__element--hits hidden-xs',
+        hits.values
