@@ -21,6 +21,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Contest;
 use App\Models\ContestVote;
+use App\Models\UserContestEntry;
+use App\Transformers\UserContestEntryTransformer;
 use Auth;
 use Request;
 
@@ -42,7 +44,10 @@ class ContestsController extends Controller
                     ->with('contest', $contest)
                     ->with('contestJson', $contest->defaultJson($user));
         } else {
-            return view('contests.enter')->with('contest', $contest);
+            return view('contests.enter')
+                ->with('contest', $contest)
+                ->with('contestJson', $contest->defaultJson($user))
+                ->with('userEntriesJson', json_encode($this->userEntries($contest)));
         }
     }
 
@@ -61,12 +66,46 @@ class ContestsController extends Controller
 
     public function submit($id)
     {
+        if (Request::hasFile('entry') !== true || Request::file('entry')->getClientOriginalExtension() !== 'osu') { // todo: unhardcode :|
+            abort(422);
+        }
+
         $user = Auth::user();
         $contest = Contest::findOrFail($id);
 
         priv_check('ContestEnter', $contest)->ensureCan();
 
-        //todo: upload accept logic
-        abort(501);
+        UserContestEntry::upload(
+            Request::file('entry'),
+            $user,
+            $contest
+        );
+
+        return $this->userEntries($contest);
+    }
+
+    public function delete($id)
+    {
+        $user = Auth::user();
+        $contest = Contest::findOrFail($id);
+        $contestEntry = UserContestEntry::where(['contest_id' => $contest->id, 'user_id' => $user->user_id])->findOrFail(Request::input('entry_id'));
+
+        priv_check('ContestDeleteEntry', $contestEntry)->ensureCan();
+
+        $contestEntry->deleteWithFile();
+
+        return $this->userEntries($contest);
+    }
+
+    private function userEntries($contest)
+    {
+        if (!Auth::check()) {
+            return [];
+        }
+
+        return fractal_api_serialize_collection(
+            UserContestEntry::where(['contest_id' => $contest->id, 'user_id' => Auth::user()->user_id])->get(),
+            new UserContestEntryTransformer
+        );
     }
 }

@@ -16,20 +16,20 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <a
-    class="forum-topic-nav__button-circle"
+    class="
+        js-forum-topic-moderate_pin
+        btn-circle
+        btn-circle--topic-nav
+        {{ $topic->isPinned() ? 'btn-circle--activated' : '' }}
+    "
     href="{{ route('forum.topics.pin', [
-        $_topic,
-        'pin' => !$_topic->isPinned(),
+        $topic,
+        'pin' => !$topic->isPinned(),
     ]) }}"
     data-remote="1"
     data-method="post"
-    data-reload-on-success="1"
-    data-reload-reset-scroll="1"
-    title="{{ trans('forum.topics.pin.pin-'.(int) !$_topic->isPinned()) }}"
+    data-topic-id="{{ $topic->topic_id }}"
+    title="{{ trans('forum.topics.moderate_pin.pin-'.(int) !$topic->isPinned()) }}"
 >
-    @if ($_topic->isPinned())
-        <i class="fa fa-toggle-off"></i>
-    @else
-        <i class="fa fa-toggle-on"></i>
-    @endif
+    <i class="fa fa-thumb-tack"></i>
 </a>

@@ -344,6 +344,6 @@ class BBCodeFromDB
         // strip smilies
         $text = preg_replace('#<!-- (s(.*?)) -->.*?<!-- \\1 -->#', '\\2', $text);
 
-        return html_entity_decode($text);
+        return html_entity_decode($text, ENT_QUOTES);
     }
 }

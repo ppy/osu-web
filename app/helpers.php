@@ -46,6 +46,13 @@ function get_valid_locale($requestedLocale)
     );
 }
 
+function json_time($time)
+{
+    if ($time !== null) {
+        return $time->toIso8601String();
+    }
+}
+
 function osu_url($key)
 {
     $url = config("osu.urls.{$key}");
@@ -70,6 +77,11 @@ function product_quantity_options($product)
     }
 
     return $opts;
+}
+
+function render_to_string($view, $variables = [])
+{
+    return view()->make($view, $variables)->render();
 }
 
 function obscure_email($email)
@@ -128,6 +140,14 @@ function i18n_view($view)
     }
 }
 
+function is_sql_unique_exception($ex)
+{
+    return starts_with(
+        $ex->getMessage(),
+        'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry'
+    );
+}
+
 function js_view($view, $vars = [])
 {
     return response()
@@ -147,7 +167,7 @@ function ujs_redirect($url)
 function timeago($date)
 {
     $display_date = $date->toRfc850String();
-    $attribute_date = $date->toIso8601String();
+    $attribute_date = json_time($date);
 
     return "<time class='timeago' datetime='{$attribute_date}'>{$display_date}</time>";
 }

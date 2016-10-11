@@ -294,7 +294,7 @@ class BBCodeForDB
 
     public function generate()
     {
-        $text = e($this->text);
+        $text = htmlentities($this->text, ENT_QUOTES, 'UTF-8', true);
 
         $text = $this->parseCode($text);
         $text = $this->parseNotice($text);
@@ -315,11 +315,6 @@ class BBCodeForDB
         $text = $this->parseSmiley($text);
         $text = $this->parseLinks($text);
 
-        // escape stuff ("<", "&", etc?)
-        // escape content of [code]...[/code]
-        // autolink
-        // smileys
-        // $uid suffix
         return $text;
     }
 }

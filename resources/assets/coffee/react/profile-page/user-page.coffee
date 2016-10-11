@@ -25,11 +25,10 @@ class ProfilePage.UserPage extends React.Component
 
       if !@props.userPage.editing && @props.withEdit && @props.userPage.html != ''
         div className: 'page-extra__actions',
-          div className: 'forum-post-actions',
-            button
-              className: 'forum-post-actions__action'
-              onClick: @editStart
-              el Icon, name: 'edit'
+          button
+            className: 'btn-circle btn-circle--button'
+            onClick: @editStart
+            el Icon, name: 'edit'
 
       if @props.userPage.editing
         el ProfilePage.UserPageEditor, userPage: @props.userPage

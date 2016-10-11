@@ -33,8 +33,12 @@
 
     <div class="osu-layout__row">
         @foreach($forums as $category)
-            <div id="forum-{{ $category->forum_id }}" class="forum-category col-sm-12 forum-colour {{ $category->categorySlug() }}">
-                <div class="row forum-category-header forum-category-header--forum-index forum-colour__bg--{{ $category->categorySlug() }}">
+            <div id="forum-{{ $category->forum_id }}" class="
+                forum-category
+                col-sm-12
+                t-forum-{{ $category->categorySlug() }}
+            ">
+                <div class="row forum-category-header forum-category-header--forum-index u-forum--bg">
                     <div class="forum-category-header__name">{{ $category->forum_name }}</div>
                     <div class="forum-category-header__description">{{ $category->forum_desc }}</div>
                 </div>

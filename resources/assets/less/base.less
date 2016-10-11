@@ -81,33 +81,8 @@ body .initially-hidden {
   clear: both;
 }
 
-.selector {
-  color: @gray-light !important;
-  margin-top: 10px;
-  font-size: 90%;
-
-  > a {
-    color: @gray-light !important;
-    margin-right: 25px;
-  }
-
-  .active {
-    font-weight: bold;
-  }
-
-  .header {
-    display: inline-block;
-    font-weight: bold;
-    width: 100px;
-  }
-}
-
 .large {
   font-size: 120%;
-}
-
-.paddingvertical5 {
-  padding: 10px 0;
 }
 
 .form-control {
@@ -128,17 +103,17 @@ body .initially-hidden {
 }
 
 select.form-control {
-    .default-box-shadow;
+    .default-box-shadow();
     font-weight: 700;
 
     &:focus {
-      .default-box-shadow;
+      .default-box-shadow();
     }
   }
 
 .btn-osu {
   &:extend(.btn all);
-  &:extend(.default-text-shadow);
+  .default-text-shadow();
   &, &:focus, &.focus, &:hover {
     color: #fff;
   }
@@ -151,7 +126,7 @@ select.form-control {
 
   &, &:active, &.active {
     .btn-bg;
-    &:extend(.default-box-shadow);
+    .default-box-shadow();
   }
 
   border: none;
@@ -197,6 +172,19 @@ select.form-control {
     a:hover {
       text-decoration: none;
     }
+  }
+
+  &--textlike {
+    background: none;
+    box-shadow: none;
+    &:active {
+      background: none;
+    }
+  }
+
+  &--stick-right {
+    position: absolute;
+    right: 0px;
   }
 }
 
@@ -267,10 +255,10 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .shadow-hover {
-  .default-box-shadow;
+  .default-box-shadow();
 
   &:hover {
-    .thicker-box-shadow;
+    .thicker-box-shadow();
   }
 }
 
@@ -336,7 +324,7 @@ a[disabled] { &:extend(.btn[disabled]); }
 
 .user-icon {
   .icon-bg;
-  &:extend(.default-box-shadow);
+  .default-box-shadow();
 
   color: #fff;
   font-size: 12px;
@@ -349,10 +337,6 @@ a[disabled] { &:extend(.btn[disabled]); }
 
 .compact > * {
   margin: 0px;
-}
-
-.u-blackout-visible {
-  z-index: @z-index--blackout-visible !important;
 }
 
 [data-visibility] {

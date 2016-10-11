@@ -16,14 +16,12 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @ForumCover
-  header: document.getElementsByClassName('js-forum-cover--header')
-  $uploadButton: => $(@uploadButton[0])
-  uploadButton: document.getElementsByClassName('js-forum-cover--upload-button')
-  overlay: document.getElementsByClassName('js-forum-cover--overlay')
-  loading: document.getElementsByClassName('js-forum-cover--loading')
-
-
   constructor: ->
+    @header = document.getElementsByClassName('js-forum-cover--header')
+    @uploadButton = document.getElementsByClassName('js-forum-cover--upload-button')
+    @overlay = document.getElementsByClassName('js-forum-cover--overlay')
+    @loading = document.getElementsByClassName('js-forum-cover--loading')
+
     $(document).on 'click', '.js-forum-cover--open-modal', @toggleModal
     $(document).on 'click', '.js-forum-cover--remove', @remove
     $(document).on 'click', @closeModal
@@ -35,8 +33,10 @@ class @ForumCover
 
     $.subscribe 'key:esc', @closeModal
 
-    $(document).on 'ready turbolinks:load', @refresh
-    @refresh()
+    $(document).on 'turbolinks:load', @refresh
+
+
+  $uploadButton: => $(@uploadButton[0])
 
 
   closeModal: (e) =>
@@ -48,8 +48,8 @@ class @ForumCover
 
     return if $('#overlay').is(':visible')
 
-    Fade.out $('.blackout')[0]
-    @header[0].classList.remove 'forum-category-header--cover-modal'
+    Blackout.hide()
+    @header[0].classList.remove 'js-forum-cover--is-open'
 
     @isModalOpen(false)
 
@@ -109,9 +109,9 @@ class @ForumCover
 
 
   openModal: =>
-    Fade.in $('.blackout')[0]
+    Blackout.show()
     @isModalOpen(true)
-    @header[0].classList.add 'forum-category-header--cover-modal'
+    @header[0].classList.add 'js-forum-cover--is-open'
 
     @initFileupload()
 
@@ -170,6 +170,6 @@ class @ForumCover
     backgroundImage = if backgroundImageUrl? then "url('#{backgroundImageUrl}')" else ''
     @header[0].style.backgroundImage = backgroundImage
 
-    $('.js-forum-cover--remove').toggleClass('forum-post-actions__action--disabled', !@hasCover())
+    $('.js-forum-cover--remove').toggleClass('js-disabled', !@hasCover())
 
     @initFileupload()

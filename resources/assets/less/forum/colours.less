@@ -1,65 +1,58 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
-.forum-colour-set(@stripe-colour, @link-colour, @link-hover-colour) {
-  .u-current-forum-bg {
-    background-color: @stripe-colour !important;
-  }
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
-  .topics, .forums {
-    .clickable-row:hover .clickable-row-link {
-      color: @link-hover-colour;
+.fn-forum(category-beatmaps, @purple, @purple-text, @purple);
+.fn-forum(category-language-specific, @yellow, @yellow-text, @yellow-dark);
+.fn-forum(category-management, @gray, @gray-text, @gray);
+.fn-forum(category-osu, @pink, @pink-text, @pink);
+.fn-forum(category-other, @green, @green-text, @green);
+
+.fn-forum(@category, @bg, @text, @text-hover) {
+  .t-forum-@{category} {
+    .u-forum--bg {
+      background-color: @bg !important;
     }
-  }
 
-  .forums .name, .forums .title, .topics .title, .forum-pagination a {
-    color: @link-colour;
-
-    &:hover, &:active, &:focus {
-      color: @link-hover-colour;
+    .u-forum--bg-link {
+      background-color: @text !important;
     }
-  }
 
-  .go-to-last a:hover { color: @link-hover-colour; }
 
-  .forums .hover-bar .colour-stripe {
-    background-color: @stripe-colour;
-  }
+    .u-forum--hover-area:hover .u-forum--hover-target {
+      color: @text-hover !important;
+    }
 
-  .read-and-type-icon.unread > a { background-color: @link-colour; }
-}
+    .u-forum--link {
+      color: @text !important;
+      &:hover,
+      &:active,
+      &:focus {
+        color: @text-hover !important;
+      }
+    }
 
-.forum-colour {
-  .forum-colour-set(@gray, @gray-text, @gray);
+    .u-forum--link-hover:hover {
+      color: @text-hover !important;
+    }
 
-  &.category-osu {
-    .forum-colour-set(@pink, @pink-text, @pink);
-  }
-
-  &.category-language-specific {
-    .forum-colour-set(@yellow, @yellow-text, @yellow-dark);
-  }
-
-  &.category-other {
-    .forum-colour-set(@green, @green-text, @green);
-  }
-
-  &.category-beatmaps {
-    .forum-colour-set(@purple, @purple-text, @purple);
+    .u-forum--topic-cover {
+      .at2x-simple('/images/headers/forum-topic-covers/forum-cover-@{category}.jpg');
+    }
   }
 }

@@ -16,76 +16,53 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @UserVerification
-  $modal: => $('.js-user-verification')
-
-
-  clickAfterVerification: null # Used as callback on original action (where verification was required)
-
-
   constructor: (@nav) ->
     $(document).on 'ajax:error', @showOnError
-    $(document).on 'ready turbolinks:load', @showOnLoad
-    $(document).on 'keyup', '.js-user-verification--input', @autoSubmit
+    $(document).on 'turbolinks:load', @showOnLoad
+    $(document).on 'input', '.js-user-verification--input', @autoSubmit
     $(document).on 'click', '.js-user-verification--reissue', @reissue
 
     $(window).on 'throttled-resize throttled-scroll', @reposition
 
+    # Used as callback on original action (where verification was required)
+    @clickAfterVerification = null
+
     @inputBox = document.getElementsByClassName('js-user-verification--input')
-    @errorMessage = document.getElementsByClassName('js-user-verification--error')
+    @message = document.getElementsByClassName('js-user-verification--message')
+    @messageSpinner = document.getElementsByClassName('js-user-verification--message-spinner')
+    @messageText = document.getElementsByClassName('js-user-verification--message-text')
     @modal = document.getElementsByClassName('js-user-verification')
     @reference = document.getElementsByClassName('js-user-verification--reference')
 
 
+  $modal: => $('.js-user-verification')
+
+
   autoSubmit: (e) =>
-    verifying = document.getElementsByClassName('js-user-verification--verifying')[0]
     target = @inputBox[0]
     inputKey = target.value.replace /\s/g, ''
     lastKey = target.dataset.lastKey
     keyLength = parseInt(target.dataset.verificationKeyLength, 10)
 
-    if keyLength == 0
-      Fade.out target
+    if inputKey.length == 0
+      @setMessage()
 
     return if keyLength != inputKey.length
     return if inputKey == lastKey
 
     target.dataset.lastKey = inputKey
 
-    @request?.abort()
-    Fade.in verifying
-    Fade.out @errorMessage[0]
+    @prepareForRequest 'verifying'
 
     @request =
       $.post laroute.route('account.verify'),
         verification_key: inputKey
       .done @success
       .error @error
-      .always =>
-        Fade.out verifying
-
-
-  reissue: (e) =>
-    e.preventDefault()
-
-    issuing = document.getElementsByClassName('js-user-verification--issuing')[0]
-    target = @inputBox[0]
-
-    @request?.abort()
-    Fade.in issuing
-    Fade.out @errorMessage[0]
-
-    @request =
-      $.post laroute.route('account.reissue-code')
-      .done @success
-      .error @error
-      .always =>
-        Fade.out issuing
 
 
   error: (xhr) =>
-    box = @errorMessage[0]
-    Fade.in box
-    box.textContent = osu.xhrErrorMessage xhr
+    @setMessage osu.xhrErrorMessage(xhr)
 
 
   float: (float, modal = @modal[0], referenceBottom) =>
@@ -95,6 +72,23 @@ class @UserVerification
     else
       modal.classList.remove 'js-user-verification--center'
       modal.style.paddingTop = "#{referenceBottom}px"
+
+
+  prepareForRequest: (type) =>
+    @request?.abort()
+    @setMessage Lang.get("user_verification.box.#{type}"), true
+
+
+  reissue: (e) =>
+    e.preventDefault()
+
+    @prepareForRequest 'issuing'
+
+    @request =
+      $.post laroute.route('account.reissue-code')
+      .done (data) =>
+        @setMessage data.message
+      .error @error
 
 
   reposition: =>
@@ -110,13 +104,23 @@ class @UserVerification
       @float(referenceBottom < 0, modal, referenceBottom)
 
 
+  setMessage: (text, withSpinner = false) =>
+    if !text? || text.length == 0
+      Fade.out @message[0]
+      return
+
+    @messageText[0].textContent = text
+    Fade.toggle @messageSpinner[0], withSpinner
+    Fade.in @message[0]
+
+
   success: =>
     @$modal().modal 'hide'
     @modal[0].classList.remove('js-user-verification--active')
 
     toClick = @clickAfterVerification
     @clickAfterVerification = null
-    Fade.out @errorMessage[0]
+    @setMessage()
     @inputBox[0].value = ''
     @inputBox[0].dataset.lastKey = ''
 

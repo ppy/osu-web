@@ -36,8 +36,10 @@ class ContestTransformer extends Fractal\TransformerAbstract
             'description' => $contest->description_voting,
             'type' => $contest->type,
             'header_url' => $contest->header_url,
+            'max_entries' => $contest->max_entries,
             'max_votes' => $contest->max_votes,
-            'voting_ends_at' => $contest->voting_ends_at !== null ? $contest->voting_ends_at->toIso8601String() : null,
+            'entry_ends_at' => json_time($contest->entry_ends_at),
+            'voting_ends_at' => json_time($contest->voting_ends_at),
             'show_votes' => $contest->show_votes,
         ];
     }

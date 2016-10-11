@@ -24,6 +24,7 @@ use App\Models\Chat\Channel as ChatChannel;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
 use App\Models\Beatmapset;
+use App\Models\UserContestEntry;
 
 class OsuAuthorize
 {
@@ -71,6 +72,7 @@ class OsuAuthorize
         $prefix = 'beatmap_discussion.resolve.';
 
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         // no point resolving general discussion?
         if ($discussion->timestamp === null) {
@@ -218,6 +220,27 @@ class OsuAuthorize
             return 'contest.entry.over';
         }
 
+        $currentEntries = UserContestEntry::where(['contest_id' => $contest->id, 'user_id' => $user->user_id])->count();
+        if ($currentEntries >= $contest->max_entries) {
+            return 'contest.entry.limit_reached';
+        }
+
+        return 'ok';
+    }
+
+    public function checkContestDeleteEntry($user, $contestEntry)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($contestEntry->user_id !== $user->user_id) {
+            return 'unauthorized';
+        }
+
+        if (!$contestEntry->contest->isSubmissionOpen()) {
+            return 'contest.entry.over';
+        }
+
         return 'ok';
     }
 
@@ -251,6 +274,7 @@ class OsuAuthorize
         $prefix = 'forum.post.delete.';
 
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ($user->isGMT()) {
             return 'ok';
@@ -283,6 +307,7 @@ class OsuAuthorize
         $prefix = 'forum.post.edit.';
 
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ($user->isGMT()) {
             return 'ok';
@@ -375,11 +400,31 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkForumTopicWatchAdd($user, $topic)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if (!$this->doCheckUser($user, 'ForumView', $topic->forum)->can()) {
+            return 'forum.topic.watch.no_forum_access';
+        }
+
+        return 'ok';
+    }
+
+    public function checkForumTopicWatchRemove($user, $topic)
+    {
+        $this->ensureLoggedIn($user);
+
+        return 'ok';
+    }
+
     public function checkForumTopicCoverEdit($user, $cover)
     {
         $prefix = 'forum.topic_cover.edit.';
 
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ($user->isGMT()) {
             return 'ok';

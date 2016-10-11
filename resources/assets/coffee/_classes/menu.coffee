@@ -16,15 +16,17 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @Menu
-  $menuLink: (id) -> $(".js-menu[data-menu-target#{if id then "='#{id}'" else ''}]")
-
   constructor: ->
     @menuTimeout = 150
+
     $(document).on 'touchstart', '.js-menu', @onTouchStart
     $(document).on 'mouseenter', '.js-menu', @onMouseEnter
     $(document).on 'mouseleave', '.js-menu', @onMouseLeave
     $(document).on 'touchstart', @onGlobalTouchstart
     $(document).on 'turbolinks:load', @refresh
+
+
+  $menuLink: (id) -> $(".js-menu[data-menu-target#{if id then "='#{id}'" else ''}]")
 
 
   closestMenuId: ($child) ->

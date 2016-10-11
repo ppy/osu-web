@@ -57,13 +57,13 @@ class ProfilePage.Header extends React.Component
     return if $('#overlay').is(':visible')
     return if document.body.classList.contains('modal-open')
 
-    Fade.out $('.blackout')[0]
+    Blackout.hide()
     @setState editing: false, =>
       @coverReset()
 
 
   openEdit: =>
-    Fade.in $('.blackout')[0]
+    Blackout.show()
     @setState editing: true
 
 

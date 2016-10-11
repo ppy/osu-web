@@ -49,9 +49,10 @@ class UserVerification
         if ($this->request->ajax()) {
             return response([
                 'authentication' => 'verify',
-                'box' => view()
-                    ->make('users._verify_box', compact('email'))
-                    ->render(),
+                'box' => render_to_string(
+                    'users._verify_box',
+                    compact('email')
+                ),
             ], 401);
         } else {
             return response()->view('users.verify');
@@ -142,7 +143,7 @@ class UserVerification
 
         $this->issue();
 
-        return error_popup(trans('user_verification.errors.reissued'));
+        return response(['message' => trans('user_verification.errors.reissued')], 200);
     }
 
     public function verify()

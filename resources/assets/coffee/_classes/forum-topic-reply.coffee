@@ -16,17 +16,12 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @ForumTopicReply
-  container: document.getElementsByClassName('js-forum-topic-reply--container')
-  box: document.getElementsByClassName('js-forum-topic-reply')
-  input: document.getElementsByClassName('js-forum-topic-reply--input')
-  closeButton: document.getElementsByClassName('js-forum-topic-reply--close')
-  marker: -> document.querySelector('.js-sticky-footer[data-sticky-footer-target="forum-topic-reply"]')
-  $input: -> $('.js-forum-topic-reply--input')
-  fixedBar: document.getElementsByClassName('js-sticky-footer--fixed-bar')
-
-  constructor: (forum, stickyFooter) ->
-    @forum = forum
-    @stickyFooter = stickyFooter
+  constructor: (@forum, @stickyFooter) ->
+    @container = document.getElementsByClassName('js-forum-topic-reply--container')
+    @box = document.getElementsByClassName('js-forum-topic-reply')
+    @input = document.getElementsByClassName('js-forum-topic-reply--input')
+    @closeButton = document.getElementsByClassName('js-forum-topic-reply--close')
+    @fixedBar = document.getElementsByClassName('js-sticky-footer--fixed-bar')
 
     $(document).on 'ajax:success', '.js-forum-topic-reply', @posted
 
@@ -40,11 +35,14 @@ class @ForumTopicReply
 
     $.subscribe 'stickyFooter', @stickOrUnstick
 
-    $(document).on 'ready turbolinks:load', @initialise
-    @initialise()
+    $(document).on 'turbolinks:load', @initialize
 
 
-  initialise: =>
+  marker: -> document.querySelector('.js-sticky-footer[data-sticky-footer-target="forum-topic-reply"]')
+
+  $input: -> $('.js-forum-topic-reply--input')
+
+  initialize: =>
     return unless @available()
 
     @deleteState 'sticking'

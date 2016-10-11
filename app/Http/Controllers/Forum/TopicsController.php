@@ -29,6 +29,8 @@ use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Forum\TopicPoll;
+use App\Models\Forum\TopicTrack;
+use App\Models\Forum\TopicWatch;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use Carbon\Carbon;
@@ -48,10 +50,10 @@ class TopicsController extends Controller
 
         $this->middleware('auth', ['only' => [
             'create',
+            'lock',
             'preview',
             'reply',
             'store',
-            'lock',
         ]]);
     }
 
@@ -75,10 +77,25 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
 
-        $lock = Request::input('lock') !== '0';
-        $topic->lock($lock);
+        $state = get_bool(Request::input('lock'));
+        $topic->lock($state);
+        $type = 'lock';
 
-        return ['message' => trans('forum.topics.lock.locked-'.($lock === true ? '1' : '0'))];
+        return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
+    }
+
+    public function move($id)
+    {
+        $topic = Topic::findOrFail($id);
+        $destinationForum = Forum::findOrFail(Request::input('destination_forum_id'));
+
+        priv_check('ForumTopicModerate', $topic)->ensureCan();
+
+        if ($topic->moveTo($destinationForum)) {
+            return js_view('layout.ujs-reload');
+        } else {
+            abort(422);
+        }
     }
 
     public function pin($id)
@@ -87,10 +104,11 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
 
-        $pin = Request::input('pin') !== '0';
-        $topic->pin($pin);
+        $state = get_bool(Request::input('pin'));
+        $topic->pin($state);
+        $type = 'moderate_pin';
 
-        return ['message' => trans('forum.topics.pin.pinned-'.(int) $pin)];
+        return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
     }
 
     public function preview()
@@ -123,11 +141,14 @@ class TopicsController extends Controller
             'body' => 'required',
         ]);
 
-        if ($topic->addPost(Auth::user(), Request::input('body'), false)) {
-            $posts = Post::where('post_id', $topic->topic_last_post_id)->get();
+        $post = $topic->addPost(Auth::user(), Request::input('body'));
+
+        if ($post->post_id !== null) {
+            $posts = collect([$post]);
             $postsPosition = $topic->postsPosition($posts);
 
-            Event::fire(new TopicWasReplied($topic, $posts->last(), Auth::user()));
+            Event::fire(new TopicWasReplied($topic, $post, Auth::user()));
+            Event::fire(new TopicWasViewed($topic, $post, Auth::user()));
 
             return view('forum.topics._posts', compact('posts', 'postsPosition', 'topic'));
         }
@@ -219,9 +240,19 @@ class TopicsController extends Controller
             new TopicCoverTransformer()
         );
 
+        $isWatching = TopicWatch::check($topic, Auth::user());
+
         return view(
             "forum.topics.{$template}",
-            compact('topic', 'posts', 'postsPosition', 'jumpTo', 'cover', 'pollSummary')
+            compact(
+                'cover',
+                'isWatching',
+                'jumpTo',
+                'pollSummary',
+                'posts',
+                'postsPosition',
+                'topic'
+            )
         );
     }
 
@@ -256,7 +287,6 @@ class TopicsController extends Controller
             'title' => $request->get('title'),
             'user' => Auth::user(),
             'body' => $request->get('body'),
-            'notifyReplies' => false,
             'cover' => TopicCover::findForUse(presence($request->input('cover_id')), Auth::user()),
         ];
 
@@ -269,6 +299,20 @@ class TopicsController extends Controller
         } else {
             abort(422);
         }
+    }
+
+    public function unwatchMulti()
+    {
+        $topicIds = explode(',', Request::input('topic_ids'));
+        $topics = Topic::whereIn('topic_id', $topicIds);
+
+        $unwatchTopics = $topics->get()->filter(function ($t) {
+            return priv_check('ForumTopicWatchRemove', $t)->can();
+        });
+
+        TopicWatch::remove($unwatchTopics, Auth::user());
+
+        return ['message' => trans('forum.topics.watch.watched-0')];
     }
 
     public function vote($topicId)
@@ -302,17 +346,30 @@ class TopicsController extends Controller
         }
     }
 
-    public function move($id)
+    public function watch($id)
     {
         $topic = Topic::findOrFail($id);
-        $destinationForum = Forum::findOrFail(Request::input('destination_forum_id'));
+        $state = get_bool(Request::input('watch'));
+        $privName = 'ForumTopicWatch'.($state ? 'Add' : 'Remove');
+        $type = 'watch';
 
-        priv_check('ForumTopicModerate', $topic)->ensureCan();
+        priv_check($privName, $topic)->ensureCan();
 
-        if ($topic->moveTo($destinationForum)) {
-            return js_view('layout.ujs-reload');
-        } else {
-            abort(422);
+        TopicWatch::toggle($topic, Auth::user(), $state);
+
+        switch (Request::input('page')) {
+            case 'manage':
+                $topics = Topic::watchedByUser(Auth::user())->get();
+                $topicReadStatus = TopicTrack::readStatus(Auth::user(), $topics);
+
+                // there's currently only destroy action from watch index
+                return js_view(
+                    'forum.topic_watches.destroy',
+                    compact('topic', 'topics', 'topicReadStatus')
+                );
+            default:
+
+                return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
         }
     }
 }
