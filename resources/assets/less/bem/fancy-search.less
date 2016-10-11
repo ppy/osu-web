@@ -16,34 +16,42 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.footer {
-  background-color: fade(@grey-0, 60%);
 
-  .default-text-shadow();
-  background-image: linear-gradient(to bottom, fade(@grey-0, 60%) 0, transparent 4px);
+.fancy-search {
+  @_icon-width: 25px;
+  color: @pink;
+  font-size: @font-size--large;
+  margin: 0 (-@spacing);
 
-  color: @grey-c;
-  font-size: 10px;
-
-  display: flex;
-  flex-direction: column;
-
-  padding: @spacing 0 (@spacing / 2);
-
-  &__row {
-    margin-bottom: (@spacing / 2);
-    display: flex;
-    justify-content: center;
+  &--beatmapsets {
+    margin-top: 100px;
+    margin-bottom: (@spacing * 2);
   }
 
-  &__link {
-    font-weight: bold;
-    color: @grey-f;
-    margin: 0 @spacing;
+  &__input {
+    border: 1px solid @grey-c;
+    width: 100%;
+    padding: @spacing;
+    padding-right: (@spacing + @_icon-width + @spacing * 2);
 
-    &:hover, &:active, &:focus {
-      color: @pink;
-      text-decoration: none;
+    font-style: italic;
+    font-weight: lighter;
+
+    &:focus {
+      outline: none;
+      border-color: @pink-light;
+      box-shadow: 0 0 10px @pink-lighter;
     }
+  }
+
+  &__icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: (@_icon-width + @spacing * 2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

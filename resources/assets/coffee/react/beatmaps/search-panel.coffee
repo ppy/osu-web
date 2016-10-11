@@ -23,7 +23,6 @@ el = React.createElement
 class Beatmaps.SearchPanel extends React.Component
   keyDelay: null
   prevText: null
-  search_url: '/beatmapsets/search'
 
   constructor: (props) ->
     super props
@@ -52,32 +51,39 @@ class Beatmaps.SearchPanel extends React.Component
     $('#searchbox').off 'keyup'
 
   show_more: ->
-    $('#search').addClass 'expanded'
+    $('#search').addClass 'beatmapsets-search--expanded'
 
   render: ->
-    background = {backgroundImage: "url(#{@props.background})"}
+    background = backgroundImage: "url(#{@props.background})"
     filters = @state.filters
 
     if currentUser.id?
-      div id: 'search', className: 'osu-layout__row osu-layout__row--page',
-        div className: 'background', style: background
-        div className: 'box',
-          input id: 'searchbox', type: 'textbox', name: 'search', placeholder: osu.trans("beatmaps.listing.search.prompt")
-          i className:'fa fa-search'
+      div id: 'search', className: 'osu-layout__row osu-layout__row--page-compact',
+        div id: 'search', className: 'beatmapsets-search',
+          div className: 'beatmapsets-search__background', style: background
+          div className: 'fancy-search fancy-search--beatmapsets',
+            input
+              id: 'searchbox'
+              className: 'fancy-search__input'
+              type: 'textbox'
+              name: 'search'
+              placeholder: osu.trans("beatmaps.listing.search.prompt")
+            div className: 'fancy-search__icon',
+              i className:'fa fa-search'
 
-        el(Beatmaps.SearchFilter, name: 'mode', title: 'Mode', options: filters.modes, default: '0', selected: @props.filters.mode)
-        el(Beatmaps.SearchFilter, name:'status', title: 'Rank Status', options: filters.statuses, default: '0', selected: @props.filters.status)
+          el(Beatmaps.SearchFilter, name: 'mode', title: 'Mode', options: filters.modes, default: '0', selected: @props.filters.mode)
+          el(Beatmaps.SearchFilter, name:'status', title: 'Rank Status', options: filters.statuses, default: '0', selected: @props.filters.status)
 
-        div className: 'more',
-          a className: 'toggle', href:'#', onMouseDown: @show_more,
+          a className: 'beatmapsets-search__expand-link', href:'#', onMouseDown: @show_more,
             div {}, osu.trans('beatmaps.listing.search.options')
             div {}, i className:'fa fa-angle-down'
 
-          el(Beatmaps.SearchFilter, name: 'genre', title: 'Genre', options: filters.genres, default: filters.genres[0]['id'], selected: @props.filters.genre)
-          el(Beatmaps.SearchFilter, name: 'language', title: 'Language', options: filters.languages, default: filters.languages[0]['id'], selected: @props.filters.language)
-          el(Beatmaps.SearchFilter, name: 'extra', title: 'Extra', options: filters.extras, multiselect: true, selected: @props.filters.extra)
-          if currentUser.isSupporter
-            el(Beatmaps.SearchFilter, name: 'rank', title: 'Rank Achieved', options: filters.ranks, multiselect: true, selected: @props.filters.rank)
+          div className: 'beatmapsets-search__advanced',
+            el(Beatmaps.SearchFilter, name: 'genre', title: 'Genre', options: filters.genres, default: filters.genres[0]['id'], selected: @props.filters.genre)
+            el(Beatmaps.SearchFilter, name: 'language', title: 'Language', options: filters.languages, default: filters.languages[0]['id'], selected: @props.filters.language)
+            el(Beatmaps.SearchFilter, name: 'extra', title: 'Extra', options: filters.extras, multiselect: true, selected: @props.filters.extra)
+            if currentUser.isSupporter
+              el(Beatmaps.SearchFilter, name: 'rank', title: 'Rank Achieved', options: filters.ranks, multiselect: true, selected: @props.filters.rank)
     else
       div id: 'forum-index-header', className: 'beatmaps-header osu-layout__row osu-layout__row--page',
         div className: 'background', style: background

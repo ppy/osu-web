@@ -35,7 +35,7 @@ class EventTransformer extends Fractal\TransformerAbstract
         return [
             'id' => $event->event_id,
             'detail' => $event->detail,
-            'timestamp' => $event->timestamp ? $event->timestamp->toIso8601String() : null,
+            'timestamp' => json_time($event->timestamp),
             'user_id' => $event->user_id,
         ];
     }

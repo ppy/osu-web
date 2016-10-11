@@ -103,17 +103,17 @@ body .initially-hidden {
 }
 
 select.form-control {
-    .default-box-shadow;
+    .default-box-shadow();
     font-weight: 700;
 
     &:focus {
-      .default-box-shadow;
+      .default-box-shadow();
     }
   }
 
 .btn-osu {
   &:extend(.btn all);
-  &:extend(.default-text-shadow);
+  .default-text-shadow();
   &, &:focus, &.focus, &:hover {
     color: #fff;
   }
@@ -126,7 +126,7 @@ select.form-control {
 
   &, &:active, &.active {
     .btn-bg;
-    &:extend(.default-box-shadow);
+    .default-box-shadow();
   }
 
   border: none;
@@ -255,10 +255,10 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .shadow-hover {
-  .default-box-shadow;
+  .default-box-shadow();
 
   &:hover {
-    .thicker-box-shadow;
+    .thicker-box-shadow();
   }
 }
 
@@ -324,7 +324,7 @@ a[disabled] { &:extend(.btn[disabled]); }
 
 .user-icon {
   .icon-bg;
-  &:extend(.default-box-shadow);
+  .default-box-shadow();
 
   color: #fff;
   font-size: 12px;
