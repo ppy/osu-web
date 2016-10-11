@@ -47,11 +47,11 @@ BeatmapsetPage.Score = React.createClass
       div className: 'beatmapset-score__element beatmapset-score__element--rank',
         div className: "badge-rank badge-rank--#{@props.score.rank}"
 
-      div className: 'beatmapset-score__element beatmapset-score__element--score',
+      div className: 'beatmapset-score__stat beatmapset-score__stat--score',
         @props.score.score.toLocaleString()
 
-      div className: 'beatmapset-score__element beatmapset-score__element--accuracy hidden-xs',
+      div className: 'beatmapset-score__stat beatmapset-score__stat--accuracy hidden-xs',
         "#{_.round @props.score.accuracy * 100, 2}%"
 
-      div className: 'beatmapset-score__element beatmapset-score__element--hits hidden-xs',
+      div className: 'beatmapset-score__stat beatmapset-score__stat--hits hidden-xs',
         hits.values
