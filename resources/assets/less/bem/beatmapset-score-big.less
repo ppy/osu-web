@@ -22,21 +22,14 @@
   flex-direction: column;
 
   height: 90px;
-  width: calc(~"100% - 6px");
 
   .default-border-radius;
   .default-box-shadow;
 
-  margin: @spacing * 2 auto;
+  margin: @spacing * 2 0;
 
   &--first-score {
-    border: 3px solid @yellow;
-
-    // to account for the borders; not using `box-sizing: content-box;` here
-    // as I wanted to only the height to remain the same
-    height: 96px;
-
-    width: 100%;
+    box-shadow: 0 0 0 3px @yellow, 0 4px 3px fade(@grey-0, 25%);
   }
 
   &:hover {
@@ -62,7 +55,7 @@
       align-self: flex-end;
       background-color: @grey-e;
 
-      z-index: 0;
+      border-radius: 0 0 @border-radius-base @border-radius-base;
     }
   }
 
@@ -74,18 +67,13 @@
     font-style: italic;
     font-weight: 700;
 
-    padding-left: @spacing * 1.7;
+    padding-left: @spacing * 2;
     padding-right: @spacing;
 
     align-self: center;
 
     &--first-score {
       color: @yellow-dark;
-    }
-
-    &--not-top-score {
-      // aka past the top 50 scores
-      padding: 0 @spacing;
     }
   }
 
@@ -125,7 +113,7 @@
     padding-top: @spacing * 2;
     padding-bottom: @spacing;
 
-    padding-right: @spacing * 1.7;
+    padding-right: @spacing * 2;
   }
 
   &__stat {
@@ -167,7 +155,7 @@
     font-size: 12px;
     color: @grey-7;
 
-    padding-right: @spacing * 1.7;
+    padding-right: @spacing * 2;
 
     align-self: center;
   }
