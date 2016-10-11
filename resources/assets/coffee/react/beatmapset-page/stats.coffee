@@ -57,10 +57,11 @@ class BeatmapsetPage.Stats extends React.Component
     ratingsAll = ratingsPositive + ratingsNegative
 
     div className: 'beatmapset-header__stats beatmapset-stats',
-      div className: "beatmapset-stats__row beatmapsets-stats__row beatmapset-stats__row--preview",
+      div
+        className: "beatmapset-stats__row beatmapsets-stats__row beatmapset-stats__row--preview"
+        onClick: @togglePreview
         div
           className: 'beatmapset-stats__preview-icon'
-          onClick: @togglePreview
           el Icon, name: if @props.isPreviewPlaying then 'stop' else 'play'
 
         div
