@@ -34,8 +34,8 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
     {
         return [
             'id' => $discussion->id,
-            'created_at' => $discussion->created_at->toIso8601String(),
-            'updated_at' => $discussion->updated_at->toIso8601String(),
+            'created_at' => json_time($discussion->created_at),
+            'updated_at' => json_time($discussion->updated_at),
         ];
     }
 

@@ -48,8 +48,8 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'artist' => $beatmapset->artist,
             'play_count' => $beatmapset->play_count,
             'favourite_count' => $beatmapset->favourite_count,
-            'submitted_date' => $beatmapset->submit_date->toIso8601String(),
-            'ranked_date' => $beatmapset->approved_date ? $beatmapset->approved_date->toIso8601String() : null,
+            'submitted_date' => json_time($beatmapset->submit_date),
+            'ranked_date' => json_time($beatmapset->approved_date),
             'creator' => $beatmapset->creator,
             'user_id' => $beatmapset->user_id,
             'bpm' => $beatmapset->bpm,
@@ -86,7 +86,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             if (isset($disqualifyEvent)) {
                 $result['disqualification'] = [
                     'reason' => $disqualifyEvent->comment,
-                    'created_at' => $disqualifyEvent->created_at->toIso8601String(),
+                    'created_at' => json_time($disqualifyEvent->created_at),
                 ];
             }
             if (isset($userId)) {
@@ -99,7 +99,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         } elseif ($beatmapset->qualified()) {
             $eta = $beatmapset->rankingETA();
             $result = [
-                'ranking_eta' => $eta ? $eta->toIso8601String() : null,
+                'ranking_eta' => json_time($eta),
             ];
 
             return $this->item($beatmapset, function ($beatmapset) use ($result) {
