@@ -36,7 +36,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
         return [
             'id' => $score->score_id,
             'user_id' => $score->user_id,
-            'created_at' => $score->date ? $score->date->toIso8601String() : null,
+            'created_at' => json_time($score->date),
             'pp' => $score->pp,
             'accuracy' => $score->accuracy(),
             'rank' => $score->rank,

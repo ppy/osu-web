@@ -46,6 +46,13 @@ function get_valid_locale($requestedLocale)
     );
 }
 
+function json_time($time)
+{
+    if ($time !== null) {
+        return $time->toIso8601String();
+    }
+}
+
 function osu_url($key)
 {
     $url = config("osu.urls.{$key}");
@@ -160,7 +167,7 @@ function ujs_redirect($url)
 function timeago($date)
 {
     $display_date = $date->toRfc850String();
-    $attribute_date = $date->toIso8601String();
+    $attribute_date = json_time($date);
 
     return "<time class='timeago' datetime='{$attribute_date}'>{$display_date}</time>";
 }
