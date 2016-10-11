@@ -23,15 +23,11 @@ BeatmapsetPage.ScoreBig = React.createClass
 
   render: ->
     className = 'beatmapset-score-big'
-    classNamePosition = 'beatmapset-score-big__position'
-
-    if @props.position == 1
-      className += ' beatmapset-score-big--first-score'
-      classNamePosition += ' beatmapset-score-big__position--first-score'
+    className += ' beatmapset-score-big--first-score' if @props.position == 1
 
     div className: className,
       div className: 'beatmapset-score-big__section beatmapset-score-big__section--top',
-        div className: classNamePosition, "##{@props.position}"
+        div className: 'beatmapset-score-big__position', "##{@props.position}"
         div
           className: 'beatmapset-score-big__avatar avatar avatar--beatmapset-scoreboard hidden-xs'
           style:

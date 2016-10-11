@@ -18,6 +18,8 @@
  */
 
 .beatmapset-score-big {
+  @_top: beatmapset-score-big;
+
   display: flex;
   flex-direction: column;
 
@@ -72,7 +74,7 @@
 
     align-self: center;
 
-    &--first-score {
+    .@{_top}--first-score & {
       color: @yellow-dark;
     }
   }
