@@ -35,7 +35,7 @@ class Contest.Entry.UserEntry extends React.Component
       data:
         entry_id: @props.entry.id
 
-    $.ajax laroute.route('contest.delete', contest_id: @props.contest_id), params
+    $.ajax laroute.route('contest-entry.delete', contest_id: @props.contest_id, contest_entry_id: @props.entry.id), params
 
     .done (data) =>
       $.publish 'contest:entries:update', data: data

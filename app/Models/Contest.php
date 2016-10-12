@@ -21,6 +21,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Transformers\ContestTransformer;
+use App\Transformers\UserContestEntryTransformer;
 use Cache;
 
 class Contest extends Model
@@ -139,5 +140,18 @@ class Contest extends Model
         }
 
         return $votes;
+    }
+
+    public function userEntries($currentUser = null)
+    {
+        $entries = [];
+        if ($currentUser) {
+            $entries = fractal_api_serialize_collection(
+                UserContestEntry::where(['contest_id' => $this->id, 'user_id' => $currentUser->user_id])->get(),
+                new UserContestEntryTransformer
+            );
+        }
+
+        return $entries;
     }
 }
