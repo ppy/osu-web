@@ -355,16 +355,25 @@
   }
 
   &__username {
-    .default-text-shadow;
+    .default-text-shadow();
     display: block;
     font-weight: 600;
     font-style: italic;
-    margin: 0 (@spacing * 3) @spacing;
-    word-break: break-all;
+    padding: 0 @spacing @spacing;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    color: @grey-f;
 
-    &,
+    &:hover {
+      color: @grey-f;
+      text-decoration: none;
+      width: auto;
+      overflow: visible;
+    }
+
     &:focus,
-    &:hover,
     &:active {
       color: @grey-f;
       text-decoration: none;
