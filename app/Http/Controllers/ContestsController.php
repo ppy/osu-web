@@ -39,13 +39,10 @@ class ContestsController extends Controller
 
         if ($contest->isVotingStarted()) {
             return view("contests.voting.{$contest->type}")
-                    ->with('contest', $contest)
-                    ->with('contestJson', $contest->defaultJson($user));
+                    ->with('contest', $contest);
         } else {
             return view('contests.enter')
-                ->with('contest', $contest)
-                ->with('contestJson', $contest->defaultJson($user))
-                ->with('userEntriesJson', json_encode($contest->userEntries($user)));
+                ->with('contest', $contest);
         }
     }
 }

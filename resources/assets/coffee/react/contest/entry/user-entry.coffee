@@ -20,20 +20,12 @@
 el = React.createElement
 
 class Contest.Entry.UserEntry extends React.Component
-  constructor: (props) ->
-    super props
-
-    @state =
-      entry: @props.entry
-
-  nuke: (e) =>
+  delete: (e) =>
     e.preventDefault()
 
     params =
       method: 'DELETE'
       dataType: 'json'
-      data:
-        entry_id: @props.entry.id
 
     $.ajax laroute.route('contest-entry.delete', contest_id: @props.contest_id, contest_entry_id: @props.entry.id), params
 
@@ -44,7 +36,7 @@ class Contest.Entry.UserEntry extends React.Component
 
   render: ->
     div className: 'contest__user-entry contest__user-entry--ok',
-      a className: 'btn-osu btn-osu--textlike btn-osu--stick-right', href: '#', 'data-confirm': osu.trans('common.confirmation'), title: osu.trans('common.buttons.delete'), onClick: @nuke,
+      a className: 'btn-osu btn-osu--textlike btn-osu--stick-right', href: '#', 'data-confirm': osu.trans('common.confirmation'), title: osu.trans('common.buttons.delete'), onClick: @delete,
         i className: 'fa fa-times'
       div className: 'contest__user-entry-filename', @props.entry.filename
       div className: 'contest__user-entry-date', dangerouslySetInnerHTML: {__html: osu.timeago(@props.entry.created_at)}

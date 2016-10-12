@@ -30,7 +30,7 @@
 @section('script')
   @parent
   <script id="json-contest" type="application/json">
-    {!! $contestJson !!}
+    {!! $contest->defaultJson(Auth::user()) !!}
   </script>
   <script src="{{ elixir("js/react/contest-voting.js") }}" data-turbolinks-track></script>
 @stop

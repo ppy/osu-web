@@ -39,10 +39,10 @@ class Contest.Entry.Uploader extends React.Component
 
     $(@refs.uploadButtonContainer).append($uploadButton)
 
-    $.subscribe 'dragenterGlobal.contest', => @setOverlay('active')
-    $.subscribe 'dragendGlobal.contest', => @setOverlay('hidden')
-    $(document).on 'dragenter.contest', '.contest__entry-uploader', => @setOverlay('hover')
-    $(document).on 'dragleave.contest', '.contest__entry-uploader', => @setOverlay('active')
+    $.subscribe 'dragenterGlobal.contest-upload', => @setOverlay('active')
+    $.subscribe 'dragendGlobal.contest-upload', => @setOverlay('hidden')
+    $(document).on 'dragenter.contest-upload', '.contest__entry-uploader', => @setOverlay('hover')
+    $(document).on 'dragleave.contest-upload', '.contest__entry-uploader', => @setOverlay('active')
 
     $uploadButton.fileupload
       url: laroute.route 'contest-entry.submit', contest_id: @props.contest.id
@@ -74,7 +74,9 @@ class Contest.Entry.Uploader extends React.Component
       fail: osu.fileuploadFailCallback($uploadButton)
 
   componentWillUnmount: =>
-    $.unsubscribe '.contest'
+    $.unsubscribe '.contest-upload'
+    $(document).off '.contest-upload'
+
     $('.js-contest-entry-upload')
       .fileupload 'destroy'
       .remove()
