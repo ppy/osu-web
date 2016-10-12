@@ -1,0 +1,61 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+.avatar-ribbon {
+  ._bg(@filename) {
+    .at2x-simple("/images/user-supporter-ribbons/@{filename}");
+  }
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 153px 83px;
+
+  width: 100%;
+  padding: 0 (@spacing * 3);
+  flex: none;
+
+  &--xs {
+    display: inline-flex;
+    background-size: contain;
+    width: (153 / 83 * 40px);
+    justify-content: center;
+    padding: 0;
+    margin-right: @spacing;
+  }
+
+  &--level-0 {
+    width: auto;
+
+    @media @desktop {
+      width: 100%;
+    }
+  }
+
+  &--level-1 {
+    ._bg("support-ribbon.png");
+  }
+
+  &--level-2 {
+    ._bg("support-ribbon-silver.png");
+  }
+
+  &--level-3 {
+    ._bg("support-ribbon-gold.png");
+  }
+}

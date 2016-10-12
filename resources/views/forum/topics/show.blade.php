@@ -116,16 +116,14 @@
                     <div class="osu-layout__row osu-layout__row--sm2-desktop osu-layout__row--full-height">
                         <div class="forum-post__reply-content">
                             <div class="forum-post__info-panel forum-post__info-panel--reply hidden-xs">
-                                <div class="forum-post__avatar-container forum-post__avatar-container--reply">
-                                    @if (Auth::check() === true)
-                                        <div
-                                            class="avatar avatar--full"
-                                            style="background-image: url('{{ Auth::user()->user_avatar }}');"
-                                        ></div>
-                                    @else
-                                        <div class="avatar avatar--full avatar--guest"></div>
-                                    @endif
-                                </div>
+                                @if (Auth::check() === true)
+                                    <div
+                                        class="avatar avatar--forum-reply"
+                                        style="background-image: url('{{ Auth::user()->user_avatar }}');"
+                                    ></div>
+                                @else
+                                    <div class="avatar avatar--forum-reply avatar--guest"></div>
+                                @endif
                             </div>
 
                             <div class="forum-post__body forum-post__body--reply">
