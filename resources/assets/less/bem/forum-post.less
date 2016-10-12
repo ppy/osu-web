@@ -40,67 +40,6 @@
     margin-bottom: 0;
   }
 
-  &__avatar-container {
-    .default-border-radius();
-    .default-box-shadow();
-    width: 100%;
-    padding: (@spacing / 2);
-    background-color: @grey-f;
-    margin-top: @spacing;
-    margin-bottom: @spacing;
-    display: block;
-
-    &--reply {
-      width: 60px;
-      padding: ceil(@spacing / 4);
-      align-self: flex-end;
-      margin-right: @spacing;
-      margin-top: 0;
-    }
-  }
-
-  &__avatar-ribbon {
-    ._bg(@filename) {
-      .at2x-simple("/images/user-supporter-ribbons/@{filename}");
-    }
-
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 153px 83px;
-
-    width: 100%;
-    padding: 0 (@spacing * 3);
-
-    &--xs {
-      display: inline-flex;
-      background-size: contain;
-      width: (153 / 83 * 40px);
-      justify-content: center;
-      padding: 0;
-      margin-right: @spacing;
-    }
-
-    &--level-0 {
-      width: auto;
-
-      @media @desktop {
-        width: 100%;
-      }
-    }
-
-    &--level-1 {
-      ._bg("support-ribbon.png");
-    }
-
-    &--level-2 {
-      ._bg("support-ribbon-silver.png");
-    }
-
-    &--level-3 {
-      ._bg("support-ribbon-gold.png");
-    }
-  }
-
   &__actions {
     ._dektop-position {
       @media @desktop {
@@ -264,7 +203,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: @spacing 0 0;
+    padding-top: (@spacing * 2);
     background-image: linear-gradient(to bottom, transparent, fade(@grey-0, 20%));
 
     &::before {
@@ -355,16 +294,25 @@
   }
 
   &__username {
-    .default-text-shadow;
+    .default-text-shadow();
     display: block;
     font-weight: 600;
     font-style: italic;
-    margin: 0 (@spacing * 3) @spacing;
-    word-break: break-all;
+    padding: @spacing;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    color: @grey-f;
 
-    &,
+    &:hover {
+      color: @grey-f;
+      text-decoration: none;
+      width: auto;
+      overflow: visible;
+    }
+
     &:focus,
-    &:hover,
     &:active {
       color: @grey-f;
       text-decoration: none;
