@@ -18,29 +18,31 @@
  */
 .avatar {
   @default-avatar-size: 70px;
-  width: @default-avatar-size;
-  height: @default-avatar-size;
 
   .default-box-shadow();
   .default-border-radius();
 
-  background-color: #fff;
+  width: @default-avatar-size;
+  height: @default-avatar-size;
+
+  background-color: @grey-f;
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: 50% 50%;
+  background-position: center;
 
-  &--profile {
-    width: @profile-avatar-size;
-    height: @profile-avatar-size;
-
-    // brings avatar on top of following row
-    z-index: @z-index--user-profile-avatar;
+  &--beatmapset {
+    width: @beatmapset-avatar-size;
+    height: @beatmapset-avatar-size;
+    box-shadow: none;
+    border-radius: none;
   }
 
-  &--guest {
-    .at2x-simple("/images/layout/avatar-guest.png");
+  &--beatmapset-scoreboard {
+    width: @beatmapset-scoreboard-avatar-size;
+    height: @beatmapset-scoreboard-avatar-size;
+    box-shadow: none;
+    border-radius: 0;
   }
-
 
   &--forum-small {
     flex: none;
@@ -62,30 +64,27 @@
 
   &--full-rounded {
     width: 100%;
-    height: 0px;
+    height: 0;
     padding-bottom: 100%;
     box-shadow: none;
   }
 
-  &--beatmapset {
-    width: @beatmapset-avatar-size;
-    height: @beatmapset-avatar-size;
-    box-shadow: none;
-    border-radius: none;
+  &--guest {
+    .at2x-simple("/images/layout/avatar-guest.png");
   }
-
-  &--beatmapset-scoreboard {
-    width: @beatmapset-scoreboard-avatar-size;
-    height: @beatmapset-scoreboard-avatar-size;
-    box-shadow: none;
-    border-radius: 0;
-  }
-
 
   &--navbar-mobile {
     width: @navbar-mobile--content-height;
     height: @navbar-mobile--content-height;
-    margin-right: @grid-gutter-width/4;
+    margin-right: @spacing;
     display: block;
+  }
+
+  &--profile {
+    width: @profile-avatar-size;
+    height: @profile-avatar-size;
+
+    // brings avatar on top of following row
+    z-index: @z-index--user-profile-avatar;
   }
 }
