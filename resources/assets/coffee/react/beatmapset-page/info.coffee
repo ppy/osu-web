@@ -82,9 +82,9 @@ class BeatmapsetPage.Info extends React.Component
       div className: 'beatmapset-info__success-rate beatmapset-success-rate',
         div className: 'beatmapset-success-rate__label beatmapset-success-rate__label--main', osu.trans 'beatmaps.beatmapset.show.info.success-rate'
 
-        div className: 'beatmapset-success-rate__bar',
+        div className: 'bar bar--beatmapset-success-rate',
           div
-            className: 'beatmapset-success-rate__bar beatmapset-success-rate__bar--fill'
+            className: 'bar__fill'
             style:
               width: "#{percentage}%"
 
