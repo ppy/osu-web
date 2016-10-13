@@ -25,7 +25,7 @@ class BeatmapsetPage.Header extends React.Component
   render: ->
     dateFormat = 'MMM D, YYYY'
 
-    div className: 'default-box-shadow',
+    div className: 'beatmapset-header',
       ol className: 'page-mode',
         for mode in BeatmapHelper.modes
           continue if _.isEmpty @props.beatmapList[mode]
@@ -38,7 +38,7 @@ class BeatmapsetPage.Header extends React.Component
             currentPlaymode: @props.currentBeatmap.mode
 
       div
-        className: 'beatmapset-header'
+        className: 'beatmapset-header__content'
         style:
           backgroundImage: "url(#{@props.beatmapset.covers.cover})"
 

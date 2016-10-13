@@ -20,13 +20,17 @@
 .beatmapset-header {
   @header-height: 350px;
 
-  display: flex;
-  align-items: flex-end;
+  .default-box-shadow();
 
-  background-size: cover;
-  background-position: 50%;
-  height: auto;
-  min-height: @header-height;
+  &__content {
+    display: flex;
+    align-items: flex-end;
+
+    background-size: cover;
+    background-position: 50%;
+    height: auto;
+    min-height: @header-height;
+  }
 
   &__overlay {
     position: absolute;
