@@ -20,9 +20,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contest;
-use App\Models\ContestVote;
 use Auth;
-use Request;
 
 class ContestsController extends Controller
 {
