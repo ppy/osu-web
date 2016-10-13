@@ -34,15 +34,14 @@
   &--beatmapset {
     width: @beatmapset-avatar-size;
     height: @beatmapset-avatar-size;
-    box-shadow: none;
-    border-radius: none;
+    .default-border-radius();
   }
 
   &--beatmapset-scoreboard {
     width: @beatmapset-scoreboard-avatar-size;
     height: @beatmapset-scoreboard-avatar-size;
-    box-shadow: none;
-    border-radius: 0;
+    .default-border-radius();
+    .default-box-shadow();
   }
 
   &--forum {
@@ -89,16 +88,6 @@
     height: 0;
     padding-bottom: 100%;
     box-shadow: none;
-  }
-
-  &--beatmapset {
-    width: @beatmapset-avatar-size;
-    height: @beatmapset-avatar-size;
-  }
-
-  &--beatmapset-scoreboard {
-    width: @beatmapset-scoreboard-avatar-size;
-    height: @beatmapset-scoreboard-avatar-size;
   }
 
   &--guest {
