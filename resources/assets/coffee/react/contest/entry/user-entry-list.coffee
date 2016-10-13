@@ -19,7 +19,7 @@
 {div} = React.DOM
 el = React.createElement
 
-class Contest.Entry.UserEntriesList extends React.Component
+class Contest.Entry.UserEntryList extends React.Component
   constructor: (props) ->
     super props
 
