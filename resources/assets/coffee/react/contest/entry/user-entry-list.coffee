@@ -45,6 +45,6 @@ class Contest.Entry.UserEntryList extends React.Component
         entry: entry,
         contest_id: @state.contest.id
 
-    div className: 'contest__user-entries',
+    div className: 'contest-user-entry-list',
       entries
       el Contest.Entry.Uploader, contest: @state.contest, disabled: @state.userEntries.length >= @state.contest.max_entries
