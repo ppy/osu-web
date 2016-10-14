@@ -1,5 +1,5 @@
 ###
-# Copyright 2016 ppy Pty. Ltd.
+# Copyright 2015-2016 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -15,23 +15,21 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, img} = React.DOM
+{img, div} = React.DOM
 
-class @Mods extends React.Component
+class BeatmapsetPage.ScoreboardMod extends React.Component
+  onClick: =>
+    $.publish 'beatmapset:scoreboard:set', enabledMod: @props.mod
+
   render: ->
-    modsClassName = 'mods'
-    
-    classModifiers = @props.classModifiers || []
-    modsClassName += " mods--#{mod}" for mod in classModifiers
+    modName = osu.trans "beatmaps.mods.#{@props.mod}"
+    className = 'beatmapset-scoreboard__mod-box'
+    className += ' beatmapset-scoreboard__mod-box--enabled' if @props.enabled
 
-    div className: modsClassName,
-      for mod in @props.mods
-        modName = osu.trans "beatmaps.mods.#{mod}"
-
-        div
-          key: mod
-          className: 'mods__mod'
-          img _.extend
-            className: 'mods__mod-image'
-            title: modName
-            osu.src2x("/images/badges/mods/#{_.kebabCase(modName)}.png")
+    div
+      className: className
+      onClick: @onClick
+      img _.extend
+        className: 'beatmapset-scoreboard__mod'
+        title: modName
+        osu.src2x "/images/badges/mods/#{_.kebabCase modName}.png"

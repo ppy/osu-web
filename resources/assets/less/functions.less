@@ -34,7 +34,11 @@
 }
 
 .default-box-shadow() {
-  box-shadow: 0px 1px 3px fade(#000, 25%);
+  box-shadow: 0px 1px @box-shadow-spread @box-shadow-color;
+}
+
+.default-bar-transition(@property: width, @duration: 0.25s, @function: cubic-bezier(0.645, 0.045, 0.355, 1)) {
+  transition: @property @duration @function;
 }
 
 .inner-shadow-top() {

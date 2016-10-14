@@ -17,6 +17,13 @@
  *
  */
 .mods {
+  @_top: mods;
+
+  @_mod-width-small: 25px;
+  @_mod-height-small: 18px;
+  @_width-small: (@_mod-width-small * 3);
+
+
   @_mod-width: 30px;
   @_mod-height: 22px;
 
@@ -34,6 +41,14 @@
   display: flex;
   justify-content: space-between;
   padding: 0 (@_mod-width / 2);
+
+  &--small {
+    width: @_width-small;
+    min-width: @_width-small;
+    max-width: @_width-small;
+
+    padding: 0 (@_mod-width-small / 2);
+  }
 
   &--large {
     width: @_width-large;
@@ -58,7 +73,12 @@
     width: @_mod-width;
     height: @_mod-height;
 
-    &--large {
+    .@{_top}--small & {
+      width: @_mod-width-small;
+      height: @_mod-height-small;
+    }
+
+    .@{_top}--large & {
       width: @_mod-width-large;
       height: @_mod-height-large;
     }

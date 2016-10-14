@@ -19,7 +19,7 @@
  */
 namespace App\Models\Multiplayer;
 
-use App\Libraries\ModsFromDB;
+use App\Libraries\ModsHelper;
 use App\Models\Beatmap;
 
 class Game extends Model
@@ -75,7 +75,7 @@ class Game extends Model
     public function getModsAttribute($value)
     {
         if (empty($this->_mods)) {
-            $this->_mods = ModsFromDB::getEnabledMods($value);
+            $this->_mods = ModsHelper::toArray($value);
         }
 
         return $this->_mods;

@@ -1,117 +1,191 @@
 /**
-*    Copyright 2016 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 .beatmapset-header {
-  background-size: cover;
-  background-position: center;
-  padding: (@spacing * 2);
-  height: 250px;
-  z-index: @z-index--beatmapset-header;
+  @header-height: 350px;
 
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  cursor: pointer;
+  .default-box-shadow();
 
-  @media @desktop {
-    padding-left: (@spacing * 4);
-    padding-right: (@spacing * 4);
+  &__content {
+    display: flex;
+    align-items: flex-end;
+
+    background-size: cover;
+    background-position: 50%;
+    height: auto;
+    min-height: @header-height;
   }
 
-  &__title {
-    a {
-      font-size: 30px;
-      font-style: italic;
-      font-weight: 600;
-      color: @grey-f;
-      .default-text-shadow();
-
-      margin: 0;
-
-      &:hover, &:visited, &:link, &:active {
-        color: @grey-f;
-        text-decoration: none;
-      }
-    }
-
-    &--small a {
-      padding-top: 5px;
-      font-size: 20px;
-    }
-
-    &--stat {
-      font-size: 18px;
-      font-weight: 500;
-      text-align: right;
-
-      color: @grey-f;
-      .default-text-shadow();
-
-      overflow: hidden;
-      white-space: nowrap;
-
-      &:first-of-type {
-        padding-bottom: 5px;
-      }
-    }
-  }
-
-  &__stat-number {
-    padding-right: 10px;
-  }
-
-  &__icon
-  {
-    width: 18px;
-    height: 18px;
-
-    &--playcount {
-      // The playcount icon is thinner than the heart icon,
-      // so we move it a bit to the left so they are centered.
-      padding-right: 2px;
-    }
-  }
-
-  &__title-box {
-    align-self: flex-end;
-
-    &--right {
-      margin-left: auto;
-    }
-
-    a {
-      z-index: @z-index--beatmapset-header + 1;
-    }
-  }
-
-  &:hover {
-    .beatmapset-header__preview-button {
-      opacity: 1;
-    }
-  }
-
-  &__preview-button {
-    color: @grey-f;
-    font-size: 80px;
-    opacity: 0.50;
+  &__overlay {
     position: absolute;
-    top: 64px;
-    cursor: pointer;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  &__beatmap-picker-box {
+    margin-bottom: auto;
+  }
+
+  &__beatmap-picker {
+    margin-bottom: @spacing;
+  }
+
+  &__diff-name {
+    font-size: 15px;
+    font-weight: 600;
+
+    padding-right: @spacing * 0.5;
+
+    color: #ffffff;
+
+    .default-text-shadow;
+  }
+
+  &__value {
+    font-size: 12px;
+    font-weight: 500;
+    padding-right: @spacing;
+
+    color: #ffffff;
+
+    .default-text-shadow;
+  }
+
+  &__value-icon {
+    padding-right: 2px;
+  }
+
+  &__value-name {
+    font-style: italic;
+  }
+
+  &__star-difficulty {
+    font-size: 11px;
+    font-weight: 600;
+    color: @yellow;
+
+    .default-text-shadow;
+  }
+
+  &__details-box {
+    min-height: @header-height;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    padding-left: 40px;
+    padding-top: 20px;
+    padding-bottom: 25px;
+  }
+
+  &__details-text {
+    color: @grey-f;
+    font-style: italic;
+    .default-text-shadow;
+
+    &:hover, &:visited, &:link, &:active {
+      color: @grey-f;
+      text-decoration: none;
+    }
+
+    &--title {
+      font-size: 30px;
+      font-weight: 600;
+    }
+
+    &--artist {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    &:last-of-type {
+      padding-bottom: @spacing * 2;
+    }
+  }
+
+  &__avatar-box {
+    display: flex;
+
+    padding-bottom: @spacing;
+  }
+
+  &__avatar {
+    margin-right: @spacing * 0.5;
+  }
+
+  &__user-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__user-text {
+    font-size: 11px;
+    color: @grey-f;
+    .default-text-shadow;
+
+    &--mapper {
+      font-style: italic;
+    }
+
+    &--date {
+      font-weight: 700;
+    }
+
+    &:first-of-type {
+      padding-bottom: @spacing * 0.5;
+    }
+  }
+
+  &__buttons-box {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__button {
+    .btn-osu-big;
+
+    width: 160px;
+    height: 45px;
+
+    margin-right: @spacing * 0.5;
+    margin-bottom: @spacing * 0.5;
+  }
+
+  &__button-text {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+
+    &--small {
+      font-size: 10px;
+    }
+  }
+
+  &__stats {
+    margin-left: auto;
+    margin-right: @spacing * 4;
   }
 }
