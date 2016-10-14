@@ -42,7 +42,7 @@ BeatmapsetPage.Score = React.createClass
       div className: 'beatmapset-score__element beatmapset-score__element--mods',
         el Mods,
           mods: @props.score.mods
-          classModifiers: ['small', 'reversed']
+          modifiers: ['small', 'reversed']
 
       div className: 'beatmapset-score__element beatmapset-score__element--rank',
         div className: "badge-rank badge-rank--#{@props.score.rank}"

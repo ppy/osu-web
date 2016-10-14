@@ -20,22 +20,20 @@
 .beatmapset-score-big {
   @_top: beatmapset-score-big;
 
+  .default-border-radius();
+  .default-box-shadow();
+
   display: flex;
   flex-direction: column;
 
-  height: 90px;
-
-  .default-border-radius;
-  .default-box-shadow;
-
-  margin: @spacing * 2 0;
-
-  &--first-score {
-    box-shadow: 0 0 0 3px @yellow, 0 4px @box-shadow-spread @box-shadow-color;
-  }
+  margin: (@spacing * 2) 0;
 
   &:hover {
     background-color: @grey-e;
+  }
+
+  &--first-score {
+    box-shadow: 0 0 0 3px @yellow, 0 4px @box-shadow-spread @box-shadow-color;
   }
 
   &__section {
@@ -63,7 +61,7 @@
 
   &__position {
     min-width: 60px;
-    width: auto;
+    flex: none;
 
     font-size: 25px;
     font-style: italic;
@@ -83,6 +81,7 @@
     z-index: 1;
     margin-right: @spacing;
     margin-top: @spacing;
+    flex: none;
   }
 
   &__user-box {
@@ -107,15 +106,13 @@
 
   &__stats-box {
     display: flex;
+    flex: 1;
     align-items: flex-end;
     justify-content: flex-end;
 
-    margin-left: auto;
-
-    padding-top: @spacing * 2;
-    padding-bottom: @spacing;
-
-    padding-right: @spacing * 2;
+    padding-top: (@spacing * 2);
+    padding-bottom: (@spacing);
+    padding-right: (@spacing * 2);
   }
 
   &__stat {
@@ -134,7 +131,7 @@
   }
 
   &__stat-value {
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 300;
     font-style: italic;
     color: @purple-dark;
