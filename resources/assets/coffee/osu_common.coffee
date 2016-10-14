@@ -122,11 +122,13 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
 
   formatBytes: (bytes, decimals=2) ->
-    return bytes.toFixed(decimals) + ' B' if (bytes == 0)
-    k = 1000
     suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+    k = 1000
+
+    return "#{bytes} B" if (bytes < k)
+
     i = Math.floor(Math.log(bytes) / Math.log(k))
-    return (bytes / Math.pow(k, i)).toFixed(decimals) + ' ' + suffixes[i]
+    return "#{(bytes / Math.pow(k, i)).toFixed(decimals)} #{suffixes[i]}"
 
 
   reloadPage: (keepScroll = true) ->
