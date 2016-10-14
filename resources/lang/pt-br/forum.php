@@ -32,6 +32,17 @@ return [
             'confirm' => 'Você tem certeza que quer remover esta imagem de capa?',
         ],
     ],
+
+
+
+
+
+    'forums' => [
+        'topics' => [
+            'empty' => 'Sem tópicos!',
+        ],
+    ],
+
     'pinned_topics' => 'Tópicos Fixados',
     'post' => [
         'confirm_delete' => 'Deletar post?',
@@ -47,8 +58,8 @@ return [
         'post_number_input' => 'digite número do post',
         'total_posts' => ':posts_count posts no total',
     ],
-    'subforums' => 'Subfórums',
-    'title' => 'osu!community',
+    'subforums' => 'Sub-fórums',
+    'title' => 'comunidade osu!',
     'topic' => [
         'create' => [
             'placeholder' => [
@@ -81,6 +92,30 @@ return [
         'reply_box_placeholder' => 'Digite aqui para responder',
         'started_by' => 'por :user',
     ],
+
+    'topic_watches' => [
+        'index' => [
+            'title' => 'Tópico de inscrições',
+            'title_compact' => 'inscrição',
+
+            'box' => [
+                'total' => 'Tópicos inscritos',
+                'unread' => 'Tópicos com novas respostas',
+            ],
+            'info' => [
+                'total' => 'Vcoê se inscreveu em :total tópicos.',
+                'unread' => 'Você tem :unread respostas não lidas de tópicos inscritos.',
+            ],
+        ],
+
+        'topic_buttons' => [
+            'remove' => [
+                'confirmation' => 'Cancelar a inscrição do tópico?',
+                'title' => 'Cancelar inscrição',
+            ],
+        ],
+    ],
+
     'topics' => [
         '_' => 'Tópicos',
 
@@ -89,19 +124,51 @@ return [
             'reply_with_quote' => 'Citar post para resposta',
         ],
 
+    'create' => [
+        'create_poll' => 'Criação de votação',
+
+        'create_poll_button' => [
+            'add' => 'Criar uma votação',
+            'remove' => 'Cancelar criação de votação',
+            ],
+
+            'poll' => [
+                'length' => 'Ir para a votação',
+                'length_days_prefix' => '',
+                'length_days_suffix' => 'dias',
+                'length_info' => 'Deixe em branco para uma votação sem fim',
+                'max_options' => 'Opções por usuário',
+                'max_options_info' => 'Este é o número de opções de cada usuário pode selecionar ao votar.',
+                'options' => 'Opções',
+                'options_info' => 'Coloque cada uma das opções em uma nova linha. Você pode inserir até 10 opções.',
+                'title' => 'Questão',
+                'vote_change' => 'Permitir re-votação.',
+                'vote_change_info' => 'Se ativado, os usuários são capazes de mudar o seu voto.',
+            ],
+        ],
+
         'index' => [
             'views' => 'visualizações',
             'replies' => 'respostas',
         ],
 
         'lock' => [
-            'locked-0' => 'Tópico destrancado',
-            'locked-1' => 'Tópico trancado',
             'is_locked' => 'Este tópico está trancado e não pode mais ser respondido',
+            'lock-0' => 'Tópico destrancado',
+            'lock-1' => 'Tópico trancado',
+            'state-0' => 'Tópico foi destrancado',
+            'state-1' => 'Tópico foi trancado',
         ],
 
         'moderate_move' => [
             'title' => 'Mover para outro fórum',
+        ],
+
+        'pin' => [
+            'pin-0' => 'Desprender tópico',
+            'pin-1' => 'Prender tópico',
+            'pinned-0' => 'Tópico foi desprendido',
+            'pinned-1' => 'Tópico foi preso',
         ],
 
         'show' => [
@@ -115,6 +182,23 @@ return [
                     'not_enough' => 'Você não tem mais votos sobrando',
                 ],
             ],
+
+        'poll' => [
+                'vote' => 'Voto',
+
+                'detail' => [
+                    'total' => 'Total de votos: :count',
+                    'ended' => 'Votação encerrada :time',
+                    'end_time' => 'A votação encerrará às :time',
+                ],
+            ],
+    ],
+
+    'watch' => [
+            'state-0' => 'Cancelar inscrição do tópico',
+            'state-1' => 'Inscrever no tópico',
+            'watch-0' => 'Inscrição cancelada no tópico',
+            'watch-1' => 'Inscrito no tópico',
         ],
     ],
 
