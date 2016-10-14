@@ -8,6 +8,7 @@
     display: flex;
     justify-content: space-around;
     flex-direction: row;
+    flex-wrap: wrap;
 
     @media @mobile {
       flex-direction: column;
@@ -15,6 +16,7 @@
   }
 
   &__box {
+    margin: 10px;
     @media @mobile {
       margin: 0 auto;
       margin-top: @spacing * 2;
