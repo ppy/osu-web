@@ -36,8 +36,9 @@ class Contest.Entry.UserEntry extends React.Component
 
   render: ->
     div className: 'contest-user-entry contest-user-entry--ok',
-      a className: 'btn-osu btn-osu--textlike btn-osu--stick-right', href: '#', 'data-confirm': osu.trans('common.confirmation'), title: osu.trans('common.buttons.delete'), onClick: @delete,
-        i className: 'fa fa-times'
+      if !@props.locked
+        a className: 'btn-osu btn-osu--textlike btn-osu--stick-right', href: '#', 'data-confirm': osu.trans('common.confirmation'), title: osu.trans('common.buttons.delete'), onClick: @delete,
+          i className: 'fa fa-times'
 
       div className: 'contest-user-entry__fileicon',
         i className: 'fa fa-file-o'

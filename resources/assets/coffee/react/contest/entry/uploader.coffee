@@ -55,7 +55,6 @@ class Contest.Entry.Uploader extends React.Component
       add: (e, data) =>
         return if @props.disabled
 
-        canUpload = true;
         file = data.files[0];
         if (!(/\.(osu)$/i).test(file.name))
           osu.popup osu.trans('contest.entry.wrong_type.beatmap'), 'danger'

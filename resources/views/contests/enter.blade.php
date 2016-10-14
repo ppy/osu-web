@@ -19,23 +19,23 @@
 
 @section('contest-content')
     <div class="contest__description">{!! Markdown::convertToHtml($contest->description_enter) !!}</div>
-
-    @if (!$contest->isSubmissionOpen())
-        @if ($contest->entry_starts_at !== null && $contest->entry_starts_at->isPast())
-            <div class='contest__voting-ended'>{{trans('contest.entry.over')}}</div>
-        @else
-            <div class='contest__voting-ended'>{{trans('contest.entry.preparation')}}</div>
-        @endif
+    @if (!Auth::check())
+      <div class='contest__voting-notice contest__voting-notice--padding'>{{trans('contest.entry.login_required')}}</div>
     @else
-        @if (!Auth::check())
-          <div class='contest__voting-ended'>{{trans('contest.entry.login_required')}}</div>
-        @else
-          @if (Auth::user()->isSilenced() || Auth::user()->isRestricted())
-            <div class='contest__voting-ended'>{{trans('contest.entry.silenced_or_restricted')}}</div>
-          @else
+      @if (Auth::user()->isSilenced() || Auth::user()->isRestricted())
+        <div class='contest__voting-notice contest__voting-notice--padding'>{{trans('contest.entry.silenced_or_restricted')}}</div>
+      @else
+        @if (!$contest->isSubmissionOpen())
+          @if ($contest->entry_starts_at !== null && $contest->entry_starts_at->isPast())
+            <div class='contest__voting-notice'>{{trans('contest.entry.over')}}</div>
             <div class='js-react--userContestEntry'></div>
+          @else
+            <div class='contest__voting-notice contest__voting-notice--padding'>{{trans('contest.entry.preparation')}}</div>
           @endif
+        @else
+          <div class='js-react--userContestEntry'></div>
         @endif
+      @endif
     @endif
 @endsection
 

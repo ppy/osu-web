@@ -38,13 +38,16 @@ class Contest.Entry.UserEntryList extends React.Component
     $.unsubscribe '.contest'
 
   render: ->
+    entryOpen = moment(@state.contest.entry_starts_at).diff() <= 0 && moment(@state.contest.entry_ends_at).diff() >= 0
     userEntries = if @state.userEntries then @state.userEntries else []
+
     entries = userEntries.map (entry, index) =>
       el Contest.Entry.UserEntry,
         key: index,
         entry: entry,
-        contest_id: @state.contest.id
+        contest_id: @state.contest.id,
+        locked: !entryOpen
 
     div className: 'contest-user-entry-list',
       entries
-      el Contest.Entry.Uploader, contest: @state.contest, disabled: @state.userEntries.length >= @state.contest.max_entries
+      el Contest.Entry.Uploader, contest: @state.contest, disabled: !entryOpen || (@state.userEntries.length >= @state.contest.max_entries)
