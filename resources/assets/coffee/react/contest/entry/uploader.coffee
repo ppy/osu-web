@@ -39,21 +39,22 @@ class Contest.Entry.Uploader extends React.Component
 
     $(@refs.uploadButtonContainer).append($uploadButton)
 
-    $.subscribe 'dragenterGlobal.contest', => @setOverlay('active')
-    $.subscribe 'dragendGlobal.contest', => @setOverlay('hidden')
-    $(document).on 'dragenter.contest', '.contest__entry-uploader', => @setOverlay('hover')
-    $(document).on 'dragleave.contest', '.contest__entry-uploader', => @setOverlay('active')
+    $.subscribe 'dragenterGlobal.contest-upload', => @setOverlay('active')
+    $.subscribe 'dragendGlobal.contest-upload', => @setOverlay('hidden')
+    $(document).on 'dragenter.contest-upload', '.contest-user-entry--uploader', => @setOverlay('hover')
+    $(document).on 'dragleave.contest-upload', '.contest-user-entry--uploader', => @setOverlay('active')
 
     $uploadButton.fileupload
-      url: laroute.route 'contest.submit', contest_id: @props.contest.id
+      url: laroute.route 'contest-entries.store'
       dataType: 'json'
       dropZone: $dropzone
       sequentialUploads: true
+      formData:
+        contest_id: @props.contest.id
 
       add: (e, data) =>
         return if @props.disabled
 
-        canUpload = true;
         file = data.files[0];
         if (!(/\.(osu)$/i).test(file.name))
           osu.popup osu.trans('contest.entry.wrong_type.beatmap'), 'danger'
@@ -74,21 +75,25 @@ class Contest.Entry.Uploader extends React.Component
       fail: osu.fileuploadFailCallback($uploadButton)
 
   componentWillUnmount: =>
-    $.unsubscribe '.contest'
+    $.unsubscribe '.contest-upload'
+    $(document).off '.contest-upload'
+
     $('.js-contest-entry-upload')
       .fileupload 'destroy'
       .remove()
 
   render: =>
     labelClass = [
-      'fileupload contest__entry-uploader',
+      'fileupload',
+      'contest-user-entry',
+      'contest-user-entry--uploader',
       'disabled' if @props.disabled,
-      'contest__user-entry--dragndrop-active' if @state.state == 'active',
-      'contest__user-entry--dragndrop-hover' if @state.state == 'hover',
+      'contest-user-entry--dragndrop-active' if @state.state == 'active',
+      'contest-user-entry--dragndrop-hover' if @state.state == 'hover',
     ]
 
-    div className: "contest__user-entry contest__user-entry--new #{if @props.disabled then 'contest__user-entry--disabled' else ''} js-react--entryUploader",
+    div className: "contest-user-entry contest-user-entry--new#{if @props.disabled then ' contest-user-entry--disabled' else ''}",
       div className: 'js-contest-entry-upload--dropzone',
         el 'label', className: labelClass.join(' '), ref: 'uploadButtonContainer',
-          i className: 'fa fa-plus contest__entry-uploader-icon'
+          i className: 'fa fa-plus contest-user-entry__icon'
           div {}, osu.trans('contest.entry.drop_here')
