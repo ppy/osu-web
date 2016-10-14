@@ -19,9 +19,6 @@
 el = React.createElement
 
 class BeatmapsetPage.Header extends React.Component
-  togglePreview: (e) =>
-    $.publish 'beatmapset:preview:toggle', !@props.isPreviewPlaying
-
   render: ->
     dateFormat = 'MMM D, YYYY'
 
@@ -108,30 +105,29 @@ class BeatmapsetPage.Header extends React.Component
                     moment(@props.beatmapset.ranked_date).format dateFormat
 
           div className: 'beatmapset-header__buttons-box',
-            for elem in ['video', 'no-video', 'direct']
-              firstRow = '_'
-              secondRow = elem
-              icon = 'download'
+            if @props.beatmapset.video
+              [
+                @downloadButton
+                  key: 'video'
+                  href: Url.beatmapDownload @props.beatmapset.id, true
+                  bottomTextKey: 'video'
 
-              switch elem
-                when 'video'
-                  continue if !@props.beatmapset.video
-                  link = Url.beatmapDownload @props.beatmapset.id, true
-                when 'no-video'
-                  link = Url.beatmapDownload @props.beatmapset.id, false
-                when 'direct'
-                  firstRow = elem
-                  icon = 'angle-double-down'
-                  link = if currentUser.isSupporter then Url.beatmapDownloadDirect @props.beatmapset.id else laroute.route 'support-the-game'
+                @downloadButton
+                  key: 'no-video'
+                  href: Url.beatmapDownload @props.beatmapset.id, false
+                  bottomTextKey: 'no-video'
+              ]
+            else
+              @downloadButton
+                href: Url.beatmapDownload @props.beatmapset.id, false
 
-              el BigButton,
-                key: elem
-                className: 'beatmapset-header__button'
-                href: link
-                icon: icon
-                text:
-                  top: osu.trans "beatmaps.beatmapset.show.details.download.#{firstRow}"
-                  bottom: if elem != 'direct' then osu.trans "beatmaps.beatmapset.show.details.download.#{secondRow}" else null
+            @downloadButton
+              topTextKey: 'direct'
+              href:
+                if currentUser.isSupporter
+                  Url.beatmapDownloadDirect @props.beatmapset.id
+                else
+                  laroute.route 'support-the-game'
 
         el BeatmapsetPage.Stats,
           beatmapset: @props.beatmapset
@@ -139,3 +135,18 @@ class BeatmapsetPage.Header extends React.Component
           isPreviewPlaying: @props.isPreviewPlaying
           timeElapsed: @props.timeElapsed
           previewDuration: @props.previewDuration
+
+
+  downloadButton: ({key, href, icon = 'download', topTextKey = '_', bottomTextKey}) =>
+    el BigButton,
+      modifiers: ['beatmapset-header']
+      key: key
+      href: href
+      icon: icon
+      text:
+        top: osu.trans "beatmaps.beatmapset.show.details.download.#{topTextKey}"
+        bottom: if bottomTextKey? then osu.trans "beatmaps.beatmapset.show.details.download.#{bottomTextKey}"
+
+
+  togglePreview: (e) =>
+    $.publish 'beatmapset:preview:toggle', !@props.isPreviewPlaying

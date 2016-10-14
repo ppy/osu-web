@@ -18,16 +18,16 @@
 {a, div, span} = React.DOM
 el = React.createElement
 
-class @BigButton extends React.Component
-  render: ->
-    className = @props.className || 'btn-osu-big'
+@BigButton = ({modifiers, href, text, icon}) ->
+  blockClass = 'btn-osu-big'
+  blockClass += " btn-osu-big--#{mod}" for mod in modifiers
 
-    a
-      className: className
-      href: @props.href
-      div className: 'btn-osu-big__content',
-        div className: 'btn-osu-big__left',
-          span className: 'beatmapset-header__button-text', @props.text.top
-          if @props.text.bottom
-            span className: 'beatmapset-header__button-text beatmapset-header__button-text--small', @props.text.bottom
-        el Icon, name: @props.icon
+  a
+    className: blockClass
+    href: href
+    div className: 'btn-osu-big__content',
+      div className: 'btn-osu-big__left',
+        span className: 'btn-osu-big__text-top', text.top
+        if text.bottom
+          span className: 'btn-osu-big__text-bottom', text.bottom
+      el Icon, name: icon
