@@ -41,5 +41,4 @@ class BeatmapsetPage.HeaderTab extends React.Component
         href: url
         osu.trans "beatmaps.mode.#{@props.playmode}"
 
-        if active
-          span className: 'page-mode-link__stripe'
+        span className: 'page-mode-link__stripe'
