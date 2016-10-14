@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, span, a, ol} = React.DOM
+{div, span, a, ol, li} = React.DOM
 el = React.createElement
 
 class BeatmapsetPage.Header extends React.Component
@@ -27,12 +27,14 @@ class BeatmapsetPage.Header extends React.Component
         for mode in BeatmapHelper.modes
           continue if _.isEmpty @props.beatmapList[mode]
 
-          el BeatmapsetPage.HeaderTab,
+          li
+            className: 'page-mode__item'
             key: mode
-            playmode: mode
-            currentBeatmapId: @props.currentBeatmap.id
-            newBeatmapId: _.last @props.beatmapList[mode]
-            currentPlaymode: @props.currentBeatmap.mode
+            el BeatmapsetPage.HeaderTab,
+              playmode: mode
+              currentBeatmapId: @props.currentBeatmap.id
+              newBeatmapId: _.last @props.beatmapList[mode]
+              currentPlaymode: @props.currentBeatmap.mode
 
       div
         className: 'beatmapset-header__content'
