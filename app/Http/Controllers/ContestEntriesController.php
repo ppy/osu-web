@@ -20,7 +20,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contest;
-use App\Models\ContestVote;
+use App\Models\ContestEntry;
 use App\Models\UserContestEntry;
 use Auth;
 use Request;
@@ -29,11 +29,11 @@ class ContestEntriesController extends Controller
 {
     protected $section = 'community';
 
-    public function vote($contest_id, $contest_entry_id)
+    public function vote($id)
     {
         $user = Auth::user();
-        $contest = Contest::with('entries')->with('entries.contest')->findOrFail($contest_id);
-        $entry = $contest->entries()->findOrFail($contest_entry_id);
+        $entry = ContestEntry::findOrFail($id);
+        $contest = Contest::with('entries')->with('entries.contest')->findOrFail($entry->contest_id);
 
         priv_check('ContestVote', $contest)->ensureCan();
 
@@ -42,16 +42,16 @@ class ContestEntriesController extends Controller
         return $contest->defaultJson($user);
     }
 
-    public function submit($contest_id)
+    public function store()
     {
         if (Request::hasFile('entry') !== true || Request::file('entry')->getClientOriginalExtension() !== 'osu') { // todo: unhardcode :|
             abort(422);
         }
 
         $user = Auth::user();
-        $contest = Contest::findOrFail($contest_id);
+        $contest = Contest::findOrFail(Request::input('contest_id'));
 
-        priv_check('ContestEnter', $contest)->ensureCan();
+        priv_check('ContestEntryStore', $contest)->ensureCan();
 
         UserContestEntry::upload(
             Request::file('entry'),
@@ -62,15 +62,15 @@ class ContestEntriesController extends Controller
         return $contest->userEntries($user);
     }
 
-    public function delete($contest_id, $contest_entry_id)
+    public function destroy($id)
     {
         $user = Auth::user();
-        $contest = Contest::findOrFail($contest_id);
-        $contestEntry = UserContestEntry::where(['contest_id' => $contest->id, 'user_id' => $user->user_id])->findOrFail($contest_entry_id);
+        $entry = UserContestEntry::where(['user_id' => $user->user_id])->findOrFail($id);
+        $contest = Contest::findOrFail($entry->contest_id);
 
-        priv_check('ContestDeleteEntry', $contestEntry)->ensureCan();
+        priv_check('ContestEntryDestroy', $entry)->ensureCan();
 
-        $contestEntry->deleteWithFile();
+        $entry->deleteWithFile();
 
         return $contest->userEntries($user);
     }

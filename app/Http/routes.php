@@ -66,9 +66,8 @@ Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', 
 Route::get('/community/contests/{contest_id}', ['as' => 'contest.show', 'uses' => 'ContestsController@show']);
 
 // contest entries
-Route::post('/community/contests/{contest_id}/entries/submit', ['as' => 'contest-entry.submit', 'uses' => 'ContestEntriesController@submit']);
-Route::delete('/community/contests/{contest_id}/entries/{contest_entry_id}/delete', ['as' => 'contest-entry.delete', 'uses' => 'ContestEntriesController@delete']);
-Route::put('/community/contests/{contest_id}/entries/{contest_entry_id}/vote', ['as' => 'contest-entry.vote', 'uses' => 'ContestEntriesController@vote']);
+Route::put('contest-entries/{contest_entry_id}/vote', ['as' => 'contest-entries.vote', 'uses' => 'ContestEntriesController@vote']);
+Route::resource('contest-entries', 'ContestEntriesController', ['only' => ['store', 'destroy']]);
 
 // ranking section
 Route::get('/ranking/overall', ['as' => 'ranking-overall', 'uses' => 'RankingController@getOverall']);

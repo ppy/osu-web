@@ -45,10 +45,12 @@ class Contest.Entry.Uploader extends React.Component
     $(document).on 'dragleave.contest-upload', '.contest-user-entry--uploader', => @setOverlay('active')
 
     $uploadButton.fileupload
-      url: laroute.route 'contest-entry.submit', contest_id: @props.contest.id
+      url: laroute.route 'contest-entries.store'
       dataType: 'json'
       dropZone: $dropzone
       sequentialUploads: true
+      formData:
+        contest_id: @props.contest.id
 
       add: (e, data) =>
         return if @props.disabled
