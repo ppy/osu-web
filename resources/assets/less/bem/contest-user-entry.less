@@ -25,18 +25,15 @@
   .default-box-shadow();
   transition: 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 
+  &__fileicon {
+    font-size: 32px;
+    margin-top: 25px;
+  }
+
   &__filename {
     font-weight: lighter;
     font-size: 15px;
-    margin-top: 25px;
-
-    &::before {
-      content: "\f016";
-      font-family: FontAwesome;
-      display: block;
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
+    margin-top: 10px;
   }
 
   &__filesize {
