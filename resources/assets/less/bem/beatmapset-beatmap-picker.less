@@ -18,35 +18,48 @@
  */
 
 .beatmapset-beatmap-picker {
-  @_padding: (@spacing / 2);
-  @_gutter: 1px;
+  @padding: (@spacing / 2);
+  @gutter: 2px;
   display: flex;
   flex-wrap: wrap;
-  margin: 0 (-@_padding + -@_gutter);
+  margin: 0 (-@padding + -@gutter);
 
   width: 250px;
 
   &__beatmap {
-    .default-border-radius();
     .fade-element(100ms);
-    padding: @_padding;
-    margin: @_gutter;
+    padding: (@padding + @gutter);
     opacity: 0.7;
 
     &--active {
-      background-color: fade(@grey-0, 50%);
       opacity: 1;
+
+      &::before {
+        background-color: fade(@grey-0, 50%);
+      }
     }
 
     &:hover {
-      background-color: fade(@grey-0, 50%);
-      text-decoration: none;
       opacity: 1;
+      text-decoration: none;
     }
 
     &:active,
     &:focus {
       text-decoration: none;
+    }
+
+    &::before {
+      .full-size();
+      .default-border-radius();
+      width: calc(100% ~'-' @gutter);
+      height: calc(100% ~'-' @gutter);
+      top: (@gutter / 2);
+      left: (@gutter / 2);
+    }
+
+    &:hover::before {
+      background-color: fade(@grey-0, 50%);
     }
   }
 }
