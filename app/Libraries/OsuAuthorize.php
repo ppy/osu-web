@@ -211,7 +211,7 @@ class OsuAuthorize
         return $prefix.'no_access';
     }
 
-    public function checkContestEnter($user, $contest)
+    public function checkContestEntryStore($user, $contest)
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
@@ -228,7 +228,7 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkContestDeleteEntry($user, $contestEntry)
+    public function checkContestEntryDestroy($user, $contestEntry)
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);

@@ -1,5 +1,5 @@
 ###
-# Copyright 2016 ppy Pty. Ltd.
+# Copyright 2015-2016 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -15,14 +15,24 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div} = React.DOM
-el = React.createElement
 
-class BeatmapsetPage.Description extends React.Component
-  render: ->
-    div
-      className: 'page-extra'
-      el BeatmapsetPage.ExtraHeader, name: 'description'
+class @Hits
+  @generate: ({score, playmode}) ->
+    elements = if playmode == 'mania'
+      ['countgeki', 'count300',  'countkatu', 'count100', 'count50']
+    else
+      ['count300', 'count100', 'count50']
 
-      div className: 'beatmapset-description', dangerouslySetInnerHTML:
-        __html: @props.description
+    header = ''
+    values = ''
+
+    header = _(elements)
+        .map (elem) -> osu.trans "beatmaps.beatmapset.show.scoreboard.stats.#{elem}"
+        .join '/'
+
+    values = _(elements)
+        .map (elem) -> osu.trans "#{score[elem]}"
+        .join '/'
+
+    header: header
+    values: values

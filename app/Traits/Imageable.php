@@ -37,12 +37,6 @@ trait Imageable
         $image = new ImageProcessor($filePath, $this->getMaxDimensions(), $this->getMaxFileSize());
         $image->process();
 
-        $this->deleteFile();
-        $this->setFileProperties([
-            'hash' => hash_file('sha256', $image->inputPath),
-            'ext' => $image->ext(),
-        ]);
-
-        $this->storage()->put($this->filePath(), file_get_contents($image->inputPath));
+        $this->_storeFile($image->inputPath, $image->ext());
     }
 }

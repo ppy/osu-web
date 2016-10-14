@@ -1,5 +1,5 @@
 ###
-# Copyright 2016 ppy Pty. Ltd.
+# Copyright 2015-2016 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -15,28 +15,31 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{a} = React.DOM
+{a, li, span} = React.DOM
 
-class BeatmapsetPage.ContentsTab extends React.Component
+class BeatmapsetPage.HeaderTab extends React.Component
   onClick: (e) =>
-    return if @props.disabled
     e.preventDefault()
+
+    return if @props.currentPlaymode == @props.playmode
     $.publish 'beatmapset:beatmap:set', beatmapId: @props.newBeatmapId, playmode: @props.playmode
 
   render: ->
     active = @props.playmode == @props.currentPlaymode
 
-    className = 'page-tabs__tab'
-    className += ' page-tabs__tab--active' if active
-    className += ' page-tabs__tab--disabled' if @props.disabled
+    className = 'page-mode-link'
+    className += ' page-mode-link--is-active' if active
 
     url = BeatmapsetPageHash.generate
       beatmapId: if active then @props.currentBeatmapId else @props.newBeatmapId
-      page: @props.currentPage
       playmode: @props.playmode
 
-    a
-      className: className
-      onClick: @onClick if not active
-      href: url if not @props.disabled
-      osu.trans "beatmaps.mode.#{@props.playmode}"
+    li className: 'page-mode__item',
+      a
+        className: className
+        onClick: @onClick
+        href: url
+        osu.trans "beatmaps.mode.#{@props.playmode}"
+
+        if active
+          span className: 'page-mode-link__stripe'

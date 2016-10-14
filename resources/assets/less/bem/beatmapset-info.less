@@ -1,0 +1,139 @@
+/**
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+.beatmapset-info {
+  @description-break-width: 1100px;
+
+  display: flex;
+  flex-direction: column;
+
+  height: auto;
+
+  @media @desktop {
+    flex-direction: row;
+  }
+
+  @media (min-width: @description-break-width) {
+    height: 175px;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+
+    @media (min-width: @description-break-width) {
+      flex-direction: row;
+      width: auto;
+      overflow-y: hidden;
+    }
+
+    width: 100%;
+    height: 100%;
+
+    align-self: flex-start;
+    padding: 0 40px;
+    padding-top: 30px;
+
+    flex-grow: 1;
+  }
+
+  &__text {
+    font-size: 12px;
+
+    &--header {
+      font-weight: 700;
+      padding-bottom: @spacing * 0.2;
+    }
+
+    &--source {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &--tag {
+      padding-right: 3px;
+      display: inline-block;
+    }
+  }
+
+  &__description {
+    margin-right: @spacing * 2;
+    flex-grow: 1;
+
+    padding-right: @spacing * 2;
+    padding-bottom: @spacing * 0.5;
+
+    @media (min-width: @description-break-width) {
+      overflow-y: auto;
+      padding-bottom: 0;
+    }
+
+    text-align: justify;
+  }
+
+  &__tags-source-box {
+    width: 250px;
+    min-width: 250px;
+
+    padding-bottom: 30px;
+
+    @media (min-width: @description-break-width) {
+      overflow-y: hidden;
+    }
+  }
+
+  &__text-box {
+    padding-bottom: @spacing * 0.5;
+
+    &--source {
+      height: 35px;
+    }
+
+    &--tags {
+      flex-grow: 1;
+      overflow-y: hidden;
+    }
+  }
+
+
+  &__success-rate {
+    align-self: flex-start;
+
+    height: 160px;
+    width: 275px;
+    min-width: 275px;
+
+    background-color: @grey-e;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-top: @spacing * 1.5;
+
+    @media @desktop {
+      margin-right: @spacing * 4;
+    }
+
+    @media (min-width: @description-break-width) {
+      align-self: flex-end;
+    }
+  }
+}

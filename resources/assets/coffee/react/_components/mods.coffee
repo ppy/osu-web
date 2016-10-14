@@ -20,18 +20,18 @@
 class @Mods extends React.Component
   render: ->
     modsClassName = 'mods'
-    modsClassName += ' mods--reversed' if @props.reversed
-    modsClassName += ' mods--large' if @props.large
-
-    imageClassName = 'mods__mod-image'
-    imageClassName += ' mods__mod-image--large' if @props.large
+    
+    classModifiers = @props.classModifiers || []
+    modsClassName += " mods--#{mod}" for mod in classModifiers
 
     div className: modsClassName,
       for mod in @props.mods
+        modName = osu.trans "beatmaps.mods.#{mod}"
+
         div
-          key: mod.shortName
+          key: mod
           className: 'mods__mod'
           img _.extend
-            className: imageClassName
-            title: mod.name
-            osu.src2x("/images/badges/mods/#{_.kebabCase(mod.name)}.png")
+            className: 'mods__mod-image'
+            title: modName
+            osu.src2x("/images/badges/mods/#{_.kebabCase(modName)}.png")

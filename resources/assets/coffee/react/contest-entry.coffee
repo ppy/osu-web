@@ -24,4 +24,4 @@ propsFunction = ->
     userEntries: userEntries
   }
 
-reactTurbolinks.register 'userContestEntry', Contest.Entry.UserEntriesList, propsFunction
+reactTurbolinks.register 'userContestEntry', Contest.Entry.UserEntryList, propsFunction

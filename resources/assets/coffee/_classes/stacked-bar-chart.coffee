@@ -16,7 +16,7 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-class @BarChart
+class @StackedBarChart
   constructor: (area, options = {}) ->
     @margins =
       top: 0
@@ -37,12 +37,16 @@ class @BarChart
     @svgWrapper = @svg.append 'g'
 
   loadData: (data) ->
-    @data = _.map data, (m) ->
-      for d, i in m
-        d.height = if i > 0 then m[i - 1].value else 0
-        d
+    @data = []
+    for d, i in data
+      for v, j in d.values
+        @data[j] ?= []
+        @data[j].push
+          type: d.type
+          value: v
+          height: if i == 0 then 0 else @data[j][i - 1].value + @data[j][i - 1].height
 
-    @max = d3.max _.map @data, (m) -> m[0].value + m[1].value
+    @max = d3.max _.map @data, (m) -> _.sumBy m, 'value'
 
     @resize()
 
