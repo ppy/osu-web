@@ -20,24 +20,18 @@
 .artist {
   &__index {
     background-color: #293336;
-    padding: 20px;
+    padding: @spacing;
     font-weight: 300;
     .default-box-shadow();
 
     display: flex;
     justify-content: space-around;
     flex-direction: row;
-
-    @media @mobile {
-      flex-direction: column;
-    }
+    flex-wrap: wrap;
   }
 
   &__box {
-    @media @mobile {
-      margin: 0 auto;
-      margin-top: @spacing * 2;
-    }
+    margin: @spacing;
   }
 
   &__name {

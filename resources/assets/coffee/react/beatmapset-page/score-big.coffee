@@ -46,7 +46,7 @@ BeatmapsetPage.ScoreBig = React.createClass
         div className: 'beatmapset-score-big__stats-box',
           el Mods,
             mods: @props.score.mods
-            classModifiers: ['reversed']
+            modifiers: ['reversed']
 
           div className: 'beatmapset-score-big__rank',
             div className: "badge-rank badge-rank--#{@props.score.rank}"

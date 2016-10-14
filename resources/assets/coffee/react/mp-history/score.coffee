@@ -49,7 +49,7 @@ class MPHistory.Score extends React.Component
             div className: 'mp-history-player-score__mods-box',
               el Mods,
                 mods: @props.score.mods
-                classModifiers: ['reversed']
+                modifiers: ['reversed']
 
             @firstRow.map (m) =>
               modifier = 'medium'

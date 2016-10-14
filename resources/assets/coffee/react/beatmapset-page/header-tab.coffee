@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{a, li, span} = React.DOM
+{a, span} = React.DOM
 
 class BeatmapsetPage.HeaderTab extends React.Component
   onClick: (e) =>
@@ -27,19 +27,17 @@ class BeatmapsetPage.HeaderTab extends React.Component
   render: ->
     active = @props.playmode == @props.currentPlaymode
 
-    className = 'page-mode-link'
-    className += ' page-mode-link--is-active' if active
+    blockClass = 'page-mode-link'
+    blockClass += ' page-mode-link--is-active' if active
 
     url = BeatmapsetPageHash.generate
       beatmapId: if active then @props.currentBeatmapId else @props.newBeatmapId
       playmode: @props.playmode
 
-    li className: 'page-mode__item',
-      a
-        className: className
-        onClick: @onClick
-        href: url
-        osu.trans "beatmaps.mode.#{@props.playmode}"
+    a
+      className: blockClass
+      onClick: @onClick
+      href: url
+      osu.trans "beatmaps.mode.#{@props.playmode}"
 
-        if active
-          span className: 'page-mode-link__stripe'
+      span className: 'page-mode-link__stripe'

@@ -57,7 +57,7 @@ class MPHistory.GameHeader extends React.Component
       div className: 'mp-history-game__mods-box',
         el Mods,
           mods: @props.game.mods
-          classModifiers: ['large', 'reversed']
+          modifiers: ['large', 'reversed']
 
       div
         className: 'mp-history-game__team-type'
