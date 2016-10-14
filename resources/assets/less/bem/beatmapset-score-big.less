@@ -20,20 +20,20 @@
 .beatmapset-score-big {
   @_top: beatmapset-score-big;
 
+  .default-border-radius();
+  .default-box-shadow();
+
   display: flex;
   flex-direction: column;
 
-  .default-border-radius;
-  .default-box-shadow;
-
-  margin: @spacing * 2 0;
-
-  &--first-score {
-    box-shadow: 0 0 0 3px @yellow, 0 4px @box-shadow-spread @box-shadow-color;
-  }
+  margin: (@spacing * 2) 0;
 
   &:hover {
     background-color: @grey-e;
+  }
+
+  &--first-score {
+    box-shadow: 0 0 0 3px @yellow, 0 4px @box-shadow-spread @box-shadow-color;
   }
 
   &__section {
