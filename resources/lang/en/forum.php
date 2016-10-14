@@ -34,7 +34,7 @@ return [
     ],
 
     'email' => [
-        'new_reply' => '[osu!] :title',
+        'new_reply' => '[osu!] New reply for topic ":title"',
     ],
 
     'forums' => [
