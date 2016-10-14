@@ -17,15 +17,12 @@
 ###
 {div, img} = React.DOM
 
-class @Mods extends React.Component
-  render: ->
-    modsClassName = 'mods'
-    
-    classModifiers = @props.classModifiers || []
-    modsClassName += " mods--#{mod}" for mod in classModifiers
+@Mods = ({modifiers = [], mods = []}) ->
+    blockClass = 'mods'
+    blockClass += " mods--#{mod}" for mod in modifiers
 
-    div className: modsClassName,
-      for mod in @props.mods
+    div className: blockClass,
+      for mod in mods
         modName = osu.trans "beatmaps.mods.#{mod}"
 
         div

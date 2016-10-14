@@ -18,7 +18,7 @@
 {a, div, span} = React.DOM
 el = React.createElement
 
-@BigButton = ({modifiers, href, text, icon}) ->
+@BigButton = ({modifiers = [], href, text, icon}) ->
   blockClass = 'btn-osu-big'
   blockClass += " btn-osu-big--#{mod}" for mod in modifiers
 
