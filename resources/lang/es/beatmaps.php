@@ -81,7 +81,7 @@ return [
     'beatmapset' => [
         'show' => [
             'details' => [
-                'made-by' => 'creado por :user',
+                'made-by' => 'creado por ',
                 'submitted' => 'enviado el ',
                 'ranked' => 'rankeado el ',
                 'logged-out' => '¡Necesitas iniciar sesión para descargar beatmaps!',
