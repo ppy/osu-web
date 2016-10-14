@@ -21,6 +21,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Transformers\ContestTransformer;
+use App\Transformers\UserContestEntryTransformer;
 use Cache;
 
 class Contest extends Model
@@ -89,7 +90,7 @@ class Contest extends Model
         }
     }
 
-    public function defaultJson($currentUser = null)
+    public function defaultJson($user = null)
     {
         $includes = ['entries'];
 
@@ -117,27 +118,39 @@ class Contest extends Model
                 // We want the results to appear randomized to the user but be
                 // deterministic (i.e. we don't want the rows shuffling each time
                 // the user votes), so we seed based on user_id
-                $seed = $currentUser ? $currentUser->user_id : time();
+                $seed = $user ? $user->user_id : time();
                 seeded_shuffle($contestJson['entries'], $seed);
             }
         }
 
         return json_encode([
             'contest' => $contestJson,
-            'userVotes' => $this->votesForUser($currentUser),
+            'userVotes' => $this->votesForUser($user),
         ], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
     }
 
-    public function votesForUser($currentUser = null)
+    public function votesForUser($user = null)
     {
-        $votes = [];
-        if ($currentUser) {
-            $votes = ContestVote::where('contest_id', $this->id)->where('user_id', $currentUser->user_id)->get();
-            $votes = $votes->map(function ($v) {
-                return $v->contest_entry_id;
-            })->toArray();
+        if ($user === null) {
+            return [];
         }
 
-        return $votes;
+        $votes = ContestVote::where('contest_id', $this->id)->where('user_id', $user->user_id)->get();
+
+        return $votes->map(function ($v) {
+            return $v->contest_entry_id;
+        })->toArray();
+    }
+
+    public function userEntries($user = null)
+    {
+        if ($user === null) {
+            return [];
+        }
+
+        return fractal_api_serialize_collection(
+            UserContestEntry::where(['contest_id' => $this->id, 'user_id' => $user->user_id])->get(),
+            new UserContestEntryTransformer
+        );
     }
 }
