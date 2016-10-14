@@ -20,6 +20,22 @@
 
 return [
     'news' => [
-        'slogan' => 'O ritmo está a um *clique* de distância!',
+        'slogan' => 'O ritmo apenas a um *Clique* de distância!',
+    ],
+    'landing' => [
+        'slogans' => [
+            '1' => 'free-to-win<br/>circle simulator',
+            '2' => 'o ritmo apenas<br/> a um clique de distância',
+        ],
+
+        'download' => [
+            '_' => 'Baixe agora',
+            'for' => 'para :os',
+            'other' => 'clique aqui para :os1 ou :os2',
+        ],
+
+        'players' => 'jogadores registrados',
+        'online' => 'jogadores online agora',
+        'peak' => 'Pico, :count usuários online',
     ],
 ];
