@@ -166,6 +166,7 @@ class BeatmapsetPage.Main extends React.Component
     @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
 
     @audioPreview = document.getElementsByClassName('js-beatmapset-page--audio-preview')[0]
+    @audioPreview.volume = 0.45
 
   componentWillUnmount: ->
     @removeListeners()
