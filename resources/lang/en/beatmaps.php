@@ -123,21 +123,12 @@ return [
                 'cs-mania' => 'Key Amount',
                 'drain' => 'HP Drain',
                 'accuracy' => 'Accuracy',
-                'ar' => 'Limit Break',
+                'ar' => 'Approach Rate',
                 'stars' => 'Star Difficulty',
                 'total_length' => 'Length',
                 'bpm' => 'BPM',
                 'count_circles' => 'Circle Count',
                 'count_sliders' => 'Slider Count',
-
-                'chart' => [
-                    'cs' => 'CS',
-                    'hp' => 'HP',
-                    'od' => 'OD',
-                    'ar' => 'AR',
-                    'sd' => 'SD',
-                ],
-
                 'user-rating' => 'User Rating',
                 'rating-spread' => 'Rating Spread',
             ],
@@ -167,6 +158,8 @@ return [
                 'stats' => [
                     'score' => 'Score',
                     'accuracy' => 'Accuracy',
+                    // note to TLs: the 5 keys below don't really need to be translated,
+                    // as those should remain pretty much the same across languages
                     'countgeki' => 'MAX',
                     'count300' => '300',
                     'countkatu' => '200',
@@ -212,6 +205,7 @@ return [
         'electronic' => 'Electronic',
     ],
     'mods' => [
+        // note to TLs: same as above, save for the `No mods` element
         'NF' => 'No Fail',
         'EZ' => 'Easy Mode',
         'HD' => 'Hidden',

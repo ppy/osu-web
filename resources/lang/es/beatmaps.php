@@ -81,71 +81,56 @@ return [
     'beatmapset' => [
         'show' => [
             'details' => [
-                'made-by' => 'creado por :user',
+                'made-by' => 'creado por ',
                 'submitted' => 'enviado el ',
                 'ranked' => 'rankeado el ',
                 'logged-out' => '¡Necesitas iniciar sesión para descargar beatmaps!',
                 'download' => [
-                    'normal' => 'descargar',
+                    '_' => 'descargar',
                     'direct' => 'osu!direct',
-                    'no-video' => 'versión sin video',
+                    'no-video' => 'sin video',
                 ],
             ],
             'stats' => [
                 'cs' => 'Tamaño de círculo',
-                'hp' => 'Disminución de HP',
-                'od' => 'Precisión',
+                'drain' => 'Disminución de HP',
+                'accuracy' => 'Precisión',
                 'ar' => 'Velocidad de aproximación',
                 'stars' => 'Estrellas de Dificultad',
-                'length' => 'Duración',
+                'total_length' => 'Duración',
                 'bpm' => 'BPM',
-                'chart' => [
-                    'cs' => 'CS',
-                    'hp' => 'HP',
-                    'od' => 'OD',
-                    'ar' => 'AR',
-                    'sd' => 'SD',
-                ],
+            ],
+            'info' => [
+                'success-rate' => 'Tasa de éxito',
+                'points-of-failure' => 'Puntos de Fracaso',
+
+                'description' => 'Descripción',
+
                 'source' => 'Fuente',
                 'tags' => 'Etiquetas',
             ],
-            'extra' => [
-                'description' => [
-                    'title' => 'Descripción',
+            'scoreboard' => [
+                'title' => 'Puntuaciones',
+                'no-scores' => [
+                    'global' => 'Sin puntuaciones aún. ¿Tal vez deberías intentar marcar alguna?',
+                    'loading' => 'Cargando puntuaciones...',
+                    'country' => '¡Nadie de tu país ha marcado una puntuación en este mapa aún!',
+                    'friend' => '¡Ninguno de tus amigos ha marcado una puntuación en este mapa aún!',
                 ],
-                'success-rate' => [
-                    'title' => 'Tasa de éxito',
-                    'rate' => 'Tasa de éxito: :percentage%',
-                    'points' => 'Puntos de Fracaso',
-                    'retry' => 'Reintentos',
-                    'fail' => 'Fallar',
+                'supporter-only' => '¡Necesitas ser supporter para acceder a los rankings entre amigos y de tu país!',
+                'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
+                'global' => 'Ranking Global',
+                'country' => 'Ranking Nacional',
+                'friend' => 'Ranking de Amigos',
+                'stats' => [
+                    'accuracy' => 'Precisión',
+                    'score' => 'Puntuación',
                 ],
-                'scoreboard' => [
-                    'title' => 'Puntuaciones',
-                    'no-scores' => [
-                        'global' => 'Sin puntuaciones aún. ¿Tal vez deberías intentar marcar alguna?',
-                        'loading' => 'Cargando puntuaciones...',
-                        'country' => '¡Nadie de tu país ha marcado una puntuación en este mapa aún!',
-                        'friend' => '¡Ninguno de tus amigos ha marcado una puntuación en este mapa aún!',
-                    ],
-                    'supporter-only' => '¡Necesitas ser supporter para acceder a los rankings entre amigos y de tu país!',
-                    'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
-                    'global' => 'Ranking Global',
-                    'country' => 'Ranking Nacional',
-                    'friend' => 'Ranking de Amigos',
-                    'first' => [
-                        'accuracy' => 'Precisión',
-                        'score' => 'Puntuación',
-                        'count300' => '300',
-                        'count100' => '100',
-                        'count50' => '50',
-                    ],
-                    'list' => [
-                        'rank-header' => 'Rango',
-                        'player-header' => 'Jugador',
-                        'score' => 'Puntuación',
-                        'accuracy' => 'Precisión',
-                    ],
+                'list' => [
+                    'rank-header' => 'Rango',
+                    'player-header' => 'Jugador',
+                    'score' => 'Puntuación',
+                    'accuracy' => 'Precisión',
                 ],
             ],
         ],

@@ -96,73 +96,59 @@ return [
     'beatmapset' => [
         'show' => [
             'details' => [
-                'made-by' => 'gemaakt door :user',
+                'made-by' => 'gemaakt door ',
                 'submitted' => 'ingezonden op ',
                 'ranked' => 'gerankt op ',
                 'logged-out' => 'Je moet ingelogd zijn voordat je beatmaps kan downloaden!',
                 'download' => [
-                    'normal' => 'downloaden',
+                    '_' => 'downloaden',
+                    'no-video' => 'zonder video',
                     'direct' => 'osu!direct',
-                    'no-video' => 'versie zonder video',
                 ],
             ],
             'stats' => [
                 'cs' => 'Cirkelgrootte',
-                'hp' => 'HP Drain',
-                'od' => 'Precisie',
+                'drain' => 'HP Drain',
+                'accuracy' => 'Precisie',
                 'ar' => 'Benaderingssnelheid',
                 'stars' => 'Sterrenmoeilijkheid',
-                'length' => 'Lengte',
+                'total_length' => 'Lengte',
                 'bpm' => 'BPM',
-
-                'chart' => [
-                    'cs' => 'CS',
-                    'hp' => 'HP',
-                    'od' => 'OD',
-                    'ar' => 'AR',
-                    'sd' => 'SD',
-                ],
 
                 'source' => 'Bron',
                 'tags' => 'Labels',
             ],
-            'extra' => [
-                'description' => [
-                    'title' => 'Beschrijving',
+            'info' => [
+                'success-rate' => 'Slagingspercentage',
+                'points-of-failure' => 'Faalpunten',
+
+                'description' => 'Beschrijving',
+
+                'source' => 'Bron',
+                'tags' => 'Labels',
+            ],
+            'scoreboard' => [
+                'title' => 'Scorebord',
+                'no-scores' => [
+                    'global' => 'Nog geen scores. Probeer er een paar te halen?',
+                    'loading' => 'Scoren aan het laden...',
+                    'country' => 'Niemand uit jouw land heeft nog een score behaald op deze map!',
+                    'friend' => 'Niemand van jouw vrienden heeft nog een score behaald op deze map!',
                 ],
-                'success-rate' => [
-                    'title' => 'Slagingspercentage',
-                    'rate' => 'Slagingspercentage: :percentage%',
-                    'points' => 'Faalpunten',
-                    'retry' => 'Opnieuw',
-                    'fail' => 'Faal',
+                'supporter-only' => 'Je moet supporter zijn om land- en vriendenrankings te zien!',
+                'supporter-link' => 'Klik <a href=":link">hier</a> om alle chique functies die je krijgt te zien!',
+                'global' => 'Globale Ranking',
+                'country' => 'Landranking',
+                'friend' => 'Vriendenranking',
+                'stats' => [
+                    'accuracy' => 'Precisie',
+                    'score' => 'Score',
                 ],
-                'scoreboard' => [
-                    'title' => 'Scorebord',
-                    'no-scores' => [
-                        'global' => 'Nog geen scores. Probeer er een paar te halen?',
-                        'loading' => 'Scoren aan het laden...',
-                        'country' => 'Niemand uit jouw land heeft nog een score behaald op deze map!',
-                        'friend' => 'Niemand van jouw vrienden heeft nog een score behaald op deze map!',
-                    ],
-                    'supporter-only' => 'Je moet supporter zijn om land- en vriendenrankings te zien!',
-                    'supporter-link' => 'Klik <a href=":link">hier</a> om alle chique functies die je krijgt te zien!',
-                    'global' => 'Globale Ranking',
-                    'country' => 'Landranking',
-                    'friend' => 'Vriendenranking',
-                    'first' => [
-                        'accuracy' => 'Precisie',
-                        'score' => 'Score',
-                        'count300' => '300',
-                        'count100' => '100',
-                        'count50' => '50',
-                    ],
-                    'list' => [
-                        'rank-header' => 'Rank',
-                        'player-header' => 'Speler',
-                        'score' => 'Score',
-                        'accuracy' => 'Precisie',
-                    ],
+                'list' => [
+                    'rank-header' => 'Rank',
+                    'player-header' => 'Speler',
+                    'score' => 'Score',
+                    'accuracy' => 'Precisie',
                 ],
             ],
         ],
