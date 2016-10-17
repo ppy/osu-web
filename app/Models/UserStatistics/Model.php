@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,6 +19,7 @@
  */
 namespace App\Models\UserStatistics;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
@@ -82,6 +83,11 @@ abstract class Model extends BaseModel
                 $q->from($this->table)->where('user_id', $this->user_id)->select('rank_score');
             })
             ->count() + 1;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function __construct($attributes = [], $zeroInsteadOfNull = true)

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -19,5 +19,37 @@
  */
 
 return [
-
+    'header' => [
+        'ranking' => 'Rankings',
+        'overall' => 'Overall',
+        'country' => 'Country',
+        'mapper' => 'Mapper',
+    ],
+    'overall' => [
+        'global' => 'Global performance ranking',
+        'national' => 'Performance ranking for :country',
+        'reset' => 'Reset country filter',
+        'more' => 'more countries',
+        'no-scores' => 'No scores!',
+        'loading' => 'Loading...',
+    ],
+    'list' => [
+        'rank-header' => 'Rank',
+        'player-header' => 'Player',
+        'mapper-header' => 'Mapper',
+        'country-header' => 'Country',
+        'accuracy' => 'Accuracy',
+        'user-count' => 'Active users',
+        'play-count' => 'Play count',
+        'score' => 'Performance',
+        'country-score' => 'Ranked score',
+        'country-performance' => 'Performance',
+        'x-count' => 'SS',
+        's-count' => 'S',
+        'a-count' => 'A',
+        'kudosu-received' => 'Received',
+        'kudosu-given' => 'Given',
+        'kudosu-available' => 'Available',
+    ],
+    'friends' => 'Show friends only',
 ];
