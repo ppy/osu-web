@@ -54,7 +54,7 @@ return [
                     'dropzone' => 'Suelta aquí para subir',
                     'dropzone_info' => 'También puedes soltar la imagen aquí para subirla',
                     'restriction_info' => "Subida solo disponible para <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a>",
-                    'size_info' => 'El tamaño de la portada debe ser de 2700x500',
+                    'size_info' => 'El tamaño de la portada debe ser de 2000x500',
                     'too_large' => 'El archivo es demasiado grande.',
                     'unsupported_format' => 'Formato no soportado.',
                 ],

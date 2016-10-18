@@ -55,7 +55,7 @@ return [
                     'dropzone' => 'Drop hier om te uploaden',
                     'dropzone_info' => 'Je kunt je afbeelding ook hier droppen om te uploaden',
                     'restriction_info' => "Uploaden alleen beschikbaar voor <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a>",
-                    'size_info' => 'Cover grootte moet 2700x500 zijn',
+                    'size_info' => 'Cover grootte moet 2000x500 zijn',
                     'too_large' => 'Het geüploade bestand is te groot.',
                     'unsupported_format' => 'Niet ondersteund formaat.',
                 ],
