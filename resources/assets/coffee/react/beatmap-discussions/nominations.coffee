@@ -44,7 +44,7 @@ BeatmapDiscussions.Nominations = React.createClass
     $.ajax laroute.route("beatmapsets.#{action}", beatmapsets: @props.beatmapset.id), params
 
     .done (response) =>
-      $.publish 'beatmapset:update', beatmapset: response.beatmapset.data
+      $.publish 'beatmapset:update', beatmapset: response.beatmapset
 
     .fail osu.ajaxError
     .always LoadingOverlay.hide
@@ -63,10 +63,10 @@ BeatmapDiscussions.Nominations = React.createClass
     return null unless mapCanBeNominated && mapIsQualified
 
     if mapIsQualified
-      rankingETA = @props.beatmapset.nominations.data.ranking_eta
+      rankingETA = @props.beatmapset.nominations.ranking_eta
 
     if mapCanBeNominated
-      nominations = @props.beatmapset.nominations.data
+      nominations = @props.beatmapset.nominations
       disqualification = nominations.disqualification
 
     div className: bdn,

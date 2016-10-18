@@ -69,7 +69,7 @@ class BeatmapsetPage.Scoreboard extends React.Component
         if @props.scores.length > 0
           div {},
             for score, i in @props.scores
-              if score.user.data.id == currentUser.id
+              if score.user.id == currentUser.id
                 userScoreFound = true
 
               @scoreItem score, i + 1
@@ -94,7 +94,7 @@ class BeatmapsetPage.Scoreboard extends React.Component
                 __html: osu.trans 'beatmaps.beatmapset.show.scoreboard.supporter-link', link: laroute.route 'support-the-game'
 
   scoreItem: (score, rank) ->
-    componentName = if rank == 1 || currentUser.id == score.user.data.id then 'ScoreBig' else 'Score'
+    componentName = if rank == 1 || currentUser.id == score.user.id then 'ScoreBig' else 'Score'
 
     el BeatmapsetPage[componentName],
       score: score

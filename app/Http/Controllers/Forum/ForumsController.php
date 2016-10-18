@@ -56,7 +56,7 @@ class ForumsController extends Controller
 
         priv_check('ForumView', $forum)->ensureCan();
 
-        $cover = fractal_item_array(
+        $cover = json_item(
             $forum->cover()->firstOrNew([]),
             new ForumCoverTransformer()
         );

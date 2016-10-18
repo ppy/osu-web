@@ -48,7 +48,7 @@ class @UserLogin
     $('.js-user-header').html data.header
     $('.js-user-header-popup').html data.header_popup
 
-    $.publish 'user:update', data.user.data
+    $.publish 'user:update', data.user
 
     @nav.hidePopup()
 

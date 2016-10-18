@@ -27,7 +27,7 @@ class ProfilePage.CoverSelection extends React.Component
         cover_id: @props.name
       dataType: 'json'
     .done (userData) ->
-      $.publish 'user:update', userData.data
+      $.publish 'user:update', userData
     .error osu.emitAjaxError(e.target)
 
 

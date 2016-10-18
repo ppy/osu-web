@@ -134,14 +134,14 @@ class UsersController extends Controller
             return ujs_redirect(route('users.show', $user));
         }
 
-        $achievements = fractal_collection_array(
+        $achievements = json_collection(
             Achievement::achievable()->orderBy('grouping')->orderBy('ordering')->orderBy('progression')->get(),
             new AchievementTransformer()
         );
 
-        $userArray = fractal_item_array(
+        $userArray = json_item(
             $user,
-            new UserTransformer(), implode(',', [
+            new UserTransformer(), [
                 'userAchievements',
                 'allRankHistories',
                 'allScores',
@@ -154,7 +154,7 @@ class UsersController extends Controller
                 'recentlyReceivedKudosu',
                 'rankedAndApprovedBeatmapsets.beatmaps',
                 'favouriteBeatmapsets.beatmaps',
-            ])
+            ]
         );
 
         return view('users.show', compact('user', 'userArray', 'achievements'));
