@@ -233,7 +233,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     public function includeRankedAndApprovedBeatmapsets(User $user)
     {
         return $this->collection(
-            $user->beatmapsets()->rankedOrApproved()->active()->with('defaultBeatmaps')->get(),
+            $user->beatmapsets()->rankedOrApproved()->active()->with('beatmaps')->get(),
             new BeatmapsetTransformer()
         );
     }
@@ -241,7 +241,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     public function includeFavouriteBeatmapsets(User $user)
     {
         return $this->collection(
-            $user->favouriteBeatmapsets()->with('defaultBeatmaps')->get(),
+            $user->favouriteBeatmapsets()->with('beatmaps')->get(),
             new BeatmapsetTransformer()
         );
     }

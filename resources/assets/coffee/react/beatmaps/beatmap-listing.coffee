@@ -26,7 +26,7 @@ class Beatmaps.BeatmapsListing extends React.Component
     return if !@props.beatmaps?
     for beatmap in @props.beatmaps
       panel = div
-        className: 'osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-4'
+        className: 'osu-layout__col osu-layout__col--sm-6'
         key: beatmap.id
         el BeatmapsetPanel, beatmap: beatmap
 

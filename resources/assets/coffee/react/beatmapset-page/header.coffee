@@ -43,7 +43,7 @@ class BeatmapsetPage.Header extends React.Component
 
         div className: 'beatmapset-header__overlay beatmapset-header__overlay--gradient'
 
-        div className: 'beatmapset-header__details-box',
+        div className: 'beatmapset-header__box',
           div className: 'beatmapset-header__beatmap-picker-box',
             el BeatmapsetPage.BeatmapPicker,
               beatmaps: @props.beatmaps
@@ -106,7 +106,7 @@ class BeatmapsetPage.Header extends React.Component
                     className: 'beatmapset-header__user-text beatmapset-header__user-text--date'
                     moment(@props.beatmapset.ranked_date).format dateFormat
 
-          div className: 'beatmapset-header__buttons-box',
+          div className: 'beatmapset-header__buttons',
             if @props.beatmapset.video
               [
                 @downloadButton
@@ -131,12 +131,13 @@ class BeatmapsetPage.Header extends React.Component
                 else
                   laroute.route 'support-the-game'
 
-        el BeatmapsetPage.Stats,
-          beatmapset: @props.beatmapset
-          beatmap: @props.currentBeatmap
-          isPreviewPlaying: @props.isPreviewPlaying
-          timeElapsed: @props.timeElapsed
-          previewDuration: @props.previewDuration
+        div className: 'beatmapset-header__box beatmapset-header__box--stats',
+          el BeatmapsetPage.Stats,
+            beatmapset: @props.beatmapset
+            beatmap: @props.currentBeatmap
+            isPreviewPlaying: @props.isPreviewPlaying
+            timeElapsed: @props.timeElapsed
+            previewDuration: @props.previewDuration
 
 
   downloadButton: ({key, href, icon = 'download', topTextKey = '_', bottomTextKey}) =>

@@ -22,30 +22,20 @@
   @gutter: 2px;
   display: flex;
   flex-wrap: wrap;
-  margin: 0 (-@padding + -@gutter);
-
-  width: 250px;
+  margin: 0 (-@padding + -@gutter) @spacing;
 
   &__beatmap {
     .fade-element(100ms);
     padding: (@padding + @gutter);
     opacity: 0.7;
 
-    &--active {
-      opacity: 1;
-
-      &::before {
-        background-color: fade(@grey-0, 50%);
-      }
+    &:active,
+    &:focus {
+      text-decoration: none;
     }
 
     &:hover {
       opacity: 1;
-      text-decoration: none;
-    }
-
-    &:active,
-    &:focus {
       text-decoration: none;
     }
 
@@ -60,6 +50,14 @@
 
     &:hover::before {
       background-color: fade(@grey-0, 50%);
+    }
+
+    &--active {
+      opacity: 1;
+
+      &::before {
+        background-color: fade(@grey-0, 50%);
+      }
     }
   }
 }
