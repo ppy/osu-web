@@ -55,7 +55,7 @@ return [
                     'dropzone' => 'Upuść tutaj, aby dodać',
                     'dropzone_info' => 'Możesz także upuścić swoje tło tutaj, aby je dodać',
                     'restriction_info' => "Dodawanie jest dostępne tylko dla <a href='".osu_url('support-the-game')."' target='_blank'>supporterów</a> ",
-                    'size_info' => 'Rozmiary nagłówka powinny być przynajmniej 2700x500',
+                    'size_info' => 'Rozmiary nagłówka powinny być przynajmniej 2000x500',
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
                 ],

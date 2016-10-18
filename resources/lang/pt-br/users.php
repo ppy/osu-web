@@ -55,7 +55,7 @@ return [
                     'dropzone' => 'Arraste aqui para enviar',
                     'dropzone_info' => 'Você também pode arrastar sua imagem aqui para enviar',
                     'restriction_info' => 'Envio disponível apenas para <a href="'.osu_url('support-the-game').'" target="_blank">osu!supporters</a>',
-                    'size_info' => 'Tamanho da capa deve ser 2700x500',
+                    'size_info' => 'Tamanho da capa deve ser 2000x500',
                     'too_large' => 'O arquivo enviado é muito grande.',
                     'unsupported_format' => 'Formato não suportado.',
                 ],
