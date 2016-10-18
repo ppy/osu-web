@@ -17,24 +17,27 @@
 ###
 
 class @StackedBarChart
-  constructor: (area, options = {}) ->
+  constructor: (area, @options = {}) ->
     @margins =
       top: 0
       right: 0
       bottom: 0
       left: 0
 
-    @options =
-      scales:
-        x: d3.scale.linear()
-        y: d3.scale.linear()
+    @options.scales ?= {}
+    @options.scales.x ?= d3.scale.linear()
+    @options.scales.y ?= d3.scale.linear()
 
-    _.merge(@options, options)
+    blockClass = 'stacked-bar-chart'
+    blockClass += " stacked-bar-chart--#{mod}" for mod in @options.modifiers
 
     @area = d3.select area
-    @svg = @area.append 'svg'
+    @svg = @area
+      .append 'svg'
+      .attr 'class', blockClass
 
     @svgWrapper = @svg.append 'g'
+
 
   loadData: (data) ->
     @data = []
@@ -50,11 +53,13 @@ class @StackedBarChart
 
     @resize()
 
+
   setDimensions: ->
     areaDims = @area.node().getBoundingClientRect()
 
     @width = areaDims.width - (@margins.left + @margins.right)
     @height = areaDims.height - (@margins.top + @margins.bottom)
+
 
   setScalesRange: ->
     @options.scales.x
@@ -65,14 +70,17 @@ class @StackedBarChart
       .range [0, @height]
       .domain [0, @max]
 
+
   setSvgSize: ->
     @svg
       .attr 'width', @width + (@margins.left + @margins.right)
       .attr 'height', @height + (@margins.top + @margins.bottom)
 
+
   setWrapperSize: ->
     @svgWrapper
       .attr 'transform', "translate(#{@margins.left}, #{@margins.top})"
+
 
   drawBars: ->
     groups = @svgWrapper
@@ -87,18 +95,18 @@ class @StackedBarChart
       .attr 'transform', (d, i) => "translate(#{@options.scales.x i}, 0)"
 
     bars = groups
-      .selectAll ".#{@options.className}__chart-bar"
+      .selectAll '.stacked-bar-chart__bar'
       .data (d) => d
 
     bars
       .enter()
       .append 'rect'
-      .attr 'class', (d) => "#{@options.className}__chart-bar #{@options.className}__chart-bar--#{d.type}"
+      .attr 'class', (d) => "stacked-bar-chart__bar stacked-bar-chart__bar--#{d.type}"
 
 
     bars
       .transition()
-      .attr 'y', (d) => @height - @options.scales.y (d.value + d.height)
+      .attr 'y', (d) => @height - @options.scales.y(d.value + d.height)
       .attr 'height', (d) => @options.scales.y d.value
       .attr 'width', @options.scales.x 1
 
@@ -109,6 +117,7 @@ class @StackedBarChart
     groups
       .exit()
       .remove()
+
 
   resize: =>
     @setDimensions()

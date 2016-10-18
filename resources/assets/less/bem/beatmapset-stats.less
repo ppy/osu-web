@@ -18,41 +18,17 @@
  */
 
 .beatmapset-stats {
-  width: 275px;
+  color: @grey-f;
+  font-size: 12px;
 
-  &__row {
-    background-color: rgba(0, 0, 0, 0.5);
-
-    margin-top: 1px;
-
-    &--preview {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      padding: 6.25px 0;
-
-      cursor: pointer;
-
-      &:not(:hover) {
-        background-color: rgba(0, 0, 0, 0.25);
-      }
-    }
-
-    &--basic {
-      display: flex;
-      padding: 10px 0;
-    }
-
-    &--advanced {
-      padding: 15px 15px 0 15px;
-    }
+  @media @desktop {
+    width: @beatmapset-float-box-width;
   }
 
-  &__preview-icon {
-    color: @grey-f;
-    font-size: 18px;
-    cursor: pointer;
+  &__basic {
+    display: flex;
+    flex: 1;
+    padding: (@spacing / 2);
   }
 
   &__elapsed-bar {
@@ -68,98 +44,67 @@
     height: 3px;
   }
 
-  &__text {
-    font-size: 12px;
-    color: #ffffff;
-    line-height: 1;
-
-    &--label {
-      flex: 1;
-    }
-
-    &--value-advanced {
-      text-align: center;
-      width: 25px;
-    }
-
-    &--value-basic {
-      font-weight: 700;
-      color: @yellow-light;
-    }
-
-    &--rating {
-      text-align: center;
-      padding-bottom: @spacing * 0.5;
-    }
-  }
-
-  &__basic {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-  }
-
   &__icon {
     width: 15px;
     height: 15px;
 
     background-size: contain;
 
-    margin-right: @spacing * 0.5;
+    margin-right: (@spacing / 2);
   }
 
-  &__advanced {
-    display: flex;
-    align-items: center;
-    padding-bottom: @spacing;
+  &__preview-icon {
+    color: @grey-f;
+    font-size: 18px;
+    cursor: pointer;
   }
 
-  &__bar-advanced {
-    width: 130px;
-    height: 5px;
-    background-color: rgba(255, 255, 255, 0.5);
-
-    margin-right: 5px;
-
-    &--fill {
-      .default-bar-transition;
-    }
-
-    &--cs, &--drain, &--accuracy, &--ar {
-      background-color: @grey-f;
-    }
-
-    &--stars {
-      background-color: @yellow;
-    }
+  &__rating-chart {
+    height: 25px;
   }
 
-  &__bar-rating {
-    width: 245px;
-    height: 5px;
-    background-color: @green;
-
-    &--fill {
-      background-color: @yellow-dark;
-    }
+  &__rating-header {
+    text-align: center;
+    padding-bottom: (@spacing / 2);
   }
 
   &__rating-values {
     display: flex;
     padding-bottom: @spacing;
+    justify-content: space-between;
   }
 
-  &__rating-value {
-    font-size: 12px;
-    color: #ffffff;
+  &__row {
+    background-color: fade(@grey-0, 50%);
+    margin-top: 1px;
+    padding: (@spacing * 3 / 4) (@spacing * 3 / 2);
+    display: flex;
+    flex-direction: column;
 
-    &--positive {
-      margin-left: auto;
+    &--basic {
+      flex-direction: row;
+      padding-left: @spacing;
+      padding-right: @spacing;
+      color: @yellow-light;
+      font-weight: 700;
     }
-  }
 
-  &__rating-chart {
-    height: 25px;
+    &--preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: @spacing;
+      cursor: pointer;
+
+      &:not(:hover) {
+        background-color: fade(@grey-0, 25%);
+      }
+    }
+
+    &--rating {
+      padding-top: @spacing;
+      padding-bottom: 0;
+    }
   }
 }
