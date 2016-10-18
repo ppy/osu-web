@@ -15,32 +15,39 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, a} = React.DOM
+{a, div, h3, span} = React.DOM
 el = React.createElement
 
 class BeatmapsetPage.Info extends React.Component
   componentDidMount: ->
     @renderChart()
 
+
   componentDidUpdate: ->
     @renderChart()
+
+
+  componentWillUnmount: =>
+    $(window).off '.beatmapsetPageInfo'
+
 
   renderChart: ->
     failtimes = _.keyBy @props.beatmap.failtimes.data, 'type'
 
     data = [
-      {type: 'fail', values: failtimes.fail.data},
-      {type: 'retry', values: failtimes.exit.data}
+      { type: 'fail', values: failtimes.fail.data }
+      { type: 'retry', values: failtimes.exit.data }
     ]
 
-    unless @_failurePointsChart
+    unless @_failurePointsChart?
       options =
         scales:
           x: d3.scale.linear()
           y: d3.scale.linear()
-        className: 'beatmapset-success-rate'
+        modifiers: ['beatmap-success-rate']
 
       @_failurePointsChart = new StackedBarChart @refs.chartArea, options
+      $(window).on 'throttled-resize.beatmapsetPageInfo', @_failurePointsChart.resize
 
     @_failurePointsChart.loadData data
 
@@ -48,54 +55,66 @@ class BeatmapsetPage.Info extends React.Component
     percentage = _.round (@props.beatmap.passcount / (@props.beatmap.playcount + @props.beatmap.passcount)) * 100
 
     div className: 'beatmapset-info',
-      div className: 'beatmapset-info__details',
-        div className: 'beatmapset-info__description',
-          div className: 'beatmapset-info__text beatmapset-info__text--header', osu.trans 'beatmaps.beatmapset.show.info.description'
-          div
-            className: 'beatmapset-info__text'
-            dangerouslySetInnerHTML:
-              __html: @props.beatmapset.description.data.description
+      div className: 'beatmapset-info__box beatmapset-info__box--description',
+        h3
+          className: 'beatmapset-info__header'
+          osu.trans 'beatmaps.beatmapset.show.info.description'
 
-        div className: 'beatmapset-info__tags-source-box',
-          if @props.beatmapset.source
-            div className: 'beatmapset-info__text-box beatmapset-info__text-box--source',
-              div className: 'beatmapset-info__text beatmapset-info__text--header', osu.trans 'beatmaps.beatmapset.show.info.source'
-              div
-                className: 'beatmapset-info__text beatmapset-info__text--source'
-                title: @props.beatmapset.source
-                @props.beatmapset.source
+        div
+          className: 'beatmapset-info__description'
+          dangerouslySetInnerHTML:
+            __html: @props.beatmapset.description.data.description
 
-          if @props.beatmapset.tags
-            div className: 'beatmapset-info__text-box beatmapset-info__text-box--tags',
-              div className: 'beatmapset-info__text beatmapset-info__text--header', osu.trans 'beatmaps.beatmapset.show.info.tags'
-              div
-                className: 'beatmapset-info__text'
-                @props.beatmapset.tags.split(' ').map (tag) =>
-                  return if tag.length == 0
+      div className: 'beatmapset-info__box beatmapset-info__box--meta',
+        if @props.beatmapset.source
+          div null,
+            h3
+              className: 'beatmapset-info__header'
+              osu.trans 'beatmaps.beatmapset.show.info.source'
 
+            div null, @props.beatmapset.source
+
+        if @props.beatmapset.tags
+          div null,
+            h3
+              className: 'beatmapset-info__header'
+              osu.trans 'beatmaps.beatmapset.show.info.tags'
+
+            div null,
+              @props.beatmapset.tags.split(' ').map (tag) =>
+                return if tag.length == 0
+
+                [
                   a
                     key: tag
-                    className: 'beatmapset-info__text beatmapset-info__text--tag'
-                    href: laroute.route 'beatmapsets.index', q: tag
+                    href: laroute.route('beatmapsets.index', q: tag)
                     tag
 
-      div className: 'beatmapset-info__success-rate beatmapset-success-rate',
-        div className: 'beatmapset-success-rate__label beatmapset-success-rate__label--main', osu.trans 'beatmaps.beatmapset.show.info.success-rate'
+                  span key: "#{tag}-space", ' '
+                ]
 
-        div className: 'bar bar--beatmapset-success-rate',
+      div className: 'beatmapset-info__box beatmapset-info__box--success-rate',
+        div className: 'beatmap-success-rate',
+          h3
+            className: 'beatmap-success-rate__header'
+            osu.trans 'beatmaps.beatmapset.show.info.success-rate'
+
+          div className: 'bar bar--beatmap-success-rate',
+            div
+              className: 'bar__fill'
+              style:
+                width: "#{percentage}%"
+
           div
-            className: 'bar__fill'
+            className: 'beatmap-success-rate__percentage'
             style:
-              width: "#{percentage}%"
+              paddingLeft: "#{percentage}%"
+            div null, "#{percentage}%"
 
-        div
-          className: 'beatmapset-success-rate__percentage'
-          style:
-            paddingLeft: "#{percentage}%"
-          div className: 'beatmapset-success-rate__label', "#{percentage}%"
+          h3
+            className: 'beatmap-success-rate__header'
+            osu.trans 'beatmaps.beatmapset.show.info.points-of-failure'
 
-        div className: 'beatmapset-success-rate__label beatmapset-success-rate__label--main', osu.trans 'beatmaps.beatmapset.show.info.points-of-failure'
-
-        div
-          className: 'beatmapset-success-rate__chart'
-          ref: 'chartArea'
+          div
+            className: 'beatmap-success-rate__chart'
+            ref: 'chartArea'

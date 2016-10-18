@@ -17,47 +17,22 @@
  *
  */
 
-.beatmapset-beatmap-picker {
-  @padding: (@spacing / 2);
-  @gutter: 2px;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 (-@padding + -@gutter) @spacing;
+.stacked-bar-chart {
+  @_top: stacked-bar-chart;
 
-  &__beatmap {
-    .fade-element(100ms);
-    padding: (@padding + @gutter);
-    opacity: 0.7;
+  &__bar {
+    shape-rendering: crispEdges;
 
-    &:active,
-    &:focus {
-      text-decoration: none;
+    .@{_top}--beatmapset-rating & {
+      fill: @blue-dark;
     }
 
-    &:hover {
-      opacity: 1;
-      text-decoration: none;
+    .@{_top}--beatmap-success-rate &--fail {
+      fill: @yellow-darker;
     }
 
-    &::before {
-      .full-size();
-      .default-border-radius();
-      width: calc(100% ~'-' @gutter);
-      height: calc(100% ~'-' @gutter);
-      top: (@gutter / 2);
-      left: (@gutter / 2);
-    }
-
-    &:hover::before {
-      background-color: fade(@grey-0, 50%);
-    }
-
-    &--active {
-      opacity: 1;
-
-      &::before {
-        background-color: fade(@grey-0, 50%);
-      }
+    .@{_top}--beatmap-success-rate &--retry {
+      fill: @yellow;
     }
   }
 }

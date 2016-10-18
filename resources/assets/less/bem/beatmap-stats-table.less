@@ -17,9 +17,23 @@
  *
  */
 
-.beatmapset-rating-chart {
-  &__chart-bar {
-    fill: @blue-dark;
-    shape-rendering: crispEdges;
+.beatmap-stats-table {
+  text-align: center;
+  width: 100%;
+
+  &__bar {
+    width: 100%;
+    padding: 0 @spacing;
+  }
+
+  &__label {
+    white-space: nowrap;
+    font-weight: normal;
+    padding: (@spacing / 4) 0;
+  }
+
+  &__value {
+    text-align: center;
+    min-width: 25px;
   }
 }

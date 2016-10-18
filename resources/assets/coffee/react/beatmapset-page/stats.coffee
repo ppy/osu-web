@@ -15,12 +15,15 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, span} = React.DOM
+{div, span, table, tbody, td, th, tr} = React.DOM
 el = React.createElement
 
 class BeatmapsetPage.Stats extends React.Component
   componentDidMount: ->
     @_renderChart()
+
+  componentWillUnmount: =>
+    $(window).off '.beatmapsetPageStats'
 
   componentDidUpdate: ->
     @_renderChart()
@@ -35,9 +38,10 @@ class BeatmapsetPage.Stats extends React.Component
         scales:
           x: d3.scale.linear()
           y: d3.scale.linear()
-        className: 'beatmapset-rating-chart'
+        modifiers: ['beatmapset-rating']
 
       @_ratingChart = new StackedBarChart @refs.chartArea, options
+      $(window).on 'throttled-resize.beatmapsetPageStats', @_ratingChart.resize
 
     @_ratingChart.loadData data
 
@@ -56,7 +60,7 @@ class BeatmapsetPage.Stats extends React.Component
 
     ratingsAll = ratingsPositive + ratingsNegative
 
-    div className: 'beatmapset-header__stats beatmapset-stats',
+    div className: 'beatmapset-stats',
       div
         className: "beatmapset-stats__row beatmapsets-stats__row beatmapset-stats__row--preview"
         onClick: @togglePreview
@@ -88,41 +92,52 @@ class BeatmapsetPage.Stats extends React.Component
               className: 'beatmapset-stats__icon'
               style:
                 backgroundImage: "url(/images/layout/beatmapset-page/#{stat}.svg)"
-            span className: 'beatmapset-stats__text beatmapset-stats__text--value-basic', value.toLocaleString()
+            span null, value.toLocaleString()
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--advanced',
-        for stat in ['cs', 'drain', 'accuracy', 'ar', 'stars']
-          value = if stat == 'stars'
-            @props.beatmap.difficulty_rating.toFixed 2
-          else
-            @props.beatmap[stat]
+        table className: 'beatmap-stats-table',
+          tbody null,
+            for stat in ['cs', 'drain', 'accuracy', 'ar', 'stars']
+              value =
+                if stat == 'stars'
+                  @props.beatmap.difficulty_rating
+                else
+                  @props.beatmap[stat]
 
-          if @props.beatmap.mode == 'mania' && stat == 'cs'
-            stat += '-mania'
+              valueText =
+                if stat == 'stars'
+                  value.toFixed 2
+                else
+                  value.toLocaleString()
 
-          div className: 'beatmapset-stats__advanced', key: stat,
-            span className: 'beatmapset-stats__text beatmapset-stats__text--label', osu.trans "beatmaps.beatmapset.show.stats.#{stat}"
-            div className: 'beatmapset-stats__bar-advanced',
-              div
-                className: "beatmapset-stats__bar-advanced beatmapset-stats__bar-advanced--fill beatmapset-stats__bar-advanced--#{stat}"
-                style:
-                  width: "#{value * 10}%"
-            span className: 'beatmapset-stats__text beatmapset-stats__text--value-advanced', value.toLocaleString()
+              if @props.beatmap.mode == 'mania' && stat == 'cs'
+                stat += '-mania'
 
-      div className: 'beatmapset-stats__row beatmapset-stats__row--advanced',
-        div className: 'beatmapset-stats__text beatmapset-stats__text--rating', osu.trans 'beatmaps.beatmapset.show.stats.user-rating'
-        div className: 'beatmapset-stats__bar-rating',
+              tr
+                key: stat
+                th className: 'beatmap-stats-table__label', osu.trans "beatmaps.beatmapset.show.stats.#{stat}"
+                td className: 'beatmap-stats-table__bar',
+                  div className: "bar bar--beatmap-stats bar--beatmap-stats-#{stat}",
+                    div
+                      className: 'bar__fill'
+                      style:
+                        width: "#{value * 10}%"
+                td className: 'beatmap-stats-table__value', valueText
+
+      div className: 'beatmapset-stats__row beatmapset-stats__row--rating',
+        div className: 'beatmapset-stats__rating-header', osu.trans 'beatmaps.beatmapset.show.stats.user-rating'
+        div className: 'bar--beatmap-rating',
           div
-            className: 'beatmapset-stats__bar-rating beatmapset-stats__bar-rating--fill'
+            className: 'bar__fill'
             style:
               width: "#{(ratingsNegative / ratingsAll) * 100}%"
 
         div className: 'beatmapset-stats__rating-values',
-          span className: 'beatmapset-stats__rating-value beatmapset-stats__rating-value--negative', ratingsNegative.toLocaleString()
-          span className: 'beatmapset-stats__rating-value beatmapset-stats__rating-value--positive', ratingsPositive.toLocaleString()
+          span null, ratingsNegative.toLocaleString()
+          span null, ratingsPositive.toLocaleString()
 
-        div className: 'beatmapset-stats__text beatmapset-stats__text--rating', osu.trans 'beatmaps.beatmapset.show.stats.rating-spread'
+        div className: 'beatmapset-stats__rating-header', osu.trans 'beatmaps.beatmapset.show.stats.rating-spread'
 
         div
-          className: 'beatmapset-stats__rating-chart beatmapset-rating-chart'
+          className: 'beatmapset-stats__rating-chart'
           ref: 'chartArea'
