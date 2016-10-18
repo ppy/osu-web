@@ -22,7 +22,7 @@
     $_topClass = 'osu-layout__col';
 
     if (!$_large) {
-        $_topClass .= ' osu-layout__col--sm-6 osu-layout__col--lg-4';
+        $_topClass .= ' osu-layout__col--sm-6';
     }
 ?>
 

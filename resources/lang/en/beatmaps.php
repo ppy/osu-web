@@ -123,7 +123,7 @@ return [
                 'cs-mania' => 'Key Amount',
                 'drain' => 'HP Drain',
                 'accuracy' => 'Accuracy',
-                'ar' => 'Limit Break',
+                'ar' => 'Approach Rate',
                 'stars' => 'Star Difficulty',
                 'total_length' => 'Length',
                 'bpm' => 'BPM',

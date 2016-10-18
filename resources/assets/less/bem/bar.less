@@ -23,8 +23,29 @@
   background-color: @yellow;
   height: @bar-size;
 
+  &--beatmap-rating {
+    height: (@spacing / 2);
+    background-color: @green;
+  }
+
+  &--beatmap-stats {
+    height: (@spacing / 2);
+    background-color: fade(@grey-f, 50%);
+  }
+
+  &--beatmap-success-rate {
+    height: (@spacing / 2);
+    background-color: @grey-d;
+    margin-top: (@spacing / 2);
+  }
+
   &--double {
     height: (@bar-size * 2);
+  }
+
+  &--forum-poll {
+    height: (@spacing / 2);
+    background-color: @grey-e;
   }
 
   &--user-profile {
@@ -33,22 +54,25 @@
     margin-bottom: (@spacing / 2);
   }
 
-  &--forum-poll {
-    height: (@spacing / 2);
-    background-color: @grey-e;
-  }
-
-  &--beatmapset-success-rate {
-    height: (@spacing * 0.5);
-    background-color: @grey-d;
-    margin-top: (@spacing * 0.5);
-  }
-
   &__fill {
     height: 100%;
 
-    .@{_top}--user-profile & {
-      background-color: @blue-dark;
+    .@{_top}--beatmap-rating & {
+      background-color: @yellow-dark;
+    }
+
+    .@{_top}--beatmap-stats & {
+      .default-bar-transition();
+      background-color: @grey-f;
+    }
+
+    .@{_top}--beatmap-stats-stars & {
+      background-color: @yellow;
+    }
+
+    .@{_top}--beatmap-success-rate & {
+      .default-bar-transition();
+      background-color: @green;
     }
 
     .@{_top}--forum-poll & {
@@ -60,10 +84,8 @@
       background-color: @purple-darker;
     }
 
-    .@{_top}--beatmapset-success-rate & {
-      background-color: @green;
-      .default-bar-transition;
-      margin: 0;
+    .@{_top}--user-profile & {
+      background-color: @blue-dark;
     }
   }
 }
