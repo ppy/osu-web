@@ -36,7 +36,7 @@ class LivestreamCollection
     {
         if ($this->streams === null) {
             $this->streams = Cache::remember('livestreams', 5, function () {
-                return $this->download()->streams;
+                return $this->download()->streams ?? [];
             });
         }
 
@@ -55,13 +55,21 @@ class LivestreamCollection
             ],
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_URL => $streamsApi,
+            CURLOPT_FAILONERROR => true,
         ]);
 
         // TODO: error handling
         $response = curl_exec($ch);
+
+        if (curl_errno($ch) === CURLE_OK) {
+            $return = json_decode($response);
+        } else {
+            $return = null;
+        }
+
         curl_close($ch);
 
-        return json_decode($response);
+        return $return;
     }
 
     public function featured()

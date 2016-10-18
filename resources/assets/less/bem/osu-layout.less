@@ -78,14 +78,8 @@
       }
     }
 
-    &--lg-4 {
-      @media @screen-large {
-        width: calc((4 / 12 * 100%) ~'-' @spacing);
-      }
-    }
-
-    &--lg-3 {
-      @media @screen-large {
+    &--sm-3 {
+      @media @desktop {
         width: calc((3 / 12 * 100%) ~'-' @spacing);
       }
     }
@@ -180,10 +174,6 @@
     &--page-mp-history {
       ._page;
       padding: @spacing * 2;
-
-      @media (min-width: @screen-lg-min) {
-        padding: (@spacing * 2) @padding-big;
-      }
     }
 
     &--sm1 {
@@ -207,10 +197,6 @@
       @media @desktop {
         ._width-desktop(-@spacing / 2);
       }
-    }
-
-    &--landing {
-      max-width: @landing-width;
     }
 
     &--landing-sitemap {

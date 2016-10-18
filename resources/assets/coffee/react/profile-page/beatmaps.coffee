@@ -41,7 +41,7 @@ ProfilePage.Beatmaps = React.createClass
                 beatmapsets.map (beatmapset) =>
                   div
                     key: beatmapset.id
-                    className: 'osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-4'
+                    className: 'osu-layout__col osu-layout__col--sm-6'
                     el BeatmapsetPanel, beatmap: beatmapset
           else
             p className: 'page-extra-entries', osu.trans('users.show.extra.beatmaps.none')
