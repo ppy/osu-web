@@ -169,6 +169,7 @@ class BeatmapsetPage.Main extends React.Component
 
   componentWillUnmount: ->
     @removeListeners()
+    @xhr?.abort()
 
 
   removeListeners: ->
