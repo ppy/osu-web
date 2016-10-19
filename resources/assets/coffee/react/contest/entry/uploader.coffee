@@ -56,12 +56,26 @@ class Contest.Entry.Uploader extends React.Component
         return if @props.disabled
 
         file = data.files[0];
-        if (!(/\.(osu)$/i).test(file.name))
-          osu.popup osu.trans('contest.entry.wrong_type.beatmap'), 'danger'
+
+        switch @props.contest.type
+          when 'beatmap'
+            allowedExtensions = /\.osu$/i
+            maxSize = 1000000
+
+          when 'art'
+            allowedExtensions = /\.(jpg|jpeg|png)$/i
+            maxSize = 4000000
+
+          when 'music'
+            allowedExtensions = /\.mp3$/i
+            maxSize = 15000000
+
+        if !(allowedExtensions).test(file.name)
+          osu.popup osu.trans("contest.entry.wrong_type.#{@props.contest.type}"), 'danger'
           return
 
-        if (file.size > 1000000)
-          osu.popup osu.trans('contest.entry.too_big'), 'danger'
+        if file.size > maxSize
+          osu.popup osu.trans('contest.entry.too_big', limit: osu.formatBytes(maxSize, 0)), 'danger'
           return
 
         data.submit();

@@ -30,9 +30,11 @@ return [
         'limit_reached' => 'You have reached the entry limit for this contest',
         'drop_here' => 'Drop your entry here',
         'wrong_type' => [
+            'art' => 'Only .jpg and .png files are accepted for this contest.',
             'beatmap' => 'Only .osu files are accepted for this contest.',
+            'music' => 'Only .mp3 files are accepted for this contest.',
         ],
-        'too_big' => 'Entries for this contest can only be up to 1 MB.',
+        'too_big' => 'Entries for this contest can only be up to :limit.',
     ],
     'beatmaps' => [
         'download' => 'Download Entry',
