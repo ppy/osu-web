@@ -37,7 +37,7 @@ class UsersController extends Controller
 
     private function showUser($user)
     {
-        return fractal_api_serialize_item(
+        return json_item(
             $user,
             new UserTransformer(),
             'defaultStatistics'

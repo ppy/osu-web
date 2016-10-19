@@ -89,7 +89,7 @@ class @ForumCover
         @loading[0].dataset.state = 'enabled'
 
       done: (_e, data) =>
-        @update(data.result.data)
+        @update(data.result)
 
       fail: osu.fileuploadFailCallback(@$uploadButton())
 
@@ -157,7 +157,7 @@ class @ForumCover
       url: @uploadButton[0].dataset.url
       method: 'delete'
     .done (data) =>
-      @update data.data
+      @update data
     .always =>
       @loading[0].dataset.state = ''
 

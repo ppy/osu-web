@@ -75,13 +75,13 @@ class BeatmapsController extends Controller
                 break;
         }
 
-        $scoresList = fractal_collection_array($query->get(), new ScoreTransformer, 'user');
+        $scoresList = json_collection($query->get(), new ScoreTransformer, 'user');
 
         if ($user !== null) {
             $score = (clone $query)->where('user_id', $user->user_id)->first();
 
             if ($score !== null) {
-                $userScore = fractal_item_array($score, new ScoreTransformer, 'user');
+                $userScore = json_item($score, new ScoreTransformer, 'user');
                 $userScorePosition = 1 + (clone $query)
                     ->limit(null)
                     ->where('score', '>', $score->score)

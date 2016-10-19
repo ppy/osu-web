@@ -47,7 +47,7 @@ BeatmapDiscussions.BeatmapList = React.createClass
 
       div
         className: "#{bn}__selector"
-        _.chain(@props.beatmapset.beatmaps.data)
+        _.chain(@props.beatmapset.beatmaps)
         .groupBy 'mode'
         .map (beatmaps) =>
           menuId = "beatmap-list-#{beatmaps[0].mode}"
