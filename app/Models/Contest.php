@@ -102,7 +102,7 @@ class Contest extends Model
             $includes[] = 'entries.results';
         }
 
-        $contestJson = fractal_api_serialize_item($this, new ContestTransformer, $includes);
+        $contestJson = json_item($this, new ContestTransformer, $includes);
 
         if (!empty($contestJson['entries'])) {
             if ($this->show_votes) {
@@ -148,7 +148,7 @@ class Contest extends Model
             return [];
         }
 
-        return fractal_api_serialize_collection(
+        return json_collection(
             UserContestEntry::where(['contest_id' => $this->id, 'user_id' => $user->user_id])->get(),
             new UserContestEntryTransformer
         );

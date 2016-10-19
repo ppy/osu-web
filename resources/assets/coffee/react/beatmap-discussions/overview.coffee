@@ -81,7 +81,6 @@ BeatmapDiscussions.Overview = React.createClass
       @_currentDiscussions = @props
         .beatmapsetDiscussion
         .beatmap_discussions
-        .data
         .filter (discussion) =>
           discussion.beatmap_id == @props.currentBeatmap.id
 

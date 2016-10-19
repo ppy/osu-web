@@ -412,31 +412,7 @@ function open_image($path, $dimensions = null)
     }
 }
 
-function fractal_collection_array($models, $transformer, $includes = null)
-{
-    $manager = new League\Fractal\Manager();
-    if ($includes !== null) {
-        $manager->parseIncludes($includes);
-    }
-
-    $collection = new League\Fractal\Resource\Collection($models, $transformer);
-
-    return $manager->createData($collection)->toArray();
-}
-
-function fractal_item_array($model, $transformer, $includes = null)
-{
-    $manager = new League\Fractal\Manager();
-    if ($includes !== null) {
-        $manager->parseIncludes($includes);
-    }
-
-    $item = new League\Fractal\Resource\Item($model, $transformer);
-
-    return $manager->createData($item)->toArray();
-}
-
-function fractal_api_serialize_collection($model, $transformer, $includes = null)
+function json_collection($model, $transformer, $includes = null)
 {
     $manager = new League\Fractal\Manager();
     if ($includes !== null) {
@@ -444,15 +420,15 @@ function fractal_api_serialize_collection($model, $transformer, $includes = null
     }
     $manager->setSerializer(new App\Serializers\ApiSerializer());
 
-    // we're using collection instead of item here, so we can peak at the items beforehand
+    // we're using collection instead of item here, so we can peek at the items beforehand
     $collection = new League\Fractal\Resource\Collection($model, $transformer);
 
     return $manager->createData($collection)->toArray();
 }
 
-function fractal_api_serialize_item($model, $transformer, $includes = null)
+function json_item($model, $transformer, $includes = null)
 {
-    return fractal_api_serialize_collection([$model], $transformer, $includes)[0];
+    return json_collection([$model], $transformer, $includes)[0];
 }
 
 function fast_imagesize($url)

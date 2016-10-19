@@ -121,9 +121,7 @@ class @ForumTopicReply
 
     $newPost = $(data)
 
-    newPostPosition = parseInt($newPost.attr('data-post-position'), 10)
-
-    needReload = !@forum.lastPostLoaded(newPostPosition - 1) ||
+    needReload = (@forum.postPosition($newPost[0]) - 1) != @forum.postPosition(@forum.endPost()) ||
       e.target.dataset.forceReload == '1'
 
     if needReload

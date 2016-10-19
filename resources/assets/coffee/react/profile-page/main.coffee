@@ -78,11 +78,11 @@ ProfilePage.Main = React.createClass
     $.unsubscribe '.profilePage'
 
   render: ->
-    rankHistories = @props.allRankHistories[@state.currentMode]?.data
-    stats = @props.allStats[@state.currentMode].data
-    scores = @props.allScores[@state.currentMode].data
-    scoresBest = @props.allScoresBest[@state.currentMode].data
-    scoresFirst = @props.allScoresFirst[@state.currentMode].data
+    rankHistories = @props.allRankHistories[@state.currentMode]
+    stats = @props.allStats[@state.currentMode]
+    scores = @props.allScores[@state.currentMode]
+    scoresBest = @props.allScoresBest[@state.currentMode]
+    scoresFirst = @props.allScoresFirst[@state.currentMode]
 
     div className: 'osu-layout__section',
       el ProfilePage.Header,

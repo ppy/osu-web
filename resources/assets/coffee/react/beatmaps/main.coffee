@@ -23,21 +23,22 @@ el = React.createElement
 class Beatmaps.Main extends React.Component
   constructor: (props) ->
     super props
-    beatmaps = JSON.parse(document.getElementById('json-beatmaps').text)['data']
+
     @state =
-      beatmaps: beatmaps
+      beatmaps: @props.beatmaps
       query: null
       paging:
         page: 1
         url: '/beatmapsets/search'
         loading: false
-        more: beatmaps.length > 0
+        more: @props.beatmaps.length > 0
       filters: @filterDefaults
       sorting:
         field: 'ranked'
         order: 'desc'
       loading: false
       just_restored: true
+
 
   filterDefaults:
     mode: '0'
@@ -108,13 +109,13 @@ class Beatmaps.Main extends React.Component
         data: @buildSearchQuery(searchText)
       .done (data) =>
         newState =
-          beatmaps: data['data']
+          beatmaps: data
           query: searchText
           paging:
             page: 1
             url: @state.paging.url
             loading: false
-            more: data['data'].length > 10
+            more: data.length > 10
           just_restored: false
           loading: false
 
@@ -137,9 +138,9 @@ class Beatmaps.Main extends React.Component
       dataType: 'json'
       data: $.extend(@buildSearchQuery(searchText), 'page': @state.paging.page + 1)
     .done (data) =>
-      more = data['data'].length > 10
+      more = data.length > 10
       newState =
-        beatmaps: @state.beatmaps.concat(data['data'])
+        beatmaps: @state.beatmaps.concat(data)
         paging:
           page: @state.paging.page + (if more then 1 else 0)
           url: @state.paging.url

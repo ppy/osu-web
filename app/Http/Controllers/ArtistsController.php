@@ -66,7 +66,7 @@ class ArtistsController extends Controller
             ->with('artist', $artist)
             ->with('links', $links)
             // using the api serializer to get rid of data root node, we should probably nuke that root node globally...
-            ->with('tracks', fractal_api_serialize_collection($tracks, new ArtistTrackTransformer()))
+            ->with('tracks', json_collection($tracks, new ArtistTrackTransformer()))
             ->with('images', $images);
     }
 }
