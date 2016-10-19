@@ -72,7 +72,7 @@ class ContestEntriesController extends Controller
                 break;
         }
 
-        if (!in_array(strtolower(Request::file('entry')->getClientOriginalExtension()), $allowedExtensions)) {
+        if (!in_array(strtolower(Request::file('entry')->getClientOriginalExtension()), $allowedExtensions, true)) {
             abort(422);
         }
 
