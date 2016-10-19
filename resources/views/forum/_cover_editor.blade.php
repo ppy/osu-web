@@ -38,17 +38,17 @@
                     js-forum-cover--upload-button
                     fileupload
                     forum-category-header__cover-uploader-label"
-                data-default-file-url="{{ $cover['data']['defaultFileUrl'] or '' }}"
-                data-file-url="{{ $cover['data']['fileUrl'] or '' }}"
-                data-url="{{ $cover['data']['url'] }}"
-                data-custom-method="{{ $cover['data']['method'] }}"
+                data-default-file-url="{{ $cover['defaultFileUrl'] or '' }}"
+                data-file-url="{{ $cover['fileUrl'] or '' }}"
+                data-url="{{ $cover['url'] }}"
+                data-custom-method="{{ $cover['method'] }}"
             >
                 {{ trans('forum.covers.create.button') }}
                 <input class="fileupload__input" type="file" />
             </label>
 
             <p class="forum-category-header__cover-uploader-info">
-                {{ trans('forum.covers.create.info', ['dimensions' => implode('x', $cover['data']['dimensions'])]) }}
+                {{ trans('forum.covers.create.info', ['dimensions' => implode('x', $cover['dimensions'])]) }}
             </p>
 
             <div

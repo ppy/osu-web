@@ -29,7 +29,7 @@ return [
             'check_spam' => 'Certifique-se de verificar a sua pasta de spam se você não conseguir encontrar o e-mail.',
             'recover' => 'Se você não consegue acessar seu e-mail ou ter esquecido qual você usou, siga o :link.',
             'recover_link' => 'processo de recuperação de e-mail aqui',
-            'reissue' => 'You can also :reissue_link or :logout_link.',
+            'reissue' => 'Você também pode :reissue_link ou :logout_link.',
             'reissue_link' => 'solicitar outro código',
             'logout_link' => 'sair',
         ],
@@ -40,9 +40,9 @@ return [
     ],
 
     'errors' => [
-        'expired' => 'Código de verificação expirado, novo e-mail de confirmação enviado.',
+        'expired' => 'O código de verificação expirou, um novo e-mail de confirmação foi enviado.',
         'incorrect_key' => 'Código de verificação incorreto.',
-        'retries_exceeded' => 'Código de verificação incorreto. Limite de tentativas excedido, novo e-mail de confirmação enviado.',
-        'unknown' => 'Problema desconhecido ocorreu, novo e-mail de confirmação enviado.',
+        'retries_exceeded' => 'Código de verificação incorreto. Limite de tentativas excedido, um novo e-mail de confirmação foi enviado.',
+        'unknown' => 'Um problema desconhecido ocorreu, foi enviado um novo e-mail de confirmação.',
     ],
 ];

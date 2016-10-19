@@ -83,15 +83,15 @@ class BeatmapsetPage.Header extends React.Component
             div
               className: 'beatmapset-header__avatar avatar avatar--beatmapset'
               style:
-                backgroundImage: "url(#{@props.beatmapset.user.data.avatarUrl})"
+                backgroundImage: "url(#{@props.beatmapset.user.avatarUrl})"
 
             div className: 'beatmapset-header__user-box',
               div className: 'beatmapset-header__user-text',
                 osu.trans 'beatmaps.beatmapset.show.details.made-by'
                 a
                   className: 'beatmapset-header__user-text beatmapset-header__user-text--mapper'
-                  href: laroute.route 'users.show', users: @props.beatmapset.user.data.id
-                  @props.beatmapset.user.data.username
+                  href: laroute.route 'users.show', users: @props.beatmapset.user.id
+                  @props.beatmapset.user.username
 
               div className: 'beatmapset-header__user-text',
                 osu.trans 'beatmaps.beatmapset.show.details.submitted'

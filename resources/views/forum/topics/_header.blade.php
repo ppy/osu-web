@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <?php
-    $headerCover = $cover['data']['fileUrl'] ?? $cover['data']['defaultFileUrl'] ?? null;
+    $headerCover = $cover['fileUrl'] ?? $cover['defaultFileUrl'] ?? null;
 ?>
 <div class="osu-layout__row">
     @include('forum._header_breadcrumb', [

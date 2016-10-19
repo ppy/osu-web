@@ -27,7 +27,7 @@ class Beatmaps.SearchPanel extends React.Component
   constructor: (props) ->
     super props
     @state =
-      filters: JSON.parse(document.getElementById('json-filters').text)['data']
+      filters: osu.parseJson('json-filters')
 
   keypressed: ->
     text = $('#searchbox').val().trim()

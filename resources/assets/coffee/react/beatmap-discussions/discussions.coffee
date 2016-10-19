@@ -125,7 +125,7 @@ BeatmapDiscussions.Discussions = React.createClass
 
 
   reboot: ->
-    @currentDiscussions = _.chain @props.beatmapsetDiscussion.beatmap_discussions.data
+    @currentDiscussions = _.chain @props.beatmapsetDiscussion.beatmap_discussions
       .orderBy ['timestamp', 'id'], ['asc', 'asc']
       .value()
 

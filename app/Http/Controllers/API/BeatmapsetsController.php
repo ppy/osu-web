@@ -28,7 +28,7 @@ class BeatmapsetsController extends Controller
     {
         $favourites = Auth::user()->favouriteBeatmapsets();
 
-        return fractal_api_serialize_collection(
+        return json_collection(
             $favourites->get(),
             new BeatmapsetTransformer()
         );

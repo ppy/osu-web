@@ -25,7 +25,7 @@ class BeatmapsetPage.Main extends React.Component
     optionsHash = BeatmapsetPageHash.parse location.hash
     @initialPage = optionsHash.page
 
-    beatmaps = _.concat props.beatmapset.beatmaps.data, props.beatmapset.converts.data
+    beatmaps = _.concat props.beatmapset.beatmaps, props.beatmapset.converts
     beatmaps = _.sortBy beatmaps, ['convert', 'difficulty_rating']
 
     # group beatmaps by playmode and then by beatmap id
@@ -94,8 +94,8 @@ class BeatmapsetPage.Main extends React.Component
 
     loadScore = =>
       @setState
-        scores: @scoresCache[cacheKey].scoresList.data
-        userScore: @scoresCache[cacheKey].userScore.data if @scoresCache[cacheKey].userScore?
+        scores: @scoresCache[cacheKey].scoresList
+        userScore: @scoresCache[cacheKey].userScore if @scoresCache[cacheKey].userScore?
         userScorePosition: @scoresCache[cacheKey].userScorePosition
         enabledMods: enabledMods
 
@@ -166,9 +166,11 @@ class BeatmapsetPage.Main extends React.Component
     @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
 
     @audioPreview = document.getElementsByClassName('js-beatmapset-page--audio-preview')[0]
+    @audioPreview.volume = 0.45
 
   componentWillUnmount: ->
     @removeListeners()
+    @xhr?.abort()
 
 
   removeListeners: ->

@@ -30,7 +30,7 @@ class BeatmapsetPage.Stats extends React.Component
 
   _renderChart: ->
     data = [
-      {values: @props.beatmapset.ratings.data[1..]}
+      {values: @props.beatmapset.ratings[1..]}
     ]
 
     unless @_ratingChart
@@ -54,7 +54,7 @@ class BeatmapsetPage.Stats extends React.Component
     ratingsPositive = 0
     ratingsNegative = 0
 
-    for rating, count of @props.beatmapset.ratings.data
+    for rating, count of @props.beatmapset.ratings
       ratingsNegative += count if rating >= 1 && rating <= 5
       ratingsPositive += count if rating >= 6 && rating <= 10
 

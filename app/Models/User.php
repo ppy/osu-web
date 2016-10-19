@@ -923,7 +923,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function defaultJson()
     {
-        return fractal_item_array(
+        return json_item(
             $this,
             new UserTransformer(),
             'userAchievements,defaultStatistics'
