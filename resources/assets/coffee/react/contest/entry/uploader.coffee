@@ -72,7 +72,7 @@ class Contest.Entry.Uploader extends React.Component
         file = data.files[0];
         extension = /(\.[^.]+)$/.exec(file.name)[1]
 
-        if $.inArray(extension, allowedExtensions) < 0
+        if !_.includes(allowedExtensions, extension)
           osu.popup osu.trans("contest.entry.wrong_type.#{@props.contest.type}"), 'danger'
           return
 
