@@ -58,7 +58,7 @@ return [
                     'dropzone' => 'Déplacez ici pour uploader',
                     'dropzone_info' => 'Vous pouvez aussi déplacer l\'image ici pour la mettre en ligne',
                     'restriction_info' => "Mise en ligne disponible pour les <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporteurs</a> uniquement",
-                    'size_info' => 'La taille de la bannière devrait être 2700x500',
+                    'size_info' => 'La taille de la bannière devrait être 2000x500',
                     'too_large' => 'Le fichier mis en ligne est trop gros.',
                     'unsupported_format' => 'Format non supporté.',
                 ],

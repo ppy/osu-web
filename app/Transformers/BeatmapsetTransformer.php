@@ -34,6 +34,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         'beatmaps',
         'converts',
         'nominations',
+        'ratings',
     ];
 
     public function transform(Beatmapset $beatmapset = null)
@@ -159,5 +160,12 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         }
 
         return $this->collection($converts, new BeatmapTransformer);
+    }
+
+    public function includeRatings(Beatmapset $beatmapset)
+    {
+        return $this->item($beatmapset, function ($beatmapset) {
+            return $beatmapset->ratingsCount();
+        });
     }
 }

@@ -1,7 +1,6 @@
 @import "app";
 
 @desktop: ~"(min-width: @{screen-sm-min})";
-@screen-large: ~"(min-width: @{screen-lg-min})";
 @mobile: ~"(max-width: @{screen-sm-min})";
 
 @spacing: 10px;
@@ -39,7 +38,9 @@
 
 @z-index--beatmapset-header: 1;
 
-@landing-width: 980px;
+@box-shadow-spread: 3px;
+@box-shadow-color: fade(@grey-0, 25%);
+
 @landing-dot-size: 17px;
 
 @profile-badge-size: 50px;
@@ -48,11 +49,10 @@
 @profile-avatar-size: 110px;
 @profile-cover-thumb-size: 85px;
 
-@beatmapset-avatar-size: 84px;
-@beatmapset-avatar-container-size: 90px;
+@beatmapset-avatar-size: 50px;
 
-@beatmapset-scoreboard-avatar-size: 76px;
-@beatmapset-scoreboard-avatar-container-size: 80px;
+@beatmapset-scoreboard-avatar-size: 70px;
+@beatmapset-float-box-width: 275px;
 
 // top padding + menu + page title
 @nav-avatar-size: 70px;

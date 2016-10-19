@@ -16,41 +16,50 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-class @BarChart
-  constructor: (area, options = {}) ->
+class @StackedBarChart
+  constructor: (area, @options = {}) ->
     @margins =
       top: 0
       right: 0
       bottom: 0
       left: 0
 
-    @options =
-      scales:
-        x: d3.scale.linear()
-        y: d3.scale.linear()
+    @options.scales ?= {}
+    @options.scales.x ?= d3.scale.linear()
+    @options.scales.y ?= d3.scale.linear()
 
-    _.merge(@options, options)
+    blockClass = 'stacked-bar-chart'
+    blockClass += " stacked-bar-chart--#{mod}" for mod in @options.modifiers
 
     @area = d3.select area
-    @svg = @area.append 'svg'
+    @svg = @area
+      .append 'svg'
+      .attr 'class', blockClass
 
     @svgWrapper = @svg.append 'g'
 
-  loadData: (data) ->
-    @data = _.map data, (m) ->
-      for d, i in m
-        d.height = if i > 0 then m[i - 1].value else 0
-        d
 
-    @max = d3.max _.map @data, (m) -> m[0].value + m[1].value
+  loadData: (data) ->
+    @data = []
+    for d, i in data
+      for v, j in d.values
+        @data[j] ?= []
+        @data[j].push
+          type: d.type
+          value: v
+          height: if i == 0 then 0 else @data[j][i - 1].value + @data[j][i - 1].height
+
+    @max = d3.max _.map @data, (m) -> _.sumBy m, 'value'
 
     @resize()
+
 
   setDimensions: ->
     areaDims = @area.node().getBoundingClientRect()
 
     @width = areaDims.width - (@margins.left + @margins.right)
     @height = areaDims.height - (@margins.top + @margins.bottom)
+
 
   setScalesRange: ->
     @options.scales.x
@@ -61,14 +70,17 @@ class @BarChart
       .range [0, @height]
       .domain [0, @max]
 
+
   setSvgSize: ->
     @svg
       .attr 'width', @width + (@margins.left + @margins.right)
       .attr 'height', @height + (@margins.top + @margins.bottom)
 
+
   setWrapperSize: ->
     @svgWrapper
       .attr 'transform', "translate(#{@margins.left}, #{@margins.top})"
+
 
   drawBars: ->
     groups = @svgWrapper
@@ -83,18 +95,18 @@ class @BarChart
       .attr 'transform', (d, i) => "translate(#{@options.scales.x i}, 0)"
 
     bars = groups
-      .selectAll ".#{@options.className}__chart-bar"
+      .selectAll '.stacked-bar-chart__bar'
       .data (d) => d
 
     bars
       .enter()
       .append 'rect'
-      .attr 'class', (d) => "#{@options.className}__chart-bar #{@options.className}__chart-bar--#{d.type}"
+      .attr 'class', (d) => "stacked-bar-chart__bar stacked-bar-chart__bar--#{d.type}"
 
 
     bars
       .transition()
-      .attr 'y', (d) => @height - @options.scales.y (d.value + d.height)
+      .attr 'y', (d) => @height - @options.scales.y(d.value + d.height)
       .attr 'height', (d) => @options.scales.y d.value
       .attr 'width', @options.scales.x 1
 
@@ -105,6 +117,7 @@ class @BarChart
     groups
       .exit()
       .remove()
+
 
   resize: =>
     @setDimensions()

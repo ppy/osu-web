@@ -22,7 +22,7 @@
 ])
 
 @section("content")
-    <nav class="osu-layout__row osu-layout__row--landing">
+    <nav class="osu-layout__row">
         <!-- Mobile Navigation -->
         @include('layout._header_mobile')
 
@@ -115,13 +115,13 @@
     <main class="osu-layout__row osu-layout__row--landing">
         <div class="landing-middle-buttons">
             <div class="osu-layout__col-container">
-                <a href="#" class="osu-layout__col osu-layout__col--link osu-layout__col--sm-4 osu-layout__col--lg-4">
+                <a href="#" class="osu-layout__col osu-layout__col--link osu-layout__col--sm-4">
                     <img class="landing-middle-buttons__image shadow-hover" src="/images/layout/landing-page/middle-button-1.jpg" alt="Placeholder text!">
                 </a>
-                <a href="{{ action('StoreController@getListing') }}" class="osu-layout__col osu-layout__col--link osu-layout__col--sm-4 osu-layout__col--lg-4">
+                <a href="{{ action('StoreController@getListing') }}" class="osu-layout__col osu-layout__col--link osu-layout__col--sm-4">
                     <img class="landing-middle-buttons__image shadow-hover" src="/images/layout/landing-page/middle-button-2.jpg" alt="osu!store">
                 </a>
-                <a href="//next.ppy.sh/" class="osu-layout__col osu-layout__col--link osu-layout__col--sm-4 osu-layout__col--lg-4">
+                <a href="//next.ppy.sh/" class="osu-layout__col osu-layout__col--link osu-layout__col--sm-4">
                     <img class="landing-middle-buttons__image shadow-hover" src="/images/layout/landing-page/middle-button-3.jpg" alt="osu!next">
                 </a>
             </div>
@@ -132,7 +132,7 @@
         <div class="osu-layout__row osu-layout__row--landing-sitemap landing-sitemap">
             <div class="osu-layout__col-container osu-layout__col-container--landing-sitemap">
                 @foreach (footer_links() as $section => $links)
-                    <div class="osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-3">
+                    <div class="osu-layout__col osu-layout__col--sm-3">
                         <ul class="landing-sitemap__list">
                             <li class="landing-sitemap__item">
                                 <div class="landing-sitemap__header">{{ trans("layout.footer.$section._") }}</div>

@@ -29,7 +29,7 @@ class TopicCover extends Model
 {
     use Imageable;
 
-    const MAX_DIMENSIONS = [2700, 400];
+    const MAX_DIMENSIONS = [2000, 400];
 
     protected $table = 'forum_topic_covers';
 

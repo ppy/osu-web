@@ -814,6 +814,32 @@ class Beatmapset extends Model
         return $this->belongsTo("App\Models\User", 'user_id', 'approvedby_id');
     }
 
+    public function userRatings()
+    {
+        return $this->hasMany(BeatmapsetUserRating::class);
+    }
+
+    public function ratingsCount()
+    {
+        $ratings = [];
+
+        for ($i = 0; $i <= 10; $i++) {
+            $ratings[$i] = 0;
+        }
+
+        $userRatings = $this->userRatings()
+            ->select('rating', \DB::raw('count(*) as count'))
+            ->groupBy('rating')
+            ->lists('count', 'rating')
+            ->all();
+
+        foreach ($userRatings as $rating => $count) {
+            $ratings[$rating] = $count;
+        }
+
+        return $ratings;
+    }
+
     public function description()
     {
         $topic = Topic::find($this->thread_id);
@@ -833,6 +859,6 @@ class Beatmapset extends Model
         // (mostly older beatmapsets)
         $description = $split[1] ?? '';
 
-        return bbcode($description, $post->bbcode_uid, true);
+        return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, true))->toHTML(true);
     }
 }

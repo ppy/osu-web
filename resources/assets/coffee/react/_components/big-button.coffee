@@ -1,5 +1,5 @@
 ###
-# Copyright 2016 ppy Pty. Ltd.
+# Copyright 2015-2016 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -15,10 +15,19 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, h2, span} = React.DOM
+{a, div, span} = React.DOM
+el = React.createElement
 
-class BeatmapsetPage.ExtraHeader extends React.Component
-  render: ->
-    div
-      key: 'header'
-      h2 className: 'page-extra__title', osu.trans "beatmaps.beatmapset.show.extra.#{@props.name}.title"
+@BigButton = ({modifiers = [], href, text, icon}) ->
+  blockClass = 'btn-osu-big'
+  blockClass += " btn-osu-big--#{mod}" for mod in modifiers
+
+  a
+    className: blockClass
+    href: href
+    div className: 'btn-osu-big__content',
+      div className: 'btn-osu-big__left',
+        span className: 'btn-osu-big__text-top', text.top
+        if text.bottom
+          span className: 'btn-osu-big__text-bottom', text.bottom
+      el Icon, name: icon

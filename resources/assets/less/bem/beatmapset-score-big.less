@@ -1,0 +1,161 @@
+/**
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+.beatmapset-score-big {
+  @_top: beatmapset-score-big;
+
+  .default-border-radius();
+  .default-box-shadow();
+
+  display: flex;
+  flex-direction: column;
+
+  margin: (@spacing * 2) 0;
+
+  &:hover {
+    background-color: @grey-e;
+  }
+
+  &--first-score {
+    box-shadow: 0 0 0 3px @yellow, 0 4px @box-shadow-spread @box-shadow-color;
+  }
+
+  &__section {
+    width: 100%;
+
+    &--top {
+      display: flex;
+
+      height: 65px;
+      align-self: flex-start;
+    }
+
+    &--bottom {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      height: 25px;
+      align-self: flex-end;
+      background-color: @grey-e;
+
+      border-radius: 0 0 @border-radius-base @border-radius-base;
+    }
+  }
+
+  &__position {
+    min-width: 60px;
+    flex: none;
+
+    font-size: 25px;
+    font-style: italic;
+    font-weight: 700;
+
+    padding-left: @spacing * 2;
+    padding-right: @spacing;
+
+    align-self: center;
+
+    .@{_top}--first-score & {
+      color: @yellow-dark;
+    }
+  }
+
+  &__avatar {
+    z-index: 1;
+    margin-right: @spacing;
+    margin-top: @spacing;
+    flex: none;
+  }
+
+  &__user-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    margin-right: auto;
+
+    padding-bottom: @spacing;
+  }
+
+  &__username {
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 700;
+
+    padding-bottom: @spacing * 0.5;
+
+    color: @blue-darker;
+  }
+
+  &__stats-box {
+    display: flex;
+    flex: 1;
+    align-items: flex-end;
+    justify-content: flex-end;
+
+    padding-top: (@spacing * 2);
+    padding-bottom: (@spacing);
+    padding-right: (@spacing * 2);
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    padding-left: @spacing * 2;
+  }
+
+  &__stat-header {
+    font-size: 11px;
+    font-weight: 700;
+
+    padding-bottom: @spacing * 0.2;
+  }
+
+  &__stat-value {
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    color: @purple-dark;
+
+    line-height: 0.9;
+
+    &--score {
+      font-weight: 500;
+    }
+  }
+
+  &__rank {
+    width: 30px;
+    height: 30px;
+
+    margin-left: @spacing;
+  }
+
+  &__achieved {
+    font-size: 12px;
+    color: @grey-7;
+
+    padding-right: @spacing * 2;
+
+    align-self: center;
+  }
+}

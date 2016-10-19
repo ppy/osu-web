@@ -86,7 +86,7 @@ class BeatmapsetsController extends Controller
         $set = fractal_item_array(
             $beatmapset,
             new BeatmapsetTransformer(),
-            implode(',', ['beatmaps', 'beatmaps.failtimes', 'converts', 'converts.failtimes', 'user', 'description'])
+            implode(',', ['beatmaps', 'beatmaps.failtimes', 'converts', 'converts.failtimes', 'user', 'description', 'ratings'])
         );
 
         $countries = fractal_collection_array(Country::all(), new CountryTransformer);

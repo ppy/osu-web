@@ -119,8 +119,15 @@ class @ForumTopicReply
     @$input().val ''
     @setState 'text', ''
 
-    if !@forum.lastPostLoaded() || e.target.getAttribute('data-force-reload') == '1'
-      osu.navigate $(data).find('.js-post-url').attr('href')
+    $newPost = $(data)
+
+    newPostPosition = parseInt($newPost.attr('data-post-position'), 10)
+
+    needReload = !@forum.lastPostLoaded(newPostPosition - 1) ||
+      e.target.dataset.forceReload == '1'
+
+    if needReload
+      osu.navigate $newPost.find('.js-post-url').attr('href')
     else
       @forum.setTotalPosts(@forum.totalPosts() + 1)
       @forum.endPost().insertAdjacentHTML 'afterend', data

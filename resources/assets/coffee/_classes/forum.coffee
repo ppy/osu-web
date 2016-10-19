@@ -69,8 +69,10 @@ class @Forum
     @posts[0].getAttribute('data-post-position') == '1'
 
 
-  lastPostLoaded: =>
-    parseInt(@endPost().getAttribute('data-post-position'), 10) == @totalPosts()
+  lastPostLoaded: (lastPostPosition) =>
+    lastPostPosition ?= parseInt(@endPost().getAttribute('data-post-position'), 10)
+
+    lastPostPosition == @totalPosts()
 
 
   refreshLoadMoreLinks: =>

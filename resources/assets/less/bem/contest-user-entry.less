@@ -1,0 +1,79 @@
+/**
+*    Copyright 2015 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License version 3
+*    as published by the Free Software Foundation.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
+.contest-user-entry {
+  height: 150px;
+  background: #313D40;
+  margin: 5px;
+  width: calc(50% ~'-' @spacing*2);
+  .default-box-shadow();
+  transition: 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+  &__fileicon {
+    font-size: 32px;
+    margin-top: 25px;
+  }
+
+  &__filename {
+    font-weight: lighter;
+    font-size: 15px;
+    margin-top: 10px;
+  }
+
+  &__filesize {
+    font-size: 12px;
+    color: @blue;
+  }
+
+  &__icon {
+    padding-bottom: 20px;
+    font-size: 16px;
+  }
+
+  &--ok {
+    border-bottom: #A4CA01 5px solid;
+  }
+
+  &--disabled {
+    display: none;
+  }
+
+
+  &--dragndrop-active {
+    background-color: lighten(#313D40, 5%);
+  }
+
+  &--new:hover, &--dragndrop-hover {
+    background-color: lighten(#313D40, 15%);
+    transform: scale(1.01);
+  }
+
+  &--new:active {
+    transform: scale(0.99);
+  }
+
+  &--uploader {
+    margin: 0;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+}

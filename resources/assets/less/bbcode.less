@@ -63,8 +63,29 @@
   .size-85 { font-size: 85%; }
   .size-150 { font-size: 150%; }
 
+  &--normal-line-height {
+    line-height: inherit;
+  }
+
   &__list-title {
     list-style: none;
     margin: 0;
+  }
+
+  &__video-box {
+    max-width: 425px;
+  }
+
+  &__video {
+    position: relative;
+    padding-bottom: 75%;
+
+    & iframe {
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
 }

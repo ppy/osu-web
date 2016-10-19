@@ -1,5 +1,5 @@
 ###
-# Copyright 2016 ppy Pty. Ltd.
+# Copyright 2015-2016 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -15,22 +15,15 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{a} = React.DOM
+{div} = React.DOM
 el = React.createElement
 
-class BeatmapsetPage.ExtraTab extends React.Component
-  pageSwitch: (e) =>
-    e.preventDefault()
+BeatmapsetPage.BeatmapPicker = (props) ->
+  div className: 'beatmapset-beatmap-picker',
+    for beatmapId in props.beatmapList[props.currentMode]
+      beatmap = props.beatmaps[props.currentMode][beatmapId]
 
-    $.publish 'beatmapset:page:jump', @props.page
-
-  render: ->
-    className = 'link link--white link--no-underline page-extra-tabs__item'
-    className += ' page-extra-tabs__item--active' if @props.page is @props.currentPage
-
-    a
-      href: BeatmapsetPageHash.generate page: @props.page, mode: @props.currentBeatmapId
-      className: className,
-      onClick: @pageSwitch,
-      'data-page-id': @props.page,
-      osu.trans "beatmaps.beatmapset.show.extra.#{@props.page}.title"
+      el BeatmapsetPage.BeatmapSelection,
+        key: beatmap.id
+        beatmap: beatmap
+        active: props.currentBeatmapId == beatmap.id
