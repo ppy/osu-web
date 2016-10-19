@@ -28,14 +28,14 @@ class @BeatmapsetPanel extends React.Component
     # arbitrary number
     maxDisplayedDifficulty = 10
 
-    difficulties = beatmap.beatmaps.data.slice(0, maxDisplayedDifficulty).map (b) =>
+    difficulties = beatmap.beatmaps.slice(0, maxDisplayedDifficulty).map (b) =>
       div
         className: 'beatmapset-panel__difficulty-icon'
         key: b.version
         el BeatmapIcon, beatmap: b
 
-    if beatmap.beatmaps.data.length > maxDisplayedDifficulty
-      difficulties.push span key: 'over', "+#{(beatmap.beatmaps.data.length - maxDisplayedDifficulty)}"
+    if beatmap.beatmaps.length > maxDisplayedDifficulty
+      difficulties.push span key: 'over', "+#{(beatmap.beatmaps.length - maxDisplayedDifficulty)}"
 
     div className: 'beatmapset-panel', '',
       div className: 'beatmapset-panel__panel',

@@ -29,15 +29,15 @@ BeatmapsetPage.Score = React.createClass
         "##{@props.position}"
 
       div className: 'beatmapset-score__element beatmapset-score__element--flag',
-        if @props.score.user.data.country
+        if @props.score.user.country
           el FlagCountry,
-            country: @props.countries[@props.score.user.data.country]
+            country: @props.countries[@props.score.user.country]
             classModifiers: ['scoreboard']
 
       div className: 'beatmapset-score__element beatmapset-score__element--player',
         a
-          href: laroute.route 'users.show', users: @props.score.user.data.id
-          @props.score.user.data.username
+          href: laroute.route 'users.show', users: @props.score.user.id
+          @props.score.user.username
 
       div className: 'beatmapset-score__element beatmapset-score__element--mods',
         el Mods,

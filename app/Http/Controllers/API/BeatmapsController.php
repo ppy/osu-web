@@ -37,15 +37,12 @@ class BeatmapsController extends Controller
 
         $beatmap = Beatmap::where('filename', $filename)->where('checksum', $checksum)->firstorFail();
 
-        $beatmap_meta = fractal_api_serialize_item(
-            $beatmap,
-            new BeatmapTransformer()
-        );
+        $beatmap_meta = json_item($beatmap, new BeatmapTransformer());
 
         $scores = $beatmap->scoresBest()->defaultListing()->forPage($page, $per_page);
 
         if ($beatmap->approved >= 1) {
-            $beatmap_scores = fractal_api_serialize_collection(
+            $beatmap_scores = json_collection(
                 $scores->get(),
                 new ScoreTransformer()
             );

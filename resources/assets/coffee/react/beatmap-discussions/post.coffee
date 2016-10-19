@@ -88,7 +88,7 @@ BeatmapDiscussions.Post = React.createClass
 
     .done (data) =>
       @setState editing: false
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion.data
+      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion
 
     .fail osu.ajaxError
 
@@ -145,12 +145,14 @@ BeatmapDiscussions.Post = React.createClass
         div className: "#{bn}__actions-group"
 
         div className: "#{bn}__actions-group",
-          button
-            className: "btn-osu-lite btn-osu-lite--default #{bn}__action"
-            onClick: => @setState editing: false
-            osu.trans 'common.buttons.cancel'
+          div className: "#{bn}__action",
+            button
+              className: 'btn-osu-lite btn-osu-lite--default'
+              onClick: => @setState editing: false
+              osu.trans 'common.buttons.cancel'
 
-          button
-            className: "btn-osu-lite btn-osu-lite--default #{bn}__action"
-            onClick: @throttledUpdatePost
-            osu.trans 'common.buttons.save'
+          div className: "#{bn}__action",
+            button
+              className: 'btn-osu-lite btn-osu-lite--default'
+              onClick: @throttledUpdatePost
+              osu.trans 'common.buttons.save'

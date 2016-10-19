@@ -29,7 +29,7 @@
                 u-forum--bg
                 forum-category-header--forum
                 js-forum-cover--header"
-            style="{{ isset($cover['data']['fileUrl']) === true ? "background-image: url('{$cover['data']['fileUrl']}');" : '' }}"
+            style="{{ isset($cover['fileUrl']) === true ? "background-image: url('{$cover['fileUrl']}');" : '' }}"
         >
             <div class="forum-category-header__loading js-forum-cover--loading">
                 @include('objects._spinner')

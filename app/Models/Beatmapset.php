@@ -787,11 +787,7 @@ class Beatmapset extends Model
             $includes[] = 'nominations';
         }
 
-        return fractal_item_array(
-            $this,
-            new BeatmapsetTransformer,
-            implode($includes, ',')
-        );
+        return json_item($this, new BeatmapsetTransformer, $includes);
     }
 
     public function defaultBeatmaps()
