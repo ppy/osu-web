@@ -53,7 +53,7 @@
     <div class="js-header--alt js-sync-height--target" data-sync-height-id="forum-topic-headernav"></div>
 
     @if ($topic->poll()->exists())
-        <div class="osu-layout__row">
+        <div class="osu-layout__row js-header--main">
             @include('forum.topics._poll')
         </div>
     @endif

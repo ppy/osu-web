@@ -19,7 +19,7 @@
 .osu-layout {
   ._page {
     .default-box-shadow();
-    background-color: @grey-f;
+    background-color: @gray-f;
   }
 
   display: flex;
@@ -212,7 +212,7 @@
 
     &--extra {
       flex: 1 0 auto;
-      background-color: fade(@grey-0, 75%);
+      background-color: fade(@gray-0, 75%);
 
       // for some reason linear-gradient doesn't work on main div
       &::before {
@@ -222,7 +222,7 @@
         top: 0;
         width: 100%;
         height: 4px;
-        background-image: linear-gradient(to bottom, @grey-3, transparent);
+        background-image: linear-gradient(to bottom, @gray-3, transparent);
       }
     }
 
@@ -261,7 +261,7 @@
     }
 
     &--with-separator {
-      background-image: linear-gradient(to bottom, fade(@grey-0, 20%), transparent 3px);
+      background-image: linear-gradient(to bottom, fade(@gray-0, 20%), transparent 3px);
     }
   }
 }
