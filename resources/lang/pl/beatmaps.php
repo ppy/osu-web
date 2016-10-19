@@ -96,75 +96,62 @@ return [
     'beatmapset' => [
         'show' => [
             'details' => [
-                'made-by' => 'stworzony przez :user',
+                'made-by' => 'stworzony przez ',
                 'submitted' => 'dodana ',
                 'ranked' => 'rankingowa od ',
                 'logged-out' => 'Musisz się zalogować, aby pobierać beatmapy!',
                 'download' => [
-                    'normal' => 'pobierz',
+                    '_' => 'pobierz',
+                    'video' => 'z wideo',
+                    'no-video' => 'bez wideo',
                     'direct' => 'osu!direct',
-                    'no-video' => 'wersja bez wideo',
                 ],
             ],
             'stats' => [
                 //this is left intentionally in english, you can't translate these so it sounds normal
                 'cs' => 'Circle Size',
-                'hp' => 'HP Drain',
-                'od' => 'Accuracy',
+                'cs-mania' => 'Key Amount',
+                'drain' => 'HP Drain',
+                'accuracy' => 'Accuracy',
                 'ar' => 'Approach Rate',
                 'stars' => 'Trudność',
-                'length' => 'Długość',
+                'total_length' => 'Długość',
                 'bpm' => 'BPM',
+                'count_circles' => 'Ilość kółek',
+                'count_sliders' => 'Ilość sliderów',
+            ],
+            'info' => [
+                'success-rate' => 'Wskaźnik sukcesu',
+                'points-of-failure' => 'Wykres',
 
-                'chart' => [
-                    'cs' => 'CS',
-                    'hp' => 'HP',
-                    'od' => 'OD',
-                    'ar' => 'AR',
-                    'sd' => 'SD',
-                ],
+                'description' => 'Opis',
 
                 'source' => 'Źródło',
                 'tags' => 'Tagi',
             ],
-            'extra' => [
-                'description' => [
-                    'title' => 'Opis',
+            'scoreboard' => [
+                'title' => 'Tablica wyników',
+                'no-scores' => [
+                    'global' => 'Brak wyników. Może powinieneś jakieś zdobyć?',
+                    'loading' => 'Ładowanie wyników...',
+                    'country' => 'Nikt z twojego kraju nie ustanowił tutaj wyniku!',
+                    'friend' => 'Żaden z twoich znajomych nie ma tutaj wyniku!',
                 ],
-                'success-rate' => [
-                    'title' => 'Wskaźnik sukcesu',
-                    'rate' => 'Wskaźnik sukcesu: :percentage%',
-                    'points' => 'Wykres',
-                    'retry' => 'Ponowne próby',
-                    //this is left intentionally as well
-                    'fail' => 'Fail',
+                'supporter-only' => 'Musisz być supporterem, aby uzyskać dostęp do rankingu krajowego i znajomych!',
+                'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, co jeszcze otrzymujesz w zamian za bycie supporterem!',
+                'global' => 'Ranking globalny',
+                'country' => 'Ranking krajowy',
+                'friend' => 'Ranking znajomych',
+                'achieved' => 'osiągnięty :when',
+                'stats' => [
+                    'accuracy' => 'Celność',
+                    'score' => 'Wynik',
                 ],
-                'scoreboard' => [
-                    'title' => 'Tablica wyników',
-                    'no-scores' => [
-                        'global' => 'Brak wyników. Może powinieneś jakieś zdobyć?',
-                        'loading' => 'Ładowanie wyników...',
-                        'country' => 'Nikt z twojego kraju nie ustanowił tutaj wyniku!',
-                        'friend' => 'Żaden z twoich znajomych nie ma tutaj wyniku!',
-                    ],
-                    'supporter-only' => 'Musisz być supporterem, aby uzyskać dostęp do rankingu krajowego i znajomych!',
-                    'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, co jeszcze otrzymujesz w zamian za bycie supporterem!',
-                    'global' => 'Ranking globalny',
-                    'country' => 'Ranking krajowy',
-                    'friend' => 'Ranking znajomych',
-                    'first' => [
-                        'accuracy' => 'Celność',
-                        'score' => 'Wynik',
-                        'count300' => '300',
-                        'count100' => '100',
-                        'count50' => '50',
-                    ],
-                    'list' => [
-                        'rank-header' => 'Miejsce',
-                        'player-header' => 'Gracz',
-                        'score' => 'Wynik',
-                        'accuracy' => 'Celność',
-                    ],
+                'list' => [
+                    'rank-header' => 'Miejsce',
+                    'player-header' => 'Gracz',
+                    'score' => 'Wynik',
+                    'accuracy' => 'Celność',
                 ],
             ],
         ],
@@ -197,6 +184,9 @@ return [
         'novelty' => 'Nowość',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Electro',
+    ],
+    'mods' => [
+        'NM' => 'Bez modów',
     ],
     'language' => [
     'any' => 'Jakikolwiek',

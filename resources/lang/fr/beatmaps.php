@@ -107,73 +107,56 @@ return [
     'beatmapset' => [
         'show' => [
             'details' => [
-                'made-by' => 'créé par :user',
+                'made-by' => 'créé par ',
                 'submitted' => 'envoyé le ',
                 'ranked' => 'classifié le ',
                 'logged-out' => 'Vous devez vous connecter avant de télécharger des beatmaps!',
                 'download' => [
-                    'normal' => 'télécharger',
-                    'direct' => 'osu!direct',
+                    '_' => 'télécharger',
                     'no-video' => 'sans la vidéo',
+                    'direct' => 'osu!direct',
                 ],
             ],
             'stats' => [
                 'cs' => 'Taille du cercle',
-                'hp' => 'Drainage PV',
-                'od' => 'Précision',
+                'drain' => 'Drainage PV',
+                'accuracy' => 'Précision',
                 'ar' => 'Niveau d\'approche',
                 'stars' => 'Difficulté étoiles',
-                'length' => 'Longeur',
+                'total_length' => 'Longeur',
                 'bpm' => 'BPM',
+            ],
+            'info' => [
+                'success-rate' => 'Taux de réussite',
+                'points-of-failure' => 'Points de ratés',
 
-                'chart' => [
-                    'cs' => 'CS',
-                    'hp' => 'HP',
-                    'od' => 'OD',
-                    'ar' => 'AR',
-                    'sd' => 'SD',
-                ],
+                'description' => 'Description',
 
                 'source' => 'Source',
                 'tags' => 'Tags',
             ],
-            'extra' => [
-                'description' => [
-                    'title' => 'Description',
+            'scoreboard' => [
+                'title' => 'Tableaux des scores',
+                'no-scores' => [
+                    'global' => 'Pas de scores. Peut-être vous dans le classement?',
+                    'loading' => 'Chargement des scores...',
+                    'country' => 'Personne de votre pays n\'a encore fait un score!',
+                    'friend' => 'Personnne de vos amis n\'a encore fait un score!',
                 ],
-                'success-rate' => [
-                    'title' => 'Taux de réussite',
-                    'rate' => 'Taux de réussite: :percentage%',
-                    'points' => 'Points de ratés',
-                    'retry' => 'Réesayé',
-                    'fail' => 'Raté',
+                'supporter-only' => 'Vous devez être osu!supporter pour accéder à cette fonctionnalité!',
+                'supporter-link' => 'Cliquez <a href=":link">ici</a> pour connaître toutes les supers fonctions obtenus avec!',
+                'global' => 'Classement global',
+                'country' => 'Classement national',
+                'friend' => 'Classement des amis',
+                'stats' => [
+                    'accuracy' => 'Précision',
+                    'score' => 'Score',
                 ],
-                'scoreboard' => [
-                    'title' => 'Tableaux des scores',
-                    'no-scores' => [
-                        'global' => 'Pas de scores. Peut-être vous dans le classement?',
-                        'loading' => 'Chargement des scores...',
-                        'country' => 'Personne de votre pays n\'a encore fait un score!',
-                        'friend' => 'Personnne de vos amis n\'a encore fait un score!',
-                    ],
-                    'supporter-only' => 'Vous devez être osu!supporter pour accéder à cette fonctionnalité!',
-                    'supporter-link' => 'Cliquez <a href=":link">ici</a> pour connaître toutes les supers fonctions obtenus avec!',
-                    'global' => 'Classement global',
-                    'country' => 'Classement national',
-                    'friend' => 'Classement des amis',
-                    'first' => [
-                        'accuracy' => 'Précision',
-                        'score' => 'Score',
-                        'count300' => '300',
-                        'count100' => '100',
-                        'count50' => '50',
-                    ],
-                    'list' => [
-                        'rank-header' => 'Rang',
-                        'player-header' => 'Joueur',
-                        'score' => 'Score',
-                        'accuracy' => 'Précision',
-                    ],
+                'list' => [
+                    'rank-header' => 'Rang',
+                    'player-header' => 'Joueur',
+                    'score' => 'Score',
+                    'accuracy' => 'Précision',
                 ],
             ],
         ],
