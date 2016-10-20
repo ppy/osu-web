@@ -19,7 +19,7 @@
 
 // per-category header image
 .forum-category-header {
-  @_top: ~"forum-category-header";
+  @_top: forum-category-header;
 
   .at2x-simple("/images/headers/forum-category.png");
   background-size: cover;
@@ -105,6 +105,12 @@
         opacity: 1;
       }
     }
+  }
+
+  &__counter {
+    margin-left: @spacing;
+    display: flex;
+    align-items: flex-end;
   }
 
   &__cover-uploader {
@@ -222,6 +228,12 @@
 
     &--forum {
       font-size: 45px;
+    }
+  }
+
+  &__titles {
+    .@{_top}--topic & {
+      display: flex;
     }
   }
 }
