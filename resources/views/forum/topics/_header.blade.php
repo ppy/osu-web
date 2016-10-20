@@ -42,7 +42,7 @@
         <div class="forum-category-header__titles">
             @if ($newTopic)
                 <input
-                    class="forum-category-header__title js-forum-placeholder-hide"
+                    class="forum-category-header__title js-form-placeholder-hide"
                     required
                     tabindex="1"
                     name="title"
