@@ -287,6 +287,7 @@ function nav_links()
     ];
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
+        'contests' => route('community.contests.index'),
         'tournaments' => route('tournaments.index'),
         'getLive' => route('livestreams.index'),
         'getSlack' => route('slack'),
@@ -377,6 +378,11 @@ function display_regdate($user)
     }
 
     return trans('users.show.joined_at', ['date' => $user->user_regdate->formatLocalized('%B %Y')]);
+}
+
+function i18n_date($datetime, $format = 'dd MMMM yyyy')
+{
+    return \IntlDateFormatter::formatObject($datetime, $format, \App::getLocale());
 }
 
 function open_image($path, $dimensions = null)

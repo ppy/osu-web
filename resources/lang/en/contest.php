@@ -19,6 +19,10 @@
  */
 
 return [
+    'header' => [
+        'small' => 'Community Contests and Stuff',
+        'large' => 'osu! Community Contests',
+    ],
     'voting' => [
         'over' => 'Voting for this contest has ended',
     ],
@@ -38,4 +42,8 @@ return [
         'download' => 'Download Entry',
     ],
     'votes' => '1 vote|:count votes',
+    'dates' => [
+        'starts' => 'Starts :date',
+        'ended' => 'Ended :date',
+    ],
 ];

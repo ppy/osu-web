@@ -63,7 +63,9 @@ Route::put('beatmap-discussions/{beatmap_discussions}/vote', ['uses' => 'Beatmap
 Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['store', 'update']]);
 
 // contests
-Route::get('/community/contests/{contest_id}', ['as' => 'contest.show', 'uses' => 'ContestsController@show']);
+Route::group(['prefix' => 'community'], function () {
+    Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);
+});
 
 // contest entries
 Route::put('contest-entries/{contest_entry_id}/vote', ['as' => 'contest-entries.vote', 'uses' => 'ContestEntriesController@vote']);
