@@ -32,34 +32,29 @@
   height: 100px;
 
   @media @desktop {
-    padding-left: @padding-big;
+    padding-left: 40px;
     padding-right: @padding-big;
     height: 150px;
 
-    &--artist {
-      padding-left: 40px;
-    }
-
     &--contests {
       .default-box-shadow();
-      padding-left: 40px;
       z-index: @z-index--contest-header;
     }
   }
 
   &__subtitle {
     font-size: @font-size--new-header-subtitle;
-    margin-bottom: 10px;
+    margin-bottom: @spacing;
     margin-top: 5px;
   }
 
   &__title {
     font-size: @font-size--new-header-title;
-    margin-top: 35px;
+    margin-top: 30px;
     font-style: italic;
 
     @media @mobile {
-      margin-top: 10px;
+      margin-top: @spacing;
     }
 
     &--artist {
