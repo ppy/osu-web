@@ -96,10 +96,10 @@ class Contest extends Model
                 return trans('contest.dates.starts', ['date' => i18n_date($this->entry_starts_at)]);
                 break;
             case 'entry':
-                return i18n_date($this->entry_starts_at) . ' - ' . i18n_date($this->entry_ends_at);
+                return i18n_date($this->entry_starts_at).' - '.i18n_date($this->entry_ends_at);
                 break;
             case 'voting':
-                return i18n_date($this->voting_starts_at) . ' - ' . i18n_date($this->voting_ends_at);
+                return i18n_date($this->voting_starts_at).' - '.i18n_date($this->voting_ends_at);
                 break;
             default:
                 return trans('contest.dates.ended', ['date' => i18n_date($this->voting_ends_at)]);
