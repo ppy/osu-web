@@ -19,7 +19,7 @@
 
 // per-category header image
 .forum-category-header {
-  @_top: ~"forum-category-header";
+  @_top: forum-category-header;
 
   .at2x-simple("/images/headers/forum-category.png");
   background-size: cover;
@@ -77,7 +77,7 @@
   }
 
   &--topic-create {
-    background-color: @grey-5;
+    background-color: @gray-5;
   }
 
   &__actions {
@@ -107,6 +107,12 @@
     }
   }
 
+  &__counter {
+    margin-left: @spacing;
+    display: flex;
+    align-items: flex-end;
+  }
+
   &__cover-uploader {
     .default-box-shadow();
     .default-border-radius();
@@ -114,7 +120,7 @@
     position: absolute;
     top: 0;
     right: (@spacing * 4);
-    background-color: @grey-f;
+    background-color: @gray-f;
     padding: @spacing;
     display: flex;
     min-width: 250px;
@@ -154,9 +160,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: @grey-f;
+    color: @gray-f;
     transition: opacity 120ms, background-color 120ms;
-    background-color: fade(@grey-0, 50%);
+    background-color: fade(@gray-0, 50%);
 
     &[data-state="hidden"] {
       opacity: 0;
@@ -167,12 +173,12 @@
     }
 
     &[data-state="hover"] {
-      background-color: fade(@grey-0, 80%);
+      background-color: fade(@gray-0, 80%);
     }
   }
 
   &__description {
-    color: @grey-f;
+    color: @gray-f;
     .default-text-shadow;
     font-size: 12px;
   }
@@ -187,7 +193,7 @@
     width: 100%;
     top: 0;
     left: 0;
-    background-color: fade(@grey-0, 50%);
+    background-color: fade(@gray-0, 50%);
     opacity: 0;
     transition: opacity 120ms;
     pointer-events: none;
@@ -202,7 +208,7 @@
   }
 
   &__name {
-    color: @grey-f;
+    color: @gray-f;
     .default-text-shadow;
     font-size: 24px;
   }
@@ -217,11 +223,17 @@
     font-size: 36px;
     font-style: italic;
     .default-text-shadow;
-    color: @grey-f;
+    color: @gray-f;
     display: block;
 
     &--forum {
       font-size: 45px;
+    }
+  }
+
+  &__titles {
+    .@{_top}--topic & {
+      display: flex;
     }
   }
 }

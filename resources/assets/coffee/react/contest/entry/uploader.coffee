@@ -29,12 +29,26 @@ class Contest.Entry.Uploader extends React.Component
     @setState state: state
 
   componentDidMount: =>
+    switch @props.contest.type
+      when 'art'
+        allowedExtensions = ['.jpg', '.jpeg', '.png']
+        maxSize = 4000000
+
+      when 'beatmap'
+        allowedExtensions = ['.osu']
+        maxSize = 1000000
+
+      when 'music'
+        allowedExtensions = ['.mp3']
+        maxSize = 15000000
+
+
     $dropzone = $('.js-contest-entry-upload--dropzone')
     $uploadButton = $ '<input>',
       class: 'js-contest-entry-upload fileupload__input'
       type: 'file'
       name: 'entry'
-      accept: '.osu'
+      accept: allowedExtensions.join(',')
       disabled: @props.disabled
 
     $(@refs.uploadButtonContainer).append($uploadButton)
@@ -56,12 +70,14 @@ class Contest.Entry.Uploader extends React.Component
         return if @props.disabled
 
         file = data.files[0];
-        if (!(/\.(osu)$/i).test(file.name))
-          osu.popup osu.trans('contest.entry.wrong_type.beatmap'), 'danger'
+        extension = /(\.[^.]+)$/.exec(file.name)[1]
+
+        if !_.includes(allowedExtensions, extension)
+          osu.popup osu.trans("contest.entry.wrong_type.#{@props.contest.type}"), 'danger'
           return
 
-        if (file.size > 1000000)
-          osu.popup osu.trans('contest.entry.too_big'), 'danger'
+        if file.size > maxSize
+          osu.popup osu.trans('contest.entry.too_big', limit: osu.formatBytes(maxSize, 0)), 'danger'
           return
 
         data.submit();
