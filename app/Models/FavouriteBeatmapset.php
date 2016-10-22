@@ -24,5 +24,24 @@ use Illuminate\Database\Eloquent\Model;
 class FavouriteBeatmapset extends Model
 {
     protected $table = 'osu_favouritemaps';
+
     public $timestamps = false;
+    protected $dates = [
+        'dateadded',
+    ];
+
+    protected $fillable = [
+        'user_id',
+        'beatmapset_id',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(App\Models\User::class);
+    }
+
+    public function beatmapset()
+    {
+        return $this->belongsTo(App\Models\Beatmapset::class);
+    }
 }

@@ -56,6 +56,8 @@ class BeatmapsetPage.Main extends React.Component
       beatmapList: beatmapList
       currentBeatmapId: currentBeatmapId
       currentPlaymode: currentPlaymode
+      favcount: props.beatmapset.favourite_count
+      hasFavourited: props.beatmapset.has_favourited
       loading: false
       isPreviewPlaying: false
       currentScoreboardType: 'global'
@@ -151,6 +153,18 @@ class BeatmapsetPage.Main extends React.Component
   setHoveredBeatmapId: (_e, hoveredBeatmapId) =>
     @setState hoveredBeatmapId: hoveredBeatmapId
 
+  toggleFavourite: =>
+    console.log 'asdf'
+
+    $.ajax
+      url: laroute.route("beatmapsets.#{if @state.hasFavourited then 'unfavourite' else 'favourite'}", beatmapsets: @props.beatmapset.id)
+      method: if @state.hasFavourited then 'delete' else 'post'
+
+    .done (data) =>
+      @setState
+        favcount: data.favcount
+        hasFavourited: data.favourited
+
   onPreviewEnded: =>
     @setState isPreviewPlaying: false
 
@@ -161,6 +175,7 @@ class BeatmapsetPage.Main extends React.Component
     $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
     $.subscribe 'beatmapset:preview:toggle.beatmapsetPage', @togglePreviewPlayingState
     $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmapId
+    $.subscribe 'beatmapset:favourite:toggle', @toggleFavourite
 
     @setHash()
     @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
@@ -193,6 +208,8 @@ class BeatmapsetPage.Main extends React.Component
           beatmapList: @state.beatmapList
           currentBeatmap: currentBeatmap
           hoveredBeatmap: @state.beatmaps[@state.currentPlaymode][@state.hoveredBeatmapId]
+          favcount: @state.favcount
+          hasFavourited: @state.hasFavourited
           isPreviewPlaying: @state.isPreviewPlaying
 
         el BeatmapsetPage.Info,

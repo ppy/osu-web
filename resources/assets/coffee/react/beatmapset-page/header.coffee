@@ -19,6 +19,10 @@
 el = React.createElement
 
 class BeatmapsetPage.Header extends React.Component
+  toggleFavourite: ->
+    console.log 'asdf'
+    $.publish 'beatmapset:favourite:toggle'
+
   render: ->
     dateFormat = 'MMM D, YYYY'
 
@@ -66,8 +70,12 @@ class BeatmapsetPage.Header extends React.Component
                 span className: 'beatmapset-header__value-name', @props.beatmapset.play_count.toLocaleString()
 
               span className: 'beatmapset-header__value',
-                span className: 'beatmapset-header__value-icon', el Icon, name: 'heart'
-                span className: 'beatmapset-header__value-name', @props.beatmapset.favourite_count.toLocaleString()
+                span
+                  onClick: @toggleFavourite
+                  title: osu.trans "beatmaps.beatmapset.show.details.#{if @props.hasFavourited then 'unfavourite' else 'favourite'}"
+                  className: "beatmapset-header__value-icon #{'beatmapset-header__value-icon--favourited' if @props.hasFavourited}"
+                  el Icon, name: 'heart'
+                span className: 'beatmapset-header__value-name', @props.favcount.toLocaleString()
 
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--title'

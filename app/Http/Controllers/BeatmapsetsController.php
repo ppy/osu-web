@@ -21,6 +21,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
+use App\Models\FavouriteBeatmapset;
 use App\Models\Country;
 use App\Models\Language;
 use App\Models\Genre;
@@ -197,6 +198,55 @@ class BeatmapsetsController extends Controller
 
         return [
             'beatmapset' => $beatmapset->defaultJson(Auth::user()),
+        ];
+    }
+
+    public function favourite($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+        $user = Auth::user();
+
+        if ($user->favouriteBeatmapsets()->count() > 99) {
+            return error_popup(trans('errors.beatmapsets.too-many-favourites'));
+        }
+
+        \DB::transaction(function () use ($user, $beatmapset) {
+            FavouriteBeatmapset::create([
+                'user_id' => $user->user_id,
+                'beatmapset_id' => $beatmapset->beatmapset_id,
+            ]);
+
+            $beatmapset->favourite_count += 1;
+            $beatmapset->save();
+        });
+
+        return [
+          'favcount' => $beatmapset->favourite_count,
+          'favourited' => $beatmapset->hasFavourited(),
+        ];
+    }
+
+    public function unfavourite($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+        $user = Auth::user();
+
+        if (!$beatmapset->hasFavourited()) {
+            return error_popup(trans('errors.beatmapsets.not-favourited'));
+        }
+
+        \DB::transaction(function () use ($user, $beatmapset) {
+            FavouriteBeatmapset::where('user_id', $user->user_id)
+              ->where('beatmapset_id', $beatmapset->beatmapset_id)
+              ->delete();
+
+            $beatmapset->favourite_count -= 1;
+            $beatmapset->save();
+        });
+
+        return [
+          'favcount' => $beatmapset->favourite_count,
+          'favourited' => $beatmapset->hasFavourited(),
         ];
     }
 }
