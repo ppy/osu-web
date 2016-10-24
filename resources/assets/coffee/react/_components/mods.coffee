@@ -23,12 +23,10 @@
 
     div className: blockClass,
       for mod in mods
-        modName = osu.trans "beatmaps.mods.#{mod}"
 
         div
           key: mod
           className: 'mods__mod'
-          img _.extend
-            className: 'mods__mod-image'
-            title: modName
-            osu.src2x("/images/badges/mods/#{_.kebabCase(modName)}.png")
+          div
+            className: "mods__mod-image mods__mod-image--#{mod}"
+            title: osu.trans("beatmaps.mods.#{mod}")
