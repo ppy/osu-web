@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+el = React.createElement
 {div, img} = React.DOM
 
 @Mods = ({modifiers = [], mods = []}) ->
@@ -23,10 +24,9 @@
 
     div className: blockClass,
       for mod in mods
-
         div
           key: mod
           className: 'mods__mod'
           div
-            className: "mods__mod-image mods__mod-image--#{mod}"
-            title: osu.trans("beatmaps.mods.#{mod}")
+            className: 'mods__mod-image'
+            el Mod, mod: mod
