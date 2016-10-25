@@ -1,5 +1,5 @@
 ###
-# Copyright 2015-2016 ppy Pty. Ltd.
+# Copyright 2016 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -15,20 +15,13 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-el = React.createElement
-{img, div} = React.DOM
+{div} = React.DOM
 
-class BeatmapsetPage.ScoreboardMod extends React.Component
-  onClick: =>
-    $.publish 'beatmapset:scoreboard:set', enabledMod: @props.mod
-
-  render: ->
-    className = 'beatmapset-scoreboard__mod-box'
-    className += ' beatmapset-scoreboard__mod-box--enabled' if @props.enabled
+@Mod = ({modifiers = [], mod}) ->
+    blockClass = 'mod'
+    blockClass += " mod--#{m}" for m in modifiers
+    blockClass += " mod--#{mod}"
 
     div
-      className: className
-      onClick: @onClick
-      div
-        className: 'beatmapset-scoreboard__mod'
-        el Mod, mod: @props.mod
+      className: blockClass
+      title: osu.trans("beatmaps.mods.#{mod}")
