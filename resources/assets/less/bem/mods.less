@@ -25,7 +25,7 @@
 
 
   @_mod-width: 30px;
-  @_mod-height: 22px;
+  @_mod-height: @mod-height;
 
   @_width: (@_mod-width * 3);
 
@@ -72,6 +72,15 @@
     flex: none;
     width: @_mod-width;
     height: @_mod-height;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    .all(@name, @filename) {
+      &--@{name} {
+        .at2x-simple("/images/badges/mods/mod_@{filename}.png");
+      }
+    }
 
     .@{_top}--small & {
       width: @_mod-width-small;
@@ -82,5 +91,27 @@
       width: @_mod-width-large;
       height: @_mod-height-large;
     }
+
+    .all(NM, 'no-mod');
+    .all(NF, 'no-fail');
+    .all(EZ, 'easy');
+    .all(HD, 'hidden');
+    .all(HR, 'hard-rock');
+    .all(SD, 'sudden-death');
+    .all(DT, 'double-time');
+    .all(Relax, 'relax');
+    .all(HT, 'half');
+    .all(NC, 'nightcore');
+    .all(FL, 'flashlight');
+    .all(SO, 'spun-out');
+    .all(AP, 'autopilot');
+    .all(PF, 'perfect');
+    .all(4K, '4K');
+    .all(5K, '5K');
+    .all(6K, '6K');
+    .all(7K, '7K');
+    .all(8K, '8K');
+    .all(FI, 'fader');
+    .all(9K, '9K');
   }
 }
