@@ -34,7 +34,6 @@
         <div class="osu-page-header-v2 osu-page-header-v2--artist">
             <div class="osu-page-header-v2__overlay"></div>
             <div class="osu-page-header-v2__title osu-page-header-v2__title--artist">{{$artist->name}}</div>
-            <div class="osu-page-header-v2__subtitle"></div>
         </div>
     </div>
     <div class="osu-layout__row osu-layout__row--page-artist">
