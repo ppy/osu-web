@@ -34,11 +34,10 @@
     <div class="osu-layout__row osu-layout__row--page-contests">
         <div class="page-contents__content--contests">
             <div class="contest-list">
-                <div class="contest-list-legend" >
-                    <div class="contest-list-legend__item contest-list-legend__item--preparing">Preparing</div>
-                    <div class="contest-list-legend__item contest-list-legend__item--entry">Entry Open</div>
-                    <div class="contest-list-legend__item contest-list-legend__item--voting">Voting Open</div>
-                    <div class="contest-list-legend__item contest-list-legend__item--results">Results Out</div>
+                <div class="contest-list-legend">
+                    @foreach (['entry', 'voting', 'results'] as $state)
+                        <div class="contest-list-legend__item contest-list-legend__item--{{$state}}">{{trans("contest.states.$state")}}</div>
+                    @endforeach
                 </div>
                 @foreach ($contests as $contest)
                     <a href='{{route('community.contests.show', $contest->id)}}' class='contest-list-item contest-list-item--{{$contest->state()}}'>

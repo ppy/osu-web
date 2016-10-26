@@ -48,4 +48,9 @@ return [
         'starts' => 'Starts :date',
         'ended' => 'Ended :date',
     ],
+    'states' => [
+        'entry' => 'Entry Open',
+        'voting' => 'Voting Started',
+        'results' => 'Results Out',
+    ],
 ];
