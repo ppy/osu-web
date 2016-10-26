@@ -20,7 +20,7 @@
 
 return [
     'header' => [
-        'small' => 'Community Contests and Stuff',
+        'small' => 'Compete in more ways than just clicking circles.',
         'large' => 'osu! Community Contests',
     ],
     'voting' => [
