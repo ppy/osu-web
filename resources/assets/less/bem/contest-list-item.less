@@ -29,6 +29,8 @@
 
   transition: 0.1s ease-in-out;
 
+  border-right: 5px solid #323E41;
+
   &:active, &:focus, &:hover {
     color: white;
     text-decoration: none;
@@ -41,10 +43,8 @@
       }
     }
     background-color: lighten(#323E41, 5%);
-    border-right: 5px solid lighten(#323E41, 5%);
+    border-color: lighten(#323E41, 5%);
   }
-
-  border-right: 5px solid #323E41;
 
   &__container {
     display: flex;
@@ -68,30 +68,30 @@
   }
 
   &--preparing {
-    border-right: 5px solid @yellow;
+    border-color: @yellow;
     &:hover {
-      border-right: 5px solid lighten(@yellow, 5%);
+      border-color: lighten(@yellow, 5%);
     }
   }
 
   &--entry {
-    border-right: 5px solid @pink;
+    border-color: @pink;
     &:hover {
-      border-right: 5px solid lighten(@pink, 5%);
+      border-color: lighten(@pink, 5%);
     }
   }
 
   &--voting {
-    border-right: 5px solid @blue;
+    border-color: @blue;
     &:hover {
-      border-right: 5px solid lighten(@blue, 5%);
+      border-color: lighten(@blue, 5%);
     }
   }
 
   &--results {
-    border-right: 5px solid @green;
+    border-color: @green;
     &:hover {
-      border-right: 5px solid lighten(@green, 5%);
+      border-color: lighten(@green, 5%);
     }
   }
 

@@ -25,10 +25,8 @@
     display: inline-block;
     height: 30px;
     background: #323E41;
-    padding: @spacing / 2;
     margin: @spacing / 2;
-    padding-left: @spacing;
-    padding-right: @spacing;
+    padding: (@spacing / 2) @spacing;
 
     @media @mobile {
       text-overflow: ellipsis;
@@ -40,20 +38,22 @@
       }
     }
 
+    border-right: 5px solid #323E41;
+
     &--preparing {
-      border-right: 5px solid @yellow;
+      border-color: @yellow;
     }
 
     &--entry {
-      border-right: 5px solid @pink;
+      border-color: @pink;
     }
 
     &--voting {
-      border-right: 5px solid @blue;
+      border-color: @blue;
     }
 
     &--results {
-      border-right: 5px solid @green;
+      border-color: @green;
     }
   }
 }
