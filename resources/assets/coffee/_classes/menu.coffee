@@ -16,18 +16,25 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @Menu
-  $menuLink: (id) -> $(".js-menu[data-menu-target#{if id then "='#{id}'" else ''}]")
-
   constructor: ->
-    @debouncedRefresh = _.debounce @refresh, 150
+    @menuTimeout = 150
+
     $(document).on 'touchstart', '.js-menu', @onTouchStart
     $(document).on 'mouseenter', '.js-menu', @onMouseEnter
     $(document).on 'mouseleave', '.js-menu', @onMouseLeave
     $(document).on 'touchstart', @onGlobalTouchstart
+    $(document).on 'turbolinks:load', @refresh
+
+
+  $menuLink: (id) -> $(".js-menu[data-menu-target#{if id then "='#{id}'" else ''}]")
 
 
   closestMenuId: ($child) ->
     $child.closest('[data-menu-id]').attr('data-menu-id')
+
+  defaultMenu: =>
+    document.querySelector('.js-menu[data-menu-default="1"]')?.dataset?.menuTarget
+
 
   parentsMenuId: ($child) ->
     $child.parents('[data-menu-id]').attr('data-menu-id')
@@ -65,38 +72,49 @@ class @Menu
     target = e.currentTarget.getAttribute('data-menu-target')
     return unless target
 
+    $target = $(e.currentTarget)
     e.preventDefault()
-    e.stopPropagation()
 
-    @currentMenu =
-      if @currentMenu == target
-        @closestMenuId $(e.currentTarget)
-      else
-        target
+    Timeout.clear @refreshTimeout
+    @refreshTimeout = Timeout.set @menuTimeout, =>
+      @currentMenu =
+        if @currentMenu == target
+          @closestMenuId $target
+        else
+          target
+      @refresh()
 
-    @debouncedRefresh()
 
 
   onMouseEnter: (e) =>
-    e.stopPropagation()
-    $link = $(e.currentTarget)
-    @currentMenu = $link.attr('data-menu-target')
-    @currentMenu ||= @closestMenuId $link
+    link = e.currentTarget
 
-    @debouncedRefresh()
+    Timeout.clear @refreshTimeout
+    @refreshTimeout = Timeout.set @menuTimeout, =>
+      @currentMenu = link.dataset.menuTarget
+      @currentMenu ?= @closestMenuId $(link)
+      @refresh()
+
 
 
   onMouseLeave: (e) =>
-    @currentMenu = @parentsMenuId $(e.currentTarget)
-    @debouncedRefresh()
+    $target = $(e.currentTarget)
+
+    Timeout.clear @refreshTimeout
+    @refreshTimeout = Timeout.set @menuTimeout, =>
+      @currentMenu = @parentsMenuId $target
+      @refresh()
 
 
   hideMenu: =>
-    @currentMenu = null
-    @debouncedRefresh()
+    Timeout.clear @refreshTimeout
+    @refreshTimeout = Timeout.set @menuTimeout, =>
+      @currentMenu = null
+      @refresh()
 
 
   refresh: =>
+    @currentMenu ?= @defaultMenu()
     menus = document.querySelectorAll('.js-menu[data-menu-id]')
 
     currentTree = @currentTree()

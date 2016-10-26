@@ -25,11 +25,10 @@ class ProfilePage.UserPage extends React.Component
 
       if !@props.userPage.editing && @props.withEdit && @props.userPage.html != ''
         div className: 'page-extra__actions',
-          div className: 'forum-post-actions',
-            button
-              className: 'forum-post-actions__action'
-              onClick: @editStart
-              el Icon, name: 'edit'
+          button
+            className: 'btn-circle btn-circle--button'
+            onClick: @editStart
+            el Icon, name: 'edit'
 
       if @props.userPage.editing
         el ProfilePage.UserPageEditor, userPage: @props.userPage
@@ -50,7 +49,7 @@ class ProfilePage.UserPage extends React.Component
         className: 'profile-extra-user-page__new-content   btn-osu btn-osu--lite btn-osu--profile-page-edit'
         onClick: @editStart
         disabled: !@props.user.isSupporter
-        Lang.get 'users.show.page.edit_big'
+        osu.trans 'users.show.page.edit_big'
 
       p className: 'profile-extra-user-page__new-content profile-extra-user-page__new-content--icon',
         el Icon, name: 'pencil-square-o'
@@ -58,13 +57,13 @@ class ProfilePage.UserPage extends React.Component
       p
         className: 'profile-extra-user-page__new-content'
         dangerouslySetInnerHTML:
-          __html: Lang.get 'users.show.page.description'
+          __html: osu.trans 'users.show.page.description'
 
       if !@props.user.isSupporter
         p
           className: 'profile-extra-user-page__new-content'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'users.show.page.restriction_info'
+            __html: osu.trans 'users.show.page.restriction_info'
 
 
   pageShow: =>

@@ -1,0 +1,91 @@
+/**
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+.bar {
+  @_top: bar;
+  display: block;
+  width: 100%;
+  background-color: @yellow;
+  height: @bar-size;
+
+  &--beatmap-rating {
+    height: (@spacing / 2);
+    background-color: @green;
+  }
+
+  &--beatmap-stats {
+    height: (@spacing / 2);
+    background-color: fade(@gray-f, 50%);
+  }
+
+  &--beatmap-success-rate {
+    height: (@spacing / 2);
+    background-color: @gray-d;
+    margin-top: (@spacing / 2);
+  }
+
+  &--double {
+    height: (@bar-size * 2);
+  }
+
+  &--forum-poll {
+    height: (@spacing / 2);
+    background-color: @gray-e;
+  }
+
+  &--user-profile {
+    height: @spacing;
+    background-color: @gray-d;
+    margin-bottom: (@spacing / 2);
+  }
+
+  &__fill {
+    height: 100%;
+
+    .@{_top}--beatmap-rating & {
+      background-color: @yellow-dark;
+    }
+
+    .@{_top}--beatmap-stats & {
+      .default-bar-transition();
+      background-color: @gray-f;
+    }
+
+    .@{_top}--beatmap-stats-stars & {
+      background-color: @yellow;
+    }
+
+    .@{_top}--beatmap-success-rate & {
+      .default-bar-transition();
+      background-color: @green;
+    }
+
+    .@{_top}--forum-poll & {
+      background-color: @pink-darker;
+    }
+
+    // must be after --forum-poll
+    .@{_top}--forum-poll-voted & {
+      background-color: @purple-darker;
+    }
+
+    .@{_top}--user-profile & {
+      background-color: @blue-dark;
+    }
+  }
+}

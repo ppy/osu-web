@@ -1,5 +1,5 @@
 ###
-# Copyright 2016 ppy Pty. Ltd.
+# Copyright 2015-2016 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -15,100 +15,90 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, span, p} = React.DOM
+{div, p} = React.DOM
 el = React.createElement
 
-bn = 'beatmapset-scoreboard'
+class BeatmapsetPage.Scoreboard extends React.Component
+  constructor: (props) ->
+    super props
 
-BeatmapsetPage.Scoreboard = React.createClass
-  getInitialState: ->
-    loading: false
+    @state =
+      loading: false
 
+  setLoading: (_e, isLoading) =>
+    @setState loading: isLoading
 
   componentDidMount: ->
     $.subscribe 'beatmapset:scoreboard:loading.beatmapsetPageScoreboard', @setLoading
 
-
   componentWillUnmount: ->
     $.unsubscribe '.beatmapsetPageScoreboard'
 
-
   render: ->
-    scoreboards = ['global', 'country', 'friend']
-    className = "#{bn}__main"
-    className += " #{bn}__main--loading" if @state.loading
+    userScoreFound = false
 
-    div
-      className: "page-extra #{bn}"
-      el BeatmapsetPage.ExtraHeader, name: 'scoreboard'
+    className = 'beatmapset-scoreboard__main'
+    className += ' beatmapset-scoreboard__main--loading' if @props.loading
 
-      if currentUser.id?
-        div null,
-          div
-            className: "#{bn}__tabs"
-            scoreboards.map (m) =>
-              el BeatmapsetPage.ScoreboardTab,
-                key: m
-                scoreboard: m
-                currentScoreboard: @props.currentScoreboard
+    modsClassName = 'beatmapset-scoreboard__mods'
+    modsClassName += ' beatmapset-scoreboard__mods--initial' if _.isEmpty @props.enabledMods
 
-          div className: "#{bn}__line"
+    mods = if @props.playmode == 'mania'
+      ['NM', '4K', '5K', '6K', '7K', '8K', '9K', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL']
+    else
+      ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL']
+
+    div className: 'osu-layout__row osu-layout__row--page-compact beatmapset-scoreboard',
+      div className: 'page-tabs',
+        for type in ['global', 'country', 'friend']
+          el BeatmapsetPage.ScoreboardTab,
+            key: type
+            type: type
+            active: @props.type == type
+
+      if currentUser.isSupporter
+        div className: 'beatmapset-scoreboard__mods-wrapper',
+          div className: modsClassName,
+            for mod in mods
+              el BeatmapsetPage.ScoreboardMod,
+                key: mod
+                mod: mod
+                enabled: _.includes @props.enabledMods, mod
 
       div className: className,
         if @props.scores.length > 0
-          @scores()
+          div {},
+            for score, i in @props.scores
+              if score.user.id == currentUser.id
+                userScoreFound = true
 
-        else if currentUser.isSupporter || @props.currentScoreboard == 'global'
-          translationKey = if @state.loading then 'loading' else @props.currentScoreboard
+              @scoreItem score, i + 1
+
+            if !userScoreFound && @props.userScore?
+              @scoreItem @props.userScore, @props.userScorePosition
+
+        else if currentUser.isSupporter || @props.type == 'global'
+          translationKey = if @state.loading then 'loading' else @props.type
+
           p
-            className: "#{bn}__notice #{bn}__notice--no-scores #{bn}__notice--#{'guest' if !currentUser.id?}"
-            Lang.get "beatmaps.beatmapset.show.extra.scoreboard.no-scores.#{translationKey}"
+            className: "beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores beatmapset-scoreboard__notice--#{'guest' if !currentUser.id?}"
+            osu.trans "beatmaps.beatmapset.show.scoreboard.no-scores.#{translationKey}"
 
         else
-          div className: "#{bn}__notice",
+          div className: 'beatmapset-scoreboard__notice',
+            p className: 'beatmapset-scoreboard__supporter-text', osu.trans 'beatmaps.beatmapset.show.scoreboard.supporter-only'
+
             p
-              className: "#{bn}__supporter-text"
-              Lang.get "beatmaps.beatmapset.show.extra.scoreboard.supporter-only"
-            p
-              className: "#{bn}__supporter-text #{bn}__supporter-text--small"
+              className: 'beatmapset-scoreboard__supporter-text beatmapset-scoreboard__supporter-text--small'
               dangerouslySetInnerHTML:
-                __html: Lang.get 'beatmaps.beatmapset.show.extra.scoreboard.supporter-link', link: laroute.route 'support-the-game'
-
-
-  setLoading: (_e, isLoading) ->
-    @setState loading: isLoading
-
+                __html: osu.trans 'beatmaps.beatmapset.show.scoreboard.supporter-link', link: laroute.route 'support-the-game'
 
   scoreItem: (score, rank) ->
-    componentName = if rank == 1 then 'ScoreboardFirst' else 'ScoreboardItem'
+    componentName = if rank == 1 || currentUser.id == score.user.id then 'ScoreBig' else 'Score'
 
     el BeatmapsetPage[componentName],
-      key: rank
-      position: rank
       score: score
+      position: rank
+      key: rank
+      playmode: @props.playmode
       countries: @props.countries
-
-
-  scores: ->
-    return if @props.scores.length == 0
-
-    div null,
-      @scoreItem @props.scores[0], 1
-
-      if @props.scores.length > 1
-        div
-          className: "#{bn}__row"
-          key: 'header'
-          ['rank-header', 'player-header', 'score', 'accuracy'].map (m) =>
-            className = "#{bn}__row-item #{bn}__row-item--#{m} #{bn}__row-item--header"
-            className += ' hidden-xs' if m == 'accuracy'
-
-            span
-              className: className
-              key: m
-              Lang.get "beatmaps.beatmapset.show.extra.scoreboard.list.#{m}"
-
-      @props.scores.map (score, i) =>
-        return if i == 0
-
-        @scoreItem score, i + 1

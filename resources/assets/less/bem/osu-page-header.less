@@ -1,23 +1,25 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 .osu-page-header {
+  @_top: 'osu-page-header';
+
   background-size: cover;
 
   padding: (@spacing * 2);
@@ -28,10 +30,65 @@
   @media @desktop {
     padding-left: @padding-big;
     padding-right: @padding-big;
+
+    &--artist {
+      padding-left: 40px;
+    }
+
+    &--contests {
+      padding-left: 40px;
+    }
+  }
+
+  &--home-user {
+    color: @gray-f;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    padding: 0 @spacing;
+    min-height: 150px;
+
+    @media @desktop {
+      padding: 0 (@spacing * 5 - @spacing);
+    }
+
+    &::before {
+      .full-size();
+      background-image: linear-gradient(to bottom, fade(@gray-0, 0%), fade(@gray-0, 75%));
+    }
   }
 
   &--tournaments {
     .at2x-simple("/images/headers/tournament.jpg");
+  }
+
+  &--mp-history {
+    .at2x-simple("/images/headers/mp-history.jpg");
+    background-position: center;
+    height: 125px;
+  }
+
+  &--contests {
+    .at2x-simple("/images/headers/contest.jpg");
+    background-position: center center;
+    justify-content: flex-start;
+    // font-weight: 100;
+    color: white;
+    height: 200px;
+
+    &__subtitle {
+      font-size: @font-size--new-header-subtitle;
+      margin-bottom: 10px;
+      margin-top: 40px;
+      @media @mobile {
+        margin-top: 65px;
+      }
+    }
+
+    &__title {
+      font-size: @font-size--new-header-title;
+      margin-top: -5px;
+    }
   }
 
   &--slack {
@@ -45,6 +102,38 @@
     height: 165px;
   }
 
+  &__box {
+    margin: 0 @spacing;
+    flex: 1 0 auto;
+    padding: (@spacing * 2) 0;
+
+    &--status {
+      display: flex;
+      background-color: fade(@gray-0, 50%);
+    }
+  }
+
+  &__detail {
+    font-size: @font-size--normal;
+    .default-text-shadow();
+    padding: 0;
+    margin: 0;
+  }
+
+  &__status {
+    padding: 0 @spacing;
+  }
+
+  &__status-label {
+    font-size: @font-size--small;
+    font-weight: 400;
+  }
+
+  &__status-text {
+    color: @yellow;
+    font-size: @font-size--title-small-2;
+  }
+
   &__title {
     font-size: @font-size--header-title;
     margin: 0 0 @spacing;
@@ -53,12 +142,37 @@
 
     font-style: italic;
 
+    &--slightly-small {
+      font-size: @font-size--new-header-title;
+    }
+
     &--small {
       font-size: @font-size--header-subtitle;
     }
 
     &--smaller {
       font-size: @font-size--header-description;
+    }
+
+    .@{_top}--mp-history & {
+      font-style: italic;
+    }
+  }
+
+  &__title-box {
+    position: absolute;
+    bottom: @spacing;
+
+    .@{_top}--mp-history & {
+      @media @desktop {
+        left: 150px;
+        bottom: @spacing * 3;
+      }
+
+      @media @mobile {
+        position: relative;
+        padding: 0 20px;
+      }
     }
   }
 }

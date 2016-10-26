@@ -15,16 +15,18 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+el = React.createElement
 {div, img} = React.DOM
 
-class @Mods extends React.Component
-  render: ->
-    div className: 'mods',
-      for mod in @props.mods
+@Mods = ({modifiers = [], mods = []}) ->
+    blockClass = 'mods'
+    blockClass += " mods--#{mod}" for mod in modifiers
+
+    div className: blockClass,
+      for mod in mods
         div
-          key: mod.shortName
+          key: mod
           className: 'mods__mod'
-          img _.extend
+          div
             className: 'mods__mod-image'
-            title: mod.name
-            osu.src2x("/images/badges/mods/#{_.kebabCase(mod.name)}.png")
+            el Mod, mod: mod

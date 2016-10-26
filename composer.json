@@ -8,13 +8,6 @@
     "email": "support@ppy.sh",
     "issues": "https://github.com/ppy/osu-web/issues"
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/nanaya/Laravel-JS-Localization",
-      "_explanation": "Because the current master doesn't work (submodule not loaded)"
-    }
-  ],
   "require": {
     "laravel/framework": "5.2.*",
     "laravelcollective/html": "5.2.*",
@@ -24,14 +17,14 @@
     "itsgoingd/clockwork": "~1.9",
     "maknz/slack": "*",
     "ezyang/htmlpurifier": "^4.7",
-    "mariuzzo/laravel-js-localization": "dev-nosubmodule",
-    "league/fractal": "^0.13.0",
+    "mariuzzo/laravel-js-localization": "*",
+    "league/fractal": "^0.14.0",
     "shift31/laravel-elasticsearch": "~1.0",
-    "league/statsd": "dev-master#3dafde1b6c5e3896073cc947130cf9536b335975",
+    "league/statsd": "^1.4.0",
     "league/flysystem-aws-s3-v3": "^1.0",
     "lord/laroute": "~2.0",
     "lucadegasperi/oauth2-server-laravel": "^5.1",
-    "sentry/sentry-laravel": "^0.3.0"
+    "sentry/sentry-laravel": "^0.4.1"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.5",

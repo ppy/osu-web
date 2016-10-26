@@ -9,9 +9,10 @@
     "d3": "^3.5.14",
     "font-awesome": "^4.5.0",
     "gulp": "^3.9.0",
-    "jquery": "~2.1.0",
-    "jquery-ui": "^1.10.5",
+    "jquery": "^2.2.0",
+    "jquery-ui": "^1.12.0",
     "jquery.scrollto": "^2.1.2",
+    "js-cookie": "^2.1.2",
     "laravel-elixir": "^5.0.0",
     "layzr.js": "^2.0.0",
     "lodash": "^4.0.0",
@@ -21,6 +22,7 @@
     "react-addons-pure-render-mixin": "^15.1.0",
     "react-dom": "^15.1.0",
     "retina.js": "^1.1.0",
+    "slick-carousel": "^1.6.0",
     "timeago": "^1.5.0",
     "turbolinks": "^5.0.0-beta4"
   }

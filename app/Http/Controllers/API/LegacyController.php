@@ -46,7 +46,7 @@ class LegacyController extends BaseController
             $match = Match::with('games.scores')->where('match_id', $match_id)->get();
             if (!$match->isEmpty()) {
                 return Response::json(
-                    fractal_api_serialize_collection(
+                    json_collection(
                         $match,
                         new MatchTransformer(),
                         'games.scores'
@@ -77,7 +77,7 @@ class LegacyController extends BaseController
             $packs = $packs->limit((int) $limit);
         }
 
-        return fractal_api_serialize_collection(
+        return json_collection(
             $packs->get(),
             new BeatmapPackTransformer()
         );
@@ -99,12 +99,12 @@ class LegacyController extends BaseController
             return Response::json([]);
         }
 
-        $stats = fractal_api_serialize_item(
+        $stats = json_item(
             $user->statistics($mode, true)->first(),
             new StatisticsTransformer()
         );
 
-        $events = fractal_api_serialize_collection(
+        $events = json_collection(
             $user->events()
                 ->where('date', '>', Carbon::now()->addDays(-$event_days))
                 ->orderBy('event_id', 'desc')
@@ -112,7 +112,7 @@ class LegacyController extends BaseController
             new EventTransformer()
         );
 
-        $user = fractal_api_serialize_item(
+        $user = json_item(
             $user,
             new UserTransformer()
         );
@@ -167,7 +167,7 @@ class LegacyController extends BaseController
     private function _transformScores($scores, $for_user)
     {
         if ($scores) {
-            $return = fractal_api_serialize_collection(
+            $return = json_collection(
                 $scores->get(),
                 $for_user ? new UserScoreTransformer() : new ScoreTransformer()
             );
@@ -308,7 +308,7 @@ class LegacyController extends BaseController
             $beatmaps = $beatmaps->where('approved_date', '>', $since);
         }
 
-        return fractal_api_serialize_collection(
+        return json_collection(
             $beatmaps->with('set', 'difficulty', 'difficultyAttribs')->get(),
             new BeatmapTransformer()
         );

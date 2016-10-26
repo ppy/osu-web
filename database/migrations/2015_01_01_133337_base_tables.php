@@ -166,6 +166,17 @@ class BaseTables extends Migration
         $this->addBinary('osu_beatmapsets', 'osz2_hash', 16, true, 'header_hash');
         $this->setRowFormat('osu_beatmapsets', 'DYNAMIC');
 
+        Schema::create('osu_user_beatmapset_ratings', function (Blueprint $table) {
+            $table->unsignedMediumInteger('user_id');
+            $table->unsignedMediumInteger('beatmapset_id');
+            $table->unsignedTinyInteger('rating');
+            $table->timestamp('date')->useCurrent();
+
+            $table->primary(['user_id', 'beatmapset_id']);
+            $table->index(['beatmapset_id', 'rating'], 'split_ratings');
+        });
+        $this->setRowFormat('osu_user_beatmapset_ratings', 'COMPRESSED');
+
         Schema::create('osu_changelog', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_general_ci';
@@ -911,6 +922,37 @@ class BaseTables extends Migration
         });
         $this->setRowFormat('phpbb_acl_groups', 'DYNAMIC');
 
+        Schema::create('phpbb_acl_options', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
+
+            $table->mediumIncrements('auth_option_id', true);
+
+            $column = $table->string('auth_option', 50)->default('');
+            $column->collation = 'utf8_bin';
+
+            $table->unsignedTinyInteger('is_global')->default(0);
+            $table->unsignedTinyInteger('is_local')->default(0);
+            $table->unsignedTinyInteger('founder_only')->default(0);
+
+            $table->index('auth_option', 'auth_option');
+        });
+        $this->setRowFormat('phpbb_acl_options', 'DYNAMIC');
+
+        Schema::create('phpbb_acl_roles_data', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
+
+            $table->unsignedMediumInteger('role_id')->default('0');
+            $table->unsignedMediumInteger('auth_option_id')->default(0);
+            $table->tinyInteger('auth_setting')->default(0);
+
+            $table->primary(['role_id', 'auth_option_id']);
+
+            $table->index('auth_option_id', 'ath_op_id');
+        });
+        $this->setRowFormat('phpbb_acl_roles_data', 'DYNAMIC');
+
         Schema::create('phpbb_disallow', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_bin';
@@ -1223,6 +1265,80 @@ class BaseTables extends Migration
         });
         $this->setRowFormat('phpbb_users', 'DYNAMIC');
 
+        Schema::create('phpbb_groups', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
+
+            $table->mediumIncrements('group_id');
+            $table->tinyInteger('group_type')->default(1);
+            $table->unsignedTinyInteger('group_founder_manage')->default(0);
+
+            $column = $table->string('group_name', 255)->default('');
+            $column->collation = 'utf8_bin';
+
+            $column = $table->text('group_desc');
+            $column->collation = 'utf8_bin';
+
+            $column = $table->string('group_desc_bitfield', 255)->default('');
+            $column->collation = 'utf8_bin';
+
+            $table->unsignedInteger('group_desc_options')->default(7);
+
+            $column = $table->string('group_desc_uid', 5)->default('');
+            $column->collation = 'utf8_bin';
+
+            $table->unsignedTinyInteger('group_display')->default(0);
+
+            $column = $table->string('group_avatar', 255)->default('');
+            $column->collation = 'utf8_bin';
+
+            $table->tinyInteger('group_avatar_type')->default(0);
+            $table->unsignedSmallInteger('group_avatar_width')->default(0);
+            $table->unsignedSmallInteger('group_avatar_height')->default(0);
+            $table->unsignedMediumInteger('group_rank')->default(0);
+
+            $column = $table->string('group_colour', 6)->default('');
+            $column->collation = 'utf8_bin';
+
+            $table->unsignedMediumInteger('group_sig_chars')->default(0);
+            $table->unsignedTinyInteger('group_receive_pm')->default(0);
+            $table->unsignedMediumInteger('group_message_limit')->default(0);
+            $table->unsignedTinyInteger('group_legend')->default(0);
+
+            $table->index('group_legend', 'group_legend');
+        });
+        $this->setRowFormat('phpbb_groups', 'DYNAMIC');
+
+        Schema::create('phpbb_log', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
+
+            $table->mediumIncrements('log_id');
+            $table->tinyInteger('log_type')->default(0);
+            $table->unsignedMediumInteger('user_id')->default(0);
+            $table->unsignedMediumInteger('forum_id')->default(0);
+            $table->unsignedMediumInteger('topic_id')->default(0);
+            $table->unsignedMediumInteger('reportee_id')->default(0);
+
+            $column = $table->string('log_ip', 40)->default('');
+            $column->collation = 'utf8_bin';
+
+            $table->unsignedInteger('log_time')->default(0);
+
+            $column = $table->text('log_operation');
+            $column->collation = 'utf8_bin';
+
+            $column = $table->mediumText('log_data');
+            $column->collation = 'utf8_bin';
+
+            $table->index('log_type', 'log_type');
+            $table->index('forum_id', 'forum_id');
+            $table->index('topic_id', 'topic_id');
+            $table->index('reportee_id', 'reportee_id');
+            $table->index('user_id', 'user_id');
+        });
+        $this->setRowFormat('phpbb_log', 'COMPRESSED');
+
         Schema::create('osu_mod_queue', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_bin';
@@ -1249,6 +1365,7 @@ class BaseTables extends Migration
         Schema::drop('osu_apikeys');
         Schema::drop('osu_beatmaps');
         Schema::drop('osu_beatmapsets');
+        Schema::drop('osu_user_beatmapset_ratings');
         Schema::drop('osu_changelog');
         Schema::drop('osu_countries');
         Schema::drop('osu_counts');
@@ -1281,6 +1398,8 @@ class BaseTables extends Migration
         Schema::drop('osu_user_stats');
         Schema::drop('osu_user_stats_taiko');
         Schema::drop('phpbb_acl_groups');
+        Schema::drop('phpbb_acl_options');
+        Schema::drop('phpbb_acl_roles_data');
         Schema::drop('phpbb_disallow');
         Schema::drop('phpbb_forums');
         Schema::drop('phpbb_posts');
@@ -1290,6 +1409,8 @@ class BaseTables extends Migration
         Schema::drop('phpbb_topics_track');
         Schema::drop('phpbb_user_group');
         Schema::drop('phpbb_users');
+        Schema::drop('phpbb_groups');
+        Schema::drop('phpbb_log');
         Schema::drop('osu_mod_queue');
     }
 

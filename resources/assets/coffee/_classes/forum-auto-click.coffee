@@ -16,15 +16,15 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @ForumAutoClick
-  _triggerDistance: 1200
-  nextLink: document.getElementsByClassName('js-forum__posts-show-more--next')
-  previousLink: document.getElementsByClassName('js-forum__posts-show-more--previous')
-
   constructor: ->
+    @_triggerDistance = 1200
+    @nextLink = document.getElementsByClassName('js-forum__posts-show-more--next')
+    @previousLink = document.getElementsByClassName('js-forum__posts-show-more--previous')
+
     $(window).on 'throttled-scroll', _.throttle(@onScroll, 1000)
 
-    $(document).on 'ready turbolinks:load osu:page:change', =>
-      setTimeout @onScroll, 1000
+    $(document).on 'turbolinks:load osu:page:change', =>
+      Timeout.set 1000, @onScroll
 
 
   commonClick: (link) ->

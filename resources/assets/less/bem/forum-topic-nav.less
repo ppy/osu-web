@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -40,42 +40,6 @@
   }
 
 
-  &__button-circle {
-    flex: none;
-    .default-box-shadow();
-    .circle(@_content-height);
-    color: @grey-f;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: @blue-darker;
-    margin: 0 (@spacing / 2);
-    outline: none;
-    border: none;
-    -webkit-appearance: none;
-
-    &:focus,
-    &:hover,
-    &:active {
-      color: @grey-f;
-      text-decoration: none;
-      .thicker-box-shadow();
-    }
-
-    &--blank {
-      background-color: transparent;
-      box-shadow: none;
-      opacity: 0.7;
-
-      &:focus,
-      &:hover,
-      &:active {
-        box-shadow: none;
-      }
-
-    }
-  }
-
   &__content {
     width: 100%;
     display: flex;
@@ -97,7 +61,7 @@
 
     &--input {
       .reset-input();
-      color: @grey-f;
+      color: @gray-f;
       display: none;
 
       border: 0;
@@ -138,7 +102,7 @@
 
   &__item {
     .default-border-radius;
-    color: @grey-f;
+    color: @gray-f;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -151,8 +115,8 @@
     }
 
     ._button-hover() {
-      background-color: @grey-1;
-      color: @grey-f;
+      background-color: @gray-1;
+      color: @gray-f;
       text-decoration: none;
     }
 
@@ -250,14 +214,15 @@
     display: flex;
     width: 0;
     justify-content: center;
+    will-change: opacity, transform;
   }
 
 
   &__seek-tooltip-number {
-    &:extend(.default-border-radius);
+    .default-border-radius();
     background-color: @gray-dark;
     padding: (@spacing / 2) (@spacing * 2);
-    color: @grey-f;
+    color: @gray-f;
     flex: none;
 
     &::before {

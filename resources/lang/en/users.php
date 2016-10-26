@@ -20,7 +20,7 @@
 
 return [
     'login' => [
-        '_' => 'Login',
+        '_' => 'Sign in',
         'username' => 'Username',
         'password' => 'Password',
         'button' => 'Login',
@@ -35,6 +35,9 @@ return [
         ],
 
         'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
+    ],
+    'signup' => [
+        '_' => 'Register',
     ],
     'anonymous' => [
         'login_link' => 'click to login',
@@ -54,8 +57,8 @@ return [
                     'button' => 'Upload image',
                     'dropzone' => 'Drop here to upload',
                     'dropzone_info' => 'You can also drop your image here to upload',
-                    'restriction_info' => "Upload available for <a href='".config('osu.urls.support-the-game')."' target='_blank'>osu!supporters</a> only",
-                    'size_info' => 'Cover size should be at 2700x500',
+                    'restriction_info' => "Upload available for <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a> only",
+                    'size_info' => 'Cover size should be at 2000x500',
                     'too_large' => 'Uploaded file is too large.',
                     'unsupported_format' => 'Unsupported format.',
                 ],
@@ -95,7 +98,7 @@ return [
                 'recent_entries' => 'Recent Kudosu History',
                 'title' => 'Kudosu!',
                 'total' => 'Total Kudosu Earned',
-                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.config('osu.urls.user.kudosu').'">this page</a> for more information.',
+                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.osu_url('user.kudosu').'">this page</a> for more information.',
             ],
             'me' => [
                 'title' => 'me!',
@@ -144,7 +147,7 @@ return [
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
-            'restriction_info' => "You need to be an <a href='".config('osu.urls.support-the-game')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+            'restriction_info' => "You need to be an <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> to unlock this feature.",
         ],
         'plays_with' => [
             '_' => 'Plays with',
@@ -170,7 +173,10 @@ return [
             'total_hits' => 'Total Hits',
             'total_score' => 'Total Score',
         ],
-        'title' => 'profile / :username',
+        'title' => ":username's profile",
     ],
 
+    'verify' => [
+        'title' => 'Account Verification',
+    ],
 ];

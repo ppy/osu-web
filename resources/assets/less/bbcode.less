@@ -20,13 +20,22 @@
 
 .bbcode {
   line-height: 1.5;
+
+  h2,
   h4 {
-    font-size: inherit;
+    font-family: @font-family-sans-serif;
     font-style: normal;
+    font-weight: bold;
   }
 
+  // heading tag
   h2 {
-    padding-bottom: @grid-gutter-width/2;
+    font-size: @font-size--forum-post-heading;
+  }
+
+  // quote tag
+  h4 {
+    font-size: @font-size--forum-quote-heading;
   }
 
   blockquote {
@@ -54,8 +63,29 @@
   .size-85 { font-size: 85%; }
   .size-150 { font-size: 150%; }
 
+  &--normal-line-height {
+    line-height: inherit;
+  }
+
   &__list-title {
     list-style: none;
     margin: 0;
+  }
+
+  &__video-box {
+    max-width: 425px;
+  }
+
+  &__video {
+    position: relative;
+    padding-bottom: 75%;
+
+    & iframe {
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
 }

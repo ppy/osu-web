@@ -18,7 +18,7 @@
 el = React.createElement
 
 class ProfilePage.CoverSelection extends React.Component
-  onClick: =>
+  onClick: (e) =>
     return if !@props.url?
 
     $.ajax laroute.route('account.update-profile'),
@@ -27,8 +27,8 @@ class ProfilePage.CoverSelection extends React.Component
         cover_id: @props.name
       dataType: 'json'
     .done (userData) ->
-      $.publish 'user:update', userData.data
-    .error osu.ajaxError
+      $.publish 'user:update', userData
+    .error osu.emitAjaxError(e.target)
 
 
   onMouseEnter: =>

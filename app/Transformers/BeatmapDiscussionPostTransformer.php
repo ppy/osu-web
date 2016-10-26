@@ -35,8 +35,8 @@ class BeatmapDiscussionPostTransformer extends Fractal\TransformerAbstract
             'system' => $post->system,
             'message' => $post->message,
 
-            'created_at' => $post->created_at->toIso8601String(),
-            'updated_at' => $post->updated_at->toIso8601String(),
+            'created_at' => json_time($post->created_at),
+            'updated_at' => json_time($post->updated_at),
         ];
     }
 }

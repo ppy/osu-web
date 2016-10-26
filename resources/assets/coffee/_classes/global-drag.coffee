@@ -21,6 +21,7 @@ class @GlobalDrag
     $(document).on 'dragenter', @dragenter
     $(document).on 'dragover', @dragend
 
+
   dragenter: =>
     # The event bubbles, prevent retriggering the event unless
     # it really has just started.
@@ -42,5 +43,5 @@ class @GlobalDrag
       @dragging = false
       $.publish 'dragendGlobal'
 
-    clearTimeout @dragendTimer
-    @dragendTimer = setTimeout trigger, 100
+    Timeout.clear @dragendTimer
+    @dragendTimer = Timeout.set 100, trigger

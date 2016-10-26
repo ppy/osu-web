@@ -22,7 +22,7 @@ class @Status.Page extends React.Component
   constructor: (props) ->
     super props
 
-    @state = 
+    @state =
       status: window.osuStatus
       charts: window.osuStatus.uptime.graphs
       # mode
@@ -82,10 +82,10 @@ class @Status.Page extends React.Component
       formats =
         x: (d) =>
           if d == 0
-            Lang.get('common.time.now')
+            osu.trans('common.time.now')
           else
-            Lang.choice('common.time.hours_ago', -d)
-        y: (d) => 
+            osu.transChoice('common.time.hours_ago', -d)
+        y: (d) =>
           (d).toLocaleString()
 
       tooltipFormats =
@@ -122,7 +122,7 @@ class @Status.Page extends React.Component
       if incident.active
         activeIncidents = true
 
-    div 
+    div
       className: 'osu-layout__row osu-layout__row--page--compact'
       div null,
         div className: 'status-header',
@@ -132,12 +132,12 @@ class @Status.Page extends React.Component
             h1 className: 'status-header__title',
               strong null,
                 ['osu!']
-              Lang.get("status_page.header.title")
+              osu.trans("status_page.header.title")
             h4 className: 'status-header__desc',
-              Lang.get('status_page.header.description')
+              osu.trans('status_page.header.description')
         div className: "status-incidents osu-layout__row--page-compact #{(if activeIncidents then '' else 'hidden')}",
           h1 className: 'status-incidents__title',
-            Lang.get('status_page.incidents.title')
+            osu.trans('status_page.incidents.title')
           div null,
             status.incidents.map (incident, id) =>
               if incident.active
@@ -152,27 +152,27 @@ class @Status.Page extends React.Component
           servers: @state.status.servers
         div className: 'osu-layout__row--page-compact',
           h1 className: 'status-info__title',
-            (if @state.graph == 'users' then Lang.get('status_page.online.title.users') else Lang.get('status_page.online.title.score'))
+            (if @state.graph == 'users' then osu.trans('status_page.online.title.users') else osu.trans('status_page.online.title.score'))
           div
             ref: 'chartArea'
             className: 'chart'
           div className: 'status-info__container',
             div className: 'status-info__border',
               null
-            div 
+            div
               className: "status-info__data #{(if @state.graph == 'users' then 'status-info__data--active' else '')}"
               onClick: @_changeViewMode.bind(@, 'graph', 'users')
               h4 className: 'status-info__data-title',
-                Lang.get('status_page.online.current')
+                osu.trans('status_page.online.current')
               h1 className: 'status-info__data-amount',
                 @state.status.online.current.toLocaleString()
             div className: 'status-info__separator',
               null
-            div 
+            div
               className: "status-info__data #{(if @state.graph == 'score' then 'status-info__data--active' else '')}"
               onClick: @_changeViewMode.bind(@, 'graph', 'score')
               h4 className: 'status-info__data-title',
-                Lang.get('status_page.online.score')
+                osu.trans('status_page.online.score')
               h1 className: 'status-info__data-amount',
                 @state.status.online.score.toLocaleString()
         div className: 'osu-layout__col-container osu-layout__col-container--with-gutter',

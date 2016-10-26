@@ -16,49 +16,85 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="post-box-toolbar">
-    <span class="bbcode-btn bbcode-btn--bold" title="{{ trans("bbcode.bold") }}">
-        B
-    </span>
+    <button
+        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--bold"
+        title="{{ trans("bbcode.bold") }}"
+        type="button"
+    >
+        <strong>B</strong>
+    </button>
 
-    <span class="bbcode-btn bbcode-btn--italic" title="{{ trans("bbcode.italic") }}">
-        I
-    </span>
+    <button
+        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--italic"
+        title="{{ trans("bbcode.italic") }}"
+        type="button"
+    >
+        <em>I</em>
+    </button>
 
-    <span class="bbcode-btn bbcode-btn--strikethrough" title="{{ trans("bbcode.strikethrough") }}">
+    <button
+        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--strikethrough"
+        title="{{ trans("bbcode.strikethrough") }}"
+        type="button"
+    >
         <i class="fa fa-strikethrough"></i>
-    </span>
+    </button>
 
-    <span class="bbcode-btn bbcode-btn--heading" title="{{ trans("bbcode.heading") }}">
+    <button
+        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--heading"
+        title="{{ trans("bbcode.heading") }}"
+        type="button"
+    >
         H
-    </span>
+    </button>
 
-    <span class="bbcode-btn bbcode-btn--link" title="{{ trans("bbcode.link") }}">
+    <button
+        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--link"
+        title="{{ trans("bbcode.link") }}"
+        type="button"
+    >
         <i class="fa fa-link"></i>
-    </span>
+    </button>
 
-    <span class="bbcode-btn bbcode-btn--spoilerbox" title="{{ trans("bbcode.spoilerbox") }}">
+    <button
+        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--spoilerbox"
+        title="{{ trans("bbcode.spoilerbox") }}"
+        type="button"
+    >
         <i class="fa fa-barcode"></i>
-    </span>
+    </button>
 
-    <span class="bbcode-btn bbcode-btn--list-numbered" title="{{ trans("bbcode.list_numbered") }}">
+    <button
+        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--list-numbered"
+        title="{{ trans("bbcode.list_numbered") }}"
+        type="button"
+    >
         <i class="fa fa-list-ol"></i>
-    </span>
+    </button>
 
-    <span class="bbcode-btn bbcode-btn--list" title="{{ trans("bbcode.list") }}">
+    <button
+        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--list"
+        title="{{ trans("bbcode.list") }}"
+        type="button"
+    >
         <i class="fa fa-list"></i>
-    </span>
+    </button>
 
-    <span class="bbcode-btn bbcode-btn--image" title="{{ trans("bbcode.image") }}">
+    <button
+        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--image"
+        title="{{ trans("bbcode.image") }}"
+        type="button"
+    >
         <i class="fa fa-image"></i>
-    </span>
+    </button>
 
-    <label class="bbcode-size-group bbcode-item--extra-space" title="{{ trans("bbcode.size._") }}">
-        <span>
+    <label class="bbcode-size-select" title="{{ trans("bbcode.size._") }}">
+        <span class="bbcode-size-select__label">
             {{ trans("bbcode.size._") }}
         </span>
         <i class="fa fa-chevron-down"></i>
 
-        <select class="bbcode-size">
+        <select class="bbcode-size-select__select js-bbcode-btn--size">
             <option value="50">{{ trans("bbcode.size.tiny") }}</option>
             <option value="85">{{ trans("bbcode.size.small") }}</option>
             <option value="100" selected>{{ trans("bbcode.size.normal") }}</option>

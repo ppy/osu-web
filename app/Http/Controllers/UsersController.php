@@ -75,18 +75,32 @@ class UsersController extends Controller
         if (LoginAttempt::isLocked($ip)) {
             return error_popup('your IP address is locked. Please wait a few minutes.');
         } else {
-            $username = Request::input('username');
+            $usernameOrEmail = Request::input('username');
+            $user = User::where('username', $usernameOrEmail)
+                ->orWhere('user_email', $usernameOrEmail)
+                ->first();
+
             $password = Request::input('password');
             $remember = Request::input('remember') === 'yes';
 
-            Auth::attempt(['username' => $username, 'password' => $password], $remember);
+            $validAuth = $user === null
+                ? false
+                : Auth::getProvider()->validateCredentials($user, compact('password'));
 
-            if (Auth::check()) {
-                return Auth::user()->defaultJson();
+            if ($validAuth) {
+                Request::session()->flush();
+                Request::session()->regenerateToken();
+                Auth::login($user, $remember);
+
+                return [
+                    'header' => render_to_string('layout._header_user', ['_user' => Auth::user()]),
+                    'header_popup' => render_to_string('layout._popup_user', ['_user' => Auth::user()]),
+                    'user' => Auth::user()->defaultJson(),
+                ];
             } else {
-                LoginAttempt::failedAttempt($ip, $username);
+                LoginAttempt::failedAttempt($ip, $user);
 
-                return error_popup('wrong password or username');
+                return error_popup('wrong password or email');
             }
         }
     }
@@ -103,6 +117,8 @@ class UsersController extends Controller
             setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.ppy.sh');
         }
 
+        Request::session()->flush();
+
         return [];
     }
 
@@ -118,14 +134,14 @@ class UsersController extends Controller
             return ujs_redirect(route('users.show', $user));
         }
 
-        $achievements = fractal_collection_array(
+        $achievements = json_collection(
             Achievement::achievable()->orderBy('grouping')->orderBy('ordering')->orderBy('progression')->get(),
             new AchievementTransformer()
         );
 
-        $userArray = fractal_item_array(
+        $userArray = json_item(
             $user,
-            new UserTransformer(), implode(',', [
+            new UserTransformer(), [
                 'userAchievements',
                 'allRankHistories',
                 'allScores',
@@ -138,7 +154,7 @@ class UsersController extends Controller
                 'recentlyReceivedKudosu',
                 'rankedAndApprovedBeatmapsets.beatmaps',
                 'favouriteBeatmapsets.beatmaps',
-            ])
+            ]
         );
 
         return view('users.show', compact('user', 'userArray', 'achievements'));

@@ -88,7 +88,7 @@ BeatmapDiscussions.Post = React.createClass
 
     .done (data) =>
       @setState editing: false
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion.data
+      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion
 
     .fail osu.ajaxError
 
@@ -117,7 +117,7 @@ BeatmapDiscussions.Post = React.createClass
           span
             className: "#{bn}__info #{bn}__info--edited"
             dangerouslySetInnerHTML:
-              __html: Lang.get 'beatmaps.discussions.edited',
+              __html: osu.trans 'beatmaps.discussions.edited',
                 editor: laroute.link_to_route('users.show', @props.lastEditor.username, users: @props.lastEditor.id)
                 update_time: osu.timeago @props.post.updated_at
 
@@ -127,7 +127,7 @@ BeatmapDiscussions.Post = React.createClass
             button
               className: "#{bn}__edit-button"
               onClick: @startEditing
-              Lang.get('beatmaps.discussions.edit')
+              osu.trans('beatmaps.discussions.edit')
 
 
   messageEditor: ->
@@ -145,12 +145,14 @@ BeatmapDiscussions.Post = React.createClass
         div className: "#{bn}__actions-group"
 
         div className: "#{bn}__actions-group",
-          button
-            className: "btn-osu-lite btn-osu-lite--default #{bn}__action"
-            onClick: => @setState editing: false
-            Lang.get 'common.buttons.cancel'
+          div className: "#{bn}__action",
+            button
+              className: 'btn-osu-lite btn-osu-lite--default'
+              onClick: => @setState editing: false
+              osu.trans 'common.buttons.cancel'
 
-          button
-            className: "btn-osu-lite btn-osu-lite--default #{bn}__action"
-            onClick: @throttledUpdatePost
-            Lang.get 'common.buttons.save'
+          div className: "#{bn}__action",
+            button
+              className: 'btn-osu-lite btn-osu-lite--default'
+              onClick: @throttledUpdatePost
+              osu.trans 'common.buttons.save'

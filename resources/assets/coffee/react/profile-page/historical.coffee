@@ -64,7 +64,7 @@ ProfilePage.Historical = React.createClass
           div
             className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
             span dangerouslySetInnerHTML:
-                __html: Lang.get 'beatmaps.listing.mapped-by',
+                __html: osu.trans 'beatmaps.listing.mapped-by',
                   mapper: laroute.link_to_route 'users.show',
                     bmset.creator
                     { users: bmset.user_id }
@@ -81,17 +81,17 @@ ProfilePage.Historical = React.createClass
 
       h3
         className: 'page-extra__title page-extra__title--small'
-        Lang.get('users.show.extra.historical.most_played.title')
+        osu.trans('users.show.extra.historical.most_played.title')
 
       if @props.beatmapPlaycounts.length
         [
           @props.beatmapPlaycounts.map (pc, i) =>
-            @_beatmapRow pc.beatmap.data, pc.beatmapset.data, i, i < @state.showingPlaycounts, [
+            @_beatmapRow pc.beatmap, pc.beatmapset, i, i < @state.showingPlaycounts, [
               [
                 span
                   key: 'name'
                   className: 'beatmapset-row__info'
-                  Lang.get('users.show.extra.historical.most_played.count')
+                  osu.trans('users.show.extra.historical.most_played.count')
                 span
                   key: 'value'
                   className: 'beatmapset-row__info beatmapset-row__info--large'
@@ -105,15 +105,15 @@ ProfilePage.Historical = React.createClass
               href: '#'
               className: 'beatmapset-row beatmapset-row--more'
               onClick: @_showMore.bind(@, 'showingPlaycounts')
-              Lang.get('common.buttons.show_more')
+              osu.trans('common.buttons.show_more')
         ]
 
       else
-        p null, Lang.get('users.show.extra.historical.empty')
+        p null, osu.trans('users.show.extra.historical.empty')
 
       h3
         className: 'page-extra__title page-extra__title--small'
-        Lang.get('users.show.extra.historical.recent_plays.title')
+        osu.trans('users.show.extra.historical.recent_plays.title')
 
       if @props.scores.length
         [
@@ -126,8 +126,8 @@ ProfilePage.Historical = React.createClass
               href: '#'
               className: 'beatmapset-row beatmapset-row--more'
               onClick: @_showMore.bind(@, 'showingRecent')
-              Lang.get('common.buttons.show_more')
+              osu.trans('common.buttons.show_more')
         ]
 
       else
-        p null, Lang.get('users.show.extra.historical.empty')
+        p null, osu.trans('users.show.extra.historical.empty')

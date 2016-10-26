@@ -17,7 +17,7 @@
 ###
 class @ReactTurbolinks
   constructor: (@components = {}) ->
-    $(document).on 'ready turbolinks:load reactTurbolinks:try', =>
+    $(document).on 'turbolinks:load reactTurbolinks:try', =>
       for own _name, component of @components
         continue if component.loaded
 

@@ -51,23 +51,23 @@ class Status.Incidents extends React.Component
 
     div className: 'status-recent osu-layout__col osu-layout__col--sm-6 osu-layout__row--page-compact',
       h1 className: 'status-recent__title',
-        Lang.get('status_page.recent.incidents.title')
+        osu.trans('status_page.recent.incidents.title')
       div null,
         h5
           onClick: @_changeViewMode.bind(@, 'today')
           className: 'status-recent__when' + (if @state.when == 'today' then ' status-recent__when--active' else '')
-          Lang.get('status_page.recent.when.today')
-        h5 
+          osu.trans('status_page.recent.when.today')
+        h5
           onClick: @_changeViewMode.bind(@, 'last_week')
           className: 'status-recent__when' + (if @state.when == 'last_week' then ' status-recent__when--active' else '')
-          Lang.get('status_page.recent.when.last_week')
-        h5 
+          osu.trans('status_page.recent.when.last_week')
+        h5
           onClick: @_changeViewMode.bind(@, '2_weeks')
           className: 'status-recent__when' + (if @state.when == '2_weeks' then ' status-recent__when--active' else '')
-          Lang.choice('status_page.recent.when.weeks_ago', 2)
-        h5 
+          osu.transChoice('status_page.recent.when.weeks_ago', 2)
+        h5
           onClick: @_changeViewMode.bind(@, '3_weeks')
           className: 'status-recent__when' + (if @state.when == '3_weeks' then ' status-recent__when--active' else '')
-          Lang.choice('status_page.recent.when.weeks_ago', 3)
+          osu.transChoice('status_page.recent.when.weeks_ago', 3)
       div className: 'status-incident--no-line',
         incidents

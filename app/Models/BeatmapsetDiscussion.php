@@ -52,10 +52,13 @@ class BeatmapsetDiscussion extends Model
             $includes[] = "beatmap_discussions.current_user_attributes:user_id({$currentUser->user_id})";
         }
 
-        return fractal_item_array(
-            static::with('beatmapDiscussions.beatmapDiscussionPosts', 'beatmapDiscussions.beatmapDiscussionVotes')->find($this->id),
+        return json_item(
+            static::with([
+                'beatmapDiscussions.beatmapDiscussionPosts',
+                'beatmapDiscussions.beatmapDiscussionVotes',
+            ])->find($this->id),
             new BeatmapsetDiscussionTransformer(),
-            implode(',', $includes)
+            $includes
         );
     }
 }

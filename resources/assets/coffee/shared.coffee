@@ -63,7 +63,7 @@ $(document).on 'blur', '.content-editable-submit', (e) ->
   el.remove()
 
 #populate last-submitted values
-$(document).on 'ready turbolinks:load', ->
+$(document).on 'turbolinks:load', ->
   $('.content-editable-submit').each (_i, el) ->
     $el = $(el)
     $el.data('last-submitted-value', $el.html())
@@ -80,7 +80,7 @@ $(document).on 'click', '.pswp a', (e) -> e.preventDefault()
 
 
 # image slider
-$(document).on 'ready turbolinks:load', ->
+$(document).on 'turbolinks:load', ->
   $('.rslides').responsiveSlides
     auto: false
     manualControls: '.rslides-nav'
@@ -92,7 +92,7 @@ $(document).on 'ready turbolinks:load', ->
 # new address form - country selection) since it doesn't support
 # adding a disabled value.
 ###
-$(document).on 'ready turbolinks:load', ->
+$(document).on 'turbolinks:load', ->
   $('[value=_disabled]').attr 'disabled', true
 
 
@@ -107,14 +107,15 @@ $(document).on 'ready turbolinks:load', ->
 * May contain caveats.
 ###
 $(document).on 'click', '.clickable-row', (e) ->
-  $target = $(e.target)
-  isTargetClickable =
-    $target.closest('a').length != 0 ||
-    $target.closest('button').length != 0 ||
-    $target.closest('input').length != 0
+  target = e.target
 
-  return if isTargetClickable
-  $target.closest('.clickable-row').find('.clickable-row-link')[0].click()
+  return if osu.isClickable target
+
+  row = e.currentTarget
+  if row.classList.contains 'clickable-row-link'
+    row.click()
+  else
+    row.getElementsByClassName('clickable-row-link')[0]?.click()
 
 
 # submit form on ctrl-enter.

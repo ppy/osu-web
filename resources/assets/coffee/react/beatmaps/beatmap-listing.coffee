@@ -26,8 +26,8 @@ class Beatmaps.BeatmapsListing extends React.Component
     return if !@props.beatmaps?
     for beatmap in @props.beatmaps
       panel = div
-        className: 'osu-layout__col osu-layout__col--sm-6 osu-layout__col--lg-4'
-        key: beatmap.beatmapset_id
+        className: 'osu-layout__col osu-layout__col--sm-6'
+        key: beatmap.id
         el BeatmapsetPanel, beatmap: beatmap
 
       beatmaps.push panel
@@ -42,10 +42,10 @@ class Beatmaps.BeatmapsListing extends React.Component
           img
             src: '/images/layout/beatmaps/not-found.png'
             srcSet: "/images/layout/beatmaps/not-found.png 1x, /images/layout/beatmaps/not-found@2x.png 2x"
-            alt: Lang.get("beatmaps.listing.search.not-found")
-            title: Lang.get("beatmaps.listing.search.not-found")
+            alt: osu.trans("beatmaps.listing.search.not-found")
+            title: osu.trans("beatmaps.listing.search.not-found")
             style:
               paddingTop: '25px'
               paddingRight: '25px'
               marginBottom: '-20px'
-          span {}, Lang.get("beatmaps.listing.search.not-found-quote")
+          span {}, osu.trans("beatmaps.listing.search.not-found-quote")

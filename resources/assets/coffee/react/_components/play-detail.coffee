@@ -45,14 +45,14 @@ el = React.createElement
           div
             className: 'detail-row__detail-row detail-row__detail-row--main'
             a
-              href: score.beatmap.data.url
+              href: score.beatmap.url
               className: 'detail-row__text-score detail-row__text-score--title'
-              title: "#{score.beatmapset.data.artist} - #{score.beatmapset.data.title} "
-              "#{score.beatmapset.data.title} [#{score.beatmap.data.version}]"
+              title: "#{score.beatmapset.artist} - #{score.beatmapset.title} "
+              "#{score.beatmapset.title} [#{score.beatmap.version}]"
               ' '
               small
                 className: 'detail-row__text-score detail-row__text-score--artist'
-                score.beatmapset.data.artist
+                score.beatmapset.artist
           div
             className: 'detail-row__detail-row detail-row__detail-row--bottom'
             span
@@ -71,7 +71,7 @@ el = React.createElement
               span
                 className: 'detail-row__text-score detail-row__text-score--pp'
                 if score.pp
-                  Lang.get('users.show.extra.top_ranks.pp', amount: Math.round(score.pp))
+                  osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(score.pp))
                 else
                   score.score.toLocaleString()
             div
@@ -79,9 +79,9 @@ el = React.createElement
               span
                 className: 'detail-row__text-score'
                 if score.weight
-                  Lang.get 'users.show.extra.top_ranks.weighted_pp',
-                    percentage: "#{Math.round(score.weight.data.percentage)}%"
-                    pp: Lang.get('users.show.extra.top_ranks.pp', amount: Math.round(score.weight.data.pp))
+                  osu.trans 'users.show.extra.top_ranks.weighted_pp',
+                    percentage: "#{Math.round(score.weight.percentage)}%"
+                    pp: osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(score.weight.pp))
                 else if !score.pp
-                  Lang.get 'users.show.extra.historical.recent_plays.accuracy',
+                  osu.trans 'users.show.extra.historical.recent_plays.accuracy',
                     percentage: "#{(score.accuracy * 100).toFixed(2)}%"

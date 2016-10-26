@@ -16,8 +16,7 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @ForumTopicPostJump
-  constructor: (forum) ->
-    @forum = forum
+  constructor: (@forum) ->
     $(document).on 'click', '.js-forum-topic-post-jump--cover', @start
     $(document).on 'blur', '.js-forum-topic-post-jump--input', @end
     $(document).on 'keyup', '.js-forum-topic-post-jump--input', @keyup

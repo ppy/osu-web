@@ -355,7 +355,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->isDev()
             or $this->isAdmin()
             or $this->isGMT()
-            or $this->isBAT()
+            or $this->isQAT()
             or $this->ownsMod($mod);
     }
 
@@ -374,9 +374,9 @@ class User extends Model implements AuthenticatableContract, Messageable
     |
     */
 
-    public function isBAT()
+    public function isQAT()
     {
-        return $this->isGroup(UserGroup::GROUPS['bat']);
+        return $this->isGroup(UserGroup::GROUPS['qat']);
     }
 
     public function isAdmin()
@@ -389,9 +389,9 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->isGroup(UserGroup::GROUPS['gmt']);
     }
 
-    public function isMAT()
+    public function isBNG()
     {
-        return $this->isGroup(UserGroup::GROUPS['mat']);
+        return $this->isGroup(UserGroup::GROUPS['bng']);
     }
 
     public function isHax()
@@ -432,8 +432,11 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function isPrivileged()
     {
         return $this->isAdmin()
-            or $this->isDev();
-            //or $this->isSupporter()
+            || $this->isDev()
+            || $this->isMod()
+            || $this->isGMT()
+            || $this->isBNG()
+            || $this->isQAT();
     }
 
     public function isBanned()
@@ -450,9 +453,11 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         $lastBan = $this->banHistories()->bans()->first();
 
-        return $lastBan !== null &&
+        $isSilenced = $lastBan !== null &&
             $lastBan->period !== 0 &&
             $lastBan->endTime()->isFuture();
+
+        return $this->isRestricted() || $isSilenced;
     }
 
     public function groupIds()
@@ -500,6 +505,16 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function favouriteBeatmapsets()
     {
         return Beatmapset::whereIn('beatmapset_id', FavouriteBeatmapset::where('user_id', '=', $this->user_id)->select('beatmapset_id')->get());
+    }
+
+    public function beatmapsetNominations()
+    {
+        return $this->hasMany(BeatmapsetEvent::class)->where('type', BeatmapsetEvent::NOMINATE);
+    }
+
+    public function beatmapsetNominationsToday()
+    {
+        return $this->beatmapsetNominations()->where('created_at', '>', Carbon::now()->subDay())->count();
     }
 
     public function beatmapPlaycounts()
@@ -734,6 +749,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->hasMany(Event::class);
     }
 
+    public function beatmapsetRatings()
+    {
+        return $this->hasMany(BeatmapsetUserRating::class);
+    }
+
     public function givenKudosu()
     {
         return $this->hasMany(KudosuHistory::class, 'giver_id', 'user_id');
@@ -883,13 +903,14 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         if ($this->userPage === null) {
             DB::transaction(function () use ($text) {
-                $topic = Forum\Topic::createNew([
-                    'forum' => Forum\Forum::find(config('osu.user.user_page_forum_id')),
-                    'title' => "{$this->username}'s user page",
-                    'poster' => $this,
-                    'body' => $text,
-                    'notifyReplies' => false,
-                ]);
+                $topic = Forum\Topic::createNew(
+                    Forum\Forum::find(config('osu.user.user_page_forum_id')),
+                    [
+                        'title' => "{$this->username}'s user page",
+                        'user' => $this,
+                        'body' => $text,
+                    ]
+                );
 
                 $this->update(['userpage_post_id' => $topic->topic_first_post_id]);
             });
@@ -902,7 +923,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function defaultJson()
     {
-        return fractal_item_array(
+        return json_item(
             $this,
             new UserTransformer(),
             'userAchievements,defaultStatistics'
@@ -952,7 +973,8 @@ class User extends Model implements AuthenticatableContract, Messageable
                 $postsChangeCount = 0;
             }
 
-            $newPostsCount = DB::raw("user_posts + {$postsChangeCount}");
+            // In case user_posts is 0 and $postsChangeCount is -1.
+            $newPostsCount = DB::raw("GREATEST(CAST(user_posts AS SIGNED) + {$postsChangeCount}, 0)");
         } else {
             $newPostsCount = $this->forumPosts()->whereIn('forum_id', Forum\Authorize::postsCountedForums($this))->count();
         }

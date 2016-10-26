@@ -1,0 +1,89 @@
+/**
+*    Copyright 2015 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License version 3
+*    as published by the Free Software Foundation.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
+.osu-page-header-v2 {
+  background: transparent;
+  background-size: cover;
+  background-position: center center;
+
+  padding: (@spacing * 2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  font-weight: 300;
+  color: white;
+  height: 100px;
+
+  @media @desktop {
+    padding-left: 40px;
+    padding-right: @padding-big;
+    height: 150px;
+
+    &--contests {
+      .default-box-shadow();
+      z-index: @z-index--contest-header;
+    }
+  }
+
+  &__subtitle {
+    font-size: @font-size--new-header-subtitle;
+    margin-bottom: @spacing;
+    margin-top: 5px;
+  }
+
+  &__title {
+    font-size: @font-size--new-header-title;
+    margin-top: 30px;
+    font-style: italic;
+
+    @media @mobile {
+      margin-top: @spacing;
+    }
+
+    &--artist {
+      margin-top: 60px;
+      @media @mobile {
+        margin-top: 0px;
+      }
+    }
+  }
+
+  &--contests {
+    .at2x-simple("/images/headers/contest.jpg");
+  }
+
+  &--artist {
+    height: 200px;
+    .at2x-simple("/images/headers/artist.png");
+  }
+
+  &--featured-artists {
+    .at2x-simple("/images/headers/featured-artists.jpg");
+  }
+
+  &__overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background: linear-gradient(to right, fade(#000, 60%), transparent);
+  }
+}

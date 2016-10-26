@@ -1,84 +1,56 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 // main: compiled.less
 @import "app";
 
-.section(@colour1, @colour2, @colour3, @colour4, @colour5)
-{
-  .header-background { background-color: @colour5; }
+.fn-section(admin, @gray-darker, @gray-text);
+.fn-section(beatmaps, @pink-darker, @pink-text);
+.fn-section(beatmapsets, @pink-darker, @pink-text);
+.fn-section(community, @pink-darker, @pink-text);
+.fn-section(error, @pink-darker, @pink-text);
+.fn-section(help, @yellow-darker, @yellow-text);
+.fn-section(home, @purple-darker, @purple-text);
+.fn-section(multiplayer, @pink-darker, @pink-text);
+.fn-section(ranking, @green-darker, @green-text);
+.fn-section(store, @pink-darker, @pink-text);
+.fn-section(user, @blue-darker, @blue-text);
 
-  .light { color: @colour2; }
-  .sub2 { color: @colour1 !important; }
+.fn-section(@section, @bg-color, @text-color) {
+  .t-section-@{section} {
+    .u-section--bg {
+      background-color: @bg-color !important;
+    }
 
-  .lighter { color: @colour1; }
-  .light { color: @colour2; }
-  .normal { color: @colour3; }
-  .dark { color: @colour4; }
-  .darker { color: @colour5; }
+    .u-section--color-hover {
+      &:focus,
+      &:hover,
+      &:active {
+        color: @text-color !important;
+      }
+    }
 
-  .background-lighter { background-color: @colour1; }
-  .background-light { background-color: @colour2; }
-  .background-normal { background-color: @colour3; }
-  .background-dark { background-color: @colour4; }
-  .background-darker { background-color: @colour5; }
-
-  .selector a:hover { color: @colour3 !important; }
-
-  .gray_link a {
-    color: @gray;
-    &:hover {
-      color: @colour3;
+    .u-section--gradient-down {
+      background-image: linear-gradient(fade(@bg-color, 90%) 0%, @bg-color 75%, @bg-color 100%) !important;
     }
   }
-}
 
-body.beatmaps, body.store  { .section(@pink-lighter, @pink-light, @pink, @pink-dark, @pink-darker); }
-body.ranking   { .section(@green-lighter, @green-light, @green, @green-dark, @green-darker); }
-body.community { .section(@blue-lighter, @blue-light, @blue, @blue-dark, @pink-darker); }
-body.help      { .section(@yellow-lighter, @yellow-light, @yellow, @yellow-dark, @yellow-darker); }
-body.home      { .section(@purple-lighter, @purple-light, @purple, @purple-dark, @purple-darker); }
-body.error     { .section(@pink-lighter, @pink-light, @pink, @pink-dark, @pink-darker); }
-body.user      { .section(@blue-lighter, @blue-light, @blue, @blue-dark, @blue-darker); }
-
-._section(~'beatmaps', @pink-darker, @pink-text);
-._section(~'store', @pink-darker, @pink-text);
-._section(~'ranking', @green-darker, @green-text);
-._section(~'community', @pink-darker, @pink-text);
-._section(~'help', @yellow-darker, @yellow-text);
-._section(~'home', @purple-darker, @purple-text);
-._section(~'error', @pink-darker, @pink-text);
-._section(~'user', @blue-darker, @blue-text);
-
-._section(@section-name, @bg-colour, @text-colour) {
-  .bg--@{section-name} {
-    background-color: @bg-colour;
-  }
-
-  .colour--@{section-name} {
-    color: @text-colour;
-  }
-
-  .colour-hover--@{section-name} {
-    &:focus,
-    &:hover,
-    &:active {
-      color: @text-colour;
-    }
+  .u-section-@{section}--bg {
+    background-color: @bg-color !important;
   }
 }

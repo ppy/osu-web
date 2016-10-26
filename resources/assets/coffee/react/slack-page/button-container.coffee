@@ -54,28 +54,27 @@ class SlackPage.ButtonContainer extends React.Component
     div className: 'slack-button-container',
       if _.isEmpty currentUser
         p className: 'slack-button-container__notice',
-          Lang.get 'community.slack.guest-begin'
+          osu.trans 'community.slack.guest-begin'
           a
+            className: 'js-user-link'
             href: '#'
-            'data-target': '#user-dropdown-modal',
-            'data-toggle': 'modal',
-            title: Lang.get 'users.anonymous.login_link'
-            Lang.get 'community.slack.guest-middle'
-          Lang.get 'community.slack.guest-end'
+            title: osu.trans 'users.anonymous.login_link'
+            osu.trans 'community.slack.guest-middle'
+          osu.trans 'community.slack.guest-end'
 
       else if @state.accepted
         if @props.isInviteAccepted
           p
             className: 'slack-button-container__notice',
-            dangerouslySetInnerHTML: { __html: Lang.get('community.slack.invite-already-accepted', mail: @props.supportMail) }
+            dangerouslySetInnerHTML: { __html: osu.trans('community.slack.invite-already-accepted', mail: @props.supportMail) }
 
         else
           p className: 'slack-button-container__notice slack-button-container__notice--accepted',
-            Lang.get 'community.slack.accepted'
+            osu.trans 'community.slack.accepted'
       else
         div className: '',
           p
             className: issuesClasses,
-            dangerouslySetInnerHTML: { __html: Lang.get('community.slack.recent-issues', mail: @props.supportMail) }
+            dangerouslySetInnerHTML: { __html: osu.trans('community.slack.recent-issues', mail: @props.supportMail) }
           button className: buttonClasses, onClick: @sendInviteRequest,
-            Lang.get 'community.slack.agree-button'
+            osu.trans 'community.slack.agree-button'

@@ -43,6 +43,7 @@ class Handler extends ExceptionHandler
         HttpException::class,
         LaravelAuthorizationException::class,
         ModelNotFoundException::class,
+        RequireLoginException::class,
         SilencedException::class,
         TokenMisMatchException::class,
         ValidationException::class,
@@ -84,6 +85,8 @@ class Handler extends ExceptionHandler
             return 404;
         } elseif ($e instanceof TokenMismatchException) {
             return 403;
+        } elseif ($e instanceof RequireLoginException) {
+            return 401;
         } elseif ($e instanceof AuthorizationException) {
             return 403;
         } else {
@@ -125,6 +128,18 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if (method_exists($e, 'getResponse')) {
+            return $e->getResponse();
+        }
+
+        if ($e instanceof RequireLoginException) {
+            if ($request->ajax()) {
+                return response(['authentication' => 'basic'], 401);
+            }
+
+            return response()->view('users.login');
+        }
+
         if (config('app.debug')) {
             if ($this->isHttpException($e)) {
                 $response = $this->renderHttpException($e);
@@ -133,7 +148,6 @@ class Handler extends ExceptionHandler
             }
         } else {
             if ($request->ajax()) {
-                // turbolinks always reload on page error.
                 $response = response(['error' => $e->getMessage()]);
             } else {
                 $response = response()->view('layout.error');

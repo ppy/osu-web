@@ -31,46 +31,68 @@ class BeatmapsController extends Controller
 
     public function show($id)
     {
-        $set = Beatmap::findOrFail($id)->beatmapset;
+        $beatmap = Beatmap::findOrFail($id);
+        $set = $beatmap->beatmapset;
 
-        return ujs_redirect(route('beatmapsets.show', ['id' => $set->beatmapset_id]).'#'.$id);
+        return ujs_redirect(route('beatmapsets.show', ['id' => $set->beatmapset_id]).'#'.$beatmap->mode.'/'.$id);
     }
 
     public function scores($id)
     {
+        $beatmap = Beatmap::findOrFail($id);
+        $mode = Request::input('mode', Beatmap::modeStr($beatmap->playmode));
+        $mods = Request::input('enabledMods');
         $type = Request::input('type', 'global');
-
         $user = Auth::user();
 
-        if ($type !== 'global') {
-            if (!$user) {
-                abort(403);
-            } elseif (!$user->isSupporter()) {
+        if (!is_array($mods)) {
+            $mods = [];
+        }
+
+        if ($type !== 'global' || !empty($mods)) {
+            if ($user === null || !$user->isSupporter()) {
                 return error_popup(trans('errors.supporter_only'));
             }
         }
 
-        $beatmap = Beatmap::findOrFail($id);
+        try {
+            $query = $beatmap
+                ->scoresBest($mode)
+                ->defaultListing()
+                ->with('user');
+        } catch (\InvalidArgumentException $ex) {
+            return error_popup($ex->getMessage());
+        }
 
-        $scores = $beatmap
-            ->scoresBest()
-            ->defaultListing()
-            ->limit(config('osu.beatmaps.max-scores'))
-            ->with('user');
+        $query->withMods($mods);
 
         switch ($type) {
             case 'country':
-                $scores = $scores
-                    ->whereHas('user', function ($query) use (&$user) {
-                        $query->where('country_acronym', $user->country_acronym);
-                    });
+                $query->fromCountry($user->country_acronym);
                 break;
             case 'friend':
-                $scores = $scores
-                    ->whereIn('user_id', model_pluck($user->friends(), 'zebra_id'));
+                $query->friendsOf($user);
                 break;
         }
 
-        return fractal_collection_array($scores->get(), new ScoreTransformer, 'user');
+        $scoresList = json_collection($query->get(), new ScoreTransformer, 'user');
+
+        if ($user !== null) {
+            $score = (clone $query)->where('user_id', $user->user_id)->first();
+
+            if ($score !== null) {
+                $userScore = json_item($score, new ScoreTransformer, 'user');
+                $userScorePosition = 1 + (clone $query)
+                    ->limit(null)
+                    ->where('score', '>', $score->score)
+                    ->count();
+            }
+        }
+
+        return [
+            'scoresList' => $scoresList,
+            'userScore' => $userScore ?? null,
+            'userScorePosition' => $userScorePosition ?? null,
+        ];
     }
 }

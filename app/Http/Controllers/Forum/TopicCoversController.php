@@ -70,7 +70,7 @@ class TopicCoversController extends Controller
             return error_popup($e->getMessage());
         }
 
-        return fractal_item_array($cover, new TopicCoverTransformer());
+        return json_item($cover, new TopicCoverTransformer());
     }
 
     public function destroy($id)
@@ -85,7 +85,7 @@ class TopicCoversController extends Controller
 
         $cover->deleteWithFile();
 
-        return fractal_item_array($cover, new TopicCoverTransformer());
+        return json_item($cover, new TopicCoverTransformer());
     }
 
     public function update($id)
@@ -105,6 +105,6 @@ class TopicCoversController extends Controller
             }
         }
 
-        return fractal_item_array($cover, new TopicCoverTransformer());
+        return json_item($cover, new TopicCoverTransformer());
     }
 }

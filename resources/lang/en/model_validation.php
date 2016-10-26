@@ -22,7 +22,23 @@ return [
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Can only vote a feature request.',
-            'not_enough_feature_votes' => 'Not enough vote.',
+            'not_enough_feature_votes' => 'Not enough votes.',
+        ],
+
+        'poll_vote' => [
+            'invalid' => 'Invalid option specificied.',
+        ],
+
+        'topic_poll' => [
+            'duplicate_options' => 'Duplicated option is not allowed.',
+            'invalid_max_options' => 'Option per user may not exceed the number of available options.',
+            'minimum_one_selection' => 'A minimum of one option per user is required.',
+            'minimum_two' => 'Need at least two options.',
+            'too_many_options' => 'Exceeded maximum number of allowed options.',
+        ],
+
+        'topic_vote' => [
+            'too_many' => 'Selected more options than allowed.',
         ],
     ],
 

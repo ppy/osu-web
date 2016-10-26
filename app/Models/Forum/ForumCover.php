@@ -41,7 +41,7 @@ class ForumCover extends Model
 
     public function getMaxDimensions()
     {
-        return [2700, 400];
+        return [2000, 400];
     }
 
     public function getFileRoot()

@@ -34,13 +34,16 @@ class ProfilePage.CoverUploader extends React.Component
       url: laroute.route('account.update-profile')
       dataType: 'json'
       dropZone: $dropzone
+
       submit: ->
         $.publish 'user:cover:upload:state', true
         $.publish 'dragendGlobal'
+
       done: (_e, data) ->
-        $.publish 'user:update', data.result.data
-      fail: (_e, data) ->
-        osu.ajaxError data.jqXHR
+        $.publish 'user:update', data.result
+
+      fail: osu.fileuploadFailCallback($uploadButton)
+
       complete: ->
         $.publish 'user:cover:upload:state', false
 
@@ -62,16 +65,16 @@ class ProfilePage.CoverUploader extends React.Component
         name: -1
 
       el 'label', className: labelClass, ref: 'uploadButtonContainer',
-        Lang.get 'users.show.edit.cover.upload.button'
+        osu.trans 'users.show.edit.cover.upload.button'
 
       el 'div', className: 'profile-cover-uploader__info',
         el 'p', className: 'profile-cover-uploader__info-entry',
           el 'strong',
             dangerouslySetInnerHTML:
-              __html: Lang.get 'users.show.edit.cover.upload.restriction_info'
+              __html: osu.trans 'users.show.edit.cover.upload.restriction_info'
 
         el 'p', className: 'profile-cover-uploader__info-entry',
-          Lang.get 'users.show.edit.cover.upload.dropzone_info'
+          osu.trans 'users.show.edit.cover.upload.dropzone_info'
 
         el 'p', className: 'profile-cover-uploader__info-entry',
-          Lang.get 'users.show.edit.cover.upload.size_info'
+          osu.trans 'users.show.edit.cover.upload.size_info'

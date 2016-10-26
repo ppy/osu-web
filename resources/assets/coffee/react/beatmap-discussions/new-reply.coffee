@@ -63,13 +63,13 @@ BeatmapDiscussions.NewReply = React.createClass
                 span className: 'osu-checkbox__tick',
                   el Icon, name: 'check'
 
-                Lang.get('beatmaps.discussions.resolved')
+                osu.trans('beatmaps.discussions.resolved')
           div className: "#{bn}__actions-group",
             button
               className: 'btn-osu-lite btn-osu-lite--default'
               disabled: !@validPost()
               onClick: @throttledPost
-              Lang.get('common.buttons.reply')
+              osu.trans('common.buttons.reply')
 
 
   post: ->
@@ -88,7 +88,7 @@ BeatmapDiscussions.NewReply = React.createClass
     .done (data) =>
       @setState message: ''
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_ids
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion.data
+      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion
 
     .fail osu.ajaxError
 

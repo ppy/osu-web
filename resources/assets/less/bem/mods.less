@@ -17,17 +17,37 @@
  *
  */
 .mods {
-  @_mod-width: 30px;
-  @_mod-height: 22px;
-  @_width: (@_mod-width * 3);
+  @top: mods;
 
-  width: @_width;
-  min-width: @_width;
-  max-width: @_width;
+  @mod-height-small: 18px;
+  @mod-width-small: (@mod-height-small / @mod-height * @mod-width);
+
+  @mod-height-normal: 22px;
+  @mod-width-normal: (@mod-height-normal / @mod-height * @mod-width);
+
+  flex: none;
+  width: (@mod-width-normal * 3);
+  height: @mod-height-normal;
+  padding: 0 (@mod-width-normal / 2);
 
   display: flex;
   justify-content: space-between;
-  padding: 0 (@_mod-width / 2);
+
+  &--small {
+    width: (@mod-width-small * 3);
+    height: @mod-height-small;
+    padding: 0 (@mod-width-small / 2);
+  }
+
+  &--large {
+    width: (@mod-width * 3);
+    height: @mod-height;
+    padding: 0 (@mod-width / 2);
+  }
+
+  &--reversed {
+    flex-direction: row-reverse;
+  }
 
   &__mod {
     width: 0;
@@ -36,8 +56,14 @@
   }
 
   &__mod-image {
-    flex: none;
-    width: @_mod-width;
-    height: @_mod-height;
+    min-width: @mod-width-normal;
+
+    .@{top}--small & {
+      min-width: @mod-width-small;
+    }
+
+    .@{top}--large & {
+      min-width: @mod-width;
+    }
   }
 }

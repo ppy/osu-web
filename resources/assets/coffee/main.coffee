@@ -16,6 +16,9 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+LocalStoragePolyfill.fillIn()
+CustomEventPolyfill.fillIn()
+
 # loading animation overlay
 # fired from turbolinks
 $(document).on 'turbolinks:request-start', LoadingOverlay.show
@@ -24,50 +27,39 @@ $(document).on 'turbolinks:request-end', LoadingOverlay.hide
 $(document).on 'submit', 'form', LoadingOverlay.show
 
 
+@currentUserObserver ?= new CurrentUserObserver
 @reactTurbolinks ||= new ReactTurbolinks
 @twitchPlayer ?= new TwitchPlayer
+@landingGraph ?= new LandingGraph
+@landingHero ?= new LandingHero
+@timeago ?= new Timeago
+@osuLayzr ?= new OsuLayzr
+@nav ?= new Nav
+@userLogin ?= new UserLogin(@nav)
+@userVerification ?= new UserVerification(@nav)
+@throttledWindowEvents ?= new ThrottledWindowEvents
+@checkboxValidation ?= new CheckboxValidation
+@formToggle ?= new FormToggle
 
-reactTurbolinks.register 'user-card', UserCard
+@editorZoom ?= new EditorZoom
+@stickyFooter ?= new StickyFooter
+@stickyHeader ?= new StickyHeader
+@globalDrag ?= new GlobalDrag
+@gallery ?= new Gallery
+@formPlaceholderHide ?= new FormPlaceholderHide
+@tooltipDefault ?= new TooltipDefault
 
+@syncHeight ?= new SyncHeight
 
-$(document).on 'ready turbolinks:load', =>
-  LocalStoragePolyfill.fillIn()
+@forum ?= new Forum
+@forumAutoClick ?= new ForumAutoClick
+@forumPostsSeek ?= new ForumPostsSeek(@forum)
+@forumSearchModal ?= new ForumSearchModal(@forum)
+@forumTopicPostJump ?= new ForumTopicPostJump(@forum)
+@forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
+@forumCover ?= new ForumCover
 
-  @editorZoom ||= new EditorZoom
-  @stickyFooter ||= new StickyFooter
-  @stickyHeader ||= new StickyHeader
-  @globalDrag ||= new GlobalDrag
-  @gallery ||= new Gallery
-  @formPlaceholderHide ||= new FormPlaceholderHide
-  @headerMenu ||= new HeaderMenu
-  @tooltipDefault ||= new TooltipDefault
-  @throttledEvents ||= new ThrottledEvents
-
-  @syncHeight ||= new SyncHeight
-
-  @forum ||= new Forum
-  @forumAutoClick ||= new ForumAutoClick
-  @forumPostsSeek ||= new ForumPostsSeek(@forum)
-  @forumSearchModal ||= new ForumSearchModal(@forum)
-  @forumTopicPostJump ||= new ForumTopicPostJump(@forum)
-  @forumTopicReply ||= new ForumTopicReply(@forum, @stickyFooter)
-  @forumCover ||= new ForumCover(@forum)
-
-  @menu ||= new Menu
-  @logoMenu ||= new LogoMenu
-
-  @layzr ||= Layzr()
-
-
-initPage = =>
-  osu.initTimeago()
-  @layzr.update().check().handlers(true)
-
-# Don't bother moving initPage to osu junk drawer and removing the
-# osu:page:change. It's intended to allow other scripts to attach
-# callbacks to osu:page:change.
-$(document).on 'ready turbolinks:load', initPage
-$(document).on 'osu:page:change', _.debounce(initPage, 500)
+@menu ?= new Menu
 
 
 $(document).on 'change', '.js-url-selector', (e) ->
@@ -81,6 +73,8 @@ $(document).on 'keydown', (e) ->
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port
 rootUrl += '/'
+
+jQuery.timeago.settings.allowFuture = true
 
 # Internal Helper
 $.expr[':'].internal = (obj, index, meta, stack) ->

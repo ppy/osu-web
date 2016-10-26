@@ -3,8 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use DB;
-use Auth;
+use App\Models\LegacySession;
 use Illuminate\Contracts\Auth\Guard;
 
 class AutologinFromLegacyCookie
@@ -26,7 +25,6 @@ class AutologinFromLegacyCookie
     public function __construct(Guard $auth)
     {
         $this->auth = $auth;
-        $this->shared_secret = config('osu.legacy.shared_cookie_secret');
     }
 
     /**
@@ -38,17 +36,13 @@ class AutologinFromLegacyCookie
      */
     public function handle($request, Closure $next)
     {
-        $user = $this->auth->user();
+        if ($this->auth->guest()) {
+            $session = LegacySession::loadFromRequest($request);
 
-        if (!$user && isset($_COOKIE['phpbb3_2cjk5_sid']) && isset($_COOKIE['phpbb3_2cjk5_sid_check'])) {
-            $phpbb_sid = $_COOKIE['phpbb3_2cjk5_sid'];
-            $confirmation = $_COOKIE['phpbb3_2cjk5_sid_check'];
-            if (hash_hmac('sha1', $phpbb_sid, $this->shared_secret) === $confirmation) {
-                $session = DB::table('phpbb_sessions')->where('session_id', '=', $phpbb_sid)->first();
-
-                if ($session) {
-                    Auth::loginUsingId($session->session_user_id, $session->session_autologin);
-                }
+            if ($session !== null) {
+                $request->session()->flush();
+                $request->session()->regenerateToken();
+                $this->auth->loginUsingId($session->session_user_id, $session->session_autologin);
             }
         }
 

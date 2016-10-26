@@ -1,0 +1,172 @@
+/**
+*    Copyright 2015 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License version 3
+*    as published by the Free Software Foundation.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
+.artist {
+  &__index {
+    background-color: #293336;
+    padding: @spacing;
+    font-weight: 300;
+    .default-box-shadow();
+
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  &__box {
+    margin: @spacing;
+  }
+
+  &__name {
+    text-align: center;
+    color: #FFCD23;
+    font-size: 14px;
+    margin-top: @spacing / 2;
+    display: block;
+    &:hover {
+      color: #FFCD23;
+    }
+  }
+
+  &__track-count {
+    color: #777777;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  &__description {
+    background-color: #293336;
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+    padding: 0px 20px 20px 20px;
+    @media @desktop {
+      padding: 20px;
+    }
+    .default-box-shadow();
+
+    > h1, h2, h3, h4, h5, h6 {
+      color: white;
+    }
+
+    &--index {
+      padding: 30px;
+      background-color: #1A2223;
+    }
+  }
+
+  &__portrait-wrapper {
+    width: 250px;
+    height: 250px;
+    &--index {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  &__portrait {
+    .at2x-simple("/images/layout/artist-noavatar.jpg");
+    width: 250px;
+    height: 250px;
+    .default-box-shadow();
+    .default-border-radius();
+    background-size: cover;
+    background-position: center;
+    display: block;
+
+    margin: 0 auto;
+    margin-top: -50px;
+    @media @desktop {
+      margin-top: -150px;
+      margin-left: @spacing;
+    }
+
+    &--index {
+      width: 200px;
+      height: 200px;
+      margin: 0;
+      @media @desktop {
+        margin: 0;
+      }
+    }
+  }
+
+  &__label-overlay {
+    width: 64px;
+    height: 64px;
+    background-size: cover;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    border-radius: 4px 0 3px 0;
+  }
+
+  &__links-area {
+    margin: 0 auto;
+    width: 270px;
+    padding: @spacing;
+  }
+
+  &__white-link {
+    .white-link();
+    text-decoration: none;
+    &:hover, &:focus {
+      .white-link();
+      text-decoration: none;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    .white-link();
+    text-decoration: none;
+    &:hover, &:focus {
+      .white-link();
+      text-decoration: none;
+    }
+  }
+
+  &__link-text {
+    font-weight: 200;
+    flex-basis: 100%;
+    text-align: left;
+    padding-left: 20px;
+  }
+
+  &__chevron {
+    right: 0;
+  }
+
+  &__chevron--twitter {
+    color: @twitter-colour;
+  }
+
+  &__chevron--facebook {
+    color: @facebook-colour;
+  }
+
+  &__chevron--soundcloud {
+    color: @soundcloud-colour;
+  }
+}

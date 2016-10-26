@@ -31,9 +31,37 @@ function array_search_null($value, $array)
     }
 }
 
-function item_count($count)
+function get_valid_locale($requestedLocale)
 {
-    return Lang::choice('common.count.item', $count, ['count' => $count]);
+    if (in_array($requestedLocale, config('app.available_locales'), true)) {
+        return $requestedLocale;
+    }
+
+    return array_first(
+        config('app.available_locales'),
+        function ($_key, $value) use ($requestedLocale) {
+            return starts_with($requestedLocale, $value);
+        },
+        config('app.fallback_locale')
+    );
+}
+
+function json_time($time)
+{
+    if ($time !== null) {
+        return $time->toIso8601String();
+    }
+}
+
+function osu_url($key)
+{
+    $url = config("osu.urls.{$key}");
+
+    if (($url[0] ?? null) === '/') {
+        $url = config('osu.urls.base').$url;
+    }
+
+    return $url;
 }
 
 function product_quantity_options($product)
@@ -45,10 +73,26 @@ function product_quantity_options($product)
     }
     $opts = [];
     for ($i = 1; $i <= $max; $i++) {
-        $opts[$i] = item_count($i);
+        $opts[$i] = trans_choice('common.count.item', $i);
     }
 
     return $opts;
+}
+
+function render_to_string($view, $variables = [])
+{
+    return view()->make($view, $variables)->render();
+}
+
+function obscure_email($email)
+{
+    $email = explode('@', $email);
+
+    if (!present($email[0]) || !present($email[1] ?? null)) {
+        return '<unknown>';
+    }
+
+    return $email[0][0].'***'.'@'.$email[1];
 }
 
 function countries_array_for_select()
@@ -96,6 +140,14 @@ function i18n_view($view)
     }
 }
 
+function is_sql_unique_exception($ex)
+{
+    return starts_with(
+        $ex->getMessage(),
+        'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry'
+    );
+}
+
 function js_view($view, $vars = [])
 {
     return response()
@@ -108,16 +160,16 @@ function ujs_redirect($url)
     if (Request::ajax()) {
         return js_view('layout.ujs-redirect', ['url' => $url]);
     } else {
-        return redirect($url)->with('_turbolinks-location', $url);
+        return redirect($url);
     }
 }
 
 function timeago($date)
 {
     $display_date = $date->toRfc850String();
-    $attribute_date = $date->toIso8601String();
+    $attribute_date = json_time($date);
 
-    return "<time class='timeago-raw timeago' datetime='{$attribute_date}'>{$display_date}</time>";
+    return "<time class='timeago' datetime='{$attribute_date}'>{$display_date}</time>";
 }
 
 function current_action()
@@ -213,45 +265,66 @@ function nav_links()
 
     if (config('app.debug')) {
         $links['home'] = [
-            'getNews' => route('news'),
-            'getChangelog' => route('changelog'),
-            'getDownload' => route('download'),
+            'index' => route('home'),
+            'getChangelog' => osu_url('home.changelog'),
+            'getDownload' => osu_url('home.download'),
         ];
-
         $links['help'] = [
-            'getWiki' => route('wiki'),
-            'getFaq' => route('faq'),
-            'getSupport' => route('support'),
+            'getWiki' => osu_url('help.wiki'),
+            'getFaq' => osu_url('help.faq'),
+            'getSupport' => osu_url('help.support'),
         ];
-
-        $links['beatmaps'] = [
-            'index' => route('beatmapsets.index'),
-            // 'getPacks' => route('packs.index'),
-            // 'getCharts' => route('charts.index'),
-        ];
-
         $links['ranking'] = [
-            'getOverall' => route('ranking-overall'),
-            'getCharts' => route('ranking-charts'),
-            'getCountry' => route('ranking-country'),
-            'getMapper' => route('ranking-mapper'),
-        ];
-    } else {
-        $links['beatmaps'] = [
-            'index' => route('beatmapsets.index'),
+            'getOverall' => osu_url('ranking.overall'),
+            'getCharts' => osu_url('ranking.charts'),
+            'getCountry' => osu_url('ranking.country'),
+            'getMapper' => osu_url('ranking.mapper'),
         ];
     }
-
+    $links['beatmaps'] = [
+        'index' => route('beatmapsets.index'),
+        'artists' => route('artist.index'),
+    ];
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
+        'contests' => route('community.contests.index'),
         'tournaments' => route('tournaments.index'),
         'getLive' => route('livestreams.index'),
         'getSlack' => route('slack'),
     ];
-
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),
         'getCart' => action('StoreController@getCart'),
+    ];
+
+    return $links;
+}
+
+function footer_links()
+{
+    $links = [];
+    $links['general'] = [
+        'home' => route('home'),
+        'changelog' => osu_url('home.changelog'),
+        'beatmaps' => action('BeatmapsetsController@index'),
+        'download' => osu_url('home.download'),
+        'wiki' => osu_url('help.wiki'),
+    ];
+    $links['help'] = [
+        'faq' => osu_url('help.faq'),
+        'forum' => route('forum.forums.index'),
+        'livestreams' => route('livestreams.index'),
+        'report' => route('forum.topics.create', ['forum_id' => 5]),
+    ];
+    $links['support'] = [
+        'tags' => route('support-the-game'),
+        'merchandise' => action('StoreController@getListing'),
+    ];
+    $links['legal'] = [
+        'tos' => osu_url('legal.tos'),
+        'copyright' => osu_url('legal.dmca'),
+        'serverStatus' => osu_url('status.server'),
+        'osuStatus' => osu_url('status.osustatus'),
     ];
 
     return $links;
@@ -307,6 +380,17 @@ function display_regdate($user)
     return trans('users.show.joined_at', ['date' => $user->user_regdate->formatLocalized('%B %Y')]);
 }
 
+function i18n_date($datetime, $format = IntlDateFormatter::LONG)
+{
+    $formatter = IntlDateFormatter::create(
+        App::getLocale(),
+        $format,
+        IntlDateFormatter::NONE
+    );
+
+    return $formatter->format($datetime);
+}
+
 function open_image($path, $dimensions = null)
 {
     if ($dimensions === null) {
@@ -340,31 +424,7 @@ function open_image($path, $dimensions = null)
     }
 }
 
-function fractal_collection_array($models, $transformer, $includes = null)
-{
-    $manager = new League\Fractal\Manager();
-    if ($includes !== null) {
-        $manager->parseIncludes($includes);
-    }
-
-    $collection = new League\Fractal\Resource\Collection($models, $transformer);
-
-    return $manager->createData($collection)->toArray();
-}
-
-function fractal_item_array($model, $transformer, $includes = null)
-{
-    $manager = new League\Fractal\Manager();
-    if ($includes !== null) {
-        $manager->parseIncludes($includes);
-    }
-
-    $item = new League\Fractal\Resource\Item($model, $transformer);
-
-    return $manager->createData($item)->toArray();
-}
-
-function fractal_api_serialize_collection($model, $transformer, $includes = null)
+function json_collection($model, $transformer, $includes = null)
 {
     $manager = new League\Fractal\Manager();
     if ($includes !== null) {
@@ -372,15 +432,15 @@ function fractal_api_serialize_collection($model, $transformer, $includes = null
     }
     $manager->setSerializer(new App\Serializers\ApiSerializer());
 
-    // we're using collection instead of item here, so we can peak at the items beforehand
+    // we're using collection instead of item here, so we can peek at the items beforehand
     $collection = new League\Fractal\Resource\Collection($model, $transformer);
 
     return $manager->createData($collection)->toArray();
 }
 
-function fractal_api_serialize_item($model, $transformer, $includes = null)
+function json_item($model, $transformer, $includes = null)
 {
-    return fractal_api_serialize_collection([$model], $transformer, $includes)[0];
+    return json_collection([$model], $transformer, $includes)[0];
 }
 
 function fast_imagesize($url)
@@ -414,22 +474,40 @@ function get_int($string)
     }
 }
 
-// should it be used?
-function bem($block, $element = null, $modifiers = [])
+function get_bool($string)
 {
-    $baseClass = $block;
+    if (is_bool($string)) {
+        return $string;
+    } elseif ($string === '1' || $string === 'on') {
+        return true;
+    } elseif ($string === '0') {
+        return false;
+    }
+}
 
-    if ($element !== null) {
-        $baseClass .= "__{$element}";
+function get_file($input)
+{
+    if ($input instanceof Symfony\Component\HttpFoundation\File\UploadedFile) {
+        return $input->getRealPath();
+    }
+}
+
+function get_arr($input, $callback)
+{
+    if (!is_array($input)) {
+        return;
     }
 
-    $ret = $baseClass;
+    $result = [];
+    foreach ($input as $value) {
+        $casted = call_user_func($callback, $value);
 
-    foreach ($modifiers as $modifier) {
-        $ret .= " {$baseClass}--{$modifier}";
+        if ($casted !== null) {
+            $result[] = $casted;
+        }
     }
 
-    return " {$ret} ";
+    return $result;
 }
 
 function get_class_basename($className)
@@ -472,40 +550,37 @@ function deltree($dir)
 
 function get_param_value($input, $type)
 {
-    if ($type === 'bool') {
-        if (is_bool($input)) {
-            return $input;
-        } elseif ($input === '1' || $input === 'true') {
-            return true;
-        } elseif ($input === '0' || $input === 'false') {
-            return false;
-        } else {
-            return;
-        }
+    switch ($type) {
+        case 'bool':
+            return get_bool($input);
+            break;
+        case 'int':
+            return get_int($input);
+            break;
+        case 'file':
+            return get_file($input);
+            break;
+        case 'string_split':
+            return get_arr(explode("\r\n", $input), 'presence');
+            break;
+        case 'string[]':
+            return get_arr($input, 'presence');
+            break;
+        case 'int[]':
+            return get_arr($input, 'get_int');
+            break;
+        default:
+            return presence((string) $input);
     }
-
-    if ($type === 'int') {
-        return get_int($input);
-    }
-
-    if ($type === 'file') {
-        if ($input instanceof Symfony\Component\HttpFoundation\File\UploadedFile) {
-            return $input->getRealPath();
-        } else {
-            return;
-        }
-    }
-
-    return (string) $input;
 }
 
-function get_params($input, $namespace, $keys, $defaults = [], $overrides = [])
+function get_params($input, $namespace, $keys)
 {
     if ($namespace !== null) {
         $input = array_get($input, $namespace);
     }
 
-    $params = $defaults;
+    $params = [];
 
     foreach ($keys as $keyAndType) {
         $keyAndType = explode(':', $keyAndType);
@@ -520,7 +595,7 @@ function get_params($input, $namespace, $keys, $defaults = [], $overrides = [])
         }
     }
 
-    return array_merge($params, $overrides);
+    return $params;
 }
 
 function array_rand_val($array)
@@ -545,6 +620,29 @@ function model_pluck($builder, $key)
         ->all();
 }
 
+// Returns null if timestamp is null or 0.
+// Technically it's not null if 0 but some tables have not null constraints
+// despite null being a valid value. Instead it's filled in with 0 so this
+// helper returns null if it's 0 and parses the timestamp otherwise.
+function get_time_or_null($timestamp)
+{
+    if ($timestamp !== null && $timestamp !== 0) {
+        return Carbon\Carbon::createFromTimestamp($timestamp);
+    }
+}
+
+function format_duration_for_display($seconds)
+{
+    return floor($seconds / 60).':'.str_pad(($seconds % 60), 2, '0', STR_PAD_LEFT);
+}
+
+// Converts a standard image url to a retina one
+// e.g. https://local.host/test.jpg -> https://local.host/test@2x.jpg
+function retinaify($url)
+{
+    return preg_replace('/(\.[^.]+)$/', '@2x\1', $url);
+}
+
 function priv_check($ability, $args = null)
 {
     return priv_check_user(Auth::user(), $ability, $args);
@@ -553,4 +651,16 @@ function priv_check($ability, $args = null)
 function priv_check_user($user, $ability, $args = null)
 {
     return app()->make('OsuAuthorize')->doCheckUser($user, $ability, $args);
+}
+
+// Fisher-Yates
+function seeded_shuffle(array &$items, int $seed)
+{
+    @mt_srand($seed);
+    for ($i = count($items) - 1; $i > 0; $i--) {
+        $j = @mt_rand(0, $i);
+        $tmp = $items[$i];
+        $items[$i] = $items[$j];
+        $items[$j] = $tmp;
+    }
 }

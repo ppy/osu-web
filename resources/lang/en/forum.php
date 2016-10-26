@@ -32,6 +32,17 @@ return [
             'confirm' => 'Are you sure you want to remove the cover image?',
         ],
     ],
+
+    'email' => [
+        'new_reply' => '[osu!] New reply for topic ":title"',
+    ],
+
+    'forums' => [
+        'topics' => [
+            'empty' => 'No topics!',
+        ],
+    ],
+
     'pinned_topics' => 'Pinned Topics',
     'post' => [
         'confirm_delete' => 'Really delete post?',
@@ -68,7 +79,6 @@ return [
         ],
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'latest reply by :user',
-        'move' => 'Move to another forum',
         'new_topic' => 'Post new topic',
         'post_edit' => [
             'cancel' => 'Cancel',
@@ -82,6 +92,30 @@ return [
         'reply_box_placeholder' => 'Type here to reply',
         'started_by' => 'by :user',
     ],
+
+    'topic_watches' => [
+        'index' => [
+            'title' => 'Topic Subscriptions',
+            'title_compact' => 'subscriptions',
+
+            'box' => [
+                'total' => 'Topics subscribed',
+                'unread' => 'Topics with new replies',
+            ],
+            'info' => [
+                'total' => 'You subscribed to :total topics.',
+                'unread' => 'You have :unread unread replies to subscribed topics.',
+            ],
+        ],
+
+        'topic_buttons' => [
+            'remove' => [
+                'confirmation' => 'Unsubscribe from topic?',
+                'title' => 'Unsubscribe',
+            ],
+        ],
+    ],
+
     'topics' => [
         '_' => 'Topics',
 
@@ -90,18 +124,56 @@ return [
             'reply_with_quote' => 'Quote post for reply',
         ],
 
+        'create' => [
+            'create_poll' => 'Poll Creation',
+
+            'create_poll_button' => [
+                'add' => 'Create a poll',
+                'remove' => 'Cancel creating a poll',
+            ],
+
+            'poll' => [
+                'length' => 'Run poll for',
+                'length_days_prefix' => '',
+                'length_days_suffix' => 'days',
+                'length_info' => 'Leave blank for a never ending poll',
+                'max_options' => 'Options per user',
+                'max_options_info' => 'This is the number of options each user may select when voting.',
+                'options' => 'Options',
+                'options_info' => 'Place each options on a new line. You may enter up to 10 options.',
+                'title' => 'Question',
+                'vote_change' => 'Allow re-voting.',
+                'vote_change_info' => 'If enabled, users are able to change their vote.',
+            ],
+        ],
+
         'index' => [
             'views' => 'views',
             'replies' => 'replies',
         ],
 
         'lock' => [
-            'locked-0' => 'Topic has been unlocked',
-            'locked-1' => 'Topic has been locked',
             'is_locked' => 'This topic is locked and can not be replied to',
+            'lock-0' => 'Unlock topic',
+            'lock-1' => 'Lock topic',
+            'state-0' => 'Topic has been unlocked',
+            'state-1' => 'Topic has been locked',
+        ],
+
+        'moderate_move' => [
+            'title' => 'Move to another forum',
+        ],
+
+        'moderate_pin' => [
+            'pin-0' => 'Unpin topic',
+            'pin-1' => 'Pin topic',
+            'state-0' => 'Topic has been unpinned',
+            'state-1' => 'Topic has been pinned',
         ],
 
         'show' => [
+            'total_posts' => 'Total Posts',
+
             'feature_vote' => [
                 'current' => 'Current Priority: +:count',
                 'do' => 'Promote this request',
@@ -112,6 +184,23 @@ return [
                     'not_enough' => "You don't have any more votes remaining",
                 ],
             ],
+
+            'poll' => [
+                'vote' => 'Vote',
+
+                'detail' => [
+                    'total' => 'Total votes: :count',
+                    'ended' => 'Polling ended :time',
+                    'end_time' => 'Polling will end at :time',
+                ],
+            ],
+        ],
+
+        'watch' => [
+            'state-0' => 'Unsubscribed from topic',
+            'state-1' => 'Subscribed to topic',
+            'watch-0' => 'Unsubscribe topic',
+            'watch-1' => 'Subscribe topic',
         ],
     ],
 

@@ -23,17 +23,16 @@ BeatmapDiscussions.Main = React.createClass
 
 
   getInitialState: ->
-    initial = osu.parseJson 'json-beatmapset-discussion'
-
-    beatmapset: initial.beatmapset.data
-    beatmapsetDiscussion: initial.beatmapsetDiscussion.data
-    currentBeatmap: initial.beatmapset.data.beatmaps.data[0]
+    beatmapset: @props.initial.beatmapset
+    beatmapsetDiscussion: @props.initial.beatmapsetDiscussion
+    currentBeatmap: @props.initial.beatmapset.beatmaps[0]
     currentUser: currentUser
-    userPermissions: initial.userPermissions
-    users: @indexUsers initial.beatmapsetDiscussion.data.users.data
+    userPermissions: @props.initial.userPermissions
     mode: 'timeline'
-    readPostIds: _.chain(initial.beatmapsetDiscussion.data.beatmap_discussions.data)
-      .map (d) => d.beatmap_discussion_posts.data.map (r) => r.id
+    readPostIds: _.chain(@props.initial.beatmapsetDiscussion.beatmap_discussions)
+      .map (d) =>
+        d.beatmap_discussion_posts.map (r) =>
+          r.id
       .flatten()
       .value()
     highlightedDiscussionId: null
@@ -44,6 +43,7 @@ BeatmapDiscussions.Main = React.createClass
   componentDidMount: ->
     $.subscribe 'beatmap:select.beatmapDiscussions', @setCurrentBeatmapId
     $.subscribe 'beatmapsetDiscussion:update.beatmapDiscussions', @setBeatmapsetDiscussion
+    $.subscribe 'beatmapset:update.beatmapDiscussions', @setBeatmapset
     $.subscribe 'beatmapDiscussion:collapse.beatmapDiscussions', @collapseBeatmapDiscussion
     $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
     $.subscribe 'beatmapDiscussion:setMode.beatmapDiscussions', @setMode
@@ -53,14 +53,18 @@ BeatmapDiscussions.Main = React.createClass
 
     @jumpByHash()
 
-    @checkNewTimeout = setTimeout @checkNew, @checkNewTimeoutDefault
+    @checkNewTimeout = Timeout.set @checkNewTimeoutDefault, @checkNew
 
 
   componentWillUnmount: ->
     $.unsubscribe '.beatmapDiscussions'
 
-    clearTimeout @checkNewTimeout
+    Timeout.clear @checkNewTimeout
     @checkNewAjax?.abort?()
+
+
+  componentWillUpdate: ->
+    @indexedUsers = null
 
 
   render: ->
@@ -77,7 +81,7 @@ BeatmapDiscussions.Main = React.createClass
             h1
               className: 'forum-category-header__title'
               a
-                href: laroute.route('beatmapsets.show', beatmapsets: @state.beatmapset.beatmapset_id)
+                href: laroute.route('beatmapsets.show', beatmapsets: @state.beatmapset.id)
                 className: 'link link--white link--no-underline'
                 @state.beatmapset.title
 
@@ -88,6 +92,10 @@ BeatmapDiscussions.Main = React.createClass
           currentFilter: @state.currentFilter
           beatmapsetDiscussion: @state.beatmapsetDiscussion
           lookupUser: @lookupUser
+
+      el BeatmapDiscussions.Nominations,
+        beatmapset: @state.beatmapset
+        currentUser: @state.currentUser
 
       div
         className: 'osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact'
@@ -110,16 +118,19 @@ BeatmapDiscussions.Main = React.createClass
   setBeatmapsetDiscussion: (_e, {beatmapsetDiscussion, callback}) ->
     @setState
       beatmapsetDiscussion: beatmapsetDiscussion
-      users: @indexUsers beatmapsetDiscussion.users.data
       callback
 
+  setBeatmapset: (_e, {beatmapset, callback}) ->
+    @setState
+      beatmapset: beatmapset
+      callback
 
   setCurrentBeatmapId: (_e, {id, callback}) ->
     osu.setHash "#:#{id}"
 
     return callback?() if id == @state.currentBeatmap.id
 
-    beatmap = @state.beatmapset.beatmaps.data.find (bm) =>
+    beatmap = @state.beatmapset.beatmaps.find (bm) =>
       bm.id == id
 
     return callback?() if !beatmap?
@@ -127,16 +138,14 @@ BeatmapDiscussions.Main = React.createClass
     @setState currentBeatmap: beatmap, callback
 
 
-  indexUsers: (usersArray) ->
-    _.keyBy usersArray, (u) => u.id
-
-
   lookupUser: (id) ->
-    @state.users[id]
+    @indexedUsers ?= _.keyBy @state.beatmapsetDiscussion.users, 'id'
+
+    @indexedUsers[id]
 
 
   jumpTo: (_e, {id}) ->
-    discussion = @state.beatmapsetDiscussion.beatmap_discussions.data.find (d) => d.id == id
+    discussion = @state.beatmapsetDiscussion.beatmap_discussions.find (d) => d.id == id
 
     return if !discussion?
 
@@ -175,7 +184,7 @@ BeatmapDiscussions.Main = React.createClass
   checkNew: ->
     @nextTimeout ?= @checkNewTimeoutDefault
 
-    clearTimeout @checkNewTimeout
+    Timeout.clear @checkNewTimeout
 
     @checkNewAjax = $.ajax document.location.pathname,
       data:
@@ -189,12 +198,12 @@ BeatmapDiscussions.Main = React.createClass
 
       @nextTimeout = @checkNewTimeoutDefault
 
-      @setBeatmapsetDiscussion null, beatmapsetDiscussion: data.beatmapsetDiscussion.data
+      @setBeatmapsetDiscussion null, beatmapsetDiscussion: data.beatmapsetDiscussion
 
     .always =>
       @nextTimeout = Math.min @nextTimeout, @checkNewTimeoutMax
 
-      @checkNewTimeout = setTimeout @checkNew, @nextTimeout
+      @checkNewTimeout = Timeout.set @nextTimeout, @checkNew
 
 
   setHighlight: (_e, {id}) ->
@@ -212,7 +221,7 @@ BeatmapDiscussions.Main = React.createClass
   collapseBeatmapDiscussion: (_e, {all, id}) ->
     newIds =
       if all == 'collapse'
-        @state.beatmapsetDiscussion.beatmap_discussions.data.map (d) =>
+        @state.beatmapsetDiscussion.beatmap_discussions.map (d) =>
           d.id
       else if all == 'expand'
         []

@@ -24,11 +24,12 @@
 #    object) is the correct target
 # 4. stick if matches, unstick otherwise
 class @StickyHeader
-  stickMarker: document.getElementsByClassName('js-sticky-header')
-
   constructor: ->
+    @stickMarker = document.getElementsByClassName('js-sticky-header')
+
     $(window).on 'throttled-scroll throttled-resize', @stickOrUnstick
-    $(document).on 'ready turbolinks:load osu:page:change', @stickOrUnstick
+    $(document).on 'turbolinks:load osu:page:change', @stickOrUnstick
+
 
   stickOrUnstick: =>
     return if @stickMarker.length == 0

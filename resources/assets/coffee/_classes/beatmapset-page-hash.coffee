@@ -17,22 +17,12 @@
 ###
 
 class @BeatmapsetPageHash
-  @noMode: (page) ->
-    ['description'].indexOf(page) != -1
-
   @parse: (hash) ->
     hash = hash[1..]
-    if @noMode hash
-      page: hash
-    else
-      split = hash.split '/'
-      beatmapId: parseInt split[0], 10
-      page: split[1] || 'main'
 
-  @generate: ({page, beatmapId}) ->
-    if @noMode(page)
-      "##{page}"
-    else
-      hash = "##{beatmapId}"
-      hash += "/#{page}" if page != 'main'
-      hash
+    split = hash.split '/'
+    playmode: split[0]
+    beatmapId: parseInt split[1], 10
+
+  @generate: ({beatmapId, playmode}) ->
+    "##{playmode}/#{beatmapId}"

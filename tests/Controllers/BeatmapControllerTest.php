@@ -38,7 +38,8 @@ class BeatmapControllerTest extends TestCase
     {
         $this->json('GET', route('beatmaps.scores', ['id' => $this->beatmap->beatmap_id]), [
             'type' => 'country',
-        ])->seeStatusCode(403);
+        ])->seeStatusCode(422)
+        ->seeJson(['error' => trans('errors.supporter_only')]);
     }
 
     /**

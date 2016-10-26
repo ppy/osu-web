@@ -24,13 +24,14 @@
 #    object) is the correct target
 # 4. stick if matches, unstick otherwise
 class @StickyFooter
-  stickMarker: document.getElementsByClassName('js-sticky-footer')
-  permanentFixedFooter: document.getElementsByClassName('js-permanent-fixed-footer')
-
   constructor: ->
+    @stickMarker = document.getElementsByClassName('js-sticky-footer')
+    @permanentFixedFooter = document.getElementsByClassName('js-permanent-fixed-footer')
+
     $(window).on 'throttled-scroll throttled-resize', @stickOrUnstick
     $.subscribe 'stickyFooter:check', @stickOrUnstick
-    $(document).on 'ready turbolinks:load osu:page:change', @stickOrUnstick
+    $(document).on 'turbolinks:load osu:page:change', @stickOrUnstick
+
 
   stickOrUnstick: =>
     return if @stickMarker.length == 0

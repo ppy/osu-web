@@ -25,14 +25,6 @@
   .inner-shadow-top();
   padding: (@spacing * 2);
 
-  &__collapse-button {
-    margin-left: @spacing;
-  }
-
-  &__collapse-button-text {
-    margin-left: (@spacing / 2);
-  }
-
   &__discussion {
     &--empty {
       padding-left: @beatmap-discussion--timestamp-width;
@@ -53,11 +45,11 @@
 
   &__mode-circle {
     .circle(@_mode-circle-diameter);
-    border: 3px solid @grey-5;
+    border: 3px solid @gray-5;
     margin-right: @spacing;
 
     &--active {
-      background-color: @grey-5;
+      background-color: @gray-5;
     }
   }
 
@@ -75,7 +67,7 @@
 
     margin: 0 ((@_mode-circle-diameter - @_timeline-line-width) / 2);
 
-    background-color: @grey-5;
+    background-color: @gray-5;
 
     &--half {
       height: 50%;

@@ -19,16 +19,17 @@
 .forum-post {
   @_reply-xs-top-margin: 4px;
 
+  .default-box-shadow();
+  background-color: @gray-f;
+
   margin-bottom: (@spacing / 2);
   padding: 0;
 
-  // To make default-border-radius and overflow:hidden work in webkit.
-  // Kind of weird because the animation happens on another relatively unrelated div
-  // reference: https://code.google.com/p/chromium/issues/detail?id=157218
-  .own-layer();
+  display: flex;
+  flex-direction: column;
 
-  &--create {
-    margin-top: (@spacing / 2);
+  @media @desktop {
+    flex-direction: row;
   }
 
   &--reply {
@@ -37,73 +38,6 @@
     box-shadow: none;
     width: 100%;
     margin-bottom: 0;
-  }
-
-  &--special {
-    @media @desktop {
-      margin-left: (-@spacing / 2);
-    }
-  }
-
-  &__avatar-container {
-    .default-border-radius;
-    .default-box-shadow;
-    width: 100%;
-    padding: (@spacing / 2);
-    background-color: @grey-f;
-    margin-top: @spacing;
-    margin-bottom: @spacing;
-    display: block;
-
-    &--reply {
-      width: 60px;
-      padding: ceil(@spacing / 4);
-      align-self: flex-end;
-      margin-right: @spacing;
-      margin-top: 0;
-    }
-  }
-
-  &__avatar-ribbon {
-    ._bg(@filename) {
-      .at2x-simple("/images/user-supporter-ribbons/@{filename}");
-    }
-
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 153px 83px;
-
-    width: 100%;
-    padding: 0 (@spacing * 3);
-
-    &--xs {
-      display: inline-flex;
-      background-size: contain;
-      width: (153 / 83 * 40px);
-      justify-content: center;
-      padding: 0;
-      margin-right: @spacing;
-    }
-
-    &--level-0 {
-      width: auto;
-
-      @media @desktop {
-        width: 100%;
-      }
-    }
-
-    &--level-1 {
-      ._bg("support-ribbon.png");
-    }
-
-    &--level-2 {
-      ._bg("support-ribbon-silver.png");
-    }
-
-    &--level-3 {
-      ._bg("support-ribbon-gold.png");
-    }
   }
 
   &__actions {
@@ -155,40 +89,9 @@
     min-width: 0;
 
     &--reply {
-      .default-box-shadow;
-      overflow: hidden;
-      background-color: @grey-f;
+      .default-box-shadow();
+      background-color: @gray-f;
       flex: 1;
-
-      @media @desktop {
-        .default-border-radius;
-      }
-    }
-  }
-
-  &__card {
-    background-color: @grey-f;
-    .default-box-shadow;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-
-    @media @desktop {
-      flex-direction: row;
-      .default-border-radius;
-    }
-
-    &--large {
-      @media @desktop {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-      }
-    }
-
-    &--large-special {
-      @media @desktop {
-        border-top-right-radius: 0;
-      }
     }
   }
 
@@ -209,6 +112,10 @@
       padding-bottom: @spacing;
     }
 
+    &--edit-bar-create {
+      background-color: @gray-4;
+    }
+
     &--edit-body {
       flex: 1 0 auto;
       display: flex;
@@ -217,7 +124,7 @@
     &--footer {
       order: 2;
       font-weight: bold;
-      color: @grey-7;
+      color: @gray-7;
 
       padding-top: 0;
       padding-bottom: (@spacing * 2);
@@ -252,8 +159,13 @@
       }
     }
 
+    &--poll-create {
+      background-color: @gray-5;
+      color: @gray-f;
+    }
+
     &--signature {
-      background-color: @grey-e;
+      background-color: @gray-e;
 
       padding-top: (@spacing * 2);
       padding-bottom: (@spacing * 2);
@@ -278,7 +190,7 @@
   }
 
   &__info-panel-extra {
-    background-color: fade(@grey-f, 90%);
+    background-color: fade(@gray-f, 90%);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -291,8 +203,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: @spacing 0 0;
-    background-image: linear-gradient(to bottom, transparent, fade(@grey-0, 20%));
+    padding-top: (@spacing * 2);
+    background-image: linear-gradient(to bottom, transparent, fade(@gray-0, 20%));
 
     &::before {
       position: absolute;
@@ -326,7 +238,7 @@
 
   &__info-panel-xs-title {
     font-size: 10px;
-    color: @grey-f;
+    color: @gray-f;
   }
 
   &__info-panel-xs-name {
@@ -338,16 +250,20 @@
     font-size: 11px;
     font-weight: 600;
     font-style: italic;
-    color: @grey-5;
+    color: @gray-5;
     margin-bottom: (@spacing / 2);
 
     &--user-title {
-      color: @grey-3;
+      color: @gray-3;
     }
   }
 
+  &__overlay {
+    .full-size();
+  }
+
   &__reply-container {
-    background-color: fade(@grey-3, 90%);
+    background-color: fade(@gray-3, 90%);
     width: 100%;
     height: 100%;
     padding-bottom: @spacing;
@@ -364,22 +280,41 @@
   }
 
   &__stripe {
-    width: (@spacing / 2);
+    position: absolute;
+    height: 100%;
+    right: 100%;
+    top: 0;
+    width: @spacing;
+
+    display: none;
+
+    @media @desktop {
+      display: block;
+    }
   }
 
   &__username {
-    .default-text-shadow;
+    .default-text-shadow();
     display: block;
     font-weight: 600;
     font-style: italic;
-    margin: 0 (@spacing * 3) @spacing;
-    word-break: break-all;
+    padding: @spacing;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    color: @gray-f;
 
-    &,
+    &:hover {
+      color: @gray-f;
+      text-decoration: none;
+      width: auto;
+      overflow: visible;
+    }
+
     &:focus,
-    &:hover,
     &:active {
-      color: @grey-f;
+      color: @gray-f;
       text-decoration: none;
     }
   }

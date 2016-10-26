@@ -1,16 +1,22 @@
 @import "app";
 
 @desktop: ~"(min-width: @{screen-sm-min})";
-@screen-large: ~"(min-width: @{screen-lg-min})";
 @mobile: ~"(max-width: @{screen-sm-min})";
 
 @spacing: 10px;
 
+@bar-size: 3px;
+@logo-size: 100px;
 // header left margin (20) + logo (100) + menu left margin (10)
-@padding-big: 130px;
+@padding-big: ((@grid-gutter-width / 2) + @logo-size + @spacing);
+
+@height--nav-popup: 170px;
+@height--page-mode: 50px;
 
 @navbar-mobile--content-height: @navbar-height - (@navbar-padding-vertical * 2);
 
+
+@border-radius--nav-avatar: 10px;
 
 // here be z-indexes
 @z-index--visibility-hidden: 0;
@@ -21,11 +27,22 @@
 // navbar-static-top: 1000 (bootstrap nav for mobile)
 @z-index--forum-topic-headernav: 1001;
 @z-index--fixed-bar: 1001;
-@z-index--blackout: 8000;
-@z-index--blackout-visible: 8001;
+@z-index--blackout: 1010;
+@z-index--blackout-visible: 1011;
+// modal-backdrop: 1040
+// modal: 1050
+@z-index--nav-popup: 8998;
+@z-index--nav-float: 8999;
+@z-index--overlay: 9990;
 @z-index--editor-zoom: 9999;
 
 @z-index--beatmapset-header: 1;
+@z-index--contest-header: 1;
+
+@box-shadow-spread: 3px;
+@box-shadow-color: fade(@gray-0, 25%);
+
+@landing-dot-size: 17px;
 
 @profile-badge-size: 50px;
 @profile-header-height: 250px;
@@ -33,16 +50,37 @@
 @profile-avatar-size: 110px;
 @profile-cover-thumb-size: 85px;
 
-@beatmapset-avatar-size: 84px;
-@beatmapset-avatar-container-size: 90px;
+@beatmapset-avatar-size: 50px;
 
-@beatmapset-scoreboard-avatar-size: 76px;
-@beatmapset-scoreboard-avatar-container-size: 80px;
+@beatmapset-scoreboard-avatar-size: 70px;
+@beatmapset-float-box-width: 275px;
+
+// top padding + menu + page title
+@nav-avatar-size: 70px;
+@nav-sm-height: (@spacing * 2) + @nav-menu-height + @nav-page-title-height;
+@nav-page-title-height: 40px;
+@nav-menu-height: 20px;
 
 // here be font-sizes
+@font-size--small: 10px;
+@font-size--normal: 12px;
+@font-size--normal-2: 13px;
+@font-size--title-small: 14px;
+@font-size--title-small-2: 15px;
+@font-size--title-small-3: 16px;
+@font-size--large: 20px;
+
 @font-size--header-title: 32px;
 @font-size--header-subtitle: 16px;
 @font-size--header-description: 12px;
+
+@font-size--new-header-title: 30px;
+@font-size--new-header-subtitle: 14px;
+
+@font-size--forum-topic-entry-icon: 16px;
+@font-size--forum-topic-entry-icon-small: 10px;
+@font-size--forum-post-heading: 20px;
+@font-size--forum-quote-heading: 13px;
 
 @font-size--store-header-link-icon: 18px;
 @font-size--store-header-link-text: 12px;
@@ -54,6 +92,14 @@
 @font-size--livestream-featured-detail: 15px;
 @font-size--livestream-item-name: 15px;
 @font-size--livestream-item-detail: 10px;
+
+@font-size--nav-popup-link: 14px;
+@font-size--nav-popup-section: 12px;
+@font-size--nav-popup-title-large: 20px;
+@font-size--nav-popup-title: 15px;
+
+@font-size--warning: 13px;
+@font-size--warning-icon: 20px;
 
 @forum-category-colour--osu-bg: @pink;
 @forum-category-colour--osu-link: @pink-text;
@@ -79,6 +125,8 @@
 @forum-category-colour--management-link: @gray-text;
 @forum-category-colour--management-link-hover: @gray;
 
+@forum-post--xs-avatar: 50px;
+
 @beatmap-discussion--avatar-size: 40px;
 @beatmap-discussion--reply-padding: (@spacing * 2 + @beatmap-discussion--avatar-size);
 @beatmap-discussion--timestamp-width: 110px;
@@ -86,6 +134,30 @@
 @beatmap-discussion--color-praise: @blue-dark;
 @beatmap-discussion--color-problem: @pink-dark;
 @beatmap-discussion--color-suggestion: @yellow-dark;
+
+@section-color--default: @pink-darker;
+
+@section-color--beatmaps: @pink-darker;
+@section-color--community: @pink-darker;
+@section-color--multiplayer: @pink-darker;
+@section-color--error: @pink-darker;
+@section-color--help: @yellow-darker;
+@section-color--home: @purple-darker;
+@section-color--ranking: @green-darker;
+@section-color--store: @pink-darker;
+@section-color--user: @blue-darker;
+
+@mod-width: 45px;
+@mod-height: 32px;
+
+@mod-height-normal: 22px;
+@mod-width-normal: (@mod-height-normal / @mod-height * @mod-width);
+
+@mod-height-small: 18px;
+@mod-width-small: (@mod-height-small / @mod-height * @mod-width);
+
+@rank-width: 48px;
+@rank-height: 16px;
 
 // difficulty colours
 @diff-easy: @green;

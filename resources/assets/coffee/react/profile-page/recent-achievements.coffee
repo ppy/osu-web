@@ -47,9 +47,9 @@ class ProfilePage.RecentAchievements extends React.Component
           span className: 'profile-badge__number',
             counts.current
 
-        div className: 'profile-exp-bar',
+        div className: 'bar bar--user-profile',
           div
-            className: 'profile-exp-bar__fill'
+            className: 'bar__fill'
             style:
               width: "#{achievementsProgress}%"
 
@@ -69,4 +69,4 @@ class ProfilePage.RecentAchievements extends React.Component
           href: '#'
           onClick: @_showAllMedals
           small {},
-            Lang.get('users.show.more_achievements')
+            osu.trans('users.show.more_achievements')

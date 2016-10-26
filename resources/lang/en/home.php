@@ -22,4 +22,20 @@ return [
     'news' => [
         'slogan' => 'Rhythm is just a *click* away!',
     ],
+    'landing' => [
+        'slogans' => [
+            '1' => 'free-to-win<br/>circle simulator',
+            '2' => 'rhythm is just<br/> a click away',
+        ],
+
+        'download' => [
+            '_' => 'Download now',
+            'for' => 'for :os',
+            'other' => 'click here for :os1 or :os2',
+        ],
+
+        'players' => 'registered players',
+        'online' => 'online players now',
+        'peak' => 'Peak, :count online users',
+    ],
 ];

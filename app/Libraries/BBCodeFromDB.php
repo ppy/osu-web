@@ -48,6 +48,14 @@ class BBCodeFromDB
         return preg_replace("/>\s*</", '><', $text);
     }
 
+    public function parseAudio($text)
+    {
+        $text = str_replace("[audio:{$this->uid}]", '<audio controls="controls" src="', $text);
+        $text = str_replace("[/audio:{$this->uid}]", '"></audio>', $text);
+
+        return $text;
+    }
+
     public function parseBold($text)
     {
         $text = str_replace("[b:{$this->uid}]", '<strong>', $text);
@@ -218,7 +226,7 @@ class BBCodeFromDB
 
     public function parseSmilies($text)
     {
-        return preg_replace('#<!\-\- s(.*?) \-\-><img src="\{SMILIES_PATH\}\/(.*?) \/><!\-\- s\1 \-\->#', '<img class="smiley" src="'.config('osu.urls.smilies').'/\2 />', $text);
+        return preg_replace('#<!\-\- s(.*?) \-\-><img src="\{SMILIES_PATH\}\/(.*?) \/><!\-\- s\1 \-\->#', '<img class="smiley" src="'.osu_url('smilies').'/\2 />', $text);
     }
 
     public function parseStrike($text)
@@ -266,13 +274,13 @@ class BBCodeFromDB
 
     public function parseYoutube($text)
     {
-        $text = str_replace("[youtube:{$this->uid}]", "<iframe width='425' height='344' src='https://www.youtube.com/embed/", $text);
-        $text = str_replace("[/youtube:{$this->uid}]", "?rel=0' frameborder='0' allowfullscreen></iframe>", $text);
+        $text = str_replace("[youtube:{$this->uid}]", "<div class='bbcode__video-box'><div class='bbcode__video'><iframe src='https://www.youtube.com/embed/", $text);
+        $text = str_replace("[/youtube:{$this->uid}]", "?rel=0' frameborder='0' allowfullscreen></iframe></div></div>", $text);
 
         return $text;
     }
 
-    public function toHTML()
+    public function toHTML($ignoreLineHeight = false)
     {
         $text = $this->text;
 
@@ -286,6 +294,7 @@ class BBCodeFromDB
         $text = $this->clearSpacesBetweenTags($text);
 
         // inline
+        $text = $this->parseAudio($text);
         $text = $this->parseBold($text);
         $text = $this->parseCentre($text);
         $text = $this->parseColour($text);
@@ -304,7 +313,13 @@ class BBCodeFromDB
         $text = str_replace("\n", '<br />', $text);
         $text = CleanHTML::purify($text);
 
-        return "<div class='bbcode'>{$text}</div>";
+        $className = 'bbcode';
+
+        if ($ignoreLineHeight) {
+            $className .= ' bbcode--normal-line-height';
+        }
+
+        return "<div class='{$className}'>{$text}</div>";
     }
 
     public function toEditor()
@@ -329,6 +344,6 @@ class BBCodeFromDB
         // strip smilies
         $text = preg_replace('#<!-- (s(.*?)) -->.*?<!-- \\1 -->#', '\\2', $text);
 
-        return html_entity_decode($text);
+        return html_entity_decode($text, ENT_QUOTES);
     }
 }

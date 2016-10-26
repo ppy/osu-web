@@ -29,7 +29,7 @@
     left: 0;
     width: 100%;
     margin-top: (@spacing / 2);
-    background-color: @grey-f;
+    background-color: @gray-f;
 
     flex-direction: column;
 
@@ -51,7 +51,7 @@
 
   &__item {
     .reset-input();
-    background-color: @grey-f;
+    background-color: @gray-f;
 
     display: flex;
     align-items: center;
@@ -61,18 +61,20 @@
 
     padding: (@spacing / 2) @spacing;
 
-    &.js-menu--active, &:hover {
+    &.js-menu--active,
+    &:hover {
       background-color: @text-color;
-      color: @grey-f;
+      color: @gray-f;
     }
 
     &--selected {
       .default-box-shadow();
       .default-border-radius();
+      min-width: 350px;
     }
 
     &--current {
-      background-color: @grey-c;
+      background-color: @gray-c;
     }
 
     &--large {

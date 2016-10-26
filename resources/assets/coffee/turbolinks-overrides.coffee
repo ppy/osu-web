@@ -17,4 +17,4 @@
 ###
 
 Turbolinks.BrowserAdapter::showProgressBarAfterDelay = ->
-  @progressBarTimeout = setTimeout @showProgressBar, 0
+  @progressBarTimeout = Timeout.set 0, @showProgressBar

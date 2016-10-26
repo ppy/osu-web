@@ -46,7 +46,7 @@ class StoreController extends Controller
             'putRequestNotification',
         ]]);
 
-        $this->middleware('App\Http\Middleware\CheckUserRestricted', ['only' => [
+        $this->middleware('check-user-restricted', ['only' => [
             'getInvoice',
             'postUpdateCart',
             'postAddToCart',
@@ -55,6 +55,13 @@ class StoreController extends Controller
             'postUpdateAddress',
             'postUpdateCart',
             'putRequestNotification',
+        ]]);
+
+        $this->middleware('verify-user', ['only' => [
+            'getInvoice',
+            'getCheckout',
+            'postCheckout',
+            'postUpdateAddress',
         ]]);
 
         return parent::__construct();
@@ -231,8 +238,8 @@ class StoreController extends Controller
     {
         $order = $this->userCart();
 
-        if (!$order) {
-            return response(['message' => 'cart is empty'], 422);
+        if ($order->items()->count() === 0) {
+            return error_popup('cart is empty');
         }
 
         $order->checkout();

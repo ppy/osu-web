@@ -18,8 +18,12 @@
 {div, h2} = React.DOM
 el = React.createElement
 
-class ProfilePage.Performance extends React.Component
+ProfilePage.Performance = React.createClass
+  mixins: [React.addons.PureRenderMixin]
+
+
   componentDidMount: ->
+    @minimumRankTick = -24
     @_rankHistory()
 
   componentDidUpdate: ->
@@ -32,6 +36,7 @@ class ProfilePage.Performance extends React.Component
     return [] unless data.length
 
     rankRange = d3.extent data, (d) => d.y
+    rankRange[0] = Math.min rankRange[0], @minimumRankTick
 
     @_allTicks ||= [-1, -2.5, -5]
 
@@ -52,8 +57,7 @@ class ProfilePage.Performance extends React.Component
 
 
   _rankHistory: ->
-    data = (@props.rankHistories?.data || [])
-      .filter (rank) => rank > 0
+    data = (@props.rankHistories.data ? []).filter (rank) => rank > 0
 
     data = data.map (rank, i) =>
       x: i - data.length + 1
@@ -70,9 +74,9 @@ class ProfilePage.Performance extends React.Component
       formats =
         x: (d) =>
           if d == 0
-            Lang.get('common.time.now')
+            osu.trans('common.time.now')
           else
-            Lang.choice('common.time.days_ago', -d)
+            osu.transChoice('common.time.days_ago', -d)
         y: (d) => "##{(-d).toLocaleString()}"
 
       tooltipFormats =

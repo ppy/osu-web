@@ -57,7 +57,7 @@ class ProfilePage.UserPageEditor extends React.Component
         editing: false
         raw: body
         initialRaw: body
-    .fail osu.ajaxError
+    .fail osu.emitAjaxError(e.target)
     .always LoadingOverlay.hide
 
 
@@ -73,7 +73,7 @@ class ProfilePage.UserPageEditor extends React.Component
         name: 'body'
         value: @props.userPage.raw
         onChange: @_change
-        placeholder: Lang.get('users.show.page.placeholder')
+        placeholder: osu.trans('users.show.page.placeholder')
         ref: 'body'
 
       el 'div', className: 'post-editor__footer post-editor__footer--profile-page',
@@ -85,16 +85,16 @@ class ProfilePage.UserPageEditor extends React.Component
             className: 'btn-osu btn-osu--small btn-osu-default post-editor__action'
             type: 'button'
             onClick: @_cancel
-            Lang.get('common.buttons.cancel')
+            osu.trans('common.buttons.cancel')
 
           el 'button',
             className: 'btn-osu btn-osu--small btn-osu-default post-editor__action'
             type: 'button'
             onClick: @_reset
-            Lang.get('common.buttons.reset')
+            osu.trans('common.buttons.reset')
 
           el 'button',
             className: 'btn-osu btn-osu--small btn-osu-default post-editor__action'
             type: 'button'
             onClick: @_save
-            Lang.get('common.buttons.save')
+            osu.trans('common.buttons.save')

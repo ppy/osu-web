@@ -35,15 +35,15 @@
     @parent
 
     <script data-turbolinks-eval="always">
-        var postEditorToolbar = {!! json_encode(["html" => view()->make('forum._post_toolbar')->render()]) !!};
+        var postEditorToolbar = {!! json_encode(["html" => render_to_string('forum._post_toolbar')]) !!};
     </script>
 
     <script id="json-user" type="application/json">
-        {!! json_encode($userArray['data']) !!}
+        {!! json_encode($userArray) !!}
     </script>
 
     <script id="json-achievements" type="application/json">
-        {!! json_encode($achievements['data']) !!}
+        {!! json_encode($achievements) !!}
     </script>
 
     <script src="{{ elixir("js/react/profile-page.js") }}" data-turbolinks-track></script>

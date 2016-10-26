@@ -39,7 +39,7 @@ class BeatmapsetsController extends Controller
         $fractal = new Manager();
         $languages = Language::listing();
         $genres = Genre::listing();
-        $beatmaps = fractal_collection_array(
+        $beatmaps = json_collection(
             Beatmapset::listing(),
             new BeatmapsetTransformer,
             'beatmaps'
@@ -52,7 +52,7 @@ class BeatmapsetsController extends Controller
         }
 
         $statuses = [
-            ['id' => null, 'name' => trans('beatmaps.status.any')],
+            ['id' => '7', 'name' => trans('beatmaps.status.any')],
             ['id' => '0', 'name' => trans('beatmaps.status.ranked-approved')],
             ['id' => '1', 'name' => trans('beatmaps.status.approved')],
             ['id' => '2', 'name' => trans('beatmaps.status.faves')],
@@ -72,7 +72,7 @@ class BeatmapsetsController extends Controller
             $ranks[] = ['id' => $rank, 'name' => trans("beatmaps.rank.{$rank}")];
         }
 
-        $filters = ['data' => compact('modes', 'statuses', 'genres', 'languages', 'extras', 'ranks')];
+        $filters = compact('modes', 'statuses', 'genres', 'languages', 'extras', 'ranks');
 
         return view('beatmaps.index', compact('filters', 'beatmaps'));
     }
@@ -80,16 +80,16 @@ class BeatmapsetsController extends Controller
     public function show($id)
     {
         $beatmapset = Beatmapset
-            ::with('defaultBeatmaps.failtimes', 'user')
+            ::with('beatmaps.failtimes', 'user')
             ->findOrFail($id);
 
-        $set = fractal_item_array(
+        $set = json_item(
             $beatmapset,
             new BeatmapsetTransformer(),
-            implode(',', ['beatmaps', 'beatmaps.failtimes', 'user', 'description'])
+            ['beatmaps', 'beatmaps.failtimes', 'converts', 'converts.failtimes', 'user', 'description', 'ratings']
         );
 
-        $countries = fractal_collection_array(Country::all(), new CountryTransformer);
+        $countries = json_collection(Country::all(), new CountryTransformer);
 
         $title = trans('layout.menu.beatmaps._').' / '.$beatmapset->artist.' - '.$beatmapset->title;
 
@@ -138,7 +138,7 @@ class BeatmapsetsController extends Controller
 
         $beatmaps = Beatmapset::search($params);
 
-        return fractal_collection_array(
+        return json_collection(
             $beatmaps,
             new BeatmapsetTransformer,
             'beatmaps'
@@ -159,12 +159,7 @@ class BeatmapsetsController extends Controller
         }
 
         $initialData = [
-            'beatmapset' => fractal_item_array(
-                $beatmapset,
-                new BeatmapsetTransformer,
-                'beatmaps'
-            ),
-
+            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
             'beatmapsetDiscussion' => $discussion->defaultJson(Auth::user()),
         ];
 
@@ -173,5 +168,35 @@ class BeatmapsetsController extends Controller
         } else {
             return view('beatmapsets.discussion', compact('initialData'));
         }
+    }
+
+    public function nominate($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        priv_check('BeatmapsetNominate', $beatmapset)->ensureCan();
+
+        if (!$beatmapset->nominate(Auth::user())) {
+            return error_popup(trans('beatmaps.nominations.incorrect-state'));
+        }
+
+        return [
+            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
+        ];
+    }
+
+    public function disqualify($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        priv_check('BeatmapsetDisqualify', $beatmapset)->ensureCan();
+
+        if (!$beatmapset->disqualify(Auth::user(), Request::input('comment'))) {
+            return error_popup(trans('beatmaps.nominations.incorrect-state'));
+        }
+
+        return [
+            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
+        ];
     }
 }

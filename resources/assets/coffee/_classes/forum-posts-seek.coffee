@@ -16,13 +16,11 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @ForumPostsSeek
-  tooltip: document.getElementsByClassName('js-forum-posts-seek--tooltip')
-  tooltipNumber: document.getElementsByClassName('js-forum-posts-seek-tooltip-number')
-  seekbar: document.getElementsByClassName('js-forum__posts-seek')
+  constructor: (@forum) ->
+    @tooltip = document.getElementsByClassName('js-forum-posts-seek--tooltip')
+    @tooltipNumber = document.getElementsByClassName('js-forum-posts-seek-tooltip-number')
+    @seekbar = document.getElementsByClassName('js-forum__posts-seek')
 
-
-  constructor: (forum) ->
-    @forum = forum
     $(document).on 'mousemove', '.js-forum__posts-seek', @move
     $(document).on 'mouseleave', '.js-forum__posts-seek', @hideTooltip
     $(document).on 'click', '.js-forum__posts-seek', @click
@@ -41,8 +39,8 @@ class @ForumPostsSeek
 
     Fade.in @tooltip[0]
 
-    clearTimeout @_autohide
-    @_autohide = setTimeout @hideTooltip, 1000
+    Timeout.clear @_autohide
+    @_autohide = Timeout.set 1000, @hideTooltip
 
 
   click: =>
@@ -78,5 +76,5 @@ class @ForumPostsSeek
     postPosition = Math.min(postPosition, totalPosts)
     @postPosition = Math.max(postPosition, 1)
 
-    @tooltip[0].style.left = "#{x}px"
+    @tooltip[0].style.transform = "translateX(#{x}px)"
     @tooltipNumber[0].textContent = @postPosition

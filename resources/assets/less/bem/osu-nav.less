@@ -17,38 +17,81 @@
  *
  */
 .osu-nav {
-  &__menu {
-    list-style: none;
-    margin: 0 (-@spacing / 2);
-    padding: 0;
-    display: flex;
+  margin: auto;
+  width: 100%;
+  max-width: @container-sm;
+  display: flex;
+  padding: (@spacing * 2) (@spacing * 2) 0;
+
+  @media @desktop {
+    width: calc(100% ~'-' (@spacing * 8));
   }
 
-  &__link {
-    padding: 0 (@spacing / 2);
-    font-size: 14px;
+  &__avatar {
+    .default-border-radius();
+    .default-box-shadow();
 
-    &--active {
-      font-weight: 700;
+    margin-left: @spacing;
+    margin-bottom: (-@spacing);
+    overflow: hidden;
+
+    width: @nav-avatar-size;
+    height: @nav-avatar-size;
+
+    .js-nav-switch--active & {
+      background-color: @yellow;
+      box-shadow: 0 0 0 @bar-size @yellow;
+    }
+  }
+
+  &__col {
+    flex: none;
+    display: flex;
+    align-items: flex-end;
+
+    color: @gray-f;
+    font-size: @font-size--large;
+    font-weight: 300;
+
+    &:focus,
+    &:hover {
+      color: @gray-f;
+      text-decoration: none;
     }
 
-    &--large {
-      font-size: 22px;
+    &--logo {
+      height: 0;
+      align-self: flex-start;
+      margin-top: (-@spacing / 2);
+      align-items: flex-start;
     }
 
     &--title {
-      &::after {
-        content: '›';
-        margin-left: @spacing;
-      }
+      padding: 0 @spacing;
+      flex: 1 0 auto;
     }
   }
 
-  &__title-menu {
+  &__highlight-bar {
     position: absolute;
-    left: (-@spacing / 2);
-    top: (@spacing / 2);
+    bottom: 0;
     width: 100%;
+    opacity: 0;
+
+    .js-nav-switch--active & {
+      opacity: 1;
+    }
+  }
+
+  &__title {
+    padding-bottom: (@spacing / 2);
     display: flex;
+    align-items: flex-end;
+  }
+
+  &__title-separator {
+    display: inline-block;
+    margin: 0 @spacing;
+    opacity: 0.5;
   }
 }

@@ -20,6 +20,7 @@
 namespace App\Transformers;
 
 use App\Models\Beatmap;
+use App\Models\BeatmapFailtimes;
 use League\Fractal;
 
 class BeatmapTransformer extends Fractal\TransformerAbstract
@@ -27,6 +28,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
     protected $availableIncludes = [
         'scoresBest',
         'failtimes',
+        'beatmapset',
     ];
 
     public function transform(Beatmap $beatmap = null)
@@ -40,6 +42,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             'beatmapset_id' => $beatmap->beatmapset_id,
             'mode' => $beatmap->mode,
             'mode_int' => $beatmap->playmode,
+            'convert' => $beatmap->convert,
             'difficulty_size' => $beatmap->diff_size,
             'difficulty_rating' => $beatmap->difficultyrating,
             'version' => $beatmap->version,
@@ -50,6 +53,8 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             'ar' => $beatmap->diff_approach,
             'playcount' => $beatmap->playcount,
             'passcount' => $beatmap->passcount,
+            'count_circles' => $beatmap->countNormal,
+            'count_sliders' => $beatmap->countSlider,
             'url' => route('beatmaps.show', ['id' => $beatmap->beatmap_id]),
         ];
     }
@@ -67,6 +72,22 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
 
     public function includeFailtimes(Beatmap $beatmap)
     {
-        return $this->collection($beatmap->failtimes, new BeatmapFailtimesTransformer);
+        $failtimes = $beatmap->failtimes;
+
+        // adding a set of empty failtimes, so that the chart transitions
+        // to 0 when a map has no failtimes (for now non-standard modes)
+        if ($failtimes->isEmpty() || $beatmap->convert) {
+            $failtimes = [
+                new BeatmapFailtimes(['type' => 'fail']),
+                new BeatmapFailtimes(['type' => 'exit']),
+            ];
+        }
+
+        return $this->collection($failtimes, new BeatmapFailtimesTransformer);
+    }
+
+    public function includeBeatmapset(Beatmap $beatmap)
+    {
+        return $this->item($beatmap->beatmapset, new BeatmapsetTransformer);
     }
 }

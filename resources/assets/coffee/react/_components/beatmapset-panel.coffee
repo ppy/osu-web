@@ -28,20 +28,20 @@ class @BeatmapsetPanel extends React.Component
     # arbitrary number
     maxDisplayedDifficulty = 10
 
-    difficulties = beatmap.beatmaps.data.slice(0, maxDisplayedDifficulty).map (b) =>
+    difficulties = beatmap.beatmaps.slice(0, maxDisplayedDifficulty).map (b) =>
       div
         className: 'beatmapset-panel__difficulty-icon'
         key: b.version
         el BeatmapIcon, beatmap: b
 
-    if beatmap.beatmaps.data.length > maxDisplayedDifficulty
-      difficulties.push span key: 'over', "+#{(beatmap.beatmaps.data.length - maxDisplayedDifficulty)}"
+    if beatmap.beatmaps.length > maxDisplayedDifficulty
+      difficulties.push span key: 'over', "+#{(beatmap.beatmaps.length - maxDisplayedDifficulty)}"
 
     div className: 'beatmapset-panel', '',
-      div className: 'beatmapset-panel__panel', objectid: beatmap.beatmapset_id,
+      div className: 'beatmapset-panel__panel',
         div className: 'beatmapset-panel__header',
           a
-            href: laroute.route 'beatmapsets.show', beatmapsets: beatmap.beatmapset_id
+            href: laroute.route 'beatmapsets.show', beatmapsets: beatmap.id
             target: '_blank', className: 'beatmapset-panel__thumb'
             style: {backgroundImage: "url(#{beatmap.covers.card})"}
             div className: 'beatmapset-panel__title-artist-box',
@@ -60,12 +60,12 @@ class @BeatmapsetPanel extends React.Component
                 i className: 'fa fa-heart'
 
         div className: 'beatmapset-panel__mapper-source-box',
-          span className: 'hidden', ref: beatmap.beatmapset_id, beatmap.beatmapset_id
-          div className: 'creator', dangerouslySetInnerHTML: { __html: Lang.get('beatmaps.listing.mapped-by', mapper: laroute.link_to_route('users.show', beatmap.creator, users: beatmap.user_id)) }
+          span className: 'hidden', ref: beatmap.id, beatmap.id
+          div className: 'creator', dangerouslySetInnerHTML: { __html: osu.trans('beatmaps.listing.mapped-by', mapper: laroute.link_to_route('users.show', beatmap.creator, users: beatmap.user_id)) }
           div className: 'source', beatmap.source
 
         div className: 'beatmapset-panel__icons-box',
-          a href: Url.beatmapDownload(beatmap.beatmapset_id), className: 'beatmapset-panel__icon',
+          a href: Url.beatmapDownload(beatmap.id), className: 'beatmapset-panel__icon',
             i className: 'fa fa-download'
           # a href: '#', className: 'beatmapset-panel__icon',
           #   i className:'fa fa-heart'

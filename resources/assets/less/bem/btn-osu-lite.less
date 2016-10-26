@@ -27,11 +27,53 @@
 
   font-size: 12px;
   padding: (@spacing / 2) @spacing;
+  cursor: pointer;
+  text-transform: inherit;
+
+  &--beatmap-discussion {
+    margin-left: @spacing;
+  }
 
   &--default {
     @__bgcolor: @blue-dark;
     background-color: @__bgcolor;
-    color: @grey-f;
+    color: @gray-f;
+
+    &:focus {
+      background-color: darken(@__bgcolor, 5%);
+    }
+
+    &:hover {
+      background-color: darken(@__bgcolor, 10%);
+    }
+
+    &:active {
+      background-color: darken(@__bgcolor, 15%);
+    }
+  }
+
+  &--pink {
+    @__bgcolor: @pink;
+    background-color: @__bgcolor;
+    color: @gray-f;
+
+    &:focus {
+      background-color: darken(@__bgcolor, 5%);
+    }
+
+    &:hover {
+      background-color: darken(@__bgcolor, 10%);
+    }
+
+    &:active {
+      background-color: darken(@__bgcolor, 15%);
+    }
+  }
+
+  &--green {
+    @__bgcolor: @green;
+    background-color: @__bgcolor;
+    color: @gray-f;
 
     &:focus {
       background-color: darken(@__bgcolor, 5%);
@@ -53,8 +95,12 @@
   // this must be the last modifier
   &[disabled], &.disabled, &--disabled {
     &, &:active, &:focus, &:hover {
-      background-color: @grey-9;
-      color: @grey-f;
+      background-color: @gray-9;
+      color: @gray-f;
     }
+  }
+
+  &__right {
+    margin-left: (@spacing / 2);
   }
 }

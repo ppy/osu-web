@@ -45,24 +45,24 @@ class Status.Uptime extends React.Component
   render: =>
     div className: 'status-recent osu-layout__col osu-layout__col--sm-6 osu-layout__row--page-compact',
       h1 className: 'status-recent__title',
-        Lang.get('status_page.recent.uptime.title')
+        osu.trans('status_page.recent.uptime.title')
       div null,
         h5
           onClick: @_changeViewMode.bind(@, 'today')
           className: 'status-recent__when' + (if @state.when == 'today' then ' status-recent__when--active' else '')
-          Lang.get('status_page.recent.when.today')
-        h5 
+          osu.trans('status_page.recent.when.today')
+        h5
           onClick: @_changeViewMode.bind(@, 'week')
           className: 'status-recent__when' + (if @state.when == 'week' then ' status-recent__when--active' else '')
-          Lang.get('status_page.recent.when.week')
-        h5 
+          osu.trans('status_page.recent.when.week')
+        h5
           onClick: @_changeViewMode.bind(@, 'month')
           className: 'status-recent__when' + (if @state.when == 'month' then ' status-recent__when--active' else '')
-          Lang.get('status_page.recent.when.month')
-        h5 
+          osu.trans('status_page.recent.when.month')
+        h5
           onClick: @_changeViewMode.bind(@, 'all_time')
           className: 'status-recent__when' + (if @state.when == 'all_time' then ' status-recent__when--active' else '')
-          Lang.get('status_page.recent.when.all_time')
+          osu.trans('status_page.recent.when.all_time')
       div className: 'status-charts osu-layout__col-container',
         div
           className: 'status-charts__chart osu-layout__col osu-layout__col--sm-6'

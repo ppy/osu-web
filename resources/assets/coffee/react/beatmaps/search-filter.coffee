@@ -36,7 +36,7 @@ class Beatmaps.SearchFilter extends React.Component
   @defaultProps: ->
     multiselect: false
     selected: []
-    default: []
+    default: ''
 
   @propTypes:
     title: React.PropTypes.string.isRequired
@@ -85,10 +85,15 @@ class Beatmaps.SearchFilter extends React.Component
     $.inArray(i, @state.selected) > -1
 
   render: ->
-    selectors = []
-    $.each @props.options, (i, e) =>
-      selectors.push a href:'#', className: ('active' if @selected(e['id'])), value: e['id'], key: i, onClick: @clickReject, onMouseDown: @select.bind(@, e['id']), e['name']
+    div id: @props.id, className: 'beatmapsets-search-filter', 'data-name': @props.name,
+      span className:'beatmapsets-search-filter__header', @props.title
 
-    div id: @props.id, className: 'selector', 'data-name': @props.name,
-      span className:'header', @props.title
-      selectors
+      for option, i in @props.options
+        a
+          key: i
+          href: '#'
+          className: "beatmapsets-search-filter__item #{'beatmapsets-search-filter__item--active' if @selected(option.id)}"
+          value: option.id
+          onClick: @clickReject
+          onMouseDown: @select.bind(@, option.id)
+          option.name
