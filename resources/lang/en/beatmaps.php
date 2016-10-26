@@ -205,7 +205,6 @@ return [
         'electronic' => 'Electronic',
     ],
     'mods' => [
-        // note to TLs: same as above, save for the `No mods` element
         'NF' => 'No Fail',
         'EZ' => 'Easy Mode',
         'HD' => 'Hidden',

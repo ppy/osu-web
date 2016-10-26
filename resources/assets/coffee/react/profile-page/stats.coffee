@@ -75,5 +75,5 @@ class ProfilePage.Stats extends React.Component
                 key: "rank-#{rankName}"
                 className: 'profile-stats__rank'
                 el 'div',
-                  className: "badge-rank badge-rank--medium badge-rank--#{rankName}-light"
+                  className: "badge-rank badge-rank--medium badge-rank--#{rankName}"
                 el 'div', null, rankCount.toLocaleString()

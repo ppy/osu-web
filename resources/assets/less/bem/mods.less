@@ -17,45 +17,32 @@
  *
  */
 .mods {
-  @_top: mods;
+  @top: mods;
 
-  @_mod-width-small: 25px;
-  @_mod-height-small: 18px;
-  @_width-small: (@_mod-width-small * 3);
+  @mod-height-small: 18px;
+  @mod-width-small: (@mod-height-small / @mod-height * @mod-width);
 
+  @mod-height-normal: 22px;
+  @mod-width-normal: (@mod-height-normal / @mod-height * @mod-width);
 
-  @_mod-width: 30px;
-  @_mod-height: 22px;
-
-  @_width: (@_mod-width * 3);
-
-  @_mod-width-large: 40px;
-  @_mod-height-large: 30px;
-
-  @_width-large: (@_mod-width-large * 3);
-
-  width: @_width;
-  min-width: @_width;
-  max-width: @_width;
+  flex: none;
+  width: (@mod-width-normal * 3);
+  height: @mod-height-normal;
+  padding: 0 (@mod-width-normal / 2);
 
   display: flex;
   justify-content: space-between;
-  padding: 0 (@_mod-width / 2);
 
   &--small {
-    width: @_width-small;
-    min-width: @_width-small;
-    max-width: @_width-small;
-
-    padding: 0 (@_mod-width-small / 2);
+    width: (@mod-width-small * 3);
+    height: @mod-height-small;
+    padding: 0 (@mod-width-small / 2);
   }
 
   &--large {
-    width: @_width-large;
-    min-width: @_width-large;
-    max-width: @_width-large;
-
-    padding: 0 (@_mod-width-large / 2);
+    width: (@mod-width * 3);
+    height: @mod-height;
+    padding: 0 (@mod-width / 2);
   }
 
   &--reversed {
@@ -69,18 +56,14 @@
   }
 
   &__mod-image {
-    flex: none;
-    width: @_mod-width;
-    height: @_mod-height;
+    min-width: @mod-width-normal;
 
-    .@{_top}--small & {
-      width: @_mod-width-small;
-      height: @_mod-height-small;
+    .@{top}--small & {
+      min-width: @mod-width-small;
     }
 
-    .@{_top}--large & {
-      width: @_mod-width-large;
-      height: @_mod-height-large;
+    .@{top}--large & {
+      min-width: @mod-width;
     }
   }
 }
