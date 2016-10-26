@@ -19,6 +19,10 @@
  */
 
 return [
+    'header' => [
+        'small' => 'Compete in more ways than just clicking circles.',
+        'large' => 'osu! Community Contests',
+    ],
     'voting' => [
         'over' => 'Voting for this contest has ended',
     ],
@@ -40,4 +44,13 @@ return [
         'download' => 'Download Entry',
     ],
     'votes' => '1 vote|:count votes',
+    'dates' => [
+        'starts' => 'Starts :date',
+        'ended' => 'Ended :date',
+    ],
+    'states' => [
+        'entry' => 'Entry Open',
+        'voting' => 'Voting Started',
+        'results' => 'Results Out',
+    ],
 ];
