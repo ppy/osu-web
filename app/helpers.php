@@ -380,9 +380,15 @@ function display_regdate($user)
     return trans('users.show.joined_at', ['date' => $user->user_regdate->formatLocalized('%B %Y')]);
 }
 
-function i18n_date($datetime, $format = 'dd MMMM yyyy')
+function i18n_date($datetime, $format = IntlDateFormatter::LONG)
 {
-    return \IntlDateFormatter::formatObject($datetime, $format, \App::getLocale());
+    $formatter = IntlDateFormatter::create(
+        App::getLocale(),
+        $format,
+        IntlDateFormatter::NONE
+    );
+
+    return $formatter->format($datetime);
 }
 
 function open_image($path, $dimensions = null)
