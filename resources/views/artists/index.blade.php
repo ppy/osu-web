@@ -27,7 +27,6 @@
     <div class="osu-layout__row">
         <div class="osu-page-header-v2 osu-page-header-v2--featured-artists">
             <div class="osu-page-header-v2__overlay"></div>
-            <div class="osu-page-header-v2__subtitle osu-page-header-v2__subtitle--artist">{{trans('artist.beatmaps._')}} &raquo;</div>
             <div class="osu-page-header-v2__title">{{trans('artist.title')}}</div>
         </div>
     </div>

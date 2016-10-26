@@ -68,6 +68,45 @@ class Contest extends Model
         return $this->voting_starts_at !== null && $this->voting_starts_at->isPast();
     }
 
+    public function state()
+    {
+        if ($this->entry_starts_at->isFuture()) {
+            return 'preparing';
+        }
+
+        if ($this->isSubmissionOpen()) {
+            return 'entry';
+        }
+
+        if ($this->isVotingOpen()) {
+            return 'voting';
+        }
+
+        if ($this->show_votes) {
+            return 'results';
+        }
+
+        return 'over';
+    }
+
+    public function currentPhaseDateRange()
+    {
+        switch ($this->state()) {
+            case 'preparing':
+                return trans('contest.dates.starts', ['date' => i18n_date($this->entry_starts_at)]);
+                break;
+            case 'entry':
+                return i18n_date($this->entry_starts_at).' - '.i18n_date($this->entry_ends_at);
+                break;
+            case 'voting':
+                return i18n_date($this->voting_starts_at).' - '.i18n_date($this->voting_ends_at);
+                break;
+            default:
+                return trans('contest.dates.ended', ['date' => i18n_date($this->voting_ends_at)]);
+
+        }
+    }
+
     public function currentDescription()
     {
         if ($this->isVotingStarted()) {
