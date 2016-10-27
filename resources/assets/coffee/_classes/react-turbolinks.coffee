@@ -17,7 +17,11 @@
 ###
 class @ReactTurbolinks
   constructor: (@components = {}) ->
-    $(document).on 'turbolinks:load reactTurbolinks:try', =>
+    $(document).on 'turbolinks:load', @boot
+    $(document).on 'turbolinks:before-cache', @destroy
+
+
+  boot: =>
       for own _name, component of @components
         continue if component.loaded
 
@@ -27,7 +31,7 @@ class @ReactTurbolinks
         ReactDOM.render React.createElement(component.element, component.propsFunction()), component.target[0]
 
 
-    $(document).on 'turbolinks:before-cache', =>
+  destroy: =>
       for own _name, component of @components
         continue if !component.loaded
 
@@ -44,4 +48,4 @@ class @ReactTurbolinks
       element: element
       propsFunction: propsFunction
 
-    $(document).trigger 'reactTurbolinks:try'
+    @boot()
