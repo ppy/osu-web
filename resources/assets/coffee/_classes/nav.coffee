@@ -73,7 +73,7 @@ class @Nav
 
 
   gracefulHidePopup: =>
-    return if @currentMode() != 'default'
+    return if @currentMode() == 'user' && !currentUser.id?
 
     Timeout.clear @hideTimeout
     @hideTimeout = Timeout.set 250, @hidePopup
