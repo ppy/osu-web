@@ -17,10 +17,25 @@
  *
  */
 
-.js-gallery {
-  cursor: zoom-in;
+.gallery-previews {
+  @top: gallery-previews;
 
-  a & {
-    cursor: inherit;
+  padding: 0;
+  margin: 0;
+
+  // mystery number
+  height: 390px;
+
+  &__item {
+    .full-size();
+    .fade-element(0.5s);
+    display: block;
+    background-size: cover;
+    background-position: 50%;
+
+    &.js-gallery {
+      cursor: zoom-in;
+      will-change: opacity;
+    }
   }
 }

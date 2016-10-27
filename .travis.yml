@@ -2,7 +2,6 @@ cache:
   directories:
     - vendor
     - node_modules
-    - bower_components
     - $HOME/.yarn-cache
 
 addons:

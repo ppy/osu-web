@@ -79,13 +79,6 @@ $(document).on 'click', '#popup-container, #overlay', (e) ->
 $(document).on 'click', '.pswp a', (e) -> e.preventDefault()
 
 
-# image slider
-$(document).on 'turbolinks:load', ->
-  $('.rslides').responsiveSlides
-    auto: false
-    manualControls: '.rslides-nav'
-
-
 ###
 # Add `disabled` attribute to form element with value _disabled.
 # Currently used to work around Form::select (in store checkout -
