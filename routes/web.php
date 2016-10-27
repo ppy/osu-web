@@ -175,6 +175,9 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], fu
     Route::get('/beatmapsets/{beatmapset}/covers', ['as' => 'beatmapsets.covers', 'uses' => 'BeatmapsetsController@covers']);
     Route::post('/beatmapsets/{beatmapset}/covers/regenerate', ['as' => 'beatmapsets.covers.regenerate', 'uses' => 'BeatmapsetsController@regenerateCovers']);
 
+    Route::post('contests/{id}/zip', ['as' => 'contests.getZip', 'uses' => 'ContestsController@gimmeZip']);
+    Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);
+
     Route::resource('beatmapset-discussions', 'BeatmapsetDiscussionsController', ['only' => ['store']]);
 
     // store admin
