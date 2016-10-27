@@ -538,6 +538,14 @@ function ci_file_search($fileName)
     return false;
 }
 
+function sanitize_filename($file)
+{
+    $file = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $file);
+    $file = mb_ereg_replace("([\.]{2,})", '', $file);
+
+    return $file;
+}
+
 function deltree($dir)
 {
     $files = array_diff(scandir($dir), ['.', '..']);
