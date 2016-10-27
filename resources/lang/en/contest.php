@@ -45,8 +45,12 @@ return [
     ],
     'votes' => '1 vote|:count votes',
     'dates' => [
-        'starts' => 'Starts :date',
         'ended' => 'Ended :date',
+
+        'starts' => [
+            '_' => 'Starts :date',
+            'soon' => 'soon™',
+        ],
     ],
     'states' => [
         'entry' => 'Entry Open',
