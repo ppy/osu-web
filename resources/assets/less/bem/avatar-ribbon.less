@@ -30,23 +30,6 @@
   padding: 0 (@spacing * 3);
   flex: none;
 
-  &--xs {
-    display: inline-flex;
-    background-size: contain;
-    width: (153 / 83 * 40px);
-    justify-content: center;
-    padding: 0;
-    margin-right: @spacing;
-  }
-
-  &--level-0 {
-    width: auto;
-
-    @media @desktop {
-      width: 100%;
-    }
-  }
-
   &--level-1 {
     ._bg("support-ribbon.png");
   }
@@ -57,5 +40,14 @@
 
   &--level-3 {
     ._bg("support-ribbon-gold.png");
+  }
+
+  &--xs {
+    display: inline-flex;
+    background-size: contain;
+    width: (153 / 83 * 40px);
+    justify-content: center;
+    padding: 0;
+    margin-right: @spacing;
   }
 }

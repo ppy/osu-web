@@ -128,6 +128,7 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
+            'root' => 'index',
             'logs-index' => 'log',
             'beatmapsets' => [
                 '_' => 'beatmapsets',

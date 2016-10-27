@@ -69,7 +69,7 @@ class Contest.Entry.Uploader extends React.Component
       add: (e, data) =>
         return if @props.disabled
 
-        file = data.files[0];
+        file = data.files[0]
         extension = /(\.[^.]+)$/.exec(file.name)[1]
 
         if !_.includes(allowedExtensions, extension)
@@ -80,7 +80,7 @@ class Contest.Entry.Uploader extends React.Component
           osu.popup osu.trans('contest.entry.too_big', limit: osu.formatBytes(maxSize, 0)), 'danger'
           return
 
-        data.submit();
+        data.submit()
 
       submit: ->
         $.publish 'dragendGlobal'
