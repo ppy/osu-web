@@ -39,9 +39,10 @@ BeatmapDiscussions.Nominations = React.createClass
       method: 'PUT'
 
     if comment
-      params['data'] = {'comment': comment}
+      params.data =
+        comment: comment
 
-    $.ajax laroute.route("beatmapsets.#{action}", beatmapsets: @props.beatmapset.id), params
+    $.ajax laroute.route("beatmapsets.#{action}", beatmapset: @props.beatmapset.id), params
 
     .done (response) =>
       $.publish 'beatmapset:update', beatmapset: response.beatmapset

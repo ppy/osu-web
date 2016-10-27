@@ -20,7 +20,6 @@
 namespace App\Providers;
 
 use App\Listeners;
-use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -34,9 +33,9 @@ class EventServiceProvider extends ServiceProvider
     ];
 
     protected $subscribe = [
-        "App\Listeners\Forum\MarkTopicRead",
-        "App\Listeners\Forum\NotifySlack",
+        Listeners\Forum\MarkTopicRead::class,
         Listeners\Forum\NotifyEmail::class,
+        Listeners\Forum\NotifySlack::class,
     ];
 
     /**
@@ -46,9 +45,9 @@ class EventServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(DispatcherContract $events)
+    public function boot()
     {
-        parent::boot($events);
+        parent::boot();
 
         //
     }

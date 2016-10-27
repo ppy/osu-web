@@ -41,7 +41,7 @@ class @BeatmapsetPanel extends React.Component
       div className: 'beatmapset-panel__panel',
         div className: 'beatmapset-panel__header',
           a
-            href: laroute.route 'beatmapsets.show', beatmapsets: beatmap.id
+            href: laroute.route 'beatmapsets.show', beatmapset: beatmap.id
             target: '_blank', className: 'beatmapset-panel__thumb'
             style: {backgroundImage: "url(#{beatmap.covers.card})"}
             div className: 'beatmapset-panel__title-artist-box',
@@ -61,7 +61,7 @@ class @BeatmapsetPanel extends React.Component
 
         div className: 'beatmapset-panel__mapper-source-box',
           span className: 'hidden', ref: beatmap.id, beatmap.id
-          div className: 'creator', dangerouslySetInnerHTML: { __html: osu.trans('beatmaps.listing.mapped-by', mapper: laroute.link_to_route('users.show', beatmap.creator, users: beatmap.user_id)) }
+          div className: 'creator', dangerouslySetInnerHTML: { __html: osu.trans('beatmaps.listing.mapped-by', mapper: laroute.link_to_route('users.show', beatmap.creator, user: beatmap.user_id)) }
           div className: 'source', beatmap.source
 
         div className: 'beatmapset-panel__icons-box',

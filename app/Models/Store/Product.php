@@ -65,7 +65,7 @@ class Product extends Model
         if ($inStock === false && $includeVariations === true) {
             $inStock = ($this->masterProduct ?? $this)
                 ->variations
-                ->contains(function ($_, $variation) use ($quantity) {
+                ->contains(function ($variation) use ($quantity) {
                     return $variation->inStock($quantity);
                 });
         }

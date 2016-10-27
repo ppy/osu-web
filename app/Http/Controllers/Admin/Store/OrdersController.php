@@ -32,7 +32,7 @@ class OrdersController extends Controller
 
         $productId = (int) Request::input('product');
         if ($productId) {
-            $orders = array_where($orders, function ($_i, $order) use ($productId) {
+            $orders = array_where($orders, function ($order) use ($productId) {
                 return $order->items()->where('product_id', $productId)->exists();
             });
         }

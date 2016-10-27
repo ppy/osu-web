@@ -30,7 +30,7 @@ class StoreCheckOrderTrackingStatus extends Command
      *
      * @var string
      */
-    protected $name = 'store:tracking';
+    protected $signature = 'store:tracking';
 
     /**
      * The console command description.
@@ -52,7 +52,7 @@ class StoreCheckOrderTrackingStatus extends Command
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         $orders = Store\Order::where('status', '=', 'shipped')->where('tracking_code', '!=', '')->orderBy('updated_at')->get();
         $count = count($orders);

@@ -46,7 +46,7 @@ class MPHistory.Main extends React.Component
   loadHistory: =>
     return if _.last(@state.events)?.detail.type == 'match-disbanded'
 
-    $.ajax laroute.route('matches.history', matches: @props.match.id, full: @props.full),
+    $.ajax laroute.route('matches.history', match: @props.match.id, full: @props.full),
       method: 'GET'
       dataType: 'JSON'
       data:
