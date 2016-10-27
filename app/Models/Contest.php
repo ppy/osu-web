@@ -70,7 +70,7 @@ class Contest extends Model
 
     public function state()
     {
-        if ($this->entry_starts_at->isFuture()) {
+        if ($this->entry_starts_at !== null && $this->entry_starts_at->isFuture()) {
             return 'preparing';
         }
 
