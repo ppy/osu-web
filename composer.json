@@ -9,8 +9,8 @@
     "issues": "https://github.com/ppy/osu-web/issues"
   },
   "require": {
-    "laravel/framework": "5.2.*",
-    "laravelcollective/html": "5.2.*",
+    "laravel/framework": "5.3.*",
+    "laravelcollective/html": "5.3.*",
     "predis/predis": "~1.0",
     "doctrine/dbal": "*",
     "graham-campbell/markdown": "*",

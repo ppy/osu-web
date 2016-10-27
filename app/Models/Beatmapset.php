@@ -826,11 +826,10 @@ class Beatmapset extends Model
         $userRatings = $this->userRatings()
             ->select('rating', \DB::raw('count(*) as count'))
             ->groupBy('rating')
-            ->lists('count', 'rating')
-            ->all();
+            ->get();
 
-        foreach ($userRatings as $rating => $count) {
-            $ratings[$rating] = $count;
+        foreach ($userRatings as $rating) {
+            $ratings[$rating->rating] = $rating->count;
         }
 
         return $ratings;

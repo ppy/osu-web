@@ -50,7 +50,7 @@ ProfilePage.Historical = React.createClass
             className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
             a
               className: 'beatmapset-row__title'
-              href: laroute.route 'beatmaps.show', beatmaps: bm.id
+              href: laroute.route 'beatmaps.show', beatmap: bm.id
               title: "#{bmset.artist} - #{bmset.title} [#{bm.version}] "
               "#{bmset.title} [#{bm.version}] "
               span
@@ -67,7 +67,7 @@ ProfilePage.Historical = React.createClass
                 __html: osu.trans 'beatmaps.listing.mapped-by',
                   mapper: laroute.link_to_route 'users.show',
                     bmset.creator
-                    { users: bmset.user_id }
+                    { user: bmset.user_id }
                     class: 'beatmapset-row__title-small'
           div
             className: 'beatmapset-row__detail-column'

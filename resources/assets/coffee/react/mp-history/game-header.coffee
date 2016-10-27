@@ -37,7 +37,7 @@ class MPHistory.GameHeader extends React.Component
 
     a
       className: 'mp-history-game__header'
-      href: (laroute.route 'beatmaps.show', beatmaps: @props.beatmap.id) if @props.beatmap.id
+      href: (laroute.route 'beatmaps.show', beatmap: @props.beatmap.id) if @props.beatmap.id
       style:
         backgroundImage: "url(#{@props.beatmapset.covers.cover})" if @props.beatmapset.covers.cover
 

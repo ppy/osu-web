@@ -36,7 +36,7 @@ BeatmapsetPage.ScoreBig = React.createClass
         div className: 'beatmapset-score-big__user-box',
           a
             className: 'beatmapset-score-big__username'
-            href: laroute.route 'users.show', users: @props.score.user.id
+            href: laroute.route 'users.show', user: @props.score.user.id
             @props.score.user.username
 
           el FlagCountry,

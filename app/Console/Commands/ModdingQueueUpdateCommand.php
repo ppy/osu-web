@@ -30,7 +30,7 @@ class ModdingQueueUpdateCommand extends Command
      *
      * @var string
      */
-    protected $name = 'modding:queue-update';
+    protected $signature = 'modding:queue-update';
 
     /**
      * The console command description.
@@ -54,7 +54,7 @@ class ModdingQueueUpdateCommand extends Command
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         //
     }

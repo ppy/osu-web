@@ -27,7 +27,7 @@ class Contest.Entry.UserEntry extends React.Component
       method: 'DELETE'
       dataType: 'json'
 
-    $.ajax laroute.route('contest-entries.destroy', contest_entries: @props.entry.id), params
+    $.ajax laroute.route('contest-entries.destroy', contest_entry: @props.entry.id), params
 
     .done (data) =>
       $.publish 'contest:entries:update', data: data

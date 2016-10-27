@@ -30,7 +30,7 @@ class ModdingScoreIndexCommand extends Command
      *
      * @var string
      */
-    protected $name = 'modding:index';
+    protected $signature = 'modding:index';
 
     /**
      * The console command description.
@@ -54,7 +54,7 @@ class ModdingScoreIndexCommand extends Command
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         //
     }

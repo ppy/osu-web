@@ -33,7 +33,7 @@ class MPHistory.Event extends React.Component
     event_type = @props.event.detail.type
 
     if user? && event_type != 'match-disbanded'
-      userLink = osu.link laroute.route('users.show', users: user.id),
+      userLink = osu.link laroute.route('users.show', user: user.id),
         user.username
         classNames: ['mp-history-event__username']
 
