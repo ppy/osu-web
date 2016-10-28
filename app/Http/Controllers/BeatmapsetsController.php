@@ -222,7 +222,7 @@ class BeatmapsetsController extends Controller
 
         return [
           'favcount' => $beatmapset->favourite_count,
-          'favourited' => $beatmapset->hasFavourited(),
+          'favourited' => $beatmapset->hasFavourited($user),
         ];
     }
 
@@ -231,7 +231,7 @@ class BeatmapsetsController extends Controller
         $beatmapset = Beatmapset::findOrFail($id);
         $user = Auth::user();
 
-        if (!$beatmapset->hasFavourited()) {
+        if (!$beatmapset->hasFavourited($user)) {
             return error_popup(trans('errors.beatmapsets.not-favourited'));
         }
 
@@ -246,7 +246,7 @@ class BeatmapsetsController extends Controller
 
         return [
           'favcount' => $beatmapset->favourite_count,
-          'favourited' => $beatmapset->hasFavourited(),
+          'favourited' => $beatmapset->hasFavourited($user),
         ];
     }
 }

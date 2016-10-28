@@ -841,12 +841,10 @@ class Beatmapset extends Model
         return $this->hasMany(FavouriteBeatmapset::class);
     }
 
-    public function hasFavourited()
+    public function hasFavourited($user)
     {
-        // checks if the logged in user has favourited the beatmapset
-        // returns false if no one logged it
-        return Auth::check()
-          ? $this->favourites()->where('user_id', Auth::user()->user_id)->exists()
+        return $user
+          ? $this->favourites()->where('user_id', $user->user_id)->exists()
           : false;
     }
 
