@@ -263,24 +263,22 @@ function nav_links()
 {
     $links = [];
 
-    if (config('app.debug')) {
-        $links['home'] = [
-            'index' => route('home'),
-            'getChangelog' => osu_url('home.changelog'),
-            'getDownload' => osu_url('home.download'),
-        ];
-        $links['help'] = [
-            'getWiki' => osu_url('help.wiki'),
-            'getFaq' => osu_url('help.faq'),
-            'getSupport' => osu_url('help.support'),
-        ];
-        $links['ranking'] = [
-            'getOverall' => osu_url('ranking.overall'),
-            'getCharts' => osu_url('ranking.charts'),
-            'getCountry' => osu_url('ranking.country'),
-            'getMapper' => osu_url('ranking.mapper'),
-        ];
-    }
+    $links['home'] = [
+        'getNews' => osu_url('home.news'),
+        'getChangelog' => osu_url('home.changelog'),
+        'getDownload' => osu_url('home.download'),
+    ];
+    $links['help'] = [
+        'getWiki' => osu_url('help.wiki'),
+        'getFaq' => osu_url('help.faq'),
+        'getSupport' => osu_url('help.support'),
+    ];
+    $links['ranking'] = [
+        'getOverall' => osu_url('ranking.overall'),
+        'getCharts' => osu_url('ranking.charts'),
+        'getCountry' => osu_url('ranking.country'),
+        'getMapper' => osu_url('ranking.mapper'),
+    ];
     $links['beatmaps'] = [
         'index' => route('beatmapsets.index'),
         'artists' => route('artist.index'),
