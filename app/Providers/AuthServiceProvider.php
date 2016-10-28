@@ -18,5 +18,9 @@ class AuthServiceProvider extends ServiceProvider
         Passport::ignoreMigrations();
         Passport::tokensExpireIn(Carbon::now()->addDays(1));
         Passport::refreshTokensExpireIn(Carbon::now()->addMonths(3));
+
+        if ($path = config('services.passport.path')) {
+            Passport::keyPath($path);
+        }
     }
 }
