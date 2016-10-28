@@ -286,7 +286,7 @@ class Beatmapset extends Model
                     $matchParams[] = ['match' => ['approved' => self::STATES['approved']]];
                     break;
                 case 2: // Favourites
-                    $favs = model_pluck($current_user->favouriteBeatmapsets()->get(), 'beatmapset_id');
+                    $favs = model_pluck($current_user->favoriteBeatmapsets()->get(), 'beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $favs]];
                     break;
                 case 3: // Mod Requests
@@ -836,15 +836,15 @@ class Beatmapset extends Model
         return $ratings;
     }
 
-    public function favourites()
+    public function favorites()
     {
-        return $this->hasMany(FavouriteBeatmapset::class);
+        return $this->hasMany(FavoriteBeatmapset::class);
     }
 
-    public function hasFavourited($user)
+    public function hasFavorited($user)
     {
         return $user
-          ? $this->favourites()->where('user_id', $user->user_id)->exists()
+          ? $this->favorites()->where('user_id', $user->user_id)->exists()
           : false;
     }
 

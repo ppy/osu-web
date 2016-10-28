@@ -57,7 +57,7 @@ class BeatmapsetPage.Main extends React.Component
       currentBeatmapId: currentBeatmapId
       currentPlaymode: currentPlaymode
       favcount: props.beatmapset.favourite_count
-      hasFavourited: props.beatmapset.has_favourited
+      hasFavorited: props.beatmapset.has_favorited
       loading: false
       isPreviewPlaying: false
       currentScoreboardType: 'global'
@@ -153,15 +153,15 @@ class BeatmapsetPage.Main extends React.Component
   setHoveredBeatmapId: (_e, hoveredBeatmapId) =>
     @setState hoveredBeatmapId: hoveredBeatmapId
 
-  toggleFavourite: =>
+  toggleFavorite: =>
     $.ajax
-      url: laroute.route("beatmapsets.#{if @state.hasFavourited then 'unfavourite' else 'favourite'}", beatmapsets: @props.beatmapset.id)
-      method: if @state.hasFavourited then 'delete' else 'post'
+      url: laroute.route("beatmapsets.#{if @state.hasFavorited then 'unfavorite' else 'favorite'}", beatmapsets: @props.beatmapset.id)
+      method: if @state.hasFavorited then 'delete' else 'post'
 
     .done (data) =>
       @setState
         favcount: data.favcount
-        hasFavourited: data.favourited
+        hasFavorited: data.favorited
 
   onPreviewEnded: =>
     @setState isPreviewPlaying: false
@@ -173,7 +173,7 @@ class BeatmapsetPage.Main extends React.Component
     $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
     $.subscribe 'beatmapset:preview:toggle.beatmapsetPage', @togglePreviewPlayingState
     $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmapId
-    $.subscribe 'beatmapset:favourite:toggle', @toggleFavourite
+    $.subscribe 'beatmapset:favorite:toggle', @toggleFavorite
 
     @setHash()
     @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
@@ -207,7 +207,7 @@ class BeatmapsetPage.Main extends React.Component
           currentBeatmap: currentBeatmap
           hoveredBeatmap: @state.beatmaps[@state.currentPlaymode][@state.hoveredBeatmapId]
           favcount: @state.favcount
-          hasFavourited: @state.hasFavourited
+          hasFavorited: @state.hasFavorited
           isPreviewPlaying: @state.isPreviewPlaying
 
         el BeatmapsetPage.Info,

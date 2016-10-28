@@ -26,7 +26,7 @@ class BeatmapsetsController extends Controller
 {
     public function favourites()
     {
-        $favourites = Auth::user()->favouriteBeatmapsets()->get();
+        $favourites = Auth::user()->favoriteBeatmapsets()->get();
 
         return json_collection(
             $favourites->get(),

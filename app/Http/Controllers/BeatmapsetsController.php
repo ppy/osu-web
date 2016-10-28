@@ -21,7 +21,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
-use App\Models\FavouriteBeatmapset;
+use App\Models\FavoriteBeatmapset;
 use App\Models\Country;
 use App\Models\Language;
 use App\Models\Genre;
@@ -201,22 +201,22 @@ class BeatmapsetsController extends Controller
         ];
     }
 
-    public function favourite($id)
+    public function favorite($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
         $user = Auth::user();
 
-        if ($user->favouriteBeatmapsets()->count() > 99) {
-            return error_popup(trans('errors.beatmapsets.too-many-favourites'));
+        if ($user->favoriteBeatmapsets()->count() > 99) {
+            return error_popup(trans('errors.beatmapsets.too-many-favorites'));
         }
 
-        if (FavouriteBeatmapset::where('user_id', $user->user_id)
+        if (FavoriteBeatmapset::where('user_id', $user->user_id)
             ->where('beatmapset_id', $beatmapset->beatmapset_id)->exists()) {
             return;
         }
 
         \DB::transaction(function () use ($user, $beatmapset) {
-            FavouriteBeatmapset::create([
+            FavoriteBeatmapset::create([
                 'user_id' => $user->user_id,
                 'beatmapset_id' => $beatmapset->beatmapset_id,
             ]);
@@ -227,21 +227,21 @@ class BeatmapsetsController extends Controller
 
         return [
           'favcount' => $beatmapset->favourite_count,
-          'favourited' => $beatmapset->hasFavourited($user),
+          'favorited' => $beatmapset->hasFavorited($user),
         ];
     }
 
-    public function unfavourite($id)
+    public function unfavorite($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
         $user = Auth::user();
 
-        if (!$beatmapset->hasFavourited($user)) {
+        if (!$beatmapset->hasFavorited($user)) {
             return;
         }
 
         \DB::transaction(function () use ($user, $beatmapset) {
-            FavouriteBeatmapset::where('user_id', $user->user_id)
+            FavoriteBeatmapset::where('user_id', $user->user_id)
               ->where('beatmapset_id', $beatmapset->beatmapset_id)
               ->delete();
 
@@ -251,7 +251,7 @@ class BeatmapsetsController extends Controller
 
         return [
           'favcount' => $beatmapset->favourite_count,
-          'favourited' => $beatmapset->hasFavourited($user),
+          'favorited' => $beatmapset->hasFavorited($user),
         ];
     }
 }
