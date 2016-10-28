@@ -210,6 +210,11 @@ class BeatmapsetsController extends Controller
             return error_popup(trans('errors.beatmapsets.too-many-favourites'));
         }
 
+        if (FavouriteBeatmapset::where('user_id', $user->user_id)
+            ->where('beatmapset_id', $beatmapset->beatmapset_id)->exists()) {
+            return;
+        }
+
         \DB::transaction(function () use ($user, $beatmapset) {
             FavouriteBeatmapset::create([
                 'user_id' => $user->user_id,
