@@ -179,8 +179,6 @@ return [
         Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
         Shift31\LaravelElasticsearch\ElasticsearchServiceProvider::class,
         League\StatsD\Laravel5\Provider\StatsdServiceProvider::class,
-        //LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
-        //LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
         Lord\Laroute\LarouteServiceProvider::class,
         Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
 
