@@ -79,3 +79,6 @@ sftp-settings.json
 /resources/assets/js/build/
 
 composer-installer
+
+/storage/oauth-public.key
+/storage/oauth-private.key
