@@ -8,18 +8,25 @@ The future face of osu!.
 Requirements
 ------------
 
-[Vagrant 1.7+](http://www.vagrantup.com/downloads.html) or equivalent development environment.
+- A PHP 7.0 (or equivalent) environment
+- MySQL 5.7+
+
+For full support, we also recommend
+
+- Redis
+- Elasticsearch
 
 Deploying
 ---------
 
-1. Clone repository
-2. Open shell and point to checkout directory
-3. `cd vagrant; vagrant up`
-4. wait patiently
-5. Access the site from http://localhost:8080/.
+### Environment
 
-*Note that you can get things running without vagrant. It should be pretty straightforward, but if you run into problems don't hesitate to open an issue asking for help!*
+There are a few different options to get started:
+
+- Create a fresh Ubuntu environment and run `sudo bootstrap.sh`. Note that this script is intended to be run on a *sandboxed environment*; do not run it on a shared development system without first understanding what it does.
+- Use the php built-in server (run `php -s 127.0.0.1:8080` from the `public` folder). You will still need a database backend.
+- Use vagrant (`cd vagrant; vagrant up`). Note that this is not actively supported or tested, and it is known to be quite slow on some platforms.
+- Use your existing web dev environment.
 
 ### Creating user
 

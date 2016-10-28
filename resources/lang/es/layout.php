@@ -27,7 +27,7 @@ return [
             'getChangelog' => 'listado de cambios',
             'getDownload' => 'descargar',
             'getIcons' => 'iconos',
-            'index' => 'novedades',
+            'getNews' => 'novedades',
             'supportTheGame' => 'apoya el juego',
         ],
         'help' => [
