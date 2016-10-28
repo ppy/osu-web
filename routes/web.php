@@ -252,7 +252,7 @@ if (Config::get('app.debug')) {
 Route::group(['middleware' => ['web', 'auth']], function ($router) {
     $router->get('/oauth/authorize', [
         'uses' => 'AuthorizationController@authorize',
-        'as' => 'oauth.authorize'
+        'as' => 'oauth.authorize',
     ]);
 
     $router->post('/oauth/authorize', [
