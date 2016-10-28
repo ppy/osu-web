@@ -20,7 +20,6 @@ el = React.createElement
 
 class BeatmapsetPage.Header extends React.Component
   toggleFavourite: ->
-    console.log 'asdf'
     $.publish 'beatmapset:favourite:toggle'
 
   render: ->

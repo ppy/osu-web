@@ -154,8 +154,6 @@ class BeatmapsetPage.Main extends React.Component
     @setState hoveredBeatmapId: hoveredBeatmapId
 
   toggleFavourite: =>
-    console.log 'asdf'
-
     $.ajax
       url: laroute.route("beatmapsets.#{if @state.hasFavourited then 'unfavourite' else 'favourite'}", beatmapsets: @props.beatmapset.id)
       method: if @state.hasFavourited then 'delete' else 'post'
