@@ -4,7 +4,7 @@
 @section("content")
 <div class="osu-layout__row osu-layout__row--page osu-layout__row--bootstrap">
   <h2>Granting access to: <pre>{{ $client->getName() }}</pre></h2>
-  <form method="post" action="/oauth/authorize">
+  <form method="post" action="{{ route('oauth.authorize') }}">
     {{ csrf_field() }}
     <input type="hidden" name="client_id" value="{{ $params['client_id'] }}">
     <input type="hidden" name="redirect_uri" value="{{ $params['redirect_uri'] }}">
