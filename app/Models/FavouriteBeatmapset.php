@@ -30,10 +30,7 @@ class FavouriteBeatmapset extends Model
         'dateadded',
     ];
 
-    protected $fillable = [
-        'user_id',
-        'beatmapset_id',
-    ];
+    protected $guarded = [];
 
     public function user()
     {
