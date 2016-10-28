@@ -29,7 +29,7 @@ return [
             'getChangelog' => 'zmiany',
             'getDownload' => 'pobieranie',
             'getIcons' => 'ikony',
-            'index' => 'aktualności',
+            'getNews' => 'aktualności',
             'supportTheGame' => 'wspomóż grę',
         ],
         'help' => [
