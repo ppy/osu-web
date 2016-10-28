@@ -24,26 +24,39 @@ class Contest.Voting.ArtEntry extends React.Component
     votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
     selected = _.includes @props.selected, @props.entry.id
     showVotes = @props.contest.show_votes
+    orientation = @props.contest.orientation
 
     if showVotes
       votePercentage = _.round((@props.entry.results.votes / @props.totalVotes)*100, 2)
-
       place = @props.displayIndex + 1
       top3 = place <= 3
 
-    div style: { backgroundImage: "url('#{@props.entry.preview}')" }, className: [
+    topClass = [
       'contest-art-list__entry',
       'contest-art-list__entry--result' if showVotes,
-      "contest-art-list__entry--placed-#{place}" if showVotes && top3,
-      'contest-art-list__entry--smaller' if showVotes && !top3
-    ].join(' '),
+      'contest-art-list__entry--placed' if showVotes && top3,
+    ]
+
+    if orientation
+      topClass.push "contest-art-list__entry--#{orientation}"
+      if showVotes
+        if top3
+          topClass.push "contest-art-list__entry--#{orientation}--placed-#{place}"
+        else
+          topClass.push "contest-art-list__entry--#{orientation}--smaller"
+    else
+      if showVotes
+        if top3
+          topClass.push "contest-art-list__entry--placed-#{place}"
+        else
+          topClass.push 'contest-art-list__entry--smaller'
+
+    div style: { backgroundImage: "url('#{@props.entry.preview}')" }, className: _.compact(topClass).join(' '),
       a {
-        className: [
+        className: _.compact([
           'js-gallery contest-art-list__thumbnail',
           'contest-art-list__entry--selected' if selected,
-          'contest-art-list__thumbnail--placed-2' if showVotes && place == 2,
-          'contest-art-list__thumbnail--smaller' if showVotes && place > 2
-        ].join(' '),
+        ]).join(' '),
         href: @props.entry.preview,
         'data-width': @props.entry.artMeta.width,
         'data-height': @props.entry.artMeta.height,
@@ -54,11 +67,11 @@ class Contest.Voting.ArtEntry extends React.Component
       if (@props.selected.length >= @props.contest.max_votes || votingOver) && !selected
         null
       else
-        div className: [
-          'contest__vote-link-banner'
+        div className: _.compact([
+          'contest__vote-link-banner',
           'contest__vote-link-banner--selected' if selected,
           'contest__vote-link-banner--smaller' if showVotes && place > 2
-        ].join(' '),
+        ]).join(' '),
           el Contest.Voting.Voter,
             key: @props.entry.id,
             entry: @props.entry,
@@ -70,12 +83,12 @@ class Contest.Voting.ArtEntry extends React.Component
 
       if showVotes
         div className: 'contest-art-list__result',
-          div className: [
+          div className: _.compact([
             'contest-art-list__result-place',
             'contest-art-list__result-place--top-three' if showVotes && top3
-          ].join(' '),
+          ]).join(' '),
             if top3
-              i className: "fa fa-fw fa-trophy contest-art-list__tropy--#{place}"
+              i className: "fa fa-fw fa-trophy contest-art-list__trophy--#{place}"
             "##{place}"
           div className: 'contest-art-list__result-votes',
             osu.transChoice 'contest.votes', @props.entry.results.votes
