@@ -39,7 +39,6 @@ return [
     ],
     'beatmapsets' => [
         'too-many-favourites' => 'You have to many favourited beatmaps! Please unfavourite one before continuing.',
-        'not-favourited' => "You haven't favourited this beatmap!",
     ],
     'logged_out' => 'You have been logged out. Please login and retry.',
     'supporter_only' => 'You must be a supporter to use this feature.',

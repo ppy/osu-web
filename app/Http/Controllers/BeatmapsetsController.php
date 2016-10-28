@@ -232,7 +232,7 @@ class BeatmapsetsController extends Controller
         $user = Auth::user();
 
         if (!$beatmapset->hasFavourited($user)) {
-            return error_popup(trans('errors.beatmapsets.not-favourited'));
+            return;
         }
 
         \DB::transaction(function () use ($user, $beatmapset) {
