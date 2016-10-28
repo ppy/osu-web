@@ -89,6 +89,11 @@ class Contest extends Model
         return 'over';
     }
 
+    public function entryOrientation()
+    {
+        return $this->id == 5 ? 'landscape' : null;
+    }
+
     public function currentPhaseDateRange()
     {
         switch ($this->state()) {

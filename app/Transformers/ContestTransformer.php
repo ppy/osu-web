@@ -30,7 +30,7 @@ class ContestTransformer extends Fractal\TransformerAbstract
 
     public function transform(Contest $contest)
     {
-        return [
+        $response = [
             'id' => $contest->id,
             'name' => $contest->name,
             'description' => $contest->description_voting,
@@ -43,6 +43,12 @@ class ContestTransformer extends Fractal\TransformerAbstract
             'voting_ends_at' => json_time($contest->voting_ends_at),
             'show_votes' => $contest->show_votes,
         ];
+
+        if ($contest->type == 'art') {
+            $response['orientation'] = $contest->entryOrientation();
+        }
+
+        return $response;
     }
 
     public function includeEntries(Contest $contest)
