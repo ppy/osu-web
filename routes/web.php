@@ -208,7 +208,7 @@ Route::post('/account/verify', ['as' => 'account.verify', 'uses' => 'AccountCont
 Route::post('/account/reissue-code', ['as' => 'account.reissue-code', 'uses' => 'AccountController@reissueCode']);
 
 // API
-Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'oauth'], function () {
+Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['prefix' => 'chat'], function () {
             Route::get('channels', ['uses' => 'ChatController@channels']);                //  GET /api/v2/chat/channels
@@ -249,7 +249,24 @@ if (Config::get('app.debug')) {
     });
 }
 
-// OAuth2 (for API)
-Route::get('oauth/authorize', ['as' => 'oauth.authorize.get', 'middleware' => ['check-authorization-params'], 'uses' => 'OAuthController@authorizeForm']);
-Route::post('oauth/authorize', ['as' => 'oauth.authorize.post', 'middleware' => ['check-authorization-params'], 'uses' => 'OAuthController@authorizePost']);
-Route::post('oauth/access_token', ['uses' => 'OAuthController@getAccessToken']);
+Route::group(['middleware' => ['web', 'auth']], function ($router) {
+    $router->get('/oauth/authorize', [
+        'uses' => 'AuthorizationController@authorize',
+        'as' => 'oauth.authorize'
+    ]);
+
+    $router->post('/oauth/authorize', [
+        'uses' => 'ApproveAuthorizationController@approve',
+        'as' => 'oauth.authorize.approve',
+    ]);
+
+    $router->delete('/oauth/authorize', [
+        'uses' => 'DenyAuthorizationController@deny',
+        'as' => 'oauth.authorize.deny',
+    ]);
+});
+
+Route::get('/oauth/access_token', [
+    'uses' => 'AuthorizationController@authorize',
+    'as' => 'oauth.token',
+]);
