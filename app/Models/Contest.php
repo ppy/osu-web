@@ -91,7 +91,7 @@ class Contest extends Model
 
     public function entryOrientation()
     {
-        return $this->id == 5 ? 'landscape' : null;
+        return $this->id === 5 ? 'landscape' : null;
     }
 
     public function currentPhaseDateRange()
