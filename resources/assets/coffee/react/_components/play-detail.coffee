@@ -37,7 +37,7 @@ el = React.createElement
       className: topClasses
       div
         className: 'detail-row__icon'
-        div className: "badge-rank badge-rank--full badge-rank--#{score.rank}-light"
+        div className: "badge-rank badge-rank--full badge-rank--#{score.rank}"
 
       div className: 'detail-row__detail',
         div

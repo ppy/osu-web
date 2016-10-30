@@ -80,7 +80,7 @@ BeatmapDiscussions.Post = React.createClass
 
     LoadingOverlay.show()
 
-    $.ajax laroute.route('beatmap-discussion-posts.update', beatmap_discussion_posts: @props.post.id),
+    $.ajax laroute.route('beatmap-discussion-posts.update', beatmap_discussion_post: @props.post.id),
       method: 'PUT'
       data:
         beatmap_discussion_post:
@@ -111,14 +111,14 @@ BeatmapDiscussions.Post = React.createClass
         span
           className: "#{bn}__info"
           dangerouslySetInnerHTML:
-            __html: "#{laroute.link_to_route('users.show', @props.user.username, users: @props.user.id)}, #{osu.timeago @props.post.created_at}"
+            __html: "#{laroute.link_to_route('users.show', @props.user.username, user: @props.user.id)}, #{osu.timeago @props.post.created_at}"
 
         if @props.post.updated_at != @props.post.created_at
           span
             className: "#{bn}__info #{bn}__info--edited"
             dangerouslySetInnerHTML:
               __html: osu.trans 'beatmaps.discussions.edited',
-                editor: laroute.link_to_route('users.show', @props.lastEditor.username, users: @props.lastEditor.id)
+                editor: laroute.link_to_route('users.show', @props.lastEditor.username, user: @props.lastEditor.id)
                 update_time: osu.timeago @props.post.updated_at
 
         if @props.canBeEdited

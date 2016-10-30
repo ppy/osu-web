@@ -1,0 +1,130 @@
+/**
+*    Copyright 2015 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License version 3
+*    as published by the Free Software Foundation.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
+.contest-list-item {
+  @_top: contest-list-item;
+
+  display: block;
+  color: white;
+  height: 70px;
+  margin: @spacing / 2;
+  background-color: #323E41;
+  .default-box-shadow();
+
+  transition: 0.1s ease-in-out;
+
+  border-right: 5px solid #323E41;
+
+  &:active, &:focus, &:hover {
+    color: white;
+    text-decoration: none;
+  }
+
+  &:hover {
+    @media @desktop {
+      .@{_top}__image {
+        width: 160px;
+      }
+    }
+    background-color: lighten(#323E41, 5%);
+    border-color: lighten(#323E41, 5%);
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__left-content {
+    float: left;
+    padding: 15px;
+    padding-top: @spacing;
+    overflow: hidden;
+    @media @mobile {
+      padding-right: 0px;
+    }
+  }
+
+  &__right-content {
+    float: right;
+    padding: @spacing;
+    flex-shrink: 0;
+  }
+
+  &--entry {
+    border-color: @pink;
+    &:hover {
+      border-color: lighten(@pink, 5%);
+    }
+  }
+
+  &--voting {
+    border-color: @blue;
+    &:hover {
+      border-color: lighten(@blue, 5%);
+    }
+  }
+
+  &--results {
+    border-color: @green;
+    &:hover {
+      border-color: lighten(@green, 5%);
+    }
+  }
+
+  &__name {
+    font-size: 17px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    @media @mobile {
+      font-size: 14px;
+    }
+    padding-bottom: @spacing / 2;
+  }
+
+  &__date {
+    font-size: 12px;
+    @media @mobile {
+      font-size: 10px;
+    }
+    color: #93b8c4;
+  }
+
+  &__type {
+    color: #93b8c4;
+    text-transform: capitalize;
+    font-size: 15px;
+    @media @mobile {
+      font-size: 13px;
+    }
+  }
+
+  &__image {
+    transition: 0.2s ease-in-out;
+    width: 80px;
+    height: 70px;
+    background-size: cover;
+    background-position: center center;
+    float: left;
+    @media @mobile {
+      width: 50px;
+    }
+  }
+}

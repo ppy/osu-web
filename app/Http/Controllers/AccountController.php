@@ -35,9 +35,13 @@ class AccountController extends Controller
     {
         $this->middleware('auth', ['except' => 'logout']);
 
-        if (Auth::check() && Auth::user()->isSilenced()) {
-            abort(403);
-        }
+        $this->middleware(function ($request, $next) {
+            if (Auth::check() && Auth::user()->isSilenced()) {
+                return abort(403);
+            }
+
+            return $next($request);
+        });
 
         $this->middleware('verify-user');
 

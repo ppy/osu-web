@@ -1,0 +1,55 @@
+/**
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+.mod {
+  flex: none;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  .all(@name, @filename) {
+    &--@{name} {
+      .at2x-simple("/images/badges/mods/mod_@{filename}.png");
+    }
+  }
+
+  .all(NM, 'no-mod');
+  .all(NF, 'no-fail');
+  .all(EZ, 'easy');
+  .all(HD, 'hidden');
+  .all(HR, 'hard-rock');
+  .all(SD, 'sudden-death');
+  .all(DT, 'double-time');
+  .all(Relax, 'relax');
+  .all(HT, 'half');
+  .all(NC, 'nightcore');
+  .all(FL, 'flashlight');
+  .all(SO, 'spun-out');
+  .all(AP, 'autopilot');
+  .all(PF, 'perfect');
+  .all(4K, '4K');
+  .all(5K, '5K');
+  .all(6K, '6K');
+  .all(7K, '7K');
+  .all(8K, '8K');
+  .all(FI, 'fader');
+  .all(9K, '9K');
+}

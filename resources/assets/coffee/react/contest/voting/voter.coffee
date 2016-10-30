@@ -31,7 +31,7 @@ class Contest.Voting.Voter extends React.Component
       method: 'PUT'
       dataType: 'json'
 
-    $.ajax laroute.route('contest-entries.vote', contest_entry_id: @props.entry.id), params
+    $.ajax laroute.route('contest-entries.vote', contest_entry: @props.entry.id), params
 
     .done (response) =>
       $.publish 'contest:vote:done', response: response

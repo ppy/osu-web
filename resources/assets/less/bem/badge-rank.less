@@ -26,24 +26,12 @@
 
   .all(@rank, @prefix) {
     &--@{rank} {
-      .dark-rounded(@prefix);
-    }
-
-    &--@{rank}-light {
-      .light(@prefix);
+      .bg(@prefix);
     }
   }
 
   .bg(@filename) {
     .at2x-simple("/images/badges/score-ranks/@{filename}.png");
-  }
-
-  .dark-rounded(@prefix) {
-    .bg("@{prefix}-Dark-Rounded");
-  }
-
-  .light(@prefix) {
-    .bg("@{prefix}-Light");
   }
 
   .all(XH, "SSPlus");
@@ -56,9 +44,8 @@
   .all(D, "F");
 
   &--medium {
-    @size: 60px;
-    width: @size;
-    height: @size;
+    width: @rank-width;
+    height: @rank-height;
   }
 
   &--full {

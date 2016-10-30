@@ -36,7 +36,7 @@ class MPHistory.Score extends React.Component
           div className: 'mp-history-player-score__username-box',
             a
               className: 'mp-history-player-score__username',
-              href: laroute.route 'users.show', users: user.id
+              href: laroute.route 'users.show', user: user.id
               user.username
 
             if !@props.score.pass

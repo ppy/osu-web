@@ -19,7 +19,11 @@ class @Gallery
   constructor: ->
     @pswp = document.getElementsByClassName('pswp')
 
-    $(document).on 'click', '.js-gallery', (e) =>
+    $(document).on 'click', '.js-gallery', @initiateOpen
+    $(document).on 'click', '.js-gallery-thumbnail', @switchPreview
+
+
+  initiateOpen: (e) =>
       $target = $(e.currentTarget)
       return if $target.parents('a').length
 
@@ -83,3 +87,20 @@ class @Gallery
         y: center[1] - scaledImageDim[1] / 2
         w: scaledImageDim[0]
       }
+
+
+  switchPreview: (e) =>
+    e.preventDefault()
+
+    $link = $(e.currentTarget)
+    {galleryId, index} = $link[0].dataset
+    $previews = $(".js-gallery[data-gallery-id='#{galleryId}']")
+    $links = $(".js-gallery-thumbnail[data-gallery-id='#{galleryId}']")
+
+    for pair in _.zip($links, $previews)
+      if index == pair[0].dataset.index
+        pair[0].classList.add 'js-gallery-thumbnail--active'
+        Fade.in pair[1]
+      else
+        pair[0].classList.remove 'js-gallery-thumbnail--active'
+        Fade.out pair[1]
