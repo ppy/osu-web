@@ -52,7 +52,7 @@
                         @if ($flagType === "country")
                             <img
                                 class="forum__user-flag forum__user-flag--country"
-                                src="/images/flags/{{ $flagValue[0] }}.png"
+                                src="{{ flag_path($flagValue[0]) }}"
                                 alt="{{ $flagValue[0] }}"
                                 title="{{ $flagValue[1] }}"
                             />
@@ -94,7 +94,7 @@
                     <span class="forum-post__info-panel-xs-flag">
                         <img
                             class="flag-country flag-country--small-box"
-                            src="/images/flags/{{ $user->flags()["country"][0] }}.png"
+                            src="{{ flag_path($user->flags()['country'][0]) }}"
                             alt="{{ $user->flags()["country"][0] }}"
                             title="{{ $user->flags()["country"][1] }}"
                         />
