@@ -99,12 +99,22 @@
     color: @yellow;
     font-size: @font-size--nav-popup-link;
     margin: (@spacing / 4) 0;
-    display: block;
+    display: flex;
 
     &:focus,
     &:hover {
       text-decoration: none;
       color: @gray-f;
+    }
+
+    .@{_top}__menu--locale & {
+      color: @purple;
+
+      &:focus,
+      &:hover {
+        text-decoration: none;
+        color: @gray-f;
+      }
     }
   }
 
@@ -159,6 +169,14 @@
     .@{_top}__menu-head:hover & {
       transform: translateY(0%);
     }
+  }
+
+  &__menu-icon {
+    width: 20px;
+    margin-right: (@spacing / 2);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   &__overlay {
