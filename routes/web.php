@@ -30,6 +30,7 @@
 // home section
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
+Route::post('/set-locale', ['as' => 'set-locale', 'uses' => 'HomeController@setLocale']);
 Route::get('/home/download', ['as' => 'download', 'uses' => 'HomeController@getDownload']);
 Route::get('/home/changelog', ['as' => 'changelog', 'uses' => 'HomeController@getChangelog']);
 Route::get('/home/support', ['as' => 'support-the-game', 'uses' => 'HomeController@supportTheGame']);

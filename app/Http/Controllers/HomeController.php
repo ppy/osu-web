@@ -19,6 +19,7 @@
  */
 namespace App\Http\Controllers;
 
+use App;
 use App\Models\BanchoStats;
 use App\Models\Count;
 use Auth;
@@ -75,6 +76,21 @@ class HomeController extends Controller
         $currentOnline = ($stats->isEmpty() ? 0 : $stats->last()->users_osu);
 
         return view('home.landing', compact('stats', 'totalUsers', 'currentOnline'));
+    }
+
+    public function setLocale()
+    {
+        $newLocale = get_valid_locale(Request::input('locale'));
+        App::setLocale($newLocale);
+
+        if (Auth::check()) {
+            Auth::user()->update([
+                'user_lang' => $newLocale,
+            ]);
+        }
+
+        return js_view('layout.ujs-reload')
+            ->withCookie(cookie()->forever('locale', $newLocale));
     }
 
     public function supportTheGame()
