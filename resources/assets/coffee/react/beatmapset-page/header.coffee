@@ -69,10 +69,10 @@ class BeatmapsetPage.Header extends React.Component
                 span className: 'beatmapset-header__value-name', @props.beatmapset.play_count.toLocaleString()
 
               span className: 'beatmapset-header__value',
-                span
+                a
                   onClick: @toggleFavorite
                   title: osu.trans "beatmaps.beatmapset.show.details.#{if @props.hasFavorited then 'unfavorite' else 'favorite'}"
-                  className: "beatmapset-header__value-icon #{'beatmapset-header__value-icon--favorited' if @props.hasFavorited}"
+                  className: "beatmapset-header__value-icon beatmapset-header__value-icon--favorites #{'beatmapset-header__value-icon--favorited' if @props.hasFavorited}"
                   el Icon, name: 'heart'
                 span className: 'beatmapset-header__value-name', @props.favcount.toLocaleString()
 

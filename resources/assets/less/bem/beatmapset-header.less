@@ -149,10 +149,24 @@
 
   &__value-icon {
     padding-right: 2px;
-    cursor: pointer;
+
+    color: @gray-f;
+
+    &:hover, &:visited, &:link, &:active {
+      text-decoration: none;
+      color: @gray-f;
+    }
+
+    &--favorites {
+      cursor: pointer;
+
+      &:hover {
+        color: @pink-dark;
+      }
+    }
 
     &--favorited {
-      color: @pink-darker;
+      color: @pink-darker !important;
     }
   }
 
