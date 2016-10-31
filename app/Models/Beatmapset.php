@@ -286,7 +286,7 @@ class Beatmapset extends Model
                     $matchParams[] = ['match' => ['approved' => self::STATES['approved']]];
                     break;
                 case 2: // Favourites
-                    $favs = model_pluck($current_user->favoriteBeatmapsets()->get(), 'beatmapset_id');
+                    $favs = model_pluck($current_user->favoriteBeatmapsets(), 'beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $favs]];
                     break;
                 case 3: // Mod Requests
