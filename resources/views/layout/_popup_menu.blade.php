@@ -78,14 +78,14 @@
 
             <div
                 class="nav-popup__menu-icon"
-                style="background-image: url('{{ flag_path(flag_for_locale(App::getLocale())) }}')"
+                style="background-image: url('{{ flag_path(locale_flag(App::getLocale())) }}')"
             ></div>
 
             <div
                 class="fake-bold"
-                data-content="{{ App::getLocale() }}"
+                data-content="{{ locale_name(App::getLocale()) }}"
             >
-                {{ App::getLocale() }}
+                {{ locale_name(App::getLocale()) }}
             </div>
         </a>
 
@@ -97,13 +97,18 @@
                 data-visibility-animation="none"
             >
                 @foreach (config('app.available_locales') as $locale)
-                    <a class="nav-popup__link" href="?locale={{ $locale }}">
+                    <a
+                        class="nav-popup__link"
+                        href="{{ route('set-locale', ['locale' => $locale]) }}"
+                        data-remote="1"
+                        data-method="POST"
+                    >
                         <div
                             class="nav-popup__menu-icon"
-                            style="background-image: url('{{ flag_path(flag_for_locale($locale)) }}')"
+                            style="background-image: url('{{ flag_path(locale_flag($locale)) }}')"
                         ></div>
 
-                        {{ $locale }}
+                        {{ locale_name($locale) }}
 
                         <div class="nav-popup__link-marker">
                             <i class="fa fa-angle-right"></i>

@@ -19,18 +19,38 @@
  */
 namespace App\Libraries;
 
-class LocaleFlag
+class LocaleMeta
 {
     const MAPPINGS = [
-        'en' => 'AU',
-        'es' => 'ES',
-        'nl' => 'NL',
-        'pl' => 'PL',
-        'pt-br' => 'BR',
+        'en' => [
+            'name' => 'English',
+            'flag' => 'GB',
+        ],
+        'es' => [
+            'name' => 'Español',
+            'flag' => 'ES',
+        ],
+        'nl' => [
+            'name' => 'Nederlands',
+            'flag' => 'NL',
+        ],
+        'pl' => [
+            'name' => 'Polski',
+            'flag' => 'PL',
+        ],
+        'pt-br' => [
+            'name' => 'Português (Brasil)',
+            'flag' => 'BR',
+        ],
     ];
 
     public static function flagFor($locale)
     {
-        return static::MAPPINGS[$locale] ?? '__';
+        return static::MAPPINGS[$locale]['flag'] ?? '__';
+    }
+
+    public static function nameFor($locale)
+    {
+        return static::MAPPINGS[$locale]['name'] ?? '??';
     }
 }

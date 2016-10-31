@@ -31,11 +31,6 @@ function array_search_null($value, $array)
     }
 }
 
-function flag_for_locale($locale)
-{
-    return App\Libraries\LocaleFlag::flagFor($locale);
-}
-
 function flag_path($country)
 {
     return '/images/flags/'.$country.'.png';
@@ -61,6 +56,16 @@ function json_time($time)
     if ($time !== null) {
         return $time->toIso8601String();
     }
+}
+
+function locale_flag($locale)
+{
+    return App\Libraries\LocaleMeta::flagFor($locale);
+}
+
+function locale_name($locale)
+{
+    return App\Libraries\LocaleMeta::nameFor($locale);
 }
 
 function osu_url($key)
