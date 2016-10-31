@@ -31,6 +31,16 @@ function array_search_null($value, $array)
     }
 }
 
+function flag_for_locale($locale)
+{
+    return App\Libraries\LocaleFlag::flagFor($locale);
+}
+
+function flag_path($country)
+{
+    return '/images/flags/'.$country.'.png';
+}
+
 function get_valid_locale($requestedLocale)
 {
     if (in_array($requestedLocale, config('app.available_locales'), true)) {

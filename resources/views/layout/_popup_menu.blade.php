@@ -62,6 +62,58 @@
         </div>
     @endforeach
 
+    <div class="nav-popup__menu nav-popup__menu--locale">
+        <a
+            class="
+                js-menu
+                nav-popup__menu-head
+            "
+            data-menu-default="{{ $current_section === $section }}"
+            data-menu-target="header--locale"
+            href="#"
+        >
+            <div class="nav-popup__menu-head-bar">
+                <span class="bar bar--double bar--locale"></span>
+            </div>
+
+            <div
+                class="nav-popup__menu-icon"
+                style="background-image: url('{{ flag_path(flag_for_locale(App::getLocale())) }}')"
+            ></div>
+
+            <div
+                class="fake-bold"
+                data-content="{{ App::getLocale() }}"
+            >
+                {{ App::getLocale() }}
+            </div>
+        </a>
+
+        <div class="nav-popup__submenu-container">
+            <div
+                class="js-menu nav-popup__submenu"
+                data-menu-id="header--locale"
+                data-visibility="hidden"
+                data-visibility-animation="none"
+            >
+                @foreach (config('app.available_locales') as $locale)
+                    <a class="nav-popup__link" href="?locale={{ $locale }}">
+                        <div
+                            class="nav-popup__menu-icon"
+                            style="background-image: url('{{ flag_path(flag_for_locale($locale)) }}')"
+                        ></div>
+
+                        {{ $locale }}
+
+                        <div class="nav-popup__link-marker">
+                            <i class="fa fa-angle-right"></i>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
     <div class="nav-popup__bar">
         <span class="bar u-section-bg"></span>
     </div>
