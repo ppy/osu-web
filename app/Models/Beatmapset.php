@@ -711,6 +711,44 @@ class Beatmapset extends Model
         return true;
     }
 
+    public function favorite($user)
+    {
+        if ($user->favoriteBeatmapsets()->count() > 99) {
+            return error_popup(trans('errors.beatmapsets.too-many-favorites'));
+        }
+
+        if (FavoriteBeatmapset::where('user_id', $user->user_id)
+            ->where('beatmapset_id', $this->beatmapset_id)->exists()) {
+            return;
+        }
+
+        DB::transaction(function () use ($user) {
+            FavoriteBeatmapset::create([
+                'user_id' => $user->user_id,
+                'beatmapset_id' => $this->beatmapset_id,
+            ]);
+
+            $this->favourite_count += 1;
+            $this->save();
+        });
+    }
+
+    public function unfavorite($user)
+    {
+        if (!$this->hasFavorited($user)) {
+            return;
+        }
+
+        \DB::transaction(function () use ($user) {
+            FavoriteBeatmapset::where('user_id', $user->user_id)
+              ->where('beatmapset_id', $this->beatmapset_id)
+              ->delete();
+
+            $this->favourite_count -= 1;
+            $this->save();
+        });
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Relationships

@@ -201,53 +201,16 @@ class BeatmapsetsController extends Controller
         ];
     }
 
-    public function favorite($id)
+    public function updateFavorite($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
         $user = Auth::user();
 
-        if ($user->favoriteBeatmapsets()->count() > 99) {
-            return error_popup(trans('errors.beatmapsets.too-many-favorites'));
+        if (Request::input('action') === 'favorite') {
+            $beatmapset->favorite($user);
+        } elseif (Request::input('action') === 'unfavorite') {
+            $beatmapset->unfavorite($user);
         }
-
-        if (FavoriteBeatmapset::where('user_id', $user->user_id)
-            ->where('beatmapset_id', $beatmapset->beatmapset_id)->exists()) {
-            return;
-        }
-
-        \DB::transaction(function () use ($user, $beatmapset) {
-            FavoriteBeatmapset::create([
-                'user_id' => $user->user_id,
-                'beatmapset_id' => $beatmapset->beatmapset_id,
-            ]);
-
-            $beatmapset->favourite_count += 1;
-            $beatmapset->save();
-        });
-
-        return [
-          'favcount' => $beatmapset->favourite_count,
-          'favorited' => $beatmapset->hasFavorited($user),
-        ];
-    }
-
-    public function unfavorite($id)
-    {
-        $beatmapset = Beatmapset::findOrFail($id);
-        $user = Auth::user();
-
-        if (!$beatmapset->hasFavorited($user)) {
-            return;
-        }
-
-        \DB::transaction(function () use ($user, $beatmapset) {
-            FavoriteBeatmapset::where('user_id', $user->user_id)
-              ->where('beatmapset_id', $beatmapset->beatmapset_id)
-              ->delete();
-
-            $beatmapset->favourite_count -= 1;
-            $beatmapset->save();
-        });
 
         return [
           'favcount' => $beatmapset->favourite_count,

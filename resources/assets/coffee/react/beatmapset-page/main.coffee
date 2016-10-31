@@ -155,8 +155,11 @@ class BeatmapsetPage.Main extends React.Component
 
   toggleFavorite: =>
     $.ajax
-      url: laroute.route("beatmapsets.#{if @state.hasFavorited then 'unfavorite' else 'favorite'}", beatmapsets: @props.beatmapset.id)
-      method: if @state.hasFavorited then 'delete' else 'post'
+      url: laroute.route('beatmapsets.update-favorite', beatmapset: @props.beatmapset.id)
+      method: 'post'
+      dataType: 'json'
+      data:
+        action: if @state.hasFavorited then 'unfavorite' else 'favorite'
 
     .done (data) =>
       @setState

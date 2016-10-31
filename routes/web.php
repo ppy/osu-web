@@ -50,8 +50,7 @@ Route::get('/b/{beatmap}', ['uses' => 'BeatmapsController@show']);
 
 Route::get('/beatmapsets/search/{filters?}', ['as' => 'beatmapsets.search', 'uses' => 'BeatmapsetsController@search']);
 Route::resource('/beatmapsets', 'BeatmapsetsController', ['only' => ['index', 'show']]);
-Route::post('/beatmapsets/{beatmapsets}/favorite', ['as' => 'beatmapsets.favorite', 'uses' => 'BeatmapsetsController@favorite', 'middleware' => 'auth']);
-Route::delete('/beatmapsets/{beatmapsets}/unfavorite', ['as' => 'beatmapsets.unfavorite', 'uses' => 'BeatmapsetsController@unfavorite', 'middleware' => 'auth']);
+Route::post('/beatmapsets/{beatmapset}/update-favorite', ['as' => 'beatmapsets.update-favorite', 'uses' => 'BeatmapsetsController@updateFavorite', 'middleware' => 'auth']);
 
 Route::get('/s/{beatmapset}', function ($beatmapset) {
     return ujs_redirect(route('beatmapsets.show', ['beatmapset' => $beatmapset]));
