@@ -79,7 +79,10 @@ return [
     'locale' => 'en',
 
     'available_locales' => [
+        // separate the default
         'en',
+
+        // sort by name
         'es',
         'nl',
         'pl',

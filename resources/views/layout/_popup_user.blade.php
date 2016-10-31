@@ -29,7 +29,7 @@
             @if ($_user->country !== null)
                 <img
                     class="nav-popup__flag"
-                    src="/images/flags/{{ $_user->country_acronym }}.png"
+                    src="{{ flag_path($_user->country_acronym) }}"
                     title="{{ $_user->country->name }}"
                 />
             @endif
