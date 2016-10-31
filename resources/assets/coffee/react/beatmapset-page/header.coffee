@@ -20,7 +20,10 @@ el = React.createElement
 
 class BeatmapsetPage.Header extends React.Component
   toggleFavorite: ->
-    $.publish 'beatmapset:favorite:toggle'
+    if _.isEmpty currentUser
+      userLogin.show()
+    else
+      $.publish 'beatmapset:favorite:toggle'
 
   render: ->
     dateFormat = 'MMM D, YYYY'
