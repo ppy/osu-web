@@ -37,7 +37,7 @@
     </div>
 </div>
 @else
-@if(Input::has("thanks"))
+@if(Request::has('thanks'))
 <div class="osu-layout__row osu-layout__row--page osu-layout__row--bootstrap no-print">
     <div class="col-xs-12">
         <h1>Thanks for your order!</h1>

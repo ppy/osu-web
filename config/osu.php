@@ -84,6 +84,7 @@ return [
         'home' => [
             'changelog' => '/p/changelog',
             'download' => '/p/download',
+            'news' => '/p/news',
         ],
         'help' => [
             'wiki' => '/wiki/Main_Page',

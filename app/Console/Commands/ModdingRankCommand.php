@@ -28,7 +28,7 @@ class ModdingRankCommand extends Command
      *
      * @var string
      */
-    protected $name = 'modding:rank';
+    protected $signature = 'modding:rank';
 
     /**
      * The console command description.
@@ -52,7 +52,7 @@ class ModdingRankCommand extends Command
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         $rankable = Beatmapset::rankable();
 

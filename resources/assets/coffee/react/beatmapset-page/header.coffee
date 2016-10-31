@@ -97,7 +97,7 @@ class BeatmapsetPage.Header extends React.Component
                 osu.trans 'beatmaps.beatmapset.show.details.made-by'
                 a
                   className: 'beatmapset-header__user-text beatmapset-header__user-text--mapper'
-                  href: laroute.route 'users.show', users: @props.beatmapset.user.id
+                  href: laroute.route 'users.show', user: @props.beatmapset.user.id
                   @props.beatmapset.user.username
 
               div className: 'beatmapset-header__user-text',

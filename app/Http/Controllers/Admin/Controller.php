@@ -30,9 +30,13 @@ abstract class Controller extends BaseController
     {
         $this->middleware('auth');
 
-        if (Auth::check() === true && Auth::user()->isAdmin() !== true) {
-            abort(403);
-        }
+        $this->middleware(function ($request, $next) {
+            if (Auth::check() && !Auth::user()->isAdmin()) {
+                abort(403);
+            }
+
+            return $next($request);
+        });
 
         return parent::__construct();
     }

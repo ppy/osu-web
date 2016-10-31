@@ -24,7 +24,6 @@ use Authorizer;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
-use LucaDegasperi\OAuth2Server\Exceptions\NoActiveAccessTokenException;
 
 class Controller extends BaseController
 {
@@ -32,12 +31,10 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        // allow route:list to work instead of failing from exception
-        // thrown by Authorizer.
-        try {
+        $this->middleware(function ($request, $next) {
             Auth::onceUsingId(Authorizer::getResourceOwnerId());
-        } catch (NoActiveAccessTokenException $_e) {
-            //
-        }
+
+            return $next($request);
+        });
     }
 }

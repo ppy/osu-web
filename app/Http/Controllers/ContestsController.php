@@ -26,6 +26,14 @@ class ContestsController extends Controller
 {
     protected $section = 'community';
 
+    public function index()
+    {
+        $contests = Contest::where('visible', true)->orderBy('id', 'desc')->get();
+
+        return view('contests.index')
+            ->with('contests', $contests);
+    }
+
     public function show($id)
     {
         $contest = Contest::with('entries')->with('entries.contest')->findOrFail($id);

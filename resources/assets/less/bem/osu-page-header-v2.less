@@ -29,36 +29,40 @@
 
   font-weight: 300;
   color: white;
-  height: 200px;
+  height: 100px;
 
   @media @desktop {
-    padding-left: @padding-big;
+    padding-left: 40px;
     padding-right: @padding-big;
-
-    &--artist {
-      padding-left: 40px;
-    }
+    height: 150px;
 
     &--contests {
-      padding-left: 40px;
+      .default-box-shadow();
+      z-index: @z-index--contest-header;
     }
   }
 
   &__subtitle {
     font-size: @font-size--new-header-subtitle;
-    margin-bottom: 10px;
-    margin-top: 40px;
-
-    &--artist {
-      @media @mobile {
-        margin-top: 0px;
-      }
-    }
+    margin-bottom: @spacing;
+    margin-top: 5px;
   }
 
   &__title {
     font-size: @font-size--new-header-title;
-    margin-top: -5px;
+    margin-top: 30px;
+    font-style: italic;
+
+    @media @mobile {
+      margin-top: @spacing;
+    }
+
+    &--artist {
+      margin-top: 60px;
+      @media @mobile {
+        margin-top: 0px;
+      }
+    }
   }
 
   &--contests {
@@ -66,6 +70,7 @@
   }
 
   &--artist {
+    height: 200px;
     .at2x-simple("/images/headers/artist.png");
   }
 

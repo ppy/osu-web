@@ -36,7 +36,7 @@ BeatmapsetPage.Score = React.createClass
 
       div className: 'beatmapset-score__element beatmapset-score__element--player',
         a
-          href: laroute.route 'users.show', users: @props.score.user.id
+          href: laroute.route 'users.show', user: @props.score.user.id
           @props.score.user.username
 
       div className: 'beatmapset-score__element beatmapset-score__element--mods',

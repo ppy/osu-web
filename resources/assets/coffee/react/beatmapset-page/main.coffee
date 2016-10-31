@@ -108,7 +108,7 @@ class BeatmapsetPage.Main extends React.Component
     $.publish 'beatmapset:scoreboard:loading', true
     @setState loading: true
 
-    @xhr = $.ajax (laroute.route 'beatmaps.scores', beatmaps: @state.currentBeatmapId),
+    @xhr = $.ajax (laroute.route 'beatmaps.scores', beatmap: @state.currentBeatmapId),
       method: 'GET'
       dataType: 'JSON'
       data:

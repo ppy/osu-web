@@ -263,30 +263,29 @@ function nav_links()
 {
     $links = [];
 
-    if (config('app.debug')) {
-        $links['home'] = [
-            'index' => route('home'),
-            'getChangelog' => osu_url('home.changelog'),
-            'getDownload' => osu_url('home.download'),
-        ];
-        $links['help'] = [
-            'getWiki' => osu_url('help.wiki'),
-            'getFaq' => osu_url('help.faq'),
-            'getSupport' => osu_url('help.support'),
-        ];
-        $links['ranking'] = [
-            'getOverall' => osu_url('ranking.overall'),
-            'getCharts' => osu_url('ranking.charts'),
-            'getCountry' => osu_url('ranking.country'),
-            'getMapper' => osu_url('ranking.mapper'),
-        ];
-    }
+    $links['home'] = [
+        'getNews' => osu_url('home.news'),
+        'getChangelog' => osu_url('home.changelog'),
+        'getDownload' => osu_url('home.download'),
+    ];
+    $links['help'] = [
+        'getWiki' => osu_url('help.wiki'),
+        'getFaq' => osu_url('help.faq'),
+        'getSupport' => osu_url('help.support'),
+    ];
+    $links['ranking'] = [
+        'getOverall' => osu_url('ranking.overall'),
+        'getCharts' => osu_url('ranking.charts'),
+        'getCountry' => osu_url('ranking.country'),
+        'getMapper' => osu_url('ranking.mapper'),
+    ];
     $links['beatmaps'] = [
         'index' => route('beatmapsets.index'),
         'artists' => route('artist.index'),
     ];
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
+        'contests' => route('community.contests.index'),
         'tournaments' => route('tournaments.index'),
         'getLive' => route('livestreams.index'),
         'getSlack' => route('slack'),
@@ -377,6 +376,17 @@ function display_regdate($user)
     }
 
     return trans('users.show.joined_at', ['date' => $user->user_regdate->formatLocalized('%B %Y')]);
+}
+
+function i18n_date($datetime, $format = IntlDateFormatter::LONG)
+{
+    $formatter = IntlDateFormatter::create(
+        App::getLocale(),
+        $format,
+        IntlDateFormatter::NONE
+    );
+
+    return $formatter->format($datetime);
 }
 
 function open_image($path, $dimensions = null)
@@ -524,6 +534,14 @@ function ci_file_search($fileName)
     }
 
     return false;
+}
+
+function sanitize_filename($file)
+{
+    $file = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $file);
+    $file = mb_ereg_replace("([\.]{2,})", '', $file);
+
+    return $file;
 }
 
 function deltree($dir)

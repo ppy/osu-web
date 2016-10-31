@@ -19,13 +19,12 @@
  */
 namespace App\Events\Forum;
 
-use App\Events\Event;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\User;
 use Illuminate\Queue\SerializesModels;
 
-abstract class TopicUpdate extends Event
+abstract class TopicUpdate
 {
     use SerializesModels;
 

@@ -136,7 +136,7 @@ class User extends Model implements AuthenticatableContract, Messageable
             return ['Please use either underscores or spaces, not both!'];
         }
 
-        foreach (DB::table('phpbb_disallow')->lists('disallow_username') as $check) {
+        foreach (model_pluck(DB::table('phpbb_disallow'), 'disallow_username') as $check) {
             if (preg_match('#^'.str_replace('%', '.*?', preg_quote($check, '#')).'$#i', $username)) {
                 return ['This username choice is not allowed.'];
             }
@@ -171,19 +171,6 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         return self::validateUsername($username);
-    }
-
-    // verifies that a user is valid (makes code neater)
-
-    public static function validate($user)
-    {
-        try {
-            $user = static::findOrFail($user);
-
-            return true;
-        } catch (ModelNotFoundException $e) {
-            return false;
-        }
     }
 
     // verify that an api key is correct
