@@ -25,15 +25,13 @@ class BeatmapsetPage.Header extends React.Component
     div className: 'beatmapset-header',
       ol className: 'page-mode',
         for mode in BeatmapHelper.modes
-          continue if _.isEmpty @props.beatmapList[mode]
+          continue unless @props.beatmaps[mode]?
 
           li
             className: 'page-mode__item'
             key: mode
             el BeatmapsetPage.HeaderTab,
               playmode: mode
-              currentBeatmapId: @props.currentBeatmap.id
-              newBeatmapId: _.last @props.beatmapList[mode]
               currentPlaymode: @props.currentBeatmap.mode
 
       div
@@ -46,10 +44,8 @@ class BeatmapsetPage.Header extends React.Component
         div className: 'beatmapset-header__box',
           div className: 'beatmapset-header__beatmap-picker-box',
             el BeatmapsetPage.BeatmapPicker,
-              beatmaps: @props.beatmaps
-              beatmapList: @props.beatmapList
-              currentMode: @props.currentBeatmap.mode
-              currentBeatmapId: @props.currentBeatmap.id
+              beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
+              currentBeatmap: @props.currentBeatmap
 
             span className: 'beatmapset-header__diff-name',
               if @props.hoveredBeatmap? then @props.hoveredBeatmap.version else @props.currentBeatmap.version

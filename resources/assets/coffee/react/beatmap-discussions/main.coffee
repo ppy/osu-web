@@ -25,7 +25,8 @@ BeatmapDiscussions.Main = React.createClass
   getInitialState: ->
     beatmapset: @props.initial.beatmapset
     beatmapsetDiscussion: @props.initial.beatmapsetDiscussion
-    currentBeatmap: @props.initial.beatmapset.beatmaps[0]
+    currentBeatmap: BeatmapHelper.default
+      unsortedItems: @props.initial.beatmapset.beatmaps
     currentUser: currentUser
     userPermissions: @props.initial.userPermissions
     mode: 'timeline'

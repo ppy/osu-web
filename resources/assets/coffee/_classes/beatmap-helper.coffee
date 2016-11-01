@@ -17,7 +17,26 @@
 ###
 
 class @BeatmapHelper
-  @modes: ['osu', 'taiko', 'fruits', 'mania']
+  @default: ({group, items, unsortedItems, mode}) =>
+    return _.last(items) if items?
+    return @default(group: @group(unsortedItems)) if unsortedItems?
+
+    return unless group?
+
+    modes = if mode? then [mode] else @modes
+    for mode in modes
+      beatmap = @default items: group[mode]
+
+      return beatmap if beatmap?
+
+
+  @find: ({group, id, mode}) =>
+    modes = if mode? then [mode] else @modes
+    for mode in modes
+      item = _.find group[mode], id: id
+
+      return item if item?
+
 
   @getDiffRating: (rating) ->
     if rating < 1.5
@@ -30,3 +49,23 @@ class @BeatmapHelper
       'insane'
     else
       'expert'
+
+
+  @group: (beatmaps) =>
+    grouped = _.groupBy beatmaps, 'mode'
+    for own mode, items of grouped
+      grouped[mode] = @sort items
+
+    grouped
+
+
+  @modes: ['osu', 'taiko', 'fruits', 'mania']
+
+
+  @sort: (beatmaps) ->
+    sortBy = ['convert', 'difficulty_rating']
+
+    if beatmaps[0].mode == 'mania'
+      sortBy.unshift 'difficulty_size'
+
+    _.sortBy beatmaps, sortBy

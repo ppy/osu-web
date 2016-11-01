@@ -22,7 +22,8 @@ class BeatmapsetPage.HeaderTab extends React.Component
     e.preventDefault()
 
     return if @props.currentPlaymode == @props.playmode
-    $.publish 'beatmapset:beatmap:set', beatmapId: @props.newBeatmapId, playmode: @props.playmode
+    $.publish 'beatmapset:playmode:set', mode: @props.playmode
+
 
   render: ->
     active = @props.playmode == @props.currentPlaymode
@@ -30,14 +31,10 @@ class BeatmapsetPage.HeaderTab extends React.Component
     blockClass = 'page-mode-link'
     blockClass += ' page-mode-link--is-active' if active
 
-    url = BeatmapsetPageHash.generate
-      beatmapId: if active then @props.currentBeatmapId else @props.newBeatmapId
-      playmode: @props.playmode
-
     a
       className: blockClass
       onClick: @onClick
-      href: url
+      href: BeatmapsetPageHash.generate mode: @props.playmode
       osu.trans "beatmaps.mode.#{@props.playmode}"
 
       span className: 'page-mode-link__stripe'

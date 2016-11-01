@@ -37,6 +37,8 @@ BeatmapDiscussions.BeatmapList = React.createClass
 
 
   render: ->
+    beatmapsByMode = BeatmapHelper.group @props.beatmapset.beatmaps
+
     div
       className: "#{bn} #{"#{bn}--selecting" if @state.showingSelector}"
       button
@@ -45,42 +47,46 @@ BeatmapDiscussions.BeatmapList = React.createClass
         ref: 'noGlobalHide-top'
         el BeatmapDiscussions.BeatmapListItem, beatmap: @props.currentBeatmap, large: true, withButton: 'down', mode: 'complete'
 
-      div
-        className: "#{bn}__selector"
-        _.chain(@props.beatmapset.beatmaps)
-        .groupBy 'mode'
-        .map (beatmaps) =>
-          menuId = "beatmap-list-#{beatmaps[0].mode}"
-          menuLinkClasses = "js-menu #{bn}__item #{bn}__item--large"
-          menuLinkClasses += " #{bn}__item--current" if beatmaps[0].mode == @props.currentBeatmap.mode
+      if _.size(beatmapsByMode) == 1
+        div
+          className: "#{bn}__selector"
+          _.values(beatmapsByMode)[0].map @beatmapListItem
+      else
+        div
+          className: "#{bn}__selector"
+          BeatmapHelper.modes.map (mode) =>
+            beatmaps = beatmapsByMode[mode]
 
-          beatmaps =
-            if beatmaps[0].mode == 'mania'
-              _.sortBy beatmaps, ['difficulty_size', 'difficulty_rating']
-            else
-              _.sortBy beatmaps, ['difficulty_rating']
+            return unless beatmaps?
 
-          div key: beatmaps[0].mode,
-            div
-              className: menuLinkClasses
-              'data-menu-target': menuId
-              ref: "noGlobalHide-#{menuId}"
-              el BeatmapDiscussions.BeatmapListItem, beatmap: beatmaps[0], large: true, mode: 'mode', withButton: 'right'
+            menuId = "beatmap-list-#{mode}"
+            menuLinkClasses = "js-menu #{bn}__item #{bn}__item--large"
+            menuLinkClasses += " #{bn}__item--current" if beatmaps[0].mode == @props.currentBeatmap.mode
 
             div
-              className: "js-menu #{bn}__selector #{bn}__selector--submenu"
-              'data-menu-id': menuId
-              'data-visibility': 'hidden'
-              beatmaps.map (beatmap) =>
-                menuItemClasses = "#{bn}__item"
-                menuItemClasses += " #{bn}__item--current" if beatmap.id == @props.currentBeatmap.id
+              key: mode,
+              div
+                className: menuLinkClasses
+                'data-menu-target': menuId
+                ref: "noGlobalHide-#{menuId}"
+                el BeatmapDiscussions.BeatmapListItem, beatmap: beatmaps[0], large: true, mode: 'mode', withButton: 'right'
 
-                button
-                  className: menuItemClasses
-                  key: beatmap.id
-                  onClick: => @selectBeatmap id: beatmap.id
-                  el BeatmapDiscussions.BeatmapListItem, beatmap: beatmap, mode: 'version'
-        .value()
+              div
+                className: "js-menu #{bn}__selector #{bn}__selector--submenu"
+                'data-menu-id': menuId
+                'data-visibility': 'hidden'
+                beatmaps.map @beatmapListItem
+
+
+  beatmapListItem: (beatmap) ->
+    menuItemClasses = "#{bn}__item"
+    menuItemClasses += " #{bn}__item--current" if beatmap.id == @props.currentBeatmap.id
+
+    button
+      className: menuItemClasses
+      key: beatmap.id
+      onClick: => @selectBeatmap id: beatmap.id
+      el BeatmapDiscussions.BeatmapListItem, beatmap: beatmap, mode: 'version'
 
 
   hideSelector: (e) ->
@@ -93,10 +99,6 @@ BeatmapDiscussions.BeatmapList = React.createClass
     @setSelector false
 
 
-  toggleSelector: ->
-    @setSelector !@state.showingSelector
-
-
   setSelector: (state) ->
     return if @state.showingSelector == state
 
@@ -107,3 +109,7 @@ BeatmapDiscussions.BeatmapList = React.createClass
 
   selectBeatmap: ({id}) ->
     $.publish 'beatmap:select', id: id
+
+
+  toggleSelector: ->
+    @setSelector !@state.showingSelector
