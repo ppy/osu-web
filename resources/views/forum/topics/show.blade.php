@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'title' => "community / {$topic->topic_title}",
+    'titleAppend' => $topic->topic_title,
     "body_additional_classes" => 't-forum-'.$topic->forum->categorySlug(),
     'canonicalUrl' => route('forum.topics.show', $topic->topic_id),
 ])

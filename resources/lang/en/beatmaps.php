@@ -68,7 +68,7 @@ return [
         'resolved' => 'Resolved',
 
         'show' => [
-            'title' => 'Beatmap Discussion',
+            'title' => ':title mapped by :mapper',
         ],
 
         'stats' => [
