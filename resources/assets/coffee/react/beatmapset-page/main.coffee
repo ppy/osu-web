@@ -156,7 +156,7 @@ class BeatmapsetPage.Main extends React.Component
 
   componentDidMount: ->
     $.subscribe 'beatmapset:beatmap:set.beatmapsetPage', @setCurrentBeatmap
-    $.subscribe 'beatmapset:playmode:set.beatmapsetPage', @setCurrentPlaymode
+    $.subscribe 'beatmapset:mode:set.beatmapsetPage', @setCurrentPlaymode
     $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
     $.subscribe 'beatmapset:preview:toggle.beatmapsetPage', @togglePreviewPlayingState
     $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmap

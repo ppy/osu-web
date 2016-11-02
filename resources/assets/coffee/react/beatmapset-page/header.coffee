@@ -23,16 +23,11 @@ class BeatmapsetPage.Header extends React.Component
     dateFormat = 'MMM D, YYYY'
 
     div className: 'beatmapset-header',
-      ol className: 'page-mode',
-        for mode in BeatmapHelper.modes
-          continue unless @props.beatmaps[mode]?
-
-          li
-            className: 'page-mode__item'
-            key: mode
-            el BeatmapsetPage.HeaderTab,
-              playmode: mode
-              currentPlaymode: @props.currentBeatmap.mode
+      el PlaymodeTabs,
+        beatmaps: @props.beatmaps
+        currentMode: @props.currentBeatmap.mode
+        url: (mode) =>
+          BeatmapsetPageHash.generate mode: mode
 
       div
         className: 'beatmapset-header__content'
