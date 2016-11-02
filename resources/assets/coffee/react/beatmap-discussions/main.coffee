@@ -23,10 +23,12 @@ BeatmapDiscussions.Main = React.createClass
 
 
   getInitialState: ->
+    beatmaps = BeatmapHelper.group @props.initial.beatmapset.beatmaps
+
     beatmapset: @props.initial.beatmapset
+    beatmaps: beatmaps
     beatmapsetDiscussion: @props.initial.beatmapsetDiscussion
-    currentBeatmap: BeatmapHelper.default
-      unsortedItems: @props.initial.beatmapset.beatmaps
+    currentBeatmap: BeatmapHelper.default(group: beatmaps)
     currentUser: currentUser
     userPermissions: @props.initial.userPermissions
     mode: 'timeline'
@@ -43,6 +45,7 @@ BeatmapDiscussions.Main = React.createClass
 
   componentDidMount: ->
     $.subscribe 'beatmap:select.beatmapDiscussions', @setCurrentBeatmapId
+    $.subscribe 'beatmapset:mode:set.beatmapDiscussions', @setCurrentPlaymode
     $.subscribe 'beatmapsetDiscussion:update.beatmapDiscussions', @setBeatmapsetDiscussion
     $.subscribe 'beatmapset:update.beatmapDiscussions', @setBeatmapset
     $.subscribe 'beatmapDiscussion:collapse.beatmapDiscussions', @collapseBeatmapDiscussion
@@ -73,6 +76,10 @@ BeatmapDiscussions.Main = React.createClass
       div
         className: 'osu-layout__row'
 
+        el PlaymodeTabs,
+          currentMode: @state.currentBeatmap.mode
+          beatmaps: @state.beatmaps
+          url: => '#'
         div
           className: 'forum-category-header forum-category-header--topic'
           style:
@@ -137,6 +144,11 @@ BeatmapDiscussions.Main = React.createClass
     return callback?() if !beatmap?
 
     @setState currentBeatmap: beatmap, callback
+
+
+  setCurrentPlaymode: (_e, {mode}) ->
+    beatmap = BeatmapHelper.default items: @state.beatmaps[mode]
+    @setCurrentBeatmapId null, id: beatmap?.id
 
 
   lookupUser: (id) ->

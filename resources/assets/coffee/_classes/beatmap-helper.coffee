@@ -17,9 +17,8 @@
 ###
 
 class @BeatmapHelper
-  @default: ({group, items, unsortedItems, mode}) =>
+  @default: ({group, items, mode}) =>
     return _.last(items) if items?
-    return @default(group: @group(unsortedItems)) if unsortedItems?
 
     return unless group?
 
