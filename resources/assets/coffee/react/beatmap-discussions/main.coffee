@@ -95,6 +95,7 @@ BeatmapDiscussions.Main = React.createClass
 
         el BeatmapDiscussions.Overview,
           beatmapset: @state.beatmapset
+          beatmaps: @state.beatmaps
           currentBeatmap: @state.currentBeatmap
           currentUser: @state.currentUser
           currentFilter: @state.currentFilter
@@ -131,6 +132,7 @@ BeatmapDiscussions.Main = React.createClass
   setBeatmapset: (_e, {beatmapset, callback}) ->
     @setState
       beatmapset: beatmapset
+      beatmaps: BeatmapHelper.group beatmapset
       callback
 
   setCurrentBeatmapId: (_e, {id, callback}) ->

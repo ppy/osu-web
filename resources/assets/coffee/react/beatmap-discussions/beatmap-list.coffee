@@ -37,45 +37,16 @@ BeatmapDiscussions.BeatmapList = React.createClass
 
 
   render: ->
-    beatmapsByMode = BeatmapHelper.group @props.beatmapset.beatmaps
-
     div
       className: "#{bn} #{"#{bn}--selecting" if @state.showingSelector}"
       button
-        className: "#{bn}__item #{bn}__item--selected #{bn}__item--large"
+        className: "#{bn}__item #{bn}__item--selected #{bn}__item--large js-beatmap-list-selector"
         onClick: @toggleSelector
-        ref: 'noGlobalHide-top'
         el BeatmapDiscussions.BeatmapListItem, beatmap: @props.currentBeatmap, large: true, withButton: 'down', mode: 'complete'
 
-      if _.size(beatmapsByMode) == 1
-        div
-          className: "#{bn}__selector"
-          _.values(beatmapsByMode)[0].map @beatmapListItem
-      else
-        div
-          className: "#{bn}__selector"
-          BeatmapHelper.modes.map (mode) =>
-            beatmaps = beatmapsByMode[mode]
-
-            return unless beatmaps?
-
-            menuId = "beatmap-list-#{mode}"
-            menuLinkClasses = "js-menu #{bn}__item #{bn}__item--large"
-            menuLinkClasses += " #{bn}__item--current" if beatmaps[0].mode == @props.currentBeatmap.mode
-
-            div
-              key: mode,
-              div
-                className: menuLinkClasses
-                'data-menu-target': menuId
-                ref: "noGlobalHide-#{menuId}"
-                el BeatmapDiscussions.BeatmapListItem, beatmap: beatmaps[0], large: true, mode: 'mode', withButton: 'right'
-
-              div
-                className: "js-menu #{bn}__selector #{bn}__selector--submenu"
-                'data-menu-id': menuId
-                'data-visibility': 'hidden'
-                beatmaps.map @beatmapListItem
+      div
+        className: "#{bn}__selector"
+        @props.beatmaps.map @beatmapListItem
 
 
   beatmapListItem: (beatmap) ->
@@ -90,11 +61,8 @@ BeatmapDiscussions.BeatmapList = React.createClass
 
 
   hideSelector: (e) ->
-    for own refName, ref of @refs
-      continue if !refName.startsWith('noGlobalHide-') || !ref.contains(e.target)
-
-      e.stopPropagation()
-      return
+    return unless @state.showingSelector
+    return if $(e.target).closest('.js-beatmap-list-selector').length
 
     @setSelector false
 

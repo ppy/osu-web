@@ -50,7 +50,7 @@ BeatmapDiscussions.Overview = React.createClass
         className: "#{bn}__row #{bn}__row--beatmaps"
         el BeatmapDiscussions.BeatmapList,
           currentBeatmap: @props.currentBeatmap
-          beatmapset: @props.beatmapset
+          beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
 
       div
         className: "#{bn}__row #{bn}__row--chart"
