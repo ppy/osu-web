@@ -5,14 +5,13 @@ namespace App\Jobs;
 use App\Exceptions\SilencedException;
 use App\Models\Beatmapset;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Raven_Client;
 use Statsd;
 
-class RegenerateBeatmapsetCover implements SelfHandling, ShouldQueue
+class RegenerateBeatmapsetCover implements ShouldQueue
 {
     use InteractsWithQueue, Queueable, SerializesModels;
     protected $beatmapset;
