@@ -176,7 +176,7 @@ return [
         'title' => 'perfil de :username',
     ],
 	
-	'verify' => [
+	 'verify' => [
         'title' => 'Verificação de conta',
     ],
 ];
