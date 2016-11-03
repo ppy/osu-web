@@ -27,13 +27,13 @@
     <div class="osu-layout__row">
         <div class="osu-page-header-v2 osu-page-header-v2--featured-artists">
             <div class="osu-page-header-v2__overlay"></div>
-            <div class="osu-page-header-v2__subtitle osu-page-header-v2__subtitle--artist">{{trans('artist.beatmaps._')}} &raquo;</div>
             <div class="osu-page-header-v2__title">{{trans('artist.title')}}</div>
         </div>
     </div>
     <div class="osu-layout__row osu-layout__row--page-artist">
         <div class="page-contents page-contents--artist">
             <div class="page-contents__content--artist-left">
+                <div class="artist__description artist__description--index">{!! trans('artist.index.description') !!}</div>
                 <div class="artist__index">
                     @foreach ($artists as $artist)
                         <div class="artist__box">

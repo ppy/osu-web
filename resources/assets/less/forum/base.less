@@ -81,6 +81,7 @@ body.community {
   .at2x-simple("/images/headers/forum-top.png");
   background-size: 1350px 200px;
   background-position: 0 0;
+  background-color: @gray-3;
   height: 200px;
 
   .text-area {
@@ -119,7 +120,7 @@ body.community {
 }
 
 .forum-category {
-  &:extend(.default-box-shadow);
+  .default-box-shadow();
 
   background: fade(#000, 80%);
   margin-bottom: @grid-gutter-width/4;
@@ -201,7 +202,7 @@ body.community {
   &__hover-bar-icon {
     .full-size();
     opacity: 0;
-    color: @grey-f;
+    color: @gray-f;
 
     display: flex;
     align-items: center;
@@ -324,7 +325,7 @@ body.community {
 .forum__avatar-container {
   padding: @grid-gutter-width/8;
   box-shadow: 0px 2px 5px fade(#000, 30%);
-  &:extend(.default-border-radius);
+  .default-border-radius();
   background-color: #fff;
 }
 
@@ -335,17 +336,9 @@ body.community {
   margin-right: @grid-gutter-width/4;
 }
 
-.avatar--forum-small {
-  flex: none;
-  width: 50px;
-  height: 50px;
-  box-shadow: none;
-}
-
-
 #forum-search {
   z-index: 100;
-  &:extend(.default-box-shadow);
+  .default-box-shadow();
   color: #fff;
   text-decoration: none;
 
@@ -368,7 +361,7 @@ body.community {
     border: none;
     font-size: 12px;
     font-weight: bold;
-    &:extend(.default-box-shadow);
+    .default-box-shadow();
   }
 
   .modal-body {
@@ -407,8 +400,8 @@ body.community {
   }
 
   .text-addon-append {
-    &:extend(.default-box-shadow);
-    &:extend(.default-border-radius);
+    .default-box-shadow();
+    .default-border-radius();
     background: #fff;
     display: flex;
     padding: @grid-gutter-width/8;
@@ -453,7 +446,7 @@ body.community {
   }
 
   .circle(@forum-topic-navigator-diameter);
-  &:extend(.default-box-shadow);
+  .default-box-shadow();
   background: #fff;
   display: flex;
   flex-direction: column;
@@ -497,7 +490,7 @@ body.community {
   flex-direction: column;
 
   padding: @grid-gutter-width/4 @grid-gutter-width/4 0px;
-  &:extend(.default-border-radius);
+  .default-border-radius();
   background-color: @blue-darker;
   font-weight: 500;
   font-style: italic;

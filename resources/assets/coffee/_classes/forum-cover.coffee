@@ -16,14 +16,12 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @ForumCover
-  header: document.getElementsByClassName('js-forum-cover--header')
-  $uploadButton: => $(@uploadButton[0])
-  uploadButton: document.getElementsByClassName('js-forum-cover--upload-button')
-  overlay: document.getElementsByClassName('js-forum-cover--overlay')
-  loading: document.getElementsByClassName('js-forum-cover--loading')
-
-
   constructor: ->
+    @header = document.getElementsByClassName('js-forum-cover--header')
+    @uploadButton = document.getElementsByClassName('js-forum-cover--upload-button')
+    @overlay = document.getElementsByClassName('js-forum-cover--overlay')
+    @loading = document.getElementsByClassName('js-forum-cover--loading')
+
     $(document).on 'click', '.js-forum-cover--open-modal', @toggleModal
     $(document).on 'click', '.js-forum-cover--remove', @remove
     $(document).on 'click', @closeModal
@@ -35,8 +33,10 @@ class @ForumCover
 
     $.subscribe 'key:esc', @closeModal
 
-    $(document).on 'ready turbolinks:load', @refresh
-    @refresh()
+    $(document).on 'turbolinks:load', @refresh
+
+
+  $uploadButton: => $(@uploadButton[0])
 
 
   closeModal: (e) =>
@@ -89,7 +89,7 @@ class @ForumCover
         @loading[0].dataset.state = 'enabled'
 
       done: (_e, data) =>
-        @update(data.result.data)
+        @update(data.result)
 
       fail: osu.fileuploadFailCallback(@$uploadButton())
 
@@ -157,7 +157,7 @@ class @ForumCover
       url: @uploadButton[0].dataset.url
       method: 'delete'
     .done (data) =>
-      @update data.data
+      @update data
     .always =>
       @loading[0].dataset.state = ''
 

@@ -17,30 +17,35 @@
  *
  */
 .badge-rank {
-  @_size: 100%;
-  width: @_size;
-  height: @_size;
+  @size: 100%;
+  width: @size;
+  height: @size;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 
-  ._bg(@rank) {
-    .at2x-simple("/images/badges/score-ranks/@{rank}.png");
+  .all(@rank, @prefix) {
+    &--@{rank} {
+      .bg(@prefix);
+    }
   }
 
-  &--XH { ._bg("XH"); }
-  &--X { ._bg("X"); }
-  &--SH { ._bg("SH"); }
-  &--S { ._bg("S"); }
-  &--A { ._bg("A"); }
-  &--B { ._bg("B"); }
-  &--C { ._bg("C"); }
-  &--D { ._bg("D"); }
+  .bg(@filename) {
+    .at2x-simple("/images/badges/score-ranks/@{filename}.png");
+  }
+
+  .all(XH, "SSPlus");
+  .all(X, "SS");
+  .all(SH, "SPlus");
+  .all(S, "S");
+  .all(A, "A");
+  .all(B, "B");
+  .all(C, "C");
+  .all(D, "F");
 
   &--medium {
-    @_size: 50px;
-    width: @_size;
-    height: @_size;
+    width: @rank-width;
+    height: @rank-height;
   }
 
   &--full {

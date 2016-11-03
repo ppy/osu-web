@@ -18,15 +18,34 @@
 @extends('contests.base')
 
 @section('contest-content')
-  <div class="contest__description">{!! Markdown::convertToHtml($contest->description_enter) !!}</div>
-
-  @if (!$contest->isSubmissionOpen())
-      @if ($contest->entry_starts_at !== null && $contest->entry_starts_at->isPast())
-          <div class='contest__voting-ended'>{{trans('contest.entry.over')}}</div>
+    <div class="contest__description">{!! Markdown::convertToHtml($contest->description_enter) !!}</div>
+    @if (!Auth::check())
+      <div class='contest__voting-notice contest__voting-notice--padding'>{{trans('contest.entry.login_required')}}</div>
+    @else
+      @if (Auth::user()->isSilenced() || Auth::user()->isRestricted())
+        <div class='contest__voting-notice contest__voting-notice--padding'>{{trans('contest.entry.silenced_or_restricted')}}</div>
       @else
-          <div class='contest__voting-ended'>{{trans('contest.entry.preparation')}}</div>
+        @if (!$contest->isSubmissionOpen())
+          @if ($contest->entry_starts_at !== null && $contest->entry_starts_at->isPast())
+            <div class='contest__voting-notice'>{{trans('contest.entry.over')}}</div>
+            <div class='js-react--userContestEntry'></div>
+          @else
+            <div class='contest__voting-notice contest__voting-notice--padding'>{{trans('contest.entry.preparation')}}</div>
+          @endif
+        @else
+          <div class='js-react--userContestEntry'></div>
+        @endif
       @endif
-  @else
-      {{-- upload logic --}}
-  @endif
+    @endif
 @endsection
+
+@section('script')
+  @parent
+  <script id="json-contest" type="application/json">
+    {!! $contest->defaultJson(Auth::user()) !!}
+  </script>
+  <script id="json-userEntries" type="application/json">
+    {!! json_encode($contest->userEntries(Auth::user())) !!}
+  </script>
+  <script src="{{ elixir("js/react/contest-entry.js") }}" data-turbolinks-track></script>
+@stop

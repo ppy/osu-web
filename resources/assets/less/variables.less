@@ -1,7 +1,6 @@
 @import "app";
 
 @desktop: ~"(min-width: @{screen-sm-min})";
-@screen-large: ~"(min-width: @{screen-lg-min})";
 @mobile: ~"(max-width: @{screen-sm-min})";
 
 @spacing: 10px;
@@ -12,7 +11,7 @@
 @padding-big: ((@grid-gutter-width / 2) + @logo-size + @spacing);
 
 @height--nav-popup: 170px;
-@height--page-header-nav: 50px;
+@height--page-mode: 50px;
 
 @navbar-mobile--content-height: @navbar-height - (@navbar-padding-vertical * 2);
 
@@ -38,8 +37,11 @@
 @z-index--editor-zoom: 9999;
 
 @z-index--beatmapset-header: 1;
+@z-index--contest-header: 1;
 
-@landing-width: 980px;
+@box-shadow-spread: 3px;
+@box-shadow-color: fade(@gray-0, 25%);
+
 @landing-dot-size: 17px;
 
 @profile-badge-size: 50px;
@@ -48,11 +50,10 @@
 @profile-avatar-size: 110px;
 @profile-cover-thumb-size: 85px;
 
-@beatmapset-avatar-size: 84px;
-@beatmapset-avatar-container-size: 90px;
+@beatmapset-avatar-size: 50px;
 
-@beatmapset-scoreboard-avatar-size: 76px;
-@beatmapset-scoreboard-avatar-container-size: 80px;
+@beatmapset-scoreboard-avatar-size: 70px;
+@beatmapset-float-box-width: 275px;
 
 // top padding + menu + page title
 @nav-avatar-size: 70px;
@@ -63,6 +64,7 @@
 // here be font-sizes
 @font-size--small: 10px;
 @font-size--normal: 12px;
+@font-size--normal-2: 13px;
 @font-size--title-small: 14px;
 @font-size--title-small-2: 15px;
 @font-size--title-small-3: 16px;
@@ -123,6 +125,8 @@
 @forum-category-colour--management-link: @gray-text;
 @forum-category-colour--management-link-hover: @gray;
 
+@forum-post--xs-avatar: 50px;
+
 @beatmap-discussion--avatar-size: 40px;
 @beatmap-discussion--reply-padding: (@spacing * 2 + @beatmap-discussion--avatar-size);
 @beatmap-discussion--timestamp-width: 110px;
@@ -142,6 +146,18 @@
 @section-color--ranking: @green-darker;
 @section-color--store: @pink-darker;
 @section-color--user: @blue-darker;
+
+@mod-width: 45px;
+@mod-height: 32px;
+
+@mod-height-normal: 22px;
+@mod-width-normal: (@mod-height-normal / @mod-height * @mod-width);
+
+@mod-height-small: 18px;
+@mod-width-small: (@mod-height-small / @mod-height * @mod-width);
+
+@rank-width: 48px;
+@rank-height: 16px;
 
 // difficulty colours
 @diff-easy: @green;

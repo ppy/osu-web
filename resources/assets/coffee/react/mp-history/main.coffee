@@ -46,19 +46,19 @@ class MPHistory.Main extends React.Component
   loadHistory: =>
     return if _.last(@state.events)?.detail.type == 'match-disbanded'
 
-    $.ajax laroute.route('matches.history', matches: @props.match.id, full: @props.full),
+    $.ajax laroute.route('matches.history', match: @props.match.id, full: @props.full),
       method: 'GET'
       dataType: 'JSON'
       data:
         since: @minNextEventId()
 
     .done (data) =>
-      return if _.isEmpty data.events.data
+      return if _.isEmpty data.events
 
-      lastIndex = _.findLastIndex @state.events, (e) -> e.id < data.events.data[0].id
-      newEvents = _.concat @state.events[..lastIndex], data.events.data
+      lastIndex = _.findLastIndex @state.events, (e) -> e.id < data.events[0].id
+      newEvents = _.concat @state.events[..lastIndex], data.events
 
-      newUsers = _(data.users.data)
+      newUsers = _(data.users)
         .keyBy (o) -> o.id
         .assign @state.users
         .value()
@@ -75,7 +75,7 @@ class MPHistory.Main extends React.Component
   minNextEventId: =>
     lastGame = _.findLast @state.events, (o) -> o.game?
 
-    if lastGame? && !lastGame.game.data.end_time?
+    if lastGame? && !lastGame.game.end_time?
       lastGame.id - 1
     else
       _.last(@state.events)?.id ? 0

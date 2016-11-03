@@ -26,6 +26,6 @@ php artisan migrate --force
 php artisan lang:js resources/assets/js/messages.js
 php artisan laroute:generate
 
-npm install
-./node_modules/bower/bin/bower install --allow-root
+npm install -g yarn
+yarn
 ./node_modules/gulp/bin/gulp.js --production

@@ -27,7 +27,7 @@ class UserAchievementTransformer extends Fractal\TransformerAbstract
     public function transform(UserAchievement $userAchievement)
     {
         return [
-            'achieved_at' => $userAchievement->date->toIso8601String(),
+            'achieved_at' => json_time($userAchievement->date),
             'achievement_id' => $userAchievement->achievement_id,
         ];
     }

@@ -45,9 +45,6 @@
                     </a>
                 </h1>
             </div>
-
-            <div class="forum-topic-headernav__actions">
-            </div>
         </div></div>
     </div>
 
@@ -56,7 +53,7 @@
     <div class="js-header--alt js-sync-height--target" data-sync-height-id="forum-topic-headernav"></div>
 
     @if ($topic->poll()->exists())
-        <div class="osu-layout__row">
+        <div class="osu-layout__row js-header--main">
             @include('forum.topics._poll')
         </div>
     @endif
@@ -119,16 +116,14 @@
                     <div class="osu-layout__row osu-layout__row--sm2-desktop osu-layout__row--full-height">
                         <div class="forum-post__reply-content">
                             <div class="forum-post__info-panel forum-post__info-panel--reply hidden-xs">
-                                <div class="forum-post__avatar-container forum-post__avatar-container--reply">
-                                    @if (Auth::check() === true)
-                                        <div
-                                            class="avatar avatar--full"
-                                            style="background-image: url('{{ Auth::user()->user_avatar }}');"
-                                        ></div>
-                                    @else
-                                        <div class="avatar avatar--full avatar--guest"></div>
-                                    @endif
-                                </div>
+                                @if (Auth::check() === true)
+                                    <div
+                                        class="avatar avatar--forum-reply"
+                                        style="background-image: url('{{ Auth::user()->user_avatar }}');"
+                                    ></div>
+                                @else
+                                    <div class="avatar avatar--forum-reply avatar--guest"></div>
+                                @endif
                             </div>
 
                             <div class="forum-post__body forum-post__body--reply">
@@ -204,29 +199,17 @@
 
         <div class="forum-topic-nav__content">
             <div class="forum-topic-nav__group">
-                @if ($topic->isLocked())
-                    <div
-                        class="btn-circle btn-circle--topic-nav btn-circle--blank"
-                        data-tooltip-float="fixed"
-                        title="{{ trans('forum.topics.lock.is_locked') }}"
-                    >
-                        <i class="fa fa-lock"></i>
-                    </div>
+                @include('forum.topics._lock', ['topic' => $topic])
+
+                @if (priv_check('ForumTopicModerate', $topic)->can())
+                    @include('forum.topics._moderate_pin', ['topic' => $topic])
                 @endif
 
                 @if (priv_check('ForumTopicModerate', $topic)->can())
-                    @include('forum.topics._moderate_lock', ['_topic' => $topic])
+                    @include('forum.topics._moderate_move', ['topic' => $topic])
                 @endif
 
-                @if (priv_check('ForumTopicModerate', $topic)->can())
-                    @include('forum.topics._moderate_pin', ['_topic' => $topic])
-                @endif
-
-                @if (priv_check('ForumTopicModerate', $topic)->can())
-                    @include('forum.topics._moderate_move', ['_topic' => $topic])
-                @endif
-
-                @include('forum.topics._watch', ['_topic' => $topic, '_isWatching' => $isWatching])
+                @include('forum.topics._watch', ['topic' => $topic, 'state' => $isWatching])
             </div>
 
             <div class="forum-topic-nav__group forum-topic-nav__group--main">

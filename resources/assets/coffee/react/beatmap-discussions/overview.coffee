@@ -70,7 +70,7 @@ BeatmapDiscussions.Overview = React.createClass
             className: "#{bn}__meta-text"
             dangerouslySetInnerHTML:
               __html: osu.trans 'beatmaps.listing.mapped-by',
-                mapper: "<strong>#{laroute.link_to_route('users.show', user.username, users: user.id)}</strong>"
+                mapper: "<strong>#{laroute.link_to_route('users.show', user.username, user: user.id)}</strong>"
 
         div className: 'text-right',
           @stats()
@@ -81,7 +81,6 @@ BeatmapDiscussions.Overview = React.createClass
       @_currentDiscussions = @props
         .beatmapsetDiscussion
         .beatmap_discussions
-        .data
         .filter (discussion) =>
           discussion.beatmap_id == @props.currentBeatmap.id
 

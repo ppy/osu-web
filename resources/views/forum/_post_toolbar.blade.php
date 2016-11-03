@@ -17,7 +17,7 @@
 --}}
 <div class="post-box-toolbar">
     <button
-        class="btn-circle btn-circle--bbcode js-bbcode-btn--bold"
+        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--bold"
         title="{{ trans("bbcode.bold") }}"
         type="button"
     >
@@ -25,7 +25,7 @@
     </button>
 
     <button
-        class="btn-circle btn-circle--bbcode js-bbcode-btn--italic"
+        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--italic"
         title="{{ trans("bbcode.italic") }}"
         type="button"
     >
@@ -33,7 +33,7 @@
     </button>
 
     <button
-        class="btn-circle btn-circle--bbcode js-bbcode-btn--strikethrough"
+        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--strikethrough"
         title="{{ trans("bbcode.strikethrough") }}"
         type="button"
     >
@@ -41,7 +41,7 @@
     </button>
 
     <button
-        class="btn-circle btn-circle--bbcode js-bbcode-btn--heading"
+        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--heading"
         title="{{ trans("bbcode.heading") }}"
         type="button"
     >
@@ -49,7 +49,7 @@
     </button>
 
     <button
-        class="btn-circle btn-circle--bbcode js-bbcode-btn--link"
+        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--link"
         title="{{ trans("bbcode.link") }}"
         type="button"
     >
@@ -57,7 +57,7 @@
     </button>
 
     <button
-        class="btn-circle btn-circle--bbcode js-bbcode-btn--spoilerbox"
+        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--spoilerbox"
         title="{{ trans("bbcode.spoilerbox") }}"
         type="button"
     >
@@ -65,7 +65,7 @@
     </button>
 
     <button
-        class="btn-circle btn-circle--bbcode js-bbcode-btn--list-numbered"
+        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--list-numbered"
         title="{{ trans("bbcode.list_numbered") }}"
         type="button"
     >
@@ -73,7 +73,7 @@
     </button>
 
     <button
-        class="btn-circle btn-circle--bbcode js-bbcode-btn--list"
+        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--list"
         title="{{ trans("bbcode.list") }}"
         type="button"
     >
@@ -81,7 +81,7 @@
     </button>
 
     <button
-        class="btn-circle btn-circle--bbcode js-bbcode-btn--image"
+        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--image"
         title="{{ trans("bbcode.image") }}"
         type="button"
     >
@@ -94,7 +94,7 @@
         </span>
         <i class="fa fa-chevron-down"></i>
 
-        <select class="bbcode-size-select__select js-bbcode-btn--select">
+        <select class="bbcode-size-select__select js-bbcode-btn--size">
             <option value="50">{{ trans("bbcode.size.tiny") }}</option>
             <option value="85">{{ trans("bbcode.size.small") }}</option>
             <option value="100" selected>{{ trans("bbcode.size.normal") }}</option>

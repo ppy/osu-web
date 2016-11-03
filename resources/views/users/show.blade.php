@@ -39,11 +39,11 @@
     </script>
 
     <script id="json-user" type="application/json">
-        {!! json_encode($userArray['data']) !!}
+        {!! json_encode($userArray) !!}
     </script>
 
     <script id="json-achievements" type="application/json">
-        {!! json_encode($achievements['data']) !!}
+        {!! json_encode($achievements) !!}
     </script>
 
     <script src="{{ elixir("js/react/profile-page.js") }}" data-turbolinks-track></script>

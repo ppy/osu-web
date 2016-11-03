@@ -17,9 +17,9 @@
  *
  */
 .logo-menu {
-  @_menu-colour: @grey-3;
-  @_menu-colour-hover: @grey-2;
-  @_menu-text-colour: @grey-f;
+  @_menu-colour: @gray-3;
+  @_menu-colour-hover: @gray-2;
+  @_menu-text-colour: @gray-f;
   @_stripe-width: (@spacing / 2);
   width: 100%;
   height: 100%;
@@ -119,9 +119,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex: 1 0 auto;
+    flex: 1;
     padding: (@spacing / 2) @spacing (@spacing / 2) (@spacing * 2);
     font-size: 15px;
+    white-space: nowrap;
 
     &--sub {
       padding-right: (@spacing * 2);
@@ -163,7 +164,7 @@
     }
 
     &--bg {
-      background-color: fade(@grey-0, 50%);
+      background-color: fade(@gray-0, 50%);
     }
 
     &--session {

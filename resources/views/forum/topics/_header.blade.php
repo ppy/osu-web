@@ -16,21 +16,20 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <?php
-    $headerCover = $cover['data']['fileUrl'] ?? $cover['data']['defaultFileUrl'] ?? null;
+    $headerCover = $cover['fileUrl'] ?? $cover['defaultFileUrl'] ?? null;
+    $newTopic = !isset($topic);
 ?>
 <div class="osu-layout__row">
-    <div class="page-header-nav js-header--main">
-        @include('forum.topics._header_breadcrumb', [
-            'forum' => $forum ?? $topic->forum,
-        ])
-    </div>
+    @include('forum._header_breadcrumb', [
+        'forum' => $forum ?? $topic->forum,
+    ])
 
     <div
         class="forum-category-header
             forum-category-header--topic
-            {{ isset($topic) === true ?
-                'u-forum--topic-cover'
-                : 'forum-category-header--topic-create'
+            {{ $newTopic ?
+                'forum-category-header--topic-create'
+                : 'u-forum--topic-cover'
             }}
             js-forum-cover--header
             js-header--main"
@@ -41,15 +40,9 @@
         </div>
 
         <div class="forum-category-header__titles">
-            @if (isset($topic) === true)
-                <h1 class="forum-category-header__title">
-                    <a href="{{ route("forum.topics.show", $topic->topic_id) }}" class="link--white link--no-underline">
-                        {{ $topic->topic_title }}
-                    </a>
-                </h1>
-            @else
+            @if ($newTopic)
                 <input
-                    class="forum-category-header__title js-forum-placeholder-hide"
+                    class="forum-category-header__title js-form-placeholder-hide"
                     required
                     tabindex="1"
                     name="title"
@@ -57,17 +50,27 @@
                     value="{{ Request::old("title") }}"
                     placeholder="{{ trans("forum.topic.create.placeholder.title") }}"
                 />
+            @else
+                <h1 class="forum-category-header__title">
+                    <a href="{{ route("forum.topics.show", $topic->topic_id) }}" class="link--white link--no-underline">
+                        {{ $topic->topic_title }}
+                    </a>
+                </h1>
             @endif
+
+            <div class="forum-category-header__counter">
+                @include('forum.topics._header_counter')
+            </div>
         </div>
 
-        @if (!isset($topic) || priv_check('ForumTopicEdit', $topic)->can())
+        @if ($newTopic || priv_check('ForumTopicEdit', $topic)->can())
             <div class="forum-category-header__actions">
                 @include('forum._cover_editor')
             </div>
         @endif
     </div>
 
-    @if (isset($topic) === true)
+    @if (!$newTopic)
         <div class="forum-topic-header__sticky-marker js-sticky-header" data-sticky-header-target="forum-topic-headernav"></div>
     @endif
 </div>

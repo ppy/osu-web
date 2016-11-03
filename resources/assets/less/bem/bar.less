@@ -17,12 +17,79 @@
  *
  */
 .bar {
+  @_top: bar;
   display: block;
   width: 100%;
   background-color: @yellow;
   height: @bar-size;
 
+  &--beatmap-rating {
+    height: (@spacing / 2);
+    background-color: @green;
+  }
+
+  &--beatmap-stats {
+    height: (@spacing / 2);
+    background-color: fade(@gray-f, 50%);
+  }
+
+  &--beatmap-success-rate {
+    height: (@spacing / 2);
+    background-color: @gray-d;
+    margin-top: (@spacing / 2);
+  }
+
   &--double {
     height: (@bar-size * 2);
+  }
+
+  &--forum-poll {
+    height: (@spacing / 2);
+    background-color: @gray-e;
+  }
+
+  &--locale {
+    background-color: @purple;
+  }
+
+  &--user-profile {
+    height: @spacing;
+    background-color: @gray-d;
+    margin-bottom: (@spacing / 2);
+  }
+
+  &__fill {
+    height: 100%;
+
+    .@{_top}--beatmap-rating & {
+      background-color: @yellow-dark;
+    }
+
+    .@{_top}--beatmap-stats & {
+      .default-bar-transition();
+      background-color: @gray-f;
+    }
+
+    .@{_top}--beatmap-stats-stars & {
+      background-color: @yellow;
+    }
+
+    .@{_top}--beatmap-success-rate & {
+      .default-bar-transition();
+      background-color: @green;
+    }
+
+    .@{_top}--forum-poll & {
+      background-color: @pink-darker;
+    }
+
+    // must be after --forum-poll
+    .@{_top}--forum-poll-voted & {
+      background-color: @purple-darker;
+    }
+
+    .@{_top}--user-profile & {
+      background-color: @blue-dark;
+    }
   }
 }

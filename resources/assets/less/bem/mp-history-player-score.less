@@ -23,9 +23,9 @@
   display: flex;
 
   &__shapes {
-    min-width: 40px;
-
-    background-size: contain;
+    flex: none;
+    width: 40px;
+    background-size: cover;
 
     border-radius: @border-radius-base 0 0 @border-radius-base;
   }
@@ -136,12 +136,12 @@
     padding-right: 3px;
 
     &--small {
-      color: @grey-5;
+      color: @gray-5;
       font-size: 10px;
     }
 
     &--large {
-      color: @grey-9;
+      color: @gray-9;
       font-size: 12px;
     }
   }

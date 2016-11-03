@@ -48,12 +48,10 @@
       flex-basis: 100% / 3;
       max-width: 100% / 3;
 
-      border-width: 0px 1px 0px 0px;
-      border-style: solid;
-      border-image: linear-gradient(to top, #ccc, transparent 80%) 1;
-
-      &:last-child {
-        border: none;
+      & + & {
+        border-width: 0 0 0 1px;
+        border-style: solid;
+        border-image: linear-gradient(to top, @gray-c, transparent 80%) 1;
       }
 
       &--contests {

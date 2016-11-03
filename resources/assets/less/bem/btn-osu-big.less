@@ -22,8 +22,7 @@
 
   display: inline-block;
 
-  margin: 0;
-  padding: @spacing;
+  padding: 0 @spacing;
 
   background-color: @blue-darker;
   background-image: url('/images/backgrounds/buttonblue@2x.png');
@@ -31,24 +30,43 @@
   background-position: 50% 50%;
   outline: none;
 
-  color: @grey-f;
+  color: @gray-f;
   font-weight: 600;
   transition: background-position 120ms;
 
   &:hover,
   &:focus {
-    color: @grey-f;
+    color: @gray-f;
     text-decoration: none;
     background-position: calc(50% ~'-' (@spacing * 2)) 50%;
   }
 
+  &--beatmapset-header {
+    width: 160px;
+    height: 45px;
+    margin: 0 (@spacing / 2) (@spacing / 2) 0;
+  }
+
   &__content {
+    width: 100%;
+    height: 100%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
   &__left {
-    margin-right: (@spacing * 4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__text-bottom {
+    font-size: 10px;
+  }
+
+  &__text-top {
+    font-size: 14px;
   }
 }

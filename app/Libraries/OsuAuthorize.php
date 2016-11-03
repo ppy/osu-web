@@ -24,6 +24,7 @@ use App\Models\Chat\Channel as ChatChannel;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
 use App\Models\Beatmapset;
+use App\Models\UserContestEntry;
 
 class OsuAuthorize
 {
@@ -71,6 +72,7 @@ class OsuAuthorize
         $prefix = 'beatmap_discussion.resolve.';
 
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         // no point resolving general discussion?
         if ($discussion->timestamp === null) {
@@ -209,12 +211,33 @@ class OsuAuthorize
         return $prefix.'no_access';
     }
 
-    public function checkContestEnter($user, $contest)
+    public function checkContestEntryStore($user, $contest)
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
         if (!$contest->isSubmissionOpen()) {
+            return 'contest.entry.over';
+        }
+
+        $currentEntries = UserContestEntry::where(['contest_id' => $contest->id, 'user_id' => $user->user_id])->count();
+        if ($currentEntries >= $contest->max_entries) {
+            return 'contest.entry.limit_reached';
+        }
+
+        return 'ok';
+    }
+
+    public function checkContestEntryDestroy($user, $contestEntry)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($contestEntry->user_id !== $user->user_id) {
+            return 'unauthorized';
+        }
+
+        if (!$contestEntry->contest->isSubmissionOpen()) {
             return 'contest.entry.over';
         }
 
@@ -251,6 +274,7 @@ class OsuAuthorize
         $prefix = 'forum.post.delete.';
 
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ($user->isGMT()) {
             return 'ok';
@@ -283,6 +307,7 @@ class OsuAuthorize
         $prefix = 'forum.post.edit.';
 
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ($user->isGMT()) {
             return 'ok';
@@ -399,6 +424,7 @@ class OsuAuthorize
         $prefix = 'forum.topic_cover.edit.';
 
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ($user->isGMT()) {
             return 'ok';

@@ -166,6 +166,17 @@ class BaseTables extends Migration
         $this->addBinary('osu_beatmapsets', 'osz2_hash', 16, true, 'header_hash');
         $this->setRowFormat('osu_beatmapsets', 'DYNAMIC');
 
+        Schema::create('osu_user_beatmapset_ratings', function (Blueprint $table) {
+            $table->unsignedMediumInteger('user_id');
+            $table->unsignedMediumInteger('beatmapset_id');
+            $table->unsignedTinyInteger('rating');
+            $table->timestamp('date')->useCurrent();
+
+            $table->primary(['user_id', 'beatmapset_id']);
+            $table->index(['beatmapset_id', 'rating'], 'split_ratings');
+        });
+        $this->setRowFormat('osu_user_beatmapset_ratings', 'COMPRESSED');
+
         Schema::create('osu_changelog', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_general_ci';
@@ -1354,6 +1365,7 @@ class BaseTables extends Migration
         Schema::drop('osu_apikeys');
         Schema::drop('osu_beatmaps');
         Schema::drop('osu_beatmapsets');
+        Schema::drop('osu_user_beatmapset_ratings');
         Schema::drop('osu_changelog');
         Schema::drop('osu_countries');
         Schema::drop('osu_counts');

@@ -28,6 +28,9 @@
                     {{ trans('admin.logs.index.title') }}
                 </a>
             </li>
+            <li>
+                <a href="{{ route('admin.contests.index') }}">Contests</a>
+            </li>
         </ul>
 
         <h2>{{ trans('admin.pages.root.sections.store') }}</h2>

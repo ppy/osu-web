@@ -63,7 +63,7 @@ $(document).on 'blur', '.content-editable-submit', (e) ->
   el.remove()
 
 #populate last-submitted values
-$(document).on 'ready turbolinks:load', ->
+$(document).on 'turbolinks:load', ->
   $('.content-editable-submit').each (_i, el) ->
     $el = $(el)
     $el.data('last-submitted-value', $el.html())
@@ -79,20 +79,13 @@ $(document).on 'click', '#popup-container, #overlay', (e) ->
 $(document).on 'click', '.pswp a', (e) -> e.preventDefault()
 
 
-# image slider
-$(document).on 'ready turbolinks:load', ->
-  $('.rslides').responsiveSlides
-    auto: false
-    manualControls: '.rslides-nav'
-
-
 ###
 # Add `disabled` attribute to form element with value _disabled.
 # Currently used to work around Form::select (in store checkout -
 # new address form - country selection) since it doesn't support
 # adding a disabled value.
 ###
-$(document).on 'ready turbolinks:load', ->
+$(document).on 'turbolinks:load', ->
   $('[value=_disabled]').attr 'disabled', true
 
 

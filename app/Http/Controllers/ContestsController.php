@@ -20,13 +20,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contest;
-use App\Models\ContestVote;
 use Auth;
-use Request;
 
 class ContestsController extends Controller
 {
     protected $section = 'community';
+
+    public function index()
+    {
+        $contests = Contest::where('visible', true)->orderBy('id', 'desc')->get();
+
+        return view('contests.index')
+            ->with('contests', $contests);
+    }
 
     public function show($id)
     {
@@ -39,34 +45,10 @@ class ContestsController extends Controller
 
         if ($contest->isVotingStarted()) {
             return view("contests.voting.{$contest->type}")
-                    ->with('contest', $contest)
-                    ->with('contestJson', $contest->defaultJson($user));
+                    ->with('contest', $contest);
         } else {
-            return view('contests.enter')->with('contest', $contest);
+            return view('contests.enter')
+                ->with('contest', $contest);
         }
-    }
-
-    public function vote($id)
-    {
-        $user = Auth::user();
-        $contest = Contest::with('entries')->with('entries.contest')->findOrFail($id);
-        $entry = $contest->entries()->findOrFail(Request::input('entry_id'));
-
-        priv_check('ContestVote', $contest)->ensureCan();
-
-        $contest->vote($user, $entry);
-
-        return $contest->defaultJson($user);
-    }
-
-    public function submit($id)
-    {
-        $user = Auth::user();
-        $contest = Contest::findOrFail($id);
-
-        priv_check('ContestEnter', $contest)->ensureCan();
-
-        //todo: upload accept logic
-        abort(501);
     }
 }

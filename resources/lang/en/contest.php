@@ -19,15 +19,42 @@
  */
 
 return [
+    'header' => [
+        'small' => 'Compete in more ways than just clicking circles.',
+        'large' => 'osu! Community Contests',
+    ],
     'voting' => [
         'over' => 'Voting for this contest has ended',
     ],
     'entry' => [
-        'preparation' => 'We are current preparing this contest. Please wait patiently!',
+        'login_required' => 'Please login to enter the contest.',
+        'silenced_or_restricted' => 'You cannot enter contests while restricted or silenced.',
+        'preparation' => 'We are currently preparing this contest. Please wait patiently!',
         'over' => 'Thank you for your entries! Submissions have closed for this contest and voting will open soon.',
+        'limit_reached' => 'You have reached the entry limit for this contest',
+        'drop_here' => 'Drop your entry here',
+        'wrong_type' => [
+            'art' => 'Only .jpg and .png files are accepted for this contest.',
+            'beatmap' => 'Only .osu files are accepted for this contest.',
+            'music' => 'Only .mp3 files are accepted for this contest.',
+        ],
+        'too_big' => 'Entries for this contest can only be up to :limit.',
     ],
     'beatmaps' => [
-      'download' => 'Download Entry',
+        'download' => 'Download Entry',
     ],
     'votes' => '1 vote|:count votes',
+    'dates' => [
+        'ended' => 'Ended :date',
+
+        'starts' => [
+            '_' => 'Starts :date',
+            'soon' => 'soon™',
+        ],
+    ],
+    'states' => [
+        'entry' => 'Entry Open',
+        'voting' => 'Voting Started',
+        'results' => 'Results Out',
+    ],
 ];

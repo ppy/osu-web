@@ -17,25 +17,17 @@
  *
  */
 .user-verification {
-  background-color: fade(@grey-0, 75%);
-  color: @grey-f;
+  background-color: fade(@gray-0, 75%);
+  color: @gray-f;
 
   padding: (@spacing * 7) (@spacing * 4);
   text-align: center;
   font-size: @font-size--normal;
   font-weight: 300;
 
-  &__errors {
-    position: absolute;
-    width: 100%;
-    margin-top: @spacing;
-    color: @yellow-light;
-    font-weight: bold;
-  }
-
   &__key {
     .default-border-radius();
-    background-color: fade(@grey-0, 50%);
+    background-color: fade(@gray-0, 50%);
     padding: @spacing;
     text-align: center;
     width: 75%;
@@ -55,6 +47,18 @@
     &:hover {
       color: @yellow;
     }
+  }
+
+  &__message {
+    position: absolute;
+    width: 100%;
+    margin-top: @spacing;
+    color: @yellow-light;
+    font-weight: bold;
+  }
+
+  &__message-spinner {
+    margin-right: (@spacing / 2);
   }
 
   &__row {

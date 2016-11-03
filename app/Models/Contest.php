@@ -21,6 +21,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Transformers\ContestTransformer;
+use App\Transformers\UserContestEntryTransformer;
 use Cache;
 
 class Contest extends Model
@@ -67,6 +68,50 @@ class Contest extends Model
         return $this->voting_starts_at !== null && $this->voting_starts_at->isPast();
     }
 
+    public function state()
+    {
+        if ($this->entry_starts_at === null || $this->entry_starts_at->isFuture()) {
+            return 'preparing';
+        }
+
+        if ($this->isSubmissionOpen()) {
+            return 'entry';
+        }
+
+        if ($this->isVotingOpen()) {
+            return 'voting';
+        }
+
+        if ($this->show_votes) {
+            return 'results';
+        }
+
+        return 'over';
+    }
+
+    public function entryOrientation()
+    {
+        return $this->id === 5 ? 'landscape' : null;
+    }
+
+    public function currentPhaseDateRange()
+    {
+        switch ($this->state()) {
+            case 'preparing':
+                $date = $this->entry_starts_at === null
+                    ? trans('contest.dates.starts.soon')
+                    : i18n_date($this->entry_starts_at);
+
+                return trans('contest.dates.starts._', ['date' => $date]);
+            case 'entry':
+                return i18n_date($this->entry_starts_at).' - '.i18n_date($this->entry_ends_at);
+            case 'voting':
+                return i18n_date($this->voting_starts_at).' - '.i18n_date($this->voting_ends_at);
+            default:
+                return trans('contest.dates.ended', ['date' => i18n_date($this->voting_ends_at)]);
+        }
+    }
+
     public function currentDescription()
     {
         if ($this->isVotingStarted()) {
@@ -89,7 +134,7 @@ class Contest extends Model
         }
     }
 
-    public function defaultJson($currentUser = null)
+    public function defaultJson($user = null)
     {
         $includes = ['entries'];
 
@@ -101,7 +146,7 @@ class Contest extends Model
             $includes[] = 'entries.results';
         }
 
-        $contestJson = fractal_api_serialize_item($this, new ContestTransformer, $includes);
+        $contestJson = json_item($this, new ContestTransformer, $includes);
 
         if (!empty($contestJson['entries'])) {
             if ($this->show_votes) {
@@ -117,27 +162,39 @@ class Contest extends Model
                 // We want the results to appear randomized to the user but be
                 // deterministic (i.e. we don't want the rows shuffling each time
                 // the user votes), so we seed based on user_id
-                $seed = $currentUser ? $currentUser->user_id : time();
+                $seed = $user ? $user->user_id : time();
                 seeded_shuffle($contestJson['entries'], $seed);
             }
         }
 
         return json_encode([
             'contest' => $contestJson,
-            'userVotes' => $this->votesForUser($currentUser),
+            'userVotes' => $this->votesForUser($user),
         ], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
     }
 
-    public function votesForUser($currentUser = null)
+    public function votesForUser($user = null)
     {
-        $votes = [];
-        if ($currentUser) {
-            $votes = ContestVote::where('contest_id', $this->id)->where('user_id', $currentUser->user_id)->get();
-            $votes = $votes->map(function ($v) {
-                return $v->contest_entry_id;
-            })->toArray();
+        if ($user === null) {
+            return [];
         }
 
-        return $votes;
+        $votes = ContestVote::where('contest_id', $this->id)->where('user_id', $user->user_id)->get();
+
+        return $votes->map(function ($v) {
+            return $v->contest_entry_id;
+        })->toArray();
+    }
+
+    public function userEntries($user = null)
+    {
+        if ($user === null) {
+            return [];
+        }
+
+        return json_collection(
+            UserContestEntry::where(['contest_id' => $this->id, 'user_id' => $user->user_id])->get(),
+            new UserContestEntryTransformer
+        );
     }
 }

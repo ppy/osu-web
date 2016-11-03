@@ -18,15 +18,16 @@
 
 class @FormPlaceholderHide
   constructor: ->
-    $(document).on 'focus', '.js-forum-placeholder-hide', @onFocus
-    $(document).on 'blur', '.js-forum-placeholder-hide', @onBlur
+    $(document).on 'focus', '.js-form-placeholder-hide', @onFocus
+    $(document).on 'blur', '.js-form-placeholder-hide', @onBlur
 
-
-  onFocus: (e) ->
-    e.target._origPlaceholder = e.target.getAttribute 'placeholder'
-    e.target.setAttribute 'placeholder', ''
 
   onBlur: (e) ->
     return unless e.target._origPlaceholder
     e.target.setAttribute 'placeholder', e.target._origPlaceholder
     e.target._origPlaceholder = null
+
+
+  onFocus: (e) ->
+    e.target._origPlaceholder = e.target.getAttribute 'placeholder'
+    e.target.setAttribute 'placeholder', ''

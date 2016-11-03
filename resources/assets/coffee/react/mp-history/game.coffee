@@ -20,7 +20,7 @@ el = React.createElement
 
 class MPHistory.Game extends React.Component
   render: ->
-    game = @props.event.game.data
+    game = @props.event.game
 
     showTeams = game.team_type == 'team-vs' || game.team_type == 'tag-team-vs'
 
@@ -30,16 +30,16 @@ class MPHistory.Game extends React.Component
     winningTeam = if @props.teamScores.blue > @props.teamScores.red then 'blue' else 'red'
     difference = Math.abs @props.teamScores.blue - @props.teamScores.red
 
-    scores = game.scores.data.map (m) ->
+    scores = game.scores.map (m) ->
       m.teamRank = if m.team == winningTeam then 1 else 2
       m
 
     scores = _.orderBy scores, ['teamRank', 'score'], ['asc', 'desc']
 
-    div className: 'mp-history-events__game mp-history-game',
+    div className: 'mp-history-game',
       el MPHistory.GameHeader,
-        beatmap: game.beatmap?.data ? @deletedBeatmap
-        beatmapset: game.beatmap?.data.beatmapset.data ? @deletedBeatmapset
+        beatmap: game.beatmap ? @deletedBeatmap
+        beatmapset: game.beatmap?.beatmapset ? @deletedBeatmapset
         game: game
 
       div className: className,
@@ -50,7 +50,7 @@ class MPHistory.Game extends React.Component
             lookupUser: @props.lookupUser
             key: m.slot
 
-      if showTeams && @props.event.game.data.end_time
+      if showTeams && @props.event.game.end_time
         div {},
           div className: 'mp-history-game__team-scores',
             ['blue', 'red'].map (m) =>

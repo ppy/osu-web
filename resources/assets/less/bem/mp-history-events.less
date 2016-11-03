@@ -18,44 +18,44 @@
  */
 
 .mp-history-events {
-  min-width: 640px;
+  @_event-max-width: 640px;
 
   .event() {
-    background-color: @grey-e;
-    max-width: 640px;
-
+    background-color: @gray-e;
+    max-width: @_event-max-width;
     margin-left: auto;
     margin-right: auto;
   }
 
   .event-end() {
     border-radius: 0 0 @border-radius-base @border-radius-base;
-    padding-bottom: @spacing * 1.5;
-    margin-bottom: @spacing * 2;
+    padding-bottom: (@spacing * 1.5);
+    margin-bottom: (@spacing * 2);
   }
 
   &__event {
-    .event;
+    .event();
 
-    &:first-child, :not(&) + & {
-      padding-top: @spacing * 2;
+    &:first-child,
+    :not(&) + & {
+      padding-top: (@spacing * 2);
       border-radius: @border-radius-base @border-radius-base 0 0;
     }
 
     &:last-child {
-      .event-end;
-      padding-bottom: @spacing * 2;
+      .event-end();
+      padding-bottom: (@spacing * 2);
     }
   }
 
   &__game {
     :not(&) + & {
       &::before {
-        content: '';
-        display: block;
-
         .event();
         .event-end();
+
+        content: '';
+        display: block;
       }
     }
   }

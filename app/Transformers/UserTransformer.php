@@ -62,7 +62,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'isQAT' => $user->isQAT(),
             'title' => $user->title(),
             'location' => $user->user_from,
-            'lastvisit' => $user->user_lastvisit->toIso8601String(),
+            'lastvisit' => json_time($user->user_lastvisit),
             'twitter' => $user->user_twitter,
             'lastfm' => $user->user_lastfm,
             'skype' => $user->user_msnm,
@@ -94,7 +94,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->item($user, function ($user) {
             $all = [];
             foreach (array_keys(Beatmap::MODES) as $mode) {
-                $all[$mode] = fractal_item_array($user->statistics($mode), new UserStatisticsTransformer());
+                $all[$mode] = json_item($user->statistics($mode), new UserStatisticsTransformer());
             }
 
             return $all;
@@ -109,7 +109,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             foreach ($user->rankHistories as $history) {
                 $modeStr = Beatmap::modeStr($history->mode);
 
-                $all[$modeStr] = fractal_item_array($history, new RankHistoryTransformer());
+                $all[$modeStr] = json_item($history, new RankHistoryTransformer());
             }
 
             return $all;
@@ -128,7 +128,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                     ->limit(100)
                     ->get();
 
-                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapset');
+                $all[$mode] = json_collection($scores, new ScoreTransformer(), 'beatmap,beatmapset');
             }
 
             return $all;
@@ -150,7 +150,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 
                 ScoreBestModel::fillInPosition($scores);
 
-                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapset,weight');
+                $all[$mode] = json_collection($scores, new ScoreTransformer(), 'beatmap,beatmapset,weight');
             }
 
             return $all;
@@ -165,7 +165,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             foreach (array_keys(Beatmap::MODES) as $mode) {
                 $scores = $user->scores($mode, true)->default()->with('beatmapset', 'beatmap')->get();
 
-                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapset');
+                $all[$mode] = json_collection($scores, new ScoreTransformer(), 'beatmap,beatmapset');
             }
 
             return $all;
@@ -233,7 +233,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     public function includeRankedAndApprovedBeatmapsets(User $user)
     {
         return $this->collection(
-            $user->beatmapsets()->rankedOrApproved()->active()->with('defaultBeatmaps')->get(),
+            $user->beatmapsets()->rankedOrApproved()->active()->with('beatmaps')->get(),
             new BeatmapsetTransformer()
         );
     }
@@ -241,7 +241,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     public function includeFavouriteBeatmapsets(User $user)
     {
         return $this->collection(
-            $user->favouriteBeatmapsets()->with('defaultBeatmaps')->get(),
+            $user->favouriteBeatmapsets()->with('beatmaps')->get(),
             new BeatmapsetTransformer()
         );
     }

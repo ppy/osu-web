@@ -22,14 +22,14 @@
 @section("content")
     <div class="osu-layout__row osu-layout__row--page-compact">
         <div class="page-header-nav">
-            @include('forum.topics._header_breadcrumb')
+            @include('forum._header_breadcrumb')
         </div>
         <div
             class="forum-category-header
                 u-forum--bg
                 forum-category-header--forum
                 js-forum-cover--header"
-            style="{{ isset($cover['data']['fileUrl']) === true ? "background-image: url('{$cover['data']['fileUrl']}');" : '' }}"
+            style="{{ isset($cover['fileUrl']) === true ? "background-image: url('{$cover['fileUrl']}');" : '' }}"
         >
             <div class="forum-category-header__loading js-forum-cover--loading">
                 @include('objects._spinner')

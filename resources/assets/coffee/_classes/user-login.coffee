@@ -16,10 +16,12 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @UserLogin
-  clickAfterLogin: null # Used as callback on original action (where login was required)
 
 
   constructor: (@nav) ->
+    # Used as callback on original action (where login was required)
+    @clickAfterLogin = null
+
     $(document).on 'ajax:success', '.js-login-form', @loginSuccess
     $(document).on 'ajax:error', '.js-login-form', @loginError
 
@@ -27,7 +29,7 @@ class @UserLogin
     $(document).on 'click', '.js-login-required--click', @showToContinue
 
     $(document).on 'ajax:error', @showOnError
-    $(document).on 'ready turbolinks:load', @showOnLoad
+    $(document).on 'turbolinks:load', @showOnLoad
     $.subscribe 'nav:popup:hidden', @reset
 
 
@@ -46,7 +48,7 @@ class @UserLogin
     $('.js-user-header').html data.header
     $('.js-user-header-popup').html data.header_popup
 
-    $.publish 'user:update', data.user.data
+    $.publish 'user:update', data.user
 
     @nav.hidePopup()
 
@@ -54,7 +56,7 @@ class @UserLogin
 
 
   refreshToken: =>
-    token = Cookie.get('XSRF-TOKEN')
+    token = Cookies.get('XSRF-TOKEN')
     $('[name="_token"]').attr 'value', token
     $('[name="csrf-token"]').attr 'content', token
 

@@ -31,6 +31,11 @@ function array_search_null($value, $array)
     }
 }
 
+function flag_path($country)
+{
+    return '/images/flags/'.$country.'.png';
+}
+
 function get_valid_locale($requestedLocale)
 {
     if (in_array($requestedLocale, config('app.available_locales'), true)) {
@@ -44,6 +49,23 @@ function get_valid_locale($requestedLocale)
         },
         config('app.fallback_locale')
     );
+}
+
+function json_time($time)
+{
+    if ($time !== null) {
+        return $time->toIso8601String();
+    }
+}
+
+function locale_flag($locale)
+{
+    return App\Libraries\LocaleMeta::flagFor($locale);
+}
+
+function locale_name($locale)
+{
+    return App\Libraries\LocaleMeta::nameFor($locale);
 }
 
 function osu_url($key)
@@ -160,7 +182,7 @@ function ujs_redirect($url)
 function timeago($date)
 {
     $display_date = $date->toRfc850String();
-    $attribute_date = $date->toIso8601String();
+    $attribute_date = json_time($date);
 
     return "<time class='timeago' datetime='{$attribute_date}'>{$display_date}</time>";
 }
@@ -256,30 +278,29 @@ function nav_links()
 {
     $links = [];
 
-    if (config('app.debug')) {
-        $links['home'] = [
-            'index' => route('home'),
-            'getChangelog' => osu_url('home.changelog'),
-            'getDownload' => osu_url('home.download'),
-        ];
-        $links['help'] = [
-            'getWiki' => osu_url('help.wiki'),
-            'getFaq' => osu_url('help.faq'),
-            'getSupport' => osu_url('help.support'),
-        ];
-        $links['ranking'] = [
-            'getOverall' => osu_url('ranking.overall'),
-            'getCharts' => osu_url('ranking.charts'),
-            'getCountry' => osu_url('ranking.country'),
-            'getMapper' => osu_url('ranking.mapper'),
-        ];
-    }
+    $links['home'] = [
+        'getNews' => osu_url('home.news'),
+        'getChangelog' => osu_url('home.changelog'),
+        'getDownload' => osu_url('home.download'),
+    ];
+    $links['help'] = [
+        'getWiki' => osu_url('help.wiki'),
+        'getFaq' => osu_url('help.faq'),
+        'getSupport' => osu_url('help.support'),
+    ];
+    $links['ranking'] = [
+        'getOverall' => osu_url('ranking.overall'),
+        'getCharts' => osu_url('ranking.charts'),
+        'getCountry' => osu_url('ranking.country'),
+        'getMapper' => osu_url('ranking.mapper'),
+    ];
     $links['beatmaps'] = [
         'index' => route('beatmapsets.index'),
         'artists' => route('artist.index'),
     ];
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
+        'contests' => route('community.contests.index'),
         'tournaments' => route('tournaments.index'),
         'getLive' => route('livestreams.index'),
         'getSlack' => route('slack'),
@@ -372,6 +393,17 @@ function display_regdate($user)
     return trans('users.show.joined_at', ['date' => $user->user_regdate->formatLocalized('%B %Y')]);
 }
 
+function i18n_date($datetime, $format = IntlDateFormatter::LONG)
+{
+    $formatter = IntlDateFormatter::create(
+        App::getLocale(),
+        $format,
+        IntlDateFormatter::NONE
+    );
+
+    return $formatter->format($datetime);
+}
+
 function open_image($path, $dimensions = null)
 {
     if ($dimensions === null) {
@@ -405,31 +437,7 @@ function open_image($path, $dimensions = null)
     }
 }
 
-function fractal_collection_array($models, $transformer, $includes = null)
-{
-    $manager = new League\Fractal\Manager();
-    if ($includes !== null) {
-        $manager->parseIncludes($includes);
-    }
-
-    $collection = new League\Fractal\Resource\Collection($models, $transformer);
-
-    return $manager->createData($collection)->toArray();
-}
-
-function fractal_item_array($model, $transformer, $includes = null)
-{
-    $manager = new League\Fractal\Manager();
-    if ($includes !== null) {
-        $manager->parseIncludes($includes);
-    }
-
-    $item = new League\Fractal\Resource\Item($model, $transformer);
-
-    return $manager->createData($item)->toArray();
-}
-
-function fractal_api_serialize_collection($model, $transformer, $includes = null)
+function json_collection($model, $transformer, $includes = null)
 {
     $manager = new League\Fractal\Manager();
     if ($includes !== null) {
@@ -437,15 +445,15 @@ function fractal_api_serialize_collection($model, $transformer, $includes = null
     }
     $manager->setSerializer(new App\Serializers\ApiSerializer());
 
-    // we're using collection instead of item here, so we can peak at the items beforehand
+    // we're using collection instead of item here, so we can peek at the items beforehand
     $collection = new League\Fractal\Resource\Collection($model, $transformer);
 
     return $manager->createData($collection)->toArray();
 }
 
-function fractal_api_serialize_item($model, $transformer, $includes = null)
+function json_item($model, $transformer, $includes = null)
 {
-    return fractal_api_serialize_collection([$model], $transformer, $includes)[0];
+    return json_collection([$model], $transformer, $includes)[0];
 }
 
 function fast_imagesize($url)
@@ -541,6 +549,14 @@ function ci_file_search($fileName)
     }
 
     return false;
+}
+
+function sanitize_filename($file)
+{
+    $file = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $file);
+    $file = mb_ereg_replace("([\.]{2,})", '', $file);
+
+    return $file;
 }
 
 function deltree($dir)

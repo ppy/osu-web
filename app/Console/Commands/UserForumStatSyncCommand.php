@@ -29,7 +29,7 @@ class UserForumStatSyncCommand extends Command
      *
      * @var string
      */
-    protected $name = 'user:forumsync';
+    protected $signature = 'user:forumsync';
 
     /**
      * The console command description.
@@ -53,7 +53,7 @@ class UserForumStatSyncCommand extends Command
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         $this->info('Synchronising user post counts...');
 

@@ -16,5 +16,5 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <script data-turbolinks-eval="always">
-    var currentUser = {!! Auth::check() ? json_encode(Auth::user()->defaultJson()['data']) : '{}' !!};
+    var currentUser = {!! Auth::check() ? json_encode(Auth::user()->defaultJson()) : '{}' !!};
 </script>

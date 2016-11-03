@@ -20,14 +20,16 @@
 
 @download-button-diameter: 282px/2;
 
-.home_getDownload { &:extend(.text-center); }
+.home_getDownload {
+  .text-center();
+}
 
 #download-header {
   background-image: url(/images/download-header.png);
   height: 270px;
   overflow: hidden;
 
-  &:extend(.default-text-shadow);
+  .default-text-shadow();
   color: #fff;
   font-style: italic;
   font-weight: 300;
@@ -67,10 +69,10 @@
   }
 
   img {
+    .default-box-shadow();
+    .circle(@download-button-diameter);
     width: @download-button-diameter;
     height: @download-button-diameter;
-    .circle(@download-button-diameter);
-    &:extend(.default-box-shadow);
     overflow: hidden;
   }
 }

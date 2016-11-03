@@ -274,13 +274,13 @@ class BBCodeFromDB
 
     public function parseYoutube($text)
     {
-        $text = str_replace("[youtube:{$this->uid}]", "<iframe width='425' height='344' src='https://www.youtube.com/embed/", $text);
-        $text = str_replace("[/youtube:{$this->uid}]", "?rel=0' frameborder='0' allowfullscreen></iframe>", $text);
+        $text = str_replace("[youtube:{$this->uid}]", "<div class='bbcode__video-box'><div class='bbcode__video'><iframe src='https://www.youtube.com/embed/", $text);
+        $text = str_replace("[/youtube:{$this->uid}]", "?rel=0' frameborder='0' allowfullscreen></iframe></div></div>", $text);
 
         return $text;
     }
 
-    public function toHTML()
+    public function toHTML($ignoreLineHeight = false)
     {
         $text = $this->text;
 
@@ -313,7 +313,13 @@ class BBCodeFromDB
         $text = str_replace("\n", '<br />', $text);
         $text = CleanHTML::purify($text);
 
-        return "<div class='bbcode'>{$text}</div>";
+        $className = 'bbcode';
+
+        if ($ignoreLineHeight) {
+            $className .= ' bbcode--normal-line-height';
+        }
+
+        return "<div class='{$className}'>{$text}</div>";
     }
 
     public function toEditor()
@@ -338,6 +344,6 @@ class BBCodeFromDB
         // strip smilies
         $text = preg_replace('#<!-- (s(.*?)) -->.*?<!-- \\1 -->#', '\\2', $text);
 
-        return html_entity_decode($text);
+        return html_entity_decode($text, ENT_QUOTES);
     }
 }

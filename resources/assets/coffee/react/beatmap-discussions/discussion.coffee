@@ -25,7 +25,7 @@ BeatmapDiscussions.Discussion = React.createClass
 
 
   render: ->
-    return div() if @props.discussion.beatmap_discussion_posts.data.length == 0
+    return div() if @props.discussion.beatmap_discussion_posts.length == 0
 
     topClasses = "#{bn} js-beatmap-discussion-jump"
     topClasses += " #{bn}--highlighted" if @props.highlighted
@@ -40,7 +40,7 @@ BeatmapDiscussions.Discussion = React.createClass
 
       div className: "#{bn}__discussion",
         div className: "#{bn}__top",
-          @post @props.discussion.beatmap_discussion_posts.data[0], 'discussion'
+          @post @props.discussion.beatmap_discussion_posts[0], 'discussion'
 
           div className: "#{bn}__actions",
             ['up', 'down'].map (direction) =>
@@ -56,7 +56,7 @@ BeatmapDiscussions.Discussion = React.createClass
                 el Icon, name: (if @props.collapsed then 'chevron-down' else 'chevron-up')
         div
           className: "#{bn}__replies #{'hidden' if @props.collapsed}"
-          @props.discussion.beatmap_discussion_posts.data.slice(1).map (reply) =>
+          @props.discussion.beatmap_discussion_posts.slice(1).map (reply) =>
             @post reply, 'reply'
 
           if @props.currentUser.id?
@@ -95,14 +95,14 @@ BeatmapDiscussions.Discussion = React.createClass
   doVote: (score) ->
     LoadingOverlay.show()
 
-    $.ajax laroute.route('beatmap-discussions.vote', beatmap_discussions: @props.discussion.id),
+    $.ajax laroute.route('beatmap-discussions.vote', beatmap_discussion: @props.discussion.id),
       method: 'PUT',
       data:
         beatmap_discussion_vote:
           score: score
 
     .done (data) =>
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.data
+      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data
 
     .fail osu.ajaxError
 
@@ -118,7 +118,7 @@ BeatmapDiscussions.Discussion = React.createClass
 
     return if !baseScore?
 
-    currentVote = @props.discussion.current_user_attributes?.data?.vote_score
+    currentVote = @props.discussion.current_user_attributes?.vote_score
 
     score = if currentVote == baseScore then 0 else baseScore
 

@@ -22,9 +22,10 @@
     }
 
     $percentage = sprintf('%.2f%%', 100.0 * $pollOption->poll_option_total / $totalVotes);
+    $voted = $pollOption->userHasVoted(Auth::user());
 ?>
 
-<tr class="forum-poll-row {{ $pollOption->userHasVoted(Auth::user()) ? 'forum-poll-row--voted' : '' }}">
+<tr class="forum-poll-row {{ $voted ? 'forum-poll-row--voted' : '' }}">
     <td class="forum-poll-row__column forum-poll-row__column--option-text">
         <label class="forum-poll-row__option-text-container">
             @if (priv_check('ForumTopicVote', $topic)->can())
@@ -49,8 +50,8 @@
     </td>
 
     <td class="forum-poll-row__column forum-poll-row__column--bar">
-        <div class="forum-poll-row__bar-container">
-            <div class="forum-poll-row__bar" style="width: {{ $percentage }}">
+        <div class="bar bar--forum-poll {{ $voted ? 'bar--forum-poll-voted' : '' }}">
+            <div class="bar__fill" style="width: {{ $percentage }}">
             </div>
         </div>
     </td>

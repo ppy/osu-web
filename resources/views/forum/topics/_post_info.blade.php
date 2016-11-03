@@ -19,13 +19,12 @@
     <div class="forum-post__info-panel-main">
         @if ($user->hasProfile() === true)
             @if ($user->user_avatar)
-                <div class="forum-post__avatar-ribbon forum-post__avatar-ribbon--level-{{ $user->supportLevel() }}">
-                    <a href="{{ route("users.show", $user) }}" class="forum-post__avatar-container">
-                        <div
-                            class="avatar avatar--full"
-                            style="background-image: url('{{ $user->user_avatar }}');"
-                        ></div>
-                    </a>
+                <div class="avatar-ribbon avatar-ribbon--level-{{ $user->supportLevel() }}">
+                    <a
+                        href="{{ route("users.show", $user) }}"
+                        class="avatar avatar--forum"
+                        style="background-image: url('{{ $user->user_avatar }}');"
+                    ></a>
                 </div>
             @endif
 
@@ -53,7 +52,7 @@
                         @if ($flagType === "country")
                             <img
                                 class="forum__user-flag forum__user-flag--country"
-                                src="/images/flags/{{ $flagValue[0] }}.png"
+                                src="{{ flag_path($flagValue[0]) }}"
                                 alt="{{ $flagValue[0] }}"
                                 title="{{ $flagValue[1] }}"
                             />
@@ -74,9 +73,9 @@
 <div class="visible-xs">
     <div class="forum-post__info-panel-xs" style="{{ user_colour_style($user->user_colour, "background-color") }}">
         @if ($user->user_avatar)
-            <div class="forum-post__avatar-ribbon
-                forum-post__avatar-ribbon--xs
-                forum-post__avatar-ribbon--level-{{ $user->supportLevel() }}"
+            <div class="avatar-ribbon
+                avatar-ribbon--xs
+                avatar-ribbon--level-{{ $user->supportLevel() }}"
             >
                 <div
                     class="avatar avatar--forum-small"
@@ -95,7 +94,7 @@
                     <span class="forum-post__info-panel-xs-flag">
                         <img
                             class="flag-country flag-country--small-box"
-                            src="/images/flags/{{ $user->flags()["country"][0] }}.png"
+                            src="{{ flag_path($user->flags()['country'][0]) }}"
                             alt="{{ $user->flags()["country"][0] }}"
                             title="{{ $user->flags()["country"][1] }}"
                         />

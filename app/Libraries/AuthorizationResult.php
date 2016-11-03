@@ -20,7 +20,7 @@
 namespace App\Libraries;
 
 use App\Exceptions\AuthorizationException;
-use App\Exceptions\RequireLoginException;
+use Illuminate\Auth\AuthenticationException;
 
 class AuthorizationResult
 {
@@ -61,7 +61,7 @@ class AuthorizationResult
         }
 
         if ($this->rawMessage() === 'require_login') {
-            $class = RequireLoginException::class;
+            $class = AuthenticationException::class;
         } else {
             $class = AuthorizationException::class;
         }

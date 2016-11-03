@@ -29,9 +29,9 @@ class MPHistory.Content extends React.Component
         blue: 0
         red: 0
 
-      return scores if !@props.events[eventIndex].game.data.end_time?
+      return scores if !@props.events[eventIndex].game.end_time?
 
-      for score in @props.events[eventIndex].game.data.scores.data
+      for score in @props.events[eventIndex].game.scores
         continue if !score.pass
         scores[score.team] += score.score
 
@@ -49,21 +49,26 @@ class MPHistory.Content extends React.Component
           div className: 'mp-history-content__show-more-box',
             a
               className: 'mp-history-content__show-more'
-              href: laroute.route 'multiplayer.match', matches: @props.id, full: true
+              href: laroute.route('matches.show', match: @props.id, full: true)
               Lang.get 'multiplayer.match.more-events'
 
         div className: 'mp-history-events',
           for event, i in @props.events
             if event.detail.type == 'other'
-              continue if !event.game? || (!event.game.data.end_time? && event.id != @props.lastGameId)
+              continue if !event.game? || (!event.game.end_time? && event.id != @props.lastGameId)
 
-              el MPHistory.Game,
-                event: event
-                teamScores: @teamScores i
-                lookupUser: @props.lookupUser
+              div
+                className: 'mp-history-events__game'
                 key: event.id
+                el MPHistory.Game,
+                  event: event
+                  teamScores: @teamScores i
+                  lookupUser: @props.lookupUser
             else
-              el MPHistory.Event,
-                event: event
-                lookupUser: @props.lookupUser
+              div
+                className: 'mp-history-events__event'
                 key: event.id
+                el MPHistory.Event,
+                  event: event
+                  lookupUser: @props.lookupUser
+                  key: event.id

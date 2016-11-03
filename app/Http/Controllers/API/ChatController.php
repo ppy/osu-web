@@ -35,7 +35,7 @@ class ChatController extends Controller
     {
         $channels = Channel::where('type', 'Public')->get();
 
-        return fractal_api_serialize_collection(
+        return json_collection(
             $channels,
             new ChannelTransformer()
         );
@@ -59,7 +59,7 @@ class ChatController extends Controller
             $messages = $messages->where('message_id', '>', $since);
         }
 
-        $collection = fractal_api_serialize_collection(
+        $collection = json_collection(
             $messages->orderBy('message_id', $since ? 'asc' : 'desc')
                 ->limit($limit)
                 ->get(),
@@ -82,7 +82,7 @@ class ChatController extends Controller
             $messages = $messages->where('message_id', '>', $since);
         }
 
-        $collection = fractal_api_serialize_collection(
+        $collection = json_collection(
             $messages->orderBy('message_id', $since ? 'asc' : 'desc')
                 ->limit($limit)
                 ->get(),

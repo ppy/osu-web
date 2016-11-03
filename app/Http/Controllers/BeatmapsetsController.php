@@ -39,7 +39,7 @@ class BeatmapsetsController extends Controller
         $fractal = new Manager();
         $languages = Language::listing();
         $genres = Genre::listing();
-        $beatmaps = fractal_collection_array(
+        $beatmaps = json_collection(
             Beatmapset::listing(),
             new BeatmapsetTransformer,
             'beatmaps'
@@ -72,7 +72,7 @@ class BeatmapsetsController extends Controller
             $ranks[] = ['id' => $rank, 'name' => trans("beatmaps.rank.{$rank}")];
         }
 
-        $filters = ['data' => compact('modes', 'statuses', 'genres', 'languages', 'extras', 'ranks')];
+        $filters = compact('modes', 'statuses', 'genres', 'languages', 'extras', 'ranks');
 
         return view('beatmaps.index', compact('filters', 'beatmaps'));
     }
@@ -83,13 +83,13 @@ class BeatmapsetsController extends Controller
             ::with('beatmaps.failtimes', 'user')
             ->findOrFail($id);
 
-        $set = fractal_item_array(
+        $set = json_item(
             $beatmapset,
             new BeatmapsetTransformer(),
-            implode(',', ['beatmaps', 'beatmaps.failtimes', 'converts', 'converts.failtimes', 'user', 'description'])
+            ['beatmaps', 'beatmaps.failtimes', 'converts', 'converts.failtimes', 'user', 'description', 'ratings']
         );
 
-        $countries = fractal_collection_array(Country::all(), new CountryTransformer);
+        $countries = json_collection(Country::all(), new CountryTransformer);
 
         $title = trans('layout.menu.beatmaps._').' / '.$beatmapset->artist.' - '.$beatmapset->title;
 
@@ -138,7 +138,7 @@ class BeatmapsetsController extends Controller
 
         $beatmaps = Beatmapset::search($params);
 
-        return fractal_collection_array(
+        return json_collection(
             $beatmaps,
             new BeatmapsetTransformer,
             'beatmaps'

@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <button
-    class="btn-circle btn-circle--topic-nav"
+    class="btn-circle btn-circle--button btn-circle--topic-nav"
     data-target="#forum-topic-move-modal"
     data-toggle="modal"
     type="button"
@@ -32,7 +32,7 @@
         <div class="modal-dialog modal-dialog@sm">
             <div class="modal-content">
                 <div class="modal-body modal-body--page">
-                    {!! Form::open(['url' => route('forum.topics.move', $_topic->topic_id), 'data-remote' => true]) !!}
+                    {!! Form::open(['url' => route('forum.topics.move', $topic->topic_id), 'data-remote' => true]) !!}
                         <h1>
                             {{ trans('forum.topics.moderate_move.title') }}
                         </h1>
@@ -42,7 +42,7 @@
                                 @foreach (App\Models\Forum\Forum::moveDestination()->get() as $dstForum)
                                     <option value="{{ $dstForum->getKey() }}"
                                         {{ $dstForum->isOpen() ? '' : 'disabled' }}
-                                        {{ $dstForum->getKey() === $_topic->forum_id ? 'selected' : '' }}
+                                        {{ $dstForum->getKey() === $topic->forum_id ? 'selected' : '' }}
                                     >
                                         {{ str_repeat('&ndash;', $dstForum->currentDepth()) }}
                                         {{ $dstForum->forum_name }}
