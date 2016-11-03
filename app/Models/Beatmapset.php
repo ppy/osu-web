@@ -735,10 +735,9 @@ class Beatmapset extends Model
             return;
         }
 
-        \DB::transaction(function () use ($user) {
-            FavoriteBeatmapset::where('user_id', $user->user_id)
-              ->where('beatmapset_id', $this->beatmapset_id)
-              ->delete();
+        DB::transaction(function () use ($user) {
+            $this->favorites()->where('user_id', $user->user_id)
+                ->delete();
 
             $this->favourite_count -= 1;
             $this->save();
