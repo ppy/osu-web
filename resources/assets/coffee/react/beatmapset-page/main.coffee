@@ -49,7 +49,8 @@ class BeatmapsetPage.Main extends React.Component
           currentPlaymode = mode
           break
 
-    @xhr = null
+    @scoreboardXhr = null
+    @favoriteXhr = null
 
     @state =
       beatmaps: beatmaps
@@ -72,8 +73,8 @@ class BeatmapsetPage.Main extends React.Component
       playmode: @state.currentPlaymode
 
   setCurrentScoreboard: (_e, {scoreboardType = @state.currentScoreboardType, enabledMod = null, forceReload = false, resetMods = false}) =>
-    if @xhr?
-      @xhr.abort()
+    if @scoreboardXhr?
+      @scoreboardXhr.abort()
 
     @setState
       currentScoreboardType: scoreboardType
@@ -108,7 +109,7 @@ class BeatmapsetPage.Main extends React.Component
     $.publish 'beatmapset:scoreboard:loading', true
     @setState loading: true
 
-    @xhr = $.ajax (laroute.route 'beatmaps.scores', beatmap: @state.currentBeatmapId),
+    @scoreboardXhr = $.ajax (laroute.route 'beatmaps.scores', beatmap: @state.currentBeatmapId),
       method: 'GET'
       dataType: 'JSON'
       data:
@@ -154,7 +155,7 @@ class BeatmapsetPage.Main extends React.Component
     @setState hoveredBeatmapId: hoveredBeatmapId
 
   toggleFavorite: =>
-    $.ajax
+    @favoriteXhr = $.ajax
       url: laroute.route('beatmapsets.update-favorite', beatmapset: @props.beatmapset.id)
       method: 'post'
       dataType: 'json'
@@ -186,8 +187,8 @@ class BeatmapsetPage.Main extends React.Component
 
   componentWillUnmount: ->
     @removeListeners()
-    @xhr?.abort()
-
+    @scoreboardXhr?.abort()
+    @favoriteXhr?.abort()
 
   removeListeners: ->
     $.unsubscribe '.beatmapsetPage'
