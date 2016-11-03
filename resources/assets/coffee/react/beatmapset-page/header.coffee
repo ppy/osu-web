@@ -19,7 +19,9 @@
 el = React.createElement
 
 class BeatmapsetPage.Header extends React.Component
-  toggleFavorite: ->
+  toggleFavorite: (e) ->
+    e.preventDefault()
+
     if _.isEmpty currentUser
       userLogin.show()
     else
@@ -74,6 +76,7 @@ class BeatmapsetPage.Header extends React.Component
               span className: 'beatmapset-header__value',
                 a
                   onClick: @toggleFavorite
+                  href: laroute.route 'beatmapsets.update-favorite', beatmapset: @props.beatmapset.id, action: if @props.hasFavorited then 'unfavorite' else 'favorite'
                   title: osu.trans "beatmaps.beatmapset.show.details.#{if @props.hasFavorited then 'unfavorite' else 'favorite'}"
                   className: "beatmapset-header__value-icon beatmapset-header__value-icon--favorites #{'beatmapset-header__value-icon--favorited' if @props.hasFavorited}"
                   el Icon, name: 'heart'
