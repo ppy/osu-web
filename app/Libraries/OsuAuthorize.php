@@ -510,9 +510,16 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
 
-        if ($user->favoriteBeatmapsets()->count() >= 99) {
+        if ($user->favoriteBeatmapsets()->count() > 99) {
             return $prefix.'too-many-favorites';
         }
+
+        return 'ok';
+    }
+
+    public function checkUserChangeFavoriteStatus($user)
+    {
+        $this->ensureLoggedIn($user);
 
         return 'ok';
     }

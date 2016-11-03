@@ -713,8 +713,6 @@ class Beatmapset extends Model
 
     public function favorite($user)
     {
-        priv_check('UserFavorite', $user)->ensureCan();
-
         if (FavoriteBeatmapset::where('user_id', $user->user_id)
             ->where('beatmapset_id', $this->beatmapset_id)->exists()) {
             return;
