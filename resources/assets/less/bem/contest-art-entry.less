@@ -1,0 +1,130 @@
+/**
+*    Copyright 2015 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License version 3
+*    as published by the Free Software Foundation.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+@base-size: 256px;
+@_top: contest-art-entry;
+
+.contest-art-sizes(@base-width, @base-height) {
+    width: @base-width;
+    height: @base-height;
+
+    &.@{_top}--placed-2 {
+      width: @base-width * 0.75;
+      height: @base-height * 0.75;
+    }
+
+    &.@{_top}--placed-3 {
+      width: @base-width * 0.5;
+      height: @base-height * 0.5;
+    }
+
+    &.@{_top}--smaller {
+      width: @base-width * 0.5;
+      height: @base-height * 0.5;
+    }
+}
+
+.contest-art-entry {
+  margin: 10px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  background-size: cover;
+  background-position: top;
+  transform: translateZ(0);
+
+  .contest-art-sizes(@base-size, @base-size);
+  &--portrait {
+    .contest-art-sizes(@base-size/(4/3), @base-size);
+  }
+  &--landscape {
+    .contest-art-sizes(@base-size, @base-size/(16/9));
+  }
+
+  &--selected {
+      border: 4px solid #ffa500;
+  }
+
+  &--result {
+    margin-bottom: 58px;
+  }
+
+  &--placed {
+    margin-bottom: 68px;
+  }
+
+  &__thumbnail {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  &__trophy {
+    &--1 {
+      color: gold;
+    }
+    &--2 {
+      color: silver;
+    }
+    &--3 {
+      color: chocolate;
+    }
+  }
+
+  &__entrant {
+    text-align: right;
+    font-size: 12px;
+    .white-link();
+    text-decoration: none;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    .@{_top}--placed & {
+      font-size: 14px;
+      overflow: visible;
+    }
+  }
+
+  &__result {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  &__result-ranking {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  }
+
+  &__result-place {
+    padding-right: 5px;
+    .@{_top}--placed & {
+      font-size: 20px;
+      white-space: nowrap;
+    }
+  }
+
+  &__result-votes {
+    font-size: 10px;
+    color: #8dacb6;
+    &--percentage {
+      font-size: 10px;
+      color: #60757b;
+    }
+  }
+}
