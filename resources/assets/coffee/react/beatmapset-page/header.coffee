@@ -116,30 +116,31 @@ class BeatmapsetPage.Header extends React.Component
                     className: 'beatmapset-header__user-text beatmapset-header__user-text--date'
                     moment(@props.beatmapset.ranked_date).format dateFormat
 
-          div className: 'beatmapset-header__buttons',
-            if @props.beatmapset.video
-              [
-                @downloadButton
-                  key: 'video'
-                  href: Url.beatmapDownload @props.beatmapset.id, true
-                  bottomTextKey: 'video'
+          if !_.isEmpty currentUser
+            div className: 'beatmapset-header__buttons',
+              if @props.beatmapset.video
+                [
+                  @downloadButton
+                    key: 'video'
+                    href: Url.beatmapDownload @props.beatmapset.id, true
+                    bottomTextKey: 'video'
 
+                  @downloadButton
+                    key: 'no-video'
+                    href: Url.beatmapDownload @props.beatmapset.id, false
+                    bottomTextKey: 'no-video'
+                ]
+              else
                 @downloadButton
-                  key: 'no-video'
                   href: Url.beatmapDownload @props.beatmapset.id, false
-                  bottomTextKey: 'no-video'
-              ]
-            else
-              @downloadButton
-                href: Url.beatmapDownload @props.beatmapset.id, false
 
-            @downloadButton
-              topTextKey: 'direct'
-              href:
-                if currentUser.isSupporter
-                  Url.beatmapDownloadDirect @props.beatmapset.id
-                else
-                  laroute.route 'support-the-game'
+              @downloadButton
+                topTextKey: 'direct'
+                href:
+                  if currentUser.isSupporter
+                    Url.beatmapDownloadDirect @props.beatmapset.id
+                  else
+                    laroute.route 'support-the-game'
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
           el BeatmapsetPage.Stats,
