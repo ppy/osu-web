@@ -49,7 +49,7 @@ class BeatmapsetPage.Header extends React.Component
 
         div className: 'beatmapset-header__overlay beatmapset-header__overlay--gradient'
 
-        div className: 'beatmapset-header__box',
+        div className: 'beatmapset-header__box beatmapset-header__box--main',
           div className: 'beatmapset-header__beatmap-picker-box',
             el BeatmapsetPage.BeatmapPicker,
               beatmaps: @props.beatmaps
