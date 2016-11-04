@@ -16,30 +16,30 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 */
-@base-size: 256px;
-@_top: contest-art-entry;
-
-.contest-art-sizes(@base-width, @base-height) {
-    width: @base-width;
-    height: @base-height;
-
-    &.@{_top}--placed-2 {
-      width: @base-width * 0.75;
-      height: @base-height * 0.75;
-    }
-
-    &.@{_top}--placed-3 {
-      width: @base-width * 0.5;
-      height: @base-height * 0.5;
-    }
-
-    &.@{_top}--smaller {
-      width: @base-width * 0.5;
-      height: @base-height * 0.5;
-    }
-}
-
 .contest-art-entry {
+  @base-size: 256px;
+  @_top: contest-art-entry;
+
+  .contest-art-sizes(@base-width, @base-height) {
+      width: @base-width;
+      height: @base-height;
+
+      &.@{_top}--placed-2 {
+        width: @base-width * 0.75;
+        height: @base-height * 0.75;
+      }
+
+      &.@{_top}--placed-3 {
+        width: @base-width * 0.5;
+        height: @base-height * 0.5;
+      }
+
+      &.@{_top}--smaller {
+        width: @base-width * 0.5;
+        height: @base-height * 0.5;
+      }
+  }
+
   margin: 10px;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
   background-size: cover;
