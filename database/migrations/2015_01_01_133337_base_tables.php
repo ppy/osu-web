@@ -1352,6 +1352,15 @@ class BaseTables extends Migration
         });
         $this->comment('osu_mod_queue', 'Data table for BanchoBot mod queue ~mm201');
         $this->setRowFormat('osu_mod_queue', 'DYNAMIC');
+
+        Schema::create('phpbb_topics_watch', function (Blueprint $table) {
+            $table->unsignedMediumInteger('user_id')->nullable();
+            $table->unsignedMediumInteger('topic_id')->nullable();
+            $table->unsignedTinyInteger('notify_status');
+            $table->index('topic_id');
+            $table->index('notify_status');
+            $table->primary(['user_id', 'topic_id']);
+        });
     }
 
     /**
@@ -1412,6 +1421,7 @@ class BaseTables extends Migration
         Schema::drop('phpbb_groups');
         Schema::drop('phpbb_log');
         Schema::drop('osu_mod_queue');
+        Schema::drop('phpbb_topics_watch');
     }
 
     private function setRowFormat($table, $format)
