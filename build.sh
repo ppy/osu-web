@@ -26,5 +26,6 @@ php artisan migrate --force
 php artisan lang:js resources/assets/js/messages.js
 php artisan laroute:generate
 
+command -v yarn || npm install -g yarn
 yarn
 ./node_modules/gulp/bin/gulp.js --production
