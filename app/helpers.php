@@ -31,6 +31,11 @@ function array_search_null($value, $array)
     }
 }
 
+function flag_path($country)
+{
+    return '/images/flags/'.$country.'.png';
+}
+
 function get_valid_locale($requestedLocale)
 {
     if (in_array($requestedLocale, config('app.available_locales'), true)) {
@@ -51,6 +56,16 @@ function json_time($time)
     if ($time !== null) {
         return $time->toIso8601String();
     }
+}
+
+function locale_flag($locale)
+{
+    return App\Libraries\LocaleMeta::flagFor($locale);
+}
+
+function locale_name($locale)
+{
+    return App\Libraries\LocaleMeta::nameFor($locale);
 }
 
 function osu_url($key)

@@ -17,24 +17,40 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models;
+namespace App\Libraries;
 
-use Illuminate\Database\Eloquent\Model;
-
-class ContestEntry extends Model
+class LocaleMeta
 {
-    public function contest()
+    const MAPPINGS = [
+        'en' => [
+            'name' => 'English',
+            'flag' => 'GB',
+        ],
+        'es' => [
+            'name' => 'Español',
+            'flag' => 'ES',
+        ],
+        'nl' => [
+            'name' => 'Nederlands',
+            'flag' => 'NL',
+        ],
+        'pl' => [
+            'name' => 'Polski',
+            'flag' => 'PL',
+        ],
+        'pt-br' => [
+            'name' => 'Português (Brasil)',
+            'flag' => 'BR',
+        ],
+    ];
+
+    public static function flagFor($locale)
     {
-        return $this->belongsTo(Contest::class);
+        return static::MAPPINGS[$locale]['flag'] ?? '__';
     }
 
-    public function user()
+    public static function nameFor($locale)
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function votes()
-    {
-        return $this->hasMany(ContestVote::class);
+        return static::MAPPINGS[$locale]['name'] ?? '??';
     }
 }
