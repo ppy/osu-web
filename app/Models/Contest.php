@@ -27,6 +27,9 @@ use Cache;
 class Contest extends Model
 {
     protected $dates = ['entry_starts_at', 'entry_ends_at', 'voting_starts_at', 'voting_ends_at'];
+    protected $casts = [
+        'extra_options' => 'json',
+    ];
 
     public function entries()
     {
@@ -89,9 +92,22 @@ class Contest extends Model
         return 'over';
     }
 
-    public function entryOrientation()
+    public function getEntryShapeAttribute()
     {
-        return $this->id === 5 ? 'landscape' : null;
+        if ($this->type !== 'art') {
+            return;
+        }
+
+        return $this->extra_options ? $this->extra_options['shape'] : 'square';
+    }
+
+    public function setEntryShapeAttribute($shape)
+    {
+        if ($this->type !== 'art') {
+            return;
+        }
+
+        $this->extra_options['shape'] = $shape;
     }
 
     public function currentPhaseDateRange()

@@ -24,7 +24,7 @@ class Contest.Voting.ArtEntry extends React.Component
     votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
     selected = _.includes @props.selected, @props.entry.id
     showVotes = @props.contest.show_votes
-    orientation = @props.contest.orientation
+    shape = @props.contest.shape
 
     if showVotes
       votePercentage = _.round((@props.entry.results.votes / @props.totalVotes)*100, 2)
@@ -36,7 +36,7 @@ class Contest.Voting.ArtEntry extends React.Component
       'contest-art-entry--result' if showVotes,
       "contest-art-entry--placed contest-art-entry--placed-#{place}" if showVotes && top3,
       'contest-art-entry--smaller' if showVotes && !top3,
-      "contest-art-entry--#{orientation}" if orientation
+      "contest-art-entry--#{shape}" if shape
     ]
 
     div style: { backgroundImage: "url('#{@props.entry.preview}')" }, className: _.compact(divClasses).join(' '),
