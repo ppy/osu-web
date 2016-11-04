@@ -19,6 +19,9 @@
  */
 
 return [
+    'pinned_topics' => 'Tópicos Fixados',
+    'subforums' => 'Sub-fórums',
+    'title' => 'comunidade osu!',
 
     'covers' => [
         'create' => [
@@ -33,43 +36,48 @@ return [
         ],
     ],
 
-
-
-
-
     'forums' => [
         'topics' => [
             'empty' => 'Sem tópicos!',
         ],
     ],
 
-    'pinned_topics' => 'Tópicos Fixados',
     'post' => [
         'confirm_delete' => 'Deletar post?',
         'edited' => 'Editado pela última vez por :user em :when, editado :count vezes no total.',
         'posted_at' => 'postado :when',
+
         'actions' => [
             'delete' => 'Deletar post',
             'edit' => 'Editar post',
         ],
     ],
+
     'search' => [
         'go_to_post' => 'Ir para post',
         'post_number_input' => 'digite número do post',
         'total_posts' => ':posts_count posts no total',
     ],
-    'subforums' => 'Sub-fórums',
-    'title' => 'comunidade osu!',
+
     'topic' => [
+        'go_to_latest' => 'ver último post',
+        'latest_post' => ':when por :user',
+        'latest_reply_by' => 'última resposta por :user',
+        'new_topic' => 'Postar novo tópico',
+        'post_reply' => 'Post',
+        'reply_box_placeholder' => 'Digite aqui para responder',
+        'started_by' => 'por :user',
+
         'create' => [
+            'preview' => 'Preview',
+            'submit' => 'Post',
+
             'placeholder' => [
                 'body' => 'Digite conteúdo do post aqui',
                 'title' => 'Clique aqui para ver o título',
             ],
-            'preview' => 'Preview',
-            'submit' => 'Post',
         ],
-        'go_to_latest' => 'ver último post',
+
         'jump' => [
             'enter' => 'clique para digitar um número de post específico',
             'first' => 'ir para o primeiro post',
@@ -77,20 +85,16 @@ return [
             'next' => 'pular os próximos 10 posts',
             'previous' => 'voltar 10 posts',
         ],
-        'latest_post' => ':when por :user',
-        'latest_reply_by' => 'última resposta por :user',
-        'new_topic' => 'Postar novo tópico',
+
         'post_edit' => [
             'cancel' => 'Cancelar',
             'post' => 'Salvar',
+
             'zoom' => [
-                'start' => 'Tela Cheia',
                 'end' => 'Sair de Tela Cheia',
+                'start' => 'Tela Cheia',
             ],
         ],
-        'post_reply' => 'Post',
-        'reply_box_placeholder' => 'Digite aqui para responder',
-        'started_by' => 'por :user',
     ],
 
     'topic_watches' => [
@@ -102,6 +106,7 @@ return [
                 'total' => 'Tópicos inscritos',
                 'unread' => 'Tópicos com novas respostas',
             ],
+
             'info' => [
                 'total' => 'Vcoê se inscreveu em :total tópicos.',
                 'unread' => 'Você tem :unread respostas não lidas de tópicos inscritos.',
@@ -124,12 +129,12 @@ return [
             'reply_with_quote' => 'Citar post para resposta',
         ],
 
-    'create' => [
-        'create_poll' => 'Criação de votação',
+        'create' => [
+            'create_poll' => 'Criação de votação',
 
-        'create_poll_button' => [
-            'add' => 'Criar uma votação',
-            'remove' => 'Cancelar criação de votação',
+            'create_poll_button' => [
+                'add' => 'Criar uma votação',
+                'remove' => 'Cancelar criação de votação',
             ],
 
             'poll' => [
@@ -164,11 +169,11 @@ return [
             'title' => 'Mover para outro fórum',
         ],
 
-        'pin' => [
+        'moderate_pin' => [
             'pin-0' => 'Desprender tópico',
             'pin-1' => 'Prender tópico',
-            'pinned-0' => 'Tópico foi desprendido',
-            'pinned-1' => 'Tópico foi preso',
+            'state-0' => 'Tópico foi desprendido',
+            'state-1' => 'Tópico foi preso',
         ],
 
         'show' => [
@@ -177,29 +182,28 @@ return [
                 'do' => 'Promover este pedido',
 
                 'user' => [
-                    'current' => 'Você tem :votes restantes.',
                     'count' => '{0} sem votos|{1} :count voto|[2,Inf] :count votos',
+                    'current' => 'Você tem :votes restantes.',
                     'not_enough' => 'Você não tem mais votos sobrando',
                 ],
             ],
 
-        'poll' => [
+            'poll' => [
                 'vote' => 'Voto',
 
                 'detail' => [
-                    'total' => 'Total de votos: :count',
-                    'ended' => 'Votação encerrada :time',
                     'end_time' => 'A votação encerrará às :time',
+                    'ended' => 'Votação encerrada :time',
+                    'total' => 'Total de votos: :count',
                 ],
             ],
-    ],
+        ],
 
-    'watch' => [
-            'state-0' => 'Cancelar inscrição do tópico',
-            'state-1' => 'Inscrever no tópico',
-            'watch-0' => 'Inscrição cancelada no tópico',
-            'watch-1' => 'Inscrito no tópico',
+        'watch' => [
+                'state-0' => 'Cancelar inscrição do tópico',
+                'state-1' => 'Inscrever no tópico',
+                'watch-0' => 'Inscrição cancelada no tópico',
+                'watch-1' => 'Inscrito no tópico',
         ],
     ],
-
 ];

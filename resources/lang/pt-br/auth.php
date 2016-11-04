@@ -53,8 +53,8 @@ return [
             ],
         ],
     ],
-	
-	'contest' => [
+
+    'contest' => [
         'voting_over' => 'Você não pode mudar seu voto depois do encerramento do período desta competição ter acabado.',
     ],
 
@@ -81,11 +81,11 @@ return [
                 'locked' => 'Não é possível responder a um tópico trancado.',
                 'no_forum_access' => 'Acesso ao fórum é necessário.',
                 'no_permission' => 'Sem permissão para responder.',
-            
+
                 'user' => [
                     'require_login' => 'Faça o login para responder.',
-                    'restricted' => "Não é possível responder enquanto restrito.",
-                    'silenced' => "Não é possível rsponder enquanto silenciado",
+                    'restricted' => 'Não é possível responder enquanto restrito.',
+                    'silenced' => 'Não é possível rsponder enquanto silenciado',
                 ],
             ],
 
@@ -94,16 +94,16 @@ return [
                 'no_permission' => 'Sem permissão para criar um novo tópico.',
                 'forum_closed' => 'Este fórum está trancado e não pode ser respondido.',
             ],
-			
-			'vote' => [
+
+            'vote' => [
                 'no_forum_access' => 'Acesso ao fórum solicitado é necessário.',
                 'over' => 'A votação foi encerrada e não pode receber mais votos',
                 'voted' => 'Mudar o voto não é permitido.',
 
                 'user' => [
                     'require_login' => 'Faça o login para votar.',
-                    'restricted' => "Não é possível votar enquanto restrito.",
-                    'silenced' => "Não é possível votar enquanto silenciado.",
+                    'restricted' => 'Não é possível votar enquanto restrito.',
+                    'silenced' => 'Não é possível votar enquanto silenciado.',
                 ],
             ],
 
