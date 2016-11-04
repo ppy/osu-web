@@ -4,9 +4,6 @@ cache:
     - node_modules
     - $HOME/.yarn-cache
 
-services:
-  - mysql
-
 sudo: true
 
 language: php
