@@ -26,6 +26,7 @@ return [
     'menu' => [
         'home' => [
             '_' => 'home',
+            'index' => 'osu!',
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
