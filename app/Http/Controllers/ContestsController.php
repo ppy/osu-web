@@ -36,7 +36,7 @@ class ContestsController extends Controller
 
     public function show($id)
     {
-        $contest = Contest::with('entries')->with('entries.contest')->with('entries.user')->findOrFail($id);
+        $contest = Contest::with('entries', 'entries.contest', 'entries.user')->findOrFail($id);
 
         $user = Auth::user();
         if (!$contest->visible && (!$user || !$user->isAdmin())) {
