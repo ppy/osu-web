@@ -9,7 +9,7 @@ addons:
 
 language: php
 
-sudo: true
+sudo: false
 
 php:
   - 7.0
