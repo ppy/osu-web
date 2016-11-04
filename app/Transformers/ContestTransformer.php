@@ -45,7 +45,7 @@ class ContestTransformer extends Fractal\TransformerAbstract
         ];
 
         if ($contest->type === 'art') {
-            $response['orientation'] = $contest->entryOrientation();
+            $response['shape'] = $contest->entry_shape;
         }
 
         return $response;
