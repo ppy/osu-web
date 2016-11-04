@@ -98,7 +98,7 @@ class Contest extends Model
             return;
         }
 
-        return $this->extra_options ? $this->extra_options['shape'] : 'square';
+        return $this->extra_options['shape'] ?? 'square';
     }
 
     public function setEntryShapeAttribute($shape)
