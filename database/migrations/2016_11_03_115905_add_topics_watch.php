@@ -19,7 +19,7 @@ class AddTopicsWatch extends Migration
             $table->unsignedTinyInteger('notify_status');
             $table->index('topic_id');
             $table->index('notify_status');
-            $table->primary(array('user_id', 'topic_id'));
+            $table->primary(['user_id', 'topic_id']);
         });
     }
 
