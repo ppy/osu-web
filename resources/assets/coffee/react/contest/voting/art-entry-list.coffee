@@ -48,7 +48,7 @@ class Contest.Voting.ArtEntryList extends Contest.Voting.BaseEntryList
 
       if @state.contest.show_votes
         div {},
-          div className: 'contest-art-list__panel contest-art-list__panel--top3', partitions[0]
-          div className: 'contest-art-list__panel', partitions[1]
+          div className: 'contest-art-list contest-art-list--top3', partitions[0]
+          div className: 'contest-art-list', partitions[1]
       else
-        div className: 'contest-art-list__panel', entries
+        div className: 'contest-art-list', entries
