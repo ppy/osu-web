@@ -1360,13 +1360,13 @@ class BaseTables extends Migration
             $table->unsignedMediumInteger('user_id');
             $table->unsignedMediumInteger('topic_id');
             $table->unsignedTinyInteger('notify_status');
-            
+
             $table->index('topic_id', 'topic_id');
             $table->index('notify_stat', 'notify_status');
             $table->primary(['user_id', 'topic_id']);
         });
         $this->setRowFormat('phpbb_topics_watch', 'COMPRESSED');
-    }   
+    }
 
     /**
      * Reverse the migrations.
