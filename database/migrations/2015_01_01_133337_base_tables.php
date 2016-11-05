@@ -1365,8 +1365,8 @@ class BaseTables extends Migration
             $table->index('notify_stat', 'notify_status');
             $table->primary(['user_id', 'topic_id']);
         });
-        $this->setRowFormat('phpbb_topics_watch', 'COMPRESSED')
-    }
+        $this->setRowFormat('phpbb_topics_watch', 'COMPRESSED');
+    }   
 
     /**
      * Reverse the migrations.
