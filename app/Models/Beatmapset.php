@@ -30,6 +30,7 @@ use App\Models\Forum\Topic;
 use App\Models\Forum\Post;
 use App\Transformers\BeatmapsetTransformer;
 use Carbon\Carbon;
+use Illuminate\Database\QueryException;
 
 class Beatmapset extends Model
 {
@@ -713,16 +714,15 @@ class Beatmapset extends Model
 
     public function favorite($user)
     {
-        if (FavoriteBeatmapset::where('user_id', $user->user_id)
-            ->where('beatmapset_id', $this->beatmapset_id)->exists()) {
-            return;
-        }
-
         DB::transaction(function () use ($user) {
-            FavoriteBeatmapset::create([
-                'user_id' => $user->user_id,
-                'beatmapset_id' => $this->beatmapset_id,
-            ]);
+            try {
+                FavoriteBeatmapset::create([
+                    'user_id' => $user->user_id,
+                    'beatmapset_id' => $this->beatmapset_id,
+                ]);
+            } catch (QueryException $e) {
+                return;
+            }
 
             $this->favourite_count += 1;
             $this->save();
