@@ -17,6 +17,8 @@
  *
  */
 .btn-osu-big {
+  @top: btn-osu-big;
+
   .default-border-radius();
   border: none;
 
@@ -41,10 +43,35 @@
     background-position: calc(50% ~'-' (@spacing * 2)) 50%;
   }
 
+  &--beatmap-discussion {
+    padding: (@spacing / 2) @spacing;
+    font-size: @font-size--normal;
+    margin-left: (@spacing / 2);
+  }
+
   &--beatmapset-header {
     width: 160px;
     height: 45px;
     margin: 0 (@spacing / 2) (@spacing / 2) 0;
+  }
+
+  &--beatmapset-nominate {
+    padding: (@spacing / 2) @spacing;
+    font-size: @font-size--normal;
+    font-weight: normal;
+  }
+
+  &[disabled] {
+    &:hover,
+    &:focus {
+      background-position: 50% 50%;
+    }
+
+    &::before {
+      .full-size();
+      .default-border-radius();
+      background-color: fade(@gray-f, 50%);
+    }
   }
 
   &__content {
@@ -60,6 +87,14 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    .@{top}--beatmap-discussion & {
+      margin-right: @spacing;
+    }
+
+    .@{top}--beatmapset-nominate & {
+      margin-right: @spacing;
+    }
   }
 
   &__text-bottom {

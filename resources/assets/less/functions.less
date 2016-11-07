@@ -34,7 +34,7 @@
 }
 
 .default-box-shadow() {
-  box-shadow: 0px 1px @box-shadow-spread @box-shadow-color;
+  box-shadow+: 0 1px @box-shadow-radius @box-shadow-color;
 }
 
 .default-bar-transition(@property: width, @duration: 0.25s, @function: cubic-bezier(0.645, 0.045, 0.355, 1)) {
@@ -42,11 +42,41 @@
 }
 
 .inner-shadow-top() {
-  background-image: linear-gradient(to bottom, fade(@gray-0, 20%), transparent 3px);
+  box-shadow+: inset 0 (@box-shadow-radius - 1px) @box-shadow-radius -1px @box-shadow-color;
 }
 
 .inset-box-shadow() {
   box-shadow: inset 0 1px 3px fade(#000, 30%);
+}
+
+.link-dark() {
+  color: @gray-c;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: @gray-e;
+  }
+}
+
+.link-light() {
+  color: @link-color;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: @link-hover-color;
+  }
+}
+
+.link-plain() {
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
 }
 
 .thick-box-shadow() {

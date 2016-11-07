@@ -30,6 +30,9 @@ BeatmapDiscussions.Discussion = React.createClass
     topClasses = "#{bn} js-beatmap-discussion-jump"
     topClasses += " #{bn}--highlighted" if @props.highlighted
 
+    lineClasses = "#{bn}__line"
+    lineClasses += " #{bn}__line--resolved" if @props.discussion.resolved
+
     div
       className: topClasses
       'data-id': @props.discussion.id
@@ -55,9 +58,11 @@ BeatmapDiscussions.Discussion = React.createClass
               div className: 'beatmap-discussion-expand',
                 el Icon, name: (if @props.collapsed then 'chevron-down' else 'chevron-up')
         div
-          className: "#{bn}__replies #{'hidden' if @props.collapsed}"
-          @props.discussion.beatmap_discussion_posts.slice(1).map (reply) =>
-            @post reply, 'reply'
+          className: "#{bn}__expanded #{'hidden' if @props.collapsed}"
+          div
+            className: "#{bn}__replies"
+            @props.discussion.beatmap_discussion_posts.slice(1).map (reply) =>
+              @post reply, 'reply'
 
           if @props.currentUser.id?
             el BeatmapDiscussions.NewReply,
@@ -67,9 +72,7 @@ BeatmapDiscussions.Discussion = React.createClass
               discussion: @props.discussion
               userPermissions: @props.userPermissions
 
-        div
-          className: "#{bn}__resolved #{'hidden' if @props.collapsed || !@props.discussion.resolved}"
-          osu.trans 'beatmaps.discussions.resolved'
+        div className: lineClasses
 
 
   timestamp: ->
@@ -146,7 +149,7 @@ BeatmapDiscussions.Discussion = React.createClass
       key: post.id
       post: post
       type: type
-      read: _.includes @props.readPostIds, post.id
+      read: _.includes(@props.readPostIds, post.id) || (@props.currentUser.id == post.user_id)
       user: @props.lookupUser post.user_id
       lastEditor: @props.lookupUser post.last_editor_id
       canBeEdited: @props.currentUser.isAdmin || (@props.currentUser.id == post.user_id)

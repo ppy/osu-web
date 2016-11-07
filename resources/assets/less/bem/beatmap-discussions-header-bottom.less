@@ -17,31 +17,31 @@
  *
  */
 
-.forum-topic-header-counter {
-  .default-border-radius();
-  background-color: fade(@gray-0, 70%);
-  box-shadow: 0 0 0 2px fade(@gray-0, 50%);
+.beatmap-discussions-header-bottom {
+  .default-box-shadow();
+  .inner-shadow-top();
 
-  color: @gray-f;
+  display: flex;
+  padding: 0 (@spacing * 2);
+  background-color: @gray-5;
+  flex-direction: column;
+  margin-bottom: @page-spacing;
 
-  display: inline-flex;
-  padding: @spacing;
-
-  &__count {
-    font-size: @font-size--large;
-    font-weight: 300;
+  @media @desktop {
+    flex-direction: row;
   }
 
-  &__line {
-    .default-border-radius();
-    width: (@spacing / 4);
-    margin-left: @spacing;
-  }
+  &__content {
+    flex: 1;
 
-  &__title {
-    margin-right: (@spacing * 3);
-    font-weight: bold;
-    font-size: @font-size--small;
-    white-space: nowrap;
+    &--mapping {
+      margin: (@spacing * 2) 0;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    &--nomination {
+      margin-top: @spacing;
+    }
   }
 }

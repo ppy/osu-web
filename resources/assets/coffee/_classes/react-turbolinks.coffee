@@ -36,7 +36,12 @@ class @ReactTurbolinks
         continue if !component.loaded
 
         component.loaded = false
-        ReactDOM.unmountComponentAtNode component.target[0]
+
+        target = component.target[0]
+        dupTarget = target.cloneNode(true)
+        ReactDOM.unmountComponentAtNode target
+
+        target.parentNode.replaceChild dupTarget, target
 
 
   register: (name, element, propsFunction = ->) =>

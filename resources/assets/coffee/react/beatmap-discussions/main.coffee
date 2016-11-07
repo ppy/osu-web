@@ -18,6 +18,8 @@
 {a, div, h1, p} = React.DOM
 el = React.createElement
 
+modeSwitcher = document.getElementsByClassName('js-mode-switcher')
+
 BeatmapDiscussions.Main = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
@@ -73,42 +75,24 @@ BeatmapDiscussions.Main = React.createClass
 
   render: ->
     div null,
-      div
-        className: 'osu-layout__row'
-
-        el PlaymodeTabs,
-          currentMode: @state.currentBeatmap.mode
-          beatmaps: @state.beatmaps
-          url: => '#'
-        div
-          className: 'forum-category-header forum-category-header--topic'
-          style:
-            backgroundImage: "url('#{@state.beatmapset.covers.cover}')"
-          div
-            className: 'forum-category-header__titles'
-            h1
-              className: 'forum-category-header__title'
-              a
-                href: laroute.route('beatmapsets.show', beatmapset: @state.beatmapset.id)
-                className: 'link link--white link--no-underline'
-                @state.beatmapset.title
-
-        el BeatmapDiscussions.Overview,
-          beatmapset: @state.beatmapset
-          beatmaps: @state.beatmaps
-          currentBeatmap: @state.currentBeatmap
-          currentUser: @state.currentUser
-          currentFilter: @state.currentFilter
-          beatmapsetDiscussion: @state.beatmapsetDiscussion
-          lookupUser: @lookupUser
-
-      el BeatmapDiscussions.Nominations,
+      el BeatmapDiscussions.Header,
         beatmapset: @state.beatmapset
+        beatmaps: @state.beatmaps
+        currentBeatmap: @state.currentBeatmap
         currentUser: @state.currentUser
+        currentFilter: @state.currentFilter
+        beatmapsetDiscussion: @state.beatmapsetDiscussion
+        lookupUser: @lookupUser
+
+      el BeatmapDiscussions.ModeSwitcher,
+        mode: @state.mode
 
       div
-        className: 'osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact'
-        el BeatmapDiscussions.NewDiscussion, currentUser: @state.currentUser, currentBeatmap: @state.currentBeatmap
+        className: 'osu-layout__section osu-layout__section--extra'
+        el BeatmapDiscussions.NewDiscussion,
+          currentUser: @state.currentUser
+          currentBeatmap: @state.currentBeatmap
+          mode: @state.mode
 
         el BeatmapDiscussions.Discussions,
           beatmapset: @state.beatmapset
@@ -132,7 +116,7 @@ BeatmapDiscussions.Main = React.createClass
   setBeatmapset: (_e, {beatmapset, callback}) ->
     @setState
       beatmapset: beatmapset
-      beatmaps: BeatmapHelper.group beatmapset
+      beatmaps: BeatmapHelper.group beatmapset.beatmaps
       callback
 
   setCurrentBeatmapId: (_e, {id, callback}) ->
@@ -173,7 +157,8 @@ BeatmapDiscussions.Main = React.createClass
           $.publish 'beatmapDiscussion:setHighlight', id: discussion.id
 
         target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
-        $(window).stop().scrollTo target, 500
+        $(window).stop().scrollTo target, 500,
+          offset: modeSwitcher[0].getBoundingClientRect().height * -1
 
 
   setMode: (_e, mode, callback) ->

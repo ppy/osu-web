@@ -1,5 +1,5 @@
 ###
-# Copyright 2015 ppy Pty. Ltd.
+# Copyright 2015-2016 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -15,26 +15,27 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{button, div, span} = React.DOM
+{span} = React.DOM
 el = React.createElement
 
-bn = 'beatmap-discussion-system-post'
+@IconExpand = ({expand = true}) ->
+  elem = ({position, icon}) ->
+    span
+      key: position
+      className: "icon-stack__icon icon-stack__icon--#{position}"
+      el Icon, name: icon, modifiers: ['fw']
 
-BeatmapDiscussions.SystemPost = React.createClass
-  mixins: [React.addons.PureRenderMixin]
-
-
-  render: ->
-    message =
-      switch @props.post.message.type
-        when 'resolved'
-          osu.trans "beatmap_discussions.system.resolved.#{@props.post.message.value}",
-            user: osu.link laroute.route('users.show', user: @props.user.id), @props.user.username,
-              classNames: ["#{bn}__user"]
-
-    div
-      className: "#{bn} #{bn}--resolved"
-      div
-        className: "#{bn}__content"
-        dangerouslySetInnerHTML:
-          __html: message
+  span
+    className: 'icon-stack'
+    span className: 'icon-stack__base',
+      el Icon, name: 'angle-down', modifiers: ['fw']
+    if expand
+      [
+        elem position: 'top', icon: 'angle-up'
+        elem position: 'bottom', icon: 'angle-down'
+      ]
+    else
+      [
+        elem position: 'top', icon: 'angle-down'
+        elem position: 'bottom', icon: 'angle-up'
+      ]

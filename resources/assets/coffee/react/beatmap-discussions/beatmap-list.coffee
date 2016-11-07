@@ -42,7 +42,7 @@ BeatmapDiscussions.BeatmapList = React.createClass
       button
         className: "#{bn}__item #{bn}__item--selected #{bn}__item--large js-beatmap-list-selector"
         onClick: @toggleSelector
-        el BeatmapDiscussions.BeatmapListItem, beatmap: @props.currentBeatmap, large: true, withButton: 'down', mode: 'complete'
+        el BeatmapDiscussions.BeatmapListItem, beatmap: @props.currentBeatmap, large: true, withButton: 'down'
 
       div
         className: "#{bn}__selector"

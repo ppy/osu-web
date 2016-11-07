@@ -39,7 +39,9 @@
 @z-index--beatmapset-header: 1;
 @z-index--contest-header: 1;
 
-@box-shadow-spread: 3px;
+@box-shadow-x: 0;
+@box-shadow-y: 1px;
+@box-shadow-radius: 3px;
 @box-shadow-color: fade(@gray-0, 25%);
 
 @landing-dot-size: 17px;
@@ -63,12 +65,14 @@
 
 // here be font-sizes
 @font-size--small: 10px;
+@font-size--small-2: 11px;
 @font-size--normal: 12px;
 @font-size--normal-2: 13px;
 @font-size--title-small: 14px;
 @font-size--title-small-2: 15px;
 @font-size--title-small-3: 16px;
 @font-size--large: 20px;
+@font-size--title: 24px;
 
 @font-size--header-title: 32px;
 @font-size--header-subtitle: 16px;
@@ -155,6 +159,8 @@
 
 @mod-height-small: 18px;
 @mod-width-small: (@mod-height-small / @mod-height * @mod-width);
+
+@page-spacing: @spacing;
 
 @rank-width: 48px;
 @rank-height: 16px;

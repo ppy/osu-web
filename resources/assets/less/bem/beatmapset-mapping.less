@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,52 +16,37 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.beatmap-discussions-chart {
-  @top: beatmap-discussions-chart;
-  width: 100%;
-  height: 100%;
 
-  &__axis {
-    fill: @gray-3;
+.beatmapset-mapping {
+  .default-text-shadow();
+  display: flex;
+  color: @gray-f;
+  font-size: @font-size--small-2;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
-  &__bar {
-    stroke-width: 1;
-    shape-rendering: crispEdges;
-
-    .@{top}__point:hover & {
-      stroke-width: 2;
-    }
+  &__date {
+    font-weight: 700;
   }
 
-  &__chart-area {
-    fill: @gray-blue-darker;
+  &__mapper {
+    margin-bottom: (@spacing / 2);
   }
 
-  &__icon {
-    stroke-width: 0;
-    text-anchor: middle;
-    dominant-baseline: middle;
-  }
+  &__user {
+    font-style: italic;
 
-  &__label-area {
-    fill: @gray-2;
-  }
+    color: @gray-f;
 
-  &__point {
-    font-size: 12px;
-    stroke: @gray-f;
-
-    &--praise {
-      fill: @beatmap-discussion--color-praise;
-    }
-
-    &--problem {
-      fill: @beatmap-discussion--color-problem;
-    }
-
-    &--suggestion {
-      fill: @beatmap-discussion--color-suggestion;
+    &:hover,
+    &:focus,
+    &:active {
+      color: @gray-f;
+      text-decoration: none;
     }
   }
 }

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,52 +16,39 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.beatmap-discussions-chart {
-  @top: beatmap-discussions-chart;
-  width: 100%;
-  height: 100%;
 
-  &__axis {
-    fill: @gray-3;
-  }
+.beatmap-discussions-mode {
+  .bg() {
+    .at2x('/images/backgrounds/page-ddd.png');
+    border-bottom: 1px solid @yellow;
 
-  &__bar {
-    stroke-width: 1;
-    shape-rendering: crispEdges;
-
-    .@{top}__point:hover & {
-      stroke-width: 2;
+    &::before {
+      .full-size();
+      background-color: fade(@gray-0, 75%);
     }
   }
 
-  &__chart-area {
-    fill: @gray-blue-darker;
-  }
+  @top: beatmap-discussions-mode;
 
-  &__icon {
-    stroke-width: 0;
-    text-anchor: middle;
-    dominant-baseline: middle;
-  }
+  &__floatable {
+    .bg();
+    .own-layer();
+    width: 100%;
+    left: 0;
+    top: 0;
 
-  &__label-area {
-    fill: @gray-2;
-  }
-
-  &__point {
-    font-size: 12px;
-    stroke: @gray-f;
-
-    &--praise {
-      fill: @beatmap-discussion--color-praise;
+    .@{top}--floating & {
+      z-index: @z-index--fixed-bar;
+      position: fixed;
     }
+  }
 
-    &--problem {
-      fill: @beatmap-discussion--color-problem;
-    }
+  &__padding {
+    .bg();
+    display: none;
 
-    &--suggestion {
-      fill: @beatmap-discussion--color-suggestion;
+    .@{top}--floating & {
+      display: block;
     }
   }
 }

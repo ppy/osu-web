@@ -70,32 +70,7 @@ class BeatmapsetPage.Header extends React.Component
             href: laroute.route 'beatmapsets.index', q: @props.beatmapset.artist
             @props.beatmapset.artist
 
-          div className: 'beatmapset-header__avatar-box',
-            div
-              className: 'beatmapset-header__avatar avatar avatar--beatmapset'
-              style:
-                backgroundImage: "url(#{@props.beatmapset.user.avatarUrl})"
-
-            div className: 'beatmapset-header__user-box',
-              div className: 'beatmapset-header__user-text',
-                osu.trans 'beatmaps.beatmapset.show.details.made-by'
-                a
-                  className: 'beatmapset-header__user-text beatmapset-header__user-text--mapper'
-                  href: laroute.route 'users.show', user: @props.beatmapset.user.id
-                  @props.beatmapset.user.username
-
-              div className: 'beatmapset-header__user-text',
-                osu.trans 'beatmaps.beatmapset.show.details.submitted'
-                span
-                  className: 'beatmapset-header__user-text beatmapset-header__user-text--date'
-                  moment(@props.beatmapset.submitted_date).format dateFormat
-
-              if @props.beatmapset.ranked_date
-                div className: 'beatmapset-header__user-text',
-                  osu.trans 'beatmaps.beatmapset.show.details.ranked'
-                  span
-                    className: 'beatmapset-header__user-text beatmapset-header__user-text--date'
-                    moment(@props.beatmapset.ranked_date).format dateFormat
+          el BeatmapsetMapping, beatmapset: @props.beatmapset
 
           div className: 'beatmapset-header__buttons',
             if @props.beatmapset.video

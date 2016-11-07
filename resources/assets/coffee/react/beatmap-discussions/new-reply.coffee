@@ -35,41 +35,51 @@ BeatmapDiscussions.NewReply = React.createClass
 
   render: ->
     div
-      className: "#{bn} #{bn}--reply"
+      className: "#{bn} #{bn}--reply #{bn}--editing"
 
-      div className: "#{bn}__avatar",
-        el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
+      div
+        className: "#{bn}__content"
+        div className: "#{bn}__avatar",
+          el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
 
-      div className: "#{bn}__message-container",
-        textarea
-          className: "#{bn}__message #{bn}__message--editor"
-          type: 'text'
-          rows: 2
-          value: @state.message
-          onChange: @setMessage
-          onKeyDown: @submitIfEnter
+        div className: "#{bn}__message-container",
+          textarea
+            className: "#{bn}__message #{bn}__message--editor"
+            type: 'text'
+            rows: 2
+            value: @state.message
+            onChange: @setMessage
+            onKeyDown: @submitIfEnter
+            placeholder: osu.trans 'beatmaps.discussions.reply_placeholder'
 
+      div
+        className: "#{bn}__footer"
         div className: "#{bn}__actions",
           div className: "#{bn}__actions-group",
             if @props.discussion.timestamp? && @canUpdate()
-              label
-                className: 'osu-checkbox'
-                input
-                  className: 'osu-checkbox__input'
-                  type: 'checkbox'
-                  checked: @state.resolveDiscussion
-                  onChange: (e) => @setState resolveDiscussion: e.target.checked
+              div className: "#{bn}__action",
+                label
+                  className: 'osu-checkbox'
+                  input
+                    className: 'osu-checkbox__input'
+                    type: 'checkbox'
+                    checked: @state.resolveDiscussion
+                    onChange: (e) => @setState resolveDiscussion: e.target.checked
 
-                span className: 'osu-checkbox__tick',
-                  el Icon, name: 'check'
+                  span className: 'osu-checkbox__tick',
+                    el Icon, name: 'check'
 
-                osu.trans('beatmaps.discussions.resolved')
+                  osu.trans('beatmaps.discussions.resolved')
           div className: "#{bn}__actions-group",
-            button
-              className: 'btn-osu-lite btn-osu-lite--default'
-              disabled: !@validPost()
-              onClick: @throttledPost
-              osu.trans('common.buttons.reply')
+            div className: "#{bn}__action",
+              button
+                className: 'btn-osu-big btn-osu-big--beatmap-discussion'
+                disabled: !@validPost()
+                onClick: @throttledPost
+                div className: 'btn-osu-big__content',
+                  span className: 'btn-osu-big__left',
+                    osu.trans('common.buttons.reply')
+                  el Icon, name: 'reply'
 
 
   post: ->

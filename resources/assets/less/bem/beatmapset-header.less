@@ -22,16 +22,6 @@
 
   .default-box-shadow();
 
-  &__avatar {
-    margin-right: (@spacing / 2);
-  }
-
-  &__avatar-box {
-    display: flex;
-
-    padding-bottom: @spacing;
-  }
-
   &__box {
     display: flex;
     flex-direction: column;
@@ -48,6 +38,7 @@
   &__buttons {
     display: flex;
     flex-wrap: wrap;
+    margin-top: @spacing;
   }
 
   &__content {
@@ -112,30 +103,6 @@
     font-size: 11px;
     font-weight: 600;
     color: @yellow;
-  }
-
-  &__user-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  &__user-text {
-    font-size: 11px;
-    color: @gray-f;
-    .default-text-shadow;
-
-    &--mapper {
-      font-style: italic;
-    }
-
-    &--date {
-      font-weight: 700;
-    }
-
-    &:first-of-type {
-      padding-bottom: @spacing * 0.5;
-    }
   }
 
   &__value {
