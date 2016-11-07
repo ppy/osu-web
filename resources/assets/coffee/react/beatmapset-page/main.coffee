@@ -73,8 +73,7 @@ class BeatmapsetPage.Main extends React.Component
       playmode: @state.currentPlaymode
 
   setCurrentScoreboard: (_e, {scoreboardType = @state.currentScoreboardType, enabledMod = null, forceReload = false, resetMods = false}) =>
-    if @scoreboardXhr?
-      @scoreboardXhr.abort()
+    @scoreboardXhr?.abort()
 
     @setState
       currentScoreboardType: scoreboardType
