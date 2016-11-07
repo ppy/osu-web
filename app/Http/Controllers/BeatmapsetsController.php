@@ -202,8 +202,6 @@ class BeatmapsetsController extends Controller
 
     public function updateFavorite($id)
     {
-        priv_check('UserChangeFavoriteStatus')->ensureCan();
-
         $beatmapset = Beatmapset::findOrFail($id);
         $user = Auth::user();
 
@@ -211,6 +209,7 @@ class BeatmapsetsController extends Controller
             priv_check('UserFavorite', $user)->ensureCan();
             $beatmapset->favorite($user);
         } elseif (Request::input('action') === 'unfavorite') {
+            priv_check('UserChangeFavoriteStatus')->ensureCan();
             $beatmapset->unfavorite($user);
         }
 
