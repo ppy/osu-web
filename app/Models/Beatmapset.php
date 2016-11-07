@@ -412,7 +412,10 @@ class Beatmapset extends Model
 
         if (count($beatmap_ids) > 0) {
             $ids = implode(',', $beatmap_ids);
-            $beatmaps = self::whereIn('beatmapset_id', $beatmap_ids)->orderByRaw(DB::raw("FIELD(beatmapset_id, {$ids})"))->get();
+            $beatmaps = self::whereIn('beatmapset_id', $beatmap_ids)
+                ->with('favorites')
+                ->orderByRaw(DB::raw("FIELD(beatmapset_id, {$ids})"))
+                ->get();
         }
 
         return $beatmaps;
