@@ -153,16 +153,13 @@
 
   &__value-icon {
     padding-right: 2px;
-
     color: @gray-f;
 
-    &:hover, &:visited, &:link, &:active {
-      text-decoration: none;
-      color: @gray-f;
-    }
-
     &--favorites {
-      cursor: pointer;
+      &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+        color: @gray-f;
+      }
 
       &:hover {
         color: @pink-dark;
@@ -170,7 +167,9 @@
     }
 
     &--favorited {
-      color: @pink-darker !important;
+      &:hover, &:link {
+        color: @pink-darker;
+      }
     }
   }
 
