@@ -4,8 +4,7 @@ cache:
     - node_modules
     - $HOME/.yarn-cache
 
-addons:
-  mariadb: 10.0
+sudo: true
 
 language: php
 
@@ -19,6 +18,7 @@ env:
   - DB_USERNAME=root
 
 before_install:
+  - bash .travis.install-mysql-5.7.sh
   - nvm install 4.2
   - nvm use 4.2
   - ./bin/db_setup.sh

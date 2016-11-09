@@ -61,7 +61,7 @@ BeatmapDiscussions.Nominations = React.createClass
     mapCanBeNominated = (@props.beatmapset.status == 'pending')
     mapIsQualified = (@props.beatmapset.status == 'qualified')
 
-    return null unless mapCanBeNominated && mapIsQualified
+    return null unless mapCanBeNominated || mapIsQualified
 
     if mapIsQualified
       rankingETA = @props.beatmapset.nominations.ranking_eta

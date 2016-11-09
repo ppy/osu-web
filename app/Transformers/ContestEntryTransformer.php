@@ -45,6 +45,8 @@ class ContestEntryTransformer extends Fractal\TransformerAbstract
 
             return [
                 'actual_name' => $entry->name,
+                'user_id' => $entry->user_id,
+                'username' => ($entry->user ?? (new \App\Models\DeletedUser))->username,
                 'votes' => $voteCounts ? $voteCounts->votes : 0,
             ];
         });
