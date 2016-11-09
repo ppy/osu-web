@@ -60,7 +60,8 @@ class AuthorizationResult
             return;
         }
 
-        if ($this->rawMessage() === 'require_login') {
+        if ($this->rawMessage() === 'require_login' ||
+            ends_with($this->rawMessage(), '.require_login')) {
             $class = AuthenticationException::class;
         } else {
             $class = AuthorizationException::class;
