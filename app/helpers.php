@@ -497,9 +497,9 @@ function get_bool($string)
 {
     if (is_bool($string)) {
         return $string;
-    } elseif ($string === '1' || $string === 'on') {
+    } elseif ($string === '1' || $string === 'on' || $string === 'true') {
         return true;
-    } elseif ($string === '0') {
+    } elseif ($string === '0' || $string === 'false') {
         return false;
     }
 }
