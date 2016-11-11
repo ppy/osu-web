@@ -20,30 +20,33 @@
 
 return [
     'login' => [
-        '_' => 'Login',
-        'username' => 'Username',
+        '_' => 'Entrar',
+        'username' => 'Nome de usuário',
         'password' => 'Senha',
-        'button' => 'Login',
-        'remember' => 'Lembrar este computador',
+        'button' => 'Entrar',
+        'remember' => 'Lembrar deste computador',
         'title' => 'Faça login para continuar',
         'failed' => 'Login incorreto',
         'register' => 'Não tem uma conta de osu!? Crie uma',
         'forgot' => 'Esqueceu sua senha?',
         'beta' => [
             'main' => 'Acesso Beta atualmente restrito para usuários privilegiados.',
-            'small' => '(supporters vão ser incluidos logo)',
+            'small' => '(supporters serão incluidos logo)',
         ],
 
         'here' => 'aqui', // this is substituted in when generating a link above. change it to suit the language.
     ],
-    'anonymous' => [
-        'login_link' => 'clique para fazer login',
-        'username' => 'Convidado',
-        'error' => 'Você precisa estar logado para fazer isso.',
+    'signup' => [
+        '_' => 'Registrar',
     ],
-    'logout_confirm' => 'Tem certeza de que quer deslogar? :(',
+    'anonymous' => [
+        'login_link' => 'clique para fazer entrar',
+        'username' => 'Convidado',
+        'error' => 'Você precisa fazer o login antes de tentar isso.',
+    ],
+    'logout_confirm' => 'Tem certeza de que quer sair? :(',
     'show' => [
-        '404' => 'Jogador não encontrado! ;_;',
+        '404' => 'Usuário não encontrado! ;_;',
         'current_location' => 'Atualmente em :location.',
         'edit' => [
             'cover' => [
@@ -54,7 +57,7 @@ return [
                     'button' => 'Enviar imagem',
                     'dropzone' => 'Arraste aqui para enviar',
                     'dropzone_info' => 'Você também pode arrastar sua imagem aqui para enviar',
-                    'restriction_info' => 'Envio disponível apenas para <a href="'.osu_url('support-the-game').'" target="_blank">osu!supporters</a>',
+                    'restriction_info' => "Envio de imagem disponível apenas para <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a>",
                     'size_info' => 'Tamanho da capa deve ser 2000x500',
                     'too_large' => 'O arquivo enviado é muito grande.',
                     'unsupported_format' => 'Formato não suportado.',
@@ -64,7 +67,7 @@ return [
         'extra' => [
             'achievements' => [
                 'title' => 'Conquistas',
-                'achieved-on' => 'Desbloqueado em :date',
+                'achieved-on' => 'Conquistado em :date',
             ],
             'beatmaps' => [
                 'title' => 'Beatmaps',
@@ -116,7 +119,7 @@ return [
                 ],
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
-                'weighted_pp' => 'pesado: :pp (:percentage)',
+                'weighted_pp' => 'conseguiu: :pp (:percentage)',
             ],
             'beatmaps' => [
                 'title' => 'Beatmaps',
@@ -143,14 +146,14 @@ return [
         'page' => [
             'description' => '<strong>eu!</strong> é uma área pessoal customizável na sua página de perfil.',
             'edit_big' => 'Edite-me!',
-            'placeholder' => 'Digite conteúdo da página aqui',
-            'restriction_info' => 'Você precisa ser um <a href="'.osu_url('support-the-game').'" target="_blank">osu!supporter</a> para desbloquear esta função.',
+            'placeholder' => 'Digite o conteúdo da página aqui',
+            'restriction_info' => "Você precisa ser um <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> para desbloquear essa função.",
         ],
         'plays_with' => [
             '_' => 'Joga com',
             'keyboard' => 'Teclado',
             'mouse' => 'Mouse',
-            'tablet' => 'Tablet',
+            'tablet' => 'Mesa digitalizadora',
             'touch' => 'Touch Screen',
         ],
         'missingtext' => 'Você deve ter feito um erro de digitação! (ou o jogador pode ter sido banido)',
@@ -163,7 +166,7 @@ return [
             'hit_accuracy' => 'Precisão de Acerto',
             'level' => 'Level :level',
             'maximum_combo' => 'Combo Máximo',
-            'play_count' => 'Quantidade de Jogos',
+            'play_count' => 'Vezes Jogadas',
             'ranked_score' => 'Pontuação Rankeada',
             'replays_watched_by_others' => 'Replays Assistidos por Outros',
             'score_ranks' => 'Ranks de Pontuação',
@@ -173,4 +176,7 @@ return [
         'title' => 'perfil de :username',
     ],
 
+    'verify' => [
+        'title' => 'Verificação de conta',
+    ],
 ];
