@@ -18,19 +18,19 @@
  */
 .page-mode-link {
   @_top: page-mode-link;
-  color: @gray-c;
+  .link-plain();
+  .link-dark();
   font-weight: 300;
   padding: (@spacing / 2) 0 @spacing;
-
-  &:focus,
-  &:hover {
-    text-decoration: none;
-    color: @gray-f;
-  }
 
   &--is-active {
     font-weight: 600;
     color: @gray-f;
+  }
+
+  &--is-disabled {
+    .link-dark-disabled();
+    cursor: default;
   }
 
   &__stripe {
@@ -46,6 +46,10 @@
     .@{_top}--is-active &,
     .@{_top}:hover & {
       transform: translateY(0) scaleY(1);
+    }
+
+    .@{_top}--is-disabled & {
+      opacity: 0;
     }
   }
 }

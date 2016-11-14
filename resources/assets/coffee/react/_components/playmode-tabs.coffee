@@ -46,5 +46,6 @@ class @PlaymodeTabs extends React.Component
     mode = e.target.dataset.mode
 
     return if @props.currentMode == mode
+    return if e.target.dataset.disabled == 'true'
 
     $.publish 'beatmapset:mode:set', mode: mode
