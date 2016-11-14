@@ -127,7 +127,9 @@ BeatmapDiscussions.Post = React.createClass
             className: "#{bn}__info #{bn}__info--edited"
             dangerouslySetInnerHTML:
               __html: osu.trans 'beatmaps.discussions.edited',
-                editor: laroute.link_to_route('users.show', @props.lastEditor.username, user: @props.lastEditor.id)
+                editor: osu.link laroute.route('users.show', user: @props.lastEditor.id),
+                  @props.lastEditor.username
+                  classNames: ["#{bn}__info-user"]
                 update_time: osu.timeago @props.post.updated_at
 
       if @props.canBeEdited
