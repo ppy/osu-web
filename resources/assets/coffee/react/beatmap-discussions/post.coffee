@@ -41,7 +41,9 @@ BeatmapDiscussions.Post = React.createClass
 
   render: ->
     topClasses = "#{bn} #{bn}--#{@props.type}"
-    topClasses += " #{bn}--editing" if @state.editing
+    if @state.editing
+      topClasses += " #{bn}--editing-"
+      topClasses += if @props.type == 'reply' then 'dark' else 'light'
 
     div
       className: topClasses

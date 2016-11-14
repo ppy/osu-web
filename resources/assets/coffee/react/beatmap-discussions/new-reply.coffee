@@ -35,7 +35,7 @@ BeatmapDiscussions.NewReply = React.createClass
 
   render: ->
     div
-      className: "#{bn} #{bn}--reply #{bn}--editing"
+      className: "#{bn} #{bn}--reply #{bn}--editing-dark"
 
       div
         className: "#{bn}__content"
