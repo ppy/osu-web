@@ -20,6 +20,7 @@
   @_top: page-mode-link;
   color: @gray-c;
   font-weight: 300;
+  padding: (@spacing / 2) 0 @spacing;
 
   &:focus,
   &:hover {
@@ -36,8 +37,7 @@
     position: absolute;
     width: 100%;
     display: block;
-    top: 100%;
-    margin-top: (@spacing / 2);
+    bottom: 0;
     height: (@spacing / 2);
     transform: translateY(@spacing / 2) scaleY(0);
     transition: transform 120ms ease-in-out;
