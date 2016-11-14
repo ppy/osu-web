@@ -24,12 +24,14 @@ class @BeatmapDiscussionsChart
       totalHeight: 150
       xAxisHeight: 2
       barTop: 50
+      targetAreaWidth: 10
 
     @dimensions.labelHeight = @dimensions.totalHeight - @dimensions.chartHeight
     @dimensions.labelTop = @dimensions.totalHeight - @dimensions.labelHeight
     @dimensions.iconTop = @dimensions.labelTop + (@dimensions.labelHeight / 2)
     @dimensions.barHeight = @dimensions.chartHeight - @dimensions.barTop
     @dimensions.xAxisTop = @dimensions.chartHeight - @dimensions.xAxisHeight
+    @dimensions.targetAreaHeight = @dimensions.barHeight + @dimensions.labelHeight
 
     @margins =
       top: 0
@@ -100,6 +102,14 @@ class @BeatmapDiscussionsChart
       .attr 'x2', 0
       .attr 'y1', @dimensions.barTop
       .attr 'y2', @dimensions.barTop + @dimensions.barHeight
+
+    points
+      .append 'rect'
+      .classed "#{bn}__target-area", true
+      .attr 'x', -@dimensions.targetAreaWidth / 2
+      .attr 'width', @dimensions.targetAreaWidth
+      .attr 'y', @dimensions.barTop
+      .attr 'height', @dimensions.targetAreaHeight
 
     points
       .append 'text'
