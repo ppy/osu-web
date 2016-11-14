@@ -75,7 +75,14 @@ BeatmapDiscussions.NewDiscussion = React.createClass
 
           div
             className: "#{bn}__footer-content #{bn}__footer-content--right"
-            ['praise', 'suggestion', 'problem'].map @messageTypeSelection
+            if @props.mode == 'timeline'
+              ['praise', 'suggestion', 'problem'].map @submitButton
+            else
+              button
+                className: 'btn-osu-big btn-osu-big--beatmap-discussion'
+                disabled: !@validPost()
+                onClick: @post
+                osu.trans('common.buttons.post')
 
 
   setTimestamp: (e) ->
@@ -123,7 +130,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
     .always LoadingOverlay.hide
 
 
-  messageTypeSelection: (type) ->
+  submitButton: (type) ->
     button
       key: type
       className: 'btn-osu-big btn-osu-big--beatmap-discussion'
