@@ -19,33 +19,32 @@
 .btn-osu-big {
   @top: btn-osu-big;
 
+  .reset-input();
+  .link-plain();
   .default-border-radius();
   border: none;
 
   display: inline-block;
 
-  padding: 0 @spacing;
-
   background-color: @blue-darker;
   background-image: url('/images/backgrounds/buttonblue@2x.png');
   background-size: cover;
   background-position: 50% 50%;
-  outline: none;
-
-  color: @gray-f;
-  font-weight: 600;
   transition: background-position 120ms;
 
+  padding: (@spacing / 2) @spacing;
+  color: @gray-f;
+  font-size: @font-size--normal;
+  font-weight: 600;
+
   &:hover,
-  &:focus {
+  &:focus,
+  &:active {
     color: @gray-f;
-    text-decoration: none;
     background-position: calc(50% ~'-' (@spacing * 2)) 50%;
   }
 
   &--beatmap-discussion {
-    padding: (@spacing / 2) @spacing;
-    font-size: @font-size--normal;
     margin-left: (@spacing / 2);
   }
 
@@ -55,21 +54,16 @@
     margin: 0 (@spacing / 2) (@spacing / 2) 0;
   }
 
-  &--beatmapset-nominate {
-    padding: (@spacing / 2) @spacing;
-    font-size: @font-size--normal;
-    font-weight: normal;
-  }
-
   &[disabled] {
     &:hover,
-    &:focus {
+    &:focus,
+    &:active {
       background-position: 50% 50%;
     }
 
     &::before {
       .full-size();
-      .default-border-radius();
+      border-radius: inherit;
       background-color: fade(@gray-f, 50%);
     }
   }
@@ -83,25 +77,17 @@
     align-items: center;
   }
 
+  &__icon {
+    margin-left: @spacing;
+  }
+
   &__left {
     display: flex;
     flex-direction: column;
     justify-content: center;
-
-    .@{top}--beatmap-discussion & {
-      margin-right: @spacing;
-    }
-
-    .@{top}--beatmapset-nominate & {
-      margin-right: @spacing;
-    }
   }
 
   &__text-bottom {
-    font-size: 10px;
-  }
-
-  &__text-top {
-    font-size: 14px;
+    font-size: @font-size--small;
   }
 }

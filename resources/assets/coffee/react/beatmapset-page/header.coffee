@@ -26,8 +26,7 @@ class BeatmapsetPage.Header extends React.Component
       el PlaymodeTabs,
         beatmaps: @props.beatmaps
         currentMode: @props.currentBeatmap.mode
-        url: (mode) =>
-          BeatmapsetPageHash.generate mode: mode
+        hrefFunc: @tabHrefFunc
 
       div
         className: 'beatmapset-header__content'
@@ -108,13 +107,18 @@ class BeatmapsetPage.Header extends React.Component
 
   downloadButton: ({key, href, icon = 'download', topTextKey = '_', bottomTextKey}) =>
     el BigButton,
-      modifiers: ['beatmapset-header']
       key: key
-      href: href
-      icon: icon
+      modifiers: ['beatmapset-header']
       text:
         top: osu.trans "beatmaps.beatmapset.show.details.download.#{topTextKey}"
         bottom: if bottomTextKey? then osu.trans "beatmaps.beatmapset.show.details.download.#{bottomTextKey}"
+      icon: icon
+      props:
+        href: href
+
+
+  tabHrefFunc: (mode) ->
+    BeatmapsetPageHash.generate mode: mode
 
 
   togglePreview: (e) =>

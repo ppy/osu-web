@@ -81,7 +81,6 @@ BeatmapDiscussions.Header = React.createClass
       el PlaymodeTabs,
         currentMode: @props.currentBeatmap.mode
         beatmaps: @props.beatmaps
-        url: => '#'
 
       div
         className: "#{bn}__content"

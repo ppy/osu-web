@@ -112,19 +112,14 @@ BeatmapDiscussions.Nominations = React.createClass
         div null,
           if userCanPerformNominations
             if mapIsQualified
-              button
-                className: 'btn-osu-big btn-osu-big--beatmapset-nominate'
-                onClick: @disqualify
-                div className: 'btn-osu-big__content',
-                  span className: 'btn-osu-big__left',
-                    osu.trans 'beatmaps.nominations.disqualify'
-                  el Icon, name: 'thumbs-down'
+              el BigButton,
+                text: osu.trans 'beatmaps.nominations.disqualify'
+                icon: 'thumbs-down'
+                props:
+                  onClick: @disqualify
             else if mapCanBeNominated
-              button
-                className: 'btn-osu-big btn-osu-big--beatmapset-nominate'
-                disabled: nominations.nominated
-                onClick: @nominate
-                div className: 'btn-osu-big__content',
-                  span className: 'btn-osu-big__left',
-                    osu.trans 'beatmaps.nominations.nominate'
-                  el Icon, name: 'thumbs-up'
+              el BigButton,
+                text: osu.trans 'beatmaps.nominations.nominate'
+                icon: 'thumbs-up'
+                props:
+                  onClick: @nominate

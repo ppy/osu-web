@@ -34,7 +34,7 @@ class @PlaymodeTabs extends React.Component
           a
             className: linkClass
             onClick: @switchMode
-            href: @props.url mode
+            href: @props.hrefFunc?(mode) ? '#'
             'data-mode': mode
             'data-disabled': disabled
             osu.trans "beatmaps.mode.#{mode}"

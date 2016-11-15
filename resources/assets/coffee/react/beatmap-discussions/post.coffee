@@ -161,13 +161,11 @@ BeatmapDiscussions.Post = React.createClass
 
         div className: "#{bn}__actions-group",
           div className: "#{bn}__action",
-            button
-              className: 'btn-osu-lite btn-osu-lite--default'
-              onClick: @editEnd
-              osu.trans 'common.buttons.cancel'
+            el BigButton,
+              text: osu.trans 'common.buttons.cancel'
+              props: onClick: @editEnd
 
           div className: "#{bn}__action",
-            button
-              className: 'btn-osu-lite btn-osu-lite--default'
-              onClick: @throttledUpdatePost
-              osu.trans 'common.buttons.save'
+            el BigButton,
+              text: osu.trans 'common.buttons.save'
+              props: onClick: @throttledUpdatePost

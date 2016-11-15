@@ -72,14 +72,12 @@ BeatmapDiscussions.NewReply = React.createClass
                   osu.trans('beatmaps.discussions.resolved')
           div className: "#{bn}__actions-group",
             div className: "#{bn}__action",
-              button
-                className: 'btn-osu-big btn-osu-big--beatmap-discussion'
-                disabled: !@validPost()
-                onClick: @throttledPost
-                div className: 'btn-osu-big__content',
-                  span className: 'btn-osu-big__left',
-                    osu.trans('common.buttons.reply')
-                  el Icon, name: 'reply'
+              el BigButton,
+                text: osu.trans('common.buttons.reply')
+                icon: 'reply'
+                props:
+                  disabled: !@validPost()
+                  onClick: @throttledPost
 
 
   post: ->

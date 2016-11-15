@@ -78,11 +78,12 @@ BeatmapDiscussions.NewDiscussion = React.createClass
             if @props.mode == 'timeline'
               ['praise', 'suggestion', 'problem'].map @submitButton
             else
-              button
-                className: 'btn-osu-big btn-osu-big--beatmap-discussion'
-                disabled: !@validPost()
-                onClick: @post
-                osu.trans('common.buttons.post')
+              el BigButton,
+                modifiers: ['beatmap-discussion']
+                text: osu.trans('common.buttons.post')
+                props:
+                  disabled: !@validPost()
+                  onClick: @post
 
 
   setTimestamp: (e) ->
@@ -131,16 +132,15 @@ BeatmapDiscussions.NewDiscussion = React.createClass
 
 
   submitButton: (type) ->
-    button
+    el BigButton,
       key: type
-      className: 'btn-osu-big btn-osu-big--beatmap-discussion'
-      disabled: !@validPost()
-      'data-type': type
-      onClick: @post
-      div className: 'btn-osu-big__content',
-        span className: 'btn-osu-big__left',
-          osu.trans("beatmaps.discussions.message_type.#{type}")
-        el Icon, name: BeatmapDiscussionHelper.messageType.icon[type]
+      modifiers: ['beatmap-discussion']
+      icon: BeatmapDiscussionHelper.messageType.icon[type]
+      text: osu.trans("beatmaps.discussions.message_type.#{type}")
+      props:
+        disabled: !@validPost()
+        'data-type': type
+        onClick: @post
 
 
   validPost: ->
