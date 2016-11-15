@@ -55,22 +55,26 @@ BeatmapDiscussions.Discussion = React.createClass
             button
               className: "#{bn}__action #{bn}__action--with-line"
               onClick: => $.publish 'beatmapDiscussion:collapse', id: @props.discussion.id
-              div className: 'beatmap-discussion-expand',
-                el Icon, name: (if @props.collapsed then 'chevron-down' else 'chevron-up')
-        div
-          className: "#{bn}__expanded #{'hidden' if @props.collapsed}"
+              div
+                className: "beatmap-discussion-expand #{'beatmap-discussion-expand--expanded' if !@props.collapsed}"
+                el Icon, name: 'chevron-down'
+        el ReactCollapse,
+          isOpened: !@props.collapsed
+          keepCollapsedContent: true
           div
-            className: "#{bn}__replies"
-            @props.discussion.beatmap_discussion_posts.slice(1).map (reply) =>
-              @post reply, 'reply'
+            className: "#{bn}__expanded"
+            div
+              className: "#{bn}__replies"
+              @props.discussion.beatmap_discussion_posts.slice(1).map (reply) =>
+                @post reply, 'reply'
 
-          if @props.currentUser.id?
-            el BeatmapDiscussions.NewReply,
-              currentUser: @props.currentUser
-              beatmapset: @props.beatmapset
-              currentBeatmap: @props.currentBeatmap
-              discussion: @props.discussion
-              userPermissions: @props.userPermissions
+            if @props.currentUser.id?
+              el BeatmapDiscussions.NewReply,
+                currentUser: @props.currentUser
+                beatmapset: @props.beatmapset
+                currentBeatmap: @props.currentBeatmap
+                discussion: @props.discussion
+                userPermissions: @props.userPermissions
 
         div className: lineClasses
 

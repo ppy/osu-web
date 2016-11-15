@@ -18,6 +18,7 @@
  */
 .beatmap-discussion {
   @_top: beatmap-discussion;
+  .own-layer();
   display: flex;
 
   &__actions {
@@ -45,12 +46,11 @@
   }
 
   &__discussion {
+    .default-box-shadow();
+
     flex: 1;
     min-width: 0;
-
-    .default-box-shadow();
     margin: (@spacing / 2) 0;
-
     display: flex;
     flex-direction: column;
 

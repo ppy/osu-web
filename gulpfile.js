@@ -104,6 +104,11 @@ elixir(function(mix) {
     path.join(node_root, 'moment/moment.js'),
     path.join(node_root, 'slick-carousel/slick/slick.js'),
     path.join(node_root, 'js-cookie/src/js.cookie.js'),
+
+    path.join(node_root, 'react-height/build/react-height' + min + '.js'),
+    path.join(node_root, 'react-motion/build/react-motion.js'),
+    path.join(node_root, 'react-collapse/build/react-collapse' + min + '.js'),
+
     'ga.js',
     'messages.js',
     'laroute.js',
