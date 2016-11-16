@@ -16,13 +16,12 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 ###
-propsFunction = ->
-  data = osu.parseJson('json-contest')
+propsFunction = (target) ->
+  data = JSON.parse(target.innerHTML)
   return {
     contest: data.contest
     selected: data.userVotes
     options:
-      showDL: data.contest['type'] == 'beatmap'
       showPreview: data.contest['type'] == 'music'
   }
 
