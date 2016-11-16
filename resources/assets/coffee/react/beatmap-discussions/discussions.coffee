@@ -90,7 +90,7 @@ BeatmapDiscussions.Discussions = React.createClass
       @hasDiscussion = 'visible'
       hidden = false
 
-    className += ' hidden' if hidden
+    className += ' u-hide-by-height' if hidden
 
     div
       key: discussion.id

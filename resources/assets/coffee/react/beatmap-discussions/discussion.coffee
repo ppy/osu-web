@@ -21,10 +21,7 @@ el = React.createElement
 bn = 'beatmap-discussion'
 
 BeatmapDiscussions.Discussion = React.createClass
-  # Broken in chrome.
-  # Animation is missing when collapsing for the first time.
-  # Or it collapses and reexpands itself when highlighted for the first time.
-  # mixins: [React.addons.PureRenderMixin]
+  mixins: [React.addons.PureRenderMixin]
 
 
   render: ->
