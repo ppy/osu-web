@@ -99,7 +99,6 @@ BeatmapDiscussions.NewDiscussion = React.createClass
     return unless @validPost()
 
     @postXhr?.abort()
-
     LoadingOverlay.show()
 
     data =
@@ -120,7 +119,6 @@ BeatmapDiscussions.NewDiscussion = React.createClass
     .done (data) =>
       @setState
         message: ''
-        message_type: null
         timestamp: null
 
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_id
