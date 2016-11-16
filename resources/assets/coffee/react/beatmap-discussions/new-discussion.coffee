@@ -34,6 +34,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
 
 
   componentWillUnmount: ->
+    @postXhr?.abort()
     @throttledPost.cancel()
 
 
@@ -97,6 +98,8 @@ BeatmapDiscussions.NewDiscussion = React.createClass
   post: (e) ->
     return unless @validPost()
 
+    @postXhr?.abort()
+
     LoadingOverlay.show()
 
     data =
@@ -110,7 +113,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
         timestamp: @state.timestamp
         beatmap_id: @props.currentBeatmap.id
 
-    $.ajax laroute.route('beatmap-discussion-posts.store'),
+    @postXhr = $.ajax laroute.route('beatmap-discussion-posts.store'),
       method: 'POST'
       data: data
 
