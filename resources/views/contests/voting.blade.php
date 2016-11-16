@@ -19,18 +19,19 @@
 
 @section('contest-content')
     <div class="contest__description">{!! Markdown::convertToHtml($contest->description_voting) !!}</div>
-
-    @if ($contest->voting_ends_at !== null && $contest->voting_ends_at->isPast())
-        <div class='contest__voting-notice'>{{trans('contest.voting.over')}}</div>
-    @endif
-
-    @yield('contest-entries')
+    <div class="contest">
+        @if ($contest->voting_ends_at !== null && $contest->voting_ends_at->isPast())
+            <div class='contest__voting-notice'>{{trans('contest.voting.over')}}</div>
+        @endif
+        @if ($contest->type == 'art')
+            <div class="js-react--contestArtList">{!! $contest->defaultJson(Auth::user()) !!}</div>
+        @else
+            <div class="js-react--contestList">{!! $contest->defaultJson(Auth::user()) !!}</div>
+        @endif
+    </div>
 @endsection
 
 @section('script')
   @parent
-  <script id="json-contest" type="application/json">
-    {!! $contest->defaultJson(Auth::user()) !!}
-  </script>
   <script src="{{ elixir("js/react/contest-voting.js") }}" data-turbolinks-track></script>
 @stop
