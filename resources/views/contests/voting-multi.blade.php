@@ -27,8 +27,7 @@
             <div class='panel contest__multi-group'>
                 <a href="#{{$c->id}}" class='contest__multi-heading' data-toggle='collapse' data-parent='#contests-accordian' aria-expanded='false'>
                     <span>{!! $c->name !!}</span>
-                    <i class="fa fa-fw fa-chevron-up"></i>
-                    <i class="fa fa-fw fa-chevron-down"></i>
+                    <i class="contest__section-toggle fa fa-fw fa-chevron-down"></i>
                 </a>
                 <div class='contest__multi-panel collapse' id="{{$c->id}}">
                     @if ($c->type == 'art')

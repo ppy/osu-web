@@ -18,6 +18,7 @@
 */
 
 .contest {
+  @_top: contest;
   background-color: #1A2223;
   color: white;
   padding-left: @spacing * 2;
@@ -64,7 +65,7 @@
     display: flex;
     justify-content: space-between;
     padding: @spacing;
-    background: #161a1b; /*#293336;*/
+    background: #161a1b;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 
@@ -74,21 +75,19 @@
       text-decoration: none;
     }
 
+    & .@{_top}__section-toggle {
+      transition: all 300ms;
+    }
+
     &[aria-expanded='true'] {
-      i.fa-chevron-down {
-        display: none;
-      }
-      i.fa-chevron-up {
-        display: block;
+      .@{_top}__section-toggle {
+        transform: rotateZ(180deg);
       }
     }
 
     &[aria-expanded='false'] {
-      i.fa-chevron-down {
-        display: block;
-      }
-      i.fa-chevron-up {
-        display: none;
+      .@{_top}__section-toggle {
+        transform: rotateZ(0deg);
       }
     }
   }
