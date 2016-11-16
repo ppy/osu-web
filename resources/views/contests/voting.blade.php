@@ -24,10 +24,13 @@
             <div class='contest__voting-notice'>{{trans('contest.voting.over')}}</div>
         @endif
         @if ($contest->type == 'art')
-            <div class="js-react--contestArtList">{!! $contest->defaultJson(Auth::user()) !!}</div>
+            <div class="js-react--contestArtList" data-src="contest-{{$contest->id}}"></div>
         @else
-            <div class="js-react--contestList">{!! $contest->defaultJson(Auth::user()) !!}</div>
+            <div class="js-react--contestList" data-src="contest-{{$contest->id}}"></div>
         @endif
+        <script id="contest-{{$contest->id}}" type="application/json">
+            {!! $contest->defaultJson(Auth::user()) !!}
+        </script>
     </div>
 @endsection
 

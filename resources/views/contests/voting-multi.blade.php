@@ -32,10 +32,13 @@
                 </a>
                 <div class='contest__multi-panel collapse' id="{{$c->id}}">
                     @if ($c->type == 'art')
-                        <div class="js-react--contestArtList">{!! $c->defaultJson(Auth::user()) !!}</div>
+                        <div class="js-react--contestArtList" data-src="contest-{{$contest->id}}"></div>
                     @else
-                        <div class="js-react--contestList">{!! $c->defaultJson(Auth::user()) !!}</div>
+                        <div class="js-react--contestList" data-src="contest-{{$contest->id}}"></div>
                     @endif
+                    <script id="contest-{{$contest->id}}" type="application/json">
+                        {!! $c->defaultJson(Auth::user()) !!}
+                    </script>
                     @if ($c->type == 'beatmap' && $c->extra_options['beatmapset_dl'])
                         <div class='contest__buttons'>
                             <a class="btn-osu-big btn-osu-big--contest-download" href="{{$c->extra_options['beatmapset_dl']}}">

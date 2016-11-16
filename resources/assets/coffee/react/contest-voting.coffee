@@ -17,7 +17,9 @@
 *
 ###
 propsFunction = (target) ->
-  data = JSON.parse(target.innerHTML)
+  srcNode = document.getElementById($(target).attr('data-src'))
+  data = JSON.parse(srcNode.innerHTML)
+
   return {
     contest: data.contest
     selected: data.userVotes
