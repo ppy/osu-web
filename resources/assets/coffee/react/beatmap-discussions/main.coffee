@@ -120,6 +120,8 @@ BeatmapDiscussions.Main = React.createClass
       callback
 
   setCurrentBeatmapId: (_e, {id, callback}) ->
+    return callback?() if !id?
+
     osu.setHash "#:#{id}"
 
     return callback?() if id == @state.currentBeatmap.id
@@ -156,9 +158,9 @@ BeatmapDiscussions.Main = React.createClass
         callback: =>
           $.publish 'beatmapDiscussion:setHighlight', id: discussion.id
 
-        target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
-        $(window).stop().scrollTo target, 500,
-          offset: modeSwitcher[0].getBoundingClientRect().height * -1
+          target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
+          $(window).stop().scrollTo target, 500,
+            offset: modeSwitcher[0].getBoundingClientRect().height * -1
 
 
   setMode: (_e, mode, callback) ->
