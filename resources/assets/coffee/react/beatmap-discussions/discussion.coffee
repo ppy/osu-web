@@ -21,7 +21,10 @@ el = React.createElement
 bn = 'beatmap-discussion'
 
 BeatmapDiscussions.Discussion = React.createClass
-  mixins: [React.addons.PureRenderMixin]
+  # Broken in chrome.
+  # Animation is missing when collapsing for the first time.
+  # Or it collapses and reexpands itself when highlighted for the first time.
+  # mixins: [React.addons.PureRenderMixin]
 
 
   render: ->
@@ -35,7 +38,6 @@ BeatmapDiscussions.Discussion = React.createClass
 
     div
       className: topClasses
-      'data-id': @props.discussion.id
       onClick: @setHighlight
 
       div className: "#{bn}__timestamp hidden-xs",
@@ -54,29 +56,89 @@ BeatmapDiscussions.Discussion = React.createClass
 
             button
               className: "#{bn}__action #{bn}__action--with-line"
-              onClick: => $.publish 'beatmapDiscussion:collapse', id: @props.discussion.id
+              onClick: @toggleExpand
               div
                 className: "beatmap-discussion-expand #{'beatmap-discussion-expand--expanded' if !@props.collapsed}"
                 el Icon, name: 'chevron-down'
         el ReactCollapse,
           isOpened: !@props.collapsed
           keepCollapsedContent: true
+          className: "#{bn}__expanded"
           div
-            className: "#{bn}__expanded"
-            div
-              className: "#{bn}__replies"
-              @props.discussion.beatmap_discussion_posts.slice(1).map (reply) =>
-                @post reply, 'reply'
+            className: "#{bn}__replies"
+            @props.discussion.beatmap_discussion_posts.slice(1).map (reply) =>
+              @post reply, 'reply'
 
-            if @props.currentUser.id?
-              el BeatmapDiscussions.NewReply,
-                currentUser: @props.currentUser
-                beatmapset: @props.beatmapset
-                currentBeatmap: @props.currentBeatmap
-                discussion: @props.discussion
-                userPermissions: @props.userPermissions
+          if @props.currentUser.id?
+            el BeatmapDiscussions.NewReply,
+              currentUser: @props.currentUser
+              beatmapset: @props.beatmapset
+              currentBeatmap: @props.currentBeatmap
+              discussion: @props.discussion
+              userPermissions: @props.userPermissions
 
         div className: lineClasses
+
+
+  displayVote: (type) ->
+    vbn = 'beatmap-discussion-vote'
+
+    [baseScore, icon] = switch type
+      when 'up' then [1, 'thumbs-up']
+      when 'down' then [-1, 'thumbs-down']
+
+    return if !baseScore?
+
+    currentVote = @props.discussion.current_user_attributes?.vote_score
+
+    score = if currentVote == baseScore then 0 else baseScore
+
+    topClasses = "#{vbn} #{vbn}--#{type}"
+    topClasses += " #{vbn}--#{'inactive' if score != 0}"
+
+    button
+      className: topClasses
+      'data-score': score
+      onClick: @doVote
+      el Icon, name: icon
+      span className: "#{vbn}__count",
+        @props.discussion.votes[type]
+
+
+  doVote: (e) ->
+    LoadingOverlay.show()
+
+    $.ajax laroute.route('beatmap-discussions.vote', beatmap_discussion: @props.discussion.id),
+      method: 'PUT',
+      data:
+        beatmap_discussion_vote:
+          score: e.currentTarget.dataset.score
+
+    .done (data) =>
+      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data
+
+    .fail osu.ajaxError
+
+    .always LoadingOverlay.hide
+
+
+  post: (post, type) ->
+    elementName = if post.system then 'SystemPost' else 'Post'
+
+    el BeatmapDiscussions[elementName],
+      key: post.id
+      post: post
+      type: type
+      read: _.includes(@props.readPostIds, post.id) || (@props.currentUser.id == post.user_id)
+      user: @props.lookupUser post.user_id
+      lastEditor: @props.lookupUser post.last_editor_id
+      canBeEdited: @props.currentUser.isAdmin || (@props.currentUser.id == post.user_id)
+
+
+  setHighlight: ->
+    return if @props.highlighted
+
+    $.publish 'beatmapDiscussion:setHighlight', id: @props.discussion.id
 
 
   timestamp: ->
@@ -99,61 +161,5 @@ BeatmapDiscussions.Discussion = React.createClass
           BeatmapDiscussionHelper.formatTimestamp @props.discussion.timestamp
 
 
-  doVote: (score) ->
-    LoadingOverlay.show()
-
-    $.ajax laroute.route('beatmap-discussions.vote', beatmap_discussion: @props.discussion.id),
-      method: 'PUT',
-      data:
-        beatmap_discussion_vote:
-          score: score
-
-    .done (data) =>
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data
-
-    .fail osu.ajaxError
-
-    .always LoadingOverlay.hide
-
-
-  displayVote: (type) ->
-    vbn = 'beatmap-discussion-vote'
-
-    [baseScore, icon] = switch type
-      when 'up' then [1, 'thumbs-up']
-      when 'down' then [-1, 'thumbs-down']
-
-    return if !baseScore?
-
-    currentVote = @props.discussion.current_user_attributes?.vote_score
-
-    score = if currentVote == baseScore then 0 else baseScore
-
-    topClasses = "#{vbn} #{vbn}--#{type}"
-    topClasses += " #{vbn}--#{'inactive' if score != 0}"
-
-    button
-      className: topClasses
-      onClick: => @doVote score
-      el Icon, name: icon
-      span className: "#{vbn}__count",
-        @props.discussion.votes[type]
-
-
-  setHighlight: ->
-    return if @props.highlighted
-
-    $.publish 'beatmapDiscussion:setHighlight', id: @props.discussion.id
-
-
-  post: (post, type) ->
-    elementName = if post.system then 'SystemPost' else 'Post'
-
-    el BeatmapDiscussions[elementName],
-      key: post.id
-      post: post
-      type: type
-      read: _.includes(@props.readPostIds, post.id) || (@props.currentUser.id == post.user_id)
-      user: @props.lookupUser post.user_id
-      lastEditor: @props.lookupUser post.last_editor_id
-      canBeEdited: @props.currentUser.isAdmin || (@props.currentUser.id == post.user_id)
+  toggleExpand: ->
+    $.publish 'beatmapDiscussion:collapse', id: @props.discussion.id
