@@ -100,7 +100,7 @@ BeatmapDiscussions.Nominations = React.createClass
               dangerouslySetInnerHTML:
                 __html: osu.trans 'beatmaps.nominations.disqualifed-at',
                   time_ago: osu.timeago(disqualification.created_at)
-                  reason: disqualification.reason
+                  reason: disqualification.reason ? osu.trans('beatmaps.nominations.disqualifed_no_reason')
           else if mapIsQualified
             if rankingETA
               span dangerouslySetInnerHTML:

@@ -86,7 +86,8 @@ return [
     ],
 
     'nominations' => [
-        'disqualifed-at' => 'disqualified :time_ago',
+        'disqualifed-at' => 'disqualified :time_ago (:reason).',
+        'disqualifed_no_reason' => 'no reason specified',
         'disqualification-prompt' => 'Reason for disqualification?',
         'disqualify' => 'Disqualify',
         'incorrect-state' => 'Error performing that action, try refreshing the page.',
