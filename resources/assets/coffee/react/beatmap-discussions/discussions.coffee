@@ -102,9 +102,8 @@ BeatmapDiscussions.Discussions = React.createClass
         beatmapset: @props.beatmapset
         currentBeatmap: @props.currentBeatmap
         userPermissions: @props.userPermissions
-        highlighted: discussion.id == @props.highlightedDiscussionId
         readPostIds: @props.readPostIds
-        collapsed: _.includes @props.collapsedBeatmapDiscussionIds, discussion.id
+        visible: !hidden
 
 
   currentBeatmap: (discussion) ->
@@ -113,7 +112,7 @@ BeatmapDiscussions.Discussions = React.createClass
 
   expand: (e) ->
     e.preventDefault()
-    $.publish 'beatmapDiscussion:collapse', all: e.currentTarget.dataset.type
+    $.publish 'beatmapDiscussionEntry:collapse', collapse: e.currentTarget.dataset.type
 
 
   hidden: (discussion) ->

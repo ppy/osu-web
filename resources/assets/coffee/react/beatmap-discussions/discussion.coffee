@@ -24,11 +24,27 @@ BeatmapDiscussions.Discussion = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
+  componentWillMount: ->
+    @eventId = "beatmap-discussion-entry-#{@props.discussion.id}"
+
+    $.subscribe "beatmapDiscussionEntry:collapse.#{@eventId}", @setCollapse
+    $.subscribe "beatmapDiscussionEntry:highlight.#{@eventId}", @setHighlight
+
+
+  componentWillUnmount: ->
+    $.unsubscribe ".#{@eventId}"
+
+
+  getInitialState: ->
+    collapsed: false
+    highlighted: false
+
+
   render: ->
     return div() if @props.discussion.beatmap_discussion_posts.length == 0
 
     topClasses = "#{bn} js-beatmap-discussion-jump"
-    topClasses += " #{bn}--highlighted" if @props.highlighted
+    topClasses += " #{bn}--highlighted" if @state.highlighted
 
     lineClasses = "#{bn}__line"
     lineClasses += " #{bn}__line--resolved" if @props.discussion.resolved
@@ -36,7 +52,7 @@ BeatmapDiscussions.Discussion = React.createClass
     div
       className: topClasses
       'data-id': @props.discussion.id
-      onClick: @setHighlight
+      onClick: @emitSetHighlight
 
       div className: "#{bn}__timestamp hidden-xs",
         @timestamp() if @props.discussion.timestamp?
@@ -56,10 +72,10 @@ BeatmapDiscussions.Discussion = React.createClass
               className: "#{bn}__action #{bn}__action--with-line"
               onClick: @toggleExpand
               div
-                className: "beatmap-discussion-expand #{'beatmap-discussion-expand--expanded' if !@props.collapsed}"
+                className: "beatmap-discussion-expand #{'beatmap-discussion-expand--expanded' if !@state.collapsed}"
                 el Icon, name: 'chevron-down'
         el ReactCollapse,
-          isOpened: !@props.collapsed
+          isOpened: !@state.collapsed
           keepCollapsedContent: true
           className: "#{bn}__expanded"
           div
@@ -120,6 +136,10 @@ BeatmapDiscussions.Discussion = React.createClass
     .always LoadingOverlay.hide
 
 
+  emitSetHighlight: ->
+    $.publish 'beatmapDiscussionEntry:highlight', id: @props.discussion.id
+
+
   post: (post, type) ->
     elementName = if post.system then 'SystemPost' else 'Post'
 
@@ -133,10 +153,22 @@ BeatmapDiscussions.Discussion = React.createClass
       canBeEdited: @props.currentUser.isAdmin || (@props.currentUser.id == post.user_id)
 
 
-  setHighlight: ->
-    return if @props.highlighted
+  setCollapse: (_e, {collapse}) ->
+    return unless @props.visible
 
-    $.publish 'beatmapDiscussion:setHighlight', id: @props.discussion.id
+    newState = collapse == 'collapse'
+
+    return if @state.collapsed == newState
+
+    @setState collapsed: newState
+
+
+  setHighlight: (_e, {id}) ->
+    newState = id == @props.discussion.id
+
+    return if @state.highlighted == newState
+
+    @setState highlighted: newState
 
 
   timestamp: ->
@@ -160,4 +192,4 @@ BeatmapDiscussions.Discussion = React.createClass
 
 
   toggleExpand: ->
-    $.publish 'beatmapDiscussion:collapse', id: @props.discussion.id
+    @setState collapsed: !@state.collapsed

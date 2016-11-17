@@ -40,8 +40,6 @@ BeatmapDiscussions.Main = React.createClass
           r.id
       .flatten()
       .value()
-    highlightedDiscussionId: null
-    collapsedBeatmapDiscussionIds: []
     currentFilter: 'total'
 
 
@@ -50,11 +48,9 @@ BeatmapDiscussions.Main = React.createClass
     $.subscribe 'beatmapset:mode:set.beatmapDiscussions', @setCurrentPlaymode
     $.subscribe 'beatmapsetDiscussion:update.beatmapDiscussions', @setBeatmapsetDiscussion
     $.subscribe 'beatmapset:update.beatmapDiscussions', @setBeatmapset
-    $.subscribe 'beatmapDiscussion:collapse.beatmapDiscussions', @collapseBeatmapDiscussion
     $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
     $.subscribe 'beatmapDiscussion:setMode.beatmapDiscussions', @setMode
     $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
-    $.subscribe 'beatmapDiscussion:setHighlight.beatmapDiscussions', @setHighlight
     $.subscribe 'beatmapDiscussion:filter.beatmapDiscussions', @setFilter
 
     @jumpByHash()
@@ -102,9 +98,7 @@ BeatmapDiscussions.Main = React.createClass
           lookupUser: @lookupUser
           userPermissions: @state.userPermissions
           mode: @state.mode
-          highlightedDiscussionId: @state.highlightedDiscussionId
           readPostIds: @state.readPostIds
-          collapsedBeatmapDiscussionIds: @state.collapsedBeatmapDiscussionIds
           currentFilter: @state.currentFilter
 
 
@@ -156,7 +150,7 @@ BeatmapDiscussions.Main = React.createClass
       @setCurrentBeatmapId null,
         id: discussion.beatmap_id
         callback: =>
-          $.publish 'beatmapDiscussion:setHighlight', id: discussion.id
+          $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
 
           target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
           $(window).stop().scrollTo target, 500,
@@ -208,31 +202,10 @@ BeatmapDiscussions.Main = React.createClass
       @checkNewTimeout = Timeout.set @nextTimeout, @checkNew
 
 
-  setHighlight: (_e, {id}) ->
-    return if @state.highlightedDiscussionId == id
-
-    @setState highlightedDiscussionId: id
-
-
   markPostRead: (_e, {id}) ->
     return if _.includes @state.readPostIds, id
 
     @setState readPostIds: @state.readPostIds.concat(id)
-
-
-  collapseBeatmapDiscussion: (_e, {all, id}) ->
-    newIds =
-      if all == 'collapse'
-        @state.beatmapsetDiscussion.beatmap_discussions.map (d) =>
-          d.id
-      else if all == 'expand'
-        []
-      else if _.includes @state.collapsedBeatmapDiscussionIds, id
-        _.filter @state.collapsedBeatmapDiscussionIds, (i) => i != id
-      else
-        _.concat @state.collapsedBeatmapDiscussionIds, id
-
-    @setState collapsedBeatmapDiscussionIds: newIds
 
 
   setFilter: (_e, {filter}) ->
