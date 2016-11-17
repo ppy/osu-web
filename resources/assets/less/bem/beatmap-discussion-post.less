@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
 .beatmap-discussion-post {
   @_top: beatmap-discussion-post;
 
@@ -48,13 +49,13 @@
     &--button {
       .reset-input();
       .link-plain();
-      .link-light();
+      .link-default();
       // reset function above overrides margin
       margin: 0 (@spacing / 2);
       font-size: @font-size--small;
 
       .@{_top}--reply & {
-        .link-dark();
+        .link-gray-light();
       }
     }
   }
@@ -133,7 +134,7 @@
     font-weight: 600;
 
     .@{_top}--reply & {
-      .link-dark();
+      .link-gray-light();
     }
   }
 
@@ -151,7 +152,7 @@
       color: @gray-f;
 
       a {
-        .link-dark();
+        .link-gray-light();
       }
     }
 
