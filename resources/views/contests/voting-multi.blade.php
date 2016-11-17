@@ -24,8 +24,8 @@
     @endif
     <div class='contest__accordian' id='contests-accordian'>
         @foreach ($contests as $c)
-            <div class='panel contest__multi-group{{ $loop->first ? ' panel-default' : '' }}'>
-                <a href="#{{$c->id}}" class='contest__multi-heading' data-toggle='collapse' data-parent='#contests-accordian' aria-expanded='{{ $loop->first ? 'true' : 'false' }}'>
+            <div class='panel contest__group{{ $loop->first ? ' panel-default' : '' }}'>
+                <a href="#{{$c->id}}" class='contest__group-heading' data-toggle='collapse' data-parent='#contests-accordian' aria-expanded='{{ $loop->first ? 'true' : 'false' }}'>
                     <span>{!! $c->name !!}</span>
                     <i class="contest__section-toggle fa fa-fw fa-chevron-down"></i>
                 </a>
