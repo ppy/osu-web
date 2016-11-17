@@ -42,7 +42,7 @@ class ContestsController extends Controller
         $ids = isset($contest->extra_options['children']) ? $contest->extra_options['children'] : [$id];
         $contests = Contest::with('entries', 'entries.contest', 'entries.user')
             ->whereIn('id', $ids)
-            ->orderByRaw(DB::raw("FIELD(id, ".implode(',', $ids).")"))
+            ->orderByRaw(DB::raw('FIELD(id, '.implode(',', $ids).')'))
             ->get();
 
         $user = Auth::user();
