@@ -28,6 +28,11 @@ BeatmapDiscussions.NewReply = React.createClass
     @throttledPost = _.throttle @post, 1000
 
 
+  componentWillUnmount: ->
+    @throttledPost.cancel()
+    @postXhr?.abort()
+
+
   getInitialState: ->
     message: ''
     resolveDiscussion: @canUpdate() && @props.discussion.resolved
@@ -84,7 +89,9 @@ BeatmapDiscussions.NewReply = React.createClass
     return if !@validPost()
     LoadingOverlay.show()
 
-    $.ajax laroute.route('beatmap-discussion-posts.store'),
+    @postXhr?.abort()
+
+    @postXhr = $.ajax laroute.route('beatmap-discussion-posts.store'),
       method: 'POST'
       data:
         beatmap_discussion_id: @props.discussion.id

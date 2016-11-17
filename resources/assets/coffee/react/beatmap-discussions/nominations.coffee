@@ -45,7 +45,9 @@ BeatmapDiscussions.Nominations = React.createClass
       params.data =
         comment: comment
 
-    $.ajax laroute.route("beatmapsets.#{action}", beatmapset: @props.beatmapset.id), params
+    @xhr?.abort()
+
+    @xhr = $.ajax laroute.route("beatmapsets.#{action}", beatmapset: @props.beatmapset.id), params
 
     .done (response) =>
       $.publish 'beatmapset:update', beatmapset: response.beatmapset
@@ -53,11 +55,18 @@ BeatmapDiscussions.Nominations = React.createClass
     .fail osu.ajaxError
     .always LoadingOverlay.hide
 
+
   componentDidMount: ->
     osu.pageChange()
 
+
+  componentWillUnmount: ->
+    @xhr?.abort()
+
+
   componentDidUpdate: ->
     osu.pageChange()
+
 
   render: ->
     userCanPerformNominations = @props.currentUser.isAdmin or @props.currentUser.isGMT or @props.currentUser.isBAT
