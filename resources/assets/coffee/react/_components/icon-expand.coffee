@@ -18,13 +18,13 @@
 {span} = React.DOM
 el = React.createElement
 
-@IconExpand = ({expand = true}) ->
-  elem = ({position, icon}) ->
-    span
-      key: position
-      className: "icon-stack__icon icon-stack__icon--#{position}"
-      el Icon, name: icon, modifiers: ['fw']
+elem = ({position, icon}) ->
+  span
+    key: position
+    className: "icon-stack__icon icon-stack__icon--#{position}"
+    el Icon, name: icon, modifiers: ['fw']
 
+@IconExpand = ({expand = true}) ->
   span
     className: 'icon-stack'
     span className: 'icon-stack__base',
