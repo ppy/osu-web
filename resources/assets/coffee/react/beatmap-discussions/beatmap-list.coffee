@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
 {button, div} = React.DOM
 el = React.createElement
 
@@ -56,7 +57,8 @@ BeatmapDiscussions.BeatmapList = React.createClass
     button
       className: menuItemClasses
       key: beatmap.id
-      onClick: => @selectBeatmap id: beatmap.id
+      'data-id': beatmap.id
+      onClick: @selectBeatmap
       el BeatmapDiscussions.BeatmapListItem, beatmap: beatmap, mode: 'version'
 
 
@@ -75,8 +77,8 @@ BeatmapDiscussions.BeatmapList = React.createClass
     @setState showingSelector: state
 
 
-  selectBeatmap: ({id}) ->
-    $.publish 'beatmap:select', id: id
+  selectBeatmap: (e) ->
+    $.publish 'beatmap:select', id: e.dataset.id
 
 
   toggleSelector: ->
