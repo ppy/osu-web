@@ -33,6 +33,7 @@ BeatmapDiscussions.Discussion = React.createClass
 
   componentWillUnmount: ->
     $.unsubscribe ".#{@eventId}"
+    @voteXhr?.abort()
 
 
   getInitialState: ->
@@ -122,7 +123,9 @@ BeatmapDiscussions.Discussion = React.createClass
   doVote: (e) ->
     LoadingOverlay.show()
 
-    $.ajax laroute.route('beatmap-discussions.vote', beatmap_discussion: @props.discussion.id),
+    @voteXhr?.abort()
+
+    @voteXhr = $.ajax laroute.route('beatmap-discussions.vote', beatmap_discussion: @props.discussion.id),
       method: 'PUT',
       data:
         beatmap_discussion_vote:
