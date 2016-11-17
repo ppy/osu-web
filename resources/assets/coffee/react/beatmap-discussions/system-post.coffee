@@ -33,7 +33,7 @@ BeatmapDiscussions.SystemPost = React.createClass
               classNames: ["#{bn}__user"]
 
     div
-      className: "#{bn} #{bn}--resolved"
+      className: "#{bn} #{bn}--#{@props.post.message.type}"
       div
         className: "#{bn}__content"
         dangerouslySetInnerHTML:
