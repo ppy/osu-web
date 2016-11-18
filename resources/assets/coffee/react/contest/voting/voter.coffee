@@ -54,15 +54,15 @@ class Contest.Voting.Voter extends React.Component
   render: ->
     votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
 
-    if (@props.selected.length >= @props.contest.max_votes || votingOver) && !@isSelected()
-      null
-    else
-      classes = [
-        'contest__voting-star',
-        'contest__voting-star--float-right',
-        if @props.theme then "contest__voting-star--#{@props.theme}",
-      ]
+    classes = [
+      'contest__voting-star',
+      'contest__voting-star--float-right',
+      if @props.theme then "contest__voting-star--#{@props.theme}",
+    ]
 
+    if (@props.selected.length >= @props.contest.max_votes || votingOver) && !@isSelected()
+      div className: classes.join(' '), null
+    else
       if @isSelected()
         selected_class =  [
           if @props.theme then "contest__voting-star--selected-#{@props.theme}" else 'contest__voting-star--selected'
