@@ -41,7 +41,9 @@ BeatmapDiscussions.Post = React.createClass
 
   render: ->
     topClasses = "#{bn} #{bn}--#{@props.type}"
-    topClasses += " #{bn}--unread" if !@props.read
+    if @state.editing
+      topClasses += " #{bn}--editing-"
+      topClasses += if @props.type == 'reply' then 'dark' else 'light'
 
     div
       className: topClasses
@@ -49,11 +51,13 @@ BeatmapDiscussions.Post = React.createClass
       onClick: =>
         $.publish 'beatmapDiscussionPost:markRead', id: @props.post.id
 
-      div className: "#{bn}__avatar",
-        el UserAvatar, user: @props.user, modifiers: ['full-rounded']
+      div
+        className: "#{bn}__content"
+        div className: "#{bn}__avatar",
+          el UserAvatar, user: @props.user, modifiers: ['full-rounded']
 
-      @messageViewer()
-      @messageEditor()
+        @messageViewer()
+        @messageEditor()
 
 
   addEditorLink: (message) ->
@@ -95,9 +99,13 @@ BeatmapDiscussions.Post = React.createClass
     .always LoadingOverlay.hide
 
 
-  startEditing: ->
+  editStart: ->
     @setState editing: true, =>
       @refs.textarea.focus()
+
+
+  editEnd: ->
+    @setState editing: false
 
 
   messageViewer: ->
@@ -111,22 +119,29 @@ BeatmapDiscussions.Post = React.createClass
         span
           className: "#{bn}__info"
           dangerouslySetInnerHTML:
-            __html: "#{laroute.link_to_route('users.show', @props.user.username, user: @props.user.id)}, #{osu.timeago @props.post.created_at}"
+            __html: "#{osu.link laroute.route('users.show', user: @props.user.id),
+              @props.user.username
+              classNames: ["#{bn}__info-user"]
+              }, #{osu.timeago @props.post.created_at}"
 
         if @props.post.updated_at != @props.post.created_at
           span
             className: "#{bn}__info #{bn}__info--edited"
             dangerouslySetInnerHTML:
               __html: osu.trans 'beatmaps.discussions.edited',
-                editor: laroute.link_to_route('users.show', @props.lastEditor.username, user: @props.lastEditor.id)
+                editor: osu.link laroute.route('users.show', user: @props.lastEditor.id),
+                  @props.lastEditor.username
+                  classNames: ["#{bn}__info-user"]
                 update_time: osu.timeago @props.post.updated_at
 
-        if @props.canBeEdited
-          span
-            className: "#{bn}__info"
+      if @props.canBeEdited
+        div
+          className: "#{bn}__actions"
+          div
+            className: "#{bn}__actions-group"
             button
-              className: "#{bn}__edit-button"
-              onClick: @startEditing
+              className: "#{bn}__action #{bn}__action--button"
+              onClick: @editStart
               osu.trans('beatmaps.discussions.edit')
 
 
@@ -146,13 +161,11 @@ BeatmapDiscussions.Post = React.createClass
 
         div className: "#{bn}__actions-group",
           div className: "#{bn}__action",
-            button
-              className: 'btn-osu-lite btn-osu-lite--default'
-              onClick: => @setState editing: false
-              osu.trans 'common.buttons.cancel'
+            el BigButton,
+              text: osu.trans 'common.buttons.cancel'
+              props: onClick: @editEnd
 
           div className: "#{bn}__action",
-            button
-              className: 'btn-osu-lite btn-osu-lite--default'
-              onClick: @throttledUpdatePost
-              osu.trans 'common.buttons.save'
+            el BigButton,
+              text: osu.trans 'common.buttons.save'
+              props: onClick: @throttledUpdatePost

@@ -20,11 +20,10 @@
   display: flex;
   align-items: center;
 
-  width: 100%;
+  min-width: 0;
   text-align: left;
 
   font-size: 12px;
-  font-weight: 700;
 
   &--large {
     font-size: 15px;
@@ -34,8 +33,10 @@
     flex: none;
 
     &--main {
-      flex: 1 0 auto;
+      min-width: 0;
+      flex: 1;
       padding: 0 @spacing;
+      white-space: nowrap;
     }
   }
 

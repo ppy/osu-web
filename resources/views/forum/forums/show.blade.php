@@ -17,6 +17,7 @@
 --}}
 @extends('master', [
     'body_additional_classes' => 't-forum-'.$forum->categorySlug(),
+    'titleAppend' => $forum->forum_name,
 ])
 
 @section("content")

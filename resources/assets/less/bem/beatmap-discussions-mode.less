@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,42 +16,39 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.page-mode {
-  @_top: page-mode;
 
-  background-color: @gray-3;
-  color: @gray-c;
+.beatmap-discussions-mode {
+  .bg() {
+    .at2x('/images/backgrounds/page-ddd.png');
+    border-bottom: 1px solid @yellow;
 
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-
-  padding: (@spacing * 2) @spacing 0;
-  list-style: none;
-  flex-wrap: wrap;
-  margin: 0;
-  font-size: 15px;
-
-  &--beatmap-discussions-mode {
-    background-color: transparent;
+    &::before {
+      .full-size();
+      background-color: fade(@gray-0, 75%);
+    }
   }
 
-  &__item {
-    display: flex;
-    line-height: 1;
+  @top: beatmap-discussions-mode;
 
-    margin: 0 @spacing;
+  &__floatable {
+    .bg();
+    .own-layer();
+    width: 100%;
+    left: 0;
+    top: 0;
 
-    .@{_top}--breadcrumb & {
-      margin-left: (@spacing / 2);
-      margin-right: (@spacing / 2);
+    .@{top}--floating & {
+      z-index: @z-index--fixed-bar;
+      position: fixed;
     }
+  }
 
-    // pls halp
-    .@{_top}--breadcrumb & + &::before {
-      content: '»';
-      margin-right: @spacing;
-      margin-top: (@spacing / 2);
+  &__padding {
+    .bg();
+    display: none;
+
+    .@{top}--floating & {
+      display: block;
     }
   }
 }

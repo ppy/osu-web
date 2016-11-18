@@ -18,14 +18,19 @@
 {a, div, h1, p} = React.DOM
 el = React.createElement
 
+modeSwitcher = document.getElementsByClassName('js-mode-switcher')
+
 BeatmapDiscussions.Main = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
 
   getInitialState: ->
+    beatmaps = BeatmapHelper.group @props.initial.beatmapset.beatmaps
+
     beatmapset: @props.initial.beatmapset
+    beatmaps: beatmaps
     beatmapsetDiscussion: @props.initial.beatmapsetDiscussion
-    currentBeatmap: @props.initial.beatmapset.beatmaps[0]
+    currentBeatmap: BeatmapHelper.default(group: beatmaps)
     currentUser: currentUser
     userPermissions: @props.initial.userPermissions
     mode: 'timeline'
@@ -35,20 +40,17 @@ BeatmapDiscussions.Main = React.createClass
           r.id
       .flatten()
       .value()
-    highlightedDiscussionId: null
-    collapsedBeatmapDiscussionIds: []
     currentFilter: 'total'
 
 
   componentDidMount: ->
     $.subscribe 'beatmap:select.beatmapDiscussions', @setCurrentBeatmapId
+    $.subscribe 'beatmapset:mode:set.beatmapDiscussions', @setCurrentPlaymode
     $.subscribe 'beatmapsetDiscussion:update.beatmapDiscussions', @setBeatmapsetDiscussion
     $.subscribe 'beatmapset:update.beatmapDiscussions', @setBeatmapset
-    $.subscribe 'beatmapDiscussion:collapse.beatmapDiscussions', @collapseBeatmapDiscussion
     $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
     $.subscribe 'beatmapDiscussion:setMode.beatmapDiscussions', @setMode
     $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
-    $.subscribe 'beatmapDiscussion:setHighlight.beatmapDiscussions', @setHighlight
     $.subscribe 'beatmapDiscussion:filter.beatmapDiscussions', @setFilter
 
     @jumpByHash()
@@ -69,37 +71,24 @@ BeatmapDiscussions.Main = React.createClass
 
   render: ->
     div null,
-      div
-        className: 'osu-layout__row'
-
-        div
-          className: 'forum-category-header forum-category-header--topic'
-          style:
-            backgroundImage: "url('#{@state.beatmapset.covers.cover}')"
-          div
-            className: 'forum-category-header__titles'
-            h1
-              className: 'forum-category-header__title'
-              a
-                href: laroute.route('beatmapsets.show', beatmapset: @state.beatmapset.id)
-                className: 'link link--white link--no-underline'
-                @state.beatmapset.title
-
-        el BeatmapDiscussions.Overview,
-          beatmapset: @state.beatmapset
-          currentBeatmap: @state.currentBeatmap
-          currentUser: @state.currentUser
-          currentFilter: @state.currentFilter
-          beatmapsetDiscussion: @state.beatmapsetDiscussion
-          lookupUser: @lookupUser
-
-      el BeatmapDiscussions.Nominations,
+      el BeatmapDiscussions.Header,
         beatmapset: @state.beatmapset
+        beatmaps: @state.beatmaps
+        currentBeatmap: @state.currentBeatmap
         currentUser: @state.currentUser
+        currentFilter: @state.currentFilter
+        beatmapsetDiscussion: @state.beatmapsetDiscussion
+        lookupUser: @lookupUser
+
+      el BeatmapDiscussions.ModeSwitcher,
+        mode: @state.mode
 
       div
-        className: 'osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact'
-        el BeatmapDiscussions.NewDiscussion, currentUser: @state.currentUser, currentBeatmap: @state.currentBeatmap
+        className: 'osu-layout__section osu-layout__section--extra'
+        el BeatmapDiscussions.NewDiscussion,
+          currentUser: @state.currentUser
+          currentBeatmap: @state.currentBeatmap
+          mode: @state.mode
 
         el BeatmapDiscussions.Discussions,
           beatmapset: @state.beatmapset
@@ -109,9 +98,7 @@ BeatmapDiscussions.Main = React.createClass
           lookupUser: @lookupUser
           userPermissions: @state.userPermissions
           mode: @state.mode
-          highlightedDiscussionId: @state.highlightedDiscussionId
           readPostIds: @state.readPostIds
-          collapsedBeatmapDiscussionIds: @state.collapsedBeatmapDiscussionIds
           currentFilter: @state.currentFilter
 
 
@@ -123,9 +110,12 @@ BeatmapDiscussions.Main = React.createClass
   setBeatmapset: (_e, {beatmapset, callback}) ->
     @setState
       beatmapset: beatmapset
+      beatmaps: BeatmapHelper.group beatmapset.beatmaps
       callback
 
   setCurrentBeatmapId: (_e, {id, callback}) ->
+    return callback?() if !id?
+
     osu.setHash "#:#{id}"
 
     return callback?() if id == @state.currentBeatmap.id
@@ -136,6 +126,11 @@ BeatmapDiscussions.Main = React.createClass
     return callback?() if !beatmap?
 
     @setState currentBeatmap: beatmap, callback
+
+
+  setCurrentPlaymode: (_e, {mode}) ->
+    beatmap = BeatmapHelper.default items: @state.beatmaps[mode]
+    @setCurrentBeatmapId null, id: beatmap?.id
 
 
   lookupUser: (id) ->
@@ -155,10 +150,11 @@ BeatmapDiscussions.Main = React.createClass
       @setCurrentBeatmapId null,
         id: discussion.beatmap_id
         callback: =>
-          $.publish 'beatmapDiscussion:setHighlight', id: discussion.id
+          $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
 
-        target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
-        $(window).stop().scrollTo target, 500
+          target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
+          $(window).stop().scrollTo target, 500,
+            offset: modeSwitcher[0].getBoundingClientRect().height * -1
 
 
   setMode: (_e, mode, callback) ->
@@ -206,31 +202,10 @@ BeatmapDiscussions.Main = React.createClass
       @checkNewTimeout = Timeout.set @nextTimeout, @checkNew
 
 
-  setHighlight: (_e, {id}) ->
-    return if @state.highlightedDiscussionId == id
-
-    @setState highlightedDiscussionId: id
-
-
   markPostRead: (_e, {id}) ->
     return if _.includes @state.readPostIds, id
 
     @setState readPostIds: @state.readPostIds.concat(id)
-
-
-  collapseBeatmapDiscussion: (_e, {all, id}) ->
-    newIds =
-      if all == 'collapse'
-        @state.beatmapsetDiscussion.beatmap_discussions.map (d) =>
-          d.id
-      else if all == 'expand'
-        []
-      else if _.includes @state.collapsedBeatmapDiscussionIds, id
-        _.filter @state.collapsedBeatmapDiscussionIds, (i) => i != id
-      else
-        _.concat @state.collapsedBeatmapDiscussionIds, id
-
-    @setState collapsedBeatmapDiscussionIds: newIds
 
 
   setFilter: (_e, {filter}) ->

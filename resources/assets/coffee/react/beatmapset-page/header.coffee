@@ -23,18 +23,10 @@ class BeatmapsetPage.Header extends React.Component
     dateFormat = 'MMM D, YYYY'
 
     div className: 'beatmapset-header',
-      ol className: 'page-mode',
-        for mode in BeatmapHelper.modes
-          continue if _.isEmpty @props.beatmapList[mode]
-
-          li
-            className: 'page-mode__item'
-            key: mode
-            el BeatmapsetPage.HeaderTab,
-              playmode: mode
-              currentBeatmapId: @props.currentBeatmap.id
-              newBeatmapId: _.last @props.beatmapList[mode]
-              currentPlaymode: @props.currentBeatmap.mode
+      el PlaymodeTabs,
+        beatmaps: @props.beatmaps
+        currentMode: @props.currentBeatmap.mode
+        hrefFunc: @tabHrefFunc
 
       div
         className: 'beatmapset-header__content'
@@ -46,10 +38,8 @@ class BeatmapsetPage.Header extends React.Component
         div className: 'beatmapset-header__box',
           div className: 'beatmapset-header__beatmap-picker-box',
             el BeatmapsetPage.BeatmapPicker,
-              beatmaps: @props.beatmaps
-              beatmapList: @props.beatmapList
-              currentMode: @props.currentBeatmap.mode
-              currentBeatmapId: @props.currentBeatmap.id
+              beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
+              currentBeatmap: @props.currentBeatmap
 
             span className: 'beatmapset-header__diff-name',
               if @props.hoveredBeatmap? then @props.hoveredBeatmap.version else @props.currentBeatmap.version
@@ -79,32 +69,7 @@ class BeatmapsetPage.Header extends React.Component
             href: laroute.route 'beatmapsets.index', q: @props.beatmapset.artist
             @props.beatmapset.artist
 
-          div className: 'beatmapset-header__avatar-box',
-            div
-              className: 'beatmapset-header__avatar avatar avatar--beatmapset'
-              style:
-                backgroundImage: "url(#{@props.beatmapset.user.avatarUrl})"
-
-            div className: 'beatmapset-header__user-box',
-              div className: 'beatmapset-header__user-text',
-                osu.trans 'beatmaps.beatmapset.show.details.made-by'
-                a
-                  className: 'beatmapset-header__user-text beatmapset-header__user-text--mapper'
-                  href: laroute.route 'users.show', user: @props.beatmapset.user.id
-                  @props.beatmapset.user.username
-
-              div className: 'beatmapset-header__user-text',
-                osu.trans 'beatmaps.beatmapset.show.details.submitted'
-                span
-                  className: 'beatmapset-header__user-text beatmapset-header__user-text--date'
-                  moment(@props.beatmapset.submitted_date).format dateFormat
-
-              if @props.beatmapset.ranked_date
-                div className: 'beatmapset-header__user-text',
-                  osu.trans 'beatmaps.beatmapset.show.details.ranked'
-                  span
-                    className: 'beatmapset-header__user-text beatmapset-header__user-text--date'
-                    moment(@props.beatmapset.ranked_date).format dateFormat
+          el BeatmapsetMapping, beatmapset: @props.beatmapset
 
           div className: 'beatmapset-header__buttons',
             if @props.beatmapset.video
@@ -142,13 +107,18 @@ class BeatmapsetPage.Header extends React.Component
 
   downloadButton: ({key, href, icon = 'download', topTextKey = '_', bottomTextKey}) =>
     el BigButton,
-      modifiers: ['beatmapset-header']
       key: key
-      href: href
-      icon: icon
+      modifiers: ['beatmapset-header']
       text:
         top: osu.trans "beatmaps.beatmapset.show.details.download.#{topTextKey}"
         bottom: if bottomTextKey? then osu.trans "beatmaps.beatmapset.show.details.download.#{bottomTextKey}"
+      icon: icon
+      props:
+        href: href
+
+
+  tabHrefFunc: (mode) ->
+    BeatmapsetPageHash.generate mode: mode
 
 
   togglePreview: (e) =>
