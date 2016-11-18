@@ -42,8 +42,6 @@ class Contest.Voting.EntryList extends Contest.Voting.BaseEntryList
           tr className: 'tracklist__row--header',
             if @state.options.showPreview
               th className: 'tracklist__col tracklist__col--preview', ''
-            if @state.options.showDL
-              th className: 'tracklist__col tracklist__col--dl',
             th className: 'tracklist__col tracklist__col--title', 'entry'
             th className: 'tracklist__col tracklist__col--vote', colSpan: (if @props.contest.show_votes then 2 else 1),
               el Contest.Voting.VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes

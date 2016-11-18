@@ -28,7 +28,6 @@ class Contest.Voting.BaseEntryList extends React.Component
       contest: @props.contest
       selected: @props.selected
       options:
-        showDL: @props.options.showDL ? false
         showPreview: @props.options.showPreview ? false
 
   handleVoteClick: (_e, {contest_id, entry_id, callback}) =>
