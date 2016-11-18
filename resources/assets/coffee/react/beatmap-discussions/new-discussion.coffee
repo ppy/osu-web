@@ -26,7 +26,6 @@ BeatmapDiscussions.NewDiscussion = React.createClass
 
   getInitialState: ->
     message: ''
-    messageType: null
     timestamp: null
 
 
@@ -34,73 +33,72 @@ BeatmapDiscussions.NewDiscussion = React.createClass
     @throttledPost = _.throttle @post, 1000
 
 
+  componentWillUnmount: ->
+    @postXhr?.abort()
+    @throttledPost.cancel()
+
+
   render: ->
     div
-      className: bn
-      div className: "#{bn}__col #{bn}__col--left",
-        div className: "#{bn}__timestamp-box",
-          div className: "#{bn}__types",
-            _.map { general: 'circle-o' , timeline: 'clock-o' }, (icon, type) =>
-              span
-                key: type
-                className: "#{bn}__type #{bn}__type--#{'active' if @currentType() == type}"
-                el Icon, name: icon
+      className: 'osu-page osu-page--small'
+      div
+        className: bn
+        div className: "page-title",
+          osu.trans('beatmaps.discussions.new.title')
 
-          if @currentType() == 'timeline'
-            div
-              className: "#{bn}__timestamp"
-              BeatmapDiscussionHelper.formatTimestamp @state.timestamp
-
-      div className: "#{bn}__col #{bn}__col--main",
-        div className: "#{bn}__message-box",
+        div className: "#{bn}__content",
           div
             className: "#{bn}__avatar"
             el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
 
           div className: "#{bn}__message",
             if @props.currentUser.id?
-              [
-                textarea
-                  key: 'area'
-                  className: "#{bn}__message-area"
-                  value: @state.message
-                  onChange: @setMessage
-                  placeholder: osu.trans 'beatmaps.discussions.message_placeholder'
-                p
-                  key: 'hint'
-                  className: "#{bn}__message-hint"
-                  osu.trans "beatmaps.discussions.message_hint.in_#{@currentType()}"
-              ]
+              textarea
+                className: "#{bn}__message-area"
+                value: @state.message
+                onChange: @setMessage
+                placeholder: osu.trans 'beatmaps.discussions.message_placeholder'
             else
               osu.trans('beatmaps.discussions.require-login')
 
-      div className: "#{bn}__col #{bn}__col--right",
-        div
-          className: "#{bn}__message-types #{bn}__message-types--#{'disabled' if @currentType() != 'timeline'}"
-          span className: "#{bn}__message-type",
-            osu.trans('beatmaps.discussions.message_type_select')
+        div className: "#{bn}__footer",
+          div
+            className: "#{bn}__footer-content"
+            'data-visibility': if @props.mode != 'timeline' then 'hidden'
+            div
+              key: 'label'
+              className: "#{bn}__timestamp-col #{bn}__timestamp-col--label"
+              osu.trans('beatmaps.discussions.new.timestamp')
+            div
+              key: 'timestamp'
+              className: "#{bn}__timestamp-col"
+              BeatmapDiscussionHelper.formatTimestamp @state.timestamp
 
-          ['praise', 'suggestion', 'problem'].map (type) =>
-            @messageTypeSelection type
-
-        button
-          className: 'btn-osu-lite btn-osu-lite--default btn-osu-lite--fat'
-          disabled: !@validPost()
-          onClick: @throttledPost
-          osu.trans('common.buttons.post')
+          div
+            className: "#{bn}__footer-content #{bn}__footer-content--right"
+            if @props.mode == 'timeline'
+              ['praise', 'suggestion', 'problem'].map @submitButton
+            else
+              el BigButton,
+                modifiers: ['beatmap-discussion']
+                text: osu.trans('common.buttons.post')
+                props:
+                  disabled: !@validPost()
+                  onClick: @post
 
 
   setTimestamp: (e) ->
-    @setState timestamp: e.target.value
+    @setState timestamp: e.currentTarget.value
 
 
   setMessage: (e) ->
-    @setState message: e.target.value, @parseTimestamp
+    @setState message: e.currentTarget.value, @parseTimestamp
 
 
-  post: ->
+  post: (e) ->
     return unless @validPost()
 
+    @postXhr?.abort()
     LoadingOverlay.show()
 
     data =
@@ -110,18 +108,17 @@ BeatmapDiscussions.NewDiscussion = React.createClass
 
     if @state.timestamp?
       data.beatmap_discussion =
-        message_type: @state.messageType
+        message_type: e.currentTarget.dataset.type
         timestamp: @state.timestamp
         beatmap_id: @props.currentBeatmap.id
 
-    $.ajax laroute.route('beatmap-discussion-posts.store'),
+    @postXhr = $.ajax laroute.route('beatmap-discussion-posts.store'),
       method: 'POST'
       data: data
 
     .done (data) =>
       @setState
         message: ''
-        message_type: null
         timestamp: null
 
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_id
@@ -135,27 +132,25 @@ BeatmapDiscussions.NewDiscussion = React.createClass
     .always LoadingOverlay.hide
 
 
-  messageTypeSelection: (type) ->
-    iconClassesBn = 'beatmap-discussion-message-type'
-    iconClasses = iconClassesBn
-
-    if @currentType() == 'timeline' && @state.messageType == type
-      iconClasses += " #{iconClassesBn}--#{type}"
-
-    button
+  submitButton: (type) ->
+    el BigButton,
       key: type
-      className: "#{bn}__message-type"
-      onClick: => @setState messageType: type
-      div className: iconClasses,
-        el Icon, name: BeatmapDiscussionHelper.messageType.icon[type]
-        span className: "#{bn}__message-type-text",
-          osu.trans("beatmaps.discussions.message_type.#{type}")
+      modifiers: ['beatmap-discussion']
+      icon: BeatmapDiscussionHelper.messageType.icon[type]
+      text: osu.trans("beatmaps.discussions.message_type.#{type}")
+      props:
+        disabled: !@validPost()
+        'data-type': type
+        onClick: @post
 
 
   validPost: ->
     return false if @state.message.length == 0
 
-    !@state.timestamp? || @state.messageType?
+    if @props.mode == 'timeline'
+      @state.timestamp?
+    else
+      true
 
 
   parseTimestamp: ->
@@ -167,8 +162,5 @@ BeatmapDiscussions.NewDiscussion = React.createClass
 
         # this isn't all that smart
         (timestamp[0] * 60 + timestamp[1]) * 1000 + timestamp[2]
-
-
-
-  currentType: ->
-    if @state.timestamp? then 'timeline' else 'general'
+      else
+        null

@@ -33,7 +33,8 @@
   }
 
   &--first-score {
-    box-shadow: 0 0 0 3px @yellow, 0 4px @box-shadow-spread @box-shadow-color;
+    @border-size: 3px;
+    box-shadow: 0 0 0 @border-size @yellow, 0 (@border-size + @box-shadow-y) @box-shadow-radius @box-shadow-color;
   }
 
   &__section {

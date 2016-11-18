@@ -45,7 +45,7 @@ class Contest.Voting.Voter extends React.Component
     if !currentUser.id?
       userLogin.show e.target
     else if !@props.waitingForResponse
-      $.publish 'contest:vote:click', entry_id: @props.entry.id
+      $.publish 'contest:vote:click', contest_id: @props.contest.id, entry_id: @props.entry.id
       @sendVote()
 
   isSelected: =>

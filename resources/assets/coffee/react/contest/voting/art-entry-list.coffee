@@ -41,7 +41,7 @@ class Contest.Voting.ArtEntryList extends Contest.Voting.BaseEntryList
       partitions = _.partition entries, (i) ->
         i.props.displayIndex < 3
 
-    div className: 'contest',
+    div {},
       div className: 'contest__vote-summary--art',
         span className: 'contest__vote-summary-text contest__vote-summary-text--art', 'votes'
         el Contest.Voting.VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes

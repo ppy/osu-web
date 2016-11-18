@@ -25,6 +25,7 @@
 
   width: @default-avatar-size;
   height: @default-avatar-size;
+  flex: none;
 
   background-color: @gray-3;
   background-size: contain;
@@ -32,9 +33,10 @@
   background-position: center;
 
   &--beatmapset {
+    .default-border-radius();
+    margin-right: (@spacing / 2);
     width: @beatmapset-avatar-size;
     height: @beatmapset-avatar-size;
-    .default-border-radius();
   }
 
   &--beatmapset-scoreboard {

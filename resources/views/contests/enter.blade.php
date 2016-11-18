@@ -18,15 +18,15 @@
 @extends('contests.base')
 
 @section('contest-content')
-    <div class="contest__description">{!! Markdown::convertToHtml($contest->description_enter) !!}</div>
+    <div class="contest__description">{!! Markdown::convertToHtml($contestMeta->description_enter) !!}</div>
     @if (!Auth::check())
       <div class='contest__voting-notice contest__voting-notice--padding'>{{trans('contest.entry.login_required')}}</div>
     @else
       @if (Auth::user()->isSilenced() || Auth::user()->isRestricted())
         <div class='contest__voting-notice contest__voting-notice--padding'>{{trans('contest.entry.silenced_or_restricted')}}</div>
       @else
-        @if (!$contest->isSubmissionOpen())
-          @if ($contest->entry_starts_at !== null && $contest->entry_starts_at->isPast())
+        @if (!$contestMeta->isSubmissionOpen())
+          @if ($contestMeta->entry_starts_at !== null && $contestMeta->entry_starts_at->isPast())
             <div class='contest__voting-notice'>{{trans('contest.entry.over')}}</div>
             <div class='js-react--userContestEntry'></div>
           @else
