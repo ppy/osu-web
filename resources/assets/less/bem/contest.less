@@ -72,10 +72,6 @@
       text-decoration: none;
     }
 
-    & .@{_top}__section-toggle {
-      transition: all 300ms;
-    }
-
     &[aria-expanded='true'] {
       .@{_top}__section-toggle {
         transform: rotateZ(180deg);
@@ -87,6 +83,10 @@
         transform: rotateZ(0deg);
       }
     }
+  }
+
+  &__section-toggle {
+    transition: all 300ms;
   }
 
   &__buttons {
