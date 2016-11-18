@@ -15,6 +15,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class @Icon extends React.Component
-  render: =>
-    React.DOM.span className: "fa fa-#{@props.name}"
+@Icon = ({name, modifiers = []}) ->
+  className = "fa fa-#{name}"
+  className += " fa-#{modifier}" for modifier in modifiers
+
+  React.DOM.span className: className

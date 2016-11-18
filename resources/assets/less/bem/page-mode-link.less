@@ -18,26 +18,26 @@
  */
 .page-mode-link {
   @_top: page-mode-link;
-  color: @gray-c;
+  .link-plain();
+  .link-gray-light();
   font-weight: 300;
-
-  &:focus,
-  &:hover {
-    text-decoration: none;
-    color: @gray-f;
-  }
+  padding: (@spacing / 2) 0 @spacing;
 
   &--is-active {
     font-weight: 600;
     color: @gray-f;
   }
 
+  &--is-disabled {
+    .link-gray-light-disabled();
+    cursor: default;
+  }
+
   &__stripe {
     position: absolute;
     width: 100%;
     display: block;
-    top: 100%;
-    margin-top: (@spacing / 2);
+    bottom: 0;
     height: (@spacing / 2);
     transform: translateY(@spacing / 2) scaleY(0);
     transition: transform 120ms ease-in-out;
@@ -46,6 +46,10 @@
     .@{_top}--is-active &,
     .@{_top}:hover & {
       transform: translateY(0) scaleY(1);
+    }
+
+    .@{_top}--is-disabled & {
+      opacity: 0;
     }
   }
 }

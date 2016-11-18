@@ -17,34 +17,55 @@
  *
  */
 .btn-osu-big {
+  @top: btn-osu-big;
+
+  .reset-input();
+  .link-plain();
   .default-border-radius();
   border: none;
 
   display: inline-block;
 
-  padding: 0 @spacing;
-
   background-color: @blue-darker;
   background-image: url('/images/backgrounds/buttonblue@2x.png');
   background-size: cover;
   background-position: 50% 50%;
-  outline: none;
-
-  color: @gray-f;
-  font-weight: 600;
   transition: background-position 120ms;
 
+  padding: (@spacing / 2) @spacing;
+  color: @gray-f;
+  font-size: @font-size--normal;
+  font-weight: 600;
+
   &:hover,
-  &:focus {
+  &:focus,
+  &:active {
     color: @gray-f;
-    text-decoration: none;
     background-position: calc(50% ~'-' (@spacing * 2)) 50%;
+  }
+
+  &--beatmap-discussion {
+    margin-left: (@spacing / 2);
   }
 
   &--beatmapset-header {
     width: 160px;
     height: 45px;
     margin: 0 (@spacing / 2) (@spacing / 2) 0;
+  }
+
+  &[disabled] {
+    &:hover,
+    &:focus,
+    &:active {
+      background-position: 50% 50%;
+    }
+
+    &::before {
+      .full-size();
+      border-radius: inherit;
+      background-color: fade(@gray-f, 50%);
+    }
   }
 
   &--contest-download {
@@ -65,6 +86,10 @@
     align-items: center;
   }
 
+  &__icon {
+    margin-left: @spacing;
+  }
+
   &__left {
     display: flex;
     flex-direction: column;
@@ -72,10 +97,6 @@
   }
 
   &__text-bottom {
-    font-size: 10px;
-  }
-
-  &__text-top {
-    font-size: 14px;
+    font-size: @font-size--small;
   }
 }
