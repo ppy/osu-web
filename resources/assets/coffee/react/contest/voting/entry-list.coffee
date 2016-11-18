@@ -37,16 +37,13 @@ class Contest.Voting.EntryList extends Contest.Voting.BaseEntryList
         winnerVotes: if @state.contest.show_votes then _.maxBy(@state.contest.entries, (i) -> i.results.votes).results.votes
         totalVotes: if @state.contest.show_votes then totalVotes
 
-    div className: 'contest',
-      table className: 'tracklist__table tracklist__table--smaller',
-        thead {},
-            tr className: 'tracklist__row--header',
-              if @state.options.showPreview
-                th className: 'tracklist__col tracklist__col--preview', ''
-              if @state.options.showDL
-                th className: 'tracklist__col tracklist__col--dl',
-              th className: 'tracklist__col tracklist__col--title', 'entry'
-              th className: 'tracklist__col tracklist__col--vote', colSpan: (if @props.contest.show_votes then 2 else 1),
-                el Contest.Voting.VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
-                div className: 'contest__vote-summary-text', 'votes'
-        tbody {}, entries
+    table className: 'tracklist__table tracklist__table--smaller',
+      thead {},
+          tr className: 'tracklist__row--header',
+            if @state.options.showPreview
+              th className: 'tracklist__col tracklist__col--preview', ''
+            th className: 'tracklist__col tracklist__col--title', 'entry'
+            th className: 'tracklist__col tracklist__col--vote', colSpan: (if @props.contest.show_votes then 2 else 1),
+              el Contest.Voting.VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
+              div className: 'contest__vote-summary-text', 'votes'
+      tbody {}, entries
