@@ -39,25 +39,30 @@ class ContestsController extends Controller
     {
         $contest = Contest::findOrFail($id);
 
-        $ids = isset($contest->extra_options['children']) ? $contest->extra_options['children'] : [$id];
-        $contests = Contest::with('entries', 'entries.contest', 'entries.user')
-            ->whereIn('id', $ids)
-            ->orderByRaw(DB::raw('FIELD(id, '.implode(',', $ids).')'))
-            ->get();
-
         $user = Auth::user();
         if (!$contest->visible && (!$user || !$user->isAdmin())) {
             abort(404);
         }
 
-        $view = count($contests) > 1 ? 'contests.voting-multi' : 'contests.voting';
+        if ($contest->isVotingStarted() && isset($contest->extra_options['children'])) {
+            $contestIds = $contest->extra_options['children'];
+        } else {
+            $contestIds = [$id];
+        }
+
+        $contests = Contest::with('entries', 'entries.contest', 'entries.user')
+            ->whereIn('id', $contestIds)
+            ->orderByRaw(DB::raw('FIELD(id, '.implode(',', $contestIds).')'))
+            ->get();
+
         if ($contest->isVotingStarted()) {
-            return view($view)
-                    ->with('contest', $contest)
+            return view('contests.voting')
+                    ->with('contestMeta', $contest)
                     ->with('contests', $contests);
         } else {
             return view('contests.enter')
-                ->with('contest', $contest);
+                ->with('contestMeta', $contest)
+                ->with('contest', $contests->first());
         }
     }
 }

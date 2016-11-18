@@ -18,19 +18,28 @@
 @extends('contests.base')
 
 @section('contest-content')
-    <div class="contest__description">{!! Markdown::convertToHtml($contest->description_voting) !!}</div>
-    <div class="contest">
-        @if ($contest->voting_ends_at !== null && $contest->voting_ends_at->isPast())
+    <div class="contest__description">{!! Markdown::convertToHtml($contestMeta->description_voting) !!}</div>
+    <div class='contest'>
+        @if ($contestMeta->voting_ends_at !== null && $contestMeta->voting_ends_at->isPast())
             <div class='contest__voting-notice'>{{trans('contest.voting.over')}}</div>
         @endif
-        @if ($contest->type == 'art')
-            <div class="js-react--contestArtList" data-src="contest-{{$contest->id}}"></div>
+        @if (count($contests) === 1)
+            @include('contests._voting-entrylist', ['contest' => $contests->first()])
         @else
-            <div class="js-react--contestList" data-src="contest-{{$contest->id}}"></div>
+            <div class='contest__accordion' id='contests-accordion'>
+                @foreach ($contests as $contest)
+                    <div class='panel contest__group{{ $loop->first ? ' panel-default' : '' }}'>
+                        <a href="#{{$contest->id}}" class='contest__group-heading' data-toggle='collapse' data-parent='#contests-accordion' aria-expanded='{{ $loop->first ? 'true' : 'false' }}'>
+                            <span>{!! $contest->name !!}</span>
+                            <i class="contest__section-toggle fa fa-fw fa-chevron-down"></i>
+                        </a>
+                        <div class='contest__multi-panel collapse{{ $loop->first ? ' in' : '' }}' id="{{$contest->id}}">
+                            @include('contests._voting-entrylist')
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         @endif
-        <script id="contest-{{$contest->id}}" type="application/json">
-            {!! $contest->defaultJson(Auth::user()) !!}
-        </script>
     </div>
 @endsection
 

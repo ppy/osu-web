@@ -17,8 +17,7 @@
 *
 ###
 propsFunction = (target) ->
-  srcNode = document.getElementById($(target).attr('data-src'))
-  data = JSON.parse(srcNode.innerHTML)
+  data = osu.parseJson target.dataset.src
 
   return {
     contest: data.contest

@@ -39,16 +39,20 @@
     font-weight: 100;
     font-size: 12px;
     border-bottom: 2px solid #1A2223;
-    &--show-votes {
-      background: transparent url(/images/layout/vote-1x1.png) 0 center repeat-y;
-    }
-    &--selected {
-      background-color: rgba(141, 172, 182, 0.25);
-    }
+    line-height: 32px;
+    transition: 0.1s;
+
     &:hover {
       background-color: lighten(#293336, 10%);
     }
-    transition: 0.1s;
+
+    &--show-votes {
+      background: transparent url(/images/layout/vote-1x1.png) 0 center repeat-y;
+    }
+
+    &--selected {
+      background-color: rgba(141, 172, 182, 0.25);
+    }
   }
 
   &__row--header {
