@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,42 +16,37 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.page-mode {
-  @_top: page-mode;
 
-  background-color: @gray-3;
-  color: @gray-c;
-
+.beatmapset-mapping {
+  .default-text-shadow();
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  color: @gray-f;
+  font-size: @font-size--small-2;
 
-  padding: (@spacing * 2) @spacing 0;
-  list-style: none;
-  flex-wrap: wrap;
-  margin: 0;
-  font-size: 15px;
-
-  &--beatmap-discussions-mode {
-    background-color: transparent;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
-  &__item {
-    display: flex;
-    line-height: 1;
+  &__date {
+    font-weight: 700;
+  }
 
-    margin: 0 @spacing;
+  &__mapper {
+    margin-bottom: (@spacing / 2);
+  }
 
-    .@{_top}--breadcrumb & {
-      margin-left: (@spacing / 2);
-      margin-right: (@spacing / 2);
-    }
+  &__user {
+    font-style: italic;
 
-    // pls halp
-    .@{_top}--breadcrumb & + &::before {
-      content: '»';
-      margin-right: @spacing;
-      margin-top: (@spacing / 2);
+    color: @gray-f;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: @gray-f;
+      text-decoration: none;
     }
   }
 }

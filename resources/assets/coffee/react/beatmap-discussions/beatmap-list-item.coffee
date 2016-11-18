@@ -40,23 +40,9 @@ BeatmapDiscussions.BeatmapListItem = React.createClass
         el BeatmapIcon,
           beatmap: @props.beatmap
           modifier: "#{'large' if @props.large}"
-          overrideVersion: 'hard' if @props.mode == 'mode'
 
       div className: "#{bn}__col #{bn}__col--main",
-        if @props.mode == 'complete'
-          [
-            div key: 'version',
-              version
-            div
-              key: 'mode'
-              className: "#{bn}__small"
-              osu.trans("beatmaps.mode.#{@props.beatmap.mode}")
-          ]
-
-        else if @props.mode == 'mode'
-          osu.trans("beatmaps.mode.#{@props.beatmap.mode}")
-
-        else if @props.mode == 'version'
+        div className: 'u-ellipsis-overflow',
           version
 
       if @props.withButton?

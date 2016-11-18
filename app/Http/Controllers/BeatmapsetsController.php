@@ -166,7 +166,7 @@ class BeatmapsetsController extends Controller
         if ($returnJson) {
             return $initialData;
         } else {
-            return view('beatmapsets.discussion', compact('initialData'));
+            return view('beatmapsets.discussion', compact('beatmapset', 'initialData'));
         }
     }
 

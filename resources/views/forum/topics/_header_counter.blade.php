@@ -15,13 +15,13 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="forum-topic-header-counter">
-    <div class="forum-topic-header-counter__content">
-        <div class="forum-topic-header-counter__title">
+<div class="counter-box">
+    <div class="counter-box__content">
+        <div class="counter-box__title">
             {{ trans('forum.topics.show.total_posts') }}
         </div>
 
-        <div class="forum-topic-header-counter__count">
+        <div class="counter-box__count">
             @if ($newTopic)
                 1
             @else
@@ -31,6 +31,6 @@
             @endif
         </div>
     </div>
-    <div class="forum-topic-header-counter__line u-forum--bg">
+    <div class="counter-box__line u-forum--bg">
     </div>
 </div>

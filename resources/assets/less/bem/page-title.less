@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,46 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-.beatmap-discussions-overview {
-  padding: @spacing 0;
-  .default-box-shadow();
-  background-color: @gray-f;
-  margin-bottom: (@spacing / 2);
 
-  display: flex;
-  flex-direction: column;
-
-  &__row {
-    padding: @spacing (@spacing * 4);
-
-    &--beatmaps {
-      width: 100%;
-
-      @media @desktop {
-        display: flex;
-      }
-    }
-
-    &--chart {
-      height: 130px;
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    &--info {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-
-  }
-
-  &__meta-text {
-    font-size: 11px;
-
-    &--large {
-      font-size: 15px;
-      font-weight: 500;
-    }
-  }
+.page-title {
+  color: @pink-darker;
+  font-style: italic;
+  font-size: @font-size--title-small-2;
+  padding: (@spacing * 2);
 }

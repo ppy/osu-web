@@ -48,7 +48,7 @@ return [
             // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [
-            '_' => 'beatmapsets',
+            '_' => 'beatmaps',
             'discussion' => 'modding',
         ],
         'ranking' => [
