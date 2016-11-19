@@ -24,7 +24,7 @@ return [
         'create' => [
             '_' => 'Definir imagem de capa',
             'button' => 'Enviar imagem',
-            'info' => 'O tamanho da capa deve ser :dimensions. Você também pode soltar sua imagem aqui para fazer enviar.',
+            'info' => 'O tamanho da capa deve ser :dimensions. Você também pode arrastar sua imagem aqui para enviar.',
         ],
 
         'destroy' => [
@@ -167,7 +167,7 @@ return [
         'moderate_pin' => [
             'pin-0' => 'Desafixar tópico',
             'pin-1' => 'Fixar tópico',
-            'state-0' => 'Tópico desfixado',
+            'state-0' => 'Tópico desafixado',
             'state-1' => 'Tópico fixado',
         ],
 

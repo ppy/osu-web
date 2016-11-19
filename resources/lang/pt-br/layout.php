@@ -106,7 +106,7 @@ return [
         ],
         'store' => [
             '_' => 'loja',
-            'getListing' => 'anúncio',
+            'getListing' => 'lista',
             'getCart' => 'carrinho',
 
             'getCheckout' => 'pagar',

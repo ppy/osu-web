@@ -57,7 +57,7 @@ return [
         ],
 
         'message_type' => [
-            'praise' => 'Elogio',
+            'praise' => 'Elogiar',
             'problem' => 'Problema',
             'suggestion' => 'Sugestão',
         ],
@@ -78,9 +78,9 @@ return [
 
         'stats' => [
             'mine' => 'Meu',
-            'pending' => 'Pendente',
+            'pending' => 'Pendentes',
             'praises' => 'Elogios',
-            'resolved' => 'Resolvido',
+            'resolved' => 'Resolvidos',
             'total' => 'Total',
         ],
     ],
@@ -93,8 +93,8 @@ return [
         'incorrect-state' => 'Erro ao executar essa ação, tente atualizar a página.',
         'nominate' => 'Nomear',
         'nominate-confirm' => 'Nomear este beatmap?',
-        'qualified' => 'Estimado para ser rankeado em :date, caso nenhum problema for encontrado.',
-        'qualified-soon' => 'Estimado para ser rankeado em breve, caso nenhum problema for encontrado.',
+        'qualified' => 'Estimado para ser ranqueado em :date, caso nenhum problema for encontrado.',
+        'qualified-soon' => 'Estimado para ser ranqueado em breve, caso nenhum problema for encontrado.',
         'required-text' => 'Nomeações: :current/:required',
         'title' => 'Estado da nomeação',
     ],
@@ -102,7 +102,7 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'digite palavras-chave...',
-            'options' => 'Mais opções de buscas',
+            'options' => 'Mais opções de busca',
             'not-found' => 'sem resultados',
             'not-found-quote' => '... não, nada encontrado.',
         ],
@@ -117,7 +117,7 @@ return [
             'details' => [
                 'made-by' => 'criado por ',
                 'submitted' => 'enviado em ',
-                'ranked' => 'rankeado em ',
+                'ranked' => 'ranqueado em ',
                 'logged-out' => 'Você precisa iniciar a sessão antes de baixar beatmaps!',
                 'download' => [
                     '_' => 'baixar',
@@ -192,7 +192,7 @@ return [
     ],
     'status' => [
         'any' => 'Qualquer',
-        'ranked-approved' => 'Rankeados e aprovados',
+        'ranked-approved' => 'Ranqueados e aprovados',
         'approved' => 'Aprovados',
         'faves' => 'Favoritos',
         'modreqs' => 'Pedidos de mod',

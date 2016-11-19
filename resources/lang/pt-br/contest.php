@@ -30,7 +30,7 @@ return [
         'login_required' => 'Por favor, inicie a sessão para participar deste concurso.',
         'silenced_or_restricted' => 'Você não pode participar de concursos enquanto estiver restrito ou silenciado.',
         'preparation' => 'Estamos atualmente preparando este concurso. Aguarde pacientemente!',
-        'over' => 'Agradecemos a sua participação! As inscrições foram encerradas e a votação abrirá em breve.',
+        'over' => 'Agradecemos a sua participação! As inscrições para este concurso foram encerradas e a votação abrirá em breve.',
         'limit_reached' => 'Você atingiu o limite de inscrições para este concurso',
         'drop_here' => 'Solte a sua inscrição aqui',
         'wrong_type' => [

@@ -60,11 +60,11 @@ return [
 
             'upload_more' => [
                 'title' => 'Envie mais',
-                'description' => 'Compartimentos adicionais para beatmaps pendentes (por beatmap rankeado) até um máximo de 10.',
+                'description' => 'Compartimentos adicionais para beatmaps pendentes (por beatmap ranqueado) até um máximo de 10.',
             ],
 
             'early_access' => [
-                'title' => 'Acesso anteciado',
+                'title' => 'Acesso antecipado',
                 'description' => 'Acesso a lançamentos mais cedo, onde você pode testar novas funcionalidades antes de irem ao público!',
             ],
 
