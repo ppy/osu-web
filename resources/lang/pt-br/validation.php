@@ -20,5 +20,5 @@
 
 return [
     'mixture' => ':attribute está sem números ou letras',
-    'required' => ':attribute é requerido',
+    'required' => ':attribute é obrigatório',
 ];

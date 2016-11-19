@@ -21,26 +21,26 @@
 return [
     'header' => [
         'title' => 'status',
-        'description' => 'o que tá pegando?',
+        'description' => 'o que tá acontecendo?',
     ],
 
     'incidents' => [
-        'title' => 'Incidentes Ativos',
+        'title' => 'Incidentes ativos',
         'automated' => 'automatizado',
     ],
 
     'online' => [
         'title' => [
-            'users' => 'Jogadores Online nas últimas 24 horas',
-            'score' => 'Pontuações Atingidas nas últimas 24 horas',
+            'users' => 'Jogadores online nas últimas 24 horas',
+            'score' => 'Pontuações atingidas nas últimas 24 horas',
         ],
-        'current' => 'Jogadores Online',
-        'score' => 'Pontuações Atingidas por Segundo',
+        'current' => 'Jogadores online',
+        'score' => 'Pontuações atingidas por segundo',
     ],
 
     'recent' => [
         'incidents' => [
-            'title' => 'Incidentes Recentes',
+            'title' => 'Incidentes recentes',
             'state' => [
                 'resolved' => 'Resolvidos',
                 'resolving' => 'Resolvendo',
@@ -49,9 +49,9 @@ return [
         ],
 
         'uptime' => [
-            'title' => 'Uptime',
+            'title' => 'Tempo de atividade',
             'graphs' => [
-                'server' => 'server',
+                'server' => 'servidor',
                 'web' => 'web',
             ],
         ],
@@ -60,7 +60,7 @@ return [
             'today' => 'hoje',
             'week' => 'semana',
             'month' => 'mês',
-            'all_time' => 'eternidade',
+            'all_time' => 'desde o início',
             'last_week' => 'semana passada',
             'weeks_ago' => ':count semana atrás|:count semanas atrás',
         ],
