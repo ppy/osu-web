@@ -145,7 +145,7 @@ return [
             'country_age' => ':age anos de :country.',
         ],
         'page' => [
-            'description' => '<strong>eu!</strong> é uma área pessoal personalisável na sua página de perfil.',
+            'description' => '<strong>eu!</strong> é uma área pessoal personalizável na sua página de perfil.',
             'edit_big' => 'Editar eu!',
             'placeholder' => 'Digite o conteúdo da página aqui',
             'restriction_info' => "Você precisa ser um <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> para desbloquear essa função.",

@@ -30,7 +30,7 @@ return [
             'getChangelog' => 'registro de alterações',
             'getDownload' => 'download',
             'getIcons' => 'ícones',
-            'getNews' => 'netícias',
+            'getNews' => 'notícias',
             'supportTheGame' => 'apoie o jogo',
         ],
         'help' => [
