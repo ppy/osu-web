@@ -158,7 +158,7 @@ return [
         'support' => [
             '_' => 'Apoie o osu!',
             'tags' => 'Supporter Tags',
-            'merchandise' => 'Mercadoria',
+            'merchandise' => 'Mercadorias',
         ],
         'legal' => [
             '_' => 'Informações legais e estado',
@@ -215,7 +215,7 @@ return [
     'popup_login' => [
         'login' => [
             'email' => 'endereço de e-mail',
-            'forgot' => "Esqueci as minahs credenciais",
+            'forgot' => "Esqueci as minhas credenciais",
             'password' => 'senha',
             'title' => 'Inicie a sessão para continuar',
 

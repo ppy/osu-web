@@ -43,6 +43,6 @@ return [
         'expired' => 'O código de verificação expirou, um novo e-mail de confirmação foi enviado.',
         'incorrect_key' => 'Código de verificação incorreto.',
         'retries_exceeded' => 'Código de verificação incorreto. Limite de tentativas excedido, um novo e-mail de confirmação foi enviado.',
-        'unknown' => 'Ocorreu um problema desconhecido, um novo e-mail de confirmação enviado.',
+        'unknown' => 'Ocorreu um problema desconhecido, um novo e-mail de confirmação foi enviado.',
     ],
 ];

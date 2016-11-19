@@ -28,7 +28,7 @@ return [
             'support_button' => 'Quero ajudar o osu!',
         ],
 
-        'dev_quote' => 'O osu! é um jogo totalmente free-to-play, mas mantê-lo definitivamente não é de graça. Dentre o custo de alugar servidores e banda internacional de alta qualidade, o tempo gasto mantendo o sistema e a comunidade, disponibilizar prêmios para torneios, responder perguntas no suporte e de maneira geral manter pessoas felizes, o osu! acaba custando bastante dinheiro! Ah, e não se esqueça de que fazemos tudo isso sem qualquer tipo de anúncios ou contratos com barras de ferramentas e tudo mais!
+        'dev_quote' => 'O osu! é um jogo totalmente grátis para jogar, mas mantê-lo definitivamente não é de graça. Dentre o custo de alugar servidores e banda internacional de alta qualidade, o tempo gasto mantendo o sistema e a comunidade, disponibilizamdo prêmios para torneios, respondendo perguntas no suporte e de maneira geral mantendo pessoas felizes, o osu! acaba custando bastante dinheiro! Ah, e não se esqueça de que fazemos tudo isso sem qualquer tipo de anúncios ou contratos com barras de ferramentas e tudo mais!
             <br/><br/>O osu! é no fim das contas principalmente desenvolvido por mim, que você pode conhecer por "peppy".
             Tive que deixar meu trabalho normal para manter o osu!,
             e às vezes é difícil manter os padrões ao qual desejo ter.
@@ -40,7 +40,7 @@ return [
             'blocks' => [
                 'dev' => 'Desenvolvido e mantido principalmente por um cara na Austrália',
                 'time' => 'Leva tanto tempo para manter que não é mais possível considerar apenas um "hobby".',
-                'ads' => 'Sem anúncios em lugar algum. <br/><br/>
+                'ads' => 'Sem anúncios em lugar algum.<br/><br/>
                         Diferente de 99.95% da internet, nós não ganhamos dinheiro jogando coisas na sua cara.',
                 'goodies' => 'Você ganha algumas outras coisas!',
             ],
@@ -54,43 +54,43 @@ return [
             ],
 
             'auto_downloads' => [
-                'title' => 'Downloads Automáticos',
-                'description' => 'Downloads automáticos quando no multiplayer, assistindo outros ou clicando em links no chat!',
+                'title' => 'Downloads automáticos',
+                'description' => 'Downloads automáticos quando jogando no multijogador, assistindo outros ou clicando em links no chat!',
             ],
 
             'upload_more' => [
-                'title' => 'Envie Mais',
-                'description' => 'Slots adicionais para beatmaps pendentes (por beatmap rankeado) até um máximo de 10.',
+                'title' => 'Envie mais',
+                'description' => 'Compartimentos adicionais para beatmaps pendentes (por beatmap rankeado) até um máximo de 10.',
             ],
 
             'early_access' => [
-                'title' => 'Acesso Anteciado',
+                'title' => 'Acesso anteciado',
                 'description' => 'Acesso a lançamentos mais cedo, onde você pode testar novas funcionalidades antes de irem ao público!',
             ],
 
             'customisation' => [
-                'title' => 'Customização',
-                'description' => 'Customize seu perfil adicionando uma página de usuário totalmente editável.',
+                'title' => 'Personalização',
+                'description' => 'Personalize o seu perfil adicionando uma página de usuário totalmente editável.',
             ],
 
             'beatmap_filters' => [
-                'title' => 'Filtros de Beatmaps',
-                'description' => 'Filtre pesquisas de beatmaps por mapas jogados ou não jogados e ranks alcançados (se tiver).',
+                'title' => 'Filtros de beatmaps',
+                'description' => 'Filtre buscas de beatmaps por mapas jogados ou não jogados e ranks alcançados (se tiver).',
             ],
 
             'yellow_fellow' => [
-                'title' => 'Camarada Amarelo',
-                'description' => 'Seja reconhecido dentro do jogo com sua nova cor de username amarela.',
+                'title' => 'Camarada amarelo',
+                'description' => 'Seja reconhecido dentro do jogo com a sua nova cor de nome de usuário amarela.',
             ],
 
             'speedy_downloads' => [
-                'title' => 'Downloads mais Rápidos',
+                'title' => 'Downloads mais rápidos',
                 'description' => 'Restrições de download mais leves, especialmente quando usando osu!direct.',
             ],
 
             'change_username' => [
-                'title' => 'Troque de Username',
-                'description' => 'A capacidade de mudar seu username sem custos adicionais (uma vez)',
+                'title' => 'Alteração de nome de usuário',
+                'description' => 'A capacidade de alterar seu nome de usuário sem custos adicionais. (uma vez)',
             ],
 
             'skinnables' => [
@@ -99,17 +99,17 @@ return [
             ],
 
             'feature_votes' => [
-                'title' => 'Votos de Funções',
-                'description' => 'Votos para pedidos de funções. (2 por mês)',
+                'title' => 'Votos para solicitar recursos',
+                'description' => 'Votos para solicitações de recursos. (2 por mês)',
             ],
 
             'sort_options' => [
-                'title' => 'Opções de Organização',
-                'description' => 'NOVO: A capacidade de ver rankings de país / amigos / certos mods dentro do jogo.',
+                'title' => 'Opções de organização',
+                'description' => 'NOVO: A capacidade de ver rankings de país/amigos/certas mods dentro do jogo.',
             ],
 
             'feel_special' => [
-                'title' => 'Sinta-se Especial',
+                'title' => 'Sinta-se especial',
                 'description' => 'Aquela sensação quentinha e gostosa por ter feito sua parte em manter o osu! rodando tranquilo!',
             ],
 
@@ -122,29 +122,29 @@ return [
         'convinced' => [
             'title' => 'Estou convencido! :D',
             'support' => 'ajude o osu!',
-            'gift' => 'ou mande como presente para outros jogadores',
+            'gift' => 'ou envie de presente para outros jogadores',
             'instructions' => 'clique no coração para continuar para a osu!store',
         ],
     ],
     'slack' => [
         'header' => [
             'small' => 'osu!dev',
-            'large' => 'Acesso ao osu!public Slack',
+            'large' => 'Acesso ao Slack osu!public',
         ],
 
-        'disabled' => 'The public slack community is temporarily unavailable. If you wish to reach out, please create an issue on the appropriate <a href="https://github.com/ppy">github repository</a> or contact us at <a href="mailto::mail">:mail</a>.',
+        'disabled' => 'A comunidade pública do Slack está temporariamente indisponível. Caso deseje entrar em contato, crie um issue no <a href="https://github.com/ppy">repositório no GitHub</a> ou entre em contato conosco em <a href="mailto::mail">:mail</a>.',
 
-        'guest-begin' => 'Você precisar estar ',
-        'guest-middle' => 'logado',
+        'guest-begin' => 'Você precisa ',
+        'guest-middle' => 'iniciar a sessão',
         'guest-end' => ' para receber um convite do Slack!',
 
         'receive-invite' => 'Você pode receber um convite para o Slack público do osu! aqui.',
-        'bullet-points' => 'Favor ler atentamente as condições <a href=":link">neste post.</a><br />Qualquer infração na sua conta não será tolerada.',
+        'bullet-points' => 'Favor ler atentamente as condições <a href=":link">nesta publicação</a>.<br />Qualquer infração na sua conta não será tolerada.',
 
-        'recent-issues' => 'Sua conta tem problemas recentes. <a href="mailto::mail">Fale com o suporte</a> para mais detalhes.',
+        'recent-issues' => 'Sua conta tem problemas recentes. Por favor, <a href="mailto::mail">entre em contato com o suporte</a> para mais detalhes.',
         'agree-button' => 'Concordar',
 
-        'accepted' => 'Seu pedido foi aceito. Você deve receber um email em instantes.',
-        'invite-already-accepted' => 'Você já tem uma conta do Slack! Se você tiver problemas, <a href="mailto::mail">fale com o suporte.</a>',
+        'accepted' => 'Seu pedido foi aceito. Você deve receber um e-mail em instantes.',
+        'invite-already-accepted' => 'Você já tem uma conta do Slack! Caso esteja com problemas, <a href="mailto::mail">entre em contato com o suporte.</a>',
     ],
 ];

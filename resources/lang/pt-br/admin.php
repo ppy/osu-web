@@ -35,9 +35,9 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Deletar',
+                'delete' => 'Excluir',
 
-                'forum-name' => '#:id do Fórum: :name',
+                'forum-name' => '#:id do fórum: :name',
 
                 'no-cover' => 'Sem capa definida',
 
@@ -46,11 +46,11 @@ return [
                     'update' => 'Atualizar',
                 ],
 
-                'title' => 'Lista de Capas do Fórum',
+                'title' => 'Lista de capas do fórum',
 
                 'type-title' => [
-                    'default-topic' => 'Capa Padrão de Tópico',
-                    'main' => 'Capa do Fórum',
+                    'default-topic' => 'Capa padrão de tópico',
+                    'main' => 'Capa do fórum',
                 ],
             ],
         ],
@@ -58,13 +58,13 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Visualizador de Logs',
+            'title' => 'Visualizador de registros',
         ],
     ],
 
     'pages' => [
         'root' => [
-            'title' => 'Console de Admin',
+            'title' => 'Console de administrador',
 
             'sections' => [
                 'forum' => 'Fórum',
@@ -77,7 +77,7 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Lista de Pedidos',
+                'title' => 'Lista de pedidos',
             ],
         ],
     ],

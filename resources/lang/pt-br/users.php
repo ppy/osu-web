@@ -31,7 +31,7 @@ return [
         'forgot' => 'Esqueceu a sua senha?',
         'beta' => [
             'main' => 'Acesso beta atualmente restrito para usuários privilegiados.',
-            'small' => '(apoiadores serão incluidos logo)',
+            'small' => '(supporters serão incluidos logo)',
         ],
 
         'here' => 'aqui', // this is substituted in when generating a link above. change it to suit the language.
