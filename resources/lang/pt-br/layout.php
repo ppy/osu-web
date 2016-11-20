@@ -215,19 +215,19 @@ return [
     'popup_login' => [
         'login' => [
             'email' => 'endereço de e-mail',
-            'forgot' => "Esqueci as minhas credenciais",
+            'forgot' => 'Esqueci as minhas credenciais',
             'password' => 'senha',
             'title' => 'Inicie a sessão para continuar',
 
             'error' => [
-                'email' => "O nome de usuário ou o endereço de e-mail não existem",
+                'email' => 'O nome de usuário ou o endereço de e-mail não existem',
                 'password' => 'Senha incorreta',
             ],
         ],
 
         'register' => [
-            'info' => "Você precisa de uma conta, senhor. Por que você já não tem uma?",
-            'title' => "Não tem uma conta?",
+            'info' => 'Você precisa de uma conta, senhor. Por que você já não tem uma?',
+            'title' => 'Não tem uma conta?',
         ],
     ],
 

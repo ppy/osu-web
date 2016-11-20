@@ -104,7 +104,7 @@ return [
                 'title' => 'eu!',
             ],
             'medals' => [
-                'empty' => "Este usuário ainda não recebeu nenhuma. ;_;",
+                'empty' => 'Este usuário ainda não recebeu nenhuma. ;_;',
                 'title' => 'Medalhas',
             ],
             'recent_activities' => [
