@@ -78,7 +78,7 @@ BeatmapDiscussions.BeatmapList = React.createClass
 
 
   selectBeatmap: (e) ->
-    $.publish 'beatmap:select', id: e.currentTarget.dataset.id
+    $.publish 'beatmap:select', id: parseInt(e.currentTarget.dataset.id, 10)
 
 
   toggleSelector: ->
