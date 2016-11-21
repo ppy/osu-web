@@ -42,6 +42,13 @@
   transition: @property @duration @function;
 }
 
+.default-header-overlay() {
+  &::before {
+    .full-size();
+    background-image: linear-gradient(transparent, fade(@gray-0, 60%));
+  }
+}
+
 .inner-shadow-top() {
   box-shadow+: inset 0 (@box-shadow-radius - 1px) @box-shadow-radius -1px @box-shadow-color;
 }
