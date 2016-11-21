@@ -42,6 +42,7 @@
   }
 
   &__content {
+    .default-header-overlay();
     display: flex;
     flex-direction: column;
     padding: 0 (@spacing * 3);
@@ -91,11 +92,6 @@
     color: #ffffff;
 
     .default-text-shadow;
-  }
-
-  &__overlay {
-    .full-size();
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
   }
 
   &__star-difficulty {

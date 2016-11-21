@@ -33,8 +33,6 @@ class BeatmapsetPage.Header extends React.Component
         style:
           backgroundImage: "url(#{@props.beatmapset.covers.cover})"
 
-        div className: 'beatmapset-header__overlay beatmapset-header__overlay--gradient'
-
         div className: 'beatmapset-header__box',
           div className: 'beatmapset-header__beatmap-picker-box',
             el BeatmapsetPage.BeatmapPicker,
