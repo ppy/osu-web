@@ -71,7 +71,7 @@ BeatmapDiscussions.Main = React.createClass
     $.unsubscribe '.beatmapDiscussions'
 
     Timeout.clear @checkNewTimeout
-    @checkNewAjax?.abort?()
+    @checkNewAjax?.abort()
 
 
   render: ->
