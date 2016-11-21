@@ -14,10 +14,12 @@ class AddSoftDeletesToPostsTopicsTables extends Migration
     {
         Schema::table('phpbb_posts', function (Blueprint $table) {
             $table->softDeletes();
+            $table->index('deleted_at');
         });
 
         Schema::table('phpbb_topics', function (Blueprint $table) {
             $table->softDeletes();
+            $table->index('deleted_at');
         });
     }
 
@@ -30,10 +32,12 @@ class AddSoftDeletesToPostsTopicsTables extends Migration
     {
         Schema::table('phpbb_posts', function (Blueprint $table) {
             $table->dropColumn('deleted_at');
+            $table->dropIndex('deleted_at_index');
         });
 
         Schema::table('phpbb_topics', function (Blueprint $table) {
             $table->dropColumn('deleted_at');
+            $table->dropIndex('deleted_at_index');
         });
     }
 }
