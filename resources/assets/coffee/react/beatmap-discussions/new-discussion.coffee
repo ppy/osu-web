@@ -106,7 +106,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
         beatmap_discussion_post:
           message: @state.message
 
-    if @state.timestamp?
+    if @props.mode == 'timeline'
       data.beatmap_discussion =
         message_type: e.currentTarget.dataset.type
         timestamp: @state.timestamp
