@@ -97,7 +97,7 @@ BeatmapDiscussions.Discussions = React.createClass
       className: className
       el BeatmapDiscussions.Discussion,
         discussion: discussion
-        lookupUser: @props.lookupUser
+        users: @props.users
         currentUser: @props.currentUser
         beatmapset: @props.beatmapset
         currentBeatmap: @props.currentBeatmap

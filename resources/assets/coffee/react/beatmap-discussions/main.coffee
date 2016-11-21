@@ -43,6 +43,10 @@ BeatmapDiscussions.Main = React.createClass
     currentFilter: 'total'
 
 
+  componentWillMount: ->
+    @cache = {}
+
+
   componentDidMount: ->
     $.subscribe 'beatmap:select.beatmapDiscussions', @setCurrentBeatmapId
     $.subscribe 'beatmapset:mode:set.beatmapDiscussions', @setCurrentPlaymode
@@ -54,7 +58,6 @@ BeatmapDiscussions.Main = React.createClass
     $.subscribe 'beatmapDiscussion:filter.beatmapDiscussions', @setFilter
 
     @jumpByHash()
-
     @checkNewTimeout = Timeout.set @checkNewTimeoutDefault, @checkNew
 
 
@@ -66,7 +69,7 @@ BeatmapDiscussions.Main = React.createClass
 
 
   componentWillUpdate: ->
-    @indexedUsers = null
+    @cache = {}
 
 
   render: ->
@@ -78,7 +81,7 @@ BeatmapDiscussions.Main = React.createClass
         currentUser: @state.currentUser
         currentFilter: @state.currentFilter
         beatmapsetDiscussion: @state.beatmapsetDiscussion
-        lookupUser: @lookupUser
+        users: @users()
 
       el BeatmapDiscussions.ModeSwitcher,
         mode: @state.mode
@@ -95,7 +98,7 @@ BeatmapDiscussions.Main = React.createClass
           currentBeatmap: @state.currentBeatmap
           currentUser: @state.currentUser
           beatmapsetDiscussion: @state.beatmapsetDiscussion
-          lookupUser: @lookupUser
+          users: @users()
           userPermissions: @state.userPermissions
           mode: @state.mode
           readPostIds: @state.readPostIds
@@ -133,10 +136,8 @@ BeatmapDiscussions.Main = React.createClass
     @setCurrentBeatmapId null, id: beatmap?.id
 
 
-  lookupUser: (id) ->
-    @indexedUsers ?= _.keyBy @state.beatmapsetDiscussion.users, 'id'
-
-    @indexedUsers[id]
+  users: ->
+    @cache.users ?= _.keyBy @state.beatmapsetDiscussion.users, 'id'
 
 
   jumpTo: (_e, {id}) ->

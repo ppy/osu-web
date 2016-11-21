@@ -69,7 +69,7 @@ BeatmapDiscussions.Header = React.createClass
       div className: "#{bn}__content #{bn}__content--mapping",
         el BeatmapsetMapping,
           beatmapset: @props.beatmapset
-          user: @props.lookupUser @props.beatmapset.user_id
+          user: @props.users[@props.beatmapset.user_id]
 
 
   headerTop: ->
