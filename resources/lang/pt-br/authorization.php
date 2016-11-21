@@ -24,15 +24,15 @@ return [
             'exhausted' => 'Você alcançou seu limite de nomeação do dia, tente novamente amanhã.',
         ],
         'resolve' => [
-            'general_discussion' => 'Discussão Geral não pôde ser resolvida.',
+            'general_discussion' => 'A discussão geral não pôde ser resolvida.',
             'not_owner' => 'Apenas o criador da discussão e o dono do beatmap podem resolver uma discussão.',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Posts automaticamente gerados não podem ser editados.',
-            'not_owner' => 'Somente o autor do post pode editar a postagem.',
+            'system_generated' => 'Publicações automaticamente geradas não podem ser editadas.',
+            'not_owner' => 'Somente o autor da publicação pode editar a publicação.',
         ],
     ],
 
@@ -61,29 +61,29 @@ return [
     'forum' => [
         'post' => [
             'delete' => [
-                'only_last_post' => 'Somente o último post pode ser excluído.',
-                'locked' => 'Não é possível excluir a postagem de um tópico trancado.',
+                'only_last_post' => 'Somente a última publicação pode ser excluída.',
+                'locked' => 'Não é possível excluir a publicação de um tópico trancado.',
                 'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório.',
-                'not_owner' => 'Apenas o autor do post pode deletar o post.',
+                'not_owner' => 'Apenas o autor da publicação pode excluir a publicação.',
             ],
 
             'edit' => [
-                'locked' => 'A edição deste post está bloqueada',
+                'locked' => 'A edição desta publicação está bloqueada',
                 'no_forum_access' => 'O accesso ao fórum solicitado é obrigatório.',
-                'not_owner' => 'Apenas o autor do post pode deletar o post.',
-                'topic_locked' => 'Não é possível editar posts de um tópico trancado',
+                'not_owner' => 'Apenas o autor da publicação pode editar a publicação.',
+                'topic_locked' => 'Não é possível editar publicações de um tópico trancado',
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Você acabou de postar. Aguarde um pouco ou edite sua última postagem',
+                'double_post' => 'Você acabou de publicar. Aguarde um pouco ou edite sua última publicação.',
                 'locked' => 'Não é possível responder a uma discussão trancada.',
                 'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório.',
                 'no_permission' => 'Sem permissão para responder.',
 
                 'user' => [
-                    'require_login' => 'Por favor, faça o login para responder.',
+                    'require_login' => 'Por favor, inicie a sessão para responder.',
                     'restricted' => 'Não é possível responder enquanto estiver restrito.',
                     'silenced' => 'Não é possível responder enquanto estiver silenciado.',
                 ],
@@ -91,17 +91,17 @@ return [
 
             'store' => [
                 'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório.',
-                'no_permission' => 'Sem permissão para criar novo tópico.',
-                'forum_closed' => 'O fórum está trancado e também não pode ser postado.',
+                'no_permission' => 'Sem permissão para criar um novo tópico.',
+                'forum_closed' => 'O fórum está trancado e não pode ser publicado.',
             ],
 
             'vote' => [
                 'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório',
                 'over' => 'A votação está encerrada e não pode mais ser votada.',
-                'voted' => 'Mudar o voto não é permitido.',
+                'voted' => 'Alterar o voto não é permitido.',
 
                 'user' => [
-                    'require_login' => 'Por favor, faça o login para votar.',
+                    'require_login' => 'Por favor, inicie a sessão para votar.',
                     'restricted' => 'Não é possível votar enquanto estiver restrito.',
                     'silenced' => 'Não é possível votar enquanto estiver silenciado.',
                 ],
@@ -120,15 +120,15 @@ return [
         ],
 
         'view' => [
-            'admin_only' => 'Apenas administradores podem visualizar este fórum',
+            'admin_only' => 'Apenas administradores podem visualizar este fórum.',
         ],
     ],
 
-    'require_login' => 'Por favor, Faça o login para continuar.',
+    'require_login' => 'Por favor, inicie a sessão para continuar.',
 
     'unauthorized' => 'Acesso negado.',
 
-    'silenced' => 'Não pode fazer isso enquanto estiver silenciado.',
+    'silenced' => 'Não é possível fazer isso enquanto estiver silenciado.',
 
     'restricted' => 'Não é possível fazer isso enquanto estiver restrito.',
 

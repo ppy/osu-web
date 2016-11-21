@@ -21,27 +21,27 @@
 return [
     'header' => [
         'small' => 'Compita de outras formas do que apenas clicar em círculos.',
-        'large' => 'Concursos Comunitários osu!',
+        'large' => 'Concursos comunitários osu!',
     ],
     'voting' => [
         'over' => 'A votação deste concurso terminou',
     ],
     'entry' => [
-        'login_required' => 'Por favor, Faça o login para participar deste concurso.',
+        'login_required' => 'Por favor, inicie a sessão para participar deste concurso.',
         'silenced_or_restricted' => 'Você não pode participar de concursos enquanto estiver restrito ou silenciado.',
         'preparation' => 'Estamos atualmente preparando este concurso. Aguarde pacientemente!',
-        'over' => 'Obrigado pela sua participação! As submissões foram encerradas para este concurso e a votação abrirá em breve.',
-        'limit_reached' => 'Você atingiu o limite de arquivos de submissão para este concurso',
-        'drop_here' => 'Deixe seu arquivo de submissão aqui',
+        'over' => 'Agradecemos a sua participação! As inscrições para este concurso foram encerradas e a votação abrirá em breve.',
+        'limit_reached' => 'Você atingiu o limite de inscrições para este concurso',
+        'drop_here' => 'Solte a sua inscrição aqui',
         'wrong_type' => [
             'art' => 'Apenas arquivos .jpg e .png são aceitos para este concurso.',
-            'beatmap' => 'Somente arquivos .osu são aceitos para este concurso.',
-            'music' => 'Somente arquivos .mp3 são aceitos para este concurso.',
+            'beatmap' => 'Apenas arquivos .osu são aceitos para este concurso.',
+            'music' => 'Apenas arquivos .mp3 são aceitos para este concurso.',
         ],
-        'too_big' => 'O arquivo de submissão para este concurso só podem ter até :limit.',
+        'too_big' => 'Inscrições não podem exceder :limit.',
     ],
     'beatmaps' => [
-        'download' => 'Baixe o arquivo de submissão',
+        'download' => 'Baixar inscrição',
     ],
     'votes' => '1 voto|:count votos',
     'dates' => [
@@ -53,7 +53,7 @@ return [
         ],
     ],
     'states' => [
-        'entry' => 'Entry Open',
+        'entry' => 'Entrada aberta',
         'voting' => 'Votação iniciada',
         'results' => 'Resultados',
     ],

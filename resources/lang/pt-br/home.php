@@ -20,12 +20,12 @@
 
 return [
     'news' => [
-        'slogan' => 'O ritmo apenas a um *Clique* de distância!',
+        'slogan' => 'O ritmo está a um *clique* de distância!',
     ],
     'landing' => [
         'slogans' => [
-            '1' => 'free-to-win<br/>circle simulator',
-            '2' => 'o ritmo apenas<br/> a um clique de distância',
+            '1' => 'simulador de círculos<br/>grátis para ganhar',
+            '2' => 'o ritmo está a um<br/>clique de distância',
         ],
 
         'download' => [
