@@ -80,6 +80,7 @@ BeatmapDiscussions.Main = React.createClass
         beatmapset: @state.beatmapset
         beatmaps: @state.beatmaps
         currentBeatmap: @state.currentBeatmap
+        currentDiscussions: @currentDiscussions()
         currentUser: @state.currentUser
         currentFilter: @state.currentFilter
         beatmapsetDiscussion: @state.beatmapsetDiscussion
@@ -97,14 +98,15 @@ BeatmapDiscussions.Main = React.createClass
 
         el BeatmapDiscussions.Discussions,
           beatmapset: @state.beatmapset
-          currentBeatmap: @state.currentBeatmap
-          currentUser: @state.currentUser
           beatmapsetDiscussion: @state.beatmapsetDiscussion
-          users: @users()
-          userPermissions: @state.userPermissions
+          currentBeatmap: @state.currentBeatmap
+          currentDiscussions: @currentDiscussions()
+          currentFilter: @state.currentFilter
+          currentUser: @state.currentUser
           mode: @state.mode
           readPostIds: @state.readPostIds
-          currentFilter: @state.currentFilter
+          userPermissions: @state.userPermissions
+          users: @users()
 
 
   checkNew: ->
@@ -130,6 +132,49 @@ BeatmapDiscussions.Main = React.createClass
       @nextTimeout = Math.min @nextTimeout, @checkNewTimeoutMax
 
       @checkNewTimeout = Timeout.set @nextTimeout, @checkNew
+
+
+  currentDiscussions: ->
+    if !@cache.currentDiscussions?
+      general = []
+      timeline = []
+      timelineByFilter =
+        total: {}
+        resolved: {}
+        pending: {}
+        praises: {}
+        mine: {}
+
+      for d in @state.beatmapsetDiscussion.beatmap_discussions
+        if d.timestamp?
+          continue if d.beatmap_id != @state.currentBeatmap.id
+
+          timeline.push d
+          timelineByFilter.total[d.id] = d
+
+          if d.message_type == 'praise'
+            timelineByFilter.praises[d.id] = d
+          else if d.timestamp?
+            if d.resolved
+              timelineByFilter.resolved[d.id] = d
+            else
+              timelineByFilter.pending[d.id] = d
+
+          if d.user_id == @state.currentUser.id
+            timelineByFilter.mine[d.id] = d
+
+        else
+          general.push d
+
+      _.orderBy timeline, ['timestamp', 'id']
+      _.orderBy general, 'id'
+
+      @cache.currentDiscussions =
+        general: general
+        timeline: timeline
+        timelineByFilter: timelineByFilter
+
+    @cache.currentDiscussions
 
 
   jumpByHash: ->

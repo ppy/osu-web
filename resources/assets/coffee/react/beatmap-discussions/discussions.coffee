@@ -26,11 +26,7 @@ BeatmapDiscussions.Discussions = React.createClass
 
 
   render: ->
-    @currentDiscussions = _.chain @props.beatmapsetDiscussion.beatmap_discussions
-      .orderBy ['timestamp', 'id'], ['asc', 'asc']
-      .value()
-    @currentBeatmapId = if @props.mode == 'general' then null else @props.currentBeatmap.id
-    @hasDiscussion = null
+    discussions = @props.currentDiscussions[@props.mode]
 
     div className: 'osu-page osu-page--small',
       div
@@ -68,12 +64,15 @@ BeatmapDiscussions.Discussions = React.createClass
               div className: "#{bn}__timeline-line hidden-xs"
 
           div null,
-            @currentDiscussions.map @discussionPage
+            discussions.map @discussionPage
 
-            if !@hasDiscussion?
-              div className: "#{bn}__discussion #{bn}__discussion--empty", osu.trans 'beatmaps.discussions.empty.empty'
-            else if @hasDiscussion == 'hidden'
-              div className: "#{bn}__discussion #{bn}__discussion--empty", osu.trans 'beatmaps.discussions.empty.hidden'
+            if discussions.length == 0
+              div className: "#{bn}__discussion #{bn}__discussion--empty",
+                osu.trans 'beatmaps.discussions.empty.empty'
+            else if @props.mode == 'timeline' &&
+            _.size(@props.currentDiscussions.timelineByFilter[@props.currentFilter]) == 0
+              div className: "#{bn}__discussion #{bn}__discussion--empty",
+                osu.trans 'beatmaps.discussions.empty.hidden'
 
           @timelineCircle()
 
@@ -81,16 +80,11 @@ BeatmapDiscussions.Discussions = React.createClass
   discussionPage: (discussion) ->
     className = "#{bn}__discussion"
 
-    if !@currentBeatmap(discussion)
-      hidden = true
-    else if @hidden(discussion)
-      @hasDiscussion ?= 'hidden'
-      hidden = true
+    if @props.mode == 'timeline' &&
+    !@props.currentDiscussions.timelineByFilter[@props.currentFilter][discussion.id]?
+      className += ' u-hide-by-height'
     else
-      @hasDiscussion = 'visible'
-      hidden = false
-
-    className += ' u-hide-by-height' if hidden
+      visible = true
 
     div
       key: discussion.id
@@ -103,11 +97,7 @@ BeatmapDiscussions.Discussions = React.createClass
         currentBeatmap: @props.currentBeatmap
         userPermissions: @props.userPermissions
         readPostIds: @props.readPostIds
-        visible: !hidden
-
-
-  currentBeatmap: (discussion) ->
-    discussion.beatmap_id == @currentBeatmapId
+        visible: visible?
 
 
   expand: (e) ->

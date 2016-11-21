@@ -26,10 +26,6 @@ BeatmapDiscussions.Header = React.createClass
     @updateChart()
 
 
-  componentWillUpdate: ->
-    @_currentDiscussions = null
-
-
   componentDidUpdate: ->
     @updateChart()
 
@@ -47,14 +43,6 @@ BeatmapDiscussions.Header = React.createClass
       div
         className: 'osu-page osu-page--small'
         @headerBottom()
-
-
-  currentDiscussions: ->
-    @_currentDiscussions ?= @props
-      .beatmapsetDiscussion
-      .beatmap_discussions
-      .filter (discussion) =>
-        discussion.beatmap_id == @props.currentBeatmap.id
 
 
   headerBottom: ->
@@ -114,27 +102,9 @@ BeatmapDiscussions.Header = React.createClass
   stats: ->
     bn = 'counter-box'
 
-    issues = @currentDiscussions().filter (discussion) =>
-      discussion.timestamp? &&
-      discussion.message_type != 'praise'
-
-    count = {}
-    count.resolved = issues
-      .filter (discussion) =>
-        discussion.resolved
-      .length
-    count.pending = issues.length - count.resolved
-    count.praises = @currentDiscussions().length - issues.length
-    count.total = @currentDiscussions().length
-
-    count.mine = @currentDiscussions()
-      .filter (discussion) =>
-        discussion.user_id == @props.currentUser.id
-      .length
-
-    ['mine', 'resolved', 'pending', 'praises', 'total'].map (type) =>
+    for type in ['mine', 'resolved', 'pending', 'praises', 'total']
       topClasses = "#{bn} #{bn}--beatmap-discussions #{bn}--#{type}"
-      topClasses += " js-active" if @props.currentFilter == type
+      topClasses += ' js-active' if @props.currentFilter == type
 
       a
         key: type
@@ -150,7 +120,7 @@ BeatmapDiscussions.Header = React.createClass
             osu.trans("beatmaps.discussions.stats.#{type}")
           div
             className: "#{bn}__count"
-            count[type]
+            _.size(@props.currentDiscussions.timelineByFilter[type])
 
         div className: "#{bn}__line"
 
@@ -164,7 +134,7 @@ BeatmapDiscussions.Header = React.createClass
 
       $(window).on 'throttled-resize.beatmapDiscussionsOverview', @_chart.resize
 
-    @_chart.loadData @currentDiscussions()
+    @_chart.loadData _.values(@props.currentDiscussions.timelineByFilter[@props.currentFilter])
 
 
   setFilter: (e) ->
