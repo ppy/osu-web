@@ -28,10 +28,11 @@ class Contest.Voting.BaseEntryList extends React.Component
       contest: @props.contest
       selected: @props.selected
       options:
-        showDL: @props.options.showDL ? false
         showPreview: @props.options.showPreview ? false
 
-  handleVoteClick: (_e, {entry_id, callback}) =>
+  handleVoteClick: (_e, {contest_id, entry_id, callback}) =>
+    return unless contest_id == @state.contest.id
+
     selected = _.clone @state.selected
 
     if _.includes(selected, entry_id)
@@ -45,6 +46,8 @@ class Contest.Voting.BaseEntryList extends React.Component
       callback
 
   handleUpdate: (_e, {response, callback}) =>
+    return unless response.contest.id == @state.contest.id
+
     @setState
       contest: response.contest
       selected: response.userVotes

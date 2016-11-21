@@ -23,10 +23,10 @@ class BeatmapsetPage.BeatmapSelection extends React.Component
     e.preventDefault()
 
     return if @props.active
-    $.publish 'beatmapset:beatmap:set', beatmapId: @props.beatmap.id, playmode: @props.beatmap.mode
+    $.publish 'beatmapset:beatmap:set', beatmap: @props.beatmap
 
   onMouseEnter: (e) =>
-    $.publish 'beatmapset:hoveredbeatmap:set', @props.beatmap.id
+    $.publish 'beatmapset:hoveredbeatmap:set', @props.beatmap
 
   onMouseLeave: (e) =>
     $.publish 'beatmapset:hoveredbeatmap:set', null
@@ -40,5 +40,5 @@ class BeatmapsetPage.BeatmapSelection extends React.Component
       onClick: @onClick
       onMouseEnter: @onMouseEnter
       onMouseLeave: @onMouseLeave
-      href: BeatmapsetPageHash.generate beatmapId: @props.beatmap.id, playmode: @props.beatmap.mode
+      href: BeatmapsetPageHash.generate beatmap: @props.beatmap
       el BeatmapIcon, beatmap: @props.beatmap, modifier: 'beatmapset', showTitle: false

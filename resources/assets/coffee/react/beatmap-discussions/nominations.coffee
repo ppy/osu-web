@@ -1,5 +1,5 @@
 ###
-# Copyright 2015 ppy Pty. Ltd.
+# Copyright 2015-2016 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -15,15 +15,18 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
 {a, button, div, p, span} = React.DOM
 el = React.createElement
 
-bdn = 'beatmap-discussion-nomination'
+bn = 'beatmap-discussion-nomination'
 
 BeatmapDiscussions.Nominations = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
   nominate: ->
+    return unless confirm(osu.trans('beatmaps.nominations.nominate-confirm'))
+
     @doAjax 'nominate'
 
   disqualify: ->
@@ -42,7 +45,9 @@ BeatmapDiscussions.Nominations = React.createClass
       params.data =
         comment: comment
 
-    $.ajax laroute.route("beatmapsets.#{action}", beatmapset: @props.beatmapset.id), params
+    @xhr?.abort()
+
+    @xhr = $.ajax laroute.route("beatmapsets.#{action}", beatmapset: @props.beatmapset.id), params
 
     .done (response) =>
       $.publish 'beatmapset:update', beatmapset: response.beatmapset
@@ -50,18 +55,25 @@ BeatmapDiscussions.Nominations = React.createClass
     .fail osu.ajaxError
     .always LoadingOverlay.hide
 
+
   componentDidMount: ->
     osu.pageChange()
 
+
+  componentWillUnmount: ->
+    @xhr?.abort()
+
+
   componentDidUpdate: ->
     osu.pageChange()
+
 
   render: ->
     userCanPerformNominations = @props.currentUser.isAdmin or @props.currentUser.isGMT or @props.currentUser.isBAT
     mapCanBeNominated = (@props.beatmapset.status == 'pending')
     mapIsQualified = (@props.beatmapset.status == 'qualified')
 
-    return null unless mapCanBeNominated && mapIsQualified
+    return null unless mapCanBeNominated || mapIsQualified
 
     if mapIsQualified
       rankingETA = @props.beatmapset.nominations.ranking_eta
@@ -70,44 +82,53 @@ BeatmapDiscussions.Nominations = React.createClass
       nominations = @props.beatmapset.nominations
       disqualification = nominations.disqualification
 
-    div className: bdn,
-      if disqualification
-        div className: 'osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact',
-          div className: "#{bdn}__disqualification-banner",
-            span null,
-              disqualification.reason
-            span className: "#{bdn}__disqualification-time", dangerouslySetInnerHTML:
-              __html: osu.trans 'beatmaps.nominations.disqualifed-at', time_ago: osu.timeago(disqualification.created_at)
+    div className: bn,
+      div className: "#{bn}__header",
+        span
+          className: "#{bn}__title"
+          osu.trans 'beatmaps.nominations.title'
+        if mapCanBeNominated
+          "#{nominations.current}/#{nominations.required}"
 
-      div className: "osu-layout__row osu-layout__row--sm1 osu-layout__row--page-compact",
-        div className: "#{bdn}__message-area #{(if mapIsQualified then "#{bdn}__message-area--qualified" else '')}",
-          span className: "#{bdn}__message-text",
-            if mapCanBeNominated
-              osu.trans 'beatmaps.nominations.required-text',
-                current: nominations.current,
-                required: nominations.required
-            else if mapIsQualified
-              if rankingETA
-                span dangerouslySetInnerHTML:
-                  __html: osu.trans 'beatmaps.nominations.qualified', date: osu.timeago(rankingETA)
-              else
-                span null,
-                  osu.trans 'beatmaps.nominations.qualified-soon'
+      if mapCanBeNominated
+        div className: "#{bn}__lights",
+          _.times nominations.current, (n) =>
+            div
+              key: n
+              className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-on'
+          _.times (nominations.required - nominations.current), (n) =>
+            div
+              key: nominations.current + n
+              className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-off'
 
+      div className: "#{bn}__footer #{"#{bn}__footer--extended" unless mapCanBeNominated}",
+        div className: "#{bn}__note",
+          # implies mapCanBeNominated
+          if disqualification
+            span
+              dangerouslySetInnerHTML:
+                __html: osu.trans 'beatmaps.nominations.disqualifed-at',
+                  time_ago: osu.timeago(disqualification.created_at)
+                  reason: disqualification.reason ? osu.trans('beatmaps.nominations.disqualifed_no_reason')
+          else if mapIsQualified
+            if rankingETA
+              span dangerouslySetInnerHTML:
+                __html: osu.trans 'beatmaps.nominations.qualified',
+                  date: osu.timeago(rankingETA)
+            else
+              span null, osu.trans 'beatmaps.nominations.qualified-soon'
+
+        div null,
           if userCanPerformNominations
-            span className: "#{bdn}__button-area",
-              if mapIsQualified
-                button
-                  className: 'btn-osu-lite btn-osu-lite--pink'
+            if mapIsQualified
+              el BigButton,
+                text: osu.trans 'beatmaps.nominations.disqualify'
+                icon: 'thumbs-down'
+                props:
                   onClick: @disqualify
-                  el Icon, name: 'thumbs-down'
-                  span className: "#{bdn}__button-text",
-                    osu.trans 'beatmaps.nominations.disqualify'
-              else if mapCanBeNominated
-                button
-                  className: 'btn-osu-lite btn-osu-lite--green'
-                  disabled: nominations.nominated
+            else if mapCanBeNominated
+              el BigButton,
+                text: osu.trans 'beatmaps.nominations.nominate'
+                icon: 'thumbs-up'
+                props:
                   onClick: @nominate
-                  el Icon, name: 'thumbs-up'
-                  span className: "#{bdn}__button-text",
-                    osu.trans 'beatmaps.nominations.nominate'

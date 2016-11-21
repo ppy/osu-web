@@ -20,10 +20,10 @@
 
 return [
     'top-headers' => [
-        'headline' => 'Transmissões ao Vivo',
-        'description' => 'A lista é puxada da twitch.tv de 5 em 5 minutos baseada na listagem do diretório. Sinta-se livre para começar a transmitir e aparecer na lista! Para mais informações em como fazer isso, dê uma olhada na página da wiki sobre transmissões ao vivo.',
+        'headline' => 'Transmissões ao vivo',
+        'description' => 'Os dados são obtidos do Twitch.tv a cada cinco minutos com base na listagem de diretórios. Sinta-se livre para começar a transmitir e aparecer na lista! Para mais informações sobre como se preparar, acesse a página da wiki sobre transmissões ao vivo.',
     ],
     'headers' => [
-        'regular' => 'Ao Vivo agora',
+        'regular' => 'Ao vivo agora',
     ],
 ];

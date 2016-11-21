@@ -144,9 +144,9 @@ abstract class Model extends BaseModel
 
     public function scopeFriendsOf($query, $user)
     {
-        return $query->whereIn(
-            'user_id',
-            model_pluck($user->friends(), 'zebra_id')
-        );
+        $userIds = model_pluck($user->friends(), 'zebra_id');
+        $userIds[] = $user->user_id;
+
+        return $query->whereIn('user_id', $userIds);
     }
 }

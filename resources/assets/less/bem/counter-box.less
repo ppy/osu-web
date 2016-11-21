@@ -1,0 +1,124 @@
+/**
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+.counter-box {
+  @top: counter-box;
+  @color-mine: @yellow-darker;
+  @color-pending: @pink-darker;
+  @color-praises: @blue-darker;
+  @color-resolved: @green;
+  @color-total: @gray-f;
+
+  .border(@color) {
+    box-shadow: 0 0 0 2px @color;
+  }
+
+  .with-active(@color) {
+    &:hover,
+    &:focus,
+    &:active,
+    &.js-active {
+      .border(@color);
+    }
+  }
+
+  .default-border-radius();
+  .border(fade(@gray-0, 50%));
+  background-color: fade(@gray-0, 70%);
+
+  color: @gray-f;
+
+  display: inline-flex;
+  padding: (@spacing * 3 / 4);
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+    color: @gray-f;
+  }
+
+  &--beatmap-discussions {
+    .border(fade(@gray-0, 25%));
+    background-color: @gray-2;
+    margin: (@spacing / 2);
+  }
+
+  &--pending {
+    .with-active(@color-pending);
+  }
+
+  &--praises {
+    .with-active(@color-praises);
+  }
+
+  &--mine {
+    .with-active(@color-mine);
+  }
+
+  &--resolved {
+    .with-active(@color-resolved);
+  }
+
+  &--total {
+    .with-active(@color-total);
+  }
+
+  &__content {
+    line-height: 1;
+  }
+
+  &__count {
+    font-size: @font-size--large;
+    font-weight: 300;
+  }
+
+  &__line {
+    .default-border-radius();
+    width: (@spacing / 4);
+    margin-left: @spacing;
+
+    .@{top}--pending & {
+      background-color: @color-pending;
+    }
+
+    .@{top}--praises & {
+      background-color: @color-praises;
+    }
+
+    .@{top}--mine & {
+      background-color: @color-mine;
+    }
+
+    .@{top}--resolved & {
+      background-color: @color-resolved;
+    }
+
+    .@{top}--total & {
+      background-color: @color-total;
+    }
+  }
+
+  &__title {
+    margin-right: (@spacing * 3);
+    font-weight: bold;
+    font-size: @font-size--small;
+    white-space: nowrap;
+  }
+}
