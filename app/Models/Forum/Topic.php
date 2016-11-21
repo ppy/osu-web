@@ -177,7 +177,7 @@ class Topic extends Model
             }
 
             if ($post->user !== null) {
-                $post->user->refreshForumCache($this->forum, -1);
+                $post->user->refreshForumCache($this->forum, 1);
             }
         });
 
