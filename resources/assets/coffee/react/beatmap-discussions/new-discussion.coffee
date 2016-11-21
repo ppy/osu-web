@@ -95,7 +95,10 @@ BeatmapDiscussions.NewDiscussion = React.createClass
 
 
   setMessage: (e) ->
-    @setState message: e.currentTarget.value, @parseTimestamp
+    if @props.mode == 'timeline'
+      callback = @parseTimestamp
+
+    @setState message: e.currentTarget.value, callback
 
 
   post: (e) ->
@@ -109,7 +112,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
         beatmap_discussion_post:
           message: @state.message
 
-    if @state.timestamp?
+    if @props.mode == 'timeline'
       data.beatmap_discussion =
         message_type: e.currentTarget.dataset.type
         timestamp: @state.timestamp
@@ -157,7 +160,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
 
 
   parseTimestamp: ->
-    timestampRe = @state.message.match /^(\d{2}):(\d{2})[:.](\d{3}) /
+    timestampRe = @state.message.match /\b(\d{2}):(\d{2})[:.](\d{3})\b/
 
     @setState timestamp:
       if timestampRe?
