@@ -69,6 +69,7 @@ return [
 
         'new' => [
             'timestamp' => 'Timestamp',
+            'timestamp_missing' => 'ctrl-c in edit mode and paste in your message to add a timestamp!',
             'title' => 'New Discussion',
         ],
 
