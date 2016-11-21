@@ -72,7 +72,10 @@ BeatmapDiscussions.NewDiscussion = React.createClass
             div
               key: 'timestamp'
               className: "#{bn}__timestamp-col"
-              BeatmapDiscussionHelper.formatTimestamp @state.timestamp
+              if @state.timestamp?
+                BeatmapDiscussionHelper.formatTimestamp @state.timestamp
+              else
+                osu.trans('beatmaps.discussions.new.timestamp_missing')
 
           div
             className: "#{bn}__footer-content #{bn}__footer-content--right"
@@ -92,7 +95,10 @@ BeatmapDiscussions.NewDiscussion = React.createClass
 
 
   setMessage: (e) ->
-    @setState message: e.currentTarget.value, @parseTimestamp
+    if @props.mode == 'timeline'
+      callback = @parseTimestamp
+
+    @setState message: e.currentTarget.value, callback
 
 
   post: (e) ->
@@ -154,7 +160,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
 
 
   parseTimestamp: ->
-    timestampRe = @state.message.match /^(\d{2}):(\d{2})[:.](\d{3}) /
+    timestampRe = @state.message.match /\b(\d{2}):(\d{2})[:.](\d{3})\b/
 
     @setState timestamp:
       if timestampRe?
