@@ -19,16 +19,16 @@
  */
 
 return [
-    'achievement' => '<strong><em>:user</em></strong> desbloqueou a conquista "<strong>:achievement</strong>"!',
-    'beatmapset_delete' => ':beatmapset foi deletado.',
+    'achievement' => '<strong><em>:user</em></strong> alcançou a conquista "<strong>:achievement</strong>"!',
+    'beatmapset_delete' => ':beatmapset foi excluído.',
     'beatmapset_revive' => ':beatmapset foi revivido do cemitério por <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> atualizou o beatmap "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> publicou um novo beatmap ":beatmapset"',
     'empty' => 'Este jogador não fez nada de especial recentemente!',
-    'rank' => '<strong><em>:user</em></strong> alcançou rank #:rank em <em>:beatmap</em> (:mode)',
-    'rank_lost' => '<strong><em>:user</em></strong> perdeu primeiro lugar em <em>:beatmap</em> (:mode)',
-    'user_support_again' => '<strong>:user</strong> escolheu mais uma vez ajudar o osu! - obrigado por sua generosidade!',
-    'user_support_first' => '<strong>:user</strong> virou um osu! supporter - obrigado por sua generosidade!',
-    'user_support_gift' => '<strong>:user</strong> recebeu uma osu! supporter tag de presente!',
-    'username_change' => '<strong>:previousUsername</strong> mudou seu username para <strong><em>:user</strong></em>!',
+    'rank' => '<strong><em>:user</em></strong> alcançou rank Nº:rank em <em>:beatmap</em> (:mode)',
+    'rank_lost' => '<strong><em>:user</em></strong> perdeu o primeiro lugar em <em>:beatmap</em> (:mode)',
+    'user_support_again' => '<strong>:user</strong> escolheu mais uma vez ajudar o osu! — obrigado por sua generosidade!',
+    'user_support_first' => '<strong>:user</strong> se tornou osu!supporter — obrigado por sua generosidade!',
+    'user_support_gift' => '<strong>:user</strong> recebeu osu!supporter de presente!',
+    'username_change' => '<strong>:previousUsername</strong> alterou seu nome de usuário para <strong><em>:user</strong></em>!',
 ];

@@ -20,17 +20,17 @@
 
 return [
     'login' => [
-        '_' => 'Entrar',
+        '_' => 'Iniciar sessão',
         'username' => 'Nome de usuário',
         'password' => 'Senha',
-        'button' => 'Entrar',
+        'button' => 'Iniciar sessão',
         'remember' => 'Lembrar deste computador',
-        'title' => 'Faça login para continuar',
-        'failed' => 'Login incorreto',
-        'register' => 'Não tem uma conta de osu!? Crie uma',
-        'forgot' => 'Esqueceu sua senha?',
+        'title' => 'Inicie a sessão para continuar',
+        'failed' => 'Nome de usuário e/ou senha incorretos',
+        'register' => 'Não tem uma conta no osu!? Crie uma',
+        'forgot' => 'Esqueceu a sua senha?',
         'beta' => [
-            'main' => 'Acesso Beta atualmente restrito para usuários privilegiados.',
+            'main' => 'Acesso beta atualmente restrito para usuários privilegiados.',
             'small' => '(supporters serão incluidos logo)',
         ],
 
@@ -40,17 +40,17 @@ return [
         '_' => 'Registrar',
     ],
     'anonymous' => [
-        'login_link' => 'clique para fazer entrar',
+        'login_link' => 'clique para iniciar a sessão',
         'username' => 'Convidado',
-        'error' => 'Você precisa fazer o login antes de tentar isso.',
+        'error' => 'Você precisa iniciar a sessão para fazer isso.',
     ],
-    'logout_confirm' => 'Tem certeza de que quer sair? :(',
+    'logout_confirm' => 'Tem certeza de que deseja sair? :(',
     'show' => [
         '404' => 'Usuário não encontrado! ;_;',
         'current_location' => 'Atualmente em :location.',
         'edit' => [
             'cover' => [
-                'button' => 'Mudar Capa de Perfil',
+                'button' => 'Alterar capa do perfil',
                 'defaults_info' => 'Mais opções de capa estarão disponíveis no futuro',
                 'upload' => [
                     'broken_file' => 'Processamento de imagem falhou. Verifique a imagem enviada e tente novamente.',
@@ -58,7 +58,7 @@ return [
                     'dropzone' => 'Arraste aqui para enviar',
                     'dropzone_info' => 'Você também pode arrastar sua imagem aqui para enviar',
                     'restriction_info' => "Envio de imagem disponível apenas para <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a>",
-                    'size_info' => 'Tamanho da capa deve ser 2000x500',
+                    'size_info' => 'O tamanho da capa deve ser 2000x500',
                     'too_large' => 'O arquivo enviado é muito grande.',
                     'unsupported_format' => 'Formato não suportado.',
                 ],
@@ -67,43 +67,44 @@ return [
         'extra' => [
             'achievements' => [
                 'title' => 'Conquistas',
-                'achieved-on' => 'Conquistado em :date',
+                'achieved-on' => 'Alcançada em :date',
             ],
             'beatmaps' => [
                 'title' => 'Beatmaps',
             ],
             'historical' => [
-                'empty' => 'Sem histórico de performance. :(',
+                'empty' => 'Sem histórico de desempenho. :(',
                 'most_played' => [
                     'count' => 'vezes jogadas',
-                    'title' => 'Beatmaps Mais Jogados',
+                    'title' => 'Beatmaps mais jogados',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisão: :percentage',
-                    'title' => 'Jogadas Recentes',
+                    'title' => 'Jogadas recentes',
                 ],
                 'title' => 'Histórico',
             ],
             'performance' => [
-                'title' => 'Performance',
+                'title' => 'Desempenho',
             ],
             'kudosu' => [
-                'available' => 'Kudosu Disponível',
+                'available' => 'Kudosu disponível',
                 'available_info' => 'Kudosu pode ser trocado por estrelas de kudosu, que podem ajudar seu beatmap a conseguir mais atenção. Este é o número de kudosu que você ainda não usou.',
                 'entry' => [
                     'empty' => 'Este jogador ainda não recebeu nenhum kudosu!',
-                    'give' => 'Recebeu <strong class="kudosu-entries__amount">:amount kudosu</strong> de :giver por um post em :post',
-                    'revoke' => 'Kudosu negado por :giver pelo post :post',
+                    'give' => 'Recebeu <strong class="kudosu-entries__amount">:amount kudosu</strong> de :giver por uma publicação em :post',
+                    'revoke' => 'Kudosu negado por :giver pela publicação :post',
                 ],
-                'recent_entries' => 'Histórico Recente de Kudosu',
+                'recent_entries' => 'Histórico recente de Kudosu',
                 'title' => 'Kudosu!',
-                'total' => 'Kudosu Total Recebido',
-                'total_info' => 'Baseado na contribuição de um jogador para a moderação de beatmaps. Veja <a href="'.osu_url('user.kudosu').'">esta página</a> para mais informações.',
+                'total' => 'Kudosu total recebido',
+                'total_info' => 'Baseado na contribuição de um jogador para a moderação de beatmaps. Acesse <a href="'.osu_url('user.kudosu').'">esta página</a> para mais informações.',
             ],
             'me' => [
                 'title' => 'eu!',
             ],
             'medals' => [
+                'empty' => 'Este usuário ainda não recebeu nenhuma. ;_;',
                 'title' => 'Medalhas',
             ],
             'recent_activities' => [
@@ -111,11 +112,11 @@ return [
             ],
             'top_ranks' => [
                 'best' => [
-                    'title' => 'Melhor Performance',
+                    'title' => 'Melhor desempenho',
                 ],
-                'empty' => 'Nenhuma performance maravilhosa ainda. :(',
+                'empty' => 'Nenhum desempenho maravilhoso ainda. :(',
                 'first' => [
-                    'title' => 'Ranks de Primeiro Lugar',
+                    'title' => 'Ranks de primeiro lugar',
                 ],
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
@@ -124,10 +125,10 @@ return [
             'beatmaps' => [
                 'title' => 'Beatmaps',
                 'favourite' => [
-                    'title' => 'Beatmaps Favoritos (:count)',
+                    'title' => 'Beatmaps favoritos (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmaps Rankeados & Aprovados (:count)',
+                    'title' => 'Beatmaps ranqueados e aprovados (:count)',
                 ],
                 'none' => 'Nenhum... ainda.',
             ],
@@ -144,8 +145,8 @@ return [
             'country_age' => ':age anos de :country.',
         ],
         'page' => [
-            'description' => '<strong>eu!</strong> é uma área pessoal customizável na sua página de perfil.',
-            'edit_big' => 'Edite-me!',
+            'description' => '<strong>eu!</strong> é uma área pessoal personalizável na sua página de perfil.',
+            'edit_big' => 'Editar eu!',
             'placeholder' => 'Digite o conteúdo da página aqui',
             'restriction_info' => "Você precisa ser um <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> para desbloquear essa função.",
         ],
@@ -154,26 +155,26 @@ return [
             'keyboard' => 'Teclado',
             'mouse' => 'Mouse',
             'tablet' => 'Mesa digitalizadora',
-            'touch' => 'Touch Screen',
+            'touch' => 'Tela sensível ao toque',
         ],
-        'missingtext' => 'Você deve ter feito um erro de digitação! (ou o jogador pode ter sido banido)',
-        'page_description' => 'osu! - Tudo que você sempre quis saber sobre :username!',
+        'missingtext' => 'Você pode ter cometido um erro de digitação! (ou o usuário pode ter sido banido)',
+        'page_description' => 'osu! — Tudo o que você sempre quis saber sobre :username!',
         'rank' => [
             'country' => 'Rank de país para :mode',
             'global' => 'Rank global para :mode',
         ],
         'stats' => [
-            'hit_accuracy' => 'Precisão de Acerto',
-            'level' => 'Level :level',
-            'maximum_combo' => 'Combo Máximo',
-            'play_count' => 'Vezes Jogadas',
-            'ranked_score' => 'Pontuação Rankeada',
-            'replays_watched_by_others' => 'Replays Assistidos por Outros',
-            'score_ranks' => 'Ranks de Pontuação',
-            'total_hits' => 'Hits Totais',
-            'total_score' => 'Pontuação Total',
+            'hit_accuracy' => 'Precisão de acertos',
+            'level' => 'Nível :level',
+            'maximum_combo' => 'Combo máximo',
+            'play_count' => 'Vezes jogadas',
+            'ranked_score' => 'Pontuação ranqueada',
+            'replays_watched_by_others' => 'Replays assistidos por outros',
+            'score_ranks' => 'Ranks de pontuação',
+            'total_hits' => 'Acertos totais',
+            'total_score' => 'Pontuação total',
         ],
-        'title' => 'perfil de :username',
+        'title' => 'Perfil de :username',
     ],
 
     'verify' => [
