@@ -33,15 +33,20 @@ class Kernel extends HttpKernel
         Middleware\EncryptCookies::class,
         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
         \Illuminate\Session\Middleware\StartSession::class,
-        Middleware\SetLocale::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         Middleware\VerifyCsrfToken::class,
+        Middleware\SetLocale::class,
         Middleware\AutologinFromLegacyCookie::class,
         Middleware\VerifyPrivilegedUser::class,
         Middleware\CheckUserBanStatus::class,
         Middleware\UpdateUserLastvisit::class,
         \Clockwork\Support\Laravel\ClockworkMiddleware::class,
         Middleware\TurbolinksSupport::class,
+    ];
+
+    protected $middlewareGroups = [
+        'api' => [],
+        'web' => [],
     ];
 
     /**
@@ -54,6 +59,7 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'check-user-restricted' => Middleware\CheckUserRestricted::class,
         'guest' => Middleware\RedirectIfAuthenticated::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verify-user' => Middleware\VerifyUser::class,
     ];
 }

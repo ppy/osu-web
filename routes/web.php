@@ -248,25 +248,3 @@ if (Config::get('app.debug')) {
         Route::get('/', ['uses' => 'StatusController@getMain']);
     });
 }
-
-Route::group(['middleware' => ['web', 'auth']], function ($router) {
-    $router->get('/oauth/authorize', [
-        'uses' => 'AuthorizationController@authorize',
-        'as' => 'oauth.authorize',
-    ]);
-
-    $router->post('/oauth/authorize', [
-        'uses' => 'ApproveAuthorizationController@approve',
-        'as' => 'oauth.authorize.approve',
-    ]);
-
-    $router->delete('/oauth/authorize', [
-        'uses' => 'DenyAuthorizationController@deny',
-        'as' => 'oauth.authorize.deny',
-    ]);
-});
-
-Route::get('/oauth/access_token', [
-    'uses' => 'AuthorizationController@authorize',
-    'as' => 'oauth.token',
-]);

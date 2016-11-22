@@ -22,5 +22,7 @@ class AuthServiceProvider extends ServiceProvider
         if ($path = config('services.passport.path')) {
             Passport::keyPath($path);
         }
+
+        Passport::routes();
     }
 }
