@@ -15,35 +15,28 @@ See the GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-$(document).on 'ajax:success', '.delete-post-link', (_event, data) ->
+$(document).on 'ajax:success', '.delete-post-link', (event, data, status, xhr) ->
   $el = $(".js-forum-post[data-post-id=#{data.postId}]")
-  currentHeight = $el.css 'height'
 
   if currentUser.isAdmin || currentUser.isGMT
     $post = $el.find '.forum-post'
-    toggle = _event.target
+    toggle = event.target
 
-    switch toggle.id
+    switch toggle.getAttribute 'data-action'
       when 'delete'
         $post.addClass 'forum-post--hidden'
-        toggle.id = 'undelete'
-        $(toggle).children()
-          .removeClass 'fa-trash'
-          .addClass 'fa-undo'
       when 'undelete'
         $post.removeClass 'forum-post--hidden'
-        toggle.id = 'delete'
-        $(toggle).children()
-          .removeClass 'fa-undo'
-          .addClass 'fa-trash'
 
-    $(toggle).prop 'title', osu.trans "forum.post.actions.#{toggle.id}"
-    $(toggle).data 'confirm', osu.trans "forum.post.confirm_#{toggle.id}"
+    # need to trigger ajax:complete early
+    $(toggle)
+      .trigger('ajax:complete', [xhr, status])
+      .parent().replaceWith(data.toggle)
   else
     $el
       .css
         minHeight: '0px'
-        height: currentHeight
+        height: $el.css 'height'
       .slideUp null, ->
         $el.remove()
 

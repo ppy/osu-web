@@ -88,21 +88,7 @@
                 @endif
 
                 @if ($options["deleteLink"] === true)
-                    @php
-                        $deleteString = $post->deleted_at ? 'undelete' : 'delete'
-                    @endphp
-                    <a
-                        title="{{ trans('forum.post.actions.'.$deleteString) }}"
-                        data-tooltip-position="left center"
-                        href="{{ route("forum.posts.destroy", $post) }}"
-                        class="forum-post-actions__action delete-post-link"
-                        id="{{ $deleteString }}"
-                        data-method="delete"
-                        data-confirm="{{ trans("forum.post.confirm_".$deleteString) }}"
-                        data-remote="1"
-                    >
-                        <i class="fa fa-{{ $post->deleted_at ? 'undo' : 'trash' }}"></i>
-                    </a>
+                    @include('forum.topics._post_hide_action')
                 @endif
 
                 @if ($options['replyLink'] === true)

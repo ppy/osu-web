@@ -64,6 +64,7 @@ class PostsController extends Controller
         return [
             'postId' => $post->post_id,
             'postPosition' => $deletedPostPosition,
+            'toggle' => view('forum.topics._post_hide_action', compact('post'))->render()
         ];
     }
 
