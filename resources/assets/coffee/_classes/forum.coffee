@@ -54,7 +54,8 @@ class @Forum
 
   setTotalPosts: (n) =>
     @_totalPostsDiv[0].setAttribute('data-total-count', n)
-    document.getElementsByClassName('js-forum__total-count')[0].textContent = n
+    # document.getElementsByClassName('js-forum__total-count')[0].textContent = n
+    $('.js-forum__total-count').text(n)
 
 
   setCounter: (currentPost) =>
