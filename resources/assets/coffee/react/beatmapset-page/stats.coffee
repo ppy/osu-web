@@ -78,21 +78,9 @@ class BeatmapsetPage.Stats extends React.Component
             width: '0%'
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--basic',
-        for stat in ['total_length', 'bpm', 'count_circles', 'count_sliders']
-          value = if stat == 'bpm' then @props.beatmapset.bpm else @props.beatmap[stat]
-
-          if stat == 'total_length'
-            value = moment(0).seconds(value).format 'm:ss'
-
-          div
-            className: 'beatmapset-stats__basic'
-            key: stat
-            title: osu.trans "beatmaps.beatmapset.show.stats.#{stat}"
-            div
-              className: 'beatmapset-stats__icon'
-              style:
-                backgroundImage: "url(/images/layout/beatmapset-page/#{stat}.svg)"
-            span null, value.toLocaleString()
+        el BeatmapBasicStats,
+          beatmapset: @props.beatmapset
+          beatmap: @props.beatmap
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--advanced',
         table className: 'beatmap-stats-table',
