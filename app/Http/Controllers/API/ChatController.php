@@ -74,7 +74,7 @@ class ChatController extends Controller
         $since = intval(Request::input('since'));
         $limit = min(50, intval(Request::input('limit', 50)));
 
-        $messages = PrivateMessage::toOrFrom($this->current_user->user_id)
+        $messages = PrivateMessage::toOrFrom(Auth::user()->user_id)
             ->with('sender')
             ->with('receiver');
 
