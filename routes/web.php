@@ -161,7 +161,8 @@ Route::group(['as' => 'forum.', 'prefix' => 'forum', 'namespace' => 'Forum'], fu
 
     Route::get('p/{post}', ['as' => 'posts.show', 'uses' => 'PostsController@show']);
     Route::get('posts/{post}/raw', ['as' => 'posts.raw', 'uses' => 'PostsController@raw']);
-    Route::resource('posts', 'PostsController', ['only' => ['destroy', 'update', 'edit']]);
+    Route::post('posts/{post}/change-visibility', ['as' => 'posts.change-visibility', 'uses' => 'PostsController@changeVisibility']);
+    Route::resource('posts', 'PostsController', ['only' => ['update', 'edit']]);
 
     Route::get('/', ['as' => 'forums.index', 'uses' => 'ForumsController@index']);
     Route::get('{forum}', ['as' => 'forums.show', 'uses' => 'ForumsController@show']);

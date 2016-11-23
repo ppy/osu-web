@@ -31,7 +31,6 @@ class PostsController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['only' => [
-            'destroy',
             'hide',
             'raw',
         ]]);
@@ -39,17 +38,18 @@ class PostsController extends Controller
         return parent::__construct();
     }
 
-    public function destroy($id)
+    public function changeVisibility($id)
     {
         $post = Post::findOrFail($id);
+        $action = Request::input('action');
 
         priv_check('ForumPostDelete', $post)->ensureCan();
 
         $deletedPostPosition = $post->topic->postPosition($post->post_id);
 
-        if ($post->trashed()) {
+        if ($action === 'undelete' && $post->trashed()) {
             $post->topic->restorePost($post, Auth::user());
-        } else {
+        } elseif ($action === 'delete' && !$post->trashed()) {
             $post->topic->removePost($post, Auth::user());
         }
 
