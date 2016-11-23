@@ -20,7 +20,6 @@
 namespace App\Http\Controllers\API;
 
 use Auth;
-use Authorizer;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -31,10 +30,6 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $this->middleware(function ($request, $next) {
-            Auth::onceUsingId(Authorizer::getResourceOwnerId());
-
-            return $next($request);
-        });
+        $this->middleware('auth:api');
     }
 }

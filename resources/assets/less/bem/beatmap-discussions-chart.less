@@ -34,6 +34,14 @@
     }
   }
 
+  &__bar-gradient {
+    stop-color: @gray-f;
+
+    &--start {
+      stop-opacity: 0;
+    }
+  }
+
   &__chart-area {
     fill: @gray-blue-darker;
   }
@@ -50,7 +58,6 @@
 
   &__point {
     font-size: 12px;
-    stroke: @gray-f;
 
     &--praise {
       fill: @beatmap-discussion--color-praise;
