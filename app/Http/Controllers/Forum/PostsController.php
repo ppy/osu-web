@@ -40,7 +40,13 @@ class PostsController extends Controller
 
     public function changeVisibility($id)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::query();
+
+        if (priv_check('ForumTopicModerate')->can()) {
+            $post->withTrashed();
+        }
+
+        $post = $post->findOrFail($id);
         $action = Request::input('action');
 
         priv_check('ForumPostDelete', $post)->ensureCan();

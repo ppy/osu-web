@@ -61,8 +61,17 @@ class ForumsController extends Controller
             new ForumCoverTransformer()
         );
 
-        $pinnedTopics = $forum->topics()->pinned()->orderBy('topic_type', 'desc')->recent()->get();
-        $topics = $forum->topics()->normal()->recent(compact('sort', 'withReplies'))->paginate(15);
+        $pinnedTopics = $forum->topics();
+        $topics = $forum->topics();
+
+        if (priv_check('ForumTopicModerate')->can()) {
+            $pinnedTopics->withTrashed();
+            $topics->withTrashed();
+        }
+
+        $pinnedTopics = $pinnedTopics->pinned()->orderBy('topic_type', 'desc')->recent()->get();
+        $topics = $topics->normal()->recent(compact('sort', 'withReplies'))->paginate(15);
+
         $topicReadStatus = TopicTrack::readStatus(Auth::user(), $pinnedTopics, $topics);
 
         return view('forum.forums.show', compact('forum', 'topics', 'pinnedTopics', 'topicReadStatus', 'cover'));

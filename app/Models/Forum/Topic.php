@@ -64,19 +64,6 @@ class Topic extends Model
         'topic_approved' => 'boolean',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        if (!priv_check('ForumTopicModerate')->can()) {
-            static::addGlobalScope(new SoftDeletingScope);
-        }
-    }
-
-    public static function bootSoftDeletes()
-    {
-    }
-
     public static function createNew($forum, $params, $poll = null)
     {
         $topic = new static([
@@ -137,7 +124,7 @@ class Topic extends Model
         DB::transaction(function () use ($post, $user) {
             $post->delete();
 
-            if ($this->posts()->whereNull('deleted_at')->exists() === true) {
+            if ($this->posts()->exists() === true) {
                 $this->refreshCache();
             } else {
                 $this->delete();
@@ -355,12 +342,24 @@ class Topic extends Model
 
     public function nthPost($n)
     {
-        return $this->posts()->skip(intval($n) - 1)->first();
+        $posts = $this->posts();
+
+        if (priv_check('ForumTopicModerate')->can()) {
+            $posts->withTrashed();
+        }
+
+        return $posts->skip(intval($n) - 1)->first();
     }
 
     public function postPosition($postId)
     {
-        return $this->posts()->where('post_id', '<=', $postId)->count();
+        $posts = $this->posts();
+
+        if (priv_check('ForumTopicModerate')->can()) {
+            $posts->withTrashed();
+        }
+
+        return $posts->where('post_id', '<=', $postId)->count();
     }
 
     public function postsPosition($sortedPosts)
@@ -399,7 +398,13 @@ class Topic extends Model
     public function postsCount()
     {
         if ($this->postsCount === null) {
-            $this->postsCount = $this->posts()->count();
+            $posts = $this->posts();
+
+            if (priv_check('ForumTopicModerate')->can()) {
+                $posts->withTrashed();
+            }
+
+            $this->postsCount = $posts->count();
         }
 
         return $this->postsCount;
@@ -466,13 +471,13 @@ class Topic extends Model
 
     public function setPostsCountCache()
     {
-        $this->topic_replies = -1 + $this->posts()->whereNull('deleted_at')->where('post_approved', true)->count();
-        $this->topic_replies_real = -1 + $this->posts()->whereNull('deleted_at')->count();
+        $this->topic_replies = -1 + $this->posts()->where('post_approved', true)->count();
+        $this->topic_replies_real = -1 + $this->posts()->count();
     }
 
     public function setFirstPostCache()
     {
-        $firstPost = $this->posts()->whereNull('deleted_at')->first();
+        $firstPost = $this->posts()->first();
 
         if ($firstPost === null) {
             $this->topic_first_post_id = null;
@@ -496,7 +501,7 @@ class Topic extends Model
 
     public function setLastPostCache()
     {
-        $lastPost = $this->posts()->whereNull('deleted_at')->last()->first();
+        $lastPost = $this->posts()->orderBy('post_id', 'desc')->first();
 
         if ($lastPost === null) {
             $this->topic_last_post_id = null;

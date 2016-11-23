@@ -73,7 +73,7 @@ class TopicsController extends Controller
 
     public function lock($id)
     {
-        $topic = Topic::findOrFail($id);
+        $topic = Topic::withTrashed()->findOrFail($id);
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
 
@@ -86,7 +86,7 @@ class TopicsController extends Controller
 
     public function move($id)
     {
-        $topic = Topic::findOrFail($id);
+        $topic = Topic::withTrashed()->findOrFail($id);
         $destinationForum = Forum::findOrFail(Request::input('destination_forum_id'));
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
@@ -100,7 +100,7 @@ class TopicsController extends Controller
 
     public function pin($id)
     {
-        $topic = Topic::findOrFail($id);
+        $topic = Topic::withTrashed()->findOrFail($id);
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
 
@@ -166,12 +166,21 @@ class TopicsController extends Controller
             ::with([
                 'forum.cover',
                 'pollOptions.votes',
-            ])
-            ->findOrFail($id);
+            ]);
+
+        if (priv_check('ForumTopicModerate')->can()) {
+            $topic->withTrashed();
+        }
+
+        $topic = $topic->findOrFail($id);
 
         priv_check('ForumView', $topic->forum)->ensureCan();
 
         $posts = $topic->posts();
+
+        if (priv_check('ForumTopicModerate')->can()) {
+            $posts->withTrashed();
+        }
 
         if ($postStartId === 'unread') {
             $postStartId = Post::lastUnreadByUser($topic, Auth::user());
@@ -231,7 +240,11 @@ class TopicsController extends Controller
 
         $pollSummary = PollOption::summary($topic, Auth::user());
 
-        Event::fire(new TopicWasViewed($topic, $posts->last(), Auth::user()));
+        Event::fire(new TopicWasViewed(
+            $topic,
+            $topic->posts->last(),
+            Auth::user()
+        ));
 
         $template = $skipLayout ? '_posts' : 'show';
 

@@ -47,19 +47,6 @@ class Post extends Model
 
     private $normalizedUsers = [];
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        if (!priv_check('ForumTopicModerate')->can()) {
-            static::addGlobalScope(new SoftDeletingScope);
-        }
-    }
-
-    public static function bootSoftDeletes()
-    {
-    }
-
     public function forum()
     {
         return $this->belongsTo("App\Models\Forum\Forum", 'forum_id', 'forum_id');
