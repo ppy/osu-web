@@ -336,10 +336,8 @@ class Beatmapset extends Model
         }
 
         if (!empty($shouldParams)) {
-            $searchParams['body']['query']['bool'] = [
-                'should' => $shouldParams,
-                'minimum_should_match' => 1,
-            ];
+            $searchParams['body']['query']['bool']['should'] = $shouldParams;
+            $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
         }
 
         try {
