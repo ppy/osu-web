@@ -25,12 +25,6 @@
     width: @beatmapset-float-box-width;
   }
 
-  &__basic {
-    display: flex;
-    flex: 1;
-    padding: (@spacing / 2);
-  }
-
   &__elapsed-bar {
     position: absolute;
     bottom: 0;
@@ -82,11 +76,8 @@
     flex-direction: column;
 
     &--basic {
-      flex-direction: row;
-      padding-left: @spacing;
-      padding-right: @spacing;
-      color: @yellow-light;
-      font-weight: 700;
+      padding-top: @spacing;
+      padding-bottom: @spacing;
     }
 
     &--preview {

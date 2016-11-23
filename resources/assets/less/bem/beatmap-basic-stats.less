@@ -1,7 +1,5 @@
-<?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,30 +14,28 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-namespace App\Http\Middleware;
 
-use Auth;
-use Closure;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
-use Illuminate\Session\TokenMismatchException;
+.beatmap-basic-stats {
+  display: flex;
+  margin: (-@spacing / 2) (-@spacing);
+  font-weight: 700;
+  font-size: @font-size--normal;
+  color: @yellow-light;
 
-class VerifyCsrfToken extends BaseVerifier
-{
-    protected $except = [
-        'oauth/authorize',
-        'oauth/access_token',
-    ];
+  &__entry {
+    display: flex;
+    flex: 1;
+    padding: (@spacing / 2) @spacing;
+  }
 
-    public function handle($request, Closure $next)
-    {
-        try {
-            return parent::handle($request, $next);
-        } catch (TokenMismatchException $_e) {
-            $request->session()->flush();
-            Auth::logout();
+  &__entry-icon {
+    width: 15px;
+    height: 15px;
 
-            return $next($request);
-        }
-    }
+    background-size: contain;
+
+    margin-right: (@spacing / 2);
+  }
 }

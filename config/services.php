@@ -38,4 +38,8 @@ return [
     'ga' => [
         'tracking_id' => env('GA_TRACKING_ID', ''),
     ],
+
+    'passport' => [
+        'path' => env('PASSPORT_KEY_PATH'),
+    ],
 ];

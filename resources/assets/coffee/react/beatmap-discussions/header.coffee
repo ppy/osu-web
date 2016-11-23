@@ -96,7 +96,13 @@ BeatmapDiscussions.Header = React.createClass
             className: "#{bn}__stats"
             @stats()
 
-        div ref: 'chartArea', className: "#{bn}__chart"
+        div null,
+          div ref: 'chartArea', className: "#{bn}__chart"
+
+          div className: "#{bn}__beatmap-stats",
+            el BeatmapBasicStats,
+              beatmapset: @props.beatmapset
+              beatmap: @props.currentBeatmap
 
 
   stats: ->

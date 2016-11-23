@@ -182,8 +182,6 @@ return [
         Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
         Shift31\LaravelElasticsearch\ElasticsearchServiceProvider::class,
         League\StatsD\Laravel5\Provider\StatsdServiceProvider::class,
-        LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
-        LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
         Lord\Laroute\LarouteServiceProvider::class,
         Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
 
@@ -191,10 +189,16 @@ return [
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
-        // App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        /*
+         * OAuth2 Setup
+         */
+
+        App\Providers\AuthServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
     ],
 
     /*
