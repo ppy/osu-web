@@ -21,15 +21,14 @@ bn = 'beatmap-basic-stats'
 
 # value is in second
 formatDuration = (value) ->
-  duration = moment(value * 1000).utcOffset(0)
+  s = value % 60
+  m = Math.floor(value / 60) % 60
+  h = Math.floor(value / 3600)
 
-  format =
-    if duration.hours() > 0
-      'h:mm:ss'
-    else
-      'm:ss'
-
-  duration.format format
+  if h > 0
+    "#{h}:#{_.padStart m, 2, 0}:#{_.padStart s, 2, 0}"
+  else
+    "#{m}:#{_.padStart s, 2, 0}"
 
 
 @BeatmapBasicStats = ({beatmapset, beatmap}) ->
