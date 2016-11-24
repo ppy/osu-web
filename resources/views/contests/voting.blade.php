@@ -28,12 +28,12 @@
         @else
             <div class='contest__accordion' id='contests-accordion'>
                 @foreach ($contests as $contest)
-                    <div class='panel contest__group{{ $loop->first ? ' panel-default' : '' }}'>
-                        <a href="#{{$contest->id}}" class='contest__group-heading' data-toggle='collapse' data-parent='#contests-accordion' aria-expanded='{{ $loop->first ? 'true' : 'false' }}'>
+                    <div class='panel contest__group'>
+                        <a href="#{{$contest->id}}" class='contest__group-heading' data-toggle='collapse' data-parent='#contests-accordion' aria-expanded='false'>
                             <span>{!! $contest->name !!}</span>
                             <i class="contest__section-toggle fa fa-fw fa-chevron-down"></i>
                         </a>
-                        <div class='contest__multi-panel collapse{{ $loop->first ? ' in' : '' }}' id="{{$contest->id}}">
+                        <div class='contest__multi-panel collapse' id="{{$contest->id}}">
                             @include('contests._voting-entrylist')
                         </div>
                     </div>
