@@ -195,6 +195,7 @@ return [
         'any' => 'Any',
         'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
+        'loved' => 'Loved',
         'faves' => 'Favourites',
         'modreqs' => 'Mod Requests',
         'pending' => 'Pending',
