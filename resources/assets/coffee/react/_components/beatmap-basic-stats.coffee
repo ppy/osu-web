@@ -19,6 +19,19 @@
 
 bn = 'beatmap-basic-stats'
 
+# value is in second
+formatDuration = (value) ->
+  duration = moment(value * 1000).utcOffset(0)
+
+  format =
+    if duration.hours() > 0
+      'h:mm:ss'
+    else
+      'm:ss'
+
+  duration.format format
+
+
 @BeatmapBasicStats = ({beatmapset, beatmap}) ->
   div
     className: bn
@@ -31,7 +44,7 @@ bn = 'beatmap-basic-stats'
 
       value =
         if stat == 'total_length'
-          moment(0).seconds(value).format 'm:ss'
+          formatDuration value
         else
           value.toLocaleString()
 
