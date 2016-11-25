@@ -78,6 +78,7 @@ class Beatmapset extends Model
         'ranked' => 1,
         'approved' => 2,
         'qualified' => 3,
+        'loved' => 4,
     ];
 
     const NOMINATIONS_PER_DAY = 1;
@@ -234,12 +235,19 @@ class Beatmapset extends Model
         $offset = (max(0, $page - 1)) * $count;
         $current_user = Auth::user();
 
-        $searchParams['index'] = config('osu.elasticsearch.index');
-        $searchParams['type'] = 'beatmaps';
-        $searchParams['size'] = $count;
-        $searchParams['from'] = $offset;
-        $searchParams['body']['sort'] = [$sort_field => ['order' => $sort_order]];
-        $searchParams['fields'] = ['id'];
+        $searchParams = [
+            'index' => config('osu.elasticsearch.index'),
+            'type' => 'beatmaps',
+            'size' => $count,
+            'from' => $offset,
+            'body' => [
+                'sort' => [
+                    $sort_field => ['order' => $sort_order],
+                ],
+            ],
+            'fields' => 'id',
+        ];
+
         $matchParams = [];
         $shouldParams = [];
 
@@ -285,6 +293,9 @@ class Beatmapset extends Model
                     break;
                 case 1: // Approved
                     $matchParams[] = ['match' => ['approved' => self::STATES['approved']]];
+                    break;
+                case 8: // Loved
+                    $matchParams[] = ['match' => ['approved' => self::STATES['loved']]];
                     break;
                 case 2: // Favourites
                     $favs = model_pluck($current_user->favoriteBeatmapsets(), 'beatmapset_id');
@@ -412,8 +423,10 @@ class Beatmapset extends Model
 
         if (count($beatmap_ids) > 0) {
             $ids = implode(',', $beatmap_ids);
-            $beatmaps = self::whereIn('beatmapset_id', $beatmap_ids)
+            $beatmaps = static
+                ::with('beatmaps')
                 ->with('favorites')
+                ->whereIn('beatmapset_id', $beatmap_ids)
                 ->orderByRaw(DB::raw("FIELD(beatmapset_id, {$ids})"))
                 ->get();
         }

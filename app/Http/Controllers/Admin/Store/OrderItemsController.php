@@ -14,7 +14,7 @@ class OrderItemsController extends Controller
     {
         $item = Store\OrderItem::findOrFail($orderItemId);
 
-        if ($item->order_id !== $orderId) {
+        if ($item->order_id !== (int) $orderId) {
             return error_popup('invalid order id for this item.');
         }
 

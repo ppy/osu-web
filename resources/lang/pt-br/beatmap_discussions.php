@@ -21,16 +21,16 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Você deve estar logado para editar.',
-            'system_generated' => 'Posts gerados pelo sistema não podem ser editados.',
-            'wrong_user' => 'Você deve ser o autor deste post para editá-lo.',
+            'null_user' => 'Você precisa iniciar a sessão para editar.',
+            'system_generated' => 'Publicações gerados pelo sistema não podem ser editadas.',
+            'wrong_user' => 'Você deve ser o autor da publicação para editá-la.',
         ],
     ],
 
     'system' => [
         'resolved' => [
             'true' => 'Marcado como resolvido por :user',
-            'false' => 'Reaberto por :user',
+            'false' => 'Reaberta por :user',
         ],
     ],
 ];

@@ -17,25 +17,43 @@
  *
  */
 .beatmap-discussions-chart {
-  @_top: beatmap-discussions-chart;
+  @top: beatmap-discussions-chart;
   width: 100%;
   height: 100%;
 
   &__axis {
-    fill: @gray-c;
+    fill: @gray-3;
   }
 
   &__bar {
     stroke-width: 1;
     shape-rendering: crispEdges;
 
-    .@{_top}__point:hover & {
+    .@{top}__point:hover & {
       stroke-width: 2;
     }
   }
 
+  &__bar-gradient {
+    stop-color: @gray-f;
+
+    &--start {
+      stop-opacity: 0;
+    }
+  }
+
+  &__chart-area {
+    fill: @gray-blue-darker;
+  }
+
   &__icon {
     stroke-width: 0;
+    text-anchor: middle;
+    dominant-baseline: middle;
+  }
+
+  &__label-area {
+    fill: @gray-2;
   }
 
   &__point {
@@ -43,17 +61,19 @@
 
     &--praise {
       fill: @beatmap-discussion--color-praise;
-      stroke: @beatmap-discussion--color-praise;
     }
 
     &--problem {
       fill: @beatmap-discussion--color-problem;
-      stroke: @beatmap-discussion--color-problem;
     }
 
     &--suggestion {
       fill: @beatmap-discussion--color-suggestion;
-      stroke: @beatmap-discussion--color-suggestion;
     }
+  }
+
+  &__target-area {
+    fill: transparent;
+    stroke: transparent;
   }
 }

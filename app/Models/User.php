@@ -19,6 +19,8 @@
  */
 namespace App\Models;
 
+use App\Interfaces\Messageable;
+use App\Models\Chat\PrivateMessage;
 use App\Transformers\UserTransformer;
 use Cache;
 use Carbon\Carbon;
@@ -26,12 +28,11 @@ use DB;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
-use App\Interfaces\Messageable;
-use App\Models\Chat\PrivateMessage;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Model implements AuthenticatableContract, Messageable
 {
-    use Authenticatable;
+    use HasApiTokens, Authenticatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';

@@ -55,6 +55,7 @@ class BeatmapsetsController extends Controller
             ['id' => '7', 'name' => trans('beatmaps.status.any')],
             ['id' => '0', 'name' => trans('beatmaps.status.ranked-approved')],
             ['id' => '1', 'name' => trans('beatmaps.status.approved')],
+            ['id' => '8', 'name' => trans('beatmaps.status.loved')],
             ['id' => '2', 'name' => trans('beatmaps.status.faves')],
             ['id' => '3', 'name' => trans('beatmaps.status.modreqs')],
             ['id' => '4', 'name' => trans('beatmaps.status.pending')],
@@ -166,7 +167,7 @@ class BeatmapsetsController extends Controller
         if ($returnJson) {
             return $initialData;
         } else {
-            return view('beatmapsets.discussion', compact('initialData'));
+            return view('beatmapsets.discussion', compact('beatmapset', 'initialData'));
         }
     }
 

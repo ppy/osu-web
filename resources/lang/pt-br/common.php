@@ -21,24 +21,27 @@
 return [
         'buttons' => [
             'cancel' => 'Cancelar',
-            'post' => 'Postar',
+            'post' => 'Publicar',
             'reply' => 'Responder',
-            'reset' => 'Reiniciar',
+            'reset' => 'Limpar',
             'save' => 'Salvar',
-            'show_more' => 'mostrar mais',
+            'show_more' => 'exibir mais',
+            'delete' => 'Excluir',
         ],
+
+        'confirmation' => 'Tem certeza?',
 
         'count' => [
             'item' => ':count unidade|:count unidades',
         ],
 
         'dropzone' => [
-            'target' => 'arraste aqui para enviar',
+            'target' => 'solte aqui para enviar',
         ],
 
         'pagination' => [
             'previous' => 'anterior',
-            'next' => 'próximo',
+            'next' => 'próxima',
         ],
 
         'time' => [

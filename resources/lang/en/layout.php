@@ -26,6 +26,7 @@ return [
     'menu' => [
         'home' => [
             '_' => 'home',
+            'index' => 'osu!',
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
@@ -47,7 +48,7 @@ return [
             // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [
-            '_' => 'beatmapsets',
+            '_' => 'beatmaps',
             'discussion' => 'modding',
         ],
         'ranking' => [

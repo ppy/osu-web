@@ -445,6 +445,12 @@ function json_collection($model, $transformer, $includes = null)
     }
     $manager->setSerializer(new App\Serializers\ApiSerializer());
 
+    // da bess
+    if (is_string($transformer)) {
+        $transformer = 'App\Transformers\\'.str_replace('/', '\\', $transformer).'Transformer';
+        $transformer = new $transformer();
+    }
+
     // we're using collection instead of item here, so we can peek at the items beforehand
     $collection = new League\Fractal\Resource\Collection($model, $transformer);
 
@@ -491,9 +497,9 @@ function get_bool($string)
 {
     if (is_bool($string)) {
         return $string;
-    } elseif ($string === '1' || $string === 'on') {
+    } elseif ($string === '1' || $string === 'on' || $string === 'true') {
         return true;
-    } elseif ($string === '0') {
+    } elseif ($string === '0' || $string === 'false') {
         return false;
     }
 }

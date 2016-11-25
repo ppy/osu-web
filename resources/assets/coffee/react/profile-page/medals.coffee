@@ -33,10 +33,15 @@ ProfilePage.Medals = React.createClass
 
 
   _groupedAchievements: ->
+    isCurrentUser = currentUser.id == @props.user.id
+
     _.chain(@props.achievements)
       .values()
       .filter (a) =>
-        !a.mode? || a.mode == @props.currentMode
+        isCurrentMode = !a.mode? || a.mode == @props.currentMode
+        isAchieved = @_userAchievement a.id
+
+        isCurrentMode && (isAchieved || isCurrentUser)
       .groupBy (a) =>
         a.grouping
       .value()
@@ -58,17 +63,22 @@ ProfilePage.Medals = React.createClass
 
 
   render: ->
-    div
-      className: 'page-extra'
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
-      div className: 'medals-group',
-        _.map @_groupedAchievements(), (groupedAchievements, grouping) =>
+    all =
+        for own grouping, groupedAchievements of @_groupedAchievements()
           div
             key: grouping
             className: 'medals-group__group'
             h3 className: 'medals-group__title', grouping
-            _.map @_orderedAchievements(groupedAchievements), (achievements, ordering) =>
+            for own ordering, achievements of @_orderedAchievements(groupedAchievements)
                 div
                   key: ordering
                   className: 'medals-group__medals'
                   achievements.map @_medal
+
+    div
+      className: 'page-extra'
+      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
+      div className: 'medals-group',
+        all
+      if all.length == 0
+        osu.trans('users.show.extra.medals.empty')

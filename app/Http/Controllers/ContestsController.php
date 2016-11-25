@@ -21,6 +21,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contest;
 use Auth;
+use DB;
 
 class ContestsController extends Controller
 {
@@ -36,19 +37,32 @@ class ContestsController extends Controller
 
     public function show($id)
     {
-        $contest = Contest::with('entries')->with('entries.contest')->findOrFail($id);
+        $contest = Contest::findOrFail($id);
 
         $user = Auth::user();
         if (!$contest->visible && (!$user || !$user->isAdmin())) {
             abort(404);
         }
 
+        if ($contest->isVotingStarted() && isset($contest->extra_options['children'])) {
+            $contestIds = $contest->extra_options['children'];
+        } else {
+            $contestIds = [$id];
+        }
+
+        $contests = Contest::with('entries', 'entries.contest', 'entries.user')
+            ->whereIn('id', $contestIds)
+            ->orderByRaw(DB::raw('FIELD(id, '.implode(',', $contestIds).')'))
+            ->get();
+
         if ($contest->isVotingStarted()) {
-            return view("contests.voting.{$contest->type}")
-                    ->with('contest', $contest);
+            return view('contests.voting')
+                    ->with('contestMeta', $contest)
+                    ->with('contests', $contests);
         } else {
             return view('contests.enter')
-                ->with('contest', $contest);
+                ->with('contestMeta', $contest)
+                ->with('contest', $contests->first());
         }
     }
 }

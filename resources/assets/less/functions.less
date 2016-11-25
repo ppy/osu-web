@@ -1,21 +1,22 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 @import "app";
 
 // Generate a circle of any width.
@@ -34,19 +35,66 @@
 }
 
 .default-box-shadow() {
-  box-shadow: 0px 1px @box-shadow-spread @box-shadow-color;
+  box-shadow+: 0 1px @box-shadow-radius @box-shadow-color;
 }
 
 .default-bar-transition(@property: width, @duration: 0.25s, @function: cubic-bezier(0.645, 0.045, 0.355, 1)) {
   transition: @property @duration @function;
 }
 
+.default-header-overlay() {
+  &::before {
+    .full-size();
+    background-image: linear-gradient(transparent, fade(@gray-0, 60%));
+  }
+}
+
 .inner-shadow-top() {
-  background-image: linear-gradient(to bottom, fade(@gray-0, 20%), transparent 3px);
+  box-shadow+: inset 0 (@box-shadow-radius - 1px) @box-shadow-radius -1px @box-shadow-color;
 }
 
 .inset-box-shadow() {
   box-shadow: inset 0 1px 3px fade(#000, 30%);
+}
+
+.link-gray-light() {
+  color: @gray-c;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: @gray-e;
+  }
+}
+
+.link-gray-light-disabled() {
+  color: @gray-5;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: @gray-5;
+  }
+}
+
+.link-default() {
+  color: @link-color;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: @link-hover-color;
+  }
+}
+
+.link-plain() {
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
 }
 
 .thick-box-shadow() {
@@ -109,7 +157,7 @@
 // in hardware accelerated mode.
 // Be careful that elements using this will have z-index context applied.
 .own-layer() {
-  transform: rotate(0);
+  transform: translateZ(0);
 }
 
 .full-size() {

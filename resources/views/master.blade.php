@@ -20,7 +20,15 @@
     <head>
         @include("layout.metadata")
         <title>
-            @if (isset($title))
+            @if (isset($titleAppend))
+                {{
+                    trans("layout.menu.$current_section._").
+                    ' › '.
+                    trans("layout.menu.$current_section.$current_action").
+                    ': '.
+                    $titleAppend
+                }}
+            @elseif (isset($title))
                 {{ $title }}
             @else
                 {{ trans("layout.menu.$current_section._") }} / {{ trans("layout.menu.$current_section.$current_action") }}

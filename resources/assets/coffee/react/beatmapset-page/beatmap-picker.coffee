@@ -18,12 +18,10 @@
 {div} = React.DOM
 el = React.createElement
 
-BeatmapsetPage.BeatmapPicker = (props) ->
+BeatmapsetPage.BeatmapPicker = ({beatmaps, currentBeatmap}) ->
   div className: 'beatmapset-beatmap-picker',
-    for beatmapId in props.beatmapList[props.currentMode]
-      beatmap = props.beatmaps[props.currentMode][beatmapId]
-
+    for beatmap in beatmaps
       el BeatmapsetPage.BeatmapSelection,
         key: beatmap.id
         beatmap: beatmap
-        active: props.currentBeatmapId == beatmap.id
+        active: currentBeatmap.id == beatmap.id

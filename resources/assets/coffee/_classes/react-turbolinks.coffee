@@ -25,10 +25,11 @@ class @ReactTurbolinks
       for own _name, component of @components
         continue if component.loaded
 
-        continue if component.target.length == 0
+        continue if component.targets.length == 0
 
         component.loaded = true
-        ReactDOM.render React.createElement(component.element, component.propsFunction()), component.target[0]
+        for target in component.targets
+          ReactDOM.render React.createElement(component.element, component.propsFunction(target)), target
 
 
   destroy: =>
@@ -36,7 +37,8 @@ class @ReactTurbolinks
         continue if !component.loaded
 
         component.loaded = false
-        ReactDOM.unmountComponentAtNode component.target[0]
+        for target in component.targets
+          ReactDOM.unmountComponentAtNode target
 
 
   register: (name, element, propsFunction = ->) =>
@@ -44,7 +46,7 @@ class @ReactTurbolinks
 
     @components[name] =
       loaded: false
-      target: document.getElementsByClassName("js-react--#{name}")
+      targets: document.getElementsByClassName("js-react--#{name}")
       element: element
       propsFunction: propsFunction
 

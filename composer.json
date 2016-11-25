@@ -23,8 +23,8 @@
     "league/statsd": "^1.4.0",
     "league/flysystem-aws-s3-v3": "^1.0",
     "lord/laroute": "~2.0",
-    "lucadegasperi/oauth2-server-laravel": "^5.1",
-    "sentry/sentry-laravel": "^0.4.1"
+    "sentry/sentry-laravel": "^0.4.1",
+    "laravel/passport": "^1.0"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.5",

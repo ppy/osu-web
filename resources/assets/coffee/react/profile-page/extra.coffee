@@ -153,6 +153,7 @@ ProfilePage.Extra = React.createClass
                   achievements: @props.achievements
                   userAchievements: @props.userAchievements
                   currentMode: @props.currentMode
+                  user: @props.user
                 ProfilePage.Medals
 
               when 'historical'
