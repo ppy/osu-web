@@ -737,7 +737,9 @@ class Beatmapset extends Model
                     'beatmapset_id' => $this->beatmapset_id,
                 ]);
             } catch (QueryException $e) {
-                return;
+                if (is_sql_unique_exception($e)) {
+                    return;
+                }
             }
 
             $this->favourite_count += 1;
