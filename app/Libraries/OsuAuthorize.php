@@ -517,7 +517,7 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkUserChangeFavoriteStatus($user)
+    public function checkUserFavoriteRemove($user)
     {
         $this->ensureLoggedIn($user);
 
