@@ -22,8 +22,8 @@ class BeatmapsetPage.Header extends React.Component
   toggleFavorite: (e) ->
     e.preventDefault()
 
-    if _.isEmpty currentUser
-      userLogin.show()
+    if !currentUser.id?
+      userLogin.show e.target
     else
       $.publish 'beatmapset:favorite:toggle'
 
