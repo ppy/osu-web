@@ -24,9 +24,6 @@ class Contest.Voting.Voter extends React.Component
     super props
 
   sendVote: =>
-    # in case called from loginSuccess or other possible show loading overlay thing.
-    LoadingOverlay.hide()
-
     params =
       method: 'PUT'
       dataType: 'json'
