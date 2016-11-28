@@ -744,7 +744,7 @@ class Beatmapset extends Model
                 }
             }
 
-            $this->favourite_count += 1;
+            $this->favourite_count = DB::raw('favourite_count + 1');
             $this->save();
         });
     }
@@ -759,7 +759,7 @@ class Beatmapset extends Model
             $this->favorites()->where('user_id', $user->user_id)
                 ->delete();
 
-            $this->favourite_count -= 1;
+            $this->favourite_count = DB::raw('GREATEST(favourite_count - 1, 0)');
             $this->save();
         });
     }
