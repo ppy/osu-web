@@ -739,6 +739,8 @@ class Beatmapset extends Model
             } catch (QueryException $e) {
                 if (is_sql_unique_exception($e)) {
                     return;
+                } else {
+                    throw $e;
                 }
             }
 
