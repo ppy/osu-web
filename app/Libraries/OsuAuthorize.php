@@ -504,6 +504,21 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkUserShow($user, $owner)
+    {
+        $prefix = 'user.show.';
+
+        if ($user !== null && $user->user_id === $owner->user_id) {
+            return 'ok';
+        }
+
+        if ($owner->hasProfile()) {
+            return 'ok';
+        } else {
+            return $prefix.'no_access';
+        }
+    }
+
     public function ensureLoggedIn($user, $prefix = '')
     {
         if ($user === null) {
