@@ -41,16 +41,13 @@ class BeatmapsetDiscussion extends Model
         return $this->beatmapset->user();
     }
 
-    public function defaultJson($currentUser = null)
+    public function defaultJson()
     {
         $includes = [
             'beatmap_discussions.beatmap_discussion_posts',
             'users',
+            'beatmap_discussions.current_user_attributes',
         ];
-
-        if ($currentUser !== null) {
-            $includes[] = "beatmap_discussions.current_user_attributes:user_id({$currentUser->user_id})";
-        }
 
         return json_item(
             static::with([

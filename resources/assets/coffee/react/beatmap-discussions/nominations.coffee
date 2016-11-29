@@ -131,4 +131,5 @@ BeatmapDiscussions.Nominations = React.createClass
                 text: osu.trans 'beatmaps.nominations.nominate'
                 icon: 'thumbs-up'
                 props:
+                  disabled: @props.beatmapset.nominations.nominated
                   onClick: @nominate
