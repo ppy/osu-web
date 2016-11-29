@@ -110,7 +110,7 @@ BeatmapDiscussions.Header = React.createClass
 
     for type in ['mine', 'resolved', 'pending', 'praises', 'total']
       topClasses = "#{bn} #{bn}--beatmap-discussions #{bn}--#{type}"
-      topClasses += ' js-active' if @props.currentFilter == type
+      topClasses += ' js-active' if @props.mode == 'timeline' && @props.currentFilter == type
 
       a
         key: type

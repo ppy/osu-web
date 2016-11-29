@@ -85,6 +85,7 @@ BeatmapDiscussions.Main = React.createClass
         currentFilter: @state.currentFilter
         beatmapsetDiscussion: @state.beatmapsetDiscussion
         users: @users()
+        mode: @state.mode
 
       el BeatmapDiscussions.ModeSwitcher,
         mode: @state.mode
@@ -245,9 +246,11 @@ BeatmapDiscussions.Main = React.createClass
 
 
   setFilter: (_e, {filter}) ->
-    return if filter == @state.currentFilter
+    return if @state.mode == 'timeline' && filter == @state.currentFilter
 
-    @setState currentFilter: filter
+    @setState
+      mode: 'timeline'
+      currentFilter: filter
 
 
   setMode: (_e, mode, callback) ->
