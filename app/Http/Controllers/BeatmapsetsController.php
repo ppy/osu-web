@@ -160,8 +160,8 @@ class BeatmapsetsController extends Controller
         }
 
         $initialData = [
-            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
-            'beatmapsetDiscussion' => $discussion->defaultJson(Auth::user()),
+            'beatmapset' => $beatmapset->defaultJson(),
+            'beatmapsetDiscussion' => $discussion->defaultJson(),
         ];
 
         if ($returnJson) {
@@ -182,7 +182,7 @@ class BeatmapsetsController extends Controller
         }
 
         return [
-            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
+            'beatmapset' => $beatmapset->defaultJson(),
         ];
     }
 
@@ -197,7 +197,7 @@ class BeatmapsetsController extends Controller
         }
 
         return [
-            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
+            'beatmapset' => $beatmapset->defaultJson(),
         ];
     }
 }
