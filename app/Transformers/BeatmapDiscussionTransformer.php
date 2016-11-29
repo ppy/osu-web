@@ -42,7 +42,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
             'resolved' => $discussion->resolved,
             'created_at' => json_time($discussion->created_at),
             'updated_at' => json_time($discussion->updated_at),
-            'votes' => $discussion->votes_summary,
+            'votes' => $discussion->votesSummary(),
             'duration' => $discussion->total_length,
         ];
     }
