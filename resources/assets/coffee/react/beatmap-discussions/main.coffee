@@ -166,8 +166,8 @@ BeatmapDiscussions.Main = React.createClass
         else
           general.push d
 
-      _.orderBy timeline, ['timestamp', 'id']
-      _.orderBy general, 'id'
+      timeline = _.orderBy timeline, ['timestamp', 'id']
+      general = _.orderBy general, 'id'
 
       @cache.currentDiscussions =
         general: general
