@@ -214,6 +214,10 @@ class BeatmapsetsController extends Controller
             $beatmapset->unfavorite($user);
         }
 
+        // reload model to be able to get
+        // the favorite count properly
+        $beatmapset = $beatmapset->fresh();
+
         return [
           'favcount' => $beatmapset->favourite_count,
           'favorited' => $beatmapset->hasFavorited($user),
