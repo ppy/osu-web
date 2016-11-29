@@ -77,6 +77,7 @@ class Beatmapset extends Model
         'ranked' => 1,
         'approved' => 2,
         'qualified' => 3,
+        'loved' => 4,
     ];
 
     const NOMINATIONS_PER_DAY = 1;
@@ -233,12 +234,19 @@ class Beatmapset extends Model
         $offset = (max(0, $page - 1)) * $count;
         $current_user = Auth::user();
 
-        $searchParams['index'] = config('osu.elasticsearch.index');
-        $searchParams['type'] = 'beatmaps';
-        $searchParams['size'] = $count;
-        $searchParams['from'] = $offset;
-        $searchParams['body']['sort'] = [$sort_field => ['order' => $sort_order]];
-        $searchParams['fields'] = ['id'];
+        $searchParams = [
+            'index' => config('osu.elasticsearch.index'),
+            'type' => 'beatmaps',
+            'size' => $count,
+            'from' => $offset,
+            'body' => [
+                'sort' => [
+                    $sort_field => ['order' => $sort_order],
+                ],
+            ],
+            'fields' => 'id',
+        ];
+
         $matchParams = [];
         $shouldParams = [];
 
@@ -284,6 +292,9 @@ class Beatmapset extends Model
                     break;
                 case 1: // Approved
                     $matchParams[] = ['match' => ['approved' => self::STATES['approved']]];
+                    break;
+                case 8: // Loved
+                    $matchParams[] = ['match' => ['approved' => self::STATES['loved']]];
                     break;
                 case 2: // Favourites
                     $favs = model_pluck($current_user->favouriteBeatmapsets(), 'beatmapset_id');
@@ -783,13 +794,7 @@ class Beatmapset extends Model
 
     public function defaultJson($currentUser = null)
     {
-        $includes = ['beatmaps'];
-
-        if ($currentUser !== null) {
-            $includes[] = "nominations:user_id({$currentUser->user_id})";
-        } else {
-            $includes[] = 'nominations';
-        }
+        $includes = ['beatmaps', 'nominations'];
 
         return json_item($this, new BeatmapsetTransformer, $includes);
     }

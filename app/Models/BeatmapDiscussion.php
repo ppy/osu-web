@@ -98,7 +98,7 @@ class BeatmapDiscussion extends Model
             ($this->beatmap_id !== null && $this->timestamp >= 0 && $this->timestamp < ($this->beatmap->total_length * 1000));
     }
 
-    public function getVotesSummaryAttribute()
+    public function votesSummary()
     {
         $votes = ['up' => 0, 'down' => 0];
 

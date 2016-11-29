@@ -55,6 +55,7 @@ class BeatmapsetsController extends Controller
             ['id' => '7', 'name' => trans('beatmaps.status.any')],
             ['id' => '0', 'name' => trans('beatmaps.status.ranked-approved')],
             ['id' => '1', 'name' => trans('beatmaps.status.approved')],
+            ['id' => '8', 'name' => trans('beatmaps.status.loved')],
             ['id' => '2', 'name' => trans('beatmaps.status.faves')],
             ['id' => '3', 'name' => trans('beatmaps.status.modreqs')],
             ['id' => '4', 'name' => trans('beatmaps.status.pending')],
@@ -159,8 +160,8 @@ class BeatmapsetsController extends Controller
         }
 
         $initialData = [
-            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
-            'beatmapsetDiscussion' => $discussion->defaultJson(Auth::user()),
+            'beatmapset' => $beatmapset->defaultJson(),
+            'beatmapsetDiscussion' => $discussion->defaultJson(),
         ];
 
         if ($returnJson) {
@@ -181,7 +182,7 @@ class BeatmapsetsController extends Controller
         }
 
         return [
-            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
+            'beatmapset' => $beatmapset->defaultJson(),
         ];
     }
 
@@ -196,7 +197,7 @@ class BeatmapsetsController extends Controller
         }
 
         return [
-            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
+            'beatmapset' => $beatmapset->defaultJson(),
         ];
     }
 }

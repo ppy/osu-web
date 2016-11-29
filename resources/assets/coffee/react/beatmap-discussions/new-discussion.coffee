@@ -160,7 +160,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
 
 
   parseTimestamp: ->
-    timestampRe = @state.message.match /\b(\d{2}):(\d{2})[:.](\d{3})\b/
+    timestampRe = @state.message.match /\b(\d{2,}):(\d{2})[:.](\d{3})\b/
 
     @setState timestamp:
       if timestampRe?
