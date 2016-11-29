@@ -20,8 +20,8 @@
 namespace App\Transformers;
 
 use App\Models\BeatmapDiscussion;
+use Auth;
 use League\Fractal;
-use League\Fractal\ParamBag;
 
 class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 {
@@ -42,7 +42,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
             'resolved' => $discussion->resolved,
             'created_at' => json_time($discussion->created_at),
             'updated_at' => json_time($discussion->updated_at),
-            'votes' => $discussion->votes_summary,
+            'votes' => $discussion->votesSummary(),
             'duration' => $discussion->total_length,
         ];
     }
@@ -55,15 +55,11 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
         );
     }
 
-    public function includeCurrentUserAttributes(BeatmapDiscussion $discussion, ParamBag $params = null)
+    public function includeCurrentUserAttributes(BeatmapDiscussion $discussion)
     {
-        if ($params === null) {
-            return;
-        }
+        $currentUser = Auth::user();
 
-        $userId = get_int($params->get('user_id')[0] ?? null);
-
-        if ($userId === null) {
+        if ($currentUser === null) {
             return;
         }
 
@@ -72,7 +68,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
         // This assumes beatmapDiscussionVotes are already preloaded and
         // thus will save one query.
         foreach ($discussion->beatmapDiscussionVotes as $vote) {
-            if ($vote->user_id === $userId) {
+            if ($vote->user_id === $currentUser->user_id) {
                 $score = $vote->score;
                 break;
             }
