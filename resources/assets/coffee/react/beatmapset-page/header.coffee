@@ -19,6 +19,14 @@
 el = React.createElement
 
 class BeatmapsetPage.Header extends React.Component
+  toggleFavorite: (e) ->
+    e.preventDefault()
+
+    if !currentUser.id?
+      userLogin.show e.target
+    else
+      $.publish 'beatmapset:favorite:toggle'
+
   render: ->
     dateFormat = 'MMM D, YYYY'
 
@@ -33,7 +41,9 @@ class BeatmapsetPage.Header extends React.Component
         style:
           backgroundImage: "url(#{@props.beatmapset.covers.cover})"
 
-        div className: 'beatmapset-header__box',
+        div className: 'beatmapset-header__overlay beatmapset-header__overlay--gradient'
+
+        div className: 'beatmapset-header__box beatmapset-header__box--main',
           div className: 'beatmapset-header__beatmap-picker-box',
             el BeatmapsetPage.BeatmapPicker,
               beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
@@ -54,8 +64,13 @@ class BeatmapsetPage.Header extends React.Component
                 span className: 'beatmapset-header__value-name', @props.beatmapset.play_count.toLocaleString()
 
               span className: 'beatmapset-header__value',
-                span className: 'beatmapset-header__value-icon', el Icon, name: 'heart'
-                span className: 'beatmapset-header__value-name', @props.beatmapset.favourite_count.toLocaleString()
+                a
+                  onClick: @toggleFavorite
+                  href: laroute.route 'beatmapsets.update-favorite', beatmapset: @props.beatmapset.id, action: if @props.hasFavorited then 'unfavorite' else 'favorite'
+                  title: osu.trans "beatmaps.beatmapset.show.details.#{if @props.hasFavorited then 'unfavorite' else 'favorite'}"
+                  className: "beatmapset-header__value-icon beatmapset-header__value-icon--favorites #{'beatmapset-header__value-icon--favorited' if @props.hasFavorited}"
+                  el Icon, name: 'heart'
+                span className: 'beatmapset-header__value-name', @props.favcount.toLocaleString()
 
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--title'
@@ -69,30 +84,31 @@ class BeatmapsetPage.Header extends React.Component
 
           el BeatmapsetMapping, beatmapset: @props.beatmapset
 
-          div className: 'beatmapset-header__buttons',
-            if @props.beatmapset.video
-              [
-                @downloadButton
-                  key: 'video'
-                  href: Url.beatmapDownload @props.beatmapset.id, true
-                  bottomTextKey: 'video'
+          if !_.isEmpty currentUser
+            div className: 'beatmapset-header__buttons',
+              if @props.beatmapset.video
+                [
+                  @downloadButton
+                    key: 'video'
+                    href: Url.beatmapDownload @props.beatmapset.id, true
+                    bottomTextKey: 'video'
 
+                  @downloadButton
+                    key: 'no-video'
+                    href: Url.beatmapDownload @props.beatmapset.id, false
+                    bottomTextKey: 'no-video'
+                ]
+              else
                 @downloadButton
-                  key: 'no-video'
                   href: Url.beatmapDownload @props.beatmapset.id, false
-                  bottomTextKey: 'no-video'
-              ]
-            else
-              @downloadButton
-                href: Url.beatmapDownload @props.beatmapset.id, false
 
-            @downloadButton
-              topTextKey: 'direct'
-              href:
-                if currentUser.isSupporter
-                  Url.beatmapDownloadDirect @props.beatmapset.id
-                else
-                  laroute.route 'support-the-game'
+              @downloadButton
+                topTextKey: 'direct'
+                href:
+                  if currentUser.isSupporter
+                    Url.beatmapDownloadDirect @props.beatmapset.id
+                  else
+                    laroute.route 'support-the-game'
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
           el BeatmapsetPage.Stats,
