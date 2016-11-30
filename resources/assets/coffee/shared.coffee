@@ -117,3 +117,8 @@ $(document).on 'keydown', '.js-quick-submit', (e) ->
 
   e.preventDefault()
   $(e.target).closest('form').submit()
+
+# countdown timers
+$(document).on 'turbolinks:load', ->
+  reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
+    deadline: $(e).data('deadline')
