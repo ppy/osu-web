@@ -153,7 +153,7 @@ class UsersController extends Controller
                 'recentActivities',
                 'recentlyReceivedKudosu',
                 'rankedAndApprovedBeatmapsets.beatmaps',
-                'favouriteBeatmapsets.beatmaps',
+                'favoriteBeatmapsets.beatmaps',
             ]
         );
 

@@ -29,10 +29,18 @@
 
     padding: (@spacing * 2) @spacing (@spacing * 5 / 2);
 
+    &--main {
+      align-self: stretch;
+    }
+
     &--stats {
       padding-bottom: 0;
       flex: none;
     }
+  }
+
+  &__beatmap-picker-box {
+    flex: 1;
   }
 
   &__buttons {
@@ -113,6 +121,24 @@
 
   &__value-icon {
     padding-right: 2px;
+    color: @gray-f;
+
+    &--favorites {
+      &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+        color: @gray-f;
+      }
+
+      &:hover {
+        color: @pink-dark;
+      }
+    }
+
+    &--favorited {
+      &:hover, &:link {
+        color: @pink-darker;
+      }
+    }
   }
 
   &__value-name {

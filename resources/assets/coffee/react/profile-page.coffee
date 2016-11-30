@@ -26,7 +26,7 @@ propsFunction = =>
   allScores: user.allScores
   allScoresBest: user.allScoresBest
   allScoresFirst: user.allScoresFirst
-  favouriteBeatmapsets: user.favouriteBeatmapsets
+  favoriteBeatmapsets: user.favoriteBeatmapsets
   rankedAndApprovedBeatmapsets: user.rankedAndApprovedBeatmapsets
   beatmapPlaycounts: user.beatmapPlaycounts
   withEdit: user.id == window.currentUser.id
