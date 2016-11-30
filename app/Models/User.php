@@ -25,6 +25,7 @@ use App\Transformers\UserTransformer;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
@@ -1011,5 +1012,15 @@ class User extends Model implements AuthenticatableContract, Messageable
             'user_warnings' => 0,
             'user_type' => 0,
         ]);
+    }
+
+    public static function findForPassport($username)
+    {
+        return static::lookup($username);
+    }
+
+    public function validateForPassportPasswordGrant($password)
+    {
+        return Hash::check($password, $this->user_password);
     }
 }
