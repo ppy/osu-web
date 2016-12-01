@@ -39,7 +39,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'recentActivities',
         'recentlyReceivedKudosu',
         'rankedAndApprovedBeatmapsets',
-        'favoriteBeatmapsets',
+        'favouriteBeatmapsets',
     ];
 
     public function transform(User $user)
@@ -238,10 +238,10 @@ class UserTransformer extends Fractal\TransformerAbstract
         );
     }
 
-    public function includeFavoriteBeatmapsets(User $user)
+    public function includeFavouriteBeatmapsets(User $user)
     {
         return $this->collection(
-            $user->favoriteBeatmapsets()->with('beatmaps')->get(),
+            $user->favouriteBeatmapsets()->with('beatmaps')->get(),
             new BeatmapsetTransformer()
         );
     }

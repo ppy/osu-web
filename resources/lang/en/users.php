@@ -21,6 +21,7 @@
 return [
     'login' => [
         '_' => 'Sign in',
+        'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
         'username' => 'Username',
         'password' => 'Password',
         'button' => 'Login',
@@ -124,7 +125,7 @@ return [
             ],
             'beatmaps' => [
                 'title' => 'Beatmaps',
-                'favourite' => [
+                'favorite' => [
                     'title' => 'Favourite Beatmaps (:count)',
                 ],
                 'ranked_and_approved' => [

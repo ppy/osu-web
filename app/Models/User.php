@@ -491,14 +491,14 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->hasManyThrough(Beatmap::class, Beatmapset::class, 'user_id', 'beatmapset_id');
     }
 
-    public function favorites()
+    public function favourites()
     {
-        return $this->hasMany(FavoriteBeatmapset::class);
+        return $this->hasMany(FavouriteBeatmapset::class);
     }
 
-    public function favoriteBeatmapsets()
+    public function favouriteBeatmapsets()
     {
-        return Beatmapset::whereIn('beatmapset_id', $this->favorites()->select('beatmapset_id')->get());
+        return Beatmapset::whereIn('beatmapset_id', $this->favourites()->select('beatmapset_id')->get());
     }
 
     public function beatmapsetNominations()
@@ -1014,13 +1014,47 @@ class User extends Model implements AuthenticatableContract, Messageable
         ]);
     }
 
+    public static function attemptLogin($user, $password, $ip = null)
+    {
+        if ($ip === null) {
+            $ip = \Request::getClientIp();
+        }
+
+        if ($ip === null) {
+            $ip = '0.0.0.0';
+        }
+
+        if (LoginAttempt::isLocked($ip)) {
+            return ['error' => trans('users.login.locked_ip')];
+        }
+
+        $validAuth = $user === null
+            ? false
+            : Hash::check($password, $user->user_password);
+
+        if ($validAuth) {
+            return [];
+        } else {
+            LoginAttempt::failedAttempt($ip, $user);
+
+            return ['error' => trans('users.login.failed')];
+        }
+    }
+
+    public static function findForLogin($username)
+    {
+        return static::where('username', $username)
+            ->orWhere('user_email', $username)
+            ->first();
+    }
+
     public static function findForPassport($username)
     {
-        return static::lookup($username);
+        return static::findForLogin($username);
     }
 
     public function validateForPassportPasswordGrant($password)
     {
-        return Hash::check($password, $this->user_password);
+        return !isset(static::attemptLogin($this, $password)['error']);
     }
 }
