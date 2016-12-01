@@ -427,7 +427,6 @@ class Beatmapset extends Model
             $ids = implode(',', $beatmap_ids);
             $beatmaps = static
                 ::with('beatmaps')
-                ->with('favorites')
                 ->whereIn('beatmapset_id', $beatmap_ids)
                 ->orderByRaw(DB::raw("FIELD(beatmapset_id, {$ids})"))
                 ->get();
@@ -891,15 +890,9 @@ class Beatmapset extends Model
 
     public function hasFavorited($user)
     {
-        if ($user === null) {
-            return false;
-        }
-
-        if ($this->_favorites === null) {
-            $this->_favorites = $this->favorites->keyBy('user_id');
-        }
-
-        return $this->_favorites->has($user->user_id);
+        return $user === null
+            ? false
+            : $this->favorites()->where('user_id', $user->user_id)->exists();
     }
 
     public function description()
