@@ -23,9 +23,12 @@ bn = 'countdown-timer'
 class @CountdownTimer extends React.Component
   constructor: (props) ->
     super props
+
+    deadline = moment(@props.deadline)
+
     @state =
-      deadline: @props.deadline
-      diff: @diff(@props.deadline)
+      deadline: deadline
+      diff: Math.max(deadline.diff(), 0)
 
   componentDidMount: ->
     @timer = setInterval @updateTimer, 1000
@@ -33,12 +36,8 @@ class @CountdownTimer extends React.Component
   componentWillUnmount: ->
     clearInterval @timer
 
-  diff: (time) ->
-    diff = moment.utc(time).diff()
-    if diff > 0 then diff else 0
-
   updateTimer: =>
-    diff = @diff(@state.deadline)
+    diff = Math.max(@state.deadline.diff(), 0)
 
     clearInterval @timer if diff == 0
 
@@ -46,21 +45,19 @@ class @CountdownTimer extends React.Component
       diff: diff
 
   render: =>
-    diff = @diff(@state.deadline) / 1000
+    diff = @state.diff / 1000
 
     fields =
-      'days': Math.floor(diff / (60 * 60 * 24))
-      'hours': Math.floor((diff / (60 * 60)) % 24)
-      'minutes': Math.floor((diff / 60) % 60)
-      'seconds': Math.floor(diff % 60)
-
-    divs = []
-    _.each fields, (value, field) ->
-      divs.push div key: field, className: "#{bn}__field",
-        div className: "#{bn}__digit",
-          if value < 10 then "0#{value}" else value
-        div className: "#{bn}__label", field
+      days: Math.floor(diff / (60 * 60 * 24))
+      hours: Math.floor((diff / (60 * 60)) % 24)
+      minutes: Math.floor((diff / 60) % 60)
+      seconds: Math.floor(diff % 60)
 
     div className: bn,
       div className: "#{bn}__header", "#{osu.trans('common.time.remaining')}:"
-      divs
+      for field, value of fields
+        div key: field, className: "#{bn}__field",
+          div className: "#{bn}__digit",
+            if value < 10 then "0#{value}" else value
+          div className: "#{bn}__label", field
+
