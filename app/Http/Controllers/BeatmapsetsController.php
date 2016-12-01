@@ -201,26 +201,26 @@ class BeatmapsetsController extends Controller
         ];
     }
 
-    public function updateFavorite($id)
+    public function updateFavourite($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
         $user = Auth::user();
 
-        if (Request::input('action') === 'favorite') {
-            priv_check('UserFavorite')->ensureCan();
-            $beatmapset->favorite($user);
-        } elseif (Request::input('action') === 'unfavorite') {
-            priv_check('UserFavoriteRemove')->ensureCan();
-            $beatmapset->unfavorite($user);
+        if (Request::input('action') === 'favourite') {
+            priv_check('UserFavourite')->ensureCan();
+            $beatmapset->favourite($user);
+        } elseif (Request::input('action') === 'unfavourite') {
+            priv_check('UserFavouriteRemove')->ensureCan();
+            $beatmapset->unfavourite($user);
         }
 
         // reload model to be able to get
-        // the favorite count properly
+        // the favourite count properly
         $beatmapset = $beatmapset->fresh();
 
         return [
           'favcount' => $beatmapset->favourite_count,
-          'favorited' => $beatmapset->hasFavorited($user),
+          'favourited' => $beatmapset->hasFavourited($user),
         ];
     }
 }
