@@ -126,8 +126,8 @@ return [
                     'no-video' => 'without Video',
                     'direct' => 'osu!direct',
                 ],
-                'favorite' => 'Favorite this beatmapset',
-                'unfavorite' => 'Unfavorite this beatmapset',
+                'favourite' => 'Favourite this beatmapset',
+                'unfavourite' => 'Unfavourite this beatmapset',
             ],
             'stats' => [
                 'cs' => 'Circle Size',
