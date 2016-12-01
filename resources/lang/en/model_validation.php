@@ -21,6 +21,10 @@
 return [
     'required' => ':attribute is required.',
 
+    'beatmap_discussion_post' => [
+        'first_post' => 'Can not delete starting post.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Can only vote a feature request.',

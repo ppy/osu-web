@@ -38,6 +38,30 @@ class BeatmapDiscussionPostsController extends Controller
         return parent::__construct();
     }
 
+    public function destroy($id)
+    {
+        $post = BeatmapDiscussionPost::whereNull('deleted_at')->findOrFail($id);
+        priv_check('BeatmapDiscussionPostDestroy', $post)->ensureCan();
+
+        $error = $post->softDelete(Auth::user());
+
+        if ($error === null) {
+            return $post->beatmapsetDiscussion->defaultJson();
+        } else {
+            return error_popup($error);
+        }
+    }
+
+    public function restore($id)
+    {
+        $post = BeatmapDiscussionPost::whereNotNull('deleted_at')->findOrFail($id);
+        priv_check('BeatmapDiscussionPostRestore', $post)->ensureCan();
+
+        $post->restore();
+
+        return $post->beatmapsetDiscussion->defaultJson();
+    }
+
     public function store()
     {
         $discussion = BeatmapDiscussion::findOrNew(Request::input('beatmap_discussion_id'));

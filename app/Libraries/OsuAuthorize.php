@@ -98,6 +98,24 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkBeatmapDiscussionPostDestroy($user, $post)
+    {
+        $prefix = 'beatmap_discussion_post.destroy.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($post->system) {
+            return $prefix.'system_generated';
+        }
+
+        if ($user->user_id !== $post->user_id) {
+            return $prefix.'not_owner';
+        }
+
+        return 'ok';
+    }
+
     public function checkBeatmapDiscussionPostEdit($user, $post)
     {
         $prefix = 'beatmap_discussion_post.edit.';
@@ -114,6 +132,18 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkBeatmapDiscussionPostRestore($user, $post)
+    {
+        // no one but admin (not covered here) =D
+    }
+
+    public function checkBeatmapDiscussionPostShow($user, $post)
+    {
+        if ($post->deleted_at === null) {
+            return 'ok';
+        }
     }
 
     public function checkBeatmapsetNominate($user, $beatmapset)

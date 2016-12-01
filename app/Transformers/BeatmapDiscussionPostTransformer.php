@@ -26,17 +26,23 @@ class BeatmapDiscussionPostTransformer extends Fractal\TransformerAbstract
 {
     public function transform(BeatmapDiscussionPost $post)
     {
+        if (!priv_check('BeatmapDiscussionPostShow', $post)->can()) {
+            return;
+        }
+
         return [
             'id' => $post->id,
             'beatmap_discussion_id' => $post->beatmap_discussion_id,
             'user_id' => $post->user_id,
             'last_editor_id' => presence($post->last_editor_id, $post->user_id),
+            'deleted_by_id' => $post->deleted_by_id,
 
             'system' => $post->system,
             'message' => $post->message,
 
             'created_at' => json_time($post->created_at),
             'updated_at' => json_time($post->updated_at),
+            'deleted_at' => json_time($post->deleted_at),
         ];
     }
 }

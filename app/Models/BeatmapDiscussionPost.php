@@ -19,6 +19,7 @@
  */
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class BeatmapDiscussionPost extends Model
@@ -30,6 +31,8 @@ class BeatmapDiscussionPost extends Model
     protected $casts = [
         'system' => 'boolean',
     ];
+
+    protected $dates = ['deleted_at'];
 
     public function beatmapDiscussion()
     {
@@ -88,6 +91,25 @@ class BeatmapDiscussionPost extends Model
                 'type' => 'resolved',
                 'value' => $resolved,
             ],
+        ]);
+    }
+
+    public function restore()
+    {
+        return $this->update(['deleted_at' => null]);
+    }
+
+    public function softDelete($deletedBy)
+    {
+        if (!static
+            ::where('beatmap_discussion_id', $this->beatmap_discussion_id)
+            ->where('id', '<', $this->id)->exists()) {
+            return trans('model_validation.beatmap_discussion_post.first_post');
+        }
+
+        $this->update([
+            'deleted_by_id' => $deletedBy === null ? null : $deletedBy->user_id,
+            'deleted_at' => Carbon::now(),
         ]);
     }
 }

@@ -37,7 +37,7 @@ BeatmapDiscussions.Main = React.createClass
     readPostIds: _.chain(@props.initial.beatmapsetDiscussion.beatmap_discussions)
       .map (d) =>
         d.beatmap_discussion_posts.map (r) =>
-          r.id
+          r?.id
       .flatten()
       .value()
     currentFilter: 'total'
@@ -58,6 +58,7 @@ BeatmapDiscussions.Main = React.createClass
     $.subscribe 'beatmapDiscussion:setMode.beatmapDiscussions', @setMode
     $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
     $.subscribe 'beatmapDiscussion:filter.beatmapDiscussions', @setFilter
+    $(document).on 'ajax:success.beatmapDiscussions', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
 
     @jumpByHash()
     @checkNewTimeout = Timeout.set @checkNewTimeoutDefault, @checkNew
@@ -69,6 +70,7 @@ BeatmapDiscussions.Main = React.createClass
 
   componentWillUnmount: ->
     $.unsubscribe '.beatmapDiscussions'
+    $(document).off '.beatmapDiscussions'
 
     Timeout.clear @checkNewTimeout
     @checkNewAjax?.abort()
@@ -260,4 +262,14 @@ BeatmapDiscussions.Main = React.createClass
 
 
   users: ->
-    @cache.users ?= _.keyBy @state.beatmapsetDiscussion.users, 'id'
+    if !@cache.users?
+      @cache.users = _.keyBy @state.beatmapsetDiscussion.users, 'id'
+      @cache.users[null] = @cache.users[undefined] =
+        username: osu.trans 'users.deleted'
+
+    @cache.users
+
+  ujsDiscussionUpdate: (_e, data) ->
+    # to allow ajax:complete to be run
+    Timeout.set 0, =>
+      @setBeatmapsetDiscussion null, beatmapsetDiscussion: data

@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{button, div, span, textarea} = React.DOM
+{a, button, div, span, textarea} = React.DOM
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -33,10 +33,17 @@ BeatmapDiscussions.Post = React.createClass
     osu.pageChange()
 
     @throttledUpdatePost = _.throttle @updatePost, 1000
+    @xhr = {}
 
 
   componentDidUpdate: ->
     osu.pageChange()
+
+
+  componentWillUnmount: ->
+    @throttledUpdatePost.cancel()
+    for own _id, xhr of @xhr
+      xhr?.abort()
 
 
   render: ->
@@ -44,6 +51,7 @@ BeatmapDiscussions.Post = React.createClass
     if @state.editing
       topClasses += " #{bn}--editing-"
       topClasses += if @props.type == 'reply' then 'dark' else 'light'
+    topClasses += " #{bn}--deleted" if @props.post.deleted_at?
 
     div
       className: topClasses
@@ -84,7 +92,8 @@ BeatmapDiscussions.Post = React.createClass
 
     LoadingOverlay.show()
 
-    $.ajax laroute.route('beatmap-discussion-posts.update', beatmap_discussion_post: @props.post.id),
+    @xhr.updatePost?.abort()
+    @xhr.updatePost = $.ajax laroute.route('beatmap-discussion-posts.update', beatmap_discussion_post: @props.post.id),
       method: 'PUT'
       data:
         beatmap_discussion_post:
@@ -134,15 +143,41 @@ BeatmapDiscussions.Post = React.createClass
                   classNames: ["#{bn}__info-user"]
                 update_time: osu.timeago @props.post.updated_at
 
-      if @props.canBeEdited
+        if @props.post.deleted_at?
+          span
+            className: "#{bn}__info #{bn}__info--edited"
+            dangerouslySetInnerHTML:
+              __html: osu.trans 'beatmaps.discussions.deleted',
+                editor: osu.link laroute.route('users.show', user: @props.deletedBy.id),
+                  @props.deletedBy.username
+                  classNames: ["#{bn}__info-user"]
+                delete_time: osu.timeago @props.post.deleted_at
+
+      div
+        className: "#{bn}__actions"
         div
-          className: "#{bn}__actions"
-          div
-            className: "#{bn}__actions-group"
+          className: "#{bn}__actions-group"
+          if @props.canBeEdited
             button
               className: "#{bn}__action #{bn}__action--button"
               onClick: @editStart
               osu.trans('beatmaps.discussions.edit')
+
+          if !@props.post.deleted_at? && @props.canBeDeleted
+            a
+                className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
+                href: laroute.route('beatmap-discussion-posts.destroy', beatmap_discussion_post: @props.post.id)
+                'data-remote': true
+                'data-method': 'DELETE'
+                osu.trans('beatmaps.discussions.delete')
+
+          if @props.post.deleted_at? && @props.canBeRestored
+            a
+                className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
+                href: laroute.route('beatmap-discussion-posts.restore', beatmap_discussion_post: @props.post.id)
+                'data-remote': true
+                'data-method': 'POST'
+                osu.trans('beatmaps.discussions.restore')
 
 
   messageEditor: ->

@@ -118,6 +118,7 @@
 
   &__info-container {
     display: flex;
+    flex-wrap: wrap;
 
     .@{_top}--reply & {
       &::after {
@@ -154,6 +155,11 @@
       a {
         .link-gray-light();
       }
+    }
+
+    .@{_top}--deleted & {
+      opacity: 0.75;
+      font-style: italic;
     }
 
     &--editor {

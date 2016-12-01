@@ -144,6 +144,8 @@ BeatmapDiscussions.Discussion = React.createClass
 
 
   post: (post, type) ->
+    return if !post?
+
     elementName = if post.system then 'SystemPost' else 'Post'
 
     el BeatmapDiscussions[elementName],
@@ -153,7 +155,10 @@ BeatmapDiscussions.Discussion = React.createClass
       read: _.includes(@props.readPostIds, post.id) || (@props.currentUser.id == post.user_id)
       user: @props.users[post.user_id]
       lastEditor: @props.users[post.last_editor_id]
+      deletedBy: @props.users[post.deleted_by_id]
       canBeEdited: @props.currentUser.isAdmin || (@props.currentUser.id == post.user_id)
+      canBeDeleted: @props.currentUser.isAdmin || (@props.currentUser.id == post.user_id)
+      canBeRestored: @props.currentUser.isAdmin
 
 
   setCollapse: (_e, {collapse}) ->

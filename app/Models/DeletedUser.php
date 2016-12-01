@@ -22,5 +22,5 @@ namespace App\Models;
 class DeletedUser extends User
 {
     public $user_avatar = null;
-    public $username = '[deleted user]';
+    public $username = trans('users.deleted');
 }
