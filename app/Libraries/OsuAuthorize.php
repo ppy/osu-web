@@ -67,7 +67,7 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
 
         if ($user->user_id !== $discussion->user_id) {
-            return $prefix.'not_owner';
+            return;
         }
 
         if ($discussion->beatmapDiscussionPosts()->withoutDeleted()->count() > 1) {

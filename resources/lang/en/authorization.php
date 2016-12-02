@@ -20,6 +20,9 @@
 
 return [
     'beatmap_discussion' => [
+        'destroy' => [
+            'has_reply' => 'Can not delete discussion with replies',
+        ],
         'nominate' => [
             'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
         ],
