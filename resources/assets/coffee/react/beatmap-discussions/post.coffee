@@ -175,6 +175,7 @@ BeatmapDiscussions.Post = React.createClass
                 href: laroute.route("#{controller}.destroy", "#{key}": deleteModel.id)
                 'data-remote': true
                 'data-method': 'DELETE'
+                'data-confirm': osu.trans('common.confirmation')
                 osu.trans('beatmaps.discussions.delete')
 
           if deleteModel.deleted_at? && @props.canBeRestored
@@ -183,6 +184,7 @@ BeatmapDiscussions.Post = React.createClass
                 href: laroute.route("#{controller}.restore", "#{key}": deleteModel.id)
                 'data-remote': true
                 'data-method': 'POST'
+                'data-confirm': osu.trans('common.confirmation')
                 osu.trans('beatmaps.discussions.restore')
 
 
