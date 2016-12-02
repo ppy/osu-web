@@ -50,25 +50,13 @@ a.object_link
 }
 
 @font-face {
-  font-family: 'osu!';
-  src: url('@{fa-osu-font-path}/osu!font.eot');
+  font-family: 'FontAwesomeExtra';
+  src: url('@{extra-font-path}/extra.eot');
   src:
-    url('@{fa-osu-font-path}/osu!font.eot?#iefix') format('embedded-opentype'),
-    url('@{fa-osu-font-path}/osu!font.woff') format('woff'),
-    url('@{fa-osu-font-path}/osu!font.ttf') format('truetype'),
-    url('@{fa-osu-font-path}/osu!font.svg#osu!font') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'osu';
-  src: url('@{osu-font-path}/osu.eot');
-  src:
-    url('@{osu-font-path}/osu.eot?#iefix') format('embedded-opentype'),
-    url('@{osu-font-path}/osu.woff') format('woff'),
-    url('@{osu-font-path}/osu.ttf') format('truetype'),
-    url('@{osu-font-path}/osu.svg#osu') format('svg');
+    url('@{extra-font-path}/extra.eot?#iefix') format('embedded-opentype'),
+    url('@{extra-font-path}/extra.woff') format('woff'),
+    url('@{extra-font-path}/extra.ttf') format('truetype'),
+    url('@{extra-font-path}/extra.svg#extra') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -157,21 +145,6 @@ select.form-control {
   &--full-width {
     display: block;
     width: 100%;
-  }
-
-  &--artist {
-    display: block;
-    width: 100%;
-    height: 40px;
-    margin-bottom: 5px;
-    background: #181f21;
-    display: flex;
-    &:hover {
-      background: #1b2224;
-    }
-    a:hover {
-      text-decoration: none;
-    }
   }
 
   &--textlike {
