@@ -133,6 +133,61 @@
     }
   }
 
+  &__button {
+    &:extend(.btn-osu);
+
+    display: block;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 5px;
+    background: #181f21;
+    display: flex;
+    transition: 0.1s;
+
+    &:hover {
+      background: lighten(#181f21, 2%);
+    }
+    a:hover {
+      text-decoration: none;
+    }
+
+    &--twitter {
+      background: @twitter-colour;
+      &:hover {
+        background: lighten(@twitter-colour, 5%);
+      }
+    }
+
+    &--facebook {
+      background: @facebook-colour;
+      &:hover {
+        background: lighten(@facebook-colour, 5%);
+      }
+    }
+
+    &--soundcloud {
+      background: @soundcloud-colour;
+      &:hover {
+        background: lighten(@soundcloud-colour, 5%);
+      }
+    }
+
+    &--bandcamp {
+      background: @bandcamp-colour;
+      &:hover {
+        background: lighten(@bandcamp-colour, 5%);
+      }
+    }
+
+    &--patreon {
+      background: @patreon-colour;
+      &:hover {
+        background: lighten(@patreon-colour, 5%);
+      }
+    }
+
+  }
+
   &__link {
     display: inline-block;
     width: 100%;
@@ -156,17 +211,5 @@
 
   &__chevron {
     right: 0;
-  }
-
-  &__chevron--twitter {
-    color: @twitter-colour;
-  }
-
-  &__chevron--facebook {
-    color: @facebook-colour;
-  }
-
-  &__chevron--soundcloud {
-    color: @soundcloud-colour;
   }
 }

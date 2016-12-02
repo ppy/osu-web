@@ -41,13 +41,14 @@ class ArtistsController extends Controller
             'cover_url' => $artist->cover_url,
         ];
 
+        // should probably move services to a separate model if the number increases further
         $links = [];
-        foreach (['twitter', 'facebook', 'soundcloud'] as $service) {
+        foreach (['soundcloud', 'twitter', 'facebook', 'bandcamp', 'patreon'] as $service) {
             if ($artist->$service) {
                 $links[] = [
                     'title' => ucwords($service),
                     'url' => $artist->$service,
-                    'icon' => $service,
+                    'icon' => $service === 'patreon' ? "extra-$service" : $service,
                     'class' => $service,
                 ];
             }
@@ -58,14 +59,13 @@ class ArtistsController extends Controller
                 'title' => trans('artist.links.site'),
                 'url' => $artist->website,
                 'icon' => 'globe',
-                'class' => '',
+                'class' => 'website',
             ];
         }
 
         return view('artists.show')
             ->with('artist', $artist)
             ->with('links', $links)
-            // using the api serializer to get rid of data root node, we should probably nuke that root node globally...
             ->with('tracks', json_collection($tracks, new ArtistTrackTransformer()))
             ->with('images', $images);
     }
