@@ -69,6 +69,9 @@ $(document).on 'change', '.js-url-selector', (e) ->
 $(document).on 'keydown', (e) ->
   $.publish 'key:esc' if e.keyCode == 27
 
+# countdown timers
+reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
+  deadline: e.dataset.deadline
 
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port

@@ -1,4 +1,4 @@
-###*
+/**
 *    Copyright 2015 ppy Pty. Ltd.
 *
 *    This file is part of osu!web. osu!web is distributed with the hope of
@@ -15,31 +15,42 @@
 *    You should have received a copy of the GNU Affero General Public License
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
-###
+*/
 
-{div,i} = React.DOM
-el = React.createElement
+.countdown-timer {
+  text-align: center;
 
-@BeatmapIcon = React.createClass
-  mixins: [React.addons.PureRenderMixin]
+  &__header {
+    color: white;
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: @spacing;
+  }
 
-  getDefaultProps: ->
-    showTitle: true
+  &__field {
+    display: inline-block;
 
-  render: ->
-    beatmap = @props.beatmap
+    width: 70px;
+    text-align: center;
 
-    difficultyRating =
-      if @props.overrideVersion?
-        @props.overrideVersion
-      else
-        BeatmapHelper.getDiffRating beatmap.difficulty_rating
+    border: 5px solid #1A2223;
+    color: white;
+    margin: 0px @spacing / 2;
+    border-radius: 5px;
 
-    showTitle = @props.showTitle && !@props.overrideVersion?
+    .default-box-shadow();
+  }
 
-    mode = if beatmap.convert then 'osu' else beatmap.mode
+  &__digit {
+    line-height: 50px;
+    font-size: 24px;
+    background: rgba(0, 0, 0, 0.75);
+  }
 
-    div
-      className: "beatmap-icon beatmap-icon--#{difficultyRating} beatmap-icon--#{@props.modifier}"
-      title: beatmap.version if showTitle
-      el Icon, name: "extra-#{mode}"
+  &__label {
+    background: #1A2223;
+    font-size: 12px;
+    line-height: 14px;
+    color: rgba(255,255,255,0.5);
+  }
+}

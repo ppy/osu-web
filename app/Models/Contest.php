@@ -110,6 +110,16 @@ class Contest extends Model
         $this->extra_options['shape'] = $shape;
     }
 
+    public function currentPhaseEndDate()
+    {
+        switch ($this->state()) {
+            case 'entry':
+                return $this->entry_ends_at;
+            case 'voting':
+                return $this->voting_ends_at;
+        }
+    }
+
     public function currentPhaseDateRange()
     {
         switch ($this->state()) {
