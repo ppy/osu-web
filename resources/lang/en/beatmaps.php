@@ -81,6 +81,7 @@ return [
         ],
 
         'stats' => [
+            'deleted' => 'Deleted',
             'mine' => 'Mine',
             'pending' => 'Pending',
             'praises' => 'Praises',

@@ -94,6 +94,13 @@ class BeatmapDiscussionPost extends Model
         ]);
     }
 
+    public function isFirstPost()
+    {
+        return !static
+            ::where('beatmap_discussion_id', $this->beatmap_discussion_id)
+            ->where('id', '<', $this->id)->exists();
+    }
+
     public function restore()
     {
         return $this->update(['deleted_at' => null]);
@@ -101,9 +108,7 @@ class BeatmapDiscussionPost extends Model
 
     public function softDelete($deletedBy)
     {
-        if (!static
-            ::where('beatmap_discussion_id', $this->beatmap_discussion_id)
-            ->where('id', '<', $this->id)->exists()) {
+        if ($this->isFirstPost()) {
             return trans('model_validation.beatmap_discussion_post.first_post');
         }
 
@@ -111,5 +116,10 @@ class BeatmapDiscussionPost extends Model
             'deleted_by_id' => $deletedBy->user_id ?? null,
             'deleted_at' => Carbon::now(),
         ]);
+    }
+
+    public function scopeWithoutDeleted($query)
+    {
+        $query->whereNull('deleted_at');
     }
 }

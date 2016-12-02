@@ -118,6 +118,12 @@ BeatmapDiscussions.Post = React.createClass
 
 
   messageViewer: ->
+    [controller, key, deleteModel] =
+      if @props.type == 'reply'
+        ['beatmap-discussion-posts', 'beatmap_discussion_post', @props.post]
+      else
+        ['beatmap-discussions', 'beatmap_discussion', @props.discussion]
+
     div className: "#{bn}__message-container #{'hidden' if @state.editing}",
       div
         className: "#{bn}__message"
@@ -143,13 +149,13 @@ BeatmapDiscussions.Post = React.createClass
                   classNames: ["#{bn}__info-user"]
                 update_time: osu.timeago @props.post.updated_at
 
-        if @props.post.deleted_at?
+        if deleteModel.deleted_at?
           span
             className: "#{bn}__info #{bn}__info--edited"
             dangerouslySetInnerHTML:
               __html: osu.trans 'beatmaps.discussions.deleted',
-                editor: osu.link laroute.route('users.show', user: @props.deletedBy.id),
-                  @props.deletedBy.username
+                editor: osu.link laroute.route('users.show', user: deleteModel.deleted_by_id),
+                  @props.users[deleteModel.deleted_by_id].username
                   classNames: ["#{bn}__info-user"]
                 delete_time: osu.timeago @props.post.deleted_at
 
@@ -163,18 +169,18 @@ BeatmapDiscussions.Post = React.createClass
               onClick: @editStart
               osu.trans('beatmaps.discussions.edit')
 
-          if !@props.post.deleted_at? && @props.canBeDeleted
+          if !deleteModel.deleted_at? && @props.canBeDeleted
             a
                 className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
-                href: laroute.route('beatmap-discussion-posts.destroy', beatmap_discussion_post: @props.post.id)
+                href: laroute.route("#{controller}.destroy", "#{key}": deleteModel.id)
                 'data-remote': true
                 'data-method': 'DELETE'
                 osu.trans('beatmaps.discussions.delete')
 
-          if @props.post.deleted_at? && @props.canBeRestored
+          if deleteModel.deleted_at? && @props.canBeRestored
             a
                 className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
-                href: laroute.route('beatmap-discussion-posts.restore', beatmap_discussion_post: @props.post.id)
+                href: laroute.route("#{controller}.restore", "#{key}": deleteModel.id)
                 'data-remote': true
                 'data-method': 'POST'
                 osu.trans('beatmaps.discussions.restore')

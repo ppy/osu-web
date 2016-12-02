@@ -142,11 +142,12 @@ BeatmapDiscussions.Main = React.createClass
       general = []
       timeline = []
       timelineByFilter =
-        total: {}
-        resolved: {}
+        deleted: {}
+        mine: {}
         pending: {}
         praises: {}
-        mine: {}
+        resolved: {}
+        total: {}
 
       for d in @state.beatmapsetDiscussion.beatmap_discussions
         if d.timestamp?
@@ -155,9 +156,11 @@ BeatmapDiscussions.Main = React.createClass
           timeline.push d
           timelineByFilter.total[d.id] = d
 
-          if d.message_type == 'praise'
+          if d.deleted_at?
+            timelineByFilter.deleted[d.id] = d
+          else if d.message_type == 'praise'
             timelineByFilter.praises[d.id] = d
-          else if d.timestamp?
+          else
             if d.resolved
               timelineByFilter.resolved[d.id] = d
             else

@@ -108,7 +108,11 @@ BeatmapDiscussions.Header = React.createClass
   stats: ->
     bn = 'counter-box'
 
-    for type in ['mine', 'resolved', 'pending', 'praises', 'total']
+    types = ['mine', 'resolved', 'pending', 'praises']
+    types.push('deleted') if @props.currentUser.isAdmin
+    types.push('total')
+
+    for type in types
       topClasses = "#{bn} #{bn}--beatmap-discussions #{bn}--#{type}"
       topClasses += ' js-active' if @props.mode == 'timeline' && @props.currentFilter == type
 
