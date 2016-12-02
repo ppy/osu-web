@@ -55,6 +55,10 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
     public function includeBeatmapDiscussionPosts(BeatmapDiscussion $discussion)
     {
+        if (!priv_check('BeatmapDiscussionShow', $discussion)->can()) {
+            return;
+        }
+
         return $this->collection(
             $discussion->beatmapDiscussionPosts,
             new BeatmapDiscussionPostTransformer()
@@ -63,6 +67,10 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
     public function includeCurrentUserAttributes(BeatmapDiscussion $discussion)
     {
+        if (!priv_check('BeatmapDiscussionShow', $discussion)->can()) {
+            return;
+        }
+
         $currentUser = Auth::user();
 
         if ($currentUser === null) {

@@ -27,7 +27,7 @@ class BeatmapDiscussionPostTransformer extends Fractal\TransformerAbstract
     public function transform(BeatmapDiscussionPost $post)
     {
         if (!priv_check('BeatmapDiscussionPostShow', $post)->can()) {
-            return;
+            return [];
         }
 
         return [
