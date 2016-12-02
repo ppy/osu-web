@@ -19,6 +19,8 @@
  */
 
 return [
+    'required' => ':attribute é obrigatório.',
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Só é possível votar em uma solicitação de recurso.',
@@ -41,6 +43,4 @@ return [
             'too_many' => 'Selecionou mais opções do que o permitido.',
         ],
     ],
-
-    'required' => ':attribute é obrigatório.',
 ];

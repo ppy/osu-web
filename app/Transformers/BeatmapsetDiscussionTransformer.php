@@ -52,11 +52,20 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
         $userIds = [$discussion->beatmapset->user_id];
 
         foreach ($discussion->beatmapDiscussions as $beatmapDiscussion) {
+            if (!priv_check('BeatmapDiscussionShow', $beatmapDiscussion)->can()) {
+                continue;
+            }
+
             $userIds[] = $beatmapDiscussion->user_id;
 
             foreach ($beatmapDiscussion->beatmapDiscussionPosts as $post) {
+                if (!priv_check('BeatmapDiscussionPostShow', $post)->can()) {
+                    continue;
+                }
+
                 $userIds[] = $post->user_id;
                 $userIds[] = $post->last_editor_id;
+                $userIds[] = $post->deleted_by;
             }
         }
 

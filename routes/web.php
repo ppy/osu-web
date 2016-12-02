@@ -62,7 +62,19 @@ Route::get('beatmapsets/{beatmapset}/discussion', ['as' => 'beatmapsets.discussi
 Route::put('beatmapsets/{beatmapset}/nominate', ['as' => 'beatmapsets.nominate', 'uses' => 'BeatmapsetsController@nominate']);
 Route::put('beatmapsets/{beatmapset}/disqualify', ['as' => 'beatmapsets.disqualify', 'uses' => 'BeatmapsetsController@disqualify']);
 Route::put('beatmap-discussions/{beatmap_discussion}/vote', ['uses' => 'BeatmapDiscussionsController@vote', 'as' => 'beatmap-discussions.vote']);
-Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['store', 'update']]);
+Route::post('beatmap-discussions/{beatmap_discussion}/restore', ['uses' => 'BeatmapDiscussionsController@restore', 'as' => 'beatmap-discussions.restore']);
+Route::resource('beatmap-discussions', 'BeatmapDiscussionsController', [
+    'only' => ['destroy'],
+]);
+
+Route::post('beatmap-discussions-posts/{beatmap_discussion_post}/restore', [
+    'uses' => 'BeatmapDiscussionPostsController@restore',
+    'as' => 'beatmap-discussion-posts.restore',
+]);
+Route::resource('beatmap-discussion-posts',
+    'BeatmapDiscussionPostsController',
+    ['only' => ['destroy', 'store', 'update']]
+);
 
 // contests
 Route::group(['as' => 'community.', 'prefix' => 'community'], function () {

@@ -46,6 +46,7 @@ BeatmapDiscussions.Discussion = React.createClass
 
     topClasses = "#{bn} js-beatmap-discussion-jump"
     topClasses += " #{bn}--highlighted" if @state.highlighted
+    topClasses += " #{bn}--deleted" if @props.discussion.deleted_at?
 
     lineClasses = "#{bn}__line"
     lineClasses += " #{bn}__line--resolved" if @props.discussion.resolved
@@ -144,16 +145,22 @@ BeatmapDiscussions.Discussion = React.createClass
 
 
   post: (post, type) ->
+    return if !post?
+
     elementName = if post.system then 'SystemPost' else 'Post'
 
     el BeatmapDiscussions[elementName],
       key: post.id
+      discussion: @props.discussion
       post: post
       type: type
       read: _.includes(@props.readPostIds, post.id) || (@props.currentUser.id == post.user_id)
+      users: @props.users
       user: @props.users[post.user_id]
       lastEditor: @props.users[post.last_editor_id]
       canBeEdited: @props.currentUser.isAdmin || (@props.currentUser.id == post.user_id)
+      canBeDeleted: @props.currentUser.isAdmin || (@props.currentUser.id == post.user_id)
+      canBeRestored: @props.currentUser.isAdmin
 
 
   setCollapse: (_e, {collapse}) ->
