@@ -78,6 +78,8 @@ BeatmapDiscussions.Discussions = React.createClass
 
 
   discussionPage: (discussion) ->
+    return if !discussion.id?
+
     className = "#{bn}__discussion"
 
     if @props.mode == 'timeline' &&

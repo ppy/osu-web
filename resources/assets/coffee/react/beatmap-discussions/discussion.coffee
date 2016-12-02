@@ -145,7 +145,7 @@ BeatmapDiscussions.Discussion = React.createClass
 
 
   post: (post, type) ->
-    return if !post?
+    return if !post.id?
 
     elementName = if post.system then 'SystemPost' else 'Post'
 
