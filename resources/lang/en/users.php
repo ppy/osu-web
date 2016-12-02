@@ -19,6 +19,8 @@
  */
 
 return [
+    'deleted' => '[deleted user]',
+
     'login' => [
         '_' => 'Sign in',
         'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
@@ -125,7 +127,7 @@ return [
             ],
             'beatmaps' => [
                 'title' => 'Beatmaps',
-                'favorite' => [
+                'favourite' => [
                     'title' => 'Favourite Beatmaps (:count)',
                 ],
                 'ranked_and_approved' => [

@@ -120,7 +120,7 @@ return [
             ],
             'beatmaps' => [
                 'title' => 'Beatmapy',
-                'favorite' => [
+                'favourite' => [
                     'title' => 'Ulubione beatmapy (:count)',
                 ],
                 'ranked_and_approved' => [

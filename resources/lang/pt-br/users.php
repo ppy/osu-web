@@ -124,7 +124,7 @@ return [
             ],
             'beatmaps' => [
                 'title' => 'Beatmaps',
-                'favorite' => [
+                'favourite' => [
                     'title' => 'Beatmaps favoritos (:count)',
                 ],
                 'ranked_and_approved' => [

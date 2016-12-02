@@ -59,6 +59,24 @@ class OsuAuthorize
         return $this->cache[$cacheKey];
     }
 
+    public function checkBeatmapDiscussionDestroy($user, $discussion)
+    {
+        $prefix = 'beatmap_discussion.destroy.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($user->user_id !== $discussion->user_id) {
+            return;
+        }
+
+        if ($discussion->beatmapDiscussionPosts()->withoutDeleted()->count() > 1) {
+            return $prefix.'has_reply';
+        }
+
+        return 'ok';
+    }
+
     public function checkBeatmapDiscussionPost($user, $discussion)
     {
         $this->ensureLoggedIn($user);
@@ -90,10 +108,40 @@ class OsuAuthorize
         return $prefix.'not_owner';
     }
 
+    public function checkBeatmapDiscussionRestore($user, $discussion)
+    {
+        // no one but admin (not covered here) =D
+    }
+
+    public function checkBeatmapDiscussionShow($user, $discussion)
+    {
+        if ($discussion->deleted_at === null) {
+            return 'ok';
+        }
+    }
+
     public function checkBeatmapDiscussionVote($user, $discussion)
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+
+        return 'ok';
+    }
+
+    public function checkBeatmapDiscussionPostDestroy($user, $post)
+    {
+        $prefix = 'beatmap_discussion_post.destroy.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($post->system) {
+            return $prefix.'system_generated';
+        }
+
+        if ($user->user_id !== $post->user_id) {
+            return $prefix.'not_owner';
+        }
 
         return 'ok';
     }
@@ -114,6 +162,18 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkBeatmapDiscussionPostRestore($user, $post)
+    {
+        // no one but admin (not covered here) =D
+    }
+
+    public function checkBeatmapDiscussionPostShow($user, $post)
+    {
+        if ($post->deleted_at === null) {
+            return 'ok';
+        }
     }
 
     public function checkBeatmapsetNominate($user, $beatmapset)

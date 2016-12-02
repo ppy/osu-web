@@ -18,12 +18,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 return [
+    'required' => ':attribute es requerido.',
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Solo puedes votar en solicitudes de características.',
             'not_enough_feature_votes' => 'Votos insuficientes.',
         ],
     ],
-    'required' => ':attribute es requerido.',
-
 ];
