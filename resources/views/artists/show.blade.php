@@ -50,13 +50,11 @@
                 </div>
                 <div class="artist__links-area">
                     @foreach ($links as $link)
-                        <div class='artist__button artist__button--{{$link['class']}}'>
-                            <a class="artist__link" href="{{$link['url']}}">
-                                <i class='fa fa-fw fa-{{$link['icon']}}'></i>
-                                <span class="artist__link-text">{{$link['title']}}</span>
-                                <i class='fa fa-fw fa-chevron-right artist__chevron'></i>
-                            </a>
-                        </div>
+                        <a class='artist__button artist__button--{{$link['class']}}' href='{{$link['url']}}'>
+                            <i class='fa fa-fw fa-{{$link['icon']}}'></i>
+                            <span class='artist__link-text'>{{$link['title']}}</span>
+                            <i class='fa fa-fw fa-chevron-right artist__chevron'></i>
+                        </a>
                     @endforeach
                 </div>
             </div>

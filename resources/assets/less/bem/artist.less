@@ -134,21 +134,29 @@
   }
 
   &__button {
-    &:extend(.btn-osu);
-
-    display: block;
-    width: 100%;
+    align-items: center;
+    background: #181f21;
+    border-radius: 4px;
+    color: white;
+    display: flex;
+    font-size: 16px;
     height: 40px;
     margin-bottom: 5px;
-    background: #181f21;
-    display: flex;
+    padding: 5px 10px;
+    user-select: none;
+
+    .default-text-shadow();
+    .default-box-shadow();
+
     transition: 0.1s;
+
+    &:hover, &:focus {
+      color: white;
+      text-decoration: none;
+    }
 
     &:hover {
       background: lighten(#181f21, 2%);
-    }
-    a:hover {
-      text-decoration: none;
     }
 
     &--twitter {
@@ -186,20 +194,6 @@
       }
     }
 
-  }
-
-  &__link {
-    display: inline-block;
-    width: 100%;
-    display: flex;
-    align-items: center;
-
-    color: white;
-    text-decoration: none;
-    &:hover, &:focus {
-      color: white;
-      text-decoration: none;
-    }
   }
 
   &__link-text {
