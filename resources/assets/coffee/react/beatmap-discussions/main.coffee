@@ -36,8 +36,8 @@ BeatmapDiscussions.Main = React.createClass
     mode: 'timeline'
     readPostIds: _.chain(@props.initial.beatmapsetDiscussion.beatmap_discussions)
       .map (d) =>
-        d.beatmap_discussion_posts.map (r) =>
-          r?.id
+        d.beatmap_discussion_posts?.map (r) =>
+          r.id
       .flatten()
       .value()
     currentFilter: 'total'
