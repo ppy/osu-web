@@ -104,11 +104,11 @@ ProfilePage.Main = React.createClass
         userAchievements: @props.userAchievements
         achievements: @props.achievements
         beatmapPlaycounts: @props.beatmapPlaycounts
-        favoriteBeatmapsets: @props.favoriteBeatmapsets
+        favouriteBeatmapsets: @props.favouriteBeatmapsets
         rankedAndApprovedBeatmapsets: @props.rankedAndApprovedBeatmapsets
         recentActivities: @props.recentActivities
         recentlyReceivedKudosu: @props.recentlyReceivedKudosu
-        favoriteBeatmapsets: @props.favoriteBeatmapsets
+        favouriteBeatmapsets: @props.favouriteBeatmapsets
         rankHistories: rankHistories
         rankedAndApprovedBeatmapsets: @props.rankedAndApprovedBeatmapsets
         user: @state.user

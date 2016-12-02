@@ -38,7 +38,7 @@ return [
         'standard-converts-only' => 'Only the osu! mode can have scores in other modes.',
     ],
     'beatmapsets' => [
-        'too-many-favorites' => 'You have to many favourited beatmaps! Please unfavourite one before continuing.',
+        'too-many-favourites' => 'You have to many favourited beatmaps! Please unfavourite one before continuing.',
     ],
     'logged_out' => 'You have been logged out. Please login and retry.',
     'supporter_only' => 'You must be a supporter to use this feature.',

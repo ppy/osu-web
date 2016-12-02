@@ -84,7 +84,7 @@ class Beatmapset extends Model
     const NOMINATIONS_PER_DAY = 1;
     const QUALIFICATIONS_PER_DAY = 6;
 
-    private $_favorites = null;
+    private $_favourites = null;
 
     // ranking functions for the set
 
@@ -300,7 +300,7 @@ class Beatmapset extends Model
                     $matchParams[] = ['match' => ['approved' => self::STATES['loved']]];
                     break;
                 case 2: // Favourites
-                    $favs = model_pluck($current_user->favoriteBeatmapsets(), 'beatmapset_id');
+                    $favs = model_pluck($current_user->favouriteBeatmapsets(), 'beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $favs]];
                     break;
                 case 3: // Mod Requests
@@ -427,7 +427,6 @@ class Beatmapset extends Model
             $ids = implode(',', $beatmap_ids);
             $beatmaps = static
                 ::with('beatmaps')
-                ->with('favorites')
                 ->whereIn('beatmapset_id', $beatmap_ids)
                 ->orderByRaw(DB::raw("FIELD(beatmapset_id, {$ids})"))
                 ->get();
@@ -730,11 +729,11 @@ class Beatmapset extends Model
         return true;
     }
 
-    public function favorite($user)
+    public function favourite($user)
     {
         DB::transaction(function () use ($user) {
             try {
-                FavoriteBeatmapset::create([
+                FavouriteBeatmapset::create([
                     'user_id' => $user->user_id,
                     'beatmapset_id' => $this->beatmapset_id,
                 ]);
@@ -751,14 +750,14 @@ class Beatmapset extends Model
         });
     }
 
-    public function unfavorite($user)
+    public function unfavourite($user)
     {
-        if (!$this->hasFavorited($user)) {
+        if (!$this->hasFavourited($user)) {
             return;
         }
 
         DB::transaction(function () use ($user) {
-            $this->favorites()->where('user_id', $user->user_id)
+            $this->favourites()->where('user_id', $user->user_id)
                 ->delete();
 
             $this->favourite_count = DB::raw('GREATEST(favourite_count - 1, 0)');
@@ -884,22 +883,16 @@ class Beatmapset extends Model
         return $ratings;
     }
 
-    public function favorites()
+    public function favourites()
     {
-        return $this->hasMany(FavoriteBeatmapset::class);
+        return $this->hasMany(FavouriteBeatmapset::class);
     }
 
-    public function hasFavorited($user)
+    public function hasFavourited($user)
     {
-        if ($user === null) {
-            return false;
-        }
-
-        if ($this->_favorites === null) {
-            $this->_favorites = $this->favorites->keyBy('user_id');
-        }
-
-        return $this->_favorites->has($user->user_id);
+        return $user === null
+            ? false
+            : $this->favourites()->where('user_id', $user->user_id)->exists();
     }
 
     public function description()

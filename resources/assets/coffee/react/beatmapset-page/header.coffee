@@ -19,13 +19,13 @@
 el = React.createElement
 
 class BeatmapsetPage.Header extends React.Component
-  toggleFavorite: (e) ->
+  toggleFavourite: (e) ->
     e.preventDefault()
 
     if !currentUser.id?
       userLogin.show e.target
     else
-      $.publish 'beatmapset:favorite:toggle'
+      $.publish 'beatmapset:favourite:toggle'
 
   render: ->
     dateFormat = 'MMM D, YYYY'
@@ -65,10 +65,10 @@ class BeatmapsetPage.Header extends React.Component
 
               span className: 'beatmapset-header__value',
                 a
-                  onClick: @toggleFavorite
-                  href: laroute.route 'beatmapsets.update-favorite', beatmapset: @props.beatmapset.id, action: if @props.hasFavorited then 'unfavorite' else 'favorite'
-                  title: osu.trans "beatmaps.beatmapset.show.details.#{if @props.hasFavorited then 'unfavorite' else 'favorite'}"
-                  className: "beatmapset-header__value-icon beatmapset-header__value-icon--favorites #{'beatmapset-header__value-icon--favorited' if @props.hasFavorited}"
+                  onClick: @toggleFavourite
+                  href: laroute.route 'beatmapsets.update-favourite', beatmapset: @props.beatmapset.id, action: if @props.hasFavourited then 'unfavourite' else 'favourite'
+                  title: osu.trans "beatmaps.beatmapset.show.details.#{if @props.hasFavourited then 'unfavourite' else 'favourite'}"
+                  className: "beatmapset-header__value-icon beatmapset-header__value-icon--favourites #{'beatmapset-header__value-icon--favourited' if @props.hasFavourited}"
                   el Icon, name: 'heart'
                 span className: 'beatmapset-header__value-name', @props.favcount.toLocaleString()
 

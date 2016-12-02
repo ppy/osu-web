@@ -504,20 +504,20 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkUserFavorite($user)
+    public function checkUserFavourite($user)
     {
         $prefix = 'errors.beatmapsets.';
 
         $this->ensureLoggedIn($user);
 
-        if ($user->favoriteBeatmapsets()->count() > 99) {
-            return $prefix.'too-many-favorites';
+        if ($user->favouriteBeatmapsets()->count() > 99) {
+            return $prefix.'too-many-favourites';
         }
 
         return 'ok';
     }
 
-    public function checkUserFavoriteRemove($user)
+    public function checkUserFavouriteRemove($user)
     {
         $this->ensureLoggedIn($user);
 

@@ -49,7 +49,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'artist' => $beatmapset->artist,
             'play_count' => $beatmapset->play_count,
             'favourite_count' => $beatmapset->favourite_count,
-            'has_favorited' => $beatmapset->hasFavorited(Auth::user()),
+            'has_favourited' => $beatmapset->hasFavourited(Auth::user()),
             'submitted_date' => json_time($beatmapset->submit_date),
             'ranked_date' => json_time($beatmapset->approved_date),
             'creator' => $beatmapset->creator,
