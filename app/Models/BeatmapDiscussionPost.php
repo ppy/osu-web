@@ -108,7 +108,7 @@ class BeatmapDiscussionPost extends Model
         }
 
         $this->update([
-            'deleted_by_id' => $deletedBy === null ? null : $deletedBy->user_id,
+            'deleted_by_id' => $deletedBy->user_id ?? null,
             'deleted_at' => Carbon::now(),
         ]);
     }
