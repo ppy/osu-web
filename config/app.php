@@ -61,6 +61,7 @@ return [
         'nl',
         'pl',
         'pt-br',
+				'fr'
     ],
 
     /*
