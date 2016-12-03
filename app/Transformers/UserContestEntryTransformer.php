@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2016 ppy Pty. Ltd.
  *
@@ -14,49 +16,21 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+namespace App\Transformers;
 
-.mp-history-events {
-  @_event-max-width: 640px;
+use App\Models\UserContestEntry;
+use League\Fractal;
 
-  .event() {
-    background-color: @grey-e;
-    max-width: @_event-max-width;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .event-end() {
-    border-radius: 0 0 @border-radius-base @border-radius-base;
-    padding-bottom: (@spacing * 1.5);
-    margin-bottom: (@spacing * 2);
-  }
-
-  &__event {
-    .event();
-
-    &:first-child,
-    :not(&) + & {
-      padding-top: (@spacing * 2);
-      border-radius: @border-radius-base @border-radius-base 0 0;
+class UserContestEntryTransformer extends Fractal\TransformerAbstract
+{
+    public function transform(UserContestEntry $entry)
+    {
+        return [
+            'id' => $entry->id,
+            'filename' => $entry->original_filename,
+            'filesize' => $entry->filesize,
+            'created_at' => $entry->created_at->toIso8601String(),
+        ];
     }
-
-    &:last-child {
-      .event-end();
-      padding-bottom: (@spacing * 2);
-    }
-  }
-
-  &__game {
-    :not(&) + & {
-      &::before {
-        .event();
-        .event-end();
-
-        content: '';
-        display: block;
-      }
-    }
-  }
 }

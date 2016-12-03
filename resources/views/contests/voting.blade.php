@@ -32,5 +32,5 @@
   <script id="json-contest" type="application/json">
     {!! $contestJson !!}
   </script>
-  <script src="{{ elixir("js/react/contest.js") }}" data-turbolinks-track></script>
+  <script src="{{ elixir("js/react/contest-voting.js") }}" data-turbolinks-track></script>
 @stop

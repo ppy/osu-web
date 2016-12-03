@@ -18,15 +18,26 @@
 @extends('contests.base')
 
 @section('contest-content')
-  <div class="contest__description">{!! Markdown::convertToHtml($contest->description_enter) !!}</div>
+    <div class="contest__description">{!! Markdown::convertToHtml($contest->description_enter) !!}</div>
 
-  @if (!$contest->isSubmissionOpen())
-      @if ($contest->entry_starts_at !== null && $contest->entry_starts_at->isPast())
-          <div class='contest__voting-ended'>{{trans('contest.entry.over')}}</div>
-      @else
-          <div class='contest__voting-ended'>{{trans('contest.entry.preparation')}}</div>
-      @endif
-  @else
-      {{-- upload logic --}}
-  @endif
+    @if (!$contest->isSubmissionOpen())
+        @if ($contest->entry_starts_at !== null && $contest->entry_starts_at->isPast())
+            <div class='contest__voting-ended'>{{trans('contest.entry.over')}}</div>
+        @else
+            <div class='contest__voting-ended'>{{trans('contest.entry.preparation')}}</div>
+        @endif
+    @else
+        <div class='js-react--userContestEntry'></div>
+    @endif
 @endsection
+
+@section('script')
+  @parent
+  <script id="json-contest" type="application/json">
+    {!! $contestJson !!}
+  </script>
+  <script id="json-userEntries" type="application/json">
+    {!! $userEntriesJson !!}
+  </script>
+  <script src="{{ elixir("js/react/contest-entry.js") }}" data-turbolinks-track></script>
+@stop

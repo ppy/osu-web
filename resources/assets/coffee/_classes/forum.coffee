@@ -16,13 +16,6 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @Forum
-  _totalPostsDiv: document.getElementsByClassName('js-forum__topic-total-posts')
-  _postsCounter: document.getElementsByClassName('js-forum__posts-counter')
-  _postsProgress: document.getElementsByClassName('js-forum__posts-progress')
-  _stickyHeaderTopic: document.getElementsByClassName('js-forum-topic-headernav')
-  posts: document.getElementsByClassName('js-forum-post')
-  loadMoreLinks: document.getElementsByClassName('js-forum-posts-show-more')
-
   boot: =>
     @refreshCounter()
     @refreshLoadMoreLinks()
@@ -32,18 +25,19 @@ class @Forum
 
 
   constructor: ->
-    # `boot` is called first to avoid triggering anything when scrolling to
-    # target post.
-    @boot()
+    @_totalPostsDiv = document.getElementsByClassName('js-forum__topic-total-posts')
+    @_postsCounter = document.getElementsByClassName('js-forum__posts-counter')
+    @_postsProgress = document.getElementsByClassName('js-forum__posts-progress')
+    @_stickyHeaderTopic = document.getElementsByClassName('js-forum-topic-headernav')
+    @posts = document.getElementsByClassName('js-forum-post')
+    @loadMoreLinks = document.getElementsByClassName('js-forum-posts-show-more')
+
+    $(document).on 'turbolinks:load osu:page:change', @boot
 
     $(window).on 'throttled-scroll', @refreshCounter
-
-    $(document).on 'ready turbolinks:load osu:page:change', @boot
-
     $(document).on 'click', '.js-forum-posts-show-more', @showMore
     $(document).on 'click', '.js-post-url', @postUrlClick
     $(document).on 'submit', '.js-forum-posts-jump-to', @jumpToSubmit
-
     $(document).on 'keyup', @keyboardNavigation
 
     $.subscribe 'stickyHeader', @stickHeader

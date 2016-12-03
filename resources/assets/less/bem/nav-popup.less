@@ -261,10 +261,11 @@
     width: 0;
     flex: 1;
     display: flex;
-    padding-left: (@_menu-spacing / 2);
+    margin-left: (@_menu-spacing / 2);
   }
 
   &__submenu {
+    position: absolute;
     padding-right: (@spacing * 2);
     z-index: 1; // local context
     white-space: nowrap;

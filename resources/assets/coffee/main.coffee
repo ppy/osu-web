@@ -41,28 +41,25 @@ $(document).on 'submit', 'form', LoadingOverlay.show
 @checkboxValidation ?= new CheckboxValidation
 @formToggle ?= new FormToggle
 
+@editorZoom ?= new EditorZoom
+@stickyFooter ?= new StickyFooter
+@stickyHeader ?= new StickyHeader
+@globalDrag ?= new GlobalDrag
+@gallery ?= new Gallery
+@formPlaceholderHide ?= new FormPlaceholderHide
+@tooltipDefault ?= new TooltipDefault
 
-$(document).on 'ready turbolinks:load', =>
+@syncHeight ?= new SyncHeight
 
-  @editorZoom ||= new EditorZoom
-  @stickyFooter ||= new StickyFooter
-  @stickyHeader ||= new StickyHeader
-  @globalDrag ||= new GlobalDrag
-  @gallery ||= new Gallery
-  @formPlaceholderHide ||= new FormPlaceholderHide
-  @tooltipDefault ||= new TooltipDefault
+@forum ?= new Forum
+@forumAutoClick ?= new ForumAutoClick
+@forumPostsSeek ?= new ForumPostsSeek(@forum)
+@forumSearchModal ?= new ForumSearchModal(@forum)
+@forumTopicPostJump ?= new ForumTopicPostJump(@forum)
+@forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
+@forumCover ?= new ForumCover
 
-  @syncHeight ||= new SyncHeight
-
-  @forum ||= new Forum
-  @forumAutoClick ||= new ForumAutoClick
-  @forumPostsSeek ||= new ForumPostsSeek(@forum)
-  @forumSearchModal ||= new ForumSearchModal(@forum)
-  @forumTopicPostJump ||= new ForumTopicPostJump(@forum)
-  @forumTopicReply ||= new ForumTopicReply(@forum, @stickyFooter)
-  @forumCover ||= new ForumCover(@forum)
-
-  @menu ||= new Menu
+@menu ?= new Menu
 
 
 $(document).on 'change', '.js-url-selector', (e) ->

@@ -1,5 +1,5 @@
-/**
-*    Copyright 2016 ppy Pty. Ltd.
+###*
+*    Copyright 2015 ppy Pty. Ltd.
 *
 *    This file is part of osu!web. osu!web is distributed with the hope of
 *    attracting more community contributions to the core ecosystem of osu!.
@@ -15,15 +15,16 @@
 *    You should have received a copy of the GNU Affero General Public License
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
-*/
-
-.profile-exp-bar {
-  height: 10px;
-  background: #ddd;
-  margin-bottom: @grid-gutter-width/8;
-
-  &__fill {
-    background: @blue-dark;
-    height: 100%;
+###
+propsFunction = ->
+  data = osu.parseJson('json-contest')
+  return {
+    contest: data.contest
+    selected: data.userVotes
+    options:
+      showDL: data.contest['type'] == 'beatmap'
+      showPreview: data.contest['type'] == 'music'
   }
-}
+
+reactTurbolinks.register 'contestArtList', Contest.Voting.ArtEntryList, propsFunction
+reactTurbolinks.register 'contestList', Contest.Voting.EntryList, propsFunction

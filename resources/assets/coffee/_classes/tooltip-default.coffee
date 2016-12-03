@@ -17,10 +17,10 @@
 ###
 class @TooltipDefault
   constructor: ->
+    @tooltips = document.getElementsByClassName 'qtip'
+
     $(document).on 'mouseover', '[title]', @onMouseOver
     $(document).on 'turbolinks:before-cache', @rollback
-
-    @tooltips = document.getElementsByClassName 'qtip'
 
 
   onMouseOver: (event) =>

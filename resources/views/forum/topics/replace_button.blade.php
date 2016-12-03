@@ -15,20 +15,12 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<a
-    class="btn-circle btn-circle--topic-nav"
-    href="{{ route('forum.topics.lock', [
-        $_topic,
-        'lock' => ($_topic->isLocked() === true ? '0' : null),
-    ]) }}"
-    data-remote="1"
-    data-method="post"
-    data-reload-on-success="1"
-    data-reload-reset-scroll="1"
->
-    @if ($_topic->isLocked())
-        <i class="fa fa-unlock"></i>
-    @else
-        <i class="fa fa-lock"></i>
-    @endif
-</a>
+Timeout.set(0, function() {
+    $('.js-forum-topic-{{ $type }}[data-topic-id={{ $topic->topic_id }}]')
+        .replaceWith({!! json_encode(render_to_string('forum.topics._'.$type, [
+            'topic' => $topic,
+            'state' => $state
+        ])) !!});
+
+    osu.popup({!! json_encode(trans('forum.topics.'.$type.'.state-'.(int) $state)) !!}, 'success');
+});

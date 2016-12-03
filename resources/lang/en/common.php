@@ -26,7 +26,10 @@ return [
             'reset' => 'Reset',
             'save' => 'Save',
             'show_more' => 'show more',
+            'delete' => 'Delete',
         ],
+
+        'confirmation' => 'Are you sure?',
 
         'count' => [
             'item' => ':count unit|:count units',

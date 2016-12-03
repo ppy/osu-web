@@ -115,10 +115,14 @@ elixir(function(mix) {
     'react/artist-page.coffee',
   ], 'public/js/react/artist-page.js')
   .coffee([
-    'react/contest/_base-entry-list.coffee',
-    'react/contest/*.coffee',
-    'react/contest.coffee',
-  ], 'public/js/react/contest.js')
+    'react/contest/voting/_base-entry-list.coffee',
+    'react/contest/voting/*.coffee',
+    'react/contest-voting.coffee',
+  ], 'public/js/react/contest-voting.js')
+  .coffee([
+    'react/contest/entry/*.coffee',
+    'react/contest-entry.coffee',
+  ], 'public/js/react/contest-entry.js')
   .version([
     'css/app.css',
     'js/app.js',
@@ -130,6 +134,7 @@ elixir(function(mix) {
     'js/react/beatmapset-page.js',
     'js/react/mp-history.js',
     'js/react/artist-page.js',
-    'js/react/contest.js',
+    'js/react/contest-voting.js',
+    'js/react/contest-entry.js',
   ]);
 });

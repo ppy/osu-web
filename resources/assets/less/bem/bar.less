@@ -17,6 +17,7 @@
  *
  */
 .bar {
+  @_top: bar;
   display: block;
   width: 100%;
   background-color: @yellow;
@@ -24,5 +25,33 @@
 
   &--double {
     height: (@bar-size * 2);
+  }
+
+  &--user-profile {
+    height: @spacing;
+    background-color: @grey-d;
+    margin-bottom: (@spacing / 2);
+  }
+
+  &--forum-poll {
+    height: (@spacing / 2);
+    background-color: @grey-e;
+  }
+
+  &__fill {
+    height: 100%;
+
+    .@{_top}--user-profile & {
+      background-color: @blue-dark;
+    }
+
+    .@{_top}--forum-poll & {
+      background-color: @pink-darker;
+    }
+
+    // must be after --forum-poll
+    .@{_top}--forum-poll-voted & {
+      background-color: @purple-darker;
+    }
   }
 }

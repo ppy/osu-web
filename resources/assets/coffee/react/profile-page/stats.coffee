@@ -26,9 +26,9 @@ class ProfilePage.Stats extends React.Component
         el 'div', className: 'profile-badge profile-badge--level',
           el 'span', className: 'profile-badge__number', @props.stats.level.current
 
-        el 'div', className: 'profile-exp-bar',
+        el 'div', className: 'bar bar--user-profile',
           el 'div',
-            className: 'profile-exp-bar__fill'
+            className: 'bar__fill'
             style:
               width: "#{@props.stats.level.progress.toFixed()}%"
 
