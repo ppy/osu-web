@@ -60,7 +60,8 @@ return [
         'es',
         'nl',
         'pl',
-        'pt-br',
+        'pt-br'
+        'it',
     ],
 
     /*
