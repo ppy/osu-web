@@ -43,11 +43,11 @@
 
                 <div class="pswp__counter"></div>
 
-                <a href="#" class="pswp__button pswp__button--close" title="Close (Esc)"></a>
+                <button type="button" class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 
-                <a href="#" class="pswp__button pswp__button--fs" title="Toggle fullscreen"></a>
+                <button type="button" class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 
-                <a href="#" class="pswp__button pswp__button--zoom" title="Zoom in/out"></a>
+                <button type="button" class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
 
                 <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
                 <!-- element will get modifier active when preloader is running -->
@@ -64,10 +64,10 @@
                 <div class="pswp__share-tooltip"></div>
             </div>
 
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            <button type="button" class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
             </button>
 
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            <button type="button" class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
             </button>
 
             <div class="pswp__caption">
