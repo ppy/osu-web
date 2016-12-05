@@ -31,5 +31,5 @@
         var full = {!! json_encode($full) !!};
     </script>
 
-    <script src="{{ elixir("js/react/mp-history.js") }}" data-turbolinks-track></script>
+    <script src="{{ elixir("js/react/mp-history.js") }}" data-turbolinks-track="reload"></script>
 @endsection
