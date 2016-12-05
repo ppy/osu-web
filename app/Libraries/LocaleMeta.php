@@ -43,6 +43,10 @@ class LocaleMeta
             'name' => 'Português (Brasil)',
             'flag' => 'BR',
         ],
+        'fr' => [
+            'name' => 'French',
+            'flag' => 'FR',
+        ],
     ];
 
     public static function flagFor($locale)
