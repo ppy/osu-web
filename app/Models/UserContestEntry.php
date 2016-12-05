@@ -17,12 +17,13 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\UploadedFile;
 use App\Traits\Uploadable;
 use DB;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\UploadedFile;
 
 class UserContestEntry extends Model
 {

@@ -17,17 +17,18 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Country;
-use App\Models\Language;
 use App\Models\Genre;
+use App\Models\Language;
 use App\Transformers\BeatmapsetTransformer;
 use App\Transformers\CountryTransformer;
-use League\Fractal\Manager;
 use Auth;
+use League\Fractal\Manager;
 use Request;
 
 class BeatmapsetsController extends Controller

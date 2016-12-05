@@ -43,5 +43,5 @@
     {!! json_encode($beatmaps) !!}
   </script>
 
-  <script src="{{ elixir("js/react/beatmaps.js") }}" data-turbolinks-track></script>
+  <script src="{{ elixir("js/react/beatmaps.js") }}" data-turbolinks-track="reload"></script>
 @stop

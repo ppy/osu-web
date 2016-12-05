@@ -17,19 +17,20 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models;
 
+use App\Exceptions\BeatmapProcessorException;
+use App\Libraries\ImageProcessorService;
+use App\Libraries\StorageWithUrl;
+use App\Models\Forum\Post;
+use App\Models\Forum\Topic;
+use App\Transformers\BeatmapsetTransformer;
+use Auth;
+use Carbon\Carbon;
+use DB;
 use Es;
 use Illuminate\Database\Eloquent\Model;
-use Auth;
-use DB;
-use App\Libraries\StorageWithUrl;
-use App\Libraries\ImageProcessorService;
-use App\Exceptions\BeatmapProcessorException;
-use App\Models\Forum\Topic;
-use App\Models\Forum\Post;
-use App\Transformers\BeatmapsetTransformer;
-use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 
 class Beatmapset extends Model

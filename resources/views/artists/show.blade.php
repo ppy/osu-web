@@ -69,5 +69,5 @@
     {!! json_encode($tracks) !!}
   </script>
 
-  <script src="{{ elixir("js/react/artist-page.js") }}" data-turbolinks-track></script>
+  <script src="{{ elixir("js/react/artist-page.js") }}" data-turbolinks-track="reload"></script>
 @stop

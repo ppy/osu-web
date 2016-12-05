@@ -17,13 +17,14 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Transformers\ScoreTransformer;
-use Request;
 use Auth;
+use Request;
 
 class BeatmapsController extends Controller
 {

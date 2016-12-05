@@ -35,7 +35,7 @@ BeatmapDiscussions.NewReply = React.createClass
 
   getInitialState: ->
     message: ''
-    resolveDiscussion: @canUpdate() && @props.discussion.resolved
+    resolveDiscussion: @props.discussion.resolved
 
 
   render: ->
@@ -69,7 +69,7 @@ BeatmapDiscussions.NewReply = React.createClass
                     className: 'osu-checkbox__input'
                     type: 'checkbox'
                     checked: @state.resolveDiscussion
-                    onChange: (e) => @setState resolveDiscussion: e.target.checked
+                    onChange: @toggleResolveDiscussion
 
                   span className: 'osu-checkbox__tick',
                     el Icon, name: 'check'
@@ -83,6 +83,14 @@ BeatmapDiscussions.NewReply = React.createClass
                 props:
                   disabled: !@validPost()
                   onClick: @throttledPost
+
+
+  canUpdate: ->
+    return false if !@props.currentUser.id?
+
+    @props.currentUser.isAdmin ||
+      @props.currentUser.id == @props.beatmapset.user_id ||
+      @props.currentUser.id == @props.discussion.user_id
 
 
   post: ->
@@ -114,20 +122,16 @@ BeatmapDiscussions.NewReply = React.createClass
     @setState message: e.target.value
 
 
-  canUpdate: ->
-    return false if !@props.currentUser.id?
-
-    @props.currentUser.isAdmin ||
-      @props.currentUser.id == @props.beatmapset.user_id ||
-      @props.currentUser.id == @props.discussion.user_id
-
-
-  validPost: ->
-    @state.message.length != 0
-
-
   submitIfEnter: (e) ->
     return if e.keyCode != 13
 
     e.preventDefault()
     @throttledPost()
+
+
+  toggleResolveDiscussion: (e) ->
+    @setState resolveDiscussion: e.target.checked
+
+
+  validPost: ->
+    @state.message.length != 0
