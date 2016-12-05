@@ -17,13 +17,14 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
 use Auth;
-use Request;
-use Response;
 use Authorizer;
 use DB;
+use Request;
+use Response;
 
 class OAuthController extends Controller
 {

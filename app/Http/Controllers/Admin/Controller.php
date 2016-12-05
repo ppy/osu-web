@@ -17,10 +17,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers\Admin;
 
-use Auth;
 use App\Http\Controllers\Controller as BaseController;
+use Auth;
 
 abstract class Controller extends BaseController
 {

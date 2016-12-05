@@ -17,13 +17,14 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
-use App\Models\Multiplayer\Match;
 use App\Models\Country;
+use App\Models\Multiplayer\Match;
 use App\Models\User;
-use App\Transformers\Multiplayer\MatchTransformer;
 use App\Transformers\Multiplayer\EventTransformer;
+use App\Transformers\Multiplayer\MatchTransformer;
 use App\Transformers\UserCompactTransformer;
 use Request;
 

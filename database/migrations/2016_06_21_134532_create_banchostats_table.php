@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateBanchostatsTable extends Migration
 {
@@ -19,7 +19,6 @@ class CreateBanchostatsTable extends Migration
         Schema::create('osu_banchostats', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_general_ci';
-
 
             $table->increments('banchostats_id');
             $table->smallInteger('users_irc');
