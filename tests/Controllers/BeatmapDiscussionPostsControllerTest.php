@@ -1,11 +1,11 @@
 <?php
 
-use App\Models\Beatmapset;
 use App\Models\Beatmap;
-use App\Models\User;
-use App\Models\BeatmapsetDiscussion;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
+use App\Models\Beatmapset;
+use App\Models\BeatmapsetDiscussion;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class BeatmapDiscussionPostsControllerTest extends TestCase

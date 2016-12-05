@@ -28,7 +28,6 @@ return [
             'support_button' => 'Je veux supporter osu!',
         ],
 
-
         'dev_quote' => 'osu! est un free-to-play complet, mais le maintenir n\'est pas gratuit. Entre le prix des serveurs et de la grande bande passante internationale, le temps passé à maitenir le système et la communauté, parvenir des prix pour les compétitions, répondre aux questions du support et généralement garder les gens heureux, osu! consommes une certaine somme d\'argent! Oh, et n\'oubliez pas le fait que nous le faisons sans pub ou partenariat avec des toolbars ou autres!
             <br/><br/>osu! est à largement développé par moi-même, pour cela vous me connaisez sûrement avec le surnom "peppy".
             J\'ai du quitté mon travail à temps plein pour garder le rythme avec osu!,

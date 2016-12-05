@@ -17,10 +17,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Libraries;
 
-use App\Models\Beatmapset;
 use App\Exceptions\BeatmapProcessorException;
+use App\Models\Beatmapset;
 
 class ImageProcessorService
 {

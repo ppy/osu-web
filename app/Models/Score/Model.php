@@ -17,13 +17,14 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models\Score;
 
-use Illuminate\Database\Eloquent\Model as BaseModel;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\User;
 use App\Traits\Scoreable;
+use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
 {
