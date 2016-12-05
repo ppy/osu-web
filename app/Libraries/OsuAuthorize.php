@@ -78,14 +78,6 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkBeatmapDiscussionPost($user, $discussion)
-    {
-        $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user);
-
-        return 'ok';
-    }
-
     public function checkBeatmapDiscussionResolve($user, $discussion)
     {
         $prefix = 'beatmap_discussion.resolve.';
@@ -175,6 +167,14 @@ class OsuAuthorize
         if ($post->deleted_at === null) {
             return 'ok';
         }
+    }
+
+    public function checkBeatmapDiscussionPostStore($user, $discussion)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        return 'ok';
     }
 
     public function checkBeatmapsetNominate($user, $beatmapset)
