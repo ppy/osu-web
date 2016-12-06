@@ -23,7 +23,6 @@ namespace App\Http\Controllers;
 use App\Exceptions\ImageProcessorException;
 use App\Libraries\UserVerification;
 use App\Models\User;
-use App\Models\UserProfileCustomization;
 use Auth;
 use Illuminate\Http\Request as HttpRequest;
 use Request;

@@ -23,7 +23,6 @@ namespace App\Models;
 use App\Interfaces\Messageable;
 use App\Models\Chat\PrivateMessage;
 use App\Transformers\UserTransformer;
-use Cache;
 use Carbon\Carbon;
 use DB;
 use Hash;
@@ -31,6 +30,7 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Passport\HasApiTokens;
+use Request;
 
 class User extends Model implements AuthenticatableContract, Messageable
 {
@@ -896,7 +896,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public static function attemptLogin($user, $password, $ip = null)
     {
-        $ip = $ip ?? \Request::getClientIp() ?? '0.0.0.0';
+        $ip = $ip ?? Request::getClientIp() ?? '0.0.0.0';
 
         if (LoginAttempt::isLocked($ip)) {
             return trans('users.login.locked_ip');
