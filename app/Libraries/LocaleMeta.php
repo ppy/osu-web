@@ -44,7 +44,7 @@ class LocaleMeta
             'flag' => 'BR',
         ],
         'fr' => [
-            'name' => 'French',
+            'name' => 'Français',
             'flag' => 'FR',
         ],
     ];
