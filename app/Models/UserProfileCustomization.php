@@ -27,8 +27,9 @@ class UserProfileCustomization extends Model
 {
     protected $casts = [
         'cover_json' => 'array',
-        'extras_order' => 'array',
     ];
+
+    protected $guarded = [];
 
     private $cover;
 
@@ -43,7 +44,7 @@ class UserProfileCustomization extends Model
         'medals',
         'historical',
         'beatmaps',
-        'kudosu'
+        'kudosu',
     ];
 
     public function cover()
@@ -62,18 +63,29 @@ class UserProfileCustomization extends Model
         $this->save();
     }
 
-    public function setExtrasOrder($order)
+    public function getExtrasOrderAttribute($value)
     {
-        $this->extras_order = $order;
+        if ($value === null) {
+            return static::$sections;
+        }
 
-        $this->save();
+        return json_decode($value);
     }
 
-    public function __construct()
+    public function setExtrasOrderAttribute($value)
     {
-        $this->cover_json = ['id' => null, 'file' => null];
-        $this->extras_order = static::$sections;
+        if ($value === null) {
+            return;
+        }
 
-        return parent::__construct(...func_get_args());
+        $this->attributes['extras_order'] = collect($value)
+            // remove invalid sections
+            ->intersect(static::$sections)
+            // ensure all sections are included
+            ->merge(static::$sections)
+            // remove duplicate sections from previous merge
+            ->unique()
+            ->values()
+            ->toJson();
     }
 }

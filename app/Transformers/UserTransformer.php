@@ -45,7 +45,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 
     public function transform(User $user)
     {
-        $profileCustomization = $user->profileCustomization()->firstOrNew([]);
+        $profileCustomization = $user->profileCustomization();
 
         return [
             'id' => $user->user_id,

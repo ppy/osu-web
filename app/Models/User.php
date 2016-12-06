@@ -53,7 +53,8 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public $flags;
     private $groupIds;
-    private $supportLength = null;
+    private $supportLength;
+    private $profileCustomization;
 
     public function getAuthPassword()
     {
@@ -654,7 +655,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
     }
 
-    public function profileCustomization()
+    public function userProfileCustomization()
     {
         return $this->hasOne(UserProfileCustomization::class);
     }
@@ -927,5 +928,16 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function validateForPassportPasswordGrant($password)
     {
         return static::attemptLogin($this, $password) === null;
+    }
+
+    public function profileCustomization()
+    {
+        if ($this->profileCustomization === null) {
+            $this->profileCustomization = $this
+                ->userProfileCustomization()
+                ->firstOrCreate([]);
+        }
+
+        return $this->profileCustomization;
     }
 }

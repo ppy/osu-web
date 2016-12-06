@@ -49,56 +49,30 @@ class AccountController extends Controller
         return parent::__construct();
     }
 
-    public function updateProfile()
+    public function cover()
     {
         if (Request::hasFile('cover_file') && !Auth::user()->osu_subscriber) {
             return error_popup(trans('errors.supporter_only'));
         }
 
-        if (Request::hasFile('cover_file') || Request::has('cover_id')) {
-            try {
-                Auth::user()
-                    ->profileCustomization()
-                    ->firstOrCreate([])
-                    ->setCover(Request::input('cover_id'), Request::file('cover_file'));
-            } catch (ImageProcessorException $e) {
-                return error_popup($e->getMessage());
-            }
-        }
-
-        if (Request::has('order')) {
-            $order = Request::input('order');
-
-            $error = 'errors.account.profile-order.generic';
-
-            // Checking whether the input has the same amount of elements
-            // as the master sections array.
-            if (count($order) !== count(UserProfileCustomization::$sections)) {
-                return error_popup(trans($error));
-            }
-
-            // Checking if any section that was sent in input
-            // also appears in the master sections arrray.
-            foreach ($order as $i) {
-                if (!in_array($i, UserProfileCustomization::$sections, true)) {
-                    return error_popup(trans($error));
-                }
-            }
-
-            // Checking whether the elements sent in input do not repeat.
-            $occurences = array_count_values($order);
-
-            foreach ($occurences as $i) {
-                if ($i > 1) {
-                    return error_popup(trans($error));
-                }
-            }
-
+        try {
             Auth::user()
                 ->profileCustomization()
-                ->firstOrCreate([])
-                ->setExtrasOrder($order);
+                ->setCover(Request::input('cover_id'), Request::file('cover_file'));
+        } catch (ImageProcessorException $e) {
+            return error_popup($e->getMessage());
         }
+
+        return Auth::user()->defaultJson();
+    }
+
+    public function extrasOrder()
+    {
+        $order = Request::input('order');
+
+        Auth::user()
+            ->profileCustomization()
+            ->update(['extras_order' => $order]);
 
         return Auth::user()->defaultJson();
     }
