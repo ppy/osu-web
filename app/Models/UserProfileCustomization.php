@@ -30,28 +30,37 @@ class UserProfileCustomization extends Model
         'extras_order' => 'array',
     ];
 
-    private $_cover;
-
-    public function getCoverAttribute()
-    {
-        if ($this->_cover === null) {
-            $this->_cover = new ProfileCover($this->user_id, $this->cover_json);
-        }
-
-        return $this->_cover;
-    }
-
-    public function setCover($id, $file)
-    {
-        $this->cover_json = $this->cover->set($id, $file);
-
-        $this->save();
-    }
+    private $cover;
 
     /**
      * An array of all possible profile sections, also in their default order.
      */
-    public static $sections = ['me', 'performance', 'recent_activities', 'top_ranks', 'medals', 'historical', 'beatmaps', 'kudosu'];
+    public static $sections = [
+        'me',
+        'performance',
+        'recent_activities',
+        'top_ranks',
+        'medals',
+        'historical',
+        'beatmaps',
+        'kudosu'
+    ];
+
+    public function cover()
+    {
+        if ($this->cover === null) {
+            $this->cover = new ProfileCover($this->user_id, $this->cover_json);
+        }
+
+        return $this->cover;
+    }
+
+    public function setCover($id, $file)
+    {
+        $this->cover_json = $this->cover()->set($id, $file);
+
+        $this->save();
+    }
 
     public function setExtrasOrder($order)
     {
@@ -60,20 +69,11 @@ class UserProfileCustomization extends Model
         $this->save();
     }
 
-    public function getExtrasOrder()
-    {
-        if ($this->extras_order === null) {
-            $this->extras_order = self::$sections;
-        }
-
-        return $this->extras_order;
-    }
-
-    public function __construct($attributes = [])
+    public function __construct()
     {
         $this->cover_json = ['id' => null, 'file' => null];
-        $this->extras_order = null;
+        $this->extras_order = static::$sections;
 
-        return parent::__construct($attributes);
+        return parent::__construct(...func_get_args());
     }
 }

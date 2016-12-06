@@ -89,7 +89,7 @@
 
         <div id="topic-post-form" class="osu-layout__row">
             <div class="forum-post">
-                @if (Auth::user()->is_special)
+                @if (Auth::user()->isSpecial())
                     <div
                         class="forum-post__stripe"
                         style="{{ user_colour_style(Auth::user()->user_colour, "background-color") }}"

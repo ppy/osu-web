@@ -46,9 +46,7 @@ class OsuAuthorize
                 $function = "check{$ability}";
 
                 try {
-                    $message = call_user_func_array(
-                        [$this, $function], [$user, $object]
-                    );
+                    $message = $this->$function($user, $object);
                 } catch (AuthorizationException $e) {
                     $message = $e->getMessage();
                 }

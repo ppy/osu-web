@@ -53,22 +53,11 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public $flags;
     private $groupIds;
-    private $_supportLength = null;
-
-    const ANONYMOUS = 1; // Anonymous (guest)
-    const PEPPY = 2; // blue-name
-    const SYSTEM = 3; // BanchoBot
-    const DEFAULT_RANK = 2; // blank/missing rank
-    const GITHUB = 2382019; // github callback user
+    private $supportLength = null;
 
     public function getAuthPassword()
     {
         return $this->user_password;
-    }
-
-    public function getBanchoKey()
-    {
-        return $this->bancho_key;
     }
 
     public function usernameChangeCost()
@@ -177,7 +166,6 @@ class User extends Model implements AuthenticatableContract, Messageable
     }
 
     // verify that an api key is correct
-
     public function verify($key)
     {
         return $this->api->api_key === $key;
@@ -235,9 +223,9 @@ class User extends Model implements AuthenticatableContract, Messageable
         return presence($value);
     }
 
-    public function getIsSpecialAttribute()
+    public function isSpecial()
     {
-        return $this->user_id !== null && presence($this->user_colour) !== null;
+        return $this->user_id !== null && present($this->user_colour);
     }
 
     public function getUserBirthdayAttribute($value)
@@ -248,7 +236,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
         $date = explode('-', $value);
         $date = array_map(function ($x) {
-            return intval(trim($x));
+            return (int) trim($x);
         }, $date);
         if ($date[2] === 0) {
             return;
@@ -257,13 +245,9 @@ class User extends Model implements AuthenticatableContract, Messageable
         return Carbon::create($date[2], $date[1], $date[0]);
     }
 
-    public function getAgeAttribute()
+    public function age()
     {
-        if ($this->user_birthday === null) {
-            return;
-        }
-
-        return $this->user_birthday->age;
+        return $this->user_birthday->age ?? null;
     }
 
     public function getUserTwitterAttribute($value)
@@ -283,7 +267,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function getOsuPlaystyleAttribute($value)
     {
-        $value = intval($value);
+        $value = (int) $value;
 
         $styles = [];
 
@@ -323,35 +307,6 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         $this->api->api_key = $key;
         $this->api->save();
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Modding System-specific functions.
-    |--------------------------------------------------------------------------
-    |
-    | This checks to see if a user is in a specified group.
-    | You should try to be specific and not use the UserGroup:: constants.
-    |
-    */
-
-    public function ownsMod(Mod $mod)
-    {
-        return $this->user_id === $mod->user_id;
-    }
-
-    public function canEditMod(Mod $mod)
-    {
-        return $this->isDev()
-            or $this->isAdmin()
-            or $this->isGMT()
-            or $this->isQAT()
-            or $this->ownsMod($mod);
-    }
-
-    public function ownsSet(Beatmapset $set)
-    {
-        return $set->user_id === $this->user_id;
     }
 
     /*
@@ -441,13 +396,15 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function isSilenced()
     {
+        if ($this->isRestricted()) {
+            return true;
+        }
+
         $lastBan = $this->banHistories()->bans()->first();
 
-        $isSilenced = $lastBan !== null &&
+        return $lastBan !== null &&
             $lastBan->period !== 0 &&
             $lastBan->endTime()->isFuture();
-
-        return $this->isRestricted() || $isSilenced;
     }
 
     public function groupIds()
@@ -472,9 +429,9 @@ class User extends Model implements AuthenticatableContract, Messageable
     |
     | These let you do magic. Example:
     | foreach ($user->mods as $mod) {
-    | 	$response[] = $mod->toArray();
+    |     $response[] = $mod->toArray();
     | }
-    | return Response::json($response);
+    | return $response;
     */
 
     public function userGroups()
@@ -489,7 +446,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function beatmaps()
     {
-        return $this->hasManyThrough(Beatmap::class, Beatmapset::class, 'user_id', 'beatmapset_id');
+        return $this->hasManyThrough(Beatmap::class, Beatmapset::class);
     }
 
     public function favourites()
@@ -519,24 +476,22 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function apiKey()
     {
-        return $this->hasOne("App\Models\ApiKey", 'user_id');
+        return $this->hasOne(ApiKey::class);
     }
 
     public function slackUser()
     {
-        return $this->hasOne(SlackUser::class, 'user_id');
+        return $this->hasOne(SlackUser::class);
     }
-
-    //public function country() { return $this->hasOne("Country"); }
 
     public function storeAddresses()
     {
-        return $this->hasMany("App\Models\Store\Address", 'user_id', 'user_id');
+        return $this->hasMany(Store\Address::class);
     }
 
     public function rank()
     {
-        return $this->belongsTo("App\Models\Rank", 'user_rank', 'rank_id');
+        return $this->belongsTo(Rank::class, 'user_rank');
     }
 
     public function rankHistories()
@@ -546,7 +501,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function country()
     {
-        return $this->belongsTo("App\Models\Country", 'country_acronym', 'acronym');
+        return $this->belongsTo(Country::class, 'country_acronym');
     }
 
     public function statisticsOsu()
@@ -578,7 +533,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         $mode = studly_case($mode);
 
         if ($returnQuery === true) {
-            return $this->hasOne("App\Models\UserStatistics\\{$mode}", 'user_id', 'user_id');
+            return $this->hasOne("App\Models\UserStatistics\\{$mode}");
         } else {
             $relation = "statistics{$mode}";
 
@@ -688,12 +643,12 @@ class User extends Model implements AuthenticatableContract, Messageable
             return;
         }
 
-        if ($returnQuery) {
-            $mode = studly_case($mode);
+        $mode = studly_case($mode);
 
+        if ($returnQuery === true) {
             return $this->hasMany("App\Models\Score\Best\\{$mode}")->default();
         } else {
-            $relation = camel_case("scores_best_{$mode}");
+            $relation = "scoresBest{$mode}";
 
             return $this->$relation;
         }
@@ -701,32 +656,32 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function profileCustomization()
     {
-        return $this->hasOne("App\Models\UserProfileCustomization");
+        return $this->hasOne(UserProfileCustomization::class);
     }
 
     public function banHistories()
     {
-        return $this->hasMany("App\Models\UserBanHistory", 'user_id', 'user_id');
+        return $this->hasMany(UserBanHistory::class);
     }
 
     public function userPage()
     {
-        return $this->belongsTo("App\Models\Forum\Post", 'userpage_post_id', 'post_id');
+        return $this->belongsTo(Forum\Post::class, 'userpage_post_id');
     }
 
     public function userAchievements()
     {
-        return $this->hasMany("App\Models\UserAchievement", 'user_id', 'user_id');
+        return $this->hasMany(UserAchievement::class);
     }
 
     public function usernameChangeHistory()
     {
-        return $this->hasMany(UsernameChangeHistory::class, 'user_id', 'user_id');
+        return $this->hasMany(UsernameChangeHistory::class);
     }
 
     public function relations()
     {
-        return $this->hasMany(UserRelation::class, 'user_id', 'user_id');
+        return $this->hasMany(UserRelation::class);
     }
 
     public function friends()
@@ -751,22 +706,22 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function givenKudosu()
     {
-        return $this->hasMany(KudosuHistory::class, 'giver_id', 'user_id');
+        return $this->hasMany(KudosuHistory::class, 'giver_id');
     }
 
     public function receivedKudosu()
     {
-        return $this->hasMany(KudosuHistory::class, 'receiver_id', 'user_id');
+        return $this->hasMany(KudosuHistory::class, 'receiver_id');
     }
 
     public function supports()
     {
-        return $this->hasMany(UserDonation::class, 'target_user_id', 'user_id');
+        return $this->hasMany(UserDonation::class, 'target_user_id');
     }
 
     public function givenSupports()
     {
-        return $this->hasMany(UserDonation::class, 'user_id', 'user_id');
+        return $this->hasMany(UserDonation::class);
     }
 
     public function forumPosts()
@@ -781,44 +736,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function setPlaymodeAttribute($value)
     {
-        switch ($value) {
-            case 'osu':
-                $attribute = 0;
-                break;
-            case 'taiko':
-                $attribute = 1;
-                break;
-            case 'fruits':
-                $attribute = 2;
-                break;
-            case 'mania':
-                $attribute = 3;
-                break;
-            default:
-                return;
-        }
-
-        $this->osu_playmode = $attribute;
-    }
-
-    public function getOsuScoreAttribute($value)
-    {
-        return $this->getScore('osu_user_stats');
-    }
-
-    public function getFruitsScoreAttribute($value)
-    {
-        return $this->getScore('osu_user_stats_fruits');
-    }
-
-    public function getTaikoScoreAttribute($value)
-    {
-        return $this->getScore('osu_user_stats_taiko');
-    }
-
-    public function getManiaScoreAttribute($value)
-    {
-        return $this->getScore('osu_user_stats_mania');
+        $this->osu_playmode = Beatmap::modeInt($attribute);
     }
 
     public function flags()
@@ -834,47 +752,9 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->flags;
     }
 
-    protected function getScore($table)
-    {
-        if (Cache::tags('score', $table)->has($this->user_id)) {
-            return Cache::tags('score', $table)->get($this->user_id);
-        }
-
-        $row = DB::table($table)
-            ->where('user_id', '=', $this->user_id)
-            ->select('rank_score', 'rank_score_index', 'country_acronym', 'accuracy_new')
-            ->first();
-
-        if ($row) {
-            $country = DB::table($table)
-                ->where('country_acronym', '=', $row->country_acronym)
-                ->where('rank_score', '>', $row->rank_score)
-                ->select(DB::raw('count(*) + 1 as rank'))
-                ->first();
-        } else {
-            $country = null;
-        }
-
-        // make a container for the score
-        $value = new \stdClass();
-
-        $value->rank = $row ? $row->rank_score_index : null;
-        $value->pp = $row ? number_format($row->rank_score) : null;
-        $value->accuracy = $row ? $row->accuracy_new : null;
-        $value->country = $country ? $country->rank : null;
-
-        Cache::tags('score', $table)->put($this->user_id, $value, 10);
-
-        return $value;
-    }
-
     public function title()
     {
-        if ($this->rank === null) {
-            return;
-        }
-
-        return $this->rank->rank_title;
+        return $this->rank->rank_title ?? null;
     }
 
     public function hasProfile()
@@ -927,28 +807,28 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function supportLength()
     {
-        if ($this->_supportLength === null) {
-            $this->_supportLength = 0;
+        if ($this->supportLength === null) {
+            $this->supportLength = 0;
 
             foreach ($this->supports as $support) {
                 if ($support->cancel === true) {
-                    $this->_supportLength -= $support->length;
+                    $this->supportLength -= $support->length;
                 } else {
-                    $this->_supportLength += $support->length;
+                    $this->supportLength += $support->length;
                 }
             }
         }
 
-        return $this->_supportLength;
+        return $this->supportLength;
     }
 
     public function supportLevel()
     {
-        $length = $this->supportLength();
-
         if ($this->osu_subscriber === false) {
             return 0;
         }
+
+        $length = $this->supportLength();
 
         if ($length < 12) {
             return 1;
@@ -988,14 +868,12 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function isSlackEligible()
     {
-        $canInvite = $this->beatmapPlaycounts()->sum('playcount') > 100
+        return $this->beatmapPlaycounts()->sum('playcount') > 100
             && $this->slackUser === null
-            && $this->user_type !== self::ANONYMOUS
-            && $this->user_warnings === 0
+            && !$this->isBanned()
+            && !$this->isRestricted()
             && $this->banHistories()->where('timestamp', '>', Carbon::now()->subDays(28))
                 ->where('ban_status', '=', 2)->count() === 0;
-
-        return $canInvite;
     }
 
     public function sendMessage(User $sender, $body)
@@ -1017,28 +895,20 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public static function attemptLogin($user, $password, $ip = null)
     {
-        if ($ip === null) {
-            $ip = \Request::getClientIp();
-        }
-
-        if ($ip === null) {
-            $ip = '0.0.0.0';
-        }
+        $ip = $ip ?? \Request::getClientIp() ?? '0.0.0.0';
 
         if (LoginAttempt::isLocked($ip)) {
-            return ['error' => trans('users.login.locked_ip')];
+            return trans('users.login.locked_ip');
         }
 
         $validAuth = $user === null
             ? false
             : Hash::check($password, $user->user_password);
 
-        if ($validAuth) {
-            return [];
-        } else {
+        if (!$validAuth) {
             LoginAttempt::failedAttempt($ip, $user);
 
-            return ['error' => trans('users.login.failed')];
+            return trans('users.login.failed');
         }
     }
 
@@ -1056,6 +926,6 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function validateForPassportPasswordGrant($password)
     {
-        return !isset(static::attemptLogin($this, $password)['error']);
+        return static::attemptLogin($this, $password) === null;
     }
 }
