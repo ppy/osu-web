@@ -47,6 +47,8 @@ class ForumCoversController extends Controller
             if (Auth::check() && !Auth::user()->isAdmin()) {
                 abort(403);
             }
+
+            return $next($request);
         });
     }
 
