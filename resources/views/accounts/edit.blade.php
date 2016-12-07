@@ -31,36 +31,46 @@
     </div>
 
     <div class="osu-page osu-page--small">
-        <div class="account-edit">
+        <div class="account-edit account-edit--first">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
                     {{ trans('accounts.edit.profile.title') }}
                 </h2>
-
-                <p class="account-edit__section-description">
-                    {{ trans('accounts.edit.profile.description') }}
-                </p>
             </div>
 
-            <div class="account-edit__forms">
-                <div class="account-edit__form">
-                    <label class="account-edit__input-group">
-                        <span class="account-edit__label">
-                            {{ trans('accounts.edit.profile.user.user_msnm') }}
-                        </span>
-
-                        <input class="account-edit__input" name="user[user_msnm]">
-                    </label>
+            <div class="account-edit__input-groups">
+                <div class="account-edit__input-group">
+                    @include('accounts._edit_entry', ['field' => 'user_msnm'])
+                    @include('accounts._edit_entry', ['field' => 'user_twitter'])
+                    @include('accounts._edit_entry', ['field' => 'user_website'])
                 </div>
 
-                <div class="account-edit__form">
-                    <label class="account-edit__input-group">
-                        <span class="account-edit__label">
-                            {{ trans('accounts.edit.profile.user.user_msnm') }}
-                        </span>
+                <div class="account-edit__input-group">
+                    @include('accounts._edit_entry', ['field' => 'user_from'])
+                    @include('accounts._edit_entry', ['field' => 'user_occ'])
+                </div>
 
-                        <input class="account-edit__input" name="user[user_msnm]">
-                    </label>
+                <div class="account-edit__input-group">
+                    @include('accounts._edit_entry', ['field' => 'user_interests'])
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="osu-page osu-page--small">
+        <div class="account-edit">
+            <div class="account-edit__section">
+                <h2 class="account-edit__section-title">
+                    {{ trans('accounts.edit.avatar.title') }}
+                </h2>
+            </div>
+
+            <div class="account-edit__input-groups">
+                <div class="account-edit__input-group">
+                    {!! Form::open(['url' => route('account.avatar'), 'method' => 'POST', 'files' => true]) !!}
+                        <input type="file" name="avatar_file">
+                        <input type="submit">
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

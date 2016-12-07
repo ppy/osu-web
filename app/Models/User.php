@@ -22,6 +22,7 @@ namespace App\Models;
 
 use App\Interfaces\Messageable;
 use App\Models\Chat\PrivateMessage;
+use App\Traits\UserAvatar;
 use App\Transformers\UserTransformer;
 use Carbon\Carbon;
 use DB;
@@ -34,7 +35,7 @@ use Request;
 
 class User extends Model implements AuthenticatableContract, Messageable
 {
-    use HasApiTokens, Authenticatable;
+    use HasApiTokens, Authenticatable, UserAvatar;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
@@ -201,17 +202,6 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         return $user->first();
-    }
-
-    public function getUserAvatarAttribute($value)
-    {
-        if (!present($value)) {
-            return 'https://s.ppy.sh/images/blank.jpg';
-        } else {
-            $value = str_replace('_', '?', $value);
-
-            return "https://a.ppy.sh/{$value}";
-        }
     }
 
     public function getCountryAcronymAttribute($value)

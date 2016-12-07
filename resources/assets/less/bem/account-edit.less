@@ -18,16 +18,31 @@
  */
 
 .account-edit {
-  @section-width: 260px;
-  @label-width: 170px;
+  @top: account-edit;
 
+  @section-width: 250px;
+  @label-width: 150px;
+  @input-width: 250px;
+
+  .default-box-shadow();
   background-color: @gray-4;
   font-size: @font-size--normal;
   color: @gray-c;
 
   display: flex;
+  margin-top: (@spacing / 2);
 
-  &__form {
+  &--first {
+    margin-top: 0;
+
+    &::after {
+      .inner-shadow-top();
+      .full-size();
+      pointer-events: none;
+    }
+  }
+
+  &__input-group {
     background-color: @gray-5;
 
     & + & {
@@ -35,23 +50,8 @@
     }
   }
 
-  &__forms {
+  &__input-groups {
     flex: 1;
-  }
-
-  &__input-group {
-    text-transform: none;
-    display: flex;
-    padding: @spacing 0;
-    margin: 0;
-  }
-
-  &__label {
-    flex: none;
-    align-self: center;
-    width: @label-width;
-    padding-right: @spacing;
-    text-align: right;
   }
 
   &__section {

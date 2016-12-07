@@ -40,6 +40,7 @@ $(document).on 'submit', 'form', LoadingOverlay.show
 @throttledWindowEvents ?= new ThrottledWindowEvents
 @checkboxValidation ?= new CheckboxValidation
 @formToggle ?= new FormToggle
+@accountEdit ?= new AccountEdit
 
 @editorZoom ?= new EditorZoom
 @stickyFooter ?= new StickyFooter

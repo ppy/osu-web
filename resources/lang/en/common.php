@@ -19,39 +19,40 @@
  */
 
 return [
-        'buttons' => [
-            'cancel' => 'Cancel',
-            'post' => 'Post',
-            'reply' => 'Reply',
-            'reset' => 'Reset',
-            'save' => 'Save',
-            'show_more' => 'show more',
-            'delete' => 'Delete',
-        ],
+    'confirmation' => 'Are you sure?',
+    'saved' => 'Saved',
 
-        'confirmation' => 'Are you sure?',
+    'buttons' => [
+        'cancel' => 'Cancel',
+        'post' => 'Post',
+        'reply' => 'Reply',
+        'reset' => 'Reset',
+        'save' => 'Save',
+        'show_more' => 'show more',
+        'delete' => 'Delete',
+    ],
 
-        'count' => [
-            'item' => ':count unit|:count units',
-        ],
+    'count' => [
+        'item' => ':count unit|:count units',
+    ],
 
-        'dropzone' => [
-            'target' => 'drop here to upload',
-        ],
+    'dropzone' => [
+        'target' => 'drop here to upload',
+    ],
 
-        'pagination' => [
-            'previous' => 'prev',
-            'next' => 'next',
-        ],
+    'pagination' => [
+        'previous' => 'prev',
+        'next' => 'next',
+    ],
 
-        'time' => [
-            'days_ago' => ':count day ago|:count days ago',
-            'hours_ago' => ':count hour ago|:count hours ago',
-            'now' => 'now',
-            'remaining' => 'Time Remaining',
-        ],
+    'time' => [
+        'days_ago' => ':count day ago|:count days ago',
+        'hours_ago' => ':count hour ago|:count hours ago',
+        'now' => 'now',
+        'remaining' => 'Time Remaining',
+    ],
 
-        'title' => [
-            'notice' => 'Notice',
-        ],
+    'title' => [
+        'notice' => 'Notice',
+    ],
 ];

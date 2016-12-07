@@ -49,6 +49,17 @@ class AccountController extends Controller
         return parent::__construct();
     }
 
+    public function avatar()
+    {
+        try {
+            Auth::user()->setAvatar(Request::file('avatar_file'));
+        } catch (ImageProcessorException $e) {
+            return error_popup($e->getMessage());
+        }
+
+        return Auth::user()->defaultJson();
+    }
+
     public function cover()
     {
         if (Request::hasFile('cover_file') && !Auth::user()->osu_subscriber) {
@@ -85,12 +96,12 @@ class AccountController extends Controller
             Request::all(),
             'user',
             [
-                'user_msnm',
-                'user_twitter',
-                'user_website',
-                'user_from',
-                'user_occ',
-                'user_interests',
+                'user_from:string',
+                'user_interests:string',
+                'user_msnm:string',
+                'user_occ:string',
+                'user_twitter:string',
+                'user_website:string',
             ]
         );
 

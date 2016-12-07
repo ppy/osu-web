@@ -2,6 +2,8 @@
 
 // osu config~
 return [
+    'avatar_storage' => env('AVATAR_STORAGE', 'local-avatar'),
+
     'bbcode' => [
         // this should be random or a config variable.
         // ...who am I kidding, this shouldn't even exist at all.

@@ -46,7 +46,13 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => public_path().'/uploads',
-            'base_url' => config('app.url').'/uploads',
+            'base_url' => env('APP_URL', 'http://localhost').'/uploads',
+        ],
+
+        'local-avatar' => [
+            'driver' => 'local',
+            'root' => public_path().'/uploads-avatar',
+            'base_url' => env('APP_URL', 'http://localhost').'/uploads-avatar',
         ],
 
         's3' => [
@@ -56,6 +62,15 @@ return [
             'region' => env('S3_REGION'),
             'bucket' => env('S3_BUCKET'),
             'base_url' => env('S3_BASE_URL'),
+        ],
+
+        's3-avatar' => [
+            'driver' => 's3',
+            'key' => env('S3_AVATAR_KEY'),
+            'secret' => env('S3_AVATAR_SECRET'),
+            'region' => env('S3_AVATAR_REGION'),
+            'bucket' => env('S3_AVATAR_BUCKET'),
+            'base_url' => env('S3_AVATAR_BASE_URL'),
         ],
 
     ],

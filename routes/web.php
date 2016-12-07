@@ -215,6 +215,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], fu
 // Uploading file doesn't quite work with PUT/PATCH.
 // Reference: https://bugs.php.net/bug.php?id=55815
 // Note that hhvm behaves differently (the same as POST).
+Route::post('/account/avatar', ['as' => 'account.avatar', 'uses' => 'AccountController@avatar']);
 Route::post('/account/cover', ['as' => 'account.cover', 'uses' => 'AccountController@cover']);
 Route::put('/account', ['as' => 'account.update', 'uses' => 'AccountController@update']);
 Route::get('/account/edit', ['as' => 'account.edit', 'uses' => 'AccountController@edit']);

@@ -23,11 +23,20 @@ return [
         'title' => 'Account Settings',
         'title_compact' => 'account',
 
+        'avatar' => [
+            'title' => 'Edit Avatar',
+        ],
+
         'profile' => [
             'title' => 'Edit Profile',
 
             'user' => [
+                'user_from' => 'current location',
+                'user_interests' => 'interest',
                 'user_msnm' => 'skype',
+                'user_occ' => 'occupation',
+                'user_twitter' => 'twitter',
+                'user_website' => 'website',
             ],
         ],
     ],
