@@ -31,6 +31,10 @@ class LocaleMeta
             'name' => 'Español',
             'flag' => 'ES',
         ],
+        'fr' => [
+            'name' => 'Français',
+            'flag' => 'FR',
+        ],
         'nl' => [
             'name' => 'Nederlands',
             'flag' => 'NL',
