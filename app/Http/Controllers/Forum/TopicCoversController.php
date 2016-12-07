@@ -78,13 +78,11 @@ class TopicCoversController extends Controller
     {
         $cover = TopicCover::find($id);
 
-        if ($cover === null) {
-            return $return;
+        if ($cover !== null) {
+            priv_check('ForumTopicCoverEdit', $cover)->ensureCan();
+
+            $cover->deleteWithFile();
         }
-
-        priv_check('ForumTopicCoverEdit', $cover)->ensureCan();
-
-        $cover->deleteWithFile();
 
         return json_item($cover, new TopicCoverTransformer());
     }
