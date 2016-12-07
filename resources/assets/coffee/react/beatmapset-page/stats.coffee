@@ -109,7 +109,7 @@ class BeatmapsetPage.Stats extends React.Component
                     div
                       className: 'bar__fill'
                       style:
-                        width: "#{value * 10}%"
+                        width: "#{10 * Math.min 10, value}%"
                 td className: 'beatmap-stats-table__value', valueText
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--rating',
