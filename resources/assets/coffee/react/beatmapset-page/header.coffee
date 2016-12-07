@@ -82,7 +82,9 @@ class BeatmapsetPage.Header extends React.Component
             href: laroute.route 'beatmapsets.index', q: @props.beatmapset.artist
             @props.beatmapset.artist
 
-          el BeatmapsetMapping, beatmapset: @props.beatmapset
+          el BeatmapsetMapping,
+            beatmapset: @props.beatmapset
+            beatmap: @props.currentBeatmap
 
           if !_.isEmpty currentUser
             div className: 'beatmapset-header__buttons',
