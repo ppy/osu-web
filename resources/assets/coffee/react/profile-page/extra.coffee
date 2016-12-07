@@ -76,11 +76,12 @@ ProfilePage.Extra = React.createClass
     $elems.sortable('cancel')
 
     @setState profileOrder: newOrder, =>
-      $.ajax laroute.route('account.extras-order'),
+      $.ajax laroute.route('account.update'),
         method: 'PUT'
         dataType: 'JSON'
         data:
-          order: @state.profileOrder
+          user_profile_customization:
+            extras_order: @state.profileOrder
 
       .done (userData) =>
         $.publish 'user:update', userData

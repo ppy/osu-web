@@ -65,13 +65,19 @@ class AccountController extends Controller
         return Auth::user()->defaultJson();
     }
 
-    public function extrasOrder()
+    public function update()
     {
-        $order = Request::input('order');
+        $customizationParams = get_params(
+            Request::all(),
+            'user_profile_customization',
+            [
+                'extras_order:string[]',
+            ]
+        );
 
         Auth::user()
             ->profileCustomization()
-            ->update(['extras_order' => $order]);
+            ->update($customizationParams);
 
         return Auth::user()->defaultJson();
     }

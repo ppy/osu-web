@@ -216,7 +216,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], fu
 // Reference: https://bugs.php.net/bug.php?id=55815
 // Note that hhvm behaves differently (the same as POST).
 Route::post('/account/cover', ['as' => 'account.cover', 'uses' => 'AccountController@cover']);
-Route::put('/account/extras-order', ['as' => 'account.extras-order', 'uses' => 'AccountController@extrasOrder']);
+Route::put('/account', ['as' => 'account.update', 'uses' => 'AccountController@update']);
 Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
 Route::post('/account/verify', ['as' => 'account.verify', 'uses' => 'AccountController@verify']);
 Route::post('/account/reissue-code', ['as' => 'account.reissue-code', 'uses' => 'AccountController@reissueCode']);
