@@ -17,34 +17,52 @@
  *
  */
 
-.osu-page {
-  .width(@extra-margin: 0px) {
-    width: calc(100% ~'-' (@extra-margin * 2));
-    max-width: (@container-sm - @extra-margin * 2);
-  }
+.account-edit {
+  @section-width: 260px;
+  @label-width: 170px;
 
-  .width-desktop(@extra-margin: 0px) {
-    width: calc(100% ~'-' ((@extra-margin + @grid-gutter-width) * 2));
-    max-width: (@container-sm - @extra-margin * 2);
-  }
+  background-color: @gray-4;
+  font-size: @font-size--normal;
+  color: @gray-c;
 
-  align-self: center;
-  margin-left: auto;
-  margin-right: auto;
+  display: flex;
 
-  .width();
-  @media @desktop {
-    .width-desktop();
-  }
+  &__form {
+    background-color: @gray-5;
 
-  &--account-edit-header {
-    .default-box-shadow();
-  }
-
-  &--small {
-    .width(@spacing * 2);
-    @media @desktop {
-      .width-desktop(@spacing * 2);
+    & + & {
+      margin-top: 1px;
     }
+  }
+
+  &__forms {
+    flex: 1;
+  }
+
+  &__input-group {
+    text-transform: none;
+    display: flex;
+    padding: @spacing 0;
+    margin: 0;
+  }
+
+  &__label {
+    flex: none;
+    align-self: center;
+    width: @label-width;
+    padding-right: @spacing;
+    text-align: right;
+  }
+
+  &__section {
+    flex: none;
+    width: @section-width;
+    margin: (@spacing * 2);
+    margin-left: (@spacing * 4);
+  }
+
+  &__section-title {
+    color: @gray-f;
+    font-size: @font-size--large;
   }
 }

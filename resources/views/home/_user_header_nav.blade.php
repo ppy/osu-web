@@ -18,6 +18,20 @@
 <ul class="page-mode">
     <li class="page-mode__item">
         <a
+            href="{{ route('account.edit') }}"
+            class="
+                page-mode-link
+                {{ $current_action === 'account-edit' ? 'page-mode-link--is-active' : '' }}
+            "
+        >
+            {{ trans('accounts.edit.title_compact') }}
+
+            <span class="page-mode-link__stripe"></span>
+        </a>
+    </li>
+
+    <li class="page-mode__item">
+        <a
             href="{{ route('forum.topic-watches.index') }}"
             class="
                 page-mode-link

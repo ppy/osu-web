@@ -29,7 +29,8 @@ use Request;
 
 class AccountController extends Controller
 {
-    protected $section = 'account';
+    protected $section = 'home';
+    protected $actionPrefix = 'account-';
 
     public function __construct()
     {
@@ -65,6 +66,11 @@ class AccountController extends Controller
         return Auth::user()->defaultJson();
     }
 
+    public function edit()
+    {
+        return view('accounts.edit');
+    }
+
     public function update()
     {
         $customizationParams = get_params(
@@ -75,9 +81,28 @@ class AccountController extends Controller
             ]
         );
 
-        Auth::user()
-            ->profileCustomization()
-            ->update($customizationParams);
+        $userParams = get_params(
+            Request::all(),
+            'user',
+            [
+                'user_msnm',
+                'user_twitter',
+                'user_website',
+                'user_from',
+                'user_occ',
+                'user_interests',
+            ]
+        );
+
+        if (count($customizationParams) > 0) {
+            Auth::user()
+                ->profileCustomization()
+                ->update($customizationParams);
+        }
+
+        if (count($userParams) > 0) {
+            Auth::user()->update($userParams);
+        }
 
         return Auth::user()->defaultJson();
     }
