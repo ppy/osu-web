@@ -84,8 +84,8 @@ class UsersController extends Controller
             Auth::login($user, $remember);
 
             return [
-                'header' => render_to_string('layout._header_user', ['_user' => Auth::user()]),
-                'header_popup' => render_to_string('layout._popup_user', ['_user' => Auth::user()]),
+                'header' => render_to_string('layout._header_user'),
+                'header_popup' => render_to_string('layout._popup_user'),
                 'user' => Auth::user()->defaultJson(),
             ];
         } else {
