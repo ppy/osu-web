@@ -40,18 +40,18 @@
 
             <div class="account-edit__input-groups">
                 <div class="account-edit__input-group">
-                    @include('accounts._edit_entry', ['field' => 'user_msnm'])
-                    @include('accounts._edit_entry', ['field' => 'user_twitter'])
-                    @include('accounts._edit_entry', ['field' => 'user_website'])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_msnm'])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_twitter'])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_website'])
                 </div>
 
                 <div class="account-edit__input-group">
-                    @include('accounts._edit_entry', ['field' => 'user_from'])
-                    @include('accounts._edit_entry', ['field' => 'user_occ'])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_from'])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_occ'])
                 </div>
 
                 <div class="account-edit__input-group">
-                    @include('accounts._edit_entry', ['field' => 'user_interests'])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_interests'])
                 </div>
             </div>
         </div>
@@ -67,9 +67,12 @@
 
             <div class="account-edit__input-groups">
                 <div class="account-edit__input-group">
-                    {!! Form::open(['url' => route('account.avatar'), 'method' => 'POST', 'files' => true]) !!}
-                        <input type="file" name="avatar_file">
-                        <input type="submit">
+                    {!! Form::open(['url' => route('account.avatar'), 'method' => 'POST', 'files' => true, 'class' => 'account-edit-entry']) !!}
+                        <div class="account-edit-entry__label"></div>
+                        <div>
+                            <input type="file" name="avatar_file">
+                            <input type="submit">
+                        </div>
                     {!! Form::close() !!}
                 </div>
             </div>
