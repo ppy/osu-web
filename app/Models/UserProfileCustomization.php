@@ -74,10 +74,6 @@ class UserProfileCustomization extends Model
 
     public function setExtrasOrderAttribute($value)
     {
-        if ($value === null) {
-            return;
-        }
-
         $this->attributes['extras_order'] = collect($value)
             // remove invalid sections
             ->intersect(static::$sections)
