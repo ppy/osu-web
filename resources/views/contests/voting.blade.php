@@ -19,6 +19,7 @@
 
 @section('contest-content')
     <div class="contest__description">{!! Markdown::convertToHtml($contestMeta->description_voting) !!}</div>
+    @include('contests._countdown', ['deadline' => $contestMeta->currentPhaseEndDate()])
     <div class='contest'>
         @if ($contestMeta->voting_ends_at !== null && $contestMeta->voting_ends_at->isPast())
             <div class='contest__voting-notice'>{{trans('contest.voting.over')}}</div>
@@ -45,5 +46,5 @@
 
 @section('script')
   @parent
-  <script src="{{ elixir("js/react/contest-voting.js") }}" data-turbolinks-track></script>
+  <script src="{{ elixir("js/react/contest-voting.js") }}" data-turbolinks-track="reload"></script>
 @stop

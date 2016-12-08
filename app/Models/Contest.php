@@ -17,12 +17,13 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Transformers\ContestTransformer;
 use App\Transformers\UserContestEntryTransformer;
 use Cache;
+use Illuminate\Database\Eloquent\Model;
 
 class Contest extends Model
 {
@@ -108,6 +109,16 @@ class Contest extends Model
         }
 
         $this->extra_options['shape'] = $shape;
+    }
+
+    public function currentPhaseEndDate()
+    {
+        switch ($this->state()) {
+            case 'entry':
+                return $this->entry_ends_at;
+            case 'voting':
+                return $this->voting_ends_at;
+        }
     }
 
     public function currentPhaseDateRange()

@@ -37,9 +37,14 @@ class BeatmapsetPage.Main extends React.Component
     currentBeatmap ?= BeatmapHelper.default items: beatmaps[optionsHash.playmode]
     currentBeatmap ?= BeatmapHelper.default group: beatmaps
 
+    @scoreboardXhr = null
+    @favouriteXhr = null
+
     @state =
       beatmaps: beatmaps
       currentBeatmap: currentBeatmap
+      favcount: props.beatmapset.favourite_count
+      hasFavourited: props.beatmapset.has_favourited
       loading: false
       isPreviewPlaying: false
       currentScoreboardType: 'global'
@@ -60,7 +65,7 @@ class BeatmapsetPage.Main extends React.Component
     forceReload = false,
     resetMods = false
   }) =>
-    @xhr?.abort()
+    @scoreboardXhr?.abort()
 
     @setState
       currentScoreboardType: scoreboardType
@@ -95,7 +100,7 @@ class BeatmapsetPage.Main extends React.Component
     $.publish 'beatmapset:scoreboard:loading', true
     @setState loading: true
 
-    @xhr = $.ajax (laroute.route 'beatmaps.scores', beatmap: @state.currentBeatmap.id),
+    @scoreboardXhr = $.ajax (laroute.route 'beatmaps.scores', beatmap: @state.currentBeatmap.id),
       method: 'GET'
       dataType: 'JSON'
       data:
@@ -150,6 +155,19 @@ class BeatmapsetPage.Main extends React.Component
     @setState hoveredBeatmap: hoveredBeatmap
 
 
+  toggleFavourite: =>
+    @favouriteXhr = $.ajax
+      url: laroute.route('beatmapsets.update-favourite', beatmapset: @props.beatmapset.id)
+      method: 'post'
+      dataType: 'json'
+      data:
+        action: if @state.hasFavourited then 'unfavourite' else 'favourite'
+
+    .done (data) =>
+      @setState
+        favcount: data.favcount
+        hasFavourited: data.favourited
+
   onPreviewEnded: =>
     @setState isPreviewPlaying: false
 
@@ -159,7 +177,8 @@ class BeatmapsetPage.Main extends React.Component
     $.subscribe 'beatmapset:mode:set.beatmapsetPage', @setCurrentPlaymode
     $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
     $.subscribe 'beatmapset:preview:toggle.beatmapsetPage', @togglePreviewPlayingState
-    $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmap
+    $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmapId
+    $.subscribe 'beatmapset:favourite:toggle.beatmapsetPage', @toggleFavourite
 
     @setHash()
     @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
@@ -170,8 +189,8 @@ class BeatmapsetPage.Main extends React.Component
 
   componentWillUnmount: ->
     $.unsubscribe '.beatmapsetPage'
-    @xhr?.abort()
-
+    @scoreboardXhr?.abort()
+    @favouriteXhr?.abort()
 
   render: ->
     div className: 'osu-layout__section',
@@ -187,6 +206,8 @@ class BeatmapsetPage.Main extends React.Component
           beatmaps: @state.beatmaps
           currentBeatmap: @state.currentBeatmap
           hoveredBeatmap: @state.hoveredBeatmap
+          favcount: @state.favcount
+          hasFavourited: @state.hasFavourited
           isPreviewPlaying: @state.isPreviewPlaying
 
         el BeatmapsetPage.Info,

@@ -17,19 +17,21 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models;
 
+use App\Exceptions\BeatmapProcessorException;
+use App\Libraries\ImageProcessorService;
+use App\Libraries\StorageWithUrl;
+use App\Models\Forum\Post;
+use App\Models\Forum\Topic;
+use App\Transformers\BeatmapsetTransformer;
+use Auth;
+use Carbon\Carbon;
+use DB;
 use Es;
 use Illuminate\Database\Eloquent\Model;
-use Auth;
-use DB;
-use App\Libraries\StorageWithUrl;
-use App\Libraries\ImageProcessorService;
-use App\Exceptions\BeatmapProcessorException;
-use App\Models\Forum\Topic;
-use App\Models\Forum\Post;
-use App\Transformers\BeatmapsetTransformer;
-use Carbon\Carbon;
+use Illuminate\Database\QueryException;
 
 class Beatmapset extends Model
 {
@@ -82,6 +84,8 @@ class Beatmapset extends Model
 
     const NOMINATIONS_PER_DAY = 1;
     const QUALIFICATIONS_PER_DAY = 6;
+
+    private $_favourites = null;
 
     // ranking functions for the set
 
@@ -726,6 +730,42 @@ class Beatmapset extends Model
         return true;
     }
 
+    public function favourite($user)
+    {
+        DB::transaction(function () use ($user) {
+            try {
+                FavouriteBeatmapset::create([
+                    'user_id' => $user->user_id,
+                    'beatmapset_id' => $this->beatmapset_id,
+                ]);
+            } catch (QueryException $e) {
+                if (is_sql_unique_exception($e)) {
+                    return;
+                } else {
+                    throw $e;
+                }
+            }
+
+            $this->favourite_count = DB::raw('favourite_count + 1');
+            $this->save();
+        });
+    }
+
+    public function unfavourite($user)
+    {
+        if (!$this->hasFavourited($user)) {
+            return;
+        }
+
+        DB::transaction(function () use ($user) {
+            $this->favourites()->where('user_id', $user->user_id)
+                ->delete();
+
+            $this->favourite_count = DB::raw('GREATEST(favourite_count - 1, 0)');
+            $this->save();
+        });
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Relationships
@@ -842,6 +882,18 @@ class Beatmapset extends Model
         }
 
         return $ratings;
+    }
+
+    public function favourites()
+    {
+        return $this->hasMany(FavouriteBeatmapset::class);
+    }
+
+    public function hasFavourited($user)
+    {
+        return $user === null
+            ? false
+            : $this->favourites()->where('user_id', $user->user_id)->exists();
     }
 
     public function description()

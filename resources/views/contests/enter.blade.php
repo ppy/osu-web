@@ -19,6 +19,7 @@
 
 @section('contest-content')
     <div class="contest__description">{!! Markdown::convertToHtml($contestMeta->description_enter) !!}</div>
+    @include('contests._countdown', ['deadline' => $contestMeta->currentPhaseEndDate()])
     @if (!Auth::check())
       <div class='contest__voting-notice contest__voting-notice--padding'>{{trans('contest.entry.login_required')}}</div>
     @else
@@ -47,5 +48,5 @@
   <script id="json-userEntries" type="application/json">
     {!! json_encode($contest->userEntries(Auth::user())) !!}
   </script>
-  <script src="{{ elixir("js/react/contest-entry.js") }}" data-turbolinks-track></script>
+  <script src="{{ elixir("js/react/contest-entry.js") }}" data-turbolinks-track="reload"></script>
 @stop

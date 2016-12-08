@@ -17,10 +17,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Transformers\Multiplayer;
 
-use League\Fractal;
 use App\Models\Multiplayer\Match;
+use League\Fractal;
 
 class MatchTransformer extends Fractal\TransformerAbstract
 {

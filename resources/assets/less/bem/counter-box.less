@@ -19,6 +19,8 @@
 
 .counter-box {
   @top: counter-box;
+
+  @color-deleted: @gray;
   @color-mine: @yellow-darker;
   @color-pending: @pink-darker;
   @color-praises: @blue-darker;
@@ -60,6 +62,10 @@
     margin: (@spacing / 2);
   }
 
+  &--deleted {
+    .with-active(@color-deleted);
+  }
+
   &--pending {
     .with-active(@color-pending);
   }
@@ -91,8 +97,12 @@
 
   &__line {
     .default-border-radius();
-    width: (@spacing / 4);
+    width: 2px;
     margin-left: @spacing;
+
+    .@{top}--deleted & {
+      background-color: @color-deleted;
+    }
 
     .@{top}--pending & {
       background-color: @color-pending;

@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -24,5 +25,21 @@ use Illuminate\Database\Eloquent\Model;
 class FavouriteBeatmapset extends Model
 {
     protected $table = 'osu_favouritemaps';
+
     public $timestamps = false;
+    protected $dates = [
+        'dateadded',
+    ];
+
+    protected $guarded = [];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function beatmapset()
+    {
+        return $this->belongsTo(Beatmapset::class);
+    }
 }

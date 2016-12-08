@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
 use App;
@@ -44,13 +45,8 @@ class HomeController extends Controller
     {
         return view('home.icons')
         ->with('icons', [
-            'osu-o', 'mania-o', 'fruits-o', 'taiko-o',
             'osu', 'mania', 'fruits', 'taiko',
-            'bat', 'bubble', 'hourglass', 'dice', 'bomb', 'osu-spinner', 'net', 'mod-headphones',
-            'easy-osu', 'normal-osu', 'hard-osu', 'insane-osu', 'expert-osu',
-            'easy-taiko', 'normal-taiko', 'hard-taiko', 'insane-taiko', 'expert-taiko',
-            'easy-fruits', 'normal-fruits', 'hard-fruits', 'insane-fruits', 'expert-fruits',
-            'easy-mania', 'normal-mania', 'hard-mania', 'insane-mania', 'expert-mania',
+            'patreon',
         ]);
     }
 

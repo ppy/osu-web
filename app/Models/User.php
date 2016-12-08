@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models;
 
 use App\Interfaces\Messageable;
@@ -25,6 +26,7 @@ use App\Transformers\UserTransformer;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
@@ -490,9 +492,14 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->hasManyThrough(Beatmap::class, Beatmapset::class, 'user_id', 'beatmapset_id');
     }
 
+    public function favourites()
+    {
+        return $this->hasMany(FavouriteBeatmapset::class);
+    }
+
     public function favouriteBeatmapsets()
     {
-        return Beatmapset::whereIn('beatmapset_id', FavouriteBeatmapset::where('user_id', '=', $this->user_id)->select('beatmapset_id')->get());
+        return Beatmapset::whereIn('beatmapset_id', $this->favourites()->select('beatmapset_id')->get());
     }
 
     public function beatmapsetNominations()
@@ -1006,5 +1013,49 @@ class User extends Model implements AuthenticatableContract, Messageable
             'user_warnings' => 0,
             'user_type' => 0,
         ]);
+    }
+
+    public static function attemptLogin($user, $password, $ip = null)
+    {
+        if ($ip === null) {
+            $ip = \Request::getClientIp();
+        }
+
+        if ($ip === null) {
+            $ip = '0.0.0.0';
+        }
+
+        if (LoginAttempt::isLocked($ip)) {
+            return ['error' => trans('users.login.locked_ip')];
+        }
+
+        $validAuth = $user === null
+            ? false
+            : Hash::check($password, $user->user_password);
+
+        if ($validAuth) {
+            return [];
+        } else {
+            LoginAttempt::failedAttempt($ip, $user);
+
+            return ['error' => trans('users.login.failed')];
+        }
+    }
+
+    public static function findForLogin($username)
+    {
+        return static::where('username', $username)
+            ->orWhere('user_email', $username)
+            ->first();
+    }
+
+    public static function findForPassport($username)
+    {
+        return static::findForLogin($username);
+    }
+
+    public function validateForPassportPasswordGrant($password)
+    {
+        return !isset(static::attemptLogin($this, $password)['error']);
     }
 }

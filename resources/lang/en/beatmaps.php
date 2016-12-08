@@ -32,6 +32,8 @@ return [
     ],
 
     'discussions' => [
+        'delete' => 'delete',
+        'deleted' => 'Deleted by :editor :delete_time',
         'edit' => 'edit',
         'edited' => 'Last edited by :editor :update_time',
         'message_placeholder' => 'Type here to post',
@@ -39,6 +41,7 @@ return [
         'reply_placeholder' => 'Type your response here',
         'require-login' => 'Please login to post or reply',
         'resolved' => 'Resolved',
+        'restore' => 'restore',
         'title' => 'Discussions',
 
         'collapse' => [
@@ -78,6 +81,7 @@ return [
         ],
 
         'stats' => [
+            'deleted' => 'Deleted',
             'mine' => 'Mine',
             'pending' => 'Pending',
             'praises' => 'Praises',
@@ -126,6 +130,8 @@ return [
                     'no-video' => 'without Video',
                     'direct' => 'osu!direct',
                 ],
+                'favourite' => 'Favourite this beatmapset',
+                'unfavourite' => 'Unfavourite this beatmapset',
             ],
             'stats' => [
                 'cs' => 'Circle Size',

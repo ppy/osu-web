@@ -17,17 +17,18 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Country;
-use App\Models\Language;
 use App\Models\Genre;
+use App\Models\Language;
 use App\Transformers\BeatmapsetTransformer;
 use App\Transformers\CountryTransformer;
-use League\Fractal\Manager;
 use Auth;
+use League\Fractal\Manager;
 use Request;
 
 class BeatmapsetsController extends Controller
@@ -198,6 +199,29 @@ class BeatmapsetsController extends Controller
 
         return [
             'beatmapset' => $beatmapset->defaultJson(),
+        ];
+    }
+
+    public function updateFavourite($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+        $user = Auth::user();
+
+        if (Request::input('action') === 'favourite') {
+            priv_check('UserFavourite')->ensureCan();
+            $beatmapset->favourite($user);
+        } elseif (Request::input('action') === 'unfavourite') {
+            priv_check('UserFavouriteRemove')->ensureCan();
+            $beatmapset->unfavourite($user);
+        }
+
+        // reload model to be able to get
+        // the favourite count properly
+        $beatmapset = $beatmapset->fresh();
+
+        return [
+          'favcount' => $beatmapset->favourite_count,
+          'favourited' => $beatmapset->hasFavourited($user),
         ];
     }
 }

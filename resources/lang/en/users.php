@@ -19,8 +19,11 @@
  */
 
 return [
+    'deleted' => '[deleted user]',
+
     'login' => [
         '_' => 'Sign in',
+        'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
         'username' => 'Username',
         'password' => 'Password',
         'button' => 'Login',

@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Transformers;
 
 use App\Models\Beatmap;
@@ -49,6 +50,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'artist' => $beatmapset->artist,
             'play_count' => $beatmapset->play_count,
             'favourite_count' => $beatmapset->favourite_count,
+            'has_favourited' => $beatmapset->hasFavourited(Auth::user()),
             'submitted_date' => json_time($beatmapset->submit_date),
             'ranked_date' => json_time($beatmapset->approved_date),
             'creator' => $beatmapset->creator,

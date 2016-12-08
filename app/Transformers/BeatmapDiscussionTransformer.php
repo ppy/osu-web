@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Transformers;
 
 use App\Models\BeatmapDiscussion;
@@ -32,16 +33,22 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
     public function transform(BeatmapDiscussion $discussion)
     {
+        if (!priv_check('BeatmapDiscussionShow', $discussion)->can()) {
+            return [];
+        }
+
         return [
             'id' => $discussion->id,
             'beatmapset_discussion_id' => $discussion->beatmapset_discussion_id,
             'beatmap_id' => $discussion->beatmap_id,
             'user_id' => $discussion->user_id,
+            'deleted_by_id' => $discussion->deleted_by_id,
             'message_type' => $discussion->message_type,
             'timestamp' => $discussion->timestamp,
             'resolved' => $discussion->resolved,
             'created_at' => json_time($discussion->created_at),
             'updated_at' => json_time($discussion->updated_at),
+            'deleted_at' => json_time($discussion->deleted_at),
             'votes' => $discussion->votesSummary(),
             'duration' => $discussion->total_length,
         ];
@@ -49,6 +56,10 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
     public function includeBeatmapDiscussionPosts(BeatmapDiscussion $discussion)
     {
+        if (!priv_check('BeatmapDiscussionShow', $discussion)->can()) {
+            return;
+        }
+
         return $this->collection(
             $discussion->beatmapDiscussionPosts,
             new BeatmapDiscussionPostTransformer()
@@ -57,6 +68,10 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
     public function includeCurrentUserAttributes(BeatmapDiscussion $discussion)
     {
+        if (!priv_check('BeatmapDiscussionShow', $discussion)->can()) {
+            return;
+        }
+
         $currentUser = Auth::user();
 
         if ($currentUser === null) {
