@@ -344,24 +344,16 @@ class Topic extends Model
         $query->presetSort($sort);
     }
 
-    public function nthPost($n, $withTrashed = false)
+    public function nthPost($n)
     {
         $posts = $this->posts();
-
-        if ($withTrashed) {
-            $posts->withTrashed();
-        }
 
         return $posts->skip(intval($n) - 1)->first();
     }
 
-    public function postPosition($postId, $withTrashed = false)
+    public function postPosition($postId)
     {
         $posts = $this->posts();
-
-        if ($withTrashed) {
-            $posts->withTrashed();
-        }
 
         return $posts->where('post_id', '<=', $postId)->count();
     }
@@ -378,14 +370,10 @@ class Topic extends Model
         }
     }
 
-    public function postsCount($withTrashed)
+    public function postsCount()
     {
         if ($this->postsCount === null) {
             $posts = $this->posts();
-
-            if ($withTrashed) {
-                $posts->withTrashed();
-            }
 
             $this->postsCount = $posts->count();
         }

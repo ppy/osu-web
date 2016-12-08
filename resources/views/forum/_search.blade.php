@@ -69,7 +69,7 @@
                         {{
                             trans(
                                 "forum.search.total_posts",
-                                ["posts_count" => $topic->postsCount(priv_check('ForumTopicModerate')->can())]
+                                ["posts_count" => $topic->postsCount()]
                             )
                         }}
                     </div>

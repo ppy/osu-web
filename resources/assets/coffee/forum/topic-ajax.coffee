@@ -18,11 +18,13 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 $(document).on 'ajax:success', '.delete-post-link', (event, data, status, xhr) ->
   $el = $(".js-forum-post[data-post-id=#{data.postId}]")
 
+  toggle = event.target
+  action = toggle.getAttribute 'data-action'
+
   if currentUser.isAdmin || currentUser.isGMT
     $post = $el.find '.forum-post'
-    toggle = event.target
 
-    switch toggle.getAttribute 'data-action'
+    switch action
       when 'delete'
         $post.addClass 'forum-post--hidden'
       when 'undelete'
@@ -40,17 +42,18 @@ $(document).on 'ajax:success', '.delete-post-link', (event, data, status, xhr) -
       .slideUp null, ->
         $el.remove()
 
-        window.forum.setTotalPosts(window.forum.totalPosts() - 1)
+  countDifference = if action == 'delete' then -1 else 1
 
-        for post in window.forum.posts by -1
-          originalPosition = parseInt post.getAttribute('data-post-position'), 10
+  window.forum.setTotalPosts window.forum.totalPosts() + countDifference
 
-          break if originalPosition < data.postPosition
+  for post in window.forum.posts by -1
+    originalPosition = parseInt post.getAttribute('data-post-position'), 10
 
-          post.setAttribute 'data-post-position', originalPosition - 1
+    break if originalPosition < data.postPosition
 
-        osu.pageChange()
+    post.setAttribute 'data-post-position', originalPosition + countDifference
 
+  osu.pageChange()
 
 $(document).on 'ajax:success', '.edit-post-link', (e, data, status, xhr) ->
   # ajax:complete needs to be triggered early because the link (target) is

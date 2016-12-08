@@ -24,6 +24,10 @@
         if (!$withDeleteLink) {
             $withDeleteLink = priv_check('ForumPostDelete', $post)->can();
         }
+
+        if ($post->trashed()) {
+            $postPosition--;
+        }
     ?>
     @include('forum.topics._post', [
         'post' => $post,

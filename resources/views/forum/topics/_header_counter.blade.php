@@ -26,7 +26,7 @@
                 1
             @else
                 <span class="js-forum__total-count">
-                    {{ $topic->postsCount(priv_check('ForumTopicModerate')->can()) }}
+                    {{ $topic->postsCount() }}
                 </span>
             @endif
         </div>

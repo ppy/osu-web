@@ -43,7 +43,7 @@ class PostsController extends Controller
     {
         $post = Post::query();
 
-        if ($canModerate = priv_check('ForumTopicModerate')->can()) {
+        if (priv_check('ForumTopicModerate')->can()) {
             $post->withTrashed();
         }
 
@@ -52,7 +52,7 @@ class PostsController extends Controller
 
         priv_check('ForumPostDelete', $post)->ensureCan();
 
-        $deletedPostPosition = $post->topic->postPosition($post->post_id, $canModerate);
+        $deletedPostPosition = $post->topic->postPosition($post->post_id);
 
         if ($action === 'undelete' && $post->trashed()) {
             $post->topic->restorePost($post, Auth::user());
