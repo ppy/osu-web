@@ -20,10 +20,10 @@
 
 namespace App\Models\Forum;
 
-use DB;
-use Carbon\Carbon;
 use App\Models\Log;
 use App\Models\User;
+use Carbon\Carbon;
+use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

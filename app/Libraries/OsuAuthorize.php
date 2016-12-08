@@ -20,13 +20,13 @@
 
 namespace App\Libraries;
 
-use App\Models\Beatmapset;
-use App\Models\UserContestEntry;
 use App\Exceptions\AuthorizationException;
+use App\Models\Beatmapset;
 use App\Models\Beatmapset;
 use App\Models\Chat\Channel as ChatChannel;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
+use App\Models\UserContestEntry;
 
 class OsuAuthorize
 {

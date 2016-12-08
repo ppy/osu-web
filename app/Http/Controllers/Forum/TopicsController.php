@@ -20,24 +20,24 @@
 
 namespace App\Http\Controllers\Forum;
 
-use Auth;
-use Event;
-use Request;
-use Carbon\Carbon;
-use App\Models\Forum\Post;
-use App\Models\Forum\Forum;
-use App\Models\Forum\Topic;
-use App\Models\Forum\TopicPoll;
-use App\Models\Forum\PollOption;
-use App\Models\Forum\TopicCover;
-use App\Models\Forum\TopicTrack;
-use App\Models\Forum\TopicWatch;
-use App\Models\Forum\FeatureVote;
-use App\Events\Forum\TopicWasViewed;
 use App\Events\Forum\TopicWasCreated;
 use App\Events\Forum\TopicWasReplied;
-use Illuminate\Http\Request as HttpRequest;
+use App\Events\Forum\TopicWasViewed;
+use App\Models\Forum\FeatureVote;
+use App\Models\Forum\Forum;
+use App\Models\Forum\PollOption;
+use App\Models\Forum\Post;
+use App\Models\Forum\Topic;
+use App\Models\Forum\TopicCover;
+use App\Models\Forum\TopicPoll;
+use App\Models\Forum\TopicTrack;
+use App\Models\Forum\TopicWatch;
 use App\Transformers\Forum\TopicCoverTransformer;
+use Auth;
+use Carbon\Carbon;
+use Event;
+use Illuminate\Http\Request as HttpRequest;
+use Request;
 
 class TopicsController extends Controller
 {

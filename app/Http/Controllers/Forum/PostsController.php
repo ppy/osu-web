@@ -20,10 +20,10 @@
 
 namespace App\Http\Controllers\Forum;
 
-use Auth;
-use Request;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
+use Auth;
+use Request;
 
 class PostsController extends Controller
 {

@@ -20,11 +20,11 @@
 
 namespace App\Models\Forum;
 
-use DB;
-use Carbon\Carbon;
-use App\Models\Log;
-use App\Models\DeletedUser;
 use App\Libraries\BBCodeForDB;
+use App\Models\DeletedUser;
+use App\Models\Log;
+use Carbon\Carbon;
+use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
