@@ -24,12 +24,13 @@ return [
 
     'buttons' => [
         'cancel' => 'Cancel',
+        'delete' => 'Delete',
         'post' => 'Post',
         'reply' => 'Reply',
         'reset' => 'Reset',
         'save' => 'Save',
         'show_more' => 'show more',
-        'delete' => 'Delete',
+        'upload_image' => 'upload image',
     ],
 
     'count' => [

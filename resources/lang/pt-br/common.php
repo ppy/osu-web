@@ -23,12 +23,12 @@ return [
 
     'buttons' => [
         'cancel' => 'Cancelar',
+        'delete' => 'Excluir',
         'post' => 'Publicar',
         'reply' => 'Responder',
         'reset' => 'Limpar',
         'save' => 'Salvar',
         'show_more' => 'exibir mais',
-        'delete' => 'Excluir',
     ],
 
     'count' => [

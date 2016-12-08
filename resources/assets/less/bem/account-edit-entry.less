@@ -30,6 +30,42 @@
   padding: @spacing 0;
   margin: 0;
 
+  &__avatar {
+    .default-border-radius();
+    .own-layer();
+    width: @avatar-size--base;
+    height: @avatar-size--base;
+    margin-bottom: @spacing;
+    overflow: hidden;
+  }
+
+  &__drop-overlay {
+    .full-size();
+    .center-content();
+    padding: @spacing;
+    opacity: 0;
+    color: @gray-f;
+
+    &::before {
+      .full-size();
+      background-color: @gray-0;
+      opacity: 0;
+      transition: all 120ms;
+
+      .@{top}.js-account-edit-avatar--start & {
+        opacity: 0.5;
+      }
+
+      .@{top}.js-account-edit-avatar--hover & {
+        opacity: 0.7;
+      }
+    }
+
+    .@{top}.js-account-edit-avatar--start & {
+      opacity: 1;
+    }
+  }
+
   &__input {
     .reset-input();
     .default-border-radius();
@@ -58,6 +94,19 @@
 
     .@{top}.js-account-edit--focus & {
       color: @gray-f;
+    }
+  }
+
+  &__overlay-spinner {
+    .full-size();
+    .center-content();
+
+    background-color: fade(@gray-0, 75%);
+    opacity: 0;
+    transition: all 120ms;
+
+    .@{top}.js-account-edit-avatar--saving & {
+      opacity: 1;
     }
   }
 

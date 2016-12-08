@@ -67,13 +67,44 @@
 
             <div class="account-edit__input-groups">
                 <div class="account-edit__input-group">
-                    {!! Form::open(['url' => route('account.avatar'), 'method' => 'POST', 'files' => true, 'class' => 'account-edit-entry']) !!}
+                    <div class="account-edit-entry js-account-edit-avatar">
                         <div class="account-edit-entry__label"></div>
+
                         <div>
-                            <input type="file" name="avatar_file">
-                            <input type="submit">
+                            <div class="account-edit-entry__avatar">
+                                <div class="avatar avatar--full-rounded js-current-user-avatar"></div>
+
+                                <div class="account-edit-entry__drop-overlay">
+                                    <span>
+                                    {{ trans('common.dropzone.target') }}
+                                    </span>
+                                </div>
+
+                                <div class="account-edit-entry__overlay-spinner">
+                                    @include('objects._spinner')
+                                </div>
+                            </div>
+
+                            <label class="btn-osu-big btn-osu-big--full">
+                                <div class="btn-osu-big__content">
+                                    <div class="btn-osu-big__left">
+                                        {{ trans('common.buttons.upload_image') }}
+                                    </div>
+
+                                    <div class="btn-osu-big__icon">
+                                        <i class="fa fa-arrow-circle-o-up"></i>
+                                    </div>
+                                </div>
+
+                                <input
+                                    class="js-account-edit-avatar__button btn-osu-big__fileupload"
+                                    type="file"
+                                    name="avatar_file"
+                                    data-url="{{ route('account.avatar') }}"
+                                >
+                            </label>
                         </div>
-                    {!! Form::close() !!}
+                    </div>
                 </div>
             </div>
         </div>
