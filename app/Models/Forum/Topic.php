@@ -138,7 +138,7 @@ class Topic extends Model
             }
 
             if ($user !== null && $user->user_id !== $post->poster_id) {
-                Log::logModerateForumPost('LOG_DELETE_POST', $post);
+                Log::logModerateForumPost('LOG_DELETE_POST', $post, $user);
             }
         });
 
@@ -164,6 +164,10 @@ class Topic extends Model
 
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, 1);
+            }
+
+            if ($user !== null && $user->user_id !== $post->user->user_id) {
+                Log::logModerateForumPost('LOG_RESTORE_POST', $post, $user);
             }
         });
 
