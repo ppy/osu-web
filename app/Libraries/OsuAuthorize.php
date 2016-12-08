@@ -293,7 +293,9 @@ class OsuAuthorize
         }
 
         $position = $post->postPosition;
-        $topicPostsCount = $post->topic->postsCount();
+        $topicPostsCount = $post->topic->postsCount(
+            $this->doCheckUser($user, 'ForumTopicModerate', $post->topic)->can()
+        );
 
         if ($position !== $topicPostsCount) {
             return $prefix.'only_last_post';

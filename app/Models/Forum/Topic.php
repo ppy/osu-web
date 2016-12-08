@@ -343,35 +343,35 @@ class Topic extends Model
         $query->presetSort($sort);
     }
 
-    public function nthPost($n)
+    public function nthPost($n, $withTrashed = false)
     {
         $posts = $this->posts();
 
-        if (priv_check('ForumTopicModerate')->can()) {
+        if ($withTrashed) {
             $posts->withTrashed();
         }
 
         return $posts->skip(intval($n) - 1)->first();
     }
 
-    public function postPosition($postId)
+    public function postPosition($postId, $withTrashed = false)
     {
         $posts = $this->posts();
 
-        if (priv_check('ForumTopicModerate')->can()) {
+        if ($withTrashed) {
             $posts->withTrashed();
         }
 
         return $posts->where('post_id', '<=', $postId)->count();
     }
 
-    public function postsPosition($sortedPosts)
+    public function postsPosition($sortedPosts, $withTrashed = false)
     {
         if ($sortedPosts->count() === 0) {
             return [];
         }
 
-        $firstPostPosition = $this->postPosition($sortedPosts->first()->post_id);
+        $firstPostPosition = $this->postPosition($sortedPosts->first()->post_id, $withTrashed);
         $postIds = $sortedPosts->map(function ($p) {
             return $p->post_id;
         });
@@ -398,12 +398,12 @@ class Topic extends Model
         }
     }
 
-    public function postsCount()
+    public function postsCount($withTrashed)
     {
         if ($this->postsCount === null) {
             $posts = $this->posts();
 
-            if (priv_check('ForumTopicModerate')->can()) {
+            if ($withTrashed) {
                 $posts->withTrashed();
             }
 

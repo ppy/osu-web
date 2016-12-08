@@ -145,7 +145,7 @@ class TopicsController extends Controller
 
         if ($post->post_id !== null) {
             $posts = collect([$post]);
-            $postsPosition = $topic->postsPosition($posts);
+            $postsPosition = $topic->postsPosition($posts, priv_check('ForumTopicModerate')->can());
 
             Event::fire(new TopicWasReplied($topic, $post, Auth::user()));
             Event::fire(new TopicWasViewed($topic, $post, Auth::user()));
@@ -168,7 +168,7 @@ class TopicsController extends Controller
                 'pollOptions.votes',
             ]);
 
-        if (priv_check('ForumTopicModerate')->can()) {
+        if ($canModerate = priv_check('ForumTopicModerate')->can()) {
             $topic->withTrashed();
         }
 
@@ -178,7 +178,7 @@ class TopicsController extends Controller
 
         $posts = $topic->posts();
 
-        if (priv_check('ForumTopicModerate')->can()) {
+        if ($canModerate) {
             $posts->withTrashed();
         }
 
@@ -189,7 +189,7 @@ class TopicsController extends Controller
         }
 
         if ($nthPost !== null) {
-            $post = $topic->nthPost($nthPost);
+            $post = $topic->nthPost($nthPost, $canModerate);
             if ($post) {
                 $postStartId = $post->post_id;
             }
@@ -209,8 +209,8 @@ class TopicsController extends Controller
         if ($postStartId !== null && !$skipLayout) {
             // move starting post up by ten to avoid hitting
             // page autoloader right after loading the page.
-            $postPosition = $topic->postPosition($postStartId);
-            $post = $topic->nthPost($postPosition - 10);
+            $postPosition = $topic->postPosition($postStartId, $canModerate);
+            $post = $topic->nthPost($postPosition - 10, $canModerate);
             $postStartId = $post->post_id;
         }
 
@@ -236,7 +236,7 @@ class TopicsController extends Controller
             abort($skipLayout ? 204 : 404);
         }
 
-        $postsPosition = $topic->postsPosition($posts);
+        $postsPosition = $topic->postsPosition($posts, priv_check('ForumTopicModerate')->can());
 
         $pollSummary = PollOption::summary($topic, Auth::user());
 

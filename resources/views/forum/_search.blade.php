@@ -66,7 +66,12 @@
                                 <i class="fa fa-angle-right"></i>
                             </button>
                         </form>
-                        {{ trans("forum.search.total_posts", ["posts_count" => $topic->postsCount()]) }}
+                        {{
+                            trans(
+                                "forum.search.total_posts",
+                                ["posts_count" => $topic->postsCount(priv_check('ForumTopicModerate')->can())]
+                            )
+                        }}
                     </div>
                 @endif
             </div>

@@ -98,7 +98,7 @@
 
     @include("forum.topics._posts")
 
-    <div class="forum-posts-load-link {{ last($postsPosition) === $topic->postsCount() ? 'hidden' : '' }}">
+    <div class="forum-posts-load-link {{ last($postsPosition) === $topic->postsCount(priv_check('ForumTopicModerate')->can()) ? 'hidden' : '' }}">
         <a href="{{ post_url($topic->topic_id, $posts->last()->post_id + 1, false) }}" class="js-forum-posts-show-more js-forum__posts-show-more--next" data-mode="next">Load more</a>
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>
@@ -172,7 +172,7 @@
 
     <div
         class="js-forum__topic-total-posts forum-topic-nav"
-        data-total-count="{{ $topic->postsCount() }}"
+        data-total-count="{{ $topic->postsCount(priv_check('ForumTopicModerate')->can()) }}"
     >
 
         <div class="forum-topic-nav__seek-tooltip js-forum-posts-seek--tooltip" data-visibility="hidden">
@@ -192,7 +192,7 @@
                     forum-topic-nav__seek-bar
                     u-forum--bg-link
                 "
-                style="width: '{{ 100 * array_get($postsPosition, $jumpTo, 0) / $topic->postsCount() }}%';"
+                style="width: '{{ 100 * array_get($postsPosition, $jumpTo, 0) / $topic->postsCount(priv_check('ForumTopicModerate')->can()) }}%';"
             >
             </div>
         </div>
@@ -271,7 +271,7 @@
                     <span class="forum-topic-nav__counter
                         forum-topic-nav__counter--right
                         js-forum__total-count"
-                    >{{ $topic->postsCount() }}</span>
+                    >{{ $topic->postsCount(priv_check('ForumTopicModerate')->can()) }}</span>
 
                     <div
                         class="js-forum-topic-post-jump--cover forum-topic-nav__counter-cover"

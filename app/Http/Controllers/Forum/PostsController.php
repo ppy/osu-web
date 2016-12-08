@@ -42,7 +42,7 @@ class PostsController extends Controller
     {
         $post = Post::query();
 
-        if (priv_check('ForumTopicModerate')->can()) {
+        if ($canModerate = priv_check('ForumTopicModerate')->can()) {
             $post->withTrashed();
         }
 
@@ -51,7 +51,7 @@ class PostsController extends Controller
 
         priv_check('ForumPostDelete', $post)->ensureCan();
 
-        $deletedPostPosition = $post->topic->postPosition($post->post_id);
+        $deletedPostPosition = $post->topic->postPosition($post->post_id, $canModerate);
 
         if ($action === 'undelete' && $post->trashed()) {
             $post->topic->restorePost($post, Auth::user());
@@ -96,7 +96,7 @@ class PostsController extends Controller
 
         $posts = collect([$post->fresh()]);
         $topic = $post->topic;
-        $postsPosition = $topic->postsPosition($posts);
+        $postsPosition = $topic->postsPosition($posts, priv_check('ForumTopicModerate')->can());
 
         return view('forum.topics._posts', compact('posts', 'postsPosition', 'topic'));
     }
