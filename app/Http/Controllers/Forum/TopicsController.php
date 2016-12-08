@@ -169,7 +169,7 @@ class TopicsController extends Controller
                 'pollOptions.votes',
             ]);
 
-        if ($canModerate = priv_check('ForumTopicModerate')->can()) {
+        if ($withTrashed = priv_check('ForumTopicModerate')->can()) {
             $topic->withTrashed();
         }
 
@@ -179,7 +179,7 @@ class TopicsController extends Controller
 
         $posts = $topic->posts();
 
-        if ($canModerate) {
+        if ($withTrashed) {
             $posts->withTrashed();
         }
 
@@ -190,7 +190,7 @@ class TopicsController extends Controller
         }
 
         if ($nthPost !== null) {
-            $post = $topic->nthPost($nthPost, $canModerate);
+            $post = $topic->nthPost($nthPost, $withTrashed);
             if ($post) {
                 $postStartId = $post->post_id;
             }
@@ -210,8 +210,8 @@ class TopicsController extends Controller
         if ($postStartId !== null && !$skipLayout) {
             // move starting post up by ten to avoid hitting
             // page autoloader right after loading the page.
-            $postPosition = $topic->postPosition($postStartId, $canModerate);
-            $post = $topic->nthPost($postPosition - 10, $canModerate);
+            $postPosition = $topic->postPosition($postStartId, $withTrashed);
+            $post = $topic->nthPost($postPosition - 10, $withTrashed);
             $postStartId = $post->post_id;
         }
 
@@ -245,7 +245,7 @@ class TopicsController extends Controller
 
         Event::fire(new TopicWasViewed(
             $topic,
-            $topic->posts->last(),
+            $posts->last(),
             Auth::user()
         ));
 
