@@ -145,12 +145,12 @@ class TopicsController extends Controller
 
         if ($post->post_id !== null) {
             $posts = collect([$post]);
-            $postsPosition = $topic->postsPosition($posts, priv_check('ForumTopicModerate')->can());
+            $postPosition = $topic->postPosition($post->post_id);
 
             Event::fire(new TopicWasReplied($topic, $post, Auth::user()));
             Event::fire(new TopicWasViewed($topic, $post, Auth::user()));
 
-            return view('forum.topics._posts', compact('posts', 'postsPosition', 'topic'));
+            return view('forum.topics._posts', compact('posts', 'postPosition', 'topic'));
         }
     }
 
@@ -236,7 +236,9 @@ class TopicsController extends Controller
             abort($skipLayout ? 204 : 404);
         }
 
-        $postsPosition = $topic->postsPosition($posts, priv_check('ForumTopicModerate')->can());
+        // position of the first post, incremented in the view
+        // to generate positions of further posts
+        $postPosition = $topic->postPosition($topic->posts->first()->post_id);
 
         $pollSummary = PollOption::summary($topic, Auth::user());
 
@@ -263,7 +265,7 @@ class TopicsController extends Controller
                 'jumpTo',
                 'pollSummary',
                 'posts',
-                'postsPosition',
+                'postPosition',
                 'topic'
             )
         );

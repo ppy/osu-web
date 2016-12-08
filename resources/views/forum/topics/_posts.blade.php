@@ -30,8 +30,11 @@
         'options' => [
             'deleteLink' => $withDeleteLink,
             'editLink' => priv_check('ForumPostEdit', $post)->can(),
-            'postPosition' => $postsPosition[$post->post_id],
+            'postPosition' => $postPosition,
             'replyLink' => priv_check('ForumTopicReply', $topic)->can(),
         ],
     ])
+    @php
+        $postPosition++;
+    @endphp
 @endforeach

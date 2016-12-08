@@ -96,9 +96,9 @@ class PostsController extends Controller
 
         $posts = collect([$post->fresh()]);
         $topic = $post->topic;
-        $postsPosition = $topic->postsPosition($posts, priv_check('ForumTopicModerate')->can());
+        $postPosition = $topic->postPosition($post->post_id);
 
-        return view('forum.topics._posts', compact('posts', 'postsPosition', 'topic'));
+        return view('forum.topics._posts', compact('posts', 'postPosition', 'topic'));
     }
 
     public function raw($id)

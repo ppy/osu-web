@@ -98,7 +98,7 @@
 
     @include("forum.topics._posts")
 
-    <div class="forum-posts-load-link {{ last($postsPosition) === $topic->postsCount(priv_check('ForumTopicModerate')->can()) ? 'hidden' : '' }}">
+    <div class="forum-posts-load-link {{ $postPosition + sizeof($posts) - 1 === $topic->postsCount(priv_check('ForumTopicModerate')->can()) ? 'hidden' : '' }}">
         <a href="{{ post_url($topic->topic_id, $posts->last()->post_id + 1, false) }}" class="js-forum-posts-show-more js-forum__posts-show-more--next" data-mode="next">Load more</a>
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>
@@ -192,7 +192,6 @@
                     forum-topic-nav__seek-bar
                     u-forum--bg-link
                 "
-                style="width: '{{ 100 * array_get($postsPosition, $jumpTo, 0) / $topic->postsCount(priv_check('ForumTopicModerate')->can()) }}%';"
             >
             </div>
         </div>
@@ -262,7 +261,7 @@
                         forum-topic-nav__counter--left
                         js-forum__posts-counter
                         js-forum-topic-post-jump--counter
-                    ">{{ head($postsPosition) }}</span>
+                    ">{{ $postPosition }}</span>
 
                     <span class="forum-topic-nav__counter
                         forum-topic-nav__counter--middle"

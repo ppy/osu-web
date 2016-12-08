@@ -365,27 +365,6 @@ class Topic extends Model
         return $posts->where('post_id', '<=', $postId)->count();
     }
 
-    public function postsPosition($sortedPosts, $withTrashed = false)
-    {
-        if ($sortedPosts->count() === 0) {
-            return [];
-        }
-
-        $firstPostPosition = $this->postPosition($sortedPosts->first()->post_id, $withTrashed);
-        $postIds = $sortedPosts->map(function ($p) {
-            return $p->post_id;
-        });
-
-        $buf = [];
-        $currentPostPosition = $firstPostPosition;
-        foreach ($postIds as $postId) {
-            $buf[$postId] = $currentPostPosition;
-            $currentPostPosition++;
-        }
-
-        return $buf;
-    }
-
     public function getPollStartAttribute($value)
     {
         return get_time_or_null($value);
