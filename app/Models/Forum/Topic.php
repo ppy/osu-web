@@ -17,12 +17,13 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models\Forum;
 
+use DB;
+use Carbon\Carbon;
 use App\Models\Log;
 use App\Models\User;
-use Carbon\Carbon;
-use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

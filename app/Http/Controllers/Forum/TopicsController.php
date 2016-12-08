@@ -17,26 +17,27 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers\Forum;
 
-use App\Events\Forum\TopicWasCreated;
-use App\Events\Forum\TopicWasReplied;
-use App\Events\Forum\TopicWasViewed;
-use App\Models\Forum\FeatureVote;
-use App\Models\Forum\Forum;
-use App\Models\Forum\PollOption;
+use Auth;
+use Event;
+use Request;
+use Carbon\Carbon;
 use App\Models\Forum\Post;
+use App\Models\Forum\Forum;
 use App\Models\Forum\Topic;
-use App\Models\Forum\TopicCover;
 use App\Models\Forum\TopicPoll;
+use App\Models\Forum\PollOption;
+use App\Models\Forum\TopicCover;
 use App\Models\Forum\TopicTrack;
 use App\Models\Forum\TopicWatch;
-use App\Transformers\Forum\TopicCoverTransformer;
-use Auth;
-use Carbon\Carbon;
-use Event;
+use App\Models\Forum\FeatureVote;
+use App\Events\Forum\TopicWasViewed;
+use App\Events\Forum\TopicWasCreated;
+use App\Events\Forum\TopicWasReplied;
 use Illuminate\Http\Request as HttpRequest;
-use Request;
+use App\Transformers\Forum\TopicCoverTransformer;
 
 class TopicsController extends Controller
 {

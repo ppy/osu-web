@@ -17,13 +17,14 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers\Forum;
 
+use Auth;
+use Request;
 use App\Models\Forum\Forum;
 use App\Models\Forum\TopicTrack;
 use App\Transformers\Forum\ForumCoverTransformer;
-use Auth;
-use Request;
 
 class ForumsController extends Controller
 {
