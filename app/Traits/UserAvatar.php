@@ -47,15 +47,13 @@ trait UserAvatar
 
     public function setAvatar($file)
     {
-        $storage = $this->avatarStorage();
-
         if ($file === null) {
-            $storage->delete($this->user_id);
+            $this->avatarStorage()->delete($this->user_id);
         } else {
             $filePath = $file->getRealPath();
             (new ImageProcessor($filePath, [256, 256], 100000))->process();
 
-            $storage->put($this->user_id, file_get_contents($filePath));
+            $this->avatarStorage()->put($this->user_id, file_get_contents($filePath));
             $entry = $this->user_id.'_'.time();
         }
 
