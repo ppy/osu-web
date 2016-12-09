@@ -64,8 +64,8 @@
                             <div class="artist__album-header-overlay" style="background-image: url({{$images['header_url']}});"></div>
                             <span class="artist__album-title">{{trans('artist.songs._')}}</span>
                         </div>
-                        <div class="js-react--artistTracklist" data-src="singles-json-{{$artist['id']}}"></div>
-                        <script id="singles-json-{{$artist['id']}}" type="application/json">
+                        <div class="js-react--artistTracklist" data-src="singles-json-{{$artist->id}}"></div>
+                        <script id="singles-json-{{$artist->id}}" type="application/json">
                             {!! json_encode($tracks) !!}
                         </script>
                     </div>
