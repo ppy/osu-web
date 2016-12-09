@@ -69,9 +69,30 @@ $(document).on 'change', '.js-url-selector', (e) ->
 $(document).on 'keydown', (e) ->
   $.publish 'key:esc' if e.keyCode == 27
 
-# countdown timers
+# Globally init countdown timers
 reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
   deadline: e.dataset.deadline
+
+# Automagically add qtips when text becomes truncated (and auto-removes
+# them when text becomes... un-truncated)
+$(document).on 'mouseenter touchstart', '.js-auto-truncate-qtip', (e) ->
+  $this = $(e.target)
+  api = $this.qtip('api')
+
+  if (this.offsetWidth < this.scrollWidth)
+    if (api)
+      $this.qtip('api').enable()
+    else
+      $this.attr 'title', $this.text()
+      $this.trigger('mouseover') # immediately trigger qtip magic
+  else
+    if (api)
+      $this.qtip('api').disable()
+
+# Ensure qtip is only added to .js-auto-truncate-qtip and not descendents
+$ ->
+  $(document).on 'mouseenter touchstart', '.js-auto-truncate-qtip *', (e) ->
+    e.stopPropagation()
 
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port

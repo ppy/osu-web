@@ -27,12 +27,12 @@ class @TracklistTrack extends React.Component
         el TrackPreview, track: @props.track
       td className: "tracklist__title#{if @props.track.exclusive then ' tracklist__title--exclusive' else ''}",
         i className: 'fa fa-fw fa-lg fa-extra-osu tracklist__exclusive-icon', title: osu.trans('artist.songs.exclusive') if @props.track.exclusive
-        span className: 'tracklist__name',
+        span className: 'tracklist__name js-auto-truncate-qtip',
           "#{@props.track.title} "
           span className: 'tracklist__version', @props.track.version
       td className: 'tracklist__length', @props.track.length
       td className: 'tracklist__bpm', "#{@props.track.bpm}bpm"
-      td className: 'tracklist__genre', @props.track.genre
+      td className: 'tracklist__genre js-auto-truncate-qtip', @props.track.genre
       td className: 'tracklist__dl',
         if @props.track.osz
           a className: 'tracklist__link', href: @props.track.osz, title: osu.trans('artist.beatmaps.download'),
