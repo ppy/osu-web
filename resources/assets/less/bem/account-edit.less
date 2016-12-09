@@ -30,7 +30,12 @@
   color: @gray-c;
 
   display: flex;
+  flex-direction: column;
   margin-top: (@spacing / 2);
+
+  @media @desktop {
+    flex-direction: row;
+  }
 
   &--first {
     margin-top: 0;
@@ -65,5 +70,6 @@
   &__section-title {
     color: @gray-f;
     font-size: @font-size--large;
+    margin: 0;
   }
 }
