@@ -20,24 +20,29 @@
 
 namespace App\Transformers;
 
-use App\Models\ArtistTrack;
+use App\Models\ArtistAlbum;
 use League\Fractal;
 
-class ArtistTrackTransformer extends Fractal\TransformerAbstract
+class ArtistAlbumTransformer extends Fractal\TransformerAbstract
 {
-    public function transform(ArtistTrack $track)
+    protected $availableIncludes = [
+        'tracks',
+    ];
+
+    public function transform(ArtistAlbum $album)
     {
         return [
-            'id' => $track->id,
-            'album_id' => $track->album_id,
-            'title' => $track->title,
-            'version' => $track->version,
-            'length' => format_duration_for_display($track->length),
-            'bpm' => $track->bpm,
-            'genre' => $track->genre,
-            'preview' => $track->preview,
-            'cover_url' => $track->cover_url,
-            'osz' => $track->osz,
+            'id' => $album->id,
+            'artist_id' => $album->artist_id,
+            'title' => $album->title,
+            'title_romanized' => $album->title_romanized,
+            'genre' => $album->genre,
+            'cover_url' => $album->cover_url,
         ];
+    }
+
+    public function includeTracks(ArtistAlbum $album)
+    {
+        return $this->collection($album->tracks, new ArtistTrackTransformer);
     }
 }

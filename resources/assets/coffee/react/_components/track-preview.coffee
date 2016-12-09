@@ -50,7 +50,9 @@ class @TrackPreview extends React.Component
     $.unsubscribe ".trackpreview-#{@props.track.id}"
 
   render: ->
-    div className: 'tracklist__cover', style: { backgroundImage: "url('#{@props.track.cover_url}')" },
+    coverStyle = if not @props.track.album_id then { backgroundImage: "url('#{@props.track.cover_url}')" }
+
+    div className: 'tracklist__cover', style: coverStyle,
       a className: 'tracklist__preview', href: '#', onClick: @previewPlay,
         i className: "fa fa-fw #{if @state.playing then 'fa-pause' else 'fa-play'}"
       audio id: "track-#{@props.track.id}-audio", src: (if @state.playing then @props.track.preview else ''), preload: 'none', onEnded: @previewDone
