@@ -141,7 +141,13 @@
     padding-right: 10px;
     align-items: center;
 
-    .@{top}__table--smaller & {
+    &--exclusive {
+      background: linear-gradient(to right, fade(@pink, 50%) 0%, transparent 100%);
+      background-size: 42px;
+      background-repeat: repeat-y;
+    }
+
+    &.@{top}__row--show-votes {
       align-items: baseline;
       display: block;
       padding: 2px 10px;
@@ -149,10 +155,8 @@
       height: 32px;
     }
 
-    &--exclusive {
-      background: linear-gradient(to right, fade(@pink, 50%) 0%, transparent 100%);
-      background-size: 42px;
-      background-repeat: repeat-y;
+    .@{top}__table--smaller & {
+      padding-left: 10px;
     }
   }
 
