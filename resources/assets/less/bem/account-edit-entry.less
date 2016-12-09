@@ -111,11 +111,11 @@
   }
 
   &__status {
-    width: 0;
     opacity: 0;
 
     &--saved {
       color: @green;
+      padding-right: @spacing;
 
       .@{top}.js-account-edit--saved & {
         opacity: 1;
@@ -124,6 +124,8 @@
     }
 
     &--saving {
+      width: 0;
+
       .@{top}.js-account-edit--saving & {
         opacity: 1;
       }
