@@ -49,7 +49,7 @@ class ArtistsController extends Controller
                 $links[] = [
                     'title' => ucwords($service),
                     'url' => $artist->$service,
-                    'icon' => $service === 'patreon' ? "extra-$service" : $service,
+                    'icon' => $service === 'patreon' ? "extra-social-$service" : $service,
                     'class' => $service,
                 ];
             }
