@@ -32,7 +32,7 @@ class Contest.Voting.Entry extends React.Component
         td {},
           el TrackPreview, track: @props.entry
       if @props.contest.show_votes
-        td className: "tracklist__title tracklist__row--show-votes", style: { backgroundSize: "#{relativeVotePercentage}%, 100%" },
+        td className: "tracklist__title tracklist__title--show-votes", style: { backgroundSize: "#{relativeVotePercentage}%, 100%" },
           div {}, "#{@props.entry.title} "
           div className: 'tracklist__version', "#{@props.entry.results.actual_name}"
       else
