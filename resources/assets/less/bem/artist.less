@@ -63,6 +63,9 @@
     opacity: 0.5;
     transition: 1s ease-in-out;
     top: 0;
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      display: none;
+    }
     &--sidebar {
       opacity: 0;
     }
