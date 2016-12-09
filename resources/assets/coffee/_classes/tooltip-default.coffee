@@ -76,18 +76,18 @@ class @TooltipDefault
   autoAddTooltip: (e) =>
     # Automagically add qtips when text becomes truncated (and auto-removes
     # them when text becomes... un-truncated)
-    $this = $(e.currentTarget)
-    api = $this.qtip('api')
+    target = e.currentTarget
+    $target = $(target)
+    api = $target.qtip('api')
 
-    if (e.currentTarget.offsetWidth < e.currentTarget.scrollWidth)
+    if (target.offsetWidth < target.scrollWidth)
       if (api)
-        $this.qtip('api').enable()
+        api.enable()
       else
-        $this.attr 'title', $this.text()
-        $this.trigger('mouseover') # immediately trigger qtip magic
+        $target.attr 'title', $target.text()
+        $target.trigger('mouseover') # immediately trigger qtip magic
     else
-      if (api)
-        $this.qtip('api').disable()
+      api?.disable()
 
   rollback: =>
     while @tooltips.length > 0
