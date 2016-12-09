@@ -18,6 +18,7 @@
 */
 
 .artist {
+  @_top: artist;
   &__index {
     background-color: #293336;
     padding: @spacing;
@@ -32,6 +33,83 @@
 
   &__box {
     margin: @spacing;
+  }
+
+  &__album {
+    background-color: #161A1C;
+    padding: 20px;
+    align-items: center;
+    .default-box-shadow();
+    overflow: hidden;
+    @media @desktop {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__album-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  &__album-header-overlay {
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    filter: blur(20px);
+    -webkit-filter: blur(20px);
+    opacity: 0.5;
+    transition: 1s ease-in-out;
+    top: 0;
+    // Hide this overlay in Internet Explorer
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      display: none;
+    }
+    &--sidebar {
+      opacity: 0;
+    }
+  }
+
+  &__album-cover {
+    width: 64px;
+    height: 64px;
+    .default-box-shadow();
+
+    &--sidebar {
+      width: 128px;
+      height: 128px;
+    }
+  }
+
+  &__sidebar-album-link {
+    display: block;
+    text-align: center;
+    margin: 20px;
+    color: white;
+    &:hover, &:active {
+      color: white;
+      text-decoration: none;
+    }
+
+    &:hover {
+      .@{_top}__album-header-overlay {
+        opacity: 0.2;
+      }
+    }
+  }
+
+  &__album-title {
+    padding: 10px;
+    font-size: 2em;
+    color: white;
+    .default-text-shadow();
+    &--sidebar {
+      padding: 0px;
+      font-size: 14px;
+      margin-top: 5px;
+    }
   }
 
   &__name {
@@ -57,8 +135,10 @@
     font-size: 14px;
     font-weight: 300;
     padding: 0px 20px 20px 20px;
+
     @media @desktop {
       padding: 20px;
+      margin-bottom: 10px;
     }
     .default-box-shadow();
 
@@ -91,11 +171,14 @@
     background-position: center;
     display: block;
 
-    margin: 0 auto;
-    margin-top: -50px;
+    margin: -50px auto @spacing auto;
+
     @media @desktop {
-      margin-top: -150px;
-      margin-left: @spacing;
+      margin-top: -160px;
+    }
+
+    @media @mobile {
+      margin: -90px auto @spacing auto;
     }
 
     &--index {
@@ -119,9 +202,20 @@
   }
 
   &__links-area {
-    margin: 0 auto;
+    margin: 0 auto 10px auto;
     width: 270px;
     padding: @spacing;
+
+    @media @desktop {
+      .default-box-shadow();
+      background: #2A3336;
+    }
+
+    &--albums {
+      @media @mobile {
+        display: none;
+      }
+    }
   }
 
   &__white-link {
