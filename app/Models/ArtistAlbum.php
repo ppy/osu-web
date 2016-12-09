@@ -22,15 +22,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ArtistTrack extends Model
+class ArtistAlbum extends Model
 {
     public function artist()
     {
         return $this->belongsTo(Artist::class);
     }
 
-    public function album()
+    public function tracks()
     {
-        return $this->belongsTo(ArtistAlbum::class);
+        return $this->hasMany(ArtistTrack::class, 'album_id', 'id');
     }
 }
