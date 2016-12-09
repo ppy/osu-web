@@ -57,6 +57,11 @@
     &:last-child {
       border-bottom: none;
     }
+
+    &--exclusive {
+      background-color: rgba(255, 102, 170, 0.44);
+      color: white;
+    }
   }
 
   &__row--header {
@@ -121,6 +126,12 @@
     }
   }
 
+  &__exclusive-icon {
+    font-size: 1.8em;
+    margin-left: -2px;
+    transform: rotateZ(-10deg);
+  }
+
   &__title {
     color: white;
     padding-left: 5px;
@@ -136,6 +147,12 @@
       padding: 2px 10px;
       line-height: normal;
       height: 32px;
+    }
+
+    &--exclusive {
+      background: linear-gradient(to right, fade(@pink, 50%) 0%, transparent 100%);
+      background-size: 42px;
+      background-repeat: repeat-y;
     }
   }
 

@@ -32,6 +32,7 @@ return [
     'songs' => [
         '_' => 'Songs',
         'count' => '1 song|:count songs',
+        'exclusive' => 'osu! exclusive',
     ],
     'links' => [
         'site' => 'Official Website',

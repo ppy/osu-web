@@ -25,9 +25,11 @@ class @TracklistTrack extends React.Component
     tr className: "tracklist__row#{if @props.track.selected then ' tracklist__row--selected' else ''}",
       td {},
         el TrackPreview, track: @props.track
-      td className:'tracklist__title',
-        "#{@props.track.title} "
-        span className: 'tracklist__version', @props.track.version
+      td className: "tracklist__title#{if @props.track.exclusive then ' tracklist__title--exclusive' else ''}",
+        i className: 'fa fa-fw fa-lg fa-extra-osu tracklist__exclusive-icon', title: osu.trans('artist.songs.exclusive') if @props.track.exclusive
+        span className: 'tracklist__name',
+          "#{@props.track.title} "
+          span className: 'tracklist__version', @props.track.version
       td className: 'tracklist__length', @props.track.length
       td className: 'tracklist__bpm', "#{@props.track.bpm}bpm"
       td className: 'tracklist__genre', @props.track.genre
