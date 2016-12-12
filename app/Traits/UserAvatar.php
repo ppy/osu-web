@@ -53,7 +53,8 @@ trait UserAvatar
             $filePath = $file->getRealPath();
             (new ImageProcessor($filePath, [256, 256], 100000))->process();
 
-            $this->avatarStorage()->put($this->user_id, file_get_contents($filePath));
+            $this->avatarStorage()->put($this->user_id, file_get_contents($filePath), 'public');
+
             $entry = $this->user_id.'_'.time();
         }
 
