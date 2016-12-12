@@ -44,9 +44,15 @@ bn = 'beatmapset-mapping'
           className: "#{bn}__date"
           moment(beatmapset.submitted_date).format dateFormat
 
-      if beatmapset.ranked_date?
+      if beatmapset.ranked > 0
         div null,
-          osu.trans 'beatmaps.beatmapset.show.details.ranked'
+          osu.trans "beatmaps.beatmapset.show.details.#{beatmapset.status}"
           span
             className: "#{bn}__date"
             moment(beatmapset.ranked_date).format dateFormat
+      else
+        div null,
+          osu.trans 'beatmaps.beatmapset.show.details.updated'
+          span
+            className: "#{bn}__date"
+            moment(beatmapset.last_updated).format dateFormat

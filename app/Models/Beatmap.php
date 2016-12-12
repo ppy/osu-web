@@ -122,4 +122,9 @@ class Beatmap extends Model
     {
         return $this->getScores("App\Models\Score\Best", $mode);
     }
+
+    public function status()
+    {
+        return array_search($this->approved, Beatmapset::STATES, true);
+    }
 }
