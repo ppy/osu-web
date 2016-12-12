@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,24 +18,31 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+namespace App\Transformers;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\ArtistAlbum;
+use League\Fractal;
 
-class Artist extends Model
+class ArtistAlbumTransformer extends Fractal\TransformerAbstract
 {
-    public function label()
+    protected $availableIncludes = [
+        'tracks',
+    ];
+
+    public function transform(ArtistAlbum $album)
     {
-        return $this->belongsTo(Label::class);
+        return [
+            'id' => $album->id,
+            'artist_id' => $album->artist_id,
+            'title' => $album->title,
+            'title_romanized' => $album->title_romanized,
+            'genre' => $album->genre,
+            'cover_url' => $album->cover_url,
+        ];
     }
 
-    public function albums()
+    public function includeTracks(ArtistAlbum $album)
     {
-        return $this->hasMany(ArtistAlbum::class, 'artist_id', 'id');
-    }
-
-    public function tracks()
-    {
-        return $this->hasMany(ArtistTrack::class);
+        return $this->collection($album->tracks, new ArtistTrackTransformer);
     }
 }

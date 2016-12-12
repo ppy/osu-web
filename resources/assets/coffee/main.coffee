@@ -69,7 +69,7 @@ $(document).on 'change', '.js-url-selector', (e) ->
 $(document).on 'keydown', (e) ->
   $.publish 'key:esc' if e.keyCode == 27
 
-# countdown timers
+# Globally init countdown timers
 reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
   deadline: e.dataset.deadline
 
