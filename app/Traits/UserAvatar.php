@@ -30,7 +30,7 @@ trait UserAvatar
     public function avatarStorage()
     {
         if ($this->avatarStorage === null) {
-            $this->avatarStorage = new StorageWithUrl(config('osu.avatar_storage'));
+            $this->avatarStorage = new StorageWithUrl(config('osu.avatar.storage'));
         }
 
         return $this->avatarStorage;
@@ -55,6 +55,10 @@ trait UserAvatar
 
             $this->avatarStorage()->put($this->user_id, file_get_contents($filePath));
             $entry = $this->user_id.'_'.time();
+        }
+
+        if (present(config('osu.avatar.cache_purge_prefix'))) {
+            file_get_contents(config('osu.avatar.cache_purge_prefix').$this->user_id.'?'.time());
         }
 
         return $this->update(['user_avatar' => $entry ?? null]);

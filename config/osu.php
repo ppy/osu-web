@@ -2,7 +2,10 @@
 
 // osu config~
 return [
-    'avatar_storage' => env('AVATAR_STORAGE', 'local-avatar'),
+    'avatar' => [
+        'storage' => env('AVATAR_STORAGE', 'local-avatar'),
+        'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
+    ],
 
     'bbcode' => [
         // this should be random or a config variable.
