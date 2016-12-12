@@ -18,6 +18,7 @@
 class @CurrentUserObserver
   constructor: ->
     @covers = document.getElementsByClassName('js-current-user-cover')
+    @avatars = document.getElementsByClassName('js-current-user-avatar')
 
     $.subscribe 'user:update', @setData
     $(document).on 'turbolinks:load', @reinit
@@ -25,7 +26,16 @@ class @CurrentUserObserver
 
 
   reinit: =>
+    @setAvatars()
     @setCovers()
+
+
+  setAvatars: (elements) =>
+    elements ?= @avatars
+
+    bgImage = if currentUser.id? then "url('#{currentUser.avatarUrl}')" else ''
+    for el in elements
+      el.style.backgroundImage = bgImage
 
 
   setCovers: (elements) =>

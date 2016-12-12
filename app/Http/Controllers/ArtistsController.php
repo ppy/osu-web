@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artist;
+use App\Transformers\ArtistAlbumTransformer;
 use App\Transformers\ArtistTrackTransformer;
 
 class ArtistsController extends Controller
@@ -36,7 +37,15 @@ class ArtistsController extends Controller
     public function show($id)
     {
         $artist = Artist::with('label')->findOrFail($id);
-        $tracks = $artist->tracks()->get();
+
+        $albums = $artist->albums()
+            ->where('visible', true)
+            ->with(['tracks' => function ($query) {
+                $query->orderBy('display_order', 'ASC');
+            }])->get();
+
+        $tracks = $artist->tracks()->whereNull('album_id')->orderBy('display_order', 'ASC NULLS LAST')->get();
+
         $images = [
             'header_url' => $artist->header_url,
             'cover_url' => $artist->cover_url,
@@ -49,7 +58,7 @@ class ArtistsController extends Controller
                 $links[] = [
                     'title' => ucwords($service),
                     'url' => $artist->$service,
-                    'icon' => $service === 'patreon' ? "extra-$service" : $service,
+                    'icon' => $service === 'patreon' ? "extra-social-$service" : $service,
                     'class' => $service,
                 ];
             }
@@ -67,7 +76,8 @@ class ArtistsController extends Controller
         return view('artists.show')
             ->with('artist', $artist)
             ->with('links', $links)
-            ->with('tracks', json_collection($tracks, new ArtistTrackTransformer()))
+            ->with('albums', json_collection($albums, new ArtistAlbumTransformer, ['tracks']))
+            ->with('tracks', json_collection($tracks, new ArtistTrackTransformer))
             ->with('images', $images);
     }
 }

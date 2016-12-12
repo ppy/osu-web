@@ -19,8 +19,8 @@ env:
 
 before_install:
   - bash .travis.install-mysql-5.7.sh
-  - nvm install 4.2
-  - nvm use 4.2
+  - nvm install 6.9
+  - nvm use 6.9
   - ./bin/db_setup.sh
   - ./build.sh
 

@@ -16,7 +16,7 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 ###
-propsFunction = ->
-  tracks: osu.parseJson('json-tracks')
+propsFunction = (target) ->
+  tracks: osu.parseJson target.dataset.src
 
 reactTurbolinks.register 'artistTracklist', Tracklist, propsFunction

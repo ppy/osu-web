@@ -20,6 +20,7 @@ el = React.createElement
 class ProfilePage.Header extends React.Component
   constructor: (props) ->
     super props
+
     @state =
       editing: false
       coverUrl: props.user.cover.url

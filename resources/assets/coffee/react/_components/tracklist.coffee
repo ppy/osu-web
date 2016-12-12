@@ -35,8 +35,8 @@ class @Tracklist extends React.Component
             tr className: 'tracklist__row--header',
                 th className: 'tracklist__col tracklist__col--preview', ''
                 th className: 'tracklist__col tracklist__col--title', 'title'
-                th className: 'tracklist__col', 'length'
-                th className: 'tracklist__col', 'bpm'
-                th className: 'tracklist__col', 'genre'
+                th className: 'tracklist__col tracklist__col--length', 'length'
+                th className: 'tracklist__col tracklist__col--bpm', 'bpm'
+                th className: 'tracklist__col tracklist__col--genre', 'genre'
                 th className: 'tracklist__col tracklist__col--dl',
         tbody {}, tracks

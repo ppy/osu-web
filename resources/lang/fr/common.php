@@ -19,35 +19,35 @@
  */
 
 return [
-        'buttons' => [
-            'cancel' => 'Annuler',
-            'post' => 'Poster',
-            'reply' => 'Répondre',
-            'reset' => 'Réinitialiser',
-            'save' => 'Sauvegarder',
-            'show_more' => 'Plus de résultats',
-        ],
+    'buttons' => [
+        'cancel' => 'Annuler',
+        'post' => 'Poster',
+        'reply' => 'Répondre',
+        'reset' => 'Réinitialiser',
+        'save' => 'Sauvegarder',
+        'show_more' => 'Plus de résultats',
+    ],
 
-        'count' => [
-            'item' => ':count objet|:count objets',
-        ],
+    'count' => [
+        'item' => ':count objet|:count objets',
+    ],
 
-        'dropzone' => [
-            'target' => 'déplacez ici pour uploader',
-        ],
+    'dropzone' => [
+        'target' => 'déplacez ici pour uploader',
+    ],
 
-        'pagination' => [
-            'previous' => 'précédent',
-            'next' => 'suivant',
-        ],
+    'pagination' => [
+        'previous' => 'précédent',
+        'next' => 'suivant',
+    ],
 
-        'time' => [
-            'days_ago' => 'il y a :count|il y a:count',
-            'hours_ago' => 'il y a :count heure|il y a :count heures',
-            'now' => 'Maitenant',
-        ],
+    'time' => [
+        'days_ago' => 'il y a :count|il y a:count',
+        'hours_ago' => 'il y a :count heure|il y a :count heures',
+        'now' => 'Maitenant',
+    ],
 
-        'title' => [
-            'notice' => 'Information',
-        ],
+    'title' => [
+        'notice' => 'Information',
+    ],
 ];

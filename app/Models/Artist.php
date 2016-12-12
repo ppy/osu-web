@@ -29,6 +29,11 @@ class Artist extends Model
         return $this->belongsTo(Label::class);
     }
 
+    public function albums()
+    {
+        return $this->hasMany(ArtistAlbum::class, 'artist_id', 'id');
+    }
+
     public function tracks()
     {
         return $this->hasMany(ArtistTrack::class);
