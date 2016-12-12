@@ -240,9 +240,11 @@ class @LineChart
       .style 'transform', "translate(#{coordsTooltip.join(', ')})"
 
     unless @tooltipContainer.attr('data-width-set') == '1'
+      width = @tooltipContainer.node().getBoundingClientRect().width * 1.2
       @tooltipContainer
         .attr 'data-width-set', '1'
-        .style 'width', "#{@tooltipContainer.node().getBoundingClientRect().width * 1.2}px"
+        .style 'width', "#{width}px"
+        .style 'margin-left', "-#{width / 2}px"
 
 
   lookupIndexFromX: (x) =>
