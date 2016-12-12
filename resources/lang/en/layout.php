@@ -26,7 +26,7 @@ return [
     'menu' => [
         'home' => [
             '_' => 'home',
-            'account-edit' => 'Account Settings',
+            'account-edit' => 'settings',
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
@@ -72,7 +72,7 @@ return [
             'tournaments' => 'tournaments',
             'tournaments-index' => 'tournaments',
             'tournaments-show' => 'tournament info',
-            'forum-topic-watches-index' => 'Topic Subscriptions',
+            'forum-topic-watches-index' => 'subscriptions',
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
