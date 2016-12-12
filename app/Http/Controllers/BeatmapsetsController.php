@@ -28,7 +28,6 @@ use App\Models\Language;
 use App\Transformers\BeatmapsetTransformer;
 use App\Transformers\CountryTransformer;
 use Auth;
-use League\Fractal\Manager;
 use Request;
 
 class BeatmapsetsController extends Controller
@@ -37,7 +36,6 @@ class BeatmapsetsController extends Controller
 
     public function index()
     {
-        $fractal = new Manager();
         $languages = Language::listing();
         $genres = Genre::listing();
         $beatmaps = json_collection(
