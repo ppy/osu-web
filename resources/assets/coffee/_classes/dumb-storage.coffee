@@ -16,23 +16,26 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-# For IE9.
-# Reference: https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
-class @CustomEventPolyfill
-  @fillIn: ->
-    return if typeof CustomEvent == 'function'
+# Kind of implements localStorage
+class @DumbStorage
+  constructor: ->
+    @_data = {}
 
-    customEvent = (event, params) ->
-      params ?=
-        bubbles: false
-        cancelable: false
-        detail: undefined
 
-      evt = document.createEvent 'CustomEvent'
-      evt.initCustomEvent event, params.bubbles, params.cancelable, params.detail
+  clear: =>
+    @_data = {}
 
-      evt
 
-    customEvent.prototype = window.Event.prototype
+  getItem: (key) =>
+    if @_data.hasOwnProperty(key)
+      @_data[key]
+    else
+      null
 
-    window.CustomEvent = customEvent
+
+  removeItem: (key) =>
+    delete @_data[key]
+
+
+  setItem: (key, value) =>
+    @_data[key] = String(value)

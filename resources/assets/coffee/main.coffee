@@ -16,8 +16,8 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-LocalStoragePolyfill.fillIn()
-CustomEventPolyfill.fillIn()
+@polyfills ?= new Polyfills
+
 
 # loading animation overlay
 # fired from turbolinks

@@ -16,29 +16,45 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-# Mainly for Safari Private Mode.
-class @LocalStoragePolyfill
-  @fillIn: ->
+class @Polyfills
+  constructor: ->
+    @customEvent()
+    @localStorage()
+    @mathTrunc()
+
+
+  # For IE9+.
+  # Reference: https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
+  customEvent: ->
+    return if typeof CustomEvent == 'function'
+
+    customEvent = (event, params) ->
+      params ?=
+        bubbles: false
+        cancelable: false
+        detail: undefined
+
+      evt = document.createEvent 'CustomEvent'
+      evt.initCustomEvent event, params.bubbles, params.cancelable, params.detail
+
+      evt
+
+    customEvent.prototype = window.Event.prototype
+
+    window.CustomEvent = customEvent
+
+
+  # Mainly for Safari Private Mode.
+  localStorage: ->
     try
       window.localStorage.setItem '_test', '1'
       window.localStorage.removeItem '_test'
     catch
-      localStorage = new @
+      localStorage = new DumbStorage
       window.localStorage = localStorage
       window.localStorage.__proto__ = localStorage
 
-  _data: {}
 
-  getItem: (key) =>
-    if @_data.hasOwnProperty(key)
-      @_data[key]
-    else
-      null
-
-  removeItem: (key) =>
-    delete @_data[key]
-
-  setItem: (key, value) =>
-    @_data[key] = String(value)
-
-  clear: => @_data = {}
+  mathTrunc: ->
+    Math.trunc ?= (x) ->
+      x - x % 1
