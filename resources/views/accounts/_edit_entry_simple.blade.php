@@ -23,7 +23,7 @@
     <input
         class="account-edit-entry__input js-account-edit__input"
         name="user[{{ $field }}]"
-        value={{ Auth::user()->$field }}
+        value="{{ Auth::user()->$field }}"
     >
 
     <div class="account-edit-entry__status account-edit-entry__status--saving">
