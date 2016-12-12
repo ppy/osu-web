@@ -30,6 +30,10 @@ return [
             'general_discussion' => 'General discussion can not be resolved.',
             'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
         ],
+
+        'vote' => [
+            'owner' => 'Can not vote own discussion!',
+        ],
     ],
 
     'beatmap_discussion_post' => [

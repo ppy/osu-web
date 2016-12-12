@@ -116,6 +116,10 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
+        if ($discussion->user_id === $user->user_id) {
+            return 'beatmap_discussion.vote.owner';
+        }
+
         return 'ok';
     }
 
