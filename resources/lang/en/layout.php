@@ -234,8 +234,9 @@ return [
 
     'popup_user' => [
         'links' => [
-            'profile' => 'My Profile',
+            'account-edit' => 'Settings',
             'logout' => 'Log Out',
+            'profile' => 'My Profile',
         ],
     ],
 ];
