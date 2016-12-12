@@ -21,7 +21,7 @@
 return [
     'edit' => [
         'title' => 'Account Settings',
-        'title_compact' => 'account',
+        'title_compact' => 'settings',
 
         'avatar' => [
             'title' => 'Edit Avatar',
