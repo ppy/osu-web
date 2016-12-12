@@ -31,7 +31,7 @@ class AccountControllerTest extends TestCase
 
         $this->actingAs($this->user)
             ->withSession(['verified' => UserVerification::VERIFIED])
-            ->json('PUT', route('account.extras-order'), [
+            ->json('PUT', route('account.update'), [
                 'order' => $newOrder,
             ])
             ->seeJson(['profileOrder' => $newOrder]);
@@ -55,7 +55,7 @@ class AccountControllerTest extends TestCase
 
         $this->actingAs($this->user)
             ->withSession(['verified' => UserVerification::VERIFIED])
-            ->json('PUT', route('account.extras-order'), [
+            ->json('PUT', route('account.update'), [
                 'order' => $newOrderWithDuplicate,
             ])
             ->seeJson(['profileOrder' => $newOrder]);
@@ -79,7 +79,7 @@ class AccountControllerTest extends TestCase
 
         $this->actingAs($this->user)
             ->withSession(['verified' => UserVerification::VERIFIED])
-            ->json('PUT', route('account.extras-order'), [
+            ->json('PUT', route('account.update'), [
                 'order' => $newOrderWithInvalid,
             ])
             ->seeJson(['profileOrder' => $newOrder]);
