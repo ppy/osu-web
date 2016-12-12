@@ -20,7 +20,7 @@ el = React.createElement
 
 bn = 'beatmapset-mapping'
 
-@BeatmapsetMapping = ({user, beatmapset, beatmap}) ->
+@BeatmapsetMapping = ({user, beatmapset}) ->
   dateFormat = 'MMM D, YYYY'
   user ?= beatmapset.user
 
@@ -44,9 +44,9 @@ bn = 'beatmapset-mapping'
           className: "#{bn}__date"
           moment(beatmapset.submitted_date).format dateFormat
 
-      if beatmap.ranked > 0
+      if beatmapset.ranked > 0
         div null,
-          osu.trans "beatmaps.beatmapset.show.details.#{beatmap.status}"
+          osu.trans "beatmaps.beatmapset.show.details.#{beatmapset.status}"
           span
             className: "#{bn}__date"
             moment(beatmapset.ranked_date).format dateFormat
@@ -55,4 +55,4 @@ bn = 'beatmapset-mapping'
           osu.trans 'beatmaps.beatmapset.show.details.updated'
           span
             className: "#{bn}__date"
-            moment(beatmap.last_updated).format dateFormat
+            moment(beatmapset.last_updated).format dateFormat
