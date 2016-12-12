@@ -33,7 +33,7 @@ class @EditorZoom
     $hiddenElements.toggleClass 'hidden', enable
     $visibleElements.toggleClass 'hidden', !enable
 
-    $container.toggleClass 'js-editor-zoom--full', enable
+    $container.toggleClass 'u-full-screen', enable
 
     $box = $container.find('.js-editor-zoom--box')
 

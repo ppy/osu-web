@@ -28,4 +28,9 @@ class ArtistTrack extends Model
     {
         return $this->belongsTo(Artist::class);
     }
+
+    public function album()
+    {
+        return $this->belongsTo(ArtistAlbum::class);
+    }
 }

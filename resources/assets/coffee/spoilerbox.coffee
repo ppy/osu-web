@@ -18,7 +18,7 @@
 $(document).on 'click', '.js-spoilerbox__link', (e) ->
   e.preventDefault()
 
-  $link = $(e.target).parents('.js-spoilerbox')
+  $link = $(e.target).closest('.js-spoilerbox')
 
   $link.toggleClass 'js-spoilerbox--open'
-  osu.pageChange
+  osu.pageChange()

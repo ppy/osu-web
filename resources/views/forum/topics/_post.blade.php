@@ -30,7 +30,7 @@
     data-post-position="{{ $options["postPosition"] }}"
 >
     <div class="forum-post {{ $post->deleted_at ? 'forum-post--hidden' : '' }}">
-        @if ($post->userNormalized()->is_special)
+        @if ($post->userNormalized()->isSpecial())
             <div
                 class="forum-post__stripe"
                 style="{{ user_colour_style($post->userNormalized()->user_colour, "background-color") }}"

@@ -19,15 +19,18 @@
  */
 
 return [
+    'page_description' => 'Artistes plébiscités sur osu!',
+    'title' => 'Artistes plébiscités',
+
     'beatmaps' => [
         '_' => 'Beatmaps',
         'download' => 'Télécharger une beatmap type',
         'download-na' => 'Beatmap type non disponible',
     ],
-    'page_description' => 'Artistes plébiscités sur osu!',
-    'title' => 'Artistes plébiscités',
-    'songs' => '1 musique|:count musiques',
     'links' => [
         'site' => 'Site officiel',
+    ],
+    'songs' => [
+        'count' => '1 musique|:count musiques',
     ],
 ];
