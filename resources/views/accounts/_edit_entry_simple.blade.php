@@ -15,24 +15,22 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div>
-    <div class="osu-nav__title">
-        {{ Auth::user()->username ?? trans("users.anonymous.username")}}
+<label class="account-edit-entry js-account-edit">
+    <div class="account-edit-entry__label">
+        {{ trans("accounts.edit.profile.user.{$field}") }}
     </div>
 
-    <div class="osu-nav__highlight-bar">
-        <span class="bar"></span>
-    </div>
-</div>
+    <input
+        class="account-edit-entry__input js-account-edit__input"
+        name="user[{{ $field }}]"
+        value={{ Auth::user()->$field }}
+    >
 
-<div class="osu-nav__avatar">
-    <div
-        class="
-            avatar
-            avatar--full-rounded
-            {{ Auth::user() === null ? 'avatar--guest' : '' }}
-            js-nav-avatar
-            js-current-user-avatar
-        "
-    ></div>
-</div>
+    <div class="account-edit-entry__status account-edit-entry__status--saving">
+        <i class="fa fa-spinner fa-pulse fa-fw"></i>
+    </div>
+
+    <div class="account-edit-entry__status account-edit-entry__status--saved">
+        {{ trans('common.saved') }}
+    </div>
+</label>

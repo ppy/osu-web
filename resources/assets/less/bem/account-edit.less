@@ -17,34 +17,59 @@
  *
  */
 
-.osu-page {
-  .width(@extra-margin: 0px) {
-    width: calc(100% ~'-' (@extra-margin * 2));
-    max-width: (@container-sm - @extra-margin * 2);
-  }
+.account-edit {
+  @top: account-edit;
 
-  .width-desktop(@extra-margin: 0px) {
-    width: calc(100% ~'-' ((@extra-margin + @grid-gutter-width) * 2));
-    max-width: (@container-sm - @extra-margin * 2);
-  }
+  @section-width: 250px;
+  @label-width: 150px;
+  @input-width: 250px;
 
-  align-self: center;
-  margin-left: auto;
-  margin-right: auto;
+  .default-box-shadow();
+  background-color: @gray-4;
+  font-size: @font-size--normal;
+  color: @gray-c;
 
-  .width();
+  display: flex;
+  flex-direction: column;
+  margin-top: (@spacing / 2);
+
   @media @desktop {
-    .width-desktop();
+    flex-direction: row;
   }
 
-  &--account-edit-header {
-    .default-box-shadow();
-  }
+  &--first {
+    margin-top: 0;
 
-  &--small {
-    .width(@spacing * 2);
-    @media @desktop {
-      .width-desktop(@spacing * 2);
+    &::after {
+      .inner-shadow-top();
+      .full-size();
+      pointer-events: none;
     }
+  }
+
+  &__input-group {
+    background-color: @gray-5;
+    padding: @spacing 0;
+
+    & + & {
+      margin-top: 1px;
+    }
+  }
+
+  &__input-groups {
+    flex: 1;
+  }
+
+  &__section {
+    flex: none;
+    width: @section-width;
+    margin: (@spacing * 2);
+    margin-left: (@spacing * 4);
+  }
+
+  &__section-title {
+    color: @gray-f;
+    font-size: @font-size--large;
+    margin: 0;
   }
 }

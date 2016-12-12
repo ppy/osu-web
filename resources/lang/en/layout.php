@@ -26,11 +26,12 @@ return [
     'menu' => [
         'home' => [
             '_' => 'home',
-            'index' => 'osu!',
+            'account-edit' => 'Account Settings',
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
             'getNews' => 'news',
+            'index' => 'osu!',
             'supportTheGame' => 'support the game',
         ],
         'help' => [

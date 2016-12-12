@@ -27,6 +27,7 @@ desktop.ini
 /public/build
 /public/vendor
 /public/uploads
+/public/uploads-avatar
 
 # server logs
 /logs/osu/*
