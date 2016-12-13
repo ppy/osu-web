@@ -133,11 +133,16 @@ BeatmapDiscussions.Post = React.createClass
       div className: "#{bn}__info-container",
         span
           className: "#{bn}__info"
-          dangerouslySetInnerHTML:
-            __html: "#{osu.link laroute.route('users.show', user: @props.user.id),
-              @props.user.username
-              classNames: ["#{bn}__info-user"]
-              }, #{osu.timeago @props.post.created_at}"
+          a
+            href: laroute.route('users.show', user: @props.user.id)
+            className: "#{bn}__info-user"
+            @props.user.username
+          ', '
+          a
+            href: BeatmapDiscussionHelper.hash discussionId: @props.discussion.id
+            className: "#{bn}__info-permalink"
+            dangerouslySetInnerHTML:
+              __html: osu.timeago(@props.post.created_at)
 
         if @props.post.updated_at != @props.post.created_at
           span

@@ -105,8 +105,8 @@ class @BeatmapDiscussionsChart
 
     points = @svgPoints.enter()
       .append 'a'
-      .attr 'xlink:href', (d) => "#/#{d.id}"
-      .attr 'data-target-id', (d) => d.id
+      .attr 'xlink:href', (d) =>
+        BeatmapDiscussionHelper.hash discussionId: d.id
       .attr 'class', (d) =>
         "#{bn}__point #{bn}__point--#{d.message_type}"
       .on 'click', (d) =>
