@@ -26,7 +26,7 @@ return [
     'menu' => [
         'home' => [
             '_' => 'acceuil',
-						'index' => 'osu!',
+                        'index' => 'osu!',
             'getChangelog' => 'notes de MàJ',
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
@@ -129,7 +129,7 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
-						'root' => 'index',
+                        'root' => 'index',
             'logs-index' => 'log',
             'beatmapsets' => [
                 '_' => 'sets de beatmaps',

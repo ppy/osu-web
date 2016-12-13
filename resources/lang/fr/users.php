@@ -19,7 +19,7 @@
  */
 
 return [
-		'deleted' => '[utilisateur supprimé]',
+        'deleted' => '[utilisateur supprimé]',
 
     'login' => [
         '_' => 'Se connecter',
@@ -106,7 +106,7 @@ return [
                 'title' => 'moi!',
             ],
             'medals' => [
-								'empty' => "Cet utilsateur n'en a jamais reçu. ;_;",
+                                'empty' => "Cet utilsateur n'en a jamais reçu. ;_;",
                 'title' => 'Médailles',
             ],
             'recent_activities' => [

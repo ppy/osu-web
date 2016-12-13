@@ -21,9 +21,9 @@
 return [
     'required' => ':attribute est requis.',
 
-		'beatmap_discussion_post' => [
-				'first_post' => 'Impossible de supprimer le post de départ.',
-		],
+        'beatmap_discussion_post' => [
+                'first_post' => 'Impossible de supprimer le post de départ.',
+        ],
 
     'forum' => [
         'feature_vote' => [

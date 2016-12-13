@@ -152,13 +152,13 @@ return [
             'replies' => 'réponses',
         ],
 
-				 'lock' => [
-						 'is_locked' => 'Ce sujet est verouillé, vous ne pouvez pas répondre',
-						 'lock-0' => 'Déverouiller le sujet',
-						 'lock-1' => 'Verouiller le sujet',
-						 'state-0' => 'Le sujet a été déverouillé',
-						 'state-1' => 'Le sujet a été verouillé',
-				 ],
+                 'lock' => [
+                         'is_locked' => 'Ce sujet est verouillé, vous ne pouvez pas répondre',
+                         'lock-0' => 'Déverouiller le sujet',
+                         'lock-1' => 'Verouiller le sujet',
+                         'state-0' => 'Le sujet a été déverouillé',
+                         'state-1' => 'Le sujet a été verouillé',
+                 ],
 
         'moderate_move' => [
             'title' => 'Se déplacer dans un autre forum',
@@ -172,7 +172,7 @@ return [
         ],
 
         'show' => [
-						 'total_posts' => 'Total des posts',
+                         'total_posts' => 'Total des posts',
 
             'feature_vote' => [
                 'current' => 'Priorité : +:count',
@@ -197,8 +197,8 @@ return [
         ],
 
         'watch' => [
-						'state-0' => 'Vous ne suivez pas ce sujet',
-						'state-1' => 'Vous suivez ce sujet',
+                        'state-0' => 'Vous ne suivez pas ce sujet',
+                        'state-1' => 'Vous suivez ce sujet',
             'watch-0' => 'Se désabonner du sujet',
             'watch-1' => 'S\'abonner au sujet',
         ],
