@@ -35,7 +35,7 @@ class MatchesController extends Controller
     {
         $match = Match::findOrFail($match_id);
 
-        $match = fractal_item_array(
+        $match = json_item(
             $match,
             new MatchTransformer
         );
@@ -91,16 +91,16 @@ class MatchesController extends Controller
 
         $users = User::with('country')->whereIn('user_id', array_unique($userIds))->get();
 
-        $users = fractal_collection_array(
+        $users = json_collection(
             $users,
             new UserCompactTransformer,
             'country'
         );
 
-        $events = fractal_collection_array(
+        $events = json_collection(
             $events,
             new EventTransformer,
-            implode(',', ['game.beatmap.beatmapset', 'game.scores'])
+            ['game.beatmap.beatmapset', 'game.scores']
         );
 
         return [

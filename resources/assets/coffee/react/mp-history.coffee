@@ -16,8 +16,6 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-propsFunction = =>
-  match: osu.parseJson('json-match').data
+reactTurbolinks.register 'mp-history', MPHistory.Main, ->
+  match: osu.parseJson('json-match')
   full: full
-
-reactTurbolinks.register 'mp-history', MPHistory.Main, propsFunction

@@ -94,7 +94,7 @@
         </span>
         <i class="fa fa-chevron-down"></i>
 
-        <select class="bbcode-size-select__select js-bbcode-btn--select">
+        <select class="bbcode-size-select__select js-bbcode-btn--size">
             <option value="50">{{ trans("bbcode.size.tiny") }}</option>
             <option value="85">{{ trans("bbcode.size.small") }}</option>
             <option value="100" selected>{{ trans("bbcode.size.normal") }}</option>

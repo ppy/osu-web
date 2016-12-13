@@ -20,7 +20,7 @@
 
 return [
     'match' => [
-        'header' => 'Partidas Multiplayer',
+        'header' => 'Partidas multijogadores',
         'team-types' => [
             'head-to-head' => 'Head-to-head',
             'tag-coop' => 'Tag Co-op',
@@ -28,19 +28,19 @@ return [
             'tag-team-vs' => 'Tag Team VS',
         ],
         'events' => [
-            'player-left' => ':user Saiu da partida',
-            'player-joined' => ':user Juntou-se a partida',
+            'player-left' => ':user saiu da partida',
+            'player-joined' => ':user entrou na partida',
             'player-kicked' => ':user foi expulso da partida',
             'match-created' => ':user criou a partida',
-            'match-disbanded' => ':the partida foi dissolvida',
-            'host-changed' => ':user tornou-se o host',
+            'match-disbanded' => ':the partida foi desfeita',
+            'host-changed' => ':user tornou-se o líder',
 
             'player-left-no-user' => 'um jogador deixou a partida',
-            'player-joined-no-user' => 'um jogador se juntou a partida',
+            'player-joined-no-user' => 'um jogador entrou na partida',
             'player-kicked-no-user' => 'um jogador foi expulso da partida',
             'match-created-no-user' => 'a partida foi criada',
-            'match-disbanded-no-user' => 'a partida foi dissolvida',
-            'host-changed-no-user' => 'o host foi alterado',
+            'match-disbanded-no-user' => 'a partida foi desfeita',
+            'host-changed-no-user' => 'o líder foi alterado',
         ],
         'in-progress' => '(partida em progresso)',
         'score' => [
@@ -48,7 +48,7 @@ return [
                 'combo' => 'Combo',
                 'accuracy' => 'Precisão',
                 'score' => 'Pontuação',
-                'countgeki' => 'MAX',
+                'countgeki' => 'MÁX',
                 'count300' => '300s',
                 'countkatu' => '200s',
                 'count100' => '100s',
@@ -58,20 +58,20 @@ return [
         ],
         'failed' => 'FALHOU',
         'teams' => [
-            'blue' => 'Time Azul',
-            'red' => 'Time Vermelho',
+            'blue' => 'Equipe Azul',
+            'red' => 'Equipe Vermelha',
         ],
-        'winner' => ':team Venceu',
+        'winner' => ':team venceu',
         'difference' => 'por :difference',
         'loading-events' => 'Carregando eventos...',
         'more-events' => 'ver tudo...',
-        'beatmap-deleted' => 'beatmap deletado',
+        'beatmap-deleted' => 'beatmap excluído',
     ],
     'game' => [
         'scoring-type' => [
             'score' => 'Maior pontuação',
-            'accuracy' => 'Melhor Precisão',
-            'combo' => 'maior Combo',
+            'accuracy' => 'Maior precisão',
+            'combo' => 'Maior combo',
             'scorev2' => 'Pontuação V2',
         ],
     ],

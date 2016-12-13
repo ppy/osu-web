@@ -28,6 +28,11 @@ BeatmapDiscussions.NewReply = React.createClass
     @throttledPost = _.throttle @post, 1000
 
 
+  componentWillUnmount: ->
+    @throttledPost.cancel()
+    @postXhr?.abort()
+
+
   getInitialState: ->
     message: ''
     resolveDiscussion: @canUpdate() && @props.discussion.resolved
@@ -35,48 +40,58 @@ BeatmapDiscussions.NewReply = React.createClass
 
   render: ->
     div
-      className: "#{bn} #{bn}--reply"
+      className: "#{bn} #{bn}--reply #{bn}--editing-dark"
 
-      div className: "#{bn}__avatar",
-        el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
+      div
+        className: "#{bn}__content"
+        div className: "#{bn}__avatar",
+          el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
 
-      div className: "#{bn}__message-container",
-        textarea
-          className: "#{bn}__message #{bn}__message--editor"
-          type: 'text'
-          rows: 2
-          value: @state.message
-          onChange: @setMessage
-          onKeyDown: @submitIfEnter
+        div className: "#{bn}__message-container",
+          textarea
+            className: "#{bn}__message #{bn}__message--editor"
+            type: 'text'
+            rows: 2
+            value: @state.message
+            onChange: @setMessage
+            onKeyDown: @submitIfEnter
+            placeholder: osu.trans 'beatmaps.discussions.reply_placeholder'
 
+      div
+        className: "#{bn}__footer"
         div className: "#{bn}__actions",
           div className: "#{bn}__actions-group",
             if @props.discussion.timestamp? && @canUpdate()
-              label
-                className: 'osu-checkbox'
-                input
-                  className: 'osu-checkbox__input'
-                  type: 'checkbox'
-                  checked: @state.resolveDiscussion
-                  onChange: (e) => @setState resolveDiscussion: e.target.checked
+              div className: "#{bn}__action",
+                label
+                  className: 'osu-checkbox'
+                  input
+                    className: 'osu-checkbox__input'
+                    type: 'checkbox'
+                    checked: @state.resolveDiscussion
+                    onChange: (e) => @setState resolveDiscussion: e.target.checked
 
-                span className: 'osu-checkbox__tick',
-                  el Icon, name: 'check'
+                  span className: 'osu-checkbox__tick',
+                    el Icon, name: 'check'
 
-                osu.trans('beatmaps.discussions.resolved')
+                  osu.trans('beatmaps.discussions.resolved')
           div className: "#{bn}__actions-group",
-            button
-              className: 'btn-osu-lite btn-osu-lite--default'
-              disabled: !@validPost()
-              onClick: @throttledPost
-              osu.trans('common.buttons.reply')
+            div className: "#{bn}__action",
+              el BigButton,
+                text: osu.trans('common.buttons.reply')
+                icon: 'reply'
+                props:
+                  disabled: !@validPost()
+                  onClick: @throttledPost
 
 
   post: ->
     return if !@validPost()
     LoadingOverlay.show()
 
-    $.ajax laroute.route('beatmap-discussion-posts.store'),
+    @postXhr?.abort()
+
+    @postXhr = $.ajax laroute.route('beatmap-discussion-posts.store'),
       method: 'POST'
       data:
         beatmap_discussion_id: @props.discussion.id
@@ -88,7 +103,7 @@ BeatmapDiscussions.NewReply = React.createClass
     .done (data) =>
       @setState message: ''
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_ids
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion.data
+      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion
 
     .fail osu.ajaxError
 

@@ -1,5 +1,5 @@
 ###
-# Copyright 2016 ppy Pty. Ltd.
+# Copyright 2015-2016 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -18,67 +18,80 @@
 {div, audio} = React.DOM
 el = React.createElement
 
-BeatmapsetPage.Main = React.createClass
-  mixins: [ScrollingPageMixin]
+class BeatmapsetPage.Main extends React.Component
+  constructor: (props) ->
+    super props
 
-  getInitialState: ->
     optionsHash = BeatmapsetPageHash.parse location.hash
     @initialPage = optionsHash.page
 
-    beatmaps = _.concat @props.beatmapset.beatmaps.data, @props.beatmapset.converts.data
-    beatmaps = _.sortBy beatmaps, ['convert', 'difficulty_rating']
+    beatmaps = _.concat props.beatmapset.beatmaps, props.beatmapset.converts
+    beatmaps = BeatmapHelper.group beatmaps
 
-    # group beatmaps by playmode and then by beatmap id
-    beatmaps = _.groupBy beatmaps, 'mode'
-    # contains the beatmap ids in their appropriate order
-    beatmapList = {}
-
-    for key, val of beatmaps
-      beatmaps[key] = _.keyBy val, 'id'
-      beatmapList[key] = _.map val, 'id'
-
-    if beatmaps[optionsHash.playmode]? && beatmaps[optionsHash.playmode][optionsHash.beatmapId]?
-      currentBeatmapId = optionsHash.beatmapId
-      currentPlaymode = optionsHash.playmode
+    currentBeatmap = BeatmapHelper.find
+      group: beatmaps
+      id: optionsHash.beatmapId
+      mode: optionsHash.playmode
 
     # fall back to the first mode that has beatmaps in this mapset
-    if !currentBeatmapId?
-      for mode in BeatmapHelper.modes
-        if beatmapList[mode]?
-          currentBeatmapId = _.last beatmapList[mode]
-          currentPlaymode = mode
-          break
+    currentBeatmap ?= BeatmapHelper.default items: beatmaps[optionsHash.playmode]
+    currentBeatmap ?= BeatmapHelper.default group: beatmaps
+
+    @scoreboardXhr = null
+    @favouriteXhr = null
+
+    @state =
+      beatmaps: beatmaps
+      currentBeatmap: currentBeatmap
+      favcount: props.beatmapset.favourite_count
+      hasFavourited: props.beatmapset.has_favourited
+      loading: false
+      isPreviewPlaying: false
+      currentScoreboardType: 'global'
+      enabledMods: []
+      scores: []
+      userScore: null
+      userScorePosition: -1
 
 
-    beatmaps: beatmaps
-    beatmapList: beatmapList
-    currentBeatmapId: currentBeatmapId
-    currentPlaymode: currentPlaymode
-    loading: false
-    isPreviewPlaying: false
-    currentScoreboard: 'global'
-    scores: []
-
-  setHash: ->
+  setHash: =>
     osu.setHash BeatmapsetPageHash.generate
-      page: @state.currentPage
-      beatmapId: @state.currentBeatmapId
-      playmode: @state.currentPlaymode
+      beatmap: @state.currentBeatmap
 
-  setCurrentScoreboard: (_e, {scoreboard, forceReload = false}) ->
-    return if @state.loading
+
+  setCurrentScoreboard: (_e, {
+    scoreboardType = @state.currentScoreboardType,
+    enabledMod = null,
+    forceReload = false,
+    resetMods = false
+  }) =>
+    @scoreboardXhr?.abort()
 
     @setState
-      currentScoreboard: scoreboard
-      scores: []
+      currentScoreboardType: scoreboardType
 
-    return if scoreboard != 'global' && !currentUser.isSupporter
+    if scoreboardType != 'global' && !currentUser.isSupporter
+      @setState scores: []
+      return
+
+    enabledMods = if resetMods
+      []
+    else if enabledMod != null && _.includes @state.enabledMods, enabledMod
+      _.without @state.enabledMods, enabledMod
+    else if enabledMod != null
+      _.concat @state.enabledMods, enabledMod
+    else
+      @state.enabledMods
 
     @scoresCache ?= {}
-    cacheKey = "#{@state.currentBeatmapId}-#{@state.currentPlaymode}-#{scoreboard}"
+    cacheKey = "#{@state.currentBeatmap.id}-#{@state.currentBeatmap.mode}-#{_.sortBy enabledMods}-#{scoreboardType}"
 
     loadScore = =>
-      @setState scores: @scoresCache[cacheKey]
+      @setState
+        scores: @scoresCache[cacheKey].scoresList
+        userScore: @scoresCache[cacheKey].userScore if @scoresCache[cacheKey].userScore?
+        userScorePosition: @scoresCache[cacheKey].userScorePosition
+        enabledMods: enabledMods
 
     if !forceReload && @scoresCache[cacheKey]?
       loadScore()
@@ -87,69 +100,99 @@ BeatmapsetPage.Main = React.createClass
     $.publish 'beatmapset:scoreboard:loading', true
     @setState loading: true
 
-    $.ajax (laroute.route 'beatmaps.scores', beatmaps: @state.currentBeatmapId),
+    @scoreboardXhr = $.ajax (laroute.route 'beatmaps.scores', beatmap: @state.currentBeatmap.id),
       method: 'GET'
       dataType: 'JSON'
       data:
-        type: scoreboard
-        mode: @state.currentPlaymode
+        type: scoreboardType
+        enabledMods: enabledMods
+        mode: @state.currentBeatmap.mode
 
     .done (data) =>
-      @scoresCache[cacheKey] = data.data
+      @scoresCache[cacheKey] = data
       loadScore()
 
-    .fail osu.ajaxError
+    .fail (xhr, status) =>
+      if status == 'abort'
+        return
+
+      osu.ajaxError xhr
 
     .always =>
       $.publish 'beatmapset:scoreboard:loading', false
       @setState loading: false
 
 
-  setCurrentBeatmapId: (_e, {beatmapId, playmode}) ->
-    return if @state.currentBeatmapId == beatmapId && @state.currentPlaymode == playmode
+  setCurrentBeatmap: (_e, {beatmap}) =>
+    return unless beatmap?
+    return if @state.currentBeatmap.id == beatmap.id && @state.currentBeatmap.mode == beatmap.mode
 
     @setState
-      currentBeatmapId: beatmapId
-      currentPlaymode: playmode
+      currentBeatmap: beatmap
       =>
         @setHash()
-        @setCurrentScoreboard null, scoreboard: 'global'
+        @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
 
-  togglePreviewPlayingState: (_e, isPreviewPlaying) ->
+
+  setCurrentPlaymode: (_e, {mode}) =>
+    return if @state.currentBeatmap.mode == mode
+
+    @setCurrentBeatmap null,
+      beatmap: BeatmapHelper.default items: @state.beatmaps[mode]
+
+
+  togglePreviewPlayingState: (_e, isPreviewPlaying) =>
     @setState isPreviewPlaying: isPreviewPlaying
 
     if isPreviewPlaying
       @audioPreview.play()
     else
       @audioPreview.pause()
-      @audioPreview.currentTime = 0;
+      @audioPreview.currentTime = 0
 
-  onPreviewEnded: ->
+
+  setHoveredBeatmap: (_e, hoveredBeatmap) =>
+    @setState hoveredBeatmap: hoveredBeatmap
+
+
+  toggleFavourite: =>
+    @favouriteXhr = $.ajax
+      url: laroute.route('beatmapsets.update-favourite', beatmapset: @props.beatmapset.id)
+      method: 'post'
+      dataType: 'json'
+      data:
+        action: if @state.hasFavourited then 'unfavourite' else 'favourite'
+
+    .done (data) =>
+      @setState
+        favcount: data.favcount
+        hasFavourited: data.favourited
+
+  onPreviewEnded: =>
     @setState isPreviewPlaying: false
 
-  componentDidMount: ->
-    @removeListeners()
 
-    $.subscribe 'beatmapset:beatmap:set.beatmapsetPage', @setCurrentBeatmapId
-    $.subscribe 'beatmapset:page:jump.beatmapsetPage', @pageJump
+  componentDidMount: ->
+    $.subscribe 'beatmapset:beatmap:set.beatmapsetPage', @setCurrentBeatmap
+    $.subscribe 'beatmapset:mode:set.beatmapsetPage', @setCurrentPlaymode
     $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
     $.subscribe 'beatmapset:preview:toggle.beatmapsetPage', @togglePreviewPlayingState
+    $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmapId
+    $.subscribe 'beatmapset:favourite:toggle.beatmapsetPage', @toggleFavourite
 
-    @pageJump null, @initialPage
-    @setCurrentScoreboard null, scoreboard: 'global'
+    @setHash()
+    @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
 
     @audioPreview = document.getElementsByClassName('js-beatmapset-page--audio-preview')[0]
+    @audioPreview.volume = 0.45
+
 
   componentWillUnmount: ->
-    @removeListeners()
-
-
-  removeListeners: ->
     $.unsubscribe '.beatmapsetPage'
+    @scoreboardXhr?.abort()
+    @favouriteXhr?.abort()
 
   render: ->
-    currentBeatmap = @state.beatmaps[@state.currentPlaymode][@state.currentBeatmapId]
-
     div className: 'osu-layout__section',
       audio
         className: 'js-beatmapset-page--audio-preview'
@@ -157,26 +200,27 @@ BeatmapsetPage.Main = React.createClass
         preload: 'auto'
         onEnded: @onPreviewEnded
 
-      el BeatmapsetPage.Header,
-        title: @props.beatmapset.title
-        artist: @props.beatmapset.artist
-        playcount: @props.beatmapset.play_count
-        favcount: @props.beatmapset.favourite_count
-        cover: @props.beatmapset.covers.cover
-        isPreviewPlaying: @state.isPreviewPlaying
+      div className: 'osu-layout__row osu-layout__row--page-compact',
+        el BeatmapsetPage.Header,
+          beatmapset: @props.beatmapset
+          beatmaps: @state.beatmaps
+          currentBeatmap: @state.currentBeatmap
+          hoveredBeatmap: @state.hoveredBeatmap
+          favcount: @state.favcount
+          hasFavourited: @state.hasFavourited
+          isPreviewPlaying: @state.isPreviewPlaying
 
-      el BeatmapsetPage.Contents,
-        beatmapset: @props.beatmapset
-        currentBeatmap: currentBeatmap
-        beatmaps: @state.beatmaps
-        beatmapList: @state.beatmapList
-        currentPage: @state.currentPage
+        el BeatmapsetPage.Info,
+          beatmapset: @props.beatmapset
+          beatmap: @state.currentBeatmap
 
-      el BeatmapsetPage.Extra,
-        beatmapset: @props.beatmapset
-        beatmaps: @state.beatmaps
-        currentBeatmap: currentBeatmap
-        currentPage: @state.currentPage
-        currentScoreboard: @state.currentScoreboard
-        scores: @state.scores
-        countries: @props.countries
+      div className: 'osu-layout__section osu-layout__section--extra',
+        el BeatmapsetPage.Scoreboard,
+          type: @state.currentScoreboardType
+          beatmap: @state.currentBeatmap
+          scores: @state.scores
+          userScore: @state.userScore
+          userScorePosition: @state.userScorePosition
+          enabledMods: @state.enabledMods
+          countries: @props.countries
+          loading: @state.loading

@@ -62,6 +62,63 @@
         </div>
     @endforeach
 
+    <div class="nav-popup__menu nav-popup__menu--locale">
+        <a
+            class="
+                js-menu
+                nav-popup__menu-head
+            "
+            data-menu-default="{{ $current_section === $section }}"
+            data-menu-target="header--locale"
+            href="#"
+        >
+            <div class="nav-popup__menu-head-bar">
+                <span class="bar bar--double bar--locale"></span>
+            </div>
+
+            <div
+                class="nav-popup__menu-icon"
+                style="background-image: url('{{ flag_path(locale_flag(App::getLocale())) }}')"
+            ></div>
+
+            <div
+                class="fake-bold"
+                data-content="{{ locale_name(App::getLocale()) }}"
+            >
+                {{ locale_name(App::getLocale()) }}
+            </div>
+        </a>
+
+        <div class="nav-popup__submenu-container">
+            <div
+                class="js-menu nav-popup__submenu"
+                data-menu-id="header--locale"
+                data-visibility="hidden"
+                data-visibility-animation="none"
+            >
+                @foreach (config('app.available_locales') as $locale)
+                    <a
+                        class="nav-popup__link"
+                        href="{{ route('set-locale', ['locale' => $locale]) }}"
+                        data-remote="1"
+                        data-method="POST"
+                    >
+                        <div
+                            class="nav-popup__menu-icon"
+                            style="background-image: url('{{ flag_path(locale_flag($locale)) }}')"
+                        ></div>
+
+                        {{ locale_name($locale) }}
+
+                        <div class="nav-popup__link-marker">
+                            <i class="fa fa-angle-right"></i>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
     <div class="nav-popup__bar">
         <span class="bar u-section-bg"></span>
     </div>

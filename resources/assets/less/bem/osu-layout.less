@@ -18,8 +18,8 @@
  */
 .osu-layout {
   ._page {
-    .default-box-shadow;
-    background-color: @grey-f;
+    .default-box-shadow();
+    background-color: @gray-f;
   }
 
   display: flex;
@@ -78,14 +78,8 @@
       }
     }
 
-    &--lg-4 {
-      @media @screen-large {
-        width: calc((4 / 12 * 100%) ~'-' @spacing);
-      }
-    }
-
-    &--lg-3 {
-      @media @screen-large {
+    &--sm-3 {
+      @media @desktop {
         width: calc((3 / 12 * 100%) ~'-' @spacing);
       }
     }
@@ -177,25 +171,9 @@
       margin-bottom: @spacing;
     }
 
-    &--page-beatmapset {
-      ._page;
-      padding: @spacing * 2;
-      padding-bottom: 0;
-      margin-bottom: @spacing;
-
-      @media @mobile {
-        padding: 0;
-        padding-top: @spacing * 2;
-      }
-    }
-
     &--page-mp-history {
       ._page;
       padding: @spacing * 2;
-
-      @media (min-width: @screen-lg-min) {
-        padding: (@spacing * 2) @padding-big;
-      }
     }
 
     &--sm1 {
@@ -221,10 +199,6 @@
       }
     }
 
-    &--landing {
-      max-width: @landing-width;
-    }
-
     &--landing-sitemap {
       max-width: 800px;
       margin: 35px 0 40px;
@@ -238,7 +212,7 @@
 
     &--extra {
       flex: 1 0 auto;
-      background-color: fade(@grey-0, 75%);
+      background-color: fade(@gray-0, 75%);
 
       // for some reason linear-gradient doesn't work on main div
       &::before {
@@ -248,7 +222,7 @@
         top: 0;
         width: 100%;
         height: 4px;
-        background-image: linear-gradient(to bottom, @grey-3, transparent);
+        background-image: linear-gradient(to bottom, @gray-3, transparent);
       }
     }
 
@@ -287,7 +261,7 @@
     }
 
     &--with-separator {
-      background-image: linear-gradient(to bottom, fade(@grey-0, 20%), transparent 3px);
+      background-image: linear-gradient(to bottom, fade(@gray-0, 20%), transparent 3px);
     }
   }
 }

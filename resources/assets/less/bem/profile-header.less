@@ -18,7 +18,7 @@
  */
 
 .profile-header {
-  background-color: transparent;
+  background-color: @gray-3;
   height: @profile-header-height;
   padding: 0px;
 
@@ -99,8 +99,8 @@
   }
 
   &__change-cover-button {
-    &:extend(.default-border-radius);
-    &:extend(.default-text-shadow);
+    .default-border-radius();
+    .default-text-shadow();
 
     position: absolute;
     bottom: @grid-gutter-width/4 + @profile-user-bar-height;

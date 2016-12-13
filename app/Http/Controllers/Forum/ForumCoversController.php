@@ -42,9 +42,11 @@ class ForumCoversController extends Controller
             'update',
         ]]);
 
-        if (Auth::check() === true && Auth::user()->isAdmin() !== true) {
-            abort(403);
-        }
+        $this->middleware(function ($request, $next) {
+            if (Auth::check() && !Auth::user()->isAdmin()) {
+                abort(403);
+            }
+        });
     }
 
     public function store()
@@ -69,7 +71,7 @@ class ForumCoversController extends Controller
             return error_popup($e->getMessage());
         }
 
-        return fractal_item_array($cover, new ForumCoverTransformer());
+        return json_item($cover, new ForumCoverTransformer());
     }
 
     public function destroy($id)
@@ -80,7 +82,7 @@ class ForumCoversController extends Controller
             $cover->deleteWithFile();
         }
 
-        return fractal_item_array($cover, new ForumCoverTransformer());
+        return json_item($cover, new ForumCoverTransformer());
     }
 
     public function update($id)
@@ -98,6 +100,6 @@ class ForumCoversController extends Controller
             }
         }
 
-        return fractal_item_array($cover, new ForumCoverTransformer());
+        return json_item($cover, new ForumCoverTransformer());
     }
 }

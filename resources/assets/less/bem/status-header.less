@@ -19,6 +19,8 @@
 @import "../app";
 
 .status-header {
+  .default-box-shadow();
+
   .at2x-simple("/images/headers/status.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -29,8 +31,6 @@
   margin-bottom: @spacing;
   display: flex;
   align-items: center;
-
-  &:extend(.default-box-shadow);
 
   &__text {
     padding-left: 10px;
@@ -43,7 +43,7 @@
 
   &__desc {
     font-size: 14px;
-    color: @grey-4;
+    color: @gray-4;
 
     margin: 0;
   }

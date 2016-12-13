@@ -29,41 +29,58 @@ class Contest.Entry.Uploader extends React.Component
     @setState state: state
 
   componentDidMount: =>
+    switch @props.contest.type
+      when 'art'
+        allowedExtensions = ['.jpg', '.jpeg', '.png']
+        maxSize = 4000000
+
+      when 'beatmap'
+        allowedExtensions = ['.osu']
+        maxSize = 1000000
+
+      when 'music'
+        allowedExtensions = ['.mp3']
+        maxSize = 15000000
+
+
     $dropzone = $('.js-contest-entry-upload--dropzone')
     $uploadButton = $ '<input>',
       class: 'js-contest-entry-upload fileupload__input'
       type: 'file'
       name: 'entry'
-      accept: '.osu'
+      accept: allowedExtensions.join(',')
       disabled: @props.disabled
 
     $(@refs.uploadButtonContainer).append($uploadButton)
 
-    $.subscribe 'dragenterGlobal.contest', => @setOverlay('active')
-    $.subscribe 'dragendGlobal.contest', => @setOverlay('hidden')
-    $(document).on 'dragenter.contest', '.contest__entry-uploader', => @setOverlay('hover')
-    $(document).on 'dragleave.contest', '.contest__entry-uploader', => @setOverlay('active')
+    $.subscribe 'dragenterGlobal.contest-upload', => @setOverlay('active')
+    $.subscribe 'dragendGlobal.contest-upload', => @setOverlay('hidden')
+    $(document).on 'dragenter.contest-upload', '.contest-user-entry--uploader', => @setOverlay('hover')
+    $(document).on 'dragleave.contest-upload', '.contest-user-entry--uploader', => @setOverlay('active')
 
     $uploadButton.fileupload
-      url: laroute.route 'contest.submit', contest_id: @props.contest.id
+      url: laroute.route 'contest-entries.store'
       dataType: 'json'
       dropZone: $dropzone
       sequentialUploads: true
+      formData:
+        contest_id: @props.contest.id
 
       add: (e, data) =>
         return if @props.disabled
 
-        canUpload = true;
-        file = data.files[0];
-        if (!(/\.(osu)$/i).test(file.name))
-          osu.popup osu.trans('contest.entry.wrong_type.beatmap'), 'danger'
+        file = data.files[0]
+        extension = /(\.[^.]+)$/.exec(file.name)[1]
+
+        if !_.includes(allowedExtensions, extension)
+          osu.popup osu.trans("contest.entry.wrong_type.#{@props.contest.type}"), 'danger'
           return
 
-        if (file.size > 1000000)
-          osu.popup osu.trans('contest.entry.too_big'), 'danger'
+        if file.size > maxSize
+          osu.popup osu.trans('contest.entry.too_big', limit: osu.formatBytes(maxSize, 0)), 'danger'
           return
 
-        data.submit();
+        data.submit()
 
       submit: ->
         $.publish 'dragendGlobal'
@@ -74,21 +91,25 @@ class Contest.Entry.Uploader extends React.Component
       fail: osu.fileuploadFailCallback($uploadButton)
 
   componentWillUnmount: =>
-    $.unsubscribe '.contest'
+    $.unsubscribe '.contest-upload'
+    $(document).off '.contest-upload'
+
     $('.js-contest-entry-upload')
       .fileupload 'destroy'
       .remove()
 
   render: =>
     labelClass = [
-      'fileupload contest__entry-uploader',
+      'fileupload',
+      'contest-user-entry',
+      'contest-user-entry--uploader',
       'disabled' if @props.disabled,
-      'contest__user-entry--dragndrop-active' if @state.state == 'active',
-      'contest__user-entry--dragndrop-hover' if @state.state == 'hover',
+      'contest-user-entry--dragndrop-active' if @state.state == 'active',
+      'contest-user-entry--dragndrop-hover' if @state.state == 'hover',
     ]
 
-    div className: "contest__user-entry contest__user-entry--new #{if @props.disabled then 'contest__user-entry--disabled' else ''} js-react--entryUploader",
+    div className: "contest-user-entry contest-user-entry--new#{if @props.disabled then ' contest-user-entry--disabled' else ''}",
       div className: 'js-contest-entry-upload--dropzone',
         el 'label', className: labelClass.join(' '), ref: 'uploadButtonContainer',
-          i className: 'fa fa-plus contest__entry-uploader-icon'
+          i className: 'fa fa-plus contest-user-entry__icon'
           div {}, osu.trans('contest.entry.drop_here')

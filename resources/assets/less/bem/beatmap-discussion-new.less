@@ -18,17 +18,12 @@
  */
 .beatmap-discussion-new {
   @_avatar-size: 45px;
-  @_message-type-text-size: 11px;
-  @_timestamp-box-width: 90px;
-  @_timestamp-box-height: @_avatar-size;
-  @_timestamp-box-text-size: 11px;
 
+  .default-box-shadow();
   display: flex;
+  background-color: @gray-f;
   flex-direction: column;
-
-  @media @desktop {
-    flex-direction: row;
-  }
+  margin-top: @spacing;
 
   &__avatar {
     flex: none;
@@ -37,7 +32,7 @@
   }
 
   &__col {
-    background-color: @grey-e;
+    background-color: @gray-e;
     padding: (@spacing * 2) @spacing;
 
     flex: 1 0 auto;
@@ -66,8 +61,32 @@
 
     &--main {
       flex: 1;
-      background-color: @grey-f;
+      background-color: @gray-f;
       display: flex;
+    }
+  }
+
+  &__content {
+    display: flex;
+    padding: 0 (@spacing * 2) @spacing;
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: @gray-5;
+    padding: (@spacing / 2) (@spacing * 2);
+    justify-content: space-between;
+  }
+
+  &__footer-content {
+    padding: (@spacing / 2) 0;
+    display: flex;
+    flex: none;
+
+    &--right {
+      flex: 1;
+      justify-content: flex-end;
     }
   }
 
@@ -99,52 +118,26 @@
     color: @green;
   }
 
-  &__message-type {
-    .reset-input();
-    display: block;
-    text-align: left;
-    font-size: @_message-type-text-size;
-    margin: 0 0 (@spacing / 2);
-  }
+  &__timestamp-col {
+    .default-text-shadow();
+    padding: @spacing;
+    font-size: @font-size--small-2;
+    color: @gray-f;
+    background-color: @gray-4;
+    border-radius: 0 @border-radius-base @border-radius-base 0;
 
-  &__message-type-text {
-    margin-left: (@spacing / 2);
-  }
-
-  &__message-types {
-    margin-right: @spacing;
-
-    &--disabled {
-      color: @grey-9;
+    &--label {
+      background-color: @gray-3;
+      border-radius: @border-radius-base 0 0 @border-radius-base;
     }
   }
 
-  &__timestamp {
-    text-align: center;
-  }
-
-  &__timestamp-box {
-    .default-border-radius();
-    .default-text-shadow();
-
-    width: @_timestamp-box-width;
-    height: @_timestamp-box-height;
-    font-size: @_timestamp-box-text-size;
-    background-color: @grey-5;
-    color: @grey-f;
-    padding: (@spacing / 2) @spacing;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
   &__type {
-    color: @grey-9;
+    color: @gray-9;
     margin: 0 (@spacing / 2);
 
     &--active {
-      color: @grey-f;
+      color: @gray-f;
     }
   }
 

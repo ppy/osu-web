@@ -18,8 +18,8 @@
  */
 
 .profile-cover-change-popup {
-  &:extend(.default-border-radius);
-  &:extend(.default-box-shadow);
+  .default-border-radius();
+  .default-box-shadow();
 
   position: absolute;
   top: @profile-header-height - @profile-user-bar-height + @grid-gutter-width/4;
@@ -52,7 +52,7 @@
   }
 
   &__selected-mark {
-    &:extend(.default-text-shadow);
+    .default-text-shadow();
     color: #fff;
     font-size: 24px;
 
@@ -72,7 +72,7 @@
   }
 
   &__drop-overlay {
-    &:extend(.default-border-radius);
+    .default-border-radius();
 
     display: flex;
     justify-content: center;

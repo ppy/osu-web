@@ -20,7 +20,7 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -40,11 +40,11 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(Router $router)
+    public function boot()
     {
-        parent::boot($router);
-
         //
+
+        parent::boot();
     }
 
     /**
@@ -54,10 +54,10 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function map(Router $router)
+    public function map()
     {
-        $router->group(['namespace' => $this->namespace], function ($router) {
-            require app_path('Http/routes.php');
+        Route::group(['namespace' => $this->namespace], function ($router) {
+            require base_path('routes/web.php');
         });
     }
 }

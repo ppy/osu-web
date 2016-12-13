@@ -34,7 +34,7 @@ return [
     ],
 
     'email' => [
-        'new_reply' => '[osu!] :title',
+        'new_reply' => '[osu!] New reply for topic ":title"',
     ],
 
     'forums' => [
@@ -172,6 +172,8 @@ return [
         ],
 
         'show' => [
+            'total_posts' => 'Total Posts',
+
             'feature_vote' => [
                 'current' => 'Current Priority: +:count',
                 'do' => 'Promote this request',

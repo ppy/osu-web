@@ -17,26 +17,29 @@
  *
  */
 .beatmap-list {
-  @_top: beatmap-list;
+  @top: beatmap-list;
+  color: @gray-f;
+  min-width: 0;
+  display: flex;
 
   &--selecting {
     z-index: @z-index--blackout-visible;
   }
 
   &__selector {
+    .default-box-shadow();
+
     position: absolute;
     top: 100%;
     left: 0;
-    width: 100%;
     margin-top: (@spacing / 2);
-    background-color: @grey-f;
+    background-color: @gray-blue-darker;
 
     flex-direction: column;
 
-    .default-box-shadow();
 
     display: none;
-    .@{_top}--selecting & {
+    .@{top}--selecting & {
       display: flex;
     }
 
@@ -51,34 +54,33 @@
 
   &__item {
     .reset-input();
-    background-color: @grey-f;
 
     display: flex;
     align-items: center;
-
-    width: 100%;
     text-align: left;
-
     padding: (@spacing / 2) @spacing;
 
-    &.js-menu--active,
     &:hover {
-      background-color: @text-color;
-      color: @grey-f;
+      background-color: @gray-0;
     }
 
     &--selected {
       .default-box-shadow();
       .default-border-radius();
-      min-width: 350px;
+      background-color: @gray-blue-darker;
+      box-shadow: 0 0 0 2px fade(@gray-0, 25%);
+      height: 100%;
+      padding-top: @spacing;
+      padding-bottom: @spacing;
+      min-width: 0;
+
+      &:hover {
+        background-color: @gray-0;
+      }
     }
 
     &--current {
-      background-color: @grey-c;
-    }
-
-    &--large {
-      padding: @spacing;
+      background-color: @gray-1;
     }
   }
 }

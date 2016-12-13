@@ -26,10 +26,11 @@ return [
     'menu' => [
         'home' => [
             '_' => 'home',
+            'index' => 'osu!',
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
-            'index' => 'news',
+            'getNews' => 'news',
             'supportTheGame' => 'support the game',
         ],
         'help' => [
@@ -47,7 +48,7 @@ return [
             // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [
-            '_' => 'beatmapsets',
+            '_' => 'beatmaps',
             'discussion' => 'modding',
         ],
         'ranking' => [
@@ -128,6 +129,7 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
+            'root' => 'index',
             'logs-index' => 'log',
             'beatmapsets' => [
                 '_' => 'beatmapsets',

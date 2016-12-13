@@ -40,7 +40,7 @@ class ProfilePage.CoverUploader extends React.Component
         $.publish 'dragendGlobal'
 
       done: (_e, data) ->
-        $.publish 'user:update', data.result.data
+        $.publish 'user:update', data.result
 
       fail: osu.fileuploadFailCallback($uploadButton)
 

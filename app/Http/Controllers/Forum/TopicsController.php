@@ -63,7 +63,7 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicStore', $forum)->ensureCan();
 
-        $cover = fractal_item_array(
+        $cover = json_item(
             TopicCover::findForUse(Request::old('cover_id'), Auth::user()),
             new TopicCoverTransformer()
         );
@@ -235,7 +235,7 @@ class TopicsController extends Controller
 
         $template = $skipLayout ? '_posts' : 'show';
 
-        $cover = fractal_item_array(
+        $cover = json_item(
             $topic->cover()->firstOrNew([]),
             new TopicCoverTransformer()
         );

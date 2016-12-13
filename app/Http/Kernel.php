@@ -29,20 +29,24 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        'Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode',
+        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         Middleware\EncryptCookies::class,
-        'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
-        'Illuminate\Session\Middleware\StartSession',
+        \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+        \Illuminate\Session\Middleware\StartSession::class,
+        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        Middleware\VerifyCsrfToken::class,
         Middleware\SetLocale::class,
-        'Illuminate\View\Middleware\ShareErrorsFromSession',
-        'App\Http\Middleware\VerifyCsrfToken',
-        'App\Http\Middleware\AutologinFromLegacyCookie',
+        Middleware\AutologinFromLegacyCookie::class,
         Middleware\VerifyPrivilegedUser::class,
-        'App\Http\Middleware\CheckUserBanStatus',
-        'App\Http\Middleware\UpdateUserLastvisit',
-        'Clockwork\Support\Laravel\ClockworkMiddleware',
-        'LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware',
+        Middleware\CheckUserBanStatus::class,
+        Middleware\UpdateUserLastvisit::class,
+        \Clockwork\Support\Laravel\ClockworkMiddleware::class,
         Middleware\TurbolinksSupport::class,
+    ];
+
+    protected $middlewareGroups = [
+        'api' => [],
+        'web' => [],
     ];
 
     /**
@@ -51,14 +55,11 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => 'App\Http\Middleware\Authenticate',
-        'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
-        'check-authorization-params' => 'LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware',
+        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
+        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'check-user-restricted' => Middleware\CheckUserRestricted::class,
-        'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
-        'oauth' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware',
-        'oauth-client' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthClientOwnerMiddleware',
-        'oauth-user' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthUserOwnerMiddleware',
+        'guest' => Middleware\RedirectIfAuthenticated::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verify-user' => Middleware\VerifyUser::class,
     ];
 }

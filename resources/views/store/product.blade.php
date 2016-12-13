@@ -50,29 +50,36 @@
             @else
             <div class="row">
                 <div class="col-md-6">
-                    <ul id="product-slides" class="rslides">
+                    <div class="gallery-previews">
                         @foreach($product->images() as $i => $image)
-                        <li>
                             <?php $imageSize = fast_imagesize($image[1]); ?>
                             <a
-                                class="js-gallery"
+                                class="gallery-previews__item js-gallery"
                                 data-width="{{ $imageSize[0] }}"
                                 data-height="{{ $imageSize[1] }}"
                                 data-gallery-id="product-{{ $product->product_id }}"
                                 data-index="{{ $i }}"
                                 href="{{ $image[1] }}"
-                                style="background-image: url('{{ $image[1] }}');">
-                            </a>
-                        </li>
+                                style="background-image: url('{{ $image[1] }}');"
+                                data-visibility="{{ $loop->first ? '' : 'hidden' }}"
+                            ></a>
                         @endforeach
-                    </ul>
-                    <ul id="product-slides-nav" class="rslides-nav">
-                        @foreach($product->images() as $image)
-                        <li>
-                            <a href="#"><div style="background-image: url('{{ $image[0] }}');"></div></a>
-                        </li>
+                    </div>
+                    <div class="gallery-thumbnails">
+                        @foreach($product->images() as $i => $image)
+                            <a
+                                href="#"
+                                style="background-image: url('{{ $image[0] }}');"
+                                class="
+                                    gallery-thumbnails__item
+                                    js-gallery-thumbnail
+                                    {{ $loop->first ? 'js-gallery-thumbnail--active' : '' }}
+                                "
+                                data-gallery-id="product-{{ $product->product_id }}"
+                                data-index="{{ $i }}"
+                            ></a>
                         @endforeach
-                    </ul>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="row">

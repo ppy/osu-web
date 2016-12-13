@@ -19,6 +19,7 @@
  */
 namespace App\Http\Controllers;
 
+use App;
 use App\Models\BanchoStats;
 use App\Models\Count;
 use Auth;
@@ -43,13 +44,8 @@ class HomeController extends Controller
     {
         return view('home.icons')
         ->with('icons', [
-            'osu-o', 'mania-o', 'fruits-o', 'taiko-o',
             'osu', 'mania', 'fruits', 'taiko',
-            'bat', 'bubble', 'hourglass', 'dice', 'bomb', 'osu-spinner', 'net', 'mod-headphones',
-            'easy-osu', 'normal-osu', 'hard-osu', 'insane-osu', 'expert-osu',
-            'easy-taiko', 'normal-taiko', 'hard-taiko', 'insane-taiko', 'expert-taiko',
-            'easy-fruits', 'normal-fruits', 'hard-fruits', 'insane-fruits', 'expert-fruits',
-            'easy-mania', 'normal-mania', 'hard-mania', 'insane-mania', 'expert-mania',
+            'patreon',
         ]);
     }
 
@@ -75,6 +71,21 @@ class HomeController extends Controller
         $currentOnline = ($stats->isEmpty() ? 0 : $stats->last()->users_osu);
 
         return view('home.landing', compact('stats', 'totalUsers', 'currentOnline'));
+    }
+
+    public function setLocale()
+    {
+        $newLocale = get_valid_locale(Request::input('locale'));
+        App::setLocale($newLocale);
+
+        if (Auth::check()) {
+            Auth::user()->update([
+                'user_lang' => $newLocale,
+            ]);
+        }
+
+        return js_view('layout.ujs-reload')
+            ->withCookie(cookie()->forever('locale', $newLocale));
     }
 
     public function supportTheGame()

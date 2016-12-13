@@ -1,4 +1,24 @@
+/**
+*    Copyright 2015 ppy Pty. Ltd.
+*
+*    This file is part of osu!web. osu!web is distributed with the hope of
+*    attracting more community contributions to the core ecosystem of osu!.
+*
+*    osu!web is free software: you can redistribute it and/or modify
+*    it under the terms of the Affero GNU General Public License version 3
+*    as published by the Free Software Foundation.
+*
+*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*    See the GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+*
+*/
+
 .contest {
+  @_top: contest;
   background-color: #1A2223;
   color: white;
   padding-left: @spacing * 2;
@@ -11,20 +31,68 @@
     font-size: 14px;
     font-weight: 300;
     padding: 20px;
-    margin-top: -20px;
-    .default-box-shadow;
+    .default-box-shadow();
 
     > h1, h2, h3, h4, h5, h6 {
       color: white;
     }
+    a {
+      color: #93b8c4;
+    }
   }
 
-  &__voting-ended {
+  &__countdown-timer {
+    background: #293336;
+    padding-bottom: @spacing * 2;
+    margin-top: -@spacing;
+  }
+
+  &__voting-notice {
     background-color: #1A2223;
     color: white;
     padding-top: @spacing * 2;
-    padding-bottom: @spacing;
     text-align: center;
+    &--padding {
+      padding-bottom: @spacing * 2;
+    }
+  }
+
+  &__accordion {
+    background: #1A2223;
+    padding: @spacing * 2;
+  }
+
+  &__group {
+    margin: @spacing auto;
+    max-width: 600px;
+    background: #161a1b;
+    border: none;
+    .default-box-shadow();
+  }
+
+  &__group-heading {
+    display: flex;
+    justify-content: space-between;
+    padding: @spacing;
+
+    color: white;
+    &:hover, &:visited, &:link, &:active {
+      color: white;
+      text-decoration: none;
+    }
+  }
+
+  &__section-toggle {
+    transition: all 300ms;
+    transform: rotateZ(0deg);
+    .@{_top}__group-heading[aria-expanded='true'] & {
+      transform: rotateZ(180deg);
+    }
+  }
+
+  &__buttons {
+    text-align: center;
+    padding: 20px 0px;
   }
 
   &__vote-summary {
@@ -143,81 +211,5 @@
     &--float-right {
       float: right;
     }
-  }
-
-  &__user-entries {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #1A2223;
-    color: white;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    padding-left: 20px;
-    text-align: center;
-  }
-
-  &__user-entry {
-    height: 150px;
-    background: #313D40;
-    margin: 5px;
-    width: calc(50% ~'-' 20px);
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-
-    transition: 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-
-    &--ok {
-      border-bottom: #A4CA01 5px solid;
-    }
-
-    &--dragndrop-active {
-      background-color: lighten(#313D40, 5%);
-    }
-
-    &--disabled {
-      display: none;
-    }
-
-    &--new:hover, &--dragndrop-hover {
-      background-color: lighten(#313D40, 15%);
-      transform: scale(1.01);
-    }
-
-    &--new:active {
-      transform: scale(0.99);
-    }
-  }
-
-  &__user-entry-filename {
-    font-weight: lighter;
-    font-size: 15px;
-    margin-top: 25px;
-
-    &::before {
-      content: "\f016";
-      font-family: FontAwesome;
-      display: block;
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-  }
-
-  &__user-entry-filesize {
-    font-size: 12px;
-    color: #66ccff;
-  }
-
-  &__entry-uploader {
-    width: 100%;
-    align-items: center;
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  }
-
-  &__entry-uploader-icon {
-    padding-bottom: 20px;
-    font-size: 16px;
   }
 }

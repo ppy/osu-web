@@ -34,8 +34,8 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
     {
         return [
             'id' => $discussion->id,
-            'created_at' => $discussion->created_at->toIso8601String(),
-            'updated_at' => $discussion->updated_at->toIso8601String(),
+            'created_at' => json_time($discussion->created_at),
+            'updated_at' => json_time($discussion->updated_at),
         ];
     }
 
@@ -52,11 +52,20 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
         $userIds = [$discussion->beatmapset->user_id];
 
         foreach ($discussion->beatmapDiscussions as $beatmapDiscussion) {
+            if (!priv_check('BeatmapDiscussionShow', $beatmapDiscussion)->can()) {
+                continue;
+            }
+
             $userIds[] = $beatmapDiscussion->user_id;
 
             foreach ($beatmapDiscussion->beatmapDiscussionPosts as $post) {
+                if (!priv_check('BeatmapDiscussionPostShow', $post)->can()) {
+                    continue;
+                }
+
                 $userIds[] = $post->user_id;
                 $userIds[] = $post->last_editor_id;
+                $userIds[] = $post->deleted_by;
             }
         }
 

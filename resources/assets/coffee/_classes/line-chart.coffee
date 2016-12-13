@@ -17,6 +17,7 @@
 ###
 class @LineChart
   constructor: (area, @options = {}) ->
+    @id = Math.floor(Math.random() * 1000)
     @options.scales ||= {}
     @options.scales.x ||= d3.time.scale()
     @options.scales.y ||= d3.scale.linear()
@@ -91,10 +92,10 @@ class @LineChart
     @resize()
 
 
-  createXAxisLine: () =>
+  createXAxisLine: =>
     @xAxisLine = @svg.append 'defs'
       .append 'linearGradient'
-      .attr 'id', 'x-axis-line-gradient'
+      .attr 'id', "x-axis-line-gradient-#{@id}"
       .attr 'gradientUnits', 'userSpaceOnUse'
       .attr 'x1', '0'
       .attr 'x2', '0'
@@ -175,7 +176,7 @@ class @LineChart
 
     @svgXAxis.selectAll '.tick line'
       .classed 'chart__tick-line', true
-      .attr 'stroke', 'url(#x-axis-line-gradient)'
+      .attr 'stroke', "url(#x-axis-line-gradient-#{@id})"
 
     @svgYAxis.selectAll '.tick line'
       .classed 'chart__tick-line chart__tick-line--default', true

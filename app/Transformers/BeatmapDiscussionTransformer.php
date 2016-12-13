@@ -20,8 +20,8 @@
 namespace App\Transformers;
 
 use App\Models\BeatmapDiscussion;
+use Auth;
 use League\Fractal;
-use League\Fractal\ParamBag;
 
 class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 {
@@ -32,38 +32,48 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
     public function transform(BeatmapDiscussion $discussion)
     {
+        if (!priv_check('BeatmapDiscussionShow', $discussion)->can()) {
+            return [];
+        }
+
         return [
             'id' => $discussion->id,
             'beatmapset_discussion_id' => $discussion->beatmapset_discussion_id,
             'beatmap_id' => $discussion->beatmap_id,
             'user_id' => $discussion->user_id,
+            'deleted_by_id' => $discussion->deleted_by_id,
             'message_type' => $discussion->message_type,
             'timestamp' => $discussion->timestamp,
             'resolved' => $discussion->resolved,
-            'created_at' => $discussion->created_at->toIso8601String(),
-            'updated_at' => $discussion->updated_at->toIso8601String(),
-            'votes' => $discussion->votes_summary,
+            'created_at' => json_time($discussion->created_at),
+            'updated_at' => json_time($discussion->updated_at),
+            'deleted_at' => json_time($discussion->deleted_at),
+            'votes' => $discussion->votesSummary(),
             'duration' => $discussion->total_length,
         ];
     }
 
     public function includeBeatmapDiscussionPosts(BeatmapDiscussion $discussion)
     {
+        if (!priv_check('BeatmapDiscussionShow', $discussion)->can()) {
+            return;
+        }
+
         return $this->collection(
             $discussion->beatmapDiscussionPosts,
             new BeatmapDiscussionPostTransformer()
         );
     }
 
-    public function includeCurrentUserAttributes(BeatmapDiscussion $discussion, ParamBag $params = null)
+    public function includeCurrentUserAttributes(BeatmapDiscussion $discussion)
     {
-        if ($params === null) {
+        if (!priv_check('BeatmapDiscussionShow', $discussion)->can()) {
             return;
         }
 
-        $userId = get_int($params->get('user_id')[0] ?? null);
+        $currentUser = Auth::user();
 
-        if ($userId === null) {
+        if ($currentUser === null) {
             return;
         }
 
@@ -72,7 +82,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
         // This assumes beatmapDiscussionVotes are already preloaded and
         // thus will save one query.
         foreach ($discussion->beatmapDiscussionVotes as $vote) {
-            if ($vote->user_id === $userId) {
+            if ($vote->user_id === $currentUser->user_id) {
                 $score = $vote->score;
                 break;
             }

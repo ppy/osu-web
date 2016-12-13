@@ -166,6 +166,17 @@ class BaseTables extends Migration
         $this->addBinary('osu_beatmapsets', 'osz2_hash', 16, true, 'header_hash');
         $this->setRowFormat('osu_beatmapsets', 'DYNAMIC');
 
+        Schema::create('osu_user_beatmapset_ratings', function (Blueprint $table) {
+            $table->unsignedMediumInteger('user_id');
+            $table->unsignedMediumInteger('beatmapset_id');
+            $table->unsignedTinyInteger('rating');
+            $table->timestamp('date')->useCurrent();
+
+            $table->primary(['user_id', 'beatmapset_id']);
+            $table->index(['beatmapset_id', 'rating'], 'split_ratings');
+        });
+        $this->setRowFormat('osu_user_beatmapset_ratings', 'COMPRESSED');
+
         Schema::create('osu_changelog', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_general_ci';
@@ -1341,6 +1352,20 @@ class BaseTables extends Migration
         });
         $this->comment('osu_mod_queue', 'Data table for BanchoBot mod queue ~mm201');
         $this->setRowFormat('osu_mod_queue', 'DYNAMIC');
+
+        Schema::create('phpbb_topics_watch', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
+
+            $table->unsignedMediumInteger('user_id')->default(0);
+            $table->unsignedMediumInteger('topic_id')->default(0);
+            $table->unsignedTinyInteger('notify_status')->default(0);
+
+            $table->index('topic_id', 'topic_id');
+            $table->index('notify_status', 'notify_stat');
+            $table->primary(['user_id', 'topic_id']);
+        });
+        $this->setRowFormat('phpbb_topics_watch', 'COMPRESSED');
     }
 
     /**
@@ -1354,6 +1379,7 @@ class BaseTables extends Migration
         Schema::drop('osu_apikeys');
         Schema::drop('osu_beatmaps');
         Schema::drop('osu_beatmapsets');
+        Schema::drop('osu_user_beatmapset_ratings');
         Schema::drop('osu_changelog');
         Schema::drop('osu_countries');
         Schema::drop('osu_counts');
@@ -1400,6 +1426,7 @@ class BaseTables extends Migration
         Schema::drop('phpbb_groups');
         Schema::drop('phpbb_log');
         Schema::drop('osu_mod_queue');
+        Schema::drop('phpbb_topics_watch');
     }
 
     private function setRowFormat($table, $format)

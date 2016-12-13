@@ -57,8 +57,7 @@ ProfilePage.Performance = React.createClass
 
 
   _rankHistory: ->
-    data = (@props.rankHistories?.data || [])
-      .filter (rank) => rank > 0
+    data = (@props.rankHistories?.data ? []).filter (rank) => rank > 0
 
     data = data.map (rank, i) =>
       x: i - data.length + 1

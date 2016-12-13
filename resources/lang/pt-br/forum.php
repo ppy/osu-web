@@ -29,64 +29,122 @@ return [
 
         'destroy' => [
             '_' => 'Remover imagem de capa',
-            'confirm' => 'Você tem certeza que quer remover esta imagem de capa?',
+            'confirm' => 'Tem certeza de que deseja remover a imagem da capa?',
         ],
     ],
-    'pinned_topics' => 'Tópicos Fixados',
+
+    'email' => [
+        'new_reply' => '[osu!] Nova resposta no tópico ":title"',
+    ],
+
+    'forums' => [
+        'topics' => [
+            'empty' => 'Sem tópicos!',
+        ],
+    ],
+
+    'pinned_topics' => 'Tópicos fixados',
     'post' => [
-        'confirm_delete' => 'Deletar post?',
-        'edited' => 'Editado pela última vez por :user em :when, editado :count vezes no total.',
-        'posted_at' => 'postado :when',
+        'confirm_delete' => 'Excluir mesmo a publicação?',
+        'edited' => 'Última edição por :user em :when, editado :count vezes no total.',
+        'posted_at' => 'publicado em :when',
         'actions' => [
-            'delete' => 'Deletar post',
-            'edit' => 'Editar post',
+            'delete' => 'Excluir publicação?',
+            'edit' => 'Editar publicação',
         ],
     ],
     'search' => [
-        'go_to_post' => 'Ir para post',
-        'post_number_input' => 'digite número do post',
-        'total_posts' => ':posts_count posts no total',
+        'go_to_post' => 'Ir para a publicação',
+        'post_number_input' => 'digite o número da publicação',
+        'total_posts' => ':posts_count publicações no total',
     ],
-    'subforums' => 'Subfórums',
+    'subforums' => 'Subfóruns',
     'title' => 'osu!community',
     'topic' => [
         'create' => [
             'placeholder' => [
-                'body' => 'Digite conteúdo do post aqui',
-                'title' => 'Clique aqui para ver o título',
+                'body' => 'Digite o conteúdo da publicação aqui',
+                'title' => 'Clique aqui para definir o título',
             ],
-            'preview' => 'Preview',
-            'submit' => 'Post',
+            'preview' => 'Pré-visualização',
+            'submit' => 'Publicar',
         ],
-        'go_to_latest' => 'ver último post',
+        'go_to_latest' => 'ver a última publicação',
         'jump' => [
-            'enter' => 'clique para digitar um número de post específico',
-            'first' => 'ir para o primeiro post',
-            'last' => 'ir para o último post',
-            'next' => 'pular os próximos 10 posts',
-            'previous' => 'voltar 10 posts',
+            'enter' => 'clique para inserir um número de publicação específico',
+            'first' => 'ir para a primeira publicação',
+            'last' => 'ir para a última publicação',
+            'next' => 'pular as próximas 10 publicações',
+            'previous' => 'voltar 10 publicações',
         ],
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última resposta por :user',
-        'new_topic' => 'Postar novo tópico',
+        'new_topic' => 'Publicar novo tópico',
         'post_edit' => [
             'cancel' => 'Cancelar',
             'post' => 'Salvar',
             'zoom' => [
-                'start' => 'Tela Cheia',
-                'end' => 'Sair de Tela Cheia',
+                'start' => 'Tela cheia',
+                'end' => 'Sair da tela cheia',
             ],
         ],
-        'post_reply' => 'Post',
+        'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Digite aqui para responder',
         'started_by' => 'por :user',
     ],
+
+    'topic_watches' => [
+        'index' => [
+            'title' => 'Inscrições de tópico',
+            'title_compact' => 'inscrições',
+
+            'box' => [
+                'total' => 'Tópicos inscritos',
+                'unread' => 'Tópicos com novas respostas',
+            ],
+            'info' => [
+                'total' => 'Você se inscreveu em :total tópicos.',
+                'unread' => 'Você tem :unread respostas não lidas de tópicos inscritos.',
+            ],
+        ],
+
+        'topic_buttons' => [
+            'remove' => [
+                'confirmation' => 'Cancelar inscrição no tópico?',
+                'title' => 'Cancelar inscrição',
+            ],
+        ],
+    ],
+
     'topics' => [
         '_' => 'Tópicos',
 
         'actions' => [
-            'reply' => 'Mostrar caixa de resposta',
-            'reply_with_quote' => 'Citar post para resposta',
+            'reply' => 'Exibir caixa de resposta',
+            'reply_with_quote' => 'Citar publicação na resposta',
+        ],
+
+        'create' => [
+            'create_poll' => 'Criação de enquete',
+
+            'create_poll_button' => [
+                'add' => 'Criar enquete',
+                'remove' => 'Cancelar criação de enquete',
+            ],
+
+            'poll' => [
+                'length' => 'Manter enquete aberta por',
+                'length_days_prefix' => '',
+                'length_days_suffix' => 'dias',
+                'length_info' => 'Deixe em branco para uma votação sem fim',
+                'max_options' => 'Opções por usuário',
+                'max_options_info' => 'Este é o número de opções que cada usuário pode selecionar ao votar.',
+                'options' => 'Opções',
+                'options_info' => 'Coloque cada uma das opções em uma nova linha. Você pode inserir até 10 opções.',
+                'title' => 'Pergunta',
+                'vote_change' => 'Permitir alteração de voto.',
+                'vote_change_info' => 'Caso ativado, usuários poderão alterar o voto.',
+            ],
         ],
 
         'index' => [
@@ -95,26 +153,54 @@ return [
         ],
 
         'lock' => [
-            'locked-0' => 'Tópico destrancado',
-            'locked-1' => 'Tópico trancado',
             'is_locked' => 'Este tópico está trancado e não pode mais ser respondido',
+            'lock-0' => 'Destrancar tópico',
+            'lock-1' => 'Trancar tópico',
+            'state-0' => 'Tópico destrancado',
+            'state-1' => 'Tópico trancado',
         ],
 
         'moderate_move' => [
             'title' => 'Mover para outro fórum',
         ],
 
+        'moderate_pin' => [
+            'pin-0' => 'Desafixar tópico',
+            'pin-1' => 'Fixar tópico',
+            'state-0' => 'Tópico desafixado',
+            'state-1' => 'Tópico fixado',
+        ],
+
         'show' => [
+            'total_posts' => 'Total de publicações',
+
             'feature_vote' => [
-                'current' => 'Prioridade Atual: +:count',
+                'current' => 'Prioridade atual: +:count',
                 'do' => 'Promover este pedido',
 
                 'user' => [
-                    'current' => 'Você tem :votes restantes.',
                     'count' => '{0} sem votos|{1} :count voto|[2,Inf] :count votos',
-                    'not_enough' => 'Você não tem mais votos sobrando',
+                    'current' => 'Você tem :votes restantes.',
+                    'not_enough' => 'Você não tem mais votos restantes',
                 ],
             ],
+
+            'poll' => [
+                'vote' => 'Votar',
+
+                'detail' => [
+                    'total' => 'Total de votos: :count',
+                    'ended' => 'Votação encerrada :time',
+                    'end_time' => 'A votação encerrará às :time',
+                ],
+            ],
+        ],
+
+        'watch' => [
+            'state-0' => 'Inscrição cancelada',
+            'state-1' => 'Inscrito no tópico',
+            'watch-0' => 'Cancelar inscrição no tópico',
+            'watch-1' => 'Inscrever-se no tópico',
         ],
     ],
 

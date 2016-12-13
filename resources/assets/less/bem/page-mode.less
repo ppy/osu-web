@@ -19,25 +19,28 @@
 .page-mode {
   @_top: page-mode;
 
-  background-color: @grey-3;
-  color: @grey-c;
+  background-color: @gray-3;
+  color: @gray-c;
 
   display: flex;
   align-items: flex-end;
   justify-content: center;
 
-  min-height: @height--page-mode;
-  padding: @spacing;
+  padding: (@spacing * 2) @spacing 0;
   list-style: none;
   flex-wrap: wrap;
   margin: 0;
   font-size: 15px;
 
+  &--beatmap-discussions-mode {
+    background-color: transparent;
+  }
+
   &__item {
     display: flex;
     line-height: 1;
 
-    margin: (@spacing / 2) @spacing 0;
+    margin: 0 @spacing;
 
     .@{_top}--breadcrumb & {
       margin-left: (@spacing / 2);
@@ -48,6 +51,7 @@
     .@{_top}--breadcrumb & + &::before {
       content: '»';
       margin-right: @spacing;
+      margin-top: (@spacing / 2);
     }
   }
 }

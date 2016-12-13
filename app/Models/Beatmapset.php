@@ -30,6 +30,7 @@ use App\Models\Forum\Topic;
 use App\Models\Forum\Post;
 use App\Transformers\BeatmapsetTransformer;
 use Carbon\Carbon;
+use Illuminate\Database\QueryException;
 
 class Beatmapset extends Model
 {
@@ -77,10 +78,13 @@ class Beatmapset extends Model
         'ranked' => 1,
         'approved' => 2,
         'qualified' => 3,
+        'loved' => 4,
     ];
 
     const NOMINATIONS_PER_DAY = 1;
     const QUALIFICATIONS_PER_DAY = 6;
+
+    private $_favourites = null;
 
     // ranking functions for the set
 
@@ -233,12 +237,19 @@ class Beatmapset extends Model
         $offset = (max(0, $page - 1)) * $count;
         $current_user = Auth::user();
 
-        $searchParams['index'] = config('osu.elasticsearch.index');
-        $searchParams['type'] = 'beatmaps';
-        $searchParams['size'] = $count;
-        $searchParams['from'] = $offset;
-        $searchParams['body']['sort'] = [$sort_field => ['order' => $sort_order]];
-        $searchParams['fields'] = ['id'];
+        $searchParams = [
+            'index' => config('osu.elasticsearch.index'),
+            'type' => 'beatmaps',
+            'size' => $count,
+            'from' => $offset,
+            'body' => [
+                'sort' => [
+                    $sort_field => ['order' => $sort_order],
+                ],
+            ],
+            'fields' => 'id',
+        ];
+
         $matchParams = [];
         $shouldParams = [];
 
@@ -284,6 +295,9 @@ class Beatmapset extends Model
                     break;
                 case 1: // Approved
                     $matchParams[] = ['match' => ['approved' => self::STATES['approved']]];
+                    break;
+                case 8: // Loved
+                    $matchParams[] = ['match' => ['approved' => self::STATES['loved']]];
                     break;
                 case 2: // Favourites
                     $favs = model_pluck($current_user->favouriteBeatmapsets(), 'beatmapset_id');
@@ -411,7 +425,11 @@ class Beatmapset extends Model
 
         if (count($beatmap_ids) > 0) {
             $ids = implode(',', $beatmap_ids);
-            $beatmaps = self::whereIn('beatmapset_id', $beatmap_ids)->orderByRaw(DB::raw("FIELD(beatmapset_id, {$ids})"))->get();
+            $beatmaps = static
+                ::with('beatmaps')
+                ->whereIn('beatmapset_id', $beatmap_ids)
+                ->orderByRaw(DB::raw("FIELD(beatmapset_id, {$ids})"))
+                ->get();
         }
 
         return $beatmaps;
@@ -711,6 +729,42 @@ class Beatmapset extends Model
         return true;
     }
 
+    public function favourite($user)
+    {
+        DB::transaction(function () use ($user) {
+            try {
+                FavouriteBeatmapset::create([
+                    'user_id' => $user->user_id,
+                    'beatmapset_id' => $this->beatmapset_id,
+                ]);
+            } catch (QueryException $e) {
+                if (is_sql_unique_exception($e)) {
+                    return;
+                } else {
+                    throw $e;
+                }
+            }
+
+            $this->favourite_count = DB::raw('favourite_count + 1');
+            $this->save();
+        });
+    }
+
+    public function unfavourite($user)
+    {
+        if (!$this->hasFavourited($user)) {
+            return;
+        }
+
+        DB::transaction(function () use ($user) {
+            $this->favourites()->where('user_id', $user->user_id)
+                ->delete();
+
+            $this->favourite_count = DB::raw('GREATEST(favourite_count - 1, 0)');
+            $this->save();
+        });
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Relationships
@@ -779,19 +833,9 @@ class Beatmapset extends Model
 
     public function defaultJson($currentUser = null)
     {
-        $includes = ['beatmaps'];
+        $includes = ['beatmaps', 'nominations'];
 
-        if ($currentUser !== null) {
-            $includes[] = "nominations:user_id({$currentUser->user_id})";
-        } else {
-            $includes[] = 'nominations';
-        }
-
-        return fractal_item_array(
-            $this,
-            new BeatmapsetTransformer,
-            implode($includes, ',')
-        );
+        return json_item($this, new BeatmapsetTransformer, $includes);
     }
 
     public function defaultBeatmaps()
@@ -814,6 +858,43 @@ class Beatmapset extends Model
         return $this->belongsTo("App\Models\User", 'user_id', 'approvedby_id');
     }
 
+    public function userRatings()
+    {
+        return $this->hasMany(BeatmapsetUserRating::class);
+    }
+
+    public function ratingsCount()
+    {
+        $ratings = [];
+
+        for ($i = 0; $i <= 10; $i++) {
+            $ratings[$i] = 0;
+        }
+
+        $userRatings = $this->userRatings()
+            ->select('rating', \DB::raw('count(*) as count'))
+            ->groupBy('rating')
+            ->get();
+
+        foreach ($userRatings as $rating) {
+            $ratings[$rating->rating] = $rating->count;
+        }
+
+        return $ratings;
+    }
+
+    public function favourites()
+    {
+        return $this->hasMany(FavouriteBeatmapset::class);
+    }
+
+    public function hasFavourited($user)
+    {
+        return $user === null
+            ? false
+            : $this->favourites()->where('user_id', $user->user_id)->exists();
+    }
+
     public function description()
     {
         $topic = Topic::find($this->thread_id);
@@ -833,6 +914,6 @@ class Beatmapset extends Model
         // (mostly older beatmapsets)
         $description = $split[1] ?? '';
 
-        return bbcode($description, $post->bbcode_uid, true);
+        return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, true))->toHTML(true);
     }
 }

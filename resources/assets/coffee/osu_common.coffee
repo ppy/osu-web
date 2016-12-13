@@ -77,8 +77,10 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
   parseJson: (id) ->
     JSON.parse document.getElementById(id).text
 
+
   isInputElement: (el) ->
     el.tagName in ['INPUT', 'SELECT', 'TEXTAREA'] or el.isContentEditable
+
 
   isClickable: (el) ->
     if osu.isInputElement(el) || el.tagName in ['A', 'BUTTON']
@@ -88,11 +90,14 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     else
       false
 
+
   isMobile: -> ! window.matchMedia('(min-width: 920px)').matches
+
 
   src2x: (mainUrl) ->
     src: mainUrl
     srcSet: "#{mainUrl} 1x, #{mainUrl.replace(/(\.[^.]+)$/, '@2x$1')} 2x"
+
 
   link: (url, text, options = {}) ->
     el = document.createElement('a')
@@ -101,6 +106,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     el.className = options.classNames.join(' ') if options.classNames
     el.textContent = text
     el.outerHTML
+
 
   linkify: (text) ->
     regex = /(https?:\/\/(?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?)/ig
@@ -116,11 +122,13 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
 
   formatBytes: (bytes, decimals=2) ->
-    return '0B' if (bytes == 0)
-    k = 1024;
-    sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-    i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(decimals)) + ' ' + sizes[i];
+    suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+    k = 1000
+
+    return "#{bytes} B" if (bytes < k)
+
+    i = Math.floor(Math.log(bytes) / Math.log(k))
+    return "#{(bytes / Math.pow(k, i)).toFixed(decimals)} #{suffixes[i]}"
 
 
   reloadPage: (keepScroll = true) ->
@@ -152,6 +160,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
     $(document).one 'turbolinks:load', ->
       window.scrollTo position[0], position[1]
 
+
   getOS: (fallback='Windows') ->
     nAgnt = navigator.userAgent
     os = undefined
@@ -166,11 +175,13 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
       return 'Linux'
     fallback
 
+
   otherOS: (os) ->
     choices = ['macOS', 'Linux', 'Windows']
     index = choices.indexOf os
     choices.splice index, 1
     choices
+
 
   popup: (message, type = 'info') ->
     $popup = $('#popup-container')
@@ -207,66 +218,6 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
       message = Lang.choice key, count, replacements, fallbackLocale
 
     message
-
-
-  api: (method, route, params, args = {}, callback = console.log) ->
-    base = '/api/'
-    if method.toLowerCase() == 'put' or method.toLowerCase() == 'delete'
-      args._method = method
-      method = 'POST'
-
-    url = base + route
-
-    if params
-      url = "#{url}/#{params.join('/')}"
-
-    $.ajax
-      url: url
-      type: method
-      dataType: 'json'
-      data: args
-      success: (data) ->
-        if data.error
-          # ya dun goof'd
-          callback data.error
-        else if data.success
-          callback data.success
-        else if data.url
-          osu.navigate null, 'loading...', url
-        else
-          console.log data
-
-      error: (error) -> console.log error
-
-
-  loadMore: (objectName, offset) ->
-    collectionName = "#{objectName}s"
-    areaId = "##{collectionName}"
-    objectClass = ".#{objectName}"
-
-    $.ajax
-      url: "#{document.URL}/ajax?offset=#{offset}"
-      dataType: 'json'
-      success: (data, textStatus, jqXHR) ->
-        area = $(areaId)
-        template = area.find("#{objectClass}:first")
-        templateId = template.attr('objectid')
-
-        $.each data, (k, v) ->
-          return unless k == collectionName
-
-          $.each v, (index, object) ->
-            o = template.clone()
-            first = true
-            $.each object, (k, v) ->
-              if first
-                o.html template.html().replace(templateId, v)
-                o.attr 'href', o.attr('href').replace(templateId, v)
-                first = false
-              else
-                o.find("[ref=#{k}]").html v
-
-            area.append o
 
 
   xhrErrorMessage: (xhr) ->

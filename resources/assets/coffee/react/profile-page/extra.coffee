@@ -83,7 +83,7 @@ ProfilePage.Extra = React.createClass
           order: @state.profileOrder
 
       .done (userData) =>
-        $.publish 'user:update', userData.data
+        $.publish 'user:update', userData
 
       .fail (xhr) =>
         osu.ajaxError xhr
@@ -153,6 +153,7 @@ ProfilePage.Extra = React.createClass
                   achievements: @props.achievements
                   userAchievements: @props.userAchievements
                   currentMode: @props.currentMode
+                  user: @props.user
                 ProfilePage.Medals
 
               when 'historical'

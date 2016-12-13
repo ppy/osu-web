@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{button, div, span, textarea} = React.DOM
+{a, button, div, span, textarea} = React.DOM
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -33,15 +33,25 @@ BeatmapDiscussions.Post = React.createClass
     osu.pageChange()
 
     @throttledUpdatePost = _.throttle @updatePost, 1000
+    @xhr = {}
 
 
   componentDidUpdate: ->
     osu.pageChange()
 
 
+  componentWillUnmount: ->
+    @throttledUpdatePost.cancel()
+    for own _id, xhr of @xhr
+      xhr?.abort()
+
+
   render: ->
     topClasses = "#{bn} #{bn}--#{@props.type}"
-    topClasses += " #{bn}--unread" if !@props.read
+    if @state.editing
+      topClasses += " #{bn}--editing-"
+      topClasses += if @props.type == 'reply' then 'dark' else 'light'
+    topClasses += " #{bn}--deleted" if @props.post.deleted_at?
 
     div
       className: topClasses
@@ -49,11 +59,13 @@ BeatmapDiscussions.Post = React.createClass
       onClick: =>
         $.publish 'beatmapDiscussionPost:markRead', id: @props.post.id
 
-      div className: "#{bn}__avatar",
-        el UserAvatar, user: @props.user, modifiers: ['full-rounded']
+      div
+        className: "#{bn}__content"
+        div className: "#{bn}__avatar",
+          el UserAvatar, user: @props.user, modifiers: ['full-rounded']
 
-      @messageViewer()
-      @messageEditor()
+        @messageViewer()
+        @messageEditor()
 
 
   addEditorLink: (message) ->
@@ -80,7 +92,8 @@ BeatmapDiscussions.Post = React.createClass
 
     LoadingOverlay.show()
 
-    $.ajax laroute.route('beatmap-discussion-posts.update', beatmap_discussion_posts: @props.post.id),
+    @xhr.updatePost?.abort()
+    @xhr.updatePost = $.ajax laroute.route('beatmap-discussion-posts.update', beatmap_discussion_post: @props.post.id),
       method: 'PUT'
       data:
         beatmap_discussion_post:
@@ -88,19 +101,29 @@ BeatmapDiscussions.Post = React.createClass
 
     .done (data) =>
       @setState editing: false
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion.data
+      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion
 
     .fail osu.ajaxError
 
     .always LoadingOverlay.hide
 
 
-  startEditing: ->
+  editStart: ->
     @setState editing: true, =>
       @refs.textarea.focus()
 
 
+  editEnd: ->
+    @setState editing: false
+
+
   messageViewer: ->
+    [controller, key, deleteModel] =
+      if @props.type == 'reply'
+        ['beatmap-discussion-posts', 'beatmap_discussion_post', @props.post]
+      else
+        ['beatmap-discussions', 'beatmap_discussion', @props.discussion]
+
     div className: "#{bn}__message-container #{'hidden' if @state.editing}",
       div
         className: "#{bn}__message"
@@ -111,23 +134,58 @@ BeatmapDiscussions.Post = React.createClass
         span
           className: "#{bn}__info"
           dangerouslySetInnerHTML:
-            __html: "#{laroute.link_to_route('users.show', @props.user.username, users: @props.user.id)}, #{osu.timeago @props.post.created_at}"
+            __html: "#{osu.link laroute.route('users.show', user: @props.user.id),
+              @props.user.username
+              classNames: ["#{bn}__info-user"]
+              }, #{osu.timeago @props.post.created_at}"
 
         if @props.post.updated_at != @props.post.created_at
           span
             className: "#{bn}__info #{bn}__info--edited"
             dangerouslySetInnerHTML:
               __html: osu.trans 'beatmaps.discussions.edited',
-                editor: laroute.link_to_route('users.show', @props.lastEditor.username, users: @props.lastEditor.id)
+                editor: osu.link laroute.route('users.show', user: @props.lastEditor.id),
+                  @props.lastEditor.username
+                  classNames: ["#{bn}__info-user"]
                 update_time: osu.timeago @props.post.updated_at
 
-        if @props.canBeEdited
+        if deleteModel.deleted_at?
           span
-            className: "#{bn}__info"
+            className: "#{bn}__info #{bn}__info--edited"
+            dangerouslySetInnerHTML:
+              __html: osu.trans 'beatmaps.discussions.deleted',
+                editor: osu.link laroute.route('users.show', user: deleteModel.deleted_by_id),
+                  @props.users[deleteModel.deleted_by_id].username
+                  classNames: ["#{bn}__info-user"]
+                delete_time: osu.timeago @props.post.deleted_at
+
+      div
+        className: "#{bn}__actions"
+        div
+          className: "#{bn}__actions-group"
+          if @props.canBeEdited
             button
-              className: "#{bn}__edit-button"
-              onClick: @startEditing
+              className: "#{bn}__action #{bn}__action--button"
+              onClick: @editStart
               osu.trans('beatmaps.discussions.edit')
+
+          if !deleteModel.deleted_at? && @props.canBeDeleted
+            a
+                className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
+                href: laroute.route("#{controller}.destroy", "#{key}": deleteModel.id)
+                'data-remote': true
+                'data-method': 'DELETE'
+                'data-confirm': osu.trans('common.confirmation')
+                osu.trans('beatmaps.discussions.delete')
+
+          if deleteModel.deleted_at? && @props.canBeRestored
+            a
+                className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
+                href: laroute.route("#{controller}.restore", "#{key}": deleteModel.id)
+                'data-remote': true
+                'data-method': 'POST'
+                'data-confirm': osu.trans('common.confirmation')
+                osu.trans('beatmaps.discussions.restore')
 
 
   messageEditor: ->
@@ -145,12 +203,12 @@ BeatmapDiscussions.Post = React.createClass
         div className: "#{bn}__actions-group"
 
         div className: "#{bn}__actions-group",
-          button
-            className: "btn-osu-lite btn-osu-lite--default #{bn}__action"
-            onClick: => @setState editing: false
-            osu.trans 'common.buttons.cancel'
+          div className: "#{bn}__action",
+            el BigButton,
+              text: osu.trans 'common.buttons.cancel'
+              props: onClick: @editEnd
 
-          button
-            className: "btn-osu-lite btn-osu-lite--default #{bn}__action"
-            onClick: @throttledUpdatePost
-            osu.trans 'common.buttons.save'
+          div className: "#{bn}__action",
+            el BigButton,
+              text: osu.trans 'common.buttons.save'
+              props: onClick: @throttledUpdatePost

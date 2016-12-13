@@ -19,8 +19,11 @@
  */
 
 return [
+    'deleted' => '[deleted user]',
+
     'login' => [
         '_' => 'Sign in',
+        'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
         'username' => 'Username',
         'password' => 'Password',
         'button' => 'Login',
@@ -58,7 +61,7 @@ return [
                     'dropzone' => 'Drop here to upload',
                     'dropzone_info' => 'You can also drop your image here to upload',
                     'restriction_info' => "Upload available for <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a> only",
-                    'size_info' => 'Cover size should be at 2700x500',
+                    'size_info' => 'Cover size should be at 2000x500',
                     'too_large' => 'Uploaded file is too large.',
                     'unsupported_format' => 'Unsupported format.',
                 ],
@@ -104,6 +107,7 @@ return [
                 'title' => 'me!',
             ],
             'medals' => [
+                'empty' => "This user hasn't gotten any yet. ;_;",
                 'title' => 'Medals',
             ],
             'recent_activities' => [

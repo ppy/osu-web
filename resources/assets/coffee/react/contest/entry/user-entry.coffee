@@ -20,22 +20,14 @@
 el = React.createElement
 
 class Contest.Entry.UserEntry extends React.Component
-  constructor: (props) ->
-    super props
-
-    @state =
-      entry: @props.entry
-
-  nuke: (e) =>
+  delete: (e) =>
     e.preventDefault()
 
     params =
       method: 'DELETE'
       dataType: 'json'
-      data:
-        entry_id: @props.entry.id
 
-    $.ajax laroute.route('contest.delete', contest_id: @props.contest_id), params
+    $.ajax laroute.route('contest-entries.destroy', contest_entry: @props.entry.id), params
 
     .done (data) =>
       $.publish 'contest:entries:update', data: data
@@ -43,9 +35,14 @@ class Contest.Entry.UserEntry extends React.Component
     .fail osu.ajaxError
 
   render: ->
-    div className: 'contest__user-entry contest__user-entry--ok',
-      a className: 'btn-osu btn-osu--textlike btn-osu--stick-right', href: '#', 'data-confirm': osu.trans('common.confirmation'), title: osu.trans('common.buttons.delete'), onClick: @nuke,
-        i className: 'fa fa-times'
-      div className: 'contest__user-entry-filename', @props.entry.filename
-      div className: 'contest__user-entry-date', dangerouslySetInnerHTML: {__html: osu.timeago(@props.entry.created_at)}
-      div className: 'contest__user-entry-filesize', osu.formatBytes(@props.entry.filesize)
+    div className: 'contest-user-entry contest-user-entry--ok',
+      if !@props.locked
+        a className: 'btn-osu btn-osu--textlike btn-osu--stick-right', href: '#', 'data-confirm': osu.trans('common.confirmation'), title: osu.trans('common.buttons.delete'), onClick: @delete,
+          i className: 'fa fa-times'
+
+      div className: 'contest-user-entry__fileicon',
+        i className: 'fa fa-file-o'
+
+      div className: 'contest-user-entry__filename', @props.entry.filename
+      div className: 'contest-user-entry__entry-date', dangerouslySetInnerHTML: {__html: osu.timeago(@props.entry.created_at)}
+      div className: 'contest-user-entry__filesize', osu.formatBytes(@props.entry.filesize)

@@ -38,7 +38,7 @@ class ProfileCover
 
     public function getMaxDimensions()
     {
-        return [2700, 500];
+        return [2000, 500];
     }
 
     public function getFileRoot()

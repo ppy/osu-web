@@ -31,14 +31,14 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         // modding stuff
-        'App\Console\Commands\ModdingQueueUpdateCommand',
-        'App\Console\Commands\ModdingRankCommand',
-        'App\Console\Commands\ModdingScoreIndexCommand',
+        Commands\ModdingQueueUpdateCommand::class,
+        Commands\ModdingRankCommand::class,
+        Commands\ModdingScoreIndexCommand::class,
 
-        'App\Console\Commands\UserForumStatSyncCommand',
+        Commands\UserForumStatSyncCommand::class,
 
         // parsing html with regexp
-        'App\Console\Commands\StoreCheckOrderTrackingStatus',
+        Commands\StoreCheckOrderTrackingStatus::class,
     ];
 
     /**
@@ -52,5 +52,10 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('store:tracking')
             ->cron('0 0,8,16 * * *');
+    }
+
+    protected function commands()
+    {
+        require base_path('routes/console.php');
     }
 }

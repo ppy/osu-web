@@ -1,28 +1,28 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 .footer {
-  background-color: fade(@grey-0, 60%);
+  background-color: fade(@gray-0, 60%);
 
-  &:extend(.default-text-shadow);
-  background-image: linear-gradient(to bottom, fade(@grey-0, 60%) 0, transparent 4px);
+  .default-text-shadow();
+  background-image: linear-gradient(to bottom, fade(@gray-0, 60%) 0, transparent 4px);
 
-  color: @grey-c;
+  color: @gray-c;
   font-size: 10px;
 
   display: flex;
@@ -38,7 +38,7 @@
 
   &__link {
     font-weight: bold;
-    color: @grey-f;
+    color: @gray-f;
     margin: 0 @spacing;
 
     &:hover, &:active, &:focus {

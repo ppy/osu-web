@@ -43,6 +43,10 @@ class @Forum
     $.subscribe 'stickyHeader', @stickHeader
 
 
+  postPosition: (el) =>
+    parseInt(el.getAttribute('data-post-position'), 10)
+
+
   totalPosts: =>
     return null if @_totalPostsDiv.length == 0
     parseInt @_totalPostsDiv[0].getAttribute('data-total-count'), 10
@@ -54,7 +58,7 @@ class @Forum
 
 
   setCounter: (currentPost) =>
-    @currentPostPosition = parseInt currentPost.getAttribute('data-post-position'), 10
+    @currentPostPosition = @postPosition(currentPost)
 
     window.reloadUrl = @postUrlN @currentPostPosition
 
@@ -66,11 +70,11 @@ class @Forum
 
 
   firstPostLoaded: =>
-    @posts[0].getAttribute('data-post-position') == '1'
+    @postPosition(@posts[0]) == 1
 
 
   lastPostLoaded: =>
-    parseInt(@endPost().getAttribute('data-post-position'), 10) == @totalPosts()
+    @postPosition(@endPost()) == @totalPosts()
 
 
   refreshLoadMoreLinks: =>
@@ -149,7 +153,7 @@ class @Forum
 
     return unless post
 
-    if post.getAttribute('data-post-position') == '1'
+    if @postPosition(post) == 1
       postTop = 0
     else
       postDim = post.getBoundingClientRect()

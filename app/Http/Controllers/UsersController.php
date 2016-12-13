@@ -20,7 +20,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Achievement;
-use App\Models\LoginAttempt;
 use App\Models\User;
 use App\Transformers\AchievementTransformer;
 use App\Transformers\UserTransformer;
@@ -71,37 +70,25 @@ class UsersController extends Controller
     public function login()
     {
         $ip = Request::getClientIp();
+        $username = Request::input('username');
+        $password = Request::input('password');
+        $remember = Request::input('remember') === 'yes';
 
-        if (LoginAttempt::isLocked($ip)) {
-            return error_popup('your IP address is locked. Please wait a few minutes.');
+        $user = User::findForLogin($username);
+        $authResult = User::attemptLogin($user, $password, $ip);
+
+        if (isset($authResult['error'])) {
+            return error_popup($authResult['error']);
         } else {
-            $usernameOrEmail = Request::input('username');
-            $user = User::where('username', $usernameOrEmail)
-                ->orWhere('user_email', $usernameOrEmail)
-                ->first();
+            Request::session()->flush();
+            Request::session()->regenerateToken();
+            Auth::login($user, $remember);
 
-            $password = Request::input('password');
-            $remember = Request::input('remember') === 'yes';
-
-            $validAuth = $user === null
-                ? false
-                : Auth::getProvider()->validateCredentials($user, compact('password'));
-
-            if ($validAuth) {
-                Request::session()->flush();
-                Request::session()->regenerateToken();
-                Auth::login($user, $remember);
-
-                return [
-                    'header' => render_to_string('layout._header_user', ['_user' => Auth::user()]),
-                    'header_popup' => render_to_string('layout._popup_user', ['_user' => Auth::user()]),
-                    'user' => Auth::user()->defaultJson(),
-                ];
-            } else {
-                LoginAttempt::failedAttempt($ip, $user);
-
-                return error_popup('wrong password or email');
-            }
+            return [
+                'header' => render_to_string('layout._header_user', ['_user' => Auth::user()]),
+                'header_popup' => render_to_string('layout._popup_user', ['_user' => Auth::user()]),
+                'user' => Auth::user()->defaultJson(),
+            ];
         }
     }
 
@@ -124,9 +111,9 @@ class UsersController extends Controller
 
     public function show($id)
     {
-        $user = User::lookup($id);
+        $user = User::lookup($id, null, true);
 
-        if ($user === null || !$user->hasProfile()) {
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
             abort(404);
         }
 
@@ -134,14 +121,14 @@ class UsersController extends Controller
             return ujs_redirect(route('users.show', $user));
         }
 
-        $achievements = fractal_collection_array(
+        $achievements = json_collection(
             Achievement::achievable()->orderBy('grouping')->orderBy('ordering')->orderBy('progression')->get(),
             new AchievementTransformer()
         );
 
-        $userArray = fractal_item_array(
+        $userArray = json_item(
             $user,
-            new UserTransformer(), implode(',', [
+            new UserTransformer(), [
                 'userAchievements',
                 'allRankHistories',
                 'allScores',
@@ -154,7 +141,7 @@ class UsersController extends Controller
                 'recentlyReceivedKudosu',
                 'rankedAndApprovedBeatmapsets.beatmaps',
                 'favouriteBeatmapsets.beatmaps',
-            ])
+            ]
         );
 
         return view('users.show', compact('user', 'userArray', 'achievements'));

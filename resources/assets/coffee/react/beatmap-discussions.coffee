@@ -15,4 +15,5 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-reactTurbolinks.register 'beatmap-discussions', BeatmapDiscussions.Main
+reactTurbolinks.register 'beatmap-discussions', BeatmapDiscussions.Main, ->
+  initial: osu.parseJson 'json-beatmapset-discussion'

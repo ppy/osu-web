@@ -18,19 +18,33 @@
 @extends('contests.base')
 
 @section('contest-content')
-    <div class="contest__description">{!! Markdown::convertToHtml($contest->description_voting) !!}</div>
-
-    @if ($contest->voting_ends_at !== null && $contest->voting_ends_at->isPast())
-        <div class='contest__voting-ended'>{{trans('contest.voting.over')}}</div>
-    @endif
-
-    @yield('contest-entries')
+    <div class="contest__description">{!! Markdown::convertToHtml($contestMeta->description_voting) !!}</div>
+    @include('contests._countdown', ['deadline' => $contestMeta->currentPhaseEndDate()])
+    <div class='contest'>
+        @if ($contestMeta->voting_ends_at !== null && $contestMeta->voting_ends_at->isPast())
+            <div class='contest__voting-notice'>{{trans('contest.voting.over')}}</div>
+        @endif
+        @if (count($contests) === 1)
+            @include('contests._voting-entrylist', ['contest' => $contests->first()])
+        @else
+            <div class='contest__accordion' id='contests-accordion'>
+                @foreach ($contests as $contest)
+                    <div class='panel contest__group'>
+                        <a href="#{{$contest->id}}" class='contest__group-heading' data-toggle='collapse' data-parent='#contests-accordion' aria-expanded='false'>
+                            <span>{!! $contest->name !!}</span>
+                            <i class="contest__section-toggle fa fa-fw fa-chevron-down"></i>
+                        </a>
+                        <div class='contest__multi-panel collapse' id="{{$contest->id}}">
+                            @include('contests._voting-entrylist')
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+    </div>
 @endsection
 
 @section('script')
   @parent
-  <script id="json-contest" type="application/json">
-    {!! $contestJson !!}
-  </script>
   <script src="{{ elixir("js/react/contest-voting.js") }}" data-turbolinks-track></script>
 @stop

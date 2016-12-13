@@ -37,7 +37,7 @@ class MPHistory.GameHeader extends React.Component
 
     a
       className: 'mp-history-game__header'
-      href: (laroute.route 'beatmaps.show', beatmaps: @props.beatmap.id) if @props.beatmap.id
+      href: (laroute.route 'beatmaps.show', beatmap: @props.beatmap.id) if @props.beatmap.id
       style:
         backgroundImage: "url(#{@props.beatmapset.covers.cover})" if @props.beatmapset.covers.cover
 
@@ -55,7 +55,9 @@ class MPHistory.GameHeader extends React.Component
         h2 className: 'mp-history-game__metadata mp-history-game__metadata--artist', @props.beatmapset.artist
 
       div className: 'mp-history-game__mods-box',
-        el Mods, mods: @props.game.mods, large: true, reversed: true
+        el Mods,
+          mods: @props.game.mods
+          modifiers: ['large', 'reversed']
 
       div
         className: 'mp-history-game__team-type'

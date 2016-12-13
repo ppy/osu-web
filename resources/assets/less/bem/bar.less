@@ -23,26 +23,74 @@
   background-color: @yellow;
   height: @bar-size;
 
+  &--beatmap-rating {
+    height: (@spacing / 2);
+    background-color: @green;
+  }
+
+  &--beatmap-stats {
+    height: (@spacing / 2);
+    background-color: fade(@gray-f, 50%);
+  }
+
+  &--beatmap-success-rate {
+    height: (@spacing / 2);
+    background-color: @gray-d;
+    margin-top: (@spacing / 2);
+  }
+
+  &--beatmapset-nomination {
+    .default-border-radius();
+    height: (@spacing / 2);
+    margin: (@spacing / 2) (@spacing / 4);
+  }
+
+  &--beatmapset-nomination-off {
+    background-color: @gray-2;
+  }
+
+  &--beatmapset-nomination-on {
+    background-color: @green;
+  }
+
   &--double {
     height: (@bar-size * 2);
   }
 
-  &--user-profile {
-    height: @spacing;
-    background-color: @grey-d;
-    margin-bottom: (@spacing / 2);
-  }
-
   &--forum-poll {
     height: (@spacing / 2);
-    background-color: @grey-e;
+    background-color: @gray-e;
+  }
+
+  &--locale {
+    background-color: @purple;
+  }
+
+  &--user-profile {
+    height: @spacing;
+    background-color: @gray-d;
+    margin-bottom: (@spacing / 2);
   }
 
   &__fill {
     height: 100%;
 
-    .@{_top}--user-profile & {
-      background-color: @blue-dark;
+    .@{_top}--beatmap-rating & {
+      background-color: @yellow-dark;
+    }
+
+    .@{_top}--beatmap-stats & {
+      .default-bar-transition();
+      background-color: @gray-f;
+    }
+
+    .@{_top}--beatmap-stats-stars & {
+      background-color: @yellow;
+    }
+
+    .@{_top}--beatmap-success-rate & {
+      .default-bar-transition();
+      background-color: @green;
     }
 
     .@{_top}--forum-poll & {
@@ -52,6 +100,10 @@
     // must be after --forum-poll
     .@{_top}--forum-poll-voted & {
       background-color: @purple-darker;
+    }
+
+    .@{_top}--user-profile & {
+      background-color: @blue-dark;
     }
   }
 }

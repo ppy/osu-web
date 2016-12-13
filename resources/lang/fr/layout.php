@@ -29,7 +29,7 @@ return [
             'getChangelog' => 'notes de MàJ',
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
-            'index' => 'nouvelles',
+            'getNews' => 'nouvelles',
             'supportTheGame' => 'supporter le jeu',
         ],
         'help' => [

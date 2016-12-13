@@ -1,0 +1,63 @@
+/**
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+.beatmapset-beatmap-picker {
+  @padding: (@spacing / 2);
+  @gutter: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 (-@padding + -@gutter) @spacing;
+
+  &__beatmap {
+    .fade-element(100ms);
+    padding: (@padding + @gutter);
+    opacity: 0.7;
+
+    &:active,
+    &:focus {
+      text-decoration: none;
+    }
+
+    &:hover {
+      opacity: 1;
+      text-decoration: none;
+    }
+
+    &::before {
+      .full-size();
+      .default-border-radius();
+      width: calc(100% ~'-' @gutter);
+      height: calc(100% ~'-' @gutter);
+      top: (@gutter / 2);
+      left: (@gutter / 2);
+    }
+
+    &:hover::before {
+      background-color: fade(@gray-0, 50%);
+    }
+
+    &--active {
+      opacity: 1;
+
+      &::before {
+        background-color: fade(@gray-0, 50%);
+      }
+    }
+  }
+}

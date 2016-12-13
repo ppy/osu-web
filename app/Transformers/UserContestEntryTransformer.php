@@ -30,7 +30,7 @@ class UserContestEntryTransformer extends Fractal\TransformerAbstract
             'id' => $entry->id,
             'filename' => $entry->original_filename,
             'filesize' => $entry->filesize,
-            'created_at' => $entry->created_at->toIso8601String(),
+            'created_at' => json_time($entry->created_at),
         ];
     }
 }
