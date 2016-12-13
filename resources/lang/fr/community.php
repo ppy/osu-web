@@ -141,7 +141,6 @@ return [
         'guest-end' => ' pour recevoir une invitation Slack!',
 
         'receive-invite' => 'Vous pouvez recevoir une invitation pour le réseau Slack public ici',
-        // 'bullet-points' => 'Please read thoroughly through the conditions on <a href=":link">this post.</a><br />Please note that any offences on your account will not be tolerated.',
         'bullet-points' => 'Merci de bien lire les conditions sur <a href=":link">ce post.</a><br />Veuillez noter que les offences sur votre compte ne sera pas toléré.',
 
         'recent-issues' => 'Votre compte à des problèmes récents. Merci de <a href="mailto::mail">contacter le support</a> pour plus de détails.',

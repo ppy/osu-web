@@ -34,7 +34,7 @@ return [
     ],
 
     'email' => [
-        'new_reply' => '[osu!] :title',
+        'new_reply' => '[osu!] Nouvelle réponse pour le sujet ":title"',
     ],
 
     'forums' => [
@@ -152,11 +152,13 @@ return [
             'replies' => 'réponses',
         ],
 
-        'lock' => [
-            'locked-0' => 'Ce sujet a été débloqué',
-            'locked-1' => 'Ce sujet a été verouillé',
-            'is_locked' => 'Ce sujet est verouillé et aucune réponse ne peut être ajoutée',
-        ],
+				'lock' => [
+						'is_locked' => 'Ce sujet est verouillé, vous ne pouvez pas répondre',
+						'lock-0' => 'Déverouiller le sujet',
+						'lock-1' => 'Verouiller le sujet',
+						'state-0' => 'Le sujet a été déverouillé',
+						'state-1' => 'Le sujet a été verouillé',
+				],
 
         'moderate_move' => [
             'title' => 'Se déplacer dans un autre forum',
@@ -170,6 +172,8 @@ return [
         ],
 
         'show' => [
+						'total_posts' => 'Total des posts',
+
             'feature_vote' => [
                 'current' => 'Priorité : +:count',
                 'do' => 'Promouvoir cette requête',
@@ -193,10 +197,10 @@ return [
         ],
 
         'watch' => [
+						'state-0' => 'Vous ne suivez pas ce sujet',
+						'state-1' => 'Vous suivez ce sujet',
             'watch-0' => 'Se désabonner du sujet',
             'watch-1' => 'S\'abonner au sujet',
-            'watched-0' => 'Vous ne suivez pas ce sujet',
-            'watched-1' => 'Vous suivez ce sujet',
         ],
     ],
 
