@@ -25,11 +25,14 @@
   &__box {
     display: flex;
     flex-direction: column;
-    flex: 1;
 
     padding: (@spacing * 2) @spacing (@spacing * 5 / 2);
 
     &--main {
+      @media @desktop {
+        flex: 1;
+      }
+
       align-self: stretch;
     }
 
@@ -40,7 +43,7 @@
   }
 
   &__beatmap-picker-box {
-    flex: 1;
+    flex: 1 0 auto;
   }
 
   &__buttons {
