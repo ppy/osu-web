@@ -55,6 +55,8 @@ class @Polyfills
       window.localStorage.__proto__ = localStorage
 
 
+  # For IE.
+  # Reference: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc
   mathTrunc: ->
     Math.trunc ?= (x) ->
       x - x % 1
