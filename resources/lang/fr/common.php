@@ -26,10 +26,10 @@ return [
             'reset' => 'Réinitialiser',
             'save' => 'Sauvegarder',
             'show_more' => 'Plus de résultats',
-						'delete' => 'Supprimer',
+	    'delete' => 'Supprimer',
         ],
 
-				'confirmation' => 'Êtes-vous sûr ?',
+	'confirmation' => 'Êtes-vous sûr ?',
 
         'count' => [
             'item' => ':count objet|:count objets',
@@ -48,7 +48,7 @@ return [
             'days_ago' => 'il y a :count|il y a:count',
             'hours_ago' => 'il y a :count heure|il y a :count heures',
             'now' => 'Maitenant',
-						'remaining' => 'Temps restant',
+	    'remaining' => 'Temps restant',
         ],
 
         'title' => [
