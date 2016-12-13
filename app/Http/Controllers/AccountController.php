@@ -17,23 +17,24 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
 use App\Exceptions\ImageProcessorException;
 use App\Libraries\UserVerification;
 use App\Models\User;
-use App\Models\UserProfileCustomization;
 use Auth;
 use Illuminate\Http\Request as HttpRequest;
 use Request;
 
 class AccountController extends Controller
 {
-    protected $section = 'account';
+    protected $section = 'home';
+    protected $actionPrefix = 'account-';
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => 'logout']);
+        $this->middleware('auth');
 
         $this->middleware(function ($request, $next) {
             if (Auth::check() && Auth::user()->isSilenced()) {
@@ -48,55 +49,70 @@ class AccountController extends Controller
         return parent::__construct();
     }
 
-    public function updateProfile()
+    public function avatar()
+    {
+        try {
+            Auth::user()->setAvatar(Request::file('avatar_file'));
+        } catch (ImageProcessorException $e) {
+            return error_popup($e->getMessage());
+        }
+
+        return Auth::user()->defaultJson();
+    }
+
+    public function cover()
     {
         if (Request::hasFile('cover_file') && !Auth::user()->osu_subscriber) {
             return error_popup(trans('errors.supporter_only'));
         }
 
-        if (Request::hasFile('cover_file') || Request::has('cover_id')) {
-            try {
-                Auth::user()
-                    ->profileCustomization()
-                    ->firstOrCreate([])
-                    ->setCover(Request::input('cover_id'), Request::file('cover_file'));
-            } catch (ImageProcessorException $e) {
-                return error_popup($e->getMessage());
-            }
-        }
-
-        if (Request::has('order')) {
-            $order = Request::input('order');
-
-            $error = 'errors.account.profile-order.generic';
-
-            // Checking whether the input has the same amount of elements
-            // as the master sections array.
-            if (count($order) !== count(UserProfileCustomization::$sections)) {
-                return error_popup(trans($error));
-            }
-
-            // Checking if any section that was sent in input
-            // also appears in the master sections arrray.
-            foreach ($order as $i) {
-                if (!in_array($i, UserProfileCustomization::$sections, true)) {
-                    return error_popup(trans($error));
-                }
-            }
-
-            // Checking whether the elements sent in input do not repeat.
-            $occurences = array_count_values($order);
-
-            foreach ($occurences as $i) {
-                if ($i > 1) {
-                    return error_popup(trans($error));
-                }
-            }
-
+        try {
             Auth::user()
                 ->profileCustomization()
-                ->firstOrCreate([])
-                ->setExtrasOrder($order);
+                ->setCover(Request::input('cover_id'), Request::file('cover_file'));
+        } catch (ImageProcessorException $e) {
+            return error_popup($e->getMessage());
+        }
+
+        return Auth::user()->defaultJson();
+    }
+
+    public function edit()
+    {
+        return view('accounts.edit');
+    }
+
+    public function update()
+    {
+        $customizationParams = get_params(
+            Request::all(),
+            'user_profile_customization',
+            [
+                'extras_order:string[]',
+            ]
+        );
+
+        $userParams = get_params(
+            Request::all(),
+            'user',
+            [
+                'user_from:string',
+                'user_interests:string',
+                'user_msnm:string',
+                'user_occ:string',
+                'user_twitter:string',
+                'user_website:string',
+            ]
+        );
+
+        if (count($customizationParams) > 0) {
+            Auth::user()
+                ->profileCustomization()
+                ->update($customizationParams);
+        }
+
+        if (count($userParams) > 0) {
+            Auth::user()->update($userParams);
         }
 
         return Auth::user()->defaultJson();

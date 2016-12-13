@@ -40,15 +40,44 @@
         <div class="page-contents page-contents--artist">
             <div class="page-contents__content--artist-left">
                 <div class="artist__description">{!! Markdown::convertToHtml($artist->description) !!}</div>
-                <div class="js-react--artistTracklist"></div>
+                @if (count($albums) > 0)
+                    <div class="artist__albums">
+                        @foreach ($albums as $album)
+                            <div class="artist__album">
+                                <a name="album-{{$album['id']}}" id="album-{{$album['id']}}"></a>
+                                <div class="artist__album-header">
+                                    <div class="artist__album-header-overlay" style="background-image: url({{$album['cover_url']}});"></div>
+                                    <img class="artist__album-cover" src="{{$album['cover_url']}}">
+                                    <span class="artist__album-title">{{$album['title']}}</span>
+                                </div>
+                                <div class="js-react--artistTracklist" data-src="album-json-{{$album['id']}}"></div>
+                                <script id="album-json-{{$album['id']}}" type="application/json">
+                                    {!! json_encode($album['tracks']) !!}
+                                </script>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+                @if (count($tracks) > 0)
+                    <div class="artist__album">
+                        <div class="artist__album-header">
+                            <div class="artist__album-header-overlay" style="background-image: url({{$images['header_url']}});"></div>
+                            <span class="artist__album-title">{{trans('artist.songs._')}}</span>
+                        </div>
+                        <div class="js-react--artistTracklist" data-src="singles-json-{{$artist->id}}"></div>
+                        <script id="singles-json-{{$artist->id}}" type="application/json">
+                            {!! json_encode($tracks) !!}
+                        </script>
+                    </div>
+                @endif
             </div>
             <div class="page-contents__content--sidebar">
-                <div class="artist__portrait">
-                    @if($artist->label !== null)
-                        <a class="artist__label-overlay" href="{{$artist->label->website}}"></a>
-                    @endif
-                </div>
                 <div class="artist__links-area">
+                    <div class="artist__portrait">
+                        @if($artist->label !== null)
+                            <a class="artist__label-overlay" href="{{$artist->label->website}}"></a>
+                        @endif
+                    </div>
                     @foreach ($links as $link)
                         <a class='artist__button artist__button--{{$link['class']}}' href='{{$link['url']}}'>
                             <i class='fa fa-fw fa-{{$link['icon']}}'></i>
@@ -57,6 +86,17 @@
                         </a>
                     @endforeach
                 </div>
+                @if (count($albums) > 0)
+                    <div class="artist__links-area artist__links-area--albums">
+                        @foreach ($albums as $album)
+                            <a class="artist__sidebar-album-link" href="#album-{{$album['id']}}" data-turbolinks="false">
+                                <div class="artist__album-header-overlay artist__album-header-overlay--sidebar" style="background-image: url({{$album['cover_url']}});"></div>
+                                <img class="artist__album-cover artist__album-cover--sidebar" src="{{$album['cover_url']}}">
+                                <div class="artist__album-title artist__album-title--sidebar">{{$album['title']}}</div>
+                            </a>
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
     </div>
@@ -64,10 +104,5 @@
 
 @section("script")
   @parent
-
-  <script id="json-tracks" type="application/json">
-    {!! json_encode($tracks) !!}
-  </script>
-
-  <script src="{{ elixir("js/react/artist-page.js") }}" data-turbolinks-track></script>
+  <script src="{{ elixir("js/react/artist-page.js") }}" data-turbolinks-track="reload"></script>
 @stop

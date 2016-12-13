@@ -33,5 +33,5 @@
         var osuStatus = {!! json_encode($data['status']) !!};
     </script>
 
-    <script src="{{ elixir("js/react/status-page.js") }}" data-turbolinks-eval="always" data-turbolinks-track></script>
+    <script src="{{ elixir("js/react/status-page.js") }}" data-turbolinks-eval="always" data-turbolinks-track="reload"></script>
 @endsection

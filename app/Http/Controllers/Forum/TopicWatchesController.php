@@ -17,10 +17,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers\Forum;
 
-use App\Models\Forum\TopicTrack;
 use App\Models\Forum\Topic;
+use App\Models\Forum\TopicTrack;
 use Auth;
 
 class TopicWatchesController extends Controller

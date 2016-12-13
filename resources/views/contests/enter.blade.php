@@ -48,5 +48,5 @@
   <script id="json-userEntries" type="application/json">
     {!! json_encode($contest->userEntries(Auth::user())) !!}
   </script>
-  <script src="{{ elixir("js/react/contest-entry.js") }}" data-turbolinks-track></script>
+  <script src="{{ elixir("js/react/contest-entry.js") }}" data-turbolinks-track="reload"></script>
 @stop

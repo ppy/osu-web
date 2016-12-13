@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers\Forum;
 
 use App\Exceptions\ImageProcessorException;
@@ -77,13 +78,11 @@ class TopicCoversController extends Controller
     {
         $cover = TopicCover::find($id);
 
-        if ($cover === null) {
-            return $return;
+        if ($cover !== null) {
+            priv_check('ForumTopicCoverEdit', $cover)->ensureCan();
+
+            $cover->deleteWithFile();
         }
-
-        priv_check('ForumTopicCoverEdit', $cover)->ensureCan();
-
-        $cover->deleteWithFile();
 
         return json_item($cover, new TopicCoverTransformer());
     }

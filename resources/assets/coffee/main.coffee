@@ -40,6 +40,8 @@ $(document).on 'submit', 'form', LoadingOverlay.show
 @throttledWindowEvents ?= new ThrottledWindowEvents
 @checkboxValidation ?= new CheckboxValidation
 @formToggle ?= new FormToggle
+@accountEdit ?= new AccountEdit
+@accountEditAvatar ?= new AccountEditAvatar
 
 @editorZoom ?= new EditorZoom
 @stickyFooter ?= new StickyFooter
@@ -69,7 +71,7 @@ $(document).on 'change', '.js-url-selector', (e) ->
 $(document).on 'keydown', (e) ->
   $.publish 'key:esc' if e.keyCode == 27
 
-# countdown timers
+# Globally init countdown timers
 reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
   deadline: e.dataset.deadline
 

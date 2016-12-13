@@ -20,6 +20,7 @@ class @TooltipDefault
     @tooltips = document.getElementsByClassName 'qtip'
 
     $(document).on 'mouseover', '[title]', @onMouseOver
+    $(document).on 'mouseenter touchstart', '.u-ellipsis-overflow', @autoAddTooltip
     $(document).on 'turbolinks:before-cache', @rollback
 
 
@@ -72,6 +73,21 @@ class @TooltipDefault
 
     $(el).qtip options, event
 
+  autoAddTooltip: (e) =>
+    # Automagically add qtips when text becomes truncated (and auto-removes
+    # them when text becomes... un-truncated)
+    target = e.currentTarget
+    $target = $(target)
+    api = $target.qtip('api')
+
+    if (target.offsetWidth < target.scrollWidth)
+      if (api)
+        api.enable()
+      else
+        $target.attr 'title', $target.text()
+        $target.trigger('mouseover') # immediately trigger qtip magic
+    else
+      api?.disable()
 
   rollback: =>
     while @tooltips.length > 0

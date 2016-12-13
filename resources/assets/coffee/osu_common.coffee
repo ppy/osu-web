@@ -79,7 +79,7 @@ along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 
 
   isInputElement: (el) ->
-    el.tagName in ['INPUT', 'SELECT', 'TEXTAREA'] or el.isContentEditable
+    el.tagName in ['INPUT', 'SELECT', 'TEXTAREA'] || el.isContentEditable
 
 
   isClickable: (el) ->

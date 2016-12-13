@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -14,19 +16,21 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
-.js-spoilerbox {
-  &--open &__arrow {
-    transform: rotate(180deg);
-  }
+namespace App\Models;
 
-  &__body {
-    display: none;
-  }
+use Illuminate\Database\Eloquent\Model;
 
-  &--open &__body {
-    display: block;
-  }
+class ArtistAlbum extends Model
+{
+    public function artist()
+    {
+        return $this->belongsTo(Artist::class);
+    }
+
+    public function tracks()
+    {
+        return $this->hasMany(ArtistTrack::class, 'album_id', 'id');
+    }
 }

@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
 use App\Models\Achievement;
@@ -75,20 +76,20 @@ class UsersController extends Controller
         $remember = Request::input('remember') === 'yes';
 
         $user = User::findForLogin($username);
-        $authResult = User::attemptLogin($user, $password, $ip);
+        $authError = User::attemptLogin($user, $password, $ip);
 
-        if (isset($authResult['error'])) {
-            return error_popup($authResult['error']);
-        } else {
+        if ($authError === null) {
             Request::session()->flush();
             Request::session()->regenerateToken();
             Auth::login($user, $remember);
 
             return [
-                'header' => render_to_string('layout._header_user', ['_user' => Auth::user()]),
-                'header_popup' => render_to_string('layout._popup_user', ['_user' => Auth::user()]),
+                'header' => render_to_string('layout._header_user'),
+                'header_popup' => render_to_string('layout._popup_user'),
                 'user' => Auth::user()->defaultJson(),
             ];
+        } else {
+            return error_popup($authError);
         }
     }
 
@@ -122,7 +123,11 @@ class UsersController extends Controller
         }
 
         $achievements = json_collection(
-            Achievement::achievable()->orderBy('grouping')->orderBy('ordering')->orderBy('progression')->get(),
+            Achievement::achievable()
+                ->orderBy('grouping')
+                ->orderBy('ordering')
+                ->orderBy('progression')
+                ->get(),
             new AchievementTransformer()
         );
 

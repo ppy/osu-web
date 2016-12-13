@@ -122,7 +122,11 @@ return [
             'details' => [
                 'made-by' => 'made by ',
                 'submitted' => 'submitted on ',
+                'updated' => 'last updated on ',
                 'ranked' => 'ranked on ',
+                'approved' => 'approved on ',
+                'qualified' => 'qualified on ',
+                'loved' => 'loved on ',
                 'logged-out' => 'You need to log in before downloading any beatmaps!',
                 'download' => [
                     '_' => 'Download',

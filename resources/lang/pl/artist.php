@@ -19,5 +19,7 @@
  */
 
 return [
-    'songs' => '1 song|:count songs|:count songs',
+    'songs' => [
+        'count' => '1 song|:count songs|:count songs',
+    ],
 ];

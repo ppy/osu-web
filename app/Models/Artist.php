@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -26,6 +27,11 @@ class Artist extends Model
     public function label()
     {
         return $this->belongsTo(Label::class);
+    }
+
+    public function albums()
+    {
+        return $this->hasMany(ArtistAlbum::class, 'artist_id', 'id');
     }
 
     public function tracks()

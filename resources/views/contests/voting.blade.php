@@ -46,5 +46,5 @@
 
 @section('script')
   @parent
-  <script src="{{ elixir("js/react/contest-voting.js") }}" data-turbolinks-track></script>
+  <script src="{{ elixir("js/react/contest-voting.js") }}" data-turbolinks-track="reload"></script>
 @stop

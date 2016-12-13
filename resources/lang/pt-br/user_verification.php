@@ -24,7 +24,6 @@ return [
         'verifying' => 'Verificando...',
         'issuing' => 'Enviando novo código...',
 
-
         'info' => [
             'check_spam' => 'Certifique-se de verificar a sua pasta de spam caso não consiga encontrar o e-mail.',
             'recover' => 'Caso não consiga acessar o seu e-mail ou tenha esquecido o e-mail usado, siga o :link.',

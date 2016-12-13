@@ -17,11 +17,12 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Transformers;
 
 use App\Models\Beatmap;
-use App\Models\User;
 use App\Models\Score\Best\Model as ScoreBestModel;
+use App\Models\User;
 use League\Fractal;
 
 class UserTransformer extends Fractal\TransformerAbstract
@@ -44,7 +45,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 
     public function transform(User $user)
     {
-        $profileCustomization = $user->profileCustomization()->firstOrNew([]);
+        $profileCustomization = $user->profileCustomization();
 
         return [
             'id' => $user->user_id,
@@ -54,7 +55,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'code' => $user->country_acronym,
                 'name' => $user->countryName(),
             ],
-            'age' => $user->age,
+            'age' => $user->age(),
             'avatarUrl' => $user->user_avatar,
             'isAdmin' => $user->isAdmin(),
             'isSupporter' => $user->osu_subscriber,
@@ -69,11 +70,11 @@ class UserTransformer extends Fractal\TransformerAbstract
             'playstyle' => $user->osu_playstyle,
             'playmode' => $user->playmode,
             'profileColour' => $user->user_colour,
-            'profileOrder' => $profileCustomization->getExtrasOrder(),
+            'profileOrder' => $profileCustomization->extras_order,
             'cover' => [
-                'customUrl' => $profileCustomization->cover->fileUrl(),
-                'url' => $profileCustomization->cover->url(),
-                'id' => $profileCustomization->cover->id(),
+                'customUrl' => $profileCustomization->cover()->fileUrl(),
+                'url' => $profileCustomization->cover()->url(),
+                'id' => $profileCustomization->cover()->id(),
             ],
             'kudosu' => [
                 'total' => $user->osu_kudostotal,

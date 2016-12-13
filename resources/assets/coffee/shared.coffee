@@ -75,10 +75,6 @@ $(document).on 'click', '#popup-container, #overlay', (e) ->
   $popup.fadeOut null, $popup.remove
 
 
-# prevent clicking gallery button from navigating to `#`
-$(document).on 'click', '.pswp a', (e) -> e.preventDefault()
-
-
 ###
 # Add `disabled` attribute to form element with value _disabled.
 # Currently used to work around Form::select (in store checkout -

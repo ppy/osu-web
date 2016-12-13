@@ -1,0 +1,134 @@
+/**
+ *    Copyright 2015-2016 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+.account-edit-entry {
+  @top: account-edit-entry;
+
+  @section-width: 250px;
+  @label-width: 150px;
+  @input-width: 250px;
+
+  text-transform: none;
+  display: flex;
+  align-items: center;
+  padding: @spacing 0;
+  margin: 0;
+
+  &__avatar {
+    .default-border-radius();
+    .own-layer();
+    width: @avatar-size--base;
+    height: @avatar-size--base;
+    margin-bottom: @spacing;
+    overflow: hidden;
+  }
+
+  &__drop-overlay {
+    .full-size();
+    .center-content();
+    padding: @spacing;
+    opacity: 0;
+    color: @gray-f;
+
+    &::before {
+      .full-size();
+      background-color: @gray-0;
+      opacity: 0;
+      transition: all 120ms;
+
+      .@{top}.js-account-edit-avatar--start & {
+        opacity: 0.5;
+      }
+
+      .@{top}.js-account-edit-avatar--hover & {
+        opacity: 0.7;
+      }
+    }
+
+    .@{top}.js-account-edit-avatar--start & {
+      opacity: 1;
+    }
+  }
+
+  &__input {
+    .reset-input();
+    .default-border-radius();
+
+    flex: 1;
+    max-width: @input-width;
+    align-self: strecth;
+    background-color: @gray-4;
+    border: 2px solid transparent;
+    color: @gray-f;
+    font-weight: normal;
+    padding: (@spacing / 2);
+    margin: 0 @spacing 0 0;
+
+    .@{top}.js-account-edit--focus & {
+      border-color: @yellow;
+    }
+  }
+
+  &__label {
+    flex: none;
+    align-self: center;
+    width: @label-width;
+    margin-right: @spacing;
+    text-align: right;
+
+    .@{top}.js-account-edit--focus & {
+      color: @gray-f;
+    }
+  }
+
+  &__overlay-spinner {
+    .full-size();
+    .center-content();
+
+    background-color: fade(@gray-0, 75%);
+    opacity: 0;
+    transition: all 120ms;
+
+    .@{top}.js-account-edit-avatar--saving & {
+      opacity: 1;
+    }
+  }
+
+  &__status {
+    opacity: 0;
+
+    &--saved {
+      color: @green;
+      padding-right: @spacing;
+
+      .@{top}.js-account-edit--saved & {
+        opacity: 1;
+        .fade-element(120ms);
+      }
+    }
+
+    &--saving {
+      width: 0;
+
+      .@{top}.js-account-edit--saving & {
+        opacity: 1;
+      }
+    }
+  }
+}

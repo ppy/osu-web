@@ -17,13 +17,14 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Libraries;
 
 use App\Exceptions\AuthorizationException;
+use App\Models\Beatmapset;
 use App\Models\Chat\Channel as ChatChannel;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
-use App\Models\Beatmapset;
 use App\Models\UserContestEntry;
 
 class OsuAuthorize
@@ -45,9 +46,7 @@ class OsuAuthorize
                 $function = "check{$ability}";
 
                 try {
-                    $message = call_user_func_array(
-                        [$this, $function], [$user, $object]
-                    );
+                    $message = $this->$function($user, $object);
                 } catch (AuthorizationException $e) {
                     $message = $e->getMessage();
                 }
@@ -73,14 +72,6 @@ class OsuAuthorize
         if ($discussion->beatmapDiscussionPosts()->withoutDeleted()->count() > 1) {
             return $prefix.'has_reply';
         }
-
-        return 'ok';
-    }
-
-    public function checkBeatmapDiscussionPost($user, $discussion)
-    {
-        $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user);
 
         return 'ok';
     }
@@ -174,6 +165,14 @@ class OsuAuthorize
         if ($post->deleted_at === null) {
             return 'ok';
         }
+    }
+
+    public function checkBeatmapDiscussionPostStore($user, $discussion)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        return 'ok';
     }
 
     public function checkBeatmapsetNominate($user, $beatmapset)

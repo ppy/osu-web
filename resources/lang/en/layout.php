@@ -26,11 +26,12 @@ return [
     'menu' => [
         'home' => [
             '_' => 'home',
-            'index' => 'osu!',
+            'account-edit' => 'settings',
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
             'getNews' => 'news',
+            'index' => 'osu!',
             'supportTheGame' => 'support the game',
         ],
         'help' => [
@@ -71,7 +72,7 @@ return [
             'tournaments' => 'tournaments',
             'tournaments-index' => 'tournaments',
             'tournaments-show' => 'tournament info',
-            'forum-topic-watches-index' => 'Topic Subscriptions',
+            'forum-topic-watches-index' => 'subscriptions',
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
@@ -233,8 +234,9 @@ return [
 
     'popup_user' => [
         'links' => [
-            'profile' => 'My Profile',
+            'account-edit' => 'Settings',
             'logout' => 'Log Out',
+            'profile' => 'My Profile',
         ],
     ],
 ];

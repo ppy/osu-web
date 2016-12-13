@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Transformers;
 
 use App\Models\ArtistTrack;
@@ -28,9 +29,11 @@ class ArtistTrackTransformer extends Fractal\TransformerAbstract
     {
         return [
             'id' => $track->id,
+            'album_id' => $track->album_id,
             'title' => $track->title,
             'version' => $track->version,
             'length' => format_duration_for_display($track->length),
+            'exclusive' => $track->exclusive,
             'bpm' => $track->bpm,
             'genre' => $track->genre,
             'preview' => $track->preview,

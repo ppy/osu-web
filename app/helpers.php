@@ -482,35 +482,6 @@ function fast_imagesize($url)
     });
 }
 
-/*
- * Parses a string. If it's not an empty string or null,
- * return parsed integer value of it, otherwise return null.
- */
-function get_int($string)
-{
-    if (present($string) === true) {
-        return (int) $string;
-    }
-}
-
-function get_bool($string)
-{
-    if (is_bool($string)) {
-        return $string;
-    } elseif ($string === '1' || $string === 'on' || $string === 'true') {
-        return true;
-    } elseif ($string === '0' || $string === 'false') {
-        return false;
-    }
-}
-
-function get_file($input)
-{
-    if ($input instanceof Symfony\Component\HttpFoundation\File\UploadedFile) {
-        return $input->getRealPath();
-    }
-}
-
 function get_arr($input, $callback)
 {
     if (!is_array($input)) {
@@ -527,6 +498,42 @@ function get_arr($input, $callback)
     }
 
     return $result;
+}
+
+function get_bool($string)
+{
+    if (is_bool($string)) {
+        return $string;
+    } elseif ($string === '1' || $string === 'on' || $string === 'true') {
+        return true;
+    } elseif ($string === '0' || $string === 'false') {
+        return false;
+    }
+}
+
+/*
+ * Parses a string. If it's not an empty string or null,
+ * return parsed integer value of it, otherwise return null.
+ */
+function get_int($string)
+{
+    if (present($string) === true) {
+        return (int) $string;
+    }
+}
+
+function get_file($input)
+{
+    if ($input instanceof Symfony\Component\HttpFoundation\File\UploadedFile) {
+        return $input->getRealPath();
+    }
+}
+
+function get_string($input)
+{
+    if (is_string($input)) {
+        return $input;
+    }
 }
 
 function get_class_basename($className)
@@ -587,11 +594,13 @@ function get_param_value($input, $type)
         case 'file':
             return get_file($input);
             break;
+        case 'string':
+            return get_string($input);
         case 'string_split':
-            return get_arr(explode("\r\n", $input), 'presence');
+            return get_arr(explode("\r\n", $input), 'get_string');
             break;
         case 'string[]':
-            return get_arr($input, 'presence');
+            return get_arr($input, 'get_string');
             break;
         case 'int[]':
             return get_arr($input, 'get_int');

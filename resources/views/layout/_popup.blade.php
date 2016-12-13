@@ -38,7 +38,7 @@
             <div class="nav-popup-box__slide-y">
                 <div class="nav-popup-box__content js-user-header-popup">
                     @if (Auth::check())
-                        @include('layout._popup_user', ['_user' => Auth::user()])
+                        @include('layout._popup_user')
                     @else
                         @include('layout._popup_login')
                     @endif

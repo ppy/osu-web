@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers\Forum;
 
 use App\Exceptions\ImageProcessorException;
@@ -46,6 +47,8 @@ class ForumCoversController extends Controller
             if (Auth::check() && !Auth::user()->isAdmin()) {
                 abort(403);
             }
+
+            return $next($request);
         });
     }
 
