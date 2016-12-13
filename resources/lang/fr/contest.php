@@ -43,9 +43,9 @@ return [
     'beatmaps' => [
       'download' => 'Télécharger l\'inscription',
     ],
-		'votes' => '1 vote|:count votes',
-		'dates' => [
-				'ended' => 'Terminé le :date',
+		 'votes' => '1 vote|:count votes',
+		 'dates' => [
+				 'ended' => 'Terminé le :date',
 
 				'starts' => [
 						'_' => 'Démarre le :date',
