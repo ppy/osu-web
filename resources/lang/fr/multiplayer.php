@@ -42,7 +42,7 @@ return [
             'player-kicked-no-user' => 'un joueur a été exclu du match',
             'match-created-no-user' => 'le match a été créé',
             'match-disbanded-no-user' => 'le match a été dissous',
-            'host-changed-no-user' => 'the host was changed',
+            'host-changed-no-user' => 'l\'hôte a été changé',
         ],
         'in-progress' => '(match en cours)',
         'score' => [
