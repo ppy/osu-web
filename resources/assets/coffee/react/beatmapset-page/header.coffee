@@ -55,7 +55,7 @@ class BeatmapsetPage.Header extends React.Component
             span
               className: 'beatmapset-header__star-difficulty'
               style:
-                visibility: 'hidden' if !@props.hoveredBeatmap
+                visibility: 'hidden' if !@props.hoveredBeatmap?
               "#{osu.trans 'beatmaps.beatmapset.show.stats.stars'} #{if @props.hoveredBeatmap then @props.hoveredBeatmap.difficulty_rating.toFixed 2 else ''}"
 
             div {},
