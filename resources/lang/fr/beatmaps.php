@@ -175,7 +175,7 @@ return [
         'faves' => 'Favoris',
         'modreqs' => 'Requêtes de mods',
         'pending' => 'En attente',
-        'graveyard' => 'Cimtière',
+        'graveyard' => 'Cimetière',
         'my-maps' => 'Mes maps',
     ],
     'genre' => [

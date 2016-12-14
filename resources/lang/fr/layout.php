@@ -25,7 +25,7 @@ return [
 
     'menu' => [
         'home' => [
-            '_' => 'acceuil',
+            '_' => 'accueil',
                         'index' => 'osu!',
             'getChangelog' => 'notes de MàJ',
             'getDownload' => 'télécharger',
