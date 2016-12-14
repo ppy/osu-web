@@ -20,6 +20,7 @@
 
 namespace App\Models\Forum;
 
+use App\Libraries\BBCodeForDB;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,6 +31,15 @@ class PollOption extends Model
     public $incrementing = false;
     public $timestamps = false;
     protected $guarded = [];
+
+    // for bbcode_uid
+    public function post()
+    {
+        return $this
+            ->belongsTo(Post::class, 'topic_id', 'topic_id')
+            ->orderBy('post_id', 'ASC')
+            ->limit(1);
+    }
 
     public function topic()
     {
@@ -60,7 +70,7 @@ class PollOption extends Model
                 $votedByUser = in_array($poll->poll_option_id, $userVotes, true);
 
                 $summary['options'][$poll->poll_option_id] = [
-                    'text' => $poll->poll_option_text,
+                    'textHTML' => $poll->optionTextHTML(),
                     'total' => $poll->poll_option_total,
                     'voted_by_user' => $votedByUser,
                 ];
@@ -96,5 +106,20 @@ class PollOption extends Model
         }
 
         return $this->votes()->where('vote_user_id', $user->user_id)->exists();
+    }
+
+    public function setPollOptionTextAttribute($value)
+    {
+        $this->attributes['poll_option_text'] = (new BBCodeForDB($value))->generate();
+    }
+
+    public function optionTextHTML()
+    {
+        return bbcode($this->poll_option_text, $this->post->bbcode_uid, true);
+    }
+
+    public function optionTextRaw()
+    {
+        return bbcode_for_editor($this->poll_option_text, $this->post->bbcode_uid);
     }
 }
