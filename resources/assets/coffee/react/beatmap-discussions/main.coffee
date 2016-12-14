@@ -195,7 +195,7 @@ BeatmapDiscussions.Main = React.createClass
 
 
   jumpTo: (_e, {id}) ->
-    discussion = @state.beatmapsetDiscussion.beatmap_discussions.find (d) => d.id == id
+    discussion = _.find @state.beatmapsetDiscussion.beatmap_discussions, id: id
 
     return if !discussion?
 
@@ -237,8 +237,7 @@ BeatmapDiscussions.Main = React.createClass
 
     return callback?() if id == @state.currentBeatmap.id
 
-    beatmap = @state.beatmapset.beatmaps.find (bm) =>
-      bm.id == id
+    beatmap = _.find @state.beatmapset.beatmaps, id: id
 
     return callback?() if !beatmap?
 

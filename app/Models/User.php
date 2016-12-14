@@ -26,6 +26,7 @@ use App\Traits\UserAvatar;
 use App\Transformers\UserTransformer;
 use Carbon\Carbon;
 use DB;
+use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -923,9 +924,18 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function profileCustomization()
     {
         if ($this->profileCustomization === null) {
-            $this->profileCustomization = $this
-                ->userProfileCustomization()
-                ->firstOrCreate([]);
+            try {
+                $this->profileCustomization = $this
+                    ->userProfileCustomization()
+                    ->firstOrCreate([]);
+            } catch (Exception $ex) {
+                if (is_sql_unique_exception($ex)) {
+                    // retry on duplicate
+                    return $this->profileCustomization();
+                }
+
+                throw $ex;
+            }
         }
 
         return $this->profileCustomization;

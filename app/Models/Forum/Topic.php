@@ -20,6 +20,7 @@
 
 namespace App\Models\Forum;
 
+use App\Libraries\BBCodeForDB;
 use App\Models\Log;
 use App\Models\User;
 use Carbon\Carbon;
@@ -346,6 +347,16 @@ class Topic extends Model
     public function getPollStartAttribute($value)
     {
         return get_time_or_null($value);
+    }
+
+    public function setPollTitleAttribute($value)
+    {
+        $this->attributes['poll_title'] = (new BBCodeForDB($value))->generate();
+    }
+
+    public function pollTitleHTML()
+    {
+        return bbcode($this->poll_title, $this->posts->first()->bbcode_uid);
     }
 
     public function pollEnd()

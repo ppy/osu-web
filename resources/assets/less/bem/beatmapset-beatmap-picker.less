@@ -25,37 +25,36 @@
   margin: 0 (-@padding + -@gutter) @spacing;
 
   &__beatmap {
+    .own-layer();
+    .link-plain();
     .fade-element(100ms);
     padding: (@padding + @gutter);
     opacity: 0.7;
 
-    &:active,
-    &:focus {
-      text-decoration: none;
-    }
-
     &:hover {
       opacity: 1;
-      text-decoration: none;
     }
 
     &::before {
       .full-size();
       .default-border-radius();
+      background-color: fade(@gray-0, 50%);
       width: calc(100% ~'-' @gutter);
       height: calc(100% ~'-' @gutter);
       top: (@gutter / 2);
       left: (@gutter / 2);
+      opacity: 0;
     }
 
     &:hover::before {
-      background-color: fade(@gray-0, 50%);
+      opacity: 1;
     }
 
     &--active {
       opacity: 1;
 
       &::before {
+        opacity: 1;
         background-color: fade(@gray-0, 50%);
       }
     }

@@ -16,10 +16,16 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-# For IE9.
-# Reference: https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
-class @CustomEventPolyfill
-  @fillIn: ->
+class @Polyfills
+  constructor: ->
+    @customEvent()
+    @localStorage()
+    @mathTrunc()
+
+
+  # For IE9+.
+  # Reference: https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
+  customEvent: ->
     return if typeof CustomEvent == 'function'
 
     customEvent = (event, params) ->
@@ -36,3 +42,21 @@ class @CustomEventPolyfill
     customEvent.prototype = window.Event.prototype
 
     window.CustomEvent = customEvent
+
+
+  # Mainly for Safari Private Mode.
+  localStorage: ->
+    try
+      window.localStorage.setItem '_test', '1'
+      window.localStorage.removeItem '_test'
+    catch
+      localStorage = new DumbStorage
+      window.localStorage = localStorage
+      window.localStorage.__proto__ = localStorage
+
+
+  # For IE.
+  # Reference: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc
+  mathTrunc: ->
+    Math.trunc ?= (x) ->
+      x - x % 1

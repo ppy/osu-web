@@ -18,45 +18,74 @@
  */
 
 .beatmap-icon {
-  .icon-bg();
-  .default-box-shadow();
-  .center-content();
-
   color: @gray-f;
-  border: 2px solid @gray-f;
-
-  .circle(21px);
   font-size: 22px;
+  display: flex;
 
-  padding: 0;
+  &::before {
+    .full-size();
+    .icon-bg();
+
+    @margin: 2px;
+    @size: calc(100% ~'-' (@margin * 2));
+    height: auto;
+    width: @size;
+    padding-bottom: @size;
+    top: @margin;
+    left: @margin;
+    border-radius: 50%;
+    background-color: @pink;
+  }
 
   &--large {
-    .circle(29px);
     font-size: 30px;
   }
 
   &--beatmapset {
-    .circle(38px);
     font-size: 40px;
   }
 
   &--easy {
-    background-color: @green;
+    &::before {
+      background-color: @green;
+    }
   }
 
   &--normal {
-    background-color: @yellow;
+    &::before {
+      background-color: @yellow;
+    }
   }
 
   &--hard {
-    background-color: @pink;
+    &::before {
+      background-color: @pink;
+    }
   }
 
   &--insane {
-    background-color: @purple;
+    &::before {
+      background-color: @purple;
+    }
   }
 
   &--expert {
-    background-color: @gray-0;
+    &::before {
+      background-color: @gray-0;
+    }
+  }
+
+  &__shadow {
+    .default-box-shadow();
+    .full-size();
+
+    @margin: 1px;
+    @size: calc(100% ~'-' (@margin * 2));
+    height: auto;
+    width: @size;
+    padding-bottom: @size;
+    top: @margin;
+    left: @margin;
+    border-radius: 50%;
   }
 }

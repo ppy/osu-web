@@ -42,4 +42,5 @@ el = React.createElement
     div
       className: "beatmap-icon beatmap-icon--#{difficultyRating} beatmap-icon--#{@props.modifier}"
       title: beatmap.version if showTitle
+      div className: 'beatmap-icon__shadow'
       el Icon, name: "extra-mode-#{mode}"
