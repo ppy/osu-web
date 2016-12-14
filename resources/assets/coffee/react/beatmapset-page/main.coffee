@@ -177,7 +177,7 @@ class BeatmapsetPage.Main extends React.Component
     $.subscribe 'beatmapset:mode:set.beatmapsetPage', @setCurrentPlaymode
     $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
     $.subscribe 'beatmapset:preview:toggle.beatmapsetPage', @togglePreviewPlayingState
-    $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmapId
+    $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmap
     $.subscribe 'beatmapset:favourite:toggle.beatmapsetPage', @toggleFavourite
 
     @setHash()
