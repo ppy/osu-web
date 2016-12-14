@@ -32,7 +32,9 @@
   }
 
   &__content {
-    flex: 1;
+    @media @desktop {
+      flex: 1;
+    }
 
     &--mapping {
       margin: (@spacing * 2) 0;

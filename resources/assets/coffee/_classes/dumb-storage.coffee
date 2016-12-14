@@ -16,18 +16,15 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-# Mainly for Safari Private Mode.
-class @LocalStoragePolyfill
-  @fillIn: ->
-    try
-      window.localStorage.setItem '_test', '1'
-      window.localStorage.removeItem '_test'
-    catch
-      localStorage = new @
-      window.localStorage = localStorage
-      window.localStorage.__proto__ = localStorage
+# Kind of implements localStorage
+class @DumbStorage
+  constructor: ->
+    @_data = {}
 
-  _data: {}
+
+  clear: =>
+    @_data = {}
+
 
   getItem: (key) =>
     if @_data.hasOwnProperty(key)
@@ -35,10 +32,10 @@ class @LocalStoragePolyfill
     else
       null
 
+
   removeItem: (key) =>
     delete @_data[key]
 
+
   setItem: (key, value) =>
     @_data[key] = String(value)
-
-  clear: => @_data = {}

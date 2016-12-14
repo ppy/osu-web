@@ -30,6 +30,7 @@
                     <i class="fa fa-4x fa-extra-{{ $icon }}"></i>
                     <i class="fa fa-3x fa-extra-{{ $icon }}"></i>
                     <i class="fa fa-2x fa-extra-{{ $icon }}"></i>
+                    <i class="fa fa-extra-{{ $icon }}"></i>
                     <i class="fa fa-lg fa-extra-{{ $icon }}"></i>
                     <i class="fa fa-fw fa-extra-{{ $icon }}"></i>
                 </div>

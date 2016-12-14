@@ -45,8 +45,12 @@ class HomeController extends Controller
     {
         return view('home.icons')
         ->with('icons', [
-            'osu', 'mania', 'fruits', 'taiko',
-            'patreon',
+            'osu',
+            'mode-osu',
+            'mode-mania',
+            'mode-fruits',
+            'mode-taiko',
+            'social-patreon',
         ]);
     }
 
