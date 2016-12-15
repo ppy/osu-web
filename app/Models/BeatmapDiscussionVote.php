@@ -43,7 +43,7 @@ class BeatmapDiscussionVote extends Model
         } elseif ($value < 0) {
             $value = -1;
         } else {
-            $value = null;
+            $value = 0;
         }
 
         $this->attributes['score'] = $value;

@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class BeatmapDiscussion extends Model
@@ -34,6 +35,8 @@ class BeatmapDiscussion extends Model
     ];
 
     protected $dates = ['deleted_at'];
+
+    const KUDOSU_STEPS = [5, 10, 15];
 
     const MESSAGE_TYPES = [
         'praise' => 0,
@@ -79,6 +82,46 @@ class BeatmapDiscussion extends Model
     public function setMessageTypeAttribute($value)
     {
         return $this->attributes['message_type'] = static::MESSAGE_TYPES[$value] ?? null;
+    }
+
+    public function calculateKudosu($eventType, $scoreChange)
+    {
+        // no kudosu for praises...?
+        if ($this->message_type === 'praise') {
+            return;
+        }
+
+        $currentVotes = $this->currentVotes();
+        $previousVotes = $currentVotes - $scoreChange;
+
+        $change = 0;
+
+        if ($scoreChange > 0) {
+            foreach (static::KUDOSU_STEPS as $step) {
+                if ($previousVotes < $step && $currentVotes >= $step) {
+                    $change += 1;
+                }
+            }
+        } else {
+            foreach (static::KUDOSU_STEPS as $step) {
+                if ($currentVotes < $step && $previousVotes >= $step) {
+                    $change -= 1;
+                }
+            }
+        }
+
+        // TODO: logging
+        $this->user->update([
+            'osu_kudostotal' => DB::raw("osu_kudostotal + {$change}"),
+            'osu_kudosavailable' => DB::raw("osu_kudosavailable + {$change}"),
+        ]);
+    }
+
+    public function currentVotes($ignoreDeletedStatus = false)
+    {
+        return $this->isDeleted() && !$ignoreDeletedStatus
+            ? 0
+            : $this->beatmapDiscussionVotes()->sum('score');
     }
 
     public function hasValidBeatmap()
@@ -131,30 +174,48 @@ class BeatmapDiscussion extends Model
 
     public function vote($params)
     {
-        $vote = $this->beatmapDiscussionVotes()->where(['user_id' => $params['user_id']])->firstOrNew([]);
+        return DB::transaction(function () use ($params) {
+            $vote = $this->beatmapDiscussionVotes()->where(['user_id' => $params['user_id']])->firstOrNew([]);
+            $previousScore = $vote->score ?? 0;
+            $vote->fill($params);
+            $scoreChange = $vote->score - $previousScore;
 
-        $vote->fill($params);
+            if ($scoreChange !== 0) {
+                if ($vote->score === 0) {
+                    $vote->delete();
+                } else {
+                    $vote->save();
+                }
 
-        if ($vote->score === null) {
-            $vote->delete();
+                $this->calculateKudosu('vote', $scoreChange);
+            }
 
             return true;
-        } else {
-            return $vote->save();
-        }
+        });
+    }
+
+    public function isDeleted()
+    {
+        return $this->deleted_at !== null;
     }
 
     public function restore()
     {
-        return $this->update(['deleted_at' => null]);
+        DB::transaction(function () {
+            $this->update(['deleted_at' => null]);
+            $this->calculateKudosu('restore', max($this->currentVotes(true), 0));
+        });
     }
 
     public function softDelete($deletedBy)
     {
-        $this->update([
-            'deleted_by_id' => $deletedBy->user_id ?? null,
-            'deleted_at' => Carbon::now(),
-        ]);
+        DB::transaction(function () {
+            $this->update([
+                'deleted_by_id' => $deletedBy->user_id ?? null,
+                'deleted_at' => Carbon::now(),
+            ]);
+            $this->calculateKudosu('delete', min(-1 * $this->currentVotes(true), 0));
+        });
     }
 
     public function scopeWithoutDeleted($query)
