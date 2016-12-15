@@ -138,9 +138,7 @@ BeatmapDiscussions.Post = React.createClass
             className: "#{bn}__info-user"
             @props.user.username
           ', '
-          a
-            href: BeatmapDiscussionHelper.hash discussionId: @props.discussion.id
-            className: "#{bn}__info-permalink"
+          span
             dangerouslySetInnerHTML:
               __html: osu.timeago(@props.post.created_at)
 
@@ -168,6 +166,13 @@ BeatmapDiscussions.Post = React.createClass
         className: "#{bn}__actions"
         div
           className: "#{bn}__actions-group"
+          if @props.type == 'discussion'
+            a
+              href: BeatmapDiscussionHelper.hash discussionId: @props.discussion.id
+              onClick: @permalink
+              className: "#{bn}__action #{bn}__action--button"
+              osu.trans('common.buttons.permalink')
+
           if @props.canBeEdited
             button
               className: "#{bn}__action #{bn}__action--button"
@@ -217,3 +222,7 @@ BeatmapDiscussions.Post = React.createClass
             el BigButton,
               text: osu.trans 'common.buttons.save'
               props: onClick: @throttledUpdatePost
+
+
+  permalink: (e) ->
+    e.preventDefault()
