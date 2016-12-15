@@ -86,7 +86,7 @@ class BeatmapsetsController extends Controller
         $set = json_item(
             $beatmapset,
             new BeatmapsetTransformer(),
-            ['beatmaps', 'beatmaps.failtimes', 'converts', 'converts.failtimes', 'user', 'description', 'ratings']
+            ['beatmaps', 'beatmaps.failtimes', 'converts', 'converts.failtimes', 'user', 'description', 'ratings', 'availability']
         );
 
         $countries = json_collection(Country::all(), new CountryTransformer);

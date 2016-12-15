@@ -36,6 +36,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         'converts',
         'nominations',
         'ratings',
+        'availability'
     ];
 
     public function transform(Beatmapset $beatmapset = null)
@@ -65,6 +66,20 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'ranked' => $beatmapset->approved,
             'status' => $beatmapset->status(),
         ];
+    }
+
+    public function includeAvailability(Beatmapset $beatmapset)
+    {
+        if (!$beatmapset->download_disabled && !$beatmapset->download_disabled_url) {
+            return null;
+        }
+
+        return $this->item($beatmapset, function ($beatmapset) {
+            return [
+                'download_disabled' => $beatmapset->download_disabled,
+                'more_information' => $beatmapset->download_disabled_url,
+            ];
+        });
     }
 
     public function includeNominations(Beatmapset $beatmapset)
