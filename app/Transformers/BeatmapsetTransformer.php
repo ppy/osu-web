@@ -36,7 +36,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         'converts',
         'nominations',
         'ratings',
-        'availability'
+        'availability',
     ];
 
     public function transform(Beatmapset $beatmapset = null)
@@ -71,7 +71,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
     public function includeAvailability(Beatmapset $beatmapset)
     {
         if (!$beatmapset->download_disabled && !$beatmapset->download_disabled_url) {
-            return null;
+            return;
         }
 
         return $this->item($beatmapset, function ($beatmapset) {
