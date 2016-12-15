@@ -32,6 +32,7 @@ return [
         ],
 
         'vote' => [
+            'limit_exceeded' => 'Please wait a while before casting more votes',
             'owner' => 'Can not vote own discussion!',
         ],
     ],
