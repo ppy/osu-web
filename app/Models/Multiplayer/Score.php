@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models\Multiplayer;
 
 use App\Models\Beatmap;
@@ -45,6 +46,11 @@ class Score extends Model
     public function gamemodeString()
     {
         return Beatmap::modeStr($this->game->play_mode);
+    }
+
+    public function getScoringType()
+    {
+        return $this->game->scoring_type;
     }
 
     public function getTeamAttribute($value)

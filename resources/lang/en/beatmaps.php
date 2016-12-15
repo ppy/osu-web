@@ -32,16 +32,26 @@ return [
     ],
 
     'discussions' => [
+        'delete' => 'delete',
+        'deleted' => 'Deleted by :editor :delete_time',
+        'edit' => 'edit',
+        'edited' => 'Last edited by :editor :update_time',
+        'message_placeholder' => 'Type here to post',
+        'message_type_select' => 'Select Comment Type',
+        'reply_placeholder' => 'Type your response here',
+        'require-login' => 'Please login to post or reply',
+        'resolved' => 'Resolved',
+        'restore' => 'restore',
+        'title' => 'Discussions',
+
         'collapse' => [
             'all-collapse' => 'Collapse all',
             'all-expand' => 'Expand all',
         ],
 
-        'edit' => 'edit',
-        'edited' => 'Last edited by :editor :update_time',
         'empty' => [
             'empty' => 'No discussions yet!',
-            'filtered' => 'No discussion matches selected filter.',
+            'hidden' => 'No discussion matches selected filter.',
         ],
 
         'message_hint' => [
@@ -49,29 +59,29 @@ return [
             'in_timeline' => 'To mod multiple timestamps, post multiple times (one post per timestamp).',
         ],
 
-        'message_placeholder' => 'Type here to post',
-
         'message_type' => [
             'praise' => 'Praise',
             'problem' => 'Problem',
             'suggestion' => 'Suggestion',
         ],
 
-        'message_type_select' => 'Select Comment Type',
-
         'mode' => [
             'general' => 'General',
             'timeline' => 'Timeline',
         ],
 
-        'require-login' => 'Please login to post or reply',
-        'resolved' => 'Resolved',
+        'new' => [
+            'timestamp' => 'Timestamp',
+            'timestamp_missing' => 'ctrl-c in edit mode and paste in your message to add a timestamp!',
+            'title' => 'New Discussion',
+        ],
 
         'show' => [
-            'title' => 'Beatmap Discussion',
+            'title' => ':title mapped by :mapper',
         ],
 
         'stats' => [
+            'deleted' => 'Deleted',
             'mine' => 'Mine',
             'pending' => 'Pending',
             'praises' => 'Praises',
@@ -81,14 +91,17 @@ return [
     ],
 
     'nominations' => [
-        'disqualify' => 'Disqualify',
-        'nominate' => 'Nominate',
-        'required-text' => 'Nominations: :current/:required',
-        'disqualifed-at' => 'disqualified :time_ago',
+        'disqualifed-at' => 'disqualified :time_ago (:reason).',
+        'disqualifed_no_reason' => 'no reason specified',
         'disqualification-prompt' => 'Reason for disqualification?',
+        'disqualify' => 'Disqualify',
+        'incorrect-state' => 'Error performing that action, try refreshing the page.',
+        'nominate' => 'Nominate',
+        'nominate-confirm' => 'Nominate this beatmap?',
         'qualified' => 'Estimated to be ranked :date, if no issues are found.',
         'qualified-soon' => 'Estimated to be ranked soon, if no issues are found.',
-        'incorrect-state' => 'Error performing that action, try refreshing the page.',
+        'required-text' => 'Nominations: :current/:required',
+        'title' => 'Nomination Status',
     ],
 
     'listing' => [
@@ -109,7 +122,11 @@ return [
             'details' => [
                 'made-by' => 'made by ',
                 'submitted' => 'submitted on ',
+                'updated' => 'last updated on ',
                 'ranked' => 'ranked on ',
+                'approved' => 'approved on ',
+                'qualified' => 'qualified on ',
+                'loved' => 'loved on ',
                 'logged-out' => 'You need to log in before downloading any beatmaps!',
                 'download' => [
                     '_' => 'Download',
@@ -117,6 +134,8 @@ return [
                     'no-video' => 'without Video',
                     'direct' => 'osu!direct',
                 ],
+                'favourite' => 'Favourite this beatmapset',
+                'unfavourite' => 'Unfavourite this beatmapset',
             ],
             'stats' => [
                 'cs' => 'Circle Size',
@@ -129,15 +148,6 @@ return [
                 'bpm' => 'BPM',
                 'count_circles' => 'Circle Count',
                 'count_sliders' => 'Slider Count',
-
-                'chart' => [
-                    'cs' => 'CS',
-                    'hp' => 'HP',
-                    'od' => 'OD',
-                    'ar' => 'AR',
-                    'sd' => 'SD',
-                ],
-
                 'user-rating' => 'User Rating',
                 'rating-spread' => 'Rating Spread',
             ],
@@ -167,6 +177,8 @@ return [
                 'stats' => [
                     'score' => 'Score',
                     'accuracy' => 'Accuracy',
+                    // note to TLs: the 5 keys below don't really need to be translated,
+                    // as those should remain pretty much the same across languages
                     'countgeki' => 'MAX',
                     'count300' => '300',
                     'countkatu' => '200',
@@ -193,6 +205,7 @@ return [
         'any' => 'Any',
         'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
+        'loved' => 'Loved',
         'faves' => 'Favourites',
         'modreqs' => 'Mod Requests',
         'pending' => 'Pending',

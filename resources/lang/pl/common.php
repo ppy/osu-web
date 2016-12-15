@@ -19,35 +19,35 @@
  */
 
 return [
-        'buttons' => [
-            'cancel' => 'Anuluj',
-            'post' => 'Postuj',
-            'reply' => 'Odpowiedz',
-            'reset' => 'Resetuj',
-            'save' => 'Zapisz',
-            'show_more' => 'pokaż więcej',
-        ],
+    'buttons' => [
+        'cancel' => 'Anuluj',
+        'post' => 'Postuj',
+        'reply' => 'Odpowiedz',
+        'reset' => 'Resetuj',
+        'save' => 'Zapisz',
+        'show_more' => 'pokaż więcej',
+    ],
 
-        'count' => [
-            'item' => '{1} sztuka|[2,4] :count sztuki|[5,Inf] :count sztuk',
-        ],
+    'count' => [
+        'item' => '{1} sztuka|[2,4] :count sztuki|[5,Inf] :count sztuk',
+    ],
 
-        'dropzone' => [
-            'target' => 'upuść tutaj, aby wrzucić plik',
-        ],
+    'dropzone' => [
+        'target' => 'upuść tutaj, aby wrzucić plik',
+    ],
 
-        'pagination' => [
-            'previous' => 'poprzednia',
-            'next' => 'następna',
-        ],
+    'pagination' => [
+        'previous' => 'poprzednia',
+        'next' => 'następna',
+    ],
 
-        'time' => [
-            'days_ago' => '{1} dzień temu|:count dni temu',
-            'hours_ago' => '{0} godzin temu|{1} godzinę temu|[2,4] :count godziny temu|[5,Inf] :count godzin temu',
-            'now' => 'teraz',
-        ],
+    'time' => [
+        'days_ago' => '{1} dzień temu|:count dni temu',
+        'hours_ago' => '{0} godzin temu|{1} godzinę temu|[2,4] :count godziny temu|[5,Inf] :count godzin temu',
+        'now' => 'teraz',
+    ],
 
-        'title' => [
-            'notice' => 'Uwaga',
-        ],
+    'title' => [
+        'notice' => 'Uwaga',
+    ],
 ];

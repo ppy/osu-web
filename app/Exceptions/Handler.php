@@ -17,12 +17,14 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Exceptions;
 
 use App;
 use Auth;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException as LaravelAuthorizationException;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
@@ -39,14 +41,17 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        AuthorizationException::class,
+        // laravel's
+        AuthenticationException::class,
         HttpException::class,
         LaravelAuthorizationException::class,
         ModelNotFoundException::class,
-        RequireLoginException::class,
-        SilencedException::class,
-        TokenMisMatchException::class,
+        TokenMismatchException::class,
         ValidationException::class,
+
+        // local
+        AuthorizationException::class,
+        SilencedException::class,
     ];
 
     /**
@@ -85,7 +90,7 @@ class Handler extends ExceptionHandler
             return 404;
         } elseif ($e instanceof TokenMismatchException) {
             return 403;
-        } elseif ($e instanceof RequireLoginException) {
+        } elseif ($e instanceof AuthenticationException) {
             return 401;
         } elseif ($e instanceof AuthorizationException) {
             return 403;
@@ -132,12 +137,8 @@ class Handler extends ExceptionHandler
             return $e->getResponse();
         }
 
-        if ($e instanceof RequireLoginException) {
-            if ($request->ajax()) {
-                return response(['authentication' => 'basic'], 401);
-            }
-
-            return response()->view('users.login');
+        if ($e instanceof AuthenticationException) {
+            return $this->unauthenticated($request, $e);
         }
 
         if (config('app.debug')) {
@@ -155,5 +156,14 @@ class Handler extends ExceptionHandler
         }
 
         return $response->setStatusCode($this->statusCode($e));
+    }
+
+    protected function unauthenticated($request, $exception)
+    {
+        if ($request->expectsJson()) {
+            return response(['authentication' => 'basic'], 401);
+        }
+
+        return response()->view('users.login');
     }
 }

@@ -17,15 +17,15 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Events\Forum;
 
-use App\Events\Event;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\User;
 use Illuminate\Queue\SerializesModels;
 
-abstract class TopicUpdate extends Event
+abstract class TopicUpdate
 {
     use SerializesModels;
 

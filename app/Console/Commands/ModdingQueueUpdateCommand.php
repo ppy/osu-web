@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -30,7 +31,7 @@ class ModdingQueueUpdateCommand extends Command
      *
      * @var string
      */
-    protected $name = 'modding:queue-update';
+    protected $signature = 'modding:queue-update';
 
     /**
      * The console command description.
@@ -54,7 +55,7 @@ class ModdingQueueUpdateCommand extends Command
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         //
     }

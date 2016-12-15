@@ -18,17 +18,11 @@
  */
 
 .beatmapset-stats {
-  color: @grey-f;
+  color: @gray-f;
   font-size: 12px;
 
   @media @desktop {
     width: @beatmapset-float-box-width;
-  }
-
-  &__basic {
-    display: flex;
-    flex: 1;
-    padding: (@spacing / 2);
   }
 
   &__elapsed-bar {
@@ -54,7 +48,7 @@
   }
 
   &__preview-icon {
-    color: @grey-f;
+    color: @gray-f;
     font-size: 18px;
     cursor: pointer;
   }
@@ -75,18 +69,15 @@
   }
 
   &__row {
-    background-color: fade(@grey-0, 50%);
+    background-color: fade(@gray-0, 50%);
     margin-top: 1px;
     padding: (@spacing * 3 / 4) (@spacing * 3 / 2);
     display: flex;
     flex-direction: column;
 
     &--basic {
-      flex-direction: row;
-      padding-left: @spacing;
-      padding-right: @spacing;
-      color: @yellow-light;
-      font-weight: 700;
+      padding-top: @spacing;
+      padding-bottom: @spacing;
     }
 
     &--preview {
@@ -98,7 +89,7 @@
       cursor: pointer;
 
       &:not(:hover) {
-        background-color: fade(@grey-0, 25%);
+        background-color: fade(@gray-0, 25%);
       }
     }
 

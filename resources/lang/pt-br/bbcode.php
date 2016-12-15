@@ -20,19 +20,19 @@
 
 return [
     'bold' => 'Negrito',
-    'heading' => 'Header',
+    'heading' => 'Cabeçalho',
     'image' => 'Imagem',
     'italic' => 'Itálico',
     'link' => 'Link',
     'list' => 'Lista',
-    'list_numbered' => 'Lista Numerada',
+    'list_numbered' => 'Lista numerada',
     'size' => [
-        '_' => 'Tamanho da Fonte',
+        '_' => 'Tamanho da fonte',
         'tiny' => 'Minúscula',
         'small' => 'Pequena',
         'normal' => 'Normal',
         'large' => 'Grande',
     ],
-    'spoilerbox' => 'Caixa de Spoiler',
+    'spoilerbox' => 'Caixa de spoiler',
     'strikethrough' => 'Riscado',
 ];

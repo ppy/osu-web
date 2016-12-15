@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -120,5 +121,10 @@ class Beatmap extends Model
     public function scoresBest($mode = null)
     {
         return $this->getScores("App\Models\Score\Best", $mode);
+    }
+
+    public function status()
+    {
+        return array_search($this->approved, Beatmapset::STATES, true);
     }
 }

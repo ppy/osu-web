@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers\Forum;
 
 use App\Models\Forum\Forum;
@@ -40,7 +41,7 @@ class ForumsController extends Controller
     {
         $forums = Forum::where('parent_id', 0)->with('subForums')->orderBy('left_id')->get();
 
-        $forums = array_where($forums, function ($_i, $forum) {
+        $forums = $forums->filter(function ($forum) {
             return priv_check('ForumView', $forum)->can();
         });
 
@@ -56,7 +57,7 @@ class ForumsController extends Controller
 
         priv_check('ForumView', $forum)->ensureCan();
 
-        $cover = fractal_item_array(
+        $cover = json_item(
             $forum->cover()->firstOrNew([]),
             new ForumCoverTransformer()
         );

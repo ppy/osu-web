@@ -17,6 +17,26 @@
  *
  */
 .bbcode-spoilerbox {
+  @top: bbcode-spoilerbox;
+
+  &__arrow {
+    display: inline-block;
+    color: @gray;
+    margin-right: 10px;
+
+    .@{top}.js-spoilerbox--open & {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__body {
+    display: none;
+
+    .@{top}.js-spoilerbox--open & {
+      display: block;
+    }
+  }
+
   &__link {
     color: @yellow-darker;
 
@@ -25,11 +45,5 @@
     &:active {
       color: @yellow-dark;
     }
-  }
-
-  &__arrow {
-    display: inline-block;
-    color: @gray;
-    margin-right: 10px;
   }
 }

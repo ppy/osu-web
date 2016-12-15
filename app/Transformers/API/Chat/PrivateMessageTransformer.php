@@ -17,10 +17,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Transformers\API\Chat;
 
-use League\Fractal;
 use App\Models\Chat\PrivateMessage;
+use League\Fractal;
 
 class PrivateMessageTransformer extends Fractal\TransformerAbstract
 {

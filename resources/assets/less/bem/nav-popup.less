@@ -26,7 +26,7 @@
   @_menu-spacing: (@spacing * 3);
 
   width: 100%;
-  background-color: @grey-2;
+  background-color: @gray-2;
   background-size: cover;
   display: flex;
   z-index: 0; // component top level z-index
@@ -37,11 +37,11 @@
   }
 
   &--main {
-    background-color: fade(@grey-2, 95%);
+    background-color: fade(@gray-2, 95%);
   }
 
   &--sections {
-    color: @grey-9;
+    color: @gray-9;
 
     flex-direction: column;
     @media @desktop {
@@ -80,7 +80,7 @@
     .default-border-radius();
     border: none;
     outline: none;
-    background-color: @grey-2;
+    background-color: @gray-2;
     padding: @spacing (@spacing / 2);
 
     margin: (@spacing / 2);
@@ -91,7 +91,7 @@
     }
 
     &::placeholder {
-      color: @grey-7;
+      color: @gray-7;
     }
   }
 
@@ -99,12 +99,22 @@
     color: @yellow;
     font-size: @font-size--nav-popup-link;
     margin: (@spacing / 4) 0;
-    display: block;
+    display: flex;
 
     &:focus,
     &:hover {
       text-decoration: none;
-      color: @grey-f;
+      color: @gray-f;
+    }
+
+    .@{_top}__menu--locale & {
+      color: @purple;
+
+      &:focus,
+      &:hover {
+        text-decoration: none;
+        color: @gray-f;
+      }
     }
   }
 
@@ -116,7 +126,7 @@
     align-items: center;
     display: flex;
     margin-right: @spacing;
-    color: @grey-5;
+    color: @gray-5;
     opacity: 0;
 
     .@{_top}__link:focus &,
@@ -131,7 +141,7 @@
   }
 
   &__menu-head {
-    color: @grey-9;
+    color: @gray-9;
     display: flex;
     padding: (@spacing / 2) (@_menu-spacing / 2) @spacing;
     flex: none;
@@ -140,7 +150,7 @@
     &.js-menu--active,
     &:focus,
     &:hover {
-      color: @grey-f;
+      color: @gray-f;
       font-weight: 500;
       text-decoration: none;
     }
@@ -161,10 +171,18 @@
     }
   }
 
+  &__menu-icon {
+    width: 20px;
+    margin-right: (@spacing / 2);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
   &__overlay {
     display: block;
     .full-size();
-    background-color: fade(@grey-0, 75%);
+    background-color: fade(@gray-0, 75%);
   }
 
   &__row {
@@ -187,13 +205,13 @@
     }
 
     &--title {
-      color: @grey-f;
+      color: @gray-f;
       font-size: @font-size--nav-popup-title;
       font-style: normal;
     }
 
     &--username {
-      color: @grey-f;
+      color: @gray-f;
       font-size: @font-size--nav-popup-title-large;
       font-style: italic;
       font-weight: 600;
@@ -227,7 +245,7 @@
     }
 
     &--login {
-      background-color: @grey-3;
+      background-color: @gray-3;
 
       @media @desktop {
         max-width: 380px;
@@ -243,18 +261,18 @@
     &--user-overview {
       min-width: 180px;
 
-      background-color: fade(@grey-0, 50%);
+      background-color: fade(@gray-0, 50%);
 
       align-items: flex-end;
     }
 
     &--user-links {
-      background-color: @grey-2;
+      background-color: @gray-2;
       padding-left: (@spacing * 4);
     }
 
     &--register {
-      background-color: @grey-4;
+      background-color: @gray-4;
 
       @media @desktop {
         max-width: 240px;

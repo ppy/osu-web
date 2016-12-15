@@ -26,10 +26,11 @@ return [
     'menu' => [
         'home' => [
             '_' => 'acceuil',
+                        'index' => 'osu!',
             'getChangelog' => 'notes de MàJ',
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
-            'index' => 'nouvelles',
+            'getNews' => 'nouvelles',
             'supportTheGame' => 'supporter le jeu',
         ],
         'help' => [
@@ -124,10 +125,11 @@ return [
         'admin-store' => [
             '_' => 'admin::store',
             'orders-index' => 'Commandes',
-            'orders-show' => 'Commandes',
+            'orders-show' => 'Commande',
         ],
         'admin' => [
             '_' => 'admin',
+                        'root' => 'index',
             'logs-index' => 'log',
             'beatmapsets' => [
                 '_' => 'sets de beatmaps',

@@ -23,7 +23,7 @@
   list-style: none;
   font-size: @font-size--normal;
   display: flex;
-  border-bottom: 1px solid @grey-c;
+  border-bottom: 1px solid @gray-c;
   margin: 0 @main-margin;
 
   &--empty {
@@ -74,12 +74,12 @@
       background-size: 50px;
       background-position: center;
 
-      color: @grey-f;
+      color: @gray-f;
 
       &:hover,
       &:active,
       &:focus {
-        color: @grey-f;
+        color: @gray-f;
         text-decoration: none;
       }
     }
@@ -103,10 +103,12 @@
 
     &--lock {
       position: absolute;
-      margin-right: (@spacing / 2);
+      padding: 0 (@spacing / 2);
       top: 0;
       bottom: 0;
-      right: 100%;
+      left: (-@main-margin);
+      width: @main-margin;
+      justify-content: flex-end;
 
       font-size: @font-size--forum-topic-entry-icon;
     }

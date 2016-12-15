@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Transformers;
 
 use App\Models\ContestEntry;
@@ -45,6 +46,8 @@ class ContestEntryTransformer extends Fractal\TransformerAbstract
 
             return [
                 'actual_name' => $entry->name,
+                'user_id' => $entry->user_id,
+                'username' => ($entry->user ?? (new \App\Models\DeletedUser))->username,
                 'votes' => $voteCounts ? $voteCounts->votes : 0,
             ];
         });

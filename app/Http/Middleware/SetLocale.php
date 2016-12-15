@@ -17,9 +17,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Middleware;
 
 use App;
+use Auth;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -35,10 +37,13 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next)
     {
-        $locale =
-            presence($request->input('locale')) ??
-            presence($request->cookie('locale')) ??
-            locale_accept_from_http($request->server('HTTP_ACCEPT_LANGUAGE'));
+        if (Auth::check()) {
+            $locale = Auth::user()->user_lang;
+        } else {
+            $locale =
+                presence($request->cookie('locale')) ??
+                locale_accept_from_http($request->server('HTTP_ACCEPT_LANGUAGE'));
+        }
 
         $locale = get_valid_locale($locale);
 

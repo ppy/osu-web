@@ -17,14 +17,15 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Transformers;
 
-use App\Models\Beatmapset;
 use App\Models\Beatmap;
+use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\DeletedUser;
+use Auth;
 use League\Fractal;
-use League\Fractal\ParamBag;
 
 class BeatmapsetTransformer extends Fractal\TransformerAbstract
 {
@@ -49,7 +50,9 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'artist' => $beatmapset->artist,
             'play_count' => $beatmapset->play_count,
             'favourite_count' => $beatmapset->favourite_count,
+            'has_favourited' => $beatmapset->hasFavourited(Auth::user()),
             'submitted_date' => json_time($beatmapset->submit_date),
+            'last_updated' => json_time($beatmapset->last_update),
             'ranked_date' => json_time($beatmapset->approved_date),
             'creator' => $beatmapset->creator,
             'user_id' => $beatmapset->user_id,
@@ -59,23 +62,24 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'previewUrl' => $beatmapset->previewURL(),
             'tags' => $beatmapset->tags,
             'video' => $beatmapset->video,
+            'ranked' => $beatmapset->approved,
             'status' => $beatmapset->status(),
         ];
     }
 
-    public function includeNominations(Beatmapset $beatmapset, ParamBag $params = null)
+    public function includeNominations(Beatmapset $beatmapset)
     {
         if ($beatmapset->isPending()) {
-            if ($params !== null) {
-                $userId = get_int($params->get('user_id')[0] ?? null);
-            }
+            $currentUser = Auth::user();
 
             $nominations = $beatmapset->recentEvents()->get();
             foreach ($nominations as $nomination) {
                 if ($nomination->type === BeatmapsetEvent::DISQUALIFY) {
                     $disqualifyEvent = $nomination;
                 }
-                if (isset($userId) && $nomination->user_id === $userId && $nomination->type === BeatmapsetEvent::NOMINATE) {
+                if ($currentUser !== null &&
+                    $nomination->user_id === $currentUser->user_id &&
+                    $nomination->type === BeatmapsetEvent::NOMINATE) {
                     $alreadyNominated = true;
                 }
             }
@@ -90,7 +94,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
                     'created_at' => json_time($disqualifyEvent->created_at),
                 ];
             }
-            if (isset($userId)) {
+            if ($currentUser !== null) {
                 $result['nominated'] = $alreadyNominated ?? false;
             }
 

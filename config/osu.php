@@ -2,6 +2,11 @@
 
 // osu config~
 return [
+    'avatar' => [
+        'storage' => env('AVATAR_STORAGE', 'local-avatar'),
+        'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
+    ],
+
     'bbcode' => [
         // this should be random or a config variable.
         // ...who am I kidding, this shouldn't even exist at all.
@@ -84,6 +89,7 @@ return [
         'home' => [
             'changelog' => '/p/changelog',
             'download' => '/p/download',
+            'news' => '/p/news',
         ],
         'help' => [
             'wiki' => '/wiki/Main_Page',

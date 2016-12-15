@@ -17,101 +17,14 @@
 *
 */
 
+@base-size: 256px;
+
 .contest-art-list {
-  &__panel {
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    &--top3 {
-      align-items: baseline;
-    }
-  }
-
-  &__entry {
-    margin: 10px;
-    width: 256px;
-    height: 256px;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-    background-size: cover;
-    background-position: top;
-    transform: translateZ(0);
-
-    &--selected {
-        border: 4px solid #ffa500;
-    }
-
-    &--result {
-      margin-bottom: 48px;
-    }
-
-    &--placed-1 {
-      margin-bottom: 68px;
-    }
-
-    &--placed-2 {
-      width: 192px;
-      height: 192px;
-      margin-bottom: 68px;
-    }
-
-    &--placed-3 {
-      width: 128px;
-      height: 128px;
-      margin-bottom: 68px;
-    }
-
-    &--smaller {
-      width: 128px;
-      height: 128px;
-    }
-  }
-
-  &__thumbnail {
-    width: 256px;
-    height: 256px;
-    display: block;
-    &--placed-2 {
-      width: 192px;
-      height: 192px;
-    }
-    &--smaller {
-      width: 128px;
-      height: 128px;
-    }
-  }
-
-  &__result {
-    margin-top: 5px;
-    text-align: center;
-  }
-
-  &__result-place {
-    &--art {
-
-    }
-    &--top-three {
-      font-size: 20px;
-    }
-  }
-  &__result-votes {
-    font-size: 10px;
-    color: #8dacb6;
-    &--percentage {
-      font-size: 10px;
-      color: #60757b;
-    }
-  }
-
-  &__tropy {
-    &--1 {
-      color: gold;
-    }
-    &--2 {
-      color: silver;
-    }
-    &--3 {
-      color: chocolate;
-    }
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  &--top3 {
+    align-items: baseline;
   }
 }

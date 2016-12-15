@@ -22,16 +22,17 @@ el = React.createElement
 class ProfilePage.CoverUploader extends React.Component
   componentDidMount: =>
     $dropzone = $('.js-profile-cover-upload--dropzone')
-    $uploadButton = $ '<input>',
+
+    @$uploadButton = $ '<input>',
       class: 'js-profile-cover-upload fileupload__input'
       type: 'file'
       name: 'cover_file'
       disabled: !@props.canUpload
 
-    $(@refs.uploadButtonContainer).append($uploadButton)
+    @refs.uploadButtonContainer.appendChild(@$uploadButton[0])
 
-    $uploadButton.fileupload
-      url: laroute.route('account.update-profile')
+    @$uploadButton.fileupload
+      url: laroute.route('account.cover')
       dataType: 'json'
       dropZone: $dropzone
 
@@ -40,16 +41,16 @@ class ProfilePage.CoverUploader extends React.Component
         $.publish 'dragendGlobal'
 
       done: (_e, data) ->
-        $.publish 'user:update', data.result.data
+        $.publish 'user:update', data.result
 
-      fail: osu.fileuploadFailCallback($uploadButton)
+      fail: osu.fileuploadFailCallback(@$uploadButton)
 
       complete: ->
         $.publish 'user:cover:upload:state', false
 
 
   componentWillUnmount: =>
-    $('.js-profile-cover-upload')
+    @$uploadButton
       .fileupload 'destroy'
       .remove()
 

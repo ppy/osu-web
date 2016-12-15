@@ -19,22 +19,22 @@
 el = React.createElement
 
 class BeatmapsetPage.Header extends React.Component
+  toggleFavourite: (e) ->
+    e.preventDefault()
+
+    if !currentUser.id?
+      userLogin.show e.target
+    else
+      $.publish 'beatmapset:favourite:toggle'
+
   render: ->
     dateFormat = 'MMM D, YYYY'
 
     div className: 'beatmapset-header',
-      ol className: 'page-mode',
-        for mode in BeatmapHelper.modes
-          continue if _.isEmpty @props.beatmapList[mode]
-
-          li
-            className: 'page-mode__item'
-            key: mode
-            el BeatmapsetPage.HeaderTab,
-              playmode: mode
-              currentBeatmapId: @props.currentBeatmap.id
-              newBeatmapId: _.last @props.beatmapList[mode]
-              currentPlaymode: @props.currentBeatmap.mode
+      el PlaymodeTabs,
+        beatmaps: @props.beatmaps
+        currentMode: @props.currentBeatmap.mode
+        hrefFunc: @tabHrefFunc
 
       div
         className: 'beatmapset-header__content'
@@ -43,13 +43,11 @@ class BeatmapsetPage.Header extends React.Component
 
         div className: 'beatmapset-header__overlay beatmapset-header__overlay--gradient'
 
-        div className: 'beatmapset-header__box',
+        div className: 'beatmapset-header__box beatmapset-header__box--main',
           div className: 'beatmapset-header__beatmap-picker-box',
             el BeatmapsetPage.BeatmapPicker,
-              beatmaps: @props.beatmaps
-              beatmapList: @props.beatmapList
-              currentMode: @props.currentBeatmap.mode
-              currentBeatmapId: @props.currentBeatmap.id
+              beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
+              currentBeatmap: @props.currentBeatmap
 
             span className: 'beatmapset-header__diff-name',
               if @props.hoveredBeatmap? then @props.hoveredBeatmap.version else @props.currentBeatmap.version
@@ -57,7 +55,7 @@ class BeatmapsetPage.Header extends React.Component
             span
               className: 'beatmapset-header__star-difficulty'
               style:
-                visibility: 'hidden' if !@props.hoveredBeatmap
+                visibility: 'hidden' if !@props.hoveredBeatmap?
               "#{osu.trans 'beatmaps.beatmapset.show.stats.stars'} #{if @props.hoveredBeatmap then @props.hoveredBeatmap.difficulty_rating.toFixed 2 else ''}"
 
             div {},
@@ -66,8 +64,13 @@ class BeatmapsetPage.Header extends React.Component
                 span className: 'beatmapset-header__value-name', @props.beatmapset.play_count.toLocaleString()
 
               span className: 'beatmapset-header__value',
-                span className: 'beatmapset-header__value-icon', el Icon, name: 'heart'
-                span className: 'beatmapset-header__value-name', @props.beatmapset.favourite_count.toLocaleString()
+                a
+                  onClick: @toggleFavourite
+                  href: laroute.route 'beatmapsets.update-favourite', beatmapset: @props.beatmapset.id, action: if @props.hasFavourited then 'unfavourite' else 'favourite'
+                  title: osu.trans "beatmaps.beatmapset.show.details.#{if @props.hasFavourited then 'unfavourite' else 'favourite'}"
+                  className: "beatmapset-header__value-icon beatmapset-header__value-icon--favourites #{'beatmapset-header__value-icon--favourited' if @props.hasFavourited}"
+                  el Icon, name: 'heart'
+                span className: 'beatmapset-header__value-name', @props.favcount.toLocaleString()
 
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--title'
@@ -79,57 +82,33 @@ class BeatmapsetPage.Header extends React.Component
             href: laroute.route 'beatmapsets.index', q: @props.beatmapset.artist
             @props.beatmapset.artist
 
-          div className: 'beatmapset-header__avatar-box',
-            div
-              className: 'beatmapset-header__avatar avatar avatar--beatmapset'
-              style:
-                backgroundImage: "url(#{@props.beatmapset.user.data.avatarUrl})"
+          el BeatmapsetMapping, beatmapset: @props.beatmapset
 
-            div className: 'beatmapset-header__user-box',
-              div className: 'beatmapset-header__user-text',
-                osu.trans 'beatmaps.beatmapset.show.details.made-by'
-                a
-                  className: 'beatmapset-header__user-text beatmapset-header__user-text--mapper'
-                  href: laroute.route 'users.show', users: @props.beatmapset.user.data.id
-                  @props.beatmapset.user.data.username
+          if !_.isEmpty currentUser
+            div className: 'beatmapset-header__buttons',
+              if @props.beatmapset.video
+                [
+                  @downloadButton
+                    key: 'video'
+                    href: Url.beatmapDownload @props.beatmapset.id, true
+                    bottomTextKey: 'video'
 
-              div className: 'beatmapset-header__user-text',
-                osu.trans 'beatmaps.beatmapset.show.details.submitted'
-                span
-                  className: 'beatmapset-header__user-text beatmapset-header__user-text--date'
-                  moment(@props.beatmapset.submitted_date).format dateFormat
-
-              if @props.beatmapset.ranked_date
-                div className: 'beatmapset-header__user-text',
-                  osu.trans 'beatmaps.beatmapset.show.details.ranked'
-                  span
-                    className: 'beatmapset-header__user-text beatmapset-header__user-text--date'
-                    moment(@props.beatmapset.ranked_date).format dateFormat
-
-          div className: 'beatmapset-header__buttons',
-            if @props.beatmapset.video
-              [
+                  @downloadButton
+                    key: 'no-video'
+                    href: Url.beatmapDownload @props.beatmapset.id, false
+                    bottomTextKey: 'no-video'
+                ]
+              else
                 @downloadButton
-                  key: 'video'
-                  href: Url.beatmapDownload @props.beatmapset.id, true
-                  bottomTextKey: 'video'
-
-                @downloadButton
-                  key: 'no-video'
                   href: Url.beatmapDownload @props.beatmapset.id, false
-                  bottomTextKey: 'no-video'
-              ]
-            else
-              @downloadButton
-                href: Url.beatmapDownload @props.beatmapset.id, false
 
-            @downloadButton
-              topTextKey: 'direct'
-              href:
-                if currentUser.isSupporter
-                  Url.beatmapDownloadDirect @props.beatmapset.id
-                else
-                  laroute.route 'support-the-game'
+              @downloadButton
+                topTextKey: 'direct'
+                href:
+                  if currentUser.isSupporter
+                    Url.beatmapDownloadDirect @props.beatmapset.id
+                  else
+                    laroute.route 'support-the-game'
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
           el BeatmapsetPage.Stats,
@@ -142,13 +121,18 @@ class BeatmapsetPage.Header extends React.Component
 
   downloadButton: ({key, href, icon = 'download', topTextKey = '_', bottomTextKey}) =>
     el BigButton,
-      modifiers: ['beatmapset-header']
       key: key
-      href: href
-      icon: icon
+      modifiers: ['beatmapset-header']
       text:
         top: osu.trans "beatmaps.beatmapset.show.details.download.#{topTextKey}"
         bottom: if bottomTextKey? then osu.trans "beatmaps.beatmapset.show.details.download.#{bottomTextKey}"
+      icon: icon
+      props:
+        href: href
+
+
+  tabHrefFunc: (mode) ->
+    BeatmapsetPageHash.generate mode: mode
 
 
   togglePreview: (e) =>

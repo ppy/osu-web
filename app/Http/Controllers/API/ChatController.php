@@ -17,17 +17,18 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers\API;
 
-use Auth;
-use Request;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\PrivateMessage;
+use App\Models\User;
+use App\Transformers\API\Chat\ChannelTransformer;
 use App\Transformers\API\Chat\MessageTransformer;
 use App\Transformers\API\Chat\PrivateMessageTransformer;
-use App\Transformers\API\Chat\ChannelTransformer;
-use App\Models\User;
+use Auth;
+use Request;
 
 class ChatController extends Controller
 {
@@ -35,7 +36,7 @@ class ChatController extends Controller
     {
         $channels = Channel::where('type', 'Public')->get();
 
-        return fractal_api_serialize_collection(
+        return json_collection(
             $channels,
             new ChannelTransformer()
         );
@@ -59,7 +60,7 @@ class ChatController extends Controller
             $messages = $messages->where('message_id', '>', $since);
         }
 
-        $collection = fractal_api_serialize_collection(
+        $collection = json_collection(
             $messages->orderBy('message_id', $since ? 'asc' : 'desc')
                 ->limit($limit)
                 ->get(),
@@ -74,7 +75,7 @@ class ChatController extends Controller
         $since = intval(Request::input('since'));
         $limit = min(50, intval(Request::input('limit', 50)));
 
-        $messages = PrivateMessage::toOrFrom($this->current_user->user_id)
+        $messages = PrivateMessage::toOrFrom(Auth::user()->user_id)
             ->with('sender')
             ->with('receiver');
 
@@ -82,7 +83,7 @@ class ChatController extends Controller
             $messages = $messages->where('message_id', '>', $since);
         }
 
-        $collection = fractal_api_serialize_collection(
+        $collection = json_collection(
             $messages->orderBy('message_id', $since ? 'asc' : 'desc')
                 ->limit($limit)
                 ->get(),

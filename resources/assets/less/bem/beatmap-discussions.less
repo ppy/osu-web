@@ -22,14 +22,23 @@
   @_mode-circle-diameter: (@spacing * 3 / 2);
   @_timeline-line-width: 3px;
 
-  .inner-shadow-top();
-  padding: (@spacing * 2);
+  .default-box-shadow();
+  margin: @spacing 0;
+  background-color: @gray-f;
+  display: flex;
+  flex-direction: column;
 
   &__discussion {
+    .own-layer();
+
     &--empty {
       padding-left: @beatmap-discussion--timestamp-width;
       font-size: @_empty-text-size;
     }
+  }
+
+  &__discussions {
+    margin: @spacing (@spacing * 2);
   }
 
   &__mode {
@@ -45,12 +54,7 @@
 
   &__mode-circle {
     .circle(@_mode-circle-diameter);
-    border: 3px solid @grey-5;
-    margin-right: @spacing;
-
-    &--active {
-      background-color: @grey-5;
-    }
+    background-color: @gray-5;
   }
 
   &__mode-text {
@@ -59,15 +63,15 @@
 
   &__timeline-line {
     position: absolute;
-    top: 0;
+    top: (@_mode-circle-diameter / 2);
     left: 0;
 
     width: @_timeline-line-width;
-    height: 100%;
+    height: calc(100% ~'-' @_mode-circle-diameter);
 
     margin: 0 ((@_mode-circle-diameter - @_timeline-line-width) / 2);
 
-    background-color: @grey-5;
+    background-color: @gray-5;
 
     &--half {
       height: 50%;
@@ -79,7 +83,31 @@
   }
 
   &__toolbar {
+    padding: 0 (@spacing * 2);
     display: flex;
-    justify-content: space-between;
+    border-bottom: 1px solid @gray-c;
+  }
+
+  &__toolbar-content {
+    display: flex;
+    margin: (-@spacing) (-@spacing * 3 / 2) 0;
+
+    &--right {
+      flex: 1;
+      justify-content: flex-end;
+    }
+  }
+
+  &__toolbar-link {
+    font-size: @font-size--normal;
+    color: @gray-5;
+    padding: @spacing (@spacing * 3 / 2);
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: @gray-0;
+      text-decoration: none;
+    }
   }
 }

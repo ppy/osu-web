@@ -18,10 +18,11 @@
 */
 var elixir = require('laravel-elixir');
 var path = require('path');
-var bower_root = '../../../bower_components/'; // relative from resources/assets/*
+var util = require('gulp-util');
+
+// relative from resources/assets/*/
 var composer_root = '../../../vendor/';
 var node_root = '../../../node_modules/';
-var util = require('gulp-util');
 
 /*
  * The merge rules plugin is kind of buggy and broke safari.
@@ -81,10 +82,9 @@ elixir(function(mix) {
   ], 'resources/assets/js/build/app-main.js')
   .scripts([
     path.join(node_root, 'turbolinks/dist/turbolinks.js'),
-    path.join(node_root, 'jquery/dist/jquery.js'),
-    path.join(bower_root, 'jquery-ujs/src/rails.js'),
-    path.join(bower_root, 'ResponsiveSlides.js/responsiveslides.js'),
-    path.join(bower_root, 'qtip2/jquery.qtip.js'),
+    path.join(node_root, 'jquery/dist/jquery' + min + '.js'),
+    path.join(node_root, 'jquery-ujs/src/rails.js'),
+    path.join(node_root, 'qtip2/dist/jquery.qtip' + min + '.js'),
     path.join(node_root, 'jquery.scrollto/jquery.scrollTo.js'),
     path.join(node_root, 'jquery-ui/ui/data.js'),
     path.join(node_root, 'jquery-ui/ui/scroll-parent.js'),
@@ -104,6 +104,11 @@ elixir(function(mix) {
     path.join(node_root, 'moment/moment.js'),
     path.join(node_root, 'slick-carousel/slick/slick.js'),
     path.join(node_root, 'js-cookie/src/js.cookie.js'),
+
+    path.join(node_root, 'react-height/build/react-height' + min + '.js'),
+    path.join(node_root, 'react-motion/build/react-motion.js'),
+    path.join(node_root, 'react-collapse/build/react-collapse' + min + '.js'),
+
     'ga.js',
     'messages.js',
     'laroute.js',

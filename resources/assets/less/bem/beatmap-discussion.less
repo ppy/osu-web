@@ -18,7 +18,12 @@
  */
 .beatmap-discussion {
   @_top: beatmap-discussion;
+  .own-layer();
   display: flex;
+
+  &--deleted {
+    opacity: 0.75;
+  }
 
   &__actions {
     flex: none;
@@ -26,7 +31,7 @@
     display: flex;
 
     height: @beatmap-discussion--avatar-size;
-    margin: (@spacing / 2);
+    margin: @spacing;
     margin-right: 0;
   }
 
@@ -39,19 +44,17 @@
         .full-size();
         width: 1px;
         right: 100%;
-        background-image: linear-gradient(to bottom, transparent, @grey-c 50%, transparent);
+        background-image: linear-gradient(to bottom, transparent, @gray-c 50%, transparent);
       }
     }
   }
 
   &__discussion {
+    .default-box-shadow();
+
     flex: 1;
     min-width: 0;
-
-    .default-box-shadow();
-    padding: (@spacing / 2) 0;
     margin: (@spacing / 2) 0;
-
     display: flex;
     flex-direction: column;
 
@@ -60,9 +63,28 @@
     }
   }
 
-  &__replies {
+  &__expanded {
     display: flex;
     flex-direction: column;
+  }
+
+  &__line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: (@spacing / 2);
+    height: 100%;
+
+    &--resolved {
+      background-color: @green;
+    }
+  }
+
+  &__replies {
+    .inner-shadow-top();
+    display: flex;
+    flex-direction: column;
+    background-color: @gray-5;
   }
 
   &__resolved {

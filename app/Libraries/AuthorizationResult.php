@@ -17,10 +17,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Libraries;
 
 use App\Exceptions\AuthorizationException;
-use App\Exceptions\RequireLoginException;
+use Illuminate\Auth\AuthenticationException;
 
 class AuthorizationResult
 {
@@ -60,8 +61,9 @@ class AuthorizationResult
             return;
         }
 
-        if ($this->rawMessage() === 'require_login') {
-            $class = RequireLoginException::class;
+        if ($this->rawMessage() === 'require_login' ||
+            ends_with($this->rawMessage(), '.require_login')) {
+            $class = AuthenticationException::class;
         } else {
             $class = AuthorizationException::class;
         }

@@ -27,7 +27,7 @@
   }
 
   &__hover-mark {
-    fill: @grey-f;
+    fill: @gray-f;
     stroke: @pink-darker;
     stroke-width: 3px;
     pointer-events: none;
@@ -41,11 +41,11 @@
 
   &__tick-gradient {
     &--end {
-      stop-color: @grey-c;
+      stop-color: @gray-c;
     }
 
     &--start {
-      stop-color: @grey-f;
+      stop-color: @gray-f;
     }
   }
 
@@ -55,7 +55,7 @@
     shape-rendering: crispEdges;
 
     &--default {
-      stroke: @grey-c;
+      stroke: @gray-c;
     }
   }
 
@@ -70,14 +70,8 @@
 
   &__tooltip {
     pointer-events: none;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    width: 0;
-    height: 0;
-
     position: absolute;
-    top: 0;
+    bottom: 100%;
     left: 0;
   }
 
@@ -86,7 +80,7 @@
     flex: none;
     padding: @spacing (@spacing * 2);
     background-color: @pink-darker;
-    color: @grey-f;
+    color: @gray-f;
     margin-bottom: (@spacing * 2);
 
     &::before {

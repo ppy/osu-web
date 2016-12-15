@@ -30,7 +30,7 @@ class BeatmapsetPage.Stats extends React.Component
 
   _renderChart: ->
     data = [
-      {values: @props.beatmapset.ratings.data[1..]}
+      {values: @props.beatmapset.ratings[1..]}
     ]
 
     unless @_ratingChart
@@ -54,7 +54,7 @@ class BeatmapsetPage.Stats extends React.Component
     ratingsPositive = 0
     ratingsNegative = 0
 
-    for rating, count of @props.beatmapset.ratings.data
+    for rating, count of @props.beatmapset.ratings
       ratingsNegative += count if rating >= 1 && rating <= 5
       ratingsPositive += count if rating >= 6 && rating <= 10
 
@@ -78,21 +78,9 @@ class BeatmapsetPage.Stats extends React.Component
             width: '0%'
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--basic',
-        for stat in ['total_length', 'bpm', 'count_circles', 'count_sliders']
-          value = if stat == 'bpm' then @props.beatmapset.bpm else @props.beatmap[stat]
-
-          if stat == 'total_length'
-            value = moment(0).seconds(value).format 'm:ss'
-
-          div
-            className: 'beatmapset-stats__basic'
-            key: stat
-            title: osu.trans "beatmaps.beatmapset.show.stats.#{stat}"
-            div
-              className: 'beatmapset-stats__icon'
-              style:
-                backgroundImage: "url(/images/layout/beatmapset-page/#{stat}.svg)"
-            span null, value.toLocaleString()
+        el BeatmapBasicStats,
+          beatmapset: @props.beatmapset
+          beatmap: @props.beatmap
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--advanced',
         table className: 'beatmap-stats-table',
@@ -121,7 +109,7 @@ class BeatmapsetPage.Stats extends React.Component
                     div
                       className: 'bar__fill'
                       style:
-                        width: "#{value * 10}%"
+                        width: "#{10 * Math.min 10, value}%"
                 td className: 'beatmap-stats-table__value', valueText
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--rating',

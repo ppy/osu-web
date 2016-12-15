@@ -31,16 +31,16 @@ BeatmapsetPage.ScoreBig = React.createClass
         div
           className: 'beatmapset-score-big__avatar avatar avatar--beatmapset-scoreboard hidden-xs'
           style:
-            backgroundImage: "url(#{@props.score.user.data.avatarUrl})"
+            backgroundImage: "url(#{@props.score.user.avatarUrl})"
 
         div className: 'beatmapset-score-big__user-box',
           a
             className: 'beatmapset-score-big__username'
-            href: laroute.route 'users.show', users: @props.score.user.data.id
-            @props.score.user.data.username
+            href: laroute.route 'users.show', user: @props.score.user.id
+            @props.score.user.username
 
           el FlagCountry,
-            country: @props.countries[@props.score.user.data.country]
+            country: @props.countries[@props.score.user.country]
             classModifiers: ['scoreboard']
 
         div className: 'beatmapset-score-big__stats-box',

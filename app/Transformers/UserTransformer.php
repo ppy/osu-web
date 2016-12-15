@@ -17,11 +17,12 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Transformers;
 
 use App\Models\Beatmap;
-use App\Models\User;
 use App\Models\Score\Best\Model as ScoreBestModel;
+use App\Models\User;
 use League\Fractal;
 
 class UserTransformer extends Fractal\TransformerAbstract
@@ -44,7 +45,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 
     public function transform(User $user)
     {
-        $profileCustomization = $user->profileCustomization()->firstOrNew([]);
+        $profileCustomization = $user->profileCustomization();
 
         return [
             'id' => $user->user_id,
@@ -54,7 +55,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'code' => $user->country_acronym,
                 'name' => $user->countryName(),
             ],
-            'age' => $user->age,
+            'age' => $user->age(),
             'avatarUrl' => $user->user_avatar,
             'isAdmin' => $user->isAdmin(),
             'isSupporter' => $user->osu_subscriber,
@@ -69,11 +70,11 @@ class UserTransformer extends Fractal\TransformerAbstract
             'playstyle' => $user->osu_playstyle,
             'playmode' => $user->playmode,
             'profileColour' => $user->user_colour,
-            'profileOrder' => $profileCustomization->getExtrasOrder(),
+            'profileOrder' => $profileCustomization->extras_order,
             'cover' => [
-                'customUrl' => $profileCustomization->cover->fileUrl(),
-                'url' => $profileCustomization->cover->url(),
-                'id' => $profileCustomization->cover->id(),
+                'customUrl' => $profileCustomization->cover()->fileUrl(),
+                'url' => $profileCustomization->cover()->url(),
+                'id' => $profileCustomization->cover()->id(),
             ],
             'kudosu' => [
                 'total' => $user->osu_kudostotal,
@@ -94,7 +95,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->item($user, function ($user) {
             $all = [];
             foreach (array_keys(Beatmap::MODES) as $mode) {
-                $all[$mode] = fractal_item_array($user->statistics($mode), new UserStatisticsTransformer());
+                $all[$mode] = json_item($user->statistics($mode), new UserStatisticsTransformer());
             }
 
             return $all;
@@ -109,7 +110,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             foreach ($user->rankHistories as $history) {
                 $modeStr = Beatmap::modeStr($history->mode);
 
-                $all[$modeStr] = fractal_item_array($history, new RankHistoryTransformer());
+                $all[$modeStr] = json_item($history, new RankHistoryTransformer());
             }
 
             return $all;
@@ -128,7 +129,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                     ->limit(100)
                     ->get();
 
-                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapset');
+                $all[$mode] = json_collection($scores, new ScoreTransformer(), 'beatmap,beatmapset');
             }
 
             return $all;
@@ -150,7 +151,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 
                 ScoreBestModel::fillInPosition($scores);
 
-                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapset,weight');
+                $all[$mode] = json_collection($scores, new ScoreTransformer(), 'beatmap,beatmapset,weight');
             }
 
             return $all;
@@ -165,7 +166,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             foreach (array_keys(Beatmap::MODES) as $mode) {
                 $scores = $user->scores($mode, true)->default()->with('beatmapset', 'beatmap')->get();
 
-                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapset');
+                $all[$mode] = json_collection($scores, new ScoreTransformer(), 'beatmap,beatmapset');
             }
 
             return $all;

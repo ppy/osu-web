@@ -17,13 +17,10 @@
  *
  */
 .beatmap-discussion-vote {
-  @_top: beatmap-discussion-action;
-
   .reset-input();
   .default-box-shadow();
   .default-border-radius();
-
-  font-size: 12px;
+  .fade-element(100ms);
 
   min-width: 35px;
   padding: @spacing;
@@ -34,7 +31,7 @@
   align-items: center;
   margin-right: @spacing;
 
-  .fade-element(100ms);
+  font-size: 12px;
 
   &:hover {
     .thick-box-shadow();
@@ -53,10 +50,10 @@
   }
 
   &--inactive {
-    color: @grey-9;
+    color: @gray-9;
   }
 
   &__count {
-    color: @grey-9;
+    color: @gray-9;
   }
 }

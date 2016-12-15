@@ -20,6 +20,9 @@
 
 return [
     'beatmap_discussion' => [
+                'destroy' => [
+                        'has_reply' => 'Impossible de supprimer un sujet avec des réponses',
+                ],
         'nominate' => [
             'exhausted' => 'Vous avez atteint la limite quotidienne de nomination, veuillez réesayer demain.',
         ],

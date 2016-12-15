@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Transformers;
 
 use App\Models\Contest;
@@ -30,7 +31,7 @@ class ContestTransformer extends Fractal\TransformerAbstract
 
     public function transform(Contest $contest)
     {
-        return [
+        $response = [
             'id' => $contest->id,
             'name' => $contest->name,
             'description' => $contest->description_voting,
@@ -43,6 +44,12 @@ class ContestTransformer extends Fractal\TransformerAbstract
             'voting_ends_at' => json_time($contest->voting_ends_at),
             'show_votes' => $contest->show_votes,
         ];
+
+        if ($contest->type === 'art') {
+            $response['shape'] = $contest->entry_shape;
+        }
+
+        return $response;
     }
 
     public function includeEntries(Contest $contest)

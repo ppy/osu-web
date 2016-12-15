@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Console\Commands;
 
 use App\Models\Store;
@@ -30,7 +31,7 @@ class StoreCheckOrderTrackingStatus extends Command
      *
      * @var string
      */
-    protected $name = 'store:tracking';
+    protected $signature = 'store:tracking';
 
     /**
      * The console command description.
@@ -52,7 +53,7 @@ class StoreCheckOrderTrackingStatus extends Command
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         $orders = Store\Order::where('status', '=', 'shipped')->where('tracking_code', '!=', '')->orderBy('updated_at')->get();
         $count = count($orders);

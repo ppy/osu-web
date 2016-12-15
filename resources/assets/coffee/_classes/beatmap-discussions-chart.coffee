@@ -18,35 +18,73 @@
 bn = 'beatmap-discussions-chart'
 
 class @BeatmapDiscussionsChart
-  dimensions:
-    barHeight: 55
-    barTop: 30
-    iconTop: 100
-    xAxisTop: 70
-    xAxisHeight: 5
-
-
-  margins:
-    top: 0
-    right: 40
-    bottom: 0
-    left: 40
-
-
   constructor: (area, @length) ->
+    @id = Math.floor(Math.random() * 1000)
+    @dimensions =
+      chartHeight: 120
+      totalHeight: 150
+      xAxisHeight: 2
+      barTop: 0
+      targetAreaWidth: 10
+
+    @dimensions.labelHeight = @dimensions.totalHeight - @dimensions.chartHeight
+    @dimensions.labelTop = @dimensions.totalHeight - @dimensions.labelHeight
+    @dimensions.iconTop = @dimensions.labelTop + (@dimensions.labelHeight / 2)
+    @dimensions.barHeight = @dimensions.chartHeight - @dimensions.barTop
+    @dimensions.xAxisTop = @dimensions.chartHeight - @dimensions.xAxisHeight
+    @dimensions.targetAreaHeight = @dimensions.barHeight + @dimensions.labelHeight
+
+    @margins =
+      top: 0
+      right: 40
+      bottom: 0
+      left: 40
+
     @scaleX = d3.scale.linear()
       .domain [0, @length]
       .nice()
 
-    @area = d3.select(area)
+    @area = d3
+      .select(area)
+      .append 'div'
+      .classed bn, true
 
     @svg = @area.append 'svg'
+
+    lineGradient = @svg.append 'defs'
+      .append 'linearGradient'
+      .attr 'id', "bar-gradient-#{@id}"
+      .attr 'gradientUnits', 'userSpaceOnUse'
+      .attr 'x1', 0
+      .attr 'x2', 0
+      .attr 'y1', 0
+      .attr 'y2', '100%'
+
+    lineGradient.append 'stop'
+      .classed "#{bn}__bar-gradient #{bn}__bar-gradient--start", true
+      .attr 'offset', '30%'
+
+    lineGradient.append 'stop'
+      .classed "#{bn}__bar-gradient", true
+      .attr 'offset', '80%'
 
     @svgWrapper = @svg.append 'g'
       .classed "#{bn}__wrapper", true
 
+    @svgChartArea = @svgWrapper.append 'rect'
+      .attr 'x', -@margins.left
+      .attr 'y', 0
+      .attr 'height', @dimensions.chartHeight
+      .classed "#{bn}__chart-area", true
+
+    @svgLabelArea = @svgWrapper.append 'rect'
+      .attr 'x', -@margins.left
+      .attr 'y', @dimensions.labelTop
+      .attr 'height', @dimensions.labelHeight
+      .classed "#{bn}__label-area", true
+
     @svgXAxis = @svgWrapper.append 'rect'
-      .attr 'x', 0
+      .attr 'x', -@margins.left
       .attr 'y', @dimensions.xAxisTop
       .attr 'height', @dimensions.xAxisHeight
       .classed "#{bn}__axis #{bn}__axis--x", true
@@ -82,6 +120,15 @@ class @BeatmapDiscussionsChart
       .attr 'x2', 0
       .attr 'y1', @dimensions.barTop
       .attr 'y2', @dimensions.barTop + @dimensions.barHeight
+      .attr 'stroke', "url(#bar-gradient-#{@id})"
+
+    points
+      .append 'rect'
+      .classed "#{bn}__target-area", true
+      .attr 'x', -@dimensions.targetAreaWidth / 2
+      .attr 'width', @dimensions.targetAreaWidth
+      .attr 'y', @dimensions.barTop
+      .attr 'height', @dimensions.targetAreaHeight
 
     points
       .append 'text'
@@ -126,8 +173,14 @@ class @BeatmapDiscussionsChart
       .attr 'transform', "translate(#{@margins.left}, #{@margins.top})"
 
 
+  drawAreas: =>
+    width = @width + (@margins.left + @margins.right)
+    @svgChartArea.attr 'width', width
+    @svgLabelArea.attr 'width', width
+
+
   drawXAxis: =>
-    @svgXAxis.attr 'width', @width
+    @svgXAxis.attr 'width', @width + (@margins.left + @margins.right)
 
 
   positionPoints: =>
@@ -145,4 +198,5 @@ class @BeatmapDiscussionsChart
     @setAxisSize()
 
     @drawXAxis()
+    @drawAreas()
     @positionPoints()

@@ -17,11 +17,12 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
-use Auth;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapsetDiscussion;
+use Auth;
 use Request;
 
 class BeatmapDiscussionsController extends Controller
@@ -33,6 +34,30 @@ class BeatmapDiscussionsController extends Controller
         $this->middleware('auth');
 
         return parent::__construct();
+    }
+
+    public function destroy($id)
+    {
+        $discussion = BeatmapDiscussion::whereNull('deleted_at')->findOrFail($id);
+        priv_check('BeatmapDiscussionDestroy', $discussion)->ensureCan();
+
+        $error = $discussion->softDelete(Auth::user());
+
+        if ($error === null) {
+            return $discussion->beatmapsetDiscussion->defaultJson();
+        } else {
+            return error_popup($error);
+        }
+    }
+
+    public function restore($id)
+    {
+        $discussion = BeatmapDiscussion::whereNotNull('deleted_at')->findOrFail($id);
+        priv_check('BeatmapDiscussionRestore', $discussion)->ensureCan();
+
+        $discussion->restore();
+
+        return $discussion->beatmapsetDiscussion->defaultJson();
     }
 
     public function vote($id)

@@ -32,7 +32,7 @@ class BeatmapsetPage.Info extends React.Component
 
 
   renderChart: ->
-    failtimes = _.keyBy @props.beatmap.failtimes.data, 'type'
+    failtimes = _.keyBy @props.beatmap.failtimes, 'type'
 
     data = [
       { type: 'fail', values: failtimes.fail.data }
@@ -63,7 +63,7 @@ class BeatmapsetPage.Info extends React.Component
         div
           className: 'beatmapset-info__description'
           dangerouslySetInnerHTML:
-            __html: @props.beatmapset.description.data.description
+            __html: @props.beatmapset.description.description
 
       div className: 'beatmapset-info__box beatmapset-info__box--meta',
         if @props.beatmapset.source

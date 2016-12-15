@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models\Forum;
 
 use App\Traits\Validatable;
@@ -29,7 +30,6 @@ class TopicPoll
 
     private $topic;
     private $validated = false;
-    private $_totalVotes;
     private $params;
 
     public function exists()
@@ -123,15 +123,6 @@ class TopicPoll
         $this->topic = $topic;
 
         return $this;
-    }
-
-    public function totalVotes()
-    {
-        if ($this->_totalVotes === null) {
-            $this->_totalVotes = $this->topic->pollOptions->sum('poll_option_total');
-        }
-
-        return $this->_totalVotes;
     }
 
     public function validationErrorsTranslationPrefix()

@@ -18,7 +18,6 @@ Icon*
 desktop.ini
 
 # Bower and node directories
-/bower_components
 /node_modules
 /npm-debug.log
 
@@ -28,6 +27,7 @@ desktop.ini
 /public/build
 /public/vendor
 /public/uploads
+/public/uploads-avatar
 
 # server logs
 /logs/osu/*
@@ -80,3 +80,6 @@ sftp-settings.json
 /resources/assets/js/build/
 
 composer-installer
+
+/storage/oauth-public.key
+/storage/oauth-private.key

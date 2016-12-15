@@ -31,12 +31,8 @@ class Contest.Voting.Entry extends React.Component
       if @props.options.showPreview
         td {},
           el TrackPreview, track: @props.entry
-      if @props.options.showDL
-        td className: 'tracklist__dl tracklist__dl--contest',
-          a className: 'tracklist__link tracklist__link--contest-dl', href: @props.entry.preview, title: osu.trans('contest.beatmaps.download'),
-            i className: 'fa fa-fw fa-cloud-download'
       if @props.contest.show_votes
-        td className: "tracklist__title tracklist__row--show-votes", style: { backgroundSize: "#{relativeVotePercentage}%, 100%" },
+        td className: "tracklist__title tracklist__title--show-votes", style: { backgroundSize: "#{relativeVotePercentage}%, 100%" },
           div {}, "#{@props.entry.title} "
           div className: 'tracklist__version', "#{@props.entry.results.actual_name}"
       else

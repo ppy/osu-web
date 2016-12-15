@@ -29,11 +29,12 @@
   margin: (@spacing * 2) 0;
 
   &:hover {
-    background-color: @grey-e;
+    background-color: @gray-e;
   }
 
   &--first-score {
-    box-shadow: 0 0 0 3px @yellow, 0 4px @box-shadow-spread @box-shadow-color;
+    @border-size: 3px;
+    box-shadow: 0 0 0 @border-size @yellow, 0 (@border-size + @box-shadow-y) @box-shadow-radius @box-shadow-color;
   }
 
   &__section {
@@ -53,7 +54,7 @@
 
       height: 25px;
       align-self: flex-end;
-      background-color: @grey-e;
+      background-color: @gray-e;
 
       border-radius: 0 0 @border-radius-base @border-radius-base;
     }
@@ -144,15 +145,15 @@
   }
 
   &__rank {
-    width: 30px;
-    height: 30px;
+    width: @rank-width;
+    height: @mod-height-normal;
 
     margin-left: @spacing;
   }
 
   &__achieved {
     font-size: 12px;
-    color: @grey-7;
+    color: @gray-7;
 
     padding-right: @spacing * 2;
 

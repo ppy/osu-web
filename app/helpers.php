@@ -31,6 +31,11 @@ function array_search_null($value, $array)
     }
 }
 
+function flag_path($country)
+{
+    return '/images/flags/'.$country.'.png';
+}
+
 function get_valid_locale($requestedLocale)
 {
     if (in_array($requestedLocale, config('app.available_locales'), true)) {
@@ -51,6 +56,16 @@ function json_time($time)
     if ($time !== null) {
         return $time->toIso8601String();
     }
+}
+
+function locale_flag($locale)
+{
+    return App\Libraries\LocaleMeta::flagFor($locale);
+}
+
+function locale_name($locale)
+{
+    return App\Libraries\LocaleMeta::nameFor($locale);
 }
 
 function osu_url($key)
@@ -263,30 +278,29 @@ function nav_links()
 {
     $links = [];
 
-    if (config('app.debug')) {
-        $links['home'] = [
-            'index' => route('home'),
-            'getChangelog' => osu_url('home.changelog'),
-            'getDownload' => osu_url('home.download'),
-        ];
-        $links['help'] = [
-            'getWiki' => osu_url('help.wiki'),
-            'getFaq' => osu_url('help.faq'),
-            'getSupport' => osu_url('help.support'),
-        ];
-        $links['ranking'] = [
-            'getOverall' => osu_url('ranking.overall'),
-            'getCharts' => osu_url('ranking.charts'),
-            'getCountry' => osu_url('ranking.country'),
-            'getMapper' => osu_url('ranking.mapper'),
-        ];
-    }
+    $links['home'] = [
+        'getNews' => osu_url('home.news'),
+        'getChangelog' => osu_url('home.changelog'),
+        'getDownload' => osu_url('home.download'),
+    ];
+    $links['help'] = [
+        'getWiki' => osu_url('help.wiki'),
+        'getFaq' => osu_url('help.faq'),
+        'getSupport' => osu_url('help.support'),
+    ];
+    $links['ranking'] = [
+        'getOverall' => osu_url('ranking.overall'),
+        'getCharts' => osu_url('ranking.charts'),
+        'getCountry' => osu_url('ranking.country'),
+        'getMapper' => osu_url('ranking.mapper'),
+    ];
     $links['beatmaps'] = [
         'index' => route('beatmapsets.index'),
         'artists' => route('artist.index'),
     ];
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
+        'contests' => route('community.contests.index'),
         'tournaments' => route('tournaments.index'),
         'getLive' => route('livestreams.index'),
         'getSlack' => route('slack'),
@@ -379,6 +393,17 @@ function display_regdate($user)
     return trans('users.show.joined_at', ['date' => $user->user_regdate->formatLocalized('%B %Y')]);
 }
 
+function i18n_date($datetime, $format = IntlDateFormatter::LONG)
+{
+    $formatter = IntlDateFormatter::create(
+        App::getLocale(),
+        $format,
+        IntlDateFormatter::NONE
+    );
+
+    return $formatter->format($datetime);
+}
+
 function open_image($path, $dimensions = null)
 {
     if ($dimensions === null) {
@@ -412,31 +437,7 @@ function open_image($path, $dimensions = null)
     }
 }
 
-function fractal_collection_array($models, $transformer, $includes = null)
-{
-    $manager = new League\Fractal\Manager();
-    if ($includes !== null) {
-        $manager->parseIncludes($includes);
-    }
-
-    $collection = new League\Fractal\Resource\Collection($models, $transformer);
-
-    return $manager->createData($collection)->toArray();
-}
-
-function fractal_item_array($model, $transformer, $includes = null)
-{
-    $manager = new League\Fractal\Manager();
-    if ($includes !== null) {
-        $manager->parseIncludes($includes);
-    }
-
-    $item = new League\Fractal\Resource\Item($model, $transformer);
-
-    return $manager->createData($item)->toArray();
-}
-
-function fractal_api_serialize_collection($model, $transformer, $includes = null)
+function json_collection($model, $transformer, $includes = null)
 {
     $manager = new League\Fractal\Manager();
     if ($includes !== null) {
@@ -444,15 +445,21 @@ function fractal_api_serialize_collection($model, $transformer, $includes = null
     }
     $manager->setSerializer(new App\Serializers\ApiSerializer());
 
-    // we're using collection instead of item here, so we can peak at the items beforehand
+    // da bess
+    if (is_string($transformer)) {
+        $transformer = 'App\Transformers\\'.str_replace('/', '\\', $transformer).'Transformer';
+        $transformer = new $transformer();
+    }
+
+    // we're using collection instead of item here, so we can peek at the items beforehand
     $collection = new League\Fractal\Resource\Collection($model, $transformer);
 
     return $manager->createData($collection)->toArray();
 }
 
-function fractal_api_serialize_item($model, $transformer, $includes = null)
+function json_item($model, $transformer, $includes = null)
 {
-    return fractal_api_serialize_collection([$model], $transformer, $includes)[0];
+    return json_collection([$model], $transformer, $includes)[0];
 }
 
 function fast_imagesize($url)
@@ -475,35 +482,6 @@ function fast_imagesize($url)
     });
 }
 
-/*
- * Parses a string. If it's not an empty string or null,
- * return parsed integer value of it, otherwise return null.
- */
-function get_int($string)
-{
-    if (present($string) === true) {
-        return (int) $string;
-    }
-}
-
-function get_bool($string)
-{
-    if (is_bool($string)) {
-        return $string;
-    } elseif ($string === '1' || $string === 'on') {
-        return true;
-    } elseif ($string === '0') {
-        return false;
-    }
-}
-
-function get_file($input)
-{
-    if ($input instanceof Symfony\Component\HttpFoundation\File\UploadedFile) {
-        return $input->getRealPath();
-    }
-}
-
 function get_arr($input, $callback)
 {
     if (!is_array($input)) {
@@ -520,6 +498,42 @@ function get_arr($input, $callback)
     }
 
     return $result;
+}
+
+function get_bool($string)
+{
+    if (is_bool($string)) {
+        return $string;
+    } elseif ($string === '1' || $string === 'on' || $string === 'true') {
+        return true;
+    } elseif ($string === '0' || $string === 'false') {
+        return false;
+    }
+}
+
+/*
+ * Parses a string. If it's not an empty string or null,
+ * return parsed integer value of it, otherwise return null.
+ */
+function get_int($string)
+{
+    if (present($string) === true) {
+        return (int) $string;
+    }
+}
+
+function get_file($input)
+{
+    if ($input instanceof Symfony\Component\HttpFoundation\File\UploadedFile) {
+        return $input->getRealPath();
+    }
+}
+
+function get_string($input)
+{
+    if (is_string($input)) {
+        return $input;
+    }
 }
 
 function get_class_basename($className)
@@ -550,6 +564,14 @@ function ci_file_search($fileName)
     return false;
 }
 
+function sanitize_filename($file)
+{
+    $file = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $file);
+    $file = mb_ereg_replace("([\.]{2,})", '', $file);
+
+    return $file;
+}
+
 function deltree($dir)
 {
     $files = array_diff(scandir($dir), ['.', '..']);
@@ -572,11 +594,13 @@ function get_param_value($input, $type)
         case 'file':
             return get_file($input);
             break;
+        case 'string':
+            return get_string($input);
         case 'string_split':
-            return get_arr(explode("\r\n", $input), 'presence');
+            return get_arr(explode("\r\n", $input), 'get_string');
             break;
         case 'string[]':
-            return get_arr($input, 'presence');
+            return get_arr($input, 'get_string');
             break;
         case 'int[]':
             return get_arr($input, 'get_int');

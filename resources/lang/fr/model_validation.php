@@ -19,6 +19,12 @@
  */
 
 return [
+    'required' => ':attribute est requis.',
+
+        'beatmap_discussion_post' => [
+                'first_post' => 'Impossible de supprimer le post de départ.',
+        ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Vous pouvez seulement voter pour une fonction.',
@@ -41,6 +47,4 @@ return [
             'too_many' => 'Vous avez choisi trop de réponses.',
         ],
     ],
-
-    'required' => ':attribute est requis.',
 ];

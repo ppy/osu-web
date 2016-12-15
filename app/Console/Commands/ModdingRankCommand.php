@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -28,7 +29,7 @@ class ModdingRankCommand extends Command
      *
      * @var string
      */
-    protected $name = 'modding:rank';
+    protected $signature = 'modding:rank';
 
     /**
      * The console command description.
@@ -52,7 +53,7 @@ class ModdingRankCommand extends Command
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         $rankable = Beatmapset::rankable();
 

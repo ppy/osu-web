@@ -16,46 +16,76 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
 .beatmap-icon {
-  .icon-bg();
-  .default-box-shadow();
-  .center-content();
+  color: @gray-f;
+  font-size: 22px;
+  display: flex;
 
-  color: @grey-f;
-  border: 2px solid @grey-f;
+  &::before {
+    .full-size();
+    .icon-bg();
 
-  .circle(21px);
-  font-size: 23px;
-
-  padding: 0;
+    @margin: 2px;
+    @size: calc(100% ~'-' (@margin * 2));
+    height: auto;
+    width: @size;
+    padding-bottom: @size;
+    top: @margin;
+    left: @margin;
+    border-radius: 50%;
+    background-color: @pink;
+  }
 
   &--large {
-    .circle(29px);
     font-size: 30px;
   }
 
   &--beatmapset {
-    .circle(38px);
     font-size: 40px;
   }
 
   &--easy {
-    background-color: @green;
+    &::before {
+      background-color: @green;
+    }
   }
 
   &--normal {
-    background-color: @yellow;
+    &::before {
+      background-color: @yellow;
+    }
   }
 
   &--hard {
-    background-color: @pink;
+    &::before {
+      background-color: @pink;
+    }
   }
 
   &--insane {
-    background-color: @purple;
+    &::before {
+      background-color: @purple;
+    }
   }
 
   &--expert {
-    background-color: @grey-0;
+    &::before {
+      background-color: @gray-0;
+    }
+  }
+
+  &__shadow {
+    .default-box-shadow();
+    .full-size();
+
+    @margin: 1px;
+    @size: calc(100% ~'-' (@margin * 2));
+    height: auto;
+    width: @size;
+    padding-bottom: @size;
+    top: @margin;
+    left: @margin;
+    border-radius: 50%;
   }
 }

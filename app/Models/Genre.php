@@ -17,12 +17,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use League\Fractal\Manager;
-use League\Fractal\Resource\Collection;
 use App\Transformers\GenreTransformer;
+use Illuminate\Database\Eloquent\Model;
 
 class Genre extends Model
 {
@@ -32,10 +31,6 @@ class Genre extends Model
 
     public static function listing()
     {
-        $fractal = new Manager();
-        $data = new Collection(parent::all(), new GenreTransformer);
-        $list = $fractal->createData($data)->toArray()['data'];
-
-        return $list;
+        return json_collection(static::all(), new GenreTransformer());
     }
 }

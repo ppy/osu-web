@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'title' => "community / {$topic->topic_title}",
+    'titleAppend' => $topic->topic_title,
     "body_additional_classes" => 't-forum-'.$topic->forum->categorySlug(),
     'canonicalUrl' => route('forum.topics.show', $topic->topic_id),
 ])
@@ -53,7 +53,7 @@
     <div class="js-header--alt js-sync-height--target" data-sync-height-id="forum-topic-headernav"></div>
 
     @if ($topic->poll()->exists())
-        <div class="osu-layout__row">
+        <div class="osu-layout__row js-header--main">
             @include('forum.topics._poll')
         </div>
     @endif

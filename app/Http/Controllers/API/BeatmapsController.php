@@ -17,13 +17,14 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers\API;
 
-use Response;
-use Request;
-use App\Transformers\API\ScoreTransformer;
-use App\Transformers\API\BeatmapTransformer;
 use App\Models\Beatmap;
+use App\Transformers\API\BeatmapTransformer;
+use App\Transformers\API\ScoreTransformer;
+use Request;
+use Response;
 
 class BeatmapsController extends Controller
 {
@@ -37,15 +38,12 @@ class BeatmapsController extends Controller
 
         $beatmap = Beatmap::where('filename', $filename)->where('checksum', $checksum)->firstorFail();
 
-        $beatmap_meta = fractal_api_serialize_item(
-            $beatmap,
-            new BeatmapTransformer()
-        );
+        $beatmap_meta = json_item($beatmap, new BeatmapTransformer());
 
         $scores = $beatmap->scoresBest()->defaultListing()->forPage($page, $per_page);
 
         if ($beatmap->approved >= 1) {
-            $beatmap_scores = fractal_api_serialize_collection(
+            $beatmap_scores = json_collection(
                 $scores->get(),
                 new ScoreTransformer()
             );

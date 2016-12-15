@@ -22,22 +22,19 @@
 
   .default-box-shadow();
 
-  &__avatar {
-    margin-right: (@spacing / 2);
-  }
-
-  &__avatar-box {
-    display: flex;
-
-    padding-bottom: @spacing;
-  }
-
   &__box {
     display: flex;
     flex-direction: column;
-    flex: 1;
 
     padding: (@spacing * 2) @spacing (@spacing * 5 / 2);
+
+    &--main {
+      @media @desktop {
+        flex: 1;
+      }
+
+      align-self: stretch;
+    }
 
     &--stats {
       padding-bottom: 0;
@@ -45,12 +42,18 @@
     }
   }
 
+  &__beatmap-picker-box {
+    flex: 1 0 auto;
+  }
+
   &__buttons {
     display: flex;
     flex-wrap: wrap;
+    margin-top: @spacing;
   }
 
   &__content {
+    .default-header-overlay();
     display: flex;
     flex-direction: column;
     padding: 0 (@spacing * 3);
@@ -62,16 +65,17 @@
 
     background-size: cover;
     background-position: center;
+    background-color: @gray-3;
     min-height: @header-height;
   }
 
   &__details-text {
     .default-text-shadow();
-    color: @grey-f;
+    color: @gray-f;
     font-style: italic;
 
     &:hover, &:visited, &:active {
-      color: @grey-f;
+      color: @gray-f;
       text-decoration: none;
     }
 
@@ -101,40 +105,11 @@
     .default-text-shadow;
   }
 
-  &__overlay {
-    .full-size();
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
-  }
-
   &__star-difficulty {
     .default-text-shadow();
     font-size: 11px;
     font-weight: 600;
     color: @yellow;
-  }
-
-  &__user-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  &__user-text {
-    font-size: 11px;
-    color: @grey-f;
-    .default-text-shadow;
-
-    &--mapper {
-      font-style: italic;
-    }
-
-    &--date {
-      font-weight: 700;
-    }
-
-    &:first-of-type {
-      padding-bottom: @spacing * 0.5;
-    }
   }
 
   &__value {
@@ -149,6 +124,24 @@
 
   &__value-icon {
     padding-right: 2px;
+    color: @gray-f;
+
+    &--favourites {
+      &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+        color: @gray-f;
+      }
+
+      &:hover {
+        color: @pink-dark;
+      }
+    }
+
+    &--favourited {
+      &:hover, &:link {
+        color: @pink-darker;
+      }
+    }
   }
 
   &__value-name {

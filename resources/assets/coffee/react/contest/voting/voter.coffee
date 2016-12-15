@@ -24,14 +24,11 @@ class Contest.Voting.Voter extends React.Component
     super props
 
   sendVote: =>
-    # in case called from loginSuccess or other possible show loading overlay thing.
-    LoadingOverlay.hide()
-
     params =
       method: 'PUT'
       dataType: 'json'
 
-    $.ajax laroute.route('contest-entries.vote', contest_entry_id: @props.entry.id), params
+    $.ajax laroute.route('contest-entries.vote', contest_entry: @props.entry.id), params
 
     .done (response) =>
       $.publish 'contest:vote:done', response: response
@@ -45,7 +42,7 @@ class Contest.Voting.Voter extends React.Component
     if !currentUser.id?
       userLogin.show e.target
     else if !@props.waitingForResponse
-      $.publish 'contest:vote:click', entry_id: @props.entry.id
+      $.publish 'contest:vote:click', contest_id: @props.contest.id, entry_id: @props.entry.id
       @sendVote()
 
   isSelected: =>
@@ -54,15 +51,15 @@ class Contest.Voting.Voter extends React.Component
   render: ->
     votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
 
-    if (@props.selected.length >= @props.contest.max_votes || votingOver) && !@isSelected()
-      null
-    else
-      classes = [
-        'contest__voting-star',
-        'contest__voting-star--float-right',
-        if @props.theme then "contest__voting-star--#{@props.theme}",
-      ]
+    classes = [
+      'contest__voting-star',
+      'contest__voting-star--float-right',
+      if @props.theme then "contest__voting-star--#{@props.theme}",
+    ]
 
+    if (@props.selected.length >= @props.contest.max_votes || votingOver) && !@isSelected()
+      div className: classes.join(' '), null
+    else
       if @isSelected()
         selected_class =  [
           if @props.theme then "contest__voting-star--selected-#{@props.theme}" else 'contest__voting-star--selected'

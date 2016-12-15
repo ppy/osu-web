@@ -26,10 +26,12 @@ return [
     'menu' => [
         'home' => [
             '_' => 'home',
+            'account-edit' => 'settings',
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
-            'index' => 'news',
+            'getNews' => 'news',
+            'index' => 'osu!',
             'supportTheGame' => 'support the game',
         ],
         'help' => [
@@ -47,7 +49,7 @@ return [
             // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [
-            '_' => 'beatmapsets',
+            '_' => 'beatmaps',
             'discussion' => 'modding',
         ],
         'ranking' => [
@@ -70,7 +72,7 @@ return [
             'tournaments' => 'tournaments',
             'tournaments-index' => 'tournaments',
             'tournaments-show' => 'tournament info',
-            'forum-topic-watches-index' => 'Topic Subscriptions',
+            'forum-topic-watches-index' => 'subscriptions',
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
@@ -128,6 +130,7 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
+            'root' => 'index',
             'logs-index' => 'log',
             'beatmapsets' => [
                 '_' => 'beatmapsets',
@@ -231,8 +234,9 @@ return [
 
     'popup_user' => [
         'links' => [
-            'profile' => 'My Profile',
+            'account-edit' => 'Settings',
             'logout' => 'Log Out',
+            'profile' => 'My Profile',
         ],
     ],
 ];

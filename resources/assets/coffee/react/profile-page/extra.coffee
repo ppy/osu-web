@@ -76,14 +76,15 @@ ProfilePage.Extra = React.createClass
     $elems.sortable('cancel')
 
     @setState profileOrder: newOrder, =>
-      $.ajax laroute.route('account.update-profile'),
-        method: 'POST'
+      $.ajax laroute.route('account.update'),
+        method: 'PUT'
         dataType: 'JSON'
         data:
-          order: @state.profileOrder
+          user_profile_customization:
+            extras_order: @state.profileOrder
 
       .done (userData) =>
-        $.publish 'user:update', userData.data
+        $.publish 'user:update', userData
 
       .fail (xhr) =>
         osu.ajaxError xhr
@@ -153,6 +154,7 @@ ProfilePage.Extra = React.createClass
                   achievements: @props.achievements
                   userAchievements: @props.userAchievements
                   currentMode: @props.currentMode
+                  user: @props.user
                 ProfilePage.Medals
 
               when 'historical'

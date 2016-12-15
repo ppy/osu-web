@@ -26,15 +26,16 @@
 
             <div class="row">
                 <div class="col-xs-7">
-                    <i class="fa fa-5x fa-osu-{{ $icon }}"></i>
-                    <i class="fa fa-4x fa-osu-{{ $icon }}"></i>
-                    <i class="fa fa-3x fa-osu-{{ $icon }}"></i>
-                    <i class="fa fa-2x fa-osu-{{ $icon }}"></i>
-                    <i class="fa fa-lg fa-osu-{{ $icon }}"></i>
-                    <i class="fa fa-fw fa-osu-{{ $icon }}"></i>
+                    <i class="fa fa-5x fa-extra-{{ $icon }}"></i>
+                    <i class="fa fa-4x fa-extra-{{ $icon }}"></i>
+                    <i class="fa fa-3x fa-extra-{{ $icon }}"></i>
+                    <i class="fa fa-2x fa-extra-{{ $icon }}"></i>
+                    <i class="fa fa-extra-{{ $icon }}"></i>
+                    <i class="fa fa-lg fa-extra-{{ $icon }}"></i>
+                    <i class="fa fa-fw fa-extra-{{ $icon }}"></i>
                 </div>
                 <div class="col-xs-5">
-                    <h3>fa-osu-{{ $icon }}</h3>
+                    <h3>fa-extra-{{ $icon }}</h3>
                 </div>
             </div>
 

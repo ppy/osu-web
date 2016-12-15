@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models\Score\Best;
 
 use App\Libraries\ModsHelper;
@@ -144,9 +145,9 @@ abstract class Model extends BaseModel
 
     public function scopeFriendsOf($query, $user)
     {
-        return $query->whereIn(
-            'user_id',
-            model_pluck($user->friends(), 'zebra_id')
-        );
+        $userIds = model_pluck($user->friends(), 'zebra_id');
+        $userIds[] = $user->user_id;
+
+        return $query->whereIn('user_id', $userIds);
     }
 }

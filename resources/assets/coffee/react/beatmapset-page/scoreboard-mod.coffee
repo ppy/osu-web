@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+el = React.createElement
 {img, div} = React.DOM
 
 class BeatmapsetPage.ScoreboardMod extends React.Component
@@ -22,14 +23,12 @@ class BeatmapsetPage.ScoreboardMod extends React.Component
     $.publish 'beatmapset:scoreboard:set', enabledMod: @props.mod
 
   render: ->
-    modName = osu.trans "beatmaps.mods.#{@props.mod}"
     className = 'beatmapset-scoreboard__mod-box'
     className += ' beatmapset-scoreboard__mod-box--enabled' if @props.enabled
 
     div
       className: className
       onClick: @onClick
-      img _.extend
+      div
         className: 'beatmapset-scoreboard__mod'
-        title: modName
-        osu.src2x "/images/badges/mods/#{_.kebabCase modName}.png"
+        el Mod, mod: @props.mod

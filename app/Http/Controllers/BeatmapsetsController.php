@@ -17,16 +17,16 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Country;
-use App\Models\Language;
 use App\Models\Genre;
+use App\Models\Language;
 use App\Transformers\BeatmapsetTransformer;
 use App\Transformers\CountryTransformer;
-use League\Fractal\Manager;
 use Auth;
 use Request;
 
@@ -36,10 +36,9 @@ class BeatmapsetsController extends Controller
 
     public function index()
     {
-        $fractal = new Manager();
         $languages = Language::listing();
         $genres = Genre::listing();
-        $beatmaps = fractal_collection_array(
+        $beatmaps = json_collection(
             Beatmapset::listing(),
             new BeatmapsetTransformer,
             'beatmaps'
@@ -55,6 +54,7 @@ class BeatmapsetsController extends Controller
             ['id' => '7', 'name' => trans('beatmaps.status.any')],
             ['id' => '0', 'name' => trans('beatmaps.status.ranked-approved')],
             ['id' => '1', 'name' => trans('beatmaps.status.approved')],
+            ['id' => '8', 'name' => trans('beatmaps.status.loved')],
             ['id' => '2', 'name' => trans('beatmaps.status.faves')],
             ['id' => '3', 'name' => trans('beatmaps.status.modreqs')],
             ['id' => '4', 'name' => trans('beatmaps.status.pending')],
@@ -72,7 +72,7 @@ class BeatmapsetsController extends Controller
             $ranks[] = ['id' => $rank, 'name' => trans("beatmaps.rank.{$rank}")];
         }
 
-        $filters = ['data' => compact('modes', 'statuses', 'genres', 'languages', 'extras', 'ranks')];
+        $filters = compact('modes', 'statuses', 'genres', 'languages', 'extras', 'ranks');
 
         return view('beatmaps.index', compact('filters', 'beatmaps'));
     }
@@ -83,13 +83,13 @@ class BeatmapsetsController extends Controller
             ::with('beatmaps.failtimes', 'user')
             ->findOrFail($id);
 
-        $set = fractal_item_array(
+        $set = json_item(
             $beatmapset,
             new BeatmapsetTransformer(),
-            implode(',', ['beatmaps', 'beatmaps.failtimes', 'converts', 'converts.failtimes', 'user', 'description', 'ratings'])
+            ['beatmaps', 'beatmaps.failtimes', 'converts', 'converts.failtimes', 'user', 'description', 'ratings']
         );
 
-        $countries = fractal_collection_array(Country::all(), new CountryTransformer);
+        $countries = json_collection(Country::all(), new CountryTransformer);
 
         $title = trans('layout.menu.beatmaps._').' / '.$beatmapset->artist.' - '.$beatmapset->title;
 
@@ -138,7 +138,7 @@ class BeatmapsetsController extends Controller
 
         $beatmaps = Beatmapset::search($params);
 
-        return fractal_collection_array(
+        return json_collection(
             $beatmaps,
             new BeatmapsetTransformer,
             'beatmaps'
@@ -159,14 +159,14 @@ class BeatmapsetsController extends Controller
         }
 
         $initialData = [
-            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
-            'beatmapsetDiscussion' => $discussion->defaultJson(Auth::user()),
+            'beatmapset' => $beatmapset->defaultJson(),
+            'beatmapsetDiscussion' => $discussion->defaultJson(),
         ];
 
         if ($returnJson) {
             return $initialData;
         } else {
-            return view('beatmapsets.discussion', compact('initialData'));
+            return view('beatmapsets.discussion', compact('beatmapset', 'initialData'));
         }
     }
 
@@ -181,7 +181,7 @@ class BeatmapsetsController extends Controller
         }
 
         return [
-            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
+            'beatmapset' => $beatmapset->defaultJson(),
         ];
     }
 
@@ -196,7 +196,30 @@ class BeatmapsetsController extends Controller
         }
 
         return [
-            'beatmapset' => $beatmapset->defaultJson(Auth::user()),
+            'beatmapset' => $beatmapset->defaultJson(),
+        ];
+    }
+
+    public function updateFavourite($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+        $user = Auth::user();
+
+        if (Request::input('action') === 'favourite') {
+            priv_check('UserFavourite')->ensureCan();
+            $beatmapset->favourite($user);
+        } elseif (Request::input('action') === 'unfavourite') {
+            priv_check('UserFavouriteRemove')->ensureCan();
+            $beatmapset->unfavourite($user);
+        }
+
+        // reload model to be able to get
+        // the favourite count properly
+        $beatmapset = $beatmapset->fresh();
+
+        return [
+          'favcount' => $beatmapset->favourite_count,
+          'favourited' => $beatmapset->hasFavourited($user),
         ];
     }
 }

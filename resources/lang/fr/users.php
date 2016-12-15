@@ -19,6 +19,8 @@
  */
 
 return [
+        'deleted' => '[utilisateur supprimé]',
+
     'login' => [
         '_' => 'Se connecter',
         'username' => 'Nom d\'utilisateur',
@@ -89,12 +91,11 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu Disponible',
-              //'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven't traded in yet.",
                 'available_info' => "Le Kudosu peut être échangé pour des étoiles kudosu, qui vous aidera pour que votre beatmap ait plus d'attention. C'est le nombre de Kudosu qui n'avaient pas encore échangés.",
                 'entry' => [
                     'empty' => "Cet utilisateur n'a jamais reçu de Kudosu!",
                     'give' => 'A reçu <strong class="kudosu-entries__amount">:amount kudosu</strong> de :giver pour un post sur :post',
-                    'revoke' => 'Denied kudosu by :giver for the post :post',
+                    'revoke' => 'Kudosu refusé de :giver pour le post :post',
                 ],
                 'recent_entries' => 'Hitorique de Kudosu récents',
                 'title' => 'Kudosu!',
@@ -105,6 +106,7 @@ return [
                 'title' => 'moi!',
             ],
             'medals' => [
+                                'empty' => "Cet utilsateur n'en a jamais reçu. ;_;",
                 'title' => 'Médailles',
             ],
             'recent_activities' => [

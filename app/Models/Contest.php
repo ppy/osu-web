@@ -17,16 +17,20 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Transformers\ContestTransformer;
 use App\Transformers\UserContestEntryTransformer;
 use Cache;
+use Illuminate\Database\Eloquent\Model;
 
 class Contest extends Model
 {
     protected $dates = ['entry_starts_at', 'entry_ends_at', 'voting_starts_at', 'voting_ends_at'];
+    protected $casts = [
+        'extra_options' => 'json',
+    ];
 
     public function entries()
     {
@@ -68,6 +72,73 @@ class Contest extends Model
         return $this->voting_starts_at !== null && $this->voting_starts_at->isPast();
     }
 
+    public function state()
+    {
+        if ($this->entry_starts_at === null || $this->entry_starts_at->isFuture()) {
+            return 'preparing';
+        }
+
+        if ($this->isSubmissionOpen()) {
+            return 'entry';
+        }
+
+        if ($this->isVotingOpen()) {
+            return 'voting';
+        }
+
+        if ($this->show_votes) {
+            return 'results';
+        }
+
+        return 'over';
+    }
+
+    public function getEntryShapeAttribute()
+    {
+        if ($this->type !== 'art') {
+            return;
+        }
+
+        return $this->extra_options['shape'] ?? 'square';
+    }
+
+    public function setEntryShapeAttribute($shape)
+    {
+        if ($this->type !== 'art') {
+            return;
+        }
+
+        $this->extra_options['shape'] = $shape;
+    }
+
+    public function currentPhaseEndDate()
+    {
+        switch ($this->state()) {
+            case 'entry':
+                return $this->entry_ends_at;
+            case 'voting':
+                return $this->voting_ends_at;
+        }
+    }
+
+    public function currentPhaseDateRange()
+    {
+        switch ($this->state()) {
+            case 'preparing':
+                $date = $this->entry_starts_at === null
+                    ? trans('contest.dates.starts.soon')
+                    : i18n_date($this->entry_starts_at);
+
+                return trans('contest.dates.starts._', ['date' => $date]);
+            case 'entry':
+                return i18n_date($this->entry_starts_at).' - '.i18n_date($this->entry_ends_at);
+            case 'voting':
+                return i18n_date($this->voting_starts_at).' - '.i18n_date($this->voting_ends_at);
+            default:
+                return trans('contest.dates.ended', ['date' => i18n_date($this->voting_ends_at)]);
+        }
+    }
+
     public function currentDescription()
     {
         if ($this->isVotingStarted()) {
@@ -102,7 +173,7 @@ class Contest extends Model
             $includes[] = 'entries.results';
         }
 
-        $contestJson = fractal_api_serialize_item($this, new ContestTransformer, $includes);
+        $contestJson = json_item($this, new ContestTransformer, $includes);
 
         if (!empty($contestJson['entries'])) {
             if ($this->show_votes) {
@@ -148,7 +219,7 @@ class Contest extends Model
             return [];
         }
 
-        return fractal_api_serialize_collection(
+        return json_collection(
             UserContestEntry::where(['contest_id' => $this->id, 'user_id' => $user->user_id])->get(),
             new UserContestEntryTransformer
         );

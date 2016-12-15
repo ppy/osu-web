@@ -16,6 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
 .beatmap-discussion-post {
   @_top: beatmap-discussion-post;
 
@@ -24,15 +25,14 @@
   @_discussion-text-size: 13px;
   @_reply-text-size: 12px;
 
+  &--discussion {
+    flex: 1;
+  }
 
-  display: flex;
-  padding: (@spacing / 2) @spacing;
-
-  flex: 1;
-  min-width: 0;
-
-  &--reply {
-    padding-left: @beatmap-discussion--reply-padding;
+  &--editing-dark {
+    background-color: @gray-4;
+    border-top: 1px solid @gray-3;
+    border-bottom: 1px solid @gray-3;
   }
 
   &--unread {
@@ -46,19 +46,31 @@
   }
 
   &__action {
-    margin-left: (@spacing / 2);
+    margin: 0 (@spacing / 2);
+
+    &--button {
+      .reset-input();
+      .link-plain();
+      .link-default();
+      // reset function above overrides margin
+      margin: 0 (@spacing / 2);
+      font-size: @font-size--small;
+
+      .@{_top}--reply & {
+        .link-gray-light();
+      }
+    }
   }
 
   &__actions {
     display: flex;
     justify-content: space-between;
-
-    margin-top: (@spacing / 2);
   }
 
   &__actions-group {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
+    margin: 0 (-@spacing / 2);
   }
 
   &__avatar {
@@ -68,21 +80,37 @@
     flex: none;
   }
 
-  &__edit-button {
-    .reset-input();
-    color: @link-color;
+  &__content {
+    display: flex;
+    padding: @spacing (@spacing * 3 / 2);
 
-    &:hover {
-      color: @link-hover-color;
-      text-decoration: underline;
+    flex: 1;
+    min-width: 0;
+
+    .@{_top}--reply & {
+      padding-left: @beatmap-discussion--reply-padding;
+      padding-right: @beatmap-discussion--reply-padding;
+    }
+  }
+
+  &__footer {
+    background-color: @gray-3;
+    padding: @spacing;
+
+    .@{_top}--reply & {
+      color: @gray-f;
+      padding-left: @beatmap-discussion--reply-padding;
+      padding-right: @beatmap-discussion--reply-padding;
     }
   }
 
   &__info {
     font-size: @_info-text-size;
-    color: @grey-9;
-
     margin-right: @spacing;
+
+    .@{_top}--reply & {
+      color: @gray-9;
+    }
 
     &--edited {
       color: @gray-light;
@@ -92,6 +120,25 @@
 
   &__info-container {
     display: flex;
+    flex-wrap: wrap;
+
+    .@{_top}--reply & {
+      &::after {
+        content: '';
+        background-color: @gray-7;
+        height: 1px;
+        align-self: center;
+        flex: 1;
+      }
+    }
+  }
+
+  &__info-user {
+    font-weight: 600;
+
+    .@{_top}--reply & {
+      .link-gray-light();
+    }
   }
 
   &__message {
@@ -102,17 +149,27 @@
       font-size: @_discussion-text-size;
     }
 
+    // placing classed elements in here is not advisable
     .@{_top}--reply & {
       font-size: @_reply-text-size;
+      color: @gray-f;
+
+      a {
+        .link-gray-light();
+      }
+    }
+
+    .@{_top}--deleted & {
+      opacity: 0.75;
+      font-style: italic;
     }
 
     &--editor {
       .reset-input();
       .default-border-radius();
-      .inset-box-shadow();
       width: 100%;
-      padding: @spacing;
       resize: vertical;
+      margin-bottom: (@spacing / 2);
     }
   }
 

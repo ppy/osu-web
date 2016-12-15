@@ -17,7 +17,34 @@
  *
  */
 .beatmap-discussion-system-post {
-  padding: @spacing;
-  padding-left: @beatmap-discussion--reply-padding;
-  font-size: 14px;
+  margin: (@spacing * 3 / 2) @beatmap-discussion--reply-padding;
+
+  color: @gray-f;
+  font-size: @font-size--small;
+  font-weight: 600;
+
+  &--resolved {
+    display: flex;
+
+    // the fancy green line
+    &::after {
+      flex: 1;
+      content: '';
+      background-color: @green;
+      align-self: center;
+      height: 1px;
+      margin-left: @spacing;
+    }
+  }
+
+  &__user {
+    color: @gray-c;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: @gray-e;
+      text-decoration: none;
+    }
+  }
 }

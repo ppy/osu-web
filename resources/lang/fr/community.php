@@ -28,7 +28,6 @@ return [
             'support_button' => 'Je veux supporter osu!',
         ],
 
-
         'dev_quote' => 'osu! est un free-to-play complet, mais le maintenir n\'est pas gratuit. Entre le prix des serveurs et de la grande bande passante internationale, le temps passé à maitenir le système et la communauté, parvenir des prix pour les compétitions, répondre aux questions du support et généralement garder les gens heureux, osu! consommes une certaine somme d\'argent! Oh, et n\'oubliez pas le fait que nous le faisons sans pub ou partenariat avec des toolbars ou autres!
             <br/><br/>osu! est à largement développé par moi-même, pour cela vous me connaisez sûrement avec le surnom "peppy".
             J\'ai du quitté mon travail à temps plein pour garder le rythme avec osu!,
@@ -141,7 +140,6 @@ return [
         'guest-end' => ' pour recevoir une invitation Slack!',
 
         'receive-invite' => 'Vous pouvez recevoir une invitation pour le réseau Slack public ici',
-        // 'bullet-points' => 'Please read thoroughly through the conditions on <a href=":link">this post.</a><br />Please note that any offences on your account will not be tolerated.',
         'bullet-points' => 'Merci de bien lire les conditions sur <a href=":link">ce post.</a><br />Veuillez noter que les offences sur votre compte ne sera pas toléré.',
 
         'recent-issues' => 'Votre compte à des problèmes récents. Merci de <a href="mailto::mail">contacter le support</a> pour plus de détails.',

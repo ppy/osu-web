@@ -2,11 +2,9 @@ cache:
   directories:
     - vendor
     - node_modules
-    - bower_components
     - $HOME/.yarn-cache
 
-addons:
-  mariadb: 10.0
+sudo: true
 
 language: php
 
@@ -20,8 +18,9 @@ env:
   - DB_USERNAME=root
 
 before_install:
-  - nvm install 4.2
-  - nvm use 4.2
+  - bash .travis.install-mysql-5.7.sh
+  - nvm install 6.9
+  - nvm use 6.9
   - ./bin/db_setup.sh
   - ./build.sh
 

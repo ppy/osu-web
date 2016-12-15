@@ -19,35 +19,38 @@
  */
 
 return [
-        'buttons' => [
-            'cancel' => 'Cancelar',
-            'post' => 'Postar',
-            'reply' => 'Responder',
-            'reset' => 'Reiniciar',
-            'save' => 'Salvar',
-            'show_more' => 'mostrar mais',
-        ],
+    'confirmation' => 'Tem certeza?',
 
-        'count' => [
-            'item' => ':count unidade|:count unidades',
-        ],
+    'buttons' => [
+        'cancel' => 'Cancelar',
+        'delete' => 'Excluir',
+        'post' => 'Publicar',
+        'reply' => 'Responder',
+        'reset' => 'Limpar',
+        'save' => 'Salvar',
+        'show_more' => 'exibir mais',
+    ],
 
-        'dropzone' => [
-            'target' => 'arraste aqui para enviar',
-        ],
+    'count' => [
+        'item' => ':count unidade|:count unidades',
+    ],
 
-        'pagination' => [
-            'previous' => 'anterior',
-            'next' => 'próximo',
-        ],
+    'dropzone' => [
+        'target' => 'solte aqui para enviar',
+    ],
 
-        'time' => [
-            'days_ago' => ':count dia atrás|:count dias atrás',
-            'hours_ago' => ':count hora atrás|:count horas atrás',
-            'now' => 'agora',
-        ],
+    'pagination' => [
+        'previous' => 'anterior',
+        'next' => 'próxima',
+    ],
 
-        'title' => [
-            'notice' => 'Aviso',
-        ],
+    'time' => [
+        'days_ago' => ':count dia atrás|:count dias atrás',
+        'hours_ago' => ':count hora atrás|:count horas atrás',
+        'now' => 'agora',
+    ],
+
+    'title' => [
+        'notice' => 'Aviso',
+    ],
 ];

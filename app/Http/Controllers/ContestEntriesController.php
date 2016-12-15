@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
 use App\Models\Contest;
@@ -44,7 +45,7 @@ class ContestEntriesController extends Controller
 
     public function store()
     {
-        if (Request::hasFile('entry') !== true || Request::file('entry')->getClientOriginalExtension() !== 'osu') { // todo: unhardcode :|
+        if (Request::hasFile('entry') !== true) {
             abort(422);
         }
 
@@ -52,6 +53,33 @@ class ContestEntriesController extends Controller
         $contest = Contest::findOrFail(Request::input('contest_id'));
 
         priv_check('ContestEntryStore', $contest)->ensureCan();
+
+        $allowedExtensions = [];
+        $maxFilesize = 0;
+        switch ($contest->type) {
+            case 'art':
+                $allowedExtensions[] = 'jpg';
+                $allowedExtensions[] = 'jpeg';
+                $allowedExtensions[] = 'png';
+                $maxFilesize = 4000000;
+                break;
+            case 'beatmap':
+                $allowedExtensions[] = 'osu';
+                $maxFilesize = 1000000;
+                break;
+            case 'music':
+                $allowedExtensions[] = 'mp3';
+                $maxFilesize = 15000000;
+                break;
+        }
+
+        if (!in_array(strtolower(Request::file('entry')->getClientOriginalExtension()), $allowedExtensions, true)) {
+            abort(422);
+        }
+
+        if (Request::file('entry')->getClientSize() > $maxFilesize) {
+            abort(413);
+        }
 
         UserContestEntry::upload(
             Request::file('entry'),

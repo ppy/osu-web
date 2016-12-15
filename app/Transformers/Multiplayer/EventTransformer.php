@@ -17,11 +17,12 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Transformers\Multiplayer;
 
-use League\Fractal;
 use App\Models\Multiplayer\Event;
 use App\Transformers;
+use League\Fractal;
 
 class EventTransformer extends Fractal\TransformerAbstract
 {

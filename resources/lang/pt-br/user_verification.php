@@ -19,15 +19,14 @@
  */
 return [
     'box' => [
-        'sent' => 'Um e-mail foi enviado para :mail com um código de verificação. Entre com o código.',
+        'sent' => 'Um e-mail foi enviado para :mail com um código de verificação. Insira o código.',
         'title' => 'Verificação de conta',
         'verifying' => 'Verificando...',
-        'issuing' => 'emitindo novo código...',
-
+        'issuing' => 'Enviando novo código...',
 
         'info' => [
-            'check_spam' => 'Certifique-se de verificar a sua pasta de spam se você não conseguir encontrar o e-mail.',
-            'recover' => 'Se você não consegue acessar seu e-mail ou ter esquecido qual você usou, siga o :link.',
+            'check_spam' => 'Certifique-se de verificar a sua pasta de spam caso não consiga encontrar o e-mail.',
+            'recover' => 'Caso não consiga acessar o seu e-mail ou tenha esquecido o e-mail usado, siga o :link.',
             'recover_link' => 'processo de recuperação de e-mail aqui',
             'reissue' => 'Você também pode :reissue_link ou :logout_link.',
             'reissue_link' => 'solicitar outro código',
@@ -36,13 +35,13 @@ return [
     ],
 
     'email' => [
-        'subject' => 'verificação de conta osu!',
+        'subject' => 'Verificação de conta osu!',
     ],
 
     'errors' => [
         'expired' => 'O código de verificação expirou, um novo e-mail de confirmação foi enviado.',
         'incorrect_key' => 'Código de verificação incorreto.',
         'retries_exceeded' => 'Código de verificação incorreto. Limite de tentativas excedido, um novo e-mail de confirmação foi enviado.',
-        'unknown' => 'Um problema desconhecido ocorreu, foi enviado um novo e-mail de confirmação.',
+        'unknown' => 'Ocorreu um problema desconhecido, um novo e-mail de confirmação foi enviado.',
     ],
 ];

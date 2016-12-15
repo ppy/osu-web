@@ -17,9 +17,13 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Middleware;
 
+use Auth;
+use Closure;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
+use Illuminate\Session\TokenMismatchException;
 
 class VerifyCsrfToken extends BaseVerifier
 {
@@ -27,4 +31,16 @@ class VerifyCsrfToken extends BaseVerifier
         'oauth/authorize',
         'oauth/access_token',
     ];
+
+    public function handle($request, Closure $next)
+    {
+        try {
+            return parent::handle($request, $next);
+        } catch (TokenMismatchException $_e) {
+            $request->session()->flush();
+            Auth::logout();
+
+            return $next($request);
+        }
+    }
 }

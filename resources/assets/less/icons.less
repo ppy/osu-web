@@ -18,110 +18,26 @@
 */
 // main: compiled.less
 
-// lists all of the osu! fonts under FontAwesome's namespace.
-
-@fa-osu-prefix: ~"@{fa-css-prefix}-osu";
-@fa-osumode-prefix: ~"@{fa-css-prefix}-osumode";
+// lists all of the extra fonts under FontAwesome's namespace.
+@fa-extra-prefix: ~"@{fa-css-prefix}-extra";
 
 .fa {
   // ensure correct sizing even inside flex boxes
   flex: none;
 }
 
-// osu modifier to change the font used
-[class^="@{fa-osu-prefix}-"], [class*=" @{fa-osu-prefix}-"] {
-  font-family: "osu!";
+[class^="@{fa-extra-prefix}-"], [class*=" @{fa-extra-prefix}-"] {
+  font-family: "FontAwesomeExtra";
 }
 
-[class^="@{fa-osumode-prefix}-"], [class*=" @{fa-osumode-prefix}-"] {
-  font-family: "osu";
-}
+// gamemode icons
+.@{fa-extra-prefix}-mode-osu::before { content: '\e800'; }
+.@{fa-extra-prefix}-mode-fruits::before { content: '\e801'; }
+.@{fa-extra-prefix}-mode-mania::before { content: '\e802'; }
+.@{fa-extra-prefix}-mode-taiko::before { content: '\e803'; }
 
-// gamemode icons in circles
-.@{fa-osu-prefix}-osu-o::before { content: '\e000'; }
-.@{fa-osu-prefix}-mania-o::before { content: '\e001'; }
-.@{fa-osu-prefix}-fruits-o::before { content: '\e002'; }
-.@{fa-osu-prefix}-taiko-o::before { content: '\e003'; }
+// other icons
+.@{fa-extra-prefix}-social-patreon::before { content: '\e804'; }
 
-// gamemode icons in circles, alternative version
-.@{fa-osumode-prefix}-osu::before { content: '\e800'; }
-.@{fa-osumode-prefix}-fruits::before { content: '\e801'; }
-.@{fa-osumode-prefix}-mania::before { content: '\e802'; }
-.@{fa-osumode-prefix}-taiko::before { content: '\e803'; }
-
-// gamemode icons without circles
-.@{fa-osu-prefix}-osu::before { content: '\e004'; }
-.@{fa-osu-prefix}-mania::before { content: '\e005'; }
-.@{fa-osu-prefix}-fruits::before { content: '\e006'; }
-.@{fa-osu-prefix}-taiko::before { content: '\e007'; }
-
-// misc icons
-.@{fa-osu-prefix}-bat::before { content: '\e008'; }
-.@{fa-osu-prefix}-bubble::before { content: '\e009'; }
-.@{fa-osu-prefix}-bubble-pop::before { content: '\e02e'; }
-.@{fa-osu-prefix}-dice::before { content: '\e011'; }
-.@{fa-osu-prefix}-heart1::before { content: '\e02f'; }
-.@{fa-osu-prefix}-heart1-break::before { content: '\e030'; }
-.@{fa-osu-prefix}-hot::before { content: '\e031'; }
-.@{fa-osu-prefix}-list-search::before { content: '\e032'; }
-
-//osu! playstyles
-.@{fa-osu-prefix}-playstyle-tablet::before { content: '\e02a'; }
-.@{fa-osu-prefix}-playstyle-mouse::before { content: '\e029'; }
-.@{fa-osu-prefix}-playstyle-keyboard::before { content: '\e02b'; }
-.@{fa-osu-prefix}-playstyle-touch::before { content: '\e02c'; }
-
-// osu! difficulties
-.@{fa-osu-prefix}-easy-osu::before   { content: '\e015'; }
-.@{fa-osu-prefix}-normal-osu::before { content: '\e016'; }
-.@{fa-osu-prefix}-hard-osu::before   { content: '\e017'; }
-.@{fa-osu-prefix}-insane-osu::before { content: '\e018'; }
-.@{fa-osu-prefix}-expert-osu::before { content: '\e019'; }
-
-// taiko difficulties
-.@{fa-osu-prefix}-easy-taiko::before   { content: '\e01a'; }
-.@{fa-osu-prefix}-normal-taiko::before { content: '\e01b'; }
-.@{fa-osu-prefix}-hard-taiko::before   { content: '\e01c'; }
-.@{fa-osu-prefix}-insane-taiko::before { content: '\e01d'; }
-.@{fa-osu-prefix}-expert-taiko::before { content: '\e01e'; }
-
-// taiko aliases
-.@{fa-osu-prefix}-kantan::before     { content: '\e01a'; }
-.@{fa-osu-prefix}-futsuu::before     { content: '\e01b'; }
-.@{fa-osu-prefix}-muzukashii::before { content: '\e01c'; }
-.@{fa-osu-prefix}-oni::before        { content: '\e01d'; }
-.@{fa-osu-prefix}-inner-oni::before  { content: '\e01e'; }
-
-
-// fruits difficulties
-.@{fa-osu-prefix}-easy-fruits::before   { content: '\e01f'; }
-.@{fa-osu-prefix}-normal-fruits::before { content: '\e020'; }
-.@{fa-osu-prefix}-hard-fruits::before   { content: '\e021'; }
-.@{fa-osu-prefix}-insane-fruits::before { content: '\e022'; }
-.@{fa-osu-prefix}-expert-fruits::before { content: '\e023'; }
-
-// mania difficulties
-.@{fa-osu-prefix}-easy-mania::before   { content: '\e024'; }
-.@{fa-osu-prefix}-normal-mania::before { content: '\e025'; }
-.@{fa-osu-prefix}-hard-mania::before   { content: '\e026'; }
-.@{fa-osu-prefix}-insane-mania::before { content: '\e027'; }
-.@{fa-osu-prefix}-expert-mania::before { content: '\e028'; }
-
-// mod icons
-.@{fa-osu-prefix}-mod-perfect::before { content: '\e02d'; }
-.@{fa-osu-prefix}-mod-autopilot::before { content: '\e03a'; }
-.@{fa-osu-prefix}-mod-auto::before { content: '\e03b'; }
-.@{fa-osu-prefix}-mod-cinema::before { content: '\e03c'; }
-.@{fa-osu-prefix}-mod-doubletime::before { content: '\e03d'; }
-.@{fa-osu-prefix}-mod-easy::before { content: '\e03e'; }
-.@{fa-osu-prefix}-mod-flashlight::before { content: '\e03f'; }
-.@{fa-osu-prefix}-mod-halftime::before { content: '\e040'; }
-.@{fa-osu-prefix}-mod-hardrock::before { content: '\e041'; }
-.@{fa-osu-prefix}-mod-hidden::before { content: '\e042'; }
-.@{fa-osu-prefix}-mod-nightcore::before { content: '\e043'; }
-.@{fa-osu-prefix}-mod-nofail::before { content: '\e044'; }
-.@{fa-osu-prefix}-mod-relax::before { content: '\e045'; }
-.@{fa-osu-prefix}-mod-spunout::before { content: '\e046'; }
-.@{fa-osu-prefix}-mod-suddendeath::before { content: '\e047'; }
-.@{fa-osu-prefix}-mod-target::before { content: '\e048'; }
-.@{fa-osu-prefix}-mod-bg::before { content: '\e049'; }
+// osu icon
+.@{fa-extra-prefix}-osu::before { content: '\e805'; }

@@ -17,9 +17,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
 use App\Models\Artist;
+use App\Transformers\ArtistAlbumTransformer;
 use App\Transformers\ArtistTrackTransformer;
 
 class ArtistsController extends Controller
@@ -35,19 +37,28 @@ class ArtistsController extends Controller
     public function show($id)
     {
         $artist = Artist::with('label')->findOrFail($id);
-        $tracks = $artist->tracks()->get();
+
+        $albums = $artist->albums()
+            ->where('visible', true)
+            ->with(['tracks' => function ($query) {
+                $query->orderBy('display_order', 'ASC');
+            }])->get();
+
+        $tracks = $artist->tracks()->whereNull('album_id')->orderBy('display_order', 'ASC NULLS LAST')->get();
+
         $images = [
             'header_url' => $artist->header_url,
             'cover_url' => $artist->cover_url,
         ];
 
+        // should probably move services to a separate model if the number increases further
         $links = [];
-        foreach (['twitter', 'facebook', 'soundcloud'] as $service) {
+        foreach (['soundcloud', 'twitter', 'facebook', 'bandcamp', 'patreon'] as $service) {
             if ($artist->$service) {
                 $links[] = [
                     'title' => ucwords($service),
                     'url' => $artist->$service,
-                    'icon' => $service,
+                    'icon' => $service === 'patreon' ? "extra-social-$service" : $service,
                     'class' => $service,
                 ];
             }
@@ -58,15 +69,15 @@ class ArtistsController extends Controller
                 'title' => trans('artist.links.site'),
                 'url' => $artist->website,
                 'icon' => 'globe',
-                'class' => '',
+                'class' => 'website',
             ];
         }
 
         return view('artists.show')
             ->with('artist', $artist)
             ->with('links', $links)
-            // using the api serializer to get rid of data root node, we should probably nuke that root node globally...
-            ->with('tracks', fractal_api_serialize_collection($tracks, new ArtistTrackTransformer()))
+            ->with('albums', json_collection($albums, new ArtistAlbumTransformer, ['tracks']))
+            ->with('tracks', json_collection($tracks, new ArtistTrackTransformer))
             ->with('images', $images);
     }
 }

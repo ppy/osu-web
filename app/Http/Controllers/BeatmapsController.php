@@ -17,13 +17,14 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Transformers\ScoreTransformer;
-use Request;
 use Auth;
+use Request;
 
 class BeatmapsController extends Controller
 {
@@ -34,7 +35,7 @@ class BeatmapsController extends Controller
         $beatmap = Beatmap::findOrFail($id);
         $set = $beatmap->beatmapset;
 
-        return ujs_redirect(route('beatmapsets.show', ['id' => $set->beatmapset_id]).'#'.$beatmap->mode.'/'.$id);
+        return ujs_redirect(route('beatmapsets.show', ['beatmap' => $set->beatmapset_id]).'#'.$beatmap->mode.'/'.$id);
     }
 
     public function scores($id)
@@ -75,13 +76,13 @@ class BeatmapsController extends Controller
                 break;
         }
 
-        $scoresList = fractal_collection_array($query->get(), new ScoreTransformer, 'user');
+        $scoresList = json_collection($query->get(), new ScoreTransformer, 'user');
 
         if ($user !== null) {
             $score = (clone $query)->where('user_id', $user->user_id)->first();
 
             if ($score !== null) {
-                $userScore = fractal_item_array($score, new ScoreTransformer, 'user');
+                $userScore = json_item($score, new ScoreTransformer, 'user');
                 $userScorePosition = 1 + (clone $query)
                     ->limit(null)
                     ->where('score', '>', $score->score)

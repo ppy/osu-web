@@ -36,13 +36,13 @@ class MPHistory.Score extends React.Component
           div className: 'mp-history-player-score__username-box',
             a
               className: 'mp-history-player-score__username',
-              href: laroute.route 'users.show', users: user.id
+              href: laroute.route 'users.show', user: user.id
               user.username
 
             if !@props.score.pass
               span className: 'mp-history-player-score__failed', Lang.get 'multiplayer.match.failed'
 
-          el FlagCountry, country: user.country.data
+          el FlagCountry, country: user.country
 
         div className: 'mp-history-player-score__info-box mp-history-player-score__info-box--stats',
           div className: 'mp-history-player-score__stat-row mp-history-player-score__stat-row--first',

@@ -44,19 +44,21 @@ class @UserLogin
     @clickAfterLogin = null
 
     @refreshToken()
-
-    $('.js-user-header').html data.header
-    $('.js-user-header-popup').html data.header_popup
-
-    $.publish 'user:update', data.user.data
-
     @nav.hidePopup()
 
-    osu.executeAction toClick
+    $.publish 'user:update', data.user
+
+    # To allow other ajax:* events attached to header menu
+    # to be triggered before the element is removed.
+    Timeout.set 0, =>
+      $('.js-user-header').html data.header
+      $('.js-user-header-popup').html data.header_popup
+
+      osu.executeAction toClick
 
 
   refreshToken: =>
-    token = Cookie.get('XSRF-TOKEN')
+    token = Cookies.get('XSRF-TOKEN')
     $('[name="_token"]').attr 'value', token
     $('[name="csrf-token"]').attr 'content', token
 

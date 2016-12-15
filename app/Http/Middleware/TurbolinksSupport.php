@@ -16,12 +16,16 @@ class TurbolinksSupport
      */
     public function handle($request, Closure $next)
     {
-        $isTurbolinksRedirect = presence($request->header('Turbolinks-Referrer'));
+        $isTurbolinks = presence($request->header('Turbolinks-Referrer'));
+        $response = $next($request);
 
-        if ($isTurbolinksRedirect) {
-            return $next($request)->header('Turbolinks-Location', $request->fullUrl());
-        } else {
-            return $next($request);
+        // symphony responder (debug error page) doesn't have header method
+        $isNormalResponse = method_exists($response, 'header');
+
+        if ($isTurbolinks && $isNormalResponse) {
+            return $response->header('Turbolinks-Location', $request->fullUrl());
         }
+
+        return $response;
     }
 }

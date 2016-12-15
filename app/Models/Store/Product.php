@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models\Store;
 
 use Illuminate\Database\Eloquent\Model;
@@ -65,7 +66,7 @@ class Product extends Model
         if ($inStock === false && $includeVariations === true) {
             $inStock = ($this->masterProduct ?? $this)
                 ->variations
-                ->contains(function ($_, $variation) use ($quantity) {
+                ->contains(function ($variation) use ($quantity) {
                     return $variation->inStock($quantity);
                 });
         }

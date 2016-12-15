@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models;
 
 use App\Transformers\BeatmapsetDiscussionTransformer;
@@ -41,24 +42,21 @@ class BeatmapsetDiscussion extends Model
         return $this->beatmapset->user();
     }
 
-    public function defaultJson($currentUser = null)
+    public function defaultJson()
     {
         $includes = [
             'beatmap_discussions.beatmap_discussion_posts',
             'users',
+            'beatmap_discussions.current_user_attributes',
         ];
 
-        if ($currentUser !== null) {
-            $includes[] = "beatmap_discussions.current_user_attributes:user_id({$currentUser->user_id})";
-        }
-
-        return fractal_item_array(
+        return json_item(
             static::with([
                 'beatmapDiscussions.beatmapDiscussionPosts',
                 'beatmapDiscussions.beatmapDiscussionVotes',
             ])->find($this->id),
             new BeatmapsetDiscussionTransformer(),
-            implode(',', $includes)
+            $includes
         );
     }
 }
