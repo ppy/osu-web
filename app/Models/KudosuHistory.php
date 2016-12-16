@@ -27,6 +27,10 @@ class KudosuHistory extends Model
 {
     protected $table = 'osu_kudos_exchange';
     protected $primaryKey = 'exchange_id';
+    protected $guarded = [];
+    protected $casts = [
+        'details' => 'array',
+    ];
 
     protected $dates = ['date'];
     public $timestamps = false;

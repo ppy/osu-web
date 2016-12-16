@@ -84,7 +84,7 @@ class BeatmapDiscussion extends Model
         return $this->attributes['message_type'] = static::MESSAGE_TYPES[$value] ?? null;
     }
 
-    public function calculateKudosu($eventType, $scoreChange)
+    public function calculateKudosu($event, $scoreChange)
     {
         // no kudosu for praises...?
         if ($this->message_type === 'praise') {
@@ -110,11 +110,26 @@ class BeatmapDiscussion extends Model
             }
         }
 
-        // TODO: logging
-        $this->user->update([
-            'osu_kudostotal' => DB::raw("osu_kudostotal + {$change}"),
-            'osu_kudosavailable' => DB::raw("osu_kudosavailable + {$change}"),
-        ]);
+        if ($change === 0) {
+            return;
+        }
+
+        DB::transaction(function () use ($change, $event) {
+            KudosuHistory::create([
+                'receiver_id' => $this->user->user_id,
+                'amount' => $change,
+                'action' => $change > 0 ? 'give' : 'reset',
+                'date' => Carbon::now(),
+                'details' => [
+                    'type' => 'beatmap_discussion',
+                    'event' => $event,
+                ],
+            ]);
+            $this->user->update([
+                'osu_kudostotal' => DB::raw("osu_kudostotal + {$change}"),
+                'osu_kudosavailable' => DB::raw("osu_kudosavailable + {$change}"),
+            ]);
+        });
     }
 
     public function currentVotes($ignoreDeletedStatus = false)
