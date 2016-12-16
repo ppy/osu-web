@@ -167,6 +167,7 @@ class TopicsController extends Controller
             ::with([
                 'forum.cover',
                 'pollOptions.votes',
+                'pollOptions.post',
             ]);
 
         if (priv_check('ForumTopicModerate')->can()) {

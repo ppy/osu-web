@@ -48,6 +48,11 @@ class Score extends Model
         return Beatmap::modeStr($this->game->play_mode);
     }
 
+    public function getScoringType()
+    {
+        return $this->game->scoring_type;
+    }
+
     public function getTeamAttribute($value)
     {
         return self::TEAMS[$value];

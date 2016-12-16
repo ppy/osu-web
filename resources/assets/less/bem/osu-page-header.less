@@ -18,10 +18,11 @@
  */
 
 .osu-page-header {
-  @_top: 'osu-page-header';
+  @top: osu-page-header;
 
   background-size: cover;
   background-color: @gray-3;
+  background-position: center;
 
   padding: (@spacing * 2);
   display: flex;
@@ -155,7 +156,7 @@
       font-size: @font-size--header-description;
     }
 
-    .@{_top}--mp-history & {
+    .@{top}--mp-history & {
       font-style: italic;
     }
   }
@@ -164,7 +165,7 @@
     position: absolute;
     bottom: @spacing;
 
-    .@{_top}--mp-history & {
+    .@{top}--mp-history & {
       @media @desktop {
         left: 150px;
         bottom: @spacing * 3;

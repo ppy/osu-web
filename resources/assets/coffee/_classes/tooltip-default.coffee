@@ -17,8 +17,6 @@
 ###
 class @TooltipDefault
   constructor: ->
-    @tooltips = document.getElementsByClassName 'qtip'
-
     $(document).on 'mouseover', '[title]', @onMouseOver
     $(document).on 'mouseenter touchstart', '.u-ellipsis-overflow', @autoAddTooltip
     $(document).on 'turbolinks:before-cache', @rollback
@@ -90,8 +88,7 @@ class @TooltipDefault
       api?.disable()
 
   rollback: =>
-    while @tooltips.length > 0
-      @tooltips[0].remove()
+    $('.qtip').remove()
 
     for el in document.querySelectorAll('[data-orig-title]')
       el.setAttribute 'title', el.getAttribute('data-orig-title')

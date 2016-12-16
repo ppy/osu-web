@@ -19,35 +19,39 @@
  */
 
 return [
-    'buttons' => [
-        'cancel' => 'Annuler',
-        'post' => 'Poster',
-        'reply' => 'Répondre',
-        'reset' => 'Réinitialiser',
-        'save' => 'Sauvegarder',
-        'show_more' => 'Plus de résultats',
-    ],
+        'buttons' => [
+            'cancel' => 'Annuler',
+            'post' => 'Poster',
+            'reply' => 'Répondre',
+            'reset' => 'Réinitialiser',
+            'save' => 'Sauvegarder',
+            'show_more' => 'Plus de résultats',
+                        'delete' => 'Supprimer',
+        ],
 
-    'count' => [
-        'item' => ':count objet|:count objets',
-    ],
+                'confirmation' => 'Êtes-vous sûr ?',
 
-    'dropzone' => [
-        'target' => 'déplacez ici pour uploader',
-    ],
+        'count' => [
+            'item' => ':count objet|:count objets',
+        ],
 
-    'pagination' => [
-        'previous' => 'précédent',
-        'next' => 'suivant',
-    ],
+        'dropzone' => [
+            'target' => 'déplacez ici pour uploader',
+        ],
 
-    'time' => [
-        'days_ago' => 'il y a :count|il y a:count',
-        'hours_ago' => 'il y a :count heure|il y a :count heures',
-        'now' => 'Maitenant',
-    ],
+        'pagination' => [
+            'previous' => 'précédent',
+            'next' => 'suivant',
+        ],
 
-    'title' => [
-        'notice' => 'Information',
-    ],
+        'time' => [
+            'days_ago' => 'il y a :count|il y a:count',
+            'hours_ago' => 'il y a :count heure|il y a :count heures',
+            'now' => 'Maitenant',
+                    'remaining' => 'Temps restant',
+        ],
+
+        'title' => [
+            'notice' => 'Information',
+        ],
 ];

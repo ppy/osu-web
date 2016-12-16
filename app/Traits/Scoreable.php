@@ -31,6 +31,11 @@ trait Scoreable
         return snake_case(get_class_basename(static::class));
     }
 
+    public function getScoringType()
+    {
+        return 'score';
+    }
+
     public function getEnabledModsAttribute($value)
     {
         if ($this->_enabledMods === null) {
@@ -42,27 +47,35 @@ trait Scoreable
 
     public function totalHits()
     {
-        if (static::gamemodeString() === 'osu') {
+        if ($this->gamemodeString() === 'osu') {
             return ($this->count50 + $this->count100 + $this->count300 + $this->countmiss) * 300;
-        } elseif (static::gamemodeString() === 'fruits') {
+        } elseif ($this->gamemodeString() === 'fruits') {
             return $this->count50 + $this->count100 + $this->count300 +
                 $this->countmiss + $this->countkatu;
-        } elseif (static::gamemodeString() === 'mania') {
-            return ($this->count50 + $this->count100 + $this->count300 + $this->countmiss + $this->countkatu + $this->countgeki) * 300;
-        } elseif (static::gamemodeString() === 'taiko') {
+        } elseif ($this->gamemodeString() === 'mania') {
+            if ($this->getScoringType() === 'scorev2') {
+                return ($this->count50 + $this->count100 + $this->count300 + $this->countmiss + $this->countkatu + $this->countgeki) * 305;
+            } else {
+                return ($this->count50 + $this->count100 + $this->count300 + $this->countmiss + $this->countkatu + $this->countgeki) * 300;
+            }
+        } elseif ($this->gamemodeString() === 'taiko') {
             return ($this->count100 + $this->count300 + $this->countmiss) * 300;
         }
     }
 
     public function hits()
     {
-        if (static::gamemodeString() === 'osu') {
+        if ($this->gamemodeString() === 'osu') {
             return $this->count50 * 50 + $this->count100 * 100 + $this->count300 * 300;
-        } elseif (static::gamemodeString() === 'fruits') {
+        } elseif ($this->gamemodeString() === 'fruits') {
             return $this->count50 + $this->count100 + $this->count300;
-        } elseif (static::gamemodeString() === 'mania') {
-            return $this->count50 * 50 + $this->count100 * 100 + $this->countkatu * 200 + ($this->count300 + $this->countgeki) * 300;
-        } elseif (static::gamemodeString() === 'taiko') {
+        } elseif ($this->gamemodeString() === 'mania') {
+            if ($this->getScoringType() === 'scorev2') {
+                return $this->count50 * 50 + $this->count100 * 100 + $this->countkatu * 200 + $this->count300 * 300 + $this->countgeki * 305;
+            } else {
+                return $this->count50 * 50 + $this->count100 * 100 + $this->countkatu * 200 + ($this->count300 + $this->countgeki) * 300;
+            }
+        } elseif ($this->gamemodeString() === 'taiko') {
             return $this->count100 * 150 + $this->count300 * 300;
         }
     }
