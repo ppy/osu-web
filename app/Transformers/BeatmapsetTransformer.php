@@ -70,7 +70,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
 
     public function includeAvailability(Beatmapset $beatmapset)
     {
-        if (!$beatmapset->download_disabled && !$beatmapset->download_disabled_url) {
+        if (!$beatmapset->download_disabled && !present($beatmapset->download_disabled_url)) {
             return;
         }
 
