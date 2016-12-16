@@ -118,6 +118,11 @@ return [
         'load-more' => 'Load more...',
     ],
     'beatmapset' => [
+        'availability' => [
+            'disabled' => 'This beatmap is currently not available for download.',
+            'parts-removed' => 'Portions of this beatmap have been removed at the request of the creator or a third-party rights holder.',
+            'more-info' => 'Check here for more information.',
+        ],
         'show' => [
             'details' => [
                 'made-by' => 'made by ',
