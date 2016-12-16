@@ -16,7 +16,9 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Libraries;
+
 class LocaleMeta
 {
     const MAPPINGS = [
@@ -44,15 +46,17 @@ class LocaleMeta
             'name' => 'Português (Brasil)',
             'flag' => 'BR',
         ],
-		'it' => [
-		    'name' => 'Italiano',
-			'flag' => 'IT',
-		]
+        'it' => [
+            'name' => 'Italiano',
+            'flag' => 'IT',
+        ],
     ];
+
     public static function flagFor($locale)
     {
         return static::MAPPINGS[$locale]['flag'] ?? '__';
     }
+
     public static function nameFor($locale)
     {
         return static::MAPPINGS[$locale]['name'] ?? '??';

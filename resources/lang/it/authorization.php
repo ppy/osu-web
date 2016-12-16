@@ -84,8 +84,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Per favore effettua il login per rispondere.',
-                    'restricted' => "Non è possibile rispondere mentre sei ristretto.",
-                    'silenced' => "Non è possibile rispondere mentre sei silenziato.",
+                    'restricted' => 'Non è possibile rispondere mentre sei ristretto.',
+                    'silenced' => 'Non è possibile rispondere mentre sei silenziato.',
                 ],
             ],
 
@@ -102,8 +102,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Per favore effettua il login per votare.',
-                    'restricted' => "Non puoi votare mentre sei ristretto.",
-                    'silenced' => "Non puoi votare mentre sei silenziato.",
+                    'restricted' => 'Non puoi votare mentre sei ristretto.',
+                    'silenced' => 'Non puoi votare mentre sei silenziato.',
                 ],
             ],
 
@@ -128,9 +128,9 @@ return [
 
     'unauthorized' => 'Accesso Negato.',
 
-    'silenced' => "Non puoi farlo mentre sei silenziato.",
+    'silenced' => 'Non puoi farlo mentre sei silenziato.',
 
-    'restricted' => "Non puoi farlo mentre sei ristretto.",
+    'restricted' => 'Non puoi farlo mentre sei ristretto.',
 
     'user' => [
         'page' => [

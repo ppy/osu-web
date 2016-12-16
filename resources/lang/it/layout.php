@@ -170,50 +170,50 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Pagina Mancante',
-            'description' => "Mi spiace, ma la pagina che hai richiesto non è qui!",
+            'description' => 'Mi spiace, ma la pagina che hai richiesto non è qui!',
             'link' => false,
         ],
         '403' => [
-            'error' => "Non dovresti essere qui.",
+            'error' => 'Non dovresti essere qui.',
             'description' => 'Potresti comunque provare tornando indietro.',
             'link' => false,
         ],
         '401' => [
-            'error' => "Non dovresti essere qui.",
+            'error' => 'Non dovresti essere qui.',
             'description' => 'Potresti comunque provare tornando indietro. O forse effettuando il login.',
             'link' => false,
         ],
         '405' => [
             'error' => 'Pagina Mancante',
-            'description' => "Mi spiace, ma la pagina che hai richiesto non è qui!",
+            'description' => 'Mi spiace, ma la pagina che hai richiesto non è qui!',
             'link' => false,
         ],
         '500' => [
             'error' => 'Oh no! Qualcosa si è rotto! ;_;',
-            'description' => "Siamo notificati automaticamente di qualsiasi errore.",
+            'description' => 'Siamo notificati automaticamente di qualsiasi errore.',
             'link' => false,
         ],
         'fatal' => [
             'error' => 'Oh no! Qualcosa si è rotto (gravemente)! ;_;',
-            'description' => "Siamo notificati automaticamente di qualsiasi errore.",
+            'description' => 'Siamo notificati automaticamente di qualsiasi errore.',
             'link' => false,
         ],
         '503' => [
             'error' => 'Chiuso per manutenzione!',
-            'description' => "La manutenzione normalmente richiede dai 5 secondi fino a 10 minuti. Se siamo chiusi per più tempo, controlla :link per ulteriori informazioni.",
+            'description' => 'La manutenzione normalmente richiede dai 5 secondi fino a 10 minuti. Se siamo chiusi per più tempo, controlla :link per ulteriori informazioni.',
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "Nel caso, ecco un codice che puoi dare al supporto!",
+        'reference' => 'Nel caso, ecco un codice che puoi dare al supporto!',
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'indirizzo email',
-            'forgot' => "Ho dimenticato i miei dati",
+            'forgot' => 'Ho dimenticato i miei dati',
             'password' => 'password',
             'title' => 'Accedi per procedere',
 
@@ -224,8 +224,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Ha bisogno di un account, signore. Perchè non ne ha ancora uno?",
-            'title' => "Non hai un account?",
+            'info' => 'Ha bisogno di un account, signore. Perchè non ne ha ancora uno?',
+            'title' => 'Non hai un account?',
         ],
     ],
 

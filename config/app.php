@@ -88,7 +88,7 @@ return [
         'nl',
         'pl',
         'pt-br'
-        'it',
+        'it',]
     ],
 
     /*

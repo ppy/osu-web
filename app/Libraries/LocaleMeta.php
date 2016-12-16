@@ -47,7 +47,7 @@ class LocaleMeta
             'name' => 'Português (Brasil)',
             'flag' => 'BR',
         ],
-		'it' => [
+        'it' => [
             'name' => 'Italiano',
             'flag' => 'IT',
         ],

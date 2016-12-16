@@ -27,7 +27,7 @@ return [
         'remember' => 'Ricorda questo computer',
         'title' => 'Per favore accedi per procedere',
         'failed' => 'Login non corretto',
-        'register' => "Non hai un account di osu! ? Fanne uno nuovo",
+        'register' => 'Non hai un account di osu! ? Fanne uno nuovo',
         'forgot' => 'Hai dimenticato la tua password?',
         'beta' => [
             'main' => 'L\'accesso alla beta è momentaneamente ristretto agli utenti privilegiati.',
@@ -89,9 +89,9 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu Disponibili',
-                'available_info' => "I kudosu possono essere scambiati per delle stelle kudosu, che aiuteranno la tua beatmap ad ottenere più attenzione. Questo è il numero di kudosu che non hai ancora scambiato.",
+                'available_info' => 'I kudosu possono essere scambiati per delle stelle kudosu, che aiuteranno la tua beatmap ad ottenere più attenzione. Questo è il numero di kudosu che non hai ancora scambiato.',
                 'entry' => [
-                    'empty' => "Questo utente non ha ricevuto alcun kudosu!",
+                    'empty' => 'Questo utente non ha ricevuto alcun kudosu!',
                     'give' => 'Ricevuto <strong class="kudosu-entries__amount">:amount kudosu</strong> da :giver per il post in :post',
                     'revoke' => 'Kudosu negato da :giver per il post :post',
                 ],
@@ -173,7 +173,7 @@ return [
             'total_hits' => 'Colpi Totali',
             'total_score' => 'Punteggio Totale',
         ],
-        'title' => "Profilo di :username",
+        'title' => 'Profilo di :username',
     ],
 
     'verify' => [
