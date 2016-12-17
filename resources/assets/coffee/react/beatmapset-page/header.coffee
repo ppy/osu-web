@@ -84,31 +84,44 @@ class BeatmapsetPage.Header extends React.Component
 
           el BeatmapsetMapping, beatmapset: @props.beatmapset
 
-          if !_.isEmpty currentUser
-            div className: 'beatmapset-header__buttons',
-              if @props.beatmapset.video
-                [
-                  @downloadButton
-                    key: 'video'
-                    href: Url.beatmapDownload @props.beatmapset.id, true
-                    bottomTextKey: 'video'
-
-                  @downloadButton
-                    key: 'no-video'
-                    href: Url.beatmapDownload @props.beatmapset.id, false
-                    bottomTextKey: 'no-video'
-                ]
-              else
-                @downloadButton
-                  href: Url.beatmapDownload @props.beatmapset.id, false
-
-              @downloadButton
-                topTextKey: 'direct'
-                href:
-                  if currentUser.isSupporter
-                    Url.beatmapDownloadDirect @props.beatmapset.id
+          if currentUser.id?
+            div {},
+              if @props.beatmapset.availability
+                div className: 'beatmapset-header__availability-info',
+                  if @props.beatmapset.availability.download_disabled
+                    osu.trans 'beatmaps.beatmapset.availability.disabled'
                   else
-                    laroute.route 'support-the-game'
+                    osu.trans 'beatmaps.beatmapset.availability.parts-removed'
+
+                  if @props.beatmapset.availability.more_information
+                    div className: 'beatmapset-header__availability-link',
+                      a href: @props.beatmapset.availability.more_information, target: '_blank', osu.trans 'beatmaps.beatmapset.availability.more-info'
+
+              unless @props.beatmapset.availability?.download_disabled
+                div className: 'beatmapset-header__buttons',
+                  if @props.beatmapset.video
+                    [
+                      @downloadButton
+                        key: 'video'
+                        href: Url.beatmapDownload @props.beatmapset.id, true
+                        bottomTextKey: 'video'
+
+                      @downloadButton
+                        key: 'no-video'
+                        href: Url.beatmapDownload @props.beatmapset.id, false
+                        bottomTextKey: 'no-video'
+                    ]
+                  else
+                    @downloadButton
+                      href: Url.beatmapDownload @props.beatmapset.id, false
+
+                  @downloadButton
+                    topTextKey: 'direct'
+                    href:
+                      if currentUser.isSupporter
+                        Url.beatmapDownloadDirect @props.beatmapset.id
+                      else
+                        laroute.route 'support-the-game'
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
           el BeatmapsetPage.Stats,
