@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -21,21 +20,20 @@
 return [
     'page_description' => 'Featured artists on osu!',
     'title' => 'Featured Artists',
-
     'beatmaps' => [
         '_' => 'Beatmaps',
         'download' => 'Download Beatmap Template',
-        'download-na' => 'Beatmap Template not yet available',
+        'download-na' => 'Beatmap Template not yet available'
     ],
     'index' => [
-        'description' => 'Featured artists are artists that we are working in collaboration with in order to bring new and original music to osu!. These artists and a selection of their tracks have been hand-picked by the osu! team as being awesomesauce and suitable for mapping. Some of these featured artists have also created exclusive new tracks for use in osu!.<br><br>All tracks in this section are provided as pre-timed .osz files and have been officially licensed for use in osu! and osu!-related content.',
+        'description' => 'Featured artists are artists that we are working in collaboration with in order to bring new and original music to osu!. These artists and a selection of their tracks have been hand-picked by the osu! team as being awesomesauce and suitable for mapping. Some of these featured artists have also created exclusive new tracks for use in osu!.<br><br>All tracks in this section are provided as pre-timed .osz files and have been officially licensed for use in osu! and osu!-related content.'
     ],
     'links' => [
-        'site' => 'Official Website',
+        'site' => 'Official Website'
     ],
     'songs' => [
         '_' => 'Songs',
         'count' => '1 song|:count songs',
-        'exclusive' => 'osu! exclusive',
-    ],
+        'exclusive' => 'osu! exclusive'
+    ]
 ];

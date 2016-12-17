@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -21,48 +20,43 @@
 return [
     'header' => [
         'title' => 'status',
-        'description' => 'co się dzieje?',
+        'description' => 'co się dzieje?'
     ],
-
     'incidents' => [
         'title' => 'Obecne problemy',
-        'automated' => 'zautomatyzowane',
+        'automated' => 'zautomatyzowane'
     ],
-
     'online' => [
         'title' => [
             'users' => 'Ilość online graczy w ciągu ostatnich 24 godzin',
-            'score' => 'Ilość ustanowionych wyników w ciągu ostatnich 24 godzin',
+            'score' => 'Ilość ustanowionych wyników w ciągu ostatnich 24 godzin'
         ],
         'current' => 'Obecnie online',
-        'score' => 'Ilość ustanowianych wyników na sekundę',
+        'score' => 'Ilość ustanowianych wyników na sekundę'
     ],
-
     'recent' => [
         'incidents' => [
             'title' => 'Niedawne problemy',
             'state' => [
                 'resolved' => 'Rozwiązane',
                 'resolving' => 'W trakcie rozwiązywania',
-                'unknown' => 'Nieznane',
-            ],
+                'unknown' => 'Nieznane'
+            ]
         ],
-
         'uptime' => [
             'title' => 'Niezawodność',
             'graphs' => [
                 'server' => 'serwer',
-                'web' => 'strona',
-            ],
+                'web' => 'strona'
+            ]
         ],
-
         'when' => [
             'today' => 'dzisiaj',
             'week' => 'tydzień',
             'month' => 'miesiąc',
             'all_time' => 'od zawsze',
             'last_week' => 'ostatni tydzień',
-            'weeks_ago' => '{1} tydzień temu|[2,4] :count tygodnie temu|[5,Inf] :count tygodni temu',
-        ],
-    ],
+            'weeks_ago' => '{1} tydzień temu|[2,4] :count tygodnie temu|[5,Inf] :count tygodni temu'
+        ]
+    ]
 ];

@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -24,11 +23,11 @@ return [
     'beatmapset_revive' => ':beatmapset a revécu de son sommeil éternel par <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> a mis à jour la beatmap "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> a ennvoyé une nouvelle beatmap ":beatmapset"',
-    'empty' => "Cet utilisateur n'a rien fait de notable",
+    'empty' => 'Cet utilisateur n\'a rien fait de notable',
     'rank' => '<strong><em>:user</em></strong> a atteint le rang #:rank sur <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> a perdu la première place sur <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> a choisi de nouveau de supporter osu! - merci de votre générosité!',
     'user_support_first' => '<strong>:user</strong> a choisi de supporter osu! - merci de votre générosité!',
     'user_support_gift' => '<strong>:user</strong> a reçu le cadeau des osu! supporter!',
-    'username_change' => '<strong>:previousUsername</strong> a changé son pseudo vers <strong><em>:user</strong></em>!',
+    'username_change' => '<strong>:previousUsername</strong> a changé son pseudo vers <strong><em>:user</strong></em>!'
 ];

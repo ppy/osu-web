@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -19,30 +18,25 @@
  */
 
 return [
-
     'covers' => [
         'create' => [
             '_' => 'Définir la bannière',
             'button' => 'Uploader une image',
-            'info' => 'La bannière devrait avoir les résolutions :dimensions. Vous pouvez aussi "dropper" l\'image ici.',
+            'info' => 'La bannière devrait avoir les résolutions :dimensions. Vous pouvez aussi "dropper" l\'image ici.'
         ],
-
         'destroy' => [
             '_' => 'Retirer la bannière',
-            'confirm' => 'Êtes-vous sûr de supprimer la bannière ?',
-        ],
+            'confirm' => 'Êtes-vous sûr de supprimer la bannière ?'
+        ]
     ],
-
     'email' => [
-        'new_reply' => '[osu!] Nouvelle réponse pour le sujet ":title"',
+        'new_reply' => '[osu!] Nouvelle réponse pour le sujet ":title"'
     ],
-
     'forums' => [
         'topics' => [
-            'empty' => 'Pas de sujets!',
-        ],
+            'empty' => 'Pas de sujets!'
+        ]
     ],
-
     'pinned_topics' => 'Sujets épinglés',
     'post' => [
         'confirm_delete' => 'Vraiment supprimer le post?',
@@ -50,13 +44,13 @@ return [
         'posted_at' => 'posté :when',
         'actions' => [
             'delete' => 'Supprimer le post',
-            'edit' => 'Modifier le post',
-        ],
+            'edit' => 'Modifier le post'
+        ]
     ],
     'search' => [
         'go_to_post' => 'Aller au post',
         'post_number_input' => 'entrer le numéro du post',
-        'total_posts' => ':posts_count posts au total',
+        'total_posts' => ':posts_count posts au total'
     ],
     'subforums' => 'Sous-forums',
     'title' => 'Communauté osu!',
@@ -64,10 +58,10 @@ return [
         'create' => [
             'placeholder' => [
                 'body' => 'Tapez le contenu du post ici',
-                'title' => 'Cliquez ici pour définir le titre du post',
+                'title' => 'Cliquez ici pour définir le titre du post'
             ],
             'preview' => 'Prévisualisation',
-            'submit' => 'Poster',
+            'submit' => 'Poster'
         ],
         'go_to_latest' => 'voir le dernier post',
         'jump' => [
@@ -75,7 +69,7 @@ return [
             'first' => 'aller au premier post',
             'last' => 'aller au dernier post',
             'next' => 'passer de 10 posts suivants',
-            'previous' => 'passer à 10 posts précédents',
+            'previous' => 'passer à 10 posts précédents'
         ],
         'latest_post' => ':when par :user',
         'latest_reply_by' => 'dernière réponse par :user',
@@ -85,53 +79,45 @@ return [
             'post' => 'Sauvegarder',
             'zoom' => [
                 'start' => 'Plein écran',
-                'end' => 'Sortir du plein écran',
-            ],
+                'end' => 'Sortir du plein écran'
+            ]
         ],
         'post_reply' => 'Poster',
         'reply_box_placeholder' => 'Tapez ici pour répondre',
-        'started_by' => 'par :user',
+        'started_by' => 'par :user'
     ],
-
     'topic_watches' => [
         'index' => [
             'title' => 'Abonnements aux sujets',
             'title_compact' => 'abonnements',
-
             'box' => [
                 'total' => 'Sujets suivis',
-                'unread' => 'Sujets avec nouvelles réponses',
+                'unread' => 'Sujets avec nouvelles réponses'
             ],
             'info' => [
                 'total' => 'Vous suivez un total de :total sujets.',
-                'unread' => 'Vous avez :unread réponses non-lues aux sujets suivis.',
-            ],
+                'unread' => 'Vous avez :unread réponses non-lues aux sujets suivis.'
+            ]
         ],
-
         'topic_buttons' => [
             'remove' => [
                 'confirmation' => 'Se désabonner du sujet?',
-                'title' => 'Désabonner',
-            ],
-        ],
+                'title' => 'Désabonner'
+            ]
+        ]
     ],
-
     'topics' => [
         '_' => 'Sujets',
-
         'actions' => [
             'reply' => 'Afficher Répondre',
-            'reply_with_quote' => 'Citer un post et répondre',
+            'reply_with_quote' => 'Citer un post et répondre'
         ],
-
         'create' => [
             'create_poll' => 'Créer un sondage',
-
             'create_poll_button' => [
                 'add' => 'Créer un sondage',
-                'remove' => 'Annuler la création du sondage',
+                'remove' => 'Annuler la création du sondage'
             ],
-
             'poll' => [
                 'length' => 'Lancer le sujet pour',
                 'length_days_prefix' => '',
@@ -143,65 +129,54 @@ return [
                 'options_info' => 'Placez chaque réponse sur une ligne.',
                 'title' => 'Question',
                 'vote_change' => 'Autoriser le changement de vote.',
-                'vote_change_info' => 'Si c\'est activé, vous permettez aux utilisateurs de changer leur vote.',
-            ],
+                'vote_change_info' => 'Si c\'est activé, vous permettez aux utilisateurs de changer leur vote.'
+            ]
         ],
-
         'index' => [
             'views' => 'vues',
-            'replies' => 'réponses',
+            'replies' => 'réponses'
         ],
-
-                 'lock' => [
-                         'is_locked' => 'Ce sujet est verouillé, vous ne pouvez pas répondre',
-                         'lock-0' => 'Déverouiller le sujet',
-                         'lock-1' => 'Verouiller le sujet',
-                         'state-0' => 'Le sujet a été déverouillé',
-                         'state-1' => 'Le sujet a été verouillé',
-                 ],
-
+        'lock' => [
+            'is_locked' => 'Ce sujet est verouillé, vous ne pouvez pas répondre',
+            'lock-0' => 'Déverouiller le sujet',
+            'lock-1' => 'Verouiller le sujet',
+            'state-0' => 'Le sujet a été déverouillé',
+            'state-1' => 'Le sujet a été verouillé'
+        ],
         'moderate_move' => [
-            'title' => 'Se déplacer dans un autre forum',
+            'title' => 'Se déplacer dans un autre forum'
         ],
-
         'pin' => [
             'pin-0' => 'Désépingler le sujet',
             'pin-1' => 'Épingler le sujet',
             'pinned-0' => 'Le sujet a été désépinglé',
-            'pinned-1' => 'Le sujet a été épinglé',
+            'pinned-1' => 'Le sujet a été épinglé'
         ],
-
         'show' => [
-                         'total_posts' => 'Total des posts',
-
+            'total_posts' => 'Total des posts',
             'feature_vote' => [
                 'current' => 'Priorité : +:count',
                 'do' => 'Promouvoir cette requête',
-
                 'user' => [
                     'current' => 'Il vous reste :votes.',
                     'count' => '{0} pas de vote|{1} :count vote|[2,Inf] :count votes',
-                    'not_enough' => "Vous n'avez plus de votes disponibles",
-                ],
+                    'not_enough' => 'Vous n\'avez plus de votes disponibles'
+                ]
             ],
-
             'poll' => [
                 'vote' => 'Voter',
-
                 'detail' => [
                     'total' => 'Total de votes: :count',
                     'ended' => 'Sondage terminé :time',
-                    'end_time' => 'Le sondage termine à :time',
-                ],
-            ],
+                    'end_time' => 'Le sondage termine à :time'
+                ]
+            ]
         ],
-
         'watch' => [
-                        'state-0' => 'Vous ne suivez pas ce sujet',
-                        'state-1' => 'Vous suivez ce sujet',
+            'state-0' => 'Vous ne suivez pas ce sujet',
+            'state-1' => 'Vous suivez ce sujet',
             'watch-0' => 'Se désabonner du sujet',
-            'watch-1' => 'S\'abonner au sujet',
-        ],
-    ],
-
+            'watch-1' => 'S\'abonner au sujet'
+        ]
+    ]
 ];

@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -31,8 +30,8 @@ return [
         'tiny' => 'Malutki',
         'small' => 'Mały',
         'normal' => 'Normalny',
-        'large' => 'Duży',
+        'large' => 'Duży'
     ],
     'spoilerbox' => 'Spoiler',
-    'strikethrough' => 'Przekreślenie',
+    'strikethrough' => 'Przekreślenie'
 ];

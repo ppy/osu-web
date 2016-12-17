@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -23,14 +22,13 @@ return [
         'update' => [
             'null_user' => 'Must be logged in to edit.',
             'system_generated' => 'System-generated post can not be edited.',
-            'wrong_user' => 'Must be owner of the post to edit.',
-        ],
+            'wrong_user' => 'Must be owner of the post to edit.'
+        ]
     ],
-
     'system' => [
         'resolved' => [
             'true' => 'Marked as resolved by :user',
-            'false' => 'Reopened by :user',
-        ],
-    ],
+            'false' => 'Reopened by :user'
+        ]
+    ]
 ];

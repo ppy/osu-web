@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -21,18 +20,15 @@
 return [
     'support' => [
         'header' => [
-            // size in font-size
             'big_description' => 'Houdt je van osu!?<br/>
                                 Support de osu! dev :D',
             'small_description' => '',
-            'support_button' => 'Ik wil osu! supporten!',
+            'support_button' => 'Ik wil osu! supporten!'
         ],
-
         'dev_quote' => 'osu! is een compleet vrij-om-te-spelen spel, maar het draaien ervan is echter niet gratis. Tussen de kosten van de servers en de hoge kwaliteit internationale bandbreedte, de tijd die gebruikt wordt de systemen en de community bij te houden, het regelen van prijzen voor competities, het beantwoorden van ondersteuningsvragen en mensen over het algemeen blij houden gebruikt osu! een hoop geld. Oh en vergeet natuurlijk niet dat we dat allemaal doen zonder het tonen van advertenties of het partneren met onzinnige toolbars enzo!
 <br/><br/>osu! wordt aan het einde van de dag voor het grootste gedeelte onderhouden door mezelf; degene die je waarschijnlijk het beste kent als "peppy".
 Ik ben gestopt met m\'n oude baan om osu! bij te kunnen houden en zelfs dan heb ik nog steeds moeite met het ophouden van mijn standaarden.
 Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar net zoveel degenen die dit geweldige spel en community ondersteunen in de toekomst :).',
-
         'why_support' => [
             'title' => 'Waarom zou ik osu! supporten?',
             'blocks' => [
@@ -40,109 +36,89 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
                 'time' => 'Neemt zoveel tijd in beslag dat je het geen "hobby" meer kunt noemen.',
                 'ads' => 'Geen advertenties. <br/><br/>
                         Anders dan 99.95% van het internet verdienen wij geen geld door onzin in je gezicht te duwen.',
-                'goodies' => 'Je krijgt wat extra goodies!',
-            ],
+                'goodies' => 'Je krijgt wat extra goodies!'
+            ]
         ],
-
         'perks' => [
             'title' => 'Oh? Wat krijg ik dan?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'snel en makkelijk beatmaps zoeken zonder het spel te verlaten.',
+                'description' => 'snel en makkelijk beatmaps zoeken zonder het spel te verlaten.'
             ],
-
             'auto_downloads' => [
                 'title' => 'Auto Downloads',
-                'description' => 'Automatische downloads terwijl je multiplayer speelt, anderen aan het toeschouwen bent, of op links in de chat klikt!',
+                'description' => 'Automatische downloads terwijl je multiplayer speelt, anderen aan het toeschouwen bent, of op links in de chat klikt!'
             ],
-
             'upload_more' => [
                 'title' => 'Upload Meer',
-                'description' => 'Meer afwachtende beatmap slots (per gerankte beatmap) tot een maximum van 10.',
+                'description' => 'Meer afwachtende beatmap slots (per gerankte beatmap) tot een maximum van 10.'
             ],
-
             'early_access' => [
                 'title' => 'Vroege Toegang',
-                'description' => 'Toegang tot vervroegde releases om dingen te testen voordat ze publiekelijk zijn!',
+                'description' => 'Toegang tot vervroegde releases om dingen te testen voordat ze publiekelijk zijn!'
             ],
-
             'customisation' => [
                 'title' => 'Personalisatie',
-                'description' => 'Personaliseer je profiel met een volledig bewerkbare sectie.',
+                'description' => 'Personaliseer je profiel met een volledig bewerkbare sectie.'
             ],
-
             'beatmap_filters' => [
                 'title' => 'Beatmap Filters',
-                'description' => 'Filter beatmap zoekopdrachten met gespeelde en ongespeelde maps en ranks behaald (als die er zijn).',
+                'description' => 'Filter beatmap zoekopdrachten met gespeelde en ongespeelde maps en ranks behaald (als die er zijn).'
             ],
-
             'yellow_fellow' => [
                 'title' => 'Gele Gabber',
-                'description' => 'Word in-game herkend met een gele gebruikersnaam.',
+                'description' => 'Word in-game herkend met een gele gebruikersnaam.'
             ],
-
             'speedy_downloads' => [
                 'title' => 'Snellere Downloads',
-                'description' => 'Mildere downloadbeperkingen, al helemaal wanneer je osu!direct gebruikt.',
+                'description' => 'Mildere downloadbeperkingen, al helemaal wanneer je osu!direct gebruikt.'
             ],
-
             'change_username' => [
                 'title' => 'Gebruikersnaam Veranderen',
-                'description' => 'De mogelijkheid om je gebruikersnaam te veranderen zonder extra kosten. (maximaal één keer)',
+                'description' => 'De mogelijkheid om je gebruikersnaam te veranderen zonder extra kosten. (maximaal één keer)'
             ],
-
             'skinnables' => [
                 'title' => 'Skinnables',
-                'description' => 'Extra in-game skinnables, zoals de achtergrond van het hoofdmenu.',
+                'description' => 'Extra in-game skinnables, zoals de achtergrond van het hoofdmenu.'
             ],
-
             'feature_votes' => [
                 'title' => 'Feature Stemmen',
-                'description' => 'Stemmen voor feature aanvragen. (2 keer per maand)',
+                'description' => 'Stemmen voor feature aanvragen. (2 keer per maand)'
             ],
-
             'sort_options' => [
                 'title' => 'Sorteeropties',
-                'description' => 'NIEUW: De mogelijkheid om beatmaps scores per land / vrienden / mod-specifiek in-game te zien.',
+                'description' => 'NIEUW: De mogelijkheid om beatmaps scores per land / vrienden / mod-specifiek in-game te zien.'
             ],
-
             'feel_special' => [
                 'title' => 'Voel je Speciaal',
-                'description' => 'Het warme, pluizige gevoel van het doen van jou deel om osu! vloeiend te laten lopen!',
+                'description' => 'Het warme, pluizige gevoel van het doen van jou deel om osu! vloeiend te laten lopen!'
             ],
-
             'more_to_come' => [
                 'title' => 'Meer komt nog',
-                'description' => '',
-            ],
+                'description' => ''
+            ]
         ],
-
         'convinced' => [
             'title' => 'Ik ben overgehaald! :D',
             'support' => 'support osu!',
             'gift' => 'of gun het iemand anders',
-            'instructions' => 'klik op het hartje om naar de osu!store te gaan',
-        ],
+            'instructions' => 'klik op het hartje om naar de osu!store te gaan'
+        ]
     ],
     'slack' => [
         'header' => [
             'small' => 'osu!dev',
-            'large' => 'osu!public Slack Toegang',
+            'large' => 'osu!public Slack Toegang'
         ],
-
         'disabled' => 'De publieke Slack community is momenteel niet beschikbaar. Als je iets wilt laten weten doe dat dan via een issue op de correcte <a href="https://github.com/ppy">GitHub repository</a> of stuur ons een e-mail via <a href="mailto::mail">:mail</a>.',
-
         'guest-begin' => 'Je moet ',
         'guest-middle' => 'ingelogd',
         'guest-end' => ' zijn om een Slack uitnodiging te ontvangen!',
-
         'receive-invite' => 'Je kan hier een uitnodiging krijgen voor de publieke Slack community van osu!.',
         'bullet-points' => 'Lees de voorwaarden <a href=":link">in deze post</a> grondig door.<br />Houdt er rekening mee dat eventuele misdrijven op jou account niet getolereerd worden.',
-
         'recent-issues' => 'Je account heeft recente problemen. Neem <a href="mailto::mail">contact op met support</a> voor meer details.',
         'agree-button' => 'Akkoord',
-
         'accepted' => 'Je aanvraag is geaccepteerd. Je zal binnenkort een e-mail ontvangen.',
-        'invite-already-accepted' => 'Je hebt al een slack account! Neem <a href="mailto::mail">contact op met support</a> als je problemen ondervindt.',
-    ],
+        'invite-already-accepted' => 'Je hebt al een slack account! Neem <a href="mailto::mail">contact op met support</a> als je problemen ondervindt.'
+    ]
 ];

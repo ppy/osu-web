@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -20,6 +19,6 @@
 
 return [
     'news' => [
-        'slogan' => 'Rytm jest tylko *kliknięcie* stąd!',
-    ],
+        'slogan' => 'Rytm jest tylko *kliknięcie* stąd!'
+    ]
 ];

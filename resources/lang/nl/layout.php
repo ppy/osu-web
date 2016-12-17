@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -20,9 +19,8 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Ritme is slechts een *klik* verwijderd!  Met Ouendan/EBA, Taiko en originele spelmodi, en zelfs een volledig functionele level editor.',
+        'page_description' => 'osu! - Ritme is slechts een *klik* verwijderd!  Met Ouendan/EBA, Taiko en originele spelmodi, en zelfs een volledig functionele level editor.'
     ],
-
     'menu' => [
         'home' => [
             '_' => 'start',
@@ -30,24 +28,22 @@ return [
             'getDownload' => 'downloaden',
             'getIcons' => 'iconen',
             'getNews' => 'nieuws',
-            'supportTheGame' => 'ondersteun het spel',
+            'supportTheGame' => 'ondersteun het spel'
         ],
         'help' => [
             '_' => 'hulp',
             'getWiki' => 'wiki',
             'getFaq' => 'faq',
-            'getSupport' => 'ondersteuning',
+            'getSupport' => 'ondersteuning'
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
             'show' => 'info',
-            'index' => 'index',
-            // 'getPacks' => 'pakketten',
-            // 'getCharts' => 'grafieken',
+            'index' => 'index'
         ],
         'beatmapsets' => [
             '_' => 'beatmapsets',
-            'discussion' => 'modding',
+            'discussion' => 'modding'
         ],
         'ranking' => [
             '_' => 'ranking',
@@ -55,7 +51,7 @@ return [
             'getCountry' => 'landelijke',
             'getCharts' => 'grafieken',
             'getMapper' => 'mapper',
-            'index' => 'globaal',
+            'index' => 'globaal'
         ],
         'community' => [
             '_' => 'community',
@@ -71,53 +67,49 @@ return [
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
-            'forum-forums-show' => 'forum',
+            'forum-forums-show' => 'forum'
         ],
         'error' => [
             '_' => 'fout',
-            '404' => 'ontbreekt',
-            '403' => 'verboden',
-            '401' => 'onbevoegd',
-            '405' => 'ontbreekt',
-            '500' => 'iets brak',
-            '503' => 'onderhoud',
+            404 => 'ontbreekt',
+            403 => 'verboden',
+            401 => 'onbevoegd',
+            405 => 'ontbreekt',
+            500 => 'iets brak',
+            503 => 'onderhoud'
         ],
         'user' => [
             '_' => 'gebruiker',
             'getLogin' => 'inloggen',
             'disabled' => 'inactief',
-
             'register' => 'registreren',
             'reset' => 'herstellen',
             'new' => 'nieuw',
-
             'messages' => 'Berichten',
             'settings' => 'Instellingen',
             'logout' => 'Uitloggen',
-            'help' => 'Help',
+            'help' => 'Help'
         ],
         'store' => [
             '_' => 'winkel',
             'getListing' => 'index',
             'getCart' => 'winkelwagen',
-
             'getCheckout' => 'afrekenen',
             'getInvoice' => 'factuur',
             'getProduct' => 'artikel',
-
             'new' => 'nieuw',
             'home' => 'start',
             'index' => 'start',
-            'thanks' => 'bedankt',
+            'thanks' => 'bedankt'
         ],
         'admin-forum' => [
             '_' => 'admin::forum',
-            'forum-covers-index' => 'forum covers',
+            'forum-covers-index' => 'forum covers'
         ],
         'admin-store' => [
             '_' => 'admin::store',
             'orders-index' => 'bestellingen',
-            'orders-show' => 'bestelling',
+            'orders-show' => 'bestelling'
         ],
         'admin' => [
             '_' => 'admin',
@@ -125,50 +117,49 @@ return [
             'beatmapsets' => [
                 '_' => 'beatmapsets',
                 'covers' => 'covers',
-                'show' => 'detail',
-            ],
-        ],
+                'show' => 'detail'
+            ]
+        ]
     ],
     'errors' => [
-        '404' => [
+        404 => [
             'error' => 'Pagina Mist',
             'description' => 'Sorry, de pagina die je hebt opgevraagd is er niet!',
-            'link' => false,
+            'link' => ''
         ],
-        '403' => [
+        403 => [
             'error' => 'Jij hoort hier niet te zijn.',
             'description' => 'Je zou kunnen proberen terug te gaan.',
-            'link' => false,
+            'link' => ''
         ],
-        '401' => [
+        401 => [
             'error' => 'Jij hoort hier niet.',
             'description' => 'Je zou kunnen proberen terug te gaan. Of misschien zou je kunnen inloggen.',
-            'link' => false,
+            'link' => ''
         ],
-        '405' => [
+        405 => [
             'error' => 'Pagina Mist',
             'description' => 'Sorry, de pagina die je hebt opgevraagd is er niet!',
-            'link' => false,
+            'link' => ''
         ],
-        '500' => [
+        500 => [
             'error' => 'Oh nee! Iets brak! ;_;',
             'description' => 'We worden automatisch op de hoogte gesteld van alle fouten.',
-            'link' => false,
+            'link' => ''
         ],
         'fatal' => [
             'error' => 'Oh nee! Iets brak (heel erg)! ;_;',
             'description' => 'We worden automatisch op de hoogte gesteld van alle fouten.',
-            'link' => false,
+            'link' => ''
         ],
-        '503' => [
+        503 => [
             'error' => 'Offline voor onderhoud!',
             'description' => 'Onderhoud duurt meestal ongeveer 5 seconden tot 10 minuten. Als we langer offline zijn, check :link voor meer informatie.',
             'link' => [
                 'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
-            ],
+                'href' => 'https://twitter.com/osustatus'
+            ]
         ],
-        // used by sentry if it returns an error
-        'reference' => 'Voor de zekerheid is hier een code die je aan het ondersteuningsteam kan geven!',
-    ],
+        'reference' => 'Voor de zekerheid is hier een code die je aan het ondersteuningsteam kan geven!'
+    ]
 ];

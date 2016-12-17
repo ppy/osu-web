@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -21,48 +20,43 @@
 return [
     'header' => [
         'title' => 'status',
-        'description' => 'whats going on mah dude?',
+        'description' => 'whats going on mah dude?'
     ],
-
     'incidents' => [
         'title' => 'Active Incidents',
-        'automated' => 'automated',
+        'automated' => 'automated'
     ],
-
     'online' => [
         'title' => [
             'users' => 'Online Users in the last 24 Hours',
-            'score' => 'Score Submissions in the last 24 Hours',
+            'score' => 'Score Submissions in the last 24 Hours'
         ],
         'current' => 'Current Online Users',
-        'score' => 'Score Submissions per Second',
+        'score' => 'Score Submissions per Second'
     ],
-
     'recent' => [
         'incidents' => [
             'title' => 'Recent Incidents',
             'state' => [
                 'resolved' => 'Resolved',
                 'resolving' => 'Resolving',
-                'unknown' => 'Unknown',
-            ],
+                'unknown' => 'Unknown'
+            ]
         ],
-
         'uptime' => [
             'title' => 'Uptime',
             'graphs' => [
                 'server' => 'server',
-                'web' => 'web',
-            ],
+                'web' => 'web'
+            ]
         ],
-
         'when' => [
             'today' => 'today',
             'week' => 'week',
             'month' => 'month',
             'all_time' => 'all time',
             'last_week' => 'last week',
-            'weeks_ago' => ':count week ago|:count weeks ago',
-        ],
-    ],
+            'weeks_ago' => ':count week ago|:count weeks ago'
+        ]
+    ]
 ];

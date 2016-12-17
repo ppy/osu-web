@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -21,65 +20,64 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Impossible de sauvegarder le post',
-        ],
+            'error' => 'Impossible d\'enregistrer le message'
+        ]
     ],
-
     'discussion-votes' => [
         'update' => [
-            'error' => 'Impossible de modifier le vote',
-        ],
+            'error' => 'Impossible de modifier le vote'
+        ]
     ],
-
     'discussions' => [
         'collapse' => [
             'all-collapse' => 'Tout replier',
-            'all-expand' => 'Tout déplier',
+            'all-expand' => 'Tout déplier'
         ],
-
         'edit' => 'Éditer',
         'edited' => 'Édité par :editor le :update_time',
         'empty' => [
-            'empty' => 'Pas de discussion !',
-            'filtered' => 'Aucune discussion ne correspond à vos critères.',
+            'empty' => 'Aucune discussion pour le moment !',
+            'filtered' => 'Aucune discussion ne correspond à vos critères.'
         ],
-
         'message_hint' => [
-            'in_general' => 'Ce post va aller dans la discussion générale du beatmapset. Pour modder cette beatmap, précisez le temps (ex. 00:12:345).',
-            'in_timeline' => 'Pour modder plusieurs temps, faites plusieurs posts (un post par temps).',
+            'in_general' => 'Ce message sera envoyé dans le fil de discussion de cette beatmap. Si vous souhaitez la modder, veuillez commencer ce message avec les coordonnées temporelles d\'un objet (ex. 00:12:345).',
+            'in_timeline' => 'Si vous désirez modder plusieurs objets, refaites un nouveau message à chaque fois (un message par objet).'
         ],
-
-        'message_placeholder' => 'Tapez ici pour poster',
-
+        'message_placeholder' => 'Écrivez ici pour poster',
         'message_type' => [
-            'praise' => 'Hommage',
+            'praise' => 'Éloge',
             'problem' => 'Problème',
-            'suggestion' => 'Suggestion',
+            'suggestion' => 'Suggestion'
         ],
-
-        'message_type_select' => 'Séléctionner le type de commentaire',
-
+        'message_type_select' => 'Sélectionnez le type de commentaire',
         'mode' => [
             'general' => 'Général',
-            'timeline' => 'Chronologie',
+            'timeline' => 'Chronologie'
         ],
-
-        'require-login' => 'Connectez-vous pour poster ou répondre',
+        'require-login' => 'Veuillez vous connecter pour pouvoir poster ou répondre',
         'resolved' => 'Résolu',
-
         'show' => [
-            'title' => 'Discussion de la beatmap',
+            'title' => ':title créée par :mapper'
         ],
-
         'stats' => [
             'mine' => 'Moi',
             'pending' => 'En attente',
             'praises' => 'Hommages',
             'resolved' => 'Résolu',
             'total' => 'Total',
+            'deleted' => 'Supprimé'
         ],
+        'delete' => 'supprimer',
+        'deleted' => 'Supprimé par :editor le :delete_time',
+        'new' => [
+            'timestamp' => 'Coordonnée Temporelle',
+            'timestamp_missing' => 'Copiez (ctrl-c) l\'objet que vous souhaitez modder dans l\'éditeur et copiez le dans votre message pour y ajouter ses coordonnées',
+            'title' => 'Nouvelle Discussion'
+        ],
+        'reply_placeholder' => 'Entrez votre réponse ici',
+        'restore' => 'rétablir ',
+        'title' => 'Discussions'
     ],
-
     'nominations' => [
         'disqualify' => 'Disqualifier',
         'nominate' => 'Nominer',
@@ -88,85 +86,99 @@ return [
         'disqualification-prompt' => 'Raison de la disqualification?',
         'qualified' => 'Map classée environ le :date, si aucun problème n\'est trouvé.',
         'qualified-soon' => 'Beatmap bientôt classée, si aucun problème n\'est trouvé.',
-        'incorrect-state' => 'Erreur lors de l\'action, merci de réesayer.',
+        'incorrect-state' => 'Erreur lors de l\'action, merci de réesayer.'
     ],
-
     'listing' => [
         'search' => [
             'prompt' => 'Tapez des mots-clés...',
             'options' => 'Plus de critères de recherche',
             'not-found' => 'Aucun résultat',
-            'not-found-quote' => '... non, rien trouvé.',
+            'not-found-quote' => '... non, rien trouvé.'
         ],
         'mode' => 'Mode',
         'status' => 'Classification',
         'mapped-by' => 'mappé par :mapper',
         'source' => 'de :source',
-        'load-more' => 'Charger plus',
+        'load-more' => 'Charger plus'
     ],
     'beatmapset' => [
         'show' => [
             'details' => [
                 'made-by' => 'créé par ',
-                'submitted' => 'envoyé le ',
-                'ranked' => 'classifié le ',
-                'logged-out' => 'Vous devez vous connecter avant de télécharger des beatmaps!',
+                'submitted' => 'envoyée le',
+                'ranked' => 'classifiée le',
+                'logged-out' => 'Vous devez vous connecter avant de pouvoir télécharger des beatmaps !',
                 'download' => [
-                    '_' => 'télécharger',
+                    '_' => 'Télécharger',
                     'no-video' => 'sans la vidéo',
                     'direct' => 'osu!direct',
+                    'video' => 'avec la vidéo'
                 ],
+                'approved' => 'approuvée le',
+                'favourite' => 'Ajouter cette beatmap à vos favoris',
+                'qualified' => 'qualifiée le',
+                'unfavourite' => 'Retirer cette beatmap de vos favoris',
+                'updated' => 'dernière mise à jour le'
             ],
             'stats' => [
-                'cs' => 'Taille du cercle',
-                'drain' => 'Drainage PV',
+                'cs' => 'Taille des Cercles',
+                'drain' => 'Drain des PV',
                 'accuracy' => 'Précision',
-                'ar' => 'Niveau d\'approche',
-                'stars' => 'Difficulté étoiles',
-                'total_length' => 'Longeur',
+                'ar' => 'Vitesse d\'Approche',
+                'stars' => 'Étoiles de difficulté',
+                'total_length' => 'Durée',
                 'bpm' => 'BPM',
+                'count_circles' => 'Nombre de Cercles',
+                'count_sliders' => 'Nombre de Sliders',
+                'cs-mania' => 'Nombre de Touches',
+                'rating-spread' => 'Répartition des Notes',
+                'user-rating' => 'Note des Joueurs'
             ],
             'info' => [
                 'success-rate' => 'Taux de réussite',
-                'points-of-failure' => 'Points de ratés',
-
+                'points-of-failure' => 'Diagramme de non-réussite',
                 'description' => 'Description',
-
                 'source' => 'Source',
-                'tags' => 'Tags',
+                'tags' => 'Tags'
             ],
             'scoreboard' => [
                 'title' => 'Tableaux des scores',
                 'no-scores' => [
-                    'global' => 'Pas de scores. Peut-être vous dans le classement?',
+                    'global' => 'Aucun score pour le moment. Peut-être devriez-vous essayer d\'en faire un !',
                     'loading' => 'Chargement des scores...',
-                    'country' => 'Personne de votre pays n\'a encore fait un score!',
-                    'friend' => 'Personnne de vos amis n\'a encore fait un score!',
+                    'country' => 'Personne de votre pays n\'a encore fait de score !',
+                    'friend' => 'Aucun de vos amis n\'a encore fait de score !'
                 ],
-                'supporter-only' => 'Vous devez être osu!supporter pour accéder à cette fonctionnalité!',
-                'supporter-link' => 'Cliquez <a href=":link">ici</a> pour connaître toutes les supers fonctions obtenus avec!',
-                'global' => 'Classement global',
+                'supporter-only' => 'Vous devez être osu!supporter pour accéder à cette fonctionnalité !',
+                'supporter-link' => 'Cliquez <a href=":link">ici</a> pour découvrir toutes les supers fonctionnalités que cela offre !',
+                'global' => 'Classement mondial',
                 'country' => 'Classement national',
                 'friend' => 'Classement des amis',
                 'stats' => [
                     'accuracy' => 'Précision',
                     'score' => 'Score',
+                    'count100' => '100',
+                    'count300' => '300',
+                    'count50' => '50',
+                    'countgeki' => 'MAX',
+                    'countkatu' => '200'
                 ],
                 'list' => [
                     'rank-header' => 'Rang',
                     'player-header' => 'Joueur',
                     'score' => 'Score',
-                    'accuracy' => 'Précision',
+                    'accuracy' => 'Précision'
                 ],
-            ],
-        ],
+                'achieved' => 'accompli le :when'
+            ]
+        ]
     ],
     'mode' => [
         'any' => 'Tous',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
         'fruits' => 'osu!catch',
-        'mania' => 'osu!mania',
+        'mania' => 'osu!mania'
     ],
     'status' => [
         'any' => 'Tous',
@@ -175,8 +187,8 @@ return [
         'faves' => 'Favoris',
         'modreqs' => 'Requêtes de mods',
         'pending' => 'En attente',
-        'graveyard' => 'Cimetière',
-        'my-maps' => 'Mes maps',
+        'graveyard' => 'Cimtière',
+        'my-maps' => 'Mes maps'
     ],
     'genre' => [
         'any' => 'Tous',
@@ -188,25 +200,25 @@ return [
         'other' => 'Autre',
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
-        'electronic' => 'Electronic',
+        'electronic' => 'Électronique'
     ],
     'language' => [
-    'any' => 'Tous',
-    'english' => 'Anglais',
-    'chinese' => 'Chinois',
-    'french' => 'Français',
-    'german' => 'Allemand',
-    'italian' => 'Italien',
-    'japanese' => 'Japonais',
-    'korean' => 'Coréen',
-    'spanish' => 'Espagnol',
-    'swedish' => 'Suédois',
-    'instrumental' => 'Instrumentales',
-    'other' => 'Autre',
+        'any' => 'Tous',
+        'english' => 'Anglais',
+        'chinese' => 'Chinois',
+        'french' => 'Français',
+        'german' => 'Allemand',
+        'italian' => 'Italien',
+        'japanese' => 'Japonais',
+        'korean' => 'Coréen',
+        'spanish' => 'Espagnol',
+        'swedish' => 'Suédois',
+        'instrumental' => 'Instrumentales',
+        'other' => 'Autre'
     ],
     'extra' => [
-        'video' => 'Avec vidéo',
-        'storyboard' => 'Avec un storyboard',
+        'video' => 'Avec une vidéo',
+        'storyboard' => 'Avec un storyboard'
     ],
     'rank' => [
         'any' => 'Any',
@@ -217,6 +229,6 @@ return [
         'A' => 'A',
         'B' => 'B',
         'C' => 'C',
-        'D' => 'D',
-    ],
+        'D' => 'D'
+    ]
 ];

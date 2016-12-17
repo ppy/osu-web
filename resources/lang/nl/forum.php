@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -19,18 +18,16 @@
  */
 
 return [
-
     'covers' => [
         'create' => [
             '_' => 'Stel cover afbeelding in',
             'button' => 'Afbeelding uploaden',
-            'info' => 'Cover groote moet :dimensions zijn. Je kunt ook een afbeelding hier loslaten om hem te uploaden.',
+            'info' => 'Cover groote moet :dimensions zijn. Je kunt ook een afbeelding hier loslaten om hem te uploaden.'
         ],
-
         'destroy' => [
             '_' => 'Verwijder cover afbeelding',
-            'confirm' => 'Weet je zeker dat je de cover afbeelding wilt verwijderen?',
-        ],
+            'confirm' => 'Weet je zeker dat je de cover afbeelding wilt verwijderen?'
+        ]
     ],
     'pinned_topics' => 'Gepinde Onderwerpen',
     'post' => [
@@ -39,13 +36,13 @@ return [
         'posted_at' => 'gepost op :when',
         'actions' => [
             'delete' => 'Verwijder post',
-            'edit' => 'Bewerk post',
-        ],
+            'edit' => 'Bewerk post'
+        ]
     ],
     'search' => [
         'go_to_post' => 'Ga naar post',
         'post_number_input' => 'geef post nummer',
-        'total_posts' => ':posts_count posts',
+        'total_posts' => ':posts_count posts'
     ],
     'subforums' => 'Subfora',
     'title' => 'osu!community',
@@ -53,10 +50,10 @@ return [
         'create' => [
             'placeholder' => [
                 'body' => 'Typ post inhoud hier',
-                'title' => 'Klik hier om een titel in te stellen',
+                'title' => 'Klik hier om een titel in te stellen'
             ],
             'preview' => 'Voorbeeld',
-            'submit' => 'Post',
+            'submit' => 'Post'
         ],
         'go_to_latest' => 'bekijk nieuwste post',
         'jump' => [
@@ -64,7 +61,7 @@ return [
             'first' => 'ga naar eerste post',
             'last' => 'ga naar laatste post',
             'next' => 'sla 10 posts over',
-            'previous' => 'ga 10 posts terug',
+            'previous' => 'ga 10 posts terug'
         ],
         'latest_post' => ':when door :user',
         'latest_reply_by' => 'laatste bericht door :user',
@@ -74,48 +71,41 @@ return [
             'post' => 'Opslaan',
             'zoom' => [
                 'start' => 'Volledig Scherm',
-                'end' => 'Volledig Scherm Afsluiten',
-            ],
+                'end' => 'Volledig Scherm Afsluiten'
+            ]
         ],
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Typ hier om te antwoorden',
-        'started_by' => 'door :user',
+        'started_by' => 'door :user'
     ],
     'topics' => [
         '_' => 'Onderwerpen',
-
         'actions' => [
             'reply' => 'Toon antwoordbox',
-            'reply_with_quote' => 'Citeer post voor antwoord',
+            'reply_with_quote' => 'Citeer post voor antwoord'
         ],
-
         'index' => [
             'views' => 'keer bekeken',
-            'replies' => 'keer beantwoordt',
+            'replies' => 'keer beantwoordt'
         ],
-
         'lock' => [
             'locked-0' => 'Onderwerp is ontgrendeld',
             'locked-1' => 'Onderwerp is gesloten',
-            'is_locked' => 'Dit onderwerp is gesloten en kan niet meer op beantwoord worden',
+            'is_locked' => 'Dit onderwerp is gesloten en kan niet meer op beantwoord worden'
         ],
-
         'moderate_move' => [
-            'title' => 'Verplaats naar een ander forum',
+            'title' => 'Verplaats naar een ander forum'
         ],
-
         'show' => [
             'feature_vote' => [
                 'current' => 'Prioriteit: +:count',
                 'do' => 'Promoot dit verzoek',
-
                 'user' => [
                     'current' => 'Je hebt :votes stemmen over.',
                     'count' => '{0} geen stemmen|{1} :count stem|[2,Inf] :count stemmen',
-                    'not_enough' => 'Je hebt geen stemmen meer over',
-                ],
-            ],
-        ],
-    ],
-
+                    'not_enough' => 'Je hebt geen stemmen meer over'
+                ]
+            ]
+        ]
+    ]
 ];

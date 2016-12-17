@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -31,19 +30,18 @@ return [
         'forgot' => 'Zapomniałeś hasła?',
         'beta' => [
             'main' => 'Dostęp do bety jest obecnie ograniczony do wybranych użytkowników.',
-            'small' => '(supporterzy dostaną go wkrótce)',
+            'small' => '(supporterzy dostaną go wkrótce)'
         ],
-
-        'here' => 'tutaj', // this is substituted in when generating a link above. change it to suit the language.
+        'here' => 'tutaj'
     ],
     'anonymous' => [
         'login_link' => 'kliknij, aby się zalogować',
         'username' => 'Gość',
-        'error' => 'Musisz być zalogowany.',
+        'error' => 'Musisz być zalogowany.'
     ],
     'logout_confirm' => 'Na pewno chcesz się wylogować? :(',
     'show' => [
-        '404' => 'Nie znaleziono gracza! ;_;',
+        404 => 'Nie znaleziono gracza! ;_;',
         'current_location' => 'Obecnie w :location.',
         'edit' => [
             'cover' => [
@@ -54,35 +52,42 @@ return [
                     'button' => 'Dodaj tło',
                     'dropzone' => 'Upuść tutaj, aby dodać',
                     'dropzone_info' => 'Możesz także upuścić swoje tło tutaj, aby je dodać',
-                    'restriction_info' => "Dodawanie jest dostępne tylko dla <a href='".osu_url('support-the-game')."' target='_blank'>supporterów</a> ",
+                    'restriction_info' => 'Dodawanie jest dostępne tylko dla <a href=\'https://osu.ppy.sh/p/support#transactionarea\' target=\'_blank\'>supporterów</a> ',
                     'size_info' => 'Rozmiary nagłówka powinny być przynajmniej 2000x500',
                     'too_large' => 'Plik jest zbyt duży.',
-                    'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
-                ],
-            ],
+                    'unsupported_format' => 'To rozszerzenie nie jest wspierane.'
+                ]
+            ]
         ],
         'extra' => [
             'achievements' => [
                 'title' => 'Osiągnięcia',
-                'achieved-on' => 'Odblokowane dnia :date',
+                'achieved-on' => 'Odblokowane dnia :date'
             ],
             'beatmaps' => [
                 'title' => 'Beatmapy',
+                'favourite' => [
+                    'title' => 'Ulubione beatmapy (:count)'
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Rankingowe & Zatwierdzone beatmapy (:count)'
+                ],
+                'none' => 'Jeszcze nie ma...'
             ],
             'historical' => [
                 'empty' => 'Brak wyników. :(',
                 'most_played' => [
                     'count' => 'ilość zagrań',
-                    'title' => 'Najczęściej grane mapy',
+                    'title' => 'Najczęściej grane mapy'
                 ],
                 'recent_plays' => [
                     'accuracy' => 'celność: :percentage',
-                    'title' => 'Ostatnie wyniki',
+                    'title' => 'Ostatnie wyniki'
                 ],
-                'title' => 'Historia',
+                'title' => 'Historia'
             ],
             'performance' => [
-                'title' => 'Osiągi',
+                'title' => 'Osiągi'
             ],
             'kudosu' => [
                 'available' => 'Dostępne kudosu',
@@ -90,44 +95,34 @@ return [
                 'entry' => [
                     'empty' => 'Ten gracz nie otrzymał żadnego kudosu!',
                     'give' => 'Otrzymano <strong class="kudosu-entries__amount">:amount kudosu</strong> od :giver za post na :post',
-                    'revoke' => 'Odebrano kudosu przezDenied kudosu by :giver for the post :post',
+                    'revoke' => 'Odebrano kudosu przezDenied kudosu by :giver for the post :post'
                 ],
                 'recent_entries' => 'Ostatnio zdobyte kudosu',
                 'title' => 'Kudosu!',
                 'total' => 'Ilość zdobytego kudosu',
-                'total_info' => 'Bazowane na tym, ile użytkownik zrobił dla modowania map. Spojrzyj <a href="'.osu_url('user.kudosu').'">tutaj</a>, aby dowiedzieć się więcej.',
+                'total_info' => 'Bazowane na tym, ile użytkownik zrobił dla modowania map. Spojrzyj <a href="https://osu.ppy.sh/wiki/Kudosu">tutaj</a>, aby dowiedzieć się więcej.'
             ],
             'me' => [
-                'title' => 'me!',
+                'title' => 'me!'
             ],
             'medals' => [
-                'title' => 'Medale',
+                'title' => 'Medale'
             ],
             'recent_activities' => [
-                'title' => 'Ostatnie',
+                'title' => 'Ostatnie'
             ],
             'top_ranks' => [
                 'best' => [
-                    'title' => 'Najlepsze wyniki',
+                    'title' => 'Najlepsze wyniki'
                 ],
                 'empty' => 'Brak wyników. :(',
                 'first' => [
-                    'title' => 'Pierwsze miejsca',
+                    'title' => 'Pierwsze miejsca'
                 ],
                 'pp' => ':amountpp',
                 'title' => 'Wyniki',
-                'weighted_pp' => 'ważone: :pp (:percentage)',
-            ],
-            'beatmaps' => [
-                'title' => 'Beatmapy',
-                'favourite' => [
-                    'title' => 'Ulubione beatmapy (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Rankingowe & Zatwierdzone beatmapy (:count)',
-                ],
-                'none' => 'Jeszcze nie ma...',
-            ],
+                'weighted_pp' => 'ważone: :pp (:percentage)'
+            ]
         ],
         'first_members' => 'od samego początku',
         'is_supporter' => 'osu!supporter',
@@ -138,26 +133,26 @@ return [
         'origin' => [
             'age' => 'Ma :age lat.',
             'country' => 'Pochodzi z :country.',
-            'country_age' => 'Ma :age lat i pochodzi z :country.',
+            'country_age' => 'Ma :age lat i pochodzi z :country.'
         ],
         'page' => [
             'description' => '<strong>ja!</strong> to twoje osobiste, personalizowalne miejsce na twoim profilu.',
             'edit_big' => 'Edytuj mnie!',
             'placeholder' => 'Pisz tutaj',
-            'restriction_info' => "Musisz być <a href='".osu_url('support-the-game')."' target='_blank'>supporterem</a>, aby odblokować tę funkcję.",
+            'restriction_info' => 'Musisz być <a href=\'https://osu.ppy.sh/p/support#transactionarea\' target=\'_blank\'>supporterem</a>, aby odblokować tę funkcję.'
         ],
         'plays_with' => [
             '_' => 'Gra używając',
             'keyboard' => 'Klawiatury',
             'mouse' => 'Myszki',
             'tablet' => 'Tableta',
-            'touch' => 'Ekranu dotykowego',
+            'touch' => 'Ekranu dotykowego'
         ],
         'missingtext' => 'Zrobiłeś literówkę! (albo ten gracz jest zbanowany)',
         'page_description' => 'osu! - Wszystko co chciałbyś wiedzieć o :username!',
         'rank' => [
             'country' => 'Pozycja w rankingu krajowym dla :mode',
-            'global' => 'Pozycja w rankingu świadowym dla :mode',
+            'global' => 'Pozycja w rankingu świadowym dla :mode'
         ],
         'stats' => [
             'hit_accuracy' => 'Celność',
@@ -168,9 +163,8 @@ return [
             'replays_watched_by_others' => 'Powtórki obejrzane przez innych',
             'score_ranks' => 'Wyniki',
             'total_hits' => 'Łączna ilość uderzeń',
-            'total_score' => 'Łączny wynik',
+            'total_score' => 'Łączny wynik'
         ],
-        'title' => 'Profil :username',
-    ],
-
+        'title' => 'Profil :username'
+    ]
 ];

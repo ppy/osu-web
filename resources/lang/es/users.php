@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -31,18 +30,18 @@ return [
         'forgot' => '¿Olvidaste tu contraseña?',
         'beta' => [
             'main' => 'Acceso a la beta es actualmente restringido a usuarios privilegiados.',
-            'small' => '(supporters tendrán acceso pronto)',
+            'small' => '(supporters tendrán acceso pronto)'
         ],
-        'here' => 'aquí', // this is substituted in when generating a link above. change it to suit the language.
+        'here' => 'aquí'
     ],
     'anonymous' => [
         'login_link' => 'clic para iniciar sesión',
         'username' => 'Invitado',
-        'error' => 'Necesitas haber iniciado sesión para hacer esto.',
+        'error' => 'Necesitas haber iniciado sesión para hacer esto.'
     ],
     'logout_confirm' => '¿Seguro que deseas salir? :(',
     'show' => [
-        '404' => '¡Usuario no encontrado! ;_;',
+        404 => '¡Usuario no encontrado! ;_;',
         'current_location' => 'Actualmente en :location.',
         'edit' => [
             'cover' => [
@@ -53,35 +52,42 @@ return [
                     'button' => 'Subir imagen',
                     'dropzone' => 'Suelta aquí para subir',
                     'dropzone_info' => 'También puedes soltar la imagen aquí para subirla',
-                    'restriction_info' => "Subida solo disponible para <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a>",
+                    'restriction_info' => 'Subida solo disponible para <a href=\'https://osu.ppy.sh/p/support#transactionarea\' target=\'_blank\'>osu!supporters</a>',
                     'size_info' => 'El tamaño de la portada debe ser de 2000x500',
                     'too_large' => 'El archivo es demasiado grande.',
-                    'unsupported_format' => 'Formato no soportado.',
-                ],
-            ],
+                    'unsupported_format' => 'Formato no soportado.'
+                ]
+            ]
         ],
         'extra' => [
             'achievements' => [
                 'title' => 'Logros',
-                'achieved-on' => 'Obtenido el :date',
+                'achieved-on' => 'Obtenido el :date'
             ],
             'beatmaps' => [
                 'title' => 'Beatmaps',
+                'favourite' => [
+                    'title' => 'Beatmaps Favoritos (:count)'
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Beatmaps Rankeados & Aprobados (:count)'
+                ],
+                'none' => 'Ninguno... aún.'
             ],
             'historical' => [
                 'empty' => 'Sin récords de rendimiento. :(',
                 'most_played' => [
                     'count' => 'veces jugado',
-                    'title' => 'Beatmaps Más Jugados',
+                    'title' => 'Beatmaps Más Jugados'
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisión: :percentage',
-                    'title' => 'Jugadas Recientes',
+                    'title' => 'Jugadas Recientes'
                 ],
-                'title' => 'Historial',
+                'title' => 'Historial'
             ],
             'performance' => [
-                'title' => 'Rendimiento',
+                'title' => 'Rendimiento'
             ],
             'kudosu' => [
                 'available' => 'Kudosu disponible',
@@ -89,44 +95,34 @@ return [
                 'entry' => [
                     'empty' => '¡Este usuario no ha recibido ningún kudosu!',
                     'give' => 'Recibido <strong class="kudosu-entries__amount">:amount kudosu</strong> de :giver por un post en :post',
-                    'revoke' => 'Kudosu denegado por :giver por el post :post',
+                    'revoke' => 'Kudosu denegado por :giver por el post :post'
                 ],
                 'recent_entries' => 'Historial de Kudosu Reciente',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu Total Obtenido',
-                'total_info' => 'Basado en qué tanto ha colaborado el usuario a la moderación del beatmap. Ve <a href="'.osu_url('user.kudosu').'">esta página</a> para más información.',
+                'total_info' => 'Basado en qué tanto ha colaborado el usuario a la moderación del beatmap. Ve <a href="https://osu.ppy.sh/wiki/Kudosu">esta página</a> para más información.'
             ],
             'me' => [
-                'title' => 'me!', // translating this is a little tricky (maybe "sobre mi"?)
+                'title' => 'me!'
             ],
             'medals' => [
-                'title' => 'Medallas',
+                'title' => 'Medallas'
             ],
             'recent_activities' => [
-                'title' => 'Reciente',
+                'title' => 'Reciente'
             ],
             'top_ranks' => [
                 'best' => [
-                    'title' => 'Mejor rendimiento',
+                    'title' => 'Mejor rendimiento'
                 ],
                 'empty' => 'No hay récords increíbles aún. :(',
                 'first' => [
-                    'title' => 'Primeros Lugares',
+                    'title' => 'Primeros Lugares'
                 ],
                 'pp' => ':amountpp',
                 'title' => 'Rangos',
-                'weighted_pp' => 'valorado en: :pp (:percentage)',
-            ],
-            'beatmaps' => [
-                'title' => 'Beatmaps',
-                'favourite' => [
-                    'title' => 'Beatmaps Favoritos (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmaps Rankeados & Aprobados (:count)',
-                ],
-                'none' => 'Ninguno... aún.',
-            ],
+                'weighted_pp' => 'valorado en: :pp (:percentage)'
+            ]
         ],
         'first_members' => 'desde el comienzo',
         'is_supporter' => 'osu!supporter',
@@ -137,26 +133,26 @@ return [
         'origin' => [
             'age' => ':age años.',
             'country' => 'De :country.',
-            'country_age' => ':age años de :country.',
+            'country_age' => ':age años de :country.'
         ],
         'page' => [
             'description' => '<strong>me!</strong> es una área personalizable en tu perfil.',
             'edit_big' => 'Editar me!',
             'placeholder' => 'Escribe el contenido aquí',
-            'restriction_info' => "Necesitas ser un <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> para desbloquear esta característica.",
+            'restriction_info' => 'Necesitas ser un <a href=\'https://osu.ppy.sh/p/support#transactionarea\' target=\'_blank\'>osu!supporter</a> para desbloquear esta característica.'
         ],
         'plays_with' => [
             '_' => 'Juega con',
             'keyboard' => 'Teclado',
             'mouse' => 'Ratón',
             'tablet' => 'Tableta',
-            'touch' => 'Pantalla Táctil',
+            'touch' => 'Pantalla Táctil'
         ],
         'missingtext' => '¡Has cometido un error! (o el usuario pudo haber sido baneado)',
         'page_description' => 'osu! - Todo lo que siempre quisiste saber acerca de :username!',
         'rank' => [
             'country' => 'Rank nacional para :mode',
-            'global' => 'Rank global para :mode',
+            'global' => 'Rank global para :mode'
         ],
         'stats' => [
             'hit_accuracy' => 'Precisión',
@@ -165,10 +161,10 @@ return [
             'play_count' => 'Conteo de jugadas',
             'ranked_score' => 'Puntuación rankeada',
             'replays_watched_by_others' => 'Replays observadas por otros',
-            'score_ranks' => 'Score Ranks', //?
+            'score_ranks' => 'Score Ranks',
             'total_hits' => 'Aciertos totales',
-            'total_score' => 'Puntuación total',
+            'total_score' => 'Puntuación total'
         ],
-        'title' => 'perfil / :username',
-    ],
+        'title' => 'perfil / :username'
+    ]
 ];

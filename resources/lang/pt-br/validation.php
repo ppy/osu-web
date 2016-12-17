@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -20,5 +19,5 @@
 
 return [
     'mixture' => ':attribute está sem números ou letras',
-    'required' => ':attribute é obrigatório',
+    'required' => ':attribute é obrigatório'
 ];

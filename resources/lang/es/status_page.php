@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -17,22 +16,23 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'header' => [
         'title' => 'estado',
-        'description' => '¿qué está pasando?',
+        'description' => '¿qué está pasando?'
     ],
     'incidents' => [
         'title' => 'Incidentes activos',
-        'automated' => 'automatizado',
+        'automated' => 'automatizado'
     ],
     'online' => [
         'title' => [
             'users' => 'Usuarios en línea en las últimas 24 Horas',
-            'score' => 'Envíos de puntuaciones en las últimas 24 horas',
+            'score' => 'Envíos de puntuaciones en las últimas 24 horas'
         ],
         'current' => 'Usuarios en línea actualmente',
-        'score' => 'Envíos de puntuaciones por segundo',
+        'score' => 'Envíos de puntuaciones por segundo'
     ],
     'recent' => [
         'incidents' => [
@@ -40,15 +40,15 @@ return [
             'state' => [
                 'resolved' => 'Resuelto',
                 'resolving' => 'Resolviendo',
-                'unknown' => 'Desconocido',
-            ],
+                'unknown' => 'Desconocido'
+            ]
         ],
         'uptime' => [
             'title' => 'Tiempo de actividad',
             'graphs' => [
                 'server' => 'servidor',
-                'web' => 'web',
-            ],
+                'web' => 'web'
+            ]
         ],
         'when' => [
             'today' => 'hoy',
@@ -56,7 +56,7 @@ return [
             'month' => 'mes',
             'all_time' => 'todo el tiempo',
             'last_week' => 'última semana',
-            'weeks_ago' => 'hace :count semana|hace :count semanas',
-        ],
-    ],
+            'weeks_ago' => 'hace :count semana|hace :count semanas'
+        ]
+    ]
 ];

@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -21,127 +20,108 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'has_reply' => 'Can not delete discussion with replies',
+            'has_reply' => 'Can not delete discussion with replies'
         ],
         'nominate' => [
-            'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
+            'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.'
         ],
         'resolve' => [
             'general_discussion' => 'General discussion can not be resolved.',
-            'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
-        ],
+            'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.'
+        ]
     ],
-
     'beatmap_discussion_post' => [
         'edit' => [
             'system_generated' => 'Automatically generated post can not be edited.',
-            'not_owner' => 'Only the poster can edit post.',
-        ],
+            'not_owner' => 'Only the poster can edit post.'
+        ]
     ],
-
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'Access to requested channel is not permitted.',
-            ],
+                'no_access' => 'Access to requested channel is not permitted.'
+            ]
         ],
         'message' => [
             'send' => [
                 'channel' => [
                     'no_access' => 'Access to target channel is required.',
-                    'moderated' => 'Channel is currently moderated.',
+                    'moderated' => 'Channel is currently moderated.'
                 ],
-
-                'not_allowed' => 'Can not send message while banned/restricted/silenced.',
-            ],
-        ],
+                'not_allowed' => 'Can not send message while banned/restricted/silenced.'
+            ]
+        ]
     ],
-
     'contest' => [
-        'voting_over' => 'You cannot change your vote after the voting period for this contest has ended.',
+        'voting_over' => 'You cannot change your vote after the voting period for this contest has ended.'
     ],
-
     'forum' => [
         'post' => [
             'delete' => [
                 'only_last_post' => 'Only last post can be deleted.',
                 'locked' => 'Can not delete post of a locked topic.',
                 'no_forum_access' => 'Access to requested forum is required.',
-                'not_owner' => 'Only poster can delete the post.',
+                'not_owner' => 'Only poster can delete the post.'
             ],
-
             'edit' => [
                 'locked' => 'The post is locked from editing.',
                 'no_forum_access' => 'Access to requested forum is required.',
                 'not_owner' => 'Only poster can edit the post.',
-                'topic_locked' => 'Can not edit post of a locked topic.',
-            ],
+                'topic_locked' => 'Can not edit post of a locked topic.'
+            ]
         ],
-
         'topic' => [
             'reply' => [
                 'double_post' => 'You just posted. Wait a bit or edit your last post.',
                 'locked' => 'Can not reply to a locked thread.',
                 'no_forum_access' => 'Access to requested forum is required.',
                 'no_permission' => 'No permission to reply.',
-
                 'user' => [
                     'require_login' => 'Please login to reply.',
-                    'restricted' => "Can't reply while restricted.",
-                    'silenced' => "Can't reply while silenced.",
-                ],
+                    'restricted' => 'Can\'t reply while restricted.',
+                    'silenced' => 'Can\'t reply while silenced.'
+                ]
             ],
-
             'store' => [
                 'no_forum_access' => 'Access to requested forum is required.',
                 'no_permission' => 'No permission to create new topic.',
-                'forum_closed' => 'Forum is closed and can not be posted to.',
+                'forum_closed' => 'Forum is closed and can not be posted to.'
             ],
-
             'vote' => [
                 'no_forum_access' => 'Access to requested forum is required.',
                 'over' => 'Polling is over and can not be voted on anymore.',
                 'voted' => 'Changing vote is not allowed.',
-
                 'user' => [
                     'require_login' => 'Please login to vote.',
-                    'restricted' => "Can't vote while restricted.",
-                    'silenced' => "Can't vote while silenced.",
-                ],
+                    'restricted' => 'Can\'t vote while restricted.',
+                    'silenced' => 'Can\'t vote while silenced.'
+                ]
             ],
-
             'watch' => [
-                'no_forum_access' => 'Access to requested forum is required.',
-            ],
+                'no_forum_access' => 'Access to requested forum is required.'
+            ]
         ],
-
         'topic_cover' => [
             'edit' => [
                 'uneditable' => 'Invalid cover specified.',
-                'not_owner' => 'Only owner can edit cover.',
-            ],
+                'not_owner' => 'Only owner can edit cover.'
+            ]
         ],
-
         'view' => [
-            'admin_only' => 'Only admin can view this forum.',
-        ],
+            'admin_only' => 'Only admin can view this forum.'
+        ]
     ],
-
     'require_login' => 'Please login to proceed.',
-
     'unauthorized' => 'Access denied.',
-
-    'silenced' => "Can't do that while silenced.",
-
-    'restricted' => "Can't do that while restricted.",
-
+    'silenced' => 'Can\'t do that while silenced.',
+    'restricted' => 'Can\'t do that while restricted.',
     'user' => [
         'page' => [
             'edit' => [
                 'locked' => 'User page is locked.',
                 'not_owner' => 'Can only edit own user page.',
-                'require_supporter_tag' => 'Supporter tag is required.',
-            ],
-        ],
-    ],
+                'require_supporter_tag' => 'Supporter tag is required.'
+            ]
+        ]
+    ]
 ];

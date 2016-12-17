@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -20,7 +19,6 @@
 
 return [
     'deleted' => '[deleted user]',
-
     'login' => [
         '_' => 'Sign in',
         'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
@@ -30,26 +28,25 @@ return [
         'remember' => 'Remember this computer',
         'title' => 'Please login to proceed',
         'failed' => 'Incorrect login',
-        'register' => "Don't have an osu! account? Make a new one",
+        'register' => 'Don\'t have an osu! account? Make a new one',
         'forgot' => 'Forgotten your password?',
         'beta' => [
             'main' => 'Beta access is currently restricted to privileged users.',
-            'small' => '(supporters will get in soon)',
+            'small' => '(supporters will get in soon)'
         ],
-
-        'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
+        'here' => 'here'
     ],
     'signup' => [
-        '_' => 'Register',
+        '_' => 'Register'
     ],
     'anonymous' => [
         'login_link' => 'click to login',
         'username' => 'Guest',
-        'error' => 'You need to be logged in to do this.',
+        'error' => 'You need to be logged in to do this.'
     ],
     'logout_confirm' => 'Are you sure you want to log out? :(',
     'show' => [
-        '404' => 'User not found! ;_;',
+        404 => 'User not found! ;_;',
         'current_location' => 'Currently in :location.',
         'edit' => [
             'cover' => [
@@ -60,81 +57,78 @@ return [
                     'button' => 'Upload image',
                     'dropzone' => 'Drop here to upload',
                     'dropzone_info' => 'You can also drop your image here to upload',
-                    'restriction_info' => "Upload available for <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a> only",
+                    'restriction_info' => 'Upload available for <a href=\'https://osu.ppy.sh/p/support#transactionarea\' target=\'_blank\'>osu!supporters</a> only',
                     'size_info' => 'Cover size should be at 2000x500',
                     'too_large' => 'Uploaded file is too large.',
-                    'unsupported_format' => 'Unsupported format.',
-                ],
-            ],
+                    'unsupported_format' => 'Unsupported format.'
+                ]
+            ]
         ],
         'extra' => [
             'achievements' => [
                 'title' => 'Achievements',
-                'achieved-on' => 'Achieved on :date',
+                'achieved-on' => 'Achieved on :date'
             ],
             'beatmaps' => [
                 'title' => 'Beatmaps',
+                'favourite' => [
+                    'title' => 'Favourite Beatmaps (:count)'
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Ranked & Approved Beatmaps (:count)'
+                ],
+                'none' => 'None... yet.'
             ],
             'historical' => [
                 'empty' => 'No performance records. :(',
                 'most_played' => [
                     'count' => 'times played',
-                    'title' => 'Most Played Beatmaps',
+                    'title' => 'Most Played Beatmaps'
                 ],
                 'recent_plays' => [
                     'accuracy' => 'accuracy: :percentage',
-                    'title' => 'Recent Plays',
+                    'title' => 'Recent Plays'
                 ],
-                'title' => 'Historical',
+                'title' => 'Historical'
             ],
             'performance' => [
-                'title' => 'Performance',
+                'title' => 'Performance'
             ],
             'kudosu' => [
                 'available' => 'Kudosu Available',
-                'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven't traded in yet.",
+                'available_info' => 'Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven\'t traded in yet.',
                 'entry' => [
-                    'empty' => "This user hasn't received any kudosu!",
+                    'empty' => 'This user hasn\'t received any kudosu!',
                     'give' => 'Received <strong class="kudosu-entries__amount">:amount kudosu</strong> from :giver for a post at :post',
-                    'revoke' => 'Denied kudosu by :giver for the post :post',
+                    'revoke' => 'Denied kudosu by :giver for the post :post'
                 ],
                 'recent_entries' => 'Recent Kudosu History',
                 'title' => 'Kudosu!',
                 'total' => 'Total Kudosu Earned',
-                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.osu_url('user.kudosu').'">this page</a> for more information.',
+                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="https://osu.ppy.sh/wiki/Kudosu">this page</a> for more information.'
             ],
             'me' => [
-                'title' => 'me!',
+                'title' => 'me!'
             ],
             'medals' => [
-                'empty' => "This user hasn't gotten any yet. ;_;",
-                'title' => 'Medals',
+                'empty' => 'This user hasn\'t gotten any yet. ;_;',
+                'title' => 'Medals'
             ],
             'recent_activities' => [
-                'title' => 'Recent',
+                'title' => 'Recent'
             ],
             'top_ranks' => [
                 'best' => [
-                    'title' => 'Best Performance',
+                    'title' => 'Best Performance'
                 ],
                 'empty' => 'No awesome performance records yet. :(',
                 'first' => [
-                    'title' => 'First Place Ranks',
+                    'title' => 'First Place Ranks'
                 ],
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
-                'weighted_pp' => 'weighted: :pp (:percentage)',
-            ],
-            'beatmaps' => [
-                'title' => 'Beatmaps',
-                'favourite' => [
-                    'title' => 'Favourite Beatmaps (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
-                ],
-                'none' => 'None... yet.',
-            ],
+                'weighted_pp' => 'weighted: :pp (:percentage)'
+            ]
         ],
         'first_members' => 'here since the beginning',
         'is_supporter' => 'osu!supporter',
@@ -145,26 +139,26 @@ return [
         'origin' => [
             'age' => ':age years old.',
             'country' => 'From :country.',
-            'country_age' => ':age years old from :country.',
+            'country_age' => ':age years old from :country.'
         ],
         'page' => [
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
-            'restriction_info' => "You need to be an <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+            'restriction_info' => 'You need to be an <a href=\'https://osu.ppy.sh/p/support#transactionarea\' target=\'_blank\'>osu!supporter</a> to unlock this feature.'
         ],
         'plays_with' => [
             '_' => 'Plays with',
             'keyboard' => 'Keyboard',
             'mouse' => 'Mouse',
             'tablet' => 'Tablet',
-            'touch' => 'Touch Screen',
+            'touch' => 'Touch Screen'
         ],
         'missingtext' => 'You might have made a typo! (or the user may have been banned)',
         'page_description' => 'osu! - Everything you ever wanted to know about :username!',
         'rank' => [
             'country' => 'Country rank for :mode',
-            'global' => 'Global rank for :mode',
+            'global' => 'Global rank for :mode'
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Accuracy',
@@ -175,12 +169,11 @@ return [
             'replays_watched_by_others' => 'Replays Watched by Others',
             'score_ranks' => 'Score Ranks',
             'total_hits' => 'Total Hits',
-            'total_score' => 'Total Score',
+            'total_score' => 'Total Score'
         ],
-        'title' => ":username's profile",
+        'title' => ':username\'s profile'
     ],
-
     'verify' => [
-        'title' => 'Account Verification',
-    ],
+        'title' => 'Account Verification'
+    ]
 ];

@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -20,5 +19,5 @@
 
 return [
     'mixture' => ':attribute is missing number or letter',
-    'required' => ':attribute is required',
+    'required' => ':attribute is required'
 ];

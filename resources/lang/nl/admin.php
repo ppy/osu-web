@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -19,7 +18,6 @@
  */
 
 return [
-
     'beatmapsets' => [
         'show' => [
             'discussion' => [
@@ -27,59 +25,48 @@ return [
                 'activate' => 'activeer',
                 'activate_confirm' => 'modding v2 activeren voor deze beatmap?',
                 'active' => 'actief',
-                'inactive' => 'inactief',
-            ],
-        ],
+                'inactive' => 'inactief'
+            ]
+        ]
     ],
-
     'forum' => [
         'forum-covers' => [
             'index' => [
                 'delete' => 'Verwijder',
-
                 'forum-name' => 'Forum #:id: :name',
-
                 'no-cover' => 'Geen cover ingesteld',
-
                 'submit' => [
                     'save' => 'Opslaan',
-                    'update' => 'Bijwerken',
+                    'update' => 'Bijwerken'
                 ],
-
                 'title' => 'Forumcovers Lijst',
-
                 'type-title' => [
                     'default-topic' => 'Standaardonderwerp Cover',
-                    'main' => 'Forum Cover',
-                ],
-            ],
-        ],
+                    'main' => 'Forum Cover'
+                ]
+            ]
+        ]
     ],
-
     'logs' => [
         'index' => [
-            'title' => 'Log Viewer',
-        ],
+            'title' => 'Log Viewer'
+        ]
     ],
-
     'pages' => [
         'root' => [
             'title' => 'Adminpaneel Geval',
-
             'sections' => [
                 'forum' => 'Forum',
                 'general' => 'Algemeen',
-                'store' => 'Winkel',
-            ],
-        ],
+                'store' => 'Winkel'
+            ]
+        ]
     ],
-
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Lijst van Bestellingen',
-            ],
-        ],
-    ],
-
+                'title' => 'Lijst van Bestellingen'
+            ]
+        ]
+    ]
 ];

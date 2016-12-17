@@ -16,6 +16,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'bold' => 'Negritas',
     'heading' => 'Cabecera',
@@ -29,8 +30,8 @@ return [
         'tiny' => 'Diminuto',
         'small' => 'Pequeño',
         'normal' => 'Normal',
-        'large' => 'Grande',
+        'large' => 'Grande'
     ],
     'spoilerbox' => 'Caja de Spoiler',
-    'strikethrough' => 'Tachar',
+    'strikethrough' => 'Tachar'
 ];

@@ -1,10 +1,9 @@
 <?php
-
 /**
- *    Copyright 2015-2016 ppy Pty. Ltd.
+ *    Copyright 2015 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed with the hope of
- *    attracting more community contributions to the core ecosystem of osu!.
+ *    This file is part of osu!web. osu!web is distributed in the hopes of
+ *    attracting more community contributions to the core ecosystem of osu!
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -17,32 +16,30 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'box' => [
         'sent' => 'An email has been sent to :mail with a verification code. Enter the code.',
         'title' => 'Account Verification',
         'verifying' => 'Verifying...',
         'issuing' => 'Issuing new code...',
-
         'info' => [
-            'check_spam' => "Make sure to check your spam folder if you can't find the email.",
-            'recover' => "If you can't access your email or have forgotten what you used, please follow the :link.",
+            'check_spam' => 'Make sure to check your spam folder if you can\'t find the email.',
+            'recover' => 'If you can\'t access your email or have forgotten what you used, please follow the :link.',
             'recover_link' => 'email recovery process here',
             'reissue' => 'You can also :reissue_link or :logout_link.',
             'reissue_link' => 'request another code',
-            'logout_link' => 'logout',
-        ],
+            'logout_link' => 'logout'
+        ]
     ],
-
     'email' => [
-        'subject' => 'osu! account verification',
+        'subject' => 'osu! account verification'
     ],
-
     'errors' => [
         'expired' => 'Verification code expired, new verification email sent.',
         'incorrect_key' => 'Incorrect verification code.',
         'retries_exceeded' => 'Incorrect verification code. Retry limit exceeded, new verification email sent.',
         'reissued' => 'Verification code reissued, new verification email sent.',
-        'unknown' => 'Unknown problem occurred, new verification email sent.',
-    ],
+        'unknown' => 'Unknown problem occurred, new verification email sent.'
+    ]
 ];

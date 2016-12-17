@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -21,24 +20,24 @@
 return [
     'codes' => [
         'http-403' => 'Acesso negado.',
-        'http-401' => 'Por favor, inicie a sessão para continuar.',
+        'http-401' => 'Por favor, inicie a sessão para continuar.'
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Um erro ocorreu. Tente atualizar a página.',
-        ],
+            'generic' => 'Um erro ocorreu. Tente atualizar a página.'
+        ]
     ],
     'community' => [
         'slack' => [
             'not-eligible' => 'A sua conta não é elegível para um convite do Slack.',
-            'slack-error' => 'Um erro ocorreu nos servidores do Slack. Por favor, tente novamente em alguns minutos.',
-        ],
+            'slack-error' => 'Um erro ocorreu nos servidores do Slack. Por favor, tente novamente em alguns minutos.'
+        ]
     ],
     'beatmaps' => [
-        'standard-converts-only' => 'Apenas o modo osu! pode ter pontuações em outros modos.',
+        'standard-converts-only' => 'Apenas o modo osu! pode ter pontuações em outros modos.'
     ],
     'logged_out' => 'Você foi desconectado. Inicie a sessão e tente novamente.',
     'supporter_only' => 'Você precisa ter uma supporter tag para usar esta função.',
     'no_restricted_access' => 'Você não pode executar esta ação enquanto sua conta estiver em modo restrito.',
-    'unknown' => 'Erro desconhecido.',
+    'unknown' => 'Erro desconhecido.'
 ];

@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -20,37 +19,29 @@
 
 return [
     'admin' => [
-        'warehouse' => 'Magasin',
+        'warehouse' => 'Magasin'
     ],
-
     'checkout' => [
         'pay' => 'Payer avec PayPal',
-        'delayed_shipping' => 'Nous sommes blindés de commandes, si vous commandez, merci de patienter **une à deux semaines** le temps que nous traitons toutes ces commandes.',
+        'delayed_shipping' => 'Nous sommes blindés de commandes, si vous commandez, merci de patienter **une à deux semaines** le temps que nous traitons toutes ces commandes.'
     ],
-
     'order' => [
         'item' => [
-            'quantity' => 'Quantité',
-        ],
+            'quantity' => 'Quantité'
+        ]
     ],
-
     'product' => [
         'name' => 'Nom',
-
         'stock' => [
             'out' => 'Pas de stock en ce moment :(. Vérifiez plus tard.',
-            'out_with_alternative' => 'Pas de stock de ce type en ce moment :(. Essayez un autre type ou revérifiez plus tard.',
+            'out_with_alternative' => 'Pas de stock de ce type en ce moment :(. Essayez un autre type ou revérifiez plus tard.'
         ],
-
         'add_to_cart' => 'Ajouter au panier',
         'notify' => 'Notifiez-moi quand c\'est disponible !',
-
         'notification_success' => 'vous serez notifié quand nous aurons du stock. cliquez :link pour annuler',
         'notification_remove_text' => 'ici',
-
         'notification_in_stock' => 'Ce produit est déjà en stock!',
-
         'notification_exists' => 'Vous avez déjà demandé une notification pour ce produit!',
-        'notification_doesnt_exist' => "Vous n'avez pas demandé de notification pour ce produit!",
-    ],
+        'notification_doesnt_exist' => 'Vous n\'avez pas demandé de notification pour ce produit!'
+    ]
 ];

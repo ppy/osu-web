@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -31,22 +30,21 @@ return [
         'forgot' => 'Esqueceu a sua senha?',
         'beta' => [
             'main' => 'Acesso beta atualmente restrito para usuários privilegiados.',
-            'small' => '(supporters serão incluidos logo)',
+            'small' => '(supporters serão incluidos logo)'
         ],
-
-        'here' => 'aqui', // this is substituted in when generating a link above. change it to suit the language.
+        'here' => 'aqui'
     ],
     'signup' => [
-        '_' => 'Registrar',
+        '_' => 'Registrar'
     ],
     'anonymous' => [
         'login_link' => 'clique para iniciar a sessão',
         'username' => 'Convidado',
-        'error' => 'Você precisa iniciar a sessão para fazer isso.',
+        'error' => 'Você precisa iniciar a sessão para fazer isso.'
     ],
     'logout_confirm' => 'Tem certeza de que deseja sair? :(',
     'show' => [
-        '404' => 'Usuário não encontrado! ;_;',
+        404 => 'Usuário não encontrado! ;_;',
         'current_location' => 'Atualmente em :location.',
         'edit' => [
             'cover' => [
@@ -57,35 +55,42 @@ return [
                     'button' => 'Enviar imagem',
                     'dropzone' => 'Arraste aqui para enviar',
                     'dropzone_info' => 'Você também pode arrastar sua imagem aqui para enviar',
-                    'restriction_info' => "Envio de imagem disponível apenas para <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a>",
+                    'restriction_info' => 'Envio de imagem disponível apenas para <a href=\'https://osu.ppy.sh/p/support#transactionarea\' target=\'_blank\'>osu!supporters</a>',
                     'size_info' => 'O tamanho da capa deve ser 2000x500',
                     'too_large' => 'O arquivo enviado é muito grande.',
-                    'unsupported_format' => 'Formato não suportado.',
-                ],
-            ],
+                    'unsupported_format' => 'Formato não suportado.'
+                ]
+            ]
         ],
         'extra' => [
             'achievements' => [
                 'title' => 'Conquistas',
-                'achieved-on' => 'Alcançada em :date',
+                'achieved-on' => 'Alcançada em :date'
             ],
             'beatmaps' => [
                 'title' => 'Beatmaps',
+                'favourite' => [
+                    'title' => 'Beatmaps favoritos (:count)'
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Beatmaps ranqueados e aprovados (:count)'
+                ],
+                'none' => 'Nenhum... ainda.'
             ],
             'historical' => [
                 'empty' => 'Sem histórico de desempenho. :(',
                 'most_played' => [
                     'count' => 'vezes jogadas',
-                    'title' => 'Beatmaps mais jogados',
+                    'title' => 'Beatmaps mais jogados'
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precisão: :percentage',
-                    'title' => 'Jogadas recentes',
+                    'title' => 'Jogadas recentes'
                 ],
-                'title' => 'Histórico',
+                'title' => 'Histórico'
             ],
             'performance' => [
-                'title' => 'Desempenho',
+                'title' => 'Desempenho'
             ],
             'kudosu' => [
                 'available' => 'Kudosu disponível',
@@ -93,45 +98,35 @@ return [
                 'entry' => [
                     'empty' => 'Este jogador ainda não recebeu nenhum kudosu!',
                     'give' => 'Recebeu <strong class="kudosu-entries__amount">:amount kudosu</strong> de :giver por uma publicação em :post',
-                    'revoke' => 'Kudosu negado por :giver pela publicação :post',
+                    'revoke' => 'Kudosu negado por :giver pela publicação :post'
                 ],
                 'recent_entries' => 'Histórico recente de Kudosu',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu total recebido',
-                'total_info' => 'Baseado na contribuição de um jogador para a moderação de beatmaps. Acesse <a href="'.osu_url('user.kudosu').'">esta página</a> para mais informações.',
+                'total_info' => 'Baseado na contribuição de um jogador para a moderação de beatmaps. Acesse <a href="https://osu.ppy.sh/wiki/Kudosu">esta página</a> para mais informações.'
             ],
             'me' => [
-                'title' => 'eu!',
+                'title' => 'eu!'
             ],
             'medals' => [
                 'empty' => 'Este usuário ainda não recebeu nenhuma. ;_;',
-                'title' => 'Medalhas',
+                'title' => 'Medalhas'
             ],
             'recent_activities' => [
-                'title' => 'Recente',
+                'title' => 'Recente'
             ],
             'top_ranks' => [
                 'best' => [
-                    'title' => 'Melhor desempenho',
+                    'title' => 'Melhor desempenho'
                 ],
                 'empty' => 'Nenhum desempenho maravilhoso ainda. :(',
                 'first' => [
-                    'title' => 'Ranks de primeiro lugar',
+                    'title' => 'Ranks de primeiro lugar'
                 ],
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
-                'weighted_pp' => 'conseguiu: :pp (:percentage)',
-            ],
-            'beatmaps' => [
-                'title' => 'Beatmaps',
-                'favourite' => [
-                    'title' => 'Beatmaps favoritos (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmaps ranqueados e aprovados (:count)',
-                ],
-                'none' => 'Nenhum... ainda.',
-            ],
+                'weighted_pp' => 'conseguiu: :pp (:percentage)'
+            ]
         ],
         'first_members' => 'aqui desde o começo',
         'is_supporter' => 'osu!supporter',
@@ -142,26 +137,26 @@ return [
         'origin' => [
             'age' => ':age anos.',
             'country' => 'De :country.',
-            'country_age' => ':age anos de :country.',
+            'country_age' => ':age anos de :country.'
         ],
         'page' => [
             'description' => '<strong>eu!</strong> é uma área pessoal personalizável na sua página de perfil.',
             'edit_big' => 'Editar eu!',
             'placeholder' => 'Digite o conteúdo da página aqui',
-            'restriction_info' => "Você precisa ser um <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> para desbloquear essa função.",
+            'restriction_info' => 'Você precisa ser um <a href=\'https://osu.ppy.sh/p/support#transactionarea\' target=\'_blank\'>osu!supporter</a> para desbloquear essa função.'
         ],
         'plays_with' => [
             '_' => 'Joga com',
             'keyboard' => 'Teclado',
             'mouse' => 'Mouse',
             'tablet' => 'Mesa digitalizadora',
-            'touch' => 'Tela sensível ao toque',
+            'touch' => 'Tela sensível ao toque'
         ],
         'missingtext' => 'Você pode ter cometido um erro de digitação! (ou o usuário pode ter sido banido)',
         'page_description' => 'osu! — Tudo o que você sempre quis saber sobre :username!',
         'rank' => [
             'country' => 'Rank de país para :mode',
-            'global' => 'Rank global para :mode',
+            'global' => 'Rank global para :mode'
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão de acertos',
@@ -172,12 +167,11 @@ return [
             'replays_watched_by_others' => 'Replays assistidos por outros',
             'score_ranks' => 'Ranks de pontuação',
             'total_hits' => 'Acertos totais',
-            'total_score' => 'Pontuação total',
+            'total_score' => 'Pontuação total'
         ],
-        'title' => 'Perfil de :username',
+        'title' => 'Perfil de :username'
     ],
-
     'verify' => [
-        'title' => 'Verificação de conta',
-    ],
+        'title' => 'Verificação de conta'
+    ]
 ];

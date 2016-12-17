@@ -16,18 +16,19 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'authorizations' => [
         'update' => [
             'null_user' => 'Debes iniciar sesión para editar.',
             'system_generated' => 'No se puede editar un post generado por el sistema.',
-            'wrong_user' => 'Debes ser dueño del post para editarlo.',
-        ],
+            'wrong_user' => 'Debes ser dueño del post para editarlo.'
+        ]
     ],
     'system' => [
         'resolved' => [
             'true' => 'Marcado como resuelto por :user',
-            'false' => 'Reabierto por :user',
-        ],
-    ],
+            'false' => 'Reabierto por :user'
+        ]
+    ]
 ];

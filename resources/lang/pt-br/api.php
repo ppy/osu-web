@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -21,6 +20,6 @@
 return [
     'errors' => [
         'csrf' => 'Acesso negado',
-        'missing' => 'Não encontrado',
-    ],
+        'missing' => 'Não encontrado'
+    ]
 ];

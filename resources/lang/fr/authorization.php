@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -20,130 +19,109 @@
 
 return [
     'beatmap_discussion' => [
-                'destroy' => [
-                        'has_reply' => 'Impossible de supprimer un sujet avec des réponses',
-                ],
+        'destroy' => [
+            'has_reply' => 'Impossible de supprimer un sujet avec des réponses'
+        ],
         'nominate' => [
-            'exhausted' => 'Vous avez atteint la limite quotidienne de nomination, veuillez réesayer demain.',
+            'exhausted' => 'Vous avez atteint la limite quotidienne de nominations, veuillez réessayer demain.'
         ],
         'resolve' => [
-            // resolved ?
-            // i translated this to "watch"
-            'general_discussion' => 'La discussion générale ne peut être lu.',
-            'not_owner' => 'Uniquement le rédacteur du post et le créateur de la beatmap peut voir ce sujet.',
-        ],
+            'general_discussion' => 'La discussion générale ne peut être marquée comme résolue.',
+            'not_owner' => 'Seuls le rédacteur du post et le créateur de la beatmap peuvent voir ce sujet.'
+        ]
     ],
-
     'beatmap_discussion_post' => [
         'edit' => [
             'system_generated' => 'Un sujet posté automatiquement ne peut être édité.',
-            'not_owner' => 'Uniquement le rédacteur du post peut éditer ce post.',
-        ],
+            'not_owner' => 'Seul le rédacteur du message peut l\'éditer.'
+        ]
     ],
-
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'Accès au canal demandé non permis.',
-            ],
+                'no_access' => 'Accès au canal demandé non permis.'
+            ]
         ],
         'message' => [
             'send' => [
                 'channel' => [
                     'no_access' => 'L\'accès au canal cible est requis.',
-                    'moderated' => 'Ce canal est modéré.',
+                    'moderated' => 'Ce canal est modéré.'
                 ],
-
-                'not_allowed' => 'Vous ne pouvez pas envoyer de messages si vous êtes banni/restreint/réduit au silence.',
-            ],
-        ],
+                'not_allowed' => 'Vous ne pouvez pas envoyer de messags si vous êtes banni/restreint/réduit au silence.'
+            ]
+        ]
     ],
-
     'contest' => [
-        'voting_over' => 'Vous ne pouvez pas changer votre vote après la période de vote définie.',
+        'voting_over' => 'Vous ne pouvez pas changer votre vote après la période de vote définie.'
     ],
-
     'forum' => [
         'post' => [
             'delete' => [
-                'only_last_post' => 'Uniquement le dernier post peut être supprimé.',
+                'only_last_post' => 'Uniquement le dernier message peut être supprimé.',
                 'locked' => 'Impossible de supprimer un message sur un sujet verouillé.',
                 'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
-                'not_owner' => 'Uniquement le posteur peut supprimer.',
+                'not_owner' => 'Uniquement le rédacteur du message peut le supprimer.'
             ],
-
             'edit' => [
-                'locked' => 'Ce post est verouillé à l\'édition.',
+                'locked' => 'Ce message est verrouillé à l\'édition.',
                 'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
-                'not_owner' => 'Uniquement le posteur peut éditer le post.',
-                'topic_locked' => 'Impossible d\'éditer un post sur un sujet verouillé.',
-            ],
+                'not_owner' => 'Uniquement le rédacteur du message peut l\'éditer.',
+                'topic_locked' => 'Impossible d\'éditer un message sur un sujet verrouillé.'
+            ]
         ],
-
         'topic' => [
             'reply' => [
-                'double_post' => 'Vous venez de poster, patientez un moment ou éditez votre dernier post.',
-                'locked' => 'Impossible de répondre à un sujet verouillé.',
+                'double_post' => 'Vous venez de poster, patientez un moment ou éditez votre dernier message.',
+                'locked' => 'Impossible de répondre à un sujet verrouillé.',
                 'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
-                'no_permission' => 'Pas de permission de répondre.',
-
+                'no_permission' => 'Impossible de poster une réponse : permission refusée.',
                 'user' => [
-                    'require_login' => 'Merci de vous connecter pour répondre.',
-                    'restricted' => 'Impossible de répondre : Vous êtes restreint.',
-                    'silenced' => 'Impossible de répondre : Vous êtes réduit au silence.',
-                ],
+                    'require_login' => 'Merci de bien vouloir vous connecter pour pouvoir répondre.',
+                    'restricted' => 'Impossible de répondre : votre compte est restreint.',
+                    'silenced' => 'Impossible de répondre : vous avez été réduit au silence.'
+                ]
             ],
-
             'store' => [
                 'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
-                'no_permission' => 'Vous ne pouvez pas créer un sujet.',
-                'forum_closed' => 'Ce forum est fermé et vous ne pouvez pas poster.',
+                'no_permission' => 'Vous n\'avez pas la permission de créer un sujet.',
+                'forum_closed' => 'Ce forum est verrouiller. Vous ne pouvez plus y poster de nouveaux sujets de discussion.'
             ],
-
             'vote' => [
                 'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
-                'over' => 'Le vote est fini et vous ne pouvez pas voter',
+                'over' => 'La période de vote est terminée. Vous ne pouvez plus voter.',
                 'voted' => 'Le changement de vote n\'est pas permis.',
-
                 'user' => [
                     'require_login' => 'Connectez-vous pour voter.',
-                    'restricted' => 'Impossible de voter : vous êtes restreint.',
-                    'silenced' => 'Impossible de voter : vous êtes réduit au silence.',
-                ],
+                    'restricted' => 'Impossible de voter : votre compte est restreint.',
+                    'silenced' => 'Impossible de voter : vous êtes réduit au silence.'
+                ]
             ],
-
             'watch' => [
-                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
-            ],
+                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.'
+            ]
         ],
-
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Bannière invalide spécifiée.',
-                'not_owner' => 'Uniquement le propriétaire peut éditer la bannière.',
-            ],
+                'uneditable' => 'Bannière invalide.',
+                'not_owner' => 'Uniquement le propriétaire peut éditer la bannière.'
+            ]
         ],
-
         'view' => [
-            'admin_only' => 'Uniquement un admin peut voir ce forum.',
-        ],
+            'admin_only' => 'Uniquement un administrateur peut voir ce forum.'
+        ]
     ],
-
     'require_login' => 'Merci de vous connecter pour continuer.',
-
     'unauthorized' => 'Accès refusé.',
-
-    'silenced' => 'Impossible : vous êtes restreint.',
-
+    'silenced' => 'Impossible : votre compte est restreint.',
     'restricted' => 'Impossible : vous êtes réduit au silence.',
-
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'La page utilisateur est verouillé.',
+                'locked' => 'La page utilisateur est verrouillé.',
                 'not_owner' => 'Vous pouvez seulement éditer votre page.',
-                'require_supporter_tag' => 'Cette fonction est reservée aux osu!supporter.',
-            ],
-        ],
-    ],
+                'require_supporter_tag' => 'Cette fonction est reservée aux osu!supporter.'
+            ]
+        ]
+    ]
 ];

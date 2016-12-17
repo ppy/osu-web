@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -15,10 +14,10 @@
  *    See the GNU Affero General Public License for more details.
  *
  *    You should have received a copy of the GNU Affero General Public License
- *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>. */
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 return [
-
     'beatmapsets' => [
         'show' => [
             'discussion' => [
@@ -26,59 +25,48 @@ return [
                 'activate' => 'aktywuj',
                 'activate_confirm' => 'aktywować modowanie v2 dla tej beatmapy?',
                 'active' => 'aktywne',
-                'inactive' => 'nieaktywne',
-            ],
-        ],
+                'inactive' => 'nieaktywne'
+            ]
+        ]
     ],
-
     'forum' => [
         'forum-covers' => [
             'index' => [
                 'delete' => 'Usuń',
-
                 'forum-name' => 'Forum #:id: :name',
-
                 'no-cover' => 'Nie ustawiono nagłówka',
-
                 'submit' => [
                     'save' => 'Zapisz',
-                    'update' => 'Aktualizuj',
+                    'update' => 'Aktualizuj'
                 ],
-
                 'title' => 'Lista nagłówków forum',
-
                 'type-title' => [
                     'default-topic' => 'Domyślny nagłówek tematu',
-                    'main' => 'Nagłówek forum',
-                ],
-            ],
-        ],
+                    'main' => 'Nagłówek forum'
+                ]
+            ]
+        ]
     ],
-
     'logs' => [
         'index' => [
-            'title' => 'Podgląd logów',
-        ],
+            'title' => 'Podgląd logów'
+        ]
     ],
-
     'pages' => [
         'root' => [
             'title' => 'Konsola administratora',
-
             'sections' => [
                 'forum' => 'Forum',
                 'general' => 'Ogólne',
-                'store' => 'Sklep',
-            ],
-        ],
+                'store' => 'Sklep'
+            ]
+        ]
     ],
-
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Koszyk',
-            ],
-        ],
-    ],
-
+                'title' => 'Koszyk'
+            ]
+        ]
+    ]
 ];

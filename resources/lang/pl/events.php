@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -30,5 +29,5 @@ return [
     'user_support_again' => '<strong>:user</strong> zdecydował się wspomóc osu! ponownie - dziękujemy za szczodrość!',
     'user_support_first' => '<strong>:user</strong> został supporterem - dziękujemy za szczodrość!',
     'user_support_gift' => '<strong>:user</strong> otrzymał prezent w postaci supportera!',
-    'username_change' => '<strong>:previousUsername</strong> zmienił swój nick na <strong><em>:user</strong></em>!',
+    'username_change' => '<strong>:previousUsername</strong> zmienił swój nick na <strong><em>:user</strong></em>!'
 ];

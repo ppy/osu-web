@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -19,67 +18,55 @@
  */
 
 return [
-
     'beatmapsets' => [
         'show' => [
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'activer',
-                'activate_confirm' => 'activer le modding v2 pour cette beatmap?',
+                'activate_confirm' => 'activer Modding v2 pour cette beatmap ?',
                 'active' => 'actif',
-                'inactive' => 'inactif',
-            ],
-        ],
+                'inactive' => 'inactif'
+            ]
+        ]
     ],
-
     'forum' => [
         'forum-covers' => [
             'index' => [
                 'delete' => 'Supprimer',
-
                 'forum-name' => 'Forum #:id: :name',
-
                 'no-cover' => 'Pas de bannière définie',
-
                 'submit' => [
                     'save' => 'Sauvegarder',
-                    'update' => 'Modifier',
+                    'update' => 'Modifier'
                 ],
-
                 'title' => 'Liste des bannières forum',
-
                 'type-title' => [
-                    'default-topic' => 'Bannière forum par défaut',
-                    'main' => 'Bannière du forum',
-                ],
-            ],
-        ],
+                    'default-topic' => 'Bannière topic par défaut',
+                    'main' => 'Bannière du forum'
+                ]
+            ]
+        ]
     ],
-
     'logs' => [
         'index' => [
-            'title' => 'Visionneur de logs',
-        ],
+            'title' => 'Visionneuse de logs'
+        ]
     ],
-
     'pages' => [
         'root' => [
-            'title' => 'Trucs de console Admin',
-
+            'title' => 'Console d\'administration',
             'sections' => [
                 'forum' => 'Forum',
-                'general' => 'Géneral',
-                'store' => 'Magasin',
-            ],
-        ],
+                'general' => 'Général',
+                'store' => 'Magasin'
+            ]
+        ]
     ],
-
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Liste des commandes',
-            ],
-        ],
-    ],
-
+                'title' => 'Liste des commandes'
+            ]
+        ]
+    ]
 ];

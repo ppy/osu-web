@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -20,27 +19,23 @@
 
 return [
     'required' => ':attribute é obrigatório.',
-
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Só é possível votar em uma solicitação de recurso.',
-            'not_enough_feature_votes' => 'Sem votos suficientes.',
+            'not_enough_feature_votes' => 'Sem votos suficientes.'
         ],
-
         'poll_vote' => [
-            'invalid' => 'Opção inválida especificada.',
+            'invalid' => 'Opção inválida especificada.'
         ],
-
         'topic_poll' => [
             'duplicate_options' => 'Opção duplicada não é permitida.',
             'invalid_max_options' => 'Opção por usuário não pode exceder o número de opções disponíveis.',
             'minimum_one_selection' => 'Um mínimo de uma opção por usuário é necessária.',
             'minimum_two' => 'Precisa de pelo menos duas opções.',
-            'too_many_options' => 'Excedeu o número máximo de opções permitidas.',
+            'too_many_options' => 'Excedeu o número máximo de opções permitidas.'
         ],
-
         'topic_vote' => [
-            'too_many' => 'Selecionou mais opções do que o permitido.',
-        ],
-    ],
+            'too_many' => 'Selecionou mais opções do que o permitido.'
+        ]
+    ]
 ];

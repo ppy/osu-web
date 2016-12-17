@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -23,14 +22,13 @@ return [
         'update' => [
             'null_user' => 'Você precisa iniciar a sessão para editar.',
             'system_generated' => 'Publicações gerados pelo sistema não podem ser editadas.',
-            'wrong_user' => 'Você deve ser o autor da publicação para editá-la.',
-        ],
+            'wrong_user' => 'Você deve ser o autor da publicação para editá-la.'
+        ]
     ],
-
     'system' => [
         'resolved' => [
             'true' => 'Marcado como resolvido por :user',
-            'false' => 'Reaberta por :user',
-        ],
-    ],
+            'false' => 'Reaberta por :user'
+        ]
+    ]
 ];

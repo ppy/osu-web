@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -25,24 +24,21 @@ return [
             'head-to-head' => 'Chacun pour soi',
             'tag-coop' => 'Tag en coopération',
             'team-vs' => 'Équipes en versus',
-            'tag-team-vs' => 'Tag en versus d\'équipe',
+            'tag-team-vs' => 'Tag en versus d\'équipe'
         ],
         'events' => [
             'player-left' => ':user a quitté le match',
             'player-joined' => ':user a rejoint le match',
             'player-kicked' => ':user a été exclu du match',
             'match-created' => ':user a créé le match',
-            // the ":the" var ?
-            // Original : ':the match was disbanded'
             'match-disbanded' => ':user a dissous le match',
             'host-changed' => ':user a pris le contrôle de la salle',
-
             'player-left-no-user' => 'un joueur a quitté le match',
             'player-joined-no-user' => 'un joueur a rejoint le match',
             'player-kicked-no-user' => 'un joueur a été exclu du match',
             'match-created-no-user' => 'le match a été créé',
             'match-disbanded-no-user' => 'le match a été dissous',
-            'host-changed-no-user' => 'l\'hôte a été changé',
+            'host-changed-no-user' => 'l\'hôte a été changé'
         ],
         'in-progress' => '(match en cours)',
         'score' => [
@@ -55,26 +51,26 @@ return [
                 'countkatu' => '200s',
                 'count100' => '100s',
                 'count50' => '50s',
-                'countmiss' => 'Raté',
-            ],
+                'countmiss' => 'Raté'
+            ]
         ],
         'failed' => 'Échec',
         'teams' => [
             'blue' => 'Équipe bleue',
-            'red' => 'Équipe rouge',
+            'red' => 'Équipe rouge'
         ],
         'winner' => ':team gagne',
         'difference' => 'par :difference',
         'loading-events' => 'Chargement des évènements...',
         'more-events' => 'voir tout...',
-        'beatmap-deleted' => 'beatmap supprimée',
+        'beatmap-deleted' => 'beatmap supprimée'
     ],
     'game' => [
         'scoring-type' => [
             'score' => 'Score le plus haut',
             'accuracy' => 'Précision la plus haute',
             'combo' => 'Combo le plus haut',
-            'scorev2' => 'Score V2',
-        ],
-    ],
+            'scorev2' => 'Score V2'
+        ]
+    ]
 ];

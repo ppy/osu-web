@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -21,7 +20,6 @@
 return [
     'confirmation' => 'Are you sure?',
     'saved' => 'Saved',
-
     'buttons' => [
         'cancel' => 'Cancel',
         'delete' => 'Delete',
@@ -30,30 +28,25 @@ return [
         'reset' => 'Reset',
         'save' => 'Save',
         'show_more' => 'show more',
-        'upload_image' => 'upload image',
+        'upload_image' => 'upload image'
     ],
-
     'count' => [
-        'item' => ':count unit|:count units',
+        'item' => ':count unit|:count units'
     ],
-
     'dropzone' => [
-        'target' => 'drop here to upload',
+        'target' => 'drop here to upload'
     ],
-
     'pagination' => [
         'previous' => 'prev',
-        'next' => 'next',
+        'next' => 'next'
     ],
-
     'time' => [
         'days_ago' => ':count day ago|:count days ago',
         'hours_ago' => ':count hour ago|:count hours ago',
         'now' => 'now',
-        'remaining' => 'Time Remaining',
+        'remaining' => 'Time Remaining'
     ],
-
     'title' => [
-        'notice' => 'Notice',
-    ],
+        'notice' => 'Notice'
+    ]
 ];

@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -21,48 +20,43 @@
 return [
     'header' => [
         'title' => 'statut',
-        'description' => 'qu\'est ce qui se passe mec ?',
+        'description' => 'qu\'est ce qui se passe mec ?'
     ],
-
     'incidents' => [
         'title' => 'Incidents actifs',
-        'automated' => 'automatique',
+        'automated' => 'automatique'
     ],
-
     'online' => [
         'title' => [
             'users' => 'Utilisateurs en ligne dans les dernières 24h',
-            'score' => 'Envois de score dans les dernières 24h',
+            'score' => 'Envois de score dans les dernières 24h'
         ],
         'current' => 'Utilisateurs en ligne',
-        'score' => 'Envois de score par secondes',
+        'score' => 'Envois de score par secondes'
     ],
-
     'recent' => [
         'incidents' => [
             'title' => 'Incidents récents',
             'state' => [
                 'resolved' => 'Résolu',
                 'resolving' => 'Résolution',
-                'unknown' => 'Inconnu',
-            ],
+                'unknown' => 'Inconnu'
+            ]
         ],
-
         'uptime' => [
             'title' => 'Temps d\'up',
             'graphs' => [
                 'server' => 'serveur',
-                'web' => 'web',
-            ],
+                'web' => 'web'
+            ]
         ],
-
         'when' => [
             'today' => 'aujourd\'hui',
             'week' => 'semaine',
             'month' => 'mois',
             'all_time' => 'tout le temps',
             'last_week' => 'dernière semaine',
-            'weeks_ago' => 'il y a :count semaine|il y a :count semaines',
-        ],
-    ],
+            'weeks_ago' => 'il y a :count semaine|il y a :count semaines'
+        ]
+    ]
 ];

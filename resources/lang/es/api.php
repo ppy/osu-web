@@ -16,9 +16,10 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'errors' => [
         'csrf' => 'Acceso denegado',
-        'missing' => 'No encontrado',
-    ],
+        'missing' => 'No encontrado'
+    ]
 ];

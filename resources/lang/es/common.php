@@ -16,6 +16,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'buttons' => [
         'cancel' => 'Cancelar',
@@ -23,29 +24,24 @@ return [
         'reply' => 'Responder',
         'reset' => 'Resetear',
         'save' => 'Guardar',
-        'show_more' => 'mostrar más',
+        'show_more' => 'mostrar más'
     ],
-
     'count' => [
-        'item' => ':count unidad|:count unidades',
+        'item' => ':count unidad|:count unidades'
     ],
-
     'dropzone' => [
-        'target' => 'suelta aquí para cargar',
+        'target' => 'suelta aquí para cargar'
     ],
-
     'pagination' => [
         'previous' => 'anterior',
-        'next' => 'siguiente',
+        'next' => 'siguiente'
     ],
-
     'time' => [
         'days_ago' => 'hace :count día|hace :count días',
         'hours_ago' => 'hace :count hora|hace :count horas',
-        'now' => 'ahora',
+        'now' => 'ahora'
     ],
-
     'title' => [
-        'notice' => 'Aviso',
-    ],
+        'notice' => 'Aviso'
+    ]
 ];

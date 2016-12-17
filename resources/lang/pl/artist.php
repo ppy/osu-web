@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -20,6 +19,6 @@
 
 return [
     'songs' => [
-        'count' => '1 song|:count songs|:count songs',
-    ],
+        'count' => '1 song|:count songs|:count songs'
+    ]
 ];

@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -20,36 +19,33 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Le rythme est seulement à un seul *clic*!  Avec Ouendan/EBA, Taiko et les modes originaux de gameplay, avec un éditeur de niveau complet.',
+        'page_description' => 'osu! - Le rythme est seulement à un seul *clic*!  Avec Ouendan/EBA, Taiko et les modes originaux de gameplay, avec un éditeur de niveau complet.'
     ],
-
     'menu' => [
         'home' => [
-            '_' => 'accueil',
-                        'index' => 'osu!',
+            '_' => 'acceuil',
+            'index' => 'osu!',
             'getChangelog' => 'notes de MàJ',
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
             'getNews' => 'nouvelles',
-            'supportTheGame' => 'supporter le jeu',
+            'supportTheGame' => 'supporter le jeu'
         ],
         'help' => [
             '_' => 'aide',
             'getWiki' => 'wiki',
             'getFaq' => 'faq',
-            'getSupport' => 'support',
+            'getSupport' => 'support'
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
             'show' => 'info',
             'index' => 'liste',
-            'artists' => 'artistes plébiscités',
-            // 'getPacks' => 'packs',
-            // 'getCharts' => 'graphiques',
+            'artists' => 'artistes plébiscités'
         ],
         'beatmapsets' => [
             '_' => 'sets de beatmap',
-            'discussion' => 'modding',
+            'discussion' => 'modding'
         ],
         'ranking' => [
             '_' => 'classement',
@@ -57,7 +53,7 @@ return [
             'getCountry' => 'national',
             'getCharts' => 'graphiques',
             'getMapper' => 'mappeur',
-            'index' => 'général',
+            'index' => 'général'
         ],
         'community' => [
             '_' => 'communauté',
@@ -75,70 +71,65 @@ return [
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
-            'forum-forums-show' => 'forum',
+            'forum-forums-show' => 'forum'
         ],
         'multiplayer' => [
             '_' => 'multijoueur',
-            'show' => 'match',
+            'show' => 'match'
         ],
         'error' => [
             '_' => 'erreur',
-            '404' => 'manquant',
-            '403' => 'interdit',
-            '401' => 'non autorisé',
-            '405' => 'manquant',
-            '500' => 'quelquechose est cassé',
-            '503' => 'maintenance',
+            404 => 'manquant',
+            403 => 'interdit',
+            401 => 'non autorisé',
+            405 => 'manquant',
+            500 => 'quelquechose est cassé',
+            503 => 'maintenance'
         ],
         'user' => [
             '_' => 'utilisateur',
             'getLogin' => 'se connecter',
             'disabled' => 'désactivé',
-
             'register' => 's\'inscrire',
             'reset' => 'récupérer',
             'new' => 'nouveau',
-
             'messages' => 'Messages',
             'settings' => 'Paramètres',
             'logout' => 'Se déconnecter',
-            'help' => 'Aide',
+            'help' => 'Aide'
         ],
         'store' => [
-            '_' => 'Magasin',
+            '_' => 'magasin',
             'getListing' => 'liste',
             'getCart' => 'panier',
-
             'getCheckout' => 'acheter',
             'getInvoice' => 'facture',
             'getProduct' => 'produit',
-
             'new' => 'nouveau',
             'home' => 'accueil',
             'index' => 'accueil',
-            'thanks' => 'merci',
+            'thanks' => 'merci'
         ],
         'admin-forum' => [
             '_' => 'admin::forum',
-            'forum-covers-index' => 'bannières de forum',
+            'forum-covers-index' => 'bannières de forum'
         ],
         'admin-store' => [
             '_' => 'admin::store',
             'orders-index' => 'Commandes',
-            'orders-show' => 'Commande',
+            'orders-show' => 'Commande'
         ],
         'admin' => [
             '_' => 'admin',
-                        'root' => 'index',
+            'root' => 'index',
             'logs-index' => 'log',
             'beatmapsets' => [
                 '_' => 'sets de beatmaps',
                 'covers' => 'bannières',
-                'show' => 'détail',
-            ],
-        ],
+                'show' => 'détail'
+            ]
+        ]
     ],
-
     'footer' => [
         'general' => [
             '_' => 'Général',
@@ -146,95 +137,89 @@ return [
             'changelog' => 'Notes de MàJ',
             'beatmaps' => 'Liste des beatmaps',
             'download' => 'Télécharger osu!',
-            'wiki' => 'Wiki',
+            'wiki' => 'Wiki'
         ],
         'help' => [
             '_' => 'Aide & Communauté',
             'faq' => 'Foire aux Questions',
             'forum' => 'Forums',
             'livestreams' => 'Streams en direct',
-            'report' => 'Signaler une erreur',
+            'report' => 'Signaler une erreur'
         ],
         'support' => [
             '_' => 'Supporter osu!',
             'tags' => 'Tags de Supporter',
-            'merchandise' => 'Marchandise',
+            'merchandise' => 'Marchandise'
         ],
         'legal' => [
             '_' => 'Statut & Légal',
             'tos' => 'Conditions du service',
             'copyright' => 'Copyright (DMCA)',
             'serverStatus' => 'Statut du serveur',
-            'osuStatus' => '@osustatus',
-        ],
+            'osuStatus' => '@osustatus'
+        ]
     ],
-
     'errors' => [
-        '404' => [
+        404 => [
             'error' => 'Page manquante',
-            'description' => "Désolé, mais la page demandée n'est pas ici!",
-            'link' => false,
+            'description' => 'Désolé, mais la page demandée n\'est pas ici!',
+            'link' => ''
         ],
-        '403' => [
+        403 => [
             'error' => 'Vous ne devriez pas être ici',
             'description' => 'Vous pouvez essayer de revenir en arrière.',
-            'link' => false,
+            'link' => ''
         ],
-        '401' => [
+        401 => [
             'error' => 'Vous ne devriez pas être ici',
             'description' => 'Vous pouvez essayer de revenir en arrière. Ou peut-être vous connecter.',
-            'link' => false,
+            'link' => ''
         ],
-        '405' => [
+        405 => [
             'error' => 'Page manquante',
-            'description' => "Désolé, mais la page demandée n'est pas ici!",
-            'link' => false,
+            'description' => 'Désolé, mais la page demandée n\'est pas ici!',
+            'link' => ''
         ],
-        '500' => [
+        500 => [
             'error' => 'Oh non! Quelquechose a cassé! ;_;',
             'description' => 'Nous avons été notifié automatiquement de cette erreur.',
-            'link' => false,
+            'link' => ''
         ],
         'fatal' => [
             'error' => 'Oh non! Quelquechose a cassé! (gravement) ;_;',
             'description' => 'Nous avons été notifié automatiquement de cette erreur.',
-            'link' => false,
+            'link' => ''
         ],
-        '503' => [
+        503 => [
             'error' => 'Maitenance en cours!',
-            'description' => "Les maitenances prennent en général 5 à 10 minutes. Si c'est plus long, regardez :link pour plus d'informations.",
+            'description' => 'Les maitenances prennent en général 5 à 10 minutes. Si c\'est plus long, regardez :link pour plus d\'informations.',
             'link' => [
                 'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
-            ],
+                'href' => 'https://twitter.com/osustatus'
+            ]
         ],
-        // used by sentry if it returns an error
-        'reference' => 'Juste au cas où, voici un code que vous pourrez retourner au support!',
+        'reference' => 'Juste au cas où, voici un code que vous pourrez retourner au support!'
     ],
-
     'popup_login' => [
         'login' => [
             'email' => 'adresse e-mail',
-            'forgot' => "J'ai oublié mes détails de connexion",
+            'forgot' => 'J\'ai oublié mes détails de connexion',
             'password' => 'mot de passe',
             'title' => 'Se connecter pour continuer',
-
             'error' => [
-                'email' => "Le nom d'utilisateur ou l'e-mail ne correspond pas",
-                'password' => 'Mot de passe incorrect',
-            ],
+                'email' => 'Le nom d\'utilisateur ou l\'e-mail ne correspond pas',
+                'password' => 'Mot de passe incorrect'
+            ]
         ],
-
         'register' => [
-            'info' => "Vous avez besoin d'un compte, monsieur. Pourquoi vous en avez pas?",
-            'title' => "Vous n'avez pas de compte?",
-        ],
+            'info' => 'Vous avez besoin d\'un compte, monsieur. Pourquoi vous en avez pas?',
+            'title' => 'Vous n\'avez pas de compte?'
+        ]
     ],
-
     'popup_user' => [
         'links' => [
             'profile' => 'Mon profil',
-            'logout' => 'Se déconnecter',
-        ],
-    ],
+            'logout' => 'Se déconnecter'
+        ]
+    ]
 ];

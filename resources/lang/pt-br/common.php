@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015 ppy Pty. Ltd.
  *
@@ -20,7 +19,6 @@
 
 return [
     'confirmation' => 'Tem certeza?',
-
     'buttons' => [
         'cancel' => 'Cancelar',
         'delete' => 'Excluir',
@@ -28,29 +26,24 @@ return [
         'reply' => 'Responder',
         'reset' => 'Limpar',
         'save' => 'Salvar',
-        'show_more' => 'exibir mais',
+        'show_more' => 'exibir mais'
     ],
-
     'count' => [
-        'item' => ':count unidade|:count unidades',
+        'item' => ':count unidade|:count unidades'
     ],
-
     'dropzone' => [
-        'target' => 'solte aqui para enviar',
+        'target' => 'solte aqui para enviar'
     ],
-
     'pagination' => [
         'previous' => 'anterior',
-        'next' => 'próxima',
+        'next' => 'próxima'
     ],
-
     'time' => [
         'days_ago' => ':count dia atrás|:count dias atrás',
         'hours_ago' => ':count hora atrás|:count horas atrás',
-        'now' => 'agora',
+        'now' => 'agora'
     ],
-
     'title' => [
-        'notice' => 'Aviso',
-    ],
+        'notice' => 'Aviso'
+    ]
 ];
