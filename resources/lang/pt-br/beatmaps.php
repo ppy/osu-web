@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -20,13 +20,13 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Falha ao salvar publicação',
-        ],
+            'error' => 'Falha ao salvar publicação'
+        ]
     ],
     'discussion-votes' => [
         'update' => [
-            'error' => 'Falha ao atualizar votos',
-        ],
+            'error' => 'Falha ao atualizar votos'
+        ]
     ],
     'discussions' => [
         'edit' => 'editar',
@@ -39,39 +39,39 @@ return [
         'title' => 'Discussões',
         'collapse' => [
             'all-collapse' => 'Recolher todas',
-            'all-expand' => 'Expandir todas',
+            'all-expand' => 'Expandir todas'
         ],
         'empty' => [
             'empty' => 'Nenhuma discussão ainda!',
-            'hidden' => 'Nenhuma discussão corresponde ao filtro selecionado.',
+            'hidden' => 'Nenhuma discussão corresponde ao filtro selecionado.'
         ],
         'message_hint' => [
             'in_general' => 'Esta publicação irá para discussão geral de beatmaps. Para modificar este beatmap, inicie a mensagem com o timestamp (ex: 00:12:345).',
-            'in_timeline' => 'Para modificar vários timestamps, publique várias vezes (uma publicação por timestamp).',
+            'in_timeline' => 'Para modificar vários timestamps, publique várias vezes (uma publicação por timestamp).'
         ],
         'message_type' => [
             'praise' => 'Elogiar',
             'problem' => 'Problema',
-            'suggestion' => 'Sugestão',
+            'suggestion' => 'Sugestão'
         ],
         'mode' => [
             'general' => 'Geral',
-            'timeline' => 'Linha do tempo',
+            'timeline' => 'Linha do tempo'
         ],
         'new' => [
             'timestamp' => 'Timestamp',
-            'title' => 'Nova discussão',
+            'title' => 'Nova discussão'
         ],
         'show' => [
-            'title' => ':title mapeado por :mapper',
+            'title' => ':title mapeado por :mapper'
         ],
         'stats' => [
             'mine' => 'Meu',
             'pending' => 'Pendentes',
             'praises' => 'Elogios',
             'resolved' => 'Resolvidos',
-            'total' => 'Total',
-        ],
+            'total' => 'Total'
+        ]
     ],
     'nominations' => [
         'disqualifed-at' => 'desqualificado :time_ago (:reason).',
@@ -84,20 +84,20 @@ return [
         'qualified' => 'Estimado para ser ranqueado em :date, caso nenhum problema for encontrado.',
         'qualified-soon' => 'Estimado para ser ranqueado em breve, caso nenhum problema for encontrado.',
         'required-text' => 'Nomeações: :current/:required',
-        'title' => 'Estado da nomeação',
+        'title' => 'Estado da nomeação'
     ],
     'listing' => [
         'search' => [
             'prompt' => 'digite palavras-chave...',
             'options' => 'Mais opções de busca',
             'not-found' => 'sem resultados',
-            'not-found-quote' => '... não, nada encontrado.',
+            'not-found-quote' => '... não, nada encontrado.'
         ],
         'mode' => 'Modo',
         'status' => 'Status de rank',
         'mapped-by' => 'mapeado por :mapper',
         'source' => 'de :source',
-        'load-more' => 'Carregar mais...',
+        'load-more' => 'Carregar mais...'
     ],
     'beatmapset' => [
         'show' => [
@@ -110,8 +110,8 @@ return [
                     '_' => 'baixar',
                     'video' => 'com vídeo',
                     'no-video' => 'sem vídeo',
-                    'direct' => 'osu!direct',
-                ],
+                    'direct' => 'osu!direct'
+                ]
             ],
             'stats' => [
                 'cs' => 'Tamanho do círculo',
@@ -125,14 +125,14 @@ return [
                 'count_circles' => 'Quantidade de círculos',
                 'count_sliders' => 'Quantidade de sliders',
                 'user-rating' => 'Avaliação de usuários',
-                'rating-spread' => 'Gráfico de avaliações',
+                'rating-spread' => 'Gráfico de avaliações'
             ],
             'info' => [
                 'success-rate' => 'Taxa de sucesso',
                 'points-of-failure' => 'Pontos de falha',
                 'description' => 'Descrição',
                 'source' => 'Fonte',
-                'tags' => 'Marcadores',
+                'tags' => 'Marcadores'
             ],
             'scoreboard' => [
                 'title' => 'Placar',
@@ -140,7 +140,7 @@ return [
                     'global' => 'Sem pontuações ainda. Talvez você deveria fazer algumas?',
                     'loading' => 'Carregando pontuações...',
                     'country' => 'Ninguém do seu país fez uma pontuação neste mapa ainda!',
-                    'friend' => 'Nenhum dos seus amigos fez uma pontuação neste mapa ainda!',
+                    'friend' => 'Nenhum dos seus amigos fez uma pontuação neste mapa ainda!'
                 ],
                 'supporter-only' => 'Você precisa de uma supporter tag para acessar rankings de amigos e de país!',
                 'supporter-link' => 'Clique <a href=":link">aqui</a> para ver todas as novas funções às quais você ganha acesso!',
@@ -155,23 +155,23 @@ return [
                     'count300' => '300',
                     'countkatu' => '200',
                     'count100' => '100',
-                    'count50' => '50',
+                    'count50' => '50'
                 ],
                 'list' => [
                     'rank-header' => 'Rank',
                     'player-header' => 'Jogador',
                     'score' => 'Pontuação',
-                    'accuracy' => 'Precisão',
-                ],
-            ],
-        ],
+                    'accuracy' => 'Precisão'
+                ]
+            ]
+        ]
     ],
     'mode' => [
         'any' => 'Qualquer',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
         'fruits' => 'osu!catch',
-        'mania' => 'osu!mania',
+        'mania' => 'osu!mania'
     ],
     'status' => [
         'any' => 'Qualquer',
@@ -181,7 +181,7 @@ return [
         'modreqs' => 'Pedidos de mod',
         'pending' => 'Pendentes',
         'graveyard' => 'Cemitério',
-        'my-maps' => 'Meus mapas',
+        'my-maps' => 'Meus mapas'
     ],
     'genre' => [
         'any' => 'Qualquer',
@@ -193,7 +193,7 @@ return [
         'other' => 'Outros',
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
-        'electronic' => 'Eletrônica',
+        'electronic' => 'Eletrônica'
     ],
     'mods' => [
         'NF' => 'No Fail',
@@ -216,7 +216,7 @@ return [
         '8K' => '8K',
         'FI' => 'Fade In',
         '9K' => '9K',
-        'NM' => 'Sem mods',
+        'NM' => 'Sem mods'
     ],
     'language' => [
         'any' => 'Qualquer',
@@ -230,11 +230,11 @@ return [
         'spanish' => 'Espanhol',
         'swedish' => 'Sueco',
         'instrumental' => 'Instrumental',
-        'other' => 'Outros',
+        'other' => 'Outros'
     ],
     'extra' => [
         'video' => 'Tem vídeo',
-        'storyboard' => 'Tem storyboard',
+        'storyboard' => 'Tem storyboard'
     ],
     'rank' => [
         'any' => 'Qualquer',
@@ -245,6 +245,6 @@ return [
         'A' => 'A',
         'B' => 'B',
         'C' => 'C',
-        'D' => 'D',
-    ],
+        'D' => 'D'
+    ]
 ];

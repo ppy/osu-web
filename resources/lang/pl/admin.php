@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -25,9 +25,9 @@ return [
                 'activate' => 'aktywuj',
                 'activate_confirm' => 'aktywować modowanie v2 dla tej beatmapy?',
                 'active' => 'aktywne',
-                'inactive' => 'nieaktywne',
-            ],
-        ],
+                'inactive' => 'nieaktywne'
+            ]
+        ]
     ],
     'forum' => [
         'forum-covers' => [
@@ -37,20 +37,20 @@ return [
                 'no-cover' => 'Nie ustawiono nagłówka',
                 'submit' => [
                     'save' => 'Zapisz',
-                    'update' => 'Aktualizuj',
+                    'update' => 'Aktualizuj'
                 ],
                 'title' => 'Lista nagłówków forum',
                 'type-title' => [
                     'default-topic' => 'Domyślny nagłówek tematu',
-                    'main' => 'Nagłówek forum',
-                ],
-            ],
-        ],
+                    'main' => 'Nagłówek forum'
+                ]
+            ]
+        ]
     ],
     'logs' => [
         'index' => [
-            'title' => 'Podgląd logów',
-        ],
+            'title' => 'Podgląd logów'
+        ]
     ],
     'pages' => [
         'root' => [
@@ -58,15 +58,15 @@ return [
             'sections' => [
                 'forum' => 'Forum',
                 'general' => 'Ogólne',
-                'store' => 'Sklep',
-            ],
-        ],
+                'store' => 'Sklep'
+            ]
+        ]
     ],
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Koszyk',
-            ],
-        ],
-    ],
+                'title' => 'Koszyk'
+            ]
+        ]
+    ]
 ];

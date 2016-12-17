@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -20,19 +20,19 @@
 return [
     'header' => [
         'title' => 'status',
-        'description' => 'co się dzieje?',
+        'description' => 'co się dzieje?'
     ],
     'incidents' => [
         'title' => 'Obecne problemy',
-        'automated' => 'zautomatyzowane',
+        'automated' => 'zautomatyzowane'
     ],
     'online' => [
         'title' => [
             'users' => 'Ilość online graczy w ciągu ostatnich 24 godzin',
-            'score' => 'Ilość ustanowionych wyników w ciągu ostatnich 24 godzin',
+            'score' => 'Ilość ustanowionych wyników w ciągu ostatnich 24 godzin'
         ],
         'current' => 'Obecnie online',
-        'score' => 'Ilość ustanowianych wyników na sekundę',
+        'score' => 'Ilość ustanowianych wyników na sekundę'
     ],
     'recent' => [
         'incidents' => [
@@ -40,15 +40,15 @@ return [
             'state' => [
                 'resolved' => 'Rozwiązane',
                 'resolving' => 'W trakcie rozwiązywania',
-                'unknown' => 'Nieznane',
-            ],
+                'unknown' => 'Nieznane'
+            ]
         ],
         'uptime' => [
             'title' => 'Niezawodność',
             'graphs' => [
                 'server' => 'serwer',
-                'web' => 'strona',
-            ],
+                'web' => 'strona'
+            ]
         ],
         'when' => [
             'today' => 'dzisiaj',
@@ -56,7 +56,7 @@ return [
             'month' => 'miesiąc',
             'all_time' => 'od zawsze',
             'last_week' => 'ostatni tydzień',
-            'weeks_ago' => '{1} tydzień temu|[2,4] :count tygodnie temu|[5,Inf] :count tygodni temu',
-        ],
-    ],
+            'weeks_ago' => '{1} tydzień temu|[2,4] :count tygodnie temu|[5,Inf] :count tygodni temu'
+        ]
+    ]
 ];

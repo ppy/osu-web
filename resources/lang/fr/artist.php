@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -23,17 +23,17 @@ return [
     'beatmaps' => [
         '_' => 'Beatmaps',
         'download' => 'Télécharger une beatmap modèle',
-        'download-na' => 'Beatmap modèle non disponible',
+        'download-na' => 'Beatmap modèle non disponible'
     ],
     'links' => [
-        'site' => 'Site officiel',
+        'site' => 'Site officiel'
     ],
     'songs' => [
         'count' => '1 morceau|:count morceaux',
         'exclusive' => 'Exclusivité osu!',
-        '_' => 'Morceaux',
+        '_' => 'Morceaux'
     ],
     'index' => [
-        'description' => 'Les artistes vedettes sont des artistes travaillant en collaboration avec nous dans le but d\'apporter sur osu! un contenu musical nouveau et original. Ces artistes et un assortiment de leurs morceaux ont été minutieusement sélectionnés pour leur qualité ainsi que leur capacité à exploiter au maximum les mécanismes du jeu. Certains de ces artistes ont composé de nouveaux titres tout spécialement pour osu!.<br><br>Les morceaux présents dans cette section sont disponibles en fichiers .osz prêts à l\'emploi et ont été officiellement mis sous licence pour leur utilisation sur osu! et tout autre contenu relatif à osu!.',
-    ],
+        'description' => 'Les artistes vedettes sont des artistes travaillant en collaboration avec nous dans le but d\'apporter sur osu! un contenu musical nouveau et original. Ces artistes et un assortiment de leurs morceaux ont été minutieusement sélectionnés pour leur qualité ainsi que leur capacité à exploiter au maximum les mécanismes du jeu. Certains de ces artistes ont composé de nouveaux titres tout spécialement pour osu!.<br><br>Les morceaux présents dans cette section sont disponibles en fichiers .osz prêts à l\'emploi et ont été officiellement mis sous licence pour leur utilisation sur osu! et tout autre contenu relatif à osu!.'
+    ]
 ];

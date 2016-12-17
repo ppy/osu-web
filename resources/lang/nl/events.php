@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -29,5 +29,5 @@ return [
     'user_support_again' => '<strong>:user</strong> is opnieuw osu! supporter - bedankt voor je vrijgevigheid!',
     'user_support_first' => '<strong>:user</strong> is nu osu! supporter - bedankt voor je vrijgevigheid!',
     'user_support_gift' => '<strong>:user</strong> heeft osu! supporter! gekregen!',
-    'username_change' => '<strong>:previousUsername</strong> noemt zichzelf vanaf nu <strong><em>:user</strong></em>!',
+    'username_change' => '<strong>:previousUsername</strong> noemt zichzelf vanaf nu <strong><em>:user</strong></em>!'
 ];

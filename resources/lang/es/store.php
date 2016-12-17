@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -19,22 +19,22 @@
 
 return [
     'admin' => [
-        'warehouse' => 'Almacén',
+        'warehouse' => 'Almacén'
     ],
     'checkout' => [
         'pay' => 'Facturar con Paypal',
-        'delayed_shipping' => '¡Ahora mismo estamos sobresaturados de pedidos! Eres bienvenido a solicitar tu orden, pero considera un **retraso adicional de 1-2 semanas** mientras nos ponemos al día con órdenes ya existentes.',
+        'delayed_shipping' => '¡Ahora mismo estamos sobresaturados de pedidos! Eres bienvenido a solicitar tu orden, pero considera un **retraso adicional de 1-2 semanas** mientras nos ponemos al día con órdenes ya existentes.'
     ],
     'order' => [
         'item' => [
-            'quantity' => 'Cantidad',
-        ],
+            'quantity' => 'Cantidad'
+        ]
     ],
     'product' => [
         'name' => 'Nombre',
         'stock' => [
             'out' => 'en este momento sin existencias :(. Vuelve a revisar pronto.',
-            'out_with_alternative' => 'Este tipo no tiene existencias  :(. Intenta otro tipo o vuelve a revisar pronto.',
+            'out_with_alternative' => 'Este tipo no tiene existencias  :(. Intenta otro tipo o vuelve a revisar pronto.'
         ],
         'add_to_cart' => 'Añadir al carrito',
         'notify' => '¡Notificarme cuando esté disponible!',
@@ -42,6 +42,6 @@ return [
         'notification_remove_text' => 'aquí',
         'notification_in_stock' => '¡Este producto ya tiene existencias!',
         'notification_exists' => '¡Ya has solicitado una notificación para este producto!',
-        'notification_doesnt_exist' => '¡Ni siquiera has solicitado una notificación para este producto!',
-    ],
+        'notification_doesnt_exist' => '¡Ni siquiera has solicitado una notificación para este producto!'
+    ]
 ];

@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -20,9 +20,9 @@
 return [
     'top-headers' => [
         'headline' => 'Transmisiones en vivo',
-        'description' => 'Los datos son recogidos de twitch.tv cada cinco minutos basándose en el listado del directorio. ¡Siéntete libre de empezar a transmitir y ser incluido! Para más información sobre cómo empezar a transmitir, revisa la página de la wiki de transmisiones en vivo.',
+        'description' => 'Los datos son recogidos de twitch.tv cada cinco minutos basándose en el listado del directorio. ¡Siéntete libre de empezar a transmitir y ser incluido! Para más información sobre cómo empezar a transmitir, revisa la página de la wiki de transmisiones en vivo.'
     ],
     'headers' => [
-        'regular' => 'Transmitiendo ahora',
-    ],
+        'regular' => 'Transmitiendo ahora'
+    ]
 ];

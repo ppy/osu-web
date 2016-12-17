@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -20,21 +20,21 @@
 return [
     'codes' => [
         'http-403' => 'Acceso denegado.',
-        'http-401' => 'Inicia sesión para continuar.',
+        'http-401' => 'Inicia sesión para continuar.'
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Ha ocurrido un error. Intenta recargar la página.',
-        ],
+            'generic' => 'Ha ocurrido un error. Intenta recargar la página.'
+        ]
     ],
     'community' => [
         'slack' => [
             'not-eligible' => 'Your account is not eligible for the Slack invite.',
-            'slack-error' => 'An error has occured on the Slack servers. Please try again in a few minutes.',
-        ],
+            'slack-error' => 'An error has occured on the Slack servers. Please try again in a few minutes.'
+        ]
     ],
     'logged_out' => 'Tu sesión ha expirado. Inicia sesión de nuevo y vuelve a intentarlo.',
     'supporter_only' => 'Debes de ser supporter para usar esta característica.',
     'no_restricted_access' => 'No puedes realizar esta acción mientras tu cuenta esté en estado restringido.',
-    'unknown' => 'Ha ocurrido un error desconocido.',
+    'unknown' => 'Ha ocurrido un error desconocido.'
 ];

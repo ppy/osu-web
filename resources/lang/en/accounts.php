@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -22,7 +22,7 @@ return [
         'title' => 'Account Settings',
         'title_compact' => 'settings',
         'avatar' => [
-            'title' => 'Edit Avatar',
+            'title' => 'Edit Avatar'
         ],
         'profile' => [
             'title' => 'Edit Profile',
@@ -32,8 +32,8 @@ return [
                 'user_msnm' => 'skype',
                 'user_occ' => 'occupation',
                 'user_twitter' => 'twitter',
-                'user_website' => 'website',
-            ],
-        ],
-    ],
+                'user_website' => 'website'
+            ]
+        ]
+    ]
 ];

@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -22,13 +22,13 @@ return [
         'update' => [
             'null_user' => 'Musisz być zalogowany, aby edytować post.',
             'system_generated' => 'Automatycznie generowane posty nie mogą być edytowane.',
-            'wrong_user' => 'Musisz być autorem posta, aby go edytować.',
-        ],
+            'wrong_user' => 'Musisz być autorem posta, aby go edytować.'
+        ]
     ],
     'system' => [
         'resolved' => [
             'true' => 'Oznaczone jako gotowe przez :user',
-            'false' => 'Otworzone ponownie przez :user',
-        ],
-    ],
+            'false' => 'Otworzone ponownie przez :user'
+        ]
+    ]
 ];

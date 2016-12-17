@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -22,13 +22,13 @@ return [
         'update' => [
             'null_user' => 'Must be logged in to edit.',
             'system_generated' => 'System-generated post can not be edited.',
-            'wrong_user' => 'Must be owner of the post to edit.',
-        ],
+            'wrong_user' => 'Must be owner of the post to edit.'
+        ]
     ],
     'system' => [
         'resolved' => [
             'true' => 'Marked as resolved by :user',
-            'false' => 'Reopened by :user',
-        ],
-    ],
+            'false' => 'Reopened by :user'
+        ]
+    ]
 ];

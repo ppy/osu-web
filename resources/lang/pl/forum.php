@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -22,12 +22,12 @@ return [
         'create' => [
             '_' => 'Ustaw tło nagłówka',
             'button' => 'Dodaj tło',
-            'info' => 'Nagłówek powinien być w rozdzielczości :dimensions. Możesz także upuścić swoje tło tutaj, aby je dodać.',
+            'info' => 'Nagłówek powinien być w rozdzielczości :dimensions. Możesz także upuścić swoje tło tutaj, aby je dodać.'
         ],
         'destroy' => [
             '_' => 'Usuń tło nagłówka',
-            'confirm' => 'Czy jesteś pewien, że chcesz usunąć tło nagłówka?',
-        ],
+            'confirm' => 'Czy jesteś pewien, że chcesz usunąć tło nagłówka?'
+        ]
     ],
     'pinned_topics' => 'Przypięte tematy',
     'post' => [
@@ -36,13 +36,13 @@ return [
         'posted_at' => 'dodane :when',
         'actions' => [
             'delete' => 'Usuń post',
-            'edit' => 'Edytuj post',
-        ],
+            'edit' => 'Edytuj post'
+        ]
     ],
     'search' => [
         'go_to_post' => 'Przejdź do posta',
         'post_number_input' => 'wpisz numer posta',
-        'total_posts' => 'Łączna ilość postów: :posts_count',
+        'total_posts' => 'Łączna ilość postów: :posts_count'
     ],
     'subforums' => 'Podfora',
     'title' => 'Społeczność osu!',
@@ -50,10 +50,10 @@ return [
         'create' => [
             'placeholder' => [
                 'body' => 'Pisz tutaj',
-                'title' => 'Kliknij tutaj, aby ustawić tytuł',
+                'title' => 'Kliknij tutaj, aby ustawić tytuł'
             ],
             'preview' => 'Podgląd',
-            'submit' => 'Publikuj',
+            'submit' => 'Publikuj'
         ],
         'go_to_latest' => 'zobacz najnowszy post',
         'jump' => [
@@ -61,7 +61,7 @@ return [
             'first' => 'idź do pierwszego posta',
             'last' => 'idź do ostatniego posta',
             'next' => 'omiń kolejne 10 postów',
-            'previous' => 'wróć się o 10 postów',
+            'previous' => 'wróć się o 10 postów'
         ],
         'latest_post' => ':user o :when',
         'latest_reply_by' => 'ostatnia odpowiedź przez :user',
@@ -72,27 +72,27 @@ return [
             'post' => 'Zapisz',
             'zoom' => [
                 'start' => 'Pełny ekran',
-                'end' => 'Zamknij pełny ekran',
-            ],
+                'end' => 'Zamknij pełny ekran'
+            ]
         ],
         'post_reply' => 'Odpowiedz',
         'reply_box_placeholder' => 'Pisz tutaj, aby odpowiedzieć',
-        'started_by' => 'przez :user',
+        'started_by' => 'przez :user'
     ],
     'topics' => [
         '_' => 'Tematy',
         'actions' => [
             'reply' => 'Pokaż okno odpowiedzi',
-            'reply_with_quote' => 'Cytuj post w odpowiedzi',
+            'reply_with_quote' => 'Cytuj post w odpowiedzi'
         ],
         'index' => [
             'views' => 'wyświetleń',
-            'replies' => 'odpowiedzi',
+            'replies' => 'odpowiedzi'
         ],
         'lock' => [
             'locked-0' => 'Temat został odblokowany',
             'locked-1' => 'Temat został zablokowany',
-            'is_locked' => 'Ten temat jest zablokowany i nie można na niego odpowiadać',
+            'is_locked' => 'Ten temat jest zablokowany i nie można na niego odpowiadać'
         ],
         'show' => [
             'feature_vote' => [
@@ -101,9 +101,9 @@ return [
                 'user' => [
                     'current' => 'Pozostało ci :votes głosów.',
                     'count' => '{0} brak głosów|{1} :count głos|[2,4] :count głosy|[5,Inf] :count głosów',
-                    'not_enough' => 'Wykorzystałeś już wszystkie głosy.',
-                ],
-            ],
-        ],
-    ],
+                    'not_enough' => 'Wykorzystałeś już wszystkie głosy.'
+                ]
+            ]
+        ]
+    ]
 ];

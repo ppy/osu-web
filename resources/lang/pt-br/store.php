@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -19,22 +19,22 @@
 
 return [
     'admin' => [
-        'warehouse' => 'Depósito',
+        'warehouse' => 'Depósito'
     ],
     'checkout' => [
         'pay' => 'Pague com Paypal',
-        'delayed_shipping' => 'Nós estamos com muitos pedidos! Você pode fazer o seu pedido, mas espere um **atraso adicional de 1-2 semanas** enquanto processamos os pedidos já existentes.',
+        'delayed_shipping' => 'Nós estamos com muitos pedidos! Você pode fazer o seu pedido, mas espere um **atraso adicional de 1-2 semanas** enquanto processamos os pedidos já existentes.'
     ],
     'order' => [
         'item' => [
-            'quantity' => 'Quantidade',
-        ],
+            'quantity' => 'Quantidade'
+        ]
     ],
     'product' => [
         'name' => 'Nome',
         'stock' => [
             'out' => 'Atualmente fora de estoque :(. Volte em breve.',
-            'out_with_alternative' => 'Esta variação está fora de estoque :(. Tente outra ou volte em breve.',
+            'out_with_alternative' => 'Esta variação está fora de estoque :(. Tente outra ou volte em breve.'
         ],
         'add_to_cart' => 'Adicionar ao carrinho',
         'notify' => 'Avise-me quando estiver disponível!',
@@ -42,6 +42,6 @@ return [
         'notification_remove_text' => 'aqui',
         'notification_in_stock' => 'Este produto já está em estoque!',
         'notification_exists' => 'Você já pediu um aviso para este produto!',
-        'notification_doesnt_exist' => 'Você ainda não pediu um aviso para este produto!',
-    ],
+        'notification_doesnt_exist' => 'Você ainda não pediu um aviso para este produto!'
+    ]
 ];

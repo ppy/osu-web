@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -19,5 +19,5 @@
 
 return [
     'mixture' => 'Il manque un nombre et une lettre dans :attribute',
-    'required' => ':attribute est requis',
+    'required' => ':attribute est requis'
 ];

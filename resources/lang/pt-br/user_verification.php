@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -29,16 +29,16 @@ return [
             'recover_link' => 'processo de recuperação de e-mail aqui',
             'reissue' => 'Você também pode :reissue_link ou :logout_link.',
             'reissue_link' => 'solicitar outro código',
-            'logout_link' => 'sair',
-        ],
+            'logout_link' => 'sair'
+        ]
     ],
     'email' => [
-        'subject' => 'Verificação de conta osu!',
+        'subject' => 'Verificação de conta osu!'
     ],
     'errors' => [
         'expired' => 'O código de verificação expirou, um novo e-mail de confirmação foi enviado.',
         'incorrect_key' => 'Código de verificação incorreto.',
         'retries_exceeded' => 'Código de verificação incorreto. Limite de tentativas excedido, um novo e-mail de confirmação foi enviado.',
-        'unknown' => 'Ocorreu um problema desconhecido, um novo e-mail de confirmação foi enviado.',
-    ],
+        'unknown' => 'Ocorreu um problema desconhecido, um novo e-mail de confirmação foi enviado.'
+    ]
 ];

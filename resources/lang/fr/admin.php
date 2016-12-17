@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -25,9 +25,9 @@ return [
                 'activate' => 'activer',
                 'activate_confirm' => 'activer Modding v2 pour cette beatmap ?',
                 'active' => 'actif',
-                'inactive' => 'inactif',
-            ],
-        ],
+                'inactive' => 'inactif'
+            ]
+        ]
     ],
     'forum' => [
         'forum-covers' => [
@@ -37,20 +37,20 @@ return [
                 'no-cover' => 'Pas de bannière définie',
                 'submit' => [
                     'save' => 'Sauvegarder',
-                    'update' => 'Modifier',
+                    'update' => 'Modifier'
                 ],
                 'title' => 'Liste des bannières forum',
                 'type-title' => [
                     'default-topic' => 'Bannière topic par défaut',
-                    'main' => 'Bannière du forum',
-                ],
-            ],
-        ],
+                    'main' => 'Bannière du forum'
+                ]
+            ]
+        ]
     ],
     'logs' => [
         'index' => [
-            'title' => 'Visionneuse de logs',
-        ],
+            'title' => 'Visionneuse de logs'
+        ]
     ],
     'pages' => [
         'root' => [
@@ -58,15 +58,15 @@ return [
             'sections' => [
                 'forum' => 'Forum',
                 'general' => 'Général',
-                'store' => 'Magasin',
-            ],
-        ],
+                'store' => 'Magasin'
+            ]
+        ]
     ],
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Liste des commandes',
-            ],
-        ],
-    ],
+                'title' => 'Liste des commandes'
+            ]
+        ]
+    ]
 ];

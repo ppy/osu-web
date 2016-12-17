@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -24,24 +24,24 @@ return [
         'reply' => 'Responder',
         'reset' => 'Resetear',
         'save' => 'Guardar',
-        'show_more' => 'mostrar más',
+        'show_more' => 'mostrar más'
     ],
     'count' => [
-        'item' => ':count unidad|:count unidades',
+        'item' => ':count unidad|:count unidades'
     ],
     'dropzone' => [
-        'target' => 'suelta aquí para cargar',
+        'target' => 'suelta aquí para cargar'
     ],
     'pagination' => [
         'previous' => 'anterior',
-        'next' => 'siguiente',
+        'next' => 'siguiente'
     ],
     'time' => [
         'days_ago' => 'hace :count día|hace :count días',
         'hours_ago' => 'hace :count hora|hace :count horas',
-        'now' => 'ahora',
+        'now' => 'ahora'
     ],
     'title' => [
-        'notice' => 'Aviso',
-    ],
+        'notice' => 'Aviso'
+    ]
 ];

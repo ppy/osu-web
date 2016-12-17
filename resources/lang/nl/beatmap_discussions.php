@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -22,13 +22,13 @@ return [
         'update' => [
             'null_user' => 'Moet ingelogd zijn om te bewerken.',
             'system_generated' => 'Systeemgegenereerde posts kunnen niet worden bewerkt.',
-            'wrong_user' => 'Je moet de eigenaar zijn om te kunnen bewerken.',
-        ],
+            'wrong_user' => 'Je moet de eigenaar zijn om te kunnen bewerken.'
+        ]
     ],
     'system' => [
         'resolved' => [
             'true' => 'Gemarkeerd als opgelost door :user',
-            'false' => 'Heropend door :user',
-        ],
-    ],
+            'false' => 'Heropend door :user'
+        ]
+    ]
 ];

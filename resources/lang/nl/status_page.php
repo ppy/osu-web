@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -20,19 +20,19 @@
 return [
     'header' => [
         'title' => 'status',
-        'description' => 'jo man, wat is er allemaal aan de hand?',
+        'description' => 'jo man, wat is er allemaal aan de hand?'
     ],
     'incidents' => [
         'title' => 'Actieve Incidenten',
-        'automated' => 'geautomatiseerd',
+        'automated' => 'geautomatiseerd'
     ],
     'online' => [
         'title' => [
             'users' => 'Online Gebruikers in de afgelopen 24 uur',
-            'score' => 'Score Inzendingen in de afgelopen 24 uur',
+            'score' => 'Score Inzendingen in de afgelopen 24 uur'
         ],
         'current' => 'Momenteel Online Gebruikers',
-        'score' => 'Score Inzendingen per Seconde',
+        'score' => 'Score Inzendingen per Seconde'
     ],
     'recent' => [
         'incidents' => [
@@ -40,15 +40,15 @@ return [
             'state' => [
                 'resolved' => 'Opgelost',
                 'resolving' => 'Aan het oplossen',
-                'unknown' => 'Onbekend',
-            ],
+                'unknown' => 'Onbekend'
+            ]
         ],
         'uptime' => [
             'title' => 'Uptime',
             'graphs' => [
                 'server' => 'server',
-                'web' => 'web',
-            ],
+                'web' => 'web'
+            ]
         ],
         'when' => [
             'today' => 'vandaag',
@@ -56,7 +56,7 @@ return [
             'month' => 'maand',
             'all_time' => 'altijd',
             'last_week' => 'afgelopen week',
-            'weeks_ago' => ':count week geleden|:count weken geleden',
-        ],
-    ],
+            'weeks_ago' => ':count week geleden|:count weken geleden'
+        ]
+    ]
 ];

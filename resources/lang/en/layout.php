@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -19,7 +19,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Rhythm is just a *click* away!  With Ouendan/EBA, Taiko and original gameplay modes, as well as a fully functional level editor.',
+        'page_description' => 'osu! - Rhythm is just a *click* away!  With Ouendan/EBA, Taiko and original gameplay modes, as well as a fully functional level editor.'
     ],
     'menu' => [
         'home' => [
@@ -30,23 +30,23 @@ return [
             'getIcons' => 'icons',
             'getNews' => 'news',
             'index' => 'osu!',
-            'supportTheGame' => 'support the game',
+            'supportTheGame' => 'support the game'
         ],
         'help' => [
             '_' => 'help',
             'getWiki' => 'wiki',
             'getFaq' => 'faq',
-            'getSupport' => 'support',
+            'getSupport' => 'support'
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
             'show' => 'info',
             'index' => 'listing',
-            'artists' => 'featured artists',
+            'artists' => 'featured artists'
         ],
         'beatmapsets' => [
             '_' => 'beatmaps',
-            'discussion' => 'modding',
+            'discussion' => 'modding'
         ],
         'ranking' => [
             '_' => 'ranking',
@@ -54,7 +54,7 @@ return [
             'getCountry' => 'country',
             'getCharts' => 'charts',
             'getMapper' => 'mapper',
-            'index' => 'overall',
+            'index' => 'overall'
         ],
         'community' => [
             '_' => 'community',
@@ -72,11 +72,11 @@ return [
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
-            'forum-forums-show' => 'forum',
+            'forum-forums-show' => 'forum'
         ],
         'multiplayer' => [
             '_' => 'multiplayer',
-            'show' => 'match',
+            'show' => 'match'
         ],
         'error' => [
             '_' => 'error',
@@ -85,7 +85,7 @@ return [
             401 => 'unauthorized',
             405 => 'missing',
             500 => 'something broke',
-            503 => 'maintenance',
+            503 => 'maintenance'
         ],
         'user' => [
             '_' => 'user',
@@ -97,7 +97,7 @@ return [
             'messages' => 'Messages',
             'settings' => 'Settings',
             'logout' => 'Log Out',
-            'help' => 'Help',
+            'help' => 'Help'
         ],
         'store' => [
             '_' => 'store',
@@ -109,16 +109,16 @@ return [
             'new' => 'new',
             'home' => 'home',
             'index' => 'home',
-            'thanks' => 'thanks',
+            'thanks' => 'thanks'
         ],
         'admin-forum' => [
             '_' => 'admin::forum',
-            'forum-covers-index' => 'forum covers',
+            'forum-covers-index' => 'forum covers'
         ],
         'admin-store' => [
             '_' => 'admin::store',
             'orders-index' => 'orders',
-            'orders-show' => 'order',
+            'orders-show' => 'order'
         ],
         'admin' => [
             '_' => 'admin',
@@ -127,9 +127,9 @@ return [
             'beatmapsets' => [
                 '_' => 'beatmapsets',
                 'covers' => 'covers',
-                'show' => 'detail',
-            ],
-        ],
+                'show' => 'detail'
+            ]
+        ]
     ],
     'footer' => [
         'general' => [
@@ -138,68 +138,68 @@ return [
             'changelog' => 'Changelog',
             'beatmaps' => 'Beatmap Listings',
             'download' => 'Download osu!',
-            'wiki' => 'Wiki',
+            'wiki' => 'Wiki'
         ],
         'help' => [
             '_' => 'Help & Community',
             'faq' => 'Frequently Asked Questions',
             'forum' => 'CommunityForums',
             'livestreams' => 'Live Streams',
-            'report' => 'Report an Issue',
+            'report' => 'Report an Issue'
         ],
         'support' => [
             '_' => 'Support osu!',
             'tags' => 'Supporter Tags',
-            'merchandise' => 'Merchandise',
+            'merchandise' => 'Merchandise'
         ],
         'legal' => [
             '_' => 'Legal & Status',
             'tos' => 'Terms of Service',
             'copyright' => 'Copyright (DMCA)',
             'serverStatus' => 'Server Status',
-            'osuStatus' => '@osustatus',
-        ],
+            'osuStatus' => '@osustatus'
+        ]
     ],
     'errors' => [
         404 => [
             'error' => 'Page Missing',
             'description' => 'Sorry, but the page you requested isn\'t here!',
-            'link' => '',
+            'link' => ''
         ],
         403 => [
             'error' => 'You shouldn\'t be here.',
             'description' => 'You could try going back, though.',
-            'link' => '',
+            'link' => ''
         ],
         401 => [
             'error' => 'You shouldn\'t be here.',
             'description' => 'You could try going back, though. Or maybe logging in.',
-            'link' => '',
+            'link' => ''
         ],
         405 => [
             'error' => 'Page Missing',
             'description' => 'Sorry, but the page you requested isn\'t here!',
-            'link' => '',
+            'link' => ''
         ],
         500 => [
             'error' => 'Oh no! Something broke! ;_;',
             'description' => 'We\'re automatically notified of every error.',
-            'link' => '',
+            'link' => ''
         ],
         'fatal' => [
             'error' => 'Oh no! Something broke (badly)! ;_;',
             'description' => 'We\'re automatically notified of every error.',
-            'link' => '',
+            'link' => ''
         ],
         503 => [
             'error' => 'Down for maintenance!',
             'description' => 'Maintenance usually takes anywhere from 5 seconds to 10 minutes. If we\'re down for longer, see :link for more information.',
             'link' => [
                 'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
-            ],
+                'href' => 'https://twitter.com/osustatus'
+            ]
         ],
-        'reference' => 'Just in case, here\'s a code you can give to support!',
+        'reference' => 'Just in case, here\'s a code you can give to support!'
     ],
     'popup_login' => [
         'login' => [
@@ -209,19 +209,19 @@ return [
             'title' => 'Sign In To Proceed',
             'error' => [
                 'email' => 'Username or email address doesn\'t exist',
-                'password' => 'Incorrect password',
-            ],
+                'password' => 'Incorrect password'
+            ]
         ],
         'register' => [
             'info' => 'You need an account, sir. Why don\'t you have one already?',
-            'title' => 'Don\'t have an account?',
-        ],
+            'title' => 'Don\'t have an account?'
+        ]
     ],
     'popup_user' => [
         'links' => [
             'account-edit' => 'Settings',
             'logout' => 'Log Out',
-            'profile' => 'My Profile',
-        ],
-    ],
+            'profile' => 'My Profile'
+        ]
+    ]
 ];

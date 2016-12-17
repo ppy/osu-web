@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -20,25 +20,25 @@
 return [
     'required' => ':attribute est requis.',
     'beatmap_discussion_post' => [
-        'first_post' => 'Impossible de supprimer le post de départ.',
+        'first_post' => 'Impossible de supprimer le post de départ.'
     ],
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Vous pouvez seulement voter pour une fonction.',
-            'not_enough_feature_votes' => 'Pas assez de votes.',
+            'not_enough_feature_votes' => 'Pas assez de votes.'
         ],
         'poll_vote' => [
-            'invalid' => 'Option invalide spécifiée.',
+            'invalid' => 'Option invalide spécifiée.'
         ],
         'topic_poll' => [
             'duplicate_options' => 'Les options dupliquées ne sont pas autorisées.',
             'invalid_max_options' => 'Le nombre de réponses par utilisateur ne devrait pas dépasser le nombre de réponses.',
             'minimum_one_selection' => 'Un minimum d\'une réponse par utilisateur est nécessaire.',
             'minimum_two' => 'Au moins 2 réponses nécéssaires.',
-            'too_many_options' => 'Nombre maximal de réponses dépassés.',
+            'too_many_options' => 'Nombre maximal de réponses dépassés.'
         ],
         'topic_vote' => [
-            'too_many' => 'Vous avez choisi trop de réponses.',
-        ],
-    ],
+            'too_many' => 'Vous avez choisi trop de réponses.'
+        ]
+    ]
 ];

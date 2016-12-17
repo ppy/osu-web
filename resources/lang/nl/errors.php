@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -20,21 +20,21 @@
 return [
     'codes' => [
         'http-403' => 'Toegang geweigerd.',
-        'http-401' => 'Log in om verder te gaan.',
+        'http-401' => 'Log in om verder te gaan.'
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Iets ging fout. Probeer de pagina te vernieuwen.',
-        ],
+            'generic' => 'Iets ging fout. Probeer de pagina te vernieuwen.'
+        ]
     ],
     'community' => [
         'slack' => [
             'not-eligible' => 'Jouw account is niet in staat om een Slack uitnodiging te ontvangen.',
-            'slack-error' => 'Er ging iets mis bij de Slack servers. Probeer het opnieuw over een paar minuten.',
-        ],
+            'slack-error' => 'Er ging iets mis bij de Slack servers. Probeer het opnieuw over een paar minuten.'
+        ]
     ],
     'logged_out' => 'Je bent uitgelogd. Log in en probeer opnieuw.',
     'supporter_only' => 'Je moet een supporter zijn om dit te gebruiken.',
     'no_restricted_access' => 'Je mag dit niet doen terwijl je account de restricted status heeft.',
-    'unknown' => 'Een onbekende fout trad op.',
+    'unknown' => 'Een onbekende fout trad op.'
 ];

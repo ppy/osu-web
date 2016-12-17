@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -19,7 +19,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Rytm jest tylko *kliknięcie* stąd!  Z Ouendanem/EBA, Taiko i oryginalnymi trybami gry, a także w pełni funkcjonalnym edytorem!',
+        'page_description' => 'osu! - Rytm jest tylko *kliknięcie* stąd!  Z Ouendanem/EBA, Taiko i oryginalnymi trybami gry, a także w pełni funkcjonalnym edytorem!'
     ],
     'menu' => [
         'home' => [
@@ -28,22 +28,22 @@ return [
             'getDownload' => 'pobieranie',
             'getIcons' => 'ikony',
             'getNews' => 'aktualności',
-            'supportTheGame' => 'wspomóż grę',
+            'supportTheGame' => 'wspomóż grę'
         ],
         'help' => [
             '_' => 'pomoc',
             'getWiki' => 'wiki',
             'getFaq' => 'faq',
-            'getSupport' => 'pomoc techniczna',
+            'getSupport' => 'pomoc techniczna'
         ],
         'beatmaps' => [
             '_' => 'beatmapy',
             'show' => 'info',
-            'index' => 'lista',
+            'index' => 'lista'
         ],
         'beatmapsets' => [
             '_' => 'mapsety',
-            'discussion' => 'modowanie',
+            'discussion' => 'modowanie'
         ],
         'ranking' => [
             '_' => 'ranking',
@@ -51,7 +51,7 @@ return [
             'getCountry' => 'krajowy',
             'getCharts' => 'charty',
             'getMapper' => 'mapper',
-            'index' => 'ogólne',
+            'index' => 'ogólne'
         ],
         'community' => [
             '_' => 'społeczność',
@@ -67,7 +67,7 @@ return [
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
-            'forum-forums-show' => 'forum',
+            'forum-forums-show' => 'forum'
         ],
         'error' => [
             '_' => 'błąd',
@@ -76,7 +76,7 @@ return [
             401 => 'brak dostępu',
             405 => 'nie znaleziono strony',
             500 => 'coś się popsuło',
-            503 => 'konserwacja',
+            503 => 'konserwacja'
         ],
         'user' => [
             '_' => 'użytkownik',
@@ -88,7 +88,7 @@ return [
             'messages' => 'Wiadomości',
             'settings' => 'Ustawienia',
             'logout' => 'Wyloguj się',
-            'help' => 'Pomoc',
+            'help' => 'Pomoc'
         ],
         'store' => [
             '_' => 'sklep',
@@ -100,16 +100,16 @@ return [
             'new' => 'nowy',
             'home' => 'strona główna',
             'index' => 'strona główna',
-            'thanks' => 'dzięki',
+            'thanks' => 'dzięki'
         ],
         'admin-forum' => [
             '_' => 'admin::forum',
-            'forum-covers-index' => 'nagłówki na forum',
+            'forum-covers-index' => 'nagłówki na forum'
         ],
         'admin-store' => [
             '_' => 'admin::store',
             'orders-index' => 'zamówienia',
-            'orders-show' => 'zamówienie',
+            'orders-show' => 'zamówienie'
         ],
         'admin' => [
             '_' => 'admin',
@@ -117,49 +117,49 @@ return [
             'beatmapsets' => [
                 '_' => 'mapsety',
                 'covers' => 'nagłówki',
-                'show' => 'szczegóły',
-            ],
-        ],
+                'show' => 'szczegóły'
+            ]
+        ]
     ],
     'errors' => [
         404 => [
             'error' => 'Nie znaleziono strony',
             'description' => 'Przepraszamy, ale strona, jaką chciałeś ujrzeć, nie istnieje!',
-            'link' => '',
+            'link' => ''
         ],
         403 => [
             'error' => 'Nie powinieneś tu być.',
             'description' => 'Jednakże, możesz spróbować się wrócić.',
-            'link' => '',
+            'link' => ''
         ],
         401 => [
             'error' => 'Nie powinieneś tu być.',
             'description' => 'Jednakże, możesz spróbować się wrócić. Albo się zalogować',
-            'link' => '',
+            'link' => ''
         ],
         405 => [
             'error' => 'Nie znaleziono strony',
             'description' => 'Przepraszamy, ale strona, jaką chciałeś ujrzeć, nie istnieje!',
-            'link' => '',
+            'link' => ''
         ],
         500 => [
             'error' => 'O nie! Coś się popsuło! ;_;',
             'description' => 'Jesteśmy automatycznie powiadamieni o tym problemie.',
-            'link' => '',
+            'link' => ''
         ],
         'fatal' => [
             'error' => 'O nie! Coś się popsuło (bardzo)! ;_;',
             'description' => 'Jesteśmy automatycznie powiadamieni o tym problemie.',
-            'link' => '',
+            'link' => ''
         ],
         503 => [
             'error' => 'Konserwacja!',
             'description' => 'Konserwacja zajmuje od 5 sekund do 10 minut. Jeżeli jesteśmy niedostępni na dłużej, spojrzyj <a>:link tutaj</a>, aby dowiedzieć się więcej.',
             'link' => [
                 'text' => '@osustatus',
-                'href' => 'https://twitter.com/osustatus',
-            ],
+                'href' => 'https://twitter.com/osustatus'
+            ]
         ],
-        'reference' => 'Na wszelki wypadek, tutaj jest kod który możesz dać osobom z pomocy technicznej!',
-    ],
+        'reference' => 'Na wszelki wypadek, tutaj jest kod który możesz dać osobom z pomocy technicznej!'
+    ]
 ];
