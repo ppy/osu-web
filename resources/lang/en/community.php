@@ -23,7 +23,7 @@ return [
             'big_description' => 'Love osu!?<br/>
                                 Support the osu! dev :D',
             'small_description' => '',
-            'support_button' => 'I want to support osu!'
+            'support_button' => 'I want to support osu!',
         ],
         'dev_quote' => 'osu! is a completely free-to-play game, but running it is most definitely not so free. Between the cost of commissioning servers and high quality international bandwidth, the time spent maintaining the system and community, providing prizes for competitions, answering support questions and generally keeping people happy, osu! consumes quite a hefty amount of money! Oh, and don\'t forget the fact that we do it without any advertising or partnering with silly toolbars and the likes!
             <br/><br/>osu! is at the end of the day largely run by myself, to which you may know best as "peppy".
@@ -38,79 +38,79 @@ return [
                 'time' => 'Takes so much time to keep running that it\'s no longer possible to call it a "hobby".',
                 'ads' => 'No ads anywhere. <br/><br/>
                         Unlike 99.95% of the web, we don\'t profit off shoving stuff in your face.',
-                'goodies' => 'You get some extra goodies!'
-            ]
+                'goodies' => 'You get some extra goodies!',
+            ],
         ],
         'perks' => [
             'title' => 'Oh? What do i get?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'quick and easy access to search beatmaps without leaving the game.'
+                'description' => 'quick and easy access to search beatmaps without leaving the game.',
             ],
             'auto_downloads' => [
                 'title' => 'Auto Downloads',
-                'description' => 'Automatic downloads when playing multiplayer, spectating others, or clicking links in chat!'
+                'description' => 'Automatic downloads when playing multiplayer, spectating others, or clicking links in chat!',
             ],
             'upload_more' => [
                 'title' => 'Upload More',
-                'description' => 'Additional pending beatmap slots (per ranked beatmap) up to a max of 10.'
+                'description' => 'Additional pending beatmap slots (per ranked beatmap) up to a max of 10.',
             ],
             'early_access' => [
                 'title' => 'Early Access',
-                'description' => 'Access to early releases, where you can try new features before they go public!'
+                'description' => 'Access to early releases, where you can try new features before they go public!',
             ],
             'customisation' => [
                 'title' => 'Customisation',
-                'description' => 'Customise your profile by adding a fully customisable user page.'
+                'description' => 'Customise your profile by adding a fully customisable user page.',
             ],
             'beatmap_filters' => [
                 'title' => 'Beatmap Filters',
-                'description' => 'Filter beatmap searches by played and unplayed maps and rank achieved (if any).'
+                'description' => 'Filter beatmap searches by played and unplayed maps and rank achieved (if any).',
             ],
             'yellow_fellow' => [
                 'title' => 'Yellow Fellow',
-                'description' => 'Be recognised in-game with your new bright yellow chat username colour.'
+                'description' => 'Be recognised in-game with your new bright yellow chat username colour.',
             ],
             'speedy_downloads' => [
                 'title' => 'Speedy Downloads',
-                'description' => 'More lenient download restrictions, especially when using osu!direct.'
+                'description' => 'More lenient download restrictions, especially when using osu!direct.',
             ],
             'change_username' => [
                 'title' => 'Change Username',
-                'description' => 'The ability to change your username without additional costs. (once max)'
+                'description' => 'The ability to change your username without additional costs. (once max)',
             ],
             'skinnables' => [
                 'title' => 'Skinnables',
-                'description' => 'Extra in-game skinnables, like the main menu background.'
+                'description' => 'Extra in-game skinnables, like the main menu background.',
             ],
             'feature_votes' => [
                 'title' => 'Feature Votes',
-                'description' => 'Votes for feature requests. (2 per month)'
+                'description' => 'Votes for feature requests. (2 per month)',
             ],
             'sort_options' => [
                 'title' => 'Sort Options',
-                'description' => 'NEW: The ability to view beatmap country / friend / mod-specific rankings in-game.'
+                'description' => 'NEW: The ability to view beatmap country / friend / mod-specific rankings in-game.',
             ],
             'feel_special' => [
                 'title' => 'Feel Special',
-                'description' => 'The warm and fuzzy feeling of doing your part to keep osu! running smoothly!'
+                'description' => 'The warm and fuzzy feeling of doing your part to keep osu! running smoothly!',
             ],
             'more_to_come' => [
                 'title' => 'More to come',
-                'description' => ''
-            ]
+                'description' => '',
+            ],
         ],
         'convinced' => [
             'title' => 'I\'m convinced! :D',
             'support' => 'support osu!',
             'gift' => 'or gift support to other players',
-            'instructions' => 'click the heart button to proceed to the osu!store'
-        ]
+            'instructions' => 'click the heart button to proceed to the osu!store',
+        ],
     ],
     'slack' => [
         'header' => [
             'small' => 'osu!dev',
-            'large' => 'osu!public Slack Access'
+            'large' => 'osu!public Slack Access',
         ],
         'disabled' => 'The public slack community is temporarily unavailable. If you wish to reach out, please create an issue on the appropriate <a href="https://github.com/ppy">github repository</a> or contact us at <a href="mailto::mail">:mail</a>.',
         'guest-begin' => 'You need to be ',
@@ -121,6 +121,6 @@ return [
         'recent-issues' => 'Your account has recent issues. Please <a href="mailto::mail">contact support</a> for more details.',
         'agree-button' => 'Agree',
         'accepted' => 'Your request has been accepted. You should receive an email soon.',
-        'invite-already-accepted' => 'You already have a slack account! If you have issues, <a href="mailto::mail">contact support.</a>'
-    ]
+        'invite-already-accepted' => 'You already have a slack account! If you have issues, <a href="mailto::mail">contact support.</a>',
+    ],
 ];

@@ -24,7 +24,7 @@ return [
             'head-to-head' => 'Head-to-head',
             'tag-coop' => 'Tag Co-op',
             'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS'
+            'tag-team-vs' => 'Tag Team VS',
         ],
         'events' => [
             'player-left' => ':user saiu da partida',
@@ -38,7 +38,7 @@ return [
             'player-kicked-no-user' => 'um jogador foi expulso da partida',
             'match-created-no-user' => 'a partida foi criada',
             'match-disbanded-no-user' => 'a partida foi desfeita',
-            'host-changed-no-user' => 'o líder foi alterado'
+            'host-changed-no-user' => 'o líder foi alterado',
         ],
         'in-progress' => '(partida em progresso)',
         'score' => [
@@ -51,26 +51,26 @@ return [
                 'countkatu' => '200s',
                 'count100' => '100s',
                 'count50' => '50s',
-                'countmiss' => 'Erro'
-            ]
+                'countmiss' => 'Erro',
+            ],
         ],
         'failed' => 'FALHOU',
         'teams' => [
             'blue' => 'Equipe Azul',
-            'red' => 'Equipe Vermelha'
+            'red' => 'Equipe Vermelha',
         ],
         'winner' => ':team venceu',
         'difference' => 'por :difference',
         'loading-events' => 'Carregando eventos...',
         'more-events' => 'ver tudo...',
-        'beatmap-deleted' => 'beatmap excluído'
+        'beatmap-deleted' => 'beatmap excluído',
     ],
     'game' => [
         'scoring-type' => [
             'score' => 'Maior pontuação',
             'accuracy' => 'Maior precisão',
             'combo' => 'Maior combo',
-            'scorev2' => 'Pontuação V2'
-        ]
-    ]
+            'scorev2' => 'Pontuação V2',
+        ],
+    ],
 ];

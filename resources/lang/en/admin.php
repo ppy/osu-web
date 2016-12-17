@@ -25,9 +25,9 @@ return [
                 'activate' => 'activate',
                 'activate_confirm' => 'activate modding v2 for this beatmap?',
                 'active' => 'active',
-                'inactive' => 'inactive'
-            ]
-        ]
+                'inactive' => 'inactive',
+            ],
+        ],
     ],
     'forum' => [
         'forum-covers' => [
@@ -37,20 +37,20 @@ return [
                 'no-cover' => 'No cover set',
                 'submit' => [
                     'save' => 'Save',
-                    'update' => 'Update'
+                    'update' => 'Update',
                 ],
                 'title' => 'Forum Covers List',
                 'type-title' => [
                     'default-topic' => 'Default Topic Cover',
-                    'main' => 'Forum Cover'
-                ]
-            ]
-        ]
+                    'main' => 'Forum Cover',
+                ],
+            ],
+        ],
     ],
     'logs' => [
         'index' => [
-            'title' => 'Log Viewer'
-        ]
+            'title' => 'Log Viewer',
+        ],
     ],
     'pages' => [
         'root' => [
@@ -58,15 +58,15 @@ return [
             'sections' => [
                 'forum' => 'Forum',
                 'general' => 'General',
-                'store' => 'Store'
-            ]
-        ]
+                'store' => 'Store',
+            ],
+        ],
     ],
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Order Listing'
-            ]
-        ]
-    ]
+                'title' => 'Order Listing',
+            ],
+        ],
+    ],
 ];

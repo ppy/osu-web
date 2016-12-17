@@ -21,48 +21,48 @@ return [
     'beatmap_discussion' => [
         'resolve' => [
             'general_discussion' => 'Nie można zamknąć generalnej dyskusji.',
-            'not_owner' => 'Tylko autor posta i autor beatmapy mogą zamknąć tę dyskusję.'
-        ]
+            'not_owner' => 'Tylko autor posta i autor beatmapy mogą zamknąć tę dyskusję.',
+        ],
     ],
     'beatmap_discussion_post' => [
         'edit' => [
             'system_generated' => 'Automatycznie wygenerowany post nie może być edytowany.',
-            'not_owner' => 'Tylko autor posta może go edytować.'
-        ]
+            'not_owner' => 'Tylko autor posta może go edytować.',
+        ],
     ],
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'Nie posiadasz dostępu do tego kanału.'
-            ]
+                'no_access' => 'Nie posiadasz dostępu do tego kanału.',
+            ],
         ],
         'message' => [
             'send' => [
                 'channel' => [
                     'no_access' => 'Nie posiadasz dostępu do tego kanału.',
-                    'moderated' => 'Kanał jest obecnie w trybie tylko dla moderatorów.'
+                    'moderated' => 'Kanał jest obecnie w trybie tylko dla moderatorów.',
                 ],
-                'not_allowed' => 'Jeżeli jesteś uciszony/zbanowany, nie możesz wysyłać wiadomości.'
-            ]
-        ]
+                'not_allowed' => 'Jeżeli jesteś uciszony/zbanowany, nie możesz wysyłać wiadomości.',
+            ],
+        ],
     ],
     'forum' => [
         'post' => [
             'delete' => [
                 'can_not_post' => 'Nie możesz usunąć posta w temacie, w którym nie możesz odpowiadać.',
                 'can_only_delete_last_post' => 'Tylko ostatni post może być usunięty.',
-                'not_owner' => 'Tylko autor tematu może usunąć post.'
+                'not_owner' => 'Tylko autor tematu może usunąć post.',
             ],
             'edit' => [
                 'can_not_post' => 'Nie możesz edytować posta w temacie, w którym nie możesz odpowiadać.',
                 'locked' => 'Ten post jest chroniony przed edycją.',
-                'not_owner' => 'Tylko autor może edytować post.'
-            ]
+                'not_owner' => 'Tylko autor może edytować post.',
+            ],
         ],
         'topic' => [
             'reply' => [
                 'can_not_post' => 'Nie masz dostępu do tego forum.',
-                'locked' => 'Nie możesz odpowiedzieć na zablokowany temat.'
+                'locked' => 'Nie możesz odpowiedzieć na zablokowany temat.',
             ],
             'store' => [
                 'can_not_view_forum' => 'Nie masz dostępu do tego forum.',
@@ -70,19 +70,19 @@ return [
                 'forum_closed' => 'Forum jest zamknięte i nie można w nim postować.',
                 'user' => [
                     'silenced' => 'Nie możesz postować, kiedy jesteś uciszony.',
-                    'restricted' => 'Nie możesz postować, jeżeli jesteś zbanowany.'
-                ]
-            ]
+                    'restricted' => 'Nie możesz postować, jeżeli jesteś zbanowany.',
+                ],
+            ],
         ],
         'topic_cover' => [
             'edit' => [
                 'uneditable' => 'Wybrano nieprawidłowy nagłówek.',
-                'not_owner' => 'Tylko autor może edytować nagłówek.'
-            ]
+                'not_owner' => 'Tylko autor może edytować nagłówek.',
+            ],
         ],
         'view' => [
-            'admin_only' => 'Tylko administrator ma dostęp do tego forum.'
-        ]
+            'admin_only' => 'Tylko administrator ma dostęp do tego forum.',
+        ],
     ],
     'require_login' => 'Zaloguj się, aby kontynuować.',
     'unauthorized' => 'Odmowa dostępu.',
@@ -95,9 +95,9 @@ return [
                 'require_support_to_create' => 'Nie jesteś supporterem.',
                 'user' => [
                     'silenced' => 'Nie możesz edytować strony, kiedy jesteś uciszony.',
-                    'restricted' => 'Nie możesz edytować strony, jeśli jesteś zbanowany.'
-                ]
-            ]
-        ]
-    ]
+                    'restricted' => 'Nie możesz edytować strony, jeśli jesteś zbanowany.',
+                ],
+            ],
+        ],
+    ],
 ];

@@ -22,13 +22,13 @@ return [
         'update' => [
             'null_user' => 'Vous devez être connecté pour éditer.',
             'system_generated' => 'Un post système ne peut être édité.',
-            'wrong_user' => 'Vous devez être le créateur du post pour l\'éditer.'
-        ]
+            'wrong_user' => 'Vous devez être le créateur du post pour l\'éditer.',
+        ],
     ],
     'system' => [
         'resolved' => [
             'true' => 'Marqué comme résolu par :user',
-            'false' => 'Réouvert par :user'
-        ]
-    ]
+            'false' => 'Réouvert par :user',
+        ],
+    ],
 ];

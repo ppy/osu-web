@@ -22,13 +22,13 @@ return [
         'update' => [
             'null_user' => 'Moet ingelogd zijn om te bewerken.',
             'system_generated' => 'Systeemgegenereerde posts kunnen niet worden bewerkt.',
-            'wrong_user' => 'Je moet de eigenaar zijn om te kunnen bewerken.'
-        ]
+            'wrong_user' => 'Je moet de eigenaar zijn om te kunnen bewerken.',
+        ],
     ],
     'system' => [
         'resolved' => [
             'true' => 'Gemarkeerd als opgelost door :user',
-            'false' => 'Heropend door :user'
-        ]
-    ]
+            'false' => 'Heropend door :user',
+        ],
+    ],
 ];

@@ -25,9 +25,9 @@ return [
                 'activate' => 'activar',
                 'activate_confirm' => '¿activar modding v2 para este beatmap?',
                 'active' => 'activo',
-                'inactive' => 'inactivo'
-            ]
-        ]
+                'inactive' => 'inactivo',
+            ],
+        ],
     ],
     'forum' => [
         'forum-covers' => [
@@ -37,20 +37,20 @@ return [
                 'no-cover' => 'Portada no definida',
                 'submit' => [
                     'save' => 'Guardar',
-                    'update' => 'Actualizar'
+                    'update' => 'Actualizar',
                 ],
                 'title' => 'Lista de portadas de foro',
                 'type-title' => [
                     'default-topic' => 'Portada del tema por defecto',
-                    'main' => 'Portada de foro'
-                ]
-            ]
-        ]
+                    'main' => 'Portada de foro',
+                ],
+            ],
+        ],
     ],
     'logs' => [
         'index' => [
-            'title' => 'Observador de Registro'
-        ]
+            'title' => 'Observador de Registro',
+        ],
     ],
     'pages' => [
         'root' => [
@@ -58,15 +58,15 @@ return [
             'sections' => [
                 'forum' => 'Foro',
                 'general' => 'General',
-                'store' => 'Tienda'
-            ]
-        ]
+                'store' => 'Tienda',
+            ],
+        ],
     ],
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Listado de orden'
-            ]
-        ]
-    ]
+                'title' => 'Listado de orden',
+            ],
+        ],
+    ],
 ];

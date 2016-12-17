@@ -24,24 +24,24 @@ return [
         'reply' => 'Odpowiedz',
         'reset' => 'Resetuj',
         'save' => 'Zapisz',
-        'show_more' => 'pokaż więcej'
+        'show_more' => 'pokaż więcej',
     ],
     'count' => [
-        'item' => '{1} sztuka|[2,4] :count sztuki|[5,Inf] :count sztuk'
+        'item' => '{1} sztuka|[2,4] :count sztuki|[5,Inf] :count sztuk',
     ],
     'dropzone' => [
-        'target' => 'upuść tutaj, aby wrzucić plik'
+        'target' => 'upuść tutaj, aby wrzucić plik',
     ],
     'pagination' => [
         'previous' => 'poprzednia',
-        'next' => 'następna'
+        'next' => 'następna',
     ],
     'time' => [
         'days_ago' => '{1} dzień temu|:count dni temu',
         'hours_ago' => '{0} godzin temu|{1} godzinę temu|[2,4] :count godziny temu|[5,Inf] :count godzin temu',
-        'now' => 'teraz'
+        'now' => 'teraz',
     ],
     'title' => [
-        'notice' => 'Uwaga'
-    ]
+        'notice' => 'Uwaga',
+    ],
 ];

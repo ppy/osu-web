@@ -29,16 +29,16 @@ return [
             'recover_link' => 'processo de recuperação de e-mail aqui',
             'reissue' => 'Você também pode :reissue_link ou :logout_link.',
             'reissue_link' => 'solicitar outro código',
-            'logout_link' => 'sair'
-        ]
+            'logout_link' => 'sair',
+        ],
     ],
     'email' => [
-        'subject' => 'Verificação de conta osu!'
+        'subject' => 'Verificação de conta osu!',
     ],
     'errors' => [
         'expired' => 'O código de verificação expirou, um novo e-mail de confirmação foi enviado.',
         'incorrect_key' => 'Código de verificação incorreto.',
         'retries_exceeded' => 'Código de verificação incorreto. Limite de tentativas excedido, um novo e-mail de confirmação foi enviado.',
-        'unknown' => 'Ocorreu um problema desconhecido, um novo e-mail de confirmação foi enviado.'
-    ]
+        'unknown' => 'Ocorreu um problema desconhecido, um novo e-mail de confirmação foi enviado.',
+    ],
 ];

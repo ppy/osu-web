@@ -19,5 +19,5 @@
 
 return [
     'mixture' => ':attribute is missing number or letter',
-    'required' => ':attribute is required'
+    'required' => ':attribute is required',
 ];

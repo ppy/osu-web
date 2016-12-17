@@ -30,8 +30,8 @@ return [
         'tiny' => 'Diminuto',
         'small' => 'Pequeño',
         'normal' => 'Normal',
-        'large' => 'Grande'
+        'large' => 'Grande',
     ],
     'spoilerbox' => 'Caja de Spoiler',
-    'strikethrough' => 'Tachar'
+    'strikethrough' => 'Tachar',
 ];

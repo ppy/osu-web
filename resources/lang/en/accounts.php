@@ -22,7 +22,7 @@ return [
         'title' => 'Account Settings',
         'title_compact' => 'settings',
         'avatar' => [
-            'title' => 'Edit Avatar'
+            'title' => 'Edit Avatar',
         ],
         'profile' => [
             'title' => 'Edit Profile',
@@ -32,8 +32,8 @@ return [
                 'user_msnm' => 'skype',
                 'user_occ' => 'occupation',
                 'user_twitter' => 'twitter',
-                'user_website' => 'website'
-            ]
-        ]
-    ]
+                'user_website' => 'website',
+            ],
+        ],
+    ],
 ];

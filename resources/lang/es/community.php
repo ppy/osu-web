@@ -23,7 +23,7 @@ return [
             'big_description' => '¿Amas osu!?<br/>
                                 Ayuda a su desarrollo :D',
             'small_description' => '',
-            'support_button' => '¡Quiero ayudar a osu!'
+            'support_button' => '¡Quiero ayudar a osu!',
         ],
         'dev_quote' => 'osu! es un juego completamente Free To Play, pero mantenerlo definitivamente no es gratis. Entre el coste de alquilar servidores y banda ancha de alta calidad, el tiempo invertido manteniendo el sistema y la comunidad, dando premios para las competiciones, respondiendo preguntas de soporte y generalmente manteniendo a las personas felices, ¡osu! consume una cantidad de dinero bastante considerable! Oh, y no olvides el hecho de que lo hacemos sin ningún tipo de anuncio o asociándonos con tontas barras de herramientas.
             <br/><br/>Al final osu! es en gran parte dirigido por mí, a quien puedes conocer mejor como "peppy".
@@ -38,73 +38,73 @@ return [
                 'time' => 'Toma demasiado tiempo mantenerlo funcionando al punto de no poder llamarlo un "hobby".',
                 'ads' => 'Sin anuncios en ningún lado. <br/><br/>
                         Al contrario que el 99.95% de la web, no obtenemos ingresos poniéndote cosas en tu cara.',
-                'goodies' => '¡Obtienes algunos beneficios!'
-            ]
+                'goodies' => '¡Obtienes algunos beneficios!',
+            ],
         ],
         'perks' => [
             'title' => '¿Oh? ¡¿Qué obtengo?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'Acceso rápido y sencillo para buscar beatmaps sin salir del juego.'
+                'description' => 'Acceso rápido y sencillo para buscar beatmaps sin salir del juego.',
             ],
             'auto_downloads' => [
                 'title' => 'Descargas Automáticas',
-                'description' => '¡Descargas automáticas cuando juegas multijugador, espectas a otros, o al dar clic a enlaces en el chat!'
+                'description' => '¡Descargas automáticas cuando juegas multijugador, espectas a otros, o al dar clic a enlaces en el chat!',
             ],
             'upload_more' => [
                 'title' => 'Sube más',
-                'description' => 'Límites de envío de beatmaps incrementados. (10 beatmaps pendientes en total).'
+                'description' => 'Límites de envío de beatmaps incrementados. (10 beatmaps pendientes en total).',
             ],
             'early_access' => [
                 'title' => 'Acceso Temprano',
-                'description' => '¡Acceso a lanzamientos tempranos, donde puedes probar nuevas características antes de que sean públicas!'
+                'description' => '¡Acceso a lanzamientos tempranos, donde puedes probar nuevas características antes de que sean públicas!',
             ],
             'customisation' => [
                 'title' => 'Personalización',
-                'description' => 'Personaliza tu perfil añadiendo una página de usuario totalmente personalizable.'
+                'description' => 'Personaliza tu perfil añadiendo una página de usuario totalmente personalizable.',
             ],
             'beatmap_filters' => [
                 'title' => 'Filtros de Beatmap',
-                'description' => 'Filtra búsquedas de beatmaps por mapas jugados y no jugados.'
+                'description' => 'Filtra búsquedas de beatmaps por mapas jugados y no jugados.',
             ],
             'yellow_fellow' => [
                 'title' => 'Amigo Amarillo',
-                'description' => 'Sé reconocido dentro del juego con tu nuevo color de usuario amarillo brillante en el chat.'
+                'description' => 'Sé reconocido dentro del juego con tu nuevo color de usuario amarillo brillante en el chat.',
             ],
             'speedy_downloads' => [
                 'title' => 'Descargas Rápidas',
-                'description' => 'Restricciones de descarga más permisivas, especialmente al usar osu!direct.'
+                'description' => 'Restricciones de descarga más permisivas, especialmente al usar osu!direct.',
             ],
             'change_username' => [
                 'title' => 'Cambiar Nombre',
-                'description' => 'La habilidad de cambiar tu nombre de usuario. (una vez máx)'
+                'description' => 'La habilidad de cambiar tu nombre de usuario. (una vez máx)',
             ],
             'skinnables' => [
                 'title' => 'Skinnables',
-                'description' => 'Más posibilidades para las skins, como cambiar el fondo del menú.'
+                'description' => 'Más posibilidades para las skins, como cambiar el fondo del menú.',
             ],
             'feature_votes' => [
                 'title' => 'Votos de Características',
-                'description' => 'Votos para solicitudes de características. (2 por mes)'
+                'description' => 'Votos para solicitudes de características. (2 por mes)',
             ],
             'sort_options' => [
                 'title' => 'Opciones de Orden',
-                'description' => 'NUEVO: La habilidad de ver rankings nacionales / amigos / mod-specific de un beatmap dentro del juego.'
+                'description' => 'NUEVO: La habilidad de ver rankings nacionales / amigos / mod-specific de un beatmap dentro del juego.',
             ],
             'feel_special' => [
                 'title' => 'Siéntete Especial',
-                'description' => 'La calidad y el sentimiento de hacer tu parte para mantener osu! funcionando sin problemas.'
+                'description' => 'La calidad y el sentimiento de hacer tu parte para mantener osu! funcionando sin problemas.',
             ],
             'more_to_come' => [
                 'title' => 'Más por venir',
-                'description' => ''
-            ]
+                'description' => '',
+            ],
         ],
         'convinced' => [
             'title' => '¡Estoy convencido! :D',
             'support' => 'Apoyar osu!',
             'gift' => 'o regalar supporter a otros jugadores',
-            'instructions' => 'clic al botón del corazón para proceder a la osu!store'
-        ]
-    ]
+            'instructions' => 'clic al botón del corazón para proceder a la osu!store',
+        ],
+    ],
 ];

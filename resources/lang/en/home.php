@@ -19,27 +19,27 @@
 
 return [
     'news' => [
-        'slogan' => 'Rhythm is just a *click* away!'
+        'slogan' => 'Rhythm is just a *click* away!',
     ],
     'landing' => [
         'slogans' => [
             1 => 'free-to-win<br/>circle simulator',
-            2 => 'rhythm is just<br/> a click away'
+            2 => 'rhythm is just<br/> a click away',
         ],
         'download' => [
             '_' => 'Download now',
             'for' => 'for :os',
-            'other' => 'click here for :os1 or :os2'
+            'other' => 'click here for :os1 or :os2',
         ],
         'players' => 'registered players',
         'online' => 'online players now',
-        'peak' => 'Peak, :count online users'
+        'peak' => 'Peak, :count online users',
     ],
     'download' => [
         'title' => [
             1 => 'let\'s get',
             2 => 'you started',
-            3 => 'download osu! game client for Windows'
+            3 => 'download osu! game client for Windows',
         ],
         'img_alt' => 'osu! online installer',
         'steps' => [
@@ -48,11 +48,11 @@ return [
             '3_title' => 'Step 3',
             1 => 'Download the osu! game client',
             2 => 'Create an osu! player account',
-            3 => '???'
+            3 => '???',
         ],
         'learn_more' => [
             'title' => 'Learn more?',
-            'text' => 'Check out the <a href="https://www.youtube.com/user/osuacademy/">osu!academy YouTube Channel</a> for up-to-date tutorials and tips on how to get the most out of osu!'
-        ]
-    ]
+            'text' => 'Check out the <a href="https://www.youtube.com/user/osuacademy/">osu!academy YouTube Channel</a> for up-to-date tutorials and tips on how to get the most out of osu!',
+        ],
+    ],
 ];

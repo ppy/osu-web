@@ -20,10 +20,10 @@
 return [
     'header' => [
         'small' => 'Compete in more ways than just clicking circles.',
-        'large' => 'Concours communautaires osu!'
+        'large' => 'Concours communautaires osu!',
     ],
     'voting' => [
-        'over' => 'Le vote pour ce concours est terminé'
+        'over' => 'Le vote pour ce concours est terminé',
     ],
     'entry' => [
         'login_required' => 'Merci de vous connecter pour participer.',
@@ -35,24 +35,24 @@ return [
         'wrong_type' => [
             'art' => 'Uniquement les fichiers .jpg et .png sont admis pour ce concours.',
             'beatmap' => 'Uniquement les fichiers .osu sont admis pour ce concours.',
-            'music' => 'Uniquement les fichiers .mp3 sont admin pour ce concours.'
+            'music' => 'Uniquement les fichiers .mp3 sont admin pour ce concours.',
         ],
-        'too_big' => 'Les entrées pour le concours sont limitées à :limit.'
+        'too_big' => 'Les entrées pour le concours sont limitées à :limit.',
     ],
     'beatmaps' => [
-        'download' => 'Télécharger l\'inscription'
+        'download' => 'Télécharger l\'inscription',
     ],
     'votes' => '1 vote|:count votes',
     'dates' => [
         'ended' => 'Terminé le :date',
         'starts' => [
             '_' => 'Démarre le :date',
-            'soon' => 'bientôt™'
-        ]
+            'soon' => 'bientôt™',
+        ],
     ],
     'states' => [
         'entry' => 'Entrée ouverte',
         'voting' => 'Vote démarré',
-        'results' => 'Résultats tombés'
-    ]
+        'results' => 'Résultats tombés',
+    ],
 ];

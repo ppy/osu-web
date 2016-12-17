@@ -20,19 +20,19 @@
 return [
     'header' => [
         'title' => 'status',
-        'description' => 'jo man, wat is er allemaal aan de hand?'
+        'description' => 'jo man, wat is er allemaal aan de hand?',
     ],
     'incidents' => [
         'title' => 'Actieve Incidenten',
-        'automated' => 'geautomatiseerd'
+        'automated' => 'geautomatiseerd',
     ],
     'online' => [
         'title' => [
             'users' => 'Online Gebruikers in de afgelopen 24 uur',
-            'score' => 'Score Inzendingen in de afgelopen 24 uur'
+            'score' => 'Score Inzendingen in de afgelopen 24 uur',
         ],
         'current' => 'Momenteel Online Gebruikers',
-        'score' => 'Score Inzendingen per Seconde'
+        'score' => 'Score Inzendingen per Seconde',
     ],
     'recent' => [
         'incidents' => [
@@ -40,15 +40,15 @@ return [
             'state' => [
                 'resolved' => 'Opgelost',
                 'resolving' => 'Aan het oplossen',
-                'unknown' => 'Onbekend'
-            ]
+                'unknown' => 'Onbekend',
+            ],
         ],
         'uptime' => [
             'title' => 'Uptime',
             'graphs' => [
                 'server' => 'server',
-                'web' => 'web'
-            ]
+                'web' => 'web',
+            ],
         ],
         'when' => [
             'today' => 'vandaag',
@@ -56,7 +56,7 @@ return [
             'month' => 'maand',
             'all_time' => 'altijd',
             'last_week' => 'afgelopen week',
-            'weeks_ago' => ':count week geleden|:count weken geleden'
-        ]
-    ]
+            'weeks_ago' => ':count week geleden|:count weken geleden',
+        ],
+    ],
 ];

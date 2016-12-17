@@ -20,6 +20,6 @@
 return [
     'errors' => [
         'csrf' => 'Toegang Geweigerd',
-        'missing' => 'Niet Gevonden'
-    ]
+        'missing' => 'Niet Gevonden',
+    ],
 ];
