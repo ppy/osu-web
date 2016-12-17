@@ -24,7 +24,7 @@ return [
             'head-to-head' => 'Head-to-head',
             'tag-coop' => 'Tag Co-op',
             'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS'
+            'tag-team-vs' => 'Tag Team VS',
         ],
         'events' => [
             'player-left' => ':user left the match',
@@ -38,7 +38,7 @@ return [
             'player-kicked-no-user' => 'a player has been kicked from the match',
             'match-created-no-user' => 'the match was created',
             'match-disbanded-no-user' => 'the match was disbanded',
-            'host-changed-no-user' => 'the host was changed'
+            'host-changed-no-user' => 'the host was changed',
         ],
         'in-progress' => '(match in progress)',
         'score' => [
@@ -51,26 +51,26 @@ return [
                 'countkatu' => '200s',
                 'count100' => '100s',
                 'count50' => '50s',
-                'countmiss' => 'Miss'
-            ]
+                'countmiss' => 'Miss',
+            ],
         ],
         'failed' => 'FAILED',
         'teams' => [
             'blue' => 'Blue Team',
-            'red' => 'Red Team'
+            'red' => 'Red Team',
         ],
         'winner' => ':team wins',
         'difference' => 'by :difference',
         'loading-events' => 'Loading events...',
         'more-events' => 'view all...',
-        'beatmap-deleted' => 'deleted beatmap'
+        'beatmap-deleted' => 'deleted beatmap',
     ],
     'game' => [
         'scoring-type' => [
             'score' => 'Highest Score',
             'accuracy' => 'Highest Accuracy',
             'combo' => 'Highest Combo',
-            'scorev2' => 'Score V2'
-        ]
-    ]
+            'scorev2' => 'Score V2',
+        ],
+    ],
 ];

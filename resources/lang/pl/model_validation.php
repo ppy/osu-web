@@ -22,7 +22,7 @@ return [
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Możesz zagłosować tylko na prośby o funkcje.',
-            'not_enough_feature_votes' => 'Nie uzyskano wystarczającej ilości głosów.'
-        ]
-    ]
+            'not_enough_feature_votes' => 'Nie uzyskano wystarczającej ilości głosów.',
+        ],
+    ],
 ];

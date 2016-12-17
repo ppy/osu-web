@@ -25,9 +25,9 @@ return [
                 'activate' => 'activeer',
                 'activate_confirm' => 'modding v2 activeren voor deze beatmap?',
                 'active' => 'actief',
-                'inactive' => 'inactief'
-            ]
-        ]
+                'inactive' => 'inactief',
+            ],
+        ],
     ],
     'forum' => [
         'forum-covers' => [
@@ -37,20 +37,20 @@ return [
                 'no-cover' => 'Geen cover ingesteld',
                 'submit' => [
                     'save' => 'Opslaan',
-                    'update' => 'Bijwerken'
+                    'update' => 'Bijwerken',
                 ],
                 'title' => 'Forumcovers Lijst',
                 'type-title' => [
                     'default-topic' => 'Standaardonderwerp Cover',
-                    'main' => 'Forum Cover'
-                ]
-            ]
-        ]
+                    'main' => 'Forum Cover',
+                ],
+            ],
+        ],
     ],
     'logs' => [
         'index' => [
-            'title' => 'Log Viewer'
-        ]
+            'title' => 'Log Viewer',
+        ],
     ],
     'pages' => [
         'root' => [
@@ -58,15 +58,15 @@ return [
             'sections' => [
                 'forum' => 'Forum',
                 'general' => 'Algemeen',
-                'store' => 'Winkel'
-            ]
-        ]
+                'store' => 'Winkel',
+            ],
+        ],
     ],
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Lijst van Bestellingen'
-            ]
-        ]
-    ]
+                'title' => 'Lijst van Bestellingen',
+            ],
+        ],
+    ],
 ];

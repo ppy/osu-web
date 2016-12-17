@@ -19,6 +19,6 @@
 
 return [
     'news' => [
-        'slogan' => 'Ritme is slechts een *klik* verwijderd!'
-    ]
+        'slogan' => 'Ritme is slechts een *klik* verwijderd!',
+    ],
 ];

@@ -29,17 +29,17 @@ return [
             'recover_link' => 'processus de récupération de mail ici',
             'reissue' => 'Vous pouvez :reissue_link ou :logout_link.',
             'reissue_link' => 'demander un autre code',
-            'logout_link' => 'vous déconnecter'
-        ]
+            'logout_link' => 'vous déconnecter',
+        ],
     ],
     'email' => [
-        'subject' => 'vérification du compte osu!'
+        'subject' => 'vérification du compte osu!',
     ],
     'errors' => [
         'expired' => 'Le code de vérification a expiré, un nouvel e-mail de vérification a été envoyé.',
         'incorrect_key' => 'Code de vérification incorrect.',
         'retries_exceeded' => 'Code de vérification incorrect. Limite de tentavies dépassées, envoi d\'un nouveau mail de vérification.',
         'reissued' => 'Code de vérification regénéré, nouveau mail de vérification envoyé.',
-        'unknown' => 'Un problème inconnu est survenu, nouveau mail de vérification envoyé.'
-    ]
+        'unknown' => 'Un problème inconnu est survenu, nouveau mail de vérification envoyé.',
+    ],
 ];

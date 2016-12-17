@@ -22,13 +22,13 @@ return [
         'update' => [
             'null_user' => 'Musisz być zalogowany, aby edytować post.',
             'system_generated' => 'Automatycznie generowane posty nie mogą być edytowane.',
-            'wrong_user' => 'Musisz być autorem posta, aby go edytować.'
-        ]
+            'wrong_user' => 'Musisz być autorem posta, aby go edytować.',
+        ],
     ],
     'system' => [
         'resolved' => [
             'true' => 'Oznaczone jako gotowe przez :user',
-            'false' => 'Otworzone ponownie przez :user'
-        ]
-    ]
+            'false' => 'Otworzone ponownie przez :user',
+        ],
+    ],
 ];

@@ -20,6 +20,6 @@
 return [
     'errors' => [
         'csrf' => 'Brak dostępu',
-        'missing' => 'Nie znaleziono'
-    ]
+        'missing' => 'Nie znaleziono',
+    ],
 ];

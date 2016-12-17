@@ -20,21 +20,21 @@
 return [
     'codes' => [
         'http-403' => 'Odmowa dostępu.',
-        'http-401' => 'Zaloguj się, aby kontynuować.'
+        'http-401' => 'Zaloguj się, aby kontynuować.',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Wystąpił błąd. Spróbuj odświeżyć stronę.'
-        ]
+            'generic' => 'Wystąpił błąd. Spróbuj odświeżyć stronę.',
+        ],
     ],
     'community' => [
         'slack' => [
             'not-eligible' => 'Twoje konto nie może otrzymać zaproszenia do Slacka.',
-            'slack-error' => 'Na serwerach Slacka wystąpił błąd. Spróbuj ponownie za kilka minut.'
-        ]
+            'slack-error' => 'Na serwerach Slacka wystąpił błąd. Spróbuj ponownie za kilka minut.',
+        ],
     ],
     'logged_out' => 'Zostałeś wylogowany. Zaloguj się i spróbuj ponownie.',
     'supporter_only' => 'Musisz być supporterem, aby używać tej funkcji.',
     'no_restricted_access' => 'Nie możesz wykonać tej operacji, jeśli twoje konto jest zbanowane.',
-    'unknown' => 'Wystąpił nieznany błąd.'
+    'unknown' => 'Wystąpił nieznany błąd.',
 ];

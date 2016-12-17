@@ -20,65 +20,65 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Opslaan van post mislukt'
-        ]
+            'error' => 'Opslaan van post mislukt',
+        ],
     ],
     'discussion-votes' => [
         'update' => [
-            'error' => 'Stem bijwerken mislukt'
-        ]
+            'error' => 'Stem bijwerken mislukt',
+        ],
     ],
     'discussions' => [
         'collapse' => [
             'all-collapse' => 'Sluit alles',
-            'all-expand' => 'Open alles'
+            'all-expand' => 'Open alles',
         ],
         'edit' => 'bewerk',
         'edited' => 'Laatst bewerkt door :editor :update_time',
         'empty' => [
             'empty' => 'Nog geen bestaande discussie!',
-            'filtered' => 'Geen discussies matcht het geselecteerde filter.'
+            'filtered' => 'Geen discussies matcht het geselecteerde filter.',
         ],
         'message_hint' => [
             'in_general' => 'Deze post gaat naar de algemene beatmapset discussie. Om deze map te modden moet je beginnen met een tijdstip (bijv. 00:12:345).',
-            'in_timeline' => 'Om meerdere tijdstippen te modden moet je meerdere keren posten (een post per tijdstip).'
+            'in_timeline' => 'Om meerdere tijdstippen te modden moet je meerdere keren posten (een post per tijdstip).',
         ],
         'message_placeholder' => 'Typ hier om te posten',
         'message_type' => [
             'praise' => 'Lof',
             'problem' => 'Probleem',
-            'suggestion' => 'Suggestie'
+            'suggestion' => 'Suggestie',
         ],
         'message_type_select' => 'Selecteer Commentaartype',
         'mode' => [
             'general' => 'Algemeen',
-            'timeline' => 'Tijdlijn'
+            'timeline' => 'Tijdlijn',
         ],
         'require-login' => 'Log in om te posten of te antwoorden',
         'resolved' => 'Opgelost',
         'show' => [
-            'title' => 'Beatmapdiscussie'
+            'title' => 'Beatmapdiscussie',
         ],
         'stats' => [
             'mine' => 'Van Mij',
             'pending' => 'Afwachtend',
             'praises' => 'Aangeprezen',
             'resolved' => 'Opgelost',
-            'total' => 'Totaal'
-        ]
+            'total' => 'Totaal',
+        ],
     ],
     'listing' => [
         'search' => [
             'prompt' => 'typ sleutelwoorden in...',
             'options' => 'Meer Zoekopties',
             'not-found' => 'geen resultaten',
-            'not-found-quote' => '... nope, niets gevonden.'
+            'not-found-quote' => '... nope, niets gevonden.',
         ],
         'mode' => 'Modus',
         'status' => 'Rank Status',
         'mapped-by' => 'gemapped door :mapper',
         'source' => 'van :source',
-        'load-more' => 'Laad meer...'
+        'load-more' => 'Laad meer...',
     ],
     'beatmapset' => [
         'show' => [
@@ -90,8 +90,8 @@ return [
                 'download' => [
                     '_' => 'downloaden',
                     'no-video' => 'zonder video',
-                    'direct' => 'osu!direct'
-                ]
+                    'direct' => 'osu!direct',
+                ],
             ],
             'stats' => [
                 'cs' => 'Cirkelgrootte',
@@ -102,14 +102,14 @@ return [
                 'total_length' => 'Lengte',
                 'bpm' => 'BPM',
                 'source' => 'Bron',
-                'tags' => 'Labels'
+                'tags' => 'Labels',
             ],
             'info' => [
                 'success-rate' => 'Slagingspercentage',
                 'points-of-failure' => 'Faalpunten',
                 'description' => 'Beschrijving',
                 'source' => 'Bron',
-                'tags' => 'Labels'
+                'tags' => 'Labels',
             ],
             'scoreboard' => [
                 'title' => 'Scorebord',
@@ -117,7 +117,7 @@ return [
                     'global' => 'Nog geen scores. Probeer er een paar te halen?',
                     'loading' => 'Scoren aan het laden...',
                     'country' => 'Niemand uit jouw land heeft nog een score behaald op deze map!',
-                    'friend' => 'Niemand van jouw vrienden heeft nog een score behaald op deze map!'
+                    'friend' => 'Niemand van jouw vrienden heeft nog een score behaald op deze map!',
                 ],
                 'supporter-only' => 'Je moet supporter zijn om land- en vriendenrankings te zien!',
                 'supporter-link' => 'Klik <a href=":link">hier</a> om alle chique functies die je krijgt te zien!',
@@ -126,23 +126,23 @@ return [
                 'friend' => 'Vriendenranking',
                 'stats' => [
                     'accuracy' => 'Precisie',
-                    'score' => 'Score'
+                    'score' => 'Score',
                 ],
                 'list' => [
                     'rank-header' => 'Rank',
                     'player-header' => 'Speler',
                     'score' => 'Score',
-                    'accuracy' => 'Precisie'
-                ]
-            ]
-        ]
+                    'accuracy' => 'Precisie',
+                ],
+            ],
+        ],
     ],
     'mode' => [
         'any' => 'Alles',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
         'fruits' => 'osu!catch',
-        'mania' => 'osu!mania'
+        'mania' => 'osu!mania',
     ],
     'status' => [
         'any' => 'Alles',
@@ -152,7 +152,7 @@ return [
         'modreqs' => 'Mod Verzoeken',
         'pending' => 'Afwachtend',
         'graveyard' => 'Begraafplaats',
-        'my-maps' => 'Mijn Mappen'
+        'my-maps' => 'Mijn Mappen',
     ],
     'genre' => [
         'any' => 'Alles',
@@ -164,7 +164,7 @@ return [
         'other' => 'Anders',
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
-        'electronic' => 'Electronic'
+        'electronic' => 'Electronic',
     ],
     'language' => [
         'any' => 'Alles',
@@ -178,11 +178,11 @@ return [
         'spanish' => 'Spaans',
         'swedish' => 'Zweeds',
         'instrumental' => 'Instrumentaal',
-        'other' => 'Anders'
+        'other' => 'Anders',
     ],
     'extra' => [
         'video' => 'Heeft Video',
-        'storyboard' => 'Heeft Storyboard'
+        'storyboard' => 'Heeft Storyboard',
     ],
     'rank' => [
         'any' => 'Alles',
@@ -193,6 +193,6 @@ return [
         'A' => 'A',
         'B' => 'B',
         'C' => 'C',
-        'D' => 'D'
-    ]
+        'D' => 'D',
+    ],
 ];

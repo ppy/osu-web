@@ -20,7 +20,7 @@
 return [
     'edit' => [
         'avatar' => [
-            'title' => 'Changer l\'avatar'
+            'title' => 'Changer l\'avatar',
         ],
         'profile' => [
             'title' => 'Éditer le profil',
@@ -30,10 +30,10 @@ return [
                 'user_msnm' => 'skype',
                 'user_occ' => 'occupation',
                 'user_twitter' => 'twitter',
-                'user_website' => 'site web'
-            ]
+                'user_website' => 'site web',
+            ],
         ],
         'title' => 'Paramètres du compte',
-        'title_compact' => 'paramètres'
-    ]
+        'title_compact' => 'paramètres',
+    ],
 ];

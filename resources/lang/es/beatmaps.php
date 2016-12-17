@@ -20,64 +20,64 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'No se ha podido guardar el post.'
-        ]
+            'error' => 'No se ha podido guardar el post.',
+        ],
     ],
     'discussion-votes' => [
         'update' => [
-            'error' => 'Error al actualizar los votos.'
-        ]
+            'error' => 'Error al actualizar los votos.',
+        ],
     ],
     'discussions' => [
         'collapse' => [
             'all-collapse' => 'Contraer todo.',
-            'all-expand' => 'Expandir todo.'
+            'all-expand' => 'Expandir todo.',
         ],
         'edit' => 'editar',
         'edited' => 'Última edición por :editor :update_time',
         'empty' => [
             'empty' => '¡Aún no hay discusiones!',
-            'filtered' => 'Ninguna discusión coincide con el filtro seleccionado.'
+            'filtered' => 'Ninguna discusión coincide con el filtro seleccionado.',
         ],
         'message_hint' => [
             'in_general' => 'Este post irá a la discusión general de beatmapset. Para moddear este beatmap, empieza un mensaje con linea de tiempo (ejemplo: 00:12:345).',
-            'in_timeline' => 'Para moddear multiples lineas de tiempo, escríbelas múltiples veces (un post por linea de tiempo).'
+            'in_timeline' => 'Para moddear multiples lineas de tiempo, escríbelas múltiples veces (un post por linea de tiempo).',
         ],
         'message_placeholder' => 'Escribe aquí para postear',
         'message_type' => [
             'praise' => 'Elogio',
             'problem' => 'Problema',
-            'suggestion' => 'Sugerencia'
+            'suggestion' => 'Sugerencia',
         ],
         'message_type_select' => 'Selecciona un tipo de comentario',
         'mode' => [
             'general' => 'General',
-            'timeline' => 'Línea de tiempo'
+            'timeline' => 'Línea de tiempo',
         ],
         'require-login' => 'Inicia sesión para postear o responder',
         'resolved' => 'Resuelto',
         'show' => [
-            'title' => 'Discusión de Beatmap'
+            'title' => 'Discusión de Beatmap',
         ],
         'stats' => [
             'pending' => 'Pendiente',
             'praises' => 'Elogios',
             'resolved' => 'Resuelto',
-            'total' => 'Total'
-        ]
+            'total' => 'Total',
+        ],
     ],
     'listing' => [
         'search' => [
             'prompt' => 'escribe en palabras clave...',
             'options' => 'Más Opciones de Búsqueda',
             'not-found' => 'no hay resultados.',
-            'not-found-quote' => '... nope, nada encontrado.'
+            'not-found-quote' => '... nope, nada encontrado.',
         ],
         'mode' => 'Modo',
         'status' => 'Estado de Rank',
         'mapped-by' => 'mappeado por :mapper',
         'source' => 'de :source',
-        'load-more' => 'Cargar más...'
+        'load-more' => 'Cargar más...',
     ],
     'beatmapset' => [
         'show' => [
@@ -89,8 +89,8 @@ return [
                 'download' => [
                     '_' => 'descargar',
                     'direct' => 'osu!direct',
-                    'no-video' => 'sin video'
-                ]
+                    'no-video' => 'sin video',
+                ],
             ],
             'stats' => [
                 'cs' => 'Tamaño de círculo',
@@ -99,14 +99,14 @@ return [
                 'ar' => 'Velocidad de aproximación',
                 'stars' => 'Estrellas de Dificultad',
                 'total_length' => 'Duración',
-                'bpm' => 'BPM'
+                'bpm' => 'BPM',
             ],
             'info' => [
                 'success-rate' => 'Tasa de éxito',
                 'points-of-failure' => 'Puntos de Fracaso',
                 'description' => 'Descripción',
                 'source' => 'Fuente',
-                'tags' => 'Etiquetas'
+                'tags' => 'Etiquetas',
             ],
             'scoreboard' => [
                 'title' => 'Puntuaciones',
@@ -114,7 +114,7 @@ return [
                     'global' => 'Sin puntuaciones aún. ¿Tal vez deberías intentar marcar alguna?',
                     'loading' => 'Cargando puntuaciones...',
                     'country' => '¡Nadie de tu país ha marcado una puntuación en este mapa aún!',
-                    'friend' => '¡Ninguno de tus amigos ha marcado una puntuación en este mapa aún!'
+                    'friend' => '¡Ninguno de tus amigos ha marcado una puntuación en este mapa aún!',
                 ],
                 'supporter-only' => '¡Necesitas ser supporter para acceder a los rankings entre amigos y de tu país!',
                 'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
@@ -123,23 +123,23 @@ return [
                 'friend' => 'Ranking de Amigos',
                 'stats' => [
                     'accuracy' => 'Precisión',
-                    'score' => 'Puntuación'
+                    'score' => 'Puntuación',
                 ],
                 'list' => [
                     'rank-header' => 'Rango',
                     'player-header' => 'Jugador',
                     'score' => 'Puntuación',
-                    'accuracy' => 'Precisión'
-                ]
-            ]
-        ]
+                    'accuracy' => 'Precisión',
+                ],
+            ],
+        ],
     ],
     'mode' => [
         'any' => 'Cualquiera',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
         'fruits' => 'osu!catch',
-        'mania' => 'osu!mania'
+        'mania' => 'osu!mania',
     ],
     'status' => [
         'any' => 'Cualquiera',
@@ -149,7 +149,7 @@ return [
         'modreqs' => 'Solicitan Mod',
         'pending' => 'Pendientes',
         'graveyard' => 'Cementerio',
-        'my-maps' => 'Mis mapas'
+        'my-maps' => 'Mis mapas',
     ],
     'genre' => [
         'any' => 'Cualquiera',
@@ -161,7 +161,7 @@ return [
         'other' => 'Otro',
         'novelty' => 'Novedoso',
         'hip-hop' => 'Hip Hop',
-        'electronic' => 'Electrónica'
+        'electronic' => 'Electrónica',
     ],
     'language' => [
         'any' => 'Cualquiera',
@@ -175,11 +175,11 @@ return [
         'spanish' => 'Español',
         'swedish' => 'Sueco',
         'instrumental' => 'Instrumental',
-        'other' => 'Otro'
+        'other' => 'Otro',
     ],
     'extra' => [
         'video' => 'Contiene video',
-        'storyboard' => 'Contiene storyboard'
+        'storyboard' => 'Contiene storyboard',
     ],
     'rank' => [
         'any' => 'Cualquiera',
@@ -190,6 +190,6 @@ return [
         'A' => 'A',
         'B' => 'B',
         'C' => 'C',
-        'D' => 'D'
-    ]
+        'D' => 'D',
+    ],
 ];

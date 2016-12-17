@@ -20,65 +20,65 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Zapisywanie posta nie powiodło się.'
-        ]
+            'error' => 'Zapisywanie posta nie powiodło się.',
+        ],
     ],
     'discussion-votes' => [
         'update' => [
-            'error' => 'Aktualizacja oceny nie powiodła się.'
-        ]
+            'error' => 'Aktualizacja oceny nie powiodła się.',
+        ],
     ],
     'discussions' => [
         'collapse' => [
             'all-collapse' => 'Zwiń wszystkie',
-            'all-expand' => 'Rozwiń wszystkie'
+            'all-expand' => 'Rozwiń wszystkie',
         ],
         'edit' => 'edytuj',
         'edited' => 'Ostatnio edytowane przez :editor :update_time',
         'empty' => [
             'empty' => 'Brak dyskusji!',
-            'filtered' => 'Nie znaleziono żadnych dyskusji zgodnych z wybranym filtrem.'
+            'filtered' => 'Nie znaleziono żadnych dyskusji zgodnych z wybranym filtrem.',
         ],
         'message_hint' => [
             'in_general' => 'Ten post znajdzie się w generalnej dyskusji tego mapsetu. Aby zmodować tę mapę, zacznij post od konkretnego momentu (np. 00:12:345).',
-            'in_timeline' => 'Aby zgłosić uwagi dotyczące kilku różnych momentów piosenki, utwórz dla nich odrębne komentarze (po jednym dla każdego momentu utworu).'
+            'in_timeline' => 'Aby zgłosić uwagi dotyczące kilku różnych momentów piosenki, utwórz dla nich odrębne komentarze (po jednym dla każdego momentu utworu).',
         ],
         'message_placeholder' => 'Pisz tutaj',
         'message_type' => [
             'praise' => 'Pochwała',
             'problem' => 'Problem',
-            'suggestion' => 'Sugestia'
+            'suggestion' => 'Sugestia',
         ],
         'message_type_select' => 'Wybierz typ komentarza',
         'mode' => [
             'general' => 'Główne',
-            'timeline' => 'Oś czasu'
+            'timeline' => 'Oś czasu',
         ],
         'require-login' => 'Zaloguj się, aby móc postować i odpowiadać.',
         'resolved' => 'Rozwiązane',
         'show' => [
-            'title' => 'Dyskusja na temat mapy'
+            'title' => 'Dyskusja na temat mapy',
         ],
         'stats' => [
             'mine' => 'Moje',
             'pending' => 'Oczekujące',
             'praises' => 'Pochwały',
             'resolved' => 'Rozwiązane',
-            'total' => 'Łącznie'
-        ]
+            'total' => 'Łącznie',
+        ],
     ],
     'listing' => [
         'search' => [
             'prompt' => 'wpisz poszukiwane wyrażenie...',
             'options' => 'Więcej opcji wyszukiwarki',
             'not-found' => 'brak wyników',
-            'not-found-quote' => '... nic nie znaleziono.'
+            'not-found-quote' => '... nic nie znaleziono.',
         ],
         'mode' => 'Tryb gry',
         'status' => 'Status mapy',
         'mapped-by' => 'zmapowana przez :mapper',
         'source' => 'pochodzi z :source',
-        'load-more' => 'Załaduj więcej...'
+        'load-more' => 'Załaduj więcej...',
     ],
     'beatmapset' => [
         'show' => [
@@ -91,8 +91,8 @@ return [
                     '_' => 'pobierz',
                     'video' => 'z wideo',
                     'no-video' => 'bez wideo',
-                    'direct' => 'osu!direct'
-                ]
+                    'direct' => 'osu!direct',
+                ],
             ],
             'stats' => [
                 'cs' => 'Circle Size',
@@ -104,14 +104,14 @@ return [
                 'total_length' => 'Długość',
                 'bpm' => 'BPM',
                 'count_circles' => 'Ilość kółek',
-                'count_sliders' => 'Ilość sliderów'
+                'count_sliders' => 'Ilość sliderów',
             ],
             'info' => [
                 'success-rate' => 'Wskaźnik sukcesu',
                 'points-of-failure' => 'Wykres',
                 'description' => 'Opis',
                 'source' => 'Źródło',
-                'tags' => 'Tagi'
+                'tags' => 'Tagi',
             ],
             'scoreboard' => [
                 'title' => 'Tablica wyników',
@@ -119,7 +119,7 @@ return [
                     'global' => 'Brak wyników. Może powinieneś jakieś zdobyć?',
                     'loading' => 'Ładowanie wyników...',
                     'country' => 'Nikt z twojego kraju nie ustanowił tutaj wyniku!',
-                    'friend' => 'Żaden z twoich znajomych nie ma tutaj wyniku!'
+                    'friend' => 'Żaden z twoich znajomych nie ma tutaj wyniku!',
                 ],
                 'supporter-only' => 'Musisz być supporterem, aby uzyskać dostęp do rankingu krajowego i znajomych!',
                 'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, co jeszcze otrzymujesz w zamian za bycie supporterem!',
@@ -129,23 +129,23 @@ return [
                 'achieved' => 'osiągnięty :when',
                 'stats' => [
                     'accuracy' => 'Celność',
-                    'score' => 'Wynik'
+                    'score' => 'Wynik',
                 ],
                 'list' => [
                     'rank-header' => 'Miejsce',
                     'player-header' => 'Gracz',
                     'score' => 'Wynik',
-                    'accuracy' => 'Celność'
-                ]
-            ]
-        ]
+                    'accuracy' => 'Celność',
+                ],
+            ],
+        ],
     ],
     'mode' => [
         'any' => 'Jakikolwiek',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
         'fruits' => 'osu!catch',
-        'mania' => 'osu!mania'
+        'mania' => 'osu!mania',
     ],
     'status' => [
         'any' => 'Jakikolwiek',
@@ -155,7 +155,7 @@ return [
         'modreqs' => 'Wymagające modów',
         'pending' => 'Oczekujące',
         'graveyard' => 'Cmentarz',
-        'my-maps' => 'Moje mapy'
+        'my-maps' => 'Moje mapy',
     ],
     'genre' => [
         'any' => 'Jakikolwiek',
@@ -167,10 +167,10 @@ return [
         'other' => 'Inne',
         'novelty' => 'Nowość',
         'hip-hop' => 'Hip Hop',
-        'electronic' => 'Electro'
+        'electronic' => 'Electro',
     ],
     'mods' => [
-        'NM' => 'Bez modów'
+        'NM' => 'Bez modów',
     ],
     'language' => [
         'any' => 'Jakikolwiek',
@@ -184,11 +184,11 @@ return [
         'spanish' => 'Hiszpański',
         'swedish' => 'Szwedzki',
         'instrumental' => 'Instrumental',
-        'other' => 'Inne'
+        'other' => 'Inne',
     ],
     'extra' => [
         'video' => 'Posiada wideo',
-        'storyboard' => 'Posiada storyboard'
+        'storyboard' => 'Posiada storyboard',
     ],
     'rank' => [
         'any' => 'Jakikolwiek',
@@ -199,6 +199,6 @@ return [
         'A' => 'A',
         'B' => 'B',
         'C' => 'C',
-        'D' => 'D'
-    ]
+        'D' => 'D',
+    ],
 ];

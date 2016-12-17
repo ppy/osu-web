@@ -20,13 +20,13 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Failed saving post'
-        ]
+            'error' => 'Failed saving post',
+        ],
     ],
     'discussion-votes' => [
         'update' => [
-            'error' => 'Failed updating vote'
-        ]
+            'error' => 'Failed updating vote',
+        ],
     ],
     'discussions' => [
         'delete' => 'delete',
@@ -42,32 +42,32 @@ return [
         'title' => 'Discussions',
         'collapse' => [
             'all-collapse' => 'Collapse all',
-            'all-expand' => 'Expand all'
+            'all-expand' => 'Expand all',
         ],
         'empty' => [
             'empty' => 'No discussions yet!',
-            'filtered' => 'No discussion matches selected filter.'
+            'filtered' => 'No discussion matches selected filter.',
         ],
         'message_hint' => [
             'in_general' => 'This post will go to general beatmapset discussion. To mod this beatmap, start message with timestamp (e.g. 00:12:345).',
-            'in_timeline' => 'To mod multiple timestamps, post multiple times (one post per timestamp).'
+            'in_timeline' => 'To mod multiple timestamps, post multiple times (one post per timestamp).',
         ],
         'message_type' => [
             'praise' => 'Praise',
             'problem' => 'Problem',
-            'suggestion' => 'Suggestion'
+            'suggestion' => 'Suggestion',
         ],
         'mode' => [
             'general' => 'General',
-            'timeline' => 'Timeline'
+            'timeline' => 'Timeline',
         ],
         'new' => [
             'timestamp' => 'Timestamp',
             'timestamp_missing' => 'ctrl-c in edit mode and paste in your message to add a timestamp!',
-            'title' => 'New Discussion'
+            'title' => 'New Discussion',
         ],
         'show' => [
-            'title' => ':title mapped by :mapper'
+            'title' => ':title mapped by :mapper',
         ],
         'stats' => [
             'deleted' => 'Deleted',
@@ -75,8 +75,8 @@ return [
             'pending' => 'Pending',
             'praises' => 'Praises',
             'resolved' => 'Resolved',
-            'total' => 'Total'
-        ]
+            'total' => 'Total',
+        ],
     ],
     'nominations' => [
         'disqualifed-at' => 'disqualified :time_ago (:reason).',
@@ -89,20 +89,20 @@ return [
         'qualified' => 'Estimated to be ranked :date, if no issues are found.',
         'qualified-soon' => 'Estimated to be ranked soon, if no issues are found.',
         'required-text' => 'Nominations: :current/:required',
-        'title' => 'Nomination Status'
+        'title' => 'Nomination Status',
     ],
     'listing' => [
         'search' => [
             'prompt' => 'type in keywords...',
             'options' => 'More Search Options',
             'not-found' => 'no results',
-            'not-found-quote' => '... nope, nothing found.'
+            'not-found-quote' => '... nope, nothing found.',
         ],
         'mode' => 'Mode',
         'status' => 'Rank Status',
         'mapped-by' => 'mapped by :mapper',
         'source' => 'from :source',
-        'load-more' => 'Load more...'
+        'load-more' => 'Load more...',
     ],
     'beatmapset' => [
         'show' => [
@@ -119,10 +119,10 @@ return [
                     '_' => 'Download',
                     'video' => 'with Video',
                     'no-video' => 'without Video',
-                    'direct' => 'osu!direct'
+                    'direct' => 'osu!direct',
                 ],
                 'favourite' => 'Favourite this beatmapset',
-                'unfavourite' => 'Unfavourite this beatmapset'
+                'unfavourite' => 'Unfavourite this beatmapset',
             ],
             'stats' => [
                 'cs' => 'Circle Size',
@@ -136,14 +136,14 @@ return [
                 'count_circles' => 'Circle Count',
                 'count_sliders' => 'Slider Count',
                 'user-rating' => 'User Rating',
-                'rating-spread' => 'Rating Spread'
+                'rating-spread' => 'Rating Spread',
             ],
             'info' => [
                 'success-rate' => 'Success Rate',
                 'points-of-failure' => 'Points of Failure',
                 'description' => 'Description',
                 'source' => 'Source',
-                'tags' => 'Tags'
+                'tags' => 'Tags',
             ],
             'scoreboard' => [
                 'title' => 'Scoreboard',
@@ -151,7 +151,7 @@ return [
                     'global' => 'No scores yet. Maybe you should try setting some?',
                     'loading' => 'Loading scores...',
                     'country' => 'No one from your country has set a score on this map yet!',
-                    'friend' => 'No one of your friends has set a score on this map yet!'
+                    'friend' => 'No one of your friends has set a score on this map yet!',
                 ],
                 'supporter-only' => 'You need to be a supporter to access the friend and country rankings!',
                 'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
@@ -166,23 +166,23 @@ return [
                     'count300' => '300',
                     'countkatu' => '200',
                     'count100' => '100',
-                    'count50' => '50'
+                    'count50' => '50',
                 ],
                 'list' => [
                     'rank-header' => 'Rank',
                     'player-header' => 'Player',
                     'score' => 'Score',
-                    'accuracy' => 'Accuracy'
-                ]
-            ]
-        ]
+                    'accuracy' => 'Accuracy',
+                ],
+            ],
+        ],
     ],
     'mode' => [
         'any' => 'Any',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
         'fruits' => 'osu!catch',
-        'mania' => 'osu!mania'
+        'mania' => 'osu!mania',
     ],
     'status' => [
         'any' => 'Any',
@@ -193,7 +193,7 @@ return [
         'modreqs' => 'Mod Requests',
         'pending' => 'Pending',
         'graveyard' => 'Graveyard',
-        'my-maps' => 'My Maps'
+        'my-maps' => 'My Maps',
     ],
     'genre' => [
         'any' => 'Any',
@@ -205,7 +205,7 @@ return [
         'other' => 'Other',
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
-        'electronic' => 'Electronic'
+        'electronic' => 'Electronic',
     ],
     'mods' => [
         'NF' => 'No Fail',
@@ -228,7 +228,7 @@ return [
         '8K' => '8K',
         'FI' => 'Fade In',
         '9K' => '9K',
-        'NM' => 'No mods'
+        'NM' => 'No mods',
     ],
     'language' => [
         'any' => 'Any',
@@ -242,11 +242,11 @@ return [
         'spanish' => 'Spanish',
         'swedish' => 'Swedish',
         'instrumental' => 'Instrumental',
-        'other' => 'Other'
+        'other' => 'Other',
     ],
     'extra' => [
         'video' => 'Has Video',
-        'storyboard' => 'Has Storyboard'
+        'storyboard' => 'Has Storyboard',
     ],
     'rank' => [
         'any' => 'Any',
@@ -257,6 +257,6 @@ return [
         'A' => 'A',
         'B' => 'B',
         'C' => 'C',
-        'D' => 'D'
-    ]
+        'D' => 'D',
+    ],
 ];

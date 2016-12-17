@@ -21,30 +21,30 @@ return [
     'beatmap_discussion' => [
         'resolve' => [
             'general_discussion' => 'Algemene discussie kan niet worden opgelost.',
-            'not_owner' => 'Alleen de eigenaar van de thread of de eigenaar van de beatmap kan een discussie als opgelost markeren.'
-        ]
+            'not_owner' => 'Alleen de eigenaar van de thread of de eigenaar van de beatmap kan een discussie als opgelost markeren.',
+        ],
     ],
     'beatmap_discussion_post' => [
         'edit' => [
             'system_generated' => 'Automatisch gegenereerde posts kunnen niet worden bewerkt.',
-            'not_owner' => 'Alleen de eigenaar kan deze post bewerken.'
-        ]
+            'not_owner' => 'Alleen de eigenaar kan deze post bewerken.',
+        ],
     ],
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'Toegang tot dit kanaal is niet toegestaan.'
-            ]
+                'no_access' => 'Toegang tot dit kanaal is niet toegestaan.',
+            ],
         ],
         'message' => [
             'send' => [
                 'channel' => [
                     'no_access' => 'Toegang tot dit kanaal is vereist.',
-                    'moderated' => 'Kanaal wordt op het moment gemodereerd.'
+                    'moderated' => 'Kanaal wordt op het moment gemodereerd.',
                 ],
-                'not_allowed' => 'Je kunt geen berichten sturen terwijl je bent verbannen/restricted/silenced.'
-            ]
-        ]
+                'not_allowed' => 'Je kunt geen berichten sturen terwijl je bent verbannen/restricted/silenced.',
+            ],
+        ],
     ],
     'forum' => [
         'post' => [
@@ -52,37 +52,37 @@ return [
                 'only_last_post' => 'Alleen de laatste post kan worden verwijderd.',
                 'locked' => 'Kan geen post in een gesloten onderwerp verwijderen.',
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
-                'not_owner' => 'Alleen de eigenaar kan deze post verwijderen.'
+                'not_owner' => 'Alleen de eigenaar kan deze post verwijderen.',
             ],
             'edit' => [
                 'locked' => 'De post is afgesloten voor bewerkingen.',
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
                 'not_owner' => 'Alleen de eigenaar kan de post bewerken.',
-                'topic_locked' => 'Kan geen post in een gesloten onderwerp bewerken.'
-            ]
+                'topic_locked' => 'Kan geen post in een gesloten onderwerp bewerken.',
+            ],
         ],
         'topic' => [
             'reply' => [
                 'double_post' => 'Je hebt zojuist gepost. Wacht even voordat je een nieuwe maakt of bewerk je vorige post.',
                 'locked' => 'Je kunt niet antwoorden op een gesloten onderwerp.',
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
-                'no_permission' => 'Geen toestemming om te antwoorden.'
+                'no_permission' => 'Geen toestemming om te antwoorden.',
             ],
             'store' => [
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
                 'no_permission' => 'Geen toestemming om een onderwerp te starten.',
-                'forum_closed' => 'Forum is gesloten en kan niet in gepost worden.'
-            ]
+                'forum_closed' => 'Forum is gesloten en kan niet in gepost worden.',
+            ],
         ],
         'topic_cover' => [
             'edit' => [
                 'uneditable' => 'Foutieve cover gespecificeerd.',
-                'not_owner' => 'Alleen de eigenaar kan de cover bewerken.'
-            ]
+                'not_owner' => 'Alleen de eigenaar kan de cover bewerken.',
+            ],
         ],
         'view' => [
-            'admin_only' => 'Alleen admins kunnen dit forum zien.'
-        ]
+            'admin_only' => 'Alleen admins kunnen dit forum zien.',
+        ],
     ],
     'require_login' => 'Log in om verder te gaan.',
     'unauthorized' => 'Toegang geweigerd.',
@@ -93,8 +93,8 @@ return [
             'edit' => [
                 'locked' => 'Gebruikerspagina is gesloten.',
                 'not_owner' => 'Je kunt alleen je eigen gebruikerspagina bewerken.',
-                'require_supporter_tag' => 'Supporter tag is nodig.'
-            ]
-        ]
-    ]
+                'require_supporter_tag' => 'Supporter tag is nodig.',
+            ],
+        ],
+    ],
 ];

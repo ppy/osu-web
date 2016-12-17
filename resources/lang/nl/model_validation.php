@@ -22,7 +22,7 @@ return [
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Kan alleen maar stemmen op een feature aanvraag.',
-            'not_enough_feature_votes' => 'Niet genoeg stemmen.'
-        ]
-    ]
+            'not_enough_feature_votes' => 'Niet genoeg stemmen.',
+        ],
+    ],
 ];
