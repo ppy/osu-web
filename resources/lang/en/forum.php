@@ -54,6 +54,7 @@ return [
     ],
     'subforums' => 'Subforums',
     'title' => 'osu!community',
+    'slogan' => 'it\'s dangerous to play alone.',
     'topic' => [
         'create' => [
             'placeholder' => [
