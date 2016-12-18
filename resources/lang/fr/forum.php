@@ -54,6 +54,7 @@ return [
     ],
     'subforums' => 'Sous-forums',
     'title' => 'Communauté osu!',
+    'slogan' => 'c\'est dangereux de jouer seul.'
     'topic' => [
         'create' => [
             'placeholder' => [
