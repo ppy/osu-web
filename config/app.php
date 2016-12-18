@@ -87,7 +87,7 @@ return [
         'fr',
         'nl',
         'pl',
-        'pt-br'
+        'pt-br',
         'it',
     ],
 
