@@ -25,6 +25,8 @@ class @BeatmapDiscussionHelper
     "#{_.padStart m, 2, 0}:#{_.padStart s, 2, 0}.#{_.padStart ms, 3, 0}"
 
 
+  # don't forget to update BeatmapDiscussionsController@show
+  # when changing this.
   @hash: ({beatmapId, discussionId} = {}) =>
     if discussionId?
       "#/#{discussionId}"
@@ -34,6 +36,7 @@ class @BeatmapDiscussionHelper
       ''
 
 
+  # see @hash
   @hashParse: =>
     hash = document.location.hash[1..]
     id = parseInt(hash[1..], 10)
