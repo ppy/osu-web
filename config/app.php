@@ -85,6 +85,7 @@ return [
         // sort by name
         'es',
         'fr',
+        'it',
         'nl',
         'pl',
         'pt-br',
