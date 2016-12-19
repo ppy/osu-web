@@ -84,19 +84,21 @@ class BeatmapDiscussion extends Model
         return $this->attributes['message_type'] = static::MESSAGE_TYPES[$value] ?? null;
     }
 
-    public function calculateKudosu($event, $scoreChange)
+    public function refreshKudosu($event)
     {
         // no kudosu for praises...?
         if ($this->message_type === 'praise') {
             return;
         }
 
+        // inb4 timing problem
         $currentVotes = $this->currentVotes();
-        $previousVotes = $currentVotes - $scoreChange;
+        $previousVotes = $this->kudosu_refresh_votes ?? 0;
+        $votesChange = $currentVotes - $previousVotes;
 
         $change = 0;
 
-        if ($scoreChange > 0) {
+        if ($votesChange > 0) {
             foreach (static::KUDOSU_STEPS as $step) {
                 if ($previousVotes < $step && $currentVotes >= $step) {
                     $change += 1;
@@ -114,7 +116,7 @@ class BeatmapDiscussion extends Model
             return;
         }
 
-        DB::transaction(function () use ($change, $event) {
+        DB::transaction(function () use ($change, $event, $currentVotes) {
             KudosuHistory::create([
                 'receiver_id' => $this->user->user_id,
                 'amount' => $change,
@@ -126,6 +128,9 @@ class BeatmapDiscussion extends Model
                     'event' => $event,
                 ],
             ]);
+            $this->update([
+                'kudosu_refresh_votes' => $currentVotes,
+            ]);
             $this->user->update([
                 'osu_kudostotal' => DB::raw("osu_kudostotal + {$change}"),
                 'osu_kudosavailable' => DB::raw("osu_kudosavailable + {$change}"),
@@ -133,9 +138,9 @@ class BeatmapDiscussion extends Model
         });
     }
 
-    public function currentVotes($ignoreDeletedStatus = false)
+    public function currentVotes()
     {
-        return $this->isDeleted() && !$ignoreDeletedStatus
+        return ($this->isDeleted() || $this->kudosu_denied)
             ? 0
             : $this->beatmapDiscussionVotes()->sum('score');
     }
@@ -203,7 +208,7 @@ class BeatmapDiscussion extends Model
                     $vote->save();
                 }
 
-                $this->calculateKudosu('vote', $scoreChange);
+                $this->refreshKudosu('vote');
             }
 
             return true;
@@ -220,6 +225,25 @@ class BeatmapDiscussion extends Model
         return route('beatmap-discussions.show', $this->id);
     }
 
+    public function allowKudosu()
+    {
+        DB::transaction(function () {
+            $this->update(['kudosu_denied' => false]);
+            $this->refreshKudosu('allow_kudosu');
+        });
+    }
+
+    public function denyKudosu($deniedBy)
+    {
+        DB::transaction(function () use ($deniedBy) {
+            $this->update([
+                'kudosu_denied_by_id' => $deletedBy->user_id ?? null,
+                'kudosu_denied' => true,
+            ]);
+            $this->refreshKudosu('deny_kudosu');
+        });
+    }
+
     public function isDeleted()
     {
         return $this->deleted_at !== null;
@@ -229,7 +253,7 @@ class BeatmapDiscussion extends Model
     {
         DB::transaction(function () {
             $this->update(['deleted_at' => null]);
-            $this->calculateKudosu('restore', max($this->currentVotes(true), 0));
+            $this->refreshKudosu('restore');
         });
     }
 
@@ -240,7 +264,7 @@ class BeatmapDiscussion extends Model
                 'deleted_by_id' => $deletedBy->user_id ?? null,
                 'deleted_at' => Carbon::now(),
             ]);
-            $this->calculateKudosu('delete', min(-1 * $this->currentVotes(true), 0));
+            $this->refreshKudosu('delete');
         });
     }
 
