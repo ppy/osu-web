@@ -64,7 +64,7 @@ Route::put('beatmapsets/{beatmapset}/disqualify', ['as' => 'beatmapsets.disquali
 Route::put('beatmap-discussions/{beatmap_discussion}/vote', ['uses' => 'BeatmapDiscussionsController@vote', 'as' => 'beatmap-discussions.vote']);
 Route::post('beatmap-discussions/{beatmap_discussion}/restore', ['uses' => 'BeatmapDiscussionsController@restore', 'as' => 'beatmap-discussions.restore']);
 Route::resource('beatmap-discussions', 'BeatmapDiscussionsController', [
-    'only' => ['destroy'],
+    'only' => ['show', 'destroy'],
 ]);
 
 Route::post('beatmap-discussions-posts/{beatmap_discussion_post}/restore', [

@@ -120,8 +120,9 @@ class BeatmapDiscussion extends Model
                 'amount' => $change,
                 'action' => $change > 0 ? 'give' : 'reset',
                 'date' => Carbon::now(),
+                'kudosuable_type' => static::class,
+                'kudosuable_id' => $this->id,
                 'details' => [
-                    'type' => 'beatmap_discussion',
                     'event' => $event,
                 ],
             ]);
@@ -207,6 +208,16 @@ class BeatmapDiscussion extends Model
 
             return true;
         });
+    }
+
+    public function title()
+    {
+        return "{$this->beatmapset->title} [{$this->beatmap->version}]";
+    }
+
+    public function url()
+    {
+        return route('beatmap-discussions.show', $this->id);
     }
 
     public function isDeleted()

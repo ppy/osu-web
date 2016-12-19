@@ -27,19 +27,42 @@ class KudosuHistoryTransformer extends Fractal\TransformerAbstract
 {
     public function transform(KudosuHistory $kudosuHistory)
     {
-        return [
-            'id' => $kudosuHistory->exchange_id,
-            'action' => $kudosuHistory->action,
-            'amount' => $kudosuHistory->amount,
-            'createdAt' => json_time($kudosuHistory->date),
-            'giver' => [
-                'url' => route('users.show', $kudosuHistory->giver_id),
-                'name' => $kudosuHistory->giver->username,
-            ],
-            'post' => [
+        if ($kudosuHistory->giver !== null) {
+            $giver = [
+                'url' => route('users.show', $kudosuHistory->giver->user_id),
+                'username' => $kudosuHistory->giver->username,
+            ];
+        }
+
+        if (($kudosuHistory->post->topic ?? null) !== null) {
+            $post = [
                 'url' => route('forum.posts.show', $kudosuHistory->post_id),
                 'title' => $kudosuHistory->post->topic->topic_title,
-            ],
+            ];
+
+            $model = 'forum_post';
+            $action = $kudosuHistory->action;
+        }
+
+        if ($kudosuHistory->kudosuable !== null) {
+            $post = [
+                'url' => $kudosuHistory->kudosuable->url(),
+                'title' => $kudosuHistory->kudosuable->title(),
+            ];
+
+            $model = get_model_basename($kudosuHistory->kudosuable);
+            $action = $kudosuHistory->details['event'].'.'.$kudosuHistory->action;
+        }
+
+        return [
+            'id' => $kudosuHistory->exchange_id,
+            'action' => $action,
+            'amount' => $kudosuHistory->amount,
+            'model' => $model,
+            'created_at' => json_time($kudosuHistory->date),
+            'giver' => $giver ?? null,
+            'post' => $post ?? null,
+            'details' => $kudosuHistory->details,
         ];
     }
 }

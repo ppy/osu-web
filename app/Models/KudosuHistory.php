@@ -50,6 +50,11 @@ class KudosuHistory extends Model
         return $this->belongsTo(Forum\Post::class, 'post_id', 'post_id');
     }
 
+    public function kudosuable()
+    {
+        return $this->morphTo();
+    }
+
     public function scopeWithPost($query)
     {
         $postTableName = (new Forum\Post)->getTable();

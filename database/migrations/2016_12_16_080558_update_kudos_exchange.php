@@ -15,6 +15,8 @@ class UpdateKudosExchange extends Migration
             ALTER TABLE osu_kudos_exchange
             MODIFY giver_id MEDIUMINT UNSIGNED NULL,
             MODIFY post_id MEDIUMINT UNSIGNED NULL,
+            ADD kudosuable_type VARCHAR(255) NULL,
+            ADD kudosuable_id BIGINT UNSIGNED NULL,
             ADD details TEXT NULL
         ');
     }
@@ -30,6 +32,8 @@ class UpdateKudosExchange extends Migration
             ALTER TABLE osu_kudos_exchange
             MODIFY giver_id MEDIUMINT UNSIGNED NOT NULL,
             MODIFY post_id MEDIUMINT UNSIGNED NOT NULL,
+            DROP kudosuable_type,
+            DROP kudosuable_id,
             DROP details
         ');
     }

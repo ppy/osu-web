@@ -31,7 +31,7 @@ class BeatmapDiscussionsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'show']);
 
         return parent::__construct();
     }
@@ -58,6 +58,13 @@ class BeatmapDiscussionsController extends Controller
         $discussion->restore();
 
         return $discussion->beatmapsetDiscussion->defaultJson();
+    }
+
+    public function show($id)
+    {
+        $discussion = BeatmapDiscussion::findOrFail($id);
+
+        return ujs_redirect(route('beatmapsets.discussion', $discussion->beatmapset).'#/'.$id);
     }
 
     public function vote($id)
