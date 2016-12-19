@@ -91,6 +91,11 @@ class BeatmapDiscussion extends Model
             return;
         }
 
+        // cleanup of own votes
+        $this->beatmapDiscussionVotes()->where([
+            'user_id' => $this->user_id,
+        ])->delete();
+
         // inb4 timing problem
         $currentVotes = $this->currentVotes();
         $previousVotes = $this->kudosu_refresh_votes ?? 0;
