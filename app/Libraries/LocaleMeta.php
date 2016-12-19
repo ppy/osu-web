@@ -35,6 +35,10 @@ class LocaleMeta
             'name' => 'Français',
             'flag' => 'FR',
         ],
+        'it' => [
+            'name' => 'Italiano',
+            'flag' => 'IT',
+        ],
         'nl' => [
             'name' => 'Nederlands',
             'flag' => 'NL',
@@ -46,10 +50,6 @@ class LocaleMeta
         'pt-br' => [
             'name' => 'Português (Brasil)',
             'flag' => 'BR',
-        ],
-        'it' => [
-            'name' => 'Italiano',
-            'flag' => 'IT',
         ],
     ];
 
