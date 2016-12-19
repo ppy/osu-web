@@ -235,7 +235,7 @@ class BeatmapDiscussion extends Model
 
     public function softDelete($deletedBy)
     {
-        DB::transaction(function () {
+        DB::transaction(function () use ($deletedBy) {
             $this->update([
                 'deleted_by_id' => $deletedBy->user_id ?? null,
                 'deleted_at' => Carbon::now(),
