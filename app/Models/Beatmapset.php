@@ -85,8 +85,6 @@ class Beatmapset extends Model
     const NOMINATIONS_PER_DAY = 1;
     const QUALIFICATIONS_PER_DAY = 6;
 
-    private $_favourites = null;
-
     // ranking functions for the set
 
     public function beatmapsetDiscussion()
@@ -887,13 +885,6 @@ class Beatmapset extends Model
     public function favourites()
     {
         return $this->hasMany(FavouriteBeatmapset::class);
-    }
-
-    public function hasFavourited($user)
-    {
-        return $user === null
-            ? false
-            : $this->favourites()->where('user_id', $user->user_id)->exists();
     }
 
     public function description()
