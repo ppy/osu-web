@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -20,7 +19,6 @@
 
 return [
     'required' => ':attribute is nodig.',
-
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Kan alleen maar stemmen op een feature aanvraag.',

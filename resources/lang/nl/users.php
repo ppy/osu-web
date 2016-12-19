@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -33,8 +32,7 @@ return [
             'main' => 'Beta toegang is alleen voor bepaalde gebruikers.',
             'small' => '(supporters krijgen binnenkort toegang)',
         ],
-
-        'here' => 'hier', // this is substituted in when generating a link above. change it to suit the language.
+        'here' => 'hier',
     ],
     'anonymous' => [
         'login_link' => 'klik om in te loggen',
@@ -43,7 +41,7 @@ return [
     ],
     'logout_confirm' => 'Weet je zeker dat je wilt uitloggen? :(',
     'show' => [
-        '404' => 'Gebruiker niet gevonden! ;_;',
+        404 => 'Gebruiker niet gevonden! ;_;',
         'current_location' => 'Momenteel in :location.',
         'edit' => [
             'cover' => [
@@ -54,7 +52,7 @@ return [
                     'button' => 'Upload afbeelding',
                     'dropzone' => 'Drop hier om te uploaden',
                     'dropzone_info' => 'Je kunt je afbeelding ook hier droppen om te uploaden',
-                    'restriction_info' => "Uploaden alleen beschikbaar voor <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a>",
+                    'restriction_info' => 'Uploaden alleen beschikbaar voor <a href=\'https://osu.ppy.sh/p/support#transactionarea\' target=\'_blank\'>osu!supporters</a>',
                     'size_info' => 'Cover grootte moet 2000x500 zijn',
                     'too_large' => 'Het geüploade bestand is te groot.',
                     'unsupported_format' => 'Niet ondersteund formaat.',
@@ -68,6 +66,13 @@ return [
             ],
             'beatmaps' => [
                 'title' => 'Beatmaps',
+                'favourite' => [
+                    'title' => 'Favoriete Beatmaps (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Gerankte & Goedgekeurde Beatmaps (:count)',
+                ],
+                'none' => 'Nog geen...',
             ],
             'historical' => [
                 'empty' => 'Geen prestatiegegevens. :(',
@@ -95,7 +100,7 @@ return [
                 'recent_entries' => 'Recente Kudosu Geschiedenis',
                 'title' => 'Kudosu!',
                 'total' => 'Totaal Aantal Kudosu Verdiend',
-                'total_info' => 'Gebaseerd op hoeveel contributie de gebruiker heeft geleverd aan beatmap moderatie. Zie <a href="'.osu_url('user.kudosu').'">deze pagina</a> voor meer informatie.',
+                'total_info' => 'Gebaseerd op hoeveel contributie de gebruiker heeft geleverd aan beatmap moderatie. Zie <a href="https://osu.ppy.sh/wiki/Kudosu">deze pagina</a> voor meer informatie.',
             ],
             'me' => [
                 'title' => 'ik!',
@@ -118,16 +123,6 @@ return [
                 'title' => 'Ranks',
                 'weighted_pp' => 'gewogen: :pp (:percentage)',
             ],
-            'beatmaps' => [
-                'title' => 'Beatmaps',
-                'favourite' => [
-                    'title' => 'Favoriete Beatmaps (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Gerankte & Goedgekeurde Beatmaps (:count)',
-                ],
-                'none' => 'Nog geen...',
-            ],
         ],
         'first_members' => 'hier sinds het begin',
         'is_supporter' => 'osu!supporter',
@@ -144,7 +139,7 @@ return [
             'description' => '<strong>ik!</strong> is een persoonlijk bewerkbaar gedeelte van je profiel.',
             'edit_big' => 'Bewerk me!',
             'placeholder' => 'Typ pagina inhoud hier',
-            'restriction_info' => "Je moet een <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> zijn om dit te gebruiken.",
+            'restriction_info' => 'Je moet een <a href=\'https://osu.ppy.sh/p/support#transactionarea\' target=\'_blank\'>osu!supporter</a> zijn om dit te gebruiken.',
         ],
         'plays_with' => [
             '_' => 'Speelt met',
@@ -172,5 +167,4 @@ return [
         ],
         'title' => 'Profiel van :username',
     ],
-
 ];

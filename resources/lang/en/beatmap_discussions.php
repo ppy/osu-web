@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -26,7 +25,6 @@ return [
             'wrong_user' => 'Must be owner of the post to edit.',
         ],
     ],
-
     'system' => [
         'resolved' => [
             'true' => 'Marked as resolved by :user',

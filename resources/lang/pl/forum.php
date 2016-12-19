@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -19,14 +18,12 @@
  */
 
 return [
-
     'covers' => [
         'create' => [
             '_' => 'Ustaw tło nagłówka',
             'button' => 'Dodaj tło',
             'info' => 'Nagłówek powinien być w rozdzielczości :dimensions. Możesz także upuścić swoje tło tutaj, aby je dodać.',
         ],
-
         'destroy' => [
             '_' => 'Usuń tło nagłówka',
             'confirm' => 'Czy jesteś pewien, że chcesz usunąć tło nagłówka?',
@@ -84,28 +81,23 @@ return [
     ],
     'topics' => [
         '_' => 'Tematy',
-
         'actions' => [
             'reply' => 'Pokaż okno odpowiedzi',
             'reply_with_quote' => 'Cytuj post w odpowiedzi',
         ],
-
         'index' => [
             'views' => 'wyświetleń',
             'replies' => 'odpowiedzi',
         ],
-
         'lock' => [
             'locked-0' => 'Temat został odblokowany',
             'locked-1' => 'Temat został zablokowany',
             'is_locked' => 'Ten temat jest zablokowany i nie można na niego odpowiadać',
         ],
-
         'show' => [
             'feature_vote' => [
                 'current' => 'Obecny priorytet: +:count',
                 'do' => 'Poprzyj tę prośbę',
-
                 'user' => [
                     'current' => 'Pozostało ci :votes głosów.',
                     'count' => '{0} brak głosów|{1} :count głos|[2,4] :count głosy|[5,Inf] :count głosów',
@@ -114,5 +106,4 @@ return [
             ],
         ],
     ],
-
 ];

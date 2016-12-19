@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -23,12 +22,10 @@ return [
         'title' => 'statut',
         'description' => 'qu\'est ce qui se passe mec ?',
     ],
-
     'incidents' => [
         'title' => 'Incidents actifs',
         'automated' => 'automatique',
     ],
-
     'online' => [
         'title' => [
             'users' => 'Utilisateurs en ligne dans les dernières 24h',
@@ -37,7 +34,6 @@ return [
         'current' => 'Utilisateurs en ligne',
         'score' => 'Envois de score par secondes',
     ],
-
     'recent' => [
         'incidents' => [
             'title' => 'Incidents récents',
@@ -47,7 +43,6 @@ return [
                 'unknown' => 'Inconnu',
             ],
         ],
-
         'uptime' => [
             'title' => 'Temps d\'up',
             'graphs' => [
@@ -55,7 +50,6 @@ return [
                 'web' => 'web',
             ],
         ],
-
         'when' => [
             'today' => 'aujourd\'hui',
             'week' => 'semaine',

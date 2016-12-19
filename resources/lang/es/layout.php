@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -17,6 +16,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'defaults' => [
         'page_description' => 'osu! - ¡El ritmo está a solo un *clic* de distancia!  Con Ouendan/EBA, Taiko y modos de juego originales, así como un editor de niveles totalmente funcional.',
@@ -40,8 +40,6 @@ return [
             '_' => 'beatmaps',
             'show' => 'información',
             'index' => 'listado',
-            // 'getPacks' => 'packs',
-            // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [
             '_' => 'beatmapsets',
@@ -73,12 +71,12 @@ return [
         ],
         'error' => [
             '_' => 'error',
-            '404' => 'no encontrado',
-            '403' => 'prohibido',
-            '401' => 'no autorizado',
-            '405' => 'no encontrado',
-            '500' => 'algo va mal',
-            '503' => 'mantenimiento',
+            404 => 'no encontrado',
+            403 => 'prohibido',
+            401 => 'no autorizado',
+            405 => 'no encontrado',
+            500 => 'algo va mal',
+            503 => 'mantenimiento',
         ],
         'user' => [
             '_' => 'usuario',
@@ -124,37 +122,37 @@ return [
         ],
     ],
     'errors' => [
-        '404' => [
+        404 => [
             'error' => 'Página no encontrada',
             'description' => '¡Lo sentimos, la página que has solicitado no está aquí!',
-            'link' => false,
+            'link' => '',
         ],
-        '403' => [
+        403 => [
             'error' => 'No deberías estar aquí.',
             'description' => 'Aunque podrías intentar volver atrás.',
-            'link' => false,
+            'link' => '',
         ],
-        '401' => [
+        401 => [
             'error' => 'No deberías estar aquí.',
             'description' => 'Aunque podrías intentar volver atrás, o iniciar sesión.',
-            'link' => false,
+            'link' => '',
         ],
-        '405' => [
+        405 => [
             'error' => 'Página no encontrada',
             'description' => '¡Lo sentimos, la página que has solicitado no está aquí!',
-            'link' => false,
+            'link' => '',
         ],
-        '500' => [
+        500 => [
             'error' => '¡Oh no! ¡Algo se ha roto! ;_;',
             'description' => 'Hemos sido notificados automáticamente del error.',
-            'link' => false,
+            'link' => '',
         ],
         'fatal' => [
             'error' => '¡Oh no! ¡Algo se ha roto (gravemente)! ;_;',
             'description' => 'Hemos sido notificados automáticamente del error.',
-            'link' => false,
+            'link' => '',
         ],
-        '503' => [
+        503 => [
             'error' => '¡En mantenimiento!',
             'description' => 'El mantenimiento normalmente tarda entre 5 segundos y 10 minutos. Si sigue pasado ese tiempo, haz clic en :link para más información.',
             'link' => [
@@ -162,7 +160,6 @@ return [
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
-        // used by sentry if it returns an error
         'reference' => '¡Por si acaso, aquí tienes un código que puedes dar a soporte técnico!',
     ],
 ];

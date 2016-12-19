@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -19,7 +18,6 @@
  */
 
 return [
-
     'beatmapsets' => [
         'show' => [
             'discussion' => [
@@ -31,23 +29,17 @@ return [
             ],
         ],
     ],
-
     'forum' => [
         'forum-covers' => [
             'index' => [
                 'delete' => 'Eliminar',
-
                 'forum-name' => 'Foro #:id: :name',
-
                 'no-cover' => 'Portada no definida',
-
                 'submit' => [
                     'save' => 'Guardar',
                     'update' => 'Actualizar',
                 ],
-
                 'title' => 'Lista de portadas de foro',
-
                 'type-title' => [
                     'default-topic' => 'Portada del tema por defecto',
                     'main' => 'Portada de foro',
@@ -55,17 +47,14 @@ return [
             ],
         ],
     ],
-
     'logs' => [
         'index' => [
             'title' => 'Observador de Registro',
         ],
     ],
-
     'pages' => [
         'root' => [
             'title' => 'Consola de Administración',
-
             'sections' => [
                 'forum' => 'Foro',
                 'general' => 'General',
@@ -73,7 +62,6 @@ return [
             ],
         ],
     ],
-
     'store' => [
         'orders' => [
             'index' => [
@@ -81,5 +69,4 @@ return [
             ],
         ],
     ],
-
 ];

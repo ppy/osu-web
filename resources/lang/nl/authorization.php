@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -25,14 +24,12 @@ return [
             'not_owner' => 'Alleen de eigenaar van de thread of de eigenaar van de beatmap kan een discussie als opgelost markeren.',
         ],
     ],
-
     'beatmap_discussion_post' => [
         'edit' => [
             'system_generated' => 'Automatisch gegenereerde posts kunnen niet worden bewerkt.',
             'not_owner' => 'Alleen de eigenaar kan deze post bewerken.',
         ],
     ],
-
     'chat' => [
         'channel' => [
             'read' => [
@@ -45,12 +42,10 @@ return [
                     'no_access' => 'Toegang tot dit kanaal is vereist.',
                     'moderated' => 'Kanaal wordt op het moment gemodereerd.',
                 ],
-
                 'not_allowed' => 'Je kunt geen berichten sturen terwijl je bent verbannen/restricted/silenced.',
             ],
         ],
     ],
-
     'forum' => [
         'post' => [
             'delete' => [
@@ -59,7 +54,6 @@ return [
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
                 'not_owner' => 'Alleen de eigenaar kan deze post verwijderen.',
             ],
-
             'edit' => [
                 'locked' => 'De post is afgesloten voor bewerkingen.',
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
@@ -67,7 +61,6 @@ return [
                 'topic_locked' => 'Kan geen post in een gesloten onderwerp bewerken.',
             ],
         ],
-
         'topic' => [
             'reply' => [
                 'double_post' => 'Je hebt zojuist gepost. Wacht even voordat je een nieuwe maakt of bewerk je vorige post.',
@@ -75,34 +68,26 @@ return [
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
                 'no_permission' => 'Geen toestemming om te antwoorden.',
             ],
-
             'store' => [
                 'no_forum_access' => 'Toegang tot dit forum is nodig.',
                 'no_permission' => 'Geen toestemming om een onderwerp te starten.',
                 'forum_closed' => 'Forum is gesloten en kan niet in gepost worden.',
             ],
         ],
-
         'topic_cover' => [
             'edit' => [
                 'uneditable' => 'Foutieve cover gespecificeerd.',
                 'not_owner' => 'Alleen de eigenaar kan de cover bewerken.',
             ],
         ],
-
         'view' => [
             'admin_only' => 'Alleen admins kunnen dit forum zien.',
         ],
     ],
-
     'require_login' => 'Log in om verder te gaan.',
-
     'unauthorized' => 'Toegang geweigerd.',
-
     'silenced' => 'Je kunt dit niet doen terwijl je silenced bent.',
-
     'restricted' => 'Je kunt dit niet doen terwijl je restricted bent.',
-
     'user' => [
         'page' => [
             'edit' => [

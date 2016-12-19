@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -24,7 +23,7 @@ return [
     'beatmapset_revive' => ':beatmapset has been revived from eternal slumber by <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> has updated the beatmap "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> has submitted a new beatmap ":beatmapset"',
-    'empty' => "This user hasn't done anything notable recently!",
+    'empty' => 'This user hasn\'t done anything notable recently!',
     'rank' => '<strong><em>:user</em></strong> achieved rank #:rank on <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> has lost first place on <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> has once again chosen to support osu! - thanks for your generosity!',

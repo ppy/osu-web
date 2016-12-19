@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -19,14 +18,12 @@
  */
 
 return [
-
     'covers' => [
         'create' => [
             '_' => 'Stel cover afbeelding in',
             'button' => 'Afbeelding uploaden',
             'info' => 'Cover groote moet :dimensions zijn. Je kunt ook een afbeelding hier loslaten om hem te uploaden.',
         ],
-
         'destroy' => [
             '_' => 'Verwijder cover afbeelding',
             'confirm' => 'Weet je zeker dat je de cover afbeelding wilt verwijderen?',
@@ -83,32 +80,26 @@ return [
     ],
     'topics' => [
         '_' => 'Onderwerpen',
-
         'actions' => [
             'reply' => 'Toon antwoordbox',
             'reply_with_quote' => 'Citeer post voor antwoord',
         ],
-
         'index' => [
             'views' => 'keer bekeken',
             'replies' => 'keer beantwoordt',
         ],
-
         'lock' => [
             'locked-0' => 'Onderwerp is ontgrendeld',
             'locked-1' => 'Onderwerp is gesloten',
             'is_locked' => 'Dit onderwerp is gesloten en kan niet meer op beantwoord worden',
         ],
-
         'moderate_move' => [
             'title' => 'Verplaats naar een ander forum',
         ],
-
         'show' => [
             'feature_vote' => [
                 'current' => 'Prioriteit: +:count',
                 'do' => 'Promoot dit verzoek',
-
                 'user' => [
                     'current' => 'Je hebt :votes stemmen over.',
                     'count' => '{0} geen stemmen|{1} :count stem|[2,Inf] :count stemmen',
@@ -117,5 +108,4 @@ return [
             ],
         ],
     ],
-
 ];

@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -24,13 +23,11 @@ return [
             'error' => 'Failed saving post',
         ],
     ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Failed updating vote',
         ],
     ],
-
     'discussions' => [
         'delete' => 'delete',
         'deleted' => 'Deleted by :editor :delete_time',
@@ -43,43 +40,35 @@ return [
         'resolved' => 'Resolved',
         'restore' => 'restore',
         'title' => 'Discussions',
-
         'collapse' => [
             'all-collapse' => 'Collapse all',
             'all-expand' => 'Expand all',
         ],
-
         'empty' => [
             'empty' => 'No discussions yet!',
-            'hidden' => 'No discussion matches selected filter.',
+            'filtered' => 'No discussion matches selected filter.',
         ],
-
         'message_hint' => [
             'in_general' => 'This post will go to general beatmapset discussion. To mod this beatmap, start message with timestamp (e.g. 00:12:345).',
             'in_timeline' => 'To mod multiple timestamps, post multiple times (one post per timestamp).',
         ],
-
         'message_type' => [
             'praise' => 'Praise',
             'problem' => 'Problem',
             'suggestion' => 'Suggestion',
         ],
-
         'mode' => [
             'general' => 'General',
             'timeline' => 'Timeline',
         ],
-
         'new' => [
             'timestamp' => 'Timestamp',
             'timestamp_missing' => 'ctrl-c in edit mode and paste in your message to add a timestamp!',
             'title' => 'New Discussion',
         ],
-
         'show' => [
             'title' => ':title mapped by :mapper',
         ],
-
         'stats' => [
             'deleted' => 'Deleted',
             'mine' => 'Mine',
@@ -89,7 +78,6 @@ return [
             'total' => 'Total',
         ],
     ],
-
     'nominations' => [
         'disqualifed-at' => 'disqualified :time_ago (:reason).',
         'disqualifed_no_reason' => 'no reason specified',
@@ -103,7 +91,6 @@ return [
         'required-text' => 'Nominations: :current/:required',
         'title' => 'Nomination Status',
     ],
-
     'listing' => [
         'search' => [
             'prompt' => 'type in keywords...',
@@ -118,11 +105,6 @@ return [
         'load-more' => 'Load more...',
     ],
     'beatmapset' => [
-        'availability' => [
-            'disabled' => 'This beatmap is currently not available for download.',
-            'parts-removed' => 'Portions of this beatmap have been removed at the request of the creator or a third-party rights holder.',
-            'more-info' => 'Check here for more information.',
-        ],
         'show' => [
             'details' => [
                 'made-by' => 'made by ',
@@ -159,9 +141,7 @@ return [
             'info' => [
                 'success-rate' => 'Success Rate',
                 'points-of-failure' => 'Points of Failure',
-
                 'description' => 'Description',
-
                 'source' => 'Source',
                 'tags' => 'Tags',
             ],
@@ -182,8 +162,6 @@ return [
                 'stats' => [
                     'score' => 'Score',
                     'accuracy' => 'Accuracy',
-                    // note to TLs: the 5 keys below don't really need to be translated,
-                    // as those should remain pretty much the same across languages
                     'countgeki' => 'MAX',
                     'count300' => '300',
                     'countkatu' => '200',
@@ -253,18 +231,18 @@ return [
         'NM' => 'No mods',
     ],
     'language' => [
-    'any' => 'Any',
-    'english' => 'English',
-    'chinese' => 'Chinese',
-    'french' => 'French',
-    'german' => 'German',
-    'italian' => 'Italian',
-    'japanese' => 'Japanese',
-    'korean' => 'Korean',
-    'spanish' => 'Spanish',
-    'swedish' => 'Swedish',
-    'instrumental' => 'Instrumental',
-    'other' => 'Other',
+        'any' => 'Any',
+        'english' => 'English',
+        'chinese' => 'Chinese',
+        'french' => 'French',
+        'german' => 'German',
+        'italian' => 'Italian',
+        'japanese' => 'Japanese',
+        'korean' => 'Korean',
+        'spanish' => 'Spanish',
+        'swedish' => 'Swedish',
+        'instrumental' => 'Instrumental',
+        'other' => 'Other',
     ],
     'extra' => [
         'video' => 'Has Video',

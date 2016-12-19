@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -19,30 +18,25 @@
  */
 
 return [
-
     'covers' => [
         'create' => [
             '_' => 'Set cover image',
             'button' => 'Upload image',
             'info' => 'Cover size should be at :dimensions. You can also drop your image here to upload.',
         ],
-
         'destroy' => [
             '_' => 'Remove cover image',
             'confirm' => 'Are you sure you want to remove the cover image?',
         ],
     ],
-
     'email' => [
         'new_reply' => '[osu!] New reply for topic ":title"',
     ],
-
     'forums' => [
         'topics' => [
             'empty' => 'No topics!',
         ],
     ],
-
     'pinned_topics' => 'Pinned Topics',
     'post' => [
         'confirm_delete' => 'Really delete post?',
@@ -60,6 +54,7 @@ return [
     ],
     'subforums' => 'Subforums',
     'title' => 'osu!community',
+    'slogan' => 'it\'s dangerous to play alone.',
     'topic' => [
         'create' => [
             'placeholder' => [
@@ -92,12 +87,10 @@ return [
         'reply_box_placeholder' => 'Type here to reply',
         'started_by' => 'by :user',
     ],
-
     'topic_watches' => [
         'index' => [
             'title' => 'Topic Subscriptions',
             'title_compact' => 'subscriptions',
-
             'box' => [
                 'total' => 'Topics subscribed',
                 'unread' => 'Topics with new replies',
@@ -107,7 +100,6 @@ return [
                 'unread' => 'You have :unread unread replies to subscribed topics.',
             ],
         ],
-
         'topic_buttons' => [
             'remove' => [
                 'confirmation' => 'Unsubscribe from topic?',
@@ -115,23 +107,18 @@ return [
             ],
         ],
     ],
-
     'topics' => [
         '_' => 'Topics',
-
         'actions' => [
             'reply' => 'Show reply box',
             'reply_with_quote' => 'Quote post for reply',
         ],
-
         'create' => [
             'create_poll' => 'Poll Creation',
-
             'create_poll_button' => [
                 'add' => 'Create a poll',
                 'remove' => 'Cancel creating a poll',
             ],
-
             'poll' => [
                 'length' => 'Run poll for',
                 'length_days_prefix' => '',
@@ -146,12 +133,10 @@ return [
                 'vote_change_info' => 'If enabled, users are able to change their vote.',
             ],
         ],
-
         'index' => [
             'views' => 'views',
             'replies' => 'replies',
         ],
-
         'lock' => [
             'is_locked' => 'This topic is locked and can not be replied to',
             'lock-0' => 'Unlock topic',
@@ -159,35 +144,28 @@ return [
             'state-0' => 'Topic has been unlocked',
             'state-1' => 'Topic has been locked',
         ],
-
         'moderate_move' => [
             'title' => 'Move to another forum',
         ],
-
         'moderate_pin' => [
             'pin-0' => 'Unpin topic',
             'pin-1' => 'Pin topic',
             'state-0' => 'Topic has been unpinned',
             'state-1' => 'Topic has been pinned',
         ],
-
         'show' => [
             'total_posts' => 'Total Posts',
-
             'feature_vote' => [
                 'current' => 'Current Priority: +:count',
                 'do' => 'Promote this request',
-
                 'user' => [
                     'current' => 'You have :votes remaining.',
                     'count' => '{0} no vote|{1} :count vote|[2,Inf] :count votes',
-                    'not_enough' => "You don't have any more votes remaining",
+                    'not_enough' => 'You don\'t have any more votes remaining',
                 ],
             ],
-
             'poll' => [
                 'vote' => 'Vote',
-
                 'detail' => [
                     'total' => 'Total votes: :count',
                     'ended' => 'Polling ended :time',
@@ -195,7 +173,6 @@ return [
                 ],
             ],
         ],
-
         'watch' => [
             'state-0' => 'Unsubscribed from topic',
             'state-1' => 'Subscribed to topic',
@@ -203,5 +180,4 @@ return [
             'watch-1' => 'Subscribe topic',
         ],
     ],
-
 ];

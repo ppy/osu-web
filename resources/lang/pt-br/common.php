@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -20,7 +19,6 @@
 
 return [
     'confirmation' => 'Tem certeza?',
-
     'buttons' => [
         'cancel' => 'Cancelar',
         'delete' => 'Excluir',
@@ -30,26 +28,21 @@ return [
         'save' => 'Salvar',
         'show_more' => 'exibir mais',
     ],
-
     'count' => [
         'item' => ':count unidade|:count unidades',
     ],
-
     'dropzone' => [
         'target' => 'solte aqui para enviar',
     ],
-
     'pagination' => [
         'previous' => 'anterior',
         'next' => 'próxima',
     ],
-
     'time' => [
         'days_ago' => ':count dia atrás|:count dias atrás',
         'hours_ago' => ':count hora atrás|:count horas atrás',
         'now' => 'agora',
     ],
-
     'title' => [
         'notice' => 'Aviso',
     ],

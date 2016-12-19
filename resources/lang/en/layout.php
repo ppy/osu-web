@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -22,7 +21,6 @@ return [
     'defaults' => [
         'page_description' => 'osu! - Rhythm is just a *click* away!  With Ouendan/EBA, Taiko and original gameplay modes, as well as a fully functional level editor.',
     ],
-
     'menu' => [
         'home' => [
             '_' => 'home',
@@ -45,8 +43,6 @@ return [
             'show' => 'info',
             'index' => 'listing',
             'artists' => 'featured artists',
-            // 'getPacks' => 'packs',
-            // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [
             '_' => 'beatmaps',
@@ -84,22 +80,20 @@ return [
         ],
         'error' => [
             '_' => 'error',
-            '404' => 'missing',
-            '403' => 'forbidden',
-            '401' => 'unauthorized',
-            '405' => 'missing',
-            '500' => 'something broke',
-            '503' => 'maintenance',
+            404 => 'missing',
+            403 => 'forbidden',
+            401 => 'unauthorized',
+            405 => 'missing',
+            500 => 'something broke',
+            503 => 'maintenance',
         ],
         'user' => [
             '_' => 'user',
             'getLogin' => 'login',
             'disabled' => 'disabled',
-
             'register' => 'register',
             'reset' => 'recover',
             'new' => 'new',
-
             'messages' => 'Messages',
             'settings' => 'Settings',
             'logout' => 'Log Out',
@@ -109,11 +103,9 @@ return [
             '_' => 'store',
             'getListing' => 'listing',
             'getCart' => 'cart',
-
             'getCheckout' => 'checkout',
             'getInvoice' => 'invoice',
             'getProduct' => 'product',
-
             'new' => 'new',
             'home' => 'home',
             'index' => 'home',
@@ -139,7 +131,6 @@ return [
             ],
         ],
     ],
-
     'footer' => [
         'general' => [
             '_' => 'General',
@@ -169,69 +160,63 @@ return [
             'osuStatus' => '@osustatus',
         ],
     ],
-
     'errors' => [
-        '404' => [
+        404 => [
             'error' => 'Page Missing',
-            'description' => "Sorry, but the page you requested isn't here!",
-            'link' => false,
+            'description' => 'Sorry, but the page you requested isn\'t here!',
+            'link' => '',
         ],
-        '403' => [
-            'error' => "You shouldn't be here.",
+        403 => [
+            'error' => 'You shouldn\'t be here.',
             'description' => 'You could try going back, though.',
-            'link' => false,
+            'link' => '',
         ],
-        '401' => [
-            'error' => "You shouldn't be here.",
+        401 => [
+            'error' => 'You shouldn\'t be here.',
             'description' => 'You could try going back, though. Or maybe logging in.',
-            'link' => false,
+            'link' => '',
         ],
-        '405' => [
+        405 => [
             'error' => 'Page Missing',
-            'description' => "Sorry, but the page you requested isn't here!",
-            'link' => false,
+            'description' => 'Sorry, but the page you requested isn\'t here!',
+            'link' => '',
         ],
-        '500' => [
+        500 => [
             'error' => 'Oh no! Something broke! ;_;',
-            'description' => "We're automatically notified of every error.",
-            'link' => false,
+            'description' => 'We\'re automatically notified of every error.',
+            'link' => '',
         ],
         'fatal' => [
             'error' => 'Oh no! Something broke (badly)! ;_;',
-            'description' => "We're automatically notified of every error.",
-            'link' => false,
+            'description' => 'We\'re automatically notified of every error.',
+            'link' => '',
         ],
-        '503' => [
+        503 => [
             'error' => 'Down for maintenance!',
-            'description' => "Maintenance usually takes anywhere from 5 seconds to 10 minutes. If we're down for longer, see :link for more information.",
+            'description' => 'Maintenance usually takes anywhere from 5 seconds to 10 minutes. If we\'re down for longer, see :link for more information.',
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
-        // used by sentry if it returns an error
-        'reference' => "Just in case, here's a code you can give to support!",
+        'reference' => 'Just in case, here\'s a code you can give to support!',
     ],
-
     'popup_login' => [
         'login' => [
             'email' => 'email address',
-            'forgot' => "I've forgotten my details",
+            'forgot' => 'I\'ve forgotten my details',
             'password' => 'password',
             'title' => 'Sign In To Proceed',
-
             'error' => [
-                'email' => "Username or email address doesn't exist",
+                'email' => 'Username or email address doesn\'t exist',
                 'password' => 'Incorrect password',
             ],
         ],
-
         'register' => [
-            'info' => "You need an account, sir. Why don't you have one already?",
-            'title' => "Don't have an account?",
+            'info' => 'You need an account, sir. Why don\'t you have one already?',
+            'title' => 'Don\'t have an account?',
         ],
     ],
-
     'popup_user' => [
         'links' => [
             'account-edit' => 'Settings',

@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -20,7 +19,6 @@
 
 return [
     'deleted' => '[deleted user]',
-
     'login' => [
         '_' => 'Sign in',
         'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
@@ -30,14 +28,13 @@ return [
         'remember' => 'Remember this computer',
         'title' => 'Please login to proceed',
         'failed' => 'Incorrect login',
-        'register' => "Don't have an osu! account? Make a new one",
+        'register' => 'Don\'t have an osu! account? Make a new one',
         'forgot' => 'Forgotten your password?',
         'beta' => [
             'main' => 'Beta access is currently restricted to privileged users.',
             'small' => '(supporters will get in soon)',
         ],
-
-        'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
+        'here' => 'here',
     ],
     'signup' => [
         '_' => 'Register',
@@ -49,7 +46,7 @@ return [
     ],
     'logout_confirm' => 'Are you sure you want to log out? :(',
     'show' => [
-        '404' => 'User not found! ;_;',
+        404 => 'User not found! ;_;',
         'current_location' => 'Currently in :location.',
         'edit' => [
             'cover' => [
@@ -60,7 +57,7 @@ return [
                     'button' => 'Upload image',
                     'dropzone' => 'Drop here to upload',
                     'dropzone_info' => 'You can also drop your image here to upload',
-                    'restriction_info' => "Upload available for <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a> only",
+                    'restriction_info' => 'Upload available for <a href=\'https://osu.ppy.sh/p/support#transactionarea\' target=\'_blank\'>osu!supporters</a> only',
                     'size_info' => 'Cover size should be at 2000x500',
                     'too_large' => 'Uploaded file is too large.',
                     'unsupported_format' => 'Unsupported format.',
@@ -74,6 +71,13 @@ return [
             ],
             'beatmaps' => [
                 'title' => 'Beatmaps',
+                'favourite' => [
+                    'title' => 'Favourite Beatmaps (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                ],
+                'none' => 'None... yet.',
             ],
             'historical' => [
                 'empty' => 'No performance records. :(',
@@ -92,22 +96,22 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu Available',
-                'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven't traded in yet.",
+                'available_info' => 'Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven\'t traded in yet.',
                 'entry' => [
-                    'empty' => "This user hasn't received any kudosu!",
+                    'empty' => 'This user hasn\'t received any kudosu!',
                     'give' => 'Received <strong class="kudosu-entries__amount">:amount kudosu</strong> from :giver for a post at :post',
                     'revoke' => 'Denied kudosu by :giver for the post :post',
                 ],
                 'recent_entries' => 'Recent Kudosu History',
                 'title' => 'Kudosu!',
                 'total' => 'Total Kudosu Earned',
-                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.osu_url('user.kudosu').'">this page</a> for more information.',
+                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="https://osu.ppy.sh/wiki/Kudosu">this page</a> for more information.',
             ],
             'me' => [
                 'title' => 'me!',
             ],
             'medals' => [
-                'empty' => "This user hasn't gotten any yet. ;_;",
+                'empty' => 'This user hasn\'t gotten any yet. ;_;',
                 'title' => 'Medals',
             ],
             'recent_activities' => [
@@ -125,16 +129,6 @@ return [
                 'title' => 'Ranks',
                 'weighted_pp' => 'weighted: :pp (:percentage)',
             ],
-            'beatmaps' => [
-                'title' => 'Beatmaps',
-                'favourite' => [
-                    'title' => 'Favourite Beatmaps (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
-                ],
-                'none' => 'None... yet.',
-            ],
         ],
         'first_members' => 'here since the beginning',
         'is_supporter' => 'osu!supporter',
@@ -151,7 +145,7 @@ return [
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
-            'restriction_info' => "You need to be an <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+            'restriction_info' => 'You need to be an <a href=\'https://osu.ppy.sh/p/support#transactionarea\' target=\'_blank\'>osu!supporter</a> to unlock this feature.',
         ],
         'plays_with' => [
             '_' => 'Plays with',
@@ -177,9 +171,8 @@ return [
             'total_hits' => 'Total Hits',
             'total_score' => 'Total Score',
         ],
-        'title' => ":username's profile",
+        'title' => ':username\'s profile',
     ],
-
     'verify' => [
         'title' => 'Account Verification',
     ],

@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -19,30 +18,25 @@
  */
 
 return [
-
     'covers' => [
         'create' => [
             '_' => 'Definir imagem de capa',
             'button' => 'Enviar imagem',
             'info' => 'O tamanho da capa deve ser :dimensions. Você também pode arrastar sua imagem aqui para enviar.',
         ],
-
         'destroy' => [
             '_' => 'Remover imagem de capa',
             'confirm' => 'Tem certeza de que deseja remover a imagem da capa?',
         ],
     ],
-
     'email' => [
         'new_reply' => '[osu!] Nova resposta no tópico ":title"',
     ],
-
     'forums' => [
         'topics' => [
             'empty' => 'Sem tópicos!',
         ],
     ],
-
     'pinned_topics' => 'Tópicos fixados',
     'post' => [
         'confirm_delete' => 'Excluir mesmo a publicação?',
@@ -92,12 +86,10 @@ return [
         'reply_box_placeholder' => 'Digite aqui para responder',
         'started_by' => 'por :user',
     ],
-
     'topic_watches' => [
         'index' => [
             'title' => 'Inscrições de tópico',
             'title_compact' => 'inscrições',
-
             'box' => [
                 'total' => 'Tópicos inscritos',
                 'unread' => 'Tópicos com novas respostas',
@@ -107,7 +99,6 @@ return [
                 'unread' => 'Você tem :unread respostas não lidas de tópicos inscritos.',
             ],
         ],
-
         'topic_buttons' => [
             'remove' => [
                 'confirmation' => 'Cancelar inscrição no tópico?',
@@ -115,23 +106,18 @@ return [
             ],
         ],
     ],
-
     'topics' => [
         '_' => 'Tópicos',
-
         'actions' => [
             'reply' => 'Exibir caixa de resposta',
             'reply_with_quote' => 'Citar publicação na resposta',
         ],
-
         'create' => [
             'create_poll' => 'Criação de enquete',
-
             'create_poll_button' => [
                 'add' => 'Criar enquete',
                 'remove' => 'Cancelar criação de enquete',
             ],
-
             'poll' => [
                 'length' => 'Manter enquete aberta por',
                 'length_days_prefix' => '',
@@ -146,12 +132,10 @@ return [
                 'vote_change_info' => 'Caso ativado, usuários poderão alterar o voto.',
             ],
         ],
-
         'index' => [
             'views' => 'visualizações',
             'replies' => 'respostas',
         ],
-
         'lock' => [
             'is_locked' => 'Este tópico está trancado e não pode mais ser respondido',
             'lock-0' => 'Destrancar tópico',
@@ -159,35 +143,28 @@ return [
             'state-0' => 'Tópico destrancado',
             'state-1' => 'Tópico trancado',
         ],
-
         'moderate_move' => [
             'title' => 'Mover para outro fórum',
         ],
-
         'moderate_pin' => [
             'pin-0' => 'Desafixar tópico',
             'pin-1' => 'Fixar tópico',
             'state-0' => 'Tópico desafixado',
             'state-1' => 'Tópico fixado',
         ],
-
         'show' => [
             'total_posts' => 'Total de publicações',
-
             'feature_vote' => [
                 'current' => 'Prioridade atual: +:count',
                 'do' => 'Promover este pedido',
-
                 'user' => [
                     'count' => '{0} sem votos|{1} :count voto|[2,Inf] :count votos',
                     'current' => 'Você tem :votes restantes.',
                     'not_enough' => 'Você não tem mais votos restantes',
                 ],
             ],
-
             'poll' => [
                 'vote' => 'Votar',
-
                 'detail' => [
                     'total' => 'Total de votos: :count',
                     'ended' => 'Votação encerrada :time',
@@ -195,7 +172,6 @@ return [
                 ],
             ],
         ],
-
         'watch' => [
             'state-0' => 'Inscrição cancelada',
             'state-1' => 'Inscrito no tópico',
@@ -203,5 +179,4 @@ return [
             'watch-1' => 'Inscrever-se no tópico',
         ],
     ],
-
 ];

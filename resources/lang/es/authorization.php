@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -16,6 +16,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'beatmap_discussion' => [
         'resolve' => [
@@ -48,8 +49,6 @@ return [
     'forum' => [
         'post' => [
             'delete' => [
-                // how to english
-                // Returned when TopicReply check fails.
                 'can_not_post' => 'No se puede eliminar un post a cuyo hilo no se puede responder.',
                 'can_only_delete_last_post' => 'Solo se puede eliminar el último post.',
                 'not_owner' => 'Solo el creador del post puede eliminarlo.',

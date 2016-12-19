@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -33,7 +32,7 @@ return [
             'main' => 'Acceso a la beta es actualmente restringido a usuarios privilegiados.',
             'small' => '(supporters tendrán acceso pronto)',
         ],
-        'here' => 'aquí', // this is substituted in when generating a link above. change it to suit the language.
+        'here' => 'aquí',
     ],
     'anonymous' => [
         'login_link' => 'clic para iniciar sesión',
@@ -42,7 +41,7 @@ return [
     ],
     'logout_confirm' => '¿Seguro que deseas salir? :(',
     'show' => [
-        '404' => '¡Usuario no encontrado! ;_;',
+        404 => '¡Usuario no encontrado! ;_;',
         'current_location' => 'Actualmente en :location.',
         'edit' => [
             'cover' => [
@@ -53,7 +52,7 @@ return [
                     'button' => 'Subir imagen',
                     'dropzone' => 'Suelta aquí para subir',
                     'dropzone_info' => 'También puedes soltar la imagen aquí para subirla',
-                    'restriction_info' => "Subida solo disponible para <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a>",
+                    'restriction_info' => 'Subida solo disponible para <a href=\'https://osu.ppy.sh/p/support#transactionarea\' target=\'_blank\'>osu!supporters</a>',
                     'size_info' => 'El tamaño de la portada debe ser de 2000x500',
                     'too_large' => 'El archivo es demasiado grande.',
                     'unsupported_format' => 'Formato no soportado.',
@@ -67,6 +66,13 @@ return [
             ],
             'beatmaps' => [
                 'title' => 'Beatmaps',
+                'favourite' => [
+                    'title' => 'Beatmaps Favoritos (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Beatmaps Rankeados & Aprobados (:count)',
+                ],
+                'none' => 'Ninguno... aún.',
             ],
             'historical' => [
                 'empty' => 'Sin récords de rendimiento. :(',
@@ -94,10 +100,10 @@ return [
                 'recent_entries' => 'Historial de Kudosu Reciente',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu Total Obtenido',
-                'total_info' => 'Basado en qué tanto ha colaborado el usuario a la moderación del beatmap. Ve <a href="'.osu_url('user.kudosu').'">esta página</a> para más información.',
+                'total_info' => 'Basado en qué tanto ha colaborado el usuario a la moderación del beatmap. Ve <a href="https://osu.ppy.sh/wiki/Kudosu">esta página</a> para más información.',
             ],
             'me' => [
-                'title' => 'me!', // translating this is a little tricky (maybe "sobre mi"?)
+                'title' => 'me!',
             ],
             'medals' => [
                 'title' => 'Medallas',
@@ -117,16 +123,6 @@ return [
                 'title' => 'Rangos',
                 'weighted_pp' => 'valorado en: :pp (:percentage)',
             ],
-            'beatmaps' => [
-                'title' => 'Beatmaps',
-                'favourite' => [
-                    'title' => 'Beatmaps Favoritos (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmaps Rankeados & Aprobados (:count)',
-                ],
-                'none' => 'Ninguno... aún.',
-            ],
         ],
         'first_members' => 'desde el comienzo',
         'is_supporter' => 'osu!supporter',
@@ -143,7 +139,7 @@ return [
             'description' => '<strong>me!</strong> es una área personalizable en tu perfil.',
             'edit_big' => 'Editar me!',
             'placeholder' => 'Escribe el contenido aquí',
-            'restriction_info' => "Necesitas ser un <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> para desbloquear esta característica.",
+            'restriction_info' => 'Necesitas ser un <a href=\'https://osu.ppy.sh/p/support#transactionarea\' target=\'_blank\'>osu!supporter</a> para desbloquear esta característica.',
         ],
         'plays_with' => [
             '_' => 'Juega con',
@@ -165,7 +161,7 @@ return [
             'play_count' => 'Conteo de jugadas',
             'ranked_score' => 'Puntuación rankeada',
             'replays_watched_by_others' => 'Replays observadas por otros',
-            'score_ranks' => 'Score Ranks', //?
+            'score_ranks' => 'Score Ranks',
             'total_hits' => 'Aciertos totales',
             'total_score' => 'Puntuación total',
         ],

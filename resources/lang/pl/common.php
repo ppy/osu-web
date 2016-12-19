@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -27,26 +26,21 @@ return [
         'save' => 'Zapisz',
         'show_more' => 'pokaż więcej',
     ],
-
     'count' => [
         'item' => '{1} sztuka|[2,4] :count sztuki|[5,Inf] :count sztuk',
     ],
-
     'dropzone' => [
         'target' => 'upuść tutaj, aby wrzucić plik',
     ],
-
     'pagination' => [
         'previous' => 'poprzednia',
         'next' => 'następna',
     ],
-
     'time' => [
         'days_ago' => '{1} dzień temu|:count dni temu',
         'hours_ago' => '{0} godzin temu|{1} godzinę temu|[2,4] :count godziny temu|[5,Inf] :count godzin temu',
         'now' => 'teraz',
     ],
-
     'title' => [
         'notice' => 'Uwaga',
     ],

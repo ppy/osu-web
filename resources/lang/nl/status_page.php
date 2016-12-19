@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -23,12 +22,10 @@ return [
         'title' => 'status',
         'description' => 'jo man, wat is er allemaal aan de hand?',
     ],
-
     'incidents' => [
         'title' => 'Actieve Incidenten',
         'automated' => 'geautomatiseerd',
     ],
-
     'online' => [
         'title' => [
             'users' => 'Online Gebruikers in de afgelopen 24 uur',
@@ -37,7 +34,6 @@ return [
         'current' => 'Momenteel Online Gebruikers',
         'score' => 'Score Inzendingen per Seconde',
     ],
-
     'recent' => [
         'incidents' => [
             'title' => 'Recente Incidenten',
@@ -47,7 +43,6 @@ return [
                 'unknown' => 'Onbekend',
             ],
         ],
-
         'uptime' => [
             'title' => 'Uptime',
             'graphs' => [
@@ -55,7 +50,6 @@ return [
                 'web' => 'web',
             ],
         ],
-
         'when' => [
             'today' => 'vandaag',
             'week' => 'week',

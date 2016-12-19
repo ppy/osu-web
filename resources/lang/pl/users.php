@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -33,8 +32,7 @@ return [
             'main' => 'Dostęp do bety jest obecnie ograniczony do wybranych użytkowników.',
             'small' => '(supporterzy dostaną go wkrótce)',
         ],
-
-        'here' => 'tutaj', // this is substituted in when generating a link above. change it to suit the language.
+        'here' => 'tutaj',
     ],
     'anonymous' => [
         'login_link' => 'kliknij, aby się zalogować',
@@ -43,7 +41,7 @@ return [
     ],
     'logout_confirm' => 'Na pewno chcesz się wylogować? :(',
     'show' => [
-        '404' => 'Nie znaleziono gracza! ;_;',
+        404 => 'Nie znaleziono gracza! ;_;',
         'current_location' => 'Obecnie w :location.',
         'edit' => [
             'cover' => [
@@ -54,7 +52,7 @@ return [
                     'button' => 'Dodaj tło',
                     'dropzone' => 'Upuść tutaj, aby dodać',
                     'dropzone_info' => 'Możesz także upuścić swoje tło tutaj, aby je dodać',
-                    'restriction_info' => "Dodawanie jest dostępne tylko dla <a href='".osu_url('support-the-game')."' target='_blank'>supporterów</a> ",
+                    'restriction_info' => 'Dodawanie jest dostępne tylko dla <a href=\'https://osu.ppy.sh/p/support#transactionarea\' target=\'_blank\'>supporterów</a> ',
                     'size_info' => 'Rozmiary nagłówka powinny być przynajmniej 2000x500',
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
@@ -68,6 +66,13 @@ return [
             ],
             'beatmaps' => [
                 'title' => 'Beatmapy',
+                'favourite' => [
+                    'title' => 'Ulubione beatmapy (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Rankingowe & Zatwierdzone beatmapy (:count)',
+                ],
+                'none' => 'Jeszcze nie ma...',
             ],
             'historical' => [
                 'empty' => 'Brak wyników. :(',
@@ -95,7 +100,7 @@ return [
                 'recent_entries' => 'Ostatnio zdobyte kudosu',
                 'title' => 'Kudosu!',
                 'total' => 'Ilość zdobytego kudosu',
-                'total_info' => 'Bazowane na tym, ile użytkownik zrobił dla modowania map. Spojrzyj <a href="'.osu_url('user.kudosu').'">tutaj</a>, aby dowiedzieć się więcej.',
+                'total_info' => 'Bazowane na tym, ile użytkownik zrobił dla modowania map. Spojrzyj <a href="https://osu.ppy.sh/wiki/Kudosu">tutaj</a>, aby dowiedzieć się więcej.',
             ],
             'me' => [
                 'title' => 'me!',
@@ -118,16 +123,6 @@ return [
                 'title' => 'Wyniki',
                 'weighted_pp' => 'ważone: :pp (:percentage)',
             ],
-            'beatmaps' => [
-                'title' => 'Beatmapy',
-                'favourite' => [
-                    'title' => 'Ulubione beatmapy (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Rankingowe & Zatwierdzone beatmapy (:count)',
-                ],
-                'none' => 'Jeszcze nie ma...',
-            ],
         ],
         'first_members' => 'od samego początku',
         'is_supporter' => 'osu!supporter',
@@ -144,7 +139,7 @@ return [
             'description' => '<strong>ja!</strong> to twoje osobiste, personalizowalne miejsce na twoim profilu.',
             'edit_big' => 'Edytuj mnie!',
             'placeholder' => 'Pisz tutaj',
-            'restriction_info' => "Musisz być <a href='".osu_url('support-the-game')."' target='_blank'>supporterem</a>, aby odblokować tę funkcję.",
+            'restriction_info' => 'Musisz być <a href=\'https://osu.ppy.sh/p/support#transactionarea\' target=\'_blank\'>supporterem</a>, aby odblokować tę funkcję.',
         ],
         'plays_with' => [
             '_' => 'Gra używając',
@@ -172,5 +167,4 @@ return [
         ],
         'title' => 'Profil :username',
     ],
-
 ];

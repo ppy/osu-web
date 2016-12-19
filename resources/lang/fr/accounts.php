@@ -18,30 +18,22 @@
  */
 
 return [
-    'buttons' => [
-        'cancel' => 'Cancelar',
-        'post' => 'Enviar',
-        'reply' => 'Responder',
-        'reset' => 'Resetear',
-        'save' => 'Guardar',
-        'show_more' => 'mostrar más',
-    ],
-    'count' => [
-        'item' => ':count unidad|:count unidades',
-    ],
-    'dropzone' => [
-        'target' => 'suelta aquí para cargar',
-    ],
-    'pagination' => [
-        'previous' => 'anterior',
-        'next' => 'siguiente',
-    ],
-    'time' => [
-        'days_ago' => 'hace :count día|hace :count días',
-        'hours_ago' => 'hace :count hora|hace :count horas',
-        'now' => 'ahora',
-    ],
-    'title' => [
-        'notice' => 'Aviso',
+    'edit' => [
+        'avatar' => [
+            'title' => 'Changer l\'avatar',
+        ],
+        'profile' => [
+            'title' => 'Éditer le profil',
+            'user' => [
+                'user_from' => 'position actuelle',
+                'user_interests' => 'intérêts',
+                'user_msnm' => 'skype',
+                'user_occ' => 'occupation',
+                'user_twitter' => 'twitter',
+                'user_website' => 'site web',
+            ],
+        ],
+        'title' => 'Paramètres du compte',
+        'title_compact' => 'paramètres',
     ],
 ];

@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -22,7 +21,6 @@ return [
     'defaults' => [
         'page_description' => 'osu! - Rytm jest tylko *kliknięcie* stąd!  Z Ouendanem/EBA, Taiko i oryginalnymi trybami gry, a także w pełni funkcjonalnym edytorem!',
     ],
-
     'menu' => [
         'home' => [
             '_' => 'strona główna',
@@ -42,8 +40,6 @@ return [
             '_' => 'beatmapy',
             'show' => 'info',
             'index' => 'lista',
-            // 'getPacks' => 'paczki',
-            // 'getCharts' => 'charty',
         ],
         'beatmapsets' => [
             '_' => 'mapsety',
@@ -75,22 +71,20 @@ return [
         ],
         'error' => [
             '_' => 'błąd',
-            '404' => 'nie znaleziono strony',
-            '403' => 'brak dostępu',
-            '401' => 'brak dostępu',
-            '405' => 'nie znaleziono strony',
-            '500' => 'coś się popsuło',
-            '503' => 'konserwacja',
+            404 => 'nie znaleziono strony',
+            403 => 'brak dostępu',
+            401 => 'brak dostępu',
+            405 => 'nie znaleziono strony',
+            500 => 'coś się popsuło',
+            503 => 'konserwacja',
         ],
         'user' => [
             '_' => 'użytkownik',
             'getLogin' => 'zaloguj się',
             'disabled' => 'wyłączono',
-
             'register' => 'zarejestruj się',
             'reset' => 'odzyskaj dostęp',
             'new' => 'nowy',
-
             'messages' => 'Wiadomości',
             'settings' => 'Ustawienia',
             'logout' => 'Wyloguj się',
@@ -100,11 +94,9 @@ return [
             '_' => 'sklep',
             'getListing' => 'przedmioty',
             'getCart' => 'koszyk',
-
             'getCheckout' => 'zapłać',
             'getInvoice' => 'paragon',
             'getProduct' => 'produkt',
-
             'new' => 'nowy',
             'home' => 'strona główna',
             'index' => 'strona główna',
@@ -130,37 +122,37 @@ return [
         ],
     ],
     'errors' => [
-        '404' => [
+        404 => [
             'error' => 'Nie znaleziono strony',
             'description' => 'Przepraszamy, ale strona, jaką chciałeś ujrzeć, nie istnieje!',
-            'link' => false,
+            'link' => '',
         ],
-        '403' => [
+        403 => [
             'error' => 'Nie powinieneś tu być.',
             'description' => 'Jednakże, możesz spróbować się wrócić.',
-            'link' => false,
+            'link' => '',
         ],
-        '401' => [
+        401 => [
             'error' => 'Nie powinieneś tu być.',
             'description' => 'Jednakże, możesz spróbować się wrócić. Albo się zalogować',
-            'link' => false,
+            'link' => '',
         ],
-        '405' => [
+        405 => [
             'error' => 'Nie znaleziono strony',
             'description' => 'Przepraszamy, ale strona, jaką chciałeś ujrzeć, nie istnieje!',
-            'link' => false,
+            'link' => '',
         ],
-        '500' => [
+        500 => [
             'error' => 'O nie! Coś się popsuło! ;_;',
             'description' => 'Jesteśmy automatycznie powiadamieni o tym problemie.',
-            'link' => false,
+            'link' => '',
         ],
         'fatal' => [
             'error' => 'O nie! Coś się popsuło (bardzo)! ;_;',
             'description' => 'Jesteśmy automatycznie powiadamieni o tym problemie.',
-            'link' => false,
+            'link' => '',
         ],
-        '503' => [
+        503 => [
             'error' => 'Konserwacja!',
             'description' => 'Konserwacja zajmuje od 5 sekund do 10 minut. Jeżeli jesteśmy niedostępni na dłużej, spojrzyj <a>:link tutaj</a>, aby dowiedzieć się więcej.',
             'link' => [
@@ -168,7 +160,6 @@ return [
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
-        // used by sentry if it returns an error
         'reference' => 'Na wszelki wypadek, tutaj jest kod który możesz dać osobom z pomocy technicznej!',
     ],
 ];

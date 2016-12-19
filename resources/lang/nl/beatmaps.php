@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -24,53 +23,42 @@ return [
             'error' => 'Opslaan van post mislukt',
         ],
     ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Stem bijwerken mislukt',
         ],
     ],
-
     'discussions' => [
         'collapse' => [
             'all-collapse' => 'Sluit alles',
             'all-expand' => 'Open alles',
         ],
-
         'edit' => 'bewerk',
         'edited' => 'Laatst bewerkt door :editor :update_time',
         'empty' => [
             'empty' => 'Nog geen bestaande discussie!',
             'filtered' => 'Geen discussies matcht het geselecteerde filter.',
         ],
-
         'message_hint' => [
             'in_general' => 'Deze post gaat naar de algemene beatmapset discussie. Om deze map te modden moet je beginnen met een tijdstip (bijv. 00:12:345).',
             'in_timeline' => 'Om meerdere tijdstippen te modden moet je meerdere keren posten (een post per tijdstip).',
         ],
-
         'message_placeholder' => 'Typ hier om te posten',
-
         'message_type' => [
             'praise' => 'Lof',
             'problem' => 'Probleem',
             'suggestion' => 'Suggestie',
         ],
-
         'message_type_select' => 'Selecteer Commentaartype',
-
         'mode' => [
             'general' => 'Algemeen',
             'timeline' => 'Tijdlijn',
         ],
-
         'require-login' => 'Log in om te posten of te antwoorden',
         'resolved' => 'Opgelost',
-
         'show' => [
             'title' => 'Beatmapdiscussie',
         ],
-
         'stats' => [
             'mine' => 'Van Mij',
             'pending' => 'Afwachtend',
@@ -79,7 +67,6 @@ return [
             'total' => 'Totaal',
         ],
     ],
-
     'listing' => [
         'search' => [
             'prompt' => 'typ sleutelwoorden in...',
@@ -114,16 +101,13 @@ return [
                 'stars' => 'Sterrenmoeilijkheid',
                 'total_length' => 'Lengte',
                 'bpm' => 'BPM',
-
                 'source' => 'Bron',
                 'tags' => 'Labels',
             ],
             'info' => [
                 'success-rate' => 'Slagingspercentage',
                 'points-of-failure' => 'Faalpunten',
-
                 'description' => 'Beschrijving',
-
                 'source' => 'Bron',
                 'tags' => 'Labels',
             ],

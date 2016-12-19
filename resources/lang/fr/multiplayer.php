@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -32,11 +31,8 @@ return [
             'player-joined' => ':user a rejoint le match',
             'player-kicked' => ':user a été exclu du match',
             'match-created' => ':user a créé le match',
-            // the ":the" var ?
-            // Original : ':the match was disbanded'
             'match-disbanded' => ':user a dissous le match',
             'host-changed' => ':user a pris le contrôle de la salle',
-
             'player-left-no-user' => 'un joueur a quitté le match',
             'player-joined-no-user' => 'un joueur a rejoint le match',
             'player-kicked-no-user' => 'un joueur a été exclu du match',

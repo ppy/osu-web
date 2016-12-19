@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -24,53 +23,42 @@ return [
             'error' => 'Zapisywanie posta nie powiodło się.',
         ],
     ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Aktualizacja oceny nie powiodła się.',
         ],
     ],
-
     'discussions' => [
         'collapse' => [
             'all-collapse' => 'Zwiń wszystkie',
             'all-expand' => 'Rozwiń wszystkie',
         ],
-
         'edit' => 'edytuj',
         'edited' => 'Ostatnio edytowane przez :editor :update_time',
         'empty' => [
             'empty' => 'Brak dyskusji!',
             'filtered' => 'Nie znaleziono żadnych dyskusji zgodnych z wybranym filtrem.',
         ],
-
         'message_hint' => [
             'in_general' => 'Ten post znajdzie się w generalnej dyskusji tego mapsetu. Aby zmodować tę mapę, zacznij post od konkretnego momentu (np. 00:12:345).',
             'in_timeline' => 'Aby zgłosić uwagi dotyczące kilku różnych momentów piosenki, utwórz dla nich odrębne komentarze (po jednym dla każdego momentu utworu).',
         ],
-
         'message_placeholder' => 'Pisz tutaj',
-
         'message_type' => [
             'praise' => 'Pochwała',
             'problem' => 'Problem',
             'suggestion' => 'Sugestia',
         ],
-
         'message_type_select' => 'Wybierz typ komentarza',
-
         'mode' => [
             'general' => 'Główne',
             'timeline' => 'Oś czasu',
         ],
-
         'require-login' => 'Zaloguj się, aby móc postować i odpowiadać.',
         'resolved' => 'Rozwiązane',
-
         'show' => [
             'title' => 'Dyskusja na temat mapy',
         ],
-
         'stats' => [
             'mine' => 'Moje',
             'pending' => 'Oczekujące',
@@ -79,7 +67,6 @@ return [
             'total' => 'Łącznie',
         ],
     ],
-
     'listing' => [
         'search' => [
             'prompt' => 'wpisz poszukiwane wyrażenie...',
@@ -108,7 +95,6 @@ return [
                 ],
             ],
             'stats' => [
-                //this is left intentionally in english, you can't translate these so it sounds normal
                 'cs' => 'Circle Size',
                 'cs-mania' => 'Key Amount',
                 'drain' => 'HP Drain',
@@ -123,9 +109,7 @@ return [
             'info' => [
                 'success-rate' => 'Wskaźnik sukcesu',
                 'points-of-failure' => 'Wykres',
-
                 'description' => 'Opis',
-
                 'source' => 'Źródło',
                 'tags' => 'Tagi',
             ],
@@ -189,19 +173,18 @@ return [
         'NM' => 'Bez modów',
     ],
     'language' => [
-    'any' => 'Jakikolwiek',
-    'english' => 'Angielski',
-    'chinese' => 'Chiński',
-    'french' => 'Francuski',
-    'german' => 'Niemiecki',
-    'italian' => 'Włoski',
-    'japanese' => 'Japoński',
-    'korean' => 'Koreański',
-    'spanish' => 'Hiszpański',
-    'swedish' => 'Szwedzki',
-    //left over untranslated on purpose
-    'instrumental' => 'Instrumental',
-    'other' => 'Inne',
+        'any' => 'Jakikolwiek',
+        'english' => 'Angielski',
+        'chinese' => 'Chiński',
+        'french' => 'Francuski',
+        'german' => 'Niemiecki',
+        'italian' => 'Włoski',
+        'japanese' => 'Japoński',
+        'korean' => 'Koreański',
+        'spanish' => 'Hiszpański',
+        'swedish' => 'Szwedzki',
+        'instrumental' => 'Instrumental',
+        'other' => 'Inne',
     ],
     'extra' => [
         'video' => 'Posiada wideo',

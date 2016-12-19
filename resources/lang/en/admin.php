@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -19,7 +18,6 @@
  */
 
 return [
-
     'beatmapsets' => [
         'show' => [
             'discussion' => [
@@ -31,23 +29,17 @@ return [
             ],
         ],
     ],
-
     'forum' => [
         'forum-covers' => [
             'index' => [
                 'delete' => 'Delete',
-
                 'forum-name' => 'Forum #:id: :name',
-
                 'no-cover' => 'No cover set',
-
                 'submit' => [
                     'save' => 'Save',
                     'update' => 'Update',
                 ],
-
                 'title' => 'Forum Covers List',
-
                 'type-title' => [
                     'default-topic' => 'Default Topic Cover',
                     'main' => 'Forum Cover',
@@ -55,17 +47,14 @@ return [
             ],
         ],
     ],
-
     'logs' => [
         'index' => [
             'title' => 'Log Viewer',
         ],
     ],
-
     'pages' => [
         'root' => [
             'title' => 'Admin Console Thingy',
-
             'sections' => [
                 'forum' => 'Forum',
                 'general' => 'General',
@@ -73,7 +62,6 @@ return [
             ],
         ],
     ],
-
     'store' => [
         'orders' => [
             'index' => [
@@ -81,5 +69,4 @@ return [
             ],
         ],
     ],
-
 ];

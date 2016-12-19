@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -24,13 +23,11 @@ return [
             'error' => 'Falha ao salvar publicação',
         ],
     ],
-
     'discussion-votes' => [
         'update' => [
             'error' => 'Falha ao atualizar votos',
         ],
     ],
-
     'discussions' => [
         'edit' => 'editar',
         'edited' => 'Editado pela última vez por :editor :update_time',
@@ -40,42 +37,34 @@ return [
         'require-login' => 'Por favor, inicie a sessão para publicar ou responder',
         'resolved' => 'Resolvido',
         'title' => 'Discussões',
-
         'collapse' => [
             'all-collapse' => 'Recolher todas',
             'all-expand' => 'Expandir todas',
         ],
-
         'empty' => [
             'empty' => 'Nenhuma discussão ainda!',
             'hidden' => 'Nenhuma discussão corresponde ao filtro selecionado.',
         ],
-
         'message_hint' => [
             'in_general' => 'Esta publicação irá para discussão geral de beatmaps. Para modificar este beatmap, inicie a mensagem com o timestamp (ex: 00:12:345).',
             'in_timeline' => 'Para modificar vários timestamps, publique várias vezes (uma publicação por timestamp).',
         ],
-
         'message_type' => [
             'praise' => 'Elogiar',
             'problem' => 'Problema',
             'suggestion' => 'Sugestão',
         ],
-
         'mode' => [
             'general' => 'Geral',
             'timeline' => 'Linha do tempo',
         ],
-
         'new' => [
             'timestamp' => 'Timestamp',
             'title' => 'Nova discussão',
         ],
-
         'show' => [
             'title' => ':title mapeado por :mapper',
         ],
-
         'stats' => [
             'mine' => 'Meu',
             'pending' => 'Pendentes',
@@ -84,7 +73,6 @@ return [
             'total' => 'Total',
         ],
     ],
-
     'nominations' => [
         'disqualifed-at' => 'desqualificado :time_ago (:reason).',
         'disqualifed_no_reason' => 'nenhuma razão especificada',
@@ -98,7 +86,6 @@ return [
         'required-text' => 'Nomeações: :current/:required',
         'title' => 'Estado da nomeação',
     ],
-
     'listing' => [
         'search' => [
             'prompt' => 'digite palavras-chave...',
@@ -143,9 +130,7 @@ return [
             'info' => [
                 'success-rate' => 'Taxa de sucesso',
                 'points-of-failure' => 'Pontos de falha',
-
                 'description' => 'Descrição',
-
                 'source' => 'Fonte',
                 'tags' => 'Marcadores',
             ],
@@ -166,8 +151,6 @@ return [
                 'stats' => [
                     'score' => 'Pontuação',
                     'accuracy' => 'Precisão',
-                    // note to TLs: the 5 keys below don't really need to be translated,
-                    // as those should remain pretty much the same across languages
                     'countgeki' => 'MÁX',
                     'count300' => '300',
                     'countkatu' => '200',
@@ -236,18 +219,18 @@ return [
         'NM' => 'Sem mods',
     ],
     'language' => [
-    'any' => 'Qualquer',
-    'english' => 'Inglês',
-    'chinese' => 'Chinês',
-    'french' => 'Francês',
-    'german' => 'Alemão',
-    'italian' => 'Italiano',
-    'japanese' => 'Japonês',
-    'korean' => 'Coreano',
-    'spanish' => 'Espanhol',
-    'swedish' => 'Sueco',
-    'instrumental' => 'Instrumental',
-    'other' => 'Outros',
+        'any' => 'Qualquer',
+        'english' => 'Inglês',
+        'chinese' => 'Chinês',
+        'french' => 'Francês',
+        'german' => 'Alemão',
+        'italian' => 'Italiano',
+        'japanese' => 'Japonês',
+        'korean' => 'Coreano',
+        'spanish' => 'Espanhol',
+        'swedish' => 'Sueco',
+        'instrumental' => 'Instrumental',
+        'other' => 'Outros',
     ],
     'extra' => [
         'video' => 'Tem vídeo',

@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -19,14 +18,12 @@
  */
 
 return [
-
     'covers' => [
         'create' => [
             '_' => 'Definir imagen de portada',
             'button' => 'Subir imagen',
             'info' => 'El tamaño debe ser :dimensions. También puedes soltar tu imagen aquí para subirla.',
         ],
-
         'destroy' => [
             '_' => 'Eliminar imagen de portada',
             'confirm' => '¿Estás seguro de que quieres eliminar la imagen de portada?',
@@ -84,28 +81,23 @@ return [
     ],
     'topics' => [
         '_' => 'Temas',
-
         'actions' => [
             'reply' => 'Mostrar caja de respuesta',
             'reply_with_quote' => 'Citar post para responder',
         ],
-
         'index' => [
             'views' => 'vistas',
             'replies' => 'respuestas',
         ],
-
         'lock' => [
             'locked-0' => 'El tema ha sido desbloqueado',
             'locked-1' => 'El tema ha sido bloqueado',
             'is_locked' => 'Este tema está bloqueado y no se puede responder',
         ],
-
         'show' => [
             'feature_vote' => [
                 'current' => 'Prioridad actual: +:count',
                 'do' => 'Apoyar esta solicitud',
-
                 'user' => [
                     'current' => 'Tienes :votes restantes.',
                     'count' => '{0} cero votos|{1} :count voto|[2,Inf] :count votos',
@@ -114,5 +106,4 @@ return [
             ],
         ],
     ],
-
 ];

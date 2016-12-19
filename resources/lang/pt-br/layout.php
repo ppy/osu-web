@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -22,7 +21,6 @@ return [
     'defaults' => [
         'page_description' => 'osu! — O ritmo está a um *clique* de distância! Com Ouendan/EBA, Taiko e  modos de jogo originais, além de um editor de níveis totalmente funcional.',
     ],
-
     'menu' => [
         'home' => [
             '_' => 'início',
@@ -44,8 +42,6 @@ return [
             'show' => 'info',
             'index' => 'lista',
             'artists' => 'artistas em destaque',
-            // 'getPacks' => 'pacotes',
-            // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [
             '_' => 'beatmaps',
@@ -83,22 +79,20 @@ return [
         ],
         'error' => [
             '_' => 'erro',
-            '404' => 'não encontrado',
-            '403' => 'acesso negado',
-            '401' => 'não autorizado',
-            '405' => 'não encontrado',
-            '500' => 'algo quebrou',
-            '503' => 'manutenção',
+            404 => 'não encontrado',
+            403 => 'acesso negado',
+            401 => 'não autorizado',
+            405 => 'não encontrado',
+            500 => 'algo quebrou',
+            503 => 'manutenção',
         ],
         'user' => [
             '_' => 'usuário',
             'getLogin' => 'iniciar sessão',
             'disabled' => 'desativado',
-
             'register' => 'registrar',
             'reset' => 'recuperar',
             'new' => 'novo',
-
             'messages' => 'Mensagens',
             'settings' => 'Configurações',
             'logout' => 'Finalizar sessão',
@@ -108,11 +102,9 @@ return [
             '_' => 'loja',
             'getListing' => 'lista',
             'getCart' => 'carrinho',
-
             'getCheckout' => 'pagar',
             'getInvoice' => 'fatura',
             'getProduct' => 'produto',
-
             'new' => 'novo',
             'home' => 'início',
             'index' => 'início',
@@ -138,7 +130,6 @@ return [
             ],
         ],
     ],
-
     'footer' => [
         'general' => [
             '_' => 'Geral',
@@ -168,39 +159,38 @@ return [
             'osuStatus' => '@osustatus',
         ],
     ],
-
     'errors' => [
-        '404' => [
+        404 => [
             'error' => 'Página não encontrada',
             'description' => 'Lamentamos, mas a página que você procura não está aqui!',
-            'link' => false,
+            'link' => '',
         ],
-        '403' => [
+        403 => [
             'error' => 'Você não deveria estar aqui.',
             'description' => 'Você pode tentar voltar.',
-            'link' => false,
+            'link' => '',
         ],
-        '401' => [
+        401 => [
             'error' => 'Você não deveria estar aqui.',
             'description' => 'Você pode tentar voltar. Ou iniciar a sessão.',
-            'link' => false,
+            'link' => '',
         ],
-        '405' => [
+        405 => [
             'error' => 'Página não encontrada',
             'description' => 'Lamentamos, mas a página que você procura não está aqui!',
-            'link' => false,
+            'link' => '',
         ],
-        '500' => [
+        500 => [
             'error' => 'Ah não! Algo quebrou! ;_;',
             'description' => 'Nós somos notificados automaticamente de todos os erros.',
-            'link' => false,
+            'link' => '',
         ],
         'fatal' => [
             'error' => 'Ah não! Algo quebrou (bem sério)! ;_;',
             'description' => 'Nós somos notificados automaticamente de todos os erros.',
-            'link' => false,
+            'link' => '',
         ],
-        '503' => [
+        503 => [
             'error' => 'Em manutenção!',
             'description' => 'Manutenções geralmente levam de 5 segundos a 10 minutos. Se estivermos fora do ar por mais tempo, acesse :link para mais informações.',
             'link' => [
@@ -208,29 +198,24 @@ return [
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
-        // used by sentry if it returns an error
         'reference' => 'Se precisar, aqui está um código que você pode dar para o suporte!',
     ],
-
     'popup_login' => [
         'login' => [
             'email' => 'endereço de e-mail',
             'forgot' => 'Esqueci as minhas credenciais',
             'password' => 'senha',
             'title' => 'Inicie a sessão para continuar',
-
             'error' => [
                 'email' => 'O nome de usuário ou o endereço de e-mail não existem',
                 'password' => 'Senha incorreta',
             ],
         ],
-
         'register' => [
             'info' => 'Você precisa de uma conta, senhor. Por que você já não tem uma?',
             'title' => 'Não tem uma conta?',
         ],
     ],
-
     'popup_user' => [
         'links' => [
             'profile' => 'Perfil',

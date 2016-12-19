@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -22,35 +21,27 @@ return [
     'admin' => [
         'warehouse' => 'Warehouse',
     ],
-
     'checkout' => [
         'pay' => 'Checkout with Paypal',
         'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
     ],
-
     'order' => [
         'item' => [
             'quantity' => 'Quantity',
         ],
     ],
-
     'product' => [
         'name' => 'Name',
-
         'stock' => [
             'out' => 'Currently out of stock :(. Check back soon.',
             'out_with_alternative' => 'This type is currently out of stock :(. Try other type or check back soon.',
         ],
-
         'add_to_cart' => 'Add to Cart',
         'notify' => 'Notify me when available!',
-
         'notification_success' => 'you will be notified when we have new stock. click :link to cancel',
         'notification_remove_text' => 'here',
-
         'notification_in_stock' => 'This product is already in stock!',
-
         'notification_exists' => 'You have already requested a notification for this product!',
-        'notification_doesnt_exist' => "You haven't even requested a notification for this product!",
+        'notification_doesnt_exist' => 'You haven\'t even requested a notification for this product!',
     ],
 ];

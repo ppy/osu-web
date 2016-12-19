@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -34,7 +33,6 @@ return [
             'match-created' => ':user criou a partida',
             'match-disbanded' => ':the partida foi desfeita',
             'host-changed' => ':user tornou-se o líder',
-
             'player-left-no-user' => 'um jogador deixou a partida',
             'player-joined-no-user' => 'um jogador entrou na partida',
             'player-kicked-no-user' => 'um jogador foi expulso da partida',

@@ -1,7 +1,6 @@
 <?php
-
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2016 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -19,8 +18,7 @@
  */
 
 return [
-        'deleted' => '[utilisateur supprimé]',
-
+    'deleted' => '[utilisateur supprimé]',
     'login' => [
         '_' => 'Se connecter',
         'username' => 'Nom d\'utilisateur',
@@ -29,14 +27,13 @@ return [
         'remember' => 'Se souvenir de moi sur cet ordinateur',
         'title' => 'Merci de vous connecter pour continuer',
         'failed' => 'Identifiants incorrects',
-        'register' => "Vous n'avez pas de compte osu! ? Inscrivez-vous maitenant ici",
+        'register' => 'Vous n\'avez pas de compte osu! ? Inscrivez-vous maitenant ici',
         'forgot' => 'Mot de passe oublié?',
         'beta' => [
             'main' => 'Accès bêta restreint aux utlisateurs privilégiés.',
             'small' => '(les supporteurs l\'obtiendront bientôt)',
         ],
-
-        'here' => 'ici', // this is substituted in when generating a link above. change it to suit the language.
+        'here' => 'ici',
     ],
     'signup' => [
         '_' => 'S\'inscrire',
@@ -48,7 +45,7 @@ return [
     ],
     'logout_confirm' => 'Vous êtes sûr de vous déconnecter? :(',
     'show' => [
-        '404' => 'Utilisateur non trouvé! ;_;',
+        404 => 'Utilisateur non trouvé! ;_;',
         'current_location' => 'Actuellement à :location.',
         'edit' => [
             'cover' => [
@@ -59,7 +56,7 @@ return [
                     'button' => 'Mettre en ligne l\'image',
                     'dropzone' => 'Déplacez ici pour uploader',
                     'dropzone_info' => 'Vous pouvez aussi déplacer l\'image ici pour la mettre en ligne',
-                    'restriction_info' => "Mise en ligne disponible pour les <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporteurs</a> uniquement",
+                    'restriction_info' => 'Mise en ligne disponible pour les <a href=\'https://osu.ppy.sh/p/support#transactionarea\' target=\'_blank\'>osu!supporteurs</a> uniquement',
                     'size_info' => 'La taille de la bannière devrait être 2000x500',
                     'too_large' => 'Le fichier mis en ligne est trop gros.',
                     'unsupported_format' => 'Format non supporté.',
@@ -73,6 +70,13 @@ return [
             ],
             'beatmaps' => [
                 'title' => 'Beatmaps',
+                'favourite' => [
+                    'title' => 'Beatmaps favorites (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Beatmaps classés et approuvés (:count)',
+                ],
+                'none' => 'Aucun... en ce moment.',
             ],
             'historical' => [
                 'empty' => 'Aucun enregistrement de performance. :(',
@@ -91,22 +95,22 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu Disponible',
-                'available_info' => "Le Kudosu peut être échangé pour des étoiles kudosu, qui vous aidera pour que votre beatmap ait plus d'attention. C'est le nombre de Kudosu qui n'avaient pas encore échangés.",
+                'available_info' => 'Le Kudosu peut être échangé pour des étoiles kudosu, qui vous aidera pour que votre beatmap ait plus d\'attention. C\'est le nombre de Kudosu qui n\'avaient pas encore échangés.',
                 'entry' => [
-                    'empty' => "Cet utilisateur n'a jamais reçu de Kudosu!",
+                    'empty' => 'Cet utilisateur n\'a jamais reçu de Kudosu!',
                     'give' => 'A reçu <strong class="kudosu-entries__amount">:amount kudosu</strong> de :giver pour un post sur :post',
                     'revoke' => 'Kudosu refusé de :giver pour le post :post',
                 ],
                 'recent_entries' => 'Hitorique de Kudosu récents',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu reçus au total',
-                'total_info' => 'Basé sur combien de fois on a contribué dans la modération de beatmaps. Voir <a href="'.osu_url('user.kudosu').'">cette page</a> pour plus d\'informations.',
+                'total_info' => 'Basé sur combien de fois on a contribué dans la modération de beatmaps. Voir <a href="https://osu.ppy.sh/wiki/Kudosu">cette page</a> pour plus d\'informations.',
             ],
             'me' => [
                 'title' => 'moi!',
             ],
             'medals' => [
-                                'empty' => "Cet utilsateur n'en a jamais reçu. ;_;",
+                'empty' => 'Cet utilsateur n\'en a jamais reçu. ;_;',
                 'title' => 'Médailles',
             ],
             'recent_activities' => [
@@ -124,16 +128,6 @@ return [
                 'title' => 'Classements',
                 'weighted_pp' => 'pondéré: :pp (:percentage)',
             ],
-            'beatmaps' => [
-                'title' => 'Beatmaps',
-                'favourite' => [
-                    'title' => 'Beatmaps favorites (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmaps classés et approuvés (:count)',
-                ],
-                'none' => 'Aucun... en ce moment.',
-            ],
         ],
         'first_members' => 'ici depuis le début',
         'is_supporter' => 'osu!supporter',
@@ -150,7 +144,7 @@ return [
             'description' => '<strong>moi!</strong> est une zone personnalisable du profil.',
             'edit_big' => 'éditer le moi!',
             'placeholder' => 'Tapez le contenu de la page',
-            'restriction_info' => "Vous devez être <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> pour débloquer cette fonctionnalité.",
+            'restriction_info' => 'Vous devez être <a href=\'https://osu.ppy.sh/p/support#transactionarea\' target=\'_blank\'>osu!supporter</a> pour débloquer cette fonctionnalité.',
         ],
         'plays_with' => [
             '_' => 'Joue avec',
@@ -178,7 +172,6 @@ return [
         ],
         'title' => 'profil de :username',
     ],
-
     'verify' => [
         'title' => 'Vérification de compte',
     ],

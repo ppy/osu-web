@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015-2016 ppy Pty. Ltd.
  *
@@ -22,14 +21,11 @@ return [
     'edit' => [
         'title' => 'Account Settings',
         'title_compact' => 'settings',
-
         'avatar' => [
             'title' => 'Edit Avatar',
         ],
-
         'profile' => [
             'title' => 'Edit Profile',
-
             'user' => [
                 'user_from' => 'current location',
                 'user_interests' => 'interest',
