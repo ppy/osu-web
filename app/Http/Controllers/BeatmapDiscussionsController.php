@@ -36,6 +36,34 @@ class BeatmapDiscussionsController extends Controller
         return parent::__construct();
     }
 
+    public function allowKudosu($id)
+    {
+        $discussion = BeatmapDiscussion::findOrFail($id);
+        priv_check('BeatmapDiscussionAllowOrDenyKudosu', $discussion)->ensureCan();
+
+        $error = $discussion->allowKudosu();
+
+        if ($error === null) {
+            return $discussion->beatmapsetDiscussion->defaultJson();
+        } else {
+            return error_popup($error);
+        }
+    }
+
+    public function denyKudosu($id)
+    {
+        $discussion = BeatmapDiscussion::findOrFail($id);
+        priv_check('BeatmapDiscussionAllowOrDenyKudosu', $discussion)->ensureCan();
+
+        $error = $discussion->denyKudosu(Auth::user());
+
+        if ($error === null) {
+            return $discussion->beatmapsetDiscussion->defaultJson();
+        } else {
+            return error_popup($error);
+        }
+    }
+
     public function destroy($id)
     {
         $discussion = BeatmapDiscussion::whereNull('deleted_at')->findOrFail($id);

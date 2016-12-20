@@ -63,6 +63,8 @@ Route::put('beatmapsets/{beatmapset}/nominate', ['as' => 'beatmapsets.nominate',
 Route::put('beatmapsets/{beatmapset}/disqualify', ['as' => 'beatmapsets.disqualify', 'uses' => 'BeatmapsetsController@disqualify']);
 Route::put('beatmap-discussions/{beatmap_discussion}/vote', ['uses' => 'BeatmapDiscussionsController@vote', 'as' => 'beatmap-discussions.vote']);
 Route::post('beatmap-discussions/{beatmap_discussion}/restore', ['uses' => 'BeatmapDiscussionsController@restore', 'as' => 'beatmap-discussions.restore']);
+Route::post('beatmap-discussions/{beatmap_discussion}/deny-kudosu', ['uses' => 'BeatmapDiscussionsController@denyKudosu', 'as' => 'beatmap-discussions.deny-kudosu']);
+Route::post('beatmap-discussions/{beatmap_discussion}/allow-kudosu', ['uses' => 'BeatmapDiscussionsController@allowKudosu', 'as' => 'beatmap-discussions.allow-kudosu']);
 Route::resource('beatmap-discussions', 'BeatmapDiscussionsController', [
     'only' => ['show', 'destroy'],
 ]);

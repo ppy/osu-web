@@ -103,6 +103,14 @@ return [
                     'empty' => "This user hasn't received any kudosu!",
 
                     'beatmap_discussion' => [
+                        'allow_kudosu' => [
+                            'give' => 'Received :amount from kudosu deny repeal of modding post :post',
+                        ],
+
+                        'deny_kudosu' => [
+                            'reset' => 'Denied :amount from modding post :post',
+                        ],
+
                         'delete' => [
                             'reset' => 'Lost :amount from modding post deletion of :post',
                         ],

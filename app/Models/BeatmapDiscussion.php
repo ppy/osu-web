@@ -242,7 +242,7 @@ class BeatmapDiscussion extends Model
     {
         DB::transaction(function () use ($deniedBy) {
             $this->update([
-                'kudosu_denied_by_id' => $deletedBy->user_id ?? null,
+                'kudosu_denied_by_id' => $deniedBy->user_id ?? null,
                 'kudosu_denied' => true,
             ]);
             $this->refreshKudosu('deny_kudosu');

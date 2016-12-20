@@ -59,6 +59,11 @@ class OsuAuthorize
         return $this->cache[$cacheKey];
     }
 
+    public function checkBeatmapDiscussionAllowOrDenyKusodu($user, $discussion)
+    {
+        // no one but admin (not covered here) =D
+    }
+
     public function checkBeatmapDiscussionDestroy($user, $discussion)
     {
         $prefix = 'beatmap_discussion.destroy.';

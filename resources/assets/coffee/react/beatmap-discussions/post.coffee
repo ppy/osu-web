@@ -197,6 +197,24 @@ BeatmapDiscussions.Post = React.createClass
               'data-confirm': osu.trans('common.confirmation')
               osu.trans('beatmaps.discussions.restore')
 
+          if @props.type == 'discussion' && @props.currentUser.isAdmin
+            if @props.discussion.kudosu_denied
+              a
+                className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
+                href: laroute.route('beatmap-discussions.allow-kudosu', beatmap_discussion: @props.discussion.id)
+                'data-remote': true
+                'data-method': 'POST'
+                'data-confirm': osu.trans('common.confirmation')
+                osu.trans('beatmaps.discussions.allow_kudosu')
+            else
+              a
+                className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
+                href: laroute.route('beatmap-discussions.deny-kudosu', beatmap_discussion: @props.discussion.id)
+                'data-remote': true
+                'data-method': 'POST'
+                'data-confirm': osu.trans('common.confirmation')
+                osu.trans('beatmaps.discussions.deny_kudosu')
+
 
 
   messageEditor: ->
