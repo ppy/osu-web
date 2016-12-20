@@ -181,21 +181,22 @@ BeatmapDiscussions.Post = React.createClass
 
           if !deleteModel.deleted_at? && @props.canBeDeleted
             a
-                className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
-                href: laroute.route("#{controller}.destroy", "#{key}": deleteModel.id)
-                'data-remote': true
-                'data-method': 'DELETE'
-                'data-confirm': osu.trans('common.confirmation')
-                osu.trans('beatmaps.discussions.delete')
+              className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
+              href: laroute.route("#{controller}.destroy", "#{key}": deleteModel.id)
+              'data-remote': true
+              'data-method': 'DELETE'
+              'data-confirm': osu.trans('common.confirmation')
+              osu.trans('beatmaps.discussions.delete')
 
           if deleteModel.deleted_at? && @props.canBeRestored
             a
-                className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
-                href: laroute.route("#{controller}.restore", "#{key}": deleteModel.id)
-                'data-remote': true
-                'data-method': 'POST'
-                'data-confirm': osu.trans('common.confirmation')
-                osu.trans('beatmaps.discussions.restore')
+              className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
+              href: laroute.route("#{controller}.restore", "#{key}": deleteModel.id)
+              'data-remote': true
+              'data-method': 'POST'
+              'data-confirm': osu.trans('common.confirmation')
+              osu.trans('beatmaps.discussions.restore')
+
 
 
   messageEditor: ->
