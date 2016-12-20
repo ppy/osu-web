@@ -32,7 +32,7 @@ return [
         'confirmation' => 'Sei sicuro?',
 
         'count' => [
-            'item' => ':count unità|:count unità',
+            'item' => ':count unitÃ |:count unitÃ ',
         ],
 
         'dropzone' => [

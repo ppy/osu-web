@@ -32,21 +32,21 @@ return [
     'beatmap_discussion_post' => [
         'edit' => [
             'system_generated' => 'I post automaticamente generati non possono essere modificati.',
-            'not_owner' => 'Solo l\'autore del post può editarlo.',
+            'not_owner' => 'Solo l\'autore del post puÃ² editarlo.',
         ],
     ],
 
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'L\'accesso al canale richiesto non è permesso.',
+                'no_access' => 'L\'accesso al canale richiesto non Ã¨ permesso.',
             ],
         ],
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'È richiesto l\'accesso al canale di destinazione.',
-                    'moderated' => 'Il canale è momentaneamente moderato.',
+                    'no_access' => 'Ãˆ richiesto l\'accesso al canale di destinazione.',
+                    'moderated' => 'Il canale Ã¨ momentaneamente moderato.',
                 ],
 
                 'not_allowed' => 'Non puoi inviare un messaggio mentre sei bannato/ristretto/silenziato.',
@@ -55,22 +55,22 @@ return [
     ],
 
     'contest' => [
-        'voting_over' => 'Non puoi cambiare il tuo voto quando il periodo di votazione per questo contest è finito.',
+        'voting_over' => 'Non puoi cambiare il tuo voto quando il periodo di votazione per questo contest Ã¨ finito.',
     ],
 
     'forum' => [
         'post' => [
             'delete' => [
-                'only_last_post' => 'Solo l\'ultimo post può essere eliminato.',
+                'only_last_post' => 'Solo l\'ultimo post puÃ² essere eliminato.',
                 'locked' => 'Impossibile eliminare i post di un topic bloccato.',
-                'no_forum_access' => 'È richiesto l\'accesso al forum.',
-                'not_owner' => 'Solo l\'autore del post lo può eliminare.',
+                'no_forum_access' => 'Ãˆ richiesto l\'accesso al forum.',
+                'not_owner' => 'Solo l\'autore del post lo puÃ² eliminare.',
             ],
 
             'edit' => [
-                'locked' => 'Il post è bloccato dall\'effettuare modifiche.',
-                'no_forum_access' => 'È richiesto l\'accesso al forum.',
-                'not_owner' => 'Solo l\'autore del post lo può modificare.',
+                'locked' => 'Il post Ã¨ bloccato dall\'effettuare modifiche.',
+                'no_forum_access' => 'Ãˆ richiesto l\'accesso al forum.',
+                'not_owner' => 'Solo l\'autore del post lo puÃ² modificare.',
                 'topic_locked' => 'Non puoi modificare i post di un topic bloccato.',
             ],
         ],
@@ -79,26 +79,26 @@ return [
             'reply' => [
                 'double_post' => 'Hai appena postato. Aspetta un po\' o modifica il tuo ultimo post.',
                 'locked' => 'Non puoi rispondere ad un topic bloccato.',
-                'no_forum_access' => 'È richiesto l\'accesso al forum.',
+                'no_forum_access' => 'Ãˆ richiesto l\'accesso al forum.',
                 'no_permission' => 'Non hai i permessi per rispondere.',
 
                 'user' => [
                     'require_login' => 'Per favore effettua il login per rispondere.',
-                    'restricted' => 'Non è possibile rispondere mentre sei ristretto.',
-                    'silenced' => 'Non è possibile rispondere mentre sei silenziato.',
+                    'restricted' => 'Non Ã¨ possibile rispondere mentre sei ristretto.',
+                    'silenced' => 'Non Ã¨ possibile rispondere mentre sei silenziato.',
                 ],
             ],
 
             'store' => [
-                'no_forum_access' => 'È richiesto l\'accesso al forum.',
+                'no_forum_access' => 'Ãˆ richiesto l\'accesso al forum.',
                 'no_permission' => 'Non hai i permessi per creare un nuovo topic.',
-                'forum_closed' => 'Il forum è chiuso e non puoi postare nulla lì.',
+                'forum_closed' => 'Il forum Ã¨ chiuso e non puoi postare nulla lÃ¬.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'È richiesto l\'accesso al forum.',
-                'over' => 'Il sondaggio è finito e non puoi votare.',
-                'voted' => 'Non è permesso cambiare voti.',
+                'no_forum_access' => 'Ãˆ richiesto l\'accesso al forum.',
+                'over' => 'Il sondaggio Ã¨ finito e non puoi votare.',
+                'voted' => 'Non Ã¨ permesso cambiare voti.',
 
                 'user' => [
                     'require_login' => 'Per favore effettua il login per votare.',
@@ -108,14 +108,14 @@ return [
             ],
 
             'watch' => [
-                'no_forum_access' => 'È richiesto l\'accesso al forum.',
+                'no_forum_access' => 'Ãˆ richiesto l\'accesso al forum.',
             ],
         ],
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'La cover specificata non è valida.',
-                'not_owner' => 'Solo l\'autore può modificare la cover.',
+                'uneditable' => 'La cover specificata non Ã¨ valida.',
+                'not_owner' => 'Solo l\'autore puÃ² modificare la cover.',
             ],
         ],
 
@@ -135,9 +135,9 @@ return [
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'La pagina utente è bloccata.',
+                'locked' => 'La pagina utente Ã¨ bloccata.',
                 'not_owner' => 'Puoi modificare solo la tua pagina utente.',
-                'require_supporter_tag' => 'È neccessario avere il supporter.',
+                'require_supporter_tag' => 'Ãˆ neccessario avere il supporter.',
             ],
         ],
     ],

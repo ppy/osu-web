@@ -30,17 +30,17 @@ return [
         ],
 
         'topic_poll' => [
-            'duplicate_options' => 'Non è permesso avere un\'opzione duplicata.',
+            'duplicate_options' => 'Non Ã¨ permesso avere un\'opzione duplicata.',
             'invalid_max_options' => 'Le opzioni per utente non possono superare il numero di opzioni disponibili.',
-            'minimum_one_selection' => 'È richiesto un minimo di un\'opzione per utente.',
-            'minimum_two' => 'È necessario almeno due opzioni.',
+            'minimum_one_selection' => 'Ãˆ richiesto un minimo di un\'opzione per utente.',
+            'minimum_two' => 'Ãˆ necessario almeno due opzioni.',
             'too_many_options' => 'Raggiunto il massimo numero di opzioni permesse.',
         ],
 
         'topic_vote' => [
-            'too_many' => 'Sono state selezionate più opzioni del consentito.',
+            'too_many' => 'Sono state selezionate piÃ¹ opzioni del consentito.',
         ],
     ],
 
-    'required' => ':attribute è richiesto.',
+    'required' => ':attribute Ã¨ richiesto.',
 ];

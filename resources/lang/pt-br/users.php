@@ -90,15 +90,20 @@ return [
             'kudosu' => [
                 'available' => 'Kudosu disponível',
                 'available_info' => 'Kudosu pode ser trocado por estrelas de kudosu, que podem ajudar seu beatmap a conseguir mais atenção. Este é o número de kudosu que você ainda não usou.',
-                'entry' => [
-                    'empty' => 'Este jogador ainda não recebeu nenhum kudosu!',
-                    'give' => 'Recebeu <strong class="kudosu-entries__amount">:amount kudosu</strong> de :giver por uma publicação em :post',
-                    'revoke' => 'Kudosu negado por :giver pela publicação :post',
-                ],
                 'recent_entries' => 'Histórico recente de Kudosu',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu total recebido',
                 'total_info' => 'Baseado na contribuição de um jogador para a moderação de beatmaps. Acesse <a href="'.osu_url('user.kudosu').'">esta página</a> para mais informações.',
+
+                'entry' => [
+                    'amount' => ':amount kudosu',
+                    'empty' => 'Este jogador ainda não recebeu nenhum kudosu!',
+
+                    'forum_post' => [
+                        'give' => 'Recebeu :amount de :giver por uma publicação em :post',
+                        'revoke' => 'Kudosu negado por :giver pela publicação :post',
+                    ],
+                ],
             ],
             'me' => [
                 'title' => 'eu!',

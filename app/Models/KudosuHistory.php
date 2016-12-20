@@ -27,6 +27,10 @@ class KudosuHistory extends Model
 {
     protected $table = 'osu_kudos_exchange';
     protected $primaryKey = 'exchange_id';
+    protected $guarded = [];
+    protected $casts = [
+        'details' => 'array',
+    ];
 
     protected $dates = ['date'];
     public $timestamps = false;
@@ -44,6 +48,11 @@ class KudosuHistory extends Model
     public function post()
     {
         return $this->belongsTo(Forum\Post::class, 'post_id', 'post_id');
+    }
+
+    public function kudosuable()
+    {
+        return $this->morphTo();
     }
 
     public function scopeWithPost($query)

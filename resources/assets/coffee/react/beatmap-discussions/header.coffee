@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{a, button, div, h1, h2, p} = React.DOM
+{a, div, h1, h2, p} = React.DOM
 el = React.createElement
 
 BeatmapDiscussions.Header = React.createClass

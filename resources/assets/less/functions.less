@@ -57,6 +57,16 @@
   box-shadow: inset 0 1px 3px fade(#000, 30%);
 }
 
+.link-default() {
+  color: @link-color;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: @link-hover-color;
+  }
+}
+
 .link-gray-light() {
   color: @gray-c;
 
@@ -77,16 +87,6 @@
   }
 }
 
-.link-default() {
-  color: @link-color;
-
-  &:hover,
-  &:focus,
-  &:active {
-    color: @link-hover-color;
-  }
-}
-
 .link-plain() {
   text-decoration: none;
 
@@ -94,6 +94,16 @@
   &:focus,
   &:active {
     text-decoration: none;
+  }
+}
+
+.link-white() {
+  color: @gray-f;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: @gray-f;
   }
 }
 
@@ -122,19 +132,6 @@
   text-decoration: none;
   &:hover {
     color: @pink-text;
-  }
-}
-
-.white-link(@fade: 90%) {
-  &:hover {
-    &::before, &::after, & {
-      color: #fff;
-    }
-  }
-
-  &, &::before, &::after {
-    color: fade(#fff, @fade);
-    text-decoration: none;
   }
 }
 

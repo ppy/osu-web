@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Il ritmo è ad un *click* di distanza!  Con Ouendan/EBA, Taiko e originali modalità di gameplay, oltre che un editor di livelli completamente funzionale.',
+        'page_description' => 'osu! - Il ritmo Ã¨ ad un *click* di distanza!  Con Ouendan/EBA, Taiko e originali modalitÃ  di gameplay, oltre che un editor di livelli completamente funzionale.',
     ],
 
     'menu' => [
@@ -59,7 +59,7 @@ return [
             'index' => 'generale',
         ],
         'community' => [
-            '_' => 'comunità',
+            '_' => 'comunitÃ ',
             'getForum' => 'forum',
             'getChat' => 'chat',
             'getSupport' => 'supporto',
@@ -86,7 +86,7 @@ return [
             '403' => 'proibito',
             '401' => 'non autorizzato',
             '405' => 'mancante',
-            '500' => 'qualcosa si è rotto',
+            '500' => 'qualcosa si Ã¨ rotto',
             '503' => 'mantenimento',
         ],
         'user' => [
@@ -147,9 +147,9 @@ return [
             'wiki' => 'Wiki',
         ],
         'help' => [
-            '_' => 'Aiuto e Comunità',
+            '_' => 'Aiuto e ComunitÃ ',
             'faq' => 'Domande Comunii',
-            'forum' => 'Forum della Comunità',
+            'forum' => 'Forum della ComunitÃ ',
             'livestreams' => 'Dirette',
             'report' => 'Segnala un problema',
         ],
@@ -170,7 +170,7 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Pagina Mancante',
-            'description' => 'Mi spiace, ma la pagina che hai richiesto non è qui!',
+            'description' => 'Mi spiace, ma la pagina che hai richiesto non Ã¨ qui!',
             'link' => false,
         ],
         '403' => [
@@ -185,22 +185,22 @@ return [
         ],
         '405' => [
             'error' => 'Pagina Mancante',
-            'description' => 'Mi spiace, ma la pagina che hai richiesto non è qui!',
+            'description' => 'Mi spiace, ma la pagina che hai richiesto non Ã¨ qui!',
             'link' => false,
         ],
         '500' => [
-            'error' => 'Oh no! Qualcosa si è rotto! ;_;',
+            'error' => 'Oh no! Qualcosa si Ã¨ rotto! ;_;',
             'description' => 'Siamo notificati automaticamente di qualsiasi errore.',
             'link' => false,
         ],
         'fatal' => [
-            'error' => 'Oh no! Qualcosa si è rotto (gravemente)! ;_;',
+            'error' => 'Oh no! Qualcosa si Ã¨ rotto (gravemente)! ;_;',
             'description' => 'Siamo notificati automaticamente di qualsiasi errore.',
             'link' => false,
         ],
         '503' => [
             'error' => 'Chiuso per manutenzione!',
-            'description' => 'La manutenzione normalmente richiede dai 5 secondi fino a 10 minuti. Se siamo chiusi per più tempo, controlla :link per ulteriori informazioni.',
+            'description' => 'La manutenzione normalmente richiede dai 5 secondi fino a 10 minuti. Se siamo chiusi per piÃ¹ tempo, controlla :link per ulteriori informazioni.',
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
@@ -224,7 +224,7 @@ return [
         ],
 
         'register' => [
-            'info' => 'Ha bisogno di un account, signore. Perchè non ne ha ancora uno?',
+            'info' => 'Ha bisogno di un account, signore. PerchÃ¨ non ne ha ancora uno?',
             'title' => 'Non hai un account?',
         ],
     ],

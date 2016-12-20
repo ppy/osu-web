@@ -431,6 +431,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->hasMany(UserGroup::class);
     }
 
+    public function beatmapDiscussionVotes()
+    {
+        return $this->hasMany(BeatmapDiscussionVote::class);
+    }
+
     public function beatmapsets()
     {
         return $this->hasMany(Beatmapset::class);
@@ -729,6 +734,11 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function setPlaymodeAttribute($value)
     {
         $this->osu_playmode = Beatmap::modeInt($attribute);
+    }
+
+    public function hasFavourited($beatmapset)
+    {
+        return $this->favourites->contains('beatmapset_id', $beatmapset->getKey());
     }
 
     public function flags()

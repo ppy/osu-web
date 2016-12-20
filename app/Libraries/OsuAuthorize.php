@@ -26,6 +26,7 @@ use App\Models\Chat\Channel as ChatChannel;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
 use App\Models\UserContestEntry;
+use Carbon\Carbon;
 
 class OsuAuthorize
 {
@@ -56,6 +57,11 @@ class OsuAuthorize
         }
 
         return $this->cache[$cacheKey];
+    }
+
+    public function checkBeatmapDiscussionAllowOrDenyKusodu($user, $discussion)
+    {
+        // no one but admin (not covered here) =D
     }
 
     public function checkBeatmapDiscussionDestroy($user, $discussion)
@@ -113,8 +119,24 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionVote($user, $discussion)
     {
+        $prefix = 'beatmap_discussion.vote.';
+
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+
+        if ($discussion->user_id === $user->user_id) {
+            return $prefix.'owner';
+        }
+
+        // rate limit
+        $recentVotesCount = $user
+            ->beatmapDiscussionVotes()
+            ->where('created_at', '<', Carbon::now()->subHour())
+            ->count();
+
+        if ($recentVotesCount > 10) {
+            return $prefix.'limit_exceeded';
+        }
 
         return 'ok';
     }

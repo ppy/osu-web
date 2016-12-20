@@ -546,6 +546,15 @@ function get_class_namespace($className)
     return substr($className, 0, strrpos($className, '\\'));
 }
 
+function get_model_basename($model)
+{
+    if (!is_string($model)) {
+        $model = get_class($model);
+    }
+
+    return str_replace('\\', '', snake_case(substr($model, strlen('App\\Models\\'))));
+}
+
 function ci_file_search($fileName)
 {
     if (file_exists($fileName)) {
