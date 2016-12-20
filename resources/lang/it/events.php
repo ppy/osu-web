@@ -20,15 +20,15 @@
 
 return [
     'achievement' => '<strong><em>:user</em></strong> ha sbloccato l\'obiettivo "<strong>:achievement</strong>" !',
-    'beatmapset_delete' => ':beatmapset è stata eliminata.',
-    'beatmapset_revive' => ':beatmapset è stata risvegliata dal sonno eterno da <strong>:user</strong>.',
+    'beatmapset_delete' => ':beatmapset Ã¨ stata eliminata.',
+    'beatmapset_revive' => ':beatmapset Ã¨ stata risvegliata dal sonno eterno da <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> ha aggiornato la beatmap "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> ha inviato una nuova beatmap":beatmapset"',
     'empty' => 'Questo utente non ha fatto qualcosa degno di nota recentemente!',
     'rank' => '<strong><em>:user</em></strong> ha ottenuto il rank #:rank su <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> ha perso il primo posto su <em>:beatmap</em> (:mode)',
-    'user_support_again' => '<strong>:user</strong> ha ancora una volta scelto di sostenere osu! - grazie per la tua generosità!',
-    'user_support_first' => '<strong>:user</strong> è diventato un sostenitore di osu! - grazie per la tua generosità!',
+    'user_support_again' => '<strong>:user</strong> ha ancora una volta scelto di sostenere osu! - grazie per la tua generositÃ !',
+    'user_support_first' => '<strong>:user</strong> Ã¨ diventato un sostenitore di osu! - grazie per la tua generositÃ !',
     'user_support_gift' => '<strong>:user</strong> ha ricevuto il regalo del osu! supporter!',
     'username_change' => '<strong>:previousUsername</strong> ha cambiato il suo nome utente in <strong><em>:user</strong></em>!',
 ];

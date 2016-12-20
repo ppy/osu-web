@@ -59,7 +59,7 @@ return [
         'total_posts' => ':posts_count post in totale',
     ],
     'subforums' => 'Subforum',
-    'title' => 'comunità osu!',
+    'title' => 'comunitÃ  osu!',
     'topic' => [
         'create' => [
             'placeholder' => [
@@ -138,7 +138,7 @@ return [
                 'length_days_suffix' => 'giorni',
                 'length_info' => 'Lascia vuoto per un sondaggio senza fine',
                 'max_options' => 'Opzioni per Utente',
-                'max_options_info' => 'Questo è il numero di opzioni che ogni utente può selezionare quando vota.',
+                'max_options_info' => 'Questo Ã¨ il numero di opzioni che ogni utente puÃ² selezionare quando vota.',
                 'options' => 'Opzioni',
                 'options_info' => 'Posiziona ogni opzione su una nuova linea. Puoi inserire fino a 10 opzioni.',
                 'title' => 'Domanda',
@@ -153,11 +153,11 @@ return [
         ],
 
         'lock' => [
-            'is_locked' => 'Questo topic è bloccato e non può essere risposto',
+            'is_locked' => 'Questo topic Ã¨ bloccato e non puÃ² essere risposto',
             'lock-0' => 'Sblocca topic',
             'lock-1' => 'Blocca topic',
-            'state-0' => 'Il topic è stato sbloccato',
-            'state-1' => 'Il topic è stato bloccato',
+            'state-0' => 'Il topic Ã¨ stato sbloccato',
+            'state-1' => 'Il topic Ã¨ stato bloccato',
         ],
 
         'moderate_move' => [
@@ -167,13 +167,13 @@ return [
         'moderate_pin' => [
             'pin-0' => 'Togli dai topic fissati',
             'pin-1' => 'Fissa topic',
-            'state-0' => 'Il topic è stato tolto dai topic fissati',
-            'state-1' => 'Il topic è stato fissato',
+            'state-0' => 'Il topic Ã¨ stato tolto dai topic fissati',
+            'state-1' => 'Il topic Ã¨ stato fissato',
         ],
 
         'show' => [
             'feature_vote' => [
-                'current' => 'Priorità Attuale: +:count',
+                'current' => 'PrioritÃ  Attuale: +:count',
                 'do' => 'Promuovi questa richiesta',
 
                 'user' => [
@@ -188,7 +188,7 @@ return [
 
                 'detail' => [
                     'total' => 'Voti totali: :count',
-                    'ended' => 'Il sondaggio è finito :time',
+                    'ended' => 'Il sondaggio Ã¨ finito :time',
                     'end_time' => 'Il sondaggio scade tra :time',
                 ],
             ],
