@@ -45,8 +45,8 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Questo post andrà nella discussione generale della Beatmap. Per moddare questa Beatmap, inizia il tuo messaggio con un timestamp (es. 00:12:345).',
-            'in_timeline' => 'per moddare più timestamp, posta più volte (un post per timestamp).',
+            'in_general' => 'Questo post andrÃ  nella discussione generale della Beatmap. Per moddare questa Beatmap, inizia il tuo messaggio con un timestamp (es. 00:12:345).',
+            'in_timeline' => 'per moddare piÃ¹ timestamp, posta piÃ¹ volte (un post per timestamp).',
         ],
 
         'message_placeholder' => 'Scrivi qui per postare',
@@ -94,11 +94,11 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'scrivi le parole chiave...',
-            'options' => 'Più Opzioni di Ricerca',
+            'options' => 'PiÃ¹ Opzioni di Ricerca',
             'not-found' => 'nessun risultato',
             'not-found-quote' => '... no, non abbiamo trovato nulla.',
         ],
-        'mode' => 'Modalità',
+        'mode' => 'ModalitÃ ',
         'status' => 'Status del Rank',
         'mapped-by' => 'mappata da :mapper',
         'source' => 'da :source',
@@ -124,7 +124,7 @@ return [
                 'drain' => 'Drenaggio HP',
                 'accuracy' => 'Precisione',
                 'ar' => 'Tempo di approccio',
-                'stars' => 'Stelle di Difficoltà',
+                'stars' => 'Stelle di DifficoltÃ ',
                 'total_length' => 'Durata',
                 'bpm' => 'BPM',
                 'count_circles' => 'Numero di Cerchi',
@@ -153,7 +153,7 @@ return [
             'scoreboard' => [
                 'title' => 'Classifica',
                 'no-scores' => [
-                    'global' => 'Nessun punteggio al momento. Perchè non provi a farne uno?',
+                    'global' => 'Nessun punteggio al momento. PerchÃ¨ non provi a farne uno?',
                     'loading' => 'Caricamento punteggi...',
                     'country' => 'Nessuno dal tuo paese ha fatto un punteggio in questa mappa!',
                     'friend' => 'Nessuno dei tuoi amici ha fatto un punteggio in questa mappa!',
@@ -207,7 +207,7 @@ return [
         'rock' => 'Rock',
         'pop' => 'Pop',
         'other' => 'Altro',
-        'novelty' => 'Novità',
+        'novelty' => 'NovitÃ ',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Elettronica',
     ],

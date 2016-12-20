@@ -25,12 +25,12 @@ return [
 
     'checkout' => [
         'pay' => 'Acquista con Paypal',
-        'delayed_shipping' => 'Attualmente siamo sommersi dagli ordini! Siete i benvenuti per lasciare i vostri ordini, ma per favore aspettatevi un **ritardo addizionale di 1-2 settimane** mentre completiamo gli ordini già esistenti.',
+        'delayed_shipping' => 'Attualmente siamo sommersi dagli ordini! Siete i benvenuti per lasciare i vostri ordini, ma per favore aspettatevi un **ritardo addizionale di 1-2 settimane** mentre completiamo gli ordini giÃ  esistenti.',
     ],
 
     'order' => [
         'item' => [
-            'quantity' => 'Quantità',
+            'quantity' => 'QuantitÃ ',
         ],
     ],
 
@@ -38,19 +38,19 @@ return [
         'name' => 'Nome',
 
         'stock' => [
-            'out' => 'Attualmente non disponibile :(. Controlla più tardi.',
-            'out_with_alternative' => 'Questo tipo non è attualmente disponibile :(. Prova con un altro tipo o controlla più tardi.',
+            'out' => 'Attualmente non disponibile :(. Controlla piÃ¹ tardi.',
+            'out_with_alternative' => 'Questo tipo non Ã¨ attualmente disponibile :(. Prova con un altro tipo o controlla piÃ¹ tardi.',
         ],
 
         'add_to_cart' => 'Aggiungi al carrello',
-        'notify' => 'Avvisami quando è disponibile!',
+        'notify' => 'Avvisami quando Ã¨ disponibile!',
 
-        'notification_success' => 'sarai avvisato quando sarà disponibile. clicca :link per annullare',
+        'notification_success' => 'sarai avvisato quando sarÃ  disponibile. clicca :link per annullare',
         'notification_remove_text' => 'qui',
 
-        'notification_in_stock' => 'Questo prodotto è già disponibile!',
+        'notification_in_stock' => 'Questo prodotto Ã¨ giÃ  disponibile!',
 
-        'notification_exists' => 'Hai già richiesto un avviso per questo prodotto!',
+        'notification_exists' => 'Hai giÃ  richiesto un avviso per questo prodotto!',
         'notification_doesnt_exist' => "Non hai ancora chiesto un'avviso per questo prodotto!",
     ],
 ];

@@ -25,20 +25,20 @@ return [
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Si è verificato un errore. Prova a ricaricare la pagina.',
+            'generic' => 'Si Ã¨ verificato un errore. Prova a ricaricare la pagina.',
         ],
     ],
     'community' => [
         'slack' => [
-            'not-eligible' => 'Il tuo account non è idoneo per l\'invito a Slack.',
-            'slack-error' => 'Si è verificato un errore sui server Slack. Riprova tra qualche minuto.',
+            'not-eligible' => 'Il tuo account non Ã¨ idoneo per l\'invito a Slack.',
+            'slack-error' => 'Si Ã¨ verificato un errore sui server Slack. Riprova tra qualche minuto.',
         ],
     ],
     'beatmaps' => [
-        'standard-converts-only' => 'Solo la modalità osu! può avere punteggi in altre modalità.',
+        'standard-converts-only' => 'Solo la modalitÃ  osu! puÃ² avere punteggi in altre modalitÃ .',
     ],
     'logged_out' => 'Sei stato disconesso. Per favore effettua di nuovo il login e riprova.',
-    'supporter_only' => 'Devi essere un supporter per poter usare questa funzionalità.',
-    'no_restricted_access' => 'Non puoi fare questa azione mentre il tuo account è nello stato di ristretto.',
-    'unknown' => 'Si è verificato un errore sconosciuto.',
+    'supporter_only' => 'Devi essere un supporter per poter usare questa funzionalitÃ .',
+    'no_restricted_access' => 'Non puoi fare questa azione mentre il tuo account Ã¨ nello stato di ristretto.',
+    'unknown' => 'Si Ã¨ verificato un errore sconosciuto.',
 ];

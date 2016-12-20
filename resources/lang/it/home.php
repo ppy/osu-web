@@ -20,12 +20,12 @@
 
 return [
     'news' => [
-        'slogan' => 'Il ritmo è solo ad un *click* di distanza!',
+        'slogan' => 'Il ritmo Ã¨ solo ad un *click* di distanza!',
     ],
     'landing' => [
         'slogans' => [
             '1' => 'simulatore di cerchi dove<br/>vinci gratuitamente', //free to win => vinci gratuitamente, but maybe there's a better way to translate that
-            '2' => 'il ritmo è solo<br/> ad un click di distanza',
+            '2' => 'il ritmo Ã¨ solo<br/> ad un click di distanza',
         ],
 
         'download' => [

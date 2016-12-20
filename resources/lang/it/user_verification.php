@@ -19,7 +19,7 @@
  */
 return [
     'box' => [
-        'sent' => 'Un email è stata inviata a :mail con un codice di verifica. Inserisci il codice.',
+        'sent' => 'Un email Ã¨ stata inviata a :mail con un codice di verifica. Inserisci il codice.',
         'title' => 'Verifica Account',
         'verifying' => 'Verificando...',
         'issuing' => 'Distribuendo il nuovo codice...',
@@ -39,10 +39,10 @@ return [
     ],
 
     'errors' => [
-        'expired' => 'Codice di verifica scaduto, è stata inviata una nuova email di verifica.',
+        'expired' => 'Codice di verifica scaduto, Ã¨ stata inviata una nuova email di verifica.',
         'incorrect_key' => 'Codice di verifica errato.',
         'retries_exceeded' => 'Codice di verifica errato. Raggiunto il limite di tentativi, nuovo codice di verifica inviato.',
-        'reissued' => 'Nuovo codice di verifica richiesto, è stata inviata una nuova email di verifica.',
-        'unknown' => 'È successo un problema sconosciuto, è stata inviata una nuova email di verifica.',
+        'reissued' => 'Nuovo codice di verifica richiesto, Ã¨ stata inviata una nuova email di verifica.',
+        'unknown' => 'Ãˆ successo un problema sconosciuto, Ã¨ stata inviata una nuova email di verifica.',
     ],
 ];
