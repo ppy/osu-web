@@ -34,7 +34,7 @@ return [
             'main' => 'Beta access is currently restricted to privileged users.',
             'small' => '(supporters will get in soon)',
         ],
-        'here' => 'here',
+        'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
     ],
     'signup' => [
         '_' => 'Register',
