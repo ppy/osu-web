@@ -182,7 +182,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
         switch ($lookup_type) {
             case 'string':
-                $user = self::where('username', $username_or_id)->orWhere('username_clean', $username_or_id);
+                $user = self::where('username', $username_or_id)->orWhere('username_clean', '=', $username_or_id);
                 break;
 
             case 'id':
@@ -193,7 +193,7 @@ class User extends Model implements AuthenticatableContract, Messageable
                 if (is_numeric($username_or_id)) {
                     $user = self::where('user_id', $username_or_id);
                 } else {
-                    $user = self::where('username', $username_or_id)->orWhere('username_clean', $username_or_id);
+                    $user = self::where('username', $username_or_id)->orWhere('username_clean', '=', $username_or_id);
                 }
                 break;
         }
@@ -917,7 +917,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     public static function findForLogin($username)
     {
         return static::where('username', $username)
-            ->orWhere('user_email', $username)
+            ->orWhere('user_email', '=', $username)
             ->first();
     }
 
