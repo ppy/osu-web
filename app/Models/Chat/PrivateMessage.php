@@ -45,7 +45,7 @@ class PrivateMessage extends Model
         return $query->where(
             function ($q) use ($user_id) {
                 $q->where('user_id', $user_id)
-                ->orWhere('target_id', $user_id);
+                ->orWhere('target_id', '=', $user_id);
             }
         );
     }
