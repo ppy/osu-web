@@ -133,8 +133,9 @@ Route::get('u/{user}', ['as' => 'users.show', 'uses' => 'UsersController@show'])
 
 // help section
 Route::get('/wiki', ['as' => 'wiki', function () {
-    return Redirect::to('https://osu.ppy.sh/wiki');
+    return ujs_redirect(route('wiki.show', ['page' => 'Welcome']));
 }]);
+Route::get('wiki/{page?}', ['as' => 'wiki.show', 'uses' => 'WikiController@show'])->where('page', '.+');
 
 Route::get('/help/support', ['as' => 'support', 'uses' => 'HelpController@getSupport']);
 Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);

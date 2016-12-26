@@ -23,6 +23,10 @@ namespace App\Libraries;
 class LocaleMeta
 {
     const MAPPINGS = [
+        'de' => [
+            'name' => 'Deutsch',
+            'flag' => 'DE',
+        ],
         'en' => [
             'name' => 'English',
             'flag' => 'GB',
@@ -35,9 +39,30 @@ class LocaleMeta
             'name' => 'Français',
             'flag' => 'FR',
         ],
+        'hu' => [
+            'name' => 'Magyar',
+            'flag' => 'HU',
+        ],
+        'id' => [
+            'name' => 'Bahasa Indonesia',
+            'flag' => 'ID',
+        ],
         'it' => [
             'name' => 'Italiano',
             'flag' => 'IT',
+        ],
+        'ja' => [
+            'name' => '日本語',
+            'flag' => 'JP',
+        ],
+        // FIXME: not a valid language code
+        'jp' => [
+            'name' => '日本語',
+            'flag' => 'JP',
+        ],
+        'ko' => [
+            'name' => '한국어',
+            'flag' => 'KO',
         ],
         'nl' => [
             'name' => 'Nederlands',
@@ -47,9 +72,25 @@ class LocaleMeta
             'name' => 'Polski',
             'flag' => 'PL',
         ],
+        'pt' => [
+            'name' => 'Português',
+            'flag' => 'PT',
+        ],
         'pt-br' => [
             'name' => 'Português (Brasil)',
             'flag' => 'BR',
+        ],
+        'ru' => [
+            'name' => 'Русский',
+            'flag' => 'RU',
+        ],
+        'th' => [
+            'name' => 'ไทย',
+            'flag' => 'TH',
+        ],
+        'zh' => [
+            'name' => '中文',
+            'flag' => 'CN',
         ],
     ];
 

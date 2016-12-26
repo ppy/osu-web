@@ -284,7 +284,7 @@ function nav_links()
         'getDownload' => osu_url('home.download'),
     ];
     $links['help'] = [
-        'getWiki' => osu_url('help.wiki'),
+        'getWiki' => route('wiki.show', ['page' => 'Welcome']),
         'getFaq' => osu_url('help.faq'),
         'getSupport' => osu_url('help.support'),
     ];
