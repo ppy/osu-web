@@ -51,15 +51,17 @@ class WikiController extends Controller
             $page = WikiPage::page($path, $locale);
         } catch (GitHubNotFoundException $e) {
             $page = null;
+            $status = 404;
         }
 
-        return view('wiki.show', compact(
-            'locale',
-            'page',
-            'pageLocales',
-            'path',
-            'subtitle',
-            'title'
-        ));
+        return response()
+            ->view('wiki.show', compact(
+                'locale',
+                'page',
+                'pageLocales',
+                'path',
+                'subtitle',
+                'title'
+            ), $status ?? 200);
     }
 }
