@@ -35,13 +35,16 @@
     </div>
 
     <div class="osu-layout__row osu-layout__row--page-compact">
-        @if (!empty($pageLocales))
+        @if (count($pageLocales) > 1 || App::getLocale() !== ($pageLocales[0] ?? null))
             <div class="wiki-language-list">
                 <div class="wiki-language-list__header">
                     {{ trans('wiki.show.other_languages') }}:
                 </div>
 
                 @foreach ($pageLocales as $locale)
+                    @if ($locale === App::getLocale())
+                        @continue
+                    @endif
                     <a class="wiki-language-list__item" href="?locale={{ $locale }}">
                         {{ App\Libraries\LocaleMeta::nameFor($locale) }}
                     </a>
