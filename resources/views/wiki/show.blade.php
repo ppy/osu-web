@@ -66,7 +66,7 @@
             </div>
         @endif
 
-        <div class="wiki-content">
+        <div class="wiki-content js-wiki-content">
             @if (present($pageMd))
                 {!! Markdown::convertToHtml($pageMd) !!}
             @else
