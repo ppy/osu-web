@@ -33,7 +33,7 @@ class WikiController extends Controller
 
     public function show($path)
     {
-        if (in_array(pathinfo($path, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png'], true)) {
+        if (in_array(pathinfo($path, PATHINFO_EXTENSION), ['gif', 'jpeg', 'jpg', 'png'], true)) {
             try {
                 return response(WikiPage::fetchContent($path), 200)->header('Content-Type', 'image');
             } catch (GitHubNotFoundException $e) {
