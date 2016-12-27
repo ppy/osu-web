@@ -48,7 +48,6 @@ class WikiController extends Controller
         $title = array_pop($titles);
         $subtitle = array_pop($titles);
 
-
         try {
             $pageMd = $page->markdown();
         } catch (GitHubNotFoundException $e) {
