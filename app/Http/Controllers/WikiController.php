@@ -41,8 +41,8 @@ class WikiController extends Controller
             }
         }
 
-        $locale = Request::input('locale', App::getLocale());
-        $page = new WikiPage($path, $locale);
+        $pageLocale = Request::input('locale', App::getLocale());
+        $page = new WikiPage($path, $pageLocale);
         $pageLocales = $page->locales();
         $titles = explode('/', str_replace('-', ' ', trim($path, '/')), 2);
         $title = array_pop($titles);
@@ -57,10 +57,10 @@ class WikiController extends Controller
 
         return response()
             ->view('wiki.show', compact(
-                'locale',
                 'page',
-                'pageMd',
+                'pageLocale',
                 'pageLocales',
+                'pageMd',
                 'path',
                 'subtitle',
                 'title'
