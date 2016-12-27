@@ -136,6 +136,7 @@ Route::get('/wiki', ['as' => 'wiki', function () {
     return ujs_redirect(route('wiki.show', ['page' => 'Welcome']));
 }]);
 Route::get('wiki/{page?}', ['as' => 'wiki.show', 'uses' => 'WikiController@show'])->where('page', '.+');
+Route::put('wiki/{page?}', ['uses' => 'WikiController@update'])->where('page', '.+');
 
 Route::get('/help/support', ['as' => 'support', 'uses' => 'HelpController@getSupport']);
 Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);

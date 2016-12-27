@@ -49,9 +49,23 @@
             </div>
         @endif
 
+        @if (!empty($pageLocales))
+            <div class="wiki-edit">
+                <a class="wiki-edit__link" href="{{ $page->editUrl() }}">
+                    {{ trans('wiki.show.edit.link') }}
+                </a>
+
+                @if (priv_check('WikiPageRefresh')->can())
+                    <a class="wiki-edit__link" href="#" data-remote="true" data-method="PUT">
+                        {{ trans('wiki.show.edit.refresh') }}
+                    </a>
+                @endif
+            </div>
+        @endif
+
         <div class="wiki-content">
-            @if (present($page))
-                {!! Markdown::convertToHtml($page) !!}
+            @if (present($pageMd))
+                {!! Markdown::convertToHtml($pageMd) !!}
             @else
                 @if (empty($pageLocales))
                     {{ trans('wiki.show.missing') }}

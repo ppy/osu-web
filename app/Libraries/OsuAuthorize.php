@@ -620,6 +620,13 @@ class OsuAuthorize
         }
     }
 
+    public function checkWikiPageRefresh($user)
+    {
+        $this->ensureLoggedIn($user);
+
+        // yet another admin only =D
+    }
+
     public function ensureLoggedIn($user, $prefix = '')
     {
         if ($user === null) {

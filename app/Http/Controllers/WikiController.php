@@ -42,15 +42,17 @@ class WikiController extends Controller
         }
 
         $locale = Request::input('locale', App::getLocale());
-        $pageLocales = WikiPage::pageLocales($path);
+        $page = new WikiPage($path, $locale);
+        $pageLocales = $page->locales();
         $titles = explode('/', str_replace('-', ' ', trim($path, '/')), 2);
         $title = array_pop($titles);
         $subtitle = array_pop($titles);
 
+
         try {
-            $page = WikiPage::page($path, $locale);
+            $pageMd = $page->markdown();
         } catch (GitHubNotFoundException $e) {
-            $page = null;
+            $pageMd = null;
             $status = 404;
         }
 
@@ -58,10 +60,20 @@ class WikiController extends Controller
             ->view('wiki.show', compact(
                 'locale',
                 'page',
+                'pageMd',
                 'pageLocales',
                 'path',
                 'subtitle',
                 'title'
             ), $status ?? 200);
+    }
+
+    public function update($path)
+    {
+        priv_check('WikiPageRefresh')->ensureCan();
+
+        (new WikiPage($path))->refresh();
+
+        return ujs_redirect(route('wiki.show', ['page' => $path]));
     }
 }
