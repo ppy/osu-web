@@ -20,8 +20,8 @@
 
 return [
     'show' => [
-        'missing' => 'Requested page not found.',
-        'missing_translation' => 'Requested page not found for currently selected language.',
+        'missing' => 'Requested page could not be found.',
+        'missing_translation' => 'Requested page could not be found for currently selected language.',
         'other_languages' => 'Other languages',
     ],
 ];
