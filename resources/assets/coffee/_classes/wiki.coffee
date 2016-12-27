@@ -29,10 +29,12 @@ class @Wiki
 
 
   updateLink: (_, el) =>
-    return unless el.href?[2] == ':'
+    parsed = el.href?.match /^(\w{2}(?:-\w{2})?):(.+)$/
 
-    locale = el.href[0..1]
-    path = el.href[3..]
+    return if !parsed?
+
+    locale = parsed[1]
+    path = parsed[2]
 
     el.href = "#{path}?locale=#{locale}"
 
