@@ -321,7 +321,7 @@ function footer_links()
         'changelog' => osu_url('home.changelog'),
         'beatmaps' => action('BeatmapsetsController@index'),
         'download' => osu_url('home.download'),
-        'wiki' => osu_url('help.wiki'),
+        'wiki' => route('wiki.show', ['page' => 'Welcome']),
     ];
     $links['help'] = [
         'faq' => osu_url('help.faq'),
