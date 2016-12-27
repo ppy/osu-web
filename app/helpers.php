@@ -658,11 +658,13 @@ function array_rand_val($array)
  */
 function model_pluck($builder, $key)
 {
-    return $builder
-        ->select($key)
-        ->get()
-        ->pluck($key)
-        ->all();
+    $result = [];
+
+    foreach ($builder->select($key)->get() as $el) {
+        $result[] = $el->$key;
+    }
+
+    return $result;
 }
 
 // Returns null if timestamp is null or 0.
