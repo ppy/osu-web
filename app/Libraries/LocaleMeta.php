@@ -55,11 +55,6 @@ class LocaleMeta
             'name' => '日本語',
             'flag' => 'JP',
         ],
-        // FIXME: not a valid language code
-        'jp' => [
-            'name' => '日本語',
-            'flag' => 'JP',
-        ],
         'ko' => [
             'name' => '한국어',
             'flag' => 'KO',
