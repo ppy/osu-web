@@ -22,7 +22,7 @@
 ])
 
 @section('content')
-    <div class="osu-layout__row">
+    <div class="osu-layout__row osu-layout__row--page-compact">
         <div class="osu-page-header osu-page-header--wiki">
             <div class="osu-page-header__title-box">
                 @if (present($subtitle))
