@@ -109,6 +109,29 @@
     height: 125px;
   }
 
+  &__actions {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    right: @spacing;
+    bottom: @spacing;
+
+    @media @desktop {
+      right: 0;
+      bottom: (@spacing * 2);
+      width: 0;
+
+      opacity: 0;
+      will-change: opacity;
+    }
+
+    .@{top}:hover & {
+      opacity: 1;
+    }
+  }
+
   &__box {
     margin: 0 @spacing;
     flex: 1 0 auto;

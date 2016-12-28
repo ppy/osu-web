@@ -31,6 +31,38 @@
 
                 <h1 class="osu-page-header__title">{{ $title }}</h1>
             </div>
+
+            @if (!empty($pageLocales))
+                <div class="osu-page-header__actions">
+                    <div class="forum-post-actions">
+                        <div class="forum-post-actions__action">
+                            <a
+                                class="btn-circle"
+                                href="{{ $page->editUrl() }}"
+                                title="{{ trans('wiki.show.edit.link') }}"
+                                data-tooltip-position="left center"
+                            >
+                                <i class="fa fa-github"></i>
+                            </a>
+                        </div>
+
+                        @if (priv_check('WikiPageRefresh')->can())
+                            <div class="forum-post-actions__action">
+                                <a
+                                    class="btn-circle"
+                                    href="#"
+                                    data-remote="true"
+                                    data-method="PUT"
+                                    title="{{ trans('wiki.show.edit.refresh') }}"
+                                    data-tooltip-position="left center"
+                                >
+                                    <i class="fa fa-refresh"></i>
+                                </a>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 
@@ -49,20 +81,6 @@
                         {{ App\Libraries\LocaleMeta::nameFor($locale) }}
                     </a>
                 @endforeach
-            </div>
-        @endif
-
-        @if (!empty($pageLocales))
-            <div class="wiki-edit">
-                <a class="wiki-edit__link" href="{{ $page->editUrl() }}">
-                    {{ trans('wiki.show.edit.link') }}
-                </a>
-
-                @if (priv_check('WikiPageRefresh')->can())
-                    <a class="wiki-edit__link" href="#" data-remote="true" data-method="PUT">
-                        {{ trans('wiki.show.edit.refresh') }}
-                    </a>
-                @endif
             </div>
         @endif
 
