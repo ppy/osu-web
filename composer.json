@@ -26,7 +26,8 @@
     "sentry/sentry-laravel": "^0.4.1",
     "laravel/passport": "^1.0",
     "php-http/guzzle6-adapter": "^1.1",
-    "graham-campbell/github": "^5.0"
+    "graham-campbell/github": "^5.0",
+    "webuni/commonmark-table-extension": "^0.6.0"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.5",

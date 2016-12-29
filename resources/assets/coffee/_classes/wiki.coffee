@@ -26,6 +26,7 @@ class @Wiki
     return if !@content[0]?
 
     @updateLinks()
+    @updateTables()
 
 
   updateLink: (_, el) =>
@@ -41,3 +42,7 @@ class @Wiki
 
   updateLinks: =>
     $(@content).find('a').each @updateLink
+
+
+  updateTables: =>
+    $(@content).find('table').addClass 'table'
