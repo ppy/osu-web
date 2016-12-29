@@ -42,6 +42,7 @@ $(document).on 'submit', 'form', LoadingOverlay.show
 @formToggle ?= new FormToggle
 @accountEdit ?= new AccountEdit
 @accountEditAvatar ?= new AccountEditAvatar
+@wiki ?= new Wiki
 
 @editorZoom ?= new EditorZoom
 @stickyFooter ?= new StickyFooter

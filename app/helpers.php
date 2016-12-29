@@ -284,7 +284,7 @@ function nav_links()
         'getDownload' => osu_url('home.download'),
     ];
     $links['help'] = [
-        'getWiki' => osu_url('help.wiki'),
+        'getWiki' => route('wiki.show', ['page' => 'Welcome']),
         'getFaq' => osu_url('help.faq'),
         'getSupport' => osu_url('help.support'),
     ];
@@ -321,7 +321,7 @@ function footer_links()
         'changelog' => osu_url('home.changelog'),
         'beatmaps' => action('BeatmapsetsController@index'),
         'download' => osu_url('home.download'),
-        'wiki' => osu_url('help.wiki'),
+        'wiki' => route('wiki.show', ['page' => 'Welcome']),
     ];
     $links['help'] = [
         'faq' => osu_url('help.faq'),
@@ -658,11 +658,13 @@ function array_rand_val($array)
  */
 function model_pluck($builder, $key)
 {
-    return $builder
-        ->select($key)
-        ->get()
-        ->pluck($key)
-        ->all();
+    $result = [];
+
+    foreach ($builder->select($key)->get() as $el) {
+        $result[] = $el->$key;
+    }
+
+    return $result;
 }
 
 // Returns null if timestamp is null or 0.

@@ -36,9 +36,10 @@ return [
         ],
         'help' => [
             '_' => 'help',
-            'getWiki' => 'wiki',
             'getFaq' => 'faq',
             'getSupport' => 'support',
+            'getWiki' => 'wiki',
+            'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
