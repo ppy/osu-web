@@ -85,7 +85,15 @@ class WikiPage
         }
 
         foreach ($contents as $content) {
-            $locales[] = str_replace('.md', '', $content['name']);
+            $hasMatch = preg_match(
+                '/^(\w{2}(?:-\w{2})?)\.md$/',
+                $content['name'],
+                $matches
+            );
+
+            if ($hasMatch === 1) {
+                $locales[] = $matches[1];
+            }
         }
 
         return $locales;
