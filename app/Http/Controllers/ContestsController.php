@@ -22,7 +22,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Contest;
 use Auth;
-use DB;
 
 class ContestsController extends Controller
 {
