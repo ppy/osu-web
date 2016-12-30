@@ -53,7 +53,7 @@ class ContestsController extends Controller
 
         $contests = Contest::with('entries', 'entries.contest', 'entries.user')
             ->whereIn('id', $contestIds)
-            ->orderByRaw(DB::raw('FIELD(id, '.implode(',', $contestIds).')'))
+            ->orderByRaw('FIELD(id, '.db_array_bind($contestIds).')', $contestIds)
             ->get();
 
         if ($contest->isVotingStarted()) {
