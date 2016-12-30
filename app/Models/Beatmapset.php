@@ -751,7 +751,7 @@ class Beatmapset extends Model
 
     public function unfavourite($user)
     {
-        if (!$this->hasFavourited($user)) {
+        if ($user === null || !$user->hasFavourited($this)) {
             return;
         }
 
