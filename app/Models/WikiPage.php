@@ -74,10 +74,6 @@ class WikiPage
             try {
                 return static::fetchContent($path);
             } catch (GitHubNotFoundException $e) {
-                if (present($referrer) && !ends_with($referrer, '/')) {
-                    $referrer = dirname($referrer).'/';
-                }
-
                 if (present($url) && present($referrer) && starts_with($url, $referrer)) {
                     $newPath = 'shared/'.substr($url, strlen($referrer));
 

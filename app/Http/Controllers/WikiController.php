@@ -42,6 +42,11 @@ class WikiController extends Controller
             }
         }
 
+        // ensure correct relative paths
+        if (preg_match(',/(\?.*)?$,', Request::getUri()) === 0) {
+            return ujs_redirect(Request::url().'/');
+        }
+
         $pageLocale = Request::input('locale', App::getLocale());
         $page = new WikiPage($path, $pageLocale);
         $pageLocales = $page->locales();
