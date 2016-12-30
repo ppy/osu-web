@@ -44,7 +44,11 @@ class WikiController extends Controller
 
         // ensure correct relative paths
         if (preg_match(',/(\?.*)?$,', Request::getUri()) === 0) {
-            return ujs_redirect(Request::url().'/');
+            $queryString = present(Request::getQueryString())
+                ? '?'.Request::getQueryString()
+                : '';
+
+            return ujs_redirect(Request::url().'/'.$queryString);
         }
 
         $pageLocale = Request::input('locale', App::getLocale());
