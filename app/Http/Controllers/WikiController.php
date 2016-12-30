@@ -45,7 +45,7 @@ class WikiController extends Controller
         $pageLocale = Request::input('locale', App::getLocale());
         $page = new WikiPage($path, $pageLocale);
         $pageLocales = $page->locales();
-        $titles = explode('/', str_replace('-', ' ', trim($path, '/')), 2);
+        $titles = explode('/', str_replace('_', ' ', trim($path, '/')), 2);
         $title = array_pop($titles);
         $subtitle = array_pop($titles);
 
