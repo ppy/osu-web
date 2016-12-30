@@ -35,6 +35,10 @@ class LocaleMeta
             'name' => 'Español',
             'flag' => 'ES',
         ],
+        'fi' => [
+            'name' => 'Suomi',
+            'flag' => 'FI',
+        ],
         'fr' => [
             'name' => 'Français',
             'flag' => 'FR',
@@ -82,6 +86,10 @@ class LocaleMeta
         'th' => [
             'name' => 'ไทย',
             'flag' => 'TH',
+        ],
+        'tl' => [
+            'name' => 'Tagalog',
+            'flag' => 'PH',
         ],
         'zh' => [
             'name' => '中文',

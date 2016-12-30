@@ -63,6 +63,27 @@ class WikiPage
         return base64_decode(static::fetch($path)['content'], true);
     }
 
+    public static function fetchImage($path, $url = null, $referrer = null)
+    {
+        return Cache::remember(static::cacheKey($path), 60, function () use ($path, $url, $referrer) {
+            try {
+                return static::fetchContent($path);
+            } catch (GitHubNotFoundException $e) {
+                if (present($referrer) && !ends_with($referrer, '/')) {
+                    $referrer = dirname($referrer).'/';
+                }
+
+                if (present($url) && present($referrer) && starts_with($url, $referrer)) {
+                    $newPath = 'shared/'.substr($url, strlen($referrer));
+
+                    return static::fetchImage($newPath);
+                }
+
+                throw $e;
+            }
+        });
+    }
+
     public function __construct($page, $locale = null)
     {
         $this->page = $page;
@@ -85,7 +106,15 @@ class WikiPage
         }
 
         foreach ($contents as $content) {
-            $locales[] = str_replace('.md', '', $content['name']);
+            $hasMatch = preg_match(
+                '/^(\w{2}(?:-\w{2})?)\.md$/',
+                $content['name'],
+                $matches
+            );
+
+            if ($hasMatch === 1) {
+                $locales[] = $matches[1];
+            }
         }
 
         return $locales;
