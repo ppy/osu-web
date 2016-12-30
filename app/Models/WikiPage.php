@@ -30,9 +30,14 @@ class WikiPage
     const REPOSITORY = 'osu-wiki';
     const USER = 'ppy';
 
+    public static function cleanPath($path)
+    {
+        return preg_replace('|//+|', '/', trim($path, '/'));
+    }
+
     public static function cacheKey($path)
     {
-        return 'wiki:'.preg_replace('|//+|', '/', trim($path, '/'));
+        return 'wiki:'.static::cleanPath($path);
     }
 
     public static function fetch($path)
@@ -43,7 +48,7 @@ class WikiPage
             try {
                 return GitHub::repo()
                     ->contents()
-                    ->show(static::USER, static::REPOSITORY, 'wiki/'.$path);
+                    ->show(static::USER, static::REPOSITORY, static::cleanPath('wiki/'.$path));
             } catch (GithubException $e) {
                 if ($e->getMessage() === 'Not Found') {
                     throw new GitHubNotFoundException();
