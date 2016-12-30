@@ -110,6 +110,11 @@ class WikiPage
             return $locales;
         }
 
+        // check if it's a file, not a directory.
+        if (isset($contents['name'])) {
+            return $locales;
+        }
+
         foreach ($contents as $content) {
             $hasMatch = preg_match(
                 '/^(\w{2}(?:-\w{2})?)\.md$/',
