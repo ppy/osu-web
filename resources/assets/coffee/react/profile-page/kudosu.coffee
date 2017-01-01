@@ -43,7 +43,9 @@ class ProfilePage.Kudosu extends React.Component
 
         if @props.recentlyReceivedKudosu.length
           el 'ul', className: 'profile-extra-entries',
-            @props.recentlyReceivedKudosu.map (kudosu) =>
+            for kudosu in @props.recentlyReceivedKudosu
+              continue if !kudosu.id?
+
               giver =
                 if kudosu.giver?
                   osu.link kudosu.giver.url,

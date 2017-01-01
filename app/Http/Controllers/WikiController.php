@@ -42,10 +42,19 @@ class WikiController extends Controller
             }
         }
 
+        // ensure correct relative paths
+        if (preg_match(',/(\?.*)?$,', Request::getUri()) === 0) {
+            $queryString = present(Request::getQueryString())
+                ? '?'.Request::getQueryString()
+                : '';
+
+            return ujs_redirect(Request::url().'/'.$queryString);
+        }
+
         $pageLocale = Request::input('locale', App::getLocale());
         $page = new WikiPage($path, $pageLocale);
         $pageLocales = $page->locales();
-        $titles = explode('/', str_replace('-', ' ', trim($path, '/')), 2);
+        $titles = explode('/', str_replace('_', ' ', trim($path, '/')), 2);
         $title = array_pop($titles);
         $subtitle = array_pop($titles);
 

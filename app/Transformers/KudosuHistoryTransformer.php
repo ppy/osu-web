@@ -42,9 +42,7 @@ class KudosuHistoryTransformer extends Fractal\TransformerAbstract
 
             $model = 'forum_post';
             $action = $kudosuHistory->action;
-        }
-
-        if ($kudosuHistory->kudosuable !== null) {
+        } elseif ($kudosuHistory->kudosuable !== null) {
             $post = [
                 'url' => $kudosuHistory->kudosuable->url(),
                 'title' => $kudosuHistory->kudosuable->title(),
@@ -52,6 +50,9 @@ class KudosuHistoryTransformer extends Fractal\TransformerAbstract
 
             $model = get_model_basename($kudosuHistory->kudosuable);
             $action = $kudosuHistory->details['event'].'.'.$kudosuHistory->action;
+        } else {
+            // missing topic and not the new format.
+            return [];
         }
 
         return [

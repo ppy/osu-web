@@ -420,18 +420,13 @@ class Beatmapset extends Model
             $beatmap_ids = self::searchES($params);
         }
 
-        $beatmaps = [];
-
-        if (count($beatmap_ids) > 0) {
-            $ids = implode(',', $beatmap_ids);
-            $beatmaps = static
+        return count($beatmap_ids) > 0
+            ? static
                 ::with('beatmaps')
                 ->whereIn('beatmapset_id', $beatmap_ids)
-                ->orderByRaw(DB::raw("FIELD(beatmapset_id, {$ids})"))
-                ->get();
-        }
-
-        return $beatmaps;
+                ->orderByRaw('FIELD(beatmapset_id, '.db_array_bind($beatmap_ids).')', $beatmap_ids)
+                ->get()
+            : [];
     }
 
     public static function listing()
@@ -751,7 +746,7 @@ class Beatmapset extends Model
 
     public function unfavourite($user)
     {
-        if (!$this->hasFavourited($user)) {
+        if ($user === null || !$user->hasFavourited($this)) {
             return;
         }
 
