@@ -285,7 +285,7 @@ function nav_links()
     ];
     $links['help'] = [
         'getWiki' => route('wiki.show', ['page' => 'Welcome']),
-        'getFaq' => osu_url('help.faq'),
+        'getFaq' => route('wiki.show', ['page' => 'FAQ']),
         'getSupport' => osu_url('help.support'),
     ];
     $links['ranking'] = [
