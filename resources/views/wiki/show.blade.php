@@ -29,7 +29,7 @@
                     <h2 class="osu-page-header__title osu-page-header__title--small">{{ $subtitle }}</h2>
                 @endif
 
-                <h1 class="osu-page-header__title">{{ $title }}</h1>
+                <h1 class="js-wiki-title osu-page-header__title">{{ $title }}</h1>
             </div>
 
             @if (!empty($pageLocales))
@@ -84,6 +84,7 @@
             </div>
         @endif
 
+        <div class="js-wiki-toc"></div>
         <div class="wiki-content js-wiki-content">
             @if (present($pageMd))
                 {!! Markdown::convertToHtml($pageMd) !!}

@@ -25,8 +25,51 @@ class @Wiki
   initialize: =>
     return if !@content[0]?
 
+    @$content = $(@content)
+
+    @setTitle()
+    @parseToc()
     @updateLinks()
     @updateTables()
+
+
+  parseToc: =>
+    return if @content[0].dataset.tocParsed == '1'
+
+    $mainToc = $toc = $('<ol>')
+    lastLevel = null
+
+    @content[0].dataset.tocParsed = '1'
+    for header in @$content.find('h2, h3, h4')
+      currentLevel = parseInt header.tagName.match(/\d+/)[0], 10
+      title = header.textContent.trim()
+      titleId = _.kebabCase title
+      $item = $('<li>').append $('<a>').attr('href', "##{titleId}").text(title)
+
+      if lastLevel?
+        if currentLevel > lastLevel
+          $newToc = $('<ol>')
+          $toc.append $newToc
+          $toc = $newToc
+        else if currentLevel < lastLevel
+          $newToc = $toc.parents('ol').first()
+          if $newToc.length > 0
+            $toc = $newToc
+
+      lastLevel = currentLevel
+      $toc.append $item
+      header.id = titleId
+
+    $('.js-wiki-toc').append $mainToc
+
+
+  setTitle: =>
+    $title = @$content.find('h1').first()
+
+    return if $title.length == 0
+
+    $('.js-wiki-title').text $title.text()
+    $title.remove()
 
 
   updateLink: (_, el) =>
@@ -41,8 +84,8 @@ class @Wiki
 
 
   updateLinks: =>
-    $(@content).find('a').each @updateLink
+    @$content.find('a').each @updateLink
 
 
   updateTables: =>
-    $(@content).find('table').addClass 'table'
+    @$content.find('table').addClass 'table'
