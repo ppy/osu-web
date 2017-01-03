@@ -83,6 +83,6 @@ class WikiController extends Controller
 
         (new WikiPage($path))->refresh();
 
-        return ujs_redirect(route('wiki.show', ['page' => $path]));
+        return ujs_redirect(Request::getUri());
     }
 }
