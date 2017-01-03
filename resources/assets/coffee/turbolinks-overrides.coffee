@@ -18,3 +18,13 @@
 
 Turbolinks.BrowserAdapter::showProgressBarAfterDelay = ->
   @progressBarTimeout = Timeout.set 0, @showProgressBar
+
+
+$(document).on 'click', 'a[href^="#"]', (e) ->
+  targetId = e.currentTarget.getAttribute('href')[1..]
+  target = document.getElementById targetId
+
+  return if !target?
+
+  e.preventDefault()
+  $.scrollTo target
