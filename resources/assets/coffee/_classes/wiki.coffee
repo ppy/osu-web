@@ -49,7 +49,7 @@ class @Wiki
     lastLevel = null
 
     @content[0].dataset.tocParsed = '1'
-    for header in @$content.find('h2, h3, h4')
+    for header in @$content.find('h2, h3, h4, h5, h6')
       currentLevel = parseInt header.tagName.match(/\d+/)[0], 10
       title = header.textContent.trim()
       titleId = _.kebabCase title
