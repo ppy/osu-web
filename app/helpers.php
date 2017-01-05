@@ -329,7 +329,7 @@ function footer_links()
         'wiki' => route('wiki.show', ['page' => 'Welcome']),
     ];
     $links['help'] = [
-        'faq' => osu_url('help.faq'),
+        'faq' => route('wiki.show', ['page' => 'FAQ']),
         'forum' => route('forum.forums.index'),
         'livestreams' => route('livestreams.index'),
         'report' => route('forum.topics.create', ['forum_id' => 5]),
@@ -339,8 +339,8 @@ function footer_links()
         'merchandise' => action('StoreController@getListing'),
     ];
     $links['legal'] = [
-        'tos' => osu_url('legal.tos'),
-        'copyright' => osu_url('legal.dmca'),
+        'tos' => route('wiki.show', ['page' => 'Legal/TOS']),
+        'copyright' => route('wiki.show', ['page' => 'Legal/Copyright']),
         'serverStatus' => osu_url('status.server'),
         'osuStatus' => osu_url('status.osustatus'),
     ];
