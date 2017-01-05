@@ -29,7 +29,7 @@ class @Wiki
 
     @addClasses()
     @setTitle()
-    @parseToc()
+    # @parseToc()
     @updateLocaleLinks()
     @updateTables()
 
