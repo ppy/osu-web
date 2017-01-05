@@ -27,10 +27,20 @@ class @Wiki
 
     @$content = $(@content)
 
+    @addClasses()
     @setTitle()
     @parseToc()
-    @updateLinks()
+    @updateLocaleLinks()
     @updateTables()
+
+
+  addClasses: =>
+    @$content.addClass 'wiki-content'
+    @$content.find('a').addClass 'wiki-content__link'
+    @$content.find('h1').addClass 'wiki-content__header1'
+    @$content.find('h2').addClass 'wiki-content__header2'
+    @$content.find('h3').addClass 'wiki-content__header3'
+    @$content.find('img').addClass 'wiki-content__image'
 
 
   parseToc: =>
@@ -72,7 +82,7 @@ class @Wiki
     $title.remove()
 
 
-  updateLink: (_, el) =>
+  updateLocaleLink: (_, el) =>
     parsed = el.href?.match /^(\w{2}(?:-\w{2})?):(.+)$/
 
     return if !parsed?
@@ -83,8 +93,8 @@ class @Wiki
     el.href = "#{path}?locale=#{locale}"
 
 
-  updateLinks: =>
-    @$content.find('a').each @updateLink
+  updateLocaleLinks: =>
+    @$content.find('a').each @updateLocaleLink
 
 
   updateTables: =>

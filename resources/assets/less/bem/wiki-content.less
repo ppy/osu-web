@@ -17,8 +17,6 @@
  *
  */
 
-// this isn't actually bem =D
-// don't put anything else inside
 .wiki-content {
   .content-font();
   padding: (@spacing * 4) (@spacing * 2);
@@ -28,27 +26,27 @@
     padding-right: @padding-big;
   }
 
-  h1 {
+  &__header1 {
     font-family: @font-family-sans-serif;
     font-size: @font-size--header-wiki-1;
     font-weight: bold;
     margin: (@spacing * 4) 0 (@spacing * 2);
   }
 
-  h2 {
+  &__header2 {
     font-family: @font-family-sans-serif;
     font-size: @font-size--header-wiki-2;
     font-weight: bold;
     margin: (@spacing * 2) 0 @spacing;
   }
 
-  h3 {
+  &__header3 {
     font-family: @font-family-sans-serif;
     font-size: @font-size--header-wiki-3;
     font-weight: bold;
   }
 
-  img {
+  &__image {
     max-width: 100%;
   }
 }
