@@ -26,24 +26,23 @@
     padding-right: @padding-big;
   }
 
-  &__header1 {
+  &__header {
     font-family: @font-family-sans-serif;
-    font-size: @font-size--header-wiki-1;
     font-weight: bold;
-    margin: (@spacing * 4) 0 (@spacing * 2);
-  }
 
-  &__header2 {
-    font-family: @font-family-sans-serif;
-    font-size: @font-size--header-wiki-2;
-    font-weight: bold;
-    margin: (@spacing * 2) 0 @spacing;
-  }
+    &--1 {
+      font-size: @font-size--header-wiki-1;
+      margin: (@spacing * 4) 0 (@spacing * 2);
+    }
 
-  &__header3 {
-    font-family: @font-family-sans-serif;
-    font-size: @font-size--header-wiki-3;
-    font-weight: bold;
+    &--2 {
+      font-size: @font-size--header-wiki-2;
+      margin: (@spacing * 2) 0 @spacing;
+    }
+
+    &--3 {
+      font-size: @font-size--header-wiki-3;
+    }
   }
 
   &__image {

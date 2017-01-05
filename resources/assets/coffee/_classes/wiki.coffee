@@ -37,9 +37,8 @@ class @Wiki
   addClasses: =>
     @$content.addClass 'wiki-content'
     @$content.find('a').addClass 'wiki-content__link'
-    @$content.find('h1').addClass 'wiki-content__header1'
-    @$content.find('h2').addClass 'wiki-content__header2'
-    @$content.find('h3').addClass 'wiki-content__header3'
+    for i in [1..6]
+      @$content.find("h#{i}").addClass "wiki-content__header wiki-content__header--#{i}"
     @$content.find('img').addClass 'wiki-content__image'
 
 
