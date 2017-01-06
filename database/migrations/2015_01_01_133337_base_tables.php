@@ -1366,6 +1366,12 @@ class BaseTables extends Migration
             $table->primary(['user_id', 'topic_id']);
         });
         $this->setRowFormat('phpbb_topics_watch', 'COMPRESSED');
+
+        DB::statement('
+            CREATE TABLE weak_passwords
+            (hash binary(16) NOT NULL, PRIMARY KEY (hash))
+            DEFAULT CHARSET=utf8mb4
+        ');
     }
 
     /**
@@ -1427,6 +1433,7 @@ class BaseTables extends Migration
         Schema::drop('phpbb_log');
         Schema::drop('osu_mod_queue');
         Schema::drop('phpbb_topics_watch');
+        Schema::drop('weak_passwords');
     }
 
     private function setRowFormat($table, $format)

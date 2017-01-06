@@ -109,4 +109,79 @@
             </div>
         </div>
     </div>
+
+    <div class="osu-page osu-page--small">
+        <div class="account-edit">
+            <div class="account-edit__section">
+                <h2 class="account-edit__section-title">
+                    {{ trans('accounts.edit.password.title') }}
+                </h2>
+            </div>
+
+            {!! Form::open([
+                'route' => 'account.password',
+                'method' => 'PUT',
+                'data-remote' => true,
+                'class' => 'js-password-done-reset account-edit__input-groups'
+            ]) !!}
+                <div class="account-edit__input-group">
+                    <label class="account-edit-entry js-account-edit js-parent-focus">
+                        <div class="account-edit-entry__label">
+                            {{ trans('accounts.edit.password.current') }}
+                        </div>
+
+                        <input class="account-edit-entry__input js-account-edit__input js-password-done-reset--input"
+                            name="user_password[current_password]"
+                            data-no-auto="1"
+                            type="password"
+                        >
+                    </label>
+                </div>
+
+                <div class="account-edit__input-group">
+                    <label class="account-edit-entry js-account-edit js-parent-focus">
+                        <div class="account-edit-entry__label">
+                            {{ trans('accounts.edit.password.new') }}
+                        </div>
+
+                        <input class="account-edit-entry__input js-account-edit__input js-password-done-reset--input"
+                            name="user_password[password]"
+                            data-no-auto="1"
+                            type="password"
+                        >
+                    </label>
+
+                    <label class="account-edit-entry js-account-edit js-parent-focus">
+                        <div class="account-edit-entry__label">
+                            {{ trans('accounts.edit.password.new_confirmation') }}
+                        </div>
+
+                        <input class="account-edit-entry__input js-account-edit__input js-password-done-reset--input"
+                            name="user_password[password_confirmation]"
+                            data-no-auto="1"
+                            type="password"
+                        >
+                    </label>
+                </div>
+
+                <div class="account-edit__input-group">
+                    <div class="account-edit-entry js-account-edit js-parent-focus">
+                        <div class="account-edit-entry__label">
+                        </div>
+
+                        <button class="btn-osu-big btn-osu-big--update-password" type="submit">
+                            <div class="btn-osu-big__content">
+                                <div class="btn-osu-big__left">
+                                    {{ trans('accounts.update_password.update') }}
+                                </div>
+                                <div class="btn-osu-big__icon">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            {!! Form::close() !!}
+        </div>
+    </div>
 @endsection

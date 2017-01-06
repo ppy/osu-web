@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use App\Interfaces\Messageable;
+use App\Libraries\PasswordStrength;
 use App\Models\Chat\PrivateMessage;
 use App\Traits\UserAvatar;
 use App\Transformers\UserTransformer;
@@ -906,6 +907,30 @@ class User extends Model implements AuthenticatableContract, Messageable
             'user_warnings' => 0,
             'user_type' => 0,
         ]);
+    }
+
+    public function updatePassword($params)
+    {
+        foreach (['current_password', 'password', 'password_confirmation'] as $param) {
+            if (!present($params[$param] ?? null)) {
+                return trans('accounts.update_password.error.missing_parameter');
+            }
+        }
+
+        if (!Hash::check($params['current_password'], $this->user_password)) {
+            return trans('accounts.update_password.error.wrong_current_password');
+        }
+
+        if ($params['password'] !== $params['password_confirmation']) {
+            return trans('accounts.update_password.error.wrong_confirmation');
+        }
+
+        $strengthCheck = PasswordStrength::check($params['password'], $this->username);
+        if ($strengthCheck !== null) {
+            return $strengthCheck;
+        }
+
+        $this->update(['user_password' => Hash::make($params['password'])]);
     }
 
     public static function attemptLogin($user, $password, $ip = null)

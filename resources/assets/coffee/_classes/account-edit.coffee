@@ -19,11 +19,18 @@
 class @AccountEdit
   constructor: ->
     $(document).on 'input', '.js-account-edit__input', @initializeUpdate
+    $(document).on 'ajax:success', '.js-password-done-reset', @passwordDoneReset
 
 
   initializeUpdate: (e) =>
+    return if e.currentTarget.dataset.noAuto == '1'
+
     e.currentTarget.debouncedUpdate ?= _.debounce @update, 1000
     e.currentTarget.debouncedUpdate e
+
+
+  passwordDoneReset: =>
+    $('.js-password-done-reset--input').val('')
 
 
   update: (e) =>

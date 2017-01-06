@@ -237,6 +237,7 @@ Route::post('/account/cover', ['as' => 'account.cover', 'uses' => 'AccountContro
 Route::put('/account', ['as' => 'account.update', 'uses' => 'AccountController@update']);
 Route::get('/account/edit', ['as' => 'account.edit', 'uses' => 'AccountController@edit']);
 Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
+Route::put('/account/password', ['as' => 'account.password', 'uses' => 'AccountController@updatePassword']);
 Route::post('/account/verify', ['as' => 'account.verify', 'uses' => 'AccountController@verify']);
 Route::post('/account/reissue-code', ['as' => 'account.reissue-code', 'uses' => 'AccountController@reissueCode']);
 

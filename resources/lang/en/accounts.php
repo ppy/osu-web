@@ -27,6 +27,13 @@ return [
             'title' => 'Edit Avatar',
         ],
 
+        'password' => [
+            'current' => 'current password',
+            'new' => 'new password',
+            'new_confirmation' => 'password confirmation',
+            'title' => 'Password',
+        ],
+
         'profile' => [
             'title' => 'Edit Profile',
 
@@ -38,6 +45,20 @@ return [
                 'user_twitter' => 'twitter',
                 'user_website' => 'website',
             ],
+        ],
+    ],
+
+    'update_password' => [
+        'update' => 'update',
+        'updated' => 'Password updated',
+
+        'error' => [
+            'missing_parameter' => 'Missing required parameter.',
+            'too_short' => 'New password is too short.',
+            'username' => 'Password may not contain username',
+            'weak' => 'Blacklisted password',
+            'wrong_confirmation' => 'Password confirmation does not match.',
+            'wrong_current_password' => 'Current password is incorrect.',
         ],
     ],
 ];

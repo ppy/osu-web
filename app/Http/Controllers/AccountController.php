@@ -129,6 +129,18 @@ class AccountController extends Controller
         return ['html' => $user->userPage->bodyHTML];
     }
 
+    public function updatePassword()
+    {
+        $user = Auth::user();
+
+        $error = Auth::user()->updatePassword(Request::input('user_password'));
+        if ($error !== null) {
+            return error_popup($error);
+        }
+
+        return ['message' => trans('accounts.update_password.updated')];
+    }
+
     public function verify(HttpRequest $request)
     {
         $verification = new UserVerification(Auth::user(), $request);
