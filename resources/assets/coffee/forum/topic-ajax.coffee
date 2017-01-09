@@ -30,10 +30,8 @@ $(document).on 'ajax:success', '.delete-post-link', (event, data, status, xhr) -
       when 'restore'
         $post.removeClass 'js-forum-post-hidden'
 
-    # need to trigger ajax:complete early
-    $(toggle)
-      .trigger('ajax:complete', [xhr, status])
-      .replaceWith(data.toggle)
+    Timeout.set 0, ->
+      $(toggle).replaceWith(data.toggle)
   else
     $el
       .css
