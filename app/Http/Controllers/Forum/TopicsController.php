@@ -240,7 +240,7 @@ class TopicsController extends Controller
 
         // position of the first post, incremented in the view
         // to generate positions of further posts
-        $postPosition = $topic->postPosition($topic->posts->first()->post_id);
+        $postPosition = $topic->postPosition($posts->first()->post_id);
 
         $pollSummary = PollOption::summary($topic, Auth::user());
 
