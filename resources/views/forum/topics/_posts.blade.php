@@ -15,6 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $postPosition = $firstPostPosition;
+@endphp
+
 @foreach($posts as $post)
     <?php
         $withDeleteLink = Auth::check()
