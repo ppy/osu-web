@@ -16,6 +16,39 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 class @BeatmapDiscussionHelper
+  @formatTimestamp: (value) =>
+    ms = value % 1000
+    s = Math.floor(value / 1000) % 60
+    # remaning duration goes here even if it's over an hour
+    m = Math.floor(value / 1000 / 60)
+
+    "#{_.padStart m, 2, 0}:#{_.padStart s, 2, 0}.#{_.padStart ms, 3, 0}"
+
+
+  # don't forget to update BeatmapDiscussionsController@show
+  # when changing this.
+  @hash: ({beatmapId, discussionId} = {}) =>
+    if discussionId?
+      "#/#{discussionId}"
+    else if beatmapId?
+      "#:#{beatmapId}"
+    else
+      ''
+
+
+  # see @hash
+  @hashParse: =>
+    hash = document.location.hash[1..]
+    id = parseInt(hash[1..], 10)
+
+    if hash[0] == '/'
+      discussionId: id
+    else if hash[0] == ':'
+      beatmapId: id
+    else
+      {}
+
+
   @messageType:
     icon:
       praise: 'heart'
@@ -27,11 +60,3 @@ class @BeatmapDiscussionHelper
       praise: '&#xf004;'
       suggestion: '&#xf10c;'
       problem: '&#xf06a;'
-
-  @formatTimestamp: (value) =>
-    ms = value % 1000
-    s = Math.floor(value / 1000) % 60
-    # remaning duration goes here even if it's over an hour
-    m = Math.floor(value / 1000 / 60)
-
-    "#{_.padStart m, 2, 0}:#{_.padStart s, 2, 0}.#{_.padStart ms, 3, 0}"

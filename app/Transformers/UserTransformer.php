@@ -221,9 +221,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->collection(
             $user->receivedKudosu()
-                ->withPost()
-                ->withGiver()
-                ->with('post', 'post.topic', 'giver')
+                ->with('post', 'post.topic', 'giver', 'kudosuable')
                 ->orderBy('exchange_id', 'desc')
                 ->limit(15)
                 ->get(),

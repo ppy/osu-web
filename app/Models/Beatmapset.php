@@ -85,8 +85,6 @@ class Beatmapset extends Model
     const NOMINATIONS_PER_DAY = 1;
     const QUALIFICATIONS_PER_DAY = 6;
 
-    private $_favourites = null;
-
     // ranking functions for the set
 
     public function beatmapsetDiscussion()
@@ -422,18 +420,13 @@ class Beatmapset extends Model
             $beatmap_ids = self::searchES($params);
         }
 
-        $beatmaps = [];
-
-        if (count($beatmap_ids) > 0) {
-            $ids = implode(',', $beatmap_ids);
-            $beatmaps = static
+        return count($beatmap_ids) > 0
+            ? static
                 ::with('beatmaps')
                 ->whereIn('beatmapset_id', $beatmap_ids)
-                ->orderByRaw(DB::raw("FIELD(beatmapset_id, {$ids})"))
-                ->get();
-        }
-
-        return $beatmaps;
+                ->orderByRaw('FIELD(beatmapset_id, '.db_array_bind($beatmap_ids).')', $beatmap_ids)
+                ->get()
+            : [];
     }
 
     public static function listing()
@@ -753,7 +746,7 @@ class Beatmapset extends Model
 
     public function unfavourite($user)
     {
-        if (!$this->hasFavourited($user)) {
+        if ($user === null || !$user->hasFavourited($this)) {
             return;
         }
 
@@ -887,13 +880,6 @@ class Beatmapset extends Model
     public function favourites()
     {
         return $this->hasMany(FavouriteBeatmapset::class);
-    }
-
-    public function hasFavourited($user)
-    {
-        return $user === null
-            ? false
-            : $this->favourites()->where('user_id', $user->user_id)->exists();
     }
 
     public function description()

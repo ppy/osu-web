@@ -219,7 +219,7 @@ class BeatmapsetsController extends Controller
 
         return [
           'favcount' => $beatmapset->favourite_count,
-          'favourited' => $beatmapset->hasFavourited($user),
+          'favourited' => $user !== null && $user->hasFavourited($beatmapset),
         ];
     }
 }

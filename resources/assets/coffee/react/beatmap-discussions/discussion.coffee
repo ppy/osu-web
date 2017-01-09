@@ -161,6 +161,7 @@ BeatmapDiscussions.Discussion = React.createClass
       canBeEdited: @props.currentUser.isAdmin || (@props.currentUser.id == post.user_id)
       canBeDeleted: @props.currentUser.isAdmin || (@props.currentUser.id == post.user_id)
       canBeRestored: @props.currentUser.isAdmin
+      currentUser: @props.currentUser
 
 
   setCollapse: (_e, {collapse}) ->

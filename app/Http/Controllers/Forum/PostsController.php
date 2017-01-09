@@ -106,6 +106,10 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
 
+        if ($post->forum === null) {
+            abort(404);
+        }
+
         priv_check('ForumView', $post->forum)->ensureCan();
 
         $text = $post->bodyRaw;
@@ -120,6 +124,10 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
+
+        if ($post->forum === null) {
+            abort(404);
+        }
 
         priv_check('ForumView', $post->forum)->ensureCan();
 

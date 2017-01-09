@@ -32,8 +32,10 @@ return [
     ],
 
     'discussions' => [
+        'allow_kudosu' => 'allow kudosu',
         'delete' => 'delete',
         'deleted' => 'Deleted by :editor :delete_time',
+        'deny_kudosu' => 'deny kudosu',
         'edit' => 'edit',
         'edited' => 'Last edited by :editor :update_time',
         'message_placeholder' => 'Type here to post',

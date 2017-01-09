@@ -93,15 +93,43 @@ return [
             'kudosu' => [
                 'available' => 'Kudosu Available',
                 'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven't traded in yet.",
-                'entry' => [
-                    'empty' => "This user hasn't received any kudosu!",
-                    'give' => 'Received <strong class="kudosu-entries__amount">:amount kudosu</strong> from :giver for a post at :post',
-                    'revoke' => 'Denied kudosu by :giver for the post :post',
-                ],
                 'recent_entries' => 'Recent Kudosu History',
                 'title' => 'Kudosu!',
                 'total' => 'Total Kudosu Earned',
                 'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.osu_url('user.kudosu').'">this page</a> for more information.',
+
+                'entry' => [
+                    'amount' => ':amount kudosu',
+                    'empty' => "This user hasn't received any kudosu!",
+
+                    'beatmap_discussion' => [
+                        'allow_kudosu' => [
+                            'give' => 'Received :amount from kudosu deny repeal of modding post :post',
+                        ],
+
+                        'deny_kudosu' => [
+                            'reset' => 'Denied :amount from modding post :post',
+                        ],
+
+                        'delete' => [
+                            'reset' => 'Lost :amount from modding post deletion of :post',
+                        ],
+
+                        'restore' => [
+                            'give' => 'Received :amount from modding post restoration of :post',
+                        ],
+
+                        'vote' => [
+                            'give' => 'Received :amount from obtaining votes in modding post of :post',
+                            'reset' => 'Lost :amount from losing votes in modding post of :post',
+                        ],
+                    ],
+
+                    'forum_post' => [
+                        'give' => 'Received :amount kudosu from :giver for a post at :post',
+                        'revoke' => 'Denied kudosu by :giver for the post :post',
+                    ],
+                ],
             ],
             'me' => [
                 'title' => 'me!',

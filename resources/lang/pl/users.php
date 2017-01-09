@@ -87,15 +87,20 @@ return [
             'kudosu' => [
                 'available' => 'Dostępne kudosu',
                 'available_info' => 'Kudosu może być wymienione na gwiazdki kudosu, które pomogą twojej mapie zyskać więcej uwagi. To jest liczba kudosu, którego nie wymieniłeś.',
-                'entry' => [
-                    'empty' => 'Ten gracz nie otrzymał żadnego kudosu!',
-                    'give' => 'Otrzymano <strong class="kudosu-entries__amount">:amount kudosu</strong> od :giver za post na :post',
-                    'revoke' => 'Odebrano kudosu przezDenied kudosu by :giver for the post :post',
-                ],
                 'recent_entries' => 'Ostatnio zdobyte kudosu',
                 'title' => 'Kudosu!',
                 'total' => 'Ilość zdobytego kudosu',
                 'total_info' => 'Bazowane na tym, ile użytkownik zrobił dla modowania map. Spojrzyj <a href="'.osu_url('user.kudosu').'">tutaj</a>, aby dowiedzieć się więcej.',
+
+                'entry' => [
+                    'amount' => ':amount kudosu',
+                    'empty' => 'Ten gracz nie otrzymał żadnego kudosu!',
+
+                    'forum_post' => [
+                        'give' => 'Otrzymano :amount od :giver za post na :post',
+                        'revoke' => 'Odebrano kudosu przezDenied kudosu by :giver for the post :post',
+                    ],
+                ],
             ],
             'me' => [
                 'title' => 'me!',

@@ -176,6 +176,10 @@ class TopicsController extends Controller
 
         $topic = $topic->findOrFail($id);
 
+        if ($topic->forum === null) {
+            abort(404);
+        }
+
         priv_check('ForumView', $topic->forum)->ensureCan();
 
         $posts = $topic->posts();

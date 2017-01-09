@@ -85,6 +85,7 @@ return [
         // sort by name
         'es',
         'fr',
+        'it',
         'nl',
         'pl',
         'pt-br',
@@ -179,6 +180,7 @@ return [
          */
         Clockwork\Support\Laravel\ClockworkServiceProvider::class,
         GrahamCampbell\Markdown\MarkdownServiceProvider::class,
+        GrahamCampbell\GitHub\GitHubServiceProvider::class,
         Maknz\Slack\SlackServiceProvider::class,
         Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
         Shift31\LaravelElasticsearch\ElasticsearchServiceProvider::class,
@@ -252,6 +254,7 @@ return [
         'Html' => 'Collective\Html\HtmlFacade',
 
         'Markdown' => 'GrahamCampbell\Markdown\Facades\Markdown',
+        'GitHub' => 'GrahamCampbell\GitHub\Facades\GitHub',
 
         'Slack' => 'Maknz\Slack\Facades\Slack',
         'Statsd' => 'League\StatsD\Laravel5\Facade\StatsdFacade',

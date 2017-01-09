@@ -87,15 +87,20 @@ return [
             'kudosu' => [
                 'available' => 'Kudosu Beschikbaar',
                 'available_info' => 'Kudosu kunnen omgeruild worden voor kudosu sterren, deze zorgen ervoor dat je beatmap meer aandacht krijgt. Dit is het aantal kudosu dat je nog niet omgeruild hebt.',
-                'entry' => [
-                    'empty' => 'Deze gebruiker heeft nog geen kudosu ontvangen!',
-                    'give' => '<strong class="kudosu-entries__amount">:amount kudosu</strong> ontvangen van :giver voor :post',
-                    'revoke' => 'Kudosu geweigerd door :giver voor :post',
-                ],
                 'recent_entries' => 'Recente Kudosu Geschiedenis',
                 'title' => 'Kudosu!',
                 'total' => 'Totaal Aantal Kudosu Verdiend',
                 'total_info' => 'Gebaseerd op hoeveel contributie de gebruiker heeft geleverd aan beatmap moderatie. Zie <a href="'.osu_url('user.kudosu').'">deze pagina</a> voor meer informatie.',
+
+                'entry' => [
+                    'amount' => ':amount kudosu',
+                    'empty' => 'Deze gebruiker heeft nog geen kudosu ontvangen!',
+
+                    'forum_post' => [
+                        'give' => ':amount ontvangen van :giver voor :post',
+                        'revoke' => 'Kudosu geweigerd door :giver voor :post',
+                    ],
+                ],
             ],
             'me' => [
                 'title' => 'ik!',

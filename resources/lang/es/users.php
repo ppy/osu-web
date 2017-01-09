@@ -86,15 +86,20 @@ return [
             'kudosu' => [
                 'available' => 'Kudosu disponible',
                 'available_info' => 'Kudosu puede ser intercambiado por estrellas kudosu, que ayudarán a tu beatmap a obtener más atención. Este es el número de kudosu que no has intercambiado aún.',
-                'entry' => [
-                    'empty' => '¡Este usuario no ha recibido ningún kudosu!',
-                    'give' => 'Recibido <strong class="kudosu-entries__amount">:amount kudosu</strong> de :giver por un post en :post',
-                    'revoke' => 'Kudosu denegado por :giver por el post :post',
-                ],
                 'recent_entries' => 'Historial de Kudosu Reciente',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu Total Obtenido',
                 'total_info' => 'Basado en qué tanto ha colaborado el usuario a la moderación del beatmap. Ve <a href="'.osu_url('user.kudosu').'">esta página</a> para más información.',
+
+                'entry' => [
+                    'amount' => ':amount kudosu',
+                    'empty' => '¡Este usuario no ha recibido ningún kudosu!',
+
+                    'forum_post' => [
+                        'give' => 'Recibido :amount de :giver por un post en :post',
+                        'revoke' => 'Kudosu denegado por :giver por el post :post',
+                    ],
+                ],
             ],
             'me' => [
                 'title' => 'me!', // translating this is a little tricky (maybe "sobre mi"?)

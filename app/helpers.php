@@ -31,6 +31,11 @@ function array_search_null($value, $array)
     }
 }
 
+function db_array_bind($array)
+{
+    return implode(',', array_fill(0, count($array), '?'));
+}
+
 function flag_path($country)
 {
     return '/images/flags/'.$country.'.png';
@@ -284,8 +289,8 @@ function nav_links()
         'getDownload' => osu_url('home.download'),
     ];
     $links['help'] = [
-        'getWiki' => osu_url('help.wiki'),
-        'getFaq' => osu_url('help.faq'),
+        'getWiki' => route('wiki.show', ['page' => 'Welcome']),
+        'getFaq' => route('wiki.show', ['page' => 'FAQ']),
         'getSupport' => osu_url('help.support'),
     ];
     $links['ranking'] = [
@@ -321,10 +326,10 @@ function footer_links()
         'changelog' => osu_url('home.changelog'),
         'beatmaps' => action('BeatmapsetsController@index'),
         'download' => osu_url('home.download'),
-        'wiki' => osu_url('help.wiki'),
+        'wiki' => route('wiki.show', ['page' => 'Welcome']),
     ];
     $links['help'] = [
-        'faq' => osu_url('help.faq'),
+        'faq' => route('wiki.show', ['page' => 'FAQ']),
         'forum' => route('forum.forums.index'),
         'livestreams' => route('livestreams.index'),
         'report' => route('forum.topics.create', ['forum_id' => 5]),
@@ -334,8 +339,8 @@ function footer_links()
         'merchandise' => action('StoreController@getListing'),
     ];
     $links['legal'] = [
-        'tos' => osu_url('legal.tos'),
-        'copyright' => osu_url('legal.dmca'),
+        'tos' => route('wiki.show', ['page' => 'Legal/TOS']),
+        'copyright' => route('wiki.show', ['page' => 'Legal/Copyright']),
         'serverStatus' => osu_url('status.server'),
         'osuStatus' => osu_url('status.osustatus'),
     ];
@@ -546,6 +551,15 @@ function get_class_namespace($className)
     return substr($className, 0, strrpos($className, '\\'));
 }
 
+function get_model_basename($model)
+{
+    if (!is_string($model)) {
+        $model = get_class($model);
+    }
+
+    return str_replace('\\', '', snake_case(substr($model, strlen('App\\Models\\'))));
+}
+
 function ci_file_search($fileName)
 {
     if (file_exists($fileName)) {
@@ -649,11 +663,13 @@ function array_rand_val($array)
  */
 function model_pluck($builder, $key)
 {
-    return $builder
-        ->select($key)
-        ->get()
-        ->pluck($key)
-        ->all();
+    $result = [];
+
+    foreach ($builder->select($key)->get() as $el) {
+        $result[] = $el->$key;
+    }
+
+    return $result;
 }
 
 // Returns null if timestamp is null or 0.

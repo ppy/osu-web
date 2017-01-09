@@ -31,9 +31,37 @@ class BeatmapDiscussionsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'show']);
 
         return parent::__construct();
+    }
+
+    public function allowKudosu($id)
+    {
+        $discussion = BeatmapDiscussion::findOrFail($id);
+        priv_check('BeatmapDiscussionAllowOrDenyKudosu', $discussion)->ensureCan();
+
+        $error = $discussion->allowKudosu();
+
+        if ($error === null) {
+            return $discussion->beatmapsetDiscussion->defaultJson();
+        } else {
+            return error_popup($error);
+        }
+    }
+
+    public function denyKudosu($id)
+    {
+        $discussion = BeatmapDiscussion::findOrFail($id);
+        priv_check('BeatmapDiscussionAllowOrDenyKudosu', $discussion)->ensureCan();
+
+        $error = $discussion->denyKudosu(Auth::user());
+
+        if ($error === null) {
+            return $discussion->beatmapsetDiscussion->defaultJson();
+        } else {
+            return error_popup($error);
+        }
     }
 
     public function destroy($id)
@@ -58,6 +86,13 @@ class BeatmapDiscussionsController extends Controller
         $discussion->restore();
 
         return $discussion->beatmapsetDiscussion->defaultJson();
+    }
+
+    public function show($id)
+    {
+        $discussion = BeatmapDiscussion::findOrFail($id);
+
+        return ujs_redirect(route('beatmapsets.discussion', $discussion->beatmapset).'#/'.$id);
     }
 
     public function vote($id)

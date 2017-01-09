@@ -133,11 +133,14 @@ BeatmapDiscussions.Post = React.createClass
       div className: "#{bn}__info-container",
         span
           className: "#{bn}__info"
-          dangerouslySetInnerHTML:
-            __html: "#{osu.link laroute.route('users.show', user: @props.user.id),
-              @props.user.username
-              classNames: ["#{bn}__info-user"]
-              }, #{osu.timeago @props.post.created_at}"
+          a
+            href: laroute.route('users.show', user: @props.user.id)
+            className: "#{bn}__info-user"
+            @props.user.username
+          ', '
+          span
+            dangerouslySetInnerHTML:
+              __html: osu.timeago(@props.post.created_at)
 
         if @props.post.updated_at != @props.post.created_at
           span
@@ -163,6 +166,13 @@ BeatmapDiscussions.Post = React.createClass
         className: "#{bn}__actions"
         div
           className: "#{bn}__actions-group"
+          if @props.type == 'discussion'
+            a
+              href: BeatmapDiscussionHelper.hash discussionId: @props.discussion.id
+              onClick: @permalink
+              className: "#{bn}__action #{bn}__action--button"
+              osu.trans('common.buttons.permalink')
+
           if @props.canBeEdited
             button
               className: "#{bn}__action #{bn}__action--button"
@@ -171,21 +181,40 @@ BeatmapDiscussions.Post = React.createClass
 
           if !deleteModel.deleted_at? && @props.canBeDeleted
             a
-                className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
-                href: laroute.route("#{controller}.destroy", "#{key}": deleteModel.id)
-                'data-remote': true
-                'data-method': 'DELETE'
-                'data-confirm': osu.trans('common.confirmation')
-                osu.trans('beatmaps.discussions.delete')
+              className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
+              href: laroute.route("#{controller}.destroy", "#{key}": deleteModel.id)
+              'data-remote': true
+              'data-method': 'DELETE'
+              'data-confirm': osu.trans('common.confirmation')
+              osu.trans('beatmaps.discussions.delete')
 
           if deleteModel.deleted_at? && @props.canBeRestored
             a
+              className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
+              href: laroute.route("#{controller}.restore", "#{key}": deleteModel.id)
+              'data-remote': true
+              'data-method': 'POST'
+              'data-confirm': osu.trans('common.confirmation')
+              osu.trans('beatmaps.discussions.restore')
+
+          if @props.type == 'discussion' && @props.currentUser.isAdmin
+            if @props.discussion.kudosu_denied
+              a
                 className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
-                href: laroute.route("#{controller}.restore", "#{key}": deleteModel.id)
+                href: laroute.route('beatmap-discussions.allow-kudosu', beatmap_discussion: @props.discussion.id)
                 'data-remote': true
                 'data-method': 'POST'
                 'data-confirm': osu.trans('common.confirmation')
-                osu.trans('beatmaps.discussions.restore')
+                osu.trans('beatmaps.discussions.allow_kudosu')
+            else
+              a
+                className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
+                href: laroute.route('beatmap-discussions.deny-kudosu', beatmap_discussion: @props.discussion.id)
+                'data-remote': true
+                'data-method': 'POST'
+                'data-confirm': osu.trans('common.confirmation')
+                osu.trans('beatmaps.discussions.deny_kudosu')
+
 
 
   messageEditor: ->
@@ -212,3 +241,7 @@ BeatmapDiscussions.Post = React.createClass
             el BigButton,
               text: osu.trans 'common.buttons.save'
               props: onClick: @throttledUpdatePost
+
+
+  permalink: (e) ->
+    e.preventDefault()

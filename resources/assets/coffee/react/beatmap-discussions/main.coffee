@@ -184,14 +184,13 @@ BeatmapDiscussions.Main = React.createClass
 
 
   jumpByHash: ->
-    jumpId = document.location.hash.match(/\/(\d+)/)?[1]
+    target = BeatmapDiscussionHelper.hashParse()
 
-    if jumpId?
-      return $.publish 'beatmapDiscussion:jump', id: parseInt(jumpId, 10)
+    if target.discussionId?
+      return $.publish 'beatmapDiscussion:jump', id: target.discussionId
 
-    beatmapId = document.location.hash.match(/:(\d+)/)?[1]
-    beatmapId ?= @state.currentBeatmap.id
-    $.publish 'beatmap:select', id: parseInt(beatmapId, 10)
+    target.beatmapId ?= @state.currentBeatmap.id
+    $.publish 'beatmap:select', id: target.beatmapId
 
 
   jumpTo: (_e, {id}) ->
@@ -232,9 +231,6 @@ BeatmapDiscussions.Main = React.createClass
 
   setCurrentBeatmapId: (_e, {id, callback}) ->
     return callback?() if !id?
-
-    osu.setHash "#:#{id}"
-
     return callback?() if id == @state.currentBeatmap.id
 
     beatmap = _.find @state.beatmapset.beatmaps, id: id

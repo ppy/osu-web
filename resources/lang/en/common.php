@@ -25,6 +25,7 @@ return [
     'buttons' => [
         'cancel' => 'Cancel',
         'delete' => 'Delete',
+        'permalink' => 'permalink',
         'post' => 'Post',
         'reply' => 'Reply',
         'reset' => 'Reset',

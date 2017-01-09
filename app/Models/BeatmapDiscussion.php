@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class BeatmapDiscussion extends Model
@@ -34,6 +35,8 @@ class BeatmapDiscussion extends Model
     ];
 
     protected $dates = ['deleted_at'];
+
+    const KUDOSU_STEPS = [5, 10, 15];
 
     const MESSAGE_TYPES = [
         'praise' => 0,
@@ -79,6 +82,72 @@ class BeatmapDiscussion extends Model
     public function setMessageTypeAttribute($value)
     {
         return $this->attributes['message_type'] = static::MESSAGE_TYPES[$value] ?? null;
+    }
+
+    public function refreshKudosu($event)
+    {
+        // no kudosu for praises...?
+        if ($this->message_type === 'praise') {
+            return;
+        }
+
+        // cleanup of own votes
+        $this->beatmapDiscussionVotes()->where([
+            'user_id' => $this->user_id,
+        ])->delete();
+
+        // inb4 timing problem
+        $currentVotes = $this->currentVotes();
+        $previousVotes = $this->kudosu_refresh_votes ?? 0;
+        $votesChange = $currentVotes - $previousVotes;
+
+        $change = 0;
+
+        if ($votesChange > 0) {
+            foreach (static::KUDOSU_STEPS as $step) {
+                if ($previousVotes < $step && $currentVotes >= $step) {
+                    $change += 1;
+                }
+            }
+        } else {
+            foreach (static::KUDOSU_STEPS as $step) {
+                if ($currentVotes < $step && $previousVotes >= $step) {
+                    $change -= 1;
+                }
+            }
+        }
+
+        if ($change === 0) {
+            return;
+        }
+
+        DB::transaction(function () use ($change, $event, $currentVotes) {
+            KudosuHistory::create([
+                'receiver_id' => $this->user->user_id,
+                'amount' => $change,
+                'action' => $change > 0 ? 'give' : 'reset',
+                'date' => Carbon::now(),
+                'kudosuable_type' => static::class,
+                'kudosuable_id' => $this->id,
+                'details' => [
+                    'event' => $event,
+                ],
+            ]);
+            $this->update([
+                'kudosu_refresh_votes' => $currentVotes,
+            ]);
+            $this->user->update([
+                'osu_kudostotal' => DB::raw("osu_kudostotal + {$change}"),
+                'osu_kudosavailable' => DB::raw("osu_kudosavailable + {$change}"),
+            ]);
+        });
+    }
+
+    public function currentVotes()
+    {
+        return ($this->isDeleted() || $this->kudosu_denied)
+            ? 0
+            : $this->beatmapDiscussionVotes()->sum('score');
     }
 
     public function hasValidBeatmap()
@@ -131,30 +200,77 @@ class BeatmapDiscussion extends Model
 
     public function vote($params)
     {
-        $vote = $this->beatmapDiscussionVotes()->where(['user_id' => $params['user_id']])->firstOrNew([]);
+        return DB::transaction(function () use ($params) {
+            $vote = $this->beatmapDiscussionVotes()->where(['user_id' => $params['user_id']])->firstOrNew([]);
+            $previousScore = $vote->score ?? 0;
+            $vote->fill($params);
+            $scoreChange = $vote->score - $previousScore;
 
-        $vote->fill($params);
+            if ($scoreChange !== 0) {
+                if ($vote->score === 0) {
+                    $vote->delete();
+                } else {
+                    $vote->save();
+                }
 
-        if ($vote->score === null) {
-            $vote->delete();
+                $this->refreshKudosu('vote');
+            }
 
             return true;
-        } else {
-            return $vote->save();
-        }
+        });
+    }
+
+    public function title()
+    {
+        return "{$this->beatmapset->title} [{$this->beatmap->version}]";
+    }
+
+    public function url()
+    {
+        return route('beatmap-discussions.show', $this->id);
+    }
+
+    public function allowKudosu()
+    {
+        DB::transaction(function () {
+            $this->update(['kudosu_denied' => false]);
+            $this->refreshKudosu('allow_kudosu');
+        });
+    }
+
+    public function denyKudosu($deniedBy)
+    {
+        DB::transaction(function () use ($deniedBy) {
+            $this->update([
+                'kudosu_denied_by_id' => $deniedBy->user_id ?? null,
+                'kudosu_denied' => true,
+            ]);
+            $this->refreshKudosu('deny_kudosu');
+        });
+    }
+
+    public function isDeleted()
+    {
+        return $this->deleted_at !== null;
     }
 
     public function restore()
     {
-        return $this->update(['deleted_at' => null]);
+        DB::transaction(function () {
+            $this->update(['deleted_at' => null]);
+            $this->refreshKudosu('restore');
+        });
     }
 
     public function softDelete($deletedBy)
     {
-        $this->update([
-            'deleted_by_id' => $deletedBy->user_id ?? null,
-            'deleted_at' => Carbon::now(),
-        ]);
+        DB::transaction(function () use ($deletedBy) {
+            $this->update([
+                'deleted_by_id' => $deletedBy->user_id ?? null,
+                'deleted_at' => Carbon::now(),
+            ]);
+            $this->refreshKudosu('delete');
+        });
     }
 
     public function scopeWithoutDeleted($query)

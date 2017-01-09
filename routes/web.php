@@ -63,8 +63,10 @@ Route::put('beatmapsets/{beatmapset}/nominate', ['as' => 'beatmapsets.nominate',
 Route::put('beatmapsets/{beatmapset}/disqualify', ['as' => 'beatmapsets.disqualify', 'uses' => 'BeatmapsetsController@disqualify']);
 Route::put('beatmap-discussions/{beatmap_discussion}/vote', ['uses' => 'BeatmapDiscussionsController@vote', 'as' => 'beatmap-discussions.vote']);
 Route::post('beatmap-discussions/{beatmap_discussion}/restore', ['uses' => 'BeatmapDiscussionsController@restore', 'as' => 'beatmap-discussions.restore']);
+Route::post('beatmap-discussions/{beatmap_discussion}/deny-kudosu', ['uses' => 'BeatmapDiscussionsController@denyKudosu', 'as' => 'beatmap-discussions.deny-kudosu']);
+Route::post('beatmap-discussions/{beatmap_discussion}/allow-kudosu', ['uses' => 'BeatmapDiscussionsController@allowKudosu', 'as' => 'beatmap-discussions.allow-kudosu']);
 Route::resource('beatmap-discussions', 'BeatmapDiscussionsController', [
-    'only' => ['destroy'],
+    'only' => ['show', 'destroy'],
 ]);
 
 Route::post('beatmap-discussions-posts/{beatmap_discussion_post}/restore', [
@@ -131,8 +133,10 @@ Route::get('u/{user}', ['as' => 'users.show', 'uses' => 'UsersController@show'])
 
 // help section
 Route::get('/wiki', ['as' => 'wiki', function () {
-    return Redirect::to('https://osu.ppy.sh/wiki');
+    return ujs_redirect(route('wiki.show', ['page' => 'Welcome']));
 }]);
+Route::get('wiki/{page?}', ['as' => 'wiki.show', 'uses' => 'WikiController@show'])->where('page', '.+');
+Route::put('wiki/{page?}', ['uses' => 'WikiController@update'])->where('page', '.+');
 
 Route::get('/help/support', ['as' => 'support', 'uses' => 'HelpController@getSupport']);
 Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);

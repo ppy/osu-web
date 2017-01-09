@@ -16,7 +16,7 @@
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div} = React.DOM
+{a, div} = React.DOM
 el = React.createElement
 
 bn = 'beatmap-list'
@@ -40,7 +40,8 @@ BeatmapDiscussions.BeatmapList = React.createClass
   render: ->
     div
       className: "#{bn} #{"#{bn}--selecting" if @state.showingSelector}"
-      button
+      a
+        href: BeatmapDiscussionHelper.hash beatmapId: @props.currentBeatmap.id
         className: "#{bn}__item #{bn}__item--selected #{bn}__item--large js-beatmap-list-selector"
         onClick: @toggleSelector
         el BeatmapDiscussions.BeatmapListItem, beatmap: @props.currentBeatmap, large: true, withButton: 'down'
@@ -54,7 +55,8 @@ BeatmapDiscussions.BeatmapList = React.createClass
     menuItemClasses = "#{bn}__item"
     menuItemClasses += " #{bn}__item--current" if beatmap.id == @props.currentBeatmap.id
 
-    button
+    a
+      href: BeatmapDiscussionHelper.hash beatmapId: beatmap.id
       className: menuItemClasses
       key: beatmap.id
       'data-id': beatmap.id
@@ -78,8 +80,12 @@ BeatmapDiscussions.BeatmapList = React.createClass
 
 
   selectBeatmap: (e) ->
+    e.preventDefault()
+
     $.publish 'beatmap:select', id: parseInt(e.currentTarget.dataset.id, 10)
 
 
-  toggleSelector: ->
+  toggleSelector: (e) ->
+    e.preventDefault()
+
     @setSelector !@state.showingSelector
