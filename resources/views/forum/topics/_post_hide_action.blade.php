@@ -18,18 +18,16 @@
 @php
     $deleteString = $post->deleted_at ? 'restore' : 'delete'
 @endphp
-<div class="forum-post-actions__action">
-    <a
-        title="{{ trans('forum.post.actions.'.$deleteString) }}"
-        data-tooltip-position="left center"
-        href="{{ route("forum.posts.change-visibility", $post) }}"
-        class="btn-circle delete-post-link"
-        data-action="{{ $deleteString }}"
-        data-params="action={{ $deleteString }}"
-        data-remote="true"
-        data-method="post"
-        data-confirm="{{ trans("forum.post.confirm_".$deleteString) }}"
-    >
-        <i class="fa fa-{{ $post->deleted_at ? 'undo' : 'trash' }}"></i>
-    </a>
-</div>
+<a
+    title="{{ trans('forum.post.actions.'.$deleteString) }}"
+    data-tooltip-position="left center"
+    href="{{ route("forum.posts.change-visibility", $post) }}"
+    class="btn-circle delete-post-link"
+    data-action="{{ $deleteString }}"
+    data-params="action={{ $deleteString }}"
+    data-remote="true"
+    data-method="post"
+    data-confirm="{{ trans("forum.post.confirm_".$deleteString) }}"
+>
+    <i class="fa fa-{{ $post->deleted_at ? 'undo' : 'trash' }}"></i>
+</a>

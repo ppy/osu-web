@@ -88,7 +88,9 @@
                 @endif
 
                 @if ($options["deleteLink"] === true)
-                    @include('forum.topics._post_hide_action')
+                    <div class="forum-post-actions__action">
+                        @include('forum.topics._post_hide_action')
+                    </div>
                 @endif
 
                 @if ($options['replyLink'] === true)

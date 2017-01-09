@@ -33,7 +33,7 @@ $(document).on 'ajax:success', '.delete-post-link', (event, data, status, xhr) -
     # need to trigger ajax:complete early
     $(toggle)
       .trigger('ajax:complete', [xhr, status])
-      .parent().replaceWith(data.toggle)
+      .replaceWith(data.toggle)
   else
     $el
       .css
