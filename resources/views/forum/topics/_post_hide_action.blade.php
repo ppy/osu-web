@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @php
-    $deleteString = $post->deleted_at ? 'undelete' : 'delete'
+    $deleteString = $post->deleted_at ? 'restore' : 'delete'
 @endphp
 <div class="forum-post-actions__action">
     <a

@@ -54,7 +54,7 @@ class PostsController extends Controller
 
         $deletedPostPosition = $post->topic->postPosition($post->post_id);
 
-        if ($action === 'undelete' && $post->trashed()) {
+        if ($action === 'restore' && $post->trashed()) {
             $post->topic->restorePost($post, Auth::user());
         } elseif ($action === 'delete' && !$post->trashed()) {
             $post->topic->removePost($post, Auth::user());
