@@ -26,9 +26,9 @@ $(document).on 'ajax:success', '.delete-post-link', (event, data, status, xhr) -
 
     switch action
       when 'delete'
-        $post.addClass 'forum-post--hidden'
+        $post.addClass 'js-forum-post-hidden'
       when 'restore'
-        $post.removeClass 'forum-post--hidden'
+        $post.removeClass 'js-forum-post-hidden'
 
     # need to trigger ajax:complete early
     $(toggle)
