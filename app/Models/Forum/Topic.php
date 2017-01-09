@@ -481,7 +481,7 @@ class Topic extends Model
 
     public function setLastPostCache()
     {
-        $lastPost = $this->posts()->orderBy('post_id', 'desc')->first();
+        $lastPost = $this->posts()->last()->first();
 
         if ($lastPost === null) {
             $this->topic_last_post_id = null;

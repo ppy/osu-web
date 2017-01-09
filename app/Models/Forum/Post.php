@@ -172,6 +172,6 @@ class Post extends Model
 
     public function scopeLast($query)
     {
-        return $query->orderBy('post_time', 'desc')->limit(1);
+        return $query->orderBy('post_id', 'desc')->limit(1);
     }
 }
