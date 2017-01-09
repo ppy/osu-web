@@ -156,9 +156,7 @@ class Topic extends Model
                 $this->restore();
             }
 
-            if ($this->posts()->exists() === true) {
-                $this->refreshCache();
-            }
+            $this->refreshCache();
 
             if ($this->forum !== null) {
                 $this->forum->refreshCache();
