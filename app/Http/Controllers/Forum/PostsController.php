@@ -68,11 +68,7 @@ class PostsController extends Controller
             return ujs_redirect($redirect);
         }
 
-        return [
-            'postId' => $post->post_id,
-            'postPosition' => $deletedPostPosition,
-            'toggle' => view('forum.topics._post_hide_action', compact('post'))->render(),
-        ];
+        return js_view('forum.topics.replace_delete_button', compact('post', 'deletedPostPosition'));
     }
 
     public function edit($id)

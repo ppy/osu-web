@@ -15,44 +15,6 @@ See the GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-$(document).on 'ajax:success', '.delete-post-link', (event, data, status, xhr) ->
-  $el = $(".js-forum-post[data-post-id=#{data.postId}]")
-
-  toggle = event.target
-  action = toggle.getAttribute 'data-action'
-
-  if currentUser.isAdmin || currentUser.isGMT
-    $post = $el.find '.forum-post'
-
-    switch action
-      when 'delete'
-        $post.addClass 'js-forum-post-hidden'
-      when 'restore'
-        $post.removeClass 'js-forum-post-hidden'
-
-    Timeout.set 0, ->
-      $(toggle).replaceWith(data.toggle)
-  else
-    $el
-      .css
-        minHeight: '0px'
-        height: $el.css 'height'
-      .slideUp null, ->
-        $el.remove()
-
-  countDifference = if action == 'delete' then -1 else 1
-
-  window.forum.setTotalPosts window.forum.totalPosts() + countDifference
-
-  for post in window.forum.posts by -1
-    originalPosition = forum.postPosition(post)
-
-    break if originalPosition < data.postPosition
-
-    post.setAttribute 'data-post-position', originalPosition + countDifference
-
-  osu.pageChange()
-
 $(document).on 'ajax:success', '.edit-post-link', (e, data, status, xhr) ->
   # ajax:complete needs to be triggered early because the link (target) is
   # removed in this callback.
