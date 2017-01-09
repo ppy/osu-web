@@ -45,7 +45,7 @@ $(document).on 'ajax:success', '.delete-post-link', (event, data, status, xhr) -
   window.forum.setTotalPosts window.forum.totalPosts() + countDifference
 
   for post in window.forum.posts by -1
-    originalPosition = parseInt post.getAttribute('data-post-position'), 10
+    originalPosition = forum.postPosition(post)
 
     break if originalPosition < data.postPosition
 
