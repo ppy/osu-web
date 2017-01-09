@@ -95,6 +95,10 @@
             >
                 {{ number_format($topic->topic_replies) }}
                 <i class="fa fa-comment-o"></i>
+                @if (Auth::check() && (Auth::user()->isAdmin() || Auth::user()->isGMT()))
+                    {{ number_format($topic->deletedPostsCount()) }}
+                    <i class="fa fa-trash-o"></i>
+                @endif
             </div>
         </div>
 

@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="counter-box">
+<div class="counter-box counter-box--forum">
     <div class="counter-box__content">
         <div class="counter-box__title">
             {{ trans('forum.topics.show.total_posts') }}
@@ -34,3 +34,22 @@
     <div class="counter-box__line u-forum--bg">
     </div>
 </div>
+@if(Auth::check() && (Auth::user()->isAdmin() || Auth::user()->isGMT()))
+    <div class="counter-box counter-box--forum">
+        <div class="counter-box__content">
+            <div class="counter-box__title">
+                {{ trans('forum.topics.show.deleted-posts') }}
+            </div>
+
+            <div class="counter-box__count js-forum__topic-deleted-posts" data-deleted-count={{ $newTopic ? 0 : $topic->deletedPostsCount() }}>
+                @if ($newTopic)
+                    0
+                @else
+                    {{ $topic->deletedPostsCount() }}
+                @endif
+            </div>
+        </div>
+        <div class="counter-box__line u-forum--bg">
+        </div>
+    </div>
+@endif

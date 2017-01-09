@@ -55,6 +55,7 @@ class Topic extends Model
     protected $dateFormat = 'U';
 
     private $postsCount;
+    private $deletedPostsCount;
     private $_vote;
     private $_poll;
 
@@ -382,12 +383,19 @@ class Topic extends Model
     public function postsCount()
     {
         if ($this->postsCount === null) {
-            $posts = $this->posts();
-
-            $this->postsCount = $posts->count();
+            $this->postsCount = $this->posts->count();
         }
 
         return $this->postsCount;
+    }
+
+    public function deletedPostsCount()
+    {
+        if ($this->deletedPostsCount === null) {
+            $this->deletedPostsCount = $this->posts()->onlyTrashed()->count();
+        }
+
+        return $this->deletedPostsCount;
     }
 
     public function isLocked()

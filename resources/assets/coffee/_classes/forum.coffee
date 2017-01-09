@@ -26,6 +26,7 @@ class @Forum
 
   constructor: ->
     @_totalPostsDiv = document.getElementsByClassName('js-forum__topic-total-posts')
+    @_deletedPostsDiv = document.getElementsByClassName('js-forum__topic-deleted-posts')
     @_postsCounter = document.getElementsByClassName('js-forum__posts-counter')
     @_postsProgress = document.getElementsByClassName('js-forum__posts-progress')
     @_stickyHeaderTopic = document.getElementsByClassName('js-forum-topic-headernav')
@@ -55,6 +56,18 @@ class @Forum
   setTotalPosts: (n) =>
     @_totalPostsDiv[0].setAttribute('data-total-count', n)
     $('.js-forum__total-count').text(n)
+
+
+  deletedPosts: ->
+    return null if @_deletedPostsDiv.length == 0
+    parseInt @_deletedPostsDiv[0].getAttribute('data-deleted-count'), 10
+
+
+  setDeletedPosts: (n) ->
+    return if @_deletedPostsDiv.length == 0
+
+    @_deletedPostsDiv[0].setAttribute('data-deleted-count', n)
+    $('.js-forum__topic-deleted-posts').text(n)
 
 
   setCounter: (currentPost) =>

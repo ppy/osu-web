@@ -175,6 +175,7 @@ return [
 
         'show' => [
             'total_posts' => 'Total Posts',
+            'deleted-posts' => 'Deleted Posts',
 
             'feature_vote' => [
                 'current' => 'Current Priority: +:count',

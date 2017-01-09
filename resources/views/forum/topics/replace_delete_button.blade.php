@@ -48,6 +48,7 @@ Timeout.set(0, function () {
     countDifference = action === "delete" ? -1 : 1;
 
     window.forum.setTotalPosts(window.forum.totalPosts() + countDifference);
+    window.forum.setDeletedPosts(window.forum.deletedPosts() - countDifference);
 
     for (i = window.forum.posts.length - 1; i >= 0; i--) {
         post = window.forum.posts[i];
