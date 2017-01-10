@@ -48,19 +48,25 @@ class PostsController extends Controller
         }
 
         $post = $post->findOrFail($id);
+        $topic = $post->topic();
+
+        if (priv_check('ForumTopicModerate')->can()) {
+            $topic->withTrashed();
+        }
+
+        $topic = $topic->first();
+
         $action = Request::input('action');
 
         priv_check('ForumPostDelete', $post)->ensureCan();
 
-        $deletedPostPosition = $post->topic->postPosition($post->post_id);
+        $deletedPostPosition = $topic->postPosition($post->post_id);
 
         if ($action === 'restore' && $post->trashed()) {
-            $post->topic->restorePost($post, Auth::user());
+            $topic->restorePost($post, Auth::user());
         } elseif ($action === 'delete' && !$post->trashed()) {
-            $post->topic->removePost($post, Auth::user());
+            $topic->removePost($post, Auth::user());
         }
-
-        $topic = Topic::find($post->topic_id);
 
         if ($topic === null) {
             $redirect = route('forum.forums.show', $post->forum);

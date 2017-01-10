@@ -27,6 +27,7 @@ class @Forum
   constructor: ->
     @_totalPostsDiv = document.getElementsByClassName('js-forum__topic-total-posts')
     @_deletedPostsDiv = document.getElementsByClassName('js-forum__topic-deleted-posts')
+    @_firstPostDiv = document.getElementsByClassName('js-forum__topic-first-post-id')
     @_postsCounter = document.getElementsByClassName('js-forum__posts-counter')
     @_postsProgress = document.getElementsByClassName('js-forum__posts-progress')
     @_stickyHeaderTopic = document.getElementsByClassName('js-forum-topic-headernav')
@@ -46,6 +47,14 @@ class @Forum
 
   postPosition: (el) =>
     parseInt(el.getAttribute('data-post-position'), 10)
+
+
+  firstPostId: ->
+    parseInt @_firstPostDiv[0].getAttribute('data-first-post-id'), 10
+
+
+  postId: (el) ->
+    parseInt el.getAttribute('data-post-id'), 10
 
 
   totalPosts: =>
@@ -83,7 +92,7 @@ class @Forum
 
 
   firstPostLoaded: =>
-    @postPosition(@posts[0]) == 1
+    @postId(@posts[0]) == @firstPostId()
 
 
   lastPostLoaded: =>

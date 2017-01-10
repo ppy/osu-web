@@ -242,9 +242,11 @@ class TopicsController extends Controller
             abort($skipLayout ? 204 : 404);
         }
 
+        $firstPostId = $posts->first()->post_id;
+
         // position of the first post, incremented in the view
         // to generate positions of further posts
-        $firstPostPosition = $topic->postPosition($posts->first()->post_id);
+        $firstPostPosition = $topic->postPosition($firstPostId);
 
         $pollSummary = PollOption::summary($topic, Auth::user());
 
@@ -272,6 +274,7 @@ class TopicsController extends Controller
                 'pollSummary',
                 'posts',
                 'firstPostPosition',
+                'firstPostId',
                 'topic'
             )
         );

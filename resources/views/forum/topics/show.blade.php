@@ -22,6 +22,7 @@
 ])
 
 @section("content")
+    <div class="js-forum__topic-first-post-id hidden" data-first-post-id={{ $firstPostId }}></div>
     <div class="forum-topic-headernav js-forum-topic-headernav js-sync-height--reference" data-sync-height-target="forum-topic-headernav" data-visibility="hidden">
         <div class="forum-topic-headernav__stripe
             u-forum--bg-link

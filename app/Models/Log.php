@@ -103,7 +103,7 @@ class Log extends Model
         // log it and I'm just matching with whatever it's doing. Except post
         // title - phpbb uses actual post title which are all empty for recent
         // posts but this one use topic's.
-        return static::logModerateForumTopic($operation, $post->topic, $user);
+        return static::logModerateForumTopic($operation, $post->topic()->withTrashed()->first(), $user);
     }
 
     public static function log($params)

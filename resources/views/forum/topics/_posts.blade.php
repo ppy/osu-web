@@ -29,7 +29,7 @@
             $withDeleteLink = priv_check('ForumPostDelete', $post)->can();
         }
 
-        if ($post->trashed()) {
+        if ($post->trashed() && $postPosition > 0) {
             $postPosition--;
         }
     ?>

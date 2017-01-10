@@ -22,7 +22,7 @@
     if (!isset($options['signature'])) { $options['signature'] = true; }
     if (!isset($options['replyLink'])) { $options['replyLink'] = false; }
     if (!isset($options['postPosition'])) { $options['postPosition'] = 1; }
-    if (!isset($options['large'])) { $options['large'] = $options['postPosition'] === 1; }
+    if (!isset($options['large'])) { $options['large'] = $post->post_id === $firstPostId; }
 ?>
 <div
     class="js-forum-post osu-layout__row {{ $options['large'] ? '' : 'osu-layout__row--sm2-desktop' }}"
