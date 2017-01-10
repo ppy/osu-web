@@ -65,13 +65,10 @@ class ForumsController extends Controller
         $pinnedTopics = $forum->topics();
         $topics = $forum->topics();
 
-        if (priv_check('ForumTopicModerate')->can()) {
-            $pinnedTopics->withTrashed();
-            $topics->withTrashed();
-        }
+        $showDeleted = priv_check('ForumTopicModerate')->can();
 
-        $pinnedTopics = $pinnedTopics->pinned()->orderBy('topic_type', 'desc')->recent()->get();
-        $topics = $topics->normal()->recent(compact('sort', 'withReplies'))->paginate(15);
+        $pinnedTopics = $pinnedTopics->pinned()->showDeleted($showDeleted)->orderBy('topic_type', 'desc')->recent()->get();
+        $topics = $topics->normal()->showDeleted($showDeleted)->recent(compact('sort', 'withReplies'))->paginate(15);
 
         $topicReadStatus = TopicTrack::readStatus(Auth::user(), $pinnedTopics, $topics);
 

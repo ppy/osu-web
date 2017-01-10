@@ -163,18 +163,14 @@ class TopicsController extends Controller
         $skipLayout = Request::input('skip_layout') === '1';
         $jumpTo = null;
 
+        $showDeleted = priv_check('ForumTopicModerate')->can();
+
         $topic = Topic
             ::with([
                 'forum.cover',
                 'pollOptions.votes',
                 'pollOptions.post',
-            ]);
-
-        if (priv_check('ForumTopicModerate')->can()) {
-            $topic->withTrashed();
-        }
-
-        $topic = $topic->findOrFail($id);
+            ])->showDeleted($showDeleted)->findOrFail($id);
 
         if ($topic->forum === null) {
             abort(404);
@@ -182,11 +178,7 @@ class TopicsController extends Controller
 
         priv_check('ForumView', $topic->forum)->ensureCan();
 
-        $posts = $topic->posts();
-
-        if (priv_check('ForumTopicModerate')->can()) {
-            $posts->withTrashed();
-        }
+        $posts = $topic->posts()->showDeleted($showDeleted);
 
         if ($postStartId === 'unread') {
             $postStartId = Post::lastUnreadByUser($topic, Auth::user());

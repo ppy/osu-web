@@ -41,20 +41,10 @@ class PostsController extends Controller
 
     public function changeVisibility($id)
     {
-        $post = Post::query();
+        $showDeleted = priv_check('ForumTopicModerate')->can();
 
-        if (priv_check('ForumTopicModerate')->can()) {
-            $post->withTrashed();
-        }
-
-        $post = $post->findOrFail($id);
-        $topic = $post->topic();
-
-        if (priv_check('ForumTopicModerate')->can()) {
-            $topic->withTrashed();
-        }
-
-        $topic = $topic->first();
+        $post = Post::query()->showDeleted($showDeleted)->findOrFail($id);
+        $topic = $post->topic()->showDeleted($showDeleted)->first();
 
         $action = Request::input('action');
 

@@ -174,4 +174,13 @@ class Post extends Model
     {
         return $query->orderBy('post_id', 'desc')->limit(1);
     }
+
+    public function scopeShowDeleted($query, $showDeleted)
+    {
+        if ($showDeleted) {
+            $query->withTrashed();
+        }
+
+        return $query;
+    }
 }

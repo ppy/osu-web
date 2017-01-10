@@ -284,6 +284,15 @@ class Topic extends Model
         return $query->where('topic_type', 0);
     }
 
+    public function scopeShowDeleted($query, $showDeleted)
+    {
+        if ($showDeleted) {
+            $query->withTrashed();
+        }
+
+        return $query;
+    }
+
     public function scopeWatchedByUser($query, $user)
     {
         return $query
