@@ -18,18 +18,23 @@
 class @Wiki
   constructor: ->
     @content = document.getElementsByClassName('js-wiki-content')
+    @floatTocContainer = document.getElementsByClassName('js-wiki-toc-float-container')
+    @floatToc = document.getElementsByClassName('js-wiki-toc-float')
 
     $(document).on 'turbolinks:load', @initialize
+    $.subscribe 'stickyHeader', @stickyToc
 
 
   initialize: =>
     return if !@content[0]?
+    return if @content[0].dataset.initialized == '1'
 
+    @content[0].dataset.initialized = '1'
     @$content = $(@content)
 
     @addClasses()
     @setTitle()
-    # @parseToc()
+    @parseToc()
     @updateLocaleLinks()
     @updateTables()
 
@@ -43,9 +48,8 @@ class @Wiki
 
 
   parseToc: =>
-    return if @content[0].dataset.tocParsed == '1'
 
-    $mainToc = $toc = $('<ol>')
+    $mainToc = $toc = $('<ol>', class: 'wiki-toc-list wiki-toc-list--top')
     lastLevel = null
 
     @content[0].dataset.tocParsed = '1'
@@ -53,11 +57,12 @@ class @Wiki
       currentLevel = parseInt header.tagName.match(/\d+/)[0], 10
       title = header.textContent.trim()
       titleId = _.kebabCase title
-      $item = $('<li>').append $('<a>').attr('href', "##{titleId}").text(title)
+      $link = $('<a>', class: 'wiki-toc-list__link', href: "##{titleId}").text(title)
+      $item = $('<li>', class: 'wiki-toc-list__item').append $link
 
       if lastLevel?
         if currentLevel > lastLevel
-          $newToc = $('<ol>')
+          $newToc = $('<ol>', class: 'wiki-toc-list')
           $toc.append $newToc
           $toc = $newToc
         else if currentLevel < lastLevel
@@ -90,6 +95,22 @@ class @Wiki
     path = parsed[2]
 
     el.href = "#{path}?locale=#{locale}"
+
+
+  stickyToc: (_e, target) =>
+    return if !@floatToc[0]?
+
+    if target != 'wiki-toc'
+      @floatToc[0].style.transform = ''
+      return
+
+    containerRect = @floatTocContainer[0].getBoundingClientRect()
+    rect = @floatToc[0].getBoundingClientRect()
+    delta = -containerRect.top
+    if containerRect.bottom - rect.height < 0
+      delta += containerRect.bottom - rect.height
+
+    @floatToc[0].style.transform = "translateY(#{delta}px)"
 
 
   updateLocaleLinks: =>

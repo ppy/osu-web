@@ -19,16 +19,14 @@
 
 .wiki-content {
   .content-font();
-  padding: (@spacing * 4) (@spacing * 2);
-
-  @media @desktop {
-    padding-left: @padding-big;
-    padding-right: @padding-big;
-  }
+  color: inherit;
+  padding: @spacing 0 0;
 
   &__header {
     font-family: @font-family-sans-serif;
     font-weight: bold;
+    font-style: normal;
+    color: @pink-light;
 
     &--1 {
       font-size: @font-size--header-wiki-1;
@@ -47,5 +45,9 @@
 
   &__image {
     max-width: 100%;
+  }
+
+  &__link {
+    .link-yellow();
   }
 }

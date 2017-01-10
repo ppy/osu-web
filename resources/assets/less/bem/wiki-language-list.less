@@ -18,7 +18,9 @@
  */
 
 .wiki-language-list {
-  background-color: @gray-e;
+  .inner-shadow-top();
+  background-color: @gray-3;
+  color: @gray-f;
   display: flex;
   flex-wrap: wrap;
 
@@ -28,11 +30,12 @@
   padding: (@spacing * 2);
 
   @media @desktop {
-    padding-left: @padding-big;
-    padding-right: @padding-big;
+    padding-left: @padding-wiki-desktop;
+    padding-right: @padding-wiki-desktop;
   }
 
   &__item {
     padding-left: (@spacing * 2);
+    .link-yellow();
   }
 }

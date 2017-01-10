@@ -22,7 +22,7 @@
 ])
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page-compact">
+    <div class="osu-layout__row">
         <div class="osu-page-header osu-page-header--wiki">
             <div class="osu-page-header__title-box">
                 @if (present($subtitle))
@@ -84,16 +84,28 @@
             </div>
         @endif
 
-        <div class="js-wiki-content">
-            @if (present($pageMd))
-                {!! Markdown::convertToHtml($pageMd) !!}
-            @else
-                @if (empty($pageLocales))
-                    {{ trans('wiki.show.missing') }}
-                @else
-                    {{ trans('wiki.show.missing_translation') }}
-                @endif
-            @endif
+        <div class="wiki-page">
+            <div class="wiki-page__toc js-wiki-toc-float-container js-sticky-header" data-sticky-header-target="wiki-toc">
+                <div class="wiki-toc js-wiki-toc js-wiki-toc-float">
+                    <h2 class="wiki-toc__title">
+                        {{ trans('wiki.show.toc') }}
+                    </h2>
+                </div>
+            </div>
+
+            <div class="wiki-page__content">
+                <div class="js-wiki-content">
+                    @if (present($pageMd))
+                        {!! Markdown::convertToHtml($pageMd) !!}
+                    @else
+                        @if (empty($pageLocales))
+                            {{ trans('wiki.show.missing') }}
+                        @else
+                            {{ trans('wiki.show.missing_translation') }}
+                        @endif
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 @endsection
