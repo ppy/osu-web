@@ -22,7 +22,9 @@ class @Wiki
     @floatToc = document.getElementsByClassName('js-wiki-toc-float')
 
     $(document).on 'turbolinks:load', @initialize
+
     $.subscribe 'stickyHeader', @stickyToc
+    $(document).on 'turbolinks:load', @stickyToc
 
 
   initialize: =>
@@ -48,7 +50,6 @@ class @Wiki
 
 
   parseToc: =>
-
     $mainToc = $toc = $('<ol>', class: 'wiki-toc-list wiki-toc-list--top')
     lastLevel = null
 
@@ -100,17 +101,34 @@ class @Wiki
   stickyToc: (_e, target) =>
     return if !@floatToc[0]?
 
+
+    # not floating
     if target != 'wiki-toc'
-      @floatToc[0].style.transform = ''
+      @floatToc[0].style.position = 'absolute'
+      @floatToc[0].style.top = 0
+      @floatToc[0].style.bottom = 'auto'
+      @floatToc[0].style.left = 0
+      @floatToc[0].style.width = 'auto'
       return
 
     containerRect = @floatTocContainer[0].getBoundingClientRect()
     rect = @floatToc[0].getBoundingClientRect()
-    delta = -containerRect.top
-    if containerRect.bottom - rect.height < 0
-      delta += containerRect.bottom - rect.height
 
-    @floatToc[0].style.transform = "translateY(#{delta}px)"
+    # reached bottom
+    if containerRect.bottom < rect.height
+      @floatToc[0].style.position = 'absolute'
+      @floatToc[0].style.top = 'auto'
+      @floatToc[0].style.bottom = 0
+      @floatToc[0].style.left = 0
+      @floatToc[0].style.width = 'auto'
+      return
+
+    # floating
+    @floatToc[0].style.position = 'fixed'
+    @floatToc[0].style.top = 0
+    @floatToc[0].style.bottom = 'auto'
+    @floatToc[0].style.left = "#{containerRect.left}px"
+    @floatToc[0].style.width = "#{containerRect.width}px"
 
 
   updateLocaleLinks: =>
