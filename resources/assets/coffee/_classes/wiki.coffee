@@ -64,7 +64,7 @@ class @Wiki
       if lastLevel?
         if currentLevel > lastLevel
           $newToc = $('<ol>', class: 'wiki-toc-list')
-          $toc.append $newToc
+          $lastItem.append $newToc
           $toc = $newToc
         else if currentLevel < lastLevel
           $newToc = $toc.parents('ol').first()
@@ -72,6 +72,7 @@ class @Wiki
             $toc = $newToc
 
       lastLevel = currentLevel
+      $lastItem = $item
       $toc.append $item
       header.id = titleId
 
