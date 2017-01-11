@@ -239,9 +239,11 @@ class TopicsController extends Controller
             ->orderBy('post_id', 'asc')
             ->first()->post_id;
 
+        $firstShownPostId = $posts->first()->post_id;
+
         // position of the first post, incremented in the view
         // to generate positions of further posts
-        $firstPostPosition = $topic->postPosition($firstPostId);
+        $firstPostPosition = $topic->postPosition($firstShownPostId);
 
         $pollSummary = PollOption::summary($topic, Auth::user());
 
