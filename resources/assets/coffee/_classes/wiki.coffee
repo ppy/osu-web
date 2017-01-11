@@ -108,7 +108,6 @@ class @Wiki
 
   scrollSpy: =>
     return if !@content[0]?
-    return if @scrollSpyRunning
 
     for header in document.getElementsByClassName('js-wiki-spy-target') by -1
       id = header.id
