@@ -38,7 +38,6 @@ class @Wiki
     @setTitle()
     @parseToc()
     @updateLocaleLinks()
-    @updateTables()
 
 
   addClasses: =>
@@ -47,6 +46,9 @@ class @Wiki
     for i in [1..6]
       @$content.find("h#{i}").addClass "wiki-content__header wiki-content__header--#{i}"
     @$content.find('img').addClass 'wiki-content__image'
+    @$content.find('table').addClass 'wiki-content__table'
+    @$content.find('td, th').addClass 'wiki-content__table-data'
+    @$content.find('th').addClass 'wiki-content__table-data--header'
 
 
   parseToc: =>
@@ -134,7 +136,3 @@ class @Wiki
 
   updateLocaleLinks: =>
     @$content.find('a').each @updateLocaleLink
-
-
-  updateTables: =>
-    @$content.find('table').addClass 'table'

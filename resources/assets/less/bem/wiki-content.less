@@ -50,4 +50,19 @@
   &__link {
     .link-yellow();
   }
+
+  &__table {
+    margin-bottom: (@spacing * 2);
+  }
+
+  &__table-data {
+    border-top: 1px solid @yellow;
+    padding: (@spacing / 2);
+
+    &--header {
+      border-top: none;
+      border-bottom: 2px solid @yellow;
+      font-weight: bold;
+    }
+  }
 }
