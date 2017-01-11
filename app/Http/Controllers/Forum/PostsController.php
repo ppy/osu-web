@@ -51,6 +51,7 @@ class PostsController extends Controller
 
         if ($post->topic->trashed()) {
             $redirect = route('forum.forums.show', $post->forum);
+
             return ujs_redirect($redirect);
         }
 
