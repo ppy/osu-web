@@ -23,6 +23,9 @@ class @Wiki
 
     $(document).on 'turbolinks:load', @initialize
 
+    $(document).on 'turbolinks:load', @scrollSpy
+    $(window).on 'throttled-scroll throttled-resize', @scrollSpy
+
     $.subscribe 'stickyHeader', @stickyToc
     $(document).on 'turbolinks:load', @stickyToc
 
@@ -60,7 +63,7 @@ class @Wiki
       currentLevel = parseInt header.tagName.match(/\d+/)[0], 10
       title = header.textContent.trim()
       titleId = _.kebabCase title
-      $link = $('<a>', class: 'wiki-toc-list__link', href: "##{titleId}").text(title)
+      $link = $('<a>', class: 'wiki-toc-list__link js-wiki-spy-link', href: "##{titleId}").text(title)
       $item = $('<li>', class: 'wiki-toc-list__item').append $link
 
       if lastLevel?
@@ -77,6 +80,7 @@ class @Wiki
       $lastItem = $item
       $toc.append $item
       header.id = titleId
+      header.classList.add 'js-wiki-spy-target'
 
     $('.js-wiki-toc').append $mainToc
 
@@ -99,6 +103,20 @@ class @Wiki
     path = parsed[2]
 
     el.href = "#{path}?locale=#{locale}"
+
+
+  scrollSpy: =>
+    return if !@content[0]?
+    return if @scrollSpyRunning
+
+    for header in document.getElementsByClassName('js-wiki-spy-target') by -1
+      id = header.id
+      break if header.getBoundingClientRect().top <= 0
+
+    $('.js-wiki-spy-link')
+      .removeClass 'js-wiki-spy-link--active'
+      .filter "[href='##{id}']"
+      .addClass 'js-wiki-spy-link--active'
 
 
   stickyToc: (_e, target) =>
