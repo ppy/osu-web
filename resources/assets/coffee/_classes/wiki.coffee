@@ -122,7 +122,6 @@ class @Wiki
   stickyToc: (_e, target) =>
     return if !@floatToc[0]?
 
-
     # not floating
     if target != 'wiki-toc'
       @floatToc[0].style.position = 'absolute'
