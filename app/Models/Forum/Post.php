@@ -180,7 +180,5 @@ class Post extends Model
         if ($showDeleted) {
             $query->withTrashed();
         }
-
-        return $query;
     }
 }
