@@ -1,5 +1,5 @@
 {{--
-    Copyright 2016 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,17 +15,8 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@php
-    $deleteString = $post->deleted_at ? 'restore' : 'delete'
-@endphp
-<a
-    title="{{ trans('forum.post.actions.'.$deleteString) }}"
-    data-tooltip-position="left center"
-    href="{{ route("forum.posts.$deleteString", $post) }}"
-    class="btn-circle delete-post-link"
-    data-remote="true"
-    data-method="post"
-    data-confirm="{{ trans("forum.post.confirm_".$deleteString) }}"
->
-    <i class="fa fa-{{ $post->deleted_at ? 'undo' : 'trash' }}"></i>
-</a>
+@extends('forum.topics.replace_delete_button')
+
+@section('action')
+    $post.addClass("js-forum-post-hidden");
+@endsection

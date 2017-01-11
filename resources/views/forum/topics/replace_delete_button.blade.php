@@ -19,19 +19,11 @@ Timeout.set(0, function () {
     $el = $(".js-forum-post[data-post-id={{ $post->post_id }}]")
 
     $toggle = $el.find(".delete-post-link");
-    action = "{{ $action }}";
 
     @if (Auth::user()->isAdmin() || Auth::user()->isGMT())
         $post = $el.find(".forum-post");
 
-        switch (action) {
-            case 'delete':
-                $post.addClass("js-forum-post-hidden");
-                break;
-            case 'restore':
-                $post.removeClass("js-forum-post-hidden");
-                break;
-        }
+        @yield("action")
 
         $toggle.replaceWith({!! json_encode(render_to_string('forum.topics._post_hide_action', [
             'post' => $post,
@@ -55,7 +47,7 @@ Timeout.set(0, function () {
 
         originalPosition = forum.postPosition(post);
 
-        if (originalPosition < {{ $deletedPostPosition }}) {
+        if (originalPosition < {{ $post->topic->postPosition($post->post_id) }}) {
             break;
         }
 

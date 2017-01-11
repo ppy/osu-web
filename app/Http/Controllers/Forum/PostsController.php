@@ -39,32 +39,34 @@ class PostsController extends Controller
         return parent::__construct();
     }
 
-    public function changeVisibility($id)
+    public function delete($id)
     {
-        $showDeleted = priv_check('ForumTopicModerate')->can();
-
-        $post = Post::query()->showDeleted($showDeleted)->findOrFail($id);
-        $topic = $post->topic()->showDeleted($showDeleted)->first();
-
-        $action = Request::input('action');
+        $post = Post::query()
+            ->showDeleted(priv_check('ForumTopicModerate')->can())
+            ->findOrFail($id);
 
         priv_check('ForumPostDelete', $post)->ensureCan();
 
-        $deletedPostPosition = $topic->postPosition($post->post_id);
+        $post->topic->removePost($post, Auth::user());
 
-        if ($action === 'restore' && $post->trashed()) {
-            $topic->restorePost($post, Auth::user());
-        } elseif ($action === 'delete' && !$post->trashed()) {
-            $topic->removePost($post, Auth::user());
-        }
-
-        if ($topic === null) {
+        if ($post->topic->trashed()) {
             $redirect = route('forum.forums.show', $post->forum);
-
             return ujs_redirect($redirect);
         }
 
-        return js_view('forum.topics.replace_delete_button', compact('post', 'action', 'deletedPostPosition'));
+        return js_view('forum.topics.delete', compact('post'));
+    }
+
+    public function restore($id)
+    {
+        priv_check('ForumTopicModerate')->ensureCan();
+
+        $post = Post::withTrashed()->findOrFail($id);
+        $topic = $post->topic()->withTrashed()->first();
+
+        $topic->restorePost($post, Auth::user());
+
+        return js_view('forum.topics.restore', compact('post'));
     }
 
     public function edit($id)
