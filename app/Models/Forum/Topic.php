@@ -289,8 +289,6 @@ class Topic extends Model
         if ($showDeleted) {
             $query->withTrashed();
         }
-
-        return $query;
     }
 
     public function scopeWatchedByUser($query, $user)
@@ -355,9 +353,7 @@ class Topic extends Model
 
     public function nthPost($n)
     {
-        $posts = $this->posts();
-
-        return $posts->skip(intval($n) - 1)->first();
+        return $this->posts()->skip(intval($n) - 1)->first();
     }
 
     public function postPosition($postId)
@@ -392,7 +388,7 @@ class Topic extends Model
     public function postsCount()
     {
         if ($this->postsCount === null) {
-            $this->postsCount = $this->posts->count();
+            $this->postsCount = $this->posts()->count();
         }
 
         return $this->postsCount;
