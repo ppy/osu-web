@@ -19,9 +19,9 @@ Timeout.set(0, function () {
     $el = $(".js-forum-post[data-post-id={{ $post->post_id }}]")
 
     $toggle = $el.find(".delete-post-link");
-    action = $toggle.attr('data-action');
+    action = "{{ $action }}";
 
-    if (currentUser.isAdmin || currentUser.isGMT) {
+    @if (Auth::user()->isAdmin() || Auth::user()->isGMT())
         $post = $el.find(".forum-post");
 
         switch (action) {
@@ -36,14 +36,14 @@ Timeout.set(0, function () {
         $toggle.replaceWith({!! json_encode(render_to_string('forum.topics._post_hide_action', [
             'post' => $post,
         ])) !!});
-    } else {
+    @else
         $el.css({
             minHeight: "0px",
             height: $el.css("height")
         }).slideUp(null, function () {
             return $el.remove();
         });
-    }
+    @endif
 
     countDifference = action === "delete" ? -1 : 1;
 

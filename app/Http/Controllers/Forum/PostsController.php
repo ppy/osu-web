@@ -64,7 +64,7 @@ class PostsController extends Controller
             return ujs_redirect($redirect);
         }
 
-        return js_view('forum.topics.replace_delete_button', compact('post', 'deletedPostPosition'));
+        return js_view('forum.topics.replace_delete_button', compact('post', 'action', 'deletedPostPosition'));
     }
 
     public function edit($id)
