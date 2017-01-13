@@ -50,8 +50,13 @@ class ContestsController extends Controller
             $contestIds = [$id];
         }
 
-        $contests = Contest::with('entries', 'entries.contest', 'entries.user')
-            ->whereIn('id', $contestIds)
+        $contests = Contest::with('entries', 'entries.contest');
+
+        if ($contest->show_votes) {
+            $contests = $contests->with('entries.user');
+        }
+
+        $contests = $contests->whereIn('id', $contestIds)
             ->orderByRaw('FIELD(id, '.db_array_bind($contestIds).')', $contestIds)
             ->get();
 
