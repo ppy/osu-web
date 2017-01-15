@@ -1,5 +1,5 @@
 ###
-# Copyright 2016 ppy Pty. Ltd.
+# Copyright 2015-2017 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -18,3 +18,15 @@
 
 Turbolinks.BrowserAdapter::showProgressBarAfterDelay = ->
   @progressBarTimeout = Timeout.set 0, @showProgressBar
+
+
+# Anchor navigation with turbolinks. Works around [1].
+# [1] https://github.com/turbolinks/turbolinks/issues/75
+$(document).on 'click', 'a[href^="#"]', (e) ->
+  targetId = e.currentTarget.getAttribute('href')[1..]
+  target = document.getElementById targetId
+
+  return if !target?
+
+  e.preventDefault()
+  $.scrollTo target
