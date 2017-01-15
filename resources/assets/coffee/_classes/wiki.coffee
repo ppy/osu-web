@@ -59,10 +59,19 @@ class @Wiki
     $mainToc = $toc = $('<ol>', class: 'wiki-toc-list wiki-toc-list--top')
     lastLevel = null
 
+    titleIds = {}
+
     for header in @$content.find('h2, h3, h4, h5, h6')
       currentLevel = parseInt header.tagName.match(/\d+/)[0], 10
       title = header.textContent.trim()
       titleId = _.kebabCase title
+
+      # ensure no duplicate ids
+      titleIds[titleId] ?= 1
+      if titleIds[titleId] > 0
+        titleIds[titleId] += 1
+        titleId = "#{titleId}.#{titleIds[titleId]}"
+
       $link = $('<a>', class: 'wiki-toc-list__link js-wiki-spy-link', href: "##{titleId}").text(title)
       $item = $('<li>', class: 'wiki-toc-list__item').append $link
 
