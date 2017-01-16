@@ -41,6 +41,8 @@ class Contest.Voting.EntryList extends Contest.Voting.BaseEntryList
       div className: 'contest-voting-list__header',
         if @state.options.showPreview
           div className: 'contest-voting-list__icon'
+        if @state.options.showLink
+          div className: 'contest-voting-list__icon'
         div className: 'contest-voting-list__wrapperthing',
           div className: 'contest-voting-list__header-title', 'entry'
           div className: 'contest-voting-list__header-votesummary', colSpan: (if @props.contest.show_votes then 2 else 1),

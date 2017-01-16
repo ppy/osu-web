@@ -43,6 +43,7 @@ class ContestTransformer extends Fractal\TransformerAbstract
             'entry_ends_at' => json_time($contest->entry_ends_at),
             'voting_ends_at' => json_time($contest->voting_ends_at),
             'show_votes' => $contest->show_votes,
+            'link_icon' => $contest->link_icon,
         ];
 
         if ($contest->type === 'art') {

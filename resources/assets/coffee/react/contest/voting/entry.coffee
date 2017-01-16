@@ -31,6 +31,10 @@ class Contest.Voting.Entry extends React.Component
       if @props.options.showPreview
         div {},
           el TrackPreview, track: @props.entry
+      if @props.options.showLink && @props.entry.preview
+        div className: 'contest-voting-list__icon contest-voting-list__icon--bg',
+          a className: 'tracklist__link', href: (if @props.contest.best_of then laroute.route('beatmapsets.show', beatmapset: @props.entry.preview) else @props.entry.preview),
+            i className: "fa fa-fw fa-lg #{if @props.contest.link_icon then @props.contest.link_icon else 'fa-cloud-download'}"
       if @props.contest.show_votes
         div className: 'contest-voting-list__title contest-voting-list__title--show-votes', style: { backgroundSize: "#{relativeVotePercentage}%, 100%" },
           div className: 'contest-voting-list__title--inner u-ellipsis-overflow', "#{@props.entry.title} "

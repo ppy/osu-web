@@ -111,6 +111,16 @@ class Contest extends Model
         $this->extra_options['shape'] = $shape;
     }
 
+    public function getLinkIconAttribute()
+    {
+        return $this->extra_options['link_icon'] ?? false;
+    }
+
+    public function setLinkIconAttribute($icon)
+    {
+        $this->extra_options['link_icon'] = $icon;
+    }
+
     public function currentPhaseEndDate()
     {
         switch ($this->state()) {

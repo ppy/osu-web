@@ -24,6 +24,7 @@ propsFunction = (target) ->
     selected: data.userVotes
     options:
       showPreview: data.contest['type'] == 'music'
+      showLink: data.contest['type'] == 'beatmap' && _.some(data.contest.entries, (e) -> e.preview)
   }
 
 reactTurbolinks.register 'contestArtList', Contest.Voting.ArtEntryList, propsFunction
