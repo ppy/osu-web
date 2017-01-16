@@ -111,6 +111,16 @@ class Contest extends Model
         $this->extra_options['shape'] = $shape;
     }
 
+    public function getUnmaskedAttribute()
+    {
+        return $this->extra_options['unmasked'] ?? false;
+    }
+
+    public function setUnmaskedAttribute(bool $bool)
+    {
+        $this->extra_options['unmasked'] = $bool;
+    }
+
     public function getLinkIconAttribute()
     {
         return $this->extra_options['link_icon'] ?? false;
@@ -187,20 +197,24 @@ class Contest extends Model
 
         if (!empty($contestJson['entries'])) {
             if ($this->show_votes) {
-                // Sort results by number of votes desc
-                usort($contestJson['entries'], function ($a, $b) {
-                    if ($a['results']['votes'] === $b['results']['votes']) {
-                        return 0;
-                    }
-
-                    return ($a['results']['votes'] > $b['results']['votes']) ? -1 : 1;
+                // Sort results by number of votes descending
+                $sorted_entries = array_sort($contestJson['entries'], function ($item) {
+                    return $item['results']['votes'];
                 });
+                $contestJson['entries'] = array_values(array_reverse($sorted_entries));
             } else {
-                // We want the results to appear randomized to the user but be
-                // deterministic (i.e. we don't want the rows shuffling each time
-                // the user votes), so we seed based on user_id
-                $seed = $user ? $user->user_id : time();
-                seeded_shuffle($contestJson['entries'], $seed);
+                if ($this->unmasked) {
+                    $sorted_entries = array_sort($contestJson['entries'], function ($item) {
+                        return $item['title'];
+                    });
+                    $contestJson['entries'] = array_values($sorted_entries);
+                } else {
+                    // We want the results to appear randomized to the user but be
+                    // deterministic (i.e. we don't want the rows shuffling each time
+                    // the user votes), so we seed based on user_id (when logged in)
+                    $seed = $user ? $user->user_id : time();
+                    seeded_shuffle($contestJson['entries'], $seed);
+                }
             }
         }
 
