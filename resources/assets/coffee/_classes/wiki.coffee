@@ -50,6 +50,12 @@ class @Wiki
     for i in [1..6]
       @$content.find("h#{i}").addClass "wiki-content__header wiki-content__header--#{i}"
     @$content.find('img').addClass 'wiki-content__image'
+    @$content.find('ol, ul').addClass 'wiki-content__list'
+    @$content.find('li').addClass 'wiki-content__list-item'
+    @$content.find('ul > li').addClass 'wiki-content__list-item--bullet'
+    for list1 in ['ul', 'ol']
+      for list2 in ['ul', 'ol']
+        @$content.find("#{list1} > li > #{list2} li").addClass 'wiki-content__list-item--deep'
     @$content.find('table').addClass 'wiki-content__table'
     @$content.find('td, th').addClass 'wiki-content__table-data'
     @$content.find('th').addClass 'wiki-content__table-data--header'
@@ -73,6 +79,8 @@ class @Wiki
         titleId = "#{titleId}.#{titleIds[titleId]}"
 
       $link = $('<a>', class: 'wiki-toc-list__link js-wiki-spy-link', href: "##{titleId}").text(title)
+      if currentLevel > 2
+        $link.addClass 'wiki-toc-list__link--small'
       $item = $('<li>', class: 'wiki-toc-list__item').append $link
 
       if lastLevel?
@@ -100,7 +108,7 @@ class @Wiki
     return if $title.length == 0
 
     $('.js-wiki-title').text $title.text()
-    $title.remove()
+    @$content.find('h1').remove()
 
 
   updateLocaleLink: (_, el) =>

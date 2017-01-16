@@ -20,7 +20,8 @@
 .wiki-content {
   .content-font();
   color: inherit;
-  padding: @spacing 0 0;
+  padding: @spacing (@spacing * 2) 0;
+  font-size: @font-size--wiki;
 
   &__header {
     font-family: @font-family-sans-serif;
@@ -28,18 +29,35 @@
     font-style: normal;
     color: @pink-light;
 
-    &--1 {
-      font-size: @font-size--header-wiki-1;
-      margin: (@spacing * 4) 0 (@spacing * 2);
-    }
-
     &--2 {
       font-size: @font-size--header-wiki-2;
-      margin: (@spacing * 2) 0 @spacing;
+      margin: (@spacing * 8) (-@spacing * 2) @spacing;
+      color: white;
     }
 
     &--3 {
       font-size: @font-size--header-wiki-3;
+      margin: (@spacing * 3) (-@spacing * 2) @spacing;
+    }
+
+    &--4 {
+      font-size: @font-size--header-wiki-4;
+      margin: (@spacing * 3) (-@spacing) @spacing;
+      font-style: italic;
+    }
+
+    &--5 {
+      font-size: @font-size--header-wiki-5;
+      font-weight: normal;
+      font-style: italic;
+      margin-top: (@spacing * 2);
+    }
+
+    &--6 {
+      font-size: @font-size--header-wiki-6;
+      font-weight: normal;
+      font-style: italic;
+      margin-top: (@spacing * 2);
     }
   }
 
@@ -49,6 +67,18 @@
 
   &__link {
     .link-yellow();
+  }
+
+  &__list {
+    padding-left: (@spacing * 2);
+  }
+
+  &__list-item {
+    margin: (@spacing / 2) 0;
+
+    &--deep {
+      color: @gray-c;
+    }
   }
 
   &__table {
