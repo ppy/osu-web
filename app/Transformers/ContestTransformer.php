@@ -21,7 +21,10 @@
 namespace App\Transformers;
 
 use App\Models\Contest;
+use App\Models\ContestEntry;
+use App\Models\Beatmap;
 use League\Fractal;
+use Auth;
 
 class ContestTransformer extends Fractal\TransformerAbstract
 {
@@ -59,6 +62,28 @@ class ContestTransformer extends Fractal\TransformerAbstract
 
     public function includeEntries(Contest $contest)
     {
-        return $this->collection($contest->entries, new ContestEntryTransformer);
+        if (isset($contest->extra_options['best_of'])) {
+            $user = Auth::user();
+            if ($user === null) {
+                $entries = [];
+            } else {
+                $playmode = Beatmap::MODES[$contest->extra_options['best_of']['mode'] ?? 'osu'];
+
+                // This just does a join to playcounts (via beatmapset) to filter out maps a user hasn't played.
+                $entries =
+                    ContestEntry::with('contest')->join('osu_beatmaps', function ($join) use ($playmode) {
+                        $join->on('beatmapset_id', '=', 'entry_url')
+                            ->where('osu_beatmaps.playmode', '=', $playmode);
+                    })
+                    ->join('osu_user_beatmap_playcount', function ($join) use ($user) {
+                        $join->on('osu_user_beatmap_playcount.beatmap_id', '=', 'osu_beatmaps.beatmap_id')
+                            ->where('osu_user_beatmap_playcount.user_id', '=', $user->user_id);
+                    })->where('contest_id', $contest->id)->get();
+            }
+        } else {
+            $entries = $contest->entries;
+        }
+
+        return $this->collection($entries, new ContestEntryTransformer);
     }
 }
