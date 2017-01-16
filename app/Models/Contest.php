@@ -195,6 +195,24 @@ class Contest extends Model
 
         $contestJson = json_item($this, new ContestTransformer, $includes);
 
+        if (isset($this->extra_options['best_of'])) {
+            if ($user === null) {
+                $contestJson['entries'] = [];
+            } else {
+                $playmode = $this->extra_options['best_of']['mode'] ?? 'osu';
+                $played = Beatmap::whereIn(
+                    'beatmap_id',
+                    BeatmapPlaycount::where(['user_id' => $user->user_id])->pluck('beatmap_id')
+                )
+                ->where('playmode', Beatmap::MODES[$playmode])
+                ->pluck('beatmapset_id')->toArray();
+
+                $contestJson['entries'] = array_filter($contestJson['entries'], function ($v, $k) use ($played) {
+                    return in_array($v['preview'], $played);
+                }, ARRAY_FILTER_USE_BOTH);
+            }
+        }
+
         if (!empty($contestJson['entries'])) {
             if ($this->show_votes) {
                 // Sort results by number of votes descending

@@ -50,6 +50,10 @@ class ContestTransformer extends Fractal\TransformerAbstract
             $response['shape'] = $contest->entry_shape;
         }
 
+        if (isset($contest->extra_options['best_of'])) {
+            $response['best_of'] = true;
+        }
+
         return $response;
     }
 

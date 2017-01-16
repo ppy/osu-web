@@ -21,6 +21,13 @@ el = React.createElement
 
 class Contest.Voting.EntryList extends Contest.Voting.BaseEntryList
   render: ->
+    if @state.contest.best_of && @state.contest.entries.length == 0
+      return div className: 'contest__voting-notice',
+        if currentUser.id?
+          osu.trans('contest.voting.best_of.none_played')
+        else
+          osu.trans('contest.voting.login_required')
+
     return null unless @state.contest.entries.length > 0
 
     if @state.contest.show_votes

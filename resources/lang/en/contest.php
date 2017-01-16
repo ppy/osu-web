@@ -25,6 +25,10 @@ return [
     ],
     'voting' => [
         'over' => 'Voting for this contest has ended',
+        'login_required' => 'Please login to vote.',
+        'best_of' => [
+            'none_played' => "It doesn't look like you've played any of 2016's ranked maps... come back after you've played some ;)",
+        ],
     ],
     'entry' => [
         'login_required' => 'Please login to enter the contest.',
