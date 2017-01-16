@@ -17,25 +17,17 @@
  *
  */
 
-.wiki-language-list {
-  .inner-shadow-top();
-  background-color: @gray-3;
-  color: @gray-f;
-  display: flex;
-  flex-wrap: wrap;
+.wiki-toc {
+  .own-layer();
+  padding-top: @spacing;
 
-  font-style: italic;
-  font-size: @font-size--title-small;
-
-  padding: (@spacing * 2);
-
-  @media @desktop {
-    padding-left: @padding-wiki-desktop;
-    padding-right: @padding-wiki-desktop;
-  }
-
-  &__item {
-    padding-left: (@spacing * 2);
-    .link-yellow();
+  &__title {
+    text-transform: uppercase;
+    margin: 0 0 (@spacing / 2);
+    padding: 0;
+    color: @gray-f;
+    font-size: @font-size--normal;
+    font-style: normal;
+    font-weight: bold;
   }
 }

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2016 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -17,19 +17,20 @@
 --}}
 
 @extends('master', [
-    'titleAppend' => $path,
+    'body_additional_classes' => 'osu-layout--body-333',
     'title' => null,
+    'titleAppend' => $path,
 ])
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page-compact">
+    <div class="osu-layout__row">
         <div class="osu-page-header osu-page-header--wiki">
             <div class="osu-page-header__title-box">
                 @if (present($subtitle))
                     <h2 class="osu-page-header__title osu-page-header__title--small">{{ $subtitle }}</h2>
                 @endif
 
-                <h1 class="osu-page-header__title">{{ $title }}</h1>
+                <h1 class="js-wiki-title osu-page-header__title osu-page-header__title--main">{{ $title }}</h1>
             </div>
 
             @if (!empty($pageLocales))
@@ -84,16 +85,36 @@
             </div>
         @endif
 
-        <div class="wiki-content js-wiki-content">
-            @if (present($pageMd))
-                {!! Markdown::convertToHtml($pageMd) !!}
-            @else
-                @if (empty($pageLocales))
-                    {{ trans('wiki.show.missing') }}
-                @else
-                    {{ trans('wiki.show.missing_translation') }}
-                @endif
-            @endif
+        <div class="wiki-page">
+            <div
+                class="hidden-xs wiki-page__toc js-wiki-toc-float-container js-sticky-header"
+                data-sticky-header-target="wiki-toc"
+            >
+                <div class="js-sync-height--target" data-sync-height-id="wiki-toc"></div>
+
+                <div
+                    class="wiki-toc js-wiki-toc js-wiki-toc-float js-sync-height--reference"
+                    data-sync-height-target="wiki-toc"
+                >
+                    <h2 class="wiki-toc__title">
+                        {{ trans('wiki.show.toc') }}
+                    </h2>
+                </div>
+            </div>
+
+            <div class="wiki-page__content">
+                <div class="js-wiki-content">
+                    @if (present($pageMd))
+                        {!! Markdown::convertToHtml($pageMd) !!}
+                    @else
+                        @if (empty($pageLocales))
+                            {{ trans('wiki.show.missing') }}
+                        @else
+                            {{ trans('wiki.show.missing_translation') }}
+                        @endif
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 @endsection

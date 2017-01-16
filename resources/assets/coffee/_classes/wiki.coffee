@@ -1,5 +1,5 @@
 ###
-# Copyright 2015 ppy Pty. Ltd.
+# Copyright 2015-2017 ppy Pty. Ltd.
 #
 # This file is part of osu!web. osu!web is distributed with the hope of
 # attracting more community contributions to the core ecosystem of osu!.
@@ -15,21 +15,86 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
 class @Wiki
   constructor: ->
     @content = document.getElementsByClassName('js-wiki-content')
+    @floatTocContainer = document.getElementsByClassName('js-wiki-toc-float-container')
+    @floatToc = document.getElementsByClassName('js-wiki-toc-float')
 
     $(document).on 'turbolinks:load', @initialize
+
+    $(document).on 'turbolinks:load', @scrollSpy
+    $(window).on 'throttled-scroll throttled-resize', @scrollSpy
+
+    $.subscribe 'stickyHeader', @stickyToc
+    $(document).on 'turbolinks:load', @stickyToc
 
 
   initialize: =>
     return if !@content[0]?
+    return if @content[0].dataset.initialized == '1'
 
-    @updateLinks()
-    @updateTables()
+    @content[0].dataset.initialized = '1'
+    @$content = $(@content)
+
+    @addClasses()
+    @setTitle()
+    @parseToc()
+    @updateLocaleLinks()
 
 
-  updateLink: (_, el) =>
+  addClasses: =>
+    @$content.addClass 'wiki-content'
+    @$content.find('a').addClass 'wiki-content__link'
+    for i in [1..6]
+      @$content.find("h#{i}").addClass "wiki-content__header wiki-content__header--#{i}"
+    @$content.find('img').addClass 'wiki-content__image'
+    @$content.find('table').addClass 'wiki-content__table'
+    @$content.find('td, th').addClass 'wiki-content__table-data'
+    @$content.find('th').addClass 'wiki-content__table-data--header'
+
+
+  parseToc: =>
+    $mainToc = $toc = $('<ol>', class: 'wiki-toc-list wiki-toc-list--top')
+    lastLevel = null
+
+    for header in @$content.find('h2, h3, h4, h5, h6')
+      currentLevel = parseInt header.tagName.match(/\d+/)[0], 10
+      title = header.textContent.trim()
+      titleId = _.kebabCase title
+      $link = $('<a>', class: 'wiki-toc-list__link js-wiki-spy-link', href: "##{titleId}").text(title)
+      $item = $('<li>', class: 'wiki-toc-list__item').append $link
+
+      if lastLevel?
+        if currentLevel > lastLevel
+          $newToc = $('<ol>', class: 'wiki-toc-list')
+          $lastItem.append $newToc
+          $toc = $newToc
+        else if currentLevel < lastLevel
+          $newToc = $toc.parents('ol').first()
+          if $newToc.length > 0
+            $toc = $newToc
+
+      lastLevel = currentLevel
+      $lastItem = $item
+      $toc.append $item
+      header.id = titleId
+      header.classList.add 'js-wiki-spy-target'
+
+    $('.js-wiki-toc').append $mainToc
+
+
+  setTitle: =>
+    $title = @$content.find('h1').first()
+
+    return if $title.length == 0
+
+    $('.js-wiki-title').text $title.text()
+    $title.remove()
+
+
+  updateLocaleLink: (_, el) =>
     parsed = el.href?.match /^(\w{2}(?:-\w{2})?):(.+)$/
 
     return if !parsed?
@@ -40,9 +105,50 @@ class @Wiki
     el.href = "#{path}?locale=#{locale}"
 
 
-  updateLinks: =>
-    $(@content).find('a').each @updateLink
+  scrollSpy: =>
+    return if !@content[0]?
+
+    for header in document.getElementsByClassName('js-wiki-spy-target') by -1
+      id = header.id
+      break if header.getBoundingClientRect().top <= 0
+
+    $('.js-wiki-spy-link')
+      .removeClass 'js-wiki-spy-link--active'
+      .filter "[href='##{id}']"
+      .addClass 'js-wiki-spy-link--active'
 
 
-  updateTables: =>
-    $(@content).find('table').addClass 'table'
+  stickyToc: (_e, target) =>
+    return if !@floatToc[0]?
+
+    # not floating
+    if target != 'wiki-toc'
+      @floatToc[0].style.position = 'absolute'
+      @floatToc[0].style.top = 0
+      @floatToc[0].style.bottom = 'auto'
+      @floatToc[0].style.left = 0
+      @floatToc[0].style.width = 'auto'
+      return
+
+    containerRect = @floatTocContainer[0].getBoundingClientRect()
+    rect = @floatToc[0].getBoundingClientRect()
+
+    # reached bottom
+    if containerRect.bottom < rect.height
+      @floatToc[0].style.position = 'absolute'
+      @floatToc[0].style.top = 'auto'
+      @floatToc[0].style.bottom = 0
+      @floatToc[0].style.left = 0
+      @floatToc[0].style.width = 'auto'
+      return
+
+    # floating
+    @floatToc[0].style.position = 'fixed'
+    @floatToc[0].style.top = 0
+    @floatToc[0].style.bottom = 'auto'
+    @floatToc[0].style.left = "#{containerRect.left}px"
+    @floatToc[0].style.width = "#{containerRect.width}px"
+
+
+  updateLocaleLinks: =>
+    @$content.find('a').each @updateLocaleLink

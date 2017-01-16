@@ -158,7 +158,7 @@
             <a href="{{ osu_url('legal.server') }}" class="landing-footer-bottom__link">server status</a>
             <a href="{{ osu_url('legal.osustatus') }}" class="landing-footer-bottom__link landing-footer-bottom__link--no-pad">@osustatus</a>
 
-            <div class="landing-footer-bottom__copyright">ppy powered 2007-2016</div>
+            <div class="landing-footer-bottom__copyright">ppy powered 2007-2017</div>
         </div>
     </footer>
 
