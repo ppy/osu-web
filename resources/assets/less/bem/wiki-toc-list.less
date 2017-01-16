@@ -17,52 +17,21 @@
  *
  */
 
-.wiki-content {
-  .content-font();
-  color: inherit;
-  padding: @spacing 0 0;
+.wiki-toc-list {
+  padding: 0 0 0 (@spacing * 2);
+  list-style: none;
+  font-size: @font-size--title-small-2;
 
-  &__header {
-    font-family: @font-family-sans-serif;
-    font-weight: bold;
-    font-style: normal;
-    color: @pink-light;
-
-    &--1 {
-      font-size: @font-size--header-wiki-1;
-      margin: (@spacing * 4) 0 (@spacing * 2);
-    }
-
-    &--2 {
-      font-size: @font-size--header-wiki-2;
-      margin: (@spacing * 2) 0 @spacing;
-    }
-
-    &--3 {
-      font-size: @font-size--header-wiki-3;
-    }
-  }
-
-  &__image {
-    max-width: 100%;
+  &--top {
+    padding-left: 0;
   }
 
   &__link {
-    .link-yellow();
-  }
+    .link-gray-light();
+    .link-plain();
 
-  &__table {
-    font-family: @font-family-sans-serif;
-    margin-bottom: (@spacing * 2);
-  }
-
-  &__table-data {
-    border-top: 1px solid fade(@yellow, 50%);
-    padding: (@spacing / 2);
-
-    &--header {
-      border-top: none;
-      border-bottom: 2px solid @yellow;
+    &.js-wiki-spy-link--active {
+      color: @gray-f;
       font-weight: bold;
     }
   }

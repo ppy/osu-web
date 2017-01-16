@@ -17,16 +17,10 @@
  *
  */
 
-.wiki-language-list {
-  .inner-shadow-top();
+.wiki-page {
   background-color: @gray-3;
   color: @gray-f;
   display: flex;
-  flex-wrap: wrap;
-
-  font-style: italic;
-  font-size: @font-size--title-small;
-
   padding: (@spacing * 2);
 
   @media @desktop {
@@ -34,8 +28,9 @@
     padding-right: @padding-wiki-desktop;
   }
 
-  &__item {
-    padding-left: (@spacing * 2);
-    .link-yellow();
+  &__toc {
+    padding-right: @spacing;
+    width: 200px;
+    flex: none;
   }
 }

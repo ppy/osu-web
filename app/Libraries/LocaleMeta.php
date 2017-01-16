@@ -27,6 +27,10 @@ class LocaleMeta
             'name' => 'Deutsch',
             'flag' => 'DE',
         ],
+        'el' => [
+            'name' => 'Ελληνικά',
+            'flag' => 'GR',
+        ],
         'en' => [
             'name' => 'English',
             'flag' => 'GB',

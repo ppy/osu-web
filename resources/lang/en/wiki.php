@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed in the hopes of
  *    attracting more community contributions to the core ecosystem of osu!
@@ -23,6 +23,7 @@ return [
         'missing' => 'Requested page could not be found.',
         'missing_translation' => 'Requested page could not be found for currently selected language.',
         'other_languages' => 'Other languages',
+        'toc' => 'Contents',
 
         'edit' => [
             'link' => 'Show on GitHub',
