@@ -24,9 +24,6 @@ class @Wiki
 
     $(document).on 'turbolinks:load', @initialize
 
-    $(document).on 'turbolinks:load', @scrollSpy
-    $(window).on 'throttled-scroll throttled-resize', @scrollSpy
-
     $.subscribe 'stickyHeader', @stickyToc
     $(document).on 'turbolinks:load', @stickyToc
 
@@ -120,19 +117,6 @@ class @Wiki
     path = parsed[2]
 
     el.href = "#{path}?locale=#{locale}"
-
-
-  scrollSpy: =>
-    return if !@content[0]?
-
-    for header in document.getElementsByClassName('js-wiki-spy-target') by -1
-      id = header.id
-      break if header.getBoundingClientRect().top <= 0
-
-    $('.js-wiki-spy-link')
-      .removeClass 'js-wiki-spy-link--active'
-      .filter "[href='##{id}']"
-      .addClass 'js-wiki-spy-link--active'
 
 
   stickyToc: (_e, target) =>
