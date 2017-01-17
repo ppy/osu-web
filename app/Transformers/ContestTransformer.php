@@ -20,11 +20,11 @@
 
 namespace App\Transformers;
 
+use App\Models\Beatmap;
 use App\Models\Contest;
 use App\Models\ContestEntry;
-use App\Models\Beatmap;
-use League\Fractal;
 use Auth;
+use League\Fractal;
 
 class ContestTransformer extends Fractal\TransformerAbstract
 {
