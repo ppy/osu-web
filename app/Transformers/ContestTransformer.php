@@ -20,7 +20,10 @@
 
 namespace App\Transformers;
 
+use App\Models\Beatmap;
 use App\Models\Contest;
+use App\Models\ContestEntry;
+use Auth;
 use League\Fractal;
 
 class ContestTransformer extends Fractal\TransformerAbstract
@@ -43,10 +46,15 @@ class ContestTransformer extends Fractal\TransformerAbstract
             'entry_ends_at' => json_time($contest->entry_ends_at),
             'voting_ends_at' => json_time($contest->voting_ends_at),
             'show_votes' => $contest->show_votes,
+            'link_icon' => $contest->link_icon,
         ];
 
         if ($contest->type === 'art') {
             $response['shape'] = $contest->entry_shape;
+        }
+
+        if (isset($contest->extra_options['best_of'])) {
+            $response['best_of'] = true;
         }
 
         return $response;
@@ -54,6 +62,33 @@ class ContestTransformer extends Fractal\TransformerAbstract
 
     public function includeEntries(Contest $contest)
     {
-        return $this->collection($contest->entries, new ContestEntryTransformer);
+        if (isset($contest->extra_options['best_of'])) {
+            $user = Auth::user();
+            if ($user === null) {
+                $entries = [];
+            } else {
+                $playmode = Beatmap::MODES[$contest->extra_options['best_of']['mode'] ?? 'osu'];
+
+                // This just does a join to playcounts (via beatmapset) to filter out maps a user hasn't played.
+                $entries =
+                    ContestEntry::with('contest')
+                            ->whereIn('entry_url', function ($query) use ($playmode, $user) {
+                                $query->select('beatmapset_id')
+                                    ->from('osu_beatmaps')
+                                    ->where('osu_beatmaps.playmode', '=', $playmode)
+                                    ->whereIn('beatmap_id', function ($query) use ($user) {
+                                        $query->select('beatmap_id')
+                                            ->from('osu_user_beatmap_playcount')
+                                            ->where('user_id', '=', $user->user_id);
+                                    });
+                            })
+                            ->where('contest_id', $contest->id)
+                            ->get();
+            }
+        } else {
+            $entries = $contest->entries;
+        }
+
+        return $this->collection($entries, new ContestEntryTransformer);
     }
 }

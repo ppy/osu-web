@@ -34,7 +34,7 @@ class ContestEntryTransformer extends Fractal\TransformerAbstract
     {
         return [
             'id' => $entry->id,
-            'title' => $entry->masked_name,
+            'title' => $entry->contest->unmasked ? $entry->name : $entry->masked_name,
             'preview' => $entry->entry_url,
         ];
     }

@@ -55,8 +55,8 @@ class Contest.Entry.Uploader extends React.Component
 
     $.subscribe 'dragenterGlobal.contest-upload', => @setOverlay('active')
     $.subscribe 'dragendGlobal.contest-upload', => @setOverlay('hidden')
-    $(document).on 'dragenter.contest-upload', '.contest-user-entry--uploader', => @setOverlay('hover')
-    $(document).on 'dragleave.contest-upload', '.contest-user-entry--uploader', => @setOverlay('active')
+    $(document).on 'dragenter.contest-upload', '.contest-userentry--uploader', => @setOverlay('hover')
+    $(document).on 'dragleave.contest-upload', '.contest-userentry--uploader', => @setOverlay('active')
 
     $uploadButton.fileupload
       url: laroute.route 'contest-entries.store'
@@ -101,15 +101,15 @@ class Contest.Entry.Uploader extends React.Component
   render: =>
     labelClass = [
       'fileupload',
-      'contest-user-entry',
-      'contest-user-entry--uploader',
+      'contest-userentry',
+      'contest-userentry--uploader',
       'disabled' if @props.disabled,
-      'contest-user-entry--dragndrop-active' if @state.state == 'active',
-      'contest-user-entry--dragndrop-hover' if @state.state == 'hover',
+      'contest-userentry--dragndrop-active' if @state.state == 'active',
+      'contest-userentry--dragndrop-hover' if @state.state == 'hover',
     ]
 
-    div className: "contest-user-entry contest-user-entry--new#{if @props.disabled then ' contest-user-entry--disabled' else ''}",
+    div className: "contest-userentry contest-userentry--new#{if @props.disabled then ' contest-userentry--disabled' else ''}",
       div className: 'js-contest-entry-upload--dropzone',
         el 'label', className: labelClass.join(' '), ref: 'uploadButtonContainer',
-          i className: 'fa fa-plus contest-user-entry__icon'
+          i className: 'fa fa-plus contest-userentry__icon'
           div {}, osu.trans('contest.entry.drop_here')

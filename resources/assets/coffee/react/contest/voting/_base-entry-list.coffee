@@ -16,9 +16,6 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 ###
-{div,a,i,span,table,thead,tbody,tr,th,td} = React.DOM
-el = React.createElement
-
 class Contest.Voting.BaseEntryList extends React.Component
   constructor: (props) ->
     super props
@@ -29,6 +26,8 @@ class Contest.Voting.BaseEntryList extends React.Component
       selected: @props.selected
       options:
         showPreview: @props.options.showPreview ? false
+        showLink: @props.options.showLink ? false
+        linkIcon: @props.options.linkIcon ? false
 
   handleVoteClick: (_e, {contest_id, entry_id, callback}) =>
     return unless contest_id == @state.contest.id

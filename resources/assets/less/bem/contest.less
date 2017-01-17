@@ -144,15 +144,24 @@
     }
   }
 
+  &__vote-star {
+    flex: 0 0 32px;
+    margin-left: auto;
+  }
+
   &__vote-star--fixed {
-    width: 16px;
+    width: 32px;
+    flex: 0 0 32px;
     background-color: #1a2223;
   }
 
   &__vote-count {
-    width: 110px;
+    display: flex;
+    align-items: center;
+    flex: 0 0 110px;
     text-align: right;
     background-color: #1a2223;
+    justify-content: flex-end;
   }
 
   &__voting-star {
