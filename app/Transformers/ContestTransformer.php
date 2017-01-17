@@ -78,7 +78,10 @@ class ContestTransformer extends Fractal\TransformerAbstract
                     ->join('osu_user_beatmap_playcount', function ($join) use ($user) {
                         $join->on('osu_user_beatmap_playcount.beatmap_id', '=', 'osu_beatmaps.beatmap_id')
                             ->where('osu_user_beatmap_playcount.user_id', '=', $user->user_id);
-                    })->where('contest_id', $contest->id)->get();
+                    })
+                    ->where('contest_id', $contest->id)
+                    ->groupBy('osu_beatmaps.beatmapset_id')
+                    ->get();
             }
         } else {
             $entries = $contest->entries;
