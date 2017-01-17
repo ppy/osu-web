@@ -71,17 +71,19 @@ class ContestTransformer extends Fractal\TransformerAbstract
 
                 // This just does a join to playcounts (via beatmapset) to filter out maps a user hasn't played.
                 $entries =
-                    ContestEntry::with('contest')->join('osu_beatmaps', function ($join) use ($playmode) {
-                        $join->on('beatmapset_id', '=', 'entry_url')
-                            ->where('osu_beatmaps.playmode', '=', $playmode);
-                    })
-                    ->join('osu_user_beatmap_playcount', function ($join) use ($user) {
-                        $join->on('osu_user_beatmap_playcount.beatmap_id', '=', 'osu_beatmaps.beatmap_id')
-                            ->where('osu_user_beatmap_playcount.user_id', '=', $user->user_id);
-                    })
-                    ->where('contest_id', $contest->id)
-                    ->groupBy('osu_beatmaps.beatmapset_id')
-                    ->get();
+                    ContestEntry::with('contest')
+                            ->whereIn('entry_url', function ($query) use ($playmode, $user) {
+                                $query->select('beatmapset_id')
+                                    ->from('osu_beatmaps')
+                                    ->where('osu_beatmaps.playmode', '=', $playmode)
+                                    ->whereIn('beatmap_id', function ($query) use ($user) {
+                                        $query->select('beatmap_id')
+                                            ->from('osu_user_beatmap_playcount')
+                                            ->where('user_id', '=', $user->user_id);
+                                    });
+                            })
+                            ->where('contest_id', $contest->id)
+                            ->get();
             }
         } else {
             $entries = $contest->entries;
