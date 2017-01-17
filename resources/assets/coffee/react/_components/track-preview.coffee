@@ -50,7 +50,7 @@ class @TrackPreview extends React.Component
     $.unsubscribe ".trackpreview-#{@props.track.id}"
 
   render: ->
-    coverStyle = if not @props.track.album_id then { backgroundImage: "url('#{@props.track.cover_url}')" }
+    coverStyle = if @props.track.cover_url and not @props.track.album_id then { backgroundImage: "url('#{@props.track.cover_url}')" }
 
     div className: 'tracklist__cover', style: coverStyle,
       a className: 'tracklist__preview', href: '#', onClick: @previewPlay,

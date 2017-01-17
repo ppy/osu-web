@@ -16,11 +16,18 @@
 *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 *
 ###
-{div,a,i,span,table,thead,tbody,tr,th,td} = React.DOM
+{div,a,i,span} = React.DOM
 el = React.createElement
 
 class Contest.Voting.EntryList extends Contest.Voting.BaseEntryList
   render: ->
+    if @state.contest.best_of && @state.contest.entries.length == 0
+      return div className: 'contest__voting-notice',
+        if currentUser.id?
+          osu.trans('contest.voting.best_of.none_played')
+        else
+          osu.trans('contest.voting.login_required')
+
     return null unless @state.contest.entries.length > 0
 
     if @state.contest.show_votes
@@ -37,13 +44,15 @@ class Contest.Voting.EntryList extends Contest.Voting.BaseEntryList
         winnerVotes: if @state.contest.show_votes then _.maxBy(@state.contest.entries, (i) -> i.results.votes).results.votes
         totalVotes: if @state.contest.show_votes then totalVotes
 
-    table className: 'tracklist__table tracklist__table--smaller',
-      thead {},
-          tr className: 'tracklist__row--header',
-            if @state.options.showPreview
-              th className: 'tracklist__col tracklist__col--preview', ''
-            th className: 'tracklist__col tracklist__col--title', 'entry'
-            th className: 'tracklist__col tracklist__col--vote', colSpan: (if @props.contest.show_votes then 2 else 1),
-              el Contest.Voting.VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
-              div className: 'contest__vote-summary-text', 'votes'
-      tbody {}, entries
+    div className: 'contest-voting-list__table',
+      div className: 'contest-voting-list__header',
+        if @state.options.showPreview
+          div className: 'contest-voting-list__icon'
+        if @state.options.showLink
+          div className: 'contest-voting-list__icon'
+        div className: 'contest-voting-list__header-wrapper',
+          div className: 'contest-voting-list__header-title', 'entry'
+          div className: 'contest-voting-list__header-votesummary',
+            div className: 'contest__vote-summary-text', 'votes'
+            el Contest.Voting.VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
+      div {}, entries
