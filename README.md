@@ -24,7 +24,7 @@ Deploying
 There are a few different options to get started:
 
 - Create a fresh Ubuntu environment and run `sudo bootstrap.sh`. Note that this script is intended to be run on a *sandboxed environment*; do not run it on a shared development system without first understanding what it does.
-- Use the php built-in server (run `php -s 127.0.0.1:8080` from the `public` folder). You will still need a database backend.
+- Use the php built-in server (run `php -S 127.0.0.1:8080` from the `public` folder). You will still need a database backend.
 - Use vagrant (`cd vagrant; vagrant up`). Note that this is not actively supported or tested, and it is known to be quite slow on some platforms.
 - Use your existing web dev environment.
 
