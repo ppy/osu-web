@@ -64,8 +64,7 @@
   &__icon {
     flex: 0 0 32px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    .center-content();
     &--bg {
       background: rgba(0, 0, 0, 0.75);
     }
@@ -89,7 +88,7 @@
 
   &__title {
     color: white;
-    padding: @spacing;
+    padding: @spacing - 2;
     transform: translate(0);
     overflow: hidden;
 
@@ -101,10 +100,6 @@
       background: transparent url(/images/layout/vote-1x1.png) 0 center repeat-y;
       flex-direction: column;
       justify-content: space-around;
-    }
-
-    &--inner {
-      width: 100%;
     }
   }
 

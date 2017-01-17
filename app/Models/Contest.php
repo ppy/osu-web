@@ -203,7 +203,7 @@ class Contest extends Model
                 });
                 $contestJson['entries'] = array_values(array_reverse($sorted_entries));
             } else {
-                // FOr unmasked contests, we sort 'alphabetically'.
+                // For unmasked contests, we sort 'alphabetically'.
                 if ($this->unmasked) {
                     $sorted_entries = array_sort($contestJson['entries'], function ($item) {
                         return $item['title'];

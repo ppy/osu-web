@@ -37,7 +37,7 @@ class Contest.Voting.Entry extends React.Component
             i className: "fa fa-fw fa-lg #{if @props.contest.link_icon then @props.contest.link_icon else 'fa-cloud-download'}"
       if @props.contest.show_votes
         div className: 'contest-voting-list__title contest-voting-list__title--show-votes', style: { backgroundSize: "#{relativeVotePercentage}%, 100%" },
-          div className: 'contest-voting-list__title--inner u-ellipsis-overflow', "#{@props.entry.title} "
+          div className: 'u-ellipsis-overflow', "#{@props.entry.title} "
           div className: 'contest-voting-list__entrant', "#{@props.entry.results.username}"
       else
         div className: 'contest-voting-list__title u-ellipsis-overflow', @props.entry.title
