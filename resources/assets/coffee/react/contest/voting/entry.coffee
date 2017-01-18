@@ -34,7 +34,7 @@ class Contest.Voting.Entry extends React.Component
       if @props.options.showLink && @props.entry.preview
         div className: 'contest-voting-list__icon contest-voting-list__icon--bg',
           a className: 'tracklist__link', href: @props.entry.preview,
-            i className: "fa fa-fw fa-lg #{@props.contest.link_icon}"
+            el Icon, name: @props.contest.link_icon, modifiers: ['fw', 'lg']
       if @props.contest.show_votes
         div className: 'contest-voting-list__title contest-voting-list__title--show-votes',
           div className: 'contest-voting-list__votes-bar', style: { width: "#{relativeVotePercentage}%" }
@@ -43,7 +43,7 @@ class Contest.Voting.Entry extends React.Component
       else
         div className: 'contest-voting-list__title u-ellipsis-overflow', @props.entry.title
 
-      div className: "contest__vote-star#{if @props.contest.show_votes then ' contest__vote-star--fixed' else ''}",
+      div className: "contest__voting-star#{if @props.contest.show_votes then ' contest__voting-star--dark-bg' else ''}",
         el Contest.Voting.Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, selected: @props.selected, contest: @props.contest
 
       if @props.contest.show_votes
