@@ -147,14 +147,10 @@ function error_popup($message, $statusCode = 422)
 
 function i18n_view($view)
 {
-    $current_locale_path = sprintf('%s/%s-%s.blade.php',
-        config('view.paths')[0],
-        str_replace('.', '/', $view),
-        App::getLocale()
-    );
+    $localViewPath = sprintf('%s-%s', $view, App::getLocale());
 
-    if (file_exists($current_locale_path)) {
-        return sprintf('%s-%s', $view, App::getLocale());
+    if (view()->exists($localViewPath)) {
+        return $localViewPath;
     } else {
         return sprintf('%s-%s', $view, config('app.fallback_locale'));
     }
