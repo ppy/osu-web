@@ -20,8 +20,8 @@
 
 namespace App\Models;
 
-use App\Transformers\ContestTransformer;
 use App\Transformers\ContestEntryTransformer;
+use App\Transformers\ContestTransformer;
 use App\Transformers\UserContestEntryTransformer;
 use Cache;
 use Illuminate\Database\Eloquent\Model;
