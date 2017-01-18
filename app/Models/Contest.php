@@ -197,7 +197,7 @@ class Contest extends Model
             $playmode = Beatmap::MODES[$this->extra_options['best_of']['mode'] ?? 'osu'];
 
             // This will only returns beatmap entries a user has played
-            return $this->entries()->with('contest')
+            $entries = $this->entries()->with('contest')
                 ->whereIn('entry_url', function ($query) use ($playmode, $user) {
                     $query->select('beatmapset_id')
                         ->from('osu_beatmaps')
@@ -207,15 +207,16 @@ class Contest extends Model
                                 ->from('osu_user_beatmap_playcount')
                                 ->where('user_id', '=', $user->user_id);
                         });
-                })
-                ->get();
+                });
+        } else {
+            $entries = $this->entries()->with('contest');
+
+            if ($this->show_votes) {
+                $entries = $entries->with('user');
+            }
         }
 
-        if ($this->show_votes) {
-            return $this->entries()->with(['contest', 'user'])->get();
-        }
-
-        return $this->entries()->with(['contest'])->get();
+        return $entries->get();
     }
 
     public function defaultJson($user = null)
