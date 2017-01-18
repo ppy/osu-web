@@ -20,18 +20,18 @@ el = React.createElement
 
 class ProfilePage.AchievementBadge extends React.Component
   onMouseOver: (event) =>
-    el = event.currentTarget
+    elem = event.currentTarget
 
-    return if el._loadedTooltipId == @tooltipId
+    return if elem._loadedTooltipId == @tooltipId
 
     content = $(@refs.tooltip).clone()
 
-    if el._loadedTooltipId?
-      el._loadedTooltipId = @tooltipId
-      $(el).qtip 'set', 'content.text': content
+    if elem._loadedTooltipId?
+      elem._loadedTooltipId = @tooltipId
+      $(elem).qtip 'set', 'content.text': content
       return
 
-    el._loadedTooltipId = @tooltipId
+    elem._loadedTooltipId = @tooltipId
     classes = 'qtip tooltip-achievement'
     classes += ' tooltip-achievement--locked' if !@props.userAchievement?
 
@@ -57,7 +57,7 @@ class ProfilePage.AchievementBadge extends React.Component
           width: 10
           height: 8
 
-    $(el).qtip options, event
+    $(elem).qtip options, event
 
 
   iconUrl: =>
@@ -71,11 +71,11 @@ class ProfilePage.AchievementBadge extends React.Component
 
     div
       className: "js-tooltip-achievement #{badgeClasses} #{@props.additionalClasses}",
-      img _.extend
+      el Img2x,
         alt: @props.achievement.name
         className: 'badge-achievement__image'
         onMouseOver: @onMouseOver
-        osu.src2x @iconUrl()
+        src: @iconUrl()
 
       div
         className: 'hidden'
@@ -90,10 +90,10 @@ class ProfilePage.AchievementBadge extends React.Component
             div
               className: badgeClasses
               div className: 'badge-achievement__locked-bg badge-achievement__locked-bg--big'
-              img _.extend
+              el Img2x,
                 alt: @props.achievement.name
                 className: 'badge-achievement__image badge-achievement__image--big'
-                osu.src2x @iconUrl()
+                src: @iconUrl()
           div
             className: 'tooltip-achievement__content'
             div
