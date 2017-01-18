@@ -339,7 +339,7 @@ function footer_links()
 
 function presence($string, $valueIfBlank = null)
 {
-    return present($string) === true ? $string : $valueIfBlank;
+    return present($string) ? $string : $valueIfBlank;
 }
 
 function present($string)
@@ -511,7 +511,7 @@ function get_bool($string)
  */
 function get_int($string)
 {
-    if (present($string) === true) {
+    if (present($string)) {
         return (int) $string;
     }
 }

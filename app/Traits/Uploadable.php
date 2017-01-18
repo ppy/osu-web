@@ -52,7 +52,7 @@ trait Uploadable
      */
     public function getFileProperties()
     {
-        if (present($this->hash) === false || present($this->ext) === false) {
+        if (!present($this->hash) || !present($this->ext)) {
             return;
         }
 
