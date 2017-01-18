@@ -210,13 +210,6 @@ function link_to_user($user_id, $user_name, $user_colour)
     }
 }
 
-function user_icon($type, $title, $link)
-{
-    $title = e($title);
-
-    return "<a href='{$link}'><div class='user-icon' data-title='{$title}'><i class='fa fa-fw fa-{$type} fa-2x'></i></div></a>";
-}
-
 function issue_icon($issue)
 {
     switch ($issue) {
