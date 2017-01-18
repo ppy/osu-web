@@ -29,7 +29,7 @@
 
     border-radius: 3px;
     background: #ffffff;
-    box-shadow: 0px 1px 3px fade(#000, 25%);
+    box-shadow: 0 1px 3px fade(#000, 25%);
 
     cursor: pointer;
     text-align: left;
@@ -46,20 +46,20 @@
     margin-top: -175px;
 
     border-radius: 3px;
-    box-shadow: 0px 10px 20px fade(#000, 25%);
+    box-shadow: 0 10px 20px fade(#000, 25%);
     opacity: 0;
     pointer-events: none;
   }
 
   &__header {
     position: absolute;
-    left: 0px;
-    top: 0px;
+    left: 0;
+    top: 0;
 
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 
     border: none;
 
@@ -70,14 +70,13 @@
     background-position: center !important;
     background-size: cover !important;
 
-    // text-shadow: 0px 1px 2px fade(#000, 100%);
     font-weight: 400;
-    color: #ffffff;
+    color: #fff;
     font-style: italic;
 
     overflow: hidden;
 
-    .default-text-shadow;
+    .default-text-shadow();
   }
 
   &__thumb {
@@ -169,6 +168,6 @@
   }
 
   &__difficulty-icon {
-    margin-right: (@spacing / 2);
+    margin-right: 5px;
   }
 }

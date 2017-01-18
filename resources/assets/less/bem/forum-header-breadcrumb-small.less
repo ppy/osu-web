@@ -28,18 +28,18 @@
 
   // Less top padding because the font used has too much space
   // on the upper side
-  padding: (@spacing / 4) (@spacing / 4) (@spacing / 2);
+  padding: 2.5px 2.5px 5px;
 
   &__item {
     display: flex;
     line-height: 1;
 
-    margin: 0 (@spacing / 2);
+    margin: 0 5px;
 
     & + & {
       &::before {
         content: '»';
-        margin-right: (@spacing);
+        margin-right: 10px;
       }
     }
   }

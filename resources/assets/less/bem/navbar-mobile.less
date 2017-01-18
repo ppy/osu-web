@@ -24,7 +24,7 @@
 
   &__brand {
     float: none;
-    padding: 0px @grid-gutter-width/4;
+    padding: 0 10px;
     height: auto;
   }
 
@@ -56,7 +56,7 @@
 
   &__menu {
     box-shadow: none;
-    border-top-width: 0px;
+    border-top-width: 0;
     background-color: #444;
     position: absolute;
     width: 100%;
@@ -115,7 +115,7 @@
 
   &__menu-item-icon {
     width: @content-height;
-    margin-right: @grid-gutter-width/4;
+    margin-right: 10px;
     text-align: center;
 
     &--closed {
@@ -136,7 +136,7 @@
   }
 
   &__menu-items {
-    margin-top: 0px;
+    margin-top: 0;
   }
 
   &__menu-subitem {
@@ -145,7 +145,7 @@
       color: #fff;
       display: flex;
       align-items: center;
-      padding-left: @content-height + @grid-gutter-width/2;
+      padding-left: (@content-height + 20px);
 
       &:focus,
       &:hover,
@@ -158,15 +158,15 @@
 
   &__menu-subitem-icon {
     width: @content-height;
-    margin-right: @grid-gutter-width/4;
+    margin-right: 10px;
   }
 
   &__toggle {
     float: none;
     width: @content-height;
     height: @content-height;
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 
     border-width: 2px;
     color: #fff;

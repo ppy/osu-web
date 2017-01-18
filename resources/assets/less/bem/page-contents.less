@@ -1,21 +1,21 @@
 /**
-*    Copyright 2016 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 .page-contents {
   width: 100%;
@@ -39,10 +39,7 @@
   }
 
   &__content {
-    padding-top: @grid-gutter-width/2;
-    padding-bottom: @grid-gutter-width/4;
-    padding-left: @grid-gutter-width/2;
-    padding-right: @grid-gutter-width/2;
+    padding: 20px 20px 10px;
 
     @media @desktop {
       flex-basis: 100% / 3;
@@ -55,15 +52,15 @@
       }
 
       &--contests {
-        margin-left: @spacing * 2;
-        margin-right: @spacing * 2;
+        margin-left: 20px;
+        margin-right: 20px;
       }
     }
 
     &--artist-left {
       flex-basis: 100%;
       @media @desktop {
-        margin-right: @spacing;
+        margin-right: 10px;
       }
     }
 
@@ -71,18 +68,18 @@
       margin-top: -30px;
       @media @desktop {
         height: 100%;
-        margin-top: 0px;
+        margin-top: 0;
         .default-box-shadow();
       }
     }
   }
 
   &__row {
-    margin-bottom: @grid-gutter-width/4;
-    padding: 0px @grid-gutter-width/4;
+    margin-bottom: 10px;
+    padding: 0 10px;
 
     &--top {
-      margin-bottom: @grid-gutter-width/2;
+      margin-bottom: 20px;
     }
   }
 }

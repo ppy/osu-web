@@ -18,7 +18,7 @@
  */
 
 .osu-page-header {
-  @main-padding: (@spacing * 2);
+  @main-padding: 20px;
   @top: osu-page-header;
 
   background-size: cover;
@@ -48,11 +48,11 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-end;
-    padding: 0 @spacing;
+    padding: 0 10px;
     min-height: 150px;
 
     @media @desktop {
-      padding: 0 (@spacing * 5 - @spacing);
+      padding: 0 40px;
     }
 
     &::before {
@@ -123,12 +123,12 @@
     flex-direction: column;
     align-items: center;
 
-    right: @spacing;
-    bottom: @spacing;
+    right: 10px;
+    bottom: 10px;
 
     @media @desktop {
       right: 0;
-      bottom: (@spacing * 2);
+      bottom: 20px;
       width: 0;
 
       opacity: 0;
@@ -141,9 +141,9 @@
   }
 
   &__box {
-    margin: 0 @spacing;
+    margin: 0 10px;
     flex: 1 0 auto;
-    padding: (@spacing * 2) 0;
+    padding: 20px 0;
 
     &--status {
       display: flex;
@@ -159,7 +159,7 @@
   }
 
   &__status {
-    padding: 0 @spacing;
+    padding: 0 10px;
   }
 
   &__status-label {
@@ -174,7 +174,7 @@
 
   &__title {
     font-size: @font-size--header-title;
-    margin: 0 0 @spacing;
+    margin: 0 0 10px;
     .default-text-shadow();
     color: #fff;
 
@@ -206,12 +206,12 @@
 
   &__title-box {
     position: absolute;
-    bottom: @spacing;
+    bottom: 10px;
 
     .@{top}--mp-history & {
       @media @desktop {
         left: 150px;
-        bottom: @spacing * 3;
+        bottom: 30px;
       }
 
       @media @mobile {

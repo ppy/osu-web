@@ -29,8 +29,8 @@
 
   .event-end() {
     border-radius: 0 0 @border-radius-base @border-radius-base;
-    padding-bottom: (@spacing * 1.5);
-    margin-bottom: (@spacing * 2);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
   }
 
   &__event {
@@ -38,13 +38,13 @@
 
     &:first-child,
     :not(&) + & {
-      padding-top: (@spacing * 2);
+      padding-top: 20px;
       border-radius: @border-radius-base @border-radius-base 0 0;
     }
 
     &:last-child {
       .event-end();
-      padding-bottom: (@spacing * 2);
+      padding-bottom: 20px;
     }
   }
 

@@ -26,8 +26,8 @@
 
     right: 0;
     top: 0;
-    margin-right: @spacing;
-    margin-top: @spacing;
+    margin-right: 10px;
+    margin-top: 10px;
   }
 
   &__chart {
@@ -36,7 +36,7 @@
 
   &__content {
     .default-header-overlay();
-    padding: (@spacing * 9) (@spacing * 4) 0;
+    padding: 90px 40px 0;
     background-size: cover;
   }
 
@@ -55,7 +55,7 @@
 
   &__filters {
     display: flex;
-    margin: @spacing 0;
+    margin: 10px 0;
     flex-direction: column;
 
     @media @desktop {
@@ -66,13 +66,13 @@
 
   &__stats {
     flex: none;
-    margin: (@spacing / 2) (-@spacing / 2);
+    margin: 5px -5px;
     display: flex;
     flex-wrap: wrap;
 
     @media @desktop {
-      margin: (-@spacing / 2);
-      margin-left: (@spacing / 2);
+      margin: -5px;
+      margin-left: 5px;
     }
   }
 

@@ -26,7 +26,7 @@
   align-items: flex-end;
   justify-content: center;
 
-  padding: (@spacing * 2) @spacing 0;
+  padding: 20px 10px 0;
   list-style: none;
   flex-wrap: wrap;
   margin: 0;
@@ -40,18 +40,18 @@
     display: flex;
     line-height: 1;
 
-    margin: 0 @spacing;
+    margin: 0 10px;
 
     .@{_top}--breadcrumb & {
-      margin-left: (@spacing / 2);
-      margin-right: (@spacing / 2);
+      margin-left: 5px;
+      margin-right: 5px;
     }
 
     // pls halp
     .@{_top}--breadcrumb & + &::before {
       content: '»';
-      margin-right: @spacing;
-      margin-top: (@spacing / 2);
+      margin-right: 10px;
+      margin-top: 5px;
       vertical-align: middle;
     }
   }

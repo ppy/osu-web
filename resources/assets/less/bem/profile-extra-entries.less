@@ -16,17 +16,18 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
 .profile-extra-entries {
   list-style: none;
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
   @item-height: 25px;
 
   &__item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: @grid-gutter-width/8;
+    margin-bottom: 5px;
     height: @item-height;
     white-space: nowrap;
 
@@ -38,12 +39,12 @@
       height: auto;
       border-bottom: 1px solid @gray-e;
       margin: 0;
-      padding: @spacing 0;
+      padding: 10px 0;
 
       &::before {
         .full-size();
-        margin: 0 (-@spacing);
-        width: calc(100% ~'+' (@spacing * 2));
+        margin: 0 -10px;
+        width: calc(100% ~'+' 20px);
         pointer-events: none;
         will-change: opacity;
         transition: all 25ms ease-out;
@@ -91,7 +92,7 @@
   &__text {
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-right: @grid-gutter-width/2;
+    margin-right: 20px;
   }
 
   &__text-score {
@@ -118,6 +119,6 @@
     flex: none;
     width: @item-height;
     height: @item-height;
-    margin-right: @grid-gutter-width/4;
+    margin-right: 10px;
   }
 }

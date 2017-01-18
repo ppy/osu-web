@@ -21,11 +21,11 @@
   display: flex;
   align-items: center;
 
-  padding-bottom: (@spacing / 2);
+  padding-bottom: 5px;
 
   &__time {
     width: 85px;
-    margin-right: @spacing;
+    margin-right: 10px;
     text-align: right;
 
     font-weight: 700;
@@ -42,21 +42,37 @@
     justify-content: space-around;
     align-items: center;
 
-    margin-right: @spacing;
+    margin-right: 10px;
 
-    &--player-joined, &--match-created, &--host-changed {
+    &--player-joined {
       color: @green-dark;
     }
 
-    &--player-left, &--player-kicked, &--match-disbanded {
+    &--player-left {
       color: @yellow-dark;
+    }
+
+    &--player-kicked {
+      color: @yellow-dark;
+    }
+
+    &--match-created {
+      color: @green-dark;
+    }
+
+    &--match-disbanded {
+      color: @yellow-dark;
+    }
+
+    &--host-changed {
+      color: @green-dark;
     }
   }
 
   &__text {
     flex: 1;
     font-size: 12px;
-    padding-right: (@spacing * 2);
+    padding-right: 20px;
   }
 
   &__username {

@@ -17,7 +17,7 @@
  *
  */
 .livestream-page {
-  padding: (@spacing * 2);
+  padding: 20px;
 
   @media @desktop {
     padding-left: @padding-big;
@@ -30,18 +30,18 @@
   }
 
   &__item {
-    margin: @spacing;
+    margin: 10px;
 
-    width: calc(100% ~'-' (@spacing * 2));
+    width: calc(100% ~'-' 20px);
 
     @media @desktop {
-      width: calc((100% / 2) ~'-' (@spacing * 2));
+      width: calc((100% / 2) ~'-' 20px);
     }
   }
 
   &__items {
-    margin-left: (-@spacing);
-    margin-right: (-@spacing);
+    margin-left: -10px;
+    margin-right: -10px;
     display: flex;
     flex-wrap: wrap;
   }

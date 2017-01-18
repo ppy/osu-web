@@ -1,27 +1,27 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 .artist {
   @_top: artist;
   &__index {
     background-color: #293336;
-    padding: @spacing;
+    padding: 10px;
     font-weight: 300;
     .default-box-shadow();
 
@@ -32,7 +32,7 @@
   }
 
   &__box {
-    margin: @spacing;
+    margin: 10px;
   }
 
   &__album {
@@ -106,7 +106,7 @@
     color: white;
     .default-text-shadow();
     &--sidebar {
-      padding: 0px;
+      padding: 0;
       font-size: 14px;
       margin-top: 5px;
     }
@@ -116,7 +116,7 @@
     text-align: center;
     color: #FFCD23;
     font-size: 14px;
-    margin-top: @spacing / 2;
+    margin-top: 5px;
     display: block;
     &:hover {
       color: #FFCD23;
@@ -134,7 +134,7 @@
     color: white;
     font-size: 14px;
     font-weight: 300;
-    padding: 0px 20px 20px 20px;
+    padding: 0 20px 20px 20px;
 
     @media @desktop {
       padding: 20px;
@@ -171,14 +171,10 @@
     background-position: center;
     display: block;
 
-    margin: -50px auto @spacing auto;
+    margin: -90px auto 10px auto;
 
     @media @desktop {
       margin-top: -160px;
-    }
-
-    @media @mobile {
-      margin: -90px auto @spacing auto;
     }
 
     &--index {
@@ -204,7 +200,7 @@
   &__links-area {
     margin: 0 auto 10px auto;
     width: 270px;
-    padding: @spacing;
+    padding: 10px;
 
     @media @desktop {
       .default-box-shadow();

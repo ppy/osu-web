@@ -1,21 +1,21 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 .address-list {
   margin-top: 20px;
 }
@@ -25,7 +25,7 @@
   background: white;
   border: 3px solid transparent;
   font-style: italic;
-  padding: @grid-gutter-width/2;
+  padding: 20px;
   &:last-child {
     margin-bottom: 20px;
   }
@@ -96,7 +96,7 @@
     color: @pink-text;
     font-style: bold;
     font-size: 30px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
 
   .notes {
@@ -105,8 +105,8 @@
 
 #product-header {
   .product-header-base;
-  padding-left: @grid-gutter-width;
-  padding-top: @grid-gutter-width;
+  padding-left: 40px;
+  padding-top: 40px;
   height: 300px;
 }
 
@@ -146,8 +146,8 @@
     .default-border-radius();
     .default-box-shadow();
     list-style: none;
-    padding: @grid-gutter-width/4;
-    margin: 0px 0px 5px;
+    padding: 10px;
+    margin: 0 0 5px;
 
     display: flex;
     align-items: center;
@@ -177,7 +177,7 @@
 
       .subtotal {
         flex: 0 0 150px;
-        padding: 0px @grid-gutter-width/2;
+        padding: 0 20px;
       }
 
       button {
@@ -244,8 +244,8 @@ table.order-line-items {
 
     tr > td {
       border: none;
-      padding-left: 0px;
-      padding-right: 0px;
+      padding-left: 0;
+      padding-right: 0;
     }
     tr.warning > td { background-color: #fff; }
   }

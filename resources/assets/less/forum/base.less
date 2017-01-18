@@ -1,21 +1,22 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 @forum-topic-navigator-diameter: 80px;
 @forum-search-diameter: 30px;
 
@@ -49,21 +50,21 @@ body.community {
   a { .link-white(); }
 
   > div {
-    bottom: 0px;
-    left: 0px;
+    bottom: 0;
+    left: 0;
     position: absolute;
     width: 100%;
-    padding: 0px @grid-gutter-width/4;
+    padding: 0 10px;
     @media @desktop {
-      padding: 0px 100px;
+      padding: 0 100px;
     }
   }
 }
 
 .forums-breadcrumb {
   background: none;
-  margin: 0px;
-  padding: @grid-gutter-width/4 0px;
+  margin: 0;
+  padding: 10px 0;
 
   li::before {
     display: none;
@@ -73,7 +74,7 @@ body.community {
     content: "»";
     color: #fff;
     display: inline-block;
-    margin: 0px @grid-gutter-width/8;
+    margin: 0 5px;
   }
 }
 
@@ -93,7 +94,7 @@ body.community {
     bottom: 0;
 
     // the thickness of the circle (more or less)
-    padding: 0px 70px;
+    padding: 0 70px;
   }
 
   .text {
@@ -123,16 +124,16 @@ body.community {
   .default-box-shadow();
 
   background: fade(#000, 80%);
-  margin-bottom: @grid-gutter-width/4;
+  margin-bottom: 10px;
 
 }
 
 .forum-pagination {
-  padding: @grid-gutter-width/4;
+  padding: 10px;
   > ul {
     list-style: none;
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 
     text-align: center;
     > li {
@@ -146,7 +147,7 @@ body.community {
 
       a, span {
         display: block;
-        padding: @grid-gutter-width/8;
+        padding: 5px;
         color: @gray;
         font-size: 12px;
 
@@ -161,7 +162,7 @@ body.community {
 
       a, span {
         font-size: 16px;
-        padding: 0px @grid-gutter-width/4;
+        padding: 0 10px;
       }
     }
   }
@@ -172,8 +173,8 @@ body.community {
 
   background: #fff;
   list-style: none;
-  padding: @grid-gutter-width/8;
-  margin: 0px -@grid-gutter-width/2;
+  padding: 5px;
+  margin: 0 -20px;
 
   .name { font-size: 16px; }
   .description { font-size: 12px; }
@@ -216,7 +217,7 @@ body.community {
   }
 
   &__forum {
-    margin: @grid-gutter-width/8 @grid-gutter-width/8;
+    margin: 5px 5px;
 
     display: flex;
     align-items: stretch;
@@ -254,7 +255,7 @@ body.community {
     }
 
     .left, .right {
-      padding: @grid-gutter-width/4;
+      padding: 10px;
     }
 
     .left {
@@ -268,11 +269,11 @@ body.community {
 
       .subforums {
         list-style: none;
-        margin: 0px;
-        padding: 0px;
+        margin: 0;
+        padding: 0;
 
         > li {
-          padding-right: @grid-gutter-width/4;
+          padding-right: 10px;
           display: inline-block;
 
           .name {
@@ -312,7 +313,7 @@ body.community {
 .forum__issue-icons {
   flex: none;
   display: flex;
-  padding: (@spacing / 2) (@spacing / 2) 0;
+  padding: 5px 5px 0;
   order: 1;
 
   @media @desktop {
@@ -323,8 +324,8 @@ body.community {
 }
 
 .forum__avatar-container {
-  padding: @grid-gutter-width/8;
-  box-shadow: 0px 2px 5px fade(#000, 30%);
+  padding: 5px;
+  box-shadow: 0 2px 5px fade(#000, 30%);
   .default-border-radius();
   background-color: #fff;
 }
@@ -333,7 +334,7 @@ body.community {
   align-self: flex-start;
   flex: none;
   width: 80px;
-  margin-right: @grid-gutter-width/4;
+  margin-right: 10px;
 }
 
 #forum-search {
@@ -353,7 +354,7 @@ body.community {
 }
 
 #forum-search-modal .modal-dialog {
-  margin: 0px;
+  margin: 0;
   position: absolute;
   width: auto;
   .modal-content {
@@ -365,18 +366,18 @@ body.community {
   }
 
   .modal-body {
-    padding: @grid-gutter-width/4 @grid-gutter-width/4 @grid-gutter-width;
+    padding: 10px 10px 40px;
   }
 
   .modal-footer {
     border: none;
-    padding: 0px;
+    padding: 0;
 
     .forum-search-logo {
       position: absolute;
-      right: 0px;
-      bottom: 0px;
-      padding: 0px;
+      right: 0;
+      bottom: 0;
+      padding: 0;
       color: darken(@gray-lighter, 20%); // #bbb
     }
   }
@@ -387,7 +388,7 @@ body.community {
     font-style: normal;
     font-size: 12px;
     font-weight: bold;
-    margin: 0px;
+    margin: 0;
   }
 
   label {
@@ -404,21 +405,21 @@ body.community {
     .default-border-radius();
     background: #fff;
     display: flex;
-    padding: @grid-gutter-width/8;
-    margin: @grid-gutter-width/4 0px;
+    padding: 5px;
+    margin: 10px 0;
 
     > * {
       border: none;
-      border-radius: 0px;
+      border-radius: 0;
       box-shadow: none;
       background: none;
       font-size: 20px;
-      padding: 0px @grid-gutter-width/8;
+      padding: 0 5px;
     }
 
     input {
       font-style: italic;
-      padding: 0px;
+      padding: 0;
     }
 
     button {
@@ -438,11 +439,11 @@ body.community {
 #forum-topic-navigator {
   position: absolute;
 
-  bottom: @grid-gutter-width/4;
-  right: @grid-gutter-width/4;
+  bottom: 10px;
+  right: 10px;
   @media @desktop {
-    right: @grid-gutter-width - @forum-topic-navigator-diameter/2;
-    bottom: @grid-gutter-width/2;
+    right: (40px - @forum-topic-navigator-diameter / 2);
+    bottom: 20px;
   }
 
   .circle(@forum-topic-navigator-diameter);
@@ -469,7 +470,7 @@ body.community {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: @spacing;
+  margin-bottom: 10px;
 
   a, i {
     color: #000;
@@ -489,7 +490,7 @@ body.community {
   display: flex;
   flex-direction: column;
 
-  padding: @grid-gutter-width/4 @grid-gutter-width/4 0px;
+  padding: 10px 10px 0;
   .default-border-radius();
   background-color: @blue-darker;
   font-weight: 500;
@@ -498,8 +499,8 @@ body.community {
 }
 
 .forum__poster-box--extra {
-  margin-top: @grid-gutter-width/8;
-  padding: @grid-gutter-width/4;
+  margin-top: 5px;
+  padding: 10px;
 }
 
 .forum__poster-box__link {
@@ -510,6 +511,6 @@ body.community {
 }
 
 .forum__info-row {
-  margin-bottom: @grid-gutter-width/4;
+  margin-bottom: 10px;
   flex: none;
 }

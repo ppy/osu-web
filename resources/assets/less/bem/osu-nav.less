@@ -21,18 +21,18 @@
   width: 100%;
   max-width: @container-sm;
   display: flex;
-  padding: (@spacing * 2) (@spacing * 2) 0;
+  padding: 20px 20px 0;
 
   @media @desktop {
-    width: calc(100% ~'-' (@spacing * 8));
+    width: calc(100% ~'-' 80px);
   }
 
   &__avatar {
     .default-border-radius();
     .default-box-shadow();
 
-    margin-left: @spacing;
-    margin-bottom: (-@spacing);
+    margin-left: 10px;
+    margin-bottom: -10px;
     overflow: hidden;
 
     width: @nav-avatar-size;
@@ -62,12 +62,12 @@
     &--logo {
       height: 0;
       align-self: flex-start;
-      margin-top: (-@spacing / 2);
+      margin-top: -5px;
       align-items: flex-start;
     }
 
     &--title {
-      padding: 0 @spacing;
+      padding: 0 10px;
       flex: 1 0 auto;
     }
   }
@@ -84,14 +84,14 @@
   }
 
   &__title {
-    padding-bottom: (@spacing / 2);
+    padding-bottom: 5px;
     display: flex;
     align-items: flex-end;
   }
 
   &__title-separator {
     display: inline-block;
-    margin: 0 @spacing;
+    margin: 0 10px;
     opacity: 0.5;
   }
 }
