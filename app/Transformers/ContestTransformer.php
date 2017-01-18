@@ -53,7 +53,7 @@ class ContestTransformer extends Fractal\TransformerAbstract
             $response['shape'] = $contest->entry_shape;
         }
 
-        if (isset($contest->extra_options['best_of'])) {
+        if ($contest->isBestOf()) {
             $response['best_of'] = true;
         }
 
@@ -62,14 +62,14 @@ class ContestTransformer extends Fractal\TransformerAbstract
 
     public function includeEntries(Contest $contest)
     {
-        if (isset($contest->extra_options['best_of'])) {
+        if ($contest->isBestOf()) {
             $user = Auth::user();
             if ($user === null) {
                 $entries = [];
             } else {
                 $playmode = Beatmap::MODES[$contest->extra_options['best_of']['mode'] ?? 'osu'];
 
-                // This just does a join to playcounts (via beatmapset) to filter out maps a user hasn't played.
+                // This filters out maps a user hasn't played from the listing
                 $entries =
                     ContestEntry::with('contest')
                             ->whereIn('entry_url', function ($query) use ($playmode, $user) {

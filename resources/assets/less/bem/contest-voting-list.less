@@ -93,14 +93,16 @@
     overflow: hidden;
 
     &--show-votes {
-      align-items: baseline;
       width: 100%;
       padding: 2px @spacing;
-      height: 32px;
-      background: transparent url(/images/layout/vote-1x1.png) 0 center repeat-y;
-      flex-direction: column;
-      justify-content: space-around;
     }
+  }
+
+  &__votes-bar {
+    position: absolute;
+    height: 100%;
+    background-color: #3F4E51;
+    margin: -2px -@spacing;
   }
 
   &__entrant {

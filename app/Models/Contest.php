@@ -54,6 +54,11 @@ class Contest extends Model
         });
     }
 
+    public function isBestOf()
+    {
+        return isset($this->extra_options['best_of']);
+    }
+
     public function isSubmissionOpen()
     {
         return $this->entry_starts_at !== null && $this->entry_starts_at->isPast() &&
@@ -113,7 +118,7 @@ class Contest extends Model
 
     public function getUnmaskedAttribute()
     {
-        return $this->extra_options['unmasked'] ?? false;
+        return $this->extra_options['unmasked'];
     }
 
     public function setUnmaskedAttribute(bool $bool)
@@ -123,7 +128,7 @@ class Contest extends Model
 
     public function getLinkIconAttribute()
     {
-        return $this->extra_options['link_icon'] ?? false;
+        return $this->extra_options['link_icon'] ?? 'fa-cloud-download';
     }
 
     public function setLinkIconAttribute($icon)

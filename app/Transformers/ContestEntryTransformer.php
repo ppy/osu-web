@@ -35,7 +35,7 @@ class ContestEntryTransformer extends Fractal\TransformerAbstract
         return [
             'id' => $entry->id,
             'title' => $entry->contest->unmasked ? $entry->name : $entry->masked_name,
-            'preview' => $entry->entry_url,
+            'preview' => $entry->contest->isBestOf() ? route('beatmapsets.show', $entry->entry_url) : $entry->entry_url,
         ];
     }
 
