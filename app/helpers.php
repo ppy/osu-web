@@ -708,11 +708,12 @@ function priv_check_user($user, $ability, $args = null)
 // Fisher-Yates
 function seeded_shuffle(array &$items, int $seed)
 {
-    @mt_srand($seed);
+    mt_srand($seed);
     for ($i = count($items) - 1; $i > 0; $i--) {
-        $j = @mt_rand(0, $i);
+        $j = mt_rand(0, $i);
         $tmp = $items[$i];
         $items[$i] = $items[$j];
         $items[$j] = $tmp;
     }
+    mt_srand();
 }
