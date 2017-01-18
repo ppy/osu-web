@@ -62,33 +62,6 @@ class ContestTransformer extends Fractal\TransformerAbstract
 
     public function includeEntries(Contest $contest)
     {
-        if ($contest->isBestOf()) {
-            $user = Auth::user();
-            if ($user === null) {
-                $entries = [];
-            } else {
-                $playmode = Beatmap::MODES[$contest->extra_options['best_of']['mode'] ?? 'osu'];
-
-                // This filters out maps a user hasn't played from the listing
-                $entries =
-                    ContestEntry::with('contest')
-                            ->whereIn('entry_url', function ($query) use ($playmode, $user) {
-                                $query->select('beatmapset_id')
-                                    ->from('osu_beatmaps')
-                                    ->where('osu_beatmaps.playmode', '=', $playmode)
-                                    ->whereIn('beatmap_id', function ($query) use ($user) {
-                                        $query->select('beatmap_id')
-                                            ->from('osu_user_beatmap_playcount')
-                                            ->where('user_id', '=', $user->user_id);
-                                    });
-                            })
-                            ->where('contest_id', $contest->id)
-                            ->get();
-            }
-        } else {
-            $entries = $contest->entries;
-        }
-
-        return $this->collection($entries, new ContestEntryTransformer);
+        return $this->collection($contest->entriesByType(Auth::user()), new ContestEntryTransformer);
     }
 }

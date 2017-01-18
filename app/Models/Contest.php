@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use App\Transformers\ContestTransformer;
+use App\Transformers\ContestEntryTransformer;
 use App\Transformers\UserContestEntryTransformer;
 use Cache;
 use Illuminate\Database\Eloquent\Model;
@@ -118,7 +119,7 @@ class Contest extends Model
 
     public function getUnmaskedAttribute()
     {
-        return $this->extra_options['unmasked'];
+        return $this->extra_options['unmasked'] ?? false;
     }
 
     public function setUnmaskedAttribute(bool $bool)
@@ -186,19 +187,53 @@ class Contest extends Model
         }
     }
 
-    public function defaultJson($user = null)
+    public function entriesByType($user = null)
     {
-        $includes = ['entries'];
+        if ($this->isBestOf()) {
+            if ($user === null) {
+                return [];
+            }
 
-        if ($this->type === 'art') {
-            $includes[] = 'entries.artMeta';
+            $playmode = Beatmap::MODES[$this->extra_options['best_of']['mode'] ?? 'osu'];
+
+            // This will only returns beatmap entries a user has played
+            return $this->entries()->with('contest')
+                ->whereIn('entry_url', function ($query) use ($playmode, $user) {
+                    $query->select('beatmapset_id')
+                        ->from('osu_beatmaps')
+                        ->where('osu_beatmaps.playmode', '=', $playmode)
+                        ->whereIn('beatmap_id', function ($query) use ($user) {
+                            $query->select('beatmap_id')
+                                ->from('osu_user_beatmap_playcount')
+                                ->where('user_id', '=', $user->user_id);
+                        });
+                })
+                ->get();
         }
 
         if ($this->show_votes) {
-            $includes[] = 'entries.results';
+            return $this->entries()->with(['contest', 'user'])->get();
         }
 
-        $contestJson = json_item($this, new ContestTransformer, $includes);
+        return $this->entries()->with(['contest'])->get();
+    }
+
+    public function defaultJson($user = null)
+    {
+        $includes = [];
+
+        if ($this->type === 'art') {
+            $includes[] = 'artMeta';
+        }
+
+        if ($this->show_votes) {
+            $includes[] = 'results';
+        }
+
+        $contestJson = json_item($this, new ContestTransformer);
+        if ($this->isVotingStarted()) {
+            $contestJson['entries'] = json_collection($this->entriesByType($user), new ContestEntryTransformer, $includes);
+        }
 
         if (!empty($contestJson['entries'])) {
             if ($this->show_votes) {
@@ -226,7 +261,7 @@ class Contest extends Model
 
         return json_encode([
             'contest' => $contestJson,
-            'userVotes' => $this->votesForUser($user),
+            'userVotes' => ($this->isVotingStarted() ? $this->votesForUser($user) : []),
         ], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
     }
 

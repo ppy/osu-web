@@ -46,19 +46,12 @@ class ContestsController extends Controller
 
         if ($contest->isVotingStarted() && isset($contest->extra_options['children'])) {
             $contestIds = $contest->extra_options['children'];
+            $contests = Contest::whereIn('id', $contestIds)
+                ->orderByRaw('FIELD(id, '.db_array_bind($contestIds).')', $contestIds)
+                ->get();
         } else {
-            $contestIds = [$id];
+            $contests = collect([$contest]);
         }
-
-        $contests = Contest::with('entries', 'entries.contest');
-
-        if ($contest->show_votes) {
-            $contests = $contests->with('entries.user');
-        }
-
-        $contests = $contests->whereIn('id', $contestIds)
-            ->orderByRaw('FIELD(id, '.db_array_bind($contestIds).')', $contestIds)
-            ->get();
 
         if ($contest->isVotingStarted()) {
             return view('contests.voting')
