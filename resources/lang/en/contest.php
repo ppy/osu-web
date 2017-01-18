@@ -31,6 +31,7 @@ return [
         ],
     ],
     'entry' => [
+        '_' => 'entry',
         'login_required' => 'Please login to enter the contest.',
         'silenced_or_restricted' => 'You cannot enter contests while restricted or silenced.',
         'preparation' => 'We are currently preparing this contest. Please wait patiently!',
@@ -47,7 +48,10 @@ return [
     'beatmaps' => [
         'download' => 'Download Entry',
     ],
-    'votes' => '1 vote|:count votes',
+    'vote' => [
+        'list' => 'votes',
+        'count' => '1 vote|:count votes',
+    ],
     'dates' => [
         'ended' => 'Ended :date',
 

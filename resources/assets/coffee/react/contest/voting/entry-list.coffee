@@ -51,8 +51,8 @@ class Contest.Voting.EntryList extends Contest.Voting.BaseEntryList
         if @state.options.showLink
           div className: 'contest-voting-list__icon'
         div className: 'contest-voting-list__header-wrapper',
-          div className: 'contest-voting-list__header-title', 'entry'
+          div className: 'contest-voting-list__header-title', osu.trans('contest.entry._')
           div className: 'contest-voting-list__header-votesummary',
-            div className: 'contest__vote-summary-text', 'votes'
+            div className: 'contest__vote-summary-text', osu.trans('contest.vote.list')
             el Contest.Voting.VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
       div {}, entries
