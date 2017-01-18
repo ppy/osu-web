@@ -129,7 +129,7 @@ class Contest extends Model
 
     public function getLinkIconAttribute()
     {
-        return $this->extra_options['link_icon'] ?? 'fa-cloud-download';
+        return $this->extra_options['link_icon'] ?? 'cloud-download';
     }
 
     public function setLinkIconAttribute($icon)
