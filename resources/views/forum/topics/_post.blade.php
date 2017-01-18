@@ -46,11 +46,7 @@
                 </a>
             </div>
 
-            <div class="forum-post__content forum-post__content--main">
-                <div class="forum-post-content">
-                    {!! $post->bodyHTML !!}
-                </div>
-            </div>
+            @include('forum.topics._post_content')
 
             @if($post->post_edit_count > 0)
                 <div class="forum-post__content forum-post__content--footer">
