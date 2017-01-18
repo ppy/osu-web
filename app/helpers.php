@@ -196,10 +196,10 @@ function current_action()
     }
 }
 
-function link_to_user($user_id, $user_name, $user_colour)
+function link_to_user($user_id, $user_name, $user_color)
 {
     $user_name = e($user_name);
-    $style = user_colour_style($user_colour, 'color');
+    $style = user_color_style($user_color, 'color');
 
     if ($user_id) {
         $user_url = e(route('users.show', $user_id));
@@ -347,15 +347,13 @@ function present($string)
     return $string !== null && $string !== '';
 }
 
-function user_colour_style($colour, $style)
+function user_color_style($color, $style)
 {
-    if (presence($colour) === null) {
+    if (!present($color)) {
         return '';
     }
 
-    $colour = e($colour);
-
-    return "{$style}: #{$colour};";
+    return sprintf('%s: #%s', $style, e($color));
 }
 
 function base62_encode($input)

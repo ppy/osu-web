@@ -92,7 +92,7 @@
                 @if (Auth::user()->isSpecial())
                     <div
                         class="forum-post__stripe"
-                        style="{{ user_colour_style(Auth::user()->user_colour, "background-color") }}"
+                        style="{{ user_color_style(Auth::user()->user_colour, "background-color") }}"
                     ></div>
                 @endif
 

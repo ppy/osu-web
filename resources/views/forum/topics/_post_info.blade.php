@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="hidden-xs forum-post__info-panel" style="{{ user_colour_style($user->user_colour, "background-color") }}">
+<div class="hidden-xs forum-post__info-panel" style="{{ user_color_style($user->user_colour, "background-color") }}">
     <div class="forum-post__info-panel-main">
         @if ($user->hasProfile() === true)
             @if ($user->user_avatar)
@@ -71,7 +71,7 @@
 </div>
 
 <div class="visible-xs">
-    <div class="forum-post__info-panel-xs" style="{{ user_colour_style($user->user_colour, "background-color") }}">
+    <div class="forum-post__info-panel-xs" style="{{ user_color_style($user->user_colour, "background-color") }}">
         @if ($user->user_avatar)
             <div class="avatar-ribbon
                 avatar-ribbon--xs
