@@ -19,7 +19,7 @@
 @extends('master', [
     'body_additional_classes' => 'osu-layout--body-333',
     'title' => null,
-    'titleAppend' => $path,
+    'titleAppend' => (present($subtitle) ? $subtitle.' / ' : '').$title,
 ])
 
 @section('content')

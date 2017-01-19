@@ -21,9 +21,9 @@
 return [
     'required' => ':attribute est requis.',
 
-        'beatmap_discussion_post' => [
-                'first_post' => 'Impossible de supprimer le post de départ.',
-        ],
+    'beatmap_discussion_post' => [
+        'first_post' => 'Impossible de supprimer le post de départ.',
+    ],
 
     'forum' => [
         'feature_vote' => [
@@ -38,7 +38,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => 'Les options dupliquées ne sont pas autorisées.',
             'invalid_max_options' => 'Le nombre de réponses par utilisateur ne devrait pas dépasser le nombre de réponses.',
-            'minimum_one_selection' => 'Un minimum d\'une réponse par utilisateur est nécessaire.',
+            'minimum_one_selection' => "Un minimum d'une réponse par utilisateur est nécessaire.",
             'minimum_two' => 'Au moins 2 réponses nécéssaires.',
             'too_many_options' => 'Nombre maximal de réponses dépassés.',
         ],

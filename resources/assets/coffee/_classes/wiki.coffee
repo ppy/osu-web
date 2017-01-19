@@ -24,9 +24,6 @@ class @Wiki
 
     $(document).on 'turbolinks:load', @initialize
 
-    $(document).on 'turbolinks:load', @scrollSpy
-    $(window).on 'throttled-scroll throttled-resize', @scrollSpy
-
     $.subscribe 'stickyHeader', @stickyToc
     $(document).on 'turbolinks:load', @stickyToc
 
@@ -50,6 +47,12 @@ class @Wiki
     for i in [1..6]
       @$content.find("h#{i}").addClass "wiki-content__header wiki-content__header--#{i}"
     @$content.find('img').addClass 'wiki-content__image'
+    @$content.find('ol, ul').addClass 'wiki-content__list'
+    @$content.find('li').addClass 'wiki-content__list-item'
+    @$content.find('ul > li').addClass 'wiki-content__list-item--bullet'
+    for list1 in ['ul', 'ol']
+      for list2 in ['ul', 'ol']
+        @$content.find("#{list1} > li > #{list2} li").addClass 'wiki-content__list-item--deep'
     @$content.find('table').addClass 'wiki-content__table'
     @$content.find('td, th').addClass 'wiki-content__table-data'
     @$content.find('th').addClass 'wiki-content__table-data--header'
@@ -59,11 +62,22 @@ class @Wiki
     $mainToc = $toc = $('<ol>', class: 'wiki-toc-list wiki-toc-list--top')
     lastLevel = null
 
+    titleIds = {}
+
     for header in @$content.find('h2, h3, h4, h5, h6')
       currentLevel = parseInt header.tagName.match(/\d+/)[0], 10
       title = header.textContent.trim()
       titleId = _.kebabCase title
+
+      # ensure no duplicate ids
+      titleIds[titleId] ?= 1
+      if titleIds[titleId] > 0
+        titleIds[titleId] += 1
+        titleId = "#{titleId}.#{titleIds[titleId]}"
+
       $link = $('<a>', class: 'wiki-toc-list__link js-wiki-spy-link', href: "##{titleId}").text(title)
+      if currentLevel > 2
+        $link.addClass 'wiki-toc-list__link--small'
       $item = $('<li>', class: 'wiki-toc-list__item').append $link
 
       if lastLevel?
@@ -91,7 +105,7 @@ class @Wiki
     return if $title.length == 0
 
     $('.js-wiki-title').text $title.text()
-    $title.remove()
+    @$content.find('h1').remove()
 
 
   updateLocaleLink: (_, el) =>
@@ -103,19 +117,6 @@ class @Wiki
     path = parsed[2]
 
     el.href = "#{path}?locale=#{locale}"
-
-
-  scrollSpy: =>
-    return if !@content[0]?
-
-    for header in document.getElementsByClassName('js-wiki-spy-target') by -1
-      id = header.id
-      break if header.getBoundingClientRect().top <= 0
-
-    $('.js-wiki-spy-link')
-      .removeClass 'js-wiki-spy-link--active'
-      .filter "[href='##{id}']"
-      .addClass 'js-wiki-spy-link--active'
 
 
   stickyToc: (_e, target) =>

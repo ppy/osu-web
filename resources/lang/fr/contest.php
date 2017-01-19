@@ -19,42 +19,44 @@
  */
 
 return [
-        'header' => [
-                'small' => 'Compete in more ways than just clicking circles.',
-                'large' => 'Concours communautaires osu!',
-        ],
+    'header' => [
+        'small' => 'Compete in more ways than just clicking circles.',
+        'large' => 'Concours communautaires osu!',
+    ],
     'voting' => [
         'over' => 'Le vote pour ce concours est terminé',
     ],
-        'entry' => [
-                'login_required' => 'Merci de vous connecter pour participer.',
-                'silenced_or_restricted' => 'Vous ne pouvez pas entrer dans un concours quand vous êtes réduit au silence ou restreint.',
-                'preparation' => 'Nous sommes en train de préparer le concours. Merci de patienter!',
-                'over' => 'Merci pour vos inscriptions ! Les soumissions sont fermées pour ce concours et le vote va bientôt ouvrir.',
-                'limit_reached' => "Vous avez atteint la limite d'entrée pour ce concours",
-                'drop_here' => '"Droppez" votre entrée ici',
-                'wrong_type' => [
-                        'art' => 'Uniquement les fichiers .jpg et .png sont admis pour ce concours.',
-                        'beatmap' => 'Uniquement les fichiers .osu sont admis pour ce concours.',
-                        'music' => 'Uniquement les fichiers .mp3 sont admin pour ce concours.',
-                ],
-                'too_big' => 'Les entrées pour le concours sont limitées à :limit.',
+    'entry' => [
+        'login_required' => 'Merci de vous connecter pour participer.',
+        'silenced_or_restricted' => 'Vous ne pouvez pas entrer dans un concours quand vous êtes réduit au silence ou restreint.',
+        'preparation' => 'Nous sommes en train de préparer le concours. Merci de patienter!',
+        'over' => 'Merci pour vos inscriptions ! Les soumissions sont fermées pour ce concours et le vote va bientôt ouvrir.',
+        'limit_reached' => "Vous avez atteint la limite d'entrée pour ce concours",
+        'drop_here' => '"Droppez" votre entrée ici',
+        'wrong_type' => [
+            'art' => 'Uniquement les fichiers .jpg et .png sont admis pour ce concours.',
+            'beatmap' => 'Uniquement les fichiers .osu sont admis pour ce concours.',
+            'music' => 'Uniquement les fichiers .mp3 sont admin pour ce concours.',
         ],
-    'beatmaps' => [
-      'download' => 'Télécharger l\'inscription',
+        'too_big' => 'Les entrées pour le concours sont limitées à :limit.',
     ],
-         'votes' => '1 vote|:count votes',
-         'dates' => [
-                 'ended' => 'Terminé le :date',
+    'beatmaps' => [
+        'download' => "Télécharger l'inscription",
+    ],
+    'vote' => [
+        'count' => '1 vote|:count votes',
+    ],
+    'dates' => [
+        'ended' => 'Terminé le :date',
 
-                'starts' => [
-                        '_' => 'Démarre le :date',
-                        'soon' => 'bientôt™',
-                ],
+        'starts' => [
+            '_' => 'Démarre le :date',
+            'soon' => 'bientôt™',
         ],
-        'states' => [
-                'entry' => 'Entrée ouverte',
-                'voting' => 'Vote démarré',
-                'results' => 'Résultats tombés',
-        ],
+    ],
+    'states' => [
+        'entry' => 'Entrée ouverte',
+        'voting' => 'Vote démarré',
+        'results' => 'Résultats tombés',
+    ],
 ];

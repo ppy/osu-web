@@ -82,6 +82,6 @@ class Contest.Voting.ArtEntry extends React.Component
               span className: 'contest-art-entry__entrant', @props.entry.results.actual_name
           div className: 'contest-art-entry__result-pane',
             span className: 'contest-art-entry__result-votes',
-              osu.transChoice 'contest.votes', @props.entry.results.votes
+              osu.transChoice 'contest.vote.count', @props.entry.results.votes
             if not isNaN(votePercentage)
               span className: 'contest-art-entry__result-votes contest-art-entry__result-votes--percentage', " (#{votePercentage}%)"

@@ -36,7 +36,9 @@
     </div>
     <div class="osu-layout__row osu-layout__row--page-contests">
         <div class="page-contents__content--contests">
-            @yield('contest-content')
+            <div class='contest'>
+                @yield('contest-content')
+            </div>
         </div>
     </div>
 @endsection

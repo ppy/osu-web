@@ -21,7 +21,7 @@
 return [
     'header' => [
         'title' => 'statut',
-        'description' => 'qu\'est ce qui se passe mec ?',
+        'description' => "qu'est ce qui se passe mec ?",
     ],
 
     'incidents' => [
@@ -49,7 +49,7 @@ return [
         ],
 
         'uptime' => [
-            'title' => 'Temps d\'up',
+            'title' => "Temps d'up",
             'graphs' => [
                 'server' => 'serveur',
                 'web' => 'web',
@@ -57,7 +57,7 @@ return [
         ],
 
         'when' => [
-            'today' => 'aujourd\'hui',
+            'today' => "aujourd'hui",
             'week' => 'semaine',
             'month' => 'mois',
             'all_time' => 'tout le temps',

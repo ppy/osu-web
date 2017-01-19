@@ -21,7 +21,8 @@
   @top: contest-entry-list;
   &__table {
     width: 100%;
-    max-width: 600px;
+    max-width: 600px + @spacing * 4;
+    padding: 0px @spacing * 2;
     margin: 0 auto;
   }
 
@@ -76,7 +77,6 @@
 
   &__header-votesummary {
     display: flex;
-    height: 31px;
     align-items: center;
   }
 
@@ -93,14 +93,17 @@
     overflow: hidden;
 
     &--show-votes {
-      align-items: baseline;
       width: 100%;
       padding: 2px @spacing;
-      height: 32px;
-      background: transparent url(/images/layout/vote-1x1.png) 0 center repeat-y;
-      flex-direction: column;
-      justify-content: space-around;
     }
+  }
+
+  &__votes-bar {
+    position: absolute;
+    height: 100%;
+    background-color: #3F4E51;
+    top: 0;
+    left: 0;
   }
 
   &__entrant {

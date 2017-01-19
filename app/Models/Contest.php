@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use App\Transformers\ContestEntryTransformer;
 use App\Transformers\ContestTransformer;
 use App\Transformers\UserContestEntryTransformer;
 use Cache;
@@ -52,6 +53,11 @@ class Contest extends Model
         return Cache::remember("contest_votes_{$this->id}", 5, function () {
             return $this->voteAggregates;
         });
+    }
+
+    public function isBestOf()
+    {
+        return isset($this->extra_options['best_of']);
     }
 
     public function isSubmissionOpen()
@@ -123,7 +129,7 @@ class Contest extends Model
 
     public function getLinkIconAttribute()
     {
-        return $this->extra_options['link_icon'] ?? false;
+        return $this->extra_options['link_icon'] ?? 'cloud-download';
     }
 
     public function setLinkIconAttribute($icon)
@@ -181,19 +187,53 @@ class Contest extends Model
         }
     }
 
+    public function entriesByType($user = null)
+    {
+        if ($this->isBestOf()) {
+            if ($user === null) {
+                return [];
+            }
+
+            $playmode = Beatmap::MODES[$this->extra_options['best_of']['mode'] ?? 'osu'];
+
+            // This will only returns beatmap entries a user has played
+            $entries = $this->entries()
+                ->whereIn('entry_url', function ($query) use ($playmode, $user) {
+                    $query->select('beatmapset_id')
+                        ->from('osu_beatmaps')
+                        ->where('osu_beatmaps.playmode', '=', $playmode)
+                        ->whereIn('beatmap_id', function ($query) use ($user) {
+                            $query->select('beatmap_id')
+                                ->from('osu_user_beatmap_playcount')
+                                ->where('user_id', '=', $user->user_id);
+                        });
+                });
+        } else {
+            $entries = $this->entries();
+            if ($this->show_votes) {
+                $entries = $entries->with('user');
+            }
+        }
+
+        return $entries->with('contest')->get();
+    }
+
     public function defaultJson($user = null)
     {
-        $includes = ['entries'];
+        $includes = [];
 
         if ($this->type === 'art') {
-            $includes[] = 'entries.artMeta';
+            $includes[] = 'artMeta';
         }
 
         if ($this->show_votes) {
-            $includes[] = 'entries.results';
+            $includes[] = 'results';
         }
 
-        $contestJson = json_item($this, new ContestTransformer, $includes);
+        $contestJson = json_item($this, new ContestTransformer);
+        if ($this->isVotingStarted()) {
+            $contestJson['entries'] = json_collection($this->entriesByType($user), new ContestEntryTransformer, $includes);
+        }
 
         if (!empty($contestJson['entries'])) {
             if ($this->show_votes) {
@@ -221,8 +261,8 @@ class Contest extends Model
 
         return json_encode([
             'contest' => $contestJson,
-            'userVotes' => $this->votesForUser($user),
-        ], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+            'userVotes' => ($this->isVotingStarted() ? $this->votesForUser($user) : []),
+        ]);
     }
 
     public function votesForUser($user = null)
