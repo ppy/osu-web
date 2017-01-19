@@ -43,7 +43,7 @@ return [
         ],
 
         'add_to_cart' => 'Ajouter au panier',
-        'notify' => 'Notifiez-moi quand c\'est disponible !',
+        'notify' => "Notifiez-moi quand c'est disponible !",
 
         'notification_success' => 'vous serez notifié quand nous aurons du stock. cliquez :link pour annuler',
         'notification_remove_text' => 'ici',
