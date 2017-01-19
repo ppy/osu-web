@@ -170,11 +170,7 @@
 @section('permanent-fixed-footer')
     @parent
 
-    <div
-        class="js-forum__topic-total-posts forum-topic-nav"
-        data-total-count="{{ $topic->postsCount() }}"
-    >
-
+    <div class="forum-topic-nav">
         <div class="forum-topic-nav__seek-tooltip js-forum-posts-seek--tooltip" data-visibility="hidden">
             <div class="forum-topic-nav__seek-tooltip-number js-forum-posts-seek-tooltip-number">0</div>
         </div>

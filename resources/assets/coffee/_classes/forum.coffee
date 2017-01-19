@@ -25,7 +25,7 @@ class @Forum
 
 
   constructor: ->
-    @_totalPostsDiv = document.getElementsByClassName('js-forum__topic-total-posts')
+    @_totalPostsDiv = document.getElementsByClassName('js-forum__total-count')
     @_postsCounter = document.getElementsByClassName('js-forum__posts-counter')
     @_postsProgress = document.getElementsByClassName('js-forum__posts-progress')
     @_stickyHeaderTopic = document.getElementsByClassName('js-forum-topic-headernav')
@@ -49,12 +49,11 @@ class @Forum
 
   totalPosts: =>
     return null if @_totalPostsDiv.length == 0
-    parseInt @_totalPostsDiv[0].getAttribute('data-total-count'), 10
+    parseInt @_totalPostsDiv[0].textContent, 10
 
 
   setTotalPosts: (n) =>
-    @_totalPostsDiv[0].setAttribute('data-total-count', n)
-    document.getElementsByClassName('js-forum__total-count')[0].textContent = n
+    $(@_totalPostsDiv).text(n)
 
 
   setCounter: (currentPost) =>
