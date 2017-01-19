@@ -1,5 +1,5 @@
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,8 +14,8 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .livestream-featured {
   @_top: livestream-featured;
 
@@ -30,7 +30,7 @@
   &__actions {
     position: absolute;
     right: 0;
-    bottom: (@spacing * 3);
+    bottom: 30px;
     width: 0;
     display: flex;
     justify-content: center;
@@ -57,7 +57,7 @@
     width: 100%;
     bottom: 0;
     left: 0;
-    padding: (@spacing * 3) (@spacing * 4);
+    padding: 30px 40px;
     background-image: linear-gradient(transparent, @gray-0);
   }
 
@@ -66,7 +66,7 @@
     color: @gray-f;
 
     &--detail {
-      margin-top: @spacing;
+      margin-top: 10px;
       font-size: @font-size--livestream-featured-detail;
     }
 

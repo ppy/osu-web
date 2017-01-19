@@ -16,14 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = React.DOM
+@Img2x = (props) ->
+  allProps = _.extend osu.src2x(props.src), props
 
-BeatmapsetPage.ScoreboardTab = (props) ->
-  className = 'page-tabs__tab'
-  className += ' page-tabs__tab--active' if props.active
-
-  div
-    className: className
-    onClick: ->
-      $.publish 'beatmapset:scoreboard:set', scoreboardType: props.type
-    osu.trans "beatmaps.beatmapset.show.scoreboard.#{props.type}"
+  React.DOM.img allProps, props.children

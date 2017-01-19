@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,8 +14,8 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .forum-topic-headernav {
   @_main-height: 60px;
   width: 100%;
@@ -36,7 +36,7 @@
 
     // Less padding top because the font used has too much space
     // on the upper side
-    padding: (@spacing / 4) (@spacing / 4) (@spacing / 2);
+    padding: 2.5px 2.5px 5px;
   }
 
   &__breadcrumb-item {
@@ -44,11 +44,11 @@
     font-size: 12px;
     line-height: 1;
 
-    margin: 0 (@spacing / 4);
+    margin: 0 2.5px;
 
     &::after {
       content: '»';
-      margin-left: (@spacing / 2);
+      margin-left: 5px;
     }
   }
 
@@ -72,18 +72,18 @@
     margin-bottom: 0;
 
     & + & {
-      margin-top: (@spacing / 2);
+      margin-top: 5px;
     }
   }
 
   &__titles {
-    padding: (@spacing / 2);
+    padding: 5px;
     display: flex;
     flex-direction: column;
   }
 
   &__stripe {
-    height: @spacing;
+    height: 10px;
     width: 100%;
     position: absolute;
     left: 0;

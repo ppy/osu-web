@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,7 +14,6 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 .counter-box {
@@ -47,7 +46,7 @@
   color: @gray-f;
 
   display: inline-flex;
-  padding: (@spacing * 3 / 4);
+  padding: 7.5px;
 
   &:hover,
   &:focus,
@@ -59,7 +58,7 @@
   &--beatmap-discussions {
     .border(fade(@gray-0, 25%));
     background-color: @gray-2;
-    margin: (@spacing / 2);
+    margin: 5px;
   }
 
   &--deleted {
@@ -98,7 +97,7 @@
   &__line {
     .default-border-radius();
     width: 2px;
-    margin-left: @spacing;
+    margin-left: 10px;
 
     .@{top}--deleted & {
       background-color: @color-deleted;
@@ -126,7 +125,7 @@
   }
 
   &__title {
-    margin-right: (@spacing * 3);
+    margin-right: 30px;
     font-weight: bold;
     font-size: @font-size--small;
     white-space: nowrap;

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,8 +14,8 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .detail-row {
   display: flex;
   justify-content: space-between;
@@ -23,12 +23,12 @@
 
   border-bottom: 1px solid @gray-e;
   margin: 0;
-  padding: @spacing 0;
+  padding: 10px 0;
 
   &::before {
     .full-size();
-    margin: 0 (-@spacing);
-    width: calc(100% ~'+' (@spacing * 2));
+    margin: 0 -10px;
+    width: calc(100% ~'+' 20px);
     pointer-events: none;
     will-change: opacity;
     transition: all 25ms ease-out;
@@ -135,6 +135,6 @@
     flex: none;
     width: @rank-width;
     align-self: stretch;
-    margin-right: @spacing;
+    margin-right: 10px;
   }
 }
