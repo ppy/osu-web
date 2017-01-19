@@ -43,7 +43,9 @@ return [
     'beatmaps' => [
         'download' => 'Baixar inscrição',
     ],
-    'votes' => '1 voto|:count votos',
+    'vote' => [
+        'count' => '1 voto|:count votos',
+    ],
     'dates' => [
         'ended' => 'termina :date',
 

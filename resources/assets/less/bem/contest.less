@@ -21,7 +21,7 @@
   @_top: contest;
   background-color: #1A2223;
   color: white;
-  padding: @spacing * 2;
+  padding-bottom: @spacing * 2;
 
   &__description {
     background-color: #293336;
@@ -49,9 +49,8 @@
     background-color: #1A2223;
     color: white;
     text-align: center;
-    &--padding {
-      padding-bottom: @spacing * 2;
-    }
+    padding-top: @spacing * 2;
+    padding-bottom: @spacing;
   }
 
   &__accordion {
@@ -65,6 +64,10 @@
     background: #161a1b;
     border: none;
     .default-box-shadow();
+  }
+
+  &__art-list {
+    padding: 0px @spacing * 2;
   }
 
   &__group-heading {
@@ -144,17 +147,6 @@
     }
   }
 
-  &__vote-star {
-    flex: 0 0 32px;
-    margin-left: auto;
-  }
-
-  &__vote-star--fixed {
-    width: 32px;
-    flex: 0 0 32px;
-    background-color: #1a2223;
-  }
-
   &__vote-count {
     display: flex;
     align-items: center;
@@ -165,23 +157,16 @@
   }
 
   &__voting-star {
-    width: 32px;
-    height: 32px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: smaller;
+    flex: 0 0 32px;
+    margin-left: auto;
+    .center-content();
     color: rgba(1, 1, 1, 0.5);
 
     &:hover, &:focus {
       color: rgba(1, 1, 1, 0.75);
       font-size: inherit;
       text-decoration: none;
-    }
-
-    &--spin {
-      animation: spin-w-easing 1s ease-in-out infinite;
     }
 
     &--art {
@@ -191,6 +176,10 @@
     &--art-smaller {
       margin-top: 42px;
       margin-left: -19px;
+    }
+
+    &--dark-bg {
+      background-color: #1a2223;
     }
 
     &--selected {
@@ -216,6 +205,10 @@
 
     &--float-right {
       float: right;
+    }
+
+    &--spin {
+      animation: spin-w-easing 1s ease-in-out infinite;
     }
   }
 }
