@@ -18,7 +18,7 @@
  */
 
 .wiki-toc-list {
-  padding: 0 0 0 (@spacing * 2);
+  padding: 0 0 0 (@spacing);
   list-style: none;
   font-size: @font-size--title-small-2;
 
@@ -29,10 +29,15 @@
   &__link {
     .link-gray-light();
     .link-plain();
+    display: inline-block;
+    margin-bottom: (@spacing / 2);
 
     &.js-wiki-spy-link--active {
       color: @gray-f;
-      font-weight: bold;
+    }
+
+    &--small {
+      font-size: @font-size--normal;
     }
   }
 }
