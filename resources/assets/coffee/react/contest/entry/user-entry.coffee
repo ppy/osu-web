@@ -43,6 +43,6 @@ class Contest.Entry.UserEntry extends React.Component
       div className: 'contest-userentry__fileicon',
         i className: 'fa fa-file-o'
 
-      div className: 'contest-userentry__filename', @props.entry.filename
+      div className: 'contest-userentry__filename u-ellipsis-overflow', @props.entry.filename
       div className: 'contest-userentry__entry-date', dangerouslySetInnerHTML: {__html: osu.timeago(@props.entry.created_at)}
       div className: 'contest-userentry__filesize', osu.formatBytes(@props.entry.filesize)
