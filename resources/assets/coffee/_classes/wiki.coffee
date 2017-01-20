@@ -36,6 +36,7 @@ class @Wiki
     @content[0].dataset.initialized = '1'
     @$content = $(@content)
 
+    @fixImageSrc()
     @addClasses()
     @setTitle()
     @parseToc()
@@ -57,6 +58,16 @@ class @Wiki
     @$content.find('table').addClass 'wiki-content__table'
     @$content.find('td, th').addClass 'wiki-content__table-data'
     @$content.find('th').addClass 'wiki-content__table-data--header'
+
+
+  # Turbolinks and relative image url don't quite work properly together.
+  # https://github.com/turbolinks/turbolinks/issues/82
+  fixImageSrc: =>
+    @$content.find('img').each (_i, el) =>
+      src = el.getAttribute 'src'
+      return if src.match(/^https?:\/\//)? || src[0] == '/'
+
+      el.setAttribute 'src', el.src
 
 
   parseToc: =>
