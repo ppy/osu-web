@@ -48,6 +48,8 @@ class Contest.Entry.UserEntryList extends React.Component
         contest_id: @state.contest.id,
         locked: !entryOpen
 
+    return null if not entryOpen and _.isEmpty(userEntries)
+
     div className: 'contest-userentry-list',
       entries
       el Contest.Entry.Uploader, contest: @state.contest, disabled: !entryOpen || (@state.userEntries.length >= @state.contest.max_entries)

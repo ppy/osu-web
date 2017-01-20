@@ -36,8 +36,8 @@ class Contest.Entry.Uploader extends React.Component
         maxSize = 4000000
 
       when 'beatmap'
-        allowedExtensions = ['.osu']
-        maxSize = 1000000
+        allowedExtensions = ['.osu', '.osz']
+        maxSize = 20000000
 
       when 'music'
         allowedExtensions = ['.mp3']
