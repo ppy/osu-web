@@ -22,14 +22,18 @@ namespace App\Models\Score\Best;
 
 use App\Libraries\ModsHelper;
 use App\Models\Score\Model as BaseModel;
+use App\Traits\MacroableModel;
 use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v2\AwsS3Adapter;
 use League\Flysystem\Filesystem;
 
 abstract class Model extends BaseModel
 {
+    use MacroableModel;
+
     public $position = null;
     public $weight = null;
+    public $macros = ['forListing', 'userRank'];
 
     public function getReplay()
     {
@@ -105,49 +109,53 @@ abstract class Model extends BaseModel
         }
     }
 
-    public static function listing($query)
+    public function macroForListing()
     {
-        $limit = config('osu.beatmaps.max-scores');
-        $baseResult = (clone $query)->with('user')->limit($limit * 3)->get();
+        return function ($query) {
+            $limit = config('osu.beatmaps.max-scores');
+            $baseResult = (clone $query)->with('user')->limit($limit * 3)->get();
 
-        $result = [];
-        $users = [];
+            $result = [];
+            $users = [];
 
-        foreach ($baseResult as $entry) {
-            if (isset($users[$entry->user_id])) {
-                continue;
+            foreach ($baseResult as $entry) {
+                if (isset($users[$entry->user_id])) {
+                    continue;
+                }
+
+                if (count($result) >= $limit) {
+                    break;
+                }
+
+                $users[$entry->user_id] = true;
+                $result[] = $entry;
             }
 
-            if (count($result) >= $limit) {
-                break;
-            }
-
-            $users[$entry->user_id] = true;
-            $result[] = $entry;
-        }
-
-        return $result;
+            return $result;
+        };
     }
 
-    public static function userRank($query, $userScore)
+    public function macroUserRank()
     {
-        $baseResult = (clone $query)
-            ->limit(null)
-            ->where('score', '>', $userScore->score)
-            ->select('user_id')
-            ->get();
+        return function ($query, $userScore) {
+            $baseResult = (clone $query)
+                ->limit(null)
+                ->where('score', '>', $userScore->score)
+                ->select('user_id')
+                ->get();
 
-        $users = [];
-        $rank = 0;
+            $users = [];
+            $rank = 0;
 
-        foreach ($baseResult as $entry) {
-            if (!isset($users[$entry->user_id])) {
-                $users[$entry->user_id] = true;
-                $rank += 1;
+            foreach ($baseResult as $entry) {
+                if (!isset($users[$entry->user_id])) {
+                    $users[$entry->user_id] = true;
+                    $rank += 1;
+                }
             }
-        }
 
-        return $rank + 1;
+            return $rank + 1;
+        };
     }
 
     public function scopeDefault($query)
