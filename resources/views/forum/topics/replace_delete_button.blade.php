@@ -37,7 +37,7 @@ Timeout.set(0, function () {
         });
     @endif
 
-    countDifference = action === "delete" ? -1 : 1;
+    countDifference = {{ Route::currentRouteName() === 'forum.posts.delete' ? -1 : 1 }};
 
     window.forum.setTotalPosts(window.forum.totalPosts() + countDifference);
     window.forum.setDeletedPosts(window.forum.deletedPosts() - countDifference);

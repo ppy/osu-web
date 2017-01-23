@@ -30,7 +30,7 @@ There are a few different options to get started:
 
 ### Creating user
 
-    c:\osuweb\vagrant> vagrant ssh
+    C:\osu-web\vagrant> vagrant ssh
     $ cd /data/osu\!web
     $ php artisan tinker
     >>> App\Models\User::create(["username" => "yourusername", "user_password" => password_hash(md5("yourpassword"), PASSWORD_BCRYPT)]);
@@ -39,14 +39,14 @@ There are a few different options to get started:
 
 Using Laravel's [Elixir](http://laravel.com/docs/5.1/elixir).
 
-    c:\osu-web\vagrant> vagrant ssh
+    C:\osu-web\vagrant> vagrant ssh
     $ cd /data/osu\!web
     $ php artisan lang:js resources/assets/js/messages.js
     $ ./node_modules/.bin/gulp
 
 ### Reset the database + seed
 
-    c:\osuweb\vagrant> vagrant ssh
+    C:\osu-web\vagrant> vagrant ssh
     $ cd /data/osu\!web
     $ php artisan migrate:refresh --seed
 

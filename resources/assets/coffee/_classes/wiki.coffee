@@ -1,20 +1,21 @@
 ###
-# Copyright 2015-2017 ppy Pty. Ltd.
+#    Copyright 2015-2017 ppy Pty. Ltd.
 #
-# This file is part of osu!web. osu!web is distributed with the hope of
-# attracting more community contributions to the core ecosystem of osu!.
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
 #
-# osu!web is free software: you can redistribute it and/or modify
-# it under the terms of the Affero GNU General Public License version 3
-# as published by the Free Software Foundation.
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
 #
-# osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Affero General Public License for more details.
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
 #
-# You should have received a copy of the GNU Affero General Public License
-# along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
 
 class @Wiki
   constructor: ->
@@ -35,6 +36,7 @@ class @Wiki
     @content[0].dataset.initialized = '1'
     @$content = $(@content)
 
+    @fixImageSrc()
     @addClasses()
     @setTitle()
     @parseToc()
@@ -56,6 +58,16 @@ class @Wiki
     @$content.find('table').addClass 'wiki-content__table'
     @$content.find('td, th').addClass 'wiki-content__table-data'
     @$content.find('th').addClass 'wiki-content__table-data--header'
+
+
+  # Turbolinks and relative image url don't quite work properly together.
+  # https://github.com/turbolinks/turbolinks/issues/82
+  fixImageSrc: =>
+    @$content.find('img').each (_i, el) =>
+      src = el.getAttribute 'src'
+      return if src.match(/^https?:\/\//)? || src[0] == '/'
+
+      el.setAttribute 'src', el.src
 
 
   parseToc: =>

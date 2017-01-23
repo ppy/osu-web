@@ -14,13 +14,12 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 .wiki-content {
   .content-font();
   color: inherit;
-  padding: @spacing (@spacing * 2) 0;
+  padding: 10px 20px 0;
   font-size: @font-size--wiki;
 
   &__header {
@@ -31,18 +30,18 @@
 
     &--2 {
       font-size: @font-size--header-wiki-2;
-      margin: (@spacing * 8) (-@spacing * 2) @spacing;
-      color: white;
+      margin: 80px -20px 10px;
+      color: #fff;
     }
 
     &--3 {
       font-size: @font-size--header-wiki-3;
-      margin: (@spacing * 3) (-@spacing * 2) @spacing;
+      margin: 30px -20px 10px;
     }
 
     &--4 {
       font-size: @font-size--header-wiki-4;
-      margin: (@spacing * 3) (-@spacing) @spacing;
+      margin: 30px -10px 10px;
       font-style: italic;
     }
 
@@ -50,14 +49,14 @@
       font-size: @font-size--header-wiki-5;
       font-weight: normal;
       font-style: italic;
-      margin-top: (@spacing * 2);
+      margin-top: 20px;
     }
 
     &--6 {
       font-size: @font-size--header-wiki-6;
       font-weight: normal;
       font-style: italic;
-      margin-top: (@spacing * 2);
+      margin-top: 20px;
     }
   }
 
@@ -70,11 +69,11 @@
   }
 
   &__list {
-    padding-left: (@spacing * 2);
+    padding-left: 20px;
   }
 
   &__list-item {
-    margin: (@spacing / 2) 0;
+    margin: 5px 0;
 
     &--deep {
       color: @gray-c;
@@ -83,12 +82,12 @@
 
   &__table {
     font-family: @font-family-sans-serif;
-    margin-bottom: (@spacing * 2);
+    margin-bottom: 20px;
   }
 
   &__table-data {
     border-top: 1px solid fade(@yellow, 50%);
-    padding: (@spacing / 2);
+    padding: 5px;
 
     &--header {
       border-top: none;

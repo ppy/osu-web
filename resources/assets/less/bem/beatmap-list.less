@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,8 +14,8 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .beatmap-list {
   @top: beatmap-list;
   color: @gray-f;
@@ -32,7 +32,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    margin-top: (@spacing / 2);
+    margin-top: 5px;
     background-color: @gray-blue-darker;
 
     flex-direction: column;
@@ -46,9 +46,9 @@
     &--submenu {
       top: 0;
       left: 100%;
-      margin-left: (@spacing / 2);
+      margin-left: 5px;
       margin-top: 0;
-      padding: @spacing 0;
+      padding: 10px 0;
     }
   }
 
@@ -60,7 +60,7 @@
     display: flex;
     align-items: center;
     text-align: left;
-    padding: (@spacing / 2) @spacing;
+    padding: 5px 10px;
 
     &:hover {
       background-color: @gray-0;
@@ -72,8 +72,8 @@
       background-color: @gray-blue-darker;
       box-shadow: 0 0 0 2px fade(@gray-0, 25%);
       height: 100%;
-      padding-top: @spacing;
-      padding-bottom: @spacing;
+      padding-top: 10px;
+      padding-bottom: 10px;
       min-width: 0;
 
       &:hover {

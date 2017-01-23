@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -41,7 +41,7 @@
                 {{ trans('forum.topics.show.deleted-posts') }}
             </div>
 
-            <div class="counter-box__count js-forum__topic-deleted-posts" data-deleted-count={{ $newTopic ? 0 : $topic->deletedPostsCount() }}>
+            <div class="counter-box__count js-forum__deleted-count">
                 @if ($newTopic)
                     0
                 @else
