@@ -105,6 +105,51 @@ abstract class Model extends BaseModel
         }
     }
 
+    public static function listing($query)
+    {
+        $limit = config('osu.beatmaps.max-scores');
+        $baseResult = (clone $query)->with('user')->limit($limit * 3)->get();
+
+        $result = [];
+        $users = [];
+
+        foreach ($baseResult as $entry) {
+            if (isset($users[$entry->user_id])) {
+                continue;
+            }
+
+            if (count($result) >= $limit) {
+                break;
+            }
+
+            $users[$entry->user_id] = true;
+            $result[] = $entry;
+        }
+
+        return $result;
+    }
+
+    public static function userRank($query, $userScore)
+    {
+        $baseResult = (clone $query)
+            ->limit(null)
+            ->where('score', '>', $userScore->score)
+            ->select('user_id')
+            ->get();
+
+        $users = [];
+        $rank = 0;
+
+        foreach ($baseResult as $entry) {
+            if (!isset($users[$entry->user_id])) {
+                $users[$entry->user_id] = true;
+                $rank += 1;
+            }
+        }
+
+        return $rank + 1;
+    }
+
     public function scopeDefault($query)
     {
         return $query

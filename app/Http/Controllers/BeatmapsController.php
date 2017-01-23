@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
+use App\Models\Score;
 use App\Transformers\ScoreTransformer;
 use Auth;
 use Request;
@@ -59,8 +60,7 @@ class BeatmapsController extends Controller
         try {
             $query = $beatmap
                 ->scoresBest($mode)
-                ->defaultListing()
-                ->with('user');
+                ->defaultListing();
         } catch (\InvalidArgumentException $ex) {
             return error_popup($ex->getMessage());
         }
@@ -76,17 +76,14 @@ class BeatmapsController extends Controller
                 break;
         }
 
-        $scoresList = json_collection($query->get(), new ScoreTransformer, 'user');
+        $scoresList = json_collection(Score\Best\Model::listing($query), new ScoreTransformer, 'user');
 
         if ($user !== null) {
             $score = (clone $query)->where('user_id', $user->user_id)->first();
 
             if ($score !== null) {
                 $userScore = json_item($score, new ScoreTransformer, 'user');
-                $userScorePosition = 1 + (clone $query)
-                    ->limit(null)
-                    ->where('score', '>', $score->score)
-                    ->count();
+                $userScorePosition = Score\Best\Model::userRank($query, $score);
             }
         }
 
