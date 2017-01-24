@@ -71,6 +71,10 @@ class LocaleMeta
             'name' => 'Nederlands',
             'flag' => 'NL',
         ],
+        'no' => [
+            'name' => 'Norsk',
+            'flag' => 'NO',
+        ],
         'pl' => [
             'name' => 'Polski',
             'flag' => 'PL',
