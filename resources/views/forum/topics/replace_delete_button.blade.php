@@ -18,14 +18,14 @@
 Timeout.set(0, function () {
     var countDifference = {{ $countDifference }};
 
-    for (i = window.forum.posts.length - 1; i >= 0; i--) {
+    for (var i = window.forum.posts.length - 1; i >= 0; i--) {
         var post = window.forum.posts[i];
 
         var position = forum.postPosition(post);
 
         post.setAttribute("data-post-position", position + countDifference);
 
-        if (post.getAttribute('data-post-id') == {{ $post->post_id }}) {
+        if (forum.postId(post) === {{ $post->post_id }}) {
             break;
         }
     }
