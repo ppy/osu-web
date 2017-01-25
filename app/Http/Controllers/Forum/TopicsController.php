@@ -146,12 +146,12 @@ class TopicsController extends Controller
 
         if ($post->post_id !== null) {
             $posts = collect([$post]);
-            $postPosition = $topic->postPosition($post->post_id);
+            $firstPostPosition = $topic->postPosition($post->post_id);
 
             Event::fire(new TopicWasReplied($topic, $post, Auth::user()));
             Event::fire(new TopicWasViewed($topic, $post, Auth::user()));
 
-            return view('forum.topics._posts', compact('posts', 'postPosition', 'topic'));
+            return view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
         }
     }
 
