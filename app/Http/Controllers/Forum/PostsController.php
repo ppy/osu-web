@@ -55,7 +55,9 @@ class PostsController extends Controller
             return ujs_redirect($redirect);
         }
 
-        return js_view('forum.topics.delete', compact('post'));
+        $countDifference = -1;
+
+        return js_view('forum.topics.delete', compact('post', 'countDifference'));
     }
 
     public function restore($id)
@@ -67,7 +69,9 @@ class PostsController extends Controller
 
         $topic->restorePost($post, Auth::user());
 
-        return js_view('forum.topics.restore', compact('post'));
+        $countDifference = 1;
+
+        return js_view('forum.topics.restore', compact('post', 'countDifference'));
     }
 
     public function edit($id)

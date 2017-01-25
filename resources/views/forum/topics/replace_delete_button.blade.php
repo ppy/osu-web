@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 Timeout.set(0, function () {
-    @yield('countDifference')
+    var countDifference = {{ $countDifference }};
 
     for (i = window.forum.posts.length - 1; i >= 0; i--) {
         var post = window.forum.posts[i];

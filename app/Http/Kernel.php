@@ -38,7 +38,7 @@ class Kernel extends HttpKernel
         Middleware\VerifyCsrfToken::class,
         Middleware\SetLocale::class,
         Middleware\AutologinFromLegacyCookie::class,
-        Middleware\VerifyPrivilegedUser::class,
+        // Middleware\VerifyPrivilegedUser::class,
         Middleware\CheckUserBanStatus::class,
         Middleware\UpdateUserLastvisit::class,
         \Clockwork\Support\Laravel\ClockworkMiddleware::class,

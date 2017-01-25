@@ -20,7 +20,3 @@
 @section('moderatorAction')
     $el.addClass("js-forum-post--hidden");
 @endsection
-
-@section('countDifference')
-    var countDifference = -1;
-@endsection
