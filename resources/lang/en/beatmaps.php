@@ -126,6 +126,8 @@ return [
             'more-info' => 'Check here for more information.',
         ],
         'show' => [
+            'discussion' => 'discussion',
+
             'details' => [
                 'made-by' => 'made by ',
                 'submitted' => 'submitted on ',

@@ -30,13 +30,14 @@ use League\Fractal;
 class BeatmapsetTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'description',
-        'user',
+        'availability',
         'beatmaps',
         'converts',
+        'description',
+        'discussion_status',
         'nominations',
         'ratings',
-        'availability',
+        'user',
     ];
 
     public function transform(Beatmapset $beatmapset = null)
@@ -78,6 +79,15 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             return [
                 'download_disabled' => $beatmapset->download_disabled,
                 'more_information' => $beatmapset->download_disabled_url,
+            ];
+        });
+    }
+
+    public function includeDiscussionStatus($beatmapset)
+    {
+        return $this->item($beatmapset, function ($beatmapset) {
+            return [
+                'enabled' => $beatmapset->beatmapsetDiscussion()->exists(),
             ];
         });
     }
