@@ -131,6 +131,11 @@ Route::get('users/register', ['as' => 'users.register', function () {
 
 Route::get('u/{user}', ['as' => 'users.show', 'uses' => 'UsersController@show']);
 
+// soon-to-be notifications
+Route::get('/notifications', ['as' => 'notifications.index', function () {
+    return Redirect::to('https://osu.ppy.sh/forum/ucp.php?i=pm&folder=inbox');
+}]);
+
 // help section
 Route::get('/wiki', ['as' => 'wiki', function () {
     return ujs_redirect(route('wiki.show', ['page' => 'Welcome']));

@@ -798,6 +798,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->fresh();
     }
 
+    public function notificationCount()
+    {
+        return $this->user_unread_privmsg;
+    }
+
     public function defaultJson()
     {
         return json_item(
