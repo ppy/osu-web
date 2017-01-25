@@ -16,12 +16,12 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 Timeout.set(0, function () {
-    $el = $(".js-forum-post[data-post-id={{ $post->post_id }}]")
+    var $el = $(".js-forum-post[data-post-id={{ $post->post_id }}]");
 
-    $toggle = $el.find(".js-post-delete-toggle");
+    var $toggle = $el.find(".js-post-delete-toggle");
 
     @if (priv_check('ForumTopicModerate')->can())
-        $post = $el.find(".forum-post");
+        var $post = $el.find(".forum-post");
 
         @yield("moderatorAction")
 
@@ -43,9 +43,9 @@ Timeout.set(0, function () {
     window.forum.setDeletedPosts(window.forum.deletedPosts() - countDifference);
 
     for (i = window.forum.posts.length - 1; i >= 0; i--) {
-        post = window.forum.posts[i];
+        var post = window.forum.posts[i];
 
-        originalPosition = forum.postPosition(post);
+        var originalPosition = forum.postPosition(post);
 
         if (originalPosition < {{ $post->topic->postPosition($post->post_id) }}) {
             break;

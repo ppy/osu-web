@@ -22,5 +22,5 @@
 @endsection
 
 @section('countDifference')
-    countDifference = -1;
+    var countDifference = -1;
 @endsection
