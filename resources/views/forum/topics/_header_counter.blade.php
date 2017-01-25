@@ -22,13 +22,7 @@
         </div>
 
         <div class="counter-box__count">
-            @if ($newTopic)
-                1
-            @else
-                <span class="js-forum__total-count">
-                    {{ $topic->postsCount() }}
-                </span>
-            @endif
+            {{ $newTopic ? '1' : $topic->postsCount() }}
         </div>
     </div>
     <div class="counter-box__line u-forum--bg">
@@ -42,11 +36,7 @@
             </div>
 
             <div class="counter-box__count js-forum__deleted-count">
-                @if ($newTopic)
-                    0
-                @else
-                    {{ $topic->deletedPostsCount() }}
-                @endif
+                {{ $newTopic ? '0' : $topic->deletedPostsCount() }}
             </div>
         </div>
         <div class="counter-box__line u-forum--bg">
