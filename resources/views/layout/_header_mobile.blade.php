@@ -38,6 +38,14 @@
                 <div class="navbar-mobile__header-section">
                     @if (Auth::check())
                         <a
+                            href="{{ route('notifications.index') }}"
+                            class="notification-icon notification-icon--mobile{{Auth::user()->notification_count() > 0 ? ' notification-icon--glow' : ''}}"
+                        >
+                            <i class="fa fa-lg fa-fw fa-inbox notification-icon__inbox"></i>
+                            <span class="notification-icon__count">{{ Auth::user()->notification_count() > 0 ? number_format(Auth::user()->notification_count()) : '' }}</span>
+                        </a>
+
+                        <a
                             href="{{ route('users.show', Auth::user()->user_id) }}"
                             class="avatar avatar--navbar-mobile js-navbar-mobile--top-icon"
                             style="background-image: url('{{ Auth::user()->user_avatar }}');"
