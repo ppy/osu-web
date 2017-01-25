@@ -19,9 +19,11 @@
     if ($post->trashed()) {
         $deleteString = 'restore';
         $iconClass = 'fa-undo';
+        $method = 'post';
     } else {
-        $deleteString = 'delete';
+        $deleteString = 'destroy';
         $iconClass = 'fa-trash';
+        $method = 'delete';
     }
 @endphp
 <a
@@ -30,7 +32,7 @@
     href="{{ route("forum.posts.$deleteString", $post) }}"
     class="btn-circle js-post-delete-toggle"
     data-remote="true"
-    data-method="post"
+    data-method="{{ $method }}"
     data-confirm="{{ trans("forum.post.confirm_".$deleteString) }}"
 >
     <i class="fa {{ $iconClass }}"></i>

@@ -178,9 +178,8 @@ Route::group(['as' => 'forum.', 'prefix' => 'forum', 'namespace' => 'Forum'], fu
 
     Route::get('p/{post}', ['as' => 'posts.show', 'uses' => 'PostsController@show']);
     Route::get('posts/{post}/raw', ['as' => 'posts.raw', 'uses' => 'PostsController@raw']);
-    Route::post('posts/{post}/delete', ['as' => 'posts.delete', 'uses' => 'PostsController@delete']);
     Route::post('posts/{post}/restore', ['as' => 'posts.restore', 'uses' => 'PostsController@restore']);
-    Route::resource('posts', 'PostsController', ['only' => ['update', 'edit']]);
+    Route::resource('posts', 'PostsController', ['only' => ['update', 'edit', 'destroy']]);
 
     Route::get('/', ['as' => 'forums.index', 'uses' => 'ForumsController@index']);
     Route::get('{forum}', ['as' => 'forums.show', 'uses' => 'ForumsController@show']);

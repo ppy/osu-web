@@ -39,7 +39,7 @@ class PostsController extends Controller
         return parent::__construct();
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         $post = Post::query()
             ->showDeleted(priv_check('ForumTopicModerate')->can())
