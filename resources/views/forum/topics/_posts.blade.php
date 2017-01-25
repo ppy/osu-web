@@ -20,7 +20,7 @@
 @endphp
 
 @foreach($posts as $post)
-    <?php
+    @php
         $withDeleteLink = Auth::check()
             ? $post->poster_id === Auth::user()->user_id
             : false;
@@ -32,7 +32,7 @@
         if ($post->trashed() && $postPosition > 0) {
             $postPosition--;
         }
-    ?>
+    @endphp
     @include('forum.topics._post', [
         'post' => $post,
         'options' => [
