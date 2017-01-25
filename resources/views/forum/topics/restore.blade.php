@@ -20,3 +20,7 @@
 @section('action')
     $post.removeClass("js-forum-post-hidden");
 @endsection
+
+@section('countDifference')
+    countDifference = 1;
+@endsection
