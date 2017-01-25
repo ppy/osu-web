@@ -68,19 +68,22 @@
     </div>
 
     <div class="osu-layout__row osu-layout__row--page-compact">
-        @if (count($pageLocales) > 1 || (count($pageLocales) === 1 && $pageLocale !== $pageLocales[0]))
+        @if (count($pageLocales) > 0)
             <div class="wiki-language-list">
                 <div class="wiki-language-list__header">
-                    {{ trans('wiki.show.other_languages') }}:
+                    {{ trans('wiki.show.languages') }}:
                 </div>
 
                 @foreach ($pageLocales as $locale)
                     @if ($locale === $pageLocale)
-                        @continue
+                        <span class="wiki-language-list__item wiki-language-list__item--current">
+                            {{ App\Libraries\LocaleMeta::nameFor($locale) }}
+                        </span>
+                    @else
+                        <a class="wiki-language-list__item wiki-language-list__item--link" href="?locale={{ $locale }}">
+                            {{ App\Libraries\LocaleMeta::nameFor($locale) }}
+                        </a>
                     @endif
-                    <a class="wiki-language-list__item" href="?locale={{ $locale }}">
-                        {{ App\Libraries\LocaleMeta::nameFor($locale) }}
-                    </a>
                 @endforeach
             </div>
         @endif

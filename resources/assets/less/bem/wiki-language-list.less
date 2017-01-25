@@ -33,8 +33,19 @@
     padding-right: @padding-wiki-desktop;
   }
 
+  &__header {
+    padding-right: 10px;
+  }
+
   &__item {
-    padding-left: 20px;
-    .link-yellow();
+    padding: 0 10px;
+
+    &--current {
+      font-weight: bold;
+    }
+
+    &--link {
+      .link-yellow();
+    }
   }
 }
