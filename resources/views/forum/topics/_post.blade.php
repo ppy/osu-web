@@ -25,11 +25,11 @@
     if (!isset($options['large'])) { $options['large'] = $post->post_id === $firstPostId; }
 ?>
 <div
-    class="js-forum-post osu-layout__row {{ $options['large'] ? '' : 'osu-layout__row--sm2-desktop' }}"
+    class="js-forum-post {{ $post->trashed() ? 'js-forum-post--hidden' : '' }} osu-layout__row {{ $options['large'] ? '' : 'osu-layout__row--sm2-desktop' }}"
     data-post-id="{{ $post->post_id }}"
     data-post-position="{{ $options["postPosition"] }}"
 >
-    <div class="forum-post {{ $post->deleted_at ? 'js-forum-post-hidden' : '' }}">
+    <div class="forum-post">
         @if ($post->userNormalized()->isSpecial())
             <div
                 class="forum-post__stripe"

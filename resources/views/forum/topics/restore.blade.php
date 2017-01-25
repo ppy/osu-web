@@ -18,7 +18,7 @@
 @extends('forum.topics.replace_delete_button')
 
 @section('moderatorAction')
-    $post.removeClass("js-forum-post-hidden");
+    $el.removeClass("js-forum-post--hidden");
 @endsection
 
 @section('countDifference')

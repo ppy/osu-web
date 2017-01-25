@@ -21,8 +21,6 @@ Timeout.set(0, function () {
     var $toggle = $el.find(".js-post-delete-toggle");
 
     @if (priv_check('ForumTopicModerate')->can())
-        var $post = $el.find(".forum-post");
-
         @yield("moderatorAction")
 
         $toggle.replaceWith({!! json_encode(render_to_string('forum.topics._post_hide_action', [
