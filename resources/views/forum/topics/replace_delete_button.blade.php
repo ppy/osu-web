@@ -16,14 +16,12 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 Timeout.set(0, function () {
-    var countDifference = {{ $countDifference }};
-
     for (var i = window.forum.posts.length - 1; i >= 0; i--) {
         var post = window.forum.posts[i];
 
         var position = forum.postPosition(post);
 
-        post.setAttribute("data-post-position", position + countDifference);
+        post.setAttribute("data-post-position", position + {{ $countDifference }});
 
         if (forum.postId(post) === {{ $post->post_id }}) {
             break;
@@ -49,6 +47,6 @@ Timeout.set(0, function () {
         });
     @endif
 
-    window.forum.setTotalPosts(window.forum.totalPosts() + countDifference);
-    window.forum.setDeletedPosts(window.forum.deletedPosts() - countDifference);
+    window.forum.setTotalPosts(window.forum.totalPosts() + {{ $countDifference }});
+    window.forum.setDeletedPosts(window.forum.deletedPosts() - {{ $countDifference }});
 });

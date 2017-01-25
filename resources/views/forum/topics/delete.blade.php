@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('forum.topics.replace_delete_button')
+@extends('forum.topics.replace_delete_button', ['countDifference' => -1])
 
 @section('moderatorAction')
     $el.addClass("js-forum-post--hidden");
