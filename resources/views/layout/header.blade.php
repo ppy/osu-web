@@ -53,9 +53,9 @@
             <div class="osu-nav__col">
                 <a
                     href="{{ route('notifications.index') }}"
-                    class="notification-icon{{Auth::user()->notification_count() > 0 ? ' notification-icon--glow' : ''}}"
+                    class="notification-icon{{Auth::user()->notificationCount() > 0 ? ' notification-icon--glow' : ''}}"
                 >
-                    <span class="notification-icon__count">{{ Auth::user()->notification_count() > 0 ? number_format(Auth::user()->notification_count()) : '' }}</span>
+                    <span class="notification-icon__count">{{ Auth::user()->notificationCount() > 0 ? number_format(Auth::user()->notificationCount()) : '' }}</span>
                     <i class="fa fa-fw fa-inbox"></i>
                 </a>
             </div>

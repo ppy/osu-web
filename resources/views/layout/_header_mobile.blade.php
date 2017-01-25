@@ -39,10 +39,10 @@
                     @if (Auth::check())
                         <a
                             href="{{ route('notifications.index') }}"
-                            class="notification-icon notification-icon--mobile{{Auth::user()->notification_count() > 0 ? ' notification-icon--glow' : ''}}"
+                            class="notification-icon notification-icon--mobile{{Auth::user()->notificationCount() > 0 ? ' notification-icon--glow' : ''}}"
                         >
                             <i class="fa fa-lg fa-fw fa-inbox notification-icon__inbox"></i>
-                            <span class="notification-icon__count">{{ Auth::user()->notification_count() > 0 ? number_format(Auth::user()->notification_count()) : '' }}</span>
+                            <span class="notification-icon__count">{{ Auth::user()->notificationCount() > 0 ? number_format(Auth::user()->notificationCount()) : '' }}</span>
                         </a>
 
                         <a
