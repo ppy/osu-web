@@ -16,6 +16,20 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 Timeout.set(0, function () {
+    @yield('countDifference')
+
+    for (i = window.forum.posts.length - 1; i >= 0; i--) {
+        var post = window.forum.posts[i];
+
+        var position = forum.postPosition(post);
+
+        post.setAttribute("data-post-position", position + countDifference);
+
+        if (post.getAttribute('data-post-id') == {{ $post->post_id }}) {
+            break;
+        }
+    }
+
     var $el = $(".js-forum-post[data-post-id={{ $post->post_id }}]");
 
     var $toggle = $el.find(".js-post-delete-toggle");
@@ -35,20 +49,6 @@ Timeout.set(0, function () {
         });
     @endif
 
-    @yield('countDifference')
-
     window.forum.setTotalPosts(window.forum.totalPosts() + countDifference);
     window.forum.setDeletedPosts(window.forum.deletedPosts() - countDifference);
-
-    for (i = window.forum.posts.length - 1; i >= 0; i--) {
-        var post = window.forum.posts[i];
-
-        var originalPosition = forum.postPosition(post);
-
-        if (originalPosition < {{ $post->topic->postPosition($post->post_id) }}) {
-            break;
-        }
-
-        post.setAttribute("data-post-position", originalPosition + countDifference);
-    }
 });
