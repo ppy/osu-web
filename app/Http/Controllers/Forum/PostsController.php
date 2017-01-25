@@ -32,7 +32,7 @@ class PostsController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['only' => [
-            'changeVisibility',
+            'destroy',
             'raw',
         ]]);
 
@@ -41,8 +41,7 @@ class PostsController extends Controller
 
     public function destroy($id)
     {
-        $post = Post::query()
-            ->showDeleted(priv_check('ForumTopicModerate')->can())
+        $post = Post::showDeleted(priv_check('ForumTopicModerate')->can())
             ->findOrFail($id);
 
         priv_check('ForumPostDelete', $post)->ensureCan();
@@ -98,7 +97,7 @@ class PostsController extends Controller
         $topic = $post->topic;
         $postPosition = $topic->postPosition($post->post_id);
 
-        return view('forum.topics._posts', compact('posts', 'postPosition', 'topic'));
+        return view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
     }
 
     public function raw($id)
