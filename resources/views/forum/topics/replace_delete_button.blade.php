@@ -23,7 +23,7 @@ Timeout.set(0, function () {
     @if (priv_check('ForumTopicModerate')->can())
         $post = $el.find(".forum-post");
 
-        @yield("action")
+        @yield("moderatorAction")
 
         $toggle.replaceWith({!! json_encode(render_to_string('forum.topics._post_hide_action', [
             'post' => $post,

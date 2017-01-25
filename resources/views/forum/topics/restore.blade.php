@@ -17,7 +17,7 @@
 --}}
 @extends('forum.topics.replace_delete_button')
 
-@section('action')
+@section('moderatorAction')
     $post.removeClass("js-forum-post-hidden");
 @endsection
 
