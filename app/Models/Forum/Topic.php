@@ -358,9 +358,7 @@ class Topic extends Model
 
     public function postPosition($postId)
     {
-        $posts = $this->posts();
-
-        return $posts->where('post_id', '<=', $postId)->count();
+        return $this->posts()->where('post_id', '<=', $postId)->count();
     }
 
     public function getPollStartAttribute($value)
