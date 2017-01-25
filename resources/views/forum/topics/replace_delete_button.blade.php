@@ -20,7 +20,7 @@ Timeout.set(0, function () {
 
     $toggle = $el.find(".delete-post-link");
 
-    @if (Auth::user()->isAdmin() || Auth::user()->isGMT())
+    @if (priv_check('ForumTopicModerate')->can())
         $post = $el.find(".forum-post");
 
         @yield("action")

@@ -34,7 +34,7 @@
     <div class="counter-box__line u-forum--bg">
     </div>
 </div>
-@if(Auth::check() && (Auth::user()->isAdmin() || Auth::user()->isGMT()))
+@if(priv_check('ForumTopicModerate', $topic)->can())
     <div class="counter-box counter-box--forum">
         <div class="counter-box__content">
             <div class="counter-box__title">
