@@ -20,9 +20,9 @@
 
 return [
     'show' => [
+        'languages' => 'Languages',
         'missing' => 'Requested page could not be found.',
         'missing_translation' => 'Requested page could not be found for currently selected language.',
-        'other_languages' => 'Other languages',
         'toc' => 'Contents',
 
         'edit' => [
