@@ -22,7 +22,7 @@
     title="{{ trans('forum.post.actions.'.$deleteString) }}"
     data-tooltip-position="left center"
     href="{{ route("forum.posts.$deleteString", $post) }}"
-    class="btn-circle delete-post-link"
+    class="btn-circle js-post-delete-toggle"
     data-remote="true"
     data-method="post"
     data-confirm="{{ trans("forum.post.confirm_".$deleteString) }}"

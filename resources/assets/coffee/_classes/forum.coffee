@@ -111,10 +111,10 @@ class @Forum
       .toggleClass 'hidden', lastPostLoaded
 
     if !(currentUser.isAdmin || currentUser.isGMT)
-      $('.delete-post-link').hide()
+      $('.js-post-delete-toggle').hide()
 
     if lastPostLoaded
-      $(@endPost()).find('.delete-post-link').css(display: '')
+      $(@endPost()).find('.js-post-delete-toggle').css(display: '')
 
 
   refreshCounter: =>

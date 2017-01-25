@@ -18,7 +18,7 @@
 Timeout.set(0, function () {
     $el = $(".js-forum-post[data-post-id={{ $post->post_id }}]")
 
-    $toggle = $el.find(".delete-post-link");
+    $toggle = $el.find(".js-post-delete-toggle");
 
     @if (priv_check('ForumTopicModerate')->can())
         $post = $el.find(".forum-post");
