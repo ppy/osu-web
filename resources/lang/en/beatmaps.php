@@ -126,7 +126,7 @@ return [
             'more-info' => 'Check here for more information.',
         ],
         'show' => [
-            'discussion' => 'discussion',
+            'discussion' => 'Discussion',
 
             'details' => [
                 'made-by' => 'made by ',
