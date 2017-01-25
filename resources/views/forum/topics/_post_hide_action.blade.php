@@ -16,7 +16,13 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @php
-    $deleteString = $post->deleted_at ? 'restore' : 'delete'
+    if ($post->trashed()) {
+        $deleteString = 'restore';
+        $iconClass = 'fa-undo';
+    } else {
+        $deleteString = 'delete';
+        $iconClass = 'fa-trash';
+    }
 @endphp
 <a
     title="{{ trans('forum.post.actions.'.$deleteString) }}"
@@ -27,5 +33,5 @@
     data-method="post"
     data-confirm="{{ trans("forum.post.confirm_".$deleteString) }}"
 >
-    <i class="fa fa-{{ $post->deleted_at ? 'undo' : 'trash' }}"></i>
+    <i class="fa {{ $iconClass }}"></i>
 </a>
