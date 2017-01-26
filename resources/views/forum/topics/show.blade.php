@@ -127,18 +127,31 @@
                             </div>
 
                             <div class="forum-post__body forum-post__body--reply">
-                                <div class="forum-post__content forum-post__content--edit-body">
-                                    @include('forum.posts._form_body', ['postBody' => [
-                                        'focus' => false,
-                                        'extraClasses' => 'forum-post-content--reply js-forum-topic-reply--input',
-                                    ]])
+                                <div class="forum-post__content forum-post__content--edit-bar">
+                                    <div class="post-editor__actions post-editor__actions--preview">
+                                        <a class="js-forum-reply-preview--hide btn-osu btn-osu--small btn-osu-default active post-editor__action post-editor__action--preview">Write</a>
+                                        <a
+                                            class="js-forum-reply-preview--show btn-osu btn-osu--small btn-osu-default post-editor__action post-editor__action--preview"
+                                            data-preview-url="{{ route('forum.topics.preview', ['forum_id' => $topic->forum->forum_id, 'content_only' => '1']) }}"
+                                        >Preview</a>
+                                    </div>
                                 </div>
+                                <div class="js-forum-reply-write">
+                                    <div class="forum-post__content forum-post__content--edit-body">
+                                        @include('forum.posts._form_body', ['postBody' => [
+                                            'focus' => false,
+                                            'extraClasses' => 'forum-post-content--reply js-forum-topic-reply--input',
+                                        ]])
+                                    </div>
 
-                                <div class="forum-post__content forum-post__content forum-post__content--edit-bar hidden">
+                                    <div class="forum-post__content forum-post__content forum-post__content--edit-bar hidden">
+                                    </div>
+
+                                    <div class="forum-post__content forum-post__content forum-post__content--edit-bar">
+                                        @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
+                                    </div>
                                 </div>
-
-                                <div class="forum-post__content forum-post__content forum-post__content--edit-bar">
-                                    @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
+                                <div class="js-forum-reply-preview hidden">
                                 </div>
                             </div>
 

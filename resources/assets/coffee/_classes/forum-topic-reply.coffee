@@ -24,7 +24,16 @@ class @ForumTopicReply
     @closeButton = document.getElementsByClassName('js-forum-topic-reply--close')
     @fixedBar = document.getElementsByClassName('js-sticky-footer--fixed-bar')
 
+    @writeButton = document.getElementsByClassName('js-forum-reply-preview--hide')
+    @previewButton = document.getElementsByClassName('js-forum-reply-preview--show')
+
+    @editBox = document.getElementsByClassName('js-forum-reply-write')
+    @previewBox = document.getElementsByClassName('js-forum-reply-preview')
+
     $(document).on 'ajax:success', '.js-forum-topic-reply', @posted
+
+    $(document).on 'click', '.js-forum-reply-preview--show', @fetchPreview
+    $(document).on 'click', '.js-forum-reply-preview--hide', @hidePreview
 
     $(document).on 'click', '.js-forum-topic-reply--close', @deactivate
     $(document).on 'click', '.js-forum-topic-reply--new', @activate
@@ -113,6 +122,46 @@ class @ForumTopicReply
 
   inputChange: =>
     @setState 'text', @input[0].value
+
+
+  fetchPreview: =>
+    return if $(@previewButton).hasClass('active')
+
+    if $(@previewButton).attr('data-should-refresh') == '1'
+      @showPreview()
+      return
+
+    $.ajax
+      url: $(@previewButton).attr('data-preview-url')
+      method: 'POST'
+      data:
+        body: $(@input).val()
+
+    .done (data) =>
+      $(@previewBox).html(data)
+
+      $(@previewButton).attr('data-should-refresh', '1')
+
+      $(@input).one 'input', =>
+        $(@previewButton).attr('data-should-refresh', '0')
+
+      @showPreview()
+
+  showPreview: =>
+    $(@editBox).addClass('hidden')
+    $(@previewBox).removeClass('hidden')
+
+    $(@previewButton).addClass('active')
+    $(@writeButton).removeClass('active')
+
+  hidePreview: =>
+    return if $(@writeButton).hasClass('active')
+
+    $(@editBox).removeClass('hidden')
+    $(@previewBox).addClass('hidden')
+
+    $(@previewButton).removeClass('active')
+    $(@writeButton).addClass('active')
 
 
   posted: (e, data) =>
