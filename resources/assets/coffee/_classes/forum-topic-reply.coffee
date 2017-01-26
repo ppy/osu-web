@@ -127,7 +127,7 @@ class @ForumTopicReply
   fetchPreview: =>
     return if $(@previewButton).hasClass('active')
 
-    if $(@previewButton).attr('data-should-refresh') == '1'
+    if $(@previewButton).attr('data-should-refresh') == '0'
       @showPreview()
       return
 
@@ -140,12 +140,11 @@ class @ForumTopicReply
     .done (data) =>
       $(@previewBox).html(data)
 
-      $(@previewButton).attr('data-should-refresh', '1')
-
-      $(@input).one 'input', =>
-        $(@previewButton).attr('data-should-refresh', '0')
+      $(@previewButton).attr('data-should-refresh', '0')
+      $(@input).one 'input', @invalidatePreview
 
       @showPreview()
+
 
   showPreview: =>
     $(@editBox).addClass('hidden')
@@ -164,6 +163,10 @@ class @ForumTopicReply
     $(@writeButton).addClass('active')
 
 
+  invalidatePreview: =>
+    $(@previewButton).attr('data-should-refresh', '1')
+
+
   posted: (e, data) =>
     @deactivate()
     @$input().val ''
@@ -173,6 +176,8 @@ class @ForumTopicReply
 
     needReload = (@forum.postPosition($newPost[0]) - 1) != @forum.postPosition(@forum.endPost()) ||
       e.target.dataset.forceReload == '1'
+
+    @invalidatePreview()
 
     if needReload
       osu.navigate $newPost.find('.js-post-url').attr('href')
