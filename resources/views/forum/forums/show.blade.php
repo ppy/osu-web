@@ -17,6 +17,12 @@
 --}}
 @extends('master', [
     'body_additional_classes' => 't-forum-'.$forum->categorySlug(),
+    'search' => [
+        'params' => [
+            'forum_id' => $forum->forum_id,
+        ],
+        'url' => route('forum.forums.search'),
+    ],
     'titleAppend' => $forum->forum_name,
 ])
 

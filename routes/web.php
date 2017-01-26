@@ -166,6 +166,7 @@ Route::post('/tournaments/{tournament}/register', ['as' => 'tournaments.register
 
 // Forum controllers
 Route::group(['as' => 'forum.', 'prefix' => 'forum', 'namespace' => 'Forum'], function () {
+    Route::get('search', ['as' => 'forums.search', 'uses' => 'ForumsController@search']);
     Route::get('t/{topic}', ['as' => 'topics.show', 'uses' => 'TopicsController@show']);
     Route::post('topics/preview', ['as' => 'topics.preview', 'uses' => 'TopicsController@preview']);
     Route::post('topics/{topic}/lock', ['as' => 'topics.lock', 'uses' => 'TopicsController@lock']);

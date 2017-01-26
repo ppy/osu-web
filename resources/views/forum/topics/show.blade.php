@@ -19,6 +19,12 @@
     'titleAppend' => $topic->topic_title,
     "body_additional_classes" => 't-forum-'.$topic->forum->categorySlug(),
     'canonicalUrl' => route('forum.topics.show', $topic->topic_id),
+    'search' => [
+        'params' => [
+            'topic_id' => $topic->topic_id,
+        ],
+        'url' => route('forum.forums.search'),
+    ],
 ])
 
 @section("content")
