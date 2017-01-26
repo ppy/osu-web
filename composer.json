@@ -27,7 +27,8 @@
     "laravel/passport": "^1.0",
     "php-http/guzzle6-adapter": "^1.1",
     "graham-campbell/github": "^5.0",
-    "webuni/commonmark-table-extension": "^0.6.1"
+    "webuni/commonmark-table-extension": "^0.6.1",
+    "tumblr/tumblr": "^0.2.0"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.5",
