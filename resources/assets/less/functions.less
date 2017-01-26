@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,7 +14,6 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 @import "app";
@@ -60,63 +59,69 @@
 .link-default() {
   color: @link-color;
 
-  &:hover,
-  &:focus,
-  &:active {
+  .link-hover({
     color: @link-hover-color;
-  }
+  });
 }
 
 .link-gray-light() {
   color: @gray-c;
 
-  &:hover,
-  &:focus,
-  &:active {
+  .link-hover({
     color: @gray-e;
-  }
+  });
 }
 
 .link-gray-light-disabled() {
   color: @gray-5;
 
+  .link-hover({
+    color: @gray-5;
+  });
+}
+
+.link-hover(@rules) {
   &:hover,
   &:focus,
   &:active {
-    color: @gray-5;
+    @rules();
   }
 }
 
 .link-plain() {
   text-decoration: none;
 
-  &:hover,
-  &:focus,
-  &:active {
+  .link-hover({
     text-decoration: none;
-  }
+  });
 }
 
 .link-white() {
   color: @gray-f;
 
-  &:hover,
-  &:focus,
-  &:active {
+  .link-hover({
     color: @gray-f;
-  }
+  });
+}
+
+.link-yellow() {
+  color: @yellow;
+
+  .link-hover({
+    color: @yellow-light;
+  });
 }
 
 .thick-box-shadow() {
-  box-shadow: 0px 2px 10px fade(#000, 30%);
+  box-shadow: 0 2px 10px fade(#000, 30%);
 }
 
 .thicker-box-shadow() {
-  box-shadow: 0px 10px 20px fade(#000, 25%);
+  box-shadow: 0 10px 20px fade(#000, 25%);
 }
 
 .default-text-shadow() {
-  text-shadow: 0px 1px 3px fade(#000, 75%);
+  text-shadow: 0 1px 3px fade(#000, 75%);
 }
 
 .default-line() {
@@ -130,9 +135,10 @@
 .pink-link() {
   color: @pink;
   text-decoration: none;
-  &:hover {
+
+  .link-hover({
     color: @pink-text;
-  }
+  });
 }
 
 .center-content() {

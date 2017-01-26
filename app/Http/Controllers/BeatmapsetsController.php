@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -86,14 +86,25 @@ class BeatmapsetsController extends Controller
         $set = json_item(
             $beatmapset,
             new BeatmapsetTransformer(),
-            ['beatmaps', 'beatmaps.failtimes', 'converts', 'converts.failtimes', 'user', 'description', 'ratings', 'availability']
+            [
+                'availability',
+                'beatmaps',
+                'beatmaps.failtimes',
+                'converts',
+                'converts.failtimes',
+                'description',
+                'discussion_status',
+                'ratings',
+                'user',
+            ]
         );
 
         $countries = json_collection(Country::all(), new CountryTransformer);
+        $hasDiscussion = $beatmapset->beatmapsetDiscussion()->exists();
 
         $title = trans('layout.menu.beatmaps._').' / '.$beatmapset->artist.' - '.$beatmapset->title;
 
-        return view('beatmapsets.show', compact('set', 'title', 'countries'));
+        return view('beatmapsets.show', compact('set', 'title', 'countries', 'hasDiscussion'));
     }
 
     public function search()
@@ -219,7 +230,7 @@ class BeatmapsetsController extends Controller
 
         return [
           'favcount' => $beatmapset->favourite_count,
-          'favourited' => $beatmapset->hasFavourited($user),
+          'favourited' => $user !== null && $user->hasFavourited($beatmapset),
         ];
     }
 }

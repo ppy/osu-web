@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -48,6 +48,18 @@
                 </div>
             </div>
         </div>
+
+        @if (Auth::check())
+            <div class="osu-nav__col">
+                <a
+                    href="{{ route('notifications.index') }}"
+                    class="notification-icon{{Auth::user()->notificationCount() > 0 ? ' notification-icon--glow' : ''}}"
+                >
+                    <span class="notification-icon__count">{{ Auth::user()->notificationCount() > 0 ? number_format(Auth::user()->notificationCount()) : '' }}</span>
+                    <i class="fa fa-fw fa-inbox"></i>
+                </a>
+            </div>
+        @endif
 
         <a class="osu-nav__col u-nav-float js-nav-switch js-user-header" href="#" data-nav-mode="user">
             @include('layout._header_user', ['_user' => Auth::user()])

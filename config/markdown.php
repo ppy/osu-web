@@ -27,4 +27,8 @@ return [
 
     'views' => true,
 
+    'extensions' => [
+        Webuni\CommonMark\TableExtension\TableExtension::class,
+    ],
+
 ];

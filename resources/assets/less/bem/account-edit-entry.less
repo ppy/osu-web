@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,7 +14,6 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 .account-edit-entry {
@@ -27,7 +26,7 @@
   text-transform: none;
   display: flex;
   align-items: center;
-  padding: @spacing 0;
+  padding: 10px 0;
   margin: 0;
 
   &__avatar {
@@ -35,14 +34,14 @@
     .own-layer();
     width: @avatar-size--base;
     height: @avatar-size--base;
-    margin-bottom: @spacing;
+    margin-bottom: 10px;
     overflow: hidden;
   }
 
   &__drop-overlay {
     .full-size();
     .center-content();
-    padding: @spacing;
+    padding: 10px;
     opacity: 0;
     color: @gray-f;
 
@@ -77,8 +76,8 @@
     border: 2px solid transparent;
     color: @gray-f;
     font-weight: normal;
-    padding: (@spacing / 2);
-    margin: 0 @spacing 0 0;
+    padding: 5px;
+    margin: 0 10px 0 0;
 
     .@{top}.js-account-edit--focus & {
       border-color: @yellow;
@@ -89,7 +88,7 @@
     flex: none;
     align-self: center;
     width: @label-width;
-    margin-right: @spacing;
+    margin-right: 10px;
     text-align: right;
 
     .@{top}.js-account-edit--focus & {
@@ -115,7 +114,7 @@
 
     &--saved {
       color: @green;
-      padding-right: @spacing;
+      padding-right: 10px;
 
       .@{top}.js-account-edit--saved & {
         opacity: 1;

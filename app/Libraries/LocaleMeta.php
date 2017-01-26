@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -23,6 +23,14 @@ namespace App\Libraries;
 class LocaleMeta
 {
     const MAPPINGS = [
+        'de' => [
+            'name' => 'Deutsch',
+            'flag' => 'DE',
+        ],
+        'el' => [
+            'name' => 'Ελληνικά',
+            'flag' => 'GR',
+        ],
         'en' => [
             'name' => 'English',
             'flag' => 'GB',
@@ -31,25 +39,69 @@ class LocaleMeta
             'name' => 'Español',
             'flag' => 'ES',
         ],
+        'fi' => [
+            'name' => 'Suomi',
+            'flag' => 'FI',
+        ],
         'fr' => [
             'name' => 'Français',
             'flag' => 'FR',
+        ],
+        'hu' => [
+            'name' => 'Magyar',
+            'flag' => 'HU',
+        ],
+        'id' => [
+            'name' => 'Bahasa Indonesia',
+            'flag' => 'ID',
         ],
         'it' => [
             'name' => 'Italiano',
             'flag' => 'IT',
         ],
+        'ja' => [
+            'name' => '日本語',
+            'flag' => 'JP',
+        ],
+        'ko' => [
+            'name' => '한국어',
+            'flag' => 'KO',
+        ],
         'nl' => [
             'name' => 'Nederlands',
             'flag' => 'NL',
+        ],
+        'no' => [
+            'name' => 'Norsk',
+            'flag' => 'NO',
         ],
         'pl' => [
             'name' => 'Polski',
             'flag' => 'PL',
         ],
+        'pt' => [
+            'name' => 'Português',
+            'flag' => 'PT',
+        ],
         'pt-br' => [
             'name' => 'Português (Brasil)',
             'flag' => 'BR',
+        ],
+        'ru' => [
+            'name' => 'Русский',
+            'flag' => 'RU',
+        ],
+        'th' => [
+            'name' => 'ไทย',
+            'flag' => 'TH',
+        ],
+        'tl' => [
+            'name' => 'Tagalog',
+            'flag' => 'PH',
+        ],
+        'zh' => [
+            'name' => '中文',
+            'flag' => 'CN',
         ],
     ];
 

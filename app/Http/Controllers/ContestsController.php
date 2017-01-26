@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Contest;
 use Auth;
-use DB;
 
 class ContestsController extends Controller
 {
@@ -47,14 +46,12 @@ class ContestsController extends Controller
 
         if ($contest->isVotingStarted() && isset($contest->extra_options['children'])) {
             $contestIds = $contest->extra_options['children'];
+            $contests = Contest::whereIn('id', $contestIds)
+                ->orderByRaw('FIELD(id, '.db_array_bind($contestIds).')', $contestIds)
+                ->get();
         } else {
-            $contestIds = [$id];
+            $contests = collect([$contest]);
         }
-
-        $contests = Contest::with('entries', 'entries.contest', 'entries.user')
-            ->whereIn('id', $contestIds)
-            ->orderByRaw(DB::raw('FIELD(id, '.implode(',', $contestIds).')'))
-            ->get();
 
         if ($contest->isVotingStarted()) {
             return view('contests.voting')

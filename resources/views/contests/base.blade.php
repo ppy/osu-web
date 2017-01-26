@@ -1,5 +1,5 @@
 {{--
-    Copyright 2016 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -36,7 +36,9 @@
     </div>
     <div class="osu-layout__row osu-layout__row--page-contests">
         <div class="page-contents__content--contests">
-            @yield('contest-content')
+            <div class='contest'>
+                @yield('contest-content')
+            </div>
         </div>
     </div>
 @endsection

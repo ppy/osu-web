@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -59,8 +59,7 @@ class BeatmapsController extends Controller
         try {
             $query = $beatmap
                 ->scoresBest($mode)
-                ->defaultListing()
-                ->with('user');
+                ->defaultListing();
         } catch (\InvalidArgumentException $ex) {
             return error_popup($ex->getMessage());
         }
@@ -76,17 +75,14 @@ class BeatmapsController extends Controller
                 break;
         }
 
-        $scoresList = json_collection($query->get(), new ScoreTransformer, 'user');
+        $scoresList = json_collection($query->forListing(), new ScoreTransformer, 'user');
 
         if ($user !== null) {
             $score = (clone $query)->where('user_id', $user->user_id)->first();
 
             if ($score !== null) {
                 $userScore = json_item($score, new ScoreTransformer, 'user');
-                $userScorePosition = 1 + (clone $query)
-                    ->limit(null)
-                    ->where('score', '>', $score->score)
-                    ->count();
+                $userScorePosition = $query->userRank($score);
             }
         }
 

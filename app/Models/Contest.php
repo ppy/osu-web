@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use App\Transformers\ContestEntryTransformer;
 use App\Transformers\ContestTransformer;
 use App\Transformers\UserContestEntryTransformer;
 use Cache;
@@ -52,6 +53,11 @@ class Contest extends Model
         return Cache::remember("contest_votes_{$this->id}", 5, function () {
             return $this->voteAggregates;
         });
+    }
+
+    public function isBestOf()
+    {
+        return isset($this->extra_options['best_of']);
     }
 
     public function isSubmissionOpen()
@@ -111,6 +117,26 @@ class Contest extends Model
         $this->extra_options['shape'] = $shape;
     }
 
+    public function getUnmaskedAttribute()
+    {
+        return $this->extra_options['unmasked'] ?? false;
+    }
+
+    public function setUnmaskedAttribute(bool $bool)
+    {
+        $this->extra_options['unmasked'] = $bool;
+    }
+
+    public function getLinkIconAttribute()
+    {
+        return $this->extra_options['link_icon'] ?? 'cloud-download';
+    }
+
+    public function setLinkIconAttribute($icon)
+    {
+        $this->extra_options['link_icon'] = $icon;
+    }
+
     public function currentPhaseEndDate()
     {
         switch ($this->state()) {
@@ -161,43 +187,82 @@ class Contest extends Model
         }
     }
 
+    public function entriesByType($user = null)
+    {
+        if ($this->isBestOf()) {
+            if ($user === null) {
+                return [];
+            }
+
+            $playmode = Beatmap::MODES[$this->extra_options['best_of']['mode'] ?? 'osu'];
+
+            // This will only returns beatmap entries a user has played
+            $entries = $this->entries()
+                ->whereIn('entry_url', function ($query) use ($playmode, $user) {
+                    $query->select('beatmapset_id')
+                        ->from('osu_beatmaps')
+                        ->where('osu_beatmaps.playmode', '=', $playmode)
+                        ->whereIn('beatmap_id', function ($query) use ($user) {
+                            $query->select('beatmap_id')
+                                ->from('osu_user_beatmap_playcount')
+                                ->where('user_id', '=', $user->user_id);
+                        });
+                });
+        } else {
+            $entries = $this->entries();
+            if ($this->show_votes) {
+                $entries = $entries->with('user');
+            }
+        }
+
+        return $entries->with('contest')->get();
+    }
+
     public function defaultJson($user = null)
     {
-        $includes = ['entries'];
+        $includes = [];
 
         if ($this->type === 'art') {
-            $includes[] = 'entries.artMeta';
+            $includes[] = 'artMeta';
         }
 
         if ($this->show_votes) {
-            $includes[] = 'entries.results';
+            $includes[] = 'results';
         }
 
-        $contestJson = json_item($this, new ContestTransformer, $includes);
+        $contestJson = json_item($this, new ContestTransformer);
+        if ($this->isVotingStarted()) {
+            $contestJson['entries'] = json_collection($this->entriesByType($user), new ContestEntryTransformer, $includes);
+        }
 
         if (!empty($contestJson['entries'])) {
             if ($this->show_votes) {
-                // Sort results by number of votes desc
-                usort($contestJson['entries'], function ($a, $b) {
-                    if ($a['results']['votes'] === $b['results']['votes']) {
-                        return 0;
-                    }
-
-                    return ($a['results']['votes'] > $b['results']['votes']) ? -1 : 1;
+                // Sort results by number of votes descending
+                $sorted_entries = array_sort($contestJson['entries'], function ($item) {
+                    return $item['results']['votes'];
                 });
+                $contestJson['entries'] = array_values(array_reverse($sorted_entries));
             } else {
-                // We want the results to appear randomized to the user but be
-                // deterministic (i.e. we don't want the rows shuffling each time
-                // the user votes), so we seed based on user_id
-                $seed = $user ? $user->user_id : time();
-                seeded_shuffle($contestJson['entries'], $seed);
+                // For unmasked contests, we sort 'alphabetically'.
+                if ($this->unmasked) {
+                    $sorted_entries = array_sort($contestJson['entries'], function ($item) {
+                        return $item['title'];
+                    });
+                    $contestJson['entries'] = array_values($sorted_entries);
+                } else {
+                    // We want the results to appear randomized to the user but be
+                    // deterministic (i.e. we don't want the rows shuffling each time
+                    // the user votes), so we seed based on user_id (when logged in)
+                    $seed = $user ? $user->user_id : time();
+                    seeded_shuffle($contestJson['entries'], $seed);
+                }
             }
         }
 
         return json_encode([
             'contest' => $contestJson,
-            'userVotes' => $this->votesForUser($user),
-        ], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+            'userVotes' => ($this->isVotingStarted() ? $this->votesForUser($user) : []),
+        ]);
     }
 
     public function votesForUser($user = null)

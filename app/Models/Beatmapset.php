@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -420,18 +420,13 @@ class Beatmapset extends Model
             $beatmap_ids = self::searchES($params);
         }
 
-        $beatmaps = [];
-
-        if (count($beatmap_ids) > 0) {
-            $ids = implode(',', $beatmap_ids);
-            $beatmaps = static
+        return count($beatmap_ids) > 0
+            ? static
                 ::with('beatmaps')
                 ->whereIn('beatmapset_id', $beatmap_ids)
-                ->orderByRaw(DB::raw("FIELD(beatmapset_id, {$ids})"))
-                ->get();
-        }
-
-        return $beatmaps;
+                ->orderByRaw('FIELD(beatmapset_id, '.db_array_bind($beatmap_ids).')', $beatmap_ids)
+                ->get()
+            : [];
     }
 
     public static function listing()
@@ -751,7 +746,7 @@ class Beatmapset extends Model
 
     public function unfavourite($user)
     {
-        if (!$this->hasFavourited($user)) {
+        if ($user === null || !$user->hasFavourited($this)) {
             return;
         }
 

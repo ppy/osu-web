@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -19,11 +19,11 @@
  */
 
 return [
-        'deleted' => '[utilisateur supprimé]',
+    'deleted' => '[utilisateur supprimé]',
 
     'login' => [
         '_' => 'Se connecter',
-        'username' => 'Nom d\'utilisateur',
+        'username' => "Nom d'utilisateur",
         'password' => 'Mot de passe',
         'button' => 'Se connecter',
         'remember' => 'Se souvenir de moi sur cet ordinateur',
@@ -33,13 +33,13 @@ return [
         'forgot' => 'Mot de passe oublié?',
         'beta' => [
             'main' => 'Accès bêta restreint aux utlisateurs privilégiés.',
-            'small' => '(les supporteurs l\'obtiendront bientôt)',
+            'small' => "(les supporteurs l'obtiendront bientôt)",
         ],
 
         'here' => 'ici', // this is substituted in when generating a link above. change it to suit the language.
     ],
     'signup' => [
-        '_' => 'S\'inscrire',
+        '_' => "S'inscrire",
     ],
     'anonymous' => [
         'login_link' => 'cliquez pour vous connecter',
@@ -53,12 +53,12 @@ return [
         'edit' => [
             'cover' => [
                 'button' => 'Changer la bannière du profil',
-                'defaults_info' => 'Plus d\'options seront disponibles bientôt',
+                'defaults_info' => "Plus d'options seront disponibles bientôt",
                 'upload' => [
-                    'broken_file' => 'Impossible de traiter l\'image. Vérifiez l\'image mis en ligne et réesayez.',
-                    'button' => 'Mettre en ligne l\'image',
+                    'broken_file' => "Impossible de traiter l'image. Vérifiez l'image mis en ligne et réesayez.",
+                    'button' => "Mettre en ligne l'image",
                     'dropzone' => 'Déplacez ici pour uploader',
-                    'dropzone_info' => 'Vous pouvez aussi déplacer l\'image ici pour la mettre en ligne',
+                    'dropzone_info' => "Vous pouvez aussi déplacer l'image ici pour la mettre en ligne",
                     'restriction_info' => "Mise en ligne disponible pour les <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporteurs</a> uniquement",
                     'size_info' => 'La taille de la bannière devrait être 2000x500',
                     'too_large' => 'Le fichier mis en ligne est trop gros.',
@@ -111,7 +111,7 @@ return [
                 'title' => 'moi!',
             ],
             'medals' => [
-                                'empty' => "Cet utilsateur n'en a jamais reçu. ;_;",
+                'empty' => "Cet utilsateur n'en a jamais reçu. ;_;",
                 'title' => 'Médailles',
             ],
             'recent_activities' => [
@@ -164,7 +164,7 @@ return [
             'tablet' => 'Tablette',
             'touch' => 'Écran tactile',
         ],
-        'missingtext' => 'Vous avez fait une erreur typo je crois! (ou l\'utilisateur vous a banni)',
+        'missingtext' => "Vous avez fait une erreur typo je crois! (ou l'utilisateur vous a banni)",
         'page_description' => 'osu! - Tout ce que vous devez savoir à propos de :username!',
         'rank' => [
             'country' => 'Classement national pour :mode',

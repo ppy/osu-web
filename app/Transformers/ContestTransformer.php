@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,6 +21,7 @@
 namespace App\Transformers;
 
 use App\Models\Contest;
+use Auth;
 use League\Fractal;
 
 class ContestTransformer extends Fractal\TransformerAbstract
@@ -43,10 +44,15 @@ class ContestTransformer extends Fractal\TransformerAbstract
             'entry_ends_at' => json_time($contest->entry_ends_at),
             'voting_ends_at' => json_time($contest->voting_ends_at),
             'show_votes' => $contest->show_votes,
+            'link_icon' => $contest->link_icon,
         ];
 
         if ($contest->type === 'art') {
             $response['shape'] = $contest->entry_shape;
+        }
+
+        if ($contest->isBestOf()) {
+            $response['best_of'] = true;
         }
 
         return $response;
@@ -54,6 +60,6 @@ class ContestTransformer extends Fractal\TransformerAbstract
 
     public function includeEntries(Contest $contest)
     {
-        return $this->collection($contest->entries, new ContestEntryTransformer);
+        return $this->collection($contest->entriesByType(Auth::user()), new ContestEntryTransformer);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -29,6 +29,11 @@ function array_search_null($value, $array)
     if ($key !== false) {
         return $key;
     }
+}
+
+function db_array_bind($array)
+{
+    return implode(',', array_fill(0, count($array), '?'));
 }
 
 function flag_path($country)
@@ -142,14 +147,10 @@ function error_popup($message, $statusCode = 422)
 
 function i18n_view($view)
 {
-    $current_locale_path = sprintf('%s/%s-%s.blade.php',
-        config('view.paths')[0],
-        str_replace('.', '/', $view),
-        App::getLocale()
-    );
+    $localViewPath = sprintf('%s-%s', $view, App::getLocale());
 
-    if (file_exists($current_locale_path)) {
-        return sprintf('%s-%s', $view, App::getLocale());
+    if (view()->exists($localViewPath)) {
+        return $localViewPath;
     } else {
         return sprintf('%s-%s', $view, config('app.fallback_locale'));
     }
@@ -195,10 +196,10 @@ function current_action()
     }
 }
 
-function link_to_user($user_id, $user_name, $user_colour)
+function link_to_user($user_id, $user_name, $user_color)
 {
     $user_name = e($user_name);
-    $style = user_colour_style($user_colour, 'color');
+    $style = user_color_style($user_color, 'color');
 
     if ($user_id) {
         $user_url = e(route('users.show', $user_id));
@@ -207,13 +208,6 @@ function link_to_user($user_id, $user_name, $user_colour)
     } else {
         return "<span class='user-name'>{$user_name}</span>";
     }
-}
-
-function user_icon($type, $title, $link)
-{
-    $title = e($title);
-
-    return "<a href='{$link}'><div class='user-icon' data-title='{$title}'><i class='fa fa-fw fa-{$type} fa-2x'></i></div></a>";
 }
 
 function issue_icon($issue)
@@ -284,8 +278,8 @@ function nav_links()
         'getDownload' => osu_url('home.download'),
     ];
     $links['help'] = [
-        'getWiki' => osu_url('help.wiki'),
-        'getFaq' => osu_url('help.faq'),
+        'getWiki' => route('wiki.show', ['page' => 'Welcome']),
+        'getFaq' => route('wiki.show', ['page' => 'FAQ']),
         'getSupport' => osu_url('help.support'),
     ];
     $links['ranking'] = [
@@ -321,10 +315,10 @@ function footer_links()
         'changelog' => osu_url('home.changelog'),
         'beatmaps' => action('BeatmapsetsController@index'),
         'download' => osu_url('home.download'),
-        'wiki' => osu_url('help.wiki'),
+        'wiki' => route('wiki.show', ['page' => 'Welcome']),
     ];
     $links['help'] = [
-        'faq' => osu_url('help.faq'),
+        'faq' => route('wiki.show', ['page' => 'FAQ']),
         'forum' => route('forum.forums.index'),
         'livestreams' => route('livestreams.index'),
         'report' => route('forum.topics.create', ['forum_id' => 5]),
@@ -334,8 +328,8 @@ function footer_links()
         'merchandise' => action('StoreController@getListing'),
     ];
     $links['legal'] = [
-        'tos' => osu_url('legal.tos'),
-        'copyright' => osu_url('legal.dmca'),
+        'tos' => route('wiki.show', ['page' => 'Legal/TOS']),
+        'copyright' => route('wiki.show', ['page' => 'Legal/Copyright']),
         'serverStatus' => osu_url('status.server'),
         'osuStatus' => osu_url('status.osustatus'),
     ];
@@ -345,7 +339,7 @@ function footer_links()
 
 function presence($string, $valueIfBlank = null)
 {
-    return present($string) === true ? $string : $valueIfBlank;
+    return present($string) ? $string : $valueIfBlank;
 }
 
 function present($string)
@@ -353,15 +347,13 @@ function present($string)
     return $string !== null && $string !== '';
 }
 
-function user_colour_style($colour, $style)
+function user_color_style($color, $style)
 {
-    if (presence($colour) === null) {
+    if (!present($color)) {
         return '';
     }
 
-    $colour = e($colour);
-
-    return "{$style}: #{$colour};";
+    return sprintf('%s: #%s', $style, e($color));
 }
 
 function base62_encode($input)
@@ -517,7 +509,7 @@ function get_bool($string)
  */
 function get_int($string)
 {
-    if (present($string) === true) {
+    if (present($string)) {
         return (int) $string;
     }
 }
@@ -658,11 +650,13 @@ function array_rand_val($array)
  */
 function model_pluck($builder, $key)
 {
-    return $builder
-        ->select($key)
-        ->get()
-        ->pluck($key)
-        ->all();
+    $result = [];
+
+    foreach ($builder->select($key)->get() as $el) {
+        $result[] = $el->$key;
+    }
+
+    return $result;
 }
 
 // Returns null if timestamp is null or 0.
@@ -701,11 +695,12 @@ function priv_check_user($user, $ability, $args = null)
 // Fisher-Yates
 function seeded_shuffle(array &$items, int $seed)
 {
-    @mt_srand($seed);
+    mt_srand($seed);
     for ($i = count($items) - 1; $i > 0; $i--) {
-        $j = @mt_rand(0, $i);
+        $j = mt_rand(0, $i);
         $tmp = $items[$i];
         $items[$i] = $items[$j];
         $items[$j] = $tmp;
     }
+    mt_srand();
 }

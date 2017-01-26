@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -94,6 +94,10 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
 
+        if ($post->forum === null) {
+            abort(404);
+        }
+
         priv_check('ForumView', $post->forum)->ensureCan();
 
         $text = $post->bodyRaw;
@@ -108,6 +112,10 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
+
+        if ($post->forum === null) {
+            abort(404);
+        }
 
         priv_check('ForumView', $post->forum)->ensureCan();
 

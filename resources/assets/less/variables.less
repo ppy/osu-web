@@ -1,14 +1,32 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 @import "app";
 
 @desktop: ~"(min-width: @{screen-sm-min})";
 @mobile: ~"(max-width: @{screen-sm-min})";
 
-@spacing: 10px;
-
 @bar-size: 3px;
 @logo-size: 100px;
 // header left margin (20) + logo (100) + menu left margin (10)
-@padding-big: ((@grid-gutter-width / 2) + @logo-size + @spacing);
+@padding-big: (20px + @logo-size + 10px);
+// ┐(ﾟ ヮﾟ)┌
+@padding-wiki-desktop: 40px;
 
 @height--nav-popup: 180px;
 
@@ -60,7 +78,7 @@
 
 // top padding + menu + page title
 @nav-avatar-size: 70px;
-@nav-sm-height: (@spacing * 2) + @nav-menu-height + @nav-page-title-height;
+@nav-sm-height: 20px + @nav-menu-height + @nav-page-title-height;
 @nav-page-title-height: 40px;
 @nav-menu-height: 20px;
 
@@ -75,9 +93,17 @@
 @font-size--large: 20px;
 @font-size--title: 24px;
 
+@font-size--wiki: 14px;
+
 @font-size--header-title: 32px;
 @font-size--header-subtitle: 16px;
 @font-size--header-description: 12px;
+
+@font-size--header-wiki-2: 26px;
+@font-size--header-wiki-3: 20px;
+@font-size--header-wiki-4: 18px;
+@font-size--header-wiki-5: 16px;
+@font-size--header-wiki-6: 14px;
 
 @font-size--new-header-title: 30px;
 @font-size--new-header-subtitle: 14px;
@@ -133,7 +159,7 @@
 @forum-post--xs-avatar: 50px;
 
 @beatmap-discussion--avatar-size: 40px;
-@beatmap-discussion--reply-padding: (@spacing * 2 + @beatmap-discussion--avatar-size);
+@beatmap-discussion--reply-padding: (20px + @beatmap-discussion--avatar-size);
 @beatmap-discussion--timestamp-width: 110px;
 
 @beatmap-discussion--color-praise: @blue-dark;
@@ -161,7 +187,7 @@
 @mod-height-small: 18px;
 @mod-width-small: (@mod-height-small / @mod-height * @mod-width);
 
-@page-spacing: @spacing;
+@page-spacing: 10px;
 
 @rank-width: 48px;
 @rank-height: 16px;
@@ -171,4 +197,4 @@
 @diff-normal: @yellow;
 @diff-hard: @pink;
 @diff-insane: @purple;
-@diff-expert: #000000;
+@diff-expert: #000;

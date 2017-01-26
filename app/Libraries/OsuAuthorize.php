@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -618,6 +618,13 @@ class OsuAuthorize
         } else {
             return $prefix.'no_access';
         }
+    }
+
+    public function checkWikiPageRefresh($user)
+    {
+        $this->ensureLoggedIn($user);
+
+        // yet another admin only =D
     }
 
     public function ensureLoggedIn($user, $prefix = '')

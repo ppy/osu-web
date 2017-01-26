@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -43,7 +43,9 @@ return [
     'beatmaps' => [
         'download' => 'Baixar inscrição',
     ],
-    'votes' => '1 voto|:count votos',
+    'vote' => [
+        'count' => '1 voto|:count votos',
+    ],
     'dates' => [
         'ended' => 'termina :date',
 

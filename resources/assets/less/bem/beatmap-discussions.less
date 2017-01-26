@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,16 +14,16 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .beatmap-discussions {
   @_mode-text-size: 10px;
   @_empty-text-size: 12px;
-  @_mode-circle-diameter: (@spacing * 3 / 2);
+  @_mode-circle-diameter: 15px;
   @_timeline-line-width: 3px;
 
   .default-box-shadow();
-  margin: @spacing 0;
+  margin: 10px 0;
   background-color: @gray-f;
   display: flex;
   flex-direction: column;
@@ -38,7 +38,7 @@
   }
 
   &__discussions {
-    margin: @spacing (@spacing * 2);
+    margin: 10px 20px;
   }
 
   &__mode {
@@ -49,7 +49,7 @@
   &__mode-container {
     display: flex;
     align-items: center;
-    padding: (@spacing / 2) 0;
+    padding: 5px 0;
   }
 
   &__mode-circle {
@@ -83,14 +83,14 @@
   }
 
   &__toolbar {
-    padding: 0 (@spacing * 2);
+    padding: 0 20px;
     display: flex;
     border-bottom: 1px solid @gray-c;
   }
 
   &__toolbar-content {
     display: flex;
-    margin: (-@spacing) (-@spacing * 3 / 2) 0;
+    margin: -10px -15px 0;
 
     &--right {
       flex: 1;
@@ -101,7 +101,7 @@
   &__toolbar-link {
     font-size: @font-size--normal;
     color: @gray-5;
-    padding: @spacing (@spacing * 3 / 2);
+    padding: 10px 15px;
 
     &:hover,
     &:focus,

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -37,6 +37,14 @@
 
                 <div class="navbar-mobile__header-section">
                     @if (Auth::check())
+                        <a
+                            href="{{ route('notifications.index') }}"
+                            class="notification-icon notification-icon--mobile{{Auth::user()->notificationCount() > 0 ? ' notification-icon--glow' : ''}}"
+                        >
+                            <i class="fa fa-lg fa-fw fa-inbox notification-icon__inbox"></i>
+                            <span class="notification-icon__count">{{ Auth::user()->notificationCount() > 0 ? number_format(Auth::user()->notificationCount()) : '' }}</span>
+                        </a>
+
                         <a
                             href="{{ route('users.show', Auth::user()->user_id) }}"
                             class="avatar avatar--navbar-mobile js-navbar-mobile--top-icon"

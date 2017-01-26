@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -25,7 +25,7 @@ return [
             'head-to-head' => 'Chacun pour soi',
             'tag-coop' => 'Tag en coopération',
             'team-vs' => 'Équipes en versus',
-            'tag-team-vs' => 'Tag en versus d\'équipe',
+            'tag-team-vs' => "Tag en versus d'équipe",
         ],
         'events' => [
             'player-left' => ':user a quitté le match',
@@ -42,7 +42,7 @@ return [
             'player-kicked-no-user' => 'un joueur a été exclu du match',
             'match-created-no-user' => 'le match a été créé',
             'match-disbanded-no-user' => 'le match a été dissous',
-            'host-changed-no-user' => 'l\'hôte a été changé',
+            'host-changed-no-user' => "l'hôte a été changé",
         ],
         'in-progress' => '(match en cours)',
         'score' => [

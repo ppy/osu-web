@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -170,11 +170,7 @@
 @section('permanent-fixed-footer')
     @parent
 
-    <div
-        class="js-forum__topic-total-posts forum-topic-nav"
-        data-total-count="{{ $topic->postsCount() }}"
-    >
-
+    <div class="forum-topic-nav">
         <div class="forum-topic-nav__seek-tooltip js-forum-posts-seek--tooltip" data-visibility="hidden">
             <div class="forum-topic-nav__seek-tooltip-number js-forum-posts-seek-tooltip-number">0</div>
         </div>

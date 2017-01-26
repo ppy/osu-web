@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,13 +14,13 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .page-extra-tabs {
   @_top: page-extra-tabs;
   width: 100%;
 
-  margin-bottom: @spacing;
+  margin-bottom: 10px;
 
   @media @desktop {
     margin-bottom: 0;
@@ -61,8 +61,8 @@
 
   &__item {
     .default-border-radius();
-    padding: (@spacing / 2) @spacing;
-    margin: (@spacing * 3 / 2) (@spacing / 2);
+    padding: 5px 10px;
+    margin: 15px 10px;
 
     &:hover, &--active {
       background-color: @pink-text;

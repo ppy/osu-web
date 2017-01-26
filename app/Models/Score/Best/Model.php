@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,14 +22,18 @@ namespace App\Models\Score\Best;
 
 use App\Libraries\ModsHelper;
 use App\Models\Score\Model as BaseModel;
+use App\Traits\MacroableModel;
 use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v2\AwsS3Adapter;
 use League\Flysystem\Filesystem;
 
 abstract class Model extends BaseModel
 {
+    use MacroableModel;
+
     public $position = null;
     public $weight = null;
+    public $macros = ['forListing', 'userRank'];
 
     public function getReplay()
     {
@@ -103,6 +107,55 @@ abstract class Model extends BaseModel
             $score->position = $position;
             $position++;
         }
+    }
+
+    public function macroForListing()
+    {
+        return function ($query) {
+            $limit = config('osu.beatmaps.max-scores');
+            $baseResult = (clone $query)->with('user')->limit($limit * 3)->get();
+
+            $result = [];
+            $users = [];
+
+            foreach ($baseResult as $entry) {
+                if (isset($users[$entry->user_id])) {
+                    continue;
+                }
+
+                if (count($result) >= $limit) {
+                    break;
+                }
+
+                $users[$entry->user_id] = true;
+                $result[] = $entry;
+            }
+
+            return $result;
+        };
+    }
+
+    public function macroUserRank()
+    {
+        return function ($query, $userScore) {
+            $baseResult = (clone $query)
+                ->limit(null)
+                ->where('score', '>', $userScore->score)
+                ->select('user_id')
+                ->get();
+
+            $users = [];
+            $rank = 0;
+
+            foreach ($baseResult as $entry) {
+                if (!isset($users[$entry->user_id])) {
+                    $users[$entry->user_id] = true;
+                    $rank += 1;
+                }
+            }
+
+            return $rank + 1;
+        };
     }
 
     public function scopeDefault($query)

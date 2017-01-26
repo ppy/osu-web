@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -25,8 +25,13 @@ return [
     ],
     'voting' => [
         'over' => 'Voting for this contest has ended',
+        'login_required' => 'Please login to vote.',
+        'best_of' => [
+            'none_played' => "It doesn't look like you played any beatmaps that qualify for this contest!",
+        ],
     ],
     'entry' => [
+        '_' => 'entry',
         'login_required' => 'Please login to enter the contest.',
         'silenced_or_restricted' => 'You cannot enter contests while restricted or silenced.',
         'preparation' => 'We are currently preparing this contest. Please wait patiently!',
@@ -43,7 +48,10 @@ return [
     'beatmaps' => [
         'download' => 'Download Entry',
     ],
-    'votes' => '1 vote|:count votes',
+    'vote' => [
+        'list' => 'votes',
+        'count' => '1 vote|:count votes',
+    ],
     'dates' => [
         'ended' => 'Ended :date',
 

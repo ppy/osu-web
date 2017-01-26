@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,17 +14,17 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 .osu-page-header {
+  @main-padding: 20px;
   @top: osu-page-header;
 
   background-size: cover;
   background-color: @gray-3;
   background-position: center;
 
-  padding: (@spacing * 2);
+  padding: @main-padding;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -47,11 +47,11 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-end;
-    padding: 0 @spacing;
+    padding: 0 10px;
     min-height: 150px;
 
     @media @desktop {
-      padding: 0 (@spacing * 5 - @spacing);
+      padding: 0 40px;
     }
 
     &::before {
@@ -104,10 +104,45 @@
     height: 165px;
   }
 
+  &--wiki {
+    .default-box-shadow();
+    .at2x-simple("/images/headers/wiki.jpg");
+    height: 125px;
+    padding-bottom: 0;
+
+    @media @desktop {
+      padding-left: @padding-wiki-desktop;
+      padding-right: @padding-wiki-desktop;
+    }
+  }
+
+  &__actions {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    right: 10px;
+    bottom: 10px;
+
+    @media @desktop {
+      right: 0;
+      bottom: 20px;
+      width: 0;
+
+      opacity: 0;
+      will-change: opacity;
+    }
+
+    .@{top}:hover & {
+      opacity: 1;
+    }
+  }
+
   &__box {
-    margin: 0 @spacing;
+    margin: 0 10px;
     flex: 1 0 auto;
-    padding: (@spacing * 2) 0;
+    padding: 20px 0;
 
     &--status {
       display: flex;
@@ -123,7 +158,7 @@
   }
 
   &__status {
-    padding: 0 @spacing;
+    padding: 0 10px;
   }
 
   &__status-label {
@@ -138,7 +173,7 @@
 
   &__title {
     font-size: @font-size--header-title;
-    margin: 0 0 @spacing;
+    margin: 0 0 10px;
     .default-text-shadow();
     color: #fff;
 
@@ -159,22 +194,33 @@
     .@{top}--mp-history & {
       font-style: italic;
     }
+
+    .@{top}--wiki &--main {
+      @border-height: 5px;
+      margin-bottom: 0;
+      padding-bottom: (@main-padding - @border-height);
+      border-bottom: @border-height solid @yellow;
+    }
   }
 
   &__title-box {
     position: absolute;
-    bottom: @spacing;
+    bottom: 10px;
 
     .@{top}--mp-history & {
       @media @desktop {
         left: 150px;
-        bottom: @spacing * 3;
+        bottom: 30px;
       }
 
       @media @mobile {
         position: relative;
         padding: 0 20px;
       }
+    }
+
+    .@{top}--wiki & {
+      bottom: 0;
     }
   }
 }

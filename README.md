@@ -24,13 +24,13 @@ Deploying
 There are a few different options to get started:
 
 - Create a fresh Ubuntu environment and run `sudo bootstrap.sh`. Note that this script is intended to be run on a *sandboxed environment*; do not run it on a shared development system without first understanding what it does.
-- Use the php built-in server (run `php -s 127.0.0.1:8080` from the `public` folder). You will still need a database backend.
+- Use the php built-in server (run `php -S 127.0.0.1:8080` from the `public` folder). You will still need a database backend.
 - Use vagrant (`cd vagrant; vagrant up`). Note that this is not actively supported or tested, and it is known to be quite slow on some platforms.
 - Use your existing web dev environment.
 
 ### Creating user
 
-    c:\osuweb\vagrant> vagrant ssh
+    C:\osu-web\vagrant> vagrant ssh
     $ cd /data/osu\!web
     $ php artisan tinker
     >>> App\Models\User::create(["username" => "yourusername", "user_password" => password_hash(md5("yourpassword"), PASSWORD_BCRYPT)]);
@@ -39,14 +39,14 @@ There are a few different options to get started:
 
 Using Laravel's [Elixir](http://laravel.com/docs/5.1/elixir).
 
-    c:\osu-web\vagrant> vagrant ssh
+    C:\osu-web\vagrant> vagrant ssh
     $ cd /data/osu\!web
     $ php artisan lang:js resources/assets/js/messages.js
     $ ./node_modules/.bin/gulp
 
 ### Reset the database + seed
 
-    c:\osuweb\vagrant> vagrant ssh
+    C:\osu-web\vagrant> vagrant ssh
     $ cd /data/osu\!web
     $ php artisan migrate:refresh --seed
 

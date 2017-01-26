@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,8 +14,8 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .beatmap-discussion {
   @_top: beatmap-discussion;
   .own-layer();
@@ -31,7 +31,7 @@
     display: flex;
 
     height: @beatmap-discussion--avatar-size;
-    margin: @spacing;
+    margin: 10px;
     margin-right: 0;
   }
 
@@ -54,7 +54,7 @@
 
     flex: 1;
     min-width: 0;
-    margin: (@spacing / 2) 0;
+    margin: 5px 0;
     display: flex;
     flex-direction: column;
 
@@ -72,7 +72,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    width: (@spacing / 2);
+    width: 5px;
     height: 100%;
 
     &--resolved {
@@ -93,7 +93,7 @@
     font-size: 12px;
     font-weight: bold;
     text-transform: lowercase;
-    margin: (@spacing / 2) 0;
+    margin: 5px 0;
   }
 
   &__timestamp {

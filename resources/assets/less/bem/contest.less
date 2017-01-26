@@ -1,35 +1,37 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 .contest {
   @_top: contest;
   background-color: #1A2223;
   color: white;
-  padding: @spacing * 2;
+  padding-bottom: 10px;
 
   &__description {
+    .content-font();
+
     background-color: #293336;
     color: white;
     font-size: 14px;
     font-weight: 300;
     padding: 20px;
     .default-box-shadow();
+
 
     > h1, h2, h3, h4, h5, h6 {
       color: white;
@@ -41,36 +43,39 @@
 
   &__countdown-timer {
     background: #293336;
-    padding-bottom: @spacing * 2;
-    margin-top: -@spacing;
+    padding-bottom: 20px;
+    margin-top: -10px;
   }
 
   &__voting-notice {
     background-color: #1A2223;
     color: white;
     text-align: center;
-    &--padding {
-      padding-bottom: @spacing * 2;
-    }
+    padding: 20px;
+    padding-bottom: 10px;
   }
 
   &__accordion {
     background: #1A2223;
-    padding: @spacing * 2;
+    padding: 20px;
   }
 
   &__group {
-    margin: @spacing auto;
+    margin: 10px auto;
     max-width: 600px;
     background: #161a1b;
     border: none;
     .default-box-shadow();
   }
 
+  &__art-list {
+    padding: 0px 20px;
+  }
+
   &__group-heading {
     display: flex;
     justify-content: space-between;
-    padding: @spacing;
+    padding: 10px;
 
     color: white;
     &:hover, &:visited, &:link, &:active {
@@ -89,7 +94,7 @@
 
   &__buttons {
     text-align: center;
-    padding: 20px 0px;
+    padding: 20px 0;
   }
 
   &__vote-summary {
@@ -144,35 +149,26 @@
     }
   }
 
-  &__vote-star--fixed {
-    width: 16px;
-    background-color: #1a2223;
-  }
-
   &__vote-count {
-    width: 110px;
+    display: flex;
+    align-items: center;
+    flex: 0 0 110px;
     text-align: right;
     background-color: #1a2223;
+    justify-content: flex-end;
   }
 
   &__voting-star {
-    width: 32px;
-    height: 32px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: smaller;
+    flex: 0 0 32px;
+    margin-left: auto;
+    .center-content();
     color: rgba(1, 1, 1, 0.5);
 
     &:hover, &:focus {
       color: rgba(1, 1, 1, 0.75);
       font-size: inherit;
       text-decoration: none;
-    }
-
-    &--spin {
-      animation: spin-w-easing 1s ease-in-out infinite;
     }
 
     &--art {
@@ -182,6 +178,10 @@
     &--art-smaller {
       margin-top: 42px;
       margin-left: -19px;
+    }
+
+    &--dark-bg {
+      background-color: #1a2223;
     }
 
     &--selected {
@@ -207,6 +207,10 @@
 
     &--float-right {
       float: right;
+    }
+
+    &--spin {
+      animation: spin-w-easing 1s ease-in-out infinite;
     }
   }
 }

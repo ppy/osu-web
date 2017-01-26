@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,25 +14,24 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 .fancy-search {
   @_icon-width: 25px;
   color: @pink;
   font-size: @font-size--large;
-  margin: 0 (-@spacing);
+  margin: 0 -10px;
 
   &--beatmapsets {
     margin-top: 100px;
-    margin-bottom: (@spacing * 2);
+    margin-bottom: 20px;
   }
 
   &__input {
     border: 1px solid @gray-c;
     width: 100%;
-    padding: @spacing;
-    padding-right: (@spacing + @_icon-width + @spacing * 2);
+    padding: 10px;
+    padding-right: (10px + @_icon-width + 20px);
 
     font-style: italic;
     font-weight: lighter;
@@ -49,7 +48,7 @@
     right: 0;
     top: 0;
     height: 100%;
-    width: (@_icon-width + @spacing * 2);
+    width: (@_icon-width + 20px);
     display: flex;
     align-items: center;
     justify-content: center;

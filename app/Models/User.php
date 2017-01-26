@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -796,6 +796,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         return $this->fresh();
+    }
+
+    public function notificationCount()
+    {
+        return $this->user_unread_privmsg;
     }
 
     public function defaultJson()

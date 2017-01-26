@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,15 +14,19 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 // main: compiled.less
 @import "app";
+
+blockquote {
+  font-size: inherit;
+}
 
 h1 {
   font-size: 30px;
   font-weight: normal;
-  margin: 0px 0px 20px 0px;
+  margin: 0 0 20px 0;
 }
 
 h2 {
@@ -121,7 +125,7 @@ select.form-control {
 
   &--small {
     font-size: 12px;
-    padding: @grid-gutter-width/4 @grid-gutter-width/2;
+    padding: 10px 20px;
   }
 
   &--lite {
@@ -157,7 +161,7 @@ select.form-control {
 
   &--stick-right {
     position: absolute;
-    right: 0px;
+    right: 0;
   }
 }
 
@@ -184,10 +188,10 @@ select.form-control {
   }
 
   &:active {
-    transform: translate(0px, 5px);
+    transform: translate(0, 5px);
 
     background-color: darken(@main, 10%);
-    box-shadow: 0px 5px darken(@secondary, 10%), 0px 5px 5px fade(#000, 80%);
+    box-shadow: 0 5px darken(@secondary, 10%), 0 5px 5px fade(#000, 80%);
   }
 }
 
@@ -269,32 +273,6 @@ a[disabled] { &:extend(.btn[disabled]); }
   }
 }
 
-.flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-.flex-col-66 {
-  padding-left: @grid-gutter-width/2;
-  padding-right: @grid-gutter-width/2;
-
-  @media @desktop {
-    flex-basis: 100% * 2 / 3;
-    max-width: 100% * 2 / 3;
-  }
-}
-
-.flex-col-33 {
-  padding-left: @grid-gutter-width/2;
-  padding-right: @grid-gutter-width/2;
-
-  @media @desktop {
-    flex-basis: 100% / 3;
-    max-width: 100% / 3;
-  }
-}
-
-
 .user-icon {
   .icon-bg;
   .default-box-shadow();
@@ -304,12 +282,12 @@ a[disabled] { &:extend(.btn[disabled]); }
   .center-content;
 
   .circle(26px);
-  padding: 0px;
+  padding: 0;
   border: 2px solid white;
 }
 
 .compact > * {
-  margin: 0px;
+  margin: 0;
 }
 
 [data-visibility] {

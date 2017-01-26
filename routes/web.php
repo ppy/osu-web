@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -131,10 +131,17 @@ Route::get('users/register', ['as' => 'users.register', function () {
 
 Route::get('u/{user}', ['as' => 'users.show', 'uses' => 'UsersController@show']);
 
+// soon-to-be notifications
+Route::get('/notifications', ['as' => 'notifications.index', function () {
+    return Redirect::to('https://osu.ppy.sh/forum/ucp.php?i=pm&folder=inbox');
+}]);
+
 // help section
 Route::get('/wiki', ['as' => 'wiki', function () {
-    return Redirect::to('https://osu.ppy.sh/wiki');
+    return ujs_redirect(route('wiki.show', ['page' => 'Welcome']));
 }]);
+Route::get('wiki/{page?}', ['as' => 'wiki.show', 'uses' => 'WikiController@show'])->where('page', '.+');
+Route::put('wiki/{page?}', ['uses' => 'WikiController@update'])->where('page', '.+');
 
 Route::get('/help/support', ['as' => 'support', 'uses' => 'HelpController@getSupport']);
 Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);
