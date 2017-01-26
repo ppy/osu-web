@@ -26,7 +26,7 @@ return [
         'issuing' => '正在生成新的验证码',
 
         'info' => [
-            'check_spam' => "如果您找不到邮件,请检查垃圾箱.",
+            'check_spam' => "如果您找不到这封邮件,请检查垃圾箱.",
             'recover' => "如果您无法登录邮箱或者忘记了所使用的邮箱,请 :link.",
             'recover_link' => '点击此处',
             'reissue' => '你也可以 :reissue_link 或者 :logout_link.',
