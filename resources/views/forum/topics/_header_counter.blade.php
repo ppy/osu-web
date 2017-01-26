@@ -21,7 +21,7 @@
             {{ trans('forum.topics.show.total_posts') }}
         </div>
 
-        <div class="counter-box__count">
+        <div class="counter-box__count js-forum__total-count">
             {{ $newTopic ? '1' : $topic->postsCount() }}
         </div>
     </div>
