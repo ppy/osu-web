@@ -124,6 +124,15 @@ class BeatmapsetPage.Header extends React.Component
                       else
                         laroute.route 'support-the-game'
 
+                  if @props.beatmapset.discussion_status.enabled
+                    el BigButton,
+                      modifiers: ['beatmapset-header']
+                      text:
+                        top: osu.trans 'beatmaps.beatmapset.show.discussion'
+                      icon: 'comments-o'
+                      props:
+                        href: laroute.route 'beatmaps.beatmapsets.show.discussion', beatmapset: @props.beatmapset.id
+
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
           el BeatmapsetPage.Stats,
             beatmapset: @props.beatmapset
