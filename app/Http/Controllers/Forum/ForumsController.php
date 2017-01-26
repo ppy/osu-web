@@ -48,6 +48,21 @@ class ForumsController extends Controller
         return view('forum.forums.index', compact('forums'));
     }
 
+    public function search()
+    {
+        $topicId = Request::input('topic_id');
+        $forumId = Request::input('forum_id');
+        $query = Request::input('q');
+
+        $queryStringArray = [
+            't' => $topicId,
+            'fid[]' => $forumId,
+            'keywords' => $query,
+        ];
+
+        return ujs_redirect('https://osu.ppy.sh/forum/search.php?'.http_build_query($queryStringArray));
+    }
+
     public function show($id)
     {
         $forum = Forum::with('subForums')->findOrFail($id);

@@ -24,10 +24,12 @@
 $(document).on 'turbolinks:request-start', LoadingOverlay.show
 $(document).on 'turbolinks:request-end', LoadingOverlay.hide
 # form submission is not covered by turbolinks
-$(document).on 'submit', 'form', LoadingOverlay.show
+$(document).on 'submit', 'form', (e) ->
+  LoadingOverlay.show() if e.currentTarget.dataset.loadingOverlay != '0'
 
 
 @currentUserObserver ?= new CurrentUserObserver
+@parentFocus ?= new ParentFocus
 @reactTurbolinks ||= new ReactTurbolinks
 @twitchPlayer ?= new TwitchPlayer
 @landingGraph ?= new LandingGraph
