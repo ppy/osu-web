@@ -28,18 +28,3 @@
     <div class="counter-box__line u-forum--bg">
     </div>
 </div>
-@if(priv_check('ForumTopicModerate', $topic)->can())
-    <div class="counter-box counter-box--forum">
-        <div class="counter-box__content">
-            <div class="counter-box__title">
-                {{ trans('forum.topics.show.deleted-posts') }}
-            </div>
-
-            <div class="counter-box__count js-forum__deleted-count">
-                {{ $newTopic ? '0' : $topic->deletedPostsCount() }}
-            </div>
-        </div>
-        <div class="counter-box__line u-forum--bg">
-        </div>
-    </div>
-@endif
