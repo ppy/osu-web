@@ -23,6 +23,7 @@ namespace App\Http\Controllers;
 use App;
 use App\Models\BanchoStats;
 use App\Models\Count;
+use App\Models\News;
 use Auth;
 use Request;
 use View;
@@ -75,7 +76,12 @@ class HomeController extends Controller
         $totalUsers = Count::totalUsers();
         $currentOnline = ($stats->isEmpty() ? 0 : $stats->last()->users_osu);
 
-        return view('home.landing', compact('stats', 'totalUsers', 'currentOnline'));
+        if (Auth::check()) {
+            $news = News::all();
+            return view('home.user', compact('stats', 'totalUsers', 'currentOnline', 'news'));
+        } else {
+            return view('home.landing', compact('stats', 'totalUsers', 'currentOnline'));
+        }
     }
 
     public function setLocale()

@@ -1,0 +1,102 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.news-post-preview {
+  @top: news-post-preview;
+  margin-bottom: 5px;
+
+  &__body {
+    display: flex;
+    .default-box-shadow();
+    background: #222222;
+  }
+
+  &__image {
+    .@{top}--collapsed & {
+      display: none;
+    }
+  }
+
+  &__post-date {
+    font-size: smaller;
+    flex: 0 0 60px;
+    border-right: 1px solid grey;
+    margin: 10px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    color: #FF99CC;
+    padding-right: 10px;
+
+    .@{top}--collapsed & {
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+  }
+
+  &__date {
+    font-size: 16px;
+    font-weight: 800;
+    .@{top}--collapsed & {
+      font-size: 12px;
+      font-weight: normal;
+    }
+  }
+
+  &__month-year {
+    font-size: 11px;
+    .@{top}--collapsed & {
+      font-size: 14px;
+    }
+  }
+
+  &__post-right {
+    margin-right: 10px;
+    width: calc(100% ~'-' 90px);
+    .@{top}--collapsed & {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__post-title {
+    color: white;
+    font-size: 14px;
+    margin: 0;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-style: normal;
+
+    .@{top}--collapsed & {
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+  }
+
+  &__post-content {
+    font-size: smaller;
+    font-size: 12px;
+    font-weight: 100;
+    p {
+      color: white;
+    }
+    .@{top}--collapsed & {
+      display: none;
+    }
+  }
+}
