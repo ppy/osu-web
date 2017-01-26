@@ -44,7 +44,7 @@ class BeatmapsetPage.Scoreboard extends React.Component
     modsClassName = 'beatmapset-scoreboard__mods'
     modsClassName += ' beatmapset-scoreboard__mods--initial' if _.isEmpty @props.enabledMods
 
-    mods = if @props.playmode == 'mania'
+    mods = if @props.beatmap.mode == 'mania'
       ['NM', '4K', '5K', '6K', '7K', '8K', '9K', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL']
     else
       ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL']
@@ -101,5 +101,5 @@ class BeatmapsetPage.Scoreboard extends React.Component
       score: score
       position: rank
       key: rank
-      playmode: @props.playmode
+      playmode: @props.beatmap.mode
       countries: @props.countries

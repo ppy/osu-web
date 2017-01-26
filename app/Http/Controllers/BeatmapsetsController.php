@@ -86,14 +86,25 @@ class BeatmapsetsController extends Controller
         $set = json_item(
             $beatmapset,
             new BeatmapsetTransformer(),
-            ['beatmaps', 'beatmaps.failtimes', 'converts', 'converts.failtimes', 'user', 'description', 'ratings', 'availability']
+            [
+                'availability',
+                'beatmaps',
+                'beatmaps.failtimes',
+                'converts',
+                'converts.failtimes',
+                'description',
+                'discussion_status',
+                'ratings',
+                'user',
+            ]
         );
 
         $countries = json_collection(Country::all(), new CountryTransformer);
+        $hasDiscussion = $beatmapset->beatmapsetDiscussion()->exists();
 
         $title = trans('layout.menu.beatmaps._').' / '.$beatmapset->artist.' - '.$beatmapset->title;
 
-        return view('beatmapsets.show', compact('set', 'title', 'countries'));
+        return view('beatmapsets.show', compact('set', 'title', 'countries', 'hasDiscussion'));
     }
 
     public function search()
