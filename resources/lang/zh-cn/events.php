@@ -28,7 +28,7 @@ return [
     'rank' => '<strong><em>:user</em></strong> 在 <em>:beatmap</em> (:mode) 中取得第 :rank 名',
     'rank_lost' => '<strong><em>:user</em></strong> 失去了 <em>:beatmap</em> (:mode) 的第一名',
     'user_support_again' => '<strong>:user</strong> 又一次支持了osu! - 感谢您的慷慨捐赠!',
-    'user_support_first' => '<strong>:user</strong> 成为osu!支持者 - 感谢您的慷慨捐赠!',
-    'user_support_gift' => '<strong>:user</strong> 收到了给osu!支持者的礼物!',
+    'user_support_first' => '<strong>:user</strong> 成为osu!捐赠者 - 感谢您的慷慨捐赠!',
+    'user_support_gift' => '<strong>:user</strong> 收到了给osu!捐赠者的礼物!',
     'username_change' => '<strong>:previousUsername</strong> 将他的名字改为 <strong><em>:user</strong></em>!',
 ];
