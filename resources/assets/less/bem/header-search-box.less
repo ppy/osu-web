@@ -16,39 +16,30 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.notification-icon {
-  @top: notification-icon;
-  .link-white();
-  .link-plain();
-  .center-content();
+.header-search-box {
+  .default-border-radius();
+  margin: 5px 0;
+  color: @gray-f;
+  background-color: fade(@gray-0, 15%);
+  padding: 5px;
   display: flex;
+  align-items: center;
 
-  padding-bottom: 10px;
-
-  &__count {
-    font-size: @font-size--normal;
-    font-weight: 500;
-    margin-right: 5px;
-
-    .@{top}--mobile & {
-      font-size: @font-size--small;
-      margin-right: 0;
-    }
+  &.js-parent-focus--focus {
+    background-color: fade(@gray-0, 25%);
   }
 
-  &__inbox {
-    .@{top}--mobile & {
-      padding-bottom: 2px;
-    }
+  &__icon {
+    margin-left: 5px;
+    font-size: @font-size--title-small;
+    flex: none;
   }
 
-  &--mobile {
-    flex-direction: column;
-    padding-top: 10px;
-    margin-right: 10px;
-  }
-
-  &--glow {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  &__input {
+    .reset-input();
+    flex: none;
+    width: 160px;
+    text-align: right;
+    font-size: @font-size-base;
   }
 }
