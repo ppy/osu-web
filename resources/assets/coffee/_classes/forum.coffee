@@ -27,6 +27,8 @@ class @Forum
 
   constructor: ->
     @_totalPostsDiv = document.getElementsByClassName('js-forum__total-count')
+    @_deletedPostsDiv = document.getElementsByClassName('js-forum__deleted-count')
+    @_firstPostDiv = document.getElementsByClassName('js-forum__topic-first-post-id')
     @_postsCounter = document.getElementsByClassName('js-forum__posts-counter')
     @_postsProgress = document.getElementsByClassName('js-forum__posts-progress')
     @_stickyHeaderTopic = document.getElementsByClassName('js-forum-topic-headernav')
@@ -48,6 +50,14 @@ class @Forum
     parseInt(el.getAttribute('data-post-position'), 10)
 
 
+  firstPostId: ->
+    parseInt @_firstPostDiv[0].getAttribute('data-first-post-id'), 10
+
+
+  postId: (el) ->
+    parseInt el.getAttribute('data-post-id'), 10
+
+
   totalPosts: =>
     return null if @_totalPostsDiv.length == 0
     parseInt @_totalPostsDiv[0].textContent, 10
@@ -55,6 +65,15 @@ class @Forum
 
   setTotalPosts: (n) =>
     $(@_totalPostsDiv).text(n)
+
+
+  deletedPosts: ->
+    return null if @_deletedPostsDiv.length == 0
+    parseInt @_deletedPostsDiv[0].textContent, 10
+
+
+  setDeletedPosts: (n) ->
+    $(@_deletedPostsDiv).text(n)
 
 
   setCounter: (currentPost) =>
@@ -70,7 +89,7 @@ class @Forum
 
 
   firstPostLoaded: =>
-    @postPosition(@posts[0]) == 1
+    @postId(@posts[0]) == @firstPostId()
 
 
   lastPostLoaded: =>
@@ -92,10 +111,10 @@ class @Forum
       .toggleClass 'hidden', lastPostLoaded
 
     if !(currentUser.isAdmin || currentUser.isGMT)
-      $('.delete-post-link').hide()
+      $('.js-post-delete-toggle').hide()
 
     if lastPostLoaded
-      $(@endPost()).find('.delete-post-link').css(display: '')
+      $(@endPost()).find('.js-post-delete-toggle').css(display: '')
 
 
   refreshCounter: =>
