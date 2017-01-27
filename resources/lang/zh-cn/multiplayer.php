@@ -32,15 +32,15 @@ return [
             'player-joined' => ':user 加入了游戏',
             'player-kicked' => ':user 被踢出游戏',
             'match-created' => ':user 创建了一场游戏',
-            'match-disbanded' => ':the 游戏已经解散',//翻译可能不准确,因为无法确认此处:the对应的变量内容
+            'match-disbanded' => ':the 游戏已经解散', //翻译可能不准确,因为无法确认此处:the对应的变量内容
             'host-changed' => ':user 成为房主',
 
-            'player-left-no-user' => '有玩家离开了游戏',  //----------
-            'player-joined-no-user' => '有玩家加入了游戏',//这部分翻译
-            'player-kicked-no-user' => '有玩家被踢出游戏',//可能完全
-            'match-created-no-user' => '游戏已经创建',    //不准确
-            'match-disbanded-no-user' => '游戏已经解散',  //需要协助
-            'host-changed-no-user' => '房主已经变更',     //----------
+            'player-left-no-user' => '有玩家离开了游戏',   //----------
+            'player-joined-no-user' => '有玩家加入了游戏', //这部分翻译
+            'player-kicked-no-user' => '有玩家被踢出游戏', //可能完全
+            'match-created-no-user' => '游戏已经创建',     //不准确
+            'match-disbanded-no-user' => '游戏已经解散',   //需要协助
+            'host-changed-no-user' => '房主已经变更',      //----------
         ],
         'in-progress' => '(match in progress)',
         'score' => [
@@ -62,7 +62,7 @@ return [
             'red' => '红队',
         ],
         'winner' => ':team 胜利',
-        'difference' => 'by :difference',//TODO 确认该字段的位置
+        'difference' => 'by :difference', //TODO 确认该字段的位置
         'loading-events' => '加载事件...',
         'more-events' => '查看全部...',
         'beatmap-deleted' => '删除谱面',

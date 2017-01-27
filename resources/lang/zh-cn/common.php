@@ -35,7 +35,7 @@ return [
     ],
 
     'count' => [
-        'item' => ':count unit|:count units',//需要上下文
+        'item' => ':count unit|:count units', //需要上下文
     ],
 
     'dropzone' => [
@@ -43,8 +43,8 @@ return [
     ],
 
     'pagination' => [
-        'previous' => '上一个',//可能不准确
-        'next' => '下一个',    //需要上下文
+        'previous' => '上一个', //可能不准确
+        'next' => '下一个',     //需要上下文
     ],
 
     'time' => [

@@ -33,6 +33,6 @@ return [
         'normal' => '中',
         'large' => '大',
     ],
-    'spoilerbox' => '折叠文字',//翻译可能不准确
+    'spoilerbox' => '折叠文字', //翻译可能不准确
     'strikethrough' => '删除线',
 ];
