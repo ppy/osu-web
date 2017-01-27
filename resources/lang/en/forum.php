@@ -45,11 +45,13 @@ return [
 
     'pinned_topics' => 'Pinned Topics',
     'post' => [
-        'confirm_delete' => 'Really delete post?',
+        'confirm_destroy' => 'Really delete post?',
+        'confirm_restore' => 'Really restore post?',
         'edited' => 'Last edited by :user on :when, edited :count times in total.',
         'posted_at' => 'posted :when',
         'actions' => [
-            'delete' => 'Delete post',
+            'destroy' => 'Delete post',
+            'restore' => 'Restore post',
             'edit' => 'Edit post',
         ],
     ],
@@ -173,6 +175,7 @@ return [
 
         'show' => [
             'total_posts' => 'Total Posts',
+            'deleted-posts' => 'Deleted Posts',
 
             'feature_vote' => [
                 'current' => 'Current Priority: +:count',

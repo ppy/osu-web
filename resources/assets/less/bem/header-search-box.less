@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -18,26 +16,30 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'edit' => [
-        'title' => 'Configurações de Conta',
-        'title_compact' => 'configurações',
+.header-search-box {
+  .default-border-radius();
+  margin: 5px 0;
+  color: @gray-f;
+  background-color: fade(@gray-0, 15%);
+  padding: 5px;
+  display: flex;
+  align-items: center;
 
-        'avatar' => [
-            'title' => 'Editar Avatar',
-        ],
+  &.js-parent-focus--focus {
+    background-color: fade(@gray-0, 25%);
+  }
 
-        'profile' => [
-            'title' => 'Editar Perfil',
+  &__icon {
+    margin-left: 5px;
+    font-size: @font-size--title-small;
+    flex: none;
+  }
 
-            'user' => [
-                'user_from' => 'localização atual',
-                'user_interests' => 'Interesse',
-                'user_msnm' => 'skype',
-                'user_occ' => 'ocupação',
-                'user_twitter' => 'twitter',
-                'user_website' => 'website',
-            ],
-        ],
-    ],
-];
+  &__input {
+    .reset-input();
+    flex: none;
+    width: 160px;
+    text-align: right;
+    font-size: @font-size-base;
+  }
+}

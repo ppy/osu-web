@@ -19,9 +19,16 @@
     'titleAppend' => $topic->topic_title,
     "body_additional_classes" => 't-forum-'.$topic->forum->categorySlug(),
     'canonicalUrl' => route('forum.topics.show', $topic->topic_id),
+    'search' => [
+        'params' => [
+            'topic_id' => $topic->topic_id,
+        ],
+        'url' => route('forum.forums.search'),
+    ],
 ])
 
 @section("content")
+    <div class="js-forum__topic-first-post-id hidden" data-first-post-id={{ $firstPostId }}></div>
     <div class="forum-topic-headernav js-forum-topic-headernav js-sync-height--reference" data-sync-height-target="forum-topic-headernav" data-visibility="hidden">
         <div class="forum-topic-headernav__stripe
             u-forum--bg-link
@@ -98,7 +105,7 @@
 
     @include("forum.topics._posts")
 
-    <div class="forum-posts-load-link {{ last($postsPosition) === $topic->postsCount() ? 'hidden' : '' }}">
+    <div class="forum-posts-load-link {{ $firstPostPosition + sizeof($posts) - 1 === $topic->postsCount() ? 'hidden' : '' }}">
         <a href="{{ post_url($topic->topic_id, $posts->last()->post_id + 1, false) }}" class="js-forum-posts-show-more js-forum__posts-show-more--next" data-mode="next">Load more</a>
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>
@@ -201,7 +208,6 @@
                     forum-topic-nav__seek-bar
                     u-forum--bg-link
                 "
-                style="width: '{{ 100 * array_get($postsPosition, $jumpTo, 0) / $topic->postsCount() }}%';"
             >
             </div>
         </div>
@@ -271,7 +277,7 @@
                         forum-topic-nav__counter--left
                         js-forum__posts-counter
                         js-forum-topic-post-jump--counter
-                    ">{{ head($postsPosition) }}</span>
+                    ">{{ $firstPostPosition }}</span>
 
                     <span class="forum-topic-nav__counter
                         forum-topic-nav__counter--middle"

@@ -166,6 +166,7 @@ Route::post('/tournaments/{tournament}/register', ['as' => 'tournaments.register
 
 // Forum controllers
 Route::group(['as' => 'forum.', 'prefix' => 'forum', 'namespace' => 'Forum'], function () {
+    Route::get('search', ['as' => 'forums.search', 'uses' => 'ForumsController@search']);
     Route::get('t/{topic}', ['as' => 'topics.show', 'uses' => 'TopicsController@show']);
     Route::post('topics/preview', ['as' => 'topics.preview', 'uses' => 'TopicsController@preview']);
     Route::post('topics/{topic}/lock', ['as' => 'topics.lock', 'uses' => 'TopicsController@lock']);
@@ -183,7 +184,8 @@ Route::group(['as' => 'forum.', 'prefix' => 'forum', 'namespace' => 'Forum'], fu
 
     Route::get('p/{post}', ['as' => 'posts.show', 'uses' => 'PostsController@show']);
     Route::get('posts/{post}/raw', ['as' => 'posts.raw', 'uses' => 'PostsController@raw']);
-    Route::resource('posts', 'PostsController', ['only' => ['destroy', 'update', 'edit']]);
+    Route::post('posts/{post}/restore', ['as' => 'posts.restore', 'uses' => 'PostsController@restore']);
+    Route::resource('posts', 'PostsController', ['only' => ['update', 'edit', 'destroy']]);
 
     Route::get('/', ['as' => 'forums.index', 'uses' => 'ForumsController@index']);
     Route::get('{forum}', ['as' => 'forums.show', 'uses' => 'ForumsController@show']);

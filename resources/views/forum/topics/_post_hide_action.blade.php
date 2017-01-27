@@ -15,22 +15,25 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<label class="account-edit-entry js-account-edit js-parent-focus">
-    <div class="account-edit-entry__label">
-        {{ trans("accounts.edit.profile.user.{$field}") }}
-    </div>
-
-    <input
-        class="account-edit-entry__input js-account-edit__input"
-        name="user[{{ $field }}]"
-        value="{{ Auth::user()->$field }}"
-    >
-
-    <div class="account-edit-entry__status account-edit-entry__status--saving">
-        <i class="fa fa-spinner fa-pulse fa-fw"></i>
-    </div>
-
-    <div class="account-edit-entry__status account-edit-entry__status--saved">
-        {{ trans('common.saved') }}
-    </div>
-</label>
+@php
+    if ($post->trashed()) {
+        $deleteString = 'restore';
+        $iconClass = 'fa-undo';
+        $method = 'post';
+    } else {
+        $deleteString = 'destroy';
+        $iconClass = 'fa-trash';
+        $method = 'delete';
+    }
+@endphp
+<a
+    title="{{ trans('forum.post.actions.'.$deleteString) }}"
+    data-tooltip-position="left center"
+    href="{{ route("forum.posts.$deleteString", $post) }}"
+    class="btn-circle js-post-delete-toggle"
+    data-remote="true"
+    data-method="{{ $method }}"
+    data-confirm="{{ trans("forum.post.confirm_".$deleteString) }}"
+>
+    <i class="fa {{ $iconClass }}"></i>
+</a>

@@ -74,7 +74,7 @@ class TopicsController extends Controller
 
     public function lock($id)
     {
-        $topic = Topic::findOrFail($id);
+        $topic = Topic::withTrashed()->findOrFail($id);
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
 
@@ -87,7 +87,7 @@ class TopicsController extends Controller
 
     public function move($id)
     {
-        $topic = Topic::findOrFail($id);
+        $topic = Topic::withTrashed()->findOrFail($id);
         $destinationForum = Forum::findOrFail(Request::input('destination_forum_id'));
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
@@ -101,7 +101,7 @@ class TopicsController extends Controller
 
     public function pin($id)
     {
-        $topic = Topic::findOrFail($id);
+        $topic = Topic::withTrashed()->findOrFail($id);
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
 
@@ -149,12 +149,12 @@ class TopicsController extends Controller
 
         if ($post->post_id !== null) {
             $posts = collect([$post]);
-            $postsPosition = $topic->postsPosition($posts);
+            $firstPostPosition = $topic->postPosition($post->post_id);
 
             Event::fire(new TopicWasReplied($topic, $post, Auth::user()));
             Event::fire(new TopicWasViewed($topic, $post, Auth::user()));
 
-            return view('forum.topics._posts', compact('posts', 'postsPosition', 'topic'));
+            return view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
         }
     }
 
@@ -166,13 +166,14 @@ class TopicsController extends Controller
         $skipLayout = Request::input('skip_layout') === '1';
         $jumpTo = null;
 
+        $showDeleted = priv_check('ForumTopicModerate')->can();
+
         $topic = Topic
             ::with([
                 'forum.cover',
                 'pollOptions.votes',
                 'pollOptions.post',
-            ])
-            ->findOrFail($id);
+            ])->showDeleted($showDeleted)->findOrFail($id);
 
         if ($topic->forum === null) {
             abort(404);
@@ -180,7 +181,7 @@ class TopicsController extends Controller
 
         priv_check('ForumView', $topic->forum)->ensureCan();
 
-        $posts = $topic->posts();
+        $posts = $topic->posts()->showDeleted($showDeleted);
 
         if ($postStartId === 'unread') {
             $postStartId = Post::lastUnreadByUser($topic, Auth::user());
@@ -236,11 +237,23 @@ class TopicsController extends Controller
             abort($skipLayout ? 204 : 404);
         }
 
-        $postsPosition = $topic->postsPosition($posts);
+        $firstPostId = $topic->posts()
+            ->showDeleted($showDeleted)
+            ->min('post_id');
+
+        $firstShownPostId = $posts->first()->post_id;
+
+        // position of the first post, incremented in the view
+        // to generate positions of further posts
+        $firstPostPosition = $topic->postPosition($firstShownPostId);
 
         $pollSummary = PollOption::summary($topic, Auth::user());
 
-        Event::fire(new TopicWasViewed($topic, $posts->last(), Auth::user()));
+        Event::fire(new TopicWasViewed(
+            $topic,
+            $posts->last(),
+            Auth::user()
+        ));
 
         $template = $skipLayout ? '_posts' : 'show';
 
@@ -259,7 +272,8 @@ class TopicsController extends Controller
                 'jumpTo',
                 'pollSummary',
                 'posts',
-                'postsPosition',
+                'firstPostPosition',
+                'firstPostId',
                 'topic'
             )
         );

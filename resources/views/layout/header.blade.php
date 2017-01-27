@@ -49,14 +49,31 @@
             </div>
         </div>
 
+        @if (isset($search))
+            <div class="osu-nav__col">
+                <form class="header-search-box js-parent-focus" action="{{ $search['url'] }}" data-loading-overlay="0">
+                    <input class="header-search-box__input" name="q" />
+                    <span class="header-search-box__icon">
+                        <i class="fa fa-fw fa-search"></i>
+                    </span>
+
+                    @foreach ($search['params'] ?? [] as $name => $value)
+                        <input type="hidden" name="{{ $name }}" value="{{ $value }}">
+                    @endforeach
+                </form>
+            </div>
+        @endif
+
         @if (Auth::check())
             <div class="osu-nav__col">
                 <a
                     href="{{ route('notifications.index') }}"
                     class="notification-icon{{Auth::user()->notificationCount() > 0 ? ' notification-icon--glow' : ''}}"
                 >
-                    <span class="notification-icon__count">{{ Auth::user()->notificationCount() > 0 ? number_format(Auth::user()->notificationCount()) : '' }}</span>
-                    <i class="fa fa-fw fa-inbox"></i>
+                    @if (Auth::user()->notificationCount() > 0)
+                        <span class="notification-icon__count">{{ number_format(Auth::user()->notificationCount())  }}</span>
+                    @endif
+                    <i class="fa fa-inbox"></i>
                 </a>
             </div>
         @endif

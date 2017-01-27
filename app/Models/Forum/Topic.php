@@ -26,9 +26,12 @@ use App\Models\User;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Topic extends Model
 {
+    use SoftDeletes;
+
     const DEFAULT_ORDER_COLUMN = 'topic_last_post_time';
 
     const STATUS_LOCKED = 1;
@@ -52,6 +55,7 @@ class Topic extends Model
     protected $dateFormat = 'U';
 
     private $postsCount;
+    private $deletedPostsCount;
     private $_vote;
     private $_poll;
 
@@ -125,7 +129,7 @@ class Topic extends Model
             if ($this->posts()->exists() === true) {
                 $this->refreshCache();
             } else {
-                $this->deleteWithDependencies();
+                $this->delete();
             }
 
             if ($this->forum !== null) {
@@ -137,7 +141,34 @@ class Topic extends Model
             }
 
             if ($user !== null && $user->user_id !== $post->poster_id) {
-                Log::logModerateForumPost('LOG_DELETE_POST', $post);
+                Log::logModerateForumPost('LOG_DELETE_POST', $post, $user);
+            }
+        });
+
+        return true;
+    }
+
+    public function restorePost($post, $user = null)
+    {
+        DB::transaction(function () use ($post, $user) {
+            $post->restore();
+
+            if ($this->trashed()) {
+                $this->restore();
+            }
+
+            $this->refreshCache();
+
+            if ($this->forum !== null) {
+                $this->forum->refreshCache();
+            }
+
+            if ($post->user !== null) {
+                $post->user->refreshForumCache($this->forum, 1);
+            }
+
+            if ($user !== null && $user->user_id !== $post->user->user_id) {
+                Log::logModerateForumPost('LOG_RESTORE_POST', $post, $user);
             }
         });
 
@@ -253,6 +284,13 @@ class Topic extends Model
         return $query->where('topic_type', 0);
     }
 
+    public function scopeShowDeleted($query, $showDeleted)
+    {
+        if ($showDeleted) {
+            $query->withTrashed();
+        }
+    }
+
     public function scopeWatchedByUser($query, $user)
     {
         return $query
@@ -323,27 +361,6 @@ class Topic extends Model
         return $this->posts()->where('post_id', '<=', $postId)->count();
     }
 
-    public function postsPosition($sortedPosts)
-    {
-        if ($sortedPosts->count() === 0) {
-            return [];
-        }
-
-        $firstPostPosition = $this->postPosition($sortedPosts->first()->post_id);
-        $postIds = $sortedPosts->map(function ($p) {
-            return $p->post_id;
-        });
-
-        $buf = [];
-        $currentPostPosition = $firstPostPosition;
-        foreach ($postIds as $postId) {
-            $buf[$postId] = $currentPostPosition;
-            $currentPostPosition++;
-        }
-
-        return $buf;
-    }
-
     public function getPollStartAttribute($value)
     {
         return get_time_or_null($value);
@@ -373,6 +390,15 @@ class Topic extends Model
         }
 
         return $this->postsCount;
+    }
+
+    public function deletedPostsCount()
+    {
+        if ($this->deletedPostsCount === null) {
+            $this->deletedPostsCount = $this->posts()->onlyTrashed()->count();
+        }
+
+        return $this->deletedPostsCount;
     }
 
     public function isLocked()

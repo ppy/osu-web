@@ -15,22 +15,8 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<label class="account-edit-entry js-account-edit js-parent-focus">
-    <div class="account-edit-entry__label">
-        {{ trans("accounts.edit.profile.user.{$field}") }}
-    </div>
+@extends('forum.topics.replace_delete_button', ['countDifference' => -1])
 
-    <input
-        class="account-edit-entry__input js-account-edit__input"
-        name="user[{{ $field }}]"
-        value="{{ Auth::user()->$field }}"
-    >
-
-    <div class="account-edit-entry__status account-edit-entry__status--saving">
-        <i class="fa fa-spinner fa-pulse fa-fw"></i>
-    </div>
-
-    <div class="account-edit-entry__status account-edit-entry__status--saved">
-        {{ trans('common.saved') }}
-    </div>
-</label>
+@section('moderatorAction')
+    $el.addClass("js-forum-post--hidden");
+@endsection
