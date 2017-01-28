@@ -20,7 +20,7 @@
 
 return [
     'show' => [
-        'languages' => 'Linguagens',
+        'languages' => 'Idiomas',
         'missing' => 'A página solicitada não foi encontrada.',
         'missing_translation' => 'A página solicitada não foi encontrada no atual idioma especificado.',
         'toc' => 'Conteúdo',
