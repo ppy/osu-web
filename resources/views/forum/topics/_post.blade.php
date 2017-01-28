@@ -22,10 +22,12 @@
     if (!isset($options['signature'])) { $options['signature'] = true; }
     if (!isset($options['replyLink'])) { $options['replyLink'] = false; }
     if (!isset($options['postPosition'])) { $options['postPosition'] = 1; }
-    if (!isset($options['large'])) { $options['large'] = $options['postPosition'] === 1; }
+    if (!isset($options['large'])) {
+        $options['large'] = $options['postPosition'] === ($post->trashed() ? 0 : 1);
+    }
 ?>
 <div
-    class="js-forum-post osu-layout__row {{ $options['large'] ? '' : 'osu-layout__row--sm2-desktop' }}"
+    class="js-forum-post {{ $post->trashed() ? 'js-forum-post--hidden' : '' }} osu-layout__row {{ $options['large'] ? '' : 'osu-layout__row--sm2-desktop' }}"
     data-post-id="{{ $post->post_id }}"
     data-post-position="{{ $options["postPosition"] }}"
 >
@@ -87,19 +89,9 @@
                     </div>
                 @endif
 
-                @if ($options['deleteLink'] === true)
+                @if ($options["deleteLink"] === true)
                     <div class="forum-post-actions__action">
-                        <a
-                            title="{{ trans('forum.post.actions.delete') }}"
-                            data-tooltip-position="left center"
-                            href="{{ route('forum.posts.destroy', $post) }}"
-                            class="btn-circle delete-post-link"
-                            data-method="delete"
-                            data-confirm="{{ trans("forum.post.confirm_delete") }}"
-                            data-remote="1"
-                        >
-                            <i class="fa fa-trash"></i>
-                        </a>
+                        @include('forum.topics._post_hide_action')
                     </div>
                 @endif
 

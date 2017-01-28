@@ -15,30 +15,6 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-
-$(document).on 'ajax:success', '.delete-post-link', (_event, data) ->
-  $el = $(".js-forum-post[data-post-id=#{data.postId}]")
-  currentHeight = $el.css 'height'
-
-  $el
-    .css
-      minHeight: '0px'
-      height: currentHeight
-    .slideUp null, ->
-      $el.remove()
-
-      window.forum.setTotalPosts(window.forum.totalPosts() - 1)
-
-      for post in window.forum.posts by -1
-        originalPosition = parseInt post.getAttribute('data-post-position'), 10
-
-        break if originalPosition < data.postPosition
-
-        post.setAttribute 'data-post-position', originalPosition - 1
-
-      osu.pageChange()
-
-
 $(document).on 'ajax:success', '.edit-post-link', (e, data, status, xhr) ->
   # ajax:complete needs to be triggered early because the link (target) is
   # removed in this callback.
