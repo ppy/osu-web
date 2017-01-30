@@ -47,15 +47,9 @@ return [
         'in-progress' => '(match en cours)',
         'score' => [
             'stats' => [
-                'combo' => 'Combo',
                 'accuracy' => 'Précision',
+                'combo' => 'Combo',
                 'score' => 'Score',
-                'countgeki' => 'MAX',
-                'count300' => '300s',
-                'countkatu' => '200s',
-                'count100' => '100s',
-                'count50' => '50s',
-                'countmiss' => 'Raté',
             ],
         ],
         'failed' => 'Échec',

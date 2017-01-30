@@ -44,6 +44,15 @@ return [
         'next' => 'próxima',
     ],
 
+    'score_count' => [
+        'count100' => '100',
+        'count300' => '300',
+        'count50' => '50',
+        'countgeki' => 'MÁX',
+        'countkatu' => '200',
+        'countmiss' => 'Erro',
+    ],
+
     'time' => [
         'days_ago' => ':count dia atrás|:count dias atrás',
         'hours_ago' => ':count hora atrás|:count horas atrás',

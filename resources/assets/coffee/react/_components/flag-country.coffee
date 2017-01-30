@@ -17,20 +17,19 @@
 ###
 
 el = React.createElement
+{span} = React.DOM
 
+bn = 'flag-country'
 
-class @FlagCountry extends React.Component
-  render: =>
-    return el 'span' unless @props.country.code
+@FlagCountry = ({country, classModifiers = []}) ->
+  return span() if !country.code?
 
-    baseClass = 'flag-country'
-    additionalClasses = (@props.classModifiers || [])
-      .map (m) ->
-        "#{baseClass}--#{m}"
-      .join " "
+  additionalClasses = classModifiers
+    .map (m) -> "#{bn}--#{m}"
+    .join ' '
 
-    el 'span',
-      className: "#{baseClass} #{additionalClasses}"
-      title: @props.country.name
-      style:
-        backgroundImage: "url('/images/flags/#{@props.country.code}.png')"
+  span
+    className: "#{bn} #{additionalClasses}"
+    title: country.name
+    style:
+      backgroundImage: "url('/images/flags/#{country.code}.png')"
