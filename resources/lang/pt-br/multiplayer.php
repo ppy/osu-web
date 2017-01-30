@@ -45,15 +45,9 @@ return [
         'in-progress' => '(partida em progresso)',
         'score' => [
             'stats' => [
-                'combo' => 'Combo',
                 'accuracy' => 'Precisão',
+                'combo' => 'Combo',
                 'score' => 'Pontuação',
-                'countgeki' => 'MÁX',
-                'count300' => '300s',
-                'countkatu' => '200s',
-                'count100' => '100s',
-                'count50' => '50s',
-                'countmiss' => 'Erro',
             ],
         ],
         'failed' => 'FALHOU',

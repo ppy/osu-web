@@ -73,6 +73,12 @@ class MPHistory.Score extends React.Component
               if @props.mode != 'mania' and (m == 'countgeki' || m == 'countkatu')
                 return
 
-              div className: 'mp-history-player-score__stat mp-history-player-score__stat--small', key: m,
-                span className: 'mp-history-player-score__stat-label mp-history-player-score__stat-label--large', Lang.get "multiplayer.match.score.stats.#{m}"
-                span className: 'mp-history-player-score__stat-number mp-history-player-score__stat-number--small', @props.score[m].toLocaleString()
+              div
+                className: 'mp-history-player-score__stat mp-history-player-score__stat--small'
+                key: m,
+                span
+                  className: 'mp-history-player-score__stat-label mp-history-player-score__stat-label--large'
+                  osu.trans "common.score_count.#{m}"
+                span
+                  className: 'mp-history-player-score__stat-number mp-history-player-score__stat-number--small'
+                  @props.score[m].toLocaleString()
