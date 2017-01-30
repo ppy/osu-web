@@ -24,6 +24,7 @@ use App\Libraries\ModsHelper;
 use App\Models\Score\Model as BaseModel;
 use App\Traits\MacroableModel;
 use Aws\S3\S3Client;
+use DB;
 use League\Flysystem\AwsS3v2\AwsS3Adapter;
 use League\Flysystem\Filesystem;
 
@@ -138,23 +139,10 @@ abstract class Model extends BaseModel
     public function macroUserRank()
     {
         return function ($query, $userScore) {
-            $baseResult = (clone $query)
+            return 1 + (clone $query)
                 ->limit(null)
                 ->where('score', '>', $userScore->score)
-                ->select('user_id')
-                ->get();
-
-            $users = [];
-            $rank = 0;
-
-            foreach ($baseResult as $entry) {
-                if (!isset($users[$entry->user_id])) {
-                    $users[$entry->user_id] = true;
-                    $rank += 1;
-                }
-            }
-
-            return $rank + 1;
+                ->count(DB::raw('DISTINCT user_id'));
         };
     }
 
