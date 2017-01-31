@@ -57,13 +57,13 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count day ago|:count days ago',
-        'hours_ago' => ':count hour ago|:count hours ago',
-        'now' => 'now',
-        'remaining' => 'Time Remaining',
+        'days_ago' => ':count 天前|:count 天前',
+        'hours_ago' => ':count 小时前|:count 小时前',
+        'now' => '现在',
+        'remaining' => '剩余时间',
     ],
 
     'title' => [
-        'notice' => 'Notice',
+        'notice' => '提醒',
     ],
 ];

@@ -174,62 +174,62 @@ return [
     'errors' => [
         '404' => [
             'error' => '页面未找到',
-            'description' => "抱歉,您请求的界面不在这里!",
+            'description' => '抱歉,您请求的界面不在这里!',
             'link' => false,
         ],
         '403' => [
-            'error' => "您不应该在这里.",
+            'error' => '您不应该在这里.',
             'description' => '您可以尝试返回.',
             'link' => false,
         ],
         '401' => [
-            'error' => "您不应该在这里.",
+            'error' => '您不应该在这里.',
             'description' => '您可以尝试返回,或者先登录',
             'link' => false,
         ],
         '405' => [
             'error' => '页面未找到',
-            'description' => "抱歉,您请求的界面不在这里!",
+            'description' => '抱歉,您请求的界面不在这里!',
             'link' => false,
         ],
         '500' => [
             'error' => '噢,发生了一些错误',
-            'description' => "我们会自动报告每一个错误.",
+            'description' => '我们会自动报告每一个错误.',
             'link' => false,
         ],
         'fatal' => [
             'error' => '噢,发生了一些严重的错误',
-            'description' => "我们会自动报告每一个错误.",
+            'description' => '我们会自动报告每一个错误.',
             'link' => false,
         ],
         '503' => [
             'error' => '维护中!',
-            'description' => "每次维护需要5秒到10分钟的时间.如果我们维护时间太长,查看 :link 以获得更多信息.",
+            'description' => '每次维护需要5秒到10分钟的时间.如果我们维护时间太长,查看 :link 以获得更多信息.',
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "以防万一,您可以将这里的代码发给我们!",
+        'reference' => '以防万一,您可以将这里的代码发给我们!',
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'email地址',
-            'forgot' => "我忘记了我的登录信息",
+            'forgot' => '我忘记了我的登录信息',
             'password' => '密码',
             'title' => '登录以继续',
 
             'error' => [
-                'email' => "用户名或email不存在",
+                'email' => '用户名或email不存在',
                 'password' => '密码错误',
             ],
         ],
 
         'register' => [
-            'info' => "您需要一个帐号.为什么不现在注册一个呢?",
-            'title' => "没有帐号?",
+            'info' => '您需要一个帐号.为什么不现在注册一个呢?',
+            'title' => '没有帐号?',
         ],
     ],
 
