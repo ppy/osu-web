@@ -39,6 +39,15 @@ return [
             'target' => 'trascina qui per caricare',
         ],
 
+        'score_count' => [
+            'count100' => '100',
+            'count300' => '300',
+            'count50' => '50',
+            'countgeki' => 'MAX',
+            'countkatu' => '200',
+            'countmiss' => 'Errori',
+        ],
+
         'pagination' => [
             'previous' => 'prec',
             'next' => 'succ',
