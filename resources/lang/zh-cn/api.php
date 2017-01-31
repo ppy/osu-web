@@ -21,6 +21,6 @@
 return [
     'errors' => [
         'csrf' => '拒绝访问',
-        'missing' => '找不到指定的文件',
+        'missing' => '无法找到',
     ],
 ];
