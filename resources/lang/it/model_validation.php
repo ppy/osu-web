@@ -33,7 +33,7 @@ return [
             'duplicate_options' => 'Non è permesso avere un\'opzione duplicata.',
             'invalid_max_options' => 'Le opzioni per utente non possono superare il numero di opzioni disponibili.',
             'minimum_one_selection' => 'È richiesto un minimo di un\'opzione per utente.',
-            'minimum_two' => 'È necessario almeno due opzioni.',
+            'minimum_two_options' => 'È necessario almeno due opzioni.',
             'too_many_options' => 'Raggiunto il massimo numero di opzioni permesse.',
         ],
 
