@@ -45,15 +45,9 @@ return [
         'in-progress' => '(match in progress)',
         'score' => [
             'stats' => [
-                'combo' => '连击',
                 'accuracy' => '准确率',
+                'combo' => '连击',
                 'score' => '得分',
-                'countgeki' => 'MAX',
-                'count300' => '300s',
-                'countkatu' => '200s',
-                'count100' => '100s',
-                'count50' => '50s',
-                'countmiss' => 'Miss',
             ],
         ],
         'failed' => '失败',

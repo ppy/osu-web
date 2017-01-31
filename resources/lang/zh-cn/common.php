@@ -35,7 +35,7 @@ return [
     ],
 
     'count' => [
-        'item' => ':count unit|:count units', //需要上下文
+        'item' => ':count unit|:count units', //需要上下文(件/份/个)
     ],
 
     'dropzone' => [
@@ -45,6 +45,15 @@ return [
     'pagination' => [
         'previous' => '上一个', //可能不准确
         'next' => '下一个',     //需要上下文
+    ],
+
+    'score_count' => [
+        'count100' => '100',
+        'count300' => '300',
+        'count50' => '50',
+        'countgeki' => 'MAX',
+        'countkatu' => '200',
+        'countmiss' => 'Miss',
     ],
 
     'time' => [
