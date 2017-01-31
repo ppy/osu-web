@@ -22,6 +22,13 @@ el = React.createElement
 class BeatmapsetPage.Header extends React.Component
   render: ->
     dateFormat = 'MMM D, YYYY'
+    favouriteButton =
+      if @props.hasFavourited
+        action: 'unfavourite'
+        icon: 'heart'
+      else
+        action: 'favourite'
+        icon: 'heart-o'
 
     div className: 'beatmapset-header',
       el PlaymodeTabs,
@@ -57,13 +64,10 @@ class BeatmapsetPage.Header extends React.Component
                 span className: 'beatmapset-header__value-name', @props.beatmapset.play_count.toLocaleString()
 
               span className: 'beatmapset-header__value',
-                a
-                  onClick: @toggleFavourite
-                  href: laroute.route 'beatmapsets.update-favourite', beatmapset: @props.beatmapset.id, action: if @props.hasFavourited then 'unfavourite' else 'favourite'
-                  title: osu.trans "beatmaps.beatmapset.show.details.#{if @props.hasFavourited then 'unfavourite' else 'favourite'}"
-                  className: "beatmapset-header__value-icon beatmapset-header__value-icon--favourites #{'beatmapset-header__value-icon--favourited' if @props.hasFavourited}"
+                span className: 'beatmapset-header__value-icon',
                   el Icon, name: 'heart'
-                span className: 'beatmapset-header__value-name', @props.favcount.toLocaleString()
+                span className: 'beatmapset-header__value-name',
+                  @props.favcount.toLocaleString()
 
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--title'
@@ -95,6 +99,18 @@ class BeatmapsetPage.Header extends React.Component
               div
                 key: 'buttons'
                 className: 'beatmapset-header__buttons'
+
+                el BigButton,
+                  props:
+                    onClick: @toggleFavourite
+                    href:
+                      laroute.route 'beatmapsets.update-favourite',
+                        beatmapset: @props.beatmapset.id
+                        action: favouriteButton.action
+                    title: osu.trans "beatmaps.beatmapset.show.details.#{favouriteButton.action}"
+                  modifiers: ['beatmapset-header-square', "beatmapset-header-square-#{favouriteButton.action}"]
+                  icon: favouriteButton.icon
+
                 unless @props.beatmapset.availability?.download_disabled
                   [
                     if @props.beatmapset.video
