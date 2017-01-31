@@ -32,7 +32,7 @@ return [
         ],
 
         'poll_vote' => [
-            'invalid' => 'Invalid option specificied.',
+            'invalid' => 'Invalid option specified.',
         ],
 
         'topic_poll' => [
