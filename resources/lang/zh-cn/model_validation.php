@@ -36,15 +36,15 @@ return [
         ],
 
         'topic_poll' => [
-            'duplicate_options' => 'Duplicated option is not allowed.',
-            'invalid_max_options' => 'Option per user may not exceed the number of available options.',
-            'minimum_one_selection' => 'A minimum of one option per user is required.',
-            'minimum_two_options' => 'Need at least two options.',
-            'too_many_options' => 'Exceeded maximum number of allowed options.',
+            'duplicate_options' => '不允许重复的选项.',
+            'invalid_max_options' => '每人可选的选项不能超出总选项数.',
+            'minimum_one_selection' => '每人至少可选一项.',
+            'minimum_two_options' => '需要至少两个选项.',
+            'too_many_options' => '选项数量超出限制.',
         ],
 
         'topic_vote' => [
-            'too_many' => 'Selected more options than allowed.',
+            'too_many' => '选择了太多的选项.',
         ],
     ],
 ];
