@@ -63,7 +63,6 @@ return [
             'getChat' => 'chat',
             'getSupport' => 'ondersteuning',
             'getLive' => 'live',
-            'getSlack' => 'osu!dev',
             'profile' => 'profiel',
             'tournaments' => 'toernooien',
             'tournaments-index' => 'toernooien',

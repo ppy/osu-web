@@ -28,12 +28,6 @@ return [
             'generic' => 'Si è verificato un errore. Prova a ricaricare la pagina.',
         ],
     ],
-    'community' => [
-        'slack' => [
-            'not-eligible' => 'Il tuo account non è idoneo per l\'invito a Slack.',
-            'slack-error' => 'Si è verificato un errore sui server Slack. Riprova tra qualche minuto.',
-        ],
-    ],
     'beatmaps' => [
         'standard-converts-only' => 'Solo la modalità osu! può avere punteggi in altre modalità.',
     ],
