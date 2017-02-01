@@ -28,12 +28,6 @@ return [
             'generic' => 'Um erro ocorreu. Tente atualizar a página.',
         ],
     ],
-    'community' => [
-        'slack' => [
-            'not-eligible' => 'A sua conta não é elegível para um convite do Slack.',
-            'slack-error' => 'Um erro ocorreu nos servidores do Slack. Por favor, tente novamente em alguns minutos.',
-        ],
-    ],
     'beatmaps' => [
         'standard-converts-only' => 'Apenas o modo osu! pode ter pontuações em outros modos.',
     ],

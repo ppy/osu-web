@@ -297,7 +297,7 @@ function nav_links()
         'contests' => route('community.contests.index'),
         'tournaments' => route('tournaments.index'),
         'getLive' => route('livestreams.index'),
-        'getSlack' => route('slack'),
+        'dev' => osu_url('dev'),
     ];
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),

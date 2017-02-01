@@ -476,11 +476,6 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->hasOne(ApiKey::class);
     }
 
-    public function slackUser()
-    {
-        return $this->hasOne(SlackUser::class);
-    }
-
     public function storeAddresses()
     {
         return $this->hasMany(Store\Address::class);
@@ -871,16 +866,6 @@ class User extends Model implements AuthenticatableContract, Messageable
             'user_posts' => $newPostsCount,
             'user_lastpost_time' => $lastPostTime,
         ]);
-    }
-
-    public function isSlackEligible()
-    {
-        return $this->beatmapPlaycounts()->sum('playcount') > 100
-            && $this->slackUser === null
-            && !$this->isBanned()
-            && !$this->isRestricted()
-            && $this->banHistories()->where('timestamp', '>', Carbon::now()->subDays(28))
-                ->where('ban_status', '=', 2)->count() === 0;
     }
 
     public function sendMessage(User $sender, $body)

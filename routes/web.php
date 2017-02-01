@@ -106,9 +106,6 @@ Route::get('/community/profile/{id}', function ($id) {
     return Redirect::route('users.show', $id);
 });
 
-Route::get('/community/slack', ['as' => 'slack', 'uses' => 'CommunityController@getSlack']);
-Route::post('/community/slack/agree', ['as' => 'slack.agree', 'uses' => 'CommunityController@postSlackAgree']);
-
 Route::resource('matches', 'MatchesController', ['only' => ['show']]);
 Route::get('/matches/{match}/history', ['as' => 'matches.history', 'uses' => 'MatchesController@history']);
 
