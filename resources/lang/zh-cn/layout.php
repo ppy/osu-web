@@ -63,11 +63,11 @@ return [
         ],
         'community' => [
             '_' => '社区',
+            'dev' => 'osu!开发者',
             'getForum' => '论坛',
             'getChat' => '聊天',
             'getSupport' => '获取帮助',
             'getLive' => '直播',
-            'getSlack' => 'osu!开发者',
             'contests' => '竞赛',
             'profile' => '个人资料',
             'tournaments' => '锦标赛',

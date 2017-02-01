@@ -28,12 +28,6 @@ return [
             'generic' => '发生未知错误,请尝试刷新页面.',
         ],
     ],
-    'community' => [
-        'slack' => [//TODO 不会翻译,需要帮助翻译
-            'not-eligible' => 'Your account is not eligible for the Slack invite.',
-            'slack-error' => 'An error has occured on the Slack servers. Please try again in a few minutes.',
-        ],
-    ],
     'beatmaps' => [//TODO 不会翻译,需要帮助翻译
         'standard-converts-only' => 'Only the osu! mode can have scores in other modes.',
     ],
