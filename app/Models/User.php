@@ -922,7 +922,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     public static function findForLogin($username)
     {
         return static::where('username', $username)
-            ->orWhere('user_email', '=', $username)
+            ->orWhere('user_email', '=', strtolower($username))
             ->first();
     }
 
