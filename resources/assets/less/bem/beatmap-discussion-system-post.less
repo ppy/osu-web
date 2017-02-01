@@ -17,34 +17,25 @@
  */
 
 .beatmap-discussion-system-post {
+  @resolved-color: @green;
+
   margin: 15px @beatmap-discussion--reply-padding;
 
-  color: @gray-f;
   font-size: @font-size--small;
   font-weight: 600;
 
   &--resolved {
+    color: @resolved-color;
     display: flex;
 
     // the fancy green line
     &::after {
       flex: 1;
       content: '';
-      background-color: @green;
+      background-color: @resolved-color;
       align-self: center;
       height: 1px;
       margin-left: 10px;
-    }
-  }
-
-  &__user {
-    color: @gray-c;
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: @gray-e;
-      text-decoration: none;
     }
   }
 }
