@@ -39,39 +39,4 @@ class UserTest extends TestCase
         $this->user = factory(User::class)->create();
         $this->user->beatmapPlaycounts()->save($this->pc);
     }
-
-    /**
-     * Checks whether the User::isSlackEligible() method returns
-     * an appropriate value depending on play count (false when <100).
-     */
-    public function testSlackBeatmapPlaycounts()
-    {
-        $this->assertTrue($this->user->isSlackEligible());
-
-        // New empty user with no played maps
-        $user = factory(User::class)->create();
-        $this->assertFalse($user->isSlackEligible());
-    }
-
-    /**
-     * Checks whether the User::isSlackEligible() method returns
-     * an appropriate value if the user had any bans
-     * in the last 28 days.
-     */
-    public function testSlackBanHistory()
-    {
-        $bh = new UserBanHistory();
-
-        $bh->ban_status = 2;
-        $bh->timestamp = Carbon::now();
-
-        $this->user->banHistories()->save($bh);
-
-        $this->assertFalse($this->user->isSlackEligible());
-
-        $bh->timestamp = Carbon::now()->subDays(40);
-        $bh->save();
-
-        $this->assertTrue($this->user->isSlackEligible());
-    }
 }

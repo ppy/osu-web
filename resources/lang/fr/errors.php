@@ -28,12 +28,6 @@ return [
             'generic' => 'Une erreur a eue lieue. Essayez à nouveau.',
         ],
     ],
-    'community' => [
-        'slack' => [
-            'not-eligible' => "Votre compte n'est pas éligible pour l'invitation Slack.",
-            'slack-error' => 'Une erreur est survenue dans les serveurs de Slack. Merci de réesayer dans quelques minutes.',
-        ],
-    ],
     'beatmaps' => [
         'standard-converts-only' => "Seulement le mode osu! peut avoir des scores dans d'autres modes.",
     ],

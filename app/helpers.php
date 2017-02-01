@@ -297,7 +297,6 @@ function nav_links()
         'contests' => route('community.contests.index'),
         'tournaments' => route('tournaments.index'),
         'getLive' => route('livestreams.index'),
-        'getSlack' => route('slack'),
     ];
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),

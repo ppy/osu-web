@@ -126,25 +126,4 @@ return [
             'instructions' => 'cliquez sur le coeur pour aller au osu!store',
         ],
     ],
-    'slack' => [
-        'header' => [
-            'small' => 'osu!dev',
-            'large' => "Accès au slack public d'osu!",
-        ],
-
-        'disabled' => 'La communauté Slack publique est indisponible. Si vous souhaitez y aller, créez un ticket sur la <a href="https://github.com/ppy">repo GitHub</a> ou contactez-nous à <a href="mailto::mail">:mail</a>.',
-
-        'guest-begin' => 'Vous devez être ',
-        'guest-middle' => 'connecté',
-        'guest-end' => ' pour recevoir une invitation Slack!',
-
-        'receive-invite' => 'Vous pouvez recevoir une invitation pour le réseau Slack public ici',
-        'bullet-points' => 'Merci de bien lire les conditions sur <a href=":link">ce post.</a><br />Veuillez noter que les offences sur votre compte ne sera pas toléré.',
-
-        'recent-issues' => 'Votre compte à des problèmes récents. Merci de <a href="mailto::mail">contacter le support</a> pour plus de détails.',
-        'agree-button' => 'Accepter',
-
-        'accepted' => 'Votre requête a été acceptée. Vous devriez recevoir un e-mail bientôt.',
-        'invite-already-accepted' => 'Vous avez déjà un compte Slack! Si vous avez un problème, <a href="mailto::mail">contactez le support.</a>',
-    ],
 ];
