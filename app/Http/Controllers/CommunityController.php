@@ -20,8 +20,6 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-
 class CommunityController extends Controller
 {
     /*

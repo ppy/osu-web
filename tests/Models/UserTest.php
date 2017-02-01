@@ -20,8 +20,6 @@
 use App\Models\Beatmap;
 use App\Models\BeatmapPlaycount;
 use App\Models\User;
-use App\Models\UserBanHistory;
-use Carbon\Carbon;
 
 class UserTest extends TestCase
 {
