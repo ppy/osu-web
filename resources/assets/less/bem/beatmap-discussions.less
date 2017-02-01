@@ -38,7 +38,8 @@
   }
 
   &__discussions {
-    margin: 10px 20px;
+    padding: 10px 20px;
+    background-color: @gray-e;
   }
 
   &__mode {
@@ -63,8 +64,8 @@
 
   &__timeline-line {
     position: absolute;
-    top: (@_mode-circle-diameter / 2);
-    left: 0;
+    top: (10px + @_mode-circle-diameter / 2);
+    left: 20px;
 
     width: @_timeline-line-width;
     height: calc(100% ~'-' @_mode-circle-diameter);
