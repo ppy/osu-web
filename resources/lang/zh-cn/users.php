@@ -30,7 +30,7 @@ return [
         'remember' => '记住此电脑',
         'title' => '登录以继续',
         'failed' => '登录失败',
-        'register' => "没有 osu! 账户? 现在注册一个吧",
+        'register' => '没有 osu! 账户? 现在注册一个吧',
         'forgot' => '忘记密码?',
         'beta' => [
             'main' => 'Beta access is currently restricted to privileged users.', //TODO 需要上下文
@@ -100,9 +100,9 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu', //TODO 需要上下文
-                    'empty' => "该用户还没有收到过 kudosu!",
+                    'empty' => '该用户还没有收到过 kudosu!',
 
-                    'beatmap_discussion' => [
+                    'beatmap_discussion' => [ //TODO 专有名词太多,需要帮助
                         'allow_kudosu' => [
                             'give' => 'Received :amount from kudosu deny repeal of modding post :post',
                         ],
@@ -132,67 +132,67 @@ return [
                 ],
             ],
             'me' => [
-                'title' => 'me!',
+                'title' => 'me!', //不翻译
             ],
             'medals' => [
-                'empty' => "This user hasn't gotten any yet. ;_;",
-                'title' => 'Medals',
+                'empty' => '该用户还没有获得奖牌. ;_;',
+                'title' => '奖牌',
             ],
             'recent_activities' => [
-                'title' => 'Recent',
+                'title' => '最近活动',
             ],
-            'top_ranks' => [
+            'top_ranks' => [ //翻译可能不准确
                 'best' => [
-                    'title' => 'Best Performance',
+                    'title' => '最佳表现',
                 ],
-                'empty' => 'No awesome performance records yet. :(',
+                'empty' => '还没有最佳表现. :(',
                 'first' => [
-                    'title' => 'First Place Ranks',
+                    'title' => '第一名',
                 ],
                 'pp' => ':amountpp',
-                'title' => 'Ranks',
-                'weighted_pp' => 'weighted: :pp (:percentage)',
+                'title' => '排位',
+                'weighted_pp' => '权重: :pp (:percentage)',
             ],
             'beatmaps' => [
-                'title' => 'Beatmaps',
+                'title' => '谱面',
                 'favourite' => [
-                    'title' => 'Favourite Beatmaps (:count)',
+                    'title' => '收藏的谱面 (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                    'title' => 'Ranked并且得到赞的谱面 (:count)',
                 ],
-                'none' => 'None... yet.',
+                'none' => '暂时没有...',
             ],
         ],
-        'first_members' => 'here since the beginning',
-        'is_supporter' => 'osu!supporter',
-        'is_developer' => 'osu!developer',
-        'lastvisit' => 'Last seen :date.',
-        'joined_at' => 'joined :date',
-        'more_achievements' => 'and more',
+        'first_members' => 'here since the beginning', //TODO 需要上下文
+        'is_supporter' => 'osu!支持者',
+        'is_developer' => 'osu!开发者',
+        'lastvisit' => '上次登录: :date',
+        'joined_at' => '注册时间: :date',
+        'more_achievements' => '更多',
         'origin' => [
-            'age' => ':age years old.',
-            'country' => 'From :country.',
-            'country_age' => ':age years old from :country.',
+            'age' => ':age 岁.',
+            'country' => '来自 :country.',
+            'country_age' => ':age 岁,来自 :country.',
         ],
         'page' => [
-            'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
-            'edit_big' => 'Edit me!',
-            'placeholder' => 'Type page content here',
-            'restriction_info' => "You need to be an <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+            'description' => '<strong>me!</strong>是您可以自定义的展示区.',
+            'edit_big' => '编辑 me!',
+            'placeholder' => 'Type page content here', //TODO 需要上下文
+            'restriction_info' => "您需要成为 <a href='".osu_url('support-the-game')."' target='_blank'>osu!支持者</a> 以解锁该特性.",
         ],
         'plays_with' => [
-            '_' => 'Plays with',
-            'keyboard' => 'Keyboard',
-            'mouse' => 'Mouse',
-            'tablet' => 'Tablet',
-            'touch' => 'Touch Screen',
+            '_' => '惯用设备',
+            'keyboard' => '键盘',
+            'mouse' => '鼠标',
+            'tablet' => '数位板', //板子
+            'touch' => '触摸屏',
         ],
-        'missingtext' => 'You might have made a typo! (or the user may have been banned)',
-        'page_description' => 'osu! - Everything you ever wanted to know about :username!',
+        'missingtext' => '您可能输错了! (或者该用户已经被ban)',
+        'page_description' => 'osu! - Everything you ever wanted to know about :username!', //TODO 需要上下文
         'rank' => [
-            'country' => 'Country rank for :mode',
-            'global' => 'Global rank for :mode',
+            'country' => 'Country rank for :mode', //TODO 需要上下文
+            'global' => 'Global rank for :mode', //TODO 需要上下文
         ],
         'stats' => [
             'hit_accuracy' => '准确率',
@@ -205,7 +205,7 @@ return [
             'total_hits' => '总命中次数', //或许不翻译hit更好
             'total_score' => '总分',
         ],
-        'title' => ":username 的个人资料",
+        'title' => ':username 的个人资料',
     ],
 
     'verify' => [
