@@ -16,43 +16,41 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,a,span} = React.DOM
+{div, a, span} = React.DOM
 el = React.createElement
 
 class Beatmaps.SearchSort extends React.Component
-  select: (i, e) ->
+  render: =>
+    div className: 'beatmapsets-sorting',
+      for field in ['title', 'artist', 'difficulty', 'ranked', 'rating', 'plays']
+        selected = @selected(field)
+
+        a
+          key: field
+          href: '#'
+          className: "beatmapsets-sorting__item #{'beatmapsets-sorting__item--selected' if selected}"
+          onClick: @select
+          'data-field': field
+          field
+          if selected
+            span className: 'beatmapsets-sorting__item-arrow',
+              el Icon, name: "caret-#{if @props.sorting.order == 'asc' then 'up' else 'down'}"
+
+
+  select: (e) =>
+    e.preventDefault()
+    field = e.currentTarget.dataset.field
     order = @props.sorting.order
 
-    if @selected(i)
+    if @selected(field)
       order = if order == 'asc' then 'desc' else 'asc'
     else
       order = 'desc'
 
     $(document).trigger 'beatmap:search:sorted',
-      field: i,
+      field: field
       order: order
 
-  clickReject: (e) ->
-    e.preventDefault()
 
-  selected: (i) ->
-    @props.sorting.field == i
-
-  render: ->
-    options = [
-      {id: 'title', name: 'title'},
-      {id: 'artist', name: 'artist'},
-      {id: 'difficulty', name: 'difficulty'},
-      {id: 'ranked', name: 'ranked'},
-      {id: 'rating', name: 'rating'},
-      {id: 'plays', name: 'plays'}
-    ]
-    selectors = []
-    $.each options, (i, e) =>
-      classes = []
-      if @selected(e['id'])
-        classes = ['active', @props.sorting.order]
-      selectors.push a href:'#', className: classes.join(' '), value: e['id'], key: i, onClick: @clickReject, onMouseDown: @select.bind(@, e['id']), e['name']
-
-    div className: 'sorting',
-      selectors
+  selected: (field) =>
+    @props.sorting.field == field

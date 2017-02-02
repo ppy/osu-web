@@ -91,7 +91,7 @@ class PostsController extends Controller
 
         $posts = collect([$post->fresh()]);
         $topic = $post->topic;
-        $postPosition = $topic->postPosition($post->post_id);
+        $firstPostPosition = $topic->postPosition($post->post_id);
 
         return view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
     }
