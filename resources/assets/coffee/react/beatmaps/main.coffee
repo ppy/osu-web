@@ -235,15 +235,13 @@ class Beatmaps.Main extends React.Component
     $(window).off '.beatmaps'
 
   render: ->
-    if @state.beatmaps.length > 0
-      searchBackground = @state.beatmaps[0].covers.cover
-    else
-      searchBackground = ''
+    searchBackground = @state.beatmaps[0]?.covers?.cover
 
     div className: 'osu-layout__section',
       el(Beatmaps.SearchPanel, background: searchBackground, filters: @state.filters)
-      div id: 'beatmaps-listing', className: 'osu-layout__row osu-layout__row--page',
-        if currentUser.id?
-          el(Beatmaps.SearchSort, sorting: @state.sorting)
-        el(Beatmaps.BeatmapsListing, beatmaps: @state.beatmaps, loading: @state.loading)
-        el(Beatmaps.Paginator, paging: @state.paging)
+      div className: 'osu-layout__row osu-layout__row--page-compact',
+        div className: 'beatmapsets',
+          if currentUser.id?
+            el(Beatmaps.SearchSort, sorting: @state.sorting)
+          el(Beatmaps.BeatmapsListing, beatmaps: @state.beatmaps, loading: @state.loading)
+          el(Beatmaps.Paginator, paging: @state.paging)

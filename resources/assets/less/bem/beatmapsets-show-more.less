@@ -16,64 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// main: compiled.less
-@import "app";
-
-#beatmaps-listing {
+.beatmapsets-show-more {
+  margin-top: 10px;
   text-align: center;
 
-  .beatmap-container {
-    opacity: 1;
-
-    &.dimmed {
-      opacity: 0.2;
-    }
-  }
-
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-  background: #eee;
-
-  .sorting {
-    text-align: left;
-    margin-bottom: 10px;
-    font-size: 12px;
-    a {
-      margin-right: 15px;
-      color: #555555;
-
-      &.active {
-        color: #DC62A5;
-        font-weight: bold;
-      }
-
-      &.asc::after {
-        content: ' \25b2'
-      }
-
-      &.desc::after {
-        content: ' \25bc'
-      }
-
-    }
-  }
-
-  .beatmaps-load-more {
-    padding-top: 10px;
-    i {
-      display: none;
-    }
-
-    &.no_more {
-      display: none;
-    }
-
-    &.loading {
-      a {
-        display: none;
-      }
-      i {
-        display: inline-block;
-      }
-    }
+  &__link {
+    font-size: @font-size--normal;
   }
 }
