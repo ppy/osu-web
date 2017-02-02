@@ -22,6 +22,7 @@ namespace App\Traits;
 
 use App\Libraries\ImageProcessor;
 use App\Libraries\StorageWithUrl;
+use ErrorException;
 
 trait UserAvatar
 {
@@ -59,7 +60,14 @@ trait UserAvatar
         }
 
         if (present(config('osu.avatar.cache_purge_prefix'))) {
-            file_get_contents(config('osu.avatar.cache_purge_prefix').$this->user_id.'?'.time());
+            try {
+                file_get_contents(config('osu.avatar.cache_purge_prefix').$this->user_id.'?'.time());
+            } catch (ErrorException $e) {
+                // ignores 404 errors, throws everything else
+                if (!ends_with($e->getMessage(), "404 Not Found\r\n")) {
+                    throw $e;
+                }
+            }
         }
 
         return $this->update(['user_avatar' => $entry ?? null]);
