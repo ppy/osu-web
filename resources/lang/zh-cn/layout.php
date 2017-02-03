@@ -63,7 +63,7 @@ return [
         ],
         'community' => [
             '_' => '社区',
-            'dev' => 'osu!开发者',
+            'dev' => 'osu!开发',
             'getForum' => '论坛',
             'getChat' => '聊天',
             'getSupport' => '获取帮助',
