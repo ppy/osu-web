@@ -135,7 +135,7 @@ Route::get('/notifications', ['as' => 'notifications.index', function () {
 
 // help section
 Route::get('/wiki', ['as' => 'wiki', function () {
-    return ujs_redirect(route('wiki.show', ['page' => 'Welcome']));
+    return ujs_redirect(route('wiki.show', ['page' => 'Welcome']).'/');
 }]);
 Route::get('wiki/{page?}', ['as' => 'wiki.show', 'uses' => 'WikiController@show'])->where('page', '.+');
 Route::put('wiki/{page?}', ['uses' => 'WikiController@update'])->where('page', '.+');
