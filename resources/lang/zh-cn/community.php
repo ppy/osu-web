@@ -38,92 +38,92 @@ return [
         'why_support' => [
             'title' => '为什么我应该支持osu!?',
             'blocks' => [
-                'dev' => 'Developed and maintained predominantly by one guy in Australia',
-                'time' => 'Takes so much time to keep running that it\'s no longer possible to call it a "hobby".',
-                'ads' => 'No ads anywhere. <br/><br/>
-                        Unlike 99.95% of the web, we don\'t profit off shoving stuff in your face.',
-                'goodies' => 'You get some extra goodies!',
+                'dev' => '开发和维护主要是一个澳大利亚的伙计在负责', //可能不准确
+                'time' => '运行它的消耗已经不能称得上"兴趣"了',
+                'ads' => '无广告. <br/><br/>
+                        不像99.95%的网站,我们不推送广告,也没有从中获利.',
+                'goodies' => '你还能得到特技(见下方)!', //可能不准确
             ],
         ],
 
         'perks' => [
-            'title' => 'Oh? What do i get?!',
+            'title' => '噢?我能得到什么?!',
             'osu_direct' => [
-                'title' => 'osu!direct',
-                'description' => 'quick and easy access to search beatmaps without leaving the game.',
+                'title' => 'osu!direct', //不翻译
+                'description' => '你可以不离开游戏进行谱面的搜索和下载.',
             ],
 
             'auto_downloads' => [
-                'title' => 'Auto Downloads',
-                'description' => 'Automatic downloads when playing multiplayer, spectating others, or clicking links in chat!',
+                'title' => '自动下载',
+                'description' => '多人游戏,观看他人游戏,或是点击聊天中的谱面链接时,osu!会自动下载!',
             ],
 
-            'upload_more' => [
+            'upload_more' => [ //TODO 需要帮助
                 'title' => 'Upload More',
                 'description' => 'Additional pending beatmap slots (per ranked beatmap) up to a max of 10.',
             ],
 
             'early_access' => [
-                'title' => 'Early Access',
-                'description' => 'Access to early releases, where you can try new features before they go public!',
+                'title' => '抢先体验',
+                'description' => '在一些特性公开之前,您将能抢先体验它们!',
             ],
 
             'customisation' => [
-                'title' => 'Customisation',
-                'description' => 'Customise your profile by adding a fully customisable user page.',
+                'title' => '自定义',
+                'description' => '您可以自定义您的个人资料(me!).',
             ],
 
             'beatmap_filters' => [
-                'title' => 'Beatmap Filters',
-                'description' => 'Filter beatmap searches by played and unplayed maps and rank achieved (if any).',
+                'title' => '谱面筛选器',
+                'description' => '你可以按照玩过和没玩过或是达到某个等级来筛选谱面.', //可能不准确
             ],
 
             'yellow_fellow' => [
-                'title' => 'Yellow Fellow',
-                'description' => 'Be recognised in-game with your new bright yellow chat username colour.',
+                'title' => '黄色高亮',
+                'description' => '您在聊天时,名字会被黄色加亮.',
             ],
 
             'speedy_downloads' => [
-                'title' => 'Speedy Downloads',
-                'description' => 'More lenient download restrictions, especially when using osu!direct.',
+                'title' => '高速下载',
+                'description' => '您的下载限制会被放开,尤其是当您使用osu!direct的时候.',
             ],
 
             'change_username' => [
-                'title' => 'Change Username',
-                'description' => 'The ability to change your username without additional costs. (once max)',
+                'title' => '变更用户名',
+                'description' => '您可以改变您的用户名而不需要额外的花费(最多1次)',
             ],
 
             'skinnables' => [
-                'title' => 'Skinnables',
-                'description' => 'Extra in-game skinnables, like the main menu background.',
+                'title' => '皮肤',
+                'description' => '您可以改变更多的游戏皮肤,比如主菜单的背景.', //可能不准确
             ],
 
             'feature_votes' => [
-                'title' => 'Feature Votes',
-                'description' => 'Votes for feature requests. (2 per month)',
+                'title' => '特性投票',
+                'description' => '您可以为新特性请求投票(每月2票)',
             ],
 
             'sort_options' => [
-                'title' => 'Sort Options',
-                'description' => 'NEW: The ability to view beatmap country / friend / mod-specific rankings in-game.',
+                'title' => '排名',
+                'description' => '新添加:您可以在游戏中按 国家/好友/指定MOD 进行排名了.',
             ],
 
-            'feel_special' => [
+            'feel_special' => [ //TODO 需要帮助
                 'title' => 'Feel Special',
                 'description' => 'The warm and fuzzy feeling of doing your part to keep osu! running smoothly!',
             ],
 
             'more_to_come' => [
-                'title' => 'More to come',
+                'title' => '即将到来',
                 'description' => '',
             ],
         ],
 
         'convinced' => [
-            'title' => 'I\'m convinced! :D',
-            'support' => 'support osu!',
-            'gift' => 'or gift support to other players',
-            'instructions' => 'click the heart button to proceed to the osu!store',
+            'title' => 'I\'m convinced! :D', //TODO 需要帮助
+            'support' => '支持osu!',
+            'gift' => '或者给其他玩家一份礼物',
+            'instructions' => '点击爱心按钮前往osu!商店',
         ],
     ],
 ];
