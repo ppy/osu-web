@@ -97,55 +97,55 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Topic Subscriptions',
-            'title_compact' => 'subscriptions',
+            'title' => '订阅的主题',
+            'title_compact' => '订阅',
 
             'box' => [
-                'total' => 'Topics subscribed',
-                'unread' => 'Topics with new replies',
+                'total' => '订阅的主题',
+                'unread' => '主题有新回复',
             ],
             'info' => [
-                'total' => 'You subscribed to :total topics.',
-                'unread' => 'You have :unread unread replies to subscribed topics.',
+                'total' => '您总共订阅了 :total 个主题.',
+                'unread' => '您有 :unread 个未读回复.',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Unsubscribe from topic?',
-                'title' => 'Unsubscribe',
+                'confirmation' => '取消对该主题的订阅?',
+                'title' => '取消订阅',
             ],
         ],
     ],
 
     'topics' => [
-        '_' => 'Topics',
+        '_' => '主题',
 
         'actions' => [
-            'reply' => 'Show reply box',
-            'reply_with_quote' => 'Quote post for reply',
+            'reply' => '显示回复盒子',
+            'reply_with_quote' => '引用以回复',
         ],
 
         'create' => [
-            'create_poll' => 'Poll Creation',
+            'create_poll' => '创建投票',
 
             'create_poll_button' => [
-                'add' => 'Create a poll',
-                'remove' => 'Cancel creating a poll',
+                'add' => '创建投票',
+                'remove' => '取消创建投票',
             ],
 
             'poll' => [
                 'length' => 'Run poll for',
                 'length_days_prefix' => '',
-                'length_days_suffix' => 'days',
-                'length_info' => 'Leave blank for a never ending poll',
-                'max_options' => 'Options per user',
-                'max_options_info' => 'This is the number of options each user may select when voting.',
-                'options' => 'Options',
-                'options_info' => 'Place each options on a new line. You may enter up to 10 options.',
-                'title' => 'Question',
-                'vote_change' => 'Allow re-voting.',
-                'vote_change_info' => 'If enabled, users are able to change their vote.',
+                'length_days_suffix' => '天',
+                'length_info' => '如果无期限则留空',
+                'max_options' => '每人可选选项',
+                'max_options_info' => '填写每个人最多可以选的选项数.',
+                'options' => '选项',
+                'options_info' => '一个选项占一行.最多10个选项.',
+                'title' => '问题',
+                'vote_change' => '允许重选.',
+                'vote_change_info' => '如果选中,则用户可以更改他们的投票.',
             ],
         ],
 
@@ -155,55 +155,55 @@ return [
         ],
 
         'lock' => [
-            'is_locked' => 'This topic is locked and can not be replied to',
-            'lock-0' => 'Unlock topic',
-            'lock-1' => 'Lock topic',
-            'state-0' => 'Topic has been unlocked',
-            'state-1' => 'Topic has been locked',
+            'is_locked' => '主题已被锁定,不能回复',
+            'lock-0' => '解锁主题',
+            'lock-1' => '锁定主题',
+            'state-0' => '主题已经解锁',
+            'state-1' => '主题已被锁定',
         ],
 
         'moderate_move' => [
-            'title' => 'Move to another forum',
+            'title' => 'Move to another forum', //需要上下文
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Unpin topic',
-            'pin-1' => 'Pin topic',
-            'state-0' => 'Topic has been unpinned',
-            'state-1' => 'Topic has been pinned',
+            'pin-0' => '取消置顶',
+            'pin-1' => '置顶',
+            'state-0' => '该主题已取消置顶',
+            'state-1' => '主题已置顶',
         ],
 
         'show' => [
-            'total_posts' => 'Total Posts',
-            'deleted-posts' => 'Deleted Posts',
+            'total_posts' => '总主题数量',
+            'deleted-posts' => '删除主题',
 
             'feature_vote' => [
-                'current' => 'Current Priority: +:count',
-                'do' => 'Promote this request',
+                'current' => '当前优先级: +:count',
+                'do' => '提升这个请求',
 
                 'user' => [
-                    'current' => 'You have :votes remaining.',
-                    'count' => '{0} no vote|{1} :count vote|[2,Inf] :count votes',
-                    'not_enough' => "You don't have any more votes remaining",
+                    'current' => '您还有 :votes 票.',
+                    'count' => '{0} 没有票|{1} :count票|[2,Inf] :count 票',
+                    'not_enough' => '您没有票了',
                 ],
             ],
 
             'poll' => [
-                'vote' => 'Vote',
+                'vote' => '投票',
 
                 'detail' => [
-                    'total' => 'Total votes: :count',
-                    'ended' => 'Polling ended :time',
-                    'end_time' => 'Polling will end at :time',
+                    'total' => '总票数: :count',
+                    'ended' => '结束于 :time',
+                    'end_time' => '将于 :time 结束',
                 ],
             ],
         ],
 
         'watch' => [
-            'state-0' => 'Unsubscribed from topic',
-            'state-1' => 'Subscribed to topic',
-            'watch-0' => 'Unsubscribe topic',
-            'watch-1' => 'Subscribe topic',
+            'state-0' => '取消了订阅',
+            'state-1' => '订阅了主题',
+            'watch-0' => '取消订阅',
+            'watch-1' => '订阅',
         ],
     ],
 
