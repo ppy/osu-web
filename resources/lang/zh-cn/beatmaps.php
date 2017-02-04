@@ -32,15 +32,15 @@ return [
     ],
 
     'discussions' => [
-        'allow_kudosu' => '允许kudosu',
+        'allow_kudosu' => '允许kudosu', //可能不准确
         'delete' => '删除',
         'deleted' => '被 :editor 于 :delete_time 删除',
-        'deny_kudosu' => '禁止kudosu',
+        'deny_kudosu' => '禁止kudosu', //可能不准确
         'edit' => '编辑',
-        'edited' => '上次由 :editor 于 :update_time 编辑',
+        'edited' => '最后由 :editor 于 :update_time 编辑',
         'message_placeholder' => 'Type here to post',
         'message_type_select' => '选择回复类型',
-        'reply_placeholder' => 'Type your response here',
+        'reply_placeholder' => 'Type your response here', //需要上下文
         'require-login' => '请先登录再发表',
         'resolved' => '已解决',
         'restore' => '已修复',
@@ -68,7 +68,7 @@ return [
         ],
 
         'mode' => [
-            'general' => 'General', //
+            'general' => 'General', //不好翻译
             'timeline' => '时间线',
         ],
 
@@ -114,9 +114,9 @@ return [
             'not-found-quote' => '... 呃,什么也没有.',
         ],
         'mode' => '模式',
-        'status' => 'Rank Status',
-        'mapped-by' => '制谱人: :mapper',
-        'source' => 'from :source',
+        'status' => 'Rank 状态',
+        'mapped-by' => '制谱人: :mapper', //可能不准确
+        'source' => '来自 :source',
         'load-more' => '加载更多...',
     ],
     'beatmapset' => [
@@ -128,7 +128,7 @@ return [
         'show' => [
             'discussion' => '讨论',
 
-            'details' => [
+            'details' => [ //TODO 需要帮助
                 'made-by' => '制谱人: ',
                 'submitted' => '提交于 ',
                 'updated' => '上次更新于 ',
@@ -170,7 +170,7 @@ return [
                 'tags' => '标签',
             ],
             'scoreboard' => [
-                'achieved' => 'achieved :when',
+                'achieved' => '达成于 :when',
                 'country' => '国内排名',
                 'friend' => '好友排名',
                 'global' => '全球排名',
@@ -273,7 +273,7 @@ return [
         'storyboard' => '有Storyboard', //osu!中没有翻译这个,所以保持原样
     ],
     'rank' => [
-        'any' => 'Any',
+        'any' => '任意',
         'XH' => '银SS',
         'X' => 'SS',
         'SH' => '银S',
