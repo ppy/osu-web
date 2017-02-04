@@ -92,8 +92,8 @@ return [
 
                 'user' => [
                     'require_login' => '回复前请先登录.',
-                    'restricted' => "账户受限时不能回复.",
-                    'silenced' => "被禁言时不能回复.",
+                    'restricted' => '账户受限时不能回复.',
+                    'silenced' => '被禁言时不能回复.',
                 ],
             ],
 
@@ -110,8 +110,8 @@ return [
 
                 'user' => [
                     'require_login' => '投票前请先登录.',
-                    'restricted' => "账户受限时不能投票.",
-                    'silenced' => "被禁言时不能回复.",
+                    'restricted' => '账户受限时不能投票.',
+                    'silenced' => '被禁言时不能回复.',
                 ],
             ],
 
@@ -136,7 +136,7 @@ return [
 
     'unauthorized' => '没有权限.',
 
-    'silenced' => "被禁言时不能这样做.",
+    'silenced' => '被禁言时不能这样做.',
 
     'restricted' => '被限制时不能这样做.',
 
