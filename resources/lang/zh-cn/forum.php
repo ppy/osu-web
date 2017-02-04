@@ -149,7 +149,7 @@ return [
             ],
         ],
 
-        'index' => [
+        'index' => [ //需要上下文
             'views' => 'views',
             'replies' => 'replies',
         ],

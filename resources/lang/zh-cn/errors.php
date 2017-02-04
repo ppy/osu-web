@@ -28,7 +28,7 @@ return [
             'generic' => '发生未知错误,请尝试刷新页面.',
         ],
     ],
-    'beatmaps' => [//TODO 不会翻译,需要帮助翻译
+    'beatmaps' => [ //TODO 需要帮助
         'standard-converts-only' => 'Only the osu! mode can have scores in other modes.',
     ],
     'beatmapsets' => [

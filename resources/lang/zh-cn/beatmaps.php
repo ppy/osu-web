@@ -38,7 +38,7 @@ return [
         'deny_kudosu' => '禁止kudosu', //可能不准确
         'edit' => '编辑',
         'edited' => '最后由 :editor 于 :update_time 编辑',
-        'message_placeholder' => 'Type here to post',
+        'message_placeholder' => 'Type here to post', //需要上下文
         'message_type_select' => '选择回复类型',
         'reply_placeholder' => 'Type your response here', //需要上下文
         'require-login' => '请先登录再发表',
