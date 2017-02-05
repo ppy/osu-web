@@ -55,7 +55,7 @@ return [
             'edit' => '编辑回复',
         ],
     ],
-    'search' => [ //需要上下文
+    'search' => [ //相关内容似乎尚未完成 17.02.05
         'go_to_post' => 'Go to post',
         'post_number_input' => 'enter post number',
         'total_posts' => ':posts_count posts total',
@@ -149,9 +149,9 @@ return [
             ],
         ],
 
-        'index' => [ //需要上下文
-            'views' => 'views',
-            'replies' => 'replies',
+        'index' => [
+            'views' => '查看数',
+            'replies' => '回复数',
         ],
 
         'lock' => [
@@ -163,7 +163,7 @@ return [
         ],
 
         'moderate_move' => [
-            'title' => 'Move to another forum', //需要上下文
+            'title' => '主题移动到其他板块',
         ],
 
         'moderate_pin' => [

@@ -113,19 +113,19 @@ return [
 
             'getCheckout' => '结账',
             'getInvoice' => '发票',
-            'getProduct' => '商品', //TODO 需要上下文
+            'getProduct' => '商品',
 
             'new' => 'new', //TODO 需要上下文
             'home' => 'home', //TODO 需要上下文
             'index' => 'home', //TODO 需要上下文
-            'thanks' => 'thanks', //TODO 需要上下文
+            'thanks' => '感谢',
         ],
         'admin-forum' => [
-            '_' => 'admin::forum',
+            '_' => 'admin::forum', //TODO 需要上下文
             'forum-covers-index' => '论坛封面',
         ],
         'admin-store' => [
-            '_' => 'admin::store',
+            '_' => 'admin::store', //TODO 需要上下文
             'orders-index' => '订单',
             'orders-show' => '订单',
         ],
@@ -143,8 +143,8 @@ return [
 
     'footer' => [
         'general' => [
-            '_' => 'General', //不好翻译
-            'home' => 'Home', //不翻译
+            '_' => '常规', //可能不准确
+            'home' => '主页',
             'changelog' => '更新日志',
             'beatmaps' => '谱面列表',
             'download' => '下载osu!',

@@ -32,15 +32,15 @@ return [
     ],
 
     'discussions' => [
-        'allow_kudosu' => '允许kudosu', //可能不准确
+        'allow_kudosu' => '允许kudosu', //很可能不准确
         'delete' => '删除',
         'deleted' => '被 :editor 于 :delete_time 删除',
-        'deny_kudosu' => '禁止kudosu', //可能不准确
+        'deny_kudosu' => '禁止kudosu', //很可能不准确
         'edit' => '编辑',
         'edited' => '最后由 :editor 于 :update_time 编辑',
-        'message_placeholder' => 'Type here to post', //需要上下文
+        'message_placeholder' => '在这里输入您的回复', //可能不准确
         'message_type_select' => '选择回复类型',
-        'reply_placeholder' => 'Type your response here', //需要上下文
+        'reply_placeholder' => '在这里输入您的回复', //可能不准确
         'require-login' => '请先登录再发表',
         'resolved' => '已解决',
         'restore' => '已修复',

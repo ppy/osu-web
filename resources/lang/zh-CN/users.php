@@ -19,7 +19,7 @@
  */
 
 return [
-    'deleted' => '[deleted user]', //TODO 需要上下文
+    'deleted' => '[已删除的用户]', //TODO 需要上下文
 
     'login' => [
         '_' => '登录',
@@ -99,7 +99,7 @@ return [
                 'total_info' => '取决于您对制谱的贡献如何. 查看 <a href="'.osu_url('user.kudosu').'">这个页面</a> 以得到更多信息.',
 
                 'entry' => [
-                    'amount' => ':amount kudosu', //TODO 需要上下文
+                    'amount' => ':amount kudosu',
                     'empty' => '该用户还没有收到过 kudosu!',
 
                     'beatmap_discussion' => [ //TODO 专有名词太多,需要帮助
@@ -178,7 +178,7 @@ return [
         'page' => [
             'description' => '<strong>me!</strong>是您可以自定义的展示区.',
             'edit_big' => '编辑 me!',
-            'placeholder' => 'Type page content here', //TODO 需要上下文
+            'placeholder' => '在这里编辑您的me!',
             'restriction_info' => "您需要成为 <a href='".osu_url('support-the-game')."' target='_blank'>osu!支持者</a> 以解锁该特性.",
         ],
         'plays_with' => [
@@ -189,10 +189,10 @@ return [
             'touch' => '触摸屏',
         ],
         'missingtext' => '您可能输错了! (或者该用户已经被ban)',
-        'page_description' => 'osu! - Everything you ever wanted to know about :username!', //TODO 需要上下文
+        'page_description' => 'osu! - 你想知道的关于 :username 的一切!',
         'rank' => [
-            'country' => 'Country rank for :mode', //TODO 需要上下文
-            'global' => 'Global rank for :mode', //TODO 需要上下文
+            'country' => ':mode 模式的国内排名',
+            'global' => ':mode 模式的全球排名',
         ],
         'stats' => [
             'hit_accuracy' => '准确率',

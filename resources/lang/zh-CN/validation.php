@@ -20,5 +20,5 @@
 
 return [ //TODO 需要上下文
     'mixture' => ':attribute 缺少数字或字母',
-    'required' => ':attribute 是必须的',
+    'required' => ':attribute 是必填的',
 ];

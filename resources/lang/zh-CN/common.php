@@ -35,7 +35,7 @@ return [
     ],
 
     'count' => [
-        'item' => ':count unit|:count units', //需要上下文(件/份/个)
+        'item' => ':count 件|:count 件', //参考翻译:件/份/个
     ],
 
     'dropzone' => [
@@ -43,8 +43,8 @@ return [
     ],
 
     'pagination' => [
-        'previous' => '上一个', //可能不准确
-        'next' => '下一个',     //需要上下文
+        'previous' => '上一页',
+        'next' => '下一页',
     ],
 
     'score_count' => [

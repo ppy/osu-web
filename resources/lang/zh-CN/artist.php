@@ -36,6 +36,6 @@ return [
     'songs' => [
         '_' => 'Songs',
         'count' => '1 首歌|:count 首歌',
-        'exclusive' => 'osu! exclusive', //需要上下文
+        'exclusive' => 'osu! exclusive', //根据@benpigchu的建议不翻译
     ],
 ];

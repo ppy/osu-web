@@ -24,10 +24,10 @@ return [
         'show' => [
             'discussion' => [
                 '_' => 'Modding v2',
-                'activate' => '启用',                                     //TODO 需要上下文
-                'activate_confirm' => '确认要为这个谱面启用 modding v2?', //TODO 需要上下文
-                'active' => '活动',                                       //TODO 需要上下文
-                'inactive' => '不活动',                                   //TODO 需要上下文
+                'activate' => '启用',
+                'activate_confirm' => '确认要为这个谱面启用 modding v2 吗?',
+                'active' => '已启用',
+                'inactive' => '未启用',
             ],
         ],
     ],
