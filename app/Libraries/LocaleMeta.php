@@ -99,7 +99,7 @@ class LocaleMeta
             'name' => 'Tagalog',
             'flag' => 'PH',
         ],
-        'zh-cn' => [
+        'zh-CN' => [
             'name' => '简体中文',
             'flag' => 'CN',
         ],
