@@ -28,9 +28,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
-use Illuminate\Validation\ValidationException;
 use Sentry;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
@@ -43,11 +41,11 @@ class Handler extends ExceptionHandler
     protected $dontReport = [
         // laravel's
         AuthenticationException::class,
-        HttpException::class,
         LaravelAuthorizationException::class,
         ModelNotFoundException::class,
         TokenMismatchException::class,
-        ValidationException::class,
+        \Illuminate\Validation\ValidationException::class,
+        \Symfony\Component\HttpKernel\Exception\HttpException::class,
 
         // local
         AuthorizationException::class,
