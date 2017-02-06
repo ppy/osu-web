@@ -52,6 +52,9 @@ class Handler extends ExceptionHandler
         // local
         AuthorizationException::class,
         SilencedException::class,
+
+        // oauth
+        \League\OAuth2\Server\Exception\OAuthServerException::class,
     ];
 
     /**
