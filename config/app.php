@@ -250,15 +250,15 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        'Form' => 'Collective\Html\FormFacade',
-        'Html' => 'Collective\Html\HtmlFacade',
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
-        'Markdown' => 'GrahamCampbell\Markdown\Facades\Markdown',
-        'GitHub' => 'GrahamCampbell\GitHub\Facades\GitHub',
+        'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
+        'GitHub' => GrahamCampbell\GitHub\Facades\GitHub::class,
 
-        'Slack' => 'Maknz\Slack\Facades\Slack',
-        'Statsd' => 'League\StatsD\Laravel5\Facade\StatsdFacade',
-        'Authorizer' => 'LucaDegasperi\OAuth2Server\Facades\Authorizer',
+        'Slack' => Maknz\Slack\Facades\Slack::class,
+        'Statsd' => League\StatsD\Laravel5\Facade\StatsdFacade::class,
+        'Authorizer' => LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
         'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
     ],
 
