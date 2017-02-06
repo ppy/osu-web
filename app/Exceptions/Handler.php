@@ -104,7 +104,7 @@ class Handler extends ExceptionHandler
 
     private function reportWithSentry($e)
     {
-        $tags = [
+        $extra = [
             'http_code' => $this->statusCode($e),
         ];
 
@@ -121,7 +121,7 @@ class Handler extends ExceptionHandler
 
         Sentry::user_context($userContext);
 
-        $ref = Sentry::getIdent(Sentry::captureException($e, $tags));
+        $ref = Sentry::getIdent(Sentry::captureException($e, compact('extra')));
 
         view()->share('ref', $ref);
     }
