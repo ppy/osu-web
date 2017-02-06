@@ -39,7 +39,7 @@ currentLocation = =>
       @setHash()
 
     if @state.currentPage == page
-      callback()
+      return callback()
 
     @setState currentPage: page, callback
 
