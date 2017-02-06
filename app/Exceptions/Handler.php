@@ -76,9 +76,9 @@ class Handler extends ExceptionHandler
 
         if (config('sentry.dsn')) {
             $this->reportWithSentry($e);
-        } else {
-            return parent::report($e);
         }
+
+        return parent::report($e);
     }
 
     private function statusCode($e)
