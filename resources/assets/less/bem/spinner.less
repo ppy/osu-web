@@ -31,6 +31,10 @@
 
     animation: spinner-sk-cubemove 1.8s infinite ease-in-out;
 
+    [data-visibility="hidden"] & {
+      animation: none;
+    }
+
     &--2 {
       animation-delay: -0.9s;
     }
