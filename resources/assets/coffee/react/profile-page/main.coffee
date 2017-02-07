@@ -207,11 +207,7 @@ ProfilePage.Main = React.createClass
 
   setCurrentMode: (_e, mode) ->
     return if @state.currentMode == mode
-    @setState currentMode: @validMode(mode), @setHash
-
-
-  setHash: ->
-    osu.setHash ProfilePageHash.generate(page: @state.currentPage, mode: @state.currentMode)
+    @setState currentMode: @validMode(mode)
 
 
   updateOrder: (event) ->
