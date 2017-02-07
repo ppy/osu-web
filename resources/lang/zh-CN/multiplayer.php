@@ -32,7 +32,7 @@ return [
             'player-joined' => ':user 加入了游戏',
             'player-kicked' => ':user 被踢出游戏',
             'match-created' => ':user 创建了一场游戏',
-            'match-disbanded' => ':the 游戏已经解散', //翻译可能不准确,因为无法确认此处:the对应的变量内容
+            'match-disbanded' => '游戏已经解散',
             'host-changed' => ':user 成为房主',
 
             'player-left-no-user' => '有玩家离开了游戏',   //----------
