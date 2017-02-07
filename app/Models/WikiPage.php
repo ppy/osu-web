@@ -50,8 +50,12 @@ class WikiPage
                     ->contents()
                     ->show(static::USER, static::REPOSITORY, static::cleanPath('wiki/'.$path));
             } catch (GithubException $e) {
-                if ($e->getMessage() === 'Not Found') {
-                    throw new GitHubNotFoundException();
+                $message = $e->getMessage();
+
+                if ($message === 'Not Found') {
+                    throw new GitHubNotFoundException($message);
+                } elseif (starts_with($message, 'This API returns blobs up to 1 MB in size.')) {
+                    throw new GitHubTooLargeException($message);
                 }
 
                 throw $e;

@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Exceptions\GitHubNotFoundException;
+use App\Exceptions\GitHubTooLargeException;
 use App\Models\WikiPage;
 use Request;
 use View;
@@ -42,6 +43,8 @@ class WikiController extends Controller
                     ->header('Content-Type', 'image');
             } catch (GitHubNotFoundException $e) {
                 abort(404);
+            } catch (GitHubTooLargeException $e) {
+                abort(422);
             }
         }
 
