@@ -68,7 +68,7 @@ return [
             'getChat' => '聊天',
             'getSupport' => '获取帮助',
             'getLive' => '直播',
-            'contests' => '竞赛',
+            'contests' => '评选',
             'profile' => '个人资料',
             'tournaments' => '锦标赛',
             'tournaments-index' => '锦标赛',
