@@ -23,6 +23,10 @@ ProfilePage.Main = React.createClass
   mixins: [StickyTabsMixin, ScrollingPageMixin]
 
   getInitialState: ->
+    savedStateString = document.body.dataset.profilePageState
+    if savedStateString?
+      return JSON.parse(savedStateString)
+
     optionsHash = ProfilePageHash.parse location.hash
     @initialPage = optionsHash.page
 
@@ -73,6 +77,8 @@ ProfilePage.Main = React.createClass
 
     for sortable in ['pages', 'tabs']
       $(@refs[sortable]).sortable 'destroy'
+
+    document.body.dataset.profilePageState = JSON.stringify(@state)
 
 
   render: ->
