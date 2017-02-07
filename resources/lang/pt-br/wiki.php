@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,41 +18,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.spinner {
-  width: 40px;
-  height: 40px;
-  position: relative;
+return [
+    'show' => [
+        'languages' => 'Idiomas',
+        'missing' => 'A página solicitada não foi encontrada.',
+        'missing_translation' => 'A página solicitada não foi encontrada no atual idioma especificado.',
+        'toc' => 'Conteúdo',
 
-  &__cube {
-    background-color: @gray-f;
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    animation: spinner-sk-cubemove 1.8s infinite ease-in-out;
-
-    [data-visibility="hidden"] & {
-      animation: none;
-    }
-
-    &--2 {
-      animation-delay: -0.9s;
-    }
-  }
-}
-
-@keyframes sk-cubemove {
-  25% {
-    transform: translateX(42px) rotate(-90deg) scale(0.5);
-  } 50% {
-    transform: translateX(42px) translateY(42px) rotate(-179deg);
-  } 50.1% {
-    transform: translateX(42px) translateY(42px) rotate(-180deg);
-  } 75% {
-    transform: translateX(0) translateY(42px) rotate(-270deg) scale(0.5);
-  } 100% {
-    transform: rotate(-360deg);
-  }
-}
+        'edit' => [
+            'link' => 'Exibir no GitHub',
+            'refresh' => 'Atualizar',
+        ],
+    ],
+];
