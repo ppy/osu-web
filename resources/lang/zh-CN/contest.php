@@ -20,28 +20,28 @@
 
 return [
     'header' => [
-        'small' => '竞赛不只是戳泡泡.', //这个翻译不好
-        'large' => 'osu!社区竞赛',
+        'small' => '享受戳泡泡以外的竞赛体验.',
+        'large' => 'osu!社区评选',
     ],
     'voting' => [
-        'over' => '这场竞赛的投票已经结束',
+        'over' => '这场评选的投票已经结束',
         'login_required' => '请登录后再投票.',
         'best_of' => [
-            'none_played' => '看起来您玩的谱面中没有符合此次竞赛条件的!',
+            'none_played' => '看起来您玩的谱面中没有符合此次评选条件的!',
         ],
     ],
     'entry' => [
         '_' => 'entry', //TODO 需要上下文
-        'login_required' => '请登录后再参加竞赛.',
-        'silenced_or_restricted' => '账户受限时不能参加竞赛.',
-        'preparation' => '我们正在准备这场竞赛.请耐心等待!',
+        'login_required' => '请登录后再参加评选.',
+        'silenced_or_restricted' => '账户受限时不能参加评选.',
+        'preparation' => '我们正在准备这场评选.请耐心等待!',
         'over' => '感谢您的参与! 提交已经关闭,投票即将开始.',
         'limit_reached' => '您提交的参赛文件数量超出限制',
         'drop_here' => '将您的参赛文件拖到此处',
         'wrong_type' => [
-            'art' => '这场竞赛只接受.jpg和.png格式的文件.',
-            'beatmap' => '这场竞赛只接受.osu格式的文件.',
-            'music' => '这场竞赛只接受.mp3格式的文件.',
+            'art' => '这场评选只接受.jpg和.png格式的文件.',
+            'beatmap' => '这场评选只接受.osu格式的文件.',
+            'music' => '这场评选只接受.mp3格式的文件.',
         ],
         'too_big' => '参赛文件的大小不能超过:limit.',
     ],
