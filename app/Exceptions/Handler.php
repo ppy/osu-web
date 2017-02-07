@@ -28,9 +28,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
-use Illuminate\Validation\ValidationException;
 use Sentry;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
@@ -43,15 +41,18 @@ class Handler extends ExceptionHandler
     protected $dontReport = [
         // laravel's
         AuthenticationException::class,
-        HttpException::class,
         LaravelAuthorizationException::class,
         ModelNotFoundException::class,
         TokenMismatchException::class,
-        ValidationException::class,
+        \Illuminate\Validation\ValidationException::class,
+        \Symfony\Component\HttpKernel\Exception\HttpException::class,
 
         // local
         AuthorizationException::class,
         SilencedException::class,
+
+        // oauth
+        \League\OAuth2\Server\Exception\OAuthServerException::class,
     ];
 
     /**
@@ -75,9 +76,9 @@ class Handler extends ExceptionHandler
 
         if (config('sentry.dsn')) {
             $this->reportWithSentry($e);
-        } else {
-            return parent::report($e);
         }
+
+        return parent::report($e);
     }
 
     private function statusCode($e)
@@ -101,7 +102,7 @@ class Handler extends ExceptionHandler
 
     private function reportWithSentry($e)
     {
-        $tags = [
+        $extra = [
             'http_code' => $this->statusCode($e),
         ];
 
@@ -118,7 +119,7 @@ class Handler extends ExceptionHandler
 
         Sentry::user_context($userContext);
 
-        $ref = Sentry::getIdent(Sentry::captureException($e, $tags));
+        $ref = Sentry::captureException($e, compact('extra'));
 
         view()->share('ref', $ref);
     }
