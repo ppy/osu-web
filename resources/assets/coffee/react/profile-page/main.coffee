@@ -34,14 +34,12 @@ ProfilePage.Main = React.createClass
       raw: @props.userPage.raw
       editing: false
       selection: [0, 0]
-    isCoverUpdating: false
     tabsSticky: false
     profileOrder: @props.user.profileOrder[..]
 
 
   componentDidMount: ->
     $.subscribe 'user:update.profilePage', @userUpdate
-    $.subscribe 'user:cover:upload:state.profilePage', @coverUploadState
     $.subscribe 'user:page:update.profilePage', @userPageUpdate
     $.subscribe 'profile:mode:set.profilePage', @setCurrentMode
     $.subscribe 'profile:page:jump.profilePage', @pageJump
@@ -143,7 +141,6 @@ ProfilePage.Main = React.createClass
         stats: stats
         currentMode: @state.currentMode
         withEdit: @props.withEdit
-        isCoverUpdating: @state.isCoverUpdating
 
       el ProfilePage.Contents,
         user: @state.user
@@ -187,10 +184,6 @@ ProfilePage.Main = React.createClass
         div className: 'osu-layout__row', ref: 'pages',
           for name in @state.profileOrder
             @extraPage name, extraPageParams[name]
-
-
-  coverUploadState: (_e, state) ->
-    @setState isCoverUpdating: state
 
 
   extraPage: (name, {extraClass, props, component}) ->

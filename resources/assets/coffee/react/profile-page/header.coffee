@@ -25,20 +25,22 @@ class ProfilePage.Header extends React.Component
     @state =
       editing: false
       coverUrl: props.user.cover.url
+      isCoverUpdating: false
 
-    @coverSet = _.debounce @coverSet, 300
+    @debouncedCoverSet = _.debounce @coverSet, 300
 
 
   componentDidMount: =>
-    $.subscribe 'user:cover:set.profilePageHeader', @coverSet
     $.subscribe 'user:cover:reset.profilePageHeader', @coverReset
+    $.subscribe 'user:cover:set.profilePageHeader', @debouncedCoverSet
+    $.subscribe 'user:cover:upload:state.profilePageHeader', @coverUploadState
 
     $.subscribe 'key:esc.profilePageHeader', @closeEdit
     $(document).on 'click.profilePageHeader', @closeEdit
 
 
   componentWillReceiveProps: (newProps) =>
-    @coverSet null, newProps.user.cover.url
+    @debouncedCoverSet null, newProps.user.cover.url
 
 
   componentWillUnmount: =>
@@ -46,46 +48,7 @@ class ProfilePage.Header extends React.Component
     $(document).off '.profilePageHeader'
 
     @closeEdit()
-    @coverSet.cancel()
-
-
-  closeEdit: (e) =>
-    return unless @state.editing
-
-    if e?
-      return if $(e.target).closest('.profile-cover-change-popup').length
-      return if $(e.target).closest('.js-profile-header__change-cover-button').length
-
-    return if $('#overlay').is(':visible')
-    return if document.body.classList.contains('modal-open')
-
-    Blackout.hide()
-    @setState editing: false, =>
-      @coverReset()
-
-
-  openEdit: =>
-    Blackout.show()
-    @setState editing: true
-
-
-  toggleEdit: (e) =>
-    e.preventDefault()
-
-    if @state.editing
-      @closeEdit()
-    else
-      @openEdit()
-
-
-  coverReset: =>
-    @coverSet null, @props.user.cover.url
-
-
-  coverSet: (_e, url) =>
-    return if @props.isCoverUpdating
-
-    @setState coverUrl: url
+    @debouncedCoverSet.cancel()
 
 
   render: =>
@@ -103,7 +66,7 @@ class ProfilePage.Header extends React.Component
 
       el 'div',
         className: 'profile-header__uploading-spinner-container'
-        'data-visibility': 'hidden' if !@props.isCoverUpdating
+        'data-visibility': 'hidden' if !@state.isCoverUpdating
 
         el 'div', className: 'spinner',
           el 'div', className: 'spinner__cube'
@@ -127,3 +90,46 @@ class ProfilePage.Header extends React.Component
 
       if @state.editing
         el ProfilePage.CoverSelector, canUpload: @props.user.isSupporter, cover: @props.user.cover
+
+
+  closeEdit: (e) =>
+    return unless @state.editing
+
+    if e?
+      return if $(e.target).closest('.profile-cover-change-popup').length
+      return if $(e.target).closest('.js-profile-header__change-cover-button').length
+
+    return if $('#overlay').is(':visible')
+    return if document.body.classList.contains('modal-open')
+
+    Blackout.hide()
+    @setState editing: false, =>
+      @coverReset()
+
+
+  coverReset: =>
+    @debouncedCoverSet null, @props.user.cover.url
+
+
+  coverSet: (_e, url) =>
+    return if @state.isCoverUpdating
+
+    @setState coverUrl: url
+
+
+  coverUploadState: (_e, state) =>
+    @setState isCoverUpdating: state
+
+
+  openEdit: =>
+    Blackout.show()
+    @setState editing: true
+
+
+  toggleEdit: (e) =>
+    e.preventDefault()
+
+    if @state.editing
+      @closeEdit()
+    else
+      @openEdit()
