@@ -44,6 +44,15 @@ return [
         'next' => 'suivant',
     ],
 
+    'score_count' => [
+        'count100' => '100',
+        'count300' => '300',
+        'count50' => '50',
+        'countgeki' => 'MAX',
+        'countkatu' => '200',
+        'countmiss' => 'Raté',
+    ],
+
     'time' => [
         'days_ago' => 'il y a :count|il y a:count',
         'hours_ago' => 'il y a :count heure|il y a :count heures',

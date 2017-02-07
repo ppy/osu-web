@@ -28,12 +28,6 @@ return [
             'generic' => 'Iets ging fout. Probeer de pagina te vernieuwen.',
         ],
     ],
-    'community' => [
-        'slack' => [
-            'not-eligible' => 'Jouw account is niet in staat om een Slack uitnodiging te ontvangen.',
-            'slack-error' => 'Er ging iets mis bij de Slack servers. Probeer het opnieuw over een paar minuten.',
-        ],
-    ],
     'logged_out' => 'Je bent uitgelogd. Log in en probeer opnieuw.',
     'supporter_only' => 'Je moet een supporter zijn om dit te gebruiken.',
     'no_restricted_access' => 'Je mag dit niet doen terwijl je account de restricted status heeft.',

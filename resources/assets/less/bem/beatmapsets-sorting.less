@@ -16,61 +16,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.slack-content {
-  display: flex;
-  flex-flow: row wrap;
-
-  align-items: center;
-  justify-content: center;
-
-  padding-top: 30px;
-
-  @media @desktop {
-    padding-left: @padding-big;
-    padding-right: @padding-big;
-  }
+.beatmapsets-sorting {
+  font-size: @font-size--normal;
+  margin: 0 -10px 10px;
 
   &__item {
-    @media @mobile {
-      padding: 0 20px;
-    }
+    .link-gray-dark();
+    margin: 0 10px;
 
-    &--text {
-      @media @desktop {
-        flex-basis: 100%;
-      }
-    }
+    &--selected {
+      color: @pink-dark;
+      font-weight: bold;
 
-    &--image {
-      max-width: 100%;
-      height: auto;
-    }
-
-  }
-
-  &__image-container {
-    min-width: 0;
-    padding-bottom: 20px;
-
-    &--logo {
-      @media @desktop {
-        max-width: 42%;
-        padding-right: 4%;
-      }
-
-      max-width: 75%;
-    }
-
-    &--devices {
-      @media @desktop {
-        max-width: 58%;
-        padding-left: 4%;
-      }
+      .link-hover({
+        color: @pink-dark;
+      });
     }
   }
 
-  &__invite-info {
-    padding-bottom: 20px;
-    margin: 0;
+  &__item-arrow {
+    margin-left: 5px;
   }
 }

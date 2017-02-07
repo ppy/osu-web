@@ -90,6 +90,7 @@
                 @yield('permanent-fixed-footer')
             </div>
         </div>
+        <audio class="js-audio" preload="auto"></audio>
 
         @include("layout._global_variables")
         @include('layout._loading_overlay')

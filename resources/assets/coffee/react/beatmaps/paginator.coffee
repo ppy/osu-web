@@ -20,25 +20,45 @@
 el = React.createElement
 
 Beatmaps.Paginator = React.createClass
-  autoPagerTriggerDistance: 3000
-  clicked: (e) ->
-    e.preventDefault()
-    $(document).trigger 'beatmap:load_more'
+  componentDidMount: ->
+    @throttledAutoPagerOnScroll = _.throttle(@autoPagerOnScroll, 500)
+    $(window).on 'scroll.paginator', @throttledAutoPagerOnScroll
+
+
+  componentWillUnmount: ->
+    $(window).off '.paginator'
+    @throttledAutoPagerOnScroll.cancel()
+
+
+  render: ->
+    div
+      className: 'beatmapsets-show-more'
+      if @props.paging.loading
+        el Icon, name: 'refresh', modifiers: ['spin']
+      else if @props.paging.more
+        a
+          href: @props.paging.url
+          className: 'beatmapsets-show-more__link'
+          ref: (el) => @autoPagerTarget = el
+          onClick: @showMore
+          osu.trans('common.buttons.show_more')
+
 
   autoPagerOnScroll: (e) ->
-    if @autoPagerTarget == 'undefined' or @autoPagerTarget[0].getBoundingClientRect().top > document.documentElement.clientHeight + @autoPagerTriggerDistance
+    return if !@props.paging.more || @props.paging.loading
+
+    currentTarget = @autoPagerTarget.getBoundingClientRect().top
+    target = document.documentElement.clientHeight + @autoPagerTriggerDistance
+
+    if !@autoPagerTarget? || currentTarget > target
       return
 
     $(document).trigger 'beatmap:load_more'
 
-  componentDidMount: ->
-    @autoPagerTarget = $('#js-beatmaps-load-more')
-    $(window).on 'scroll.paginator', _.throttle(@autoPagerOnScroll, 500)
 
-  componentWillUnmount: ->
-    $(window).off '.paginator'
+  autoPagerTriggerDistance: 3000
 
-  render: ->
-    div className: ['beatmaps-load-more', ('loading ' if @props.paging.loading), ('no_more' if not @props.paging.more)].join(' '),
-      a href: @props.paging.url, id: "js-beatmaps-load-more", 'data-mode': "next", onClick: @clicked, "Load more"
-      i className: "fa fa-refresh fa-spin"
+
+  showMore: (e) ->
+    e.preventDefault()
+    $(document).trigger 'beatmap:load_more'

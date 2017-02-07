@@ -45,15 +45,9 @@ return [
         'in-progress' => '(match in progress)',
         'score' => [
             'stats' => [
-                'combo' => 'Combo',
                 'accuracy' => 'Accuracy',
+                'combo' => 'Combo',
                 'score' => 'Score',
-                'countgeki' => 'MAX',
-                'count300' => '300s',
-                'countkatu' => '200s',
-                'count100' => '100s',
-                'count50' => '50s',
-                'countmiss' => 'Miss',
             ],
         ],
         'failed' => 'FAILED',

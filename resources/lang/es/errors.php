@@ -28,12 +28,6 @@ return [
             'generic' => 'Ha ocurrido un error. Intenta recargar la página.',
         ],
     ],
-    'community' => [
-        'slack' => [
-            'not-eligible' => 'Your account is not eligible for the Slack invite.',
-            'slack-error' => 'An error has occured on the Slack servers. Please try again in a few minutes.',
-        ],
-    ],
     'logged_out' => 'Tu sesión ha expirado. Inicia sesión de nuevo y vuelve a intentarlo.',
     'supporter_only' => 'Debes de ser supporter para usar esta característica.',
     'no_restricted_access' => 'No puedes realizar esta acción mientras tu cuenta esté en estado restringido.',
