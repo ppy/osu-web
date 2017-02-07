@@ -34,5 +34,5 @@ class @ProfilePageHash
       "##{options.page}"
     else
       hash = "##{options.mode}"
-      hash += "/#{options.page}" if options.page != 'main'
+      hash += "/#{options.page}" if options.page? && options.page != 'main'
       hash

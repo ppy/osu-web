@@ -56,6 +56,11 @@ class ProfilePage.Header extends React.Component
     mainClasses += ' u-blackout-visible' if @state.editing
 
     el 'div', className: mainClasses,
+      el PlaymodeTabs,
+        enableAll: true
+        currentMode: @props.currentMode
+        hrefFunc: @playmodeTabsHrefFunc
+
       el 'div',
         className: 'profile-header__cover',
         style:
@@ -124,6 +129,10 @@ class ProfilePage.Header extends React.Component
   openEdit: =>
     Blackout.show()
     @setState editing: true
+
+
+  playmodeTabsHrefFunc: (mode) =>
+    ProfilePageHash.generate mode: mode
 
 
   toggleEdit: (e) =>

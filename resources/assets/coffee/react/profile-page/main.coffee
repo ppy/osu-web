@@ -45,7 +45,7 @@ ProfilePage.Main = React.createClass
   componentDidMount: ->
     $.subscribe 'user:update.profilePage', @userUpdate
     $.subscribe 'user:page:update.profilePage', @userPageUpdate
-    $.subscribe 'profile:mode:set.profilePage', @setCurrentMode
+    $.subscribe 'playmode:set.profilePage', @setCurrentMode
     $.subscribe 'profile:page:jump.profilePage', @pageJump
     $.subscribe 'stickyHeader.profilePage', @_tabsStick
 
@@ -204,7 +204,7 @@ ProfilePage.Main = React.createClass
       el component, props
 
 
-  setCurrentMode: (_e, mode) ->
+  setCurrentMode: (_e, {mode}) ->
     return if @state.currentMode == mode
     @setState currentMode: @validMode(mode)
 
