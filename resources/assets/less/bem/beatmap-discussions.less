@@ -21,6 +21,8 @@
   @_empty-text-size: 12px;
   @_mode-circle-diameter: 15px;
   @_timeline-line-width: 3px;
+  @_discussions-vertical-padding: 10px;
+  @_discussions-horizontal-padding: 20px;
 
   .default-box-shadow();
   margin: 10px 0;
@@ -38,7 +40,7 @@
   }
 
   &__discussions {
-    padding: 10px 20px;
+    padding: @_discussions-vertical-padding @_discussions-horizontal-padding;
     background-color: @gray-e;
   }
 
@@ -64,11 +66,11 @@
 
   &__timeline-line {
     position: absolute;
-    top: (10px + @_mode-circle-diameter / 2);
-    left: 20px;
+    top: (@_discussions-vertical-padding + @_mode-circle-diameter / 2);
+    left: @_discussions-horizontal-padding;
 
     width: @_timeline-line-width;
-    height: calc(100% ~'-' @_mode-circle-diameter);
+    height: calc(100% ~'-' (@_mode-circle-diameter + @_discussions-vertical-padding * 2));
 
     margin: 0 ((@_mode-circle-diameter - @_timeline-line-width) / 2);
 
