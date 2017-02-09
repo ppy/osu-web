@@ -28,10 +28,9 @@
     flex: 1;
   }
 
-  &--editing-dark {
-    background-color: @gray-4;
-    border-top: 1px solid @gray-3;
-    border-bottom: 1px solid @gray-3;
+  &--new-reply {
+    background-color: @gray-e;
+    border-radius: 0 0 @border-radius-base @border-radius-base;
   }
 
   &--unread {
@@ -54,10 +53,6 @@
       // reset function above overrides margin
       margin: 0 5px;
       font-size: @font-size--small;
-
-      .@{_top}--reply & {
-        .link-gray-light();
-      }
     }
   }
 
@@ -93,11 +88,9 @@
   }
 
   &__footer {
-    background-color: @gray-3;
     padding: 10px;
 
     .@{_top}--reply & {
-      color: @gray-f;
       padding-left: @beatmap-discussion--reply-padding;
       padding-right: @beatmap-discussion--reply-padding;
     }
@@ -106,10 +99,6 @@
   &__info {
     font-size: @_info-text-size;
     margin-right: 10px;
-
-    .@{_top}--reply & {
-      color: @gray-9;
-    }
 
     &--edited {
       color: @gray-light;
@@ -124,7 +113,7 @@
     .@{_top}--reply & {
       &::after {
         content: '';
-        background-color: @gray-7;
+        background-color: @gray-e;
         height: 1px;
         align-self: center;
         flex: 1;
@@ -134,28 +123,19 @@
 
   &__info-user {
     font-weight: 600;
-
-    .@{_top}--reply & {
-      .link-gray-light();
-    }
   }
 
   &__message {
     .content-font();
     word-wrap: break-word;
+    margin-bottom: 10px;
 
     .@{_top}--discussion & {
       font-size: @_discussion-text-size;
     }
 
-    // placing classed elements in here is not advisable
     .@{_top}--reply & {
       font-size: @_reply-text-size;
-      color: @gray-f;
-
-      a {
-        .link-gray-light();
-      }
     }
 
     .@{_top}--deleted & {

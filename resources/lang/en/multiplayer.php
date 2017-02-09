@@ -32,7 +32,7 @@ return [
             'player-joined' => ':user joined the match',
             'player-kicked' => ':user has been kicked from the match',
             'match-created' => ':user created the match',
-            'match-disbanded' => ':the match was disbanded',
+            'match-disbanded' => 'the match was disbanded',
             'host-changed' => ':user became the host',
 
             'player-left-no-user' => 'a player left the match',

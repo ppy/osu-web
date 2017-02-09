@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,34 +18,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.slack-button-container {
-  text-align: center;
-  padding: 0 20px 30px 20px;
+return [
+    'show' => [
+        'languages' => 'Idiomas',
+        'missing' => 'A página solicitada não foi encontrada.',
+        'missing_translation' => 'A página solicitada não foi encontrada no atual idioma especificado.',
+        'toc' => 'Conteúdo',
 
-  &__button {
-    width: 195px;
-    height: 50px;
-
-    font-weight: bold;
-  }
-
-  &__issues {
-    font-size: 10px;
-    font-weight: bold;
-
-    padding: 40px 0 20px 0;
-
-    &--hidden {
-      visibility: hidden;
-    }
-  }
-
-  &__notice {
-    font-weight: bold;
-    padding-top: 80px;
-
-    &--accepted {
-      color: @green-dark;
-    }
-  }
-}
+        'edit' => [
+            'link' => 'Exibir no GitHub',
+            'refresh' => 'Atualizar',
+        ],
+    ],
+];

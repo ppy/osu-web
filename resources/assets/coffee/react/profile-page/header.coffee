@@ -103,7 +103,7 @@ class ProfilePage.Header extends React.Component
 
       el 'div',
         className: 'profile-header__uploading-spinner-container'
-        'data-state': 'enabled' if @props.isCoverUpdating
+        'data-visibility': 'hidden' if !@props.isCoverUpdating
 
         el 'div', className: 'spinner',
           el 'div', className: 'spinner__cube'

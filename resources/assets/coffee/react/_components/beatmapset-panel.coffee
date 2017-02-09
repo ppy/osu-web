@@ -19,55 +19,114 @@
 {div,a,i,span} = React.DOM
 el = React.createElement
 
-class @BeatmapsetPanel extends React.Component
+@BeatmapsetPanel = React.createClass
+  getInitialState: ->
+    isPreviewing: false
+    previewDuration: 0
+
+
+  componentDidMount: ->
+    @eventId = "beatmapsetPanel#{@props.beatmap.beatmapset_id}"
+
+    $.subscribe "osuAudio:playing.#{@eventId}", @previewStart
+    $.subscribe "osuAudio:ended.#{@eventId}", @previewStop
+
+
+  componentWillUnmount: ->
+    $.unsubscribe ".#{@eventId}"
+
+
   render: ->
     # this is actually "beatmapset"
-    beatmap = @props.beatmap
+    beatmapset = @props.beatmap
 
     # arbitrary number
     maxDisplayedDifficulty = 10
 
-    difficulties = beatmap.beatmaps.slice(0, maxDisplayedDifficulty).map (b) =>
+    difficulties = beatmapset.beatmaps[..maxDisplayedDifficulty - 1].map (b) =>
       div
         className: 'beatmapset-panel__difficulty-icon'
         key: b.version
         el BeatmapIcon, beatmap: b
 
-    if beatmap.beatmaps.length > maxDisplayedDifficulty
-      difficulties.push span key: 'over', "+#{(beatmap.beatmaps.length - maxDisplayedDifficulty)}"
+    if beatmapset.beatmaps.length > maxDisplayedDifficulty
+      difficulties.push span key: 'over', "+#{(beatmapset.beatmaps.length - maxDisplayedDifficulty)}"
 
-    div className: 'beatmapset-panel', '',
+    div
+      className: "beatmapset-panel #{'beatmapset-panel--previewing' if @state.isPreviewing}"
       div className: 'beatmapset-panel__panel',
         div className: 'beatmapset-panel__header',
           a
-            href: laroute.route 'beatmapsets.show', beatmapset: beatmap.id
-            target: '_blank', className: 'beatmapset-panel__thumb'
-            style: {backgroundImage: "url(#{beatmap.covers.card})"}
+            href: laroute.route('beatmapsets.show', beatmapset: beatmapset.id)
+            target: '_blank'
+            className: 'beatmapset-panel__thumb'
+            style:
+              backgroundImage: "url(#{beatmapset.covers.card})"
+
             div className: 'beatmapset-panel__title-artist-box',
-              div className: 'beatmapset-panel__header-text beatmapset-panel__header-text--title',
-                beatmap.title
+              div className: 'u-ellipsis-overflow beatmapset-panel__header-text beatmapset-panel__header-text--title',
+                beatmapset.title
               div className: 'beatmapset-panel__header-text',
-                beatmap.artist
+                beatmapset.artist
 
             div className: 'beatmapset-panel__counts-box',
               div className: 'beatmapset-panel__count',
-                span className: 'beatmapset-panel__count-number', beatmap.play_count
-                i className: 'fa fa-play-circle'
+                span className: 'beatmapset-panel__count-number', beatmapset.play_count
+                el Icon, name: 'play-circle', modifiers: ['fw']
 
               div className: 'beatmapset-panel__count',
-                span className: 'beatmapset-panel__count-number', beatmap.favourite_count
-                i className: 'fa fa-heart'
+                span className: 'beatmapset-panel__count-number', beatmapset.favourite_count
+                el Icon, name: 'heart', modifiers: ['fw']
 
-        div className: 'beatmapset-panel__mapper-source-box',
-          span className: 'hidden', ref: beatmap.id, beatmap.id
-          div className: 'creator', dangerouslySetInnerHTML: { __html: osu.trans('beatmaps.listing.mapped-by', mapper: laroute.link_to_route('users.show', beatmap.creator, user: beatmap.user_id)) }
-          div className: 'source', beatmap.source
+            div
+              className: 'beatmapset-panel__preview-bar'
+              style:
+                transitionDuration: "#{@state.previewDuration}s"
+                width: "#{if @state.isPreviewing then '100%' else 0}"
 
-        div className: 'beatmapset-panel__icons-box',
-          a href: Url.beatmapDownload(beatmap.id), className: 'beatmapset-panel__icon',
-            i className: 'fa fa-download'
-          # a href: '#', className: 'beatmapset-panel__icon',
-          #   i className:'fa fa-heart'
+        div className: 'beatmapset-panel__content',
+          div className: 'beatmapset-panel__row',
+            div className: 'beatmapset-panel__mapper-source-box',
+              div
+                className: 'u-ellipsis-overflow'
+                dangerouslySetInnerHTML:
+                  __html:
+                    osu.trans 'beatmaps.listing.mapped-by',
+                      mapper:
+                        laroute.link_to_route 'users.show',
+                          beatmapset.creator
+                          user: beatmapset.user_id
+              div
+                className: 'u-ellipsis-overflow'
+                beatmapset.source
 
-        div className: 'beatmapset-panel__difficulties', difficulties
-      div className: 'beatmapset-panel__shadow', ''
+            div className: 'beatmapset-panel__icons-box',
+              a
+                href: Url.beatmapDownload(beatmapset.id)
+                className: 'beatmapset-panel__icon'
+                el Icon, name: 'download'
+
+          div className: 'beatmapset-panel__difficulties', difficulties
+      a
+        href: '#'
+        className: 'beatmapset-panel__play js-audio--play'
+        'data-audio-url': beatmapset.previewUrl
+        el Icon, name: if @state.isPreviewing then 'stop' else 'play'
+      div className: 'beatmapset-panel__shadow'
+
+
+  previewStart: (_e, {url, player}) ->
+    if url != @props.beatmap.previewUrl
+      return @previewStop()
+
+    @setState
+      isPreviewing: true
+      previewDuration: player.duration
+
+
+  previewStop: ->
+    return if !@state.isPreviewing
+
+    @setState
+      isPreviewing: false
+      previewDuration: 0

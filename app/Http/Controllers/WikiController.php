@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Exceptions\GitHubNotFoundException;
+use App\Exceptions\GitHubTooLargeException;
 use App\Models\WikiPage;
 use Request;
 use View;
@@ -33,12 +34,17 @@ class WikiController extends Controller
 
     public function show($path)
     {
-        if (in_array(pathinfo($path, PATHINFO_EXTENSION), ['gif', 'jpeg', 'jpg', 'png'], true)) {
+        $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+        $imageExtensions = ['gif', 'jpeg', 'jpg', 'png'];
+
+        if (in_array($extension, $imageExtensions, true)) {
             try {
                 return response(WikiPage::fetchImage($path, Request::url(), Request::header('referer')), 200)
                     ->header('Content-Type', 'image');
             } catch (GitHubNotFoundException $e) {
                 abort(404);
+            } catch (GitHubTooLargeException $e) {
+                abort(422);
             }
         }
 

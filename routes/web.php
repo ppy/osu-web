@@ -106,9 +106,6 @@ Route::get('/community/profile/{id}', function ($id) {
     return Redirect::route('users.show', $id);
 });
 
-Route::get('/community/slack', ['as' => 'slack', 'uses' => 'CommunityController@getSlack']);
-Route::post('/community/slack/agree', ['as' => 'slack.agree', 'uses' => 'CommunityController@postSlackAgree']);
-
 Route::resource('matches', 'MatchesController', ['only' => ['show']]);
 Route::get('/matches/{match}/history', ['as' => 'matches.history', 'uses' => 'MatchesController@history']);
 
@@ -138,7 +135,7 @@ Route::get('/notifications', ['as' => 'notifications.index', function () {
 
 // help section
 Route::get('/wiki', ['as' => 'wiki', function () {
-    return ujs_redirect(route('wiki.show', ['page' => 'Welcome']));
+    return ujs_redirect(route('wiki.show', ['page' => 'Welcome']).'/');
 }]);
 Route::get('wiki/{page?}', ['as' => 'wiki.show', 'uses' => 'WikiController@show'])->where('page', '.+');
 Route::put('wiki/{page?}', ['uses' => 'WikiController@update'])->where('page', '.+');
