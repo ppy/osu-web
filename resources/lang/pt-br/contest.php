@@ -24,12 +24,17 @@ return [
         'large' => 'Concursos comunitários osu!',
     ],
     'voting' => [
-        'over' => 'A votação deste concurso terminou',
+        'over' => 'A votação deste concurso já foi encerrada',
+        'login_required' => 'Por favor, inicie a sessão para votar.',
+        'best_of' => [
+            'none_played' => "Parece que não você jogou nenhum dos beatmaps qualificados para este concurso!",
+        ],
     ],
     'entry' => [
+        '_' => 'inscrição',
         'login_required' => 'Por favor, inicie a sessão para participar deste concurso.',
-        'silenced_or_restricted' => 'Você não pode participar de concursos enquanto estiver restrito ou silenciado.',
-        'preparation' => 'Estamos atualmente preparando este concurso. Aguarde pacientemente!',
+        'silenced_or_restricted' => 'Você não pode participar de concursos enquanto restrito ou silenciado.',
+        'preparation' => 'Estamos preparando este concurso. Aguarde pacientemente!',
         'over' => 'Agradecemos a sua participação! As inscrições para este concurso foram encerradas e a votação abrirá em breve.',
         'limit_reached' => 'Você atingiu o limite de inscrições para este concurso',
         'drop_here' => 'Solte a sua inscrição aqui',
@@ -44,14 +49,15 @@ return [
         'download' => 'Baixar inscrição',
     ],
     'vote' => [
+        'list' => 'votos',
         'count' => '1 voto|:count votos',
     ],
     'dates' => [
-        'ended' => 'termina :date',
+        'ended' => 'Encerrada em :date',
 
         'starts' => [
-            '_' => 'começa :date',
-            'soon' => 'em breve™',
+            '_' => 'Começa em :date',
+            'soon' => 'breve™',
         ],
     ],
     'states' => [

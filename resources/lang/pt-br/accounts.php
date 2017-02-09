@@ -20,23 +20,23 @@
 
 return [
     'edit' => [
-        'title' => 'Configurações de Conta',
+        'title' => 'Configurações da conta',
         'title_compact' => 'configurações',
 
         'avatar' => [
-            'title' => 'Editar Avatar',
+            'title' => 'Editar avatar',
         ],
 
         'profile' => [
-            'title' => 'Editar Perfil',
+            'title' => 'Editar perfil',
 
             'user' => [
                 'user_from' => 'localização atual',
-                'user_interests' => 'Interesse',
+                'user_interests' => 'interesses',
                 'user_msnm' => 'skype',
                 'user_occ' => 'ocupação',
                 'user_twitter' => 'twitter',
-                'user_website' => 'website',
+                'user_website' => 'site',
             ],
         ],
     ],

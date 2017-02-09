@@ -32,13 +32,18 @@ return [
     ],
 
     'discussions' => [
+        'allow_kudosu' => 'permitir kudosu',
+        'delete' => 'excluir',
+        'deleted' => 'Excluída por :editor :delete_time',
+        'deny_kudosu' => 'recusar kudosu',
         'edit' => 'editar',
-        'edited' => 'Editado pela última vez por :editor :update_time',
+        'edited' => 'Última edição por :editor :update_time',
         'message_placeholder' => 'Digite aqui para publicar',
         'message_type_select' => 'Selecione o tipo de comentário',
         'reply_placeholder' => 'Digite a sua resposta aqui',
         'require-login' => 'Por favor, inicie a sessão para publicar ou responder',
         'resolved' => 'Resolvido',
+        'restore' => 'recuperar',
         'title' => 'Discussões',
 
         'collapse' => [
@@ -52,12 +57,12 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Esta publicação irá para discussão geral de beatmaps. Para modificar este beatmap, inicie a mensagem com o timestamp (ex: 00:12:345).',
+            'in_general' => 'Esta publicação irá para a discussão geral de beatmaps. Para modificar este beatmap, inicie a mensagem com o timestamp (ex: 00:12:345).',
             'in_timeline' => 'Para modificar vários timestamps, publique várias vezes (uma publicação por timestamp).',
         ],
 
         'message_type' => [
-            'praise' => 'Elogiar',
+            'praise' => 'Elogio',
             'problem' => 'Problema',
             'suggestion' => 'Sugestão',
         ],
@@ -69,6 +74,7 @@ return [
 
         'new' => [
             'timestamp' => 'Timestamp',
+            'timestamp_missing' => 'ctrl-c no modo de edição e cole na sua mensagem para adicionar um timestamp!',
             'title' => 'Nova discussão',
         ],
 
@@ -77,7 +83,8 @@ return [
         ],
 
         'stats' => [
-            'mine' => 'Meu',
+            'deleted' => 'Excluídos',
+            'mine' => 'Meus',
             'pending' => 'Pendentes',
             'praises' => 'Elogios',
             'resolved' => 'Resolvidos',
@@ -107,17 +114,28 @@ return [
             'not-found-quote' => '... não, nada encontrado.',
         ],
         'mode' => 'Modo',
-        'status' => 'Status de rank',
+        'status' => 'Estado de rank',
         'mapped-by' => 'mapeado por :mapper',
         'source' => 'de :source',
         'load-more' => 'Carregar mais...',
     ],
     'beatmapset' => [
+        'availability' => [
+            'disabled' => 'Este beatmap não está disponível para download.',
+            'parts-removed' => 'Partes deste beatmap foram removidas a pedido do criador ou de um detentor de direitos de terceiros.',
+            'more-info' => 'Clique aqui para mais informações.',
+        ],
         'show' => [
+            'discussion' => 'Discussão',
+
             'details' => [
                 'made-by' => 'criado por ',
                 'submitted' => 'enviado em ',
+                'updated' => 'última atualização em ',
                 'ranked' => 'ranqueado em ',
+                'approved' => 'aprovado em ',
+                'qualified' => 'qualificado em ',
+                'loved' => 'amado em ',
                 'logged-out' => 'Você precisa iniciar a sessão antes de baixar beatmaps!',
                 'download' => [
                     '_' => 'baixar',
@@ -125,6 +143,8 @@ return [
                     'no-video' => 'sem vídeo',
                     'direct' => 'osu!direct',
                 ],
+                'favourite' => 'Adicionar aos favoritos',
+                'unfavourite' => 'Remover dos favoritos',
             ],
             'stats' => [
                 'cs' => 'Tamanho do círculo',
@@ -150,7 +170,7 @@ return [
                 'tags' => 'Marcadores',
             ],
             'scoreboard' => [
-                'achieved' => 'alcançado em :when',
+                'achieved' => 'alcançado há :when',
                 'country' => 'Ranking de país',
                 'friend' => 'Ranking de amigos',
                 'global' => 'Ranking global',
@@ -167,8 +187,12 @@ return [
                 'no-scores' => [
                     'country' => 'Ninguém do seu país fez uma pontuação neste mapa ainda!',
                     'friend' => 'Nenhum dos seus amigos fez uma pontuação neste mapa ainda!',
-                    'global' => 'Sem pontuações ainda. Talvez você deveria fazer algumas?',
+                    'global' => 'Sem pontuações ainda. Não quer tentar marcar algumas?',
                     'loading' => 'Carregando pontuações...',
+                ],
+                'score' => [
+                    'first' => 'Na liderança',
+                    'own' => 'Seu melhor',
                 ],
                 'stats' => [
                     'accuracy' => 'Precisão',
@@ -188,6 +212,7 @@ return [
         'any' => 'Qualquer',
         'ranked-approved' => 'Ranqueados e aprovados',
         'approved' => 'Aprovados',
+        'loved' => 'Amados',
         'faves' => 'Favoritos',
         'modreqs' => 'Pedidos de mod',
         'pending' => 'Pendentes',
@@ -244,8 +269,8 @@ return [
     'other' => 'Outros',
     ],
     'extra' => [
-        'video' => 'Tem vídeo',
-        'storyboard' => 'Tem storyboard',
+        'video' => 'Possui vídeo',
+        'storyboard' => 'Possui storyboard',
     ],
     'rank' => [
         'any' => 'Qualquer',

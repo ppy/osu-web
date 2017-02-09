@@ -19,8 +19,11 @@
  */
 
 return [
+    'deleted' => '[usuário excluído]',
+
     'login' => [
         '_' => 'Iniciar sessão',
+        'locked_ip' => 'seu endereço IP está trancado. Por favor, espere alguns minutos.',
         'username' => 'Nome de usuário',
         'password' => 'Senha',
         'button' => 'Iniciar sessão',
@@ -53,7 +56,7 @@ return [
                 'button' => 'Alterar capa do perfil',
                 'defaults_info' => 'Mais opções de capa estarão disponíveis no futuro',
                 'upload' => [
-                    'broken_file' => 'Processamento de imagem falhou. Verifique a imagem enviada e tente novamente.',
+                    'broken_file' => 'Falha ao processar imagem. Verifique a imagem enviada e tente novamente.',
                     'button' => 'Enviar imagem',
                     'dropzone' => 'Arraste aqui para enviar',
                     'dropzone_info' => 'Você também pode arrastar sua imagem aqui para enviar',
@@ -89,15 +92,15 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu disponível',
-                'available_info' => 'Kudosu pode ser trocado por estrelas de kudosu, que podem ajudar seu beatmap a conseguir mais atenção. Este é o número de kudosu que você ainda não usou.',
+                'available_info' => 'Kudosu pode ser trocado por estrelas de Kudosu, que podem ajudar o seu beatmap a conseguir mais atenção. Este é o número de Kudosu não usados ainda.',
                 'recent_entries' => 'Histórico recente de Kudosu',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu total recebido',
-                'total_info' => 'Baseado na contribuição de um jogador para a moderação de beatmaps. Acesse <a href="'.osu_url('user.kudosu').'">esta página</a> para mais informações.',
+                'total_info' => 'Baseado na contribuição de um usuário para a moderação de beatmaps. Acesse <a href="'.osu_url('user.kudosu').'">esta página</a> para mais informações.',
 
                 'entry' => [
-                    'amount' => ':amount kudosu',
-                    'empty' => 'Este jogador ainda não recebeu nenhum kudosu!',
+                    'amount' => ':amount Kudosu',
+                    'empty' => 'Este usuário ainda não recebeu nenhum Kudosu!',
 
                     'forum_post' => [
                         'give' => 'Recebeu :amount de :giver por uma publicação em :post',
@@ -119,7 +122,7 @@ return [
                 'best' => [
                     'title' => 'Melhor desempenho',
                 ],
-                'empty' => 'Nenhum desempenho maravilhoso ainda. :(',
+                'empty' => 'Nenhum desempenho notável ainda. :(',
                 'first' => [
                     'title' => 'Ranks de primeiro lugar',
                 ],
@@ -141,7 +144,7 @@ return [
         'first_members' => 'aqui desde o começo',
         'is_supporter' => 'osu!supporter',
         'is_developer' => 'osu!developer',
-        'lastvisit' => 'Visto por último em :date.',
+        'lastvisit' => 'Visto por último :date.',
         'joined_at' => 'registrou-se em :date',
         'more_achievements' => 'e mais',
         'origin' => [
@@ -152,7 +155,7 @@ return [
         'page' => [
             'description' => '<strong>eu!</strong> é uma área pessoal personalizável na sua página de perfil.',
             'edit_big' => 'Editar eu!',
-            'placeholder' => 'Digite o conteúdo da página aqui',
+            'placeholder' => 'Escreva o conteúdo da página aqui',
             'restriction_info' => "Você precisa ser um <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> para desbloquear essa função.",
         ],
         'plays_with' => [
