@@ -32,6 +32,13 @@ return [
         'item' => '{1} sztuka|[2,4] :count sztuki|[5,Inf] :count sztuk',
     ],
 
+    'device' => [
+        'keyboard' => 'Klawiatury',
+        'mouse' => 'Myszki',
+        'tablet' => 'Tableta',
+        'touch' => 'Ekranu dotykowego',
+    ],
+
     'dropzone' => [
         'target' => 'upuść tutaj, aby wrzucić plik',
     ],

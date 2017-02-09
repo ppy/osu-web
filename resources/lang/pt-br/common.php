@@ -35,6 +35,13 @@ return [
         'item' => ':count unidade|:count unidades',
     ],
 
+    'device' => [
+        'keyboard' => 'Teclado',
+        'mouse' => 'Mouse',
+        'tablet' => 'Mesa digitalizadora',
+        'touch' => 'Tela sensível ao toque',
+    ],
+
     'dropzone' => [
         'target' => 'solte aqui para enviar',
     ],

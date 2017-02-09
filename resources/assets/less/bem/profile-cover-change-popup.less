@@ -21,8 +21,9 @@
   .default-box-shadow();
 
   position: absolute;
-  top: (@profile-header-height - @profile-user-bar-height + 10px);
-  right: 10px;
+  top: 0;
+  right: calc(100% ~'+' 10px);
+
   width: (@profile-cover-thumb-size * 3 + 5px * 2 + 10px * 2);
 
   background: #fff;

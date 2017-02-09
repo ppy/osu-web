@@ -16,65 +16,54 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+{dd, div, dl, dt, span} = React.DOM
 el = React.createElement
 
-class ProfilePage.Stats extends React.Component
-  render: =>
-    elements = ['ranked-score', 'accuracy', 'playcount', 'total-score', 'hits', 'maxcombo', 'replays-watched']
 
-    el 'div', className: 'page-contents__content profile-stats',
-      el 'div', className: 'page-contents__row page-contents__row--top',
-        el 'div', className: 'profile-badge profile-badge--level',
-          el 'span', className: 'profile-badge__number', @props.stats.level.current
+simpleEntry = ({key, value}) ->
+  dl className: 'profile-stats__entry',
+    dt className: 'profile-stats__key', osu.trans("users.show.stats.#{key}")
+    dd className: 'profile-stats__value', value
 
-        el 'div', className: 'bar bar--user-profile',
-          el 'div',
-            className: 'bar__fill'
-            style:
-              width: "#{@props.stats.level.progress.toFixed()}%"
 
-        el 'dl', className: 'profile-stats__stat',
-          el 'dt', className: 'profile-stats__stat-key',
-            osu.trans 'users.show.stats.level', level: @props.stats.level.current
-          el 'dd', className: 'profile-stats__stat-value, profile-stats__stat-value--light',
-            "#{@props.stats.level.progress.toFixed()}%"
+ProfilePage.Stats = ({stats}) ->
+  elements = ['ranked-score', 'accuracy', 'playcount', 'total-score', 'hits', 'maxcombo', 'replays-watched']
 
-      el 'div', className: 'page-contents__row',
-        elements.map (m) =>
-          switch m
-            when 'ranked-score'
-              dt = osu.trans 'users.show.stats.ranked_score'
-              dd = @props.stats.rankedScore.toLocaleString()
-            when 'accuracy'
-              dt = osu.trans 'users.show.stats.hit_accuracy'
-              dd = "#{@props.stats.hitAccuracy.toFixed(2)}%"
-            when 'playcount'
-              dt = osu.trans 'users.show.stats.play_count'
-              dd = @props.stats.playCount.toLocaleString()
-            when 'total-score'
-              dt = osu.trans 'users.show.stats.total_score'
-              dd = @props.stats.totalScore.toLocaleString()
-            when 'hits'
-              dt = osu.trans 'users.show.stats.total_hits'
-              dd = @props.stats.totalHits.toLocaleString()
-            when 'maxcombo'
-              dt = osu.trans 'users.show.stats.maximum_combo'
-              dd = @props.stats.maximumCombo.toLocaleString()
-            when 'replays-watched'
-              dt = osu.trans 'users.show.stats.replays_watched_by_others'
-              dd = @props.stats.replaysWatchedByOthers.toLocaleString()
+  div className: 'profile-stats',
+    div className: 'profile-stats__row profile-stats__row--compact',
+      div className: 'profile-badge profile-badge--level',
+        span className: 'profile-badge__number', stats.level.current
 
-          el 'dl', key: m, className: 'profile-stats__stat',
-            el 'dt', className: 'profile-stats__stat-key', dt
-            el 'dd', className: 'profile-stats__stat-value', dd
+    div className: 'profile-stats__row',
+      simpleEntry
+        key: 'ranked_score'
+        value: stats.rankedScore.toLocaleString()
+      simpleEntry
+        key: 'hit_accuracy'
+        value: "#{stats.hitAccuracy.toFixed(2)}%"
+      simpleEntry
+        key: 'play_count'
+        value: stats.playCount.toLocaleString()
+      simpleEntry
+        key: 'total_score'
+        value: stats.totalScore.toLocaleString()
+      simpleEntry
+        key: 'total_hits'
+        value: stats.totalHits.toLocaleString()
+      simpleEntry
+        key: 'maximum_combo'
+        value: stats.maximumCombo.toLocaleString()
+      simpleEntry
+        key: 'replays_watched_by_others'
+        value: stats.replaysWatchedByOthers.toLocaleString()
 
-        el 'dl', className: 'profile-stats__stat profile-stats__stat--full',
-          el 'dt', className: 'profile-stats__stat-key', osu.trans 'users.show.stats.score_ranks'
-          el 'dd', className: 'profile-stats__stat-value profile-stats__ranks',
-            for own rankName, rankCount of @props.stats.scoreRanks
-              el 'div',
-                key: "rank-#{rankName}"
-                className: 'profile-stats__rank'
-                el 'div',
-                  className: "badge-rank badge-rank--medium badge-rank--#{rankName}"
-                el 'div', null, rankCount.toLocaleString()
+      dl className: 'profile-stats__entry profile-stats__entry--full',
+        dt className: 'profile-stats__key', osu.trans 'users.show.stats.score_ranks'
+        dd className: 'profile-stats__value',
+          for own rankName, rankCount of stats.scoreRanks
+            div
+              key: "rank-#{rankName}"
+              className: 'profile-stats__rank'
+              div
+                className: "badge-rank badge-rank--medium badge-rank--#{rankName}"
+              div null, rankCount.toLocaleString()

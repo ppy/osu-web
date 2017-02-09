@@ -215,6 +215,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return presence($value);
     }
 
+    public function getUserInterestsAttribute($value)
+    {
+        return presence($value);
+    }
+
     public function isSpecial()
     {
         return $this->user_id !== null && present($this->user_colour);

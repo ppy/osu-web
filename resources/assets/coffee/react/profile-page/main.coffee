@@ -132,13 +132,13 @@ ProfilePage.Main = React.createClass
       historical:
         props:
           beatmapPlaycounts: @props.beatmapPlaycounts
-          rankHistories: @state.rankHistories
+          rankHistories: rankHistories
           scores: scores
         component: ProfilePage.Historical
 
       performance:
         props:
-          rankHistories: @state.rankHistories
+          rankHistories: rankHistories
         component: ProfilePage.Performance
 
     div className: 'osu-layout__section',
@@ -148,16 +148,8 @@ ProfilePage.Main = React.createClass
         currentMode: @state.currentMode
         withEdit: @props.withEdit
 
-      el ProfilePage.Contents,
-        user: @state.user
-        stats: stats
-        currentMode: @state.currentMode
-        currentPage: @state.currentPage
-        userAchievements: @props.userAchievements
-        achievements: @props.achievements
-
       div
-        className: "page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
+        className: "hidden-xs page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
         ref: 'tabs'
 
         div
