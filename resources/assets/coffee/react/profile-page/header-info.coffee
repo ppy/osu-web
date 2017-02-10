@@ -29,7 +29,8 @@ ProfilePage.HeaderInfo = ({user}) ->
           parentClass: 'profile-info__supporter-icon'
           title: osu.trans('users.show.is_supporter')
       h1 className: 'profile-info__name', user.username
-      span className: 'profile-info__title', user.title
+      # hard space if no title
+      span className: 'profile-info__title', user.title ? '\u00A0'
       div className: 'profile-info__flags',
         el FlagCountry, country: user.country
     div
