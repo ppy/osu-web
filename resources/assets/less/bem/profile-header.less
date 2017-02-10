@@ -24,8 +24,6 @@
   background-position: center;
   transition: background-image 120ms;
 
-  min-height: @profile-header-height;
-
   &__actions {
     position: absolute;
     right: 20px;
@@ -57,7 +55,7 @@
   }
 
   &__container {
-    .full-size();
+    min-height: @profile-header-height;
     padding: 30px 40px 0;
     display: flex;
     flex-direction: column;
