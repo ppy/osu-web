@@ -103,6 +103,14 @@ class LocaleMeta
             'name' => '中文',
             'flag' => 'CN',
         ],
+        'zh-CN' => [
+            'name' => '中文 (简体)',
+            'flag' => 'CN',
+        ],
+        'zh-TW' => [
+            'name' => '中文 (繁體)',
+            'flag' => 'TW',
+        ],
     ];
 
     public static function flagFor($locale)
