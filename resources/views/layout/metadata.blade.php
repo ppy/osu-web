@@ -18,7 +18,7 @@
 <link rel="shortcut icon" href="{{ Config::get("osu.static", "//s.ppy.sh") }}/favicon.ico" type="image/vnd.microsoft.icon">
 <link rel="icon" href="{{ Config::get("osu.static", "//s.ppy.sh") }}/favicon.ico" type="image/vnd.microsoft.icon">
 
-<link rel="manifest" href="/manifest.json">
+<link rel="manifest" href="manifest.json">
 
 <meta charset="utf-8">
 <meta name="description" content="{{ $pageDescription or trans('layout.defaults.page_description') }}">
