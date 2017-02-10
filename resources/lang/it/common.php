@@ -19,47 +19,54 @@
  */
 
 return [
-        'buttons' => [
-            'cancel' => 'Cancella',
-            'post' => 'Posta',
-            'reply' => 'Rispondi',
-            'reset' => 'Resetta',
-            'save' => 'Salva',
-            'show_more' => 'mostra altro',
-            'delete' => 'Elimina',
-        ],
+    'buttons' => [
+        'cancel' => 'Cancella',
+        'post' => 'Posta',
+        'reply' => 'Rispondi',
+        'reset' => 'Resetta',
+        'save' => 'Salva',
+        'show_more' => 'mostra altro',
+        'delete' => 'Elimina',
+    ],
 
-        'confirmation' => 'Sei sicuro?',
+    'confirmation' => 'Sei sicuro?',
 
-        'count' => [
-            'item' => ':count unità|:count unità',
-        ],
+    'count' => [
+        'item' => ':count unità|:count unità',
+    ],
 
-        'dropzone' => [
-            'target' => 'trascina qui per caricare',
-        ],
+    'device' => [
+        'keyboard' => 'Tastiera',
+        'mouse' => 'Mouse',
+        'tablet' => 'Tablet',
+        'touch' => 'Schermo Touch',
+    ],
 
-        'score_count' => [
-            'count100' => '100',
-            'count300' => '300',
-            'count50' => '50',
-            'countgeki' => 'MAX',
-            'countkatu' => '200',
-            'countmiss' => 'Errori',
-        ],
+    'dropzone' => [
+        'target' => 'trascina qui per caricare',
+    ],
 
-        'pagination' => [
-            'previous' => 'prec',
-            'next' => 'succ',
-        ],
+    'score_count' => [
+        'count100' => '100',
+        'count300' => '300',
+        'count50' => '50',
+        'countgeki' => 'MAX',
+        'countkatu' => '200',
+        'countmiss' => 'Errori',
+    ],
 
-        'time' => [
-            'days_ago' => ':count giorni fa|:count giorni fa',
-            'hours_ago' => ':count ore fa|:count ore fa',
-            'now' => 'ora',
-        ],
+    'pagination' => [
+        'previous' => 'prec',
+        'next' => 'succ',
+    ],
 
-        'title' => [
-            'notice' => 'Avviso',
-        ],
+    'time' => [
+        'days_ago' => ':count giorni fa|:count giorni fa',
+        'hours_ago' => ':count ore fa|:count ore fa',
+        'now' => 'ora',
+    ],
+
+    'title' => [
+        'notice' => 'Avviso',
+    ],
 ];

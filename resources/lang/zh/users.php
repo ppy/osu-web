@@ -50,7 +50,20 @@ return [
     'logout_confirm' => '你确定要退出吗? :(',
     'show' => [
         '404' => '找不到指定的用户',
-        'current_location' => '现在在 :location.',
+        'origin_age' => ':age 岁',
+        'current_location' => '现在在 :location',
+        'first_members' => 'here since the beginning', //TODO 需要上下文
+        'is_developer' => 'osu!开发者',
+        'is_supporter' => 'osu!支持者',
+        'joined_at' => '注册时间: :date',
+        'lastvisit' => '上次登录: :date',
+        'missingtext' => '您可能输错了! (或者该用户已经被ban)',
+        'origin_age' => ':age',
+        'origin_country' => '来自 :country',
+        'origin_country_age' => ':age,来自 :country',
+        'page_description' => 'osu! - 你想知道的关于 :username 的一切!',
+        'title' => ':username 的个人资料',
+
         'edit' => [
             'cover' => [
                 'button' => '更换个人资料皮肤',
@@ -164,32 +177,12 @@ return [
                 'none' => '暂时没有...',
             ],
         ],
-        'first_members' => 'here since the beginning', //TODO 需要上下文
-        'is_supporter' => 'osu!支持者',
-        'is_developer' => 'osu!开发者',
-        'lastvisit' => '上次登录: :date',
-        'joined_at' => '注册时间: :date',
-        'more_achievements' => '更多',
-        'origin' => [
-            'age' => ':age 岁.',
-            'country' => '来自 :country.',
-            'country_age' => ':age 岁,来自 :country.',
-        ],
         'page' => [
             'description' => '<strong>me!</strong>是您可以自定义的展示区.',
             'edit_big' => '编辑 me!',
             'placeholder' => '在这里编辑您的me!',
             'restriction_info' => "您需要成为 <a href='".osu_url('support-the-game')."' target='_blank'>osu!支持者</a> 以解锁该特性.",
         ],
-        'plays_with' => [
-            '_' => '惯用设备',
-            'keyboard' => '键盘',
-            'mouse' => '鼠标',
-            'tablet' => '数位板', //板子
-            'touch' => '触摸屏',
-        ],
-        'missingtext' => '您可能输错了! (或者该用户已经被ban)',
-        'page_description' => 'osu! - 你想知道的关于 :username 的一切!',
         'rank' => [
             'country' => ':mode 模式的国内排名',
             'global' => ':mode 模式的全球排名',
@@ -205,7 +198,6 @@ return [
             'total_hits' => '总命中次数', //或许不翻译hit更好
             'total_score' => '总分',
         ],
-        'title' => ':username 的个人资料',
     ],
 
     'verify' => [

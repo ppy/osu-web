@@ -43,6 +43,7 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
                 'progress' => $stats->currentLevelProgressPercent(),
             ],
 
+            'pp' => $stats->rank_score,
             'rankedScore' => $stats->ranked_score,
             'hitAccuracy' => $stats->accuracy_new,
             'playCount' => $stats->playcount,

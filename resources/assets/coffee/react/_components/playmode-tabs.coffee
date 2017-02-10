@@ -22,7 +22,7 @@ class @PlaymodeTabs extends React.Component
   render: =>
     ul className: 'page-mode',
       for mode in BeatmapHelper.modes
-        disabled = !@props.beatmaps[mode]?
+        disabled = !(@props.enableAll || @props.beatmaps[mode]?)
         active = mode == @props.currentMode
 
         linkClass = 'page-mode-link'
@@ -49,4 +49,4 @@ class @PlaymodeTabs extends React.Component
     return if @props.currentMode == mode
     return if e.target.dataset.disabled == 'true'
 
-    $.publish 'beatmapset:mode:set', mode: mode
+    $.publish 'playmode:set', mode: mode

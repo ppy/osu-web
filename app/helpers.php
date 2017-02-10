@@ -382,7 +382,9 @@ function display_regdate($user)
         return trans('users.show.first_members');
     }
 
-    return trans('users.show.joined_at', ['date' => $user->user_regdate->formatLocalized('%B %Y')]);
+    return trans('users.show.joined_at', [
+        'date' => '<strong>'.$user->user_regdate->formatLocalized('%B %Y').'</strong>',
+    ]);
 }
 
 function i18n_date($datetime, $format = IntlDateFormatter::LONG)

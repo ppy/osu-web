@@ -52,7 +52,7 @@ BeatmapDiscussions.Main = React.createClass
 
   componentDidMount: ->
     $.subscribe 'beatmap:select.beatmapDiscussions', @setCurrentBeatmapId
-    $.subscribe 'beatmapset:mode:set.beatmapDiscussions', @setCurrentPlaymode
+    $.subscribe 'playmode:set.beatmapDiscussions', @setCurrentPlaymode
     $.subscribe 'beatmapsetDiscussion:update.beatmapDiscussions', @setBeatmapsetDiscussion
     $.subscribe 'beatmapset:update.beatmapDiscussions', @setBeatmapset
     $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo

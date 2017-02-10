@@ -43,6 +43,7 @@
     var fallbackLocale = {!! json_encode(config('app.fallback_locale')) !!};
 </script>
 
+<script src="{{ elixir("js/vendor.js") }}" data-turbolinks-track="reload"></script>
 <script src="{{ elixir("js/app.js") }}" data-turbolinks-track="reload"></script>
 <script src="/vendor/js/timeago-locales/jquery.timeago.{{ Lang::getLocale() }}.js" data-turbolinks-track="reload"></script>
 
