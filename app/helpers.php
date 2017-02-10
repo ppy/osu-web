@@ -73,6 +73,15 @@ function locale_name($locale)
     return App\Libraries\LocaleMeta::nameFor($locale);
 }
 
+function locale_for_timeago($locale)
+{
+    if ($locale === 'zh') {
+        return 'zh-CN';
+    }
+
+    return $locale;
+}
+
 function osu_url($key)
 {
     $url = config("osu.urls.{$key}");
