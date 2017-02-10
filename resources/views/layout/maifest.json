@@ -1,0 +1,30 @@
+{
+  "short_name": "OSU!",
+  "name": "OSU!",
+  "start_url": "./?utm_source=web_app_manifest",
+  "icons": [
+    {
+      "src": "/images/layout/osu-logo@2x.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/layout/osu-logo@2x.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/layout/osu-logo@2x.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/layout/osu-logo@2x.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#FAFAFA",
+  "display": "standalone",
+  "orientation": "portrait"
+}
