@@ -26,6 +26,8 @@
 <meta name="msapplication-navbutton-color" content="#cc5288">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
+<meta name="mobile-web-app-capable" content="yes">
+
 <meta name="csrf-param" content="_token">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
