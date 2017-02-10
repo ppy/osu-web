@@ -84,21 +84,24 @@ class ProfilePage.HeaderMain extends React.Component
       div
         className: 'profile-header__actions',
         if @props.withEdit
-          div null,
+          div
+            ref: (el) =>
+              @coverSelector = el
             a
               className: 'btn-circle'
               onClick: @toggleEdit
               el Icon, name: 'pencil'
             if @state.editing
-              el ProfilePage.CoverSelector, canUpload: @props.user.isSupporter, cover: @props.user.cover
+              el ProfilePage.CoverSelector,
+                canUpload: @props.user.isSupporter
+                cover: @props.user.cover
 
 
   closeEdit: (e) =>
     return unless @state.editing
 
     if e?
-      return if $(e.target).closest('.profile-cover-change-popup').length
-      return if $(e.target).closest('.js-profile-header__change-cover-button').length
+      return if $(e.target).closest(@coverSelector).length
 
     return if $('#overlay').is(':visible')
     return if document.body.classList.contains('modal-open')
