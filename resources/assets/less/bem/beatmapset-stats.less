@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,7 +14,6 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 .beatmapset-stats {
@@ -23,12 +22,6 @@
 
   @media @desktop {
     width: @beatmapset-float-box-width;
-  }
-
-  &__basic {
-    display: flex;
-    flex: 1;
-    padding: (@spacing / 2);
   }
 
   &__elapsed-bar {
@@ -50,7 +43,7 @@
 
     background-size: contain;
 
-    margin-right: (@spacing / 2);
+    margin-right: 5px;
   }
 
   &__preview-icon {
@@ -65,28 +58,25 @@
 
   &__rating-header {
     text-align: center;
-    padding-bottom: (@spacing / 2);
+    padding-bottom: 5px;
   }
 
   &__rating-values {
     display: flex;
-    padding-bottom: @spacing;
+    padding-bottom: 10px;
     justify-content: space-between;
   }
 
   &__row {
     background-color: fade(@gray-0, 50%);
     margin-top: 1px;
-    padding: (@spacing * 3 / 4) (@spacing * 3 / 2);
+    padding: 7.5px 15px;
     display: flex;
     flex-direction: column;
 
     &--basic {
-      flex-direction: row;
-      padding-left: @spacing;
-      padding-right: @spacing;
-      color: @yellow-light;
-      font-weight: 700;
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
 
     &--preview {
@@ -94,7 +84,7 @@
       align-items: center;
       justify-content: center;
 
-      padding: @spacing;
+      padding: 10px;
       cursor: pointer;
 
       &:not(:hover) {
@@ -103,7 +93,7 @@
     }
 
     &--rating {
-      padding-top: @spacing;
+      padding-top: 10px;
       padding-bottom: 0;
     }
   }

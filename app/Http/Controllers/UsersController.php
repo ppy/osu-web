@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,10 +17,10 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
 use App\Models\Achievement;
-use App\Models\LoginAttempt;
 use App\Models\User;
 use App\Transformers\AchievementTransformer;
 use App\Transformers\UserTransformer;
@@ -71,37 +71,25 @@ class UsersController extends Controller
     public function login()
     {
         $ip = Request::getClientIp();
+        $username = Request::input('username');
+        $password = Request::input('password');
+        $remember = Request::input('remember') === 'yes';
 
-        if (LoginAttempt::isLocked($ip)) {
-            return error_popup('your IP address is locked. Please wait a few minutes.');
+        $user = User::findForLogin($username);
+        $authError = User::attemptLogin($user, $password, $ip);
+
+        if ($authError === null) {
+            Request::session()->flush();
+            Request::session()->regenerateToken();
+            Auth::login($user, $remember);
+
+            return [
+                'header' => render_to_string('layout._header_user'),
+                'header_popup' => render_to_string('layout._popup_user'),
+                'user' => Auth::user()->defaultJson(),
+            ];
         } else {
-            $usernameOrEmail = Request::input('username');
-            $user = User::where('username', $usernameOrEmail)
-                ->orWhere('user_email', $usernameOrEmail)
-                ->first();
-
-            $password = Request::input('password');
-            $remember = Request::input('remember') === 'yes';
-
-            $validAuth = $user === null
-                ? false
-                : Auth::getProvider()->validateCredentials($user, compact('password'));
-
-            if ($validAuth) {
-                Request::session()->flush();
-                Request::session()->regenerateToken();
-                Auth::login($user, $remember);
-
-                return [
-                    'header' => render_to_string('layout._header_user', ['_user' => Auth::user()]),
-                    'header_popup' => render_to_string('layout._popup_user', ['_user' => Auth::user()]),
-                    'user' => Auth::user()->defaultJson(),
-                ];
-            } else {
-                LoginAttempt::failedAttempt($ip, $user);
-
-                return error_popup('wrong password or email');
-            }
+            return error_popup($authError);
         }
     }
 
@@ -124,9 +112,9 @@ class UsersController extends Controller
 
     public function show($id)
     {
-        $user = User::lookup($id);
+        $user = User::lookup($id, null, true);
 
-        if ($user === null || !$user->hasProfile()) {
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
             abort(404);
         }
 
@@ -135,7 +123,11 @@ class UsersController extends Controller
         }
 
         $achievements = json_collection(
-            Achievement::achievable()->orderBy('grouping')->orderBy('ordering')->orderBy('progression')->get(),
+            Achievement::achievable()
+                ->orderBy('grouping')
+                ->orderBy('ordering')
+                ->orderBy('progression')
+                ->get(),
             new AchievementTransformer()
         );
 

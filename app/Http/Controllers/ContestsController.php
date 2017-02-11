@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
 use App\Models\Contest;
@@ -36,19 +37,30 @@ class ContestsController extends Controller
 
     public function show($id)
     {
-        $contest = Contest::with('entries')->with('entries.contest')->findOrFail($id);
+        $contest = Contest::findOrFail($id);
 
         $user = Auth::user();
         if (!$contest->visible && (!$user || !$user->isAdmin())) {
             abort(404);
         }
 
+        if ($contest->isVotingStarted() && isset($contest->extra_options['children'])) {
+            $contestIds = $contest->extra_options['children'];
+            $contests = Contest::whereIn('id', $contestIds)
+                ->orderByRaw('FIELD(id, '.db_array_bind($contestIds).')', $contestIds)
+                ->get();
+        } else {
+            $contests = collect([$contest]);
+        }
+
         if ($contest->isVotingStarted()) {
-            return view("contests.voting.{$contest->type}")
-                    ->with('contest', $contest);
+            return view('contests.voting')
+                    ->with('contestMeta', $contest)
+                    ->with('contests', $contests);
         } else {
             return view('contests.enter')
-                ->with('contest', $contest);
+                ->with('contestMeta', $contest)
+                ->with('contest', $contests->first());
         }
     }
 }

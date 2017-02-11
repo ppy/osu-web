@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -21,20 +21,17 @@
 return [
     'codes' => [
         'http-403' => 'Acesso negado.',
-        'http-401' => 'Favor fazer login para continuar.',
+        'http-401' => 'Por favor, inicie a sessão para continuar.',
     ],
     'account' => [
         'profile-order' => [
             'generic' => 'Um erro ocorreu. Tente atualizar a página.',
         ],
     ],
-    'community' => [
-        'slack' => [
-            'not-eligible' => 'Sua conta não segue os requisitos para um convite do Slack.',
-            'slack-error' => 'Um erro ocorreu nos servidores do Slack. Tente novamente em alguns minutos.',
-        ],
+    'beatmaps' => [
+        'standard-converts-only' => 'Apenas o modo osu! pode ter pontuações em outros modos.',
     ],
-    'logged_out' => 'Você foi deslogado. Faça login e tente novamente.',
+    'logged_out' => 'Você foi desconectado. Inicie a sessão e tente novamente.',
     'supporter_only' => 'Você precisa ter uma supporter tag para usar esta função.',
     'no_restricted_access' => 'Você não pode executar esta ação enquanto sua conta estiver em modo restrito.',
     'unknown' => 'Erro desconhecido.',

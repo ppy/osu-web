@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -19,35 +19,54 @@
  */
 
 return [
-        'buttons' => [
-            'cancel' => 'Cancelar',
-            'post' => 'Postar',
-            'reply' => 'Responder',
-            'reset' => 'Reiniciar',
-            'save' => 'Salvar',
-            'show_more' => 'mostrar mais',
-        ],
+    'confirmation' => 'Tem certeza?',
 
-        'count' => [
-            'item' => ':count unidade|:count unidades',
-        ],
+    'buttons' => [
+        'cancel' => 'Cancelar',
+        'delete' => 'Excluir',
+        'post' => 'Publicar',
+        'reply' => 'Responder',
+        'reset' => 'Limpar',
+        'save' => 'Salvar',
+        'show_more' => 'exibir mais',
+    ],
 
-        'dropzone' => [
-            'target' => 'arraste aqui para enviar',
-        ],
+    'count' => [
+        'item' => ':count unidade|:count unidades',
+    ],
 
-        'pagination' => [
-            'previous' => 'anterior',
-            'next' => 'próximo',
-        ],
+    'device' => [
+        'keyboard' => 'Teclado',
+        'mouse' => 'Mouse',
+        'tablet' => 'Mesa digitalizadora',
+        'touch' => 'Tela sensível ao toque',
+    ],
 
-        'time' => [
-            'days_ago' => ':count dia atrás|:count dias atrás',
-            'hours_ago' => ':count hora atrás|:count horas atrás',
-            'now' => 'agora',
-        ],
+    'dropzone' => [
+        'target' => 'solte aqui para enviar',
+    ],
 
-        'title' => [
-            'notice' => 'Aviso',
-        ],
+    'pagination' => [
+        'previous' => 'anterior',
+        'next' => 'próxima',
+    ],
+
+    'score_count' => [
+        'count100' => '100',
+        'count300' => '300',
+        'count50' => '50',
+        'countgeki' => 'MÁX',
+        'countkatu' => '200',
+        'countmiss' => 'Erro',
+    ],
+
+    'time' => [
+        'days_ago' => ':count dia atrás|:count dias atrás',
+        'hours_ago' => ':count hora atrás|:count horas atrás',
+        'now' => 'agora',
+    ],
+
+    'title' => [
+        'notice' => 'Aviso',
+    ],
 ];

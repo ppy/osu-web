@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -20,6 +20,9 @@
 
 return [
     'beatmap_discussion' => [
+        'destroy' => [
+            'has_reply' => 'Impossible de supprimer un sujet avec des réponses',
+        ],
         'nominate' => [
             'exhausted' => 'Vous avez atteint la limite quotidienne de nomination, veuillez réesayer demain.',
         ],
@@ -47,7 +50,7 @@ return [
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'L\'accès au canal cible est requis.',
+                    'no_access' => "L'accès au canal cible est requis.",
                     'moderated' => 'Ce canal est modéré.',
                 ],
 
@@ -65,15 +68,15 @@ return [
             'delete' => [
                 'only_last_post' => 'Uniquement le dernier post peut être supprimé.',
                 'locked' => 'Impossible de supprimer un message sur un sujet verouillé.',
-                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
+                'no_forum_access' => "L'accès au forum demandé est nécessaire.",
                 'not_owner' => 'Uniquement le posteur peut supprimer.',
             ],
 
             'edit' => [
-                'locked' => 'Ce post est verouillé à l\'édition.',
-                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
+                'locked' => "Ce post est verouillé à l'édition.",
+                'no_forum_access' => "L'accès au forum demandé est nécessaire.",
                 'not_owner' => 'Uniquement le posteur peut éditer le post.',
-                'topic_locked' => 'Impossible d\'éditer un post sur un sujet verouillé.',
+                'topic_locked' => "Impossible d'éditer un post sur un sujet verouillé.",
             ],
         ],
 
@@ -81,7 +84,7 @@ return [
             'reply' => [
                 'double_post' => 'Vous venez de poster, patientez un moment ou éditez votre dernier post.',
                 'locked' => 'Impossible de répondre à un sujet verouillé.',
-                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
+                'no_forum_access' => "L'accès au forum demandé est nécessaire.",
                 'no_permission' => 'Pas de permission de répondre.',
 
                 'user' => [
@@ -92,15 +95,15 @@ return [
             ],
 
             'store' => [
-                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
+                'no_forum_access' => "L'accès au forum demandé est nécessaire.",
                 'no_permission' => 'Vous ne pouvez pas créer un sujet.',
                 'forum_closed' => 'Ce forum est fermé et vous ne pouvez pas poster.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
+                'no_forum_access' => "L'accès au forum demandé est nécessaire.",
                 'over' => 'Le vote est fini et vous ne pouvez pas voter',
-                'voted' => 'Le changement de vote n\'est pas permis.',
+                'voted' => "Le changement de vote n'est pas permis.",
 
                 'user' => [
                     'require_login' => 'Connectez-vous pour voter.',
@@ -110,7 +113,7 @@ return [
             ],
 
             'watch' => [
-                'no_forum_access' => 'L\'accès au forum demandé est nécessaire.',
+                'no_forum_access' => "L'accès au forum demandé est nécessaire.",
             ],
         ],
 

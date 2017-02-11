@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers\Forum;
 
 use App\Models\Forum\Post;
@@ -40,26 +41,32 @@ class PostsController extends Controller
 
     public function destroy($id)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::showDeleted(priv_check('ForumTopicModerate')->can())
+            ->findOrFail($id);
 
         priv_check('ForumPostDelete', $post)->ensureCan();
 
-        $deletedPostPosition = $post->topic->postPosition($post->post_id);
-
         $post->topic->removePost($post, Auth::user());
 
-        $topic = Topic::find($post->topic_id);
-
-        if ($topic === null) {
+        if ($post->topic->trashed()) {
             $redirect = route('forum.forums.show', $post->forum);
 
             return ujs_redirect($redirect);
         }
 
-        return [
-            'postId' => $post->post_id,
-            'postPosition' => $deletedPostPosition,
-        ];
+        return js_view('forum.topics.delete', compact('post'));
+    }
+
+    public function restore($id)
+    {
+        priv_check('ForumTopicModerate')->ensureCan();
+
+        $post = Post::withTrashed()->findOrFail($id);
+        $topic = $post->topic()->withTrashed()->first();
+
+        $topic->restorePost($post, Auth::user());
+
+        return js_view('forum.topics.restore', compact('post'));
     }
 
     public function edit($id)
@@ -84,14 +91,18 @@ class PostsController extends Controller
 
         $posts = collect([$post->fresh()]);
         $topic = $post->topic;
-        $postsPosition = $topic->postsPosition($posts);
+        $firstPostPosition = $topic->postPosition($post->post_id);
 
-        return view('forum.topics._posts', compact('posts', 'postsPosition', 'topic'));
+        return view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
     }
 
     public function raw($id)
     {
         $post = Post::findOrFail($id);
+
+        if ($post->forum === null) {
+            abort(404);
+        }
 
         priv_check('ForumView', $post->forum)->ensureCan();
 
@@ -107,6 +118,10 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
+
+        if ($post->forum === null) {
+            abort(404);
+        }
 
         priv_check('ForumView', $post->forum)->ensureCan();
 

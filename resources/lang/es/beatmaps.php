@@ -1,9 +1,10 @@
 <?php
+
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -16,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'discussion-posts' => [
         'store' => [
@@ -110,27 +112,28 @@ return [
                 'tags' => 'Etiquetas',
             ],
             'scoreboard' => [
-                'title' => 'Puntuaciones',
-                'no-scores' => [
-                    'global' => 'Sin puntuaciones aún. ¿Tal vez deberías intentar marcar alguna?',
-                    'loading' => 'Cargando puntuaciones...',
-                    'country' => '¡Nadie de tu país ha marcado una puntuación en este mapa aún!',
-                    'friend' => '¡Ninguno de tus amigos ha marcado una puntuación en este mapa aún!',
-                ],
-                'supporter-only' => '¡Necesitas ser supporter para acceder a los rankings entre amigos y de tu país!',
-                'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
-                'global' => 'Ranking Global',
                 'country' => 'Ranking Nacional',
                 'friend' => 'Ranking de Amigos',
+                'global' => 'Ranking Global',
+                'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
+                'supporter-only' => '¡Necesitas ser supporter para acceder a los rankings entre amigos y de tu país!',
+                'title' => 'Puntuaciones',
+
+                'list' => [
+                    'accuracy' => 'Precisión',
+                    'player-header' => 'Jugador',
+                    'rank-header' => 'Rango',
+                    'score' => 'Puntuación',
+                ],
+                'no-scores' => [
+                    'country' => '¡Nadie de tu país ha marcado una puntuación en este mapa aún!',
+                    'friend' => '¡Ninguno de tus amigos ha marcado una puntuación en este mapa aún!',
+                    'global' => 'Sin puntuaciones aún. ¿Tal vez deberías intentar marcar alguna?',
+                    'loading' => 'Cargando puntuaciones...',
+                ],
                 'stats' => [
                     'accuracy' => 'Precisión',
                     'score' => 'Puntuación',
-                ],
-                'list' => [
-                    'rank-header' => 'Rango',
-                    'player-header' => 'Jugador',
-                    'score' => 'Puntuación',
-                    'accuracy' => 'Precisión',
                 ],
             ],
         ],

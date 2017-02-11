@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,21 +14,16 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .beatmap-discussion-new {
   @_avatar-size: 45px;
-  @_message-type-text-size: 11px;
-  @_timestamp-box-width: 90px;
-  @_timestamp-box-height: @_avatar-size;
-  @_timestamp-box-text-size: 11px;
 
+  .default-box-shadow();
   display: flex;
+  background-color: @gray-f;
   flex-direction: column;
-
-  @media @desktop {
-    flex-direction: row;
-  }
+  margin-top: 10px;
 
   &__avatar {
     flex: none;
@@ -38,7 +33,7 @@
 
   &__col {
     background-color: @gray-e;
-    padding: (@spacing * 2) @spacing;
+    padding: 20px 10px;
 
     flex: 1 0 auto;
     display: flex;
@@ -50,14 +45,14 @@
 
     &--left {
       @media @desktop {
-        padding-left: (@spacing * 2);
+        padding-left: 20px;
       }
 
       justify-content: center;
     }
 
     &--right {
-      padding-right: (@spacing * 2);
+      padding-right: 20px;
 
       display: flex;
       align-items: center;
@@ -71,10 +66,34 @@
     }
   }
 
+  &__content {
+    display: flex;
+    padding: 0 20px 10px;
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: @gray-5;
+    padding: 5px 20px;
+    justify-content: space-between;
+  }
+
+  &__footer-content {
+    padding: 5px 0;
+    display: flex;
+    flex: none;
+
+    &--right {
+      flex: 1;
+      justify-content: flex-end;
+    }
+  }
+
   &__message {
     flex: 1;
-    padding-left: @spacing;
-    font-size: 12px;
+    padding-left: 10px;
+    font-size: @font-size--title-small-2;
 
     display: flex;
     flex-direction: column;
@@ -95,53 +114,27 @@
 
   &__message-hint {
     margin: 0;
-    margin-top: (@spacing / 2);
+    margin-top: 5px;
     color: @green;
   }
 
-  &__message-type {
-    .reset-input();
-    display: block;
-    text-align: left;
-    font-size: @_message-type-text-size;
-    margin: 0 0 (@spacing / 2);
-  }
-
-  &__message-type-text {
-    margin-left: (@spacing / 2);
-  }
-
-  &__message-types {
-    margin-right: @spacing;
-
-    &--disabled {
-      color: @gray-9;
-    }
-  }
-
-  &__timestamp {
-    text-align: center;
-  }
-
-  &__timestamp-box {
-    .default-border-radius();
+  &__timestamp-col {
     .default-text-shadow();
-
-    width: @_timestamp-box-width;
-    height: @_timestamp-box-height;
-    font-size: @_timestamp-box-text-size;
-    background-color: @gray-5;
+    padding: 10px;
+    font-size: @font-size--small-2;
     color: @gray-f;
-    padding: (@spacing / 2) @spacing;
+    background-color: @gray-4;
+    border-radius: 0 @border-radius-base @border-radius-base 0;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    &--label {
+      background-color: @gray-3;
+      border-radius: @border-radius-base 0 0 @border-radius-base;
+    }
   }
 
   &__type {
     color: @gray-9;
-    margin: 0 (@spacing / 2);
+    margin: 0 5px;
 
     &--active {
       color: @gray-f;
@@ -151,6 +144,6 @@
   &__types {
     display: flex;
     justify-content: center;
-    margin-bottom: (@spacing / 2);
+    margin-bottom: 5px;
   }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,11 +17,12 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Transformers;
 
 use App\Models\Beatmap;
-use App\Models\User;
 use App\Models\Score\Best\Model as ScoreBestModel;
+use App\Models\User;
 use League\Fractal;
 
 class UserTransformer extends Fractal\TransformerAbstract
@@ -44,7 +45,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 
     public function transform(User $user)
     {
-        $profileCustomization = $user->profileCustomization()->firstOrNew([]);
+        $profileCustomization = $user->profileCustomization();
 
         return [
             'id' => $user->user_id,
@@ -54,12 +55,13 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'code' => $user->country_acronym,
                 'name' => $user->countryName(),
             ],
-            'age' => $user->age,
+            'age' => $user->age(),
             'avatarUrl' => $user->user_avatar,
             'isAdmin' => $user->isAdmin(),
             'isSupporter' => $user->osu_subscriber,
             'isGMT' => $user->isGMT(),
             'isQAT' => $user->isQAT(),
+            'interests' => $user->user_interests,
             'title' => $user->title(),
             'location' => $user->user_from,
             'lastvisit' => json_time($user->user_lastvisit),
@@ -69,11 +71,11 @@ class UserTransformer extends Fractal\TransformerAbstract
             'playstyle' => $user->osu_playstyle,
             'playmode' => $user->playmode,
             'profileColour' => $user->user_colour,
-            'profileOrder' => $profileCustomization->getExtrasOrder(),
+            'profileOrder' => $profileCustomization->extras_order,
             'cover' => [
-                'customUrl' => $profileCustomization->cover->fileUrl(),
-                'url' => $profileCustomization->cover->url(),
-                'id' => $profileCustomization->cover->id(),
+                'customUrl' => $profileCustomization->cover()->fileUrl(),
+                'url' => $profileCustomization->cover()->url(),
+                'id' => $profileCustomization->cover()->id(),
             ],
             'kudosu' => [
                 'total' => $user->osu_kudostotal,
@@ -220,9 +222,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->collection(
             $user->receivedKudosu()
-                ->withPost()
-                ->withGiver()
-                ->with('post', 'post.topic', 'giver')
+                ->with('post', 'post.topic', 'giver', 'kudosuable')
                 ->orderBy('exchange_id', 'desc')
                 ->limit(15)
                 ->get(),

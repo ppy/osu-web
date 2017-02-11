@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -44,7 +44,20 @@ return [
     'logout_confirm' => 'Weet je zeker dat je wilt uitloggen? :(',
     'show' => [
         '404' => 'Gebruiker niet gevonden! ;_;',
-        'current_location' => 'Momenteel in :location.',
+        'age' => ':age jaar oud',
+        'current_location' => 'Momenteel in :location',
+        'first_members' => 'Hier sinds het begin',
+        'is_developer' => 'osu!developer',
+        'is_supporter' => 'osu!supporter',
+        'joined_at' => 'Werd lid op :date',
+        'lastvisit' => 'Laatst gezien op :date',
+        'missingtext' => 'Je hebt misschien een typfout gemaakt! (of de gebruiker is verbannen)',
+        'origin_age' => ':age',
+        'origin_country' => 'Uit :country',
+        'origin_country_age' => ':age uit :country',
+        'page_description' => 'osu! - Alles wat je ooit over :username wilde weten!',
+        'title' => 'Profiel van :username',
+
         'edit' => [
             'cover' => [
                 'button' => 'Verander Profiel Cover',
@@ -55,7 +68,7 @@ return [
                     'dropzone' => 'Drop hier om te uploaden',
                     'dropzone_info' => 'Je kunt je afbeelding ook hier droppen om te uploaden',
                     'restriction_info' => "Uploaden alleen beschikbaar voor <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a>",
-                    'size_info' => 'Cover grootte moet 2000x500 zijn',
+                    'size_info' => 'Cover grootte moet 2000x700 zijn',
                     'too_large' => 'Het geüploade bestand is te groot.',
                     'unsupported_format' => 'Niet ondersteund formaat.',
                 ],
@@ -87,15 +100,20 @@ return [
             'kudosu' => [
                 'available' => 'Kudosu Beschikbaar',
                 'available_info' => 'Kudosu kunnen omgeruild worden voor kudosu sterren, deze zorgen ervoor dat je beatmap meer aandacht krijgt. Dit is het aantal kudosu dat je nog niet omgeruild hebt.',
-                'entry' => [
-                    'empty' => 'Deze gebruiker heeft nog geen kudosu ontvangen!',
-                    'give' => '<strong class="kudosu-entries__amount">:amount kudosu</strong> ontvangen van :giver voor :post',
-                    'revoke' => 'Kudosu geweigerd door :giver voor :post',
-                ],
                 'recent_entries' => 'Recente Kudosu Geschiedenis',
                 'title' => 'Kudosu!',
                 'total' => 'Totaal Aantal Kudosu Verdiend',
                 'total_info' => 'Gebaseerd op hoeveel contributie de gebruiker heeft geleverd aan beatmap moderatie. Zie <a href="'.osu_url('user.kudosu').'">deze pagina</a> voor meer informatie.',
+
+                'entry' => [
+                    'amount' => ':amount kudosu',
+                    'empty' => 'Deze gebruiker heeft nog geen kudosu ontvangen!',
+
+                    'forum_post' => [
+                        'give' => ':amount ontvangen van :giver voor :post',
+                        'revoke' => 'Kudosu geweigerd door :giver voor :post',
+                    ],
+                ],
             ],
             'me' => [
                 'title' => 'ik!',
@@ -129,32 +147,12 @@ return [
                 'none' => 'Nog geen...',
             ],
         ],
-        'first_members' => 'hier sinds het begin',
-        'is_supporter' => 'osu!supporter',
-        'is_developer' => 'osu!developer',
-        'lastvisit' => 'Laatst gezien op :date.',
-        'joined_at' => 'werd lid op :date',
-        'more_achievements' => 'en meer',
-        'origin' => [
-            'age' => ':age jaar oud.',
-            'country' => 'Uit :country.',
-            'country_age' => ':age jaar oud uit :country.',
-        ],
         'page' => [
             'description' => '<strong>ik!</strong> is een persoonlijk bewerkbaar gedeelte van je profiel.',
             'edit_big' => 'Bewerk me!',
             'placeholder' => 'Typ pagina inhoud hier',
             'restriction_info' => "Je moet een <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> zijn om dit te gebruiken.",
         ],
-        'plays_with' => [
-            '_' => 'Speelt met',
-            'keyboard' => 'Toetsenbord',
-            'mouse' => 'Muis',
-            'tablet' => 'Tablet',
-            'touch' => 'Touch Screen',
-        ],
-        'missingtext' => 'Je hebt misschien een typfout gemaakt! (of de gebruiker is verbannen)',
-        'page_description' => 'osu! - Alles wat je ooit over :username wilde weten!',
         'rank' => [
             'country' => 'Landelijke rank voor :mode',
             'global' => 'Globale rank voor :mode',
@@ -170,7 +168,6 @@ return [
             'total_hits' => 'Totaal Aantal Hits',
             'total_score' => 'Totaal Aantal Score',
         ],
-        'title' => 'Profiel van :username',
     ],
 
 ];

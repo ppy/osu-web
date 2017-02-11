@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,58 +14,40 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .page-extra-tabs {
-  @_top: page-extra-tabs;
-  width: 100%;
+  .bg() {
+    .at2x('/images/backgrounds/page-ddd.png');
+    border-bottom: 1px solid @yellow;
 
-  margin-bottom: @spacing;
-
-  @media @desktop {
-    margin-bottom: 0;
+    &::before {
+      .full-size();
+      background-color: fade(@gray-0, 75%);
+    }
   }
 
-  &--fixed {
-    z-index: @z-index--page-extra-tabs;
-  }
+  @top: page-extra-tabs;
 
-  &__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  &__floatable {
+    .bg();
+    .own-layer();
     width: 100%;
+    left: 0;
+    top: 0;
 
-    .@{_top}--fixed & {
-      top: 0;
-      left: 0;
+    .@{top}--floating & {
+      z-index: @z-index--fixed-bar;
       position: fixed;
-      backface-visibility: hidden;
     }
   }
 
-  &__items {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+  &__padding {
+    .bg();
+    display: none;
 
-    color: #fff;
-    font-weight: 500;
-    transition: background-color 120ms;
-
-    .@{_top}--fixed & {
-      background-color: @gray-dark;
-    }
-  }
-
-  &__item {
-    .default-border-radius();
-    padding: (@spacing / 2) @spacing;
-    margin: (@spacing * 3 / 2) (@spacing / 2);
-
-    &:hover, &--active {
-      background-color: @pink-text;
+    .@{top}--floating & {
+      display: block;
     }
   }
 }

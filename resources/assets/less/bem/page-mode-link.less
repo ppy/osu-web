@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,38 +14,42 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .page-mode-link {
   @_top: page-mode-link;
-  color: @gray-c;
+  .link-plain();
+  .link-gray-light();
   font-weight: 300;
-
-  &:focus,
-  &:hover {
-    text-decoration: none;
-    color: @gray-f;
-  }
+  padding: 5px 0 10px;
 
   &--is-active {
     font-weight: 600;
     color: @gray-f;
   }
 
+  &--is-disabled {
+    .link-gray-light-disabled();
+    cursor: default;
+  }
+
   &__stripe {
     position: absolute;
     width: 100%;
     display: block;
-    top: 100%;
-    margin-top: (@spacing / 2);
-    height: (@spacing / 2);
-    transform: translateY(@spacing / 2) scaleY(0);
+    bottom: 0;
+    height: 5px;
+    transform: translateY(5px) scaleY(0);
     transition: transform 120ms ease-in-out;
     background-color: @yellow;
 
     .@{_top}--is-active &,
     .@{_top}:hover & {
       transform: translateY(0) scaleY(1);
+    }
+
+    .@{_top}--is-disabled & {
+      opacity: 0;
     }
   }
 }

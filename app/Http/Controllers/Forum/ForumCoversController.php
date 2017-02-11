@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers\Forum;
 
 use App\Exceptions\ImageProcessorException;
@@ -42,9 +43,13 @@ class ForumCoversController extends Controller
             'update',
         ]]);
 
-        if (Auth::check() === true && Auth::user()->isAdmin() !== true) {
-            abort(403);
-        }
+        $this->middleware(function ($request, $next) {
+            if (Auth::check() && !Auth::user()->isAdmin()) {
+                abort(403);
+            }
+
+            return $next($request);
+        });
     }
 
     public function store()

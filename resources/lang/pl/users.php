@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -44,7 +44,20 @@ return [
     'logout_confirm' => 'Na pewno chcesz się wylogować? :(',
     'show' => [
         '404' => 'Nie znaleziono gracza! ;_;',
-        'current_location' => 'Obecnie w :location.',
+        'age' => 'Ma :age lat',
+        'current_location' => 'Obecnie w :location',
+        'first_members' => 'Od samego początku',
+        'is_developer' => 'osu!programista',
+        'is_supporter' => 'osu!supporter',
+        'joined_at' => 'Dołączył :date',
+        'lastvisit' => 'Ostatnio widziany :date',
+        'missingtext' => 'Zrobiłeś literówkę! (albo ten gracz jest zbanowany)',
+        'origin_age' => ':age',
+        'origin_country' => 'Pochodzi z :country',
+        'origin_country_age' => ':age i pochodzi z :country',
+        'page_description' => 'osu! - Wszystko co chciałbyś wiedzieć o :username!',
+        'title' => 'Profil :username',
+
         'edit' => [
             'cover' => [
                 'button' => 'Zmień nagłówek profilu',
@@ -55,7 +68,7 @@ return [
                     'dropzone' => 'Upuść tutaj, aby dodać',
                     'dropzone_info' => 'Możesz także upuścić swoje tło tutaj, aby je dodać',
                     'restriction_info' => "Dodawanie jest dostępne tylko dla <a href='".osu_url('support-the-game')."' target='_blank'>supporterów</a> ",
-                    'size_info' => 'Rozmiary nagłówka powinny być przynajmniej 2000x500',
+                    'size_info' => 'Rozmiary nagłówka powinny być przynajmniej 2000x700',
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
                 ],
@@ -87,15 +100,20 @@ return [
             'kudosu' => [
                 'available' => 'Dostępne kudosu',
                 'available_info' => 'Kudosu może być wymienione na gwiazdki kudosu, które pomogą twojej mapie zyskać więcej uwagi. To jest liczba kudosu, którego nie wymieniłeś.',
-                'entry' => [
-                    'empty' => 'Ten gracz nie otrzymał żadnego kudosu!',
-                    'give' => 'Otrzymano <strong class="kudosu-entries__amount">:amount kudosu</strong> od :giver za post na :post',
-                    'revoke' => 'Odebrano kudosu przezDenied kudosu by :giver for the post :post',
-                ],
                 'recent_entries' => 'Ostatnio zdobyte kudosu',
                 'title' => 'Kudosu!',
                 'total' => 'Ilość zdobytego kudosu',
                 'total_info' => 'Bazowane na tym, ile użytkownik zrobił dla modowania map. Spojrzyj <a href="'.osu_url('user.kudosu').'">tutaj</a>, aby dowiedzieć się więcej.',
+
+                'entry' => [
+                    'amount' => ':amount kudosu',
+                    'empty' => 'Ten gracz nie otrzymał żadnego kudosu!',
+
+                    'forum_post' => [
+                        'give' => 'Otrzymano :amount od :giver za post na :post',
+                        'revoke' => 'Odebrano kudosu przezDenied kudosu by :giver for the post :post',
+                    ],
+                ],
             ],
             'me' => [
                 'title' => 'me!',
@@ -129,32 +147,12 @@ return [
                 'none' => 'Jeszcze nie ma...',
             ],
         ],
-        'first_members' => 'od samego początku',
-        'is_supporter' => 'osu!supporter',
-        'is_developer' => 'osu!programista',
-        'lastvisit' => 'Ostatnio widziany :date.',
-        'joined_at' => 'dołączył :date',
-        'more_achievements' => 'i więcej',
-        'origin' => [
-            'age' => 'Ma :age lat.',
-            'country' => 'Pochodzi z :country.',
-            'country_age' => 'Ma :age lat i pochodzi z :country.',
-        ],
         'page' => [
             'description' => '<strong>ja!</strong> to twoje osobiste, personalizowalne miejsce na twoim profilu.',
             'edit_big' => 'Edytuj mnie!',
             'placeholder' => 'Pisz tutaj',
             'restriction_info' => "Musisz być <a href='".osu_url('support-the-game')."' target='_blank'>supporterem</a>, aby odblokować tę funkcję.",
         ],
-        'plays_with' => [
-            '_' => 'Gra używając',
-            'keyboard' => 'Klawiatury',
-            'mouse' => 'Myszki',
-            'tablet' => 'Tableta',
-            'touch' => 'Ekranu dotykowego',
-        ],
-        'missingtext' => 'Zrobiłeś literówkę! (albo ten gracz jest zbanowany)',
-        'page_description' => 'osu! - Wszystko co chciałbyś wiedzieć o :username!',
         'rank' => [
             'country' => 'Pozycja w rankingu krajowym dla :mode',
             'global' => 'Pozycja w rankingu świadowym dla :mode',
@@ -170,7 +168,6 @@ return [
             'total_hits' => 'Łączna ilość uderzeń',
             'total_score' => 'Łączny wynik',
         ],
-        'title' => 'Profil :username',
     ],
 
 ];

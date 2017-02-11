@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -66,7 +66,12 @@
                                 <i class="fa fa-angle-right"></i>
                             </button>
                         </form>
-                        {{ trans("forum.search.total_posts", ["posts_count" => $topic->postsCount()]) }}
+                        {{
+                            trans(
+                                "forum.search.total_posts",
+                                ["posts_count" => $topic->postsCount()]
+                            )
+                        }}
                     </div>
                 @endif
             </div>

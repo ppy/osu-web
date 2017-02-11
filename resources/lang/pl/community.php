@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -125,25 +125,4 @@ return [
             'instructions' => 'kliknij ikonę serca, aby przejść do sklepu osu!',
         ],
     ],
-    'slack' => [
-       'header' => [
-            'small' => 'osu!dev',
-            'large' => 'Publiczny Slack osu!',
-        ],
-
-        'disabled' => 'Publiczny Slack jest tymczasowo niedostępny. Jeżeli chcesz nadal pomagać, stwórz problem na odpowiednim <a href="https://github.com/ppy">repozytorium na githubie</a> bądź napisz maila do <a href="mailto::mail">:mail</a>.',
-
-        'guest-begin' => 'Musisz być ',
-        'guest-middle' => 'zalogowany',
-        'guest-end' => ' aby móc otrzymać zaproszenie do Slacka!',
-
-        'receive-invite' => 'Możesz otrzymać tutaj zaproszenie na publicznego Slacka osu!.',
-        'bullet-points' => 'Przeczytaj dokładnie zasady opisane w <a href=":link">tym poście.</a><br />Żadne przewinienia na twoim koncie nie będą tolerowane.',
-
-        'recent-issues' => 'Twoje konto ma niedawne przewinienia. Skontakuj się z <a href="mailto::mail">supportem</a>, aby dowiedzieć się więcej.',
-        'agree-button' => 'Zgadzam się',
-
-        'accepted' => 'Twoja prośba została zaakceptowana. Niedługo otrzymasz swojego maila z zaproszeniem.',
-        'invite-already-accepted' => 'Posiadasz już konto na Slacku! Jeżeli masz problemy, skontaktuj się z <a href="mailto::mail">supportem</a>.',
-     ],
 ];

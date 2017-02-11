@@ -1,20 +1,21 @@
 ###
-# Copyright 2015 ppy Pty. Ltd.
+#    Copyright 2015-2017 ppy Pty. Ltd.
 #
-# This file is part of osu!web. osu!web is distributed with the hope of
-# attracting more community contributions to the core ecosystem of osu!.
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
 #
-# osu!web is free software: you can redistribute it and/or modify
-# it under the terms of the Affero GNU General Public License version 3
-# as published by the Free Software Foundation.
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
 #
-# osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Affero General Public License for more details.
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
 #
-# You should have received a copy of the GNU Affero General Public License
-# along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
 {div} = React.DOM
 el = React.createElement
 
@@ -40,23 +41,9 @@ BeatmapDiscussions.BeatmapListItem = React.createClass
         el BeatmapIcon,
           beatmap: @props.beatmap
           modifier: "#{'large' if @props.large}"
-          overrideVersion: 'hard' if @props.mode == 'mode'
 
       div className: "#{bn}__col #{bn}__col--main",
-        if @props.mode == 'complete'
-          [
-            div key: 'version',
-              version
-            div
-              key: 'mode'
-              className: "#{bn}__small"
-              osu.trans("beatmaps.mode.#{@props.beatmap.mode}")
-          ]
-
-        else if @props.mode == 'mode'
-          osu.trans("beatmaps.mode.#{@props.beatmap.mode}")
-
-        else if @props.mode == 'version'
+        div className: 'u-ellipsis-overflow',
           version
 
       if @props.withButton?

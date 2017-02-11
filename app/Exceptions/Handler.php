@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,18 +17,18 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Exceptions;
 
 use App;
 use Auth;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException as LaravelAuthorizationException;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
-use Illuminate\Validation\ValidationException;
 use Sentry;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
@@ -39,14 +39,20 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        AuthorizationException::class,
-        HttpException::class,
+        // laravel's
+        AuthenticationException::class,
         LaravelAuthorizationException::class,
         ModelNotFoundException::class,
-        RequireLoginException::class,
+        TokenMismatchException::class,
+        \Illuminate\Validation\ValidationException::class,
+        \Symfony\Component\HttpKernel\Exception\HttpException::class,
+
+        // local
+        AuthorizationException::class,
         SilencedException::class,
-        TokenMisMatchException::class,
-        ValidationException::class,
+
+        // oauth
+        \League\OAuth2\Server\Exception\OAuthServerException::class,
     ];
 
     /**
@@ -70,9 +76,9 @@ class Handler extends ExceptionHandler
 
         if (config('sentry.dsn')) {
             $this->reportWithSentry($e);
-        } else {
-            return parent::report($e);
         }
+
+        return parent::report($e);
     }
 
     private function statusCode($e)
@@ -85,7 +91,7 @@ class Handler extends ExceptionHandler
             return 404;
         } elseif ($e instanceof TokenMismatchException) {
             return 403;
-        } elseif ($e instanceof RequireLoginException) {
+        } elseif ($e instanceof AuthenticationException) {
             return 401;
         } elseif ($e instanceof AuthorizationException) {
             return 403;
@@ -96,7 +102,7 @@ class Handler extends ExceptionHandler
 
     private function reportWithSentry($e)
     {
-        $tags = [
+        $extra = [
             'http_code' => $this->statusCode($e),
         ];
 
@@ -113,7 +119,7 @@ class Handler extends ExceptionHandler
 
         Sentry::user_context($userContext);
 
-        $ref = Sentry::getIdent(Sentry::captureException($e, $tags));
+        $ref = Sentry::captureException($e, compact('extra'));
 
         view()->share('ref', $ref);
     }
@@ -132,12 +138,8 @@ class Handler extends ExceptionHandler
             return $e->getResponse();
         }
 
-        if ($e instanceof RequireLoginException) {
-            if ($request->ajax()) {
-                return response(['authentication' => 'basic'], 401);
-            }
-
-            return response()->view('users.login');
+        if ($e instanceof AuthenticationException) {
+            return $this->unauthenticated($request, $e);
         }
 
         if (config('app.debug')) {
@@ -155,5 +157,14 @@ class Handler extends ExceptionHandler
         }
 
         return $response->setStatusCode($this->statusCode($e));
+    }
+
+    protected function unauthenticated($request, $exception)
+    {
+        if ($request->expectsJson()) {
+            return response(['authentication' => 'basic'], 401);
+        }
+
+        return response()->view('users.login');
     }
 }

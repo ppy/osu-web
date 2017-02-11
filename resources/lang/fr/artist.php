@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -19,15 +19,18 @@
  */
 
 return [
+    'page_description' => 'Artistes plébiscités sur osu!',
+    'title' => 'Artistes plébiscités',
+
     'beatmaps' => [
         '_' => 'Beatmaps',
         'download' => 'Télécharger une beatmap type',
         'download-na' => 'Beatmap type non disponible',
     ],
-    'page_description' => 'Artistes plébiscités sur osu!',
-    'title' => 'Artistes plébiscités',
-    'songs' => '1 musique|:count musiques',
     'links' => [
         'site' => 'Site officiel',
+    ],
+    'songs' => [
+        'count' => '1 musique|:count musiques',
     ],
 ];

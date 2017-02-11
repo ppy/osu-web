@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -86,9 +86,9 @@ return [
         'required-text' => 'Nominations: :current/:required',
         'disqualifed-at' => 'disqualifié :time_ago',
         'disqualification-prompt' => 'Raison de la disqualification?',
-        'qualified' => 'Map classée environ le :date, si aucun problème n\'est trouvé.',
-        'qualified-soon' => 'Beatmap bientôt classée, si aucun problème n\'est trouvé.',
-        'incorrect-state' => 'Erreur lors de l\'action, merci de réesayer.',
+        'qualified' => "Map classée environ le :date, si aucun problème n'est trouvé.",
+        'qualified-soon' => "Beatmap bientôt classée, si aucun problème n'est trouvé.",
+        'incorrect-state' => "Erreur lors de l'action, merci de réesayer.",
     ],
 
     'listing' => [
@@ -121,7 +121,7 @@ return [
                 'cs' => 'Taille du cercle',
                 'drain' => 'Drainage PV',
                 'accuracy' => 'Précision',
-                'ar' => 'Niveau d\'approche',
+                'ar' => "Niveau d'approche",
                 'stars' => 'Difficulté étoiles',
                 'total_length' => 'Longeur',
                 'bpm' => 'BPM',
@@ -136,27 +136,28 @@ return [
                 'tags' => 'Tags',
             ],
             'scoreboard' => [
-                'title' => 'Tableaux des scores',
-                'no-scores' => [
-                    'global' => 'Pas de scores. Peut-être vous dans le classement?',
-                    'loading' => 'Chargement des scores...',
-                    'country' => 'Personne de votre pays n\'a encore fait un score!',
-                    'friend' => 'Personnne de vos amis n\'a encore fait un score!',
-                ],
-                'supporter-only' => 'Vous devez être osu!supporter pour accéder à cette fonctionnalité!',
-                'supporter-link' => 'Cliquez <a href=":link">ici</a> pour connaître toutes les supers fonctions obtenus avec!',
-                'global' => 'Classement global',
                 'country' => 'Classement national',
                 'friend' => 'Classement des amis',
+                'global' => 'Classement global',
+                'supporter-link' => 'Cliquez <a href=":link">ici</a> pour connaître toutes les supers fonctions obtenus avec!',
+                'supporter-only' => 'Vous devez être osu!supporter pour accéder à cette fonctionnalité!',
+                'title' => 'Tableaux des scores',
+
+                'list' => [
+                    'accuracy' => 'Précision',
+                    'player-header' => 'Joueur',
+                    'rank-header' => 'Rang',
+                    'score' => 'Score',
+                ],
+                'no-scores' => [
+                    'country' => "Personne de votre pays n'a encore fait un score!",
+                    'friend' => "Personnne de vos amis n'a encore fait un score!",
+                    'global' => 'Pas de scores. Peut-être vous dans le classement?',
+                    'loading' => 'Chargement des scores...',
+                ],
                 'stats' => [
                     'accuracy' => 'Précision',
                     'score' => 'Score',
-                ],
-                'list' => [
-                    'rank-header' => 'Rang',
-                    'player-header' => 'Joueur',
-                    'score' => 'Score',
-                    'accuracy' => 'Précision',
                 ],
             ],
         ],
@@ -191,18 +192,18 @@ return [
         'electronic' => 'Electronic',
     ],
     'language' => [
-    'any' => 'Tous',
-    'english' => 'Anglais',
-    'chinese' => 'Chinois',
-    'french' => 'Français',
-    'german' => 'Allemand',
-    'italian' => 'Italien',
-    'japanese' => 'Japonais',
-    'korean' => 'Coréen',
-    'spanish' => 'Espagnol',
-    'swedish' => 'Suédois',
-    'instrumental' => 'Instrumentales',
-    'other' => 'Autre',
+        'any' => 'Tous',
+        'english' => 'Anglais',
+        'chinese' => 'Chinois',
+        'french' => 'Français',
+        'german' => 'Allemand',
+        'italian' => 'Italien',
+        'japanese' => 'Japonais',
+        'korean' => 'Coréen',
+        'spanish' => 'Espagnol',
+        'swedish' => 'Suédois',
+        'instrumental' => 'Instrumentales',
+        'other' => 'Autre',
     ],
     'extra' => [
         'video' => 'Avec vidéo',
@@ -210,9 +211,9 @@ return [
     ],
     'rank' => [
         'any' => 'Any',
-        'XH' => 'SS d\'argent',
+        'XH' => "SS d'argent",
         'X' => 'SS',
-        'SH' => 'S d\'argent',
+        'SH' => "S d'argent",
         'S' => 'S',
         'A' => 'A',
         'B' => 'B',

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -95,6 +95,10 @@
             >
                 {{ number_format($topic->topic_replies) }}
                 <i class="fa fa-comment-o"></i>
+                @if (priv_check('ForumTopicModerate', $topic)->can())
+                    {{ number_format($topic->deletedPostsCount()) }}
+                    <i class="fa fa-trash-o"></i>
+                @endif
             </div>
         </div>
 

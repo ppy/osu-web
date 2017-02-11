@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -31,6 +31,16 @@ function array_search_null($value, $array)
     }
 }
 
+function db_array_bind($array)
+{
+    return implode(',', array_fill(0, count($array), '?'));
+}
+
+function flag_path($country)
+{
+    return '/images/flags/'.$country.'.png';
+}
+
 function get_valid_locale($requestedLocale)
 {
     if (in_array($requestedLocale, config('app.available_locales'), true)) {
@@ -51,6 +61,25 @@ function json_time($time)
     if ($time !== null) {
         return $time->toIso8601String();
     }
+}
+
+function locale_flag($locale)
+{
+    return App\Libraries\LocaleMeta::flagFor($locale);
+}
+
+function locale_name($locale)
+{
+    return App\Libraries\LocaleMeta::nameFor($locale);
+}
+
+function locale_for_timeago($locale)
+{
+    if ($locale === 'zh') {
+        return 'zh-CN';
+    }
+
+    return $locale;
 }
 
 function osu_url($key)
@@ -127,14 +156,10 @@ function error_popup($message, $statusCode = 422)
 
 function i18n_view($view)
 {
-    $current_locale_path = sprintf('%s/%s-%s.blade.php',
-        config('view.paths')[0],
-        str_replace('.', '/', $view),
-        App::getLocale()
-    );
+    $localViewPath = sprintf('%s-%s', $view, App::getLocale());
 
-    if (file_exists($current_locale_path)) {
-        return sprintf('%s-%s', $view, App::getLocale());
+    if (view()->exists($localViewPath)) {
+        return $localViewPath;
     } else {
         return sprintf('%s-%s', $view, config('app.fallback_locale'));
     }
@@ -180,10 +205,10 @@ function current_action()
     }
 }
 
-function link_to_user($user_id, $user_name, $user_colour)
+function link_to_user($user_id, $user_name, $user_color)
 {
     $user_name = e($user_name);
-    $style = user_colour_style($user_colour, 'color');
+    $style = user_color_style($user_color, 'color');
 
     if ($user_id) {
         $user_url = e(route('users.show', $user_id));
@@ -192,13 +217,6 @@ function link_to_user($user_id, $user_name, $user_colour)
     } else {
         return "<span class='user-name'>{$user_name}</span>";
     }
-}
-
-function user_icon($type, $title, $link)
-{
-    $title = e($title);
-
-    return "<a href='{$link}'><div class='user-icon' data-title='{$title}'><i class='fa fa-fw fa-{$type} fa-2x'></i></div></a>";
 }
 
 function issue_icon($issue)
@@ -263,24 +281,22 @@ function nav_links()
 {
     $links = [];
 
-    if (config('app.debug')) {
-        $links['home'] = [
-            'index' => route('home'),
-            'getChangelog' => osu_url('home.changelog'),
-            'getDownload' => osu_url('home.download'),
-        ];
-        $links['help'] = [
-            'getWiki' => osu_url('help.wiki'),
-            'getFaq' => osu_url('help.faq'),
-            'getSupport' => osu_url('help.support'),
-        ];
-        $links['ranking'] = [
-            'getOverall' => osu_url('ranking.overall'),
-            'getCharts' => osu_url('ranking.charts'),
-            'getCountry' => osu_url('ranking.country'),
-            'getMapper' => osu_url('ranking.mapper'),
-        ];
-    }
+    $links['home'] = [
+        'getNews' => osu_url('home.news'),
+        'getChangelog' => osu_url('home.changelog'),
+        'getDownload' => osu_url('home.download'),
+    ];
+    $links['help'] = [
+        'getWiki' => route('wiki.show', ['page' => 'Welcome']),
+        'getFaq' => route('wiki.show', ['page' => 'FAQ']),
+        'getSupport' => osu_url('help.support'),
+    ];
+    $links['ranking'] = [
+        'getOverall' => osu_url('ranking.overall'),
+        'getCharts' => osu_url('ranking.charts'),
+        'getCountry' => osu_url('ranking.country'),
+        'getMapper' => osu_url('ranking.mapper'),
+    ];
     $links['beatmaps'] = [
         'index' => route('beatmapsets.index'),
         'artists' => route('artist.index'),
@@ -290,7 +306,7 @@ function nav_links()
         'contests' => route('community.contests.index'),
         'tournaments' => route('tournaments.index'),
         'getLive' => route('livestreams.index'),
-        'getSlack' => route('slack'),
+        'dev' => osu_url('dev'),
     ];
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),
@@ -308,10 +324,10 @@ function footer_links()
         'changelog' => osu_url('home.changelog'),
         'beatmaps' => action('BeatmapsetsController@index'),
         'download' => osu_url('home.download'),
-        'wiki' => osu_url('help.wiki'),
+        'wiki' => route('wiki.show', ['page' => 'Welcome']),
     ];
     $links['help'] = [
-        'faq' => osu_url('help.faq'),
+        'faq' => route('wiki.show', ['page' => 'FAQ']),
         'forum' => route('forum.forums.index'),
         'livestreams' => route('livestreams.index'),
         'report' => route('forum.topics.create', ['forum_id' => 5]),
@@ -321,8 +337,8 @@ function footer_links()
         'merchandise' => action('StoreController@getListing'),
     ];
     $links['legal'] = [
-        'tos' => osu_url('legal.tos'),
-        'copyright' => osu_url('legal.dmca'),
+        'tos' => route('wiki.show', ['page' => 'Legal/TOS']),
+        'copyright' => route('wiki.show', ['page' => 'Legal/Copyright']),
         'serverStatus' => osu_url('status.server'),
         'osuStatus' => osu_url('status.osustatus'),
     ];
@@ -332,7 +348,7 @@ function footer_links()
 
 function presence($string, $valueIfBlank = null)
 {
-    return present($string) === true ? $string : $valueIfBlank;
+    return present($string) ? $string : $valueIfBlank;
 }
 
 function present($string)
@@ -340,15 +356,13 @@ function present($string)
     return $string !== null && $string !== '';
 }
 
-function user_colour_style($colour, $style)
+function user_color_style($color, $style)
 {
-    if (presence($colour) === null) {
+    if (!present($color)) {
         return '';
     }
 
-    $colour = e($colour);
-
-    return "{$style}: #{$colour};";
+    return sprintf('%s: #%s', $style, e($color));
 }
 
 function base62_encode($input)
@@ -377,7 +391,9 @@ function display_regdate($user)
         return trans('users.show.first_members');
     }
 
-    return trans('users.show.joined_at', ['date' => $user->user_regdate->formatLocalized('%B %Y')]);
+    return trans('users.show.joined_at', [
+        'date' => '<strong>'.$user->user_regdate->formatLocalized('%B %Y').'</strong>',
+    ]);
 }
 
 function i18n_date($datetime, $format = IntlDateFormatter::LONG)
@@ -432,6 +448,12 @@ function json_collection($model, $transformer, $includes = null)
     }
     $manager->setSerializer(new App\Serializers\ApiSerializer());
 
+    // da bess
+    if (is_string($transformer)) {
+        $transformer = 'App\Transformers\\'.str_replace('/', '\\', $transformer).'Transformer';
+        $transformer = new $transformer();
+    }
+
     // we're using collection instead of item here, so we can peek at the items beforehand
     $collection = new League\Fractal\Resource\Collection($model, $transformer);
 
@@ -463,35 +485,6 @@ function fast_imagesize($url)
     });
 }
 
-/*
- * Parses a string. If it's not an empty string or null,
- * return parsed integer value of it, otherwise return null.
- */
-function get_int($string)
-{
-    if (present($string) === true) {
-        return (int) $string;
-    }
-}
-
-function get_bool($string)
-{
-    if (is_bool($string)) {
-        return $string;
-    } elseif ($string === '1' || $string === 'on') {
-        return true;
-    } elseif ($string === '0') {
-        return false;
-    }
-}
-
-function get_file($input)
-{
-    if ($input instanceof Symfony\Component\HttpFoundation\File\UploadedFile) {
-        return $input->getRealPath();
-    }
-}
-
 function get_arr($input, $callback)
 {
     if (!is_array($input)) {
@@ -510,6 +503,42 @@ function get_arr($input, $callback)
     return $result;
 }
 
+function get_bool($string)
+{
+    if (is_bool($string)) {
+        return $string;
+    } elseif ($string === '1' || $string === 'on' || $string === 'true') {
+        return true;
+    } elseif ($string === '0' || $string === 'false') {
+        return false;
+    }
+}
+
+/*
+ * Parses a string. If it's not an empty string or null,
+ * return parsed integer value of it, otherwise return null.
+ */
+function get_int($string)
+{
+    if (present($string)) {
+        return (int) $string;
+    }
+}
+
+function get_file($input)
+{
+    if ($input instanceof Symfony\Component\HttpFoundation\File\UploadedFile) {
+        return $input->getRealPath();
+    }
+}
+
+function get_string($input)
+{
+    if (is_string($input)) {
+        return $input;
+    }
+}
+
 function get_class_basename($className)
 {
     return substr($className, strrpos($className, '\\') + 1);
@@ -518,6 +547,15 @@ function get_class_basename($className)
 function get_class_namespace($className)
 {
     return substr($className, 0, strrpos($className, '\\'));
+}
+
+function get_model_basename($model)
+{
+    if (!is_string($model)) {
+        $model = get_class($model);
+    }
+
+    return str_replace('\\', '', snake_case(substr($model, strlen('App\\Models\\'))));
 }
 
 function ci_file_search($fileName)
@@ -536,6 +574,14 @@ function ci_file_search($fileName)
     }
 
     return false;
+}
+
+function sanitize_filename($file)
+{
+    $file = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $file);
+    $file = mb_ereg_replace("([\.]{2,})", '', $file);
+
+    return $file;
 }
 
 function deltree($dir)
@@ -560,11 +606,13 @@ function get_param_value($input, $type)
         case 'file':
             return get_file($input);
             break;
+        case 'string':
+            return get_string($input);
         case 'string_split':
-            return get_arr(explode("\r\n", $input), 'presence');
+            return get_arr(explode("\r\n", $input), 'get_string');
             break;
         case 'string[]':
-            return get_arr($input, 'presence');
+            return get_arr($input, 'get_string');
             break;
         case 'int[]':
             return get_arr($input, 'get_int');
@@ -613,11 +661,13 @@ function array_rand_val($array)
  */
 function model_pluck($builder, $key)
 {
-    return $builder
-        ->select($key)
-        ->get()
-        ->pluck($key)
-        ->all();
+    $result = [];
+
+    foreach ($builder->select($key)->get() as $el) {
+        $result[] = $el->$key;
+    }
+
+    return $result;
 }
 
 // Returns null if timestamp is null or 0.
@@ -656,11 +706,12 @@ function priv_check_user($user, $ability, $args = null)
 // Fisher-Yates
 function seeded_shuffle(array &$items, int $seed)
 {
-    @mt_srand($seed);
+    mt_srand($seed);
     for ($i = count($items) - 1; $i > 0; $i--) {
-        $j = @mt_rand(0, $i);
+        $j = mt_rand(0, $i);
         $tmp = $items[$i];
         $items[$i] = $items[$j];
         $items[$j] = $tmp;
     }
+    mt_srand();
 }

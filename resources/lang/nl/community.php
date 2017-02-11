@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -123,26 +123,5 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
             'gift' => 'of gun het iemand anders',
             'instructions' => 'klik op het hartje om naar de osu!store te gaan',
         ],
-    ],
-    'slack' => [
-        'header' => [
-            'small' => 'osu!dev',
-            'large' => 'osu!public Slack Toegang',
-        ],
-
-        'disabled' => 'De publieke Slack community is momenteel niet beschikbaar. Als je iets wilt laten weten doe dat dan via een issue op de correcte <a href="https://github.com/ppy">GitHub repository</a> of stuur ons een e-mail via <a href="mailto::mail">:mail</a>.',
-
-        'guest-begin' => 'Je moet ',
-        'guest-middle' => 'ingelogd',
-        'guest-end' => ' zijn om een Slack uitnodiging te ontvangen!',
-
-        'receive-invite' => 'Je kan hier een uitnodiging krijgen voor de publieke Slack community van osu!.',
-        'bullet-points' => 'Lees de voorwaarden <a href=":link">in deze post</a> grondig door.<br />Houdt er rekening mee dat eventuele misdrijven op jou account niet getolereerd worden.',
-
-        'recent-issues' => 'Je account heeft recente problemen. Neem <a href="mailto::mail">contact op met support</a> voor meer details.',
-        'agree-button' => 'Akkoord',
-
-        'accepted' => 'Je aanvraag is geaccepteerd. Je zal binnenkort een e-mail ontvangen.',
-        'invite-already-accepted' => 'Je hebt al een slack account! Neem <a href="mailto::mail">contact op met support</a> als je problemen ondervindt.',
     ],
 ];

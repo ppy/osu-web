@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -130,28 +130,29 @@ return [
                 'tags' => 'Tagi',
             ],
             'scoreboard' => [
-                'title' => 'Tablica wyników',
-                'no-scores' => [
-                    'global' => 'Brak wyników. Może powinieneś jakieś zdobyć?',
-                    'loading' => 'Ładowanie wyników...',
-                    'country' => 'Nikt z twojego kraju nie ustanowił tutaj wyniku!',
-                    'friend' => 'Żaden z twoich znajomych nie ma tutaj wyniku!',
-                ],
-                'supporter-only' => 'Musisz być supporterem, aby uzyskać dostęp do rankingu krajowego i znajomych!',
-                'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, co jeszcze otrzymujesz w zamian za bycie supporterem!',
-                'global' => 'Ranking globalny',
+                'achieved' => 'osiągnięty :when',
                 'country' => 'Ranking krajowy',
                 'friend' => 'Ranking znajomych',
-                'achieved' => 'osiągnięty :when',
+                'global' => 'Ranking globalny',
+                'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, co jeszcze otrzymujesz w zamian za bycie supporterem!',
+                'supporter-only' => 'Musisz być supporterem, aby uzyskać dostęp do rankingu krajowego i znajomych!',
+                'title' => 'Tablica wyników',
+
+                'list' => [
+                    'accuracy' => 'Celność',
+                    'player-header' => 'Gracz',
+                    'rank-header' => 'Miejsce',
+                    'score' => 'Wynik',
+                ],
+                'no-scores' => [
+                    'country' => 'Nikt z twojego kraju nie ustanowił tutaj wyniku!',
+                    'friend' => 'Żaden z twoich znajomych nie ma tutaj wyniku!',
+                    'global' => 'Brak wyników. Może powinieneś jakieś zdobyć?',
+                    'loading' => 'Ładowanie wyników...',
+                ],
                 'stats' => [
                     'accuracy' => 'Celność',
                     'score' => 'Wynik',
-                ],
-                'list' => [
-                    'rank-header' => 'Miejsce',
-                    'player-header' => 'Gracz',
-                    'score' => 'Wynik',
-                    'accuracy' => 'Celność',
                 ],
             ],
         ],

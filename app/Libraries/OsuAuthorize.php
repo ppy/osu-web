@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,14 +17,16 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Libraries;
 
 use App\Exceptions\AuthorizationException;
+use App\Models\Beatmapset;
 use App\Models\Chat\Channel as ChatChannel;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
-use App\Models\Beatmapset;
 use App\Models\UserContestEntry;
+use Carbon\Carbon;
 
 class OsuAuthorize
 {
@@ -45,9 +47,7 @@ class OsuAuthorize
                 $function = "check{$ability}";
 
                 try {
-                    $message = call_user_func_array(
-                        [$this, $function], [$user, $object]
-                    );
+                    $message = $this->$function($user, $object);
                 } catch (AuthorizationException $e) {
                     $message = $e->getMessage();
                 }
@@ -59,10 +59,25 @@ class OsuAuthorize
         return $this->cache[$cacheKey];
     }
 
-    public function checkBeatmapDiscussionPost($user, $discussion)
+    public function checkBeatmapDiscussionAllowOrDenyKusodu($user, $discussion)
     {
+        // no one but admin (not covered here) =D
+    }
+
+    public function checkBeatmapDiscussionDestroy($user, $discussion)
+    {
+        $prefix = 'beatmap_discussion.destroy.';
+
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+
+        if ($user->user_id !== $discussion->user_id) {
+            return;
+        }
+
+        if ($discussion->beatmapDiscussionPosts()->withoutDeleted()->count() > 1) {
+            return $prefix.'has_reply';
+        }
 
         return 'ok';
     }
@@ -90,10 +105,56 @@ class OsuAuthorize
         return $prefix.'not_owner';
     }
 
+    public function checkBeatmapDiscussionRestore($user, $discussion)
+    {
+        // no one but admin (not covered here) =D
+    }
+
+    public function checkBeatmapDiscussionShow($user, $discussion)
+    {
+        if ($discussion->deleted_at === null) {
+            return 'ok';
+        }
+    }
+
     public function checkBeatmapDiscussionVote($user, $discussion)
     {
+        $prefix = 'beatmap_discussion.vote.';
+
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+
+        if ($discussion->user_id === $user->user_id) {
+            return $prefix.'owner';
+        }
+
+        // rate limit
+        $recentVotesCount = $user
+            ->beatmapDiscussionVotes()
+            ->where('created_at', '<', Carbon::now()->subHour())
+            ->count();
+
+        if ($recentVotesCount > 10) {
+            return $prefix.'limit_exceeded';
+        }
+
+        return 'ok';
+    }
+
+    public function checkBeatmapDiscussionPostDestroy($user, $post)
+    {
+        $prefix = 'beatmap_discussion_post.destroy.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($post->system) {
+            return $prefix.'system_generated';
+        }
+
+        if ($user->user_id !== $post->user_id) {
+            return $prefix.'not_owner';
+        }
 
         return 'ok';
     }
@@ -112,6 +173,26 @@ class OsuAuthorize
         if ($user->user_id !== $post->user_id) {
             return $prefix.'not_owner';
         }
+
+        return 'ok';
+    }
+
+    public function checkBeatmapDiscussionPostRestore($user, $post)
+    {
+        // no one but admin (not covered here) =D
+    }
+
+    public function checkBeatmapDiscussionPostShow($user, $post)
+    {
+        if ($post->deleted_at === null) {
+            return 'ok';
+        }
+    }
+
+    public function checkBeatmapDiscussionPostStore($user, $discussion)
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         return 'ok';
     }
@@ -502,6 +583,48 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkUserFavourite($user)
+    {
+        $prefix = 'errors.beatmapsets.';
+
+        $this->ensureLoggedIn($user);
+
+        if ($user->favouriteBeatmapsets()->count() > 99) {
+            return $prefix.'too-many-favourites';
+        }
+
+        return 'ok';
+    }
+
+    public function checkUserFavouriteRemove($user)
+    {
+        $this->ensureLoggedIn($user);
+
+        return 'ok';
+    }
+
+    public function checkUserShow($user, $owner)
+    {
+        $prefix = 'user.show.';
+
+        if ($user !== null && $user->user_id === $owner->user_id) {
+            return 'ok';
+        }
+
+        if ($owner->hasProfile()) {
+            return 'ok';
+        } else {
+            return $prefix.'no_access';
+        }
+    }
+
+    public function checkWikiPageRefresh($user)
+    {
+        $this->ensureLoggedIn($user);
+
+        // yet another admin only =D
     }
 
     public function ensureLoggedIn($user, $prefix = '')

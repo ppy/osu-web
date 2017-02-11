@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2016 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -158,7 +158,7 @@
             <a href="{{ osu_url('legal.server') }}" class="landing-footer-bottom__link">server status</a>
             <a href="{{ osu_url('legal.osustatus') }}" class="landing-footer-bottom__link landing-footer-bottom__link--no-pad">@osustatus</a>
 
-            <div class="landing-footer-bottom__copyright">ppy powered 2007-2016</div>
+            <div class="landing-footer-bottom__copyright">ppy powered 2007-2017</div>
         </div>
     </footer>
 

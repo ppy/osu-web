@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2016 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -38,7 +38,7 @@
             <div class="nav-popup-box__slide-y">
                 <div class="nav-popup-box__content js-user-header-popup">
                     @if (Auth::check())
-                        @include('layout._popup_user', ['_user' => Auth::user()])
+                        @include('layout._popup_user')
                     @else
                         @include('layout._popup_login')
                     @endif

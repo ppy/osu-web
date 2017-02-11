@@ -1,22 +1,24 @@
 ###
-# Copyright 2015 ppy Pty. Ltd.
+#    Copyright 2015-2017 ppy Pty. Ltd.
 #
-# This file is part of osu!web. osu!web is distributed with the hope of
-# attracting more community contributions to the core ecosystem of osu!.
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
 #
-# osu!web is free software: you can redistribute it and/or modify
-# it under the terms of the Affero GNU General Public License version 3
-# as published by the Free Software Foundation.
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
 #
-# osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Affero General Public License for more details.
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
 #
-# You should have received a copy of the GNU Affero General Public License
-# along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
 class @LineChart
   constructor: (area, @options = {}) ->
+    @id = Math.floor(Math.random() * 1000)
     @options.scales ||= {}
     @options.scales.x ||= d3.time.scale()
     @options.scales.y ||= d3.scale.linear()
@@ -91,10 +93,10 @@ class @LineChart
     @resize()
 
 
-  createXAxisLine: () =>
+  createXAxisLine: =>
     @xAxisLine = @svg.append 'defs'
       .append 'linearGradient'
-      .attr 'id', 'x-axis-line-gradient'
+      .attr 'id', "x-axis-line-gradient-#{@id}"
       .attr 'gradientUnits', 'userSpaceOnUse'
       .attr 'x1', '0'
       .attr 'x2', '0'
@@ -175,7 +177,7 @@ class @LineChart
 
     @svgXAxis.selectAll '.tick line'
       .classed 'chart__tick-line', true
-      .attr 'stroke', 'url(#x-axis-line-gradient)'
+      .attr 'stroke', "url(#x-axis-line-gradient-#{@id})"
 
     @svgYAxis.selectAll '.tick line'
       .classed 'chart__tick-line chart__tick-line--default', true
@@ -239,9 +241,11 @@ class @LineChart
       .style 'transform', "translate(#{coordsTooltip.join(', ')})"
 
     unless @tooltipContainer.attr('data-width-set') == '1'
+      width = @tooltipContainer.node().getBoundingClientRect().width * 1.2
       @tooltipContainer
         .attr 'data-width-set', '1'
-        .style 'width', "#{@tooltipContainer.node().getBoundingClientRect().width * 1.2}px"
+        .style 'width', "#{width}px"
+        .style 'margin-left', "-#{width / 2}px"
 
 
   lookupIndexFromX: (x) =>

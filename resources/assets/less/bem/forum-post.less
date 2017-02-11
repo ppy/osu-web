@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,15 +14,15 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .forum-post {
   @_reply-xs-top-margin: 4px;
 
   .default-box-shadow();
   background-color: @gray-f;
 
-  margin-bottom: (@spacing / 2);
+  margin-bottom: 5px;
   padding: 0;
 
   display: flex;
@@ -40,13 +40,17 @@
     margin-bottom: 0;
   }
 
+  .js-forum-post--hidden & {
+    opacity: 0.5;
+  }
+
   &__actions {
     ._dektop-position {
       @media @desktop {
         justify-content: flex-start;
         width: 0;
         right: 0;
-        top: (@spacing * 2);
+        top: 20px;
 
         opacity: 0;
         will-change: opacity;
@@ -64,8 +68,8 @@
     justify-content: center;
     transition: opacity 120ms ease-in-out;
 
-    right: (@spacing * 3);
-    bottom: (@spacing * 2);
+    right: 30px;
+    bottom: 20px;
     ._dektop-position;
 
     &--reply {
@@ -99,17 +103,14 @@
     font-size: 12px;
     flex: none;
 
-    padding-top: (@spacing * 2);
-    padding-bottom: (@spacing * 2);
-    padding-left: (@spacing * 3);
-    padding-right: (@spacing * 3);
+    padding: 20px 30px;
 
     &--edit-bar {
       background-color: @gray-lighter;
       display: flex;
       justify-content: space-between;
-      padding-top: @spacing;
-      padding-bottom: @spacing;
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
 
     &--edit-bar-create {
@@ -127,10 +128,10 @@
       color: @gray-7;
 
       padding-top: 0;
-      padding-bottom: (@spacing * 2);
+      padding-bottom: 20px;
       @media @desktop {
         order: 0;
-        padding-top: (@spacing * 2);
+        padding-top: 20px;
       }
     }
 
@@ -142,7 +143,7 @@
 
       @media @desktop {
         order: 0;
-        padding-top: (@spacing * 2);
+        padding-top: 20px;
         padding-bottom: 0;
       }
     }
@@ -151,11 +152,11 @@
       flex: 1 0 auto;
       order: 0;
 
-      padding-top: (@spacing * 2);
-      padding-bottom: (@spacing * 2);
+      padding-top: 20px;
+      padding-bottom: 20px;
       @media @desktop {
-        padding-top: (@spacing * 4);
-        padding-bottom: (@spacing * 4);
+        padding-top: 40px;
+        padding-bottom: 40px;
       }
     }
 
@@ -167,8 +168,8 @@
     &--signature {
       background-color: @gray-e;
 
-      padding-top: (@spacing * 2);
-      padding-bottom: (@spacing * 2);
+      padding-top: 20px;
+      padding-bottom: 20px;
 
       .bbcode {
         max-height: 150px;
@@ -195,7 +196,7 @@
     flex-direction: column;
     justify-content: space-between;
     flex: 1 0 auto;
-    padding: @spacing;
+    padding: 10px;
     text-align: center;
   }
 
@@ -203,7 +204,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: (@spacing * 2);
+    padding-top: 20px;
     background-image: linear-gradient(to bottom, transparent, fade(@gray-0, 20%));
 
     &::before {
@@ -224,12 +225,12 @@
     background-color: @blue-darker;
     display: flex;
     align-items: center;
-    padding: @spacing;
-    margin: (@spacing * 2);
+    padding: 10px;
+    margin: 20px;
   }
 
   &__info-panel-xs-flag {
-    margin-left: (@spacing / 2);
+    margin-left: 5px;
   }
 
   &__info-panel-xs-main {
@@ -251,7 +252,7 @@
     font-weight: 600;
     font-style: italic;
     color: @gray-5;
-    margin-bottom: (@spacing / 2);
+    margin-bottom: 5px;
 
     &--user-title {
       color: @gray-3;
@@ -266,11 +267,11 @@
     background-color: fade(@gray-3, 90%);
     width: 100%;
     height: 100%;
-    padding-bottom: @spacing;
+    padding-bottom: 10px;
     padding-top: @_reply-xs-top-margin;
 
     @media @desktop {
-      padding-top: @spacing;
+      padding-top: 10px;
     }
   }
 
@@ -284,7 +285,7 @@
     height: 100%;
     right: 100%;
     top: 0;
-    width: @spacing;
+    width: 10px;
 
     display: none;
 
@@ -298,7 +299,7 @@
     display: block;
     font-weight: 600;
     font-style: italic;
-    padding: @spacing;
+    padding: 10px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

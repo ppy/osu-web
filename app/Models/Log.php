@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models;
 
 use Auth;
@@ -102,7 +103,7 @@ class Log extends Model
         // log it and I'm just matching with whatever it's doing. Except post
         // title - phpbb uses actual post title which are all empty for recent
         // posts but this one use topic's.
-        return static::logModerateForumTopic($operation, $post->topic, $user);
+        return static::logModerateForumTopic($operation, $post->topic()->withTrashed()->first(), $user);
     }
 
     public static function log($params)

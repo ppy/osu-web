@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,22 +14,34 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .beatmap-discussions {
   @_mode-text-size: 10px;
   @_empty-text-size: 12px;
-  @_mode-circle-diameter: (@spacing * 3 / 2);
+  @_mode-circle-diameter: 15px;
   @_timeline-line-width: 3px;
+  @_discussions-vertical-padding: 10px;
+  @_discussions-horizontal-padding: 20px;
 
-  .inner-shadow-top();
-  padding: (@spacing * 2);
+  .default-box-shadow();
+  margin: 10px 0;
+  background-color: @gray-f;
+  display: flex;
+  flex-direction: column;
 
   &__discussion {
+    .own-layer();
+
     &--empty {
       padding-left: @beatmap-discussion--timestamp-width;
       font-size: @_empty-text-size;
     }
+  }
+
+  &__discussions {
+    padding: @_discussions-vertical-padding @_discussions-horizontal-padding;
+    background-color: @gray-e;
   }
 
   &__mode {
@@ -40,17 +52,12 @@
   &__mode-container {
     display: flex;
     align-items: center;
-    padding: (@spacing / 2) 0;
+    padding: 5px 0;
   }
 
   &__mode-circle {
     .circle(@_mode-circle-diameter);
-    border: 3px solid @gray-5;
-    margin-right: @spacing;
-
-    &--active {
-      background-color: @gray-5;
-    }
+    background-color: @gray-5;
   }
 
   &__mode-text {
@@ -59,11 +66,11 @@
 
   &__timeline-line {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: (@_discussions-vertical-padding + @_mode-circle-diameter / 2);
+    left: @_discussions-horizontal-padding;
 
     width: @_timeline-line-width;
-    height: 100%;
+    height: calc(100% ~'-' (@_mode-circle-diameter + @_discussions-vertical-padding * 2));
 
     margin: 0 ((@_mode-circle-diameter - @_timeline-line-width) / 2);
 
@@ -79,7 +86,31 @@
   }
 
   &__toolbar {
+    padding: 0 20px;
     display: flex;
-    justify-content: space-between;
+    border-bottom: 1px solid @gray-c;
+  }
+
+  &__toolbar-content {
+    display: flex;
+    margin: -10px -15px 0;
+
+    &--right {
+      flex: 1;
+      justify-content: flex-end;
+    }
+  }
+
+  &__toolbar-link {
+    font-size: @font-size--normal;
+    color: @gray-5;
+    padding: 10px 15px;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: @gray-0;
+      text-decoration: none;
+    }
   }
 }

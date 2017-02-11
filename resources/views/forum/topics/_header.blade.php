@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -58,8 +58,16 @@
                 </h1>
             @endif
 
-            <div class="forum-category-header__counter">
-                @include('forum.topics._header_counter')
+            <div class="forum-category-header__counters">
+                <div class="forum-category-header__counter">
+                    @include('forum.topics._header_total_counter')
+                </div>
+
+                @if(!$newTopic && priv_check('ForumTopicModerate', $topic)->can())
+                    <div class="forum-category-header__counter">
+                        @include('forum.topics._header_deleted_counter')
+                    </div>
+                @endif
             </div>
         </div>
 

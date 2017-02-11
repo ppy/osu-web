@@ -1,40 +1,40 @@
 ###
-# Copyright 2015-2016 ppy Pty. Ltd.
+#    Copyright 2015-2017 ppy Pty. Ltd.
 #
-# This file is part of osu!web. osu!web is distributed with the hope of
-# attracting more community contributions to the core ecosystem of osu!.
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
 #
-# osu!web is free software: you can redistribute it and/or modify
-# it under the terms of the Affero GNU General Public License version 3
-# as published by the Free Software Foundation.
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
 #
-# osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Affero General Public License for more details.
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
 #
-# You should have received a copy of the GNU Affero General Public License
-# along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
 {div, span, a, ol, li} = React.DOM
 el = React.createElement
 
 class BeatmapsetPage.Header extends React.Component
   render: ->
     dateFormat = 'MMM D, YYYY'
+    favouriteButton =
+      if @props.hasFavourited
+        action: 'unfavourite'
+        icon: 'heart'
+      else
+        action: 'favourite'
+        icon: 'heart-o'
 
     div className: 'beatmapset-header',
-      ol className: 'page-mode',
-        for mode in BeatmapHelper.modes
-          continue if _.isEmpty @props.beatmapList[mode]
-
-          li
-            className: 'page-mode__item'
-            key: mode
-            el BeatmapsetPage.HeaderTab,
-              playmode: mode
-              currentBeatmapId: @props.currentBeatmap.id
-              newBeatmapId: _.last @props.beatmapList[mode]
-              currentPlaymode: @props.currentBeatmap.mode
+      el PlaymodeTabs,
+        beatmaps: @props.beatmaps
+        currentMode: @props.currentBeatmap.mode
+        hrefFunc: @tabHrefFunc
 
       div
         className: 'beatmapset-header__content'
@@ -43,13 +43,11 @@ class BeatmapsetPage.Header extends React.Component
 
         div className: 'beatmapset-header__overlay beatmapset-header__overlay--gradient'
 
-        div className: 'beatmapset-header__box',
+        div className: 'beatmapset-header__box beatmapset-header__box--main',
           div className: 'beatmapset-header__beatmap-picker-box',
             el BeatmapsetPage.BeatmapPicker,
-              beatmaps: @props.beatmaps
-              beatmapList: @props.beatmapList
-              currentMode: @props.currentBeatmap.mode
-              currentBeatmapId: @props.currentBeatmap.id
+              beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
+              currentBeatmap: @props.currentBeatmap
 
             span className: 'beatmapset-header__diff-name',
               if @props.hoveredBeatmap? then @props.hoveredBeatmap.version else @props.currentBeatmap.version
@@ -57,7 +55,7 @@ class BeatmapsetPage.Header extends React.Component
             span
               className: 'beatmapset-header__star-difficulty'
               style:
-                visibility: 'hidden' if !@props.hoveredBeatmap
+                visibility: 'hidden' if !@props.hoveredBeatmap?
               "#{osu.trans 'beatmaps.beatmapset.show.stats.stars'} #{if @props.hoveredBeatmap then @props.hoveredBeatmap.difficulty_rating.toFixed 2 else ''}"
 
             div {},
@@ -66,8 +64,10 @@ class BeatmapsetPage.Header extends React.Component
                 span className: 'beatmapset-header__value-name', @props.beatmapset.play_count.toLocaleString()
 
               span className: 'beatmapset-header__value',
-                span className: 'beatmapset-header__value-icon', el Icon, name: 'heart'
-                span className: 'beatmapset-header__value-name', @props.beatmapset.favourite_count.toLocaleString()
+                span className: 'beatmapset-header__value-icon',
+                  el Icon, name: 'heart'
+                span className: 'beatmapset-header__value-name',
+                  @props.favcount.toLocaleString()
 
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--title'
@@ -79,57 +79,77 @@ class BeatmapsetPage.Header extends React.Component
             href: laroute.route 'beatmapsets.index', q: @props.beatmapset.artist
             @props.beatmapset.artist
 
-          div className: 'beatmapset-header__avatar-box',
-            div
-              className: 'beatmapset-header__avatar avatar avatar--beatmapset'
-              style:
-                backgroundImage: "url(#{@props.beatmapset.user.avatarUrl})"
+          el BeatmapsetMapping, beatmapset: @props.beatmapset
 
-            div className: 'beatmapset-header__user-box',
-              div className: 'beatmapset-header__user-text',
-                osu.trans 'beatmaps.beatmapset.show.details.made-by'
-                a
-                  className: 'beatmapset-header__user-text beatmapset-header__user-text--mapper'
-                  href: laroute.route 'users.show', users: @props.beatmapset.user.id
-                  @props.beatmapset.user.username
+          if currentUser.id?
+            [
+              if @props.beatmapset.availability
+                div
+                  key: 'availability'
+                  className: 'beatmapset-header__availability-info',
+                  if @props.beatmapset.availability.download_disabled
+                    osu.trans 'beatmaps.beatmapset.availability.disabled'
+                  else
+                    osu.trans 'beatmaps.beatmapset.availability.parts-removed'
 
-              div className: 'beatmapset-header__user-text',
-                osu.trans 'beatmaps.beatmapset.show.details.submitted'
-                span
-                  className: 'beatmapset-header__user-text beatmapset-header__user-text--date'
-                  moment(@props.beatmapset.submitted_date).format dateFormat
+                  if @props.beatmapset.availability.more_information
+                    div className: 'beatmapset-header__availability-link',
+                      a href: @props.beatmapset.availability.more_information, target: '_blank', osu.trans 'beatmaps.beatmapset.availability.more-info'
 
-              if @props.beatmapset.ranked_date
-                div className: 'beatmapset-header__user-text',
-                  osu.trans 'beatmaps.beatmapset.show.details.ranked'
-                  span
-                    className: 'beatmapset-header__user-text beatmapset-header__user-text--date'
-                    moment(@props.beatmapset.ranked_date).format dateFormat
+              div
+                key: 'buttons'
+                className: 'beatmapset-header__buttons'
 
-          div className: 'beatmapset-header__buttons',
-            if @props.beatmapset.video
-              [
-                @downloadButton
-                  key: 'video'
-                  href: Url.beatmapDownload @props.beatmapset.id, true
-                  bottomTextKey: 'video'
+                el BigButton,
+                  props:
+                    onClick: @toggleFavourite
+                    href:
+                      laroute.route 'beatmapsets.update-favourite',
+                        beatmapset: @props.beatmapset.id
+                        action: favouriteButton.action
+                    title: osu.trans "beatmaps.beatmapset.show.details.#{favouriteButton.action}"
+                  modifiers: ['beatmapset-header-square', "beatmapset-header-square-#{favouriteButton.action}"]
+                  icon: favouriteButton.icon
 
-                @downloadButton
-                  key: 'no-video'
-                  href: Url.beatmapDownload @props.beatmapset.id, false
-                  bottomTextKey: 'no-video'
-              ]
-            else
-              @downloadButton
-                href: Url.beatmapDownload @props.beatmapset.id, false
+                unless @props.beatmapset.availability?.download_disabled
+                  [
+                    if @props.beatmapset.video
+                      [
+                        @downloadButton
+                          key: 'video'
+                          href: Url.beatmapDownload @props.beatmapset.id, true
+                          bottomTextKey: 'video'
 
-            @downloadButton
-              topTextKey: 'direct'
-              href:
-                if currentUser.isSupporter
-                  Url.beatmapDownloadDirect @props.beatmapset.id
-                else
-                  laroute.route 'support-the-game'
+                        @downloadButton
+                          key: 'no-video'
+                          href: Url.beatmapDownload @props.beatmapset.id, false
+                          bottomTextKey: 'no-video'
+                      ]
+                    else
+                      @downloadButton
+                        key: 'default'
+                        href: Url.beatmapDownload @props.beatmapset.id, false
+
+                    @downloadButton
+                      key: 'direct'
+                      topTextKey: 'direct'
+                      href:
+                        if currentUser.isSupporter
+                          Url.beatmapDownloadDirect @props.beatmapset.id
+                        else
+                          laroute.route 'support-the-game'
+                  ]
+
+                if @props.beatmapset.discussion_status.enabled
+                  el BigButton,
+                    key: 'discussion'
+                    modifiers: ['beatmapset-header']
+                    text:
+                      top: osu.trans 'beatmaps.beatmapset.show.discussion'
+                    icon: 'comments-o'
+                    props:
+                      href: laroute.route 'beatmaps.beatmapsets.show.discussion', beatmapset: @props.beatmapset.id
+            ]
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
           el BeatmapsetPage.Stats,
@@ -142,14 +162,27 @@ class BeatmapsetPage.Header extends React.Component
 
   downloadButton: ({key, href, icon = 'download', topTextKey = '_', bottomTextKey}) =>
     el BigButton,
-      modifiers: ['beatmapset-header']
       key: key
-      href: href
-      icon: icon
+      modifiers: ['beatmapset-header']
       text:
         top: osu.trans "beatmaps.beatmapset.show.details.download.#{topTextKey}"
         bottom: if bottomTextKey? then osu.trans "beatmaps.beatmapset.show.details.download.#{bottomTextKey}"
+      icon: icon
+      props:
+        href: href
 
+
+  tabHrefFunc: (mode) ->
+    BeatmapsetPageHash.generate mode: mode
+
+
+  toggleFavourite: (e) ->
+    e.preventDefault()
+
+    if !currentUser.id?
+      userLogin.show e.target
+    else
+      $.publish 'beatmapset:favourite:toggle'
 
   togglePreview: (e) =>
     $.publish 'beatmapset:preview:toggle', !@props.isPreviewPlaying

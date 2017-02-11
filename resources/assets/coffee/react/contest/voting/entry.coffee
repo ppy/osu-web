@@ -1,22 +1,22 @@
-###*
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
 ###
-{a,i,tr,td,span,div} = React.DOM
+#    Copyright 2015-2017 ppy Pty. Ltd.
+#
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
+#
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
+#
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+###
+
+{a,i,div} = React.DOM
 el = React.createElement
 
 class Contest.Voting.Entry extends React.Component
@@ -27,26 +27,27 @@ class Contest.Voting.Entry extends React.Component
 
     selected = _.includes @props.selected, @props.entry.id
 
-    tr className: "tracklist__row#{if selected && !@props.contest.show_votes then ' tracklist__row--selected' else ''}",
+    div className: "contest-voting-list__row#{if selected && !@props.contest.show_votes then ' contest-voting-list__row--selected' else ''}",
       if @props.options.showPreview
-        td {},
+        div {},
           el TrackPreview, track: @props.entry
-      if @props.options.showDL
-        td className: 'tracklist__dl tracklist__dl--contest',
-          a className: 'tracklist__link tracklist__link--contest-dl', href: @props.entry.preview, title: osu.trans('contest.beatmaps.download'),
-            i className: 'fa fa-fw fa-cloud-download'
+      if @props.options.showLink && @props.entry.preview
+        div className: 'contest-voting-list__icon contest-voting-list__icon--bg',
+          a className: 'tracklist__link', href: @props.entry.preview,
+            el Icon, name: @props.contest.link_icon, modifiers: ['fw', 'lg']
       if @props.contest.show_votes
-        td className: "tracklist__title tracklist__row--show-votes", style: { backgroundSize: "#{relativeVotePercentage}%, 100%" },
-          div {}, "#{@props.entry.title} "
-          div className: 'tracklist__version', "#{@props.entry.results.actual_name}"
+        div className: 'contest-voting-list__title contest-voting-list__title--show-votes',
+          div className: 'contest-voting-list__votes-bar', style: { width: "#{relativeVotePercentage}%" }
+          div className: 'u-ellipsis-overflow', @props.entry.title
+          div className: 'contest-voting-list__entrant', @props.entry.results.username
       else
-        td className: 'tracklist__title', @props.entry.title
+        div className: 'contest-voting-list__title u-ellipsis-overflow', @props.entry.title
 
-      td className: "contest__vote-star#{if @props.contest.show_votes then ' contest__vote-star--fixed' else ''}",
+      div className: "contest__voting-star#{if @props.contest.show_votes then ' contest__voting-star--dark-bg' else ''}",
         el Contest.Voting.Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, selected: @props.selected, contest: @props.contest
 
       if @props.contest.show_votes
-        td className:'contest__vote-count',
+        div className:'contest__vote-count',
           "#{@props.entry.results.votes} votes"
           if not isNaN(votePercentage)
             " (#{votePercentage}%)"

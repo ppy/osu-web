@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -19,8 +19,11 @@
  */
 
 return [
+    'deleted' => '[deleted user]',
+
     'login' => [
         '_' => 'Sign in',
+        'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
         'username' => 'Username',
         'password' => 'Password',
         'button' => 'Login',
@@ -47,7 +50,21 @@ return [
     'logout_confirm' => 'Are you sure you want to log out? :(',
     'show' => [
         '404' => 'User not found! ;_;',
-        'current_location' => 'Currently in :location.',
+        'age' => ':age years old',
+        'current_location' => 'Currently in :location',
+        'first_members' => 'Here since the beginning',
+        'is_developer' => 'osu!developer',
+        'is_supporter' => 'osu!supporter',
+        'joined_at' => 'Joined :date',
+        'lastvisit' => 'Last seen :date',
+        'missingtext' => 'You might have made a typo! (or the user may have been banned)',
+        'origin_age' => ':age',
+        'origin_country' => 'From :country',
+        'origin_country_age' => ':age from :country',
+        'page_description' => 'osu! - Everything you ever wanted to know about :username!',
+        'plays_with' => 'Plays with :devices',
+        'title' => ":username's profile",
+
         'edit' => [
             'cover' => [
                 'button' => 'Change Profile Cover',
@@ -58,7 +75,7 @@ return [
                     'dropzone' => 'Drop here to upload',
                     'dropzone_info' => 'You can also drop your image here to upload',
                     'restriction_info' => "Upload available for <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a> only",
-                    'size_info' => 'Cover size should be at 2000x500',
+                    'size_info' => 'Cover size should be at 2000x700',
                     'too_large' => 'Uploaded file is too large.',
                     'unsupported_format' => 'Unsupported format.',
                 ],
@@ -90,20 +107,49 @@ return [
             'kudosu' => [
                 'available' => 'Kudosu Available',
                 'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven't traded in yet.",
-                'entry' => [
-                    'empty' => "This user hasn't received any kudosu!",
-                    'give' => 'Received <strong class="kudosu-entries__amount">:amount kudosu</strong> from :giver for a post at :post',
-                    'revoke' => 'Denied kudosu by :giver for the post :post',
-                ],
                 'recent_entries' => 'Recent Kudosu History',
                 'title' => 'Kudosu!',
                 'total' => 'Total Kudosu Earned',
                 'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.osu_url('user.kudosu').'">this page</a> for more information.',
+
+                'entry' => [
+                    'amount' => ':amount kudosu',
+                    'empty' => "This user hasn't received any kudosu!",
+
+                    'beatmap_discussion' => [
+                        'allow_kudosu' => [
+                            'give' => 'Received :amount from kudosu deny repeal of modding post :post',
+                        ],
+
+                        'deny_kudosu' => [
+                            'reset' => 'Denied :amount from modding post :post',
+                        ],
+
+                        'delete' => [
+                            'reset' => 'Lost :amount from modding post deletion of :post',
+                        ],
+
+                        'restore' => [
+                            'give' => 'Received :amount from modding post restoration of :post',
+                        ],
+
+                        'vote' => [
+                            'give' => 'Received :amount from obtaining votes in modding post of :post',
+                            'reset' => 'Lost :amount from losing votes in modding post of :post',
+                        ],
+                    ],
+
+                    'forum_post' => [
+                        'give' => 'Received :amount from :giver for a post at :post',
+                        'revoke' => 'Denied kudosu by :giver for the post :post',
+                    ],
+                ],
             ],
             'me' => [
                 'title' => 'me!',
             ],
             'medals' => [
+                'empty' => "This user hasn't gotten any yet. ;_;",
                 'title' => 'Medals',
             ],
             'recent_activities' => [
@@ -132,32 +178,12 @@ return [
                 'none' => 'None... yet.',
             ],
         ],
-        'first_members' => 'here since the beginning',
-        'is_supporter' => 'osu!supporter',
-        'is_developer' => 'osu!developer',
-        'lastvisit' => 'Last seen :date.',
-        'joined_at' => 'joined :date',
-        'more_achievements' => 'and more',
-        'origin' => [
-            'age' => ':age years old.',
-            'country' => 'From :country.',
-            'country_age' => ':age years old from :country.',
-        ],
         'page' => [
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
             'restriction_info' => "You need to be an <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> to unlock this feature.",
         ],
-        'plays_with' => [
-            '_' => 'Plays with',
-            'keyboard' => 'Keyboard',
-            'mouse' => 'Mouse',
-            'tablet' => 'Tablet',
-            'touch' => 'Touch Screen',
-        ],
-        'missingtext' => 'You might have made a typo! (or the user may have been banned)',
-        'page_description' => 'osu! - Everything you ever wanted to know about :username!',
         'rank' => [
             'country' => 'Country rank for :mode',
             'global' => 'Global rank for :mode',
@@ -173,7 +199,6 @@ return [
             'total_hits' => 'Total Hits',
             'total_score' => 'Total Score',
         ],
-        'title' => ":username's profile",
     ],
 
     'verify' => [

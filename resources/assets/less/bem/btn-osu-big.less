@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,37 +14,84 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .btn-osu-big {
+  @top: btn-osu-big;
+
+  .reset-input();
+  .link-plain();
   .default-border-radius();
   border: none;
 
   display: inline-block;
 
-  padding: 0 @spacing;
-
   background-color: @blue-darker;
   background-image: url('/images/backgrounds/buttonblue@2x.png');
   background-size: cover;
   background-position: 50% 50%;
-  outline: none;
-
-  color: @gray-f;
-  font-weight: 600;
   transition: background-position 120ms;
 
+  padding: 5px;
+  color: @gray-f;
+  font-size: @font-size--normal;
+  font-weight: 600;
+  overflow: hidden;
+  cursor: pointer;
+  text-transform: none;
+
   &:hover,
-  &:focus {
+  &:focus,
+  &:active {
     color: @gray-f;
-    text-decoration: none;
-    background-position: calc(50% ~'-' (@spacing * 2)) 50%;
+    background-position: calc(50% ~'-' 20px) 50%;
+  }
+
+  &--beatmap-discussion {
+    margin-left: 5px;
   }
 
   &--beatmapset-header {
-    width: 160px;
+    width: 120px;
     height: 45px;
-    margin: 0 (@spacing / 2) (@spacing / 2) 0;
+    margin: 0 5px 5px 0;
+  }
+
+  &--beatmapset-header-square {
+    width: 45px;
+    height: 45px;
+    margin: 0 5px 5px 0;
+  }
+
+  &--beatmapset-header-square-unfavourite {
+    background-image: url('/images/backgrounds/buttonpink@2x.png');
+  }
+
+  &[disabled] {
+    &:hover,
+    &:focus,
+    &:active {
+      background-position: 50% 50%;
+    }
+
+    &::before {
+      .full-size();
+      border-radius: inherit;
+      background-color: fade(@gray-f, 50%);
+    }
+  }
+
+  &--contest-download {
+    width: 300px;
+    height: 45px;
+    margin: 0 5px 5px 0;
+    &:hover {
+      background-position: calc(50% ~'-' (20px - 2px)) 50%;
+    }
+  }
+
+  &--full {
+    width: 100%;
   }
 
   &__content {
@@ -54,19 +101,31 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    &--center {
+      justify-content: center;
+    }
+  }
+
+  &__fileupload {
+    position: absolute;
+    left: -200%;
+    top: -200%;
+  }
+
+  &__icon {
+    margin: 0 5px;
+    font-size: 150%;
   }
 
   &__left {
+    margin: 0 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
   &__text-bottom {
-    font-size: 10px;
-  }
-
-  &__text-top {
-    font-size: 14px;
+    font-size: @font-size--small;
   }
 }

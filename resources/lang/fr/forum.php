@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -24,7 +24,7 @@ return [
         'create' => [
             '_' => 'Définir la bannière',
             'button' => 'Uploader une image',
-            'info' => 'La bannière devrait avoir les résolutions :dimensions. Vous pouvez aussi "dropper" l\'image ici.',
+            'info' => "La bannière devrait avoir les résolutions :dimensions. Vous pouvez aussi \"dropper\" l'image ici.",
         ],
 
         'destroy' => [
@@ -34,7 +34,7 @@ return [
     ],
 
     'email' => [
-        'new_reply' => '[osu!] :title',
+        'new_reply' => '[osu!] Nouvelle réponse pour le sujet ":title"',
     ],
 
     'forums' => [
@@ -138,12 +138,12 @@ return [
                 'length_days_suffix' => 'jours',
                 'length_info' => 'Laissez blanc pour un sondage sans fin',
                 'max_options' => 'Réponses par utlisateur',
-                'max_options_info' => 'C\'est le nombre de réponses qu\'un utilisateur peut choisir.',
+                'max_options_info' => "C'est le nombre de réponses qu'un utilisateur peut choisir.",
                 'options' => 'Réponses',
                 'options_info' => 'Placez chaque réponse sur une ligne.',
                 'title' => 'Question',
                 'vote_change' => 'Autoriser le changement de vote.',
-                'vote_change_info' => 'Si c\'est activé, vous permettez aux utilisateurs de changer leur vote.',
+                'vote_change_info' => "Si c'est activé, vous permettez aux utilisateurs de changer leur vote.",
             ],
         ],
 
@@ -153,9 +153,11 @@ return [
         ],
 
         'lock' => [
-            'locked-0' => 'Ce sujet a été débloqué',
-            'locked-1' => 'Ce sujet a été verouillé',
-            'is_locked' => 'Ce sujet est verouillé et aucune réponse ne peut être ajoutée',
+            'is_locked' => 'Ce sujet est verouillé, vous ne pouvez pas répondre',
+            'lock-0' => 'Déverouiller le sujet',
+            'lock-1' => 'Verouiller le sujet',
+            'state-0' => 'Le sujet a été déverouillé',
+            'state-1' => 'Le sujet a été verouillé',
         ],
 
         'moderate_move' => [
@@ -170,6 +172,8 @@ return [
         ],
 
         'show' => [
+            'total_posts' => 'Total des posts',
+
             'feature_vote' => [
                 'current' => 'Priorité : +:count',
                 'do' => 'Promouvoir cette requête',
@@ -193,10 +197,10 @@ return [
         ],
 
         'watch' => [
+            'state-0' => 'Vous ne suivez pas ce sujet',
+            'state-1' => 'Vous suivez ce sujet',
             'watch-0' => 'Se désabonner du sujet',
-            'watch-1' => 'S\'abonner au sujet',
-            'watched-0' => 'Vous ne suivez pas ce sujet',
-            'watched-1' => 'Vous suivez ce sujet',
+            'watch-1' => "S'abonner au sujet",
         ],
     ],
 

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -24,8 +24,8 @@
     border: none;
     box-shadow: none;
     background-color: #fff;
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 0;
+    padding-right: 0;
 }
 </style>
 
@@ -37,7 +37,7 @@
     </div>
 </div>
 @else
-@if(Input::has("thanks"))
+@if(Request::has('thanks'))
 <div class="osu-layout__row osu-layout__row--page osu-layout__row--bootstrap no-print">
     <div class="col-xs-12">
         <h1>Thanks for your order!</h1>

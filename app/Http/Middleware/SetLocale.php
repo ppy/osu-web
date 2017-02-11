@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,9 +17,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Middleware;
 
 use App;
+use Auth;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -35,21 +37,18 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next)
     {
-        $locale =
-            presence($request->input('locale')) ??
-            presence($request->cookie('locale')) ??
-            locale_accept_from_http($request->server('HTTP_ACCEPT_LANGUAGE'));
+        if (Auth::check()) {
+            $locale = Auth::user()->user_lang;
+        } else {
+            $locale =
+                presence($request->cookie('locale')) ??
+                locale_accept_from_http($request->server('HTTP_ACCEPT_LANGUAGE'));
+        }
 
         $locale = get_valid_locale($locale);
 
         App::setLocale($locale);
 
-        $response = $next($request);
-
-        if (method_exists($response, 'withCookie')) {
-            return $response->withCookie(cookie()->forever('locale', $locale));
-        } else {
-            return $response;
-        }
+        return $next($request);
     }
 }

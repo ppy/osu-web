@@ -1,5 +1,5 @@
 {{--
-    Copyright 2016 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -28,20 +28,20 @@
     'class' => 'forum-poll js-checkbox-validation',
 ]) !!}
     <h2 class="forum-poll__row forum-poll__row--title">
-        {{ $topic->poll_title }}
+        {!! $topic->pollTitleHTML() !!}
     </h2>
 
     <table class="forum-poll__row forum-poll__row--options">
         <tbody>
-            @foreach ($topic->pollOptions as $pollOption)
-                @include('forum.topics._poll_row', compact($pollOption))
+            @foreach ($pollSummary['options'] as $pollOptionId => $pollOption)
+                @include('forum.topics._poll_row', compact($pollOptionId, $pollOption, $pollSummary))
             @endforeach
         </tbody>
     </table>
 
     <div class="forum-poll__row forum-poll__row--details">
         <div class="forum-poll__detail">
-            {{ trans('forum.topics.show.poll.detail.total', ['count' => $topic->poll()->totalVotes()]) }}
+            {{ trans('forum.topics.show.poll.detail.total', ['count' => $pollSummary['total']]) }}
         </div>
 
         @if ($topic->pollEnd() !== null)

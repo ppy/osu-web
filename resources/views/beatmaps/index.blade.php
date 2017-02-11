@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
   'current_action' => 'index',
   'title' => 'Beatmaps Listing',
   'pageDescription' => 'Beatmaps Listing',
-  'body_additional_classes' => 'data-no-turbolink'
+  'body_additional_classes' => 'osu-layout--body-ddd'
 ])
 
 @section("content")
@@ -43,5 +43,5 @@
     {!! json_encode($beatmaps) !!}
   </script>
 
-  <script src="{{ elixir("js/react/beatmaps.js") }}" data-turbolinks-track></script>
+  <script src="{{ elixir("js/react/beatmaps.js") }}" data-turbolinks-track="reload"></script>
 @stop

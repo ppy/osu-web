@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -89,10 +89,10 @@
 
         <div id="topic-post-form" class="osu-layout__row">
             <div class="forum-post">
-                @if (Auth::user()->is_special)
+                @if (Auth::user()->isSpecial())
                     <div
                         class="forum-post__stripe"
-                        style="{{ user_colour_style(Auth::user()->user_colour, "background-color") }}"
+                        style="{{ user_color_style(Auth::user()->user_colour, "background-color") }}"
                     ></div>
                 @endif
 

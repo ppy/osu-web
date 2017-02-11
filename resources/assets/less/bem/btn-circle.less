@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,7 +14,6 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 .btn-circle {
@@ -22,6 +21,7 @@
   .center-content();
   .circle(30px);
   .default-box-shadow();
+  cursor: pointer;
   text-shadow: inherit;
 
   flex: none;
@@ -51,7 +51,7 @@
 
   &--bbcode {
     .default-text-shadow();
-    margin: 0 (@spacing / 2) (@spacing / 2) 0;
+    margin: 0 5px 5px 0;
     font-size: 13px;
     box-shadow: none;
 
@@ -89,7 +89,7 @@
   &--topic-entry {
     .circle(20px);
     box-shadow: none;
-    margin: (@spacing / 4);
+    margin: 2.5px;
     font-size: 10px;
 
     &:focus,
@@ -100,6 +100,6 @@
   }
 
   &--topic-nav {
-    margin: 0 (@spacing / 2);
+    margin: 0 5px;
   }
 }

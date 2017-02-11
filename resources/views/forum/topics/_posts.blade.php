@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,8 +15,12 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $postPosition = $firstPostPosition;
+@endphp
+
 @foreach($posts as $post)
-    <?php
+    @php
         $withDeleteLink = Auth::check()
             ? $post->poster_id === Auth::user()->user_id
             : false;
@@ -24,14 +28,21 @@
         if (!$withDeleteLink) {
             $withDeleteLink = priv_check('ForumPostDelete', $post)->can();
         }
-    ?>
+
+        if ($post->trashed() && $postPosition > 0) {
+            $postPosition--;
+        }
+    @endphp
     @include('forum.topics._post', [
         'post' => $post,
         'options' => [
             'deleteLink' => $withDeleteLink,
             'editLink' => priv_check('ForumPostEdit', $post)->can(),
-            'postPosition' => $postsPosition[$post->post_id],
+            'postPosition' => $postPosition,
             'replyLink' => priv_check('ForumTopicReply', $topic)->can(),
         ],
     ])
+    @php
+        $postPosition++;
+    @endphp
 @endforeach

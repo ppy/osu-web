@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -28,14 +28,11 @@ return [
             'generic' => 'An error occured. Try refreshing the page.',
         ],
     ],
-    'community' => [
-        'slack' => [
-            'not-eligible' => 'Your account is not eligible for the Slack invite.',
-            'slack-error' => 'An error has occured on the Slack servers. Please try again in a few minutes.',
-        ],
-    ],
     'beatmaps' => [
         'standard-converts-only' => 'Only the osu! mode can have scores in other modes.',
+    ],
+    'beatmapsets' => [
+        'too-many-favourites' => 'You have to many favourited beatmaps! Please unfavourite one before continuing.',
     ],
     'logged_out' => 'You have been logged out. Please login and retry.',
     'supporter_only' => 'You must be a supporter to use this feature.',

@@ -1,20 +1,21 @@
 ###
-# Copyright 2015-2016 ppy Pty. Ltd.
+#    Copyright 2015-2017 ppy Pty. Ltd.
 #
-# This file is part of osu!web. osu!web is distributed with the hope of
-# attracting more community contributions to the core ecosystem of osu!.
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
 #
-# osu!web is free software: you can redistribute it and/or modify
-# it under the terms of the Affero GNU General Public License version 3
-# as published by the Free Software Foundation.
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
 #
-# osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Affero General Public License for more details.
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
 #
-# You should have received a copy of the GNU Affero General Public License
-# along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
 {div, span, table, tbody, td, th, tr} = React.DOM
 el = React.createElement
 
@@ -78,21 +79,9 @@ class BeatmapsetPage.Stats extends React.Component
             width: '0%'
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--basic',
-        for stat in ['total_length', 'bpm', 'count_circles', 'count_sliders']
-          value = if stat == 'bpm' then @props.beatmapset.bpm else @props.beatmap[stat]
-
-          if stat == 'total_length'
-            value = moment(0).seconds(value).format 'm:ss'
-
-          div
-            className: 'beatmapset-stats__basic'
-            key: stat
-            title: osu.trans "beatmaps.beatmapset.show.stats.#{stat}"
-            div
-              className: 'beatmapset-stats__icon'
-              style:
-                backgroundImage: "url(/images/layout/beatmapset-page/#{stat}.svg)"
-            span null, value.toLocaleString()
+        el BeatmapBasicStats,
+          beatmapset: @props.beatmapset
+          beatmap: @props.beatmap
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--advanced',
         table className: 'beatmap-stats-table',
@@ -121,7 +110,7 @@ class BeatmapsetPage.Stats extends React.Component
                     div
                       className: 'bar__fill'
                       style:
-                        width: "#{value * 10}%"
+                        width: "#{10 * Math.min 10, value}%"
                 td className: 'beatmap-stats-table__value', valueText
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--rating',

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -48,6 +48,35 @@
                 </div>
             </div>
         </div>
+
+        @if (isset($search))
+            <div class="osu-nav__col">
+                <form class="header-search-box js-parent-focus" action="{{ $search['url'] }}" data-loading-overlay="0">
+                    <input class="header-search-box__input" name="q" />
+                    <span class="header-search-box__icon">
+                        <i class="fa fa-fw fa-search"></i>
+                    </span>
+
+                    @foreach ($search['params'] ?? [] as $name => $value)
+                        <input type="hidden" name="{{ $name }}" value="{{ $value }}">
+                    @endforeach
+                </form>
+            </div>
+        @endif
+
+        @if (Auth::check())
+            <div class="osu-nav__col">
+                <a
+                    href="{{ route('notifications.index') }}"
+                    class="notification-icon{{Auth::user()->notificationCount() > 0 ? ' notification-icon--glow' : ''}}"
+                >
+                    @if (Auth::user()->notificationCount() > 0)
+                        <span class="notification-icon__count">{{ number_format(Auth::user()->notificationCount())  }}</span>
+                    @endif
+                    <i class="fa fa-inbox"></i>
+                </a>
+            </div>
+        @endif
 
         <a class="osu-nav__col u-nav-float js-nav-switch js-user-header" href="#" data-nav-mode="user">
             @include('layout._header_user', ['_user' => Auth::user()])

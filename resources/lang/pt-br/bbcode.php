@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -20,19 +20,19 @@
 
 return [
     'bold' => 'Negrito',
-    'heading' => 'Header',
+    'heading' => 'Cabeçalho',
     'image' => 'Imagem',
     'italic' => 'Itálico',
     'link' => 'Link',
     'list' => 'Lista',
-    'list_numbered' => 'Lista Numerada',
+    'list_numbered' => 'Lista numerada',
     'size' => [
-        '_' => 'Tamanho da Fonte',
+        '_' => 'Tamanho da fonte',
         'tiny' => 'Minúscula',
         'small' => 'Pequena',
         'normal' => 'Normal',
         'large' => 'Grande',
     ],
-    'spoilerbox' => 'Caixa de Spoiler',
+    'spoilerbox' => 'Caixa de spoiler',
     'strikethrough' => 'Riscado',
 ];

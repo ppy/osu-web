@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -25,7 +25,7 @@ return [
 
     'checkout' => [
         'pay' => 'Pague com Paypal',
-        'delayed_shipping' => 'Nós estamos com muitos pedidos! Você pode fazer seu pedido, mas espere um **atraso de 1-2 semanas** enquanto processamos os pedidos já existentes.',
+        'delayed_shipping' => 'Nós estamos com muitos pedidos! Você pode fazer o seu pedido, mas espere um **atraso adicional de 1-2 semanas** enquanto processamos os pedidos já existentes.',
     ],
 
     'order' => [
@@ -38,14 +38,14 @@ return [
         'name' => 'Nome',
 
         'stock' => [
-            'out' => 'Atualmente fora de estoque :(. Volte daqui um tempo.',
-            'out_with_alternative' => 'Esta variação está fora de estoque :(. Tente outra ou volte daqui um tempo.',
+            'out' => 'Atualmente fora de estoque :(. Volte em breve.',
+            'out_with_alternative' => 'Esta variação está fora de estoque :(. Tente outra ou volte em breve.',
         ],
 
-        'add_to_cart' => 'Adicionar ao Carrinho',
-        'notify' => 'Me avise quando estiver disponível!',
+        'add_to_cart' => 'Adicionar ao carrinho',
+        'notify' => 'Avise-me quando estiver disponível!',
 
-        'notification_success' => 'você será avisado quando tivermos estoque. click :link para cancelar',
+        'notification_success' => 'você será avisado quando tivermos estoque. clique :link para cancelar',
         'notification_remove_text' => 'aqui',
 
         'notification_in_stock' => 'Este produto já está em estoque!',

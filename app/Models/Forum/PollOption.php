@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,8 +17,10 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models\Forum;
 
+use App\Libraries\BBCodeForDB;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,6 +31,15 @@ class PollOption extends Model
     public $incrementing = false;
     public $timestamps = false;
     protected $guarded = [];
+
+    // for bbcode_uid
+    public function post()
+    {
+        return $this
+            ->belongsTo(Post::class, 'topic_id', 'topic_id')
+            ->orderBy('post_id', 'ASC')
+            ->limit(1);
+    }
 
     public function topic()
     {
@@ -59,7 +70,7 @@ class PollOption extends Model
                 $votedByUser = in_array($poll->poll_option_id, $userVotes, true);
 
                 $summary['options'][$poll->poll_option_id] = [
-                    'text' => $poll->poll_option_text,
+                    'textHTML' => $poll->optionTextHTML(),
                     'total' => $poll->poll_option_total,
                     'voted_by_user' => $votedByUser,
                 ];
@@ -95,5 +106,20 @@ class PollOption extends Model
         }
 
         return $this->votes()->where('vote_user_id', $user->user_id)->exists();
+    }
+
+    public function setPollOptionTextAttribute($value)
+    {
+        $this->attributes['poll_option_text'] = (new BBCodeForDB($value))->generate();
+    }
+
+    public function optionTextHTML()
+    {
+        return bbcode($this->poll_option_text, $this->post->bbcode_uid, true);
+    }
+
+    public function optionTextRaw()
+    {
+        return bbcode_for_editor($this->poll_option_text, $this->post->bbcode_uid);
     }
 }

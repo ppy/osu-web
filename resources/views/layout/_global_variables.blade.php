@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,6 @@
     var section = "{{ $current_section }}";
     var page = "{{ $current_action }}";
     var logoutUrl = "{{ route("users.logout") }}";
-    var helpUrl = "{{ route("wiki") }}";
     var canonicalUrl = "{{ $canonicalUrl or '' }}";
     var reloadUrl = "{{ $reloadUrl or '' }}";
 </script>

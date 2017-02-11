@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -19,6 +19,12 @@
  */
 
 return [
+    'required' => ':attribute is required.',
+
+    'beatmap_discussion_post' => [
+        'first_post' => 'Can not delete starting post.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Can only vote a feature request.',
@@ -26,14 +32,14 @@ return [
         ],
 
         'poll_vote' => [
-            'invalid' => 'Invalid option specificied.',
+            'invalid' => 'Invalid option specified.',
         ],
 
         'topic_poll' => [
             'duplicate_options' => 'Duplicated option is not allowed.',
             'invalid_max_options' => 'Option per user may not exceed the number of available options.',
             'minimum_one_selection' => 'A minimum of one option per user is required.',
-            'minimum_two' => 'Need at least two options.',
+            'minimum_two_options' => 'Need at least two options.',
             'too_many_options' => 'Exceeded maximum number of allowed options.',
         ],
 
@@ -41,6 +47,4 @@ return [
             'too_many' => 'Selected more options than allowed.',
         ],
     ],
-
-    'required' => ':attribute is required.',
 ];

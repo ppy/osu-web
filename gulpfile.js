@@ -1,27 +1,28 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 var elixir = require('laravel-elixir');
 var path = require('path');
-var bower_root = '../../../bower_components/'; // relative from resources/assets/*
+var util = require('gulp-util');
+
+// relative from resources/assets/*/
 var composer_root = '../../../vendor/';
 var node_root = '../../../node_modules/';
-var util = require('gulp-util');
 
 /*
  * The merge rules plugin is kind of buggy and broke safari.
@@ -81,10 +82,9 @@ elixir(function(mix) {
   ], 'resources/assets/js/build/app-main.js')
   .scripts([
     path.join(node_root, 'turbolinks/dist/turbolinks.js'),
-    path.join(node_root, 'jquery/dist/jquery.js'),
-    path.join(bower_root, 'jquery-ujs/src/rails.js'),
-    path.join(bower_root, 'ResponsiveSlides.js/responsiveslides.js'),
-    path.join(bower_root, 'qtip2/jquery.qtip.js'),
+    path.join(node_root, 'jquery/dist/jquery' + min + '.js'),
+    path.join(node_root, 'jquery-ujs/src/rails.js'),
+    path.join(node_root, 'qtip2/dist/jquery.qtip' + min + '.js'),
     path.join(node_root, 'jquery.scrollto/jquery.scrollTo.js'),
     path.join(node_root, 'jquery-ui/ui/data.js'),
     path.join(node_root, 'jquery-ui/ui/scroll-parent.js'),
@@ -104,6 +104,12 @@ elixir(function(mix) {
     path.join(node_root, 'moment/moment.js'),
     path.join(node_root, 'slick-carousel/slick/slick.js'),
     path.join(node_root, 'js-cookie/src/js.cookie.js'),
+
+    path.join(node_root, 'react-height/build/react-height' + min + '.js'),
+    path.join(node_root, 'react-motion/build/react-motion.js'),
+    path.join(node_root, 'react-collapse/build/react-collapse' + min + '.js'),
+  ], 'public/js/vendor.js')
+  .scripts([
     'ga.js',
     'messages.js',
     'laroute.js',
@@ -117,10 +123,6 @@ elixir(function(mix) {
     'react/beatmaps/*.coffee',
     'react/beatmaps.coffee'
   ], 'public/js/react/beatmaps.js')
-  .coffee([
-    'react/slack-page/*.coffee',
-    'react/slack-page.coffee'
-  ], 'public/js/react/slack-page.js')
   .coffee([
     'react/status-page/*.coffee',
     'react/status-page.coffee'
@@ -152,9 +154,9 @@ elixir(function(mix) {
   .version([
     'css/app.css',
     'js/app.js',
+    'js/vendor.js',
     'js/react/profile-page.js',
     'js/react/beatmaps.js',
-    'js/react/slack-page.js',
     'js/react/status-page.js',
     'js/react/beatmap-discussions.js',
     'js/react/beatmapset-page.js',

@@ -1,20 +1,19 @@
-###*
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
+###
+#    Copyright 2015-2017 ppy Pty. Ltd.
+#
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
+#
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
+#
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
 {div} = React.DOM
@@ -236,15 +235,13 @@ class Beatmaps.Main extends React.Component
     $(window).off '.beatmaps'
 
   render: ->
-    if @state.beatmaps.length > 0
-      searchBackground = @state.beatmaps[0].covers.cover
-    else
-      searchBackground = ''
+    searchBackground = @state.beatmaps[0]?.covers?.cover
 
     div className: 'osu-layout__section',
       el(Beatmaps.SearchPanel, background: searchBackground, filters: @state.filters)
-      div id: 'beatmaps-listing', className: 'osu-layout__row osu-layout__row--page',
-        if currentUser.id?
-          el(Beatmaps.SearchSort, sorting: @state.sorting)
-        el(Beatmaps.BeatmapsListing, beatmaps: @state.beatmaps, loading: @state.loading)
-        el(Beatmaps.Paginator, paging: @state.paging)
+      div className: 'osu-layout__row osu-layout__row--page-compact',
+        div className: 'beatmapsets',
+          if currentUser.id?
+            el(Beatmaps.SearchSort, sorting: @state.sorting)
+          el(Beatmaps.BeatmapsListing, beatmaps: @state.beatmaps, loading: @state.loading)
+          el(Beatmaps.Paginator, paging: @state.paging)

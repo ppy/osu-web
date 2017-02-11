@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -28,12 +28,6 @@ return [
             'generic' => 'Wystąpił błąd. Spróbuj odświeżyć stronę.',
         ],
     ],
-    'community' => [
-        'slack' => [
-            'not-eligible' => 'Twoje konto nie może otrzymać zaproszenia do Slacka.',
-            'slack-error' => 'Na serwerach Slacka wystąpił błąd. Spróbuj ponownie za kilka minut.',
-        ],
-      ],
     'logged_out' => 'Zostałeś wylogowany. Zaloguj się i spróbuj ponownie.',
     'supporter_only' => 'Musisz być supporterem, aby używać tej funkcji.',
     'no_restricted_access' => 'Nie możesz wykonać tej operacji, jeśli twoje konto jest zbanowane.',

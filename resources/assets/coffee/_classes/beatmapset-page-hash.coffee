@@ -1,28 +1,30 @@
 ###
-# Copyright 2015 ppy Pty. Ltd.
+#    Copyright 2015-2017 ppy Pty. Ltd.
 #
-# This file is part of osu!web. osu!web is distributed with the hope of
-# attracting more community contributions to the core ecosystem of osu!.
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
 #
-# osu!web is free software: you can redistribute it and/or modify
-# it under the terms of the Affero GNU General Public License version 3
-# as published by the Free Software Foundation.
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
 #
-# osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Affero General Public License for more details.
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
 #
-# You should have received a copy of the GNU Affero General Public License
-# along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
 class @BeatmapsetPageHash
   @parse: (hash) ->
-    hash = hash[1..]
+    [mode, id] = hash[1..].split '/'
 
-    split = hash.split '/'
-    playmode: split[0]
-    beatmapId: parseInt split[1], 10
+    playmode: if mode != '' then mode
+    beatmapId: if id? then parseInt(id, 10)
 
-  @generate: ({beatmapId, playmode}) ->
-    "##{playmode}/#{beatmapId}"
+  @generate: ({beatmap, mode}) ->
+    if beatmap?
+      "##{beatmap.mode}/#{beatmap.id}"
+    else
+      "##{mode}"

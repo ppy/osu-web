@@ -42,6 +42,8 @@ apt-get install \
     wget \
     -q -y --force-yes
 
+npm install -g yarn
+
 update-rc.d php7.0-fpm defaults
 
 rm /etc/nginx/sites-enabled/default

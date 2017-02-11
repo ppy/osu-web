@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -20,12 +20,20 @@
 
 return [
     'beatmap_discussion' => [
+        'destroy' => [
+            'has_reply' => 'Can not delete discussion with replies',
+        ],
         'nominate' => [
             'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
         ],
         'resolve' => [
             'general_discussion' => 'General discussion can not be resolved.',
             'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
+        ],
+
+        'vote' => [
+            'limit_exceeded' => 'Please wait a while before casting more votes',
+            'owner' => 'Can not vote own discussion!',
         ],
     ],
 

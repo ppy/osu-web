@@ -1,5 +1,5 @@
 {{--
-    Copyright 2016 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -31,5 +31,5 @@
         var full = {!! json_encode($full) !!};
     </script>
 
-    <script src="{{ elixir("js/react/mp-history.js") }}" data-turbolinks-track></script>
+    <script src="{{ elixir("js/react/mp-history.js") }}" data-turbolinks-track="reload"></script>
 @endsection

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,17 +17,18 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers\API;
 
-use Auth;
-use Request;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\PrivateMessage;
+use App\Models\User;
+use App\Transformers\API\Chat\ChannelTransformer;
 use App\Transformers\API\Chat\MessageTransformer;
 use App\Transformers\API\Chat\PrivateMessageTransformer;
-use App\Transformers\API\Chat\ChannelTransformer;
-use App\Models\User;
+use Auth;
+use Request;
 
 class ChatController extends Controller
 {
@@ -74,7 +75,7 @@ class ChatController extends Controller
         $since = intval(Request::input('since'));
         $limit = min(50, intval(Request::input('limit', 50)));
 
-        $messages = PrivateMessage::toOrFrom($this->current_user->user_id)
+        $messages = PrivateMessage::toOrFrom(Auth::user()->user_id)
             ->with('sender')
             ->with('receiver');
 

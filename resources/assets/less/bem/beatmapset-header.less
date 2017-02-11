@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,7 +14,6 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 .beatmapset-header {
@@ -22,22 +21,19 @@
 
   .default-box-shadow();
 
-  &__avatar {
-    margin-right: (@spacing / 2);
-  }
-
-  &__avatar-box {
-    display: flex;
-
-    padding-bottom: @spacing;
-  }
-
   &__box {
     display: flex;
     flex-direction: column;
-    flex: 1;
 
-    padding: (@spacing * 2) @spacing (@spacing * 5 / 2);
+    padding: 20px 10px 25px;
+
+    &--main {
+      @media @desktop {
+        flex: 1;
+      }
+
+      align-self: stretch;
+    }
 
     &--stats {
       padding-bottom: 0;
@@ -45,15 +41,21 @@
     }
   }
 
+  &__beatmap-picker-box {
+    flex: 1 0 auto;
+  }
+
   &__buttons {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 10px;
   }
 
   &__content {
+    .default-header-overlay();
     display: flex;
     flex-direction: column;
-    padding: 0 (@spacing * 3);
+    padding: 0 30px;
 
     @media @desktop {
       align-items: flex-end;
@@ -62,7 +64,21 @@
 
     background-size: cover;
     background-position: center;
+    background-color: @gray-3;
     min-height: @header-height;
+  }
+
+  &__availability-info {
+    font-size: @font-size--title-small;
+    padding: 10px;
+    margin-top: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    color: @yellow-dark;
+  }
+
+  &__availability-link {
+    padding-top: 10px;
+    font-size: @font-size--small;
   }
 
   &__details-text {
@@ -86,7 +102,7 @@
     }
 
     &:last-of-type {
-      padding-bottom: @spacing * 2;
+      padding-bottom: 20px;
     }
   }
 
@@ -94,16 +110,11 @@
     font-size: 17px;
     font-weight: 600;
 
-    padding-right: @spacing * 0.5;
+    padding-right: 5px;
 
     color: #ffffff;
 
     .default-text-shadow;
-  }
-
-  &__overlay {
-    .full-size();
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
   }
 
   &__star-difficulty {
@@ -113,34 +124,10 @@
     color: @yellow;
   }
 
-  &__user-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  &__user-text {
-    font-size: 11px;
-    color: @gray-f;
-    .default-text-shadow;
-
-    &--mapper {
-      font-style: italic;
-    }
-
-    &--date {
-      font-weight: 700;
-    }
-
-    &:first-of-type {
-      padding-bottom: @spacing * 0.5;
-    }
-  }
-
   &__value {
     font-size: 12px;
     font-weight: 500;
-    padding-right: @spacing;
+    padding-right: 10px;
 
     color: #ffffff;
 
@@ -149,6 +136,24 @@
 
   &__value-icon {
     padding-right: 2px;
+    color: @gray-f;
+
+    &--favourites {
+      &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+        color: @gray-f;
+      }
+
+      &:hover {
+        color: @pink-dark;
+      }
+    }
+
+    &--favourited {
+      &:hover, &:link {
+        color: @pink-darker;
+      }
+    }
   }
 
   &__value-name {

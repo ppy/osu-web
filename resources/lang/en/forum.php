@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -45,11 +45,13 @@ return [
 
     'pinned_topics' => 'Pinned Topics',
     'post' => [
-        'confirm_delete' => 'Really delete post?',
+        'confirm_destroy' => 'Really delete post?',
+        'confirm_restore' => 'Really restore post?',
         'edited' => 'Last edited by :user on :when, edited :count times in total.',
         'posted_at' => 'posted :when',
         'actions' => [
-            'delete' => 'Delete post',
+            'destroy' => 'Delete post',
+            'restore' => 'Restore post',
             'edit' => 'Edit post',
         ],
     ],
@@ -173,6 +175,7 @@ return [
 
         'show' => [
             'total_posts' => 'Total Posts',
+            'deleted-posts' => 'Deleted Posts',
 
             'feature_vote' => [
                 'current' => 'Current Priority: +:count',

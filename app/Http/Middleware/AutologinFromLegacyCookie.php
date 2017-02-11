@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use App\Models\LegacySession;
+use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
 class AutologinFromLegacyCookie

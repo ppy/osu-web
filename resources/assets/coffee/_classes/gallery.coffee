@@ -1,25 +1,30 @@
 ###
-# Copyright 2015 ppy Pty. Ltd.
+#    Copyright 2015-2017 ppy Pty. Ltd.
 #
-# This file is part of osu!web. osu!web is distributed with the hope of
-# attracting more community contributions to the core ecosystem of osu!.
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
 #
-# osu!web is free software: you can redistribute it and/or modify
-# it under the terms of the Affero GNU General Public License version 3
-# as published by the Free Software Foundation.
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
 #
-# osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Affero General Public License for more details.
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
 #
-# You should have received a copy of the GNU Affero General Public License
-# along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
 class @Gallery
   constructor: ->
     @pswp = document.getElementsByClassName('pswp')
 
-    $(document).on 'click', '.js-gallery', (e) =>
+    $(document).on 'click', '.js-gallery', @initiateOpen
+    $(document).on 'click', '.js-gallery-thumbnail', @switchPreview
+
+
+  initiateOpen: (e) =>
       $target = $(e.currentTarget)
       return if $target.parents('a').length
 
@@ -83,3 +88,20 @@ class @Gallery
         y: center[1] - scaledImageDim[1] / 2
         w: scaledImageDim[0]
       }
+
+
+  switchPreview: (e) =>
+    e.preventDefault()
+
+    $link = $(e.currentTarget)
+    {galleryId, index} = $link[0].dataset
+    $previews = $(".js-gallery[data-gallery-id='#{galleryId}']")
+    $links = $(".js-gallery-thumbnail[data-gallery-id='#{galleryId}']")
+
+    for pair in _.zip($links, $previews)
+      if index == pair[0].dataset.index
+        pair[0].classList.add 'js-gallery-thumbnail--active'
+        Fade.in pair[1]
+      else
+        pair[0].classList.remove 'js-gallery-thumbnail--active'
+        Fade.out pair[1]

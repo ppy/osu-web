@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -17,8 +17,8 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class BaseTables extends Migration
 {
@@ -1352,6 +1352,20 @@ class BaseTables extends Migration
         });
         $this->comment('osu_mod_queue', 'Data table for BanchoBot mod queue ~mm201');
         $this->setRowFormat('osu_mod_queue', 'DYNAMIC');
+
+        Schema::create('phpbb_topics_watch', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
+
+            $table->unsignedMediumInteger('user_id')->default(0);
+            $table->unsignedMediumInteger('topic_id')->default(0);
+            $table->unsignedTinyInteger('notify_status')->default(0);
+
+            $table->index('topic_id', 'topic_id');
+            $table->index('notify_status', 'notify_stat');
+            $table->primary(['user_id', 'topic_id']);
+        });
+        $this->setRowFormat('phpbb_topics_watch', 'COMPRESSED');
     }
 
     /**
@@ -1412,6 +1426,7 @@ class BaseTables extends Migration
         Schema::drop('phpbb_groups');
         Schema::drop('phpbb_log');
         Schema::drop('osu_mod_queue');
+        Schema::drop('phpbb_topics_watch');
     }
 
     private function setRowFormat($table, $format)

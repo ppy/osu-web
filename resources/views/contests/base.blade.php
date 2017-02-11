@@ -1,5 +1,5 @@
 {{--
-    Copyright 2016 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -18,25 +18,27 @@
 @extends('master', [
     'current_section' => 'community',
     'current_action' => 'contests',
-    'title' => "Contest: {$contest->name}",
-    'pageDescription' => strip_tags(Markdown::convertToHtml($contest->currentDescription())),
+    'title' => "Contest: {$contestMeta->name}",
+    'pageDescription' => strip_tags(Markdown::convertToHtml($contestMeta->currentDescription())),
     'body_additional_classes' => 'osu-layout--body-darker'
 ])
 
 @section('content')
     @include('objects.css-override', ['mapping' => [
-        '.osu-page-header-v2--contests' => $contest->header_url,
+        '.osu-page-header-v2--contests' => $contestMeta->header_url,
     ]])
 
     <div class="osu-layout__row">
         <div class="osu-page-header-v2 osu-page-header-v2--contests">
             <div class="osu-page-header-v2__overlay"></div>
-            <div class="osu-page-header-v2__title">{{$contest->name}}</div>
+            <div class="osu-page-header-v2__title">{{$contestMeta->name}}</div>
         </div>
     </div>
     <div class="osu-layout__row osu-layout__row--page-contests">
         <div class="page-contents__content--contests">
-            @yield('contest-content')
+            <div class='contest'>
+                @yield('contest-content')
+            </div>
         </div>
     </div>
 @endsection

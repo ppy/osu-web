@@ -1,5 +1,5 @@
 {{--
-    Copyright 2016 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -44,7 +44,7 @@
                                 @endif
                             </div>
                             <a href="{{route('artist.show', ['id' => $artist->id])}}" class="artist__name">{{$artist->name}}</a>
-                            <div class="artist__track-count">{{trans_choice('artist.songs', $artist->tracks_count)}}</div>
+                            <div class="artist__track-count">{{trans_choice('artist.songs.count', $artist->tracks_count)}}</div>
                         </div>
                     @endforeach
                 </div>

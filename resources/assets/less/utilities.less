@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015-2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,7 +14,6 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 .u-blackout-visible {
@@ -24,6 +23,21 @@
 .u-ellipsis-overflow {
   white-space: nowrap !important;
   text-overflow: ellipsis !important;
+  overflow: hidden !important;
+}
+
+.u-full-screen {
+  z-index: @z-index--editor-zoom !important;
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.u-hide-by-height {
+  height: 0 !important;
+  margin: 0 !important;
   overflow: hidden !important;
 }
 

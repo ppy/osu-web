@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Transformers;
 
 use App\Models\BeatmapsetDiscussion;
@@ -52,11 +53,21 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
         $userIds = [$discussion->beatmapset->user_id];
 
         foreach ($discussion->beatmapDiscussions as $beatmapDiscussion) {
+            if (!priv_check('BeatmapDiscussionShow', $beatmapDiscussion)->can()) {
+                continue;
+            }
+
             $userIds[] = $beatmapDiscussion->user_id;
+            $userIds[] = $beatmapDiscussion->deleted_by_id;
 
             foreach ($beatmapDiscussion->beatmapDiscussionPosts as $post) {
+                if (!priv_check('BeatmapDiscussionPostShow', $post)->can()) {
+                    continue;
+                }
+
                 $userIds[] = $post->user_id;
                 $userIds[] = $post->last_editor_id;
+                $userIds[] = $post->deleted_by_id;
             }
         }
 

@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -29,7 +29,7 @@ return [
             'getChangelog' => 'zmiany',
             'getDownload' => 'pobieranie',
             'getIcons' => 'ikony',
-            'index' => 'aktualności',
+            'getNews' => 'aktualności',
             'supportTheGame' => 'wspomóż grę',
         ],
         'help' => [
@@ -63,7 +63,6 @@ return [
             'getChat' => 'czat',
             'getSupport' => 'pomoc techniczna',
             'getLive' => 'na żywo',
-            'getSlack' => 'osu!dev',
             'profile' => 'profil',
             'tournaments' => 'turnieje',
             'tournaments-index' => 'turnieje',

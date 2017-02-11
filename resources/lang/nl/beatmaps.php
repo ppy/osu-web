@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -128,27 +128,28 @@ return [
                 'tags' => 'Labels',
             ],
             'scoreboard' => [
-                'title' => 'Scorebord',
-                'no-scores' => [
-                    'global' => 'Nog geen scores. Probeer er een paar te halen?',
-                    'loading' => 'Scoren aan het laden...',
-                    'country' => 'Niemand uit jouw land heeft nog een score behaald op deze map!',
-                    'friend' => 'Niemand van jouw vrienden heeft nog een score behaald op deze map!',
-                ],
-                'supporter-only' => 'Je moet supporter zijn om land- en vriendenrankings te zien!',
-                'supporter-link' => 'Klik <a href=":link">hier</a> om alle chique functies die je krijgt te zien!',
-                'global' => 'Globale Ranking',
                 'country' => 'Landranking',
                 'friend' => 'Vriendenranking',
+                'global' => 'Globale Ranking',
+                'supporter-link' => 'Klik <a href=":link">hier</a> om alle chique functies die je krijgt te zien!',
+                'supporter-only' => 'Je moet supporter zijn om land- en vriendenrankings te zien!',
+                'title' => 'Scorebord',
+
+                'list' => [
+                    'accuracy' => 'Precisie',
+                    'player-header' => 'Speler',
+                    'rank-header' => 'Rank',
+                    'score' => 'Score',
+                ],
+                'no-scores' => [
+                    'country' => 'Niemand uit jouw land heeft nog een score behaald op deze map!',
+                    'friend' => 'Niemand van jouw vrienden heeft nog een score behaald op deze map!',
+                    'global' => 'Nog geen scores. Probeer er een paar te halen?',
+                    'loading' => 'Scoren aan het laden...',
+                ],
                 'stats' => [
                     'accuracy' => 'Precisie',
                     'score' => 'Score',
-                ],
-                'list' => [
-                    'rank-header' => 'Rank',
-                    'player-header' => 'Speler',
-                    'score' => 'Score',
-                    'accuracy' => 'Precisie',
                 ],
             ],
         ],

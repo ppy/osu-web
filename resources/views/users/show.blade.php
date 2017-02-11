@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -46,5 +46,5 @@
         {!! json_encode($achievements) !!}
     </script>
 
-    <script src="{{ elixir("js/react/profile-page.js") }}" data-turbolinks-track></script>
+    <script src="{{ elixir("js/react/profile-page.js") }}" data-turbolinks-track="reload"></script>
 @endsection

@@ -1,20 +1,21 @@
 ###
-# Copyright 2015 ppy Pty. Ltd.
+#    Copyright 2015-2017 ppy Pty. Ltd.
 #
-# This file is part of osu!web. osu!web is distributed with the hope of
-# attracting more community contributions to the core ecosystem of osu!.
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
 #
-# osu!web is free software: you can redistribute it and/or modify
-# it under the terms of the Affero GNU General Public License version 3
-# as published by the Free Software Foundation.
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
 #
-# osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Affero General Public License for more details.
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
 #
-# You should have received a copy of the GNU Affero General Public License
-# along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
 {a, div, h2, h3, img, p, small, span} = React.DOM
 el = React.createElement
 
@@ -50,7 +51,7 @@ ProfilePage.Historical = React.createClass
             className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
             a
               className: 'beatmapset-row__title'
-              href: laroute.route 'beatmaps.show', beatmaps: bm.id
+              href: laroute.route 'beatmaps.show', beatmap: bm.id
               title: "#{bmset.artist} - #{bmset.title} [#{bm.version}] "
               "#{bmset.title} [#{bm.version}] "
               span
@@ -67,7 +68,7 @@ ProfilePage.Historical = React.createClass
                 __html: osu.trans 'beatmaps.listing.mapped-by',
                   mapper: laroute.link_to_route 'users.show',
                     bmset.creator
-                    { users: bmset.user_id }
+                    { user: bmset.user_id }
                     class: 'beatmapset-row__title-small'
           div
             className: 'beatmapset-row__detail-column'

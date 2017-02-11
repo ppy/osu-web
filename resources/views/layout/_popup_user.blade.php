@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2016 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -22,15 +22,15 @@
     <div class="nav-popup__section nav-popup__section--blank"></div>
     <div class="nav-popup__section nav-popup__section--user nav-popup__section--user-overview">
         <div class="nav-popup__row nav-popup__row--username">
-            {{ $_user->username }}
+            {{ Auth::user()->username }}
         </div>
 
         <div class="nav-popup__row nav-popup__row--with-gutter">
-            @if ($_user->country !== null)
+            @if (Auth::user()->country !== null)
                 <img
                     class="nav-popup__flag"
-                    src="/images/flags/{{ $_user->country_acronym }}.png"
-                    title="{{ $_user->country->name }}"
+                    src="{{ flag_path(Auth::user()->country_acronym) }}"
+                    title="{{ Auth::user()->country->name }}"
                 />
             @endif
         </div>
@@ -39,7 +39,7 @@
     <div class="nav-popup__section nav-popup__section--user nav-popup__section--user-links">
         <a
             class="nav-popup__link"
-            href="{{ route('users.show', $_user) }}"
+            href="{{ route('users.show', Auth::user()) }}"
         >
             <div class="nav-popup__link-marker">
                 <i class="fa fa-angle-right"></i>
@@ -48,6 +48,13 @@
             {{ trans('layout.popup_user.links.profile') }}
         </a>
 
+        <a class="nav-popup__link" href="{{ route('account.edit') }}">
+            <div class="nav-popup__link-marker">
+                <i class="fa fa-angle-right"></i>
+            </div>
+
+            {{ trans('layout.popup_user.links.account-edit') }}
+        </a>
 
         <a
             class="js-logout-link nav-popup__link"

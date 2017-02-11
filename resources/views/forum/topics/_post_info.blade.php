@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="hidden-xs forum-post__info-panel" style="{{ user_colour_style($user->user_colour, "background-color") }}">
+<div class="hidden-xs forum-post__info-panel" style="{{ user_color_style($user->user_colour, "background-color") }}">
     <div class="forum-post__info-panel-main">
         @if ($user->hasProfile() === true)
             @if ($user->user_avatar)
@@ -52,7 +52,7 @@
                         @if ($flagType === "country")
                             <img
                                 class="forum__user-flag forum__user-flag--country"
-                                src="/images/flags/{{ $flagValue[0] }}.png"
+                                src="{{ flag_path($flagValue[0]) }}"
                                 alt="{{ $flagValue[0] }}"
                                 title="{{ $flagValue[1] }}"
                             />
@@ -64,14 +64,14 @@
 
         <div class="forum-post__info-panel-extra-bottom">
             <div class="forum-post__info-row">
-                {{ display_regdate($user) }}
+                {!! display_regdate($user) !!}
             </div>
         </div>
     </div>
 </div>
 
 <div class="visible-xs">
-    <div class="forum-post__info-panel-xs" style="{{ user_colour_style($user->user_colour, "background-color") }}">
+    <div class="forum-post__info-panel-xs" style="{{ user_color_style($user->user_colour, "background-color") }}">
         @if ($user->user_avatar)
             <div class="avatar-ribbon
                 avatar-ribbon--xs
@@ -94,7 +94,7 @@
                     <span class="forum-post__info-panel-xs-flag">
                         <img
                             class="flag-country flag-country--small-box"
-                            src="/images/flags/{{ $user->flags()["country"][0] }}.png"
+                            src="{{ flag_path($user->flags()['country'][0]) }}"
                             alt="{{ $user->flags()["country"][0] }}"
                             title="{{ $user->flags()["country"][1] }}"
                         />

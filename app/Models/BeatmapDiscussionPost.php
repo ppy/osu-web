@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,8 +17,10 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class BeatmapDiscussionPost extends Model
@@ -30,6 +32,8 @@ class BeatmapDiscussionPost extends Model
     protected $casts = [
         'system' => 'boolean',
     ];
+
+    protected $dates = ['deleted_at'];
 
     public function beatmapDiscussion()
     {
@@ -89,5 +93,34 @@ class BeatmapDiscussionPost extends Model
                 'value' => $resolved,
             ],
         ]);
+    }
+
+    public function isFirstPost()
+    {
+        return !static
+            ::where('beatmap_discussion_id', $this->beatmap_discussion_id)
+            ->where('id', '<', $this->id)->exists();
+    }
+
+    public function restore()
+    {
+        return $this->update(['deleted_at' => null]);
+    }
+
+    public function softDelete($deletedBy)
+    {
+        if ($this->isFirstPost()) {
+            return trans('model_validation.beatmap_discussion_post.first_post');
+        }
+
+        $this->update([
+            'deleted_by_id' => $deletedBy->user_id ?? null,
+            'deleted_at' => Carbon::now(),
+        ]);
+    }
+
+    public function scopeWithoutDeleted($query)
+    {
+        $query->whereNull('deleted_at');
     }
 }

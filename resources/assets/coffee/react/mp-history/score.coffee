@@ -1,20 +1,21 @@
 ###
-# Copyright 2016 ppy Pty. Ltd.
+#    Copyright 2015-2017 ppy Pty. Ltd.
 #
-# This file is part of osu!web. osu!web is distributed with the hope of
-# attracting more community contributions to the core ecosystem of osu!.
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
 #
-# osu!web is free software: you can redistribute it and/or modify
-# it under the terms of the Affero GNU General Public License version 3
-# as published by the Free Software Foundation.
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
 #
-# osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Affero General Public License for more details.
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
 #
-# You should have received a copy of the GNU Affero General Public License
-# along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
 {div, span, a} = React.DOM
 el = React.createElement
 
@@ -36,7 +37,7 @@ class MPHistory.Score extends React.Component
           div className: 'mp-history-player-score__username-box',
             a
               className: 'mp-history-player-score__username',
-              href: laroute.route 'users.show', users: user.id
+              href: laroute.route 'users.show', user: user.id
               user.username
 
             if !@props.score.pass
@@ -72,6 +73,12 @@ class MPHistory.Score extends React.Component
               if @props.mode != 'mania' and (m == 'countgeki' || m == 'countkatu')
                 return
 
-              div className: 'mp-history-player-score__stat mp-history-player-score__stat--small', key: m,
-                span className: 'mp-history-player-score__stat-label mp-history-player-score__stat-label--large', Lang.get "multiplayer.match.score.stats.#{m}"
-                span className: 'mp-history-player-score__stat-number mp-history-player-score__stat-number--small', @props.score[m].toLocaleString()
+              div
+                className: 'mp-history-player-score__stat mp-history-player-score__stat--small'
+                key: m,
+                span
+                  className: 'mp-history-player-score__stat-label mp-history-player-score__stat-label--large'
+                  osu.trans "common.score_count.#{m}"
+                span
+                  className: 'mp-history-player-score__stat-number mp-history-player-score__stat-number--small'
+                  @props.score[m].toLocaleString()

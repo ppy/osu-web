@@ -1,5 +1,5 @@
 {{--
-    Copyright 2016 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -18,15 +18,16 @@
 @extends('contests.base')
 
 @section('contest-content')
-    <div class="contest__description">{!! Markdown::convertToHtml($contest->description_enter) !!}</div>
+    <div class="contest__description">{!! Markdown::convertToHtml($contestMeta->description_enter) !!}</div>
+    @include('contests._countdown', ['deadline' => $contestMeta->currentPhaseEndDate()])
     @if (!Auth::check())
       <div class='contest__voting-notice contest__voting-notice--padding'>{{trans('contest.entry.login_required')}}</div>
     @else
       @if (Auth::user()->isSilenced() || Auth::user()->isRestricted())
         <div class='contest__voting-notice contest__voting-notice--padding'>{{trans('contest.entry.silenced_or_restricted')}}</div>
       @else
-        @if (!$contest->isSubmissionOpen())
-          @if ($contest->entry_starts_at !== null && $contest->entry_starts_at->isPast())
+        @if (!$contestMeta->isSubmissionOpen())
+          @if ($contestMeta->entry_starts_at !== null && $contestMeta->entry_starts_at->isPast())
             <div class='contest__voting-notice'>{{trans('contest.entry.over')}}</div>
             <div class='js-react--userContestEntry'></div>
           @else
@@ -47,5 +48,5 @@
   <script id="json-userEntries" type="application/json">
     {!! json_encode($contest->userEntries(Auth::user())) !!}
   </script>
-  <script src="{{ elixir("js/react/contest-entry.js") }}" data-turbolinks-track></script>
+  <script src="{{ elixir("js/react/contest-entry.js") }}" data-turbolinks-track="reload"></script>
 @stop

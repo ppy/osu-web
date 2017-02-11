@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,25 +14,25 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .osu-nav {
   margin: auto;
   width: 100%;
   max-width: @container-sm;
   display: flex;
-  padding: (@spacing * 2) (@spacing * 2) 0;
+  padding: 20px 15px 0;
 
   @media @desktop {
-    width: calc(100% ~'-' (@spacing * 8));
+    width: calc(100% ~'-' 80px);
   }
 
   &__avatar {
     .default-border-radius();
     .default-box-shadow();
 
-    margin-left: @spacing;
-    margin-bottom: (-@spacing);
+    margin-left: 10px;
+    margin-bottom: -10px;
     overflow: hidden;
 
     width: @nav-avatar-size;
@@ -52,6 +52,7 @@
     color: @gray-f;
     font-size: @font-size--large;
     font-weight: 300;
+    margin: 0 5px;
 
     &:focus,
     &:hover {
@@ -62,12 +63,11 @@
     &--logo {
       height: 0;
       align-self: flex-start;
-      margin-top: (-@spacing / 2);
+      margin-top: -5px;
       align-items: flex-start;
     }
 
     &--title {
-      padding: 0 @spacing;
       flex: 1 0 auto;
     }
   }
@@ -84,14 +84,14 @@
   }
 
   &__title {
-    padding-bottom: (@spacing / 2);
+    padding-bottom: 10px;
     display: flex;
     align-items: flex-end;
   }
 
   &__title-separator {
     display: inline-block;
-    margin: 0 @spacing;
+    margin: 0 10px;
     opacity: 0.5;
   }
 }

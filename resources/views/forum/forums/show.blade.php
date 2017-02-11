@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,13 @@
 --}}
 @extends('master', [
     'body_additional_classes' => 't-forum-'.$forum->categorySlug(),
+    'search' => [
+        'params' => [
+            'forum_id' => $forum->forum_id,
+        ],
+        'url' => route('forum.forums.search'),
+    ],
+    'titleAppend' => $forum->forum_name,
 ])
 
 @section("content")

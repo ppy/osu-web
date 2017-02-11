@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -20,7 +20,7 @@
 
 return [
     'match' => [
-        'header' => 'Partidas Multiplayer',
+        'header' => 'Partidas multijogadores',
         'team-types' => [
             'head-to-head' => 'Head-to-head',
             'tag-coop' => 'Tag Co-op',
@@ -29,49 +29,43 @@ return [
         ],
         'events' => [
             'player-left' => ':user saiu da partida',
-            'player-joined' => ':user juntou-se à partida',
+            'player-joined' => ':user entrou na partida',
             'player-kicked' => ':user foi expulso da partida',
             'match-created' => ':user criou a partida',
-            'match-disbanded' => ':the partida foi cancelada',
-            'host-changed' => ':user tornou-se o host',
+            'match-disbanded' => ':the partida foi desfeita',
+            'host-changed' => ':user tornou-se o líder',
 
             'player-left-no-user' => 'um jogador deixou a partida',
-            'player-joined-no-user' => 'um jogador se juntou à partida',
+            'player-joined-no-user' => 'um jogador entrou na partida',
             'player-kicked-no-user' => 'um jogador foi expulso da partida',
             'match-created-no-user' => 'a partida foi criada',
-            'match-disbanded-no-user' => 'a partida foi cancelada',
-            'host-changed-no-user' => 'o host foi alterado',
+            'match-disbanded-no-user' => 'a partida foi desfeita',
+            'host-changed-no-user' => 'o líder foi alterado',
         ],
         'in-progress' => '(partida em progresso)',
         'score' => [
             'stats' => [
-                'combo' => 'Combo',
                 'accuracy' => 'Precisão',
+                'combo' => 'Combo',
                 'score' => 'Pontuação',
-                'countgeki' => 'MAX',
-                'count300' => '300s',
-                'countkatu' => '200s',
-                'count100' => '100s',
-                'count50' => '50s',
-                'countmiss' => 'Erro',
             ],
         ],
         'failed' => 'FALHOU',
         'teams' => [
-            'blue' => 'Time Azul',
-            'red' => 'Time Vermelho',
+            'blue' => 'Equipe Azul',
+            'red' => 'Equipe Vermelha',
         ],
         'winner' => ':team venceu',
         'difference' => 'por :difference',
         'loading-events' => 'Carregando eventos...',
         'more-events' => 'ver tudo...',
-        'beatmap-deleted' => 'beatmap deletado',
+        'beatmap-deleted' => 'beatmap excluído',
     ],
     'game' => [
         'scoring-type' => [
-            'score' => 'Maior Pontuação',
-            'accuracy' => 'Melhor Precisão',
-            'combo' => 'Maior Combo',
+            'score' => 'Maior pontuação',
+            'accuracy' => 'Maior precisão',
+            'combo' => 'Maior combo',
             'scorev2' => 'Pontuação V2',
         ],
     ],

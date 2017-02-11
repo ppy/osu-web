@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models\Forum;
 
 use App\Libraries\BBCodeForDB;
@@ -25,9 +26,12 @@ use App\Models\Log;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'phpbb_posts';
     protected $primaryKey = 'post_id';
     protected $guarded = [];
@@ -168,6 +172,13 @@ class Post extends Model
 
     public function scopeLast($query)
     {
-        return $query->orderBy('post_time', 'desc')->limit(1);
+        return $query->orderBy('post_id', 'desc')->limit(1);
+    }
+
+    public function scopeShowDeleted($query, $showDeleted)
+    {
+        if ($showDeleted) {
+            $query->withTrashed();
+        }
     }
 }

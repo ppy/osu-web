@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,15 @@
     <head>
         @include("layout.metadata")
         <title>
-            @if (isset($title))
+            @if (isset($titleAppend))
+                {{
+                    trans("layout.menu.$current_section._").
+                    ' › '.
+                    trans("layout.menu.$current_section.$current_action").
+                    ': '.
+                    $titleAppend
+                }}
+            @elseif (isset($title))
                 {{ $title }}
             @else
                 {{ trans("layout.menu.$current_section._") }} / {{ trans("layout.menu.$current_section.$current_action") }}
@@ -34,7 +42,6 @@
         class="
             osu-layout
             osu-layout--body
-            {{ $current_section or "error" }}
             t-section-{{ $current_section or "error" }}
             section
             action-{{ $current_action }}
@@ -82,6 +89,7 @@
                 @yield('permanent-fixed-footer')
             </div>
         </div>
+        <audio class="js-audio" preload="auto"></audio>
 
         @include("layout._global_variables")
         @include('layout._loading_overlay')

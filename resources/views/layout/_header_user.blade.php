@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -17,11 +17,7 @@
 --}}
 <div>
     <div class="osu-nav__title">
-        @if ($_user === null)
-            {{ trans("users.anonymous.username") }}
-        @else
-            {{ $_user->username }}
-        @endif
+        {{ Auth::user()->username ?? trans("users.anonymous.username")}}
     </div>
 
     <div class="osu-nav__highlight-bar">
@@ -34,11 +30,9 @@
         class="
             avatar
             avatar--full-rounded
-            {{ $_user === null ? 'avatar--guest' : '' }}
+            {{ Auth::user() === null ? 'avatar--guest' : '' }}
             js-nav-avatar
+            js-current-user-avatar
         "
-        @if ($_user !== null)
-            style="background-image: url('{{ $_user->user_avatar }}');"
-        @endif
     ></div>
 </div>

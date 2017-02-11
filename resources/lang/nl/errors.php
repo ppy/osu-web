@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -26,12 +26,6 @@ return [
     'account' => [
         'profile-order' => [
             'generic' => 'Iets ging fout. Probeer de pagina te vernieuwen.',
-        ],
-    ],
-    'community' => [
-        'slack' => [
-            'not-eligible' => 'Jouw account is niet in staat om een Slack uitnodiging te ontvangen.',
-            'slack-error' => 'Er ging iets mis bij de Slack servers. Probeer het opnieuw over een paar minuten.',
         ],
     ],
     'logged_out' => 'Je bent uitgelogd. Log in en probeer opnieuw.',
