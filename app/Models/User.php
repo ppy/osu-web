@@ -212,12 +212,32 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function getUserFromAttribute($value)
     {
-        return presence($value);
+        return presence(htmlspecialchars_decode($value));
+    }
+
+    public function setUserFromAttribute($value)
+    {
+        $this->attributes['user_from'] = presence(e($value));
     }
 
     public function getUserInterestsAttribute($value)
     {
-        return presence($value);
+        return presence(htmlspecialchars_decode($value));
+    }
+
+    public function setUserInterestsAttribute($value)
+    {
+        $this->attributes['user_interests'] = presence(e($value));
+    }
+
+    public function getUserOccAttribute($value)
+    {
+        return presence(htmlspecialchars_decode($value));
+    }
+
+    public function setUserOccAttribute($value)
+    {
+        $this->attributes['user_occ'] = presence(e($value));
     }
 
     public function isSpecial()
