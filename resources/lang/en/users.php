@@ -142,6 +142,7 @@ return [
                     'forum_post' => [
                         'give' => 'Received :amount from :giver for a post at :post',
                         'revoke' => 'Denied kudosu by :giver for the post :post',
+                        'reset' => 'Kudosu reset by :giver for the post :post',
                     ],
                 ],
             ],
