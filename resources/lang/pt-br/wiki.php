@@ -21,9 +21,9 @@
 return [
     'show' => [
         'languages' => 'Idiomas',
-        'missing' => 'A página solicitada não foi encontrada.',
-        'missing_translation' => 'A página solicitada não foi encontrada no atual idioma especificado.',
-        'toc' => 'Conteúdo',
+        'missing' => 'A página solicitada não pôde ser encontrada.',
+        'missing_translation' => 'A página solicitada não foi encontrada no idioma selecionado atualmente.',
+        'toc' => 'Índice',
 
         'edit' => [
             'link' => 'Exibir no GitHub',

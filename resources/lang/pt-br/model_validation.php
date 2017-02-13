@@ -21,6 +21,10 @@
 return [
     'required' => ':attribute é obrigatório.',
 
+    'beatmap_discussion_post' => [
+        'first_post' => 'Não é possível excluir a publicação inicial.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Só é possível votar em uma solicitação de recurso.',
