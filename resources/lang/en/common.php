@@ -38,6 +38,13 @@ return [
         'item' => ':count unit|:count units',
     ],
 
+    'device' => [
+        'keyboard' => 'Keyboard',
+        'mouse' => 'Mouse',
+        'tablet' => 'Tablet',
+        'touch' => 'Touch Screen',
+    ],
+
     'dropzone' => [
         'target' => 'drop here to upload',
     ],

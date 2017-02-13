@@ -16,8 +16,20 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-@Icon = ({name, modifiers = []}) ->
-  className = "fa fa-#{name}"
-  className += " fa-#{modifier}" for modifier in modifiers
+{span} = React.DOM
 
-  React.DOM.span className: className
+@Icon = ({name, modifiers = [], parentClass, title}) ->
+  className = "fa fa-#{name}"
+  className += " fa-#{m}" for m in modifiers
+
+
+  if parentClass?
+    span
+      className: parentClass
+      title: title
+      span
+        className: className
+  else
+    span
+      className: className
+      title: title

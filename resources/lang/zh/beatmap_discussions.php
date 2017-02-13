@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,38 +18,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-discussions-mode {
-  .bg() {
-    .at2x('/images/backgrounds/page-ddd.png');
-    border-bottom: 1px solid @yellow;
+return [
+    'authorizations' => [
+        'update' => [
+            'null_user' => '编辑前请先登录.',
+            'system_generated' => '不能编辑系统的回复.',
+            'wrong_user' => '只有作者才能编辑.',
+        ],
+    ],
 
-    &::before {
-      .full-size();
-      background-color: fade(@gray-0, 75%);
-    }
-  }
-
-  @top: beatmap-discussions-mode;
-
-  &__floatable {
-    .bg();
-    .own-layer();
-    width: 100%;
-    left: 0;
-    top: 0;
-
-    .@{top}--floating & {
-      z-index: @z-index--fixed-bar;
-      position: fixed;
-    }
-  }
-
-  &__padding {
-    .bg();
-    display: none;
-
-    .@{top}--floating & {
-      display: block;
-    }
-  }
-}
+    'system' => [
+        'resolved' => [
+            'true' => '被 :user 标记为已解决',
+            'false' => '被 :user 重新打开',
+        ],
+    ],
+];

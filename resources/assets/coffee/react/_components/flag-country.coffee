@@ -24,12 +24,11 @@ bn = 'flag-country'
 @FlagCountry = ({country, classModifiers = []}) ->
   return span() if !country.code?
 
-  additionalClasses = classModifiers
-    .map (m) -> "#{bn}--#{m}"
-    .join ' '
+  blockClass = bn
+  blockClass += " #{bn}--#{m}" for m in classModifiers
 
   span
-    className: "#{bn} #{additionalClasses}"
+    className: blockClass
     title: country.name
     style:
       backgroundImage: "url('/images/flags/#{country.code}.png')"

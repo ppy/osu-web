@@ -63,7 +63,7 @@ return [
         'origin_country_age' => ':age de :country',
         'page_description' => 'osu! — Tudo o que você sempre quis saber sobre :username!',
         'plays_with' => 'Joga com :devices',
-        'title' => "Perfil de :username",
+        'title' => 'Perfil de :username',
 
         'edit' => [
             'cover' => [

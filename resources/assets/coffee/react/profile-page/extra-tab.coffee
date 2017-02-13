@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a} = React.DOM
+{a, span} = React.DOM
 el = React.createElement
 
 class ProfilePage.ExtraTab extends React.Component
@@ -27,14 +27,18 @@ class ProfilePage.ExtraTab extends React.Component
 
 
   render: =>
-    className = 'link link--white link--no-underline page-extra-tabs__item'
+    className = 'page-mode-link'
 
     if @props.page == @props.currentPage
-      className += ' page-extra-tabs__item--active'
+      className += ' page-mode-link--is-active'
 
     a
-      href: ProfilePageHash.generate page: @props.page, mode: @props.currentMode
+      href: ProfilePageHash.generate(page: @props.page, mode: @props.currentMode)
       className: className
       onClick: @pageSwitch
       'data-page-id': @props.page
-      osu.trans("users.show.extra.#{@props.page}.title")
+      span
+        className: 'fake-bold'
+        'data-content': osu.trans("users.show.extra.#{@props.page}.title")
+        osu.trans("users.show.extra.#{@props.page}.title")
+      span className: 'page-mode-link__stripe'

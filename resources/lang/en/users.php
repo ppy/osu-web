@@ -50,7 +50,21 @@ return [
     'logout_confirm' => 'Are you sure you want to log out? :(',
     'show' => [
         '404' => 'User not found! ;_;',
-        'current_location' => 'Currently in :location.',
+        'age' => ':age years old',
+        'current_location' => 'Currently in :location',
+        'first_members' => 'Here since the beginning',
+        'is_developer' => 'osu!developer',
+        'is_supporter' => 'osu!supporter',
+        'joined_at' => 'Joined :date',
+        'lastvisit' => 'Last seen :date',
+        'missingtext' => 'You might have made a typo! (or the user may have been banned)',
+        'origin_age' => ':age',
+        'origin_country' => 'From :country',
+        'origin_country_age' => ':age from :country',
+        'page_description' => 'osu! - Everything you ever wanted to know about :username!',
+        'plays_with' => 'Plays with :devices',
+        'title' => ":username's profile",
+
         'edit' => [
             'cover' => [
                 'button' => 'Change Profile Cover',
@@ -61,7 +75,7 @@ return [
                     'dropzone' => 'Drop here to upload',
                     'dropzone_info' => 'You can also drop your image here to upload',
                     'restriction_info' => "Upload available for <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a> only",
-                    'size_info' => 'Cover size should be at 2000x500',
+                    'size_info' => 'Cover size should be at 2000x700',
                     'too_large' => 'Uploaded file is too large.',
                     'unsupported_format' => 'Unsupported format.',
                 ],
@@ -164,32 +178,12 @@ return [
                 'none' => 'None... yet.',
             ],
         ],
-        'first_members' => 'here since the beginning',
-        'is_supporter' => 'osu!supporter',
-        'is_developer' => 'osu!developer',
-        'lastvisit' => 'Last seen :date.',
-        'joined_at' => 'joined :date',
-        'more_achievements' => 'and more',
-        'origin' => [
-            'age' => ':age years old.',
-            'country' => 'From :country.',
-            'country_age' => ':age years old from :country.',
-        ],
         'page' => [
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
             'restriction_info' => "You need to be an <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> to unlock this feature.",
         ],
-        'plays_with' => [
-            '_' => 'Plays with',
-            'keyboard' => 'Keyboard',
-            'mouse' => 'Mouse',
-            'tablet' => 'Tablet',
-            'touch' => 'Touch Screen',
-        ],
-        'missingtext' => 'You might have made a typo! (or the user may have been banned)',
-        'page_description' => 'osu! - Everything you ever wanted to know about :username!',
         'rank' => [
             'country' => 'Country rank for :mode',
             'global' => 'Global rank for :mode',
@@ -205,7 +199,6 @@ return [
             'total_hits' => 'Total Hits',
             'total_score' => 'Total Score',
         ],
-        'title' => ":username's profile",
     ],
 
     'verify' => [

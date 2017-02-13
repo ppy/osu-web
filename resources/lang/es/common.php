@@ -32,6 +32,13 @@ return [
         'item' => ':count unidad|:count unidades',
     ],
 
+    'device' => [
+        'keyboard' => 'Teclado',
+        'mouse' => 'Ratón',
+        'tablet' => 'Tableta',
+        'touch' => 'Pantalla Táctil',
+    ],
+
     'dropzone' => [
         'target' => 'suelta aquí para cargar',
     ],
