@@ -22,7 +22,9 @@ class @ProfilePageHash
 
   @parse: (hash) =>
     hash = hash.slice 1
-    if @noMode(hash)
+    if hash.length == 0
+      {}
+    else if @noMode(hash)
       page: hash
     else
       split = hash.split '/'
