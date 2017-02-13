@@ -42,13 +42,11 @@ class ContestEntryTransformer extends Fractal\TransformerAbstract
     public function includeResults(ContestEntry $entry)
     {
         return $this->item($entry, function ($entry) {
-            $voteCounts = $entry->contest->cachedVoteAggregates()->where('contest_entry_id', $entry->id)->first();
-
             return [
                 'actual_name' => $entry->name,
                 'user_id' => $entry->user_id,
                 'username' => ($entry->user ?? (new \App\Models\DeletedUser))->username,
-                'votes' => $voteCounts ? $voteCounts->votes : 0,
+                'votes' => $entry->votes_count ? $entry->votes_count : 0,
             ];
         });
     }

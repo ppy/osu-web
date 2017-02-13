@@ -48,13 +48,6 @@ class Contest extends Model
         return $this->hasMany(ContestVoteAggregate::class);
     }
 
-    public function cachedVoteAggregates()
-    {
-        return Cache::remember("contest_votes_{$this->id}", 5, function () {
-            return $this->voteAggregates;
-        });
-    }
-
     public function isBestOf()
     {
         return isset($this->extra_options['best_of']);
@@ -189,33 +182,45 @@ class Contest extends Model
 
     public function entriesByType($user = null)
     {
-        if ($this->isBestOf()) {
-            if ($user === null) {
-                return [];
-            }
+        $entries = $this->entries()->with('contest');
 
-            $playmode = Beatmap::MODES[$this->extra_options['best_of']['mode'] ?? 'osu'];
-
-            // This will only returns beatmap entries a user has played
-            $entries = $this->entries()
-                ->whereIn('entry_url', function ($query) use ($playmode, $user) {
-                    $query->select('beatmapset_id')
-                        ->from('osu_beatmaps')
-                        ->where('osu_beatmaps.playmode', '=', $playmode)
-                        ->whereIn('beatmap_id', function ($query) use ($user) {
-                            $query->select('beatmap_id')
-                                ->from('osu_user_beatmap_playcount')
-                                ->where('user_id', '=', $user->user_id);
-                        });
-                });
-        } else {
-            $entries = $this->entries();
-            if ($this->show_votes) {
+        if ($this->show_votes) {
+            return Cache::remember("contest_entries_with_votes_{$this->id}", 5, function () use ($entries) {
                 $entries = $entries->with('user');
+
+                if ($this->isBestOf()) {
+                    $entries = $entries
+                        ->selectRaw('*')
+                        ->selectRaw('(SELECT FLOOR(SUM(`weight`)) FROM `contest_votes` WHERE `contest_entries`.`id` = `contest_votes`.`contest_entry_id`) AS votes_count')
+                        ->limit(50); // best of contests tend to have a _lot_ of entries...
+                } else {
+                    $entries = $entries->withCount('votes');
+                }
+
+                return $entries->orderBy('votes_count', 'desc')->get();
+            });
+        } else {
+            if ($this->isBestOf()) {
+                if ($user === null) {
+                    return [];
+                }
+
+                // Only return contest entries that a user has actually played
+                return $entries
+                    ->whereIn('entry_url', function ($query) use ($user) {
+                        $query->select('beatmapset_id')
+                            ->from('osu_beatmaps')
+                            ->where('osu_beatmaps.playmode', Beatmap::MODES[$this->extra_options['best_of']['mode'] ?? 'osu'])
+                            ->whereIn('beatmap_id', function ($query) use ($user) {
+                                $query->select('beatmap_id')
+                                    ->from('osu_user_beatmap_playcount')
+                                    ->where('user_id', '=', $user->user_id);
+                            });
+                    })->get();
             }
         }
 
-        return $entries->with('contest')->get();
+        return $entries->get();
     }
 
     public function defaultJson($user = null)
@@ -236,15 +241,9 @@ class Contest extends Model
         }
 
         if (!empty($contestJson['entries'])) {
-            if ($this->show_votes) {
-                // Sort results by number of votes descending
-                $sorted_entries = array_sort($contestJson['entries'], function ($item) {
-                    return $item['results']['votes'];
-                });
-                $contestJson['entries'] = array_values(array_reverse($sorted_entries));
-            } else {
-                // For unmasked contests, we sort 'alphabetically'.
+            if (!$this->show_votes) {
                 if ($this->unmasked) {
+                    // For unmasked contests, we sort alphabetically.
                     $sorted_entries = array_sort($contestJson['entries'], function ($item) {
                         return $item['title'];
                     });
