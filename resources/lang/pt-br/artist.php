@@ -24,16 +24,18 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmaps',
-        'download' => 'Baixar modelo do beatmap',
-        'download-na' => 'Modelo do beatmap não disponível ainda',
+        'download' => 'Baixar modelo de beatmap',
+        'download-na' => 'Modelo indisponível no momento',
     ],
     'index' => [
-        'description' => 'Os artistas em destaque são artistas que estamos trabalhando em colaboração para que possamos trazer músicas novas e originais para o osu!. Esses artistas e suas músicas são escolhidas a dedo pela equipe do osu! pelas suas incríveis capacidades musicais e se suas músicas são adequadas ao mapping . Alguns desses artistas também criaram músicas exclusivamente para o osu!.<br><br>Todas as músicas nesta seção são previamente temporizadas, disponibilizadas em arquivos .osz e são oficialmente licenciadas para uso no osu! e qualquer conteúdo relacionado ao mesmo.',
+        'description' => 'Artistas em destaque são artistas com quem estamos trabalhando em colaboração para que possamos trazer músicas novas e originais para o osu!. Esses artistas e suas músicas são escolhidos a dedo pela equipe do osu! pelas suas incríveis capacidades musicais e capacidade de mapeamento. Alguns desses artistas também criaram novas músicas exclusivas para uso no osu!.<br><br>Todas as músicas presentes nessa seção são fornecidas como arquivos .osz previamente temporizados e foram oficialmente licenciadas para uso no osu! e qualquer conteúdo relacionado ao mesmo.',
     ],
     'links' => [
         'site' => 'Site oficial',
     ],
     'songs' => [
+        '_' => 'Músicas',
         'count' => '1 música|:count músicas',
+        'exclusive' => 'Exclusivo do osu!',
     ],
 ];

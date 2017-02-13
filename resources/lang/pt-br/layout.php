@@ -26,18 +26,20 @@ return [
     'menu' => [
         'home' => [
             '_' => 'início',
-            'index' => 'osu!',
+            'account-edit' => 'configurações',
             'getChangelog' => 'registro de alterações',
             'getDownload' => 'download',
             'getIcons' => 'ícones',
             'getNews' => 'notícias',
+            'index' => 'osu!',
             'supportTheGame' => 'apoie o jogo',
         ],
         'help' => [
             '_' => 'ajuda',
-            'getWiki' => 'wiki',
             'getFaq' => 'perguntas frequentes',
             'getSupport' => 'suporte',
+            'getWiki' => 'wiki',
+            'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
@@ -61,6 +63,7 @@ return [
         ],
         'community' => [
             '_' => 'communidade',
+            'dev' => 'osu!dev',
             'getForum' => 'fórum',
             'getChat' => 'conversa',
             'getSupport' => 'suporte',
@@ -70,7 +73,7 @@ return [
             'tournaments' => 'torneios',
             'tournaments-index' => 'torneios',
             'tournaments-show' => 'informações de torneios',
-            'forum-topic-watches-index' => 'Assinaturas de tópico',
+            'forum-topic-watches-index' => 'inscrições de tópico',
             'forum-topics-create' => 'fórum',
             'forum-topics-show' => 'fórum',
             'forum-forums-index' => 'fórum',
@@ -105,7 +108,7 @@ return [
         ],
         'store' => [
             '_' => 'loja',
-            'getListing' => 'lista',
+            'getListing' => 'catálogo',
             'getCart' => 'carrinho',
 
             'getCheckout' => 'pagar',
@@ -129,7 +132,7 @@ return [
         'admin' => [
             '_' => 'admin',
             'root' => 'índice',
-            'logs-index' => 'log',
+            'logs-index' => 'registro',
             'beatmapsets' => [
                 '_' => 'beatmapsets',
                 'covers' => 'capas',
@@ -232,8 +235,9 @@ return [
 
     'popup_user' => [
         'links' => [
-            'profile' => 'Perfil',
+            'account-edit' => 'Configurações',
             'logout' => 'Finalizar sessão',
+            'profile' => 'Perfil',
         ],
     ],
 ];
