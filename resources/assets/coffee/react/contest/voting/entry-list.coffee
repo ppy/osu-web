@@ -36,7 +36,7 @@ class Contest.Voting.EntryList extends Contest.Voting.BaseEntryList
     entries = @state.contest.entries.map (entry, index) =>
       el Contest.Voting.Entry,
         key: entry.id,
-        rank: index,
+        rank: index + 1,
         entry: entry,
         waitingForResponse: @state.waitingForResponse,
         options: @state.options,

@@ -24,18 +24,19 @@ class Contest.Voting.Entry extends React.Component
     if @props.contest.show_votes
       votePercentage = _.round((@props.entry.results.votes / @props.totalVotes)*100, 2)
       relativeVotePercentage = _.round((@props.entry.results.votes / @props.winnerVotes)*100, 2)
-      rank = @props.rank + 1
 
     selected = _.includes @props.selected, @props.entry.id
 
     div className: "contest-voting-list__row#{if selected && !@props.contest.show_votes then ' contest-voting-list__row--selected' else ''}",
       if @props.contest.show_votes
         div className: 'contest-voting-list__rank',
-          if rank < 4
-            div className: "contest-voting-list__trophy contest-voting-list__trophy--#{rank}",
-              el Icon, name: 'trophy', modifiers: ['fw']
+          if @props.rank < 4
+            el Icon,
+              name: 'trophy',
+              modifiers: ['fw'],
+              parentClass: "contest-voting-list__trophy contest-voting-list__trophy--#{@props.rank}"
           else
-            "##{rank}"
+            "##{@props.rank}"
       if @props.options.showPreview
         div className: 'contest-voting-list__preview',
           el TrackPreview, track: @props.entry
@@ -61,5 +62,5 @@ class Contest.Voting.Entry extends React.Component
         else
           div className:'contest__vote-count',
             "#{@props.entry.results.votes} votes"
-            if not isNaN(votePercentage)
+            if isFinite(votePercentage)
               " (#{votePercentage}%)"
