@@ -43,11 +43,6 @@ class Contest extends Model
         return $this->hasMany(ContestVote::class);
     }
 
-    public function voteAggregates()
-    {
-        return $this->hasMany(ContestVoteAggregate::class);
-    }
-
     public function isBestOf()
     {
         return isset($this->extra_options['best_of']);
