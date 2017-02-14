@@ -28,8 +28,17 @@ class Contest.Voting.Entry extends React.Component
     selected = _.includes @props.selected, @props.entry.id
 
     div className: "contest-voting-list__row#{if selected && !@props.contest.show_votes then ' contest-voting-list__row--selected' else ''}",
+      if @props.contest.show_votes
+        div className: 'contest-voting-list__rank',
+          if @props.rank < 4
+            el Icon,
+              name: 'trophy',
+              modifiers: ['fw'],
+              parentClass: "contest-voting-list__trophy contest-voting-list__trophy--#{@props.rank}"
+          else
+            "##{@props.rank}"
       if @props.options.showPreview
-        div {},
+        div className: 'contest-voting-list__preview',
           el TrackPreview, track: @props.entry
       if @props.options.showLink && @props.entry.preview
         div className: 'contest-voting-list__icon contest-voting-list__icon--bg',
@@ -39,7 +48,7 @@ class Contest.Voting.Entry extends React.Component
         div className: 'contest-voting-list__title contest-voting-list__title--show-votes',
           div className: 'contest-voting-list__votes-bar', style: { width: "#{relativeVotePercentage}%" }
           div className: 'u-ellipsis-overflow', @props.entry.title
-          div className: 'contest-voting-list__entrant', @props.entry.results.username
+          a href: laroute.route('users.show', user: @props.entry.results.user_id), className: 'contest-voting-list__entrant', @props.entry.results.username
       else
         div className: 'contest-voting-list__title u-ellipsis-overflow', @props.entry.title
 
@@ -47,7 +56,11 @@ class Contest.Voting.Entry extends React.Component
         el Contest.Voting.Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, selected: @props.selected, contest: @props.contest
 
       if @props.contest.show_votes
-        div className:'contest__vote-count',
-          "#{@props.entry.results.votes} votes"
-          if not isNaN(votePercentage)
-            " (#{votePercentage}%)"
+        if @props.contest.best_of
+          div className:'contest__vote-count contest__vote-count--no-percentages',
+            "#{@props.entry.results.votes} points"
+        else
+          div className:'contest__vote-count',
+            "#{@props.entry.results.votes} votes"
+            if isFinite(votePercentage)
+              " (#{votePercentage}%)"
