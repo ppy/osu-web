@@ -16,42 +16,49 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, a, i, audio} = React.DOM
+{div, a, i} = React.DOM
 el = React.createElement
 
 class @TrackPreview extends React.Component
   constructor: (props) ->
     super props
+
     @state =
       playing: false
 
-  previewStop: (e) =>
-    @setState playing: false
-
-  previewPlay: (e) =>
-    e.preventDefault()
-    justPause = @state.playing
-    $.publish 'trackpreview:stop'
-
-    if not justPause
-      @setState playing: true, ->
-        ele = $("#track-#{@props.track.id}-audio")[0]
-        ele.load()
-        ele.play()
-
-  previewDone: (e) =>
-    @setState playing: false
 
   componentDidMount: ->
-    $.subscribe "trackpreview:stop.trackpreview-#{@props.track.id}", @previewStop
+    @eventId = "trackpreview-#{@props.track.id}"
+    $.subscribe "osuAudio:playing.#{@eventId}", @previewPlay
+    $.subscribe "osuAudio:ended.#{@eventId}", @previewStop
+
 
   componentWillUnmount: ->
-    $.unsubscribe ".trackpreview-#{@props.track.id}"
+    $.unsubscribe ".#{@eventId}"
+
 
   render: ->
-    coverStyle = if @props.track.cover_url and not @props.track.album_id then { backgroundImage: "url('#{@props.track.cover_url}')" }
+    if @props.track.cover_url && !@props.track.album_id
+      coverStyle = backgroundImage: "url('#{@props.track.cover_url}')"
 
     div className: 'tracklist__cover', style: coverStyle,
-      a className: 'tracklist__preview', href: '#', onClick: @previewPlay,
-        i className: "fa fa-fw #{if @state.playing then 'fa-pause' else 'fa-play'}"
-      audio id: "track-#{@props.track.id}-audio", src: (if @state.playing then @props.track.preview else ''), preload: 'none', onEnded: @previewDone
+      a
+        className: 'tracklist__preview js-audio--play'
+        href: '#'
+        'data-audio-url': @props.track.preview
+        el Icon,
+          name: if @state.playing then 'pause' else 'play'
+          modifier: ['fw']
+
+
+  previewPlay: (_e, {url}) =>
+    if url != @props.track.preview
+      return @previewStop()
+
+    @setState playing: true
+
+
+  previewStop: (e) =>
+    return if !@state.playing
+
+    @setState playing: false
