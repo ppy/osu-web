@@ -20,19 +20,27 @@
 
 return [
     'beatmap_discussion' => [
+        'destroy' => [
+            'has_reply' => 'Não é possível excluir uma discussão com respostas',
+        ],
         'nominate' => [
-            'exhausted' => 'Você alcançou seu limite de nomeação do dia, tente novamente amanhã.',
+            'exhausted' => 'Você atingiu o limite de nomeações diárias, tente novamente amanhã.',
         ],
         'resolve' => [
-            'general_discussion' => 'A discussão geral não pôde ser resolvida.',
-            'not_owner' => 'Apenas o criador da discussão e o dono do beatmap podem resolver uma discussão.',
+            'general_discussion' => 'A discussão geral não pode ser resolvida.',
+            'not_owner' => 'Somente o autor da discussão e o dono do beatmap podem resolver uma discussão.',
+        ],
+
+        'vote' => [
+            'limit_exceeded' => 'Por favor, espere um pouco antes de votar mais vezes',
+            'owner' => 'Não é possível votar na sua própria discussão!',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Publicações automaticamente geradas não podem ser editadas.',
-            'not_owner' => 'Somente o autor da publicação pode editar a publicação.',
+            'system_generated' => 'Publicações geradas automaticamente não podem ser editadas.',
+            'not_owner' => 'Somente o autor pode editar a publicação.',
         ],
     ],
 
@@ -49,13 +57,13 @@ return [
                     'moderated' => 'O canal está atualmente sob moderação.',
                 ],
 
-                'not_allowed' => 'Não é possível enviar mensagens enquanto estiver proibido/restrito/silenciado.',
+                'not_allowed' => 'Não é possível enviar mensagens enquanto banido/restrito/silenciado.',
             ],
         ],
     ],
 
     'contest' => [
-        'voting_over' => 'Você não pode mudar seu voto depois que o período de votação do cuncurso ter sido encerrado',
+        'voting_over' => 'Não é possível alterar o voto após o fim do período de votação.',
     ],
 
     'forum' => [
@@ -64,28 +72,28 @@ return [
                 'only_last_post' => 'Somente a última publicação pode ser excluída.',
                 'locked' => 'Não é possível excluir a publicação de um tópico trancado.',
                 'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório.',
-                'not_owner' => 'Apenas o autor da publicação pode excluir a publicação.',
+                'not_owner' => 'Somente o autor pode excluir a publicação.',
             ],
 
             'edit' => [
                 'locked' => 'A edição desta publicação está bloqueada',
-                'no_forum_access' => 'O accesso ao fórum solicitado é obrigatório.',
-                'not_owner' => 'Apenas o autor da publicação pode editar a publicação.',
-                'topic_locked' => 'Não é possível editar publicações de um tópico trancado',
+                'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório.',
+                'not_owner' => 'Somente o autor da publicação pode editar a publicação.',
+                'topic_locked' => 'Não é possível editar publicações de um tópico trancado.',
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Você acabou de publicar. Aguarde um pouco ou edite sua última publicação.',
+                'double_post' => 'Você acabou de publicar. Aguarde um pouco ou edite a sua última publicação.',
                 'locked' => 'Não é possível responder a uma discussão trancada.',
                 'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório.',
                 'no_permission' => 'Sem permissão para responder.',
 
                 'user' => [
                     'require_login' => 'Por favor, inicie a sessão para responder.',
-                    'restricted' => 'Não é possível responder enquanto estiver restrito.',
-                    'silenced' => 'Não é possível responder enquanto estiver silenciado.',
+                    'restricted' => 'Não é possível responder enquanto restrito.',
+                    'silenced' => 'Não é possível responder enquanto silenciado.',
                 ],
             ],
 
@@ -97,13 +105,13 @@ return [
 
             'vote' => [
                 'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório',
-                'over' => 'A votação está encerrada e não pode mais ser votada.',
-                'voted' => 'Alterar o voto não é permitido.',
+                'over' => 'A votação está encerrada e não é possível mais votar.',
+                'voted' => 'Não é permitido alterar o voto.',
 
                 'user' => [
                     'require_login' => 'Por favor, inicie a sessão para votar.',
-                    'restricted' => 'Não é possível votar enquanto estiver restrito.',
-                    'silenced' => 'Não é possível votar enquanto estiver silenciado.',
+                    'restricted' => 'Não é possível votar enquanto restrito.',
+                    'silenced' => 'Não é possível votar enquanto silenciado.',
                 ],
             ],
 
@@ -115,7 +123,7 @@ return [
         'topic_cover' => [
             'edit' => [
                 'uneditable' => 'Capa especificada inválida.',
-                'not_owner' => 'Somente o proprietário pode editar a capa.',
+                'not_owner' => 'Somente o dono pode editar a capa.',
             ],
         ],
 
@@ -128,9 +136,9 @@ return [
 
     'unauthorized' => 'Acesso negado.',
 
-    'silenced' => 'Não é possível fazer isso enquanto estiver silenciado.',
+    'silenced' => 'Não é possível fazer isso enquanto silenciado.',
 
-    'restricted' => 'Não é possível fazer isso enquanto estiver restrito.',
+    'restricted' => 'Não é possível fazer isso enquanto restrito.',
 
     'user' => [
         'page' => [

@@ -25,6 +25,26 @@
     margin: 0 auto;
   }
 
+  &__rank {
+    display: flex;
+    align-items: center;
+    flex: 0 0 32px;
+    justify-content: center;
+    background: #1A2223;
+  }
+
+  &__trophy {
+    &--1 {
+      color: gold;
+    }
+    &--2 {
+      color: silver;
+    }
+    &--3 {
+      color: chocolate;
+    }
+  }
+
   &__row {
     background-color: #293336;
     color: #8dacb6;
@@ -80,9 +100,8 @@
   }
 
   &__preview {
-    background-color: rgba(0,0,0,0.75);
-    width: 32px;
-    height: 32px;
+    .center-content();
+    background: black;
   }
 
   &__title {
