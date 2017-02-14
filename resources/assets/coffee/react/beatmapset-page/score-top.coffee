@@ -52,7 +52,7 @@ BeatmapsetPage.ScoreTop = React.createClass
         div className: "#{bn}__position",
           "##{@props.position}"
           div className: "#{bn}__achieved",
-            osu.trans 'beatmaps.beatmapset.show.scoreboard.achieved', when: moment(@props.score.created_at).fromNow()
+            osu.trans 'beatmapsets.show.scoreboard.achieved', when: moment(@props.score.created_at).fromNow()
 
       div className: "#{bn}__section #{bn}__section--bottom",
         div className: "#{bn}__stats-top",
@@ -62,13 +62,13 @@ BeatmapsetPage.ScoreTop = React.createClass
           div className: "#{bn}__stats",
             div className: "#{bn}__stat",
               div className: "#{bn}__stat-header",
-                osu.trans 'beatmaps.beatmapset.show.scoreboard.stats.score'
+                osu.trans 'beatmapsets.show.scoreboard.stats.score'
               div className: "#{bn}__stat-value #{bn}__stat-value--score",
                 @props.score.score.toLocaleString()
 
             div className: "#{bn}__stat",
               div className: "#{bn}__stat-header",
-                osu.trans 'beatmaps.beatmapset.show.scoreboard.stats.accuracy'
+                osu.trans 'beatmapsets.show.scoreboard.stats.accuracy'
               div className: "#{bn}__stat-value #{bn}__stat-value--score",
                 "#{_.round @props.score.accuracy * 100, 2}%"
 
