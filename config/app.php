@@ -89,6 +89,7 @@ return [
         'nl',
         'pl',
         'pt-br',
+        'ru',
         'zh',
     ],
 
