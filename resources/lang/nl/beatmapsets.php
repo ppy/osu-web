@@ -66,7 +66,7 @@ return [
                 'rank-header' => 'Rank',
                 'score' => 'Score',
             ],
-            'no-scores' => [
+            'no_scores' => [
                 'country' => 'Niemand uit jouw land heeft nog een score behaald op deze map!',
                 'friend' => 'Niemand van jouw vrienden heeft nog een score behaald op deze map!',
                 'global' => 'Nog geen scores. Probeer er een paar te halen?',

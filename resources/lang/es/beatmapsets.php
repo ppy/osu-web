@@ -63,7 +63,7 @@ return [
                 'rank-header' => 'Rango',
                 'score' => 'Puntuación',
             ],
-            'no-scores' => [
+            'no_scores' => [
                 'country' => '¡Nadie de tu país ha marcado una puntuación en este mapa aún!',
                 'friend' => '¡Ninguno de tus amigos ha marcado una puntuación en este mapa aún!',
                 'global' => 'Sin puntuaciones aún. ¿Tal vez deberías intentar marcar alguna?',

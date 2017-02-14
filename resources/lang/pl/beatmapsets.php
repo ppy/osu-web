@@ -69,7 +69,7 @@ return [
                 'rank-header' => 'Miejsce',
                 'score' => 'Wynik',
             ],
-            'no-scores' => [
+            'no_scores' => [
                 'country' => 'Nikt z twojego kraju nie ustanowił tutaj wyniku!',
                 'friend' => 'Żaden z twoich znajomych nie ma tutaj wyniku!',
                 'global' => 'Brak wyników. Może powinieneś jakieś zdobyć?',

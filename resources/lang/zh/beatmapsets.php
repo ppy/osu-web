@@ -83,7 +83,7 @@ return [
                 'rank-header' => '排名',
                 'score' => '得分',
             ],
-            'no-scores' => [
+            'no_scores' => [
                 'country' => '国内还没有人在这张谱面上得分!',
                 'friend' => '您的好友中还没有人在这张谱面上得分!',
                 'global' => '还没有人在这张谱面上得分,您或许可以试一试?',

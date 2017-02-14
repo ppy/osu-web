@@ -63,7 +63,7 @@ return [
                 'rank-header' => 'Rang',
                 'score' => 'Score',
             ],
-            'no-scores' => [
+            'no_scores' => [
                 'country' => "Personne de votre pays n'a encore fait un score!",
                 'friend' => "Personnne de vos amis n'a encore fait un score!",
                 'global' => 'Pas de scores. Peut-être vous dans le classement?',

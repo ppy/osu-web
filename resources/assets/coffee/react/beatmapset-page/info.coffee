@@ -33,6 +33,8 @@ class BeatmapsetPage.Info extends React.Component
 
 
   renderChart: ->
+    return if !@props.beatmapset.has_scores
+
     failtimes = _.keyBy @props.beatmap.failtimes, 'type'
 
     data = [
@@ -95,27 +97,30 @@ class BeatmapsetPage.Info extends React.Component
                 ]
 
       div className: 'beatmapset-info__box beatmapset-info__box--success-rate',
-        div className: 'beatmap-success-rate',
-          h3
-            className: 'beatmap-success-rate__header'
-            osu.trans 'beatmapsets.show.info.success-rate'
+        if @props.beatmapset.has_scores
+          div className: 'beatmap-success-rate',
+            h3
+              className: 'beatmap-success-rate__header'
+              osu.trans 'beatmapsets.show.info.success-rate'
 
-          div className: 'bar bar--beatmap-success-rate',
+            div className: 'bar bar--beatmap-success-rate',
+              div
+                className: 'bar__fill'
+                style:
+                  width: "#{percentage}%"
+
             div
-              className: 'bar__fill'
+              className: 'beatmap-success-rate__percentage'
               style:
-                width: "#{percentage}%"
+                paddingLeft: "#{percentage}%"
+              div null, "#{percentage}%"
 
-          div
-            className: 'beatmap-success-rate__percentage'
-            style:
-              paddingLeft: "#{percentage}%"
-            div null, "#{percentage}%"
+            h3
+              className: 'beatmap-success-rate__header'
+              osu.trans 'beatmapsets.show.info.points-of-failure'
 
-          h3
-            className: 'beatmap-success-rate__header'
-            osu.trans 'beatmapsets.show.info.points-of-failure'
-
-          div
-            className: 'beatmap-success-rate__chart'
-            ref: 'chartArea'
+            div
+              className: 'beatmap-success-rate__chart'
+              ref: 'chartArea'
+        else
+          osu.trans 'beatmapsets.show.info.no_scores'

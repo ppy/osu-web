@@ -83,7 +83,7 @@ return [
                 'rank-header' => 'Rank',
                 'score' => 'Pontuação',
             ],
-            'no-scores' => [
+            'no_scores' => [
                 'country' => 'Ninguém do seu país fez uma pontuação neste mapa ainda!',
                 'friend' => 'Nenhum dos seus amigos fez uma pontuação neste mapa ainda!',
                 'global' => 'Sem pontuações ainda. Não quer tentar marcar algumas?',

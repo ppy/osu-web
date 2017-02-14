@@ -60,8 +60,9 @@ return [
             'rating-spread' => 'Rating Spread',
         ],
         'info' => [
-            'success-rate' => 'Success Rate',
+            'no_scores' => 'Unranked beatmap',
             'points-of-failure' => 'Points of Failure',
+            'success-rate' => 'Success Rate',
 
             'description' => 'Description',
 
@@ -83,11 +84,12 @@ return [
                 'rank-header' => 'Rank',
                 'score' => 'Score',
             ],
-            'no-scores' => [
+            'no_scores' => [
                 'country' => 'No one from your country has set a score on this map yet!',
                 'friend' => 'No one of your friends has set a score on this map yet!',
                 'global' => 'No scores yet. Maybe you should try setting some?',
                 'loading' => 'Loading scores...',
+                'unranked' => 'Unranked beatmap.',
             ],
             'score' => [
                 'first' => 'In the Lead',
