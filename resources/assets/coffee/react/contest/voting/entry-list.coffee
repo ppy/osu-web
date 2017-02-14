@@ -33,9 +33,10 @@ class Contest.Voting.EntryList extends Contest.Voting.BaseEntryList
     if @state.contest.show_votes
       totalVotes = _.sumBy @state.contest.entries, (i) -> i.results.votes
 
-    entries = @state.contest.entries.map (entry) =>
+    entries = @state.contest.entries.map (entry, index) =>
       el Contest.Voting.Entry,
         key: entry.id,
+        rank: index + 1,
         entry: entry,
         waitingForResponse: @state.waitingForResponse,
         options: @state.options,
