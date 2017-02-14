@@ -38,6 +38,13 @@ return [
         'item' => ':count 件|:count 件', //参考翻译:件/份/个
     ],
 
+    'device' => [
+        'keyboard' => '键盘',
+        'mouse' => '鼠标',
+        'tablet' => '数位板', //板子
+        'touch' => '触摸屏',
+    ],
+
     'dropzone' => [
         'target' => '拖动到此处以上传',
     ],

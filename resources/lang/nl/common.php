@@ -32,6 +32,13 @@ return [
         'item' => ':count stuk|:count stuks',
     ],
 
+    'device' => [
+        'keyboard' => 'Toetsenbord',
+        'mouse' => 'Muis',
+        'tablet' => 'Tablet',
+        'touch' => 'Touch Screen',
+    ],
+
     'dropzone' => [
         'target' => 'laat hier los om te uploaden',
     ],

@@ -108,7 +108,8 @@ elixir(function(mix) {
     path.join(node_root, 'react-height/build/react-height' + min + '.js'),
     path.join(node_root, 'react-motion/build/react-motion.js'),
     path.join(node_root, 'react-collapse/build/react-collapse' + min + '.js'),
-
+  ], 'public/js/vendor.js')
+  .scripts([
     'ga.js',
     'messages.js',
     'laroute.js',
@@ -153,6 +154,7 @@ elixir(function(mix) {
   .version([
     'css/app.css',
     'js/app.js',
+    'js/vendor.js',
     'js/react/profile-page.js',
     'js/react/beatmaps.js',
     'js/react/status-page.js',

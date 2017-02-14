@@ -49,7 +49,20 @@ return [
     'logout_confirm' => 'Vous êtes sûr de vous déconnecter? :(',
     'show' => [
         '404' => 'Utilisateur non trouvé! ;_;',
-        'current_location' => 'Actuellement à :location.',
+        'age' => 'Âgé de :age',
+        'current_location' => 'Actuellement à :location',
+        'first_members' => 'Ici depuis le début',
+        'is_developer' => 'osu!developer',
+        'is_supporter' => 'osu!supporter',
+        'joined_at' => 'Ici depuis le :date',
+        'lastvisit' => 'Vu la dernière fois le :date',
+        'missingtext' => "Vous avez fait une erreur typo je crois! (ou l'utilisateur vous a banni)",
+        'origin_age' => ':age',
+        'origin_country' => 'Depuis :country',
+        'origin_country_age' => ':age ans et de :country',
+        'page_description' => 'osu! - Tout ce que vous devez savoir à propos de :username!',
+        'title' => 'profil de :username',
+
         'edit' => [
             'cover' => [
                 'button' => 'Changer la bannière du profil',
@@ -60,7 +73,7 @@ return [
                     'dropzone' => 'Déplacez ici pour uploader',
                     'dropzone_info' => "Vous pouvez aussi déplacer l'image ici pour la mettre en ligne",
                     'restriction_info' => "Mise en ligne disponible pour les <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporteurs</a> uniquement",
-                    'size_info' => 'La taille de la bannière devrait être 2000x500',
+                    'size_info' => 'La taille de la bannière devrait être 2000x700',
                     'too_large' => 'Le fichier mis en ligne est trop gros.',
                     'unsupported_format' => 'Format non supporté.',
                 ],
@@ -140,32 +153,12 @@ return [
                 'none' => 'Aucun... en ce moment.',
             ],
         ],
-        'first_members' => 'ici depuis le début',
-        'is_supporter' => 'osu!supporter',
-        'is_developer' => 'osu!developer',
-        'lastvisit' => 'Vu la dernière fois le :date.',
-        'joined_at' => 'ici depuis le :date',
-        'more_achievements' => 'et plus',
-        'origin' => [
-            'age' => 'âgé de :age.',
-            'country' => 'Depuis :country.',
-            'country_age' => 'Âgé de :age ans et de :country.',
-        ],
         'page' => [
             'description' => '<strong>moi!</strong> est une zone personnalisable du profil.',
             'edit_big' => 'éditer le moi!',
             'placeholder' => 'Tapez le contenu de la page',
             'restriction_info' => "Vous devez être <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> pour débloquer cette fonctionnalité.",
         ],
-        'plays_with' => [
-            '_' => 'Joue avec',
-            'keyboard' => 'Clavier',
-            'mouse' => 'Souris',
-            'tablet' => 'Tablette',
-            'touch' => 'Écran tactile',
-        ],
-        'missingtext' => "Vous avez fait une erreur typo je crois! (ou l'utilisateur vous a banni)",
-        'page_description' => 'osu! - Tout ce que vous devez savoir à propos de :username!',
         'rank' => [
             'country' => 'Classement national pour :mode',
             'global' => 'Classement global pour :mode',
@@ -181,7 +174,6 @@ return [
             'total_hits' => 'Nombre de clics',
             'total_score' => 'Score total',
         ],
-        'title' => 'profil de :username',
     ],
 
     'verify' => [

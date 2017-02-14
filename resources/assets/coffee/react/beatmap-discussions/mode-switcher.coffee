@@ -25,6 +25,7 @@ BeatmapDiscussions.ModeSwitcher = React.createClass
 
   componentDidMount: ->
     $.subscribe 'stickyHeader.beatmapDiscussionsMode', @_tabsStick
+    osu.pageChange()
 
 
   componentWillUnmount: ->
@@ -38,22 +39,22 @@ BeatmapDiscussions.ModeSwitcher = React.createClass
   render: ->
     div null,
       div
-        className: "beatmap-discussions-mode #{'beatmap-discussions-mode--floating' if @state.tabsSticky}"
+        className: "page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
 
         div
           className: 'js-sticky-header'
           'data-sticky-header-target': 'page-extra-tabs'
 
         div
-          className: 'beatmap-discussions-mode__padding js-sync-height--target'
-          'data-sync-height-id': 'beatmap-discussions-mode'
+          className: 'page-extra-tabs__padding js-sync-height--target'
+          'data-sync-height-id': 'page-extra-tabs'
           'data-sticky-header-target': 'page-extra-tabs'
 
         div
-          className: 'beatmap-discussions-mode__floatable js-sync-height--reference js-mode-switcher'
-          'data-sync-height-target': 'beatmap-discussions-mode'
+          className: 'page-extra-tabs__floatable js-sync-height--reference js-mode-switcher'
+          'data-sync-height-target': 'page-extra-tabs'
           div className: 'osu-page',
-            ul className: 'page-mode page-mode--beatmap-discussions-mode',
+            ul className: 'page-mode page-mode--page-extra-tabs',
               for mode in ['general', 'timeline']
                 li
                   key: mode
