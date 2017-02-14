@@ -27,6 +27,7 @@ class @OsuAudio
     $(document).on 'turbolinks:load', =>
       @player().addEventListener 'playing', @playing
       @player().addEventListener 'ended', @stop
+      @player().volume = 0.45
 
 
   play: (e) =>
