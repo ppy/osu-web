@@ -9,33 +9,32 @@
     "issues": "https://github.com/ppy/osu-web/issues"
   },
   "require": {
-    "laravel/framework": "5.3.*",
-    "laravelcollective/html": "5.3.*",
-    "predis/predis": "~1.0",
     "doctrine/dbal": "*",
+    "ezyang/htmlpurifier": "^4.7",
+    "graham-campbell/github": "^5.0",
     "graham-campbell/markdown": "*",
     "itsgoingd/clockwork": "~1.9",
-    "maknz/slack": "*",
-    "ezyang/htmlpurifier": "^4.7",
-    "mariuzzo/laravel-js-localization": "*",
-    "league/fractal": "^0.14.0",
-    "shift31/laravel-elasticsearch": "~1.0",
-    "league/statsd": "^1.4.0",
-    "league/flysystem-aws-s3-v3": "^1.0",
-    "lord/laroute": "~2.0",
-    "sentry/sentry-laravel": "^0.6.0",
+    "laravel/framework": "5.3.*",
     "laravel/passport": "^1.0",
-    "php-http/guzzle6-adapter": "^1.1",
-    "graham-campbell/github": "^5.0",
-    "webuni/commonmark-table-extension": "^0.6.1"
+    "laravelcollective/html": "5.3.*",
+    "league/flysystem-aws-s3-v3": "^1.0",
+    "league/fractal": "^0.14.0",
+    "league/statsd": "^1.4.0",
+    "lord/laroute": "~2.0",
+    "maknz/slack": "*",
+    "mariuzzo/laravel-js-localization": "*",
+    "predis/predis": "~1.0",
+    "sentry/sentry-laravel": "^0.6.0",
+    "shift31/laravel-elasticsearch": "~1.0",
+    "webuni/commonmark-table-extension": "^0.6.1",
+    "guzzlehttp/guzzle": "^6.2"
   },
   "require-dev": {
-    "fzaninotto/faker": "~1.5",
+    "fzaninotto/faker": "~1.4",
     "mockery/mockery": "0.9.*",
-    "phpunit/phpunit": "~4.0",
-    "phpspec/phpspec": "~2.1",
-    "symfony/dom-crawler": "~3.0",
-    "symfony/css-selector": "~3.0"
+    "phpunit/phpunit": "~5.0",
+    "symfony/css-selector": "3.1.*",
+    "symfony/dom-crawler": "3.1.*"
   },
   "autoload": {
     "classmap": [
