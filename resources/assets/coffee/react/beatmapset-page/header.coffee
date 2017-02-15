@@ -155,9 +155,7 @@ class BeatmapsetPage.Header extends React.Component
           el BeatmapsetPage.Stats,
             beatmapset: @props.beatmapset
             beatmap: @props.currentBeatmap
-            isPreviewPlaying: @props.isPreviewPlaying
             timeElapsed: @props.timeElapsed
-            previewDuration: @props.previewDuration
 
 
   downloadButton: ({key, href, icon = 'download', topTextKey = '_', bottomTextKey}) =>
@@ -183,6 +181,3 @@ class BeatmapsetPage.Header extends React.Component
       userLogin.show e.target
     else
       $.publish 'beatmapset:favourite:toggle'
-
-  togglePreview: (e) =>
-    $.publish 'beatmapset:preview:toggle', !@props.isPreviewPlaying
