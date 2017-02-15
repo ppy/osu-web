@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, audio} = React.DOM
+{div} = React.DOM
 el = React.createElement
 
 class BeatmapsetPage.Main extends React.Component
@@ -47,7 +47,6 @@ class BeatmapsetPage.Main extends React.Component
       favcount: props.beatmapset.favourite_count
       hasFavourited: props.beatmapset.has_favourited
       loading: false
-      isPreviewPlaying: false
       currentScoreboardType: 'global'
       enabledMods: []
       scores: []
@@ -142,16 +141,6 @@ class BeatmapsetPage.Main extends React.Component
       beatmap: BeatmapHelper.default items: @state.beatmaps[mode]
 
 
-  togglePreviewPlayingState: (_e, isPreviewPlaying) =>
-    @setState isPreviewPlaying: isPreviewPlaying
-
-    if isPreviewPlaying
-      @audioPreview.play()
-    else
-      @audioPreview.pause()
-      @audioPreview.currentTime = 0
-
-
   setHoveredBeatmap: (_e, hoveredBeatmap) =>
     @setState hoveredBeatmap: hoveredBeatmap
 
@@ -169,23 +158,15 @@ class BeatmapsetPage.Main extends React.Component
         favcount: data.favcount
         hasFavourited: data.favourited
 
-  onPreviewEnded: =>
-    @setState isPreviewPlaying: false
-
-
   componentDidMount: ->
     $.subscribe 'beatmapset:beatmap:set.beatmapsetPage', @setCurrentBeatmap
     $.subscribe 'playmode:set.beatmapsetPage', @setCurrentPlaymode
     $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
-    $.subscribe 'beatmapset:preview:toggle.beatmapsetPage', @togglePreviewPlayingState
     $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmap
     $.subscribe 'beatmapset:favourite:toggle.beatmapsetPage', @toggleFavourite
 
     @setHash()
     @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
-
-    @audioPreview = document.getElementsByClassName('js-beatmapset-page--audio-preview')[0]
-    @audioPreview.volume = 0.45
 
 
   componentWillUnmount: ->
@@ -195,12 +176,6 @@ class BeatmapsetPage.Main extends React.Component
 
   render: ->
     div className: 'osu-layout__section',
-      audio
-        className: 'js-beatmapset-page--audio-preview'
-        src: @props.beatmapset.previewUrl
-        preload: 'auto'
-        onEnded: @onPreviewEnded
-
       div className: 'osu-layout__row osu-layout__row--page-compact',
         el BeatmapsetPage.Header,
           beatmapset: @props.beatmapset
@@ -209,19 +184,20 @@ class BeatmapsetPage.Main extends React.Component
           hoveredBeatmap: @state.hoveredBeatmap
           favcount: @state.favcount
           hasFavourited: @state.hasFavourited
-          isPreviewPlaying: @state.isPreviewPlaying
 
         el BeatmapsetPage.Info,
           beatmapset: @props.beatmapset
           beatmap: @state.currentBeatmap
 
       div className: 'osu-layout__section osu-layout__section--extra',
-        el BeatmapsetPage.Scoreboard,
-          type: @state.currentScoreboardType
-          beatmap: @state.currentBeatmap
-          scores: @state.scores
-          userScore: @state.userScore
-          userScorePosition: @state.userScorePosition
-          enabledMods: @state.enabledMods
-          countries: @props.countries
-          loading: @state.loading
+        div className: 'osu-page',
+          el BeatmapsetPage.Scoreboard,
+            type: @state.currentScoreboardType
+            beatmap: @state.currentBeatmap
+            scores: @state.scores
+            userScore: @state.userScore
+            userScorePosition: @state.userScorePosition
+            enabledMods: @state.enabledMods
+            countries: @props.countries
+            loading: @state.loading
+            hasScores: @props.beatmapset.has_scores

@@ -19,7 +19,9 @@
 .beatmapset-scoreboard {
   @_top: beatmapset-scoreboard;
 
-  margin-top: 10px;
+  .default-box-shadow();
+  background-color: #fff;
+  margin: 10px 0;
   padding: 30px 20px;
 
   &__mods-wrapper {
@@ -83,25 +85,15 @@
   &__notice {
     text-align: center;
     padding-top: 10px;
-
-    &--no-scores {
-      font-size: 15px;
-    }
-
-    &--guest {
-      text-align: left;
-      font-style: italic;
-    }
+    font-size: @font-size--title-small;
   }
 
   &__supporter-text {
-    font-size: 24px;
     font-weight: 600;
-
     padding-bottom: 10px;
 
     &--small {
-      font-size: 18px;
+      font-size: 80%;
       font-weight: normal;
 
       padding: 0;
