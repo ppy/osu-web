@@ -26,4 +26,4 @@ BeatmapsetPage.ScoreboardTab = (props) ->
     className: className
     onClick: ->
       $.publish 'beatmapset:scoreboard:set', scoreboardType: props.type
-    osu.trans "beatmaps.beatmapset.show.scoreboard.#{props.type}"
+    osu.trans "beatmapsets.show.scoreboard.#{props.type}"

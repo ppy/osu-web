@@ -216,12 +216,14 @@ class BeatmapsetPage.Main extends React.Component
           beatmap: @state.currentBeatmap
 
       div className: 'osu-layout__section osu-layout__section--extra',
-        el BeatmapsetPage.Scoreboard,
-          type: @state.currentScoreboardType
-          beatmap: @state.currentBeatmap
-          scores: @state.scores
-          userScore: @state.userScore
-          userScorePosition: @state.userScorePosition
-          enabledMods: @state.enabledMods
-          countries: @props.countries
-          loading: @state.loading
+        div className: 'osu-page',
+          el BeatmapsetPage.Scoreboard,
+            type: @state.currentScoreboardType
+            beatmap: @state.currentBeatmap
+            scores: @state.scores
+            userScore: @state.userScore
+            userScorePosition: @state.userScorePosition
+            enabledMods: @state.enabledMods
+            countries: @props.countries
+            loading: @state.loading
+            hasScores: @props.beatmapset.has_scores

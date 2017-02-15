@@ -30,6 +30,8 @@ class BeatmapsetPage.Stats extends React.Component
     @_renderChart()
 
   _renderChart: ->
+    return if !@props.beatmapset.has_scores
+
     data = [
       {values: @props.beatmapset.ratings[1..]}
     ]
@@ -104,7 +106,7 @@ class BeatmapsetPage.Stats extends React.Component
 
               tr
                 key: stat
-                th className: 'beatmap-stats-table__label', osu.trans "beatmaps.beatmapset.show.stats.#{stat}"
+                th className: 'beatmap-stats-table__label', osu.trans "beatmapsets.show.stats.#{stat}"
                 td className: 'beatmap-stats-table__bar',
                   div className: "bar bar--beatmap-stats bar--beatmap-stats-#{stat}",
                     div
@@ -113,20 +115,21 @@ class BeatmapsetPage.Stats extends React.Component
                         width: "#{10 * Math.min 10, value}%"
                 td className: 'beatmap-stats-table__value', valueText
 
-      div className: 'beatmapset-stats__row beatmapset-stats__row--rating',
-        div className: 'beatmapset-stats__rating-header', osu.trans 'beatmaps.beatmapset.show.stats.user-rating'
-        div className: 'bar--beatmap-rating',
+      if @props.beatmapset.has_scores
+        div className: 'beatmapset-stats__row beatmapset-stats__row--rating',
+          div className: 'beatmapset-stats__rating-header', osu.trans 'beatmapsets.show.stats.user-rating'
+          div className: 'bar--beatmap-rating',
+            div
+              className: 'bar__fill'
+              style:
+                width: "#{(ratingsNegative / ratingsAll) * 100}%"
+
+          div className: 'beatmapset-stats__rating-values',
+            span null, ratingsNegative.toLocaleString()
+            span null, ratingsPositive.toLocaleString()
+
+          div className: 'beatmapset-stats__rating-header', osu.trans 'beatmapsets.show.stats.rating-spread'
+
           div
-            className: 'bar__fill'
-            style:
-              width: "#{(ratingsNegative / ratingsAll) * 100}%"
-
-        div className: 'beatmapset-stats__rating-values',
-          span null, ratingsNegative.toLocaleString()
-          span null, ratingsPositive.toLocaleString()
-
-        div className: 'beatmapset-stats__rating-header', osu.trans 'beatmaps.beatmapset.show.stats.rating-spread'
-
-        div
-          className: 'beatmapset-stats__rating-chart'
-          ref: 'chartArea'
+            className: 'beatmapset-stats__rating-chart'
+            ref: 'chartArea'

@@ -33,27 +33,27 @@ bn = 'beatmapset-mapping'
 
     div className: "#{bn}__content",
       div className: "#{bn}__mapper",
-        osu.trans 'beatmaps.beatmapset.show.details.made-by'
+        osu.trans 'beatmapsets.show.details.made-by'
         a
           className: "#{bn}__user"
           href: laroute.route 'users.show', user: user.id
           user.username
 
       div null,
-        osu.trans 'beatmaps.beatmapset.show.details.submitted'
+        osu.trans 'beatmapsets.show.details.submitted'
         span
           className: "#{bn}__date"
           moment(beatmapset.submitted_date).format dateFormat
 
       if beatmapset.ranked > 0
         div null,
-          osu.trans "beatmaps.beatmapset.show.details.#{beatmapset.status}"
+          osu.trans "beatmapsets.show.details.#{beatmapset.status}"
           span
             className: "#{bn}__date"
             moment(beatmapset.ranked_date).format dateFormat
       else
         div null,
-          osu.trans 'beatmaps.beatmapset.show.details.updated'
+          osu.trans 'beatmapsets.show.details.updated'
           span
             className: "#{bn}__date"
             moment(beatmapset.last_updated).format dateFormat
