@@ -39,6 +39,7 @@ class @OsuAudio
       return @stop()
 
     @urlSet url
+    @publish 'initializing'
     @player().play()
 
 
@@ -47,7 +48,11 @@ class @OsuAudio
 
 
   playing: =>
-    $.publish 'osuAudio:playing',
+    @publish 'playing'
+
+
+  publish: (event) =>
+    $.publish "osuAudio:#{event}",
       url: @urlGet()
       player: @player()
 
@@ -56,7 +61,7 @@ class @OsuAudio
     @player().pause()
     @player().currentTime = 0
     @urlSet ''
-    $.publish 'osuAudio:ended', url: @urlGet()
+    @publish 'ended'
 
 
   urlGet: =>
