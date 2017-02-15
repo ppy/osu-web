@@ -61,5 +61,5 @@ return [
         'total_posts' => 'в сумме :posts_count постов',
     ],
     'subforums' => 'Подфорумы',
-    'title' => 'osu!сообщество'
+    'title' => 'osu!сообщество',
 ];
