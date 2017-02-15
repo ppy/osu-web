@@ -29,7 +29,7 @@ class @TrackPreview extends React.Component
 
   componentDidMount: ->
     @eventId = "trackpreview-#{@props.track.id}"
-    $.subscribe "osuAudio:playing.#{@eventId}", @previewPlay
+    $.subscribe "osuAudio:initializing.#{@eventId}", @previewPlay
     $.subscribe "osuAudio:ended.#{@eventId}", @previewStop
 
 
@@ -48,7 +48,6 @@ class @TrackPreview extends React.Component
         'data-audio-url': @props.track.preview
         el Icon,
           name: if @state.playing then 'pause' else 'play'
-          modifier: ['fw']
 
 
   previewPlay: (_e, {url}) =>

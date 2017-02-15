@@ -24,13 +24,14 @@ class BeatmapsetPage.Stats extends React.Component
     super props
 
     @state =
-      isPreviewing: false
+      preview: 'ended'
       previewDuration: 0
 
 
   componentDidMount: =>
     @_renderChart()
 
+    $.subscribe 'osuAudio:initializing.beatmapsetPageStats', @previewInitializing
     $.subscribe 'osuAudio:playing.beatmapsetPageStats', @previewStart
     $.subscribe 'osuAudio:ended.beatmapsetPageStats', @previewStop
 
@@ -60,14 +61,14 @@ class BeatmapsetPage.Stats extends React.Component
         className: "beatmapset-stats__row beatmapsets-stats__row beatmapset-stats__row--preview js-audio--play"
         'data-audio-url': @props.beatmapset.previewUrl
         el Icon,
-          name: if @state.isPreviewing then 'stop' else 'play'
+          name: if @state.preview == 'ended' then 'play' else 'stop'
           parentClass: 'beatmapset-stats__preview-icon'
 
         div
           className: 'beatmapset-stats__elapsed-bar'
           style:
             transitionDuration: "#{@state.previewDuration}s"
-            width: "#{if @state.isPreviewing then '100%' else 0}"
+            width: "#{if @state.preview == 'playing' then '100%' else 0}"
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--basic',
         el BeatmapBasicStats,
@@ -124,20 +125,29 @@ class BeatmapsetPage.Stats extends React.Component
             ref: 'chartArea'
 
 
+  previewInitializing: (_e, {url, player}) =>
+    if url != @props.beatmapset.previewUrl
+      return @previewStop()
+
+    @setState
+      preview: 'initializing'
+      previewDuration: 0
+
+
   previewStart: (_e, {url, player}) =>
     if url != @props.beatmapset.previewUrl
       return @previewStop()
 
     @setState
-      isPreviewing: true
+      preview: 'playing'
       previewDuration: player.duration
 
 
   previewStop: =>
-    return if !@state.isPreviewing
+    return if @state.preview == 'ended'
 
     @setState
-      isPreviewing: false
+      preview: 'ended'
       previewDuration: 0
 
 
