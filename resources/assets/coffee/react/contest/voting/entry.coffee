@@ -41,9 +41,16 @@ class Contest.Voting.Entry extends React.Component
         div className: 'contest-voting-list__preview',
           el TrackPreview, track: @props.entry
       if @props.options.showLink && @props.entry.preview
-        div className: 'contest-voting-list__icon contest-voting-list__icon--bg',
-          a className: 'tracklist__link', href: @props.entry.preview,
-            el Icon, name: @props.contest.link_icon, modifiers: ['fw', 'lg']
+        if @props.contest.best_of
+          a href: laroute.route('beatmapsets.show', beatmapset: @props.entry.preview), className: 'contest-voting-list__icon contest-voting-list__icon--best-of', style: { background: "url(https://b.ppy.sh/thumb/#{@props.entry.preview}.jpg)" },
+            el Icon,
+              name: @props.contest.link_icon,
+              modifiers: ['fw', 'lg'],
+              parentClass: 'tracklist__link tracklist__link--shadowed'
+        else
+          div className: 'contest-voting-list__icon contest-voting-list__icon--bg',
+            a className: 'tracklist__link', href: @props.entry.preview,
+              el Icon, name: @props.contest.link_icon, modifiers: ['fw', 'lg']
       if @props.contest.show_votes
         div className: 'contest-voting-list__title contest-voting-list__title--show-votes',
           div className: 'contest-voting-list__votes-bar', style: { width: "#{relativeVotePercentage}%" }
