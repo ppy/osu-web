@@ -42,7 +42,7 @@ return [
             '_' => 'карты',
             'show' => 'информация',
             'index' => 'списки',
-            'artists' => 'избранные исполнители'
+            'artists' => 'избранные исполнители',
         ],
         'beatmapsets' => [
             '_' => 'карты',
@@ -118,7 +118,7 @@ return [
         'admin-store' => [
             'orders-index' => 'заказы',
             'orders-show' => 'заказ',
-        ]
+        ],
     ],
 
     'footer' => [
@@ -134,5 +134,5 @@ return [
             'serverStatus' => 'Состояние Сервера',
             'osuStatus' => '@osustatus',
         ],
-    ]
+    ],
 ];
