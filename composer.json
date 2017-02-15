@@ -8,11 +8,18 @@
     "email": "support@ppy.sh",
     "issues": "https://github.com/ppy/osu-web/issues"
   },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/nanaya/slack-php"
+    }
+  ],
   "require": {
     "doctrine/dbal": "*",
     "ezyang/htmlpurifier": "^4.7",
     "graham-campbell/github": "^5.0",
     "graham-campbell/markdown": "*",
+    "guzzlehttp/guzzle": "^6.2",
     "itsgoingd/clockwork": "~1.9",
     "laravel/framework": "5.3.*",
     "laravel/passport": "^1.0",
@@ -21,13 +28,12 @@
     "league/fractal": "^0.14.0",
     "league/statsd": "^1.4.0",
     "lord/laroute": "~2.0",
-    "maknz/slack": "*",
+    "maknz/slack": "dev-laravel-5.4",
     "mariuzzo/laravel-js-localization": "*",
     "predis/predis": "~1.0",
     "sentry/sentry-laravel": "^0.6.0",
     "shift31/laravel-elasticsearch": "~1.0",
-    "webuni/commonmark-table-extension": "^0.6.1",
-    "guzzlehttp/guzzle": "^6.2"
+    "webuni/commonmark-table-extension": "^0.6.1"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",
