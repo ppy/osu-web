@@ -48,7 +48,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
                 'beatmap_discussion_vote' => ['score' => '1'],
             ])
-            ->assertResponseStatus(403);
+            ->assertStatus(403);
 
         $this->assertEquals($currentVotes, BeatmapDiscussionVote::count());
         $this->assertEquals($currentScore, $this->currentScore($this->beatmapDiscussion));
@@ -62,7 +62,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
                 'beatmap_discussion_vote' => ['score' => '1'],
             ])
-            ->assertResponseOk();
+            ->assertStatus(200);
 
         $this->assertEquals($currentVotes + 1, BeatmapDiscussionVote::count());
         $this->assertEquals($currentScore + 1, $this->currentScore($this->beatmapDiscussion));
@@ -81,7 +81,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
-            ->assertResponseOk();
+            ->assertStatus(200);
 
         $this->assertEquals($currentVotes, BeatmapDiscussionVote::count());
         $this->assertEquals($currentScore - 2, $this->currentScore($this->beatmapDiscussion));
@@ -100,7 +100,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
                 'beatmap_discussion_vote' => ['score' => '0'],
             ])
-            ->assertResponseOk();
+            ->assertStatus(200);
 
         $this->assertEquals($currentVotes - 1, BeatmapDiscussionVote::count());
         $this->assertEquals($currentScore - 1, $this->currentScore($this->beatmapDiscussion));

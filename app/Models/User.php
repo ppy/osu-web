@@ -457,7 +457,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function beatmapDiscussionVotes()
     {
-        return $this->hasMany(BeatmapDiscussionVote::class);
+        return $this->hasMany(BeatmapDiscussionVote::class, 'user_id');
     }
 
     public function beatmapsets()

@@ -43,7 +43,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                     'message' => 'Hello',
                 ],
             ])
-            ->assertResponseOk();
+            ->assertStatus(200);
 
         $this->assertEquals($currentDiscussions + 1, BeatmapDiscussion::count());
         $this->assertEquals($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
@@ -62,7 +62,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                     'message' => 'Hello',
                 ],
             ])
-            ->assertResponseOk();
+            ->assertStatus(200);
 
         $this->assertEquals($currentDiscussions, BeatmapDiscussion::count());
         $this->assertEquals($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
@@ -81,7 +81,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                     'message' => 'Hello',
                 ],
             ])
-            ->assertResponseOk();
+            ->assertStatus(200);
 
         $this->assertEquals($currentDiscussionPosts + 2, BeatmapDiscussionPost::count());
     }
@@ -99,7 +99,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                     'message' => 'Hello',
                 ],
             ])
-            ->assertResponseStatus(404);
+            ->assertStatus(404);
 
         $this->assertEquals($currentDiscussions, BeatmapDiscussion::count());
         $this->assertEquals($currentDiscussionPosts, BeatmapDiscussionPost::count());
@@ -125,7 +125,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                     'message' => $editedMessage,
                 ],
             ])
-            ->assertResponseStatus(403);
+            ->assertStatus(403);
 
         $beatmapDiscussionPost = $beatmapDiscussionPost->fresh();
 
@@ -139,7 +139,7 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                     'message' => $editedMessage,
                 ],
             ])
-            ->assertResponseOk();
+            ->assertStatus(200);
 
         $beatmapDiscussionPost = $beatmapDiscussionPost->fresh();
 

@@ -39,8 +39,8 @@ class BeatmapControllerTest extends TestCase
     {
         $this->json('GET', route('beatmaps.scores', ['id' => $this->beatmap->beatmap_id]), [
             'type' => 'country',
-        ])->seeStatusCode(422)
-        ->seeJson(['error' => trans('errors.supporter_only')]);
+        ])->assertStatus(422)
+        ->assertJson(['error' => trans('errors.supporter_only')]);
     }
 
     /**
@@ -52,8 +52,8 @@ class BeatmapControllerTest extends TestCase
         $this->actingAs($this->user)
             ->json('GET', route('beatmaps.scores', ['id' => $this->beatmap->beatmap_id]), [
                 'type' => 'country',
-            ])->seeStatusCode(422)
-            ->seeJson(['error' => trans('errors.supporter_only')]);
+            ])->assertStatus(422)
+            ->assertJson(['error' => trans('errors.supporter_only')]);
 
         $this->user->osu_subscriber = true;
         $this->user->save();
@@ -61,6 +61,6 @@ class BeatmapControllerTest extends TestCase
         $this->actingAs($this->user)
             ->json('GET', route('beatmaps.scores', ['id' => $this->beatmap->beatmap_id]), [
                 'type' => 'country',
-            ])->seeStatusCode(200);
+            ])->assertStatus(200);
     }
 }
