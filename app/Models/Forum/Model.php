@@ -18,13 +18,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+namespace App\Models\Forum;
 
-class ModQueue extends Model
-{
-    protected $table = 'osu_mod_queue';
-    protected $primaryKey = 'mod_queue_id';
+use App\Models\Model as BaseModel;
 
-    public $timestamps = false;
-    public $dates = ['timestamp'];
+abstract class Model extends BaseModel {
 }

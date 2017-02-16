@@ -32,20 +32,20 @@ class PrivateMessage extends Model
 
     public function sender()
     {
-        return $this->belongsTo(User::class, 'user_id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function receiver()
     {
-        return $this->belongsTo(User::class, 'target_id', 'user_id');
+        return $this->belongsTo(User::class, 'target_id');
     }
 
     public function scopeToOrFrom($query, $user_id)
     {
         return $query->where(
             function ($q) use ($user_id) {
-                $q->where('user_id', $user_id)
-                ->orWhere('target_id', '=', $user_id);
+                $q->where('user_id', '=', $user_id)
+                    ->orWhere('target_id', '=', $user_id);
             }
         );
     }

@@ -20,11 +20,9 @@
 
 namespace App\Models;
 
-class ModQueue extends Model
-{
-    protected $table = 'osu_mod_queue';
-    protected $primaryKey = 'mod_queue_id';
+use Illuminate\Database\Eloquent\Model as BaseModel;
 
-    public $timestamps = false;
-    public $dates = ['timestamp'];
+abstract class Model extends BaseModel
+{
+    protected $connection = 'mysql';
 }

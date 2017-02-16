@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class ContestVote extends Model
 {
     protected $guarded = [];

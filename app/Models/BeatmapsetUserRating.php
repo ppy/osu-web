@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class BeatmapsetUserRating extends Model
 {
     protected $table = 'osu_user_beatmapset_ratings';

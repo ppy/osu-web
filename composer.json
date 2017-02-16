@@ -21,9 +21,10 @@
     "graham-campbell/markdown": "*",
     "guzzlehttp/guzzle": "^6.2",
     "itsgoingd/clockwork": "~1.9",
-    "laravel/framework": "5.3.*",
-    "laravel/passport": "^1.0",
-    "laravelcollective/html": "5.3.*",
+    "laravel/framework": "5.4.*",
+    "laravel/passport": "^2.0",
+    "laravel/tinker": "~1.0",
+    "laravelcollective/html": "5.4.*",
     "league/flysystem-aws-s3-v3": "^1.0",
     "league/fractal": "^0.14.0",
     "league/statsd": "^1.4.0",
@@ -38,7 +39,7 @@
   "require-dev": {
     "fzaninotto/faker": "~1.4",
     "mockery/mockery": "0.9.*",
-    "phpunit/phpunit": "~5.0",
+    "phpunit/phpunit": "~5.7",
     "symfony/css-selector": "3.1.*",
     "symfony/dom-crawler": "3.1.*"
   },

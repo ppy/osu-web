@@ -21,7 +21,6 @@
 namespace App\Models;
 
 use App\Transformers\GenreTransformer;
-use Illuminate\Database\Eloquent\Model;
 
 class Genre extends Model
 {

@@ -22,7 +22,6 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use DB;
-use Illuminate\Database\Eloquent\Model;
 
 class BeatmapDiscussion extends Model
 {
@@ -46,7 +45,7 @@ class BeatmapDiscussion extends Model
 
     public function beatmap()
     {
-        return $this->belongsTo(Beatmap::class);
+        return $this->belongsTo(Beatmap::class, 'beatmap_id');
     }
 
     public function beatmapset()
@@ -71,7 +70,7 @@ class BeatmapDiscussion extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function getMessageTypeAttribute($value)

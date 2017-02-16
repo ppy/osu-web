@@ -24,7 +24,6 @@ use App\Transformers\ContestEntryTransformer;
 use App\Transformers\ContestTransformer;
 use App\Transformers\UserContestEntryTransformer;
 use Cache;
-use Illuminate\Database\Eloquent\Model;
 
 class Contest extends Model
 {

@@ -24,7 +24,6 @@ use App\Libraries\ForumDefaultTopicCover;
 use App\Models\User;
 use App\Traits\Imageable;
 use DB;
-use Illuminate\Database\Eloquent\Model;
 
 class ForumCover extends Model
 {

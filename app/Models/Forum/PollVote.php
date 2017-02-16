@@ -22,7 +22,6 @@ namespace App\Models\Forum;
 
 use App\Models\User;
 use App\Traits\Validatable;
-use Illuminate\Database\Eloquent\Model;
 
 class PollVote extends Model
 {

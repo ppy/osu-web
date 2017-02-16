@@ -18,13 +18,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+namespace App\Models\Store;
 
-class ModQueue extends Model
+use App\Models\Model as BaseModel;
+
+abstract class Model extends BaseModel
 {
-    protected $table = 'osu_mod_queue';
-    protected $primaryKey = 'mod_queue_id';
-
-    public $timestamps = false;
-    public $dates = ['timestamp'];
+    protected $connection = 'mysql-store';
 }
