@@ -26,8 +26,8 @@ use DB;
 class Order extends Model
 {
     protected $primaryKey = 'order_id';
-
     protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
+    public $macros = ['itemsQuantities'];
 
     public function items()
     {
@@ -246,21 +246,23 @@ class Order extends Model
         return $cart;
     }
 
-    public static function itemsQuantities($orders)
+    public function macroItemsQuantities()
     {
-        $query = clone $orders;
+        return function ($query) {
+            $query = clone $query;
 
-        $ordersTable = (new Order)->getTable();
-        $orderItemsTable = (new OrderItem)->getTable();
-        $productsTable = (new Product)->getTable();
+            $ordersTable = (new Order)->getTable();
+            $orderItemsTable = (new OrderItem)->getTable();
+            $productsTable = (new Product)->getTable();
 
-        $query
-            ->join($orderItemsTable, "{$ordersTable}.order_id", '=', "{$orderItemsTable}.order_id")
-            ->join($productsTable, "{$orderItemsTable}.product_id", '=', "${productsTable}.product_id")
-            ->groupBy("{$orderItemsTable}.product_id")
-            ->groupBy('name')
-            ->select(DB::raw("SUM({$orderItemsTable}.quantity) AS quantity, name, {$orderItemsTable}.product_id"));
+            $query
+                ->join($orderItemsTable, "{$ordersTable}.order_id", '=', "{$orderItemsTable}.order_id")
+                ->join($productsTable, "{$orderItemsTable}.product_id", '=', "${productsTable}.product_id")
+                ->groupBy("{$orderItemsTable}.product_id")
+                ->groupBy('name')
+                ->select(DB::raw("SUM({$orderItemsTable}.quantity) AS quantity, name, {$orderItemsTable}.product_id"));
 
-        return $query->get();
+            return $query->get();
+        };
     }
 }
