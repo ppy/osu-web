@@ -80,64 +80,6 @@ return [
         'source' => 'de :source',
         'load-more' => 'Cargar más...',
     ],
-    'beatmapset' => [
-        'show' => [
-            'details' => [
-                'made-by' => 'creado por ',
-                'submitted' => 'enviado el ',
-                'ranked' => 'rankeado el ',
-                'logged-out' => '¡Necesitas iniciar sesión para descargar beatmaps!',
-                'download' => [
-                    '_' => 'descargar',
-                    'direct' => 'osu!direct',
-                    'no-video' => 'sin video',
-                ],
-            ],
-            'stats' => [
-                'cs' => 'Tamaño de círculo',
-                'drain' => 'Disminución de HP',
-                'accuracy' => 'Precisión',
-                'ar' => 'Velocidad de aproximación',
-                'stars' => 'Estrellas de Dificultad',
-                'total_length' => 'Duración',
-                'bpm' => 'BPM',
-            ],
-            'info' => [
-                'success-rate' => 'Tasa de éxito',
-                'points-of-failure' => 'Puntos de Fracaso',
-
-                'description' => 'Descripción',
-
-                'source' => 'Fuente',
-                'tags' => 'Etiquetas',
-            ],
-            'scoreboard' => [
-                'country' => 'Ranking Nacional',
-                'friend' => 'Ranking de Amigos',
-                'global' => 'Ranking Global',
-                'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
-                'supporter-only' => '¡Necesitas ser supporter para acceder a los rankings entre amigos y de tu país!',
-                'title' => 'Puntuaciones',
-
-                'list' => [
-                    'accuracy' => 'Precisión',
-                    'player-header' => 'Jugador',
-                    'rank-header' => 'Rango',
-                    'score' => 'Puntuación',
-                ],
-                'no-scores' => [
-                    'country' => '¡Nadie de tu país ha marcado una puntuación en este mapa aún!',
-                    'friend' => '¡Ninguno de tus amigos ha marcado una puntuación en este mapa aún!',
-                    'global' => 'Sin puntuaciones aún. ¿Tal vez deberías intentar marcar alguna?',
-                    'loading' => 'Cargando puntuaciones...',
-                ],
-                'stats' => [
-                    'accuracy' => 'Precisión',
-                    'score' => 'Puntuación',
-                ],
-            ],
-        ],
-    ],
     'mode' => [
         'any' => 'Cualquiera',
         'osu' => 'osu!',

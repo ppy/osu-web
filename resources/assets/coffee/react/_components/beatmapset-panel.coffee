@@ -21,13 +21,14 @@ el = React.createElement
 
 @BeatmapsetPanel = React.createClass
   getInitialState: ->
-    isPreviewing: false
+    preview: 'ended'
     previewDuration: 0
 
 
   componentDidMount: ->
     @eventId = "beatmapsetPanel#{@props.beatmap.beatmapset_id}"
 
+    $.subscribe "osuAudio:initializing.#{@eventId}", @previewInitializing
     $.subscribe "osuAudio:playing.#{@eventId}", @previewStart
     $.subscribe "osuAudio:ended.#{@eventId}", @previewStop
 
@@ -53,7 +54,7 @@ el = React.createElement
       difficulties.push span key: 'over', "+#{(beatmapset.beatmaps.length - maxDisplayedDifficulty)}"
 
     div
-      className: "beatmapset-panel #{'beatmapset-panel--previewing' if @state.isPreviewing}"
+      className: "beatmapset-panel #{'beatmapset-panel--previewing' if @state.preview != 'ended'}"
       div className: 'beatmapset-panel__panel',
         div className: 'beatmapset-panel__header',
           a
@@ -82,7 +83,7 @@ el = React.createElement
               className: 'beatmapset-panel__preview-bar'
               style:
                 transitionDuration: "#{@state.previewDuration}s"
-                width: "#{if @state.isPreviewing then '100%' else 0}"
+                width: "#{if @state.preview == 'playing' then '100%' else 0}"
 
         div className: 'beatmapset-panel__content',
           div className: 'beatmapset-panel__row',
@@ -111,8 +112,17 @@ el = React.createElement
         href: '#'
         className: 'beatmapset-panel__play js-audio--play'
         'data-audio-url': beatmapset.previewUrl
-        el Icon, name: if @state.isPreviewing then 'stop' else 'play'
+        el Icon, name: if @state.preview == 'ended' then 'play' else 'stop'
       div className: 'beatmapset-panel__shadow'
+
+
+  previewInitializing: (_e, {url, player}) ->
+    if url != @props.beatmap.previewUrl
+      return @previewStop()
+
+    @setState
+      preview: 'initializing'
+      previewDuration: 0
 
 
   previewStart: (_e, {url, player}) ->
@@ -120,13 +130,13 @@ el = React.createElement
       return @previewStop()
 
     @setState
-      isPreviewing: true
+      preview: 'playing'
       previewDuration: player.duration
 
 
   previewStop: ->
-    return if !@state.isPreviewing
+    return if @state.preview == 'ended'
 
     @setState
-      isPreviewing: false
+      preview: 'ended'
       previewDuration: 0

@@ -183,6 +183,11 @@ class Beatmapset extends Model
         return $this->approved === self::STATES['qualified'];
     }
 
+    public function hasScores()
+    {
+        return $this->attributes['approved'] > 0;
+    }
+
     private static function sanitizeSearchParams(array &$params = [])
     {
         // sort param

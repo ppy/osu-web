@@ -56,7 +56,7 @@ class BeatmapsetPage.Header extends React.Component
               className: 'beatmapset-header__star-difficulty'
               style:
                 visibility: 'hidden' if !@props.hoveredBeatmap?
-              "#{osu.trans 'beatmaps.beatmapset.show.stats.stars'} #{if @props.hoveredBeatmap then @props.hoveredBeatmap.difficulty_rating.toFixed 2 else ''}"
+              "#{osu.trans 'beatmapsets.show.stats.stars'} #{if @props.hoveredBeatmap then @props.hoveredBeatmap.difficulty_rating.toFixed 2 else ''}"
 
             div {},
               span className: 'beatmapset-header__value',
@@ -88,13 +88,13 @@ class BeatmapsetPage.Header extends React.Component
                   key: 'availability'
                   className: 'beatmapset-header__availability-info',
                   if @props.beatmapset.availability.download_disabled
-                    osu.trans 'beatmaps.beatmapset.availability.disabled'
+                    osu.trans 'beatmapsets.availability.disabled'
                   else
-                    osu.trans 'beatmaps.beatmapset.availability.parts-removed'
+                    osu.trans 'beatmapsets.availability.parts-removed'
 
                   if @props.beatmapset.availability.more_information
                     div className: 'beatmapset-header__availability-link',
-                      a href: @props.beatmapset.availability.more_information, target: '_blank', osu.trans 'beatmaps.beatmapset.availability.more-info'
+                      a href: @props.beatmapset.availability.more_information, target: '_blank', osu.trans 'beatmapsets.availability.more-info'
 
               div
                 key: 'buttons'
@@ -107,7 +107,7 @@ class BeatmapsetPage.Header extends React.Component
                       laroute.route 'beatmapsets.update-favourite',
                         beatmapset: @props.beatmapset.id
                         action: favouriteButton.action
-                    title: osu.trans "beatmaps.beatmapset.show.details.#{favouriteButton.action}"
+                    title: osu.trans "beatmapsets.show.details.#{favouriteButton.action}"
                   modifiers: ['beatmapset-header-square', "beatmapset-header-square-#{favouriteButton.action}"]
                   icon: favouriteButton.icon
 
@@ -145,19 +145,17 @@ class BeatmapsetPage.Header extends React.Component
                     key: 'discussion'
                     modifiers: ['beatmapset-header']
                     text:
-                      top: osu.trans 'beatmaps.beatmapset.show.discussion'
+                      top: osu.trans 'beatmapsets.show.discussion'
                     icon: 'comments-o'
                     props:
-                      href: laroute.route 'beatmaps.beatmapsets.show.discussion', beatmapset: @props.beatmapset.id
+                      href: laroute.route 'beatmapsetss.show.discussion', beatmapset: @props.beatmapset.id
             ]
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
           el BeatmapsetPage.Stats,
             beatmapset: @props.beatmapset
             beatmap: @props.currentBeatmap
-            isPreviewPlaying: @props.isPreviewPlaying
             timeElapsed: @props.timeElapsed
-            previewDuration: @props.previewDuration
 
 
   downloadButton: ({key, href, icon = 'download', topTextKey = '_', bottomTextKey}) =>
@@ -165,8 +163,8 @@ class BeatmapsetPage.Header extends React.Component
       key: key
       modifiers: ['beatmapset-header']
       text:
-        top: osu.trans "beatmaps.beatmapset.show.details.download.#{topTextKey}"
-        bottom: if bottomTextKey? then osu.trans "beatmaps.beatmapset.show.details.download.#{bottomTextKey}"
+        top: osu.trans "beatmapsets.show.details.download.#{topTextKey}"
+        bottom: if bottomTextKey? then osu.trans "beatmapsets.show.details.download.#{bottomTextKey}"
       icon: icon
       props:
         href: href
@@ -183,6 +181,3 @@ class BeatmapsetPage.Header extends React.Component
       userLogin.show e.target
     else
       $.publish 'beatmapset:favourite:toggle'
-
-  togglePreview: (e) =>
-    $.publish 'beatmapset:preview:toggle', !@props.isPreviewPlaying
