@@ -226,7 +226,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function setUserInterestsAttribute($value)
     {
-        $this->attributes['user_interests'] = presence(e($value));
+        $this->attributes['user_interests'] = e($value);
     }
 
     public function getUserOccAttribute($value)
@@ -236,7 +236,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function setUserOccAttribute($value)
     {
-        $this->attributes['user_occ'] = presence(e($value));
+        $this->attributes['user_occ'] = e($value);
     }
 
     public function isSpecial()

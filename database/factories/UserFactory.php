@@ -38,5 +38,9 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'user_posts' => rand(1, 500),
         'user_warnings' => 0,
         'user_type' => 0,
+        'user_permissions' => '',
+        'user_sig' => '',
+        'user_occ' => '',
+        'user_interests' => '',
     ];
 });
