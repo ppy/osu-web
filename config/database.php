@@ -13,19 +13,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | PDO Fetch Style
-    |--------------------------------------------------------------------------
-    |
-    | By default, database results will be returned as instances of the PHP
-    | stdClass object; however, you may desire to retrieve records in an
-    | array format for simplicity. Here you can tweak the fetch style.
-    |
-    */
-
-    'fetch' => PDO::FETCH_OBJ,
-
-    /*
-    |--------------------------------------------------------------------------
     | Default Database Connection Name
     |--------------------------------------------------------------------------
     |
@@ -54,7 +41,6 @@ return [
     */
 
     'connections' => [
-
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', 'localhost'),
@@ -64,7 +50,7 @@ return [
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_general_ci',
             'prefix' => '',
-            'strict' => false,
+            'strict' => true,
             'options' => [
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
             ],
@@ -79,7 +65,7 @@ return [
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_general_ci',
             'prefix' => '',
-            'strict' => false,
+            'strict' => true,
             'options' => [
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
             ],
@@ -94,7 +80,7 @@ return [
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_general_ci',
             'prefix' => '',
-            'strict' => false,
+            'strict' => true,
             'options' => [
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
             ],
@@ -109,7 +95,7 @@ return [
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_general_ci',
             'prefix' => '',
-            'strict' => false,
+            'strict' => true,
             'options' => [
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
             ],

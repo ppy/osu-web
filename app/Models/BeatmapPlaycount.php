@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class BeatmapPlaycount extends Model
 {
     protected $table = 'osu_user_beatmap_playcount';

@@ -1,5 +1,6 @@
 # Local configuration.
 /.env
+/.env.testing
 
 # ignore the compiled class file from artisan optimize
 /bootstrap/compiled.php

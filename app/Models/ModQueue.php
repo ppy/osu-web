@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class ModQueue extends Model
 {
     protected $table = 'osu_mod_queue';

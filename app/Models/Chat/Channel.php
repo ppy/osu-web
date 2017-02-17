@@ -25,7 +25,6 @@ use App\Models\User;
 
 class Channel extends Model implements Messageable
 {
-    protected $table = 'channels';
     protected $primaryKey = 'channel_id';
     protected $dates = [
         'creation_time',
@@ -33,7 +32,7 @@ class Channel extends Model implements Messageable
 
     public function messages()
     {
-        $this->hasMany(Message::class, 'channel_id', 'channel_id');
+        $this->hasMany(Message::class, 'channel_id');
     }
 
     public function getAllowedGroupsAttribute($allowed_groups)

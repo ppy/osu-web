@@ -30,7 +30,6 @@ use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Database\Eloquent\Model;
 use Laravel\Passport\HasApiTokens;
 use Request;
 
@@ -227,7 +226,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function setUserInterestsAttribute($value)
     {
-        $this->attributes['user_interests'] = presence(e($value));
+        $this->attributes['user_interests'] = e($value);
     }
 
     public function getUserOccAttribute($value)
@@ -237,7 +236,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function setUserOccAttribute($value)
     {
-        $this->attributes['user_occ'] = presence(e($value));
+        $this->attributes['user_occ'] = e($value);
     }
 
     public function isSpecial()
@@ -453,27 +452,27 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function userGroups()
     {
-        return $this->hasMany(UserGroup::class);
+        return $this->hasMany(UserGroup::class, 'user_id');
     }
 
     public function beatmapDiscussionVotes()
     {
-        return $this->hasMany(BeatmapDiscussionVote::class);
+        return $this->hasMany(BeatmapDiscussionVote::class, 'user_id');
     }
 
     public function beatmapsets()
     {
-        return $this->hasMany(Beatmapset::class);
+        return $this->hasMany(Beatmapset::class, 'user_id');
     }
 
     public function beatmaps()
     {
-        return $this->hasManyThrough(Beatmap::class, Beatmapset::class);
+        return $this->hasManyThrough(Beatmap::class, Beatmapset::class, 'user_id');
     }
 
     public function favourites()
     {
-        return $this->hasMany(FavouriteBeatmapset::class);
+        return $this->hasMany(FavouriteBeatmapset::class, 'user_id');
     }
 
     public function favouriteBeatmapsets()
@@ -483,7 +482,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function beatmapsetNominations()
     {
-        return $this->hasMany(BeatmapsetEvent::class)->where('type', BeatmapsetEvent::NOMINATE);
+        return $this->hasMany(BeatmapsetEvent::class, 'user_id')->where('type', BeatmapsetEvent::NOMINATE);
     }
 
     public function beatmapsetNominationsToday()
@@ -493,17 +492,17 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function beatmapPlaycounts()
     {
-        return $this->hasMany(BeatmapPlaycount::class);
+        return $this->hasMany(BeatmapPlaycount::class, 'user_id');
     }
 
     public function apiKey()
     {
-        return $this->hasOne(ApiKey::class);
+        return $this->hasOne(ApiKey::class, 'user_id');
     }
 
     public function storeAddresses()
     {
-        return $this->hasMany(Store\Address::class);
+        return $this->hasMany(Store\Address::class, 'user_id');
     }
 
     public function rank()
@@ -513,7 +512,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function rankHistories()
     {
-        return $this->hasMany(RankHistory::class);
+        return $this->hasMany(RankHistory::class, 'user_id');
     }
 
     public function country()
@@ -550,7 +549,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         $mode = studly_case($mode);
 
         if ($returnQuery === true) {
-            return $this->hasOne("App\Models\UserStatistics\\{$mode}");
+            return $this->hasOne("App\Models\UserStatistics\\{$mode}", 'user_id');
         } else {
             $relation = "statistics{$mode}";
 
@@ -587,7 +586,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         $mode = studly_case($mode);
 
         if ($returnQuery === true) {
-            return $this->hasMany("App\Models\Score\\{$mode}");
+            return $this->hasMany("App\Models\Score\\{$mode}", 'user_id');
         } else {
             $relation = "scores{$mode}";
 
@@ -663,7 +662,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         $mode = studly_case($mode);
 
         if ($returnQuery === true) {
-            return $this->hasMany("App\Models\Score\Best\\{$mode}")->default();
+            return $this->hasMany("App\Models\Score\Best\\{$mode}", 'user_id')->default();
         } else {
             $relation = "scoresBest{$mode}";
 
@@ -673,12 +672,12 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function userProfileCustomization()
     {
-        return $this->hasOne(UserProfileCustomization::class);
+        return $this->hasOne(UserProfileCustomization::class, 'user_id');
     }
 
     public function banHistories()
     {
-        return $this->hasMany(UserBanHistory::class);
+        return $this->hasMany(UserBanHistory::class, 'user_id');
     }
 
     public function userPage()
@@ -688,17 +687,17 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function userAchievements()
     {
-        return $this->hasMany(UserAchievement::class);
+        return $this->hasMany(UserAchievement::class, 'user_id');
     }
 
     public function usernameChangeHistory()
     {
-        return $this->hasMany(UsernameChangeHistory::class);
+        return $this->hasMany(UsernameChangeHistory::class, 'user_id');
     }
 
     public function relations()
     {
-        return $this->hasMany(UserRelation::class);
+        return $this->hasMany(UserRelation::class, 'user_id');
     }
 
     public function friends()
@@ -713,7 +712,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function events()
     {
-        return $this->hasMany(Event::class);
+        return $this->hasMany(Event::class, 'user_id');
     }
 
     public function beatmapsetRatings()
@@ -738,7 +737,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function givenSupports()
     {
-        return $this->hasMany(UserDonation::class);
+        return $this->hasMany(UserDonation::class, 'user_id');
     }
 
     public function forumPosts()

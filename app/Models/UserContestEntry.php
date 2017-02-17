@@ -22,7 +22,6 @@ namespace App\Models;
 
 use App\Traits\Uploadable;
 use DB;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 
 class UserContestEntry extends Model

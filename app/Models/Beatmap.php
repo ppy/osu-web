@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Beatmap extends Model
 {
     protected $table = 'osu_beatmaps';
@@ -35,11 +33,6 @@ class Beatmap extends Model
     public $timestamps = false;
 
     protected $hidden = ['checksum', 'filename', 'orphaned'];
-
-    public function mods()
-    {
-        return $this->hasMany(Mod::class, 'beatmap_id', 'beatmap_id');
-    }
 
     const MODES = [
         'osu' => 0,
@@ -65,7 +58,7 @@ class Beatmap extends Model
 
     public function beatmapDiscussions()
     {
-        return $this->hasMany(BeatmapDiscussion::class);
+        return $this->hasMany(BeatmapDiscussion::class, 'beatmap_id');
     }
 
     public function creator()
@@ -75,12 +68,12 @@ class Beatmap extends Model
 
     public function difficulty()
     {
-        return $this->hasMany(BeatmapDifficulty::class);
+        return $this->hasMany(BeatmapDifficulty::class, 'beatmap_id');
     }
 
     public function difficultyAttribs()
     {
-        return $this->hasMany(BeatmapDifficultyAttrib::class);
+        return $this->hasMany(BeatmapDifficultyAttrib::class, 'beatmap_id');
     }
 
     public function getModeAttribute()
@@ -97,7 +90,7 @@ class Beatmap extends Model
 
     public function failtimes()
     {
-        return $this->hasMany(BeatmapFailtimes::class);
+        return $this->hasMany(BeatmapFailtimes::class, 'beatmap_id');
     }
 
     private function getScores($model_path, $mode)
@@ -110,7 +103,7 @@ class Beatmap extends Model
 
         $mode = studly_case($mode);
 
-        return $this->hasMany("{$model_path}\\{$mode}");
+        return $this->hasMany("{$model_path}\\{$mode}", 'beatmap_id');
     }
 
     public function scores($mode = null)

@@ -20,30 +20,11 @@
 
 namespace App\Models;
 
-class BeatmapDiscussionVote extends Model
+use App\Traits\MacroableModel;
+use Illuminate\Database\Eloquent\Model as BaseModel;
+
+abstract class Model extends BaseModel
 {
-    protected $guarded = [];
-
-    public function beatmapDiscussion()
-    {
-        return $this->belongsTo(BeatmapDiscussion::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function setScoreAttribute($value)
-    {
-        if ($value > 0) {
-            $value = 1;
-        } elseif ($value < 0) {
-            $value = -1;
-        } else {
-            $value = 0;
-        }
-
-        $this->attributes['score'] = $value;
-    }
+    use MacroableModel;
+    protected $connection = 'mysql';
 }
