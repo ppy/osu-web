@@ -47,7 +47,20 @@ return [
     'logout_confirm' => 'Sei sicuro di volerti disconnettere? :(',
     'show' => [
         '404' => 'Utente non trovato! ;_;',
-        'current_location' => 'Si trova in :location.',
+        'age' => ':age anni',
+        'current_location' => 'Si trova in :location',
+        'first_members' => "Qui dall'inizio",
+        'is_developer' => 'sviluppatore di osu!',
+        'is_supporter' => 'sostenitore di osu!',
+        'joined_at' => 'Registrato :date',
+        'lastvisit' => 'Ultima volta visto :date',
+        'missingtext' => 'Potresti aver fatto un\'errore di battitura! (o l\'utente potrebbe essere stato bannato)',
+        'origin_age' => ':age',
+        'origin_country' => 'da :country', // It changes from county to country "Dall'italia", "Dalla Spagna" ecc...
+        'origin_country_age' => ':age fa da :country',
+        'page_description' => 'osu! - Tutto ciò che vuoi sapere su :username!',
+        'title' => 'Profilo di :username',
+
         'edit' => [
             'cover' => [
                 'button' => 'Cambia copertina del profilo',
@@ -58,7 +71,7 @@ return [
                     'dropzone' => 'Trascina qui per caricarla',
                     'dropzone_info' => 'Puoi anche trascinare qui l\'immagine per caricarla',
                     'restriction_info' => "Caricamento disponibile solo per gli <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a>",
-                    'size_info' => 'L\'immaigne di copertina dovrebbe essere 2700x500',
+                    'size_info' => 'L\'immaigne di copertina dovrebbe essere 2000x700',
                     'too_large' => 'Il file caricato è troppo grande.',
                     'unsupported_format' => 'Formato non supportato.',
                 ],
@@ -137,32 +150,12 @@ return [
                 'none' => 'Nessuna... per ora.',
             ],
         ],
-        'first_members' => 'qui dall\'inizio',
-        'is_supporter' => 'sostenitore di osu!',
-        'is_developer' => 'sviluppatore di osu!',
-        'lastvisit' => 'Ultima volta visto :date.',
-        'joined_at' => 'registrato :date',
-        'more_achievements' => 'e altri',
-        'origin' => [
-            'age' => ':age anni.',
-            'country' => 'da :country.', // It changes from county to country "Dall'italia", "Dalla Spagna" ecc...
-            'country_age' => ':age anni fa da :country.',
-        ],
         'page' => [
             'description' => '<strong>io!</strong> è un\'area personale personalizzabile nella tua pagina del profilo.',
             'edit_big' => 'Modificami!',
             'placeholder' => 'Scrivi il contenuto della pagina qui',
             'restriction_info' => "Devi essere un <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> per sbloccare questa funzione.",
         ],
-        'plays_with' => [
-            '_' => 'Gioca con',
-            'keyboard' => 'Tastiera',
-            'mouse' => 'Mouse',
-            'tablet' => 'Tablet',
-            'touch' => 'Schermo Touch',
-        ],
-        'missingtext' => 'Potresti aver fatto un\'errore di battitura! (o l\'utente potrebbe essere stato bannato)',
-        'page_description' => 'osu! - Tutto ciò che vuoi sapere su :username!',
         'rank' => [
             'country' => 'Rank del paese per :mode',
             'global' => 'Rank globale :mode',
@@ -178,7 +171,6 @@ return [
             'total_hits' => 'Colpi Totali',
             'total_score' => 'Punteggio Totale',
         ],
-        'title' => 'Profilo di :username',
     ],
 
     'verify' => [

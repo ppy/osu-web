@@ -42,7 +42,6 @@
         class="
             osu-layout
             osu-layout--body
-            {{ $current_section or "error" }}
             t-section-{{ $current_section or "error" }}
             section
             action-{{ $current_action }}

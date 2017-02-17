@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,38 +18,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-discussions-mode {
-  .bg() {
-    .at2x('/images/backgrounds/page-ddd.png');
-    border-bottom: 1px solid @yellow;
+namespace App\Models;
 
-    &::before {
-      .full-size();
-      background-color: fade(@gray-0, 75%);
-    }
-  }
+use App\Traits\MacroableModel;
+use Illuminate\Database\Eloquent\Model as BaseModel;
 
-  @top: beatmap-discussions-mode;
-
-  &__floatable {
-    .bg();
-    .own-layer();
-    width: 100%;
-    left: 0;
-    top: 0;
-
-    .@{top}--floating & {
-      z-index: @z-index--fixed-bar;
-      position: fixed;
-    }
-  }
-
-  &__padding {
-    .bg();
-    display: none;
-
-    .@{top}--floating & {
-      display: block;
-    }
-  }
+abstract class Model extends BaseModel
+{
+    use MacroableModel;
+    protected $connection = 'mysql';
 }

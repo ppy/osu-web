@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class BeatmapMirror extends Model
 {
     protected $table = 'osu_mirrors';

@@ -35,6 +35,13 @@ return [
         'item' => ':count objet|:count objets',
     ],
 
+    'device' => [
+        'keyboard' => 'Clavier',
+        'mouse' => 'Souris',
+        'tablet' => 'Tablette',
+        'touch' => 'Écran tactile',
+    ],
+
     'dropzone' => [
         'target' => 'déplacez ici pour uploader',
     ],

@@ -17,55 +17,37 @@
  */
 
 .page-extra-tabs {
-  @_top: page-extra-tabs;
-  width: 100%;
+  .bg() {
+    .at2x('/images/backgrounds/page-ddd.png');
+    border-bottom: 1px solid @yellow;
 
-  margin-bottom: 10px;
-
-  @media @desktop {
-    margin-bottom: 0;
+    &::before {
+      .full-size();
+      background-color: fade(@gray-0, 75%);
+    }
   }
 
-  &--fixed {
-    z-index: @z-index--page-extra-tabs;
-  }
+  @top: page-extra-tabs;
 
-  &__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  &__floatable {
+    .bg();
+    .own-layer();
     width: 100%;
+    left: 0;
+    top: 0;
 
-    .@{_top}--fixed & {
-      top: 0;
-      left: 0;
+    .@{top}--floating & {
+      z-index: @z-index--fixed-bar;
       position: fixed;
-      backface-visibility: hidden;
     }
   }
 
-  &__items {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+  &__padding {
+    .bg();
+    display: none;
 
-    color: #fff;
-    font-weight: 500;
-    transition: background-color 120ms;
-
-    .@{_top}--fixed & {
-      background-color: @gray-dark;
-    }
-  }
-
-  &__item {
-    .default-border-radius();
-    padding: 5px 10px;
-    margin: 15px 10px;
-
-    &:hover, &--active {
-      background-color: @pink-text;
+    .@{top}--floating & {
+      display: block;
     }
   }
 }

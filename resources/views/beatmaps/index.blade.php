@@ -20,7 +20,7 @@
   'current_action' => 'index',
   'title' => 'Beatmaps Listing',
   'pageDescription' => 'Beatmaps Listing',
-  'body_additional_classes' => 'data-no-turbolink osu-layout--body-ddd'
+  'body_additional_classes' => 'osu-layout--body-ddd'
 ])
 
 @section("content")

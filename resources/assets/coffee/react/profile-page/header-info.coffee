@@ -16,11 +16,24 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+{div, h1, span} = React.DOM
 el = React.createElement
 
-class ProfilePage.HeaderInfo extends React.Component
-  render: =>
-    el 'div', className: 'user-profile-header__basic',
-        el 'h1', className: 'user-profile-header__text user-profile-header__text--large',
-          @props.user.username
-        el 'p', className: 'user-profile-header__text', @props.user.joinDate
+ProfilePage.HeaderInfo = ({user}) ->
+  div className: 'profile-info',
+    el UserAvatar, user: user, modifiers: ['profile']
+    div className: 'profile-info__details',
+      if user.isSupporter
+        el Icon,
+          name: 'heart'
+          parentClass: 'profile-info__supporter-icon'
+          title: osu.trans('users.show.is_supporter')
+      h1 className: 'profile-info__name', user.username
+      # hard space if no title
+      span className: 'profile-info__title', user.title ? '\u00A0'
+      div className: 'profile-info__flags',
+        el FlagCountry, country: user.country
+    div
+      className: 'profile-info__bar hidden-xs'
+      style:
+        backgroundColor: "##{user.profileColour}" if user.profileColour?

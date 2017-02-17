@@ -17,38 +17,48 @@
  */
 
 .profile-stats {
-  &__stat {
+  font-size: @font-size--normal;
+  display: flex;
+  flex-direction: column;
+  width: @profile-stats-box-width;
+  flex: none;
+  margin: -1px 0;
+
+  &__entry {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
+    margin: 2px 0;
 
     &--full {
       flex-direction: column;
     }
   }
 
-  &__stat-key {
+  &__key {
     font-weight: normal;
-  }
-
-  &__stat-value {
-    font-weight: bold;
-
-    &--light {
-      font-weight: normal;
-    }
-  }
-
-  &__ranks {
-    display: flex;
-    justify-content: space-between;
-
-    padding-top: 10px;
+    margin-right: 30px;
   }
 
   &__rank {
+    text-align: center;
+    margin-top: 5px;
+  }
+
+  &__row {
+    background-color: fade(#000, 50%);
+    color: #fff;
+    padding: 18px 20px;
+    margin: 1px 0;
+
+    &--compact {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+
+  &__value {
+    font-weight: bold;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
   }
 }
