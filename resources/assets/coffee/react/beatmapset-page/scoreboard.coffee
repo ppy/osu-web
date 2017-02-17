@@ -49,7 +49,7 @@ class BeatmapsetPage.Scoreboard extends React.Component
     else
       ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL']
 
-    div className: 'osu-layout__row osu-layout__row--page-compact beatmapset-scoreboard',
+    div className: 'beatmapset-scoreboard',
       div className: 'page-tabs',
         for type in ['global', 'country', 'friend']
           el BeatmapsetPage.ScoreboardTab,
@@ -57,7 +57,7 @@ class BeatmapsetPage.Scoreboard extends React.Component
             type: type
             active: @props.type == type
 
-      if currentUser.isSupporter
+      if currentUser.isSupporter && @props.hasScores
         div className: 'beatmapset-scoreboard__mods-wrapper',
           div className: modsClassName,
             for mod in mods
@@ -72,13 +72,13 @@ class BeatmapsetPage.Scoreboard extends React.Component
             div className: 'beatmap-scoreboard-top',
               div className: 'beatmap-scoreboard-top__item',
                 h2 className: 'beatmap-scoreboard-top__title',
-                  osu.trans('beatmaps.beatmapset.show.scoreboard.score.first')
+                  osu.trans('beatmapsets.show.scoreboard.score.first')
                 @scoreItem score: @props.scores[0], rank: 1, itemClass: 'ScoreTop', modifiers: ['with-outline']
 
               if @props.userScore?
                 div className: 'beatmap-scoreboard-top__item',
                   h2 className: 'beatmap-scoreboard-top__title',
-                    osu.trans('beatmaps.beatmapset.show.scoreboard.score.own')
+                    osu.trans('beatmapsets.show.scoreboard.score.own')
                   @scoreItem score: @props.userScore, rank: @props.userScorePosition, itemClass: 'ScoreTop'
 
             for score, i in @props.scores[1..]
@@ -91,21 +91,26 @@ class BeatmapsetPage.Scoreboard extends React.Component
                   else
                     'Score'
 
+        else if !@props.hasScores
+          p
+            className: 'beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'
+            osu.trans 'beatmapsets.show.scoreboard.no_scores.unranked'
+
         else if currentUser.isSupporter || @props.type == 'global'
           translationKey = if @state.loading then 'loading' else @props.type
 
           p
-            className: "beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores beatmapset-scoreboard__notice--#{'guest' if !currentUser.id?}"
-            osu.trans "beatmaps.beatmapset.show.scoreboard.no-scores.#{translationKey}"
+            className: 'beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'
+            osu.trans "beatmapsets.show.scoreboard.no_scores.#{translationKey}"
 
         else
           div className: 'beatmapset-scoreboard__notice',
-            p className: 'beatmapset-scoreboard__supporter-text', osu.trans 'beatmaps.beatmapset.show.scoreboard.supporter-only'
+            p className: 'beatmapset-scoreboard__supporter-text', osu.trans 'beatmapsets.show.scoreboard.supporter-only'
 
             p
               className: 'beatmapset-scoreboard__supporter-text beatmapset-scoreboard__supporter-text--small'
               dangerouslySetInnerHTML:
-                __html: osu.trans 'beatmaps.beatmapset.show.scoreboard.supporter-link', link: laroute.route 'support-the-game'
+                __html: osu.trans 'beatmapsets.show.scoreboard.supporter-link', link: laroute.route 'support-the-game'
 
   scoreItem: ({score, rank, itemClass, modifiers}) ->
     el BeatmapsetPage[itemClass],

@@ -34,7 +34,7 @@ class AccountControllerTest extends TestCase
             ->json('PUT', route('account.update'), [
                 'order' => $newOrder,
             ])
-            ->seeJson(['profileOrder' => $newOrder]);
+            ->assertJsonFragment(['profileOrder' => $newOrder]);
     }
 
     public function testDuplicatesInProfileOrder()
@@ -58,7 +58,7 @@ class AccountControllerTest extends TestCase
             ->json('PUT', route('account.update'), [
                 'order' => $newOrderWithDuplicate,
             ])
-            ->seeJson(['profileOrder' => $newOrder]);
+            ->assertJsonFragment(['profileOrder' => $newOrder]);
     }
 
     public function testInvalidIdsInProfileOrder()
@@ -82,6 +82,6 @@ class AccountControllerTest extends TestCase
             ->json('PUT', route('account.update'), [
                 'order' => $newOrderWithInvalid,
             ])
-            ->seeJson(['profileOrder' => $newOrder]);
+            ->assertJsonFragment(['profileOrder' => $newOrder]);
     }
 }

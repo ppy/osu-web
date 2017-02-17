@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class BeatmapsetEvent extends Model
 {
     protected $guarded = [];

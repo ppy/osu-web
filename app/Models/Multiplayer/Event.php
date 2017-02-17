@@ -24,7 +24,6 @@ use App\Models\User;
 
 class Event extends Model
 {
-    protected $table = 'events';
     protected $primaryKey = 'event_id';
     protected $dates = [
         'timestamp',
@@ -42,17 +41,17 @@ class Event extends Model
 
     public function match()
     {
-        return $this->belongsTo(Match::class);
+        return $this->belongsTo(Match::class, 'match_id');
     }
 
     public function game()
     {
-        return $this->belongsTo(Game::class);
+        return $this->belongsTo(Game::class, 'game_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function scopeDefault($query)

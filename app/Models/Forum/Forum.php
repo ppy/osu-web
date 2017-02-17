@@ -21,7 +21,6 @@
 namespace App\Models\Forum;
 
 use DB;
-use Illuminate\Database\Eloquent\Model;
 
 class Forum extends Model
 {
@@ -94,7 +93,7 @@ class Forum extends Model
 
     public function topics()
     {
-        return $this->hasMany(Topic::class);
+        return $this->hasMany(Topic::class, 'forum_id');
     }
 
     public function parentForum()
@@ -109,7 +108,7 @@ class Forum extends Model
 
     public function cover()
     {
-        return $this->hasOne(ForumCover::class);
+        return $this->hasOne(ForumCover::class, 'forum_id');
     }
 
     public function scopeMoveDestination($query)

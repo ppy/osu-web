@@ -20,8 +20,6 @@
 
 namespace App\Models\Forum;
 
-use Illuminate\Database\Eloquent\Model;
-
 // temporary class until simpler acl is implemented
 class Authorize extends Model
 {

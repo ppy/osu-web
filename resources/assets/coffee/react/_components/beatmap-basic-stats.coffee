@@ -51,7 +51,7 @@ formatDuration = (value) ->
       div
         className: "#{bn}__entry"
         key: stat
-        title: osu.trans "beatmaps.beatmapset.show.stats.#{stat}"
+        title: osu.trans "beatmapsets.show.stats.#{stat}"
         div
           className: "#{bn}__entry-icon"
           style:

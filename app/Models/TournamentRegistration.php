@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class TournamentRegistration extends Model
 {
     protected $table = 'osu.tournament_registrations';

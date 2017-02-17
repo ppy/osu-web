@@ -18,21 +18,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+namespace App\Models\Forum;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Model as BaseModel;
 
-class ContestVoteAggregate extends Model
+abstract class Model extends BaseModel
 {
-    protected $guarded = [];
-
-    public function contest()
-    {
-        return $this->belongsTo(Contest::class);
-    }
-
-    public function contestEntry()
-    {
-        return $this->belongsTo(ContestEntry::class);
-    }
 }

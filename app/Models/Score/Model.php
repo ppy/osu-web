@@ -22,9 +22,9 @@ namespace App\Models\Score;
 
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
+use App\Models\Model as BaseModel;
 use App\Models\User;
 use App\Traits\Scoreable;
-use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
 {
@@ -46,12 +46,12 @@ abstract class Model extends BaseModel
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function beatmap()
     {
-        return $this->belongsTo(Beatmap::class);
+        return $this->belongsTo(Beatmap::class, 'beatmap_id');
     }
 
     public function beatmapset()

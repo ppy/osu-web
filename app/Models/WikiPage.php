@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use App\Exceptions\GitHubNotFoundException;
+use App\Exceptions\GitHubTooLargeException;
 use Cache;
 use GitHub;
 use Github\Exception\RuntimeException as GithubException;

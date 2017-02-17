@@ -30,7 +30,6 @@ use Auth;
 use Carbon\Carbon;
 use DB;
 use Es;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
 
 class Beatmapset extends Model
@@ -181,6 +180,11 @@ class Beatmapset extends Model
     public function isQualified()
     {
         return $this->approved === self::STATES['qualified'];
+    }
+
+    public function hasScores()
+    {
+        return $this->attributes['approved'] > 0;
     }
 
     private static function sanitizeSearchParams(array &$params = [])
@@ -432,63 +436,6 @@ class Beatmapset extends Model
     public static function listing()
     {
         return self::search();
-    }
-
-    public function comments($time = null)
-    {
-        $mods = Mod::query()
-            ->where('beatmapset_id', '=', $this->beatmapset_id)
-            ->whereNull('parent_item_id')
-            ->orderBy('created_at', 'desc');
-
-        if ($time) {
-            $mods = $mods->where(function ($query) use ($time) {
-                $query->where(DB::raw('UNIX_TIMESTAMP(`created_at`)'), '>', $time);
-                $query->orWhere(DB::raw('UNIX_TIMESTAMP(`updated_at`)'), '>', $time);
-            })
-            ->withTrashed();
-        }
-
-        $mods = $mods->get()->load('creator');
-
-        $new = [];
-
-        foreach ($mods as $mod) {
-            $new[$mod->item_id] = $mod->toArray();
-        }
-
-        return $new;
-    }
-
-    public function replies($time = null)
-    {
-        $replies = Mod::query()
-                ->whereNotNull('parent_item_id')
-                ->where('beatmapset_id', '=', $this->beatmapset_id)
-                ->orderBy('created_at', 'asc');
-
-        if ($time) {
-            // also grab soft-deleted posts
-            $replies = $replies->where(function ($query) use ($time) {
-                $query->where(DB::raw('UNIX_TIMESTAMP(`created_at`)'), '>', $time);
-                $query->orWhere(DB::raw('UNIX_TIMESTAMP(`updated_at`)'), '>', $time);
-            })
-            ->withTrashed();
-        }
-
-        $replies = $replies->get()->load('creator');
-
-        $new = [];
-
-        foreach ($replies as $reply) {
-            if (!isset($new[$reply->parent_item_id])) {
-                $new[$reply->parent_item_id] = [];
-            }
-
-            $new[$reply->parent_item_id][$reply->item_id] = $reply->toArray();
-        }
-
-        return $new;
     }
 
     public static function coverSizes()
@@ -837,24 +784,19 @@ class Beatmapset extends Model
         return $this->hasMany(Beatmap::class, 'beatmapset_id')->default();
     }
 
-    public function mods()
-    {
-        return $this->hasMany("App\Models\Mod", 'beatmapset_id', 'beatmapset_id');
-    }
-
     public function user()
     {
-        return $this->belongsTo("App\Models\User", 'user_id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function approver()
     {
-        return $this->belongsTo("App\Models\User", 'user_id', 'approvedby_id');
+        return $this->belongsTo(User::class, 'user_id', 'approvedby_id');
     }
 
     public function userRatings()
     {
-        return $this->hasMany(BeatmapsetUserRating::class);
+        return $this->hasMany(BeatmapsetUserRating::class, 'beatmapset_id');
     }
 
     public function ratingsCount()

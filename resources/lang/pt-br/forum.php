@@ -29,7 +29,7 @@ return [
 
         'destroy' => [
             '_' => 'Remover imagem de capa',
-            'confirm' => 'Tem certeza de que deseja remover a imagem da capa?',
+            'confirm' => 'Tem certeza de que deseja remover a imagem de capa?',
         ],
     ],
 
@@ -45,25 +45,27 @@ return [
 
     'pinned_topics' => 'Tópicos fixados',
     'post' => [
-        'confirm_delete' => 'Excluir mesmo a publicação?',
-        'edited' => 'Última edição por :user em :when, editado :count vezes no total.',
-        'posted_at' => 'publicado em :when',
+        'confirm_destroy' => 'Excluir mesmo a publicação?',
+        'confirm_restore' => 'Restaurar mesmo a publicação?',
+        'edited' => 'Última edição por :user :when, editado :count vezes no total.',
+        'posted_at' => 'publicado :when',
         'actions' => [
-            'delete' => 'Excluir publicação?',
+            'destroy' => 'Excluir publicação',
+            'restore' => 'Restaurar publicação',
             'edit' => 'Editar publicação',
         ],
     ],
     'search' => [
         'go_to_post' => 'Ir para a publicação',
-        'post_number_input' => 'digite o número da publicação',
+        'post_number_input' => 'insira o número da publicação',
         'total_posts' => ':posts_count publicações no total',
     ],
     'subforums' => 'Subfóruns',
-    'title' => 'osu!community',
+    'title' => 'comunidade osu!',
     'topic' => [
         'create' => [
             'placeholder' => [
-                'body' => 'Digite o conteúdo da publicação aqui',
+                'body' => 'Escreva o conteúdo da publicação aqui',
                 'title' => 'Clique aqui para definir o título',
             ],
             'preview' => 'Pré-visualização',
@@ -79,7 +81,7 @@ return [
         ],
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última resposta por :user',
-        'new_topic' => 'Publicar novo tópico',
+        'new_topic' => 'Criar novo tópico',
         'post_edit' => [
             'cancel' => 'Cancelar',
             'post' => 'Salvar',
@@ -89,7 +91,7 @@ return [
             ],
         ],
         'post_reply' => 'Publicar',
-        'reply_box_placeholder' => 'Digite aqui para responder',
+        'reply_box_placeholder' => 'Escreva aqui para responder',
         'started_by' => 'por :user',
     ],
 
@@ -121,7 +123,7 @@ return [
 
         'actions' => [
             'reply' => 'Exibir caixa de resposta',
-            'reply_with_quote' => 'Citar publicação na resposta',
+            'reply_with_quote' => 'Citar na resposta',
         ],
 
         'create' => [
@@ -173,14 +175,15 @@ return [
 
         'show' => [
             'total_posts' => 'Total de publicações',
+            'deleted-posts' => 'Publicações excluídas',
 
             'feature_vote' => [
                 'current' => 'Prioridade atual: +:count',
                 'do' => 'Promover este pedido',
 
                 'user' => [
-                    'count' => '{0} sem votos|{1} :count voto|[2,Inf] :count votos',
                     'current' => 'Você tem :votes restantes.',
+                    'count' => '{0} sem votos|{1} :count voto|{2,*} :count votos',
                     'not_enough' => 'Você não tem mais votos restantes',
                 ],
             ],

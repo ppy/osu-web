@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class BanchoStats extends Model
 {
     protected $table = 'osu_banchostats';

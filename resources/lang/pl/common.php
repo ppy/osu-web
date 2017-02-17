@@ -29,7 +29,7 @@ return [
     ],
 
     'count' => [
-        'item' => '{1} sztuka|[2,4] :count sztuki|[5,Inf] :count sztuk',
+        'item' => '{1} sztuka|[2,4] :count sztuki|{5,*} :count sztuk',
     ],
 
     'device' => [
@@ -50,7 +50,7 @@ return [
 
     'time' => [
         'days_ago' => '{1} dzień temu|:count dni temu',
-        'hours_ago' => '{0} godzin temu|{1} godzinę temu|[2,4] :count godziny temu|[5,Inf] :count godzin temu',
+        'hours_ago' => '{0} godzin temu|{1} godzinę temu|[2,4] :count godziny temu|{5,*} :count godzin temu',
         'now' => 'teraz',
     ],
 

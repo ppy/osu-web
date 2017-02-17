@@ -22,12 +22,9 @@ namespace App\Models\Store;
 
 use App\Models\Country;
 use Auth;
-use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-    protected $connection = 'mysql-store';
-    protected $table = 'addresses';
     protected $primaryKey = 'address_id';
     protected $guarded = ['id', 'user_id'];
 

@@ -20,7 +20,6 @@
 
 namespace App\Models\Forum;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
 
 class TopicWatch extends Model
