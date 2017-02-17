@@ -22,7 +22,6 @@ namespace App\Models\Score\Best;
 
 use App\Libraries\ModsHelper;
 use App\Models\Score\Model as BaseModel;
-use App\Traits\MacroableModel;
 use Aws\S3\S3Client;
 use DB;
 use League\Flysystem\AwsS3v2\AwsS3Adapter;
@@ -30,8 +29,6 @@ use League\Flysystem\Filesystem;
 
 abstract class Model extends BaseModel
 {
-    use MacroableModel;
-
     public $position = null;
     public $weight = null;
     public $macros = ['forListing', 'userRank'];

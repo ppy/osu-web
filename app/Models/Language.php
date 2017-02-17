@@ -21,7 +21,6 @@
 namespace App\Models;
 
 use App\Transformers\LanguageTransformer;
-use Illuminate\Database\Eloquent\Model;
 
 class Language extends Model
 {

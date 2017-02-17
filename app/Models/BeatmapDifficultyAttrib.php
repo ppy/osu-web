@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class BeatmapDifficultyAttrib extends Model
 {
     protected $table = 'osu_beatmap_difficulty_attribs';

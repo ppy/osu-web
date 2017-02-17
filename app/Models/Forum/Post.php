@@ -25,7 +25,6 @@ use App\Models\DeletedUser;
 use App\Models\Log;
 use Carbon\Carbon;
 use DB;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
