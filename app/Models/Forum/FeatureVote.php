@@ -23,7 +23,6 @@ namespace App\Models\Forum;
 use App\Models\User;
 use App\Traits\Validatable;
 use DB;
-use Illuminate\Database\Eloquent\Model;
 
 class FeatureVote extends Model
 {

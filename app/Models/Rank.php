@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Rank extends Model
 {
     protected $table = 'phpbb_ranks';

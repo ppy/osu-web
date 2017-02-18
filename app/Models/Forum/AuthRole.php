@@ -20,8 +20,6 @@
 
 namespace App\Models\Forum;
 
-use Illuminate\Database\Eloquent\Model;
-
 class AuthRole extends Model
 {
     protected $table = 'phpbb_acl_roles_data';

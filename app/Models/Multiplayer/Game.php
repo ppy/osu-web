@@ -25,7 +25,6 @@ use App\Models\Beatmap;
 
 class Game extends Model
 {
-    protected $table = 'games';
     protected $primaryKey = 'game_id';
 
     protected $hidden = ['match_id'];
@@ -55,22 +54,22 @@ class Game extends Model
 
     public function scores()
     {
-        return $this->hasMany(Score::class);
+        return $this->hasMany(Score::class, 'game_id');
     }
 
     public function events()
     {
-        return $this->hasMany(Event::class);
+        return $this->hasMany(Event::class, 'game_id');
     }
 
     public function match()
     {
-        return $this->belongsTo(Match::class);
+        return $this->belongsTo(Match::class, 'match_id');
     }
 
     public function beatmap()
     {
-        return $this->belongsTo(Beatmap::class);
+        return $this->belongsTo(Beatmap::class, 'beatmap_id');
     }
 
     public function getModsAttribute($value)

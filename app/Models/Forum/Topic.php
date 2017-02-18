@@ -25,7 +25,6 @@ use App\Models\Log;
 use App\Models\User;
 use Carbon\Carbon;
 use DB;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Topic extends Model
@@ -216,17 +215,17 @@ class Topic extends Model
 
     public function posts()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class, 'topic_id');
     }
 
     public function forum()
     {
-        return $this->belongsTo(Forum::class);
+        return $this->belongsTo(Forum::class, 'forum_id');
     }
 
     public function cover()
     {
-        return $this->hasOne(TopicCover::class);
+        return $this->hasOne(TopicCover::class, 'topic_id');
     }
 
     public function userTracks()
@@ -246,7 +245,7 @@ class Topic extends Model
 
     public function pollOptions()
     {
-        return $this->hasMany(PollOption::class);
+        return $this->hasMany(PollOption::class, 'topic_id');
     }
 
     public function pollVotes()

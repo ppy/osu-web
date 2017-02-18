@@ -21,7 +21,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 
 class BeatmapDiscussionPost extends Model
 {
@@ -47,7 +46,7 @@ class BeatmapDiscussionPost extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function hasValidMessage()

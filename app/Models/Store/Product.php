@@ -20,12 +20,8 @@
 
 namespace App\Models\Store;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Product extends Model
 {
-    protected $connection = 'mysql-store';
-    protected $table = 'products';
     protected $primaryKey = 'product_id';
 
     protected $casts = [
@@ -56,7 +52,7 @@ class Product extends Model
 
     public function notificationRequests()
     {
-        return $this->hasMany(NotificationRequest::class);
+        return $this->hasMany(NotificationRequest::class, 'product_id');
     }
 
     public function inStock($quantity = 1, $includeVariations = false)

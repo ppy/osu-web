@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class BeatmapPack extends Model
 {
     protected $table = 'osu_beatmappacks';

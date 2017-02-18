@@ -18,7 +18,7 @@ env:
   - DB_USERNAME=root
 
 before_install:
-  - bash .travis.install-mysql-5.7.sh
+  - sudo ./bin/mysql_debian_install
   - nvm install 6.9
   - nvm use 6.9
   - ./bin/db_setup.sh

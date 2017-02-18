@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class RankHistory extends Model
 {
     protected $table = 'osu_user_performance_rank';

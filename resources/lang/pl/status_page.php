@@ -62,7 +62,7 @@ return [
             'month' => 'miesiąc',
             'all_time' => 'od zawsze',
             'last_week' => 'ostatni tydzień',
-            'weeks_ago' => '{1} tydzień temu|[2,4] :count tygodnie temu|[5,Inf] :count tygodni temu',
+            'weeks_ago' => '{1} tydzień temu|[2,4] :count tygodnie temu|{5,*} :count tygodni temu',
         ],
     ],
 ];

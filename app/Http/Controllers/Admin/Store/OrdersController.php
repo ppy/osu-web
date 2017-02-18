@@ -26,7 +26,7 @@ class OrdersController extends Controller
             $orders->where('orders.status', 'paid');
         }
 
-        $ordersItemsQuantities = Store\Order::itemsQuantities($orders);
+        $ordersItemsQuantities = $orders->itemsQuantities();
 
         $orders = $orders->orderBy('created_at')->get();
 

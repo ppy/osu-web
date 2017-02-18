@@ -183,7 +183,7 @@ return [
 
                 'user' => [
                     'current' => '您还有 :votes 票.',
-                    'count' => '{0} 没有票|{1} :count票|[2,Inf] :count 票',
+                    'count' => '{0} 没有票|{1} :count票|{2,*} :count 票',
                     'not_enough' => '您没有票了',
                 ],
             ],
