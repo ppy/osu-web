@@ -43,7 +43,6 @@ class ContestSubmissions extends Migration
 
         Schema::table('contests', function (Blueprint $table) {
             $table->dropColumn('description_enter');
-    
             $table->dropColumn('voting_starts_at');
             $table->dropColumn('entry_starts_at');
             $table->dropColumn('entry_ends_at');

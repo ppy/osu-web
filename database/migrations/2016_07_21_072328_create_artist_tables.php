@@ -89,7 +89,7 @@ class CreateArtistTables extends Migration
         Schema::table('artist_tracks', function (Blueprint $table) {
             $table->dropForeign('artist_tracks_artist_id_foreign');
         });
-        
+
         Schema::drop('labels');
         Schema::drop('artists');
         Schema::drop('artist_tracks');
