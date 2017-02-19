@@ -5,6 +5,7 @@ use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
 {
+    
     /**
      * Run the database seeds.
      *
@@ -34,15 +35,16 @@ class UserSeeder extends Seeder
 
             // USER STATS
             $country_code = array_rand_val($this->common_countries);
-
-            $rank0 = rand(1, 500000);
-            $rank1 = rand(1, 500000);
-            $rank2 = rand(1, 500000);
-            $rank3 = rand(1, 500000);
-            $st = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Osu::class)->create(['country_acronym' => $country_code, 'rank' => $rank0, 'rank_score_index' => $rank0]));
-            $st1 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Taiko::class)->create(['country_acronym' => $country_code, 'rank' => $rank1, 'rank_score_index' => $rank1]));
-            $st2 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Fruits::class)->create(['country_acronym' => $country_code, 'rank' => $rank2, 'rank_score_index' => $rank2]));
-            $st3 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Mania::class)->create(['country_acronym' => $country_code, 'rank' => $rank3, 'rank_score_index' => $rank3]));
+    
+            $rank0 = rand(1, 5000000);
+            $rank1 = rand(1, 5000000);
+            $rank2 = rand(1, 5000000);
+            $rank3 = rand(1, 5000000);
+            $uid = $u->user_id; //FIXME: this shouldn't be needed.
+            $st = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Osu::class)->create(['country_acronym' => $country_code, 'rank' => $rank0, 'rank_score_index' => $rank0, 'user_id' => $uid]));
+            $st1 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Taiko::class)->create(['country_acronym' => $country_code, 'rank' => $rank1, 'rank_score_index' => $rank1, 'user_id' => $uid]));
+            $st2 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Fruits::class)->create(['country_acronym' => $country_code, 'rank' => $rank2, 'rank_score_index' => $rank2, 'user_id' => $uid]));
+            $st3 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Mania::class)->create(['country_acronym' => $country_code, 'rank' => $rank3, 'rank_score_index' => $rank3, 'user_id' => $uid]));
             // END USER STATS
 
             // RANK HISTORY

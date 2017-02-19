@@ -62,6 +62,7 @@ class ScoreSeeder extends Seeder
                     'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now,
                     'pass' => $faker->boolean(85), //85% chance of pass
                     'rank' => array_rand_val($possible_ranks),
+                    'scorechecksum' => hex2bin(str_replace($faker->uuid, '-', '')),
                 ]);
 
                 $sc2 = App\Models\Score\Best\Osu::create([
@@ -104,6 +105,7 @@ class ScoreSeeder extends Seeder
                     'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now,
                     'pass' => $faker->boolean(85), //85% chance of pass
                     'rank' => array_rand_val($possible_ranks),
+                    'scorechecksum' => hex2bin(str_replace($faker->uuid, '-', '')),
                 ]);
 
                 $sc4 = App\Models\Score\Best\Taiko::create([
@@ -146,6 +148,7 @@ class ScoreSeeder extends Seeder
                     'enabled_mods' => array_rand_val($possible_mods),
                     'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now,
                     'pass' => $faker->boolean(85), //85% chance of pass
+                    'scorechecksum' => hex2bin(str_replace($faker->uuid, '-', '')),
                 ]);
 
                 $sc6 = App\Models\Score\Best\Fruits::create([
@@ -188,6 +191,7 @@ class ScoreSeeder extends Seeder
                     'enabled_mods' => array_rand_val($possible_mods),
                     'date' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now,
                     'pass' => $faker->boolean(85), //85% chance of pass
+                    'scorechecksum' => hex2bin(str_replace($faker->uuid, '-', '')),
                 ]);
 
                 $sc8 = App\Models\Score\Best\Mania::create([
