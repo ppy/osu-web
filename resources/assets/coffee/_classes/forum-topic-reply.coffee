@@ -30,6 +30,8 @@ class @ForumTopicReply
     @editBox = document.getElementsByClassName('js-forum-reply-write')
     @previewBox = document.getElementsByClassName('js-forum-reply-preview')
 
+    @lastBody = null
+
     $(document).on 'ajax:success', '.js-forum-topic-reply', @posted
 
     $(document).on 'click', '.js-forum-reply-preview--show', @fetchPreview
@@ -125,24 +127,30 @@ class @ForumTopicReply
 
 
   fetchPreview: =>
-    return if $(@previewButton).hasClass('active')
+    $button = $(@previewButton)
+    url = $button.attr 'data-preview-url'
 
-    if $(@previewButton).attr('data-should-refresh') == '0'
+    $input = $(@input)
+    body = $input.val()
+
+    $preview = $(@previewBox)
+
+    return if $button.hasClass('active')
+
+    if @lastBody == body
       @showPreview()
       return
 
     $.ajax
-      url: $(@previewButton).attr('data-preview-url')
+      url: url
       method: 'POST'
       data:
-        body: $(@input).val()
+        body: body
 
     .done (data) =>
-      $(@previewBox).html(data)
+      @lastBody = body
 
-      $(@previewButton).attr('data-should-refresh', '0')
-      $(@input).one 'input', @invalidatePreview
-
+      $preview.html(data)
       @showPreview()
 
 
@@ -161,10 +169,6 @@ class @ForumTopicReply
 
     $(@previewButton).removeClass('active')
     $(@writeButton).addClass('active')
-
-
-  invalidatePreview: =>
-    $(@previewButton).attr('data-should-refresh', '1')
 
 
   posted: (e, data) =>
