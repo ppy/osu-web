@@ -25,6 +25,6 @@ class ContestVotesChangeWeightingToFloat extends Migration
      */
     public function down()
     {
-        DB::statement('ALTER TABLE `contest_votes` MODIFY `weight` tinyint not null default \'1\' ');
+        DB::statement('ALTER TABLE contest_votes MODIFY weight tinyint not null default 1');
     }
 }

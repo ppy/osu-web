@@ -86,16 +86,9 @@ class CreateContestTables extends Migration
      */
     public function down()
     {
-        Schema::table('contest_votes', function (Blueprint $table) {
-            $table->dropForeign('contest_votes_contest_entry_id_foreign');
-            $table->dropForeign('contest_votes_contest_id_foreign');
-            $table->dropForeign('contest_votes_user_id_foreign');
-        });
-        Schema::table('contest_entries', function (Blueprint $table) {
-            $table->dropForeign('contest_entries_contest_id_foreign');
-        });
-        Schema::drop('contests');
-        Schema::drop('contest_entries');
+
         Schema::drop('contest_votes');
+        Schema::drop('contest_entries');
+        Schema::drop('contests');
     }
 }

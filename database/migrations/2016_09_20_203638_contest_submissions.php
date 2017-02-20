@@ -17,7 +17,6 @@ class ContestSubmissions extends Migration
             //fix ends_at not being nullable (else mysql makes it on_update_current_timestamp)
             DB::statement('ALTER TABLE contests CHANGE ends_at voting_ends_at TIMESTAMP NULL');
             DB::statement('ALTER TABLE contests CHANGE description description_voting TEXT');
-            // $table->renameColumn('description', 'description_voting');
         });
 
         Schema::table('contests', function (Blueprint $table) {
