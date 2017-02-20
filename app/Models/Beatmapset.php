@@ -723,7 +723,7 @@ class Beatmapset extends Model
 
     public function events()
     {
-        return $this->hasMany(BeatmapsetEvent::class);
+        return $this->hasMany(BeatmapsetEvent::class, 'beatmapset_id');
     }
 
     public function requiredNominationCount()
@@ -821,7 +821,7 @@ class Beatmapset extends Model
 
     public function favourites()
     {
-        return $this->hasMany(FavouriteBeatmapset::class);
+        return $this->hasMany(FavouriteBeatmapset::class, 'beatmapset_id');
     }
 
     public function description()

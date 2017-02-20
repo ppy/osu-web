@@ -44,14 +44,6 @@ class Topic extends Model
     protected $guarded = [];
 
     public $timestamps = false;
-    protected $dates = [
-        'poll_last_vote',
-        'poll_start',
-        'topic_last_post_time',
-        'topic_last_view_time',
-        'topic_time',
-    ];
-    protected $dateFormat = 'U';
 
     private $postsCount;
     private $deletedPostsCount;
@@ -230,17 +222,17 @@ class Topic extends Model
 
     public function userTracks()
     {
-        return $this->hasMany(TopicTrack::class);
+        return $this->hasMany(TopicTrack::class, 'topic_id');
     }
 
     public function logs()
     {
-        return $this->hasMany(Log::class);
+        return $this->hasMany(Log::class, 'topic_id');
     }
 
     public function featureVotes()
     {
-        return $this->hasMany(FeatureVote::class);
+        return $this->hasMany(FeatureVote::class, 'topic_id');
     }
 
     public function pollOptions()
@@ -250,7 +242,57 @@ class Topic extends Model
 
     public function pollVotes()
     {
-        return $this->hasMany(PollVote::class);
+        return $this->hasMany(PollVote::class, 'topic_id');
+    }
+
+    public function getPollLastVoteAttribute($value)
+    {
+        return get_time_or_null($value);
+    }
+
+    public function setPollLastVoteAttribute($value)
+    {
+        $this->attributes['poll_last_vote'] = $value->timestamp;
+    }
+
+    public function getPollStartAttribute($value)
+    {
+        return get_time_or_null($value);
+    }
+
+    public function setPollStartAttribute($value)
+    {
+        $this->attributes['poll_start'] = $value->timestamp;
+    }
+
+    public function getTopicLastPostTimeAttribute($value)
+    {
+        return get_time_or_null($value);
+    }
+
+    public function setTopicLastPostTimeAttribute($value)
+    {
+        $this->attributes['topic_last_post_time'] = $value->timestamp;
+    }
+
+    public function getTopicLastViewTimeAttribute($value)
+    {
+        return get_time_or_null($value);
+    }
+
+    public function setTopicLastViewTimeAttribute($value)
+    {
+        $this->attributes['topic_last_view_time'] = $value->timestamp;
+    }
+
+    public function getTopicTimeAttribute($value)
+    {
+        return get_time_or_null($value);
+    }
+
+    public function setTopicTimeAttribute($value)
+    {
+        $this->attributes['topic_time'] = $value->timestamp;
     }
 
     public function titleNormalized()
@@ -358,11 +400,6 @@ class Topic extends Model
     public function postPosition($postId)
     {
         return $this->posts()->where('post_id', '<=', $postId)->count();
-    }
-
-    public function getPollStartAttribute($value)
-    {
-        return get_time_or_null($value);
     }
 
     public function setPollTitleAttribute($value)

@@ -18,35 +18,41 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+namespace App\Mail;
 
-class BeatmapsetEvent extends Model
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+
+class ForumNewReply extends Mailable
 {
-    protected $guarded = [];
+    use Queueable, SerializesModels;
 
-    const NOMINATE = 'nominate';
-    const QUALIFY = 'qualify';
-    const DISQUALIFY = 'disqualify';
-    const APPROVE = 'approve';
-    const RANK = 'rank';
+    public $topic;
+    public $user;
 
-    public function beatmapset()
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+    public function __construct($attributes)
     {
-        return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
+        $this->topic = $attributes['topic'];
+        $this->user = $attributes['user'];
     }
 
-    public function user()
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
     {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function scopeNominations($query)
-    {
-        return $query->where('type', self::NOMINATE);
-    }
-
-    public function scopeDisqualifications($query)
-    {
-        return $query->where('type', self::DISQUALIFY);
+        return $this
+            ->text(i18n_view('emails.forum.new_reply'))
+            ->subject(trans('forum.email.new_reply', [
+                'title' => $this->topic->topic_title,
+            ]));
     }
 }
