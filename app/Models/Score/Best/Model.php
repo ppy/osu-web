@@ -69,7 +69,6 @@ abstract class Model extends BaseModel
                 ->where('pp', '>', function ($q) {
                     $q->from($this->table)->where('score_id', $this->score_id)->select('pp');
                 })
-                ->orderBy('pp', 'desc')
                 ->count();
         }
 
