@@ -44,7 +44,7 @@ class UserContestEntry extends Model
             $entry->user()->associate($user);
             $entry->contest()->associate($contest);
             $entry->filesize = $file->getClientSize();
-            $entry->original_filename = $file->getClientOriginalName();
+            $entry->original_filename = $file->getClientOriginalName() ?? 'default.'.$file->getClientOriginalExtension();
             $entry->storeFile($file->getRealPath(), $file->getClientOriginalExtension());
             $entry->save();
         });
