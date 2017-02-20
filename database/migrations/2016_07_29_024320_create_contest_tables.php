@@ -86,7 +86,6 @@ class CreateContestTables extends Migration
      */
     public function down()
     {
-
         Schema::drop('contest_votes');
         Schema::drop('contest_entries');
         Schema::drop('contests');
