@@ -20,6 +20,7 @@
 
 namespace App\Libraries;
 
+use App\Mail\UserVerification as UserVerificationMail;
 use App\Models\Country;
 use App\Models\LegacySession;
 use Carbon\Carbon;
@@ -77,14 +78,10 @@ class UserVerification
             ->pluck('name')
             ->first();
 
-        Mail::queue(
-            ['text' => i18n_view('emails.user_verification')],
-            compact('key', 'user', 'requestCountry'),
-            function ($message) use ($to) {
-                $message->to($to);
-                $message->subject(trans('user_verification.email.subject'));
-            }
-        );
+        Mail::to($to)
+            ->queue(new UserVerificationMail(
+                compact('key', 'user', 'requestCountry')
+            ));
     }
 
     public function isDone()
