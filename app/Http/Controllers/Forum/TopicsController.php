@@ -129,7 +129,7 @@ class TopicsController extends Controller
             'signature' => $forum->enable_sigs,
         ];
 
-        return view("forum.topics._post_content", compact('post', 'options'));
+        return view('forum.topics._post_content', compact('post', 'options'));
     }
 
     public function reply(HttpRequest $request, $id)
