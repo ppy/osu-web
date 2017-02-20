@@ -139,7 +139,7 @@
                                         <a class="js-forum-reply-preview--hide btn-osu btn-osu--small btn-osu-default active post-editor__action post-editor__action--preview">Write</a>
                                         <a
                                             class="js-forum-reply-preview--show btn-osu btn-osu--small btn-osu-default post-editor__action post-editor__action--preview"
-                                            data-preview-url="{{ route('forum.topics.preview', ['forum_id' => $topic->forum->forum_id, 'content_only' => '1']) }}"
+                                            data-preview-url="{{ route('forum.topics.preview', ['forum_id' => $topic->forum->forum_id]) }}"
                                         >Preview</a>
                                     </div>
                                 </div>

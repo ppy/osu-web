@@ -115,7 +115,6 @@ class TopicsController extends Controller
     public function preview()
     {
         $forum = Forum::findOrFail(Request::input('forum_id'));
-        $contentOnly = Request::input('content_only') === '1';
 
         priv_check('ForumTopicStore', $forum)->ensureCan();
 
@@ -130,9 +129,7 @@ class TopicsController extends Controller
             'signature' => $forum->enable_sigs,
         ];
 
-        $template = $contentOnly ? '_post_content' : '_post';
-
-        return view("forum.topics.{$template}", compact('post', 'options'));
+        return view("forum.topics._post_content", compact('post', 'options'));
     }
 
     public function reply(HttpRequest $request, $id)

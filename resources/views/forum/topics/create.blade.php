@@ -29,7 +29,9 @@
 
         @include('forum.topics._header')
 
-        <div class="js-post-preview"></div>
+        <div class="js-post-preview hidden">
+            @include('forum.topics._post', ['post' => new App\Models\Forum\Post(['post_text' => '', 'user' => Auth::user(), 'post_time' => Carbon\Carbon::now()])])
+        </div>
 
         @if (false)
             <div class="osu-layout__row">

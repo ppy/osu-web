@@ -78,13 +78,15 @@ class PostAutoPreview
     url = $form.attr('data-preview-url')
     body = $form.find('[name=body]').val()
     $preview = $form.find('.js-post-preview')
+    $content = $preview.find('.forum-post__content--main')
 
     return if @lastBody == body
 
     $.post(url, body: body)
     .done (data) =>
       @lastBody = body
-      $preview.html data
+      $preview.removeClass 'hidden'
+      $content.replaceWith data
       osu.pageChange()
 
 window.postAutoPreview = new PostAutoPreview
