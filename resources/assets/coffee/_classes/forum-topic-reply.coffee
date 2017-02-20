@@ -161,6 +161,8 @@ class @ForumTopicReply
     $(@previewButton).addClass('active')
     $(@writeButton).removeClass('active')
 
+    osu.pageChange()
+
   hidePreview: =>
     return if $(@writeButton).hasClass('active')
 
@@ -169,6 +171,8 @@ class @ForumTopicReply
 
     $(@previewButton).removeClass('active')
     $(@writeButton).addClass('active')
+
+    osu.pageChange()
 
 
   posted: (e, data) =>
