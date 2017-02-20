@@ -21,6 +21,7 @@
 namespace App\Models\Store;
 
 use App\Models\Country;
+use App\Models\User;
 use Auth;
 
 class Address extends Model
@@ -30,12 +31,12 @@ class Address extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function country()
     {
-        return $this->belongsTo('App\Models\Country', 'country_code');
+        return $this->belongsTo(Country::class, 'country_code');
     }
 
     public function shippingRate()

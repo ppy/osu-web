@@ -230,17 +230,17 @@ class Topic extends Model
 
     public function userTracks()
     {
-        return $this->hasMany(TopicTrack::class);
+        return $this->hasMany(TopicTrack::class, 'topic_id');
     }
 
     public function logs()
     {
-        return $this->hasMany(Log::class);
+        return $this->hasMany(Log::class, 'topic_id');
     }
 
     public function featureVotes()
     {
-        return $this->hasMany(FeatureVote::class);
+        return $this->hasMany(FeatureVote::class, 'topic_id');
     }
 
     public function pollOptions()
@@ -250,7 +250,7 @@ class Topic extends Model
 
     public function pollVotes()
     {
-        return $this->hasMany(PollVote::class);
+        return $this->hasMany(PollVote::class, 'topic_id');
     }
 
     public function titleNormalized()
