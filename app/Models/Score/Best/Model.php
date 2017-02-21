@@ -135,7 +135,11 @@ abstract class Model extends BaseModel
     public function macroUserRank()
     {
         return function ($query, $userScore) {
-            return 1 + (clone $query)
+            $newQuery = clone $query;
+            // FIXME: mysql 5.6 compat
+            $newQuery->getQuery()->orders = null;
+
+            return 1 + $newQuery
                 ->limit(null)
                 ->where('score', '>', $userScore->score)
                 ->count(DB::raw('DISTINCT user_id'));
