@@ -28,6 +28,6 @@ class Fruits extends Model
 
     public function score()
     {
-        return $this->belongsTo(Score\Fruits::class);
+        return $this->belongsTo(Score\Fruits::class, 'score_id');
     }
 }

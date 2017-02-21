@@ -10,11 +10,11 @@ class BeatmapsetUserRating extends Model
 
     public function beatmapset()
     {
-        return $this->belongsTo(Beatmapset::class);
+        return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
