@@ -28,6 +28,6 @@ class Osu extends Model
 
     public function score()
     {
-        return $this->belongsTo(Score\Osu::class);
+        return $this->belongsTo(Score\Osu::class, 'score_id');
     }
 }

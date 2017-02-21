@@ -28,11 +28,11 @@ class BeatmapPlaycount extends Model
 
     public function beatmap()
     {
-        return $this->belongsTo(Beatmap::class);
+        return $this->belongsTo(Beatmap::class, 'beatmap_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
