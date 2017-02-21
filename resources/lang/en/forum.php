@@ -183,7 +183,7 @@ return [
 
                 'user' => [
                     'current' => 'You have :votes remaining.',
-                    'count' => '{0} no vote|{1} :count vote|{2,*} :count votes',
+                    'count' => '{0} no vote|{1} :count vote|[2,*] :count votes',
                     'not_enough' => "You don't have any more votes remaining",
                 ],
             ],

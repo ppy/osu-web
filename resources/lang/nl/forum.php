@@ -111,7 +111,7 @@ return [
 
                 'user' => [
                     'current' => 'Je hebt :votes stemmen over.',
-                    'count' => '{0} geen stemmen|{1} :count stem|{2,*} :count stemmen',
+                    'count' => '{0} geen stemmen|{1} :count stem|[2,*] :count stemmen',
                     'not_enough' => 'Je hebt geen stemmen meer over',
                 ],
             ],

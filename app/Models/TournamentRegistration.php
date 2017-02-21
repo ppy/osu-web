@@ -32,11 +32,11 @@ class TournamentRegistration extends Model
 
     public function tournament()
     {
-        return $this->belongsTo('App\Models\Tournament');
+        return $this->belongsTo(Tournament::class, 'tournament_id');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
