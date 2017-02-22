@@ -48,7 +48,7 @@ class ImageProcessor
             throw new ImageProcessorException(trans('users.show.edit.cover.upload.too_large'));
         }
 
-        if ($this->inputDim === false || !in_array($this->inputDim[2], $this->allowedTypes, true)) {
+        if ($this->inputDim === null || !in_array($this->inputDim[2], $this->allowedTypes, true)) {
             throw new ImageProcessorException(trans('users.show.edit.cover.upload.unsupported_format'));
         }
 
@@ -70,7 +70,7 @@ class ImageProcessor
             return;
         }
 
-        $this->inputDim = getimagesize($this->inputPath);
+        $this->inputDim = read_image_properties($this->inputPath);
         $this->inputFileSize = filesize($this->inputPath);
     }
 
