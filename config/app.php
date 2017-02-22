@@ -204,6 +204,9 @@ return [
 
         App\Providers\AuthServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
+
+        /* Datadog Metrics */
+        ChaseConey\LaravelDatadogHelper\LaravelDatadogHelperServiceProvider::class,
     ],
 
     /*
@@ -262,6 +265,7 @@ return [
         'Statsd' => League\StatsD\Laravel5\Facade\StatsdFacade::class,
         'Authorizer' => LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
         'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
+        'Datadog' => ChaseConey\LaravelDatadogHelper\Datadog::class,
     ],
 
 ];
