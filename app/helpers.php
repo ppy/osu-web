@@ -704,3 +704,19 @@ function seeded_shuffle(array &$items, int $seed)
     }
     mt_srand();
 }
+
+function first_paragraph($html, $split_on = "\n")
+{
+    $text = strip_tags($html);
+
+    return substr($text, 0, strpos($text, $split_on));
+}
+
+function find_images($html)
+{
+    $regex = "/(?:https?\:\/\/)(?:[a-zA-Z]{1}(?:[\w\-]+\.)+(?:[\w]{2,5}))(?:\:[\d]{1,5})?\/(?:[^\s\/]+\/)*(?:[^\s]+\.(?:jpe?g|gif|png))(?:\?\w+=\w+(?:&\w+=\w+)*)?/";
+    $matches = [];
+    preg_match_all($regex, $html, $matches);
+
+    return $matches[0];
+}

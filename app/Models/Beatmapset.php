@@ -23,10 +23,9 @@ namespace App\Models;
 use App\Exceptions\BeatmapProcessorException;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
-use App\Models\Forum\Post;
-use App\Models\Forum\Topic;
 use App\Transformers\BeatmapsetTransformer;
 use Auth;
+use Cache;
 use Carbon\Carbon;
 use DB;
 use Es;
@@ -84,6 +83,7 @@ class Beatmapset extends Model
 
     const NOMINATIONS_PER_DAY = 1;
     const QUALIFICATIONS_PER_DAY = 6;
+    const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
 
     // ranking functions for the set
 
@@ -427,6 +427,32 @@ class Beatmapset extends Model
                 ->orderByRaw('FIELD(beatmapset_id, '.db_array_bind($beatmap_ids).')', $beatmap_ids)
                 ->get()
             : [];
+    }
+
+    public static function latest($count = 5)
+    {
+        // TODO: add filtering by game mode after mode-toggle UI/UX happens
+        return self::rankedOrApproved()->orderBy('approved_date', 'desc')->limit($count);
+    }
+
+    public static function mostPlayedToday($mode = Beatmap::MODES['osu'], $count = 5)
+    {
+        // TODO: this only returns based on osu mode plays for now, add other game modes after mode-toggle UI/UX happens
+        return Cache::remember('beatmapsets_most_played_today', 5, function () use ($mode, $count) {
+            $counts = Score\Osu::selectRaw('beatmapset_id, count(*) as playcount')
+                    ->whereNotIn('beatmapset_id', self::BUNDLED_IDS)
+                    ->groupBy('beatmapset_id')
+                    ->orderBy('playcount', 'desc')
+                    ->limit($count)
+                    ->get();
+
+            $arr = [];
+            foreach ($counts as $value) {
+                $arr[$value['beatmapset_id']] = $value['playcount'];
+            }
+
+            return $arr;
+        });
     }
 
     public static function listing()
@@ -884,13 +910,13 @@ class Beatmapset extends Model
 
     public function description()
     {
-        $topic = Topic::find($this->thread_id);
+        $topic = Forum\Topic::find($this->thread_id);
 
         if ($topic === null) {
             return;
         }
 
-        $post = Post::find($topic->topic_first_post_id);
+        $post = Forum\Post::find($topic->topic_first_post_id);
 
         // Any description (after the first match) that matches
         // '[-{15}]' within its body doesn't get split anymore,

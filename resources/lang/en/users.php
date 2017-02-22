@@ -207,7 +207,9 @@ return [
         ],
         'title' => ":username's profile",
     ],
-
+    'home' => [
+        'title' => 'news',
+    ],
     'verify' => [
         'title' => 'Account Verification',
     ],

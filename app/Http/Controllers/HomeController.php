@@ -24,6 +24,7 @@ use App;
 use App\Models\BanchoStats;
 use App\Models\Count;
 use App\Models\News;
+use App\Models\Beatmapset;
 use Auth;
 use Request;
 use View;
@@ -64,10 +65,6 @@ class HomeController extends Controller
             return ujs_redirect(route('store.products.index'));
         }
 
-        if (Auth::check()) {
-            return ujs_redirect(route('forum.forums.index'));
-        }
-
         $stats = BanchoStats
             ::whereRaw('banchostats_id mod 10 = 0')
             ->orderBy('banchostats_id', 'DESC')
@@ -78,7 +75,11 @@ class HomeController extends Controller
 
         if (Auth::check()) {
             $news = News::all();
-            return view('home.user', compact('stats', 'totalUsers', 'currentOnline', 'news'));
+            $newBeatmaps = Beatmapset::latest()->get();
+            $popularBeatmapsPlaycount = Beatmapset::mostPlayedToday();
+            $popularBeatmaps = Beatmapset::whereIn('beatmapset_id', array_keys($popularBeatmapsPlaycount))->get();
+
+            return view('home.user', compact('stats', 'totalUsers', 'currentOnline', 'news', 'newBeatmaps', 'popularBeatmaps', 'popularBeatmapsPlaycount'));
         } else {
             return view('home.landing', compact('stats', 'totalUsers', 'currentOnline'));
         }

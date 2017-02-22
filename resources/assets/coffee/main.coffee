@@ -31,6 +31,7 @@ $(document).on 'submit', 'form', LoadingOverlay.show
 @reactTurbolinks ||= new ReactTurbolinks
 @twitchPlayer ?= new TwitchPlayer
 @landingGraph ?= new LandingGraph
+@onlineGraph ?= new OnlineGraph
 @landingHero ?= new LandingHero
 @timeago ?= new Timeago
 @osuLayzr ?= new OsuLayzr

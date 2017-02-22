@@ -42,6 +42,12 @@
     }
   }
 
+  &--two-col {
+    @media @desktop {
+      flex-wrap: nowrap !important;
+    }
+  }
+
   &--home-user {
     color: @gray-f;
     flex-direction: row;
@@ -147,6 +153,12 @@
     &--status {
       display: flex;
       background-color: fade(@gray-0, 50%);
+    }
+
+    &--two-col {
+      flex: 1 0 60%;
+      align-self: flex-end;
+      margin: 0;
     }
   }
 

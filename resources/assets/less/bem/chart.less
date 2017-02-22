@@ -31,12 +31,25 @@
     stroke: @pink-darker;
     stroke-width: 3px;
     pointer-events: none;
+
+    &--small {
+      fill: #ffcc22;
+      stroke-width: 1px;
+    }
   }
 
   &__line {
     fill: none;
     stroke: @pink-darker;
     stroke-width: 3px;
+
+    &--thin {
+      stroke-width: 1px;
+    }
+
+    &--yellow {
+      stroke: @yellow;
+    }
   }
 
   &__tick-gradient {

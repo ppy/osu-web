@@ -20,6 +20,16 @@
   @top: news-post-preview;
   margin-bottom: 5px;
 
+  &--collapsed {
+    margin-bottom: 0px;
+    &:first-of-type {
+      padding-top: 5px;
+    }
+    &:last-of-type {
+      padding-bottom: 5px;
+    }
+  }
+
   &__body {
     display: flex;
     .default-box-shadow();
@@ -27,6 +37,10 @@
   }
 
   &__image {
+    width: 100%;
+    height: 130px;
+    background-size: cover;
+    background-position: 50%;
     .@{top}--collapsed & {
       display: none;
     }
@@ -36,7 +50,7 @@
     font-size: smaller;
     flex: 0 0 60px;
     border-right: 1px solid grey;
-    margin: 10px 10px;
+    margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -46,6 +60,8 @@
     .@{top}--collapsed & {
       flex-direction: row;
       justify-content: flex-end;
+      margin: 0px 10px;
+      padding: 5px 10px;
     }
   }
 
