@@ -25,8 +25,7 @@ php composer.phar install
 php artisan view:clear
 
 # e.g. OSU_SKIP_DB_MIGRATION=1 ./build.sh to bypass running migrations
-skip_db_migration=${OSU_SKIP_DB_MIGRATION:-}
-if [ -z "$skip_db_migration" ]; then
+if [ -z "${OSU_SKIP_DB_MIGRATION:-}" ]; then
   php artisan migrate --force
 fi
 
