@@ -41,7 +41,7 @@ class @BeatmapDiscussionsChart
       bottom: 0
       left: 40
 
-    @scaleX = d3.scale.linear()
+    @scaleX = d3.scaleLinear()
       .domain [0, @length]
       .nice()
 
@@ -90,21 +90,21 @@ class @BeatmapDiscussionsChart
       .attr 'height', @dimensions.xAxisHeight
       .classed "#{bn}__axis #{bn}__axis--x", true
 
-    @svgPoints = @svgWrapper.append 'g'
-      .selectAll ".#{bn}__point"
+    @svgPointsContainer = @svgWrapper.append 'g'
 
-    @xAxis = d3.svg.axis()
+    @xAxis = d3.axisBottom()
       .ticks 0
-      .outerTickSize 0
-      .orient 'bottom'
+      .tickSizeOuter 0
 
 
   loadData: (data) =>
     @data = _.orderBy data, 'timestamp'
 
-    @svgPoints = @svgPoints.data @data, (d) => d.id
+    @svgPoints = @svgPointsContainer
+      .selectAll ".#{bn}__point"
+      .data @data, (d) => d.id
 
-    points = @svgPoints.enter()
+    @svgPointsEnter = @svgPoints.enter()
       .append 'a'
       .attr 'xlink:href', (d) =>
         BeatmapDiscussionHelper.hash discussionId: d.id
@@ -114,7 +114,7 @@ class @BeatmapDiscussionsChart
         d3.event.preventDefault()
         $.publish 'beatmapDiscussion:jump', id: d.id
 
-    points
+    @svgPointsEnter
       .append 'line'
       .classed "#{bn}__bar", true
       .attr 'x1', 0
@@ -123,7 +123,7 @@ class @BeatmapDiscussionsChart
       .attr 'y2', @dimensions.barTop + @dimensions.barHeight
       .attr 'stroke', "url(#bar-gradient-#{@id})"
 
-    points
+    @svgPointsEnter
       .append 'rect'
       .classed "#{bn}__target-area", true
       .attr 'x', -@dimensions.targetAreaWidth / 2
@@ -131,7 +131,7 @@ class @BeatmapDiscussionsChart
       .attr 'y', @dimensions.barTop
       .attr 'height', @dimensions.targetAreaHeight
 
-    points
+    @svgPointsEnter
       .append 'text'
       .classed "#{bn}__icon", true
       .style 'text-anchor', 'middle'
@@ -185,9 +185,10 @@ class @BeatmapDiscussionsChart
 
 
   positionPoints: =>
-    @svgPoints
-      .attr 'transform', (d) => "translate(#{Math.round(@scaleX(d.timestamp))}, 0)"
-
+    @svgPointsEnter
+      .merge(@svgPoints)
+      .attr 'transform', (d) =>
+        "translate(#{Math.round(@scaleX(d.timestamp))}, 0)"
 
 
   resize: =>
