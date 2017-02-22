@@ -23,7 +23,13 @@ rm -f bootstrap/cache/*.php bootstrap/cache/*.json
 php composer.phar install
 
 php artisan view:clear
-php artisan migrate --force
+
+# e.g. OSU_SKIP_DB_MIGRATION=1 ./build.sh to bypass running migrations
+skip_db_migration=${OSU_SKIP_DB_MIGRATION:-}
+if [ -z "$skip_db_migration" ]; then
+  php artisan migrate --force
+fi
+
 php artisan lang:js resources/assets/js/messages.js
 php artisan laroute:generate
 
