@@ -42,7 +42,7 @@ class PollOption extends Model
 
     public function topic()
     {
-        return $this->belongsTo(Topic::class);
+        return $this->belongsTo(Topic::class, 'topic_id');
     }
 
     public function votes()

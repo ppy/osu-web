@@ -36,13 +36,12 @@ class ContestSubmissions extends Migration
     public function down()
     {
         Schema::table('contests', function (Blueprint $table) {
-            DB::statement('ALTER TABLE contests CHANGE voting_ends_at ends_at TIMESTAMP NOT NULL');
+            DB::statement('ALTER TABLE contests CHANGE voting_ends_at ends_at TIMESTAMP NULL');
             DB::statement('ALTER TABLE contests CHANGE description_voting description TEXT');
         });
 
         Schema::table('contests', function (Blueprint $table) {
             $table->dropColumn('description_enter');
-
             $table->dropColumn('voting_starts_at');
             $table->dropColumn('entry_starts_at');
             $table->dropColumn('entry_ends_at');

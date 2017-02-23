@@ -44,6 +44,6 @@ class Changelog extends Model
 
     public function user()
     {
-        return $this->hasOne('User');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
