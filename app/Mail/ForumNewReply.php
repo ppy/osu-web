@@ -18,21 +18,41 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+namespace App\Mail;
 
-class BeatmapPlaycount extends Model
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+
+class ForumNewReply extends Mailable
 {
-    protected $table = 'osu_user_beatmap_playcount';
+    use Queueable, SerializesModels;
 
-    public $timestamps = false;
+    public $topic;
+    public $user;
 
-    public function beatmap()
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+    public function __construct($attributes)
     {
-        return $this->belongsTo(Beatmap::class, 'beatmap_id');
+        $this->topic = $attributes['topic'];
+        $this->user = $attributes['user'];
     }
 
-    public function user()
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this
+            ->text(i18n_view('emails.forum.new_reply'))
+            ->subject(trans('forum.email.new_reply', [
+                'title' => $this->topic->topic_title,
+            ]));
     }
 }

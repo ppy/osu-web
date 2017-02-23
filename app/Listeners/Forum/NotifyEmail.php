@@ -22,6 +22,7 @@ namespace App\Listeners\Forum;
 
 use App\Events\Forum\TopicWasReplied;
 use App\Events\Forum\TopicWasViewed;
+use App\Mail\ForumNewReply;
 use App\Models\Forum\TopicWatch;
 use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -71,16 +72,8 @@ class NotifyEmail implements ShouldQueue
                 continue;
             }
 
-            Mail::queue(
-                ['text' => i18n_view('emails.forum.new_reply')],
-                compact('topic', 'user'),
-                function ($message) use ($topic, $user) {
-                    $message->to($user->user_email);
-                    $message->subject(trans('forum.email.new_reply', [
-                        'title' => $topic->topic_title,
-                    ]));
-                }
-            );
+            Mail::to($user->user_email)
+                ->queue(new ForumNewReply(compact('topic', 'user')));
 
             TopicWatch::where([
                 'topic_id' => $topic->topic_id,

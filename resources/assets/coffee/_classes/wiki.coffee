@@ -82,10 +82,11 @@ class @Wiki
       titleId = _.kebabCase title
 
       # ensure no duplicate ids
-      titleIds[titleId] ?= 1
-      if titleIds[titleId] > 0
+      if titleIds[titleId]?
         titleIds[titleId] += 1
         titleId = "#{titleId}.#{titleIds[titleId]}"
+      else
+        titleIds[titleId] = 1
 
       $link = $('<a>', class: 'wiki-toc-list__link js-wiki-spy-link', href: "##{titleId}").text(title)
       if currentLevel > 2

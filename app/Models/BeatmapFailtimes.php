@@ -43,7 +43,7 @@ class BeatmapFailtimes extends Model
 
     public function beatmap()
     {
-        return $this->belongsTo(Beatmap::class);
+        return $this->belongsTo(Beatmap::class, 'beatmap_id');
     }
 
     public function delete()

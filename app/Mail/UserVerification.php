@@ -18,21 +18,41 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+namespace App\Mail;
 
-class BeatmapPlaycount extends Model
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+
+class UserVerification extends Mailable
 {
-    protected $table = 'osu_user_beatmap_playcount';
+    use Queueable, SerializesModels;
 
-    public $timestamps = false;
+    public $key;
+    public $user;
+    public $requestCountry;
 
-    public function beatmap()
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+    public function __construct($attributes)
     {
-        return $this->belongsTo(Beatmap::class, 'beatmap_id');
+        $this->key = $attributes['key'];
+        $this->user = $attributes['user'];
+        $this->requestCountry = $attributes['requestCountry'];
     }
 
-    public function user()
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this
+            ->text(i18n_view('emails.user_verification'))
+            ->subject(trans('user_verification.email.subject'));
     }
 }

@@ -28,6 +28,6 @@ class Taiko extends Model
 
     public function score()
     {
-        return $this->belongsTo(Score\Taiko::class);
+        return $this->belongsTo(Score\Taiko::class, 'score_id');
     }
 }

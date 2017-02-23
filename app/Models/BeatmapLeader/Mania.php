@@ -28,6 +28,6 @@ class Mania extends Model
 
     public function score()
     {
-        return $this->belongsTo(Score\Mania::class);
+        return $this->belongsTo(Score\Mania::class, 'score_id');
     }
 }

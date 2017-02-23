@@ -83,8 +83,8 @@ class CreateArtistTables extends Migration
      */
     public function down()
     {
-        Schema::drop('labels');
-        Schema::drop('artists');
         Schema::drop('artist_tracks');
+        Schema::drop('artists');
+        Schema::drop('labels');
     }
 }

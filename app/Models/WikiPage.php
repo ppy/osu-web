@@ -98,7 +98,7 @@ class WikiPage
 
     public function editUrl()
     {
-        return 'https://github.com/'.static::USER.'/'.static::REPOSITORY.'/tree/master/wiki/'.$this->page;
+        return 'https://github.com/'.static::USER.'/'.static::REPOSITORY.'/tree/master/wiki/'.$this->path();
     }
 
     public function locales()

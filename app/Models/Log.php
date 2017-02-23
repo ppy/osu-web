@@ -52,17 +52,17 @@ class Log extends Model
 
     public function forum()
     {
-        return $this->belongsTo(Forum\Forum::class);
+        return $this->belongsTo(Forum\Forum::class, 'forum_id');
     }
 
     public function topic()
     {
-        return $this->belongsTo(Forum\Topic::class);
+        return $this->belongsTo(Forum\Topic::class, 'topic_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function reportee()
