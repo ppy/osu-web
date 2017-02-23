@@ -49,7 +49,7 @@
             </div>
 
             <div class="forum-post__content forum-post__content--main">
-                <div class="forum-post-content">
+                <div class="forum-post-content {{ $options['contentExtraClasses'] ?? '' }}">
                     {!! $post->bodyHTML !!}
                 </div>
             </div>

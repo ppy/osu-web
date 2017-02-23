@@ -22,14 +22,22 @@
 @section("content")
     {!! Form::open([
         "url" => route("forum.topics.store", ['forum_id' => $forum]),
-        "data-preview-url" => route("forum.topics.preview", ['forum_id' => $forum]),
         'data-remote' => true,
     ]) !!}
         <input type="hidden" name="cover_id" value="{{ Request::old("cover_id") }}" class="js-forum-cover--input">
 
         @include('forum.topics._header')
 
-        <div class="js-post-preview"></div>
+        <div class="js-post-preview--box hidden">
+            @include('forum.topics._post', [
+                'post' => $post,
+                'options' => [
+                    'overlay' => true,
+                    'signature' => $forum->enable_sigs,
+                    'contentExtraClasses' => 'js-post-preview--body',
+                ],
+            ])
+        </div>
 
         <div id="topic-post-form" class="osu-layout__row">
             <div class="forum-post">
@@ -45,9 +53,9 @@
                 <div class="forum-post__body">
                     <div class="forum-post__content">
                         @include('forum.posts._form_body', ['postBody' => [
-                            'content' => Request::old("body"),
+                            'content' => $post->post_text,
                             'focus' => true,
-                            'extraClasses' => 'post-autopreview forum-post-content--edit',
+                            'extraClasses' => 'js-post-preview--auto forum-post-content--edit',
                             'extraAttrs' => 'tabindex="1"',
                         ]])
                     </div>

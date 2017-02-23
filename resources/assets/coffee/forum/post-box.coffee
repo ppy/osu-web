@@ -65,26 +65,3 @@ $(document).on 'change', '.js-bbcode-btn--size', (e) ->
   val = parseInt $select.val(), 10
 
   insert e, "[size=#{val}]", '[/size]'
-
-
-class PostAutoPreview
-  lastBody: null
-
-  constructor: ->
-    $(document).on 'keyup change', '.post-autopreview', _.debounce(@loadPreview, 500)
-
-  loadPreview: (e) =>
-    $form = $(e.target).closest('form')
-    url = $form.attr('data-preview-url')
-    body = $form.find('[name=body]').val()
-    $preview = $form.find('.js-post-preview')
-
-    return if @lastBody == body
-
-    $.post(url, body: body)
-    .done (data) =>
-      @lastBody = body
-      $preview.html data
-      osu.pageChange()
-
-window.postAutoPreview = new PostAutoPreview
