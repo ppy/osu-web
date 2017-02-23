@@ -92,7 +92,7 @@
       false
 
 
-  isMobile: -> ! window.matchMedia('(min-width: 920px)').matches
+  isMobile: -> ! window.matchMedia('(min-width: 840px)').matches
 
 
   src2x: (mainUrl) ->
