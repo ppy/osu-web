@@ -507,17 +507,17 @@ class Topic extends Model
         $firstPost = $this->posts()->first();
 
         if ($firstPost === null) {
-            $this->topic_first_post_id = null;
-            $this->topic_poster = null;
-            $this->topic_first_poster_name = null;
-            $this->topic_first_poster_colour = null;
+            $this->topic_first_post_id = 0;
+            $this->topic_poster = '';
+            $this->topic_first_poster_name = '';
+            $this->topic_first_poster_colour = '';
         } else {
             $this->topic_first_post_id = $firstPost->post_id;
 
             if ($firstPost->user === null) {
-                $this->topic_poster = null;
-                $this->topic_first_poster_name = null;
-                $this->topic_first_poster_colour = null;
+                $this->topic_poster = 0;
+                $this->topic_first_poster_name = '';
+                $this->topic_first_poster_colour = '';
             } else {
                 $this->topic_poster = $firstPost->user->user_id;
                 $this->topic_first_poster_name = $firstPost->user->username;

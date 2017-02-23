@@ -108,6 +108,24 @@ function product_quantity_options($product)
     return $opts;
 }
 
+function read_image_properties($path)
+{
+    try {
+        $data = getimagesize($path);
+
+        if ($data !== false) {
+            return $data;
+        }
+    } catch (ErrorException $e) {
+        // do nothing if it's read failure(?)
+        if ($e->getMessage() === 'Read error!') {
+            return;
+        }
+
+        throw $e;
+    }
+}
+
 function render_to_string($view, $variables = [])
 {
     return view()->make($view, $variables)->render();
@@ -410,7 +428,7 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG)
 function open_image($path, $dimensions = null)
 {
     if ($dimensions === null) {
-        $dimensions = getimagesize($path);
+        $dimensions = read_image_properties($path);
     }
 
     if (!isset($dimensions[2]) || !is_int($dimensions[2])) {
