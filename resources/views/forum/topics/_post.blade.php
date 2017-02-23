@@ -66,7 +66,7 @@
                 </div>
             @endif
 
-            @if($options["signature"] !== false && $post->userNormalized()->user_sig)
+            @if($options["signature"] !== false && present($post->userNormalized()->user_sig))
                 <div class="forum-post__content forum-post__content--signature hidden-xs">
                     {!! bbcode($post->userNormalized()->user_sig, $post->userNormalized()->user_sig_bbcode_uid) !!}
                 </div>
