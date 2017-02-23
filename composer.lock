@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a351ab6fecb0794fb7a5ddd1e8365d65",
+    "content-hash": "843998449477c6acfd3e6c8b9a70572b",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -2322,52 +2322,6 @@
                 "server"
             ],
             "time": "2016-10-12T14:08:15+00:00"
-        },
-        {
-            "name": "league/statsd",
-            "version": "1.4.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/statsd.git",
-                "reference": "375e47160b2a7d145895e3fc4a1a888b9744c286"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/statsd/zipball/375e47160b2a7d145895e3fc4a1a888b9744c286",
-                "reference": "375e47160b2a7d145895e3fc4a1a888b9744c286",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0",
-                "silex/silex": "~1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "League\\StatsD\\": "src",
-                    "League\\StatsD\\Test\\": "tests"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marc Qualie",
-                    "email": "marc@marcqualie.com",
-                    "homepage": "http://marcqualie.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A simple library for working with StatsD in PHP.",
-            "homepage": "https://github.com/thephpleague/statsd",
-            "keywords": [
-                "graphite",
-                "library",
-                "statsd"
-            ],
-            "time": "2017-02-09T19:30:26+00:00"
         },
         {
             "name": "lord/laroute",

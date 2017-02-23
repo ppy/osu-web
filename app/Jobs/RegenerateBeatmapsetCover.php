@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Raven_Client;
-use Statsd;
+use Datadog;
 
 class RegenerateBeatmapsetCover implements ShouldQueue
 {
@@ -36,10 +36,10 @@ class RegenerateBeatmapsetCover implements ShouldQueue
         try {
             echo "Processing {$this->beatmapset->beatmapset_id}... ";
             $this->beatmapset->regenerateCovers();
-            Statsd::increment(['thumbdonger.processed', 'thumbdonger.ok']);
+            Datadog::increment(['thumbdonger.processed', 'thumbdonger.ok']);
             echo "ok.\n";
         } catch (\Exception $e) {
-            Statsd::increment(['thumbdonger.processed', 'thumbdonger.error']);
+            Datadog::increment(['thumbdonger.processed', 'thumbdonger.error']);
             echo "errored.\n";
             if (config('osu.beatmap_processor.sentry')) {
                 $tags = [
