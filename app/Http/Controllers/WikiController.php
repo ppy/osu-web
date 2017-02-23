@@ -38,31 +38,12 @@ class WikiController extends Controller
         $imageExtensions = ['gif', 'jpeg', 'jpg', 'png'];
 
         if (in_array($extension, $imageExtensions, true)) {
-            try {
-                $image = WikiPage::fetchImage($path, Request::url(), Request::header('referer'));
-            } catch (GitHubNotFoundException $e) {
-                abort(404);
-            } catch (GitHubTooLargeException $e) {
-                abort(403);
-            }
-
-            $type = getimagesizefromstring($image)[2] ?? null;
-
-            if ($type === null) {
-                abort(403);
-            }
-
-            return response($image, 200)
-                ->header('Content-Type', image_type_to_mime_type($type));
+            return $this->showImage($path);
         }
 
         // ensure correct relative paths
         if (preg_match(',/(\?.*)?$,', Request::getUri()) === 0) {
-            $queryString = present(Request::getQueryString())
-                ? '?'.Request::getQueryString()
-                : '';
-
-            return ujs_redirect(Request::url().'/'.$queryString);
+            return $this->redirectWithTrailingSlash();
         }
 
         $pageLocale = Request::input('locale', App::getLocale());
@@ -98,5 +79,34 @@ class WikiController extends Controller
         (new WikiPage($path))->refresh();
 
         return ujs_redirect(Request::getUri());
+    }
+
+    private function redirectWithTrailingSlash()
+    {
+        $queryString = present(Request::getQueryString())
+            ? '?'.Request::getQueryString()
+            : '';
+
+        return ujs_redirect(Request::url().'/'.$queryString);
+    }
+
+    private function showImage($path)
+    {
+        try {
+            $image = WikiPage::fetchImage($path, Request::url(), Request::header('referer'));
+        } catch (GitHubNotFoundException $e) {
+            abort(404);
+        } catch (GitHubTooLargeException $e) {
+            abort(403);
+        }
+
+        $type = getimagesizefromstring($image)[2] ?? null;
+
+        if ($type === null) {
+            abort(403);
+        }
+
+        return response($image, 200)
+            ->header('Content-Type', image_type_to_mime_type($type));
     }
 }
