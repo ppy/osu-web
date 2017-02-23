@@ -69,7 +69,8 @@ BeatmapDiscussions.Nominations = React.createClass
 
 
   render: ->
-    userCanPerformNominations = @props.currentUser.isAdmin or @props.currentUser.isGMT or @props.currentUser.isBAT
+    userCanNominate = @props.currentUser.isAdmin || @props.currentUser.isBNG || @props.currentUser.isQAT
+    userCanDisqualify = @props.currentUser.isAdmin || @props.currentUser.isQAT
     mapCanBeNominated = (@props.beatmapset.status == 'pending')
     mapIsQualified = (@props.beatmapset.status == 'qualified')
 
@@ -119,17 +120,16 @@ BeatmapDiscussions.Nominations = React.createClass
               span null, osu.trans 'beatmaps.nominations.qualified-soon'
 
         div null,
-          if userCanPerformNominations
-            if mapIsQualified
-              el BigButton,
-                text: osu.trans 'beatmaps.nominations.disqualify'
-                icon: 'thumbs-down'
-                props:
-                  onClick: @disqualify
-            else if mapCanBeNominated
-              el BigButton,
-                text: osu.trans 'beatmaps.nominations.nominate'
-                icon: 'thumbs-up'
-                props:
-                  disabled: @props.beatmapset.nominations.nominated
-                  onClick: @nominate
+          if userCanDisqualify && mapIsQualified
+            el BigButton,
+              text: osu.trans 'beatmaps.nominations.disqualify'
+              icon: 'thumbs-down'
+              props:
+                onClick: @disqualify
+          else if userCanNominate && mapCanBeNominated
+            el BigButton,
+              text: osu.trans 'beatmaps.nominations.nominate'
+              icon: 'thumbs-up'
+              props:
+                disabled: @props.beatmapset.nominations.nominated
+                onClick: @nominate
