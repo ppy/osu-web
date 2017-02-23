@@ -20,8 +20,8 @@ class @LineChart
   constructor: (area, @options = {}) ->
     @id = Math.floor(Math.random() * 1000)
     @options.scales ||= {}
-    @options.scales.x ||= d3.time.scale()
-    @options.scales.y ||= d3.scale.linear()
+    @options.scales.x ||= d3.scaleTime()
+    @options.scales.y ||= d3.scaleLinear()
 
     @area = d3.select(area)
 
@@ -65,18 +65,15 @@ class @LineChart
     @tooltipX = @tooltipContainer.append 'div'
       .classed 'chart__tooltip-text chart__tooltip-text--x', true
 
-    @xAxis = d3.svg.axis()
+    @xAxis = d3.axisBottom()
       .ticks 15
-      .outerTickSize 0
+      .tickSizeOuter 0
       .tickPadding 5
-      .orient 'bottom'
 
-    @yAxis = d3.svg.axis()
-      .ticks 4
-      .orient 'left'
+    @yAxis = d3.axisLeft().ticks(4)
 
-    @line = d3.svg.line()
-      .interpolate 'monotone'
+    @line = d3.line()
+      .curve(d3.curveMonotoneX)
 
 
   margins:
@@ -132,13 +129,13 @@ class @LineChart
   setAxesSize: =>
     @xAxis
       .scale @options.scales.x
-      .innerTickSize -@height
+      .tickSizeInner -@height
       .tickFormat @options.formats?.x
       .tickValues @options.tickValues?.x
 
     @yAxis
       .scale @options.scales.y
-      .innerTickSize -@width
+      .tickSizeInner -@width
       .tickFormat @options.formats?.y
       .tickValues @options.tickValues?.y
 
@@ -183,10 +180,10 @@ class @LineChart
       .classed 'chart__tick-line chart__tick-line--default', true
 
     @svgXAxis.selectAll '.domain'
-      .classed 'chart__tick-line chart__tick-line--default', true
+      .classed 'u-hidden', true
 
     @svgYAxis.selectAll '.domain'
-      .classed 'chart__tick-line', true
+      .classed 'u-hidden', true
 
     @svgXAxis.selectAll 'text'
       .style 'text-anchor', 'start'

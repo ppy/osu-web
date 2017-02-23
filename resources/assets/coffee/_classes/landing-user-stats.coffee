@@ -56,11 +56,11 @@ class @LandingUserStats
       .attr 'cy', 0
       .attr 'r', @peakR
 
-    @scaleX = d3.scale.linear()
-    @scaleY = d3.time.scale()
+    @scaleX = d3.scaleLinear()
+    @scaleY = d3.scaleTime()
 
-    @area = d3.svg.area()
-      .interpolate('basis')
+    @area = d3.area()
+      .curve(d3.curveBasis)
       .x (d) =>
         @scaleX d.date
       .y0 =>
@@ -79,7 +79,7 @@ class @LandingUserStats
     @data = osu.parseJson('json-stats')
 
     # Define date parser
-    parseDate = d3.time.format('%Y-%m-%d %H:%M:%S').parse
+    parseDate = d3.timeParse('%Y-%m-%d %H:%M:%S')
 
     # Parsing data
     @data.forEach (d) ->

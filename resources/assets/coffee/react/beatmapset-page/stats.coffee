@@ -161,8 +161,8 @@ class BeatmapsetPage.Stats extends React.Component
     unless @_ratingChart
       options =
         scales:
-          x: d3.scale.linear()
-          y: d3.scale.linear()
+          x: d3.scaleLinear()
+          y: d3.scaleLinear()
         modifiers: ['beatmapset-rating']
 
       @_ratingChart = new StackedBarChart @refs.chartArea, options

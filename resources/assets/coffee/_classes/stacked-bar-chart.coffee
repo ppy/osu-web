@@ -25,8 +25,8 @@ class @StackedBarChart
       left: 0
 
     @options.scales ?= {}
-    @options.scales.x ?= d3.scale.linear()
-    @options.scales.y ?= d3.scale.linear()
+    @options.scales.x ?= d3.scaleLinear()
+    @options.scales.y ?= d3.scaleLinear()
 
     blockClass = 'stacked-bar-chart'
     blockClass += " stacked-bar-chart--#{mod}" for mod in @options.modifiers
