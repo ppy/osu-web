@@ -39,13 +39,21 @@ class WikiController extends Controller
 
         if (in_array($extension, $imageExtensions, true)) {
             try {
-                return response(WikiPage::fetchImage($path, Request::url(), Request::header('referer')), 200)
-                    ->header('Content-Type', 'image');
+                $image = WikiPage::fetchImage($path, Request::url(), Request::header('referer'));
             } catch (GitHubNotFoundException $e) {
                 abort(404);
             } catch (GitHubTooLargeException $e) {
-                abort(422);
+                abort(403);
             }
+
+            $type = getimagesizefromstring($image)[2] ?? null;
+
+            if ($type === null) {
+                abort(403);
+            }
+
+            return response($image, 200)
+                ->header('Content-Type', image_type_to_mime_type($type));
         }
 
         // ensure correct relative paths
