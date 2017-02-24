@@ -216,7 +216,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function setUserFromAttribute($value)
     {
-        $this->attributes['user_from'] = presence(e($value));
+        $this->attributes['user_from'] = e($value);
     }
 
     public function getUserInterestsAttribute($value)

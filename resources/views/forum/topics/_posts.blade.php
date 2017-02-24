@@ -40,6 +40,7 @@
             'editLink' => priv_check('ForumPostEdit', $post)->can(),
             'postPosition' => $postPosition,
             'replyLink' => priv_check('ForumTopicReply', $topic)->can(),
+            'signature' => $topic->forum->enable_sigs,
         ],
     ])
     @php

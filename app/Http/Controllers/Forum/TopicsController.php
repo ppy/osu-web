@@ -69,7 +69,13 @@ class TopicsController extends Controller
             new TopicCoverTransformer()
         );
 
-        return view('forum.topics.create', compact('forum', 'cover'));
+        $post = new Post([
+            'post_text' => Request::old('body'),
+            'user' => Auth::user(),
+            'post_time' => Carbon::now(),
+        ]);
+
+        return view('forum.topics.create', compact('forum', 'cover', 'post'));
     }
 
     public function lock($id)
@@ -110,26 +116,6 @@ class TopicsController extends Controller
         $type = 'moderate_pin';
 
         return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
-    }
-
-    public function preview()
-    {
-        $forum = Forum::findOrFail(Request::input('forum_id'));
-
-        priv_check('ForumTopicStore', $forum)->ensureCan();
-
-        $post = new Post([
-            'post_text' => Request::input('body'),
-            'user' => Auth::user(),
-            'post_time' => Carbon::now(),
-        ]);
-
-        $options = [
-            'overlay' => true,
-            'signature' => $forum->enable_sigs,
-        ];
-
-        return view('forum.topics._post_content', compact('post', 'options'));
     }
 
     public function reply(HttpRequest $request, $id)

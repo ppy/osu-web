@@ -139,7 +139,7 @@
                                         <a class="js-forum-reply-preview--hide btn-osu btn-osu--small btn-osu-default active post-editor__action post-editor__action--preview">{{ trans('forum.topic.create.preview_hide') }}</a>
                                         <a
                                             class="js-forum-reply-preview--show btn-osu btn-osu--small btn-osu-default post-editor__action post-editor__action--preview"
-                                            data-preview-url="{{ route('forum.topics.preview', ['forum_id' => $topic->forum->forum_id]) }}"
+                                            data-preview-url="{{ route('bbcode-preview', ['forum_id' => $topic->forum->forum_id]) }}"
                                         >{{ trans('forum.topic.create.preview') }}</a>
                                     </div>
                                 </div>

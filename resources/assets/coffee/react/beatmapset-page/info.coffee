@@ -45,8 +45,8 @@ class BeatmapsetPage.Info extends React.Component
     unless @_failurePointsChart?
       options =
         scales:
-          x: d3.scale.linear()
-          y: d3.scale.linear()
+          x: d3.scaleLinear()
+          y: d3.scaleLinear()
         modifiers: ['beatmap-success-rate']
 
       @_failurePointsChart = new StackedBarChart @refs.chartArea, options

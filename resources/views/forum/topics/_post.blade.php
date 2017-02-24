@@ -48,7 +48,11 @@
                 </a>
             </div>
 
-            @include('forum.topics._post_content')
+            <div class="forum-post__content forum-post__content--main">
+                <div class="forum-post-content {{ $options['contentExtraClasses'] ?? '' }}">
+                    {!! $post->bodyHTML !!}
+                </div>
+            </div>
 
             @if($post->post_edit_count > 0)
                 <div class="forum-post__content forum-post__content--footer">
@@ -62,7 +66,7 @@
                 </div>
             @endif
 
-            @if($options["signature"] !== false && $post->userNormalized()->user_sig)
+            @if($options["signature"] !== false && present($post->userNormalized()->user_sig))
                 <div class="forum-post__content forum-post__content--signature hidden-xs">
                     {!! bbcode($post->userNormalized()->user_sig, $post->userNormalized()->user_sig_bbcode_uid) !!}
                 </div>

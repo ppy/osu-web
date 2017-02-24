@@ -145,7 +145,7 @@ class @ForumTopicReply
       url: url
       method: 'POST'
       data:
-        body: body
+        text: body
 
     .done (data) =>
       @lastBody = body
