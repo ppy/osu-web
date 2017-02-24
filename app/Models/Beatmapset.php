@@ -561,23 +561,22 @@ class Beatmapset extends Model
             }
 
             $bgFile = ci_file_search("{$workingFolder}/{$bgFilename}");
-            if (!$bgFile) {
-                throw new BeatmapProcessorException("Background image missing: {$bgFile}");
-            }
 
-            $processor = new ImageProcessorService($tmpBase);
+            if ($bgFile !== false) {
+                $processor = new ImageProcessorService($tmpBase);
 
-            // upload original image
-            $this->storeCover('raw.jpg', $bgFile);
+                // upload original image
+                $this->storeCover('raw.jpg', $bgFile);
 
-            // upload optimized version
-            $optimized = $processor->optimize($this->coverURL('raw'));
-            $this->storeCover('fullsize.jpg', $optimized);
+                // upload optimized version
+                $optimized = $processor->optimize($this->coverURL('raw'));
+                $this->storeCover('fullsize.jpg', $optimized);
 
-            // use thumbnailer to generate and upload all our variants
-            foreach (self::coverSizes() as $size) {
-                $resized = $processor->resize($this->coverURL('fullsize'), $size);
-                $this->storeCover("$size.jpg", $resized);
+                // use thumbnailer to generate and upload all our variants
+                foreach (self::coverSizes() as $size) {
+                    $resized = $processor->resize($this->coverURL('fullsize'), $size);
+                    $this->storeCover("$size.jpg", $resized);
+                }
             }
 
             $this->update(['cover_updated_at' => $this->freshTimestamp()]);
