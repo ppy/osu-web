@@ -100,13 +100,7 @@ class WikiController extends Controller
             abort(403);
         }
 
-        $type = getimagesizefromstring($image)[2] ?? null;
-
-        if ($type === null) {
-            abort(403);
-        }
-
-        return response($image, 200)
-            ->header('Content-Type', image_type_to_mime_type($type));
+        return response($image['data'], 200)
+            ->header('Content-Type', $image['type']);
     }
 }
