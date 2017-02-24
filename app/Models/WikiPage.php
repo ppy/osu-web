@@ -114,6 +114,8 @@ class WikiPage
             $contents = static::fetch($this->page);
         } catch (GitHubNotFoundException $e) {
             return $locales;
+        } catch (GitHubTooLargeException $e) {
+            return $locales;
         }
 
         // check if it's a file, not a directory.
