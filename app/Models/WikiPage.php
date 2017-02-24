@@ -77,7 +77,12 @@ class WikiPage
     {
         return Cache::remember(static::cacheKey($path), 60, function () use ($path, $url, $referrer) {
             try {
-                return static::fetchContent($path);
+                $data = static::fetchContent($path);
+                $type = image_type_to_mime_type(
+                    getimagesizefromstring($data)[2] ?? null
+                );
+
+                return compact('data', 'type');
             } catch (GitHubNotFoundException $e) {
                 if (present($url) && present($referrer) && starts_with($url, $referrer)) {
                     $newPath = 'shared/'.substr($url, strlen($referrer));
@@ -108,6 +113,8 @@ class WikiPage
         try {
             $contents = static::fetch($this->page);
         } catch (GitHubNotFoundException $e) {
+            return $locales;
+        } catch (GitHubTooLargeException $e) {
             return $locales;
         }
 
