@@ -38,7 +38,7 @@ class WikiPage
 
     public static function cacheKey($path)
     {
-        return 'wiki:'.static::cleanPath($path);
+        return 'wiki:v2:'.static::cleanPath($path);
     }
 
     public static function fetch($path)
