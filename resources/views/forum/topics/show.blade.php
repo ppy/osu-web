@@ -158,7 +158,9 @@
                                         @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
                                     </div>
                                 </div>
-                                <div class="js-forum-reply-preview hidden">
+                                <div class="js-forum-reply-preview hidden forum-post__content forum-post__content--main">
+                                    <div class="forum-post-content {{ $options['contentExtraClasses'] ?? '' }}">
+                                    </div>
                                 </div>
                             </div>
 

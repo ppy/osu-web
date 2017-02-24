@@ -24,18 +24,7 @@ class @ForumTopicReply
     @closeButton = document.getElementsByClassName('js-forum-topic-reply--close')
     @fixedBar = document.getElementsByClassName('js-sticky-footer--fixed-bar')
 
-    @writeButton = document.getElementsByClassName('js-forum-reply-preview--hide')
-    @previewButton = document.getElementsByClassName('js-forum-reply-preview--show')
-
-    @editBox = document.getElementsByClassName('js-forum-reply-write')
-    @previewBox = document.getElementsByClassName('js-forum-reply-preview')
-
-    @lastBody = null
-
     $(document).on 'ajax:success', '.js-forum-topic-reply', @posted
-
-    $(document).on 'click', '.js-forum-reply-preview--show', @fetchPreview
-    $(document).on 'click', '.js-forum-reply-preview--hide', @hidePreview
 
     $(document).on 'click', '.js-forum-topic-reply--close', @deactivate
     $(document).on 'click', '.js-forum-topic-reply--new', @activate
@@ -126,55 +115,6 @@ class @ForumTopicReply
     @setState 'text', @input[0].value
 
 
-  fetchPreview: =>
-    $button = $(@previewButton)
-    url = $button.attr 'data-preview-url'
-
-    $input = $(@input)
-    body = $input.val()
-
-    $preview = $(@previewBox)
-
-    return if $button.hasClass('active')
-
-    if @lastBody == body
-      @showPreview()
-      return
-
-    $.ajax
-      url: url
-      method: 'POST'
-      data:
-        text: body
-
-    .done (data) =>
-      @lastBody = body
-
-      $preview.html(data)
-      @showPreview()
-
-
-  showPreview: =>
-    $(@editBox).addClass('hidden')
-    $(@previewBox).removeClass('hidden')
-
-    $(@previewButton).addClass('active')
-    $(@writeButton).removeClass('active')
-
-    osu.pageChange()
-
-  hidePreview: =>
-    return if $(@writeButton).hasClass('active')
-
-    $(@editBox).removeClass('hidden')
-    $(@previewBox).addClass('hidden')
-
-    $(@previewButton).removeClass('active')
-    $(@writeButton).addClass('active')
-
-    osu.pageChange()
-
-
   posted: (e, data) =>
     @deactivate()
     @$input().val ''
@@ -184,8 +124,6 @@ class @ForumTopicReply
 
     needReload = (@forum.postPosition($newPost[0]) - 1) != @forum.postPosition(@forum.endPost()) ||
       e.target.dataset.forceReload == '1'
-
-    @invalidatePreview()
 
     if needReload
       osu.navigate $newPost.find('.js-post-url').attr('href')
