@@ -56,11 +56,6 @@ class ImageProcessorService
         $tmpFile = tempnam($this->workingFolder, 'ips').'.jpg';
         try {
             $ok = copy($this->endpoint."/{$method}/{$src}", $tmpFile);
-            if (!$ok || filesize($tmpFile) < 100) {
-                throw new BeatmapProcessorException("Error retrieving processed image: $method");
-            }
-
-            return $tmpFile;
         } catch (ErrorException $e) {
             if (ends_with($e->getMessage(), "HTTP request failed!\r\n")) {
                 throw new BeatmapProcessorException('HTTP request failed!');
@@ -70,5 +65,11 @@ class ImageProcessorService
                 throw $e;
             }
         }
+
+        if (!$ok || filesize($tmpFile) < 100) {
+            throw new BeatmapProcessorException("Error retrieving processed image: $method");
+        }
+
+        return $tmpFile;
     }
 }
