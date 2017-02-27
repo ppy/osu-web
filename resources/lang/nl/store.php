@@ -49,8 +49,5 @@ return [
         'notification_remove_text' => 'hier',
 
         'notification_in_stock' => 'Dit product is al op voorraad!',
-
-        'notification_exists' => 'Je hebt al om een notificatie gevraagd wanneer het product weer beschikbaar is!',
-        'notification_doesnt_exist' => 'Je hebt niet eens notificatie aangevraagd voor dit product!',
     ],
 ];
