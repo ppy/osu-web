@@ -13,39 +13,30 @@ class DatabaseSeeder extends Seeder
     {
         try {
             // Miscellaneous Data (e.g. counts)
-            $this->command->info('Seeding Miscellaneous Data');
             $this->call(MiscSeeder::class);
 
             // Users, Stats, Ranks
-            $this->command->info('Seeding Users and Stats/Rank History...');
             $this->call(UserSeeder::class);
 
             // Beatmaps and sets
-            $this->command->info('Seeding Beatmaps...');
             $this->call(BeatmapSeeder::class);
 
             // Events
-            $this->command->info('Seeding Events...');
             $this->call(EventSeeder::class);
 
             // Scores
-            $this->command->info('Seeding Scores...');
             $this->call(ScoreSeeder::class);
 
             // BanchoStats
-            $this->command->info('Seeding BanchoStats...');
             $this->call(BanchoStatsSeeder::class);
 
             // Forums, topics, posts etc
-            $this->command->info('Seeding Forum Data...');
             $this->call(ForumSeeder::class);
 
             // Users Profile Data (Favourite maps, First place ranks, Playcounts)
-            $this->command->info('Seeding Users Profile Data (e.g. favourite maps, first place ranks, playcounts)');
             $this->call(UserProfileSeeder::class);
 
             //Store Products
-            $this->command->info('Seeding Products');
             $this->call(ProductSeeder::class);
         } catch (ErrorException $er) {
             $this->command->error($er->getMessage());
