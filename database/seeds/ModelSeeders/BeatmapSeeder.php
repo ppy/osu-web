@@ -112,7 +112,7 @@ class BeatmapSeeder extends Seeder
                 $new_bm->hit_length = $bm->hit_length;
                 $new_bm->countTotal = $bm->max_combo !== null ? $bm->max_combo : 1500;
                 $new_bm->countNormal = round(intval($bm->max_combo) - (0.2 * intval($bm->max_combo)));
-                $new_bm->countSlider = round(intval($bm->max_combo) - (0.8 * intval($bm->max_combo))) - 1;
+                $new_bm->countSlider = round(intval($bm->max_combo) - (0.8 * intval($bm->max_combo)));
                 $new_bm->countSpinner = 1;
                 $new_bm->diff_drain = $bm->diff_drain;
                 $new_bm->diff_size = $bm->diff_size;
