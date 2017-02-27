@@ -62,6 +62,6 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'user_occ' => $faker->catchPhrase,
         'user_sig' => $faker->realText(155),
         'user_from' => $faker->country,
-        'user_regdate' => $faker->dateTimeBetween($startDate = '-6 years', $endDate = 'now'),
+        'user_regdate' => $faker->dateTimeBetween('-6 years', 'now'),
     ];
 });
