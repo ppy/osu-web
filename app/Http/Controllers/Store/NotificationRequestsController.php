@@ -22,6 +22,7 @@ namespace App\Http\Controllers\Store;
 
 use App\Models\Store\Product;
 use Auth;
+use Illuminate\Database\QueryException;
 
 class NotificationRequestsController extends Controller
 {
