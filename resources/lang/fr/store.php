@@ -49,8 +49,5 @@ return [
         'notification_remove_text' => 'ici',
 
         'notification_in_stock' => 'Ce produit est déjà en stock!',
-
-        'notification_exists' => 'Vous avez déjà demandé une notification pour ce produit!',
-        'notification_doesnt_exist' => "Vous n'avez pas demandé de notification pour ce produit!",
     ],
 ];
