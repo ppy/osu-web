@@ -42,8 +42,8 @@ class ForumTopicsControllerTest extends TestCase
         $newPostCount = Forum\Post::count();
         $newTopicCount = Forum\Topic::count();
 
-        $this->assertEquals(1, $newPostCount - $initialPostCount);
-        $this->assertEquals(0, $newTopicCount - $initialTopicCount);
+        $this->assertSame(1, $newPostCount - $initialPostCount);
+        $this->assertSame(0, $newTopicCount - $initialTopicCount);
     }
 
     public function testShow()
@@ -96,8 +96,8 @@ class ForumTopicsControllerTest extends TestCase
         $newPostCount = Forum\Post::count();
         $newTopicCount = Forum\Topic::count();
 
-        $this->assertEquals(1, $newPostCount - $initialPostCount);
-        $this->assertEquals(1, $newTopicCount - $initialTopicCount);
+        $this->assertSame(1, $newPostCount - $initialPostCount);
+        $this->assertSame(1, $newTopicCount - $initialTopicCount);
     }
 
     private function defaultUserGroup($user)
