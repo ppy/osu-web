@@ -9,7 +9,7 @@ return [
     | Set this option to enable or disable the datadog helper.
     |
     */
-    'enabled' => true,
+    'enabled' => env('DATADOG_ENABLED', false),
 
     /*
     |--------------------------------------------------------------------------
