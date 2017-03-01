@@ -154,6 +154,48 @@ return [
             'replies' => 'replies',
         ],
 
+        'issue_type_added' => [
+            'action-0' => 'Mark as added',
+            'action-1' => 'Unmark from added',
+            'state-0' => 'Marked as added',
+            'state-1' => 'Unmarked from added',
+        ],
+
+        'issue_type_assigned' => [
+            'action-0' => 'Mark as assigned',
+            'action-1' => 'Unmark from assigned',
+            'state-0' => 'Marked as assigned',
+            'state-1' => 'Unmarked from assigned',
+        ],
+
+        'issue_type_confirmed' => [
+            'action-0' => 'Mark as confirmed',
+            'action-1' => 'Unmark from confirmed',
+            'state-0' => 'Marked as confirmed',
+            'state-1' => 'Unmarked from confirmed',
+        ],
+
+        'issue_type_duplicate' => [
+            'action-0' => 'Mark as duplicate',
+            'action-1' => 'Unmark from duplicate',
+            'state-0' => 'Marked as duplicate',
+            'state-1' => 'Unmarked from duplicate',
+        ],
+
+        'issue_type_invalid' => [
+            'action-0' => 'Mark as invalid',
+            'action-1' => 'Unmark from invalid',
+            'state-0' => 'Marked as invalid',
+            'state-1' => 'Unmarked from invalid',
+        ],
+
+        'issue_type_resolved' => [
+            'action-0' => 'Mark as resolved',
+            'action-1' => 'Unmark from resolved',
+            'state-0' => 'Marked as resolved',
+            'state-1' => 'Unmarked from resolved',
+        ],
+
         'lock' => [
             'is_locked' => 'This topic is locked and can not be replied to',
             'lock-0' => 'Unlock topic',

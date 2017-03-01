@@ -38,6 +38,14 @@ class Topic extends Model
 
     const TYPE_NORMAL = 0;
     const TYPE_PINNED = 1;
+    const ISSUE_TYPES = [
+        'added',
+        'assigned',
+        'confirmed',
+        'duplicate',
+        'invalid',
+        'resolved',
+    ];
 
     protected $table = 'phpbb_topics';
     protected $primaryKey = 'topic_id';
@@ -49,8 +57,9 @@ class Topic extends Model
     private $deletedPostsCount;
     private $_vote;
     private $_poll;
+    private $_issues;
 
-    private $issueTypes = 'resolved|invalid|duplicate|confirmed';
+    private $issueTypes = 'added|assigned|resolved|invalid|duplicate|confirmed';
 
     protected $casts = [
         'poll_vote_change' => 'boolean',
@@ -300,9 +309,12 @@ class Topic extends Model
             return [];
         }
 
-        preg_match_all("/\[({$this->issueTypes})\]/i", $this->topic_title, $issues);
+        if ($this->_issues === null) {
+            preg_match_all("/\[({$this->issueTypes})\]/i", $this->topic_title, $issues);
+            $this->_issues = array_map('strtolower', $issues[1]);
+        }
 
-        return array_map('strtolower', $issues[1]);
+        return $this->_issues;
     }
 
     public function scopePinned($query)
@@ -632,5 +644,22 @@ class Topic extends Model
         }
 
         return $this->_vote;
+    }
+
+    public function setIssueType($state)
+    {
+        $this->topic_type = $state === 'confirmed' ? static::TYPE_PINNED : static::TYPE_NORMAL;
+        $stateTag = "[{$state}]";
+        if (strpos($this->topic_title, $stateTag) === false) {
+            $this->topic_title = "{$stateTag} {$this->topic_title}";
+        }
+        $this->save();
+    }
+
+    public function unsetIssueType($state)
+    {
+        $this->topic_type = $state === 'resolved' ? static::TYPE_PINNED : static::TYPE_NORMAL;
+        $this->topic_title = trim(str_replace("[{$state}]", '', $this->topic_title));
+        $this->save();
     }
 }
