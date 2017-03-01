@@ -24,7 +24,9 @@ use App\Libraries\OsuAuthorize;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Forum\PollVote as ForumPollVote;
+use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\ServiceProvider;
+use Queue;
 use Validator;
 
 class AppServiceProvider extends ServiceProvider
@@ -51,6 +53,12 @@ class AppServiceProvider extends ServiceProvider
 
         ForumPollVote::saving(function ($vote) {
             return $vote->isValid();
+        });
+
+        Queue::after(function (JobProcessed $event) {
+            if (config('datadog-helper.enabled', false)) {
+                Datadog::increment(config('datadog-helper.prefix').'.queue.run', 1, ['queue' => $event->job->getQueue()]);
+            }
         });
     }
 
