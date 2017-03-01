@@ -130,10 +130,6 @@ class Topic extends Model
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, -1);
             }
-
-            if ($user !== null && $user->user_id !== $post->poster_id) {
-                Log::logModerateForumPost('LOG_DELETE_POST', $post, $user);
-            }
         });
 
         return true;
@@ -156,10 +152,6 @@ class Topic extends Model
 
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, 1);
-            }
-
-            if ($user !== null && $user->user_id !== $post->user->user_id) {
-                Log::logModerateForumPost('LOG_RESTORE_POST', $post, $user);
             }
         });
 
@@ -198,8 +190,6 @@ class Topic extends Model
             foreach ($users as $user) {
                 $user->refreshForumCache();
             }
-
-            Log::logModerateForumTopicMove($this, $originForum);
 
             return true;
         });
@@ -568,36 +558,17 @@ class Topic extends Model
 
     public function lock($lock = true)
     {
-        DB::transaction(function () use ($lock) {
-            if ($lock === true) {
-                $newStatus = static::STATUS_LOCKED;
-                $logOperation = 'LOG_LOCK';
-            } else {
-                $newStatus = static::STATUS_UNLOCKED;
-                $logOperation = 'LOG_UNLOCK';
-            }
-
-            $this->update(['topic_status' => $newStatus]);
-
-            Log::logModerateForumTopic($logOperation, $this);
-        });
+        $this->update([
+            'topic_status' =>
+                $lock ? static::STATUS_LOCKED : static::STATUS_UNLOCKED,
+        ]);
     }
 
     public function pin($pin)
     {
-        DB::transaction(function () use ($pin) {
-            if ($pin === true) {
-                $newStatus = static::TYPE_PINNED;
-                $logOperation = 'LOG_PIN';
-            } else {
-                $newStatus = static::TYPE_NORMAL;
-                $logOperation = 'LOG_UNPIN';
-            }
-
-            $this->update(['topic_type' => $newStatus]);
-
-            Log::logModerateForumTopic($logOperation, $this);
-        });
+        $this->update([
+            'topic_type' => $pin ? static::TYPE_PINNED : static::TYPE_NORMAL,
+        ]);
     }
 
     public function deleteWithDependencies()

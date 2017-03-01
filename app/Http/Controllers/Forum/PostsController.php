@@ -46,6 +46,14 @@ class PostsController extends Controller
 
         priv_check('ForumPostDelete', $post)->ensureCan();
 
+        if ((Auth::user()->user_id ?? null) !== $post->poster_id) {
+            $this->logModerate(
+                'LOG_DELETE_POST',
+                [$post->topic->topic_title],
+                $post
+            );
+        }
+
         $post->topic->removePost($post, Auth::user());
 
         if ($post->topic->trashed()) {
@@ -63,6 +71,14 @@ class PostsController extends Controller
 
         $post = Post::withTrashed()->findOrFail($id);
         $topic = $post->topic()->withTrashed()->first();
+
+        if ((Auth::user()->user_id ?? null) !== $post->poster_id) {
+            $this->logModerate(
+                'LOG_RESTORE_POST',
+                [$post->topic->topic_title],
+                $post
+            );
+        }
 
         $topic->restorePost($post, Auth::user());
 
