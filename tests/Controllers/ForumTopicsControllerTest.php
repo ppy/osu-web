@@ -18,9 +18,7 @@ class ForumTopicsControllerTest extends TestCase
             'forum_id' => $forum->forum_id,
         ]);
         $user = factory(User::class)->create()->fresh();
-        $userGroup = UserGroup::create([
-            'user_id' => $user->user_id,
-        ]);
+        $userGroup = $this->defaultUserGroup($user);
         $authOption = Forum\AuthOption::firstOrCreate([
             'auth_option' => 'f_reply',
         ]);
@@ -70,9 +68,7 @@ class ForumTopicsControllerTest extends TestCase
             'forum_type' => 1,
         ]);
         $user = factory(User::class)->create()->fresh();
-        $userGroup = UserGroup::create([
-            'user_id' => $user->user_id,
-        ]);
+        $userGroup = $this->defaultUserGroup($user);
         $authOption = Forum\AuthOption::firstOrCreate([
             'auth_option' => 'f_post',
         ]);
@@ -102,5 +98,25 @@ class ForumTopicsControllerTest extends TestCase
 
         $this->assertEquals(1, $newPostCount - $initialPostCount);
         $this->assertEquals(1, $newTopicCount - $initialTopicCount);
+    }
+
+    private function defaultUserGroup($user)
+    {
+        $table = (new UserGroup)->getTable();
+
+        $conditions = [
+            'user_id' => $user->user_id,
+            'group_id' => UserGroup::GROUPS['default'],
+        ];
+
+        $existingUserGroup = UserGroup::where($conditions)->first();
+
+        if ($existingUserGroup !== null) {
+            return $existingUserGroup;
+        }
+
+        DB::table($table)->insert($conditions);
+
+        return UserGroup::where($conditions)->first();
     }
 }
