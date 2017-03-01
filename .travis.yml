@@ -15,7 +15,9 @@ matrix:
   fast_finish: true
 
 env:
-  - DB_USERNAME=root
+  global:
+    - DB_USERNAME=root
+    - SLACK_ENDPOINT=http://myconan.net/null/
 
 before_install:
   - sudo ./bin/mysql_debian_install
