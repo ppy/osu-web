@@ -2,7 +2,7 @@
 
 $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     $existing_users = DB::table('phpbb_users')->get();
-    $countries = DB::table('osu_countries')->get();
+    $countries = DB::table('osu_countries')->get()->toArray();
     $playstyles = [1, 2, 4, 8];
 
     $existing_names = [];
@@ -46,6 +46,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'username_clean' => $username,
         'user_id' => $userid,
         'user_password' => password_hash(md5('password'), PASSWORD_BCRYPT),
+        'user_email' => $faker->safeEmail,
         'user_lastvisit' => rand(1451606400, time()), // random timestamp between 01/01/2016 and now
         'user_posts' => rand(1, 500),
         'user_warnings' => 0,

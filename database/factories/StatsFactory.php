@@ -7,6 +7,7 @@ if (!function_exists('generateStats')) {
 
         $acc = (float) (rand(850000, 1000000)) / 10000; // 85.0000 - 100.0000
         $score = (float) rand(500000, 2000000000) * 2; // 500k - 4bil
+        $pp = (float) rand(1, 15000);
         $playcount = rand(1000, 250000); // 1k - 250k
 
         return [
@@ -27,7 +28,7 @@ if (!function_exists('generateStats')) {
           'x_rank_count' => round($playcount * 0.001),
           's_rank_count' => round($playcount * 0.05),
           'a_rank_count' => round($playcount * 0.2),
-          'rank_score' => $score,
+          'rank_score' => $pp,
           'rank_score_index' => rand(1, 500000),
           'max_combo' => rand(500, 4000),
         ];

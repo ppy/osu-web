@@ -18,11 +18,13 @@ $factory->define(App\Models\Achievement::class, function (Faker\Generator $faker
 
     return  [
         'achievement_id' => $faker->unique()->numberBetween(0, 5000),
-        'name' => $faker->catchPhrase,
+        'name' => substr($faker->catchPhrase, 0, 40),
         'description' => $faker->realText(30),
         'quest_instructions' => $faker->realText(30),
         'image' => 'http://s.ppy.sh/images/achievements/gamer2.png',
         'grouping' => array_rand_val($groupings),
         'slug' => array_rand_val($achievementSlugs),
+        'ordering' => 0,
+        'progression' => 0,
     ];
 });
