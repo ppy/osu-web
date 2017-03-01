@@ -185,7 +185,6 @@ return [
         Maknz\Slack\SlackServiceProvider::class,
         Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
         Shift31\LaravelElasticsearch\ElasticsearchServiceProvider::class,
-        League\StatsD\Laravel5\Provider\StatsdServiceProvider::class,
         Lord\Laroute\LarouteServiceProvider::class,
         Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
@@ -204,6 +203,9 @@ return [
 
         App\Providers\AuthServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
+
+        /* Datadog Metrics */
+        ChaseConey\LaravelDatadogHelper\LaravelDatadogHelperServiceProvider::class,
     ],
 
     /*
@@ -259,9 +261,9 @@ return [
         'GitHub' => GrahamCampbell\GitHub\Facades\GitHub::class,
 
         'Slack' => Maknz\Slack\Facades\Slack::class,
-        'Statsd' => League\StatsD\Laravel5\Facade\StatsdFacade::class,
         'Authorizer' => LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
         'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
+        'Datadog' => ChaseConey\LaravelDatadogHelper\Datadog::class,
     ],
 
 ];

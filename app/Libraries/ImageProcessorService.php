@@ -56,10 +56,10 @@ class ImageProcessorService
         $tmpFile = tempnam($this->workingFolder, 'ips').'.jpg';
         try {
             $ok = copy($this->endpoint."/{$method}/{$src}", $tmpFile);
-        } catch (ErrorException $e) {
-            if (ends_with($e->getMessage(), "HTTP request failed!\r\n")) {
+        } catch (\ErrorException $e) {
+            if (ends_with($e->getMessage(), 'HTTP request failed!')) {
                 throw new BeatmapProcessorException('HTTP request failed!');
-            } elseif (ends_with($e->getMessage(), "Connection refused\r\n")) {
+            } elseif (ends_with($e->getMessage(), 'Connection refused')) {
                 throw new BeatmapProcessorException('Connection refused');
             } else {
                 throw $e;
