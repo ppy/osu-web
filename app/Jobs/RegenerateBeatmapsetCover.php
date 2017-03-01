@@ -4,12 +4,12 @@ namespace App\Jobs;
 
 use App\Exceptions\SilencedException;
 use App\Models\Beatmapset;
+use Datadog;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Raven_Client;
-use Datadog;
 
 class RegenerateBeatmapsetCover implements ShouldQueue
 {
