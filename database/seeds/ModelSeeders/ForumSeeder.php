@@ -29,10 +29,9 @@ class ForumSeeder extends Seeder
             $beatmapCount = App\Models\Beatmapset::count();
             if ($beatmapCount > 0) {
                 // Create beatmap threads
-                $f = App\Models\Forum\Forum::create([
+                $f = factory(App\Models\Forum\Forum::class, 'parent')->create([
                     'forum_name' => 'Beatmap Threads',
                     'forum_desc' => 'Beatmap thread info for beatmaps',
-                    'forum_type' => 0,
                 ]);
 
                 $f2 = $f->subforums()->save(factory(App\Models\Forum\Forum::class, 'child')->make([
@@ -45,7 +44,7 @@ class ForumSeeder extends Seeder
                 foreach ($bms as $set) {
                     $t = $f2->topics()->save(factory(App\Models\Forum\Topic::class)->make([
                         'forum_id' => $f2->forum_id,
-                        'topic_poster' => $set->creator,
+                        'topic_poster' => $set->user_id,
                         'topic_title' => $set->artist.' - '.$set->title,
                     ]));
 
