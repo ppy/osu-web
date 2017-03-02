@@ -296,7 +296,7 @@ class Topic extends Model
 
     public function titleNormalized()
     {
-        if ($this->isIssue() === false) {
+        if (!$this->isIssue()) {
             return $this->topic_title;
         }
 
@@ -305,7 +305,7 @@ class Topic extends Model
 
     public function issues()
     {
-        if ($this->isIssue() === false) {
+        if (!$this->isIssue()) {
             return [];
         }
 
