@@ -15,25 +15,6 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<?php
-    $state = in_array($type , $topic->issues(), true);
-?>
-<a
-    class="
-        js-forum-topic-issue_type_{{ $type }}
-        btn-circle
-        btn-circle--topic-nav
-        {{ $state ? 'btn-circle--activated' : '' }}
-    "
-    href="{{ route('forum.topics.issue-type', [
-        $topic,
-        'state' => !$state,
-        'type' => $type,
-    ]) }}"
-    data-remote="1"
-    data-method="post"
-    data-topic-id="{{ $topic->topic_id }}"
-    title="{{ trans('forum.topics.issue_type_'.$type.'.action-'.(int) !$state) }}"
->
-    <i class="fa {{ issue_icon($type) }}"></i>
-</a>
+@include('forum.topics._issue_tag', [
+    'issueTag' => 'confirmed',
+])

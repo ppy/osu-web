@@ -169,7 +169,7 @@ Route::group(['as' => 'forum.', 'prefix' => 'forum', 'namespace' => 'Forum'], fu
     Route::get('search', ['as' => 'forums.search', 'uses' => 'ForumsController@search']);
     Route::get('t/{topic}', ['as' => 'topics.show', 'uses' => 'TopicsController@show']);
     Route::post('topics/preview', ['as' => 'topics.preview', 'uses' => 'TopicsController@preview']);
-    Route::post('topics/{topic}/issue-type', ['as' => 'topics.issue-type', 'uses' => 'TopicsController@issueType']);
+    Route::post('topics/{topic}/issue-tag', ['as' => 'topics.issue-tag', 'uses' => 'TopicsController@issueTag']);
     Route::post('topics/{topic}/lock', ['as' => 'topics.lock', 'uses' => 'TopicsController@lock']);
     Route::post('topics/{topic}/move', ['as' => 'topics.move', 'uses' => 'TopicsController@move']);
     Route::post('topics/{topic}/pin', ['as' => 'topics.pin', 'uses' => 'TopicsController@pin']);

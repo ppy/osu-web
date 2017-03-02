@@ -38,7 +38,7 @@ class Topic extends Model
 
     const TYPE_NORMAL = 0;
     const TYPE_PINNED = 1;
-    const ISSUE_TYPES = [
+    const ISSUE_TAGS = [
         'added',
         'assigned',
         'confirmed',
@@ -57,9 +57,7 @@ class Topic extends Model
     private $deletedPostsCount;
     private $_vote;
     private $_poll;
-    private $_issues;
-
-    private $issueTypes = 'added|assigned|resolved|invalid|duplicate|confirmed';
+    private $_issueTags;
 
     protected $casts = [
         'poll_vote_change' => 'boolean',
@@ -300,21 +298,31 @@ class Topic extends Model
             return $this->topic_title;
         }
 
-        return trim(preg_replace("/\[({$this->issueTypes})\]/i", '', $this->topic_title));
+        $title = $this->topic_title;
+
+        foreach (static::ISSUE_TAGS as $tag) {
+            $title = str_replace("[{$tag}]", '', $title);
+        }
+
+        return trim($title);
     }
 
-    public function issues()
+    public function issueTags()
     {
         if (!$this->isIssue()) {
             return [];
         }
 
-        if ($this->_issues === null) {
-            preg_match_all("/\[({$this->issueTypes})\]/i", $this->topic_title, $issues);
-            $this->_issues = array_map('strtolower', $issues[1]);
+        if ($this->_issueTags === null) {
+            $this->_issueTags = [];
+            foreach (static::ISSUE_TAGS as $tag) {
+                if ($this->hasIssueTag($tag)) {
+                    $this->_issueTags[] = $tag;
+                }
+            }
         }
 
-        return $this->_issues;
+        return $this->_issueTags;
     }
 
     public function scopePinned($query)
@@ -646,20 +654,31 @@ class Topic extends Model
         return $this->_vote;
     }
 
-    public function setIssueType($state)
+    public function setIssueTag($tag)
     {
-        $this->topic_type = $state === 'confirmed' ? static::TYPE_PINNED : static::TYPE_NORMAL;
-        $stateTag = "[{$state}]";
-        if (strpos($this->topic_title, $stateTag) === false) {
-            $this->topic_title = "{$stateTag} {$this->topic_title}";
+        $this->topic_type = $tag === 'confirmed' ? static::TYPE_PINNED : static::TYPE_NORMAL;
+
+        if (!$this->hasIssueTag($tag)) {
+            $this->topic_title = "[{$tag}] {$this->topic_title}";
         }
-        $this->save();
+
+        return $this;
     }
 
-    public function unsetIssueType($state)
+    public function unsetIssueTag($tag)
     {
-        $this->topic_type = $state === 'resolved' ? static::TYPE_PINNED : static::TYPE_NORMAL;
-        $this->topic_title = trim(str_replace("[{$state}]", '', $this->topic_title));
-        $this->save();
+        $this->topic_type = $tag === 'resolved' ? static::TYPE_PINNED : static::TYPE_NORMAL;
+        $this->topic_title = preg_replace(
+            '/  +/',
+            ' ',
+            trim(str_replace("[{$tag}]", '', $this->topic_title))
+        );
+
+        return $this;
+    }
+
+    public function hasIssueTag($tag)
+    {
+        return strpos($this->topic_title, "[{$tag}]") !== false;
     }
 }

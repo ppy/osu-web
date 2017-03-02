@@ -154,46 +154,46 @@ return [
             'replies' => 'replies',
         ],
 
-        'issue_type_added' => [
-            'action-0' => 'Mark as added',
-            'action-1' => 'Unmark from added',
-            'state-0' => 'Marked as added',
-            'state-1' => 'Unmarked from added',
+        'issue_tag_added' => [
+            'action-0' => 'Remove "added" tag',
+            'action-1' => 'Add "added" tag',
+            'state-0' => 'Removed "added" tag',
+            'state-1' => 'Added "added" tag',
         ],
 
-        'issue_type_assigned' => [
-            'action-0' => 'Mark as assigned',
-            'action-1' => 'Unmark from assigned',
-            'state-0' => 'Marked as assigned',
-            'state-1' => 'Unmarked from assigned',
+        'issue_tag_assigned' => [
+            'action-0' => 'Remove "assigned" tag',
+            'action-1' => 'Add "assigned" tag',
+            'state-0' => 'Removed "assigned" tag',
+            'state-1' => 'Added "assigned" tag',
         ],
 
-        'issue_type_confirmed' => [
-            'action-0' => 'Mark as confirmed',
-            'action-1' => 'Unmark from confirmed',
-            'state-0' => 'Marked as confirmed',
-            'state-1' => 'Unmarked from confirmed',
+        'issue_tag_confirmed' => [
+            'action-0' => 'Remove "confirmed" tag',
+            'action-1' => 'Add "confirmed" tag',
+            'state-0' => 'Removed "confirmed" tag',
+            'state-1' => 'Added "confirmed" tag',
         ],
 
-        'issue_type_duplicate' => [
-            'action-0' => 'Mark as duplicate',
-            'action-1' => 'Unmark from duplicate',
-            'state-0' => 'Marked as duplicate',
-            'state-1' => 'Unmarked from duplicate',
+        'issue_tag_duplicate' => [
+            'action-0' => 'Remove "duplicate" tag',
+            'action-1' => 'Add "duplicate" tag',
+            'state-0' => 'Removed "duplicate" tag',
+            'state-1' => 'Added "duplicate" tag',
         ],
 
-        'issue_type_invalid' => [
-            'action-0' => 'Mark as invalid',
-            'action-1' => 'Unmark from invalid',
-            'state-0' => 'Marked as invalid',
-            'state-1' => 'Unmarked from invalid',
+        'issue_tag_invalid' => [
+            'action-0' => 'Remove "invalid" tag',
+            'action-1' => 'Add "invalid" tag',
+            'state-0' => 'Removed "invalid" tag',
+            'state-1' => 'Added "invalid" tag',
         ],
 
-        'issue_type_resolved' => [
-            'action-0' => 'Mark as resolved',
-            'action-1' => 'Unmark from resolved',
-            'state-0' => 'Marked as resolved',
-            'state-1' => 'Unmarked from resolved',
+        'issue_tag_resolved' => [
+            'action-0' => 'Remove "resolved" tag',
+            'action-1' => 'Add "resolved" tag',
+            'state-0' => 'Removed "resolved" tag',
+            'state-1' => 'Added "resolved" tag',
         ],
 
         'lock' => [

@@ -78,25 +78,25 @@ class TopicsController extends Controller
         return view('forum.topics.create', compact('forum', 'cover', 'post'));
     }
 
-    public function issueType($id)
+    public function issueTag($id)
     {
         $topic = Topic::findOrFail($id);
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
 
-        $issueType = presence(Request::input('type'));
+        $issueTag = presence(Request::input('issue_tag'));
         $state = get_bool(Request::input('state'));
-        $type = 'issue_type_'.$issueType;
+        $type = 'issue_tag_'.$issueTag;
 
-        if ($issueType === null || !$topic->isIssue() || !in_array($issueType, $topic::ISSUE_TYPES, true)) {
+        if ($issueTag === null || !$topic->isIssue() || !in_array($issueTag, $topic::ISSUE_TAGS, true)) {
             abort(422);
         }
 
-        $this->logModerate('LOG_ISSUE_TYPE', compact('issueType', 'state'), $topic);
+        $this->logModerate('LOG_ISSUE_TAG', compact('issueTag', 'state'), $topic);
 
-        $method = $state ? 'setIssueType' : 'unsetIssueType';
+        $method = $state ? 'setIssueTag' : 'unsetIssueTag';
 
-        $topic->$method($issueType);
+        $topic->$method($issueTag)->save();
 
         return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
     }

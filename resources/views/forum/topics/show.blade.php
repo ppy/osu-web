@@ -212,8 +212,8 @@
                 @endif
 
                 @if (priv_check('ForumTopicModerate', $topic)->can())
-                    @foreach ($topic::ISSUE_TYPES as $type)
-                        @include("forum.topics._issue_type_{$type}")
+                    @foreach ($topic::ISSUE_TAGS as $type)
+                        @include("forum.topics._issue_tag_{$type}")
                     @endforeach
                 @endif
 
