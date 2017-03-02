@@ -27,14 +27,14 @@
     "laravelcollective/html": "5.4.*",
     "league/flysystem-aws-s3-v3": "^1.0",
     "league/fractal": "^0.14.0",
-    "league/statsd": "^1.4.0",
     "lord/laroute": "~2.0",
     "maknz/slack": "dev-laravel-5.4",
     "mariuzzo/laravel-js-localization": "*",
     "predis/predis": "~1.0",
     "sentry/sentry-laravel": "^0.6.0",
     "shift31/laravel-elasticsearch": "~1.0",
-    "webuni/commonmark-table-extension": "^0.6.1"
+    "webuni/commonmark-table-extension": "^0.6.1",
+    "chaseconey/laravel-datadog-helper": "^0.6.0"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

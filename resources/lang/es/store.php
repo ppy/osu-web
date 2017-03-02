@@ -42,7 +42,5 @@ return [
         'notification_success' => 'serás notificado cuando tengamos más existencias. Haz clic :link para cancelar',
         'notification_remove_text' => 'aquí',
         'notification_in_stock' => '¡Este producto ya tiene existencias!',
-        'notification_exists' => '¡Ya has solicitado una notificación para este producto!',
-        'notification_doesnt_exist' => '¡Ni siquiera has solicitado una notificación para este producto!',
     ],
 ];

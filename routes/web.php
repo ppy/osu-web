@@ -156,7 +156,9 @@ Route::post('/store/update-address', 'StoreController@postUpdateAddress');
 Route::post('/store/new-address', 'StoreController@postNewAddress');
 Route::post('/store/add-to-cart', 'StoreController@postAddToCart');
 Route::post('/store/checkout', 'StoreController@postCheckout');
-Route::put('/store/request-notification/{product}/{action}', 'StoreController@putRequestNotification')->name('store.request-notification');
+Route::post('/store/products/{product}/notification-request', 'Store\NotificationRequestsController@store')
+    ->name('store.notification-request');
+Route::delete('/store/products/{product}/notification-request', 'Store\NotificationRequestsController@destroy');
 
 Route::resource('tournaments', 'TournamentsController');
 Route::post('/tournaments/{tournament}/unregister', ['as' => 'tournaments.unregister', 'uses' => 'TournamentsController@unregister']);

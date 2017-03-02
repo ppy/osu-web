@@ -54,7 +54,18 @@ class ImageProcessorService
     {
         $src = preg_replace("/https?:\/\//", '', $src);
         $tmpFile = tempnam($this->workingFolder, 'ips').'.jpg';
-        $ok = copy($this->endpoint."/{$method}/{$src}", $tmpFile);
+        try {
+            $ok = copy($this->endpoint."/{$method}/{$src}", $tmpFile);
+        } catch (\ErrorException $e) {
+            if (ends_with($e->getMessage(), 'HTTP request failed!')) {
+                throw new BeatmapProcessorException('HTTP request failed!');
+            } elseif (ends_with($e->getMessage(), 'Connection refused')) {
+                throw new BeatmapProcessorException('Connection refused');
+            } else {
+                throw $e;
+            }
+        }
+
         if (!$ok || filesize($tmpFile) < 100) {
             throw new BeatmapProcessorException("Error retrieving processed image: $method");
         }

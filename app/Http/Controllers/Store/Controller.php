@@ -18,30 +18,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+namespace App\Http\Controllers\Store;
 
-class UserGroup extends Model
+use App\Http\Controllers\Controller as BaseController;
+
+abstract class Controller extends BaseController
 {
-    protected $table = 'phpbb_user_group';
-    protected $primaryKey = 'group_id';
-    public $timestamps = false;
-    protected $guarded = [];
-
-    // taken from current forum
-    const GROUPS = [
-        'default' => 2,
-        'gmt' => 4,
-        'admin' => 5,
-        'qat' => 7,
-        'dev' => 11,
-        'alumni' => 16,
-        'hax' => 17,
-        'mod' => 18,
-        'bng' => 28,
-    ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
+    protected $section = 'store';
 }

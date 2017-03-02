@@ -49,8 +49,5 @@ return [
         'notification_remove_text' => '这里',
 
         'notification_in_stock' => '这件商品已经进货!',
-
-        'notification_exists' => '你已经为该商品设置了进货提醒!',
-        'notification_doesnt_exist' => '你还没有为该商品设置进货提醒!',
     ],
 ];
