@@ -661,7 +661,7 @@ class Topic extends Model
             $this->topic_title = "[{$tag}] {$this->topic_title}";
         }
 
-        return $this;
+        $this->save();
     }
 
     public function unsetIssueTag($tag)
@@ -673,7 +673,7 @@ class Topic extends Model
             trim(str_replace("[{$tag}]", '', $this->topic_title))
         );
 
-        return $this;
+        $this->save();
     }
 
     public function hasIssueTag($tag)

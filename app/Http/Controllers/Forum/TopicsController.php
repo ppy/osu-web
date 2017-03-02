@@ -96,7 +96,7 @@ class TopicsController extends Controller
 
         $method = $state ? 'setIssueTag' : 'unsetIssueTag';
 
-        $topic->$method($issueTag)->save();
+        $topic->$method($issueTag);
 
         return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
     }
