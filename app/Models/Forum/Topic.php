@@ -579,8 +579,7 @@ class Topic extends Model
     public function lock($lock = true)
     {
         $this->update([
-            'topic_status' =>
-                $lock ? static::STATUS_LOCKED : static::STATUS_UNLOCKED,
+            'topic_status' => $lock ? static::STATUS_LOCKED : static::STATUS_UNLOCKED,
         ]);
     }
 

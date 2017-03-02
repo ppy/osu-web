@@ -20,10 +20,6 @@
 
 namespace App\Models;
 
-use Auth;
-use Carbon\Carbon;
-use Request;
-
 class Log extends Model
 {
     const LOG_FORUM_MOD = 1;
