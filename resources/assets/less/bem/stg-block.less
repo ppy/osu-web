@@ -16,49 +16,53 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.osu-page {
-  .width(@extra-margin: 0px) {
-    width: calc(100% ~'-' (@extra-margin * 2));
-    max-width: (@container-sm - @extra-margin * 2);
+.stg-block {
+  background-color: #ddd;
+  padding: 30px;
+
+  &--convinced {
+    .inner-shadow-top();
+    background-color: #fff;
+    text-align: center;
   }
 
-  .width-desktop(@extra-margin: 0px) {
-    width: calc(100% ~'-' ((@extra-margin + @grid-gutter-width) * 2));
-    max-width: (@container-sm - @extra-margin * 2);
+  &--features {
+    .inner-shadow-top();
+    background-color: #eee;
   }
 
-  align-self: center;
-  margin-left: auto;
-  margin-right: auto;
-
-  .width();
-  @media @desktop {
-    .width-desktop();
+  &__perks {
+    margin: -5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
-  &--account-edit-header {
-    .default-box-shadow();
-  }
+  &__run {
+    font-size: @font-size--title-small;
+    font-style: italic;
+    color: #555;
+    margin: 10px 0 0;
 
-  &--small {
-    .width(20px);
-    @media @desktop {
-      .width-desktop(20px);
+    &--main {
+      font-size: @font-size--large;
+      font-weight: bold;
+    }
+
+    &--sub-1 {
+      margin-top: 0;
+    }
+
+    &--sub-2 {
+      color: #999;
     }
   }
 
-  &--stg-block {
-    .default-box-shadow();
-    margin: 10px 0;
-  }
-
-  &--users-show-header {
-    .default-box-shadow();
-  }
-
-  &--users-show-header-extra {
-    .default-box-shadow();
-    .inner-shadow-top();
-    padding-bottom: 10px;
+  &__title {
+    font-size: @font-size--title;
+    color: @pink-darker;
+    font-style: italic;
+    margin: 0 0 30px;
+    text-align: center;
   }
 }

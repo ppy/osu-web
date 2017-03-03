@@ -16,49 +16,32 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.osu-page {
-  .width(@extra-margin: 0px) {
-    width: calc(100% ~'-' (@extra-margin * 2));
-    max-width: (@container-sm - @extra-margin * 2);
+.icon-fancy {
+  .btn-bg();
+  .default-box-shadow();
+  .center-content();
+  .circle(100px);
+  background-color: @pink;
+  padding: 8px 5px 5px; // manual alignment
+  border: 10px solid #fff;
+  color: #fff;
+  font-size: 50px; // icon size
+  transition: .25s all;
+
+  .link-hover({
+    color: #fff;
+    text-decoration: none;
+  });
+
+  &:focus {
+    .thick-box-shadow();
   }
 
-  .width-desktop(@extra-margin: 0px) {
-    width: calc(100% ~'-' ((@extra-margin + @grid-gutter-width) * 2));
-    max-width: (@container-sm - @extra-margin * 2);
+  &:hover {
+    .thicker-box-shadow();
   }
 
-  align-self: center;
-  margin-left: auto;
-  margin-right: auto;
-
-  .width();
-  @media @desktop {
-    .width-desktop();
-  }
-
-  &--account-edit-header {
+  &:active {
     .default-box-shadow();
-  }
-
-  &--small {
-    .width(20px);
-    @media @desktop {
-      .width-desktop(20px);
-    }
-  }
-
-  &--stg-block {
-    .default-box-shadow();
-    margin: 10px 0;
-  }
-
-  &--users-show-header {
-    .default-box-shadow();
-  }
-
-  &--users-show-header-extra {
-    .default-box-shadow();
-    .inner-shadow-top();
-    padding-bottom: 10px;
   }
 }
