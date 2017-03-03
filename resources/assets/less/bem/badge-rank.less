@@ -20,7 +20,7 @@
   @size: 100%;
   width: @size;
   height: @size;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
@@ -31,7 +31,7 @@
   }
 
   .bg(@filename) {
-    .at2x-simple("/images/badges/score-ranks/@{filename}.png");
+    .at2x-simple("/images/badges/score-ranks/Score-@{filename}-Small-60.png");
   }
 
   .all(XH, "SSPlus");
