@@ -66,12 +66,12 @@
         </div>
 
         <div class="forum__issue-icons">
-            @foreach ($topic->issues() as $issue)
+            @foreach ($topic->issueTags() as $tag)
                 <div
-                    title="{{ $issue }}"
-                    class="forum__issue-icon forum__issue-icon--{{ $issue }}"
+                    title="{{ $tag }}"
+                    class="forum__issue-icon forum__issue-icon--{{ $tag }}"
                 >
-                    <i class="fa {{ issue_icon($issue) }}"></i>
+                    <i class="fa {{ issue_icon($tag) }}"></i>
                 </div>
             @endforeach
         </div>

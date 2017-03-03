@@ -38,6 +38,14 @@ class Topic extends Model
 
     const TYPE_NORMAL = 0;
     const TYPE_PINNED = 1;
+    const ISSUE_TAGS = [
+        'added',
+        'assigned',
+        'confirmed',
+        'duplicate',
+        'invalid',
+        'resolved',
+    ];
 
     protected $table = 'phpbb_topics';
     protected $primaryKey = 'topic_id';
@@ -49,8 +57,7 @@ class Topic extends Model
     private $deletedPostsCount;
     private $_vote;
     private $_poll;
-
-    private $issueTypes = 'resolved|invalid|duplicate|confirmed';
+    private $_issueTags;
 
     protected $casts = [
         'poll_vote_change' => 'boolean',
@@ -130,10 +137,6 @@ class Topic extends Model
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, -1);
             }
-
-            if ($user !== null && $user->user_id !== $post->poster_id) {
-                Log::logModerateForumPost('LOG_DELETE_POST', $post, $user);
-            }
         });
 
         return true;
@@ -156,10 +159,6 @@ class Topic extends Model
 
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, 1);
-            }
-
-            if ($user !== null && $user->user_id !== $post->user->user_id) {
-                Log::logModerateForumPost('LOG_RESTORE_POST', $post, $user);
             }
         });
 
@@ -198,8 +197,6 @@ class Topic extends Model
             foreach ($users as $user) {
                 $user->refreshForumCache();
             }
-
-            Log::logModerateForumTopicMove($this, $originForum);
 
             return true;
         });
@@ -297,22 +294,35 @@ class Topic extends Model
 
     public function titleNormalized()
     {
-        if ($this->isIssue() === false) {
+        if (!$this->isIssue()) {
             return $this->topic_title;
         }
 
-        return trim(preg_replace("/\[({$this->issueTypes})\]/i", '', $this->topic_title));
+        $title = $this->topic_title;
+
+        foreach (static::ISSUE_TAGS as $tag) {
+            $title = str_replace("[{$tag}]", '', $title);
+        }
+
+        return trim($title);
     }
 
-    public function issues()
+    public function issueTags()
     {
-        if ($this->isIssue() === false) {
+        if (!$this->isIssue()) {
             return [];
         }
 
-        preg_match_all("/\[({$this->issueTypes})\]/i", $this->topic_title, $issues);
+        if ($this->_issueTags === null) {
+            $this->_issueTags = [];
+            foreach (static::ISSUE_TAGS as $tag) {
+                if ($this->hasIssueTag($tag)) {
+                    $this->_issueTags[] = $tag;
+                }
+            }
+        }
 
-        return array_map('strtolower', $issues[1]);
+        return $this->_issueTags;
     }
 
     public function scopePinned($query)
@@ -568,36 +578,16 @@ class Topic extends Model
 
     public function lock($lock = true)
     {
-        DB::transaction(function () use ($lock) {
-            if ($lock === true) {
-                $newStatus = static::STATUS_LOCKED;
-                $logOperation = 'LOG_LOCK';
-            } else {
-                $newStatus = static::STATUS_UNLOCKED;
-                $logOperation = 'LOG_UNLOCK';
-            }
-
-            $this->update(['topic_status' => $newStatus]);
-
-            Log::logModerateForumTopic($logOperation, $this);
-        });
+        $this->update([
+            'topic_status' => $lock ? static::STATUS_LOCKED : static::STATUS_UNLOCKED,
+        ]);
     }
 
     public function pin($pin)
     {
-        DB::transaction(function () use ($pin) {
-            if ($pin === true) {
-                $newStatus = static::TYPE_PINNED;
-                $logOperation = 'LOG_PIN';
-            } else {
-                $newStatus = static::TYPE_NORMAL;
-                $logOperation = 'LOG_UNPIN';
-            }
-
-            $this->update(['topic_type' => $newStatus]);
-
-            Log::logModerateForumTopic($logOperation, $this);
-        });
+        $this->update([
+            'topic_type' => $pin ? static::TYPE_PINNED : static::TYPE_NORMAL,
+        ]);
     }
 
     public function deleteWithDependencies()
@@ -661,5 +651,33 @@ class Topic extends Model
         }
 
         return $this->_vote;
+    }
+
+    public function setIssueTag($tag)
+    {
+        $this->topic_type = $tag === 'confirmed' ? static::TYPE_PINNED : static::TYPE_NORMAL;
+
+        if (!$this->hasIssueTag($tag)) {
+            $this->topic_title = "[{$tag}] {$this->topic_title}";
+        }
+
+        $this->save();
+    }
+
+    public function unsetIssueTag($tag)
+    {
+        $this->topic_type = $tag === 'resolved' ? static::TYPE_PINNED : static::TYPE_NORMAL;
+        $this->topic_title = preg_replace(
+            '/  +/',
+            ' ',
+            trim(str_replace("[{$tag}]", '', $this->topic_title))
+        );
+
+        $this->save();
+    }
+
+    public function hasIssueTag($tag)
+    {
+        return strpos($this->topic_title, "[{$tag}]") !== false;
     }
 }
