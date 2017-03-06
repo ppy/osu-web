@@ -31,7 +31,12 @@ abstract class Model extends BaseModel
 {
     public $position = null;
     public $weight = null;
-    public $macros = ['forListing', 'userRank', 'userBest'];
+    public $macros = [
+        'forListing',
+        'rankCounts',
+        'userBest',
+        'userRank',
+    ];
 
     public function getReplay()
     {
@@ -165,6 +170,32 @@ abstract class Model extends BaseModel
 
                 $beatmaps[$entry->beatmap_id] = true;
                 $result[] = $entry;
+            }
+
+            return $result;
+        };
+    }
+
+    public function macroRankCounts()
+    {
+        return function ($query) {
+            $newQuery = clone $query;
+            // FIXME: mysql 5.6 compat
+            $newQuery->getQuery()->orders = null;
+
+            $counts = $newQuery
+                ->selectRaw('COUNT(*) rank_count, rank, user_id')
+                ->groupBy(['rank', 'user_id'])
+                ->get();
+
+            $result = [];
+
+            foreach ($counts as $count) {
+                if (!isset($result[$count->user_id])) {
+                    $result[$count->user_id] = [];
+                }
+
+                $result[$count->user_id][$count->rank] = $count->rank_count;
             }
 
             return $result;

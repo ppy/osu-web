@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{dd, div, dl, dt, span} = React.DOM
+{br, dd, div, dl, dt, span} = React.DOM
 el = React.createElement
 
 
@@ -28,6 +28,15 @@ simpleEntry = ({key, value}) ->
 
 ProfilePage.Stats = ({stats}) ->
   elements = ['ranked-score', 'accuracy', 'playcount', 'total-score', 'hits', 'maxcombo', 'replays-watched']
+
+  rankCountEntry = (name) ->
+    rankCount = stats.scoreRanks[name]
+
+    div
+      className: 'profile-stats__rank'
+      div
+        className: "badge-rank badge-rank--small badge-rank--#{name}"
+      div null, rankCount.toLocaleString()
 
   div className: 'profile-stats',
     div className: 'profile-stats__row profile-stats__row--compact',
@@ -57,13 +66,10 @@ ProfilePage.Stats = ({stats}) ->
         key: 'replays_watched_by_others'
         value: stats.replaysWatchedByOthers.toLocaleString()
 
-      dl className: 'profile-stats__entry profile-stats__entry--full',
-        dt className: 'profile-stats__key', osu.trans 'users.show.stats.score_ranks'
-        dd className: 'profile-stats__value',
-          for own rankName, rankCount of stats.scoreRanks
-            div
-              key: "rank-#{rankName}"
-              className: 'profile-stats__rank'
-              div
-                className: "badge-rank badge-rank--medium badge-rank--#{rankName}"
-              div null, rankCount.toLocaleString()
+      div className: 'profile-stats__value profile-stats__value--score-ranks',
+        rankCountEntry('XH')
+        rankCountEntry('X')
+        br()
+        rankCountEntry('SH')
+        rankCountEntry('S')
+        rankCountEntry('A')
