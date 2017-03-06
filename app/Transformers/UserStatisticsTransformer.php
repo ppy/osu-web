@@ -20,8 +20,8 @@
 
 namespace App\Transformers;
 
-use App\Models\UserStatistics;
 use App\Models\Score\Best as ScoreBest;
+use App\Models\UserStatistics;
 use League\Fractal;
 
 class UserStatisticsTransformer extends Fractal\TransformerAbstract
