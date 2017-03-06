@@ -45,7 +45,7 @@ class BeatmapsetPage.Scoreboard extends React.Component
     modsClassName += ' beatmapset-scoreboard__mods--initial' if _.isEmpty @props.enabledMods
 
     mods = if @props.beatmap.mode == 'mania'
-      ['NM', '4K', '5K', '6K', '7K', '8K', '9K', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL']
+      ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL', '4K', '5K', '6K', '7K', '8K', '9K']
     else
       ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL', 'SO']
 
