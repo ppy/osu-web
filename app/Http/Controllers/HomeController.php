@@ -128,6 +128,24 @@ class HomeController extends Controller
         }
     }
 
+    public function search()
+    {
+        $query = Request::input('q');
+        $limit = 5;
+
+        if (strlen($query) < 3) {
+            return [];
+        }
+
+        $params = compact('query', 'limit');
+
+        $beatmapsets = Beatmapset::search($params);
+
+        $posts = Post::search($params);
+
+        return view('home.nav_search_result', compact('beatmapsets', 'posts'));
+    }
+
     public function setLocale()
     {
         $newLocale = get_valid_locale(Request::input('locale'));

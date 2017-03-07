@@ -31,6 +31,19 @@ function array_search_null($value, $array)
     }
 }
 
+function es_query_and_words($words)
+{
+    $parts = preg_split("/\s+/", trim($words ?? ''));
+
+    $partsEscaped = [];
+
+    foreach ($parts as $part) {
+        $partsEscaped[] = urlencode($part);
+    }
+
+    return implode(' AND ', $partsEscaped);
+}
+
 function flag_path($country)
 {
     return '/images/flags/'.$country.'.png';

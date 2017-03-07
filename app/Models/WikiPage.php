@@ -64,10 +64,6 @@ class WikiPage
         });
     }
 
-    private $page;
-    private $locale;
-    private $markdown;
-
     public static function fetchContent($path)
     {
         return base64_decode(static::fetch($path)['content'], true);
@@ -94,6 +90,39 @@ class WikiPage
             }
         });
     }
+
+    public static function search($params)
+    {
+        $params['query'] = preg_replace("/\s+/", ' ', trim($params['query'] ?? ''));
+        $params['query'] .= ' repo:'.static::USER.'/'.static::REPOSITORY;
+        $params['page'] = max(1, $params['page'] ?? 1);
+        $params['limit'] = max(1, min(50, $params['limit'] ?? 50));
+
+        $query = http_build_query([
+            'q' => $params['query'],
+            'page' => $params['page'],
+            'per_page' => $params['limit'],
+        ]);
+
+        $url = 'https://api.github.com/search/code?'.$query;
+        $curl = curl_init($url);
+        curl_setopt_array($curl, [
+            CURLOPT_USERAGENT => config('app.name'),
+            CURLOPT_HTTPHEADER => [
+                'Authorization: token '.config('github.connections.main.token'),
+                'Accept: application/vnd.github.v3.text-match+json',
+            ],
+            CURLOPT_RETURNTRANSFER => true,
+        ]);
+        $data = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($data, true);
+    }
+
+    private $page;
+    private $locale;
+    private $markdown;
 
     public function __construct($page, $locale = null)
     {

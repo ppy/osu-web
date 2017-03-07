@@ -48,6 +48,7 @@ $(document).on 'submit', 'form', (e) ->
 @landingHero ?= new LandingHero
 @menu ?= new Menu
 @nav ?= new Nav
+@navSearch ?= new NavSearch
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
 @parentFocus ?= new ParentFocus

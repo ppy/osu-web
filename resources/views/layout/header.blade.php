@@ -15,6 +15,11 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+<?php
+    if (!isset($search)) {
+        $search = ['url' => route('search')];
+    }
+?>
 @include('layout._header_mobile')
 
 <nav class="osu-layout__section osu-layout__section--minimum no-print js-header--main hidden-xs">
@@ -26,7 +31,7 @@
     </div>
 
     <!-- Main style -->
-    <div class="osu-nav js-nav-popup">
+    <div class="osu-nav js-nav-popup js-nav-search--popup-width-reference">
         <a class="osu-nav__col osu-nav__col--logo u-nav-float" href="/">
             @include('objects._logo')
         </a>
@@ -49,18 +54,22 @@
             </div>
         </div>
 
-        @if (isset($search))
-            <div class="osu-nav__col">
-                <form class="header-search-box js-parent-focus" action="{{ $search['url'] }}" data-loading-overlay="0">
-                    <input class="header-search-box__input" name="q" />
-                    <span class="header-search-box__icon">
+        @if (Auth::check())
+            <div class="osu-nav__col js-nav-switch js-nav-search--input-container" data-nav-mode="search" data-nav-mode-switch="0">
+                <div class="osu-nav__highlight-bar">
+                    <span class="bar"></span>
+                </div>
+
+                <label class="header-search-box js-parent-focus">
+                    <input class="header-search-box__input js-nav-search--input" name="q" />
+                    <a href="#" class="js-nav-search--run-link header-search-box__icon">
                         <i class="fa fa-fw fa-search"></i>
-                    </span>
+                    </a>
 
                     @foreach ($search['params'] ?? [] as $name => $value)
                         <input type="hidden" name="{{ $name }}" value="{{ $value }}">
                     @endforeach
-                </form>
+                </label>
             </div>
         @endif
 

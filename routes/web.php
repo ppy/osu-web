@@ -138,6 +138,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::post('account/verify', 'AccountController@verify')->name('account.verify');
     Route::put('account', 'AccountController@update')->name('account.update');
 
+    Route::get('search', 'HomeController@search')->name('search');
     Route::post('bbcode-preview', 'HomeController@bbcodePreview')->name('bbcode-preview');
     Route::get('changelog', 'HomeController@getChangelog')->name('changelog');
     Route::get('download', 'HomeController@getDownload')->name('download');
