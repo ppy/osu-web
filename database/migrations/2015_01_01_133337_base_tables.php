@@ -773,7 +773,9 @@ class BaseTables extends Migration
             $table->mediumInteger('playcount');
             $table->bigInteger('ranked_score');
             $table->bigInteger('total_score');
+            $table->mediumInteger('xh_rank_count');
             $table->mediumInteger('x_rank_count');
+            $table->mediumInteger('sh_rank_count');
             $table->mediumInteger('s_rank_count');
             $table->mediumInteger('a_rank_count');
             $table->mediumInteger('rank');
@@ -811,7 +813,9 @@ class BaseTables extends Migration
             $table->mediumInteger('playcount');
             $table->bigInteger('ranked_score');
             $table->bigInteger('total_score');
+            $table->mediumInteger('xh_rank_count');
             $table->mediumInteger('x_rank_count');
+            $table->mediumInteger('sh_rank_count');
             $table->mediumInteger('s_rank_count');
             $table->mediumInteger('a_rank_count');
             $table->mediumInteger('rank');
@@ -849,7 +853,9 @@ class BaseTables extends Migration
             $table->mediumInteger('playcount');
             $table->bigInteger('ranked_score');
             $table->bigInteger('total_score');
+            $table->mediumInteger('xh_rank_count');
             $table->mediumInteger('x_rank_count');
+            $table->mediumInteger('sh_rank_count');
             $table->mediumInteger('s_rank_count');
             $table->mediumInteger('a_rank_count');
             $table->mediumInteger('rank');
@@ -887,7 +893,9 @@ class BaseTables extends Migration
             $table->mediumInteger('playcount');
             $table->bigInteger('ranked_score');
             $table->bigInteger('total_score');
+            $table->mediumInteger('xh_rank_count');
             $table->mediumInteger('x_rank_count');
+            $table->mediumInteger('sh_rank_count');
             $table->mediumInteger('s_rank_count');
             $table->mediumInteger('a_rank_count');
             $table->mediumInteger('rank');
