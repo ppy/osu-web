@@ -31,6 +31,8 @@ class @ReplyPreview
     $(document).on 'click', '.js-forum-reply-preview--show', @fetchPreview
     $(document).on 'click', '.js-forum-reply-preview--hide', @hidePreview
 
+    $(document).on 'turbolinks:load osu:page:change', @resetPreview
+
 
   fetchPreview: =>
     $preview = $(@previewBox).find('.forum-post-content')
@@ -50,7 +52,6 @@ class @ReplyPreview
         text: body
 
     .done (data) =>
-      console.log 'test'
       @lastBody = body
 
       $preview.html(data)
@@ -74,3 +75,6 @@ class @ReplyPreview
     $(@writeButton).addClass 'active'
 
     osu.pageChange()
+
+  resetPreview: =>
+    @lastBody = null

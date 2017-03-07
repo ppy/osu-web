@@ -137,10 +137,9 @@
                                 <div class="forum-post__content forum-post__content--edit-bar">
                                     <div class="post-editor__actions post-editor__actions--preview">
                                         <a class="js-forum-reply-preview--hide btn-osu btn-osu--small btn-osu-default active post-editor__action post-editor__action--preview">{{ trans('forum.topic.create.preview_hide') }}</a>
-                                        <a
-                                            class="js-forum-reply-preview--show btn-osu btn-osu--small btn-osu-default post-editor__action post-editor__action--preview"
-                                            data-preview-url="{{ route('bbcode-preview', ['forum_id' => $topic->forum->forum_id]) }}"
-                                        >{{ trans('forum.topic.create.preview') }}</a>
+                                        <a class="js-forum-reply-preview--show btn-osu btn-osu--small btn-osu-default post-editor__action post-editor__action--preview">
+                                            {{ trans('forum.topic.create.preview') }}
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="js-forum-reply-write">
@@ -159,7 +158,7 @@
                                     </div>
                                 </div>
                                 <div class="js-forum-reply-preview hidden forum-post__content forum-post__content--main">
-                                    <div class="forum-post-content {{ $options['contentExtraClasses'] ?? '' }}">
+                                    <div class="forum-post-content">
                                     </div>
                                 </div>
                             </div>
