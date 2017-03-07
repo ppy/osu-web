@@ -31,7 +31,7 @@ class @ReplyPreview
     $(document).on 'click', '.js-forum-reply-preview--show', @fetchPreview
     $(document).on 'click', '.js-forum-reply-preview--hide', @hidePreview
 
-    $(document).on 'turbolinks:load osu:page:change', @resetPreview
+    $(document).on 'turbolinks:load', @resetPreview
 
 
   fetchPreview: =>
