@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use Sentry;
+
 class Event extends Model
 {
     public $parsed = false;
@@ -110,6 +112,12 @@ class Event extends Model
 
     public function parseFailure()
     {
+        Sentry::captureMessage('Failed parsing event', ['log'], [
+            'extra' => [
+                'event' => $this->toArray(),
+            ],
+        ]);
+
         return ['parse_error' => true];
     }
 
