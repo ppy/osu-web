@@ -240,6 +240,8 @@ function link_to_user($user_id, $user_name, $user_color)
 function issue_icon($issue)
 {
     switch ($issue) {
+        case 'added': return 'fa-cogs';
+        case 'assigned': return 'fa-user';
         case 'confirmed': return 'fa-exclamation-triangle';
         case 'resolved': return 'fa-check-circle';
         case 'duplicate': return 'fa-copy';

@@ -20,10 +20,6 @@
 
 namespace App\Models;
 
-use Auth;
-use Carbon\Carbon;
-use Request;
-
 class Log extends Model
 {
     const LOG_FORUM_MOD = 1;
@@ -70,41 +66,6 @@ class Log extends Model
         return $this->belongsTo(User::class, 'reportee_id');
     }
 
-    public static function logModerateForumTopic($operation, $topic, $user = null)
-    {
-        return static::log([
-            'log_type' => static::LOG_FORUM_MOD,
-            'log_operation' => $operation,
-            'log_data' => [$topic->topic_title],
-
-            'user_id' => ($user === null ? null : $user->user_id),
-            'forum_id' => $topic->forum_id,
-            'topic_id' => $topic->topic_id,
-        ]);
-    }
-
-    public static function logModerateForumTopicMove($topic, $originForum, $user = null)
-    {
-        return static::log([
-            'log_type' => static::LOG_FORUM_MOD,
-            'log_operation' => 'LOG_MOVE',
-            'log_data' => [$originForum->forum_name],
-
-            'user_id' => ($user->user_id ?? null),
-            'forum_id' => $topic->forum_id,
-            'topic_id' => $topic->topic_id,
-        ]);
-    }
-
-    public static function logModerateForumPost($operation, $post, $user = null)
-    {
-        // ideally should log post_id as well but current phpbb logging doesn't
-        // log it and I'm just matching with whatever it's doing. Except post
-        // title - phpbb uses actual post title which are all empty for recent
-        // posts but this one use topic's.
-        return static::logModerateForumTopic($operation, $post->topic()->withTrashed()->first(), $user);
-    }
-
     public static function log($params)
     {
         $permittedParams = [
@@ -121,20 +82,8 @@ class Log extends Model
 
         $params = array_only($params, $permittedParams);
 
-        if (array_get($params, 'user_id') === null) {
-            $params['user_id'] = (Auth::check() === true ? Auth::user()->user_id : '0');
-        }
-
         if (array_get($params, 'reportee_id') === null) {
             $params['reportee_id'] = '0';
-        }
-
-        if (array_get($params, 'log_ip') === null) {
-            $params['log_ip'] = Request::ip();
-        }
-
-        if (array_get($params, 'log_time') === null) {
-            $params['log_time'] = Carbon::now();
         }
 
         return static::create($params);

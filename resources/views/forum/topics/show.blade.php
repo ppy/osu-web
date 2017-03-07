@@ -226,6 +226,12 @@
                     @include('forum.topics._moderate_move', ['topic' => $topic])
                 @endif
 
+                @if ($topic->isIssue() && priv_check('ForumTopicModerate', $topic)->can())
+                    @foreach ($topic::ISSUE_TAGS as $type)
+                        @include("forum.topics._issue_tag_{$type}")
+                    @endforeach
+                @endif
+
                 @include('forum.topics._watch', ['topic' => $topic, 'state' => $isWatching])
             </div>
 

@@ -31,7 +31,7 @@ abstract class Model extends BaseModel
 {
     public $position = null;
     public $weight = null;
-    public $macros = ['forListing', 'userRank'];
+    public $macros = ['forListing', 'userRank', 'userBest'];
 
     public function getReplay()
     {
@@ -94,11 +94,11 @@ abstract class Model extends BaseModel
      */
     public static function fillInPosition($scores)
     {
-        if ($scores->first() === null) {
+        if (!isset($scores[0])) {
             return;
         }
 
-        $position = $scores->first()->position();
+        $position = $scores[0]->position();
 
         foreach ($scores as $score) {
             $score->position = $position;
@@ -143,6 +143,31 @@ abstract class Model extends BaseModel
                 ->limit(null)
                 ->where('score', '>', $userScore->score)
                 ->count(DB::raw('DISTINCT user_id'));
+        };
+    }
+
+    public function macroUserBest()
+    {
+        return function ($query, $limit, $includes = []) {
+            $baseResult = (clone $query)->with($includes)->limit($limit * 3)->get();
+
+            $result = [];
+            $beatmaps = [];
+
+            foreach ($baseResult as $entry) {
+                if (isset($beatmaps[$entry->beatmap_id])) {
+                    continue;
+                }
+
+                if (count($result) >= $limit) {
+                    break;
+                }
+
+                $beatmaps[$entry->beatmap_id] = true;
+                $result[] = $entry;
+            }
+
+            return $result;
         };
     }
 

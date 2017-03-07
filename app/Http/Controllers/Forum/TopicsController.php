@@ -78,15 +78,39 @@ class TopicsController extends Controller
         return view('forum.topics.create', compact('forum', 'cover', 'post'));
     }
 
+    public function issueTag($id)
+    {
+        $topic = Topic::findOrFail($id);
+
+        priv_check('ForumTopicModerate', $topic)->ensureCan();
+
+        $issueTag = presence(Request::input('issue_tag'));
+        $state = get_bool(Request::input('state'));
+        $type = 'issue_tag_'.$issueTag;
+
+        if ($issueTag === null || !$topic->isIssue() || !in_array($issueTag, $topic::ISSUE_TAGS, true)) {
+            abort(422);
+        }
+
+        $this->logModerate('LOG_ISSUE_TAG', compact('issueTag', 'state'), $topic);
+
+        $method = $state ? 'setIssueTag' : 'unsetIssueTag';
+
+        $topic->$method($issueTag);
+
+        return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
+    }
+
     public function lock($id)
     {
         $topic = Topic::withTrashed()->findOrFail($id);
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
 
-        $state = get_bool(Request::input('lock'));
-        $topic->lock($state);
         $type = 'lock';
+        $state = get_bool(Request::input('lock'));
+        $this->logModerate($state ? 'LOG_LOCK' : 'LOG_UNLOCK', [$topic->topic_title], $topic);
+        $topic->lock($state);
 
         return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
     }
@@ -94,10 +118,12 @@ class TopicsController extends Controller
     public function move($id)
     {
         $topic = Topic::withTrashed()->findOrFail($id);
+        $originForum = $topic->forum;
         $destinationForum = Forum::findOrFail(Request::input('destination_forum_id'));
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
 
+        $this->logModerate('LOG_MOVE', [$forum->forum_name], $topic);
         if ($topic->moveTo($destinationForum)) {
             return js_view('layout.ujs-reload');
         } else {
@@ -111,9 +137,10 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
 
-        $state = get_bool(Request::input('pin'));
-        $topic->pin($state);
         $type = 'moderate_pin';
+        $state = get_bool(Request::input('pin'));
+        $this->logModerate($state ? 'LOG_PIN' : 'LOG_UNPIN', [$topic->topic_title], $topic);
+        $topic->pin($state);
 
         return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
     }
