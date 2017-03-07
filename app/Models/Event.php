@@ -34,6 +34,7 @@ class Event extends Model
         'beatmapsetRevive' => "!^<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a> has been revived from eternal slumber(?: by <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b>)?\.$!",
         'beatmapsetUpdate' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has updated the beatmap \"<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a>\"$!",
         'beatmapsetUpload' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has submitted a new beatmap \"<a href='(?<beatmapsetUrl>.+?)'>(?<beatmapsetTitle>.*?)</a>\"$!",
+        'medal' => "!^(?:<b>)+<a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>(?:</b>)+ unlocked the \"<b>(?<achievementName>.+?)</b>\" medal\!$!",
         'rank' => "!^<img src='/images/(?<scoreRank>.+?)_small\.png'/> <b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> achieved (?:<b>)?rank #(?<rank>\d+?)(?:</b>)? on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!",
         'rankLost' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has lost first place on <a href='(?<beatmapUrl>.+?)'>(?<beatmapTitle>.+?)</a> \((?<mode>.+?)\)$!",
         'userSupportAgain' => "!^<b><a href='(?<userUrl>.+?)'>(?<userName>.+?)</a></b> has once again chosen to support osu\! - thanks for your generosity\!$!",
@@ -190,6 +191,13 @@ class Event extends Model
             'beatmapset' => $this->arrayBeatmapset($matches),
             'user' => $this->arrayUser($matches),
         ];
+    }
+
+    public function parseMatchesMedal($matches)
+    {
+        $this->type = 'achievement';
+
+        return $this->parseMatchesAchievement($matches);
     }
 
     public function parseMatchesRank($matches)
