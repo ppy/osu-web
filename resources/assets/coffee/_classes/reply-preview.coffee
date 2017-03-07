@@ -35,7 +35,7 @@ class @ReplyPreview
 
 
   fetchPreview: =>
-    $preview = $(@previewBox).find('.forum-post-content')
+    $preview = $(@previewBox).find('.js-forum-reply-preview--content')
     url = laroute.route 'bbcode-preview'
     body = $(@input).val()
 
