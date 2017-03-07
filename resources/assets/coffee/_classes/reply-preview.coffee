@@ -18,13 +18,13 @@
 
 class @ReplyPreview
   constructor: ->
-    @input = document.getElementsByClassName('js-forum-topic-reply--input')
+    @input = '.js-forum-topic-reply--input'
 
-    @writeButton = document.getElementsByClassName('js-forum-reply-preview--hide')
-    @previewButton = document.getElementsByClassName('js-forum-reply-preview--show')
+    @writeButton = '.js-forum-reply-preview--hide'
+    @previewButton = '.js-forum-reply-preview--show'
 
-    @editBox = document.getElementsByClassName('js-forum-reply-write')
-    @previewBox = document.getElementsByClassName('js-forum-reply-preview')
+    @editBox = '.js-forum-reply-write'
+    @previewBox = '.js-forum-reply-preview'
 
     @lastBody = null
 
