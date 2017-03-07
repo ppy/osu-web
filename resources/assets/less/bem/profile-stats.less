@@ -40,8 +40,9 @@
   }
 
   &__rank {
+    display: inline-block;
     text-align: center;
-    margin-top: 5px;
+    margin: 5px 10px 0;
   }
 
   &__row {
@@ -58,7 +59,10 @@
 
   &__value {
     font-weight: bold;
-    display: flex;
-    justify-content: space-between;
+
+    &--score-ranks {
+      text-align: center;
+      padding-top: 10px;
+    }
   }
 }
