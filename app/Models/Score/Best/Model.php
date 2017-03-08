@@ -115,7 +115,11 @@ abstract class Model extends BaseModel
     {
         return function ($query) {
             $limit = config('osu.beatmaps.max-scores');
-            $baseResult = (clone $query)->with('user')->limit($limit * 3)->get();
+            $newQuery = (clone $query)->with('user')->limit($limit * 3);
+            $newQuery->getQuery()->orders = null;
+
+            $baseResult = $newQuery->orderBy('score', 'desc')->get();
+            $baseResult = $baseResult->sortBy('date')->sortByDesc('score');
 
             $result = [];
             $users = [];
