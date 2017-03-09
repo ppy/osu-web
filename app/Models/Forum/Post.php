@@ -25,16 +25,16 @@ use App\Models\DeletedUser;
 use App\Models\Log;
 use Carbon\Carbon;
 use DB;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'phpbb_posts';
     protected $primaryKey = 'post_id';
     protected $guarded = [];
 
-    protected $dates = ['post_edit_time', 'post_time'];
-    protected $dateFormat = 'U';
     public $timestamps = false;
 
     protected $casts = [
@@ -70,6 +70,26 @@ class Post extends Model
         $this->attributes['post_text'] = $bbcode->generate();
         $this->attributes['bbcode_uid'] = $bbcode->uid;
         $this->attributes['bbcode_bitfield'] = $bbcode->bitfield;
+    }
+
+    public function setPostTimeAttribute($value)
+    {
+        $this->attributes['post_time'] = $value->timestamp;
+    }
+
+    public function getPostTimeAttribute($value)
+    {
+        return get_time_or_null($value);
+    }
+
+    public function setPostEditTimeAttribute($value)
+    {
+        $this->attributes['post_edit_time'] = $value->timestamp;
+    }
+
+    public function getPostEditTimeAttribute($value)
+    {
+        return get_time_or_null($value);
     }
 
     public static function lastUnreadByUser($topic, $user)
@@ -169,6 +189,13 @@ class Post extends Model
 
     public function scopeLast($query)
     {
-        return $query->orderBy('post_time', 'desc')->limit(1);
+        return $query->orderBy('post_id', 'desc')->limit(1);
+    }
+
+    public function scopeShowDeleted($query, $showDeleted)
+    {
+        if ($showDeleted) {
+            $query->withTrashed();
+        }
     }
 }

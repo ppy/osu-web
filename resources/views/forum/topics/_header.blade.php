@@ -58,8 +58,16 @@
                 </h1>
             @endif
 
-            <div class="forum-category-header__counter">
-                @include('forum.topics._header_counter')
+            <div class="forum-category-header__counters">
+                <div class="forum-category-header__counter">
+                    @include('forum.topics._header_total_counter')
+                </div>
+
+                @if(!$newTopic && priv_check('ForumTopicModerate', $topic)->can())
+                    <div class="forum-category-header__counter">
+                        @include('forum.topics._header_deleted_counter')
+                    </div>
+                @endif
             </div>
         </div>
 

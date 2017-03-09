@@ -23,7 +23,6 @@ namespace App\Models\Forum;
 use App\Models\User;
 use App\Traits\Validatable;
 use DB;
-use Illuminate\Database\Eloquent\Model;
 
 class FeatureVote extends Model
 {
@@ -40,12 +39,12 @@ class FeatureVote extends Model
 
     public function topic()
     {
-        return $this->belongsTo(Topic::class);
+        return $this->belongsTo(Topic::class, 'topic_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function voteIncrement()

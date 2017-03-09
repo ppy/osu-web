@@ -20,19 +20,29 @@
 
 return [
     'confirmation' => 'Tem certeza?',
+    'saved' => 'Salvo',
 
     'buttons' => [
         'cancel' => 'Cancelar',
         'delete' => 'Excluir',
+        'permalink' => 'link permanente',
         'post' => 'Publicar',
         'reply' => 'Responder',
         'reset' => 'Limpar',
         'save' => 'Salvar',
         'show_more' => 'exibir mais',
+        'upload_image' => 'enviar imagem',
     ],
 
     'count' => [
         'item' => ':count unidade|:count unidades',
+    ],
+
+    'device' => [
+        'keyboard' => 'Teclado',
+        'mouse' => 'Mouse',
+        'tablet' => 'Mesa digitalizadora',
+        'touch' => 'Tela sensível ao toque',
     ],
 
     'dropzone' => [
@@ -40,14 +50,24 @@ return [
     ],
 
     'pagination' => [
-        'previous' => 'anterior',
-        'next' => 'próxima',
+        'previous' => 'ant.',
+        'next' => 'próx.',
+    ],
+
+    'score_count' => [
+        'count100' => '100',
+        'count300' => '300',
+        'count50' => '50',
+        'countgeki' => 'MÁX',
+        'countkatu' => '200',
+        'countmiss' => 'Erro',
     ],
 
     'time' => [
         'days_ago' => ':count dia atrás|:count dias atrás',
         'hours_ago' => ':count hora atrás|:count horas atrás',
         'now' => 'agora',
+        'remaining' => 'Tempo restante',
     ],
 
     'title' => [

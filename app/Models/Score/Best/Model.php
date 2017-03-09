@@ -22,18 +22,21 @@ namespace App\Models\Score\Best;
 
 use App\Libraries\ModsHelper;
 use App\Models\Score\Model as BaseModel;
-use App\Traits\MacroableModel;
 use Aws\S3\S3Client;
+use DB;
 use League\Flysystem\AwsS3v2\AwsS3Adapter;
 use League\Flysystem\Filesystem;
 
 abstract class Model extends BaseModel
 {
-    use MacroableModel;
-
     public $position = null;
     public $weight = null;
-    public $macros = ['forListing', 'userRank'];
+    public $macros = [
+        'forListing',
+        'rankCounts',
+        'userBest',
+        'userRank',
+    ];
 
     public function getReplay()
     {
@@ -71,7 +74,6 @@ abstract class Model extends BaseModel
                 ->where('pp', '>', function ($q) {
                     $q->from($this->table)->where('score_id', $this->score_id)->select('pp');
                 })
-                ->orderBy('pp', 'desc')
                 ->count();
         }
 
@@ -97,11 +99,11 @@ abstract class Model extends BaseModel
      */
     public static function fillInPosition($scores)
     {
-        if ($scores->first() === null) {
+        if (!isset($scores[0])) {
             return;
         }
 
-        $position = $scores->first()->position();
+        $position = $scores[0]->position();
 
         foreach ($scores as $score) {
             $score->position = $position;
@@ -113,7 +115,11 @@ abstract class Model extends BaseModel
     {
         return function ($query) {
             $limit = config('osu.beatmaps.max-scores');
-            $baseResult = (clone $query)->with('user')->limit($limit * 3)->get();
+            $newQuery = (clone $query)->with('user')->limit($limit * 3);
+            $newQuery->getQuery()->orders = null;
+
+            $baseResult = $newQuery->orderBy('score', 'desc')->get();
+            $baseResult = $baseResult->sortBy('date')->sortByDesc('score');
 
             $result = [];
             $users = [];
@@ -138,23 +144,65 @@ abstract class Model extends BaseModel
     public function macroUserRank()
     {
         return function ($query, $userScore) {
-            $baseResult = (clone $query)
+            $newQuery = clone $query;
+            // FIXME: mysql 5.6 compat
+            $newQuery->getQuery()->orders = null;
+
+            return 1 + $newQuery
                 ->limit(null)
                 ->where('score', '>', $userScore->score)
-                ->select('user_id')
-                ->get();
+                ->count(DB::raw('DISTINCT user_id'));
+        };
+    }
 
-            $users = [];
-            $rank = 0;
+    public function macroUserBest()
+    {
+        return function ($query, $limit, $includes = []) {
+            $baseResult = (clone $query)->with($includes)->limit($limit * 3)->get();
+
+            $result = [];
+            $beatmaps = [];
 
             foreach ($baseResult as $entry) {
-                if (!isset($users[$entry->user_id])) {
-                    $users[$entry->user_id] = true;
-                    $rank += 1;
+                if (isset($beatmaps[$entry->beatmap_id])) {
+                    continue;
                 }
+
+                if (count($result) >= $limit) {
+                    break;
+                }
+
+                $beatmaps[$entry->beatmap_id] = true;
+                $result[] = $entry;
             }
 
-            return $rank + 1;
+            return $result;
+        };
+    }
+
+    public function macroRankCounts()
+    {
+        return function ($query) {
+            $newQuery = clone $query;
+            // FIXME: mysql 5.6 compat
+            $newQuery->getQuery()->orders = null;
+
+            $counts = $newQuery
+                ->selectRaw('COUNT(*) rank_count, rank, user_id')
+                ->groupBy(['rank', 'user_id'])
+                ->get();
+
+            $result = [];
+
+            foreach ($counts as $count) {
+                if (!isset($result[$count->user_id])) {
+                    $result[$count->user_id] = [];
+                }
+
+                $result[$count->user_id][$count->rank] = $count->rank_count;
+            }
+
+            return $result;
         };
     }
 

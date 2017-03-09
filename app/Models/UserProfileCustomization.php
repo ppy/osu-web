@@ -21,7 +21,6 @@
 namespace App\Models;
 
 use App\Libraries\ProfileCover;
-use Illuminate\Database\Eloquent\Model;
 
 class UserProfileCustomization extends Model
 {

@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class BeatmapDiscussionVote extends Model
 {
     protected $guarded = [];
@@ -33,7 +31,7 @@ class BeatmapDiscussionVote extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function setScoreAttribute($value)

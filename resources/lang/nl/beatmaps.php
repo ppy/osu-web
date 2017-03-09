@@ -93,66 +93,6 @@ return [
         'source' => 'van :source',
         'load-more' => 'Laad meer...',
     ],
-    'beatmapset' => [
-        'show' => [
-            'details' => [
-                'made-by' => 'gemaakt door ',
-                'submitted' => 'ingezonden op ',
-                'ranked' => 'gerankt op ',
-                'logged-out' => 'Je moet ingelogd zijn voordat je beatmaps kan downloaden!',
-                'download' => [
-                    '_' => 'downloaden',
-                    'no-video' => 'zonder video',
-                    'direct' => 'osu!direct',
-                ],
-            ],
-            'stats' => [
-                'cs' => 'Cirkelgrootte',
-                'drain' => 'HP Drain',
-                'accuracy' => 'Precisie',
-                'ar' => 'Benaderingssnelheid',
-                'stars' => 'Sterrenmoeilijkheid',
-                'total_length' => 'Lengte',
-                'bpm' => 'BPM',
-
-                'source' => 'Bron',
-                'tags' => 'Labels',
-            ],
-            'info' => [
-                'success-rate' => 'Slagingspercentage',
-                'points-of-failure' => 'Faalpunten',
-
-                'description' => 'Beschrijving',
-
-                'source' => 'Bron',
-                'tags' => 'Labels',
-            ],
-            'scoreboard' => [
-                'title' => 'Scorebord',
-                'no-scores' => [
-                    'global' => 'Nog geen scores. Probeer er een paar te halen?',
-                    'loading' => 'Scoren aan het laden...',
-                    'country' => 'Niemand uit jouw land heeft nog een score behaald op deze map!',
-                    'friend' => 'Niemand van jouw vrienden heeft nog een score behaald op deze map!',
-                ],
-                'supporter-only' => 'Je moet supporter zijn om land- en vriendenrankings te zien!',
-                'supporter-link' => 'Klik <a href=":link">hier</a> om alle chique functies die je krijgt te zien!',
-                'global' => 'Globale Ranking',
-                'country' => 'Landranking',
-                'friend' => 'Vriendenranking',
-                'stats' => [
-                    'accuracy' => 'Precisie',
-                    'score' => 'Score',
-                ],
-                'list' => [
-                    'rank-header' => 'Rank',
-                    'player-header' => 'Speler',
-                    'score' => 'Score',
-                    'accuracy' => 'Precisie',
-                ],
-            ],
-        ],
-    ],
     'mode' => [
         'any' => 'Alles',
         'osu' => 'osu!',

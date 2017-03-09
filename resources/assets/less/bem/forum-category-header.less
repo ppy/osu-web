@@ -107,6 +107,11 @@
     }
   }
 
+  &__counters {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__counter {
     margin-left: 10px;
     display: flex;
@@ -234,6 +239,7 @@
   &__titles {
     .@{_top}--topic & {
       display: flex;
+      align-items: flex-end;
     }
   }
 }

@@ -19,9 +19,16 @@
     'titleAppend' => $topic->topic_title,
     "body_additional_classes" => 't-forum-'.$topic->forum->categorySlug(),
     'canonicalUrl' => route('forum.topics.show', $topic->topic_id),
+    'search' => [
+        'params' => [
+            'topic_id' => $topic->topic_id,
+        ],
+        'url' => route('forum.forums.search'),
+    ],
 ])
 
 @section("content")
+    <div class="js-forum__topic-first-post-id hidden" data-first-post-id={{ $firstPostId }}></div>
     <div class="forum-topic-headernav js-forum-topic-headernav js-sync-height--reference" data-sync-height-target="forum-topic-headernav" data-visibility="hidden">
         <div class="forum-topic-headernav__stripe
             u-forum--bg-link
@@ -98,7 +105,7 @@
 
     @include("forum.topics._posts")
 
-    <div class="forum-posts-load-link {{ last($postsPosition) === $topic->postsCount() ? 'hidden' : '' }}">
+    <div class="forum-posts-load-link {{ $firstPostPosition + sizeof($posts) - 1 === $topic->postsCount() ? 'hidden' : '' }}">
         <a href="{{ post_url($topic->topic_id, $posts->last()->post_id + 1, false) }}" class="js-forum-posts-show-more js-forum__posts-show-more--next" data-mode="next">Load more</a>
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>
@@ -127,18 +134,32 @@
                             </div>
 
                             <div class="forum-post__body forum-post__body--reply">
-                                <div class="forum-post__content forum-post__content--edit-body">
-                                    @include('forum.posts._form_body', ['postBody' => [
-                                        'focus' => false,
-                                        'extraClasses' => 'forum-post-content--reply js-forum-topic-reply--input',
-                                    ]])
+                                <div class="forum-post__content forum-post__content--edit-bar">
+                                    <div class="post-editor__actions post-editor__actions--preview">
+                                        <a class="js-forum-reply-preview--hide btn-osu btn-osu--small btn-osu-default active post-editor__action post-editor__action--preview">{{ trans('forum.topic.create.preview_hide') }}</a>
+                                        <a class="js-forum-reply-preview--show btn-osu btn-osu--small btn-osu-default post-editor__action post-editor__action--preview">
+                                            {{ trans('forum.topic.create.preview') }}
+                                        </a>
+                                    </div>
                                 </div>
+                                <div class="js-forum-reply-write">
+                                    <div class="forum-post__content forum-post__content--edit-body">
+                                        @include('forum.posts._form_body', ['postBody' => [
+                                            'focus' => false,
+                                            'extraClasses' => 'forum-post-content--reply js-forum-topic-reply--input',
+                                        ]])
+                                    </div>
 
-                                <div class="forum-post__content forum-post__content forum-post__content--edit-bar hidden">
+                                    <div class="forum-post__content forum-post__content forum-post__content--edit-bar hidden">
+                                    </div>
+
+                                    <div class="forum-post__content forum-post__content forum-post__content--edit-bar">
+                                        @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
+                                    </div>
                                 </div>
-
-                                <div class="forum-post__content forum-post__content forum-post__content--edit-bar">
-                                    @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
+                                <div class="js-forum-reply-preview hidden forum-post__content forum-post__content--main">
+                                    <div class="forum-post-content js-forum-reply-preview--content">
+                                    </div>
                                 </div>
                             </div>
 
@@ -188,7 +209,6 @@
                     forum-topic-nav__seek-bar
                     u-forum--bg-link
                 "
-                style="width: '{{ 100 * array_get($postsPosition, $jumpTo, 0) / $topic->postsCount() }}%';"
             >
             </div>
         </div>
@@ -203,6 +223,12 @@
 
                 @if (priv_check('ForumTopicModerate', $topic)->can())
                     @include('forum.topics._moderate_move', ['topic' => $topic])
+                @endif
+
+                @if ($topic->isIssue() && priv_check('ForumTopicModerate', $topic)->can())
+                    @foreach ($topic::ISSUE_TAGS as $type)
+                        @include("forum.topics._issue_tag_{$type}")
+                    @endforeach
                 @endif
 
                 @include('forum.topics._watch', ['topic' => $topic, 'state' => $isWatching])
@@ -258,7 +284,7 @@
                         forum-topic-nav__counter--left
                         js-forum__posts-counter
                         js-forum-topic-post-jump--counter
-                    ">{{ head($postsPosition) }}</span>
+                    ">{{ $firstPostPosition }}</span>
 
                     <span class="forum-topic-nav__counter
                         forum-topic-nav__counter--middle"

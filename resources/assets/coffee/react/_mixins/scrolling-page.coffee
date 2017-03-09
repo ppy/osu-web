@@ -36,10 +36,10 @@ currentLocation = =>
   setCurrentPage: (_e, page, extraCallback) ->
     callback = =>
       extraCallback?()
-      @setHash()
+      @setHash?()
 
     if @state.currentPage == page
-      callback()
+      return callback()
 
     @setState currentPage: page, callback
 

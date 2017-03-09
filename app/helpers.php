@@ -73,6 +73,15 @@ function locale_name($locale)
     return App\Libraries\LocaleMeta::nameFor($locale);
 }
 
+function locale_for_timeago($locale)
+{
+    if ($locale === 'zh') {
+        return 'zh-CN';
+    }
+
+    return $locale;
+}
+
 function osu_url($key)
 {
     $url = config("osu.urls.{$key}");
@@ -97,6 +106,24 @@ function product_quantity_options($product)
     }
 
     return $opts;
+}
+
+function read_image_properties($path)
+{
+    try {
+        $data = getimagesize($path);
+
+        if ($data !== false) {
+            return $data;
+        }
+    } catch (ErrorException $e) {
+        // do nothing if it's read failure(?)
+        if ($e->getMessage() === 'Read error!') {
+            return;
+        }
+
+        throw $e;
+    }
 }
 
 function render_to_string($view, $variables = [])
@@ -213,6 +240,8 @@ function link_to_user($user_id, $user_name, $user_color)
 function issue_icon($issue)
 {
     switch ($issue) {
+        case 'added': return 'fa-cogs';
+        case 'assigned': return 'fa-user';
         case 'confirmed': return 'fa-exclamation-triangle';
         case 'resolved': return 'fa-check-circle';
         case 'duplicate': return 'fa-copy';
@@ -297,7 +326,7 @@ function nav_links()
         'contests' => route('community.contests.index'),
         'tournaments' => route('tournaments.index'),
         'getLive' => route('livestreams.index'),
-        'getSlack' => route('slack'),
+        'dev' => osu_url('dev'),
     ];
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),
@@ -382,7 +411,9 @@ function display_regdate($user)
         return trans('users.show.first_members');
     }
 
-    return trans('users.show.joined_at', ['date' => $user->user_regdate->formatLocalized('%B %Y')]);
+    return trans('users.show.joined_at', [
+        'date' => '<strong>'.$user->user_regdate->formatLocalized('%B %Y').'</strong>',
+    ]);
 }
 
 function i18n_date($datetime, $format = IntlDateFormatter::LONG)
@@ -399,7 +430,7 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG)
 function open_image($path, $dimensions = null)
 {
     if ($dimensions === null) {
-        $dimensions = getimagesize($path);
+        $dimensions = read_image_properties($path);
     }
 
     if (!isset($dimensions[2]) || !is_int($dimensions[2])) {

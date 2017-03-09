@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class RankHistory extends Model
 {
     protected $table = 'osu_user_performance_rank';
@@ -46,6 +44,6 @@ class RankHistory extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

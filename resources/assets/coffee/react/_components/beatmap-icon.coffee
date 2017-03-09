@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,i} = React.DOM
+{div} = React.DOM
 el = React.createElement
 
 @BeatmapIcon = React.createClass

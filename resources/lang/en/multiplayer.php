@@ -32,7 +32,7 @@ return [
             'player-joined' => ':user joined the match',
             'player-kicked' => ':user has been kicked from the match',
             'match-created' => ':user created the match',
-            'match-disbanded' => ':the match was disbanded',
+            'match-disbanded' => 'the match was disbanded',
             'host-changed' => ':user became the host',
 
             'player-left-no-user' => 'a player left the match',
@@ -45,15 +45,9 @@ return [
         'in-progress' => '(match in progress)',
         'score' => [
             'stats' => [
-                'combo' => 'Combo',
                 'accuracy' => 'Accuracy',
+                'combo' => 'Combo',
                 'score' => 'Score',
-                'countgeki' => 'MAX',
-                'count300' => '300s',
-                'countkatu' => '200s',
-                'count100' => '100s',
-                'count50' => '50s',
-                'countmiss' => 'Miss',
             ],
         ],
         'failed' => 'FAILED',

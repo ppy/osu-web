@@ -18,25 +18,25 @@
 
 {div, a} = React.DOM
 el = React.createElement
+bn = 'beatmap-score-big'
 
 BeatmapsetPage.ScoreBig = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
   render: ->
-    className = 'beatmapset-score-big'
-    className += ' beatmapset-score-big--first-score' if @props.position == 1
+    hits = Hits.generate score: @props.score, playmode: @props.playmode
 
-    div className: className,
-      div className: 'beatmapset-score-big__section beatmapset-score-big__section--top',
-        div className: 'beatmapset-score-big__position', "##{@props.position}"
+    div className: bn,
+      div className: "#{bn}__section #{bn}__section--top",
+        div className: "#{bn}__position", "##{@props.position}"
         div
-          className: 'beatmapset-score-big__avatar avatar avatar--beatmapset-scoreboard hidden-xs'
+          className: "#{bn}__avatar avatar avatar--beatmapset-scoreboard hidden-xs"
           style:
             backgroundImage: "url(#{@props.score.user.avatarUrl})"
 
-        div className: 'beatmapset-score-big__user-box',
+        div className: "#{bn}__user-box",
           a
-            className: 'beatmapset-score-big__username'
+            className: "#{bn}__username"
             href: laroute.route 'users.show', user: @props.score.user.id
             @props.score.user.username
 
@@ -44,35 +44,30 @@ BeatmapsetPage.ScoreBig = React.createClass
             country: @props.countries[@props.score.user.country]
             classModifiers: ['scoreboard']
 
-        div className: 'beatmapset-score-big__stats-box',
-          el Mods,
-            mods: @props.score.mods
-            modifiers: ['reversed']
+        div className: "#{bn}__stats-box",
+          el Mods, mods: @props.score.mods
 
-          div className: 'beatmapset-score-big__rank',
+          div className: "#{bn}__rank",
             div className: "badge-rank badge-rank--#{@props.score.rank}"
 
-          for elem in ['score', 'accuracy', 'hits']
-            className = 'beatmapset-score-big__stat'
-            className += ' hidden-xs' if elem != 'score'
+          div className: "#{bn}__stat hidden-xs",
+            div className: "#{bn}__stat-header",
+              osu.trans 'beatmapsets.show.scoreboard.stats.score'
+            div className: "#{bn}__stat-value #{bn}__stat-value--score",
+              @props.score.score.toLocaleString()
 
-            switch elem
-              when 'score'
-                header = osu.trans 'beatmaps.beatmapset.show.scoreboard.stats.score'
-                value = @props.score.score.toLocaleString()
-              when 'accuracy'
-                header = osu.trans 'beatmaps.beatmapset.show.scoreboard.stats.accuracy'
-                value = "#{_.round @props.score.accuracy * 100, 2}%"
-              when 'hits'
-                hits = Hits.generate score: @props.score, playmode: @props.playmode
+          div className: "#{bn}__stat hidden-xs",
+            div className: "#{bn}__stat-header",
+              osu.trans 'beatmapsets.show.scoreboard.stats.accuracy'
+            div className: "#{bn}__stat-value #{bn}__stat-value--score",
+              "#{_.round @props.score.accuracy * 100, 2}%"
 
-                header = hits.header
-                value = hits.values
+          div className: "#{bn}__stat",
+            div className: "#{bn}__stat-header",
+              hits.header
+            div className: "#{bn}__stat-value #{bn}__stat-value--score",
+              hits.values
 
-            div className: className, key: elem,
-              div className: 'beatmapset-score-big__stat-header', header
-              div className: 'beatmapset-score-big__stat-value beatmapset-score-big__stat-value--score', value
-
-      div className: 'beatmapset-score-big__section beatmapset-score-big__section--bottom',
-        div className: 'beatmapset-score-big__achieved',
-          osu.trans 'beatmaps.beatmapset.show.scoreboard.achieved', when: moment(@props.score.created_at).fromNow()
+      div className: "#{bn}__section #{bn}__section--bottom",
+        div className: "#{bn}__achieved",
+          osu.trans 'beatmapsets.show.scoreboard.achieved', when: moment(@props.score.created_at).fromNow()

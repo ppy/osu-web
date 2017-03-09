@@ -31,6 +31,7 @@
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 Route::post('/set-locale', ['as' => 'set-locale', 'uses' => 'HomeController@setLocale']);
+Route::post('/bbcode-preview', ['as' => 'bbcode-preview', 'uses' => 'HomeController@bbcodePreview']);
 Route::get('/home/download', ['as' => 'download', 'uses' => 'HomeController@getDownload']);
 Route::get('/home/changelog', ['as' => 'changelog', 'uses' => 'HomeController@getChangelog']);
 Route::get('/home/support', ['as' => 'support-the-game', 'uses' => 'HomeController@supportTheGame']);
@@ -106,9 +107,6 @@ Route::get('/community/profile/{id}', function ($id) {
     return Redirect::route('users.show', $id);
 });
 
-Route::get('/community/slack', ['as' => 'slack', 'uses' => 'CommunityController@getSlack']);
-Route::post('/community/slack/agree', ['as' => 'slack.agree', 'uses' => 'CommunityController@postSlackAgree']);
-
 Route::resource('matches', 'MatchesController', ['only' => ['show']]);
 Route::get('/matches/{match}/history', ['as' => 'matches.history', 'uses' => 'MatchesController@history']);
 
@@ -138,7 +136,7 @@ Route::get('/notifications', ['as' => 'notifications.index', function () {
 
 // help section
 Route::get('/wiki', ['as' => 'wiki', function () {
-    return ujs_redirect(route('wiki.show', ['page' => 'Welcome']));
+    return ujs_redirect(route('wiki.show', ['page' => 'Welcome']).'/');
 }]);
 Route::get('wiki/{page?}', ['as' => 'wiki.show', 'uses' => 'WikiController@show'])->where('page', '.+');
 Route::put('wiki/{page?}', ['uses' => 'WikiController@update'])->where('page', '.+');
@@ -158,7 +156,9 @@ Route::post('/store/update-address', 'StoreController@postUpdateAddress');
 Route::post('/store/new-address', 'StoreController@postNewAddress');
 Route::post('/store/add-to-cart', 'StoreController@postAddToCart');
 Route::post('/store/checkout', 'StoreController@postCheckout');
-Route::put('/store/request-notification/{product}/{action}', 'StoreController@putRequestNotification')->name('store.request-notification');
+Route::post('/store/products/{product}/notification-request', 'Store\NotificationRequestsController@store')
+    ->name('store.notification-request');
+Route::delete('/store/products/{product}/notification-request', 'Store\NotificationRequestsController@destroy');
 
 Route::resource('tournaments', 'TournamentsController');
 Route::post('/tournaments/{tournament}/unregister', ['as' => 'tournaments.unregister', 'uses' => 'TournamentsController@unregister']);
@@ -166,8 +166,10 @@ Route::post('/tournaments/{tournament}/register', ['as' => 'tournaments.register
 
 // Forum controllers
 Route::group(['as' => 'forum.', 'prefix' => 'forum', 'namespace' => 'Forum'], function () {
+    Route::get('search', ['as' => 'forums.search', 'uses' => 'ForumsController@search']);
     Route::get('t/{topic}', ['as' => 'topics.show', 'uses' => 'TopicsController@show']);
     Route::post('topics/preview', ['as' => 'topics.preview', 'uses' => 'TopicsController@preview']);
+    Route::post('topics/{topic}/issue-tag', ['as' => 'topics.issue-tag', 'uses' => 'TopicsController@issueTag']);
     Route::post('topics/{topic}/lock', ['as' => 'topics.lock', 'uses' => 'TopicsController@lock']);
     Route::post('topics/{topic}/move', ['as' => 'topics.move', 'uses' => 'TopicsController@move']);
     Route::post('topics/{topic}/pin', ['as' => 'topics.pin', 'uses' => 'TopicsController@pin']);
@@ -183,7 +185,8 @@ Route::group(['as' => 'forum.', 'prefix' => 'forum', 'namespace' => 'Forum'], fu
 
     Route::get('p/{post}', ['as' => 'posts.show', 'uses' => 'PostsController@show']);
     Route::get('posts/{post}/raw', ['as' => 'posts.raw', 'uses' => 'PostsController@raw']);
-    Route::resource('posts', 'PostsController', ['only' => ['destroy', 'update', 'edit']]);
+    Route::post('posts/{post}/restore', ['as' => 'posts.restore', 'uses' => 'PostsController@restore']);
+    Route::resource('posts', 'PostsController', ['only' => ['update', 'edit', 'destroy']]);
 
     Route::get('/', ['as' => 'forums.index', 'uses' => 'ForumsController@index']);
     Route::get('{forum}', ['as' => 'forums.show', 'uses' => 'ForumsController@show']);

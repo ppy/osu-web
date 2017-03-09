@@ -64,7 +64,7 @@
 
         <div class="forum-post__info-panel-extra-bottom">
             <div class="forum-post__info-row">
-                {{ display_regdate($user) }}
+                {!! display_regdate($user) !!}
             </div>
         </div>
     </div>

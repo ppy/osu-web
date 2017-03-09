@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, p} = React.DOM
+{div, h2, p} = React.DOM
 el = React.createElement
 
 class BeatmapsetPage.Scoreboard extends React.Component
@@ -49,7 +49,7 @@ class BeatmapsetPage.Scoreboard extends React.Component
     else
       ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL']
 
-    div className: 'osu-layout__row osu-layout__row--page-compact beatmapset-scoreboard',
+    div className: 'beatmapset-scoreboard',
       div className: 'page-tabs',
         for type in ['global', 'country', 'friend']
           el BeatmapsetPage.ScoreboardTab,
@@ -57,7 +57,7 @@ class BeatmapsetPage.Scoreboard extends React.Component
             type: type
             active: @props.type == type
 
-      if currentUser.isSupporter
+      if currentUser.isSupporter && @props.hasScores
         div className: 'beatmapset-scoreboard__mods-wrapper',
           div className: modsClassName,
             for mod in mods
@@ -69,37 +69,54 @@ class BeatmapsetPage.Scoreboard extends React.Component
       div className: className,
         if @props.scores.length > 0
           div {},
-            for score, i in @props.scores
-              if score.user.id == currentUser.id
-                userScoreFound = true
+            div className: 'beatmap-scoreboard-top',
+              div className: 'beatmap-scoreboard-top__item',
+                h2 className: 'beatmap-scoreboard-top__title',
+                  osu.trans('beatmapsets.show.scoreboard.score.first')
+                @scoreItem score: @props.scores[0], rank: 1, itemClass: 'ScoreTop', modifiers: ['with-outline']
 
-              @scoreItem score, i + 1
+              if @props.userScore?
+                div className: 'beatmap-scoreboard-top__item',
+                  h2 className: 'beatmap-scoreboard-top__title',
+                    osu.trans('beatmapsets.show.scoreboard.score.own')
+                  @scoreItem score: @props.userScore, rank: @props.userScorePosition, itemClass: 'ScoreTop'
 
-            if !userScoreFound && @props.userScore?
-              @scoreItem @props.userScore, @props.userScorePosition
+            for score, i in @props.scores[1..]
+              @scoreItem
+                score: score
+                rank: i + 2
+                itemClass:
+                  if score.user.id == currentUser.id
+                    'ScoreBig'
+                  else
+                    'Score'
+
+        else if !@props.hasScores
+          p
+            className: 'beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'
+            osu.trans 'beatmapsets.show.scoreboard.no_scores.unranked'
 
         else if currentUser.isSupporter || @props.type == 'global'
           translationKey = if @state.loading then 'loading' else @props.type
 
           p
-            className: "beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores beatmapset-scoreboard__notice--#{'guest' if !currentUser.id?}"
-            osu.trans "beatmaps.beatmapset.show.scoreboard.no-scores.#{translationKey}"
+            className: 'beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'
+            osu.trans "beatmapsets.show.scoreboard.no_scores.#{translationKey}"
 
         else
           div className: 'beatmapset-scoreboard__notice',
-            p className: 'beatmapset-scoreboard__supporter-text', osu.trans 'beatmaps.beatmapset.show.scoreboard.supporter-only'
+            p className: 'beatmapset-scoreboard__supporter-text', osu.trans 'beatmapsets.show.scoreboard.supporter-only'
 
             p
               className: 'beatmapset-scoreboard__supporter-text beatmapset-scoreboard__supporter-text--small'
               dangerouslySetInnerHTML:
-                __html: osu.trans 'beatmaps.beatmapset.show.scoreboard.supporter-link', link: laroute.route 'support-the-game'
+                __html: osu.trans 'beatmapsets.show.scoreboard.supporter-link', link: laroute.route 'support-the-game'
 
-  scoreItem: (score, rank) ->
-    componentName = if rank == 1 || currentUser.id == score.user.id then 'ScoreBig' else 'Score'
-
-    el BeatmapsetPage[componentName],
+  scoreItem: ({score, rank, itemClass, modifiers}) ->
+    el BeatmapsetPage[itemClass],
+      key: rank
       score: score
       position: rank
-      key: rank
       playmode: @props.beatmap.mode
       countries: @props.countries
+      modifiers: modifiers

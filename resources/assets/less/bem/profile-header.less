@@ -17,106 +17,63 @@
  */
 
 .profile-header {
-  background-color: @gray-3;
-  height: @profile-header-height;
-  padding: 0;
+  @top: profile-header;
+  .default-header-overlay();
+  background-color: #333;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 120ms;
 
-  &__cover {
-    background-size: cover;
-    background-position: 50% 50%;
+  &__actions {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0.5;
-
-    transition: background-image 0.2s ease-in-out;
+    right: 20px;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    will-change: opacity;
 
     @media @desktop {
+      opacity: 0;
+      right: 0;
+      width: 0;
+      bottom: 20px;
+      top: auto;
+    }
+
+    .@{top}:hover & {
+      opacity: 1;
+    }
+
+    .@{top}--editing & {
       opacity: 1;
     }
   }
 
-  &__avatar-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    padding-bottom: @profile-user-bar-height;
-
-    @media @desktop {
-      height: @profile-user-bar-height;
-      padding-bottom: 0;
-      bottom: 0;
-      top: auto;
-
-      width: @profile-avatar-size;
-      margin-left: 30px;
-    }
-
-    align-self: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  &__column {
+    margin: 0 10px;
   }
 
-  &__uploading-spinner-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-
+  &__container {
+    min-height: @profile-header-height;
+    padding: 30px 40px 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding-bottom: @profile-user-bar-height;
+    justify-content: flex-end;
+
+    @media @desktop {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+  }
+  &__spinner {
+    .full-size();
+    .center-content();
 
     font-size: 80px;
     color: #fff;
-    background: fade(#000, 70%);
-    transition: opacity 120ms;
-
-    opacity: 0;
-    pointer-events: none;
-
-    &[data-state="enabled"] {
-      opacity: 1;
-      pointer-events: auto;
-    }
-  }
-
-  &__userbar-container {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: fade(#fff, 80%);
-    height: @profile-user-bar-height;
-    display: flex;
-    justify-content: space-between;
-    padding: 0;
-  }
-
-  &__change-cover-button {
-    .default-border-radius();
-    .default-text-shadow();
-
-    position: absolute;
-    bottom: (10px + @profile-user-bar-height);
-    right: 10px;
-    padding: 5px 10px;
-
-    font-size: 12px;
-    font-weight: bold;
-
-    background-color: fade(#000, 50%);
-    color: #fff;
-
-    cursor: pointer;
-
-    display: none;
-    @media @desktop {
-      display: block;
-    }
+    background-color: fade(#000, 70%);
   }
 }

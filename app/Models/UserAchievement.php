@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class UserAchievement extends Model
 {
     protected $table = 'osu_user_achievements';
@@ -31,11 +29,11 @@ class UserAchievement extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function achievement()
     {
-        return $this->belongsTo(Achievement::class);
+        return $this->belongsTo(Achievement::class, 'achievement_id');
     }
 }

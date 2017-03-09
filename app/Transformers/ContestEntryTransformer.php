@@ -35,20 +35,18 @@ class ContestEntryTransformer extends Fractal\TransformerAbstract
         return [
             'id' => $entry->id,
             'title' => $entry->contest->unmasked ? $entry->name : $entry->masked_name,
-            'preview' => $entry->contest->isBestOf() ? route('beatmapsets.show', $entry->entry_url) : $entry->entry_url,
+            'preview' => $entry->entry_url,
         ];
     }
 
     public function includeResults(ContestEntry $entry)
     {
         return $this->item($entry, function ($entry) {
-            $voteCounts = $entry->contest->cachedVoteAggregates()->where('contest_entry_id', $entry->id)->first();
-
             return [
                 'actual_name' => $entry->name,
                 'user_id' => $entry->user_id,
                 'username' => ($entry->user ?? (new \App\Models\DeletedUser))->username,
-                'votes' => $voteCounts ? $voteCounts->votes : 0,
+                'votes' => (int) $entry->votes_count,
             ];
         });
     }

@@ -23,16 +23,11 @@ class @Hits
     else
       ['count300', 'count100', 'count50']
 
-    header = ''
-    values = ''
-
-    header = _(elements)
-        .map (elem) -> osu.trans "beatmaps.beatmapset.show.scoreboard.stats.#{elem}"
+    header:
+      elements
+        .map (elem) -> osu.trans "common.score_count.#{elem}"
         .join '/'
-
-    values = _(elements)
-        .map (elem) -> osu.trans "#{score[elem]}"
+    values:
+      elements
+        .map (elem) -> score[elem].toLocaleString()
         .join '/'
-
-    header: header
-    values: values

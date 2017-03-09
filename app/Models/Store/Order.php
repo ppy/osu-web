@@ -20,29 +20,28 @@
 
 namespace App\Models\Store;
 
+use App\Models\User;
 use DB;
-use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $connection = 'mysql-store';
     protected $primaryKey = 'order_id';
-
     protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
+    public $macros = ['itemsQuantities'];
 
     public function items()
     {
-        return $this->hasMany('App\Models\Store\OrderItem', 'order_id');
+        return $this->hasMany(OrderItem::class, 'order_id');
     }
 
     public function address()
     {
-        return $this->belongsTo('App\Models\Store\Address');
+        return $this->belongsTo(Address::class, 'address_id');
     }
 
     public function user()
     {
-        return $this->belongsTo("App\Models\User");
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function trackingCodes()
@@ -247,17 +246,23 @@ class Order extends Model
         return $cart;
     }
 
-    public static function itemsQuantities($orders)
+    public function macroItemsQuantities()
     {
-        $query = clone $orders;
+        return function ($query) {
+            $query = clone $query;
 
-        $query
-            ->join('order_items', 'orders.order_id', '=', 'order_items.order_id')
-            ->join('products', 'order_items.product_id', '=', 'products.product_id')
-            ->groupBy('order_items.product_id')
-            ->groupBy('name')
-            ->select(DB::raw('sum(order_items.quantity) as quantity, name, products.product_id'));
+            $ordersTable = (new Order)->getTable();
+            $orderItemsTable = (new OrderItem)->getTable();
+            $productsTable = (new Product)->getTable();
 
-        return $query->get();
+            $query
+                ->join($orderItemsTable, "{$ordersTable}.order_id", '=', "{$orderItemsTable}.order_id")
+                ->join($productsTable, "{$orderItemsTable}.product_id", '=', "${productsTable}.product_id")
+                ->groupBy("{$orderItemsTable}.product_id")
+                ->groupBy('name')
+                ->select(DB::raw("SUM({$orderItemsTable}.quantity) AS quantity, name, {$orderItemsTable}.product_id"));
+
+            return $query->get();
+        };
     }
 }

@@ -24,10 +24,12 @@
 $(document).on 'turbolinks:request-start', LoadingOverlay.show
 $(document).on 'turbolinks:request-end', LoadingOverlay.hide
 # form submission is not covered by turbolinks
-$(document).on 'submit', 'form', LoadingOverlay.show
+$(document).on 'submit', 'form', (e) ->
+  LoadingOverlay.show() if e.currentTarget.dataset.loadingOverlay != '0'
 
 
 @currentUserObserver ?= new CurrentUserObserver
+@parentFocus ?= new ParentFocus
 @reactTurbolinks ||= new ReactTurbolinks
 @twitchPlayer ?= new TwitchPlayer
 @landingGraph ?= new LandingGraph
@@ -44,6 +46,7 @@ $(document).on 'submit', 'form', LoadingOverlay.show
 @accountEdit ?= new AccountEdit
 @accountEditAvatar ?= new AccountEditAvatar
 @wiki ?= new Wiki
+@osuAudio ?= new OsuAudio
 
 @editorZoom ?= new EditorZoom
 @stickyFooter ?= new StickyFooter
@@ -62,6 +65,8 @@ $(document).on 'submit', 'form', LoadingOverlay.show
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
 @forumCover ?= new ForumCover
+@postPreview ?= new PostPreview
+@replyPreview ?= new ReplyPreview
 
 @menu ?= new Menu
 

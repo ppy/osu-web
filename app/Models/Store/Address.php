@@ -21,24 +21,22 @@
 namespace App\Models\Store;
 
 use App\Models\Country;
+use App\Models\User;
 use Auth;
-use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-    protected $connection = 'mysql-store';
-    protected $table = 'addresses';
     protected $primaryKey = 'address_id';
     protected $guarded = ['id', 'user_id'];
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function country()
     {
-        return $this->belongsTo('App\Models\Country', 'country_code');
+        return $this->belongsTo(Country::class, 'country_code');
     }
 
     public function shippingRate()

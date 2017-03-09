@@ -21,7 +21,19 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Http\Controllers\Controller as BaseController;
+use App\Models\Log;
 
 abstract class Controller extends BaseController
 {
+    public function logModerate($operation, $data, $object)
+    {
+        $this->log([
+            'log_type' => Log::LOG_FORUM_MOD,
+            'log_operation' => $operation,
+            'log_data' => $data,
+
+            'topic_id' => $object->topic_id,
+            'forum_id' => $object->forum_id,
+        ]);
+    }
 }

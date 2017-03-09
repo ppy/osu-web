@@ -22,7 +22,6 @@ namespace App\Models;
 
 use Cache;
 use DB;
-use Illuminate\Database\Eloquent\Model;
 
 class Smiley extends Model
 {

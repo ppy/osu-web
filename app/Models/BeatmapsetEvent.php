@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class BeatmapsetEvent extends Model
 {
     protected $guarded = [];
@@ -34,12 +32,12 @@ class BeatmapsetEvent extends Model
 
     public function beatmapset()
     {
-        return $this->belongsTo(Beatmapset::class);
+        return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function scopeNominations($query)

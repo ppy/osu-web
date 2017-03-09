@@ -21,7 +21,6 @@
 namespace App\Models;
 
 use App\Transformers\BeatmapsetDiscussionTransformer;
-use Illuminate\Database\Eloquent\Model;
 
 class BeatmapsetDiscussion extends Model
 {
@@ -29,7 +28,7 @@ class BeatmapsetDiscussion extends Model
 
     public function beatmapset()
     {
-        return $this->belongsTo(Beatmapset::class);
+        return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
     }
 
     public function beatmapDiscussions()
@@ -46,8 +45,8 @@ class BeatmapsetDiscussion extends Model
     {
         $includes = [
             'beatmap_discussions.beatmap_discussion_posts',
-            'users',
             'beatmap_discussions.current_user_attributes',
+            'users',
         ];
 
         return json_item(

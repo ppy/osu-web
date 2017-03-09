@@ -124,25 +124,4 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
             'instructions' => 'klik op het hartje om naar de osu!store te gaan',
         ],
     ],
-    'slack' => [
-        'header' => [
-            'small' => 'osu!dev',
-            'large' => 'osu!public Slack Toegang',
-        ],
-
-        'disabled' => 'De publieke Slack community is momenteel niet beschikbaar. Als je iets wilt laten weten doe dat dan via een issue op de correcte <a href="https://github.com/ppy">GitHub repository</a> of stuur ons een e-mail via <a href="mailto::mail">:mail</a>.',
-
-        'guest-begin' => 'Je moet ',
-        'guest-middle' => 'ingelogd',
-        'guest-end' => ' zijn om een Slack uitnodiging te ontvangen!',
-
-        'receive-invite' => 'Je kan hier een uitnodiging krijgen voor de publieke Slack community van osu!.',
-        'bullet-points' => 'Lees de voorwaarden <a href=":link">in deze post</a> grondig door.<br />Houdt er rekening mee dat eventuele misdrijven op jou account niet getolereerd worden.',
-
-        'recent-issues' => 'Je account heeft recente problemen. Neem <a href="mailto::mail">contact op met support</a> voor meer details.',
-        'agree-button' => 'Akkoord',
-
-        'accepted' => 'Je aanvraag is geaccepteerd. Je zal binnenkort een e-mail ontvangen.',
-        'invite-already-accepted' => 'Je hebt al een slack account! Neem <a href="mailto::mail">contact op met support</a> als je problemen ondervindt.',
-    ],
 ];

@@ -42,7 +42,6 @@
         class="
             osu-layout
             osu-layout--body
-            {{ $current_section or "error" }}
             t-section-{{ $current_section or "error" }}
             section
             action-{{ $current_action }}
@@ -90,6 +89,7 @@
                 @yield('permanent-fixed-footer')
             </div>
         </div>
+        <audio class="js-audio" preload="auto"></audio>
 
         @include("layout._global_variables")
         @include('layout._loading_overlay')

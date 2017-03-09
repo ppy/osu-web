@@ -49,8 +49,5 @@ return [
         'notification_remove_text' => 'tutaj',
 
         'notification_in_stock' => 'Produkt jest dostępny!',
-
-        'notification_exists' => 'Już złożyłeś prośbę o powiadomienie dla tego produktu!',
-        'notification_doesnt_exist' => 'Nie składałeś prośby o powiadomienie dla tego produktu!',
     ],
 ];

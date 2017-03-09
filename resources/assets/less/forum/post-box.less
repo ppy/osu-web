@@ -65,8 +65,8 @@
     background-image: linear-gradient(fade(#000, 30%), transparent 3px);
 
     &--profile-page {
-      padding: 10px 7.5px;
-      margin: 0 -7.5px -20px;
+      padding: 10px 30px;
+      margin: 0 -30px -20px;
     }
 
     &--large {
@@ -86,11 +86,20 @@
     display: flex;
     justify-content: flex-end;
     flex: 1 0 auto;
+
+    &--preview {
+      justify-content: flex-start;
+    }
   }
 
   &__action {
     margin-left: 10px;
     min-width: 120px;
+
+    &--preview {
+        margin-left: 0;
+        margin-right: 10px;
+    }
 
     &--compact {
       min-width: 0;

@@ -86,8 +86,8 @@ ProfilePage.Performance = React.createClass
           "#{formats.x(d)}<br>#{date}"
 
       scales =
-        x: d3.scale.linear()
-        y: d3.scale.log()
+        x: d3.scaleLinear()
+        y: d3.scaleLog()
 
       options =
         formats: formats

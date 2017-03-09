@@ -30,6 +30,7 @@ class AddAlbumIdToArtistTracks extends Migration
     public function down()
     {
         Schema::table('artist_tracks', function (Blueprint $table) {
+            $table->dropForeign('artist_tracks_album_id_foreign');
             $table->dropColumn('album_id');
         });
     }

@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use App\Exceptions\GitHubNotFoundException;
+use App\Exceptions\GitHubTooLargeException;
 use Cache;
 use GitHub;
 use Github\Exception\RuntimeException as GithubException;
@@ -37,7 +38,7 @@ class WikiPage
 
     public static function cacheKey($path)
     {
-        return 'wiki:'.static::cleanPath($path);
+        return 'wiki:v2:'.static::cleanPath($path);
     }
 
     public static function fetch($path)
@@ -50,8 +51,12 @@ class WikiPage
                     ->contents()
                     ->show(static::USER, static::REPOSITORY, static::cleanPath('wiki/'.$path));
             } catch (GithubException $e) {
-                if ($e->getMessage() === 'Not Found') {
-                    throw new GitHubNotFoundException();
+                $message = $e->getMessage();
+
+                if ($message === 'Not Found') {
+                    throw new GitHubNotFoundException($message);
+                } elseif (starts_with($message, 'This API returns blobs up to 1 MB in size.')) {
+                    throw new GitHubTooLargeException($message);
                 }
 
                 throw $e;
@@ -72,7 +77,12 @@ class WikiPage
     {
         return Cache::remember(static::cacheKey($path), 60, function () use ($path, $url, $referrer) {
             try {
-                return static::fetchContent($path);
+                $data = static::fetchContent($path);
+                $type = image_type_to_mime_type(
+                    getimagesizefromstring($data)[2] ?? null
+                );
+
+                return compact('data', 'type');
             } catch (GitHubNotFoundException $e) {
                 if (present($url) && present($referrer) && starts_with($url, $referrer)) {
                     $newPath = 'shared/'.substr($url, strlen($referrer));
@@ -93,7 +103,7 @@ class WikiPage
 
     public function editUrl()
     {
-        return 'https://github.com/'.static::USER.'/'.static::REPOSITORY.'/tree/master/wiki/'.$this->page;
+        return 'https://github.com/'.static::USER.'/'.static::REPOSITORY.'/tree/master/wiki/'.$this->path();
     }
 
     public function locales()
@@ -103,6 +113,8 @@ class WikiPage
         try {
             $contents = static::fetch($this->page);
         } catch (GitHubNotFoundException $e) {
+            return $locales;
+        } catch (GitHubTooLargeException $e) {
             return $locales;
         }
 

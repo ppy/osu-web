@@ -94,8 +94,8 @@ class @Status.Page extends React.Component
           "#{formats.x(d)}"
 
       scales =
-        x: d3.scale.linear()
-        y: d3.scale.linear()
+        x: d3.scaleLinear()
+        y: d3.scaleLinear()
 
       options =
         formats: formats

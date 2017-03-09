@@ -104,63 +104,6 @@ return [
         'source' => 'de :source',
         'load-more' => 'Charger plus',
     ],
-    'beatmapset' => [
-        'show' => [
-            'details' => [
-                'made-by' => 'créé par ',
-                'submitted' => 'envoyé le ',
-                'ranked' => 'classifié le ',
-                'logged-out' => 'Vous devez vous connecter avant de télécharger des beatmaps!',
-                'download' => [
-                    '_' => 'télécharger',
-                    'no-video' => 'sans la vidéo',
-                    'direct' => 'osu!direct',
-                ],
-            ],
-            'stats' => [
-                'cs' => 'Taille du cercle',
-                'drain' => 'Drainage PV',
-                'accuracy' => 'Précision',
-                'ar' => "Niveau d'approche",
-                'stars' => 'Difficulté étoiles',
-                'total_length' => 'Longeur',
-                'bpm' => 'BPM',
-            ],
-            'info' => [
-                'success-rate' => 'Taux de réussite',
-                'points-of-failure' => 'Points de ratés',
-
-                'description' => 'Description',
-
-                'source' => 'Source',
-                'tags' => 'Tags',
-            ],
-            'scoreboard' => [
-                'title' => 'Tableaux des scores',
-                'no-scores' => [
-                    'global' => 'Pas de scores. Peut-être vous dans le classement?',
-                    'loading' => 'Chargement des scores...',
-                    'country' => "Personne de votre pays n'a encore fait un score!",
-                    'friend' => "Personnne de vos amis n'a encore fait un score!",
-                ],
-                'supporter-only' => 'Vous devez être osu!supporter pour accéder à cette fonctionnalité!',
-                'supporter-link' => 'Cliquez <a href=":link">ici</a> pour connaître toutes les supers fonctions obtenus avec!',
-                'global' => 'Classement global',
-                'country' => 'Classement national',
-                'friend' => 'Classement des amis',
-                'stats' => [
-                    'accuracy' => 'Précision',
-                    'score' => 'Score',
-                ],
-                'list' => [
-                    'rank-header' => 'Rang',
-                    'player-header' => 'Joueur',
-                    'score' => 'Score',
-                    'accuracy' => 'Précision',
-                ],
-            ],
-        ],
-    ],
     'mode' => [
         'any' => 'Tous',
         'osu' => 'osu!',

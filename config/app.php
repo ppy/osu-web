@@ -89,6 +89,7 @@ return [
         'nl',
         'pl',
         'pt-br',
+        'zh',
     ],
 
     /*
@@ -132,7 +133,7 @@ return [
     |
     */
 
-    'log' => env('APP_LOG', 'daily'),
+    'log' => env('APP_LOG', 'single'),
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
@@ -184,9 +185,9 @@ return [
         Maknz\Slack\SlackServiceProvider::class,
         Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
         Shift31\LaravelElasticsearch\ElasticsearchServiceProvider::class,
-        League\StatsD\Laravel5\Provider\StatsdServiceProvider::class,
         Lord\Laroute\LarouteServiceProvider::class,
         Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -202,6 +203,9 @@ return [
 
         App\Providers\AuthServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
+
+        /* Datadog Metrics */
+        ChaseConey\LaravelDatadogHelper\LaravelDatadogHelperServiceProvider::class,
     ],
 
     /*
@@ -250,16 +254,16 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        'Form' => 'Collective\Html\FormFacade',
-        'Html' => 'Collective\Html\HtmlFacade',
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
-        'Markdown' => 'GrahamCampbell\Markdown\Facades\Markdown',
-        'GitHub' => 'GrahamCampbell\GitHub\Facades\GitHub',
+        'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
+        'GitHub' => GrahamCampbell\GitHub\Facades\GitHub::class,
 
-        'Slack' => 'Maknz\Slack\Facades\Slack',
-        'Statsd' => 'League\StatsD\Laravel5\Facade\StatsdFacade',
-        'Authorizer' => 'LucaDegasperi\OAuth2Server\Facades\Authorizer',
+        'Slack' => Maknz\Slack\Facades\Slack::class,
+        'Authorizer' => LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
         'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
+        'Datadog' => ChaseConey\LaravelDatadogHelper\Datadog::class,
     ],
 
 ];

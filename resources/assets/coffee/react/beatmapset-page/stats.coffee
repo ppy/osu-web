@@ -16,42 +16,36 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span, table, tbody, td, th, tr} = React.DOM
+{a, div, span, table, tbody, td, th, tr} = React.DOM
 el = React.createElement
 
 class BeatmapsetPage.Stats extends React.Component
-  componentDidMount: ->
+  constructor: (props) ->
+    super props
+
+    @state =
+      preview: 'ended'
+      previewDuration: 0
+
+
+  componentDidMount: =>
     @_renderChart()
+
+    $.subscribe 'osuAudio:initializing.beatmapsetPageStats', @previewInitializing
+    $.subscribe 'osuAudio:playing.beatmapsetPageStats', @previewStart
+    $.subscribe 'osuAudio:ended.beatmapsetPageStats', @previewStop
+
 
   componentWillUnmount: =>
     $(window).off '.beatmapsetPageStats'
+    $.unsubscribe '.beatmapsetPageStats'
 
-  componentDidUpdate: ->
+
+  componentDidUpdate: =>
     @_renderChart()
 
-  _renderChart: ->
-    data = [
-      {values: @props.beatmapset.ratings[1..]}
-    ]
 
-    unless @_ratingChart
-      options =
-        scales:
-          x: d3.scale.linear()
-          y: d3.scale.linear()
-        modifiers: ['beatmapset-rating']
-
-      @_ratingChart = new StackedBarChart @refs.chartArea, options
-      $(window).on 'throttled-resize.beatmapsetPageStats', @_ratingChart.resize
-
-    @_ratingChart.loadData data
-
-  togglePreview: (e) =>
-    $.publish 'beatmapset:preview:toggle', !@props.isPreviewPlaying
-
-  render: ->
-    audioPreview = document.getElementsByClassName('js-beatmapset-page--audio-preview')[0]
-
+  render: =>
     ratingsPositive = 0
     ratingsNegative = 0
 
@@ -62,21 +56,19 @@ class BeatmapsetPage.Stats extends React.Component
     ratingsAll = ratingsPositive + ratingsNegative
 
     div className: 'beatmapset-stats',
-      div
-        className: "beatmapset-stats__row beatmapsets-stats__row beatmapset-stats__row--preview"
-        onClick: @togglePreview
-        div
-          className: 'beatmapset-stats__preview-icon'
-          el Icon, name: if @props.isPreviewPlaying then 'stop' else 'play'
+      a
+        href: '#'
+        className: "beatmapset-stats__row beatmapsets-stats__row beatmapset-stats__row--preview js-audio--play"
+        'data-audio-url': @props.beatmapset.previewUrl
+        el Icon,
+          name: if @state.preview == 'ended' then 'play' else 'stop'
+          parentClass: 'beatmapset-stats__preview-icon'
 
         div
           className: 'beatmapset-stats__elapsed-bar'
-          style: if @props.isPreviewPlaying
-            transitionDuration: "#{audioPreview.duration}s"
-            width: '100%'
-          else
-            transitionDuration: '0s'
-            width: '0%'
+          style:
+            transitionDuration: "#{@state.previewDuration}s"
+            width: "#{if @state.preview == 'playing' then '100%' else 0}"
 
       div className: 'beatmapset-stats__row beatmapset-stats__row--basic',
         el BeatmapBasicStats,
@@ -104,7 +96,7 @@ class BeatmapsetPage.Stats extends React.Component
 
               tr
                 key: stat
-                th className: 'beatmap-stats-table__label', osu.trans "beatmaps.beatmapset.show.stats.#{stat}"
+                th className: 'beatmap-stats-table__label', osu.trans "beatmapsets.show.stats.#{stat}"
                 td className: 'beatmap-stats-table__bar',
                   div className: "bar bar--beatmap-stats bar--beatmap-stats-#{stat}",
                     div
@@ -113,20 +105,67 @@ class BeatmapsetPage.Stats extends React.Component
                         width: "#{10 * Math.min 10, value}%"
                 td className: 'beatmap-stats-table__value', valueText
 
-      div className: 'beatmapset-stats__row beatmapset-stats__row--rating',
-        div className: 'beatmapset-stats__rating-header', osu.trans 'beatmaps.beatmapset.show.stats.user-rating'
-        div className: 'bar--beatmap-rating',
+      if @props.beatmapset.has_scores
+        div className: 'beatmapset-stats__row beatmapset-stats__row--rating',
+          div className: 'beatmapset-stats__rating-header', osu.trans 'beatmapsets.show.stats.user-rating'
+          div className: 'bar--beatmap-rating',
+            div
+              className: 'bar__fill'
+              style:
+                width: "#{(ratingsNegative / ratingsAll) * 100}%"
+
+          div className: 'beatmapset-stats__rating-values',
+            span null, ratingsNegative.toLocaleString()
+            span null, ratingsPositive.toLocaleString()
+
+          div className: 'beatmapset-stats__rating-header', osu.trans 'beatmapsets.show.stats.rating-spread'
+
           div
-            className: 'bar__fill'
-            style:
-              width: "#{(ratingsNegative / ratingsAll) * 100}%"
+            className: 'beatmapset-stats__rating-chart'
+            ref: 'chartArea'
 
-        div className: 'beatmapset-stats__rating-values',
-          span null, ratingsNegative.toLocaleString()
-          span null, ratingsPositive.toLocaleString()
 
-        div className: 'beatmapset-stats__rating-header', osu.trans 'beatmaps.beatmapset.show.stats.rating-spread'
+  previewInitializing: (_e, {url, player}) =>
+    if url != @props.beatmapset.previewUrl
+      return @previewStop()
 
-        div
-          className: 'beatmapset-stats__rating-chart'
-          ref: 'chartArea'
+    @setState
+      preview: 'initializing'
+      previewDuration: 0
+
+
+  previewStart: (_e, {url, player}) =>
+    if url != @props.beatmapset.previewUrl
+      return @previewStop()
+
+    @setState
+      preview: 'playing'
+      previewDuration: player.duration
+
+
+  previewStop: =>
+    return if @state.preview == 'ended'
+
+    @setState
+      preview: 'ended'
+      previewDuration: 0
+
+
+  _renderChart: ->
+    return if !@props.beatmapset.has_scores
+
+    data = [
+      {values: @props.beatmapset.ratings[1..]}
+    ]
+
+    unless @_ratingChart
+      options =
+        scales:
+          x: d3.scaleLinear()
+          y: d3.scaleLinear()
+        modifiers: ['beatmapset-rating']
+
+      @_ratingChart = new StackedBarChart @refs.chartArea, options
+      $(window).on 'throttled-resize.beatmapsetPageStats', @_ratingChart.resize
+
+    @_ratingChart.loadData data

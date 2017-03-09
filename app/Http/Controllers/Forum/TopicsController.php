@@ -69,29 +69,61 @@ class TopicsController extends Controller
             new TopicCoverTransformer()
         );
 
-        return view('forum.topics.create', compact('forum', 'cover'));
+        $post = new Post([
+            'post_text' => Request::old('body'),
+            'user' => Auth::user(),
+            'post_time' => Carbon::now(),
+        ]);
+
+        return view('forum.topics.create', compact('forum', 'cover', 'post'));
     }
 
-    public function lock($id)
+    public function issueTag($id)
     {
         $topic = Topic::findOrFail($id);
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
 
-        $state = get_bool(Request::input('lock'));
-        $topic->lock($state);
+        $issueTag = presence(Request::input('issue_tag'));
+        $state = get_bool(Request::input('state'));
+        $type = 'issue_tag_'.$issueTag;
+
+        if ($issueTag === null || !$topic->isIssue() || !in_array($issueTag, $topic::ISSUE_TAGS, true)) {
+            abort(422);
+        }
+
+        $this->logModerate('LOG_ISSUE_TAG', compact('issueTag', 'state'), $topic);
+
+        $method = $state ? 'setIssueTag' : 'unsetIssueTag';
+
+        $topic->$method($issueTag);
+
+        return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
+    }
+
+    public function lock($id)
+    {
+        $topic = Topic::withTrashed()->findOrFail($id);
+
+        priv_check('ForumTopicModerate', $topic)->ensureCan();
+
         $type = 'lock';
+        $state = get_bool(Request::input('lock'));
+        $this->logModerate($state ? 'LOG_LOCK' : 'LOG_UNLOCK', [$topic->topic_title], $topic);
+        $topic->lock($state);
 
         return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
     }
 
     public function move($id)
     {
-        $topic = Topic::findOrFail($id);
+        $topic = Topic::withTrashed()->findOrFail($id);
+        $originForum = $topic->forum;
         $destinationForum = Forum::findOrFail(Request::input('destination_forum_id'));
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
 
+        $this->logModerate('LOG_MOVE', [$forum->forum_name], $topic);
         if ($topic->moveTo($destinationForum)) {
             return js_view('layout.ujs-reload');
         } else {
@@ -101,35 +133,16 @@ class TopicsController extends Controller
 
     public function pin($id)
     {
-        $topic = Topic::findOrFail($id);
+        $topic = Topic::withTrashed()->findOrFail($id);
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
 
-        $state = get_bool(Request::input('pin'));
-        $topic->pin($state);
         $type = 'moderate_pin';
+        $state = get_bool(Request::input('pin'));
+        $this->logModerate($state ? 'LOG_PIN' : 'LOG_UNPIN', [$topic->topic_title], $topic);
+        $topic->pin($state);
 
         return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
-    }
-
-    public function preview()
-    {
-        $forum = Forum::findOrFail(Request::input('forum_id'));
-
-        priv_check('ForumTopicStore', $forum)->ensureCan();
-
-        $post = new Post([
-            'post_text' => Request::input('body'),
-            'user' => Auth::user(),
-            'post_time' => Carbon::now(),
-        ]);
-
-        $options = [
-            'overlay' => true,
-            'signature' => $forum->enable_sigs,
-        ];
-
-        return view('forum.topics._post', compact('post', 'options'));
     }
 
     public function reply(HttpRequest $request, $id)
@@ -146,12 +159,12 @@ class TopicsController extends Controller
 
         if ($post->post_id !== null) {
             $posts = collect([$post]);
-            $postsPosition = $topic->postsPosition($posts);
+            $firstPostPosition = $topic->postPosition($post->post_id);
 
             Event::fire(new TopicWasReplied($topic, $post, Auth::user()));
             Event::fire(new TopicWasViewed($topic, $post, Auth::user()));
 
-            return view('forum.topics._posts', compact('posts', 'postsPosition', 'topic'));
+            return view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
         }
     }
 
@@ -163,13 +176,14 @@ class TopicsController extends Controller
         $skipLayout = Request::input('skip_layout') === '1';
         $jumpTo = null;
 
+        $showDeleted = priv_check('ForumTopicModerate')->can();
+
         $topic = Topic
             ::with([
                 'forum.cover',
                 'pollOptions.votes',
                 'pollOptions.post',
-            ])
-            ->findOrFail($id);
+            ])->showDeleted($showDeleted)->findOrFail($id);
 
         if ($topic->forum === null) {
             abort(404);
@@ -177,7 +191,7 @@ class TopicsController extends Controller
 
         priv_check('ForumView', $topic->forum)->ensureCan();
 
-        $posts = $topic->posts();
+        $posts = $topic->posts()->showDeleted($showDeleted);
 
         if ($postStartId === 'unread') {
             $postStartId = Post::lastUnreadByUser($topic, Auth::user());
@@ -233,11 +247,23 @@ class TopicsController extends Controller
             abort($skipLayout ? 204 : 404);
         }
 
-        $postsPosition = $topic->postsPosition($posts);
+        $firstPostId = $topic->posts()
+            ->showDeleted($showDeleted)
+            ->min('post_id');
+
+        $firstShownPostId = $posts->first()->post_id;
+
+        // position of the first post, incremented in the view
+        // to generate positions of further posts
+        $firstPostPosition = $topic->postPosition($firstShownPostId);
 
         $pollSummary = PollOption::summary($topic, Auth::user());
 
-        Event::fire(new TopicWasViewed($topic, $posts->last(), Auth::user()));
+        Event::fire(new TopicWasViewed(
+            $topic,
+            $posts->last(),
+            Auth::user()
+        ));
 
         $template = $skipLayout ? '_posts' : 'show';
 
@@ -256,7 +282,8 @@ class TopicsController extends Controller
                 'jumpTo',
                 'pollSummary',
                 'posts',
-                'postsPosition',
+                'firstPostPosition',
+                'firstPostId',
                 'topic'
             )
         );
@@ -305,20 +332,6 @@ class TopicsController extends Controller
         } else {
             abort(422);
         }
-    }
-
-    public function unwatchMulti()
-    {
-        $topicIds = explode(',', Request::input('topic_ids'));
-        $topics = Topic::whereIn('topic_id', $topicIds);
-
-        $unwatchTopics = $topics->get()->filter(function ($t) {
-            return priv_check('ForumTopicWatchRemove', $t)->can();
-        });
-
-        TopicWatch::remove($unwatchTopics, Auth::user());
-
-        return ['message' => trans('forum.topics.watch.watched-0')];
     }
 
     public function vote($topicId)

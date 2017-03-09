@@ -20,7 +20,6 @@
 
 namespace App\Models\Forum;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
 
 class TopicWatch extends Model
@@ -73,6 +72,6 @@ class TopicWatch extends Model
 
     public function topic()
     {
-        return $this->belongsTo(Topic::class);
+        return $this->belongsTo(Topic::class, 'topic_id');
     }
 }

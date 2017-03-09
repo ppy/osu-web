@@ -24,7 +24,7 @@ class @RadarChart
       bottom: 0
       left: 30
 
-    @options.scale ||= d3.scale.linear()
+    @options.scale ||= d3.scaleLinear()
 
     @area = d3.select area
     @svg = @area.append 'svg'
@@ -151,7 +151,7 @@ class @RadarChart
       y: y
 
   drawArea: (animateArea) ->
-    line = d3.svg.line()
+    line = d3.line()
       .x (d) -> d.x
       .y (d) -> d.y
       .interpolate 'linear-closed'

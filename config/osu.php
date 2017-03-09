@@ -59,6 +59,7 @@ return [
     'twitch_client_id' => env('TWITCH_CLIENT_ID'),
     'urls' => [
         'base' => 'https://osu.ppy.sh',
+        'dev' => 'https://discord.gg/ppy',
         'smilies' => '/forum/images/smilies',
         'support-the-game' => '/p/support#transactionarea',
 

@@ -93,69 +93,6 @@ return [
         'source' => 'pochodzi z :source',
         'load-more' => 'Załaduj więcej...',
     ],
-    'beatmapset' => [
-        'show' => [
-            'details' => [
-                'made-by' => 'stworzony przez ',
-                'submitted' => 'dodana ',
-                'ranked' => 'rankingowa od ',
-                'logged-out' => 'Musisz się zalogować, aby pobierać beatmapy!',
-                'download' => [
-                    '_' => 'pobierz',
-                    'video' => 'z wideo',
-                    'no-video' => 'bez wideo',
-                    'direct' => 'osu!direct',
-                ],
-            ],
-            'stats' => [
-                //this is left intentionally in english, you can't translate these so it sounds normal
-                'cs' => 'Circle Size',
-                'cs-mania' => 'Key Amount',
-                'drain' => 'HP Drain',
-                'accuracy' => 'Accuracy',
-                'ar' => 'Approach Rate',
-                'stars' => 'Trudność',
-                'total_length' => 'Długość',
-                'bpm' => 'BPM',
-                'count_circles' => 'Ilość kółek',
-                'count_sliders' => 'Ilość sliderów',
-            ],
-            'info' => [
-                'success-rate' => 'Wskaźnik sukcesu',
-                'points-of-failure' => 'Wykres',
-
-                'description' => 'Opis',
-
-                'source' => 'Źródło',
-                'tags' => 'Tagi',
-            ],
-            'scoreboard' => [
-                'title' => 'Tablica wyników',
-                'no-scores' => [
-                    'global' => 'Brak wyników. Może powinieneś jakieś zdobyć?',
-                    'loading' => 'Ładowanie wyników...',
-                    'country' => 'Nikt z twojego kraju nie ustanowił tutaj wyniku!',
-                    'friend' => 'Żaden z twoich znajomych nie ma tutaj wyniku!',
-                ],
-                'supporter-only' => 'Musisz być supporterem, aby uzyskać dostęp do rankingu krajowego i znajomych!',
-                'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, co jeszcze otrzymujesz w zamian za bycie supporterem!',
-                'global' => 'Ranking globalny',
-                'country' => 'Ranking krajowy',
-                'friend' => 'Ranking znajomych',
-                'achieved' => 'osiągnięty :when',
-                'stats' => [
-                    'accuracy' => 'Celność',
-                    'score' => 'Wynik',
-                ],
-                'list' => [
-                    'rank-header' => 'Miejsce',
-                    'player-header' => 'Gracz',
-                    'score' => 'Wynik',
-                    'accuracy' => 'Celność',
-                ],
-            ],
-        ],
-    ],
     'mode' => [
         'any' => 'Jakikolwiek',
         'osu' => 'osu!',

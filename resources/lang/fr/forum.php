@@ -180,7 +180,7 @@ return [
 
                 'user' => [
                     'current' => 'Il vous reste :votes.',
-                    'count' => '{0} pas de vote|{1} :count vote|[2,Inf] :count votes',
+                    'count' => '{0} pas de vote|{1} :count vote|[2,*] :count votes',
                     'not_enough' => "Vous n'avez plus de votes disponibles",
                 ],
             ],

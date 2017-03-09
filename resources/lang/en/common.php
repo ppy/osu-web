@@ -38,6 +38,13 @@ return [
         'item' => ':count unit|:count units',
     ],
 
+    'device' => [
+        'keyboard' => 'Keyboard',
+        'mouse' => 'Mouse',
+        'tablet' => 'Tablet',
+        'touch' => 'Touch Screen',
+    ],
+
     'dropzone' => [
         'target' => 'drop here to upload',
     ],
@@ -45,6 +52,15 @@ return [
     'pagination' => [
         'previous' => 'prev',
         'next' => 'next',
+    ],
+
+    'score_count' => [
+        'count100' => '100',
+        'count300' => '300',
+        'count50' => '50',
+        'countgeki' => 'MAX',
+        'countkatu' => '200',
+        'countmiss' => 'Miss',
     ],
 
     'time' => [

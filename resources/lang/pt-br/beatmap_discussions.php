@@ -22,14 +22,14 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => 'Você precisa iniciar a sessão para editar.',
-            'system_generated' => 'Publicações gerados pelo sistema não podem ser editadas.',
+            'system_generated' => 'Publicações geradas pelo sistema não podem ser editadas.',
             'wrong_user' => 'Você deve ser o autor da publicação para editá-la.',
         ],
     ],
 
     'system' => [
         'resolved' => [
-            'true' => 'Marcado como resolvido por :user',
+            'true' => 'Marcada como resolvida por :user',
             'false' => 'Reaberta por :user',
         ],
     ],

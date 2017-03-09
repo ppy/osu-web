@@ -24,7 +24,7 @@ return [
             // size in font-size
             'big_description' => 'Love osu!?<br/>
                                 Support the osu! dev :D',
-            'small_description' => '',
+            'small_description' => 'Smaller description!',
             'support_button' => 'I want to support osu!',
         ],
 
@@ -125,26 +125,5 @@ return [
             'gift' => 'or gift support to other players',
             'instructions' => 'click the heart button to proceed to the osu!store',
         ],
-    ],
-    'slack' => [
-        'header' => [
-            'small' => 'osu!dev',
-            'large' => 'osu!public Slack Access',
-        ],
-
-        'disabled' => 'The public slack community is temporarily unavailable. If you wish to reach out, please create an issue on the appropriate <a href="https://github.com/ppy">github repository</a> or contact us at <a href="mailto::mail">:mail</a>.',
-
-        'guest-begin' => 'You need to be ',
-        'guest-middle' => 'logged in',
-        'guest-end' => ' to receive a slack invite!',
-
-        'receive-invite' => 'You can receive an invite for the public osu! slack network here.',
-        'bullet-points' => 'Please read thoroughly through the conditions on <a href=":link">this post.</a><br />Please note that any offences on your account will not be tolerated.',
-
-        'recent-issues' => 'Your account has recent issues. Please <a href="mailto::mail">contact support</a> for more details.',
-        'agree-button' => 'Agree',
-
-        'accepted' => 'Your request has been accepted. You should receive an email soon.',
-        'invite-already-accepted' => 'You already have a slack account! If you have issues, <a href="mailto::mail">contact support.</a>',
     ],
 ];

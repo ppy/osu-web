@@ -21,21 +21,21 @@ use App\Models\Forum\Topic;
 
 class TopicTest extends TestCase
 {
-    public function testIssues()
+    public function testIssueTags()
     {
         $topic = new Topic();
         $topic->forum_id = config('osu.forum.help_forum_ids')[0];
 
         $topic->topic_title = '[invalid] herp a derp';
-        $this->assertEquals(['invalid'], $topic->issues());
+        $this->assertEquals(['invalid'], $topic->issueTags());
     }
 
-    public function testIssuesWithKeywordAsTitle()
+    public function testIssueTagsWithKeywordAsTitle()
     {
         $topic = new Topic();
         $topic->forum_id = config('osu.forum.help_forum_ids')[0];
 
         $topic->topic_title = 'invalid herp a derp';
-        $this->assertEquals([], $topic->issues());
+        $this->assertEquals([], $topic->issueTags());
     }
 }

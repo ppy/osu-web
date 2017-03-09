@@ -25,6 +25,7 @@ use App\Models\BanchoStats;
 use App\Models\Count;
 use App\Models\News;
 use App\Models\Beatmapset;
+use App\Models\Forum\Post;
 use Auth;
 use Request;
 use View;
@@ -32,6 +33,13 @@ use View;
 class HomeController extends Controller
 {
     protected $section = 'home';
+
+    public function bbcodePreview()
+    {
+        $post = new Post(['post_text' => Request::input('text')]);
+
+        return $post->bodyHTML;
+    }
 
     public function getChangelog()
     {

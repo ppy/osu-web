@@ -43,6 +43,7 @@ class Kernel extends HttpKernel
         Middleware\UpdateUserLastvisit::class,
         \Clockwork\Support\Laravel\ClockworkMiddleware::class,
         Middleware\TurbolinksSupport::class,
+        \ChaseConey\LaravelDatadogHelper\Middleware\LaravelDatadogMiddleware::class,
     ];
 
     protected $middlewareGroups = [

@@ -19,20 +19,6 @@
 class @AccountEdit
   constructor: ->
     $(document).on 'input', '.js-account-edit__input', @initializeUpdate
-    $(document).on 'focus', '.js-account-edit__input', @focus
-    $(document).on 'blur', '.js-account-edit__input', @blur
-
-
-  blur: (e) =>
-    $(e.currentTarget)
-      .closest('.js-account-edit')
-      .removeClass 'js-account-edit--focus'
-
-
-  focus: (e) =>
-    $(e.currentTarget)
-      .closest('.js-account-edit')
-      .addClass 'js-account-edit--focus'
 
 
   initializeUpdate: (e) =>

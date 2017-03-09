@@ -80,63 +80,6 @@ return [
         'source' => 'de :source',
         'load-more' => 'Cargar más...',
     ],
-    'beatmapset' => [
-        'show' => [
-            'details' => [
-                'made-by' => 'creado por ',
-                'submitted' => 'enviado el ',
-                'ranked' => 'rankeado el ',
-                'logged-out' => '¡Necesitas iniciar sesión para descargar beatmaps!',
-                'download' => [
-                    '_' => 'descargar',
-                    'direct' => 'osu!direct',
-                    'no-video' => 'sin video',
-                ],
-            ],
-            'stats' => [
-                'cs' => 'Tamaño de círculo',
-                'drain' => 'Disminución de HP',
-                'accuracy' => 'Precisión',
-                'ar' => 'Velocidad de aproximación',
-                'stars' => 'Estrellas de Dificultad',
-                'total_length' => 'Duración',
-                'bpm' => 'BPM',
-            ],
-            'info' => [
-                'success-rate' => 'Tasa de éxito',
-                'points-of-failure' => 'Puntos de Fracaso',
-
-                'description' => 'Descripción',
-
-                'source' => 'Fuente',
-                'tags' => 'Etiquetas',
-            ],
-            'scoreboard' => [
-                'title' => 'Puntuaciones',
-                'no-scores' => [
-                    'global' => 'Sin puntuaciones aún. ¿Tal vez deberías intentar marcar alguna?',
-                    'loading' => 'Cargando puntuaciones...',
-                    'country' => '¡Nadie de tu país ha marcado una puntuación en este mapa aún!',
-                    'friend' => '¡Ninguno de tus amigos ha marcado una puntuación en este mapa aún!',
-                ],
-                'supporter-only' => '¡Necesitas ser supporter para acceder a los rankings entre amigos y de tu país!',
-                'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
-                'global' => 'Ranking Global',
-                'country' => 'Ranking Nacional',
-                'friend' => 'Ranking de Amigos',
-                'stats' => [
-                    'accuracy' => 'Precisión',
-                    'score' => 'Puntuación',
-                ],
-                'list' => [
-                    'rank-header' => 'Rango',
-                    'player-header' => 'Jugador',
-                    'score' => 'Puntuación',
-                    'accuracy' => 'Precisión',
-                ],
-            ],
-        ],
-    ],
     'mode' => [
         'any' => 'Cualquiera',
         'osu' => 'osu!',

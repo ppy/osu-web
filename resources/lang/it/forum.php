@@ -178,7 +178,7 @@ return [
 
                 'user' => [
                     'current' => 'Hai :votes rimanenti.',
-                    'count' => '{0} nessun voto|{1} :count voto|[2,Inf] :count voti',
+                    'count' => '{0} nessun voto|{1} :count voto|[2,*] :count voti',
                     'not_enough' => 'Non hai altri voti rimanenti',
                 ],
             ],

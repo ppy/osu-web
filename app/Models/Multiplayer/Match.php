@@ -22,7 +22,6 @@ namespace App\Models\Multiplayer;
 
 class Match extends Model
 {
-    protected $table = 'matches';
     protected $primaryKey = 'match_id';
     protected $hidden = ['private', 'keep_forever'];
     protected $dates = [
@@ -33,12 +32,12 @@ class Match extends Model
 
     public function games()
     {
-        return $this->hasMany(Game::class);
+        return $this->hasMany(Game::class, 'match_id');
     }
 
     public function events()
     {
-        return $this->hasMany(Event::class);
+        return $this->hasMany(Event::class, 'match_id');
     }
 
     public function currentPlayers()

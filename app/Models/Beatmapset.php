@@ -29,7 +29,6 @@ use Cache;
 use Carbon\Carbon;
 use DB;
 use Es;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
 
 class Beatmapset extends Model
@@ -181,6 +180,11 @@ class Beatmapset extends Model
     public function isQualified()
     {
         return $this->approved === self::STATES['qualified'];
+    }
+
+    public function hasScores()
+    {
+        return $this->attributes['approved'] > 0;
     }
 
     private static function sanitizeSearchParams(array &$params = [])
@@ -460,63 +464,6 @@ class Beatmapset extends Model
         return self::search();
     }
 
-    public function comments($time = null)
-    {
-        $mods = Mod::query()
-            ->where('beatmapset_id', '=', $this->beatmapset_id)
-            ->whereNull('parent_item_id')
-            ->orderBy('created_at', 'desc');
-
-        if ($time) {
-            $mods = $mods->where(function ($query) use ($time) {
-                $query->where(DB::raw('UNIX_TIMESTAMP(`created_at`)'), '>', $time);
-                $query->orWhere(DB::raw('UNIX_TIMESTAMP(`updated_at`)'), '>', $time);
-            })
-            ->withTrashed();
-        }
-
-        $mods = $mods->get()->load('creator');
-
-        $new = [];
-
-        foreach ($mods as $mod) {
-            $new[$mod->item_id] = $mod->toArray();
-        }
-
-        return $new;
-    }
-
-    public function replies($time = null)
-    {
-        $replies = Mod::query()
-                ->whereNotNull('parent_item_id')
-                ->where('beatmapset_id', '=', $this->beatmapset_id)
-                ->orderBy('created_at', 'asc');
-
-        if ($time) {
-            // also grab soft-deleted posts
-            $replies = $replies->where(function ($query) use ($time) {
-                $query->where(DB::raw('UNIX_TIMESTAMP(`created_at`)'), '>', $time);
-                $query->orWhere(DB::raw('UNIX_TIMESTAMP(`updated_at`)'), '>', $time);
-            })
-            ->withTrashed();
-        }
-
-        $replies = $replies->get()->load('creator');
-
-        $new = [];
-
-        foreach ($replies as $reply) {
-            if (!isset($new[$reply->parent_item_id])) {
-                $new[$reply->parent_item_id] = [];
-            }
-
-            $new[$reply->parent_item_id][$reply->item_id] = $reply->toArray();
-        }
-
-        return $new;
-    }
-
     public static function coverSizes()
     {
         $shapes = ['cover', 'card', 'list'];
@@ -640,23 +587,22 @@ class Beatmapset extends Model
             }
 
             $bgFile = ci_file_search("{$workingFolder}/{$bgFilename}");
-            if (!$bgFile) {
-                throw new BeatmapProcessorException("Background image missing: {$bgFile}");
-            }
 
-            $processor = new ImageProcessorService($tmpBase);
+            if ($bgFile !== false) {
+                $processor = new ImageProcessorService($tmpBase);
 
-            // upload original image
-            $this->storeCover('raw.jpg', $bgFile);
+                // upload original image
+                $this->storeCover('raw.jpg', $bgFile);
 
-            // upload optimized version
-            $optimized = $processor->optimize($this->coverURL('raw'));
-            $this->storeCover('fullsize.jpg', $optimized);
+                // upload optimized version
+                $optimized = $processor->optimize($this->coverURL('raw'));
+                $this->storeCover('fullsize.jpg', $optimized);
 
-            // use thumbnailer to generate and upload all our variants
-            foreach (self::coverSizes() as $size) {
-                $resized = $processor->resize($this->coverURL('fullsize'), $size);
-                $this->storeCover("$size.jpg", $resized);
+                // use thumbnailer to generate and upload all our variants
+                foreach (self::coverSizes() as $size) {
+                    $resized = $processor->resize($this->coverURL('fullsize'), $size);
+                    $this->storeCover("$size.jpg", $resized);
+                }
             }
 
             $this->update(['cover_updated_at' => $this->freshTimestamp()]);
@@ -802,7 +748,7 @@ class Beatmapset extends Model
 
     public function events()
     {
-        return $this->hasMany(BeatmapsetEvent::class);
+        return $this->hasMany(BeatmapsetEvent::class, 'beatmapset_id');
     }
 
     public function requiredNominationCount()
@@ -863,24 +809,19 @@ class Beatmapset extends Model
         return $this->hasMany(Beatmap::class, 'beatmapset_id')->default();
     }
 
-    public function mods()
-    {
-        return $this->hasMany("App\Models\Mod", 'beatmapset_id', 'beatmapset_id');
-    }
-
     public function user()
     {
-        return $this->belongsTo("App\Models\User", 'user_id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function approver()
     {
-        return $this->belongsTo("App\Models\User", 'user_id', 'approvedby_id');
+        return $this->belongsTo(User::class, 'user_id', 'approvedby_id');
     }
 
     public function userRatings()
     {
-        return $this->hasMany(BeatmapsetUserRating::class);
+        return $this->hasMany(BeatmapsetUserRating::class, 'beatmapset_id');
     }
 
     public function ratingsCount()
@@ -905,7 +846,7 @@ class Beatmapset extends Model
 
     public function favourites()
     {
-        return $this->hasMany(FavouriteBeatmapset::class);
+        return $this->hasMany(FavouriteBeatmapset::class, 'beatmapset_id');
     }
 
     public function description()

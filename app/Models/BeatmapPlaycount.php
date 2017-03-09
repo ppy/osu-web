@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class BeatmapPlaycount extends Model
 {
     protected $table = 'osu_user_beatmap_playcount';
@@ -30,11 +28,11 @@ class BeatmapPlaycount extends Model
 
     public function beatmap()
     {
-        return $this->belongsTo(Beatmap::class);
+        return $this->belongsTo(Beatmap::class, 'beatmap_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

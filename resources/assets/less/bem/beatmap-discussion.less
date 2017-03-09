@@ -51,12 +51,14 @@
 
   &__discussion {
     .default-box-shadow();
+    .default-border-radius();
 
     flex: 1;
     min-width: 0;
     margin: 5px 0;
     display: flex;
     flex-direction: column;
+    background-color: #fff;
 
     .@{_top}--highlighted & {
       .thicker-box-shadow();
@@ -75,6 +77,8 @@
     width: 5px;
     height: 100%;
 
+    border-radius: @border-radius-base 0 0 @border-radius-base;
+
     &--resolved {
       background-color: @green;
     }
@@ -84,7 +88,6 @@
     .inner-shadow-top();
     display: flex;
     flex-direction: column;
-    background-color: @gray-5;
   }
 
   &__resolved {

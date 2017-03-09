@@ -22,6 +22,12 @@ el = React.createElement
 ProfilePage.Beatmaps = React.createClass
   mixins: [React.addons.PureRenderMixin]
 
+
+  getInitialState: ->
+    visible_favourite: 6
+    visible_ranked_and_approved: 6
+
+
   render: ->
     allBeatmapsets =
       favourite: @props.favouriteBeatmapsets
@@ -30,17 +36,35 @@ ProfilePage.Beatmaps = React.createClass
     div
       className: 'page-extra'
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
-      _.map allBeatmapsets, (beatmapsets, section) =>
+      for own section, beatmapsets of allBeatmapsets
         div
           key: section
-          h3 className: 'page-extra__title--small', osu.trans("users.show.extra.beatmaps.#{section}.title", count: beatmapsets.length)
-          if beatmapsets.length
-            div className: 'beatmap-container',
-              div className: 'listing osu-layout__col-container osu-layout__col-container--with-gutter',
-                beatmapsets.map (beatmapset) =>
-                  div
-                    key: beatmapset.id
-                    className: 'osu-layout__col osu-layout__col--sm-6'
-                    el BeatmapsetPanel, beatmap: beatmapset
+          h3
+            className: 'page-extra__title page-extra__title--small'
+            osu.trans("users.show.extra.beatmaps.#{section}.title", count: beatmapsets.length)
+
+          if beatmapsets.length > 0
+            div className: 'osu-layout__col-container osu-layout__col-container--with-gutter',
+              for beatmapset in beatmapsets.slice(0, @state["visible_#{section}"])
+                div
+                  key: beatmapset.id
+                  className: 'osu-layout__col osu-layout__col--sm-6'
+                  el BeatmapsetPanel, beatmap: beatmapset
+
+              if beatmapsets.length > @state["visible_#{section}"]
+                div
+                  className: 'osu-layout__col text-center',
+                  a
+                    href: '#'
+                    onClick: @_showMore
+                    'data-section': section
+                    osu.trans('common.buttons.show_more')
           else
             p className: 'page-extra-entries', osu.trans('users.show.extra.beatmaps.none')
+
+
+  _showMore: (e) ->
+    e.preventDefault()
+
+    key = e.currentTarget.dataset.section
+    @setState "visible_#{key}": (@state["visible_#{key}"] + 10)

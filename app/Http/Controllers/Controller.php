@@ -20,10 +20,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Log;
+use Auth;
+use Carbon\Carbon;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Request;
 
 abstract class Controller extends BaseController
 {
@@ -43,5 +47,14 @@ abstract class Controller extends BaseController
     protected function formatValidationErrors(Validator $validator)
     {
         return ['validation_error' => $validator->errors()->getMessages()];
+    }
+
+    protected function log($params)
+    {
+        $params['user_id'] = Auth::user()->user_id ?? 0;
+        $params['log_ip'] = Request::ip();
+        $params['log_time'] = Carbon::now();
+
+        Log::log($params);
     }
 }

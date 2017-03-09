@@ -35,6 +35,13 @@ return [
         'item' => ':count objet|:count objets',
     ],
 
+    'device' => [
+        'keyboard' => 'Clavier',
+        'mouse' => 'Souris',
+        'tablet' => 'Tablette',
+        'touch' => 'Écran tactile',
+    ],
+
     'dropzone' => [
         'target' => 'déplacez ici pour uploader',
     ],
@@ -42,6 +49,15 @@ return [
     'pagination' => [
         'previous' => 'précédent',
         'next' => 'suivant',
+    ],
+
+    'score_count' => [
+        'count100' => '100',
+        'count300' => '300',
+        'count50' => '50',
+        'countgeki' => 'MAX',
+        'countkatu' => '200',
+        'countmiss' => 'Raté',
     ],
 
     'time' => [

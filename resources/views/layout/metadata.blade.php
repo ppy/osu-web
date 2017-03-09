@@ -21,6 +21,7 @@
 <meta name="description" content="{{ $pageDescription or trans('layout.defaults.page_description') }}">
 <meta name="keywords" content="osu, peppy, ouendan, elite, beat, agents, ds, windows, game, taiko, tatsujin, simulator, sim, xna, ddr, beatmania, osu!, osume">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#cc5288">
 
 <meta name="csrf-param" content="_token">
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -42,8 +43,9 @@
     var fallbackLocale = {!! json_encode(config('app.fallback_locale')) !!};
 </script>
 
+<script src="{{ elixir("js/vendor.js") }}" data-turbolinks-track="reload"></script>
 <script src="{{ elixir("js/app.js") }}" data-turbolinks-track="reload"></script>
-<script src="/vendor/js/timeago-locales/jquery.timeago.{{ Lang::getLocale() }}.js" data-turbolinks-track="reload"></script>
+<script src="/vendor/js/timeago-locales/jquery.timeago.{{ locale_for_timeago(Lang::getLocale()) }}.js" data-turbolinks-track="reload"></script>
 
 @if (isset($rss))
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{ $rss }}">

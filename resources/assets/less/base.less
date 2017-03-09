@@ -48,6 +48,14 @@ a {
   transition: color 80ms linear;
 }
 
+code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  border-radius: 0;
+}
+
 a.object_link
 {
   color: @gray !important;
@@ -187,7 +195,7 @@ select.form-control {
     box-shadow: 0 10px darken(@secondary, 10%), 0 7px 10px fade(#000, 80%);
   }
 
-  &:active {
+  &:active, &.active {
     transform: translate(0, 5px);
 
     background-color: darken(@main, 10%);

@@ -21,6 +21,10 @@
 return [
     'required' => ':attribute é obrigatório.',
 
+    'beatmap_discussion_post' => [
+        'first_post' => 'Não é possível excluir a publicação inicial.',
+    ],
+
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => 'Só é possível votar em uma solicitação de recurso.',
@@ -35,7 +39,7 @@ return [
             'duplicate_options' => 'Opção duplicada não é permitida.',
             'invalid_max_options' => 'Opção por usuário não pode exceder o número de opções disponíveis.',
             'minimum_one_selection' => 'Um mínimo de uma opção por usuário é necessária.',
-            'minimum_two' => 'Precisa de pelo menos duas opções.',
+            'minimum_two_options' => 'Precisa de pelo menos duas opções.',
             'too_many_options' => 'Excedeu o número máximo de opções permitidas.',
         ],
 

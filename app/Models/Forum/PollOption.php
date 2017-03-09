@@ -22,7 +22,6 @@ namespace App\Models\Forum;
 
 use App\Libraries\BBCodeForDB;
 use DB;
-use Illuminate\Database\Eloquent\Model;
 
 class PollOption extends Model
 {
@@ -43,7 +42,7 @@ class PollOption extends Model
 
     public function topic()
     {
-        return $this->belongsTo(Topic::class);
+        return $this->belongsTo(Topic::class, 'topic_id');
     }
 
     public function votes()

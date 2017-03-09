@@ -95,12 +95,12 @@ elixir(function(mix) {
     path.join(node_root, 'blueimp-file-upload/js/jquery.fileupload.js'),
     path.join(node_root, 'bootstrap/dist/js/bootstrap.js'),
     path.join(node_root, 'lodash/lodash.js'),
-    path.join(node_root, 'layzr.js/dist/layzr.min.js'),
+    path.join(node_root, 'layzr.js/dist/layzr.js'),
     path.join(node_root, 'react/dist/react-with-addons' + min + '.js'),
     path.join(node_root, 'react-dom/dist/react-dom' + min + '.js'),
     path.join(node_root, 'photoswipe/dist/photoswipe.js'),
     path.join(node_root, 'photoswipe/dist/photoswipe-ui-default.js'),
-    path.join(node_root, 'd3/d3.js'),
+    path.join(node_root, 'd3/build/d3' + min + '.js'),
     path.join(node_root, 'moment/moment.js'),
     path.join(node_root, 'slick-carousel/slick/slick.js'),
     path.join(node_root, 'js-cookie/src/js.cookie.js'),
@@ -108,7 +108,8 @@ elixir(function(mix) {
     path.join(node_root, 'react-height/build/react-height' + min + '.js'),
     path.join(node_root, 'react-motion/build/react-motion.js'),
     path.join(node_root, 'react-collapse/build/react-collapse' + min + '.js'),
-
+  ], 'public/js/vendor.js')
+  .scripts([
     'ga.js',
     'messages.js',
     'laroute.js',
@@ -122,10 +123,6 @@ elixir(function(mix) {
     'react/beatmaps/*.coffee',
     'react/beatmaps.coffee'
   ], 'public/js/react/beatmaps.js')
-  .coffee([
-    'react/slack-page/*.coffee',
-    'react/slack-page.coffee'
-  ], 'public/js/react/slack-page.js')
   .coffee([
     'react/status-page/*.coffee',
     'react/status-page.coffee'
@@ -157,9 +154,9 @@ elixir(function(mix) {
   .version([
     'css/app.css',
     'js/app.js',
+    'js/vendor.js',
     'js/react/profile-page.js',
     'js/react/beatmaps.js',
-    'js/react/slack-page.js',
     'js/react/status-page.js',
     'js/react/beatmap-discussions.js',
     'js/react/beatmapset-page.js',

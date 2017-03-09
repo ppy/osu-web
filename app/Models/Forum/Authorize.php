@@ -20,13 +20,13 @@
 
 namespace App\Models\Forum;
 
-use Illuminate\Database\Eloquent\Model;
-
 // temporary class until simpler acl is implemented
 class Authorize extends Model
 {
     protected $table = 'phpbb_acl_groups';
     public $timestamps = false;
+
+    protected $guarded = [];
 
     public static function aclCheck($user, $authOption, $forum)
     {
