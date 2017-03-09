@@ -187,19 +187,36 @@ abstract class Model extends BaseModel
             // FIXME: mysql 5.6 compat
             $newQuery->getQuery()->orders = null;
 
-            $counts = $newQuery
-                ->selectRaw('COUNT(*) rank_count, rank, user_id')
-                ->groupBy(['rank', 'user_id'])
+            $scores = $newQuery
+                ->select(['user_id', 'beatmap_id', 'score', 'rank'])
                 ->get();
 
             $result = [];
+            $counted = [];
 
-            foreach ($counts as $count) {
-                if (!isset($result[$count->user_id])) {
-                    $result[$count->user_id] = [];
+            foreach ($scores as $score) {
+                if (!isset($result[$score->user_id])) {
+                    $result[$score->user_id] = [];
                 }
 
-                $result[$count->user_id][$count->rank] = $count->rank_count;
+                $countedKey = "{$score->user_id}:{$score->beatmap_id}";
+
+                if (isset($counted[$countedKey])) {
+                    $countedScore = $counted[$countedKey];
+                    if ($countedScore->score < $score->score) {
+                        $result[$score->user_id][$countedScore->rank] -= 1;
+                        $counted[$countedKey] = $score;
+                    } else {
+                        continue;
+                    }
+                }
+                $counted[$countedKey] = $score;
+
+                if (!isset($result[$score->user_id][$score->rank])) {
+                    $result[$score->user_id][$score->rank] = 0;
+                }
+
+                $result[$score->user_id][$score->rank] += 1;
             }
 
             return $result;
