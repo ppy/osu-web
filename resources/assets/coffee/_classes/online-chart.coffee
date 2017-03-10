@@ -19,8 +19,8 @@
 class @OnlineChart
   constructor: (area, @options = {}) ->
     @options.scales ||= {}
-    @options.scales.x ||= d3.time.scale()
-    @options.scales.y ||= d3.scale.linear()
+    @options.scales.x ||= d3.scaleTime()
+    @options.scales.y ||= d3.scaleLinear()
 
     @area = d3.select(area)
 
@@ -32,8 +32,8 @@ class @OnlineChart
     @svgLine = @svgWrapper.append 'path'
       .classed 'chart__line chart__line--thin chart__line--yellow', true
 
-    @line = d3.svg.line()
-      .interpolate 'monotone'
+    @line = d3.line()
+      .curve d3.curveMonotoneX
 
     data = []
     _.forEach(JSON.parse($("#json-stats").text()), (e, i) -> data.push(new Object({'x': i, 'y': e.users_osu})))
