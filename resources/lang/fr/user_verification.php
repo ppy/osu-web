@@ -26,23 +26,23 @@ return [
         'issuing' => "Envoi d'un nouveau code...",
 
         'info' => [
-            'check_spam' => 'Merci de vérifier votre dossier spam si vous voyez pas le mail.',
+            'check_spam' => 'Merci de vérifier votre dossier spam si vous ne voyez pas le mail.',
             'recover' => 'Si vous ne pouvez pas accéder au mail ou si vous avez oublié ce que vous avez mis, cliquez sur ce lien :link.',
-            'recover_link' => 'processus de récupération de mail ici',
+            'recover_link' => 'Processus de récupération de mail ici',
             'reissue' => 'Vous pouvez :reissue_link ou :logout_link.',
-            'reissue_link' => 'demander un autre code',
-            'logout_link' => 'vous déconnecter',
+            'reissue_link' => 'Demander un autre code',
+            'logout_link' => 'Vous déconnecter',
         ],
     ],
 
     'email' => [
-        'subject' => 'vérification du compte osu!',
+        'subject' => 'Vérification du compte osu!',
     ],
 
     'errors' => [
         'expired' => 'Le code de vérification a expiré, un nouvel e-mail de vérification a été envoyé.',
         'incorrect_key' => 'Code de vérification incorrect.',
-        'retries_exceeded' => "Code de vérification incorrect. Limite de tentavies dépassées, envoi d'un nouveau mail de vérification.",
+        'retries_exceeded' => "Code de vérification incorrect. Limite de tentatives dépassées, envoi d'un nouveau mail de vérification.",
         'reissued' => 'Code de vérification regénéré, nouveau mail de vérification envoyé.',
         'unknown' => 'Un problème inconnu est survenu, nouveau mail de vérification envoyé.',
     ],
