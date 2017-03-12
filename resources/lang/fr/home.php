@@ -20,22 +20,22 @@
 
 return [
     'news' => [
-        'slogan' => 'Le rythme est juste à un seul *clic*!',
+        'slogan' => 'Le rythme est à un *clic*!',
     ],
     'landing' => [
         'slogans' => [
-            '1' => 'simulateur de cercles<br/>free-to-win',
-            '2' => 'Le rythme est juste<br/> à un seul clic',
+            '1' => 'Simulateur de cercles<br/>free-to-win',
+            '2' => 'Le rythme est à<br/> un clic',
         ],
 
         'download' => [
-            '_' => 'Télécharger maitenant',
+            '_' => 'Télécharger maintenant',
             'for' => 'pour :os',
-            'other' => 'cliquez ici pour :os1 ou :os2',
+            'other' => 'Cliquez ici pour :os1 ou :os2',
         ],
 
-        'players' => 'joueurs inscrits',
-        'online' => 'joueurs en ligne en ce moment',
+        'players' => 'Joueurs inscrits',
+        'online' => 'Joueurs en ligne en ce moment',
         'peak' => 'Pic, :count joueurs en ligne',
     ],
 ];
