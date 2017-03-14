@@ -491,12 +491,15 @@ function json_item($model, $transformer, $includes = null)
 function fast_imagesize($url)
 {
     return Cache::remember("imageSize:{$url}", Carbon\Carbon::now()->addMonth(1), function () use ($url) {
-        $headers = ['Range: bytes=0-32768'];
         $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($curl, CURLOPT_MAXREDIRS, 5);
+        curl_setopt_array($curl, [
+            CURLOPT_HTTPHEADER => [
+                'Range: bytes=0-32768',
+            ],
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_MAXREDIRS => 5,
+        ]);
         $data = curl_exec($curl);
         curl_close($curl);
 
