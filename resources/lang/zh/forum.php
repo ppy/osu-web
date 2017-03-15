@@ -71,7 +71,7 @@ return [
             'preview' => '预览',
 			// TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Write',//TODO request translate by kj415j45
+            'preview_hide' => '编辑',
             'submit' => '发表',
         ],
         'go_to_latest' => '查看最后的帖子',
