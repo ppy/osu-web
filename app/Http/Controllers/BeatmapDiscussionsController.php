@@ -92,6 +92,10 @@ class BeatmapDiscussionsController extends Controller
     {
         $discussion = BeatmapDiscussion::findOrFail($id);
 
+        if ($discussion->beatmap === null) {
+            abort(404);
+        }
+
         return ujs_redirect(route('beatmapsets.discussion', $discussion->beatmapset).'#/'.$id);
     }
 
