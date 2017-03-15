@@ -33,7 +33,7 @@
                 <h1 class="js-wiki-title osu-page-header__title osu-page-header__title--main">{{ $title }}</h1>
             </div>
 
-            @if (!empty($pageLocales))
+            @if (!empty($page->locales()))
                 <div class="osu-page-header__actions">
                     <div class="forum-post-actions">
                         <div class="forum-post-actions__action">
@@ -68,14 +68,14 @@
     </div>
 
     <div class="osu-layout__row osu-layout__row--page-compact">
-        @if (count($pageLocales) > 0)
+        @if (count($page->locales()) > 0)
             <div class="wiki-language-list">
                 <div class="wiki-language-list__header">
                     {{ trans('wiki.show.languages') }}:
                 </div>
 
-                @foreach ($pageLocales as $locale)
-                    @if ($locale === $pageLocale)
+                @foreach ($page->locales() as $locale)
+                    @if ($locale === $page->locale)
                         <span class="wiki-language-list__item wiki-language-list__item--current">
                             {{ App\Libraries\LocaleMeta::nameFor($locale) }}
                         </span>
@@ -107,10 +107,10 @@
 
             <div class="wiki-page__content">
                 <div class="js-wiki-content">
-                    @if (present($pageMd))
-                        {!! Markdown::convertToHtml($pageMd) !!}
+                    @if (present($page->page()))
+                        {!! Markdown::convertToHtml($page->page()) !!}
                     @else
-                        @if (empty($pageLocales))
+                        @if (empty($page->locales()))
                             {{ trans('wiki.show.missing') }}
                         @else
                             {{ trans('wiki.show.missing_translation') }}
