@@ -541,20 +541,20 @@ class Topic extends Model
         $lastPost = $this->posts()->last()->first();
 
         if ($lastPost === null) {
-            $this->topic_last_post_id = null;
-            $this->topic_last_post_time = null;
+            $this->topic_last_post_id = 0;
+            $this->topic_last_post_time = 0;
 
-            $this->topic_last_poster_id = null;
-            $this->topic_last_poster_name = null;
-            $this->topic_last_poster_colour = null;
+            $this->topic_last_poster_id = 0;
+            $this->topic_last_poster_name = '';
+            $this->topic_last_poster_colour = '';
         } else {
             $this->topic_last_post_id = $lastPost->post_id;
             $this->topic_last_post_time = $lastPost->post_time;
 
             if ($lastPost->user === null) {
-                $this->topic_last_poster_id = null;
-                $this->topic_last_poster_name = null;
-                $this->topic_last_poster_colour = null;
+                $this->topic_last_poster_id = 0;
+                $this->topic_last_poster_name = '';
+                $this->topic_last_poster_colour = '';
             } else {
                 $this->topic_last_poster_id = $lastPost->user->user_id;
                 $this->topic_last_poster_name = $lastPost->user->username;

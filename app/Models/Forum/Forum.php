@@ -196,12 +196,12 @@ class Forum extends Model
         $lastTopic = $this->lastTopic(false);
 
         if ($lastTopic === null) {
-            $this->forum_last_post_id = null;
-            $this->forum_last_post_time = null;
-            $this->forum_last_post_subject = null;
-            $this->forum_last_poster_id = null;
-            $this->forum_last_poster_name = null;
-            $this->forum_last_poster_colour = null;
+            $this->forum_last_post_id = 0;
+            $this->forum_last_post_time = 0;
+            $this->forum_last_post_subject = '';
+            $this->forum_last_poster_id = 0;
+            $this->forum_last_poster_name = '';
+            $this->forum_last_poster_colour = '';
         } else {
             $this->forum_last_post_id = $lastTopic->topic_last_post_id;
             $this->forum_last_post_time = $lastTopic->topic_last_post_time;
