@@ -67,9 +67,9 @@ return [
                 'title' => 'Cliquez ici pour définir le titre du post',
             ],
             'preview' => 'Prévisualisation',
-			// TL note: this is used in the topic reply preview, when
+            // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Write',//TODO request translate by kj415j45
+            'preview_hide' => 'Write', //TODO request translate by kj415j45
             'submit' => 'Poster',
         ],
         'go_to_latest' => 'voir le dernier post',

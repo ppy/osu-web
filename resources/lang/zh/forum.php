@@ -69,7 +69,7 @@ return [
                 'title' => '点击这里设置标题',
             ],
             'preview' => '预览',
-			// TL note: this is used in the topic reply preview, when
+            // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => '编辑',
             'submit' => '发表',
