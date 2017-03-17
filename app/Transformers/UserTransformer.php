@@ -108,11 +108,8 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($user, function ($user) {
             $all = [];
-
             foreach ($user->rankHistories as $history) {
-                $modeStr = Beatmap::modeStr($history->mode);
-
-                $all[$modeStr] = json_item($history, new RankHistoryTransformer());
+                $all[$history->mode] = json_item($history, new RankHistoryTransformer());
             }
 
             return $all;
