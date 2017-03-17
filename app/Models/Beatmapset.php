@@ -282,8 +282,29 @@ class Beatmapset extends Model
         }
 
         if (!empty($rank)) {
-            $klass = presence($mode) !== null ? Score\Best\Model::getClass(intval($mode)) : Score\Best\Combined::class;
-            $scores = model_pluck($klass::forUser($current_user)->whereIn('rank', $rank), 'beatmapset_id');
+            if (present($mode)) {
+                $modes = [$mode];
+            } else {
+                $modes = array_keys(Beatmap::MODES);
+            }
+
+            $unionQuery = null;
+            foreach ($modes as $mode) {
+                $newQuery =
+                    Score\Best\Model::getClass((int) $mode)
+                    ->forUser($current_user)
+                    ->whereIn('rank', $rank)
+                    ->select('beatmapset_id');
+
+                if ($unionQuery === null) {
+                    $unionQuery = $newQuery;
+                } else {
+                    $unionQuery->union($newQuery);
+                }
+            }
+
+            $scores = model_pluck($unionQuery, 'beatmapset_id');
+
             $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $scores]];
         }
 
