@@ -277,6 +277,17 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     return $url;
 }
 
+function wiki_url($page, $locale = null)
+{
+    $url = route('wiki.show', ['page' => $page]).'/';
+
+    if ($locale !== App::getLocale()) {
+        $url .= '?locale='.$locale;
+    }
+
+    return $url;
+}
+
 function bbcode($text, $uid, $withGallery = false)
 {
     return (new App\Libraries\BBCodeFromDB($text, $uid, $withGallery))->toHTML();

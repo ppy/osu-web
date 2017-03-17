@@ -34,3 +34,13 @@
         </li>
     @endforeach
 </ul>
+
+<ul>
+    @foreach ($wikiPages as $page)
+        <li>
+            <a href="{{ wiki_url($page['_source']['path'], $page['_source']['locale']) }}">
+                {{ $page['_source']['path'] }}
+            </a>
+        </li>
+    @endforeach
+</ul>

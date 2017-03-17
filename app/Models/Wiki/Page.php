@@ -23,6 +23,7 @@ namespace App\Models\Wiki;
 use App\Exceptions\GitHubNotFoundException;
 use App\Exceptions\GitHubTooLargeException;
 use Cache;
+use Es;
 
 class Page extends Base
 {
@@ -31,6 +32,35 @@ class Page extends Base
 
     // cache variable, filled in value is either null or a string
     private $page = false;
+
+    public static function search($params)
+    {
+        $params = static::searchParams($params);
+
+        $query = es_query_and_words($params['query']);
+
+        $searchParams = [
+            'index' => config('osu.elasticsearch.index').':wiki_pages',
+            'type' => 'wiki_page',
+            'size' => $params['limit'],
+            'from' => ($params['page'] - 1) * $params['limit'],
+            'q' => $query,
+        ];
+
+        return Es::search($searchParams)['hits']['hits'];
+    }
+
+    public static function searchParams($params)
+    {
+        $params['query'] = $params['query'] ?? null;
+        $params['limit'] = max(1, min(50, $params['limit'] ?? 50));
+        $params['page'] = max(1, $params['page'] ?? 1);
+        $params['user_ids'] = get_arr($params['user_ids'] ?? null, 'get_int');
+        $params['forum_ids'] = get_arr($params['forum_ids'] ?? null, 'get_int');
+        $params['topic_id'] = get_int($params['topic_id'] ?? null);
+
+        return $params;
+    }
 
     public function __construct($path, $locale)
     {
@@ -86,6 +116,22 @@ class Page extends Base
         return $locales;
     }
 
+    public function indexAdd($page = null)
+    {
+        $params = [
+            'index' => config('osu.elasticsearch.index').':wiki_pages',
+            'type' => 'wiki_page',
+            'id' => $this->pagePath,
+            'body' => [
+                'locale' => $this->locale,
+                'path' => $this->path,
+                'page' => $page ?? $this->page(),
+            ],
+        ];
+
+        Es::index($params);
+    }
+
     public function locales()
     {
         if ($this->locales === null) {
@@ -113,7 +159,7 @@ class Page extends Base
                     } catch (GitHubNotFoundException $_e) {
                         return;
                     }
-                    // indexing goes here
+                    $this->indexAdd($page);
 
                     return $page;
                 }
