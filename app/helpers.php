@@ -112,17 +112,25 @@ function read_image_properties($path)
 {
     try {
         $data = getimagesize($path);
+    } catch (Exception $_e) {
+        return;
+    }
 
-        if ($data !== false) {
-            return $data;
-        }
-    } catch (ErrorException $e) {
-        // do nothing if it's read failure(?)
-        if ($e->getMessage() === 'Read error!') {
-            return;
-        }
+    if ($data !== false) {
+        return $data;
+    }
+}
 
-        throw $e;
+function read_image_properties_from_string($string)
+{
+    try {
+        $data = getimagesizefromstring($string);
+    } catch (Exception $_e) {
+        return;
+    }
+
+    if ($data !== false) {
+        return $data;
     }
 }
 
@@ -498,8 +506,8 @@ function fast_imagesize($url)
         curl_close($curl);
 
         try {
-            return getimagesizefromstring($data);
-        } catch (ErrorException $_e) {
+            return read_image_properties_from_string($data);
+        } catch (Exception $_e) {
             return [0, 0];
         }
     });
