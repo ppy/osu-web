@@ -151,7 +151,8 @@ class BBCodeFromDB
             $imageTag = '';
 
             $imageSize = fast_imagesize($proxiedSrc);
-            if ($imageSize !== null && $imageSize[0] !== 0) {
+            // FIXME: remove in May after current cache expires
+            if ($imageSize !== false && $imageSize !== null && $imageSize[0] !== 0) {
                 $heightPercentage = ($imageSize[1] / $imageSize[0]) * 100;
 
                 $topClass = 'proportional-container';
