@@ -505,11 +505,7 @@ function fast_imagesize($url)
         $data = curl_exec($curl);
         curl_close($curl);
 
-        try {
-            return read_image_properties_from_string($data);
-        } catch (Exception $_e) {
-            return [0, 0];
-        }
+        return read_image_properties_from_string($data);
     });
 }
 
