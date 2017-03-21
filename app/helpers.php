@@ -281,7 +281,7 @@ function wiki_url($page, $locale = null)
 {
     $url = route('wiki.show', ['page' => $page]).'/';
 
-    if ($locale !== App::getLocale()) {
+    if (present($locale) && $locale !== App::getLocale()) {
         $url .= '?locale='.$locale;
     }
 
@@ -334,8 +334,8 @@ function nav_links()
         'getDownload' => osu_url('home.download'),
     ];
     $links['help'] = [
-        'getWiki' => route('wiki.show', ['page' => 'Welcome']),
-        'getFaq' => route('wiki.show', ['page' => 'FAQ']),
+        'getWiki' => wiki_url('Welcome'),
+        'getFaq' => wiki_url('FAQ'),
         'getSupport' => osu_url('help.support'),
     ];
     $links['ranking'] = [
@@ -371,10 +371,10 @@ function footer_links()
         'changelog' => route('changelog'),
         'beatmaps' => action('BeatmapsetsController@index'),
         'download' => osu_url('home.download'),
-        'wiki' => route('wiki.show', ['page' => 'Welcome']),
+        'wiki' => wiki_url('Welcome'),
     ];
     $links['help'] = [
-        'faq' => route('wiki.show', ['page' => 'FAQ']),
+        'faq' => wiki_url('FAQ'),
         'forum' => route('forum.forums.index'),
         'livestreams' => route('livestreams.index'),
         'report' => route('forum.topics.create', ['forum_id' => 5]),
