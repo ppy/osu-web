@@ -154,6 +154,48 @@ return [
             'replies' => 'respostas',
         ],
 
+        'issue_tag_added' => [
+            'action-0' => 'Remover tag "adicionado"',
+            'action-1' => 'Adicionar tag "adicionado"',
+            'state-0' => 'Tag "adicionado" removido',
+            'state-1' => 'Tag "adicionado" adicionado',
+        ],
+
+        'issue_tag_assigned' => [
+            'action-0' => 'Remover tag "nomeado"',
+            'action-1' => 'Adicionar tag "nomeado"',
+            'state-0' => 'Tag "nomeado" removido',
+            'state-1' => 'Tag "nomeado" adicionado',
+        ],
+
+        'issue_tag_confirmed' => [
+            'action-0' => 'Remover tag "confirmado"',
+            'action-1' => 'Adicionar tag "confirmado"',
+            'state-0' => 'Tag "confirmado" removido',
+            'state-1' => 'Tag "confirmado" adicionado',
+        ],
+
+        'issue_tag_duplicate' => [
+            'action-0' => 'Remover tag "duplicado"',
+            'action-1' => 'Adicionar tag "duplicado"',
+            'state-0' => 'Tag "duplicado" removido',
+            'state-1' => 'Tag "duplicado" adicionado',
+        ],
+
+        'issue_tag_invalid' => [
+            'action-0' => 'Remover tag "inválido"',
+            'action-1' => 'Adicionar tag "inválido"',
+            'state-0' => 'Tag "inválido" removido',
+            'state-1' => 'Tag "inválido" adicionado',
+        ],
+
+        'issue_tag_resolved' => [
+            'action-0' => 'Remover tag "resolvido"',
+            'action-1' => 'Adicionar tag "resolvido"',
+            'state-0' => 'Tag "resolvido" removido',
+            'state-1' => 'Tag "resolvido" adicionado',
+        ],
+
         'lock' => [
             'is_locked' => 'Este tópico está trancado e não pode mais ser respondido',
             'lock-0' => 'Destrancar tópico',

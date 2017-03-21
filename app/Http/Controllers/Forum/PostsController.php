@@ -75,7 +75,7 @@ class PostsController extends Controller
         if ((Auth::user()->user_id ?? null) !== $post->poster_id) {
             $this->logModerate(
                 'LOG_RESTORE_POST',
-                [$post->topic->topic_title],
+                [$topic->topic_title],
                 $post
             );
         }
