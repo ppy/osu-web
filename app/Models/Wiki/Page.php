@@ -28,10 +28,8 @@ use Es;
 class Page extends Base
 {
     public $locale;
-    private $locales;
 
-    // cache variable, filled in value is either null or a string
-    private $page = false;
+    private $cache = [];
 
     public static function search($params)
     {
@@ -134,8 +132,8 @@ class Page extends Base
 
     public function locales()
     {
-        if ($this->locales === null) {
-            $this->locales = Cache::remember(
+        if (!array_key_exists('locales', $this->cache)) {
+            $this->cache['locales'] = Cache::remember(
                 $this->cacheKeyLocales(),
                 static::CACHE_DURATION,
                 function () {
@@ -144,13 +142,13 @@ class Page extends Base
             );
         }
 
-        return $this->locales;
+        return $this->cache['locales'];
     }
 
     public function page()
     {
-        if ($this->page === false) {
-            $this->page = Cache::remember(
+        if (!array_key_exists('page', $this->cache)) {
+            $this->cache['page'] = Cache::remember(
                 $this->cacheKeyPage(),
                 static::CACHE_DURATION,
                 function () {
@@ -166,7 +164,7 @@ class Page extends Base
             );
         }
 
-        return $this->page;
+        return $this->cache['page'];
     }
 
     public function refresh()
