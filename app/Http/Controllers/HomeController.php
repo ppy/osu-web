@@ -22,11 +22,12 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Models\BanchoStats;
-use App\Models\Count;
-use App\Models\News;
 use App\Models\Beatmapset;
+use App\Models\Count;
 use App\Models\Forum\Post;
+use App\Models\News;
 use Auth;
+use Cache;
 use Request;
 use View;
 
@@ -73,11 +74,8 @@ class HomeController extends Controller
             return ujs_redirect(route('store.products.index'));
         }
 
-        $stats = BanchoStats
-            ::whereRaw('banchostats_id mod 10 = 0')
-            ->orderBy('banchostats_id', 'DESC')
-            ->limit(24 * 60 / 10)
-            ->get();
+        $stats = BanchoStats::cachedStats();
+
         $totalUsers = Count::totalUsers();
         $currentOnline = ($stats->isEmpty() ? 0 : $stats->last()->users_osu);
 
