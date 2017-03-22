@@ -99,6 +99,11 @@ Route::get('/community/forum', function () {
     return Redirect::to('/forum');
 });
 
+// temporary news redirect
+Route::get('/news/{id}', function ($id) {
+    return Redirect::to("https://osu.ppy.sh/news/{$id}");
+})->name('news.show');
+
 Route::resource('livestreams', 'LivestreamsController', ['only' => ['index']]);
 Route::post('livestreams/promote', ['as' => 'livestreams.promote', 'uses' => 'LivestreamsController@promote']);
 
