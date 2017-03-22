@@ -457,13 +457,22 @@ class Beatmapset extends Model
     public static function latest($count = 5)
     {
         // TODO: add filtering by game mode after mode-toggle UI/UX happens
-        return self::rankedOrApproved()->orderBy('approved_date', 'desc')->limit($count);
+
+        return Cache::remember("beatmapsets_latest_{$count}", 60, function() use ($count) {
+
+            // We union here so mysql can use indexes to speed this up
+            $ranked = self::ranked()->active()->orderBy('approved_date', 'desc')->limit($count);
+            $approved = self::approved()->active()->orderBy('approved_date', 'desc')->limit($count);
+
+            return $ranked->union($approved)->orderBy('approved_date', 'desc')->limit($count)->get();
+        });
     }
 
     public static function mostPlayedToday($mode = Beatmap::MODES['osu'], $count = 5)
     {
         // TODO: this only returns based on osu mode plays for now, add other game modes after mode-toggle UI/UX happens
-        return Cache::remember('beatmapsets_most_played_today', 5, function () use ($mode, $count) {
+
+        return Cache::remember("beatmapsets_most_played_today_{$mode}_{$count}", 60, function () use ($mode, $count) {
             $counts = Score\Osu::selectRaw('beatmapset_id, count(*) as playcount')
                     ->whereNotIn('beatmapset_id', self::BUNDLED_IDS)
                     ->groupBy('beatmapset_id')
@@ -471,12 +480,12 @@ class Beatmapset extends Model
                     ->limit($count)
                     ->get();
 
-            $arr = [];
+            $mostPlayed = [];
             foreach ($counts as $value) {
-                $arr[$value['beatmapset_id']] = $value['playcount'];
+                $mostPlayed[$value['beatmapset_id']] = $value['playcount'];
             }
 
-            return $arr;
+            return $mostPlayed;
         });
     }
 
