@@ -23,8 +23,6 @@ class @AccountEdit
 
 
   initializeUpdate: (e) =>
-    return if e.currentTarget.dataset.noAuto == '1'
-
     e.currentTarget.debouncedUpdate ?= _.debounce @update, 1000
     e.currentTarget.debouncedUpdate e
 

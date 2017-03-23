@@ -20,7 +20,7 @@
   @top: account-edit-entry;
 
   @section-width: 250px;
-  @label-width: 150px;
+  @label-width: 160px;
   @input-width: 250px;
 
   text-transform: none;
@@ -28,6 +28,15 @@
   align-items: center;
   padding: 10px 0;
   margin: 0;
+
+  &--avatar {
+    margin-left: @label-width;
+    display: block;
+  }
+
+  &--submit {
+    margin-left: @label-width;
+  }
 
   &__avatar {
     .default-border-radius();
@@ -71,7 +80,7 @@
 
     flex: 1;
     max-width: @input-width;
-    align-self: strecth;
+    align-self: stretch;
     background-color: @gray-4;
     border: 2px solid transparent;
     color: @gray-f;
@@ -88,7 +97,7 @@
     flex: none;
     align-self: center;
     width: @label-width;
-    margin-right: 10px;
+    padding-right: 10px;
     text-align: right;
 
     .@{top}.js-parent-focus--focus & {

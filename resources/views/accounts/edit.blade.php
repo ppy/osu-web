@@ -67,43 +67,39 @@
 
             <div class="account-edit__input-groups">
                 <div class="account-edit__input-group">
-                    <div class="account-edit-entry js-account-edit-avatar">
-                        <div class="account-edit-entry__label"></div>
+                    <div class="account-edit-entry account-edit-entry--avatar js-account-edit-avatar">
+                        <div class="account-edit-entry__avatar">
+                            <div class="avatar avatar--full-rounded js-current-user-avatar"></div>
 
-                        <div>
-                            <div class="account-edit-entry__avatar">
-                                <div class="avatar avatar--full-rounded js-current-user-avatar"></div>
+                            <div class="account-edit-entry__drop-overlay">
+                                <span>
+                                {{ trans('common.dropzone.target') }}
+                                </span>
+                            </div>
 
-                                <div class="account-edit-entry__drop-overlay">
-                                    <span>
-                                    {{ trans('common.dropzone.target') }}
-                                    </span>
+                            <div class="account-edit-entry__overlay-spinner">
+                                @include('objects._spinner')
+                            </div>
+                        </div>
+
+                        <label class="btn-osu-big btn-osu-big--account-edit">
+                            <div class="btn-osu-big__content">
+                                <div class="btn-osu-big__left">
+                                    {{ trans('common.buttons.upload_image') }}
                                 </div>
 
-                                <div class="account-edit-entry__overlay-spinner">
-                                    @include('objects._spinner')
+                                <div class="btn-osu-big__icon">
+                                    <i class="fa fa-arrow-circle-o-up"></i>
                                 </div>
                             </div>
 
-                            <label class="btn-osu-big btn-osu-big--full">
-                                <div class="btn-osu-big__content">
-                                    <div class="btn-osu-big__left">
-                                        {{ trans('common.buttons.upload_image') }}
-                                    </div>
-
-                                    <div class="btn-osu-big__icon">
-                                        <i class="fa fa-arrow-circle-o-up"></i>
-                                    </div>
-                                </div>
-
-                                <input
-                                    class="js-account-edit-avatar__button btn-osu-big__fileupload"
-                                    type="file"
-                                    name="avatar_file"
-                                    data-url="{{ route('account.avatar') }}"
-                                >
-                            </label>
-                        </div>
+                            <input
+                                class="js-account-edit-avatar__button btn-osu-big__fileupload"
+                                type="file"
+                                name="avatar_file"
+                                data-url="{{ route('account.avatar') }}"
+                            >
+                        </label>
                     </div>
                 </div>
             </div>
@@ -125,51 +121,48 @@
                 'class' => 'js-password-done-reset account-edit__input-groups'
             ]) !!}
                 <div class="account-edit__input-group">
-                    <label class="account-edit-entry js-account-edit js-parent-focus">
+                    <label class="account-edit-entry js-parent-focus">
                         <div class="account-edit-entry__label">
                             {{ trans('accounts.edit.password.current') }}
                         </div>
 
-                        <input class="account-edit-entry__input js-account-edit__input js-password-done-reset--input"
+                        <input
+                            class="account-edit-entry__input js-password-done-reset--input"
                             name="user_password[current_password]"
-                            data-no-auto="1"
                             type="password"
                         >
                     </label>
                 </div>
 
                 <div class="account-edit__input-group">
-                    <label class="account-edit-entry js-account-edit js-parent-focus">
+                    <label class="account-edit-entry js-parent-focus">
                         <div class="account-edit-entry__label">
                             {{ trans('accounts.edit.password.new') }}
                         </div>
 
-                        <input class="account-edit-entry__input js-account-edit__input js-password-done-reset--input"
+                        <input
+                            class="account-edit-entry__input js-password-done-reset--input"
                             name="user_password[password]"
-                            data-no-auto="1"
                             type="password"
                         >
                     </label>
 
-                    <label class="account-edit-entry js-account-edit js-parent-focus">
+                    <label class="account-edit-entry js-parent-focus">
                         <div class="account-edit-entry__label">
                             {{ trans('accounts.edit.password.new_confirmation') }}
                         </div>
 
-                        <input class="account-edit-entry__input js-account-edit__input js-password-done-reset--input"
+                        <input
+                            class="account-edit-entry__input js-password-done-reset--input"
                             name="user_password[password_confirmation]"
-                            data-no-auto="1"
                             type="password"
                         >
                     </label>
                 </div>
 
                 <div class="account-edit__input-group">
-                    <div class="account-edit-entry js-account-edit js-parent-focus">
-                        <div class="account-edit-entry__label">
-                        </div>
-
-                        <button class="btn-osu-big btn-osu-big--update-password" type="submit">
+                    <div class="account-edit-entry account-edit-entry--submit js-parent-focus">
+                        <button class="btn-osu-big btn-osu-big--account-edit" type="submit">
                             <div class="btn-osu-big__content">
                                 <div class="btn-osu-big__left">
                                     {{ trans('accounts.update_password.update') }}

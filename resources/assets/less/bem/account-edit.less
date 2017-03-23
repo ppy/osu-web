@@ -30,15 +30,13 @@
 
   display: flex;
   flex-direction: column;
-  margin-top: 5px;
+  margin-bottom: 5px;
 
   @media @desktop {
     flex-direction: row;
   }
 
   &--first {
-    margin-top: 0;
-
     &::after {
       .inner-shadow-top();
       .full-size();
