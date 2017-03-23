@@ -25,6 +25,7 @@
 
   text-transform: none;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   padding: 10px 0;
   margin: 0;
@@ -74,6 +75,18 @@
     }
   }
 
+  &__error {
+    display: none;
+    margin-top: 5px;
+    width: 100%;
+    padding-left: (@label-width + 10px);
+    color: @yellow;
+
+    .@{top}[data-field-state=error] & {
+      display: block;
+    }
+  }
+
   &__input {
     .reset-input();
     .default-border-radius();
@@ -90,6 +103,10 @@
 
     .@{top}.js-parent-focus--focus & {
       border-color: @yellow;
+    }
+
+    .@{top}[data-field-state=error] & {
+      border-color: @red;
     }
   }
 

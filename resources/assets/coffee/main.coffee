@@ -45,6 +45,7 @@ $(document).on 'submit', 'form', (e) ->
 @formToggle ?= new FormToggle
 @accountEdit ?= new AccountEdit
 @accountEditAvatar ?= new AccountEditAvatar
+@password ?= new Password
 @wiki ?= new Wiki
 @osuAudio ?= new OsuAudio
 

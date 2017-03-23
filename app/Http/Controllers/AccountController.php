@@ -135,7 +135,7 @@ class AccountController extends Controller
 
         $error = Auth::user()->updatePassword(Request::input('user_password'));
         if ($error !== null) {
-            return error_popup($error);
+            return response($error, 422);
         }
 
         return ['message' => trans('accounts.update_password.updated')];
