@@ -26,7 +26,6 @@ use App\Models\User;
 use App\Models\UserEmail;
 use App\Models\UserPassword;
 use Auth;
-use Hash;
 use Illuminate\Http\Request as HttpRequest;
 use Mail;
 use Request;

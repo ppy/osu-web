@@ -21,7 +21,6 @@
 namespace App\Models;
 
 use App\Interfaces\Messageable;
-use App\Libraries\PasswordStrength;
 use App\Models\Chat\PrivateMessage;
 use App\Traits\UserAvatar;
 use App\Transformers\UserTransformer;
