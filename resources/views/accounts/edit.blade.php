@@ -107,84 +107,10 @@
     </div>
 
     <div class="osu-page osu-page--small">
-        {!! Form::open([
-            'route' => 'account.password',
-            'method' => 'PUT',
-            'data-remote' => true,
-            'data-skip-ajax-error-popup' => '1',
-            'class' => 'js-password--form account-edit'
-        ]) !!}
-            <div class="account-edit__section">
-                <h2 class="account-edit__section-title">
-                    {{ trans('accounts.edit.password.title') }}
-                </h2>
-            </div>
+        @include('accounts._edit_password')
+    </div>
 
-            <div class="account-edit__input-groups">
-                <div class="account-edit__input-group">
-                    <label class="account-edit-entry js-parent-focus js-password" data-password-field="current_password">
-                        <div class="account-edit-entry__label">
-                            {{ trans('accounts.edit.password.current') }}
-                        </div>
-
-                        <input
-                            class="account-edit-entry__input js-password-done-reset--input js-password--input"
-                            name="user_password[current_password]"
-                            type="password"
-                        >
-
-                        <div class="account-edit-entry__error js-password--error"></div>
-                    </label>
-                </div>
-
-                <div class="account-edit__input-group">
-                    <label class="account-edit-entry js-parent-focus js-password" data-password-field="password">
-                        <div class="account-edit-entry__label">
-                            {{ trans('accounts.edit.password.new') }}
-                        </div>
-
-                        <input
-                            class="account-edit-entry__input js-password-done-reset--input js-password--input"
-                            name="user_password[password]"
-                            type="password"
-                        >
-
-                        <div class="account-edit-entry__error js-password--error"></div>
-                    </label>
-
-                    <label
-                        class="account-edit-entry js-parent-focus js-password-validation js-password"
-                        data-password-field="password_confirmation"
-                    >
-                        <div class="account-edit-entry__label">
-                            {{ trans('accounts.edit.password.new_confirmation') }}
-                        </div>
-
-                        <input
-                            class="account-edit-entry__input js-password-done-reset--input js-password--input"
-                            name="user_password[password_confirmation]"
-                            type="password"
-                        >
-
-                        <div class="account-edit-entry__error js-password--error"></div>
-                    </label>
-                </div>
-
-                <div class="account-edit__input-group">
-                    <div class="account-edit-entry account-edit-entry--submit js-parent-focus">
-                        <button class="btn-osu-big btn-osu-big--account-edit" type="submit">
-                            <div class="btn-osu-big__content">
-                                <div class="btn-osu-big__left">
-                                    {{ trans('accounts.update_password.update') }}
-                                </div>
-                                <div class="btn-osu-big__icon">
-                                    <i class="fa fa-check"></i>
-                                </div>
-                            </div>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        {!! Form::close() !!}
+    <div class="osu-page osu-page--small">
+        @include('accounts._edit_email')
     </div>
 @endsection

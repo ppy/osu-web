@@ -27,6 +27,13 @@ return [
             'title' => 'Edit Avatar',
         ],
 
+        'email' => [
+            'current' => 'current password',
+            'new' => 'new email',
+            'new_confirmation' => 'email confirmation',
+            'title' => 'Email',
+        ],
+
         'password' => [
             'current' => 'current password',
             'new' => 'new password',
@@ -46,6 +53,12 @@ return [
                 'user_website' => 'website',
             ],
         ],
+    ],
+
+    'update_email' => [
+        'email_subject' => 'osu! email change confirmation',
+        'update' => 'update',
+        'updated' => 'Email updated',
     ],
 
     'update_password' => [

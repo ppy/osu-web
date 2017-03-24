@@ -48,10 +48,17 @@ return [
         ],
     ],
 
+    'user_email' => [
+        'invalid' => "Doesn't seem to be an email address.",
+        'already_used' => 'Email address already used.',
+        'wrong_confirmation' => 'Email confirmation does not match.',
+        'wrong_current_password' => 'Current password is incorrect.',
+    ],
+
     'user_password' => [
-        'same_as_username' => 'Password may not contain username',
+        'same_as_username' => 'Password may not contain username.',
         'too_short' => 'New password is too short.',
-        'weak' => 'Blacklisted password',
+        'weak' => 'Blacklisted password.',
         'wrong_confirmation' => 'Password confirmation does not match.',
         'wrong_current_password' => 'Current password is incorrect.',
     ],

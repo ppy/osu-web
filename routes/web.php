@@ -236,10 +236,11 @@ Route::post('/account/avatar', ['as' => 'account.avatar', 'uses' => 'AccountCont
 Route::post('/account/cover', ['as' => 'account.cover', 'uses' => 'AccountController@cover']);
 Route::put('/account', ['as' => 'account.update', 'uses' => 'AccountController@update']);
 Route::get('/account/edit', ['as' => 'account.edit', 'uses' => 'AccountController@edit']);
+Route::post('/account/reissue-code', ['as' => 'account.reissue-code', 'uses' => 'AccountController@reissueCode']);
+Route::post('/account/verify', ['as' => 'account.verify', 'uses' => 'AccountController@verify']);
+Route::put('/account/email', ['as' => 'account.email', 'uses' => 'AccountController@updateEmail']);
 Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
 Route::put('/account/password', ['as' => 'account.password', 'uses' => 'AccountController@updatePassword']);
-Route::post('/account/verify', ['as' => 'account.verify', 'uses' => 'AccountController@verify']);
-Route::post('/account/reissue-code', ['as' => 'account.reissue-code', 'uses' => 'AccountController@reissueCode']);
 
 // API
 Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api'], function () {

@@ -46,6 +46,7 @@ $(document).on 'submit', 'form', (e) ->
 @accountEdit ?= new AccountEdit
 @accountEditAvatar ?= new AccountEditAvatar
 @password ?= new Password
+@userEmail ?= new UserEmail
 @wiki ?= new Wiki
 @osuAudio ?= new OsuAudio
 

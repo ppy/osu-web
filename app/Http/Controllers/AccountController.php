@@ -21,11 +21,14 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ImageProcessorException;
-use App\Models\UserPassword;
+use App\Mail\UserEmailUpdated;
 use App\Models\User;
+use App\Models\UserEmail;
+use App\Models\UserPassword;
 use Auth;
 use Hash;
 use Illuminate\Http\Request as HttpRequest;
+use Mail;
 use Request;
 
 class AccountController extends Controller
@@ -117,6 +120,22 @@ class AccountController extends Controller
         }
 
         return Auth::user()->defaultJson();
+    }
+
+    public function updateEmail()
+    {
+        $user = Auth::user();
+        $previousEmail = $user->user_email;
+        $userEmail = (new UserEmail($user))
+            ->fill(Request::input('user_email'));
+
+        if ($userEmail->save() === true) {
+            Mail::to($previousEmail)->send(new UserEmailUpdated($user));
+
+            return ['message' => trans('accounts.update_email.updated')];
+        } else {
+            return response($userEmail->validationErrors()->all(), 422);
+        }
     }
 
     public function updatePage()
