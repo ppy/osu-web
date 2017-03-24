@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-class @OnlineChart
+class @FancyChart
   constructor: (area, @options = {}) ->
     @options.scales ||= {}
     @options.scales.x ||= d3.scaleTime()

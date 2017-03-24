@@ -16,8 +16,8 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-class @OnlineGraph
-  container: document.getElementsByClassName('js-online-graph')
+class @FancyGraph
+  container: document.getElementsByClassName('js-fancy-graph')
 
 
   constructor: ->
@@ -28,7 +28,7 @@ class @OnlineGraph
   initialize: =>
     return if !@container[0]?
 
-    @container[0]._chart ?= new OnlineChart @container[0]
+    @container[0]._chart ?= new FancyChart @container[0]
 
 
   resize: =>

@@ -44,7 +44,7 @@
                             {{number_format($stats->last()->users_osu)}}
                         </div>
                     </div>
-                    <div class="js-online-graph landing-graph"></div>
+                    <div class="js-fancy-graph landing-graph"></div>
                 </div>
             </div>
         </div>
