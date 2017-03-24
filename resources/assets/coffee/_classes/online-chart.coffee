@@ -30,7 +30,12 @@ class @OnlineChart
       .classed 'chart__wrapper', true
 
     @svgLine = @svgWrapper.append 'path'
-      .classed 'chart__line chart__line--thin chart__line--yellow', true
+      .attr 'fill', 'none'
+      .attr 'stroke', '#ffcc22'
+      .attr 'stroke-width', '1'
+      .attr 'opacity', 0
+      # .classed 'chart__line chart__line--thin chart__line--yellow', true
+
 
     @line = d3.line()
       .curve d3.curveMonotoneX
@@ -39,8 +44,9 @@ class @OnlineChart
     _.forEach(JSON.parse($("#json-stats").text()), (e, i) -> data.push(new Object({'x': i, 'y': e.users_osu})))
 
     @svgEndCircle = @svgWrapper.append 'circle'
-      .classed 'chart__hover-mark chart__hover-mark--small chart__line--yellow', true
+      .classed 'chart__hover-mark chart__hover-mark--small chart__end-circle', true
       .attr 'r', 2
+      .attr 'opacity', 0
 
     @loadData data
 
@@ -55,7 +61,7 @@ class @OnlineChart
     @data = data
     @svgLine.datum @data
 
-    @resize()
+    @reveal()
 
   setDimensions: =>
     areaDims = @area.node().getBoundingClientRect()
@@ -78,9 +84,7 @@ class @OnlineChart
       .y (d) => @options.scales.y d.y
 
     @svgEndCircle
-      .transition()
-      .attr 'transform', "translate(#{@options.scales.x(@data[@data.length-1].x)}, #{@options.scales.y(@data[@data.length-1].y)})"
-
+      .attr 'transform', "translate(#{@options.scales.x(@data[@data.length-1].x)+2}, #{@options.scales.y(@data[@data.length-1].y)})"
 
   setSvgSize: =>
     @svg
@@ -94,10 +98,36 @@ class @OnlineChart
 
   drawLine: =>
     @svgLine
-      .transition()
+      .attr 'stroke-dasharray', 0
       .attr 'd', @line
 
-  resize: =>
+  reveal: =>
+    @recalc()
+
+    @svgLine
+      .attr 'd', @line
+
+    totalLength = @svgLine.node().getTotalLength()
+
+    @svgLine
+      .attr 'stroke-dasharray', totalLength
+      .attr 'stroke-dashoffset', totalLength
+      .transition()
+        .delay 500
+        .duration 1000
+        .ease d3.easeSinOut
+        .attr 'stroke-dashoffset', 0
+        .attr 'opacity', 1
+
+    @svgEndCircle
+      .transition()
+        .delay 1400
+        .duration 300
+        .ease d3.easeSinOut
+        .attr 'opacity', 1
+
+
+  recalc: =>
     @setDimensions()
 
     @setScalesRange()
@@ -106,4 +136,6 @@ class @OnlineChart
     @setWrapperSize()
     @setLineSize()
 
+  resize: =>
+    @recalc()
     @drawLine()
