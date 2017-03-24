@@ -47,4 +47,12 @@ return [
             'too_many' => 'Selected more options than allowed.',
         ],
     ],
+
+    'user_password' => [
+        'same_as_username' => 'Password may not contain username',
+        'too_short' => 'New password is too short.',
+        'weak' => 'Blacklisted password',
+        'wrong_confirmation' => 'Password confirmation does not match.',
+        'wrong_current_password' => 'Current password is incorrect.',
+    ],
 ];

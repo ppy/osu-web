@@ -911,7 +911,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function updatePassword($password)
     {
-        $this->update(['user_password' => Hash::make($password)]);
+        return $this->update(['user_password' => Hash::make($password)]);
     }
 
     public static function attemptLogin($user, $password, $ip = null)

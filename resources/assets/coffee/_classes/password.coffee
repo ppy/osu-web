@@ -38,7 +38,8 @@ class @Password
   fail: (_event, xhr) =>
     data = xhr.responseJSON
     if data?
-      @setError data.field, data.message
+      for own field, messages of data
+        @setError field, messages.join(', ')
     else
       osu.popup Lang.get('errors.unkown'), 'danger'
 
@@ -49,7 +50,7 @@ class @Password
       if confirmation in ['', @dom.password.input.value]
         ''
       else
-        Lang.get('accounts.update_password.error.wrong_confirmation')
+        Lang.get('model_validation.user_password.wrong_confirmation')
 
     @setError 'password_confirmation', error
 
