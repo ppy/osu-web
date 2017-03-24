@@ -21,9 +21,11 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ImageProcessorException;
+use App\Libraries\PasswordStrength;
 use App\Libraries\UserVerification;
 use App\Models\User;
 use Auth;
+use Hash;
 use Illuminate\Http\Request as HttpRequest;
 use Request;
 
@@ -132,11 +134,28 @@ class AccountController extends Controller
     public function updatePassword()
     {
         $user = Auth::user();
+        $params = Request::input('user_password');
 
-        $error = Auth::user()->updatePassword(Request::input('user_password'));
-        if ($error !== null) {
-            return response($error, 422);
+        foreach (['current_password', 'password', 'password_confirmation'] as $param) {
+            if (!present($params[$param] ?? null)) {
+                return error_inline($param, trans('accounts.update_password.error.missing_parameter'));
+            }
         }
+
+        if (!Hash::check($params['current_password'], $user->user_password)) {
+            return error_inline('current_password', trans('accounts.update_password.error.wrong_current_password'));
+        }
+
+        if ($params['password'] !== $params['password_confirmation']) {
+            return error_inline('password_confirmation', trans('accounts.update_password.error.wrong_confirmation'));
+        }
+
+        $strengthCheck = PasswordStrength::check($params['password'], $user->username);
+        if ($strengthCheck !== null) {
+            return error_inline('password', $strengthCheck);
+        }
+
+        Auth::user()->updatePassword($params['password']);
 
         return ['message' => trans('accounts.update_password.updated')];
     }

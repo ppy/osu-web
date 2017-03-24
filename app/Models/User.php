@@ -909,40 +909,9 @@ class User extends Model implements AuthenticatableContract, Messageable
         ]);
     }
 
-    public function updatePassword($params)
+    public function updatePassword($password)
     {
-        foreach (['current_password', 'password', 'password_confirmation'] as $param) {
-            if (!present($params[$param] ?? null)) {
-                return [
-                    'field' => $param,
-                    'message' => trans('accounts.update_password.error.missing_parameter'),
-                ];
-            }
-        }
-
-        if (!Hash::check($params['current_password'], $this->user_password)) {
-            return [
-                'field' => 'current_password',
-                'message' => trans('accounts.update_password.error.wrong_current_password'),
-            ];
-        }
-
-        if ($params['password'] !== $params['password_confirmation']) {
-            return [
-                'field' => 'password_confirmation',
-                'message' => trans('accounts.update_password.error.wrong_confirmation'),
-            ];
-        }
-
-        $strengthCheck = PasswordStrength::check($params['password'], $this->username);
-        if ($strengthCheck !== null) {
-            return [
-                'field' => 'password',
-                'message' => $strengthCheck,
-            ];
-        }
-
-        $this->update(['user_password' => Hash::make($params['password'])]);
+        $this->update(['user_password' => Hash::make($password)]);
     }
 
     public static function attemptLogin($user, $password, $ip = null)

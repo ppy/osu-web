@@ -175,6 +175,11 @@ function currency($price)
     return sprintf('US$%.2f', $price);
 }
 
+function error_inline($field, $message, $statusCode = 422)
+{
+    return response(compact('field', 'message'), $statusCode);
+}
+
 function error_popup($message, $statusCode = 422)
 {
     return response(['error' => $message], $statusCode);
