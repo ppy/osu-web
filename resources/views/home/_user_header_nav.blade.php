@@ -24,7 +24,7 @@
                 {{ $current_action === 'index' ? 'page-mode-link--is-active' : '' }}
             "
         >
-            {{ trans('users.home.title') }}
+            {{ trans('home.user.title') }}
 
             <span class="page-mode-link__stripe"></span>
         </a>

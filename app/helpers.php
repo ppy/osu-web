@@ -755,3 +755,14 @@ function find_images($html)
 
     return $matches[0];
 }
+
+function find_first_image($html)
+{
+    $post_images = find_images($html);
+
+    if (!is_array($post_images) || count($post_images) < 1) {
+        return;
+    }
+
+    return $post_images[0];
+}

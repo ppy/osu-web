@@ -16,22 +16,18 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-<div class='user-home-beatmap-list'>
-    <h3 class='user-home-beatmap-list__heading'>{{$heading}}</h3>
-    @foreach ($beatmaps as $beatmap)
-        @if ($loop->iteration > $num_shown)
-            @break;
-        @endif
-        <a class='user-home-beatmap-list__beatmap' href="{{route('beatmapsets.show', $beatmap->beatmapset_id)}}">
-            <div class='user-home-beatmap-list__cover' style="background-image: url({{$beatmap->allCoverURLs()['list']}});"></div>
-            <div class="user-home-beatmap-list__meta">
-                <div class='user-home-beatmap-list__title u-ellipsis-overflow'>{{$beatmap->title}}</div>
-                <div class='user-home-beatmap-list__artist u-ellipsis-overflow'>{{$beatmap->artist}}</div>
-                <div class='user-home-beatmap-list__creator u-ellipsis-overflow'>
-                    by {{$beatmap->creator}}, <span class='user-home-beatmap-list__playcount'>{{number_format($beatmap->play_count)}} plays</span>
-                </div>
-            </div>
-            <div class='user-home-beatmap-list__chevron'><i class='fa fa-fw fa-chevron-right'></i></div>
-        </a>
-    @endforeach
-</div>
+<a class='user-home-beatmap-list__beatmap' href="{{route('beatmapsets.show', $beatmap->beatmapset_id)}}">
+    <div class='user-home-beatmap-list__cover' style="background-image: url({{$beatmap->allCoverURLs()['list']}});"></div>
+    <div class="user-home-beatmap-list__meta">
+        <div class='user-home-beatmap-list__title u-ellipsis-overflow'>{{$beatmap->title}}</div>
+        <div class='user-home-beatmap-list__artist u-ellipsis-overflow'>{{$beatmap->artist}}</div>
+        <div class='user-home-beatmap-list__creator u-ellipsis-overflow'>
+            @if ($type == 'new')
+                by {{$beatmap->creator}}, <span class='user-home-beatmap-list__playcount'>{!! timeago($beatmap->approved_date) !!}</span>
+            @elseif ($type == 'popular')
+                by {{$beatmap->creator}}, <span class='user-home-beatmap-list__playcount'>{{number_format($popularBeatmapsPlaycount[$beatmap->beatmapset_id])}} plays</span>
+            @endif
+        </div>
+    </div>
+    <div class='user-home-beatmap-list__chevron'><i class='fa fa-fw fa-chevron-right'></i></div>
+</a>

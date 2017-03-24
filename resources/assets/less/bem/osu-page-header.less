@@ -80,7 +80,6 @@
     .at2x-simple("/images/headers/contest.jpg");
     background-position: center center;
     justify-content: flex-start;
-    // font-weight: 100;
     color: white;
     height: 200px;
 
@@ -154,6 +153,15 @@
       align-self: flex-end;
       margin: 0;
     }
+
+    &--graph {
+      padding: 0;
+      height: 100px;
+      padding-top: 5px;
+      justify-content: flex-end;
+      flex: 100%;
+      margin: 0;
+    }
   }
 
   &__detail {
@@ -165,6 +173,9 @@
 
   &__status {
     padding: 0 10px;
+    &--online {
+      padding-right: 40px;
+    }
   }
 
   &__status-label {
@@ -177,6 +188,10 @@
     font-size: @font-size--title-small-2;
   }
 
+  &__link {
+    .link-white();
+  }
+
   &__title {
     font-size: @font-size--header-title;
     margin: 0 0 10px;
@@ -187,6 +202,13 @@
 
     &--slightly-small {
       font-size: @font-size--new-header-title;
+    }
+
+    &--thinner {
+      font-weight: 100;
+      strong {
+        font-weight: 500;
+      }
     }
 
     &--small {

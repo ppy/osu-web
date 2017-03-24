@@ -201,9 +201,6 @@ return [
             'total_score' => 'Total Score',
         ],
     ],
-    'home' => [
-        'title' => 'news',
-    ],
     'verify' => [
         'title' => 'Account Verification',
     ],

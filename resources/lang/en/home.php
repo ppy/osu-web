@@ -19,9 +19,6 @@
  */
 
 return [
-    'news' => [
-        'slogan' => 'Rhythm is just a *click* away!',
-    ],
     'landing' => [
         'slogans' => [
             '1' => 'free-to-win<br/>circle simulator',
@@ -37,5 +34,28 @@ return [
         'players' => 'registered players',
         'online' => 'online players now',
         'peak' => 'Peak, :count online users',
+    ],
+    'user' => [
+        'title' => 'news',
+        'news' => [
+            'title' => 'News',
+            'error' => 'Error loading news, try refreshing the page?...',
+        ],
+        'header' => [
+            'welcome' => 'Hello, <strong>:username</strong>!',
+            'messages' => 'You have 1 new message|You have :count new messages',
+            'stats' => [
+                'online' => 'Online Users',
+            ],
+        ],
+        'beatmaps' => [
+            'new' => 'New Approved Beatmaps',
+            'popular' => 'Popular Beatmaps',
+        ],
+        'buttons' => [
+            'download' => 'Download osu!',
+            'support' => 'Support osu!',
+            'store' => 'osu!store',
+        ],
     ],
 ];
