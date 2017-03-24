@@ -19,17 +19,31 @@
  */
 
 namespace App\Models;
+
 use Cache;
 
 class News
 {
-    public static function all()
+    public static function all($limit = 8)
     {
-        return Cache::remember("news_posts", 5, function () {
-            $client = new \Tumblr\API\Client(env('TUMBLR_TOKEN'));
-            $posts = $client->getBlogPosts(env('TUMBLR_BLOG_NAME'));
+        $cache_key = "news_posts_{$limit}";
 
-            return $posts;
-        });
+        if (Cache::has($cache_key)) {
+            return Cache::get($cache_key);
+        }
+
+        $client = new \Tumblr\API\Client(env('TUMBLR_TOKEN'));
+
+        try {
+            $posts = $client->getBlogPosts(env('TUMBLR_BLOG_NAME'), ['limit' => $limit])->posts;
+        } catch (\Guzzle\Http\Exception\CurlException $e) {
+            return [];
+        }
+
+        if (!empty($posts)) {
+            Cache::put($cache_key, $posts, 5);
+        }
+
+        return $posts;
     }
 }
