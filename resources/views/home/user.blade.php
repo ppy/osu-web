@@ -41,10 +41,11 @@
                             {{trans('home.user.header.stats.online')}}
                         </div>
                         <div class="js-forum-topic-watch--unread osu-page-header__status-text">
-                            {{number_format($stats->last()->users_osu)}}
+                            {{number_format($stats[count($stats)-1]['y'])}}
                         </div>
                     </div>
-                    <div class="js-fancy-graph landing-graph"></div>
+                    <div class="js-fancy-graph fancy-graph" data-src="#banchostats"></div>
+                    <script id="banchostats" type="application/json">{!! json_encode($stats) !!}</script>
                 </div>
             </div>
         </div>
@@ -118,12 +119,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section ("script")
-    @parent
-
-    <script id="json-stats" type="application/json">
-        {!! json_encode($stats) !!}
-    </script>
 @endsection

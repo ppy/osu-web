@@ -74,10 +74,10 @@ class HomeController extends Controller
             return ujs_redirect(route('store.products.index'));
         }
 
-        $stats = BanchoStats::cachedStats();
+        $stats = BanchoStats::forGraph();
 
         $totalUsers = Count::totalUsers();
-        $currentOnline = ($stats->isEmpty() ? 0 : $stats->last()->users_osu);
+        $currentOnline = (empty($stats) ? 0 : $stats[count($stats) - 1]['y']);
 
         if (Auth::check()) {
             $news = News::all();

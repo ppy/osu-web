@@ -17,6 +17,13 @@
 ###
 
 class @FancyChart
+  margins:
+    top: 25
+    right: 20
+    bottom: 10
+    left: 0
+
+
   constructor: (area, @options = {}) ->
     @options.scales ||= {}
     @options.scales.x ||= d3.scaleTime()
@@ -27,34 +34,20 @@ class @FancyChart
     @svg = @area.append 'svg'
 
     @svgWrapper = @svg.append 'g'
-      .classed 'chart__wrapper', true
 
     @svgLine = @svgWrapper.append 'path'
-      .attr 'fill', 'none'
-      .attr 'stroke', '#ffcc22'
-      .attr 'stroke-width', '1'
+      .classed 'fancy-graph__line', true
       .attr 'opacity', 0
-      # .classed 'chart__line chart__line--thin chart__line--yellow', true
-
 
     @line = d3.line()
       .curve d3.curveMonotoneX
-
-    data = []
-    _.forEach(JSON.parse($("#json-stats").text()), (e, i) -> data.push(new Object({'x': i, 'y': e.users_osu})))
-
     @svgEndCircle = @svgWrapper.append 'circle'
-      .classed 'chart__hover-mark chart__hover-mark--small chart__end-circle', true
+      .classed 'fancy-graph__circle', true
       .attr 'r', 2
       .attr 'opacity', 0
 
+    data = JSON.parse $($(area).data('src')).text()
     @loadData data
-
-  margins:
-    top: 25
-    right: 20
-    bottom: 10
-    left: 0
 
 
   loadData: (data) =>
@@ -63,10 +56,12 @@ class @FancyChart
 
     @reveal()
 
+
   setDimensions: =>
     areaDims = @area.node().getBoundingClientRect()
     @width = areaDims.width - (@margins.left + @margins.right)
     @height = areaDims.height - (@margins.top + @margins.bottom)
+
 
   setScalesRange: =>
     @options.scales.x
@@ -86,6 +81,7 @@ class @FancyChart
     @svgEndCircle
       .attr 'transform', "translate(#{@options.scales.x(@data[@data.length-1].x)+2}, #{@options.scales.y(@data[@data.length-1].y)})"
 
+
   setSvgSize: =>
     @svg
       .attr 'width', @width + (@margins.left + @margins.right)
@@ -96,10 +92,12 @@ class @FancyChart
     @svgWrapper
       .attr 'transform', "translate(#{@margins.left}, #{@margins.top})"
 
+
   drawLine: =>
     @svgLine
       .attr 'stroke-dasharray', 0
       .attr 'd', @line
+
 
   reveal: =>
     @recalc()
@@ -135,6 +133,7 @@ class @FancyChart
     @setSvgSize()
     @setWrapperSize()
     @setLineSize()
+
 
   resize: =>
     @recalc()

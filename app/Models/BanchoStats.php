@@ -39,4 +39,18 @@ class BanchoStats extends Model
               ->get();
         });
     }
+
+    public static function forGraph()
+    {
+        $stats = self::cachedStats()->toArray();
+        $index = 0;
+
+        // php, y u no have array_map_with_index?
+        return array_map(function ($e) use (&$index) {
+            return [
+                'x' => $index++,
+                'y' => $e['users_osu']
+            ];
+        }, $stats);
+    }
 }
