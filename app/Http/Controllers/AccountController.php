@@ -146,13 +146,13 @@ class AccountController extends Controller
             return error_inline('current_password', trans('accounts.update_password.error.wrong_current_password'));
         }
 
-        if ($params['password'] !== $params['password_confirmation']) {
-            return error_inline('password_confirmation', trans('accounts.update_password.error.wrong_confirmation'));
-        }
-
         $strengthCheck = PasswordStrength::check($params['password'], $user->username);
         if ($strengthCheck !== null) {
             return error_inline('password', $strengthCheck);
+        }
+
+        if ($params['password'] !== $params['password_confirmation']) {
+            return error_inline('password_confirmation', trans('accounts.update_password.error.wrong_confirmation'));
         }
 
         Auth::user()->updatePassword($params['password']);
