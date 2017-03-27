@@ -27,7 +27,7 @@ class TopicTest extends TestCase
         $topic->forum_id = config('osu.forum.help_forum_ids')[0];
 
         $topic->topic_title = '[invalid] herp a derp';
-        $this->assertEquals(['invalid'], $topic->issueTags());
+        $this->assertSame(['invalid'], $topic->issueTags());
     }
 
     public function testIssueTagsWithKeywordAsTitle()
@@ -36,6 +36,6 @@ class TopicTest extends TestCase
         $topic->forum_id = config('osu.forum.help_forum_ids')[0];
 
         $topic->topic_title = 'invalid herp a derp';
-        $this->assertEquals([], $topic->issueTags());
+        $this->assertSame([], $topic->issueTags());
     }
 }

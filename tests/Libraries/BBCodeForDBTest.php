@@ -34,7 +34,7 @@ class BBCodeForDBTest extends TestCase
             $text->text = trim(file_get_contents($baseFilePath));
             $referenceDbOutput = trim(file_get_contents($dbFilePath));
 
-            $this->assertEquals($referenceDbOutput, $text->generate());
+            $this->assertSame($referenceDbOutput, $text->generate());
         }
     }
 }

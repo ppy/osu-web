@@ -47,8 +47,8 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ])
             ->assertStatus(403);
 
-        $this->assertEquals($currentVotes, BeatmapDiscussionVote::count());
-        $this->assertEquals($currentScore, $this->currentScore($this->beatmapDiscussion));
+        $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore, $this->currentScore($this->beatmapDiscussion));
 
         // and then no problem as another user
         $currentVotes = BeatmapDiscussionVote::count();
@@ -61,8 +61,8 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ])
             ->assertStatus(200);
 
-        $this->assertEquals($currentVotes + 1, BeatmapDiscussionVote::count());
-        $this->assertEquals($currentScore + 1, $this->currentScore($this->beatmapDiscussion));
+        $this->assertSame($currentVotes + 1, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore + 1, $this->currentScore($this->beatmapDiscussion));
     }
 
     // voting again only changes the score
@@ -80,8 +80,8 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ])
             ->assertStatus(200);
 
-        $this->assertEquals($currentVotes, BeatmapDiscussionVote::count());
-        $this->assertEquals($currentScore - 2, $this->currentScore($this->beatmapDiscussion));
+        $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore - 2, $this->currentScore($this->beatmapDiscussion));
     }
 
     // voting 0 will remove the vote
@@ -99,12 +99,12 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ])
             ->assertStatus(200);
 
-        $this->assertEquals($currentVotes - 1, BeatmapDiscussionVote::count());
-        $this->assertEquals($currentScore - 1, $this->currentScore($this->beatmapDiscussion));
+        $this->assertSame($currentVotes - 1, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore - 1, $this->currentScore($this->beatmapDiscussion));
     }
 
     private function currentScore($discussion)
     {
-        return $discussion->fresh()->beatmapDiscussionVotes()->sum('score');
+        return (int) $discussion->fresh()->beatmapDiscussionVotes()->sum('score');
     }
 }
