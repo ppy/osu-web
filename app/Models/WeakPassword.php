@@ -20,8 +20,24 @@
 
 namespace App\Models;
 
+use DB;
+
 class WeakPassword extends Model
 {
+    public $incrementing = false;
+    public $timestamps = false;
+    protected $primaryKey = 'hash';
+    protected $guarded = [];
+
+    public static function add($string)
+    {
+        $md5 = md5(strtolower($string));
+
+        static::create([
+            'hash' => DB::raw("UNHEX('{$md5}')"),
+        ]);
+    }
+
     public static function check($string)
     {
         return static

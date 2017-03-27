@@ -6,12 +6,9 @@ use App\Models\BeatmapDiscussionVote;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetDiscussion;
 use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class BeatmapDiscussionsControllerTest extends TestCase
 {
-    use DatabaseTransactions;
-
     public function setUp()
     {
         parent::setUp();
