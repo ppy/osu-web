@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ImageProcessorException;
+use App\Libraries\UserVerification;
 use App\Mail\UserEmailUpdated;
 use App\Models\User;
 use App\Models\UserEmail;
