@@ -130,7 +130,9 @@ class AccountController extends Controller
             ->fill(Request::input('user_email'));
 
         if ($userEmail->save() === true) {
-            Mail::to($previousEmail)->send(new UserEmailUpdated($user));
+            if (present($previousEmail)) {
+                Mail::to($previousEmail)->send(new UserEmailUpdated($user));
+            }
 
             return ['message' => trans('accounts.update_email.updated')];
         } else {
