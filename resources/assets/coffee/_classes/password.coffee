@@ -21,9 +21,6 @@ class @Password
     @base = document.getElementsByClassName('js-password')
     @dom = {}
 
-    $(document).on 'input', '.js-password[data-password-field=current_password] .js-password--input', @inputCurrent
-    $(document).on 'input', '.js-password[data-password-field=password] .js-password--input', @inputNew
-    $(document).on 'input', '.js-password[data-password-field=password_confirmation] .js-password--input', @inputConfirmation
     $(document).on 'turbolinks:load', @reboot
     $(document).on 'ajax:success', '.js-password--form', @clear
     $(document).on 'ajax:error', '.js-password--form', @fail
@@ -72,7 +69,10 @@ class @Password
       error = label.querySelector('.js-password--error')
 
       @dom[field] = {error, input, label}
-      $(input).on 'input', @refresh
+
+    $(@dom.current_password.input).on 'input', @inputCurrent
+    $(@dom.password.input).on 'input', @inputNew
+    $(@dom.password_confirmation.input).on 'input', @inputConfirmation
 
 
   setError: (field, message) =>

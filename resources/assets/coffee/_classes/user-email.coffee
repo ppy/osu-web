@@ -21,9 +21,6 @@ class @UserEmail
     @base = document.getElementsByClassName('js-user-email')
     @dom = {}
 
-    $(document).on 'input', '.js-user-email[data-user-email-field=current_password] .js-user-email--input', @inputPassword
-    $(document).on 'input', '.js-user-email[data-user-email-field=email] .js-user-email--input', @inputNew
-    $(document).on 'input', '.js-user-email[data-user-email-field=email_confirmation] .js-user-email--input', @inputConfirmation
     $(document).on 'turbolinks:load', @reboot
     $(document).on 'ajax:success', '.js-user-email--form', @clear
     $(document).on 'ajax:error', '.js-user-email--form', @fail
@@ -72,7 +69,10 @@ class @UserEmail
       error = label.querySelector('.js-user-email--error')
 
       @dom[field] = {error, input, label}
-      $(input).on 'input', @refresh
+
+    $(@dom.current_password.input).on 'input', @inputPassword
+    $(@dom.email.input).on 'input', @inputNew
+    $(@dom.email_confirmation.input).on 'input', @inputConfirmation
 
 
   setError: (field, message) =>
