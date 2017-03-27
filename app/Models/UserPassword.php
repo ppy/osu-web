@@ -60,7 +60,7 @@ class UserPassword
             }
 
             if (strpos(strtolower($this->params['password']), strtolower($this->user->username)) !== false) {
-                $this->validationErrors()->add('password', '.same_as_username');
+                $this->validationErrors()->add('password', '.contains_username');
             }
 
             if (strlen($this->params['password']) < 8) {

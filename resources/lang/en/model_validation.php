@@ -56,7 +56,7 @@ return [
     ],
 
     'user_password' => [
-        'same_as_username' => 'Password may not contain username.',
+        'contains_username' => 'Password may not contain username.',
         'too_short' => 'New password is too short.',
         'weak' => 'Blacklisted password.',
         'wrong_confirmation' => 'Password confirmation does not match.',
