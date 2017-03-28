@@ -88,7 +88,7 @@ class HomeController extends Controller
 
         if (Auth::check()) {
             $news = News::all();
-            $newBeatmaps = Beatmapset::latest();
+            $newBeatmaps = Beatmapset::latestRankedOrApproved();
             $popularBeatmapsPlaycount = Beatmapset::mostPlayedToday();
             $popularBeatmaps = Beatmapset::whereIn('beatmapset_id', array_keys($popularBeatmapsPlaycount))->get();
 

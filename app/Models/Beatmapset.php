@@ -454,12 +454,11 @@ class Beatmapset extends Model
             : [];
     }
 
-    public static function latest($count = 5)
+    public static function latestRankedOrApproved($count = 5)
     {
         // TODO: add filtering by game mode after mode-toggle UI/UX happens
 
         return Cache::remember("beatmapsets_latest_{$count}", 60, function() use ($count) {
-
             // We union here so mysql can use indexes to speed this up
             $ranked = self::ranked()->active()->orderBy('approved_date', 'desc')->limit($count);
             $approved = self::approved()->active()->orderBy('approved_date', 'desc')->limit($count);

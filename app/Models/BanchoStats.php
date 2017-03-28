@@ -32,7 +32,7 @@ class BanchoStats extends Model
     public static function cachedStats()
     {
         return Cache::remember('banchostats', 60, function () {
-            return BanchoStats::whereRaw('banchostats_id mod 10 = 0')
+            return self::whereRaw('banchostats_id mod 10 = 0')
               ->select(['users_irc', 'users_osu', 'multiplayer_games', 'date'])
               ->orderBy('banchostats_id', 'DESC')
               ->limit(144) // aka 24 * 60 / 10
