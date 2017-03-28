@@ -111,7 +111,7 @@ class @FancyChart
       .attr 'stroke-dasharray', totalLength
       .attr 'stroke-dashoffset', totalLength
       .transition()
-        .delay 500
+        .delay 400
         .duration 1000
         .ease d3.easeSinOut
         .attr 'stroke-dashoffset', 0
@@ -119,7 +119,7 @@ class @FancyChart
 
     @svgEndCircle
       .transition()
-        .delay 1400
+        .delay 1300
         .duration 300
         .ease d3.easeSinOut
         .attr 'opacity', 1
