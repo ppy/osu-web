@@ -40,7 +40,7 @@ class BanchoStats extends Model
         });
     }
 
-    public static function forGraph()
+    public static function userGraphData()
     {
         $stats = self::cachedStats()->toArray();
         $index = 0;

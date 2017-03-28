@@ -169,6 +169,6 @@
     @parent
 
     <script id="json-stats" type="application/json">
-        {!! json_encode($stats) !!}
+        {!! json_encode($graphData) !!}
     </script>
 @endsection

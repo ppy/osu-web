@@ -41,11 +41,11 @@
                             {{trans('home.user.header.stats.online')}}
                         </div>
                         <div class="js-forum-topic-watch--unread osu-page-header__status-text">
-                            {{number_format($stats[count($stats)-1]['y'])}}
+                            {{$currentOnline}}
                         </div>
                     </div>
                     <div class="js-fancy-graph fancy-graph" data-src="#banchostats"></div>
-                    <script id="banchostats" type="application/json">{!! json_encode($stats) !!}</script>
+                    <script id="banchostats" type="application/json">{!! json_encode($graphData) !!}</script>
                 </div>
             </div>
         </div>

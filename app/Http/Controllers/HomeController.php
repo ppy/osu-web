@@ -74,10 +74,17 @@ class HomeController extends Controller
             return ujs_redirect(route('store.products.index'));
         }
 
-        $stats = BanchoStats::forGraph();
+        $stats = BanchoStats::cachedStats()->toArray();
+        $totalUsers = number_format(Count::cachedTotalUsers());
+        $graphData = BanchoStats::userGraphData();
 
-        $totalUsers = Count::totalUsers();
-        $currentOnline = (empty($stats) ? 0 : $stats[count($stats) - 1]['y']);
+        $latest = array_pop($stats);
+        if ($latest) {
+            $currentOnline = number_format($latest['users_osu']);
+            $currentGames = number_format($latest['multiplayer_games']);
+        } else {
+            $currentOnline = $currentGames = 0;
+        }
 
         if (Auth::check()) {
             $news = News::all();
@@ -85,9 +92,23 @@ class HomeController extends Controller
             $popularBeatmapsPlaycount = Beatmapset::mostPlayedToday();
             $popularBeatmaps = Beatmapset::whereIn('beatmapset_id', array_keys($popularBeatmapsPlaycount))->get();
 
-            return view('home.user', compact('stats', 'totalUsers', 'currentOnline', 'news', 'newBeatmaps', 'popularBeatmaps', 'popularBeatmapsPlaycount'));
+            return view('home.user', compact(
+                'currentGames',
+                'currentOnline',
+                'graphData',
+                'newBeatmaps',
+                'news',
+                'popularBeatmaps',
+                'popularBeatmapsPlaycount',
+                'totalUsers'
+            ));
         } else {
-            return view('home.landing', compact('stats', 'totalUsers', 'currentOnline'));
+            return view('home.landing', compact(
+                'currentGames',
+                'currentOnline',
+                'graphData',
+                'totalUsers'
+            ));
         }
     }
 
