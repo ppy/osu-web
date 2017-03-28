@@ -53,6 +53,11 @@ return [
                 'user_website' => 'website',
             ],
         ],
+
+        'signature' => [
+            'title' => 'Signature',
+            'update' => 'update',
+        ],
     ],
 
     'update_email' => [

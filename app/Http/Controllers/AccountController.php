@@ -106,6 +106,7 @@ class AccountController extends Controller
                 'user_occ:string',
                 'user_twitter:string',
                 'user_website:string',
+                'user_sig:string',
             ]
         );
 

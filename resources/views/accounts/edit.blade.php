@@ -107,6 +107,10 @@
     </div>
 
     <div class="osu-page osu-page--small">
+        @include('accounts._edit_signature')
+    </div>
+
+    <div class="osu-page osu-page--small">
         @include('accounts._edit_password')
     </div>
 
