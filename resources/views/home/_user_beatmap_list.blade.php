@@ -17,7 +17,10 @@
 --}}
 
 <a class='user-home-beatmap-list__beatmap' href="{{route('beatmapsets.show', $beatmap->beatmapset_id)}}">
-    <div class='user-home-beatmap-list__cover' style="background-image: url({{$beatmap->allCoverURLs()['list']}});"></div>
+    <img class='user-home-beatmap-list__cover'
+        src="{{$beatmap->allCoverURLs()['list']}}"
+        srcSet="{{$beatmap->allCoverURLs()['list']}} 1x, {{$beatmap->allCoverURLs()['list@2x']}} 2x">
+
     <div class="user-home-beatmap-list__meta">
         <div class='user-home-beatmap-list__title u-ellipsis-overflow'>{{$beatmap->title}}</div>
         <div class='user-home-beatmap-list__artist u-ellipsis-overflow'>{{$beatmap->artist}}</div>
