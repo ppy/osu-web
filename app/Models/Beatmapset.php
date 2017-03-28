@@ -282,8 +282,29 @@ class Beatmapset extends Model
         }
 
         if (!empty($rank)) {
-            $klass = presence($mode) !== null ? Score\Best\Model::getClass(intval($mode)) : Score\Best\Combined::class;
-            $scores = model_pluck($klass::forUser($current_user)->whereIn('rank', $rank), 'beatmapset_id');
+            if (present($mode)) {
+                $modes = [$mode];
+            } else {
+                $modes = array_keys(Beatmap::MODES);
+            }
+
+            $unionQuery = null;
+            foreach ($modes as $mode) {
+                $newQuery =
+                    Score\Best\Model::getClass((int) $mode)
+                    ->forUser($current_user)
+                    ->whereIn('rank', $rank)
+                    ->select('beatmapset_id');
+
+                if ($unionQuery === null) {
+                    $unionQuery = $newQuery;
+                } else {
+                    $unionQuery->union($newQuery);
+                }
+            }
+
+            $scores = model_pluck($unionQuery, 'beatmapset_id');
+
             $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $scores]];
         }
 
@@ -561,23 +582,22 @@ class Beatmapset extends Model
             }
 
             $bgFile = ci_file_search("{$workingFolder}/{$bgFilename}");
-            if (!$bgFile) {
-                throw new BeatmapProcessorException("Background image missing: {$bgFile}");
-            }
 
-            $processor = new ImageProcessorService($tmpBase);
+            if ($bgFile !== false) {
+                $processor = new ImageProcessorService($tmpBase);
 
-            // upload original image
-            $this->storeCover('raw.jpg', $bgFile);
+                // upload original image
+                $this->storeCover('raw.jpg', $bgFile);
 
-            // upload optimized version
-            $optimized = $processor->optimize($this->coverURL('raw'));
-            $this->storeCover('fullsize.jpg', $optimized);
+                // upload optimized version
+                $optimized = $processor->optimize($this->coverURL('raw'));
+                $this->storeCover('fullsize.jpg', $optimized);
 
-            // use thumbnailer to generate and upload all our variants
-            foreach (self::coverSizes() as $size) {
-                $resized = $processor->resize($this->coverURL('fullsize'), $size);
-                $this->storeCover("$size.jpg", $resized);
+                // use thumbnailer to generate and upload all our variants
+                foreach (self::coverSizes() as $size) {
+                    $resized = $processor->resize($this->coverURL('fullsize'), $size);
+                    $this->storeCover("$size.jpg", $resized);
+                }
             }
 
             $this->update(['cover_updated_at' => $this->freshTimestamp()]);
@@ -723,7 +743,7 @@ class Beatmapset extends Model
 
     public function events()
     {
-        return $this->hasMany(BeatmapsetEvent::class);
+        return $this->hasMany(BeatmapsetEvent::class, 'beatmapset_id');
     }
 
     public function requiredNominationCount()
@@ -821,7 +841,7 @@ class Beatmapset extends Model
 
     public function favourites()
     {
-        return $this->hasMany(FavouriteBeatmapset::class);
+        return $this->hasMany(FavouriteBeatmapset::class, 'beatmapset_id');
     }
 
     public function description()

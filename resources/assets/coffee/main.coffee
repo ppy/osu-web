@@ -64,6 +64,8 @@ $(document).on 'submit', 'form', (e) ->
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
 @forumCover ?= new ForumCover
+@postPreview ?= new PostPreview
+@replyPreview ?= new ReplyPreview
 
 @menu ?= new Menu
 

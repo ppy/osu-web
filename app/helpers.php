@@ -108,6 +108,32 @@ function product_quantity_options($product)
     return $opts;
 }
 
+function read_image_properties($path)
+{
+    try {
+        $data = getimagesize($path);
+    } catch (Exception $_e) {
+        return;
+    }
+
+    if ($data !== false) {
+        return $data;
+    }
+}
+
+function read_image_properties_from_string($string)
+{
+    try {
+        $data = getimagesizefromstring($string);
+    } catch (Exception $_e) {
+        return;
+    }
+
+    if ($data !== false) {
+        return $data;
+    }
+}
+
 function render_to_string($view, $variables = [])
 {
     return view()->make($view, $variables)->render();
@@ -222,6 +248,8 @@ function link_to_user($user_id, $user_name, $user_color)
 function issue_icon($issue)
 {
     switch ($issue) {
+        case 'added': return 'fa-cogs';
+        case 'assigned': return 'fa-user';
         case 'confirmed': return 'fa-exclamation-triangle';
         case 'resolved': return 'fa-check-circle';
         case 'duplicate': return 'fa-copy';
@@ -410,7 +438,7 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG)
 function open_image($path, $dimensions = null)
 {
     if ($dimensions === null) {
-        $dimensions = getimagesize($path);
+        $dimensions = read_image_properties($path);
     }
 
     if (!isset($dimensions[2]) || !is_int($dimensions[2])) {
@@ -477,11 +505,7 @@ function fast_imagesize($url)
         $data = curl_exec($curl);
         curl_close($curl);
 
-        try {
-            return getimagesizefromstring($data);
-        } catch (ErrorException $_e) {
-            return [0, 0];
-        }
+        return read_image_properties_from_string($data);
     });
 }
 

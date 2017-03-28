@@ -216,7 +216,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function setUserFromAttribute($value)
     {
-        $this->attributes['user_from'] = presence(e($value));
+        $this->attributes['user_from'] = e($value);
     }
 
     public function getUserInterestsAttribute($value)
@@ -717,7 +717,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function beatmapsetRatings()
     {
-        return $this->hasMany(BeatmapsetUserRating::class);
+        return $this->hasMany(BeatmapsetUserRating::class, 'user_id');
     }
 
     public function givenKudosu()
@@ -882,9 +882,8 @@ class User extends Model implements AuthenticatableContract, Messageable
 
         $lastPost = $this->forumPosts()->last()->select('post_time')->first();
 
-        // null time will be stored as 0 by the db. Nothing can be done about
-        // it, short of changing the column to allow null.
-        $lastPostTime = $lastPost !== null ? $lastPost->post_time : null;
+        // FIXME: not null column, hence default 0. Change column to allow null
+        $lastPostTime = $lastPost !== null ? $lastPost->post_time : 0;
 
         return $this->update([
             'user_posts' => $newPostsCount,

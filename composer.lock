@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d9afca6e5d14a4cb6c2fcfed8d5719a",
+    "content-hash": "843998449477c6acfd3e6c8b9a70572b",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -87,6 +87,56 @@
             "time": "2017-02-15T22:39:19+00:00"
         },
         {
+            "name": "chaseconey/laravel-datadog-helper",
+            "version": "0.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chaseconey/laravel-datadog-helper.git",
+                "reference": "49a1cd82043abcfbd1d5493e0df3de382b3031e5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chaseconey/laravel-datadog-helper/zipball/49a1cd82043abcfbd1d5493e0df3de382b3031e5",
+                "reference": "49a1cd82043abcfbd1d5493e0df3de382b3031e5",
+                "shasum": ""
+            },
+            "require": {
+                "datadog/php-datadogstatsd": "^0.4.0",
+                "illuminate/support": "~5.1",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0||~5.0",
+                "scrutinizer/ocular": "~1.1",
+                "squizlabs/php_codesniffer": "~2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ChaseConey\\LaravelDatadogHelper\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chase Coney",
+                    "email": "chasiepoo@gmail.com",
+                    "homepage": "http://chaseconey.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel Datadog helper package.",
+            "homepage": "https://github.com/chaseconey/laravel-datadog-helper",
+            "keywords": [
+                "chaseconey",
+                "laravel-datadog-helper"
+            ],
+            "time": "2017-01-13T23:41:30+00:00"
+        },
+        {
             "name": "clue/stream-filter",
             "version": "v1.3.0",
             "source": {
@@ -134,6 +184,55 @@
                 "stream_filter_register"
             ],
             "time": "2015-11-08T23:41:30+00:00"
+        },
+        {
+            "name": "datadog/php-datadogstatsd",
+            "version": "0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DataDog/php-datadogstatsd.git",
+                "reference": "90aee3687a43ba31e7d94b6c0a9ad9b127c5dd1c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DataDog/php-datadogstatsd/zipball/90aee3687a43ba31e7d94b6c0a9ad9b127c5dd1c",
+                "reference": "90aee3687a43ba31e7d94b6c0a9ad9b127c5dd1c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "lib-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "libraries/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Corley",
+                    "email": "anthroprose@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Datadog",
+                    "email": "dev@datadoghq.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This is an extremely simple PHP datadogstatsd client",
+            "homepage": "https://www.datadoghq.com/",
+            "keywords": [
+                "DataDog",
+                "php"
+            ],
+            "time": "2016-05-24T12:56:33+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2225,52 +2324,6 @@
             "time": "2016-10-12T14:08:15+00:00"
         },
         {
-            "name": "league/statsd",
-            "version": "1.4.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/statsd.git",
-                "reference": "375e47160b2a7d145895e3fc4a1a888b9744c286"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/statsd/zipball/375e47160b2a7d145895e3fc4a1a888b9744c286",
-                "reference": "375e47160b2a7d145895e3fc4a1a888b9744c286",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0",
-                "silex/silex": "~1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "League\\StatsD\\": "src",
-                    "League\\StatsD\\Test\\": "tests"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marc Qualie",
-                    "email": "marc@marcqualie.com",
-                    "homepage": "http://marcqualie.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A simple library for working with StatsD in PHP.",
-            "homepage": "https://github.com/thephpleague/statsd",
-            "keywords": [
-                "graphite",
-                "library",
-                "statsd"
-            ],
-            "time": "2017-02-09T19:30:26+00:00"
-        },
-        {
             "name": "lord/laroute",
             "version": "v2.4.4",
             "source": {
@@ -2368,9 +2421,9 @@
                 "slack"
             ],
             "support": {
-                "source": "https://github.com/nanaya/slack-php/tree/1.7.1"
+                "source": "https://github.com/nanaya/slack-php/tree/laravel-5.4"
             },
-            "time": "2017-02-16T06:27:23+00:00"
+            "time": "2017-02-16 06:27:23"
         },
         {
             "name": "mariuzzo/laravel-js-localization",

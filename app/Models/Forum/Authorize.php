@@ -26,6 +26,8 @@ class Authorize extends Model
     protected $table = 'phpbb_acl_groups';
     public $timestamps = false;
 
+    protected $guarded = [];
+
     public static function aclCheck($user, $authOption, $forum)
     {
         $groupIds = $user->groupIds();

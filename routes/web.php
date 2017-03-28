@@ -31,6 +31,7 @@
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 Route::post('/set-locale', ['as' => 'set-locale', 'uses' => 'HomeController@setLocale']);
+Route::post('/bbcode-preview', ['as' => 'bbcode-preview', 'uses' => 'HomeController@bbcodePreview']);
 Route::get('/home/download', ['as' => 'download', 'uses' => 'HomeController@getDownload']);
 Route::get('/home/changelog', ['as' => 'changelog', 'uses' => 'HomeController@getChangelog']);
 Route::get('/home/support', ['as' => 'support-the-game', 'uses' => 'HomeController@supportTheGame']);
@@ -155,7 +156,9 @@ Route::post('/store/update-address', 'StoreController@postUpdateAddress');
 Route::post('/store/new-address', 'StoreController@postNewAddress');
 Route::post('/store/add-to-cart', 'StoreController@postAddToCart');
 Route::post('/store/checkout', 'StoreController@postCheckout');
-Route::put('/store/request-notification/{product}/{action}', 'StoreController@putRequestNotification')->name('store.request-notification');
+Route::post('/store/products/{product}/notification-request', 'Store\NotificationRequestsController@store')
+    ->name('store.notification-request');
+Route::delete('/store/products/{product}/notification-request', 'Store\NotificationRequestsController@destroy');
 
 Route::resource('tournaments', 'TournamentsController');
 Route::post('/tournaments/{tournament}/unregister', ['as' => 'tournaments.unregister', 'uses' => 'TournamentsController@unregister']);
@@ -166,6 +169,7 @@ Route::group(['as' => 'forum.', 'prefix' => 'forum', 'namespace' => 'Forum'], fu
     Route::get('search', ['as' => 'forums.search', 'uses' => 'ForumsController@search']);
     Route::get('t/{topic}', ['as' => 'topics.show', 'uses' => 'TopicsController@show']);
     Route::post('topics/preview', ['as' => 'topics.preview', 'uses' => 'TopicsController@preview']);
+    Route::post('topics/{topic}/issue-tag', ['as' => 'topics.issue-tag', 'uses' => 'TopicsController@issueTag']);
     Route::post('topics/{topic}/lock', ['as' => 'topics.lock', 'uses' => 'TopicsController@lock']);
     Route::post('topics/{topic}/move', ['as' => 'topics.move', 'uses' => 'TopicsController@move']);
     Route::post('topics/{topic}/pin', ['as' => 'topics.pin', 'uses' => 'TopicsController@pin']);

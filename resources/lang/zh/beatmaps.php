@@ -32,10 +32,10 @@ return [
     ],
 
     'discussions' => [
-        'allow_kudosu' => '允许kudosu', //很可能不准确
+        'allow_kudosu' => '给予kudosu',
         'delete' => '删除',
         'deleted' => '被 :editor 于 :delete_time 删除',
-        'deny_kudosu' => '禁止kudosu', //很可能不准确
+        'deny_kudosu' => '收回kudosu',
         'edit' => '编辑',
         'edited' => '最后由 :editor 于 :update_time 编辑',
         'message_placeholder' => '在这里输入您的回复', //可能不准确
@@ -58,7 +58,7 @@ return [
 
         'message_hint' => [
             'in_general' => '这个信息将提交到整个谱面.如果您想单独针对某处,请在开头使用时间戳(例子: 00:12:345).', //可能不准确
-            'in_timeline' => 'To mod multiple timestamps, post multiple times (one post per timestamp).', //TODO 需要帮助
+            'in_timeline' => '如果你想 mod 多处，就在每一个时间戳下写一次并发布', //可能不准确，意译成分大，等看看Kwan那边的吧
         ],
 
         'message_type' => [
@@ -79,31 +79,31 @@ return [
         ],
 
         'show' => [
-            'title' => ':title mapped by :mapper', //TODO 需要帮助
+            'title' => ':title 由 :mapper 制作',
         ],
 
         'stats' => [
             'deleted' => '已删除',
             'mine' => '我的',
-            'pending' => 'Pending', //TODO 需要帮助
+            'pending' => 'Pending',
             'praises' => '赞',
             'resolved' => '已解决',
-            'total' => 'Total', //TODO 需要帮助
+            'total' => '总计', //(总计/总数)需要上下文
         ],
     ],
 
-    'nominations' => [ //TODO 需要帮助
-        'disqualifed-at' => 'disqualified :time_ago (:reason).',
+    'nominations' => [
+        'disqualifed-at' => '于 :time_ago 被DQ (:reason).', //disqualifed现在好像没有很合适的翻译，姑且先写作DQ了
         'disqualifed_no_reason' => '没有指定原因',
-        'disqualification-prompt' => 'Reason for disqualification?',
+        'disqualification-prompt' => 'DQ的理由?',
         'disqualify' => 'Disqualify',
-        'incorrect-state' => 'Error performing that action, try refreshing the page.',
-        'nominate' => 'Nominate',
-        'nominate-confirm' => 'Nominate this beatmap?',
-        'qualified' => 'Estimated to be ranked :date, if no issues are found.',
-        'qualified-soon' => 'Estimated to be ranked soon, if no issues are found.',
-        'required-text' => 'Nominations: :current/:required',
-        'title' => 'Nomination Status',
+        'incorrect-state' => '操作出错了，请刷新页面.',
+        'nominate' => '提名',
+        'nominate-confirm' => '提名这张谱面?',
+        'qualified' => '如果没有问题，预计将于 :date 被 ranked.',
+        'qualified-soon' => '如果没有问题，预计不久将被 ranked.',
+        'required-text' => '提名数: :current/:required',
+        'title' => '提名状态',
     ],
 
     'listing' => [

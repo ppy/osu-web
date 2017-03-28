@@ -38,27 +38,26 @@ class Topic extends Model
 
     const TYPE_NORMAL = 0;
     const TYPE_PINNED = 1;
+    const ISSUE_TAGS = [
+        'added',
+        'assigned',
+        'confirmed',
+        'duplicate',
+        'invalid',
+        'resolved',
+    ];
 
     protected $table = 'phpbb_topics';
     protected $primaryKey = 'topic_id';
     protected $guarded = [];
 
     public $timestamps = false;
-    protected $dates = [
-        'poll_last_vote',
-        'poll_start',
-        'topic_last_post_time',
-        'topic_last_view_time',
-        'topic_time',
-    ];
-    protected $dateFormat = 'U';
 
     private $postsCount;
     private $deletedPostsCount;
     private $_vote;
     private $_poll;
-
-    private $issueTypes = 'resolved|invalid|duplicate|confirmed';
+    private $_issueTags;
 
     protected $casts = [
         'poll_vote_change' => 'boolean',
@@ -138,10 +137,6 @@ class Topic extends Model
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, -1);
             }
-
-            if ($user !== null && $user->user_id !== $post->poster_id) {
-                Log::logModerateForumPost('LOG_DELETE_POST', $post, $user);
-            }
         });
 
         return true;
@@ -164,10 +159,6 @@ class Topic extends Model
 
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, 1);
-            }
-
-            if ($user !== null && $user->user_id !== $post->user->user_id) {
-                Log::logModerateForumPost('LOG_RESTORE_POST', $post, $user);
             }
         });
 
@@ -207,8 +198,6 @@ class Topic extends Model
                 $user->refreshForumCache();
             }
 
-            Log::logModerateForumTopicMove($this, $originForum);
-
             return true;
         });
     }
@@ -230,17 +219,17 @@ class Topic extends Model
 
     public function userTracks()
     {
-        return $this->hasMany(TopicTrack::class);
+        return $this->hasMany(TopicTrack::class, 'topic_id');
     }
 
     public function logs()
     {
-        return $this->hasMany(Log::class);
+        return $this->hasMany(Log::class, 'topic_id');
     }
 
     public function featureVotes()
     {
-        return $this->hasMany(FeatureVote::class);
+        return $this->hasMany(FeatureVote::class, 'topic_id');
     }
 
     public function pollOptions()
@@ -250,27 +239,90 @@ class Topic extends Model
 
     public function pollVotes()
     {
-        return $this->hasMany(PollVote::class);
+        return $this->hasMany(PollVote::class, 'topic_id');
+    }
+
+    public function getPollLastVoteAttribute($value)
+    {
+        return get_time_or_null($value);
+    }
+
+    public function setPollLastVoteAttribute($value)
+    {
+        $this->attributes['poll_last_vote'] = $value->timestamp;
+    }
+
+    public function getPollStartAttribute($value)
+    {
+        return get_time_or_null($value);
+    }
+
+    public function setPollStartAttribute($value)
+    {
+        $this->attributes['poll_start'] = $value->timestamp;
+    }
+
+    public function getTopicLastPostTimeAttribute($value)
+    {
+        return get_time_or_null($value);
+    }
+
+    public function setTopicLastPostTimeAttribute($value)
+    {
+        $this->attributes['topic_last_post_time'] = $value->timestamp;
+    }
+
+    public function getTopicLastViewTimeAttribute($value)
+    {
+        return get_time_or_null($value);
+    }
+
+    public function setTopicLastViewTimeAttribute($value)
+    {
+        $this->attributes['topic_last_view_time'] = $value->timestamp;
+    }
+
+    public function getTopicTimeAttribute($value)
+    {
+        return get_time_or_null($value);
+    }
+
+    public function setTopicTimeAttribute($value)
+    {
+        $this->attributes['topic_time'] = $value->timestamp;
     }
 
     public function titleNormalized()
     {
-        if ($this->isIssue() === false) {
+        if (!$this->isIssue()) {
             return $this->topic_title;
         }
 
-        return trim(preg_replace("/\[({$this->issueTypes})\]/i", '', $this->topic_title));
+        $title = $this->topic_title;
+
+        foreach (static::ISSUE_TAGS as $tag) {
+            $title = str_replace("[{$tag}]", '', $title);
+        }
+
+        return trim($title);
     }
 
-    public function issues()
+    public function issueTags()
     {
-        if ($this->isIssue() === false) {
+        if (!$this->isIssue()) {
             return [];
         }
 
-        preg_match_all("/\[({$this->issueTypes})\]/i", $this->topic_title, $issues);
+        if ($this->_issueTags === null) {
+            $this->_issueTags = [];
+            foreach (static::ISSUE_TAGS as $tag) {
+                if ($this->hasIssueTag($tag)) {
+                    $this->_issueTags[] = $tag;
+                }
+            }
+        }
 
-        return array_map('strtolower', $issues[1]);
+        return $this->_issueTags;
     }
 
     public function scopePinned($query)
@@ -358,11 +410,6 @@ class Topic extends Model
     public function postPosition($postId)
     {
         return $this->posts()->where('post_id', '<=', $postId)->count();
-    }
-
-    public function getPollStartAttribute($value)
-    {
-        return get_time_or_null($value);
     }
 
     public function setPollTitleAttribute($value)
@@ -470,17 +517,17 @@ class Topic extends Model
         $firstPost = $this->posts()->first();
 
         if ($firstPost === null) {
-            $this->topic_first_post_id = null;
-            $this->topic_poster = null;
-            $this->topic_first_poster_name = null;
-            $this->topic_first_poster_colour = null;
+            $this->topic_first_post_id = 0;
+            $this->topic_poster = '';
+            $this->topic_first_poster_name = '';
+            $this->topic_first_poster_colour = '';
         } else {
             $this->topic_first_post_id = $firstPost->post_id;
 
             if ($firstPost->user === null) {
-                $this->topic_poster = null;
-                $this->topic_first_poster_name = null;
-                $this->topic_first_poster_colour = null;
+                $this->topic_poster = 0;
+                $this->topic_first_poster_name = '';
+                $this->topic_first_poster_colour = '';
             } else {
                 $this->topic_poster = $firstPost->user->user_id;
                 $this->topic_first_poster_name = $firstPost->user->username;
@@ -494,20 +541,20 @@ class Topic extends Model
         $lastPost = $this->posts()->last()->first();
 
         if ($lastPost === null) {
-            $this->topic_last_post_id = null;
-            $this->topic_last_post_time = null;
+            $this->topic_last_post_id = 0;
+            $this->topic_last_post_time = 0;
 
-            $this->topic_last_poster_id = null;
-            $this->topic_last_poster_name = null;
-            $this->topic_last_poster_colour = null;
+            $this->topic_last_poster_id = 0;
+            $this->topic_last_poster_name = '';
+            $this->topic_last_poster_colour = '';
         } else {
             $this->topic_last_post_id = $lastPost->post_id;
             $this->topic_last_post_time = $lastPost->post_time;
 
             if ($lastPost->user === null) {
-                $this->topic_last_poster_id = null;
-                $this->topic_last_poster_name = null;
-                $this->topic_last_poster_colour = null;
+                $this->topic_last_poster_id = 0;
+                $this->topic_last_poster_name = '';
+                $this->topic_last_poster_colour = '';
             } else {
                 $this->topic_last_poster_id = $lastPost->user->user_id;
                 $this->topic_last_poster_name = $lastPost->user->username;
@@ -531,36 +578,16 @@ class Topic extends Model
 
     public function lock($lock = true)
     {
-        DB::transaction(function () use ($lock) {
-            if ($lock === true) {
-                $newStatus = static::STATUS_LOCKED;
-                $logOperation = 'LOG_LOCK';
-            } else {
-                $newStatus = static::STATUS_UNLOCKED;
-                $logOperation = 'LOG_UNLOCK';
-            }
-
-            $this->update(['topic_status' => $newStatus]);
-
-            Log::logModerateForumTopic($logOperation, $this);
-        });
+        $this->update([
+            'topic_status' => $lock ? static::STATUS_LOCKED : static::STATUS_UNLOCKED,
+        ]);
     }
 
     public function pin($pin)
     {
-        DB::transaction(function () use ($pin) {
-            if ($pin === true) {
-                $newStatus = static::TYPE_PINNED;
-                $logOperation = 'LOG_PIN';
-            } else {
-                $newStatus = static::TYPE_NORMAL;
-                $logOperation = 'LOG_UNPIN';
-            }
-
-            $this->update(['topic_type' => $newStatus]);
-
-            Log::logModerateForumTopic($logOperation, $this);
-        });
+        $this->update([
+            'topic_type' => $pin ? static::TYPE_PINNED : static::TYPE_NORMAL,
+        ]);
     }
 
     public function deleteWithDependencies()
@@ -624,5 +651,33 @@ class Topic extends Model
         }
 
         return $this->_vote;
+    }
+
+    public function setIssueTag($tag)
+    {
+        $this->topic_type = $tag === 'confirmed' ? static::TYPE_PINNED : static::TYPE_NORMAL;
+
+        if (!$this->hasIssueTag($tag)) {
+            $this->topic_title = "[{$tag}] {$this->topic_title}";
+        }
+
+        $this->save();
+    }
+
+    public function unsetIssueTag($tag)
+    {
+        $this->topic_type = $tag === 'resolved' ? static::TYPE_PINNED : static::TYPE_NORMAL;
+        $this->topic_title = preg_replace(
+            '/  +/',
+            ' ',
+            trim(str_replace("[{$tag}]", '', $this->topic_title))
+        );
+
+        $this->save();
+    }
+
+    public function hasIssueTag($tag)
+    {
+        return strpos($this->topic_title, "[{$tag}]") !== false;
     }
 }

@@ -25,8 +25,6 @@ class ContestVotesChangeWeightingToFloat extends Migration
      */
     public function down()
     {
-        Schema::table('contest_votes', function (Blueprint $table) {
-            $table->tinyInteger('weight')->default(1)->change();
-        });
+        DB::statement('ALTER TABLE contest_votes MODIFY weight tinyint not null default 1');
     }
 }

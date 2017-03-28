@@ -42,8 +42,13 @@ class RankHistory extends Model
         return $data;
     }
 
+    public function getModeAttribute($value)
+    {
+        return Beatmap::modeStr($value);
+    }
+
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

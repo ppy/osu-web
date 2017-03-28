@@ -31,7 +31,12 @@ abstract class Model extends BaseModel
 {
     public $position = null;
     public $weight = null;
-    public $macros = ['forListing', 'userRank'];
+    public $macros = [
+        'forListing',
+        'rankCounts',
+        'userBest',
+        'userRank',
+    ];
 
     public function getReplay()
     {
@@ -69,7 +74,6 @@ abstract class Model extends BaseModel
                 ->where('pp', '>', function ($q) {
                     $q->from($this->table)->where('score_id', $this->score_id)->select('pp');
                 })
-                ->orderBy('pp', 'desc')
                 ->count();
         }
 
@@ -95,11 +99,11 @@ abstract class Model extends BaseModel
      */
     public static function fillInPosition($scores)
     {
-        if ($scores->first() === null) {
+        if (!isset($scores[0])) {
             return;
         }
 
-        $position = $scores->first()->position();
+        $position = $scores[0]->position();
 
         foreach ($scores as $score) {
             $score->position = $position;
@@ -111,7 +115,11 @@ abstract class Model extends BaseModel
     {
         return function ($query) {
             $limit = config('osu.beatmaps.max-scores');
-            $baseResult = (clone $query)->with('user')->limit($limit * 3)->get();
+            $newQuery = (clone $query)->with('user')->limit($limit * 3);
+            $newQuery->getQuery()->orders = null;
+
+            $baseResult = $newQuery->orderBy('score', 'desc')->get();
+            $baseResult = $baseResult->sortBy('date')->sortByDesc('score');
 
             $result = [];
             $users = [];
@@ -136,10 +144,82 @@ abstract class Model extends BaseModel
     public function macroUserRank()
     {
         return function ($query, $userScore) {
-            return 1 + (clone $query)
+            $newQuery = clone $query;
+            // FIXME: mysql 5.6 compat
+            $newQuery->getQuery()->orders = null;
+
+            return 1 + $newQuery
                 ->limit(null)
                 ->where('score', '>', $userScore->score)
                 ->count(DB::raw('DISTINCT user_id'));
+        };
+    }
+
+    public function macroUserBest()
+    {
+        return function ($query, $limit, $includes = []) {
+            $baseResult = (clone $query)->with($includes)->limit($limit * 3)->get();
+
+            $result = [];
+            $beatmaps = [];
+
+            foreach ($baseResult as $entry) {
+                if (isset($beatmaps[$entry->beatmap_id])) {
+                    continue;
+                }
+
+                if (count($result) >= $limit) {
+                    break;
+                }
+
+                $beatmaps[$entry->beatmap_id] = true;
+                $result[] = $entry;
+            }
+
+            return $result;
+        };
+    }
+
+    public function macroRankCounts()
+    {
+        return function ($query) {
+            $newQuery = clone $query;
+            // FIXME: mysql 5.6 compat
+            $newQuery->getQuery()->orders = null;
+
+            $scores = $newQuery
+                ->select(['user_id', 'beatmap_id', 'score', 'rank'])
+                ->get();
+
+            $result = [];
+            $counted = [];
+
+            foreach ($scores as $score) {
+                if (!isset($result[$score->user_id])) {
+                    $result[$score->user_id] = [];
+                }
+
+                $countedKey = "{$score->user_id}:{$score->beatmap_id}";
+
+                if (isset($counted[$countedKey])) {
+                    $countedScore = $counted[$countedKey];
+                    if ($countedScore->score < $score->score) {
+                        $result[$score->user_id][$countedScore->rank] -= 1;
+                        $counted[$countedKey] = $score;
+                    } else {
+                        continue;
+                    }
+                }
+                $counted[$countedKey] = $score;
+
+                if (!isset($result[$score->user_id][$score->rank])) {
+                    $result[$score->user_id][$score->rank] = 0;
+                }
+
+                $result[$score->user_id][$score->rank] += 1;
+            }
+
+            return $result;
         };
     }
 

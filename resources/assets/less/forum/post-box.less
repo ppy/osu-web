@@ -86,11 +86,20 @@
     display: flex;
     justify-content: flex-end;
     flex: 1 0 auto;
+
+    &--preview {
+      justify-content: flex-start;
+    }
   }
 
   &__action {
     margin-left: 10px;
     min-width: 120px;
+
+    &--preview {
+        margin-left: 0;
+        margin-right: 10px;
+    }
 
     &--compact {
       min-width: 0;

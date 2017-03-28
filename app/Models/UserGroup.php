@@ -25,6 +25,7 @@ class UserGroup extends Model
     protected $table = 'phpbb_user_group';
     protected $primaryKey = 'group_id';
     public $timestamps = false;
+    protected $guarded = [];
 
     // taken from current forum
     const GROUPS = [
@@ -41,6 +42,6 @@ class UserGroup extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
