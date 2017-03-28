@@ -27,7 +27,6 @@ use App\Models\Count;
 use App\Models\Forum\Post;
 use App\Models\News;
 use Auth;
-use Cache;
 use Request;
 use View;
 

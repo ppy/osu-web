@@ -49,7 +49,7 @@ class BanchoStats extends Model
         return array_map(function ($e) use (&$index) {
             return [
                 'x' => $index++,
-                'y' => $e['users_osu']
+                'y' => $e['users_osu'],
             ];
         }, $stats);
     }

@@ -41,7 +41,7 @@ class Count extends Model
 
     public static function cachedTotalUsers()
     {
-        return Cache::remember("count_totalUsers", 5, function () {
+        return Cache::remember('count_totalUsers', 5, function () {
             return self::totalUsers();
         });
     }
