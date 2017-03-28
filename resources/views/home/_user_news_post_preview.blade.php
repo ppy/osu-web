@@ -17,7 +17,7 @@
 --}}
 
 <div class="news-post-preview{{$collapsed ? ' news-post-preview--collapsed' : ''}}">
-    <a class="news-post-preview__image" style="background-image: url({{find_first_image($post->body)}});" href='{{route('news.show', $post->id)}}'></a>
+    <a class="news-post-preview__image" style="background-image: url({{proxy_image(find_first_image($post->body))}});" href='{{route('news.show', $post->id)}}'></a>
     <div class="news-post-preview__body">
         <div class="news-post-preview__post-date">
             <div class="news-post-preview__date">
