@@ -749,7 +749,8 @@ function first_paragraph($html, $split_on = "\n")
 
 function find_images($html)
 {
-    $regex = "/(?:https?\:\/\/)(?:[a-zA-Z]{1}(?:[\w\-]+\.)+(?:[\w]{2,5}))(?:\:[\d]{1,5})?\/(?:[^\s\/]+\/)*(?:[^\s]+\.(?:jpe?g|gif|png))(?:\?\w+=\w+(?:&\w+=\w+)*)?/";
+    // regex based on answer in http://stackoverflow.com/questions/12933528/regular-expression-pattern-to-match-image-url-from-text
+    $regex = "/(?:https?\:\/\/[a-zA-Z](?:[\w\-]+\.)+(?:[\w]{2,5}))(?:\:[\d]{1,6})?\/(?:[^\s\/]+\/)*(?:[^\s]+\.(?:jpe?g|gif|png))(?:\?\w?(?:=\w)?(?:&\w?(?:=\w)?)*)?/";
     $matches = [];
     preg_match_all($regex, $html, $matches);
 
