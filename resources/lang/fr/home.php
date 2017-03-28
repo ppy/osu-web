@@ -34,8 +34,8 @@ return [
             'other' => 'cliquez ici pour :os1 ou :os2',
         ],
 
-        'players' => 'joueurs inscrits',
-        'online' => 'joueurs en ligne en ce moment',
+        'players' => '<b>:count</b> joueurs inscrits',
+        'online' => '<b>:players</b> joueurs en ligne en ce moment in <b>:games</b> games',
         'peak' => 'Pic, :count joueurs en ligne',
     ],
 ];

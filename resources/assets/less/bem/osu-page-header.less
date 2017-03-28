@@ -158,7 +158,7 @@
       padding: 0;
       height: 100px;
       padding-top: 5px;
-      justify-content: flex-end;
+      justify-content: flex-start;
       flex: 100%;
       margin: 0;
     }
@@ -181,11 +181,17 @@
   &__status-label {
     font-size: @font-size--small;
     font-weight: 400;
+    .@{top}__status--selected & {
+      font-size: @font-size--small-2;
+    }
   }
 
   &__status-text {
     color: @yellow;
     font-size: @font-size--title-small-2;
+    .@{top}__status--selected & {
+      font-size: @font-size--title-small-3;
+    }
   }
 
   &__link {

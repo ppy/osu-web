@@ -35,8 +35,15 @@
                 </div>
 
                 <div class="osu-page-header__box osu-page-header__box--status osu-page-header__box--graph">
-                    <div class="osu-page-header__status osu-page-header__status--online">
-
+                    <div class="osu-page-header__status osu-page-header__status--fade-in">
+                        <div class="osu-page-header__status-label">
+                            Games
+                        </div>
+                        <div class="js-forum-topic-watch--unread osu-page-header__status-text">
+                            {{$currentGames}}
+                        </div>
+                    </div>
+                    <div class="osu-page-header__status osu-page-header__status--selected osu-page-header__status--fade-in osu-page-header__status--animation-delay">
                         <div class="osu-page-header__status-label">
                             {{trans('home.user.header.stats.online')}}
                         </div>

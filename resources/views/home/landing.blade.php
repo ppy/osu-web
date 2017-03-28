@@ -106,7 +106,8 @@
             </div>
             <div class="js-landing-graph landing-graph">
                 <div class="landing-graph__info">
-                    <b>{{ number_format($totalUsers, 0) }}</b> {{ trans("home.landing.players") }}, <b>{{ number_format($currentOnline, 0) }}</b> {{ trans("home.landing.online") }}
+                    {!! trans("home.landing.players", ['count' => $totalUsers]) !!},
+                    {!! trans("home.landing.online", ['players' => $currentOnline, 'games' => $currentGames]) !!}
                 </div>
             </div>
         </div>

@@ -34,8 +34,8 @@ return [
             'other' => '点击这里下载 :os1 或 :os2 版',
         ],
 
-        'players' => '注册玩家',
-        'online' => '在线玩家',
+        'players' => '<b>:count</b> 注册玩家',
+        'online' => '<b>:players</b> 在线玩家 in <b>:games</b> games',
         'peak' => '最高在线人数 :count 人',
     ],
 ];

@@ -33,9 +33,8 @@ return [
             'for' => 'per :os',
             'other' => 'clicca qui per :os1 o :os2',
         ],
-
-        'players' => 'utenti registrati',
-        'online' => 'giocatori online ora',
+        'players' => '<b>:count</b> utenti registrati',
+        'online' => '<b>:players</b> giocatori online ora in <b>:games</b> games',
         'peak' => 'Picco, :count utenti online',
     ],
 ];
