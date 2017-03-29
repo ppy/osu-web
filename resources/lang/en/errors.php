@@ -20,8 +20,9 @@
 
 return [
     'codes' => [
-        'http-403' => 'Access denied.',
         'http-401' => 'Please login to proceed.',
+        'http-403' => 'Access denied.',
+        'http-429' => 'Too many attempts. Try again later.',
     ],
     'account' => [
         'profile-order' => [
