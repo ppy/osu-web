@@ -454,6 +454,16 @@ class Beatmapset extends Model
             : [];
     }
 
+    public function getApprovedDateAttribute($value)
+    {
+        return (new Carbon($value))->subHours(8);
+    }
+
+    public function getSubmitDateAttribute($value)
+    {
+        return (new Carbon($value))->subHours(8);
+    }
+
     public static function latestRankedOrApproved($count = 5)
     {
         // TODO: add filtering by game mode after mode-toggle UI/UX happens
