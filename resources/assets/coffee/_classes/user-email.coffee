@@ -38,7 +38,7 @@ class @UserEmail
       for own field, messages of data
         @setError field, messages.join(', ')
     else
-      osu.popup Lang.get('errors.unknown'), 'danger'
+      osu.ajaxError xhr
 
 
   inputConfirmation: =>
