@@ -42,12 +42,6 @@
     }
   }
 
-  &--two-col {
-    @media @desktop {
-      flex-wrap: nowrap !important;
-    }
-  }
-
   &--home-user {
     color: @gray-f;
     flex-direction: row;
@@ -148,19 +142,26 @@
       background-color: fade(@gray-0, 50%);
     }
 
-    &--two-col {
-      flex: 1 0 60%;
+    .@{top}--two-col & {
+      flex: 1 1 60%;
       align-self: flex-end;
       margin: 0;
+
+      @media @mobile {
+        flex: 100%;
+      }
     }
 
-    &--graph {
+    .@{top}--two-col &--graph {
       padding: 0;
       height: 100px;
       padding-top: 5px;
       justify-content: flex-start;
-      flex: 100%;
-      margin: 0;
+      flex: 1 0 40%;
+
+      @media @mobile {
+        margin: 0 -10px;
+      }
     }
   }
 

@@ -23,9 +23,12 @@
   background: #333;
 
   &__news {
-    padding: 20px;
     @media @desktop {
       flex: 1 0 60%;
+      padding: 20px;
+    }
+    @media @mobile {
+      padding: 20px 0px;
     }
   }
 
@@ -47,17 +50,17 @@
   }
 
   &__right-sidebar {
-    margin: 20px;
-    margin-left: 0px;
     width: 100%;
     overflow: hidden;
 
     @media @desktop {
+      margin: 20px;
+      margin-left: 0px;
       margin-top: 50px;
     }
 
     @media @mobile {
-      margin-top: 0px;
+      margin: 0px;
       padding: 0px 20px;
     }
   }

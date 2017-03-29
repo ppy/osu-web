@@ -122,6 +122,10 @@
     &--center {
       justify-content: center;
     }
+
+    .@{top}--user-homepage & {
+      flex-direction: column;
+    }
   }
 
   &__fileupload {
@@ -140,6 +144,16 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    .@{top}--user-homepage & {
+      align-items: center;
+    }
+  }
+
+  &__text-top {
+    .@{top}--user-homepage & {
+      margin-bottom: 5px;
+    }
   }
 
   &__text-bottom {

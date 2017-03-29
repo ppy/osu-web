@@ -17,12 +17,10 @@
 --}}
 
 <a href="{{$href}}" class='btn-osu-big btn-osu-big--user-homepage {{$colour}}'>
-    <div class='btn-osu-big__content' style="flex-direction: column;">
-        <div class='btn-osu-big__left' style='align-items: center;'>
-            <span class='btn-osu-big__text-top' style='margin-bottom: 5px;'>{{$label}}</span>
-            <div class='btn-osu-big__icon' style='margin-left: 0px; font-size: 100%;'>
-                <i class='fa fa-fw fa-{{$icon}}'></i>
-            </div>
+    <div class='btn-osu-big__content'>
+        <div class='btn-osu-big__left'>
+            <span class='btn-osu-big__text-top'>{{$label}}</span>
+            <i class='fa fa-fw fa-{{$icon}}'></i>
         </div>
     </div>
 </a>

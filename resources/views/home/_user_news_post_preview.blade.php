@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="news-post-preview__post-right">
-            <a href='{{route('news.show', $post->id)}}' class='news-post-preview__post-title u-ellipsis-overflow'>
+            <a href='{{route('news.show', $post->id)}}' class='news-post-preview__post-title'>
                 {{$post->title}}
             </a>
             <div class="news-post-preview__post-content">
