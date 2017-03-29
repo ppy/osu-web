@@ -22,6 +22,7 @@
   @section-width: 250px;
   @label-width: 160px;
   @input-width: 250px;
+  @input-width-wide: 400px;
 
   text-transform: none;
   display: flex;
@@ -31,12 +32,12 @@
   margin: 0;
 
   &--avatar {
-    margin-left: @label-width;
+    padding-left: @label-width;
     display: block;
   }
 
-  &--submit {
-    margin-left: @label-width;
+  &--no-label {
+    padding-left: @label-width;
   }
 
   &__avatar {
@@ -101,12 +102,16 @@
     padding: 5px;
     margin: 0 10px 0 0;
 
-    .@{top}.js-parent-focus--focus & {
+    &:focus, .@{top}.js-parent-focus--focus & {
       border-color: @yellow;
     }
 
     .@{top}[data-field-state=error] & {
       border-color: @red;
+    }
+
+    .@{top}--wide & {
+      max-width: @input-width-wide;
     }
   }
 
@@ -119,6 +124,16 @@
 
     .@{top}.js-parent-focus--focus & {
       color: @gray-f;
+    }
+  }
+
+  &__misc-info {
+    max-width: @input-width;
+    width: 100%;
+    display: block;
+
+    .@{top}--wide & {
+      max-width: @input-width-wide;
     }
   }
 

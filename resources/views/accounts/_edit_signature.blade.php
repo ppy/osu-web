@@ -30,20 +30,30 @@
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
 
-            <div class="account-edit-entry account-edit-entry--submit js-post-preview--body">
-                {!! bbcode(Auth::user()->user_sig, Auth::user()->user_sig_bbcode_uid) !!}
+            <div class="account-edit-entry account-edit-entry--wide account-edit-entry--no-label">
+                <div class="account-edit-entry__misc-info js-post-preview--body">
+                    {!! bbcode(Auth::user()->user_sig, Auth::user()->user_sig_bbcode_uid) !!}
+                </div>
             </div>
 
-            <label class="account-edit-entry account-edit-entry--submit">
+            <label class="account-edit-entry account-edit-entry--wide account-edit-entry--no-label">
                 <textarea
-                    class="account-edit-entry__input js-post-preview--auto"
+                    class="account-edit-entry__input js-post-preview--auto js-bbcode-body"
                     name="user[user_sig]"
+                    rows=6
                 >{{ bbcode_for_editor(Auth::user()->user_sig, Auth::user()->user_sig_bbcode_uid) }}</textarea>
+
             </label>
+
+            <div class="account-edit-entry account-edit-entry--wide account-edit-entry--no-label">
+                <div class="account-edit-entry__misc-info">
+                    @include('forum._post_toolbar')
+                </div>
+            </div>
         </div>
 
         <div class="account-edit__input-group">
-            <div class="account-edit-entry account-edit-entry--submit js-parent-focus">
+            <div class="account-edit-entry account-edit-entry--no-label js-parent-focus">
                 <button class="btn-osu-big btn-osu-big--account-edit" type="submit">
                     <div class="btn-osu-big__content">
                         <div class="btn-osu-big__left">

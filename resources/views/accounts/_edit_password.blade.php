@@ -79,7 +79,7 @@
         </div>
 
         <div class="account-edit__input-group">
-            <div class="account-edit-entry account-edit-entry--submit js-parent-focus">
+            <div class="account-edit-entry account-edit-entry--no-label js-parent-focus">
                 <button class="btn-osu-big btn-osu-big--account-edit" type="submit">
                     <div class="btn-osu-big__content">
                         <div class="btn-osu-big__left">
