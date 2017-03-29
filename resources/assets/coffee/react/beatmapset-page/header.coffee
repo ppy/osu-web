@@ -70,7 +70,7 @@ class BeatmapsetPage.Header extends React.Component
                   @props.favcount.toLocaleString()
 
           a
-            className: 'beatmapset-header__details-text beatmapset-header__details-text--title'
+            className: 'beatmapset-header__details-text beatmapset-header__details-text--title u-ellipsis-overflow'
             href: laroute.route 'beatmapsets.index', q: @props.beatmapset.title
             @props.beatmapset.title
 
