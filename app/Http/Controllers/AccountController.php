@@ -49,6 +49,12 @@ class AccountController extends Controller
         });
 
         $this->middleware('verify-user');
+        $this->middleware('throttle:60,10', [
+            'only' => [
+                'updateEmail',
+                'updatePassword',
+            ],
+        ]);
 
         return parent::__construct();
     }
