@@ -73,7 +73,7 @@ class HomeController extends Controller
             return ujs_redirect(route('store.products.index'));
         }
 
-        $stats = array_reverse(BanchoStats::cachedStats()->toArray());
+        $stats = BanchoStats::cachedStats();
         $totalUsers = number_format(Count::cachedTotalUsers());
         $graphData = array_to_graph_json($stats, 'users_osu');
 

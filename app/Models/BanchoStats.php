@@ -31,12 +31,14 @@ class BanchoStats extends Model
 
     public static function cachedStats()
     {
-        return Cache::remember('banchostats', 5, function () {
-            return self::whereRaw('banchostats_id mod 10 = 0')
+        return Cache::remember('banchostats:v2', 5, function () {
+            return array_reverse(static::whereRaw('banchostats_id mod 10 = 0')
               ->select(['users_irc', 'users_osu', 'multiplayer_games', 'date'])
               ->orderBy('banchostats_id', 'DESC')
               ->limit(24 * 60 / 10)
-              ->get();
+              ->get()
+              ->all()
+            );
         });
     }
 }
