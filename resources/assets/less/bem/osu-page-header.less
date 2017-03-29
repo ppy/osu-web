@@ -56,8 +56,14 @@
 
     &::before {
       .full-size();
-      background-image: linear-gradient(to bottom, fade(@gray-0, 0%), fade(@gray-0, 75%));
+      @media @desktop {
+        background-image: linear-gradient(to bottom, fade(@gray-0, 0%), fade(@gray-0, 75%));
+      }
+      @media @mobile {
+        background-image: linear-gradient(to bottom, fade(@gray-0, 25%), fade(@gray-0, 75%));
+      }
     }
+
   }
 
   &--tournaments {
@@ -74,7 +80,6 @@
     .at2x-simple("/images/headers/contest.jpg");
     background-position: center center;
     justify-content: flex-start;
-    // font-weight: 100;
     color: white;
     height: 200px;
 
@@ -142,6 +147,28 @@
       display: flex;
       background-color: fade(@gray-0, 50%);
     }
+
+    .@{top}--two-col & {
+      flex: 1 1 60%;
+      align-self: flex-end;
+      margin: 0;
+
+      @media @mobile {
+        flex: 100%;
+      }
+    }
+
+    .@{top}--two-col &--graph {
+      padding: 0;
+      height: 100px;
+      padding-top: 5px;
+      justify-content: flex-start;
+      flex: 1 0 40%;
+
+      @media @mobile {
+        margin: 0 -10px;
+      }
+    }
   }
 
   &__detail {
@@ -158,11 +185,21 @@
   &__status-label {
     font-size: @font-size--small;
     font-weight: 400;
+    .@{top}__status--selected & {
+      font-size: @font-size--small-2;
+    }
   }
 
   &__status-text {
     color: @yellow;
     font-size: @font-size--title-small-2;
+    .@{top}__status--selected & {
+      font-size: @font-size--title-small-3;
+    }
+  }
+
+  &__link {
+    .link-white();
   }
 
   &__title {
@@ -175,6 +212,13 @@
 
     &--slightly-small {
       font-size: @font-size--new-header-title;
+    }
+
+    &--thinner {
+      font-weight: 100;
+      strong {
+        font-weight: 500;
+      }
     }
 
     &--small {

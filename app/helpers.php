@@ -727,6 +727,19 @@ function priv_check_user($user, $ability, $args = null)
     return app()->make('OsuAuthorize')->doCheckUser($user, $ability, $args);
 }
 
+// Used to generate x,y pairs for fancy-chart.coffee
+function array_to_graph_json(array &$array, $property_to_use)
+{
+    $index = 0;
+
+    return array_map(function ($e) use (&$index, $property_to_use) {
+        return [
+            'x' => $index++,
+            'y' => $e[$property_to_use],
+        ];
+    }, $array);
+}
+
 // Fisher-Yates
 function seeded_shuffle(array &$items, int $seed)
 {
@@ -738,4 +751,33 @@ function seeded_shuffle(array &$items, int $seed)
         $items[$j] = $tmp;
     }
     mt_srand();
+}
+
+function first_paragraph($html, $split_on = "\n")
+{
+    $text = strip_tags($html);
+    $match_pos = strpos($text, $split_on);
+
+    return ($match_pos === false) ? $text : substr($text, 0, $match_pos);
+}
+
+function find_images($html)
+{
+    // regex based on answer in http://stackoverflow.com/questions/12933528/regular-expression-pattern-to-match-image-url-from-text
+    $regex = "/(?:https?\:\/\/[a-zA-Z](?:[\w\-]+\.)+(?:[\w]{2,5}))(?:\:[\d]{1,6})?\/(?:[^\s\/]+\/)*(?:[^\s]+\.(?:jpe?g|gif|png))(?:\?\w?(?:=\w)?(?:&\w?(?:=\w)?)*)?/";
+    $matches = [];
+    preg_match_all($regex, $html, $matches);
+
+    return $matches[0];
+}
+
+function find_first_image($html)
+{
+    $post_images = find_images($html);
+
+    if (!is_array($post_images) || count($post_images) < 1) {
+        return;
+    }
+
+    return $post_images[0];
 }
