@@ -84,6 +84,22 @@ class Beatmapset extends Model
     const QUALIFICATIONS_PER_DAY = 6;
     const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
 
+    /*
+    |--------------------------------------------------------------------------
+    | Accesssors
+    |--------------------------------------------------------------------------
+    */
+
+    public function getApprovedDateAttribute($value)
+    {
+        return (new Carbon($value))->subHours(8);
+    }
+
+    public function getSubmitDateAttribute($value)
+    {
+        return (new Carbon($value))->subHours(8);
+    }
+
     // ranking functions for the set
 
     public function beatmapsetDiscussion()
