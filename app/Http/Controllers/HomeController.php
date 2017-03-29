@@ -75,7 +75,7 @@ class HomeController extends Controller
 
         $stats = BanchoStats::cachedStats()->toArray();
         $totalUsers = number_format(Count::cachedTotalUsers());
-        $graphData = BanchoStats::userGraphData();
+        $graphData = array_to_graph_json($stats, 'users_osu');
 
         $latest = array_pop($stats);
         if ($latest) {

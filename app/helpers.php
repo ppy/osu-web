@@ -727,6 +727,19 @@ function priv_check_user($user, $ability, $args = null)
     return app()->make('OsuAuthorize')->doCheckUser($user, $ability, $args);
 }
 
+// Used to generate x,y pairs for fancy-chart.coffee
+function array_to_graph_json(array &$array, $property_to_use)
+{
+    $index = 0;
+
+    return array_map(function ($e) use (&$index, $property_to_use) {
+        return [
+            'x' => $index++,
+            'y' => $e[$property_to_use],
+        ];
+    }, $array);
+}
+
 // Fisher-Yates
 function seeded_shuffle(array &$items, int $seed)
 {
