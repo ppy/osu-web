@@ -39,6 +39,7 @@
                     class="account-edit-entry__input js-user-email-done-reset--input js-user-email--input"
                     name="user_email[current_password]"
                     type="password"
+                    required
                 >
 
                 <div class="account-edit-entry__error js-user-email--error"></div>
@@ -54,6 +55,7 @@
                 <input
                     class="account-edit-entry__input js-user-email-done-reset--input js-user-email--input"
                     name="user_email[email]"
+                    required
                 >
 
                 <div class="account-edit-entry__error js-user-email--error"></div>
@@ -70,6 +72,7 @@
                 <input
                     class="account-edit-entry__input js-user-email-done-reset--input js-user-email--input"
                     name="user_email[email_confirmation]"
+                    required
                 >
 
                 <div class="account-edit-entry__error js-user-email--error"></div>

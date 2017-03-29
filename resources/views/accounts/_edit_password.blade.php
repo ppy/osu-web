@@ -39,6 +39,7 @@
                     class="account-edit-entry__input js-password-done-reset--input js-password--input"
                     name="user_password[current_password]"
                     type="password"
+                    required
                 >
 
                 <div class="account-edit-entry__error js-password--error"></div>
@@ -55,6 +56,7 @@
                     class="account-edit-entry__input js-password-done-reset--input js-password--input"
                     name="user_password[password]"
                     type="password"
+                    required
                 >
 
                 <div class="account-edit-entry__error js-password--error"></div>
@@ -72,6 +74,7 @@
                     class="account-edit-entry__input js-password-done-reset--input js-password--input"
                     name="user_password[password_confirmation]"
                     type="password"
+                    required
                 >
 
                 <div class="account-edit-entry__error js-password--error"></div>
