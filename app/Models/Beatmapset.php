@@ -467,7 +467,7 @@ class Beatmapset extends Model
         });
     }
 
-    public static function mostPlayedToday($mode = Beatmap::MODES['osu'], $count = 5)
+    public static function mostPlayedToday($mode = 'osu', $count = 5)
     {
         // TODO: this only returns based on osu mode plays for now, add other game modes after mode-toggle UI/UX happens
 

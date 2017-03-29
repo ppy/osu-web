@@ -51,7 +51,7 @@
                             {{$currentOnline}}
                         </div>
                     </div>
-                    <div class="js-fancy-graph fancy-graph" data-src="#banchostats"></div>
+                    <div class="js-fancy-graph fancy-graph" data-src="banchostats"></div>
                     <script id="banchostats" type="application/json">{!! json_encode($graphData) !!}</script>
                 </div>
             </div>

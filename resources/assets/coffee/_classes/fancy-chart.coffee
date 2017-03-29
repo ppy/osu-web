@@ -46,7 +46,7 @@ class @FancyChart
       .attr 'r', 2
       .attr 'opacity', 0
 
-    data = JSON.parse $($(area).data('src')).text()
+    data = osu.parseJson area.dataset.src
     @loadData data
 
 
@@ -78,8 +78,10 @@ class @FancyChart
       .x (d) => @options.scales.x d.x
       .y (d) => @options.scales.y d.y
 
+    lastPoint = _.last(@data)
+
     @svgEndCircle
-      .attr 'transform', "translate(#{@options.scales.x(@data[@data.length-1].x)+2}, #{@options.scales.y(@data[@data.length-1].y)})"
+      .attr 'transform', "translate(#{@options.scales.x(lastPoint.x)+2}, #{@options.scales.y(lastPoint.y)})"
 
 
   setSvgSize: =>

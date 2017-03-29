@@ -35,7 +35,7 @@ class BanchoStats extends Model
             return self::whereRaw('banchostats_id mod 10 = 0')
               ->select(['users_irc', 'users_osu', 'multiplayer_games', 'date'])
               ->orderBy('banchostats_id', 'DESC')
-              ->limit(144) // aka 24 * 60 / 10
+              ->limit(24 * 60 / 10)
               ->get();
         });
     }
