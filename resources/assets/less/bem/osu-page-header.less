@@ -56,8 +56,14 @@
 
     &::before {
       .full-size();
-      background-image: linear-gradient(to bottom, fade(@gray-0, 0%), fade(@gray-0, 75%));
+      @media @desktop {
+        background-image: linear-gradient(to bottom, fade(@gray-0, 0%), fade(@gray-0, 75%));
+      }
+      @media @mobile {
+        background-image: linear-gradient(to bottom, fade(@gray-0, 25%), fade(@gray-0, 75%));
+      }
     }
+
   }
 
   &--tournaments {

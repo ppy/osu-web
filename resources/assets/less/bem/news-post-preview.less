@@ -46,7 +46,6 @@
   }
 
   &__post-date {
-    font-size: smaller;
     flex: 0 0 60px;
     border-right: 1px solid grey;
     margin: 10px;
@@ -66,23 +65,23 @@
   }
 
   &__date {
-    font-size: 16px;
+    font-size: @font-size--title-small-3;
     font-weight: 800;
     .@{top}--collapsed & {
-      font-size: 14px;
+      font-size: @font-size--title-small;
       font-weight: bold;
     }
   }
 
   &__month-year {
-    font-size: 11px;
+    font-size: @font-size--small-2;
     .@{top}--collapsed & {
-      font-size: 14px;
+      font-size: @font-size--title-small;
     }
   }
 
   &__post-right {
-    margin-right: 10px;
+    margin-right: @font-size--small;
     .@{top}--collapsed & {
       display: flex;
       align-items: center;
@@ -92,21 +91,17 @@
   &__post-title {
     display: block;
     color: white;
-    font-size: 14px;
-    margin: 0;
-    margin-top: 5px;
-    margin-bottom: 10px;
+    font-size: @font-size--title-small;
+    margin: 5px 0px 10px 0px;
     font-style: normal;
 
     .@{top}--collapsed & {
-      margin-top: 0px;
-      margin-bottom: 0px;
+      margin: 0px;
     }
   }
 
   &__post-content {
-    font-size: smaller;
-    font-size: 12px;
+    font-size: @font-size--normal;
     font-weight: 100;
     p {
       color: white;
