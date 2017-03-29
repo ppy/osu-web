@@ -70,22 +70,22 @@
                             @include('home._user_news_post_preview', ['post' => $post, 'collapsed' => false])
                         @endforeach
                     </div>
-                    <div class="user-home__news-posts user-home__news-posts--collapsed">
-                        @foreach ($news as $post)
-                            @if ($loop->iteration <= 3)
-                                @continue
-                            @endif
-                            @if ($loop->iteration > 8)
-                                @break
-                            @endif
+                    @if (count($news) > 3)
+                        <div class="user-home__news-posts user-home__news-posts--collapsed">
+                            @foreach ($news as $post)
+                                @if ($loop->iteration <= 3)
+                                    @continue
+                                @endif
+                                @if ($loop->iteration > 8)
+                                    @break
+                                @endif
 
-                            @include('home._user_news_post_preview', ['post' => $post, 'collapsed' => true])
-                        @endforeach
-                    </div>
+                                @include('home._user_news_post_preview', ['post' => $post, 'collapsed' => true])
+                            @endforeach
+                        </div>
+                    @endif
                 @else
-                    <div class="news-post-preview__post-content">
-                        <p>{{trans('home.user.news.error')}}</p>
-                    </div>
+                    <div class="user-home__news-fetch-error">{{trans('home.user.news.error')}}</div>
                 @endif
             </div>
             <div class="user-home__right-sidebar">

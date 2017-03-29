@@ -743,8 +743,9 @@ function seeded_shuffle(array &$items, int $seed)
 function first_paragraph($html, $split_on = "\n")
 {
     $text = strip_tags($html);
+    $match_pos = strpos($text, $split_on);
 
-    return substr($text, 0, strpos($text, $split_on));
+    return ($match_pos === false) ? $text : substr($text, 0, $match_pos);
 }
 
 function find_images($html)

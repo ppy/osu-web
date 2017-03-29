@@ -27,16 +27,28 @@ class News
     public static function all($limit = 8)
     {
         $cache_key = "news_posts_{$limit}";
+        $tumblr_token = env('TUMBLR_TOKEN');
+
+        if (!presence($tumblr_token)) {
+            return [];
+        }
 
         if (Cache::has($cache_key)) {
             return Cache::get($cache_key);
         }
 
-        $client = new \Tumblr\API\Client(env('TUMBLR_TOKEN'));
+        $client = new \Tumblr\API\Client($tumblr_token);
 
         try {
-            $posts = $client->getBlogPosts(env('TUMBLR_BLOG_NAME'), ['limit' => $limit])->posts;
-        } catch (\Guzzle\Http\Exception\CurlException $e) {
+            $posts = $client->getBlogPosts(env('TUMBLR_BLOG_NAME', 'osunews'), ['limit' => $limit])->posts;
+            $posts = array_filter($posts, function ($post) {
+                return
+                    property_exists($post, 'id') &&
+                    property_exists($post, 'body') &&
+                    property_exists($post, 'title') &&
+                    property_exists($post, 'date');
+            });
+        } catch (\Exception $e) {
             return [];
         }
 
