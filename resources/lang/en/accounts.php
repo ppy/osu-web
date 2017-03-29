@@ -67,6 +67,7 @@ return [
     ],
 
     'update_password' => [
+        'email_subject' => 'osu! password change confirmation',
         'update' => 'update',
         'updated' => 'Password updated',
     ],

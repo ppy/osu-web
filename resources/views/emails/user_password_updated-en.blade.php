@@ -17,7 +17,7 @@
 --}}
 Hi {{ $user->username }},
 
-This is just a confirmation that your osu! email address has been changed to "{{ $user->user_email }}".
+This is just a confirmation that your osu! password has been changed.
 
 Please reply to this email IMMEDIATELY if you did not request this change.
 

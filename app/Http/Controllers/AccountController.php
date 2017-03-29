@@ -23,6 +23,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\ImageProcessorException;
 use App\Libraries\UserVerification;
 use App\Mail\UserEmailUpdated;
+use App\Mail\UserPasswordUpdated;
 use App\Models\User;
 use App\Models\UserEmail;
 use App\Models\UserPassword;
@@ -165,6 +166,10 @@ class AccountController extends Controller
             ->fill(Request::input('user_password'));
 
         if ($userPassword->save() === true) {
+            if (present($user->user_email)) {
+                Mail::to($user->user_email)->send(new UserPasswordUpdated($user));
+            }
+
             return ['message' => trans('accounts.update_password.updated')];
         } else {
             return response($userPassword->validationErrors()->all(), 422);
