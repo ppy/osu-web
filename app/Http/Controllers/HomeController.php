@@ -73,11 +73,11 @@ class HomeController extends Controller
             return ujs_redirect(route('store.products.index'));
         }
 
-        $stats = BanchoStats::cachedStats()->toArray();
+        $stats = array_reverse(BanchoStats::cachedStats()->toArray());
         $totalUsers = number_format(Count::cachedTotalUsers());
         $graphData = array_to_graph_json($stats, 'users_osu');
 
-        $latest = array_pop($stats);
+        $latest = array_last($stats);
         if ($latest) {
             $currentOnline = number_format($latest['users_osu']);
             $currentGames = number_format($latest['multiplayer_games']);
