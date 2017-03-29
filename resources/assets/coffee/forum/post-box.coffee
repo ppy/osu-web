@@ -40,7 +40,7 @@ insert = (event, tagOpen, tagClose = '') ->
     box.selectionStart = startPos
     box.selectionEnd = texts[0].length + texts[1].length + tagClose.length
 
-  $box.trigger 'change'
+  $box.trigger 'input'
   $box.focus()
 
 [
