@@ -25,16 +25,27 @@ rowValue = (value) ->
   "<strong>#{value}</strong>"
 
 class ProfilePage.HeaderExtra extends React.Component
+  constructor: (props) ->
+    super props
+
+    @state = {}
+
+
+  componentWillMount: =>
+    @id = "profile-page-header-extra-#{osu.generateId()}"
+
+
   componentDidMount: =>
-    @updateRankChart()
+    @rankChartUpdate()
 
 
-  componentDidUpdate: (prevProps) =>
-    @updateRankChart()
+  componentDidUpdate: =>
+    @rankChartUpdate()
 
 
   componentWillUnmount: =>
-    $(window).off '.profilePageHeaderExtra'
+    $(window).off ".#{@id}"
+    $.unsubscribe ".#{@id}"
 
 
   render: =>
@@ -125,12 +136,16 @@ class ProfilePage.HeaderExtra extends React.Component
           div className: "#{bn}__rank-box",
             div null,
               div className: "#{bn}__rank-global",
-                if @props.stats.rank.isRanked
+                if @state.hoverLine1?
+                  @state.hoverLine1
+                else if @props.stats.rank.isRanked
                   "##{Math.round(@props.stats.rank.global).toLocaleString()}"
                 else
                   '\u00A0'
               div className: "#{bn}__rank-country",
-                if @props.stats.rank.isRanked
+                if @state.hoverLine2
+                  @state.hoverLine2
+                else if @props.stats.rank.isRanked
                   "#{@props.user.country.name} ##{Math.round(@props.stats.rank.country).toLocaleString()}"
                 else
                   '\u00A0'
@@ -157,7 +172,38 @@ class ProfilePage.HeaderExtra extends React.Component
       text ? @props.user[key]
 
 
-  updateRankChart: =>
+  rankChartHover: (_e, {data} = {}) =>
+    if data?
+      hoverLine1 = "##{(-data.y).toLocaleString()}"
+      hoverLine2 =
+        if data.x == 0
+          osu.trans('common.time.now')
+        else
+          osu.transChoice('common.time.days_ago', -data.x)
+    else
+      hoverLine1 = hoverLine2 = null
+
+    @setState {hoverLine1, hoverLine2}
+
+
+  rankChartUpdate: =>
+    if !@rankChart?
+      options =
+        scales:
+          y: d3.scaleLog()
+        hoverId: "rank-chart-#{osu.generateId()}"
+
+      @rankChart = new FancyChart(@rankChartArea, options)
+      @rankChart.margins =
+        top: 5
+        right: 15
+        bottom: 5
+        left: 5
+
+      $(window).on "throttled-resize.#{@id}", @rankChart.resize
+      $.subscribe "fancy-chart:hover-#{options.hoverId}:refresh.#{@id}", @rankChartHover
+      $.subscribe "fancy-chart:hover-#{options.hoverId}:end.#{@id}", @rankChartHover
+
     data = (@props.rankHistories?.data ? [])
       .filter (rank) -> rank > 0
 
@@ -165,15 +211,9 @@ class ProfilePage.HeaderExtra extends React.Component
       x: i - data.length + 1
       y: -rank
 
-    if !@rankChart?
-      scales = y: d3.scaleLog()
-      domains = {}
-      @rankChart = new FancyChart(@rankChartArea, {domains, scales})
-      @rankChart.margins =
-        top: 5
-        right: 10
-        bottom: 5
-        left: 0
-      $(window).on 'throttled-resize.profilePageHeaderExtra', @rankChart.resize
+    if data.length == 1
+      data.unshift
+        x: data[0].x - 1
+        y: data[0].y
 
     @rankChart.loadData data

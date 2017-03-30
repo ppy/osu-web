@@ -17,15 +17,21 @@
  */
 
 .fancy-graph {
+  &__circle {
+    stroke: @yellow;
+    fill: @yellow;
+    pointer-events: none;
+    stroke-width: 1px;
+  }
+
+  &__hover-area {
+    fill: none;
+    pointer-events: all;
+  }
+
   &__line {
     fill: none;
     stroke: @yellow;
-    stroke-width: 1;
-  }
-
-  &__circle {
-    stroke: @yellow;
-    fill: transparent;
-    pointer-events: none;
+    stroke-width: 1px;
   }
 }
