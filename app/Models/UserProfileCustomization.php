@@ -67,21 +67,28 @@ class UserProfileCustomization extends Model
             return static::SECTIONS;
         }
 
-        return array_values(
-            array_intersect(json_decode($value), static::SECTIONS)
-        );
+        return static::repairExtrasOrder(json_decode($value));
     }
 
     public function setExtrasOrderAttribute($value)
     {
-        $this->attributes['extras_order'] = collect($value)
-            // remove invalid sections
-            ->intersect(static::SECTIONS)
-            // ensure all sections are included
-            ->merge(static::SECTIONS)
-            // remove duplicate sections from previous merge
-            ->unique()
-            ->values()
-            ->toJson();
+        $this->attributes['extras_order'] = json_encode(static::repairExtrasOrder($value));
+    }
+
+    public static function repairExtrasOrder($value)
+    {
+        // read from inside out
+        return
+            array_values(
+                // remove duplicate sections from previous merge
+                array_unique(
+                    // ensure all sections are included
+                    array_merge(
+                        // remove invalid sections
+                        array_intersect($value, static::SECTIONS),
+                        static::SECTIONS
+                    )
+                )
+            );
     }
 }
