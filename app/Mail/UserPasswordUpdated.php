@@ -17,25 +17,38 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class TestCase extends Illuminate\Foundation\Testing\TestCase
+namespace App\Mail;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+
+class UserPasswordUpdated extends Mailable
 {
-    use DatabaseTransactions;
+    use Queueable, SerializesModels;
 
-    protected $baseUrl = 'http://localhost';
+    public $user;
 
     /**
-     * Creates the application.
+     * Create a new message instance.
      *
-     * @return \Illuminate\Foundation\Application
+     * @return void
      */
-    public function createApplication()
+    public function __construct($user)
     {
-        $app = require __DIR__.'/../bootstrap/app.php';
+        $this->user = $user;
+    }
 
-        $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
-
-        return $app;
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+        return $this
+            ->text(i18n_view('emails.user_password_updated'))
+            ->subject(trans('accounts.update_password.email_subject'));
     }
 }
