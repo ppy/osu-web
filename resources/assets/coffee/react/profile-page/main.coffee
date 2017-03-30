@@ -136,11 +136,6 @@ ProfilePage.Main = React.createClass
           scores: scores
         component: ProfilePage.Historical
 
-      performance:
-        props:
-          rankHistories: rankHistories
-        component: ProfilePage.Performance
-
     div className: 'osu-layout__section',
       el ProfilePage.Header,
         user: @state.user

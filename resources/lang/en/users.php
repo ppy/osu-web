@@ -101,9 +101,6 @@ return [
                 ],
                 'title' => 'Historical',
             ],
-            'performance' => [
-                'title' => 'Performance',
-            ],
             'kudosu' => [
                 'available' => 'Kudosu Available',
                 'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven't traded in yet.",

@@ -24,20 +24,11 @@ use App\Libraries\ProfileCover;
 
 class UserProfileCustomization extends Model
 {
-    protected $casts = [
-        'cover_json' => 'array',
-    ];
-
-    protected $guarded = [];
-
-    private $cover;
-
     /**
      * An array of all possible profile sections, also in their default order.
      */
-    public static $sections = [
+    const SECTIONS = [
         'me',
-        'performance',
         'recent_activities',
         'top_ranks',
         'medals',
@@ -45,6 +36,14 @@ class UserProfileCustomization extends Model
         'beatmaps',
         'kudosu',
     ];
+
+    protected $casts = [
+        'cover_json' => 'array',
+    ];
+
+    protected $guarded = [];
+
+    private $cover;
 
     public function cover()
     {
@@ -65,19 +64,21 @@ class UserProfileCustomization extends Model
     public function getExtrasOrderAttribute($value)
     {
         if ($value === null) {
-            return static::$sections;
+            return static::SECTIONS;
         }
 
-        return json_decode($value);
+        return array_values(
+            array_intersect(json_decode($value), static::SECTIONS)
+        );
     }
 
     public function setExtrasOrderAttribute($value)
     {
         $this->attributes['extras_order'] = collect($value)
             // remove invalid sections
-            ->intersect(static::$sections)
+            ->intersect(static::SECTIONS)
             // ensure all sections are included
-            ->merge(static::$sections)
+            ->merge(static::SECTIONS)
             // remove duplicate sections from previous merge
             ->unique()
             ->values()
