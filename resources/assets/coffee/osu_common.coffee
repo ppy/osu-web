@@ -76,7 +76,7 @@
 
 
   parseJson: (id) ->
-    JSON.parse document.getElementById(id).text
+    JSON.parse document.getElementById(id)?.text ? null
 
 
   isInputElement: (el) ->

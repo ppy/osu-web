@@ -17,21 +17,22 @@
 ###
 
 class @FancyChart
-  margins:
-    top: 25
-    right: 20
-    bottom: 10
-    left: 0
-
-
   constructor: (area, @options = {}) ->
-    @options.scales ||= {}
-    @options.scales.x ||= d3.scaleTime()
-    @options.scales.y ||= d3.scaleLinear()
+    @options.scales ?= {}
+    @options.scales.x ?= d3.scaleLinear()
+    @options.scales.y ?= d3.scaleLinear()
+
+    @margins =
+      top: 25
+      right: 20
+      bottom: 10
+      left: 0
 
     @area = d3.select(area)
 
-    @svg = @area.append 'svg'
+    @svg = @area
+      .append 'svg'
+      .classed 'fancy-graph', true
 
     @svgWrapper = @svg.append 'g'
 
@@ -51,7 +52,9 @@ class @FancyChart
 
 
   loadData: (data) =>
-    @data = data
+    return if _.isEqual data, @data
+
+    @data = data ? []
     @svgLine.datum @data
 
     @reveal()
@@ -66,11 +69,11 @@ class @FancyChart
   setScalesRange: =>
     @options.scales.x
       .range [0, @width]
-      .domain @options.domains?.x || d3.extent(@data, (d) => d.x)
+      .domain @options.domains?.x ? d3.extent(@data, (d) => d.x)
 
     @options.scales.y
       .range [@height, 0]
-      .domain @options.domains?.y || d3.extent(@data, (d) => d.y)
+      .domain @options.domains?.y ? d3.extent(@data, (d) => d.y)
 
 
   setLineSize: =>
@@ -80,8 +83,12 @@ class @FancyChart
 
     lastPoint = _.last(@data)
 
-    @svgEndCircle
-      .attr 'transform', "translate(#{@options.scales.x(lastPoint.x)+2}, #{@options.scales.y(lastPoint.y)})"
+    if lastPoint?
+      @svgEndCircle
+        .attr 'transform', "translate(#{@options.scales.x(lastPoint.x)}, #{@options.scales.y(lastPoint.y)})"
+        .classed 'u-hidden', false
+    else
+      @svgEndCircle.classed 'u-hidden', true
 
 
   setSvgSize: =>

@@ -147,6 +147,7 @@ ProfilePage.Main = React.createClass
         stats: stats
         currentMode: @state.currentMode
         withEdit: @props.withEdit
+        rankHistories: rankHistories
 
       div
         className: "hidden-xs page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"

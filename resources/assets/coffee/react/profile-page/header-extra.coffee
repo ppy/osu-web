@@ -25,6 +25,18 @@ rowValue = (value) ->
   "<strong>#{value}</strong>"
 
 class ProfilePage.HeaderExtra extends React.Component
+  componentDidMount: =>
+    @updateRankChart()
+
+
+  componentDidUpdate: (prevProps) =>
+    @updateRankChart()
+
+
+  componentWillUnmount: =>
+    $(window).off '.profilePageHeaderExtra'
+
+
   render: =>
     originKeys = []
     originKeys.push 'country' if @props.user.country.name?
@@ -111,13 +123,21 @@ class ProfilePage.HeaderExtra extends React.Component
         div
           className: "#{bn}__column #{bn}__column--chart"
           div className: "#{bn}__rank-box",
-            if @props.stats.rank.isRanked
-              div null,
-                div className: "#{bn}__rank-global",
+            div null,
+              div className: "#{bn}__rank-global",
+                if @props.stats.rank.isRanked
                   "##{Math.round(@props.stats.rank.global).toLocaleString()}"
-                div className: "#{bn}__rank-country",
+                else
+                  '\u00A0'
+              div className: "#{bn}__rank-country",
+                if @props.stats.rank.isRanked
                   "#{@props.user.country.name} ##{Math.round(@props.stats.rank.country).toLocaleString()}"
+                else
+                  '\u00A0'
 
+          div
+            className: "#{bn}__rank-chart"
+            ref: (el) => @rankChartArea = el
           div className: "#{bn}__rank-box",
             "#{Math.round(@props.stats.pp).toLocaleString()}pp"
 
@@ -135,3 +155,25 @@ class ProfilePage.HeaderExtra extends React.Component
         modifiers: ['fw']
         parentClass: "#{bn}__fancy-link-icon"
       text ? @props.user[key]
+
+
+  updateRankChart: =>
+    data = (@props.rankHistories?.data ? [])
+      .filter (rank) -> rank > 0
+
+    data = data.map (rank, i) ->
+      x: i - data.length + 1
+      y: -rank
+
+    if !@rankChart?
+      scales = y: d3.scaleLog()
+      domains = {}
+      @rankChart = new FancyChart(@rankChartArea, {domains, scales})
+      @rankChart.margins =
+        top: 5
+        right: 10
+        bottom: 5
+        left: 0
+      $(window).on 'throttled-resize.profilePageHeaderExtra', @rankChart.resize
+
+    @rankChart.loadData data
