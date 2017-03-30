@@ -143,7 +143,7 @@ class ProfilePage.HeaderExtra extends React.Component
                 else
                   '\u00A0'
               div className: "#{bn}__rank-country",
-                if @state.hoverLine2
+                if @state.hoverLine2?
                   @state.hoverLine2
                 else if @props.stats.rank.isRanked
                   "#{@props.user.country.name} ##{Math.round(@props.stats.rank.country).toLocaleString()}"
