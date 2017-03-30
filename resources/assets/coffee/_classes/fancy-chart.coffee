@@ -42,10 +42,10 @@ class @FancyChart
 
     @line = d3.line()
       .curve d3.curveMonotoneX
+
     @svgEndCircle = @svgWrapper.append 'circle'
       .classed 'fancy-graph__circle', true
       .attr 'r', 2
-      .attr 'opacity', 0
 
     @svgHoverArea = @svg.append 'rect'
       .classed 'fancy-graph__hover-area', true
@@ -103,9 +103,6 @@ class @FancyChart
     if lastPoint?
       @svgEndCircle
         .attr 'transform', "translate(#{@options.scales.x(lastPoint.x)}, #{@options.scales.y(lastPoint.y)})"
-        .classed 'u-hidden', false
-    else
-      @svgEndCircle.classed 'u-hidden', true
 
 
   setSvgSize: =>
@@ -132,6 +129,9 @@ class @FancyChart
       .attr 'd', @line
 
     totalLength = @svgLine.node().getTotalLength()
+
+    @svgEndCircle
+      .attr 'opacity', 0
 
     @svgLine
       .attr 'stroke-dasharray', totalLength
