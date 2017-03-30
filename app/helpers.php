@@ -741,7 +741,7 @@ function array_to_graph_json(array &$array, $property_to_use)
 }
 
 // Fisher-Yates
-function seeded_shuffle(array &$items, int $seed)
+function seeded_shuffle(array &$items, int $seed = 0)
 {
     mt_srand($seed);
     for ($i = count($items) - 1; $i > 0; $i--) {

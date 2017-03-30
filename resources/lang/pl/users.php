@@ -94,9 +94,6 @@ return [
                 ],
                 'title' => 'Historia',
             ],
-            'performance' => [
-                'title' => 'Osiągi',
-            ],
             'kudosu' => [
                 'available' => 'Dostępne kudosu',
                 'available_info' => 'Kudosu może być wymienione na gwiazdki kudosu, które pomogą twojej mapie zyskać więcej uwagi. To jest liczba kudosu, którego nie wymieniłeś.',

@@ -24,20 +24,11 @@ use App\Libraries\ProfileCover;
 
 class UserProfileCustomization extends Model
 {
-    protected $casts = [
-        'cover_json' => 'array',
-    ];
-
-    protected $guarded = [];
-
-    private $cover;
-
     /**
      * An array of all possible profile sections, also in their default order.
      */
-    public static $sections = [
+    const SECTIONS = [
         'me',
-        'performance',
         'recent_activities',
         'top_ranks',
         'medals',
@@ -45,6 +36,14 @@ class UserProfileCustomization extends Model
         'beatmaps',
         'kudosu',
     ];
+
+    protected $casts = [
+        'cover_json' => 'array',
+    ];
+
+    protected $guarded = [];
+
+    private $cover;
 
     public function cover()
     {
@@ -65,22 +64,31 @@ class UserProfileCustomization extends Model
     public function getExtrasOrderAttribute($value)
     {
         if ($value === null) {
-            return static::$sections;
+            return static::SECTIONS;
         }
 
-        return json_decode($value);
+        return static::repairExtrasOrder(json_decode($value));
     }
 
     public function setExtrasOrderAttribute($value)
     {
-        $this->attributes['extras_order'] = collect($value)
-            // remove invalid sections
-            ->intersect(static::$sections)
-            // ensure all sections are included
-            ->merge(static::$sections)
-            // remove duplicate sections from previous merge
-            ->unique()
-            ->values()
-            ->toJson();
+        $this->attributes['extras_order'] = json_encode(static::repairExtrasOrder($value));
+    }
+
+    public static function repairExtrasOrder($value)
+    {
+        // read from inside out
+        return
+            array_values(
+                // remove duplicate sections from previous merge
+                array_unique(
+                    // ensure all sections are included
+                    array_merge(
+                        // remove invalid sections
+                        array_intersect($value, static::SECTIONS),
+                        static::SECTIONS
+                    )
+                )
+            );
     }
 }

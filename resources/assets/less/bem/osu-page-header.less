@@ -178,8 +178,20 @@
     margin: 0;
   }
 
+  &__link {
+    .link-white();
+  }
+
   &__status {
     padding: 0 10px;
+  }
+
+  &__status-chart {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 70px;
+    width: 100%;
   }
 
   &__status-label {
@@ -196,10 +208,6 @@
     .@{top}__status--selected & {
       font-size: @font-size--title-small-3;
     }
-  }
-
-  &__link {
-    .link-white();
   }
 
   &__title {

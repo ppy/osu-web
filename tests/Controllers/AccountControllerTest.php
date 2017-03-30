@@ -2,6 +2,7 @@
 
 use App\Libraries\UserVerification;
 use App\Models\User;
+use App\Models\UserProfileCustomization;
 use App\Models\WeakPassword;
 
 class AccountControllerTest extends TestCase
@@ -19,16 +20,8 @@ class AccountControllerTest extends TestCase
      */
     public function testValidProfileOrderChangeRequest()
     {
-        $newOrder = [
-            'historical',
-            'medals',
-            'beatmaps',
-            'top_ranks',
-            'kudosu',
-            'recent_activities',
-            'me',
-            'performance',
-        ];
+        $newOrder = UserProfileCustomization::SECTIONS;
+        seeded_shuffle($newOrder);
 
         $this->actingAs($this->user)
             ->withSession(['verified' => UserVerification::VERIFIED])
@@ -40,19 +33,10 @@ class AccountControllerTest extends TestCase
 
     public function testDuplicatesInProfileOrder()
     {
-        $newOrder = [
-            'me',
-            'recent_activities',
-            'kudosu',
-            'top_ranks',
-            'beatmaps',
-            'medals',
-            'historical',
-            'performance',
-        ];
+        $newOrder = UserProfileCustomization::SECTIONS;
 
         $newOrderWithDuplicate = $newOrder;
-        $newOrderWithDuplicate[] = 'me';
+        $newOrderWithDuplicate[] = $newOrder[0];
 
         $this->actingAs($this->user)
             ->withSession(['verified' => UserVerification::VERIFIED])
@@ -64,16 +48,7 @@ class AccountControllerTest extends TestCase
 
     public function testInvalidIdsInProfileOrder()
     {
-        $newOrder = [
-            'me',
-            'recent_activities',
-            'kudosu',
-            'top_ranks',
-            'beatmaps',
-            'medals',
-            'historical',
-            'performance',
-        ];
+        $newOrder = UserProfileCustomization::SECTIONS;
 
         $newOrderWithInvalid = $newOrder;
         $newOrderWithInvalid[] = 'test';
