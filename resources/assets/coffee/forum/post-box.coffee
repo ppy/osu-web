@@ -17,7 +17,7 @@
 ###
 
 insert = (event, tagOpen, tagClose = '') ->
-  $box = $(event.target).parents('form').find('[name=body]')
+  $box = $(event.target).parents('form').find('[name=body], .js-bbcode-body')
   boxText = $box.val()
   box = $box[0]
   startPos = box.selectionStart
@@ -40,7 +40,7 @@ insert = (event, tagOpen, tagClose = '') ->
     box.selectionStart = startPos
     box.selectionEnd = texts[0].length + texts[1].length + tagClose.length
 
-  $box.trigger 'change'
+  $box.trigger 'input'
   $box.focus()
 
 [

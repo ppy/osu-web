@@ -16,6 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+{div} = React.DOM
 el = React.createElement
 
 class ProfilePage.UserPageEditor extends React.Component
@@ -78,8 +79,10 @@ class ProfilePage.UserPageEditor extends React.Component
         ref: 'body'
 
       el 'div', className: 'post-editor__footer post-editor__footer--profile-page',
-        el 'div', dangerouslySetInnerHTML:
-          __html: postEditorToolbar.html
+        div
+          className: 'post-editor__toolbar'
+          dangerouslySetInnerHTML:
+            __html: postEditorToolbar.html
 
         el 'div', className: 'post-editor__actions',
           el 'button',

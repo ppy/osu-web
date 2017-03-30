@@ -27,6 +27,20 @@ return [
             'title' => 'Edit Avatar',
         ],
 
+        'email' => [
+            'current' => 'current password',
+            'new' => 'new email',
+            'new_confirmation' => 'email confirmation',
+            'title' => 'Email',
+        ],
+
+        'password' => [
+            'current' => 'current password',
+            'new' => 'new password',
+            'new_confirmation' => 'password confirmation',
+            'title' => 'Password',
+        ],
+
         'profile' => [
             'title' => 'Edit Profile',
 
@@ -39,5 +53,22 @@ return [
                 'user_website' => 'website',
             ],
         ],
+
+        'signature' => [
+            'title' => 'Signature',
+            'update' => 'update',
+        ],
+    ],
+
+    'update_email' => [
+        'email_subject' => 'osu! email change confirmation',
+        'update' => 'update',
+        'updated' => 'Email updated',
+    ],
+
+    'update_password' => [
+        'email_subject' => 'osu! password change confirmation',
+        'update' => 'update',
+        'updated' => 'Password updated',
     ],
 ];

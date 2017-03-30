@@ -17,25 +17,31 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class TestCase extends Illuminate\Foundation\Testing\TestCase
+namespace App\Models;
+
+use DB;
+
+class WeakPassword extends Model
 {
-    use DatabaseTransactions;
+    public $incrementing = false;
+    public $timestamps = false;
+    protected $primaryKey = 'hash';
+    protected $guarded = [];
 
-    protected $baseUrl = 'http://localhost';
-
-    /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    public function createApplication()
+    public static function add($string)
     {
-        $app = require __DIR__.'/../bootstrap/app.php';
+        $md5 = md5(strtolower($string));
 
-        $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
+        static::create([
+            'hash' => DB::raw("UNHEX('{$md5}')"),
+        ]);
+    }
 
-        return $app;
+    public static function check($string)
+    {
+        return static
+            ::whereRaw('hash = UNHEX(?)', md5(strtolower($string)))
+            ->exists();
     }
 }

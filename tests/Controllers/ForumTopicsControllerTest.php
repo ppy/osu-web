@@ -3,11 +3,17 @@
 use App\Models\Forum;
 use App\Models\User;
 use App\Models\UserGroup;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ForumTopicsControllerTest extends TestCase
 {
-    use DatabaseTransactions;
+    public function setUp()
+    {
+        parent::setUp();
+
+        // initial user for forum posts and stuff
+        // FIXME: this is actually a hidden dependency
+        factory(User::class)->create();
+    }
 
     public function testReply()
     {

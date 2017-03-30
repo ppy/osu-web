@@ -22,9 +22,14 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ImageProcessorException;
 use App\Libraries\UserVerification;
+use App\Mail\UserEmailUpdated;
+use App\Mail\UserPasswordUpdated;
 use App\Models\User;
+use App\Models\UserEmail;
+use App\Models\UserPassword;
 use Auth;
 use Illuminate\Http\Request as HttpRequest;
+use Mail;
 use Request;
 
 class AccountController extends Controller
@@ -45,6 +50,12 @@ class AccountController extends Controller
         });
 
         $this->middleware('verify-user');
+        $this->middleware('throttle:60,10', [
+            'only' => [
+                'updateEmail',
+                'updatePassword',
+            ],
+        ]);
 
         return parent::__construct();
     }
@@ -102,6 +113,7 @@ class AccountController extends Controller
                 'user_occ:string',
                 'user_twitter:string',
                 'user_website:string',
+                'user_sig:string',
             ]
         );
 
@@ -118,6 +130,24 @@ class AccountController extends Controller
         return Auth::user()->defaultJson();
     }
 
+    public function updateEmail()
+    {
+        $user = Auth::user();
+        $previousEmail = $user->user_email;
+        $userEmail = (new UserEmail($user))
+            ->fill(Request::input('user_email'));
+
+        if ($userEmail->save() === true) {
+            if (present($previousEmail)) {
+                Mail::to($previousEmail)->send(new UserEmailUpdated($user));
+            }
+
+            return ['message' => trans('accounts.update_email.updated')];
+        } else {
+            return response($userEmail->validationErrors()->all(), 422);
+        }
+    }
+
     public function updatePage()
     {
         $user = Auth::user();
@@ -127,6 +157,23 @@ class AccountController extends Controller
         $user = $user->updatePage(Request::input('body'));
 
         return ['html' => $user->userPage->bodyHTML];
+    }
+
+    public function updatePassword()
+    {
+        $user = Auth::user();
+        $userPassword = (new UserPassword($user))
+            ->fill(Request::input('user_password'));
+
+        if ($userPassword->save() === true) {
+            if (present($user->user_email)) {
+                Mail::to($user->user_email)->send(new UserPasswordUpdated($user));
+            }
+
+            return ['message' => trans('accounts.update_password.updated')];
+        } else {
+            return response($userPassword->validationErrors()->all(), 422);
+        }
     }
 
     public function verify(HttpRequest $request)
