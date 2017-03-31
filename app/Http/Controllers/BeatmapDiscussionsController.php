@@ -21,7 +21,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\BeatmapDiscussion;
-use App\Models\BeatmapsetDiscussion;
 use Auth;
 use Request;
 
