@@ -15,6 +15,8 @@ class AddSoftDeletesToPostsTopicsTables extends Migration
         Schema::table('phpbb_posts', function (Blueprint $table) {
             $table->softDeletes();
             $table->index('deleted_at');
+            $table->dropIndex('topic_id');
+            $table->index(['topic_id', 'deleted_at'], 'topic_id_deleted');
         });
 
         Schema::table('phpbb_topics', function (Blueprint $table) {
@@ -31,7 +33,9 @@ class AddSoftDeletesToPostsTopicsTables extends Migration
     public function down()
     {
         Schema::table('phpbb_posts', function (Blueprint $table) {
+            $table->dropIndex('topic_id_deleted');
             $table->dropColumn('deleted_at');
+            $table->index('topic_id', 'topic_id');
         });
 
         Schema::table('phpbb_topics', function (Blueprint $table) {
