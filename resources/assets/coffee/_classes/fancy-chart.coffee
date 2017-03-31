@@ -46,6 +46,7 @@ class @FancyChart
     @svgEndCircle = @svgWrapper.append 'circle'
       .classed 'fancy-graph__circle', true
       .attr 'r', 2
+      .attr 'opacity', 0
 
     @svgHoverArea = @svg.append 'rect'
       .classed 'fancy-graph__hover-area', true
@@ -60,6 +61,11 @@ class @FancyChart
 
     data = osu.parseJson area.dataset.src
     @loadData data
+
+
+  hide: =>
+    @svgEndCircle.attr 'opacity', 0
+    @svgLine.attr 'opacity', 0
 
 
   loadData: (data) =>
@@ -123,6 +129,8 @@ class @FancyChart
 
 
   reveal: =>
+    return @hide() if !@data[0]?
+
     @recalc()
 
     @svgLine
@@ -174,7 +182,7 @@ class @FancyChart
 
   hoverRefresh: =>
     return if !@options.hoverId?
-    return if @data.length == 0
+    return if !@data[0]?
 
     x = @options.scales.x.invert(d3.mouse(@svgHoverArea.node())[0] - @margins.left)
     i = @lookupIndexFromX x
