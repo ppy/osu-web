@@ -62,6 +62,7 @@ return [
         'origin_country' => '来自 :country',
         'origin_country_age' => ':age,来自 :country',
         'page_description' => 'osu! - 你想知道的关于 :username 的一切!',
+        'plays_with' => '惯用 :devices',
         'title' => ':username 的个人资料',
 
         'edit' => [
@@ -137,6 +138,7 @@ return [
 
                     'forum_post' => [
                         'give' => 'Received :amount from :giver for a post at :post',
+                        'reset' => 'Kudosu reset by :giver for the post :post',
                         'revoke' => 'Denied kudosu by :giver for the post :post',
                     ],
                 ],
@@ -196,7 +198,6 @@ return [
             'total_score' => '总分',
         ],
     ],
-
     'verify' => [
         'title' => '账户认证',
     ],
