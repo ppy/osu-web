@@ -21,7 +21,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\BeatmapDiscussion;
-use App\Models\BeatmapsetDiscussion;
 use Auth;
 use Request;
 
@@ -91,6 +90,10 @@ class BeatmapDiscussionsController extends Controller
     public function show($id)
     {
         $discussion = BeatmapDiscussion::findOrFail($id);
+
+        if ($discussion->beatmap === null) {
+            abort(404);
+        }
 
         return ujs_redirect(route('beatmapsets.discussion', $discussion->beatmapset).'#/'.$id);
     }

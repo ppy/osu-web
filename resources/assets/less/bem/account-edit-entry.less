@@ -20,14 +20,25 @@
   @top: account-edit-entry;
 
   @section-width: 250px;
-  @label-width: 150px;
+  @label-width: 160px;
   @input-width: 250px;
+  @input-width-wide: 400px;
 
   text-transform: none;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   padding: 10px 0;
   margin: 0;
+
+  &--avatar {
+    padding-left: @label-width;
+    display: block;
+  }
+
+  &--no-label {
+    padding-left: @label-width;
+  }
 
   &__avatar {
     .default-border-radius();
@@ -65,13 +76,25 @@
     }
   }
 
+  &__error {
+    display: none;
+    margin-top: 5px;
+    width: 100%;
+    padding-left: (@label-width + 10px);
+    color: @yellow;
+
+    .@{top}[data-field-state=error] & {
+      display: block;
+    }
+  }
+
   &__input {
     .reset-input();
     .default-border-radius();
 
     flex: 1;
     max-width: @input-width;
-    align-self: strecth;
+    align-self: stretch;
     background-color: @gray-4;
     border: 2px solid transparent;
     color: @gray-f;
@@ -79,8 +102,16 @@
     padding: 5px;
     margin: 0 10px 0 0;
 
-    .@{top}.js-parent-focus--focus & {
+    &:focus, .@{top}.js-parent-focus--focus & {
       border-color: @yellow;
+    }
+
+    .@{top}[data-field-state=error] & {
+      border-color: @red;
+    }
+
+    .@{top}--wide & {
+      max-width: @input-width-wide;
     }
   }
 
@@ -88,11 +119,21 @@
     flex: none;
     align-self: center;
     width: @label-width;
-    margin-right: 10px;
+    padding-right: 10px;
     text-align: right;
 
     .@{top}.js-parent-focus--focus & {
       color: @gray-f;
+    }
+  }
+
+  &__misc-info {
+    max-width: @input-width;
+    display: block;
+    margin-right: 10px;
+
+    .@{top}--wide & {
+      max-width: @input-width-wide;
     }
   }
 

@@ -33,7 +33,7 @@ class BBCodeFromDBTest extends TestCase
             $text->text = trim(file_get_contents($dbFilePath));
             $referenceHtmlOutput = $this->wrapDiv(str_replace("\n", '', trim(file_get_contents($htmlFilePath))));
 
-            $this->assertEquals($referenceHtmlOutput, $text->toHTML());
+            $this->assertSame($referenceHtmlOutput, $text->toHTML());
         }
     }
 

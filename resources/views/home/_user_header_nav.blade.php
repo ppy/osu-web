@@ -18,6 +18,20 @@
 <ul class="page-mode">
     <li class="page-mode__item">
         <a
+            href="{{ route('home') }}"
+            class="
+                page-mode-link
+                {{ $current_action === 'index' ? 'page-mode-link--is-active' : '' }}
+            "
+        >
+            {{ trans('home.user.title') }}
+
+            <span class="page-mode-link__stripe"></span>
+        </a>
+    </li>
+
+    <li class="page-mode__item">
+        <a
             href="{{ route('account.edit') }}"
             class="
                 page-mode-link

@@ -21,12 +21,9 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetDiscussion;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class BeatmapDiscussionTest extends TestCase
 {
-    use DatabaseTransactions;
-
     public function testIsValid()
     {
         $beatmapset = factory(Beatmapset::class)->create();

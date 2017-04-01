@@ -97,9 +97,6 @@ return [
                 ],
                 'title' => 'Storico',
             ],
-            'performance' => [
-                'title' => 'Performance',
-            ],
             'kudosu' => [
                 'available' => 'Kudosu Disponibili',
                 'available_info' => 'I kudosu possono essere scambiati per delle stelle kudosu, che aiuteranno la tua beatmap ad ottenere più attenzione. Questo è il numero di kudosu che non hai ancora scambiato.',

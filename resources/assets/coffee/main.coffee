@@ -33,6 +33,7 @@ $(document).on 'submit', 'form', (e) ->
 @reactTurbolinks ||= new ReactTurbolinks
 @twitchPlayer ?= new TwitchPlayer
 @landingGraph ?= new LandingGraph
+@fancyGraph ?= new FancyGraph
 @landingHero ?= new LandingHero
 @timeago ?= new Timeago
 @osuLayzr ?= new OsuLayzr
@@ -44,6 +45,8 @@ $(document).on 'submit', 'form', (e) ->
 @formToggle ?= new FormToggle
 @accountEdit ?= new AccountEdit
 @accountEditAvatar ?= new AccountEditAvatar
+@password ?= new Password
+@userEmail ?= new UserEmail
 @wiki ?= new Wiki
 @osuAudio ?= new OsuAudio
 

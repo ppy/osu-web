@@ -25,6 +25,29 @@ rowValue = (value) ->
   "<strong>#{value}</strong>"
 
 class ProfilePage.HeaderExtra extends React.Component
+  constructor: (props) ->
+    super props
+
+    @state = {}
+
+
+  componentWillMount: =>
+    @id = "profile-page-header-extra-#{osu.generateId()}"
+
+
+  componentDidMount: =>
+    @rankChartUpdate()
+
+
+  componentDidUpdate: =>
+    @rankChartUpdate()
+
+
+  componentWillUnmount: =>
+    $(window).off ".#{@id}"
+    $.unsubscribe ".#{@id}"
+
+
   render: =>
     originKeys = []
     originKeys.push 'country' if @props.user.country.name?
@@ -111,13 +134,25 @@ class ProfilePage.HeaderExtra extends React.Component
         div
           className: "#{bn}__column #{bn}__column--chart"
           div className: "#{bn}__rank-box",
-            if @props.stats.rank.isRanked
-              div null,
-                div className: "#{bn}__rank-global",
+            div null,
+              div className: "#{bn}__rank-global",
+                if @state.hoverLine1?
+                  @state.hoverLine1
+                else if @props.stats.rank.isRanked
                   "##{Math.round(@props.stats.rank.global).toLocaleString()}"
-                div className: "#{bn}__rank-country",
+                else
+                  '\u00A0'
+              div className: "#{bn}__rank-country",
+                if @state.hoverLine2?
+                  @state.hoverLine2
+                else if @props.stats.rank.isRanked
                   "#{@props.user.country.name} ##{Math.round(@props.stats.rank.country).toLocaleString()}"
+                else
+                  '\u00A0'
 
+          div
+            className: "#{bn}__rank-chart"
+            ref: (el) => @rankChartArea = el
           div className: "#{bn}__rank-box",
             "#{Math.round(@props.stats.pp).toLocaleString()}pp"
 
@@ -135,3 +170,50 @@ class ProfilePage.HeaderExtra extends React.Component
         modifiers: ['fw']
         parentClass: "#{bn}__fancy-link-icon"
       text ? @props.user[key]
+
+
+  rankChartHover: (_e, {data} = {}) =>
+    if data?
+      hoverLine1 = "##{(-data.y).toLocaleString()}"
+      hoverLine2 =
+        if data.x == 0
+          osu.trans('common.time.now')
+        else
+          osu.transChoice('common.time.days_ago', -data.x)
+    else
+      hoverLine1 = hoverLine2 = null
+
+    @setState {hoverLine1, hoverLine2}
+
+
+  rankChartUpdate: =>
+    if !@rankChart?
+      options =
+        scales:
+          y: d3.scaleLog()
+        hoverId: "rank-chart-#{osu.generateId()}"
+
+      @rankChart = new FancyChart(@rankChartArea, options)
+      @rankChart.margins =
+        top: 5
+        right: 15
+        bottom: 5
+        left: 5
+
+      $(window).on "throttled-resize.#{@id}", @rankChart.resize
+      $.subscribe "fancy-chart:hover-#{options.hoverId}:refresh.#{@id}", @rankChartHover
+      $.subscribe "fancy-chart:hover-#{options.hoverId}:end.#{@id}", @rankChartHover
+
+    data = (@props.rankHistories?.data ? [])
+      .filter (rank) -> rank > 0
+
+    data = data.map (rank, i) ->
+      x: i - data.length + 1
+      y: -rank
+
+    if data.length == 1
+      data.unshift
+        x: data[0].x - 1
+        y: data[0].y
+
+    @rankChart.loadData data

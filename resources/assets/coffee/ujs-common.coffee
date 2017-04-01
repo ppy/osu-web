@@ -35,7 +35,8 @@ $(document).on 'ajax:success', (event, data) ->
     showPopup()
 
 
-$(document).on 'ajax:error', (_event, xhr) ->
+$(document).on 'ajax:error', (event, xhr) ->
+  return if event.target.dataset.skipAjaxErrorPopup == '1'
   # authentication logic is handled in user-dropdown-modal.js
   return if xhr.status == 401
 

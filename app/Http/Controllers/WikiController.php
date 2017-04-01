@@ -25,7 +25,6 @@ use App\Exceptions\GitHubNotFoundException;
 use App\Exceptions\GitHubTooLargeException;
 use App\Models\WikiPage;
 use Request;
-use View;
 
 class WikiController extends Controller
 {

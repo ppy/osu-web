@@ -23,10 +23,9 @@ namespace App\Models;
 use App\Exceptions\BeatmapProcessorException;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
-use App\Models\Forum\Post;
-use App\Models\Forum\Topic;
 use App\Transformers\BeatmapsetTransformer;
 use Auth;
+use Cache;
 use Carbon\Carbon;
 use DB;
 use Es;
@@ -83,6 +82,23 @@ class Beatmapset extends Model
 
     const NOMINATIONS_PER_DAY = 1;
     const QUALIFICATIONS_PER_DAY = 6;
+    const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
+
+    /*
+    |--------------------------------------------------------------------------
+    | Accesssors
+    |--------------------------------------------------------------------------
+    */
+
+    public function getApprovedDateAttribute($value)
+    {
+        return (new Carbon($value))->subHours(8);
+    }
+
+    public function getSubmitDateAttribute($value)
+    {
+        return (new Carbon($value))->subHours(8);
+    }
 
     // ranking functions for the set
 
@@ -282,8 +298,29 @@ class Beatmapset extends Model
         }
 
         if (!empty($rank)) {
-            $klass = presence($mode) !== null ? Score\Best\Model::getClass(intval($mode)) : Score\Best\Combined::class;
-            $scores = model_pluck($klass::forUser($current_user)->whereIn('rank', $rank), 'beatmapset_id');
+            if (present($mode)) {
+                $modes = [$mode];
+            } else {
+                $modes = array_keys(Beatmap::MODES);
+            }
+
+            $unionQuery = null;
+            foreach ($modes as $mode) {
+                $newQuery =
+                    Score\Best\Model::getClass((int) $mode)
+                    ->forUser($current_user)
+                    ->whereIn('rank', $rank)
+                    ->select('beatmapset_id');
+
+                if ($unionQuery === null) {
+                    $unionQuery = $newQuery;
+                } else {
+                    $unionQuery->union($newQuery);
+                }
+            }
+
+            $scores = model_pluck($unionQuery, 'beatmapset_id');
+
             $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $scores]];
         }
 
@@ -431,6 +468,40 @@ class Beatmapset extends Model
                 ->orderByRaw('FIELD(beatmapset_id, '.db_array_bind($beatmap_ids).')', $beatmap_ids)
                 ->get()
             : [];
+    }
+
+    public static function latestRankedOrApproved($count = 5)
+    {
+        // TODO: add filtering by game mode after mode-toggle UI/UX happens
+
+        return Cache::remember("beatmapsets_latest_{$count}", 60, function () use ($count) {
+            // We union here so mysql can use indexes to speed this up
+            $ranked = self::ranked()->active()->orderBy('approved_date', 'desc')->limit($count);
+            $approved = self::approved()->active()->orderBy('approved_date', 'desc')->limit($count);
+
+            return $ranked->union($approved)->orderBy('approved_date', 'desc')->limit($count)->get();
+        });
+    }
+
+    public static function mostPlayedToday($mode = 'osu', $count = 5)
+    {
+        // TODO: this only returns based on osu mode plays for now, add other game modes after mode-toggle UI/UX happens
+
+        return Cache::remember("beatmapsets_most_played_today_{$mode}_{$count}", 60, function () use ($mode, $count) {
+            $counts = Score\Osu::selectRaw('beatmapset_id, count(*) as playcount')
+                    ->whereNotIn('beatmapset_id', self::BUNDLED_IDS)
+                    ->groupBy('beatmapset_id')
+                    ->orderBy('playcount', 'desc')
+                    ->limit($count)
+                    ->get();
+
+            $mostPlayed = [];
+            foreach ($counts as $value) {
+                $mostPlayed[$value['beatmapset_id']] = $value['playcount'];
+            }
+
+            return $mostPlayed;
+        });
     }
 
     public static function listing()
@@ -825,13 +896,13 @@ class Beatmapset extends Model
 
     public function description()
     {
-        $topic = Topic::find($this->thread_id);
+        $topic = Forum\Topic::find($this->thread_id);
 
         if ($topic === null) {
             return;
         }
 
-        $post = Post::find($topic->topic_first_post_id);
+        $post = Forum\Post::find($topic->topic_first_post_id);
 
         // Any description (after the first match) that matches
         // '[-{15}]' within its body doesn't get split anymore,

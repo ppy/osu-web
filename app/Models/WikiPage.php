@@ -79,7 +79,7 @@ class WikiPage
             try {
                 $data = static::fetchContent($path);
                 $type = image_type_to_mime_type(
-                    getimagesizefromstring($data)[2] ?? null
+                    read_image_properties_from_string($data)[2] ?? null
                 );
 
                 return compact('data', 'type');

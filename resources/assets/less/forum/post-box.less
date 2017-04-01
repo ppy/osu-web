@@ -65,8 +65,15 @@
     background-image: linear-gradient(fade(#000, 30%), transparent 3px);
 
     &--profile-page {
-      padding: 10px 30px;
-      margin: 0 -30px -20px;
+      padding: 10px 10px;
+      margin: 0 -10px -20px;
+
+      @media @desktop {
+        margin-left: -30px;
+        margin-right: -30px;
+        padding-left: 30px;
+        padding-right: 30px;
+      }
     }
 
     &--large {
@@ -80,6 +87,10 @@
         padding-right: @space-right;
       }
     }
+  }
+
+  &__toolbar {
+    margin-bottom: 10px;
   }
 
   &__actions {
@@ -110,5 +121,5 @@
 .post-box-toolbar {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 5px;
+  margin: -2px;
 }

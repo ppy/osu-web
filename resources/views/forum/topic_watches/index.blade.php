@@ -32,7 +32,7 @@
                         {!! trans('forum.topic_watches.index.info.total', [
                             'total' =>
                                 '<span class="js-forum-topic-watch--total">'.
-                                count($topics).
+                                $counts['total'].
                                 '</span>',
                         ]) !!}
                     </p>
@@ -41,7 +41,7 @@
                         {!! trans('forum.topic_watches.index.info.unread', [
                             'unread' =>
                                 '<span class="js-forum-topic-watch--unread">'.
-                                (count($topics) - count($topicReadStatus)).
+                                $counts['unread'].
                                 '</span>',
                         ]) !!}
                     </p>
@@ -53,7 +53,7 @@
                             {{ trans('forum.topic_watches.index.box.total') }}
                         </div>
                         <div class="js-forum-topic-watch--total osu-page-header__status-text">
-                            {{ count($topics) }}
+                            {{ $counts['total'] }}
                         </div>
                     </div>
 
@@ -62,7 +62,7 @@
                             {{ trans('forum.topic_watches.index.box.unread') }}
                         </div>
                         <div class="js-forum-topic-watch--unread osu-page-header__status-text">
-                            {{ count($topics) - count($topicReadStatus) }}
+                            {{ $counts['unread'] }}
                         </div>
                     </div>
                 </div>
@@ -73,5 +73,7 @@
             'title' => trans('forum.topic_watches.index.title'),
             'row' => 'forum.topic_watches._topic',
         ])
+
+        @include('forum._pagination', ['object' => $topics])
     </div>
 @endsection

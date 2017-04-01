@@ -136,17 +136,13 @@ ProfilePage.Main = React.createClass
           scores: scores
         component: ProfilePage.Historical
 
-      performance:
-        props:
-          rankHistories: rankHistories
-        component: ProfilePage.Performance
-
     div className: 'osu-layout__section',
       el ProfilePage.Header,
         user: @state.user
         stats: stats
         currentMode: @state.currentMode
         withEdit: @props.withEdit
+        rankHistories: rankHistories
 
       div
         className: "hidden-xs page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"

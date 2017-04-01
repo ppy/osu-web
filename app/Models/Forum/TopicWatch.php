@@ -29,6 +29,32 @@ class TopicWatch extends Model
 
     public $timestamps = false;
 
+    public static function unreadCount($user)
+    {
+        if ($user === null) {
+            return 0;
+        }
+
+        $thisTable = (new static)->getTable();
+        $trackTable = (new TopicTrack)->getTable();
+        $topicTable = (new Topic)->getTable();
+
+        return static
+            ::join($topicTable, "{$topicTable}.topic_id", '=', "{$thisTable}.topic_id")
+            ->leftJoin($trackTable, function ($join) use ($trackTable, $thisTable) {
+                $join
+                    ->on("{$trackTable}.topic_id", '=', "{$thisTable}.topic_id")
+                    ->on("{$trackTable}.user_id", '=', "{$thisTable}.user_id");
+            })
+            ->where("{$thisTable}.user_id", '=', $user->user_id)
+            ->where(function ($query) use ($topicTable, $trackTable) {
+                $query
+                    ->whereRaw("{$topicTable}.topic_last_post_time > {$trackTable}.mark_time")
+                    ->orWhereNull("{$trackTable}.mark_time");
+            })
+            ->count();
+    }
+
     public static function add($topic, $user)
     {
         try {
