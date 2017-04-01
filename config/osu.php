@@ -88,7 +88,6 @@ return [
             'mapper' => '/p/kudosu',
         ],
         'home' => [
-            'changelog' => '/p/changelog',
             'download' => '/p/download',
             'news' => '/p/news',
         ],
