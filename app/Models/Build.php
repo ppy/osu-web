@@ -20,40 +20,15 @@
 
 namespace App\Models;
 
-class Changelog extends Model
+class Build extends Model
 {
     public $timestamps = false;
-    protected $table = 'osu_changelog';
-    protected $primaryKey = 'changelog_id';
 
-    // Changelog::all()->listing($offset)->get();
-    // Changelog::with('user', function($changelog) {
-    //
-    // }
-
-    public function scopeListing($query, $offset = 20)
-    {
-        $limit = config('osu.changelog.max', 20);
-
-        return $query
-            ->where('private', '=', 0)
-            ->take($limit)
-            ->skip($offset)
-            ->orderBy('changelog_id', 'desc');
-    }
-
-    public function scopeDefault($query)
-    {
-        return $query->where('private', 0);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
+    protected $table = 'osu_builds';
+    protected $primaryKey = 'build_id';
 
     public function updateStream()
     {
-        return $this->hasOne(UpdateStream::class, 'stream_id', 'stream_id');
+        return $this->belongsTo(UpdateStream::class, 'stream_id', 'stream_id');
     }
 }
