@@ -31,4 +31,9 @@ class Build extends Model
     {
         return $this->belongsTo(UpdateStream::class, 'stream_id', 'stream_id');
     }
+
+    public function changelogs()
+    {
+        return $this->hasMany(Changelog::class, 'build', 'version');
+    }
 }

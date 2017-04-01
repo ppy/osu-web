@@ -23,10 +23,13 @@ namespace App\Http\Controllers;
 use App;
 use App\Models\BanchoStats;
 use App\Models\Beatmapset;
+use App\Models\Build;
+use App\Models\Changelog;
 use App\Models\Count;
 use App\Models\Forum\Post;
 use App\Models\News;
 use Auth;
+use DB;
 use Request;
 use View;
 
@@ -43,7 +46,51 @@ class HomeController extends Controller
 
     public function getChangelog()
     {
-        return view('home.changelog');
+        $stream_id = intval(Request::input('stream_id'));
+        $build = Request::input('build');
+
+        if ($stream_id && $build) {
+            return ujs_redirect(route('changelog', ['stream_id' => $stream_id]));
+        } elseif (!$stream_id && !$build) {
+            $stream_id = config('osu.changelog.featured_stream');
+        }
+
+        $streamIds = implode(',', config('osu.changelog.update_streams'));
+
+        $builds = Build::orderBy('date', 'desc')
+            ->take($build ? 1 : config('osu.changelog.build_count'));
+
+        if ($stream_id) {
+            $builds->where('stream_id', $stream_id);
+        } elseif ($build) {
+            $builds->where('version', $build);
+        }
+
+        $changelogs = Changelog::default()->whereIn('build', $builds->pluck('version'))
+            ->with('_build')
+            ->orderBy('date', 'desc')->get()
+            ->groupBy(function ($item, $key) {
+                return $item->_build->date;
+            });
+
+        $streams = collect(DB::select("select b.version, b.users, b.stream_id, streams.pretty_name
+            from (select stream_id, max(date) as date from osu_builds group by stream_id) l
+            join osu_builds b on b.stream_id = l.stream_id and b.date = l.date
+            join osu_updates.streams on b.stream_id = streams.stream_id
+            where b.stream_id in ({$streamIds})
+            order by field(b.stream_id, {$streamIds})"));
+
+        $featuredStream = null;
+
+        foreach ($streams as $index => $stream) {
+            if ($stream->stream_id === config('osu.changelog.featured_stream')) {
+                $featuredStream = $stream;
+                unset($streams[$index]);
+                break;
+            }
+        }
+
+        return view('home.changelog', compact('changelogs', 'streams', 'featuredStream'));
     }
 
     public function getDownload()

@@ -102,4 +102,9 @@ return [
         'verification_key_length_hex' => 8,
         'verification_key_tries_limit' => 8,
     ],
+    'changelog' => [
+        'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
+        'featured_stream' => intval(env('FEATURED_UPDATE_STREAM', 5)),
+        'build_count' => 4,
+    ],
 ];

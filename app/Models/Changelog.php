@@ -56,4 +56,10 @@ class Changelog extends Model
     {
         return $this->hasOne(UpdateStream::class, 'stream_id', 'stream_id');
     }
+
+    // would be overshadowed by the `build` field without the underscore
+    public function _build()
+    {
+        return $this->belongsTo(Build::class, 'build', 'version');
+    }
 }
