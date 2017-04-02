@@ -94,9 +94,6 @@ return [
                 ],
                 'title' => 'Historisch',
             ],
-            'performance' => [
-                'title' => 'Prestatie',
-            ],
             'kudosu' => [
                 'available' => 'Kudosu Beschikbaar',
                 'available_info' => 'Kudosu kunnen omgeruild worden voor kudosu sterren, deze zorgen ervoor dat je beatmap meer aandacht krijgt. Dit is het aantal kudosu dat je nog niet omgeruild hebt.',

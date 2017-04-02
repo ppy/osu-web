@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use App\Interfaces\Messageable;
+use App\Libraries\BBCodeForDB;
 use App\Models\Chat\PrivateMessage;
 use App\Traits\UserAvatar;
 use App\Transformers\UserTransformer;
@@ -237,6 +238,13 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function setUserOccAttribute($value)
     {
         $this->attributes['user_occ'] = e($value);
+    }
+
+    public function setUserSigAttribute($value)
+    {
+        $bbcode = new BBCodeForDB($value);
+        $this->attributes['user_sig'] = $bbcode->generate();
+        $this->attributes['user_sig_bbcode_uid'] = $bbcode->uid;
     }
 
     public function isSpecial()
@@ -906,6 +914,11 @@ class User extends Model implements AuthenticatableContract, Messageable
             'user_warnings' => 0,
             'user_type' => 0,
         ]);
+    }
+
+    public function updatePassword($password)
+    {
+        return $this->update(['user_password' => Hash::make($password)]);
     }
 
     public static function attemptLogin($user, $password, $ip = null)

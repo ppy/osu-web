@@ -100,9 +100,6 @@ return [
                 ],
                 'title' => '历史记录',
             ],
-            'performance' => [
-                'title' => '排名',
-            ],
             'kudosu' => [
                 'available' => '可用 Kudosu',
                 'available_info' => 'Kudosu 可以兑换为 kudosu 星,它可以让你的谱面更引人注意. 这是你还没有兑换的 kudosu 数量.',

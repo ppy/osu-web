@@ -34,7 +34,8 @@
     "sentry/sentry-laravel": "^0.6.0",
     "shift31/laravel-elasticsearch": "~1.0",
     "webuni/commonmark-table-extension": "^0.6.1",
-    "chaseconey/laravel-datadog-helper": "^0.6.0"
+    "chaseconey/laravel-datadog-helper": "^0.6.0",
+    "tumblr/tumblr": "^0.2.0"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

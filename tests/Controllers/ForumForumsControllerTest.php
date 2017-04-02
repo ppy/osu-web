@@ -1,12 +1,9 @@
 <?php
 
 use App\Models\Forum;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ForumForumsControllerTest extends TestCase
 {
-    use DatabaseTransactions;
-
     public function testIndex()
     {
         $this

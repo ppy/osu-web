@@ -20,10 +20,25 @@
 
 namespace App\Models;
 
+use Cache;
+
 class BanchoStats extends Model
 {
     protected $table = 'osu_banchostats';
     protected $primaryKey = 'banchostats_id';
 
     public $timestamps = false;
+
+    public static function cachedStats()
+    {
+        return Cache::remember('banchostats:v2', 5, function () {
+            return array_reverse(static::whereRaw('banchostats_id mod 10 = 0')
+              ->select(['users_irc', 'users_osu', 'multiplayer_games', 'date'])
+              ->orderBy('banchostats_id', 'DESC')
+              ->limit(24 * 60 / 10)
+              ->get()
+              ->all()
+            );
+        });
+    }
 }

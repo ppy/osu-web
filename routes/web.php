@@ -99,6 +99,11 @@ Route::get('/community/forum', function () {
     return Redirect::to('/forum');
 });
 
+// temporary news redirect
+Route::get('/news/{id}', function ($id) {
+    return Redirect::to("https://osu.ppy.sh/news/{$id}");
+})->name('news.show');
+
 Route::resource('livestreams', 'LivestreamsController', ['only' => ['index']]);
 Route::post('livestreams/promote', ['as' => 'livestreams.promote', 'uses' => 'LivestreamsController@promote']);
 
@@ -231,9 +236,11 @@ Route::post('/account/avatar', ['as' => 'account.avatar', 'uses' => 'AccountCont
 Route::post('/account/cover', ['as' => 'account.cover', 'uses' => 'AccountController@cover']);
 Route::put('/account', ['as' => 'account.update', 'uses' => 'AccountController@update']);
 Route::get('/account/edit', ['as' => 'account.edit', 'uses' => 'AccountController@edit']);
-Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
-Route::post('/account/verify', ['as' => 'account.verify', 'uses' => 'AccountController@verify']);
 Route::post('/account/reissue-code', ['as' => 'account.reissue-code', 'uses' => 'AccountController@reissueCode']);
+Route::post('/account/verify', ['as' => 'account.verify', 'uses' => 'AccountController@verify']);
+Route::put('/account/email', ['as' => 'account.email', 'uses' => 'AccountController@updateEmail']);
+Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
+Route::put('/account/password', ['as' => 'account.password', 'uses' => 'AccountController@updatePassword']);
 
 // API
 Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api'], function () {

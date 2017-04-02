@@ -67,46 +67,54 @@
 
             <div class="account-edit__input-groups">
                 <div class="account-edit__input-group">
-                    <div class="account-edit-entry js-account-edit-avatar">
-                        <div class="account-edit-entry__label"></div>
+                    <div class="account-edit-entry account-edit-entry--avatar js-account-edit-avatar">
+                        <div class="account-edit-entry__avatar">
+                            <div class="avatar avatar--full-rounded js-current-user-avatar"></div>
 
-                        <div>
-                            <div class="account-edit-entry__avatar">
-                                <div class="avatar avatar--full-rounded js-current-user-avatar"></div>
+                            <div class="account-edit-entry__drop-overlay">
+                                <span>
+                                {{ trans('common.dropzone.target') }}
+                                </span>
+                            </div>
 
-                                <div class="account-edit-entry__drop-overlay">
-                                    <span>
-                                    {{ trans('common.dropzone.target') }}
-                                    </span>
+                            <div class="account-edit-entry__overlay-spinner">
+                                @include('objects._spinner')
+                            </div>
+                        </div>
+
+                        <label class="btn-osu-big btn-osu-big--account-edit">
+                            <div class="btn-osu-big__content">
+                                <div class="btn-osu-big__left">
+                                    {{ trans('common.buttons.upload_image') }}
                                 </div>
 
-                                <div class="account-edit-entry__overlay-spinner">
-                                    @include('objects._spinner')
+                                <div class="btn-osu-big__icon">
+                                    <i class="fa fa-arrow-circle-o-up"></i>
                                 </div>
                             </div>
 
-                            <label class="btn-osu-big btn-osu-big--full">
-                                <div class="btn-osu-big__content">
-                                    <div class="btn-osu-big__left">
-                                        {{ trans('common.buttons.upload_image') }}
-                                    </div>
-
-                                    <div class="btn-osu-big__icon">
-                                        <i class="fa fa-arrow-circle-o-up"></i>
-                                    </div>
-                                </div>
-
-                                <input
-                                    class="js-account-edit-avatar__button btn-osu-big__fileupload"
-                                    type="file"
-                                    name="avatar_file"
-                                    data-url="{{ route('account.avatar') }}"
-                                >
-                            </label>
-                        </div>
+                            <input
+                                class="js-account-edit-avatar__button btn-osu-big__fileupload"
+                                type="file"
+                                name="avatar_file"
+                                data-url="{{ route('account.avatar') }}"
+                            >
+                        </label>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="osu-page osu-page--small">
+        @include('accounts._edit_signature')
+    </div>
+
+    <div class="osu-page osu-page--small">
+        @include('accounts._edit_password')
+    </div>
+
+    <div class="osu-page osu-page--small">
+        @include('accounts._edit_email')
     </div>
 @endsection

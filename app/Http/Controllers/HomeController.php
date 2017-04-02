@@ -22,8 +22,10 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Models\BanchoStats;
+use App\Models\Beatmapset;
 use App\Models\Count;
 use App\Models\Forum\Post;
+use App\Models\News;
 use Auth;
 use Request;
 use View;
@@ -71,19 +73,42 @@ class HomeController extends Controller
             return ujs_redirect(route('store.products.index'));
         }
 
-        if (Auth::check()) {
-            return ujs_redirect(route('forum.forums.index'));
+        $stats = BanchoStats::cachedStats();
+        $totalUsers = number_format(Count::cachedTotalUsers());
+        $graphData = array_to_graph_json($stats, 'users_osu');
+
+        $latest = array_last($stats);
+        if ($latest) {
+            $currentOnline = number_format($latest['users_osu']);
+            $currentGames = number_format($latest['multiplayer_games']);
+        } else {
+            $currentOnline = $currentGames = 0;
         }
 
-        $stats = BanchoStats
-            ::whereRaw('banchostats_id mod 10 = 0')
-            ->orderBy('banchostats_id', 'DESC')
-            ->limit(24 * 60 / 10)
-            ->get();
-        $totalUsers = Count::totalUsers();
-        $currentOnline = ($stats->isEmpty() ? 0 : $stats->last()->users_osu);
+        if (Auth::check()) {
+            $news = News::all();
+            $newBeatmaps = Beatmapset::latestRankedOrApproved();
+            $popularBeatmapsPlaycount = Beatmapset::mostPlayedToday();
+            $popularBeatmaps = Beatmapset::whereIn('beatmapset_id', array_keys($popularBeatmapsPlaycount))->get();
 
-        return view('home.landing', compact('stats', 'totalUsers', 'currentOnline'));
+            return view('home.user', compact(
+                'currentGames',
+                'currentOnline',
+                'graphData',
+                'newBeatmaps',
+                'news',
+                'popularBeatmaps',
+                'popularBeatmapsPlaycount',
+                'totalUsers'
+            ));
+        } else {
+            return view('home.landing', compact(
+                'currentGames',
+                'currentOnline',
+                'graphData',
+                'totalUsers'
+            ));
+        }
     }
 
     public function setLocale()

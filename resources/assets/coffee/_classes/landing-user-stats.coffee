@@ -62,11 +62,11 @@ class @LandingUserStats
     @area = d3.area()
       .curve(d3.curveBasis)
       .x (d) =>
-        @scaleX d.date
+        @scaleX d.x
       .y0 =>
         @height
       .y1 (d) =>
-        @scaleY d.users_osu
+        @scaleY d.y
 
     # Load initial data
     @loadData()
@@ -78,41 +78,21 @@ class @LandingUserStats
   loadData: =>
     @data = osu.parseJson('json-stats')
 
-    # Define date parser
-    parseDate = d3.timeParse('%Y-%m-%d %H:%M:%S')
+    return if _.isEmpty(@data)
 
-    # Parsing data
-    @data.forEach (d) ->
-      d.date = parseDate(d.date)
-      d.users_osu = +d.users_osu
+    @maxElem = _.maxBy @data, (o) -> o.y
 
-    # Fill dummy data
-    if @data.length == 0
-      @data = [
-        {
-          date: moment().subtract(1, 'day').toDate()
-          users_osu: 1
-        }
-        {
-          date: new Date()
-          users_osu: 2
-        }
-      ]
-
-    # Find the date for the max, from the end backward
-    @maxElem = null
-    for d in @data by -1
-      @maxElem = d if !@maxElem? || d.users_osu > @maxElem.users_osu
-
-    @scaleX.domain d3.extent(@data, (d) -> d.date)
-    @scaleY.domain [0, d3.max(@data, (d) -> d.users_osu)]
+    @scaleX.domain d3.extent(@data, (d) -> d.x)
+    @scaleY.domain [0, d3.max(@data, (d) -> d.y)]
 
     @svgPeakText
-      .text Lang.get('home.landing.peak', count: @maxElem.users_osu.toLocaleString())
+      .text Lang.get('home.landing.peak', count: @maxElem.y.toLocaleString())
     @peakTextLength = @svgPeakText.node().getComputedTextLength()
 
 
   resize: =>
+    return if _.isEmpty(@data)
+
     # set basic dimensions
     @width = parseInt(@svgContainerOuter.style('width')) - @margin.left - @margin.right
     @height = parseInt(@svgContainerOuter.style('height')) - @margin.top - @margin.bottom
@@ -132,12 +112,12 @@ class @LandingUserStats
       .attr 'd', @area
 
     # reposition peak circle...
-    @svgPeakCircle.attr 'cx', @scaleX(@maxElem.date)
+    @svgPeakCircle.attr 'cx', @scaleX(@maxElem.x)
 
     # ...and its label
     @svgPeakText.attr 'x', =>
-      rightX = @scaleX(@maxElem.date) + (@peakR * 2)
+      rightX = @scaleX(@maxElem.x) + (@peakR * 2)
       if (@peakTextLength + rightX) > @width
-        @scaleX(@maxElem.date) - (@peakTextLength + (@peakR * 2))
+        @scaleX(@maxElem.x) - (@peakTextLength + (@peakR * 2))
       else
         rightX
