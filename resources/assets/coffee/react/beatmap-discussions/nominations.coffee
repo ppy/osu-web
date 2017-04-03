@@ -88,8 +88,20 @@ BeatmapDiscussions.Nominations = React.createClass
         span
           className: "#{bn}__title"
           osu.trans 'beatmaps.nominations.title'
-        if mapCanBeNominated
-          "#{nominations.current}/#{nominations.required}"
+        span null,
+          if @props.beatmapset.nominations?.nominators?.length > 0
+            span null,
+              '['
+              span
+                dangerouslySetInnerHTML:
+                  __html:
+                    @props.beatmapset.nominations.nominators
+                      .map (user) ->
+                        osu.link(laroute.route('users.show', user: user.id), user.username)
+                      .join(', ')
+              ']'
+          if mapCanBeNominated
+            " #{nominations.current}/#{nominations.required}"
 
       if mapCanBeNominated
         div className: "#{bn}__lights",
