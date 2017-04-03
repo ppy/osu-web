@@ -114,6 +114,10 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
                 'required' => $beatmapset->requiredNominationCount(),
                 'current' => $beatmapset->currentNominationCount(),
             ];
+            if (priv_check('BeatmapsetNominatorsView')->can()) {
+                $result['nominators'] = $beatmapset->nominators();
+            }
+
             if (isset($disqualifyEvent)) {
                 $result['disqualification'] = [
                     'reason' => $disqualifyEvent->comment,
@@ -132,6 +136,10 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             $result = [
                 'ranking_eta' => json_time($eta),
             ];
+
+            if (priv_check('BeatmapsetNominatorsView')->can()) {
+                $result['nominators'] = $beatmapset->nominators();
+            }
 
             return $this->item($beatmapset, function ($beatmapset) use ($result) {
                 return $result;
