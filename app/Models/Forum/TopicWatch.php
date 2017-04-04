@@ -55,17 +55,19 @@ class TopicWatch extends Model
             ->count();
     }
 
-    public static function add($topic, $user)
+    public static function add($topics, $user)
     {
-        try {
-            return static::create([
-                'topic_id' => $topic->topic_id,
-                'user_id' => $user->user_id,
-            ]);
-        } catch (QueryException $ex) {
-            // Do nothing if already watching. Rethrow everything else.
-            if (!is_sql_unique_exception($ex)) {
-                throw $ex;
+        foreach ($topics as $topic) {
+            try {
+                return static::create([
+                    'topic_id' => $topic->topic_id,
+                    'user_id' => $user->user_id,
+                ]);
+            } catch (QueryException $ex) {
+                // Do nothing if already watching. Rethrow everything else.
+                if (!is_sql_unique_exception($ex)) {
+                    throw $ex;
+                }
             }
         }
     }
@@ -85,7 +87,7 @@ class TopicWatch extends Model
     public static function remove($topics, $user)
     {
         return static::where('user_id', $user->user_id)
-            ->whereIn('topic_id', array_pluck((array) $topics, 'topic_id'))
+            ->whereIn('topic_id', array_pluck($topics, 'topic_id'))
             ->delete();
     }
 
@@ -93,7 +95,7 @@ class TopicWatch extends Model
     {
         $function = $isAdd ? 'add' : 'remove';
 
-        return forward_static_call_array([static::class, $function], [$topic, $user]);
+        return forward_static_call_array([static::class, $function], [[$topic], $user]);
     }
 
     public function topic()
