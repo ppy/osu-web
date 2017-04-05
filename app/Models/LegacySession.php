@@ -59,6 +59,6 @@ class LegacySession extends Model
 
     public static function signId($id)
     {
-        return hash_hmac('sha1', $id, config('osu.legacy.shared_cookie_secret'));
+        return hash_hmac('sha1', $id, config('osu.legacy.shared_interop_secret'));
     }
 }

@@ -23,7 +23,7 @@ class LegacyInterOpAuth
 
         $timestamp = $request->query('timestamp');
         $signature = $request->header('X-LIO-Signature');
-        $expected = hash_hmac('sha1', $request->fullUrl(), config('osu.legacy.shared_cookie_secret'));
+        $expected = hash_hmac('sha1', $request->fullUrl(), config('osu.legacy.shared_interop_secret'));
 
         $diff = Carbon::createFromTimestamp($timestamp)->diffInSeconds();
 
