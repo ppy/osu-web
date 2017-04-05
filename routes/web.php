@@ -242,6 +242,11 @@ Route::put('/account/email', ['as' => 'account.email', 'uses' => 'AccountControl
 Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
 Route::put('/account/password', ['as' => 'account.password', 'uses' => 'AccountController@updatePassword']);
 
+Route::get('password-reset', 'PasswordResetController@index')->name('password-reset');
+Route::post('password-reset', 'PasswordResetController@sendMail');
+Route::delete('password-reset', 'PasswordResetController@destroy');
+Route::post('password-reset/set', 'PasswordResetController@update')->name('password-reset.set');
+
 // API
 Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'v2'], function () {
