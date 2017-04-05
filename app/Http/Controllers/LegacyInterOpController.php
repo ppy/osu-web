@@ -23,9 +23,8 @@ namespace App\Http\Controllers;
 use App\Jobs\RegenerateBeatmapsetCover;
 use App\Models\Beatmapset;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
 
-class LegacyInterOpController extends BaseController
+class LegacyInterOpController extends Controller
 {
     use DispatchesJobs;
 
