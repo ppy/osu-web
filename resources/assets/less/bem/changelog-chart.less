@@ -16,43 +16,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.changelog-header {
-  display: flex;
-  flex-direction: column;
-  align-content: flex-end;
+.changelog-chart {
+  height: 125px;
+  background-color: @gray-5;
 
-  height: 250px;
-
-  background-size: cover;
-  background-position: center;
-
-  .at2x-simple('/images/headers/changelog.jpg');
-
-  padding: 0 40px;
-
-  z-index: 10;
-
-  .default-box-shadow;
-
-  &__streams-box {
-    margin-top: auto;
-  }
-
-  &__streams {
-    display: flex;
-    flex-direction: row;
-
-    padding-bottom: 10px;
-  }
-
-  &__stream {
-    width: 125px;
-    height: 65px;
-
-    margin-left: 10px;
-
-    &--featured {
-      width: 260px;
-    }
-  }
+  z-index: 1;
 }

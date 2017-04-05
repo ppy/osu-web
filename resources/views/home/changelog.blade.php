@@ -36,6 +36,10 @@ $lastBuild = null;
                     </div>
                 </div>
             </div>
+            <div class="changelog-chart">
+                <!-- WIP  -->
+                <iframe src="https://app.datadoghq.com/graph/embed?token=66b00a54d1bed990e50dba1c1c534741e292b51615d440c0ad591f154980c2be&amp;height=160&amp;width=600&amp;legend=false" style="border-radius: 5px" height="130" frameborder="0" width="600"></iframe>
+            </div>
         </div>
 
         <div class="osu-layout__row osu-layout__row--page-compact">
