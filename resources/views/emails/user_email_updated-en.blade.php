@@ -18,6 +18,8 @@
 Hi {{ $user->username }},
 
 This is just a confirmation that your osu! email address has been changed to "{{ $user->user_email }}".
+You should receive this message to both of your new and old email addresses.
+Please make sure that you received this email at your new address otherwise you may get locked out of your account.
 
 Please reply to this email IMMEDIATELY if you did not request this change.
 
