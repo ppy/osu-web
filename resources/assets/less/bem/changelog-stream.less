@@ -1,0 +1,137 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.changelog-stream {
+  @_top: changelog-stream;
+
+  display: flex;
+  align-items: flex-start;
+
+  padding: 0 10px;
+
+  background-color: @gray-f;
+
+  .default-border-radius;
+  .default-box-shadow;
+
+  &--active {
+    &::before {
+      content: "";
+      position: absolute;
+
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+
+      border: 3px solid;
+      border-radius: @border-radius-base * 2;
+
+      .default-box-shadow;
+    }
+  }
+
+  &--stable {
+    &::before {
+      border-color: @blue;
+    }
+  }
+
+  &--stable-fallback {
+    &::before {
+      border-color: @green-light;
+    }
+  }
+
+  &--beta, &--cutting-edge {
+    &::before {
+      border-color: @yellow;
+    }
+  }
+
+  &--lazer {
+    &::before {
+      border-color: @red;
+    }
+  }
+
+  &__link {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    z-index: 1000;
+
+    width: 100%;
+    height: 100%;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    height: 100%;
+    padding: 7px 0;
+  }
+
+  &__indicator-box {
+    padding: 10px 0;
+    margin-left: auto;
+  }
+
+  &__indicator {
+    height: 28px;
+    width: 5px;
+
+    .default-border-radius;
+
+    .@{_top}--stable & {
+      background-color: @blue;
+    }
+
+    .@{_top}--stable-fallback & {
+      background-color: @green-light;
+    }
+
+    .@{_top}--beta &, .@{_top}--cutting-edge & {
+      background-color: @yellow;
+    }
+
+    .@{_top}--lazer & {
+      background-color: @red;
+    }
+  }
+
+  &__name {
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  &__build {
+    font-size: 17px;
+    font-weight: 300;
+  }
+
+  &__users {
+    font-size: 10px;
+    color: @gray-9;
+
+    margin-top: auto;
+  }
+}
