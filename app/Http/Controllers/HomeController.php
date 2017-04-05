@@ -67,8 +67,9 @@ class HomeController extends Controller
         }
 
         $changelogs = Changelog::default()->whereIn('build', $builds->pluck('version'))
-            ->with('_build')
+            ->with(['_build', 'user'])
             ->orderBy('date', 'desc')->get()
+            ->sortByDesc('major')
             ->groupBy(function ($item, $key) {
                 return $item->_build->date;
             });
@@ -90,7 +91,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('home.changelog', compact('changelogs', 'streams', 'featuredStream'));
+        return view('home.changelog', compact('changelogs', 'streams', 'featuredStream', 'stream_id'));
     }
 
     public function getDownload()
