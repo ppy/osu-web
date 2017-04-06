@@ -275,6 +275,11 @@ Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api
     });
 });
 
+// Callbacks for legacy systems to interact with
+Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
+    Route::post('/regenerate-beatmapset-covers/{beatmapset}', ['uses' => 'LegacyInterOpController@regenerateBeatmapsetCovers']);
+});
+
 // status
 if (Config::get('app.debug')) {
     Route::get('/status', ['uses' => 'StatusController@getMain']);
