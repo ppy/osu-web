@@ -35,6 +35,6 @@ class LegacyInterOpController extends Controller
         $job = (new RegenerateBeatmapsetCover($beatmapset))->onQueue('beatmap_processor');
         $this->dispatch($job);
 
-        return response(['success' => true]);
+        return ['success' => true];
     }
 }
