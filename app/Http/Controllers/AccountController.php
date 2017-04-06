@@ -138,11 +138,13 @@ class AccountController extends Controller
             ->fill(Request::input('user_email'));
 
         if ($userEmail->save() === true) {
-            $mailTo = [$user->user_email];
+            $addresses = [$user->user_email];
             if (present($previousEmail)) {
-                $mailTo[] = $previousEmail;
+                $addresses[] = $previousEmail;
             }
-            Mail::to($mailTo)->send(new UserEmailUpdated($user));
+            foreach ($addresses as $address) {
+                Mail::to($address)->send(new UserEmailUpdated($user));
+            }
 
             return ['message' => trans('accounts.update_email.updated')];
         } else {
