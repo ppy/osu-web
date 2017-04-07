@@ -20,14 +20,14 @@
 
 return [
     'header' => [
-        'small' => 'Compita de outras formas do que apenas clicar em círculos.',
+        'small' => 'Compita de outras formas além de clicar em círculos.',
         'large' => 'Concursos comunitários osu!',
     ],
     'voting' => [
         'over' => 'A votação deste concurso já foi encerrada',
         'login_required' => 'Por favor, inicie a sessão para votar.',
         'best_of' => [
-            'none_played' => 'Parece que não você jogou nenhum dos beatmaps qualificados para este concurso!',
+            'none_played' => 'Parece que você não jogou nenhum dos beatmaps qualificados para este concurso!',
         ],
     ],
     'entry' => [

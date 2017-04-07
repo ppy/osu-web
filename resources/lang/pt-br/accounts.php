@@ -27,11 +27,25 @@ return [
             'title' => 'Editar avatar',
         ],
 
+        'email' => [
+            'current' => 'senha atual',
+            'new' => 'novo e-mail',
+            'new_confirmation' => 'confirmar e-mail',
+            'title' => 'E-mail',
+        ],
+
+        'password' => [
+            'current' => 'senha atual',
+            'new' => 'nova senha',
+            'new_confirmation' => 'confirmar senha',
+            'title' => 'Senha',
+        ],
+
         'profile' => [
             'title' => 'Editar perfil',
 
             'user' => [
-                'user_from' => 'localização atual',
+                'user_from' => 'local atual',
                 'user_interests' => 'interesses',
                 'user_msnm' => 'skype',
                 'user_occ' => 'ocupação',
@@ -39,5 +53,22 @@ return [
                 'user_website' => 'site',
             ],
         ],
+
+        'signature' => [
+            'title' => 'Assinatura',
+            'update' => 'atualizar',
+        ],
+    ],
+
+    'update_email' => [
+        'email_subject' => '[osu!] Confirmação de alteração de endereço de e-mail',
+        'update' => 'atualizar',
+        'updated' => 'E-mail atualizado',
+    ],
+
+    'update_password' => [
+        'email_subject' => '[osu!] Confirmação de alteração de senha',
+        'update' => 'atualizar',
+        'updated' => 'Senha atualizada',
     ],
 ];

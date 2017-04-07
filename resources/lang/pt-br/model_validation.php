@@ -47,4 +47,19 @@ return [
             'too_many' => 'Selecionou mais opções do que o permitido.',
         ],
     ],
+
+    'user_email' => [
+        'invalid' => 'Não parece ser um endereço de e-mail.',
+        'already_used' => 'Endereço de e-mail já usado.',
+        'wrong_confirmation' => 'A confirmação de e-mail não corresponde.',
+        'wrong_current_password' => 'Senha atual incorreta.',
+    ],
+
+    'user_password' => [
+        'contains_username' => 'A senha não pode conter o nome de usuário.',
+        'too_short' => 'A nova senha é muito curta.',
+        'weak' => 'Senha na lista negra.',
+        'wrong_confirmation' => 'A confirmação de senha não corresponde.',
+        'wrong_current_password' => 'Senha atual incorreta.',
+    ],
 ];

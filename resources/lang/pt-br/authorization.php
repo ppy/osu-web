@@ -33,7 +33,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Por favor, espere um pouco antes de votar mais vezes',
-            'owner' => 'Não é possível votar na sua própria discussão!',
+            'owner' => 'Não é possível votar na própria discussão!',
         ],
     ],
 

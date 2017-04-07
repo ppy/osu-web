@@ -24,7 +24,7 @@ return [
     ],
 
     'checkout' => [
-        'pay' => 'Pague com Paypal',
+        'pay' => 'Pague com PayPal',
         'delayed_shipping' => 'Nós estamos com muitos pedidos! Você pode fazer o seu pedido, mas espere um **atraso adicional de 1-2 semanas** enquanto processamos os pedidos já existentes.',
     ],
 
