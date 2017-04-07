@@ -36,6 +36,7 @@ class Beatmapset extends Model
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
     protected $primaryKey = 'beatmapset_id';
+    protected $guarded = [];
 
     protected $casts = [
         'active' => 'boolean',
@@ -64,10 +65,6 @@ class Beatmapset extends Model
         'difficulty_names',
         'thread_icon_date',
         'thread_id',
-    ];
-
-    protected $fillable = [
-        'cover_updated_at',
     ];
 
     const STATES = [
@@ -697,9 +694,19 @@ class Beatmapset extends Model
         }
 
         DB::transaction(function () use ($user, $comment) {
-            $this->events()->create(['type' => BeatmapsetEvent::DISQUALIFY, 'user_id' => $user->user_id, 'comment' => $comment]);
-            $this->approved = self::STATES['pending'];
-            $this->save();
+            $this->events()->create([
+                'type' => BeatmapsetEvent::DISQUALIFY,
+                'user_id' => $user->user_id,
+                'comment' => $comment,
+            ]);
+
+            $this
+                ->beatmaps()
+                ->update(['approved' => static::STATES['pending']]);
+
+            $this->update([
+                'approved' => static::STATES['pending'],
+            ]);
         });
 
         return true;
@@ -713,9 +720,15 @@ class Beatmapset extends Model
 
         DB::transaction(function () {
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
-            $this->approved = self::STATES['qualified'];
-            $this->approved_date = Carbon::now();
-            $this->save();
+
+            $this
+                ->beatmaps()
+                ->update(['approved' => static::STATES['qualified']]);
+
+            $this->update([
+                'approved' => static::STATES['qualified'],
+                'approved_date' => Carbon::now(),
+            ]);
         });
 
         return true;
