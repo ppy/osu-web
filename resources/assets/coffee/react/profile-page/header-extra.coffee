@@ -205,11 +205,10 @@ class ProfilePage.HeaderExtra extends React.Component
       $.subscribe "fancy-chart:hover-#{options.hoverId}:end.#{@id}", @rankChartHover
 
     data = (@props.rankHistories?.data ? [])
-      .filter (rank) -> rank > 0
-
     data = data.map (rank, i) ->
       x: i - data.length + 1
       y: -rank
+    .filter (point) -> point.y < 0
 
     if data.length == 1
       data.unshift
