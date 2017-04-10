@@ -16,19 +16,19 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-<a class='user-home-beatmap-list__beatmap' href="{{route('beatmapsets.show', $beatmap->beatmapset_id)}}">
+<a class='user-home-beatmap-list__beatmap' href="{{route('beatmapsets.show', $beatmapset->beatmapset_id)}}">
     <img class='user-home-beatmap-list__cover'
-        src="{{$beatmap->allCoverURLs()['list']}}"
-        srcSet="{{$beatmap->allCoverURLs()['list']}} 1x, {{$beatmap->allCoverURLs()['list@2x']}} 2x">
+        src="{{$beatmapset->allCoverURLs()['list']}}"
+        srcSet="{{$beatmapset->allCoverURLs()['list']}} 1x, {{$beatmapset->allCoverURLs()['list@2x']}} 2x">
 
     <div class="user-home-beatmap-list__meta">
-        <div class='user-home-beatmap-list__title u-ellipsis-overflow'>{{$beatmap->title}}</div>
-        <div class='user-home-beatmap-list__artist u-ellipsis-overflow'>{{$beatmap->artist}}</div>
+        <div class='user-home-beatmap-list__title u-ellipsis-overflow'>{{$beatmapset->title}}</div>
+        <div class='user-home-beatmap-list__artist u-ellipsis-overflow'>{{$beatmapset->artist}}</div>
         <div class='user-home-beatmap-list__creator u-ellipsis-overflow'>
             @if ($type === 'new')
-                by {{$beatmap->creator}}, <span class='user-home-beatmap-list__playcount'>{!! timeago($beatmap->approved_date) !!}</span>
+                by {{$beatmapset->creator}}, <span class='user-home-beatmap-list__playcount'>{!! timeago($beatmapset->approved_date) !!}</span>
             @elseif ($type === 'popular')
-                by {{$beatmap->creator}}, <span class='user-home-beatmap-list__playcount'>{{number_format($popularBeatmapsPlaycount[$beatmap->beatmapset_id])}} plays</span>
+                by {{$beatmapset->creator}}, <span class='user-home-beatmap-list__playcount'>{{number_format($popularBeatmapsetsPlaycount[$beatmapset->beatmapset_id])}} plays</span>
             @endif
         </div>
     </div>
