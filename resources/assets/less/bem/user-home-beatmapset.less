@@ -16,26 +16,32 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.user-home-beatmap-list {
-  @top: user-home-beatmap-list;
+.user-home-beatmapset {
+  .link-plain();
+  .own-layer();
+  display: flex;
+  margin-bottom: 10px;
+  width: 100%;
 
-  &__beatmap {
-    display: flex;
-    margin-bottom: 10px;
-    width: 100%;
+  border-radius: (@border-radius-base + 1px);
+  color: #232323;
 
-    border-radius: 5px;
-    .link-plain();
-    color: #232323;
+  transition: 0.1s;
 
-    transition: 0.1s;
+  &:hover {
+    background-color: lighten(#333, 10%);
+    color: #fff;
+  }
 
-    &:hover {
-      background-color: lighten(#333, 10%);
-      color: white;
-    }
+  &__artist {
+    font-size: 12px;
+    margin-top: -3px;
+  }
 
-    .own-layer();
+  &__chevron {
+    flex-shrink: 0;
+    .center-content();
+    padding-right: 10px;
   }
 
   &__cover {
@@ -43,6 +49,11 @@
     height: 60px;
     border-radius: 5px;
     object-fit: cover;
+  }
+
+  &__creator {
+    font-size: 10px;
+    margin-top: 2px
   }
 
   &__meta {
@@ -53,48 +64,17 @@
     width: 100%;
     padding: 0px 5px;
     max-width: calc(100% ~'-' 105px);
-    color: white;
+    color: #fff;
     font-weight: 400;
     font-style: italic;
+  }
+
+  &__playcount {
+    color: @yellow;
   }
 
   &__title {
     font-size: 14px;
     margin-top: -2px;
-  }
-
-  &__artist {
-    font-size: 12px;
-    margin-top: -3px;
-  }
-
-  &__creator {
-    font-size: 10px;
-    margin-top: 2px
-  }
-
-  &__beatmap {
-    display: flex;
-    margin-bottom: 10px;
-    width: 100%;
-  }
-
-  &__chevron {
-    flex-shrink: 0;
-    .center-content();
-    padding-right: 10px;
-  }
-
-  &__playcount {
-    color: #ffcc22;
-  }
-
-  &__heading {
-    margin: 0px;
-    font-size: 16px;
-    margin-bottom: 10px;
-    margin-top: 20px;
-    color: #FF99CC;
-    font-weight: 100;
   }
 }
