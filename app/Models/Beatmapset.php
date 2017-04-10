@@ -687,6 +687,25 @@ class Beatmapset extends Model
         return $imageFilename;
     }
 
+    public function setApproved($state, $user)
+    {
+        $this->approved = static::STATES[$state];
+
+        if ($this->approved > 0) {
+            $this->approved_date = Carbon::now();
+            $this->approvedby_id = $user->user_id;
+        } else {
+            $this->approved_date = null;
+            $this->approvedby_id = null;
+        }
+
+        $this->save();
+
+        $this
+            ->beatmaps()
+            ->update(['approved' => $this->approved]);
+    }
+
     public function disqualify(User $user, $comment)
     {
         if (!$this->isQualified()) {
@@ -700,35 +719,22 @@ class Beatmapset extends Model
                 'comment' => $comment,
             ]);
 
-            $this
-                ->beatmaps()
-                ->update(['approved' => static::STATES['pending']]);
-
-            $this->update([
-                'approved' => static::STATES['pending'],
-            ]);
+            $this->setApproved('pending', $user);
         });
 
         return true;
     }
 
-    public function qualify()
+    public function qualify($user)
     {
         if (!$this->isPending()) {
             return false;
         }
 
-        DB::transaction(function () {
+        DB::transaction(function () use ($user) {
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
 
-            $this
-                ->beatmaps()
-                ->update(['approved' => static::STATES['qualified']]);
-
-            $this->update([
-                'approved' => static::STATES['qualified'],
-                'approved_date' => Carbon::now(),
-            ]);
+            $this->setApproved('qualified', $user);
         });
 
         return true;
@@ -745,7 +751,7 @@ class Beatmapset extends Model
             if (!$nomination->exists()) {
                 $this->events()->create(['type' => BeatmapsetEvent::NOMINATE, 'user_id' => $user->user_id]);
                 if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
-                    $this->qualify();
+                    $this->qualify($user);
                 }
             }
         });
