@@ -196,15 +196,22 @@
     closeAlert = -> $alert.click()
 
     # handle types of alerts by changing the colour
-    $alert.addClass('alert-' + type).addClass('popup-active').removeClass 'popup-clone'
+    $alert
+      .addClass "alert-#{type} popup-active"
+      .removeClass 'popup-clone'
+
     $alert.find('.popup-text').html message
 
     # warning/danger messages stay forever until clicked
-    if type == 'warning' or type == 'danger'
-      $('#overlay').off('click.close-alert').one('click.close-alert', closeAlert).fadeIn()
+    if type in ['warning', 'danger']
+      $('#overlay')
+        .off('click.close-alert')
+        .one('click.close-alert', closeAlert)
+        .fadeIn()
     else
       Timeout.set 5000, closeAlert
 
+    document.activeElement.blur?()
     $alert.appendTo($popup).fadeIn()
 
 
