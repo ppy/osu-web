@@ -18,7 +18,7 @@
 
 .beatmap-list {
   @top: beatmap-list;
-  color: @gray-f;
+  color: #fff;
   min-width: 0;
   display: flex;
 
@@ -63,26 +63,26 @@
     padding: 5px 10px;
 
     &:hover {
-      background-color: @gray-0;
+      background-color: #000;
     }
 
     &--selected {
       .default-box-shadow();
       .default-border-radius();
       background-color: @gray-blue-darker;
-      box-shadow: 0 0 0 2px fade(@gray-0, 25%);
+      box-shadow: 0 0 0 2px fade(#000, 25%);
       height: 100%;
       padding-top: 10px;
       padding-bottom: 10px;
       min-width: 0;
 
       &:hover {
-        background-color: @gray-0;
+        background-color: #000;
       }
     }
 
     &--current {
-      background-color: @gray-1;
+      background-color: #111;
     }
   }
 }

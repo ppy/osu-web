@@ -24,7 +24,7 @@
   @color-pending: @pink-darker;
   @color-praises: @blue-darker;
   @color-resolved: @green;
-  @color-total: @gray-f;
+  @color-total: #fff;
 
   .border(@color) {
     box-shadow: 0 0 0 2px @color;
@@ -40,10 +40,10 @@
   }
 
   .default-border-radius();
-  .border(fade(@gray-0, 50%));
-  background-color: fade(@gray-0, 70%);
+  .border(fade(#000, 50%));
+  background-color: fade(#000, 70%);
 
-  color: @gray-f;
+  color: #fff;
 
   display: inline-flex;
   justify-content: space-between;
@@ -53,7 +53,7 @@
   &:focus,
   &:active {
     text-decoration: none;
-    color: @gray-f;
+    color: #fff;
   }
 
   &--forum {
@@ -62,8 +62,8 @@
   }
 
   &--beatmap-discussions {
-    .border(fade(@gray-0, 25%));
-    background-color: @gray-2;
+    .border(fade(#000, 25%));
+    background-color: #222;
     margin: 5px;
   }
 

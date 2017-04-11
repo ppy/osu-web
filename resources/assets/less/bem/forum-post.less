@@ -20,7 +20,7 @@
   @_reply-xs-top-margin: 4px;
 
   .default-box-shadow();
-  background-color: @gray-f;
+  background-color: #fff;
 
   margin-bottom: 5px;
   padding: 0;
@@ -94,7 +94,7 @@
 
     &--reply {
       .default-box-shadow();
-      background-color: @gray-f;
+      background-color: #fff;
       flex: 1;
     }
   }
@@ -114,7 +114,7 @@
     }
 
     &--edit-bar-create {
-      background-color: @gray-4;
+      background-color: #444;
     }
 
     &--edit-body {
@@ -125,7 +125,7 @@
     &--footer {
       order: 2;
       font-weight: bold;
-      color: @gray-7;
+      color: #777;
 
       padding-top: 0;
       padding-bottom: 20px;
@@ -157,12 +157,12 @@
     }
 
     &--poll-create {
-      background-color: @gray-5;
-      color: @gray-f;
+      background-color: #555;
+      color: #fff;
     }
 
     &--signature {
-      background-color: @gray-e;
+      background-color: #eee;
 
       padding-top: 20px;
       padding-bottom: 20px;
@@ -187,7 +187,7 @@
   }
 
   &__info-panel-extra {
-    background-color: fade(@gray-f, 90%);
+    background-color: fade(#fff, 90%);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -201,7 +201,7 @@
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
-    background-image: linear-gradient(to bottom, transparent, fade(@gray-0, 20%));
+    background-image: linear-gradient(to bottom, transparent, fade(#000, 20%));
 
     &::before {
       position: absolute;
@@ -235,7 +235,7 @@
 
   &__info-panel-xs-title {
     font-size: 10px;
-    color: @gray-f;
+    color: #fff;
   }
 
   &__info-panel-xs-name {
@@ -247,11 +247,11 @@
     font-size: 11px;
     font-weight: 600;
     font-style: italic;
-    color: @gray-5;
+    color: #555;
     margin-bottom: 5px;
 
     &--user-title {
-      color: @gray-3;
+      color: #333;
     }
   }
 
@@ -260,7 +260,7 @@
   }
 
   &__reply-container {
-    background-color: fade(@gray-3, 90%);
+    background-color: fade(#333, 90%);
     width: 100%;
     height: 100%;
     padding-bottom: 10px;
@@ -300,10 +300,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
-    color: @gray-f;
+    color: #fff;
 
     &:hover {
-      color: @gray-f;
+      color: #fff;
       text-decoration: none;
       width: auto;
       overflow: visible;
@@ -311,7 +311,7 @@
 
     &:focus,
     &:active {
-      color: @gray-f;
+      color: #fff;
       text-decoration: none;
     }
   }

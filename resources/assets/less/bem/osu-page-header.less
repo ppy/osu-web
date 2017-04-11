@@ -21,7 +21,7 @@
   @top: osu-page-header;
 
   background-size: cover;
-  background-color: @gray-3;
+  background-color: #333;
   background-position: center;
 
   padding: @main-padding;
@@ -43,7 +43,7 @@
   }
 
   &--home-user {
-    color: @gray-f;
+    color: #fff;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-end;
@@ -57,10 +57,10 @@
     &::before {
       .full-size();
       @media @desktop {
-        background-image: linear-gradient(to bottom, fade(@gray-0, 0%), fade(@gray-0, 75%));
+        background-image: linear-gradient(to bottom, fade(#000, 0%), fade(#000, 75%));
       }
       @media @mobile {
-        background-image: linear-gradient(to bottom, fade(@gray-0, 25%), fade(@gray-0, 75%));
+        background-image: linear-gradient(to bottom, fade(#000, 25%), fade(#000, 75%));
       }
     }
 
@@ -145,7 +145,7 @@
 
     &--status {
       display: flex;
-      background-color: fade(@gray-0, 50%);
+      background-color: fade(#000, 50%);
     }
 
     .@{top}--two-col & {

@@ -25,7 +25,7 @@
   @_menu-spacing: 30px;
 
   width: 100%;
-  background-color: @gray-2;
+  background-color: #222;
   background-size: cover;
   display: flex;
   z-index: 0; // component top level z-index
@@ -36,11 +36,11 @@
   }
 
   &--main {
-    background-color: fade(@gray-2, 95%);
+    background-color: fade(#222, 95%);
   }
 
   &--sections {
-    color: @gray-9;
+    color: #999;
 
     flex-direction: column;
     @media @desktop {
@@ -79,7 +79,7 @@
     .default-border-radius();
     border: none;
     outline: none;
-    background-color: @gray-2;
+    background-color: #222;
     padding: 10px 5px;
 
     margin: 5px;
@@ -90,7 +90,7 @@
     }
 
     &::placeholder {
-      color: @gray-7;
+      color: #777;
     }
   }
 
@@ -103,7 +103,7 @@
     &:focus,
     &:hover {
       text-decoration: none;
-      color: @gray-f;
+      color: #fff;
     }
 
     .@{_top}__menu--locale & {
@@ -112,7 +112,7 @@
       &:focus,
       &:hover {
         text-decoration: none;
-        color: @gray-f;
+        color: #fff;
       }
     }
   }
@@ -125,7 +125,7 @@
     align-items: center;
     display: flex;
     margin-right: 10px;
-    color: @gray-5;
+    color: #555;
     opacity: 0;
 
     .@{_top}__link:focus &,
@@ -140,7 +140,7 @@
   }
 
   &__menu-head {
-    color: @gray-9;
+    color: #999;
     display: flex;
     padding: 5px (@_menu-spacing / 2) 10px;
     flex: none;
@@ -149,7 +149,7 @@
     &.js-menu--active,
     &:focus,
     &:hover {
-      color: @gray-f;
+      color: #fff;
       font-weight: 500;
       text-decoration: none;
     }
@@ -181,7 +181,7 @@
   &__overlay {
     display: block;
     .full-size();
-    background-color: fade(@gray-0, 75%);
+    background-color: fade(#000, 75%);
   }
 
   &__row {
@@ -204,13 +204,13 @@
     }
 
     &--title {
-      color: @gray-f;
+      color: #fff;
       font-size: @font-size--nav-popup-title;
       font-style: normal;
     }
 
     &--username {
-      color: @gray-f;
+      color: #fff;
       font-size: @font-size--nav-popup-title-large;
       font-style: italic;
       font-weight: 600;
@@ -244,7 +244,7 @@
     }
 
     &--login {
-      background-color: @gray-3;
+      background-color: #333;
 
       @media @desktop {
         max-width: 380px;
@@ -260,18 +260,18 @@
     &--user-overview {
       min-width: 180px;
 
-      background-color: fade(@gray-0, 50%);
+      background-color: fade(#000, 50%);
 
       align-items: flex-end;
     }
 
     &--user-links {
-      background-color: @gray-2;
+      background-color: #222;
       padding-left: 40px;
     }
 
     &--register {
-      background-color: @gray-4;
+      background-color: #444;
 
       @media @desktop {
         max-width: 240px;
