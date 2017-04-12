@@ -30,17 +30,14 @@ class ScoreTransformer extends Fractal\TransformerAbstract
         'beatmapset',
         'weight',
         'user',
+        'multiplayer',
     ];
 
     public function transform($score)
     {
         return [
-            'id' => $score->score_id,
             'user_id' => $score->user_id,
-            'created_at' => json_time($score->date),
-            'pp' => $score->pp,
             'accuracy' => $score->accuracy(),
-            'rank' => $score->rank,
             'mods' => $score->enabled_mods,
             'score' => $score->score,
             'combo' => $score->maxcombo,
@@ -50,10 +47,22 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'countgeki' => $score->countgeki,
             'countkatu' => $score->countkatu,
             'countmiss' => $score->countmiss,
-            'slot' => $score->slot,
-            'team' => $score->team,
-            'pass' => $score->pass,
+            'pp' => $score->pp,
+            // ranks are hardcoded to "0" for game_scores atm (i.e. scores from a mp game), return null instead for now
+            'rank' => $score->rank == "0" ? null : $score->rank,
+            'created_at' => json_time($score->date),
         ];
+    }
+
+    public function includeMultiplayer($score)
+    {
+        return $this->item($score, function ($score) {
+            return [
+                'slot' => $score->slot,
+                'team' => $score->team,
+                'pass' => $score->pass,
+            ];
+        });
     }
 
     public function includeBeatmap($score)

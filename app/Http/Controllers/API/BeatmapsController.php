@@ -22,7 +22,8 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Beatmap;
 use App\Transformers\API\BeatmapTransformer;
-use App\Transformers\API\ScoreTransformer;
+use App\Transformers\ScoreTransformer;
+use Auth;
 use Request;
 use Response;
 
@@ -30,27 +31,36 @@ class BeatmapsController extends Controller
 {
     public function scores()
     {
-        // FIXME: scores are obtained via filename/checksum lookup for legacy reason (temporarily)
-        $filename = Request::input('f');
-        $checksum = Request::input('c');
-        $per_page = min(Request::input('n', 50), 50);
-        $page = max(Request::input('p', 1), 1);
+        // FIXME: scores are obtained via filename/checksum lookup for legacy reasons (temporarily)
+        $checksum = Request::input('checksum');
+        $filename = urldecode(Request::input('filename'));
 
-        $beatmap = Beatmap::where('filename', $filename)->where('checksum', $checksum)->firstorFail();
-
-        $beatmap_meta = json_item($beatmap, new BeatmapTransformer());
-
-        $scores = $beatmap->scoresBest()->defaultListing()->forPage($page, $per_page);
-
-        if ($beatmap->approved >= 1) {
-            $beatmap_scores = json_collection(
-                $scores->get(),
-                new ScoreTransformer()
-            );
-        } else {
-            $beatmap_scores = [];
+        // look up by checksum
+        if (present($checksum)) {
+            $beatmap = Beatmap::where('checksum', $checksum)->first();
         }
 
-        return Response::json(['beatmap' => $beatmap_meta, 'scores' => $beatmap_scores]);
+        // if checksum is missing or not found, fall back to looking up by filename
+        if ((!isset($beatmap) || !present($beatmap)) && present($filename)) {
+            $beatmap = Beatmap::where('filename', $filename)->firstorFail();
+        }
+
+        if (!present($beatmap)) {
+            abort(404);
+        }
+
+        $mode = presence(Request::input('mode'));
+        $mods = presence(Request::input('mods'));
+        $type = Request::input('type', 'global');
+
+        $beatmapMeta = json_item($beatmap, new BeatmapTransformer());
+
+        try {
+            $scores = $beatmap->scoreboardJson($mode, $mods, $type, Auth::user());
+        } catch (\InvalidArgumentException $exception) {
+            return response(['error' => $exception->getMessage()], 400);
+        }
+
+        return ['beatmap' => $beatmapMeta] + $scores;
     }
 }

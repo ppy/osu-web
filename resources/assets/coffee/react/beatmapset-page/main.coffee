@@ -88,7 +88,7 @@ class BeatmapsetPage.Main extends React.Component
 
     loadScore = =>
       @setState
-        scores: @scoresCache[cacheKey].scoresList
+        scores: @scoresCache[cacheKey].scores
         userScore: @scoresCache[cacheKey].userScore if @scoresCache[cacheKey].userScore?
         userScorePosition: @scoresCache[cacheKey].userScorePosition
         enabledMods: enabledMods

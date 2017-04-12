@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use App\Transformers\ScoreTransformer;
+
 class Beatmap extends Model
 {
     protected $table = 'osu_beatmaps';
@@ -114,6 +116,56 @@ class Beatmap extends Model
     public function scoresBest($mode = null)
     {
         return $this->getScores("App\Models\Score\Best", $mode);
+    }
+
+    public function scoreboardJson($mode = null, $mods = [], $type = 'global', $user = null)
+    {
+        $mode = present($mode) ? self::modeStr($mode) : self::modeStr($this->playmode);
+        if (!present($mods) || !is_array($mods)) {
+            $mods = [];
+        }
+
+        if ($type !== 'global' || !empty($mods)) {
+            if ($user === null || !$user->isSupporter()) {
+                throw new \InvalidArgumentException(trans('errors.supporter_only'));
+            }
+        }
+
+        $query = $this
+            ->scoresBest($mode)
+            ->defaultListing()
+            ->withMods($mods);
+
+        switch ($type) {
+            case 'country':
+                $query->fromCountry($user->country_acronym);
+                break;
+            case 'friend':
+                $query->friendsOf($user);
+                break;
+        }
+
+        $scores = json_collection($query->forListing(), new ScoreTransformer, ['user']);
+
+        if ($user !== null) {
+            $score = (clone $query)->where('user_id', $user->user_id)->first();
+
+            if ($score !== null) {
+                $userScore = json_item($score, new ScoreTransformer, 'user');
+                $userScorePosition = $query->userRank($score);
+            }
+        }
+
+        $results = ['scores' => $scores];
+
+        if (isset($userScore) && present($userScore)) {
+            $results['user'] = [
+                'position' => $userScorePosition,
+                'score' => $userScore,
+            ];
+        }
+
+        return $results;
     }
 
     public function status()

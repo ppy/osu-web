@@ -40,55 +40,15 @@ class BeatmapsController extends Controller
     public function scores($id)
     {
         $beatmap = Beatmap::findOrFail($id);
-        $mode = Request::input('mode', Beatmap::modeStr($beatmap->playmode));
+        $mode = Request::input('mode');
         $mods = Request::input('enabledMods');
         $type = Request::input('type', 'global');
         $user = Auth::user();
 
-        if (!is_array($mods)) {
-            $mods = [];
-        }
-
-        if ($type !== 'global' || !empty($mods)) {
-            if ($user === null || !$user->isSupporter()) {
-                return error_popup(trans('errors.supporter_only'));
-            }
-        }
-
         try {
-            $query = $beatmap
-                ->scoresBest($mode)
-                ->defaultListing();
+            return $beatmap->scoreboardJson($mode, $mods, $type, $user);
         } catch (\InvalidArgumentException $ex) {
             return error_popup($ex->getMessage());
         }
-
-        $query->withMods($mods);
-
-        switch ($type) {
-            case 'country':
-                $query->fromCountry($user->country_acronym);
-                break;
-            case 'friend':
-                $query->friendsOf($user);
-                break;
-        }
-
-        $scoresList = json_collection($query->forListing(), new ScoreTransformer, 'user');
-
-        if ($user !== null) {
-            $score = (clone $query)->where('user_id', $user->user_id)->first();
-
-            if ($score !== null) {
-                $userScore = json_item($score, new ScoreTransformer, 'user');
-                $userScorePosition = $query->userRank($score);
-            }
-        }
-
-        return [
-            'scoresList' => $scoresList,
-            'userScore' => $userScore ?? null,
-            'userScorePosition' => $userScorePosition ?? null,
-        ];
     }
 }
