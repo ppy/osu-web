@@ -146,7 +146,7 @@ class Beatmap extends Model
         }
 
         $results = [
-            'scores' => json_collection($query->forListing(), new ScoreTransformer, ['user'])
+            'scores' => json_collection($query->forListing(), new ScoreTransformer, ['user']),
         ];
 
         if ($user !== null) {

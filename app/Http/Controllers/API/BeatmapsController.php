@@ -22,7 +22,6 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Beatmap;
 use App\Transformers\BeatmapTransformer;
-use App\Transformers\ScoreTransformer;
 use Auth;
 use Request;
 use Response;

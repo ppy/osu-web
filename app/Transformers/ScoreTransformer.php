@@ -49,7 +49,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'countmiss' => $score->countmiss,
             'pp' => $score->pp,
             // ranks are hardcoded to "0" for game_scores atm (i.e. scores from a mp game), return null instead for now
-            'rank' => $score->rank == "0" ? null : $score->rank,
+            'rank' => $score->rank === '0' ? null : $score->rank,
             'created_at' => json_time($score->date),
         ];
     }
