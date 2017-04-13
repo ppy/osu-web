@@ -153,9 +153,9 @@ class Beatmap extends Model
             $score = (clone $query)->where('user_id', $user->user_id)->first();
 
             if ($score !== null) {
-                $results['user'] = [
-                    'position' => json_item($score, new ScoreTransformer),
-                    'score' => $query->userRank($score),
+                $results['userScore'] = [
+                    'position' => $query->userRank($score),
+                    'score' => json_item($score, new ScoreTransformer, ['user']),
                 ];
             }
         }

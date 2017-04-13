@@ -195,8 +195,8 @@ class BeatmapsetPage.Main extends React.Component
             type: @state.currentScoreboardType
             beatmap: @state.currentBeatmap
             scores: @state.scores
-            userScore: @state.userScore
-            userScorePosition: @state.userScorePosition
+            userScore: @state.userScore?.score
+            userScorePosition: @state.userScore?.position
             enabledMods: @state.enabledMods
             countries: @props.countries
             loading: @state.loading
