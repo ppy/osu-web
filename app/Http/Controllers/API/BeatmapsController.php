@@ -21,7 +21,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Beatmap;
-use App\Transformers\API\BeatmapTransformer;
+use App\Transformers\BeatmapTransformer;
 use App\Transformers\ScoreTransformer;
 use Auth;
 use Request;
@@ -33,7 +33,7 @@ class BeatmapsController extends Controller
     {
         $beatmap = Beatmap::findOrFail($id);
 
-        return json_item($beatmap, new BeatmapTransformer());
+        return json_item($beatmap, new BeatmapTransformer(), 'failtimes');
     }
 
     public function lookup()
@@ -55,7 +55,7 @@ class BeatmapsController extends Controller
             abort(404);
         }
 
-        return json_item($beatmap, new BeatmapTransformer());
+        return json_item($beatmap, new BeatmapTransformer(), 'failtimes');
     }
 
     public function scores($id)
