@@ -109,20 +109,22 @@
                         'colour' => ''
                     ])
                 </div>
-                <div class="user-home__beatmap-lists">
-                    <div class='user-home-beatmap-list'>
-                        <h3 class='user-home-beatmap-list__heading'>{{trans('home.user.beatmaps.new')}}</h3>
-                        @foreach ($newBeatmaps as $beatmap)
-                            @include('home._user_beatmap_list', ['type' => 'new'])
-                        @endforeach
-                    </div>
-                    <div class='user-home-beatmap-list'>
-                        <h3 class='user-home-beatmap-list__heading'>{{trans('home.user.beatmaps.popular')}}</h3>
-                        @foreach ($popularBeatmaps as $beatmap)
-                            @include('home._user_beatmap_list', ['type' => 'popular'])
-                        @endforeach
-                    </div>
-                </div>
+
+                <h3 class='user-home__beatmap-list-title'>
+                    {{ trans('home.user.beatmaps.new') }}
+                </h3>
+
+                @foreach ($newBeatmapsets as $beatmapset)
+                    @include('home._user_beatmapset', ['type' => 'new'])
+                @endforeach
+
+                <h3 class='user-home__beatmap-list-title'>
+                    {{ trans('home.user.beatmaps.popular') }}
+                </h3>
+
+                @foreach ($popularBeatmapsets as $beatmapset)
+                    @include('home._user_beatmapset', ['type' => 'popular'])
+                @endforeach
             </div>
         </div>
     </div>

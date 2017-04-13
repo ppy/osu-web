@@ -465,7 +465,7 @@ class Beatmapset extends Model
             ? static
                 ::with('beatmaps')
                 ->whereIn('beatmapset_id', $beatmap_ids)
-                ->orderByRaw('FIELD(beatmapset_id, '.db_array_bind($beatmap_ids).')', $beatmap_ids)
+                ->orderByField('beatmapset_id', $beatmap_ids)
                 ->get()
             : [];
     }
