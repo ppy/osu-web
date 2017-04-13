@@ -33,7 +33,7 @@ class BeatmapsController extends Controller
     {
         $beatmap = Beatmap::findOrFail($id);
 
-        return json_item($beatmap, new BeatmapTransformer(), 'failtimes');
+        return json_item($beatmap, new BeatmapTransformer(), ['beatmapset.ratings', 'failtimes']);
     }
 
     public function lookup()
@@ -55,7 +55,7 @@ class BeatmapsController extends Controller
             abort(404);
         }
 
-        return json_item($beatmap, new BeatmapTransformer(), 'failtimes');
+        return json_item($beatmap, new BeatmapTransformer(), ['beatmapset.ratings', 'failtimes']);
     }
 
     public function scores($id)
