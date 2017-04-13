@@ -32,5 +32,5 @@
             @endif
         </div>
     </div>
-    <div class='user-home-beatmapset__chevron'><i class='fa fa-fw fa-chevron-right'></i></div>
+    <div class='user-home-beatmapset__chevron'><i class='fa fa-chevron-right'></i></div>
 </a>
