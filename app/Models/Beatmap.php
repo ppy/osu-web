@@ -145,24 +145,19 @@ class Beatmap extends Model
                 break;
         }
 
-        $scores = json_collection($query->forListing(), new ScoreTransformer, ['user']);
+        $results = [
+            'scores' => json_collection($query->forListing(), new ScoreTransformer, ['user'])
+        ];
 
         if ($user !== null) {
             $score = (clone $query)->where('user_id', $user->user_id)->first();
 
             if ($score !== null) {
-                $userScore = json_item($score, new ScoreTransformer, 'user');
-                $userScorePosition = $query->userRank($score);
+                $results['user'] = [
+                    'position' => json_item($score, new ScoreTransformer),
+                    'score' => $query->userRank($score),
+                ];
             }
-        }
-
-        $results = ['scores' => $scores];
-
-        if (isset($userScore) && present($userScore)) {
-            $results['user'] = [
-                'position' => $userScorePosition,
-                'score' => $userScore,
-            ];
         }
 
         return $results;

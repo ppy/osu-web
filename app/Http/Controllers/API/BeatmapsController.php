@@ -29,21 +29,38 @@ use Response;
 
 class BeatmapsController extends Controller
 {
-    public function scores()
+    public function show($id)
     {
-        // FIXME: scores are obtained via filename/checksum lookup for legacy reasons (temporarily)
+        $beatmap = Beatmap::findOrFail($id);
+
+        return json_item($beatmap, new BeatmapTransformer());
+    }
+
+    public function lookup()
+    {
         $checksum = Request::input('checksum');
         $filename = urldecode(Request::input('filename'));
 
-        // look up by checksum
+        // Try to look up via checksum
         if (present($checksum)) {
             $beatmap = Beatmap::where('checksum', $checksum)->first();
         }
 
-        // if checksum is missing or not found, fall back to looking up by filename
+        // If checksum is missing (or not found), try to look up by filename instead
         if ((!isset($beatmap) || !present($beatmap)) && present($filename)) {
-            $beatmap = Beatmap::where('filename', $filename)->firstorFail();
+            $beatmap = Beatmap::where('filename', $filename)->firstOrFail();
         }
+
+        if (!present($beatmap)) {
+            abort(404);
+        }
+
+        return json_item($beatmap, new BeatmapTransformer());
+    }
+
+    public function scores($id)
+    {
+        $beatmap = Beatmap::find($id);
 
         if (!present($beatmap)) {
             abort(404);
@@ -53,14 +70,12 @@ class BeatmapsController extends Controller
         $mods = presence(Request::input('mods'));
         $type = Request::input('type', 'global');
 
-        $beatmapMeta = json_item($beatmap, new BeatmapTransformer());
-
         try {
             $scores = $beatmap->scoreboardJson($mode, $mods, $type, Auth::user());
         } catch (\InvalidArgumentException $exception) {
             return response(['error' => $exception->getMessage()], 400);
         }
 
-        return ['beatmap' => $beatmapMeta] + $scores;
+        return $scores;
     }
 }
