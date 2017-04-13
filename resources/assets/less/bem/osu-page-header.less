@@ -149,12 +149,14 @@
     }
 
     .@{top}--two-col & {
-      flex: 1 1 60%;
+      flex: none;
+      width: 100%;
       align-self: flex-end;
       margin: 0;
 
-      @media @mobile {
-        flex: 100%;
+      @media @desktop {
+        margin: 0 10px;
+        width: calc(60% ~'-' 20px);
       }
     }
 
@@ -163,10 +165,13 @@
       height: 100px;
       padding-top: 5px;
       justify-content: flex-start;
-      flex: 1 0 40%;
+      flex: none;
+      margin: 0 -10px;
+      width: calc(100% ~'+' 20px);
 
-      @media @mobile {
-        margin: 0 -10px;
+      @media @desktop {
+        margin: 0 10px;
+        width: calc(40% ~'-' 20px);
       }
     }
   }
