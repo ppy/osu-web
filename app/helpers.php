@@ -31,11 +31,6 @@ function array_search_null($value, $array)
     }
 }
 
-function db_array_bind($array)
-{
-    return implode(',', array_fill(0, count($array), '?'));
-}
-
 function flag_path($country)
 {
     return '/images/flags/'.$country.'.png';

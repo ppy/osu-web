@@ -35,11 +35,7 @@ class MacroableModelScope implements Scope
     {
         $model = $builder->getModel();
 
-        if (!is_array($model->macros)) {
-            return;
-        }
-
-        foreach ($model->macros as $macro) {
+        foreach ($model->getMacros() as $macro) {
             $fname = 'macro'.ucfirst($macro);
             $builder->macro($macro, $model->$fname());
         }
