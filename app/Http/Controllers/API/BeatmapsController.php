@@ -56,25 +56,4 @@ class BeatmapsController extends Controller
 
         return json_item($beatmap, new BeatmapTransformer(), ['beatmapset.ratings', 'failtimes']);
     }
-
-    public function scores($id)
-    {
-        $beatmap = Beatmap::find($id);
-
-        if (!present($beatmap)) {
-            abort(404);
-        }
-
-        $mode = presence(Request::input('mode'));
-        $mods = presence(Request::input('mods'));
-        $type = Request::input('type', 'global');
-
-        try {
-            $scores = $beatmap->scoreboardJson($mode, $mods, $type, Auth::user());
-        } catch (\InvalidArgumentException $exception) {
-            return response(['error' => $exception->getMessage()], 400);
-        }
-
-        return $scores;
-    }
 }

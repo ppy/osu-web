@@ -258,7 +258,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api
 
         // Beatmaps
         //   GET /api/v2/beatmaps/:beatmap_id/scores
-        Route::get('beatmaps/{id}/scores', ['uses' => 'BeatmapsController@scores']);
+        Route::get('beatmaps/{id}/scores', ['uses' => '\App\Http\Controllers\BeatmapsController@scores']);
         //   GET /api/v2/beatmaps/lookup
         Route::get('beatmaps/lookup', ['uses' => 'BeatmapsController@lookup']);
         //   GET /api/v2/beatmaps/:beatmap_id

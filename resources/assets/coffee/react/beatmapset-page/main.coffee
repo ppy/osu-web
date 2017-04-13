@@ -105,7 +105,7 @@ class BeatmapsetPage.Main extends React.Component
       dataType: 'JSON'
       data:
         type: scoreboardType
-        enabledMods: enabledMods
+        mods: enabledMods
         mode: @state.currentBeatmap.mode
 
     .done (data) =>
