@@ -16,9 +16,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// main: compiled.less
-@import "app";
-
 @purple-lighter: #eeeeff;
 @purple-light: #aa88ff;
 @purple: #8866ee;
@@ -60,7 +57,7 @@
 
 // https://about.twitter.com/press/brand-assets
 @twitter-colour: #1da1f2;
-// used the blue from the top bar on facebook, https://www.facebookbrand.com is useless and doesn't list colours
+// used the blue from the top bar on facebook, https://www.facebookbrand.com is useless and doesn't list colors
 @facebook-colour: #3b5998;
 // .sc-orange on https://soundcloud.com ¯\_(ツ)_/¯
 @soundcloud-colour: #f50;
@@ -80,7 +77,7 @@
 // osu!palette 2016
 @gray-blue-darker: #35444f;
 
-.colours(@name) {
+.colors(@name) {
   @lighter: "@{name}-lighter";
   @light: "@{name}-light";
   @dark: "@{name}-dark";
@@ -93,11 +90,11 @@
   .@{name}-darker { color: @@darker !important; }
 }
 
-.colours(~"pink");
-.colours(~"green");
-.colours(~"blue");
-.colours(~"yellow");
-.colours(~"purple");
+.colors(pink);
+.colors(green);
+.colors(blue);
+.colors(yellow);
+.colors(purple);
 
 @pink-text: @pink-dark;
 @green-text: @green-darker;
