@@ -45,6 +45,10 @@ class BeatmapsController extends Controller
         $type = Request::input('type', 'global');
         $user = Auth::user();
 
+        if ($beatmap->approved <= 0) {
+            return ['scores' => []];
+        }
+
         try {
             if ($type !== 'global' || !empty($mods)) {
                 if ($user === null || !$user->isSupporter()) {
