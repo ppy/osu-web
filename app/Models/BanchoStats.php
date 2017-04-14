@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Cache;
-
 class BanchoStats extends Model
 {
     protected $table = 'osu_banchostats';

@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Cache;
-
 class Count extends Model
 {
     protected $table = 'osu_counts';
