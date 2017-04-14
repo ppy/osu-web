@@ -26,10 +26,10 @@ class RoomsController extends Controller
 {
     public function show($id)
     {
-        $room_id = get_int($id);
+        $roomId = get_int($id);
 
-        if (!is_null($room_id)) {
-            $meta = Redis::get("room:$room_id");
+        if (!is_null($roomId)) {
+            $meta = Redis::get("room:$roomId");
         }
 
         if (!isset($meta)) {
