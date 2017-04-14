@@ -113,12 +113,12 @@ class ChatController extends Controller
                 $limit = self::PUBLIC_CHAT_LIMIT_MESSAGES;
                 $window = self::PUBLIC_CHAT_LIMIT_WINDOW;
                 break;
-            case 'user':
-                $target = User::findOrFail(Request::input('target_id'));
-                $messageLookup = PrivateMessage::class;
-                $limit = self::PRIVATE_CHAT_LIMIT_MESSAGES;
-                $window = self::PRIVATE_CHAT_LIMIT_WINDOW;
-                break;
+            // case 'user':
+            //     $target = User::findOrFail(Request::input('target_id'));
+            //     $messageLookup = PrivateMessage::class;
+            //     $limit = self::PRIVATE_CHAT_LIMIT_MESSAGES;
+            //     $window = self::PRIVATE_CHAT_LIMIT_WINDOW;
+            //     break;
             default:
                 abort(422);
         }
