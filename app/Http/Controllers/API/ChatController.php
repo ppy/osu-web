@@ -28,10 +28,17 @@ use App\Transformers\API\Chat\ChannelTransformer;
 use App\Transformers\API\Chat\MessageTransformer;
 use App\Transformers\API\Chat\PrivateMessageTransformer;
 use Auth;
+use Carbon\Carbon;
 use Request;
 
 class ChatController extends Controller
 {
+    // Limits for chatting, throttles after CHAT_LIMIT_MESSAGES messages in CHAT_LIMIT_WINDOW seconds
+    const PUBLIC_CHAT_LIMIT_MESSAGES = 5;
+    const PUBLIC_CHAT_LIMIT_WINDOW = 4;
+    // const PRIVATE_CHAT_LIMIT_MESSAGES = 10;
+    // const PRIVATE_CHAT_LIMIT_WINDOW = 5;
+
     public function channels()
     {
         $channels = Channel::where('type', 'Public')->get();
@@ -95,6 +102,10 @@ class ChatController extends Controller
 
     public function postMessage()
     {
+        if (mb_strlen(Request::input('message'), 'UTF-8') >= 1024) {
+            abort(422);
+        }
+
         switch (Request::input('target_type')) {
             case 'channel':
                 $target = Channel::findOrFail(Request::input('channel_id'));
@@ -107,6 +118,14 @@ class ChatController extends Controller
         }
 
         priv_check('ChatMessageSend', $target)->ensureCan();
+
+        $sent = Message::where('user_id', Auth::user()->user_id)
+            ->where('timestamp', '>=', Carbon::now()->subSecond(ChatController::PUBLIC_CHAT_LIMIT_WINDOW))
+            ->count();
+
+        if ($sent > ChatController::PUBLIC_CHAT_LIMIT_MESSAGES) {
+            return response(['error' => trans('api.error.chat.limit_exceeded')], 429);
+        }
 
         $target->sendMessage(Auth::user(), Request::input('message'));
 
