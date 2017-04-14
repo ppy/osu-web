@@ -20,7 +20,6 @@
 
 namespace App\Transformers\API\Chat;
 
-use App\Models\Chat\Message;
 use League\Fractal;
 
 class MessageTransformer extends Fractal\TransformerAbstract
