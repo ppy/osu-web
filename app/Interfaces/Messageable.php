@@ -24,5 +24,5 @@ use App\Models\User;
 
 interface Messageable
 {
-    public function sendMessage(User $sender, $message);
+    public function receiveMessage(User $sender, $message);
 }
