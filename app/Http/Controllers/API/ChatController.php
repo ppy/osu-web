@@ -120,10 +120,10 @@ class ChatController extends Controller
         priv_check('ChatMessageSend', $target)->ensureCan();
 
         $sent = Message::where('user_id', Auth::user()->user_id)
-            ->where('timestamp', '>=', Carbon::now()->subSecond(ChatController::PUBLIC_CHAT_LIMIT_WINDOW))
+            ->where('timestamp', '>=', Carbon::now()->subSecond(self::PUBLIC_CHAT_LIMIT_WINDOW))
             ->count();
 
-        if ($sent > ChatController::PUBLIC_CHAT_LIMIT_MESSAGES) {
+        if ($sent > self::PUBLIC_CHAT_LIMIT_MESSAGES) {
             return response(['error' => trans('api.error.chat.limit_exceeded')], 429);
         }
 
