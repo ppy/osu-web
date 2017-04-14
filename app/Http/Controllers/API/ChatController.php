@@ -26,7 +26,6 @@ use App\Models\Chat\PrivateMessage;
 use App\Models\User;
 use App\Transformers\API\Chat\ChannelTransformer;
 use App\Transformers\API\Chat\MessageTransformer;
-use App\Transformers\API\Chat\PrivateMessageTransformer;
 use Auth;
 use Carbon\Carbon;
 use Request;
@@ -94,7 +93,7 @@ class ChatController extends Controller
             $messages->orderBy('message_id', $since ? 'asc' : 'desc')
                 ->limit($limit)
                 ->get(),
-            new PrivateMessageTransformer()
+            new MessageTransformer()
         );
 
         return $since ? $collection : array_reverse($collection);
