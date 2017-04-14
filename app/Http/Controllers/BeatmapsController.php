@@ -40,15 +40,10 @@ class BeatmapsController extends Controller
     public function scores($id)
     {
         $beatmap = Beatmap::findOrFail($id);
-        $mode = Request::input('mode');
-        $mods = Request::input('mods');
+        $mode = presence(Request::input('mode')) ?? $beatmap->mode;
+        $mods = get_arr(Request::input('mods'), 'presence') ?? [];
         $type = Request::input('type', 'global');
         $user = Auth::user();
-
-        $mode = present($mode) ? Beatmap::modeStr($mode) : Beatmap::modeStr($beatmap->playmode);
-        if (!present($mods) || !is_array($mods)) {
-            $mods = [];
-        }
 
         try {
             if ($type !== 'global' || !empty($mods)) {
@@ -61,11 +56,7 @@ class BeatmapsController extends Controller
                 ->scoresBest($mode)
                 ->defaultListing();
         } catch (ScoreRetrievalException $ex) {
-            if (Request::ajax()) {
-                return error_popup($ex->getMessage());
-            } else {
-                return response(['error' => $ex->getMessage()], 422);
-            }
+            return error_popup($ex->getMessage());
         }
 
         $query->withMods($mods);
