@@ -28,7 +28,7 @@ class RoomsController extends Controller
     {
         $room_id = get_int($id);
 
-        if (is_int($room_id)) {
+        if (!is_null($room_id)) {
             $meta = Redis::get("room:$room_id");
         }
 
