@@ -43,7 +43,7 @@ class BeatmapsController extends Controller
         }
 
         // If checksum is missing (or not found), try to look up by filename instead
-        if ((!isset($beatmap) || !isset($beatmap)) && present($filename)) {
+        if (!isset($beatmap) && present($filename)) {
             $beatmap = Beatmap::where('filename', $filename)->firstOrFail();
         }
 
