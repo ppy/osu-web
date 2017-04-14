@@ -36,8 +36,8 @@ class ChatController extends Controller
     // Limits for chatting, throttles after CHAT_LIMIT_MESSAGES messages in CHAT_LIMIT_WINDOW seconds
     const PUBLIC_CHAT_LIMIT_MESSAGES = 5;
     const PUBLIC_CHAT_LIMIT_WINDOW = 4;
-    // const PRIVATE_CHAT_LIMIT_MESSAGES = 10;
-    // const PRIVATE_CHAT_LIMIT_WINDOW = 5;
+    const PRIVATE_CHAT_LIMIT_MESSAGES = 10;
+    const PRIVATE_CHAT_LIMIT_WINDOW = 5;
 
     public function channels()
     {
@@ -109,22 +109,28 @@ class ChatController extends Controller
         switch (Request::input('target_type')) {
             case 'channel':
                 $target = Channel::findOrFail(Request::input('target_id'));
+                $messageLookup = Message::class;
+                $limit = self::PUBLIC_CHAT_LIMIT_MESSAGES;
+                $window = self::PUBLIC_CHAT_LIMIT_WINDOW;
                 break;
-            // case 'user':
-            //     $target = User::findOrFail(Request::input('target_id'));
-            //     break;
+            case 'user':
+                $target = User::findOrFail(Request::input('target_id'));
+                $messageLookup = PrivateMessage::class;
+                $limit = self::PRIVATE_CHAT_LIMIT_MESSAGES;
+                $window = self::PRIVATE_CHAT_LIMIT_WINDOW;
+                break;
             default:
                 abort(422);
         }
 
         priv_check('ChatMessageSend', $target)->ensureCan();
 
-        $sent = Message::where('user_id', Auth::user()->user_id)
-            ->where('timestamp', '>=', Carbon::now()->subSecond(self::PUBLIC_CHAT_LIMIT_WINDOW))
+        $sent = $messageLookup::where('user_id', Auth::user()->user_id)
+            ->where('timestamp', '>=', Carbon::now()->subSecond($window))
             ->count();
 
-        if ($sent > self::PUBLIC_CHAT_LIMIT_MESSAGES) {
-            return response(['error' => trans('api.error.chat.limit_exceeded')], 429);
+        if ($sent > $limit) {
+            return error_popup(trans('api.error.chat.limit_exceeded'), 429);
         }
 
         $message = $target->receiveMessage(Auth::user(), Request::input('message'));

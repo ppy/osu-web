@@ -25,17 +25,18 @@ use League\Fractal;
 
 class MessageTransformer extends Fractal\TransformerAbstract
 {
-    public function transform(Message $message)
+    public function transform($message)
     {
         return [
             'message_id' => $message->message_id,
-            'user_id' => $message->user_id,
-            'channel_id' => $message->channel_id,
+            'sender_id' => $message->user_id,
+            'target_type' => $message->target_type,
+            'target_id' => $message->target_id,
             'timestamp' => json_time($message->timestamp),
             'content' => $message->content,
             'sender' => [
-                'username' => $message->user->username,
-                'colour' => $message->user->user_colour,
+                'username' => $message->sender->username,
+                'colour' => $message->sender->user_colour,
             ],
         ];
     }
