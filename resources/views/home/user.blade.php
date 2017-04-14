@@ -94,19 +94,19 @@
                         'href' => route('download'),
                         'label' => trans('home.user.buttons.download'),
                         'icon' => 'download',
-                        'colour' => 'btn-osu-big--pink'
+                        'colour' => 'purple-darker'
                     ])
                     @include('home._user_giant_button', [
                         'href' => route('support-the-game'),
                         'label' => trans('home.user.buttons.support'),
                         'icon' => 'heart',
-                        'colour' => 'btn-osu-big--green'
+                        'colour' => 'green'
                     ])
                     @include('home._user_giant_button', [
                         'href' => route('store.products.index'),
                         'label' => trans('home.user.buttons.store'),
                         'icon' => 'shopping-cart',
-                        'colour' => ''
+                        'colour' => 'pink-darker'
                     ])
                 </div>
 
