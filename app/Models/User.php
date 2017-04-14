@@ -906,6 +906,8 @@ class User extends Model implements AuthenticatableContract, Messageable
         $message->target_id = $this->user_id;
         $message->content = $body;
         $message->save();
+
+        return $message->fresh();
     }
 
     public function scopeDefault($query)

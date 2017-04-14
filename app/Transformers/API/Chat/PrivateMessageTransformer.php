@@ -31,7 +31,7 @@ class PrivateMessageTransformer extends Fractal\TransformerAbstract
             'message_id' => $message->message_id,
             'user_id' => $message->user_id,
             'target_id' => $message->target_id,
-            'timestamp' => $message->timestamp->toDateTimeString(),
+            'timestamp' => json_time($message->timestamp),
             'content' => $message->content,
             'sender' => [
                 'username' => $message->sender->username,

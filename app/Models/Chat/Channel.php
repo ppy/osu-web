@@ -48,6 +48,6 @@ class Channel extends Model implements Messageable
         $message->channel()->associate($this);
         $message->save();
 
-        return true;
+        return $message->fresh();
     }
 }

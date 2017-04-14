@@ -127,8 +127,8 @@ class ChatController extends Controller
             return response(['error' => trans('api.error.chat.limit_exceeded')], 429);
         }
 
-        $target->sendMessage(Auth::user(), Request::input('message'));
+        $message = $target->sendMessage(Auth::user(), Request::input('message'));
 
-        return ['success' => true];
+        return json_item($message, 'API\Chat\Message');
     }
 }
