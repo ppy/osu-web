@@ -256,6 +256,8 @@ Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api
             Route::post('messages', ['uses' => 'ChatController@postMessage']);
         });
 
+        Route::resource('rooms', 'RoomsController', ['only' => ['show']]);
+
         Route::group(['prefix' => 'beatmapsets'], function () {
             Route::get('favourites', ['uses' => 'BeatmapsetsController@favourites']);     //  GET /api/v2/beatmapsets/favourites
         });
