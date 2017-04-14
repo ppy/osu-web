@@ -35,7 +35,7 @@ $factory->define(App\Models\Beatmap::class, function (Faker\Generator $faker) {
         'diff_overall' => rand(0, 10),
         'diff_approach' => rand(0, 10),
         'playmode' => array_rand_val(App\Models\Beatmap::MODES),
-        'approved' => (rand(0, 2) > 0),
+        'approved' => rand(-2, 4),
         'difficultyrating' => (rand(0, 5000) / 1000),
         'playcount' => $playCount,
         'passcount' => round($playCount * 0.7),
@@ -44,6 +44,6 @@ $factory->define(App\Models\Beatmap::class, function (Faker\Generator $faker) {
 
 $factory->state(App\Models\Beatmap::class, 'approved', function (Faker\Generator $faker) {
     return  [
-        'approved' => 1,
+        'approved' => 3,
     ];
 });
