@@ -41,3 +41,9 @@ $factory->define(App\Models\Beatmap::class, function (Faker\Generator $faker) {
         'passcount' => round($playCount * 0.7),
     ];
 });
+
+$factory->state(App\Models\Beatmap::class, 'approved', function (Faker\Generator $faker) {
+    return  [
+        'approved' => 1,
+    ];
+});
