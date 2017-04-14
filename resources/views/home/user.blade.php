@@ -28,8 +28,8 @@
                         {!! trans('home.user.header.welcome', ['username' => Auth::user()->username]) !!}
                     </h1>
                     <p class="osu-page-header__detail">
-                        <a class="osu-page-header__link" href="{{route('notifications.index')}}">
-                            {{trans_choice('home.user.header.messages', Auth::user()->notificationCount())}}
+                        <a class="osu-page-header__link" href="{{ route('notifications.index') }}">
+                            {{ trans_choice('home.user.header.messages', number_format(Auth::user()->notificationCount())) }}
                         </a>
                     </p>
                 </div>
@@ -40,26 +40,28 @@
                             Games
                         </div>
                         <div class="js-forum-topic-watch--unread osu-page-header__status-text">
-                            {{$currentGames}}
+                            {{ number_format($stats->currentGames) }}
                         </div>
                     </div>
-                    <div class="osu-page-header__status osu-page-header__status--selected osu-page-header__status--fade-in osu-page-header__status--animation-delay">
+
+                    <div class="osu-page-header__status osu-page-header__status--fade-in">
                         <div class="osu-page-header__status-label">
-                            {{trans('home.user.header.stats.online')}}
+                            {{ trans('home.user.header.stats.online') }}
                         </div>
-                        <div class="js-forum-topic-watch--unread osu-page-header__status-text">
-                            {{$currentOnline}}
+                        <div class="osu-page-header__status-text">
+                            <strong>{{ number_format($stats->currentOnline) }}</strong>
                         </div>
                     </div>
+
                     <div class="js-fancy-graph osu-page-header__status-chart" data-src="banchostats"></div>
-                    <script id="banchostats" type="application/json">{!! json_encode($graphData) !!}</script>
+                    <script id="banchostats" type="application/json">{!! json_encode($stats->graphData) !!}</script>
                 </div>
             </div>
         </div>
 
         <div class="user-home">
             <div class="user-home__news">
-                <h2 class="user-home__news-title">{{trans('home.user.news.title')}}</h2>
+                <h2 class="user-home__news-title">{{ trans('home.user.news.title') }}</h2>
                 @if (!empty($news))
                     <div class="user-home__news-posts">
                         @foreach ($news as $post)

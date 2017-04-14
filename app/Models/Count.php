@@ -38,11 +38,4 @@ class Count extends Model
     {
         return static::find('usercount')->count ?? 0;
     }
-
-    public static function cachedTotalUsers()
-    {
-        return Cache::remember('count_totalUsers', 5, function () {
-            return self::totalUsers();
-        });
-    }
 }
