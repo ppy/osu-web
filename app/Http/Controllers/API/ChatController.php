@@ -99,9 +99,9 @@ class ChatController extends Controller
             case 'channel':
                 $target = Channel::findOrFail(Request::input('channel_id'));
                 break;
-            case 'user':
-                $target = User::findOrFail(Request::input('user_id'));
-                break;
+            // case 'user':
+            //     $target = User::findOrFail(Request::input('user_id'));
+            //     break;
             default:
                 abort(422);
         }
@@ -110,6 +110,6 @@ class ChatController extends Controller
 
         $target->sendMessage(Auth::user(), Request::input('message'));
 
-        return json_encode('ok');
+        return ['success' => true];
     }
 }

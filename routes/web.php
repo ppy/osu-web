@@ -246,10 +246,14 @@ Route::put('/account/password', ['as' => 'account.password', 'uses' => 'AccountC
 Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['prefix' => 'chat'], function () {
-            Route::get('channels', ['uses' => 'ChatController@channels']);                //  GET /api/v2/chat/channels
-            Route::get('messages', ['uses' => 'ChatController@messages']);                //  GET /api/v2/chat/messages
-            Route::get('messages/private', ['uses' => 'ChatController@privateMessages']); //  GET /api/v2/chat/messages/private
-            // Route::post('messages/new', ['uses' => 'ChatController@postMessage']);        // POST /api/v2/chat/messages/new
+            //  GET /api/v2/chat/channels
+            Route::get('channels', ['uses' => 'ChatController@channels']);
+            //  GET /api/v2/chat/messages
+            Route::get('messages', ['uses' => 'ChatController@messages']);
+            //  GET /api/v2/chat/messages/private
+            Route::get('messages/private', ['uses' => 'ChatController@privateMessages']);
+            // POST /api/v2/chat/messages/new
+            Route::post('messages/new', ['uses' => 'ChatController@postMessage']);
         });
 
         Route::group(['prefix' => 'beatmapsets'], function () {
