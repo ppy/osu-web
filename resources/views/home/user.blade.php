@@ -18,45 +18,9 @@
 @extends('master')
 
 @section('content')
-    <div class="osu-page osu-page--header">
-        @include('home._user_header_nav')
-
-        <div class="osu-page-header osu-page-header--two-col osu-page-header--home-user js-current-user-cover">
-            <div class="osu-page-header__box osu-page-header__box--two-col">
-                <h1 class="osu-page-header__title osu-page-header__title--slightly-small osu-page-header__title--thinner u-ellipsis-overflow">
-                    {!! trans('home.user.header.welcome', ['username' => Auth::user()->username]) !!}
-                </h1>
-                <p class="osu-page-header__detail">
-                    <a class="osu-page-header__link" href="{{ route('notifications.index') }}">
-                        {{ trans_choice('home.user.header.messages', number_format(Auth::user()->notificationCount())) }}
-                    </a>
-                </p>
-            </div>
-
-            <div class="osu-page-header__box osu-page-header__box--status osu-page-header__box--graph">
-                <div class="osu-page-header__status osu-page-header__status--fade-in">
-                    <div class="osu-page-header__status-label">
-                        Games
-                    </div>
-                    <div class="js-forum-topic-watch--unread osu-page-header__status-text">
-                        {{ number_format($stats->currentGames) }}
-                    </div>
-                </div>
-
-                <div class="osu-page-header__status osu-page-header__status--fade-in">
-                    <div class="osu-page-header__status-label">
-                        {{ trans('home.user.header.stats.online') }}
-                    </div>
-                    <div class="osu-page-header__status-text">
-                        <strong>{{ number_format($stats->currentOnline) }}</strong>
-                    </div>
-                </div>
-
-                <div class="js-fancy-graph osu-page-header__status-chart" data-src="banchostats"></div>
-                <script id="banchostats" type="application/json">{!! json_encode($stats->graphData) !!}</script>
-            </div>
-        </div>
-    </div>
+    @include('home._user_header_default', [
+        'title' => trans('home.user.header.welcome', ['username' => Auth::user()->username])
+    ])
 
     <div class="osu-page osu-page--small">
         <div class="user-home">

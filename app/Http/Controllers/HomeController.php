@@ -72,8 +72,6 @@ class HomeController extends Controller
             return ujs_redirect(route('store.products.index'));
         }
 
-        $stats = new CurrentStats();
-
         if (Auth::check()) {
             $news = News::all();
             $newBeatmapsets = Beatmapset::latestRankedOrApproved();
@@ -84,14 +82,13 @@ class HomeController extends Controller
                 ->get();
 
             return view('home.user', compact(
-                'stats',
                 'newBeatmapsets',
                 'news',
                 'popularBeatmapsets',
                 'popularBeatmapsetsPlaycount'
             ));
         } else {
-            return view('home.landing', compact('stats'));
+            return view('home.landing', ['stats' => new CurrentStats()]);
         }
     }
 
