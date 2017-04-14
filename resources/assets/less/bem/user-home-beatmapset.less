@@ -20,13 +20,23 @@
   .link-plain();
   .own-layer();
   display: flex;
-  margin: 0 -10px 10px;
-  width: calc(100% ~'+' 20px);
-  padding: 0 10px;
 
   color: #222;
 
   transition: 0.1s;
+
+  // undo padding from container
+  margin: 0 -20px 10px;
+  padding: 0 20px;
+  width: calc(100% ~'+' 40px);
+
+  @media @desktop {
+    margin-left: -10px;
+    margin-right: -10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: calc(100% ~'+' 20px);
+  }
 
   &:hover {
     background-color: lighten(#333, 10%);
