@@ -108,10 +108,10 @@ class ChatController extends Controller
 
         switch (Request::input('target_type')) {
             case 'channel':
-                $target = Channel::findOrFail(Request::input('channel_id'));
+                $target = Channel::findOrFail(Request::input('target_id'));
                 break;
             // case 'user':
-            //     $target = User::findOrFail(Request::input('user_id'));
+            //     $target = User::findOrFail(Request::input('target_id'));
             //     break;
             default:
                 abort(422);
