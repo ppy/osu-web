@@ -17,9 +17,9 @@
  */
 
 .user-home {
-  @top: user-home;
   @title-height: 50px;
 
+  .default-box-shadow();
   .inner-shadow-top();
   display: flex;
   background: #444;
@@ -35,10 +35,23 @@
   }
 
   &__beatmap-list-title {
-    margin: 20px 0 10px;
+    margin: 0;
+    padding: 20px 0 10px;
     font-size: @font-size--title-small-3;
     color: @pink-light;
     font-weight: 100;
+  }
+
+  &__beatmapsets {
+    margin: -10px 0;
+  }
+
+  &__button {
+    margin: 10px 0;
+  }
+
+  &__buttons {
+    margin: -10px 0;
   }
 
   &__news {
@@ -98,7 +111,9 @@
     @media @desktop {
       .inner-shadow-top();
       .default-box-shadow();
-      margin: 0 10px;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-bottom: 10px;
       width: calc(40% ~'-' 20px);
       padding: @title-height 10px 10px;
     }
