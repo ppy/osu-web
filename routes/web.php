@@ -253,7 +253,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api
             //  GET /api/v2/chat/messages/private
             Route::get('messages/private', ['uses' => 'ChatController@privateMessages']);
             // POST /api/v2/chat/messages/new
-            Route::post('messages/new', ['uses' => 'ChatController@postMessage']);
+            Route::post('messages', ['uses' => 'ChatController@postMessage']);
         });
 
         Route::group(['prefix' => 'beatmapsets'], function () {
