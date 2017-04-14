@@ -22,9 +22,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Beatmap;
 use App\Transformers\BeatmapTransformer;
-use Auth;
 use Request;
-use Response;
 
 class BeatmapsController extends Controller
 {
