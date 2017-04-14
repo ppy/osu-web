@@ -64,7 +64,7 @@ class BeatmapsController extends Controller
             if (Request::ajax()) {
                 return error_popup($ex->getMessage());
             } else {
-                return response(['error' => $ex->getMessage()], 400);
+                return response(['error' => $ex->getMessage()], 422);
             }
         }
 
