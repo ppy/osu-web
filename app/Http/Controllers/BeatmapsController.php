@@ -20,8 +20,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ScoreRetrievalException;
 use App\Models\Beatmap;
-use App\Transformers\ScoreTransformer;
 use Auth;
 use Request;
 
@@ -40,26 +40,26 @@ class BeatmapsController extends Controller
     public function scores($id)
     {
         $beatmap = Beatmap::findOrFail($id);
-        $mode = Request::input('mode', Beatmap::modeStr($beatmap->playmode));
-        $mods = Request::input('enabledMods');
+        $mode = presence(Request::input('mode')) ?? $beatmap->mode;
+        $mods = get_arr(Request::input('mods'), 'presence') ?? [];
         $type = Request::input('type', 'global');
         $user = Auth::user();
 
-        if (!is_array($mods)) {
-            $mods = [];
-        }
-
-        if ($type !== 'global' || !empty($mods)) {
-            if ($user === null || !$user->isSupporter()) {
-                return error_popup(trans('errors.supporter_only'));
-            }
+        if ($beatmap->approved <= 0) {
+            return ['scores' => []];
         }
 
         try {
+            if ($type !== 'global' || !empty($mods)) {
+                if ($user === null || !$user->isSupporter()) {
+                    throw new ScoreRetrievalException(trans('errors.supporter_only'));
+                }
+            }
+
             $query = $beatmap
                 ->scoresBest($mode)
                 ->defaultListing();
-        } catch (\InvalidArgumentException $ex) {
+        } catch (ScoreRetrievalException $ex) {
             return error_popup($ex->getMessage());
         }
 
@@ -74,21 +74,21 @@ class BeatmapsController extends Controller
                 break;
         }
 
-        $scoresList = json_collection($query->forListing(), new ScoreTransformer, 'user');
+        $results = [
+            'scores' => json_collection($query->forListing(), 'Score', ['user']),
+        ];
 
         if ($user !== null) {
             $score = (clone $query)->where('user_id', $user->user_id)->first();
 
             if ($score !== null) {
-                $userScore = json_item($score, new ScoreTransformer, 'user');
-                $userScorePosition = $query->userRank($score);
+                $results['userScore'] = [
+                    'position' => $query->userRank($score),
+                    'score' => json_item($score, 'Score', ['user']),
+                ];
             }
         }
 
-        return [
-            'scoresList' => $scoresList,
-            'userScore' => $userScore ?? null,
-            'userScorePosition' => $userScorePosition ?? null,
-        ];
+        return $results;
     }
 }

@@ -32,7 +32,7 @@ class MPHistory.Game extends React.Component
     difference = Math.abs @props.teamScores.blue - @props.teamScores.red
 
     scores = game.scores.map (m) ->
-      m.teamRank = if m.team == winningTeam then 1 else 2
+      m.teamRank = if m.multiplayer.team == winningTeam then 1 else 2
       m
 
     scores = _.orderBy scores, ['teamRank', 'score'], ['asc', 'desc']
@@ -49,7 +49,7 @@ class MPHistory.Game extends React.Component
             score: m
             mode: game.mode
             lookupUser: @props.lookupUser
-            key: m.slot
+            key: m.multiplayer.slot
 
       if showTeams && @props.event.game.end_time
         div {},

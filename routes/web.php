@@ -255,10 +255,15 @@ Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api
         Route::group(['prefix' => 'beatmapsets'], function () {
             Route::get('favourites', ['uses' => 'BeatmapsetsController@favourites']);     //  GET /api/v2/beatmapsets/favourites
         });
-        Route::group(['prefix' => 'beatmaps'], function () {
-            Route::get('scores', ['uses' => 'BeatmapsController@scores']);                //  GET /api/v2/beatmaps/scores
-            // Route::get('/{id}/scores', ['uses' => 'BeatmapsController@scores']);          //  GET /api/v2/beatmaps/:beatmap_id/scores
-        });
+
+        // Beatmaps
+        //   GET /api/v2/beatmaps/:beatmap_id/scores
+        Route::get('beatmaps/{id}/scores', ['uses' => '\App\Http\Controllers\BeatmapsController@scores']);
+        //   GET /api/v2/beatmaps/lookup
+        Route::get('beatmaps/lookup', ['uses' => 'BeatmapsController@lookup']);
+        //   GET /api/v2/beatmaps/:beatmap_id
+        Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
+
         Route::get('me', ['uses' => 'UsersController@me']);                               //  GET /api/v2/me
         Route::get('users/{user}', ['uses' => 'UsersController@show']);                   //  GET /api/v2/users/:user_id
     });
