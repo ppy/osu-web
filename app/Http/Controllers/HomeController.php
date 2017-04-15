@@ -67,11 +67,11 @@ class HomeController extends Controller
         }
 
         $changelogs = Changelog::default()->whereIn('build', $builds->pluck('version'))
-            ->with(['_build', 'user'])
+            ->with(['gameBuild', 'user'])
             ->orderBy('date', 'desc')->get()
             ->sortByDesc('major')
             ->groupBy(function ($item, $key) {
-                return $item->_build->date;
+                return $item->gameBuild->date;
             });
 
         $streams = collect(DB::select("select b.version, b.users, b.stream_id, streams.pretty_name

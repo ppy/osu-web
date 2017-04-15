@@ -26,7 +26,7 @@ class Changelog extends Model
     protected $table = 'osu_changelog';
     protected $primaryKey = 'changelog_id';
 
-    const PREFIXES = [
+    const ICONS = [
         '+' => 'plus',
         '*' => 'wrench',
         '?' => 'question',
@@ -69,15 +69,14 @@ class Changelog extends Model
         return $this->hasOne(UpdateStream::class, 'stream_id', 'stream_id');
     }
 
-    // would be overshadowed by the `build` field without the underscore
-    public function _build()
+    public function gameBuild()
     {
         return $this->belongsTo(Build::class, 'build', 'version');
     }
 
     public function getPrefixAttribute($value)
     {
-        return self::PREFIXES[$value];
+        return self::ICONS[$value];
     }
 
     public function getTooltipAttribute($value)
