@@ -60,7 +60,7 @@ class ChatController extends Controller
                 return priv_check('ChatChannelRead', $channel)->can();
             });
 
-        $messages = Message::whereIn('channel_id', $channel_ids)->with('user');
+        $messages = Message::whereIn('channel_id', $channel_ids)->with('sender');
 
         if ($since) {
             $messages = $messages->where('message_id', '>', $since);
