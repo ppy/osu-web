@@ -23,7 +23,7 @@
 
     <div class="osu-page-header osu-page-header--two-col osu-page-header--home-user js-current-user-cover">
         <div class="osu-page-header__box osu-page-header__box--two-col">
-            <h1 class="osu-page-header__title osu-page-header__title--slightly-small osu-page-header__title--thinner u-ellipsis-overflow">
+            <h1 class="osu-page-header__title u-ellipsis-overflow">
                 {!! $title !!}
             </h1>
             <p class="osu-page-header__detail">

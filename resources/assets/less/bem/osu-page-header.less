@@ -139,16 +139,12 @@
   }
 
   &__box {
-    margin: 0 10px;
     flex: 1 0 auto;
+    flex-wrap: wrap;
+    margin: 0 10px;
     padding: 20px 0;
 
-    &--status {
-      display: flex;
-      background-color: fade(#000, 50%);
-    }
-
-    .@{top}--two-col & {
+    .@{top}--home-user & {
       flex: none;
       width: 100%;
       align-self: flex-end;
@@ -160,12 +156,13 @@
       }
     }
 
-    .@{top}--two-col &--graph {
+    .@{top}--home-user &--status {
+      flex: none;
+      display: flex;
+      background-color: fade(#000, 50%);
       padding: 0;
-      height: 100px;
       padding-top: 5px;
       justify-content: flex-start;
-      flex: none;
       margin: 0 -10px;
       width: calc(100% ~'+' 20px);
 
@@ -188,15 +185,13 @@
   }
 
   &__status {
-    padding: 0 10px;
+    padding: 0 10px 20px;
   }
 
   &__status-chart {
-    position: absolute;
-    bottom: 0;
-    left: 0;
     height: 70px;
     width: 100%;
+    margin-top: -20px;
   }
 
   &__status-label {
@@ -225,23 +220,20 @@
 
     font-style: italic;
 
-    &--slightly-small {
-      font-size: @font-size--new-header-title;
-    }
-
-    &--thinner {
-      font-weight: 100;
-      strong {
-        font-weight: 500;
-      }
-    }
-
     &--small {
       font-size: @font-size--header-subtitle;
     }
 
     &--smaller {
       font-size: @font-size--header-description;
+    }
+
+    .@{top}--home-user & {
+      font-size: @font-size--new-header-title;
+      font-weight: 100;
+      strong {
+        font-weight: 500;
+      }
     }
 
     .@{top}--mp-history & {
