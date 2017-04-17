@@ -61,7 +61,6 @@
                             'href' => route('download'),
                             'label' => trans('home.user.buttons.download'),
                             'icon' => 'download',
-                            'colour' => 'purple-darker'
                         ])
                     </div>
 
