@@ -216,9 +216,11 @@
   }
 
   &__title {
-    font-size: @font-size--header-title;
-    margin: 0 0 10px;
     .default-text-shadow();
+    font-size: @font-size--header-title;
+    // avoid clipping
+    margin: -5px -5px 5px;
+    padding: 5px;
     color: #fff;
 
     font-style: italic;
