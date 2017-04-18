@@ -23,7 +23,7 @@ $lastBuild = null;
 
 @section('content')
     <div class="osu-layout__section osu-layout__section--full">
-        <div class="osu-layout__row osu-layout__row--page-compact">
+        <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--changelog-header">
             <div class="changelog-header">
                 <div class="changelog-header__streams-box">
                     <div class="changelog-header__streams">
