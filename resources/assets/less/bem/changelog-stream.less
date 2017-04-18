@@ -19,6 +19,11 @@
 .changelog-stream {
   @_top: changelog-stream;
 
+  width: 125px;
+  height: 65px;
+
+  margin-left: 10px;
+
   display: flex;
   align-items: flex-start;
 
@@ -28,6 +33,10 @@
 
   .default-border-radius;
   .default-box-shadow;
+
+  &--featured {
+    width: 260px;
+  }
 
   &--active {
     &::before {
