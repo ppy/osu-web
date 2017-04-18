@@ -76,13 +76,7 @@ class HomeController extends Controller
                 return $item->gameBuild->date;
             });
 
-        $streams = collect(DB::select("select b.version, b.users, b.stream_id, streams.pretty_name
-            from (select stream_id, max(date) as date from osu_builds group by stream_id) l
-            join osu_builds b on b.stream_id = l.stream_id and b.date = l.date
-            join osu_updates.streams on b.stream_id = streams.stream_id
-            where b.stream_id in ({$streamIds})
-            order by field(b.stream_id, {$streamIds})"));
-
+        $streams = Build::latestByStream()->with('updateStream')->get();
         $featuredStream = null;
 
         foreach ($streams as $index => $stream) {
