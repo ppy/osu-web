@@ -48,19 +48,19 @@
   }
 
   &--stable {
-    .box-color(3px, @blue);
+    .box-color(3px, @changelog-stream--stable);
   }
 
   &--stable-fallback {
-    .box-color(3px, @green-light);
+    .box-color(3px, @changelog-stream--stable-fallback);
   }
 
   &--beta, &--cutting-edge {
-    .box-color(3px, @yellow);
+    .box-color(3px, @changelog-stream--beta-ce);
   }
 
   &--lazer {
-    .box-color(3px, @red);
+    .box-color(3px, @changelog-stream--lazer);
   }
 
   &__link {
@@ -95,19 +95,19 @@
     .default-border-radius;
 
     .@{_top}--stable & {
-      background-color: @blue;
+      background-color: @changelog-stream--stable;
     }
 
     .@{_top}--stable-fallback & {
-      background-color: @green-light;
+      background-color: @changelog-stream--stable-fallback;
     }
 
     .@{_top}--beta &, .@{_top}--cutting-edge & {
-      background-color: @yellow;
+      background-color: @changelog-stream--beta-ce;
     }
 
     .@{_top}--lazer & {
-      background-color: @red;
+      background-color: @changelog-stream--lazer;
     }
   }
 
