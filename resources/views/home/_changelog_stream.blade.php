@@ -14,8 +14,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="changelog-header__stream {{ $featured ? 'changelog-stream--featured' : '' }} changelog-stream {{ $streamId === $stream->stream_id ? 'changelog-stream--active' : '' }} changelog-stream--{{ str_slug($stream->updateStream->pretty_name) }}">
-    <a class="changelog-stream__link" href={{route('changelog', ['stream_id' => $stream->stream_id])}}></a>
+<a
+  class="changelog-header__stream {{ $featured ? 'changelog-stream--featured' : '' }} changelog-stream {{ $streamId === $stream->stream_id ? 'changelog-stream--active' : '' }} changelog-stream--{{ str_slug($stream->updateStream->pretty_name) }}"
+  href={{ route('changelog', ['stream_id' => $stream->stream_id]) }}
+  >
     <div class="changelog-stream__content">
         <span class="changelog-stream__name">{{ $stream->updateStream->pretty_name }}</span>
         <span class="changelog-stream__build">{{ $stream->version }}</span>
@@ -25,4 +27,4 @@
         <div class="changelog-stream__indicator">
         </div>
     </div>
-</div>
+</a>
