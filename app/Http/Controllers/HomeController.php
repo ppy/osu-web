@@ -46,13 +46,14 @@ class HomeController extends Controller
 
     public function getChangelog()
     {
-        $stream_id = intval(Request::input('stream_id'));
+        $streamId = get_int(Request::input('stream_id'));
         $build = Request::input('build');
 
-        if ($stream_id && $build) {
-            return ujs_redirect(route('changelog', ['stream_id' => $stream_id]));
-        } elseif (!$stream_id && !$build) {
-            $stream_id = config('osu.changelog.featured_stream');
+        if ($streamId && $build) {
+            // in this case ignore the build and show page for the stream id
+            $build = null;
+        } elseif (!$streamId && !$build) {
+            $streamId = config('osu.changelog.featured_stream');
         }
 
         $streamIds = implode(',', config('osu.changelog.update_streams'));
@@ -60,15 +61,16 @@ class HomeController extends Controller
         $builds = Build::orderBy('date', 'desc')
             ->take($build ? 1 : config('osu.changelog.build_count'));
 
-        if ($stream_id) {
-            $builds->where('stream_id', $stream_id);
+        if ($streamId) {
+            $builds->where('stream_id', $streamId);
         } elseif ($build) {
             $builds->where('version', $build);
         }
 
         $changelogs = Changelog::default()->whereIn('build', $builds->pluck('version'))
             ->with(['gameBuild', 'user'])
-            ->orderBy('date', 'desc')->get()
+            ->orderBy('date', 'desc')
+            ->get()
             ->sortByDesc('major')
             ->groupBy(function ($item, $key) {
                 return $item->gameBuild->date;
@@ -91,7 +93,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('home.changelog', compact('changelogs', 'streams', 'featuredStream', 'stream_id'));
+        return view('home.changelog', compact('changelogs', 'streams', 'featuredStream', 'streamId'));
     }
 
     public function getDownload()
